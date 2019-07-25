@@ -1,0 +1,403 @@
+object InformationForm: TInformationForm
+  Left = 352
+  Height = 658
+  Top = 161
+  Width = 411
+  BorderStyle = bsDialog
+  Caption = 'Информация'
+  ClientHeight = 658
+  ClientWidth = 411
+  DefaultMonitor = dmMainForm
+  FormStyle = fsSystemStayOnTop
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.8.0.6'
+  object GroupBox1: TGroupBox
+    Left = 6
+    Height = 246
+    Top = 6
+    Width = 396
+    Caption = 'Позывной'
+    ClientHeight = 224
+    ClientWidth = 392
+    Font.Height = -13
+    ParentFont = False
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 30
+      Height = 15
+      Top = 6
+      Width = 60
+      Caption = 'Позывной:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 48
+      Height = 15
+      Top = 24
+      Width = 42
+      Caption = 'Страна:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 63
+      Height = 15
+      Top = 42
+      Width = 27
+      Caption = 'Имя:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 45
+      Height = 15
+      Top = 60
+      Width = 45
+      Caption = 'Адрес 1:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 45
+      Height = 15
+      Top = 78
+      Width = 45
+      Caption = 'Адрес 2:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 41
+      Height = 15
+      Top = 96
+      Width = 49
+      Caption = 'Локатор:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 6
+      Height = 15
+      Top = 114
+      Width = 84
+      Caption = 'Дом. страница:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 61
+      Height = 15
+      Top = 132
+      Width = 29
+      Caption = 'State:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 38
+      Height = 15
+      Top = 150
+      Width = 52
+      Caption = 'Телефон:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 53
+      Height = 15
+      Top = 168
+      Width = 37
+      Caption = 'E-Mail:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 67
+      Height = 15
+      Top = 186
+      Width = 23
+      Caption = 'ICQ:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label12: TLabel
+      Left = 45
+      Height = 15
+      Top = 204
+      Width = 45
+      Caption = 'QSL VIA:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label14: TLabel
+      Left = 96
+      Height = 1
+      Top = 6
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label15: TLabel
+      Left = 96
+      Height = 1
+      Top = 24
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label16: TLabel
+      Left = 96
+      Height = 1
+      Top = 42
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label17: TLabel
+      Left = 96
+      Height = 1
+      Top = 60
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label18: TLabel
+      Left = 96
+      Height = 1
+      Top = 78
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label19: TLabel
+      Left = 96
+      Height = 1
+      Top = 96
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label20: TLabel
+      Left = 96
+      Height = 1
+      Top = 114
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label21: TLabel
+      Left = 96
+      Height = 1
+      Top = 132
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label22: TLabel
+      Left = 96
+      Height = 1
+      Top = 150
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label23: TLabel
+      Left = 96
+      Height = 1
+      Top = 168
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label24: TLabel
+      Left = 96
+      Height = 1
+      Top = 186
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label25: TLabel
+      Left = 96
+      Height = 1
+      Top = 204
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label26: TLabel
+      Left = 96
+      Height = 1
+      Top = 204
+      Width = 1
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 6
+    Height = 78
+    Top = 258
+    Width = 120
+    Caption = 'Поиск в:'
+    ClientHeight = 58
+    ClientWidth = 116
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 1
+    object CheckBox1: TCheckBox
+      Left = 12
+      Height = 19
+      Top = 0
+      Width = 61
+      Caption = 'QRZ.RU'
+      Checked = True
+      State = cbChecked
+      TabOrder = 0
+    end
+    object CheckBox2: TCheckBox
+      Left = 12
+      Height = 19
+      Top = 18
+      Width = 73
+      Caption = 'HAMQTH'
+      Checked = True
+      State = cbChecked
+      TabOrder = 1
+    end
+    object CheckBox3: TCheckBox
+      Left = 12
+      Height = 19
+      Top = 36
+      Width = 74
+      Caption = 'QRZ.COM'
+      Checked = True
+      State = cbChecked
+      TabOrder = 2
+    end
+  end
+  object Button1: TButton
+    Left = 132
+    Height = 19
+    Top = 264
+    Width = 124
+    Caption = 'Копировать всё'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Button2: TButton
+    Left = 132
+    Height = 19
+    Top = 288
+    Width = 124
+    Caption = 'QRZCQ'
+    Font.Height = -12
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Button3: TButton
+    Left = 132
+    Height = 19
+    Top = 312
+    Width = 124
+    Caption = 'Открыть URL'
+    Font.Height = -12
+    OnClick = Button3Click
+    ParentFont = False
+    TabOrder = 4
+  end
+  object Button4: TButton
+    Left = 276
+    Height = 19
+    Top = 264
+    Width = 124
+    Caption = 'Копир. коммент.'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 5
+  end
+  object Button5: TButton
+    Left = 276
+    Height = 19
+    Top = 288
+    Width = 124
+    Caption = 'PSK Reporter'
+    Font.Height = -12
+    OnClick = Button5Click
+    ParentFont = False
+    TabOrder = 6
+  end
+  object Button6: TButton
+    Left = 276
+    Height = 19
+    Top = 312
+    Width = 124
+    Caption = 'ClubLOG'
+    Font.Height = -12
+    OnClick = Button6Click
+    ParentFont = False
+    TabOrder = 7
+  end
+  object Label13: TLabel
+    Left = 6
+    Height = 15
+    Top = 342
+    Width = 176
+    Caption = 'Загружать фото из Интернета в:'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object DirectoryEdit1: TDirectoryEdit
+    Left = 192
+    Height = 21
+    Top = 336
+    Width = 208
+    ShowHidden = False
+    ButtonWidth = 23
+    NumGlyphs = 1
+    Font.Height = -11
+    MaxLength = 0
+    ParentFont = False
+    TabOrder = 8
+  end
+  object Image1: TImage
+    Left = 6
+    Height = 288
+    Top = 366
+    Width = 396
+    Proportional = True
+    Stretch = True
+  end
+end

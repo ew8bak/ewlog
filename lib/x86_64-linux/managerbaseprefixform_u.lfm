@@ -1,0 +1,174 @@
+object ManagerBasePrefixForm: TManagerBasePrefixForm
+  Left = 310
+  Height = 534
+  Top = 168
+  Width = 863
+  Caption = 'Менеджер базы префиксов'
+  ClientHeight = 534
+  ClientWidth = 863
+  Font.Height = -12
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  LCLVersion = '1.6.4.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 534
+    Top = 0
+    Width = 863
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Уникальные позывные'
+      ClientHeight = 505
+      ClientWidth = 853
+      object Panel1: TPanel
+        Left = 0
+        Height = 28
+        Top = 0
+        Width = 853
+        Align = alTop
+        TabOrder = 0
+      end
+      object DBGrid1: TDBGrid
+        Left = 0
+        Height = 451
+        Top = 28
+        Width = 853
+        Align = alClient
+        Color = clWindow
+        Columns = <>
+        DataSource = UCallsDS
+        TabOrder = 1
+        TitleFont.Height = -12
+      end
+      object Panel4: TPanel
+        Left = 0
+        Height = 26
+        Top = 479
+        Width = 853
+        Align = alBottom
+        TabOrder = 2
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Админ. районы (Области)'
+      ClientHeight = 505
+      ClientWidth = 853
+      object Panel2: TPanel
+        Left = 0
+        Height = 28
+        Top = 0
+        Width = 853
+        Align = alTop
+        TabOrder = 0
+      end
+      object DBGrid2: TDBGrid
+        Left = 0
+        Height = 451
+        Top = 28
+        Width = 853
+        Align = alClient
+        Color = clWindow
+        Columns = <>
+        DataSource = OblDS
+        TabOrder = 1
+        TitleFont.Height = -12
+      end
+      object Panel5: TPanel
+        Left = 0
+        Height = 26
+        Top = 479
+        Width = 853
+        Align = alBottom
+        TabOrder = 2
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Территория (Страна)'
+      ClientHeight = 505
+      ClientWidth = 853
+      object Panel3: TPanel
+        Left = 0
+        Height = 28
+        Top = 0
+        Width = 853
+        Align = alTop
+        TabOrder = 0
+      end
+      object DBGrid3: TDBGrid
+        Left = 0
+        Height = 451
+        Top = 28
+        Width = 853
+        Align = alClient
+        Color = clWindow
+        Columns = <>
+        DataSource = CountryDS
+        TabOrder = 1
+        TitleFont.Height = -12
+      end
+      object Panel6: TPanel
+        Left = 0
+        Height = 26
+        Top = 479
+        Width = 853
+        Align = alBottom
+        TabOrder = 2
+      end
+    end
+  end
+  object UniqueCallsQuery: TSQLQuery
+    FieldDefs = <>
+    Database = MainForm.MySQLLOGDBConnection
+    Transaction = MainForm.SQLTransaction1
+    SQL.Strings = (
+      'SELECT * FROM UniqueCalls'
+    )
+    Options = []
+    Params = <>
+    left = 512
+    top = 312
+  end
+  object OblastQuery: TSQLQuery
+    FieldDefs = <>
+    Database = MainForm.MySQLLOGDBConnection
+    Transaction = MainForm.SQLTransaction1
+    SQL.Strings = (
+      'SELECT * FROM Province'
+    )
+    Options = []
+    Params = <>
+    left = 672
+    top = 328
+  end
+  object CountryQuery: TSQLQuery
+    FieldDefs = <>
+    Database = MainForm.MySQLLOGDBConnection
+    Transaction = MainForm.SQLTransaction1
+    SQL.Strings = (
+      'SELECT * FROM CountryDataEx'
+    )
+    Options = []
+    Params = <>
+    left = 736
+    top = 328
+  end
+  object UCallsDS: TDataSource
+    DataSet = UniqueCallsQuery
+    left = 736
+    top = 400
+  end
+  object OblDS: TDataSource
+    DataSet = OblastQuery
+    left = 624
+    top = 400
+  end
+  object CountryDS: TDataSource
+    DataSet = CountryQuery
+    left = 680
+    top = 400
+  end
+end

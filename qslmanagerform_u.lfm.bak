@@ -1,0 +1,257 @@
+object QSLManager_Form: TQSLManager_Form
+  Left = 375
+  Height = 453
+  Top = 161
+  Width = 622
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'QSL Менеджер'
+  ClientHeight = 453
+  ClientWidth = 622
+  Font.Height = -12
+  FormStyle = fsStayOnTop
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.6.0.4'
+  object Panel1: TPanel
+    Left = 0
+    Height = 40
+    Top = 0
+    Width = 622
+    Align = alTop
+    ClientHeight = 40
+    ClientWidth = 622
+    TabOrder = 0
+    object Edit1: TEdit
+      Left = 336
+      Height = 21
+      Top = 9
+      Width = 96
+      CharCase = ecUppercase
+      Font.Height = -11
+      OnChange = Edit1Change
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 272
+      Height = 15
+      Top = 15
+      Width = 57
+      Caption = 'Позывной'
+      ParentColor = False
+    end
+    object DBNavigator1: TDBNavigator
+      Left = 8
+      Height = 27
+      Top = 5
+      Width = 241
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 27
+      ClientWidth = 241
+      DataSource = ManagerDS
+      OnClick = DBNavigator1Click
+      Options = []
+      TabOrder = 1
+    end
+    object Button3: TButton
+      Left = 440
+      Height = 21
+      Top = 9
+      Width = 75
+      Caption = 'Очистить'
+      OnClick = Button3Click
+      TabOrder = 2
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 125
+    Top = 328
+    Width = 622
+    Align = alBottom
+    ClientHeight = 125
+    ClientWidth = 622
+    TabOrder = 1
+    object DBEdit1: TDBEdit
+      Left = 72
+      Height = 21
+      Top = 16
+      Width = 112
+      DataField = 'Call'
+      DataSource = ManagerDS
+      CharCase = ecNormal
+      Font.Height = -11
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 0
+    end
+    object DBEdit2: TDBEdit
+      Left = 72
+      Height = 21
+      Top = 40
+      Width = 112
+      DataField = 'Manager'
+      DataSource = ManagerDS
+      CharCase = ecNormal
+      Font.Height = -11
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 1
+    end
+    object DBEdit3: TDBEdit
+      Left = 72
+      Height = 21
+      Top = 64
+      Width = 112
+      DataField = 'Years'
+      DataSource = ManagerDS
+      CharCase = ecNormal
+      Font.Height = -11
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 2
+    end
+    object DBEdit4: TDBEdit
+      Left = 72
+      Height = 21
+      Top = 88
+      Width = 112
+      DataField = 'Author'
+      DataSource = ManagerDS
+      CharCase = ecNormal
+      Font.Height = -11
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 3
+    end
+    object DBMemo1: TDBMemo
+      Left = 216
+      Height = 66
+      Top = 16
+      Width = 384
+      DataField = 'Notes'
+      DataSource = ManagerDS
+      TabOrder = 4
+    end
+    object Label2: TLabel
+      Left = 8
+      Height = 15
+      Top = 21
+      Width = 57
+      Caption = 'Позывной'
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 8
+      Height = 15
+      Top = 48
+      Width = 58
+      Caption = 'Менеджер'
+      ParentColor = False
+    end
+    object Label4: TLabel
+      Left = 8
+      Height = 15
+      Top = 72
+      Width = 25
+      Caption = 'Дата'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 8
+      Height = 15
+      Top = 94
+      Width = 54
+      Caption = 'Источник'
+      ParentColor = False
+    end
+    object Button1: TButton
+      Left = 525
+      Height = 25
+      Top = 90
+      Width = 75
+      Caption = 'Сохранить'
+      TabOrder = 5
+    end
+    object Button2: TButton
+      Left = 440
+      Height = 25
+      Top = 90
+      Width = 75
+      Caption = 'Отмена'
+      OnClick = Button2Click
+      TabOrder = 6
+    end
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 288
+    Top = 40
+    Width = 622
+    Align = alClient
+    Color = clWindow
+    Columns = <    
+      item
+        MaxSize = 30
+        Title.Caption = 'id'
+        Width = 30
+        FieldName = '_id'
+      end    
+      item
+        MaxSize = 70
+        Title.Caption = 'Позывной'
+        Width = 70
+        FieldName = 'Call'
+      end    
+      item
+        MaxSize = 70
+        Title.Caption = 'Менеджер'
+        Width = 70
+        FieldName = 'Manager'
+      end    
+      item
+        MaxSize = 90
+        Title.Caption = 'Дата'
+        Width = 90
+        FieldName = 'Years'
+      end    
+      item
+        MaxSize = 220
+        Title.Caption = 'Заметки'
+        Width = 220
+        FieldName = 'Notes'
+      end    
+      item
+        MaxSize = 100
+        Title.Caption = 'Автор'
+        Width = 100
+        FieldName = 'Author'
+      end>
+    DataSource = ManagerDS
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    ReadOnly = True
+    TabOrder = 2
+    TitleFont.Height = -12
+    OnDblClick = DBGrid1DblClick
+  end
+  object ManagersQuery: TSQLQuery
+    FieldDefs = <>
+    Options = []
+    Params = <>
+    left = 195
+    top = 91
+  end
+  object ManagerDS: TDataSource
+    DataSet = ManagersQuery
+    left = 388
+    top = 149
+  end
+end

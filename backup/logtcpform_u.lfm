@@ -1,0 +1,52 @@
+object LogTCP_Form: TLogTCP_Form
+  Left = 2455
+  Height = 240
+  Top = 303
+  Width = 923
+  Caption = 'LogTCP'
+  ClientHeight = 240
+  ClientWidth = 923
+  Position = poMainFormCenter
+  LCLVersion = '1.8.0.6'
+  object Memo1: TMemo
+    Left = 16
+    Height = 178
+    Top = 16
+    Width = 568
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 15
+    Top = 208
+    Width = 104
+    Caption = 'Отправлено строк:'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 232
+    Height = 15
+    Top = 208
+    Width = 85
+    Caption = 'Принято строк:'
+    ParentColor = False
+  end
+  object Memo2: TMemo
+    Left = 600
+    Height = 176
+    Top = 16
+    Width = 300
+    ScrollBars = ssAutoBoth
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 360
+    Height = 25
+    Top = 208
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+end

@@ -1,0 +1,1849 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='ARRLPrefix' rs:number='1' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='ARRLPrefix'>
+			<s:datatype dt:type='string' dt:maxLength='20'/>
+		</s:AttributeType>
+		<s:AttributeType name='Prefix' rs:number='2' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true' rs:basetable='Province'
+			 rs:basecolumn='Prefix'>
+			<s:datatype dt:type='string' dt:maxLength='20'/>
+		</s:AttributeType>
+		<s:AttributeType name='Comment' rs:number='3' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='Comment'>
+			<s:datatype dt:type='string' dt:maxLength='100'/>
+		</s:AttributeType>
+		<s:AttributeType name='Continent' rs:number='4' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='Continent'>
+			<s:datatype dt:type='string' dt:maxLength='2'/>
+		</s:AttributeType>
+		<s:AttributeType name='Country' rs:number='5' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='Country'>
+			<s:datatype dt:type='string' dt:maxLength='100'/>
+		</s:AttributeType>
+		<s:AttributeType name='CQZone' rs:number='6' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true' rs:basetable='Province'
+			 rs:basecolumn='CQZone'>
+			<s:datatype dt:type='string' dt:maxLength='2'/>
+		</s:AttributeType>
+		<s:AttributeType name='DXCC' rs:number='7' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true' rs:basetable='Province'
+			 rs:basecolumn='DXCC'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='ITUZone' rs:number='8' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='UniqueCalls' rs:basecolumn='id'>
+			<s:datatype dt:type='string' dt:maxLength='2'/>
+		</s:AttributeType>
+		<s:AttributeType name='Latitude' rs:number='9' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='Latitude'>
+			<s:datatype dt:type='string' dt:maxLength='10'/>
+		</s:AttributeType>
+		<s:AttributeType name='Longitude' rs:number='10' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='Longitude'>
+			<s:datatype dt:type='string' dt:maxLength='10'/>
+		</s:AttributeType>
+		<s:AttributeType name='PrefixList' rs:number='11' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='PrefixList'>
+			<s:datatype dt:type='string' dt:maxLength='536870910' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='StartDate' rs:number='12' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='StartDate'>
+			<s:datatype dt:type='dateTime' rs:dbtype='variantdate' dt:maxLength='16' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='EndDate' rs:number='13' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Province' rs:basecolumn='EndDate'>
+			<s:datatype dt:type='dateTime' rs:dbtype='variantdate' dt:maxLength='16' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='id' rs:number='14' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='TimeDiff' rs:number='15' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Country' rs:basecolumn='TimeDiff'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<rs:insert>
+		<z:row ARRLPrefix='4J' Prefix='4J2' Comment='' Continent='AS' Country='Azerbaijan, Nachichevan' CQZone='21'
+			 DXCC='18' ITUZone='29' Latitude='39.12N' Longitude='45.27E' PrefixList='E[KMNORXYZ]6С.*|UD[2-7]N.*|[RU]K6С.*'
+			 EndDate='1993-12-30T00:00:00' id='0' TimeDiff='4' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='4J' Prefix='4J2' Comment='' Continent='AS' Country='Azerbaijan, Nachichevan' CQZone='21'
+			 DXCC='18' ITUZone='29' Latitude='39.12N' Longitude='45.27E' PrefixList='4[JK]2.*' StartDate='1994-01-01T00:00:00'
+			 id='1' TimeDiff='4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='4J' Prefix='4J4' Comment='' Continent='AS' Country='Azerbaijan, Baku city' CQZone='21' DXCC='18'
+			 ITUZone='29' Latitude='40.17N' Longitude='49.39E' PrefixList='4[JK][4-9].*' StartDate='1994-01-01T00:00:00' id='2'
+			 TimeDiff='4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='4J' Prefix='4J4' Comment='' Continent='AS' Country='Azerbaijan, Baku city' CQZone='21' DXCC='18'
+			 ITUZone='29' Latitude='40.17N' Longitude='49.39E' PrefixList='UD6[A-C].*|UD70.*' EndDate='1993-12-30T00:00:00'
+			 id='3' TimeDiff='4' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='4K1H' Comment='' Continent='AN' Country='Antarctica, Russkaya Station' CQZone='32'
+			 DXCC='13' ITUZone='72' Latitude='74.76S' Longitude='136.86W' PrefixList='4K1H\Z|4K1LPK\Z' EndDate='1993-12-31T00:00:00'
+			 id='4' TimeDiff='-9' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='4K1L' Comment='' Continent='AN' Country='Antarctica, Pionerskaya Base' CQZone='29'
+			 DXCC='13' ITUZone='69' Latitude='69.733S' Longitude='95.516E' PrefixList='4K1L\Z' EndDate='1994-12-31T00:00:00'
+			 id='5' TimeDiff='6' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='4L' Prefix='4L1O' Comment='' Continent='AS' Country='Georgia, South Osetia' CQZone='21'
+			 DXCC='75' ITUZone='29' Latitude='42.224N' Longitude='43.964E' PrefixList='4L[0-9]O.*|UF6O.*' StartDate='2008-01-01T00:00:00'
+			 id='6' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='4L' Prefix='4L1Q' Comment='' Continent='AS' Country='Georgia, Adsharia' CQZone='21' DXCC='75'
+			 ITUZone='29' Latitude='41.7N' Longitude='44.8E' PrefixList='4L[0-9]Q.*' StartDate='1993-01-01T00:00:00' id='7'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='4L' Prefix='4L1Q' Comment='' Continent='AS' Country='Georgia, Adsharia' CQZone='21' DXCC='75'
+			 ITUZone='29' Latitude='41.7N' Longitude='44.8E' PrefixList='E[KMNOXYZ]6Q.*|RF[2-8]Q.*|UF7Q|[RU][FK]6Q.*|[RU]6Q.*'
+			 EndDate='1992-12-31T00:00:00' id='8' TimeDiff='2' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='4L' Prefix='4L1V' Comment='' Continent='AS' Country='Georgia, Abkhasia' CQZone='21' DXCC='75'
+			 ITUZone='29' Latitude='41.7N' Longitude='44.8E' PrefixList='4L[0-9]V.*|UF6V.*' StartDate='1993-01-01T00:00:00'
+			 id='9' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='4L' Prefix='4L1V' Comment='' Continent='AS' Country='Georgia, Abkhasia' CQZone='21' DXCC='75'
+			 ITUZone='29' Latitude='41.7N' Longitude='44.8E' PrefixList='E[KMNOVRWXYZ]6V.*|UF7V.*|[RU][FK]6V.*' EndDate='1992-12-31T00:00:00'
+			 id='10' TimeDiff='2' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='OE' Prefix='4U1V' Comment='' Continent='EU' Country='Austria' CQZone='15' DXCC='206' ITUZone='28'
+			 Latitude='47.4167N' Longitude='14.0833E' PrefixList='4U\d{1,}NPT.*|4U\d{1,}V.*|4U2U\Z' id='11' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H0' Comment='' Continent='AF' Country='Tanzania, Dodoma' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='5.81S' Longitude='35.25E' PrefixList='5[HI]0.*' StartDate='1945-11-15T00:00:00' id='12'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H1' Comment='' Continent='AF' Country='Tanzania, Zanzibar' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='6.09S' Longitude='39.33E' PrefixList='5[HI]1.*' StartDate='1945-11-15T00:00:00' id='13'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H2' Comment='' Continent='AF' Country='Tanzania, Arysha' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='3.88S' Longitude='36.9E' PrefixList='5[HI]2.*' StartDate='1945-11-15T00:00:00' id='14'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H3' Comment='' Continent='AF' Country='Tanzania, Dar Es Salaam' CQZone='37'
+			 DXCC='470' ITUZone='53' Latitude='7.11S' Longitude='38.87E' PrefixList='5[HI]3.*' StartDate='1945-11-15T00:00:00'
+			 id='15' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H4' Comment='' Continent='AF' Country='Tanzania, Morogoro' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='7.99S' Longitude='37.32E' PrefixList='5[HI]4.*' StartDate='1945-11-15T00:00:00' id='16'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H5' Comment='' Continent='AF' Country='Tanzania, Lindi' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='10.38S' Longitude='37.39E' PrefixList='5[HI]5.*' StartDate='1945-11-15T00:00:00' id='17'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H6' Comment='' Continent='AF' Country='Tanzania, Iringa' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='8.45S' Longitude='35.14E' PrefixList='5[HI]6.*' StartDate='1945-11-15T00:00:00' id='18'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H7' Comment='' Continent='AF' Country='Tanzania, Mbeya' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='8.27S' Longitude='33.49E' PrefixList='5[HI]7.*' StartDate='1945-11-15T00:00:00' id='19'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H8' Comment='' Continent='AF' Country='Tanzania, Kigoma' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='5.64S' Longitude='31.7E' PrefixList='5[HI]8.*' StartDate='1945-11-15T00:00:00' id='20'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5H' Prefix='5H9' Comment='' Continent='AF' Country='Tanzania, Mwanza' CQZone='37' DXCC='470'
+			 ITUZone='53' Latitude='2.82S' Longitude='33.14E' PrefixList='5[HI]9.*' StartDate='1945-11-15T00:00:00' id='21'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N0' Comment='' Continent='AF' Country='Nigeria, Lagos' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='8.84N' Longitude='7.21E' PrefixList='5[NO]0.*' StartDate='1945-11-15T00:00:00' id='22'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N1' Comment='' Continent='AF' Country='Nigeria, Ogun' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='6.98N' Longitude='3.32E' PrefixList='5[NO]1.*' StartDate='1945-11-15T00:00:00' id='23'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N2' Comment='' Continent='AF' Country='Nigeria, Kwara' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='9.47N' Longitude='5.24E' PrefixList='5[NO]2.*' StartDate='1945-11-15T00:00:00' id='24'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N3' Comment='' Continent='AF' Country='Nigeria, Edo' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='6.18N' Longitude='5.92E' PrefixList='5[NO]3.*' StartDate='1945-11-15T00:00:00' id='25'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N4' Comment='' Continent='AF' Country='Nigeria, Enugu' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='5.2N' Longitude='6.84E' PrefixList='5[NO]4.*' StartDate='1945-11-15T00:00:00' id='26'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N5' Comment='' Continent='AF' Country='Nigeria, Cross Rivers' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='6.83N' Longitude='8.87E' PrefixList='5[NO]5.*' StartDate='1945-11-15T00:00:00' id='27'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N6' Comment='' Continent='AF' Country='Nigeria, Plateau' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='9.75N' Longitude='9.53E' PrefixList='5[NO]6.*' StartDate='1945-11-15T00:00:00' id='28'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N7' Comment='' Continent='AF' Country='Nigeria, Adamawa' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='11.13N' Longitude='12.76E' PrefixList='5[NO]7.*' StartDate='1945-11-15T00:00:00' id='29'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N8' Comment='' Continent='AF' Country='Nigeria, Kano' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='12.1N' Longitude='8.99E' PrefixList='5[NO]8.*' StartDate='1945-11-15T00:00:00' id='30'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='5N' Prefix='5N9' Comment='' Continent='AF' Country='Nigeria, Kaduna' CQZone='35' DXCC='450'
+			 ITUZone='46' Latitude='11.76N' Longitude='6.47E' PrefixList='5[NO]9.*' StartDate='1945-11-15T00:00:00' id='31'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W0' Comment='' Continent='AF' Country='Senegal, Kolda' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='13N' Longitude='15W' PrefixList='6[VW]0.*' StartDate='1945-11-15T00:00:00' id='32' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W1' Comment='' Continent='AF' Country='Senegal, Dakar' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='14.8N' Longitude='16.7W' PrefixList='6[VW]1.*' StartDate='1945-11-15T00:00:00' id='33'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W2' Comment='' Continent='AF' Country='Senegal, Ziguinchor' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='12.6N' Longitude='15.8W' PrefixList='6[VW]2.*' StartDate='1945-11-15T00:00:00' id='34'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W3' Comment='' Continent='AF' Country='Senegal, Diourbei' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='13.1N' Longitude='15.4W' PrefixList='6[VW]3.*' StartDate='1945-11-15T00:00:00' id='35'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W4' Comment='' Continent='AF' Country='Senegal, Saint Louis' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='16N' Longitude='16W' PrefixList='6[VW]4.*' StartDate='1945-11-15T00:00:00' id='36' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W5' Comment='' Continent='AF' Country='Senegal, Tambacounda' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='13.7N' Longitude='13.7W' PrefixList='6[VW]5.*' StartDate='1945-11-15T00:00:00' id='37'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W6' Comment='' Continent='AF' Country='Senegal, Kaolack' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='16.1N' Longitude='14.15W' PrefixList='6[VW]6.*' StartDate='1945-11-15T00:00:00' id='38'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W7' Comment='' Continent='AF' Country='Senegal, Thies' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='16.2N' Longitude='14.9W' PrefixList='6[VW]7.*' StartDate='1945-11-15T00:00:00' id='39'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W8' Comment='' Continent='AF' Country='Senegal, Lounga' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='15.6N' Longitude='16.2W' PrefixList='6[VW]8.*' StartDate='1945-11-15T00:00:00' id='40'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='6V' Prefix='6W9' Comment='' Continent='AF' Country='Senegal, Fatick' CQZone='35' DXCC='456'
+			 ITUZone='46' Latitude='14.2N' Longitude='16.5W' PrefixList='6[VW]9.*' StartDate='1945-11-15T00:00:00' id='41'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='7O' Prefix='7O' Comment='' Continent='AF' Country='Yemen, Socotra Isl.' CQZone='37' DXCC='492'
+			 ITUZone='48' Latitude='12.2111N' Longitude='52.998E' PrefixList='7O2A.*|7O6T.*' StartDate='1990-05-22T00:00:00'
+			 id='42' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='8J1RF' Comment='' Continent='AN' Country='Antarctica, Dome Fuji Base' CQZone='39'
+			 DXCC='13' ITUZone='67' Latitude='77.31S' Longitude='39.7E' PrefixList='8J1RF\Z' id='43' TimeDiff='3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='8J1RL' Comment='' Continent='AN' Country='Antarctica, Syowa Base' CQZone='39'
+			 DXCC='13' ITUZone='67' Latitude='69S' Longitude='39.58E' PrefixList='8J1R[LM]\Z' id='44' TimeDiff='3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='8R' Prefix='8R1' Comment='' Continent='SA' Country='Guyana, East Demerara' CQZone='9' DXCC='129'
+			 ITUZone='12' Latitude='5.55N' Longitude='58.36W' PrefixList='8R1.*' StartDate='1945-11-15T00:00:00' id='45' TimeDiff='-3'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='8R' Prefix='8R2' Comment='' Continent='SA' Country='Guyana, East Berbice' CQZone='9' DXCC='129'
+			 ITUZone='12' Latitude='4.3N' Longitude='58.22W' PrefixList='8R2.*' StartDate='1945-11-15T00:00:00' id='46' TimeDiff='-3'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='8R' Prefix='8R3' Comment='' Continent='SA' Country='Guyana, East Essequibo' CQZone='9' DXCC='129'
+			 ITUZone='12' Latitude='5.08N' Longitude='59.5W' PrefixList='8R3.*' StartDate='1945-11-15T00:00:00' id='47' TimeDiff='-3'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='8T2BH' Comment='' Continent='AN' Country='Antarctica, Bharati Base' CQZone='39'
+			 DXCC='13' ITUZone='67' Latitude='69.2428S' Longitude='76.1114E' PrefixList='8T2BH\Z' id='48' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='9H' Prefix='9H4' Comment='' Continent='EU' Country='Malta, Gozo Isl.' CQZone='15' DXCC='257'
+			 ITUZone='28' Latitude='36.02N' Longitude='14.21E' PrefixList='9H4.*' StartDate='1945-11-15T00:00:00' id='49'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9M6' Prefix='9M6' Comment='' Continent='OC' Country='East Malaysia, Sabah' CQZone='28' DXCC='46'
+			 ITUZone='54' Latitude='3.1778N' Longitude='114.1E' PrefixList='9[MW]6[A-Z].*|9M57MS\Z|9M61MS\Z' StartDate='1963-09-16T00:00:00'
+			 id='50' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9M6' Prefix='9M8' Comment='' Continent='OC' Country='East Malaysia, Sarawak' CQZone='28'
+			 DXCC='46' ITUZone='54' Latitude='3.1778N' Longitude='114.1E' PrefixList='9[MW]8[A-Z].*|9M57MW\Z|9M61MQ\Z' StartDate='1963-09-16T00:00:00'
+			 id='51' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q1' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Kinshasa' CQZone='36'
+			 DXCC='414' ITUZone='52' Latitude='4.3S' Longitude='15.3E' PrefixList='9[O-T]1.*' StartDate='1945-11-15T00:00:00'
+			 id='52' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q2' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Bas Congo' CQZone='36'
+			 DXCC='414' ITUZone='52' Latitude='5S' Longitude='12E' PrefixList='9[O-T]2.*' StartDate='1945-11-15T00:00:00'
+			 id='53' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q3' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Bandundu' CQZone='36'
+			 DXCC='414' ITUZone='52' Latitude='3.1S' Longitude='17.6E' PrefixList='9[O-T]3.*' StartDate='1945-11-15T00:00:00'
+			 id='54' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q4' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Equateur' CQZone='36'
+			 DXCC='414' ITUZone='52' Latitude='1S' Longitude='21E' PrefixList='9[O-T]4.*' StartDate='1945-11-15T00:00:00'
+			 id='55' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q5' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Orientale' CQZone='36'
+			 DXCC='414' ITUZone='52' Latitude='1.7S' Longitude='28.5E' PrefixList='9[O-T]5.*' StartDate='1945-11-15T00:00:00'
+			 id='56' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q6' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Kivu' CQZone='36'
+			 DXCC='414' ITUZone='52' Latitude='3.5S' Longitude='28E' PrefixList='9[O-T]6.*' StartDate='1945-11-15T00:00:00'
+			 id='57' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q7' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Katanga' CQZone='36'
+			 DXCC='414' ITUZone='52' Latitude='8S' Longitude='26.5E' PrefixList='9[O-T]7.*' StartDate='1945-11-15T00:00:00'
+			 id='58' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q8' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Orient. Kasai' CQZone='36'
+			 DXCC='414' ITUZone='52' Latitude='4.2S' Longitude='24E' PrefixList='9[O-T]8.*' StartDate='1945-11-15T00:00:00'
+			 id='59' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='9Q' Prefix='9Q9' Comment='' Continent='AF' Country='Dem. Rep. of Congo, Occid-al. Kasai'
+			 CQZone='36' DXCC='414' ITUZone='52' Latitude='5.5S' Longitude='22E' PrefixList='9[O-T]9.*' StartDate='1945-11-15T00:00:00'
+			 id='60' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='AT0A' Comment='' Continent='AN' Country='Antarctica, Dakshin Gangotri Station'
+			 CQZone='38' DXCC='13' ITUZone='67' Latitude='70.75S' Longitude='11.76E' PrefixList='AT0A\Z' id='61' TimeDiff='1'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='AT10BP' Comment='' Continent='AN' Country='Antarctica, Maitri Base' CQZone='38'
+			 DXCC='13' ITUZone='67' Latitude='70.57S' Longitude='11.74W' PrefixList='AT10BP\Z|AT3D\Z|VU2AXA\Z|VU2JBK\Z|VU2RAY\Z|VU3BPZ\Z|VU3DEN\Z|VU3PDD\Z'
+			 id='62' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BO1' Comment='' Continent='AS' Country='Taiwan, Matsu Isl.' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='26.133N' Longitude='119.916E' PrefixList='BO0[MD].*|BO1.*' StartDate='1945-11-15T00:00:00'
+			 id='63' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BO2' Comment='' Continent='AS' Country='Taiwan, Kinmem Isl.' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='24.5N' Longitude='118.416E' PrefixList='BO0K.*|BO2.*' StartDate='1945-11-15T00:00:00'
+			 id='64' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV1' Comment='' Continent='AS' Country='Taiwan, Keelung, Ilan' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='24.4333N' Longitude='121.5E' PrefixList='B[M-QU-X]1.*' StartDate='1945-11-15T00:00:00'
+			 id='65' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV2' Comment='' Continent='AS' Country='Taiwan, Taipei' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='24.933N' Longitude='121.383E' PrefixList='B[M-QU-X]2.*' StartDate='1945-11-15T00:00:00'
+			 id='66' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV3' Comment='' Continent='AS' Country='Taiwan, Hsinchu' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='24.683N' Longitude='120.933E' PrefixList='B[M-QU-X]3.*' StartDate='1945-11-15T00:00:00'
+			 id='67' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV4' Comment='' Continent='AS' Country='Taiwan, Taichung' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='24.3N' Longitude='120.783E' PrefixList='B[M-QU-X]4.*' StartDate='1945-11-15T00:00:00'
+			 id='68' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV5' Comment='' Continent='AS' Country='Taiwan, Changhua' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='23.7N' Longitude='120.533E' PrefixList='B[M-QU-X]5.*' StartDate='1945-11-15T00:00:00'
+			 id='69' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV6' Comment='' Continent='AS' Country='Taiwan, Chai' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='23.283N' Longitude='120.15E' PrefixList='B[M-QU-X]6.*' StartDate='1945-11-15T00:00:00'
+			 id='70' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV7' Comment='' Continent='AS' Country='Taiwan, Kaohsiung' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='22.9N' Longitude='120.4E' PrefixList='B[M-QU-X]7.*' StartDate='1945-11-15T00:00:00' id='71'
+			 TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV8' Comment='' Continent='AS' Country='Taiwan, Pintung, Hualian' CQZone='24'
+			 DXCC='386' ITUZone='44' Latitude='23.2666N' Longitude='121.1E' PrefixList='B[M-QU-X]8.*' StartDate='1945-11-15T00:00:00'
+			 id='72' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BV' Prefix='BV9A' Comment='' Continent='AS' Country='Taiwan, Peng Hu Isl.' CQZone='24' DXCC='386'
+			 ITUZone='44' Latitude='23.583N' Longitude='119.65E' PrefixList='B[M-QU-X]9A.*' StartDate='1945-11-15T00:00:00'
+			 id='73' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY0A' Comment='' Continent='AS' Country='China, Xin Jiang' CQZone='23' DXCC='318'
+			 ITUZone='42' Latitude='41N' Longitude='86E' PrefixList='3[H-U]0[A-F].*|B[A-LTRYZ]0[A-F].*|B0[A-F].*|XS0[A-F].*'
+			 StartDate='1945-11-15T00:00:00' id='74' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY0G' Comment='' Continent='AS' Country='China, Xi Zang' CQZone='23' DXCC='318'
+			 ITUZone='42' Latitude='31N' Longitude='88E' PrefixList='3[H-U]0[G-L].*|B[A-LTRYZ]0[G-L].*|B0[G-L].*|XS0[G-L].*'
+			 StartDate='1945-11-15T00:00:00' id='75' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY1' Comment='' Continent='AS' Country='China, Bei Jing' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='39.916N' Longitude='116.4E' PrefixList='3[H-U]1.*|B[A-LTRYZ]1.*|B1.*|XS1.*' StartDate='1945-11-15T00:00:00'
+			 id='76' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY2A' Comment='' Continent='AS' Country='China, Hei Long Jiang' CQZone='24'
+			 DXCC='318' ITUZone='33' Latitude='46.5N' Longitude='128.416E' PrefixList='3[H-U]2[A-H].*|B[A-LTRYZ]2[A-H].*|B2[A-H].*|XS2[A-H].*'
+			 StartDate='1945-11-15T00:00:00' id='77' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY2I' Comment='' Continent='AS' Country='China, Ji Lin' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='43N' Longitude='126E' PrefixList='3[H-U]2[I-P].*|B[A-LTRYZ]2[I-P].*|B2[I-P].*|XS2[I-P].*'
+			 StartDate='1945-11-15T00:00:00' id='78' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY2Q' Comment='' Continent='AS' Country='China, Liao Ning' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='41N' Longitude='122.266E' PrefixList='3[H-U]2[Q-X].*|B[A-LTRYZ]2[Q-X].*|B2[Q-X].*|XS2[Q-X].*'
+			 StartDate='1945-11-15T00:00:00' id='79' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY3A' Comment='' Continent='AS' Country='China, Tian Jin' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='38.95N' Longitude='117.1E' PrefixList='3[H-U]3[A-F].*|B[A-LTRYZ]3[A-F].*|B3[A-F].*|XS3[A-F].*'
+			 StartDate='1945-11-15T00:00:00' id='80' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY3G' Comment='' Continent='AS' Country='China, Nei Meng' CQZone='23' DXCC='318'
+			 ITUZone='44' Latitude='42N' Longitude='113E' PrefixList='3[H-U]3[G-L].*|B[A-LTRYZ]3[G-L].*|B3[G-L].*|XS3[G-L].*'
+			 StartDate='1945-11-15T00:00:00' id='81' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY3M' Comment='' Continent='AS' Country='China, Hei Bei' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='38N' Longitude='115E' PrefixList='3[H-U]3[M-R].*|B[A-LTRYZ]3[M-R].*|B3[M-R].*|XS3[M-R].*'
+			 StartDate='1945-11-15T00:00:00' id='82' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY3S' Comment='' Continent='AS' Country='China, Shan Xi' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='37N' Longitude='111.816E' PrefixList='3[H-U]3[S-X].*|B[A-LTRYZ]3[S-X].*|B3[S-X].*|XS3[S-X].*'
+			 StartDate='1945-11-15T00:00:00' id='83' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY4A' Comment='' Continent='AS' Country='China, Shang Hai' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='31.066N' Longitude='121.3E' PrefixList='3[H-U]4[A-H].*|B[A-LTRYZ]4[A-H].*|B4[A-H].*|XS4[A-H].*'
+			 StartDate='1945-11-15T00:00:00' id='84' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY4I' Comment='' Continent='AS' Country='China, Shan Dong' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='36N' Longitude='117E' PrefixList='3[H-U]4[I-P].*|B[A-LTRYZ]4[I-P].*|B4[I-P].*|XS4[I-P].*'
+			 StartDate='1945-11-15T00:00:00' id='85' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY4Q' Comment='' Continent='AS' Country='China, Jiang Su' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='32.4N' Longitude='119.6E' PrefixList='3[H-U]4[Q-X].*|B[A-LTRYZ]4[Q-X].*|B4[Q-X].*|XS4[Q-X].*'
+			 StartDate='1945-11-15T00:00:00' id='86' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY5A' Comment='' Continent='AS' Country='China, Zhe Jiang' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='29N' Longitude='120E' PrefixList='3[H-U]5[A-H].*|B[A-LTRYZ]5[A-H].*|B5[A-H].*|XS5[A-H].*'
+			 StartDate='1945-11-15T00:00:00' id='87' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY5I' Comment='' Continent='AS' Country='China, Jiang Xi' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='27.433N' Longitude='114.9E' PrefixList='3[H-U]5[I-P].*|B[A-LTRYZ]5[I-P].*|B5[I-P].*|XS5[I-P].*'
+			 StartDate='1945-11-15T00:00:00' id='88' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY5Q' Comment='' Continent='AS' Country='China, Fu Jian' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='26N' Longitude='118E' PrefixList='3[H-U]5[Q-X].*|B[A-LTRYZ]5[Q-X].*|B5[Q-X].*|XS5[Q-X].*'
+			 StartDate='1945-11-15T00:00:00' id='89' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY6A' Comment='' Continent='AS' Country='China, An Hui' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='31.466N' Longitude='116.516E' PrefixList='3[H-U]6[A-H].*|B[A-LTRYZ]6[A-H].*|B6[A-H].*|XS6[A-H].*'
+			 StartDate='1945-11-15T00:00:00' id='90' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY6I' Comment='' Continent='AS' Country='China, He Nan' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='33.666N' Longitude='113.116E' PrefixList='3[H-U]6[I-P].*|B[A-LTRYZ]6[I-P].*|B6[I-P].*|XS6[I-P].*'
+			 StartDate='1945-11-15T00:00:00' id='91' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY6Q' Comment='' Continent='AS' Country='China, Hu Bei' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='31N' Longitude='111E' PrefixList='3[H-U]6[Q-X].*|B[A-LTRYZ]6[Q-X].*|B6[Q-X].*|XS6[Q-X].*'
+			 StartDate='1945-11-15T00:00:00' id='92' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY7A' Comment='' Continent='AS' Country='China, Hu Nan' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='28N' Longitude='111E' PrefixList='3[H-U]7[A-H].*|B[A-LTRYZ]7[A-H].*|B7[A-H].*|XS7[A-H].*'
+			 StartDate='1945-11-15T00:00:00' id='93' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY7I' Comment='' Continent='AS' Country='China, Guang Dong' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='23N' Longitude='113E' PrefixList='3[H-U]7[I-P].*|B[A-LTRYZ]7[I-P].*|B7[I-P].*|XS7[I-P].*'
+			 StartDate='1945-11-15T00:00:00' id='94' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY7Q' Comment='' Continent='AS' Country='China, Guang Xi' CQZone='24' DXCC='318'
+			 ITUZone='43' Latitude='23.45N' Longitude='108.216E' PrefixList='3[H-U]7[Q-X].*|B[A-LTRYZ]7[Q-X].*|B7[Q-X].*|XS7[Q-X].*'
+			 StartDate='1945-11-15T00:00:00' id='95' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY7Y' Comment='' Continent='AS' Country='China, Hainan Isl.' CQZone='24' DXCC='318'
+			 ITUZone='44' Latitude='19.2N' Longitude='109.583E' PrefixList='3[H-U]7[YZ].*|B[A-LTRYZ]7[YZ].*|B7[YZ].*|XS7[YZ].*'
+			 StartDate='1945-11-15T00:00:00' id='96' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY8A' Comment='' Continent='AS' Country='China, Si Chuan' CQZone='24' DXCC='318'
+			 ITUZone='43' Latitude='29.883N' Longitude='101.933E' PrefixList='3[H-U]8[A-F].*|B[A-LTRYZ]8[A-F].*|B8[A-F].*|XS8[A-F].*'
+			 StartDate='1945-11-15T00:00:00' id='97' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY8G' Comment='' Continent='AS' Country='China, Chong Qing' CQZone='24' DXCC='318'
+			 ITUZone='43' Latitude='29.533N' Longitude='106.55E' PrefixList='3[H-U]8[G-L].*|B[A-LTRYZ]8[G-L].*|B8[G-L].*|XS8[G-L].*'
+			 StartDate='1945-11-15T00:00:00' id='98' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY8M' Comment='' Continent='AS' Country='China, Gui Zhou' CQZone='24' DXCC='318'
+			 ITUZone='43' Latitude='26N' Longitude='106E' PrefixList='3[H-U]8[M-R].*|B[A-LTRYZ]8[M-R].*|B8[M-R].*|XS8[M-R].*'
+			 StartDate='1945-11-15T00:00:00' id='99' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY8S' Comment='' Continent='AS' Country='China, Yun Nan' CQZone='24' DXCC='318'
+			 ITUZone='43' Latitude='24N' Longitude='101E' PrefixList='3[H-U]8[S-X].*|B[A-LTRYZ]8[S-X].*|B8[S-X].*|XS8[S-X].*'
+			 StartDate='1945-11-15T00:00:00' id='100' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY9A' Comment='' Continent='AS' Country='China, Shaan Xi' CQZone='24' DXCC='318'
+			 ITUZone='43' Latitude='35N' Longitude='108.766E' PrefixList='3[H-U]9[A-F].*|B[A-LTRYZ]9[A-F].*|B9[A-F].*|XS9[A-F].*'
+			 StartDate='1945-11-15T00:00:00' id='101' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY9G' Comment='' Continent='AS' Country='China, Gan Su' CQZone='23' DXCC='318'
+			 ITUZone='43' Latitude='38.183N' Longitude='101.416E' PrefixList='3[H-U]9[G-L].*|B[A-LTRYZ]9[G-L].*|B9[G-L].*|XS9[G-L].*'
+			 StartDate='1945-11-15T00:00:00' id='102' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY9M' Comment='' Continent='AS' Country='China, Ning Xia' CQZone='23' DXCC='318'
+			 ITUZone='43' Latitude='37N' Longitude='106E' PrefixList='3[H-U]9[M-R].*|B[A-LTRYZ]9[M-R].*|B9[M-R].*|XS9[M-R].*'
+			 StartDate='1945-11-15T00:00:00' id='103' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='BY' Prefix='BY9S' Comment='' Continent='AS' Country='China, Quig Hai' CQZone='23' DXCC='318'
+			 ITUZone='43' Latitude='35N' Longitude='96E' PrefixList='3[H-U]9[S-X].*|B[A-LTRYZ]9[S-X].*|B9[S-X].*|XS9[S-X].*'
+			 StartDate='1945-11-15T00:00:00' id='104' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE' Prefix='CE1' Comment='' Continent='SA' Country='Chile, Atacama, Tarapaca' CQZone='12'
+			 DXCC='112' ITUZone='14' Latitude='24.06S' Longitude='69.39W' PrefixList='3G1.*|C[A-E]1.*|CE1\Z|X[QR]1.*' StartDate='1945-11-15T00:00:00'
+			 id='105' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE' Prefix='CE2' Comment='' Continent='SA' Country='Chile, Coquimbo, Valparaiso' CQZone='12'
+			 DXCC='112' ITUZone='14' Latitude='30.69S' Longitude='70.92W' PrefixList='3G2.*|C[A-E]2.*|CE2\Z|X[QR]2.*' StartDate='1945-11-15T00:00:00'
+			 id='106' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE' Prefix='CE3' Comment='' Continent='SA' Country='Chile, Santiago' CQZone='12' DXCC='112'
+			 ITUZone='14' Latitude='33.36S' Longitude='70.79W' PrefixList='3G3.*|C[A-E]3.*|CE3\Z|X[QR]3.*' StartDate='1945-11-15T00:00:00'
+			 id='107' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE' Prefix='CE4' Comment='' Continent='SA' Country='Chile, Maule, O&#x27;Higgins' CQZone='12'
+			 DXCC='112' ITUZone='14' Latitude='34.38S' Longitude='71.04W' PrefixList='3G4.*|C[A-E]4.*|CE4\Z|X[QR]4.*' StartDate='1945-11-15T00:00:00'
+			 id='108' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE' Prefix='CE5' Comment='' Continent='SA' Country='Chile, Bio-Bio' CQZone='12' DXCC='112'
+			 ITUZone='14' Latitude='37S' Longitude='72.32W' PrefixList='3G5.*|C[A-E]5.*|CE5\Z|X[QR]5.*' StartDate='1945-11-15T00:00:00'
+			 id='109' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE' Prefix='CE6' Comment='' Continent='SA' Country='Chile, La Araucania, Los Lagos' CQZone='12'
+			 DXCC='112' ITUZone='14' Latitude='40.18S' Longitude='72.83W' PrefixList='3G6.*|C[A-E]6.*|CE6\Z|X[QR]6.*' StartDate='1945-11-15T00:00:00'
+			 id='110' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE' Prefix='CE7' Comment='' Continent='SA' Country='Chile, Aisen, Los Lagos' CQZone='12'
+			 DXCC='112' ITUZone='16' Latitude='47S' Longitude='73W' PrefixList='3G7.*|C[A-E]7.*|CE7\Z|X[QR]7.*' StartDate='1945-11-15T00:00:00'
+			 id='111' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE' Prefix='CE8' Comment='' Continent='SA' Country='Chile, Magallanes' CQZone='12' DXCC='112'
+			 ITUZone='16' Latitude='52S' Longitude='73W' PrefixList='3G8.*|C[A-E]8.*|CE8\Z|X[QR]8.*' StartDate='1945-11-15T00:00:00'
+			 id='112' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP1' Comment='' Continent='SA' Country='Bolivia, La Paz' CQZone='10' DXCC='104'
+			 ITUZone='12' Latitude='15.2S' Longitude='68.3W' PrefixList='CP1.*' StartDate='1945-11-15T00:00:00' id='113' TimeDiff='-4'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP2' Comment='' Continent='SA' Country='Bolivia, Chuquisaca' CQZone='10' DXCC='104'
+			 ITUZone='14' Latitude='20.05S' Longitude='64.41W' PrefixList='CP2.*' StartDate='1945-11-15T00:00:00' id='114'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP3' Comment='' Continent='SA' Country='Bolivia, Oruro' CQZone='10' DXCC='104'
+			 ITUZone='14' Latitude='18.64S' Longitude='67.73W' PrefixList='CP3.*' StartDate='1945-11-15T00:00:00' id='115'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP4' Comment='' Continent='SA' Country='Bolivia, Potosi' CQZone='10' DXCC='104'
+			 ITUZone='14' Latitude='20.68S' Longitude='66.65W' PrefixList='CP4.*' StartDate='1945-11-15T00:00:00' id='116'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP5' Comment='' Continent='SA' Country='Bolivia, Cochabamba' CQZone='10' DXCC='104'
+			 ITUZone='14' Latitude='17.24S' Longitude='65.69W' PrefixList='CP5.*' StartDate='1945-11-15T00:00:00' id='117'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP6' Comment='' Continent='SA' Country='Bolivia, Santa Cruz' CQZone='10' DXCC='104'
+			 ITUZone='14' Latitude='17.31S' Longitude='61.36W' PrefixList='CP6.*' StartDate='1945-11-15T00:00:00' id='118'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP7' Comment='' Continent='SA' Country='Bolivia, Tarija' CQZone='10' DXCC='104'
+			 ITUZone='14' Latitude='21.58S' Longitude='63.78W' PrefixList='CP7.*' StartDate='1945-11-15T00:00:00' id='119'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP8' Comment='' Continent='SA' Country='Bolivia, Beni' CQZone='10' DXCC='104'
+			 ITUZone='12' Latitude='13.67S' Longitude='65.24W' PrefixList='CP8.*' StartDate='1945-11-15T00:00:00' id='120'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CP' Prefix='CP9' Comment='' Continent='SA' Country='Bolivia, Pando' CQZone='10' DXCC='104'
+			 ITUZone='12' Latitude='11.06S' Longitude='67.54W' PrefixList='CP9.*' StartDate='1945-11-15T00:00:00' id='121'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU1' Comment='' Continent='EU' Country='Azores, Santa Maria Isl.' CQZone='14'
+			 DXCC='149' ITUZone='36' Latitude='36.9666N' Longitude='25.1W' PrefixList='CU1.*' id='122' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU2' Comment='' Continent='EU' Country='Azores, Sao Miguel Isl.' CQZone='14'
+			 DXCC='149' ITUZone='36' Latitude='37.7666N' Longitude='25.4666W' PrefixList='CU2.*' id='123' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU3' Comment='' Continent='EU' Country='Azores, Terceira Isl.' CQZone='14' DXCC='149'
+			 ITUZone='36' Latitude='38.7333N' Longitude='27.3166W' PrefixList='CU3.*' id='124' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU4' Comment='' Continent='EU' Country='Azores, Graciosa Isl.' CQZone='14' DXCC='149'
+			 ITUZone='36' Latitude='39.0438N' Longitude='27.9836W' PrefixList='CU4.*' id='125' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU5' Comment='' Continent='EU' Country='Azores, San Jorge Isl.' CQZone='14'
+			 DXCC='149' ITUZone='36' Latitude='38.6369N' Longitude='28.1244W' PrefixList='CU5.*' id='126' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU6' Comment='' Continent='EU' Country='Azores, Pico Isl.' CQZone='14' DXCC='149'
+			 ITUZone='36' Latitude='38.7833N' Longitude='28.6666W' PrefixList='CU6.*' id='127' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU7' Comment='' Continent='EU' Country='Azores, Faial Isl.' CQZone='14' DXCC='149'
+			 ITUZone='36' Latitude='38.5769N' Longitude='28.7027W' PrefixList='CU7.*' id='128' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU8' Comment='' Continent='EU' Country='Azores, Flores Isl.' CQZone='14' DXCC='149'
+			 ITUZone='36' Latitude='39.4666N' Longitude='31.2166W' PrefixList='CU8.*' id='129' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CU' Prefix='CU9' Comment='' Continent='EU' Country='Azores, Corvo isl.' CQZone='14' DXCC='149'
+			 ITUZone='36' Latitude='39.698N' Longitude='31.1041W' PrefixList='CU9.*' id='130' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='DP0' Comment='' Continent='AN' Country='Antarctica, Neumayer' CQZone='38' DXCC='13'
+			 ITUZone='67' Latitude='70.65S' Longitude='8.25W' PrefixList='DP[20].*|DP1POL\Z' id='131' TimeDiff='0' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='EA' Prefix='EA1' Comment='' Continent='EU' Country='Spain, Galicia, Castilla-Leon' CQZone='14'
+			 DXCC='281' ITUZone='37' Latitude='42.27N' Longitude='5.24W' PrefixList='A[M-O]01.*|A[M-O]1\D.*|E[A-H]1.*|EA1\Z'
+			 StartDate='1945-11-15T00:00:00' id='132' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EA' Prefix='EA2' Comment='' Continent='EU' Country='Spain, P. Vasco, Navarra, Aragon' CQZone='14'
+			 DXCC='281' ITUZone='37' Latitude='41.97N' Longitude='0.78W' PrefixList='A[M-O]02.*|A[M-O]2\D.*|E[A-H]2.*|EA2\Z'
+			 StartDate='1945-11-15T00:00:00' id='133' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EA' Prefix='EA3' Comment='' Continent='EU' Country='Spain, Catalunya' CQZone='14' DXCC='281'
+			 ITUZone='37' Latitude='41.86N' Longitude='1.37W' PrefixList='A[M-O]03.*|A[M-O]3\D.*|E[A-H]3.*|EA3\Z' StartDate='1945-11-15T00:00:00'
+			 id='134' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EA' Prefix='EA4' Comment='' Continent='EU' Country='Spain, Castilla-La Mancha, Madrid' CQZone='14'
+			 DXCC='281' ITUZone='37' Latitude='39.6N' Longitude='4.11W' PrefixList='A[M-O]04.*|A[M-O]4\D.*|E[A-H]4.*|EA4\Z'
+			 StartDate='1945-11-15T00:00:00' id='135' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EA' Prefix='EA5' Comment='' Continent='EU' Country='Spain, Comunidad Valenciana,Murcia'
+			 CQZone='14' DXCC='281' ITUZone='37' Latitude='38.9N' Longitude='1.02W' PrefixList='A[M-O]05.*|A[M-O]5\D.*|E[A-H]5.*|EA5\Z'
+			 StartDate='1945-11-15T00:00:00' id='136' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EA6' Prefix='EA6' Comment='' Continent='EU' Country='Balearic Is.' CQZone='14' DXCC='21'
+			 ITUZone='37' Latitude='39.5889N' Longitude='2.6611E' PrefixList='A[M-O]06.*' StartDate='1945-11-15T00:00:00'
+			 id='137' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EA' Prefix='EA7' Comment='' Continent='EU' Country='Spain, Andalucia' CQZone='14' DXCC='281'
+			 ITUZone='37' Latitude='37.5N' Longitude='4.57W' PrefixList='A[M-O]07.*|A[M-O]7\D.*|E[A-H]7.*|EA7\Z' StartDate='1945-11-15T00:00:00'
+			 id='138' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EA8' Prefix='EA8' Comment='' Continent='AF' Country='Canary Is.' CQZone='33' DXCC='29' ITUZone='36'
+			 Latitude='28.4722N' Longitude='16.2611W' PrefixList='A[M-O]08.*' StartDate='1945-11-15T00:00:00' id='139' TimeDiff='1'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EA9' Prefix='EA9' Comment='' Continent='AF' Country='Ceuta &#x26; Melilla' CQZone='33' DXCC='32'
+			 ITUZone='37' Latitude='35.8833N' Longitude='5.3389W' PrefixList='A[M-O]09.*' StartDate='1945-11-15T00:00:00'
+			 id='140' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL1' Comment='' Continent='AF' Country='Liberia, Grand Bassa' CQZone='35' DXCC='434'
+			 ITUZone='46' Latitude='5.92N' Longitude='9.5W' PrefixList='EL1.*' StartDate='1945-11-15T00:00:00' id='141' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL2' Comment='' Continent='AF' Country='Liberia, Montserrado' CQZone='35' DXCC='434'
+			 ITUZone='46' Latitude='6.38N' Longitude='10.56W' PrefixList='EL2.*' StartDate='1945-11-15T00:00:00' id='142'
+			 TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL3' Comment='' Continent='AF' Country='Liberia, Sinoe' CQZone='35' DXCC='434'
+			 ITUZone='46' Latitude='5.35N' Longitude='8.93W' PrefixList='EL3.*' StartDate='1945-11-15T00:00:00' id='143' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL4' Comment='' Continent='AF' Country='Liberia, Maryland' CQZone='35' DXCC='434'
+			 ITUZone='46' Latitude='4.77N' Longitude='8.16W' PrefixList='EL4.*' StartDate='1945-11-15T00:00:00' id='144' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL5' Comment='' Continent='AF' Country='Liberia, Lofa' CQZone='35' DXCC='434'
+			 ITUZone='46' Latitude='7.66N' Longitude='10.1W' PrefixList='EL5.*' StartDate='1945-11-15T00:00:00' id='145' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL6' Comment='' Continent='AF' Country='Liberia, Grand Gedah' CQZone='35' DXCC='434'
+			 ITUZone='46' Latitude='5.66N' Longitude='8.07W' PrefixList='EL6.*' StartDate='1945-11-15T00:00:00' id='146' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL7' Comment='' Continent='AF' Country='Liberia, Bong' CQZone='35' DXCC='434'
+			 ITUZone='46' Latitude='6.89N' Longitude='9.56W' PrefixList='EL7.*' StartDate='1945-11-15T00:00:00' id='147' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL8' Comment='' Continent='AF' Country='Liberia, Nimba' CQZone='35' DXCC='434'
+			 ITUZone='46' Latitude='6.83N' Longitude='8.76W' PrefixList='EL8.*' StartDate='1945-11-15T00:00:00' id='148' TimeDiff='0'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EL' Prefix='EL9' Comment='' Continent='AF' Country='Liberia, Grand Cape Mount' CQZone='35'
+			 DXCC='434' ITUZone='46' Latitude='7.12N' Longitude='11.07W' PrefixList='EL9.*' StartDate='1945-11-15T00:00:00'
+			 id='149' TimeDiff='0' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='EM1HO' Comment='' Continent='AN' Country='Antarctica, Vernadsky Base ' CQZone='13'
+			 DXCC='13' ITUZone='73' Latitude='65.245S' Longitude='64.257W' PrefixList='EM1HO\Z|EM1KA\Z|EM1KCC\Z|EM1KGG\Z|EM1KY\Z|EM1LV\Z|EM1U\Z|EM1UA\Z|VP8CTR\Z'
+			 id='150' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ER' Prefix='ER2' Comment='' Continent='EU' Country='Moldova, Transnistria' CQZone='16' DXCC='179'
+			 ITUZone='29' Latitude='46.84N' Longitude='29.52E' PrefixList='ER2.*|T1.*' StartDate='1994-01-01T00:00:00' id='151'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES0' Comment='' Continent='EU' Country='Estonia, Hiiumaa, Saaremaa' CQZone='15'
+			 DXCC='52' ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES0.*' id='152' TimeDiff='2' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES1' Comment='' Continent='EU' Country='Estonia, Tallinn, North coast Isl.'
+			 CQZone='15' DXCC='52' ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES1.*' id='153' TimeDiff='2'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES2' Comment='' Continent='EU' Country='Estonia, Harjumaa' CQZone='15' DXCC='52'
+			 ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES2.*' id='154' TimeDiff='2' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES3' Comment='' Continent='EU' Country='Estonia, Laanemaa, Raplaмаа, Jarvamaa'
+			 CQZone='15' DXCC='52' ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES3.*' id='155' TimeDiff='2'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES4' Comment='' Continent='EU' Country='Estonia, Laane-Virumaa, Idu-Virumaa'
+			 CQZone='15' DXCC='52' ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES4.*' id='156' TimeDiff='2'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES5' Comment='' Continent='EU' Country='Estonia, Jogevamaa, Tartumaa' CQZone='15'
+			 DXCC='52' ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES5.*' id='157' TimeDiff='2' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES6' Comment='' Continent='EU' Country='Estonia, Polvamaa, Vorumaa, Valgamaa'
+			 CQZone='15' DXCC='52' ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES6.*' id='158' TimeDiff='2'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES7' Comment='' Continent='EU' Country='Estonia, Viljandimaa' CQZone='15' DXCC='52'
+			 ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES7.*' id='159' TimeDiff='2' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES8' Comment='' Continent='EU' Country='Estonia, Parnumaa' CQZone='15' DXCC='52'
+			 ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES8.*' id='160' TimeDiff='2' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ES' Prefix='ES9' Comment='' Continent='EU' Country='Estonia, Special event' CQZone='15'
+			 DXCC='52' ITUZone='29' Latitude='58.6389N' Longitude='25.7667E' PrefixList='ES9.*' id='161' TimeDiff='2' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='EW' Prefix='EW1' Comment='' Continent='EU' Country='Belarus, Minsk' CQZone='16' DXCC='27'
+			 ITUZone='29' Latitude='54N' Longitude='28E' PrefixList='E[UVW]1.*|EV70M\Z' StartDate='1994-01-01T00:00:00' id='162'
+			 TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EW' Prefix='EW2' Comment='' Continent='EU' Country='Belarus, Minskaya obl.' CQZone='16'
+			 DXCC='27' ITUZone='29' Latitude='54N' Longitude='28E' PrefixList='E[UVW]2.*' StartDate='1994-01-01T00:00:00'
+			 id='163' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EW' Prefix='EW3' Comment='' Continent='EU' Country='Belarus, Brestskaya obl.' CQZone='16'
+			 DXCC='27' ITUZone='29' Latitude='52.1N' Longitude='23.8E' PrefixList='E[UVW]3.*|EV70F\Z' StartDate='1994-01-01T00:00:00'
+			 id='164' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EW' Prefix='EW4' Comment='' Continent='EU' Country='Belarus, Grodnenskaya obl.' CQZone='16'
+			 DXCC='27' ITUZone='29' Latitude='53.7N' Longitude='23.9E' PrefixList='E[UVW]4.*' StartDate='1994-01-01T00:00:00'
+			 id='165' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EW' Prefix='EW5' Comment='' Continent='EU' Country='Belarus, special callsigns.' CQZone='16'
+			 DXCC='27' ITUZone='29' Latitude='54N' Longitude='28E' PrefixList='E[UVW][590].*' StartDate='1994-01-01T00:00:00'
+			 id='166' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EW' Prefix='EW6' Comment='' Continent='EU' Country='Belarus, Vitebskaya obl.' CQZone='16'
+			 DXCC='27' ITUZone='29' Latitude='55.1N' Longitude='30.15E' PrefixList='E[UVW]6.*' StartDate='1994-01-01T00:00:00'
+			 id='167' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EW' Prefix='EW7' Comment='' Continent='EU' Country='Belarus, Mogilevskaya obl.' CQZone='16'
+			 DXCC='27' ITUZone='29' Latitude='53.8N' Longitude='30.5E' PrefixList='E[UVW]7.*' StartDate='1994-01-01T00:00:00'
+			 id='168' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EW' Prefix='EW8' Comment='' Continent='EU' Country='Belarus, Gomel`skaya obl.' CQZone='16'
+			 DXCC='27' ITUZone='29' Latitude='52.5N' Longitude='31E' PrefixList='E[UVW]8.*' StartDate='1994-01-01T00:00:00'
+			 id='169' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1B' Comment='' Continent='AS' Country='Kyrgyzstan, Bishkek' CQZone='17' DXCC='135'
+			 ITUZone='30' Latitude='42.28N' Longitude='73.56E' PrefixList='EX[0-9][ABCDFG].*' StartDate='1994-01-01T00:00:00'
+			 id='170' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1E' Comment='' Continent='AS' Country='Kyrgyzstan, Batkenskaya obl.' CQZone='17'
+			 DXCC='135' ITUZone='30' Latitude='42.28N' Longitude='73.56E' PrefixList='EX[0-9]E.*' StartDate='1994-01-01T00:00:00'
+			 id='171' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1M' Comment='' Continent='AS' Country='Kyrgyzstan, Chuyskaya obl.' CQZone='17'
+			 DXCC='135' ITUZone='30' Latitude='42.28N' Longitude='73.56E' PrefixList='EX[0-9][HIJKLM].*' StartDate='1994-01-01T00:00:00'
+			 id='172' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1N' Comment='' Continent='AS' Country='Kyrgyzstan, Oshskaya obl.' CQZone='17'
+			 DXCC='135' ITUZone='30' Latitude='39.57N' Longitude='72.39E' PrefixList='EX[0-9]N.*' StartDate='1994-01-01T00:00:00'
+			 id='173' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1O' Comment='' Continent='AS' Country='Kyrgyzstan, Osh' CQZone='17' DXCC='135'
+			 ITUZone='30' Latitude='42.28N' Longitude='73.56E' PrefixList='EX[0-9]O.*' StartDate='1994-01-01T00:00:00' id='174'
+			 TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1P' Comment='' Continent='AS' Country='Kyrgyzstan, Narynskaya obl.' CQZone='17'
+			 DXCC='135' ITUZone='31' Latitude='41.22N' Longitude='75.06E' PrefixList='EX[0-9]P.*' StartDate='1994-01-01T00:00:00'
+			 id='175' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1Q' Comment='' Continent='AS' Country='Kyrgyzstan, Issyk-Kulskaya obl.' CQZone='17'
+			 DXCC='135' ITUZone='31' Latitude='42.05N' Longitude='77.46E' PrefixList='EX[0-9]Q.*' StartDate='1994-01-01T00:00:00'
+			 id='176' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1T' Comment='' Continent='AS' Country='Kyrgyzstan, Talasskaya obl.' CQZone='17'
+			 DXCC='135' ITUZone='30' Latitude='42.2N' Longitude='71.51E' PrefixList='EX[0-9]T.*' StartDate='1994-01-01T00:00:00'
+			 id='177' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EX' Prefix='EX1V' Comment='' Continent='AS' Country='Kyrgyzstan, Dzhalal-Abadskaya obl.'
+			 CQZone='17' DXCC='135' ITUZone='31' Latitude='41.27N' Longitude='72.13E' PrefixList='EX[0-9]V.*' StartDate='1994-01-01T00:00:00'
+			 id='178' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EY' Prefix='EY4' Comment='' Continent='AS' Country='Tajikistan, Gornyj Badakhshan' CQZone='17'
+			 DXCC='262' ITUZone='30' Latitude='38.02N' Longitude='74.45E' PrefixList='EY4.*' StartDate='1994-01-01T00:00:00'
+			 id='179' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EY' Prefix='EY5' Comment='' Continent='AS' Country='Tajikistan, Kuliab Region' CQZone='17'
+			 DXCC='262' ITUZone='30' Latitude='37.55N' Longitude='69.36E' PrefixList='EY5.*' StartDate='1994-01-01T00:00:00'
+			 id='180' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EY' Prefix='EY6' Comment='' Continent='AS' Country='Tajikistan, Kurgan-Tube Region' CQZone='17'
+			 DXCC='262' ITUZone='30' Latitude='37.29N' Longitude='68.21E' PrefixList='EY6.*' StartDate='1994-01-01T00:00:00'
+			 id='181' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EY' Prefix='EY7' Comment='' Continent='AS' Country='Tajikistan, Leninabadskaya obl.' CQZone='17'
+			 DXCC='262' ITUZone='30' Latitude='39.22N' Longitude='68.43E' PrefixList='EY7.*' StartDate='1994-01-01T00:00:00'
+			 id='182' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EY' Prefix='EY8' Comment='' Continent='AS' Country='Tajikistan, Dushanbe sity' CQZone='17'
+			 DXCC='262' ITUZone='30' Latitude='38.36N' Longitude='68.42E' PrefixList='EY8.*' StartDate='1994-01-01T00:00:00'
+			 id='183' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EY' Prefix='EY9' Comment='' Continent='AS' Country='Tajikistan, Dushanbe region' CQZone='17'
+			 DXCC='262' ITUZone='30' Latitude='38.54N' Longitude='70.01E' PrefixList='EY9.*' StartDate='1994-01-01T00:00:00'
+			 id='184' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EZ' Prefix='EZ3' Comment='' Continent='AS' Country='Turkmenistan, Ahal welayaty' CQZone='17'
+			 DXCC='280' ITUZone='30' Latitude='38.36N' Longitude='58.4E' PrefixList='EZ3.*' StartDate='1994-01-01T00:00:00'
+			 id='185' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EZ' Prefix='EZ4' Comment='' Continent='AS' Country='Turkmenistan, Balkan welayaty' CQZone='17'
+			 DXCC='280' ITUZone='30' Latitude='39.42N' Longitude='54.58E' PrefixList='EZ4.*' StartDate='1994-01-01T00:00:00'
+			 id='186' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EZ' Prefix='EZ5' Comment='' Continent='AS' Country='Turkmenistan, Mary welayaty' CQZone='17'
+			 DXCC='280' ITUZone='30' Latitude='37.24N' Longitude='62E' PrefixList='EZ5.*' StartDate='1994-01-01T00:00:00'
+			 id='187' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EZ' Prefix='EZ6' Comment='' Continent='AS' Country='Turkmenistan, Dashhowuz welayaty' CQZone='17'
+			 DXCC='280' ITUZone='30' Latitude='41.07N' Longitude='58.3E' PrefixList='EZ6.*' StartDate='1994-01-01T00:00:00'
+			 id='188' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EZ' Prefix='EZ7' Comment='' Continent='AS' Country='Turkmenistan, Lebap welayaty' CQZone='17'
+			 DXCC='280' ITUZone='30' Latitude='38.42N' Longitude='63E' PrefixList='EZ7.*' StartDate='1994-01-01T00:00:00'
+			 id='189' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='EZ' Prefix='EZ8' Comment='' Continent='AS' Country='Turkmenistan, Ashgabat city' CQZone='17'
+			 DXCC='280' ITUZone='30' Latitude='38N' Longitude='58.21E' PrefixList='EZ8.*' StartDate='1994-01-01T00:00:00'
+			 id='190' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='FT8Y' Comment='' Continent='AN' Country='Antarctica, Dumont Durville Base'
+			 CQZone='30' DXCC='13' ITUZone='70' Latitude='70.57S' Longitude='140.01E' PrefixList='FT[0-9]Y.*' id='191' TimeDiff='9'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA0' Comment='' Continent='EU' Country='Hungary, Debrecen City' CQZone='15'
+			 DXCC='239' ITUZone='28' Latitude='47.68N' Longitude='21.68E' PrefixList='HA0.*' StartDate='1945-11-15T00:00:00'
+			 id='192' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA1' Comment='' Continent='EU' Country='Hungary, Gyor City' CQZone='15' DXCC='239'
+			 ITUZone='28' Latitude='47.17N' Longitude='16.81E' PrefixList='HA1.*' StartDate='1945-11-15T00:00:00' id='193'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA2' Comment='' Continent='EU' Country='Hungary, Komarom' CQZone='15' DXCC='239'
+			 ITUZone='28' Latitude='47.25N' Longitude='17.83E' PrefixList='HA2.*' StartDate='1945-11-15T00:00:00' id='194'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA3' Comment='' Continent='EU' Country='Hungary, Tolna, Somogy' CQZone='15'
+			 DXCC='239' ITUZone='28' Latitude='46.34N' Longitude='18.1E' PrefixList='HA3.*' StartDate='1945-11-15T00:00:00'
+			 id='195' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA4' Comment='' Continent='EU' Country='Hungary, Fejer' CQZone='15' DXCC='239'
+			 ITUZone='28' Latitude='47.14N' Longitude='18.58E' PrefixList='HA4.*' StartDate='1945-11-15T00:00:00' id='196'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA5' Comment='' Continent='EU' Country='Hungary, Budapest City' CQZone='15'
+			 DXCC='239' ITUZone='28' Latitude='47.44N' Longitude='19.07E' PrefixList='HA5.*' StartDate='1945-11-15T00:00:00'
+			 id='197' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA6' Comment='' Continent='EU' Country='Hungary, Nograd, Heves' CQZone='15'
+			 DXCC='239' ITUZone='28' Latitude='47.9N' Longitude='19.96E' PrefixList='HA6.*' StartDate='1945-11-15T00:00:00'
+			 id='198' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA7' Comment='' Continent='EU' Country='Hungary, Pest' CQZone='15' DXCC='239'
+			 ITUZone='28' Latitude='47.28N' Longitude='19.77E' PrefixList='HA7.*' StartDate='1945-11-15T00:00:00' id='199'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA8' Comment='' Continent='EU' Country='Hungary, Bacs Kiskun' CQZone='15' DXCC='239'
+			 ITUZone='28' Latitude='46.44N' Longitude='20.09E' PrefixList='HA8.*' StartDate='1945-11-15T00:00:00' id='200'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HA' Prefix='HA9' Comment='' Continent='EU' Country='Hungary, Miskolc City' CQZone='15' DXCC='239'
+			 ITUZone='28' Latitude='48.25N' Longitude='20.84E' PrefixList='HA9.*' StartDate='1945-11-15T00:00:00' id='201'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HC' Prefix='HC1' Comment='' Continent='SA' Country='Ecuador, Carchi' CQZone='10' DXCC='120'
+			 ITUZone='12' Latitude='0.15S' Longitude='78.44W' PrefixList='HC1.*' StartDate='1945-11-15T00:00:00' id='202'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HC' Prefix='HC2' Comment='' Continent='SA' Country='Ecuador, Guyas' CQZone='10' DXCC='120'
+			 ITUZone='12' Latitude='1.76S' Longitude='79.77W' PrefixList='HC2.*' StartDate='1945-11-15T00:00:00' id='203'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HC' Prefix='HC3' Comment='' Continent='SA' Country='Ecuador, Loja' CQZone='10' DXCC='120'
+			 ITUZone='12' Latitude='3.8S' Longitude='79.46W' PrefixList='HC3.*' StartDate='1945-11-15T00:00:00' id='204' TimeDiff='-5'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HC' Prefix='HC4' Comment='' Continent='SA' Country='Ecuador, Esmeraidas' CQZone='10' DXCC='120'
+			 ITUZone='12' Latitude='0.09S' Longitude='79.84W' PrefixList='HC4.*' StartDate='1945-11-15T00:00:00' id='205'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HC' Prefix='HC5' Comment='' Continent='SA' Country='Ecuador, Azuay' CQZone='10' DXCC='120'
+			 ITUZone='12' Latitude='2.65S' Longitude='78.44W' PrefixList='HC5.*' StartDate='1945-11-15T00:00:00' id='206'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HC' Prefix='HC6' Comment='' Continent='SA' Country='Ecuador, Bolivar' CQZone='10' DXCC='120'
+			 ITUZone='12' Latitude='1.31S' Longitude='78.44W' PrefixList='HC6.*' StartDate='1945-11-15T00:00:00' id='207'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HC' Prefix='HC7' Comment='' Continent='SA' Country='Ecuador, Napo' CQZone='10' DXCC='120'
+			 ITUZone='12' Latitude='0.93S' Longitude='77.03W' PrefixList='HC7.*' StartDate='1945-11-15T00:00:00' id='208'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK1' Comment='' Continent='SA' Country='Colombia, Atlantico' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='9.33N' Longitude='74.68W' PrefixList='[5H][JK]1.*' StartDate='1945-11-15T00:00:00' id='209'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK2' Comment='' Continent='SA' Country='Colombia, Cesar' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='11.37N' Longitude='72.64W' PrefixList='[5H][JK]2.*' StartDate='1945-11-15T00:00:00' id='210'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK3' Comment='' Continent='SA' Country='Colombia, Bogota' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='3.91N' Longitude='71.23W' PrefixList='[5H][JK]3.*' StartDate='1945-11-15T00:00:00' id='211'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK4' Comment='' Continent='SA' Country='Colombia, Antioquia' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='6.59N' Longitude='76.21W' PrefixList='[5H][JK]4.*' StartDate='1945-11-15T00:00:00' id='212'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK5' Comment='' Continent='SA' Country='Colombia, Cauca' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='3.15N' Longitude='76.71W' PrefixList='[5H][JK]5.*' StartDate='1945-11-15T00:00:00' id='213'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK6' Comment='' Continent='SA' Country='Colombia, Caldas' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='3.91N' Longitude='75.38W' PrefixList='[5H][JK]6.*' StartDate='1945-11-15T00:00:00' id='214'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK7' Comment='' Continent='SA' Country='Colombia, Arauca' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='6.02N' Longitude='72.44W' PrefixList='[5H][JK]7.*' StartDate='1945-11-15T00:00:00' id='215'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK8' Comment='' Continent='SA' Country='Colombia, Caqueta' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='1.05N' Longitude='75.12W' PrefixList='[5H][JK]8.*' StartDate='1945-11-15T00:00:00' id='216'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HK' Prefix='HK9' Comment='' Continent='SA' Country='Colombia, Amazonas' CQZone='9' DXCC='116'
+			 ITUZone='12' Latitude='1.36N' Longitude='70.92W' PrefixList='[5H][JK]9.*' StartDate='1945-11-15T00:00:00' id='217'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HL' Prefix='HL1' Comment='' Continent='AS' Country='South Korea, Seoul' CQZone='25' DXCC='137'
+			 ITUZone='44' Latitude='37.57N' Longitude='126.99E' PrefixList='6[K-N].1.*|D[ST]1.*|H[LM]1.*' StartDate='1945-11-15T00:00:00'
+			 id='218' TimeDiff='9' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HL' Prefix='HL2' Comment='' Continent='AS' Country='South Korea, Kyounggi' CQZone='25' DXCC='137'
+			 ITUZone='44' Latitude='37.72N' Longitude='127.63E' PrefixList='6[K-N].2.*|D[ST]2.*|H[LM]2.*' StartDate='1945-11-15T00:00:00'
+			 id='219' TimeDiff='9' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HL' Prefix='HL3' Comment='' Continent='AS' Country='South Korea, Chungchong' CQZone='25'
+			 DXCC='137' ITUZone='44' Latitude='36.6N' Longitude='127.29E' PrefixList='6[K-N].3.*|D[ST]3.*|H[LM]3.*' StartDate='1945-11-15T00:00:00'
+			 id='220' TimeDiff='9' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HL' Prefix='HL4' Comment='' Continent='AS' Country='South Korea, Cholla' CQZone='25' DXCC='137'
+			 ITUZone='44' Latitude='35.29N' Longitude='126.95E' PrefixList='6[K-N].4.*|D[ST]4.*|H[LM]4.*' StartDate='1945-11-15T00:00:00'
+			 id='221' TimeDiff='9' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='HL' Prefix='HL5' Comment='' Continent='AS' Country='South Korea, Kyongsang' CQZone='25'
+			 DXCC='137' ITUZone='44' Latitude='35.96N' Longitude='128.6E' PrefixList='6[K-N].5.*|D[ST]5.*|H[LM]5.*' StartDate='1945-11-15T00:00:00'
+			 id='222' TimeDiff='9' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='IA0' Comment='' Continent='AN' Country='Antarctica, Mario Zucchelli Station'
+			 CQZone='30' DXCC='13' ITUZone='71' Latitude='74.7S' Longitude='164.1E' PrefixList='IA0.*|II0MZ\Z' id='223' TimeDiff='11'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IA1' Comment='' Continent='EU' Country='Italy, Liguria Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='45.53N' Longitude='8.2E' PrefixList='IA1.*|IP1.*' id='224' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IA5' Comment='' Continent='EU' Country='Italy, Toscana Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='42.48N' Longitude='10.17E' PrefixList='IA5.*' id='225' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IB0' Comment='' Continent='EU' Country='Italy, Lazio Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='41.5N' Longitude='12.5E' PrefixList='IB0.*' id='226' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IC8' Comment='' Continent='EU' Country='Italy, Campania Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='40.56N' Longitude='14.2E' PrefixList='IC8.*' id='227' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='ID8' Comment='' Continent='EU' Country='Italy, Calabria Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='39.2N' Longitude='16.5E' PrefixList='ID8.*' id='228' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='ID9' Comment='' Continent='EU' Country='Italy, Eolie Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='38.28N' Longitude='14.42E' PrefixList='ID9.*' id='229' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IE9' Comment='' Continent='EU' Country='Italy, Egadi Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='38.5N' Longitude='13E' PrefixList='IE9.*' id='230' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IF9' Comment='' Continent='EU' Country='Italy, Egadis Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='37.58N' Longitude='12.2E' PrefixList='IF9.*' id='231' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IG9' Comment='' Continent='AF' Country='Italy, Pelagie Isl.' CQZone='33' DXCC='248'
+			 ITUZone='37' Latitude='35.533N' Longitude='12.566E' PrefixList='IG9.*' id='232' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IH9' Comment='' Continent='AF' Country='Italy, Pantelleria Isl.' CQZone='33'
+			 DXCC='248' ITUZone='37' Latitude='36.783N' Longitude='12E' PrefixList='IH9.*' id='233' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IJ7' Comment='' Continent='EU' Country='Italy, Puglia Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='40.5N' Longitude='17.3E' PrefixList='I[JL]7.*' id='234' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IJ9' Comment='' Continent='EU' Country='Italy, Sicily&#x27;s Coastal Isl.' CQZone='15'
+			 DXCC='248' ITUZone='28' Latitude='40.28N' Longitude='17.12E' PrefixList='IJ9.*' id='235' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IL3' Comment='' Continent='EU' Country='Italy, Veneto Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='45.13N' Longitude='12.17E' PrefixList='IL3.*' id='236' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IL7' Comment='' Continent='EU' Country='Italy, Puglia Isl.' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='41.48N' Longitude='13.42E' PrefixList='IL7.*' id='237' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='I' Prefix='IT9' Comment='' Continent='EU' Country='Italy, Sicily' CQZone='15' DXCC='248'
+			 ITUZone='28' Latitude='37.5N' Longitude='14E' PrefixList='I[TW]9.*' id='238' TimeDiff='1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA0' Comment='' Continent='AS' Country='Japan, Shinetsu' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='36.51N' Longitude='138.13E' PrefixList='7[J-M]0.*|J[AE-S]0.*' id='239' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA1' Comment='' Continent='AS' Country='Japan, Kanto' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='36.08N' Longitude='139.17E' PrefixList='7[J-M]1.*|J[AE-S]1.*' id='240' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA2' Comment='' Continent='AS' Country='Japan, Tokai' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='35N' Longitude='137E' PrefixList='7[J-M]2.*|J[AE-S]2.*' id='241' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA3' Comment='' Continent='AS' Country='Japan, Kinki' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='34.56N' Longitude='135.07E' PrefixList='7[J-M]3.*|J[AE-S]3.*' id='242' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA4' Comment='' Continent='AS' Country='Japan, Chugoku' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='34.52N' Longitude='132.49E' PrefixList='7[J-M]4.*|J[AE-S]4.*' id='243' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA5' Comment='' Continent='AS' Country='Japan, Shikoku' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='33.36N' Longitude='133.15E' PrefixList='7[J-M]5.*|J[AE-S]5.*' id='244' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA6' Comment='' Continent='AS' Country='Japan, Kvushu' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='32.37N' Longitude='130.48E' PrefixList='7[J-M]6.*|J[AE-S]6.*' id='245' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA7' Comment='' Continent='AS' Country='Japan, Tohoku' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='39.03N' Longitude='140.34E' PrefixList='7[J-M]7.*|J[AE-S]7.*' id='246' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA8' Comment='' Continent='AS' Country='Japan, Hokkaido' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='43.17N' Longitude='142.21E' PrefixList='7[J-M]8.*|J[AE-S]8.*' id='247' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JA' Prefix='JA9' Comment='' Continent='AS' Country='Japan, Hokuriku' CQZone='25' DXCC='339'
+			 ITUZone='45' Latitude='36.26N' Longitude='136.43E' PrefixList='7[J-M]9.*|J[AE-S]9.*' id='248' TimeDiff='9' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='JT' Prefix='JT1' Comment='' Continent='AS' Country='Mongolia, Ulaanbaator' CQZone='23' DXCC='363'
+			 ITUZone='32' Latitude='47.88N' Longitude='106.79E' PrefixList='J[T-V]1.*' StartDate='1945-11-15T00:00:00' id='249'
+			 TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='JT' Prefix='JT2' Comment='' Continent='AS' Country='Mongolia, Choibalsan' CQZone='23' DXCC='363'
+			 ITUZone='33' Latitude='47.5N' Longitude='114.34E' PrefixList='J[T-V]2.*' StartDate='1945-11-15T00:00:00' id='250'
+			 TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='JT' Prefix='JT3' Comment='' Continent='AS' Country='Mongolia, Dalan Dzagad' CQZone='23'
+			 DXCC='363' ITUZone='33' Latitude='46.16N' Longitude='110.15E' PrefixList='J[T-V]3.*' StartDate='1945-11-15T00:00:00'
+			 id='251' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='JT' Prefix='JT4' Comment='' Continent='AS' Country='Mongolia, Kobdo' CQZone='23' DXCC='363'
+			 ITUZone='32' Latitude='44.07N' Longitude='105.23E' PrefixList='J[T-V]4.*' StartDate='1945-11-15T00:00:00' id='252'
+			 TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='JT' Prefix='JT5' Comment='' Continent='AS' Country='Mongolia, Darkhan' CQZone='23' DXCC='363'
+			 ITUZone='32' Latitude='48.36N' Longitude='106.23E' PrefixList='J[T-V]5.*' StartDate='1945-11-15T00:00:00' id='253'
+			 TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='JT' Prefix='JT6' Comment='' Continent='AS' Country='Mongolia, Arhangay' CQZone='23' DXCC='363'
+			 ITUZone='32' Latitude='46.98N' Longitude='102.24E' PrefixList='J[T-V]6.*' StartDate='1945-11-15T00:00:00' id='254'
+			 TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='JT' Prefix='JT7' Comment='' Continent='AS' Country='Mongolia, Muren' CQZone='23' DXCC='363'
+			 ITUZone='32' Latitude='49.97N' Longitude='101.94E' PrefixList='J[T-V]7.*' StartDate='1945-11-15T00:00:00' id='255'
+			 TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='JT' Prefix='JT8' Comment='' Continent='AS' Country='Mongolia, Altai' CQZone='23' DXCC='363'
+			 ITUZone='32' Latitude='45.37N' Longitude='100.15E' PrefixList='J[T-V]8.*' StartDate='1945-11-15T00:00:00' id='256'
+			 TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='JW' Prefix='JW/B' Comment='' Continent='EU' Country='Svalbard, Bear Isl.' CQZone='40' DXCC='259'
+			 ITUZone='18' Latitude='74.4548N' Longitude='19.031E' PrefixList='JW[0-9]B.*' StartDate='1945-11-15T00:00:00'
+			 id='257' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K0' Comment='' Continent='NA' Country='USA (CO,IA,KS,MN,MO,NE,ND,SD)' CQZone='4'
+			 DXCC='291' ITUZone='7' Latitude='40.5N' Longitude='96.4W' PrefixList='A[A-GIJK]0.*|[KNW][A-GIJKM-Z]0.*|[KNW]0.*'
+			 id='258' TimeDiff='-6' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K1' Comment='' Continent='NA' Country='USA (CT,ME,MA,NH,RI,VT)' CQZone='5' DXCC='291'
+			 ITUZone='8' Latitude='43.1N' Longitude='71.3W' PrefixList='A[A-GIJK]1.*|[KNW][A-GIJKMNOQ-Z]1.*|[KNW]1.*' id='259'
+			 TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K2' Comment='' Continent='NA' Country='USA (NJ,NY)' CQZone='5' DXCC='291' ITUZone='8'
+			 Latitude='42.4N' Longitude='73.5W' PrefixList='A[A-GIJK]2.*|[KNW][A-GIJKMNOQ-Z]2.*|[KNW]2.*' id='260' TimeDiff='-5'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K3' Comment='' Continent='NA' Country='USA (D.C.,DE,MD,PA)' CQZone='5' DXCC='291'
+			 ITUZone='8' Latitude='40.2N' Longitude='76.5W' PrefixList='4U1WB\Z|A[A-GIJK]3.*|[KNW][A-GIJKM-OQ-Z]3.*|[KNW]3.*'
+			 id='261' TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K4' Comment='' Continent='NA' Country='USA (AL,FL,GA,KY,NC,SC,TN,VA)' CQZone='5'
+			 DXCC='291' ITUZone='8' Latitude='33.5N' Longitude='84.3W' PrefixList='A[A-GIJK]4.*|KC4IG\Z|KG4[A-Z][A-Z][A-Z]\Z|KG4[A-Z]\Z|[K][ABD-FIJKMNOQ-Z]4.*|[KNW]4.*|[NW][A-GIJKMNOQ-Z]4.*'
+			 id='262' TimeDiff='-6' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K5' Comment='' Continent='NA' Country='USA (AR,LA,MS,NM,OK,TX)' CQZone='4' DXCC='291'
+			 ITUZone='7' Latitude='32.5N' Longitude='96.5W' PrefixList='A[A-GIJK]5.*|[KNW][A-GIJKMNOQ-Z]5.*|[KNW]5.*' id='263'
+			 TimeDiff='-7' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K6' Comment='' Continent='NA' Country='USA (CA)' CQZone='3' DXCC='291' ITUZone='6'
+			 Latitude='38.4N' Longitude='121.3W' PrefixList='A[A-GIJK]6.*|[KNW][ABDGIJKM-Z]6.*|[KNW]6.*' id='264' TimeDiff='-8'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K6' Comment='' Continent='NA' Country='USA (CA)' CQZone='3' DXCC='291' ITUZone='6'
+			 Latitude='38.4N' Longitude='121.3W' PrefixList='KC6.*' StartDate='1994-01-01T00:00:00' id='265' TimeDiff='-8'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K7' Comment='' Continent='NA' Country='USA (OR,AZ,ID,MT,NV,UT,WA,WY)' CQZone='3'
+			 DXCC='291' ITUZone='6' Latitude='43.4N' Longitude='116.1W' PrefixList='A[A-GIJK]7.*|[KNW][A-GIJKM-Z]7.*|[KNW]7.*'
+			 id='266' TimeDiff='-7' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K8' Comment='' Continent='NA' Country='USA (MI,OH,WV)' CQZone='4' DXCC='291'
+			 ITUZone='8' Latitude='42.3N' Longitude='83W' PrefixList='A[A-GIJK]8.*|[KNW][A-GIJKM-Z]8.*|[KNW]8.*' id='267'
+			 TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='K' Prefix='K9' Comment='' Continent='NA' Country='USA (IL,IN,WI)' CQZone='4' DXCC='291'
+			 ITUZone='8' Latitude='33.5N' Longitude='84.3W' PrefixList='A[A-GIJK]9.*|[KNW][A-GIJKM-Z]9.*|[KNW]9.*' id='268'
+			 TimeDiff='-6' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='KC4AAA' Comment='' Continent='AN' Country='Antarctica, Amundsen-Scott' CQZone='39'
+			 DXCC='13' ITUZone='74' Latitude='90S' Longitude='139.29W' PrefixList='KC4AAA\Z|KC4USN\Z|R1ANM\Z' id='269' TimeDiff='-5'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='KC4AAC' Comment='' Continent='AN' Country='Antarctica, Palmer St.' CQZone='13'
+			 DXCC='13' ITUZone='73' Latitude='64.77S' Longitude='64.05W' PrefixList='KC4AAC\Z' StartDate='1965-01-01T00:00:00'
+			 id='270' TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='KC4AAG' Comment='' Continent='AN' Country='Antarctica, Leverett Glacier Camp'
+			 CQZone='32' DXCC='13' ITUZone='74' Latitude='85.63S' Longitude='147.58W' PrefixList='KC4AAG\Z' id='271' TimeDiff='-10'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='KC4USB' Comment='' Continent='AN' Country='Antarctica, Byrd Surface Camp' CQZone='12'
+			 DXCC='13' ITUZone='72' Latitude='80.01S' Longitude='119.53W' PrefixList='KC4US[BK]\Z' id='272' TimeDiff='-8'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='KC4USJ' Comment='' Continent='AN' Country='Antarctica, Plateau Station' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='79.25S' Longitude='40.56E' PrefixList='KC4USJ\Z' id='273' TimeDiff='3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='KC4USL' Comment='' Continent='AN' Country='Antarctica, Dome Charlie Camp' CQZone='29'
+			 DXCC='13' ITUZone='70' Latitude='75.1S' Longitude='123.33E' PrefixList='KC4AAD\Z|KC4USL\Z|KC4VK\Z' id='274' TimeDiff='8'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='KC4USV' Comment='' Continent='AN' Country='Antarctica, McMurdo St.' CQZone='30'
+			 DXCC='13' ITUZone='71' Latitude='77.85S' Longitude='166.66E' PrefixList='KC4AAF\Z|KC4US[AHMV]\Z' id='275' TimeDiff='11'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='KC4USX' Comment='' Continent='AN' Country='Antarctica, Beardmore South Camp'
+			 CQZone='30' DXCC='13' ITUZone='74' Latitude='84.04S' Longitude='164.25E' PrefixList='KC4USX\Z' id='276' TimeDiff='11'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='KG4' Prefix='KG4' Comment='' Continent='NA' Country='Guantanamo Bay' CQZone='8' DXCC='105'
+			 ITUZone='11' Latitude='19.9222N' Longitude='75.1389W' PrefixList='KG4[A-Z][A-Z]\Z' id='277' TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1A' Comment='' Continent='SA' Country='Argentina, Buenos Aires' CQZone='13'
+			 DXCC='100' ITUZone='14' Latitude='34.37S' Longitude='58.22W' PrefixList='A[YZ][0-9][A-C].*|L[UW][0-9][A-C].*'
+			 id='278' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1D' Comment='' Continent='SA' Country='Argentina, Buenos Aires prov.' CQZone='13'
+			 DXCC='100' ITUZone='14' Latitude='36.5S' Longitude='61.14W' PrefixList='A[YZ][0-9][DE].*|L[UW][0-9][DE].*' id='279'
+			 TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1F' Comment='' Continent='SA' Country='Argentina, Santa Fe' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='31.23S' Longitude='61.36W' PrefixList='A[YZ][0-9]F.*|L[UW][0-9]F.*' id='280' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1GA' Comment='' Continent='SA' Country='Argentina, Chaco' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='26.53S' Longitude='61.08W' PrefixList='A[YZ][0-9][A-O].*|L[UW][0-9]G[A-O].*' id='281'
+			 TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1GP' Comment='' Continent='SA' Country='Argentina, Formosa' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='25.06S' Longitude='60.13W' PrefixList='A[YZ][0-9][PZ].*|L[UW][0-9]G[PZ].*' id='282' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1H' Comment='' Continent='SA' Country='Argentina, Gordoba' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='32.44S' Longitude='64.22W' PrefixList='A[YZ][0-9]H.*|L[UW][0-9]H.*' id='283' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1I' Comment='' Continent='SA' Country='Argentina, Misiones' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='27.05S' Longitude='54.51W' PrefixList='A[YZ][0-9]I.*|L[UW][0-9]I.*' id='284' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1J' Comment='' Continent='SA' Country='Argentina, Entre Rios' CQZone='13'
+			 DXCC='100' ITUZone='14' Latitude='32.18S' Longitude='59.46W' PrefixList='A[YZ][0-9]J.*|L[UW][0-9]J.*' id='285'
+			 TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1K' Comment='' Continent='SA' Country='Argentina, Tucuman' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='27.07S' Longitude='65.42W' PrefixList='A[YZ][0-9]K.*|L[UW][0-9]K.*' id='286' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1L' Comment='' Continent='SA' Country='Argentina, Corrientes' CQZone='13'
+			 DXCC='100' ITUZone='14' Latitude='31S' Longitude='57.5W' PrefixList='A[YZ][0-9]L.*|L[UW][0-9]L.*' id='287' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1M' Comment='' Continent='SA' Country='Argentina, Mendoza' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='34.48S' Longitude='69.09W' PrefixList='A[YZ][0-9]M.*|L[UW][0-9]M.*' id='288' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1N' Comment='' Continent='SA' Country='Argentina, Santa del Estero' CQZone='13'
+			 DXCC='100' ITUZone='14' Latitude='28S' Longitude='64W' PrefixList='A[YZ][0-9]N.*|L[UW][0-9]N.*' id='289' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1O' Comment='' Continent='SA' Country='Argentina, Salta' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='25.14S' Longitude='65.07W' PrefixList='A[YZ][0-9]O.*|L[UW][0-9]O.*' id='290' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1P' Comment='' Continent='SA' Country='Argentina, San Juan' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='31.15S' Longitude='68.54W' PrefixList='A[YZ][0-9]P.*|L[UW][0-9]P.*' id='291' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1Q' Comment='' Continent='SA' Country='Argentina, San Luis' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='34.08S' Longitude='66.3W' PrefixList='A[YZ][0-9]Q.*|L[UW][0-9]Q.*' id='292' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1R' Comment='' Continent='SA' Country='Argentina, Catamarca' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='28S' Longitude='67W' PrefixList='A[YZ][0-9]R.*|L[UW][0-9]R.*' id='293' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1S' Comment='' Continent='SA' Country='Argentina, La Rioja' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='29.57S' Longitude='67.22W' PrefixList='A[YZ][0-9]S.*|L[UW][0-9]S.*' id='294' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1T' Comment='' Continent='SA' Country='Argentina, Jujuy' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='30S' Longitude='67W' PrefixList='A[YZ][0-9]T.*|L[UW][0-9]T.*' id='295' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1U' Comment='' Continent='SA' Country='Argentina, La Pampa' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='37.18S' Longitude='65.52W' PrefixList='A[YZ][0-9]U.*|L[UW][0-9]U.*' id='296' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1V' Comment='' Continent='SA' Country='Argentina, Rio Negro' CQZone='13' DXCC='100'
+			 ITUZone='16' Latitude='41S' Longitude='69.13W' PrefixList='A[YZ][0-9]V.*|L[UW][0-9]V.*' id='297' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1W' Comment='' Continent='SA' Country='Argentina, Chubut' CQZone='13' DXCC='100'
+			 ITUZone='16' Latitude='44S' Longitude='69.37W' PrefixList='A[YZ][0-9]W.*|L[UW][0-9]W.*' id='298' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1XA' Comment='' Continent='SA' Country='Argentina, Santa Cruz' CQZone='13'
+			 DXCC='100' ITUZone='16' Latitude='47S' Longitude='70W' PrefixList='A[YZ][0-9]X[A-O].*|L[UW][0-9]X[A-O].*' id='299'
+			 TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1XP' Comment='' Continent='SA' Country='Argentina, Tierra del Fuego' CQZone='13'
+			 DXCC='100' ITUZone='16' Latitude='45.5S' Longitude='67.5W' PrefixList='A[YZ][0-9]X[P-Z].*|L[UW][0-9]X[P-Z].*'
+			 id='300' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='LU' Prefix='LU1Y' Comment='' Continent='SA' Country='Argentina, Neuguen' CQZone='13' DXCC='100'
+			 ITUZone='14' Latitude='38.33S' Longitude='70.28W' PrefixList='A[YZ][0-9]Y.*|L[UW][0-9]Y.*' id='301' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='LU1ZG' Comment='' Continent='AN' Country='Antarctica, Belgrano II' CQZone='13'
+			 DXCC='13' ITUZone='73' Latitude='77.866S' Longitude='34.616W' PrefixList='LU1ZG\Z' id='302' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA1' Comment='' Continent='SA' Country='Peru, Lambayeque' CQZone='10' DXCC='136'
+			 ITUZone='12' Latitude='5.26S' Longitude='80.22W' PrefixList='O[A-C]1.*' StartDate='1945-11-15T00:00:00' id='303'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA2' Comment='' Continent='SA' Country='Peru, Cajamarca' CQZone='10' DXCC='136'
+			 ITUZone='12' Latitude='7.3S' Longitude='78.63W' PrefixList='O[A-C]2.*' StartDate='1945-11-15T00:00:00' id='304'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA3' Comment='' Continent='SA' Country='Peru, Ancash' CQZone='10' DXCC='136'
+			 ITUZone='12' Latitude='9.28S' Longitude='77.16W' PrefixList='O[A-C]3.*' StartDate='1945-11-15T00:00:00' id='305'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA4' Comment='' Continent='SA' Country='Peru, Lima' CQZone='10' DXCC='136' ITUZone='12'
+			 Latitude='11.32S' Longitude='75.7W' PrefixList='O[A-C]4.*' StartDate='1945-11-15T00:00:00' id='306' TimeDiff='-5'
+			 rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA5' Comment='' Continent='SA' Country='Peru, Apurimac' CQZone='10' DXCC='136'
+			 ITUZone='12' Latitude='13.93S' Longitude='74.42W' PrefixList='O[A-C]5.*' StartDate='1945-11-15T00:00:00' id='307'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA6' Comment='' Continent='SA' Country='Peru, Arequipa' CQZone='10' DXCC='136'
+			 ITUZone='12' Latitude='16.35S' Longitude='71.74W' PrefixList='O[A-C]6.*' StartDate='1945-11-15T00:00:00' id='308'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA7' Comment='' Continent='SA' Country='Peru, Cuzco' CQZone='10' DXCC='136'
+			 ITUZone='12' Latitude='13.42S' Longitude='70.79W' PrefixList='O[A-C]7.*' StartDate='1945-11-15T00:00:00' id='309'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA8' Comment='' Continent='SA' Country='Peru, Loreto' CQZone='10' DXCC='136'
+			 ITUZone='12' Latitude='4.5S' Longitude='74.68W' PrefixList='O[A-C]8.*' StartDate='1945-11-15T00:00:00' id='310'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OA' Prefix='OA9' Comment='' Continent='SA' Country='Peru, Amazonas' CQZone='10' DXCC='136'
+			 ITUZone='12' Latitude='6.16S' Longitude='77.48W' PrefixList='O[A-C]9.*' StartDate='1945-11-15T00:00:00' id='311'
+			 TimeDiff='-5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE1' Comment='' Continent='EU' Country='Austria, Vienna' CQZone='15' DXCC='206'
+			 ITUZone='28' Latitude='48.22N' Longitude='16.37E' PrefixList='4U18FIFA\Z|OE1.*' StartDate='1945-11-15T00:00:00'
+			 id='312' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE2' Comment='' Continent='EU' Country='Austria, Salzburg' CQZone='15' DXCC='206'
+			 ITUZone='28' Latitude='47.81N' Longitude='13.04E' PrefixList='OE2.*' StartDate='1945-11-15T00:00:00' id='313'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE3' Comment='' Continent='EU' Country='Austria, Niederroesterreich' CQZone='15'
+			 DXCC='206' ITUZone='28' Latitude='48.22N' Longitude='15.62E' PrefixList='OE3.*' StartDate='1945-11-15T00:00:00'
+			 id='314' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE4' Comment='' Continent='EU' Country='Austria, Burgenland' CQZone='15' DXCC='206'
+			 ITUZone='28' Latitude='47.85N' Longitude='16.54E' PrefixList='OE4.*' StartDate='1945-11-15T00:00:00' id='315'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE5' Comment='' Continent='EU' Country='Austria, Oberoesterreich' CQZone='15'
+			 DXCC='206' ITUZone='28' Latitude='48.31N' Longitude='14.29E' PrefixList='OE5.*' StartDate='1945-11-15T00:00:00'
+			 id='316' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE6' Comment='' Continent='EU' Country='Austria, Steiermark' CQZone='15' DXCC='206'
+			 ITUZone='28' Latitude='47.1N' Longitude='15.37E' PrefixList='OE6.*' StartDate='1945-11-15T00:00:00' id='317'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE7' Comment='' Continent='EU' Country='Austria, Tirol' CQZone='15' DXCC='206'
+			 ITUZone='28' Latitude='47.27N' Longitude='11.45E' PrefixList='OE7.*' StartDate='1945-11-15T00:00:00' id='318'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE8' Comment='' Continent='EU' Country='Austria, Karntern' CQZone='15' DXCC='206'
+			 ITUZone='28' Latitude='46.64N' Longitude='14.37E' PrefixList='OE8.*' StartDate='1945-11-15T00:00:00' id='319'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OE' Prefix='OE9' Comment='' Continent='EU' Country='Austria, Vorarlberg' CQZone='15' DXCC='206'
+			 ITUZone='28' Latitude='47.52N' Longitude='9.79E' PrefixList='OE9.*' StartDate='1945-11-15T00:00:00' id='320'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH1' Comment='' Continent='EU' Country='Finland, Turku-Pori' CQZone='15' DXCC='224'
+			 ITUZone='18' Latitude='60.68N' Longitude='22.6E' PrefixList='OH1.*|OH1\Z' StartDate='1945-11-15T00:00:00' id='321'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH2' Comment='' Continent='EU' Country='Finland, Uudenmaa' CQZone='15' DXCC='224'
+			 ITUZone='18' Latitude='60.51N' Longitude='25.1E' PrefixList='OH2.*|OH2\Z' StartDate='1945-11-15T00:00:00' id='322'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH3' Comment='' Continent='EU' Country='Finland, Haeme' CQZone='15' DXCC='224'
+			 ITUZone='18' Latitude='61.26N' Longitude='24.33E' PrefixList='OH3.*|OH3\Z' StartDate='1945-11-15T00:00:00' id='323'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH4' Comment='' Continent='EU' Country='Finland, Mikkeli' CQZone='15' DXCC='224'
+			 ITUZone='18' Latitude='61.93N' Longitude='27.69E' PrefixList='OH4.*|OH4\Z' StartDate='1945-11-15T00:00:00' id='324'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH5' Comment='' Continent='EU' Country='Finland, Kymi' CQZone='15' DXCC='224'
+			 ITUZone='18' Latitude='60.87N' Longitude='27.38E' PrefixList='OH5.*|OH5\Z' StartDate='1945-11-15T00:00:00' id='325'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH6' Comment='' Continent='EU' Country='Finland, Keski-Suomi, Vaasa' CQZone='15'
+			 DXCC='224' ITUZone='18' Latitude='62.93N' Longitude='22.16E' PrefixList='OH6.*|OH6\Z' StartDate='1945-11-15T00:00:00'
+			 id='326' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH7' Comment='' Continent='EU' Country='Finland, Kuopio, Pohjois-Karjala' CQZone='15'
+			 DXCC='224' ITUZone='18' Latitude='63.21N' Longitude='27.75E' PrefixList='OH7.*|OH7\Z' StartDate='1945-11-15T00:00:00'
+			 id='327' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH8' Comment='' Continent='EU' Country='Finland, Oulu' CQZone='15' DXCC='224'
+			 ITUZone='18' Latitude='65.02N' Longitude='25.94E' PrefixList='OH8.*|OH8\Z' StartDate='1945-11-15T00:00:00' id='328'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='OH' Prefix='OH9' Comment='' Continent='EU' Country='Finland, Lappi' CQZone='15' DXCC='224'
+			 ITUZone='18' Latitude='67.52N' Longitude='26.49E' PrefixList='OH9.*|OH9\Z' StartDate='1945-11-15T00:00:00' id='329'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='OJ1ABOA' Comment='' Continent='AN' Country='Antarctica, Aboa Station' CQZone='38'
+			 DXCC='13' ITUZone='67' Latitude='73.05S' Longitude='13.41W' PrefixList='OJ1ABOA\Z' id='330' TimeDiff='-1' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='OP0LE' Comment='' Continent='AN' Country='Antarctica, Princess Elisabeth' CQZone='38'
+			 DXCC='13' ITUZone='67' Latitude='71.95S' Longitude='23.383E' PrefixList='OP0LE\Z|OR4TN\Z' id='331' TimeDiff='1'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='OR4VN' Comment='' Continent='AN' Country='Antarctica, King Baudouin Base' CQZone='38'
+			 DXCC='13' ITUZone='67' Latitude='70.431S' Longitude='24.31E' PrefixList='OR4RW\Z|OR4TZ\Z|OR4VN\Z|OR5RK\Z' EndDate='2002-12-31T00:00:00'
+			 id='332' TimeDiff='1' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PP1' Comment='' Continent='SA' Country='Brazil, Espirito Santo' CQZone='11'
+			 DXCC='108' ITUZone='15' Latitude='19.79S' Longitude='40.71W' PrefixList='PP1.*' id='333' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PP2' Comment='' Continent='SA' Country='Brazil, Goias' CQZone='11' DXCC='108'
+			 ITUZone='15' Latitude='16.86S' Longitude='50.2W' PrefixList='PP2.*' id='334' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PP5' Comment='' Continent='SA' Country='Brazil, Santa Catarina' CQZone='11'
+			 DXCC='108' ITUZone='15' Latitude='27.25S' Longitude='50.27W' PrefixList='PP5.*' id='335' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PP6' Comment='' Continent='SA' Country='Brazil, Sergipe' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='10.55S' Longitude='37.33W' PrefixList='PP6.*' id='336' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PP7' Comment='' Continent='SA' Country='Brazil, Alagoas' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='9.72S' Longitude='36.44W' PrefixList='PP7.*' id='337' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PP8' Comment='' Continent='SA' Country='Brazil, Amazonas' CQZone='11' DXCC='108'
+			 ITUZone='12' Latitude='3.73S' Longitude='64.99W' PrefixList='PP8.*' id='338' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PQ2' Comment='' Continent='SA' Country='Brazil, Tocantins' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='10.17N' Longitude='48.35W' PrefixList='PQ2.*' id='339' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PQ8' Comment='' Continent='SA' Country='Brazil, Amapa' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='1.49N' Longitude='51.86W' PrefixList='PQ8.*' id='340' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PR7' Comment='' Continent='SA' Country='Brazil, Paraiba' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='7.24S' Longitude='36.69W' PrefixList='PR7.*' id='341' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PR8' Comment='' Continent='SA' Country='Brazil, Maranhao' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='4.94S' Longitude='45.55W' PrefixList='PR8.*' id='342' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PS7' Comment='' Continent='SA' Country='Brazil, Rio Grande do Norte' CQZone='11'
+			 DXCC='108' ITUZone='13' Latitude='5.77S' Longitude='36.56W' PrefixList='PS7.*' id='343' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PS8' Comment='' Continent='SA' Country='Brazil, Piaui' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='7.49S' Longitude='42.68W' PrefixList='PS8.*' id='344' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PT2' Comment='' Continent='SA' Country='Brazil, Brasilia, Distrito Federal'
+			 CQZone='11' DXCC='108' ITUZone='13' Latitude='15.84S' Longitude='47.97W' PrefixList='PT2.*' id='345' TimeDiff='-3'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PT7' Comment='' Continent='SA' Country='Brazil, Ceara' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='3.47S' Longitude='38.35W' PrefixList='PT7.*' id='346' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PT8' Comment='' Continent='SA' Country='Brazil, Acre' CQZone='11' DXCC='108'
+			 ITUZone='12' Latitude='9.09S' Longitude='70.41W' PrefixList='PT8.*' id='347' TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PV8' Comment='' Continent='SA' Country='Brazil, Roraima' CQZone='11' DXCC='108'
+			 ITUZone='12' Latitude='2.64N' Longitude='61.48W' PrefixList='PV8.*' id='348' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PW8' Comment='' Continent='SA' Country='Brazil, Rondonia' CQZone='11' DXCC='108'
+			 ITUZone='12' Latitude='10.87S' Longitude='63.33W' PrefixList='PW8.*' id='349' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY1' Comment='' Continent='SA' Country='Brazil, Rio de Janeiro' CQZone='11'
+			 DXCC='108' ITUZone='15' Latitude='22.28S' Longitude='42.26W' PrefixList='P[P-Y]1.*' id='350' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY2' Comment='' Continent='SA' Country='Brazil, Sao Paulo' CQZone='11' DXCC='108'
+			 ITUZone='15' Latitude='22.34S' Longitude='48.74W' PrefixList='P[P-Y]2.*' id='351' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY3' Comment='' Continent='SA' Country='Brazil, Rio Grande do Sul' CQZone='11'
+			 DXCC='108' ITUZone='15' Latitude='29.73S' Longitude='53.39W' PrefixList='P[P-Y]3.*' id='352' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY4' Comment='' Continent='SA' Country='Brazil, Minas Gerais' CQZone='11' DXCC='108'
+			 ITUZone='15' Latitude='18.33S' Longitude='44.4W' PrefixList='P[P-Y]4.*' id='353' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY5' Comment='' Continent='SA' Country='Brazil, Parana' CQZone='11' DXCC='108'
+			 ITUZone='15' Latitude='24.51S' Longitude='51.73W' PrefixList='P[P-Y]5.*' id='354' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY6' Comment='' Continent='SA' Country='Brazil, Bahia' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='12.4S' Longitude='41.85W' PrefixList='P[P-Y]6.*' id='355' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY7' Comment='' Continent='SA' Country='Brazil, Pernambuco' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='8.19S' Longitude='37.71W' PrefixList='P[P-Y]7.*' id='356' TimeDiff='-3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY8' Comment='' Continent='SA' Country='Brazil, Para' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='3.73S' Longitude='52.5W' PrefixList='P[P-Y]8.*|PX8K\Z' id='357' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='PY' Prefix='PY9' Comment='' Continent='SA' Country='Brazil, Mato Grosso' CQZone='11' DXCC='108'
+			 ITUZone='13' Latitude='12.72S' Longitude='56.07W' PrefixList='PY9.*' id='358' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANA' Comment='' Continent='AN' Country='Antarctica, Molodezhnaya Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='67.7S' Longitude='45.8E' PrefixList='R1ANA\Z' StartDate='1994-01-01T00:00:00'
+			 EndDate='2010-12-31T00:00:00' id='359' TimeDiff='3'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANA' Comment='' Continent='AN' Country='Antarctica, Molodezhnaya Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='67.7S' Longitude='45.8E' PrefixList='4K1A\Z|4K1ANO\Z|4K1CEY\Z|4K1HK\Z|4K1OC\Z|4K1QAV\Z|4K1R\Z|4K1XBP\Z|4K1YAR\Z'
+			 EndDate='1993-12-31T00:00:00' id='360' TimeDiff='3' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANA' Comment='' Continent='AN' Country='Antarctica, Molodezhnaya Base' CQZone='29'
+			 DXCC='13' ITUZone='69' Latitude='67.39S' Longitude='45.3E' PrefixList='RI1ANA\Z' StartDate='2011-01-01T00:00:00'
+			 id='361' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANB' Comment='' Continent='AN' Country='Antarctica, Mirny Base' CQZone='29'
+			 DXCC='13' ITUZone='69' Latitude='66.5S' Longitude='93E' PrefixList='4K1AH\Z|4K1B\Z|4K1ZZ\Z|UA1KAE\Z' EndDate='1993-12-31T00:00:00'
+			 id='362' TimeDiff='6' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANB' Comment='' Continent='AN' Country='Antarctica, Mirny Base' CQZone='29'
+			 DXCC='13' ITUZone='69' Latitude='66.5S' Longitude='93E' PrefixList='R1AN[BTWZ]\Z' StartDate='1994-01-01T00:00:00'
+			 EndDate='2010-12-31T00:00:00' id='363' TimeDiff='6'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANB' Comment='' Continent='AN' Country='Antarctica, Mirny Base' CQZone='29'
+			 DXCC='13' ITUZone='69' Latitude='66.5S' Longitude='93E' PrefixList='RI1ANB\Z.*|RI1ANT.*' StartDate='2011-01-01T00:00:00'
+			 id='364' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANC' Comment='' Continent='AN' Country='Antarctica, Vostok Base' CQZone='29'
+			 DXCC='13' ITUZone='70' Latitude='78.4S' Longitude='106.8E' PrefixList='R1ANC\Z' StartDate='1994-01-01T00:00:00'
+			 EndDate='2010-12-31T00:00:00' id='365' TimeDiff='7'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANC' Comment='' Continent='AN' Country='Antarctica, Vostok Base' CQZone='29'
+			 DXCC='13' ITUZone='70' Latitude='78.4S' Longitude='106.8E' PrefixList='RI1ANC\Z' StartDate='2011-01-01T00:00:00'
+			 id='366' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANC' Comment='' Continent='AN' Country='Antarctica, Vostok Base' CQZone='29'
+			 DXCC='13' ITUZone='70' Latitude='78.4S' Longitude='106.8E' PrefixList='4K1C\Z' EndDate='1994-12-31T00:00:00'
+			 id='367' TimeDiff='7' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1AND' Comment='' Continent='AN' Country='Antarctica, Novolazarevskaya Base'
+			 CQZone='38' DXCC='13' ITUZone='67' Latitude='70.7S' Longitude='11.8W' PrefixList='R1AN[DNRY]\Z' StartDate='1994-01-01T00:00:00'
+			 EndDate='2010-12-31T00:00:00' id='368' TimeDiff='1'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1AND' Comment='' Continent='AN' Country='Antarctica, Novolazarevskaya Base'
+			 CQZone='38' DXCC='13' ITUZone='67' Latitude='70.7S' Longitude='11.8W' PrefixList='4K1AFM\Z|4K1D\Z' EndDate='1993-12-31T00:00:00'
+			 id='369' TimeDiff='1' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1AND' Comment='' Continent='AN' Country='Antarctica, Novolazarevskaya Base'
+			 CQZone='38' DXCC='13' ITUZone='67' Latitude='70.7S' Longitude='11.8W' PrefixList='RI1AN[DRW]\Z' StartDate='2010-01-01T00:00:00'
+			 id='370' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANJ' Comment='' Continent='AN' Country='Antarctica, Druzhnaya Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='69.7S' Longitude='73.7E' PrefixList='R1ANJ\Z' StartDate='1994-01-01T00:00:00'
+			 EndDate='2010-12-31T00:00:00' id='371' TimeDiff='5'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANJ' Comment='' Continent='AN' Country='Antarctica, Druzhnaya Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='69.7S' Longitude='73.7E' PrefixList='4K1J\Z|4K1RRC\Z' EndDate='1993-12-31T00:00:00'
+			 id='372' TimeDiff='5' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANJ' Comment='' Continent='AN' Country='Antarctica, Druzhnaya Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='69.7S' Longitude='73.7E' PrefixList='RI1ANJ\Z' StartDate='2011-01-01T00:00:00'
+			 id='373' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANK' Comment='' Continent='AN' Country='Antarctica, Komsomolskaya Base' CQZone='29'
+			 DXCC='13' ITUZone='69' Latitude='74.1S' Longitude='97.5E' PrefixList='R1ANK\Z' StartDate='1994-01-01T00:00:00'
+			 EndDate='2010-12-31T00:00:00' id='374' TimeDiff='7'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANK' Comment='' Continent='AN' Country='Antarctica, Komsomolskaya Base' CQZone='29'
+			 DXCC='13' ITUZone='69' Latitude='74.1S' Longitude='97.5E' PrefixList='4K1[EK]\Z' EndDate='1993-12-31T00:00:00'
+			 id='375' TimeDiff='7' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANK' Comment='' Continent='AN' Country='Antarctica, Komsomolskaya Base' CQZone='29'
+			 DXCC='13' ITUZone='69' Latitude='74.1S' Longitude='97.5E' PrefixList='RI1ANK\Z' StartDate='2011-01-01T00:00:00'
+			 id='376' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANL' Comment='' Continent='AN' Country='Antarctica, Leningradskaya Base'
+			 CQZone='30' DXCC='13' ITUZone='70' Latitude='69.5S' Longitude='159.3E' PrefixList='RI1ANL\Z' StartDate='2011-01-01T00:00:00'
+			 id='377' TimeDiff='11' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANL' Comment='' Continent='AN' Country='Antarctica, Leningradskaya Base'
+			 CQZone='30' DXCC='13' ITUZone='70' Latitude='69.5S' Longitude='159.3E' PrefixList='R1ANL\Z' StartDate='1994-01-01T00:00:00'
+			 EndDate='2010-12-31T00:00:00' id='378' TimeDiff='11'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANL' Comment='' Continent='AN' Country='Antarctica, Leningradskaya Base'
+			 CQZone='30' DXCC='13' ITUZone='70' Latitude='69.5S' Longitude='159.3E' PrefixList='4K1G\Z' EndDate='1993-12-31T00:00:00'
+			 id='379' TimeDiff='11' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANP' Comment='' Continent='AN' Country='Antarctica, Progress Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='69.3S' Longitude='76.3E' PrefixList='4K1DV\Z' EndDate='1993-12-31T00:00:00'
+			 id='380' TimeDiff='5' rs:forcenull='StartDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANP' Comment='' Continent='AN' Country='Antarctica, Progress Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='69.3S' Longitude='76.3E' PrefixList='R1ANP\Z' StartDate='1994-01-01T00:00:00'
+			 EndDate='2010-12-31T00:00:00' id='381' TimeDiff='5'/>
+		<z:row ARRLPrefix='CE9' Prefix='R1ANP' Comment='' Continent='AN' Country='Antarctica, Progress Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='69.3S' Longitude='76.3E' PrefixList='RI1ANP\Z' StartDate='2011-01-01T00:00:00'
+			 id='382' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='' Prefix='RS0ISS' Comment='' Continent='' Country='International Space station' CQZone='0'
+			 ITUZone='0' Latitude='00' Longitude='00' PrefixList='RS0ISS\Z' id='383' TimeDiff='0' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='SM' Prefix='SM0' Comment='' Continent='EU' Country='Sweden, Stockholm City' CQZone='14'
+			 DXCC='284' ITUZone='18' Latitude='59.54N' Longitude='18.15E' PrefixList='S[A-M]0.*|[78]S0.*' StartDate='1945-11-15T00:00:00'
+			 id='384' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SM' Prefix='SM1' Comment='' Continent='EU' Country='Sweden, Gotland isl.' CQZone='14' DXCC='284'
+			 ITUZone='18' Latitude='57.23N' Longitude='18.31E' PrefixList='S[A-M]1.*|[78]S1.*' StartDate='1945-11-15T00:00:00'
+			 id='385' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SM' Prefix='SM2' Comment='' Continent='EU' Country='Sweden, Norrbotten, Vaesterbotten' CQZone='14'
+			 DXCC='284' ITUZone='18' Latitude='66.27N' Longitude='19.54E' PrefixList='S[A-M]2.*|[78]S2.*' StartDate='1945-11-15T00:00:00'
+			 id='386' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SM' Prefix='SM3' Comment='' Continent='EU' Country='Sweden, Jaemtland, Gaevleborg' CQZone='14'
+			 DXCC='284' ITUZone='18' Latitude='62.9N' Longitude='15.43E' PrefixList='S[A-M]3.*|[78]S3.*' StartDate='1945-11-15T00:00:00'
+			 id='387' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SM' Prefix='SM4' Comment='' Continent='EU' Country='Sweden, Koppaberg, Vaermland' CQZone='14'
+			 DXCC='284' ITUZone='18' Latitude='60.37N' Longitude='14.04E' PrefixList='S[A-M]4.*|[78]S4.*' StartDate='1945-11-15T00:00:00'
+			 id='388' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SM' Prefix='SM5' Comment='' Continent='EU' Country='Sweden, Soedermanland, Uppsala' CQZone='14'
+			 DXCC='284' ITUZone='18' Latitude='58.81N' Longitude='16.29E' PrefixList='S[A-M]5.*|[78]S5.*' StartDate='1945-11-15T00:00:00'
+			 id='389' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SM' Prefix='SM6' Comment='' Continent='EU' Country='Sweden, Aelvborg, Skaraborg' CQZone='14'
+			 DXCC='284' ITUZone='18' Latitude='57.59N' Longitude='12.68E' PrefixList='S[A-M]6.*|[78]S6.*' StartDate='1945-11-15T00:00:00'
+			 id='390' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SM' Prefix='SM7' Comment='' Continent='EU' Country='Sweden, Kronoberg, Kristianstad' CQZone='14'
+			 DXCC='284' ITUZone='18' Latitude='57.12N' Longitude='15.26E' PrefixList='S[A-M]7.*|[78]S7.*' StartDate='1945-11-15T00:00:00'
+			 id='391' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP1' Comment='' Continent='EU' Country='Poland, Zachodniopomorskie' CQZone='15'
+			 DXCC='269' ITUZone='28' Latitude='53.35N' Longitude='14.52E' PrefixList='3Z1.*|HF1.*|S[N-R]1.*' StartDate='1945-11-15T00:00:00'
+			 id='392' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP2' Comment='' Continent='EU' Country='Poland, Pomorskie' CQZone='15' DXCC='269'
+			 ITUZone='28' Latitude='54.56N' Longitude='18.35E' PrefixList='3Z2.*|HF2.*|S[N-R]2.*' StartDate='1945-11-15T00:00:00'
+			 id='393' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP3' Comment='' Continent='EU' Country='Poland, Wielkopolskie, Lubuskie' CQZone='15'
+			 DXCC='269' ITUZone='28' Latitude='53.15N' Longitude='17.27E' PrefixList='3Z3.*|HF3.*|S[N-R]3.*' StartDate='1945-11-15T00:00:00'
+			 id='394' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP4' Comment='' Continent='EU' Country='Poland, Warminsko-Mazurskie' CQZone='15'
+			 DXCC='269' ITUZone='28' Latitude='53.73N' Longitude='20.44E' PrefixList='3Z4.*|HF4.*|S[N-R]4.*' StartDate='1945-11-15T00:00:00'
+			 id='395' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP5' Comment='' Continent='EU' Country='Poland, Mazowieckie' CQZone='15' DXCC='269'
+			 ITUZone='28' Latitude='52.23N' Longitude='21.02E' PrefixList='3Z5.*|HF5.*|S[N-R]5.*' StartDate='1945-11-15T00:00:00'
+			 id='396' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP6' Comment='' Continent='EU' Country='Poland, Dolnoslaskie, Opolskie' CQZone='15'
+			 DXCC='269' ITUZone='28' Latitude='52.35N' Longitude='18.69E' PrefixList='3Z6.*|HF6.*|S[N-R]6.*' StartDate='1945-11-15T00:00:00'
+			 id='397' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP7' Comment='' Continent='EU' Country='Poland, Lodzkie, Swietokrzyskie' CQZone='15'
+			 DXCC='269' ITUZone='28' Latitude='50.56N' Longitude='21.69E' PrefixList='3Z7.*|HF7.*|S[N-R]7.*' StartDate='1945-11-15T00:00:00'
+			 id='398' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP8' Comment='' Continent='EU' Country='Poland, Lubelskie, Podkarpackie' CQZone='15'
+			 DXCC='269' ITUZone='28' Latitude='52.27N' Longitude='23.1E' PrefixList='3Z8.*|HF8.*|S[N-R]8.*' StartDate='1945-11-15T00:00:00'
+			 id='399' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SP' Prefix='SP9' Comment='' Continent='EU' Country='Poland, Slaskie, Malopolskie' CQZone='15'
+			 DXCC='269' ITUZone='28' Latitude='50.1N' Longitude='18.52E' PrefixList='3Z9.*|HF9.*|S[N-R]9.*' StartDate='1945-11-15T00:00:00'
+			 id='400' TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SU' Prefix='SU3' Comment='' Continent='AS' Country='Egypt, Sinai Peninsula' CQZone='34'
+			 DXCC='478' ITUZone='38' Latitude='30.02N' Longitude='33.58E' PrefixList='6[AB]3.*|SS3[A-M].*|SU3.*' StartDate='1945-11-15T00:00:00'
+			 id='401' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SV' Prefix='SV1' Comment='' Continent='EU' Country='Greece, Sterea Ellada' CQZone='20' DXCC='236'
+			 ITUZone='28' Latitude='38.55N' Longitude='23.16E' PrefixList='S[V-Z]1.*' StartDate='1945-11-15T00:00:00' id='402'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SV' Prefix='SV2' Comment='' Continent='EU' Country='Greece, Drama' CQZone='20' DXCC='236'
+			 ITUZone='28' Latitude='40.94N' Longitude='22.89E' PrefixList='S[V-Z]2.*' StartDate='1945-11-15T00:00:00' id='403'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SV' Prefix='SV3' Comment='' Continent='EU' Country='Greece, Peloponnese' CQZone='20' DXCC='236'
+			 ITUZone='28' Latitude='37.42N' Longitude='22.35E' PrefixList='S[V-Z]3.*' StartDate='1945-11-15T00:00:00' id='404'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SV' Prefix='SV4' Comment='' Continent='EU' Country='Greece, Thessaly' CQZone='20' DXCC='236'
+			 ITUZone='28' Latitude='39.6N' Longitude='22.14E' PrefixList='S[V-Z]4.*' StartDate='1945-11-15T00:00:00' id='405'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SV' Prefix='SV6' Comment='' Continent='EU' Country='Greece, Epirus' CQZone='20' DXCC='236'
+			 ITUZone='28' Latitude='39.6N' Longitude='20.74E' PrefixList='S[V-Z]6.*' StartDate='1945-11-15T00:00:00' id='406'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='SV' Prefix='SV7' Comment='' Continent='EU' Country='Greece, Komotini' CQZone='20' DXCC='236'
+			 ITUZone='28' Latitude='41.13N' Longitude='25.6E' PrefixList='S[V-Z]7.*' StartDate='1945-11-15T00:00:00' id='407'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TA' Prefix='TA1' Comment='' Continent='EU' Country='Turkey (Europe)' CQZone='20' DXCC='390'
+			 ITUZone='39' Latitude='41.4N' Longitude='27.16E' PrefixList='T[A-C]1.*|YM1.*' id='408' TimeDiff='3' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='TG' Prefix='TG4' Comment='' Continent='NA' Country='Guatemala, Santa Rosa' CQZone='7' DXCC='76'
+			 ITUZone='11' Latitude='14.23N' Longitude='91.04W' PrefixList='T[DG]4.*' StartDate='1945-11-15T00:00:00' id='409'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TG' Prefix='TG5' Comment='' Continent='NA' Country='Guatemala, Quiche' CQZone='7' DXCC='76'
+			 ITUZone='11' Latitude='15.51N' Longitude='91.29W' PrefixList='T[DG]5.*' StartDate='1945-11-15T00:00:00' id='410'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TG' Prefix='TG6' Comment='' Continent='NA' Country='Guatemala, Chiquimula' CQZone='7' DXCC='76'
+			 ITUZone='11' Latitude='14.54N' Longitude='89.56W' PrefixList='T[DG]6.*' StartDate='1945-11-15T00:00:00' id='411'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TG' Prefix='TG7' Comment='' Continent='NA' Country='Guatemala, Alta Veparaz' CQZone='7'
+			 DXCC='76' ITUZone='11' Latitude='16.6N' Longitude='89.92W' PrefixList='T[DG]7.*' StartDate='1945-11-15T00:00:00'
+			 id='412' TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TG' Prefix='TG8' Comment='' Continent='NA' Country='Guatemala, Champerico' CQZone='7' DXCC='76'
+			 ITUZone='11' Latitude='14.79N' Longitude='91.93W' PrefixList='T[DG]8.*' StartDate='1945-11-15T00:00:00' id='413'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TG' Prefix='TG9' Comment='' Continent='NA' Country='Guatemala, Guatemala City' CQZone='7'
+			 DXCC='76' ITUZone='11' Latitude='14.84N' Longitude='90.31W' PrefixList='T[DG]9.*' StartDate='1945-11-15T00:00:00'
+			 id='414' TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TI' Prefix='TI2' Comment='' Continent='NA' Country='Costa Rica, San Jose' CQZone='7' DXCC='308'
+			 ITUZone='11' Latitude='9.53N' Longitude='84W' PrefixList='T[EI]2.*' StartDate='1945-11-15T00:00:00' id='415'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TI' Prefix='TI3' Comment='' Continent='NA' Country='Costa Rica, Cartago' CQZone='7' DXCC='308'
+			 ITUZone='11' Latitude='9.81N' Longitude='83.75W' PrefixList='T[EI]3.*' StartDate='1945-11-15T00:00:00' id='416'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TI' Prefix='TI4' Comment='' Continent='NA' Country='Costa Rica, Heredia' CQZone='7' DXCC='308'
+			 ITUZone='11' Latitude='10.45N' Longitude='84.05W' PrefixList='T[EI]4.*' StartDate='1945-11-15T00:00:00' id='417'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TI' Prefix='TI5' Comment='' Continent='NA' Country='Costa Rica, Alajuela' CQZone='7' DXCC='308'
+			 ITUZone='11' Latitude='10.62N' Longitude='84.58W' PrefixList='T[EI]5.*' StartDate='1945-11-15T00:00:00' id='418'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TI' Prefix='TI6' Comment='' Continent='NA' Country='Costa Rica, Limon' CQZone='7' DXCC='308'
+			 ITUZone='11' Latitude='9.87N' Longitude='83.16W' PrefixList='T[EI]6.*' StartDate='1945-11-15T00:00:00' id='419'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TI' Prefix='TI7' Comment='' Continent='NA' Country='Costa Rica, Guanacaste' CQZone='7' DXCC='308'
+			 ITUZone='11' Latitude='10.45N' Longitude='85.41W' PrefixList='T[EI]7.*' StartDate='1945-11-15T00:00:00' id='420'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='TI' Prefix='TI8' Comment='' Continent='NA' Country='Costa Rica, Puntarenas' CQZone='7' DXCC='308'
+			 ITUZone='11' Latitude='8.95N' Longitude='83.22W' PrefixList='T[EI]8.*' StartDate='1945-11-15T00:00:00' id='421'
+			 TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0A' Comment='' Continent='AS' Country='Russia, Krasnoyarsk Krai' CQZone='18'
+			 DXCC='15' ITUZone='32' Latitude='56.012N' Longitude='92.874E' PrefixList='R[A-Z]0[ABH].*|RP7[1-9]K[TV]\Z|RP70RS\Z|U[A-I]0[ABH].*|[UR]0[ABH].*'
+			 StartDate='1994-01-01T00:00:00' id='422' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0C' Comment='' Continent='AS' Country='Russia, Khabarovsk Krai' CQZone='19'
+			 DXCC='15' ITUZone='34' Latitude='48.47N' Longitude='135.06E' PrefixList='R[A-Z]0C.*|RP70H\Z|U[A-I]0C.*|[UR]0C.*'
+			 StartDate='1994-01-01T00:00:00' id='423' TimeDiff='10' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0D' Comment='' Continent='AS' Country='Russia, Jewish AO' CQZone='19' DXCC='15'
+			 ITUZone='33' Latitude='48.79N' Longitude='132.925E' PrefixList='R[A-Z]0D.*|U[A-I]0D.*|[UR]0D.*' StartDate='1994-01-01T00:00:00'
+			 id='424' TimeDiff='10' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0F' Comment='' Continent='AS' Country='Russia, Sakhalin obl.' CQZone='19'
+			 DXCC='15' ITUZone='34' Latitude='46.957N' Longitude='142.725E' PrefixList='R[A-Z]0F.*|U[A-I]0F.*|[UR]0F.*' StartDate='1994-01-01T00:00:00'
+			 id='425' TimeDiff='11' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0I' Comment='' Continent='AS' Country='Russia, Magadan obl.' CQZone='19'
+			 DXCC='15' ITUZone='24' Latitude='59.566N' Longitude='150.811E' PrefixList='R[A-Z]0I.*|U[A-I]0I.*|[RU]0I.*' StartDate='1994-01-01T00:00:00'
+			 id='426' TimeDiff='10' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0J' Comment='' Continent='AS' Country='Russia, Amur obl.' CQZone='19' DXCC='15'
+			 ITUZone='33' Latitude='50.262N' Longitude='127.532E' PrefixList='R[A-Z]0J.*|U[A-I]0J.*|[RU]0J.*' StartDate='1994-01-01T00:00:00'
+			 id='427' TimeDiff='9' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0K' Comment='' Continent='AS' Country='Russia, Chukotka AO' CQZone='19' DXCC='15'
+			 ITUZone='26' Latitude='64.734N' Longitude='177.516E' PrefixList='R[A-Z]0K.*|RP70AS\Z|RP73CK\Z|U[A-I]0K.*|[RU]0K.*'
+			 StartDate='1994-01-01T00:00:00' id='428' TimeDiff='12' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0L' Comment='' Continent='AS' Country='Russia, Primorsky Krai' CQZone='19'
+			 DXCC='15' ITUZone='34' Latitude='43.115N' Longitude='131.89E' PrefixList='R[A-Z]0[LMN].*|RP7[0-9]DG\Z|RP7[0-9]SD\Z|RP7[0-9]V\Z|U[A-I]0[LMN].*|[RU]0[LMN].*'
+			 StartDate='1994-01-01T00:00:00' id='429' TimeDiff='10' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0O' Comment='' Continent='AS' Country='Russia, Rep. of Buryatia' CQZone='18'
+			 DXCC='15' ITUZone='32' Latitude='51.833N' Longitude='107.58E' PrefixList='R[A-Z]0O.*|U[A-I]0O.*|[RU]0O.*' StartDate='1994-01-01T00:00:00'
+			 id='430' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0Q' Comment='' Continent='AS' Country='Russia, Sakha (Yakutia) Rep.' CQZone='19'
+			 DXCC='15' ITUZone='23' Latitude='62.035N' Longitude='129.744E' PrefixList='R[A-Z]0Q.*|RP70AY\Z|U[A-I]0Q.*|[RU]0Q.*'
+			 StartDate='1994-01-01T00:00:00' id='431' TimeDiff='9' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0S' Comment='' Continent='AS' Country='Russia, Irkutsk obl.' CQZone='18'
+			 DXCC='15' ITUZone='32' Latitude='52.281N' Longitude='104.26E' PrefixList='R[A-Z]0[RST].*|R18SWE\Z|RP7[0-9]AB\Z|U[A-I]0[RST].*|[RU]0[RST].*'
+			 StartDate='1994-01-01T00:00:00' id='432' TimeDiff='8' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0S' Comment='' Continent='AS' Country='Russia, Ust-Orda Buryat Okrug' CQZone='18'
+			 DXCC='15' ITUZone='32' Latitude='52.281N' Longitude='104.26E' PrefixList='R[A-Z]8T.*|U[A-I]8T.*|[RU]8T.*' StartDate='1958-01-01T00:00:00'
+			 EndDate='2007-12-31T00:00:00' id='433' TimeDiff='10'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0U' Comment='' Continent='AS' Country='Russia, Agin-Buryat Okrug' CQZone='18'
+			 DXCC='15' ITUZone='33' Latitude='52.032N' Longitude='113.498E' PrefixList='R[A-Z]8V.*|U[A-I]8V.*|[RU]8V.*' StartDate='1937-10-26T00:00:00'
+			 EndDate='2008-02-29T00:00:00' id='434' TimeDiff='10'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0U' Comment='' Continent='AS' Country='Russia, Zabaykalsky Krai' CQZone='18'
+			 DXCC='15' ITUZone='33' Latitude='52.032N' Longitude='113.498E' PrefixList='R[A-Z]0[UV].*|U[A-I]0[UV].*|[RU]0[UV].*'
+			 StartDate='1994-01-01T00:00:00' id='435' TimeDiff='9' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0W' Comment='' Continent='AS' Country='Russia, Rep. of Khakassia' CQZone='18'
+			 DXCC='15' ITUZone='31' Latitude='53.723N' Longitude='91.443E' PrefixList='R[A-Z]0W.*|RP70SL\Z|U[A-I]0W.*|[RU]0W.*'
+			 StartDate='1994-01-01T00:00:00' id='436' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0Y' Comment='' Continent='AS' Country='Russia, Tuva Rep.' CQZone='23' DXCC='15'
+			 ITUZone='32' Latitude='51.718N' Longitude='94.439E' PrefixList='R[A-Z]0Y.*|U[A-I]0Y.*|[RU]0Y.*' StartDate='1994-01-01T00:00:00'
+			 id='437' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA0Z' Comment='' Continent='AS' Country='Russia, Kamchatka Krai' CQZone='19'
+			 DXCC='15' ITUZone='35' Latitude='53.0198N' Longitude='158.647E' PrefixList='R[A-Z]0[XZ].*|U[A-I]0[XZ].*|[RU]0[XZ].*'
+			 StartDate='1994-01-01T00:00:00' id='438' TimeDiff='12' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1A' Comment='' Continent='EU' Country='Russia, St. Petersburg' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='59.939N' Longitude='30.315E' PrefixList='R[A-HJ-Z]1[ABFLM].*|RC18SP\Z|RP70AV\Z|RP70FG\Z|RP70IB\Z|RP70L[KU]\Z|RP70L\Z|RP70OP\Z|U[A-I]1[ABFLM].*|[RU]1[ABLM][A-UW-Z].*'
+			 StartDate='2010-10-20T00:00:00' id='439' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1C' Comment='' Continent='EU' Country='Russia, Leningrad obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='59.6N' Longitude='30.3E' PrefixList='R[A-Z]1[CDE].*|RP70DV\Z|RP70FI\Z|RP70KK\Z|RP70T[OZ]\Z|RP70VB\Z|U[A-I]1[CDE].*|[RU]1[CDE].*'
+			 StartDate='1994-01-01T00:00:00' id='440' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1N' Comment='' Continent='EU' Country='Russia, Rep. of Karelia' CQZone='16'
+			 DXCC='54' ITUZone='19' Latitude='61.787N' Longitude='34.364E' PrefixList='R[A-Z]1[NK].*|RP70PT\Z|RP70RK\Z|U[A-I]1[NK].*|[RU]1[NK].*'
+			 StartDate='1994-01-01T00:00:00' id='441' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1O' Comment='' Continent='EU' Country='Russia, Arkhangelsk obl.' CQZone='16'
+			 DXCC='54' ITUZone='19' Latitude='64.538N' Longitude='40.514E' PrefixList='R[A-Z]1O.*|RP7[0-9]A\Z|RP70A[KU]\Z|U[A-I]1O.*|[RU]1O.*'
+			 StartDate='1994-01-01T00:00:00' id='442' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1P' Comment='' Continent='EU' Country='Russia, Nenets AO' CQZone='16' DXCC='54'
+			 ITUZone='20' Latitude='67.641N' Longitude='53.045E' PrefixList='R[A-Z]1P.*|U[A-I]1P.*|[RU]1P.*' StartDate='1994-01-01T00:00:00'
+			 id='443' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1Q' Comment='' Continent='EU' Country='Russia, Vologda obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='59.1N' Longitude='39.9E' PrefixList='R[A-Z]1[QRS].*|RP70VG\Z|RP70WD\Z|U[A-I]1[QRS].*|[RU]1[QRS].*'
+			 StartDate='1994-01-01T00:00:00' id='444' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1T' Comment='' Continent='EU' Country='Russia, Novgorod obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='58.522N' Longitude='31.27E' PrefixList='R[A-Z]1T.*|RP70GT\Z|RP70NV\Z|U[A-I]1T.*|[RU]1T.*'
+			 StartDate='1994-01-01T00:00:00' id='445' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1W' Comment='' Continent='EU' Country='Russia, Pskov obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='57.5N' Longitude='28.3E' PrefixList='R[A-Z]1[WX].*|RP70PD\Z|U[A-I]1[WX].*|[RU]1[WX].*'
+			 StartDate='1994-01-01T00:00:00' id='446' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA1Z' Comment='' Continent='EU' Country='Russia, Murmansk obl.' CQZone='16'
+			 DXCC='54' ITUZone='19' Latitude='68.97N' Longitude='33.074E' PrefixList='R[A-Z]1[YZ].*|RP70MU\Z|RP70PL\Z|RP70Z\Z|RP70ZZ\Z|U[A-I]1[YZ].*|[RU]1[YZ].*'
+			 StartDate='1994-01-01T00:00:00' id='447' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA2' Prefix='UA2' Comment='' Continent='EU' Country='Russia, Kaliningrad obl.' CQZone='15'
+			 DXCC='126' ITUZone='29' Latitude='54.695N' Longitude='20.502E' PrefixList='R18SRB\Z|RA2[FK].*|RA2\d{1,}[FK].*|RC18KA\Z|RP70K[BG]\Z|RP70MW\Z|RP70WB\Z|U[A-I]2[A-Z].*|U[A-I]2[FK].*|UA2DF\Z|[RU]2[FK].*|[RU]2\Z'
+			 StartDate='1994-01-01T00:00:00' id='448' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3A' Comment='' Continent='EU' Country='Russia, Moscow' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='55.754N' Longitude='37.62E' PrefixList='R[235][ABC].*|R[A-Z][35][ABC].*|R[B-Z]2[ABC].*|R870O\Z|RC18MO\Z|RP70A[QM]\Z|RP70E\Z|RP70ER\Z|RP70FK\Z|RP70LO\Z|RP70M\Z|U[23][ABC].*|U[A-I][35][ABC].*'
+			 StartDate='1994-01-01T00:00:00' id='449' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3D' Comment='' Continent='EU' Country='Russia, Moscow obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='55.5N' Longitude='38.2E' PrefixList='R[35][DFH].*|R[A-Z][35][DFH].*|R[B-Z][2][DH].*|R2[DH].*|RP70AO\Z|RP70BA\Z|RP70D\Z|RP70FA\Z|RP70G[DUZ]\Z|RP70KA\Z|RP70NF\Z|RP70R[COR]\Z|RP70SR\Z|RP70TT\Z|RP70V[PT]\Z|RP70W[GN]\Z|U[A-I][35][DFH].*|U2[DH].*|U3[DFH].*'
+			 StartDate='1994-01-01T00:00:00' id='450' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3E' Comment='' Continent='EU' Country='Russia, Oryol obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='52.97N' Longitude='36.062E' PrefixList='R[235]E.*|R[A-Z][35]E.*|R[B-Z]2E.*|RP70IL\Z|RP70NP\Z|RP70O\Z|U[23]E.*|U[A-I][35]E.*'
+			 StartDate='1994-01-01T00:00:00' id='451' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3G' Comment='' Continent='EU' Country='Russia, Lipetsk obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='52.609N' Longitude='39.598E' PrefixList='R[235]G.*|R[A-Z][35]G.*|R[B-Z]2G.*|RP70FL\Z|RP70GE\Z|RP70IF\Z|RP70LN\Z|U[23]G.*|U[A-I][35]G.*'
+			 StartDate='1994-01-01T00:00:00' id='452' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3I' Comment='' Continent='EU' Country='Russia, Tver obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='56.857N' Longitude='35.921E' PrefixList='R[235][IJ].*|R[A-Z][35][IJ].*|R[B-Z]2[IJ].*|RP70RZ\Z|RP70TV\Z|U[23][IJ].*|U[A-I][35][IJ].*'
+			 StartDate='1994-01-01T00:00:00' id='453' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3L' Comment='' Continent='EU' Country='Russia, Smolensk obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='54.781N' Longitude='32.043E' PrefixList='R[235]L.*|R[A-Z][35]L.*|R[B-Z]2L.*|R863L.*|RP70BF\Z|RP70EL\Z|RP70GL\Z|RP70KS\Z|RP70ON\Z|RP70S\Z|RP70SP\Z|RP70VA\Z|RP70WP\Z|U[23]L.*|U[A-I][35]L.*'
+			 StartDate='1994-01-01T00:00:00' id='454' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3M' Comment='' Continent='EU' Country='Russia, Yaroslavl obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='57.627N' Longitude='39.832E' PrefixList='R[235]M.*|R[A-Z][35]M.*|R[B-Z]2M.*|RP70GN\Z|RP70KT\Z|RP70MT\Z|RP70RG\Z|U[23]M.*|U[A-I][35]M.*'
+			 StartDate='1994-01-01T00:00:00' id='455' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3N' Comment='' Continent='EU' Country='Russia, Kostroma obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='57.767N' Longitude='40.926E' PrefixList='R[235]N.*|R[A-Z][35]N.*|R[B-Z]2N.*|RP70DK\Z|RP70KN\Z|U[23]N.*|U[A-I][35]N.*'
+			 StartDate='1994-01-01T00:00:00' id='456' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3P' Comment='' Continent='EU' Country='Russia, Tula obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='54.189N' Longitude='37.615E' PrefixList='R[235]P.*|R[A-Z][35]P.*|R[B-Z]2P.*|RP70T\Z|RP70TP\Z|U[23]P.*|U[A-I][35]P.*'
+			 StartDate='1994-01-01T00:00:00' id='457' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3Q' Comment='' Continent='EU' Country='Russia, Voronezh obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='51.66N' Longitude='39.199E' PrefixList='R[35][KOQ].*|R[A-Z][35][KOQ].*|R[B-Z]2[OQ].*|R2[OQ].*|RP70LG\Z|RP70O[RW]\Z|RP70QP\Z|RP70W\Z|U[A-I][35][KOQ].*|U2[OQ].*|U3[KOQ].*'
+			 StartDate='1994-01-01T00:00:00' id='458' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3R' Comment='' Continent='EU' Country='Russia, Tambov obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='52.4N' Longitude='41.5E' PrefixList='R[235]R.*|R[A-Z][35]R.*|R[B-Z]2R.*|RP70DS\Z|RP70M[HM]\Z|RP70P[HZ]\Z|RP70RP\Z|RP70ZK\Z|U[23]R.*|U[A-I][35]R.*'
+			 StartDate='1994-01-01T00:00:00' id='459' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3S' Comment='' Continent='EU' Country='Russia, Ryazan obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='54.4N' Longitude='39.8E' PrefixList='R[235]S.*|R[A-Z][35]S.*|R[B-Z]2S.*|RP70MN\Z|RP70VK\Z|RP70ZG\Z|U[23]S.*|U[A-I][35]S.*'
+			 StartDate='1994-01-01T00:00:00' id='460' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3T' Comment='' Continent='EU' Country='Russia, Nizhny Novgorod obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='56.315N' Longitude='43.993E' PrefixList='R[235]T.*|R[A-Z][35]T.*|R[B-Z]2T.*|RC18NN\Z|RP70GF\Z|U[23]T.*|U[A-I][35]T.*'
+			 StartDate='1994-01-01T00:00:00' id='461' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3U' Comment='' Continent='EU' Country='Russia, Ivanovo obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='56.998N' Longitude='40.973E' PrefixList='R[235]U.*|R[A-Z][35]U.*|R[B-Z]2U.*|RP70BS\Z|U[23]U.*|U[A-I][35]U.*'
+			 StartDate='1994-01-01T00:00:00' id='462' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3V' Comment='' Continent='EU' Country='Russia, Vladimir obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='56.13N' Longitude='40.407E' PrefixList='R[235]V.*|R[A-Z][35]V.*|R[B-Z]2V.*|RP70KO\Z|RP70VF\Z|U[23]V.*|U[A-I][35]V.*'
+			 StartDate='1994-01-01T00:00:00' id='463' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3W' Comment='' Continent='EU' Country='Russia, Kursk obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='51.73N' Longitude='36.191E' PrefixList='R[235]W.*|R[A-Z][35]W.*|R[B-Z]2W.*|RP70K\Z|RP70TW\Z|U[23]W.*|U[A-I][35]W.*'
+			 StartDate='1994-01-01T00:00:00' id='464' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3X' Comment='' Continent='EU' Country='Russia, Kaluga obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='54.512N' Longitude='36.272E' PrefixList='R[235]X.*|R[A-Z][35]X.*|R[B-Z]2X.*|RP70GV\Z|RP70MY\Z|U[23]X.*|U[A-I][35]X.*'
+			 StartDate='1994-01-01T00:00:00' id='465' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3Y' Comment='' Continent='EU' Country='Russia, Bryansk obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='53.243N' Longitude='34.366E' PrefixList='R[235]Y.*|R[A-Z][35]Y.*|R[B-Z]2Y.*|RP70B[LR]\Z|RP70DM\Z|RP70FB\Z|RP70OD\Z|RP70P[AGNR]\Z|RP70WA\Z|U[23]Y.*|U[A-I][35]Y.*'
+			 StartDate='1994-01-01T00:00:00' id='466' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA3Z' Comment='' Continent='EU' Country='Russia, Belgorod obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='50.596N' Longitude='36.609E' PrefixList='R[235]Z.*|R[A-Z][35]Z.*|R[B-Z]2Z.*|RP70B\Z|RP70ES\Z|RP70LB\Z|RP70PP\Z|RP70RW\Z|U[23]Z.*|U[A-I][35]Z.*'
+			 StartDate='1994-01-01T00:00:00' id='467' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4A' Comment='' Continent='EU' Country='Russia, Volgograd obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='48.709N' Longitude='44.515E' PrefixList='R[A-Z]4[AB].*|RC18VG\Z|RP70DP\Z|RP70KD\Z|RP70MK\Z|RP70S[BGK]\Z|RP70WR\Z|U[A-I]4[AB].*|[RU]4[AB].*'
+			 StartDate='1994-01-01T00:00:00' id='468' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4C' Comment='' Continent='EU' Country='Russia, Saratov obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='51.536N' Longitude='46.023E' PrefixList='R[A-Z]4[CD].*|RP70AE\Z|RP70CP\Z|RP70MR\Z|RP70TA\Z|U[A-I]4[CD].*|[RU]4[CD].*'
+			 StartDate='1994-01-01T00:00:00' id='469' TimeDiff='4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4F' Comment='' Continent='EU' Country='Russia, Penza obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='53.194N' Longitude='45.018E' PrefixList='R[A-Z]4F.*|R350F.*|RP70KY\Z|RP70MZ\Z|RP70NA\Z|RP70WK\Z|U[A-I]4F.*|[RU]4F.*'
+			 StartDate='1994-01-01T00:00:00' id='470' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4H' Comment='' Continent='EU' Country='Russia, Samara obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='53.188N' Longitude='50.088E' PrefixList='R[A-Z]4[HI].*|RC18SR\Z|RP70EN\Z|RP70I\Z|RP70SW\Z|RP70WO\Z|RP70ZA\Z|U[A-I]4[HI].*|[RU]4[HI].*'
+			 StartDate='1994-01-01T00:00:00' id='471' TimeDiff='4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4L' Comment='' Continent='EU' Country='Russia, Ulyanovsk obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='54.314N' Longitude='48.388E' PrefixList='R[A-Z]4[LM].*|RP70UL\Z|U[A-I]4[LM].*|[RU]4[LM].*'
+			 StartDate='1994-01-01T00:00:00' id='472' TimeDiff='4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4N' Comment='' Continent='EU' Country='Russia, Kirov obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='58.614N' Longitude='49.682E' PrefixList='R[A-Z]4[NO].*|RP70KF\Z|U[A-I]4[NO].*|[RU]4[NO].*'
+			 StartDate='1994-01-01T00:00:00' id='473' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4P' Comment='' Continent='EU' Country='Russia, Rep. of Tatarstan' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='55.793N' Longitude='49.115E' PrefixList='R[A-Z]4[PQR].*|RC18KZ\Z|RP70BG\Z|RP70KU\Z|RP70OT\Z|RP70PB\Z|RP70RT\Z|U[A-I]4[PQR].*|[RU]4[PQR].*'
+			 StartDate='1994-01-01T00:00:00' id='474' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4S' Comment='' Continent='EU' Country='Russia, Mari-El Rep.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='56.633N' Longitude='47.895E' PrefixList='R[A-Z]4[ST].*|RP70MB\Z|U[A-I]4[ST].*|[RU]4[ST].*'
+			 StartDate='1994-01-01T00:00:00' id='475' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4U' Comment='' Continent='EU' Country='Russia, Rep. of Mordovia' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='54.181N' Longitude='45.176E' PrefixList='R[A-Z]4U.*|RC18SA\Z|RP70LD\Z|U[A-I]4U.*|[RU]4U.*'
+			 StartDate='1994-01-01T00:00:00' id='476' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4W' Comment='' Continent='EU' Country='Russia, Udmurt Rep.' CQZone='16' DXCC='54'
+			 ITUZone='30' Latitude='56.861N' Longitude='53.2E' PrefixList='R[A-Z]4W.*|RP70IZ\Z|U[A-I]4W.*|[RU]4W.*' StartDate='1994-01-01T00:00:00'
+			 id='477' TimeDiff='4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4Y' Comment='' Continent='EU' Country='Russia, Chuvash Rep.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='56.146N' Longitude='47.25E' PrefixList='R[A-Z]4[YZ].*|RP70FR\Z|RP70TF\Z|U[A-I]4[YZ].*|[RU]4[YZ].*'
+			 StartDate='1994-01-01T00:00:00' id='478' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA4Y' Comment='' Continent='EU' Country='Russia, Chuvash Rep.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='56.146N' Longitude='47.25E' PrefixList='R44.*|R45.*' StartDate='2012-06-01T00:00:00'
+			 EndDate='2012-06-03T00:00:00' id='479' TimeDiff='3'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6A' Comment='' Continent='EU' Country='Russia, Krasnodar Krai' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='45.023N' Longitude='39.097E' PrefixList='R[A-Z][67][ABCD].*|R2014F[A-KM-NP-QSWZ]|RC18SO\Z|RP70AN\Z|RP70AP\Z|RP70GG\Z|RP70KI\Z|RP70NR\Z|RP70PS\Z|RP70S[MO]\Z|RP70VM\Z|U[A-I][67][ABCD].*|[RU][67][ABCD].*'
+			 StartDate='1994-01-01T00:00:00' id='480' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6E' Comment='' Continent='EU' Country='Russia, Karachay-Cherkess Rep.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='44.227N' Longitude='42.0478E' PrefixList='R[A-Z][67]E.*|RP70RL\Z|U[A-I][67]E.*|[RU][67]E.*'
+			 StartDate='1994-01-01T00:00:00' id='481' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6H' Comment='' Continent='EU' Country='Russia, Stavropol Krai' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='45.044N' Longitude='41.973E' PrefixList='R[A-Z][67][FGHT].*|RP70C\Z|RP70EV\Z|RP70FM\Z|RP70RF\Z|U[A-I][67][FGHT].*|[RU][67][FGHT].*'
+			 StartDate='1994-01-01T00:00:00' id='482' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6I' Comment='' Continent='EU' Country='Russia, Rep. of Kalmykia' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='46.305N' Longitude='44.282E' PrefixList='R[A-Z][67]I.*|U[A-I][67]I.*|[RU][67]I.*'
+			 StartDate='1994-01-01T00:00:00' id='483' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6J' Comment='' Continent='EU' Country='Russia, Rep. of North Ossetia-Alania '
+			 CQZone='16' DXCC='54' ITUZone='29' Latitude='43.031N' Longitude='44.675E' PrefixList='R[A-Z][67]J.*|RP70VL\Z|U[A-I][67]J.*|[RU][67]J.*'
+			 StartDate='1994-01-01T00:00:00' id='484' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6K' Comment='' Continent='EU' Country='Russia, Crimea' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='45.21N' Longitude='34.1E' PrefixList='R[67]K.*|R[A-Z][67]K.*|RP70F\Z|RP70K[CPR]\Z|RU[67]K.*|U[A-I][67]K.*'
+			 StartDate='2014-03-21T00:00:00' id='485' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6L' Comment='' Continent='EU' Country='Russia, Rostov obl.' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='47.233N' Longitude='39.715E' PrefixList='R[A-Z][67][LMNO].*|RC18RO\Z|RP70IS\Z|RP70M[LSX]\Z|RP70OM\Z|RP70TR\Z|U[A-I][67][LMNO].*|[RU][67][LMNO].*'
+			 StartDate='1994-01-01T00:00:00' id='486' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6P' Comment='' Continent='EU' Country='Russia, Chechen Rep. ' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='43.323N' Longitude='45.683E' PrefixList='R[A-Z][67][P].*|RP70GY\Z|U[A-I][67][P].*|UA6RD\Z|[RU][67][P].*'
+			 StartDate='1994-01-01T00:00:00' id='487' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6Q' Comment='' Continent='EU' Country='Russia, Rep. of Inguchetia' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='43.222N' Longitude='44.77E' PrefixList='R[A-Z][67]Q.*|U[A-I][67]Q.*|[RU][67]Q.*'
+			 StartDate='1994-01-01T00:00:00' id='488' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6R' Comment='' Continent='EU' Country='Russia, Sevastopol' CQZone='16' DXCC='54'
+			 ITUZone='29' Latitude='44.61N' Longitude='33.52E' PrefixList='R[67]R.*|R[A-Z][67]R.*|RP70SE\Z|RU[67]R.*|U[A-I][67]R.*'
+			 StartDate='2014-03-21T00:00:00' id='489' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6U' Comment='' Continent='EU' Country='Russia, Astrakhan obl.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='46.348N' Longitude='48.037E' PrefixList='R[A-Z][67][UV].*|R2014F[LRU]|RP70WF\Z|U[A-EGHI]6[UV].*|U[A-I]7[UV].*|[RU][67][UV].*'
+			 StartDate='1994-01-01T00:00:00' id='490' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6W' Comment='' Continent='EU' Country='Russia, Rep. of Daghestan' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='42.972N' Longitude='47.493E' PrefixList='R[A-Z][67]W.*|U[A-I][67]W.*|[RU][67]W.*'
+			 StartDate='1994-01-01T00:00:00' id='491' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6X' Comment='' Continent='EU' Country='Russia, Kabardino-Balkar Rep.' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='43.481N' Longitude='43.607E' PrefixList='R[A-Z][67]X.*|RP70N\Z|U[A-I][67]X.*|[RU][67]X.*'
+			 StartDate='1994-01-01T00:00:00' id='492' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA6Y' Comment='' Continent='EU' Country='Russia, Rep. of Adygea' CQZone='16'
+			 DXCC='54' ITUZone='29' Latitude='44.605N' Longitude='40.104E' PrefixList='R[A-Z][67]Y.*|R2014F[OTVY]|RP70AH\Z|U[A-I][67]Y.*|[RU][67]Y.*'
+			 StartDate='1994-01-01T00:00:00' id='493' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9A' Comment='' Continent='AS' Country='Russia, Chelyabinsk obl.' CQZone='17'
+			 DXCC='15' ITUZone='30' Latitude='55.14N' Longitude='61.414E' PrefixList='R[A-Z][89][AB].*|RP7[0-9]AZ\Z|RP7[0-9]TG\Z|RP70PM\Z|RP73U\Z|U[A-I][89][AB].*|[RU][89][AB].*'
+			 StartDate='1994-01-01T00:00:00' id='494' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9C' Comment='' Continent='AS' Country='Russia, Sverdlovsk obl.' CQZone='17'
+			 DXCC='15' ITUZone='30' Latitude='56.839N' Longitude='60.608E' PrefixList='R[A-Z][89][CD].*|R290.*|RC18EK\Z|RP7[0-9]DT\Z|RP7[0-9]GB\Z|RP7[0-9]GR\Z|RP7[0-9]SA\Z|RP70G\Z|RP70MA\Z|RP70UH\Z|RP73IM\Z|U[A-I][89][CD].*|[RU][89][CD].*'
+			 StartDate='1994-01-01T00:00:00' id='495' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9F' Comment='' Continent='AS' Country='Russia, Perm Krai' CQZone='17' DXCC='15'
+			 ITUZone='30' Latitude='58.014N' Longitude='56.248E' PrefixList='R[A-Z][89][FG].*|U[A-I][89][FG].*|[RU][89][FG].*'
+			 StartDate='1994-01-01T00:00:00' EndDate='2011-11-30T00:00:00' id='496' TimeDiff='6'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA9F' Comment='' Continent='EU' Country='Russia, Perm Krai' CQZone='17' DXCC='54'
+			 ITUZone='30' Latitude='58.014N' Longitude='56.248E' PrefixList='R[A-Z][89][FG].*|RP70PK\Z|U[A-I][89][FG].*|[RU][89][FG].*'
+			 StartDate='2011-12-01T00:00:00' id='497' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9H' Comment='' Continent='AS' Country='Russia, Tomsk obl.' CQZone='18' DXCC='15'
+			 ITUZone='31' Latitude='56.48N' Longitude='84.95E' PrefixList='R[A-Z][89][HI].*|U[A-I][89][HI].*|[RU][89][HI].*'
+			 StartDate='1994-01-01T00:00:00' id='498' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9J' Comment='' Continent='AS' Country='Russia, Khanty-Mansi AO' CQZone='17'
+			 DXCC='15' ITUZone='20' Latitude='61.002N' Longitude='69.018E' PrefixList='R[A-Z][89]J.*|R15J[GHILMNRS].*|R15UGRA\Z|RP7[0-9]GS\Z|RP7[0-9]S[FU]\Z|RP70LF\Z|RP70YF\Z|U[A-I][89]J.*|[RU][89]J.*'
+			 StartDate='1994-01-01T00:00:00' id='499' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9K' Comment='' Continent='AS' Country='Russia, Yamalo-Nenets AO' CQZone='17'
+			 DXCC='15' ITUZone='20' Latitude='66.53N' Longitude='66.612E' PrefixList='R[A-Z][89]K.*|U[A-I][89]K.*|[RU][89]K.*'
+			 StartDate='1994-01-01T00:00:00' id='500' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9L' Comment='' Continent='AS' Country='Russia, Tyumen obl.' CQZone='17' DXCC='15'
+			 ITUZone='30' Latitude='57.151N' Longitude='65.542E' PrefixList='R[A-Z][89]L.*|RP7[0-9]P\Z|RP70GP\Z|RP70LM\Z|RP70TM\Z|RP73LL\Z|U[A-I][89]L.*|[RU][89]L.*'
+			 StartDate='1994-01-01T00:00:00' id='501' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9M' Comment='' Continent='AS' Country='Russia, Omsk obl.' CQZone='17' DXCC='15'
+			 ITUZone='30' Latitude='54.992N' Longitude='73.371E' PrefixList='R[A-Z][89][MN].*|RP7[0-9]GK\Z|RP70M[CD]\Z|RP70O[BFS]\Z|U[A-I][89][MN].*|[RU][89][MN].*'
+			 StartDate='1994-01-01T00:00:00' id='502' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9O' Comment='' Continent='AS' Country='Russia, Novosibirsk obl.' CQZone='18'
+			 DXCC='15' ITUZone='31' Latitude='55.028N' Longitude='82.916E' PrefixList='R[A-Z][89][OP].*|R124NSK\Z|RP7[0-9]MP\Z|U[A-I][89][OP].*|[RU][89][OP].*'
+			 StartDate='1994-01-01T00:00:00' id='503' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9Q' Comment='' Continent='AS' Country='Russia, Kurgan obl.' CQZone='17' DXCC='15'
+			 ITUZone='30' Latitude='55.44N' Longitude='65.344E' PrefixList='R[A-Z][89][QR].*|RP70KE\Z|RP70R\Z|U[A-I][89][QR].*|[RU][89][QR].*'
+			 StartDate='1994-01-01T00:00:00' id='504' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9S' Comment='' Continent='AS' Country='Russia, Orenburg obl.' CQZone='16'
+			 DXCC='15' ITUZone='30' Latitude='51.762N' Longitude='55.096E' PrefixList='R[A-Z][89][ST].*|R2014FX|U[A-I][89][ST].*|[RU][89][ST].*'
+			 StartDate='1994-01-01T00:00:00' id='505' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9U' Comment='' Continent='AS' Country='Russia, Kemerovo obl.' CQZone='18'
+			 DXCC='15' ITUZone='31' Latitude='55.359N' Longitude='86.069E' PrefixList='R[A-Z][89][UV].*|RP7[0-9]KM\Z|RP7[0-9]N[MZ]\Z|RP70UK\Z|RP70ZF\Z|U[A-I][89][UV].*|[RU][89][UV].*'
+			 StartDate='1994-01-01T00:00:00' id='506' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9W' Comment='' Continent='AS' Country='Russia, Rep. of Bashkortostan ' CQZone='16'
+			 DXCC='15' ITUZone='30' Latitude='54.726N' Longitude='55.948E' PrefixList='R[A-Z][89]W.*|RP70G[IM]\Z|RP70LS\Z|RP70NK\Z|RP70UF\Z|RP70ZO\Z|U[A-I][89]W.*|[RU][89]W.*'
+			 StartDate='1994-01-01T00:00:00' id='507' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9X' Comment='' Continent='AS' Country='Russia, Komi Rep.' CQZone='17' DXCC='15'
+			 ITUZone='20' Latitude='61.669N' Longitude='50.833E' PrefixList='R[A-Z][89]X.*|U[A-I][89]X.*|[RU][89]X.*' StartDate='1994-01-01T00:00:00'
+			 EndDate='2011-11-30T00:00:00' id='508' TimeDiff='4'/>
+		<z:row ARRLPrefix='UA1' Prefix='UA9X' Comment='' Continent='EU' Country='Russia, Komi Rep.' CQZone='17' DXCC='54'
+			 ITUZone='20' Latitude='61.669N' Longitude='50.833E' PrefixList='R[A-Z][89]X.*|RP70KW\Z|U[A-I][89]X.*|[RU][89]X.*'
+			 StartDate='2011-12-01T00:00:00' id='509' TimeDiff='3' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9Y' Comment='' Continent='AS' Country='Russia, Altai Krai' CQZone='18' DXCC='15'
+			 ITUZone='31' Latitude='53.346N' Longitude='83.779E' PrefixList='R[A-Z][89]Y.*|RP7[0-9]BP\Z|RP70AF\Z|RP70GA\Z|U[A-I][89]Y.*|[RU][89]Y.*'
+			 StartDate='1994-01-01T00:00:00' id='510' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UA9' Prefix='UA9Z' Comment='' Continent='AS' Country='Russia, Altai Rep.' CQZone='18' DXCC='15'
+			 ITUZone='31' Latitude='51.958N' Longitude='85.971E' PrefixList='R[A-Z][89]Z.*|U[A-I][89]Z.*|[RU][89]Z.*' StartDate='1994-01-01T00:00:00'
+			 id='511' TimeDiff='7' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8A' Comment='' Continent='AS' Country='Uzbekistan, Tashkent sity' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='41N' Longitude='69E' PrefixList='U[JKM][789]A.*' StartDate='1994-01-01T00:00:00'
+			 id='512' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8B' Comment='' Continent='AS' Country='Uzbekistan, Tashkentskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='41.12N' Longitude='69.38E' PrefixList='U[JKM][789]B.*' StartDate='1994-01-01T00:00:00'
+			 id='513' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8C' Comment='' Continent='AS' Country='Uzbekistan, Kahkardaryinskaya obl.'
+			 CQZone='17' DXCC='292' ITUZone='30' Latitude='38.43N' Longitude='65.51E' PrefixList='U[JKM][789]C.*' StartDate='1994-01-01T00:00:00'
+			 id='514' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8D' Comment='' Continent='AS' Country='Uzbekistan, Surdaryinskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='40.26N' Longitude='68.28E' PrefixList='U[JKM][789]D.*' StartDate='1994-01-01T00:00:00'
+			 id='515' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8F' Comment='' Continent='AS' Country='Uzbekistan, Andizhanskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='40.41N' Longitude='72.09E' PrefixList='U[JKM][789]F.*' StartDate='1994-01-01T00:00:00'
+			 id='516' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8G' Comment='' Continent='AS' Country='Uzbekistan, Ferganskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='40.21N' Longitude='71.04E' PrefixList='U[JKM][789]G.*' StartDate='1994-01-01T00:00:00'
+			 id='517' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8I' Comment='' Continent='AS' Country='Uzbekistan, Samarkandskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='39.44N' Longitude='66.13E' PrefixList='U[JKM][789]I.*' StartDate='1994-01-01T00:00:00'
+			 id='518' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8L' Comment='' Continent='AS' Country='Uzbekistan, Bukharskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='42.09N' Longitude='63.11E' PrefixList='U[JKM][789]L.*' StartDate='1994-01-01T00:00:00'
+			 id='519' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8O' Comment='' Continent='AS' Country='Uzbekistan, Namanganskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='40.54N' Longitude='70.59E' PrefixList='U[JKM][789]O.*' StartDate='1994-01-01T00:00:00'
+			 id='520' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8Q' Comment='' Continent='AS' Country='Uzbekistan, Navoiyskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='40.02N' Longitude='63.15E' PrefixList='U[JKM][789]Q.*' StartDate='1994-01-01T00:00:00'
+			 id='521' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8T' Comment='' Continent='AS' Country='Uzbekistan, Surkhandaryinskaya obl.'
+			 CQZone='17' DXCC='292' ITUZone='30' Latitude='37.57N' Longitude='67.15E' PrefixList='U[JKM][789]T.*' StartDate='1994-01-01T00:00:00'
+			 id='522' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8U' Comment='' Continent='AS' Country='Uzbekistan, Khorezmskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='41.21N' Longitude='60.57E' PrefixList='U[JKM][789]U.*' StartDate='1994-01-01T00:00:00'
+			 id='523' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8V' Comment='' Continent='AS' Country='Uzbekistan, Dzhizakskaya obl.' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='40.21N' Longitude='67.18E' PrefixList='U[JKM][789]V.*' StartDate='1994-01-01T00:00:00'
+			 id='524' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UK' Prefix='UK8Z' Comment='' Continent='AS' Country='Uzbekistan, Karakalpakia' CQZone='17'
+			 DXCC='292' ITUZone='30' Latitude='43.08N' Longitude='58.5E' PrefixList='U[JKM][789]Z.*' StartDate='1994-01-01T00:00:00'
+			 id='525' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7A' Comment='' Continent='AS' Country='Kazakhstan, Mangystau' CQZone='17'
+			 DXCC='130' ITUZone='30' Latitude='45.5N' Longitude='53.08E' PrefixList='U[N-Q][0-9]A.*' StartDate='1994-01-01T00:00:00'
+			 id='526' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7B' Comment='' Continent='AS' Country='Kazakhstan, Akmola' CQZone='17' DXCC='130'
+			 ITUZone='30' Latitude='51.17N' Longitude='69.41E' PrefixList='U[N-Q][0-9]B.*' StartDate='1994-01-01T00:00:00'
+			 id='527' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7C' Comment='' Continent='AS' Country='Kazakhstan, North Kazakhstan' CQZone='17'
+			 DXCC='130' ITUZone='30' Latitude='54.27N' Longitude='68.15E' PrefixList='U[N-Q][0-9][CE].*|UP70C\Z|UP70CAD\Z|UP70CZK\Z'
+			 StartDate='1994-01-01T00:00:00' id='528' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7F' Comment='' Continent='AS' Country='Kazakhstan, Pavlodar' CQZone='17' DXCC='130'
+			 ITUZone='31' Latitude='51.55N' Longitude='75.3E' PrefixList='U[N-Q][0-9]F.*|UP70F\Z' StartDate='1994-01-01T00:00:00'
+			 id='529' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7G' Comment='' Continent='AS' Country='Kazakhstan, Almaty city' CQZone='17'
+			 DXCC='130' ITUZone='31' Latitude='43.1N' Longitude='76.57E' PrefixList='U[N-P]160G|U[N-Q][0-9]G.*|UP70GA\Z' StartDate='1994-01-01T00:00:00'
+			 id='530' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7I' Comment='' Continent='AS' Country='Kazakhstan, Aktobe' CQZone='17' DXCC='130'
+			 ITUZone='30' Latitude='48.11N' Longitude='57.51E' PrefixList='U[N-Q][0-9]I.*|UP70AM\Z' StartDate='1994-01-01T00:00:00'
+			 id='531' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7J' Comment='' Continent='AS' Country='Kazakhstan, East Kazakhstan' CQZone='17'
+			 DXCC='130' ITUZone='31' Latitude='50N' Longitude='82.65E' PrefixList='U[N-Q][0-9][DJ].*' StartDate='1994-01-01T00:00:00'
+			 id='532' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7K' Comment='' Continent='AS' Country='Kazakhstan, Kyzylorda' CQZone='17'
+			 DXCC='130' ITUZone='30' Latitude='44.54N' Longitude='63.17E' PrefixList='U[N-Q][0-9]K.*' StartDate='1994-01-01T00:00:00'
+			 id='533' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7L' Comment='' Continent='AS' Country='Kazakhstan, Kostanay' CQZone='17' DXCC='130'
+			 ITUZone='30' Latitude='52.28N' Longitude='63.02E' PrefixList='U[N-Q][0-9][LY].*|UP70A\Z|UP70MIR\Z|UP70WK\Z' StartDate='1994-01-01T00:00:00'
+			 id='534' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7M' Comment='' Continent='AS' Country='Kazakhstan, West Kazakhstan' CQZone='17'
+			 DXCC='130' ITUZone='29' Latitude='49.39N' Longitude='50.06E' PrefixList='U[N-Q][0-9]M.*|UP70MM\Z' StartDate='1994-01-01T00:00:00'
+			 id='535' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7N' Comment='' Continent='AS' Country='Kazakhstan, South Kazakhstan' CQZone='17'
+			 DXCC='130' ITUZone='30' Latitude='42.51N' Longitude='68.13E' PrefixList='U[N-Q][0-9]N.*|UP70AP\Z|UP70GM\Z' StartDate='1994-01-01T00:00:00'
+			 id='536' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7O' Comment='' Continent='AS' Country='Kazakhstan, Atyrau' CQZone='17' DXCC='130'
+			 ITUZone='30' Latitude='47.33N' Longitude='51.18E' PrefixList='U[N-Q][0-9]O.*|UP70O\Z|UP70OA\Z' StartDate='1994-01-01T00:00:00'
+			 id='537' TimeDiff='5' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7P' Comment='' Continent='AS' Country='Kazakhstan, Karagandy' CQZone='17'
+			 DXCC='130' ITUZone='30' Latitude='49.52N' Longitude='72.2E' PrefixList='U[N-Q][0-9][PR].*|UP70P\Z' StartDate='1994-01-01T00:00:00'
+			 id='538' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7Q' Comment='' Continent='AS' Country='Kazakhstan, Almaty' CQZone='17' DXCC='130'
+			 ITUZone='31' Latitude='44.18N' Longitude='75.38E' PrefixList='U[N-Q][0-9][QV].*' StartDate='1994-01-01T00:00:00'
+			 id='539' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7S' Comment='' Continent='AS' Country='Kazakhstan, Baikonur City' CQZone='17'
+			 DXCC='130' ITUZone='30' Latitude='47.18N' Longitude='67E' PrefixList='U[N-Q][0-9]S.*' StartDate='1994-01-01T00:00:00'
+			 id='540' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7T' Comment='' Continent='AS' Country='Kazakhstan, Jambyl' CQZone='17' DXCC='130'
+			 ITUZone='30' Latitude='43.58N' Longitude='71.31E' PrefixList='U[N-Q][0-9]T.*' StartDate='1994-01-01T00:00:00'
+			 id='541' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UN' Prefix='UN7Z' Comment='' Continent='AS' Country='Kazakhstan, Astana city' CQZone='17'
+			 DXCC='130' ITUZone='30' Latitude='50.01N' Longitude='64.52E' PrefixList='U[N-Q][0-9]Z.*|UP70V\Z' StartDate='1994-01-01T00:00:00'
+			 id='542' TimeDiff='6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1A' Comment='' Continent='EU' Country='Ukraine, Sumskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='50.5N' Longitude='34.3E' PrefixList='E[MNO][0-9]+A.*|U[RSTV-Z][0-9]A.*|U5A.*'
+			 StartDate='1994-01-01T00:00:00' id='543' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1B' Comment='' Continent='EU' Country='Ukraine, Ternopolskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='49.1N' Longitude='25.3E' PrefixList='E[MNO][0-9]+B.*|U[RSTV-Z][0-9]B.*|U5B.*'
+			 StartDate='1994-01-01T00:00:00' id='544' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1C' Comment='' Continent='EU' Country='Ukraine, Cherkasskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='49.2N' Longitude='32.1E' PrefixList='E[MNO][0-9]+C.*|U[RSTV-Z][0-9]C.*|U5C.*'
+			 StartDate='1994-01-01T00:00:00' id='545' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1D' Comment='' Continent='EU' Country='Ukraine, Zakarpatskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='48.4N' Longitude='22.2E' PrefixList='E[MNO][0-9]+D.*|U[RSTV-Z][0-9]D.*|U5D.*'
+			 StartDate='1994-01-01T00:00:00' id='546' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1E' Comment='' Continent='EU' Country='Ukraine, Dnepropetrovskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='48.3N' Longitude='35E' PrefixList='E[MNO][0-9]+E.*|U[RSTV-Z][0-9]E.*|U5E.*'
+			 StartDate='1994-01-01T00:00:00' id='547' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1F' Comment='' Continent='EU' Country='Ukraine, Odesskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='46.3N' Longitude='30.4E' PrefixList='E[MNO][0-9]+F.*|U[RSTV-Z][0-9]F.*|U5F.*'
+			 StartDate='1994-01-01T00:00:00' id='548' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1G' Comment='' Continent='EU' Country='Ukraine, Hersonskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='46.4N' Longitude='32.4E' PrefixList='E[MNO][0-9]+G.*|U[RSTV-Z][0-9]G.*|U5G.*'
+			 StartDate='1994-01-01T00:00:00' id='549' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1H' Comment='' Continent='EU' Country='Ukraine, Poltavskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='49.3N' Longitude='34.3E' PrefixList='E[MNO][0-9]+H.*|U[RSTV-Z][0-9]H.*|U5H.*'
+			 StartDate='1994-01-01T00:00:00' id='550' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1I' Comment='' Continent='EU' Country='Ukraine, Donetskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='47.6N' Longitude='37.5E' PrefixList='D[0,1].*|E[MNO][0-9]+I.*|U[RSTV-Z][0-9]I.*|U5I.*'
+			 StartDate='1994-01-01T00:00:00' id='551' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1K' Comment='' Continent='EU' Country='Ukraine, Rovenskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='50.4N' Longitude='26.1E' PrefixList='E[MNO][0-9]+K.*|U[RSTV-Z][0-9]K.*|U5K.*'
+			 StartDate='1994-01-01T00:00:00' id='552' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1L' Comment='' Continent='EU' Country='Ukraine, Kharkovskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='49.6N' Longitude='36.1E' PrefixList='E[MNO][0-9]+L.*|U[RSTV-Z][0-9]L.*|U5L.*|UX5PS\Z'
+			 StartDate='1994-01-01T00:00:00' id='553' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1M' Comment='' Continent='EU' Country='Ukraine, Luganskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='48.3N' Longitude='39.2E' PrefixList='E[MNO][0-9]+M.*|U[RSTV-Z][0-9]M.*|U5M.*'
+			 StartDate='1994-01-01T00:00:00' id='554' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1N' Comment='' Continent='EU' Country='Ukraine, Vinnitskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='49.1N' Longitude='28.3E' PrefixList='E[MNO][0-9]+N.*|U[RSTV-Z][0-9]N.*|U5N.*'
+			 StartDate='1994-01-01T00:00:00' id='555' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1P' Comment='' Continent='EU' Country='Ukraine, Volynskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='50.4N' Longitude='25.2E' PrefixList='E[MNO][0-9]+P.*|U[RSTV-Z][0-9]P.*|U5P.*'
+			 StartDate='1994-01-01T00:00:00' id='556' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1Q' Comment='' Continent='EU' Country='Ukraine, Zaporozhskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='47.85N' Longitude='35.2E' PrefixList='E[MNO][0-9]+Q.*|U[RSTV-Z][0-9]Q.*|U5Q.*'
+			 StartDate='1994-01-01T00:00:00' id='557' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1R' Comment='' Continent='EU' Country='Ukraine, Chernigovskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='51.3N' Longitude='31.2E' PrefixList='E[MNO][0-9]+R.*|U[RSTV-Z][0-9]R.*|U5R.*'
+			 StartDate='1994-01-01T00:00:00' id='558' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1S' Comment='' Continent='EU' Country='Ukraine, Ivano-Frankovskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='48.5N' Longitude='24.4E' PrefixList='E[MNO][0-9]+S.*|U[RSTV-Z][0-9]S.*|U5S.*'
+			 StartDate='1994-01-01T00:00:00' id='559' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1T' Comment='' Continent='EU' Country='Ukraine, Hmelnitskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='49.2N' Longitude='26.6E' PrefixList='E[MNO][0-9]+T.*|U[RSTV-Z][0-9]T.*|U5T.*'
+			 StartDate='1994-01-01T00:00:00' id='560' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1U' Comment='' Continent='EU' Country='Ukraine, Kievskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='50.2N' Longitude='30.3E' PrefixList='E[MNO][0-9]+U.*|U[RSVWYZ][0-9]U.*|U5U.*'
+			 StartDate='1994-01-01T00:00:00' id='561' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1V' Comment='' Continent='EU' Country='Ukraine, Kirovogradskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='48.3N' Longitude='32.4E' PrefixList='E[MNO][0-9]+V.*|U[RSTV-Z][0-9]V.*|U5V.*'
+			 StartDate='1994-01-01T00:00:00' id='562' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1W' Comment='' Continent='EU' Country='Ukraine, Lvovskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='49.5N' Longitude='23.6E' PrefixList='E[MNO][0-9]+W.*|U[RSTV-Z][0-9]W.*|U5W.*|UY5XE\Z|UY5XU\Z'
+			 StartDate='1994-01-01T00:00:00' id='563' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1X' Comment='' Continent='EU' Country='Ukraine, Zhytomirskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='50.1N' Longitude='28.4E' PrefixList='E[MNO][0-9]+X.*|U[RSTV-Z][0-9]X.*|U5X.*'
+			 StartDate='1994-01-01T00:00:00' id='564' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1Y' Comment='' Continent='EU' Country='Ukraine, Chernovitskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='48.2N' Longitude='25.6E' PrefixList='E[MNO][0-9]+Y.*|U[RSTV-Z][0-9]Y.*|U5Y.*'
+			 StartDate='1994-01-01T00:00:00' id='565' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UR1Z' Comment='' Continent='EU' Country='Ukraine, Nikolaevskaya obl.' CQZone='16'
+			 DXCC='288' ITUZone='29' Latitude='46.6N' Longitude='32E' PrefixList='E[MNO][0-9]+Z.*|U[RSTV-Z][0-9]Z.*|U5Z.*'
+			 StartDate='1994-01-01T00:00:00' id='566' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UT1J' Comment='' Continent='EU' Country='Ukraine, Sevastopol' CQZone='16' DXCC='288'
+			 ITUZone='29' Latitude='44.61N' Longitude='33.52E' PrefixList='UT[0-9]J.*|UU9.*' StartDate='1994-01-01T00:00:00'
+			 id='567' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UT1U' Comment='' Continent='EU' Country='Ukraine, Kiev' CQZone='16' DXCC='288'
+			 ITUZone='29' Latitude='50.2N' Longitude='30.3E' PrefixList='U[TX][0-9]U.*' StartDate='1994-01-01T00:00:00' id='568'
+			 TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='UR' Prefix='UU1' Comment='' Continent='EU' Country='Ukraine, Crimea' CQZone='16' DXCC='288'
+			 ITUZone='29' Latitude='45.21N' Longitude='34.1E' PrefixList='E[MNO][0-9]+J.*|U5J.*|UU[0-8].*' StartDate='1994-01-01T00:00:00'
+			 id='569' TimeDiff='2' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE1' Comment='' Continent='NA' Country='Canada, N. Brunswick, Nova Scotia' CQZone='5'
+			 DXCC='1' ITUZone='9' Latitude='44.4N' Longitude='63.3W' PrefixList='V[A-GXY]1.*|VY2.*|X[J-M]1.*' id='570' TimeDiff='-4'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE2' Comment='' Continent='NA' Country='Canada, Quebec' CQZone='2' DXCC='1'
+			 ITUZone='4' Latitude='50.29N' Longitude='66.39W' PrefixList='VA2PL\Z|VE2CSI\Z|VE2DXY\Z|VE2EKA\Z|VE2ENB|VE2EW\Z|VE2GSO\Z|VE2IM\Z'
+			 id='571' TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE2' Comment='' Continent='NA' Country='Canada, Quebec' CQZone='5' DXCC='1'
+			 ITUZone='4' Latitude='50.29N' Longitude='66.39W' PrefixList='V[A-GXY]2.*|X[J-M]2.*' id='572' TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE3' Comment='' Continent='NA' Country='Canada, Ontario' CQZone='4' DXCC='1'
+			 ITUZone='4' Latitude='43.4N' Longitude='79.3W' PrefixList='V[A-GOXY]3.*|VY9.*|X[J-M]3.*' id='573' TimeDiff='-5'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE4' Comment='' Continent='NA' Country='Canada, Manitoba' CQZone='4' DXCC='1'
+			 ITUZone='3' Latitude='49.5N' Longitude='97.1W' PrefixList='V[A-GOXY]4.*|X[J-M]4.*' id='574' TimeDiff='-6' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE5' Comment='' Continent='NA' Country='Canada, Saskatchewan' CQZone='4' DXCC='1'
+			 ITUZone='3' Latitude='50.3N' Longitude='104.4W' PrefixList='V[A-GOXY]5.*|X[J-M]5.*' id='575' TimeDiff='-6' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE6' Comment='' Continent='NA' Country='Canada, Alberta' CQZone='4' DXCC='1'
+			 ITUZone='2' Latitude='53.3N' Longitude='113.3W' PrefixList='V[A-GOXY]6.*|X[J-M]6.*' id='576' TimeDiff='-7' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE7' Comment='' Continent='NA' Country='Canada, British Colombia' CQZone='3'
+			 DXCC='1' ITUZone='2' Latitude='48.3N' Longitude='123.2W' PrefixList='V[A-GOXY]7.*|X[J-M]7.*' id='577' TimeDiff='-8'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE8' Comment='' Continent='NA' Country='Canada, Northwest Territories' CQZone='1'
+			 DXCC='1' ITUZone='2' Latitude='62.3N' Longitude='114.2W' PrefixList='V[A-GOXY]8.*|X[J-M]8.*' id='578' TimeDiff='-7'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VE9' Comment='' Continent='NA' Country='Canada, New Brunswick' CQZone='5' DXCC='1'
+			 ITUZone='9' Latitude='46.5N' Longitude='66.9W' PrefixList='V[A-GOXY]9.*|X[J-M]9.*' id='579' TimeDiff='-7' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='VI0ANT' Comment='' Continent='AN' Country='Antarctica, Davis Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='68.58S' Longitude='77.96E' PrefixList='AX0BP\Z|VI0ANT\Z|VK0AG\Z|VK0BP\Z|VK0D[AX]\Z|VK0ERZ\Z|VK0FPS\Z|VK0IC\Z|VK0JLX\Z|VK0KMT\Z|VK0NE\Z|VK0P[DN]\Z|VK0SEE\Z'
+			 id='580' TimeDiff='4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='VK0AQ' Comment='' Continent='AN' Country='Antarctica, Casey Station' CQZone='29'
+			 DXCC='13' ITUZone='70' Latitude='66.28S' Longitude='110.51E' PrefixList='VK0AQ\Z|VK0C[KL]\Z|VK0GM\Z|VK0IX\Z|VK0JV\Z|VK0KC\Z|VK0LL\Z|VK0MP\Z|VK0VK\Z|VK0WD\Z'
+			 id='581' TimeDiff='7' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='VK0GC' Comment='' Continent='AN' Country='Antarctica, Douglas Mawson Station'
+			 CQZone='39' DXCC='13' ITUZone='69' Latitude='67.6S' Longitude='62.6E' PrefixList='VK0GC\Z' id='582' TimeDiff='4'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='VK0GM' Comment='' Continent='AN' Country='Antarctica, Mawson Base' CQZone='39'
+			 DXCC='13' ITUZone='69' Latitude='67.6S' Longitude='62.866E' PrefixList='VK0GM\Z' id='583' TimeDiff='5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VK' Prefix='VK1' Comment='' Continent='OC' Country='Australia, Capital Territory ' CQZone='30'
+			 DXCC='150' ITUZone='59' Latitude='35.483S' Longitude='148.916E' PrefixList='AX1.*|V[H-NZ]1.*' id='584' TimeDiff='10'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VK' Prefix='VK2' Comment='' Continent='OC' Country='Australia, New South Wales ' CQZone='30'
+			 DXCC='150' ITUZone='59' Latitude='32.5S' Longitude='145.966E' PrefixList='AX2.*|V[H-NZ]2.*' id='585' TimeDiff='10'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VK' Prefix='VK3' Comment='' Continent='OC' Country='Australia, Victoria' CQZone='30' DXCC='150'
+			 ITUZone='59' Latitude='37.383S' Longitude='143.866E' PrefixList='AX3.*|V[H-NZ]3.*' id='586' TimeDiff='10' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VK' Prefix='VK4' Comment='' Continent='OC' Country='Australia, Queensland' CQZone='30' DXCC='150'
+			 ITUZone='55' Latitude='23.533S' Longitude='143.133E' PrefixList='AX4.*|V[H-NZ]4.*' id='587' TimeDiff='10' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VK' Prefix='VK5' Comment='' Continent='OC' Country='Australia, South Australia ' CQZone='30'
+			 DXCC='150' ITUZone='59' Latitude='30.25S' Longitude='134.883E' PrefixList='AX5.*|V[H-NZ]5.*' id='588' TimeDiff='10'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VK' Prefix='VK6' Comment='' Continent='OC' Country='Australia, Western Australia' CQZone='29'
+			 DXCC='150' ITUZone='58' Latitude='24.9S' Longitude='121.216E' PrefixList='AX6.*|V[H-NZ]6.*' id='589' TimeDiff='10'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VK' Prefix='VK7' Comment='' Continent='OC' Country='Australia, Tasmania' CQZone='30' DXCC='150'
+			 ITUZone='59' Latitude='42.116S' Longitude='146.3E' PrefixList='AX7.*|V[H-NZ]7.*' id='590' TimeDiff='10' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VK' Prefix='VK8' Comment='' Continent='OC' Country='Australia, Nothern Territory ' CQZone='29'
+			 DXCC='150' ITUZone='55' Latitude='20.533S' Longitude='132.333E' PrefixList='AX8.*|V[H-NZ]8.*' id='591' TimeDiff='10'
+			 rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VO1' Comment='' Continent='NA' Country='Canada, Newfoundland' CQZone='5' DXCC='1'
+			 ITUZone='9' Latitude='48.5N' Longitude='56.7W' PrefixList='VO1.*|X[NO]1.*' id='592' TimeDiff='-4' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VO2' Comment='' Continent='NA' Country='Canada, Labrador' CQZone='2' DXCC='1'
+			 ITUZone='9' Latitude='53.2N' Longitude='60.2W' PrefixList='VO2.*' id='593' TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='VP8DKF' Comment='' Continent='AN' Country='Antarctica, Patriot Hills Camp'
+			 CQZone='12' DXCC='13' ITUZone='74' Latitude='80.3S' Longitude='81.36W' PrefixList='OP0OL\Z|VP8DKF\Z' id='594'
+			 TimeDiff='-5' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VY0' Comment='' Continent='NA' Country='Canada, Nunavut' CQZone='2' DXCC='1'
+			 ITUZone='3' Latitude='64N' Longitude='99W' PrefixList='VY0.*' id='595' TimeDiff='-6' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='VE' Prefix='VY1' Comment='' Continent='NA' Country='Canada, Yukon' CQZone='1' DXCC='1' ITUZone='2'
+			 Latitude='60.4N' Longitude='135.8W' PrefixList='VY1.*' id='596' TimeDiff='-8' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='XE' Prefix='XE1' Comment='' Continent='NA' Country='Mexico, Mexico City' CQZone='6' DXCC='50'
+			 ITUZone='10' Latitude='19.4N' Longitude='99.15W' PrefixList='4[A-C]1.*|6[D-J]1.*|X[A-I]1.*' StartDate='1945-11-15T00:00:00'
+			 id='597' TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='XE' Prefix='XE2' Comment='' Continent='NA' Country='Mexico, Chihuahua' CQZone='6' DXCC='50'
+			 ITUZone='10' Latitude='28.64N' Longitude='106.41W' PrefixList='4[A-C]2.*|6[D-J]2.*|X[A-I]2.*' StartDate='1945-11-15T00:00:00'
+			 id='598' TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='XE' Prefix='XE3' Comment='' Continent='NA' Country='Mexico, Acapulco' CQZone='6' DXCC='50'
+			 ITUZone='10' Latitude='16.82N' Longitude='99.9W' PrefixList='4[A-C]3.*|6[D-J]3.*|X[A-I]3.*' StartDate='1945-11-15T00:00:00'
+			 id='599' TimeDiff='-6' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV1' Comment='' Continent='SA' Country='Venezuela, Falcon, Trujillo, Zulia'
+			 CQZone='9' DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]1.*' StartDate='1945-11-15T00:00:00'
+			 id='600' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV2' Comment='' Continent='SA' Country='Venezuela, Barinas, Merida, Tachira'
+			 CQZone='9' DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]2.*' StartDate='1945-11-15T00:00:00'
+			 id='601' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV3' Comment='' Continent='SA' Country='Venezuela, Lara, Portuguesa' CQZone='9'
+			 DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]3.*' StartDate='1945-11-15T00:00:00'
+			 id='602' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV4' Comment='' Continent='SA' Country='Venezuela, Aragua, Carabobo' CQZone='9'
+			 DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]4.*' StartDate='1945-11-15T00:00:00'
+			 id='603' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV5' Comment='' Continent='SA' Country='Venezuela, Distrito Federal, Guarico'
+			 CQZone='9' DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]5.*' StartDate='1945-11-15T00:00:00'
+			 id='604' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV6' Comment='' Continent='SA' Country='Venezuela, Anzoategui, Bolivar' CQZone='9'
+			 DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]6.*' StartDate='1945-11-15T00:00:00'
+			 id='605' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV7' Comment='' Continent='SA' Country='Venezuela, Nueva Esparta, Sucre' CQZone='9'
+			 DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]7.*' StartDate='1945-11-15T00:00:00'
+			 id='606' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV8' Comment='' Continent='SA' Country='Venezuela, Monagas, Delta Amacuro' CQZone='9'
+			 DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]8.*' StartDate='1945-11-15T00:00:00'
+			 id='607' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YV' Prefix='YV9' Comment='' Continent='SA' Country='Venezuela, Apure, Amazonas' CQZone='9'
+			 DXCC='148' ITUZone='12' Latitude='6.6444N' Longitude='66.1333W' PrefixList='Y[V-Y]9.*' StartDate='1945-11-15T00:00:00'
+			 id='608' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='YU' Prefix='Z6' Comment='' Continent='EU' Country='Serbia,Kosovo' CQZone='15' DXCC='296'
+			 ITUZone='28' Latitude='42.5854N' Longitude='20.9399E' PrefixList='Z6.*' StartDate='2012-08-01T00:00:00' EndDate='2018-01-21T00:00:00'
+			 id='609' TimeDiff='1'/>
+		<z:row ARRLPrefix='Z6' Prefix='Z6' Comment='' Continent='EU' Country='Republic of Kosovo' CQZone='15' DXCC='522'
+			 ITUZone='28' Latitude='42.5854N' Longitude='20.9399E' PrefixList='Z6.*' StartDate='2018-01-21T00:00:00' id='610'
+			 TimeDiff='1' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZD9' Prefix='ZD9G' Comment='' Continent='AF' Country='Gough Isl.' CQZone='33' DXCC='274'
+			 ITUZone='66' Latitude='40.08S' Longitude='9.3W' PrefixList='ZD9G.*' id='611' TimeDiff='0' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='ZL5' Comment='' Continent='AN' Country='Antarctica, Swan Base' CQZone='31'
+			 DXCC='13' ITUZone='71' Latitude='67.26S' Longitude='164.61E' PrefixList='ZL0AAF\Z|ZL0AIC\Z|ZL5[A-Z].*' id='612'
+			 TimeDiff='11' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='CE9' Prefix='ZM5PX' Comment='' Continent='AN' Country='Antarctica, Scott Base' CQZone='30'
+			 DXCC='13' ITUZone='71' Latitude='77.85S' Longitude='166.75E' PrefixList='ZM5PX\Z' id='613' TimeDiff='11' rs:forcenull='StartDate EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP1' Comment='' Continent='SA' Country='Paraguay, Nueva Asuncion' CQZone='11'
+			 DXCC='132' ITUZone='14' Latitude='21.45S' Longitude='61.04W' PrefixList='ZP1.*' StartDate='1945-11-15T00:00:00'
+			 id='614' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP2' Comment='' Continent='SA' Country='Paraguay, Alto Paraquay' CQZone='11'
+			 DXCC='132' ITUZone='14' Latitude='22.91S' Longitude='58.87W' PrefixList='ZP2.*' StartDate='1945-11-15T00:00:00'
+			 id='615' TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP3' Comment='' Continent='SA' Country='Paraguay, Amambay' CQZone='11' DXCC='132'
+			 ITUZone='14' Latitude='22.79S' Longitude='56.64W' PrefixList='ZP3.*' StartDate='1945-11-15T00:00:00' id='616'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP4' Comment='' Continent='SA' Country='Paraguay, Canindeyu' CQZone='11' DXCC='132'
+			 ITUZone='14' Latitude='22.06S' Longitude='56.19W' PrefixList='ZP4.*' StartDate='1945-11-15T00:00:00' id='617'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP5' Comment='' Continent='SA' Country='Paraguay, Asuncion' CQZone='11' DXCC='132'
+			 ITUZone='14' Latitude='25.21S' Longitude='57.6W' PrefixList='ZP5.*' StartDate='1945-11-15T00:00:00' id='618'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP6' Comment='' Continent='SA' Country='Paraguay, Cordillera' CQZone='11' DXCC='132'
+			 ITUZone='14' Latitude='25.91S' Longitude='57.21W' PrefixList='ZP6.*' StartDate='1945-11-15T00:00:00' id='619'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP7' Comment='' Continent='SA' Country='Paraguay, Caaguazu' CQZone='11' DXCC='132'
+			 ITUZone='14' Latitude='25.65S' Longitude='56.13W' PrefixList='ZP7.*' StartDate='1945-11-15T00:00:00' id='620'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP8' Comment='' Continent='SA' Country='Paraguay, Misiones' CQZone='11' DXCC='132'
+			 ITUZone='14' Latitude='26.93S' Longitude='57.47W' PrefixList='ZP8.*' StartDate='1945-11-15T00:00:00' id='621'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+		<z:row ARRLPrefix='ZP' Prefix='ZP9' Comment='' Continent='SA' Country='Paraguay, Alto Parana' CQZone='11' DXCC='132'
+			 ITUZone='14' Latitude='26.42S' Longitude='55.24W' PrefixList='ZP9.*' StartDate='1945-11-15T00:00:00' id='622'
+			 TimeDiff='-4' rs:forcenull='EndDate'/>
+	</rs:insert>
+</rs:data>
+</xml>

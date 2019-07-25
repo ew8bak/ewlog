@@ -1,0 +1,55 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='id' rs:number='1' rs:maydefer='true' rs:writeunknown='true' rs:basetable='Modes' rs:basecolumn='id'
+			 rs:keycolumn='true' rs:autoincrement='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='Mode' rs:number='2' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true' rs:basetable='Modes'
+			 rs:basecolumn='Mode'>
+			<s:datatype dt:type='string' dt:maxLength='10'/>
+		</s:AttributeType>
+		<s:AttributeType name='Mode_ADIF' rs:number='3' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true'
+			 rs:basetable='Modes' rs:basecolumn='Mode_ADIF'>
+			<s:datatype dt:type='string' dt:maxLength='10'/>
+		</s:AttributeType>
+		<s:AttributeType name='Report' rs:number='4' rs:nullable='true' rs:maydefer='true' rs:writeunknown='true' rs:basetable='Modes'
+			 rs:basecolumn='Report'>
+			<s:datatype dt:type='string' dt:maxLength='5'/>
+		</s:AttributeType>
+		<s:AttributeType name='Hide' rs:number='5' rs:maydefer='true' rs:writeunknown='true' rs:basetable='Modes' rs:basecolumn='Hide'>
+			<s:datatype dt:type='boolean' dt:maxLength='2' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row id='1' Mode='CW' Mode_ADIF='CW' Report='599' Hide='False'/>
+	<z:row id='2' Mode='SSB' Mode_ADIF='SSB' Report='59' Hide='False'/>
+	<z:row id='3' Mode='RTTY' Mode_ADIF='RTTY' Report='599' Hide='False'/>
+	<z:row id='6' Mode='BPSK31' Mode_ADIF='PSK31' Report='599' Hide='False'/>
+	<z:row id='8' Mode='BPSK63' Mode_ADIF='PSK63' Report='599' Hide='False'/>
+	<z:row id='23' Mode='BPSK125' Mode_ADIF='PSK125' Report='599' Hide='False'/>
+	<z:row id='43' Mode='QPSK31' Mode_ADIF='QPSK31' Report='599' Hide='False'/>
+	<z:row id='63' Mode='QPSK63' Mode_ADIF='QPSK63' Report='599' Hide='False'/>
+	<z:row id='64' Mode='QPSK125' Mode_ADIF='QPSK125' Report='599' Hide='False'/>
+	<z:row id='67' Mode='MFSK8' Mode_ADIF='MFSK8' Report='599' Hide='False'/>
+	<z:row id='68' Mode='MFSK16' Mode_ADIF='MFSK16' Report='599' Hide='False'/>
+	<z:row id='69' Mode='JT9' Mode_ADIF='JT9' Report='-10' Hide='False'/>
+	<z:row id='70' Mode='JT65' Mode_ADIF='JT65' Report='-10' Hide='False'/>
+	<z:row id='71' Mode='SSTV' Mode_ADIF='SSTV' Report='599' Hide='False'/>
+	<z:row id='74' Mode='HELL' Mode_ADIF='HELL' Report='599' Hide='False'/>
+	<z:row id='75' Mode='DOMINO' Mode_ADIF='DOMINO' Report='599' Hide='False'/>
+	<z:row id='76' Mode='MT63' Mode_ADIF='MT63' Report='599' Hide='False'/>
+	<z:row id='77' Mode='THOR' Mode_ADIF='THOR' Report='599' Hide='False'/>
+	<z:row id='78' Mode='THRB' Mode_ADIF='THRB' Report='599' Hide='False'/>
+	<z:row id='79' Mode='CONTEST' Mode_ADIF='CONTESTI' Report='599' Hide='False'/>
+	<z:row id='83' Mode='OLIVIA' Mode_ADIF='OLIVIA' Report='599' Hide='False'/>
+	<z:row id='88' Mode='T10' Mode_ADIF='T10' Report='-10' Hide='False'/>
+	<z:row id='89' Mode='FT8' Mode_ADIF='FT8' Report='-10' Hide='False'/>
+	<z:row id='91' Mode='ROS' Mode_ADIF='ROS' Report='-10' Hide='False'/>
+</rs:data>
+</xml>

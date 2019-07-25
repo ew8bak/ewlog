@@ -1,0 +1,10 @@
+Package: ewlog
+Version: 1.0.6
+Architecture: amd64
+Maintainer: EW8BAK <vladimir@ew8bak.ru>
+Installed-Size: 7301504
+Depends: sqlite3, libsqlite3-dev, mysql-client, libhamlib2, libhamlib-utils
+Section: hamradio
+Priority: extra
+Homepage: http://www.ewlog.ru
+Description: Advanced logging program for hamradio operators

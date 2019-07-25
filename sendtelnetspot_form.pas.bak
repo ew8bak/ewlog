@@ -1,0 +1,35 @@
+unit SendTelnetSpot_Form;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+
+type
+
+  { TSendTelnetSpot }
+
+  TSendTelnetSpot = class(TForm)
+    ComboBox1: TComboBox;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  SendTelnetSpot: TSendTelnetSpot;
+
+implementation
+
+{$R *.lfm}
+
+end.
+

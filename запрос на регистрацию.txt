@@ -1,0 +1,7 @@
+ curl -H "Content-Type: x-www-form-urlencoded" -X POST -d 'ham_call=EW8FU&first_name=Anton&last_name=Bocherov&email=test@test.com&password=Hello' http://register.ewlog.ru/api.php/register_user
+ 
+ 
+ http://register.ewlog.ru/api/register_user?filter=ham_call,eq,ew8bak&csrf=N6264496719330648869
+ 
+ 
+ curl -H "Content-Type: x-www-form-urlencoded" -X POST -d 'username=admin&password=admin' http://register.ewlog.ru/login_token.php

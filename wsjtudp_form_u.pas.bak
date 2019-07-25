@@ -1,0 +1,190 @@
+unit WSJTUDP_FORM_U;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics, Dialogs,
+  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils;
+
+const
+   SJT65 : string = '#';
+   SJT9 : string = '@';
+
+type
+
+
+  { TWSJT_UDP_Form }
+
+  TWSJT_UDP_Form = class(TForm)
+    IdUDPServer1: TIdUDPServer;
+    Memo1: TMemo;
+    procedure IdUDPServer1Status(ASender: TObject; const AStatus: TIdStatus;
+      const AStatusText: string);
+    procedure IdUDPServer1UDPException(AThread: TIdUDPListenerThread;
+      ABinding: TIdSocketHandle; const AMessage: String;
+      const AExceptionClass: TClass);
+    procedure IdUDPServer1UDPRead(AThread: TIdUDPListenerThread;
+      AData: TIdBytes; ABinding: TIdSocketHandle);
+  private
+    { private declarations }
+  public
+    function decodeMode(mode:string):string;
+    { public declarations }
+  end;
+
+var
+  WSJT_UDP_Form: TWSJT_UDP_Form;
+  UFreq, UModeRX, UModeTX, UDXCall, URSTs, UHeureDeb : string;
+  UCall,ULoc : string;
+  UIndex:integer;
+  peerPort: qword;
+  SNR: LongInt;
+
+implementation
+uses dmFunc_U;
+{$R *.lfm}
+
+{ TWSJT_UDP_Form }
+
+procedure TWSJT_UDP_Form.IdUDPServer1Status(ASender: TObject;
+  const AStatus: TIdStatus; const AStatusText: string);
+begin
+  Memo1.Lines.Add('UDP server status: ' + AStatusText);
+end;
+
+procedure TWSJT_UDP_Form.IdUDPServer1UDPException(
+  AThread: TIdUDPListenerThread; ABinding: TIdSocketHandle;
+  const AMessage: String; const AExceptionClass: TClass);
+begin
+  Memo1.Lines.Add('UDP server exception: ' + AMessage);
+end;
+
+function TWSJT_UDP_Form.decodeMode(mode:string):string;
+begin
+    If mode = SJT65 then result := 'JT65';
+    If mode = SJT9 then result := 'JT9';
+end;
+
+procedure TWSJT_UDP_Form.IdUDPServer1UDPRead(AThread: TIdUDPListenerThread;
+  AData: TIdBytes; ABinding: TIdSocketHandle);
+var
+  index: Integer = 0;
+  magic, schema, messageType: LongInt;
+  id, mode, DXCall, report, TXMode, message, DXGrid, reportReceived: string;
+  TXPower, comments, DXName: string;
+  frequency: QWord;
+  isNew, TXEnabled, transmitting: Boolean;
+  tm: Longword;
+  ztime: TDateTime;
+  DT: Double;
+  DF: Cardinal;
+  date: TDateTime;
+  z: TStringList;
+  Memomessage: string;
+begin
+  peerPort:=ABinding.PeerPort;
+
+  // Memo1.Lines.Add('Datagram received - length: ' + IntToStr(Length(AData)));
+  while index < Length(AData) do
+  begin
+  dmFunc.Unpack(AData, index, magic);
+    //Memo1.Lines.Add('index:' + IntToStr(index) + ' magic:$' + IntToHex(magic,8));
+    if (magic = LongInt($ADBCCBDA)) and (index < Length(AData)) then
+    begin
+      dmFunc.Unpack(AData, index, schema);
+      if (schema = 2) and (index < Length(AData)) then
+      begin
+        dmFunc.Unpack(AData,index,messageType);
+        dmFunc.Unpack(AData,index,id);
+        //Memo1.Lines.Add('Message type:' + IntToStr(messageType) + ' from:[' + id + ']');
+        case messageType of
+        0: begin
+        Memo1.Lines.Add('Heartbeat!');
+        end;
+        1:
+        begin
+          dmFunc.Unpack(AData,index,frequency);
+          dmFunc.Unpack(AData,index,mode);
+          dmFunc.Unpack(AData,index,DXCall);
+          dmFunc.Unpack(AData,index,report);
+          dmFunc.Unpack(AData,index,TXMode);
+          dmFunc.Unpack(AData,index,TXEnabled);
+          dmFunc.Unpack(AData,index,transmitting);
+       end;
+
+        2:
+        begin
+          dmFunc.Unpack(AData,index,isNew);
+          dmFunc.Unpack(AData,index,tm);
+          ztime := IncMilliSecond(0,tm);
+          dmFunc.Unpack(AData,index,SNR);
+          dmFunc.Unpack(AData,index,DT);
+          dmFunc.Unpack(AData,index,DF);
+          dmFunc.Unpack(AData,index,mode);
+          dmFunc.Unpack(AData,index,message);
+
+          Memomessage :='Decode:'+' '+BoolToStr(isNew)+' '+FormatDateTime('hhmm',ztime)+' '+IntToStr(SNR)
+                                   +' '+ FloatToStrF(DT, ffGeneral,4,1)+' '+IntToStr(DF)
+                                   +' '+ mode +' '+ message +' '+ timeToStr(ztime) +' '+ FloatToStr(DT) +' '+ intToStr(tm);
+          Memo1.Lines.Add(Memomessage);
+          rst:=SNR;
+          mode:=decodeMode(mode);
+          try
+          z:=TStringList.Create;
+          z.Delimiter:=' ';
+          z.DelimitedText:=message;
+          if z.count > 1 then begin
+             z.Add(message);
+             if z[1] = 'DX' then begin
+                DXCall := z[2];
+                locator := z[3];
+             end
+             else begin
+                  DXCall := z[1];
+                  locator := z[2];
+             end;
+
+             UCall := z[0];
+          end;
+          except
+            on E : Exception do WriteLn(Format('ERROR : %s',[e.Message]));
+          end;
+          z.Free;
+        end;
+
+        3:
+        begin
+          Memo1.Lines.Add('Clear');
+        end;
+
+        5:
+        begin
+          dmFunc.Unpack(AData,index,date);
+          dmFunc.Unpack(AData,index,DXCall);
+          dmFunc.Unpack(AData,index,DXGrid);
+          dmFunc.Unpack(AData,index,frequency);
+          dmFunc.Unpack(AData,index,mode);
+          dmFunc.Unpack(AData,index,report);
+          dmFunc.Unpack(AData,index,reportReceived);
+          dmFunc.Unpack(AData,index,TXPower);
+          dmFunc.Unpack(AData,index,comments);
+          dmFunc.Unpack(AData,index,DXName);
+
+          Memo1.Lines.Add('QSO logged: Date:' + FormatDateTime('dd-mmm-yyyy hh:mm:ss',date)
+                               + ' DX Call:' + DXCall + ' DX Grid:' + DXGrid
+                               + ' Frequency:' + IntToStr(frequency) + ' Mode:' + mode + ' Report sent: ' + report
+                               + ' Report received:' + reportReceived + ' TX Power:' + TXPower
+                               + ' Comments:' + comments + ' Name:' + DXName);
+        end
+        else
+          Memo1.Lines.Add('Unrecognized message type:' + IntToStr(messageType));
+        end;
+      end;
+    end;
+  end;
+end;
+
+end.
+

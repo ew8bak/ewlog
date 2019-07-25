@@ -1,0 +1,425 @@
+object ConfigGrid_Form: TConfigGrid_Form
+  Left = 343
+  Height = 277
+  Top = 180
+  Width = 651
+  BorderStyle = bsDialog
+  Caption = 'Настройка отображения таблиц'
+  ClientHeight = 277
+  ClientWidth = 651
+  FormStyle = fsStayOnTop
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.6.0.4'
+  object Label1: TLabel
+    Left = 24
+    Height = 13
+    Top = 16
+    Width = 71
+    Caption = 'Цвет текста'
+    Font.Height = -12
+    Font.Style = [fsBold, fsUnderline]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 24
+    Height = 13
+    Top = 80
+    Width = 86
+    Caption = 'Размер текста'
+    Font.Height = -12
+    Font.Style = [fsBold, fsUnderline]
+    ParentColor = False
+    ParentFont = False
+  end
+  object ComboBox1: TComboBox
+    Left = 24
+    Height = 27
+    Top = 104
+    Width = 132
+    AutoSize = False
+    Font.Height = -12
+    ItemHeight = 0
+    ItemIndex = 0
+    Items.Strings = (
+      '8 пт'
+      '10 пт'
+      '12 пт'
+      '14 пт'
+    )
+    OnChange = ComboBox1Change
+    ParentFont = False
+    TabOrder = 0
+    Text = '8 пт'
+  end
+  object Label3: TLabel
+    Left = 24
+    Height = 13
+    Top = 144
+    Width = 63
+    Caption = 'Цвет фона'
+    Font.Height = -12
+    Font.Style = [fsBold, fsUnderline]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 208
+    Height = 13
+    Top = 16
+    Width = 134
+    Caption = 'Отображение колонок'
+    Font.Height = -12
+    Font.Style = [fsBold, fsUnderline]
+    ParentColor = False
+    ParentFont = False
+  end
+  object CheckBox1: TCheckBox
+    Left = 208
+    Height = 24
+    Top = 40
+    Width = 47
+    Caption = 'QSL'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 1
+  end
+  object CheckBox2: TCheckBox
+    Left = 208
+    Height = 24
+    Top = 64
+    Width = 52
+    Caption = 'QSLs'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 2
+  end
+  object CheckBox3: TCheckBox
+    Left = 208
+    Height = 24
+    Top = 88
+    Width = 53
+    Caption = 'Дата'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 3
+  end
+  object CheckBox4: TCheckBox
+    Left = 208
+    Height = 24
+    Top = 112
+    Width = 64
+    Caption = 'Время'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 4
+  end
+  object CheckBox5: TCheckBox
+    Left = 208
+    Height = 24
+    Top = 136
+    Width = 81
+    Caption = 'Диапазон'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 5
+  end
+  object CheckBox6: TCheckBox
+    Left = 208
+    Height = 24
+    Top = 160
+    Width = 84
+    Caption = 'Позывной'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 6
+  end
+  object CheckBox7: TCheckBox
+    Left = 208
+    Height = 24
+    Top = 184
+    Width = 56
+    Caption = 'Мода'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 7
+  end
+  object CheckBox8: TCheckBox
+    Left = 208
+    Height = 24
+    Top = 208
+    Width = 51
+    Caption = 'Имя'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 8
+  end
+  object CheckBox9: TCheckBox
+    Left = 311
+    Height = 24
+    Top = 40
+    Width = 50
+    Caption = 'QTH'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 9
+  end
+  object CheckBox10: TCheckBox
+    Left = 311
+    Height = 24
+    Top = 64
+    Width = 55
+    Caption = 'State'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 10
+  end
+  object CheckBox11: TCheckBox
+    Left = 312
+    Height = 24
+    Top = 88
+    Width = 73
+    Caption = 'Локатор'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 11
+  end
+  object CheckBox12: TCheckBox
+    Left = 312
+    Height = 24
+    Top = 112
+    Width = 51
+    Caption = 'RSTs'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 12
+  end
+  object CheckBox13: TCheckBox
+    Left = 311
+    Height = 24
+    Top = 136
+    Width = 52
+    Caption = 'RSTr'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 13
+  end
+  object CheckBox14: TCheckBox
+    Left = 312
+    Height = 24
+    Top = 160
+    Width = 52
+    Caption = 'IOTA'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 14
+  end
+  object CheckBox15: TCheckBox
+    Left = 312
+    Height = 24
+    Top = 184
+    Width = 87
+    Caption = 'Менеджер'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 15
+  end
+  object CheckBox16: TCheckBox
+    Left = 312
+    Height = 24
+    Top = 208
+    Width = 82
+    Caption = 'QSLs Date'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 16
+  end
+  object CheckBox17: TCheckBox
+    Left = 419
+    Height = 24
+    Top = 40
+    Width = 82
+    Caption = 'QSLr Date'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 17
+  end
+  object CheckBox18: TCheckBox
+    Left = 419
+    Height = 24
+    Top = 64
+    Width = 93
+    Caption = 'LOTWr Date'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 18
+  end
+  object CheckBox19: TCheckBox
+    Left = 419
+    Height = 24
+    Top = 88
+    Width = 76
+    Caption = 'Префикс'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 19
+  end
+  object CheckBox20: TCheckBox
+    Left = 419
+    Height = 24
+    Top = 112
+    Width = 57
+    Caption = 'DXCC'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 20
+  end
+  object CheckBox21: TCheckBox
+    Left = 419
+    Height = 24
+    Top = 136
+    Width = 73
+    Caption = 'CQ Zone'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 21
+  end
+  object CheckBox22: TCheckBox
+    Left = 419
+    Height = 24
+    Top = 160
+    Width = 75
+    Caption = 'ITU Zone'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 22
+  end
+  object CheckBox23: TCheckBox
+    Left = 419
+    Height = 24
+    Top = 184
+    Width = 86
+    Caption = 'Manual Set'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 23
+  end
+  object CheckBox24: TCheckBox
+    Left = 419
+    Height = 24
+    Top = 208
+    Width = 88
+    Caption = 'Континент'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 24
+  end
+  object CheckBox25: TCheckBox
+    Left = 528
+    Height = 24
+    Top = 40
+    Width = 70
+    Caption = 'ValidDX'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 25
+  end
+  object CheckBox26: TCheckBox
+    Left = 528
+    Height = 24
+    Top = 64
+    Width = 74
+    Caption = 'QSLr VIA'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 26
+  end
+  object CheckBox27: TCheckBox
+    Left = 528
+    Height = 24
+    Top = 88
+    Width = 74
+    Caption = 'QSLs VIA'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 27
+  end
+  object CheckBox28: TCheckBox
+    Left = 528
+    Height = 24
+    Top = 112
+    Width = 51
+    Caption = 'User'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 28
+  end
+  object CheckBox29: TCheckBox
+    Left = 528
+    Height = 24
+    Top = 136
+    Width = 101
+    Caption = 'No Calc DXCC'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 29
+  end
+  object Button1: TButton
+    Left = 549
+    Height = 25
+    Top = 240
+    Width = 75
+    Caption = 'Сохранить'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 30
+  end
+  object Button2: TButton
+    Left = 456
+    Height = 25
+    Top = 240
+    Width = 75
+    Caption = 'Отмена'
+    Font.Height = -12
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 31
+  end
+  object Button3: TButton
+    Left = 336
+    Height = 25
+    Top = 240
+    Width = 99
+    Caption = 'По умолчанию'
+    Font.Height = -12
+    OnClick = Button3Click
+    ParentFont = False
+    TabOrder = 32
+  end
+  object ColorBox1: TColorBox
+    Left = 24
+    Height = 27
+    Top = 40
+    Width = 132
+    AutoSize = False
+    Font.Height = -12
+    ItemHeight = 16
+    OnChange = ColorBox1Change
+    ParentFont = False
+    TabOrder = 33
+  end
+  object ColorBox2: TColorBox
+    Left = 24
+    Height = 27
+    Top = 168
+    Width = 132
+    AutoSize = False
+    Font.Height = -12
+    ItemHeight = 16
+    OnChange = ColorBox2Change
+    ParentFont = False
+    TabOrder = 34
+  end
+end

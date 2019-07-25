@@ -1,0 +1,396 @@
+object ConfigForm: TConfigForm
+  Left = 430
+  Height = 443
+  Top = 193
+  Width = 567
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Настройка программы'
+  ClientHeight = 443
+  ClientWidth = 567
+  FormStyle = fsStayOnTop
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.8.0.6'
+  object Button1: TButton
+    Left = 480
+    Height = 25
+    Top = 408
+    Width = 75
+    Caption = 'Сохранить'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 384
+    Height = 25
+    Top = 408
+    Width = 75
+    Caption = 'Отмена'
+    Font.Height = -12
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 1
+  end
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 392
+    Top = 8
+    Width = 280
+    Caption = 'Базы данных'
+    ClientHeight = 372
+    ClientWidth = 276
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 2
+    object Label1: TLabel
+      Left = 16
+      Height = 17
+      Top = 8
+      Width = 43
+      Caption = 'MySQL'
+      Font.Height = -13
+      Font.Style = [fsBold, fsUnderline]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 26
+      Height = 15
+      Top = 32
+      Width = 40
+      Caption = 'Сервер'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 38
+      Height = 15
+      Top = 64
+      Width = 28
+      Caption = 'Порт'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 32
+      Height = 15
+      Top = 96
+      Width = 34
+      Caption = 'Логин'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 24
+      Height = 15
+      Top = 128
+      Width = 42
+      Caption = 'Пароль'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 42
+      Height = 15
+      Top = 160
+      Width = 24
+      Caption = 'База'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Edit1: TEdit
+      Left = 80
+      Height = 23
+      Top = 24
+      Width = 160
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Edit2: TEdit
+      Left = 80
+      Height = 23
+      Top = 56
+      Width = 160
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Edit3: TEdit
+      Left = 80
+      Height = 23
+      Top = 88
+      Width = 160
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 2
+    end
+    object Edit4: TEdit
+      Left = 80
+      Height = 23
+      Top = 120
+      Width = 160
+      EchoMode = emPassword
+      Font.Height = -12
+      ParentFont = False
+      PasswordChar = '*'
+      TabOrder = 3
+    end
+    object Edit5: TEdit
+      Left = 80
+      Height = 23
+      Top = 152
+      Width = 160
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 4
+    end
+    object Button3: TButton
+      Left = 16
+      Height = 25
+      Top = 184
+      Width = 243
+      Caption = 'Проверить подключение'
+      Font.Height = -12
+      OnClick = Button3Click
+      ParentFont = False
+      TabOrder = 5
+    end
+    object Label7: TLabel
+      Left = 16
+      Height = 17
+      Top = 224
+      Width = 40
+      Caption = 'SQLite'
+      Font.Height = -13
+      Font.Style = [fsBold, fsUnderline]
+      ParentColor = False
+      ParentFont = False
+    end
+    object FileNameEdit1: TFileNameEdit
+      Left = 80
+      Height = 23
+      Top = 248
+      Width = 160
+      FilterIndex = 0
+      HideDirectories = False
+      ButtonWidth = 23
+      NumGlyphs = 1
+      Font.Height = -12
+      MaxLength = 0
+      ParentFont = False
+      TabOrder = 6
+    end
+    object Label8: TLabel
+      Left = 42
+      Height = 15
+      Top = 256
+      Width = 24
+      Caption = 'База'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 16
+      Height = 15
+      Top = 296
+      Width = 85
+      Caption = 'По умолчанию'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object RadioButton1: TRadioButton
+      Left = 42
+      Height = 19
+      Top = 320
+      Width = 138
+      Alignment = taLeftJustify
+      Caption = 'Использовать MySQL'
+      Checked = True
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 7
+      TabStop = True
+    end
+    object RadioButton2: TRadioButton
+      Left = 43
+      Height = 19
+      Top = 344
+      Width = 137
+      Alignment = taLeftJustify
+      Caption = 'Использовать SQLite '
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 8
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 296
+    Height = 144
+    Top = 256
+    Width = 265
+    Caption = 'Telnet кластер'
+    ClientHeight = 124
+    ClientWidth = 261
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 3
+    object Edit11: TEdit
+      Left = 80
+      Height = 23
+      Top = 8
+      Width = 160
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Edit12: TEdit
+      Left = 80
+      Height = 23
+      Top = 48
+      Width = 160
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Label15: TLabel
+      Left = 32
+      Height = 15
+      Top = 16
+      Width = 34
+      Caption = 'Логин'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label16: TLabel
+      Left = 26
+      Height = 15
+      Top = 56
+      Width = 42
+      Caption = 'Пароль'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+      OnClick = Label16Click
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 296
+    Height = 248
+    Top = 8
+    Width = 264
+    Caption = 'Справочник позывных'
+    ClientHeight = 228
+    ClientWidth = 260
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 4
+    object CheckBox1: TCheckBox
+      Left = 12
+      Height = 19
+      Top = 144
+      Width = 236
+      Caption = 'Использовать встроенный справочник'
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Label10: TLabel
+      Left = 54
+      Height = 15
+      Top = 8
+      Width = 77
+      Caption = 'Дата выпуска:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 16
+      Height = 15
+      Top = 56
+      Width = 115
+      Caption = 'Количество записей:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label12: TLabel
+      Left = 22
+      Height = 15
+      Top = 80
+      Width = 109
+      Caption = 'Статус обновления:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Button4: TButton
+      Left = 16
+      Height = 25
+      Top = 192
+      Width = 232
+      Caption = 'Проверить обновления'
+      Font.Height = -12
+      OnClick = Button4Click
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Label13: TLabel
+      Left = 89
+      Height = 15
+      Top = 32
+      Width = 42
+      Caption = 'Версия:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label14: TLabel
+      Left = 136
+      Height = 15
+      Top = 32
+      Width = 15
+      Caption = '---'
+      ParentColor = False
+    end
+    object ProgressBar1: TProgressBar
+      Left = 16
+      Height = 20
+      Top = 168
+      Width = 232
+      TabOrder = 2
+    end
+    object Label17: TLabel
+      Left = 42
+      Height = 15
+      Top = 104
+      Width = 89
+      Caption = 'Загрузка файла:'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+      OnClick = Label17Click
+    end
+  end
+  object CheckCallBook: TSQLQuery
+    FieldDefs = <>
+    Database = MainForm.CallBookLiteConnection
+    Transaction = MainForm.CallBookTransaction
+    Params = <>
+    left = 296
+    top = 40
+  end
+end

@@ -1,0 +1,399 @@
+object SettingsCAT: TSettingsCAT
+  Left = 518
+  Height = 316
+  Top = 238
+  Width = 323
+  BorderStyle = bsDialog
+  Caption = 'Настройки CAT'
+  ClientHeight = 316
+  ClientWidth = 323
+  FormStyle = fsStayOnTop
+  OnShow = FormShow
+  LCLVersion = '2.0.0.4'
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 312
+    Top = 0
+    Width = 307
+    Caption = 'Настройки HamLib'
+    ClientHeight = 292
+    ClientWidth = 303
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 0
+    object Label11: TLabel
+      Left = 12
+      Height = 22
+      Top = 107
+      Width = 59
+      AutoSize = False
+      Caption = 'COM Порт'
+      Font.Height = -12
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+    end
+    object cbCatPort: TComboBox
+      Left = 8
+      Height = 23
+      Top = 129
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 0
+    end
+    object cbManufacturer: TComboBox
+      Left = 11
+      Height = 23
+      Top = 25
+      Width = 225
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Label61: TLabel
+      Left = 111
+      Height = 22
+      Top = 107
+      Width = 61
+      AutoSize = False
+      Caption = 'Скорость'
+      Font.Height = -12
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+    end
+    object cbBaudRate: TComboBox
+      Left = 107
+      Height = 23
+      Top = 129
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Default'
+        '1200'
+        '2400'
+        '4800'
+        '9600'
+        '14400'
+        '19200'
+        '38400'
+        '57600'
+        '115200'
+      )
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 2
+      Text = 'Default'
+    end
+    object Label62: TLabel
+      Left = 12
+      Height = 22
+      Top = 159
+      Width = 63
+      AutoSize = False
+      Caption = 'Data бит'
+      Font.Height = -12
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+    end
+    object cbDataBits: TComboBox
+      Left = 8
+      Height = 23
+      Top = 180
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Default'
+        '5'
+        '6'
+        '7'
+        '8'
+        '9'
+      )
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 3
+      Text = 'Default'
+    end
+    object Label63: TLabel
+      Left = 111
+      Height = 22
+      Top = 159
+      Width = 63
+      AutoSize = False
+      Caption = 'Parity'
+      Font.Height = -12
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+    end
+    object cbStopBits: TComboBox
+      Left = 207
+      Height = 23
+      Top = 128
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Default'
+        '0'
+        '1'
+        '2'
+        '3'
+      )
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 4
+      Text = 'Default'
+    end
+    object Label64: TLabel
+      Left = 210
+      Height = 22
+      Top = 107
+      Width = 63
+      AutoSize = False
+      Caption = 'Stop бит'
+      Font.Height = -12
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+    end
+    object cbParity: TComboBox
+      Left = 107
+      Height = 23
+      Top = 180
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Default'
+        'None'
+        'Odd'
+        'Even'
+        'Mark'
+        'Space'
+      )
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 5
+      Text = 'Default'
+    end
+    object Label65: TLabel
+      Left = 12
+      Height = 22
+      Top = 211
+      Width = 63
+      AutoSize = False
+      Caption = 'RTS state'
+      Font.Height = -12
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+    end
+    object cbRTSstate: TComboBox
+      Left = 8
+      Height = 23
+      Top = 232
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Default'
+        'Unset'
+        'ON'
+        'OFF'
+      )
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 6
+      Text = 'Default'
+    end
+    object Label66: TLabel
+      Left = 111
+      Height = 22
+      Top = 211
+      Width = 63
+      AutoSize = False
+      Caption = 'DTR state'
+      Font.Height = -12
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+    end
+    object cbDTRstate: TComboBox
+      Left = 107
+      Height = 23
+      Top = 232
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Default'
+        'Unset'
+        'ON'
+        'OFF'
+      )
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 7
+      Text = 'Default'
+    end
+    object Label67: TLabel
+      Left = 210
+      Height = 22
+      Top = 159
+      Width = 74
+      AutoSize = False
+      Caption = 'Handshake'
+      Font.Height = -12
+      Layout = tlCenter
+      ParentColor = False
+      ParentFont = False
+    end
+    object cbHandshake: TComboBox
+      Left = 207
+      Height = 23
+      Top = 180
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Default'
+        'None'
+        'XON/XOFF'
+        'Hardware'
+      )
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 8
+      Text = 'Default'
+    end
+    object Label12: TLabel
+      Left = 11
+      Height = 15
+      Top = 8
+      Width = 109
+      Caption = 'Модель трансивера'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label16: TLabel
+      Left = 210
+      Height = 17
+      Top = 216
+      Width = 83
+      AutoSize = False
+      Caption = 'CI-V address'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object EditCIVaddress: TEdit
+      Left = 207
+      Height = 24
+      Hint = 'ICOM Radios'
+      Top = 233
+      Width = 85
+      AutoSize = False
+      Font.Height = -12
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 9
+    end
+    object Button1: TButton
+      Left = 218
+      Height = 25
+      Top = 264
+      Width = 75
+      Caption = 'Сохранить'
+      Font.Height = -12
+      OnClick = Button1Click
+      ParentFont = False
+      TabOrder = 10
+    end
+    object RIG1: TRadioButton
+      Left = 168
+      Height = 19
+      Top = -8
+      Width = 44
+      Caption = 'RIG1'
+      Checked = True
+      Font.Height = -12
+      OnChange = RIG1Change
+      ParentFont = False
+      TabOrder = 11
+      TabStop = True
+    end
+    object Label1: TLabel
+      Left = 11
+      Height = 15
+      Top = 56
+      Width = 120
+      Caption = 'Путь к HamLib Rigctld'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object FileNameEdit1: TFileNameEdit
+      Left = 12
+      Height = 22
+      Top = 72
+      Width = 224
+      DialogTitle = 'Путь к rigctld'
+      Filter = 'rigctld.exe|rigctld.exe'
+      FilterIndex = 0
+      HideDirectories = False
+      ButtonWidth = 23
+      NumGlyphs = 1
+      AutoSize = False
+      MaxLength = 0
+      TabOrder = 12
+    end
+    object SpinEdit1: TSpinEdit
+      AnchorSideLeft.Control = cbManufacturer
+      AnchorSideLeft.Side = asrBottom
+      Left = 238
+      Height = 23
+      Top = 25
+      Width = 50
+      AutoSize = False
+      BorderSpacing.Left = 2
+      MinValue = 1
+      TabOrder = 13
+      Value = 1
+    end
+    object RadioButton1: TRadioButton
+      Left = 240
+      Height = 19
+      Top = -8
+      Width = 44
+      Caption = 'RIG2'
+      TabOrder = 14
+    end
+  end
+end

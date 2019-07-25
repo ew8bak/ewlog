@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="EWLog - Аппаратный журнал"/>
+      <Scaled Value="True"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <XPManifest>
+        <DpiAware Value="True"/>
+        <TextName Value="Vladimir.EW8BAK.EWLog"/>
+        <TextDesc Value="EWLog HAM Logger"/>
+      </XPManifest>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <RevisionNr Value="6"/>
+      <BuildNr Value="57"/>
+      <Language Value="0419"/>
+      <StringTable CompanyName="EW8BAK" LegalCopyright="Владимир Карпенко" OriginalFilename="EWLog" ProductName="EWLog - Аппаратный журнал"/>
+    </VersionInfo>
+    <BuildModes Count="3">
+      <Item1 Name="Default" Default="True"/>
+      <Item2 Name="Релиз">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="EWLog"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="..\..\.lazarus\components\indy-10.2.0.3\fpc;..\..\.lazarus\components\indy;..\..\.lazarus\components\indy\lib\x86_64-linux;Компоненты для LAZARUS\mapviewer"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item2>
+      <Item3 Name="Дебаг">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="EWLog"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="Компоненты для LAZARUS\mapviewer"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <Linking>
+            <Debugging>
+              <UseHeaptrc Value="True"/>
+            </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item3>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="1">
+        <Mode0 Name="default"/>
+      </Modes>
+    </RunParams>
+    <RequiredPackages Count="11">
+      <Item1>
+        <PackageName Value="indylaz"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="laz_synapse"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="lnetvisual"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="kcMapViewerPckg"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="DBFLaz"/>
+      </Item5>
+      <Item6>
+        <PackageName Value="DateTimeCtrls"/>
+      </Item6>
+      <Item7>
+        <PackageName Value="MemDSLaz"/>
+      </Item7>
+      <Item8>
+        <PackageName Value="SDFLaz"/>
+      </Item8>
+      <Item9>
+        <PackageName Value="FCL"/>
+      </Item9>
+      <Item10>
+        <PackageName Value="SQLDBLaz"/>
+      </Item10>
+      <Item11>
+        <PackageName Value="LCL"/>
+      </Item11>
+    </RequiredPackages>
+    <Units Count="43">
+      <Unit0>
+        <Filename Value="EWLog.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="mainform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainForm_U"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="editqso_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="EditQSO_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="informationform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="InformationForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="InformationForm_U"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="logconfigform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="LogConfigForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="LogConfigForm_U"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="configform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ConfigForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ConfigForm_U"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="exportadifform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="exportAdifForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ExportAdifForm_u"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="createjournalform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CreateJournalForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="CreateJournalForm_U"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="importadifform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ImportADIFForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ImportADIFForm_U"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="dmfunc_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmFunc"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmFunc_U"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="RegExpr.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="simplexml.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SimpleXML"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="eqsl.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="xmlrpc.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="fldigi.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="dxcceditform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CountryEditForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="DXCCEditForm_U"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="managerbaseprefixform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ManagerBasePrefixForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ManagerBasePrefixForm_U"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="azidis3.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="aziloc.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="qslmanagerform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="QSLManager_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="QSLManagerForm_U"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="settingscat_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SettingsCAT"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SettingsCAT_U"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="rig.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="uRigControl.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="trxform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="TRXForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="TRXForm_U"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="hrdlog.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="settingsprogramform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SettingsProgramForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SettingsProgramForm_U"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="aboutform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="About_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="AboutForm_U"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="serviceform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ServiceForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ServiceForm_U"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="setupform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SetupForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="setupForm_U"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="updateform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Update_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UpdateForm_U"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="changelog_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ChangeLog_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Changelog_Form_U"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="earth_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Earth"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Earth_Form_U"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="iota_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="IOTA_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="IOTA_Form_U"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="configgridform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ConfigGrid_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ConfigGridForm_U"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="sendtelnetspot_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SendTelnetSpot"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="sendtelnetspot_form_U"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ClusterFilter"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ClusterFilter_Form_U"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="clusterserver_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ClusterServer_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ClusterServer_Form_U"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="state_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="STATE_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="STATE_Form_U"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="wsjt_udp_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="WSJT_UDP_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="WSJT_UDP_Form_U"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="syndbdate_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SynDBDate"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="synDBDate_u"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="thanksform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Thanks_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ThanksForm_u"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="register_form_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="RegisterForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="filterform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="filterForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="filterForm_U"/>
+      </Unit42>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="EW8BAK_Log"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="Компоненты для LAZARUS\mapviewer"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="5">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+      <Item4>
+        <Name Value="EConvertError"/>
+      </Item4>
+      <Item5>
+        <Name Value="EProcess"/>
+      </Item5>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

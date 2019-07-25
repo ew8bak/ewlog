@@ -1,0 +1,84 @@
+object SettingsProgramForm: TSettingsProgramForm
+  Left = 438
+  Height = 160
+  Top = 294
+  Width = 297
+  BorderStyle = bsDialog
+  Caption = 'Настройки внешних программ'
+  ClientHeight = 160
+  ClientWidth = 297
+  FormStyle = fsStayOnTop
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.6.0.4'
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 121
+    Top = 0
+    Width = 281
+    Caption = 'Fldigi'
+    ClientHeight = 101
+    ClientWidth = 277
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 8
+      Height = 15
+      Top = 0
+      Width = 160
+      Caption = 'Путь к исполняемому файлу'
+      ParentColor = False
+    end
+    object FileNameEdit1: TFileNameEdit
+      Left = 8
+      Height = 23
+      Top = 16
+      Width = 264
+      FilterIndex = 0
+      HideDirectories = False
+      ButtonWidth = 23
+      NumGlyphs = 1
+      MaxLength = 0
+      TabOrder = 0
+    end
+    object CheckBox1: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 48
+      Width = 129
+      Caption = 'Включить XML-RPC'
+      TabOrder = 1
+    end
+    object CheckBox2: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 72
+      Width = 129
+      Caption = 'Использовать Fldigi'
+      TabOrder = 2
+    end
+  end
+  object Button1: TButton
+    Left = 214
+    Height = 25
+    Top = 128
+    Width = 75
+    Caption = 'Сохранить'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 136
+    Height = 25
+    Top = 128
+    Width = 75
+    Caption = 'Отмена'
+    Font.Height = -12
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 2
+  end
+end
