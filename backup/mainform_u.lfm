@@ -1,17 +1,19 @@
 object MainForm: TMainForm
-  Left = 287
+  Left = 426
   Height = 693
-  Top = 126
+  Top = 183
   Width = 1084
   ActiveControl = Panel1
   Caption = 'EWLog - Аппаратный журнал'
   ClientHeight = 673
   ClientWidth = 1084
   Font.Height = -12
+  KeyPreview = True
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
   OnResize = FormResize
   OnShow = FormShow
   Position = poScreenCenter

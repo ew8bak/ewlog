@@ -130,7 +130,7 @@
         <PackageName Value="LCL"/>
       </Item11>
     </RequiredPackages>
-    <Units Count="43">
+    <Units Count="44">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -429,6 +429,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
       </Unit42>
+      <Unit43>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <HasResources Value="True"/>
+      </Unit43>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
