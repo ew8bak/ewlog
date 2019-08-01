@@ -58,6 +58,7 @@
 *.dsk
 
 # Delphi history and backups
+backup/
 __history/
 __recovery/
 *.~*
