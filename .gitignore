@@ -58,6 +58,7 @@
 
 # Delphi history and backups
 backup/
+lib/
 __history/
 __recovery/
 *.~*
