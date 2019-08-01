@@ -25,7 +25,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="56"/>
+      <BuildNr Value="57"/>
       <Language Value="0419"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Владимир Карпенко" OriginalFilename="EWLog" ProductName="EWLog - Аппаратный журнал"/>
     </VersionInfo>

@@ -8,10 +8,12 @@ object MainForm: TMainForm
   ClientHeight = 673
   ClientWidth = 1084
   Font.Height = -12
+  KeyPreview = True
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
   OnResize = FormResize
   OnShow = FormShow
   Position = poScreenCenter
