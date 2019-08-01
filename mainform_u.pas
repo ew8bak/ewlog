@@ -365,6 +365,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Label50Click(Sender: TObject);
@@ -604,7 +605,7 @@ uses
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u, register_form_u,
-  logtcpform_u, filterForm_U;
+  logtcpform_u, filterForm_U, hiddentsettings_u;
 
 
 {$R *.lfm}
@@ -2711,6 +2712,13 @@ begin
    LTCPComponent1.Free;
   LUDPComponent1.Free;
   TrayIcon1.Free;
+end;
+
+procedure TMainForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (ssCtrl in Shift) and (ssAlt in Shift) and (chr(Key)='H') then
+  hiddenSettings.Show;
 end;
 
 procedure TMainForm.FormResize(Sender: TObject);

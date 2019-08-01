@@ -153,10 +153,10 @@ object MainForm: TMainForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = DBLookupComboBox1
-      Left = 208
+      Left = 209
       Height = 15
       Top = 6
-      Width = 95
+      Width = 94
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
       Caption = 'Текущий журнал'
@@ -458,7 +458,7 @@ object MainForm: TMainForm
         Left = 3
         Height = 15
         Top = 112
-        Width = 68
+        Width = 67
         BorderSpacing.Left = 2
         BorderSpacing.Top = 7
         Caption = 'Время (UTC)'
@@ -509,10 +509,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 181
+        Left = 182
         Height = 15
         Top = 92
-        Width = 24
+        Width = 23
         Anchors = [akTop, akRight]
         BorderSpacing.Top = 8
         BorderSpacing.Right = 205
@@ -526,10 +526,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 163
+        Left = 164
         Height = 15
         Top = 114
-        Width = 42
+        Width = 41
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 163
         BorderSpacing.Top = 7
@@ -544,10 +544,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 161
+        Left = 162
         Height = 15
         Top = 136
-        Width = 44
+        Width = 43
         Anchors = [akTop, akRight]
         BorderSpacing.Top = 7
         BorderSpacing.Right = 205
@@ -812,10 +812,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
-        Left = 353
+        Left = 354
         Height = 15
         Top = 137
-        Width = 25
+        Width = 24
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
         BorderSpacing.Top = 7
@@ -1248,7 +1248,7 @@ object MainForm: TMainForm
         Left = 147
         Height = 15
         Top = 6
-        Width = 22
+        Width = 21
         BorderSpacing.Left = 4
         BorderSpacing.Top = 5
         Caption = 'UTC'
@@ -1260,7 +1260,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label25
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 171
+        Left = 170
         Height = 15
         Top = 6
         Width = 48
@@ -1277,7 +1277,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label26
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 223
+        Left = 222
         Height = 15
         Top = 6
         Width = 137
@@ -1292,7 +1292,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label27
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 362
+        Left = 361
         Height = 15
         Top = 6
         Width = 48
@@ -1384,6 +1384,7 @@ object MainForm: TMainForm
         Items.Strings = (
           'SSB'
           'CW'
+          'FT8'
           'RTTY'
           'BPSK31'
           'BPSK63'
@@ -1731,7 +1732,7 @@ object MainForm: TMainForm
         Left = 6
         Height = 15
         Top = 26
-        Width = 38
+        Width = 37
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Тер-ия'
@@ -1808,7 +1809,7 @@ object MainForm: TMainForm
         Left = 101
         Height = 15
         Top = 6
-        Width = 38
+        Width = 37
         BorderSpacing.Left = 100
         BorderSpacing.Top = 5
         Caption = 'Трасса'
@@ -1979,7 +1980,7 @@ object MainForm: TMainForm
         Left = 271
         Height = 15
         Top = 46
-        Width = 18
+        Width = 17
         BorderSpacing.Left = 270
         BorderSpacing.Top = 5
         Caption = 'ITU'
@@ -1992,7 +1993,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label33
         AnchorSideTop.Side = asrBottom
-        Left = 294
+        Left = 293
         Height = 15
         Top = 46
         Width = 6

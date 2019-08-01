@@ -1,0 +1,91 @@
+object SendTelnetSpot: TSendTelnetSpot
+  Left = 470
+  Height = 155
+  Top = 385
+  Width = 297
+  BorderStyle = bsDialog
+  Caption = 'Отправить спот'
+  ClientHeight = 155
+  ClientWidth = 297
+  FormStyle = fsStayOnTop
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.6.0.4'
+  object Edit1: TEdit
+    Left = 16
+    Height = 23
+    Top = 32
+    Width = 120
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 15
+    Top = 16
+    Width = 73
+    Caption = 'DX позывной'
+    ParentColor = False
+  end
+  object ComboBox1: TComboBox
+    Left = 160
+    Height = 21
+    Top = 32
+    Width = 120
+    AutoSize = False
+    Font.Height = -12
+    ItemHeight = 15
+    ItemIndex = 2
+    Items.Strings = (
+      '1.800.00'
+      '3.500.00'
+      '7.000.00'
+      '10.000.00'
+      '14.000.00'
+      '18.000.00'
+      '21.000.00'
+      '24.000.00'
+      '28.000.00'
+      '144.000.00'
+      '430.000.00'
+    )
+    ParentFont = False
+    TabOrder = 1
+    Text = '7.000.00'
+  end
+  object Label2: TLabel
+    Left = 160
+    Height = 15
+    Top = 16
+    Width = 43
+    Caption = 'Частота'
+    ParentColor = False
+  end
+  object Edit2: TEdit
+    Left = 16
+    Height = 23
+    Top = 80
+    Width = 264
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Label3: TLabel
+    Left = 16
+    Height = 15
+    Top = 64
+    Width = 68
+    Caption = 'Коментарий'
+    ParentColor = False
+  end
+  object Button1: TButton
+    Left = 205
+    Height = 25
+    Top = 120
+    Width = 75
+    Caption = 'Отправить'
+    OnClick = Button1Click
+    TabOrder = 3
+  end
+end
