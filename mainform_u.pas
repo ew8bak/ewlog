@@ -340,6 +340,7 @@ type
     //{$IfDef WINDOWS}
     procedure CheckUpdatesTimerStartTimer(Sender: TObject);
     procedure CheckUpdatesTimerTimer(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
     //{$ENDIF WINDOWS}
     procedure ComboBox2Change(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
@@ -517,6 +518,7 @@ type
     AdifDataSyncDate: boolean;
     AdifDataDate: string;
     BuffToSend: string;
+    freqchange: Boolean;
 
     inupdate: boolean;
     function Login(host, port, userid, passwd: string): boolean;
@@ -1938,6 +1940,11 @@ begin
   {$ENDIF WINDOWS}
 end;
 
+procedure TMainForm.ComboBox1Change(Sender: TObject);
+begin
+  freqchange:=True;
+end;
+
 procedure TMainForm.ComboBox2Change(Sender: TObject);
 var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
@@ -1991,7 +1998,7 @@ begin
     ComboBox5.Items.Clear;
     ComboBox5.Text := '-10';
   end;
-
+ freqchange:=True;
 end;
 
 procedure TMainForm.ComboBox3Change(Sender: TObject);
@@ -2683,7 +2690,8 @@ begin
   LUDPComponent1.Listen(6667);
   LTCPComponent1.ReuseAddress := True;
   ComboBox1.Text:=IniF.ReadString('SetLog', 'PastBand', '7.000.00');
-   if usewsjt then
+  freqchange:=True;
+  if usewsjt then
     WSJT_Timer.Enabled := True;
   if usefldigi then
     Fl_Timer.Enabled := True;

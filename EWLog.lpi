@@ -25,7 +25,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="58"/>
+      <BuildNr Value="59"/>
       <Language Value="0419"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Владимир Карпенко" OriginalFilename="EWLog" ProductName="EWLog - Аппаратный журнал"/>
     </VersionInfo>
@@ -432,7 +432,9 @@
       <Unit43>
         <Filename Value="hiddentsettings_u.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="hiddenSettings"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit43>
     </Units>
   </ProjectOptions>

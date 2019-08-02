@@ -14,7 +14,6 @@ type
 
   ThiddenSettings = class(TForm)
     Button1: TButton;
-    Button2: TButton;
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     GroupBox1: TGroupBox;
@@ -24,7 +23,6 @@ type
     CatTimer: TTimer;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
     procedure CatTimerTimer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -39,7 +37,8 @@ var
   address_serv, API_key: string;
   apicat, apisend: boolean;
 
-function SendHTTP(freq, mode, dt, key, radio, address: string): string;
+function SendRadio(freq, mode, dt, key, radio, address: string): string;
+function SendQSO(key, adi, address: string): string;
 
 implementation
 
@@ -48,7 +47,7 @@ uses
 
 {$R *.lfm}
 
-function SendHTTP(freq, mode, dt, key, radio, address: string): string;
+function SendQSO(key, adi, address: string): string;
 var
   HTTP: THTTPSend;
   temp: TStringStream;
@@ -59,8 +58,31 @@ begin
   Response := TStringList.Create;
   HTTP.MimeType := 'application/json';
   temp.Size := 0;
-  temp.WriteString('{"key":"' + key + '", "radio":"' + radio + '","frequency":' +
-    freq + ',"mode":"' + mode + '","timestamp":"' + dt + '"}');
+  temp.WriteString('{"key":"' + key + '", "type":"adif", "string":"'+adi+'"}');
+  HTTP.Document.LoadFromStream(temp);
+  if HTTP.HTTPMethod('POST', address) then
+  begin
+    Response.LoadFromStream(HTTP.Document);
+    Result := Response.Text;
+  end;
+  temp.Free;
+  HTTP.Free;
+  Response.Free;
+end;
+
+function SendRadio(freq, mode, dt, key, radio, address: string): string;
+var
+  HTTP: THTTPSend;
+  temp: TStringStream;
+  Response: TStringList;
+begin
+  HTTP := THTTPSend.Create;
+  temp := TStringStream.Create('');
+  Response := TStringList.Create;
+  HTTP.MimeType := 'application/json';
+  temp.Size := 0;
+  temp.WriteString('{"key":"' + key + '", "radio":"' + radio +
+    '","frequency":' + freq + ',"mode":"' + mode + '","timestamp":"' + dt + '"}');
   HTTP.Document.LoadFromStream(temp);
   if HTTP.HTTPMethod('POST', address) then
   begin
@@ -111,20 +133,12 @@ begin
   hiddenSettings.Close;
 end;
 
-procedure ThiddenSettings.Button2Click(Sender: TObject);
-begin
-
-end;
-
 procedure ThiddenSettings.CatTimerTimer(Sender: TObject);
-var
-  old, new: string;
 begin
-  // old:=MainForm.ComboBox1.Text;
-  //if old <> new then
-  Memo1.Lines.Add(SendHTTP(MainForm.ComboBox1.Text, MainForm.ComboBox2.Text,
-    DateTimeToStr(Now), API_key, 'EWLog', address_serv));
-  // new:=old;
+  if MainForm.freqchange = True then
+    Memo1.Lines.Add(SendRadio(StringReplace(MainForm.ComboBox1.Text, '.', '', [rfReplaceAll]) +
+      '0', MainForm.ComboBox2.Text, DateTimeToStr(Now), API_key, 'EWLog', address_serv));
+  MainForm.freqchange := False;
 end;
 
 end.

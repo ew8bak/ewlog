@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Релиз"/>
+    <BuildModes Active="Дебаг"/>
     <Units Count="116">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="2717"/>
-        <CursorPos X="75" Y="2721"/>
+        <TopLine Value="3694"/>
+        <CursorPos X="19" Y="3709"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -56,7 +56,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="171"/>
         <CursorPos X="57" Y="188"/>
         <UsageCount Value="200"/>
@@ -117,7 +117,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="1281"/>
         <CursorPos X="8" Y="1276"/>
         <UsageCount Value="200"/>
@@ -214,7 +214,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="102"/>
         <CursorPos X="37" Y="107"/>
         <UsageCount Value="200"/>
@@ -230,7 +230,7 @@
       <Unit22>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="363"/>
         <CursorPos X="18" Y="178"/>
         <UsageCount Value="200"/>
@@ -243,9 +243,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="447"/>
-        <CursorPos X="37" Y="338"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="325"/>
+        <CursorPos X="34" Y="264"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit23>
@@ -275,11 +275,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutForm_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="5"/>
         <CursorPos X="55" Y="11"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit26>
       <Unit27>
         <Filename Value="serviceform_u.pas"/>
@@ -312,7 +311,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="392"/>
         <CursorPos Y="162"/>
         <UsageCount Value="200"/>
@@ -445,11 +444,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ThanksForm_u"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="39" Y="36"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
       </Unit40>
       <Unit41>
         <Filename Value="register_form_u.pas"/>
@@ -469,25 +467,39 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="58"/>
       </Unit42>
       <Unit43>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="hiddenSettings"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="47"/>
+        <CursorPos X="27" Y="54"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit43>
+      <Unit44>
         <Filename Value="Компоненты для LAZARUS\mapviewer\kcMapViewerDEWin32.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
         <UsageCount Value="17"/>
-      </Unit43>
-      <Unit44>
+      </Unit44>
+      <Unit45>
         <Filename Value="Компоненты для LAZARUS\mapviewer\kcMapViewer.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
         <UsageCount Value="152"/>
-      </Unit44>
-      <Unit45>
+      </Unit45>
+      <Unit46>
         <Filename Value="logtcpform_u.pas"/>
         <ComponentName Value="LogTCP_Form"/>
         <HasResources Value="True"/>
@@ -495,29 +507,21 @@
         <EditorIndex Value="-1"/>
         <CursorPos Y="32"/>
         <UsageCount Value="95"/>
-      </Unit45>
-      <Unit46>
+      </Unit46>
+      <Unit47>
         <Filename Value="C:\lazarus64\components\mapviewer\kcMapViewerDEWin32.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="24" Y="19"/>
         <UsageCount Value="32"/>
-      </Unit46>
-      <Unit47>
+      </Unit47>
+      <Unit48>
         <Filename Value="C:\lazarus\components\mapviewer\tlntsend.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="99"/>
         <UsageCount Value="32"/>
-      </Unit47>
-      <Unit48>
-        <Filename Value="C:\lazarus\components\mapviewer\asn1util.pas"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
       </Unit48>
       <Unit49>
-        <Filename Value="C:\lazarus\components\mapviewer\blcksock.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\asn1util.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -525,7 +529,7 @@
         <UsageCount Value="32"/>
       </Unit49>
       <Unit50>
-        <Filename Value="C:\lazarus\components\mapviewer\clamsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\blcksock.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -533,7 +537,7 @@
         <UsageCount Value="32"/>
       </Unit50>
       <Unit51>
-        <Filename Value="C:\lazarus\components\mapviewer\dnssend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\clamsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -541,7 +545,7 @@
         <UsageCount Value="32"/>
       </Unit51>
       <Unit52>
-        <Filename Value="C:\lazarus\components\mapviewer\ftpsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\dnssend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -549,7 +553,7 @@
         <UsageCount Value="32"/>
       </Unit52>
       <Unit53>
-        <Filename Value="C:\lazarus\components\mapviewer\ftptsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ftpsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -557,7 +561,7 @@
         <UsageCount Value="32"/>
       </Unit53>
       <Unit54>
-        <Filename Value="C:\lazarus\components\mapviewer\httpsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ftptsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -565,7 +569,7 @@
         <UsageCount Value="32"/>
       </Unit54>
       <Unit55>
-        <Filename Value="C:\lazarus\components\mapviewer\imapsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\httpsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -573,7 +577,7 @@
         <UsageCount Value="32"/>
       </Unit55>
       <Unit56>
-        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewer.inc"/>
+        <Filename Value="C:\lazarus\components\mapviewer\imapsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -581,7 +585,7 @@
         <UsageCount Value="32"/>
       </Unit56>
       <Unit57>
-        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewer.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewer.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -589,7 +593,7 @@
         <UsageCount Value="32"/>
       </Unit57>
       <Unit58>
-        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewerDESynapse.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewer.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -597,7 +601,7 @@
         <UsageCount Value="32"/>
       </Unit58>
       <Unit59>
-        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewerDEWin32.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewerDESynapse.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -605,7 +609,7 @@
         <UsageCount Value="32"/>
       </Unit59>
       <Unit60>
-        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewerGLGeoNames.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewerDEWin32.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -613,7 +617,7 @@
         <UsageCount Value="32"/>
       </Unit60>
       <Unit61>
-        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewerInstall.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewerGLGeoNames.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -621,6 +625,14 @@
         <UsageCount Value="32"/>
       </Unit61>
       <Unit62>
+        <Filename Value="C:\lazarus\components\mapviewer\kcMapViewerInstall.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="32"/>
+      </Unit62>
+      <Unit63>
         <Filename Value="C:\lazarus\components\mapviewer\kcmapviewerpckg.lpk"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
@@ -628,17 +640,9 @@
         <CursorPos X="-1" Y="-1"/>
         <UsageCount Value="32"/>
         <DefaultSyntaxHighlighter Value="XML"/>
-      </Unit62>
-      <Unit63>
-        <Filename Value="C:\lazarus\components\mapviewer\kcmapviewerpckg.pas"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
       </Unit63>
       <Unit64>
-        <Filename Value="C:\lazarus\components\mapviewer\kcThreadPool.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\kcmapviewerpckg.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -646,6 +650,14 @@
         <UsageCount Value="32"/>
       </Unit64>
       <Unit65>
+        <Filename Value="C:\lazarus\components\mapviewer\kcThreadPool.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="32"/>
+      </Unit65>
+      <Unit66>
         <Filename Value="C:\lazarus\components\mapviewer\laz_synapse.lpk"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
@@ -653,17 +665,9 @@
         <CursorPos X="-1" Y="-1"/>
         <UsageCount Value="32"/>
         <DefaultSyntaxHighlighter Value="XML"/>
-      </Unit65>
-      <Unit66>
-        <Filename Value="C:\lazarus\components\mapviewer\laz_synapse.pas"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
       </Unit66>
       <Unit67>
-        <Filename Value="C:\lazarus\components\mapviewer\ldapsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\laz_synapse.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -671,7 +675,7 @@
         <UsageCount Value="32"/>
       </Unit67>
       <Unit68>
-        <Filename Value="C:\lazarus\components\mapviewer\mimeinln.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ldapsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -679,7 +683,7 @@
         <UsageCount Value="32"/>
       </Unit68>
       <Unit69>
-        <Filename Value="C:\lazarus\components\mapviewer\mimemess.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\mimeinln.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -687,7 +691,7 @@
         <UsageCount Value="32"/>
       </Unit69>
       <Unit70>
-        <Filename Value="C:\lazarus\components\mapviewer\mimepart.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\mimemess.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -695,7 +699,7 @@
         <UsageCount Value="32"/>
       </Unit70>
       <Unit71>
-        <Filename Value="C:\lazarus\components\mapviewer\nntpsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\mimepart.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -703,7 +707,7 @@
         <UsageCount Value="32"/>
       </Unit71>
       <Unit72>
-        <Filename Value="C:\lazarus\components\mapviewer\pingsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\nntpsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -711,7 +715,7 @@
         <UsageCount Value="32"/>
       </Unit72>
       <Unit73>
-        <Filename Value="C:\lazarus\components\mapviewer\pop3send.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\pingsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -719,7 +723,7 @@
         <UsageCount Value="32"/>
       </Unit73>
       <Unit74>
-        <Filename Value="C:\lazarus\components\mapviewer\slogsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\pop3send.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -727,7 +731,7 @@
         <UsageCount Value="32"/>
       </Unit74>
       <Unit75>
-        <Filename Value="C:\lazarus\components\mapviewer\smtpsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\slogsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -735,7 +739,7 @@
         <UsageCount Value="32"/>
       </Unit75>
       <Unit76>
-        <Filename Value="C:\lazarus\components\mapviewer\snmpsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\smtpsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -743,7 +747,7 @@
         <UsageCount Value="32"/>
       </Unit76>
       <Unit77>
-        <Filename Value="C:\lazarus\components\mapviewer\sntpsend.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\snmpsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -751,7 +755,7 @@
         <UsageCount Value="32"/>
       </Unit77>
       <Unit78>
-        <Filename Value="C:\lazarus\components\mapviewer\ssdotnet.inc"/>
+        <Filename Value="C:\lazarus\components\mapviewer\sntpsend.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -759,7 +763,7 @@
         <UsageCount Value="32"/>
       </Unit78>
       <Unit79>
-        <Filename Value="C:\lazarus\components\mapviewer\ssfpc.inc"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ssdotnet.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -767,7 +771,7 @@
         <UsageCount Value="32"/>
       </Unit79>
       <Unit80>
-        <Filename Value="C:\lazarus\components\mapviewer\ssl_cryptlib.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ssfpc.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -775,7 +779,7 @@
         <UsageCount Value="32"/>
       </Unit80>
       <Unit81>
-        <Filename Value="C:\lazarus\components\mapviewer\ssl_openssl.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ssl_cryptlib.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -783,7 +787,7 @@
         <UsageCount Value="32"/>
       </Unit81>
       <Unit82>
-        <Filename Value="C:\lazarus\components\mapviewer\ssl_openssl_lib.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ssl_openssl.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -791,7 +795,7 @@
         <UsageCount Value="32"/>
       </Unit82>
       <Unit83>
-        <Filename Value="C:\lazarus\components\mapviewer\ssl_sbb.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ssl_openssl_lib.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -799,7 +803,7 @@
         <UsageCount Value="32"/>
       </Unit83>
       <Unit84>
-        <Filename Value="C:\lazarus\components\mapviewer\ssl_streamsec.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ssl_sbb.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -807,7 +811,7 @@
         <UsageCount Value="32"/>
       </Unit84>
       <Unit85>
-        <Filename Value="C:\lazarus\components\mapviewer\sslinux.inc"/>
+        <Filename Value="C:\lazarus\components\mapviewer\ssl_streamsec.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -815,7 +819,7 @@
         <UsageCount Value="32"/>
       </Unit85>
       <Unit86>
-        <Filename Value="C:\lazarus\components\mapviewer\sswin32.inc"/>
+        <Filename Value="C:\lazarus\components\mapviewer\sslinux.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -823,7 +827,7 @@
         <UsageCount Value="32"/>
       </Unit86>
       <Unit87>
-        <Filename Value="C:\lazarus\components\mapviewer\synachar.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\sswin32.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -831,7 +835,7 @@
         <UsageCount Value="32"/>
       </Unit87>
       <Unit88>
-        <Filename Value="C:\lazarus\components\mapviewer\synacode.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synachar.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -839,7 +843,7 @@
         <UsageCount Value="32"/>
       </Unit88>
       <Unit89>
-        <Filename Value="C:\lazarus\components\mapviewer\synacrypt.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synacode.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -847,7 +851,7 @@
         <UsageCount Value="32"/>
       </Unit89>
       <Unit90>
-        <Filename Value="C:\lazarus\components\mapviewer\synadbg.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synacrypt.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -855,7 +859,7 @@
         <UsageCount Value="32"/>
       </Unit90>
       <Unit91>
-        <Filename Value="C:\lazarus\components\mapviewer\synafpc.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synadbg.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -863,7 +867,7 @@
         <UsageCount Value="32"/>
       </Unit91>
       <Unit92>
-        <Filename Value="C:\lazarus\components\mapviewer\synaicnv.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synafpc.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -871,7 +875,7 @@
         <UsageCount Value="32"/>
       </Unit92>
       <Unit93>
-        <Filename Value="C:\lazarus\components\mapviewer\synaip.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synaicnv.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -879,7 +883,7 @@
         <UsageCount Value="32"/>
       </Unit93>
       <Unit94>
-        <Filename Value="C:\lazarus\components\mapviewer\synamisc.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synaip.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -887,7 +891,7 @@
         <UsageCount Value="32"/>
       </Unit94>
       <Unit95>
-        <Filename Value="C:\lazarus\components\mapviewer\synaser.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synamisc.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -895,7 +899,7 @@
         <UsageCount Value="32"/>
       </Unit95>
       <Unit96>
-        <Filename Value="C:\lazarus\components\mapviewer\synautil.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synaser.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -903,7 +907,7 @@
         <UsageCount Value="32"/>
       </Unit96>
       <Unit97>
-        <Filename Value="C:\lazarus\components\mapviewer\synsock.pas"/>
+        <Filename Value="C:\lazarus\components\mapviewer\synautil.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -911,127 +915,126 @@
         <UsageCount Value="32"/>
       </Unit97>
       <Unit98>
+        <Filename Value="C:\lazarus\components\mapviewer\synsock.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="32"/>
+      </Unit98>
+      <Unit99>
         <Filename Value="ah_math.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="9"/>
         <UsageCount Value="9"/>
-      </Unit98>
-      <Unit99>
+      </Unit99>
+      <Unit100>
         <Filename Value="C:\lazarus\components\zexmlss\src\zsspxml.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="493"/>
         <CursorPos X="14" Y="512"/>
         <UsageCount Value="40"/>
-      </Unit99>
-      <Unit100>
+      </Unit100>
+      <Unit101>
         <Filename Value="D:\.lazarus\components\zexmlss\src\zsspxml.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3943"/>
         <CursorPos X="4" Y="3974"/>
         <UsageCount Value="9"/>
-      </Unit100>
-      <Unit101>
+      </Unit101>
+      <Unit102>
         <Filename Value="D:\usr\lib\lazarus\1.6\lcl\lclclasses.pp"/>
         <UnitName Value="LCLClasses"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="13"/>
         <CursorPos X="10" Y="26"/>
         <UsageCount Value="9"/>
-      </Unit101>
-      <Unit102>
+      </Unit102>
+      <Unit103>
         <Filename Value="C:\lazarus_64\components\zexmlss\src\zsspxml.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="483"/>
         <CursorPos X="14" Y="498"/>
         <UsageCount Value="37"/>
-      </Unit102>
-      <Unit103>
+      </Unit103>
+      <Unit104>
         <Filename Value="C:\lazarus_64\components\fpVoIP\src\lib\sockets\fpsocket_api.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="64"/>
         <CursorPos X="34" Y="84"/>
         <UsageCount Value="1"/>
-      </Unit103>
-      <Unit104>
+      </Unit104>
+      <Unit105>
         <Filename Value="C:\lazarus_64\components\lnet\lib\lnet.pp"/>
         <UnitName Value="lNet"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1140"/>
         <CursorPos Y="1155"/>
         <UsageCount Value="2"/>
-      </Unit104>
-      <Unit105>
+      </Unit105>
+      <Unit106>
         <Filename Value="C:\lazarus_64\lcl\include\dblookupcombobox.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="109"/>
         <CursorPos Y="125"/>
         <UsageCount Value="8"/>
-      </Unit105>
-      <Unit106>
+      </Unit106>
+      <Unit107>
         <Filename Value="C:\lazarus_64\lcl\include\customcombobox.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="932"/>
         <CursorPos Y="951"/>
         <UsageCount Value="8"/>
-      </Unit106>
-      <Unit107>
+      </Unit107>
+      <Unit108>
         <Filename Value="C:\lazarus_64\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6475"/>
         <CursorPos Y="6491"/>
         <UsageCount Value="8"/>
-      </Unit107>
-      <Unit108>
+      </Unit108>
+      <Unit109>
         <Filename Value="C:\lazarus_64\lcl\interfaces\win32\win32wsstdctrls.pp"/>
         <UnitName Value="Win32WSStdCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1046"/>
         <CursorPos Y="1062"/>
         <UsageCount Value="8"/>
-      </Unit108>
-      <Unit109>
+      </Unit109>
+      <Unit110>
         <Filename Value="C:\lazarus_64\lcl\include\winapi.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="830"/>
         <CursorPos Y="846"/>
         <UsageCount Value="8"/>
-      </Unit109>
-      <Unit110>
+      </Unit110>
+      <Unit111>
         <Filename Value="C:\lazarus_64\lcl\interfaces\win32\win32winapi.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2964"/>
         <CursorPos Y="2980"/>
         <UsageCount Value="8"/>
-      </Unit110>
-      <Unit111>
+      </Unit111>
+      <Unit112>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2309"/>
         <CursorPos Y="2326"/>
         <UsageCount Value="11"/>
-      </Unit111>
-      <Unit112>
+      </Unit112>
+      <Unit113>
         <Filename Value="C:\lazarus\lcl\interfaces\win32\win32listsl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="136"/>
         <CursorPos X="54" Y="152"/>
         <UsageCount Value="8"/>
-      </Unit112>
-      <Unit113>
+      </Unit113>
+      <Unit114>
         <Filename Value="C:\lazarus\lcl\include\customlistbox.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="186"/>
         <CursorPos Y="203"/>
         <UsageCount Value="8"/>
-      </Unit113>
-      <Unit114>
-        <Filename Value="hiddentsettings_u.pas"/>
-        <IsPartOfProject Value="True"/>
-        <HasResources Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit114>
       <Unit115>
         <Filename Value="hiddentsettings_u.lfm"/>
@@ -1043,123 +1046,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="190" Column="41" TopLine="168"/>
+        <Caret Line="188" Column="10" TopLine="171"/>
       </Position1>
       <Position2>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="252" Column="3" TopLine="197"/>
+        <Caret Line="244" Column="55" TopLine="101"/>
       </Position2>
       <Position3>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="186" Column="33" TopLine="169"/>
+        <Caret Line="237" Column="25" TopLine="220"/>
       </Position3>
       <Position4>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="189" Column="64" TopLine="136"/>
+        <Caret Line="248" Column="55" TopLine="231"/>
       </Position4>
       <Position5>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="188" Column="64" TopLine="154"/>
+        <Caret Line="273" Column="50" TopLine="260"/>
       </Position5>
       <Position6>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="103" Column="11" TopLine="97"/>
+        <Caret Line="282" Column="48" TopLine="251"/>
       </Position6>
       <Position7>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="86" Column="14" TopLine="72"/>
+        <Caret Line="277" Column="41" TopLine="243"/>
       </Position7>
       <Position8>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="188" Column="10" TopLine="171"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1861" TopLine="1858"/>
       </Position8>
       <Position9>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="244" Column="55" TopLine="101"/>
+        <Caret Line="288" Column="7" TopLine="266"/>
       </Position9>
       <Position10>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="237" Column="25" TopLine="220"/>
+        <Caret Line="321" Column="14" TopLine="288"/>
       </Position10>
       <Position11>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="248" Column="55" TopLine="231"/>
+        <Caret Line="339" Column="30" TopLine="290"/>
       </Position11>
       <Position12>
         <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="273" Column="50" TopLine="260"/>
+        <Caret Line="294" Column="11" TopLine="266"/>
       </Position12>
       <Position13>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="282" Column="48" TopLine="251"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1434" Column="71" TopLine="1424"/>
       </Position13>
       <Position14>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="277" Column="41" TopLine="243"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1541" Column="89" TopLine="1528"/>
       </Position14>
       <Position15>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1861" TopLine="1858"/>
+        <Caret Line="1547" Column="51" TopLine="1523"/>
       </Position15>
       <Position16>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="288" Column="7" TopLine="266"/>
-      </Position16>
-      <Position17>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="321" Column="14" TopLine="288"/>
-      </Position17>
-      <Position18>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="339" Column="30" TopLine="290"/>
-      </Position18>
-      <Position19>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="294" Column="11" TopLine="266"/>
-      </Position19>
-      <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1434" Column="71" TopLine="1424"/>
-      </Position20>
-      <Position21>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1541" Column="89" TopLine="1528"/>
-      </Position21>
-      <Position22>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1547" Column="51" TopLine="1523"/>
-      </Position22>
-      <Position23>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="4600" Column="3" TopLine="4598"/>
+      </Position16>
+      <Position17>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="4034" Column="3" TopLine="4032"/>
+      </Position17>
+      <Position18>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="608" Column="48" TopLine="597"/>
+      </Position18>
+      <Position19>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="108" Column="48" TopLine="96"/>
+      </Position19>
+      <Position20>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="106" TopLine="93"/>
+      </Position20>
+      <Position21>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="125" Column="6" TopLine="96"/>
+      </Position21>
+      <Position22>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="10" Column="18"/>
+      </Position22>
+      <Position23>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="124" Column="23" TopLine="96"/>
       </Position23>
       <Position24>
-        <Filename Value="thanksform_u.pas"/>
-        <Caret Line="38" Column="28" TopLine="8"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="125" Column="90" TopLine="96"/>
       </Position24>
       <Position25>
-        <Filename Value="thanksform_u.pas"/>
-        <Caret Line="39" Column="28" TopLine="14"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="520" Column="25" TopLine="640"/>
       </Position25>
       <Position26>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4034" Column="3" TopLine="4032"/>
+        <Caret Line="2693" Column="19" TopLine="2674"/>
       </Position26>
       <Position27>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="608" Column="48" TopLine="597"/>
+        <Caret Line="1945" Column="19" TopLine="1930"/>
       </Position27>
       <Position28>
         <Filename Value="hiddentsettings_u.pas"/>
-        <Caret Line="108" Column="48" TopLine="96"/>
+        <Caret Line="10"/>
       </Position28>
       <Position29>
-        <Filename Value="hiddentsettings_u.pas"/>
-        <Caret Line="77" Column="35" TopLine="101"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1945" Column="19" TopLine="1930"/>
       </Position29>
       <Position30>
-        <Filename Value="hiddentsettings_u.pas"/>
-        <Caret Line="106" TopLine="93"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2001" Column="18" TopLine="1976"/>
       </Position30>
     </JumpHistory>
     <RunParams>
