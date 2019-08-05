@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 287
+  Left = 254
   Height = 693
-  Top = 126
+  Top = 178
   Width = 1084
   ActiveControl = Panel1
   Caption = 'EWLog - Аппаратный журнал'
@@ -1364,6 +1364,7 @@ object MainForm: TMainForm
           '144.000.00'
           '430.000.00'
         )
+        OnChange = ComboBox1Change
         ParentFont = False
         Style = csOwnerDrawEditableVariable
         TabOrder = 21

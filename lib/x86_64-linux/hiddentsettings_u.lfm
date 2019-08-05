@@ -8,22 +8,22 @@ object hiddenSettings: ThiddenSettings
   ClientWidth = 459
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.0.4'
   object GroupBox1: TGroupBox
     Left = 8
     Height = 120
     Top = 8
     Width = 152
     Caption = 'Настройки Cloudlog'
-    ClientHeight = 104
-    ClientWidth = 150
+    ClientHeight = 100
+    ClientWidth = 148
     TabOrder = 0
     object LabeledEdit1: TLabeledEdit
       Left = 8
-      Height = 25
+      Height = 23
       Top = 22
       Width = 136
-      EditLabel.Height = 13
+      EditLabel.Height = 15
       EditLabel.Width = 136
       EditLabel.Caption = 'Адрес сервера'
       EditLabel.ParentColor = False
@@ -31,10 +31,10 @@ object hiddenSettings: ThiddenSettings
     end
     object LabeledEdit2: TLabeledEdit
       Left = 8
-      Height = 25
+      Height = 23
       Top = 64
       Width = 136
-      EditLabel.Height = 13
+      EditLabel.Height = 15
       EditLabel.Width = 136
       EditLabel.Caption = 'API ключ'
       EditLabel.ParentColor = False
@@ -47,22 +47,22 @@ object hiddenSettings: ThiddenSettings
     Top = 8
     Width = 201
     Caption = 'Отправка на Cloudlog'
-    ClientHeight = 104
-    ClientWidth = 199
+    ClientHeight = 100
+    ClientWidth = 197
     TabOrder = 1
     object CheckBox1: TCheckBox
       Left = 8
-      Height = 23
+      Height = 19
       Top = 8
-      Width = 151
+      Width = 143
       Caption = 'Использовать API CAT'
       TabOrder = 0
     end
     object CheckBox2: TCheckBox
       Left = 8
-      Height = 23
+      Height = 19
       Top = 32
-      Width = 183
+      Width = 172
       Caption = 'Использовать API отправки'
       TabOrder = 1
     end
@@ -77,28 +77,17 @@ object hiddenSettings: ThiddenSettings
     TabOrder = 2
   end
   object Memo1: TMemo
-    Left = 136
+    Left = 8
     Height = 90
-    Top = 152
-    Width = 150
-    Lines.Strings = (
-      'Memo1'
-    )
+    Top = 136
+    Width = 361
+    ScrollBars = ssAutoBoth
     TabOrder = 3
-  end
-  object Button2: TButton
-    Left = 327
-    Height = 25
-    Top = 151
-    Width = 75
-    Caption = 'Button2'
-    OnClick = Button2Click
-    TabOrder = 4
   end
   object CatTimer: TTimer
     Enabled = False
     OnTimer = CatTimerTimer
-    left = 55
-    top = 179
+    left = 392
+    top = 40
   end
 end
