@@ -25,7 +25,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="59"/>
+      <BuildNr Value="61"/>
       <Language Value="0419"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Владимир Карпенко" OriginalFilename="EWLog" ProductName="EWLog - Аппаратный журнал"/>
     </VersionInfo>
@@ -457,23 +457,4 @@
       </Options>
     </Linking>
   </CompilerOptions>
-  <Debugging>
-    <Exceptions Count="5">
-      <Item1>
-        <Name Value="EAbort"/>
-      </Item1>
-      <Item2>
-        <Name Value="ECodetoolError"/>
-      </Item2>
-      <Item3>
-        <Name Value="EFOpenError"/>
-      </Item3>
-      <Item4>
-        <Name Value="EConvertError"/>
-      </Item4>
-      <Item5>
-        <Name Value="EProcess"/>
-      </Item5>
-    </Exceptions>
-  </Debugging>
 </CONFIG>
