@@ -75,7 +75,7 @@ object exportAdifForm: TexportAdifForm
     Height = 25
     Top = 162
     Width = 75
-    Caption = 'Отмена'
+    Caption = 'Закрыть'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False
@@ -509,6 +509,7 @@ object exportAdifForm: TexportAdifForm
     top = 80
   end
   object SaveDialog1: TSaveDialog
+    OnClose = SaveDialog1Close
     DefaultExt = '.adi'
     Filter = '*.adi|*.adi'
     left = 368

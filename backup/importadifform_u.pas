@@ -38,6 +38,7 @@ type
     DUPEQuery: TSQLQuery;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FileNameEdit1ButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure lblErrorLogClick(Sender: TObject);
@@ -1126,7 +1127,7 @@ begin
             if DUPEQuery.Fields.Fields[0].AsInteger > 0 then
             begin
               Application.ProcessMessages;
-            {  MainForm.SQLTransaction1.Rollback;}
+              MainForm.SQLTransaction1.Rollback;
               Inc(errr);
               Label2.Caption :=
                 'Количество дубликатов ' + IntToStr(errr);
@@ -1259,10 +1260,10 @@ begin
         end;
       end;
     except
-     // MainForm.SQLTransaction1.Rollback;
+      MainForm.SQLTransaction1.Rollback;
     end;
   finally
- //  MainForm.SQLTransaction1.Commit;
+   MainForm.SQLTransaction1.Commit;
     lblComplete.Caption := 'Готово';
     // Button1.Caption := 'Готово';
     Button1.Enabled := True;
@@ -1274,6 +1275,11 @@ end;
 procedure TImportADIFForm.Button2Click(Sender: TObject);
 begin
   ImportADIFForm.Close;
+end;
+
+procedure TImportADIFForm.FileNameEdit1ButtonClick(Sender: TObject);
+begin
+  FileNameEdit1.InitialDir:=GetCurrentDir;
 end;
 
 procedure TImportADIFForm.FormCreate(Sender: TObject);

@@ -38,6 +38,8 @@ type
     DUPEQuery: TSQLQuery;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FileNameEdit1ButtonClick(Sender: TObject);
+    procedure FileNameEdit1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure lblErrorLogClick(Sender: TObject);
@@ -1274,6 +1276,16 @@ end;
 procedure TImportADIFForm.Button2Click(Sender: TObject);
 begin
   ImportADIFForm.Close;
+end;
+
+procedure TImportADIFForm.FileNameEdit1ButtonClick(Sender: TObject);
+begin
+  FileNameEdit1.InitialDir:=Inif.ReadString('SetLog','ImportPath','');
+end;
+
+procedure TImportADIFForm.FileNameEdit1Change(Sender: TObject);
+begin
+  IniF.WriteString('SetLog','ImportPath', ExtractFilePath(FileNameEdit1.FileName));
 end;
 
 procedure TImportADIFForm.FormCreate(Sender: TObject);

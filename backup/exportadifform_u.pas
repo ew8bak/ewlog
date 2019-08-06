@@ -35,6 +35,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
     procedure rbFileExportAllClick(Sender: TObject);
+    procedure SaveDialog1Close(Sender: TObject);
   private
     FileName: string;
     ExportAll: boolean;
@@ -69,6 +70,7 @@ begin
   begin
     SaveDialog1.FileName := MainForm.DBLookupComboBox1.Text + '_' +
       FormatDateTime('yyyy-mm-dd', now);
+    SaveDialog1.InitialDir:=IniF.ReadString('SetLog','ExportPath',GetCurrentDir);
     SaveDialog1.Execute;
     if SaveDialog1.FileName = '' then
     begin
@@ -133,6 +135,11 @@ begin
     DateEdit1.Enabled := False;
     DateEdit2.Enabled := False;
   end;
+end;
+
+procedure TexportAdifForm.SaveDialog1Close(Sender: TObject);
+begin
+  IniF.WriteString('SetLog','ExportPath', ExtractFilePath(SaveDialog1.FileName));
 end;
 
 function TexportAdifForm.ExportToAdif: word;
