@@ -59,6 +59,7 @@
 # Delphi history and backups
 backup/
 lib/
+night_build/
 __history/
 __recovery/
 *.~*
