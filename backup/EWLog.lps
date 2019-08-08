@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Релиз"/>
+    <BuildModes Active="Дебаг"/>
     <Units Count="44">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="3698"/>
-        <CursorPos X="19" Y="3709"/>
+        <TopLine Value="1531"/>
+        <CursorPos X="4" Y="1540"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -86,7 +86,6 @@
         <CursorPos X="69" Y="73"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="createjournalform_u.pas"/>
@@ -107,13 +106,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="1278"/>
-        <CursorPos X="81" Y="1288"/>
+        <CursorPos X="43" Y="1289"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="dmfunc_u.pas"/>
@@ -122,9 +119,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="1281"/>
-        <CursorPos X="8" Y="1276"/>
+        <TopLine Value="458"/>
+        <CursorPos X="9" Y="475"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit9>
@@ -472,7 +470,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="62"/>
       </Unit42>
       <Unit43>
         <Filename Value="hiddentsettings_u.pas"/>
@@ -483,11 +481,52 @@
         <EditorIndex Value="3"/>
         <TopLine Value="110"/>
         <CursorPos X="27" Y="54"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit43>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="10" HistoryIndex="9">
+      <Position1>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3709" Column="19" TopLine="3698"/>
+      </Position1>
+      <Position2>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1541" Column="25" TopLine="1531"/>
+      </Position2>
+      <Position3>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="69" Column="22" TopLine="54"/>
+      </Position3>
+      <Position4>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="417" Column="15" TopLine="390"/>
+      </Position4>
+      <Position5>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1540" Column="4" TopLine="1531"/>
+      </Position5>
+      <Position6>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="409" Column="26" TopLine="402"/>
+      </Position6>
+      <Position7>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="407" Column="16" TopLine="390"/>
+      </Position7>
+      <Position8>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="405" Column="25" TopLine="390"/>
+      </Position8>
+      <Position9>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="434" Column="30" TopLine="405"/>
+      </Position9>
+      <Position10>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1540" Column="4" TopLine="1531"/>
+      </Position10>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode="default"/>

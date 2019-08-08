@@ -1537,7 +1537,7 @@ var
   CallSignE: string;
   engText : string;
 begin
-  EditButton1.SelStart := UTF8Length(EditButton1.Text);
+ // EditButton1.SelStart := UTF8Length(EditButton1.Text);
   engText := dmFunc.RusToEng(EditButton1.Text);
   if (engText <> EditButton1.Text) then begin
    EditButton1.Text:=engText;

@@ -472,7 +472,7 @@ begin
       if UTF8copy(text,i,1)='Ю' then begin UTF8Delete(text,i,1); UTF8Insert('.',text,i); end;
       if UTF8copy(text,i,1)='Я' then begin UTF8Delete(text,i,1); UTF8Insert('Z',text,i); end;
       if UTF8copy(text,i,1)='.' then begin UTF8Delete(text,i,1); UTF8Insert('/',text,i); end;
-    end;
+    end;}
 
 result:=Text;
 end;
@@ -1270,6 +1270,11 @@ begin
       Result := '3.520.00'
     else
       Result := '3.600.00';
+    exit;
+  end;
+  if band = '60M' then
+  begin
+      Result := '5.200.00';
     exit;
   end;
   if band = '40M' then

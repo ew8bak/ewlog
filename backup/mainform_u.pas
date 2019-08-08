@@ -1998,7 +1998,7 @@ begin
     ComboBox5.Items.Clear;
     ComboBox5.Text := '-10';
   end;
-
+ freqchange:=True;
 end;
 
 procedure TMainForm.ComboBox3Change(Sender: TObject);
