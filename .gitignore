@@ -57,6 +57,7 @@
 *.dsk
 
 # Delphi history and backups
+EWLog
 .deploy/
 backup/
 lib/
