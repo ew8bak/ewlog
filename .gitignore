@@ -57,6 +57,7 @@
 *.dsk
 
 # Delphi history and backups
+.deploy/
 backup/
 lib/
 __history/
