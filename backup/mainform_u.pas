@@ -1641,12 +1641,11 @@ procedure TMainForm.EditButton1KeyDown(Sender: TObject; var Key: Word;
 begin
   seleditnum:=EditButton1.SelStart+1;
  if (Key = VK_BACK) then
- seleditnum:=seleditnum-1;
-//  seleditnum:=EditButton1.SelStart-1;
+  seleditnum:=EditButton1.SelStart-1;
  if (Key = VK_DELETE) then
   seleditnum:=EditButton1.SelStart;
-// if (EditButton1.SelLength <> 0) and (Key = VK_BACK) then
-//  seleditnum:=EditButton1.SelStart;
+ if (EditButton1.SelLength <> 0) and (Key = VK_BACK) then
+  seleditnum:=EditButton1.SelStart;
  end;
 
 procedure TMainForm.Fl_TimerTimer(Sender: TObject);

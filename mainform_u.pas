@@ -2622,10 +2622,10 @@ begin
       for i := 1 to 9 do
       begin
         TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' +
-          IntToStr(i), 'RN6BN -> rn6bn.73.ru:23');
+          IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
       end;
       TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
-        'RN6BN -> rn6bn.73.ru:23');
+        'FREERC -> dx.freerc.ru:8000');
       ComboBox3.Items.Clear;
       ComboBox3.Items.AddStrings(TelStr);
       ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName);
