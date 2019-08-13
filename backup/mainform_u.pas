@@ -362,6 +362,10 @@ type
     procedure Edit2Change(Sender: TObject);
     procedure EditButton1ButtonClick(Sender: TObject);
     procedure EditButton1Change(Sender: TObject);
+    procedure EditButton1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EditButton1KeyPress(Sender: TObject; var Key: char);
+    procedure EditButton1UTF8KeyPress(Sender: TObject; var UTF8Key: TUTF8Char);
     procedure Fl_TimerTimer(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -592,6 +596,7 @@ var
   showTRXform: boolean;
   CheckForm: string;
   sprav: string;
+  seleditnum: integer;
 
 
 
@@ -1537,7 +1542,9 @@ var
   CallSignE: string;
   engText : string;
 begin
-  EditButton1.SelStart := UTF8Length(EditButton1.Text);
+//  EditButton1.SelStart := UTF8Length(EditButton1.Text);
+  EditButton1.SelStart := seleditnum;
+
   engText := dmFunc.RusToEng(EditButton1.Text);
   if (engText <> EditButton1.Text) then begin
    EditButton1.Text:=engText;
@@ -1634,6 +1641,25 @@ begin
         IntToStr(MainForm.LOGBookQuery.RecordCount);
     end;
   end;
+
+end;
+
+procedure TMainForm.EditButton1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  seleditnum:=EditButton1.SelStart+1;
+ if (Key = VK_BACK) then
+  seleditnum:=EditButton1.SelStart-1;
+end;
+
+procedure TMainForm.EditButton1KeyPress(Sender: TObject; var Key: char);
+begin
+
+end;
+
+procedure TMainForm.EditButton1UTF8KeyPress(Sender: TObject;
+  var UTF8Key: TUTF8Char);
+begin
 
 end;
 

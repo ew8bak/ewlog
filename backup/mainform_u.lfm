@@ -315,6 +315,9 @@ object MainForm: TMainForm
         NumGlyphs = 1
         OnButtonClick = EditButton1ButtonClick
         OnChange = EditButton1Change
+        OnKeyDown = EditButton1KeyDown
+        OnKeyPress = EditButton1KeyPress
+        OnUTF8KeyPress = EditButton1UTF8KeyPress
         ParentFont = False
         PasswordChar = #0
         ReadOnly = True
