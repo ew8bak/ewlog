@@ -52,7 +52,9 @@ type
     Label49: TLabel;
     Label50: TLabel;
     LTCPComponent1: TLTCPComponent;
+    LTCPSyncDesk: TLTCPComponent;
     LUDPComponent1: TLUDPComponent;
+    LUDPSyncDesk: TLUDPComponent;
     // LTelnetClientComponent1: TLTelnetClientComponent;
     Memo1: TMemo;
     MenuItem10: TMenuItem;
@@ -375,6 +377,7 @@ type
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LTCPComponent1Receive(aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
+    procedure LUDPSyncDeskReceive(aSocket: TLSocket);
     procedure MenuItem101Click(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem103Click(Sender: TObject);
@@ -2622,10 +2625,10 @@ begin
       for i := 1 to 9 do
       begin
         TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' +
-          IntToStr(i), 'RN6BN -> rn6bn.73.ru:23');
+          IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
       end;
       TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
-        'RN6BN -> rn6bn.73.ru:23');
+        'FREERC -> dx.freerc.ru:8000');
       ComboBox3.Items.Clear;
       ComboBox3.Items.AddStrings(TelStr);
       ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName);
@@ -2687,7 +2690,10 @@ begin
   end;
   LTCPComponent1.Listen(6666);
   LUDPComponent1.Listen(6667);
+  LUDPSyncDesk.Listen(6669);
+  LTCPSyncDesk.Listen(6668);
   LTCPComponent1.ReuseAddress := True;
+  LTCPSyncDesk.ReuseAddress:=True;
   ComboBox1.Text:=IniF.ReadString('SetLog', 'PastBand', '7.000.00');
   freqchange:=True;
   if usewsjt then
@@ -2949,6 +2955,19 @@ begin
   begin
     if mess = 'GetIP' then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':6666');
+    if mess = 'Hello' then
+      LUDPComponent1.SendMessage('Welcome!');
+  end;
+end;
+
+procedure TMainForm.LUDPSyncDeskReceive(aSocket: TLSocket);
+  var
+  mess: string;
+begin
+  if aSocket.GetMessage(mess) > 0 then
+  begin
+    if mess = 'GetIP' then
+      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':6668');
     if mess = 'Hello' then
       LUDPComponent1.SendMessage('Welcome!');
   end;

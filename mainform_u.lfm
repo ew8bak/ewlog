@@ -5031,4 +5031,20 @@ object MainForm: TMainForm
     left = 688
     top = 145
   end
+  object LUDPSyncDesk: TLUDPComponent
+    Port = 0
+    OnReceive = LUDPSyncDeskReceive
+    Timeout = 0
+    left = 909
+    top = 233
+  end
+  object LTCPSyncDesk: TLTCPComponent
+    Port = 0
+    OnError = LTCPSyncDeskError
+    OnAccept = LTCPSyncDeskAccept
+    Timeout = 0
+    ReuseAddress = False
+    left = 992
+    top = 235
+  end
 end

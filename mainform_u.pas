@@ -52,7 +52,9 @@ type
     Label49: TLabel;
     Label50: TLabel;
     LTCPComponent1: TLTCPComponent;
+    LTCPSyncDesk: TLTCPComponent;
     LUDPComponent1: TLUDPComponent;
+    LUDPSyncDesk: TLUDPComponent;
     // LTelnetClientComponent1: TLTelnetClientComponent;
     Memo1: TMemo;
     MenuItem10: TMenuItem;
@@ -374,7 +376,10 @@ type
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LTCPComponent1Receive(aSocket: TLSocket);
+    procedure LTCPSyncDeskAccept(aSocket: TLSocket);
+    procedure LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
+    procedure LUDPSyncDeskReceive(aSocket: TLSocket);
     procedure MenuItem101Click(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem103Click(Sender: TObject);
@@ -2685,9 +2690,14 @@ begin
   finally
    // DateSeparator := '.';
   end;
+
   LTCPComponent1.Listen(6666);
   LUDPComponent1.Listen(6667);
+  LUDPSyncDesk.Listen(6669);
+  LTCPSyncDesk.Listen(6668);
   LTCPComponent1.ReuseAddress := True;
+  LTCPSyncDesk.ReuseAddress:=True;
+
   ComboBox1.Text:=IniF.ReadString('SetLog', 'PastBand', '7.000.00');
   freqchange:=True;
   if usewsjt then
@@ -2941,6 +2951,17 @@ begin
   end;
 end;
 
+procedure TMainForm.LTCPSyncDeskAccept(aSocket: TLSocket);
+begin
+    StatusBar1.Panels.Items[0].Text :=
+    'Клиент подключился:'+aSocket.PeerAddress;
+end;
+
+procedure TMainForm.LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
+begin
+  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + msg;
+end;
+
 procedure TMainForm.LUDPComponent1Receive(aSocket: TLSocket);
 var
   mess: string;
@@ -2949,6 +2970,19 @@ begin
   begin
     if mess = 'GetIP' then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':6666');
+    if mess = 'Hello' then
+      LUDPComponent1.SendMessage('Welcome!');
+  end;
+end;
+
+procedure TMainForm.LUDPSyncDeskReceive(aSocket: TLSocket);
+  var
+  mess: string;
+begin
+  if aSocket.GetMessage(mess) > 0 then
+  begin
+    if mess = 'GetIP' then
+      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':6668');
     if mess = 'Hello' then
       LUDPComponent1.SendMessage('Welcome!');
   end;
