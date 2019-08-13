@@ -330,7 +330,6 @@ type
     TabSheet1: TTabSheet;
     Timer1: TTimer;
     TrayIcon1: TTrayIcon;
-    procedure Button1Click(Sender: TObject);
     procedure CallBookLiteConnectionAfterDisconnect(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
@@ -355,7 +354,6 @@ type
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
-    procedure DBLookupComboBox1Change(Sender: TObject);
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
     procedure Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure Edit1Change(Sender: TObject);
@@ -364,8 +362,6 @@ type
     procedure EditButton1Change(Sender: TObject);
     procedure EditButton1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure EditButton1KeyPress(Sender: TObject; var Key: char);
-    procedure EditButton1UTF8KeyPress(Sender: TObject; var UTF8Key: TUTF8Char);
     procedure Fl_TimerTimer(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -374,7 +370,6 @@ type
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Label50Click(Sender: TObject);
-    procedure LogBookInfoDSDataChange(Sender: TObject; Field: TField);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
@@ -447,7 +442,6 @@ type
     procedure MenuItem98Click(Sender: TObject);
     procedure MenuItem99Click(Sender: TObject);
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
-    procedure Panel10Click(Sender: TObject);
     procedure sgClusterDblClick(Sender: TObject);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
@@ -1542,9 +1536,7 @@ var
   CallSignE: string;
   engText : string;
 begin
-//  EditButton1.SelStart := UTF8Length(EditButton1.Text);
   EditButton1.SelStart := seleditnum;
-
   engText := dmFunc.RusToEng(EditButton1.Text);
   if (engText <> EditButton1.Text) then begin
    EditButton1.Text:=engText;
@@ -1649,19 +1641,13 @@ procedure TMainForm.EditButton1KeyDown(Sender: TObject; var Key: Word;
 begin
   seleditnum:=EditButton1.SelStart+1;
  if (Key = VK_BACK) then
-  seleditnum:=EditButton1.SelStart-1;
-end;
-
-procedure TMainForm.EditButton1KeyPress(Sender: TObject; var Key: char);
-begin
-
-end;
-
-procedure TMainForm.EditButton1UTF8KeyPress(Sender: TObject;
-  var UTF8Key: TUTF8Char);
-begin
-
-end;
+ seleditnum:=seleditnum-1;
+//  seleditnum:=EditButton1.SelStart-1;
+ if (Key = VK_DELETE) then
+  seleditnum:=EditButton1.SelStart;
+// if (EditButton1.SelLength <> 0) and (Key = VK_BACK) then
+//  seleditnum:=EditButton1.SelStart;
+ end;
 
 procedure TMainForm.Fl_TimerTimer(Sender: TObject);
 var
@@ -1884,13 +1870,6 @@ begin
   if MainForm.CloseQuery = False then
     CallBookLiteConnection.Connected := True;
 end;
-
-procedure TMainForm.Button1Click(Sender: TObject);
-begin
-
-end;
-
-
 
 procedure TMainForm.CheckBox2Change(Sender: TObject);
 begin
@@ -2507,11 +2486,6 @@ begin
   end;
 end;
 
-procedure TMainForm.DBLookupComboBox1Change(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.DBLookupComboBox1CloseUp(Sender: TObject);
 begin
   SelDB(DBLookupComboBox1.KeyValue);
@@ -2824,11 +2798,6 @@ end;
 procedure TMainForm.Label50Click(Sender: TObject);
 begin
   Update_Form.Show;
-end;
-
-procedure TMainForm.LogBookInfoDSDataChange(Sender: TObject; Field: TField);
-begin
-
 end;
 
 procedure TMainForm.LTCPComponent1Accept(aSocket: TLSocket);
@@ -4675,11 +4644,6 @@ begin
     EditButton1.ReadOnly := False;
     DBGrid1.PopupMenu := PopupMenu1;
   end;
-end;
-
-procedure TMainForm.Panel10Click(Sender: TObject);
-begin
-
 end;
 
 procedure TMainForm.sgClusterDblClick(Sender: TObject);
