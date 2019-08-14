@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ExtCtrls, process, sqldb, LazUTF8;
+  StdCtrls, EditBtn, ExtCtrls, process, sqldb, LazUTF8, LConvEncoding;
 
 type
 
@@ -303,10 +303,14 @@ begin
 
       tmp := '<NAME' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMName').AsString, CheckBox2.Checked);
+      if CheckBox2.Checked=True then
+      Write(f, UTF8ToCP1251(tmp)) else
       Write(f, tmp);
 
       tmp := '<QTH' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMQTH').AsString, CheckBox2.Checked);
+      if CheckBox2.Checked=True then
+      Write(f, UTF8ToCP1251(tmp)) else
       Write(f, tmp);
 
       tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
@@ -383,6 +387,9 @@ begin
 
       tmp := '<COMMENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOAddInfo').AsString, CheckBox2.Checked);
+
+      if CheckBox2.Checked=True then
+      Write(f, UTF8ToCP1251(tmp)) else
       Write(f, tmp);
 
       Write(f, '<EOR>');

@@ -20,7 +20,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="2818"/>
         <CursorPos X="3" Y="2825"/>
         <UsageCount Value="200"/>
@@ -57,11 +56,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="171"/>
         <CursorPos X="57" Y="188"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="configform_u.pas"/>
@@ -82,11 +80,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="130"/>
-        <CursorPos X="69" Y="73"/>
+        <TopLine Value="294"/>
+        <CursorPos X="19" Y="308"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="createjournalform_u.pas"/>
@@ -107,11 +107,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1278"/>
         <CursorPos X="43" Y="1289"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="dmfunc_u.pas"/>
@@ -120,9 +119,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="394"/>
-        <CursorPos X="40" Y="408"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="751"/>
+        <CursorPos X="30" Y="763"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit9>
@@ -217,7 +216,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="102"/>
         <CursorPos X="37" Y="107"/>
         <UsageCount Value="200"/>
@@ -233,8 +232,8 @@
       <Unit22>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="363"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="362"/>
         <CursorPos X="18" Y="178"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -246,11 +245,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="324"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="323"/>
         <CursorPos X="34" Y="264"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit23>
       <Unit24>
         <Filename Value="hrdlog.pas"/>
@@ -314,7 +312,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="392"/>
         <CursorPos Y="162"/>
         <UsageCount Value="200"/>
@@ -471,7 +469,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="70"/>
       </Unit42>
       <Unit43>
         <Filename Value="hiddentsettings_u.pas"/>
@@ -479,14 +477,34 @@
         <ComponentName Value="hiddenSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="109"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="108"/>
         <CursorPos X="27" Y="54"/>
-        <UsageCount Value="34"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="35"/>
       </Unit43>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="5" HistoryIndex="4">
+      <Position1>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="73" Column="69" TopLine="129"/>
+      </Position1>
+      <Position2>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="397" Column="40" TopLine="395"/>
+      </Position2>
+      <Position3>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="386" Column="33" TopLine="372"/>
+      </Position3>
+      <Position4>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="310" Column="28" TopLine="295"/>
+      </Position4>
+      <Position5>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="306" Column="62" TopLine="293"/>
+      </Position5>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode="default"/>

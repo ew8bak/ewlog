@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ExtCtrls, process, sqldb, LazUTF8;
+  StdCtrls, EditBtn, ExtCtrls, process, sqldb, LazUTF8, LConvEncoding;
 
 type
 
@@ -70,7 +70,7 @@ begin
   begin
     SaveDialog1.FileName := MainForm.DBLookupComboBox1.Text + '_' +
       FormatDateTime('yyyy-mm-dd', now);
-    SaveDialog1.InitialDir:=IniF.ReadString('SetLog','ExportPath',GetCurrentDir);
+    SaveDialog1.InitialDir:=IniF.ReadString('SetLog','ExportPath','');
     SaveDialog1.Execute;
     if SaveDialog1.FileName = '' then
     begin
@@ -303,11 +303,13 @@ begin
 
       tmp := '<NAME' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMName').AsString, CheckBox2.Checked);
-      Write(f, tmp);
+      if CheckBox2.Checked=True then
+      Write(f, UTF8ToCP1251(tmp)) else
+      Write(f, tmp)
 
       tmp := '<QTH' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMQTH').AsString, CheckBox2.Checked);
-      Write(f, tmp);
+      Write(f, UTF8ToCP1251(tmp));
 
       tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'Grid').AsString, CheckBox2.Checked);
@@ -383,7 +385,7 @@ begin
 
       tmp := '<COMMENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOAddInfo').AsString, CheckBox2.Checked);
-      Write(f, tmp);
+      Write(f, UTF8ToCP1251(tmp));
 
       Write(f, '<EOR>');
       Writeln(f);
