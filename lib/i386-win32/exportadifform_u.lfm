@@ -509,6 +509,7 @@ object exportAdifForm: TexportAdifForm
     top = 80
   end
   object SaveDialog1: TSaveDialog
+    OnClose = SaveDialog1Close
     DefaultExt = '.adi'
     Filter = '*.adi|*.adi'
     left = 368

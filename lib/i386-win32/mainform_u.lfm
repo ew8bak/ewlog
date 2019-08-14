@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 287
+  Left = 254
   Height = 693
-  Top = 126
+  Top = 178
   Width = 1084
   ActiveControl = Panel1
   Caption = 'EWLog - Аппаратный журнал'
@@ -315,6 +315,7 @@ object MainForm: TMainForm
         NumGlyphs = 1
         OnButtonClick = EditButton1ButtonClick
         OnChange = EditButton1Change
+        OnKeyDown = EditButton1KeyDown
         ParentFont = False
         PasswordChar = #0
         ReadOnly = True
@@ -1364,6 +1365,7 @@ object MainForm: TMainForm
           '144.000.00'
           '430.000.00'
         )
+        OnChange = ComboBox1Change
         ParentFont = False
         Style = csOwnerDrawEditableVariable
         TabOrder = 21
@@ -2216,7 +2218,6 @@ object MainForm: TMainForm
         ClientHeight = 286
         ClientWidth = 472
         TabOrder = 2
-        OnClick = Panel10Click
         object MapViewer1: TMapViewer
           Left = 1
           Height = 284
@@ -5029,5 +5030,21 @@ object MainForm: TMainForm
     HistoryFilename = 'iphist.dat'
     left = 688
     top = 145
+  end
+  object LUDPSyncDesk: TLUDPComponent
+    Port = 0
+    OnReceive = LUDPSyncDeskReceive
+    Timeout = 0
+    left = 909
+    top = 233
+  end
+  object LTCPSyncDesk: TLTCPComponent
+    Port = 0
+    OnError = LTCPSyncDeskError
+    OnAccept = LTCPSyncDeskAccept
+    Timeout = 0
+    ReuseAddress = False
+    left = 992
+    top = 235
   end
 end

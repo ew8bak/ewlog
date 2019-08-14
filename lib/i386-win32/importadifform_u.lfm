@@ -420,7 +420,7 @@ object ImportADIFForm: TImportADIFForm
     Left = 144
     Height = 15
     Top = 96
-    Width = 266
+    Width = 268
     Caption = 'Комментарий для всех импортируемых записей'
     Font.Height = -12
     ParentColor = False
@@ -441,6 +441,8 @@ object ImportADIFForm: TImportADIFForm
     MaxLength = 0
     ParentFont = False
     TabOrder = 4
+    OnButtonClick = FileNameEdit1ButtonClick
+    OnChange = FileNameEdit1Change
   end
   object Button1: TButton
     Left = 432
