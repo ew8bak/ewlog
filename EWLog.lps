@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Релиз"/>
+    <BuildModes Active="Дебаг"/>
     <Units Count="44">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -469,7 +469,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="70"/>
+        <UsageCount Value="71"/>
       </Unit42>
       <Unit43>
         <Filename Value="hiddentsettings_u.pas"/>
@@ -480,34 +480,30 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="108"/>
         <CursorPos X="27" Y="54"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="36"/>
       </Unit43>
     </Units>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
-        <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="73" Column="69" TopLine="129"/>
-      </Position1>
-      <Position2>
         <Filename Value="dmfunc_u.pas"/>
         <Caret Line="397" Column="40" TopLine="395"/>
+      </Position1>
+      <Position2>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="386" Column="33" TopLine="372"/>
       </Position2>
       <Position3>
         <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="386" Column="33" TopLine="372"/>
+        <Caret Line="310" Column="28" TopLine="295"/>
       </Position3>
       <Position4>
         <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="310" Column="28" TopLine="295"/>
+        <Caret Line="306" Column="62" TopLine="293"/>
       </Position4>
       <Position5>
         <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="306" Column="62" TopLine="293"/>
-      </Position5>
-      <Position6>
-        <Filename Value="exportadifform_u.pas"/>
         <Caret Line="308" Column="19" TopLine="294"/>
-      </Position6>
+      </Position5>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

@@ -82,8 +82,8 @@
         <UnitName Value="ExportAdifForm_u"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="294"/>
-        <CursorPos X="19" Y="308"/>
+        <TopLine Value="391"/>
+        <CursorPos X="7" Y="391"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -485,24 +485,24 @@
     </Units>
     <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
-        <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="73" Column="69" TopLine="129"/>
-      </Position1>
-      <Position2>
         <Filename Value="dmfunc_u.pas"/>
         <Caret Line="397" Column="40" TopLine="395"/>
+      </Position1>
+      <Position2>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="386" Column="33" TopLine="372"/>
       </Position2>
       <Position3>
         <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="386" Column="33" TopLine="372"/>
+        <Caret Line="310" Column="28" TopLine="295"/>
       </Position3>
       <Position4>
         <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="310" Column="28" TopLine="295"/>
+        <Caret Line="306" Column="62" TopLine="293"/>
       </Position4>
       <Position5>
         <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="306" Column="62" TopLine="293"/>
+        <Caret Line="308" Column="19" TopLine="294"/>
       </Position5>
     </JumpHistory>
     <RunParams>
