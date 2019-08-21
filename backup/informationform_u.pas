@@ -61,7 +61,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
     function QRZRU(CallS: string): string;
-    procedure QRZRUsprav(CallS: string);
+    procedure QRZRUsprav(CallS: string; imgShow:Boolean);
     function HAMQTH(CallS: string): string;
     function QRZCOM(CallS: string): string;
     procedure Timer1StartTimer(Sender: TObject);
@@ -267,10 +267,12 @@ begin
   end;
 end;
 
-procedure TInformationForm.QRZRUsprav(CallS: string);
+procedure TInformationForm.QRZRUsprav(CallS: string; imgShow:Boolean);
 var
   resp, comment: string;
   beginSTR, endSTR: integer;
+  PhotoString: string;
+  Flags: TReplaceFlags;
 begin
   try
   MainForm.Edit11.Text := '';
@@ -279,6 +281,12 @@ begin
   MainForm.Edit3.Text := '';
   MainForm.Edit4.Text := '';
   comment := '';
+   PhotoString := '';
+//  img.Align:=alClient;
+  //img.Proportional:=True;
+  //img.Stretch:=True;
+//  img.Visible:=False;
+//  jpeg.Clear;
 
   if Length(CallS) >= 3 then
   begin
@@ -340,8 +348,27 @@ begin
     endSTR := resp.IndexOf('</street>');
     if (beginSTR <> endSTR) then
       comment := comment + resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
-
     MainForm.Edit11.Text := comment;
+
+    //Photo
+    beginSTR := resp.IndexOf('<file>');
+    endSTR := resp.IndexOf('</file>');
+    if (beginSTR <> endSTR) then
+    PhotoString := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+
+    if (PhotoString <> '') and (imgShow = True) then
+    begin
+      with THTTPSend.Create do
+      begin
+        if HTTPMethod('GET', StringReplace(PhotoString, 'https', 'http', Flags)) then
+        begin
+          MainForm.Photo.LoadFromStream(Document);
+        end;
+        Free;
+      end;
+      MainForm.tIMG.Picture.Assign(MainForm.Photo);
+      MainForm.tIMG.Show;
+    end;
   end;
   finally
   end;
@@ -672,6 +699,9 @@ begin
   loginQRZru := IniF.ReadString('SetLog', 'QRZ_Login', '');
   passQRZru := IniF.ReadString('SetLog', 'QRZ_Pass', '');
   DirectoryEdit1.Text := MainForm.PhotoDir;
+
+  if (loginQRZru = '') or (passQRZru = '') then
+      ShowMessage('Укажите в настройках Логин и Пароль для доступа к XML API QRZ.ru');
 
   if (MainForm.EditButton1.Text <> '') and (EditQSO_Form.Edit1.Text ='') then
   calsign:=MainForm.EditButton1.Text

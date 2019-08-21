@@ -12,7 +12,7 @@ uses
   kcMapViewer, INIFiles, md5, pingsend, kcMapViewerGLGeoNames, LCLType,
   Tlntsend
   {$IFDEF UNIX}, kcMapViewerDESynapse, process, {$ELSE}, kcMapViewerDEWin32,
-  {$ENDIF UNIX} lNetComponents, LCLIntf, lNet, StrUtils;
+  {$ENDIF UNIX} lNetComponents, LCLIntf, lNet, StrUtils, httpsend;
 
 const
   constColumnName: array [0..28] of string =
@@ -69,6 +69,9 @@ type
     MenuItem108: TMenuItem;
     MenuItem109: TMenuItem;
     MenuItem11: TMenuItem;
+    MenuItem110: TMenuItem;
+    MenuItem111: TMenuItem;
+    MenuItem112: TMenuItem;
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
@@ -341,6 +344,7 @@ type
     //{$IfDef WINDOWS}
     procedure CheckUpdatesTimerStartTimer(Sender: TObject);
     procedure CheckUpdatesTimerTimer(Sender: TObject);
+    procedure ClearEditExecute(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     //{$ENDIF WINDOWS}
     procedure ComboBox2Change(Sender: TObject);
@@ -376,6 +380,8 @@ type
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LTCPComponent1Receive(aSocket: TLSocket);
+    procedure LTCPSyncDeskAccept(aSocket: TLSocket);
+    procedure LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
     procedure LUDPSyncDeskReceive(aSocket: TLSocket);
     procedure MenuItem101Click(Sender: TObject);
@@ -388,6 +394,8 @@ type
     procedure MenuItem108Click(Sender: TObject);
     procedure MenuItem109Click(Sender: TObject);
     procedure MenuItem10Click(Sender: TObject);
+    procedure MenuItem111Click(Sender: TObject);
+    procedure MenuItem112Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
     procedure MenuItem13Click(Sender: TObject);
@@ -497,6 +505,9 @@ type
 
   public
     { public declarations }
+    PhotoQrzString: string;
+    Photo: TJPEGImage;
+    tIMG: TImage;
     ColorTextGrid: integer;
     ColorBackGrid: integer;
     SizeTextGrid: integer;
@@ -594,6 +605,7 @@ var
   CheckForm: string;
   sprav: string;
   seleditnum: integer;
+
 
 
 
@@ -1100,6 +1112,10 @@ begin
   EditFlag := False;
   //CheckBox1.Checked := True;
   ComboBox6.Text := '';
+  if MenuItem111.Checked=True then begin
+  Photo.Clear;
+  tIMG.Picture:=nil;
+  end;
 end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
@@ -1552,7 +1568,8 @@ begin
     begin
       if (CallBookLiteConnection.Connected = True) and (IniF.ReadString('SetLog', 'Sprav', '') = 'False') then
         SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
-      if (CallBookLiteConnection.Connected = False) and (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then         InformationForm.QRZRUsprav(EditButton1.Text);
+      if (CallBookLiteConnection.Connected = False) and (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then
+      InformationForm.QRZRUsprav(EditButton1.Text,MenuItem111.Checked);
 
       if CheckBox6.Checked = False then
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1);
@@ -1808,6 +1825,7 @@ begin
 
   IniF.WriteString('TelnetCluster', 'ServerDef', ComboBox3.Text);
   IniF.WriteBool('SetLog', 'TRXForm', ShowTRXForm);
+  IniF.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
   IniF.WriteString('SetLog', 'PastBand', ComboBox1.Text);
   TRXForm.Close;
 end;
@@ -1945,6 +1963,11 @@ begin
   else
     Label50.Visible := False;
   {$ENDIF WINDOWS}
+end;
+
+procedure TMainForm.ClearEditExecute(Sender: TObject);
+begin
+
 end;
 
 procedure TMainForm.ComboBox1Change(Sender: TObject);
@@ -2549,7 +2572,7 @@ begin
   if (CallBookLiteConnection.Connected = True) and (IniF.ReadString('SetLog', 'Sprav', '') = 'False') then
         SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
       if (CallBookLiteConnection.Connected = False) and (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then begin
-        InformationForm.QRZRUsprav(EditButton1.Text);
+        InformationForm.QRZRUsprav(EditButton1.Text,MenuItem111.Checked);
       end;
 end;
 
@@ -2654,6 +2677,9 @@ begin
 
       ShowTRXForm := IniF.ReadBool('SetLog', 'TRXForm', False);
 
+
+
+
       if FLDIGI_USE = 'YES' then
         MenuItem74.Enabled := True
       else
@@ -2688,12 +2714,14 @@ begin
   finally
    // DateSeparator := '.';
   end;
+
   LTCPComponent1.Listen(6666);
   LUDPComponent1.Listen(6667);
   LUDPSyncDesk.Listen(6669);
   LTCPSyncDesk.Listen(6668);
   LTCPComponent1.ReuseAddress := True;
   LTCPSyncDesk.ReuseAddress:=True;
+
   ComboBox1.Text:=IniF.ReadString('SetLog', 'PastBand', '7.000.00');
   freqchange:=True;
   if usewsjt then
@@ -2711,6 +2739,10 @@ end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
+  if MenuItem111.Checked=True then begin
+  Photo.Free;
+  tIMG.Free;
+  end;
   //IniF.WriteString('SetLog', 'PastBand', ComboBox1.Text);
   if CheckBox3.Checked = True then
     IniF.WriteString('SetLog', 'UseMAPS', 'YES')
@@ -2778,6 +2810,10 @@ begin
     TRXForm.Align := alClient;
     TRXForm.Show;
   end;
+
+  if IniF.ReadBool('SetLog', 'ImgForm', False) = True then
+    MenuItem111.Click else
+  MenuItem112.Click;
 
   if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
   begin
@@ -2945,6 +2981,17 @@ begin
       ImportAdifMobile:=False;
     end;
   end;
+end;
+
+procedure TMainForm.LTCPSyncDeskAccept(aSocket: TLSocket);
+begin
+    StatusBar1.Panels.Items[0].Text :=
+    'Клиент подключился:'+aSocket.PeerAddress;
+end;
+
+procedure TMainForm.LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
+begin
+  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + msg;
 end;
 
 procedure TMainForm.LUDPComponent1Receive(aSocket: TLSocket);
@@ -3218,6 +3265,44 @@ begin
     DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
   end;
 
+end;
+
+procedure TMainForm.MenuItem111Click(Sender: TObject);
+begin
+
+  if MenuItem86.Checked = True then begin
+  ShowTRXForm := False;
+  TRXForm.Hide;
+  MenuItem88.Checked:=True;
+  MenuItem86.Checked:=False;
+  end;
+
+  MenuItem112.Checked := False;
+  //отоброжение фото с qrz.ru
+  if MenuItem111.Checked = True then begin
+  tIMG:=TImage.Create(Self);
+  Photo:=TJPEGImage.Create;
+  tIMG.Parent:=MainForm.Panel13;
+  //tIMG.Height:=Panel13.Height;
+  //tIMG.Width:=Panel13.Width;
+  tIMG.Align:=alClient;
+  tIMG.Proportional:=True;
+  tIMG.Stretch:=True;
+  end else begin
+ // if MenuItem111.Checked=False then begin
+  Photo.Free;
+  tIMG.Free;
+  end;
+end;
+
+procedure TMainForm.MenuItem112Click(Sender: TObject);
+begin
+  if MenuItem111.Checked = True then begin
+  Photo.Free;
+  tIMG.Free;
+  end;
+  MenuItem111.Checked := False;
+  MenuItem112.Checked := True;
 end;
 
 //QSL получена
@@ -4572,7 +4657,15 @@ end;
 
 procedure TMainForm.MenuItem86Click(Sender: TObject);
 begin
+
+  if MenuItem111.Checked=True then begin
+  Photo.Free;
+  tIMG.Free;
+  end;
+
   MenuItem88.Checked := False;
+  MenuItem111.Checked:=False;
+  MenuItem112.Checked:=True;
   if MenuItem86.Checked = True then
   begin
     TRXForm.Parent := Panel13;

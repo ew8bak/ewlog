@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 254
-  Height = 693
-  Top = 178
+  Left = 342
+  Height = 673
+  Top = 155
   Width = 1084
   ActiveControl = Panel1
   Caption = 'EWLog - Аппаратный журнал'
-  ClientHeight = 673
+  ClientHeight = 653
   ClientWidth = 1084
   Font.Height = -12
   KeyPreview = True
@@ -190,12 +190,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 269
+    Height = 249
     Top = 26
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 269
+    ClientHeight = 249
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1504,7 +1504,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 20
+      Height = 0
       Top = 248
       Width = 472
       Align = alClient
@@ -1514,16 +1514,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 269
+    Height = 249
     Top = 26
     Width = 610
     Align = alClient
-    ClientHeight = 269
+    ClientHeight = 249
     ClientWidth = 610
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 267
+      Height = 247
       Top = 1
       Width = 608
       Align = alClient
@@ -1699,7 +1699,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 295
+    Top = 275
     Width = 1084
     Align = alBottom
     ClientHeight = 378
@@ -3274,6 +3274,18 @@ object MainForm: TMainForm
           OnClick = MenuItem86Click
         end
       end
+      object MenuItem110: TMenuItem
+        Caption = 'Отображение фото с QRZ.RU'
+        object MenuItem111: TMenuItem
+          AutoCheck = True
+          Caption = 'Включить'
+          OnClick = MenuItem111Click
+        end
+        object MenuItem112: TMenuItem
+          Caption = 'Отключить'
+          OnClick = MenuItem112Click
+        end
+      end
       object MenuItem72: TMenuItem
         Caption = 'Компактный режим'
         OnClick = MenuItem72Click
@@ -3764,6 +3776,7 @@ object MainForm: TMainForm
     end
     object ClearEdit: TAction
       DisableIfNoHandler = False
+      OnExecute = ClearEditExecute
       ShortCut = 32835
     end
   end
