@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="44">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -483,7 +483,7 @@
         <UsageCount Value="45"/>
       </Unit43>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="4648" Column="31" TopLine="4646"/>
@@ -598,12 +598,8 @@
       </Position28>
       <Position29>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1598" Column="10" TopLine="1625"/>
-      </Position29>
-      <Position30>
-        <Filename Value="mainform_u.pas"/>
         <Caret Line="3288" Column="32" TopLine="3267"/>
-      </Position30>
+      </Position29>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
