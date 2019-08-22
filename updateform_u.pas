@@ -36,6 +36,7 @@ type
     procedure FormShow(Sender: TObject);
     function GetSize(URL: string): int64;
     {$ELSE}
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -459,6 +460,11 @@ begin
 end;
 
 procedure TUpdate_Form.Button2Click(Sender: TObject);
+begin
+
+end;
+
+procedure TUpdate_Form.FormCreate(Sender: TObject);
 begin
 
 end;
