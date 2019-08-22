@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="46">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -252,7 +252,6 @@
         <CursorPos X="11" Y="359"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit23>
       <Unit24>
         <Filename Value="hrdlog.pas"/>
@@ -500,7 +499,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="75"/>
         <CursorPos Y="89"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit45>
     </Units>
