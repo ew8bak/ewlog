@@ -1002,16 +1002,20 @@ begin
   Application.ProcessMessages;
   SQLQuery2.Open;
 
-  if (callNameS = SQLQuery2.FieldByName('CallSign').AsString) and
-    (ind = 1) and (EditButton1.Text <> '') then
+
+
+ // if (callNameS = SQLQuery2.FieldByName('CallSign').AsString) and
+ //   (ind = 1) and (EditButton1.Text <> '') then
+ if SQLQuery2.RecordCount>0 then
     EditButton1.Color := clMoneyGreen
   else
     EditButton1.Color := clDefault;
 
   //Поиск и заполнение из внутриней базы
-  if (EditButton1.Text <> '') and (EditButton1.Text =
-    SQLQuery2.FieldByName('CallSign').AsString) then
-  begin
+ // if (EditButton1.Text <> '') and (EditButton1.Text =
+ //   SQLQuery2.FieldByName('CallSign').AsString) then
+ if SQLQuery2.RecordCount>0 then
+ begin
     if UseCallBook <> 'YES' then begin
      Edit1.Text := SQLQuery2.FieldByName('OMName').AsString;
       Edit2.Text := SQLQuery2.FieldByName('OMQTH').AsString;
@@ -1578,7 +1582,7 @@ begin
 
       if CheckBox6.Checked = False then
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1);
-     SearchPrefix(dmFunc.ExtractCallsign(EditButton1.Text), False);
+    SearchPrefix(dmFunc.ExtractCallsign(EditButton1.Text), False);
       if CheckBox3.Checked = True then
       begin
         val(lo1, Long, Error);

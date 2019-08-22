@@ -1002,8 +1002,11 @@ begin
   Application.ProcessMessages;
   SQLQuery2.Open;
 
-  if (callNameS = SQLQuery2.FieldByName('CallSign').AsString) and
-    (ind = 1) and (EditButton1.Text <> '') then
+
+
+ // if (callNameS = SQLQuery2.FieldByName('CallSign').AsString) and
+ //   (ind = 1) and (EditButton1.Text <> '') then
+ if SQLQuery2.RecordCount>0 then
     EditButton1.Color := clMoneyGreen
   else
     EditButton1.Color := clDefault;
@@ -1578,7 +1581,7 @@ begin
 
       if CheckBox6.Checked = False then
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1);
-     SearchPrefix(dmFunc.ExtractCallsign(EditButton1.Text), False);
+    SearchPrefix(dmFunc.ExtractCallsign(EditButton1.Text), False);
       if CheckBox3.Checked = True then
       begin
         val(lo1, Long, Error);
@@ -2719,8 +2722,6 @@ begin
   finally
    // DateSeparator := '.';
   end;
-
-  tIMG:=nil;
 
   LTCPComponent1.Listen(6666);
   LUDPComponent1.Listen(6667);
