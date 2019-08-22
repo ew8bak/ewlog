@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 285
-  Height = 850
-  Top = 172
+  Left = 342
+  Height = 673
+  Top = 155
   Width = 1084
   ActiveControl = Panel1
   Caption = 'EWLog - Аппаратный журнал'
-  ClientHeight = 830
+  ClientHeight = 653
   ClientWidth = 1084
   Font.Height = -12
   KeyPreview = True
@@ -190,12 +190,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 426
+    Height = 249
     Top = 26
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 426
+    ClientHeight = 249
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1504,7 +1504,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 177
+      Height = 0
       Top = 248
       Width = 472
       Align = alClient
@@ -1514,16 +1514,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 426
+    Height = 249
     Top = 26
     Width = 610
     Align = alClient
-    ClientHeight = 426
+    ClientHeight = 249
     ClientWidth = 610
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 424
+      Height = 247
       Top = 1
       Width = 608
       Align = alClient
@@ -1699,7 +1699,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 452
+    Top = 275
     Width = 1084
     Align = alBottom
     ClientHeight = 378

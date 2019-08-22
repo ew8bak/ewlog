@@ -12,7 +12,7 @@ uses
   kcMapViewer, INIFiles, md5, pingsend, kcMapViewerGLGeoNames, LCLType,
   Tlntsend
   {$IFDEF UNIX}, kcMapViewerDESynapse, process, {$ELSE}, kcMapViewerDEWin32,
-  {$ENDIF UNIX} lNetComponents, LCLIntf, lNet, StrUtils, httpsend;
+  {$ENDIF UNIX} lNetComponents, LCLIntf, lNet, StrUtils, httpsend, FPReadGif, FPReadPNG;
 
 const
   constColumnName: array [0..28] of string =
@@ -506,8 +506,11 @@ type
   public
     { public declarations }
     PhotoQrzString: string;
-    Photo: TJPEGImage;
+    PhotoJPEG: TJPEGImage;
+    PhotoGIF: TGIFImage;
+    PhotoPNG: TPortableNetworkGraphic;
     tIMG: TImage;
+    PhotoGroup: TGroupBox;
     ColorTextGrid: integer;
     ColorBackGrid: integer;
     SizeTextGrid: integer;
@@ -1113,7 +1116,9 @@ begin
   //CheckBox1.Checked := True;
   ComboBox6.Text := '';
   if MenuItem111.Checked=True then begin
-  Photo.Clear;
+  PhotoJPEG.Clear;
+  PhotoGIF.Clear;
+  PhotoPNG.Clear;
   tIMG.Picture:=nil;
   end;
 end;
@@ -1997,7 +2002,7 @@ begin
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
     (ComboBox2.Text <> 'USB') or (ComboBox2.Text <> 'JT44') or
     (ComboBox2.Text <> 'JT65') or (ComboBox2.Text <> 'JT6M') or
-    (ComboBox2.Text <> 'JT9') or (ComboBox2.Text <> 'ROS') then
+    (ComboBox2.Text <> 'JT9') or (ComboBox2.Text <> 'FT8') or (ComboBox2.Text <> 'ROS') then
   begin
     ComboBox4.Items.Clear;
     ComboBox4.Items.AddStrings(RSdigi);
@@ -2715,6 +2720,8 @@ begin
    // DateSeparator := '.';
   end;
 
+  tIMG:=nil;
+
   LTCPComponent1.Listen(6666);
   LUDPComponent1.Listen(6667);
   LUDPSyncDesk.Listen(6669);
@@ -2740,8 +2747,11 @@ end;
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   if MenuItem111.Checked=True then begin
-  Photo.Free;
+  PhotoJPEG.Free;
+  PhotoGIF.Free;
+  PhotoPNG.Free;
   tIMG.Free;
+  PhotoGroup.Free;
   end;
   //IniF.WriteString('SetLog', 'PastBand', ComboBox1.Text);
   if CheckBox3.Checked = True then
@@ -3269,7 +3279,10 @@ end;
 
 procedure TMainForm.MenuItem111Click(Sender: TObject);
 begin
-
+  PhotoGroup:=TGroupBox.Create(Panel13);
+  PhotoGroup.Parent:=Panel13;
+  PhotoGroup.Align:=alClient;
+  PhotoGroup.Caption:='Фото из QRZ.RU';
   if MenuItem86.Checked = True then begin
   ShowTRXForm := False;
   TRXForm.Hide;
@@ -3280,26 +3293,31 @@ begin
   MenuItem112.Checked := False;
   //отоброжение фото с qrz.ru
   if MenuItem111.Checked = True then begin
+  PhotoJPEG:=TJPEGImage.Create;
+  PhotoGIF:=TGIFImage.Create;
+  PhotoPNG:=TPortableNetworkGraphic.Create;
   tIMG:=TImage.Create(Self);
-  Photo:=TJPEGImage.Create;
-  tIMG.Parent:=MainForm.Panel13;
-  //tIMG.Height:=Panel13.Height;
-  //tIMG.Width:=Panel13.Width;
+  tIMG.Parent:=PhotoGroup;
   tIMG.Align:=alClient;
   tIMG.Proportional:=True;
   tIMG.Stretch:=True;
   end else begin
- // if MenuItem111.Checked=False then begin
-  Photo.Free;
+  PhotoJPEG.Free;
+  PhotoGIF.Free;
+  PhotoPNG.Free;
   tIMG.Free;
+  PhotoGroup.Free;
   end;
 end;
 
 procedure TMainForm.MenuItem112Click(Sender: TObject);
 begin
   if MenuItem111.Checked = True then begin
-  Photo.Free;
+  PhotoJPEG.Free;
+  PhotoGIF.Free;
+  PhotoPNG.Free;
   tIMG.Free;
+  PhotoGroup.Free;
   end;
   MenuItem111.Checked := False;
   MenuItem112.Checked := True;
@@ -4659,8 +4677,11 @@ procedure TMainForm.MenuItem86Click(Sender: TObject);
 begin
 
   if MenuItem111.Checked=True then begin
-  Photo.Free;
+  PhotoJPEG.Free;
+  PhotoGIF.Free;
+  PhotoPNG.Free;
   tIMG.Free;
+  PhotoGroup.Free;
   end;
 
   MenuItem88.Checked := False;

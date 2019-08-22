@@ -31,6 +31,7 @@ type
     fDebugLevel: integer;
     { private declarations }
   public
+    function Extention(FileName:string):String;
     procedure LoadRigList(RigCtlBinaryPath : String;RigList : TStringList);
     procedure LoadRigListCombo(CurrentRigId : String; RigList : TStringList; RigComboBox : TComboBox);
     procedure LoadRigsToComboBox(CurrentRigId : String; RigCtlBinaryPath : String; RigComboBox : TComboBox);
@@ -105,6 +106,14 @@ implementation
 uses MainForm_U;
 
 {$R *.lfm}
+function TdmFunc.Extention(FileName:string):String;
+var i:integer;
+  begin
+    i:=Length(FileName);
+    while (i>0)and(FileName[i]<>'.') do i:=i-1;
+    if i<=0 then Result:='' else Result:=Copy(FileName,i,Length(FileName));
+  end;
+
 function TdmFunc.Split(delimiter:string; str:string; limit:integer=MaxInt):TStringArray;
 var
   p,cc,dsize:integer;

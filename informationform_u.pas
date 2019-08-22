@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  EditBtn, ExtCtrls, httpsend, LCLIntf;
+  EditBtn, ExtCtrls, httpsend, LCLIntf, IntfGraphics;
 
 type
 
@@ -81,7 +81,7 @@ var
 
 implementation
 
-uses MainForm_U, editqso_u;
+uses MainForm_U, editqso_u, dmFunc_U;
 
 {$R *.lfm}
 
@@ -281,12 +281,7 @@ begin
   MainForm.Edit3.Text := '';
   MainForm.Edit4.Text := '';
   comment := '';
-   PhotoString := '';
-//  img.Align:=alClient;
-  //img.Proportional:=True;
-  //img.Stretch:=True;
-//  img.Visible:=False;
-//  jpeg.Clear;
+  PhotoString := '';
 
   if Length(CallS) >= 3 then
   begin
@@ -362,13 +357,19 @@ begin
       begin
         if HTTPMethod('GET', StringReplace(PhotoString, 'https', 'http', Flags)) then
         begin
-          MainForm.Photo.LoadFromStream(Document);
+       //   ShowMessage(dmFunc.Extention(PhotoString));
+        if dmFunc.Extention(PhotoString) = '.gif' then MainForm.PhotoGIF.LoadFromStream(Document);
+        if dmFunc.Extention(PhotoString) = '.jpg' then MainForm.PhotoJPEG.LoadFromStream(Document);
+        if dmFunc.Extention(PhotoString) = '.png' then MainForm.PhotoPNG.LoadFromStream(Document);
         end;
         Free;
       end;
-      MainForm.tIMG.Picture.Assign(MainForm.Photo);
+     if dmFunc.Extention(PhotoString) = '.gif' then MainForm.tIMG.Picture.Assign(MainForm.PhotoGIF);
+     if dmFunc.Extention(PhotoString) = '.jpg' then MainForm.tIMG.Picture.Assign(MainForm.PhotoJPEG);
+     if dmFunc.Extention(PhotoString) = '.png' then MainForm.tIMG.Picture.Assign(MainForm.PhotoPNG);
       MainForm.tIMG.Show;
     end else
+    if imgShow = True then
     MainForm.tIMG.Picture:=nil;
   end;
   finally
