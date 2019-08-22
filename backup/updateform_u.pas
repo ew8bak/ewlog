@@ -104,6 +104,7 @@ begin
           break;
         end;
       end;
+      Free;
     end;
 end;
 
@@ -172,8 +173,9 @@ begin
             fmCreate);
           HttpGetBinary('http://update.ew8bak.ru/version_server.info', LoadFile);
           LoadFile.Free;
-          Free;
+          //Free;
         end;
+        Free;
       end;
 
       AssignFile(ver_serverFile, updatePATH + 'updates\versiononserver.info');

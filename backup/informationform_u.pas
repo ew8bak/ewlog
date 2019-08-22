@@ -369,7 +369,7 @@ begin
      if dmFunc.Extention(PhotoString) = '.png' then MainForm.tIMG.Picture.Assign(MainForm.PhotoPNG);
       MainForm.tIMG.Show;
     end else
-    //if imgShow = False then
+    if imgShow = True then
     MainForm.tIMG.Picture:=nil;
   end;
   finally

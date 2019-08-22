@@ -540,7 +540,7 @@ type
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure SelectLogDatabase(LogDB: string);
     procedure SelDB(calllbook: string);
-    procedure SearchCallLog(callNameS: string; ind: integer);
+    procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: Boolean);
     procedure Clr();
     procedure SaveQSO(CallSing: string; QSODate: TDateTime;
       QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived,
@@ -809,7 +809,7 @@ end;
 procedure TMainForm.SelectQSO;
 begin
   try
-    SearchCallLog(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, 0);
+    SearchCallLog(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, 0, False);
     SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
     Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
     Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
@@ -970,7 +970,7 @@ begin
   end;
 end;
 
-procedure TMainForm.SearchCallLog(callNameS: string; ind: integer);
+procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall:Boolean);
 begin
   SQLQuery2.Close;
   SQLQuery2.SQL.Clear;
@@ -1006,15 +1006,16 @@ begin
 
  // if (callNameS = SQLQuery2.FieldByName('CallSign').AsString) and
  //   (ind = 1) and (EditButton1.Text <> '') then
- if SQLQuery2.RecordCount>0 then
+ if (SQLQuery2.RecordCount>0) and (ind = 1) and (EditButton1.Text <> '') then
     EditButton1.Color := clMoneyGreen
   else
     EditButton1.Color := clDefault;
 
   //Поиск и заполнение из внутриней базы
-  if (EditButton1.Text <> '') and (EditButton1.Text =
-    SQLQuery2.FieldByName('CallSign').AsString) then
-  begin
+ // if (EditButton1.Text <> '') and (EditButton1.Text =
+ //   SQLQuery2.FieldByName('CallSign').AsString) then
+ if (SQLQuery2.RecordCount>0) and (EditButton1.Text <> '') and (ShowCall=True) then
+ begin
     if UseCallBook <> 'YES' then begin
      Edit1.Text := SQLQuery2.FieldByName('OMName').AsString;
       Edit2.Text := SQLQuery2.FieldByName('OMQTH').AsString;
@@ -1560,7 +1561,7 @@ var
   Centre: TRealPoint;
   Lat, Long: real;
   Error: integer;
-  CallSignE: string;
+  //CallSignE: string;
   engText : string;
 begin
   EditButton1.SelStart := seleditnum;
@@ -1580,7 +1581,7 @@ begin
       InformationForm.QRZRUsprav(EditButton1.Text,MenuItem111.Checked);
 
       if CheckBox6.Checked = False then
-      SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1);
+      SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
     SearchPrefix(dmFunc.ExtractCallsign(EditButton1.Text), False);
       if CheckBox3.Checked = True then
       begin
@@ -2743,6 +2744,54 @@ begin
       'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       SetupForm.Show;
   end;
+
+  //Автозапуск кластера
+  if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
+    SpeedButton18.Click;
+
+  //перенесено из FormShow
+
+   RegisterLog := IniF.ReadString('SetLog', 'Register', '');
+  LoginLog := IniF.ReadString('SetLog', 'Login', '');
+  PassLog := IniF.ReadString('SetLog', 'Pass', '');
+  sprav:=IniF.ReadString('SetLog', 'Sprav', '');
+
+  if MenuItem86.Checked = True then
+    TRXForm.Show;
+
+  UnUsIndex := 0;
+
+  SetGrid;
+
+  if ShowTRXForm = False then
+    MenuItem88.Checked := True
+  else
+    MenuItem86.Checked := True;
+
+  if ShowTRXForm = True then
+  begin
+    TRXForm.Parent := Panel13;
+    TRXForm.BorderStyle := bsNone;
+    TRXForm.Align := alClient;
+    TRXForm.Show;
+  end;
+
+  if IniF.ReadBool('SetLog', 'ImgForm', False) = True then
+    MenuItem111.Click else
+  MenuItem112.Click;
+
+  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  begin
+    ComboBox1.Items.Clear;
+    for i:=0 to 12 do
+    ComboBox1.Items.Add(constBandName[i]);
+  end
+  else begin
+  ComboBox1.Items.Clear;
+    for i:=0 to 12 do
+    ComboBox1.Items.Add(constKhzBandName[i]);
+  end;
+
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -2788,10 +2837,14 @@ begin
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
-var
- i: integer;
 begin
-  RegisterLog := IniF.ReadString('SetLog', 'Register', '');
+  if useMAPS = 'YES' then
+    CheckBox3.Checked := True
+  else
+    CheckBox3.Checked := False;
+  CheckBox3.Enabled := True;
+
+ { RegisterLog := IniF.ReadString('SetLog', 'Register', '');
   LoginLog := IniF.ReadString('SetLog', 'Login', '');
   PassLog := IniF.ReadString('SetLog', 'Pass', '');
   sprav:=IniF.ReadString('SetLog', 'Sprav', '');
@@ -2843,7 +2896,7 @@ begin
 
       {$IFDEF WINDOWS}
   CheckUpdatesTimer.Enabled := True;
-    {$ENDIF WINDOWS}
+    {$ENDIF WINDOWS}   }
 
 end;
 

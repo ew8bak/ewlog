@@ -21,6 +21,7 @@ type
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
     Edit1: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
@@ -103,6 +104,7 @@ begin
 
   IniF.WriteString('TelnetCluster', 'Login', Edit11.Text);
   IniF.WriteString('TelnetCluster', 'Password', Edit12.Text);
+  IniF.WriteBool('TelnetCluster', 'AutoStart', CheckBox4.Checked);
 
   if RadioButton1.Checked = True then
     IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
@@ -138,6 +140,7 @@ begin
   Edit5.Text := IniF.ReadString('DataBases', 'DataBaseName', '');
   Edit11.Text := IniF.ReadString('TelnetCluster', 'Login', '');
   Edit12.Text := IniF.ReadString('TelnetCluster', 'Password', '');
+  CheckBox4.Checked := IniF.ReadBool('TelnetCluster', 'AutoStart', False);
   FileNameEdit1.Text := IniF.ReadString('DataBases', 'FileSQLite', '');
   if IniF.ReadString('DataBases', 'DefaultDataBase', '') = 'MySQL' then
     RadioButton1.Checked := True
@@ -291,6 +294,8 @@ end;
 procedure TConfigForm.Button1Click(Sender: TObject);
 begin
   SaveINI;
+  LoginCluster:=Edit11.Text;
+  PasswordCluster:=Edit12.Text;
   // ShowMessage('После изменения параметров, пожалуйста, перезапустите приложение');
   ConfigForm.Close;
 end;

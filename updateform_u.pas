@@ -32,6 +32,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     function CheckUpdate: boolean;
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     function GetSize(URL: string): int64;
     {$ELSE}
@@ -222,6 +223,13 @@ begin
 
   except
   end;
+end;
+
+procedure TUpdate_Form.FormCreate(Sender: TObject);
+begin
+      {$IFDEF WINDOWS}
+  MainForm.CheckUpdatesTimer.Enabled := True;
+    {$ENDIF WINDOWS}
 end;
 
 procedure TUpdate_Form.FormShow(Sender: TObject);

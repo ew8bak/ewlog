@@ -21,6 +21,7 @@ type
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
     Edit1: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
@@ -207,8 +208,10 @@ end;
 
 procedure TConfigForm.CheckBox1Change(Sender: TObject);
 begin
-  if CheckBox1.Checked = True then
+  if CheckBox1.Checked = True then begin
     CheckBox3.Checked := False;
+    MainForm.CallBookLiteConnection.Connected:=True;
+  end;
   if CheckBox1.Checked = True then
     IniF.WriteString('SetLog', 'UseCallBook', 'YES')
   else
@@ -235,8 +238,10 @@ end;
 
 procedure TConfigForm.CheckBox3Change(Sender: TObject);
 begin
-  if CheckBox3.Checked = True then
+  if CheckBox3.Checked = True then begin
     CheckBox1.Checked := False;
+    MainForm.CallBookLiteConnection.Connected:=False;
+  end;
   if CheckBox3.Checked = True then
     IniF.WriteString('SetLog', 'Sprav', 'True')
   else

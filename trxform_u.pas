@@ -351,6 +351,15 @@ begin
   thRig := nil;
   AutoMode := True;
   InicializeRig;
+
+   if ShowTRXForm = True then
+  begin
+    TRXForm.Parent := MainForm.Panel13;
+    TRXForm.BorderStyle := bsNone;
+    TRXForm.Align := alClient;
+    TRXForm.Show;
+  end;
+
 end;
 
 procedure TTRXForm.Label11MouseLeave(Sender: TObject);

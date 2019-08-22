@@ -9,6 +9,7 @@ object Update_Form: TUpdate_Form
   ClientHeight = 229
   ClientWidth = 278
   FormStyle = fsStayOnTop
+  OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
