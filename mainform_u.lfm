@@ -3433,7 +3433,7 @@ object MainForm: TMainForm
     top = 312
   end
   object PrefixProvinceQuery: TSQLQuery
-    PacketRecords = 500
+    PacketRecords = 2000
     FieldDefs = <    
       item
         Name = 'PrefixList'
@@ -3459,7 +3459,7 @@ object MainForm: TMainForm
     top = 544
   end
   object PrefixARRLQuery: TSQLQuery
-    PacketRecords = 500
+    PacketRecords = 2000
     FieldDefs = <    
       item
         Name = 'PrefixList'

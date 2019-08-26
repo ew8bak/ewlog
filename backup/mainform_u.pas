@@ -2768,13 +2768,13 @@ begin
   else
     MenuItem86.Checked := True;
 
-  if ShowTRXForm = True then
+  {if ShowTRXForm = True then
   begin
     TRXForm.Parent := Panel13;
     TRXForm.BorderStyle := bsNone;
     TRXForm.Align := alClient;
     TRXForm.Show;
-  end;
+  end;}
 
   if IniF.ReadBool('SetLog', 'ImgForm', False) = True then
     MenuItem111.Click else
