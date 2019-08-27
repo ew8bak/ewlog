@@ -2446,13 +2446,13 @@ object MainForm: TMainForm
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
-            ClientHeight = 230
-            ClientWidth = 594
+            ClientHeight = 231
+            ClientWidth = 596
             object Memo1: TMemo
               Left = 0
-              Height = 175
+              Height = 180
               Top = 26
-              Width = 594
+              Width = 596
               Align = alClient
               Color = clForm
               Font.Height = -12
@@ -2463,9 +2463,9 @@ object MainForm: TMainForm
             end
             object Edit12: TEdit
               Left = 0
-              Height = 29
-              Top = 201
-              Width = 594
+              Height = 25
+              Top = 206
+              Width = 596
               Align = alBottom
               OnKeyDown = Edit12KeyDown
               TabOrder = 1
@@ -2474,10 +2474,10 @@ object MainForm: TMainForm
               Left = 0
               Height = 26
               Top = 0
-              Width = 594
+              Width = 596
               Align = alTop
               ClientHeight = 26
-              ClientWidth = 594
+              ClientWidth = 596
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -2525,7 +2525,6 @@ object MainForm: TMainForm
                   00003333312143423F5B42423F5F42423F5F43423F5F43423F5F43423F5F4342
                   3F5F43423F5F43423F5F3E3D3B5C151414290000000000000000
                 }
-                OnClick = SpeedButton18Click
                 OnMouseLeave = SpeedButton18MouseLeave
                 OnMouseMove = SpeedButton18MouseMove
               end
@@ -2774,63 +2773,6 @@ object MainForm: TMainForm
             Caption = 'Telnet DX Кластер'
             ClientHeight = 231
             ClientWidth = 596
-            object sgCluster: TStringGrid
-              Left = 0
-              Height = 203
-              Top = 28
-              Width = 596
-              Align = alClient
-              AutoEdit = False
-              Columns = <              
-                item
-                  Title.Font.Height = -12
-                  Title.Font.Name = 'Droid Sans'
-                  Title.Caption = 'Наблюдатель'
-                  Width = 85
-                end              
-                item
-                  Title.Font.Height = -12
-                  Title.Font.Name = 'Droid Sans'
-                  Title.Caption = 'Споты'
-                  Width = 80
-                end              
-                item
-                  Title.Caption = 'Частота'
-                  Width = 80
-                end              
-                item
-                  Title.Caption = 'Комментарий'
-                  Width = 220
-                end              
-                item
-                  Title.Caption = 'Время'
-                  Width = 64
-                end>
-              DefaultRowHeight = 19
-              FixedCols = 0
-              Font.Height = -11
-              Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRowSelect, goScrollKeepVisible]
-              ParentFont = False
-              RowCount = 1
-              TabOrder = 0
-              TitleFont.Height = -12
-              TitleFont.Name = 'Droid Sans'
-              TitleStyle = tsStandard
-              OnDblClick = sgClusterDblClick
-              ColWidths = (
-                85
-                80
-                80
-                220
-                64
-              )
-              Cells = (
-                1
-                0
-                0
-                'Наблюдатель'
-              )
-            end
             object Panel9: TPanel
               Left = 0
               Height = 28
@@ -2843,7 +2785,7 @@ object MainForm: TMainForm
               ParentBidiMode = False
               ParentColor = False
               ParentFont = False
-              TabOrder = 1
+              TabOrder = 0
               object SpeedButton18: TSpeedButton
                 AnchorSideTop.Control = Panel9
                 Left = 6
@@ -2886,7 +2828,6 @@ object MainForm: TMainForm
                   00003333312143423F5B42423F5F42423F5F43423F5F43423F5F43423F5F4342
                   3F5F43423F5F43423F5F3E3D3B5C151414290000000000000000
                 }
-                OnClick = SpeedButton18Click
                 OnMouseLeave = SpeedButton18MouseLeave
                 OnMouseMove = SpeedButton18MouseMove
               end
@@ -2993,7 +2934,6 @@ object MainForm: TMainForm
                   0003F5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C5
                   96FFF5C596FF000000110000000B000000050000000100000000
                 }
-                OnClick = SpeedButton20Click
                 OnMouseLeave = SpeedButton20MouseLeave
                 OnMouseMove = SpeedButton20MouseMove
               end
@@ -3433,7 +3373,7 @@ object MainForm: TMainForm
     top = 312
   end
   object PrefixProvinceQuery: TSQLQuery
-    PacketRecords = 500
+    PacketRecords = 2000
     FieldDefs = <    
       item
         Name = 'PrefixList'
@@ -3459,7 +3399,7 @@ object MainForm: TMainForm
     top = 544
   end
   object PrefixARRLQuery: TSQLQuery
-    PacketRecords = 500
+    PacketRecords = 2000
     FieldDefs = <    
       item
         Name = 'PrefixList'
@@ -3776,7 +3716,6 @@ object MainForm: TMainForm
     end
     object ClearEdit: TAction
       DisableIfNoHandler = False
-      OnExecute = ClearEditExecute
       ShortCut = 32835
     end
   end
@@ -4863,12 +4802,6 @@ object MainForm: TMainForm
     Params = <>
     left = 24
     top = 544
-  end
-  object Timer2: TTimer
-    Enabled = False
-    OnTimer = Timer2Timer
-    left = 432
-    top = 592
   end
   object PopupMenu2: TPopupMenu
     left = 520

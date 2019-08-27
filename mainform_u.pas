@@ -176,7 +176,6 @@ type
     TabSheet2: TTabSheet;
     WSJT_Timer: TTimer;
     TrayPopup: TPopupMenu;
-    sgCluster: TStringGrid;
     SpeedButton18: TSpeedButton;
     SpeedButton19: TSpeedButton;
     SpeedButton20: TSpeedButton;
@@ -192,7 +191,6 @@ type
     DUPEQuery2: TSQLQuery;
     SQLServiceTransaction: TSQLTransaction;
     StatusBar1: TStatusBar;
-    Timer2: TTimer;
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
     Timer3: TTimer;
@@ -344,7 +342,6 @@ type
     //{$IfDef WINDOWS}
     procedure CheckUpdatesTimerStartTimer(Sender: TObject);
     procedure CheckUpdatesTimerTimer(Sender: TObject);
-    procedure ClearEditExecute(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     //{$ENDIF WINDOWS}
     procedure ComboBox2Change(Sender: TObject);
@@ -453,16 +450,13 @@ type
     procedure MenuItem98Click(Sender: TObject);
     procedure MenuItem99Click(Sender: TObject);
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
-    procedure sgClusterDblClick(Sender: TObject);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
-    procedure SpeedButton18Click(Sender: TObject);
     procedure SpeedButton18MouseLeave(Sender: TObject);
     procedure SpeedButton18MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
     procedure SpeedButton19Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton20Click(Sender: TObject);
     procedure SpeedButton20MouseLeave(Sender: TObject);
     procedure SpeedButton20MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
@@ -488,7 +482,6 @@ type
       X, Y: integer);
     procedure SQLiteDBConnectionAfterConnect(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure Timer2Timer(Sender: TObject);
     procedure Timer3Timer(Sender: TObject);
     procedure TrayIcon1DblClick(Sender: TObject);
     procedure WSJT_TimerTimer(Sender: TObject);
@@ -536,7 +529,6 @@ type
     freqchange: Boolean;
 
     inupdate: boolean;
-    function Login(host, port, userid, passwd: string): boolean;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure SelectLogDatabase(LogDB: string);
     procedure SelDB(calllbook: string);
@@ -1974,11 +1966,6 @@ begin
   {$ENDIF WINDOWS}
 end;
 
-procedure TMainForm.ClearEditExecute(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.ComboBox1Change(Sender: TObject);
 begin
   freqchange:=True;
@@ -2528,18 +2515,7 @@ end;
 
 procedure TMainForm.Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  try
-    if Key = 13 then
-    begin
-      cluster.Send(Edit12.Text + #13 + #10);
-      Edit12.Clear;
-    end;
 
-  except
-    Memo1.Append('Нет подключения к кластеру');
-    timer2.Enabled := False;
-    Edit12.Clear;
-  end;
 end;
 
 procedure TMainForm.Edit1Change(Sender: TObject);
@@ -2828,7 +2804,7 @@ end;
 
 procedure TMainForm.FormResize(Sender: TObject);
 begin
-  sgCluster.Columns[3].Width := MainForm.Width - 820;
+
   Label50.Left := Panel1.Width - 165;
   ComboBox3.Width := MainForm.Width - 655;
   SpeedButton19.Left := Panel9.Width - 27;
@@ -4832,11 +4808,6 @@ begin
   end;
 end;
 
-procedure TMainForm.sgClusterDblClick(Sender: TObject);
-begin
-  EditButton1.Text := sgCluster.Cells[1, sgCluster.Row];
-end;
-
 procedure TMainForm.SpeedButton16Click(Sender: TObject);
 begin
   CheckForm := 'Main';
@@ -4849,11 +4820,6 @@ end;
 procedure TMainForm.SpeedButton17Click(Sender: TObject);
 begin
   PopupMenu2.PopUp;
-end;
-
-procedure TMainForm.SpeedButton18Click(Sender: TObject);
-begin
-  Login(HostCluster, PortCluster, LoginCluster, PasswordCluster);
 end;
 
 procedure TMainForm.SpeedButton18MouseLeave(Sender: TObject);
@@ -4879,14 +4845,6 @@ begin
   STATE_Form.Edit1.Text := Edit4.Text;
 end;
 
-procedure TMainForm.SpeedButton20Click(Sender: TObject);
-begin
-  with sgCluster do
-  begin
-    RowCount := 1;
-  end;
-end;
-
 procedure TMainForm.SpeedButton20MouseLeave(Sender: TObject);
 begin
   StatusBar1.Panels.Items[0].Text := '';
@@ -4900,7 +4858,7 @@ end;
 
 procedure TMainForm.SpeedButton21Click(Sender: TObject);
 begin
-  cluster.Send('quit' + #13#10);
+
   Memo1.Append('Вы отключены от DX кластера');
   SpeedButton21.Enabled := False;
   SpeedButton27.Enabled := False;
@@ -4908,7 +4866,6 @@ begin
   SpeedButton24.Enabled := True;
   SpeedButton28.Enabled := False;
   SpeedButton22.Enabled := False;
-  Timer2.Enabled := False;
 end;
 
 procedure TMainForm.SpeedButton21MouseLeave(Sender: TObject);
@@ -5178,202 +5135,6 @@ begin
     DateTimePicker1.Time := NowUTC;
     DateEdit1.Date := NowUTC;
   end;
-end;
-
-function TMainForm.Login(host, port, userid, passwd: string): boolean;
-begin
-  Result := False;
-  cluster := TTelnetSend.Create;
-  try
-    cluster.TargetHost := host;
-    cluster.TargetPort := port;
-    cluster.TermType := 'dumb';
-    cluster.Timeout := 5000;
-    Application.ProcessMessages;
-    if cluster.Login then
-    begin
-      Application.ProcessMessages;
-      memo1.Append(cluster.RecvTerminated(#13));
-      cluster.WaitFor(':');
-      dmFunc.Delay(50);
-      cluster.Send(userid + #13 + #10);
-      if Length(passwd) > 0 then
-      begin
-        Application.ProcessMessages;
-        cluster.WaitFor('password:');
-        cluster.Send(passwd + #13 + #10);
-      end;
-      loginmsg := cluster.RecvTerminated('>');
-      dmFunc.Delay(50);
-      inupdate := False;
-      Timer2.Enabled := True;
-      Result := True;
-      SpeedButton18.Enabled := False;
-      SpeedButton24.Enabled := False;
-      SpeedButton21.Enabled := True;
-      SpeedButton27.Enabled := True;
-      SpeedButton28.Enabled := True;
-      SpeedButton22.Enabled := True;
-    end
-    else
-    begin
-      Memo1.Append('Не могу подключится');
-      SpeedButton18.Enabled := True;
-      SpeedButton24.Enabled := True;
-      SpeedButton21.Enabled := False;
-      SpeedButton27.Enabled := False;
-      SpeedButton28.Enabled := False;
-      SpeedButton22.Enabled := False;
-    end;
-  except
-    Memo1.Append('Не могу подключится');
-  end;
-end;
-
-procedure TMainForm.Timer2Timer(Sender: TObject);
-var
-  s, de, dx, freq, comment, time, sband: string;
-  p, r, band, mode: integer;
-  showspot: boolean;
-begin
-  if cluster.Sock.LastError <> 0 then
-  begin
-    //  Close;
-    Timer2.Enabled := False;
-    Memo1.Append(
-      'Не могу подключится. Возможно не введён логин');
-    SpeedButton18.Enabled := True;
-    SpeedButton24.Enabled := True;
-    SpeedButton21.Enabled := False;
-    SpeedButton27.Enabled := False;
-    SpeedButton28.Enabled := False;
-    SpeedButton22.Enabled := False;
-    Exit;
-  end;
-  inupdate := True;
-  while cluster.Sock.WaitingData > 0 do
-  begin
-
-    s := Trim(cluster.RecvTerminated(#13));
-    if Length(s) > 0 then
-    begin
-      Memo1.Append(s);
-      if (Copy(UpperCase(s), 1, 5) = 'DX DE') then
-      begin
-        // Frequency spot
-        if Length(s) >= 75 then
-        begin
-          de := UpperCase(Trim(Copy(s, 7, 10)));
-          p := Pos(':', de);
-          if p > 0 then
-            Delete(de, p, 1);
-          freq := Trim(Copy(s, 17, 8));
-          dmFunc.BandMode(freq, band, mode);
-          dx := UpperCase(Trim(Copy(s, 27, 12)));
-          comment := Trim(Copy(s, 40, 30));
-          time := Copy(s, 71, 4);
-          insert(':', time, 3);
-
-          if not showspot then
-          begin
-            case band of
-              1:
-              begin
-                showspot := ClusterFilter.cb160m.Checked;
-                sband := '160m';
-              end;
-              3:
-              begin
-                showspot := ClusterFilter.cb80m.Checked;
-                sband := '80m';
-              end;
-              5:
-              begin
-                showspot := ClusterFilter.cb60m.Checked;
-                sband := '60m';
-              end;
-              7:
-              begin
-                showspot := ClusterFilter.cb40m.Checked;
-                sband := '40m';
-              end;
-              10:
-              begin
-                showspot := ClusterFilter.cb30m.Checked;
-                sband := '30m';
-              end;
-              14:
-              begin
-                showspot := ClusterFilter.cb20m.Checked;
-                sband := '20m';
-              end;
-              18:
-              begin
-                showspot := ClusterFilter.cb17m.Checked;
-                sband := '17m';
-              end;
-              21:
-              begin
-                showspot := ClusterFilter.cb15m.Checked;
-                sband := '15m';
-              end;
-              24:
-              begin
-                showspot := ClusterFilter.cb12m.Checked;
-                sband := '12m';
-              end;
-              28:
-              begin
-                showspot := ClusterFilter.cb10m.Checked;
-                sband := '10m';
-              end;
-              50:
-              begin
-                showspot := ClusterFilter.cb6m.Checked;
-                sband := '6m';
-              end;
-              70:
-              begin
-                showspot := ClusterFilter.cb4m.Checked;
-                sband := '4m';
-              end;
-              144:
-              begin
-                showspot := ClusterFilter.cb2m.Checked;
-                sband := '2m';
-              end;
-              432:
-              begin
-                showspot := ClusterFilter.cb70cm.Checked;
-                sband := '70cm';
-              end;
-            end;
-            if not ClusterFilter.cbAllModes.Checked then
-              case mode of
-                3, 7: showspot := showspot and ClusterFilter.cbCW.Checked;
-                6, 9: showspot := showspot and ClusterFilter.cbData.Checked;
-                else
-                  showspot := showspot and ClusterFilter.cbSSB.Checked;
-              end;
-          end;
-
-          if showspot then
-          begin
-            r := sgCluster.RowCount;
-            sgCluster.RowCount := r + 1;
-            sgCluster.Cells[0, r] := de;
-            sgCluster.Cells[1, r] := dx;
-            sgCluster.Cells[2, r] := freq;
-            sgCluster.Cells[3, r] := comment;
-            sgCluster.Cells[4, r] := time;
-            with sgCluster do
-              Row := RowCount - 1;
-          end;
-        end;
-      end;
-    end;
-  end;
-  inupdate := False;
 end;
 
 procedure TMainForm.Timer3Timer(Sender: TObject);
