@@ -1,6 +1,7 @@
 unit MainForm_U;
 
 {$mode objfpc}{$H+}
+//   {$MODE DELPHI}
 
 interface
 
@@ -8,11 +9,11 @@ uses
   Classes, SysUtils, mysql56conn, sqldb, sqldblib, sqlite3conn, DB, BufDataset,
   dbf, FileUtil, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls, DBGrids,
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
-  lazutf8sysutils, RegExpr, IdIPWatch, LazUTF8, LCLProc, ActnList, Grids,
-  kcMapViewer, INIFiles, md5, pingsend, kcMapViewerGLGeoNames, LCLType,
+  lazutf8sysutils, IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
+  Grids, kcMapViewer, INIFiles, md5, pingsend, kcMapViewerGLGeoNames, LCLType,
   Tlntsend
   {$IFDEF UNIX}, kcMapViewerDESynapse, process, {$ELSE}, kcMapViewerDEWin32,
-  {$ENDIF UNIX} lNetComponents, LCLIntf, lNet, StrUtils, httpsend, FPReadGif, FPReadPNG;
+  {$ENDIF UNIX} lNetComponents, LCLIntf, lNet, StrUtils, httpsend, FPReadGif, FPReadPNG, RegExpr;
 
 const
   constColumnName: array [0..28] of string =
@@ -53,9 +54,9 @@ type
     Label50: TLabel;
     LTCPComponent1: TLTCPComponent;
     LTCPSyncDesk: TLTCPComponent;
+    dxClient: TLTelnetClientComponent;
     LUDPComponent1: TLUDPComponent;
     LUDPSyncDesk: TLUDPComponent;
-    // LTelnetClientComponent1: TLTelnetClientComponent;
     Memo1: TMemo;
     MenuItem10: TMenuItem;
     MenuItem100: TMenuItem;
@@ -173,7 +174,9 @@ type
     SpeedButton27: TSpeedButton;
     SpeedButton28: TSpeedButton;
     SpeedButton29: TSpeedButton;
+    qBands: TSQLQuery;
     TabSheet2: TTabSheet;
+    VirtualStringTree1: TVirtualStringTree;
     WSJT_Timer: TTimer;
     TrayPopup: TPopupMenu;
     SpeedButton18: TSpeedButton;
@@ -358,6 +361,7 @@ type
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
+    procedure dxClientReceive(aSocket: TLSocket);
     procedure Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure Edit1Change(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
@@ -452,6 +456,7 @@ type
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
+    procedure SpeedButton18Click(Sender: TObject);
     procedure SpeedButton18MouseLeave(Sender: TObject);
     procedure SpeedButton18MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
@@ -469,6 +474,7 @@ type
     procedure SpeedButton22MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
     procedure SpeedButton23Click(Sender: TObject);
+    procedure SpeedButton24Click(Sender: TObject);
     procedure SpeedButton26Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
@@ -484,6 +490,29 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure Timer3Timer(Sender: TObject);
     procedure TrayIcon1DblClick(Sender: TObject);
+    procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
+      Node: PVirtualNode);
+    procedure VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree; Node1,
+      Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+    procedure VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
+      Node: PVirtualNode; Column: TColumnIndex);
+    procedure VirtualStringTree1FreeNode(Sender: TBaseVirtualTree;
+      Node: PVirtualNode);
+    procedure VirtualStringTree1GetHint(Sender: TBaseVirtualTree;
+      Node: PVirtualNode; Column: TColumnIndex;
+      var LineBreakStyle: TVTTooltipLineBreakStyle; var HintText: String);
+    procedure VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
+      Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
+      var Ghosted: Boolean; var ImageIndex: Integer);
+    procedure VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;
+      var NodeDataSize: Integer);
+    procedure VirtualStringTree1GetText(Sender: TBaseVirtualTree;
+      Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
+      var CellText: String);
+    procedure VirtualStringTree1HeaderClick(Sender: TVTHeader;
+      HitInfo: TVTHeaderHitInfo);
+    procedure VirtualStringTree1NodeClick(Sender: TBaseVirtualTree;
+      const HitInfo: THitInfo);
     procedure WSJT_TimerTimer(Sender: TObject);
 
   private
@@ -498,6 +527,10 @@ type
 
   public
     { public declarations }
+    Command: string;
+    FlagList: TImageList;
+    FlagSList: TStringList;
+
     PhotoQrzString: string;
     PhotoJPEG: TJPEGImage;
     PhotoGIF: TGIFImage;
@@ -551,7 +584,10 @@ type
     procedure SelectQSO;
     procedure SetGrid;
     function GetNewChunk: string;
-
+    function FindNode(const APattern: string; Country: boolean): PVirtualNode;
+    function GetModeFromFreq(MHz: string): string;
+    function SearchCountry(CallName: string; Province: boolean): string;
+    procedure FindCountryFlag(Country: string);
   end;
 
 var
@@ -562,7 +598,9 @@ var
   PrefixARRLCount: integer;
   PrefixProvinceList: TStringList;
   PrefixARRLList: TStringList;
-  PrefixExp: TRegExpr;
+
+  PrefixExpProvinceArray: array [0..1000] of TRegExpr;
+  PrefixExpARRLArray: array [0..1000] of TRegExpr;
   IniF: TINIFile;
   CallLogBook: string;
   SetCallName, LogTable, SetDiscription, SetNameC, SetQTH, SetITU,
@@ -602,8 +640,6 @@ var
   seleditnum: integer;
 
 
-
-
 implementation
 
 uses
@@ -619,9 +655,182 @@ uses
   logtcpform_u, filterForm_U, hiddentsettings_u;
 
 
+type
+  PTreeData = ^TTreeData;
+  TTreeData = record
+    DX: string;
+    Spots: string;
+    Call: string;
+    Freq: string;
+    Moda: string;
+    Comment: string;
+    Time: string;
+    Country: string;
+    Loc: string;
+  end;
+
+
 {$R *.lfm}
 
 { TMainForm }
+
+procedure TMainForm.FindCountryFlag(Country: string);
+var
+  pImage: TPortableNetworkGraphic;
+begin
+  try
+    pImage := TPortableNetworkGraphic.Create;
+    pImage.LoadFromLazarusResource(dmFunc.ReplaceCountry(Country));
+    if FlagSList.IndexOf(dmFunc.ReplaceCountry(Country)) = -1 then
+    begin
+      FlagList.Add(pImage, nil);
+      FlagSList.Add(dmFunc.ReplaceCountry(Country));
+    end;
+  except
+    on EResNotFound do
+    begin
+      pImage.LoadFromLazarusResource('Unknown');
+      if FlagSList.IndexOf('Unknown') = -1 then
+      begin
+        FlagList.Add(pImage, nil);
+        FlagSList.Add('Unknown');
+      end;
+    end;
+  end;
+  pImage.Free;
+end;
+
+function TMainForm.SearchCountry(CallName: string; Province: boolean): string;
+var
+  i, j: integer;
+  BoolPrefix: boolean;
+begin
+  BoolPrefix := False;
+  Result := '';
+  if Province = True then
+  begin
+    for i := 0 to PrefixProvinceCount do
+    begin
+      if (PrefixExpProvinceArray[i].Exec(CallName)) and (PrefixExpProvinceArray[i].Match[0] = CallName) then
+       begin
+        BoolPrefix := True;
+        with MainForm.PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from Province where _id = "' + IntToStr(i) + '"');
+          Open;
+        end;
+        Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
+      end;
+    end;
+  end;
+  if BoolPrefix = False then
+  begin
+    for j := 0 to PrefixARRLCount do
+    begin
+      if (PrefixExpARRLArray[j].Exec(CallName)) and (PrefixExpARRLArray[j].Match[0] = CallName) then
+      begin
+        with MainForm.PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(j) + '"');
+          Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[j].ExecNext;
+            Exit;
+          end;
+        end;
+        Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
+      end;
+    end;
+  end;
+end;
+
+function TMainForm.GetModeFromFreq(MHz: string): string;
+var
+  Band: string;
+  tmp: extended;
+begin
+  Result := '';
+  band := dmFunc.GetTelnetBandFromFreq(MHz);
+
+  if Pos('.', MHz) > 0 then
+    MHz[Pos('.', MHz)] := DecimalSeparator;
+
+  if pos(',', MHz) > 0 then
+    MHz[pos(',', MHz)] := DecimalSeparator;
+
+  qBands.Close;
+  qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
+  if SQLServiceTransaction.Active then
+    SQLServiceTransaction.Rollback;
+  SQLServiceTransaction.StartTransaction;
+  try
+    qBands.Open;
+    tmp := StrToFloat(MHz);
+    tmp := tmp / 1000;
+    if qBands.RecordCount > 0 then
+    begin
+      if ((tmp >= qBands.FieldByName('B_BEGIN').AsCurrency) and
+        (tmp <= qBands.FieldByName('CW').AsCurrency)) then
+        Result := 'CW'
+      else
+      begin
+        if ((tmp > qBands.FieldByName('DIGI').AsCurrency) and
+          (tmp <= qBands.FieldByName('SSB').AsCurrency)) then
+          Result := 'DIGI'
+        else
+        begin
+          if (tmp > 5) and (tmp < 6) then
+            Result := 'USB'
+          else
+          begin
+            if tmp > 10 then
+              Result := 'USB'
+            else
+              Result := 'LSB';
+          end;
+        end;
+      end;
+    end
+  finally
+    qBands.Close;
+    SQLServiceTransaction.Rollback
+  end;
+end;
+
+function TMainForm.FindNode(const APattern: string; Country: boolean): PVirtualNode;
+var
+  ANode: PVirtualNode;
+  DataNode: PTreeData;
+begin
+  Result := nil;
+  ANode := VirtualStringTree1.GetFirst();
+  while ANode <> nil do
+  begin
+    DataNode := VirtualStringTree1.GetNodeData(ANode);
+    if Country = False then
+    begin
+      if DataNode^.DX = APattern then
+      begin
+        Result := ANode;
+        exit;
+      end;
+    end
+    else
+    begin
+      if DataNode^.Country = APattern then
+      begin
+        Result := ANode;
+        exit;
+      end;
+    end;
+    ANode := VirtualStringTree1.GetNext(ANode);
+  end;
+end;
 
 procedure TMainForm.SetGrid;
 var
@@ -929,6 +1138,8 @@ begin
   PrefixProvinceQuery.DataBase := ServiceDBConnection;
   PrefixQuery.DataBase := ServiceDBConnection;
   PrefixARRLQuery.DataBase := ServiceDBConnection;
+  qBands.DataBase:=ServiceDBConnection;
+  //trBands.DataBase:=ServiceDBConnection;
 
   try
     LogBookInfoQuery.Active := True;
@@ -943,17 +1154,22 @@ begin
     PrefixARRLList := TStringList.Create;
     PrefixProvinceCount := PrefixProvinceQuery.RecordCount;
     PrefixARRLCount := PrefixARRLQuery.RecordCount;
+
     DBGrid1.DataSource.DataSet.Last;
     PrefixProvinceQuery.First;
     PrefixARRLQuery.First;
     for i := 0 to PrefixProvinceCount do
     begin
       PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
+      PrefixExpProvinceArray[i] := TRegExpr.Create;
+      PrefixExpProvinceArray[i].Expression:=PrefixProvinceList.Strings[i];
       PrefixProvinceQuery.Next;
     end;
     for i := 0 to PrefixARRLCount do
     begin
       PrefixARRLList.Add(PrefixARRLQuery.FieldByName('PrefixList').AsString);
+      PrefixExpARRLArray[i] := TRegExpr.Create;
+       PrefixExpARRLArray[i].Expression:=PrefixARRLList.Strings[i];
       PrefixARRLQuery.Next;
     end;
   except
@@ -1348,7 +1564,6 @@ var
   la, lo: currency;
   azim, azim2, qra, myloc, loc: string;
 begin
-  PrefixExp := TRegExpr.Create;
   BoolPrefix := False;
   // loc:='';
 
@@ -1386,15 +1601,13 @@ begin
 
   for i := 0 to PrefixProvinceCount do
   begin
-    PrefixExp.Expression := PrefixProvinceList.Strings[i];
-    if (PrefixExp.Exec(CallName)) and (PrefixExp.Match[0] = CallName) then
+    if (PrefixExpProvinceArray[i].Exec(CallName)) and (PrefixExpProvinceArray[i].Match[0] = CallName) then
     begin
       BoolPrefix := True;
       with MainForm.PrefixQuery do
       begin
         Close;
         SQL.Clear;
-        // SQL.Add('select * from Province where _id = "' + IntToStr(i + 1) + '"');
         SQL.Add('select * from Province where _id = "' + IntToStr(i) + '"');
         Open;
       end;
@@ -1465,8 +1678,7 @@ begin
   begin
     for j := 0 to PrefixARRLCount do
     begin
-      PrefixExp.Expression := PrefixARRLList.Strings[j];
-      if (PrefixExp.Exec(CallName)) and (PrefixExp.Match[0] = CallName) then
+      if (PrefixExpARRLArray[j].Exec(CallName)) and (PrefixExpARRLArray[j].Match[0] = CallName) then
       begin
         with MainForm.PrefixQuery do
         begin
@@ -1477,7 +1689,7 @@ begin
           if (FieldByName('Status').AsString = 'Deleted')
           then
           begin
-            PrefixExp.ExecNext;
+            PrefixExpARRLArray[j].ExecNext;
             Exit;
           end;
         end;
@@ -1545,7 +1757,6 @@ begin
       end;
     end;
   end;
-  PrefixExp.Free;
 end;
 
 procedure TMainForm.EditButton1Change(Sender: TObject);
@@ -2513,9 +2724,81 @@ begin
   CallLogBook := DBLookupComboBox1.KeyValue;
 end;
 
+procedure TMainForm.dxClientReceive(aSocket: TLSocket);
+var
+  DX, Call, Freq, Comment, Time, Loc: string;
+  TelnetLine: string;
+  Data: PTreeData;
+  XNode: PVirtualNode;
+begin
+   if dxClient.GetMessage(TelnetLine) > 0 then
+  begin
+    TelnetLine := Trim(TelnetLine);
+    Memo1.Lines.Add(TelnetLine);
+
+    if Length(LoginCluster)>0 then begin
+    if Pos('login', TelnetLine) > 0 then
+      dxClient.SendMessage(LoginCluster + #13#10, aSocket);
+    end;
+
+    if Pos('DX de', TelnetLine) > 0 then
+    begin
+      TelnetLine := StringReplace(TelnetLine, ':', ' ', [rfReplaceAll]);
+      Call := StringReplace(TelnetLine.Substring(6, 8), ' ', '', [rfReplaceAll]);
+      Freq := StringReplace(TelnetLine.Substring(15, 10), ' ', '', [rfReplaceAll]);
+      DX := StringReplace(TelnetLine.Substring(26, 12), ' ', '', [rfReplaceAll]);
+      Comment := Trim(TelnetLine.Substring(39, 30));
+      Time := StringReplace(TelnetLine.Substring(70, 2) + ':' +
+        TelnetLine.Substring(72, 2), ' ', '', [rfReplaceAll]);
+      Loc := StringReplace(TelnetLine.Substring(76, 4), ' ', '', [rfReplaceAll]);
+    end;
+
+    if Length(DX) > 0 then
+    begin
+      if FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False) = nil then
+      begin
+        XNode := VirtualStringTree1.AddChild(nil);
+        Data := VirtualStringTree1.GetNodeData(Xnode);
+        Data^.DX := dmFunc.GetTelnetBandFromFreq(Freq);
+        XNode := VirtualStringTree1.AddChild(FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False));
+        Data := VirtualStringTree1.GetNodeData(Xnode);
+        Data^.Spots := DX;
+        Data^.Call := Call;
+        Data^.Freq := Freq;
+        Data^.Moda := GetModeFromFreq(Freq);
+        Data^.Comment := Comment;
+        Data^.Time := Time;
+        Data^.Loc := Loc;
+        Data^.Country := SearchCountry(DX, False);
+
+        VirtualStringTree1.Expanded[XNode^.Parent]:=True;
+
+        FindCountryFlag(Data^.Country);
+      end
+      else
+      begin
+        XNode := VirtualStringTree1.InsertNode(FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False),
+          amAddChildFirst);
+        Data := VirtualStringTree1.GetNodeData(Xnode);
+        Data^.Spots := DX;
+        Data^.Call := Call;
+        Data^.Freq := Freq;
+        Data^.Moda := GetModeFromFreq(Freq);
+        Data^.Comment := Comment;
+        Data^.Time := Time;
+        Data^.Loc := Loc;
+        Data^.Country := SearchCountry(DX, False);
+        FindCountryFlag(Data^.Country);
+      end;
+    end;
+  end;
+end;
+
 procedure TMainForm.Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-
+  if Key=13 then
+  dxClient.SendMessage(Edit12.Text + #13#10,nil);
+  Edit12.Clear;
 end;
 
 procedure TMainForm.Edit1Change(Sender: TObject);
@@ -2573,6 +2856,9 @@ begin
       GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
     {$ENDIF UNIX}
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
+  FlagList := TImageList.Create(Self);
+  FlagSList := TStringList.Create;
+  VirtualStringTree1.Images := FlagList;
   useMAPS := INiF.ReadString('SetLog', 'UseMAPS', '');
   EditFlag := False;
   Application.ProcessMessages;
@@ -2767,7 +3053,8 @@ begin
     for i:=0 to 12 do
     ComboBox1.Items.Add(constKhzBandName[i]);
   end;
-
+   VirtualStringTree1.ShowHint := True;
+  VirtualStringTree1.HintMode := hmHint;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -2786,6 +3073,8 @@ begin
     IniF.WriteString('SetLog', 'UseMAPS', 'NO');
   //AdifMobileString.Free;
   //AdifFromMobileString.Free;
+  FlagList.Free;
+  FlagSList.Free;
   PrefixProvinceList.Free;
   PrefixARRLList.Free;
   FDownloader.Free;
@@ -4822,6 +5111,11 @@ begin
   PopupMenu2.PopUp;
 end;
 
+procedure TMainForm.SpeedButton18Click(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.SpeedButton18MouseLeave(Sender: TObject);
 begin
   StatusBar1.Panels.Items[0].Text := '';
@@ -4898,6 +5192,16 @@ end;
 procedure TMainForm.SpeedButton23Click(Sender: TObject);
 begin
   ClusterFilter.Show;
+end;
+
+procedure TMainForm.SpeedButton24Click(Sender: TObject);
+begin
+  dxClient.Host := HostCluster;
+  dxClient.Port := StrToInt(PortCluster);
+  if dxClient.Connect = True then begin
+      SpeedButton27.Enabled := True;
+      SpeedButton21.Enabled := True;
+  end;
 end;
 
 procedure TMainForm.SpeedButton26Click(Sender: TObject);
@@ -5148,6 +5452,129 @@ begin
     MenuItem95.Click
   else
     MenuItem96.Click;
+end;
+
+procedure TMainForm.VirtualStringTree1Change(Sender: TBaseVirtualTree;
+  Node: PVirtualNode);
+begin
+  VirtualStringTree1.Refresh;
+end;
+
+procedure TMainForm.VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
+  Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+begin
+   with TVirtualStringTree(Sender) do
+    Result := AnsiCompareText(Text[Node1, Column], Text[Node2, Column]);
+end;
+
+procedure TMainForm.VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Column: TColumnIndex);
+begin
+    VirtualStringTree1.Refresh;
+end;
+
+procedure TMainForm.VirtualStringTree1FreeNode(Sender: TBaseVirtualTree;
+  Node: PVirtualNode);
+var
+  Data: PTreeData;
+begin
+  Data := VirtualStringTree1.GetNodeData(Node);
+  if Assigned(Data) then
+  begin
+    Data^.DX := '';
+    Data^.Spots := '';
+    Data^.Call := '';
+    Data^.Freq := '';
+    Data^.Moda := '';
+    Data^.Comment := '';
+    Data^.Time := '';
+    Data^.Loc := '';
+    Data^.Country := '';
+  end;
+end;
+
+procedure TMainForm.VirtualStringTree1GetHint(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Column: TColumnIndex;
+  var LineBreakStyle: TVTTooltipLineBreakStyle; var HintText: String);
+var
+  Data: PTreeData;
+begin
+  Data := Sender.GetNodeData(Node);
+  HintText := SearchCountry(Data^.Spots, True);
+end;
+
+procedure TMainForm.VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
+  var Ghosted: Boolean; var ImageIndex: Integer);
+var
+  Data: PTreeData;
+begin
+  if Column <> 8 then
+    Exit;
+
+  ImageIndex := -1;
+  Data := VirtualStringTree1.GetNodeData(Node);
+  if Assigned(Data) then
+  begin
+    ImageIndex := FlagSList.IndexOf(dmFunc.ReplaceCountry(Data^.Country));
+  end;
+end;
+
+procedure TMainForm.VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;
+  var NodeDataSize: Integer);
+begin
+    NodeDataSize := SizeOf(TTreeData);
+end;
+
+procedure TMainForm.VirtualStringTree1GetText(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
+  var CellText: String);
+var
+  Data: PTreeData;
+begin
+  Data := VirtualStringTree1.GetNodeData(Node);
+  case Column of
+    0: CellText := Data^.DX;
+    1: CellText := Data^.Spots;
+    2: CellText := Data^.Call;
+    3: CellText := Data^.Freq;
+    4: CellText := Data^.Moda;
+    5: CellText := Data^.Comment;
+    6: CellText := Data^.Time;
+    7: CellText := Data^.Loc;
+    8: CellText := Data^.Country;
+  end;
+end;
+
+procedure TMainForm.VirtualStringTree1HeaderClick(Sender: TVTHeader;
+  HitInfo: TVTHeaderHitInfo);
+begin
+  with HitInfo do
+  begin
+    if Button = mbLeft then
+    begin
+      VirtualStringTree1.Header.SortColumn := Column;
+      if VirtualStringTree1.Header.SortDirection = sdAscending then
+      begin
+        VirtualStringTree1.Header.SortDirection := sdDescending;
+        VirtualStringTree1.SortTree(Column, VirtualStringTree1.Header.SortDirection);
+      end
+      else
+      begin
+        VirtualStringTree1.Header.SortDirection := sdAscending;
+        VirtualStringTree1.SortTree(Column, VirtualStringTree1.Header.SortDirection);
+      end;
+    end;
+  end;
+end;
+
+procedure TMainForm.VirtualStringTree1NodeClick(Sender: TBaseVirtualTree;
+  const HitInfo: THitInfo);
+var
+  XNode: PVirtualNode;
+begin
+  XNode := VirtualStringTree1.FocusedNode;
+  VirtualStringTree1.Selected[XNode] := True;
 end;
 
 procedure TMainForm.WSJT_TimerTimer(Sender: TObject);

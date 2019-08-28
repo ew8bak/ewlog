@@ -1,12 +1,12 @@
 object MainForm: TMainForm
-  Left = 342
+  Left = 275
   Height = 673
-  Top = 155
-  Width = 1084
+  Top = 148
+  Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - Аппаратный журнал'
   ClientHeight = 653
-  ClientWidth = 1084
+  ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
   Menu = MainMenu1
@@ -22,11 +22,11 @@ object MainForm: TMainForm
     Left = 0
     Height = 26
     Top = 0
-    Width = 1084
+    Width = 1208
     Align = alTop
     AutoSize = True
     ClientHeight = 26
-    ClientWidth = 1084
+    ClientWidth = 1208
     TabOrder = 1
     object SpeedButton8: TSpeedButton
       AnchorSideTop.Control = Panel1
@@ -171,7 +171,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = Panel1
       AnchorSideRight.Side = asrBottom
-      Left = 904
+      Left = 1028
       Height = 15
       Top = 6
       Width = 159
@@ -1516,16 +1516,16 @@ object MainForm: TMainForm
     Left = 474
     Height = 249
     Top = 26
-    Width = 610
+    Width = 734
     Align = alClient
     ClientHeight = 249
-    ClientWidth = 610
+    ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
       Height = 247
       Top = 1
-      Width = 608
+      Width = 732
       Align = alClient
       Color = clWindow
       Columns = <      
@@ -1700,10 +1700,10 @@ object MainForm: TMainForm
     Left = 0
     Height = 378
     Top = 275
-    Width = 1084
+    Width = 1208
     Align = alBottom
     ClientHeight = 378
-    ClientWidth = 1084
+    ClientWidth = 1208
     TabOrder = 3
     object Panel5: TPanel
       Left = 1
@@ -2238,25 +2238,25 @@ object MainForm: TMainForm
       Left = 475
       Height = 376
       Top = 1
-      Width = 608
+      Width = 732
       Align = alClient
       ClientHeight = 376
-      ClientWidth = 608
+      ClientWidth = 732
       TabOrder = 1
       object Panel7: TPanel
         Left = 1
         Height = 111
         Top = 1
-        Width = 606
+        Width = 730
         Align = alTop
         ClientHeight = 111
-        ClientWidth = 606
+        ClientWidth = 730
         TabOrder = 0
         object DBGrid2: TDBGrid
           Left = 1
           Height = 109
           Top = 1
-          Width = 604
+          Width = 728
           Align = alClient
           Color = clWindow
           Columns = <          
@@ -2425,10 +2425,10 @@ object MainForm: TMainForm
         Left = 1
         Height = 263
         Top = 112
-        Width = 606
+        Width = 730
         Align = alClient
         ClientHeight = 263
-        ClientWidth = 606
+        ClientWidth = 730
         Font.Height = -12
         ParentFont = False
         TabOrder = 1
@@ -2436,23 +2436,23 @@ object MainForm: TMainForm
           Left = 1
           Height = 261
           Top = 1
-          Width = 604
-          ActivePage = TabSheet2
+          Width = 728
+          ActivePage = TabSheet1
           Align = alClient
           Font.Height = -13
           ParentFont = False
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
             ClientHeight = 231
-            ClientWidth = 596
+            ClientWidth = 720
             object Memo1: TMemo
               Left = 0
               Height = 180
               Top = 26
-              Width = 596
+              Width = 720
               Align = alClient
               Color = clForm
               Font.Height = -12
@@ -2465,7 +2465,7 @@ object MainForm: TMainForm
               Left = 0
               Height = 25
               Top = 206
-              Width = 596
+              Width = 720
               Align = alBottom
               OnKeyDown = Edit12KeyDown
               TabOrder = 1
@@ -2474,10 +2474,10 @@ object MainForm: TMainForm
               Left = 0
               Height = 26
               Top = 0
-              Width = 596
+              Width = 720
               Align = alTop
               ClientHeight = 26
-              ClientWidth = 596
+              ClientWidth = 720
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -2525,6 +2525,7 @@ object MainForm: TMainForm
                   00003333312143423F5B42423F5F42423F5F43423F5F43423F5F43423F5F4342
                   3F5F43423F5F43423F5F3E3D3B5C151414290000000000000000
                 }
+                OnClick = SpeedButton24Click
                 OnMouseLeave = SpeedButton18MouseLeave
                 OnMouseMove = SpeedButton18MouseMove
               end
@@ -2772,15 +2773,15 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Telnet DX Кластер'
             ClientHeight = 231
-            ClientWidth = 596
+            ClientWidth = 720
             object Panel9: TPanel
               Left = 0
               Height = 28
               Top = 0
-              Width = 596
+              Width = 720
               Align = alTop
               ClientHeight = 28
-              ClientWidth = 596
+              ClientWidth = 720
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -2828,6 +2829,7 @@ object MainForm: TMainForm
                   00003333312143423F5B42423F5F42423F5F43423F5F43423F5F43423F5F4342
                   3F5F43423F5F43423F5F3E3D3B5C151414290000000000000000
                 }
+                OnClick = SpeedButton24Click
                 OnMouseLeave = SpeedButton18MouseLeave
                 OnMouseMove = SpeedButton18MouseMove
               end
@@ -3076,14 +3078,86 @@ object MainForm: TMainForm
                 OnClick = SpeedButton23Click
               end
             end
+            object VirtualStringTree1: TVirtualStringTree
+              Left = 0
+              Height = 203
+              Top = 28
+              Width = 720
+              Align = alClient
+              DefaultText = 'Node'
+              Font.Height = -11
+              Header.AutoSizeIndex = 0
+              Header.Columns = <              
+                item
+                  Position = 0
+                  Text = 'DX'
+                  Width = 70
+                end              
+                item
+                  Position = 1
+                  Text = 'Споты'
+                  Width = 70
+                end              
+                item
+                  Position = 2
+                  Text = 'Наблюдатель'
+                  Width = 90
+                end              
+                item
+                  Position = 3
+                  Text = 'Частота'
+                  Width = 70
+                end              
+                item
+                  Position = 4
+                  Text = 'Мода'
+                end              
+                item
+                  Position = 5
+                  Text = 'Комментарий'
+                  Width = 100
+                end              
+                item
+                  Position = 6
+                  Text = 'UTC'
+                  Width = 40
+                end              
+                item
+                  Position = 7
+                  Text = 'Локатор'
+                  Width = 70
+                end              
+                item
+                  Position = 8
+                  Text = 'Страна'
+                  Width = 150
+                end>
+              Header.Font.Height = -11
+              Header.Options = [hoColumnResize, hoDrag, hoShowImages, hoShowSortGlyphs, hoVisible]
+              HintMode = hmHint
+              ParentFont = False
+              TabOrder = 1
+              TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScroll, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes, toAutoChangeScale]
+              TreeOptions.SelectionOptions = [toFullRowSelect]
+              OnChange = VirtualStringTree1Change
+              OnCompareNodes = VirtualStringTree1CompareNodes
+              OnFocusChanged = VirtualStringTree1FocusChanged
+              OnFreeNode = VirtualStringTree1FreeNode
+              OnGetText = VirtualStringTree1GetText
+              OnGetImageIndex = VirtualStringTree1GetImageIndex
+              OnGetHint = VirtualStringTree1GetHint
+              OnGetNodeDataSize = VirtualStringTree1GetNodeDataSize
+              OnHeaderClick = VirtualStringTree1HeaderClick
+              OnNodeClick = VirtualStringTree1NodeClick
+            end
           end
         end
       end
     end
   end
   object MainMenu1: TMainMenu
-    left = 552
-    top = 504
+    left = 488
+    top = 304
     object MenuItem1: TMenuItem
       Caption = 'Журнал'
       object MenuItem54: TMenuItem
@@ -3337,7 +3411,7 @@ object MainForm: TMainForm
   object DataSource2: TDataSource
     DataSet = SQLQuery2
     left = 600
-    top = 448
+    top = 312
   end
   object MySQLLOGDBConnection: TMySQL56Connection
     Connected = False
@@ -3527,8 +3601,8 @@ object MainForm: TMainForm
   object CallBookTransaction: TSQLTransaction
     Active = False
     Database = CallBookLiteConnection
-    left = 712
-    top = 544
+    left = 728
+    top = 304
   end
   object SearchCallBookQuery: TSQLQuery
     FieldDefs = <    
@@ -3724,8 +3798,8 @@ object MainForm: TMainForm
     top = 420
   end
   object PopupMenu1: TPopupMenu
-    left = 888
-    top = 456
+    left = 1008
+    top = 312
     object MenuItem8: TMenuItem
       Caption = 'Отметить QSO'
       Bitmap.Data = {
@@ -4950,8 +5024,8 @@ object MainForm: TMainForm
     KeepConnection = False
     Transaction = CallBookTransaction
     CharSet = 'utf-8'
-    left = 842
-    top = 534
+    left = 808
+    top = 312
   end
   object LTCPComponent1: TLTCPComponent
     Port = 0
@@ -4992,5 +5066,21 @@ object MainForm: TMainForm
     ReuseAddress = False
     left = 992
     top = 235
+  end
+  object dxClient: TLTelnetClientComponent
+    Port = 0
+    OnReceive = dxClientReceive
+    Timeout = 0
+    LocalEcho = False
+    left = 1120
+    top = 312
+  end
+  object qBands: TSQLQuery
+    FieldDefs = <>
+    Database = ServiceDBConnection
+    Transaction = SQLServiceTransaction
+    Params = <>
+    left = 1102
+    top = 85
   end
 end

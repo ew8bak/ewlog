@@ -31,6 +31,8 @@ type
     fDebugLevel: integer;
     { private declarations }
   public
+    function ReplaceCountry(Country: string): string;
+    function Extention(FileName:string):String;
     procedure LoadRigList(RigCtlBinaryPath : String;RigList : TStringList);
     procedure LoadRigListCombo(CurrentRigId : String; RigList : TStringList; RigComboBox : TComboBox);
     procedure LoadRigsToComboBox(CurrentRigId : String; RigCtlBinaryPath : String; RigComboBox : TComboBox);
@@ -105,6 +107,92 @@ implementation
 uses MainForm_U;
 
 {$R *.lfm}
+
+function TdmFunc.ReplaceCountry(Country: string): string;
+begin
+  Result := '';
+  if (Country = 'European Russia') or (Country = 'Asiatic Russia') or
+    (Country = 'Kaliningrad') then
+  begin
+    Result := 'Russia';
+    exit;
+  end;
+  if (Country = 'United States') then
+  begin
+    Result := 'United-States';
+    exit;
+  end;
+  if (Country = 'Bosnia-Herzegovina') then
+  begin
+    Result := 'Bosnia-and-Herzegovina';
+    exit;
+  end;
+  if (Country = 'South Africa') then
+  begin
+    Result := 'South-Africa';
+    exit;
+  end;
+  if (Country = 'West Malaysia') then
+  begin
+    Result := 'Malaysia';
+    exit;
+  end;
+  if (Country = 'Canary Is.') then
+  begin
+    Result := 'Canary-Islands';
+    exit;
+  end;
+  if (Country = 'Isle of Man') then
+  begin
+    Result := 'Isle-of-Man';
+    exit;
+  end;
+  if (Country = 'Faroe Is.') then
+  begin
+    Result := 'Faroes';
+    exit;
+  end;
+  if (Country = 'Sao Tome & Principe') then
+  begin
+    Result := 'Sao-Tome-and-Principe';
+    exit;
+  end;
+  if (Country = 'Czech Republic') then
+  begin
+    Result := 'Czech-Republic';
+    exit;
+  end;
+  if (Country = 'Northern Ireland') then
+  begin
+    Result := 'Ireland';
+    exit;
+  end;
+  if (Country = 'Sardinia') then
+  begin
+    Result := 'Italy';
+    exit;
+  end;
+  if (Country = 'San Marino') then
+  begin
+    Result := 'San-Marino';
+    exit;
+  end;
+   if (Country = 'Puerto Rico') then
+  begin
+    Result := 'Puerto-Rico';
+    exit;
+  end;
+  Result := Country;
+end;
+
+function TdmFunc.Extention(FileName:string):String;
+var i:integer;
+  begin
+    i:=Length(FileName);
+    while (i>0)and(FileName[i]<>'.') do i:=i-1;
+    if i<=0 then Result:='' else Result:=Copy(FileName,i,Length(FileName));
+  end;
+
 function TdmFunc.Split(delimiter:string; str:string; limit:integer=MaxInt):TStringArray;
 var
   p,cc,dsize:integer;

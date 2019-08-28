@@ -97,40 +97,43 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="11">
+    <RequiredPackages Count="12">
       <Item1>
-        <PackageName Value="indylaz"/>
+        <PackageName Value="virtualtreeview_package"/>
       </Item1>
       <Item2>
-        <PackageName Value="laz_synapse"/>
+        <PackageName Value="indylaz"/>
       </Item2>
       <Item3>
-        <PackageName Value="lnetvisual"/>
+        <PackageName Value="laz_synapse"/>
       </Item3>
       <Item4>
-        <PackageName Value="kcMapViewerPckg"/>
+        <PackageName Value="lnetvisual"/>
       </Item4>
       <Item5>
-        <PackageName Value="DBFLaz"/>
+        <PackageName Value="kcMapViewerPckg"/>
       </Item5>
       <Item6>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="DBFLaz"/>
       </Item6>
       <Item7>
-        <PackageName Value="MemDSLaz"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item7>
       <Item8>
-        <PackageName Value="SDFLaz"/>
+        <PackageName Value="MemDSLaz"/>
       </Item8>
       <Item9>
-        <PackageName Value="FCL"/>
+        <PackageName Value="SDFLaz"/>
       </Item9>
       <Item10>
-        <PackageName Value="SQLDBLaz"/>
+        <PackageName Value="FCL"/>
       </Item10>
       <Item11>
-        <PackageName Value="LCL"/>
+        <PackageName Value="SQLDBLaz"/>
       </Item11>
+      <Item12>
+        <PackageName Value="LCL"/>
+      </Item12>
     </RequiredPackages>
     <Units Count="44">
       <Unit0>
@@ -459,4 +462,11 @@
       </Options>
     </Linking>
   </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="1">
+      <Item1>
+        <Name Value="EResNotFound"/>
+      </Item1>
+    </Exceptions>
+  </Debugging>
 </CONFIG>

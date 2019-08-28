@@ -328,7 +328,7 @@ var
   i, j: integer;
   BoolPrefix: boolean;
 begin
-  PrefixExp := TRegExpr.Create;
+ // PrefixExp := TRegExpr.Create;
   BoolPrefix := False;
 
   with TerrQuery do
@@ -341,9 +341,9 @@ begin
 
   for i := 0 to PrefixProvinceCount do
   begin
-    Application.ProcessMessages;
-    PrefixExp.Expression := PrefixProvinceList.Strings[i];
-    if (PrefixExp.Exec(Edit1.Text)) and (PrefixExp.Match[0] = Edit1.Text) then
+  //  Application.ProcessMessages;
+   // PrefixExp.Expression := PrefixProvinceList.Strings[i];
+    if (PrefixExpProvinceArray[i].Exec(Edit1.Text)) and (PrefixExpProvinceArray[i].Match[0] = Edit1.Text) then
     begin
       BoolPrefix := True;
       with MainForm.PrefixQuery do
@@ -367,19 +367,19 @@ begin
   begin
     for j := 0 to PrefixARRLCount do
     begin
-      Application.ProcessMessages;
-      PrefixExp.Expression := PrefixARRLList.Strings[j];
-      if (PrefixExp.Exec(Edit1.Text)) and (PrefixExp.Match[0] = Edit1.Text) then
+    //  Application.ProcessMessages;
+
+      if (PrefixExpARRLArray[j].Exec(Edit1.Text)) and (PrefixExpARRLArray[j].Match[0] = Edit1.Text) then
       begin
         with MainForm.PrefixQuery do
         begin
           Close;
           SQL.Clear;
-          //SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(j+1) + '"');
+
           SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(j) + '"');
           Open;
         if FieldByName('Status').AsString = 'Deleted' then begin
-          PrefixExp.ExecNext;
+          PrefixExpARRLArray[j].ExecNext;
           Exit;
           end;
 
@@ -394,8 +394,8 @@ begin
       end;
     end;
   end;
-  GroupBox1.Repaint;
-  PrefixExp.Free;
+ // GroupBox1.Repaint;
+ // PrefixExp.Free;
 end;
 
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;

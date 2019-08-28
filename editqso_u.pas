@@ -328,7 +328,6 @@ var
   i, j: integer;
   BoolPrefix: boolean;
 begin
-  PrefixExp := TRegExpr.Create;
   BoolPrefix := False;
 
   with TerrQuery do
@@ -341,16 +340,13 @@ begin
 
   for i := 0 to PrefixProvinceCount do
   begin
-    Application.ProcessMessages;
-    PrefixExp.Expression := PrefixProvinceList.Strings[i];
-    if (PrefixExp.Exec(Edit1.Text)) and (PrefixExp.Match[0] = Edit1.Text) then
+    if (PrefixExpProvinceArray[i].Exec(Edit1.Text)) and (PrefixExpProvinceArray[i].Match[0] = Edit1.Text) then
     begin
       BoolPrefix := True;
       with MainForm.PrefixQuery do
       begin
         Close;
         SQL.Clear;
-        //SQL.Add('select * from Province where _id = "' + IntToStr(i+1) + '"');
         SQL.Add('select * from Province where _id = "' + IntToStr(i) + '"');
         Open;
       end;
@@ -367,19 +363,17 @@ begin
   begin
     for j := 0 to PrefixARRLCount do
     begin
-      Application.ProcessMessages;
-      PrefixExp.Expression := PrefixARRLList.Strings[j];
-      if (PrefixExp.Exec(Edit1.Text)) and (PrefixExp.Match[0] = Edit1.Text) then
+      if (PrefixExpARRLArray[j].Exec(Edit1.Text)) and (PrefixExpARRLArray[j].Match[0] = Edit1.Text) then
       begin
         with MainForm.PrefixQuery do
         begin
           Close;
           SQL.Clear;
-          //SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(j+1) + '"');
+
           SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(j) + '"');
           Open;
         if FieldByName('Status').AsString = 'Deleted' then begin
-          PrefixExp.ExecNext;
+          PrefixExpARRLArray[j].ExecNext;
           Exit;
           end;
 
@@ -394,8 +388,6 @@ begin
       end;
     end;
   end;
-  GroupBox1.Repaint;
-  PrefixExp.Free;
 end;
 
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
@@ -573,17 +565,11 @@ begin
   begin
     if DefaultDB = 'MySQL' then
     begin
-     // ModesQuery.DataBase := MainForm.MySQLLOGDBConnection;
-     // BandsQuery.DataBase := MainForm.MySQLLOGDBConnection;
-     // SATQuery.DataBase := MainForm.MySQLLOGDBConnection;
       TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
       UPDATE_Query.DataBase := MainForm.MySQLLOGDBConnection;
     end
     else
     begin
-     // ModesQuery.DataBase := MainForm.SQLiteDBConnection;
-     // BandsQuery.DataBase := MainForm.SQLiteDBConnection;
-     // SATQuery.DataBase := MainForm.SQLiteDBConnection;
       TerrQuery.DataBase := MainForm.SQLiteDBConnection;
       UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
     end;
@@ -591,7 +577,6 @@ begin
     ModesQuery.DataBase := MainForm.ServiceDBConnection;
     BandsQuery.DataBase := MainForm.ServiceDBConnection;
     SATQuery.DataBase := MainForm.ServiceDBConnection;
-   // TerrQuery.DataBase := MainForm.ServiceDBConnection;
 
     ModesQuery.Active := True;
     BandsQuery.Active := True;
@@ -609,17 +594,11 @@ begin
 
     if DefaultDB = 'MySQL' then
     begin
-     // ModesQuery.DataBase := MainForm.MySQLLOGDBConnection;
-     // BandsQuery.DataBase := MainForm.MySQLLOGDBConnection;
-     // SATQuery.DataBase := MainForm.MySQLLOGDBConnection;
       TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
       UPDATE_Query.DataBase := MainForm.MySQLLOGDBConnection;
     end
     else
     begin
-      //ModesQuery.DataBase := MainForm.SQLiteDBConnection;
-      //BandsQuery.DataBase := MainForm.SQLiteDBConnection;
-      //SATQuery.DataBase := MainForm.SQLiteDBConnection;
       TerrQuery.DataBase := MainForm.SQLiteDBConnection;
       UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
     end;
@@ -627,14 +606,13 @@ begin
     ModesQuery.DataBase := MainForm.ServiceDBConnection;
     BandsQuery.DataBase := MainForm.ServiceDBConnection;
     SATQuery.DataBase := MainForm.ServiceDBConnection;
-    //TerrQuery.DataBase := MainForm.ServiceDBConnection;
 
     ModesQuery.Active := True;
     BandsQuery.Active := True;
     SATQuery.Active := True;
     MainForm.VHFTypeQuery.Active := True;
   end;
-  //Button4.Click;
+  Button4.Click;
   Edit1.SetFocus;
   except on E: Exception do begin
     if Pos('has gone away',E.Message) > 0 then begin
