@@ -361,6 +361,7 @@ type
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
+    procedure dxClientDisconnect(aSocket: TLSocket);
     procedure dxClientReceive(aSocket: TLSocket);
     procedure Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure Edit1Change(Sender: TObject);
@@ -518,7 +519,6 @@ type
   private
     { private declarations }
     FDownloader: TCustomDownloadEngine;
-    cluster: TTelnetSend;
     formmode: integer;
     showinfo: boolean;
     loginmsg: string;
@@ -598,7 +598,7 @@ var
   PrefixARRLCount: integer;
   PrefixProvinceList: TStringList;
   PrefixARRLList: TStringList;
-  GetingHint: Boolean;
+  GetingHint: integer;
   PrefixExpProvinceArray: array [0..1000] of TRegExpr;
   PrefixExpARRLArray: array [0..1000] of TRegExpr;
   IniF: TINIFile;
@@ -705,6 +705,7 @@ var
   i, j: integer;
   BoolPrefix: boolean;
 begin
+  try
   BoolPrefix := False;
   Result := '';
   if Province = True then
@@ -722,6 +723,7 @@ begin
           Open;
         end;
         Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
+        exit;
       end;
     end;
   end;
@@ -746,6 +748,9 @@ begin
         Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
       end;
     end;
+  end;
+  except
+
   end;
 end;
 
@@ -2724,6 +2729,18 @@ begin
   CallLogBook := DBLookupComboBox1.KeyValue;
 end;
 
+procedure TMainForm.dxClientDisconnect(aSocket: TLSocket);
+begin
+  Memo1.Append('Вы отключены от DX кластера');
+
+  SpeedButton21.Enabled := False;
+  SpeedButton27.Enabled := False;
+  SpeedButton18.Enabled := True;
+  SpeedButton24.Enabled := True;
+  SpeedButton28.Enabled := False;
+  SpeedButton22.Enabled := False;
+end;
+
 procedure TMainForm.dxClientReceive(aSocket: TLSocket);
 var
   DX, Call, Freq, Comment, Time, Loc: string;
@@ -2850,7 +2867,7 @@ var
   PathMyDoc: string;
   i, j: integer;
 begin
-  GetingHint:=False;
+  GetingHint:=0;
       {$IFDEF UNIX}
     PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
@@ -3060,6 +3077,8 @@ begin
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
+var
+  i:integer;
 begin
   if MenuItem111.Checked=True then begin
   PhotoJPEG.Free;
@@ -3073,12 +3092,14 @@ begin
     IniF.WriteString('SetLog', 'UseMAPS', 'YES')
   else
     IniF.WriteString('SetLog', 'UseMAPS', 'NO');
-  //AdifMobileString.Free;
-  //AdifFromMobileString.Free;
   FlagList.Free;
   FlagSList.Free;
   PrefixProvinceList.Free;
   PrefixARRLList.Free;
+  for i:=0 to 1000 do begin
+  PrefixExpARRLArray[i].Free;
+  PrefixExpProvinceArray[i].Free;
+  end;
   FDownloader.Free;
   IniF.Free;
    LTCPComponent1.Free;
@@ -3110,61 +3131,6 @@ begin
   else
     CheckBox3.Checked := False;
   CheckBox3.Enabled := True;
-
- { RegisterLog := IniF.ReadString('SetLog', 'Register', '');
-  LoginLog := IniF.ReadString('SetLog', 'Login', '');
-  PassLog := IniF.ReadString('SetLog', 'Pass', '');
-  sprav:=IniF.ReadString('SetLog', 'Sprav', '');
-
-  if MenuItem86.Checked = True then
-    TRXForm.Show;
-
-  UnUsIndex := 0;
-
-  if useMAPS = 'YES' then
-    CheckBox3.Checked := True
-  else
-    CheckBox3.Checked := False;
-  CheckBox3.Enabled := True;
-
-  SetGrid;
-
-  if ShowTRXForm = False then
-    MenuItem88.Checked := True
-  else
-    MenuItem86.Checked := True;
-
-  if ShowTRXForm = True then
-  begin
-    TRXForm.Parent := Panel13;
-    TRXForm.BorderStyle := bsNone;
-    TRXForm.Align := alClient;
-    TRXForm.Show;
-  end;
-
-  if IniF.ReadBool('SetLog', 'ImgForm', False) = True then
-    MenuItem111.Click else
-  MenuItem112.Click;
-
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
-  begin
-    ComboBox1.Items.Clear;
-    for i:=0 to 12 do
-    ComboBox1.Items.Add(constBandName[i]);
-  end
-  else begin
-  ComboBox1.Items.Clear;
-    for i:=0 to 12 do
-    ComboBox1.Items.Add(constKhzBandName[i]);
-  end;
-
-  InformationForm.Timer1.Interval:=3200000;
-  InformationForm.Timer1.Enabled:=True;
-
-      {$IFDEF WINDOWS}
-  CheckUpdatesTimer.Enabled := True;
-    {$ENDIF WINDOWS}   }
-
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
@@ -5154,8 +5120,7 @@ end;
 
 procedure TMainForm.SpeedButton21Click(Sender: TObject);
 begin
-
-  Memo1.Append('Вы отключены от DX кластера');
+  dxClient.SendMessage('bye'+#13#10);
   SpeedButton21.Enabled := False;
   SpeedButton27.Enabled := False;
   SpeedButton18.Enabled := True;
@@ -5202,6 +5167,8 @@ begin
   dxClient.Port := StrToInt(PortCluster);
   if dxClient.Connect = True then begin
       SpeedButton27.Enabled := True;
+      SpeedButton28.Enabled := True;
+      SpeedButton22.Enabled := True;
       SpeedButton21.Enabled := True;
   end;
 end;
@@ -5501,11 +5468,8 @@ procedure TMainForm.VirtualStringTree1GetHint(Sender: TBaseVirtualTree;
 var
   Data: PTreeData;
 begin
-  if GetingHint then Exit;
-  GetingHint:=True;
   Data := Sender.GetNodeData(Node);
-  HintText := SearchCountry(Data^.Spots, True);
-  GetingHint:=False;
+ HintText := SearchCountry(Data^.Spots, True);
 end;
 
 procedure TMainForm.VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
@@ -5635,10 +5599,9 @@ var
 begin
   comment := cname + ' ' + mode + ' ' + rsts;
   try
-    cluster.Send(Trim(Format('dx %s %s %s', [freq, call, comment])) + #13#10);
-  except
-    Memo1.Append(
-      'Нет подключения к кластеру. Сперва подключитесь, затем отправляйте спот');
+    dxClient.SendMessage(Trim(Format('dx %s %s %s', [freq, call, comment])) + #13#10);
+  except on E: Exception do
+    Memo1.Append(E.Message);
   end;
 end;
 

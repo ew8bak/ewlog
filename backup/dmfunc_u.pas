@@ -31,6 +31,7 @@ type
     fDebugLevel: integer;
     { private declarations }
   public
+    function GetTelnetBandFromFreq(MHz: string): string;
     function ReplaceCountry(Country: string): string;
     function Extention(FileName:string):String;
     procedure LoadRigList(RigCtlBinaryPath : String;RigList : TStringList);
@@ -107,6 +108,65 @@ implementation
 uses MainForm_U;
 
 {$R *.lfm}
+
+function TdmFunc.GetTelnetBandFromFreq(MHz: string): string;
+var
+  x: integer;
+  tmp: currency;
+  Dec: currency;
+  band: string;
+begin
+  Result := '';
+  band := '';
+  if Pos('.', MHz) > 0 then
+    MHz[Pos('.', MHz)] := FormatSettings.DecimalSeparator;
+
+  if pos(',', MHz) > 0 then
+    MHz[pos(',', MHz)] := FormatSettings.DecimalSeparator;
+
+  if not TryStrToCurr(MHz, tmp) then
+    exit;
+  tmp := tmp / 1000;
+  if tmp < 1 then
+  begin
+    Dec := Int(frac(tmp) * 1000);
+    if ((Dec >= 133) and (Dec <= 139)) then
+      Result := '2190M';
+    if ((Dec >= 472) and (Dec <= 480)) then
+      Result := '630M';
+    exit;
+  end;
+  x := trunc(tmp);
+
+  case x of
+    1: Band := '160M';
+    3: band := '80M';
+    5: band := '60M';
+    7: band := '40M';
+    10: band := '30M';
+    14: band := '20M';
+    18: Band := '17M';
+    21: Band := '15M';
+    24: Band := '12M';
+    28..30: Band := '10M';
+    50..53: Band := '6M';
+    70..72: Band := '4M';
+    144..149: Band := '2M';
+    219..225: Band := '1.25M';
+    430..440: band := '70CM';
+    900..929: band := '33CM';
+    1240..1300: Band := '23CM';
+    2300..2450: Band := '13CM';  //12 cm
+    3400..3475: band := '9CM';
+    5650..5850: Band := '6CM';
+
+    10000..10500: band := '3CM';
+    24000..24250: band := '1.25CM';
+    47000..47200: band := '6MM';
+    76000..84000: band := '4MM'
+  end;
+  Result := band;
+end;
 
 function TdmFunc.ReplaceCountry(Country: string): string;
 begin

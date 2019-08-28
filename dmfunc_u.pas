@@ -1694,7 +1694,7 @@ end;
 
 procedure TdmFunc.Pack(var AData: TIdBytes; const AFlag: Boolean) overload;
 var
-   temp: Byte;
+   temp: Integer;
 begin
   if AFlag then
   temp := -1
