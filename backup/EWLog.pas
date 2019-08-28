@@ -17,7 +17,7 @@ uses
   setupForm_U, UpdateForm_U, Changelog_Form_U, Earth_Form_U, IOTA_Form_U,
   ConfigGridForm_U, sendtelnetspot_form_U, ClusterFilter_Form_U,
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
-  ThanksForm_u, register_form_u, filterForm_U;
+  ThanksForm_u, register_form_u, filterForm_U, hiddentsettings_u;
 
 {$R *.res}
 
@@ -58,6 +58,7 @@ begin
   Application.CreateForm(TThanks_Form, Thanks_Form);
   Application.CreateForm(TRegisterForm, RegisterForm);
   Application.CreateForm(TfilterForm, filterForm);
+  Application.CreateForm(ThiddenSettings, hiddenSettings);
   Application.Run;
 end.
 

@@ -588,10 +588,6 @@ type
     function GetModeFromFreq(MHz: string): string;
     function SearchCountry(CallName: string; Province: boolean): string;
     procedure FindCountryFlag(Country: string);
-
-
-
-
   end;
 
 var
@@ -682,7 +678,6 @@ procedure TMainForm.FindCountryFlag(Country: string);
 var
   pImage: TPortableNetworkGraphic;
 begin
-
   try
     pImage := TPortableNetworkGraphic.Create;
     pImage.LoadFromLazarusResource(dmFunc.ReplaceCountry(Country));
@@ -709,13 +704,11 @@ function TMainForm.SearchCountry(CallName: string; Province: boolean): string;
 var
   i, j: integer;
   BoolPrefix: boolean;
-
 begin
   BoolPrefix := False;
   Result := '';
   if Province = True then
   begin
-
     for i := 0 to PrefixProvinceCount do
     begin
       if (PrefixExpProvinceArray[i].Exec(CallName)) and (PrefixExpProvinceArray[i].Match[0] = CallName) then
@@ -2803,9 +2796,10 @@ end;
 
 procedure TMainForm.Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if Key=13 then
+  if Key=13 then begin
   dxClient.SendMessage(Edit12.Text + #13#10,nil);
   Edit12.Clear;
+  end;
 end;
 
 procedure TMainForm.Edit1Change(Sender: TObject);

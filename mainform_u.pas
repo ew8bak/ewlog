@@ -598,7 +598,7 @@ var
   PrefixARRLCount: integer;
   PrefixProvinceList: TStringList;
   PrefixARRLList: TStringList;
-
+  GetingHint: Boolean;
   PrefixExpProvinceArray: array [0..1000] of TRegExpr;
   PrefixExpARRLArray: array [0..1000] of TRegExpr;
   IniF: TINIFile;
@@ -2796,9 +2796,10 @@ end;
 
 procedure TMainForm.Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if Key=13 then
+  if Key=13 then begin
   dxClient.SendMessage(Edit12.Text + #13#10,nil);
   Edit12.Clear;
+  end;
 end;
 
 procedure TMainForm.Edit1Change(Sender: TObject);
@@ -2849,6 +2850,7 @@ var
   PathMyDoc: string;
   i, j: integer;
 begin
+  GetingHint:=False;
       {$IFDEF UNIX}
     PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
@@ -5499,8 +5501,11 @@ procedure TMainForm.VirtualStringTree1GetHint(Sender: TBaseVirtualTree;
 var
   Data: PTreeData;
 begin
+  if GetingHint then Exit;
+  GetingHint:=True;
   Data := Sender.GetNodeData(Node);
   HintText := SearchCountry(Data^.Spots, True);
+  GetingHint:=False;
 end;
 
 procedure TMainForm.VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
