@@ -274,6 +274,7 @@ begin
   MainForm.ComboBox1.Text:=dmFunc.GetAdifBandFromFreq(FormatFloat(khz_freq,f));
 
   {$IFDEF WIN64}
+  if Assigned(radio) then
   bwith:=radio.GetBandwich(radio.GetRawMode);
   {$ENDIF}
 
@@ -351,6 +352,15 @@ begin
   thRig := nil;
   AutoMode := True;
   InicializeRig;
+
+   if ShowTRXForm = True then
+  begin
+    TRXForm.Parent := MainForm.Panel13;
+    TRXForm.BorderStyle := bsNone;
+    TRXForm.Align := alClient;
+    TRXForm.Show;
+  end;
+
 end;
 
 procedure TTRXForm.Label11MouseLeave(Sender: TObject);

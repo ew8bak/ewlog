@@ -262,6 +262,9 @@ begin
     f := radio.GetFreqMHz;
     m := radio.GetModeOnly;
     Freq(radio.GetFreqHz);
+   {$IFDEF WIN64}
+  bwith:=radio.GetBandwich(radio.GetRawMode);
+  {$ENDIF}
   end
   else
     f := 0;
@@ -272,10 +275,6 @@ begin
   if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and (dmFunc.GetAdifBandFromFreq(FormatFloat(khz_freq,f)) <> '')
   then
   MainForm.ComboBox1.Text:=dmFunc.GetAdifBandFromFreq(FormatFloat(khz_freq,f));
-
-  {$IFDEF WIN64}
-  bwith:=radio.GetBandwich(radio.GetRawMode);
-  {$ENDIF}
 
   if (Pos('FM',m)>0) and (Pos('PKTFM',m)<=0) and (Pos('WFM',m)<=0) then
   m:='FM';

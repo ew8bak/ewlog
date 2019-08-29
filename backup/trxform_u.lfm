@@ -1,7 +1,7 @@
 object TRXForm: TTRXForm
   Left = 487
   Height = 172
-  Top = 137
+  Top = 138
   Width = 470
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsDialog
