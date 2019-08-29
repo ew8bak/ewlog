@@ -2437,11 +2437,11 @@ object MainForm: TMainForm
           Height = 261
           Top = 1
           Width = 728
-          ActivePage = TabSheet1
+          ActivePage = TabSheet2
           Align = alClient
           Font.Height = -13
           ParentFont = False
-          TabIndex = 0
+          TabIndex = 1
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
@@ -2530,10 +2530,11 @@ object MainForm: TMainForm
                 OnMouseMove = SpeedButton18MouseMove
               end
               object SpeedButton25: TSpeedButton
-                Left = 528
-                Height = 22
-                Top = 0
-                Width = 23
+                Left = 695
+                Height = 24
+                Top = 1
+                Width = 24
+                Align = alRight
                 Glyph.Data = {
                   36040000424D3604000000000000360000002800000010000000100000000100
                   20000000000000040000640000006400000000000000000000000000001F1717
@@ -2753,7 +2754,7 @@ object MainForm: TMainForm
                 OnClick = SpeedButton23Click
               end
               object ComboBox8: TComboBox
-                Left = 138
+                Left = 136
                 Height = 23
                 Top = 0
                 Width = 388
@@ -2835,7 +2836,7 @@ object MainForm: TMainForm
               end
               object ComboBox3: TComboBox
                 AnchorSideTop.Control = Panel9
-                Left = 138
+                Left = 136
                 Height = 23
                 Top = 1
                 Width = 388
@@ -2851,11 +2852,11 @@ object MainForm: TMainForm
                 TabOrder = 0
               end
               object SpeedButton19: TSpeedButton
-                AnchorSideTop.Control = Panel9
-                Left = 528
-                Height = 22
+                Left = 695
+                Height = 26
                 Top = 1
-                Width = 23
+                Width = 24
+                Align = alRight
                 Glyph.Data = {
                   36040000424D3604000000000000360000002800000010000000100000000100
                   20000000000000040000640000006400000000000000000000000000001F1717
@@ -3137,6 +3138,7 @@ object MainForm: TMainForm
               Header.Options = [hoColumnResize, hoDrag, hoShowImages, hoShowSortGlyphs, hoVisible]
               HintMode = hmHint
               ParentFont = False
+              PopupMenu = PopupDxCluster
               TabOrder = 1
               TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScroll, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes, toAutoChangeScale]
               TreeOptions.SelectionOptions = [toFullRowSelect]
@@ -5084,5 +5086,12 @@ object MainForm: TMainForm
     Params = <>
     left = 1102
     top = 85
+  end
+  object PopupDxCluster: TPopupMenu
+    left = 1100
+    top = 190
+    object MenuItem113: TMenuItem
+      Caption = 'Вставить в поле Позывной'
+    end
   end
 end

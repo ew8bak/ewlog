@@ -11,7 +11,7 @@ uses
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
   lazutf8sysutils, IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
   Grids, kcMapViewer, INIFiles, md5, pingsend, kcMapViewerGLGeoNames, LCLType,
-  {$IFDEF UNIX}, kcMapViewerDESynapse, process, {$ELSE},
+  {$IFDEF UNIX}, kcMapViewerDESynapse, process, {$ELSE}
   kcMapViewerDEWin32,
   {$ENDIF UNIX}
   lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr;
@@ -75,6 +75,7 @@ type
     MenuItem110: TMenuItem;
     MenuItem111: TMenuItem;
     MenuItem112: TMenuItem;
+    MenuItem113: TMenuItem;
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
@@ -170,6 +171,7 @@ type
     Panel12: TPanel;
     Panel9: TPanel;
     PopupMenu2: TPopupMenu;
+    PopupDxCluster: TPopupMenu;
     SpeedButton24: TSpeedButton;
     SpeedButton25: TSpeedButton;
     SpeedButton26: TSpeedButton;

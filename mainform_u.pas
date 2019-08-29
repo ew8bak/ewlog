@@ -75,6 +75,9 @@ type
     MenuItem110: TMenuItem;
     MenuItem111: TMenuItem;
     MenuItem112: TMenuItem;
+    MenuItem113: TMenuItem;
+    MenuItem114: TMenuItem;
+    MenuItem115: TMenuItem;
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
@@ -170,6 +173,7 @@ type
     Panel12: TPanel;
     Panel9: TPanel;
     PopupMenu2: TPopupMenu;
+    PopupDxCluster: TPopupMenu;
     SpeedButton24: TSpeedButton;
     SpeedButton25: TSpeedButton;
     SpeedButton26: TSpeedButton;
