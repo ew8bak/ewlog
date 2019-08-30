@@ -1,0 +1,846 @@
+object MainForm: TMainForm
+  Left = 332
+  Height = 640
+  Top = 183
+  Width = 883
+  Caption = 'MainForm'
+  ClientHeight = 640
+  ClientWidth = 883
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  ShowHint = True
+  LCLVersion = '2.1.0.0'
+  object MapView: TMapView
+    Left = 0
+    Height = 640
+    Hint = 'Displays the map'
+    Top = 0
+    Width = 608
+    Align = alClient
+    DefaultTrackColor = clBlue
+    DefaultTrackWidth = 3
+    DownloadEngine = MapView.BuiltInDLE
+    DrawingEngine = MapView.BuiltInDE
+    Font.Color = clBlack
+    MapProvider = 'OpenStreetMap Mapnik'
+    UseThreads = True
+    Zoom = 0
+    OnZoomChange = MapViewZoomChange
+    OnChange = MapViewChange
+    OnMouseLeave = MapViewMouseLeave
+    OnMouseMove = MapViewMouseMove
+    OnMouseUp = MapViewMouseUp
+  end
+  object PageControl: TPageControl
+    Left = 608
+    Height = 640
+    Top = 0
+    Width = 275
+    ActivePage = PgConfig
+    Align = alRight
+    TabIndex = 1
+    TabOrder = 1
+    object PgData: TTabSheet
+      Caption = 'Data'
+      ClientHeight = 612
+      ClientWidth = 267
+      object ZoomTrackBar: TTrackBar
+        AnchorSideLeft.Control = PgData
+        AnchorSideTop.Control = LblZoom
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = PgData
+        AnchorSideRight.Side = asrBottom
+        Left = 2
+        Height = 40
+        Top = 21
+        Width = 263
+        Max = 19
+        Min = 1
+        OnChange = ZoomTrackBarChange
+        Position = 1
+        TickMarks = tmBoth
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 2
+        BorderSpacing.Right = 2
+        TabOrder = 0
+      end
+      object LblZoom: TLabel
+        AnchorSideLeft.Control = PgData
+        AnchorSideTop.Control = PgData
+        Left = 6
+        Height = 15
+        Top = 6
+        Width = 35
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 6
+        Caption = 'Zoom:'
+        ParentColor = False
+      end
+      object CbMouseCoords: TGroupBox
+        AnchorSideLeft.Control = PgData
+        AnchorSideTop.Control = ZoomTrackBar
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = PgData
+        AnchorSideRight.Side = asrBottom
+        Left = 6
+        Height = 66
+        Top = 69
+        Width = 255
+        Anchors = [akTop, akLeft, akRight]
+        AutoSize = True
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 8
+        BorderSpacing.Right = 6
+        Caption = 'Mouse position'
+        ClientHeight = 46
+        ClientWidth = 251
+        TabOrder = 1
+        object LblPositionLongitude: TLabel
+          AnchorSideLeft.Control = CbMouseCoords
+          AnchorSideTop.Control = CbMouseCoords
+          Left = 8
+          Height = 15
+          Top = 4
+          Width = 54
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          Caption = 'Longitude'
+          ParentColor = False
+        end
+        object LblPositionLatitude: TLabel
+          AnchorSideLeft.Control = CbMouseCoords
+          AnchorSideTop.Control = LblPositionLongitude
+          AnchorSideTop.Side = asrBottom
+          Left = 8
+          Height = 15
+          Top = 23
+          Width = 43
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          BorderSpacing.Bottom = 8
+          Caption = 'Latitude'
+          ParentColor = False
+        end
+        object InfoPositionLongitude: TLabel
+          AnchorSideLeft.Control = CbMouseCoords
+          AnchorSideTop.Control = CbMouseCoords
+          AnchorSideRight.Control = CbMouseCoords
+          AnchorSideRight.Side = asrBottom
+          Left = 201
+          Height = 15
+          Top = 4
+          Width = 34
+          Alignment = taRightJustify
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 4
+          BorderSpacing.Right = 16
+          Caption = 'Label2'
+          ParentColor = False
+        end
+        object InfoPositionLatitude: TLabel
+          AnchorSideLeft.Control = CbMouseCoords
+          AnchorSideTop.Control = InfoPositionLongitude
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = CbMouseCoords
+          AnchorSideRight.Side = asrBottom
+          Left = 201
+          Height = 15
+          Top = 23
+          Width = 34
+          Alignment = taRightJustify
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 4
+          BorderSpacing.Right = 16
+          BorderSpacing.Bottom = 8
+          Caption = 'Label2'
+          ParentColor = False
+        end
+      end
+      object GbCenterCoords: TGroupBox
+        AnchorSideLeft.Control = LblZoom
+        AnchorSideTop.Control = CbMouseCoords
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = CbMouseCoords
+        AnchorSideRight.Side = asrBottom
+        Left = 6
+        Height = 66
+        Top = 143
+        Width = 255
+        Anchors = [akTop, akLeft, akRight]
+        AutoSize = True
+        BorderSpacing.Top = 8
+        Caption = 'Center'
+        ClientHeight = 46
+        ClientWidth = 251
+        TabOrder = 2
+        object LblCenterLongitude: TLabel
+          AnchorSideLeft.Control = GbCenterCoords
+          AnchorSideTop.Control = GbCenterCoords
+          Left = 8
+          Height = 15
+          Top = 4
+          Width = 54
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          Caption = 'Longitude'
+          ParentColor = False
+        end
+        object LblCenterLatitude: TLabel
+          AnchorSideLeft.Control = GbCenterCoords
+          AnchorSideTop.Control = LblCenterLongitude
+          AnchorSideTop.Side = asrBottom
+          Left = 8
+          Height = 15
+          Top = 23
+          Width = 43
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          BorderSpacing.Bottom = 8
+          Caption = 'Latitude'
+          ParentColor = False
+        end
+        object InfoCenterLongitude: TLabel
+          AnchorSideLeft.Control = GbCenterCoords
+          AnchorSideTop.Control = GbCenterCoords
+          AnchorSideRight.Control = GbCenterCoords
+          AnchorSideRight.Side = asrBottom
+          Left = 201
+          Height = 15
+          Top = 4
+          Width = 34
+          Alignment = taRightJustify
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 4
+          BorderSpacing.Right = 16
+          Caption = 'Label2'
+          ParentColor = False
+        end
+        object InfoCenterLatitude: TLabel
+          AnchorSideLeft.Control = GbCenterCoords
+          AnchorSideTop.Control = InfoCenterLongitude
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = GbCenterCoords
+          AnchorSideRight.Side = asrBottom
+          Left = 201
+          Height = 15
+          Top = 23
+          Width = 34
+          Alignment = taRightJustify
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 4
+          BorderSpacing.Right = 16
+          BorderSpacing.Bottom = 8
+          Caption = 'Label2'
+          ParentColor = False
+        end
+      end
+      object GbScreenSize: TGroupBox
+        AnchorSideLeft.Control = GbCenterCoords
+        AnchorSideTop.Control = GbCenterCoords
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = GbCenterCoords
+        AnchorSideRight.Side = asrBottom
+        Left = 6
+        Height = 66
+        Top = 217
+        Width = 255
+        Anchors = [akTop, akLeft, akRight]
+        AutoSize = True
+        BorderSpacing.Top = 8
+        Caption = 'Viewport size'
+        ClientHeight = 46
+        ClientWidth = 251
+        TabOrder = 3
+        object LblViewportWidth: TLabel
+          AnchorSideLeft.Control = GbScreenSize
+          AnchorSideTop.Control = GbScreenSize
+          Left = 8
+          Height = 15
+          Top = 4
+          Width = 32
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          Caption = 'Width'
+          ParentColor = False
+        end
+        object LblViewportHeight: TLabel
+          AnchorSideLeft.Control = GbScreenSize
+          AnchorSideTop.Control = LblViewportWidth
+          AnchorSideTop.Side = asrBottom
+          Left = 8
+          Height = 15
+          Top = 23
+          Width = 36
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          BorderSpacing.Bottom = 8
+          Caption = 'Height'
+          ParentColor = False
+        end
+        object InfoViewportWidth: TLabel
+          AnchorSideTop.Control = GbScreenSize
+          AnchorSideRight.Control = GbScreenSize
+          AnchorSideRight.Side = asrBottom
+          Left = 201
+          Height = 15
+          Top = 4
+          Width = 34
+          Alignment = taRightJustify
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 4
+          BorderSpacing.Right = 16
+          Caption = 'Label2'
+          ParentColor = False
+        end
+        object InfoViewportHeight: TLabel
+          AnchorSideTop.Control = InfoViewportWidth
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = GbScreenSize
+          AnchorSideRight.Side = asrBottom
+          Left = 201
+          Height = 15
+          Top = 23
+          Width = 34
+          Alignment = taRightJustify
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 4
+          BorderSpacing.Right = 16
+          BorderSpacing.Bottom = 8
+          Caption = 'Label2'
+          ParentColor = False
+        end
+      end
+      object CbDistanceUnits: TComboBox
+        AnchorSideTop.Control = GbCenterCoords
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = GbCenterCoords
+        AnchorSideRight.Side = asrBottom
+        Left = 189
+        Height = 23
+        Top = 215
+        Width = 64
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 6
+        BorderSpacing.Right = 8
+        ItemHeight = 15
+        ItemIndex = 1
+        Items.Strings = (
+          'm'
+          'km'
+          'miles'
+        )
+        OnChange = CbDistanceUnitsChange
+        Style = csDropDownList
+        TabOrder = 4
+        Text = 'km'
+      end
+      object GbSearch: TGroupBox
+        AnchorSideLeft.Control = GbScreenSize
+        AnchorSideTop.Control = GbScreenSize
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = GbScreenSize
+        AnchorSideRight.Side = asrBottom
+        Left = 6
+        Height = 105
+        Top = 291
+        Width = 255
+        Anchors = [akTop, akLeft, akRight]
+        AutoSize = True
+        BorderSpacing.Top = 8
+        Caption = 'Search'
+        ClientHeight = 85
+        ClientWidth = 251
+        TabOrder = 5
+        object CbLocations: TComboBox
+          AnchorSideLeft.Control = GbSearch
+          AnchorSideTop.Control = GbSearch
+          AnchorSideRight.Control = BtnSearch
+          Left = 8
+          Height = 23
+          Top = 4
+          Width = 172
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          BorderSpacing.Right = 4
+          BorderSpacing.Bottom = 4
+          DropDownCount = 24
+          ItemHeight = 15
+          TabOrder = 0
+          Text = 'New York'
+        end
+        object BtnSearch: TButton
+          AnchorSideTop.Control = CbLocations
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = GbSearch
+          AnchorSideRight.Side = asrBottom
+          Left = 184
+          Height = 25
+          Top = 3
+          Width = 61
+          Anchors = [akTop, akRight]
+          AutoSize = True
+          BorderSpacing.Right = 6
+          Caption = 'Search'
+          OnClick = BtnSearchClick
+          TabOrder = 1
+        end
+        object LblSelectLocation: TLabel
+          AnchorSideLeft.Control = CbLocations
+          AnchorSideTop.Control = CbLocations
+          AnchorSideTop.Side = asrBottom
+          Left = 8
+          Height = 15
+          Top = 35
+          Width = 177
+          BorderSpacing.Top = 8
+          Caption = 'Select one of the found locations:'
+          ParentColor = False
+        end
+        object BtnGoTo: TButton
+          AnchorSideTop.Control = CbFoundLocations
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = BtnSearch
+          AnchorSideRight.Side = asrBottom
+          Left = 190
+          Height = 25
+          Top = 52
+          Width = 55
+          Anchors = [akTop, akRight]
+          AutoSize = True
+          BorderSpacing.Bottom = 8
+          Caption = 'Go to'
+          OnClick = BtnGoToClick
+          TabOrder = 2
+        end
+        object CbFoundLocations: TComboBox
+          AnchorSideLeft.Control = LblSelectLocation
+          AnchorSideTop.Control = LblSelectLocation
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = BtnGoTo
+          Left = 8
+          Height = 21
+          Top = 54
+          Width = 178
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 4
+          BorderSpacing.Right = 4
+          BorderSpacing.Bottom = 8
+          DropDownCount = 24
+          ItemHeight = 15
+          ItemWidth = -2
+          OnDrawItem = CbFoundLocationsDrawItem
+          ParentShowHint = False
+          ShowHint = True
+          Style = csOwnerDrawFixed
+          TabOrder = 3
+        end
+      end
+      object GbGPS: TGroupBox
+        AnchorSideLeft.Control = GbSearch
+        AnchorSideTop.Control = GbSearch
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = GbSearch
+        AnchorSideRight.Side = asrBottom
+        Left = 6
+        Height = 105
+        Top = 404
+        Width = 255
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Top = 8
+        Caption = 'GPS points'
+        ClientHeight = 85
+        ClientWidth = 251
+        TabOrder = 6
+        object BtnGPSPoints: TButton
+          AnchorSideLeft.Control = GbGPS
+          AnchorSideTop.Control = GbGPS
+          AnchorSideRight.Control = GbGPS
+          AnchorSideRight.Side = asrBottom
+          Left = 192
+          Height = 25
+          Top = 0
+          Width = 53
+          Anchors = [akTop, akRight]
+          AutoSize = True
+          BorderSpacing.Left = 6
+          BorderSpacing.Right = 6
+          Caption = 'List...'
+          OnClick = BtnGPSPointsClick
+          TabOrder = 0
+        end
+        object InfoBtnGPSPoints: TLabel
+          AnchorSideLeft.Control = GbGPS
+          AnchorSideTop.Control = BtnGPSPoints
+          AnchorSideRight.Control = BtnGPSPoints
+          Left = 8
+          Height = 30
+          Top = 4
+          Width = 178
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          Caption = 'Click with right mouse button to add a GPS point.'
+          ParentColor = False
+          WordWrap = True
+        end
+        object GPSPointInfo: TLabel
+          AnchorSideLeft.Control = InfoBtnGPSPoints
+          AnchorSideTop.Control = InfoBtnGPSPoints
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = GbGPS
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GbGPS
+          AnchorSideBottom.Side = asrBottom
+          Left = 8
+          Height = 35
+          Top = 50
+          Width = 237
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          AutoSize = False
+          BorderSpacing.Top = 16
+          BorderSpacing.Right = 6
+          Caption = 'GPSPointInfo'
+          ParentColor = False
+          WordWrap = True
+        end
+      end
+      object BtnSaveToFile: TButton
+        AnchorSideLeft.Control = GbGPS
+        AnchorSideTop.Control = GbGPS
+        AnchorSideTop.Side = asrBottom
+        Left = 6
+        Height = 25
+        Top = 517
+        Width = 110
+        AutoSize = True
+        BorderSpacing.Top = 8
+        Caption = 'Save map to file'
+        OnClick = BtnSaveToFileClick
+        TabOrder = 7
+      end
+      object BtnLoadGPXFile: TButton
+        AnchorSideLeft.Control = BtnSaveToFile
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = BtnSaveToFile
+        Left = 124
+        Height = 25
+        Top = 517
+        Width = 105
+        AutoSize = True
+        BorderSpacing.Left = 8
+        Caption = 'Load GPX file...'
+        OnClick = BtnLoadGPXFileClick
+        TabOrder = 8
+      end
+    end
+    object PgConfig: TTabSheet
+      Caption = 'Config'
+      ClientHeight = 612
+      ClientWidth = 267
+      object Label1: TLabel
+        AnchorSideLeft.Control = CbDrawingEngine
+        AnchorSideTop.Control = PgConfig
+        Left = 6
+        Height = 15
+        Top = 6
+        Width = 86
+        BorderSpacing.Top = 6
+        Caption = 'Drawing engine:'
+        ParentColor = False
+      end
+      object CbDrawingEngine: TComboBox
+        AnchorSideLeft.Control = PgConfig
+        AnchorSideTop.Control = Label1
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = PgConfig
+        AnchorSideRight.Side = asrBottom
+        Left = 6
+        Height = 23
+        Top = 23
+        Width = 255
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 2
+        BorderSpacing.Right = 6
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          'default'
+          'RGBGraphics'
+        )
+        OnChange = CbDrawingEngineChange
+        Style = csDropDownList
+        TabOrder = 0
+        Text = 'default'
+      end
+      object LblProviders: TLabel
+        AnchorSideLeft.Control = CbProviders
+        AnchorSideTop.Control = CbDrawingEngine
+        AnchorSideTop.Side = asrBottom
+        Left = 6
+        Height = 15
+        Top = 54
+        Width = 52
+        BorderSpacing.Top = 8
+        Caption = 'Providers:'
+        FocusControl = CbProviders
+        ParentColor = False
+      end
+      object CbProviders: TComboBox
+        AnchorSideLeft.Control = PgConfig
+        AnchorSideTop.Control = LblProviders
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = BtnLoadMapProviders
+        Left = 6
+        Height = 23
+        Top = 71
+        Width = 199
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 2
+        BorderSpacing.Right = 4
+        DropDownCount = 24
+        ItemHeight = 15
+        OnChange = CbProvidersChange
+        Style = csDropDownList
+        TabOrder = 1
+      end
+      object BtnLoadMapProviders: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CbProviders
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = BtnSaveMapProviders
+        Left = 209
+        Height = 22
+        Top = 71
+        Width = 23
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 4
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000003591
+          DBFA439FDDFA439FDDFA429FDDFA429EDDFA419EDCFA419EDCFA419EDCFA419E
+          DCFA419EDCFA419EDCFA419EDCFA3792DAFB3080DF100000000000000000429C
+          DEF76EC7EBFF6DC7EAFF6BC6EAFF6AC5E9FF68C4E9FF67C3E8FF65C2E8FF64C1
+          E7FF63C0E7FF61BFE6FF60BEE5FF51AFE3FE308CD6450000000000000000409A
+          DDF47CD0F1FF7BD0F0FF7ACFEFFF79CEEFFF77CDEEFF76CCEEFF74CBEDFF73CA
+          EDFF71C9ECFF70C8ECFF6EC7EBFF6AC3E9FF3993DB8E00000000000000003E99
+          DCEC7ECEF1FF8AD9F6FF89D8F5FF87D7F4FF86D6F4FF84D5F3FF83D5F3FF81D4
+          F2FF80D3F2FF7ED2F1FF7DD1F1FF7BD0F0FF439ADEB40000000000000000409B
+          DDE470C1EDFF99E2FBFF97E2FBFF96E1FAFF94E0F9FF93DFF9FF91DEF8FF90DD
+          F8FF8EDCF7FF8DDBF7FF8CDAF6FF8AD9F6FF4EA4E2CD00000000000000004AA5
+          E0DF61B3E8FFA3E9FFFFA3E9FFFFA3E9FFFFA3E9FFFFA2E8FEFFA0E7FEFF9FE6
+          FDFF9DE5FDFF9CE4FCFF9AE3FCFF99E2FBFF5FB3E9E33080DF100000000051A8
+          E2DF5EB2E8FFA3E9FFFFA3E9FFFFA3E9FFFFA3E9FFFFA3E9FFFFA3E9FFFFA3E9
+          FFFFA3E9FFFFA3E9FFFFA3E9FFFFA3E9FFFF84CFF5FB348CDA450000000058AD
+          E5DF60B3E8FF61B3E9FF61B3E9FF60B2E9FF60B2E8FF60B2E8FF5FB1E8FF5FB1
+          E8FF5EB1E8FF5EB1E8FF5EB1E7FF59ADE7FB55A9E5E33B94DC85000000005FB0
+          E8DF9DE4FBFF9AE3FAFF97E1F9FF94DFF8FF91DDF7FF8EDBF5FF8BD9F4FF88D8
+          F3FF85D6F2FF82D4F1FF7FD2F0FF4FA7E1DF00000000000000000000000061B1
+          E8DFA6EAFFFFA6EAFFFFA6EAFFFFA3E8FEFF7AC6F1ED59ACE6DF58AAE5DF57AA
+          E5DF56AAE5DF53A9E4DF53A8E4DF3C94DCE20000000000000000000000004096
+          DEE25DAEE7DF5DAEE7DF5DAEE7DF57A9E6DF4399DF6E00000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = BtnLoadMapProvidersClick
+      end
+      object BtnSaveMapProviders: TSpeedButton
+        AnchorSideLeft.Control = BtnLoadMapProviders
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CbProviders
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = PgConfig
+        AnchorSideRight.Side = asrBottom
+        Left = 236
+        Height = 22
+        Top = 71
+        Width = 23
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 8
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000A4653455A465
+          34FFA46534FFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BD
+          BAFFA46534FFA46534FFA46534FFA46534FFA46534FF00000000A46534FFA465
+          34FFA46534FFB6BDBAFFA46534FFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BD
+          BAFFA46534FFA46534FFA46534FFA46534FFA46534FF00000000A46534FFA465
+          34FFA46534FFB6BDBAFFA46534FFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BD
+          BAFFA46534FFA46534FFA46534FFA46534FFA46534FF00000000A46534FFA465
+          34FFA46534FFB6BDBAFFA46534FFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BD
+          BAFFA46534FFA46534FFA46534FFA46534FFA46534FF00000000A46534FFA465
+          34FFA46534FFB6BDBAFFA46534FFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BD
+          BAFFA46534FFA46534FFA46534FFA46534FFA46534FF00000000A46534FFA465
+          34FFA46534FFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BDBAFFB6BD
+          BAFFA46534FFA46534FFA46534FFA46534FFA46534FF00000000A46534FFA465
+          34FFA46534FFA46534FFA46534FFA46534FFA46534FFA46534FFA46534FFA465
+          34FFA46534FFA46534FFA46534FFA46534FFA46534FF00000000A46534FFA465
+          34FFA46534FFA46534FFA46534FFA46534FFA46534FFA46534FFA46534FFA465
+          34FFA46534FFA46534FFA46534FFA46534FFA46534FF00000000A46534FFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFA46534FF00000000A46534FFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFA46534FF00000000A46534FFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFA46534FF00000000A46534FFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFA46534FF00000000A46534FFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFA46534FF00000000A46534FFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEE
+          EEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFA46534FF00000000A46534FF5959
+          F3FF5959F3FF5959F3FF5959F3FF5959F3FF5959F3FF5959F3FF5959F3FF5959
+          F3FF5959F3FF5959F3FF5959F3FF5959F3FFA46534FF00000000A46534FF5959
+          F3FF5959F3FF5959F3FF5959F3FF5959F3FF5959F3FF5959F3FF5959F3FF5959
+          F3FF5959F3FF5959F3FF5959F3FF5959F3FFA46534FF00000000
+        }
+        OnClick = BtnSaveMapProvidersClick
+      end
+      object CbUseThreads: TCheckBox
+        AnchorSideLeft.Control = PgConfig
+        AnchorSideTop.Control = CbProviders
+        AnchorSideTop.Side = asrBottom
+        Left = 6
+        Height = 19
+        Top = 102
+        Width = 81
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 8
+        Caption = 'Use threads'
+        Checked = True
+        OnChange = CbUseThreadsChange
+        State = cbChecked
+        TabOrder = 2
+      end
+      object CbDoubleBuffer: TCheckBox
+        AnchorSideLeft.Control = CbUseThreads
+        AnchorSideTop.Control = CbUseThreads
+        AnchorSideTop.Side = asrBottom
+        Left = 6
+        Height = 19
+        Top = 127
+        Width = 87
+        BorderSpacing.Top = 6
+        BorderSpacing.Right = 9
+        Caption = 'DblBuffering'
+        Checked = True
+        OnChange = CbDoubleBufferChange
+        State = cbChecked
+        TabOrder = 3
+      end
+      object CbDebugTiles: TCheckBox
+        AnchorSideLeft.Control = CbDoubleBuffer
+        AnchorSideTop.Control = CbDoubleBuffer
+        AnchorSideTop.Side = asrBottom
+        Left = 6
+        Height = 19
+        Top = 152
+        Width = 79
+        BorderSpacing.Top = 6
+        Caption = 'Debug tiles'
+        OnChange = CbDebugTilesChange
+        TabOrder = 4
+      end
+      object CbShowPOIImage: TCheckBox
+        AnchorSideLeft.Control = CbDebugTiles
+        AnchorSideTop.Control = Bevel1
+        AnchorSideTop.Side = asrBottom
+        Left = 6
+        Height = 19
+        Top = 189
+        Width = 107
+        BorderSpacing.Top = 6
+        Caption = 'Show POI image'
+        OnChange = CbShowPOIImageChange
+        TabOrder = 5
+      end
+      object BtnPOITextFont: TButton
+        AnchorSideTop.Control = CbShowPOIImage
+        AnchorSideTop.Side = asrBottom
+        Left = 6
+        Height = 25
+        Top = 216
+        Width = 92
+        AutoSize = True
+        BorderSpacing.Top = 8
+        Caption = 'POI text font'
+        OnClick = BtnPOITextFontClick
+        TabOrder = 6
+      end
+      object cbPOITextBgColor: TColorBox
+        AnchorSideLeft.Control = LblPOITextBgColor
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = BtnPOITextFont
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CbDrawingEngine
+        AnchorSideRight.Side = asrBottom
+        Left = 153
+        Height = 22
+        Top = 217
+        Width = 108
+        NoneColorColor = clWhite
+        Style = [cbStandardColors, cbExtendedColors, cbIncludeNone, cbCustomColor, cbPrettyNames, cbCustomColors]
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 8
+        ItemHeight = 16
+        OnChange = cbPOITextBgColorChange
+        TabOrder = 7
+      end
+      object LblPOITextBgColor: TLabel
+        AnchorSideLeft.Control = BtnPOITextFont
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = BtnPOITextFont
+        AnchorSideTop.Side = asrCenter
+        Left = 106
+        Height = 15
+        Top = 221
+        Width = 39
+        BorderSpacing.Left = 8
+        Caption = 'Backgr.'
+        ParentColor = False
+      end
+      object Bevel1: TBevel
+        AnchorSideLeft.Control = CbDrawingEngine
+        AnchorSideTop.Control = CbDebugTiles
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = CbDrawingEngine
+        AnchorSideRight.Side = asrBottom
+        Left = 6
+        Height = 4
+        Top = 179
+        Width = 255
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Top = 8
+        Shape = bsTopLine
+      end
+    end
+  end
+  object GeoNames: TMVGeoNames
+    OnNameFound = GeoNamesNameFound
+    left = 240
+    top = 192
+  end
+  object OpenDialog: TOpenDialog
+    DefaultExt = '.pgx'
+    Filter = 'GPX files (*.gpx)|*.gpx|All files (*.*)|*.*'
+    left = 240
+    top = 456
+  end
+  object FontDialog: TFontDialog
+    MinFontSize = 0
+    MaxFontSize = 0
+    left = 648
+    top = 280
+  end
+end

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="rgb_graphics"/>
+    <Author Value="Tom Gregorovic"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <IncludeFiles Value="source"/>
+        <OtherUnitFiles Value="source"/>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\$(LCLWidgetType)"/>
+      </SearchPaths>
+      <Parsing>
+        <SyntaxOptions>
+          <UseAnsiStrings Value="False"/>
+        </SyntaxOptions>
+      </Parsing>
+    </CompilerOptions>
+    <Description Value="RGBGraphics
+"/>
+    <License Value="Modified LGPL
+"/>
+    <Version Major="1"/>
+    <Files Count="4">
+      <Item1>
+        <Filename Value="source\rgbgraphics.pas"/>
+        <UnitName Value="RGBGraphics"/>
+      </Item1>
+      <Item2>
+        <Filename Value="source\rgbroutines.pas"/>
+        <UnitName Value="RGBRoutines"/>
+      </Item2>
+      <Item3>
+        <Filename Value="source\rgbtypes.pas"/>
+        <UnitName Value="RGBTypes"/>
+      </Item3>
+      <Item4>
+        <Filename Value="source\rgbutils.pas"/>
+        <UnitName Value="RGBUtils"/>
+      </Item4>
+    </Files>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="FCL"/>
+        <MaxVersion Major="1"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <DestinationDirectory Value="$(TestDir)\publishedpackage\"/>
+      <IgnoreBinaries Value="False"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>
