@@ -1692,8 +1692,6 @@ object MainForm: TMainForm
       OnColumnSized = DBGrid1ColumnSized
       OnDrawColumnCell = DBGrid1DrawColumnCell
       OnDblClick = DBGrid1DblClick
-      OnKeyPress = DBGrid1KeyPress
-      OnTitleClick = DBGrid1TitleClick
     end
   end
   object Panel4: TPanel
@@ -4748,7 +4746,6 @@ object MainForm: TMainForm
     end
     object MenuItem46: TMenuItem
       Caption = 'Сохранить в Excel'
-      OnClick = MenuItem46Click
     end
     object MenuItem47: TMenuItem
       Caption = '-'
@@ -5001,13 +4998,6 @@ object MainForm: TMainForm
       Caption = 'Выход'
       OnClick = MenuItem98Click
     end
-  end
-  object CheckMySQL_Connect: TTimer
-    Enabled = False
-    Interval = 600000
-    OnTimer = CheckMySQL_ConnectTimer
-    left = 803
-    top = 151
   end
   object WSJT_Timer: TTimer
     Enabled = False

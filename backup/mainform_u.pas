@@ -1,7 +1,6 @@
 unit MainForm_U;
 
 {$mode objfpc}{$H+}
-//   {$MODE DELPHI}
 
 interface
 
@@ -40,7 +39,6 @@ type
   TMainForm = class(TForm)
     CallBookLiteConnection: TSQLite3Connection;
     CheckBox6: TCheckBox;
-    CheckMySQL_Connect: TTimer;
     ClearEdit: TAction;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
@@ -344,7 +342,6 @@ type
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
     procedure CheckBox6Change(Sender: TObject);
-    procedure CheckMySQL_ConnectTimer(Sender: TObject);
     //{$IfDef WINDOWS}
     procedure CheckUpdatesTimerStartTimer(Sender: TObject);
     procedure CheckUpdatesTimerTimer(Sender: TObject);
@@ -359,8 +356,6 @@ type
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
-    procedure DBGrid1KeyPress(Sender: TObject; var Key: char);
-    procedure DBGrid1TitleClick(Column: TColumn);
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
@@ -429,7 +424,6 @@ type
     procedure MenuItem41Click(Sender: TObject);
     procedure MenuItem42Click(Sender: TObject);
     procedure MenuItem43Click(Sender: TObject);
-    procedure MenuItem46Click(Sender: TObject);
     procedure MenuItem48Click(Sender: TObject);
     procedure MenuItem49Click(Sender: TObject);
     procedure MenuItem51Click(Sender: TObject);
@@ -713,50 +707,47 @@ begin
     Result := '';
     exit;
   end;
-  try
-    BoolPrefix := False;
-    Result := '';
-    if Province = True then
+  BoolPrefix := False;
+  Result := '';
+  if Province = True then
+  begin
+    for i := 0 to PrefixProvinceCount do
     begin
-      for i := 0 to PrefixProvinceCount do
+      if (PrefixExpProvinceArray[i].Exec(CallName)) and
+        (PrefixExpProvinceArray[i].Match[0] = CallName) then
       begin
-        if (PrefixExpProvinceArray[i].Exec(CallName)) and
-          (PrefixExpProvinceArray[i].Match[0] = CallName) then
+        BoolPrefix := True;
+        with MainForm.PrefixQuery do
         begin
-          BoolPrefix := True;
-          with MainForm.PrefixQuery do
-          begin
-            Close;
-            SQL.Clear;
-            SQL.Add('select * from Province where _id = "' + IntToStr(i) + '"');
-            Open;
-          end;
-          Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
-          exit;
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from Province where _id = "' + IntToStr(i) + '"');
+          Open;
         end;
+        Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
+        exit;
       end;
     end;
-    if BoolPrefix = False then
+  end;
+  if BoolPrefix = False then
+  begin
+    for j := 0 to PrefixARRLCount do
     begin
-      for j := 0 to PrefixARRLCount do
+      if (PrefixExpARRLArray[j].Exec(CallName)) and
+        (PrefixExpARRLArray[j].Match[0] = CallName) then
       begin
-        if (PrefixExpARRLArray[j].Exec(CallName)) and
-          (PrefixExpARRLArray[j].Match[0] = CallName) then
+        with MainForm.PrefixQuery do
         begin
-          with MainForm.PrefixQuery do begin
           Active := False;
           SQL.Text := 'select * from CountryDataEx where Status !="Deleted" and _id = "'
-          + IntToStr(j) + '"';
+            + IntToStr(j) + '"';
           Active := True;
           Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
           Active := False;
-          end;
-          Exit;
         end;
+        Exit;
       end;
     end;
-  except
-
   end;
 end;
 
@@ -1829,9 +1820,9 @@ begin
       label45.Caption := '..';
       label47.Caption := '..';
       label42.Caption := '.......';
-      Centre.Lat:=0;
-      Centre.Lon:=0;
-      MapView1.Center:=Centre;
+      Centre.Lat := 0;
+      Centre.Lon := 0;
+      MapView1.Center := Centre;
       MapView1.Zoom := 1;
     end;
 
@@ -2146,16 +2137,6 @@ procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
     SelectLogDatabase(LogTable);
-end;
-
-procedure TMainForm.CheckMySQL_ConnectTimer(Sender: TObject);
-begin
-  // try
-  //   Application.ProcessMessages;
-  //   if MySQLLOGDBConnection.Connected = False then
-  //    MySQLLOGDBConnection.Connected := True;
-  // except
-  // end;
 end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
@@ -2550,17 +2531,6 @@ begin
   end;
 end;
 
-procedure TMainForm.DBGrid1KeyPress(Sender: TObject; var Key: char);
-begin
-  //if LOGBookDS.DataSet.AfterScroll then
-
-end;
-
-procedure TMainForm.DBGrid1TitleClick(Column: TColumn);
-begin
-  //ShowMessage('Click');
-end;
-
 procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
@@ -2763,7 +2733,6 @@ begin
       if Pos('login', TelnetLine) > 0 then
         dxClient.SendMessage(LoginCluster + #13#10, aSocket);
     end;
-    //TelnetLine:='WCY de DK0WCY-1 <08> : K';
     if Pos('DX de', TelnetLine) = 1 then
     begin
       TelnetLine := StringReplace(TelnetLine, ':', ' ', [rfReplaceAll]);
@@ -2881,11 +2850,11 @@ begin
   GetingHint := 0;
       {$IFDEF UNIX}
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-        MapView1.CachePath:=PathMyDoc+'cache/';
+  MapView1.CachePath := PathMyDoc + 'cache/';
     {$ELSE}
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
     GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
-      MapView1.CachePath:=PathMyDoc+'cache\';
+  MapView1.CachePath := PathMyDoc + 'cache\';
     {$ENDIF UNIX}
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
   FlagList := TImageList.Create(Self);
@@ -3136,9 +3105,9 @@ begin
   else
     CheckBox3.Checked := False;
   CheckBox3.Enabled := True;
-  MapView1.Zoom:=1;
-  MapView1.DoubleBuffered:=True;
-  MapView1.Active:=True;
+  MapView1.Zoom := 1;
+  MapView1.DoubleBuffered := True;
+  MapView1.Active := True;
 
 end;
 
@@ -3161,7 +3130,8 @@ begin
   if (AdifDataSyncAll = True) or (AdifDataSyncDate = True) then
   begin
     TempBuffer := BuffToSend;
-    while TempBuffer <> '' do begin
+    while TempBuffer <> '' do
+    begin
       Sent := LTCPComponent1.SendMessage(TempBuffer, aSocket);
       Delete(BuffToSend, 1, Sent);
       TempBuffer := BuffToSend;
@@ -4393,11 +4363,6 @@ begin
   end;
 end;
 
-procedure TMainForm.MenuItem46Click(Sender: TObject);
-begin
-  //будет экспорт в Excel
-end;
-
 procedure TMainForm.MenuItem48Click(Sender: TObject);
 begin
   SynDBDate.Show;
@@ -5465,8 +5430,6 @@ begin
   Data := VirtualStringTree1.GetNodeData(XNode);
   if Length(Data^.Spots) > 1 then
     EditButton1.Text := Data^.Spots;
-
-
 
 
 end;

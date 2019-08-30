@@ -59,6 +59,7 @@ type
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     function QRZRU(CallS: string): string;
     procedure QRZRUsprav(CallS: string; imgShow:Boolean);
@@ -746,6 +747,12 @@ begin
   Label26.Caption := '';
   GroupBox1.Caption := 'Позывной';
 
+end;
+
+procedure TInformationForm.FormCreate(Sender: TObject);
+begin
+    InformationForm.Timer1.Interval:=3200000;
+    InformationForm.Timer1.Enabled:=True;
 end;
 
 procedure TInformationForm.Button1Click(Sender: TObject);

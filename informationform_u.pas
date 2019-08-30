@@ -90,13 +90,14 @@ uses MainForm_U, editqso_u, dmFunc_U;
 
 procedure TInformationForm.Timer1StartTimer(Sender: TObject);
 var
-  resp, errorCode: string;
+  resp, errorCode, error: string;
   beginSTR, endSTR: integer;
 begin
   try
   loginQRZru := IniF.ReadString('SetLog', 'QRZ_Login', '');
   passQRZru := IniF.ReadString('SetLog', 'QRZ_Pass', '');
   errorCode := '';
+  error := '';
   if (loginQRZru <> '') and (passQRZru <> '') then
   begin
     with THTTPSend.Create do
@@ -119,6 +120,16 @@ begin
       errorCode := resp.Substring(beginSTR + 11, endSTR - beginSTR - 11);
     if errorCode <> '' then
       MainForm.StatusBar1.Panels.Items[0].Text := 'Ошибка XML API:' + errorCode;
+
+   beginSTR := resp.IndexOf('<error>');
+    endSTR := resp.IndexOf('</error>');
+    if (beginSTR <> endSTR) then
+      error := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+    if error <> '' then begin
+      MainForm.StatusBar1.Panels.Items[0].Text := 'XML:' + error;
+      Timer1.OnTimer(Self);
+    end;
+
   end;
   finally
   end;
