@@ -463,6 +463,7 @@ type
       X, Y: integer);
     procedure SpeedButton19Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton20Click(Sender: TObject);
     procedure SpeedButton20MouseLeave(Sender: TObject);
     procedure SpeedButton20MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
@@ -1766,7 +1767,6 @@ var
   Centre: TRealPoint;
   Lat, Long: real;
   Error: integer;
-  //CallSignE: string;
   engText: string;
 begin
   EditButton1.SelStart := seleditnum;
@@ -2904,8 +2904,6 @@ begin
 
       LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
       PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
-      // HostCluster := IniF.ReadString('TelnetCluster', 'Server', '');
-      // PortCluster := IniF.ReadString('TelnetCluster', 'Port', '');
 
       for i := 1 to 9 do
       begin
@@ -2916,11 +2914,15 @@ begin
         'FREERC -> dx.freerc.ru:8000');
       ComboBox3.Items.Clear;
       ComboBox3.Items.AddStrings(TelStr);
-      ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName);
+      if ComboBox3.Items.IndexOf(TelName) > -1 then
+      ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName) else
+      ComboBox3.ItemIndex:=0;
 
       ComboBox8.Items.Clear;
       ComboBox8.Items.AddStrings(TelStr);
-      ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName);
+      if ComboBox8.Items.IndexOf(TelName) > -1 then
+      ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName) else
+      ComboBox8.ItemIndex:=0;
 
       i := pos('>', ComboBox3.Text);
       j := pos(':', ComboBox3.Text);
@@ -2939,14 +2941,10 @@ begin
 
       ShowTRXForm := IniF.ReadBool('SetLog', 'TRXForm', False);
 
-
-
-
       if FLDIGI_USE = 'YES' then
         MenuItem74.Enabled := True
       else
         MenuItem74.Enabled := False;
-
 
       if WSJT_USE = 'YES' then
         MenuItem43.Enabled := True
@@ -5089,6 +5087,15 @@ procedure TMainForm.SpeedButton1Click(Sender: TObject);
 begin
   STATE_Form.Show;
   STATE_Form.Edit1.Text := Edit4.Text;
+end;
+
+procedure TMainForm.SpeedButton20Click(Sender: TObject);
+if not VirtualStringTree1.IsEmpty then
+begin
+  VirtualStringTree1.BeginUpdate;
+  VirtualStringTree1.Clear;
+  VirtualStringTree1.EndUpdate;
+end;
 end;
 
 procedure TMainForm.SpeedButton20MouseLeave(Sender: TObject);

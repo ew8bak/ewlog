@@ -2934,6 +2934,7 @@ object MainForm: TMainForm
                   0003F5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C5
                   96FFF5C596FF000000110000000B000000050000000100000000
                 }
+                OnClick = SpeedButton20Click
                 OnMouseLeave = SpeedButton20MouseLeave
                 OnMouseMove = SpeedButton20MouseMove
               end
