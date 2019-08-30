@@ -3,8 +3,8 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
-    <Units Count="59">
+    <BuildModes Active="Релиз"/>
+    <Units Count="60">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="729"/>
-        <CursorPos X="16" Y="754"/>
+        <TopLine Value="2879"/>
+        <CursorPos Y="2890"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -454,7 +454,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="108"/>
       </Unit41>
       <Unit42>
         <Filename Value="hiddentsettings_u.pas"/>
@@ -465,7 +465,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="108"/>
         <CursorPos X="27" Y="54"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="73"/>
       </Unit42>
       <Unit43>
         <Filename Value="RegExpr.pas"/>
@@ -529,6 +529,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="860"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
         <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
@@ -553,7 +554,7 @@
         <UsageCount Value="10"/>
       </Unit54>
       <Unit55>
-        <Filename Value="..\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvmapviewer.pas"/>
+        <Filename Value="D:\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvmapviewer.pas"/>
         <UnitName Value="mvMapViewer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="114"/>
@@ -561,7 +562,7 @@
         <UsageCount Value="11"/>
       </Unit55>
       <Unit56>
-        <Filename Value="..\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvtypes.pas"/>
+        <Filename Value="D:\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvtypes.pas"/>
         <UnitName Value="mvTypes"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
@@ -569,129 +570,140 @@
         <UsageCount Value="11"/>
       </Unit56>
       <Unit57>
-        <Filename Value="..\.lazarus\onlinepackagemanager\packages\synapse40.1\synaser.pas"/>
+        <Filename Value="D:\.lazarus\onlinepackagemanager\packages\synapse40.1\synaser.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2316"/>
         <CursorPos X="39" Y="2332"/>
         <UsageCount Value="10"/>
       </Unit57>
       <Unit58>
-        <Filename Value="..\..\..\usr\lib\fpc\src\rtl\objpas\sysutils\sysinth.inc"/>
+        <Filename Value="D:\usr\lib\fpc\src\rtl\objpas\sysutils\sysinth.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="67"/>
         <CursorPos X="3" Y="82"/>
         <UsageCount Value="10"/>
       </Unit58>
+      <Unit59>
+        <Filename Value="C:\lazarus64\components\lazmapviewer\source\mvmapviewerreg.pas"/>
+        <UnitName Value="mvMapViewerReg"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2"/>
+        <UsageCount Value="10"/>
+      </Unit59>
     </Units>
-    <JumpHistory Count="27" HistoryIndex="26">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="3023" Column="25" TopLine="3009"/>
       </Position1>
       <Position2>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5355" Column="2" TopLine="5458"/>
+        <Caret Line="513" Column="27" TopLine="499"/>
       </Position2>
       <Position3>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="513" Column="27" TopLine="499"/>
+        <Caret Line="3616" Column="33" TopLine="3602"/>
       </Position3>
       <Position4>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3616" Column="33" TopLine="3602"/>
+        <Caret Line="3198" TopLine="3190"/>
       </Position4>
       <Position5>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3198" TopLine="3190"/>
+        <Caret Line="3192" TopLine="3176"/>
       </Position5>
       <Position6>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3192" TopLine="3176"/>
+        <Caret Line="3195" TopLine="3176"/>
       </Position6>
       <Position7>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3195" TopLine="3176"/>
+        <Caret Line="3191" TopLine="3176"/>
       </Position7>
       <Position8>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3191" TopLine="3176"/>
+        <Caret Line="2921" Column="16" TopLine="2907"/>
       </Position8>
       <Position9>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2921" Column="16" TopLine="2907"/>
+        <Caret Line="370" Column="61" TopLine="356"/>
       </Position9>
       <Position10>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="370" Column="61" TopLine="356"/>
+        <Caret Line="2542" TopLine="2519"/>
       </Position10>
       <Position11>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2542" TopLine="2519"/>
+        <Caret Line="1998" TopLine="1969"/>
       </Position11>
       <Position12>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1998" TopLine="1969"/>
+        <Caret Line="2003" Column="18" TopLine="1988"/>
       </Position12>
       <Position13>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2003" Column="18" TopLine="1988"/>
+        <Caret Line="1696" Column="40" TopLine="1681"/>
       </Position13>
       <Position14>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1694" Column="9" TopLine="1758"/>
+        <Caret Line="1777" TopLine="1762"/>
       </Position14>
       <Position15>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1696" Column="40" TopLine="1681"/>
+        <Caret Line="2011" TopLine="1996"/>
       </Position15>
       <Position16>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1777" TopLine="1762"/>
+        <Caret Line="528" TopLine="515"/>
       </Position16>
       <Position17>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2011" TopLine="1996"/>
+        <Caret Line="477" Column="55" TopLine="463"/>
       </Position17>
       <Position18>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="528" TopLine="515"/>
+        <Caret Line="4213" Column="7" TopLine="4198"/>
       </Position18>
       <Position19>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="477" Column="55" TopLine="463"/>
+        <Caret Line="3600" Column="33" TopLine="3586"/>
       </Position19>
       <Position20>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4213" Column="7" TopLine="4198"/>
+        <Caret Line="2912" TopLine="2895"/>
       </Position20>
       <Position21>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3600" Column="33" TopLine="3586"/>
+        <Caret Line="1987" Column="18" TopLine="1973"/>
       </Position21>
       <Position22>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2912" TopLine="2895"/>
+        <Caret Line="776" Column="29" TopLine="764"/>
       </Position22>
       <Position23>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1987" Column="18" TopLine="1973"/>
+        <Caret Line="686" Column="25" TopLine="665"/>
       </Position23>
       <Position24>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="776" Column="29" TopLine="764"/>
+        <Caret Line="514" Column="11" TopLine="499"/>
       </Position24>
       <Position25>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="686" Column="25" TopLine="665"/>
+        <Caret Line="3596" Column="33" TopLine="3582"/>
       </Position25>
       <Position26>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="514" Column="11" TopLine="499"/>
+        <Caret Line="754" Column="16" TopLine="729"/>
       </Position26>
       <Position27>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3596" Column="33" TopLine="3582"/>
+        <Caret Line="2128" Column="18" TopLine="2121"/>
       </Position27>
+      <Position28>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3053" TopLine="3188"/>
+      </Position28>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

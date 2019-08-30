@@ -2126,17 +2126,11 @@ procedure TMainForm.CheckBox3Change(Sender: TObject);
 begin
   if CheckBox3.Checked = True then
   begin
-  {$IFDEF WINDOWS}
-    FDownloader := TMVDEWin32.Create(Self);
     MapView1.UseThreads := True;
-    FDownloader.OnAfterDownload := @DoAfterDownload;
-    FDownloader.OnBeforeDownload := @DoBeforeDownload;
-    MapView1.DownloadEngine := FDownloader;
     MapView1.Center;
     MapView1.Visible := True;
     MapView1.Parent := Panel10;
     Earth.Hide;
-    {$ENDIF}
   end
   else
   begin
@@ -2887,9 +2881,11 @@ begin
   GetingHint := 0;
       {$IFDEF UNIX}
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+        MapView1.CachePath:=PathMyDoc+'cache/';
     {$ELSE}
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
     GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+      MapView1.CachePath:=PathMyDoc+'cache\';
     {$ENDIF UNIX}
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
   FlagList := TImageList.Create(Self);
@@ -2902,23 +2898,13 @@ begin
   AdifFromMobileSyncStart := False;
   ExportAdifSelect := False;
   ImportAdifMobile := False;
-  {$IFDEF UNIX}
-  // FDownloader := TMVDESynapse.Create(Self);
-  CheckBox3.Visible := False;
-  CheckBox5.Visible := False;
-  {$ELSE}
   CheckBox3.Visible := True;
   CheckBox5.Visible := True;
   if useMAPS = 'YES' then
   begin
-    FDownloader := TMVDEWin32.Create(Self);
     MapView1.UseThreads := True;
-    FDownloader.OnAfterDownload := @DoAfterDownload;
-    FDownloader.OnBeforeDownload := @DoBeforeDownload;
-    MapView1.DownloadEngine := FDownloader;
     MapView1.Center;
   end;
-  {$ENDIF UNIX}
 
   try
     InitLog_DB := INiF.ReadString('SetLog', 'LogBookInit', '');
