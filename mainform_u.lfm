@@ -2437,11 +2437,11 @@ object MainForm: TMainForm
           Height = 261
           Top = 1
           Width = 728
-          ActivePage = TabSheet1
+          ActivePage = TabSheet2
           Align = alClient
           Font.Height = -13
           ParentFont = False
-          TabIndex = 0
+          TabIndex = 1
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
@@ -5073,6 +5073,7 @@ object MainForm: TMainForm
   end
   object dxClient: TLTelnetClientComponent
     Port = 0
+    OnConnect = dxClientConnect
     OnDisconnect = dxClientDisconnect
     OnReceive = dxClientReceive
     Timeout = 0

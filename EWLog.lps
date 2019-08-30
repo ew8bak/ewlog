@@ -4,11 +4,11 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Релиз"/>
-    <Units Count="52">
+    <Units Count="54">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="31"/>
         <CursorPos Y="56"/>
         <UsageCount Value="200"/>
@@ -22,8 +22,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="3628"/>
-        <CursorPos X="49" Y="3640"/>
+        <TopLine Value="2775"/>
+        <CursorPos X="6" Y="2804"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -70,7 +70,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="134"/>
         <CursorPos X="75" Y="143"/>
         <UsageCount Value="200"/>
@@ -119,7 +119,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="67"/>
         <CursorPos X="80" Y="1705"/>
         <UsageCount Value="200"/>
@@ -218,7 +218,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="50"/>
         <CursorPos X="37" Y="107"/>
         <UsageCount Value="200"/>
@@ -234,7 +234,7 @@
       <Unit22>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="12"/>
         <CursorPos X="6" Y="22"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -246,7 +246,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="154"/>
         <CursorPos X="3" Y="265"/>
         <UsageCount Value="200"/>
@@ -314,7 +314,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="26"/>
         <CursorPos X="43" Y="39"/>
         <UsageCount Value="200"/>
@@ -398,7 +398,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterServer_Form_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="17"/>
         <CursorPos X="43" Y="50"/>
         <UsageCount Value="200"/>
@@ -423,7 +423,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WSJT_UDP_Form_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="9"/>
         <CursorPos X="2" Y="87"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -470,7 +470,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="105"/>
       </Unit42>
       <Unit43>
         <Filename Value="hiddentsettings_u.pas"/>
@@ -481,7 +481,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="108"/>
         <CursorPos X="27" Y="54"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="70"/>
       </Unit43>
       <Unit44>
         <Filename Value="C:\lazarus\lcl\intfgraphics.pas"/>
@@ -521,10 +521,11 @@
       <Unit49>
         <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\ltelnet.pp"/>
         <UnitName Value="lTelnet"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="411"/>
         <CursorPos Y="432"/>
         <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit49>
       <Unit50>
         <Filename Value="D:\usr\lib\lazarus\components\sdf\registersdf.pas"/>
@@ -539,129 +540,145 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="860"/>
         <UsageCount Value="10"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
+      <Unit52>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
+        <UnitName Value="lNet"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="1534"/>
+        <CursorPos Y="1557"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit52>
+      <Unit53>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="38"/>
+        <CursorPos Y="66"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit53>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5154" Column="17" TopLine="5145"/>
+        <Caret Line="3155" Column="40" TopLine="3148"/>
       </Position1>
       <Position2>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5598" Column="29" TopLine="5578"/>
+        <Caret Line="3157" Column="40" TopLine="3150"/>
       </Position2>
       <Position3>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="523" TopLine="507"/>
+        <Caret Line="5474" Column="43" TopLine="5460"/>
       </Position3>
       <Position4>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5604" Column="15" TopLine="5576"/>
+        <Caret Line="5471" Column="45" TopLine="5454"/>
       </Position4>
       <Position5>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5605" Column="27" TopLine="5576"/>
+        <Caret Line="5468" TopLine="5466"/>
       </Position5>
       <Position6>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5603" Column="29" TopLine="5576"/>
+        <Caret Line="5486" TopLine="5472"/>
       </Position6>
       <Position7>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5602" Column="29" TopLine="5575"/>
+        <Caret Line="3656" Column="35" TopLine="3645"/>
       </Position7>
       <Position8>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="265" Column="3" TopLine="253"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3659" Column="28" TopLine="3645"/>
       </Position8>
       <Position9>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="9" Column="42"/>
+        <Caret Line="5524" Column="3" TopLine="5519"/>
       </Position9>
       <Position10>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="13" Column="78"/>
+        <Caret Line="3672" Column="9" TopLine="3665"/>
       </Position10>
       <Position11>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="15" Column="58"/>
+        <Caret Line="3640" Column="49" TopLine="3457"/>
       </Position11>
       <Position12>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4274" TopLine="4240"/>
+        <Caret Line="2786" Column="42" TopLine="2779"/>
       </Position12>
       <Position13>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="16" Column="3"/>
+        <Caret Line="2787" Column="17" TopLine="2779"/>
       </Position13>
       <Position14>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="749" Column="43" TopLine="725"/>
+        <Caret Line="2799" TopLine="2779"/>
       </Position14>
       <Position15>
-        <Filename Value="wsjt_udp_form_u.pas"/>
-        <Caret Line="87" Column="2"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2775" TopLine="2757"/>
       </Position15>
       <Position16>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="265" Column="3" TopLine="154"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2839" TopLine="2823"/>
       </Position16>
       <Position17>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="18" Column="27" TopLine="4"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\ltelnet.pp"/>
+        <Caret Line="428" TopLine="411"/>
       </Position17>
       <Position18>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3152" Column="40" TopLine="3145"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\ltelnet.pp"/>
+        <Caret Line="432" TopLine="411"/>
       </Position18>
       <Position19>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3153" Column="40" TopLine="3146"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
+        <Caret Line="1087" TopLine="1070"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3154" Column="40" TopLine="3147"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
+        <Caret Line="1551" TopLine="1534"/>
       </Position20>
       <Position21>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3155" Column="40" TopLine="3148"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
+        <Caret Line="1557" TopLine="1534"/>
       </Position21>
       <Position22>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3157" Column="40" TopLine="3150"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
+        <Caret Line="48" TopLine="32"/>
       </Position22>
       <Position23>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="5474" Column="43" TopLine="5460"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
+        <Caret Line="51" TopLine="32"/>
       </Position23>
       <Position24>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="5471" Column="45" TopLine="5454"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
+        <Caret Line="55" TopLine="32"/>
       </Position24>
       <Position25>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="5468" TopLine="5466"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
+        <Caret Line="59" TopLine="32"/>
       </Position25>
       <Position26>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="5486" TopLine="5472"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
+        <Caret Line="63" TopLine="35"/>
       </Position26>
       <Position27>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3656" Column="35" TopLine="3645"/>
+        <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
+        <Caret Line="66" TopLine="38"/>
       </Position27>
       <Position28>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3659" Column="28" TopLine="3645"/>
+        <Caret Line="2787" Column="25" TopLine="2769"/>
       </Position28>
       <Position29>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5524" Column="3" TopLine="5519"/>
+        <Caret Line="2792" Column="7" TopLine="2778"/>
       </Position29>
       <Position30>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3672" Column="9" TopLine="3665"/>
+        <Caret Line="2760" TopLine="2757"/>
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -669,4 +686,11 @@
       <Modes Count="0" ActiveMode="default"/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <Watches Count="1">
+      <Item1>
+        <Expression Value="TelnetLine"/>
+      </Item1>
+    </Watches>
+  </Debugging>
 </CONFIG>

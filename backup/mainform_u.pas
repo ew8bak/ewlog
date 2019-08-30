@@ -367,6 +367,7 @@ type
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
+    procedure dxClientConnect(aSocket: TLSocket);
     procedure dxClientDisconnect(aSocket: TLSocket);
     procedure dxClientReceive(aSocket: TLSocket);
     procedure Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -2754,6 +2755,12 @@ begin
   CallLogBook := DBLookupComboBox1.KeyValue;
 end;
 
+procedure TMainForm.dxClientConnect(aSocket: TLSocket);
+begin
+  SpeedButton18.Enabled:=False;
+  SpeedButton24.Enabled:=False;
+end;
+
 procedure TMainForm.dxClientDisconnect(aSocket: TLSocket);
 begin
   Memo1.Append('Вы отключены от DX кластера');
@@ -2783,8 +2790,8 @@ begin
       if Pos('login', TelnetLine) > 0 then
         dxClient.SendMessage(LoginCluster + #13#10, aSocket);
     end;
-
-    if Pos('DX de', TelnetLine) > 0 then
+    //TelnetLine:='WCY de DK0WCY-1 <08> : K';
+    if Pos('DX de', TelnetLine) = 1 then
     begin
       TelnetLine := StringReplace(TelnetLine, ':', ' ', [rfReplaceAll]);
       Call := StringReplace(TelnetLine.Substring(6, 8), ' ', '', [rfReplaceAll]);
