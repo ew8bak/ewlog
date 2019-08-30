@@ -26,7 +26,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="90"/>
+      <BuildNr Value="91"/>
       <Language Value="0419"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Владимир Карпенко" OriginalFilename="EWLog" ProductName="EWLog - Аппаратный журнал"/>
     </VersionInfo>
@@ -46,7 +46,7 @@
           </SearchPaths>
           <CodeGeneration>
             <TargetCPU Value="x86_64"/>
-            <TargetOS Value="win64"/>
+            <TargetOS Value="linux"/>
             <Optimizations>
               <OptimizationLevel Value="3"/>
             </Optimizations>
@@ -114,19 +114,19 @@
     </RunParams>
     <RequiredPackages Count="12">
       <Item1>
-        <PackageName Value="virtualtreeview_package"/>
+        <PackageName Value="lazMapViewerPkg"/>
       </Item1>
       <Item2>
-        <PackageName Value="indylaz"/>
+        <PackageName Value="virtualtreeview_package"/>
       </Item2>
       <Item3>
-        <PackageName Value="laz_synapse"/>
+        <PackageName Value="indylaz"/>
       </Item3>
       <Item4>
-        <PackageName Value="lnetvisual"/>
+        <PackageName Value="laz_synapse"/>
       </Item4>
       <Item5>
-        <PackageName Value="kcMapViewerPckg"/>
+        <PackageName Value="lnetvisual"/>
       </Item5>
       <Item6>
         <PackageName Value="DBFLaz"/>
@@ -150,7 +150,7 @@
         <PackageName Value="LCL"/>
       </Item12>
     </RequiredPackages>
-    <Units Count="44">
+    <Units Count="43">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -227,235 +227,231 @@
         <UnitName Value="dmFunc_U"/>
       </Unit9>
       <Unit10>
-        <Filename Value="RegExpr.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit10>
-      <Unit11>
         <Filename Value="simplexml.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SimpleXML"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="eqsl.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="eqsl.pas"/>
+        <Filename Value="xmlrpc.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
       <Unit13>
-        <Filename Value="xmlrpc.pas"/>
+        <Filename Value="fldigi.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit13>
       <Unit14>
-        <Filename Value="fldigi.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit14>
-      <Unit15>
         <Filename Value="dxcceditform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CountryEditForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DXCCEditForm_U"/>
-      </Unit15>
-      <Unit16>
+      </Unit14>
+      <Unit15>
         <Filename Value="managerbaseprefixform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ManagerBasePrefixForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ManagerBasePrefixForm_U"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="azidis3.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit16>
       <Unit17>
-        <Filename Value="azidis3.pas"/>
+        <Filename Value="aziloc.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit17>
       <Unit18>
-        <Filename Value="aziloc.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit18>
-      <Unit19>
         <Filename Value="qslmanagerform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="QSLManager_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="QSLManagerForm_U"/>
-      </Unit19>
-      <Unit20>
+      </Unit18>
+      <Unit19>
         <Filename Value="settingscat_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SettingsCAT"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="rig.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit20>
       <Unit21>
-        <Filename Value="rig.pas"/>
+        <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit21>
       <Unit22>
-        <Filename Value="uRigControl.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit22>
-      <Unit23>
         <Filename Value="trxform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="TRXForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-      </Unit23>
-      <Unit24>
+      </Unit22>
+      <Unit23>
         <Filename Value="hrdlog.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit24>
-      <Unit25>
+      </Unit23>
+      <Unit24>
         <Filename Value="settingsprogramform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SettingsProgramForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsProgramForm_U"/>
-      </Unit25>
-      <Unit26>
+      </Unit24>
+      <Unit25>
         <Filename Value="aboutform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="About_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutForm_U"/>
-      </Unit26>
-      <Unit27>
+      </Unit25>
+      <Unit26>
         <Filename Value="serviceform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServiceForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-      </Unit27>
-      <Unit28>
+      </Unit26>
+      <Unit27>
         <Filename Value="setupform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SetupForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="setupForm_U"/>
-      </Unit28>
-      <Unit29>
+      </Unit27>
+      <Unit28>
         <Filename Value="updateform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Update_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-      </Unit29>
-      <Unit30>
+      </Unit28>
+      <Unit29>
         <Filename Value="changelog_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ChangeLog_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Changelog_Form_U"/>
-      </Unit30>
-      <Unit31>
+      </Unit29>
+      <Unit30>
         <Filename Value="earth_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Earth"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Earth_Form_U"/>
-      </Unit31>
-      <Unit32>
+      </Unit30>
+      <Unit31>
         <Filename Value="iota_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="IOTA_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="IOTA_Form_U"/>
-      </Unit32>
-      <Unit33>
+      </Unit31>
+      <Unit32>
         <Filename Value="configgridform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ConfigGrid_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigGridForm_U"/>
-      </Unit33>
-      <Unit34>
+      </Unit32>
+      <Unit33>
         <Filename Value="sendtelnetspot_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SendTelnetSpot"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="sendtelnetspot_form_U"/>
-      </Unit34>
-      <Unit35>
+      </Unit33>
+      <Unit34>
         <Filename Value="clusterfilter_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ClusterFilter"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterFilter_Form_U"/>
-      </Unit35>
-      <Unit36>
+      </Unit34>
+      <Unit35>
         <Filename Value="clusterserver_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ClusterServer_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterServer_Form_U"/>
-      </Unit36>
-      <Unit37>
+      </Unit35>
+      <Unit36>
         <Filename Value="state_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="STATE_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="STATE_Form_U"/>
-      </Unit37>
-      <Unit38>
+      </Unit36>
+      <Unit37>
         <Filename Value="wsjt_udp_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="WSJT_UDP_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WSJT_UDP_Form_U"/>
-      </Unit38>
-      <Unit39>
+      </Unit37>
+      <Unit38>
         <Filename Value="syndbdate_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SynDBDate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="synDBDate_u"/>
-      </Unit39>
-      <Unit40>
+      </Unit38>
+      <Unit39>
         <Filename Value="thanksform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Thanks_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ThanksForm_u"/>
-      </Unit40>
-      <Unit41>
+      </Unit39>
+      <Unit40>
         <Filename Value="register_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="RegisterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit41>
-      <Unit42>
+      </Unit40>
+      <Unit41>
         <Filename Value="filterform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="filterForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
-      </Unit42>
-      <Unit43>
+      </Unit41>
+      <Unit42>
         <Filename Value="hiddentsettings_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="hiddenSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit43>
+      </Unit42>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

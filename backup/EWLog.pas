@@ -10,7 +10,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, sdflaz, memdslaz, datetimectrls, dbflaz,
   MainForm_U, editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U,
-  ExportAdifForm_u, CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, RegExpr,
+  ExportAdifForm_u, CreateJournalForm_U, ImportADIFForm_U, dmFunc_U,
   SimpleXML, eqsl, xmlrpc, fldigi, DXCCEditForm_U, ManagerBasePrefixForm_U,
   azidis3, aziloc, QSLManagerForm_U, SettingsCAT_U, uRigControl, TRXForm_U,
   lnetvisual, hrdlog, SettingsProgramForm_U, AboutForm_U, ServiceForm_U,

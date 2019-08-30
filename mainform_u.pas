@@ -9,12 +9,9 @@ uses
   Classes, SysUtils, mysql56conn, sqldb, sqlite3conn, DB, BufDataset,
   dbf, FileUtil, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls, DBGrids,
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
-  lazutf8sysutils, IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
-  Grids, kcMapViewer, INIFiles, md5, pingsend, kcMapViewerGLGeoNames, LCLType,
-  {$IFDEF UNIX}, kcMapViewerDESynapse, process, {$ELSE}
-  kcMapViewerDEWin32,
-  {$ENDIF UNIX}
-  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr;
+  IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
+  Grids, INIFiles, md5, mvMapViewer, LCLType, LazSysUtils,
+  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr, mvTypes;
 
 const
   constColumnName: array [0..28] of string =
@@ -59,6 +56,8 @@ type
     dxClient: TLTelnetClientComponent;
     LUDPComponent1: TLUDPComponent;
     LUDPSyncDesk: TLUDPComponent;
+    MapView1: TMapView;
+
     Memo1: TMemo;
     MenuItem10: TMenuItem;
     MenuItem100: TMenuItem;
@@ -204,9 +203,7 @@ type
     CheckUpdatesTimer: TTimer;
     Timer3: TTimer;
     VHFTypeDS: TDataSource;
-    MapViewer1: TMapViewer;
     MenuItem8: TMenuItem;
-    MVGLGeoNames1: TMVGLGeoNames;
     PopupMenu1: TPopupMenu;
     SaveQSOinBase: TAction;
     ActionList1: TActionList;
@@ -528,10 +525,6 @@ type
 
   private
     { private declarations }
-    FDownloader: TCustomDownloadEngine;
-    formmode: integer;
-    showinfo: boolean;
-    loginmsg: string;
     procedure DoBeforeDownload(Url: string; str: TStream; var CanHandle: boolean);
     procedure DoAfterDownload(Url: string; str: TStream);
 
@@ -750,19 +743,15 @@ begin
         if (PrefixExpARRLArray[j].Exec(CallName)) and
           (PrefixExpARRLArray[j].Match[0] = CallName) then
         begin
-          with MainForm.PrefixQuery do
-          begin
-            Close;
-            SQL.Clear;
-            SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(j) + '"');
-            Open;
-            if (FieldByName('Status').AsString = 'Deleted') then
-            begin
-              PrefixExpARRLArray[j].ExecNext;
-              Exit;
-            end;
-          end;
+          with MainForm.PrefixQuery do begin
+          Active := False;
+          SQL.Text := 'select * from CountryDataEx where Status !="Deleted" and _id = "'
+          + IntToStr(j) + '"';
+          Active := True;
           Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
+          Active := False;
+          end;
+          Exit;
         end;
       end;
     end;
@@ -779,11 +768,8 @@ begin
   Result := '';
   band := dmFunc.GetTelnetBandFromFreq(MHz);
 
-  if Pos('.', MHz) > 0 then
-    MHz[Pos('.', MHz)] := DecimalSeparator;
-
-  if pos(',', MHz) > 0 then
-    MHz[pos(',', MHz)] := DecimalSeparator;
+  MHz := MHz.replace('.', DefaultFormatSettings.DecimalSeparator);
+  MHz := MHz.replace(',', DefaultFormatSettings.DecimalSeparator);
 
   qBands.Close;
   qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
@@ -1363,13 +1349,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
-  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
-  QSOAddInfo, Marker: string;
-  ManualSet: integer; DigiBand, Continent, ShortNote: string;
-  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
-  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
-  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
+  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
+  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
+  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
+  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
+  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
+  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);//, Index: string);
 begin
@@ -1588,7 +1574,7 @@ var
   BoolPrefix: boolean;
   R: extended;
   la, lo: currency;
-  azim, azim2, qra, myloc, loc: string;
+  azim, qra, loc: string;
 begin
   BoolPrefix := False;
   // loc:='';
@@ -1696,8 +1682,7 @@ begin
       ///////АЗИМУТ
       dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
         strtofloat(lo1), qra, azim);
-      azim2 := IntToStr(StrToInt(azim) + 180);
-      MainForm.Label32.Caption := azim;// +'/'+azim2;
+      MainForm.Label32.Caption := azim;
     end;
   end;
 
@@ -1779,7 +1764,6 @@ begin
         ////Азимут
         dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
           strtofloat(lo1), qra, azim);
-        azim2 := IntToStr(StrToInt(azim) - 180);
         MainForm.Label32.Caption := azim;// +'/'+azim2;
       end;
     end;
@@ -1821,16 +1805,13 @@ begin
         val(lo1, Long, Error);
         if Error = 0 then
         begin
-          Centre.X := Long;
+          Centre.Lon := Long;
           val(la1, Lat, Error);
           if Error = 0 then
           begin
-            Application.ProcessMessages;
-            Centre.Y := Lat;
-            MapViewer1.BeginUpdate;
-            MapViewer1.Zoom := 9;
-            MapViewer1.CenterLongLat := Centre;
-            MapViewer1.EndUpdate;
+            Centre.Lat := Lat;
+            MapView1.Zoom := 9;
+            MapView1.Center := Centre;
           end;
         end;
       end;
@@ -1848,8 +1829,10 @@ begin
       label45.Caption := '..';
       label47.Caption := '..';
       label42.Caption := '.......';
-      MapViewer1.Zoom := 1;
-      MapViewer1.Center;
+      Centre.Lat:=0;
+      Centre.Lon:=0;
+      MapView1.Center:=Centre;
+      MapView1.Zoom := 1;
     end;
 
     if CheckBox6.Checked = True then
@@ -1917,7 +1900,6 @@ var
   currmode: string;
   mode: string;
   curr_f: extended;
-  lstrfreq: string;
   carr: integer;
 begin
 
@@ -2016,7 +1998,6 @@ begin
           curr_f := dmFunc.StrToFreq(stmp);
           stmp := FormatFloat('0.000"."00', curr_f / 1000);
           ComboBox1.Text := stmp;
-          lstrfreq := stmp;
         end;
       end;
     end;
@@ -2147,19 +2128,19 @@ begin
   begin
   {$IFDEF WINDOWS}
     FDownloader := TMVDEWin32.Create(Self);
-    MapViewer1.UseThreads := True;
+    MapView1.UseThreads := True;
     FDownloader.OnAfterDownload := @DoAfterDownload;
     FDownloader.OnBeforeDownload := @DoBeforeDownload;
-    MapViewer1.DownloadEngine := FDownloader;
-    MapViewer1.Center;
-    MapViewer1.Visible := True;
-    MapViewer1.Parent := Panel10;
+    MapView1.DownloadEngine := FDownloader;
+    MapView1.Center;
+    MapView1.Visible := True;
+    MapView1.Parent := Panel10;
     Earth.Hide;
     {$ENDIF}
   end
   else
   begin
-    MapViewer1.Visible := False;
+    MapView1.Visible := False;
     Earth.Parent := Panel10;
     Earth.BorderStyle := bsNone;
     Earth.Align := alClient;
@@ -2416,8 +2397,6 @@ end;
 
 procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
-var
-  i: integer;
 begin
   if LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
     with DBGrid1.Canvas do
@@ -2757,8 +2736,8 @@ end;
 
 procedure TMainForm.dxClientConnect(aSocket: TLSocket);
 begin
-  SpeedButton18.Enabled:=False;
-  SpeedButton24.Enabled:=False;
+  SpeedButton18.Enabled := False;
+  SpeedButton24.Enabled := False;
 end;
 
 procedure TMainForm.dxClientDisconnect(aSocket: TLSocket);
@@ -2923,7 +2902,6 @@ begin
   AdifFromMobileSyncStart := False;
   ExportAdifSelect := False;
   ImportAdifMobile := False;
-  DateSeparator := '.';
   {$IFDEF UNIX}
   // FDownloader := TMVDESynapse.Create(Self);
   CheckBox3.Visible := False;
@@ -2934,11 +2912,11 @@ begin
   if useMAPS = 'YES' then
   begin
     FDownloader := TMVDEWin32.Create(Self);
-    MapViewer1.UseThreads := True;
+    MapView1.UseThreads := True;
     FDownloader.OnAfterDownload := @DoAfterDownload;
     FDownloader.OnBeforeDownload := @DoBeforeDownload;
-    MapViewer1.DownloadEngine := FDownloader;
-    MapViewer1.Center;
+    MapView1.DownloadEngine := FDownloader;
+    MapView1.Center;
   end;
   {$ENDIF UNIX}
 
@@ -3025,7 +3003,7 @@ begin
       if IniF.ReadString('SetLog', 'FormState', '') = 'Maximized' then
         MainForm.WindowState := wsMaximized;
 
-      DateEdit1.Date := NowUTC;
+      DateEdit1.Date := LazSysUtils.NowUTC;
       DateTimePicker1.Time := NowUTC;
       Label24.Caption := FormatDateTime('hh:mm:ss', Now);
       Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
@@ -3143,7 +3121,6 @@ begin
     PrefixExpARRLArray[i].Free;
     PrefixExpProvinceArray[i].Free;
   end;
-  FDownloader.Free;
   IniF.Free;
   LTCPComponent1.Free;
   LUDPComponent1.Free;
@@ -3173,6 +3150,10 @@ begin
   else
     CheckBox3.Checked := False;
   CheckBox3.Enabled := True;
+  MapView1.Zoom:=1;
+  MapView1.DoubleBuffered:=True;
+  MapView1.Active:=True;
+
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
@@ -3190,18 +3171,11 @@ procedure TMainForm.LTCPComponent1CanSend(aSocket: TLSocket);
 var
   Sent: integer;
   TempBuffer: string = '';
-  lenBuffer: integer;
-  Count: integer;
 begin
   if (AdifDataSyncAll = True) or (AdifDataSyncDate = True) then
   begin
-    Count := 0;
     TempBuffer := BuffToSend;
-    lenBuffer := Length(TempBuffer);
-    //if
-    while TempBuffer <> '' do //then
-      // else
-    begin
+    while TempBuffer <> '' do begin
       Sent := LTCPComponent1.SendMessage(TempBuffer, aSocket);
       Delete(BuffToSend, 1, Sent);
       TempBuffer := BuffToSend;
@@ -3501,9 +3475,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-      ' WHERE `QSLSentAdv` LIKE ' + QuotedStr('P') +
-      ' ORDER BY `UnUsedIndex`' + '');
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
+      QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
   end
   else
   begin
@@ -3516,9 +3489,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-      ' WHERE `QSLSentAdv` LIKE ' + QuotedStr('P') +
-      ' ORDER BY `UnUsedIndex`' + '');
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
+      QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
   LOGBookQuery.Last;
@@ -3541,9 +3513,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-      ' WHERE `QSLSentAdv` LIKE ' + QuotedStr('N') +
-      ' ORDER BY `UnUsedIndex`' + '');
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
+      QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
   end
   else
   begin
@@ -3556,9 +3527,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-      ' WHERE `QSLSentAdv` LIKE ' + QuotedStr('N') +
-      ' ORDER BY `UnUsedIndex`' + '');
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
+      QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
   LOGBookQuery.Last;
@@ -3656,10 +3626,10 @@ var
   XNode: PVirtualNode;
   Data: PTreeData;
 begin
-  XNode:=VirtualStringTree1.FocusedNode;
-  Data:=VirtualStringTree1.GetNodeData(XNode);
+  XNode := VirtualStringTree1.FocusedNode;
+  Data := VirtualStringTree1.GetNodeData(XNode);
   if Length(Data^.Spots) > 1 then
-  EditButton1.Text:=Data^.Spots;
+    EditButton1.Text := Data^.Spots;
 end;
 
 procedure TMainForm.MenuItem114Click(Sender: TObject);
@@ -4207,7 +4177,7 @@ begin
       information := 1;
       inform := 1;
       //OnEQSLSent := @EQSLSent;
-      Resume;
+      Start;
     end;
   end;
 end;
@@ -4232,7 +4202,7 @@ begin
       qslinf := SetQSLInfo;
       information := 1;
       //OnEQSLSent := @EQSLSent;
-      Resume;
+      Start;
     end;
   end;
 end;
@@ -5336,7 +5306,7 @@ begin
           rst := ComboBox4.Text;
           qslinf := SetQSLInfo;
           //OnEQSLSent := @EQSLSent;
-          Resume;
+          Start;
         end;
       end;
 
@@ -5359,7 +5329,7 @@ begin
           locat := Edit3.Text;
           qslinf := SetQSLInfo;
           //OnEQSLSent := @EQSLSent;
-          Resume;
+          Start;
         end;
       end;
 
@@ -5505,10 +5475,14 @@ var
   XNode: PVirtualNode;
   Data: PTreeData;
 begin
-  XNode:=VirtualStringTree1.FocusedNode;
-  Data:=VirtualStringTree1.GetNodeData(XNode);
+  XNode := VirtualStringTree1.FocusedNode;
+  Data := VirtualStringTree1.GetNodeData(XNode);
   if Length(Data^.Spots) > 1 then
-  EditButton1.Text:=Data^.Spots;
+    EditButton1.Text := Data^.Spots;
+
+
+
+
 end;
 
 procedure TMainForm.VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
