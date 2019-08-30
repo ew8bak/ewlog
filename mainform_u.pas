@@ -404,6 +404,9 @@ type
     procedure MenuItem10Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
+    procedure MenuItem113Click(Sender: TObject);
+    procedure MenuItem114Click(Sender: TObject);
+    procedure MenuItem115Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
     procedure MenuItem13Click(Sender: TObject);
@@ -463,7 +466,6 @@ type
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
-    procedure SpeedButton18Click(Sender: TObject);
     procedure SpeedButton18MouseLeave(Sender: TObject);
     procedure SpeedButton18MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
@@ -501,6 +503,7 @@ type
       Node: PVirtualNode);
     procedure VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
       Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: integer);
+    procedure VirtualStringTree1DblClick(Sender: TObject);
     procedure VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Column: TColumnIndex);
     procedure VirtualStringTree1FreeNode(Sender: TBaseVirtualTree;
@@ -3641,6 +3644,32 @@ begin
   MenuItem112.Checked := True;
 end;
 
+procedure TMainForm.MenuItem113Click(Sender: TObject);
+var
+  XNode: PVirtualNode;
+  Data: PTreeData;
+begin
+  XNode:=VirtualStringTree1.FocusedNode;
+  Data:=VirtualStringTree1.GetNodeData(XNode);
+  if Length(Data^.Spots) > 1 then
+  EditButton1.Text:=Data^.Spots;
+end;
+
+procedure TMainForm.MenuItem114Click(Sender: TObject);
+begin
+  VirtualStringTree1.DeleteSelectedNodes;
+end;
+
+procedure TMainForm.MenuItem115Click(Sender: TObject);
+begin
+  if not VirtualStringTree1.IsEmpty then
+  begin
+    VirtualStringTree1.BeginUpdate;
+    VirtualStringTree1.Clear;
+    VirtualStringTree1.EndUpdate;
+  end;
+end;
+
 //QSL получена
 procedure TMainForm.MenuItem11Click(Sender: TObject);
 var
@@ -5111,11 +5140,6 @@ begin
   PopupMenu2.PopUp;
 end;
 
-procedure TMainForm.SpeedButton18Click(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.SpeedButton18MouseLeave(Sender: TObject);
 begin
   StatusBar1.Panels.Items[0].Text := '';
@@ -5467,6 +5491,17 @@ procedure TMainForm.VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
 begin
   with TVirtualStringTree(Sender) do
     Result := AnsiCompareText(Text[Node1, Column], Text[Node2, Column]);
+end;
+
+procedure TMainForm.VirtualStringTree1DblClick(Sender: TObject);
+var
+  XNode: PVirtualNode;
+  Data: PTreeData;
+begin
+  XNode:=VirtualStringTree1.FocusedNode;
+  Data:=VirtualStringTree1.GetNodeData(XNode);
+  if Length(Data^.Spots) > 1 then
+  EditButton1.Text:=Data^.Spots;
 end;
 
 procedure TMainForm.VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
