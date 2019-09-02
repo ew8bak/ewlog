@@ -27,7 +27,7 @@ object About_Form: TAbout_Form
     Height = 25
     Top = 40
     Width = 98
-    Caption = 'Версия 1.0'
+    Caption = 'Версия 1.1'
     Font.Height = -19
     Font.Style = [fsBold]
     ParentColor = False

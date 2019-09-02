@@ -520,8 +520,6 @@ type
 
   private
     { private declarations }
-    procedure DoBeforeDownload(Url: string; str: TStream; var CanHandle: boolean);
-    procedure DoAfterDownload(Url: string; str: TStream);
 
   public
     { public declarations }
@@ -1251,64 +1249,6 @@ begin
   end;
 end;
 
-procedure TMainForm.DoBeforeDownload(Url: string; str: TStream; var CanHandle: boolean);
-var
-  x: string;
-  f: TFileStream;
-  doc: string;
-begin
-{$IFDEF UNIX}
-  doc := GetEnvironmentVariable('HOME');
-  x := doc + '/EWLog/cache/' + MDPrint(MD5String(Url));
-  {$ELSE}
-  doc := GetEnvironmentVariable('SystemDrive') + GetEnvironmentVariable('HOMEPATH');
-  x := doc + '\EWLog\cache\' + MDPrint(MD5String(Url));
-  {$ENDIF UNIX}
-
-  if FileExists(x) then
-  begin
-    f := TFileStream.Create(x, fmOpenRead);
-    try
-      str.Position := 0;
-      str.CopyFrom(f, f.Size);
-      str.Position := 0;
-      CanHandle := True;
-    finally
-      f.Free;
-    end;
-  end
-  else
-    CanHandle := False;
-end;
-
-procedure TMainForm.DoAfterDownload(Url: string; str: TStream);
-var
-  x: string;
-  f: TFileStream;
-  doc: string;
-begin
-  {$IFDEF UNIX}
-  doc := GetEnvironmentVariable('HOME');
-  if not DirectoryExists(doc + '/EWLog/cache/') then
-    ForceDirectories(doc + '/EWLog/cache\');
-  x := doc + '/EWLog/cache/' + MDPrint(MD5String(Url));
-  {$ELSE}
-  doc := GetEnvironmentVariable('SystemDrive') + GetEnvironmentVariable('HOMEPATH');
-  if not DirectoryExists(doc + '\EWLog\cache\') then
-    ForceDirectories(doc + '\EWLog\cache\');
-  x := doc + '\EWLog\cache\' + MDPrint(MD5String(Url));
-  {$ENDIF UNIX}
-  if (not FileExists(x)) and (not (str.Size = 0)) then
-  begin
-    f := TFileStream.Create(x, fmCreate);
-    try
-      str.Position := 0;
-      f.CopyFrom(str, str.Size);
-    finally
-      f.Free;
-    end;
-  end;
-end;
 
 procedure TMainForm.Clr();
 begin
@@ -5090,6 +5030,7 @@ begin
 end;
 
 procedure TMainForm.SpeedButton20Click(Sender: TObject);
+begin
 if not VirtualStringTree1.IsEmpty then
 begin
   VirtualStringTree1.BeginUpdate;
