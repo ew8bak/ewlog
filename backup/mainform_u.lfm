@@ -5091,4 +5091,16 @@ object MainForm: TMainForm
       OnClick = MenuItem115Click
     end
   end
+  object UniqueCallsQuery: TSQLQuery
+    PacketRecords = 10000
+    FieldDefs = <>
+    Database = MySQLLOGDBConnection
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select Callsign from UniqueCalls'
+    )
+    Params = <>
+    left = 520
+    top = 558
+  end
 end

@@ -178,6 +178,7 @@ type
     SpeedButton28: TSpeedButton;
     SpeedButton29: TSpeedButton;
     qBands: TSQLQuery;
+    UniqueCallsQuery: TSQLQuery;
     TabSheet2: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
     WSJT_Timer: TTimer;
@@ -592,6 +593,8 @@ var
   QTH_LON: currency;
   PrefixProvinceCount: integer;
   PrefixARRLCount: integer;
+  UniqueCallsCount: Integer;
+  UniqueCallsList: TStringList;
   PrefixProvinceList: TStringList;
   PrefixARRLList: TStringList;
   GetingHint: integer;
@@ -1136,6 +1139,7 @@ begin
   PrefixProvinceQuery.DataBase := ServiceDBConnection;
   PrefixQuery.DataBase := ServiceDBConnection;
   PrefixARRLQuery.DataBase := ServiceDBConnection;
+  UniqueCallsQuery.DataBase := ServiceDBConnection;
   qBands.DataBase := ServiceDBConnection;
   //trBands.DataBase:=ServiceDBConnection;
 
@@ -1144,18 +1148,22 @@ begin
     LogBookFieldQuery.Active := True;
     PrefixProvinceQuery.Active := True;
     PrefixARRLQuery.Active := True;
+    UniqueCallsQuery.Active := True;
 
     DBLookupComboBox1.KeyValue := CallLogBook;
     SelDB(CallLogBook);
 
     PrefixProvinceList := TStringList.Create;
     PrefixARRLList := TStringList.Create;
+    UniqueCallsList:=TStringList.Create;
     PrefixProvinceCount := PrefixProvinceQuery.RecordCount;
     PrefixARRLCount := PrefixARRLQuery.RecordCount;
+    UniqueCallsCount:=UniqueCallsQuery.RecordCount;
 
     DBGrid1.DataSource.DataSet.Last;
     PrefixProvinceQuery.First;
     PrefixARRLQuery.First;
+    UniqueCallsQuery.First;
     for i := 0 to PrefixProvinceCount do
     begin
       PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
@@ -1170,6 +1178,12 @@ begin
       PrefixExpARRLArray[i].Expression := PrefixARRLList.Strings[i];
       PrefixARRLQuery.Next;
     end;
+    for i := 0 to UniqueCallsCount do
+    begin
+      UniqueCallsList.Add(UniqueCallsQuery.FieldByName('Callsign').AsString);
+      UniqueCallsQuery.Next;
+    end;
+
   except
     ShowMessage('Что то пошло не так... Проверьте настройки');
     SetupForm.Show;
@@ -1281,13 +1295,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
-  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
-  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
-  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
-  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
+  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
+  QSOAddInfo, Marker: string;
+  ManualSet: integer; DigiBand, Continent, ShortNote: string;
+  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
+  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
+  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);//, Index: string);
 begin
@@ -1540,6 +1554,79 @@ begin
         + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = "' +
         CallName + '"');
     Open;
+  end;
+
+  //for i:=0 to UniqueCallsCount do begin
+
+  //end;
+  if UniqueCallsList.IndexOf(CallName) > -1 then begin
+   with MainForm.PrefixQuery do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('select * from UniqueCalls where _id = "' + IntToStr(UniqueCallsList.IndexOf(CallName)) + '"');
+        Open;
+      end;
+   MainForm.Label33.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
+   MainForm.Label34.Caption :=
+        MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+      MainForm.Label38.Caption := MainForm.PrefixQuery.FieldByName('Prefix').AsString;
+      MainForm.Label45.Caption := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
+      MainForm.Label47.Caption := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
+      MainForm.Label43.Caption :=
+        MainForm.PrefixQuery.FieldByName('Continent').AsString;
+      MainForm.Label40.Caption := MainForm.PrefixQuery.FieldByName('Latitude').AsString;
+      CallLAT := MainForm.PrefixQuery.FieldByName('Latitude').AsString;
+      MainForm.Label42.Caption :=
+        MainForm.PrefixQuery.FieldByName('Longitude').AsString;
+      CallLON := MainForm.PrefixQuery.FieldByName('Longitude').AsString;
+      DXCCNum := MainForm.PrefixQuery.FieldByName('DXCC').AsInteger;
+      //timedif := MainForm.PrefixQuery.FieldByName('TimeDiff').AsInteger;
+
+      if gridloc = True then
+        loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+
+      la1 := CallLAT;
+      lo1 := CallLON;
+
+      if (UTF8Pos('W', lo1) <> 0) then
+        lo1 := '-' + lo1;
+      if (UTF8Pos('S', la1) <> 0) then
+        la1 := '-' + la1;
+      Delete(la1, length(la1), 1);
+      Delete(lo1, length(lo1), 1);
+
+      if gridloc = True then
+      begin
+        if MainForm.Edit3.Text <> '' then
+          loc := MainForm.Edit3.Text;
+      end
+      else
+        loc := MainForm.Edit3.Text;
+
+      if (loc <> '') and dmFunc.IsLocOK(loc) then
+      begin
+        dmFunc.CoordinateFromLocator(loc, la, lo);
+
+        la1 := CurrToStr(la);
+        lo1 := CurrToStr(lo);
+
+        if loc = SetLoc then
+          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
+        else
+          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
+      end
+      else
+      begin
+        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
+          StrToFloat(lo1)) / 1000;
+      end;
+      MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
+      ///////АЗИМУТ
+      dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
+        strtofloat(lo1), qra, azim);
+      MainForm.Label32.Caption := azim;
+    exit;
   end;
 
 
@@ -2855,14 +2942,16 @@ begin
       ComboBox3.Items.Clear;
       ComboBox3.Items.AddStrings(TelStr);
       if ComboBox3.Items.IndexOf(TelName) > -1 then
-      ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName) else
-      ComboBox3.ItemIndex:=0;
+        ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
+      else
+        ComboBox3.ItemIndex := 0;
 
       ComboBox8.Items.Clear;
       ComboBox8.Items.AddStrings(TelStr);
       if ComboBox8.Items.IndexOf(TelName) > -1 then
-      ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName) else
-      ComboBox8.ItemIndex:=0;
+        ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
+      else
+        ComboBox8.ItemIndex := 0;
 
       i := pos('>', ComboBox3.Text);
       j := pos(':', ComboBox3.Text);
@@ -3009,6 +3098,7 @@ begin
   FlagSList.Free;
   PrefixProvinceList.Free;
   PrefixARRLList.Free;
+  UniqueCallsList.Free;
   for i := 0 to 1000 do
   begin
     PrefixExpARRLArray[i].Free;
@@ -5031,12 +5121,12 @@ end;
 
 procedure TMainForm.SpeedButton20Click(Sender: TObject);
 begin
-if not VirtualStringTree1.IsEmpty then
-begin
-  VirtualStringTree1.BeginUpdate;
-  VirtualStringTree1.Clear;
-  VirtualStringTree1.EndUpdate;
-end;
+  if not VirtualStringTree1.IsEmpty then
+  begin
+    VirtualStringTree1.BeginUpdate;
+    VirtualStringTree1.Clear;
+    VirtualStringTree1.EndUpdate;
+  end;
 end;
 
 procedure TMainForm.SpeedButton20MouseLeave(Sender: TObject);
@@ -5378,7 +5468,6 @@ begin
   Data := VirtualStringTree1.GetNodeData(XNode);
   if Length(Data^.Spots) > 1 then
     EditButton1.Text := Data^.Spots;
-
 
 end;
 
