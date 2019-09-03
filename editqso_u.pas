@@ -340,14 +340,14 @@ begin
 
   for i := 0 to PrefixProvinceCount do
   begin
-    if (PrefixExpProvinceArray[i].Exec(Edit1.Text)) and (PrefixExpProvinceArray[i].Match[0] = Edit1.Text) then
+    if (PrefixExpProvinceArray[i].reg.Exec(Edit1.Text)) and (PrefixExpProvinceArray[i].reg.Match[0] = Edit1.Text) then
     begin
       BoolPrefix := True;
       with MainForm.PrefixQuery do
       begin
         Close;
         SQL.Clear;
-        SQL.Add('select * from Province where _id = "' + IntToStr(i) + '"');
+        SQL.Add('select * from Province where _id = "' + IntToStr(PrefixExpProvinceArray[i].id) + '"');
         Open;
       end;
       GroupBox1.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
@@ -363,17 +363,16 @@ begin
   begin
     for j := 0 to PrefixARRLCount do
     begin
-      if (PrefixExpARRLArray[j].Exec(Edit1.Text)) and (PrefixExpARRLArray[j].Match[0] = Edit1.Text) then
+      if (PrefixExpARRLArray[j].reg.Exec(Edit1.Text)) and (PrefixExpARRLArray[j].reg.Match[0] = Edit1.Text) then
       begin
         with MainForm.PrefixQuery do
         begin
           Close;
           SQL.Clear;
-
-          SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(j) + '"');
+          SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(PrefixExpARRLArray[j].id) + '"');
           Open;
         if FieldByName('Status').AsString = 'Deleted' then begin
-          PrefixExpARRLArray[j].ExecNext;
+          PrefixExpARRLArray[j].reg.ExecNext;
           Exit;
           end;
 

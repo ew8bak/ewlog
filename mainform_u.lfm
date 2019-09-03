@@ -3460,7 +3460,7 @@ object MainForm: TMainForm
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
-      'select PrefixList from Province'
+      'select _id, PrefixList from Province where EndDate == ""'
     )
     Params = <>
     left = 112
@@ -3486,7 +3486,7 @@ object MainForm: TMainForm
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
-      'select PrefixList, Status from CountryDataEx'
+      'select _id, PrefixList, Status from CountryDataEx where EndDate == ""'
     )
     Params = <>
     left = 928
