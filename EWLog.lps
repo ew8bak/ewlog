@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="61">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -21,7 +21,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="1530"/>
+        <TopLine Value="1529"/>
         <CursorPos X="11" Y="1270"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -535,7 +535,6 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="860"/>
         <UsageCount Value="10"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit51>
       <Unit52>
         <Filename Value="C:\Users\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
