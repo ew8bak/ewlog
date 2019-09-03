@@ -687,14 +687,17 @@ begin
   try
     pImage := TPortableNetworkGraphic.Create;
     pImage.LoadFromLazarusResource(dmFunc.ReplaceCountry(Country));
-    if FlagSList.IndexOf(dmFunc.ReplaceCountry(Country)) = -1 then begin
+    if FlagSList.IndexOf(dmFunc.ReplaceCountry(Country)) = -1 then
+    begin
       FlagList.Add(pImage, nil);
       FlagSList.Add(dmFunc.ReplaceCountry(Country));
     end;
   except
-    on EResNotFound do begin
+    on EResNotFound do
+    begin
       pImage.LoadFromLazarusResource('Unknown');
-      if FlagSList.IndexOf('Unknown') = -1 then begin
+      if FlagSList.IndexOf('Unknown') = -1 then
+      begin
         FlagList.Add(pImage, nil);
         FlagSList.Add('Unknown');
       end;
@@ -708,18 +711,23 @@ var
   i, j: integer;
   BoolPrefix: boolean;
 begin
-  if CallName.Length < 1 then begin
+  if CallName.Length < 1 then
+  begin
     Result := '';
     exit;
   end;
   BoolPrefix := False;
   Result := '';
-  if Province = True then begin
-    for i := 0 to PrefixProvinceCount do begin
+  if Province = True then
+  begin
+    for i := 0 to PrefixProvinceCount do
+    begin
       if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-        (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then begin
+        (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
+      begin
         BoolPrefix := True;
-        with MainForm.PrefixQuery do begin
+        with MainForm.PrefixQuery do
+        begin
           Close;
           SQL.Clear;
           SQL.Add('select * from Province where _id = "' +
@@ -731,21 +739,26 @@ begin
       end;
     end;
   end;
-  if BoolPrefix = False then begin
-    for j := 0 to PrefixARRLCount do begin
+  if BoolPrefix = False then
+  begin
+    for j := 0 to PrefixARRLCount do
+    begin
       if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
-        (PrefixExpARRLArray[j].reg.Match[0] = CallName) then begin
-        with MainForm.PrefixQuery do begin
-         Close;
-        SQL.Clear;
-        SQL.Add('select * from CountryDataEx where _id = "' +
-          IntToStr(PrefixExpARRLArray[j].id) + '"');
-        Open;
-        if (FieldByName('Status').AsString = 'Deleted') then begin
-          PrefixExpARRLArray[j].reg.ExecNext;
-          Exit;
-        end;
-        Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
+        (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+      begin
+        with MainForm.PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from CountryDataEx where _id = "' +
+            IntToStr(PrefixExpARRLArray[j].id) + '"');
+          Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[j].reg.ExecNext;
+            Exit;
+          end;
+          Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
         end;
         Exit;
       end;
@@ -773,7 +786,8 @@ begin
     qBands.Open;
     tmp := StrToFloat(MHz);
     tmp := tmp / 1000;
-    if qBands.RecordCount > 0 then begin
+    if qBands.RecordCount > 0 then
+    begin
       if ((tmp >= qBands.FieldByName('B_BEGIN').AsCurrency) and
         (tmp <= qBands.FieldByName('CW').AsCurrency)) then
         Result := 'CW'
@@ -809,17 +823,21 @@ var
 begin
   Result := nil;
   ANode := VirtualStringTree1.GetFirst();
-  while ANode <> nil do begin
+  while ANode <> nil do
+  begin
     DataNode := VirtualStringTree1.GetNodeData(ANode);
-    if Country = False then begin
-      if DataNode^.DX = APattern then begin
+    if Country = False then
+    begin
+      if DataNode^.DX = APattern then
+      begin
         Result := ANode;
         exit;
       end;
     end
     else
     begin
-      if DataNode^.Country = APattern then begin
+      if DataNode^.Country = APattern then
+      begin
         Result := ANode;
         exit;
       end;
@@ -832,7 +850,8 @@ procedure TMainForm.SetGrid;
 var
   i: integer;
 begin
-  for i := 0 to 28 do begin
+  for i := 0 to 28 do
+  begin
     columnsGrid[i] := IniF.ReadString('GridSettings', 'Columns' +
       IntToStr(i), constColumnName[i]);
     columnsWidth[i] := IniF.ReadInteger('GridSettings', 'ColWidth' +
@@ -849,7 +868,8 @@ begin
   DBGrid2.Color := ColorBackGrid;
 
   //Для первого грида
-  for i := 0 to 28 do begin
+  for i := 0 to 28 do
+  begin
     DBGrid1.Columns.Items[i].FieldName := columnsGrid[i];
     DBGrid1.Columns.Items[i].Width := columnsWidth[i];
     case columnsGrid[i] of
@@ -917,7 +937,8 @@ begin
     end;
   end;
   //Для второго грида
-  for i := 0 to 28 do begin
+  for i := 0 to 28 do
+  begin
     DBGrid2.Columns.Items[i].FieldName := columnsGrid[i];
     DBGrid2.Columns.Items[i].Width := columnsWidth[i];
     case columnsGrid[i] of
@@ -1016,8 +1037,10 @@ begin
       'QSO № ' + IntToStr(DBGrid1.DataSource.DataSet.RecNo) +
       ' из ' + IntToStr(MainForm.LOGBookQuery.RecordCount);
   except
-    on E: Exception do begin
-      if Pos('has gone away', E.Message) > 0 then begin
+    on E: Exception do
+    begin
+      if Pos('has gone away', E.Message) > 0 then
+      begin
         ShowMessage(
           'НЕТ подключения к базе данных MySQL! Проверьте подключение или параметры соединения. Соединяемся с базой SQLite');
         UseCallBook := 'NO';
@@ -1040,12 +1063,14 @@ begin
   sDBPath := GetEnvironmentVariable('SystemDrive') +
     GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
     {$ENDIF UNIX}
-  if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then begin
+  if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
+  begin
     CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
     CallBookLiteConnection.Connected := True;
   end;
 
-  if not (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then begin
+  if not (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
+  begin
     ShowMessage(
       'Не найден файл справочника, продолжу работать без его. Зайдите в настройки программы для загрузки');
     CallBookLiteConnection.Connected := False;
@@ -1057,7 +1082,8 @@ begin
   ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
   ServiceDBConnection.Connected := True;
 
-  if dbS = 'MySQL' then begin
+  if dbS = 'MySQL' then
+  begin
     DefaultDB := 'MySQL';
     dbSel := 'MySQL';
     MenuItem83.Enabled := False;
@@ -1149,21 +1175,24 @@ begin
     PrefixProvinceQuery.First;
     PrefixARRLQuery.First;
     UniqueCallsQuery.First;
-    for i := 0 to PrefixProvinceCount do begin
+    for i := 0 to PrefixProvinceCount do
+    begin
       PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
       PrefixExpProvinceArray[i].reg := TRegExpr.Create;
       PrefixExpProvinceArray[i].reg.Expression := PrefixProvinceList.Strings[i];
       PrefixExpProvinceArray[i].id := PrefixProvinceQuery.FieldByName('_id').AsInteger;
       PrefixProvinceQuery.Next;
     end;
-    for i := 0 to PrefixARRLCount do begin
+    for i := 0 to PrefixARRLCount do
+    begin
       PrefixARRLList.Add(PrefixARRLQuery.FieldByName('PrefixList').AsString);
       PrefixExpARRLArray[i].reg := TRegExpr.Create;
       PrefixExpARRLArray[i].reg.Expression := PrefixARRLList.Strings[i];
       PrefixExpARRLArray[i].id := PrefixARRLQuery.FieldByName('_id').AsInteger;
       PrefixARRLQuery.Next;
     end;
-    for i := 0 to UniqueCallsCount do begin
+    for i := 0 to UniqueCallsCount do
+    begin
       UniqueCallsList.Add(UniqueCallsQuery.FieldByName('Callsign').AsString);
       UniqueCallsQuery.Next;
     end;
@@ -1214,7 +1243,8 @@ begin
   //Поиск и заполнение из внутриней базы
   if (SQLQuery2.RecordCount > 0) and (EditButton1.Text <> '') and (ShowCall = True) then
   begin
-    if UseCallBook <> 'YES' then begin
+    if UseCallBook <> 'YES' then
+    begin
       Edit1.Text := SQLQuery2.FieldByName('OMName').AsString;
       Edit2.Text := SQLQuery2.FieldByName('OMQTH').AsString;
       Edit3.Text := SQLQuery2.FieldByName('Grid').AsString;
@@ -1243,7 +1273,7 @@ end;
 
 procedure TMainForm.Clr();
 var
-    Centre: TRealPoint;
+  Centre: TRealPoint;
 begin
   MainForm.EditButton1.Clear;
   MainForm.EditButton1.Color := clDefault;
@@ -1262,15 +1292,17 @@ begin
   MainForm.ComboBox5.ItemIndex := 0;
   EditFlag := False;
 
-  if CheckBox3.Checked then begin
-  Centre.Lat := 0;
-  Centre.Lon := 0;
-  MapView1.Center := Centre;
-  MapView1.Zoom := 1;
+  if CheckBox3.Checked then
+  begin
+    Centre.Lat := 0;
+    Centre.Lon := 0;
+    MapView1.Center := Centre;
+    MapView1.Zoom := 1;
   end;
 
   ComboBox6.Text := '';
-  if MenuItem111.Checked = True then begin
+  if MenuItem111.Checked = True then
+  begin
     PhotoJPEG.Clear;
     PhotoGIF.Clear;
     PhotoPNG.Clear;
@@ -1280,17 +1312,18 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
-  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
-  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
-  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
-  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
+  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
+  QSOAddInfo, Marker: string;
+  ManualSet: integer; DigiBand, Continent, ShortNote: string;
+  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
+  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
+  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);//, Index: string);
 begin
-  with MainForm.SaveQSOQuery do begin
+  with MainForm.SaveQSOQuery do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('INSERT INTO ' + NLogDB +
@@ -1395,8 +1428,10 @@ begin
   try
     Application.ProcessMessages;
     if (CallBookLiteConnection.Connected = True) or
-      (SearchCallBookQuery.Active = True) then begin
-      with SearchCallBookQuery do begin
+      (SearchCallBookQuery.Active = True) then
+    begin
+      with SearchCallBookQuery do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('SELECT * FROM Callbook WHERE `Call` = "' + CallName + '"');
@@ -1420,7 +1455,8 @@ begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
-  if DefaultDB = 'MySQL' then begin
+  if DefaultDB = 'MySQL' then
+  begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' +
@@ -1460,7 +1496,8 @@ end;
 
 procedure TMainForm.SelDB(calllbook: string);
 begin
-  with MainForm.LogBookInfoQuery do begin
+  with MainForm.LogBookInfoQuery do
+  begin
     Close;
     SQL.Clear;
     if calllbook = '' then
@@ -1503,7 +1540,8 @@ var
 begin
   Result := False;
 
-  with MainForm.SQLQuery2 do begin
+  with MainForm.SQLQuery2 do
+  begin
     Close;
     SQL.Clear;
     if DefaultDB = 'MySQL' then
@@ -1533,8 +1571,10 @@ begin
     Open;
   end;
 
-  if UniqueCallsList.IndexOf(CallName) > -1 then begin
-    with MainForm.PrefixQuery do begin
+  if UniqueCallsList.IndexOf(CallName) > -1 then
+  begin
+    with MainForm.PrefixQuery do
+    begin
       Close;
       SQL.Clear;
       SQL.Add('select * from UniqueCalls where _id = "' +
@@ -1566,14 +1606,16 @@ begin
     Delete(la1, length(la1), 1);
     Delete(lo1, length(lo1), 1);
 
-    if gridloc = True then begin
+    if gridloc = True then
+    begin
       if MainForm.Edit3.Text <> '' then
         loc := MainForm.Edit3.Text;
     end
     else
       loc := MainForm.Edit3.Text;
 
-    if (loc <> '') and dmFunc.IsLocOK(loc) then begin
+    if (loc <> '') and dmFunc.IsLocOK(loc) then
+    begin
       dmFunc.CoordinateFromLocator(loc, la, lo);
 
       la1 := CurrToStr(la);
@@ -1598,10 +1640,13 @@ begin
     exit;
   end;
 
-  for i := 0 to PrefixProvinceCount do begin
+  for i := 0 to PrefixProvinceCount do
+  begin
     if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-      (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then begin
-      with MainForm.PrefixQuery do begin
+      (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
+    begin
+      with MainForm.PrefixQuery do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('select * from Province where _id = "' +
@@ -1634,14 +1679,16 @@ begin
       Delete(la1, length(la1), 1);
       Delete(lo1, length(lo1), 1);
 
-      if gridloc = True then begin
+      if gridloc = True then
+      begin
         if MainForm.Edit3.Text <> '' then
           loc := MainForm.Edit3.Text;
       end
       else
         loc := MainForm.Edit3.Text;
 
-      if (loc <> '') and dmFunc.IsLocOK(loc) then begin
+      if (loc <> '') and dmFunc.IsLocOK(loc) then
+      begin
         dmFunc.CoordinateFromLocator(loc, la, lo);
 
         la1 := CurrToStr(la);
@@ -1667,16 +1714,20 @@ begin
     end;
   end;
 
-  for j := 0 to PrefixARRLCount do begin
+  for j := 0 to PrefixARRLCount do
+  begin
     if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
-      (PrefixExpARRLArray[j].reg.Match[0] = CallName) then begin
-      with MainForm.PrefixQuery do begin
+      (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+    begin
+      with MainForm.PrefixQuery do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('select * from CountryDataEx where _id = "' +
           IntToStr(PrefixExpARRLArray[j].id) + '"');
         Open;
-        if (FieldByName('Status').AsString = 'Deleted') then begin
+        if (FieldByName('Status').AsString = 'Deleted') then
+        begin
           PrefixExpARRLArray[j].reg.ExecNext;
           Exit;
         end;
@@ -1712,12 +1763,14 @@ begin
       Delete(lo1, length(lo1), 1);
 
       loc := MainForm.Edit3.Text;
-      if gridloc = True then begin
+      if gridloc = True then
+      begin
         if MainForm.Edit3.Text <> '' then
           loc := MainForm.Edit3.Text;
       end;
 
-      if (loc <> '') and dmFunc.IsLocOK(loc) then begin
+      if (loc <> '') and dmFunc.IsLocOK(loc) then
+      begin
         dmFunc.CoordinateFromLocator(loc, la, lo);
 
         la1 := CurrToStr(la);
@@ -1755,13 +1808,16 @@ var
 begin
   EditButton1.SelStart := seleditnum;
   engText := dmFunc.RusToEng(EditButton1.Text);
-  if (engText <> EditButton1.Text) then begin
+  if (engText <> EditButton1.Text) then
+  begin
     EditButton1.Text := engText;
     exit;
   end;
 
-  if not EditFlag then begin
-    if EditButton1.Text = '' then begin
+  if not EditFlag then
+  begin
+    if EditButton1.Text = '' then
+    begin
       clr();
       label32.Caption := '.......';
       label33.Caption := '.......';
@@ -1787,12 +1843,15 @@ begin
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
     foundPrefix := SearchPrefix(dmFunc.ExtractCallsign(EditButton1.Text), False);
 
-    if foundPrefix and CheckBox3.Checked = True then begin
+    if foundPrefix and CheckBox3.Checked = True then
+    begin
       val(lo1, Long, Error);
-      if Error = 0 then begin
+      if Error = 0 then
+      begin
         Centre.Lon := Long;
         val(la1, Lat, Error);
-        if Error = 0 then begin
+        if Error = 0 then
+        begin
           Centre.Lat := Lat;
           MapView1.Zoom := 9;
           MapView1.Center := Centre;
@@ -1800,11 +1859,13 @@ begin
       end;
     end;
 
-    if CheckBox6.Checked = True then begin
+    if CheckBox6.Checked = True then
+    begin
       LogBookQuery.Close;
       LogBookQuery.SQL.Clear;
 
-      if DefaultDB = 'MySQL' then begin
+      if DefaultDB = 'MySQL' then
+      begin
         LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
           ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
           + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
@@ -1866,13 +1927,17 @@ var
   carr: integer;
 begin
 
-  if Fldigi_IsRunning then begin
-    if Fl_Timer.Interval > 1000 then begin
+  if Fldigi_IsRunning then
+  begin
+    if Fl_Timer.Interval > 1000 then
+    begin
       Fl_Timer.Interval := 1000;
       fldigiactive := usefldigi;
-      if fldigiactive then begin
+      if fldigiactive then
+      begin
         fldigiversion := Fldigi_GetVersion;
-        if not connected then begin
+        if not connected then
+        begin
 
       {$IFDEF WINDOWS}
           TrayIcon1.BalloonHint := 'EWLog подключен к Fldigi';
@@ -1889,10 +1954,12 @@ begin
       end;
     end;
   end
-  else if Fl_Timer.Interval = 1000 then begin
+  else if Fl_Timer.Interval = 1000 then
+  begin
     Fl_Timer.Interval := 10000;
     fldigiactive := False;
-    if not connected then begin
+    if not connected then
+    begin
       {$IFDEF WINDOWS}
       TrayIcon1.BalloonHint := 'EWLog не подключен к Fldigi';
       TrayIcon1.ShowBalloonHint;
@@ -1908,7 +1975,8 @@ begin
   end;
   if fldigiactive then // use Fldigi XML-RPC communication
   begin
-    if not connected then begin
+    if not connected then
+    begin
       stmp := Format('%.11d', [Trunc(Fldigi_GetFrequency)]);
       mode := Fldigi_GetMode;
       carr := Fldigi_GetCarrier;
@@ -1932,19 +2000,23 @@ begin
       if Fldigi_GetLocator_Log <> '' then
         Edit3.Text := Fldigi_GetLocator_Log;
 
-      if mode <> currmode then begin
+      if mode <> currmode then
+      begin
         mode := Fldigi_GetMode;
-        if mode <> currmode then begin
+        if mode <> currmode then
+        begin
           currmode := mode;
           mode := Fldigi_GetMode;
           Combobox2.Text := mode;
         end;
       end;
 
-      if stmp <> currfreq then begin
+      if stmp <> currfreq then
+      begin
         stmp := Format('%.11d', [Trunc(Fldigi_GetFrequency + carr)]);
 
-        if stmp <> currfreq then begin
+        if stmp <> currfreq then
+        begin
           currfreq := stmp;
           curr_f := dmFunc.StrToFreq(stmp);
           stmp := FormatFloat('0.000"."00', curr_f / 1000);
@@ -1959,10 +2031,12 @@ procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
   i: integer;
 begin
-  if EditButton1.Text <> '' then begin
+  if EditButton1.Text <> '' then
+  begin
     if Application.MessageBox(
       PChar('QSO не сохранено, действительной выйти ?!'),
-      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then begin
+      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    begin
       Application.Terminate;
     end
     else
@@ -1970,12 +2044,14 @@ begin
   end;
 
   //Сохранение размещения колонок
-  for i := 0 to 28 do begin
+  for i := 0 to 28 do
+  begin
     IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
 
-  for i := 0 to 28 do begin
+  for i := 0 to 28 do
+  begin
     if DBGrid1.Columns.Items[i].Width <> 0 then
       IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
         DBGrid1.Columns.Items[i].Width)
@@ -1983,7 +2059,8 @@ begin
       IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
   end;
 
-  if MainForm.WindowState <> wsMaximized then begin
+  if MainForm.WindowState <> wsMaximized then
+  begin
     IniF.WriteInteger('SetLog', 'Width', MainForm.Width);
     IniF.WriteInteger('SetLog', 'Height', MainForm.Height);
     IniF.WriteString('SetLog', 'FormState', 'Normal');
@@ -2009,7 +2086,8 @@ var
   i: integer;
 begin
   //Сохранение размещения колонок
-  for i := 0 to 28 do begin
+  for i := 0 to 28 do
+  begin
     IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
@@ -2020,7 +2098,8 @@ procedure TMainForm.DBGrid1ColumnSized(Sender: TObject);
 var
   i: integer;
 begin
-  for i := 0 to 28 do begin
+  for i := 0 to 28 do
+  begin
     if DBGrid1.Columns.Items[i].Width <> 0 then
       IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
         DBGrid1.Columns.Items[i].Width)
@@ -2032,7 +2111,8 @@ end;
 
 procedure TMainForm.CheckBox1Change(Sender: TObject);
 begin
-  if CheckBox1.Checked = False then begin
+  if CheckBox1.Checked = False then
+  begin
     EditButton1.Font.Color := clRed;
     DateTimePicker1.Font.Color := clRed;
     DateEdit1.Font.Color := clRed;
@@ -2067,7 +2147,8 @@ end;
 
 procedure TMainForm.CheckBox3Change(Sender: TObject);
 begin
-  if CheckBox3.Checked = True then begin
+  if CheckBox3.Checked = True then
+  begin
     MapView1.UseThreads := True;
     MapView1.Center;
     MapView1.Visible := True;
@@ -2129,7 +2210,8 @@ begin
     (ComboBox2.Text <> 'USB') or (ComboBox2.Text <> 'JT44') or
     (ComboBox2.Text <> 'JT65') or (ComboBox2.Text <> 'JT6M') or
     (ComboBox2.Text <> 'JT9') or (ComboBox2.Text <> 'FT8') or
-    (ComboBox2.Text <> 'ROS') then begin
+    (ComboBox2.Text <> 'ROS') then
+  begin
     ComboBox4.Items.Clear;
     ComboBox4.Items.AddStrings(RSdigi);
     ComboBox4.ItemIndex := 0;
@@ -2140,7 +2222,8 @@ begin
 
   if (ComboBox2.Text = 'SSB') or (ComboBox2.Text = 'AM') or
     (ComboBox2.Text = 'FM') or (ComboBox2.Text = 'LSB') or
-    (ComboBox2.Text = 'USB') then begin
+    (ComboBox2.Text = 'USB') then
+  begin
     ComboBox4.Items.Clear;
     ComboBox4.Items.AddStrings(RSssb);
     ComboBox4.ItemIndex := 0;
@@ -2151,7 +2234,8 @@ begin
 
   if (ComboBox2.Text = 'ROS') or (ComboBox2.Text = 'JT44') or
     (ComboBox2.Text = 'JT65') or (ComboBox2.Text = 'JT6M') or
-    (ComboBox2.Text = 'JT9') or (ComboBox2.Text = 'FT8') then begin
+    (ComboBox2.Text = 'JT9') or (ComboBox2.Text = 'FT8') then
+  begin
     ComboBox4.Items.Clear;
     ComboBox4.Text := '-10';
     ComboBox5.Items.Clear;
@@ -2190,7 +2274,8 @@ end;
 
 procedure TMainForm.DBGrid1DblClick(Sender: TObject);
 begin
-  if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then begin
+  if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
+  begin
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     EditQSO_Form.Edit1.Text :=
       DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
@@ -2308,9 +2393,11 @@ procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
   if LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
-    with DBGrid1.Canvas do begin
+    with DBGrid1.Canvas do
+    begin
       FillRect(Rect);
-      if (gdSelected in State) then begin
+      if (gdSelected in State) then
+      begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
       end
@@ -2325,9 +2412,11 @@ begin
 
   if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') or
     (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then
-    with DBGrid1.Canvas do begin
+    with DBGrid1.Canvas do
+    begin
       FillRect(Rect);
-      if (gdSelected in State) then begin
+      if (gdSelected in State) then
+      begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
       end
@@ -2342,9 +2431,11 @@ begin
 
   if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') or
     (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then
-    with DBGrid1.Canvas do begin
+    with DBGrid1.Canvas do
+    begin
       FillRect(Rect);
-      if (gdSelected in State) then begin
+      if (gdSelected in State) then
+      begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
       end
@@ -2360,9 +2451,12 @@ begin
   if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') or
     (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') or
     (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then
-    if (Column.FieldName = 'CallSign') then begin
-      with DBGrid1.Canvas do begin
-        if (gdSelected in State) then begin
+    if (Column.FieldName = 'CallSign') then
+    begin
+      with DBGrid1.Canvas do
+      begin
+        if (gdSelected in State) then
+        begin
           Brush.Color := clHighlight;
           Font.Color := clWhite;
         end
@@ -2376,64 +2470,80 @@ begin
       end;
     end;
 
-  if (Column.FieldName = 'QSL') then begin
-    with DBGrid1.Canvas do begin
+  if (Column.FieldName = 'QSL') then
+  begin
+    with DBGrid1.Canvas do
+    begin
       FillRect(Rect);
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '000') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '000') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth(''), Rect.Top + 0, '');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then
+      begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PE'),
           Rect.Top + 0, 'PE');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('PLE'),
           Rect.Top + 0, 'PLE');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('E'), Rect.Top + 0, 'E');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '001') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '001') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('L'), Rect.Top + 0, 'L');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '101') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '101') then
+      begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PL'),
           Rect.Top + 0, 'PL');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '011') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '011') then
+      begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('LE'),
           Rect.Top + 0, 'PL');
       end;
     end;
   end;
 
-  if (Column.FieldName = 'QSLs') then begin
-    with DBGrid1.Canvas do begin
+  if (Column.FieldName = 'QSLs') then
+  begin
+    with DBGrid1.Canvas do
+    begin
       FillRect(Rect);
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '00') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '00') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth(''), Rect.Top + 0, '');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then
+      begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PL'),
           Rect.Top + 0, 'PE');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '01') then begin
+      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '01') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('L'), Rect.Top + 0, 'PLE');
       end;
     end;
@@ -2444,9 +2554,11 @@ procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
   if DataSource2.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
-    with DBGrid2.Canvas do begin
+    with DBGrid2.Canvas do
+    begin
       FillRect(Rect);
-      if (gdSelected in State) then begin
+      if (gdSelected in State) then
+      begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
       end
@@ -2461,9 +2573,11 @@ begin
 
   if (DataSource2.DataSet.FieldByName('QSL').AsString = '100') or
     (DataSource2.DataSet.FieldByName('QSL').AsString = '110') then
-    with DBGrid2.Canvas do begin
+    with DBGrid2.Canvas do
+    begin
       FillRect(Rect);
-      if (gdSelected in State) then begin
+      if (gdSelected in State) then
+      begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
       end
@@ -2478,9 +2592,11 @@ begin
 
   if (DataSource2.DataSet.FieldByName('QSLs').AsString = '10') or
     (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') then
-    with DBGrid2.Canvas do begin
+    with DBGrid2.Canvas do
+    begin
       FillRect(Rect);
-      if (gdSelected in State) then begin
+      if (gdSelected in State) then
+      begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
       end
@@ -2496,9 +2612,12 @@ begin
   if (DataSource2.DataSet.FieldByName('QSL').AsString = '010') or
     (DataSource2.DataSet.FieldByName('QSL').AsString = '110') or
     (DataSource2.DataSet.FieldByName('QSL').AsString = '111') then
-    if (Column.FieldName = 'CallSign') then begin
-      with DBGrid2.Canvas do begin
-        if (gdSelected in State) then begin
+    if (Column.FieldName = 'CallSign') then
+    begin
+      with DBGrid2.Canvas do
+      begin
+        if (gdSelected in State) then
+        begin
           Brush.Color := clHighlight;
           Font.Color := clWhite;
         end
@@ -2512,64 +2631,80 @@ begin
       end;
     end;
 
-  if (Column.FieldName = 'QSL') then begin
-    with DBGrid2.Canvas do begin
+  if (Column.FieldName = 'QSL') then
+  begin
+    with DBGrid2.Canvas do
+    begin
       FillRect(Rect);
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '000') then begin
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '000') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth(''), Rect.Top + 0, '');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '100') then begin
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '100') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '110') then begin
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '110') then
+      begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PE'),
           Rect.Top + 0, 'PE');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '111') then begin
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '111') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('PLE'),
           Rect.Top + 0, 'PLE');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '010') then begin
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '010') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('E'), Rect.Top + 0, 'E');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '001') then begin
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '001') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('L'), Rect.Top + 0, 'L');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '101') then begin
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '101') then
+      begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PL'),
           Rect.Top + 0, 'PL');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '011') then begin
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '011') then
+      begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('LE'),
           Rect.Top + 0, 'PL');
       end;
     end;
   end;
 
-  if (Column.FieldName = 'QSLs') then begin
-    with DBGrid2.Canvas do begin
+  if (Column.FieldName = 'QSLs') then
+  begin
+    with DBGrid2.Canvas do
+    begin
       FillRect(Rect);
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '00') then begin
+      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '00') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth(''), Rect.Top + 0, '');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '10') then begin
+      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '10') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') then begin
+      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') then
+      begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PL'),
           Rect.Top + 0, 'PE');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '01') then begin
+      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '01') then
+      begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('L'), Rect.Top + 0, 'PLE');
       end;
     end;
@@ -2607,15 +2742,18 @@ var
   Data: PTreeData;
   XNode: PVirtualNode;
 begin
-  if dxClient.GetMessage(TelnetLine) > 0 then begin
+  if dxClient.GetMessage(TelnetLine) > 0 then
+  begin
     TelnetLine := Trim(TelnetLine);
     Memo1.Lines.Add(TelnetLine);
 
-    if Length(LoginCluster) > 0 then begin
+    if Length(LoginCluster) > 0 then
+    begin
       if Pos('login', TelnetLine) > 0 then
         dxClient.SendMessage(LoginCluster + #13#10, aSocket);
     end;
-    if Pos('DX de', TelnetLine) = 1 then begin
+    if Pos('DX de', TelnetLine) = 1 then
+    begin
       TelnetLine := StringReplace(TelnetLine, ':', ' ', [rfReplaceAll]);
       Call := StringReplace(TelnetLine.Substring(6, 8), ' ', '', [rfReplaceAll]);
       Freq := StringReplace(TelnetLine.Substring(15, 10), ' ', '', [rfReplaceAll]);
@@ -2626,8 +2764,10 @@ begin
       Loc := StringReplace(TelnetLine.Substring(76, 4), ' ', '', [rfReplaceAll]);
     end;
 
-    if Length(DX) > 0 then begin
-      if FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False) = nil then begin
+    if Length(DX) > 0 then
+    begin
+      if FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False) = nil then
+      begin
         XNode := VirtualStringTree1.AddChild(nil);
         Data := VirtualStringTree1.GetNodeData(Xnode);
         Data^.DX := dmFunc.GetTelnetBandFromFreq(Freq);
@@ -2668,7 +2808,8 @@ end;
 
 procedure TMainForm.Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if Key = 13 then begin
+  if Key = 13 then
+  begin
     dxClient.SendMessage(Edit12.Text + #13#10, nil);
     Edit12.Clear;
   end;
@@ -2679,7 +2820,8 @@ var
   s: UTF8String;
 begin
   s := Edit1.Text;
-  if UTF8Length(s) > 0 then begin
+  if UTF8Length(s) > 0 then
+  begin
     Edit1.SelStart := UTF8Length(s);
     Edit1.Text := UTF8UpperCase(UTF8Copy(s, 1, 1)) +
       UTF8LowerCase(UTF8Copy(s, 2, UTF8Length(s)));
@@ -2692,7 +2834,8 @@ var
   s: UTF8String;
 begin
   s := Edit2.Text;
-  if UTF8Length(s) > 0 then begin
+  if UTF8Length(s) > 0 then
+  begin
     Edit2.SelStart := UTF8Length(s);
     //    Edit2.Text := UTF8UpperCase(UTF8Copy(s, 1, 1)) + UTF8LowerCase(UTF8Copy(s, 2, UTF8Length(s)))
 
@@ -2712,7 +2855,8 @@ begin
     (IniF.ReadString('SetLog', 'Sprav', '') = 'False') then
     SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
   if (CallBookLiteConnection.Connected = False) and
-    (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then begin
+    (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then
+  begin
     InformationForm.QRZRUsprav(EditButton1.Text, MenuItem111.Checked);
   end;
 end;
@@ -2744,14 +2888,16 @@ begin
   ImportAdifMobile := False;
   CheckBox3.Visible := True;
   CheckBox5.Visible := True;
-  if useMAPS = 'YES' then begin
+  if useMAPS = 'YES' then
+  begin
     MapView1.UseThreads := True;
     MapView1.Center;
   end;
 
   try
     InitLog_DB := INiF.ReadString('SetLog', 'LogBookInit', '');
-    if InitLog_DB = 'YES' then begin
+    if InitLog_DB = 'YES' then
+    begin
       CallLogBook := INiF.ReadString('SetLog', 'DefaultCallLogBook', '');
       UseCallBook := INiF.ReadString('SetLog', 'UseCallBook', 'No');
       DefaultDB := IniF.ReadString('DataBases', 'DefaultDataBase', '');
@@ -2778,7 +2924,8 @@ begin
       LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
       PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
 
-      for i := 1 to 9 do begin
+      for i := 1 to 9 do
+      begin
         TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' +
           IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
       end;
@@ -2862,12 +3009,7 @@ begin
     WSJT_Timer.Enabled := True;
   if usefldigi then
     Fl_Timer.Enabled := True;
-  if InitLog_DB <> 'YES' then begin
-    if Application.MessageBox(PChar('База данных ' +
-      'не инициализирована, перейти к настройкам?'),
-      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      SetupForm.Show;
-  end;
+
 
   //Автозапуск кластера
   if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
@@ -2897,7 +3039,8 @@ begin
   else
     MenuItem112.Click;
 
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then begin
+  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  begin
     ComboBox1.Items.Clear;
     for i := 0 to 12 do
       ComboBox1.Items.Add(constBandName[i]);
@@ -2916,7 +3059,8 @@ procedure TMainForm.FormDestroy(Sender: TObject);
 var
   i: integer;
 begin
-  if MenuItem111.Checked = True then begin
+  if MenuItem111.Checked = True then
+  begin
     PhotoJPEG.Free;
     PhotoGIF.Free;
     PhotoPNG.Free;
@@ -2933,7 +3077,8 @@ begin
   PrefixProvinceList.Free;
   PrefixARRLList.Free;
   UniqueCallsList.Free;
-  for i := 0 to 1000 do begin
+  for i := 0 to 1000 do
+  begin
     PrefixExpARRLArray[i].reg.Free;
     PrefixExpProvinceArray[i].reg.Free;
   end;
@@ -2961,6 +3106,15 @@ end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
+
+  if InitLog_DB <> 'YES' then
+  begin
+    if Application.MessageBox(PChar('База данных ' +
+      'не инициализирована, перейти к настройкам?'),
+      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      SetupForm.Show;
+  end;
+
   if useMAPS = 'YES' then
     CheckBox3.Checked := True
   else
@@ -2988,9 +3142,11 @@ var
   Sent: integer;
   TempBuffer: string = '';
 begin
-  if (AdifDataSyncAll = True) or (AdifDataSyncDate = True) then begin
+  if (AdifDataSyncAll = True) or (AdifDataSyncDate = True) then
+  begin
     TempBuffer := BuffToSend;
-    while TempBuffer <> '' do begin
+    while TempBuffer <> '' do
+    begin
       Sent := LTCPComponent1.SendMessage(TempBuffer, aSocket);
       Delete(BuffToSend, 1, Sent);
       TempBuffer := BuffToSend;
@@ -3012,7 +3168,8 @@ var
   i: integer;
 begin
   res := '';
-  for i := 0 to AdifMobileString.Count - 1 do begin
+  for i := 0 to AdifMobileString.Count - 1 do
+  begin
     res := res + AdifMobileString[0];
     AdifMobileString.Delete(0);
   end;
@@ -3036,10 +3193,13 @@ begin
   AdifDataSyncAll := False;
   AdifDataSyncDate := False;
 
-  if aSocket.GetMessage(mess) > 0 then begin
-    if Pos('DataSyncAll', mess) > 0 then begin
+  if aSocket.GetMessage(mess) > 0 then
+  begin
+    if Pos('DataSyncAll', mess) > 0 then
+    begin
       rec_call := dmFunc.par_str(mess, 2);
-      if Pos(SetCallName, rec_call) > 0 then begin
+      if Pos(SetCallName, rec_call) > 0 then
+      begin
         AdifMobileString := TStringList.Create;
         exportAdifForm.ExportToMobile('All', '');
         AdifDataSyncAll := True;
@@ -3048,10 +3208,12 @@ begin
       end;
     end;
 
-    if Pos('DataSyncDate', mess) > 0 then begin
+    if Pos('DataSyncDate', mess) > 0 then
+    begin
       AdifDataDate := dmFunc.par_str(mess, 2);
       rec_call := dmFunc.par_str(mess, 3);
-      if Pos(SetCallName, rec_call + #13) > 0 then begin
+      if Pos(SetCallName, rec_call + #13) > 0 then
+      begin
         AdifMobileString := TStringList.Create;
         exportAdifForm.ExportToMobile('Date', AdifDataDate);
         AdifDataSyncDate := True;
@@ -3060,29 +3222,35 @@ begin
       end;
     end;
 
-    if Pos('DataSyncClientStart', mess) > 0 then begin
+    if Pos('DataSyncClientStart', mess) > 0 then
+    begin
       rec_call := dmFunc.par_str(mess, 2);
-      if Pos(SetCallName, rec_call) > 0 then begin
+      if Pos(SetCallName, rec_call) > 0 then
+      begin
         Stream := TMemoryStream.Create;
         AdifFromMobileSyncStart := True;
       end;
     end;
 
-    if (AdifFromMobileSyncStart = True) then begin
+    if (AdifFromMobileSyncStart = True) then
+    begin
       mess := StringReplace(mess, #10, '', [rfReplaceAll]);
       mess := StringReplace(mess, #13, '', [rfReplaceAll]);
-      if Length(mess) > 0 then begin
+      if Length(mess) > 0 then
+      begin
         Stream.Write(mess[1], length(mess));
       end;
     end;
 
-    if Pos('DataSyncClientEnd', mess) > 0 then begin
+    if Pos('DataSyncClientEnd', mess) > 0 then
+    begin
       AdifFromMobileSyncStart := False;
       ImportAdifMobile := True;
       Stream.SaveToFile(PathMyDoc + 'ImportMobile.adi');
       AssignFile(AdifFile, PathMyDoc + 'ImportMobile.adi');
       Reset(AdifFile);
-      while not EOF(AdifFile) do begin
+      while not EOF(AdifFile) do
+      begin
         Readln(AdifFile, s);
         s := StringReplace(s, '<EOR>', '<EOR>'#10, [rfReplaceAll]);
       end;
@@ -3114,7 +3282,8 @@ procedure TMainForm.LUDPComponent1Receive(aSocket: TLSocket);
 var
   mess: string;
 begin
-  if aSocket.GetMessage(mess) > 0 then begin
+  if aSocket.GetMessage(mess) > 0 then
+  begin
     if mess = 'GetIP' then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':6666');
     if mess = 'Hello' then
@@ -3126,7 +3295,8 @@ procedure TMainForm.LUDPSyncDeskReceive(aSocket: TLSocket);
 var
   mess: string;
 begin
-  if aSocket.GetMessage(mess) > 0 then begin
+  if aSocket.GetMessage(mess) > 0 then
+  begin
     if mess = 'GetIP' then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':6668');
     if mess = 'Hello' then
@@ -3154,7 +3324,8 @@ begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
-  if DefaultDB = 'MySQL' then begin
+  if DefaultDB = 'MySQL' then
+  begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
@@ -3190,7 +3361,8 @@ begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
-  if DefaultDB = 'MySQL' then begin
+  if DefaultDB = 'MySQL' then
+  begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
@@ -3226,7 +3398,8 @@ begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
-  if DefaultDB = 'MySQL' then begin
+  if DefaultDB = 'MySQL' then
+  begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
@@ -3262,7 +3435,8 @@ begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
-  if DefaultDB = 'MySQL' then begin
+  if DefaultDB = 'MySQL' then
+  begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
@@ -3299,7 +3473,8 @@ begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
-  if DefaultDB = 'MySQL' then begin
+  if DefaultDB = 'MySQL' then
+  begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
@@ -3340,11 +3515,14 @@ procedure TMainForm.MenuItem10Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3369,7 +3547,8 @@ begin
   PhotoGroup.Parent := Panel13;
   PhotoGroup.Align := alClient;
   PhotoGroup.Caption := 'Фото из QRZ.RU';
-  if MenuItem86.Checked = True then begin
+  if MenuItem86.Checked = True then
+  begin
     ShowTRXForm := False;
     TRXForm.Hide;
     MenuItem88.Checked := True;
@@ -3378,7 +3557,8 @@ begin
 
   MenuItem112.Checked := False;
   //отоброжение фото с qrz.ru
-  if MenuItem111.Checked = True then begin
+  if MenuItem111.Checked = True then
+  begin
     PhotoJPEG := TJPEGImage.Create;
     PhotoGIF := TGIFImage.Create;
     PhotoPNG := TPortableNetworkGraphic.Create;
@@ -3400,7 +3580,8 @@ end;
 
 procedure TMainForm.MenuItem112Click(Sender: TObject);
 begin
-  if MenuItem111.Checked = True then begin
+  if MenuItem111.Checked = True then
+  begin
     PhotoJPEG.Free;
     PhotoGIF.Free;
     PhotoPNG.Free;
@@ -3429,7 +3610,8 @@ end;
 
 procedure TMainForm.MenuItem115Click(Sender: TObject);
 begin
-  if not VirtualStringTree1.IsEmpty then begin
+  if not VirtualStringTree1.IsEmpty then
+  begin
     VirtualStringTree1.BeginUpdate;
     VirtualStringTree1.Clear;
     VirtualStringTree1.EndUpdate;
@@ -3441,11 +3623,14 @@ procedure TMainForm.MenuItem11Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3468,11 +3653,14 @@ procedure TMainForm.MenuItem12Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3494,11 +3682,14 @@ procedure TMainForm.MenuItem13Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3519,11 +3710,14 @@ procedure TMainForm.MenuItem14Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3547,11 +3741,14 @@ procedure TMainForm.MenuItem16Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3575,11 +3772,14 @@ procedure TMainForm.MenuItem17Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3601,11 +3801,14 @@ procedure TMainForm.MenuItem21Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3627,11 +3830,14 @@ procedure TMainForm.MenuItem22Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3653,11 +3859,14 @@ procedure TMainForm.MenuItem23Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3680,11 +3889,14 @@ procedure TMainForm.MenuItem24Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3706,11 +3918,14 @@ procedure TMainForm.MenuItem25Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3732,11 +3947,14 @@ procedure TMainForm.MenuItem27Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3758,11 +3976,14 @@ procedure TMainForm.MenuItem28Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3784,11 +4005,14 @@ procedure TMainForm.MenuItem29Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3810,11 +4034,14 @@ procedure TMainForm.MenuItem30Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3836,11 +4063,14 @@ procedure TMainForm.MenuItem31Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do begin
+      with EditQSO_Form.UPDATE_Query do
+      begin
         Close;
         SQL.Clear;
         SQL.Add('UPDATE ' + LogTable +
@@ -3862,9 +4092,11 @@ procedure TMainForm.MenuItem35Click(Sender: TObject);
 var
   i: integer;
 begin
-  if Self.LogBookQuery.RecordCount > 0 then begin
+  if Self.LogBookQuery.RecordCount > 0 then
+  begin
     LogBookQuery.First;
-    for i := 0 to Self.LogBookQuery.RecordCount - 1 do begin
+    for i := 0 to Self.LogBookQuery.RecordCount - 1 do
+    begin
       Self.DBGrid1.SelectedRows.CurrentRowSelected := True;
       LogBookQuery.Next;
     end;
@@ -3875,8 +4107,10 @@ procedure TMainForm.MenuItem36Click(Sender: TObject);
 var
   i: integer;
 begin
-  if (UnUsIndex <> 0) then begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do begin
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       SetLength(ExportAdifArray, DBGrid1.SelectedRows.Count);
       ExportAdifArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
@@ -3893,11 +4127,13 @@ end;
 
 procedure TMainForm.MenuItem37Click(Sender: TObject);
 begin
-  if LogBookQuery.RecordCount > 0 then begin
+  if LogBookQuery.RecordCount > 0 then
+  begin
     SendHRDThread := TSendHRDThread.Create;
     if Assigned(SendHRDThread.FatalException) then
       raise SendHRDThread.FatalException;
-    with SendHRDThread do begin
+    with SendHRDThread do
+    begin
       userid := HRDLogin;
       userpwd := HRDCode;
       call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
@@ -3919,11 +4155,13 @@ end;
 
 procedure TMainForm.MenuItem38Click(Sender: TObject);
 begin
-  if LogBookQuery.RecordCount > 0 then begin
+  if LogBookQuery.RecordCount > 0 then
+  begin
     SendEQSLThread := TSendEQSLThread.Create;
     if Assigned(SendEQSLThread.FatalException) then
       raise SendEQSLThread.FatalException;
-    with SendEQSLThread do begin
+    with SendEQSLThread do
+    begin
       userid := eQSLccLogin;
       userpwd := eQSLccPassword;
       call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
@@ -3943,7 +4181,8 @@ end;
 procedure TMainForm.MenuItem40Click(Sender: TObject);
 begin
   ///Быстрое редактирование
-  if LogBookQuery.RecordCount > 0 then begin
+  if LogBookQuery.RecordCount > 0 then
+  begin
     EditFlag := True;
     CheckBox1.Checked := False;
     CheckBox2.Checked := True;
@@ -3990,8 +4229,10 @@ end;
 
 procedure TMainForm.MenuItem42Click(Sender: TObject);
 begin
-  if LogBookQuery.RecordCount > 0 then begin
-    if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then begin
+  if LogBookQuery.RecordCount > 0 then
+  begin
+    if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
+    begin
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
       EditQSO_Form.Edit1.Text :=
         DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
@@ -4122,13 +4363,15 @@ begin
   //WSJT_UDP_Form.Show;
   //ShowMEssage(BoolToStr( WSJT_UDP_Form.WSJT_IsRunning));
   p := Pos('.EXE', UpperCase(wsjt_path));
-  if p > 0 then begin
+  if p > 0 then
+  begin
     wsjt_args := wsjt_path;
     wsjt_path := Copy(wsjt_args, 1, p + 3);
     Delete(wsjt_args, 1, p + 4);
   end;
   if (wsjt_path <> '') and FileExists(wsjt_path) and not
-    WSJT_UDP_Form.WSJT_IsRunning then begin
+    WSJT_UDP_Form.WSJT_IsRunning then
+  begin
     txWSJT := not connectedWSJT;
     if dmFunc.RunProgram(wsjt_path, wsjt_args) then
       WSJT_Timer.Interval := 1200;
@@ -4158,12 +4401,15 @@ end;
 
 procedure TMainForm.MenuItem51Click(Sender: TObject);
 begin
-  if LogBookQuery.RecordCount > 0 then begin
+  if LogBookQuery.RecordCount > 0 then
+  begin
     if Application.MessageBox(PChar('Удалить запись ' +
       DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString + '?!'),
-      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then begin
+      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    begin
       try
-        with DeleteQSOQuery do begin
+        with DeleteQSOQuery do
+        begin
           Close;
           SQL.Clear;
           SQL.Add('DELETE FROM ' + LogTable + ' WHERE UnUsedIndex = ' +
@@ -4253,12 +4499,14 @@ var
   fl_args: string;
 begin
   p := Pos('.EXE', UpperCase(fl_path));
-  if p > 0 then begin
+  if p > 0 then
+  begin
     fl_args := fl_path;
     fl_path := Copy(fl_args, 1, p + 3);
     Delete(fl_args, 1, p + 4);
   end;
-  if (fl_path <> '') and FileExists(fl_path) and not Fldigi_IsRunning then begin
+  if (fl_path <> '') and FileExists(fl_path) and not Fldigi_IsRunning then
+  begin
     tx := not connected;
     if dmFunc.RunProgram(fl_path, fl_args) then
       Fl_Timer.Interval := 1200;
@@ -4280,7 +4528,8 @@ begin
     Application.ProcessMessages;
     err := 0;
     ok := 0;
-    with CopySQLQuery do begin
+    with CopySQLQuery do
+    begin
       Close;
       SQL.Clear;
       SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName =' +
@@ -4292,7 +4541,8 @@ begin
 
     DBGrid1.DataSource.DataSet.First;
 
-    while not DBGrid1.DataSource.DataSet.EOF do begin
+    while not DBGrid1.DataSource.DataSet.EOF do
+    begin
       DUPEQuery.Close;
       DUPEQuery.SQL.Clear;
       DUPEQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LogTableSQLite +
@@ -4303,7 +4553,8 @@ begin
         ' AND CallSign = ' + QuotedStr(DBGrid1.DataSource.DataSet.FieldByName(
         'CallSign').AsString);
       DUPEQuery.Open;
-      if DUPEQuery.Fields.Fields[0].AsInteger > 0 then begin
+      if DUPEQuery.Fields.Fields[0].AsInteger > 0 then
+      begin
         Application.ProcessMessages;
         SQLiteTr.Rollback;
         Inc(err);
@@ -4311,7 +4562,8 @@ begin
       end
       else
       begin
-        with CopySQLQuery do begin
+        with CopySQLQuery do
+        begin
           Application.ProcessMessages;
           Close;
           SQL.Clear;
@@ -4487,7 +4739,8 @@ begin
     copyPort := IniF.ReadString('DataBases', 'Port', '');
     copyDB := IniF.ReadString('DataBases', 'DataBaseName', '');
 
-    if (copyUser = '') or (copyHost = '') or (copyDB = '') then begin
+    if (copyUser = '') or (copyHost = '') or (copyDB = '') then
+    begin
       ShowMessage('Не настроены параметры базы данных MySQL');
     end
     else
@@ -4505,7 +4758,8 @@ begin
       Application.ProcessMessages;
       err := 0;
       ok := 0;
-      with CopySQLQuery2 do begin
+      with CopySQLQuery2 do
+      begin
         Close;
         SQL.Clear;
         SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName =' +
@@ -4517,7 +4771,8 @@ begin
 
       DBGrid1.DataSource.DataSet.First;
 
-      while not DBGrid1.DataSource.DataSet.EOF do begin
+      while not DBGrid1.DataSource.DataSet.EOF do
+      begin
         DUPEQuery2.Close;
         DUPEQuery2.SQL.Clear;
         DUPEQuery2.SQL.Text :=
@@ -4529,7 +4784,8 @@ begin
           ' AND CallSign = ' + QuotedStr(DBGrid1.DataSource.DataSet.FieldByName(
           'CallSign').AsString);
         DUPEQuery2.Open;
-        if DUPEQuery2.Fields.Fields[0].AsInteger > 0 then begin
+        if DUPEQuery2.Fields.Fields[0].AsInteger > 0 then
+        begin
           Application.ProcessMessages;
           SQLiteTr.Rollback;
           Inc(err);
@@ -4537,7 +4793,8 @@ begin
         end
         else
         begin
-          with CopySQLQuery2 do begin
+          with CopySQLQuery2 do
+          begin
             Application.ProcessMessages;
             Close;
             SQL.Clear;
@@ -4709,7 +4966,8 @@ end;
 procedure TMainForm.MenuItem86Click(Sender: TObject);
 begin
 
-  if MenuItem111.Checked = True then begin
+  if MenuItem111.Checked = True then
+  begin
     PhotoJPEG.Free;
     PhotoGIF.Free;
     PhotoPNG.Free;
@@ -4720,7 +4978,8 @@ begin
   MenuItem88.Checked := False;
   MenuItem111.Checked := False;
   MenuItem112.Checked := True;
-  if MenuItem86.Checked = True then begin
+  if MenuItem86.Checked = True then
+  begin
     TRXForm.Parent := Panel13;
     TRXForm.BorderStyle := bsNone;
     TRXForm.Align := alClient;
@@ -4748,7 +5007,8 @@ end;
 
 procedure TMainForm.MenuItem89Click(Sender: TObject);
 begin
-  if dbSel = 'SQLite' then begin
+  if dbSel = 'SQLite' then
+  begin
     InitializeDB('MySQL');
     MenuItem89.Caption := 'Переключить базу на SQLite';
   end
@@ -4798,7 +5058,8 @@ end;
 
 procedure TMainForm.MySQLLOGDBConnectionAfterConnect(Sender: TObject);
 begin
-  if MySQLLOGDBConnection.Connected = False then begin
+  if MySQLLOGDBConnection.Connected = False then
+  begin
     EditButton1.ReadOnly := True;
   end
   else
@@ -4847,7 +5108,8 @@ end;
 
 procedure TMainForm.SpeedButton20Click(Sender: TObject);
 begin
-  if not VirtualStringTree1.IsEmpty then begin
+  if not VirtualStringTree1.IsEmpty then
+  begin
     VirtualStringTree1.BeginUpdate;
     VirtualStringTree1.Clear;
     VirtualStringTree1.EndUpdate;
@@ -4912,7 +5174,8 @@ procedure TMainForm.SpeedButton24Click(Sender: TObject);
 begin
   dxClient.Host := HostCluster;
   dxClient.Port := StrToInt(PortCluster);
-  if dxClient.Connect = True then begin
+  if dxClient.Connect = True then
+  begin
     SpeedButton27.Enabled := True;
     SpeedButton28.Enabled := True;
     SpeedButton22.Enabled := True;
@@ -4947,9 +5210,11 @@ var
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
-  if EditFlag = False then begin
+  if EditFlag = False then
+  begin
     dift := FormatDateTime('hh', Now - NowUTC);
-    if CheckBox2.Checked = True then begin
+    if CheckBox2.Checked = True then
+    begin
       timeQSO := DateTimePicker1.Time - StrToTime(dift);
     end
     else
@@ -5000,11 +5265,13 @@ begin
         IntToStr(DXCCNum), '', 0,
         LogTable);//, IntToStr(lastID + 1));
 
-      if AutoEQSLcc = True then begin
+      if AutoEQSLcc = True then
+      begin
         SendEQSLThread := TSendEQSLThread.Create;
         if Assigned(SendEQSLThread.FatalException) then
           raise SendEQSLThread.FatalException;
-        with SendEQSLThread do begin
+        with SendEQSLThread do
+        begin
           userid := eQSLccLogin;
           userpwd := eQSLccPassword;
           call := EditButton1.Text;
@@ -5019,11 +5286,13 @@ begin
         end;
       end;
 
-      if AutoHRDLog = True then begin
+      if AutoHRDLog = True then
+      begin
         SendHRDThread := TSendHRDThread.Create;
         if Assigned(SendHRDThread.FatalException) then
           raise SendHRDThread.FatalException;
-        with SendHRDThread do begin
+        with SendHRDThread do
+        begin
           userid := HRDLogin;
           userpwd := HRDCode;
           call := EditButton1.Text;
@@ -5045,11 +5314,13 @@ begin
     end;
   end;
 
-  if EditFlag = True then begin
+  if EditFlag = True then
+  begin
 
     DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
 
-    with SaveQSOQuery do begin
+    with SaveQSOQuery do
+    begin
       Close;
       SQL.Clear;
       SQL.Add('UPDATE ' + LogTable +
@@ -5126,7 +5397,8 @@ end;
 
 procedure TMainForm.SQLiteDBConnectionAfterConnect(Sender: TObject);
 begin
-  if SQLiteDBConnection.Connected = False then begin
+  if SQLiteDBConnection.Connected = False then
+  begin
     EditButton1.ReadOnly := True;
   end
   else
@@ -5141,7 +5413,8 @@ begin
   Label24.Caption := FormatDateTime('hh:mm:ss', Now);
   Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
   Label28.Caption := FormatDateTime('hh:mm:ss', NowUTC + timedif / 24);
-  if CheckBox1.Checked = True then begin
+  if CheckBox1.Checked = True then
+  begin
     DateTimePicker1.Time := NowUTC;
     DateEdit1.Date := NowUTC;
   end;
@@ -5197,7 +5470,8 @@ var
   Data: PTreeData;
 begin
   Data := VirtualStringTree1.GetNodeData(Node);
-  if Assigned(Data) then begin
+  if Assigned(Data) then
+  begin
     Data^.DX := '';
     Data^.Spots := '';
     Data^.Call := '';
@@ -5231,7 +5505,8 @@ begin
 
   ImageIndex := -1;
   Data := VirtualStringTree1.GetNodeData(Node);
-  if Assigned(Data) then begin
+  if Assigned(Data) then
+  begin
     ImageIndex := FlagSList.IndexOf(dmFunc.ReplaceCountry(Data^.Country));
   end;
 end;
@@ -5265,7 +5540,8 @@ end;
 procedure TMainForm.VirtualStringTree1HeaderClick(Sender: TVTHeader;
   HitInfo: TVTHeaderHitInfo);
 begin
-  if HitInfo.Button = mbLeft then begin
+  if HitInfo.Button = mbLeft then
+  begin
     VirtualStringTree1.Header.SortColumn := HitInfo.Column;
     if VirtualStringTree1.Header.SortDirection = sdAscending then
       VirtualStringTree1.Header.SortDirection := sdDescending
@@ -5286,12 +5562,16 @@ end;
 
 procedure TMainForm.WSJT_TimerTimer(Sender: TObject);
 begin
-  if WSJT_UDP_Form.WSJT_IsRunning then begin
-    if WSJT_Timer.Interval > 1000 then begin
+  if WSJT_UDP_Form.WSJT_IsRunning then
+  begin
+    if WSJT_Timer.Interval > 1000 then
+    begin
       WSJT_Timer.Interval := 1000;
       wsjtactive := usewsjt;
-      if wsjtactive then begin
-        if not connectedWSJT then begin
+      if wsjtactive then
+      begin
+        if not connectedWSJT then
+        begin
           {$IFDEF WINDOWS}
           TrayIcon1.BalloonHint := 'EWLog подключен к WSJT';
           TrayIcon1.ShowBalloonHint;
@@ -5306,10 +5586,12 @@ begin
       end;
     end;
   end
-  else if WSJT_Timer.Interval = 1000 then begin
+  else if WSJT_Timer.Interval = 1000 then
+  begin
     WSJT_Timer.Interval := 10000;
     wsjtactive := False;
-    if not connectedWSJT then begin
+    if not connectedWSJT then
+    begin
       {$IFDEF WINDOWS}
       TrayIcon1.BalloonHint := 'EWLog не подключен к WSJT';
       TrayIcon1.ShowBalloonHint;
