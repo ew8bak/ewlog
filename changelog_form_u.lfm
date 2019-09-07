@@ -1,7 +1,7 @@
 object ChangeLog_Form: TChangeLog_Form
-  Left = 371
+  Left = 372
   Height = 400
-  Top = 162
+  Top = 182
   Width = 613
   Caption = 'История изменений'
   ClientHeight = 400
@@ -9,7 +9,7 @@ object ChangeLog_Form: TChangeLog_Form
   FormStyle = fsStayOnTop
   OnClose = FormClose
   Position = poMainFormCenter
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 360

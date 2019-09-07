@@ -55,7 +55,7 @@ end;
 
 procedure TCountryEditForm.Edit1Change(Sender: TObject);
 begin
-  if CountryEditForm.Caption='Области' then
+  if CountryEditForm.Caption='Province' then
   DBGrid1.DataSource.DataSet.Locate('Prefix',Edit1.Text,[])
   else
   DBGrid1.DataSource.DataSet.Locate('ARRLPrefix',Edit1.Text,[])

@@ -1,11 +1,11 @@
 object ImportADIFForm: TImportADIFForm
-  Left = 343
+  Left = 363
   Height = 195
-  Top = 411
+  Top = 409
   Width = 600
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
-  Caption = 'Импорт из файла ADIF'
+  Caption = 'Import from ADIF'
   ClientHeight = 195
   ClientWidth = 600
   FormStyle = fsStayOnTop
@@ -357,8 +357,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 144
     Height = 19
     Top = 4
-    Width = 295
-    Caption = 'ПЕРЕОПРЕДЕЛЯТЬ ТЕРРИТОРИЮ по позывному'
+    Width = 179
+    Caption = 'Compute DXCC from callsign'
     Enabled = False
     Font.Height = -12
     Font.Style = [fsBold]
@@ -369,8 +369,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 144
     Height = 19
     Top = 24
-    Width = 125
-    Caption = 'Удалять дубликаты'
+    Width = 121
+    Caption = 'Remove Duplicates'
     Checked = True
     Font.Height = -12
     ParentFont = False
@@ -382,7 +382,7 @@ object ImportADIFForm: TImportADIFForm
     Height = 44
     Top = 48
     Width = 264
-    Caption = 'Сохранять время'
+    Caption = 'Save time'
     ClientHeight = 24
     ClientWidth = 260
     Font.Height = -12
@@ -392,16 +392,16 @@ object ImportADIFForm: TImportADIFForm
       Left = 8
       Height = 19
       Top = 0
-      Width = 109
-      Caption = 'Окончания QSO'
+      Width = 97
+      Caption = 'Time OFF QSO'
       TabOrder = 1
     end
     object RadioButton2: TRadioButton
       Left = 144
       Height = 19
       Top = 0
-      Width = 88
-      Caption = 'Начала QSO'
+      Width = 94
+      Caption = 'Time ON QSO'
       Checked = True
       TabOrder = 0
       TabStop = True
@@ -420,8 +420,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 144
     Height = 15
     Top = 96
-    Width = 268
-    Caption = 'Комментарий для всех импортируемых записей'
+    Width = 181
+    Caption = 'Comment for all imported records'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -449,7 +449,7 @@ object ImportADIFForm: TImportADIFForm
     Height = 25
     Top = 164
     Width = 75
-    Caption = 'Импорт'
+    Caption = 'Import'
     Font.Height = -12
     OnClick = Button1Click
     ParentFont = False
@@ -460,7 +460,7 @@ object ImportADIFForm: TImportADIFForm
     Height = 25
     Top = 164
     Width = 75
-    Caption = 'Отмена'
+    Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False

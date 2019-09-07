@@ -1,10 +1,10 @@
 object InformationForm: TInformationForm
-  Left = 404
+  Left = 850
   Height = 658
-  Top = 145
+  Top = 194
   Width = 411
   BorderStyle = bsDialog
-  Caption = 'Информация'
+  Caption = 'Information'
   ClientHeight = 658
   ClientWidth = 411
   DefaultMonitor = dmMainForm
@@ -19,7 +19,7 @@ object InformationForm: TInformationForm
     Height = 246
     Top = 6
     Width = 396
-    Caption = 'Позывной'
+    Caption = 'Callsign'
     ClientHeight = 224
     ClientWidth = 392
     Font.Height = -13
@@ -28,13 +28,13 @@ object InformationForm: TInformationForm
     object Label1: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 37
+      Left = 52
       Height = 15
       Top = 6
-      Width = 60
+      Width = 45
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Позывной:'
+      Caption = 'Callsign:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -42,13 +42,13 @@ object InformationForm: TInformationForm
     object Label2: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 55
+      Left = 51
       Height = 15
       Top = 24
-      Width = 42
+      Width = 46
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Страна:'
+      Caption = 'Country:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -56,13 +56,13 @@ object InformationForm: TInformationForm
     object Label3: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 70
+      Left = 62
       Height = 15
       Top = 42
-      Width = 27
+      Width = 35
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Имя:'
+      Caption = 'Name:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -70,13 +70,13 @@ object InformationForm: TInformationForm
     object Label4: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 52
+      Left = 43
       Height = 15
       Top = 60
-      Width = 45
+      Width = 54
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Адрес 1:'
+      Caption = 'Address 1:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -90,7 +90,7 @@ object InformationForm: TInformationForm
       Width = 45
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Адрес 2:'
+      Caption = 'Address:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -98,13 +98,13 @@ object InformationForm: TInformationForm
     object Label6: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 48
+      Left = 72
       Height = 15
       Top = 96
-      Width = 49
+      Width = 25
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Локатор:'
+      Caption = 'Grid:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -112,13 +112,13 @@ object InformationForm: TInformationForm
     object Label7: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 13
+      Left = 32
       Height = 15
       Top = 114
-      Width = 84
+      Width = 65
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Дом. страница:'
+      Caption = 'Home page:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -140,13 +140,13 @@ object InformationForm: TInformationForm
     object Label9: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 46
+      Left = 40
       Height = 15
       Top = 150
-      Width = 51
+      Width = 57
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Телефон:'
+      Caption = 'Telephone:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -355,7 +355,7 @@ object InformationForm: TInformationForm
     Height = 78
     Top = 258
     Width = 120
-    Caption = 'Поиск в:'
+    Caption = 'Search in:'
     ClientHeight = 58
     ClientWidth = 116
     Font.Height = -12
@@ -397,7 +397,7 @@ object InformationForm: TInformationForm
     Height = 19
     Top = 264
     Width = 124
-    Caption = 'Копировать всё'
+    Caption = 'All copy'
     Font.Height = -12
     OnClick = Button1Click
     ParentFont = False
@@ -430,7 +430,7 @@ object InformationForm: TInformationForm
     Height = 19
     Top = 264
     Width = 124
-    Caption = 'Копир. коммент.'
+    Caption = 'Copy comment'
     Font.Height = -12
     ParentFont = False
     TabOrder = 5
@@ -461,8 +461,8 @@ object InformationForm: TInformationForm
     Left = 6
     Height = 15
     Top = 342
-    Width = 176
-    Caption = 'Загружать фото из Интернета в:'
+    Width = 188
+    Caption = 'Upload photos from the Internet to:'
     Font.Height = -12
     ParentColor = False
     ParentFont = False

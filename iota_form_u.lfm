@@ -1,7 +1,7 @@
 object IOTA_Form: TIOTA_Form
-  Left = 330
+  Left = 314
   Height = 373
-  Top = 147
+  Top = 212
   Width = 618
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -13,7 +13,7 @@ object IOTA_Form: TIOTA_Form
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 312
@@ -33,17 +33,17 @@ object IOTA_Form: TIOTA_Form
         FieldName = 'IOTA'
       end    
       item
-        Title.Caption = 'Имя'
+        Title.Caption = 'Name'
         Width = 300
         FieldName = 'Name'
       end    
       item
-        Title.Caption = 'Префикс'
+        Title.Caption = 'Prefix'
         Width = 80
         FieldName = 'Prefix1'
       end    
       item
-        Title.Caption = 'Префикс'
+        Title.Caption = 'Prefix'
         Width = 70
         FieldName = 'Prefix2'
       end>
@@ -74,7 +74,7 @@ object IOTA_Form: TIOTA_Form
       Left = 8
       Height = 15
       Top = 4
-      Width = 25
+      Width = 24
       Caption = 'IOTA'
       ParentColor = False
     end
@@ -90,8 +90,8 @@ object IOTA_Form: TIOTA_Form
       Left = 160
       Height = 15
       Top = 4
-      Width = 52
-      Caption = 'Название'
+      Width = 32
+      Caption = 'Name'
       ParentColor = False
     end
     object Button1: TButton
@@ -99,7 +99,7 @@ object IOTA_Form: TIOTA_Form
       Height = 25
       Top = 22
       Width = 75
-      Caption = 'Закрыть'
+      Caption = 'Close'
       OnClick = Button1Click
       TabOrder = 2
     end
@@ -108,7 +108,6 @@ object IOTA_Form: TIOTA_Form
     FieldDefs = <>
     Database = MainForm.ServiceDBConnection
     Transaction = MainForm.SQLServiceTransaction
-    Options = []
     Params = <>
     left = 536
     top = 224

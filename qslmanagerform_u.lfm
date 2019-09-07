@@ -1,7 +1,7 @@
 object QSLManager_Form: TQSLManager_Form
-  Left = 375
+  Left = 364
   Height = 453
-  Top = 161
+  Top = 160
   Width = 622
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
@@ -13,7 +13,7 @@ object QSLManager_Form: TQSLManager_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -252,7 +252,6 @@ object QSLManager_Form: TQSLManager_Form
   end
   object ManagersQuery: TSQLQuery
     FieldDefs = <>
-    Options = []
     Params = <>
     left = 195
     top = 91

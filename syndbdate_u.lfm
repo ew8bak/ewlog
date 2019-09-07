@@ -1,7 +1,7 @@
 object SynDBDate: TSynDBDate
-  Left = 581
+  Left = 511
   Height = 237
-  Top = 245
+  Top = 250
   Width = 227
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -11,7 +11,7 @@ object SynDBDate: TSynDBDate
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '2.0.0.4'
   object Calendar1: TCalendar
     Left = 32
     Height = 160
@@ -24,7 +24,7 @@ object SynDBDate: TSynDBDate
     Left = 8
     Height = 14
     Top = 13
-    Width = 211
+    Width = 181
     Caption = 'Выбор даты начала синхронизации'
     Font.Height = -11
     Font.Name = 'Sans'
@@ -38,7 +38,6 @@ object SynDBDate: TSynDBDate
     Width = 112
     Caption = 'Синхронизировать'
     Font.Height = -12
-    
     OnClick = Button1Click
     ParentFont = False
     TabOrder = 1

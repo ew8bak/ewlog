@@ -1,0 +1,18 @@
+{"version":1,"strings":[
+{"hash":82095344,"name":"tqslmanager_form.caption","sourcebytes":[81,83,76,32,208,156,208,181,208,189,208,181,208,180,208,182,208,181,209,128],"value":"QSL \u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440"},
+{"hash":75763657,"name":"tqslmanager_form.label1.caption","sourcebytes":[208,159,208,190,208,183,209,139,208,178,208,189,208,190,208,185],"value":"\u041F\u043E\u0437\u044B\u0432\u043D\u043E\u0439"},
+{"hash":193833644,"name":"tqslmanager_form.button3.caption","sourcebytes":[208,158,209,135,208,184,209,129,209,130,208,184,209,130,209,140],"value":"\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C"},
+{"hash":75763657,"name":"tqslmanager_form.label2.caption","sourcebytes":[208,159,208,190,208,183,209,139,208,178,208,189,208,190,208,185],"value":"\u041F\u043E\u0437\u044B\u0432\u043D\u043E\u0439"},
+{"hash":59025680,"name":"tqslmanager_form.label3.caption","sourcebytes":[208,156,208,181,208,189,208,181,208,180,208,182,208,181,209,128],"value":"\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440"},
+{"hash":29200912,"name":"tqslmanager_form.label4.caption","sourcebytes":[208,148,208,176,209,130,208,176],"value":"\u0414\u0430\u0442\u0430"},
+{"hash":171486122,"name":"tqslmanager_form.label5.caption","sourcebytes":[208,152,209,129,209,130,208,190,209,135,208,189,208,184,208,186],"value":"\u0418\u0441\u0442\u043E\u0447\u043D\u0438\u043A"},
+{"hash":93776316,"name":"tqslmanager_form.button1.caption","sourcebytes":[208,161,208,190,209,133,209,128,208,176,208,189,208,184,209,130,209,140],"value":"\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"},
+{"hash":69809520,"name":"tqslmanager_form.button2.caption","sourcebytes":[208,158,209,130,208,188,208,181,208,189,208,176],"value":"\u041E\u0442\u043C\u0435\u043D\u0430"},
+{"hash":102925208,"name":"tqslmanager_form.label6.caption","sourcebytes":[208,151,208,176,208,188,208,181,209,130,208,186,208,184],"value":"\u0417\u0430\u043C\u0435\u0442\u043A\u0438"},
+{"hash":1780,"name":"tqslmanager_form.dbgrid1.columns[0].title.caption","sourcebytes":[105,100],"value":"id"},
+{"hash":75763657,"name":"tqslmanager_form.dbgrid1.columns[1].title.caption","sourcebytes":[208,159,208,190,208,183,209,139,208,178,208,189,208,190,208,185],"value":"\u041F\u043E\u0437\u044B\u0432\u043D\u043E\u0439"},
+{"hash":59025680,"name":"tqslmanager_form.dbgrid1.columns[2].title.caption","sourcebytes":[208,156,208,181,208,189,208,181,208,180,208,182,208,181,209,128],"value":"\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440"},
+{"hash":29200912,"name":"tqslmanager_form.dbgrid1.columns[3].title.caption","sourcebytes":[208,148,208,176,209,130,208,176],"value":"\u0414\u0430\u0442\u0430"},
+{"hash":102925208,"name":"tqslmanager_form.dbgrid1.columns[4].title.caption","sourcebytes":[208,151,208,176,208,188,208,181,209,130,208,186,208,184],"value":"\u0417\u0430\u043C\u0435\u0442\u043A\u0438"},
+{"hash":261240352,"name":"tqslmanager_form.dbgrid1.columns[5].title.caption","sourcebytes":[208,144,208,178,209,130,208,190,209,128],"value":"\u0410\u0432\u0442\u043E\u0440"}
+]}

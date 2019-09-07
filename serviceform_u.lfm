@@ -1,7 +1,7 @@
 object ServiceForm: TServiceForm
   Left = 308
   Height = 236
-  Top = 250
+  Top = 275
   Width = 500
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -14,7 +14,7 @@ object ServiceForm: TServiceForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '2.0.0.4'
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
@@ -470,7 +470,7 @@ object ServiceForm: TServiceForm
     Left = 136
     Height = 15
     Top = 152
-    Width = 114
+    Width = 115
     Caption = 'Обработано данных:'
     Font.Height = -12
     ParentColor = False

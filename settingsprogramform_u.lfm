@@ -1,7 +1,7 @@
 object SettingsProgramForm: TSettingsProgramForm
-  Left = 539
+  Left = 487
   Height = 213
-  Top = 320
+  Top = 322
   Width = 298
   BorderStyle = bsDialog
   Caption = 'Внешние программы'
@@ -10,7 +10,7 @@ object SettingsProgramForm: TSettingsProgramForm
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '2.0.0.4'
   object GroupBox1: TGroupBox
     Left = 8
     Height = 79

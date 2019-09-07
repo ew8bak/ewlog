@@ -1,11 +1,11 @@
 object exportAdifForm: TexportAdifForm
-  Left = 425
+  Left = 793
   Height = 192
-  Top = 314
+  Top = 287
   Width = 442
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
-  Caption = 'Экспорт в ADIF'
+  Caption = 'Export ADIF'
   ClientHeight = 192
   ClientWidth = 442
   FormStyle = fsStayOnTop
@@ -18,7 +18,7 @@ object exportAdifForm: TexportAdifForm
     Height = 25
     Top = 162
     Width = 75
-    Caption = 'Экспорт'
+    Caption = 'Export'
     Font.Height = -12
     OnClick = Button1Click
     ParentFont = False
@@ -38,8 +38,8 @@ object exportAdifForm: TexportAdifForm
     Left = 120
     Height = 19
     Top = 8
-    Width = 130
-    Caption = 'Экспортировать всё'
+    Width = 161
+    Caption = 'Export all showed contacts'
     Checked = True
     Font.Height = -12
     OnClick = rbFileExportAllClick
@@ -51,8 +51,8 @@ object exportAdifForm: TexportAdifForm
     Left = 120
     Height = 19
     Top = 32
-    Width = 108
-    Caption = 'Экспорт по дате'
+    Width = 132
+    Caption = 'Selected date interval'
     Font.Height = -12
     OnClick = RadioButton1Click
     ParentFont = False
@@ -75,7 +75,7 @@ object exportAdifForm: TexportAdifForm
     Height = 25
     Top = 162
     Width = 75
-    Caption = 'Закрыть'
+    Caption = 'Close'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False
@@ -85,8 +85,8 @@ object exportAdifForm: TexportAdifForm
     Left = 128
     Height = 15
     Top = 56
-    Width = 14
-    Caption = 'От'
+    Width = 28
+    Caption = 'From'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -109,8 +109,8 @@ object exportAdifForm: TexportAdifForm
     Left = 128
     Height = 15
     Top = 96
-    Width = 15
-    Caption = 'До'
+    Width = 12
+    Caption = 'To'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -133,8 +133,8 @@ object exportAdifForm: TexportAdifForm
     Left = 296
     Height = 19
     Top = 8
-    Width = 102
-    Caption = 'Экспорт в ADIF'
+    Width = 96
+    Caption = 'Export to ADIF'
     Checked = True
     Font.Height = -12
     ParentFont = False
@@ -485,8 +485,8 @@ object exportAdifForm: TexportAdifForm
     Left = 296
     Height = 19
     Top = 32
-    Width = 104
-    Caption = 'Экспорт в eQSL'
+    Width = 98
+    Caption = 'Export to eQSL'
     Enabled = False
     Font.Height = -12
     ParentFont = False
@@ -496,8 +496,8 @@ object exportAdifForm: TexportAdifForm
     Left = 296
     Height = 19
     Top = 56
-    Width = 122
-    Caption = 'Экспорт в Win1251'
+    Width = 119
+    Caption = 'Export on Win1251'
     TabOrder = 8
   end
   object Q1: TSQLQuery

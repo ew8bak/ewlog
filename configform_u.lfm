@@ -1,23 +1,23 @@
 object ConfigForm: TConfigForm
-  Left = 434
+  Left = 445
   Height = 443
-  Top = 288
+  Top = 269
   Width = 799
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
-  Caption = 'Настройка программы'
+  Caption = 'Program settings'
   ClientHeight = 443
   ClientWidth = 799
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.0.4'
   object Button1: TButton
     Left = 704
     Height = 25
     Top = 400
     Width = 75
-    Caption = 'Сохранить'
+    Caption = 'Save'
     Font.Height = -12
     OnClick = Button1Click
     ParentFont = False
@@ -28,7 +28,7 @@ object ConfigForm: TConfigForm
     Height = 25
     Top = 400
     Width = 75
-    Caption = 'Отмена'
+    Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False
@@ -39,17 +39,17 @@ object ConfigForm: TConfigForm
     Height = 392
     Top = 8
     Width = 280
-    Caption = 'Базы данных'
-    ClientHeight = 376
-    ClientWidth = 278
+    Caption = 'Data Base'
+    ClientHeight = 372
+    ClientWidth = 276
     Font.Height = -12
     ParentFont = False
     TabOrder = 2
     object Label1: TLabel
       Left = 16
-      Height = 14
+      Height = 17
       Top = 8
-      Width = 44
+      Width = 43
       Caption = 'MySQL'
       Font.Height = -13
       Font.Style = [fsBold, fsUnderline]
@@ -58,57 +58,57 @@ object ConfigForm: TConfigForm
     end
     object Label2: TLabel
       Left = 26
-      Height = 13
+      Height = 15
       Top = 32
-      Width = 42
-      Caption = 'Сервер'
+      Width = 32
+      Caption = 'Server'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 38
-      Height = 13
+      Left = 36
+      Height = 15
       Top = 64
-      Width = 28
-      Caption = 'Порт'
+      Width = 22
+      Caption = 'Port'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 32
-      Height = 13
+      Left = 29
+      Height = 15
       Top = 96
-      Width = 34
-      Caption = 'Логин'
+      Width = 30
+      Caption = 'Login'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 24
-      Height = 13
+      Left = 13
+      Height = 15
       Top = 128
-      Width = 41
-      Caption = 'Пароль'
+      Width = 45
+      Caption = 'Pasword'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 42
-      Height = 13
+      Left = 0
+      Height = 15
       Top = 160
-      Width = 25
-      Caption = 'База'
+      Width = 59
+      Caption = 'Base Name'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Edit1: TEdit
       Left = 80
-      Height = 25
+      Height = 23
       Top = 24
       Width = 160
       Font.Height = -12
@@ -117,7 +117,7 @@ object ConfigForm: TConfigForm
     end
     object Edit2: TEdit
       Left = 80
-      Height = 25
+      Height = 23
       Top = 56
       Width = 160
       Font.Height = -12
@@ -126,7 +126,7 @@ object ConfigForm: TConfigForm
     end
     object Edit3: TEdit
       Left = 80
-      Height = 25
+      Height = 23
       Top = 88
       Width = 160
       Font.Height = -12
@@ -135,7 +135,7 @@ object ConfigForm: TConfigForm
     end
     object Edit4: TEdit
       Left = 80
-      Height = 25
+      Height = 23
       Top = 120
       Width = 160
       EchoMode = emPassword
@@ -146,7 +146,7 @@ object ConfigForm: TConfigForm
     end
     object Edit5: TEdit
       Left = 80
-      Height = 25
+      Height = 23
       Top = 152
       Width = 160
       Font.Height = -12
@@ -158,7 +158,7 @@ object ConfigForm: TConfigForm
       Height = 25
       Top = 184
       Width = 243
-      Caption = 'Проверить подключение'
+      Caption = 'Check connection'
       Font.Height = -12
       OnClick = Button3Click
       ParentFont = False
@@ -166,9 +166,9 @@ object ConfigForm: TConfigForm
     end
     object Label7: TLabel
       Left = 16
-      Height = 14
+      Height = 17
       Top = 224
-      Width = 43
+      Width = 40
       Caption = 'SQLite'
       Font.Height = -13
       Font.Style = [fsBold, fsUnderline]
@@ -177,7 +177,7 @@ object ConfigForm: TConfigForm
     end
     object FileNameEdit1: TFileNameEdit
       Left = 80
-      Height = 25
+      Height = 23
       Top = 248
       Width = 160
       FilterIndex = 0
@@ -190,21 +190,21 @@ object ConfigForm: TConfigForm
       TabOrder = 6
     end
     object Label8: TLabel
-      Left = 42
-      Height = 13
+      Left = 43
+      Height = 15
       Top = 256
-      Width = 25
-      Caption = 'База'
+      Width = 24
+      Caption = 'Base'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label9: TLabel
       Left = 16
-      Height = 13
+      Height = 15
       Top = 296
-      Width = 91
-      Caption = 'По умолчанию:'
+      Width = 45
+      Caption = 'Default:'
       Font.Height = -12
       Font.Style = [fsBold, fsUnderline]
       ParentColor = False
@@ -212,11 +212,11 @@ object ConfigForm: TConfigForm
     end
     object RadioButton1: TRadioButton
       Left = 42
-      Height = 23
+      Height = 19
       Top = 320
-      Width = 146
+      Width = 80
       Alignment = taLeftJustify
-      Caption = 'Использовать MySQL'
+      Caption = 'Use MySQL'
       Checked = True
       Font.Height = -12
       ParentFont = False
@@ -225,11 +225,11 @@ object ConfigForm: TConfigForm
     end
     object RadioButton2: TRadioButton
       Left = 43
-      Height = 23
+      Height = 19
       Top = 344
-      Width = 148
+      Width = 79
       Alignment = taLeftJustify
-      Caption = 'Использовать SQLite '
+      Caption = 'Use SQLite '
       Font.Height = -12
       ParentFont = False
       TabOrder = 8
@@ -240,15 +240,15 @@ object ConfigForm: TConfigForm
     Height = 144
     Top = 256
     Width = 265
-    Caption = 'Telnet кластер'
-    ClientHeight = 128
-    ClientWidth = 263
+    Caption = 'Telnet DX Cluster'
+    ClientHeight = 124
+    ClientWidth = 261
     Font.Height = -12
     ParentFont = False
     TabOrder = 3
     object Edit11: TEdit
       Left = 80
-      Height = 25
+      Height = 23
       Top = 8
       Width = 160
       Font.Height = -12
@@ -257,7 +257,7 @@ object ConfigForm: TConfigForm
     end
     object Edit12: TEdit
       Left = 80
-      Height = 25
+      Height = 23
       Top = 48
       Width = 160
       Font.Height = -12
@@ -266,30 +266,30 @@ object ConfigForm: TConfigForm
     end
     object Label15: TLabel
       Left = 32
-      Height = 13
+      Height = 15
       Top = 16
-      Width = 34
-      Caption = 'Логин'
+      Width = 30
+      Caption = 'Login'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label16: TLabel
       Left = 26
-      Height = 13
+      Height = 15
       Top = 56
-      Width = 41
-      Caption = 'Пароль'
+      Width = 50
+      Caption = 'Password'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object CheckBox4: TCheckBox
       Left = 16
-      Height = 23
+      Height = 19
       Top = 88
-      Width = 219
-      Caption = 'Запускать кластер автоматически'
+      Width = 175
+      Caption = 'Start DX cluster automatically'
       DoubleBuffered = False
       ParentDoubleBuffered = False
       TabOrder = 2
@@ -301,16 +301,16 @@ object ConfigForm: TConfigForm
     Top = 8
     Width = 264
     Caption = 'Справочник позывных'
-    ClientHeight = 232
-    ClientWidth = 262
+    ClientHeight = 228
+    ClientWidth = 260
     Font.Height = -12
     ParentFont = False
     TabOrder = 4
     object CheckBox1: TCheckBox
       Left = 16
-      Height = 23
+      Height = 19
       Top = 144
-      Width = 175
+      Width = 166
       Caption = 'Использовать справочник'
       Font.Height = -12
       OnChange = CheckBox1Change
@@ -319,30 +319,30 @@ object ConfigForm: TConfigForm
     end
     object Label10: TLabel
       Left = 54
-      Height = 13
+      Height = 15
       Top = 8
-      Width = 80
-      Caption = 'Дата выпуска:'
+      Width = 68
+      Caption = 'Release date:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label11: TLabel
       Left = 16
-      Height = 13
+      Height = 15
       Top = 56
-      Width = 120
-      Caption = 'Количество записей:'
+      Width = 103
+      Caption = 'Number of records:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label12: TLabel
       Left = 22
-      Height = 13
+      Height = 15
       Top = 80
-      Width = 113
-      Caption = 'Статус обновления:'
+      Width = 76
+      Caption = 'Update Status:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -352,19 +352,19 @@ object ConfigForm: TConfigForm
       Height = 25
       Top = 192
       Width = 232
-      Caption = 'Проверить обновления'
+      Caption = 'Check for Updates'
       Font.Height = -12
       OnClick = Button4Click
       ParentFont = False
       TabOrder = 1
     end
     object Label13: TLabel
-      Left = 89
-      Height = 13
+      Left = 90
+      Height = 15
       Top = 32
-      Width = 45
+      Width = 41
       Anchors = [akTop]
-      Caption = 'Версия:'
+      Caption = 'Version:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -372,10 +372,10 @@ object ConfigForm: TConfigForm
     object Label14: TLabel
       AnchorSideLeft.Control = Label13
       AnchorSideLeft.Side = asrBottom
-      Left = 137
-      Height = 13
+      Left = 134
+      Height = 15
       Top = 32
-      Width = 12
+      Width = 15
       BorderSpacing.Left = 3
       Caption = '---'
       ParentColor = False
@@ -389,10 +389,10 @@ object ConfigForm: TConfigForm
     end
     object Label17: TLabel
       Left = 42
-      Height = 13
+      Height = 15
       Top = 104
-      Width = 90
-      Caption = 'Загрузка файла:'
+      Width = 76
+      Caption = 'Download file:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -400,10 +400,10 @@ object ConfigForm: TConfigForm
   end
   object CheckBox2: TCheckBox
     Left = 568
-    Height = 23
+    Height = 19
     Top = 168
-    Width = 216
-    Caption = 'Использовать диапазон в метрах'
+    Width = 126
+    Caption = 'Use bands in meters'
     OnChange = CheckBox2Change
     TabOrder = 5
   end
@@ -413,45 +413,45 @@ object ConfigForm: TConfigForm
     Top = 8
     Width = 224
     Caption = 'QRZ.RU XML API'
-    ClientHeight = 136
-    ClientWidth = 222
+    ClientHeight = 132
+    ClientWidth = 220
     TabOrder = 6
     object Edit6: TEdit
       Left = 72
-      Height = 25
+      Height = 23
       Top = 24
       Width = 136
       TabOrder = 0
     end
     object Edit7: TEdit
       Left = 72
-      Height = 25
+      Height = 23
       Top = 56
       Width = 136
       TabOrder = 1
     end
     object Label18: TLabel
       Left = 24
-      Height = 13
+      Height = 15
       Top = 32
-      Width = 34
-      Caption = 'Логин'
+      Width = 30
+      Caption = 'Login'
       ParentColor = False
     end
     object Label19: TLabel
       Left = 16
-      Height = 13
+      Height = 15
       Top = 64
-      Width = 41
-      Caption = 'Пароль'
+      Width = 50
+      Caption = 'Password'
       ParentColor = False
     end
     object CheckBox3: TCheckBox
       Left = 0
-      Height = 23
+      Height = 19
       Top = 104
-      Width = 201
-      Caption = 'Использовать как справочник?'
+      Width = 119
+      Caption = 'Use as a reference?'
       DoubleBuffered = False
       OnChange = CheckBox3Change
       ParentDoubleBuffered = False

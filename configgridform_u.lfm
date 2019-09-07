@@ -1,7 +1,7 @@
 object ConfigGrid_Form: TConfigGrid_Form
-  Left = 343
+  Left = 351
   Height = 277
-  Top = 180
+  Top = 210
   Width = 651
   BorderStyle = bsDialog
   Caption = 'Настройка отображения таблиц'
@@ -10,13 +10,13 @@ object ConfigGrid_Form: TConfigGrid_Form
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object Label1: TLabel
     Left = 24
-    Height = 13
+    Height = 15
     Top = 16
-    Width = 71
-    Caption = 'Цвет текста'
+    Width = 56
+    Caption = 'Text color'
     Font.Height = -12
     Font.Style = [fsBold, fsUnderline]
     ParentColor = False
@@ -24,10 +24,10 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object Label2: TLabel
     Left = 24
-    Height = 13
+    Height = 15
     Top = 80
-    Width = 86
-    Caption = 'Размер текста'
+    Width = 49
+    Caption = 'Text size'
     Font.Height = -12
     Font.Style = [fsBold, fsUnderline]
     ParentColor = False
@@ -35,12 +35,12 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object ComboBox1: TComboBox
     Left = 24
-    Height = 27
+    Height = 23
     Top = 104
     Width = 132
     AutoSize = False
     Font.Height = -12
-    ItemHeight = 0
+    ItemHeight = 15
     ItemIndex = 0
     Items.Strings = (
       '8 пт'
@@ -55,10 +55,10 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object Label3: TLabel
     Left = 24
-    Height = 13
+    Height = 15
     Top = 144
-    Width = 63
-    Caption = 'Цвет фона'
+    Width = 98
+    Caption = 'Background color'
     Font.Height = -12
     Font.Style = [fsBold, fsUnderline]
     ParentColor = False
@@ -66,10 +66,10 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object Label4: TLabel
     Left = 208
-    Height = 13
+    Height = 15
     Top = 16
-    Width = 134
-    Caption = 'Отображение колонок'
+    Width = 93
+    Caption = 'Displays columns'
     Font.Height = -12
     Font.Style = [fsBold, fsUnderline]
     ParentColor = False
@@ -77,9 +77,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox1: TCheckBox
     Left = 208
-    Height = 24
+    Height = 19
     Top = 40
-    Width = 47
+    Width = 41
     Caption = 'QSL'
     Font.Height = -12
     ParentFont = False
@@ -87,9 +87,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox2: TCheckBox
     Left = 208
-    Height = 24
+    Height = 19
     Top = 64
-    Width = 52
+    Width = 46
     Caption = 'QSLs'
     Font.Height = -12
     ParentFont = False
@@ -97,69 +97,69 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox3: TCheckBox
     Left = 208
-    Height = 24
+    Height = 19
     Top = 88
-    Width = 53
-    Caption = 'Дата'
+    Width = 44
+    Caption = 'Date'
     Font.Height = -12
     ParentFont = False
     TabOrder = 3
   end
   object CheckBox4: TCheckBox
     Left = 208
-    Height = 24
+    Height = 19
     Top = 112
-    Width = 64
-    Caption = 'Время'
+    Width = 46
+    Caption = 'Time'
     Font.Height = -12
     ParentFont = False
     TabOrder = 4
   end
   object CheckBox5: TCheckBox
     Left = 208
-    Height = 24
+    Height = 19
     Top = 136
-    Width = 81
-    Caption = 'Диапазон'
+    Width = 47
+    Caption = 'Band'
     Font.Height = -12
     ParentFont = False
     TabOrder = 5
   end
   object CheckBox6: TCheckBox
     Left = 208
-    Height = 24
+    Height = 19
     Top = 160
-    Width = 84
-    Caption = 'Позывной'
+    Width = 40
+    Caption = 'Call'
     Font.Height = -12
     ParentFont = False
     TabOrder = 6
   end
   object CheckBox7: TCheckBox
     Left = 208
-    Height = 24
+    Height = 19
     Top = 184
-    Width = 56
-    Caption = 'Мода'
+    Width = 51
+    Caption = 'Mode'
     Font.Height = -12
     ParentFont = False
     TabOrder = 7
   end
   object CheckBox8: TCheckBox
     Left = 208
-    Height = 24
+    Height = 19
     Top = 208
-    Width = 51
-    Caption = 'Имя'
+    Width = 52
+    Caption = 'Name'
     Font.Height = -12
     ParentFont = False
     TabOrder = 8
   end
   object CheckBox9: TCheckBox
     Left = 311
-    Height = 24
+    Height = 19
     Top = 40
-    Width = 50
+    Width = 44
     Caption = 'QTH'
     Font.Height = -12
     ParentFont = False
@@ -167,9 +167,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox10: TCheckBox
     Left = 311
-    Height = 24
+    Height = 19
     Top = 64
-    Width = 55
+    Width = 46
     Caption = 'State'
     Font.Height = -12
     ParentFont = False
@@ -177,19 +177,19 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox11: TCheckBox
     Left = 312
-    Height = 24
+    Height = 19
     Top = 88
-    Width = 73
-    Caption = 'Локатор'
+    Width = 42
+    Caption = 'Grid'
     Font.Height = -12
     ParentFont = False
     TabOrder = 11
   end
   object CheckBox12: TCheckBox
     Left = 312
-    Height = 24
+    Height = 19
     Top = 112
-    Width = 51
+    Width = 44
     Caption = 'RSTs'
     Font.Height = -12
     ParentFont = False
@@ -197,9 +197,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox13: TCheckBox
     Left = 311
-    Height = 24
+    Height = 19
     Top = 136
-    Width = 52
+    Width = 43
     Caption = 'RSTr'
     Font.Height = -12
     ParentFont = False
@@ -207,9 +207,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox14: TCheckBox
     Left = 312
-    Height = 24
+    Height = 19
     Top = 160
-    Width = 52
+    Width = 46
     Caption = 'IOTA'
     Font.Height = -12
     ParentFont = False
@@ -217,19 +217,19 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox15: TCheckBox
     Left = 312
-    Height = 24
+    Height = 19
     Top = 184
-    Width = 87
-    Caption = 'Менеджер'
+    Width = 67
+    Caption = 'Manager'
     Font.Height = -12
     ParentFont = False
     TabOrder = 15
   end
   object CheckBox16: TCheckBox
     Left = 312
-    Height = 24
+    Height = 19
     Top = 208
-    Width = 82
+    Width = 73
     Caption = 'QSLs Date'
     Font.Height = -12
     ParentFont = False
@@ -237,9 +237,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox17: TCheckBox
     Left = 419
-    Height = 24
+    Height = 19
     Top = 40
-    Width = 82
+    Width = 72
     Caption = 'QSLr Date'
     Font.Height = -12
     ParentFont = False
@@ -247,9 +247,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox18: TCheckBox
     Left = 419
-    Height = 24
+    Height = 19
     Top = 64
-    Width = 93
+    Width = 83
     Caption = 'LOTWr Date'
     Font.Height = -12
     ParentFont = False
@@ -257,19 +257,19 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox19: TCheckBox
     Left = 419
-    Height = 24
+    Height = 19
     Top = 88
-    Width = 76
-    Caption = 'Префикс'
+    Width = 50
+    Caption = 'Prefix'
     Font.Height = -12
     ParentFont = False
     TabOrder = 19
   end
   object CheckBox20: TCheckBox
     Left = 419
-    Height = 24
+    Height = 19
     Top = 112
-    Width = 57
+    Width = 51
     Caption = 'DXCC'
     Font.Height = -12
     ParentFont = False
@@ -277,9 +277,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox21: TCheckBox
     Left = 419
-    Height = 24
+    Height = 19
     Top = 136
-    Width = 73
+    Width = 67
     Caption = 'CQ Zone'
     Font.Height = -12
     ParentFont = False
@@ -287,9 +287,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox22: TCheckBox
     Left = 419
-    Height = 24
+    Height = 19
     Top = 160
-    Width = 75
+    Width = 67
     Caption = 'ITU Zone'
     Font.Height = -12
     ParentFont = False
@@ -297,9 +297,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox23: TCheckBox
     Left = 419
-    Height = 24
+    Height = 19
     Top = 184
-    Width = 86
+    Width = 79
     Caption = 'Manual Set'
     Font.Height = -12
     ParentFont = False
@@ -307,19 +307,19 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox24: TCheckBox
     Left = 419
-    Height = 24
+    Height = 19
     Top = 208
-    Width = 88
-    Caption = 'Континент'
+    Width = 73
+    Caption = 'Continent'
     Font.Height = -12
     ParentFont = False
     TabOrder = 24
   end
   object CheckBox25: TCheckBox
     Left = 528
-    Height = 24
+    Height = 19
     Top = 40
-    Width = 70
+    Width = 61
     Caption = 'ValidDX'
     Font.Height = -12
     ParentFont = False
@@ -327,9 +327,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox26: TCheckBox
     Left = 528
-    Height = 24
+    Height = 19
     Top = 64
-    Width = 74
+    Width = 66
     Caption = 'QSLr VIA'
     Font.Height = -12
     ParentFont = False
@@ -337,9 +337,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox27: TCheckBox
     Left = 528
-    Height = 24
+    Height = 19
     Top = 88
-    Width = 74
+    Width = 67
     Caption = 'QSLs VIA'
     Font.Height = -12
     ParentFont = False
@@ -347,9 +347,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox28: TCheckBox
     Left = 528
-    Height = 24
+    Height = 19
     Top = 112
-    Width = 51
+    Width = 43
     Caption = 'User'
     Font.Height = -12
     ParentFont = False
@@ -357,9 +357,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object CheckBox29: TCheckBox
     Left = 528
-    Height = 24
+    Height = 19
     Top = 136
-    Width = 101
+    Width = 96
     Caption = 'No Calc DXCC'
     Font.Height = -12
     ParentFont = False
@@ -370,7 +370,7 @@ object ConfigGrid_Form: TConfigGrid_Form
     Height = 25
     Top = 240
     Width = 75
-    Caption = 'Сохранить'
+    Caption = 'Save'
     Font.Height = -12
     OnClick = Button1Click
     ParentFont = False
@@ -381,7 +381,7 @@ object ConfigGrid_Form: TConfigGrid_Form
     Height = 25
     Top = 240
     Width = 75
-    Caption = 'Отмена'
+    Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False
@@ -392,7 +392,7 @@ object ConfigGrid_Form: TConfigGrid_Form
     Height = 25
     Top = 240
     Width = 99
-    Caption = 'По умолчанию'
+    Caption = 'Default'
     Font.Height = -12
     OnClick = Button3Click
     ParentFont = False
@@ -400,7 +400,7 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object ColorBox1: TColorBox
     Left = 24
-    Height = 27
+    Height = 22
     Top = 40
     Width = 132
     AutoSize = False
@@ -412,7 +412,7 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object ColorBox2: TColorBox
     Left = 24
-    Height = 27
+    Height = 22
     Top = 168
     Width = 132
     AutoSize = False

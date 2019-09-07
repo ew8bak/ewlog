@@ -1,7 +1,7 @@
 object hiddenSettings: ThiddenSettings
-  Left = 587
+  Left = 535
   Height = 310
-  Top = 196
+  Top = 231
   Width = 459
   Caption = 'Скрытые настройки'
   ClientHeight = 310

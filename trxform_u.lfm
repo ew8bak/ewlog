@@ -1,12 +1,12 @@
 object TRXForm: TTRXForm
   Left = 487
-  Height = 172
-  Top = 138
+  Height = 170
+  Top = 140
   Width = 470
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsDialog
   Caption = 'RIG'
-  ClientHeight = 172
+  ClientHeight = 170
   ClientWidth = 470
   FormStyle = fsStayOnTop
   OnClose = FormClose

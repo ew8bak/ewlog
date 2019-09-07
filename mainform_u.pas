@@ -10,7 +10,7 @@ uses
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
   IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
   Grids, INIFiles, md5, mvMapViewer, LCLType, LazSysUtils,
-  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr, mvTypes;
+  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr, mvTypes, gettext, Translations, LResources;
 
 const
   constColumnName: array [0..28] of string =

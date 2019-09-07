@@ -1,0 +1,10 @@
+{"version":1,"strings":[
+{"hash":5801605,"name":"tstate_form.caption","sourcebytes":[83,84,65,84,69],"value":"STATE"},
+{"hash":1780,"name":"tstate_form.dbgrid1.columns[0].title.caption","sourcebytes":[105,100],"value":"id"},
+{"hash":231417357,"name":"tstate_form.dbgrid1.columns[1].title.caption","sourcebytes":[208,160,208,176,208,185,208,190,208,189],"value":"\u0420\u0430\u0439\u043E\u043D"},
+{"hash":197404752,"name":"tstate_form.dbgrid1.columns[2].title.caption","sourcebytes":[208,157,208,190,208,188,208,181,209,128],"value":"\u041D\u043E\u043C\u0435\u0440"},
+{"hash":64637952,"name":"tstate_form.dbgrid1.columns[3].title.caption","sourcebytes":[208,157,208,176,208,183,208,178,208,176,208,189,208,184,208,181,32,209,128,208,176,208,185,208,190,208,189,208,176,47,208,179,208,190,209,128,208,190,208,180,208,176],"value":"\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0440\u0430\u0439\u043E\u043D\u0430/\u0433\u043E\u0440\u043E\u0434\u0430"},
+{"hash":5801605,"name":"tstate_form.label1.caption","sourcebytes":[83,84,65,84,69],"value":"STATE"},
+{"hash":8630453,"name":"tstate_form.label2.caption","sourcebytes":[208,157,208,176,208,183,208,178,208,176,208,189,208,184,208,181],"value":"\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"},
+{"hash":154490284,"name":"tstate_form.button1.caption","sourcebytes":[208,151,208,176,208,186,209,128,209,139,209,130,209,140],"value":"\u0417\u0430\u043A\u0440\u044B\u0442\u044C"}
+]}

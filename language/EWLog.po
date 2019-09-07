@@ -1,0 +1,3708 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: simplexml.ssimplexmlerror1
+msgid "Error when retriving element list: index out of bounds"
+msgstr ""
+
+#: simplexml.ssimplexmlerror10
+msgid "Child element not found: \"%s\"."
+msgstr ""
+
+#: simplexml.ssimplexmlerror11
+msgid "Name must start with a letter or \"_\""
+msgstr ""
+
+#: simplexml.ssimplexmlerror12
+msgid "Number expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror13
+msgid "Hexadecimal number expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror14
+msgid "\"#\" or control character expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror15
+msgid "Wrong control character name"
+msgstr ""
+
+#: simplexml.ssimplexmlerror16
+msgctxt "simplexml.ssimplexmlerror16"
+msgid "\"%s\" expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror17
+msgctxt "simplexml.ssimplexmlerror17"
+msgid "\"%s\" expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror18
+msgid "\"<\" character cannot be used in attribute values"
+msgstr ""
+
+#: simplexml.ssimplexmlerror19
+msgctxt "simplexml.ssimplexmlerror19"
+msgid "\"%s\" expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror2
+msgid "Incomplete element definition"
+msgstr ""
+
+#: simplexml.ssimplexmlerror20
+msgid "Attribute value expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror21
+msgid "String constant expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror22
+msgctxt "simplexml.ssimplexmlerror22"
+msgid "\"%s\" expected"
+msgstr ""
+
+#: simplexml.ssimplexmlerror23
+msgid "Data read error"
+msgstr ""
+
+#: simplexml.ssimplexmlerror24
+msgid "Value read error: wrong type"
+msgstr ""
+
+#: simplexml.ssimplexmlerror25
+msgid "Value write error: wrong type"
+msgstr ""
+
+#: simplexml.ssimplexmlerror3
+msgid "Wrong character in element name"
+msgstr ""
+
+#: simplexml.ssimplexmlerror4
+msgid "BinaryXML read error: wrong node type"
+msgstr ""
+
+#: simplexml.ssimplexmlerror5
+msgid "BinaryXML write error: wrong node type"
+msgstr ""
+
+#: simplexml.ssimplexmlerror6
+msgid ""
+"Wrong attribute value. \n"
+"Attribute \"%s\" of element \"%s\".\n"
+"Acceptable values are:\n"
+"%s\n"
+msgstr ""
+
+#: simplexml.ssimplexmlerror7
+msgid "Attribute not found: \"%s\""
+msgstr ""
+
+#: simplexml.ssimplexmlerror8
+msgid "Attribute not specified: \"%s\""
+msgstr ""
+
+#: simplexml.ssimplexmlerror9
+msgid "This feature is unsupported by SimpleXML"
+msgstr ""
+
+#: tabout_form.caption
+msgctxt "tabout_form.caption"
+msgid "О программе"
+msgstr ""
+
+#: tabout_form.label1.caption
+#, fuzzy
+#| msgid "Аппаратный журнал EWLog"
+msgid "HAM LOG EWLog"
+msgstr "Logger EWLog"
+
+#: tabout_form.label2.caption
+msgid "Version 1.1"
+msgstr ""
+
+#: tabout_form.label3.caption
+msgid "Designed by EW8BAK"
+msgstr ""
+
+#: tabout_form.label4.caption
+msgid "Copyright 2015 - 2019 Vladimir Karpenko"
+msgstr ""
+
+#: tchangelog_form.button1.caption
+msgid "Понятно"
+msgstr ""
+
+#: tchangelog_form.caption
+msgid "История изменений"
+msgstr ""
+
+#: tclusterfilter.caption
+msgid "Фильтры"
+msgstr ""
+
+#: tclusterfilter.cb10m.caption
+msgid "10М"
+msgstr ""
+
+#: tclusterfilter.cb12m.caption
+msgid "12М"
+msgstr ""
+
+#: tclusterfilter.cb15m.caption
+msgid "15М"
+msgstr ""
+
+#: tclusterfilter.cb160m.caption
+msgid "160М"
+msgstr ""
+
+#: tclusterfilter.cb17m.caption
+msgid "17М"
+msgstr ""
+
+#: tclusterfilter.cb20m.caption
+msgid "20М"
+msgstr ""
+
+#: tclusterfilter.cb2m.caption
+msgid "2М"
+msgstr ""
+
+#: tclusterfilter.cb30m.caption
+msgid "30М"
+msgstr ""
+
+#: tclusterfilter.cb40m.caption
+msgid "40М"
+msgstr ""
+
+#: tclusterfilter.cb4m.caption
+msgid "4М"
+msgstr ""
+
+#: tclusterfilter.cb60m.caption
+msgid "60М"
+msgstr ""
+
+#: tclusterfilter.cb6m.caption
+msgid "6М"
+msgstr ""
+
+#: tclusterfilter.cb70cm.caption
+msgid "70СМ"
+msgstr ""
+
+#: tclusterfilter.cb80m.caption
+msgid "80М"
+msgstr ""
+
+#: tclusterfilter.cballmodes.caption
+msgid "All mode"
+msgstr ""
+
+#: tclusterfilter.cbcw.caption
+msgctxt "tclusterfilter.cbcw.caption"
+msgid "CW"
+msgstr ""
+
+#: tclusterfilter.cbdata.caption
+msgid "Digi"
+msgstr ""
+
+#: tclusterfilter.cbssb.caption
+msgctxt "tclusterfilter.cbssb.caption"
+msgid "SSB"
+msgstr ""
+
+#: tclusterfilter.groupbox1.caption
+msgid "Bands"
+msgstr ""
+
+#: tclusterfilter.groupbox2.caption
+msgid "Modes"
+msgstr ""
+
+#: tclusterserver_form.button1.caption
+msgctxt "tclusterserver_form.button1.caption"
+msgid "Save"
+msgstr ""
+
+#: tclusterserver_form.caption
+msgid "Editing DX servers"
+msgstr ""
+
+#: tclusterserver_form.stringgrid1.columns[0].title.caption
+msgctxt "tclusterserver_form.stringgrid1.columns[0].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tclusterserver_form.stringgrid1.columns[1].title.caption
+msgctxt "tclusterserver_form.stringgrid1.columns[1].title.caption"
+msgid "Server"
+msgstr ""
+
+#: tclusterserver_form.stringgrid1.columns[2].title.caption
+msgctxt "tclusterserver_form.stringgrid1.columns[2].title.caption"
+msgid "Port"
+msgstr ""
+
+#: tconfigform.button1.caption
+msgctxt "tconfigform.button1.caption"
+msgid "Save"
+msgstr ""
+
+#: tconfigform.button2.caption
+msgctxt "tconfigform.button2.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tconfigform.button3.caption
+msgctxt "tconfigform.button3.caption"
+msgid "Check connection"
+msgstr ""
+
+#: tconfigform.button4.caption
+msgid "Check for Updates"
+msgstr ""
+
+#: tconfigform.caption
+msgctxt "tconfigform.caption"
+msgid "Program settings"
+msgstr ""
+
+#: tconfigform.checkbox1.caption
+msgid "Использовать справочник"
+msgstr ""
+
+#: tconfigform.checkbox2.caption
+msgid "Use bands in meters"
+msgstr ""
+
+#: tconfigform.checkbox3.caption
+msgid "Use as a reference?"
+msgstr ""
+
+#: tconfigform.checkbox4.caption
+msgid "Start DX cluster automatically"
+msgstr ""
+
+#: tconfigform.groupbox1.caption
+msgid "Data Base"
+msgstr ""
+
+#: tconfigform.groupbox2.caption
+msgid "Справочник позывных"
+msgstr ""
+
+#: tconfigform.groupbox3.caption
+msgctxt "tconfigform.groupbox3.caption"
+msgid "Telnet DX Cluster"
+msgstr ""
+
+#: tconfigform.groupbox4.caption
+msgid "QRZ.RU XML API"
+msgstr ""
+
+#: tconfigform.label1.caption
+msgid "MySQL"
+msgstr ""
+
+#: tconfigform.label10.caption
+msgid "Release date:"
+msgstr ""
+
+#: tconfigform.label11.caption
+msgid "Number of records:"
+msgstr ""
+
+#: tconfigform.label12.caption
+msgid "Update Status:"
+msgstr ""
+
+#: tconfigform.label13.caption
+msgid "Version:"
+msgstr ""
+
+#: tconfigform.label14.caption
+msgid "---"
+msgstr ""
+
+#: tconfigform.label15.caption
+msgctxt "tconfigform.label15.caption"
+msgid "Login"
+msgstr ""
+
+#: tconfigform.label16.caption
+msgctxt "tconfigform.label16.caption"
+msgid "Password"
+msgstr ""
+
+#: tconfigform.label17.caption
+msgid "Download file:"
+msgstr ""
+
+#: tconfigform.label18.caption
+msgctxt "tconfigform.label18.caption"
+msgid "Login"
+msgstr ""
+
+#: tconfigform.label19.caption
+msgctxt "tconfigform.label19.caption"
+msgid "Password"
+msgstr ""
+
+#: tconfigform.label2.caption
+msgctxt "tconfigform.label2.caption"
+msgid "Server"
+msgstr ""
+
+#: tconfigform.label3.caption
+msgctxt "tconfigform.label3.caption"
+msgid "Port"
+msgstr ""
+
+#: tconfigform.label4.caption
+msgctxt "tconfigform.label4.caption"
+msgid "Login"
+msgstr ""
+
+#: tconfigform.label5.caption
+msgctxt "tconfigform.label5.caption"
+msgid "Pasword"
+msgstr ""
+
+#: tconfigform.label6.caption
+msgctxt "tconfigform.label6.caption"
+msgid "Base Name"
+msgstr ""
+
+#: tconfigform.label7.caption
+msgid "SQLite"
+msgstr ""
+
+#: tconfigform.label8.caption
+msgctxt "tconfigform.label8.caption"
+msgid "Base"
+msgstr ""
+
+#: tconfigform.label9.caption
+msgid "Default:"
+msgstr ""
+
+#: tconfigform.radiobutton1.caption
+msgid "Use MySQL"
+msgstr ""
+
+#: tconfigform.radiobutton2.caption
+msgid "Use SQLite "
+msgstr ""
+
+#: tconfiggrid_form.button1.caption
+msgctxt "tconfiggrid_form.button1.caption"
+msgid "Save"
+msgstr ""
+
+#: tconfiggrid_form.button2.caption
+msgctxt "tconfiggrid_form.button2.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tconfiggrid_form.button3.caption
+msgctxt "tconfiggrid_form.button3.caption"
+msgid "Default"
+msgstr ""
+
+#: tconfiggrid_form.caption
+msgid "Настройка отображения таблиц"
+msgstr ""
+
+#: tconfiggrid_form.checkbox1.caption
+msgctxt "tconfiggrid_form.checkbox1.caption"
+msgid "QSL"
+msgstr ""
+
+#: tconfiggrid_form.checkbox10.caption
+msgctxt "tconfiggrid_form.checkbox10.caption"
+msgid "State"
+msgstr ""
+
+#: tconfiggrid_form.checkbox11.caption
+msgctxt "tconfiggrid_form.checkbox11.caption"
+msgid "Grid"
+msgstr ""
+
+#: tconfiggrid_form.checkbox12.caption
+msgctxt "tconfiggrid_form.checkbox12.caption"
+msgid "RSTs"
+msgstr ""
+
+#: tconfiggrid_form.checkbox13.caption
+msgctxt "tconfiggrid_form.checkbox13.caption"
+msgid "RSTr"
+msgstr ""
+
+#: tconfiggrid_form.checkbox14.caption
+msgctxt "tconfiggrid_form.checkbox14.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tconfiggrid_form.checkbox15.caption
+msgctxt "tconfiggrid_form.checkbox15.caption"
+msgid "Manager"
+msgstr ""
+
+#: tconfiggrid_form.checkbox16.caption
+msgctxt "tconfiggrid_form.checkbox16.caption"
+msgid "QSLs Date"
+msgstr ""
+
+#: tconfiggrid_form.checkbox17.caption
+msgctxt "tconfiggrid_form.checkbox17.caption"
+msgid "QSLr Date"
+msgstr ""
+
+#: tconfiggrid_form.checkbox18.caption
+msgctxt "tconfiggrid_form.checkbox18.caption"
+msgid "LOTWr Date"
+msgstr ""
+
+#: tconfiggrid_form.checkbox19.caption
+msgctxt "tconfiggrid_form.checkbox19.caption"
+msgid "Prefix"
+msgstr ""
+
+#: tconfiggrid_form.checkbox2.caption
+msgctxt "tconfiggrid_form.checkbox2.caption"
+msgid "QSLs"
+msgstr ""
+
+#: tconfiggrid_form.checkbox20.caption
+msgctxt "tconfiggrid_form.checkbox20.caption"
+msgid "DXCC"
+msgstr ""
+
+#: tconfiggrid_form.checkbox21.caption
+msgctxt "tconfiggrid_form.checkbox21.caption"
+msgid "CQ Zone"
+msgstr ""
+
+#: tconfiggrid_form.checkbox22.caption
+msgctxt "tconfiggrid_form.checkbox22.caption"
+msgid "ITU Zone"
+msgstr ""
+
+#: tconfiggrid_form.checkbox23.caption
+msgctxt "tconfiggrid_form.checkbox23.caption"
+msgid "Manual Set"
+msgstr ""
+
+#: tconfiggrid_form.checkbox24.caption
+msgctxt "tconfiggrid_form.checkbox24.caption"
+msgid "Continent"
+msgstr ""
+
+#: tconfiggrid_form.checkbox25.caption
+msgid "ValidDX"
+msgstr ""
+
+#: tconfiggrid_form.checkbox26.caption
+msgid "QSLr VIA"
+msgstr ""
+
+#: tconfiggrid_form.checkbox27.caption
+msgid "QSLs VIA"
+msgstr ""
+
+#: tconfiggrid_form.checkbox28.caption
+msgctxt "tconfiggrid_form.checkbox28.caption"
+msgid "User"
+msgstr ""
+
+#: tconfiggrid_form.checkbox29.caption
+msgctxt "tconfiggrid_form.checkbox29.caption"
+msgid "No Calc DXCC"
+msgstr ""
+
+#: tconfiggrid_form.checkbox3.caption
+msgctxt "tconfiggrid_form.checkbox3.caption"
+msgid "Date"
+msgstr ""
+
+#: tconfiggrid_form.checkbox4.caption
+msgctxt "tconfiggrid_form.checkbox4.caption"
+msgid "Time"
+msgstr ""
+
+#: tconfiggrid_form.checkbox5.caption
+msgctxt "tconfiggrid_form.checkbox5.caption"
+msgid "Band"
+msgstr ""
+
+#: tconfiggrid_form.checkbox6.caption
+msgctxt "tconfiggrid_form.checkbox6.caption"
+msgid "Call"
+msgstr ""
+
+#: tconfiggrid_form.checkbox7.caption
+msgctxt "tconfiggrid_form.checkbox7.caption"
+msgid "Mode"
+msgstr ""
+
+#: tconfiggrid_form.checkbox8.caption
+msgctxt "tconfiggrid_form.checkbox8.caption"
+msgid "Name"
+msgstr ""
+
+#: tconfiggrid_form.checkbox9.caption
+msgctxt "tconfiggrid_form.checkbox9.caption"
+msgid "QTH"
+msgstr ""
+
+#: tconfiggrid_form.combobox1.text
+msgid "8 пт"
+msgstr ""
+
+#: tconfiggrid_form.label1.caption
+msgid "Text color"
+msgstr ""
+
+#: tconfiggrid_form.label2.caption
+msgid "Text size"
+msgstr ""
+
+#: tconfiggrid_form.label3.caption
+msgid "Background color"
+msgstr ""
+
+#: tconfiggrid_form.label4.caption
+msgid "Displays columns"
+msgstr ""
+
+#: tcountryeditform.caption
+msgid "Editing Country Information"
+msgstr ""
+
+#: tcountryeditform.label1.caption
+msgid "Search"
+msgstr ""
+
+#: tcreatejournalform.button1.caption
+msgctxt "tcreatejournalform.button1.caption"
+msgid "Close"
+msgstr ""
+
+#: tcreatejournalform.button2.caption
+msgid "Create"
+msgstr ""
+
+#: tcreatejournalform.caption
+msgid "Create new journal"
+msgstr ""
+
+#: tcreatejournalform.combobox1.text
+msgctxt "tcreatejournalform.combobox1.text"
+msgid "A"
+msgstr ""
+
+#: tcreatejournalform.edit10.text
+msgctxt "tcreatejournalform.edit10.text"
+msgid "TNX for QSO! 73!"
+msgstr ""
+
+#: tcreatejournalform.groupbox1.caption
+msgctxt "tcreatejournalform.groupbox1.caption"
+msgid "Information"
+msgstr ""
+
+#: tcreatejournalform.groupbox2.caption
+msgid "Location Information"
+msgstr ""
+
+#: tcreatejournalform.groupbox3.caption
+msgctxt "tcreatejournalform.groupbox3.caption"
+msgid "QSL Info"
+msgstr ""
+
+#: tcreatejournalform.label1.caption
+msgctxt "tcreatejournalform.label1.caption"
+msgid "Description"
+msgstr ""
+
+#: tcreatejournalform.label11.caption
+msgid "Long"
+msgstr ""
+
+#: tcreatejournalform.label2.caption
+msgctxt "tcreatejournalform.label2.caption"
+msgid "Index"
+msgstr ""
+
+#: tcreatejournalform.label3.caption
+msgctxt "tcreatejournalform.label3.caption"
+msgid "Call name"
+msgstr ""
+
+#: tcreatejournalform.label4.caption
+msgctxt "tcreatejournalform.label4.caption"
+msgid "QTH"
+msgstr ""
+
+#: tcreatejournalform.label5.caption
+msgctxt "tcreatejournalform.label5.caption"
+msgid "Name"
+msgstr ""
+
+#: tcreatejournalform.label6.caption
+msgctxt "tcreatejournalform.label6.caption"
+msgid "ITU"
+msgstr ""
+
+#: tcreatejournalform.label7.caption
+msgctxt "tcreatejournalform.label7.caption"
+msgid "CQ"
+msgstr ""
+
+#: tcreatejournalform.label8.caption
+msgctxt "tcreatejournalform.label8.caption"
+msgid "Grid"
+msgstr ""
+
+#: tcreatejournalform.label9.caption
+msgid "Lat"
+msgstr ""
+
+#: tearth.caption
+msgid "Earth"
+msgstr ""
+
+#: teditqso_form.button1.caption
+msgctxt "teditqso_form.button1.caption"
+msgid "Закрыть"
+msgstr ""
+
+#: teditqso_form.button2.caption
+msgid "Отменить"
+msgstr ""
+
+#: teditqso_form.button3.caption
+msgid "Принять"
+msgstr ""
+
+#: teditqso_form.button4.caption
+msgid "To define territory"
+msgstr ""
+
+#: teditqso_form.caption
+msgid "QSO Editor"
+msgstr ""
+
+#: teditqso_form.checkbox1.caption
+msgctxt "teditqso_form.checkbox1.caption"
+msgid "No Calc DXCC"
+msgstr ""
+
+#: teditqso_form.checkbox2.caption
+msgid "Valid for DXCC"
+msgstr ""
+
+#: teditqso_form.checkbox3.caption
+msgctxt "teditqso_form.checkbox3.caption"
+msgid "Mark QSO"
+msgstr ""
+
+#: teditqso_form.checkbox4.caption
+msgid "Received"
+msgstr ""
+
+#: teditqso_form.checkbox5.caption
+msgid "Received eQSL"
+msgstr ""
+
+#: teditqso_form.checkbox6.caption
+msgid "Received LotW"
+msgstr ""
+
+#: teditqso_form.datetimepicker1.textfornulldate
+msgctxt "teditqso_form.datetimepicker1.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[0].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[0].title.caption"
+msgid "QSL"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[10].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[10].title.caption"
+msgid "Grid"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[11].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[11].title.caption"
+msgid "RSTs"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[12].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[12].title.caption"
+msgid "RSTr"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[13].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[13].title.caption"
+msgid "IOTA"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[14].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[14].title.caption"
+msgid "Менеджер"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[15].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[15].title.caption"
+msgid "QSLs Date"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[16].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[16].title.caption"
+msgid "QSLr Date"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[17].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[17].title.caption"
+msgid "LOTWr Date"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[18].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[18].title.caption"
+msgid "Префикс"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[19].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[19].title.caption"
+msgid "DXCC"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[1].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[1].title.caption"
+msgid "QSLs"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[20].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[20].title.caption"
+msgid "CQ Zone"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[21].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[21].title.caption"
+msgid "ITU Zone"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[22].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[22].title.caption"
+msgid "Manual Set"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[23].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[23].title.caption"
+msgid "Континент"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[24].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[24].title.caption"
+msgid "Valid DX"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[25].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[25].title.caption"
+msgid "QSL r VIA"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[26].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[26].title.caption"
+msgid "QSL s VIA"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[27].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[27].title.caption"
+msgid "User"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[28].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[28].title.caption"
+msgid "No calc DXCC"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[2].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[2].title.caption"
+msgid "Дата"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[3].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[3].title.caption"
+msgid "Время"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[4].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[4].title.caption"
+msgid "Диапазон"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[5].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[5].title.caption"
+msgid "Позывной"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[6].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[6].title.caption"
+msgid "Мода"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[7].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[7].title.caption"
+msgid "Имя"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[8].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[8].title.caption"
+msgid "QTH"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[9].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[9].title.caption"
+msgid "State"
+msgstr ""
+
+#: teditqso_form.groupbox1.caption
+msgctxt "teditqso_form.groupbox1.caption"
+msgid "Territory"
+msgstr ""
+
+#: teditqso_form.groupbox2.caption
+msgctxt "teditqso_form.groupbox2.caption"
+msgid "QSL"
+msgstr ""
+
+#: teditqso_form.groupbox3.caption
+msgctxt "teditqso_form.groupbox3.caption"
+msgid "QSL"
+msgstr ""
+
+#: teditqso_form.label1.caption
+msgctxt "teditqso_form.label1.caption"
+msgid "CallSign"
+msgstr ""
+
+#: teditqso_form.label10.caption
+msgctxt "teditqso_form.label10.caption"
+msgid "DXCC"
+msgstr ""
+
+#: teditqso_form.label11.caption
+msgctxt "teditqso_form.label11.caption"
+msgid "Prefix"
+msgstr ""
+
+#: teditqso_form.label12.caption
+msgctxt "teditqso_form.label12.caption"
+msgid "CQ"
+msgstr ""
+
+#: teditqso_form.label13.caption
+msgctxt "teditqso_form.label13.caption"
+msgid "ITU"
+msgstr ""
+
+#: teditqso_form.label14.caption
+msgctxt "teditqso_form.label14.caption"
+msgid "Grid"
+msgstr ""
+
+#: teditqso_form.label15.caption
+msgctxt "teditqso_form.label15.caption"
+msgid "Sub. State"
+msgstr ""
+
+#: teditqso_form.label16.caption
+msgctxt "teditqso_form.label16.caption"
+msgid "Continent"
+msgstr ""
+
+#: teditqso_form.label17.caption
+msgctxt "teditqso_form.label17.caption"
+msgid "Mode"
+msgstr ""
+
+#: teditqso_form.label18.caption
+msgctxt "teditqso_form.label18.caption"
+msgid "Band"
+msgstr ""
+
+#: teditqso_form.label19.caption
+msgctxt "teditqso_form.label19.caption"
+msgid "State"
+msgstr ""
+
+#: teditqso_form.label2.caption
+msgctxt "teditqso_form.label2.caption"
+msgid "Date"
+msgstr ""
+
+#: teditqso_form.label20.caption
+msgctxt "teditqso_form.label20.caption"
+msgid "IOTA"
+msgstr ""
+
+#: teditqso_form.label21.caption
+msgctxt "teditqso_form.label21.caption"
+msgid "Satelite"
+msgstr ""
+
+#: teditqso_form.label22.caption
+msgid "Satelite mode"
+msgstr ""
+
+#: teditqso_form.label23.caption
+msgid "Propagation"
+msgstr ""
+
+#: teditqso_form.label24.caption
+msgctxt "teditqso_form.label24.caption"
+msgid "QSL получена через"
+msgstr ""
+
+#: teditqso_form.label25.caption
+msgid "QSL manager"
+msgstr ""
+
+#: teditqso_form.label26.caption
+msgid "QSL was sent via"
+msgstr ""
+
+#: teditqso_form.label27.caption
+msgctxt "teditqso_form.label27.caption"
+msgid "QSL Info"
+msgstr ""
+
+#: teditqso_form.label3.caption
+msgctxt "teditqso_form.label3.caption"
+msgid "Report sent"
+msgstr ""
+
+#: teditqso_form.label4.caption
+msgctxt "teditqso_form.label4.caption"
+msgid "Report rcvd"
+msgstr ""
+
+#: teditqso_form.label5.caption
+msgctxt "teditqso_form.label5.caption"
+msgid "Name"
+msgstr ""
+
+#: teditqso_form.label6.caption
+msgctxt "teditqso_form.label6.caption"
+msgid "QTH"
+msgstr ""
+
+#: teditqso_form.label7.caption
+msgid "Note for"
+msgstr ""
+
+#: teditqso_form.label8.caption
+msgid "this"
+msgstr ""
+
+#: teditqso_form.label9.caption
+msgid "QSO"
+msgstr ""
+
+#: teditqso_form.radiobutton1.caption
+msgid "Sent"
+msgstr ""
+
+#: teditqso_form.radiobutton2.caption
+msgid "Printed"
+msgstr ""
+
+#: teditqso_form.radiobutton3.caption
+msgid "Queued"
+msgstr ""
+
+#: teditqso_form.radiobutton4.caption
+msgctxt "teditqso_form.radiobutton4.caption"
+msgid "Wasn't sent"
+msgstr ""
+
+#: teditqso_form.radiobutton5.caption
+msgid "Do not send"
+msgstr ""
+
+#: teditqso_form.speedbutton1.caption
+msgctxt "teditqso_form.speedbutton1.caption"
+msgid "..."
+msgstr ""
+
+#: teditqso_form.speedbutton1.hint
+msgctxt "teditqso_form.speedbutton1.hint"
+msgid "Изменить информацию по стране"
+msgstr ""
+
+#: teditqso_form.speedbutton10.caption
+msgctxt "teditqso_form.speedbutton10.caption"
+msgid "..."
+msgstr ""
+
+#: teditqso_form.speedbutton12.caption
+msgctxt "teditqso_form.speedbutton12.caption"
+msgid "..."
+msgstr ""
+
+#: teditqso_form.speedbutton2.caption
+msgctxt "teditqso_form.speedbutton2.caption"
+msgid "..."
+msgstr ""
+
+#: teditqso_form.speedbutton2.hint
+msgctxt "teditqso_form.speedbutton2.hint"
+msgid "Изменить информацию по стране"
+msgstr ""
+
+#: teditqso_form.speedbutton3.caption
+msgctxt "teditqso_form.speedbutton3.caption"
+msgid "..."
+msgstr ""
+
+#: teditqso_form.speedbutton4.caption
+msgid ".4."
+msgstr ""
+
+#: teditqso_form.speedbutton5.caption
+msgid ".3."
+msgstr ""
+
+#: teditqso_form.speedbutton6.caption
+msgid ".2."
+msgstr ""
+
+#: teditqso_form.speedbutton7.caption
+msgid ".1."
+msgstr ""
+
+#: teditqso_form.speedbutton8.caption
+msgctxt "teditqso_form.speedbutton8.caption"
+msgid "..."
+msgstr ""
+
+#: teditqso_form.speedbutton9.caption
+msgctxt "teditqso_form.speedbutton9.caption"
+msgid "..."
+msgstr ""
+
+#: teditqso_form.tabsheet1.caption
+msgctxt "teditqso_form.tabsheet1.caption"
+msgid "QSL"
+msgstr ""
+
+#: teditqso_form.tabsheet2.caption
+msgctxt "teditqso_form.tabsheet2.caption"
+msgid "Log"
+msgstr ""
+
+#: teditqso_form.tabsheet3.caption
+msgctxt "teditqso_form.tabsheet3.caption"
+msgid "Awards"
+msgstr ""
+
+#: teditqso_form.tabsheet4.caption
+msgctxt "teditqso_form.tabsheet4.caption"
+msgid "Awards"
+msgstr ""
+
+#: teditqso_form.tabsheet5.caption
+msgid "Auto credit for the award"
+msgstr ""
+
+#: texportadifform.button1.caption
+msgid "Export"
+msgstr ""
+
+#: texportadifform.button2.caption
+msgctxt "texportadifform.button2.caption"
+msgid "Close"
+msgstr ""
+
+#: texportadifform.caption
+msgctxt "texportadifform.caption"
+msgid "Export ADIF"
+msgstr ""
+
+#: texportadifform.checkbox1.caption
+msgctxt "texportadifform.checkbox1.caption"
+msgid "Export to ADIF"
+msgstr ""
+
+#: texportadifform.checkbox2.caption
+msgid "Export on Win1251"
+msgstr ""
+
+#: texportadifform.checkbox3.caption
+msgid "Export to eQSL"
+msgstr ""
+
+#: texportadifform.label1.caption
+msgid "Количество связей: 0"
+msgstr ""
+
+#: texportadifform.label3.caption
+msgid "From"
+msgstr ""
+
+#: texportadifform.label4.caption
+msgid "To"
+msgstr ""
+
+#: texportadifform.radiobutton1.caption
+msgid "Selected date interval"
+msgstr ""
+
+#: texportadifform.rbfileexportall.caption
+msgid "Export all showed contacts"
+msgstr ""
+
+#: tfilterform.caption
+msgctxt "tfilterform.caption"
+msgid "Record Filter"
+msgstr ""
+
+#: thiddensettings.button1.caption
+msgctxt "thiddensettings.button1.caption"
+msgid "Сохранить"
+msgstr ""
+
+#: thiddensettings.caption
+msgid "Скрытые настройки"
+msgstr ""
+
+#: thiddensettings.checkbox1.caption
+msgid "Использовать API CAT"
+msgstr ""
+
+#: thiddensettings.checkbox2.caption
+msgid "Использовать API отправки"
+msgstr ""
+
+#: thiddensettings.groupbox1.caption
+msgid "Настройки Cloudlog"
+msgstr ""
+
+#: thiddensettings.groupbox2.caption
+msgid "Отправка на Cloudlog"
+msgstr ""
+
+#: thiddensettings.labelededit1.editlabel.caption
+msgid "Адрес сервера"
+msgstr ""
+
+#: thiddensettings.labelededit2.editlabel.caption
+msgid "API ключ"
+msgstr ""
+
+#: timportadifform.button1.caption
+msgid "Import"
+msgstr ""
+
+#: timportadifform.button2.caption
+msgctxt "timportadifform.button2.caption"
+msgid "Cancel"
+msgstr ""
+
+#: timportadifform.caption
+msgid "Import from ADIF"
+msgstr ""
+
+#: timportadifform.checkbox1.caption
+msgid "Compute DXCC from callsign"
+msgstr ""
+
+#: timportadifform.checkbox2.caption
+msgid "Remove Duplicates"
+msgstr ""
+
+#: timportadifform.groupbox1.caption
+msgid "Save time"
+msgstr ""
+
+#: timportadifform.label1.caption
+msgid "Comment for all imported records"
+msgstr ""
+
+#: timportadifform.label2.caption
+msgid "Количество дубликатов"
+msgstr ""
+
+#: timportadifform.label3.caption
+msgid "Состояние"
+msgstr ""
+
+#: timportadifform.lblcomplete.caption
+msgctxt "timportadifform.lblcomplete.caption"
+msgid "Ожидание"
+msgstr ""
+
+#: timportadifform.lblcount.caption
+msgid "Импортировано записей"
+msgstr ""
+
+#: timportadifform.lblerrorlog.caption
+msgid "Файл ошибок"
+msgstr ""
+
+#: timportadifform.lblerrors.caption
+msgid "Ошибки импортирования"
+msgstr ""
+
+#: timportadifform.radiobutton1.caption
+msgid "Time OFF QSO"
+msgstr ""
+
+#: timportadifform.radiobutton2.caption
+msgid "Time ON QSO"
+msgstr ""
+
+#: tinformationform.button1.caption
+msgid "All copy"
+msgstr ""
+
+#: tinformationform.button2.caption
+msgid "QRZCQ"
+msgstr ""
+
+#: tinformationform.button3.caption
+msgid "Открыть URL"
+msgstr ""
+
+#: tinformationform.button4.caption
+msgid "Copy comment"
+msgstr ""
+
+#: tinformationform.button5.caption
+msgid "PSK Reporter"
+msgstr ""
+
+#: tinformationform.button6.caption
+msgid "ClubLOG"
+msgstr ""
+
+#: tinformationform.caption
+msgctxt "tinformationform.caption"
+msgid "Information"
+msgstr ""
+
+#: tinformationform.checkbox1.caption
+msgid "QRZ.RU"
+msgstr ""
+
+#: tinformationform.checkbox2.caption
+msgid "HAMQTH"
+msgstr ""
+
+#: tinformationform.checkbox3.caption
+msgid "QRZ.COM"
+msgstr ""
+
+#: tinformationform.groupbox1.caption
+msgctxt "tinformationform.groupbox1.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tinformationform.groupbox2.caption
+msgid "Search in:"
+msgstr ""
+
+#: tinformationform.label1.caption
+msgctxt "tinformationform.label1.caption"
+msgid "Callsign:"
+msgstr ""
+
+#: tinformationform.label10.caption
+msgid "E-Mail:"
+msgstr ""
+
+#: tinformationform.label11.caption
+msgid "ICQ:"
+msgstr ""
+
+#: tinformationform.label12.caption
+msgid "QSL VIA:"
+msgstr ""
+
+#: tinformationform.label13.caption
+msgid "Upload photos from the Internet to:"
+msgstr ""
+
+#: tinformationform.label14.caption
+msgctxt "tinformationform.label14.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label15.caption
+msgctxt "tinformationform.label15.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label16.caption
+msgctxt "tinformationform.label16.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label17.caption
+msgctxt "tinformationform.label17.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label18.caption
+msgctxt "tinformationform.label18.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label19.caption
+msgctxt "tinformationform.label19.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label2.caption
+msgid "Country:"
+msgstr ""
+
+#: tinformationform.label20.caption
+msgctxt "tinformationform.label20.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label21.caption
+msgctxt "tinformationform.label21.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label22.caption
+msgctxt "tinformationform.label22.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label23.caption
+msgctxt "tinformationform.label23.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label24.caption
+msgctxt "tinformationform.label24.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label25.caption
+msgctxt "tinformationform.label25.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label26.caption
+msgctxt "tinformationform.label26.caption"
+msgid "text"
+msgstr ""
+
+#: tinformationform.label3.caption
+msgctxt "tinformationform.label3.caption"
+msgid "Name:"
+msgstr ""
+
+#: tinformationform.label4.caption
+msgid "Address 1:"
+msgstr ""
+
+#: tinformationform.label5.caption
+msgid "Address:"
+msgstr ""
+
+#: tinformationform.label6.caption
+msgid "Grid:"
+msgstr ""
+
+#: tinformationform.label7.caption
+msgid "Home page:"
+msgstr ""
+
+#: tinformationform.label8.caption
+msgid "State:"
+msgstr ""
+
+#: tinformationform.label9.caption
+msgid "Telephone:"
+msgstr ""
+
+#: tiota_form.button1.caption
+msgctxt "tiota_form.button1.caption"
+msgid "Close"
+msgstr ""
+
+#: tiota_form.caption
+msgctxt "tiota_form.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tiota_form.dbgrid1.columns[0].title.caption
+msgctxt "tiota_form.dbgrid1.columns[0].title.caption"
+msgid "id"
+msgstr ""
+
+#: tiota_form.dbgrid1.columns[1].title.caption
+msgctxt "tiota_form.dbgrid1.columns[1].title.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tiota_form.dbgrid1.columns[2].title.caption
+msgctxt "tiota_form.dbgrid1.columns[2].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tiota_form.dbgrid1.columns[3].title.caption
+msgctxt "tiota_form.dbgrid1.columns[3].title.caption"
+msgid "Prefix"
+msgstr ""
+
+#: tiota_form.dbgrid1.columns[4].title.caption
+msgctxt "tiota_form.dbgrid1.columns[4].title.caption"
+msgid "Prefix"
+msgstr ""
+
+#: tiota_form.label1.caption
+msgctxt "tiota_form.label1.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tiota_form.label2.caption
+msgctxt "tiota_form.label2.caption"
+msgid "Name"
+msgstr ""
+
+#: tlogconfigform.button1.caption
+msgctxt "tlogconfigform.button1.caption"
+msgid "Сохранить"
+msgstr ""
+
+#: tlogconfigform.button2.caption
+msgctxt "tlogconfigform.button2.caption"
+msgid "Отмена"
+msgstr ""
+
+#: tlogconfigform.caption
+msgctxt "tlogconfigform.caption"
+msgid "Logs configuration"
+msgstr ""
+
+#: tlogconfigform.checkbox1.caption
+msgctxt "tlogconfigform.checkbox1.caption"
+msgid "Upload every time a logbook entry is added"
+msgstr ""
+
+#: tlogconfigform.checkbox2.caption
+msgctxt "tlogconfigform.checkbox2.caption"
+msgid "Upload every time a logbook entry is added"
+msgstr ""
+
+#: tlogconfigform.checkbox3.caption
+msgctxt "tlogconfigform.checkbox3.caption"
+msgid "Upload every time a logbook entry is added"
+msgstr ""
+
+#: tlogconfigform.combobox1.text
+msgctxt "tlogconfigform.combobox1.text"
+msgid "A"
+msgstr ""
+
+#: tlogconfigform.edit10.text
+msgid "TNX For QSO TU 73!"
+msgstr ""
+
+#: tlogconfigform.label1.caption
+msgctxt "tlogconfigform.label1.caption"
+msgid "Log"
+msgstr ""
+
+#: tlogconfigform.label10.caption
+msgctxt "tlogconfigform.label10.caption"
+msgid "CQ"
+msgstr ""
+
+#: tlogconfigform.label11.caption
+msgctxt "tlogconfigform.label11.caption"
+msgid "Grid"
+msgstr ""
+
+#: tlogconfigform.label12.caption
+msgctxt "tlogconfigform.label12.caption"
+msgid "Latitude"
+msgstr ""
+
+#: tlogconfigform.label13.caption
+msgctxt "tlogconfigform.label13.caption"
+msgid "Longitude"
+msgstr ""
+
+#: tlogconfigform.label14.caption
+msgid "QSL info (Default)"
+msgstr ""
+
+#: tlogconfigform.label15.caption
+msgid "*"
+msgstr ""
+
+#: tlogconfigform.label16.caption
+msgid "eQSLcc"
+msgstr ""
+
+#: tlogconfigform.label17.caption
+msgctxt "tlogconfigform.label17.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.label18.caption
+msgctxt "tlogconfigform.label18.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.label19.caption
+msgid "HRDlog"
+msgstr ""
+
+#: tlogconfigform.label2.caption
+msgctxt "tlogconfigform.label2.caption"
+msgid "Description"
+msgstr ""
+
+#: tlogconfigform.label20.caption
+msgctxt "tlogconfigform.label20.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.label21.caption
+msgid "Upload code"
+msgstr ""
+
+#: tlogconfigform.label22.caption
+msgid "HamQTH"
+msgstr ""
+
+#: tlogconfigform.label23.caption
+msgctxt "tlogconfigform.label23.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.label24.caption
+msgctxt "tlogconfigform.label24.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.label3.caption
+msgctxt "tlogconfigform.label3.caption"
+msgid "Log set"
+msgstr ""
+
+#: tlogconfigform.label4.caption
+msgctxt "tlogconfigform.label4.caption"
+msgid "Station detalis"
+msgstr ""
+
+#: tlogconfigform.label5.caption
+msgctxt "tlogconfigform.label5.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tlogconfigform.label6.caption
+msgctxt "tlogconfigform.label6.caption"
+msgid "Name"
+msgstr ""
+
+#: tlogconfigform.label7.caption
+msgctxt "tlogconfigform.label7.caption"
+msgid "QTH"
+msgstr ""
+
+#: tlogconfigform.label8.caption
+msgid "Location information"
+msgstr ""
+
+#: tlogconfigform.label9.caption
+msgctxt "tlogconfigform.label9.caption"
+msgid "ITU"
+msgstr ""
+
+#: tlogconfigform.menuitem1.caption
+msgid "Добавить новый журнал"
+msgstr ""
+
+#: tlogconfigform.menuitem3.caption
+msgid "Удалить журнал"
+msgstr ""
+
+#: tlogconfigform.menuitem4.caption
+msgid "Сделать по умолчанию"
+msgstr ""
+
+#: tlogconfigform.tabsheet1.caption
+msgid "Operator"
+msgstr ""
+
+#: tlogconfigform.tabsheet2.caption
+msgid "Services"
+msgstr ""
+
+#: tmainform.caption
+msgid "EWLog - Аппаратный журнал"
+msgstr ""
+
+#: tmainform.checkbox1.caption
+msgid "Real time"
+msgstr ""
+
+#: tmainform.checkbox2.caption
+msgid "Save in UTC"
+msgstr ""
+
+#: tmainform.checkbox3.caption
+msgid "Map"
+msgstr ""
+
+#: tmainform.checkbox5.caption
+msgid "Метка"
+msgstr ""
+
+#: tmainform.checkbox6.caption
+msgid "Filter"
+msgstr ""
+
+#: tmainform.combobox1.text
+msgctxt "tmainform.combobox1.text"
+msgid "7.000.00"
+msgstr ""
+
+#: tmainform.combobox2.text
+msgctxt "tmainform.combobox2.text"
+msgid "SSB"
+msgstr ""
+
+#: tmainform.combobox4.text
+msgctxt "tmainform.combobox4.text"
+msgid "59"
+msgstr ""
+
+#: tmainform.combobox5.text
+msgctxt "tmainform.combobox5.text"
+msgid "59"
+msgstr ""
+
+#: tmainform.combobox7.text
+msgctxt "tmainform.combobox7.text"
+msgid "Не отправлена"
+msgstr ""
+
+#: tmainform.dateedit1.text
+msgid "  .  .    "
+msgstr ""
+
+#: tmainform.datetimepicker1.textfornulldate
+msgctxt "tmainform.datetimepicker1.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[0].title.caption
+msgctxt "tmainform.dbgrid1.columns[0].title.caption"
+msgid "QSL"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[10].title.caption
+msgctxt "tmainform.dbgrid1.columns[10].title.caption"
+msgid "Grid"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[11].title.caption
+msgctxt "tmainform.dbgrid1.columns[11].title.caption"
+msgid "RSTs"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[12].title.caption
+msgctxt "tmainform.dbgrid1.columns[12].title.caption"
+msgid "RSTr"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[13].title.caption
+msgctxt "tmainform.dbgrid1.columns[13].title.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[14].title.caption
+msgctxt "tmainform.dbgrid1.columns[14].title.caption"
+msgid "Manager"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[15].title.caption
+msgctxt "tmainform.dbgrid1.columns[15].title.caption"
+msgid "QSLs Date"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[16].title.caption
+msgctxt "tmainform.dbgrid1.columns[16].title.caption"
+msgid "QSLr Date"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[17].title.caption
+msgctxt "tmainform.dbgrid1.columns[17].title.caption"
+msgid "LOTWr Date"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[18].title.caption
+msgctxt "tmainform.dbgrid1.columns[18].title.caption"
+msgid "Префикс"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[19].title.caption
+msgctxt "tmainform.dbgrid1.columns[19].title.caption"
+msgid "DXCC"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[1].title.caption
+msgctxt "tmainform.dbgrid1.columns[1].title.caption"
+msgid "QSLs"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[20].title.caption
+msgctxt "tmainform.dbgrid1.columns[20].title.caption"
+msgid "CQ Zone"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[21].title.caption
+msgctxt "tmainform.dbgrid1.columns[21].title.caption"
+msgid "ITU Zone"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[22].title.caption
+msgctxt "tmainform.dbgrid1.columns[22].title.caption"
+msgid "Manual Set"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[23].title.caption
+msgctxt "tmainform.dbgrid1.columns[23].title.caption"
+msgid "Continent"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[24].title.caption
+msgctxt "tmainform.dbgrid1.columns[24].title.caption"
+msgid "Valid DX"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[25].title.caption
+msgctxt "tmainform.dbgrid1.columns[25].title.caption"
+msgid "QSL r VIA"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[26].title.caption
+msgctxt "tmainform.dbgrid1.columns[26].title.caption"
+msgid "QSL s VIA"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[27].title.caption
+msgctxt "tmainform.dbgrid1.columns[27].title.caption"
+msgid "User"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[28].title.caption
+msgctxt "tmainform.dbgrid1.columns[28].title.caption"
+msgid "No calc DXCC"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[2].title.caption
+msgctxt "tmainform.dbgrid1.columns[2].title.caption"
+msgid "Date"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[3].title.caption
+msgctxt "tmainform.dbgrid1.columns[3].title.caption"
+msgid "Time"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[4].title.caption
+msgctxt "tmainform.dbgrid1.columns[4].title.caption"
+msgid "Band"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[5].title.caption
+msgctxt "tmainform.dbgrid1.columns[5].title.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[6].title.caption
+msgctxt "tmainform.dbgrid1.columns[6].title.caption"
+msgid "Mode"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[7].title.caption
+msgctxt "tmainform.dbgrid1.columns[7].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[8].title.caption
+msgctxt "tmainform.dbgrid1.columns[8].title.caption"
+msgid "QTH"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[9].title.caption
+msgctxt "tmainform.dbgrid1.columns[9].title.caption"
+msgid "State"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[0].title.caption
+msgctxt "tmainform.dbgrid2.columns[0].title.caption"
+msgid "QSL"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[10].title.caption
+msgctxt "tmainform.dbgrid2.columns[10].title.caption"
+msgid "Grid"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[11].title.caption
+msgctxt "tmainform.dbgrid2.columns[11].title.caption"
+msgid "RSTs"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[12].title.caption
+msgctxt "tmainform.dbgrid2.columns[12].title.caption"
+msgid "RSTr"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[13].title.caption
+msgctxt "tmainform.dbgrid2.columns[13].title.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[14].title.caption
+msgctxt "tmainform.dbgrid2.columns[14].title.caption"
+msgid "Manager"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[15].title.caption
+msgctxt "tmainform.dbgrid2.columns[15].title.caption"
+msgid "QSLs Date"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[16].title.caption
+msgctxt "tmainform.dbgrid2.columns[16].title.caption"
+msgid "QSLr Date"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[17].title.caption
+msgctxt "tmainform.dbgrid2.columns[17].title.caption"
+msgid "LOTWr Date"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[18].title.caption
+msgctxt "tmainform.dbgrid2.columns[18].title.caption"
+msgid "Префикс"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[19].title.caption
+msgctxt "tmainform.dbgrid2.columns[19].title.caption"
+msgid "DXCC"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[1].title.caption
+msgctxt "tmainform.dbgrid2.columns[1].title.caption"
+msgid "QSLs"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[20].title.caption
+msgctxt "tmainform.dbgrid2.columns[20].title.caption"
+msgid "CQ Zone"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[21].title.caption
+msgctxt "tmainform.dbgrid2.columns[21].title.caption"
+msgid "ITU Zone"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[22].title.caption
+msgctxt "tmainform.dbgrid2.columns[22].title.caption"
+msgid "Manual Set"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[23].title.caption
+msgctxt "tmainform.dbgrid2.columns[23].title.caption"
+msgid "Continent"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[24].title.caption
+msgctxt "tmainform.dbgrid2.columns[24].title.caption"
+msgid "Valid DX"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[25].title.caption
+msgctxt "tmainform.dbgrid2.columns[25].title.caption"
+msgid "QSL r VIA"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[26].title.caption
+msgctxt "tmainform.dbgrid2.columns[26].title.caption"
+msgid "QSL s VIA"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[27].title.caption
+msgctxt "tmainform.dbgrid2.columns[27].title.caption"
+msgid "User"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[28].title.caption
+msgctxt "tmainform.dbgrid2.columns[28].title.caption"
+msgid "No calc DXCC"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[2].title.caption
+msgctxt "tmainform.dbgrid2.columns[2].title.caption"
+msgid "Date"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[3].title.caption
+msgctxt "tmainform.dbgrid2.columns[3].title.caption"
+msgid "Time"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[4].title.caption
+msgctxt "tmainform.dbgrid2.columns[4].title.caption"
+msgid "Band"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[5].title.caption
+msgctxt "tmainform.dbgrid2.columns[5].title.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[6].title.caption
+msgctxt "tmainform.dbgrid2.columns[6].title.caption"
+msgid "Mode"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[7].title.caption
+msgctxt "tmainform.dbgrid2.columns[7].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[8].title.caption
+msgctxt "tmainform.dbgrid2.columns[8].title.caption"
+msgid "QTH"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[9].title.caption
+msgctxt "tmainform.dbgrid2.columns[9].title.caption"
+msgid "State"
+msgstr ""
+
+#: tmainform.label1.caption
+msgctxt "tmainform.label1.caption"
+msgid "Date"
+msgstr ""
+
+#: tmainform.label10.caption
+msgid "QSL Via"
+msgstr ""
+
+#: tmainform.label11.caption
+msgctxt "tmainform.label11.caption"
+msgid "Grid"
+msgstr ""
+
+#: tmainform.label12.caption
+msgctxt "tmainform.label12.caption"
+msgid "State"
+msgstr ""
+
+#: tmainform.label13.caption
+msgctxt "tmainform.label13.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tmainform.label14.caption
+msgid "MGR"
+msgstr ""
+
+#: tmainform.label15.caption
+msgctxt "tmainform.label15.caption"
+msgid "Sub. State"
+msgstr ""
+
+#: tmainform.label16.caption
+msgctxt "tmainform.label16.caption"
+msgid "Comment"
+msgstr ""
+
+#: tmainform.label17.caption
+msgid "1"
+msgstr ""
+
+#: tmainform.label18.caption
+msgctxt "tmainform.label18.caption"
+msgid "Date"
+msgstr ""
+
+#: tmainform.label19.caption
+msgctxt "tmainform.label19.caption"
+msgid "Time"
+msgstr ""
+
+#: tmainform.label2.caption
+msgctxt "tmainform.label2.caption"
+msgid "Band"
+msgstr ""
+
+#: tmainform.label20.caption
+msgctxt "tmainform.label20.caption"
+msgid "Frequency"
+msgstr ""
+
+#: tmainform.label21.caption
+msgctxt "tmainform.label21.caption"
+msgid "Mode"
+msgstr ""
+
+#: tmainform.label22.caption
+msgctxt "tmainform.label22.caption"
+msgid "Name"
+msgstr ""
+
+#: tmainform.label23.caption
+msgid "Local time "
+msgstr ""
+
+#: tmainform.label24.caption
+msgctxt "tmainform.label24.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tmainform.label25.caption
+msgctxt "tmainform.label25.caption"
+msgid "UTC"
+msgstr ""
+
+#: tmainform.label26.caption
+msgctxt "tmainform.label26.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tmainform.label27.caption
+msgid "Remote time"
+msgstr ""
+
+#: tmainform.label28.caption
+msgctxt "tmainform.label28.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tmainform.label29.caption
+msgid "Azimuth"
+msgstr ""
+
+#: tmainform.label3.caption
+msgctxt "tmainform.label3.caption"
+msgid "Mode"
+msgstr ""
+
+#: tmainform.label30.caption
+msgctxt "tmainform.label30.caption"
+msgid "Territory"
+msgstr ""
+
+#: tmainform.label31.caption
+msgctxt "tmainform.label31.caption"
+msgid "DXCC"
+msgstr ""
+
+#: tmainform.label32.caption
+msgctxt "tmainform.label32.caption"
+msgid "......."
+msgstr ""
+
+#: tmainform.label33.caption
+msgctxt "tmainform.label33.caption"
+msgid "......."
+msgstr ""
+
+#: tmainform.label34.caption
+msgctxt "tmainform.label34.caption"
+msgid "......."
+msgstr ""
+
+#: tmainform.label35.caption
+msgid "Distance"
+msgstr ""
+
+#: tmainform.label36.caption
+msgctxt "tmainform.label36.caption"
+msgid "Prefix"
+msgstr ""
+
+#: tmainform.label37.caption
+msgctxt "tmainform.label37.caption"
+msgid "......."
+msgstr ""
+
+#: tmainform.label38.caption
+msgctxt "tmainform.label38.caption"
+msgid "......."
+msgstr ""
+
+#: tmainform.label39.caption
+msgctxt "tmainform.label39.caption"
+msgid "Latitude"
+msgstr ""
+
+#: tmainform.label4.caption
+msgid "Time (UTC)"
+msgstr ""
+
+#: tmainform.label40.caption
+msgctxt "tmainform.label40.caption"
+msgid "......."
+msgstr ""
+
+#: tmainform.label41.caption
+msgctxt "tmainform.label41.caption"
+msgid "Longitude"
+msgstr ""
+
+#: tmainform.label42.caption
+msgctxt "tmainform.label42.caption"
+msgid "......."
+msgstr ""
+
+#: tmainform.label43.caption
+msgctxt "tmainform.label43.caption"
+msgid "......."
+msgstr ""
+
+#: tmainform.label44.caption
+msgctxt "tmainform.label44.caption"
+msgid "CQ"
+msgstr ""
+
+#: tmainform.label45.caption
+msgctxt "tmainform.label45.caption"
+msgid ".."
+msgstr ""
+
+#: tmainform.label46.caption
+msgctxt "tmainform.label46.caption"
+msgid "ITU"
+msgstr ""
+
+#: tmainform.label47.caption
+msgctxt "tmainform.label47.caption"
+msgid ".."
+msgstr ""
+
+#: tmainform.label48.caption
+msgid "Your QSL"
+msgstr ""
+
+#: tmainform.label49.caption
+msgid "Current log"
+msgstr ""
+
+#: tmainform.label5.caption
+msgctxt "tmainform.label5.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tmainform.label50.caption
+msgid "Доступно новое обновление"
+msgstr ""
+
+#: tmainform.label6.caption
+msgctxt "tmainform.label6.caption"
+msgid "Name"
+msgstr ""
+
+#: tmainform.label7.caption
+msgctxt "tmainform.label7.caption"
+msgid "QTH"
+msgstr ""
+
+#: tmainform.label8.caption
+msgctxt "tmainform.label8.caption"
+msgid "RST отп"
+msgstr ""
+
+#: tmainform.label9.caption
+msgctxt "tmainform.label9.caption"
+msgid "RST пол"
+msgstr ""
+
+#: tmainform.menuitem1.caption
+msgctxt "tmainform.menuitem1.caption"
+msgid "LogBook"
+msgstr ""
+
+#: tmainform.menuitem10.caption
+msgid "QSL получена + поставить QSO в очередь на печать"
+msgstr ""
+
+#: tmainform.menuitem101.caption
+msgid "Регистрация"
+msgstr ""
+
+#: tmainform.menuitem102.caption
+msgid "Пожертвования"
+msgstr ""
+
+#: tmainform.menuitem103.caption
+msgctxt "tmainform.menuitem103.caption"
+msgid "Фильтр записей"
+msgstr ""
+
+#: tmainform.menuitem104.caption
+msgid "Полученные QSL"
+msgstr ""
+
+#: tmainform.menuitem105.caption
+msgid "Отправленные QSL"
+msgstr ""
+
+#: tmainform.menuitem106.caption
+msgid "Не отправленные QSL"
+msgstr ""
+
+#: tmainform.menuitem107.caption
+msgctxt "tmainform.menuitem107.caption"
+msgid "QSL напечатана"
+msgstr ""
+
+#: tmainform.menuitem108.caption
+msgctxt "tmainform.menuitem108.caption"
+msgid "QSL не отправлять"
+msgstr ""
+
+#: tmainform.menuitem109.caption
+msgid "Отменить фильтр"
+msgstr ""
+
+#: tmainform.menuitem11.caption
+msgid "QSL получена"
+msgstr ""
+
+#: tmainform.menuitem110.caption
+msgid "Отображение фото с QRZ.RU"
+msgstr ""
+
+#: tmainform.menuitem111.caption
+msgid "Включить"
+msgstr ""
+
+#: tmainform.menuitem112.caption
+msgid "Отключить"
+msgstr ""
+
+#: tmainform.menuitem113.caption
+msgid "Вставить в поле Позывной"
+msgstr ""
+
+#: tmainform.menuitem114.caption
+msgid "Удалить спот"
+msgstr ""
+
+#: tmainform.menuitem115.caption
+msgid "Очистить окно"
+msgstr ""
+
+#: tmainform.menuitem12.caption
+msgid "Поставить QSO в очередь на печать"
+msgstr ""
+
+#: tmainform.menuitem13.caption
+msgctxt "tmainform.menuitem13.caption"
+msgid "QSL напечатана"
+msgstr ""
+
+#: tmainform.menuitem14.caption
+msgid "QSL отправлена"
+msgstr ""
+
+#: tmainform.menuitem15.caption
+msgctxt "tmainform.menuitem15.caption"
+msgid "QSL Инфо"
+msgstr ""
+
+#: tmainform.menuitem16.caption
+msgid "QSL не отправлена"
+msgstr ""
+
+#: tmainform.menuitem17.caption
+msgctxt "tmainform.menuitem17.caption"
+msgid "QSL не отправлять"
+msgstr ""
+
+#: tmainform.menuitem18.caption
+msgid "Поиск информации о менеджере в Интернете"
+msgstr ""
+
+#: tmainform.menuitem2.caption
+msgid "Settings"
+msgstr ""
+
+#: tmainform.menuitem20.caption
+msgctxt "tmainform.menuitem20.caption"
+msgid "QSL получена через"
+msgstr ""
+
+#: tmainform.menuitem21.caption
+msgctxt "tmainform.menuitem21.caption"
+msgid "B - Бюро"
+msgstr ""
+
+#: tmainform.menuitem22.caption
+msgctxt "tmainform.menuitem22.caption"
+msgid "D - Direct"
+msgstr ""
+
+#: tmainform.menuitem23.caption
+msgctxt "tmainform.menuitem23.caption"
+msgid "E - Electronic"
+msgstr ""
+
+#: tmainform.menuitem24.caption
+msgctxt "tmainform.menuitem24.caption"
+msgid "M - Менеджер"
+msgstr ""
+
+#: tmainform.menuitem25.caption
+msgctxt "tmainform.menuitem25.caption"
+msgid "G - GlobalQSL"
+msgstr ""
+
+#: tmainform.menuitem26.caption
+msgid "QSL отправлена через"
+msgstr ""
+
+#: tmainform.menuitem27.caption
+msgctxt "tmainform.menuitem27.caption"
+msgid "B - Бюро"
+msgstr ""
+
+#: tmainform.menuitem28.caption
+msgctxt "tmainform.menuitem28.caption"
+msgid "D - Direct"
+msgstr ""
+
+#: tmainform.menuitem29.caption
+msgctxt "tmainform.menuitem29.caption"
+msgid "E - Electronic"
+msgstr ""
+
+#: tmainform.menuitem3.caption
+msgid "View"
+msgstr ""
+
+#: tmainform.menuitem30.caption
+msgctxt "tmainform.menuitem30.caption"
+msgid "M - Менеджер"
+msgstr ""
+
+#: tmainform.menuitem31.caption
+msgctxt "tmainform.menuitem31.caption"
+msgid "G - GlobalQSL"
+msgstr ""
+
+#: tmainform.menuitem33.caption
+msgid "Сохранить в базу \"Уникальные позывные\""
+msgstr ""
+
+#: tmainform.menuitem35.caption
+msgid "Выбрать все записи"
+msgstr ""
+
+#: tmainform.menuitem36.caption
+msgid "Экспорт выбранных QSO в файл ADIF"
+msgstr ""
+
+#: tmainform.menuitem37.caption
+msgid "Экспорт QSO в HRDLOG.Net"
+msgstr ""
+
+#: tmainform.menuitem38.caption
+msgid "Экспорт выбранных QSO на eQSL.cc"
+msgstr ""
+
+#: tmainform.menuitem4.caption
+msgctxt "tmainform.menuitem4.caption"
+msgid "External programs"
+msgstr ""
+
+#: tmainform.menuitem40.caption
+msgid "Быстрое редактирование QSO"
+msgstr ""
+
+#: tmainform.menuitem41.caption
+msgctxt "tmainform.menuitem41.caption"
+msgid "Менеджер базы префиксов"
+msgstr ""
+
+#: tmainform.menuitem42.caption
+msgctxt "tmainform.menuitem42.caption"
+msgid "Редактировать QSO"
+msgstr ""
+
+#: tmainform.menuitem43.caption
+msgctxt "tmainform.menuitem43.caption"
+msgid "WSJT-X"
+msgstr ""
+
+#: tmainform.menuitem45.caption
+msgid "Копировать в другой журнал"
+msgstr ""
+
+#: tmainform.menuitem46.caption
+msgid "Сохранить в Excel"
+msgstr ""
+
+#: tmainform.menuitem48.caption
+msgid "Выбрать дату синхронизации"
+msgstr ""
+
+#: tmainform.menuitem49.caption
+msgid "Отправить в Telnet кластер"
+msgstr ""
+
+#: tmainform.menuitem5.caption
+msgid "Quick start"
+msgstr ""
+
+#: tmainform.menuitem51.caption
+msgid "Удалить запись"
+msgstr ""
+
+#: tmainform.menuitem52.caption
+msgctxt "tmainform.menuitem52.caption"
+msgid "Настройка программы"
+msgstr ""
+
+#: tmainform.menuitem53.caption
+msgid "формат ADIF"
+msgstr ""
+
+#: tmainform.menuitem54.caption
+msgid "Операции с журналом"
+msgstr ""
+
+#: tmainform.menuitem55.caption
+msgid "Открыть другой журнал"
+msgstr ""
+
+#: tmainform.menuitem56.caption
+msgid "Создать новый журнал"
+msgstr ""
+
+#: tmainform.menuitem58.caption
+msgid "Сжать и восстановить базу данных"
+msgstr ""
+
+#: tmainform.menuitem6.caption
+msgctxt "tmainform.menuitem6.caption"
+msgid "Help"
+msgstr ""
+
+#: tmainform.menuitem60.caption
+msgid "Сервисы eQSL и LOTW"
+msgstr ""
+
+#: tmainform.menuitem61.caption
+msgid "Экспорт данных из журнала в"
+msgstr ""
+
+#: tmainform.menuitem62.caption
+msgid "Импорт данных в журнал из"
+msgstr ""
+
+#: tmainform.menuitem63.caption
+msgctxt "tmainform.menuitem63.caption"
+msgid "Благодарность"
+msgstr ""
+
+#: tmainform.menuitem65.caption
+msgid "Очистить окно ввода QSO"
+msgstr ""
+
+#: tmainform.menuitem66.caption
+msgid "Сохранить QSO"
+msgstr ""
+
+#: tmainform.menuitem67.caption
+msgctxt "tmainform.menuitem67.caption"
+msgid "Редактировать QSO"
+msgstr ""
+
+#: tmainform.menuitem69.caption
+msgid "Закрыть журнал"
+msgstr ""
+
+#: tmainform.menuitem7.caption
+msgctxt "tmainform.menuitem7.caption"
+msgid "Конфигурация журнала"
+msgstr ""
+
+#: tmainform.menuitem70.caption
+msgid "Файла .ADIF"
+msgstr ""
+
+#: tmainform.menuitem71.caption
+msgid "Файла .TXT"
+msgstr ""
+
+#: tmainform.menuitem72.caption
+msgid "Компактный режим"
+msgstr ""
+
+#: tmainform.menuitem73.caption
+msgid "Нормальный режим"
+msgstr ""
+
+#: tmainform.menuitem74.caption
+msgctxt "tmainform.menuitem74.caption"
+msgid "Fldigi"
+msgstr ""
+
+#: tmainform.menuitem75.caption
+msgctxt "tmainform.menuitem75.caption"
+msgid "Изменить информацию по стране"
+msgstr ""
+
+#: tmainform.menuitem76.caption
+msgid "Установки фильтров"
+msgstr ""
+
+#: tmainform.menuitem78.caption
+msgctxt "tmainform.menuitem78.caption"
+msgid "Спутник"
+msgstr ""
+
+#: tmainform.menuitem79.caption
+msgctxt "tmainform.menuitem79.caption"
+msgid "Изменить информацию по стране"
+msgstr ""
+
+#: tmainform.menuitem8.caption
+msgctxt "tmainform.menuitem8.caption"
+msgid "Отметить QSO"
+msgstr ""
+
+#: tmainform.menuitem80.caption
+msgid "Изменить информацию по области"
+msgstr ""
+
+#: tmainform.menuitem81.caption
+msgid "Синхронизация баз данных"
+msgstr ""
+
+#: tmainform.menuitem82.caption
+msgid "Из MySQL в SQLite"
+msgstr ""
+
+#: tmainform.menuitem83.caption
+msgid "Из SQLite в MySQL"
+msgstr ""
+
+#: tmainform.menuitem84.caption
+msgctxt "tmainform.menuitem84.caption"
+msgid "Settings CAT"
+msgstr ""
+
+#: tmainform.menuitem85.caption
+msgid "Управление трансивером"
+msgstr ""
+
+#: tmainform.menuitem86.caption
+msgid "Отоброжать форму управления"
+msgstr ""
+
+#: tmainform.menuitem87.caption
+msgid "Настройки внешних программ"
+msgstr ""
+
+#: tmainform.menuitem88.caption
+msgid "Нет"
+msgstr ""
+
+#: tmainform.menuitem89.caption
+msgid "Переключить базу данных"
+msgstr ""
+
+#: tmainform.menuitem91.caption
+msgctxt "tmainform.menuitem91.caption"
+msgid "Wizard"
+msgstr ""
+
+#: tmainform.menuitem92.caption
+msgctxt "tmainform.menuitem92.caption"
+msgid "Обновление"
+msgstr ""
+
+#: tmainform.menuitem94.caption
+msgid "О Программе"
+msgstr ""
+
+#: tmainform.menuitem95.caption
+msgid "Свернуть в трей"
+msgstr ""
+
+#: tmainform.menuitem96.caption
+msgid "Развернуть"
+msgstr ""
+
+#: tmainform.menuitem98.caption
+msgid "Выход"
+msgstr ""
+
+#: tmainform.menuitem99.caption
+msgid "Настройки таблиц"
+msgstr ""
+
+#: tmainform.speedbutton1.caption
+msgctxt "tmainform.speedbutton1.caption"
+msgid " ... "
+msgstr ""
+
+#: tmainform.speedbutton2.caption
+msgctxt "tmainform.speedbutton2.caption"
+msgid " ... "
+msgstr ""
+
+#: tmainform.speedbutton3.caption
+msgctxt "tmainform.speedbutton3.caption"
+msgid " ... "
+msgstr ""
+
+#: tmainform.speedbutton4.caption
+msgid " .4. "
+msgstr ""
+
+#: tmainform.speedbutton5.caption
+msgid " .3. "
+msgstr ""
+
+#: tmainform.speedbutton6.caption
+msgid " .2. "
+msgstr ""
+
+#: tmainform.speedbutton7.caption
+msgid " .1. "
+msgstr ""
+
+#: tmainform.speedbutton8.hint
+msgid "Записать QSO"
+msgstr ""
+
+#: tmainform.speedbutton9.hint
+msgid "Очистить поле ввода"
+msgstr ""
+
+#: tmainform.tabsheet1.caption
+msgid "Telnet"
+msgstr ""
+
+#: tmainform.tabsheet2.caption
+msgctxt "tmainform.tabsheet2.caption"
+msgid "Telnet DX Cluster"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[0].text
+msgctxt "tmainform.virtualstringtree1.header.columns[0].text"
+msgid "Band"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[1].text
+msgctxt "tmainform.virtualstringtree1.header.columns[1].text"
+msgid "DX"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[2].text
+msgid "Spotter"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[3].text
+msgctxt "tmainform.virtualstringtree1.header.columns[3].text"
+msgid "Frequency"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[4].text
+msgctxt "tmainform.virtualstringtree1.header.columns[4].text"
+msgid "Mode"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[5].text
+msgctxt "tmainform.virtualstringtree1.header.columns[5].text"
+msgid "Comment"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[6].text
+msgctxt "tmainform.virtualstringtree1.header.columns[6].text"
+msgid "UTC"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[7].text
+msgctxt "tmainform.virtualstringtree1.header.columns[7].text"
+msgid "Grid"
+msgstr ""
+
+#: tmainform.virtualstringtree1.header.columns[8].text
+msgid "Country"
+msgstr ""
+
+#: tmanagerbaseprefixform.caption
+msgctxt "tmanagerbaseprefixform.caption"
+msgid "Менеджер базы префиксов"
+msgstr ""
+
+#: tmanagerbaseprefixform.tabsheet1.caption
+msgid "Уникальные позывные"
+msgstr ""
+
+#: tmanagerbaseprefixform.tabsheet2.caption
+msgid "Админ. районы (Области)"
+msgstr ""
+
+#: tmanagerbaseprefixform.tabsheet3.caption
+msgid "Территория (Страна)"
+msgstr ""
+
+#: tqslmanager_form.button1.caption
+msgctxt "tqslmanager_form.button1.caption"
+msgid "Сохранить"
+msgstr ""
+
+#: tqslmanager_form.button2.caption
+msgctxt "tqslmanager_form.button2.caption"
+msgid "Отмена"
+msgstr ""
+
+#: tqslmanager_form.button3.caption
+msgid "Очистить"
+msgstr ""
+
+#: tqslmanager_form.caption
+msgid "QSL Менеджер"
+msgstr ""
+
+#: tqslmanager_form.dbgrid1.columns[0].title.caption
+msgctxt "tqslmanager_form.dbgrid1.columns[0].title.caption"
+msgid "id"
+msgstr ""
+
+#: tqslmanager_form.dbgrid1.columns[1].title.caption
+msgctxt "tqslmanager_form.dbgrid1.columns[1].title.caption"
+msgid "Позывной"
+msgstr ""
+
+#: tqslmanager_form.dbgrid1.columns[2].title.caption
+msgctxt "tqslmanager_form.dbgrid1.columns[2].title.caption"
+msgid "Менеджер"
+msgstr ""
+
+#: tqslmanager_form.dbgrid1.columns[3].title.caption
+msgctxt "tqslmanager_form.dbgrid1.columns[3].title.caption"
+msgid "Дата"
+msgstr ""
+
+#: tqslmanager_form.dbgrid1.columns[4].title.caption
+msgctxt "tqslmanager_form.dbgrid1.columns[4].title.caption"
+msgid "Заметки"
+msgstr ""
+
+#: tqslmanager_form.dbgrid1.columns[5].title.caption
+msgid "Автор"
+msgstr ""
+
+#: tqslmanager_form.label1.caption
+msgctxt "tqslmanager_form.label1.caption"
+msgid "Позывной"
+msgstr ""
+
+#: tqslmanager_form.label2.caption
+msgctxt "tqslmanager_form.label2.caption"
+msgid "Позывной"
+msgstr ""
+
+#: tqslmanager_form.label3.caption
+msgctxt "tqslmanager_form.label3.caption"
+msgid "Менеджер"
+msgstr ""
+
+#: tqslmanager_form.label4.caption
+msgctxt "tqslmanager_form.label4.caption"
+msgid "Дата"
+msgstr ""
+
+#: tqslmanager_form.label5.caption
+msgid "Источник"
+msgstr ""
+
+#: tqslmanager_form.label6.caption
+msgctxt "tqslmanager_form.label6.caption"
+msgid "Заметки"
+msgstr ""
+
+#: tregisterform.button1.caption
+msgid "ОК"
+msgstr ""
+
+#: tregisterform.button2.caption
+msgid "Помощь проекту"
+msgstr ""
+
+#: tregisterform.caption
+msgid "Регистрация EWLog"
+msgstr ""
+
+#: tregisterform.groupbox1.caption
+msgid "Новый пользователь"
+msgstr ""
+
+#: tregisterform.groupbox2.caption
+msgid "Зарегистрированный пользователь"
+msgstr ""
+
+#: tregisterform.label1.caption
+msgctxt "tregisterform.label1.caption"
+msgid "Позывной:"
+msgstr ""
+
+#: tregisterform.label2.caption
+msgid "Фамилия:"
+msgstr ""
+
+#: tregisterform.label3.caption
+msgctxt "tregisterform.label3.caption"
+msgid "Имя:"
+msgstr ""
+
+#: tregisterform.label4.caption
+msgid "Электронная почта:"
+msgstr ""
+
+#: tregisterform.label5.caption
+msgctxt "tregisterform.label5.caption"
+msgid "Пароль:"
+msgstr ""
+
+#: tregisterform.label6.caption
+msgctxt "tregisterform.label6.caption"
+msgid "Позывной:"
+msgstr ""
+
+#: tregisterform.label7.caption
+msgctxt "tregisterform.label7.caption"
+msgid "Пароль:"
+msgstr ""
+
+#: tregisterform.label8.caption
+msgctxt "tregisterform.label8.caption"
+msgid "Состояние:"
+msgstr ""
+
+#: tregisterform.label9.caption
+msgid "Не зарегистрирован"
+msgstr ""
+
+#: tsendtelnetspot.button1.caption
+msgid "Send"
+msgstr ""
+
+#: tsendtelnetspot.caption
+msgid "Send spot"
+msgstr ""
+
+#: tsendtelnetspot.combobox1.text
+msgctxt "tsendtelnetspot.combobox1.text"
+msgid "7.000.00"
+msgstr ""
+
+#: tsendtelnetspot.label1.caption
+msgid "DX Callsign"
+msgstr ""
+
+#: tsendtelnetspot.label2.caption
+msgctxt "tsendtelnetspot.label2.caption"
+msgid "Frequency"
+msgstr ""
+
+#: tsendtelnetspot.label3.caption
+msgctxt "tsendtelnetspot.label3.caption"
+msgid "Comment"
+msgstr ""
+
+#: tserviceform.button1.caption
+msgid "Соединиться с LotW"
+msgstr ""
+
+#: tserviceform.button2.caption
+msgid "Соединиться с eQSL"
+msgstr ""
+
+#: tserviceform.caption
+msgid "Сервисы eQSL и LotW"
+msgstr ""
+
+#: tserviceform.label1.caption
+msgid "Загрузить QSL, полученные после:"
+msgstr ""
+
+#: tserviceform.label2.caption
+msgid "LotW"
+msgstr ""
+
+#: tserviceform.label3.caption
+msgid "eQSL.cc"
+msgstr ""
+
+#: tserviceform.label4.caption
+msgid "Обработано данных:"
+msgstr ""
+
+#: tserviceform.label5.caption
+msgid "Ошибки:"
+msgstr ""
+
+#: tserviceform.label6.caption
+msgid "Состояние: Ожидание"
+msgstr ""
+
+#: tserviceform.menuitem1.caption
+msgctxt "tserviceform.menuitem1.caption"
+msgid "Сервер"
+msgstr ""
+
+#: tserviceform.menuitem2.caption
+msgid "Экспорт данных из журнала"
+msgstr ""
+
+#: tsettingscat.button1.caption
+msgctxt "tsettingscat.button1.caption"
+msgid "Сохранить"
+msgstr ""
+
+#: tsettingscat.caption
+msgctxt "tsettingscat.caption"
+msgid "Настройки CAT"
+msgstr ""
+
+#: tsettingscat.cbbaudrate.text
+msgctxt "tsettingscat.cbbaudrate.text"
+msgid "Default"
+msgstr ""
+
+#: tsettingscat.cbdatabits.text
+msgctxt "tsettingscat.cbdatabits.text"
+msgid "Default"
+msgstr ""
+
+#: tsettingscat.cbdtrstate.text
+msgctxt "tsettingscat.cbdtrstate.text"
+msgid "Default"
+msgstr ""
+
+#: tsettingscat.cbhandshake.text
+msgctxt "tsettingscat.cbhandshake.text"
+msgid "Default"
+msgstr ""
+
+#: tsettingscat.cbparity.text
+msgctxt "tsettingscat.cbparity.text"
+msgid "Default"
+msgstr ""
+
+#: tsettingscat.cbrtsstate.text
+msgctxt "tsettingscat.cbrtsstate.text"
+msgid "Default"
+msgstr ""
+
+#: tsettingscat.cbstopbits.text
+msgctxt "tsettingscat.cbstopbits.text"
+msgid "Default"
+msgstr ""
+
+#: tsettingscat.editcivaddress.hint
+msgid "ICOM Radios"
+msgstr ""
+
+#: tsettingscat.groupbox1.caption
+msgid "Настройки HamLib"
+msgstr ""
+
+#: tsettingscat.label1.caption
+msgid "Путь к HamLib Rigctld"
+msgstr ""
+
+#: tsettingscat.label11.caption
+msgid "COM Порт"
+msgstr ""
+
+#: tsettingscat.label12.caption
+msgid "Модель трансивера"
+msgstr ""
+
+#: tsettingscat.label16.caption
+msgid "CI-V address"
+msgstr ""
+
+#: tsettingscat.label61.caption
+msgid "Скорость"
+msgstr ""
+
+#: tsettingscat.label62.caption
+msgid "Data бит"
+msgstr ""
+
+#: tsettingscat.label63.caption
+msgid "Parity"
+msgstr ""
+
+#: tsettingscat.label64.caption
+msgid "Stop бит"
+msgstr ""
+
+#: tsettingscat.label65.caption
+msgid "RTS state"
+msgstr ""
+
+#: tsettingscat.label66.caption
+msgid "DTR state"
+msgstr ""
+
+#: tsettingscat.label67.caption
+msgid "Handshake"
+msgstr ""
+
+#: tsettingscat.radiobutton1.caption
+msgid "RIG2"
+msgstr ""
+
+#: tsettingscat.rig1.caption
+msgid "RIG1"
+msgstr ""
+
+#: tsettingsprogramform.button1.caption
+msgctxt "tsettingsprogramform.button1.caption"
+msgid "Сохранить"
+msgstr ""
+
+#: tsettingsprogramform.button2.caption
+msgctxt "tsettingsprogramform.button2.caption"
+msgid "Отмена"
+msgstr ""
+
+#: tsettingsprogramform.caption
+msgctxt "tsettingsprogramform.caption"
+msgid "Внешние программы"
+msgstr ""
+
+#: tsettingsprogramform.checkbox1.caption
+msgid "Включить XML-RPC"
+msgstr ""
+
+#: tsettingsprogramform.checkbox2.caption
+msgid "Использовать Fldigi"
+msgstr ""
+
+#: tsettingsprogramform.checkbox4.caption
+msgid "Использовать WSJT-X"
+msgstr ""
+
+#: tsettingsprogramform.groupbox1.caption
+msgctxt "tsettingsprogramform.groupbox1.caption"
+msgid "Fldigi"
+msgstr ""
+
+#: tsettingsprogramform.groupbox2.caption
+msgctxt "tsettingsprogramform.groupbox2.caption"
+msgid "WSJT-X"
+msgstr ""
+
+#: tsettingsprogramform.label1.caption
+msgctxt "tsettingsprogramform.label1.caption"
+msgid "Путь к исполняемому файлу"
+msgstr ""
+
+#: tsettingsprogramform.label2.caption
+msgctxt "tsettingsprogramform.label2.caption"
+msgid "Путь к исполняемому файлу"
+msgstr ""
+
+#: tsetupform.button1.caption
+msgid "Принимаю"
+msgstr ""
+
+#: tsetupform.button10.caption
+msgctxt "tsetupform.button10.caption"
+msgid "Проверить подключение"
+msgstr ""
+
+#: tsetupform.button2.caption
+msgctxt "tsetupform.button2.caption"
+msgid "Далее"
+msgstr ""
+
+#: tsetupform.button3.caption
+msgctxt "tsetupform.button3.caption"
+msgid "Далее"
+msgstr ""
+
+#: tsetupform.button4.caption
+msgctxt "tsetupform.button4.caption"
+msgid "Далее"
+msgstr ""
+
+#: tsetupform.button5.caption
+msgctxt "tsetupform.button5.caption"
+msgid "Готово"
+msgstr ""
+
+#: tsetupform.button6.caption
+msgctxt "tsetupform.button6.caption"
+msgid "Назад"
+msgstr ""
+
+#: tsetupform.button7.caption
+msgctxt "tsetupform.button7.caption"
+msgid "Назад"
+msgstr ""
+
+#: tsetupform.button8.caption
+msgctxt "tsetupform.button8.caption"
+msgid "Назад"
+msgstr ""
+
+#: tsetupform.button9.caption
+msgctxt "tsetupform.button9.caption"
+msgid "Отмена"
+msgstr ""
+
+#: tsetupform.caption
+msgctxt "tsetupform.caption"
+msgid "Мастер настройки"
+msgstr ""
+
+#: tsetupform.checkbox1.caption
+msgid "Использовать существующую БД MySQL"
+msgstr ""
+
+#: tsetupform.checkbox2.caption
+msgid "Использовать существующую БД SQLite"
+msgstr ""
+
+#: tsetupform.checkbox3.caption
+msgid "Использовать MySQL по умолчанию"
+msgstr ""
+
+#: tsetupform.checkbox4.caption
+msgid "Использовать SQLite по умолчанию"
+msgstr ""
+
+#: tsetupform.edit16.text
+msgctxt "tsetupform.edit16.text"
+msgid "TNX for QSO! 73!"
+msgstr ""
+
+#: tsetupform.edit2.text
+msgid "3306"
+msgstr ""
+
+#: tsetupform.label1.caption
+msgid "Вас приветсвует мастер настройки аппаратного журнала"
+msgstr ""
+
+#: tsetupform.label10.caption
+msgid "Путь к базе SQLite"
+msgstr ""
+
+#: tsetupform.label11.caption
+msgid "Настройки главного журнала"
+msgstr ""
+
+#: tsetupform.label12.caption
+msgctxt "tsetupform.label12.caption"
+msgid "Позывной"
+msgstr ""
+
+#: tsetupform.label13.caption
+msgid "Описание журнала"
+msgstr ""
+
+#: tsetupform.label14.caption
+msgctxt "tsetupform.label14.caption"
+msgid "QTH"
+msgstr ""
+
+#: tsetupform.label15.caption
+msgctxt "tsetupform.label15.caption"
+msgid "Имя"
+msgstr ""
+
+#: tsetupform.label16.caption
+msgctxt "tsetupform.label16.caption"
+msgid "Локатор"
+msgstr ""
+
+#: tsetupform.label17.caption
+msgctxt "tsetupform.label17.caption"
+msgid "Широта"
+msgstr ""
+
+#: tsetupform.label18.caption
+msgctxt "tsetupform.label18.caption"
+msgid "Долгота"
+msgstr ""
+
+#: tsetupform.label19.caption
+msgctxt "tsetupform.label19.caption"
+msgid "ITU"
+msgstr ""
+
+#: tsetupform.label2.caption
+msgid "Лицензионное соглашение:"
+msgstr ""
+
+#: tsetupform.label20.caption
+msgctxt "tsetupform.label20.caption"
+msgid "CQ"
+msgstr ""
+
+#: tsetupform.label21.caption
+msgctxt "tsetupform.label21.caption"
+msgid "QSL Info"
+msgstr ""
+
+#: tsetupform.label22.caption
+msgid "Применение и обработка полученных данных. Подождите"
+msgstr ""
+
+#: tsetupform.label23.caption
+msgctxt "tsetupform.label23.caption"
+msgid "Состояние:"
+msgstr ""
+
+#: tsetupform.label24.caption
+msgctxt "tsetupform.label24.caption"
+msgid "Ожидание"
+msgstr ""
+
+#: tsetupform.label25.caption
+msgid "Поздравляю! Мастер настройки успешно завершил инициализацию баз"
+msgstr ""
+
+#: tsetupform.label26.caption
+msgid "данных!"
+msgstr ""
+
+#: tsetupform.label27.caption
+msgid "Сейчас произойдёт завершение работы аппаратного журнала!"
+msgstr ""
+
+#: tsetupform.label28.caption
+msgid "Пожалуйста, запустите приложение повторно. Всего наилучшего! 73!"
+msgstr ""
+
+#: tsetupform.label3.caption
+msgid "Настройки базы данных"
+msgstr ""
+
+#: tsetupform.label4.caption
+msgid "Выбор базы данных"
+msgstr ""
+
+#: tsetupform.label5.caption
+msgid "Хост"
+msgstr ""
+
+#: tsetupform.label6.caption
+msgctxt "tsetupform.label6.caption"
+msgid "Порт"
+msgstr ""
+
+#: tsetupform.label7.caption
+msgid "Пользователь"
+msgstr ""
+
+#: tsetupform.label8.caption
+msgctxt "tsetupform.label8.caption"
+msgid "Пароль"
+msgstr ""
+
+#: tsetupform.label9.caption
+msgid "Имя базы данных"
+msgstr ""
+
+#: tsetupform.opendialog1.title
+msgid "Открыть базу данных"
+msgstr ""
+
+#: tsetupform.radiobutton1.caption
+msgid "Использование MySQL"
+msgstr ""
+
+#: tsetupform.radiobutton2.caption
+msgid "Использование SQLite"
+msgstr ""
+
+#: tsetupform.radiobutton3.caption
+msgid "Я буду использовать обе базы данных"
+msgstr ""
+
+#: tsetupform.savedialog1.title
+msgid "Сохранить базу данных"
+msgstr ""
+
+#: tsetupform.tabsheet1.caption
+msgid "Приветствие"
+msgstr ""
+
+#: tsetupform.tabsheet2.caption
+msgid "Настройка БД"
+msgstr ""
+
+#: tsetupform.tabsheet3.caption
+msgid "Настройка журнала"
+msgstr ""
+
+#: tsetupform.tabsheet4.caption
+msgid "Обработка"
+msgstr ""
+
+#: tsetupform.tabsheet5.caption
+msgctxt "tsetupform.tabsheet5.caption"
+msgid "Готово"
+msgstr ""
+
+#: tstate_form.button1.caption
+msgctxt "tstate_form.button1.caption"
+msgid "Закрыть"
+msgstr ""
+
+#: tstate_form.caption
+msgctxt "tstate_form.caption"
+msgid "STATE"
+msgstr ""
+
+#: tstate_form.dbgrid1.columns[0].title.caption
+msgctxt "tstate_form.dbgrid1.columns[0].title.caption"
+msgid "id"
+msgstr ""
+
+#: tstate_form.dbgrid1.columns[1].title.caption
+msgid "Район"
+msgstr ""
+
+#: tstate_form.dbgrid1.columns[2].title.caption
+msgid "Номер"
+msgstr ""
+
+#: tstate_form.dbgrid1.columns[3].title.caption
+msgid "Название района/города"
+msgstr ""
+
+#: tstate_form.label1.caption
+msgctxt "tstate_form.label1.caption"
+msgid "STATE"
+msgstr ""
+
+#: tstate_form.label2.caption
+msgctxt "tstate_form.label2.caption"
+msgid "Название"
+msgstr ""
+
+#: tsyndbdate.button1.caption
+msgid "Синхронизировать"
+msgstr ""
+
+#: tsyndbdate.caption
+msgid "Синхронизация по дате"
+msgstr ""
+
+#: tsyndbdate.label1.caption
+msgid "Выбор даты начала синхронизации"
+msgstr ""
+
+#: tthanks_form.caption
+msgctxt "tthanks_form.caption"
+msgid "Благодарность"
+msgstr ""
+
+#: tthanks_form.label1.caption
+msgid "Выражаю оромную благодарность в помощи и тестировании журнала EWLog:"
+msgstr ""
+
+#: tthanks_form.label10.caption
+msgid "UT5QBC - Юрий Лубенец"
+msgstr ""
+
+#: tthanks_form.label2.caption
+msgid "EW2MS - Михаил Сенько"
+msgstr ""
+
+#: tthanks_form.label3.caption
+msgid "RN3DDP - Сергей Савчук"
+msgstr ""
+
+#: tthanks_form.label4.caption
+msgid "R9OCN - Андрей Хорошилов"
+msgstr ""
+
+#: tthanks_form.label5.caption
+msgid "RW3DY - Николай Евграфов"
+msgstr ""
+
+#: tthanks_form.label6.caption
+msgid "И всем откликнувшимся на разработку людям :). Возможно кого-то забыл..."
+msgstr ""
+
+#: tthanks_form.label7.caption
+msgid "Сергей Корхов"
+msgstr ""
+
+#: tthanks_form.label8.caption
+msgid "RX3DQX - Владимир Антипов"
+msgstr ""
+
+#: tthanks_form.label9.caption
+msgid "R9WBZ - Сергей Нохрин"
+msgstr ""
+
+#: ttrxform.btn10m.caption
+msgid "28"
+msgstr ""
+
+#: ttrxform.btn12m.caption
+msgid "24"
+msgstr ""
+
+#: ttrxform.btn15m.caption
+msgid "21"
+msgstr ""
+
+#: ttrxform.btn160m.caption
+msgid "1.8"
+msgstr ""
+
+#: ttrxform.btn17m.caption
+msgid "18"
+msgstr ""
+
+#: ttrxform.btn20m.caption
+msgid "14"
+msgstr ""
+
+#: ttrxform.btn2m.caption
+msgid "70"
+msgstr ""
+
+#: ttrxform.btn30m.caption
+msgid "10"
+msgstr ""
+
+#: ttrxform.btn40m.caption
+msgid "7"
+msgstr ""
+
+#: ttrxform.btn6m.caption
+msgid "50"
+msgstr ""
+
+#: ttrxform.btn70cm.caption
+msgid "144"
+msgstr ""
+
+#: ttrxform.btn70cm1.caption
+msgid "430"
+msgstr ""
+
+#: ttrxform.btn70cm2.caption
+msgid "1200"
+msgstr ""
+
+#: ttrxform.btn80m.caption
+msgid "3.5"
+msgstr ""
+
+#: ttrxform.btnam.caption
+msgid "AM"
+msgstr ""
+
+#: ttrxform.btncw.caption
+msgctxt "ttrxform.btncw.caption"
+msgid "CW"
+msgstr ""
+
+#: ttrxform.btnfm.caption
+msgid "FM"
+msgstr ""
+
+#: ttrxform.btnrtty.caption
+msgid "DIG"
+msgstr ""
+
+#: ttrxform.btnssb.caption
+msgctxt "ttrxform.btnssb.caption"
+msgid "SSB"
+msgstr ""
+
+#: ttrxform.btnvfoa.caption
+msgctxt "ttrxform.btnvfoa.caption"
+msgid "A"
+msgstr ""
+
+#: ttrxform.btnvfob.caption
+msgid "B"
+msgstr ""
+
+#: ttrxform.caption
+msgid "RIG"
+msgstr ""
+
+#: ttrxform.label1.caption
+msgctxt "ttrxform.label1.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label10.caption
+msgctxt "ttrxform.label10.caption"
+msgid "."
+msgstr ""
+
+#: ttrxform.label11.caption
+msgctxt "ttrxform.label11.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label2.caption
+msgctxt "ttrxform.label2.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label3.caption
+msgctxt "ttrxform.label3.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label4.caption
+msgctxt "ttrxform.label4.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label5.caption
+msgctxt "ttrxform.label5.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label6.caption
+msgctxt "ttrxform.label6.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label7.caption
+msgctxt "ttrxform.label7.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label8.caption
+msgctxt "ttrxform.label8.caption"
+msgid "0"
+msgstr ""
+
+#: ttrxform.label9.caption
+msgctxt "ttrxform.label9.caption"
+msgid "."
+msgstr ""
+
+#: ttrxform.lblmode.caption
+msgctxt "ttrxform.lblmode.caption"
+msgid "SSB"
+msgstr ""
+
+#: ttrxform.rbradio1.caption
+msgid "RIG 1"
+msgstr ""
+
+#: ttrxform.rbradio2.caption
+msgid "RIG 2"
+msgstr ""
+
+#: tupdate_form.button1.caption
+msgid "Проверить"
+msgstr ""
+
+#: tupdate_form.button2.caption
+msgctxt "tupdate_form.button2.caption"
+msgid "Отмена"
+msgstr ""
+
+#: tupdate_form.caption
+msgctxt "tupdate_form.caption"
+msgid "Обновление"
+msgstr ""
+
+#: tupdate_form.groupbox1.caption
+msgctxt "tupdate_form.groupbox1.caption"
+msgid "Обновление"
+msgstr ""
+
+#: tupdate_form.label1.caption
+msgid "Состояние версии:"
+msgstr ""
+
+#: tupdate_form.label10.caption
+msgid "Размер файла:"
+msgstr ""
+
+#: tupdate_form.label2.caption
+msgid "Актуально"
+msgstr ""
+
+#: tupdate_form.label3.caption
+msgid "Последняя проверка:"
+msgstr ""
+
+#: tupdate_form.label4.caption
+msgctxt "tupdate_form.label4.caption"
+msgid "..."
+msgstr ""
+
+#: tupdate_form.label5.caption
+msgid "Версия программы:"
+msgstr ""
+
+#: tupdate_form.label6.caption
+msgctxt "tupdate_form.label6.caption"
+msgid "..."
+msgstr ""
+
+#: tupdate_form.label7.caption
+msgid "Версия на сервере:"
+msgstr ""
+
+#: tupdate_form.label8.caption
+msgctxt "tupdate_form.label8.caption"
+msgid "..."
+msgstr ""
+
+#: tupdate_form.label9.caption
+msgid "Процесс обновления:"
+msgstr ""
+
+#: twsjt_udp_form.caption
+msgid "WSJT_UDP_Form"
+msgstr ""
+

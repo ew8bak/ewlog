@@ -1,0 +1,11 @@
+{"version":1,"strings":[
+{"hash":320641,"name":"tiota_form.caption","sourcebytes":[73,79,84,65],"value":"IOTA"},
+{"hash":1780,"name":"tiota_form.dbgrid1.columns[0].title.caption","sourcebytes":[105,100],"value":"id"},
+{"hash":320641,"name":"tiota_form.dbgrid1.columns[1].title.caption","sourcebytes":[73,79,84,65],"value":"IOTA"},
+{"hash":346165,"name":"tiota_form.dbgrid1.columns[2].title.caption","sourcebytes":[78,97,109,101],"value":"Name"},
+{"hash":91798792,"name":"tiota_form.dbgrid1.columns[3].title.caption","sourcebytes":[80,114,101,102,105,120],"value":"Prefix"},
+{"hash":91798792,"name":"tiota_form.dbgrid1.columns[4].title.caption","sourcebytes":[80,114,101,102,105,120],"value":"Prefix"},
+{"hash":320641,"name":"tiota_form.label1.caption","sourcebytes":[73,79,84,65],"value":"IOTA"},
+{"hash":346165,"name":"tiota_form.label2.caption","sourcebytes":[78,97,109,101],"value":"Name"},
+{"hash":4863637,"name":"tiota_form.button1.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
+]}

@@ -18,7 +18,8 @@
       <Icon Value="0"/>
     </General>
     <i18n>
-      <EnableI18N LFM="False"/>
+      <EnableI18N Value="True"/>
+      <OutDir Value="language"/>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
@@ -26,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="101"/>
+      <BuildNr Value="106"/>
       <Language Value="0419"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Владимир Карпенко" OriginalFilename="EWLog" ProductName="EWLog - Аппаратный журнал"/>
     </VersionInfo>
@@ -442,6 +443,7 @@
         <Filename Value="filterform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="filterForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
       </Unit41>

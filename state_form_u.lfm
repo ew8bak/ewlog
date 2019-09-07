@@ -1,5 +1,5 @@
 object STATE_Form: TSTATE_Form
-  Left = 485
+  Left = 434
   Height = 435
   Top = 179
   Width = 475
@@ -11,7 +11,7 @@ object STATE_Form: TSTATE_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 374
@@ -68,7 +68,7 @@ object STATE_Form: TSTATE_Form
       Left = 8
       Height = 15
       Top = 4
-      Width = 32
+      Width = 30
       Caption = 'STATE'
       ParentColor = False
     end
@@ -103,7 +103,6 @@ object STATE_Form: TSTATE_Form
     FieldDefs = <>
     Database = MainForm.ServiceDBConnection
     Transaction = MainForm.SQLServiceTransaction
-    Options = []
     Params = <>
     left = 328
     top = 200

@@ -1,13 +1,13 @@
 object Earth: TEarth
-  Left = 571
+  Left = 496
   Height = 240
-  Top = 133
+  Top = 189
   Width = 320
-  Caption = 'Земля'
+  Caption = 'Earth'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnPaint = FormPaint
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object Timer1: TTimer
     Interval = 100
     OnTimer = Timer1Timer

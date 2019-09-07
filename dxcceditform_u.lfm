@@ -1,9 +1,9 @@
 object CountryEditForm: TCountryEditForm
-  Left = 405
+  Left = 375
   Height = 449
-  Top = 235
+  Top = 242
   Width = 687
-  Caption = 'Редактирование информации по стране'
+  Caption = 'Editing Country Information'
   ClientHeight = 449
   ClientWidth = 687
   Font.Height = -12
@@ -39,7 +39,7 @@ object CountryEditForm: TCountryEditForm
       Height = 15
       Top = 11
       Width = 35
-      Caption = 'Поиск'
+      Caption = 'Search'
       ParentColor = False
     end
   end

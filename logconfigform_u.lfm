@@ -1,10 +1,10 @@
 object LogConfigForm: TLogConfigForm
-  Left = 404
+  Left = 741
   Height = 462
-  Top = 206
+  Top = 163
   Width = 469
   BorderStyle = bsDialog
-  Caption = 'Конфигурация журнала'
+  Caption = 'Logs configuration'
   ClientHeight = 462
   ClientWidth = 469
   DefaultMonitor = dmMainForm
@@ -34,15 +34,15 @@ object LogConfigForm: TLogConfigForm
       TabIndex = 0
       TabOrder = 0
       object TabSheet1: TTabSheet
-        Caption = 'Оператор'
+        Caption = 'Operator'
         ClientHeight = 397
         ClientWidth = 273
         object Label1: TLabel
           Left = 12
           Height = 15
           Top = 12
-          Width = 45
-          Caption = 'Журнал'
+          Width = 20
+          Caption = 'Log'
           Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
@@ -81,8 +81,8 @@ object LogConfigForm: TLogConfigForm
           Left = 6
           Height = 15
           Top = 38
-          Width = 55
-          Caption = 'Описание'
+          Width = 60
+          Caption = 'Description'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -91,8 +91,8 @@ object LogConfigForm: TLogConfigForm
           Left = 21
           Height = 15
           Top = 68
-          Width = 40
-          Caption = 'Индекс'
+          Width = 38
+          Caption = 'Log set'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -101,8 +101,8 @@ object LogConfigForm: TLogConfigForm
           Left = 12
           Height = 15
           Top = 102
-          Width = 77
-          Caption = 'Информация'
+          Width = 79
+          Caption = 'Station detalis'
           Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
@@ -142,8 +142,8 @@ object LogConfigForm: TLogConfigForm
           Left = 4
           Height = 15
           Top = 128
-          Width = 57
-          Caption = 'Позывной'
+          Width = 42
+          Caption = 'Callsign'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -152,8 +152,8 @@ object LogConfigForm: TLogConfigForm
           Left = 37
           Height = 15
           Top = 158
-          Width = 24
-          Caption = 'Имя'
+          Width = 32
+          Caption = 'Name'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -162,7 +162,7 @@ object LogConfigForm: TLogConfigForm
           Left = 37
           Height = 15
           Top = 186
-          Width = 24
+          Width = 23
           Caption = 'QTH'
           Font.Height = -12
           ParentColor = False
@@ -172,8 +172,8 @@ object LogConfigForm: TLogConfigForm
           Left = 12
           Height = 15
           Top = 222
-          Width = 72
-          Caption = 'Координаты'
+          Width = 116
+          Caption = 'Location information'
           Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
@@ -239,7 +239,7 @@ object LogConfigForm: TLogConfigForm
           Left = 44
           Height = 15
           Top = 252
-          Width = 18
+          Width = 17
           Caption = 'ITU'
           Font.Height = -12
           ParentColor = False
@@ -259,8 +259,8 @@ object LogConfigForm: TLogConfigForm
           Left = 16
           Height = 15
           Top = 278
-          Width = 46
-          Caption = 'Локатор'
+          Width = 22
+          Caption = 'Grid'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -270,7 +270,7 @@ object LogConfigForm: TLogConfigForm
           Height = 15
           Top = 308
           Width = 43
-          Caption = 'Широта'
+          Caption = 'Latitude'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -279,8 +279,8 @@ object LogConfigForm: TLogConfigForm
           Left = 128
           Height = 15
           Top = 308
-          Width = 45
-          Caption = 'Долгота'
+          Width = 54
+          Caption = 'Longitude'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -289,8 +289,8 @@ object LogConfigForm: TLogConfigForm
           Left = 12
           Height = 15
           Top = 342
-          Width = 143
-          Caption = 'QSL info (по умолчанию)'
+          Width = 100
+          Caption = 'QSL info (Default)'
           Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
@@ -317,7 +317,7 @@ object LogConfigForm: TLogConfigForm
         end
       end
       object TabSheet2: TTabSheet
-        Caption = 'Сервисы'
+        Caption = 'Services'
         ClientHeight = 397
         ClientWidth = 273
         object Label16: TLabel
@@ -335,8 +335,8 @@ object LogConfigForm: TLogConfigForm
           Left = 32
           Height = 15
           Top = 40
-          Width = 34
-          Caption = 'Логин'
+          Width = 30
+          Caption = 'Login'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -345,8 +345,8 @@ object LogConfigForm: TLogConfigForm
           Left = 24
           Height = 15
           Top = 72
-          Width = 42
-          Caption = 'Пароль'
+          Width = 50
+          Caption = 'Password'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -377,8 +377,8 @@ object LogConfigForm: TLogConfigForm
           Left = 16
           Height = 19
           Top = 96
-          Width = 235
-          Caption = 'Загружать всегда при добавлении QSO'
+          Width = 249
+          Caption = 'Upload every time a logbook entry is added'
           Font.Height = -12
           ParentFont = False
           TabOrder = 2
@@ -408,8 +408,8 @@ object LogConfigForm: TLogConfigForm
           Left = 38
           Height = 15
           Top = 152
-          Width = 34
-          Caption = 'Логин'
+          Width = 30
+          Caption = 'Login'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -440,8 +440,8 @@ object LogConfigForm: TLogConfigForm
           Left = 16
           Height = 19
           Top = 208
-          Width = 235
-          Caption = 'Загружать всегда при добавлении QSO'
+          Width = 249
+          Caption = 'Upload every time a logbook entry is added'
           Font.Height = -12
           ParentFont = False
           TabOrder = 5
@@ -471,8 +471,8 @@ object LogConfigForm: TLogConfigForm
           Left = 32
           Height = 15
           Top = 264
-          Width = 34
-          Caption = 'Логин'
+          Width = 30
+          Caption = 'Login'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -493,8 +493,8 @@ object LogConfigForm: TLogConfigForm
           Left = 24
           Height = 15
           Top = 296
-          Width = 42
-          Caption = 'Пароль'
+          Width = 50
+          Caption = 'Password'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -503,8 +503,8 @@ object LogConfigForm: TLogConfigForm
           Left = 10
           Height = 19
           Top = 320
-          Width = 235
-          Caption = 'Загружать всегда при добавлении QSO'
+          Width = 249
+          Caption = 'Upload every time a logbook entry is added'
           Font.Height = -12
           ParentFont = False
           TabOrder = 8
@@ -590,8 +590,8 @@ object LogConfigForm: TLogConfigForm
     Database = MainForm.MySQLLOGDBConnection
     Transaction = MainForm.SQLTransaction1
     Params = <>
-    left = 248
-    top = 56
+    left = 104
+    top = 152
   end
   object SQLQuery2: TSQLQuery
     FieldDefs = <>

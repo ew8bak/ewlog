@@ -1,7 +1,7 @@
 object SetupForm: TSetupForm
-  Left = 681
+  Left = 617
   Height = 347
-  Top = 187
+  Top = 256
   Width = 630
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -202,7 +202,7 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 15
           Top = 40
-          Width = 110
+          Width = 111
           Caption = 'Выбор базы данных'
           Font.Height = -12
           ParentColor = False
@@ -236,7 +236,7 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 19
           Top = 112
-          Width = 229
+          Width = 230
           Caption = 'Я буду использовать обе базы данных'
           Font.Height = -12
           OnChange = RadioButton3Change
@@ -347,7 +347,7 @@ object SetupForm: TSetupForm
           Left = 296
           Height = 15
           Top = 144
-          Width = 97
+          Width = 98
           Caption = 'Имя базы данных'
           Font.Height = -12
           ParentColor = False

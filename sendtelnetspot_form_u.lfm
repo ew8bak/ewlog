@@ -1,16 +1,16 @@
 object SendTelnetSpot: TSendTelnetSpot
-  Left = 470
+  Left = 453
   Height = 155
-  Top = 385
+  Top = 382
   Width = 297
   BorderStyle = bsDialog
-  Caption = 'Отправить спот'
+  Caption = 'Send spot'
   ClientHeight = 155
   ClientWidth = 297
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object Edit1: TEdit
     Left = 16
     Height = 23
@@ -24,13 +24,13 @@ object SendTelnetSpot: TSendTelnetSpot
     Left = 16
     Height = 15
     Top = 16
-    Width = 73
-    Caption = 'DX позывной'
+    Width = 60
+    Caption = 'DX Callsign'
     ParentColor = False
   end
   object ComboBox1: TComboBox
     Left = 160
-    Height = 21
+    Height = 23
     Top = 32
     Width = 120
     AutoSize = False
@@ -58,8 +58,8 @@ object SendTelnetSpot: TSendTelnetSpot
     Left = 160
     Height = 15
     Top = 16
-    Width = 43
-    Caption = 'Частота'
+    Width = 55
+    Caption = 'Frequency'
     ParentColor = False
   end
   object Edit2: TEdit
@@ -75,8 +75,8 @@ object SendTelnetSpot: TSendTelnetSpot
     Left = 16
     Height = 15
     Top = 64
-    Width = 68
-    Caption = 'Коментарий'
+    Width = 54
+    Caption = 'Comment'
     ParentColor = False
   end
   object Button1: TButton
@@ -84,7 +84,7 @@ object SendTelnetSpot: TSendTelnetSpot
     Height = 25
     Top = 120
     Width = 75
-    Caption = 'Отправить'
+    Caption = 'Send'
     OnClick = Button1Click
     TabOrder = 3
   end

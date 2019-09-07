@@ -1,0 +1,17 @@
+{"version":1,"strings":[
+{"hash":57094870,"name":"timportadifform.caption","sourcebytes":[73,109,112,111,114,116,32,102,114,111,109,32,65,68,73,70],"value":"Import from ADIF"},
+{"hash":157143806,"name":"timportadifform.checkbox1.caption","sourcebytes":[67,111,109,112,117,116,101,32,68,88,67,67,32,102,114,111,109,32,99,97,108,108,115,105,103,110],"value":"Compute DXCC from callsign"},
+{"hash":248902355,"name":"timportadifform.checkbox2.caption","sourcebytes":[82,101,109,111,118,101,32,68,117,112,108,105,99,97,116,101,115],"value":"Remove Duplicates"},
+{"hash":209188789,"name":"timportadifform.groupbox1.caption","sourcebytes":[83,97,118,101,32,116,105,109,101],"value":"Save time"},
+{"hash":102261039,"name":"timportadifform.radiobutton1.caption","sourcebytes":[84,105,109,101,32,79,70,70,32,81,83,79],"value":"Time OFF QSO"},
+{"hash":91968783,"name":"timportadifform.radiobutton2.caption","sourcebytes":[84,105,109,101,32,79,78,32,81,83,79],"value":"Time ON QSO"},
+{"hash":206658931,"name":"timportadifform.label1.caption","sourcebytes":[67,111,109,109,101,110,116,32,102,111,114,32,97,108,108,32,105,109,112,111,114,116,101,100,32,114,101,99,111,114,100,115],"value":"Comment for all imported records"},
+{"hash":84178580,"name":"timportadifform.button1.caption","sourcebytes":[73,109,112,111,114,116],"value":"Import"},
+{"hash":77089212,"name":"timportadifform.button2.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
+{"hash":243445701,"name":"timportadifform.lblcomplete.caption","sourcebytes":[208,158,208,182,208,184,208,180,208,176,208,189,208,184,208,181],"value":"\u041E\u0436\u0438\u0434\u0430\u043D\u0438\u0435"},
+{"hash":81380729,"name":"timportadifform.lblcount.caption","sourcebytes":[208,152,208,188,208,191,208,190,209,128,209,130,208,184,209,128,208,190,208,178,208,176,208,189,208,190,32,208,183,208,176,208,191,208,184,209,129,208,181,208,185],"value":"\u0418\u043C\u043F\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E \u0437\u0430\u043F\u0438\u0441\u0435\u0439"},
+{"hash":54461327,"name":"timportadifform.lblerrors.caption","sourcebytes":[208,158,209,136,208,184,208,177,208,186,208,184,32,208,184,208,188,208,191,208,190,209,128,209,130,208,184,209,128,208,190,208,178,208,176,208,189,208,184,209,143],"value":"\u041E\u0448\u0438\u0431\u043A\u0438 \u0438\u043C\u043F\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F"},
+{"hash":63544890,"name":"timportadifform.lblerrorlog.caption","sourcebytes":[208,164,208,176,208,185,208,187,32,208,190,209,136,208,184,208,177,208,190,208,186],"value":"\u0424\u0430\u0439\u043B \u043E\u0448\u0438\u0431\u043E\u043A"},
+{"hash":121335938,"name":"timportadifform.label2.caption","sourcebytes":[208,154,208,190,208,187,208,184,209,135,208,181,209,129,209,130,208,178,208,190,32,208,180,209,131,208,177,208,187,208,184,208,186,208,176,209,130,208,190,208,178],"value":"\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0434\u0443\u0431\u043B\u0438\u043A\u0430\u0442\u043E\u0432"},
+{"hash":261834149,"name":"timportadifform.label3.caption","sourcebytes":[208,161,208,190,209,129,209,130,208,190,209,143,208,189,208,184,208,181],"value":"\u0421\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0435"}
+]}
