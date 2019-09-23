@@ -1659,7 +1659,7 @@ msgid "Services"
 msgstr ""
 
 #: tmainform.caption
-msgid "EWLog - Аппаратный журнал"
+msgid "EWLog - HAM Journal"
 msgstr ""
 
 #: tmainform.checkbox1.caption
@@ -2222,7 +2222,7 @@ msgid "Callsign"
 msgstr ""
 
 #: tmainform.label50.caption
-msgid "Доступно новое обновление"
+msgid "New update available"
 msgstr ""
 
 #: tmainform.label6.caption

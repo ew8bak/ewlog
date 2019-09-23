@@ -120,14 +120,7 @@ begin
     2: IniF.WriteInteger('GridSettings', 'TextSize', 12);
     3: IniF.WriteInteger('GridSettings', 'TextSize', 14);
   end;
- { MainForm.DBGrid1.Font.Color := ColorBox1.Selected;
-  MainForm.DBGrid1.Color := ColorBox2.Selected;
-  case ComboBox1.ItemIndex of
-    0: MainForm.DBGrid1.Font.Size := 8;
-    1: MainForm.DBGrid1.Font.Size := 10;
-    2: MainForm.DBGrid1.Font.Size := 12;
-    3: MainForm.DBGrid1.Font.Size := 14;
-  end;   }
+
   MainForm.SetGrid;
 end;
 

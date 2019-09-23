@@ -45,7 +45,6 @@ procedure TCountryEditForm.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   CountryQditQuery.Active:=False;
- // CountryQditQuery.Close;
 end;
 
 procedure TCountryEditForm.FormCreate(Sender: TObject);
@@ -79,8 +78,7 @@ begin
   DBGrid1.Columns.Items[12].Width:=70;
   DBGrid1.Columns.Items[13].Width:=70;
   DBGrid1.Columns.Items[14].Width:=70;
- // if CountryEditForm.Caption='Области' then
- // DBGrid1.Columns.Items[15].Width:=70;
+
 end;
 
 end.

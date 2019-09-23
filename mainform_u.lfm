@@ -4,7 +4,7 @@ object MainForm: TMainForm
   Top = 135
   Width = 1208
   ActiveControl = Panel1
-  Caption = 'EWLog - Аппаратный журнал'
+  Caption = 'EWLog - HAM Journal'
   ClientHeight = 660
   ClientWidth = 1208
   Font.Height = -12
@@ -17,7 +17,7 @@ object MainForm: TMainForm
   OnResize = FormResize
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 26
@@ -171,14 +171,14 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = Panel1
       AnchorSideRight.Side = asrBottom
-      Left = 1028
+      Left = 1074
       Height = 15
       Top = 6
-      Width = 159
+      Width = 113
       Align = alCustom
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 20
-      Caption = 'Доступно новое обновление'
+      Caption = 'New update available'
       Color = clRed
       Font.Height = -12
       ParentColor = False
@@ -1541,22 +1541,22 @@ object MainForm: TMainForm
         end      
         item
           Title.Caption = 'Date'
-          Width = 41
+          Width = 37
           FieldName = 'QSODate'
         end      
         item
           Title.Caption = 'Time'
-          Width = 48
+          Width = 37
           FieldName = 'QSOTime'
         end      
         item
           Title.Caption = 'Band'
-          Width = 64
+          Width = 40
           FieldName = 'QSOBand'
         end      
         item
           Title.Caption = 'Callsign'
-          Width = 66
+          Width = 52
           FieldName = 'CallSign'
         end      
         item
@@ -1567,7 +1567,7 @@ object MainForm: TMainForm
         end      
         item
           Title.Caption = 'Name'
-          Width = 38
+          Width = 42
           FieldName = 'OMName'
         end      
         item
@@ -1602,7 +1602,7 @@ object MainForm: TMainForm
         end      
         item
           Title.Caption = 'Manager'
-          Width = 67
+          Width = 57
           FieldName = 'QSLManager'
         end      
         item
@@ -1648,7 +1648,7 @@ object MainForm: TMainForm
         end      
         item
           Title.Caption = 'Continent'
-          Width = 70
+          Width = 60
           FieldName = 'Continent'
         end      
         item
@@ -2269,22 +2269,22 @@ object MainForm: TMainForm
             end          
             item
               Title.Caption = 'Date'
-              Width = 41
+              Width = 37
               FieldName = 'QSODate'
             end          
             item
               Title.Caption = 'Time'
-              Width = 48
+              Width = 37
               FieldName = 'QSOTime'
             end          
             item
               Title.Caption = 'Band'
-              Width = 64
+              Width = 40
               FieldName = 'QSOBand'
             end          
             item
               Title.Caption = 'Callsign'
-              Width = 66
+              Width = 52
               FieldName = 'CallSign'
             end          
             item
@@ -2295,7 +2295,7 @@ object MainForm: TMainForm
             end          
             item
               Title.Caption = 'Name'
-              Width = 38
+              Width = 42
               FieldName = 'OMName'
             end          
             item
@@ -2330,7 +2330,7 @@ object MainForm: TMainForm
             end          
             item
               Title.Caption = 'Manager'
-              Width = 67
+              Width = 57
               FieldName = 'QSLManager'
             end          
             item
@@ -2376,7 +2376,7 @@ object MainForm: TMainForm
             end          
             item
               Title.Caption = 'Continent'
-              Width = 70
+              Width = 60
               FieldName = 'Continent'
             end          
             item

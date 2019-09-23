@@ -23,7 +23,7 @@ uses
 
 begin
   Application.Scaled:=True;
-  Application.Title:='EWLog - Аппаратный журнал';
+ // Application.Title:='EWLog - Аппаратный журнал';
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
