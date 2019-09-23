@@ -1,7 +1,7 @@
 object SendTelnetSpot: TSendTelnetSpot
-  Left = 453
+  Left = 87
   Height = 155
-  Top = 382
+  Top = 194
   Width = 297
   BorderStyle = bsDialog
   Caption = 'Send spot'
@@ -10,7 +10,7 @@ object SendTelnetSpot: TSendTelnetSpot
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object Edit1: TEdit
     Left = 16
     Height = 23

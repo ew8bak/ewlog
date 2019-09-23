@@ -4384,19 +4384,18 @@ begin
 end;
 
 procedure TMainForm.MenuItem49Click(Sender: TObject);
+{var
+  freq, call, cname, mode, rsts, grid: string;}
 var
-  freq, call, cname, mode, rsts, grid: string;
+  freq: string;
   freq2: double;
 begin
-  call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-  cname := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-  mode := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-  rsts := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-  grid := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+  SendTelnetSpot.Show;
+  SendTelnetSpot.Edit1.Text:=DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
   freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
   Delete(freq, length(freq) - 2, 1);
   freq2 := StrToFloat(freq);
-  SendSpot(FloatToStr(freq2 * 1000), call, cname, mode, rsts, grid);
+  SendTelnetSpot.ComboBox1.Text:=FloatToStr(freq2);
 end;
 
 procedure TMainForm.MenuItem51Click(Sender: TObject);
