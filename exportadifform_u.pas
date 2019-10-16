@@ -261,26 +261,7 @@ begin
 
       freq2 := Q1.Fields.FieldByName('QSOBand').AsString;
 
-      if Length(freq2) = 10 then
-      begin
-        Delete(freq2, 10, Length(freq2));
-        Delete(freq2, 9, Length(freq2));
-        Delete(freq2, 8, Length(freq2));
-      end;
-
-      if Length(freq2) = 9 then
-      begin
-        Delete(freq2, 9, Length(freq2));
-        Delete(freq2, 8, Length(freq2));
-        Delete(freq2, 7, Length(freq2));
-      end;
-
-      if Length(freq2) = 8 then
-      begin
-        Delete(freq2, 8, Length(freq2));
-        Delete(freq2, 7, Length(freq2));
-        Delete(freq2, 6, Length(freq2));
-      end;
+      delete(freq2,Length(freq2)-2,1);   //Удаляю последнюю точку
 
       tmp := '<FREQ' + dmFunc.StringToADIF(freq2, CheckBox2.Checked);
       Write(f, tmp);
@@ -289,17 +270,21 @@ begin
         'QSOReportSent').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
-      tmp := '<STX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'STX').AsString, CheckBox2.Checked);
-      Write(f, tmp);
-
       tmp := '<RST_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOReportRecived').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
+      if (Q1.Fields.FieldByName('SRX').AsString <> '0') then begin
       tmp := '<SRX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'SRX').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
+
+      if Q1.Fields.FieldByName('STX').AsString <> '0' then begin
+      tmp := '<STX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+        'STX').AsString, CheckBox2.Checked);
+      Write(f, tmp);
+      end;
 
       tmp := '<NAME' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMName').AsString, CheckBox2.Checked);
@@ -311,6 +296,10 @@ begin
         'OMQTH').AsString, CheckBox2.Checked);
       if CheckBox2.Checked=True then
       Write(f, UTF8ToCP1251(tmp)) else
+      Write(f, tmp);
+
+       tmp := '<STATE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+        'State').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
       tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
@@ -470,26 +459,7 @@ begin
 
       freq2 := Q1.Fields.FieldByName('QSOBand').AsString;
 
-      if Length(freq2) = 10 then
-      begin
-        Delete(freq2, 10, Length(freq2));
-        Delete(freq2, 9, Length(freq2));
-        Delete(freq2, 8, Length(freq2));
-      end;
-
-      if Length(freq2) = 9 then
-      begin
-        Delete(freq2, 9, Length(freq2));
-        Delete(freq2, 8, Length(freq2));
-        Delete(freq2, 7, Length(freq2));
-      end;
-
-      if Length(freq2) = 8 then
-      begin
-        Delete(freq2, 8, Length(freq2));
-        Delete(freq2, 7, Length(freq2));
-        Delete(freq2, 6, Length(freq2));
-      end;
+      delete(freq2,Length(freq2)-2,1);   //Удаляю последнюю точку
 
       tmp := '<FREQ' + dmFunc.StringToADIF(freq2, CheckBox2.Checked);
       tmp2:=tmp2+tmp;
@@ -498,17 +468,21 @@ begin
         'QSOReportSent').AsString, CheckBox2.Checked);
       tmp2:=tmp2+tmp;
 
+      if Q1.Fields.FieldByName('STX').AsString <> '0' then begin
       tmp := '<STX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'STX').AsString, CheckBox2.Checked);
       tmp2:=tmp2+tmp;
+      end;
 
       tmp := '<RST_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOReportRecived').AsString, CheckBox2.Checked);
       tmp2:=tmp2+tmp;
 
+      if Q1.Fields.FieldByName('SRX').AsString <> '0' then begin
       tmp := '<SRX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'SRX').AsString, CheckBox2.Checked);
       tmp2:=tmp2+tmp;
+      end;
 
       tmp := '<NAME' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMName').AsString, CheckBox2.Checked);
@@ -517,6 +491,10 @@ begin
       tmp := '<QTH' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMQTH').AsString, CheckBox2.Checked);
       tmp2:=tmp2+tmp;
+
+      tmp := '<STATE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+        'State').AsString, CheckBox2.Checked);
+       tmp2:=tmp2+tmp;
 
       tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'Grid').AsString, CheckBox2.Checked);
