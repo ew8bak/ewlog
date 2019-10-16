@@ -3261,6 +3261,19 @@ object MainForm: TMainForm
         Caption = 'Настройки таблиц'
         OnClick = MenuItem99Click
       end
+      object MenuItem116: TMenuItem
+        Caption = 'Language'
+        object MenuItem117: TMenuItem
+          AutoCheck = True
+          Caption = 'Russian'
+          OnClick = MenuItem117Click
+        end
+        object MenuItem118: TMenuItem
+          AutoCheck = True
+          Caption = 'English'
+          OnClick = MenuItem118Click
+        end
+      end
       object MenuItem100: TMenuItem
         Caption = '-'
       end

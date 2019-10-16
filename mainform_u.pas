@@ -75,6 +75,9 @@ type
     MenuItem113: TMenuItem;
     MenuItem114: TMenuItem;
     MenuItem115: TMenuItem;
+    MenuItem116: TMenuItem;
+    MenuItem117: TMenuItem;
+    MenuItem118: TMenuItem;
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
@@ -401,6 +404,8 @@ type
     procedure MenuItem113Click(Sender: TObject);
     procedure MenuItem114Click(Sender: TObject);
     procedure MenuItem115Click(Sender: TObject);
+    procedure MenuItem117Click(Sender: TObject);
+    procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
     procedure MenuItem13Click(Sender: TObject);
@@ -527,6 +532,7 @@ type
     Command: string;
     FlagList: TImageList;
     FlagSList: TStringList;
+    Language: string;
 
     PhotoQrzString: string;
     PhotoJPEG: TJPEGImage;
@@ -1320,14 +1326,13 @@ procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
   SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
-  NoCalcDXCC: integer; NLogDB: string);//, Index: string);
+  NoCalcDXCC: integer; NLogDB: string);
 begin
   with MainForm.SaveQSOQuery do
   begin
     Close;
     SQL.Clear;
     SQL.Add('INSERT INTO ' + NLogDB +
-      //'(`UnUsedIndex`, `CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, ' +
       '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, ' +
       '`QSOReportSent`, `QSOReportRecived`, `OMName`, `OMQTH`, `State`, `Grid`, `IOTA`,'
       +
@@ -1346,7 +1351,6 @@ begin
       + ':IWPX, :IAwardsEx, :IValidDX, :ISRX, :ISRX_STRING, :ISTX, :ISTX_STRING, :ISAT_NAME,'
       + ':ISAT_MODE, :IPROP_MODE, :ILoTWSent, :IQSL_RCVD_VIA, :IQSL_SENT_VIA, :IDXCC, :IUSERS, :INoCalcDXCC)');
 
-    //Params.ParamByName('IUnUsedIndex').AsInteger := StrToInt(Index);
     Params.ParamByName('ICallSign').AsString := CallSing;
     Params.ParamByName('IQSODate').AsDateTime := QSODate;
     Params.ParamByName('IQSOTime').AsString := QSOTime;
@@ -1466,7 +1470,6 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      // + '`LoTWSent`) AS QSLs FROM ' + LogDB + ' WHERE 1 ORDER BY `UnUsedIndex`');
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
       ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC');
   end
@@ -1481,7 +1484,6 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      //+ '`LoTWSent`) AS QSLs FROM ' + LogDB + ' WHERE 1 ORDER BY `UnUsedIndex`');
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
       ' ORDER BY date(QSODate), time(QSOTime) ASC');
   end;
@@ -2073,6 +2075,7 @@ begin
   IniF.WriteBool('SetLog', 'TRXForm', ShowTRXForm);
   IniF.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
   IniF.WriteString('SetLog', 'PastBand', ComboBox1.Text);
+  IniF.WriteString('SetLog', 'Language', Language);
   TRXForm.Close;
 end;
 
@@ -3021,6 +3024,16 @@ begin
   LoginLog := IniF.ReadString('SetLog', 'Login', '');
   PassLog := IniF.ReadString('SetLog', 'Pass', '');
   sprav := IniF.ReadString('SetLog', 'Sprav', '');
+  Language := IniF.ReadString('SetLog', 'Language', 'En');
+  if Language = 'En' then begin
+  MenuItem118.Checked:=true;
+  MenuItem117.Checked:=false;
+  end;
+  if Language = 'Ru' then begin
+  MenuItem117.Checked:=true;
+  MenuItem118.Checked:=false;
+  end;
+
 
   if MenuItem86.Checked = True then
     TRXForm.Show;
@@ -3615,6 +3628,24 @@ begin
     VirtualStringTree1.BeginUpdate;
     VirtualStringTree1.Clear;
     VirtualStringTree1.EndUpdate;
+  end;
+end;
+
+procedure TMainForm.MenuItem117Click(Sender: TObject);
+begin
+  Language:='Ru';
+  if Language = 'Ru' then begin
+  MenuItem117.Checked:=true;
+  MenuItem118.Checked:=false;
+  end;
+end;
+
+procedure TMainForm.MenuItem118Click(Sender: TObject);
+begin
+  Language:='En';
+   if Language = 'En' then begin
+  MenuItem118.Checked:=true;
+  MenuItem117.Checked:=false;
   end;
 end;
 
