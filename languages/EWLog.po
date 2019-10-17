@@ -312,6 +312,10 @@ msgctxt "mainform_u.rqsotime"
 msgid "Time"
 msgstr ""
 
+#: mainform_u.rqsototal
+msgid " Total "
+msgstr ""
+
 #: mainform_u.rsaveqso
 msgctxt "mainform_u.rsaveqso"
 msgid "Save QSO"
@@ -2022,7 +2026,7 @@ msgid "Map"
 msgstr ""
 
 #: tmainform.checkbox5.caption
-msgid "Метка"
+msgid "Mark"
 msgstr ""
 
 #: tmainform.checkbox6.caption

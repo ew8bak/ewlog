@@ -26,7 +26,7 @@
 {"hash":5941413,"name":"tmainform.label12.caption","sourcebytes":[83,116,97,116,101],"value":"State"},
 {"hash":320641,"name":"tmainform.label13.caption","sourcebytes":[73,79,84,65],"value":"IOTA"},
 {"hash":20930,"name":"tmainform.label14.caption","sourcebytes":[77,71,82],"value":"MGR"},
-{"hash":43134576,"name":"tmainform.checkbox5.caption","sourcebytes":[208,156,208,181,209,130,208,186,208,176],"value":"\u041C\u0435\u0442\u043A\u0430"},
+{"hash":342155,"name":"tmainform.checkbox5.caption","sourcebytes":[77,97,114,107],"value":"Mark"},
 {"hash":2299648,"name":"tmainform.speedbutton4.caption","sourcebytes":[32,46,52,46,32],"value":" .4. "},
 {"hash":2299392,"name":"tmainform.speedbutton5.caption","sourcebytes":[32,46,51,46,32],"value":" .3. "},
 {"hash":2299136,"name":"tmainform.speedbutton6.caption","sourcebytes":[32,46,50,46,32],"value":" .2. "},

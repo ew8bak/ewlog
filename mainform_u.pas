@@ -73,6 +73,7 @@ resourcestring
    rClearQSO = 'Clear QSO input window';
    rLogConWSJT = 'EWLog connected to WSJT';
    rLogNConWSJT = 'EWLog not connected to WSJT';
+   rQSOTotal = ' Total ';
 
 
 const
@@ -1104,7 +1105,7 @@ begin
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     StatusBar1.Panels.Items[1].Text :=
       'QSO № ' + IntToStr(DBGrid1.DataSource.DataSet.RecNo) +
-      ' из ' + IntToStr(MainForm.LOGBookQuery.RecordCount);
+      rQSOTotal + IntToStr(MainForm.LOGBookQuery.RecordCount);
   except
     on E: Exception do
     begin
@@ -1552,7 +1553,7 @@ begin
   LOGBookQuery.Last;
   lastID := MainForm.DBGrid1.DataSource.DataSet.RecNo;
   StatusBar1.Panels.Items[1].Text :=
-    'QSO № ' + IntToStr(lastID) + ' из ' +
+    'QSO № ' + IntToStr(lastID) + rQSOTotal +
     IntToStr(MainForm.LOGBookQuery.RecordCount);
 end;
 
@@ -1960,7 +1961,7 @@ begin
       LOGBookQuery.Last;
       lastID := MainForm.DBGrid1.DataSource.DataSet.RecNo;
       StatusBar1.Panels.Items[1].Text :=
-        'QSO № ' + IntToStr(lastID) + ' из ' +
+        'QSO № ' + IntToStr(lastID) + rQSOTotal +
         IntToStr(MainForm.LOGBookQuery.RecordCount);
     end;
   end;
