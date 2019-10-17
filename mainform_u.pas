@@ -10,7 +10,70 @@ uses
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
   IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
   Grids, INIFiles, md5, mvMapViewer, LCLType, LazSysUtils,
-  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr, mvTypes, gettext, Translations, LResources;
+  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr, mvTypes, gettext, Translations, LResources, LCLTranslator;
+
+resourcestring
+   rQSL = 'QSL';
+   rQSLs = 'QSLs';
+   rQSODate = 'Date';
+   rQSOTime = 'Time';
+   rQSOBand = 'Band';
+   rCallSign = 'Callsign';
+   rQSOMode = 'Mode';
+   rOMName = 'Name';
+   rOMQTH = 'QTH';
+   rState = 'State';
+   rGrid = 'Grid';
+   rQSOReportSent = 'RSTs';
+   rQSOReportRecived = 'RSTr';
+   rIOTA = 'IOTA';
+   rQSLManager = 'Manager';
+   rQSLSentDate = 'QSLs Date';
+   rQSLRecDate = 'QSLr Date';
+   rLoTWRecDate = 'LOTWr Date';
+   rMainPrefix = 'Prefix';
+   rDXCCPrefix = 'DXCC';
+   rCQZone = 'CQ Zone';
+   rITUZone = 'ITU Zone';
+   rManualSet = 'Manual Set';
+   rContinent = 'Continent';
+   rValidDX = 'Valid DX';
+   rQSL_RCVD_VIA = 'QSL r VIA';
+   rQSL_SENT_VIA = 'QSL s VIA';
+   rUSERS = 'User';
+   rNoCalcDXCC = 'No Calc DXCC';
+   rMySQLHasGoneAwat = 'NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite';
+   rWelcomeMessageMySQL = 'MySQL database selected! Welcome!';
+   rWelcomeMessageSQLIte = 'SQLite database selected! Welcome!';
+   rCheckSettingsMySQL = 'Check MySQL DB Settings';
+   rCheckSettingsSQLIte = 'Check SQLite DB Settings';
+   rDataBaseFault = 'Something went wrong ... Check the settings';
+   rWarning = 'Warning!';
+   rQSONotSave = 'QSO not saved, quit anyway ?!';
+   rDXClusterDisconnect = 'You are disconnected from the DX cluster';
+   rSwitchDBSQLIte = 'Switch base to SQLite';
+   rSwitchDBMySQL = 'Switch base to MySQL';
+   rDBNotInit = 'The database is not initialized, go to the settings?';
+   rClientConnected = 'Client Connected:';
+   rPhotoFromQRZru = 'Photo from QRZ.RU';
+   rDeleteRecord = 'Delete Record ';
+   rDuplicates = 'Duplicates ';
+   rSyncOK = 'Done! Number of duplicates ';
+   rSync =', in sync ';
+   rQSOsync = 'QSO';
+   rDBError = 'Error while working with the database. Check connection and settings';
+   rMySQLNotSet = 'MySQL database settings not configured';
+   rNotCallsign = 'No callsign entered to view';
+   rDXClusterConnecting = 'Connect to Telnet Cluster';
+   rDXClusterDisconnecting = 'Disconnect from Telnet Cluster';
+   rDXClusterWindowClear = 'Clear DX Cluster window';
+   rSendSpot = 'Send spot';
+   rEnCall = 'You must enter a callsign';
+   rSaveQSO = 'Save QSO';
+   rClearQSO = 'Clear QSO input window';
+   rLogConWSJT = 'EWLog connected to WSJT';
+   rLogNConWSJT = 'EWLog not connected to WSJT';
+
 
 const
   constColumnName: array [0..28] of string =
@@ -879,35 +942,35 @@ begin
     DBGrid1.Columns.Items[i].FieldName := columnsGrid[i];
     DBGrid1.Columns.Items[i].Width := columnsWidth[i];
     case columnsGrid[i] of
-      'QSL': DBGrid1.Columns.Items[i].Title.Caption := 'QSL';
-      'QSLs': DBGrid1.Columns.Items[i].Title.Caption := 'QSLs';
-      'QSODate': DBGrid1.Columns.Items[i].Title.Caption := 'Дата';
-      'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := 'Время';
-      'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := 'Диапазон';
-      'CallSign': DBGrid1.Columns.Items[i].Title.Caption := 'Позывной';
-      'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := 'Мода';
-      'OMName': DBGrid1.Columns.Items[i].Title.Caption := 'Имя';
-      'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := 'QTH';
-      'State': DBGrid1.Columns.Items[i].Title.Caption := 'State';
-      'Grid': DBGrid1.Columns.Items[i].Title.Caption := 'Локатор';
-      'QSOReportSent': DBGrid1.Columns.Items[i].Title.Caption := 'RSTs';
-      'QSOReportRecived': DBGrid1.Columns.Items[i].Title.Caption := 'RSTr';
-      'IOTA': DBGrid1.Columns.Items[i].Title.Caption := 'IOTA';
-      'QSLManager': DBGrid1.Columns.Items[i].Title.Caption := 'Менеджер';
-      'QSLSentDate': DBGrid1.Columns.Items[i].Title.Caption := 'QSLs Date';
-      'QSLRecDate': DBGrid1.Columns.Items[i].Title.Caption := 'QSLr Date';
-      'LoTWRecDate': DBGrid1.Columns.Items[i].Title.Caption := 'LOTWr Date';
-      'MainPrefix': DBGrid1.Columns.Items[i].Title.Caption := 'Префикс';
-      'DXCCPrefix': DBGrid1.Columns.Items[i].Title.Caption := 'DXCC';
-      'CQZone': DBGrid1.Columns.Items[i].Title.Caption := 'CQ Zone';
-      'ITUZone': DBGrid1.Columns.Items[i].Title.Caption := 'ITU Zone';
-      'ManualSet': DBGrid1.Columns.Items[i].Title.Caption := 'Manual Set';
-      'Continent': DBGrid1.Columns.Items[i].Title.Caption := 'Континент';
-      'ValidDX': DBGrid1.Columns.Items[i].Title.Caption := 'Valid DX';
-      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Title.Caption := 'QSL r VIA';
-      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Title.Caption := 'QSL s VIA';
-      'USERS': DBGrid1.Columns.Items[i].Title.Caption := 'User';
-      'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := 'No Calc DXCC';
+      'QSL': DBGrid1.Columns.Items[i].Title.Caption := rQSL;
+      'QSLs': DBGrid1.Columns.Items[i].Title.Caption := rQSLs;
+      'QSODate': DBGrid1.Columns.Items[i].Title.Caption := rQSODate;
+      'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := rQSOTime;
+      'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := rQSOBand;
+      'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
+      'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
+      'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
+      'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
+      'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
+      'Grid': DBGrid1.Columns.Items[i].Title.Caption := rGrid;
+      'QSOReportSent': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportSent;
+      'QSOReportRecived': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportRecived;
+      'IOTA': DBGrid1.Columns.Items[i].Title.Caption := rIOTA;
+      'QSLManager': DBGrid1.Columns.Items[i].Title.Caption := rQSLManager;
+      'QSLSentDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLSentDate;
+      'QSLRecDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLRecDate;
+      'LoTWRecDate': DBGrid1.Columns.Items[i].Title.Caption := rLoTWRecDate;
+      'MainPrefix': DBGrid1.Columns.Items[i].Title.Caption := rMainPrefix;
+      'DXCCPrefix': DBGrid1.Columns.Items[i].Title.Caption := rDXCCPrefix;
+      'CQZone': DBGrid1.Columns.Items[i].Title.Caption := rCQZone;
+      'ITUZone': DBGrid1.Columns.Items[i].Title.Caption := rITUZone;
+      'ManualSet': DBGrid1.Columns.Items[i].Title.Caption := rManualSet;
+      'Continent': DBGrid1.Columns.Items[i].Title.Caption := rContinent;
+      'ValidDX': DBGrid1.Columns.Items[i].Title.Caption := rValidDX;
+      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
+      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
+      'USERS': DBGrid1.Columns.Items[i].Title.Caption := rUSERS;
+      'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
     end;
 
     case columnsGrid[i] of
@@ -948,35 +1011,35 @@ begin
     DBGrid2.Columns.Items[i].FieldName := columnsGrid[i];
     DBGrid2.Columns.Items[i].Width := columnsWidth[i];
     case columnsGrid[i] of
-      'QSL': DBGrid2.Columns.Items[i].Title.Caption := 'QSL';
-      'QSLs': DBGrid2.Columns.Items[i].Title.Caption := 'QSLs';
-      'QSODate': DBGrid2.Columns.Items[i].Title.Caption := 'Дата';
-      'QSOTime': DBGrid2.Columns.Items[i].Title.Caption := 'Время';
-      'QSOBand': DBGrid2.Columns.Items[i].Title.Caption := 'Диапазон';
-      'CallSign': DBGrid2.Columns.Items[i].Title.Caption := 'Позывной';
-      'QSOMode': DBGrid2.Columns.Items[i].Title.Caption := 'Мода';
-      'OMName': DBGrid2.Columns.Items[i].Title.Caption := 'Имя';
-      'OMQTH': DBGrid2.Columns.Items[i].Title.Caption := 'QTH';
-      'State': DBGrid2.Columns.Items[i].Title.Caption := 'State';
-      'Grid': DBGrid2.Columns.Items[i].Title.Caption := 'Локатор';
-      'QSOReportSent': DBGrid2.Columns.Items[i].Title.Caption := 'RSTs';
-      'QSOReportRecived': DBGrid2.Columns.Items[i].Title.Caption := 'RSTr';
-      'IOTA': DBGrid2.Columns.Items[i].Title.Caption := 'IOTA';
-      'QSLManager': DBGrid2.Columns.Items[i].Title.Caption := 'Менеджер';
-      'QSLSentDate': DBGrid2.Columns.Items[i].Title.Caption := 'QSLs Date';
-      'QSLRecDate': DBGrid2.Columns.Items[i].Title.Caption := 'QSLr Date';
-      'LoTWRecDate': DBGrid2.Columns.Items[i].Title.Caption := 'LOTWr Date';
-      'MainPrefix': DBGrid2.Columns.Items[i].Title.Caption := 'Префикс';
-      'DXCCPrefix': DBGrid2.Columns.Items[i].Title.Caption := 'DXCC';
-      'CQZone': DBGrid2.Columns.Items[i].Title.Caption := 'CQ Zone';
-      'ITUZone': DBGrid2.Columns.Items[i].Title.Caption := 'ITU Zone';
-      'ManualSet': DBGrid2.Columns.Items[i].Title.Caption := 'Manual Set';
-      'Continent': DBGrid2.Columns.Items[i].Title.Caption := 'Континент';
-      'ValidDX': DBGrid2.Columns.Items[i].Title.Caption := 'Valid DX';
-      'QSL_RCVD_VIA': DBGrid2.Columns.Items[i].Title.Caption := 'QSL r VIA';
-      'QSL_SENT_VIA': DBGrid2.Columns.Items[i].Title.Caption := 'QSL s VIA';
-      'USERS': DBGrid2.Columns.Items[i].Title.Caption := 'User';
-      'NoCalcDXCC': DBGrid2.Columns.Items[i].Title.Caption := 'No Calc DXCC';
+      'QSL': DBGrid2.Columns.Items[i].Title.Caption := rQSL;
+      'QSLs': DBGrid2.Columns.Items[i].Title.Caption := rQSLs;
+      'QSODate': DBGrid2.Columns.Items[i].Title.Caption := rQSODate;
+      'QSOTime': DBGrid2.Columns.Items[i].Title.Caption := rQSOTime;
+      'QSOBand': DBGrid2.Columns.Items[i].Title.Caption := rQSOBand;
+      'CallSign': DBGrid2.Columns.Items[i].Title.Caption := rCallSign;
+      'QSOMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOMode;
+      'OMName': DBGrid2.Columns.Items[i].Title.Caption := rOMName;
+      'OMQTH': DBGrid2.Columns.Items[i].Title.Caption := rOMQTH;
+      'State': DBGrid2.Columns.Items[i].Title.Caption := rState;
+      'Grid': DBGrid2.Columns.Items[i].Title.Caption := rGrid;
+      'QSOReportSent': DBGrid2.Columns.Items[i].Title.Caption := rQSOReportSent;
+      'QSOReportRecived': DBGrid2.Columns.Items[i].Title.Caption := rQSOReportRecived;
+      'IOTA': DBGrid2.Columns.Items[i].Title.Caption := rIOTA;
+      'QSLManager': DBGrid2.Columns.Items[i].Title.Caption := rQSLManager;
+      'QSLSentDate': DBGrid2.Columns.Items[i].Title.Caption := rQSLSentDate;
+      'QSLRecDate': DBGrid2.Columns.Items[i].Title.Caption := rQSLRecDate;
+      'LoTWRecDate': DBGrid2.Columns.Items[i].Title.Caption := rLoTWRecDate;
+      'MainPrefix': DBGrid2.Columns.Items[i].Title.Caption := rMainPrefix;
+      'DXCCPrefix': DBGrid2.Columns.Items[i].Title.Caption := rDXCCPrefix;
+      'CQZone': DBGrid2.Columns.Items[i].Title.Caption := rCQZone;
+      'ITUZone': DBGrid2.Columns.Items[i].Title.Caption := rITUZone;
+      'ManualSet': DBGrid2.Columns.Items[i].Title.Caption := rManualSet;
+      'Continent': DBGrid2.Columns.Items[i].Title.Caption := rContinent;
+      'ValidDX': DBGrid2.Columns.Items[i].Title.Caption := rValidDX;
+      'QSL_RCVD_VIA': DBGrid2.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
+      'QSL_SENT_VIA': DBGrid2.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
+      'USERS': DBGrid2.Columns.Items[i].Title.Caption := rUSERS;
+      'NoCalcDXCC': DBGrid2.Columns.Items[i].Title.Caption := rNoCalcDXCC;
     end;
 
     case columnsGrid[i] of
@@ -1047,8 +1110,7 @@ begin
     begin
       if Pos('has gone away', E.Message) > 0 then
       begin
-        ShowMessage(
-          'НЕТ подключения к базе данных MySQL! Проверьте подключение или параметры соединения. Соединяемся с базой SQLite');
+        ShowMessage(rMySQLHasGoneAwat);
         UseCallBook := 'NO';
         DefaultDB := 'SQLite';
         InitializeDB('SQLite');
@@ -1111,15 +1173,14 @@ begin
       LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
       SQLQuery2.DataBase := MySQLLOGDBConnection;
       {$IFDEF WINDOWS}
-      TrayIcon1.BalloonHint :=
-        'Выбрана БД MySQL! Добро пожаловать!';
+      TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
       TrayIcon1.ShowBalloonHint;
       {$ELSE}
       SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        ['EWLog', 'Выбрана БД MySQL! Добро пожаловать!']);
+        ['EWLog', rWelcomeMessageMySQL]);
       {$ENDIF}
     except
-      ShowMessage('Проверьте настройки БД MySQL');
+      ShowMessage(rCheckSettingsMySQL);
       InitializeDB('SQLite');
     end;
   end
@@ -1141,15 +1202,14 @@ begin
       LogBookInfoQuery.DataBase := SQLiteDBConnection;
       SQLQuery2.DataBase := SQLiteDBConnection;
       {$IFDEF WINDOWS}
-      TrayIcon1.BalloonHint :=
-        'Выбрана БД SQLite! Добро пожаловать!';
+      TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
       TrayIcon1.ShowBalloonHint;
       {$ELSE}
       SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        ['EWLog', 'Выбрана БД SQLite! Добро пожаловать!']);
+        ['EWLog', rWelcomeMessageSQLIte]);
       {$ENDIF}
     except
-      ShowMessage('Проверьте настройки БД SQLite');
+      ShowMessage(rCheckSettingsSQLIte);
       InitializeDB('MySQL');
     end;
   end;
@@ -1204,7 +1264,7 @@ begin
     end;
 
   except
-    ShowMessage('Что то пошло не так... Проверьте настройки');
+    ShowMessage(rDataBaseFault);
     SetupForm.Show;
   end;
 end;
@@ -2035,9 +2095,8 @@ var
 begin
   if EditButton1.Text <> '' then
   begin
-    if Application.MessageBox(
-      PChar('QSO не сохранено, действительной выйти ?!'),
-      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    if Application.MessageBox(PChar(rQSONotSave),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     begin
       Application.Terminate;
     end
@@ -2143,9 +2202,9 @@ end;
 procedure TMainForm.CheckBox2Change(Sender: TObject);
 begin
   if CheckBox2.Checked = True then
-    Label4.Caption := 'Время (Local)'
+    Label4.Caption :=  rQSOTime + ' (Local)'
   else
-    Label4.Caption := 'Время (UTC)';
+    Label4.Caption := rQSOTime + ' (UTC)';
 end;
 
 procedure TMainForm.CheckBox3Change(Sender: TObject);
@@ -2319,8 +2378,6 @@ begin
 
     EditQSO_Form.ComboBox1.Text :=
       DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-    //dmFunc.GetAdifBandFromFreq(DBGrid1.DataSource.DataSet.FieldByName(
-    //  'QSOBand').AsString);
 
     EditQSO_Form.Edit13.Text :=
       DBGrid1.DataSource.DataSet.FieldByName('Continent').AsString;
@@ -2728,7 +2785,7 @@ end;
 
 procedure TMainForm.dxClientDisconnect(aSocket: TLSocket);
 begin
-  Memo1.Append('Вы отключены от DX кластера');
+  Memo1.Append(rDXClusterDisconnect);
 
   SpeedButton21.Enabled := False;
   SpeedButton27.Enabled := False;
@@ -2840,7 +2897,6 @@ begin
   if UTF8Length(s) > 0 then
   begin
     Edit2.SelStart := UTF8Length(s);
-    //    Edit2.Text := UTF8UpperCase(UTF8Copy(s, 1, 1)) + UTF8LowerCase(UTF8Copy(s, 2, UTF8Length(s)))
 
     if (UTF8Pos('Г.', s) > 0) or (UTF8Pos('С.', s) > 0) or (UTF8Pos('П.', s) > 0) then
       Edit2.Text := UTF8LowerCase(UTF8Copy(s, 1, 2)) +
@@ -2986,17 +3042,15 @@ begin
       Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
 
       if DefaultDB = 'MySQL' then
-        MenuItem89.Caption := 'Переключить базу на SQLite'
+        MenuItem89.Caption := rSwitchDBSQLIte
       else
-        MenuItem89.Caption := 'Переключить базу на MySQL';
+        MenuItem89.Caption := rSwitchDBMySQL;
       InitializeDB(DefaultDB);
 
     end;
-    // except
-    // end;
+
 
   finally
-    // DateSeparator := '.';
   end;
 
   LTCPComponent1.Listen(6666);
@@ -3028,12 +3082,13 @@ begin
   if Language = 'En' then begin
   MenuItem118.Checked:=true;
   MenuItem117.Checked:=false;
+  SetDefaultLang('en');
   end;
   if Language = 'Ru' then begin
   MenuItem117.Checked:=true;
   MenuItem118.Checked:=false;
+  SetDefaultLang('ru');
   end;
-
 
   if MenuItem86.Checked = True then
     TRXForm.Show;
@@ -3122,9 +3177,8 @@ begin
 
   if InitLog_DB <> 'YES' then
   begin
-    if Application.MessageBox(PChar('База данных ' +
-      'не инициализирована, перейти к настройкам?'),
-      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    if Application.MessageBox(PChar(rDBNotinit),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       SetupForm.Show;
   end;
 
@@ -3147,7 +3201,7 @@ end;
 procedure TMainForm.LTCPComponent1Accept(aSocket: TLSocket);
 begin
   StatusBar1.Panels.Items[0].Text :=
-    'Клиент подключился:' + aSocket.PeerAddress;
+    rClientConnected + aSocket.PeerAddress;
 end;
 
 procedure TMainForm.LTCPComponent1CanSend(aSocket: TLSocket);
@@ -3283,7 +3337,7 @@ end;
 procedure TMainForm.LTCPSyncDeskAccept(aSocket: TLSocket);
 begin
   StatusBar1.Panels.Items[0].Text :=
-    'Клиент подключился:' + aSocket.PeerAddress;
+    rClientConnected + aSocket.PeerAddress;
 end;
 
 procedure TMainForm.LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
@@ -3559,7 +3613,7 @@ begin
   PhotoGroup := TGroupBox.Create(Panel13);
   PhotoGroup.Parent := Panel13;
   PhotoGroup.Align := alClient;
-  PhotoGroup.Caption := 'Фото из QRZ.RU';
+  PhotoGroup.Caption := rPhotoFromQRZru;
   if MenuItem86.Checked = True then
   begin
     ShowTRXForm := False;
@@ -3633,6 +3687,7 @@ end;
 
 procedure TMainForm.MenuItem117Click(Sender: TObject);
 begin
+  SetDefaultLang('ru');
   Language:='Ru';
   if Language = 'Ru' then begin
   MenuItem117.Checked:=true;
@@ -3642,6 +3697,7 @@ end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
+  SetDefaultLang('en');
   Language:='En';
    if Language = 'En' then begin
   MenuItem118.Checked:=true;
@@ -4147,10 +4203,6 @@ begin
       ExportAdifArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
         'UnUsedIndex').AsInteger;
     end;
-
-
-    // exportSelectADIF:=True;
-    //exportAdifForm.ExportToAdif;
     ExportAdifSelect := True;
     exportAdifForm.Button1.Click;
   end;
@@ -4178,7 +4230,6 @@ begin
       qslinf := SetQSLInfo;
       information := 1;
       inform := 1;
-      //OnEQSLSent := @EQSLSent;
       Start;
     end;
   end;
@@ -4203,7 +4254,6 @@ begin
       rst := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
       qslinf := SetQSLInfo;
       information := 1;
-      //OnEQSLSent := @EQSLSent;
       Start;
     end;
   end;
@@ -4307,9 +4357,6 @@ begin
       EditQSO_Form.DBLookupComboBox3.Text :=
         DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
 
-      //EditQSO_Form.DBLookupComboBox4.Text :=
-      //  dmFunc.GetAdifBandFromFreq(DBGrid1.DataSource.DataSet.FieldByName(
-      //  'QSOBand').AsString);
       EditQSO_Form.ComboBox1.Text :=
         DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
 
@@ -4391,8 +4438,6 @@ var
   wsjt_args: string;
 begin
 
-  //WSJT_UDP_Form.Show;
-  //ShowMEssage(BoolToStr( WSJT_UDP_Form.WSJT_IsRunning));
   p := Pos('.EXE', UpperCase(wsjt_path));
   if p > 0 then
   begin
@@ -4415,8 +4460,6 @@ begin
 end;
 
 procedure TMainForm.MenuItem49Click(Sender: TObject);
-{var
-  freq, call, cname, mode, rsts, grid: string;}
 var
   freq: string;
   freq2: double;
@@ -4433,9 +4476,9 @@ procedure TMainForm.MenuItem51Click(Sender: TObject);
 begin
   if LogBookQuery.RecordCount > 0 then
   begin
-    if Application.MessageBox(PChar('Удалить запись ' +
+    if Application.MessageBox(PChar(rDeleteRecord +
       DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString + '?!'),
-      'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     begin
       try
         with DeleteQSOQuery do
@@ -4588,7 +4631,7 @@ begin
         Application.ProcessMessages;
         SQLiteTr.Rollback;
         Inc(err);
-        StatusBar1.Panels.Items[0].Text := 'Дубликаты: ' + IntToStr(err);
+        StatusBar1.Panels.Items[0].Text := rDuplicates + IntToStr(err);
       end
       else
       begin
@@ -4746,12 +4789,11 @@ begin
       DBGrid1.DataSource.DataSet.Next;
     end;
     StatusBar1.Panels.Items[0].Text :=
-      'Готово! Количество дубликатов ' +
-      IntToStr(err) + ', синхронизировано ' +
-      IntToStr(ok) + ' связей';
+      rSyncOK +
+      IntToStr(err) + rSync +
+      IntToStr(ok) + rQSOsync;
   except
-    ShowMessage(
-      'Ошибка при работе с БД. Проверьте подключение и настройки');
+    ShowMessage(rDBError);
   end;
 end;
 
@@ -4771,7 +4813,7 @@ begin
 
     if (copyUser = '') or (copyHost = '') or (copyDB = '') then
     begin
-      ShowMessage('Не настроены параметры базы данных MySQL');
+      ShowMessage(rMySQLNotSet);
     end
     else
     begin
@@ -4819,7 +4861,7 @@ begin
           Application.ProcessMessages;
           SQLiteTr.Rollback;
           Inc(err);
-          StatusBar1.Panels.Items[0].Text := 'Дубликаты: ' + IntToStr(err);
+          StatusBar1.Panels.Items[0].Text := rDuplicates + IntToStr(err);
         end
         else
         begin
@@ -4977,14 +5019,12 @@ begin
         Application.ProcessMessages;
         DBGrid1.DataSource.DataSet.Next;
       end;
-      StatusBar1.Panels.Items[0].Text :=
-        'Готово! Количество дубликатов ' +
-        IntToStr(err) + ', синхронизировано ' +
-        IntToStr(ok) + ' связей';
+      StatusBar1.Panels.Items[0].Text := rSyncOK +
+        IntToStr(err) + rSync +
+        IntToStr(ok) + rQSOsync;
     end;
   except
-    ShowMessage(
-      'Ошибка при работе с БД. Проверьте подключение и настройки');
+    ShowMessage(rDBError);
   end;
 end;
 
@@ -5040,12 +5080,12 @@ begin
   if dbSel = 'SQLite' then
   begin
     InitializeDB('MySQL');
-    MenuItem89.Caption := 'Переключить базу на SQLite';
+    MenuItem89.Caption := rSwitchDBSQLIte;
   end
   else
   begin
     InitializeDB('SQLite');
-    MenuItem89.Caption := 'Переключить базу на MySQL';
+    MenuItem89.Caption := rSwitchDBMySQL;
   end;
 end;
 
@@ -5105,7 +5145,7 @@ begin
   if EditButton1.Text <> '' then
     InformationForm.Show
   else
-    ShowMessage('Не введён позывной для просмотра');
+    ShowMessage(rNotCallsign);
 end;
 
 procedure TMainForm.SpeedButton17Click(Sender: TObject);
@@ -5121,8 +5161,7 @@ end;
 procedure TMainForm.SpeedButton18MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: integer);
 begin
-  StatusBar1.Panels.Items[0].Text :=
-    'Соедениться с Telnet кластером';
+  StatusBar1.Panels.Items[0].Text := rDXClusterConnecting;
 end;
 
 procedure TMainForm.SpeedButton19Click(Sender: TObject);
@@ -5154,7 +5193,7 @@ end;
 procedure TMainForm.SpeedButton20MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: integer);
 begin
-  StatusBar1.Panels.Items[0].Text := 'Очистить окно кластера';
+  StatusBar1.Panels.Items[0].Text := rDXClusterWindowClear;
 end;
 
 procedure TMainForm.SpeedButton21Click(Sender: TObject);
@@ -5176,7 +5215,7 @@ end;
 procedure TMainForm.SpeedButton21MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: integer);
 begin
-  StatusBar1.Panels.Items[0].Text := 'Отключится от Telnet кластера';
+  StatusBar1.Panels.Items[0].Text := rDXClusterDisconnecting;
 end;
 
 procedure TMainForm.SpeedButton22Click(Sender: TObject);
@@ -5192,7 +5231,7 @@ end;
 procedure TMainForm.SpeedButton22MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: integer);
 begin
-  StatusBar1.Panels.Items[0].Text := 'Отправить спот';
+  StatusBar1.Panels.Items[0].Text := rSendSpot;
 end;
 
 procedure TMainForm.SpeedButton23Click(Sender: TObject);
@@ -5251,7 +5290,7 @@ begin
       timeQSO := DateTimePicker1.Time;
 
     if EditButton1.Text = '' then
-      ShowMessage('Необходимо ввести позывной')
+      ShowMessage(rEnCall)
     else
     begin
 
@@ -5293,7 +5332,7 @@ begin
         Label38.Caption, 'NULL',
         IntToStr(1), 0, '', 0, '', '', '', '', 0, '', ComboBox6.Text,
         IntToStr(DXCCNum), '', 0,
-        LogTable);//, IntToStr(lastID + 1));
+        LogTable);
 
       if AutoEQSLcc = True then
       begin
@@ -5311,7 +5350,6 @@ begin
           mode := ComboBox2.Text;
           rst := ComboBox4.Text;
           qslinf := SetQSLInfo;
-          //OnEQSLSent := @EQSLSent;
           Start;
         end;
       end;
@@ -5334,7 +5372,6 @@ begin
           rstr := ComboBox5.Text;
           locat := Edit3.Text;
           qslinf := SetQSLInfo;
-          //OnEQSLSent := @EQSLSent;
           Start;
         end;
       end;
@@ -5406,7 +5443,7 @@ end;
 procedure TMainForm.SpeedButton8MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: integer);
 begin
-  StatusBar1.Panels.Items[0].Text := 'Сохранить QSO';
+  StatusBar1.Panels.Items[0].Text := rSaveQSO;
 end;
 
 procedure TMainForm.SpeedButton9Click(Sender: TObject);
@@ -5422,7 +5459,7 @@ end;
 procedure TMainForm.SpeedButton9MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: integer);
 begin
-  StatusBar1.Panels.Items[0].Text := 'Очистить окно ввода QSO';
+  StatusBar1.Panels.Items[0].Text := rClearQSO;
 end;
 
 procedure TMainForm.SQLiteDBConnectionAfterConnect(Sender: TObject);
@@ -5603,11 +5640,11 @@ begin
         if not connectedWSJT then
         begin
           {$IFDEF WINDOWS}
-          TrayIcon1.BalloonHint := 'EWLog подключен к WSJT';
+          TrayIcon1.BalloonHint := rLogConWSJT;
           TrayIcon1.ShowBalloonHint;
           {$ELSE}
           SysUtils.ExecuteProcess('/usr/bin/notify-send',
-            ['EWLog', 'подключен к WSJT']);
+            ['EWLog', rLogConWSJT]);
           {$ENDIF}
           MenuItem74.Enabled := False;
           ComboBox2.Text := 'JT65';
@@ -5623,11 +5660,11 @@ begin
     if not connectedWSJT then
     begin
       {$IFDEF WINDOWS}
-      TrayIcon1.BalloonHint := 'EWLog не подключен к WSJT';
+      TrayIcon1.BalloonHint := rLogNConWSJT;
       TrayIcon1.ShowBalloonHint;
       {$ELSE}
       SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        ['EWLog', 'не подключен к WSJT']);
+        ['EWLog', rLogNConWSJT]);
       {$ENDIF}
       MenuItem74.Enabled := True;
       ComboBox2.ItemIndex := 0;

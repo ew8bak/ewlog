@@ -1,5 +1,290 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Project-Id-Version: EWLog Аппаратный журнал\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru_RU\n"
+"X-Generator: Poedit 2.2.4\n"
+
+#: mainform_u.rcallsign
+msgctxt "mainform_u.rcallsign"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: mainform_u.rchecksettingsmysql
+msgid "Check MySQL DB Settings"
+msgstr ""
+
+#: mainform_u.rchecksettingssqlite
+msgid "Check SQLite DB Settings"
+msgstr ""
+
+#: mainform_u.rclearqso
+msgid "Clear QSO input window"
+msgstr ""
+
+#: mainform_u.rclientconnected
+msgid "Client Connected:"
+msgstr ""
+
+#: mainform_u.rcontinent
+msgctxt "mainform_u.rcontinent"
+msgid "Continent"
+msgstr ""
+
+#: mainform_u.rcqzone
+msgctxt "mainform_u.rcqzone"
+msgid "CQ Zone"
+msgstr ""
+
+#: mainform_u.rdatabasefault
+msgid "Something went wrong ... Check the settings"
+msgstr ""
+
+#: mainform_u.rdberror
+msgid "Error while working with the database. Check connection and settings"
+msgstr ""
+
+#: mainform_u.rdbnotinit
+msgid "The database is not initialized, go to the settings?"
+msgstr ""
+
+#: mainform_u.rdeleterecord
+msgid "Delete Record "
+msgstr ""
+
+#: mainform_u.rduplicates
+msgid "Duplicates "
+msgstr ""
+
+#: mainform_u.rdxccprefix
+msgctxt "mainform_u.rdxccprefix"
+msgid "DXCC"
+msgstr ""
+
+#: mainform_u.rdxclusterconnecting
+msgid "Connect to Telnet Cluster"
+msgstr ""
+
+#: mainform_u.rdxclusterdisconnect
+msgid "You are disconnected from the DX cluster"
+msgstr ""
+
+#: mainform_u.rdxclusterdisconnecting
+msgctxt "mainform_u.rdxclusterdisconnecting"
+msgid "Disconnect from Telnet Cluster"
+msgstr ""
+
+#: mainform_u.rdxclusterwindowclear
+msgctxt "mainform_u.rdxclusterwindowclear"
+msgid "Clear DX Cluster window"
+msgstr ""
+
+#: mainform_u.rencall
+msgid "You must enter a callsign"
+msgstr ""
+
+#: mainform_u.rgrid
+msgctxt "mainform_u.rgrid"
+msgid "Grid"
+msgstr ""
+
+#: mainform_u.riota
+msgctxt "mainform_u.riota"
+msgid "IOTA"
+msgstr ""
+
+#: mainform_u.rituzone
+msgctxt "mainform_u.rituzone"
+msgid "ITU Zone"
+msgstr ""
+
+#: mainform_u.rlogconwsjt
+msgid "EWLog connected to WSJT"
+msgstr ""
+
+#: mainform_u.rlognconwsjt
+msgid "EWLog not connected to WSJT"
+msgstr ""
+
+#: mainform_u.rlotwrecdate
+msgctxt "mainform_u.rlotwrecdate"
+msgid "LOTWr Date"
+msgstr ""
+
+#: mainform_u.rmainprefix
+msgctxt "mainform_u.rmainprefix"
+msgid "Prefix"
+msgstr ""
+
+#: mainform_u.rmanualset
+msgctxt "mainform_u.rmanualset"
+msgid "Manual Set"
+msgstr ""
+
+#: mainform_u.rmysqlhasgoneawat
+msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
+msgstr ""
+
+#: mainform_u.rmysqlnotset
+msgid "MySQL database settings not configured"
+msgstr ""
+
+#: mainform_u.rnocalcdxcc
+msgctxt "mainform_u.rnocalcdxcc"
+msgid "No Calc DXCC"
+msgstr ""
+
+#: mainform_u.rnotcallsign
+msgid "No callsign entered to view"
+msgstr ""
+
+#: mainform_u.romname
+msgctxt "mainform_u.romname"
+msgid "Name"
+msgstr ""
+
+#: mainform_u.romqth
+msgctxt "mainform_u.romqth"
+msgid "QTH"
+msgstr ""
+
+#: mainform_u.rphotofromqrzru
+msgid "Photo from QRZ.RU"
+msgstr ""
+
+#: mainform_u.rqsl
+msgctxt "mainform_u.rqsl"
+msgid "QSL"
+msgstr ""
+
+#: mainform_u.rqslmanager
+msgctxt "mainform_u.rqslmanager"
+msgid "Manager"
+msgstr ""
+
+#: mainform_u.rqslrecdate
+msgctxt "mainform_u.rqslrecdate"
+msgid "QSLr Date"
+msgstr ""
+
+#: mainform_u.rqsls
+msgctxt "mainform_u.rqsls"
+msgid "QSLs"
+msgstr ""
+
+#: mainform_u.rqslsentdate
+msgctxt "mainform_u.rqslsentdate"
+msgid "QSLs Date"
+msgstr ""
+
+#: mainform_u.rqsl_rcvd_via
+msgctxt "mainform_u.rqsl_rcvd_via"
+msgid "QSL r VIA"
+msgstr ""
+
+#: mainform_u.rqsl_sent_via
+msgctxt "mainform_u.rqsl_sent_via"
+msgid "QSL s VIA"
+msgstr ""
+
+#: mainform_u.rqsoband
+msgctxt "mainform_u.rqsoband"
+msgid "Band"
+msgstr ""
+
+#: mainform_u.rqsodate
+msgctxt "mainform_u.rqsodate"
+msgid "Date"
+msgstr ""
+
+#: mainform_u.rqsomode
+msgctxt "mainform_u.rqsomode"
+msgid "Mode"
+msgstr ""
+
+#: mainform_u.rqsonotsave
+msgid "QSO not saved, quit anyway ?!"
+msgstr ""
+
+#: mainform_u.rqsoreportrecived
+msgctxt "mainform_u.rqsoreportrecived"
+msgid "RSTr"
+msgstr ""
+
+#: mainform_u.rqsoreportsent
+msgctxt "mainform_u.rqsoreportsent"
+msgid "RSTs"
+msgstr ""
+
+#: mainform_u.rqsosync
+msgctxt "mainform_u.rqsosync"
+msgid "QSO"
+msgstr ""
+
+#: mainform_u.rqsotime
+msgctxt "mainform_u.rqsotime"
+msgid "Time"
+msgstr ""
+
+#: mainform_u.rsaveqso
+msgctxt "mainform_u.rsaveqso"
+msgid "Save QSO"
+msgstr ""
+
+#: mainform_u.rsendspot
+msgctxt "mainform_u.rsendspot"
+msgid "Send spot"
+msgstr ""
+
+#: mainform_u.rstate
+msgctxt "mainform_u.rstate"
+msgid "State"
+msgstr ""
+
+#: mainform_u.rswitchdbmysql
+msgid "Switch base to MySQL"
+msgstr ""
+
+#: mainform_u.rswitchdbsqlite
+msgid "Switch base to SQLite"
+msgstr ""
+
+#: mainform_u.rsync
+msgid ", in sync "
+msgstr ""
+
+#: mainform_u.rsyncok
+msgid "Done! Number of duplicates "
+msgstr ""
+
+#: mainform_u.rusers
+msgctxt "mainform_u.rusers"
+msgid "User"
+msgstr ""
+
+#: mainform_u.rvaliddx
+msgctxt "mainform_u.rvaliddx"
+msgid "Valid DX"
+msgstr ""
+
+#: mainform_u.rwarning
+msgid "Warning!"
+msgstr ""
+
+#: mainform_u.rwelcomemessagemysql
+msgid "MySQL database selected! Welcome!"
+msgstr ""
+
+#: mainform_u.rwelcomemessagesqlite
+msgid "SQLite database selected! Welcome!"
+msgstr ""
 
 #: simplexml.ssimplexmlerror1
 msgid "Error when retriving element list: index out of bounds"
@@ -110,15 +395,12 @@ msgid "This feature is unsupported by SimpleXML"
 msgstr ""
 
 #: tabout_form.caption
-msgctxt "tabout_form.caption"
 msgid "О программе"
 msgstr ""
 
 #: tabout_form.label1.caption
-#, fuzzy
-#| msgid "Аппаратный журнал EWLog"
 msgid "HAM LOG EWLog"
-msgstr "Logger EWLog"
+msgstr ""
 
 #: tabout_form.label2.caption
 msgid "Version 1.1"
@@ -261,7 +543,6 @@ msgid "Cancel"
 msgstr ""
 
 #: tconfigform.button3.caption
-msgctxt "tconfigform.button3.caption"
 msgid "Check connection"
 msgstr ""
 
@@ -270,7 +551,6 @@ msgid "Check for Updates"
 msgstr ""
 
 #: tconfigform.caption
-msgctxt "tconfigform.caption"
 msgid "Program settings"
 msgstr ""
 
@@ -371,12 +651,10 @@ msgid "Login"
 msgstr ""
 
 #: tconfigform.label5.caption
-msgctxt "tconfigform.label5.caption"
 msgid "Pasword"
 msgstr ""
 
 #: tconfigform.label6.caption
-msgctxt "tconfigform.label6.caption"
 msgid "Base Name"
 msgstr ""
 
@@ -385,7 +663,6 @@ msgid "SQLite"
 msgstr ""
 
 #: tconfigform.label8.caption
-msgctxt "tconfigform.label8.caption"
 msgid "Base"
 msgstr ""
 
@@ -543,7 +820,6 @@ msgid "Band"
 msgstr ""
 
 #: tconfiggrid_form.checkbox6.caption
-msgctxt "tconfiggrid_form.checkbox6.caption"
 msgid "Call"
 msgstr ""
 
@@ -637,12 +913,10 @@ msgid "Long"
 msgstr ""
 
 #: tcreatejournalform.label2.caption
-msgctxt "tcreatejournalform.label2.caption"
 msgid "Index"
 msgstr ""
 
 #: tcreatejournalform.label3.caption
-msgctxt "tcreatejournalform.label3.caption"
 msgid "Call name"
 msgstr ""
 
@@ -710,7 +984,6 @@ msgid "Valid for DXCC"
 msgstr ""
 
 #: teditqso_form.checkbox3.caption
-msgctxt "teditqso_form.checkbox3.caption"
 msgid "Mark QSO"
 msgstr ""
 
@@ -807,7 +1080,6 @@ msgid "Manual Set"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[23].title.caption
-msgctxt "teditqso_form.dbgrid1.columns[23].title.caption"
 msgid "Континент"
 msgstr ""
 
@@ -842,12 +1114,10 @@ msgid "Дата"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[3].title.caption
-msgctxt "teditqso_form.dbgrid1.columns[3].title.caption"
 msgid "Время"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[4].title.caption
-msgctxt "teditqso_form.dbgrid1.columns[4].title.caption"
 msgid "Диапазон"
 msgstr ""
 
@@ -857,7 +1127,6 @@ msgid "Позывной"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[6].title.caption
-msgctxt "teditqso_form.dbgrid1.columns[6].title.caption"
 msgid "Мода"
 msgstr ""
 
@@ -892,7 +1161,6 @@ msgid "QSL"
 msgstr ""
 
 #: teditqso_form.label1.caption
-msgctxt "teditqso_form.label1.caption"
 msgid "CallSign"
 msgstr ""
 
@@ -957,7 +1225,6 @@ msgid "IOTA"
 msgstr ""
 
 #: teditqso_form.label21.caption
-msgctxt "teditqso_form.label21.caption"
 msgid "Satelite"
 msgstr ""
 
@@ -988,12 +1255,10 @@ msgid "QSL Info"
 msgstr ""
 
 #: teditqso_form.label3.caption
-msgctxt "teditqso_form.label3.caption"
 msgid "Report sent"
 msgstr ""
 
 #: teditqso_form.label4.caption
-msgctxt "teditqso_form.label4.caption"
 msgid "Report rcvd"
 msgstr ""
 
@@ -1016,6 +1281,7 @@ msgid "this"
 msgstr ""
 
 #: teditqso_form.label9.caption
+msgctxt "teditqso_form.label9.caption"
 msgid "QSO"
 msgstr ""
 
@@ -1032,7 +1298,6 @@ msgid "Queued"
 msgstr ""
 
 #: teditqso_form.radiobutton4.caption
-msgctxt "teditqso_form.radiobutton4.caption"
 msgid "Wasn't sent"
 msgstr ""
 
@@ -1135,12 +1400,10 @@ msgid "Close"
 msgstr ""
 
 #: texportadifform.caption
-msgctxt "texportadifform.caption"
 msgid "Export ADIF"
 msgstr ""
 
 #: texportadifform.checkbox1.caption
-msgctxt "texportadifform.checkbox1.caption"
 msgid "Export to ADIF"
 msgstr ""
 
@@ -1173,7 +1436,6 @@ msgid "Export all showed contacts"
 msgstr ""
 
 #: tfilterform.caption
-msgctxt "tfilterform.caption"
 msgid "Record Filter"
 msgstr ""
 
@@ -1314,16 +1576,16 @@ msgid "QRZ.COM"
 msgstr ""
 
 #: tinformationform.groupbox1.caption
+#, fuzzy
 msgctxt "tinformationform.groupbox1.caption"
 msgid "Callsign"
-msgstr ""
+msgstr "Позывной"
 
 #: tinformationform.groupbox2.caption
 msgid "Search in:"
 msgstr ""
 
 #: tinformationform.label1.caption
-msgctxt "tinformationform.label1.caption"
 msgid "Callsign:"
 msgstr ""
 
@@ -1413,7 +1675,6 @@ msgid "text"
 msgstr ""
 
 #: tinformationform.label3.caption
-msgctxt "tinformationform.label3.caption"
 msgid "Name:"
 msgstr ""
 
@@ -1605,19 +1866,18 @@ msgid "Password"
 msgstr ""
 
 #: tlogconfigform.label3.caption
-msgctxt "tlogconfigform.label3.caption"
 msgid "Log set"
 msgstr ""
 
 #: tlogconfigform.label4.caption
-msgctxt "tlogconfigform.label4.caption"
 msgid "Station detalis"
 msgstr ""
 
 #: tlogconfigform.label5.caption
+#, fuzzy
 msgctxt "tlogconfigform.label5.caption"
 msgid "Callsign"
-msgstr ""
+msgstr "Позывной"
 
 #: tlogconfigform.label6.caption
 msgctxt "tlogconfigform.label6.caption"
@@ -1703,7 +1963,6 @@ msgid "59"
 msgstr ""
 
 #: tmainform.combobox7.text
-msgctxt "tmainform.combobox7.text"
 msgid "Не отправлена"
 msgstr ""
 
@@ -1837,9 +2096,10 @@ msgid "Band"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[5].title.caption
+#, fuzzy
 msgctxt "tmainform.dbgrid1.columns[5].title.caption"
 msgid "Callsign"
-msgstr ""
+msgstr "Позывной"
 
 #: tmainform.dbgrid1.columns[6].title.caption
 msgctxt "tmainform.dbgrid1.columns[6].title.caption"
@@ -1982,9 +2242,10 @@ msgid "Band"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[5].title.caption
+#, fuzzy
 msgctxt "tmainform.dbgrid2.columns[5].title.caption"
 msgid "Callsign"
-msgstr ""
+msgstr "Позывной"
 
 #: tmainform.dbgrid2.columns[6].title.caption
 msgctxt "tmainform.dbgrid2.columns[6].title.caption"
@@ -2217,9 +2478,10 @@ msgid "Current log"
 msgstr ""
 
 #: tmainform.label5.caption
+#, fuzzy
 msgctxt "tmainform.label5.caption"
 msgid "Callsign"
-msgstr ""
+msgstr "Позывной"
 
 #: tmainform.label50.caption
 msgid "New update available"
@@ -2236,17 +2498,14 @@ msgid "QTH"
 msgstr ""
 
 #: tmainform.label8.caption
-msgctxt "tmainform.label8.caption"
 msgid "RST отп"
 msgstr ""
 
 #: tmainform.label9.caption
-msgctxt "tmainform.label9.caption"
 msgid "RST пол"
 msgstr ""
 
 #: tmainform.menuitem1.caption
-msgctxt "tmainform.menuitem1.caption"
 msgid "LogBook"
 msgstr ""
 
@@ -2263,7 +2522,6 @@ msgid "Пожертвования"
 msgstr ""
 
 #: tmainform.menuitem103.caption
-msgctxt "tmainform.menuitem103.caption"
 msgid "Фильтр записей"
 msgstr ""
 
@@ -2298,15 +2556,15 @@ msgid "QSL получена"
 msgstr ""
 
 #: tmainform.menuitem110.caption
-msgid "Отображение фото с QRZ.RU"
+msgid "Displaying photos with QRZ.RU"
 msgstr ""
 
 #: tmainform.menuitem111.caption
-msgid "Включить"
+msgid "On"
 msgstr ""
 
 #: tmainform.menuitem112.caption
-msgid "Отключить"
+msgid "Off"
 msgstr ""
 
 #: tmainform.menuitem113.caption
@@ -2347,7 +2605,6 @@ msgid "QSL отправлена"
 msgstr ""
 
 #: tmainform.menuitem15.caption
-msgctxt "tmainform.menuitem15.caption"
 msgid "QSL Инфо"
 msgstr ""
 
@@ -2452,7 +2709,6 @@ msgid "Экспорт выбранных QSO на eQSL.cc"
 msgstr ""
 
 #: tmainform.menuitem4.caption
-msgctxt "tmainform.menuitem4.caption"
 msgid "External programs"
 msgstr ""
 
@@ -2484,7 +2740,7 @@ msgid "Сохранить в Excel"
 msgstr ""
 
 #: tmainform.menuitem48.caption
-msgid "Выбрать дату синхронизации"
+msgid "Set date synchronization"
 msgstr ""
 
 #: tmainform.menuitem49.caption
@@ -2500,45 +2756,43 @@ msgid "Удалить запись"
 msgstr ""
 
 #: tmainform.menuitem52.caption
-msgctxt "tmainform.menuitem52.caption"
-msgid "Настройка программы"
+msgid "Configure program"
 msgstr ""
 
 #: tmainform.menuitem53.caption
-msgid "формат ADIF"
+msgid "Format ADIF"
 msgstr ""
 
 #: tmainform.menuitem54.caption
-msgid "Операции с журналом"
+msgid "Operations with a logbook"
 msgstr ""
 
 #: tmainform.menuitem55.caption
-msgid "Открыть другой журнал"
+msgid "Open log"
 msgstr ""
 
 #: tmainform.menuitem56.caption
-msgid "Создать новый журнал"
+msgid "Create new log"
 msgstr ""
 
 #: tmainform.menuitem58.caption
-msgid "Сжать и восстановить базу данных"
+msgid "Compact and Repair Database"
 msgstr ""
 
 #: tmainform.menuitem6.caption
-msgctxt "tmainform.menuitem6.caption"
 msgid "Help"
 msgstr ""
 
 #: tmainform.menuitem60.caption
-msgid "Сервисы eQSL и LOTW"
+msgid "Services of eQSL and LOTW"
 msgstr ""
 
 #: tmainform.menuitem61.caption
-msgid "Экспорт данных из журнала в"
+msgid "Export Information from a Logbook to"
 msgstr ""
 
 #: tmainform.menuitem62.caption
-msgid "Импорт данных в журнал из"
+msgid "Import information in logbook from"
 msgstr ""
 
 #: tmainform.menuitem63.caption
@@ -2547,41 +2801,42 @@ msgid "Благодарность"
 msgstr ""
 
 #: tmainform.menuitem65.caption
-msgid "Очистить окно ввода QSO"
+msgid "Clear new QSO"
 msgstr ""
 
 #: tmainform.menuitem66.caption
-msgid "Сохранить QSO"
+msgctxt "tmainform.menuitem66.caption"
+msgid "Save QSO"
 msgstr ""
 
 #: tmainform.menuitem67.caption
 msgctxt "tmainform.menuitem67.caption"
-msgid "Редактировать QSO"
+msgid "Edit QSO"
 msgstr ""
 
 #: tmainform.menuitem69.caption
-msgid "Закрыть журнал"
+msgid "Exit"
 msgstr ""
 
 #: tmainform.menuitem7.caption
 msgctxt "tmainform.menuitem7.caption"
-msgid "Конфигурация журнала"
+msgid "Logs configuration"
 msgstr ""
 
 #: tmainform.menuitem70.caption
-msgid "Файла .ADIF"
+msgid "File .ADIF"
 msgstr ""
 
 #: tmainform.menuitem71.caption
-msgid "Файла .TXT"
+msgid "File .TXT"
 msgstr ""
 
 #: tmainform.menuitem72.caption
-msgid "Компактный режим"
+msgid "Compact mode"
 msgstr ""
 
 #: tmainform.menuitem73.caption
-msgid "Нормальный режим"
+msgid "Normal mode"
 msgstr ""
 
 #: tmainform.menuitem74.caption
@@ -2599,7 +2854,6 @@ msgid "Установки фильтров"
 msgstr ""
 
 #: tmainform.menuitem78.caption
-msgctxt "tmainform.menuitem78.caption"
 msgid "Спутник"
 msgstr ""
 
@@ -2609,7 +2863,6 @@ msgid "Изменить информацию по стране"
 msgstr ""
 
 #: tmainform.menuitem8.caption
-msgctxt "tmainform.menuitem8.caption"
 msgid "Отметить QSO"
 msgstr ""
 
@@ -2618,44 +2871,42 @@ msgid "Изменить информацию по области"
 msgstr ""
 
 #: tmainform.menuitem81.caption
-msgid "Синхронизация баз данных"
+msgid "Synchronization Databases"
 msgstr ""
 
 #: tmainform.menuitem82.caption
-msgid "Из MySQL в SQLite"
+msgid "From MySQL to SQLite"
 msgstr ""
 
 #: tmainform.menuitem83.caption
-msgid "Из SQLite в MySQL"
+msgid "From SQLite to MySQL"
 msgstr ""
 
 #: tmainform.menuitem84.caption
-msgctxt "tmainform.menuitem84.caption"
 msgid "Settings CAT"
 msgstr ""
 
 #: tmainform.menuitem85.caption
-msgid "Управление трансивером"
+msgid "Transceiver Control"
 msgstr ""
 
 #: tmainform.menuitem86.caption
-msgid "Отоброжать форму управления"
+msgid "Display control form"
 msgstr ""
 
 #: tmainform.menuitem87.caption
-msgid "Настройки внешних программ"
+msgid "Settings external programs"
 msgstr ""
 
 #: tmainform.menuitem88.caption
-msgid "Нет"
+msgid "No"
 msgstr ""
 
 #: tmainform.menuitem89.caption
-msgid "Переключить базу данных"
+msgid "Switch database"
 msgstr ""
 
 #: tmainform.menuitem91.caption
-msgctxt "tmainform.menuitem91.caption"
 msgid "Wizard"
 msgstr ""
 
@@ -2681,7 +2932,7 @@ msgid "Выход"
 msgstr ""
 
 #: tmainform.menuitem99.caption
-msgid "Настройки таблиц"
+msgid "Configure table"
 msgstr ""
 
 #: tmainform.speedbutton1.caption
@@ -2738,7 +2989,6 @@ msgid "Band"
 msgstr ""
 
 #: tmainform.virtualstringtree1.header.columns[1].text
-msgctxt "tmainform.virtualstringtree1.header.columns[1].text"
 msgid "DX"
 msgstr ""
 
@@ -2898,7 +3148,6 @@ msgid "Фамилия:"
 msgstr ""
 
 #: tregisterform.label3.caption
-msgctxt "tregisterform.label3.caption"
 msgid "Имя:"
 msgstr ""
 
@@ -2935,6 +3184,7 @@ msgid "Send"
 msgstr ""
 
 #: tsendtelnetspot.caption
+msgctxt "tsendtelnetspot.caption"
 msgid "Send spot"
 msgstr ""
 
@@ -2994,7 +3244,6 @@ msgid "Состояние: Ожидание"
 msgstr ""
 
 #: tserviceform.menuitem1.caption
-msgctxt "tserviceform.menuitem1.caption"
 msgid "Сервер"
 msgstr ""
 
@@ -3008,7 +3257,6 @@ msgid "Сохранить"
 msgstr ""
 
 #: tsettingscat.caption
-msgctxt "tsettingscat.caption"
 msgid "Настройки CAT"
 msgstr ""
 
@@ -3118,7 +3366,6 @@ msgid "Отмена"
 msgstr ""
 
 #: tsettingsprogramform.caption
-msgctxt "tsettingsprogramform.caption"
 msgid "Внешние программы"
 msgstr ""
 
@@ -3159,7 +3406,6 @@ msgid "Принимаю"
 msgstr ""
 
 #: tsetupform.button10.caption
-msgctxt "tsetupform.button10.caption"
 msgid "Проверить подключение"
 msgstr ""
 
@@ -3204,7 +3450,6 @@ msgid "Отмена"
 msgstr ""
 
 #: tsetupform.caption
-msgctxt "tsetupform.caption"
 msgid "Мастер настройки"
 msgstr ""
 
@@ -3265,17 +3510,14 @@ msgid "Имя"
 msgstr ""
 
 #: tsetupform.label16.caption
-msgctxt "tsetupform.label16.caption"
 msgid "Локатор"
 msgstr ""
 
 #: tsetupform.label17.caption
-msgctxt "tsetupform.label17.caption"
 msgid "Широта"
 msgstr ""
 
 #: tsetupform.label18.caption
-msgctxt "tsetupform.label18.caption"
 msgid "Долгота"
 msgstr ""
 
@@ -3341,7 +3583,6 @@ msgid "Хост"
 msgstr ""
 
 #: tsetupform.label6.caption
-msgctxt "tsetupform.label6.caption"
 msgid "Порт"
 msgstr ""
 
@@ -3350,7 +3591,6 @@ msgid "Пользователь"
 msgstr ""
 
 #: tsetupform.label8.caption
-msgctxt "tsetupform.label8.caption"
 msgid "Пароль"
 msgstr ""
 
@@ -3432,7 +3672,6 @@ msgid "STATE"
 msgstr ""
 
 #: tstate_form.label2.caption
-msgctxt "tstate_form.label2.caption"
 msgid "Название"
 msgstr ""
 

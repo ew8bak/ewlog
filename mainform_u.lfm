@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 359
+  Left = 304
   Height = 680
-  Top = 135
+  Top = 159
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -3163,24 +3163,24 @@ object MainForm: TMainForm
     object MenuItem1: TMenuItem
       Caption = 'LogBook'
       object MenuItem54: TMenuItem
-        Caption = 'Операции с журналом'
+        Caption = 'Operations with a logbook'
         object MenuItem55: TMenuItem
-          Caption = 'Открыть другой журнал'
+          Caption = 'Open log'
           OnClick = MenuItem55Click
         end
         object MenuItem56: TMenuItem
-          Caption = 'Создать новый журнал'
+          Caption = 'Create new log'
           OnClick = MenuItem56Click
         end
         object MenuItem7: TMenuItem
-          Caption = 'Конфигурация журнала'
+          Caption = 'Logs configuration'
           OnClick = MenuItem7Click
         end
         object MenuItem57: TMenuItem
           Caption = '-'
         end
         object MenuItem58: TMenuItem
-          Caption = 'Сжать и восстановить базу данных'
+          Caption = 'Compact and Repair Database'
           Enabled = False
         end
         object MenuItem59: TMenuItem
@@ -3188,39 +3188,39 @@ object MainForm: TMainForm
         end
       end
       object MenuItem60: TMenuItem
-        Caption = 'Сервисы eQSL и LOTW'
+        Caption = 'Services of eQSL and LOTW'
         OnClick = MenuItem60Click
       end
       object MenuItem61: TMenuItem
-        Caption = 'Экспорт данных из журнала в'
+        Caption = 'Export Information from a Logbook to'
         object MenuItem53: TMenuItem
-          Caption = 'формат ADIF'
+          Caption = 'Format ADIF'
           OnClick = MenuItem53Click
         end
       end
       object MenuItem62: TMenuItem
-        Caption = 'Импорт данных в журнал из'
+        Caption = 'Import information in logbook from'
         object MenuItem70: TMenuItem
-          Caption = 'Файла .ADIF'
+          Caption = 'File .ADIF'
           OnClick = MenuItem70Click
         end
         object MenuItem71: TMenuItem
-          Caption = 'Файла .TXT'
+          Caption = 'File .TXT'
           Enabled = False
         end
       end
       object MenuItem81: TMenuItem
-        Caption = 'Синхронизация баз данных'
+        Caption = 'Synchronization Databases'
         object MenuItem82: TMenuItem
-          Caption = 'Из MySQL в SQLite'
+          Caption = 'From MySQL to SQLite'
           OnClick = MenuItem82Click
         end
         object MenuItem83: TMenuItem
-          Caption = 'Из SQLite в MySQL'
+          Caption = 'From SQLite to MySQL'
           OnClick = MenuItem83Click
         end
         object MenuItem48: TMenuItem
-          Caption = 'Выбрать дату синхронизации'
+          Caption = 'Set date synchronization'
           OnClick = MenuItem48Click
         end
       end
@@ -3228,22 +3228,22 @@ object MainForm: TMainForm
         Caption = '-'
       end
       object MenuItem65: TMenuItem
-        Caption = 'Очистить окно ввода QSO'
+        Caption = 'Clear new QSO'
         OnClick = MenuItem65Click
       end
       object MenuItem66: TMenuItem
-        Caption = 'Сохранить QSO'
+        Caption = 'Save QSO'
         OnClick = MenuItem66Click
       end
       object MenuItem67: TMenuItem
-        Caption = 'Редактировать QSO'
+        Caption = 'Edit QSO'
         OnClick = MenuItem42Click
       end
       object MenuItem68: TMenuItem
         Caption = '-'
       end
       object MenuItem69: TMenuItem
-        Caption = 'Закрыть журнал'
+        Caption = 'Exit'
         OnClick = MenuItem69Click
       end
     end
@@ -3254,11 +3254,11 @@ object MainForm: TMainForm
         OnClick = MenuItem84Click
       end
       object MenuItem52: TMenuItem
-        Caption = 'Настройка программы'
+        Caption = 'Configure program'
         OnClick = MenuItem52Click
       end
       object MenuItem99: TMenuItem
-        Caption = 'Настройки таблиц'
+        Caption = 'Configure table'
         OnClick = MenuItem99Click
       end
       object MenuItem116: TMenuItem
@@ -3278,7 +3278,7 @@ object MainForm: TMainForm
         Caption = '-'
       end
       object MenuItem89: TMenuItem
-        Caption = 'Переключить базу данных'
+        Caption = 'Switch database'
         OnClick = MenuItem89Click
       end
       object MenuItem90: TMenuItem
@@ -3292,42 +3292,42 @@ object MainForm: TMainForm
     object MenuItem3: TMenuItem
       Caption = 'View'
       object MenuItem85: TMenuItem
-        Caption = 'Управление трансивером'
+        Caption = 'Transceiver Control'
         object MenuItem88: TMenuItem
-          Caption = 'Нет'
+          Caption = 'No'
           OnClick = MenuItem88Click
         end
         object MenuItem86: TMenuItem
           AutoCheck = True
-          Caption = 'Отоброжать форму управления'
+          Caption = 'Display control form'
           OnClick = MenuItem86Click
         end
       end
       object MenuItem110: TMenuItem
-        Caption = 'Отображение фото с QRZ.RU'
+        Caption = 'Displaying photos with QRZ.RU'
         object MenuItem111: TMenuItem
           AutoCheck = True
-          Caption = 'Включить'
+          Caption = 'On'
           OnClick = MenuItem111Click
         end
         object MenuItem112: TMenuItem
-          Caption = 'Отключить'
+          Caption = 'Off'
           OnClick = MenuItem112Click
         end
       end
       object MenuItem72: TMenuItem
-        Caption = 'Компактный режим'
+        Caption = 'Compact mode'
         OnClick = MenuItem72Click
       end
       object MenuItem73: TMenuItem
-        Caption = 'Нормальный режим'
+        Caption = 'Normal mode'
         OnClick = MenuItem73Click
       end
     end
     object MenuItem4: TMenuItem
       Caption = 'External programs'
       object MenuItem87: TMenuItem
-        Caption = 'Настройки внешних программ'
+        Caption = 'Settings external programs'
         OnClick = MenuItem87Click
       end
       object MenuItem74: TMenuItem

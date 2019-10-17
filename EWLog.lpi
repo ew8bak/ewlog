@@ -6,7 +6,7 @@
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="EWLog - Аппаратный журнал"/>
+      <Title Value="EWLog - HAM Journal"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -19,7 +19,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="language"/>
+      <OutDir Value="languages"/>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
@@ -27,9 +27,8 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="106"/>
-      <Language Value="0419"/>
-      <StringTable CompanyName="EW8BAK" LegalCopyright="Владимир Карпенко" OriginalFilename="EWLog" ProductName="EWLog - Аппаратный журнал"/>
+      <BuildNr Value="109"/>
+      <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>

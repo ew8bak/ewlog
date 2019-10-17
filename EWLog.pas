@@ -22,6 +22,7 @@ uses
 {$R *.res}
 
 begin
+  Application.Title:='EWLog - HAM Journal';
   Application.Scaled:=True;
  // Application.Title:='EWLog - Аппаратный журнал';
   RequireDerivedFormResource := True;
