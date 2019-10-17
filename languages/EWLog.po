@@ -12,6 +12,85 @@ msgstr ""
 "Language: ru_RU\n"
 "X-Generator: Poedit 2.2.4\n"
 
+#: configform_u.rbyte
+msgid " byte"
+msgstr ""
+
+#: configform_u.rchecknotedit
+msgid "Not all fields are entered"
+msgstr ""
+
+#: configform_u.rcheckupdates
+msgctxt "configform_u.rcheckupdates"
+msgid "Check for Updates"
+msgstr ""
+
+#: configform_u.rdownload
+msgid "Download?"
+msgstr ""
+
+#: configform_u.rdownloadfile
+msgid "File Download: "
+msgstr ""
+
+#: configform_u.rmysqlconnecttrue
+msgid "Connection established successfully"
+msgstr ""
+
+#: configform_u.rnoreferencebookfound
+msgid "No reference book found!"
+msgstr ""
+
+#: configform_u.rnumberofrecords
+msgid "Number of records: "
+msgstr ""
+
+#: configform_u.rnumberofrecordsnot
+msgid "Number of records: ---"
+msgstr ""
+
+#: configform_u.rok
+msgctxt "configform_u.rok"
+msgid "OK"
+msgstr ""
+
+#: configform_u.rreferencebook
+msgctxt "configform_u.rreferencebook"
+msgid "Internal reference book"
+msgstr ""
+
+#: configform_u.rreleasedate
+msgid "Release Date: "
+msgstr ""
+
+#: configform_u.rreleasedatenot
+msgid "Release date: --.--.----"
+msgstr ""
+
+#: configform_u.rstatusupdateactual
+msgid "Update status: Actual"
+msgstr ""
+
+#: configform_u.rstatusupdatecheck
+msgid "Update status: Check version"
+msgstr ""
+
+#: configform_u.rstatusupdatedone
+msgid "Update status: Done"
+msgstr ""
+
+#: configform_u.rstatusupdatedownload
+msgid "Update status: Download"
+msgstr ""
+
+#: configform_u.rstatusupdatenotcopy
+msgid "Update status: Can not Copy"
+msgstr ""
+
+#: configform_u.rstatusupdaterequires
+msgid "Update status: Update required"
+msgstr ""
+
 #: mainform_u.rcallsign
 msgctxt "mainform_u.rcallsign"
 msgid "Callsign"
@@ -286,6 +365,10 @@ msgstr ""
 msgid "SQLite database selected! Welcome!"
 msgstr ""
 
+#: settingscat_u.rlibhamlibnotfound
+msgid "HamLib library not found"
+msgstr ""
+
 #: simplexml.ssimplexmlerror1
 msgid "Error when retriving element list: index out of bounds"
 msgstr ""
@@ -395,7 +478,7 @@ msgid "This feature is unsupported by SimpleXML"
 msgstr ""
 
 #: tabout_form.caption
-msgid "О программе"
+msgid "About"
 msgstr ""
 
 #: tabout_form.label1.caption
@@ -415,15 +498,16 @@ msgid "Copyright 2015 - 2019 Vladimir Karpenko"
 msgstr ""
 
 #: tchangelog_form.button1.caption
-msgid "Понятно"
+msgctxt "tchangelog_form.button1.caption"
+msgid "OK"
 msgstr ""
 
 #: tchangelog_form.caption
-msgid "История изменений"
+msgid "Change history"
 msgstr ""
 
 #: tclusterfilter.caption
-msgid "Фильтры"
+msgid "Cluster Filter"
 msgstr ""
 
 #: tclusterfilter.cb10m.caption
@@ -547,6 +631,7 @@ msgid "Check connection"
 msgstr ""
 
 #: tconfigform.button4.caption
+msgctxt "tconfigform.button4.caption"
 msgid "Check for Updates"
 msgstr ""
 
@@ -555,7 +640,7 @@ msgid "Program settings"
 msgstr ""
 
 #: tconfigform.checkbox1.caption
-msgid "Использовать справочник"
+msgid "Use reference?"
 msgstr ""
 
 #: tconfigform.checkbox2.caption
@@ -575,7 +660,8 @@ msgid "Data Base"
 msgstr ""
 
 #: tconfigform.groupbox2.caption
-msgid "Справочник позывных"
+msgctxt "tconfigform.groupbox2.caption"
+msgid "Internal reference book"
 msgstr ""
 
 #: tconfigform.groupbox3.caption
@@ -600,7 +686,7 @@ msgid "Number of records:"
 msgstr ""
 
 #: tconfigform.label12.caption
-msgid "Update Status:"
+msgid "Update status:"
 msgstr ""
 
 #: tconfigform.label13.caption
@@ -694,7 +780,7 @@ msgid "Default"
 msgstr ""
 
 #: tconfiggrid_form.caption
-msgid "Настройка отображения таблиц"
+msgid "Table display settings"
 msgstr ""
 
 #: tconfiggrid_form.checkbox1.caption
@@ -1298,6 +1384,7 @@ msgid "Queued"
 msgstr ""
 
 #: teditqso_form.radiobutton4.caption
+msgctxt "teditqso_form.radiobutton4.caption"
 msgid "Wasn't sent"
 msgstr ""
 
@@ -1416,7 +1503,7 @@ msgid "Export to eQSL"
 msgstr ""
 
 #: texportadifform.label1.caption
-msgid "Количество связей: 0"
+msgid "Number of QSO: 0"
 msgstr ""
 
 #: texportadifform.label3.caption
@@ -1502,28 +1589,28 @@ msgid "Comment for all imported records"
 msgstr ""
 
 #: timportadifform.label2.caption
-msgid "Количество дубликатов"
+msgid "Number of duplicates"
 msgstr ""
 
 #: timportadifform.label3.caption
-msgid "Состояние"
+msgid "Status:"
 msgstr ""
 
 #: timportadifform.lblcomplete.caption
 msgctxt "timportadifform.lblcomplete.caption"
-msgid "Ожидание"
+msgid "Waiting"
 msgstr ""
 
 #: timportadifform.lblcount.caption
-msgid "Импортировано записей"
+msgid "Imported Records"
 msgstr ""
 
 #: timportadifform.lblerrorlog.caption
-msgid "Файл ошибок"
+msgid "Error file"
 msgstr ""
 
 #: timportadifform.lblerrors.caption
-msgid "Ошибки импортирования"
+msgid "Import Errors"
 msgstr ""
 
 #: timportadifform.radiobutton1.caption
@@ -1963,7 +2050,8 @@ msgid "59"
 msgstr ""
 
 #: tmainform.combobox7.text
-msgid "Не отправлена"
+msgctxt "tmainform.combobox7.text"
+msgid "Wasn't sent"
 msgstr ""
 
 #: tmainform.dateedit1.text
@@ -2883,6 +2971,7 @@ msgid "From SQLite to MySQL"
 msgstr ""
 
 #: tmainform.menuitem84.caption
+msgctxt "tmainform.menuitem84.caption"
 msgid "Settings CAT"
 msgstr ""
 
@@ -3253,11 +3342,12 @@ msgstr ""
 
 #: tsettingscat.button1.caption
 msgctxt "tsettingscat.button1.caption"
-msgid "Сохранить"
+msgid "Save"
 msgstr ""
 
 #: tsettingscat.caption
-msgid "Настройки CAT"
+msgctxt "tsettingscat.caption"
+msgid "Settings CAT"
 msgstr ""
 
 #: tsettingscat.cbbaudrate.text
@@ -3300,19 +3390,19 @@ msgid "ICOM Radios"
 msgstr ""
 
 #: tsettingscat.groupbox1.caption
-msgid "Настройки HamLib"
+msgid "Config HamLib"
 msgstr ""
 
 #: tsettingscat.label1.caption
-msgid "Путь к HamLib Rigctld"
+msgid "Path for HamLib Rigctld"
 msgstr ""
 
 #: tsettingscat.label11.caption
-msgid "COM Порт"
+msgid "COM Port"
 msgstr ""
 
 #: tsettingscat.label12.caption
-msgid "Модель трансивера"
+msgid "Transceiver model"
 msgstr ""
 
 #: tsettingscat.label16.caption
@@ -3320,11 +3410,11 @@ msgid "CI-V address"
 msgstr ""
 
 #: tsettingscat.label61.caption
-msgid "Скорость"
+msgid "Speed"
 msgstr ""
 
 #: tsettingscat.label62.caption
-msgid "Data бит"
+msgid "Data bit"
 msgstr ""
 
 #: tsettingscat.label63.caption
@@ -3332,7 +3422,7 @@ msgid "Parity"
 msgstr ""
 
 #: tsettingscat.label64.caption
-msgid "Stop бит"
+msgid "Stop bit"
 msgstr ""
 
 #: tsettingscat.label65.caption
@@ -3897,25 +3987,25 @@ msgstr ""
 
 #: tupdate_form.button2.caption
 msgctxt "tupdate_form.button2.caption"
-msgid "Отмена"
+msgid "Cancel"
 msgstr ""
 
 #: tupdate_form.caption
 msgctxt "tupdate_form.caption"
-msgid "Обновление"
+msgid "Update"
 msgstr ""
 
 #: tupdate_form.groupbox1.caption
 msgctxt "tupdate_form.groupbox1.caption"
-msgid "Обновление"
+msgid "Update"
 msgstr ""
 
 #: tupdate_form.label1.caption
-msgid "Состояние версии:"
+msgid "Version Status:"
 msgstr ""
 
 #: tupdate_form.label10.caption
-msgid "Размер файла:"
+msgid "File size:"
 msgstr ""
 
 #: tupdate_form.label2.caption
@@ -3923,7 +4013,7 @@ msgid "Актуально"
 msgstr ""
 
 #: tupdate_form.label3.caption
-msgid "Последняя проверка:"
+msgid "Last check:"
 msgstr ""
 
 #: tupdate_form.label4.caption
@@ -3932,7 +4022,7 @@ msgid "..."
 msgstr ""
 
 #: tupdate_form.label5.caption
-msgid "Версия программы:"
+msgid "Program version:"
 msgstr ""
 
 #: tupdate_form.label6.caption
@@ -3941,7 +4031,7 @@ msgid "..."
 msgstr ""
 
 #: tupdate_form.label7.caption
-msgid "Версия на сервере:"
+msgid "Server Version:"
 msgstr ""
 
 #: tupdate_form.label8.caption
@@ -3950,7 +4040,7 @@ msgid "..."
 msgstr ""
 
 #: tupdate_form.label9.caption
-msgid "Процесс обновления:"
+msgid "Update process"
 msgstr ""
 
 #: twsjt_udp_form.caption

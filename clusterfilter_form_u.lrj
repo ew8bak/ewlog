@@ -1,5 +1,5 @@
 {"version":1,"strings":[
-{"hash":140138667,"name":"tclusterfilter.caption","sourcebytes":[208,164,208,184,208,187,209,140,209,130,209,128,209,139],"value":"\u0424\u0438\u043B\u044C\u0442\u0440\u044B"},
+{"hash":117871138,"name":"tclusterfilter.caption","sourcebytes":[67,108,117,115,116,101,114,32,70,105,108,116,101,114],"value":"Cluster Filter"},
 {"hash":4752563,"name":"tclusterfilter.groupbox1.caption","sourcebytes":[66,97,110,100,115],"value":"Bands"},
 {"hash":3448220,"name":"tclusterfilter.cb160m.caption","sourcebytes":[49,54,48,208,156],"value":"160\u041C"},
 {"hash":245148,"name":"tclusterfilter.cb80m.caption","sourcebytes":[56,48,208,156],"value":"80\u041C"},

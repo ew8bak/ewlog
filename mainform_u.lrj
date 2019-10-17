@@ -99,7 +99,7 @@
 {"hash":20117,"name":"tmainform.label46.caption","sourcebytes":[73,84,85],"value":"ITU"},
 {"hash":782,"name":"tmainform.label47.caption","sourcebytes":[46,46],"value":".."},
 {"hash":113528956,"name":"tmainform.label48.caption","sourcebytes":[89,111,117,114,32,81,83,76],"value":"Your QSL"},
-{"hash":72082640,"name":"tmainform.combobox7.text","sourcebytes":[208,157,208,181,32,208,190,209,130,208,191,209,128,208,176,208,178,208,187,208,181,208,189,208,176],"value":"\u041D\u0435 \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430"},
+{"hash":238686804,"name":"tmainform.combobox7.text","sourcebytes":[87,97,115,110,39,116,32,115,101,110,116],"value":"Wasn't sent"},
 {"hash":22140,"name":"tmainform.dbgrid2.columns[0].title.caption","sourcebytes":[81,83,76],"value":"QSL"},
 {"hash":354355,"name":"tmainform.dbgrid2.columns[1].title.caption","sourcebytes":[81,83,76,115],"value":"QSLs"},
 {"hash":305317,"name":"tmainform.dbgrid2.columns[2].title.caption","sourcebytes":[68,97,116,101],"value":"Date"},

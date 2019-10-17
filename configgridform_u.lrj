@@ -1,5 +1,5 @@
 {"version":1,"strings":[
-{"hash":11906486,"name":"tconfiggrid_form.caption","sourcebytes":[208,157,208,176,209,129,209,130,209,128,208,190,208,185,208,186,208,176,32,208,190,209,130,208,190,208,177,209,128,208,176,208,182,208,181,208,189,208,184,209,143,32,209,130,208,176,208,177,208,187,208,184,209,134],"value":"\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0430 \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0442\u0430\u0431\u043B\u0438\u0446"},
+{"hash":165766211,"name":"tconfiggrid_form.caption","sourcebytes":[84,97,98,108,101,32,100,105,115,112,108,97,121,32,115,101,116,116,105,110,103,115],"value":"Table display settings"},
 {"hash":107876242,"name":"tconfiggrid_form.label1.caption","sourcebytes":[84,101,120,116,32,99,111,108,111,114],"value":"Text color"},
 {"hash":258464709,"name":"tconfiggrid_form.label2.caption","sourcebytes":[84,101,120,116,32,115,105,122,101],"value":"Text size"},
 {"hash":61721746,"name":"tconfiggrid_form.combobox1.text","sourcebytes":[56,32,208,191,209,130],"value":"8 \u043F\u0442"},

@@ -1,4 +1,4 @@
 {"version":1,"strings":[
-{"hash":111073097,"name":"tchangelog_form.caption","sourcebytes":[208,152,209,129,209,130,208,190,209,128,208,184,209,143,32,208,184,208,183,208,188,208,181,208,189,208,181,208,189,208,184,208,185],"value":"\u0418\u0441\u0442\u043E\u0440\u0438\u044F \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0439"},
-{"hash":5541374,"name":"tchangelog_form.button1.caption","sourcebytes":[208,159,208,190,208,189,209,143,209,130,208,189,208,190],"value":"\u041F\u043E\u043D\u044F\u0442\u043D\u043E"}
+{"hash":26117481,"name":"tchangelog_form.caption","sourcebytes":[67,104,97,110,103,101,32,104,105,115,116,111,114,121],"value":"Change history"},
+{"hash":1339,"name":"tchangelog_form.button1.caption","sourcebytes":[79,75],"value":"OK"}
 ]}

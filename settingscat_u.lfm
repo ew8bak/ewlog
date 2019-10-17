@@ -4,18 +4,18 @@ object SettingsCAT: TSettingsCAT
   Top = 238
   Width = 323
   BorderStyle = bsDialog
-  Caption = 'Настройки CAT'
+  Caption = 'Settings CAT'
   ClientHeight = 316
   ClientWidth = 323
   FormStyle = fsStayOnTop
   OnShow = FormShow
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object GroupBox1: TGroupBox
     Left = 8
     Height = 312
     Top = 0
     Width = 307
-    Caption = 'Настройки HamLib'
+    Caption = 'Config HamLib'
     ClientHeight = 292
     ClientWidth = 303
     Font.Height = -12
@@ -27,7 +27,7 @@ object SettingsCAT: TSettingsCAT
       Top = 107
       Width = 59
       AutoSize = False
-      Caption = 'COM Порт'
+      Caption = 'COM Port'
       Font.Height = -12
       Layout = tlCenter
       ParentColor = False
@@ -62,7 +62,7 @@ object SettingsCAT: TSettingsCAT
       Top = 107
       Width = 61
       AutoSize = False
-      Caption = 'Скорость'
+      Caption = 'Speed'
       Font.Height = -12
       Layout = tlCenter
       ParentColor = False
@@ -100,7 +100,7 @@ object SettingsCAT: TSettingsCAT
       Top = 159
       Width = 63
       AutoSize = False
-      Caption = 'Data бит'
+      Caption = 'Data bit'
       Font.Height = -12
       Layout = tlCenter
       ParentColor = False
@@ -167,7 +167,7 @@ object SettingsCAT: TSettingsCAT
       Top = 107
       Width = 63
       AutoSize = False
-      Caption = 'Stop бит'
+      Caption = 'Stop bit'
       Font.Height = -12
       Layout = tlCenter
       ParentColor = False
@@ -295,8 +295,8 @@ object SettingsCAT: TSettingsCAT
       Left = 11
       Height = 15
       Top = 8
-      Width = 109
-      Caption = 'Модель трансивера'
+      Width = 95
+      Caption = 'Transceiver model'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -330,7 +330,7 @@ object SettingsCAT: TSettingsCAT
       Height = 25
       Top = 264
       Width = 75
-      Caption = 'Сохранить'
+      Caption = 'Save'
       Font.Height = -12
       OnClick = Button1Click
       ParentFont = False
@@ -353,8 +353,8 @@ object SettingsCAT: TSettingsCAT
       Left = 11
       Height = 15
       Top = 56
-      Width = 120
-      Caption = 'Путь к HamLib Rigctld'
+      Width = 127
+      Caption = 'Path for HamLib Rigctld'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -364,7 +364,7 @@ object SettingsCAT: TSettingsCAT
       Height = 22
       Top = 72
       Width = 224
-      DialogTitle = 'Путь к rigctld'
+      DialogTitle = 'Path for rigctld'
       Filter = 'rigctld.exe|rigctld.exe'
       FilterIndex = 0
       HideDirectories = False

@@ -12,7 +12,7 @@ object ImportADIFForm: TImportADIFForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object Image1: TImage
     Left = 0
     Height = 200
@@ -470,8 +470,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 480
     Height = 15
     Top = 88
-    Width = 57
-    Caption = 'Ожидание'
+    Width = 41
+    Caption = 'Waiting'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -480,8 +480,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 416
     Height = 15
     Top = 24
-    Width = 138
-    Caption = 'Импортировано записей'
+    Width = 94
+    Caption = 'Imported Records'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -490,8 +490,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 416
     Height = 15
     Top = 40
-    Width = 145
-    Caption = 'Ошибки импортирования'
+    Width = 69
+    Caption = 'Import Errors'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -500,8 +500,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 416
     Height = 15
     Top = 56
-    Width = 77
-    Caption = 'Файл ошибок'
+    Width = 44
+    Caption = 'Error file'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -511,8 +511,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 416
     Height = 15
     Top = 72
-    Width = 131
-    Caption = 'Количество дубликатов'
+    Width = 115
+    Caption = 'Number of duplicates'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -521,8 +521,8 @@ object ImportADIFForm: TImportADIFForm
     Left = 416
     Height = 15
     Top = 88
-    Width = 59
-    Caption = 'Состояние'
+    Width = 35
+    Caption = 'Status:'
     Font.Height = -12
     ParentColor = False
     ParentFont = False

@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 304
+  Left = 427
   Height = 680
-  Top = 159
+  Top = 126
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -2038,16 +2038,16 @@ object MainForm: TMainForm
         ItemHeight = 14
         ItemIndex = 3
         Items.Strings = (
-          'Отправлено'
-          'Напечатано'
-          'В очередь'
-          'Не отправлена'
-          'Не отправлять'
+          'Sent'
+          'Printed'
+          'Queued'
+          'Wasn''t sent'
+          'Do not send'
         )
         ParentFont = False
         Style = csOwnerDrawFixed
         TabOrder = 0
-        Text = 'Не отправлена'
+        Text = 'Wasn''t sent'
       end
       object SpeedButton14: TSpeedButton
         Left = 408

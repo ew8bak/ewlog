@@ -13,7 +13,7 @@ object EditQSO_Form: TEditQSO_Form
   OnShow = FormShow
   Position = poOwnerFormCenter
   ShowInTaskBar = stNever
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object GroupBox1: TGroupBox
     Left = 7
     Height = 336

@@ -7,6 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   EditBtn, Spin, SimpleXML, LazFileUtils, synaser {$IFDEF UNIX},baseunix {$ENDIF};
+resourcestring
+  rLibHamLibNotFound = 'HamLib library not found';
 
 type
 
@@ -143,7 +145,7 @@ begin
   dmFunc.LoadRigsToComboBox(dev,StringReplace(FileNameEdit1.Text,'rigctld','rigctl',[rfReplaceAll, rfIgnoreCase]),cbManufacturer);
   end
   else
-  ShowMessage('Не найдена библиотека HamLib');
+  ShowMessage(rLibHamLibNotFound);
   LoadINI;
 end;
 

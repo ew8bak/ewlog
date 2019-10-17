@@ -9,6 +9,27 @@ uses
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock,
   synautil;
 
+resourcestring
+  rMySQLConnectTrue = 'Connection established successfully';
+  rCheckNotEdit = 'Not all fields are entered';
+  rCheckUpdates = 'Check for Updates';
+  rDownload = 'Download?';
+  rDownloadFile = 'File Download: ';
+  rReferenceBook = 'Internal reference book';
+  rNumberOfRecords = 'Number of records: ';
+  rReleaseDate = 'Release Date: ';
+  rNoReferenceBookFound = 'No reference book found!';
+  rNumberOfRecordsNot = 'Number of records: ---';
+  rReleaseDateNot = 'Release date: --.--.----';
+  rOK = 'OK';
+  rByte = ' byte';
+  rStatusUpdateCheck = 'Update status: Check version';
+  rStatusUpdateRequires = 'Update status: Update required';
+  rStatusUpdateActual = 'Update status: Actual';
+  rStatusUpdateDownload = 'Update status: Download';
+  rStatusUpdateDone = 'Update status: Done';
+  rStatusUpdateNotCopy = 'Update status: Can not Copy';
+
 type
 
   { TConfigForm }
@@ -87,7 +108,7 @@ var
 implementation
 
 uses
-  MainForm_U, CreateJournalForm_U, UpdateForm_U;
+  MainForm_U, UpdateForm_U;
 
 {$R *.lfm}
 
@@ -185,10 +206,10 @@ begin
       MainForm.MySQLLOGDBConnection.Connected := False;
       MainForm.MySQLLOGDBConnection.Connected := True;
       if MainForm.MySQLLOGDBConnection.Connected = True then
-        ShowMessage('Соединение успешно установлено');
+        ShowMessage(rMySQLConnectTrue);
     end
     else
-      ShowMessage('Не все поля введены');
+      ShowMessage(rCheckNotEdit);
   except
     on E: Exception do
       ShowMessage(E.Message);
@@ -197,10 +218,10 @@ end;
 
 procedure TConfigForm.Button4Click(Sender: TObject);
 begin
-  if Button4.Caption = 'Проверить обновления' then
+  if Button4.Caption = rCheckUpdates then
     CheckUpdate
   else
-  if Button4.Caption = 'Загрузка?' then
+  if Button4.Caption = rDownload then
   begin
     MainForm.CallBookLiteConnection.Connected := False;
     UseCallBook := 'NO';
@@ -255,7 +276,7 @@ var
   sDBPath: string;
 begin
   ReadINI;
-  Button4.Caption := 'Проверить обновления';
+  Button4.Caption := rCheckUpdates;
   {$IFDEF UNIX}
   sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
@@ -265,28 +286,28 @@ begin
 
   if FileExistsUTF8(sDBPath + 'callbook.db') then
   begin
-    GroupBox2.Caption := 'Справочник позывных';
+    GroupBox2.Caption := rReferenceBook;
     CheckCallBook.Close;
     CheckCallBook.SQL.Clear;
     MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
     CheckCallBook.SQL.Add('SELECT COUNT(*) as Count FROM Callbook');
     CheckCallBook.Open;
-    Label11.Caption := 'Количество записей: ' +
+    Label11.Caption := rNumberOfRecords +
       IntToStr(CheckCallBook.FieldByName('Count').AsInteger);
     CheckCallBook.Close;
     CheckCallBook.SQL.Clear;
     CheckCallBook.SQL.Add('SELECT * FROM inform');
     CheckCallBook.Open;
-    Label10.Caption := 'Дата выпуска: ' +
+    Label10.Caption := rReleaseDate +
       CheckCallBook.FieldByName('date').AsString;
     Label14.Caption := CheckCallBook.FieldByName('version').AsString;
     CheckCallBook.Close;
   end
   else
   begin
-    GroupBox2.Caption := 'Справочник позывных не найден!';
-    label11.Caption := 'Количество записей: ---';
-    Label10.Caption := 'Дата выпуска: --.--.----';
+    GroupBox2.Caption := rNoReferenceBookFound;
+    label11.Caption := rNumberOfRecordsNot;
+    Label10.Caption := rReleaseDateNot;
     Label14.Caption := '---';
   end;
 end;
@@ -296,7 +317,6 @@ begin
   SaveINI;
   LoginCluster:=Edit11.Text;
   PasswordCluster:=Edit12.Text;
-  // ShowMessage('После изменения параметров, пожалуйста, перезапустите приложение');
   ConfigForm.Close;
 end;
 
@@ -318,7 +338,7 @@ begin
     {$ENDIF UNIX}
   with THTTPSend.Create do
   begin
-    Label12.Caption := 'Статус обновления: Проверка версии';
+    Label12.Caption := rStatusUpdateCheck;
     if HTTPMethod('GET', 'http://update.ew8bak.ru/versioncallbook.info') then
     begin
   {$IFDEF UNIX}
@@ -349,23 +369,21 @@ begin
     locV := StrToFloat(Label14.Caption);
     if locV < serV then
     begin
-      Label12.Caption :=
-        'Статус обновления: Требует обновления';
+      Label12.Caption := rStatusUpdateRequires;
       Result := True;
-      Button4.Caption := 'Загрузка?';
+      Button4.Caption := rDownload;
     end
     else
     begin
-      Label12.Caption := 'Статус обновления: Актуально';
+      Label12.Caption := rStatusUpdateactual;
       Result := False;
     end;
   end
   else
   begin
-    Label12.Caption :=
-      'Статус обновления: Требует обновления';
+    Label12.Caption := rStatusUpdateRequires;
     Result := True;
-    Button4.Caption := 'Загрузка?';
+    Button4.Caption := rDownload;
   end;
 end;
 
@@ -390,7 +408,7 @@ begin
     ProgressBar1.Max := 0;
   HTTP := THTTPSend.Create;
   HTTP.Sock.OnStatus := @SynaProgress;
-  Label12.Caption := 'Статус обновления: Загрузка';
+  Label12.Caption := rStatusUpdateDownload;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/callbook.db') then
     {$IFDEF UNIX}
@@ -419,28 +437,27 @@ begin
         if FileExistsUTF8(sDBPath + 'callbook.db') then
         begin
           MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
-          GroupBox2.Caption := 'Справочник позывных';
+          GroupBox2.Caption := rReferenceBook;
           CheckCallBook.Close;
           CheckCallBook.SQL.Clear;
           CheckCallBook.SQL.Add('SELECT COUNT(*) as Count FROM Callbook');
           CheckCallBook.Open;
-          Label11.Caption := 'Количество записей: ' +
+          Label11.Caption := rNumberOfRecords +
             IntToStr(CheckCallBook.FieldByName('Count').AsInteger);
           CheckCallBook.Close;
           CheckCallBook.SQL.Clear;
           CheckCallBook.SQL.Add('SELECT * FROM inform');
           CheckCallBook.Open;
-          Label10.Caption := 'Дата выпуска: ' +
+          Label10.Caption := rReleaseDate +
             CheckCallBook.FieldByName('date').AsString;
           Label14.Caption := CheckCallBook.FieldByName('version').AsString;
           CheckCallBook.Close;
         end
         else
         begin
-          GroupBox2.Caption :=
-            'Справочник позывных не найден!';
-          label11.Caption := 'Количество записей: ---';
-          Label10.Caption := 'Дата выпуска: --.--.----';
+          GroupBox2.Caption := rNoReferenceBookFound;
+          label11.Caption := rNumberOfRecordsNot;
+          Label10.Caption := rReleaseDateNot;
           Label14.Caption := '---';
         end;
        {$IFDEF UNIX}
@@ -452,12 +469,11 @@ begin
         MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
         MainForm.CallBookLiteConnection.Connected := True;
         UseCallBook := 'YES';
-        Button4.Caption := 'Готово';
-        Label12.Caption := 'Статус обновления: Готово';
+        Button4.Caption := rOK;
+        Label12.Caption := rstatusUpdateDone;
       end
       else
-        Label12.Caption :=
-          'Статус обновления: Не могу скопировать';
+        Label12.Caption := rStatusUpdateNotCopy;
   end;
 end;
 
@@ -495,12 +511,12 @@ begin
     if ProgressBar1.Max > 0 then
     begin
       ProgressBar1.Position := Download;
-      label17.Caption := 'Загрузка файла: ' +
+      label17.Caption := rDownloadFile +
         IntToStr(Trunc((Download / ProgressBar1.Max) * 100)) + '%';
     end
     else
-      label17.Caption := 'Загрузка файла: ' + IntToStr(Download) +
-        ' байт';
+      label17.Caption := rDownloadFile + IntToStr(Download) +
+        rByte;
     Application.ProcessMessages;
   end;
 end;

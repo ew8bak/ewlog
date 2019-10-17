@@ -1,5 +1,5 @@
 {"version":1,"strings":[
-{"hash":189100997,"name":"tabout_form.caption","sourcebytes":[208,158,32,208,191,209,128,208,190,208,179,209,128,208,176,208,188,208,188,208,181],"value":"\u041E \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0435"},
+{"hash":4691652,"name":"tabout_form.caption","sourcebytes":[65,98,111,117,116],"value":"About"},
 {"hash":85324839,"name":"tabout_form.label1.caption","sourcebytes":[72,65,77,32,76,79,71,32,69,87,76,111,103],"value":"HAM LOG EWLog"},
 {"hash":1899441,"name":"tabout_form.label2.caption","sourcebytes":[86,101,114,115,105,111,110,32,49,46,49],"value":"Version 1.1"},
 {"hash":78655499,"name":"tabout_form.label3.caption","sourcebytes":[68,101,115,105,103,110,101,100,32,98,121,32,69,87,56,66,65,75],"value":"Designed by EW8BAK"},

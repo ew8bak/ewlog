@@ -28,8 +28,8 @@ object exportAdifForm: TexportAdifForm
     Left = 120
     Height = 15
     Top = 144
-    Width = 116
-    Caption = 'Количество связей: 0'
+    Width = 97
+    Caption = 'Number of QSO: 0'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
