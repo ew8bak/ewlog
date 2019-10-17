@@ -3377,7 +3377,7 @@ object MainForm: TMainForm
   end
   object TrayIcon1: TTrayIcon
     BalloonFlags = bfInfo
-    BalloonTitle = 'EWLog Аппаратный журнал'
+    BalloonTitle = 'EWLog - HAM Journal'
     PopUpMenu = TrayPopup
     Icon.Data = {
       7E04000000000100010010100000010020006804000016000000280000001000
@@ -4998,18 +4998,18 @@ object MainForm: TMainForm
     left = 400
     top = 360
     object MenuItem95: TMenuItem
-      Caption = 'Свернуть в трей'
+      Caption = 'Minimize to tray'
       OnClick = MenuItem95Click
     end
     object MenuItem96: TMenuItem
-      Caption = 'Развернуть'
+      Caption = 'Expand'
       OnClick = MenuItem96Click
     end
     object MenuItem97: TMenuItem
       Caption = '-'
     end
     object MenuItem98: TMenuItem
-      Caption = 'Выход'
+      Caption = 'Exit'
       OnClick = MenuItem98Click
     end
   end

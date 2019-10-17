@@ -20,9 +20,9 @@ object EditQSO_Form: TEditQSO_Form
     Top = 12
     Width = 479
     Caption = 'Territory'
-    ClientHeight = 314
+    ClientHeight = 316
     ClientWidth = 475
-    Font.Height = -13
+    Font.Height = -12
     ParentFont = False
     TabOrder = 0
     object Edit1: TEdit
@@ -1330,7 +1330,7 @@ object EditQSO_Form: TEditQSO_Form
     Height = 25
     Top = 534
     Width = 75
-    Caption = 'Закрыть'
+    Caption = 'Close'
     Font.Height = -12
     OnClick = Button1Click
     ParentFont = False
@@ -1341,7 +1341,7 @@ object EditQSO_Form: TEditQSO_Form
     Height = 25
     Top = 534
     Width = 75
-    Caption = 'Отменить'
+    Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False
@@ -1352,7 +1352,7 @@ object EditQSO_Form: TEditQSO_Form
     Height = 25
     Top = 534
     Width = 75
-    Caption = 'Принять'
+    Caption = 'Apply'
     Font.Height = -12
     OnClick = Button3Click
     ParentFont = False

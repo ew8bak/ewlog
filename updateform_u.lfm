@@ -39,8 +39,8 @@ object Update_Form: TUpdate_Form
       Left = 160
       Height = 15
       Top = 8
-      Width = 58
-      Caption = 'Актуально'
+      Width = 34
+      Caption = 'Actual'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -127,7 +127,7 @@ object Update_Form: TUpdate_Form
       Height = 25
       Top = 176
       Width = 75
-      Caption = 'Проверить'
+      Caption = 'Check'
       Font.Height = -12
       OnClick = Button1Click
       ParentFont = False

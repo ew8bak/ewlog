@@ -8,6 +8,24 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, LazUTF8, StdCtrls,
   ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} httpsend,
   blcksock, synautil;
+resourcestring
+  rUpdateStatusCheckUpdate = 'Update status: Check version';
+  rUpdateRequired = 'Update required';
+  rUpdateStatusDownload = 'Update status: Download?';
+  rButtonDownload = 'Download';
+  rUpdateStatusActual = 'Update status: Actual';
+  rButtonCheck = 'Check';
+  rSizeFile = 'File size: ';
+  rUpdateStatus = 'Update status: ';
+  rUpdateStatusDownloads = 'Update status: Downloads';
+  rUpdateStatusDownloadBase = 'Update status: Download Database';
+  rUpdateStatusDownloadCallbook = 'Update status: Download CallBook';
+  rUpdateDontCopy = 'Do not copy';
+  rUpdateStatusDownloadChanges = 'Update status: Download Changes';
+  rUpdateStatusRequiredInstall = 'Update status: Installation required';
+  rButtonInstall = 'Install';
+  rBytes = ' bytes';
+
 
 type
 
@@ -167,8 +185,7 @@ begin
 
       with THTTPSend.Create do
       begin
-        Label9.Caption :=
-          'Процесс обновления: Проверка версии';
+        Label9.Caption := rUpdateStatusCheckUpdate;
         if HTTPMethod('GET', 'http://update.ew8bak.ru/version_server.info') then
         begin
           LoadFile := TFileStream.Create(updatePATH + 'updates\versiononserver.info',
@@ -194,14 +211,14 @@ begin
 
       if version_current_INT < version_server_INT then
       begin
-        Label2.Caption := 'Требует обновления';
+        Label2.Caption := rUpdateRequired;
         Result := True;
-        Label9.Caption := 'Процесс обновления: Загрузить?';
-        Button1.Caption := 'Загрузка';
+        Label9.Caption := rUpdateStatusDownload;
+        Button1.Caption := rButtonDownload;
       end
       else
       begin
-        Label9.Caption := 'Процесс обновления: Актуально';
+        Label9.Caption := rUpdateStatusActual;
         Result := False;
       end;
 
@@ -250,9 +267,10 @@ begin
   Read(VerFile, VerFiles);
   Label4.Caption := VerFiles.lastupdate;
   CloseFile(VerFile);
-  Button1.Caption := 'Проверить';
-  Label10.Caption := 'Размер файла: ';
-  Label9.Caption := 'Процесс обновления: ';
+
+  Button1.Caption := rButtonCheck;
+  Label10.Caption := rSizeFile;
+  Label9.Caption := rUpdateStatus;
   Label6.Caption := GetMyVersion;
   ProgressBar1.Position := 0;
 end;
@@ -283,7 +301,7 @@ begin
     ProgressBar1.Max := 0;
   HTTP := THTTPSend.Create;
   HTTP.Sock.OnStatus := @SynaProgress;
-  Label9.Caption := 'Процесс обновления: Загрузка';
+  Label9.Caption := rUpdateStatusDownloads;
   try
     if HTTP.HTTPMethod('GET', DownPATH) then
       HTTP.Document.SaveToFile(updatePATH + 'updates\EWLog.exe');
@@ -313,7 +331,7 @@ begin
     ProgressBar1.Max := 0;
   HTTP := THTTPSend.Create;
   HTTP.Sock.OnStatus := @SynaProgress;
-  Label9.Caption := 'Процесс обновления: Загрузка базы';
+  Label9.Caption := rUpdateStatusDownloadBase;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/serviceLOG.db') then
       HTTP.Document.SaveToFile(updatePATH + 'updates\serviceLOG.db');
@@ -343,7 +361,7 @@ begin
     ProgressBar1.Max := 0;
   HTTP := THTTPSend.Create;
   HTTP.Sock.OnStatus := @SynaProgress;
-  Label9.Caption := 'Процесс обновления: Загрузка CallBook';
+  Label9.Caption := rUpdateStatusDownloadCallbook;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/callbook.db') then
       HTTP.Document.SaveToFile(updatePATH + 'updates\callbook.db');
@@ -361,7 +379,7 @@ begin
       UseCallBook := 'YES';
     end
     else
-      Label9.Caption := 'Не могу скопировать';
+      Label9.Caption := rUpdateDontCopy;
     DownloadChangeLOGFile;
   end;
 end;
@@ -386,8 +404,7 @@ begin
     ProgressBar1.Max := 0;
   HTTP := THTTPSend.Create;
   HTTP.Sock.OnStatus := @SynaProgress;
-  Label9.Caption :=
-    'Процесс обновления: Загрузка изменений';
+  Label9.Caption := rUpdateStatusDownloadChanges;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/changelog.txt') then
       HTTP.Document.SaveToFile(updatePATH + 'updates\changelog.txt');
@@ -395,18 +412,17 @@ begin
     HTTP.Free;
     Changelog_Form.Memo1.Lines.LoadFromFile(updatePATH + 'updates\changelog.txt');
     Changelog_Form.Show;
-    Label9.Caption :=
-      'Процесс обновления: Требуется установка';
-    Button1.Caption := 'Установить';
+    Label9.Caption := rUpdateStatusRequiredInstall;
+    Button1.Caption := rButtonInstall;
   end;
 end;
 
 procedure TUpdate_Form.Button1Click(Sender: TObject);
 begin
-  if Button1.Caption = 'Проверить' then
+  if Button1.Caption = rButtonCheck then
     CheckUpdate
   else
-  if Button1.Caption = 'Установить' then
+  if Button1.Caption = rButtonInstall then
     RunAsAdmin(MainForm.Handle, 'UPDATE_EWLog.exe', '')
   else
   begin
@@ -427,7 +443,7 @@ begin
       label10.Caption := IntToStr(Trunc((Download / ProgressBar1.Max) * 100)) + '%';
     end
     else
-      label10.Caption := 'Размер файла: ' + IntToStr(Download) + ' байт';
+      label10.Caption := rSizeFile + IntToStr(Download) + rBytes;
     Application.ProcessMessages;
   end;
 end;

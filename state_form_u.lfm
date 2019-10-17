@@ -11,7 +11,7 @@ object STATE_Form: TSTATE_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 374
@@ -26,17 +26,17 @@ object STATE_Form: TSTATE_Form
         FieldName = '_id'
       end    
       item
-        Title.Caption = 'Район'
+        Title.Caption = 'State'
         Width = 50
         FieldName = 'State'
       end    
       item
-        Title.Caption = 'Номер'
+        Title.Caption = 'Number'
         Width = 50
         FieldName = 'Numb'
       end    
       item
-        Title.Caption = 'Название района/города'
+        Title.Caption = 'Name State/City'
         Width = 300
         FieldName = 'Name'
       end>
@@ -85,8 +85,8 @@ object STATE_Form: TSTATE_Form
       Left = 160
       Height = 15
       Top = 4
-      Width = 52
-      Caption = 'Название'
+      Width = 32
+      Caption = 'Name'
       ParentColor = False
     end
     object Button1: TButton
@@ -94,7 +94,7 @@ object STATE_Form: TSTATE_Form
       Height = 25
       Top = 22
       Width = 75
-      Caption = 'Закрыть'
+      Caption = 'Close'
       OnClick = Button1Click
       TabOrder = 2
     end

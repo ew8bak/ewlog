@@ -42,7 +42,7 @@ resourcestring
    rQSL_SENT_VIA = 'QSL s VIA';
    rUSERS = 'User';
    rNoCalcDXCC = 'No Calc DXCC';
-   rMySQLHasGoneAwat = 'NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite';
+   rMySQLHasGoneAway = 'NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite';
    rWelcomeMessageMySQL = 'MySQL database selected! Welcome!';
    rWelcomeMessageSQLIte = 'SQLite database selected! Welcome!';
    rCheckSettingsMySQL = 'Check MySQL DB Settings';
@@ -644,7 +644,7 @@ type
       State4, WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
       STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
       LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
-      NoCalcDXCC: integer; NLogDB: string);//, Index: string);
+      NoCalcDXCC: integer; NLogDB: string);
     procedure SearchCallInCallBook(CallName: string);
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
     procedure InitializeDB(dbS: string);
@@ -1111,7 +1111,7 @@ begin
     begin
       if Pos('has gone away', E.Message) > 0 then
       begin
-        ShowMessage(rMySQLHasGoneAwat);
+        ShowMessage(rMySQLHasGoneAway);
         UseCallBook := 'NO';
         DefaultDB := 'SQLite';
         InitializeDB('SQLite');

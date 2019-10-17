@@ -185,7 +185,7 @@ begin
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM Province';
   CountryEditForm.CountryQditQuery.Open;
   MainForm.SQLServiceTransaction.Active:=true;
-  CountryEditForm.Caption := 'Области';
+  CountryEditForm.Caption := 'Province';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('Prefix', Edit8.Text, []);
   CountryEditForm.Show;
 end;
@@ -213,7 +213,6 @@ var
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
-  //DigiBand:=dmFunc.GetDigiBandFromFreq(dmFunc.FreqFromBand(DBLookupComboBox4.Text,DBLookupComboBox3.Text));
   DigiBand:=dmFunc.GetDigiBandFromFreq(ComboBox1.Text);
   ind:=MainForm.DBGrid1.DataSource.DataSet.RecNo;
   with UPDATE_Query do
@@ -221,16 +220,12 @@ begin
     Close;
     SQL.Clear;
     SQL.Add('UPDATE ' + LogTable +
-  //  ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, `QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode, `QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived, `OMName`=:OMName, `OMQTH`=:OMQTH, `State`=:State, `Grid`=:Grid, `IOTA`=:IOTA, `QSLManager`=:QSLManager, `QSLSent`=:QSLSent, `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `MainPrefix`=:MainPrefix, `DXCCPrefix`=:DXCCPrefix, `CQZone`=:CQZone, `ITUZone`=:ITUZone, `QSOAddInfo`=:QSOAddInfo, `Marker`=:Marker, `ManualSet`=:ManualSet, `DigiBand`=:DigiBand, `Continent`=:Continent, `ShortNote`=:ShortNote, `QSLReceQSLcc`=:QSLReceQSLcc, `LoTWRec`=:LoTWRec, `LoTWRecDate`=:LoTWRecDate, `QSLInfo`=:QSLInfo, `Call`=:Call, `State1`=:State1, `State2`=:State2, `State3`=:State3, `State4`=:State4, `WPX`=:WPX, `ValidDX`=:ValidDX, `SRX`=:SRX, `SRX_STRING`=:SRX_STRING, `STX`=:STX, `STX_STRING`=:STX_STRING, `SAT_NAME`=:SAT_NAME, `SAT_MODE`=:SAT_MODE, `PROP_MODE`=:PROP_MODE, `LoTWSent`=:LoTWSent, `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSL_SENT_VIA`=:QSL_SENT_VIA, `DXCC`=:DXCC, `NoCalcDXCC`=:NoCalcDXCC WHERE `UnUsedIndex`=:UnUsedIndex');
       ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, `QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode, `QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived, `OMName`=:OMName, `OMQTH`=:OMQTH, `State`=:State, `Grid`=:Grid, `IOTA`=:IOTA, `QSLManager`=:QSLManager, `QSLSent`=:QSLSent, `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `MainPrefix`=:MainPrefix, `DXCCPrefix`=:DXCCPrefix, `CQZone`=:CQZone, `ITUZone`=:ITUZone, `QSOAddInfo`=:QSOAddInfo, `Marker`=:Marker, `ManualSet`=:ManualSet, `DigiBand`=:DigiBand, `Continent`=:Continent, `ShortNote`=:ShortNote, `QSLReceQSLcc`=:QSLReceQSLcc, `LoTWRec`=:LoTWRec, `LoTWRecDate`=:LoTWRecDate, `QSLInfo`=:QSLInfo, `Call`=:Call, `State1`=:State1, `State2`=:State2, `State3`=:State3, `State4`=:State4, `WPX`=:WPX, `ValidDX`=:ValidDX, `SRX`=:SRX, `SRX_STRING`=:SRX_STRING, `STX`=:STX, `STX_STRING`=:STX_STRING, `SAT_NAME`=:SAT_NAME, `SAT_MODE`=:SAT_MODE, `PROP_MODE`=:PROP_MODE, `LoTWSent`=:LoTWSent, `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSL_SENT_VIA`=:QSL_SENT_VIA, `DXCC`=:DXCC, `NoCalcDXCC`=:NoCalcDXCC WHERE `UnUsedIndex`=:UnUsedIndex');
     Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
     Params.ParamByName('CallSign').AsString := Edit1.Text;
     Params.ParamByName('QSODate').AsDateTime := DateEdit1.Date;
     Params.ParamByName('QSOTime').AsString := TimeToStr(DateTimePicker1.Time, FmtStngs);
     Params.ParamByName('QSOBand').AsString := ComboBox1.Text;
-     // dmFunc.FreqFromBand(DBLookupComboBox4.Text, DBLookupComboBox3.Text);
-
-
     Params.ParamByName('QSOMode').AsString := DBLookupComboBox3.Text;
     Params.ParamByName('QSOReportSent').AsString := Edit2.Text;
     Params.ParamByName('QSOReportRecived').AsString := Edit3.Text;
@@ -559,6 +554,7 @@ begin
 end;
 
 procedure TEditQSO_Form.FormCreate(Sender: TObject);
+var i:integer;
 begin
   if InitLog_DB = 'YES' then
   begin
@@ -581,12 +577,48 @@ begin
     BandsQuery.Active := True;
     SATQuery.Active := True;
     MainForm.VHFTypeQuery.Active := True;
+
+  for i := 0 to 28 do
+  begin
+    DBGrid1.Columns.Items[i].FieldName := Mainform.columnsGrid[i];
+    DBGrid1.Columns.Items[i].Width := Mainform.columnsWidth[i];
+    case Mainform.columnsGrid[i] of
+      'QSL': DBGrid1.Columns.Items[i].Title.Caption := rQSL;
+      'QSLs': DBGrid1.Columns.Items[i].Title.Caption := rQSLs;
+      'QSODate': DBGrid1.Columns.Items[i].Title.Caption := rQSODate;
+      'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := rQSOTime;
+      'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := rQSOBand;
+      'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
+      'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
+      'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
+      'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
+      'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
+      'Grid': DBGrid1.Columns.Items[i].Title.Caption := rGrid;
+      'QSOReportSent': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportSent;
+      'QSOReportRecived': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportRecived;
+      'IOTA': DBGrid1.Columns.Items[i].Title.Caption := rIOTA;
+      'QSLManager': DBGrid1.Columns.Items[i].Title.Caption := rQSLManager;
+      'QSLSentDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLSentDate;
+      'QSLRecDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLRecDate;
+      'LoTWRecDate': DBGrid1.Columns.Items[i].Title.Caption := rLoTWRecDate;
+      'MainPrefix': DBGrid1.Columns.Items[i].Title.Caption := rMainPrefix;
+      'DXCCPrefix': DBGrid1.Columns.Items[i].Title.Caption := rDXCCPrefix;
+      'CQZone': DBGrid1.Columns.Items[i].Title.Caption := rCQZone;
+      'ITUZone': DBGrid1.Columns.Items[i].Title.Caption := rITUZone;
+      'ManualSet': DBGrid1.Columns.Items[i].Title.Caption := rManualSet;
+      'Continent': DBGrid1.Columns.Items[i].Title.Caption := rContinent;
+      'ValidDX': DBGrid1.Columns.Items[i].Title.Caption := rValidDX;
+      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
+      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
+      'USERS': DBGrid1.Columns.Items[i].Title.Caption := rUSERS;
+      'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
+    end;
+    end;
   end;
 end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);
 begin
-  GroupBox1.Caption:='Территория';
   try
   if InitLog_DB = 'YES' then
   begin
@@ -615,7 +647,7 @@ begin
   Edit1.SetFocus;
   except on E: Exception do begin
     if Pos('has gone away',E.Message) > 0 then begin
-    ShowMessage('НЕТ подключения к базе данных MySQL! Проверьте подключение или параметры соединения. Соединяемся с базой SQLite');
+    ShowMessage(rMySQLHasGoneAway);
     UseCallBook:='NO';
     DefaultDB:='SQLite';
     dbSel:='SQLite';

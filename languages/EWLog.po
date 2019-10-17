@@ -68,10 +68,12 @@ msgid "Release date: --.--.----"
 msgstr ""
 
 #: configform_u.rstatusupdateactual
+msgctxt "configform_u.rstatusupdateactual"
 msgid "Update status: Actual"
 msgstr ""
 
 #: configform_u.rstatusupdatecheck
+msgctxt "configform_u.rstatusupdatecheck"
 msgid "Update status: Check version"
 msgstr ""
 
@@ -89,6 +91,26 @@ msgstr ""
 
 #: configform_u.rstatusupdaterequires
 msgid "Update status: Update required"
+msgstr ""
+
+#: informationform_u.rerrorxmlapi
+msgid "Error XML API:"
+msgstr ""
+
+#: informationform_u.rinformationfromhamqth
+msgid "Information from HAMQTH"
+msgstr ""
+
+#: informationform_u.rinformationfromqrzcom
+msgid "Information from QRZ.com"
+msgstr ""
+
+#: informationform_u.rinformationfromqrzru
+msgid "Information from QRZ.ru"
+msgstr ""
+
+#: informationform_u.rnotconfigqrzru
+msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
 msgstr ""
 
 #: mainform_u.rcallsign
@@ -207,7 +229,8 @@ msgctxt "mainform_u.rmanualset"
 msgid "Manual Set"
 msgstr ""
 
-#: mainform_u.rmysqlhasgoneawat
+#: mainform_u.rmysqlhasgoneaway
+msgctxt "mainform_u.rmysqlhasgoneaway"
 msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
 msgstr ""
 
@@ -1045,15 +1068,16 @@ msgstr ""
 
 #: teditqso_form.button1.caption
 msgctxt "teditqso_form.button1.caption"
-msgid "Закрыть"
+msgid "Close"
 msgstr ""
 
 #: teditqso_form.button2.caption
-msgid "Отменить"
+msgctxt "teditqso_form.button2.caption"
+msgid "Cancel"
 msgstr ""
 
 #: teditqso_form.button3.caption
-msgid "Принять"
+msgid "Apply"
 msgstr ""
 
 #: teditqso_form.button4.caption
@@ -2907,6 +2931,7 @@ msgid "Edit QSO"
 msgstr ""
 
 #: tmainform.menuitem69.caption
+msgctxt "tmainform.menuitem69.caption"
 msgid "Exit"
 msgstr ""
 
@@ -3013,15 +3038,16 @@ msgid "О Программе"
 msgstr ""
 
 #: tmainform.menuitem95.caption
-msgid "Свернуть в трей"
+msgid "Minimize to tray"
 msgstr ""
 
 #: tmainform.menuitem96.caption
-msgid "Развернуть"
+msgid "Expand"
 msgstr ""
 
 #: tmainform.menuitem98.caption
-msgid "Выход"
+msgctxt "tmainform.menuitem98.caption"
+msgid "Exit"
 msgstr ""
 
 #: tmainform.menuitem99.caption
@@ -3735,7 +3761,7 @@ msgstr ""
 
 #: tstate_form.button1.caption
 msgctxt "tstate_form.button1.caption"
-msgid "Закрыть"
+msgid "Close"
 msgstr ""
 
 #: tstate_form.caption
@@ -3749,15 +3775,16 @@ msgid "id"
 msgstr ""
 
 #: tstate_form.dbgrid1.columns[1].title.caption
-msgid "Район"
+msgctxt "tstate_form.dbgrid1.columns[1].title.caption"
+msgid "State"
 msgstr ""
 
 #: tstate_form.dbgrid1.columns[2].title.caption
-msgid "Номер"
+msgid "Number"
 msgstr ""
 
 #: tstate_form.dbgrid1.columns[3].title.caption
-msgid "Название района/города"
+msgid "Name State/City"
 msgstr ""
 
 #: tstate_form.label1.caption
@@ -3766,7 +3793,8 @@ msgid "STATE"
 msgstr ""
 
 #: tstate_form.label2.caption
-msgid "Название"
+msgctxt "tstate_form.label2.caption"
+msgid "Name"
 msgstr ""
 
 #: tsyndbdate.button1.caption
@@ -3986,7 +4014,8 @@ msgid "RIG 2"
 msgstr ""
 
 #: tupdate_form.button1.caption
-msgid "Проверить"
+msgctxt "tupdate_form.button1.caption"
+msgid "Check"
 msgstr ""
 
 #: tupdate_form.button2.caption
@@ -4013,7 +4042,7 @@ msgid "File size:"
 msgstr ""
 
 #: tupdate_form.label2.caption
-msgid "Актуально"
+msgid "Actual"
 msgstr ""
 
 #: tupdate_form.label3.caption
@@ -4049,5 +4078,72 @@ msgstr ""
 
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
+msgstr ""
+
+#: updateform_u.rbuttoncheck
+msgctxt "updateform_u.rbuttoncheck"
+msgid "Check"
+msgstr ""
+
+#: updateform_u.rbuttondownload
+msgid "Download"
+msgstr ""
+
+#: updateform_u.rbuttoninstall
+msgid "Install"
+msgstr ""
+
+#: updateform_u.rbytes
+msgid " bytes"
+msgstr ""
+
+#: updateform_u.rsizefile
+msgid "File size: "
+msgstr ""
+
+#: updateform_u.rupdatedontcopy
+msgid "Do not copy"
+msgstr ""
+
+#: updateform_u.rupdaterequired
+msgid "Update required"
+msgstr ""
+
+#: updateform_u.rupdatestatus
+msgid "Update status: "
+msgstr ""
+
+#: updateform_u.rupdatestatusactual
+msgctxt "updateform_u.rupdatestatusactual"
+msgid "Update status: Actual"
+msgstr ""
+
+#: updateform_u.rupdatestatuscheckupdate
+msgctxt "updateform_u.rupdatestatuscheckupdate"
+msgid "Update status: Check version"
+msgstr ""
+
+#: updateform_u.rupdatestatusdownload
+msgid "Update status: Download?"
+msgstr ""
+
+#: updateform_u.rupdatestatusdownloadbase
+msgid "Update status: Download Database"
+msgstr ""
+
+#: updateform_u.rupdatestatusdownloadcallbook
+msgid "Update status: Download CallBook"
+msgstr ""
+
+#: updateform_u.rupdatestatusdownloadchanges
+msgid "Update status: Download Changes"
+msgstr ""
+
+#: updateform_u.rupdatestatusdownloads
+msgid "Update status: Downloads"
+msgstr ""
+
+#: updateform_u.rupdatestatusrequiredinstall
+msgid "Update status: Installation required"
 msgstr ""
 

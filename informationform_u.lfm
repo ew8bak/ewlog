@@ -13,7 +13,7 @@ object InformationForm: TInformationForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object GroupBox1: TGroupBox
     Left = 6
     Height = 246

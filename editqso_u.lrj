@@ -90,7 +90,7 @@
 {"hash":76384435,"name":"teditqso_form.tabsheet3.caption","sourcebytes":[65,119,97,114,100,115],"value":"Awards"},
 {"hash":76384435,"name":"teditqso_form.tabsheet4.caption","sourcebytes":[65,119,97,114,100,115],"value":"Awards"},
 {"hash":176075492,"name":"teditqso_form.tabsheet5.caption","sourcebytes":[65,117,116,111,32,99,114,101,100,105,116,32,102,111,114,32,116,104,101,32,97,119,97,114,100],"value":"Auto credit for the award"},
-{"hash":154490284,"name":"teditqso_form.button1.caption","sourcebytes":[208,151,208,176,208,186,209,128,209,139,209,130,209,140],"value":"\u0417\u0430\u043A\u0440\u044B\u0442\u044C"},
-{"hash":92386988,"name":"teditqso_form.button2.caption","sourcebytes":[208,158,209,130,208,188,208,181,208,189,208,184,209,130,209,140],"value":"\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C"},
-{"hash":101799868,"name":"teditqso_form.button3.caption","sourcebytes":[208,159,209,128,208,184,208,189,209,143,209,130,209,140],"value":"\u041F\u0440\u0438\u043D\u044F\u0442\u044C"}
+{"hash":4863637,"name":"teditqso_form.button1.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":77089212,"name":"teditqso_form.button2.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
+{"hash":4749113,"name":"teditqso_form.button3.caption","sourcebytes":[65,112,112,108,121],"value":"Apply"}
 ]}

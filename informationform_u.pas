@@ -7,6 +7,12 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   EditBtn, ExtCtrls, httpsend, LCLIntf, IntfGraphics;
+resourcestring
+  rErrorXMLAPI = 'Error XML API:';
+  rNotConfigQRZRU = 'Specify the Login and Password for accessing the XML API QRZ.ru in the settings';
+  rInformationFromQRZRU = 'Information from QRZ.ru';
+  rInformationFromQRZCOM = 'Information from QRZ.com';
+  rInformationFromHamQTH = 'Information from HAMQTH';
 
 type
 
@@ -119,7 +125,7 @@ begin
     if (beginSTR <> endSTR) then
       errorCode := resp.Substring(beginSTR + 11, endSTR - beginSTR - 11);
     if errorCode <> '' then
-      MainForm.StatusBar1.Panels.Items[0].Text := 'Ошибка XML API:' + errorCode;
+      MainForm.StatusBar1.Panels.Items[0].Text := rErrorXMLAPI + errorCode;
 
    beginSTR := resp.IndexOf('<error>');
     endSTR := resp.IndexOf('</error>');
@@ -708,33 +714,33 @@ begin
   Label24.Caption := '';
   Label25.Caption := '';
   Label26.Caption := '';
-  GroupBox1.Caption := 'Позывной';
+  GroupBox1.Caption := rCallSign;
   ErrorCall := '';
   loginQRZru := IniF.ReadString('SetLog', 'QRZ_Login', '');
   passQRZru := IniF.ReadString('SetLog', 'QRZ_Pass', '');
   DirectoryEdit1.Text := MainForm.PhotoDir;
 
   if (loginQRZru = '') or (passQRZru = '') then
-      ShowMessage('Укажите в настройках Логин и Пароль для доступа к XML API QRZ.ru');
+      ShowMessage(rNotConfigQRZRU);
 
   if (MainForm.EditButton1.Text <> '') and (EditQSO_Form.Edit1.Text ='') then
   calsign:=MainForm.EditButton1.Text
   else
     calsign:=EditQSO_Form.Edit1.Text;
 
-  InformationForm.Caption := 'Информация из QRZ.ru';
+  InformationForm.Caption := rInformationFromQRZRU;
   QRZRU(calsign);
 
   if ErrorCall <> '' then
   begin
     ErrorCall := '';
     QRZCOM(calsign);
-    InformationForm.Caption := 'Информация из QRZ.com';
+    InformationForm.Caption := rInformationFromQRZCOM;
   end;
    if ErrorCall <> '' then
   begin
      HAMQTH(calsign);
-    InformationForm.Caption := 'Информация из HAMQTH.com';
+    InformationForm.Caption := rInformationFromHamQTH;
   end;
 end;
 
@@ -756,7 +762,7 @@ begin
   Label24.Caption := '';
   Label25.Caption := '';
   Label26.Caption := '';
-  GroupBox1.Caption := 'Позывной';
+  GroupBox1.Caption := rCallSign;
 
 end;
 
