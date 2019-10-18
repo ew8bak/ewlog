@@ -1,8 +1,8 @@
 object filterForm: TfilterForm
-  Left = 367
+  Left = 397
   Height = 299
-  Top = 210
+  Top = 151
   Width = 556
   Caption = 'Record Filter'
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
 end

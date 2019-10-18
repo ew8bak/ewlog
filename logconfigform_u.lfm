@@ -12,7 +12,7 @@ object LogConfigForm: TLogConfigForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object Panel1: TPanel
     Left = 186
     Height = 427
@@ -526,7 +526,7 @@ object LogConfigForm: TLogConfigForm
       Height = 25
       Top = 6
       Width = 75
-      Caption = 'Сохранить'
+      Caption = 'Save'
       Font.Height = -12
       OnClick = Button1Click
       ParentFont = False
@@ -537,7 +537,7 @@ object LogConfigForm: TLogConfigForm
       Height = 25
       Top = 6
       Width = 75
-      Caption = 'Отмена'
+      Caption = 'Cancel'
       Font.Height = -12
       OnClick = Button2Click
       ParentFont = False
@@ -567,21 +567,21 @@ object LogConfigForm: TLogConfigForm
     left = 304
     top = 248
     object MenuItem4: TMenuItem
-      Caption = 'Сделать по умолчанию'
+      Caption = 'Set default'
       OnClick = MenuItem4Click
     end
     object MenuItem5: TMenuItem
       Caption = '-'
     end
     object MenuItem1: TMenuItem
-      Caption = 'Добавить новый журнал'
+      Caption = 'Add new log'
       OnClick = MenuItem1Click
     end
     object MenuItem2: TMenuItem
       Caption = '-'
     end
     object MenuItem3: TMenuItem
-      Caption = 'Удалить журнал'
+      Caption = 'Delete log'
       OnClick = MenuItem3Click
     end
   end

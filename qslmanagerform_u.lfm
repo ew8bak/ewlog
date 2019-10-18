@@ -5,7 +5,7 @@ object QSLManager_Form: TQSLManager_Form
   Width = 622
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'QSL Менеджер'
+  Caption = 'QSL Manager'
   ClientHeight = 453
   ClientWidth = 622
   Font.Height = -12
@@ -13,7 +13,7 @@ object QSLManager_Form: TQSLManager_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -38,8 +38,8 @@ object QSLManager_Form: TQSLManager_Form
       Left = 272
       Height = 15
       Top = 15
-      Width = 57
-      Caption = 'Позывной'
+      Width = 42
+      Caption = 'Callsign'
       ParentColor = False
     end
     object DBNavigator1: TDBNavigator
@@ -66,7 +66,7 @@ object QSLManager_Form: TQSLManager_Form
       Height = 21
       Top = 9
       Width = 75
-      Caption = 'Очистить'
+      Caption = 'Clear'
       OnClick = Button3Click
       TabOrder = 2
     end
@@ -145,32 +145,32 @@ object QSLManager_Form: TQSLManager_Form
       Left = 8
       Height = 15
       Top = 21
-      Width = 57
-      Caption = 'Позывной'
+      Width = 42
+      Caption = 'Callsign'
       ParentColor = False
     end
     object Label3: TLabel
       Left = 8
       Height = 15
       Top = 48
-      Width = 58
-      Caption = 'Менеджер'
+      Width = 47
+      Caption = 'Manager'
       ParentColor = False
     end
     object Label4: TLabel
       Left = 8
       Height = 15
       Top = 72
-      Width = 25
-      Caption = 'Дата'
+      Width = 24
+      Caption = 'Date'
       ParentColor = False
     end
     object Label5: TLabel
       Left = 8
       Height = 15
       Top = 94
-      Width = 54
-      Caption = 'Источник'
+      Width = 37
+      Caption = 'Author'
       ParentColor = False
     end
     object Button1: TButton
@@ -178,7 +178,8 @@ object QSLManager_Form: TQSLManager_Form
       Height = 25
       Top = 90
       Width = 75
-      Caption = 'Сохранить'
+      Caption = 'Save'
+      OnClick = Button1Click
       TabOrder = 5
     end
     object Button2: TButton
@@ -186,7 +187,7 @@ object QSLManager_Form: TQSLManager_Form
       Height = 25
       Top = 90
       Width = 75
-      Caption = 'Отмена'
+      Caption = 'Cancel'
       OnClick = Button2Click
       TabOrder = 6
     end
@@ -194,8 +195,8 @@ object QSLManager_Form: TQSLManager_Form
       Left = 216
       Height = 15
       Top = 14
-      Width = 46
-      Caption = 'Заметки'
+      Width = 31
+      Caption = 'Notes'
       ParentColor = False
     end
   end
@@ -215,31 +216,31 @@ object QSLManager_Form: TQSLManager_Form
       end    
       item
         MaxSize = 70
-        Title.Caption = 'Позывной'
+        Title.Caption = 'Callsign'
         Width = 70
         FieldName = 'Call'
       end    
       item
         MaxSize = 70
-        Title.Caption = 'Менеджер'
+        Title.Caption = 'Manager'
         Width = 70
         FieldName = 'Manager'
       end    
       item
         MaxSize = 90
-        Title.Caption = 'Дата'
+        Title.Caption = 'Date'
         Width = 90
         FieldName = 'Years'
       end    
       item
         MaxSize = 220
-        Title.Caption = 'Заметки'
+        Title.Caption = 'Notes'
         Width = 220
         FieldName = 'Notes'
       end    
       item
         MaxSize = 100
-        Title.Caption = 'Автор'
+        Title.Caption = 'Author'
         Width = 100
         FieldName = 'Author'
       end>

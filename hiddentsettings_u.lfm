@@ -3,18 +3,18 @@ object hiddenSettings: ThiddenSettings
   Height = 310
   Top = 231
   Width = 459
-  Caption = 'Скрытые настройки'
+  Caption = 'Hidden Settings'
   ClientHeight = 310
   ClientWidth = 459
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object GroupBox1: TGroupBox
     Left = 8
     Height = 120
     Top = 8
     Width = 152
-    Caption = 'Настройки Cloudlog'
+    Caption = 'Settings Cloudlog'
     ClientHeight = 100
     ClientWidth = 148
     TabOrder = 0
@@ -25,7 +25,7 @@ object hiddenSettings: ThiddenSettings
       Width = 136
       EditLabel.Height = 15
       EditLabel.Width = 136
-      EditLabel.Caption = 'Адрес сервера'
+      EditLabel.Caption = 'Server address'
       EditLabel.ParentColor = False
       TabOrder = 0
     end
@@ -36,7 +36,7 @@ object hiddenSettings: ThiddenSettings
       Width = 136
       EditLabel.Height = 15
       EditLabel.Width = 136
-      EditLabel.Caption = 'API ключ'
+      EditLabel.Caption = 'API Key'
       EditLabel.ParentColor = False
       TabOrder = 1
     end
@@ -46,7 +46,7 @@ object hiddenSettings: ThiddenSettings
     Height = 120
     Top = 8
     Width = 201
-    Caption = 'Отправка на Cloudlog'
+    Caption = 'Send to Cloudlog'
     ClientHeight = 100
     ClientWidth = 197
     TabOrder = 1
@@ -54,16 +54,16 @@ object hiddenSettings: ThiddenSettings
       Left = 8
       Height = 19
       Top = 8
-      Width = 143
-      Caption = 'Использовать API CAT'
+      Width = 85
+      Caption = 'Use API CAT'
       TabOrder = 0
     end
     object CheckBox2: TCheckBox
       Left = 8
       Height = 19
       Top = 32
-      Width = 172
-      Caption = 'Использовать API отправки'
+      Width = 114
+      Caption = 'Use API send data'
       TabOrder = 1
     end
   end
@@ -72,7 +72,7 @@ object hiddenSettings: ThiddenSettings
     Height = 25
     Top = 264
     Width = 75
-    Caption = 'Сохранить'
+    Caption = 'Save'
     OnClick = Button1Click
     TabOrder = 2
   end

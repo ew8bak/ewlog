@@ -7,6 +7,15 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, EditBtn, LCLType, LConvEncoding, LazUTF8, LCLIntf;
+resourcestring
+  rDone = 'Done';
+  rImport = 'Import';
+  rImportRecord = 'Imported Records';
+  rFileError = 'Error file:';
+  rImportErrors = 'Import Errors';
+  rNumberDup = 'Number of duplicates';
+  rNothingImport = 'Nothing to import';
+  rProcessing= 'Processing';
 
 const
   ERR_FILE = 'errors.adi';
@@ -94,7 +103,7 @@ begin
     writeln(f);
     CloseFile(f);
   end;
-  lblErrorLog.Caption:='Файл ошибок: '+ERR_FILE;
+  lblErrorLog.Caption:=rFileError+ERR_FILE;
   lblErrorLog.Font.Color :=clBlue;
   lblErrorLog.Cursor:=crHandPoint;
 end;
@@ -219,7 +228,7 @@ begin
   lblComplete.Visible := False;
   RecCount := 0;
   err := 0;
-  lblCount.Caption := 'Импортировано записей';
+  lblCount.Caption := rImportRecord;
   PosEOH := 0;
   PosEOR := 0;
   MyPower := '5 W';
@@ -1089,9 +1098,9 @@ begin
             begin
               Inc(err);
               lblErrors.Caption :=
-                'Ошибки импортирования ' + IntToStr(err);
+                rImportErrors + ' ' + IntToStr(err);
               lblErrorLog.Caption :=
-                'Файл ошибок ' + PathMyDoc + ERR_FILE;
+                rFileError+PathMyDoc + ERR_FILE;
               Repaint;
               Application.ProcessMessages;
               WriteWrongADIF(Lines);
@@ -1131,12 +1140,11 @@ begin
               MainForm.SQLTransaction1.Rollback;
               Inc(errr);
               Label2.Caption :=
-                'Количество дубликатов ' + IntToStr(errr);
+              rNumberDup + ' ' + IntToStr(errr);
             end
             //  end
             else                   //Если всё норм -> поехали добавлять)
             begin
-            //  Application.ProcessMessages;
 
               if GuessEncoding(sName) <> 'utf8' then
                 sName := CP1251ToUTF8(sName);
@@ -1246,17 +1254,15 @@ begin
 
               note := dmFunc.MyTrim(note);
 
-            //  Application.ProcessMessages;
               Inc(RecCount);
               lblCount.Caption :=
-                'Импортировано записей ' + IntToStr(RecCount);
+              rImportRecord +
+                ' ' + IntToStr(RecCount);
               if MainForm.ImportAdifMobile = True then
                 MainForm.StatusBar1.Panels.Items[0].Text :=
-                  'Импортировано записей:' + IntToStr(RecCount);
+                rImportRecord + ' ' + IntToStr(RecCount);
 
             end;   //Пока не завершится файл
-           // Application.ProcessMessages;
-            // MainForm.SQLTransaction1.Commit;
           end;
         end;
       end;
@@ -1265,8 +1271,7 @@ begin
     end;
   finally
    MainForm.SQLTransaction1.Commit;
-    lblComplete.Caption := 'Готово';
-    // Button1.Caption := 'Готово';
+    lblComplete.Caption := rDone;
     Button1.Enabled := True;
     CloseFile(f);
     MainForm.SelDB(CallLogBook);
@@ -1302,7 +1307,7 @@ begin
     ImportQuery.DataBase := MainForm.SQLiteDBConnection;
     MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
-  Button1.Caption := 'Импорт';
+  Button1.Caption := rImport;
 end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
@@ -1320,13 +1325,13 @@ begin
     MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
   Button1.Enabled := True;
-  Button1.Caption := 'Импорт';
+  Button1.Caption := rImport;
   FileNameEdit1.Text := '';
   Memo1.Clear;
-  Label2.Caption := 'Количество дубликатов ';
-  lblCount.Caption := 'Импортировано записей ';
-  lblErrors.Caption := 'Ошибки импортирования ';
-  lblErrorLog.Caption := 'Файл ошибок: ';
+  Label2.Caption := rNumberDup + ' ';
+  lblCount.Caption := rImportRecord + ' ';
+  lblErrors.Caption := rImportErrors + ' ';
+  lblErrorLog.Caption := rFileError;
 
 end;
 
@@ -1347,14 +1352,14 @@ procedure TImportADIFForm.Button1Click(Sender: TObject);
 begin
   if FileNameEdit1.Text = '' then
   begin
-    ShowMessage('Нечего импортировать');
+    ShowMessage(rNothingImport);
   end
   else
   begin
-    if Button1.Caption <> 'Готово' then
+    if Button1.Caption <> rDone then
     begin
       DeleteFile(dmFunc.DataDir + ERR_FILE);
-      lblComplete.Caption := 'Обарботка';
+      lblComplete.Caption := rProcessing;
       ADIFImport;
     end
     else

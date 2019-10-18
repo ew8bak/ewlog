@@ -31,9 +31,9 @@
 {"hash":5463550,"name":"tlogconfigform.label23.caption","sourcebytes":[76,111,103,105,110],"value":"Login"},
 {"hash":145417188,"name":"tlogconfigform.label24.caption","sourcebytes":[80,97,115,115,119,111,114,100],"value":"Password"},
 {"hash":118720436,"name":"tlogconfigform.checkbox3.caption","sourcebytes":[85,112,108,111,97,100,32,101,118,101,114,121,32,116,105,109,101,32,97,32,108,111,103,98,111,111,107,32,101,110,116,114,121,32,105,115,32,97,100,100,101,100],"value":"Upload every time a logbook entry is added"},
-{"hash":93776316,"name":"tlogconfigform.button1.caption","sourcebytes":[208,161,208,190,209,133,209,128,208,176,208,189,208,184,209,130,209,140],"value":"\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"},
-{"hash":69809520,"name":"tlogconfigform.button2.caption","sourcebytes":[208,158,209,130,208,188,208,181,208,189,208,176],"value":"\u041E\u0442\u043C\u0435\u043D\u0430"},
-{"hash":46797886,"name":"tlogconfigform.menuitem4.caption","sourcebytes":[208,161,208,180,208,181,208,187,208,176,209,130,209,140,32,208,191,208,190,32,209,131,208,188,208,190,208,187,209,135,208,176,208,189,208,184,209,142],"value":"\u0421\u0434\u0435\u043B\u0430\u0442\u044C \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E"},
-{"hash":20053963,"name":"tlogconfigform.menuitem1.caption","sourcebytes":[208,148,208,190,208,177,208,176,208,178,208,184,209,130,209,140,32,208,189,208,190,208,178,209,139,208,185,32,208,182,209,131,209,128,208,189,208,176,208,187],"value":"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u043E\u0432\u044B\u0439 \u0436\u0443\u0440\u043D\u0430\u043B"},
-{"hash":197903691,"name":"tlogconfigform.menuitem3.caption","sourcebytes":[208,163,208,180,208,176,208,187,208,184,209,130,209,140,32,208,182,209,131,209,128,208,189,208,176,208,187],"value":"\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0436\u0443\u0440\u043D\u0430\u043B"}
+{"hash":366789,"name":"tlogconfigform.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"},
+{"hash":77089212,"name":"tlogconfigform.button2.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
+{"hash":182799956,"name":"tlogconfigform.menuitem4.caption","sourcebytes":[83,101,116,32,100,101,102,97,117,108,116],"value":"Set default"},
+{"hash":76469543,"name":"tlogconfigform.menuitem1.caption","sourcebytes":[65,100,100,32,110,101,119,32,108,111,103],"value":"Add new log"},
+{"hash":212066167,"name":"tlogconfigform.menuitem3.caption","sourcebytes":[68,101,108,101,116,101,32,108,111,103],"value":"Delete log"}
 ]}

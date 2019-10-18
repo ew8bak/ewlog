@@ -13,7 +13,7 @@ object CreateJournalForm: TCreateJournalForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object Edit1: TEdit
     Left = 72
     Height = 21

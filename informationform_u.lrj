@@ -32,7 +32,7 @@
 {"hash":108865645,"name":"tinformationform.checkbox3.caption","sourcebytes":[81,82,90,46,67,79,77],"value":"QRZ.COM"},
 {"hash":48669433,"name":"tinformationform.button1.caption","sourcebytes":[65,108,108,32,99,111,112,121],"value":"All copy"},
 {"hash":5668481,"name":"tinformationform.button2.caption","sourcebytes":[81,82,90,67,81],"value":"QRZCQ"},
-{"hash":94915900,"name":"tinformationform.button3.caption","sourcebytes":[208,158,209,130,208,186,209,128,209,139,209,130,209,140,32,85,82,76],"value":"\u041E\u0442\u043A\u0440\u044B\u0442\u044C URL"},
+{"hash":113270540,"name":"tinformationform.button3.caption","sourcebytes":[79,112,101,110,32,85,82,76],"value":"Open URL"},
 {"hash":252068148,"name":"tinformationform.button4.caption","sourcebytes":[67,111,112,121,32,99,111,109,109,101,110,116],"value":"Copy comment"},
 {"hash":155275074,"name":"tinformationform.button5.caption","sourcebytes":[80,83,75,32,82,101,112,111,114,116,101,114],"value":"PSK Reporter"},
 {"hash":171667831,"name":"tinformationform.button6.caption","sourcebytes":[67,108,117,98,76,79,71],"value":"ClubLOG"},

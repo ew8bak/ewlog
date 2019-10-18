@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 427
+  Left = 509
   Height = 680
-  Top = 126
+  Top = 255
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -529,15 +529,15 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 164
+        Left = 161
         Height = 15
         Top = 114
-        Width = 41
+        Width = 44
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 163
         BorderSpacing.Top = 7
         BorderSpacing.Right = 205
-        Caption = 'RST отп'
+        Caption = 'RST sent'
         Font.Height = -12
         ParentColor = False
         ParentFont = False
@@ -547,14 +547,14 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 162
+        Left = 160
         Height = 15
         Top = 136
-        Width = 43
+        Width = 45
         Anchors = [akTop, akRight]
         BorderSpacing.Top = 7
         BorderSpacing.Right = 205
-        Caption = 'RST пол'
+        Caption = 'RST rcvd'
         Font.Height = -12
         ParentColor = False
         ParentFont = False
@@ -1621,7 +1621,7 @@ object MainForm: TMainForm
           FieldName = 'LoTWRecDate'
         end      
         item
-          Title.Caption = 'Префикс'
+          Title.Caption = 'Prefix'
           Width = 59
           FieldName = 'MainPrefix'
         end      
@@ -2349,7 +2349,7 @@ object MainForm: TMainForm
               FieldName = 'LoTWRecDate'
             end          
             item
-              Title.Caption = 'Префикс'
+              Title.Caption = 'Prefix'
               Width = 59
               FieldName = 'MainPrefix'
             end          
@@ -3812,7 +3812,7 @@ object MainForm: TMainForm
     left = 1008
     top = 312
     object MenuItem8: TMenuItem
-      Caption = 'Отметить QSO'
+      Caption = 'Mark this QSO'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
@@ -3894,7 +3894,7 @@ object MainForm: TMainForm
       Caption = '-'
     end
     object MenuItem10: TMenuItem
-      Caption = 'QSL получена + поставить QSO в очередь на печать'
+      Caption = 'QSL Received'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
@@ -3974,7 +3974,7 @@ object MainForm: TMainForm
       OnClick = MenuItem10Click
     end
     object MenuItem11: TMenuItem
-      Caption = 'QSL получена'
+      Caption = 'QSL Received'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
@@ -4054,7 +4054,7 @@ object MainForm: TMainForm
       OnClick = MenuItem11Click
     end
     object MenuItem12: TMenuItem
-      Caption = 'Поставить QSO в очередь на печать'
+      Caption = 'QSL Queued'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
@@ -4134,7 +4134,7 @@ object MainForm: TMainForm
       OnClick = MenuItem12Click
     end
     object MenuItem13: TMenuItem
-      Caption = 'QSL напечатана'
+      Caption = 'QSL Printed'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000000000000000
@@ -4214,7 +4214,7 @@ object MainForm: TMainForm
       OnClick = MenuItem13Click
     end
     object MenuItem14: TMenuItem
-      Caption = 'QSL отправлена'
+      Caption = 'QSL Sent'
       Bitmap.Data = {
         C6070000424DC607000000000000360000002800000016000000160000000100
         2000000000009007000064000000640000000000000000000000FFFFFF00FFFF
@@ -4283,7 +4283,7 @@ object MainForm: TMainForm
       OnClick = MenuItem14Click
     end
     object MenuItem15: TMenuItem
-      Caption = 'QSL Инфо'
+      Caption = 'QSL Info'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
@@ -4362,11 +4362,11 @@ object MainForm: TMainForm
       }
     end
     object MenuItem16: TMenuItem
-      Caption = 'QSL не отправлена'
+      Caption = 'QSL was not sent'
       OnClick = MenuItem16Click
     end
     object MenuItem17: TMenuItem
-      Caption = 'QSL не отправлять'
+      Caption = 'QSL do not send'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000000000000000
@@ -4446,7 +4446,7 @@ object MainForm: TMainForm
       OnClick = MenuItem17Click
     end
     object MenuItem18: TMenuItem
-      Caption = 'Поиск информации о менеджере в Интернете'
+      Caption = 'Find QSLManager info in to Internet'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000000000000000
@@ -4528,9 +4528,9 @@ object MainForm: TMainForm
       Caption = '-'
     end
     object MenuItem20: TMenuItem
-      Caption = 'QSL получена через'
+      Caption = 'QSL was received via'
       object MenuItem21: TMenuItem
-        Caption = 'B - Бюро'
+        Caption = 'B - Bureau'
         OnClick = MenuItem21Click
       end
       object MenuItem22: TMenuItem
@@ -4542,7 +4542,7 @@ object MainForm: TMainForm
         OnClick = MenuItem23Click
       end
       object MenuItem24: TMenuItem
-        Caption = 'M - Менеджер'
+        Caption = 'M - Manager'
         OnClick = MenuItem24Click
       end
       object MenuItem25: TMenuItem
@@ -4551,9 +4551,9 @@ object MainForm: TMainForm
       end
     end
     object MenuItem26: TMenuItem
-      Caption = 'QSL отправлена через'
+      Caption = 'QSL was sent via'
       object MenuItem27: TMenuItem
-        Caption = 'B - Бюро'
+        Caption = 'B - Bureau'
         OnClick = MenuItem27Click
       end
       object MenuItem28: TMenuItem
@@ -4565,7 +4565,7 @@ object MainForm: TMainForm
         OnClick = MenuItem29Click
       end
       object MenuItem30: TMenuItem
-        Caption = 'M - Менеджер'
+        Caption = 'M - Manager'
         OnClick = MenuItem30Click
       end
       object MenuItem31: TMenuItem
@@ -4577,23 +4577,23 @@ object MainForm: TMainForm
       Caption = '-'
     end
     object MenuItem33: TMenuItem
-      Caption = 'Сохранить в базу "Уникальные позывные"'
+      Caption = 'Add to unique Calls'
       Enabled = False
     end
     object MenuItem34: TMenuItem
       Caption = '-'
     end
     object MenuItem35: TMenuItem
-      Caption = 'Выбрать все записи'
+      Caption = 'Select all records'
       OnClick = MenuItem35Click
     end
     object MenuItem36: TMenuItem
-      Caption = 'Экспорт выбранных QSO в файл ADIF'
+      Caption = 'Export selected QSO to ADIF'
       ImageIndex = 0
       OnClick = MenuItem36Click
     end
     object MenuItem37: TMenuItem
-      Caption = 'Экспорт QSO в HRDLOG.Net'
+      Caption = 'Export QSO to HRDLOG.Net'
       Bitmap.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         2000000000000004000064000000640000000000000000000000AE7C53FFAE7C
@@ -4633,7 +4633,7 @@ object MainForm: TMainForm
       OnClick = MenuItem37Click
     end
     object MenuItem38: TMenuItem
-      Caption = 'Экспорт выбранных QSO на eQSL.cc'
+      Caption = 'Export selected QSO to eQSL.cc'
       Bitmap.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         2000000000000004000064000000640000000000000000000000AE7C53FFAE7C
@@ -4676,42 +4676,42 @@ object MainForm: TMainForm
       Caption = '-'
     end
     object MenuItem40: TMenuItem
-      Caption = 'Быстрое редактирование QSO'
+      Caption = 'Quick edit QSO'
       OnClick = MenuItem40Click
     end
     object MenuItem41: TMenuItem
-      Caption = 'Менеджер базы префиксов'
+      Caption = 'Prefix Manager'
       OnClick = MenuItem41Click
     end
     object MenuItem42: TMenuItem
-      Caption = 'Редактировать QSO'
+      Caption = 'Edit QSO'
       OnClick = MenuItem42Click
     end
     object MenuItem103: TMenuItem
-      Caption = 'Фильтр записей'
+      Caption = 'Record Filter'
       OnClick = MenuItem103Click
       object MenuItem104: TMenuItem
-        Caption = 'Полученные QSL'
+        Caption = 'Received QSL'
         OnClick = MenuItem104Click
       end
       object MenuItem105: TMenuItem
-        Caption = 'Отправленные QSL'
+        Caption = 'Sent QSL'
         OnClick = MenuItem105Click
       end
       object MenuItem106: TMenuItem
-        Caption = 'Не отправленные QSL'
+        Caption = 'Not sent QSL'
         OnClick = MenuItem106Click
       end
       object MenuItem107: TMenuItem
-        Caption = 'QSL напечатана'
+        Caption = 'QSL printed'
         OnClick = MenuItem107Click
       end
       object MenuItem108: TMenuItem
-        Caption = 'QSL не отправлять'
+        Caption = 'QSL do not send'
         OnClick = MenuItem108Click
       end
       object MenuItem109: TMenuItem
-        Caption = 'Отменить фильтр'
+        Caption = 'Cancel filter'
         OnClick = MenuItem109Click
       end
     end
@@ -4719,7 +4719,7 @@ object MainForm: TMainForm
       Caption = '-'
     end
     object MenuItem45: TMenuItem
-      Caption = 'Копировать в другой журнал'
+      Caption = 'Copy to another log'
       Enabled = False
       Bitmap.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -4759,20 +4759,20 @@ object MainForm: TMainForm
       }
     end
     object MenuItem46: TMenuItem
-      Caption = 'Сохранить в Excel'
+      Caption = 'Save to Excel'
     end
     object MenuItem47: TMenuItem
       Caption = '-'
     end
     object MenuItem49: TMenuItem
-      Caption = 'Отправить в Telnet кластер'
+      Caption = 'Send to DX Cluster'
       OnClick = MenuItem49Click
     end
     object MenuItem50: TMenuItem
       Caption = '-'
     end
     object MenuItem51: TMenuItem
-      Caption = 'Удалить запись'
+      Caption = 'Delete Record'
       Bitmap.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
         2000000000000009000064000000640000000000000000000000000000000000

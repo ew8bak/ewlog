@@ -34,6 +34,7 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     ManagersQuery: TSQLQuery;
+    procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
@@ -60,6 +61,11 @@ uses MainForm_U;
 procedure TQSLManager_Form.Button2Click(Sender: TObject);
 begin
   QSLManager_Form.Close;
+end;
+
+procedure TQSLManager_Form.Button1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TQSLManager_Form.Button3Click(Sender: TObject);

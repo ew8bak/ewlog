@@ -420,7 +420,7 @@ object EditQSO_Form: TEditQSO_Form
     object SpeedButton1: TSpeedButton
       Left = 234
       Height = 22
-      Hint = 'Изменить информацию по стране'
+      Hint = 'Change country information'
       Top = 221
       Width = 23
       Caption = '...'
@@ -433,7 +433,7 @@ object EditQSO_Form: TEditQSO_Form
     object SpeedButton2: TSpeedButton
       Left = 154
       Height = 22
-      Hint = 'Изменить информацию по стране'
+      Hint = 'Change country information'
       Top = 245
       Width = 23
       Caption = '...'
@@ -1072,8 +1072,8 @@ object EditQSO_Form: TEditQSO_Form
         Left = 6
         Height = 15
         Top = 87
-        Width = 111
-        Caption = 'QSL получена через'
+        Width = 86
+        Caption = 'QSL received via'
         ParentColor = False
       end
       object Edit19: TEdit
@@ -1173,33 +1173,33 @@ object EditQSO_Form: TEditQSO_Form
             FieldName = 'QSLs'
           end        
           item
-            Title.Caption = 'Дата'
+            Title.Caption = 'Date'
             Width = 65
             FieldName = 'QSODate'
           end        
           item
-            Title.Caption = 'Время'
+            Title.Caption = 'Time'
             Width = 45
             FieldName = 'QSOTime'
           end        
           item
-            Title.Caption = 'Диапазон'
+            Title.Caption = 'Band'
             Width = 65
             FieldName = 'QSOBand'
           end        
           item
-            Title.Caption = 'Позывной'
+            Title.Caption = 'Callsign'
             Width = 65
             FieldName = 'CallSign'
           end        
           item
             MinSize = 15
-            Title.Caption = 'Мода'
+            Title.Caption = 'Mode'
             Width = 50
             FieldName = 'QSOMode'
           end        
           item
-            Title.Caption = 'Имя'
+            Title.Caption = 'Name'
             Width = 70
             FieldName = 'OMName'
           end        
@@ -1234,7 +1234,7 @@ object EditQSO_Form: TEditQSO_Form
             FieldName = 'IOTA'
           end        
           item
-            Title.Caption = 'Менеджер'
+            Title.Caption = 'Manager'
             FieldName = 'QSLManager'
           end        
           item
@@ -1250,7 +1250,7 @@ object EditQSO_Form: TEditQSO_Form
             FieldName = 'LoTWRecDate'
           end        
           item
-            Title.Caption = 'Префикс'
+            Title.Caption = 'Prefix'
             Width = 55
             FieldName = 'MainPrefix'
           end        
@@ -1275,7 +1275,7 @@ object EditQSO_Form: TEditQSO_Form
             FieldName = 'ManualSet'
           end        
           item
-            Title.Caption = 'Континент'
+            Title.Caption = 'Continent'
             Width = 70
             FieldName = 'Continent'
           end        

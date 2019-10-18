@@ -4,20 +4,20 @@ object RegisterForm: TRegisterForm
   Top = 245
   Width = 468
   BorderStyle = bsDialog
-  Caption = 'Регистрация EWLog'
+  Caption = 'Register EWLog'
   ClientHeight = 320
   ClientWidth = 468
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object GroupBox1: TGroupBox
     Left = 0
     Height = 262
     Top = 0
     Width = 232
     Align = alLeft
-    Caption = 'Новый пользователь'
+    Caption = 'New user'
     ClientHeight = 242
     ClientWidth = 228
     TabOrder = 0
@@ -33,16 +33,16 @@ object RegisterForm: TRegisterForm
       Left = 16
       Height = 15
       Top = 8
-      Width = 60
-      Caption = 'Позывной:'
+      Width = 45
+      Caption = 'Callsign:'
       ParentColor = False
     end
     object Label3: TLabel
       Left = 16
       Height = 15
       Top = 104
-      Width = 27
-      Caption = 'Имя:'
+      Width = 58
+      Caption = 'First name:'
       ParentColor = False
     end
     object Edit3: TEdit
@@ -56,8 +56,8 @@ object RegisterForm: TRegisterForm
       Left = 16
       Height = 15
       Top = 152
-      Width = 109
-      Caption = 'Электронная почта:'
+      Width = 37
+      Caption = 'E-Mail:'
       ParentColor = False
     end
     object Edit4: TEdit
@@ -71,8 +71,8 @@ object RegisterForm: TRegisterForm
       Left = 16
       Height = 15
       Top = 200
-      Width = 45
-      Caption = 'Пароль:'
+      Width = 53
+      Caption = 'Password:'
       ParentColor = False
     end
     object Edit5: TEdit
@@ -88,8 +88,8 @@ object RegisterForm: TRegisterForm
       Left = 16
       Height = 15
       Top = 56
-      Width = 54
-      Caption = 'Фамилия:'
+      Width = 59
+      Caption = 'Last Name:'
       ParentColor = False
     end
     object Edit2: TEdit
@@ -106,7 +106,7 @@ object RegisterForm: TRegisterForm
     Top = 0
     Width = 232
     Align = alRight
-    Caption = 'Зарегистрированный пользователь'
+    Caption = 'Registered user'
     ClientHeight = 242
     ClientWidth = 228
     TabOrder = 1
@@ -114,8 +114,8 @@ object RegisterForm: TRegisterForm
       Left = 16
       Height = 15
       Top = 8
-      Width = 60
-      Caption = 'Позывной:'
+      Width = 45
+      Caption = 'Callsign:'
       ParentColor = False
     end
     object Edit6: TEdit
@@ -130,8 +130,8 @@ object RegisterForm: TRegisterForm
       Left = 16
       Height = 15
       Top = 56
-      Width = 45
-      Caption = 'Пароль:'
+      Width = 53
+      Caption = 'Password:'
       ParentColor = False
     end
     object Edit7: TEdit
@@ -1595,7 +1595,7 @@ object RegisterForm: TRegisterForm
       Height = 25
       Top = 208
       Width = 186
-      Caption = 'Помощь проекту'
+      Caption = 'Help Project'
       OnClick = Button2Click
       TabOrder = 2
       Visible = False
@@ -1623,16 +1623,16 @@ object RegisterForm: TRegisterForm
       Left = 18
       Height = 15
       Top = 26
-      Width = 62
-      Caption = 'Состояние:'
+      Width = 35
+      Caption = 'Status:'
       ParentColor = False
     end
     object Label9: TLabel
       Left = 88
       Height = 15
       Top = 26
-      Width = 112
-      Caption = 'Не зарегистрирован'
+      Width = 75
+      Caption = 'Not registered'
       Font.Color = clRed
       ParentColor = False
       ParentFont = False

@@ -6,6 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+resourcestring
+  rNotAllData = 'Not all data entered';
 
 type
 
@@ -58,7 +60,7 @@ if (Edit1.Text <> '') and (Edit2.Text <> '') and (ComboBox1.Text <> '') then beg
   SendTelnetSpot.Close;
 end
 else
-ShowMessage('Введены не все данные');
+ShowMessage(rNotAllData);
 end;
 
 end.

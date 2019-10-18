@@ -1,33 +1,33 @@
 object SetupForm: TSetupForm
-  Left = 617
+  Left = 614
   Height = 347
-  Top = 256
+  Top = 204
   Width = 630
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
-  Caption = 'Мастер настройки'
+  Caption = 'Wizard'
   ClientHeight = 347
   ClientWidth = 630
   Font.Height = -12
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 347
     Top = 0
     Width = 630
-    ActivePage = TabSheet2
+    ActivePage = TabSheet5
     Align = alClient
     Font.Height = -13
     ParentFont = False
     ShowTabs = False
-    TabIndex = 1
+    TabIndex = 4
     TabOrder = 0
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
-      Caption = 'Приветствие'
+      Caption = 'Greeting'
       ClientHeight = 339
       ClientWidth = 622
       object Panel1: TPanel
@@ -45,7 +45,7 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Принимаю'
+          Caption = 'I accept'
           OnClick = Button1Click
           TabOrder = 0
         end
@@ -54,7 +54,7 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Отмена'
+          Caption = 'Cancel'
           OnClick = Button9Click
           TabOrder = 1
         end
@@ -62,8 +62,8 @@ object SetupForm: TSetupForm
           Left = 56
           Height = 23
           Top = 8
-          Width = 477
-          Caption = 'Вас приветсвует мастер настройки аппаратного журнала'
+          Width = 327
+          Caption = 'Welcome to the HAM Log Setup Wizard.'
           Font.Height = -17
           Font.Style = [fsBold]
           ParentColor = False
@@ -73,8 +73,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 17
           Top = 48
-          Width = 166
-          Caption = 'Лицензионное соглашение:'
+          Width = 112
+          Caption = 'License agreement:'
           Font.Height = -13
           ParentColor = False
           ParentFont = False
@@ -86,67 +86,18 @@ object SetupForm: TSetupForm
           Width = 592
           Font.Height = -12
           Lines.Strings = (
-            'Бесплатное (freeware) лицензионное соглашение конечного пользователя'
+            'Copyright (c) 2019, Vladimir Karpenko'
+            'Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or '
+            'other materials provided with the distribution.'
+            'Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without '
+            'specific prior written permission.'
             ''
-            'ПОЖАЛУЙСТА, ТЩАТЕЛЬНО ОЗНАКОМТЕСЬ С ЛИЦЕНЗИЕЙ ПЕРЕД УСТАНОВКОЙ ИЛИ '
-            'ИСПОЛЬЗОВАНИЕМ ПРОДУКТА. ФАКТОМ ЗАГРУЗКИ, УСТАНОВКИ, КОПИРОВАНИЯ ИЛИ ЛЮБОЙ '
-            'ДРУГОЙ ФОРМЫ ИСПОЛЬЗОВАНИЯ ПРОДУКТА ВЫ УДОСТОВЕРЯЕТЕ, ЧТО ПРОЧИТАЛИ ДАННОЕ '
-            'ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ, ПОНЯЛИ ЕГО И СОГЛАСИЛИСЬ СО ВСЕМИ ТЕРМИНАМИ И '
-            'УСЛОВИЯМИ ДАННОГО ЛИЦЕНЗИОННОГО СОГЛАШЕНИЯ.'
-            ''
-            'Определения'
-            'Карпенко Владимир Валерьевич (далее «Правообладатель») предоставляет пользователю '
-            '(«Пользователь») копию программного продукта «EWLog Аппаратный журнал» (программу для '
-            'ведения аппаратного журнала любительской радиостанции) любой версии (далее «Программу») и '
-            'предоставляет Пользователю лицензию на использование данного программного продукта. '
-            'Настоящее лицензионное соглашение (далее «лицензия», «соглашение») определяет действия, '
-            'которые Пользователь вправе совершать по отношению к Программе, и включает перечень '
-            'ограничений гарантий и ответственности.'
-            ''
-            'Лицензионное соглашение'
-            'Эта Программа защищена национальными законами и международными соглашениями об '
-            'авторском праве. Вы согласны с тем, что Вам не передаются никакие права на данную Программу, '
-            'как интеллектуальную собственность. Право собственности, право владения, авторские права и '
-            'права на интеллектуальную собственность принадлежат Карпенко Владимиру Валерьевичу.'
-            'Пользователь имеет право использовать любую версию Программы в некоммерческих целях. '
-            'Программа используется тогда, когда она или её часть загружена в оперативную память (RAM) '
-            'электронно-вычислительной машины (ЭВМ) или установлена на постоянный носитель (жесткий '
-            'диск, CD или прочий носитель). Программа используется в некоммерческих целях, когда в '
-            'результате её использования Пользователь не получает материальной выгоды явным или '
-            'косвенным образом.'
-            'Пользователь имеет право распространять Программу любым путем (CD-ROM, вебсайт и так далее) '
-            'при соблюдении условий:'
-            '• распространение производится бесплатно;'
-            '• поставка Программы включает все файлы (исполняемый файл Программы, файлы с '
-            'документацией и прочие файлы).'
-            'Данная лицензия максимально, в рамках действующего законодательства, ограничивает '
-            'Пользователя в правах на модификацию Программы. В частности, за исключением специальных '
-            'случаев, предусмотренных действующим законодательством, запрещается исследовать код, '
-            'декомпилировать и дизассемблировать Программу, модифицировать либо создавать производные '
-            'продукты на базе данной Программы либо ее частей, удалять какие бы то ни было отметки о '
-            'правообладании на программу, менять файлы с лицензиями, включая данное соглашение, файлы с '
-            'документацией и прочие файлы.'
-            ''
-            'Ограничения гарантий и ответственности'
-            'Программа предоставляется на условиях «как есть» (as is). Правообладатель не предоставляет '
-            'никаких гарантий в отношении безошибочной и бесперебойной работы Программы, соответствия '
-            'Программы конкретным целям пользователя, а также не предоставляет никаких иных гарантий, '
-            'прямо не указанных в настоящем соглашении.'
-            'В максимальной степени, допустимой действующим законодательством, Правообладатель не несет '
-            'никакой ответственности за какие-либо прямые или косвенные последствия какого-либо '
-            'использования или невозможности использования Программы и/или ущерб, причиненный '
-            'Пользователю и/или третьим сторонам в результате какого-либо использования или '
-            'неиспользования Программы, в том числе из-за возможных ошибок или сбоев в работе '
-            'Программы.'
-            'Пользователь соглашается, что несет исключительную ответственность (и что Правообладатель не '
-            'несет ответственности перед Пользователем или какими-либо третьими лицами) за любое '
-            'нарушение обязательств Пользователя, установленных условиями настоящей лицензии, а также за '
-            'все последствия таких нарушений (включая любые убытки или ущерб, которые может понести '
-            'правообладатель).'
-            ''
-            'Контроль над соблюдением обязательств'
-            'Все спорные вопросы решаются по взаимной договоренности сторон, а если соглашения не было '
-            'достигнуто, то в судах общей юрисдикции.'
+            'THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, '
+            'THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. '
+            'IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL '
+            'DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) '
+            'HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN '
+            'ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. '
           )
           ParentFont = False
           ReadOnly = True
@@ -156,7 +107,7 @@ object SetupForm: TSetupForm
       end
     end
     object TabSheet2: TTabSheet
-      Caption = 'Настройка БД'
+      Caption = 'Setup DB'
       ClientHeight = 339
       ClientWidth = 622
       object Panel2: TPanel
@@ -174,7 +125,7 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Далее'
+          Caption = 'Next'
           OnClick = Button2Click
           TabOrder = 0
         end
@@ -183,7 +134,7 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Назад'
+          Caption = 'Back'
           OnClick = Button6Click
           TabOrder = 1
         end
@@ -191,8 +142,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 21
           Top = 8
-          Width = 194
-          Caption = 'Настройки базы данных'
+          Width = 135
+          Caption = 'Database settings'
           Font.Height = -16
           Font.Style = [fsBold]
           ParentColor = False
@@ -202,8 +153,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 15
           Top = 40
-          Width = 111
-          Caption = 'Выбор базы данных'
+          Width = 81
+          Caption = 'Database select'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -212,8 +163,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 19
           Top = 64
-          Width = 147
-          Caption = 'Использование MySQL'
+          Width = 80
+          Caption = 'Use MySQL'
           Font.Height = -12
           OnChange = RadioButton1Change
           ParentFont = False
@@ -223,8 +174,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 19
           Top = 88
-          Width = 143
-          Caption = 'Использование SQLite'
+          Width = 76
+          Caption = 'Use SQLite'
           Checked = True
           Font.Height = -12
           OnChange = RadioButton2Change
@@ -236,8 +187,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 19
           Top = 112
-          Width = 230
-          Caption = 'Я буду использовать обе базы данных'
+          Width = 148
+          Caption = 'I will use both databases'
           Font.Height = -12
           OnChange = RadioButton3Change
           ParentFont = False
@@ -264,7 +215,7 @@ object SetupForm: TSetupForm
           Height = 15
           Top = 40
           Width = 25
-          Caption = 'Хост'
+          Caption = 'Host'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -285,8 +236,8 @@ object SetupForm: TSetupForm
           Left = 456
           Height = 15
           Top = 40
-          Width = 28
-          Caption = 'Порт'
+          Width = 22
+          Caption = 'Port'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -295,8 +246,8 @@ object SetupForm: TSetupForm
           Left = 296
           Height = 15
           Top = 92
-          Width = 77
-          Caption = 'Пользователь'
+          Width = 53
+          Caption = 'Username'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -315,8 +266,8 @@ object SetupForm: TSetupForm
           Left = 456
           Height = 15
           Top = 92
-          Width = 42
-          Caption = 'Пароль'
+          Width = 50
+          Caption = 'Password'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -347,8 +298,8 @@ object SetupForm: TSetupForm
           Left = 296
           Height = 15
           Top = 144
-          Width = 98
-          Caption = 'Имя базы данных'
+          Width = 96
+          Caption = 'Name of database'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -357,8 +308,8 @@ object SetupForm: TSetupForm
           Left = 456
           Height = 15
           Top = 144
-          Width = 99
-          Caption = 'Путь к базе SQLite'
+          Width = 111
+          Caption = 'SQLite database path'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -425,8 +376,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 19
           Top = 152
-          Width = 248
-          Caption = 'Использовать существующую БД MySQL'
+          Width = 190
+          Caption = 'Use an existing MySQL database'
           Font.Height = -12
           ParentFont = False
           TabOrder = 11
@@ -435,8 +386,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 19
           Top = 176
-          Width = 244
-          Caption = 'Использовать существующую БД SQLite'
+          Width = 186
+          Caption = 'Use an existing SQLite database'
           Font.Height = -12
           ParentFont = False
           TabOrder = 12
@@ -445,8 +396,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 19
           Top = 216
-          Width = 224
-          Caption = 'Использовать MySQL по умолчанию'
+          Width = 136
+          Caption = 'Use MySQL by default'
           Font.Height = -12
           OnChange = CheckBox3Change
           ParentFont = False
@@ -456,8 +407,8 @@ object SetupForm: TSetupForm
           Left = 16
           Height = 19
           Top = 240
-          Width = 220
-          Caption = 'Использовать SQLite по умолчанию'
+          Width = 132
+          Caption = 'Use SQLite by default'
           Font.Height = -12
           OnChange = CheckBox4Change
           ParentFont = False
@@ -468,24 +419,24 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 160
-          Caption = 'Проверить подключение'
+          Caption = 'Check connection'
           OnClick = Button10Click
           TabOrder = 15
         end
       end
     end
     object TabSheet3: TTabSheet
-      Caption = 'Настройка журнала'
-      ClientHeight = 343
-      ClientWidth = 620
+      Caption = 'Setup Log'
+      ClientHeight = 339
+      ClientWidth = 622
       object Panel3: TPanel
         Left = 0
-        Height = 343
+        Height = 339
         Top = 0
-        Width = 620
+        Width = 622
         Align = alClient
-        ClientHeight = 343
-        ClientWidth = 620
+        ClientHeight = 339
+        ClientWidth = 622
         ParentColor = False
         TabOrder = 0
         object Button3: TButton
@@ -493,7 +444,7 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Далее'
+          Caption = 'Next'
           OnClick = Button3Click
           TabOrder = 0
         end
@@ -502,16 +453,16 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Назад'
+          Caption = 'Back'
           OnClick = Button7Click
           TabOrder = 1
         end
         object Label11: TLabel
           Left = 16
-          Height = 21
+          Height = 23
           Top = 8
-          Width = 251
-          Caption = 'Настройки главного журнала'
+          Width = 192
+          Caption = 'Main HAM Log Settings'
           Font.Height = -17
           Font.Style = [fsBold]
           ParentColor = False
@@ -531,8 +482,8 @@ object SetupForm: TSetupForm
           Left = 8
           Height = 15
           Top = 48
-          Width = 106
-          Caption = 'Описание журнала'
+          Width = 60
+          Caption = 'Description'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -541,8 +492,8 @@ object SetupForm: TSetupForm
           Left = 168
           Height = 15
           Top = 48
-          Width = 58
-          Caption = 'Позывной'
+          Width = 42
+          Caption = 'Callsign'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -592,8 +543,8 @@ object SetupForm: TSetupForm
           Left = 488
           Height = 15
           Top = 48
-          Width = 24
-          Caption = 'Имя'
+          Width = 32
+          Caption = 'Name'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -602,8 +553,8 @@ object SetupForm: TSetupForm
           Left = 8
           Height = 15
           Top = 108
-          Width = 46
-          Caption = 'Локатор'
+          Width = 22
+          Caption = 'Grid'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -624,8 +575,8 @@ object SetupForm: TSetupForm
           Left = 168
           Height = 15
           Top = 108
-          Width = 44
-          Caption = 'Широта'
+          Width = 43
+          Caption = 'Latitude'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -654,8 +605,8 @@ object SetupForm: TSetupForm
           Left = 328
           Height = 15
           Top = 108
-          Width = 45
-          Caption = 'Долгота'
+          Width = 54
+          Caption = 'Longitude'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
@@ -684,7 +635,7 @@ object SetupForm: TSetupForm
           Left = 488
           Height = 15
           Top = 108
-          Width = 18
+          Width = 17
           Caption = 'ITU'
           Font.Height = -12
           ParentColor = False
@@ -694,7 +645,7 @@ object SetupForm: TSetupForm
           Left = 552
           Height = 15
           Top = 108
-          Width = 16
+          Width = 17
           Caption = 'CQ'
           Font.Height = -12
           ParentColor = False
@@ -704,7 +655,7 @@ object SetupForm: TSetupForm
           Left = 8
           Height = 15
           Top = 168
-          Width = 46
+          Width = 45
           Caption = 'QSL Info'
           Font.Height = -12
           ParentColor = False
@@ -724,17 +675,17 @@ object SetupForm: TSetupForm
       end
     end
     object TabSheet4: TTabSheet
-      Caption = 'Обработка'
-      ClientHeight = 343
-      ClientWidth = 620
+      Caption = 'Processing'
+      ClientHeight = 339
+      ClientWidth = 622
       object Panel4: TPanel
         Left = 0
-        Height = 343
+        Height = 339
         Top = 0
-        Width = 620
+        Width = 622
         Align = alClient
-        ClientHeight = 343
-        ClientWidth = 620
+        ClientHeight = 339
+        ClientWidth = 622
         ParentColor = False
         TabOrder = 0
         object Button4: TButton
@@ -751,16 +702,16 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Назад'
+          Caption = 'Back'
           OnClick = Button8Click
           TabOrder = 1
         end
         object Label22: TLabel
           Left = 24
-          Height = 21
+          Height = 23
           Top = 16
-          Width = 509
-          Caption = 'Применение и обработка полученных данных. Подождите'
+          Width = 328
+          Caption = 'Application and processing of data. Wait'
           Font.Height = -17
           Font.Style = [fsBold]
           ParentColor = False
@@ -777,22 +728,22 @@ object SetupForm: TSetupForm
           Left = 24
           Height = 17
           Top = 88
-          Width = 69
-          Caption = 'Состояние:'
+          Width = 38
+          Caption = 'Status:'
           ParentColor = False
         end
         object Label24: TLabel
           Left = 96
           Height = 17
           Top = 88
-          Width = 64
-          Caption = 'Ожидание'
+          Width = 25
+          Caption = 'Wait'
           ParentColor = False
         end
       end
     end
     object TabSheet5: TTabSheet
-      Caption = 'Готово'
+      Caption = 'Done'
       ClientHeight = 339
       ClientWidth = 622
       object Panel5: TPanel
@@ -810,27 +761,16 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Готово'
+          Caption = 'OK'
           OnClick = Button5Click
           TabOrder = 0
         end
         object Label25: TLabel
           Left = 24
-          Height = 21
+          Height = 42
           Top = 16
-          Width = 577
-          Caption = 'Поздравляю! Мастер настройки успешно завершил инициализацию баз'
-          Font.Height = -16
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label26: TLabel
-          Left = 24
-          Height = 21
-          Top = 40
-          Width = 66
-          Caption = 'данных!'
+          Width = 503
+          Caption = 'Congratulations! Setup Wizard Completed Database Initialization '#13#10'Successfully'
           Font.Height = -16
           Font.Style = [fsBold]
           ParentColor = False
@@ -840,8 +780,8 @@ object SetupForm: TSetupForm
           Left = 24
           Height = 21
           Top = 88
-          Width = 503
-          Caption = 'Сейчас произойдёт завершение работы аппаратного журнала!'
+          Width = 272
+          Caption = 'The HAM log is now shutting down!'
           Font.Height = -16
           Font.Style = [fsBold]
           ParentColor = False
@@ -851,8 +791,8 @@ object SetupForm: TSetupForm
           Left = 24
           Height = 21
           Top = 112
-          Width = 555
-          Caption = 'Пожалуйста, запустите приложение повторно. Всего наилучшего! 73!'
+          Width = 372
+          Caption = 'Please run the application again. All the best! 73!'
           Font.Height = -16
           Font.Style = [fsBold]
           ParentColor = False
@@ -888,7 +828,7 @@ object SetupForm: TSetupForm
     top = 224
   end
   object SaveDialog1: TSaveDialog
-    Title = 'Сохранить базу данных'
+    Title = 'Save DataBase'
     DefaultExt = '.DB'
     FileName = 'logbook'
     Filter = '*.DB|*.DB'
@@ -896,7 +836,7 @@ object SetupForm: TSetupForm
     top = 222
   end
   object OpenDialog1: TOpenDialog
-    Title = 'Открыть базу данных'
+    Title = 'Open DataBase'
     DefaultExt = '.DB'
     FileName = 'logbook'
     Filter = '*.DB|*.DB'

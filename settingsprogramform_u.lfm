@@ -4,13 +4,13 @@ object SettingsProgramForm: TSettingsProgramForm
   Top = 322
   Width = 298
   BorderStyle = bsDialog
-  Caption = 'Внешние программы'
+  Caption = 'External programs'
   ClientHeight = 213
   ClientWidth = 298
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object GroupBox1: TGroupBox
     Left = 8
     Height = 79
@@ -28,7 +28,7 @@ object SettingsProgramForm: TSettingsProgramForm
       Top = 0
       Width = 167
       AutoSize = False
-      Caption = 'Путь к исполняемому файлу'
+      Caption = 'Path to executable file'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -54,7 +54,7 @@ object SettingsProgramForm: TSettingsProgramForm
       Top = 40
       Width = 133
       AutoSize = False
-      Caption = 'Включить XML-RPC'
+      Caption = 'Use XML-RPC'
       Font.Height = -12
       ParentFont = False
       TabOrder = 1
@@ -65,7 +65,7 @@ object SettingsProgramForm: TSettingsProgramForm
       Top = 40
       Width = 138
       AutoSize = False
-      Caption = 'Использовать Fldigi'
+      Caption = 'Use Fldigi'
       Font.Height = -12
       ParentFont = False
       TabOrder = 2
@@ -76,7 +76,7 @@ object SettingsProgramForm: TSettingsProgramForm
     Height = 24
     Top = 176
     Width = 73
-    Caption = 'Сохранить'
+    Caption = 'Save'
     Font.Height = -12
     OnClick = Button1Click
     ParentFont = False
@@ -87,7 +87,7 @@ object SettingsProgramForm: TSettingsProgramForm
     Height = 24
     Top = 176
     Width = 56
-    Caption = 'Отмена'
+    Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False
@@ -110,7 +110,7 @@ object SettingsProgramForm: TSettingsProgramForm
       Top = 0
       Width = 167
       AutoSize = False
-      Caption = 'Путь к исполняемому файлу'
+      Caption = 'Path to executable file'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -136,7 +136,7 @@ object SettingsProgramForm: TSettingsProgramForm
       Top = 40
       Width = 146
       AutoSize = False
-      Caption = 'Использовать WSJT-X'
+      Caption = 'Use WSJT-X'
       Font.Height = -12
       ParentFont = False
       TabOrder = 1

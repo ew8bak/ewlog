@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  httpsend, ssl_openssl, fpjson;
+  httpsend, fpjson, laz_synapse;
 
 type
 

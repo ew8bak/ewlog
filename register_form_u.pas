@@ -11,6 +11,15 @@ uses
   {$ENDIF}
   LazUTF8, HTTPSend, jsonparser, fpjson, LCLIntf;
 
+resourcestring
+  rSuccessfulLogin = 'Successful login';
+  rWrongPassword = 'Wrong password';
+  rNotFind = 'Could not find';
+  rRegNumber = 'Your registration number';
+  rRegFailed = 'Your registration failed';
+  rSuccessfullyRegistered = 'Successfully registered';
+
+
 type
 
   { TRegisterForm }
@@ -144,7 +153,7 @@ begin
       if passjson = Edit7.Text then
       begin
         Label9.Font.Color := clDefault;
-        Label9.Caption := 'Успешный вход';
+        Label9.Caption := rSuccessfulLogin;
         Image1.Visible := True;
         Button2.Visible := True;
         IniF.WriteString('SetLog', 'Register', 'YES');
@@ -160,11 +169,11 @@ begin
       else
       begin
         Label9.Font.Color := clRed;
-        Label9.Caption := 'Не верный пароль';
+        Label9.Caption := rWrongPassword;
       end;
     end
     else
-      Label9.Caption := 'Не удалось найти';
+      Label9.Caption := rNotFind;
   end;
 
   if (Edit1.Text <> '') and (Edit6.Text = '') then
@@ -175,8 +184,8 @@ begin
     if Pos('null', response) = 0 then
     begin
       Label9.Font.Color := clDefault;
-      Label9.Caption := 'Ваша регистрация под номером ' +
-        response;
+      Label9.Caption := rRegNumber + ' ' + response;
+
       Image1.Visible := True;
       IniF.WriteString('SetLog', 'Register', 'YES');
       IniF.WriteString('SetLog', 'Login', Edit1.Text);
@@ -199,7 +208,7 @@ begin
     else
     begin
       Label9.Font.Color := clRed;
-      Label9.Caption := 'Ваша регистрация не прошла';
+      Label9.Caption := rRegFailed;
     end;
   end;
 
@@ -231,7 +240,7 @@ begin
     Edit3.Enabled := False;
     Edit4.Enabled := False;
     Edit5.Enabled := False;
-    Label9.Caption := 'Успешно зарегистрировано';
+    Label9.Caption := rSuccessfullyRegistered;
     Edit6.Text := MainForm.LoginLog;
     Edit7.Text := MainForm.PassLog;
     Button2.Visible := True;

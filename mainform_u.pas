@@ -3382,7 +3382,7 @@ end;
 
 procedure TMainForm.MenuItem103Click(Sender: TObject);
 begin
-  filterForm.Show;
+  //filterForm.Show;
 end;
 
 procedure TMainForm.MenuItem104Click(Sender: TObject);

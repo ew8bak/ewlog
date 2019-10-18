@@ -7,6 +7,10 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, Buttons;
+resourcestring
+  rAllfieldsmustbefilled = 'All fields must be filled!';
+  rLogaddedsuccessfully = 'Log added successfully';
+  rHaltLog = 'The program will be completed, restart it!';
 
 type
 
@@ -112,7 +116,7 @@ begin
   if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
     (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') or
     (Edit8.Text = '') or (Edit9.Text = '') then
-    ShowMessage('Все поля должны быть заполнены!')
+    ShowMessage(rAllfieldsmustbefilled)
   else
     try
       LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
@@ -239,7 +243,7 @@ begin
       end;
     finally
       IniF.WriteString('SetLog', 'DefaultCallLogBook', Edit2.Text);
-      MainForm.TrayIcon1.BalloonHint := 'Журнал успешно добавлен';
+      MainForm.TrayIcon1.BalloonHint := rLogaddedsuccessfully;
       MainForm.TrayIcon1.ShowBalloonHint;
       Edit1.Clear;
       Edit2.Clear;
@@ -251,7 +255,7 @@ begin
       Edit8.Clear;
       Edit9.Clear;
       //MainForm.SelDB(CallLogBook);
-      ShowMessage('Работа программы будет завершена, запустите заново!');
+      ShowMessage(rHaltLog);
       Application.Terminate;
       //InitDB_Form.Close;
     end;

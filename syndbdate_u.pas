@@ -89,7 +89,7 @@ begin
           Application.ProcessMessages;
           MainForm.SQLiteTr.Rollback;
           Inc(err);
-          MainForm.StatusBar1.Panels.Items[0].Text := 'Дубликаты: ' + IntToStr(err);
+          MainForm.StatusBar1.Panels.Items[0].Text := rDuplicates + IntToStr(err);
         end
         else
         begin
@@ -329,7 +329,7 @@ begin
             Application.ProcessMessages;
             MainForm.SQLiteTr.Rollback;
             Inc(err);
-            MainForm.StatusBar1.Panels.Items[0].Text := 'Дубликаты: ' + IntToStr(err);
+            MainForm.StatusBar1.Panels.Items[0].Text := rDuplicates + IntToStr(err);
           end
           else
           begin

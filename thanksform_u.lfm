@@ -4,26 +4,26 @@ object Thanks_Form: TThanks_Form
   Top = 146
   Width = 462
   BorderStyle = bsDialog
-  Caption = 'Благодарность'
+  Caption = 'Thanks'
   ClientHeight = 192
   ClientWidth = 462
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object Label1: TLabel
     Left = 8
     Height = 15
     Top = 8
-    Width = 438
-    Caption = 'Выражаю оромную благодарность в помощи и тестировании журнала EWLog:'
+    Width = 236
+    Caption = 'Thanks to the help and testing of the EWLog '
     ParentColor = False
   end
   object Label2: TLabel
     Left = 24
     Height = 15
     Top = 32
-    Width = 138
-    Caption = 'EW2MS - Михаил Сенько'
+    Width = 125
+    Caption = 'EW2MS - Mikhail Senko'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
@@ -32,8 +32,8 @@ object Thanks_Form: TThanks_Form
     Left = 24
     Height = 15
     Top = 48
-    Width = 137
-    Caption = 'RN3DDP - Сергей Савчук'
+    Width = 138
+    Caption = 'RN3DDP - Sergey Savchuk'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
@@ -42,8 +42,8 @@ object Thanks_Form: TThanks_Form
     Left = 24
     Height = 15
     Top = 64
-    Width = 160
-    Caption = 'R9OCN - Андрей Хорошилов'
+    Width = 149
+    Caption = 'R9OCN - Andrey Horoshilov'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
@@ -52,8 +52,8 @@ object Thanks_Form: TThanks_Form
     Left = 24
     Height = 15
     Top = 80
-    Width = 154
-    Caption = 'RW3DY - Николай Евграфов'
+    Width = 139
+    Caption = 'RW3DY - Nikolay Evgrafov'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
@@ -62,16 +62,16 @@ object Thanks_Form: TThanks_Form
     Left = 8
     Height = 15
     Top = 168
-    Width = 425
-    Caption = 'И всем откликнувшимся на разработку людям :). Возможно кого-то забыл...'
+    Width = 454
+    Caption = 'And to all the people who responded to the development :). Maybe someone forgot ...'
     ParentColor = False
   end
   object Label7: TLabel
     Left = 24
     Height = 15
     Top = 144
-    Width = 82
-    Caption = 'Сергей Корхов'
+    Width = 76
+    Caption = 'Sergey Korhov'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
@@ -80,8 +80,8 @@ object Thanks_Form: TThanks_Form
     Left = 24
     Height = 15
     Top = 96
-    Width = 161
-    Caption = 'RX3DQX - Владимир Антипов'
+    Width = 144
+    Caption = 'RX3DQX - Vladimir Antipov'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
@@ -371,8 +371,8 @@ object Thanks_Form: TThanks_Form
     Left = 24
     Height = 15
     Top = 128
-    Width = 134
-    Caption = 'R9WBZ - Сергей Нохрин'
+    Width = 121
+    Caption = 'R9WBZ -Sergey Nohrin'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
@@ -381,8 +381,8 @@ object Thanks_Form: TThanks_Form
     Left = 23
     Height = 15
     Top = 112
-    Width = 138
-    Caption = 'UT5QBC - Юрий Лубенец'
+    Width = 124
+    Caption = 'UT5QBC - Yuri Lubenec'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False

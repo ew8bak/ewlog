@@ -7,6 +7,15 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls,LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding, httpsend, RegExpr, LazUtils;
+resourcestring
+  rNotDataForConnect = 'The log configuration, do not specify the data to connect to eQSL.cc';
+  rStatusConnecteQSL = 'Status: Connceting to eQSL.cc';
+  rStatusDownloadeQSL = 'Status: Download eQSL.cc';
+  rStatusSaveFile = 'Status: Saving file';
+  rStatusNotData = 'Status: Not data';
+  rStatusDone = 'Status: Done';
+  rProcessedData = 'Processed data:';
+
 
 type
 
@@ -77,7 +86,7 @@ var
   LoadFile: TFileStream;
 begin
   if (eQSLccLogin='') or (eQSLccPassword='') then
-  ShowMessage('В конфигурации журнала, не указаны данные для соединения с eQSL.cc')
+  ShowMessage(rNotDataForConnect)
   else begin
   eQSLCC:='http://eqsl.cc/qslcard/';
   URLExp := TRegExpr.Create;
@@ -87,14 +96,14 @@ begin
   with THTTPSend.Create do
     begin
       Application.ProcessMessages;
-      Label6.Caption:='Состояние: Соединение с eQSL';
+      Label6.Caption:=rStatusConnecteQSL;
       if HTTPMethod('GET', 'http://www.eqsl.cc/qslcard/DownloadInBox.cfm?UserName='+eQSLccLogin+'&Password='+eQSLccPassword+'&RcvdSince='+ FormatDateTime('yyyymmdd', DateEdit2.Date)) then
       begin
         Application.ProcessMessages;
         eQSLccHTML.LoadFromStream(Document);
         SetLength(buffer, eQSLccHTML.Size);
         Application.ProcessMessages;
-        Label6.Caption:='Состояние: Загрузка eQSL.cc';
+        Label6.Caption:=rStatusDownloadeQSL;
         eQSLccHTML.Read(Buffer[1], eQSLccHTML.Size);
         URLExp.Exec(Buffer);
         URL:=URLExp.Match[0];
@@ -108,7 +117,7 @@ begin
       LoadFile:=TFileStream.Create(GetEnvironmentVariable('HOME')+'/EWLog/eQSLcc_'+FormatDateTime('yyyymmdd', DateEdit2.Date)+'.adi',fmCreate);
       LoadFilePATH:=GetEnvironmentVariable('HOME')+'/EWLog/eQSLcc_'+FormatDateTime('yyyymmdd', DateEdit2.Date)+'.adi';
       {$ELSE}
-      Label6.Caption:='Состояние: Сохранение файла';
+      Label6.Caption:=rStatusSaveFile;
       LoadFilePATH:=GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH')+'\EWLog\eQSLcc_'+FormatDateTime('yyyymmdd', DateEdit2.Date)+'.adi';
       LoadFile:=TFileStream.Create(GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH')+'\EWLog\eQSLcc_'+FormatDateTime('yyyymmdd', DateEdit2.Date)+'.adi',fmCreate);
       {$ENDIF UNIX}
@@ -116,7 +125,7 @@ begin
       HttpGetBinary(FULLUrl,LoadFile);
       end
       else
-      Label6.Caption:='Состояние: Нет данных';
+      Label6.Caption:=rStatusNotData;
     end;
 
   finally
@@ -409,17 +418,13 @@ begin
 
             UPDATEQuery.Prepare;
             if QSLS = 'Y' then begin
-           // UPDATEQuery.Params.ParamByName('QSLRec').AsInteger := 1;
-           // UPDATEQuery.Params.ParamByName('QSLRec').AsInteger:=0;
             UPDATEQuery.Params.ParamByName('QSLReceQSLcc').AsInteger := 1;
             end
             else begin
-           // UPDATEQuery.Params.ParamByName('QSLRec').AsInteger:=0;//.IsNull;
             UPDATEQuery.Params.ParamByName('QSLReceQSLcc').IsNull;
             end;
             UPDATEQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSLSV;
             UPDATEQuery.Params.ParamByName('QSLInfo').AsString := QSLMSG;
-            //UPDATEQuery.Params.ParamByName('LoTWRec').AsInteger := 0;
             UPDATEQuery.Params.ParamByName('CallSign').AsString := Call;
             UPDATEQuery.Params.ParamByName('QSODate').AsString := QSODate;
 
@@ -427,7 +432,7 @@ begin
             MainForm.SQLTransaction1.Commit;
             Application.ProcessMessages;
             Inc(RecCount);
-            Label4.Caption := 'Обработано данных:' + IntToStr(RecCount);
+            Label4.Caption := rProcessedData + IntToStr(RecCount);
           end;
         end;
       end;
@@ -440,7 +445,7 @@ begin
     MainForm.SQLTransaction1.Commit;
     CloseFile(adiFile);
     MainForm.SelDB(CallLogBook);
-    Label6.Caption:='Состояние: Готово';
+    Label6.Caption:=rStatusDone;
   end;
   end;
 end;

@@ -5,7 +5,7 @@ object ServiceForm: TServiceForm
   Width = 500
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
-  Caption = 'Сервисы eQSL и LotW'
+  Caption = 'Service eQSL and LotW'
   ClientHeight = 216
   ClientWidth = 500
   Font.Height = -12
@@ -14,7 +14,7 @@ object ServiceForm: TServiceForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
@@ -372,8 +372,8 @@ object ServiceForm: TServiceForm
     Left = 192
     Height = 17
     Top = 16
-    Width = 222
-    Caption = 'Загрузить QSL, полученные после:'
+    Width = 184
+    Caption = 'Download QSL received after:'
     Font.Height = -13
     Font.Style = [fsBold]
     ParentColor = False
@@ -443,7 +443,7 @@ object ServiceForm: TServiceForm
     Height = 25
     Top = 104
     Width = 128
-    Caption = 'Соединиться с LotW'
+    Caption = 'Connect with LotW'
     Enabled = False
     Font.Height = -12
     ParentFont = False
@@ -454,7 +454,7 @@ object ServiceForm: TServiceForm
     Height = 25
     Top = 104
     Width = 128
-    Caption = 'Соединиться с eQSL'
+    Caption = 'Connect with eQSL'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False
@@ -470,8 +470,8 @@ object ServiceForm: TServiceForm
     Left = 136
     Height = 15
     Top = 152
-    Width = 115
-    Caption = 'Обработано данных:'
+    Width = 82
+    Caption = 'Processed data:'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -480,8 +480,8 @@ object ServiceForm: TServiceForm
     Left = 136
     Height = 15
     Top = 168
-    Width = 50
-    Caption = 'Ошибки:'
+    Width = 33
+    Caption = 'Errors:'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -573,8 +573,8 @@ object ServiceForm: TServiceForm
     Left = 312
     Height = 15
     Top = 152
-    Width = 122
-    Caption = 'Состояние: Ожидание'
+    Width = 62
+    Caption = 'Status: Wait'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
@@ -583,13 +583,14 @@ object ServiceForm: TServiceForm
     left = 448
     top = 152
     object MenuItem1: TMenuItem
-      Caption = 'Сервер'
+      Caption = 'Server'
     end
     object MenuItem2: TMenuItem
-      Caption = 'Экспорт данных из журнала'
+      Caption = 'Export Log'
     end
   end
   object OpenDialog1: TOpenDialog
+    Title = 'Open existing file'
     left = 56
     top = 104
   end

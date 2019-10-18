@@ -3,14 +3,13 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
   Height = 534
   Top = 189
   Width = 863
-  Caption = 'Менеджер базы префиксов'
+  Caption = 'Prefix Manager'
   ClientHeight = 534
   ClientWidth = 863
   Font.Height = -12
   OnClose = FormClose
-  OnDestroy = FormDestroy
   OnShow = FormShow
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.4.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 534
@@ -21,7 +20,7 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
     TabIndex = 0
     TabOrder = 0
     object TabSheet1: TTabSheet
-      Caption = 'Уникальные позывные'
+      Caption = 'Unique Callsigns'
       ClientHeight = 506
       ClientWidth = 855
       object Panel1: TPanel
@@ -54,22 +53,22 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
       end
     end
     object TabSheet2: TTabSheet
-      Caption = 'Админ. районы (Области)'
-      ClientHeight = 505
-      ClientWidth = 853
+      Caption = 'Province'
+      ClientHeight = 506
+      ClientWidth = 855
       object Panel2: TPanel
         Left = 0
         Height = 28
         Top = 0
-        Width = 853
+        Width = 855
         Align = alTop
         TabOrder = 0
       end
       object DBGrid2: TDBGrid
         Left = 0
-        Height = 451
+        Height = 452
         Top = 28
-        Width = 853
+        Width = 855
         Align = alClient
         Color = clWindow
         Columns = <>
@@ -80,29 +79,29 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
       object Panel5: TPanel
         Left = 0
         Height = 26
-        Top = 479
-        Width = 853
+        Top = 480
+        Width = 855
         Align = alBottom
         TabOrder = 2
       end
     end
     object TabSheet3: TTabSheet
-      Caption = 'Территория (Страна)'
-      ClientHeight = 505
-      ClientWidth = 853
+      Caption = 'Country'
+      ClientHeight = 506
+      ClientWidth = 855
       object Panel3: TPanel
         Left = 0
         Height = 28
         Top = 0
-        Width = 853
+        Width = 855
         Align = alTop
         TabOrder = 0
       end
       object DBGrid3: TDBGrid
         Left = 0
-        Height = 451
+        Height = 452
         Top = 28
-        Width = 853
+        Width = 855
         Align = alClient
         Color = clWindow
         Columns = <>
@@ -113,8 +112,8 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
       object Panel6: TPanel
         Left = 0
         Height = 26
-        Top = 479
-        Width = 853
+        Top = 480
+        Width = 855
         Align = alBottom
         TabOrder = 2
       end

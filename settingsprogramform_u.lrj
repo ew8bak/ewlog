@@ -1,12 +1,12 @@
 {"version":1,"strings":[
-{"hash":55386971,"name":"tsettingsprogramform.caption","sourcebytes":[208,146,208,189,208,181,209,136,208,189,208,184,208,181,32,208,191,209,128,208,190,208,179,209,128,208,176,208,188,208,188,209,139],"value":"\u0412\u043D\u0435\u0448\u043D\u0438\u0435 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B"},
+{"hash":39164915,"name":"tsettingsprogramform.caption","sourcebytes":[69,120,116,101,114,110,97,108,32,112,114,111,103,114,97,109,115],"value":"External programs"},
 {"hash":80916441,"name":"tsettingsprogramform.groupbox1.caption","sourcebytes":[70,108,100,105,103,105],"value":"Fldigi"},
-{"hash":200974147,"name":"tsettingsprogramform.label1.caption","sourcebytes":[208,159,209,131,209,130,209,140,32,208,186,32,208,184,209,129,208,191,208,190,208,187,208,189,209,143,208,181,208,188,208,190,208,188,209,131,32,209,132,208,176,208,185,208,187,209,131],"value":"\u041F\u0443\u0442\u044C \u043A \u0438\u0441\u043F\u043E\u043B\u043D\u044F\u0435\u043C\u043E\u043C\u0443 \u0444\u0430\u0439\u043B\u0443"},
-{"hash":227990163,"name":"tsettingsprogramform.checkbox1.caption","sourcebytes":[208,146,208,186,208,187,209,142,209,135,208,184,209,130,209,140,32,88,77,76,45,82,80,67],"value":"\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C XML-RPC"},
-{"hash":96635721,"name":"tsettingsprogramform.checkbox2.caption","sourcebytes":[208,152,209,129,208,191,208,190,208,187,209,140,208,183,208,190,208,178,208,176,209,130,209,140,32,70,108,100,105,103,105],"value":"\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C Fldigi"},
-{"hash":93776316,"name":"tsettingsprogramform.button1.caption","sourcebytes":[208,161,208,190,209,133,209,128,208,176,208,189,208,184,209,130,209,140],"value":"\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"},
-{"hash":69809520,"name":"tsettingsprogramform.button2.caption","sourcebytes":[208,158,209,130,208,188,208,181,208,189,208,176],"value":"\u041E\u0442\u043C\u0435\u043D\u0430"},
+{"hash":31297525,"name":"tsettingsprogramform.label1.caption","sourcebytes":[80,97,116,104,32,116,111,32,101,120,101,99,117,116,97,98,108,101,32,102,105,108,101],"value":"Path to executable file"},
+{"hash":222539795,"name":"tsettingsprogramform.checkbox1.caption","sourcebytes":[85,115,101,32,88,77,76,45,82,80,67],"value":"Use XML-RPC"},
+{"hash":81225385,"name":"tsettingsprogramform.checkbox2.caption","sourcebytes":[85,115,101,32,70,108,100,105,103,105],"value":"Use Fldigi"},
+{"hash":366789,"name":"tsettingsprogramform.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"},
+{"hash":77089212,"name":"tsettingsprogramform.button2.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
 {"hash":96991016,"name":"tsettingsprogramform.groupbox2.caption","sourcebytes":[87,83,74,84,45,88],"value":"WSJT-X"},
-{"hash":200974147,"name":"tsettingsprogramform.label2.caption","sourcebytes":[208,159,209,131,209,130,209,140,32,208,186,32,208,184,209,129,208,191,208,190,208,187,208,189,209,143,208,181,208,188,208,190,208,188,209,131,32,209,132,208,176,208,185,208,187,209,131],"value":"\u041F\u0443\u0442\u044C \u043A \u0438\u0441\u043F\u043E\u043B\u043D\u044F\u0435\u043C\u043E\u043C\u0443 \u0444\u0430\u0439\u043B\u0443"},
-{"hash":79156152,"name":"tsettingsprogramform.checkbox4.caption","sourcebytes":[208,152,209,129,208,191,208,190,208,187,209,140,208,183,208,190,208,178,208,176,209,130,209,140,32,87,83,74,84,45,88],"value":"\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C WSJT-X"}
+{"hash":31297525,"name":"tsettingsprogramform.label2.caption","sourcebytes":[80,97,116,104,32,116,111,32,101,120,101,99,117,116,97,98,108,101,32,102,105,108,101],"value":"Path to executable file"},
+{"hash":96616536,"name":"tsettingsprogramform.checkbox4.caption","sourcebytes":[85,115,101,32,87,83,74,84,45,88],"value":"Use WSJT-X"}
 ]}

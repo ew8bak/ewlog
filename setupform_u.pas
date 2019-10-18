@@ -7,6 +7,21 @@ interface
 uses
   Classes, SysUtils, mysql56conn, sqlite3conn, sqldb, FileUtil, Forms, Controls,
   Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, Types;
+resourcestring
+rCreateTableLogBookInfo = 'Create table LogBookInfo';
+rIchooseNumberOfRecords = 'I choose the number of records';
+rFillInLogTable = 'Fill in the Log_Table_';
+rFillInlogBookInfo = 'Fill in the LogBookInfo table';
+rAddIndexInLogTable = 'Add index in Log_TABLE_';
+rAddKeyInLogTable = 'Add key in Log_TABLE_';
+rSuccessful = 'Successful';
+rWait = 'Wait';
+rNotConnected = 'No connection to the server. Go back to the connection settings step and check all the settings';
+rNotUser = 'No database was found for this user. Check the user and database settings in the connection settings step';
+rSuccessfulNext = 'Successful! Click NEXT';
+rValueEmpty = 'One or more values are empty! Check';
+rCheckPath = 'Check SQLite database path';
+rValueCorr = 'One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically';
 
 type
 
@@ -62,7 +77,6 @@ type
     Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
-    Label26: TLabel;
     Label27: TLabel;
     Label28: TLabel;
     Label3: TLabel;
@@ -175,7 +189,7 @@ begin
         MySQL_Connector.Connected := True;
         SQL_Transaction.Active := True;
         Application.ProcessMessages;
-        Label24.Caption := 'Создаю таблицу LogBookInfo';
+        Label24.Caption := rCreateTableLogBookInfo;
         SQL_Query.Close;
         SQL_Query.SQL.Text := 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
           '`id` int(11) NOT NULL, ' + '`LogTable` varchar(100) NOT NULL, ' +
@@ -201,14 +215,14 @@ begin
         LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
         SQL_Query.Close;
         Application.ProcessMessages;
-        Label24.Caption := 'Выбираю количество записей';
+        Label24.Caption := rIchooseNumberOfRecords;
         SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
         SQL_Query.Open;
         ProgressBar1.Position := 63;
         CountStr := SQL_Query.Fields[0].AsInteger + 1;
         SQL_Query.Close;
         Application.ProcessMessages;
-        Label24.Caption := 'Заполняю таблицу LogBookInfo';
+        Label24.Caption := rFillInLogBookInfo;
         SQL_Query.SQL.Text :=
           'INSERT INTO LogBookInfo ' +
           '(id,LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo,EQSLLogin,EQSLPassword)'
@@ -232,7 +246,7 @@ begin
         SQL_Transaction.Commit;
         SQL_Query.Close;
         Application.ProcessMessages;
-        Label24.Caption := 'Заполняю таблицу Log_TABLE_' + LOG_PREFIX;
+        Label24.Caption := rFillInLogTable + LOG_PREFIX;
         SQL_Query.SQL.Text :=
           'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
           '(' + ' `UnUsedIndex` int(11) NOT NULL,' +
@@ -275,7 +289,7 @@ begin
         SQL_Transaction.Commit;
         SQL_Query.Close;
         Application.ProcessMessages;
-        Label24.Caption := 'Добавляю индексы в Log_TABLE_' + LOG_PREFIX;
+        Label24.Caption := rAddIndexInLogTable + LOG_PREFIX;
         SQL_Query.SQL.Text :=
           'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
           ' ADD PRIMARY KEY (`UnUsedIndex`),' + ' ADD KEY `Call` (`Call`),' +
@@ -292,30 +306,27 @@ begin
         SQL_Transaction.Commit;
         SQL_Query.Close;
         Application.ProcessMessages;
-        Label24.Caption := 'Добавляю ключевое поле в Log_TABLE_' + LOG_PREFIX;
+        Label24.Caption := rAddKeyInLogTable + LOG_PREFIX;
         SQL_Query.SQL.Text :=
           'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
           ' MODIFY `UnUsedIndex` int(11) NOT NULL AUTO_INCREMENT;';
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 100;
         SQL_Transaction.Commit;
-        Label24.Caption := 'Выполнено успешно';
+        Label24.Caption := rSuccessful;
       except
         on E: Exception do
         begin
           if Pos('Server connect failed', E.Message) > 0 then
           begin
-            ShowMessage(
-              'Нет подключения к серверу. Вернитесь на шаг настроек подключения и проверьте все параметры');
+            ShowMessage(rNotConnected);
             Button8.Enabled := True;
           end;
           if Pos('Access denied for user', E.Message) > 0 then
           begin
-            ShowMessage(
-              'Для данного пользователя не найдена база данных. Проверьте настройки пользователя и базы на шаге настроек подключения');
+            ShowMessage(rNotUser);
             Button8.Enabled := True;
           end;
-          //ShowMessage(E.Message);
           Button8.Enabled := True;
         end;
       end;
@@ -346,7 +357,7 @@ begin
     IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
     IniF.Free;
     ProgressBar1.Position := 100;
-    Label24.Caption := 'Готово';
+    Label24.Caption := rSuccessful;
     Button4.Enabled := True;
   end;
 
@@ -362,7 +373,7 @@ begin
       SQLite_Connector.Connected := True;
       SQL_Transaction.Active := True;
       Application.ProcessMessages;
-      Label24.Caption := 'Создаю таблицу LogBookInfo';
+      Label24.Caption := rCreateTableLogBookInfo;
       SQL_Query.Close;
       SQL_Query.SQL.Text := 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
         '`id` int(11) NOT NULL, ' + '`LogTable` varchar(100) NOT NULL, ' +
@@ -386,14 +397,14 @@ begin
       LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
       SQL_Query.Close;
       Application.ProcessMessages;
-      Label24.Caption := 'Выбираю количество записей';
+      Label24.Caption := rIchooseNumberOfRecords;
       SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
       SQL_Query.Open;
       ProgressBar1.Position := 63;
       CountStr := SQL_Query.Fields[0].AsInteger + 1;
       SQL_Query.Close;
       Application.ProcessMessages;
-      Label24.Caption := 'Заполняю таблицу LogBookInfo';
+      Label24.Caption := rFillInlogBookInfo;
       SQL_Query.SQL.Text :=
         'INSERT INTO LogBookInfo ' +
         '(id,LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo,EQSLLogin,EQSLPassword)'
@@ -417,7 +428,7 @@ begin
       SQL_Transaction.Commit;
       SQL_Query.Close;
       Application.ProcessMessages;
-      Label24.Caption := 'Заполняю таблицу Log_TABLE_' + LOG_PREFIX;
+      Label24.Caption := rFillInLogTable + LOG_PREFIX;
       SQL_Query.SQL.Text :=
         'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
         '(' + ' `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
@@ -461,7 +472,7 @@ begin
       SQL_Query.Close;
       ProgressBar1.Position := 84;
       ProgressBar1.Position := 100;
-      Label24.Caption := 'Выполнено успешно';
+      Label24.Caption := rSuccessful;
     finally
       SQL_Transaction.Commit;
       Button4.Enabled := True;
@@ -491,7 +502,7 @@ begin
     IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
     IniF.Free;
     ProgressBar1.Position := 100;
-    Label24.Caption := 'Готово';
+    Label24.Caption := rSuccessful;
     Button4.Enabled := True;
   end;
 
@@ -513,7 +524,7 @@ begin
           MySQL_Connector.Connected := True;
           SQL_Transaction.Active := True;
           Application.ProcessMessages;
-          Label24.Caption := 'Создаю таблицу LogBookInfo';
+          Label24.Caption := rCreateTableLogBookInfo;
           SQL_Query.Close;
           SQL_Query.SQL.Text := 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
             '`id` int(11) NOT NULL, ' + '`LogTable` varchar(100) NOT NULL, ' +
@@ -539,14 +550,14 @@ begin
           LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
           SQL_Query.Close;
           Application.ProcessMessages;
-          Label24.Caption := 'Выбираю количество записей';
+          Label24.Caption := rIchooseNumberOfRecords;
           SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
           SQL_Query.Open;
           ProgressBar1.Position := 63;
           CountStr := SQL_Query.Fields[0].AsInteger + 1;
           SQL_Query.Close;
           Application.ProcessMessages;
-          Label24.Caption := 'Заполняю таблицу LogBookInfo';
+          Label24.Caption := rFillInlogBookInfo;
           SQL_Query.SQL.Text :=
             'INSERT INTO LogBookInfo ' +
             '(id,LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo,EQSLLogin,EQSLPassword)'
@@ -570,7 +581,7 @@ begin
           SQL_Transaction.Commit;
           SQL_Query.Close;
           Application.ProcessMessages;
-          Label24.Caption := 'Заполняю таблицу Log_TABLE_' + LOG_PREFIX;
+          Label24.Caption := rFillInLogTable + LOG_PREFIX;
           SQL_Query.SQL.Text :=
             'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
             '(' + ' `UnUsedIndex` int(11) NOT NULL,' +
@@ -613,7 +624,7 @@ begin
           SQL_Transaction.Commit;
           SQL_Query.Close;
           Application.ProcessMessages;
-          Label24.Caption := 'Добавляю индексы в Log_TABLE_' + LOG_PREFIX;
+          Label24.Caption := rAddIndexInLogTable + LOG_PREFIX;
           SQL_Query.SQL.Text :=
             'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
             ' ADD PRIMARY KEY (`UnUsedIndex`),' + ' ADD KEY `Call` (`Call`),' +
@@ -630,31 +641,28 @@ begin
           SQL_Transaction.Commit;
           SQL_Query.Close;
           Application.ProcessMessages;
-          Label24.Caption := 'Добавляю ключевое поле в Log_TABLE_' + LOG_PREFIX;
+          Label24.Caption := rAddKeyInLogTable + LOG_PREFIX;
           SQL_Query.SQL.Text :=
             'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
             ' MODIFY `UnUsedIndex` int(11) NOT NULL AUTO_INCREMENT;';
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 100;
           SQL_Transaction.Commit;
-          Label24.Caption := 'Выполнено успешно';
+          Label24.Caption := rSuccessful;
 
         except
           on E: Exception do
           begin
             if Pos('Server connect failed', E.Message) > 0 then
             begin
-              ShowMessage(
-                'Нет подключения к серверу. Вернитесь на шаг настроек подключения и проверьте все параметры');
+              ShowMessage(rNotConnected);
               Button8.Enabled := True;
             end;
             if Pos('Access denied for user', E.Message) > 0 then
             begin
-              ShowMessage(
-                'Для данного пользователя не найдена база данных. Проверьте настройки пользователя и базы на шаге настроек подключения');
+              ShowMessage(rNotUser);
               Button8.Enabled := True;
             end;
-            //ShowMessage(E.Message);
             Button8.Enabled := True;
           end;
         end;
@@ -684,7 +692,7 @@ begin
       IniF.WriteString('SetLog', 'LogBookInit', 'YES');
       IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
       ProgressBar1.Position := 100;
-      Label24.Caption := 'Готово';
+      Label24.Caption := rSuccessful;
     end;
 
     if SQLite_Current = False then
@@ -697,7 +705,7 @@ begin
         SQLite_Connector.Connected := True;
         SQL_Transaction.Active := True;
         Application.ProcessMessages;
-        Label24.Caption := 'Создаю таблицу LogBookInfo в SQLite';
+        Label24.Caption := rCreateTableLogBookInfo;
         SQL_Query.Close;
         SQL_Query.SQL.Text := 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
           '`id` int(11) NOT NULL, ' + '`LogTable` varchar(100) NOT NULL, ' +
@@ -721,14 +729,14 @@ begin
         LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
         SQL_Query.Close;
         Application.ProcessMessages;
-        Label24.Caption := 'Выбираю количество записей';
+        Label24.Caption := rIchooseNumberOfRecords;
         SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
         SQL_Query.Open;
         ProgressBar1.Position := 63;
         CountStr := SQL_Query.Fields[0].AsInteger + 1;
         SQL_Query.Close;
         Application.ProcessMessages;
-        Label24.Caption := 'Заполняю таблицу LogBookInfo в SQLite';
+        Label24.Caption := rFillInlogBookInfo;
         SQL_Query.SQL.Text :=
           'INSERT INTO LogBookInfo ' +
           '(id,LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo,EQSLLogin,EQSLPassword)'
@@ -752,7 +760,7 @@ begin
         SQL_Transaction.Commit;
         SQL_Query.Close;
         Application.ProcessMessages;
-        Label24.Caption := 'Заполняю таблицу Log_TABLE_' + LOG_PREFIX + ' в SQLite';
+        Label24.Caption := rFillInLogTable + LOG_PREFIX + ' in SQLite';
         SQL_Query.SQL.Text :=
           'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
           '(' + ' `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
@@ -796,7 +804,7 @@ begin
         SQL_Query.Close;
         ProgressBar1.Position := 84;
         ProgressBar1.Position := 100;
-        Label24.Caption := 'Выполнено успешно';
+        Label24.Caption := rSuccessful;
       finally
         SQL_Transaction.Commit;
         IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
@@ -813,7 +821,7 @@ begin
       IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
       IniF.Free;
       ProgressBar1.Position := 100;
-      Label24.Caption := 'Готово';
+      Label24.Caption := rSuccessful;
     end;
     Button4.Enabled := True;
   end;
@@ -828,16 +836,8 @@ begin
   ProgressBar1.Position := 0;
   MySQL_Current := False;
   SQLite_Current := False;
-  Label24.Caption := 'Ожидание';
- // CheckBox2.Enabled := False;
- // CheckBox4.Enabled := False;
- // CheckBox3.Checked := True;
- // CheckBox3.Enabled := False;
- // Edit6.Enabled := False;
- // SpeedButton1.Enabled := False;
- // Button10.Enabled := True;
- // Button2.Enabled := False;
-     Edit1.Enabled := False;
+  Label24.Caption := rWait;
+    Edit1.Enabled := False;
     Edit2.Enabled := False;
     Edit3.Enabled := False;
     Edit4.Enabled := False;
@@ -952,7 +952,7 @@ begin
       MySQL_Connector.Connected := True;
       if MySQL_Connector.Connected = True then begin
         Button2.Enabled := True;
-        ShowMessage('Успешно! Нажмите далее');
+        ShowMessage(rSuccessfulNext);
         end
     except
       on E: Exception do
@@ -968,20 +968,20 @@ begin
   if RadioButton1.Checked = True then
     if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
       (Edit4.Text = '') or (Edit5.Text = '') then
-      ShowMessage('Одно или несколько значений не заполнены! Проверьте')
+      ShowMessage(rValueEmpty)
     else
       State := True;
 
   if RadioButton2.Checked = True then
     if Edit6.Text = '' then
-      ShowMessage('Проверьте путь к базе SQLite')
+      ShowMessage(rCheckPath)
     else
       State := True;
 
   if RadioButton3.Checked = True then
     if (Edit6.Text = '') or (Edit1.Text = '') or (Edit2.Text = '') or
       (Edit3.Text = '') or (Edit4.Text = '') or (Edit5.Text = '') then
-      ShowMessage('Одно или несколько значений не заполнены! Проверьте')
+      ShowMessage(rValueEmpty)
     else
       State := True;
 
@@ -1016,8 +1016,7 @@ begin
     (Edit10.Text = '') or (Edit11.Text = '') or (Edit12.Text = '') or
     (Edit13.Text = '') or (Edit14.Text = '') or (Edit15.Text = '') or
     (dmFunc.IsLocOK(Edit11.Text) = False) then
-    ShowMessage('Одно или несколько полей не заполнены или заполнены неверно! Должны быть '
-      + 'заполнены все поля и верный локатор. Долгота и широта при этом выставляется автоматически')
+    ShowMessage(rValueCorr)
   else
   begin
     Journal_Description := Edit7.Text;

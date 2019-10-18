@@ -8,6 +8,11 @@ uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, ComCtrls, Buttons, DBCtrls, Menus, DB, LCLType;
 
+resourcestring
+  rDeleteLog = 'Are you sure you want to delete the log ?!';
+  rCannotDelDef = 'Cannot delete default log';
+  rDefaultLogSel = 'Default log selected';
+
 type
 
   { TLogConfigForm }
@@ -211,7 +216,6 @@ begin
       UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
     else
       UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
-    // DBLookupListBox1.KeyValue := MainForm.DBLookupComboBox1.KeyValue;
     SelectCall(MainForm.DBLookupComboBox1.KeyValue);
   end;
 end;
@@ -234,7 +238,6 @@ begin
         UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
       else
         UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
-      //DBLookupListBox1.KeyValue := MainForm.DBLookupComboBox1.KeyValue;
       SelectCall(MainForm.DBLookupComboBox1.KeyValue);
     end;
 
@@ -285,13 +288,13 @@ var
   droptablename: string;
   i: integer;
 begin
-  if Application.MessageBox(PChar(
-    'Вы действительно хотите удалить журнал?!'),
-    'Внимание!', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+  if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
+    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
   begin
-    if CallLogBook =  ListBox1.Items[ListBox1.ItemIndex] then begin
-    ShowMessage('Нельзя удалить журнал по умолчанию');
-    exit;
+    if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
+    begin
+      ShowMessage(rCannotDelDef);
+      exit;
     end;
 
     SQLQuery2.Close;
@@ -335,8 +338,7 @@ end;
 procedure TLogConfigForm.MenuItem4Click(Sender: TObject);
 begin
   IniF.WriteString('SetLog', 'DefaultCallLogBook', ListBox1.Items[ListBox1.ItemIndex]);
-  ShowMessage('Выбран журнал по умолчанию ' +
-    ListBox1.Items[ListBox1.ItemIndex]);
+  ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
   MainForm.DBLookupComboBox1.KeyValue := ListBox1.Items[ListBox1.ItemIndex];
   MainForm.DBLookupComboBox1CloseUp(Self);
   if ListBox1.Items[ListBox1.ItemIndex] = MainForm.DBLookupComboBox1.KeyValue then
