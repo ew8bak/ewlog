@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 509
+  Left = 356
   Height = 680
-  Top = 255
+  Top = 96
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -620,16 +620,16 @@ object MainForm: TMainForm
         TabOrder = 7
       end
       object Label10: TLabel
-        AnchorSideTop.Control = Label9
+        AnchorSideTop.Control = ComboBox5
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
         Left = 205
         Height = 15
-        Top = 157
+        Top = 158
         Width = 40
         Anchors = [akTop, akRight]
-        BorderSpacing.Top = 6
+        BorderSpacing.Top = 7
         BorderSpacing.Right = 165
         Caption = 'QSL Via'
         Font.Height = -12
@@ -1758,13 +1758,14 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label32: TLabel
-        AnchorSideLeft.Control = Panel5
+        AnchorSideLeft.Control = Label29
+        AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel5
         Left = 54
         Height = 15
         Top = 6
         Width = 21
-        BorderSpacing.Left = 53
+        BorderSpacing.Left = 3
         BorderSpacing.Top = 5
         Caption = '.......'
         Font.Color = clFuchsia
@@ -1774,14 +1775,15 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label33: TLabel
-        AnchorSideLeft.Control = Panel5
+        AnchorSideLeft.Control = Label30
+        AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label32
         AnchorSideTop.Side = asrBottom
-        Left = 54
+        Left = 52
         Height = 15
         Top = 26
         Width = 21
-        BorderSpacing.Left = 53
+        BorderSpacing.Left = 3
         BorderSpacing.Top = 5
         Caption = '.......'
         Font.Height = -12
@@ -1790,14 +1792,15 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label34: TLabel
-        AnchorSideLeft.Control = Panel5
+        AnchorSideLeft.Control = Label31
+        AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label33
         AnchorSideTop.Side = asrBottom
-        Left = 54
+        Left = 40
         Height = 15
         Top = 46
         Width = 21
-        BorderSpacing.Left = 53
+        BorderSpacing.Left = 3
         BorderSpacing.Top = 5
         Caption = '.......'
         Font.Height = -12
@@ -1835,13 +1838,14 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label37: TLabel
-        AnchorSideLeft.Control = Panel5
+        AnchorSideLeft.Control = Label35
+        AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel5
-        Left = 146
+        Left = 149
         Height = 15
         Top = 6
         Width = 21
-        BorderSpacing.Left = 145
+        BorderSpacing.Left = 3
         BorderSpacing.Top = 5
         Caption = '.......'
         Font.Height = -12
@@ -1854,11 +1858,11 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label33
         AnchorSideTop.Side = asrBottom
-        Left = 136
+        Left = 134
         Height = 15
         Top = 46
         Width = 21
-        BorderSpacing.Left = 5
+        BorderSpacing.Left = 3
         BorderSpacing.Top = 5
         Caption = '.......'
         Font.Height = -12

@@ -34,11 +34,10 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="52"/>
-        <CursorPos X="34" Y="650"/>
+        <TopLine Value="53"/>
+        <CursorPos X="48" Y="62"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="informationform_u.pas"/>
@@ -52,7 +51,6 @@
         <CursorPos X="54" Y="743"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="logconfigform_u.pas"/>
@@ -78,7 +76,6 @@
         <CursorPos X="3" Y="317"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -220,7 +217,6 @@
         <CursorPos X="3" Y="172"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit19>
       <Unit20>
         <Filename Value="rig.pas"/>
@@ -314,7 +310,6 @@
         <CursorPos X="3" Y="422"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit28>
       <Unit29>
         <Filename Value="changelog_form_u.pas"/>
@@ -384,7 +379,6 @@
         <CursorPos X="16" Y="42"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit34>
       <Unit35>
         <Filename Value="clusterserver_form_u.pas"/>
