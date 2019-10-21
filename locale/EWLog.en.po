@@ -716,6 +716,7 @@ msgid "This feature is unsupported by SimpleXML"
 msgstr ""
 
 #: tabout_form.caption
+msgctxt "tabout_form.caption"
 msgid "About"
 msgstr ""
 
@@ -2857,11 +2858,11 @@ msgid "QSL Received"
 msgstr ""
 
 #: tmainform.menuitem101.caption
-msgid "Регистрация"
+msgid "Registration"
 msgstr ""
 
 #: tmainform.menuitem102.caption
-msgid "Пожертвования"
+msgid "Donations"
 msgstr ""
 
 #: tmainform.menuitem103.caption
@@ -2913,15 +2914,15 @@ msgid "Off"
 msgstr ""
 
 #: tmainform.menuitem113.caption
-msgid "Вставить в поле Позывной"
+msgid "Paste in Callsign field"
 msgstr ""
 
 #: tmainform.menuitem114.caption
-msgid "Удалить спот"
+msgid "Delete spot"
 msgstr ""
 
 #: tmainform.menuitem115.caption
-msgid "Очистить окно"
+msgid "Clear window"
 msgstr ""
 
 #: tmainform.menuitem116.caption
@@ -3145,7 +3146,7 @@ msgstr ""
 
 #: tmainform.menuitem63.caption
 msgctxt "tmainform.menuitem63.caption"
-msgid "Благодарность"
+msgid "Thanks"
 msgstr ""
 
 #: tmainform.menuitem65.caption
@@ -3195,20 +3196,20 @@ msgstr ""
 
 #: tmainform.menuitem75.caption
 msgctxt "tmainform.menuitem75.caption"
-msgid "Изменить информацию по стране"
+msgid "Change Country Information"
 msgstr ""
 
 #: tmainform.menuitem76.caption
-msgid "Установки фильтров"
+msgid "Filter settings"
 msgstr ""
 
 #: tmainform.menuitem78.caption
-msgid "Спутник"
+msgid "Satellite"
 msgstr ""
 
 #: tmainform.menuitem79.caption
 msgctxt "tmainform.menuitem79.caption"
-msgid "Изменить информацию по стране"
+msgid "Change Country Information"
 msgstr ""
 
 #: tmainform.menuitem8.caption
@@ -3216,7 +3217,7 @@ msgid "Mark this QSO"
 msgstr ""
 
 #: tmainform.menuitem80.caption
-msgid "Изменить информацию по области"
+msgid "Change Province Information"
 msgstr ""
 
 #: tmainform.menuitem81.caption
@@ -3262,11 +3263,13 @@ msgid "Wizard"
 msgstr ""
 
 #: tmainform.menuitem92.caption
-msgid "Обновление"
+msgctxt "tmainform.menuitem92.caption"
+msgid "Update"
 msgstr ""
 
 #: tmainform.menuitem94.caption
-msgid "О Программе"
+msgctxt "tmainform.menuitem94.caption"
+msgid "About"
 msgstr ""
 
 #: tmainform.menuitem95.caption
@@ -3318,11 +3321,12 @@ msgid " .1. "
 msgstr ""
 
 #: tmainform.speedbutton8.hint
-msgid "Записать QSO"
+msgctxt "tmainform.speedbutton8.hint"
+msgid "Save QSO"
 msgstr ""
 
 #: tmainform.speedbutton9.hint
-msgid "Очистить поле ввода"
+msgid "Clear QSO"
 msgstr ""
 
 #: tmainform.tabsheet1.caption
@@ -3785,7 +3789,8 @@ msgid "Next"
 msgstr ""
 
 #: tsetupform.button4.caption
-msgid "Далее"
+msgctxt "tsetupform.button4.caption"
+msgid "Next"
 msgstr ""
 
 #: tsetupform.button5.caption

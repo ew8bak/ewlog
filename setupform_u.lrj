@@ -41,7 +41,7 @@
 {"hash":132448687,"name":"tsetupform.label21.caption","sourcebytes":[81,83,76,32,73,110,102,111],"value":"QSL Info"},
 {"hash":46197905,"name":"tsetupform.edit16.text","sourcebytes":[84,78,88,32,102,111,114,32,81,83,79,33,32,55,51,33],"value":"TNX for QSO! 73!"},
 {"hash":164620055,"name":"tsetupform.tabsheet4.caption","sourcebytes":[80,114,111,99,101,115,115,105,110,103],"value":"Processing"},
-{"hash":231023365,"name":"tsetupform.button4.caption","sourcebytes":[208,148,208,176,208,187,208,181,208,181],"value":"\u0414\u0430\u043B\u0435\u0435"},
+{"hash":347380,"name":"tsetupform.button4.caption","sourcebytes":[78,101,120,116],"value":"Next"},
 {"hash":296859,"name":"tsetupform.button8.caption","sourcebytes":[66,97,99,107],"value":"Back"},
 {"hash":77588420,"name":"tsetupform.label22.caption","sourcebytes":[65,112,112,108,105,99,97,116,105,111,110,32,97,110,100,32,112,114,111,99,101,115,115,105,110,103,32,111,102,32,100,97,116,97,46,32,87,97,105,116],"value":"Application and processing of data. Wait"},
 {"hash":178830394,"name":"tsetupform.label23.caption","sourcebytes":[83,116,97,116,117,115,58],"value":"Status:"},

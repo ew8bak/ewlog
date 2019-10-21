@@ -1,7 +1,7 @@
 object ConfigForm: TConfigForm
-  Left = 402
+  Left = 366
   Height = 443
-  Top = 123
+  Top = 139
   Width = 799
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -299,10 +299,10 @@ object ConfigForm: TConfigForm
     Left = 296
     Height = 248
     Top = 8
-    Width = 264
+    Width = 265
     Caption = 'Internal reference book'
     ClientHeight = 228
-    ClientWidth = 260
+    ClientWidth = 261
     Font.Height = -12
     ParentFont = False
     TabOrder = 4
@@ -318,30 +318,45 @@ object ConfigForm: TConfigForm
       TabOrder = 0
     end
     object Label10: TLabel
-      Left = 54
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideRight.Control = GroupBox2
+      AnchorSideRight.Side = asrBottom
+      Left = 10
       Height = 15
       Top = 8
       Width = 68
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 140
       Caption = 'Release date:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 16
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideRight.Control = GroupBox2
+      AnchorSideRight.Side = asrBottom
+      Left = 10
       Height = 15
       Top = 56
       Width = 103
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 140
       Caption = 'Number of records:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label12: TLabel
-      Left = 22
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideRight.Control = GroupBox2
+      AnchorSideRight.Side = asrBottom
+      Left = 10
       Height = 15
       Top = 80
       Width = 75
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 140
       Caption = 'Update status:'
       Font.Height = -12
       ParentColor = False
@@ -359,11 +374,15 @@ object ConfigForm: TConfigForm
       TabOrder = 1
     end
     object Label13: TLabel
-      Left = 90
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideRight.Control = GroupBox2
+      AnchorSideRight.Side = asrBottom
+      Left = 10
       Height = 15
       Top = 32
       Width = 41
-      Anchors = [akTop]
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 140
       Caption = 'Version:'
       Font.Height = -12
       ParentColor = False
@@ -371,12 +390,11 @@ object ConfigForm: TConfigForm
     end
     object Label14: TLabel
       AnchorSideLeft.Control = Label13
-      AnchorSideLeft.Side = asrBottom
-      Left = 134
+      Left = 55
       Height = 15
       Top = 32
       Width = 15
-      BorderSpacing.Left = 3
+      BorderSpacing.Left = 45
       Caption = '---'
       ParentColor = False
     end
@@ -388,10 +406,15 @@ object ConfigForm: TConfigForm
       TabOrder = 2
     end
     object Label17: TLabel
-      Left = 42
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideRight.Control = GroupBox2
+      AnchorSideRight.Side = asrBottom
+      Left = 10
       Height = 15
       Top = 104
       Width = 76
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 140
       Caption = 'Download file:'
       Font.Height = -12
       ParentColor = False

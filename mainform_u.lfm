@@ -33,7 +33,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 1
       Height = 24
-      Hint = 'Записать QSO'
+      Hint = 'Save QSO'
       Top = 1
       Width = 25
       Action = SaveQSOinBase
@@ -86,7 +86,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 29
       Height = 24
-      Hint = 'Очистить поле ввода'
+      Hint = 'Clear QSO'
       Top = 1
       Width = 25
       Action = ClearEdit
@@ -1622,7 +1622,7 @@ object MainForm: TMainForm
         end      
         item
           Title.Caption = 'Prefix'
-          Width = 59
+          Width = 43
           FieldName = 'MainPrefix'
         end      
         item
@@ -2350,7 +2350,7 @@ object MainForm: TMainForm
             end          
             item
               Title.Caption = 'Prefix'
-              Width = 59
+              Width = 43
               FieldName = 'MainPrefix'
             end          
             item
@@ -3346,26 +3346,26 @@ object MainForm: TMainForm
     object MenuItem6: TMenuItem
       Caption = 'Help'
       object MenuItem92: TMenuItem
-        Caption = 'Обновление'
+        Caption = 'Update'
         OnClick = MenuItem92Click
       end
       object MenuItem93: TMenuItem
         Caption = '-'
       end
       object MenuItem63: TMenuItem
-        Caption = 'Благодарность'
+        Caption = 'Thanks'
         OnClick = MenuItem63Click
       end
       object MenuItem101: TMenuItem
-        Caption = 'Регистрация'
+        Caption = 'Registration'
         OnClick = MenuItem101Click
       end
       object MenuItem102: TMenuItem
-        Caption = 'Пожертвования'
+        Caption = 'Donations'
         OnClick = MenuItem102Click
       end
       object MenuItem94: TMenuItem
-        Caption = 'О Программе'
+        Caption = 'About'
         OnClick = MenuItem94Click
       end
     end
@@ -4891,22 +4891,22 @@ object MainForm: TMainForm
     left = 520
     top = 320
     object MenuItem75: TMenuItem
-      Caption = 'Изменить информацию по стране'
+      Caption = 'Change Country Information'
       object MenuItem79: TMenuItem
-        Caption = 'Изменить информацию по стране'
+        Caption = 'Change Country Information'
       end
       object MenuItem80: TMenuItem
-        Caption = 'Изменить информацию по области'
+        Caption = 'Change Province Information'
       end
     end
     object MenuItem76: TMenuItem
-      Caption = 'Установки фильтров'
+      Caption = 'Filter settings'
     end
     object MenuItem77: TMenuItem
       Caption = '-'
     end
     object MenuItem78: TMenuItem
-      Caption = 'Спутник'
+      Caption = 'Satellite'
     end
   end
   object Fl_Timer: TTimer
@@ -5092,15 +5092,15 @@ object MainForm: TMainForm
     left = 1100
     top = 190
     object MenuItem113: TMenuItem
-      Caption = 'Вставить в поле Позывной'
+      Caption = 'Paste in Callsign field'
       OnClick = MenuItem113Click
     end
     object MenuItem114: TMenuItem
-      Caption = 'Удалить спот'
+      Caption = 'Delete spot'
       OnClick = MenuItem114Click
     end
     object MenuItem115: TMenuItem
-      Caption = 'Очистить окно'
+      Caption = 'Clear window'
       OnClick = MenuItem115Click
     end
   end

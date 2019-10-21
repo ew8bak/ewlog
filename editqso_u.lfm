@@ -1124,10 +1124,13 @@ object EditQSO_Form: TEditQSO_Form
         TabOrder = 4
       end
       object Label26: TLabel
-        Left = 246
+        AnchorSideRight.Control = ComboBox7
+        Left = 278
         Height = 15
         Top = 108
         Width = 87
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 2
         Caption = 'QSL was sent via'
         ParentColor = False
       end

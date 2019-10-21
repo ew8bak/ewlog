@@ -94,7 +94,7 @@ msgstr "Статус обновления: Требует обновления"
 
 #: createjournalform_u.rallfieldsmustbefilled
 msgid "All fields must be filled!"
-msgstr ""
+msgstr "Всё поля должны быть заполнены!"
 
 #: createjournalform_u.rhaltlog
 msgid "The program will be completed, restart it!"
@@ -102,7 +102,7 @@ msgstr ""
 
 #: createjournalform_u.rlogaddedsuccessfully
 msgid "Log added successfully"
-msgstr ""
+msgstr "Журнал успешно добавлен"
 
 #: exportadifform_u.ppleasefile
 msgid "Please specify a file for export!"
@@ -115,11 +115,11 @@ msgstr "Готово"
 
 #: exportadifform_u.rerror
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: exportadifform_u.rerroropenfile
 msgid "Error opening file"
-msgstr ""
+msgstr "Ошибка открытия файла"
 
 #: exportadifform_u.rexport
 msgctxt "exportadifform_u.rexport"
@@ -128,7 +128,7 @@ msgstr "Экспорт"
 
 #: exportadifform_u.rexportcompl
 msgid "Export completed"
-msgstr ""
+msgstr "Экспорт завершён"
 
 #: exportadifform_u.rnomethodexport
 msgid "No export method selected!"
@@ -145,7 +145,7 @@ msgstr "Количество записей: 0"
 
 #: exportadifform_u.rsentrecord
 msgid "Sent Record"
-msgstr ""
+msgstr "Отправить запись"
 
 #: exportadifform_u.rwarning
 msgctxt "exportadifform_u.rwarning"
@@ -159,7 +159,7 @@ msgstr "Готово"
 
 #: importadifform_u.rfileerror
 msgid "Error file:"
-msgstr ""
+msgstr "Файл ошибок:"
 
 #: importadifform_u.rimport
 msgctxt "importadifform_u.rimport"
@@ -178,7 +178,7 @@ msgstr "Импортировано записей"
 
 #: importadifform_u.rnothingimport
 msgid "Nothing to import"
-msgstr ""
+msgstr "Нечего импортировать"
 
 #: importadifform_u.rnumberdup
 msgctxt "importadifform_u.rnumberdup"
@@ -188,7 +188,7 @@ msgstr "Количество дубликатов"
 #: importadifform_u.rprocessing
 msgctxt "importadifform_u.rprocessing"
 msgid "Processing"
-msgstr ""
+msgstr "Обработка"
 
 #: informationform_u.rerrorxmlapi
 msgid "Error XML API:"
@@ -212,15 +212,15 @@ msgstr "В настройках, необходимо ввести логин и
 
 #: logconfigform_u.rcannotdeldef
 msgid "Cannot delete default log"
-msgstr ""
+msgstr "Нельзя удалить журнал по умолчанию"
 
 #: logconfigform_u.rdefaultlogsel
 msgid "Default log selected"
-msgstr ""
+msgstr "Журнал по умолчанию выбран"
 
 #: logconfigform_u.rdeletelog
 msgid "Are you sure you want to delete the log ?!"
-msgstr ""
+msgstr "Вы действительно хотите удалить журнал ?!"
 
 #: mainform_u.rcallsign
 msgctxt "mainform_u.rcallsign"
@@ -443,7 +443,7 @@ msgstr "Время"
 
 #: mainform_u.rqsototal
 msgid " Total "
-msgstr " из"
+msgstr " из "
 
 #: mainform_u.rsaveqso
 msgctxt "mainform_u.rsaveqso"
@@ -501,7 +501,7 @@ msgstr "Выбрана база данных SQLite! Добро пожалова
 
 #: register_form_u.rnotfind
 msgid "Could not find"
-msgstr ""
+msgstr "Не могу найти"
 
 #: register_form_u.rregfailed
 msgid "Your registration failed"
@@ -513,19 +513,19 @@ msgstr ""
 
 #: register_form_u.rsuccessfullogin
 msgid "Successful login"
-msgstr ""
+msgstr "Успешный вход"
 
 #: register_form_u.rsuccessfullyregistered
 msgid "Successfully registered"
-msgstr ""
+msgstr "Успешно зарегистрировано"
 
 #: register_form_u.rwrongpassword
 msgid "Wrong password"
-msgstr ""
+msgstr "Не верный пароль"
 
 #: sendtelnetspot_form_u.rnotalldata
 msgid "Not all data entered"
-msgstr ""
+msgstr "Не все данные заполнены"
 
 #: serviceform_u.rnotdataforconnect
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
@@ -538,23 +538,23 @@ msgstr ""
 
 #: serviceform_u.rstatusconnecteqsl
 msgid "Status: Connceting to eQSL.cc"
-msgstr ""
+msgstr "Статус: Соединение с eQSL.cc"
 
 #: serviceform_u.rstatusdone
 msgid "Status: Done"
-msgstr ""
+msgstr "Статус: Готово"
 
 #: serviceform_u.rstatusdownloadeqsl
 msgid "Status: Download eQSL.cc"
-msgstr ""
+msgstr "Статус: Загрузка eQSL.cc"
 
 #: serviceform_u.rstatusnotdata
 msgid "Status: Not data"
-msgstr ""
+msgstr "Статус: Нет данных"
 
 #: serviceform_u.rstatussavefile
 msgid "Status: Saving file"
-msgstr ""
+msgstr "Статус: Сохранение файла"
 
 #: settingscat_u.rlibhamlibnotfound
 msgid "HamLib library not found"
@@ -726,6 +726,7 @@ msgid "This feature is unsupported by SimpleXML"
 msgstr ""
 
 #: tabout_form.caption
+msgctxt "tabout_form.caption"
 msgid "About"
 msgstr "О программе"
 
@@ -1246,11 +1247,11 @@ msgstr "Описание"
 
 #: tcreatejournalform.label11.caption
 msgid "Long"
-msgstr ""
+msgstr "Долгота"
 
 #: tcreatejournalform.label2.caption
 msgid "Index"
-msgstr ""
+msgstr "Индекс"
 
 #: tcreatejournalform.label3.caption
 msgid "Call name"
@@ -1283,7 +1284,7 @@ msgstr "Локатор"
 
 #: tcreatejournalform.label9.caption
 msgid "Lat"
-msgstr ""
+msgstr "Широта"
 
 #: tearth.caption
 msgid "Earth"
@@ -1580,7 +1581,7 @@ msgstr "Вид связи"
 #: teditqso_form.label24.caption
 msgctxt "teditqso_form.label24.caption"
 msgid "QSL received via"
-msgstr ""
+msgstr "QSL получена через"
 
 #: teditqso_form.label25.caption
 msgid "QSL manager"
@@ -1616,16 +1617,16 @@ msgstr "QTH"
 
 #: teditqso_form.label7.caption
 msgid "Note for"
-msgstr ""
+msgstr "Комм"
 
 #: teditqso_form.label8.caption
 msgid "this"
-msgstr ""
+msgstr "ента"
 
 #: teditqso_form.label9.caption
 msgctxt "teditqso_form.label9.caption"
 msgid "QSO"
-msgstr "QSO"
+msgstr "рий"
 
 #: teditqso_form.radiobutton1.caption
 msgid "Sent"
@@ -1656,7 +1657,7 @@ msgstr ""
 #: teditqso_form.speedbutton1.hint
 msgctxt "teditqso_form.speedbutton1.hint"
 msgid "Change country information"
-msgstr ""
+msgstr "Изменить информацию по стране"
 
 #: teditqso_form.speedbutton10.caption
 msgctxt "teditqso_form.speedbutton10.caption"
@@ -1676,7 +1677,7 @@ msgstr ""
 #: teditqso_form.speedbutton2.hint
 msgctxt "teditqso_form.speedbutton2.hint"
 msgid "Change country information"
-msgstr ""
+msgstr "Изменить информацию по стране"
 
 #: teditqso_form.speedbutton3.caption
 msgctxt "teditqso_form.speedbutton3.caption"
@@ -1717,7 +1718,7 @@ msgstr "QSL"
 #: teditqso_form.tabsheet2.caption
 msgctxt "teditqso_form.tabsheet2.caption"
 msgid "Log"
-msgstr ""
+msgstr "Журнал"
 
 #: teditqso_form.tabsheet3.caption
 msgctxt "teditqso_form.tabsheet3.caption"
@@ -1782,7 +1783,7 @@ msgstr "Экспортировать всё"
 
 #: texportadifform.savedialog1.title
 msgid "Save file as"
-msgstr ""
+msgstr "Сохранить файл как"
 
 #: tfilterform.caption
 msgctxt "tfilterform.caption"
@@ -1796,31 +1797,31 @@ msgstr "Сохранить"
 
 #: thiddensettings.caption
 msgid "Hidden Settings"
-msgstr ""
+msgstr "Скрытые настройки"
 
 #: thiddensettings.checkbox1.caption
 msgid "Use API CAT"
-msgstr ""
+msgstr "Использовать API CAT"
 
 #: thiddensettings.checkbox2.caption
 msgid "Use API send data"
-msgstr ""
+msgstr "Использовать API отправки данных"
 
 #: thiddensettings.groupbox1.caption
 msgid "Settings Cloudlog"
-msgstr ""
+msgstr "Настройки Cloudlog"
 
 #: thiddensettings.groupbox2.caption
 msgid "Send to Cloudlog"
-msgstr ""
+msgstr "Отправлять в Cloudlog"
 
 #: thiddensettings.labelededit1.editlabel.caption
 msgid "Server address"
-msgstr ""
+msgstr "Адрес сервера"
 
 #: thiddensettings.labelededit2.editlabel.caption
 msgid "API Key"
-msgstr ""
+msgstr "Ключ API"
 
 #: timportadifform.button1.caption
 msgctxt "timportadifform.button1.caption"
@@ -2120,17 +2121,17 @@ msgstr "Конфигурация журнала"
 #: tlogconfigform.checkbox1.caption
 msgctxt "tlogconfigform.checkbox1.caption"
 msgid "Upload every time a logbook entry is added"
-msgstr "Загружать каждый раз, когда добавляется запись в журнале"
+msgstr "Загружать каждый раз, при добавлении QSO"
 
 #: tlogconfigform.checkbox2.caption
 msgctxt "tlogconfigform.checkbox2.caption"
 msgid "Upload every time a logbook entry is added"
-msgstr "Загружать каждый раз, когда добавляется запись в журнале"
+msgstr "Загружать каждый раз, при добавлении QSO"
 
 #: tlogconfigform.checkbox3.caption
 msgctxt "tlogconfigform.checkbox3.caption"
 msgid "Upload every time a logbook entry is added"
-msgstr "Загружать каждый раз, когда добавляется запись в журнале"
+msgstr "Загружать каждый раз, при добавлении QSO"
 
 #: tlogconfigform.combobox1.text
 msgctxt "tlogconfigform.combobox1.text"
@@ -2144,7 +2145,7 @@ msgstr ""
 #: tlogconfigform.label1.caption
 msgctxt "tlogconfigform.label1.caption"
 msgid "Log"
-msgstr ""
+msgstr "Журнал"
 
 #: tlogconfigform.label10.caption
 msgctxt "tlogconfigform.label10.caption"
@@ -2168,7 +2169,7 @@ msgstr "Долгота"
 
 #: tlogconfigform.label14.caption
 msgid "QSL info (Default)"
-msgstr ""
+msgstr "QSL Инфо (По умолчанию)"
 
 #: tlogconfigform.label15.caption
 msgid "*"
@@ -2254,15 +2255,15 @@ msgstr "ITU"
 
 #: tlogconfigform.menuitem1.caption
 msgid "Add new log"
-msgstr ""
+msgstr "Добавить новый журнал"
 
 #: tlogconfigform.menuitem3.caption
 msgid "Delete log"
-msgstr ""
+msgstr "Удалить журнал"
 
 #: tlogconfigform.menuitem4.caption
 msgid "Set default"
-msgstr ""
+msgstr "Установить по умолчанию"
 
 #: tlogconfigform.tabsheet1.caption
 msgid "Operator"
@@ -2649,7 +2650,6 @@ msgid "MGR"
 msgstr ""
 
 #: tmainform.label15.caption
-#, fuzzy
 msgctxt "tmainform.label15.caption"
 msgid "Sub. State"
 msgstr "Поле стат."
@@ -2852,11 +2852,11 @@ msgstr "QTH"
 
 #: tmainform.label8.caption
 msgid "RST sent"
-msgstr ""
+msgstr "RST отп"
 
 #: tmainform.label9.caption
 msgid "RST rcvd"
-msgstr ""
+msgstr "RST пол"
 
 #: tmainform.menuitem1.caption
 msgid "LogBook"
@@ -2865,52 +2865,51 @@ msgstr "Журнал"
 #: tmainform.menuitem10.caption
 msgctxt "tmainform.menuitem10.caption"
 msgid "QSL Received"
-msgstr ""
+msgstr "QSL Получена"
 
 #: tmainform.menuitem101.caption
-msgid "Регистрация"
-msgstr ""
+msgid "Registration"
+msgstr "Регистрация"
 
 #: tmainform.menuitem102.caption
-msgid "Пожертвования"
-msgstr ""
+msgid "Donations"
+msgstr "Пожертвования"
 
 #: tmainform.menuitem103.caption
-#, fuzzy
 msgctxt "tmainform.menuitem103.caption"
 msgid "Record Filter"
 msgstr "Фильтр записей"
 
 #: tmainform.menuitem104.caption
 msgid "Received QSL"
-msgstr ""
+msgstr "Полученные QSL"
 
 #: tmainform.menuitem105.caption
 msgid "Sent QSL"
-msgstr ""
+msgstr "Отправленные QSL"
 
 #: tmainform.menuitem106.caption
 msgid "Not sent QSL"
-msgstr ""
+msgstr "Не отправленные QSL"
 
 #: tmainform.menuitem107.caption
 msgctxt "tmainform.menuitem107.caption"
 msgid "QSL printed"
-msgstr ""
+msgstr "Напечатанные QSL"
 
 #: tmainform.menuitem108.caption
 msgctxt "tmainform.menuitem108.caption"
 msgid "QSL do not send"
-msgstr ""
+msgstr "Не отправлять QSL"
 
 #: tmainform.menuitem109.caption
 msgid "Cancel filter"
-msgstr ""
+msgstr "Сбросить фильтр"
 
 #: tmainform.menuitem11.caption
 msgctxt "tmainform.menuitem11.caption"
 msgid "QSL Received"
-msgstr ""
+msgstr "QSL Получена"
 
 #: tmainform.menuitem110.caption
 msgid "Displaying photos with QRZ.RU"
@@ -2925,16 +2924,16 @@ msgid "Off"
 msgstr "Отключить"
 
 #: tmainform.menuitem113.caption
-msgid "Вставить в поле Позывной"
-msgstr ""
+msgid "Paste in Callsign field"
+msgstr "Вставить позывной в поле ввода"
 
 #: tmainform.menuitem114.caption
-msgid "Удалить спот"
-msgstr ""
+msgid "Delete spot"
+msgstr "Удалить спот"
 
 #: tmainform.menuitem115.caption
-msgid "Очистить окно"
-msgstr ""
+msgid "Clear window"
+msgstr "Очистить окно"
 
 #: tmainform.menuitem116.caption
 msgid "Language"
@@ -2950,35 +2949,34 @@ msgstr "Английский"
 
 #: tmainform.menuitem12.caption
 msgid "QSL Queued"
-msgstr ""
+msgstr "QSL в очередь"
 
 #: tmainform.menuitem13.caption
 msgctxt "tmainform.menuitem13.caption"
 msgid "QSL Printed"
-msgstr ""
+msgstr "QSL напечатана"
 
 #: tmainform.menuitem14.caption
 msgid "QSL Sent"
-msgstr ""
+msgstr "QSL отправлена"
 
 #: tmainform.menuitem15.caption
-#, fuzzy
 msgctxt "tmainform.menuitem15.caption"
 msgid "QSL Info"
 msgstr "QSL Инфо"
 
 #: tmainform.menuitem16.caption
 msgid "QSL was not sent"
-msgstr ""
+msgstr "QSL не отправлена"
 
 #: tmainform.menuitem17.caption
 msgctxt "tmainform.menuitem17.caption"
 msgid "QSL do not send"
-msgstr ""
+msgstr "QSL не отправлять"
 
 #: tmainform.menuitem18.caption
 msgid "Find QSLManager info in to Internet"
-msgstr ""
+msgstr "Поиск QSL менеджера в Интернете"
 
 #: tmainform.menuitem2.caption
 msgid "Settings"
@@ -2987,7 +2985,7 @@ msgstr "Настройки"
 #: tmainform.menuitem20.caption
 msgctxt "tmainform.menuitem20.caption"
 msgid "QSL was received via"
-msgstr ""
+msgstr "QSL получена через"
 
 #: tmainform.menuitem21.caption
 msgctxt "tmainform.menuitem21.caption"
@@ -3015,7 +3013,6 @@ msgid "G - GlobalQSL"
 msgstr ""
 
 #: tmainform.menuitem26.caption
-#, fuzzy
 msgctxt "tmainform.menuitem26.caption"
 msgid "QSL was sent via"
 msgstr "QSL отправлена через"
@@ -3051,23 +3048,23 @@ msgstr ""
 
 #: tmainform.menuitem33.caption
 msgid "Add to unique Calls"
-msgstr ""
+msgstr "Добавить в базу уникальных позывных"
 
 #: tmainform.menuitem35.caption
 msgid "Select all records"
-msgstr ""
+msgstr "Выбрать все записи"
 
 #: tmainform.menuitem36.caption
 msgid "Export selected QSO to ADIF"
-msgstr ""
+msgstr "Экспортировать выбранные QSO в ADIF"
 
 #: tmainform.menuitem37.caption
 msgid "Export QSO to HRDLOG.Net"
-msgstr ""
+msgstr "Экспорт QSO в HRDLOG.Net"
 
 #: tmainform.menuitem38.caption
 msgid "Export selected QSO to eQSL.cc"
-msgstr ""
+msgstr "Экспорт выбранных QSO в eQSL.cc"
 
 #: tmainform.menuitem4.caption
 msgctxt "tmainform.menuitem4.caption"
@@ -3076,15 +3073,14 @@ msgstr "Внешние программы"
 
 #: tmainform.menuitem40.caption
 msgid "Quick edit QSO"
-msgstr ""
+msgstr "Быстрое редактирование QSO"
 
 #: tmainform.menuitem41.caption
 msgctxt "tmainform.menuitem41.caption"
 msgid "Prefix Manager"
-msgstr ""
+msgstr "Менеджер префиксов"
 
 #: tmainform.menuitem42.caption
-#, fuzzy
 msgctxt "tmainform.menuitem42.caption"
 msgid "Edit QSO"
 msgstr "Редактировать QSO"
@@ -3096,11 +3092,11 @@ msgstr ""
 
 #: tmainform.menuitem45.caption
 msgid "Copy to another log"
-msgstr ""
+msgstr "Скопировать в другой журнал"
 
 #: tmainform.menuitem46.caption
 msgid "Save to Excel"
-msgstr ""
+msgstr "Сохранить в Excel"
 
 #: tmainform.menuitem48.caption
 msgid "Set date synchronization"
@@ -3108,7 +3104,7 @@ msgstr "Установить дату синхронизации"
 
 #: tmainform.menuitem49.caption
 msgid "Send to DX Cluster"
-msgstr ""
+msgstr "Отправить в DX кластер"
 
 #: tmainform.menuitem5.caption
 msgid "Quick start"
@@ -3116,7 +3112,7 @@ msgstr "Быстрый запуск"
 
 #: tmainform.menuitem51.caption
 msgid "Delete Record"
-msgstr ""
+msgstr "Удалить запись"
 
 #: tmainform.menuitem52.caption
 msgid "Configure program"
@@ -3160,8 +3156,8 @@ msgstr "Импорт данных журнала из"
 
 #: tmainform.menuitem63.caption
 msgctxt "tmainform.menuitem63.caption"
-msgid "Благодарность"
-msgstr ""
+msgid "Thanks"
+msgstr "Спасибо"
 
 #: tmainform.menuitem65.caption
 msgid "Clear new QSO"
@@ -3210,29 +3206,29 @@ msgstr ""
 
 #: tmainform.menuitem75.caption
 msgctxt "tmainform.menuitem75.caption"
-msgid "Изменить информацию по стране"
-msgstr ""
+msgid "Change Country Information"
+msgstr "Изменить информацию по стране"
 
 #: tmainform.menuitem76.caption
-msgid "Установки фильтров"
-msgstr ""
+msgid "Filter settings"
+msgstr "Настройки фильтров"
 
 #: tmainform.menuitem78.caption
-msgid "Спутник"
-msgstr ""
+msgid "Satellite"
+msgstr "Спутники"
 
 #: tmainform.menuitem79.caption
 msgctxt "tmainform.menuitem79.caption"
-msgid "Изменить информацию по стране"
-msgstr ""
+msgid "Change Country Information"
+msgstr "Изменить информацию по стране"
 
 #: tmainform.menuitem8.caption
 msgid "Mark this QSO"
-msgstr ""
+msgstr "Пометить QSO"
 
 #: tmainform.menuitem80.caption
-msgid "Изменить информацию по области"
-msgstr ""
+msgid "Change Province Information"
+msgstr "Изменить информацию по области"
 
 #: tmainform.menuitem81.caption
 msgid "Synchronization Databases"
@@ -3253,23 +3249,23 @@ msgstr "Настройки CAT"
 
 #: tmainform.menuitem85.caption
 msgid "Transceiver Control"
-msgstr ""
+msgstr "Управление трансивером"
 
 #: tmainform.menuitem86.caption
 msgid "Display control form"
-msgstr ""
+msgstr "Отображать форму управления"
 
 #: tmainform.menuitem87.caption
 msgid "Settings external programs"
-msgstr ""
+msgstr "Настройки внешних программ"
 
 #: tmainform.menuitem88.caption
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: tmainform.menuitem89.caption
 msgid "Switch database"
-msgstr ""
+msgstr "Переключить СУБД"
 
 #: tmainform.menuitem91.caption
 msgctxt "tmainform.menuitem91.caption"
@@ -3277,20 +3273,22 @@ msgid "Wizard"
 msgstr "Помощник установки"
 
 #: tmainform.menuitem92.caption
-msgid "Обновление"
-msgstr ""
+msgctxt "tmainform.menuitem92.caption"
+msgid "Update"
+msgstr "Обновление"
 
 #: tmainform.menuitem94.caption
-msgid "О Программе"
-msgstr ""
+msgctxt "tmainform.menuitem94.caption"
+msgid "About"
+msgstr "О программе"
 
 #: tmainform.menuitem95.caption
 msgid "Minimize to tray"
-msgstr ""
+msgstr "Свернуть в трей"
 
 #: tmainform.menuitem96.caption
 msgid "Expand"
-msgstr ""
+msgstr "Развернуть"
 
 #: tmainform.menuitem98.caption
 msgctxt "tmainform.menuitem98.caption"
@@ -3299,7 +3297,7 @@ msgstr "Выход"
 
 #: tmainform.menuitem99.caption
 msgid "Configure table"
-msgstr ""
+msgstr "Редактировать таблицу"
 
 #: tmainform.speedbutton1.caption
 msgctxt "tmainform.speedbutton1.caption"
@@ -3333,12 +3331,13 @@ msgid " .1. "
 msgstr ""
 
 #: tmainform.speedbutton8.hint
-msgid "Записать QSO"
-msgstr ""
+msgctxt "tmainform.speedbutton8.hint"
+msgid "Save QSO"
+msgstr "Сохранить QSO"
 
 #: tmainform.speedbutton9.hint
-msgid "Очистить поле ввода"
-msgstr ""
+msgid "Clear QSO"
+msgstr "Очистить QSO"
 
 #: tmainform.tabsheet1.caption
 msgid "Telnet"
@@ -3395,15 +3394,15 @@ msgstr "Страна"
 #: tmanagerbaseprefixform.caption
 msgctxt "tmanagerbaseprefixform.caption"
 msgid "Prefix Manager"
-msgstr ""
+msgstr "Менеджер префиксов"
 
 #: tmanagerbaseprefixform.tabsheet1.caption
 msgid "Unique Callsigns"
-msgstr ""
+msgstr "Уникальные позывные"
 
 #: tmanagerbaseprefixform.tabsheet2.caption
 msgid "Province"
-msgstr ""
+msgstr "Области"
 
 #: tmanagerbaseprefixform.tabsheet3.caption
 msgctxt "tmanagerbaseprefixform.tabsheet3.caption"
@@ -3422,11 +3421,11 @@ msgstr "Отмена"
 
 #: tqslmanager_form.button3.caption
 msgid "Clear"
-msgstr ""
+msgstr "Очистить"
 
 #: tqslmanager_form.caption
 msgid "QSL Manager"
-msgstr ""
+msgstr "QSL Менеджер"
 
 #: tqslmanager_form.dbgrid1.columns[0].title.caption
 msgctxt "tqslmanager_form.dbgrid1.columns[0].title.caption"
@@ -3451,12 +3450,12 @@ msgstr "Дата"
 #: tqslmanager_form.dbgrid1.columns[4].title.caption
 msgctxt "tqslmanager_form.dbgrid1.columns[4].title.caption"
 msgid "Notes"
-msgstr ""
+msgstr "Заметки"
 
 #: tqslmanager_form.dbgrid1.columns[5].title.caption
 msgctxt "tqslmanager_form.dbgrid1.columns[5].title.caption"
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: tqslmanager_form.label1.caption
 msgctxt "tqslmanager_form.label1.caption"
@@ -3481,32 +3480,32 @@ msgstr "Дата"
 #: tqslmanager_form.label5.caption
 msgctxt "tqslmanager_form.label5.caption"
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: tqslmanager_form.label6.caption
 msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
-msgstr ""
+msgstr "Заметки"
 
 #: tregisterform.button1.caption
 msgid "ОК"
-msgstr ""
+msgstr "OK"
 
 #: tregisterform.button2.caption
 msgid "Help Project"
-msgstr ""
+msgstr "Помощь проекту"
 
 #: tregisterform.caption
 msgid "Register EWLog"
-msgstr ""
+msgstr "Зарегистрировать EWLog"
 
 #: tregisterform.groupbox1.caption
 msgid "New user"
-msgstr ""
+msgstr "Новый пользователь"
 
 #: tregisterform.groupbox2.caption
 msgid "Registered user"
-msgstr ""
+msgstr "Зарегистрированный пользователь"
 
 #: tregisterform.label1.caption
 msgctxt "tregisterform.label1.caption"
@@ -3515,11 +3514,11 @@ msgstr "Позывной:"
 
 #: tregisterform.label2.caption
 msgid "Last Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: tregisterform.label3.caption
 msgid "First name:"
-msgstr ""
+msgstr "Фамилия:"
 
 #: tregisterform.label4.caption
 msgctxt "tregisterform.label4.caption"
@@ -3529,7 +3528,7 @@ msgstr ""
 #: tregisterform.label5.caption
 msgctxt "tregisterform.label5.caption"
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: tregisterform.label6.caption
 msgctxt "tregisterform.label6.caption"
@@ -3539,7 +3538,7 @@ msgstr "Позывной:"
 #: tregisterform.label7.caption
 msgctxt "tregisterform.label7.caption"
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: tregisterform.label8.caption
 msgctxt "tregisterform.label8.caption"
@@ -3548,7 +3547,7 @@ msgstr "Статус:"
 
 #: tregisterform.label9.caption
 msgid "Not registered"
-msgstr ""
+msgstr "Не зарегистрирован"
 
 #: tsendtelnetspot.button1.caption
 msgid "Send"
@@ -3580,19 +3579,19 @@ msgstr "Комментарий"
 
 #: tserviceform.button1.caption
 msgid "Connect with LotW"
-msgstr ""
+msgstr "Соединиться с LotW"
 
 #: tserviceform.button2.caption
 msgid "Connect with eQSL"
-msgstr ""
+msgstr "Соединиться с eQSL"
 
 #: tserviceform.caption
 msgid "Service eQSL and LotW"
-msgstr ""
+msgstr "Сервисы eQSL и LotW"
 
 #: tserviceform.label1.caption
 msgid "Download QSL received after:"
-msgstr ""
+msgstr "Загрузить QSL полученные после:"
 
 #: tserviceform.label2.caption
 msgid "LotW"
@@ -3605,15 +3604,15 @@ msgstr ""
 #: tserviceform.label4.caption
 msgctxt "tserviceform.label4.caption"
 msgid "Processed data:"
-msgstr ""
+msgstr "Обработка данных:"
 
 #: tserviceform.label5.caption
 msgid "Errors:"
-msgstr ""
+msgstr "Ошибки:"
 
 #: tserviceform.label6.caption
 msgid "Status: Wait"
-msgstr ""
+msgstr "Статус: Ожидание"
 
 #: tserviceform.menuitem1.caption
 msgctxt "tserviceform.menuitem1.caption"
@@ -3622,11 +3621,11 @@ msgstr "Сервер"
 
 #: tserviceform.menuitem2.caption
 msgid "Export Log"
-msgstr ""
+msgstr "Экспорт журнала"
 
 #: tserviceform.opendialog1.title
 msgid "Open existing file"
-msgstr ""
+msgstr "Открыть существующий файл"
 
 #: tsettingscat.button1.caption
 msgctxt "tsettingscat.button1.caption"
@@ -3675,7 +3674,7 @@ msgstr "По умолчанию"
 
 #: tsettingscat.editcivaddress.hint
 msgid "ICOM Radios"
-msgstr ""
+msgstr "ICOM радио"
 
 #: tsettingscat.groupbox1.caption
 msgid "Config HamLib"
@@ -3750,15 +3749,15 @@ msgstr "Внешние программы"
 
 #: tsettingsprogramform.checkbox1.caption
 msgid "Use XML-RPC"
-msgstr ""
+msgstr "Использовать XML-RPC"
 
 #: tsettingsprogramform.checkbox2.caption
 msgid "Use Fldigi"
-msgstr ""
+msgstr "Использовать Fldigi"
 
 #: tsettingsprogramform.checkbox4.caption
 msgid "Use WSJT-X"
-msgstr ""
+msgstr "Использовать WSJT-X"
 
 #: tsettingsprogramform.groupbox1.caption
 msgctxt "tsettingsprogramform.groupbox1.caption"
@@ -3773,12 +3772,12 @@ msgstr ""
 #: tsettingsprogramform.label1.caption
 msgctxt "tsettingsprogramform.label1.caption"
 msgid "Path to executable file"
-msgstr ""
+msgstr "Путь до исполняемого файла"
 
 #: tsettingsprogramform.label2.caption
 msgctxt "tsettingsprogramform.label2.caption"
 msgid "Path to executable file"
-msgstr ""
+msgstr "Путь до исполняемого файла"
 
 #: tsetupform.button1.caption
 msgid "I accept"
@@ -3800,8 +3799,9 @@ msgid "Next"
 msgstr "Далее"
 
 #: tsetupform.button4.caption
-msgid "Далее"
-msgstr ""
+msgctxt "tsetupform.button4.caption"
+msgid "Next"
+msgstr "Далее"
 
 #: tsetupform.button5.caption
 msgctxt "tsetupform.button5.caption"
@@ -3926,7 +3926,7 @@ msgstr "QSL Инфо"
 
 #: tsetupform.label22.caption
 msgid "Application and processing of data. Wait"
-msgstr ""
+msgstr "Обработка и применение данных. Подождите"
 
 #: tsetupform.label23.caption
 msgctxt "tsetupform.label23.caption"
@@ -3948,7 +3948,7 @@ msgstr ""
 
 #: tsetupform.label27.caption
 msgid "The HAM log is now shutting down!"
-msgstr ""
+msgstr "Аппаратный журнал сейчас завершит работу!"
 
 #: tsetupform.label28.caption
 msgid "Please run the application again. All the best! 73!"
@@ -4007,20 +4007,20 @@ msgstr "Сохранить базу данных"
 
 #: tsetupform.tabsheet1.caption
 msgid "Greeting"
-msgstr ""
+msgstr "Приветсвие"
 
 #: tsetupform.tabsheet2.caption
 msgid "Setup DB"
-msgstr ""
+msgstr "Настройка БД"
 
 #: tsetupform.tabsheet3.caption
 msgid "Setup Log"
-msgstr ""
+msgstr "Настройка Журнала"
 
 #: tsetupform.tabsheet4.caption
 msgctxt "tsetupform.tabsheet4.caption"
 msgid "Processing"
-msgstr ""
+msgstr "Обработка"
 
 #: tsetupform.tabsheet5.caption
 msgctxt "tsetupform.tabsheet5.caption"
@@ -4049,7 +4049,7 @@ msgstr "State"
 
 #: tstate_form.dbgrid1.columns[2].title.caption
 msgid "Number"
-msgstr ""
+msgstr "Номер"
 
 #: tstate_form.dbgrid1.columns[3].title.caption
 msgid "Name State/City"
@@ -4067,7 +4067,7 @@ msgstr "Имя"
 
 #: tsyndbdate.button1.caption
 msgid "Synchronize"
-msgstr ""
+msgstr "Синхронизация"
 
 #: tsyndbdate.caption
 msgid "Date Sync"
@@ -4075,52 +4075,52 @@ msgstr ""
 
 #: tsyndbdate.label1.caption
 msgid "Select a synchronization start date"
-msgstr ""
+msgstr "Выбор даты начала синхронизации"
 
 #: tthanks_form.caption
 msgctxt "tthanks_form.caption"
 msgid "Thanks"
-msgstr ""
+msgstr "Спасибо"
 
 #: tthanks_form.label1.caption
 msgid "Thanks to the help and testing of the EWLog "
-msgstr ""
+msgstr "Выражаю огромную благодарность в помощи и тестировании аппаратного журнала EWLog "
 
 #: tthanks_form.label10.caption
 msgid "UT5QBC - Yuri Lubenec"
-msgstr ""
+msgstr "UT5QBC - Юрий Лубенец"
 
 #: tthanks_form.label2.caption
 msgid "EW2MS - Mikhail Senko"
-msgstr ""
+msgstr "EW2MS - Михаил Сенько"
 
 #: tthanks_form.label3.caption
 msgid "RN3DDP - Sergey Savchuk"
-msgstr ""
+msgstr "RN3DDP - Сергей Савчук"
 
 #: tthanks_form.label4.caption
 msgid "R9OCN - Andrey Horoshilov"
-msgstr ""
+msgstr "R9OCN - Андрей Хорошилов"
 
 #: tthanks_form.label5.caption
 msgid "RW3DY - Nikolay Evgrafov"
-msgstr ""
+msgstr "RW3DY - Николай Евграфов"
 
 #: tthanks_form.label6.caption
 msgid "And to all the people who responded to the development :). Maybe someone forgot ..."
-msgstr ""
+msgstr "И всем откликнувшимся на разработку людям :). Возможно кого-то забыл..."
 
 #: tthanks_form.label7.caption
 msgid "Sergey Korhov"
-msgstr ""
+msgstr "Сергей Корхов"
 
 #: tthanks_form.label8.caption
 msgid "RX3DQX - Vladimir Antipov"
-msgstr ""
+msgstr "RX3DQX - Владимир Антипов"
 
 #: tthanks_form.label9.caption
 msgid "R9WBZ -Sergey Nohrin"
-msgstr ""
+msgstr "R9WBZ - Сергей Нохрин"
 
 #: ttrxform.btn10m.caption
 msgid "28"

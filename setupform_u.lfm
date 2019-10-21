@@ -46,7 +46,9 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 75
           Caption = 'I accept'
+          Font.Height = -12
           OnClick = Button1Click
+          ParentFont = False
           TabOrder = 0
         end
         object Button9: TButton
@@ -55,11 +57,13 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 75
           Caption = 'Cancel'
+          Font.Height = -12
           OnClick = Button9Click
+          ParentFont = False
           TabOrder = 1
         end
         object Label1: TLabel
-          Left = 56
+          Left = 16
           Height = 23
           Top = 8
           Width = 327
@@ -126,7 +130,9 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 75
           Caption = 'Next'
+          Font.Height = -12
           OnClick = Button2Click
+          ParentFont = False
           TabOrder = 0
         end
         object Button6: TButton
@@ -135,7 +141,9 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 75
           Caption = 'Back'
+          Font.Height = -12
           OnClick = Button6Click
+          ParentFont = False
           TabOrder = 1
         end
         object Label3: TLabel
@@ -420,7 +428,9 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 160
           Caption = 'Check connection'
+          Font.Height = -12
           OnClick = Button10Click
+          ParentFont = False
           TabOrder = 15
         end
       end
@@ -445,7 +455,9 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 75
           Caption = 'Next'
+          Font.Height = -12
           OnClick = Button3Click
+          ParentFont = False
           TabOrder = 0
         end
         object Button7: TButton
@@ -454,7 +466,9 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 75
           Caption = 'Back'
+          Font.Height = -12
           OnClick = Button7Click
+          ParentFont = False
           TabOrder = 1
         end
         object Label11: TLabel
@@ -693,8 +707,10 @@ object SetupForm: TSetupForm
           Height = 25
           Top = 304
           Width = 75
-          Caption = 'Далее'
+          Caption = 'Next'
+          Font.Height = -12
           OnClick = Button4Click
+          ParentFont = False
           TabOrder = 0
         end
         object Button8: TButton
@@ -703,7 +719,9 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 75
           Caption = 'Back'
+          Font.Height = -12
           OnClick = Button8Click
+          ParentFont = False
           TabOrder = 1
         end
         object Label22: TLabel
@@ -726,19 +744,26 @@ object SetupForm: TSetupForm
         end
         object Label23: TLabel
           Left = 24
-          Height = 17
+          Height = 15
           Top = 88
-          Width = 38
+          Width = 35
           Caption = 'Status:'
+          Font.Height = -12
           ParentColor = False
+          ParentFont = False
         end
         object Label24: TLabel
-          Left = 96
-          Height = 17
+          AnchorSideLeft.Control = Label23
+          AnchorSideLeft.Side = asrBottom
+          Left = 62
+          Height = 15
           Top = 88
-          Width = 25
+          Width = 24
+          BorderSpacing.Left = 3
           Caption = 'Wait'
+          Font.Height = -12
           ParentColor = False
+          ParentFont = False
         end
       end
     end
@@ -762,7 +787,9 @@ object SetupForm: TSetupForm
           Top = 304
           Width = 75
           Caption = 'OK'
+          Font.Height = -12
           OnClick = Button5Click
+          ParentFont = False
           TabOrder = 0
         end
         object Label25: TLabel

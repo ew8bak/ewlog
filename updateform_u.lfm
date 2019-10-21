@@ -1,13 +1,13 @@
 object Update_Form: TUpdate_Form
-  Left = 448
+  Left = 1292
   Height = 229
-  Top = 177
-  Width = 278
+  Top = 212
+  Width = 274
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Update'
   ClientHeight = 229
-  ClientWidth = 278
+  ClientWidth = 274
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
@@ -17,89 +17,131 @@ object Update_Form: TUpdate_Form
     Left = 0
     Height = 229
     Top = 0
-    Width = 278
+    Width = 274
     Align = alClient
     Caption = 'Update'
     ClientHeight = 209
-    ClientWidth = 274
+    ClientWidth = 270
     Font.Height = -12
     ParentFont = False
     TabOrder = 0
     object Label1: TLabel
-      Left = 38
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 64
       Height = 15
       Top = 8
       Width = 76
+      Alignment = taCenter
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 130
       Caption = 'Version Status:'
-      Font.Height = -12
+      Font.Height = 16
       ParentColor = False
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 160
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 142
       Height = 15
       Top = 8
       Width = 34
+      BorderSpacing.Left = 142
+      BorderSpacing.Right = 100
       Caption = 'Actual'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 24
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 82
       Height = 15
       Top = 32
       Width = 58
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 130
       Caption = 'Last check:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 160
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 142
       Height = 15
       Top = 32
       Width = 9
+      BorderSpacing.Left = 142
+      BorderSpacing.Right = 100
       Caption = '...'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 31
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 50
       Height = 15
       Top = 56
       Width = 90
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 130
       Caption = 'Program version:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 160
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 142
       Height = 15
       Top = 56
       Width = 9
+      BorderSpacing.Left = 142
       Caption = '...'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 37
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 64
       Height = 15
       Top = 80
       Width = 76
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 130
       Caption = 'Server Version:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label8: TLabel
-      Left = 160
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 142
       Height = 15
       Top = 80
       Width = 9
+      BorderSpacing.Left = 142
       Caption = '...'
       Font.Height = -12
       ParentColor = False
