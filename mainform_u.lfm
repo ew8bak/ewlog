@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 356
+  Left = 358
   Height = 684
-  Top = 92
+  Top = 109
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -365,7 +365,7 @@ object MainForm: TMainForm
         BorderSpacing.Left = 209
         BorderSpacing.Top = 2
         Font.Height = -12
-        ItemHeight = 14
+        ItemHeight = 16
         ItemIndex = 0
         Items.Strings = (
           '59'
@@ -377,7 +377,7 @@ object MainForm: TMainForm
           '53'
         )
         ParentFont = False
-        Style = csOwnerDrawFixed
+        Style = csOwnerDrawEditableVariable
         TabOrder = 3
         Text = '59'
       end
@@ -393,7 +393,7 @@ object MainForm: TMainForm
         BorderSpacing.Left = 209
         BorderSpacing.Top = 2
         Font.Height = -12
-        ItemHeight = 14
+        ItemHeight = 16
         ItemIndex = 0
         Items.Strings = (
           '59'
@@ -405,7 +405,7 @@ object MainForm: TMainForm
           '53'
         )
         ParentFont = False
-        Style = csOwnerDrawFixed
+        Style = csOwnerDrawEditableVariable
         TabOrder = 4
         Text = '59'
       end
@@ -496,11 +496,11 @@ object MainForm: TMainForm
         AnchorSideRight.Side = asrBottom
         Left = 173
         Height = 13
-        Top = 65
+        Top = 69
         Width = 32
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 181
-        BorderSpacing.Top = 8
+        BorderSpacing.Top = 12
         BorderSpacing.Right = 205
         Caption = 'Name'
         Font.Height = -12
@@ -514,10 +514,10 @@ object MainForm: TMainForm
         AnchorSideRight.Side = asrBottom
         Left = 181
         Height = 13
-        Top = 86
+        Top = 92
         Width = 24
         Anchors = [akTop, akRight]
-        BorderSpacing.Top = 8
+        BorderSpacing.Top = 10
         BorderSpacing.Right = 205
         Caption = 'QTH'
         Font.Height = -12
@@ -531,11 +531,11 @@ object MainForm: TMainForm
         AnchorSideRight.Side = asrBottom
         Left = 157
         Height = 13
-        Top = 106
+        Top = 114
         Width = 48
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 163
-        BorderSpacing.Top = 7
+        BorderSpacing.Top = 9
         BorderSpacing.Right = 205
         Caption = 'RST sent'
         Font.Height = -12
@@ -549,10 +549,10 @@ object MainForm: TMainForm
         AnchorSideRight.Side = asrBottom
         Left = 157
         Height = 13
-        Top = 126
+        Top = 136
         Width = 48
         Anchors = [akTop, akRight]
-        BorderSpacing.Top = 7
+        BorderSpacing.Top = 9
         BorderSpacing.Right = 205
         Caption = 'RST rcvd'
         Font.Height = -12
