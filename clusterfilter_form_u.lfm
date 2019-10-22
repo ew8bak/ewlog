@@ -1,13 +1,16 @@
 object ClusterFilter: TClusterFilter
-  Left = 569
+  Left = 1492
   Height = 164
-  Top = 257
+  Top = 217
   Width = 349
   BorderStyle = bsDialog
   Caption = 'Cluster Filter'
   ClientHeight = 164
   ClientWidth = 349
   FormStyle = fsStayOnTop
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '2.0.4.0'
   object GroupBox1: TGroupBox

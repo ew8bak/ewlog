@@ -32,7 +32,11 @@ type
     cbAllModes: TCheckBox;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
+    procedure ReadBandsModes();
     { private declarations }
   public
     { public declarations }
@@ -43,7 +47,45 @@ var
 
 implementation
 
+uses
+  MainForm_U;
+
 {$R *.lfm}
 
-end.
+{ TClusterFilter }
 
+procedure TClusterFilter.ReadBandsModes();
+var
+  i: integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+    if Components[i] is TCheckBox then
+    begin
+      (Components[i] as TCheckBox).Checked :=
+        IniF.ReadBool('TelnetCluster', 'BandsModes' + IntToStr(i), True);
+    end;
+end;
+
+procedure TClusterFilter.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+var
+  i: integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+    if Components[i] is TCheckBox then
+    begin
+      IniF.WriteBool('TelnetCluster', 'BandsModes' + IntToStr(i),
+        (Components[i] as TCheckBox).Checked);
+    end;
+end;
+
+procedure TClusterFilter.FormCreate(Sender: TObject);
+begin
+  ReadBandsModes;
+end;
+
+procedure TClusterFilter.FormShow(Sender: TObject);
+begin
+  ReadBandsModes;
+end;
+
+end.
