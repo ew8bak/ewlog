@@ -200,12 +200,12 @@ object MainForm: TMainForm
     TabOrder = 0
     object Panel12: TPanel
       Left = 1
-      Height = 252
+      Height = 259
       Top = 1
       Width = 472
       Align = alTop
       AutoSize = True
-      ClientHeight = 252
+      ClientHeight = 259
       ClientWidth = 472
       ParentFont = False
       TabOrder = 0
@@ -426,14 +426,14 @@ object MainForm: TMainForm
       end
       object Label2: TLabel
         AnchorSideLeft.Control = Panel12
-        AnchorSideTop.Control = Label1
+        AnchorSideTop.Control = DateEdit1
         AnchorSideTop.Side = asrBottom
         Left = 6
         Height = 13
-        Top = 64
+        Top = 69
         Width = 28
         BorderSpacing.Left = 5
-        BorderSpacing.Top = 7
+        BorderSpacing.Top = 10
         Caption = 'Band'
         Font.Height = -12
         ParentColor = False
@@ -441,14 +441,14 @@ object MainForm: TMainForm
       end
       object Label3: TLabel
         AnchorSideLeft.Control = Panel12
-        AnchorSideTop.Control = Label2
+        AnchorSideTop.Control = ComboBox1
         AnchorSideTop.Side = asrBottom
         Left = 6
         Height = 13
-        Top = 84
+        Top = 92
         Width = 31
         BorderSpacing.Left = 5
-        BorderSpacing.Top = 7
+        BorderSpacing.Top = 9
         Caption = 'Mode'
         Font.Height = -12
         ParentColor = False
@@ -456,14 +456,14 @@ object MainForm: TMainForm
       end
       object Label4: TLabel
         AnchorSideLeft.Control = Panel12
-        AnchorSideTop.Control = Label3
+        AnchorSideTop.Control = ComboBox2
         AnchorSideTop.Side = asrBottom
         Left = 3
         Height = 13
-        Top = 107
+        Top = 114
         Width = 59
         BorderSpacing.Left = 2
-        BorderSpacing.Top = 10
+        BorderSpacing.Top = 9
         Caption = 'Time (UTC)'
         Font.Height = -12
         ParentColor = False
@@ -565,7 +565,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 11
         Height = 23
-        Top = 122
+        Top = 129
         Width = 78
         BorderSpacing.Left = 10
         BorderSpacing.Top = 2
@@ -583,7 +583,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 11
         Height = 23
-        Top = 147
+        Top = 154
         Width = 88
         BorderSpacing.Left = 10
         BorderSpacing.Top = 2
@@ -855,7 +855,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 100
         Height = 23
-        Top = 147
+        Top = 154
         Width = 53
         BorderSpacing.Left = 1
         BorderSpacing.Top = 2
@@ -871,7 +871,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 346
         Height = 21
-        Top = 182
+        Top = 189
         Width = 72
         AutoSize = False
         BorderSpacing.Top = 12
@@ -886,7 +886,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 251
         Height = 21
-        Top = 182
+        Top = 189
         Width = 72
         AutoSize = False
         BorderSpacing.Top = 12
@@ -901,7 +901,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 156
         Height = 21
-        Top = 182
+        Top = 189
         Width = 72
         AutoSize = False
         BorderSpacing.Top = 12
@@ -916,7 +916,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 61
         Height = 21
-        Top = 182
+        Top = 189
         Width = 72
         AutoSize = False
         BorderSpacing.Top = 12
@@ -931,7 +931,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 418
         Height = 17
-        Top = 183
+        Top = 190
         Width = 23
         AutoSize = True
         BorderSpacing.Top = 13
@@ -946,7 +946,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 323
         Height = 17
-        Top = 183
+        Top = 190
         Width = 23
         AutoSize = True
         BorderSpacing.Top = 13
@@ -961,7 +961,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 228
         Height = 17
-        Top = 183
+        Top = 190
         Width = 23
         AutoSize = True
         BorderSpacing.Top = 13
@@ -976,7 +976,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 133
         Height = 17
-        Top = 183
+        Top = 190
         Width = 23
         AutoSize = True
         BorderSpacing.Top = 13
@@ -990,7 +990,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 6
         Height = 13
-        Top = 185
+        Top = 192
         Width = 55
         BorderSpacing.Left = 5
         BorderSpacing.Top = 15
@@ -1006,7 +1006,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 59
         Height = 21
-        Top = 207
+        Top = 214
         Width = 371
         AutoSize = False
         BorderSpacing.Left = 3
@@ -1021,7 +1021,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 3
         Height = 13
-        Top = 210
+        Top = 217
         Width = 53
         BorderSpacing.Left = 2
         BorderSpacing.Top = 12
@@ -1058,7 +1058,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 3
         Height = 18
-        Top = 233
+        Top = 240
         Width = 468
         BorderSpacing.Left = 2
         BorderSpacing.Top = 5
@@ -1069,7 +1069,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 8
         Height = 13
-        Top = 236
+        Top = 243
         Width = 7
         BorderSpacing.Left = 5
         Caption = '1'
@@ -1085,7 +1085,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 20
         Height = 18
-        Top = 233
+        Top = 240
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1096,7 +1096,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 28
         Height = 13
-        Top = 236
+        Top = 243
         Width = 28
         BorderSpacing.Left = 5
         Caption = 'Date'
@@ -1112,7 +1112,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 69
         Height = 13
-        Top = 236
+        Top = 243
         Width = 27
         BorderSpacing.Left = 5
         Caption = 'Time'
@@ -1128,7 +1128,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 61
         Height = 18
-        Top = 233
+        Top = 240
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1139,7 +1139,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 109
         Height = 13
-        Top = 236
+        Top = 243
         Width = 60
         BorderSpacing.Left = 5
         Caption = 'Frequency'
@@ -1155,7 +1155,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 101
         Height = 18
-        Top = 233
+        Top = 240
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1166,7 +1166,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 182
         Height = 13
-        Top = 236
+        Top = 243
         Width = 32
         BorderSpacing.Left = 5
         Caption = 'Mode'
@@ -1182,7 +1182,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 174
         Height = 18
-        Top = 233
+        Top = 240
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1193,7 +1193,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 227
         Height = 13
-        Top = 236
+        Top = 243
         Width = 33
         BorderSpacing.Left = 5
         Caption = 'Name'
@@ -1209,7 +1209,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 219
         Height = 18
-        Top = 233
+        Top = 240
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1312,7 +1312,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Panel12
         AnchorSideTop.Control = ComboBox2
         AnchorSideTop.Side = asrBottom
-        Left = 90
+        Left = 87
         Height = 21
         Top = 107
         Width = 52
@@ -1323,7 +1323,7 @@ object MainForm: TMainForm
         Font.Height = -12
         ParentFont = False
         TabOrder = 20
-        BorderSpacing.Left = 89
+        BorderSpacing.Left = 86
         BorderSpacing.Top = 2
         TrailingSeparator = False
         TextForNullDate = 'NULL'
@@ -1383,7 +1383,7 @@ object MainForm: TMainForm
         BorderSpacing.Left = 37
         BorderSpacing.Top = 2
         Font.Height = -11
-        ItemHeight = 14
+        ItemHeight = 16
         ItemIndex = 0
         Items.Strings = (
           'SSB'
@@ -1463,7 +1463,7 @@ object MainForm: TMainForm
         )
         OnChange = ComboBox2Change
         ParentFont = False
-        Style = csOwnerDrawFixed
+        Style = csOwnerDrawEditableVariable
         TabOrder = 22
         Text = 'SSB'
       end
