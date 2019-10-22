@@ -32,7 +32,6 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="11"/>
         <TopLine Value="53"/>
         <CursorPos X="48" Y="62"/>
@@ -60,6 +59,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
         <EditorIndex Value="8"/>
+        <TopLine Value="244"/>
         <CursorPos X="88" Y="266"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -71,11 +71,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="317"/>
         <CursorPos X="3" Y="317"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -98,7 +100,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CreateJournalForm_U"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="229"/>
+        <TopLine Value="236"/>
         <CursorPos X="27" Y="258"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
