@@ -592,8 +592,8 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 330
-      Height = 23
-      Top = 121
+      Height = 21
+      Top = 119
       Width = 112
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
@@ -609,7 +609,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 444
       Height = 22
-      Top = 121
+      Top = 118
       Width = 23
       Caption = '...'
       Font.Height = -12
@@ -620,7 +620,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 444
       Height = 22
-      Top = 96
+      Top = 95
       Width = 23
       Caption = '...'
       Font.Height = -12
@@ -716,7 +716,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = DBLookupComboBox2
       Left = 286
       Height = 13
-      Top = 101
+      Top = 100
       Width = 42
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -731,7 +731,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = ComboBox4
       Left = 252
       Height = 13
-      Top = 126
+      Top = 123
       Width = 76
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -746,7 +746,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = DBLookupComboBox1
       Left = 261
       Height = 13
-      Top = 151
+      Top = 146
       Width = 67
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -756,10 +756,18 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object SpeedButton11: TSpeedButton
-      Left = 273
+      AnchorSideLeft.Control = Edit1
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Edit1
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = Edit1
+      AnchorSideBottom.Side = asrBottom
+      Left = 272
       Height = 24
-      Top = 23
+      Top = 14
       Width = 23
+      Anchors = [akLeft, akBottom]
+      BorderSpacing.Left = 1
       Font.Height = -12
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -806,8 +814,8 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 330
-      Height = 23
-      Top = 146
+      Height = 21
+      Top = 142
       Width = 112
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
@@ -828,7 +836,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 330
-      Height = 23
+      Height = 21
       Top = 96
       Width = 112
       Anchors = [akTop, akLeft, akRight]
