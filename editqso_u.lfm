@@ -1133,10 +1133,10 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = GroupBox2
           AnchorSideRight.Control = GroupBox2
           AnchorSideRight.Side = asrBottom
-          Left = 135
+          Left = 133
           Height = 21
           Top = 0
-          Width = 103
+          Width = 105
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
           DateOrder = doNone
           ButtonWidth = 23
@@ -1153,14 +1153,14 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = GroupBox2
           AnchorSideRight.Side = asrBottom
-          Left = 135
+          Left = 133
           Height = 21
           Top = 26
-          Width = 103
+          Width = 105
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
           DateOrder = doNone
           ButtonWidth = 23
-          Anchors = [akTop, akLeft, akRight]
+          Anchors = [akTop, akRight]
           AutoSize = False
           BorderSpacing.Top = 5
           NumGlyphs = 1
@@ -1242,7 +1242,7 @@ object EditQSO_Form: TEditQSO_Form
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
           DateOrder = doNone
           ButtonWidth = 23
-          Anchors = [akTop, akLeft, akRight]
+          Anchors = [akTop, akRight]
           AutoSize = False
           NumGlyphs = 1
           Font.Height = -12
@@ -1257,7 +1257,7 @@ object EditQSO_Form: TEditQSO_Form
         Left = 128
         Height = 21
         Top = 93
-        Width = 108
+        Width = 104
         AutoSize = False
         BorderSpacing.Top = 5
         Font.Height = -12
@@ -1356,12 +1356,12 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = ComboBox7
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = ComboBox7
-        Left = 268
+        Left = 270
         Height = 13
         Top = 123
         Width = 89
         Anchors = [akTop, akRight]
-        BorderSpacing.Right = 3
+        BorderSpacing.Right = 1
         Caption = 'QSL was sent via'
         ParentColor = False
       end
