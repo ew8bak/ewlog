@@ -1,5 +1,5 @@
 object MainForm: TMainForm
-  Left = 126
+  Left = 155
   Height = 684
   Top = 111
   Width = 1208
@@ -657,7 +657,7 @@ object MainForm: TMainForm
       end
       object Edit3: TEdit
         AnchorSideLeft.Control = Panel12
-        AnchorSideTop.Control = CheckBox6
+        AnchorSideTop.Control = CheckBox3
         AnchorSideTop.Side = asrBottom
         Left = 382
         Height = 21
@@ -771,7 +771,7 @@ object MainForm: TMainForm
       object Label11: TLabel
         AnchorSideLeft.Control = Edit2
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = CheckBox6
+        AnchorSideTop.Control = CheckBox3
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
