@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 358
+  Left = 126
   Height = 684
-  Top = 109
+  Top = 111
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -661,7 +661,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 382
         Height = 21
-        Top = 88
+        Top = 89
         Width = 83
         AutoSize = False
         BorderSpacing.Left = 381
@@ -677,7 +677,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 382
         Height = 21
-        Top = 111
+        Top = 112
         Width = 27
         AutoSize = False
         BorderSpacing.Left = 381
@@ -692,7 +692,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 382
         Height = 21
-        Top = 134
+        Top = 135
         Width = 56
         AutoSize = False
         BorderSpacing.Left = 381
@@ -708,7 +708,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 382
         Height = 21
-        Top = 157
+        Top = 158
         Width = 56
         AutoSize = False
         BorderSpacing.Left = 381
@@ -724,7 +724,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 440
         Height = 17
-        Top = 112
+        Top = 113
         Width = 19
         AutoSize = True
         BorderSpacing.Left = 2
@@ -741,7 +741,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 440
         Height = 17
-        Top = 132
+        Top = 133
         Width = 19
         AutoSize = True
         BorderSpacing.Left = 2
@@ -758,7 +758,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 440
         Height = 17
-        Top = 153
+        Top = 154
         Width = 19
         AutoSize = True
         BorderSpacing.Left = 2
@@ -777,11 +777,11 @@ object MainForm: TMainForm
         AnchorSideRight.Side = asrBottom
         Left = 355
         Height = 13
-        Top = 95
+        Top = 97
         Width = 23
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
-        BorderSpacing.Top = 9
+        BorderSpacing.Top = 10
         BorderSpacing.Right = 87
         Caption = 'Grid'
         Font.Height = -12
@@ -791,17 +791,17 @@ object MainForm: TMainForm
       object Label12: TLabel
         AnchorSideLeft.Control = Edit2
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label11
+        AnchorSideTop.Control = Edit3
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
         Left = 349
         Height = 13
-        Top = 115
+        Top = 120
         Width = 29
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
-        BorderSpacing.Top = 7
+        BorderSpacing.Top = 10
         BorderSpacing.Right = 87
         Caption = 'State'
         Font.Height = -12
@@ -811,17 +811,17 @@ object MainForm: TMainForm
       object Label13: TLabel
         AnchorSideLeft.Control = Edit2
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label12
+        AnchorSideTop.Control = Edit4
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
         Left = 352
         Height = 13
-        Top = 133
+        Top = 143
         Width = 26
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
-        BorderSpacing.Top = 5
+        BorderSpacing.Top = 10
         BorderSpacing.Right = 87
         Caption = 'IOTA'
         Font.Height = -12
@@ -831,17 +831,17 @@ object MainForm: TMainForm
       object Label14: TLabel
         AnchorSideLeft.Control = Edit2
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label13
+        AnchorSideTop.Control = Edit5
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
         Left = 352
         Height = 13
-        Top = 154
+        Top = 166
         Width = 26
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
-        BorderSpacing.Top = 8
+        BorderSpacing.Top = 10
         BorderSpacing.Right = 87
         Caption = 'MGR'
         Font.Height = -12
@@ -1312,7 +1312,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Panel12
         AnchorSideTop.Control = ComboBox2
         AnchorSideTop.Side = asrBottom
-        Left = 87
+        Left = 88
         Height = 21
         Top = 107
         Width = 52
@@ -1323,7 +1323,7 @@ object MainForm: TMainForm
         Font.Height = -12
         ParentFont = False
         TabOrder = 20
-        BorderSpacing.Left = 86
+        BorderSpacing.Left = 87
         BorderSpacing.Top = 2
         TrailingSeparator = False
         TextForNullDate = 'NULL'
@@ -1474,10 +1474,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 399
         Height = 23
-        Top = 63
+        Top = 64
         Width = 55
         BorderSpacing.Left = 2
-        BorderSpacing.Top = 4
+        BorderSpacing.Top = 5
         Caption = 'Filter'
         Font.Height = -12
         OnChange = CheckBox6Change
@@ -1491,7 +1491,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 411
         Height = 21
-        Top = 111
+        Top = 112
         Width = 27
         AutoSize = False
         BorderSpacing.Left = 2
