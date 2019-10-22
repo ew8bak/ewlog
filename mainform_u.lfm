@@ -490,7 +490,7 @@ object MainForm: TMainForm
       end
       object Label6: TLabel
         AnchorSideLeft.Control = Panel12
-        AnchorSideTop.Control = Label5
+        AnchorSideTop.Control = EditButton1
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
@@ -500,7 +500,7 @@ object MainForm: TMainForm
         Width = 32
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 181
-        BorderSpacing.Top = 12
+        BorderSpacing.Top = 10
         BorderSpacing.Right = 205
         Caption = 'Name'
         Font.Height = -12
@@ -508,7 +508,7 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label7: TLabel
-        AnchorSideTop.Control = Label6
+        AnchorSideTop.Control = Edit1
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
@@ -525,7 +525,7 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label8: TLabel
-        AnchorSideTop.Control = Label7
+        AnchorSideTop.Control = Edit2
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
@@ -543,7 +543,7 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label9: TLabel
-        AnchorSideTop.Control = Label8
+        AnchorSideTop.Control = ComboBox4
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
