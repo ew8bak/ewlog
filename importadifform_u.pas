@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, EditBtn, LCLType, LConvEncoding, LazUTF8, LCLIntf;
+
 resourcestring
   rDone = 'Done';
   rImport = 'Import';
@@ -15,7 +16,7 @@ resourcestring
   rImportErrors = 'Import Errors';
   rNumberDup = 'Number of duplicates';
   rNothingImport = 'Nothing to import';
-  rProcessing= 'Processing';
+  rProcessing = 'Processing';
 
 const
   ERR_FILE = 'errors.adi';
@@ -103,9 +104,9 @@ begin
     writeln(f);
     CloseFile(f);
   end;
-  lblErrorLog.Caption:=rFileError+ERR_FILE;
-  lblErrorLog.Font.Color :=clBlue;
-  lblErrorLog.Cursor:=crHandPoint;
+  lblErrorLog.Caption := rFileError + ERR_FILE;
+  lblErrorLog.Font.Color := clBlue;
+  lblErrorLog.Cursor := crHandPoint;
 end;
 
 procedure TImportADIFForm.ADIFImport;
@@ -1100,7 +1101,7 @@ begin
               lblErrors.Caption :=
                 rImportErrors + ' ' + IntToStr(err);
               lblErrorLog.Caption :=
-                rFileError+PathMyDoc + ERR_FILE;
+                rFileError + PathMyDoc + ERR_FILE;
               Repaint;
               Application.ProcessMessages;
               WriteWrongADIF(Lines);
@@ -1140,7 +1141,7 @@ begin
               MainForm.SQLTransaction1.Rollback;
               Inc(errr);
               Label2.Caption :=
-              rNumberDup + ' ' + IntToStr(errr);
+                rNumberDup + ' ' + IntToStr(errr);
             end
             //  end
             else                   //Если всё норм -> поехали добавлять)
@@ -1159,15 +1160,11 @@ begin
                 ' (QSODate,QSOTime,CallSign,QSOBand,QSOMode,' +
                 'QSOReportSent,QSOReportRecived,OMName,OMQTH,QSL_SENT_VIA,IOTA,ITUZone,Grid,'
                 + 'QSOAddInfo,DXCCPrefix,AwardsEx,DigiBand,State, CQZone, MainPrefix, Continent,'
-                +
-                'QSLInfo, DXCC, QSLSentDate, QSLSent, QSLRecDate, QSLRec, NoCalcDXCC, QSLSentAdv, QSLReceQSLcc, QSL_RCVD_VIA) VALUES (:IQSODate,'
-                + ':IQSOTime, :ICallSign, :IQSOBand, :IQSOMode, :IQSOReportSent, :IQSOReportRecived,'
-                +
-                ':IOMName, :IOMQTH, :IQSL_SENT_VIA, :IIOTA, :IITUZone, :IGrid, :IQSOAddInfo,'
-                +
-                ':IDXCCPrefix, :IAwardsEx, :IDigiBand, :IState, :ICQZone, :IMainPrefix, :IContinent,'
-                +
-                ':IQSLInfo, :IDXCC, :IQSLSentDate, :IQSLSent, :IQSLRecDate, :IQSLRec, :INoCalcDXCC, :IQSLSentAdv, :IQSLReceQSLcc, :IQSL_RCVD_VIA)';
+                + 'QSLInfo, DXCC, QSLSentDate, QSLSent, QSLRecDate, QSLRec, NoCalcDXCC, QSLSentAdv, QSLReceQSLcc, QSL_RCVD_VIA) VALUES (:QSODate,'
+                + ':QSOTime, :CallSign, :QSOBand, :QSOMode, :QSOReportSent, :QSOReportRecived,'
+                + ':OMName, :OMQTH, :QSL_SENT_VIA, :IOTA, :ITUZone, :Grid, :QSOAddInfo,'
+                + ':DXCCPrefix, :AwardsEx, :DigiBand, :State, :CQZone, :MainPrefix, :Continent,'
+                + ':QSLInfo, :DXCC, :QSLSentDate, :QSLSent, :QSLRecDate, :QSLRec, :NoCalcDXCC, :QSLSentAdv, :QSLReceQSLcc, :QSL_RCVD_VIA)';
               ImportQuery.Prepare;
 
               yyyy := StrToInt(QSODate[1] + QSODate[2] + QSODate[3] + QSODate[4]);
@@ -1175,38 +1172,38 @@ begin
               dd := StrToInt(QSODate[9] + QSODate[10]);
 
               if DefaultDB = 'MySQL' then
-                ImportQuery.Params.ParamByName('IQSODate').AsString := QSODate
+                ImportQuery.Params.ParamByName('QSODate').AsString := QSODate
               else
-                ImportQuery.Params.ParamByName('IQSODate').AsDate :=
+                ImportQuery.Params.ParamByName('QSODate').AsDate :=
                   EncodeDate(yyyy, mm, dd);
               if RadioButton1.Checked = True then
-                ImportQuery.Params.ParamByName('IQSOTime').AsString := Toff;
+                ImportQuery.Params.ParamByName('QSOTime').AsString := Toff;
               if RadioButton2.Checked = True then
-                ImportQuery.Params.ParamByName('IQSOTime').AsString := Ton;
+                ImportQuery.Params.ParamByName('QSOTime').AsString := Ton;
 
-              ImportQuery.Params.ParamByName('ICallSign').AsString := Call;
-              ImportQuery.Params.ParamByName('IQSOBand').AsString := Freq;
-              ImportQuery.Params.ParamByName('IQSOMode').AsString := Mode;
-              ImportQuery.Params.ParamByName('IQSOReportSent').AsString := RSTS;
-              ImportQuery.Params.ParamByName('IQSOReportRecived').AsString := RSTR;
-              ImportQuery.Params.ParamByName('IOMName').AsString := sName;
-              ImportQuery.Params.ParamByName('IOMQTH').AsString := QTH;
-              ImportQuery.Params.ParamByName('IQSL_SENT_VIA').AsString := QSLV;
-              ImportQuery.Params.ParamByName('IIOTA').AsString := IOTA;
-              ImportQuery.Params.ParamByName('IITUZone').AsString := ITUZ;
-              ImportQuery.Params.ParamByName('IGrid').AsString := Loc;
-              ImportQuery.Params.ParamByName('IQSOAddInfo').AsString := Com;
-              ImportQuery.Params.ParamByName('IDXCCPrefix').AsString := DXCC;
-              ImportQuery.Params.ParamByName('IAwardsEx').AsString := Award;
-              ImportQuery.Params.ParamByName('IDigiBand').AsString := Band;
-              ImportQuery.Params.ParamByName('IState').AsString := State;
-              ImportQuery.Params.ParamByName('ICQZone').AsString := WAZ;
-              ImportQuery.Params.ParamByName('IMainPrefix').AsString := PFX;
-              ImportQuery.Params.ParamByName('IContinent').AsString := CONT;
-              ImportQuery.Params.ParamByName('IQSLInfo').AsString := QSLMSG;
-              ImportQuery.Params.ParamByName('IDXCC').AsString := DXCC2;
-              ImportQuery.Params.ParamByName('INoCalcDXCC').AsInteger := 0;
-              ImportQuery.Params.ParamByName('IQSLSentAdv').AsString := 'Q';
+              ImportQuery.Params.ParamByName('CallSign').AsString := Call;
+              ImportQuery.Params.ParamByName('QSOBand').AsString := Freq;
+              ImportQuery.Params.ParamByName('QSOMode').AsString := Mode;
+              ImportQuery.Params.ParamByName('QSOReportSent').AsString := RSTS;
+              ImportQuery.Params.ParamByName('QSOReportRecived').AsString := RSTR;
+              ImportQuery.Params.ParamByName('OMName').AsString := sName;
+              ImportQuery.Params.ParamByName('OMQTH').AsString := QTH;
+              ImportQuery.Params.ParamByName('QSL_SENT_VIA').AsString := QSLV;
+              ImportQuery.Params.ParamByName('IOTA').AsString := IOTA;
+              ImportQuery.Params.ParamByName('ITUZone').AsString := ITUZ;
+              ImportQuery.Params.ParamByName('Grid').AsString := Loc;
+              ImportQuery.Params.ParamByName('QSOAddInfo').AsString := Com;
+              ImportQuery.Params.ParamByName('DXCCPrefix').AsString := DXCC;
+              ImportQuery.Params.ParamByName('AwardsEx').AsString := Award;
+              ImportQuery.Params.ParamByName('DigiBand').AsString := Band;
+              ImportQuery.Params.ParamByName('State').AsString := State;
+              ImportQuery.Params.ParamByName('CQZone').AsString := WAZ;
+              ImportQuery.Params.ParamByName('MainPrefix').AsString := PFX;
+              ImportQuery.Params.ParamByName('Continent').AsString := CONT;
+              ImportQuery.Params.ParamByName('QSLInfo').AsString := QSLMSG;
+              ImportQuery.Params.ParamByName('DXCC').AsString := DXCC2;
+              ImportQuery.Params.ParamByName('NoCalcDXCC').AsInteger := 0;
+              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'Q';
 
               if QSLSDATE <> '' then
               begin
@@ -1215,17 +1212,17 @@ begin
                 dd2 := StrToInt(QSLSDATE[7] + QSLSDATE[8]);
 
                 if DefaultDB = 'MySQL' then
-                  ImportQuery.Params.ParamByName('IQSLSentDate').AsString := QSLSDATE
+                  ImportQuery.Params.ParamByName('QSLSentDate').AsString := QSLSDATE
                 else
-                  ImportQuery.Params.ParamByName('IQSLSentDate').AsDate :=
+                  ImportQuery.Params.ParamByName('QSLSentDate').AsDate :=
                     EncodeDate(yyyy2, mm2, dd2);
-                ImportQuery.Params.ParamByName('IQSLSent').AsInteger := 1;
+                ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
 
               end
               else
               begin
-                ImportQuery.Params.ParamByName('IQSLSentDate').IsNull;
-                ImportQuery.Params.ParamByName('IQSLSent').IsNull;
+                ImportQuery.Params.ParamByName('QSLSentDate').IsNull;
+                ImportQuery.Params.ParamByName('QSLSent').IsNull;
               end;
 
               if QSLRDATE <> '' then
@@ -1235,20 +1232,20 @@ begin
                 dd3 := StrToInt(QSLRDATE[7] + QSLRDATE[8]);
 
                 if DefaultDB = 'MySQL' then
-                  ImportQuery.Params.ParamByName('IQSLRecDate').AsString := QSLRDATE
+                  ImportQuery.Params.ParamByName('QSLRecDate').AsString := QSLRDATE
                 else
-                  ImportQuery.Params.ParamByName('IQSLRecDate').AsDate :=
+                  ImportQuery.Params.ParamByName('QSLRecDate').AsDate :=
                     EncodeDate(yyyy3, mm3, dd3);
-                ImportQuery.Params.ParamByName('IQSLRec').AsInteger := 1;
+                ImportQuery.Params.ParamByName('QSLRec').AsInteger := 1;
               end
               else
               begin
-                ImportQuery.Params.ParamByName('IQSLRecDate').IsNull;
-                ImportQuery.Params.ParamByName('IQSLRec').AsInteger := 0;
+                ImportQuery.Params.ParamByName('QSLRecDate').IsNull;
+                ImportQuery.Params.ParamByName('QSLRec').AsInteger := 0;
               end;
 
-              ImportQuery.Params.ParamByName('IQSLReceQSLcc').AsString := EQSL_QSL_RCVD;
-              ImportQuery.Params.ParamByName('IQSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
+              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := EQSL_QSL_RCVD;
+              ImportQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
 
               ImportQuery.ExecSQL;
 
@@ -1256,11 +1253,10 @@ begin
 
               Inc(RecCount);
               lblCount.Caption :=
-              rImportRecord +
-                ' ' + IntToStr(RecCount);
+                rImportRecord + ' ' + IntToStr(RecCount);
               if MainForm.ImportAdifMobile = True then
                 MainForm.StatusBar1.Panels.Items[0].Text :=
-                rImportRecord + ' ' + IntToStr(RecCount);
+                  rImportRecord + ' ' + IntToStr(RecCount);
 
             end;   //Пока не завершится файл
           end;
@@ -1270,7 +1266,7 @@ begin
       MainForm.SQLTransaction1.Rollback;
     end;
   finally
-   MainForm.SQLTransaction1.Commit;
+    MainForm.SQLTransaction1.Commit;
     lblComplete.Caption := rDone;
     Button1.Enabled := True;
     CloseFile(f);
@@ -1285,12 +1281,12 @@ end;
 
 procedure TImportADIFForm.FileNameEdit1ButtonClick(Sender: TObject);
 begin
-  FileNameEdit1.InitialDir:=Inif.ReadString('SetLog','ImportPath','');
+  FileNameEdit1.InitialDir := Inif.ReadString('SetLog', 'ImportPath', '');
 end;
 
 procedure TImportADIFForm.FileNameEdit1Change(Sender: TObject);
 begin
-  IniF.WriteString('SetLog','ImportPath', ExtractFilePath(FileNameEdit1.FileName));
+  IniF.WriteString('SetLog', 'ImportPath', ExtractFilePath(FileNameEdit1.FileName));
 end;
 
 procedure TImportADIFForm.FormCreate(Sender: TObject);
@@ -1337,15 +1333,16 @@ end;
 
 procedure TImportADIFForm.lblErrorLogClick(Sender: TObject);
 var
-PathMyDoc: string;
+  PathMyDoc: string;
 begin
  {$IFDEF UNIX}
-PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
   {$ELSE}
-PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-  GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
   {$ENDIF UNIX}
-  OpenDocument(PathMyDoc+ERR_FILE);
+  OpenDocument(PathMyDoc + ERR_FILE);
+
 end;
 
 procedure TImportADIFForm.Button1Click(Sender: TObject);

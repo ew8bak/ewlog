@@ -10,70 +10,72 @@ uses
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
   IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
   Grids, INIFiles, mvMapViewer, LCLType, LazSysUtils,
-  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator;
+  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG,
+  RegExpr, mvTypes, gettext, LResources, LCLTranslator;
 
 resourcestring
-   rQSL = 'QSL';
-   rQSLs = 'QSLs';
-   rQSODate = 'Date';
-   rQSOTime = 'Time';
-   rQSOBand = 'Band';
-   rCallSign = 'Callsign';
-   rQSOMode = 'Mode';
-   rOMName = 'Name';
-   rOMQTH = 'QTH';
-   rState = 'State';
-   rGrid = 'Grid';
-   rQSOReportSent = 'RSTs';
-   rQSOReportRecived = 'RSTr';
-   rIOTA = 'IOTA';
-   rQSLManager = 'Manager';
-   rQSLSentDate = 'QSLs Date';
-   rQSLRecDate = 'QSLr Date';
-   rLoTWRecDate = 'LOTWr Date';
-   rMainPrefix = 'Prefix';
-   rDXCCPrefix = 'DXCC';
-   rCQZone = 'CQ Zone';
-   rITUZone = 'ITU Zone';
-   rManualSet = 'Manual Set';
-   rContinent = 'Continent';
-   rValidDX = 'Valid DX';
-   rQSL_RCVD_VIA = 'QSL r VIA';
-   rQSL_SENT_VIA = 'QSL s VIA';
-   rUSERS = 'User';
-   rNoCalcDXCC = 'No Calc DXCC';
-   rMySQLHasGoneAway = 'NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite';
-   rWelcomeMessageMySQL = 'MySQL database selected! Welcome!';
-   rWelcomeMessageSQLIte = 'SQLite database selected! Welcome!';
-   rCheckSettingsMySQL = 'Check MySQL DB Settings';
-   rCheckSettingsSQLIte = 'Check SQLite DB Settings';
-   rDataBaseFault = 'Something went wrong ... Check the settings';
-   rWarning = 'Warning!';
-   rQSONotSave = 'QSO not saved, quit anyway ?!';
-   rDXClusterDisconnect = 'You are disconnected from the DX cluster';
-   rSwitchDBSQLIte = 'Switch base to SQLite';
-   rSwitchDBMySQL = 'Switch base to MySQL';
-   rDBNotInit = 'The database is not initialized, go to the settings?';
-   rClientConnected = 'Client Connected:';
-   rPhotoFromQRZru = 'Photo from QRZ.RU';
-   rDeleteRecord = 'Delete Record ';
-   rDuplicates = 'Duplicates ';
-   rSyncOK = 'Done! Number of duplicates ';
-   rSync =', in sync ';
-   rQSOsync = 'QSO';
-   rDBError = 'Error while working with the database. Check connection and settings';
-   rMySQLNotSet = 'MySQL database settings not configured';
-   rNotCallsign = 'No callsign entered to view';
-   rDXClusterConnecting = 'Connect to Telnet Cluster';
-   rDXClusterDisconnecting = 'Disconnect from Telnet Cluster';
-   rDXClusterWindowClear = 'Clear DX Cluster window';
-   rSendSpot = 'Send spot';
-   rEnCall = 'You must enter a callsign';
-   rSaveQSO = 'Save QSO';
-   rClearQSO = 'Clear QSO input window';
-   rLogConWSJT = 'EWLog connected to WSJT';
-   rLogNConWSJT = 'EWLog not connected to WSJT';
-   rQSOTotal = ' Total ';
+  rQSL = 'QSL';
+  rQSLs = 'QSLs';
+  rQSODate = 'Date';
+  rQSOTime = 'Time';
+  rQSOBand = 'Band';
+  rCallSign = 'Callsign';
+  rQSOMode = 'Mode';
+  rOMName = 'Name';
+  rOMQTH = 'QTH';
+  rState = 'State';
+  rGrid = 'Grid';
+  rQSOReportSent = 'RSTs';
+  rQSOReportRecived = 'RSTr';
+  rIOTA = 'IOTA';
+  rQSLManager = 'Manager';
+  rQSLSentDate = 'QSLs Date';
+  rQSLRecDate = 'QSLr Date';
+  rLoTWRecDate = 'LOTWr Date';
+  rMainPrefix = 'Prefix';
+  rDXCCPrefix = 'DXCC';
+  rCQZone = 'CQ Zone';
+  rITUZone = 'ITU Zone';
+  rManualSet = 'Manual Set';
+  rContinent = 'Continent';
+  rValidDX = 'Valid DX';
+  rQSL_RCVD_VIA = 'QSL r VIA';
+  rQSL_SENT_VIA = 'QSL s VIA';
+  rUSERS = 'User';
+  rNoCalcDXCC = 'No Calc DXCC';
+  rMySQLHasGoneAway =
+    'NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite';
+  rWelcomeMessageMySQL = 'MySQL database selected! Welcome!';
+  rWelcomeMessageSQLIte = 'SQLite database selected! Welcome!';
+  rCheckSettingsMySQL = 'Check MySQL DB Settings';
+  rCheckSettingsSQLIte = 'Check SQLite DB Settings';
+  rDataBaseFault = 'Something went wrong ... Check the settings';
+  rWarning = 'Warning!';
+  rQSONotSave = 'QSO not saved, quit anyway ?!';
+  rDXClusterDisconnect = 'You are disconnected from the DX cluster';
+  rSwitchDBSQLIte = 'Switch base to SQLite';
+  rSwitchDBMySQL = 'Switch base to MySQL';
+  rDBNotInit = 'The database is not initialized, go to the settings?';
+  rClientConnected = 'Client Connected:';
+  rPhotoFromQRZru = 'Photo from QRZ.RU';
+  rDeleteRecord = 'Delete Record ';
+  rDuplicates = 'Duplicates ';
+  rSyncOK = 'Done! Number of duplicates ';
+  rSync = ', in sync ';
+  rQSOsync = 'QSO';
+  rDBError = 'Error while working with the database. Check connection and settings';
+  rMySQLNotSet = 'MySQL database settings not configured';
+  rNotCallsign = 'No callsign entered to view';
+  rDXClusterConnecting = 'Connect to Telnet Cluster';
+  rDXClusterDisconnecting = 'Disconnect from Telnet Cluster';
+  rDXClusterWindowClear = 'Clear DX Cluster window';
+  rSendSpot = 'Send spot';
+  rEnCall = 'You must enter a callsign';
+  rSaveQSO = 'Save QSO';
+  rClearQSO = 'Clear QSO input window';
+  rLogConWSJT = 'EWLog connected to WSJT';
+  rLogNConWSJT = 'EWLog not connected to WSJT';
+  rQSOTotal = ' Total ';
 
 
 const
@@ -2096,8 +2098,8 @@ var
 begin
   if EditButton1.Text <> '' then
   begin
-    if Application.MessageBox(PChar(rQSONotSave),
-      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
+      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     begin
       Application.Terminate;
     end
@@ -2203,7 +2205,7 @@ end;
 procedure TMainForm.CheckBox2Change(Sender: TObject);
 begin
   if CheckBox2.Checked = True then
-    Label4.Caption :=  rQSOTime + ' (Local)'
+    Label4.Caption := rQSOTime + ' (Local)'
   else
     Label4.Caption := rQSOTime + ' (UTC)';
 end;
@@ -3078,15 +3080,17 @@ begin
   PassLog := IniF.ReadString('SetLog', 'Pass', '');
   sprav := IniF.ReadString('SetLog', 'Sprav', '');
   Language := IniF.ReadString('SetLog', 'Language', 'En');
-  if Language = 'En' then begin
-  MenuItem118.Checked:=true;
-  MenuItem117.Checked:=false;
-  SetDefaultLang('en');
+  if Language = 'En' then
+  begin
+    MenuItem118.Checked := True;
+    MenuItem117.Checked := False;
+    SetDefaultLang('en');
   end;
-  if Language = 'Ru' then begin
-  MenuItem117.Checked:=true;
-  MenuItem118.Checked:=false;
-  SetDefaultLang('ru');
+  if Language = 'Ru' then
+  begin
+    MenuItem117.Checked := True;
+    MenuItem118.Checked := False;
+    SetDefaultLang('ru');
   end;
 
   if MenuItem86.Checked = True then
@@ -3176,8 +3180,8 @@ begin
 
   if InitLog_DB <> 'YES' then
   begin
-    if Application.MessageBox(PChar(rDBNotinit),
-      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
+      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       SetupForm.Show;
   end;
 
@@ -3687,20 +3691,22 @@ end;
 procedure TMainForm.MenuItem117Click(Sender: TObject);
 begin
   SetDefaultLang('ru');
-  Language:='Ru';
-  if Language = 'Ru' then begin
-  MenuItem117.Checked:=true;
-  MenuItem118.Checked:=false;
+  Language := 'Ru';
+  if Language = 'Ru' then
+  begin
+    MenuItem117.Checked := True;
+    MenuItem118.Checked := False;
   end;
 end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
   SetDefaultLang('en');
-  Language:='En';
-   if Language = 'En' then begin
-  MenuItem118.Checked:=true;
-  MenuItem117.Checked:=false;
+  Language := 'En';
+  if Language = 'En' then
+  begin
+    MenuItem118.Checked := True;
+    MenuItem117.Checked := False;
   end;
 end;
 
@@ -4464,11 +4470,12 @@ var
   freq2: double;
 begin
   SendTelnetSpot.Show;
-  SendTelnetSpot.Edit1.Text:=DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
+  SendTelnetSpot.Edit1.Text :=
+    DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
   freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
   Delete(freq, length(freq) - 2, 1);
   freq2 := StrToFloat(freq);
-  SendTelnetSpot.ComboBox1.Text:=FloatToStr(freq2);
+  SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2);
 end;
 
 procedure TMainForm.MenuItem51Click(Sender: TObject);
@@ -4788,9 +4795,7 @@ begin
       DBGrid1.DataSource.DataSet.Next;
     end;
     StatusBar1.Panels.Items[0].Text :=
-      rSyncOK +
-      IntToStr(err) + rSync +
-      IntToStr(ok) + rQSOsync;
+      rSyncOK + IntToStr(err) + rSync + IntToStr(ok) + rQSOsync;
   except
     ShowMessage(rDBError);
   end;
@@ -5018,9 +5023,8 @@ begin
         Application.ProcessMessages;
         DBGrid1.DataSource.DataSet.Next;
       end;
-      StatusBar1.Panels.Items[0].Text := rSyncOK +
-        IntToStr(err) + rSync +
-        IntToStr(ok) + rQSOsync;
+      StatusBar1.Panels.Items[0].Text :=
+        rSyncOK + IntToStr(err) + rSync + IntToStr(ok) + rQSOsync;
     end;
   except
     ShowMessage(rDBError);
@@ -5269,7 +5273,7 @@ end;
 
 procedure TMainForm.SpeedButton8Click(Sender: TObject);
 var
-  QSL_SENT_ADV, dift: string;
+  QSL_SENT_ADV, QSL_SENT, dift: string;
   DigiBand: double;
   NameBand: string;
   timeQSO: TTime;
@@ -5294,15 +5298,30 @@ begin
     begin
 
       if ComboBox7.ItemIndex = 0 then
+      begin
         QSL_SENT_ADV := 'T';
+        QSL_SENT := '1';
+      end;
       if ComboBox7.ItemIndex = 1 then
+      begin
         QSL_SENT_ADV := 'P';
+        QSL_SENT := '0';
+      end;
       if ComboBox7.ItemIndex = 2 then
+      begin
         QSL_SENT_ADV := 'Q';
+        QSL_SENT := '0';
+      end;
       if ComboBox7.ItemIndex = 3 then
+      begin
         QSL_SENT_ADV := 'F';
+        QSL_SENT := '0';
+      end;
       if ComboBox7.ItemIndex = 4 then
+      begin
         QSL_SENT_ADV := 'N';
+        QSL_SENT := '0';
+      end;
 
       if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
         NameBand := dmFunc.FreqFromBand(ComboBox1.Text, ComboBox2.Text)
@@ -5322,7 +5341,7 @@ begin
         Edit1.Text, Edit2.Text,
         state,
         Edit3.Text, Edit5.Text,
-        Edit6.Text, IntToStr(0), QSL_SENT_ADV, 'NULL', '0', 'NULL', Label38.Caption,
+        Edit6.Text, QSL_SENT, QSL_SENT_ADV, 'NULL', '0', 'NULL', Label38.Caption,
         Label34.Caption,
         Label45.Caption, Label47.Caption, Edit11.Text, BoolToStr(CheckBox5.Checked), 0,
         FloatToStr(DigiBand),
