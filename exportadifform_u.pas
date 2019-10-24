@@ -87,7 +87,7 @@ begin
     if SaveDialog1.FileName = '' then
     begin
       Application.MessageBox(
-        pChar(pPleaseFile), PChar(rWarning),
+        PChar(pPleaseFile), PChar(rWarning),
         mb_ok + mb_IconWarning);
       exit;
     end;
@@ -96,7 +96,7 @@ begin
     if CheckBox1.Checked = True then
       ExportToAdif
     else
-      Application.MessageBox(pChar(rNoMethodExport),
+      Application.MessageBox(PChar(rNoMethodExport),
         PChar(rWarning),
         mb_ok + mb_IconWarning);
   end;
@@ -175,7 +175,7 @@ begin
   if IOresult <> 0 then
   begin
     Application.MessageBox(PChar(rErrorOpenFile + ' ' + IntToStr(IOResult)),
-     pChar(rError), mb_ok + mb_IconError);
+      PChar(rError), mb_ok + mb_IconError);
     exit;
   end;
 
@@ -341,13 +341,14 @@ begin
         'QSLInfo').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
-      EQSL_QSL_RCVD:=Q1.Fields.FieldByName('QSLReceQSLcc').AsString;
+      EQSL_QSL_RCVD := Q1.Fields.FieldByName('QSLReceQSLcc').AsString;
       if EQSL_QSL_RCVD = '0' then
-      tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked);
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked);
       if EQSL_QSL_RCVD = '1' then
-      tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
       if (EQSL_QSL_RCVD <> '0') and (EQSL_QSL_RCVD <> '1') then
-      tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName('QSLReceQSLcc').AsString, CheckBox2.Checked);
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF(
+          Q1.Fields.FieldByName('QSLReceQSLcc').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
       if Q1.Fields.FieldByName('QSLSentDate').AsString <> '' then
@@ -366,13 +367,14 @@ begin
         Write(f, tmp);
       end;
 
-      qsl_rcvd:= Q1.Fields.FieldByName('QSLRec').AsString;
+      qsl_rcvd := Q1.Fields.FieldByName('QSLRec').AsString;
       if qsl_rcvd = '0' then
-      tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked);
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked);
       if qsl_rcvd = '1' then
-      tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
       if (qsl_rcvd <> '0') and (qsl_rcvd <> '1') then
-      tmp := '<QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName('QSLRec').AsString, CheckBox2.Checked);
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF(
+          Q1.Fields.FieldByName('QSLRec').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
       tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
@@ -385,11 +387,12 @@ begin
 
       qsl_sent := Q1.Fields.FieldByName('QSLSent').AsString;
       if qsl_sent = '0' then
-      tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', CheckBox2.Checked);
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', CheckBox2.Checked);
       if qsl_sent = '1' then
-      tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
-      if (qsl_sent <> '1') and (qsl_sent <> '0' ) then
-      tmp := '<QSL_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName('QSLSent').AsString, CheckBox2.Checked);
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+      if (qsl_sent <> '1') and (qsl_sent <> '0') then
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF(
+          Q1.Fields.FieldByName('QSLSent').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
       tmp := '<DXCC' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
@@ -427,7 +430,7 @@ var
   tmp2: string = '';
   nr: integer = 1;
   i: integer;
-  freq2, numberToExp: string;
+  freq2, numberToExp, qsl_sent, qsl_rcvd, EQSL_QSL_RCVD, EQSL_QSL_SENT: string;
 begin
   Q1.Close;
   if (range = 'All') then
@@ -554,8 +557,14 @@ begin
         'QSLInfo').AsString, CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
-      tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLReceQSLcc').AsString, CheckBox2.Checked);
+      EQSL_QSL_RCVD := Q1.Fields.FieldByName('QSLReceQSLcc').AsString;
+      if EQSL_QSL_RCVD = '0' then
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked);
+      if EQSL_QSL_RCVD = '1' then
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+      if (EQSL_QSL_RCVD <> '0') and (EQSL_QSL_RCVD <> '1') then
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF(
+          Q1.Fields.FieldByName('QSLReceQSLcc').AsString, CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
       if Q1.Fields.FieldByName('QSLSentDate').AsString <> '' then
@@ -574,8 +583,14 @@ begin
         tmp2 := tmp2 + tmp;
       end;
 
-      tmp := '<QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLRec').AsString, CheckBox2.Checked);
+      qsl_rcvd := Q1.Fields.FieldByName('QSLRec').AsString;
+      if qsl_rcvd = '0' then
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked);
+      if qsl_rcvd = '1' then
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+      if (qsl_rcvd <> '0') and (qsl_rcvd <> '1') then
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF(
+          Q1.Fields.FieldByName('QSLRec').AsString, CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
       tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
@@ -586,8 +601,14 @@ begin
         'QSL_SENT_VIA').AsString, CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
-      tmp := '<QSL_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLSent').AsString, CheckBox2.Checked);
+      qsl_sent := Q1.Fields.FieldByName('QSLSent').AsString;
+      if qsl_sent = '0' then
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', CheckBox2.Checked);
+      if qsl_sent = '1' then
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+      if (qsl_sent <> '1') and (qsl_sent <> '0') then
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF(
+          Q1.Fields.FieldByName('QSLSent').AsString, CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
       tmp := '<DXCC' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
