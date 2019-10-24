@@ -10,72 +10,70 @@ uses
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
   IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
   Grids, INIFiles, mvMapViewer, LCLType, LazSysUtils,
-  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG,
-  RegExpr, mvTypes, gettext, LResources, LCLTranslator;
+  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator;
 
 resourcestring
-  rQSL = 'QSL';
-  rQSLs = 'QSLs';
-  rQSODate = 'Date';
-  rQSOTime = 'Time';
-  rQSOBand = 'Band';
-  rCallSign = 'Callsign';
-  rQSOMode = 'Mode';
-  rOMName = 'Name';
-  rOMQTH = 'QTH';
-  rState = 'State';
-  rGrid = 'Grid';
-  rQSOReportSent = 'RSTs';
-  rQSOReportRecived = 'RSTr';
-  rIOTA = 'IOTA';
-  rQSLManager = 'Manager';
-  rQSLSentDate = 'QSLs Date';
-  rQSLRecDate = 'QSLr Date';
-  rLoTWRecDate = 'LOTWr Date';
-  rMainPrefix = 'Prefix';
-  rDXCCPrefix = 'DXCC';
-  rCQZone = 'CQ Zone';
-  rITUZone = 'ITU Zone';
-  rManualSet = 'Manual Set';
-  rContinent = 'Continent';
-  rValidDX = 'Valid DX';
-  rQSL_RCVD_VIA = 'QSL r VIA';
-  rQSL_SENT_VIA = 'QSL s VIA';
-  rUSERS = 'User';
-  rNoCalcDXCC = 'No Calc DXCC';
-  rMySQLHasGoneAway =
-    'NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite';
-  rWelcomeMessageMySQL = 'MySQL database selected! Welcome!';
-  rWelcomeMessageSQLIte = 'SQLite database selected! Welcome!';
-  rCheckSettingsMySQL = 'Check MySQL DB Settings';
-  rCheckSettingsSQLIte = 'Check SQLite DB Settings';
-  rDataBaseFault = 'Something went wrong ... Check the settings';
-  rWarning = 'Warning!';
-  rQSONotSave = 'QSO not saved, quit anyway ?!';
-  rDXClusterDisconnect = 'You are disconnected from the DX cluster';
-  rSwitchDBSQLIte = 'Switch base to SQLite';
-  rSwitchDBMySQL = 'Switch base to MySQL';
-  rDBNotInit = 'The database is not initialized, go to the settings?';
-  rClientConnected = 'Client Connected:';
-  rPhotoFromQRZru = 'Photo from QRZ.RU';
-  rDeleteRecord = 'Delete Record ';
-  rDuplicates = 'Duplicates ';
-  rSyncOK = 'Done! Number of duplicates ';
-  rSync = ', in sync ';
-  rQSOsync = 'QSO';
-  rDBError = 'Error while working with the database. Check connection and settings';
-  rMySQLNotSet = 'MySQL database settings not configured';
-  rNotCallsign = 'No callsign entered to view';
-  rDXClusterConnecting = 'Connect to Telnet Cluster';
-  rDXClusterDisconnecting = 'Disconnect from Telnet Cluster';
-  rDXClusterWindowClear = 'Clear DX Cluster window';
-  rSendSpot = 'Send spot';
-  rEnCall = 'You must enter a callsign';
-  rSaveQSO = 'Save QSO';
-  rClearQSO = 'Clear QSO input window';
-  rLogConWSJT = 'EWLog connected to WSJT';
-  rLogNConWSJT = 'EWLog not connected to WSJT';
-  rQSOTotal = ' Total ';
+   rQSL = 'QSL';
+   rQSLs = 'QSLs';
+   rQSODate = 'Date';
+   rQSOTime = 'Time';
+   rQSOBand = 'Band';
+   rCallSign = 'Callsign';
+   rQSOMode = 'Mode';
+   rOMName = 'Name';
+   rOMQTH = 'QTH';
+   rState = 'State';
+   rGrid = 'Grid';
+   rQSOReportSent = 'RSTs';
+   rQSOReportRecived = 'RSTr';
+   rIOTA = 'IOTA';
+   rQSLManager = 'Manager';
+   rQSLSentDate = 'QSLs Date';
+   rQSLRecDate = 'QSLr Date';
+   rLoTWRecDate = 'LOTWr Date';
+   rMainPrefix = 'Prefix';
+   rDXCCPrefix = 'DXCC';
+   rCQZone = 'CQ Zone';
+   rITUZone = 'ITU Zone';
+   rManualSet = 'Manual Set';
+   rContinent = 'Continent';
+   rValidDX = 'Valid DX';
+   rQSL_RCVD_VIA = 'QSL r VIA';
+   rQSL_SENT_VIA = 'QSL s VIA';
+   rUSERS = 'User';
+   rNoCalcDXCC = 'No Calc DXCC';
+   rMySQLHasGoneAway = 'NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite';
+   rWelcomeMessageMySQL = 'MySQL database selected! Welcome!';
+   rWelcomeMessageSQLIte = 'SQLite database selected! Welcome!';
+   rCheckSettingsMySQL = 'Check MySQL DB Settings';
+   rCheckSettingsSQLIte = 'Check SQLite DB Settings';
+   rDataBaseFault = 'Something went wrong ... Check the settings';
+   rWarning = 'Warning!';
+   rQSONotSave = 'QSO not saved, quit anyway ?!';
+   rDXClusterDisconnect = 'You are disconnected from the DX cluster';
+   rSwitchDBSQLIte = 'Switch base to SQLite';
+   rSwitchDBMySQL = 'Switch base to MySQL';
+   rDBNotInit = 'The database is not initialized, go to the settings?';
+   rClientConnected = 'Client Connected:';
+   rPhotoFromQRZru = 'Photo from QRZ.RU';
+   rDeleteRecord = 'Delete Record ';
+   rDuplicates = 'Duplicates ';
+   rSyncOK = 'Done! Number of duplicates ';
+   rSync =', in sync ';
+   rQSOsync = 'QSO';
+   rDBError = 'Error while working with the database. Check connection and settings';
+   rMySQLNotSet = 'MySQL database settings not configured';
+   rNotCallsign = 'No callsign entered to view';
+   rDXClusterConnecting = 'Connect to Telnet Cluster';
+   rDXClusterDisconnecting = 'Disconnect from Telnet Cluster';
+   rDXClusterWindowClear = 'Clear DX Cluster window';
+   rSendSpot = 'Send spot';
+   rEnCall = 'You must enter a callsign';
+   rSaveQSO = 'Save QSO';
+   rClearQSO = 'Clear QSO input window';
+   rLogConWSJT = 'EWLog connected to WSJT';
+   rLogNConWSJT = 'EWLog not connected to WSJT';
+   rQSOTotal = ' Total ';
 
 
 const
@@ -641,11 +639,11 @@ type
       OmName, OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
       QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
       ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-      DigiBand, Continent, ShortNote, QSLReceQSLcc: string;
+      DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
       LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3,
       State4, WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-      STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE,
-      LotWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
+      STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+      LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
       NoCalcDXCC: integer; NLogDB: string);
     procedure SearchCallInCallBook(CallName: string);
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
@@ -1384,11 +1382,12 @@ procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
   QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
   QSOAddInfo, Marker: string;
-  ManualSet: integer; DigiBand, Continent, ShortNote, QSLReceQSLcc: string;
-  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
-  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE, LotWSent,
-  QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string; NoCalcDXCC: integer; NLogDB: string);
+  ManualSet: integer; DigiBand, Continent, ShortNote: string;
+  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
+  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
+  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
+  NoCalcDXCC: integer; NLogDB: string);
 begin
   with MainForm.SaveQSOQuery do
   begin
@@ -1404,6 +1403,7 @@ begin
       + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
       + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
       + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`)'
+      //+ 'VALUES (:IUnUsedIndex, :ICallSign, :IQSODate, :IQSOTime, :IQSOBand, :IQSOMode, :IQSOReportSent,'
       + 'VALUES (:ICallSign, :IQSODate, :IQSOTime, :IQSOBand, :IQSOMode, :IQSOReportSent,'
       + ':IQSOReportRecived, :IOMName, :IOMQTH, :IState, :IGrid, :IIOTA, :IQSLManager, :IQSLSent,'
       + ':IQSLSentAdv, :IQSLSentDate, :IQSLRec, :IQSLRecDate, :IMainPrefix, :IDXCCPrefix, :ICQZone,'
@@ -1446,7 +1446,7 @@ begin
     Params.ParamByName('IDigiBand').AsString := DigiBand;
     Params.ParamByName('IContinent').AsString := Continent;
     Params.ParamByName('IShortNote').AsString := ShortNote;
-    Params.ParamByName('IQSLReceQSLcc').AsString := QSLReceQSLcc;
+    Params.ParamByName('IQSLReceQSLcc').AsInteger := QSLReceQSLcc;
     if LotWRec = '' then
       Params.ParamByName('ILoTWRec').AsInteger := 0
     else
@@ -1471,7 +1471,7 @@ begin
     Params.ParamByName('ISAT_NAME').AsString := SAT_NAME;
     Params.ParamByName('ISAT_MODE').AsString := SAT_MODE;
     Params.ParamByName('IPROP_MODE').AsString := PROP_MODE;
-    Params.ParamByName('ILoTWSent').AsString := LotWSent;
+    Params.ParamByName('ILoTWSent').AsInteger := LotWSent;
     if QSL_RCVD_VIA = '' then
       Params.ParamByName('IQSL_RCVD_VIA').IsNull
     else
@@ -2096,8 +2096,8 @@ var
 begin
   if EditButton1.Text <> '' then
   begin
-    if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
-      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    if Application.MessageBox(PChar(rQSONotSave),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     begin
       Application.Terminate;
     end
@@ -2203,7 +2203,7 @@ end;
 procedure TMainForm.CheckBox2Change(Sender: TObject);
 begin
   if CheckBox2.Checked = True then
-    Label4.Caption := rQSOTime + ' (Local)'
+    Label4.Caption :=  rQSOTime + ' (Local)'
   else
     Label4.Caption := rQSOTime + ' (UTC)';
 end;
@@ -2397,27 +2397,12 @@ begin
       DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
     EditQSO_Form.CheckBox1.Checked :=
       DBGrid1.DataSource.DataSet.FieldByName('NoCalcDXCC').AsBoolean;
-
-    if (DBGrid1.DataSource.DataSet.FieldByName('QSLReceQSLcc').AsString = '0') or
-      (DBGrid1.DataSource.DataSet.FieldByName('QSLReceQSLcc').AsString = 'N') then
-      EditQSO_Form.CheckBox5.Checked := False;
-    if (DBGrid1.DataSource.DataSet.FieldByName('QSLReceQSLcc').AsString = '1') or
-      (DBGrid1.DataSource.DataSet.FieldByName('QSLReceQSLcc').AsString = 'Y') then
-      EditQSO_Form.CheckBox5.Checked := True;
-
-    if (DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString = '0') or
-      (DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString = 'N') then
-      EditQSO_Form.CheckBox4.Checked := False;
-    if (DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString = '1') or
-      (DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString = 'Y') then
-      EditQSO_Form.CheckBox4.Checked := True;
-
-    if (DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsString = '0') or
-      (DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsString = 'N') then
-      EditQSO_Form.CheckBox6.Checked := False;
-    if (DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsString = '1') or
-      (DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsString = 'Y') then
-      EditQSO_Form.CheckBox6.Checked := True;
+    EditQSO_Form.CheckBox5.Checked :=
+      DBGrid1.DataSource.DataSet.FieldByName('QSLReceQSLcc').AsBoolean;
+    EditQSO_Form.CheckBox4.Checked :=
+      DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsBoolean;
+    EditQSO_Form.CheckBox6.Checked :=
+      DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsBoolean;
 
     if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'G' then
       EditQSO_Form.ComboBox6.ItemIndex := 5;
@@ -2485,9 +2470,7 @@ begin
     end;
 
   if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'YNN') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'YYN') then
+    (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
@@ -2506,9 +2489,7 @@ begin
     end;
 
   if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') or
-    (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') or
-    (LOGBookDS.DataSet.FieldByName('QSLs').AsString = 'YN') or
-    (LOGBookDS.DataSet.FieldByName('QSLs').AsString = 'YY') then
+    (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
@@ -2528,10 +2509,7 @@ begin
 
   if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') or
     (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'NYN') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'YYN') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'YYY') then
+    (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then
     if (Column.FieldName = 'CallSign') then
     begin
       with DBGrid1.Canvas do
@@ -2556,53 +2534,45 @@ begin
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '000') or
-        (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'NNN') then
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '000') then
       begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth(''), Rect.Top + 0, '');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') or
-        (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'YNN') then
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') then
       begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') or
-        (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'YYN') then
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then
       begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PE'),
           Rect.Top + 0, 'PE');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') or
-        (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'YYY') then
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then
       begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('PLE'),
           Rect.Top + 0, 'PLE');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') or
-        (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'NYN') then
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') then
       begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('E'), Rect.Top + 0, 'E');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '001') or
-        (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'NNY') then
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '001') then
       begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('L'), Rect.Top + 0, 'L');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '101') or
-        (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'YNY') then
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '101') then
       begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PL'),
           Rect.Top + 0, 'PL');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '011') or
-        (LOGBookDS.DataSet.FieldByName('QSL').AsString = 'NYY') then
+      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '011') then
       begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('LE'),
           Rect.Top + 0, 'PL');
@@ -2615,27 +2585,23 @@ begin
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '00') or
-        (LOGBookDS.DataSet.FieldByName('QSLs').AsString = 'NN') then
+      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '00') then
       begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth(''), Rect.Top + 0, '');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') or
-        (LOGBookDS.DataSet.FieldByName('QSLs').AsString = 'YN') then
+      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') then
       begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') or
-        (LOGBookDS.DataSet.FieldByName('QSLs').AsString = 'YY') then
+      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then
       begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PL'),
           Rect.Top + 0, 'PE');
       end;
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '01') or
-        (LOGBookDS.DataSet.FieldByName('QSLs').AsString = 'NY') then
+      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '01') then
       begin
         TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('L'), Rect.Top + 0, 'PLE');
       end;
@@ -2665,9 +2631,7 @@ begin
     end;
 
   if (DataSource2.DataSet.FieldByName('QSL').AsString = '100') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = '110') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = 'YNN') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = 'YYN') then
+    (DataSource2.DataSet.FieldByName('QSL').AsString = '110') then
     with DBGrid2.Canvas do
     begin
       FillRect(Rect);
@@ -2686,9 +2650,7 @@ begin
     end;
 
   if (DataSource2.DataSet.FieldByName('QSLs').AsString = '10') or
-    (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') or
-    (DataSource2.DataSet.FieldByName('QSLs').AsString = 'YN') or
-    (DataSource2.DataSet.FieldByName('QSLs').AsString = 'YY') then
+    (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') then
     with DBGrid2.Canvas do
     begin
       FillRect(Rect);
@@ -2708,10 +2670,7 @@ begin
 
   if (DataSource2.DataSet.FieldByName('QSL').AsString = '010') or
     (DataSource2.DataSet.FieldByName('QSL').AsString = '110') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = '111') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = 'NYN') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = 'YYN') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = 'YYY') then
+    (DataSource2.DataSet.FieldByName('QSL').AsString = '111') then
     if (Column.FieldName = 'CallSign') then
     begin
       with DBGrid2.Canvas do
@@ -2736,53 +2695,45 @@ begin
     with DBGrid2.Canvas do
     begin
       FillRect(Rect);
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '000') or
-        (DataSource2.DataSet.FieldByName('QSL').AsString = 'NNN') then
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '000') then
       begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth(''), Rect.Top + 0, '');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '100') or
-        (DataSource2.DataSet.FieldByName('QSL').AsString = 'YNN') then
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '100') then
       begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '110') or
-        (DataSource2.DataSet.FieldByName('QSL').AsString = 'YYN') then
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '110') then
       begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PE'),
           Rect.Top + 0, 'PE');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '111') or
-        (DataSource2.DataSet.FieldByName('QSL').AsString = 'YYY') then
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '111') then
       begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('PLE'),
           Rect.Top + 0, 'PLE');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '010') or
-        (DataSource2.DataSet.FieldByName('QSL').AsString = 'NYN') then
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '010') then
       begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('E'), Rect.Top + 0, 'E');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '001') or
-        (DataSource2.DataSet.FieldByName('QSL').AsString = 'NNY') then
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '001') then
       begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('L'), Rect.Top + 0, 'L');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '101') or
-        (DataSource2.DataSet.FieldByName('QSL').AsString = 'YNY') then
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '101') then
       begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PL'),
           Rect.Top + 0, 'PL');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '011') or
-        (DataSource2.DataSet.FieldByName('QSL').AsString = 'NYY') then
+      if (DataSource2.DataSet.FieldByName('QSL').AsString = '011') then
       begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('LE'),
           Rect.Top + 0, 'PL');
@@ -2795,27 +2746,23 @@ begin
     with DBGrid2.Canvas do
     begin
       FillRect(Rect);
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '00') or
-        (DataSource2.DataSet.FieldByName('QSLs').AsString = 'NN') then
+      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '00') then
       begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth(''), Rect.Top + 0, '');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '10') or
-        (DataSource2.DataSet.FieldByName('QSLs').AsString = 'YN') then
+      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '10') then
       begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') or
-        (DataSource2.DataSet.FieldByName('QSLs').AsString = 'YY') then
+      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') then
       begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PL'),
           Rect.Top + 0, 'PE');
       end;
 
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '01') or
-        (DataSource2.DataSet.FieldByName('QSLs').AsString = 'NY') then
+      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '01') then
       begin
         TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('L'), Rect.Top + 0, 'PLE');
       end;
@@ -2849,12 +2796,10 @@ end;
 
 procedure TMainForm.dxClientReceive(aSocket: TLSocket);
 var
-  DX, Call, Freq, Comment, Time, Loc, sBand: string;
+  DX, Call, Freq, Comment, Time, Loc: string;
   TelnetLine: string;
   Data: PTreeData;
   XNode: PVirtualNode;
-  ShowSpot: boolean;
-  band, mode: integer;
 begin
   if dxClient.GetMessage(TelnetLine) > 0 then
   begin
@@ -2878,91 +2823,7 @@ begin
       Loc := StringReplace(TelnetLine.Substring(76, 4), ' ', '', [rfReplaceAll]);
     end;
 
-    if not ShowSpot then
-    begin
-      case band of
-        1:
-        begin
-          ShowSpot := ClusterFilter.cb160m.Checked;
-          sBand := '160m';
-        end;
-        3:
-        begin
-          ShowSpot := ClusterFilter.cb80m.Checked;
-          sBand := '80m';
-        end;
-        5:
-        begin
-          ShowSpot := ClusterFilter.cb60m.Checked;
-          sBand := '60m';
-        end;
-        7:
-        begin
-          ShowSpot := ClusterFilter.cb40m.Checked;
-          sBand := '40m';
-        end;
-        10:
-        begin
-          ShowSpot := ClusterFilter.cb30m.Checked;
-          sBand := '30m';
-        end;
-        14:
-        begin
-          ShowSpot := ClusterFilter.cb20m.Checked;
-          sBand := '20m';
-        end;
-        18:
-        begin
-          ShowSpot := ClusterFilter.cb17m.Checked;
-          sBand := '17m';
-        end;
-        21:
-        begin
-          ShowSpot := ClusterFilter.cb15m.Checked;
-          sBand := '15m';
-        end;
-        24:
-        begin
-          ShowSpot := ClusterFilter.cb12m.Checked;
-          sBand := '12m';
-        end;
-        28:
-        begin
-          ShowSpot := ClusterFilter.cb10m.Checked;
-          sBand := '10m';
-        end;
-        50:
-        begin
-          ShowSpot := ClusterFilter.cb6m.Checked;
-          sBand := '6m';
-        end;
-        70:
-        begin
-          ShowSpot := ClusterFilter.cb4m.Checked;
-          sBand := '4m';
-        end;
-        144:
-        begin
-          ShowSpot := ClusterFilter.cb2m.Checked;
-          sBand := '2m';
-        end;
-        432:
-        begin
-          ShowSpot := ClusterFilter.cb70cm.Checked;
-          sBand := '70cm';
-        end;
-      end;
-      if not ClusterFilter.cbAllModes.Checked then
-        case mode of
-          3, 7: ShowSpot := ShowSpot and ClusterFilter.cbCW.Checked;
-          6, 9: ShowSpot := ShowSpot and ClusterFilter.cbData.Checked;
-          else
-            ShowSpot := ShowSpot and ClusterFilter.cbSSB.Checked;
-        end;
-    end;
-
-
-    if (Length(DX) > 0) and (ShowSpot) then
+    if Length(DX) > 0 then
     begin
       if FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False) = nil then
       begin
@@ -3217,17 +3078,15 @@ begin
   PassLog := IniF.ReadString('SetLog', 'Pass', '');
   sprav := IniF.ReadString('SetLog', 'Sprav', '');
   Language := IniF.ReadString('SetLog', 'Language', 'En');
-  if Language = 'En' then
-  begin
-    MenuItem118.Checked := True;
-    MenuItem117.Checked := False;
-    SetDefaultLang('en');
+  if Language = 'En' then begin
+  MenuItem118.Checked:=true;
+  MenuItem117.Checked:=false;
+  SetDefaultLang('en');
   end;
-  if Language = 'Ru' then
-  begin
-    MenuItem117.Checked := True;
-    MenuItem118.Checked := False;
-    SetDefaultLang('ru');
+  if Language = 'Ru' then begin
+  MenuItem117.Checked:=true;
+  MenuItem118.Checked:=false;
+  SetDefaultLang('ru');
   end;
 
   if MenuItem86.Checked = True then
@@ -3317,8 +3176,8 @@ begin
 
   if InitLog_DB <> 'YES' then
   begin
-    if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
-      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    if Application.MessageBox(PChar(rDBNotinit),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       SetupForm.Show;
   end;
 
@@ -3828,22 +3687,20 @@ end;
 procedure TMainForm.MenuItem117Click(Sender: TObject);
 begin
   SetDefaultLang('ru');
-  Language := 'Ru';
-  if Language = 'Ru' then
-  begin
-    MenuItem117.Checked := True;
-    MenuItem118.Checked := False;
+  Language:='Ru';
+  if Language = 'Ru' then begin
+  MenuItem117.Checked:=true;
+  MenuItem118.Checked:=false;
   end;
 end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
   SetDefaultLang('en');
-  Language := 'En';
-  if Language = 'En' then
-  begin
-    MenuItem118.Checked := True;
-    MenuItem117.Checked := False;
+  Language:='En';
+   if Language = 'En' then begin
+  MenuItem118.Checked:=true;
+  MenuItem117.Checked:=false;
   end;
 end;
 
@@ -4607,12 +4464,11 @@ var
   freq2: double;
 begin
   SendTelnetSpot.Show;
-  SendTelnetSpot.Edit1.Text :=
-    DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
+  SendTelnetSpot.Edit1.Text:=DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
   freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
   Delete(freq, length(freq) - 2, 1);
   freq2 := StrToFloat(freq);
-  SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2);
+  SendTelnetSpot.ComboBox1.Text:=FloatToStr(freq2);
 end;
 
 procedure TMainForm.MenuItem51Click(Sender: TObject);
@@ -4932,7 +4788,9 @@ begin
       DBGrid1.DataSource.DataSet.Next;
     end;
     StatusBar1.Panels.Items[0].Text :=
-      rSyncOK + IntToStr(err) + rSync + IntToStr(ok) + rQSOsync;
+      rSyncOK +
+      IntToStr(err) + rSync +
+      IntToStr(ok) + rQSOsync;
   except
     ShowMessage(rDBError);
   end;
@@ -5160,8 +5018,9 @@ begin
         Application.ProcessMessages;
         DBGrid1.DataSource.DataSet.Next;
       end;
-      StatusBar1.Panels.Items[0].Text :=
-        rSyncOK + IntToStr(err) + rSync + IntToStr(ok) + rQSOsync;
+      StatusBar1.Panels.Items[0].Text := rSyncOK +
+        IntToStr(err) + rSync +
+        IntToStr(ok) + rQSOsync;
     end;
   except
     ShowMessage(rDBError);
@@ -5410,7 +5269,7 @@ end;
 
 procedure TMainForm.SpeedButton8Click(Sender: TObject);
 var
-  QSL_SENT_ADV, QSL_SENT, dift: string;
+  QSL_SENT_ADV, dift: string;
   DigiBand: double;
   NameBand: string;
   timeQSO: TTime;
@@ -5435,30 +5294,15 @@ begin
     begin
 
       if ComboBox7.ItemIndex = 0 then
-      begin
         QSL_SENT_ADV := 'T';
-        QSL_SENT := 'Y';
-      end;
       if ComboBox7.ItemIndex = 1 then
-      begin
         QSL_SENT_ADV := 'P';
-        QSL_SENT := 'N';
-      end;
       if ComboBox7.ItemIndex = 2 then
-      begin
         QSL_SENT_ADV := 'Q';
-        QSL_SENT := 'Q';
-      end;
       if ComboBox7.ItemIndex = 3 then
-      begin
         QSL_SENT_ADV := 'F';
-        QSL_SENT := 'N';
-      end;
       if ComboBox7.ItemIndex = 4 then
-      begin
         QSL_SENT_ADV := 'N';
-        QSL_SENT := 'N';
-      end;
 
       if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
         NameBand := dmFunc.FreqFromBand(ComboBox1.Text, ComboBox2.Text)
@@ -5478,14 +5322,14 @@ begin
         Edit1.Text, Edit2.Text,
         state,
         Edit3.Text, Edit5.Text,
-        Edit6.Text, QSL_SENT, QSL_SENT_ADV, 'NULL', 'N', 'NULL', Label38.Caption,
+        Edit6.Text, IntToStr(0), QSL_SENT_ADV, 'NULL', '0', 'NULL', Label38.Caption,
         Label34.Caption,
         Label45.Caption, Label47.Caption, Edit11.Text, BoolToStr(CheckBox5.Checked), 0,
         FloatToStr(DigiBand),
-        Label43.Caption, Edit11.Text, 'N', 'N', 'NULL', SetQSLInfo,
+        Label43.Caption, Edit11.Text, 0, '', 'NULL', SetQSLInfo,
         EditButton1.Text, Edit10.Text, Edit9.Text, Edit8.Text, Edit7.Text,
         Label38.Caption, 'NULL',
-        IntToStr(1), 0, '', 0, '', '', '', '', 'N', '', ComboBox6.Text,
+        IntToStr(1), 0, '', 0, '', '', '', '', 0, '', ComboBox6.Text,
         IntToStr(DXCCNum), '', 0,
         LogTable);
 

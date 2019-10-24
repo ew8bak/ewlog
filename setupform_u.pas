@@ -258,9 +258,9 @@ begin
           ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
           ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
           ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-          ' `QSLSent` varchar(1) DEFAULT `N`,' +
+          ' `QSLSent` tinyint(1) DEFAULT NULL,' +
           ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` varchar(1) DEFAULT `N`,' +
+          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
           ' `QSLRecDate` datetime DEFAULT NULL,' +
           ' `MainPrefix` varchar(5) DEFAULT NULL,' +
           ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
@@ -268,8 +268,8 @@ begin
           ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
           ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
           ' `ShortNote` varchar(30) DEFAULT NULL,' +
-          ' `QSLReceQSLcc` varchar(1) DEFAULT `N`,' +
-          ' `LoTWRec` varchar(1) DEFAULT `N`,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
+          ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
+          ' `LoTWRec` tinyint(1) DEFAULT 0,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
           ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
           ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
           ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
@@ -279,7 +279,7 @@ begin
           ' `STX_STRING` varchar(15) DEFAULT NULL,' +
           ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
           ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-          ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` varchar(1) DEFAULT `N`,' +
+          ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT 0,' +
           ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
           ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
           ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
@@ -440,9 +440,9 @@ begin
         ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
         ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
         ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-        ' `QSLSent` varchar(1) DEFAULT `N`,' +
+        ' `QSLSent` tinyint(1) DEFAULT NULL,' +
         ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-        ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` varchar(1) DEFAULT `N`,' +
+        ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
         ' `QSLRecDate` datetime DEFAULT NULL,' +
         ' `MainPrefix` varchar(5) DEFAULT NULL,' +
         ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
@@ -450,8 +450,8 @@ begin
         ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
         ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
         ' `ShortNote` varchar(30) DEFAULT NULL,' +
-        ' `QSLReceQSLcc` varchar(1) DEFAULT `N`,' +
-        ' `LoTWRec` varchar(1) DEFAULT `N`,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
+        ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
+        ' `LoTWRec` tinyint(1) DEFAULT 0,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
         ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
         ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
         ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
@@ -461,7 +461,7 @@ begin
         ' `STX_STRING` varchar(15) DEFAULT NULL,' +
         ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
         ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-        ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` varchar(1) DEFAULT `N`,' +
+        ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT 0,' +
         ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
         ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
         ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
@@ -593,9 +593,9 @@ begin
             ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
             ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
             ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-            ' `QSLSent` varchar(1) DEFAULT `N`,' +
+            ' `QSLSent` tinyint(1) DEFAULT NULL,' +
             ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-            ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` varchar(1) DEFAULT `N`,' +
+            ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
             ' `QSLRecDate` datetime DEFAULT NULL,' +
             ' `MainPrefix` varchar(5) DEFAULT NULL,' +
             ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
@@ -603,8 +603,8 @@ begin
             ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
             ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
             ' `ShortNote` varchar(30) DEFAULT NULL,' +
-            ' `QSLReceQSLcc` varchar(1) DEFAULT `N`,' +
-            ' `LoTWRec` varchar(1) DEFAULT `N`,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
+            ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
+            ' `LoTWRec` tinyint(1) DEFAULT 0,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
             ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
             ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
             ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
@@ -614,7 +614,7 @@ begin
             ' `STX_STRING` varchar(15) DEFAULT NULL,' +
             ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
             ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-            ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` varchar(1) DEFAULT `N`,' +
+            ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT 0,' +
             ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
             ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
             ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
@@ -772,9 +772,9 @@ begin
           ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
           ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
           ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-          ' `QSLSent` varchar(1) DEFAULT `N`,' +
+          ' `QSLSent` tinyint(1) DEFAULT NULL,' +
           ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` varchar(1) DEFAULT `N`,' +
+          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
           ' `QSLRecDate` datetime DEFAULT NULL,' +
           ' `MainPrefix` varchar(5) DEFAULT NULL,' +
           ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
@@ -782,8 +782,8 @@ begin
           ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
           ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
           ' `ShortNote` varchar(30) DEFAULT NULL,' +
-          ' `QSLReceQSLcc` varchar(1) DEFAULT `N`,' +
-          ' `LoTWRec` varchar(1) DEFAULT `N`,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
+          ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
+          ' `LoTWRec` tinyint(1) DEFAULT 0,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
           ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
           ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
           ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
@@ -793,7 +793,7 @@ begin
           ' `STX_STRING` varchar(15) DEFAULT NULL,' +
           ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
           ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-          ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` varchar(1) DEFAULT `N`,' +
+          ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT 0,' +
           ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
           ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
           ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
