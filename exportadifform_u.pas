@@ -160,7 +160,7 @@ var
   tmp: string = '';
   nr: integer = 1;
   i: integer;
-  date, freq2, numberToExp: string;
+  date, freq2, numberToExp, qsl_sent: string;
 
 begin
 
@@ -373,8 +373,13 @@ begin
         'QSL_SENT_VIA').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
-      tmp := '<QSL_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLSent').AsString, CheckBox2.Checked);
+      qsl_sent := Q1.Fields.FieldByName('QSLSent').AsString;
+      if qsl_sent = '0' then
+      tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', CheckBox2.Checked);
+      if qsl_sent = '1' then
+      tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+      if (qsl_sent <> '1') and (qsl_sent <> '0' ) then
+      tmp := '<QSL_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName('QSLSent').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
       tmp := '<DXCC' + dmFunc.StringToADIF(Q1.Fields.FieldByName(

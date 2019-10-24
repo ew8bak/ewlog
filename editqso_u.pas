@@ -235,18 +235,27 @@ begin
     Params.ParamByName('Grid').AsString := Edit14.Text;
     Params.ParamByName('IOTA').AsString := Edit18.Text;
     Params.ParamByName('QSLManager').AsString := Edit19.Text;
-    Params.ParamByName('QSLSent').AsBoolean := RadioButton1.Checked;
 
-    if RadioButton1.Checked = True then
+    if RadioButton1.Checked = True then begin
       Params.ParamByName('QSLSentAdv').AsString := 'T';
-    if RadioButton2.Checked = True then
+      Params.ParamByName('QSLSent').AsString:= 'Y';
+    end;
+    if RadioButton2.Checked = True then begin
       Params.ParamByName('QSLSentAdv').AsString := 'P';
-    if RadioButton3.Checked = True then
+      Params.ParamByName('QSLSent').AsString:= 'N';
+    end;
+    if RadioButton3.Checked = True then begin
       Params.ParamByName('QSLSentAdv').AsString := 'Q';
-    if RadioButton4.Checked = True then
+      Params.ParamByName('QSLSent').AsString:= 'Q';
+    end;
+    if RadioButton4.Checked = True then begin
       Params.ParamByName('QSLSentAdv').AsString := 'F';
-    if RadioButton5.Checked = True then
+      Params.ParamByName('QSLSent').AsString:= 'N';
+    end;
+    if RadioButton5.Checked = True then begin
       Params.ParamByName('QSLSentAdv').AsString := 'N';
+      Params.ParamByName('QSLSent').AsString:= 'N';
+    end;
 
     if DateEdit3.Text <> '' then
     Params.ParamByName('QSLSentDate').AsDate := DateEdit3.Date
