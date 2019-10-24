@@ -262,7 +262,10 @@ begin
     else
     Params.ParamByName('QSLSentDate').IsNull;
 
-    Params.ParamByName('QSLRec').AsBoolean := CheckBox4.Checked;
+    if CheckBox4.Checked = true then
+    Params.ParamByName('QSLRec').AsString := 'Y'
+    else
+    Params.ParamByName('QSLRec').AsString := 'N';
 
     if DateEdit2.Text <> '' then
     Params.ParamByName('QSLRecDate').AsDate := DateEdit2.Date

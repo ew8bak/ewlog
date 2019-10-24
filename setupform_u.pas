@@ -260,7 +260,7 @@ begin
           ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
           ' `QSLSent` varchar(1) DEFAULT N,' +
           ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
+          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` varchar(1) DEFAULT N,' +
           ' `QSLRecDate` datetime DEFAULT NULL,' +
           ' `MainPrefix` varchar(5) DEFAULT NULL,' +
           ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
@@ -442,7 +442,7 @@ begin
         ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
         ' `QSLSent` varchar(1) DEFAULT N,' +
         ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-        ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
+        ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` varchar(1) DEFAULT N,' +
         ' `QSLRecDate` datetime DEFAULT NULL,' +
         ' `MainPrefix` varchar(5) DEFAULT NULL,' +
         ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
@@ -595,7 +595,7 @@ begin
             ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
             ' `QSLSent` varchar(1) DEFAULT N,' +
             ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-            ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
+            ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` varchar(1) DEFAULT N,' +
             ' `QSLRecDate` datetime DEFAULT NULL,' +
             ' `MainPrefix` varchar(5) DEFAULT NULL,' +
             ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
@@ -774,7 +774,7 @@ begin
           ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
           ' `QSLSent` varchar(1) DEFAULT N,' +
           ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
+          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` varchar(1) DEFAULT N,' +
           ' `QSLRecDate` datetime DEFAULT NULL,' +
           ' `MainPrefix` varchar(5) DEFAULT NULL,' +
           ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +

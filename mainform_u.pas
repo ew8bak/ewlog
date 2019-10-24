@@ -2400,8 +2400,14 @@ begin
       DBGrid1.DataSource.DataSet.FieldByName('NoCalcDXCC').AsBoolean;
     EditQSO_Form.CheckBox5.Checked :=
       DBGrid1.DataSource.DataSet.FieldByName('QSLReceQSLcc').AsBoolean;
-    EditQSO_Form.CheckBox4.Checked :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsBoolean;
+
+    ShowMessage('0'+DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString+'0');
+    ShowMessage(DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsString);
+     if (DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString = '0') or (DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString = 'N') then
+    EditQSO_Form.CheckBox4.Checked := False;
+     if (DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString = '1') or (DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsString = 'Y') then
+     EditQSO_Form.CheckBox4.Checked := True;
+
     EditQSO_Form.CheckBox6.Checked :=
       DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsBoolean;
 
@@ -5420,7 +5426,7 @@ begin
         Edit1.Text, Edit2.Text,
         state,
         Edit3.Text, Edit5.Text,
-        Edit6.Text, QSL_SENT, QSL_SENT_ADV, 'NULL', '0', 'NULL', Label38.Caption,
+        Edit6.Text, QSL_SENT, QSL_SENT_ADV, 'NULL', 'N', 'NULL', Label38.Caption,
         Label34.Caption,
         Label45.Caption, Label47.Caption, Edit11.Text, BoolToStr(CheckBox5.Checked), 0,
         FloatToStr(DigiBand),

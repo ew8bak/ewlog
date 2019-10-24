@@ -160,7 +160,7 @@ var
   tmp: string = '';
   nr: integer = 1;
   i: integer;
-  date, freq2, numberToExp, qsl_sent: string;
+  date, freq2, numberToExp, qsl_sent, qsl_rcvd: string;
 
 begin
 
@@ -361,8 +361,13 @@ begin
         Write(f, tmp);
       end;
 
-      tmp := '<QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLRec').AsString, CheckBox2.Checked);
+      qsl_rcvd:= Q1.Fields.FieldByName('QSLRec').AsString;
+      if qsl_rcvd = '0' then
+      tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked);
+      if qsl_rcvd = '1' then
+      tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+      if (qsl_rcvd <> '0') or (qsl_rcvd <> '1') then
+      tmp := '<QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName('QSLRec').AsString, CheckBox2.Checked);
       Write(f, tmp);
 
       tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
