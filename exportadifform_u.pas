@@ -366,7 +366,7 @@ begin
       tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked);
       if qsl_rcvd = '1' then
       tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
-      if (qsl_rcvd <> '0') or (qsl_rcvd <> '1') then
+      if (qsl_rcvd <> '0') and (qsl_rcvd <> '1') then
       tmp := '<QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName('QSLRec').AsString, CheckBox2.Checked);
       Write(f, tmp);
 

@@ -84,8 +84,8 @@
         <UnitName Value="ExportAdifForm_u"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="356"/>
-        <CursorPos X="88" Y="370"/>
+        <TopLine Value="359"/>
+        <CursorPos X="31" Y="369"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -450,7 +450,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="155"/>
       </Unit41>
       <Unit42>
         <Filename Value="hiddentsettings_u.pas"/>
@@ -460,7 +460,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="129"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="120"/>
       </Unit42>
       <Unit43>
         <Filename Value="RegExpr.pas"/>
