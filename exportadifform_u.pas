@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ExtCtrls, process, sqldb, LazUTF8, LConvEncoding;
+  StdCtrls, EditBtn, ExtCtrls, sqldb, LazUTF8, LConvEncoding;
 
 resourcestring
   rDone = 'Done';
@@ -52,8 +52,6 @@ type
   private
     FileName: string;
     ExportAll: boolean;
-    MarkAfter: boolean;
-    AProcess: TProcess;
     { private declarations }
   public
     function ExportToAdif: word;
@@ -66,11 +64,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, logtcpform_u;
-
-var
-  IsFilter: boolean;
-  DebugLevel: integer;
+uses dmFunc_U, MainForm_U;
 
 {$R *.lfm}
 
@@ -87,7 +81,7 @@ begin
     if SaveDialog1.FileName = '' then
     begin
       Application.MessageBox(
-        pChar(pPleaseFile), PChar(rWarning),
+        PChar(pPleaseFile), PChar(rWarning),
         mb_ok + mb_IconWarning);
       exit;
     end;
@@ -96,7 +90,7 @@ begin
     if CheckBox1.Checked = True then
       ExportToAdif
     else
-      Application.MessageBox(pChar(rNoMethodExport),
+      Application.MessageBox(PChar(rNoMethodExport),
         PChar(rWarning),
         mb_ok + mb_IconWarning);
   end;
@@ -175,7 +169,7 @@ begin
   if IOresult <> 0 then
   begin
     Application.MessageBox(PChar(rErrorOpenFile + ' ' + IntToStr(IOResult)),
-     pChar(rError), mb_ok + mb_IconError);
+      PChar(rError), mb_ok + mb_IconError);
     exit;
   end;
 
@@ -253,29 +247,31 @@ begin
       tmp := '<TIME_ON' + dmFunc.StringToADIF(tmp, CheckBox2.Checked);
       Write(f, tmp);
 
-      tmp := Q1.Fields.FieldByName('QSOTime').AsString;
-      tmp := copy(tmp, 1, 2) + copy(tmp, 4, 2);
-      tmp := '<TIME_OFF' + dmFunc.StringToADIF(tmp, CheckBox2.Checked);
-      Write(f, tmp);
+      if Q1.Fields.FieldByName('QSOMode').AsString <> '' then
+      begin
+        tmp := '<MODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSOMode').AsString, CheckBox2.Checked);
+        Write(f, tmp);
+      end;
 
-      tmp := '<MODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSOMode').AsString, CheckBox2.Checked);
-      Write(f, tmp);
-
+      if Q1.Fields.FieldByName('QSOBand').AsString <> '' then begin
       freq2 := Q1.Fields.FieldByName('QSOBand').AsString;
-
       Delete(freq2, Length(freq2) - 2, 1);   //Удаляю последнюю точку
-
-      tmp := '<FREQ' + dmFunc.StringToADIF(freq2, CheckBox2.Checked);
+      tmp := '<FREQ' + dmFunc.StringToADIF(FormatFloat('0.#####',StrToFloat(freq2)), CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('QSOReportSent').AsString <> '' then begin
       tmp := '<RST_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOReportSent').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('QSOReportRecived').AsString <> '' then begin
       tmp := '<RST_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOReportRecived').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
       if (Q1.Fields.FieldByName('SRX').AsString <> '0') then
       begin
@@ -291,62 +287,86 @@ begin
         Write(f, tmp);
       end;
 
+      if Q1.Fields.FieldByName('OMName').AsString <> '' then begin
       tmp := '<NAME' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMName').AsString, CheckBox2.Checked);
       if CheckBox2.Checked = True then
         Write(f, UTF8ToCP1251(tmp))
       else
         Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('OMQTH').AsString <> '' then begin
       tmp := '<QTH' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'OMQTH').AsString, CheckBox2.Checked);
       if CheckBox2.Checked = True then
         Write(f, UTF8ToCP1251(tmp))
       else
         Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('State').AsString <> '' then begin
       tmp := '<STATE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'State').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('Grid').AsString <> '' then begin
       tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'Grid').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('WPX').AsString <> '' then begin
       tmp := '<PFX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'WPX').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('DXCCPrefix').AsString <> '' then begin
       tmp := '<DXCC_PREF' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'DXCCPrefix').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('QSOBand').AsString <> '' then begin
       tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetAdifBandFromFreq(
         Q1.Fields.FieldByName('QSOBand').AsString), CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('CQZone').AsString <> '' then begin
       tmp := '<CQZ' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'CQZone').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('ITUZone').AsString <> '' then begin
       tmp := '<ITUZ' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'ITUZone').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('Continent').AsString <> '' then begin
       tmp := '<CONT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'Continent').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('QSLInfo').AsString <> '' then begin
       tmp := '<QSLMSG' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSLInfo').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
-      EQSL_QSL_RCVD:= Q1.Fields.FieldByName('QSLReceQSLcc').AsString;
+      if Q1.Fields.FieldByName('QSLReceQSLcc').AsString = '1' then begin
+      EQSL_QSL_RCVD := Q1.Fields.FieldByName('QSLReceQSLcc').AsString;
       if EQSL_QSL_RCVD = '0' then
-      tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked)
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked)
       else
-      tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
       if Q1.Fields.FieldByName('QSLSentDate').AsString <> '' then
       begin
@@ -364,34 +384,46 @@ begin
         Write(f, tmp);
       end;
 
+      if Q1.Fields.FieldByName('QSLRec').AsString = '1' then begin
       QSL_RCVD := Q1.Fields.FieldByName('QSLRec').AsString;
       if QSL_RCVD = '0' then
-      tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked)
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', CheckBox2.Checked)
       else
-      tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('QSL_RCVD_VIA').AsString <> '' then begin
       tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSL_RCVD_VIA').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('QSL_SENT_VIA').AsString <> '' then begin
       tmp := '<QSL_SENT_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSL_SENT_VIA').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
-      QSL_SENT:=Q1.Fields.FieldByName('QSLSent').AsString;
+      if Q1.Fields.FieldByName('QSLSent').AsString = '1' then begin
+      QSL_SENT := Q1.Fields.FieldByName('QSLSent').AsString;
       if QSL_SENT = '0' then
-      tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', CheckBox2.Checked)
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', CheckBox2.Checked)
       else
-      tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('DXCC').AsString <> '' then begin
       tmp := '<DXCC' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'DXCC').AsString, CheckBox2.Checked);
       Write(f, tmp);
+      end;
 
+      if Q1.Fields.FieldByName('QSOAddInfo').AsString <> '' then begin
       tmp := '<COMMENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOAddInfo').AsString, CheckBox2.Checked);
+      end;
 
       if CheckBox2.Checked = True then
         Write(f, UTF8ToCP1251(tmp))
@@ -420,8 +452,7 @@ var
   tmp: string = '';
   tmp2: string = '';
   nr: integer = 1;
-  i: integer;
-  freq2, numberToExp: string;
+  freq2: string;
 begin
   Q1.Close;
   if (range = 'All') then

@@ -999,7 +999,7 @@ begin
 
           if PosEOR > 0 then
           begin
-            ///????????????????????????????????????????
+
             QSODate := dmFunc.ADIFDateToDate(date);
 
             if LQslSDate <> '' then
@@ -1244,7 +1244,9 @@ begin
                 ImportQuery.Params.ParamByName('QSLRec').AsInteger := 0;
               end;
 
-              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := EQSL_QSL_RCVD;
+              if EQSL_QSL_RCVD = 'Y' then
+              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '1';
+
               ImportQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
 
               ImportQuery.ExecSQL;
