@@ -160,6 +160,7 @@ var
   PosEQSL_QSLSDATE: word;
   PosEQSL_QSL_RCVD: word;
   PosEQSL_QSL_SENT: word;
+  PosQSL_STATUS: word;
 
   Call: string;
   sName: string;
@@ -202,6 +203,7 @@ var
   QSL_RCVD_VIA: string;
   EQSL_QSL_RCVD: string;
   EQSL_QSL_SENT: string;
+  QSL_STATUS: string;
 
   a: string;
   Data: string;
@@ -294,6 +296,7 @@ begin
         QSL_RCVD_VIA := '';
         EQSL_QSL_RCVD := '';
         EQSL_QSL_SENT := '';
+        QSL_STATUS := '';
 
         Count := 0;
         Len := 0;
@@ -355,6 +358,7 @@ begin
           PosEQSL_QSLSDATE := Pos('<EQSL_QSLSDATE', a);
           PosEQSL_QSL_RCVD := Pos('<EQSL_QSL_RCVD', a);
           PosEQSL_QSL_SENT := Pos('<EQSL_QSL_SENT', a);
+          PosQSL_STATUS := Pos('<QSL_STATUS', a);
 
           if PosCall > 0 then
           begin
@@ -997,6 +1001,20 @@ begin
             EQSL_QSL_SENT := copy(Data, PosEQSL_QSL_SENT + 1, Count);
           end;
 
+          if PosQSL_STATUS > 0 then
+          begin
+            QSL_STATUS := '';
+            PosQSL_STATUS := PosQSL_STATUS + 12;
+            sCount := '';
+            while not (a[PosQSL_STATUS] = '>') do
+            begin
+              sCount := sCount + a[PosQSL_STATUS];
+              Inc(PosQSL_STATUS);
+            end;
+            Count := StrToInt(sCount);
+            QSL_STATUS := copy(Data, PosQSL_STATUS + 1, Count);
+          end;
+
           if PosEOR > 0 then
           begin
 
@@ -1160,11 +1178,11 @@ begin
                 ' (QSODate,QSOTime,CallSign,QSOBand,QSOMode,' +
                 'QSOReportSent,QSOReportRecived,OMName,OMQTH,QSL_SENT_VIA,IOTA,ITUZone,Grid,'
                 + 'QSOAddInfo,DXCCPrefix,AwardsEx,DigiBand,State, CQZone, MainPrefix, Continent,'
-                + 'QSLInfo, DXCC, QSLSentDate, QSLSent, QSLRecDate, QSLRec, NoCalcDXCC, QSLSentAdv, QSLReceQSLcc, QSL_RCVD_VIA) VALUES (:QSODate,'
+                + 'QSLInfo, DXCC, QSLSentDate, QSLSent, QSLRecDate, QSLRec, NoCalcDXCC, QSLSentAdv, QSLReceQSLcc, QSL_RCVD_VIA, LoTWRec) VALUES (:QSODate,'
                 + ':QSOTime, :CallSign, :QSOBand, :QSOMode, :QSOReportSent, :QSOReportRecived,'
                 + ':OMName, :OMQTH, :QSL_SENT_VIA, :IOTA, :ITUZone, :Grid, :QSOAddInfo,'
                 + ':DXCCPrefix, :AwardsEx, :DigiBand, :State, :CQZone, :MainPrefix, :Continent,'
-                + ':QSLInfo, :DXCC, :QSLSentDate, :QSLSent, :QSLRecDate, :QSLRec, :NoCalcDXCC, :QSLSentAdv, :QSLReceQSLcc, :QSL_RCVD_VIA)';
+                + ':QSLInfo, :DXCC, :QSLSentDate, :QSLSent, :QSLRecDate, :QSLRec, :NoCalcDXCC, :QSLSentAdv, :QSLReceQSLcc, :QSL_RCVD_VIA, :LoTWRec)';
               ImportQuery.Prepare;
 
               yyyy := StrToInt(QSODate[1] + QSODate[2] + QSODate[3] + QSODate[4]);
@@ -1203,7 +1221,30 @@ begin
               ImportQuery.Params.ParamByName('QSLInfo').AsString := QSLMSG;
               ImportQuery.Params.ParamByName('DXCC').AsString := DXCC2;
               ImportQuery.Params.ParamByName('NoCalcDXCC').AsInteger := 0;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'Q';
+
+              if QSL_STATUS <> '' then
+              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := QSL_STATUS;
+
+            if QSLS = 'Y' then begin
+            ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
+            ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'T'
+            end;
+
+            if QSLS = 'Q' then begin
+            ImportQuery.Params.ParamByName('QSLSent').IsNull;
+            ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'Q'
+            end;
+
+            if (QSLS = '') and (QSL_STATUS = '') then begin
+            ImportQuery.Params.ParamByName('QSLSent').IsNull;
+            ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'F'
+            end;
+
+            if LQslR = 'L' then
+             ImportQuery.Params.ParamByName('LoTWRec').AsString := '1'
+             else
+             ImportQuery.Params.ParamByName('LoTWRec').AsString := '0';
+
 
               if QSLSDATE <> '' then
               begin
@@ -1217,6 +1258,7 @@ begin
                   ImportQuery.Params.ParamByName('QSLSentDate').AsDate :=
                     EncodeDate(yyyy2, mm2, dd2);
                 ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
+                 ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'T';
 
               end
               else
@@ -1224,6 +1266,9 @@ begin
                 ImportQuery.Params.ParamByName('QSLSentDate').IsNull;
                 ImportQuery.Params.ParamByName('QSLSent').IsNull;
               end;
+
+              if QSLR = 'Y' then
+              ImportQuery.Params.ParamByName('QSLRec').AsInteger := 1;
 
               if QSLRDATE <> '' then
               begin
@@ -1245,7 +1290,9 @@ begin
               end;
 
               if EQSL_QSL_RCVD = 'Y' then
-              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '1';
+              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '1'
+              else
+              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '0';
 
               ImportQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
 

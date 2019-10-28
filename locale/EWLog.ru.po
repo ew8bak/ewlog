@@ -98,7 +98,7 @@ msgstr "Всё поля должны быть заполнены!"
 
 #: createjournalform_u.rhaltlog
 msgid "The program will be completed, restart it!"
-msgstr ""
+msgstr "Выполнено успешно! Перезапустите программу"
 
 #: createjournalform_u.rlogaddedsuccessfully
 msgid "Log added successfully"
@@ -132,11 +132,11 @@ msgstr "Экспорт завершён"
 
 #: exportadifform_u.rnomethodexport
 msgid "No export method selected!"
-msgstr ""
+msgstr "Не выбран режим экспорта!"
 
 #: exportadifform_u.rnumberofqso
 msgid "Number of QSO"
-msgstr ""
+msgstr "Количество QSO"
 
 #: exportadifform_u.rnumberofqso0
 msgctxt "exportadifform_u.rnumberofqso0"
@@ -505,11 +505,11 @@ msgstr "Не могу найти"
 
 #: register_form_u.rregfailed
 msgid "Your registration failed"
-msgstr ""
+msgstr "Ваша регистрация не прошла"
 
 #: register_form_u.rregnumber
 msgid "Your registration number"
-msgstr ""
+msgstr "Ваш регистрационный номер"
 
 #: register_form_u.rsuccessfullogin
 msgid "Successful login"
@@ -534,7 +534,7 @@ msgstr ""
 #: serviceform_u.rprocesseddata
 msgctxt "serviceform_u.rprocesseddata"
 msgid "Processed data:"
-msgstr ""
+msgstr "Обработка данных:"
 
 #: serviceform_u.rstatusconnecteqsl
 msgid "Status: Connceting to eQSL.cc"
@@ -2223,11 +2223,11 @@ msgstr "Пароль"
 
 #: tlogconfigform.label3.caption
 msgid "Log set"
-msgstr ""
+msgstr "Настройки журнала"
 
 #: tlogconfigform.label4.caption
 msgid "Station detalis"
-msgstr ""
+msgstr "Информация о станции"
 
 #: tlogconfigform.label5.caption
 msgctxt "tlogconfigform.label5.caption"
@@ -2838,7 +2838,7 @@ msgstr "Позывной"
 
 #: tmainform.label50.caption
 msgid "New update available"
-msgstr "Обновления не найдены"
+msgstr "Доступно новое обновление"
 
 #: tmainform.label6.caption
 msgctxt "tmainform.label6.caption"
@@ -2946,6 +2946,10 @@ msgstr "Русский"
 #: tmainform.menuitem118.caption
 msgid "English"
 msgstr "Английский"
+
+#: tmainform.menuitem119.caption
+msgid "Download Languages"
+msgstr ""
 
 #: tmainform.menuitem12.caption
 msgid "QSL Queued"
@@ -4414,3 +4418,4 @@ msgstr "Статус обновления: Загрузка"
 #: updateform_u.rupdatestatusrequiredinstall
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
+

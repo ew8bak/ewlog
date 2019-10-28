@@ -2937,6 +2937,10 @@ msgstr ""
 msgid "English"
 msgstr ""
 
+#: tmainform.menuitem119.caption
+msgid "Download Languages"
+msgstr ""
+
 #: tmainform.menuitem12.caption
 msgid "QSL Queued"
 msgstr ""

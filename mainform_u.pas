@@ -144,6 +144,8 @@ type
     MenuItem116: TMenuItem;
     MenuItem117: TMenuItem;
     MenuItem118: TMenuItem;
+    MenuItem119: TMenuItem;
+    N1: TMenuItem;
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
@@ -2577,7 +2579,7 @@ begin
       if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '011') then
       begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('LE'),
-          Rect.Top + 0, 'PL');
+          Rect.Top + 0, 'LE');
       end;
     end;
   end;
@@ -2738,7 +2740,7 @@ begin
       if (DataSource2.DataSet.FieldByName('QSL').AsString = '011') then
       begin
         TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('LE'),
-          Rect.Top + 0, 'PL');
+          Rect.Top + 0, 'LE');
       end;
     end;
   end;
@@ -3080,17 +3082,20 @@ begin
   PassLog := IniF.ReadString('SetLog', 'Pass', '');
   sprav := IniF.ReadString('SetLog', 'Sprav', '');
   Language := IniF.ReadString('SetLog', 'Language', 'En');
+
   if Language = 'En' then
   begin
     MenuItem118.Checked := True;
     MenuItem117.Checked := False;
     SetDefaultLang('en');
+    ComboBox7.ItemIndex:=3;
   end;
   if Language = 'Ru' then
   begin
     MenuItem117.Checked := True;
     MenuItem118.Checked := False;
     SetDefaultLang('ru');
+    ComboBox7.ItemIndex:=3;
   end;
 
   if MenuItem86.Checked = True then
@@ -3691,7 +3696,11 @@ end;
 procedure TMainForm.MenuItem117Click(Sender: TObject);
 begin
   SetDefaultLang('ru');
+  ComboBox7.ItemIndex:=3;
   Language := 'Ru';
+  SelDB(DBLookupComboBox1.KeyValue);
+  CallLogBook := DBLookupComboBox1.KeyValue;
+
   if Language = 'Ru' then
   begin
     MenuItem117.Checked := True;
@@ -3702,7 +3711,10 @@ end;
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
   SetDefaultLang('en');
+  ComboBox7.ItemIndex:=3;
   Language := 'En';
+  SelDB(DBLookupComboBox1.KeyValue);
+  CallLogBook := DBLookupComboBox1.KeyValue;
   if Language = 'En' then
   begin
     MenuItem118.Checked := True;

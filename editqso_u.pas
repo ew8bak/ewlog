@@ -513,7 +513,7 @@ begin
       if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '011') then
       begin
         TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('LE'),
-          Rect.Top + 0, 'PL');
+          Rect.Top + 0, 'LE');
       end;
     end;
   end;
