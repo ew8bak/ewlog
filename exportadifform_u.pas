@@ -42,6 +42,7 @@ type
     RadioButton1: TRadioButton;
     rbFileExportAll: TRadioButton;
     SaveDialog1: TSaveDialog;
+    Q2: TSQLQuery;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -111,10 +112,12 @@ begin
   if DefaultDB = 'MySQL' then
   begin
     Q1.DataBase := MainForm.MySQLLOGDBConnection;
+    Q2.DataBase := MainForm.MySQLLOGDBConnection;
   end
-  else
+  else begin
     Q1.DataBase := MainForm.SQLiteDBConnection;
-
+    Q2.DataBase := MainForm.SQLiteDBConnection;
+  end;
   if rbFileExportAll.Checked = True then
   begin
     DateEdit1.Enabled := False;
@@ -154,7 +157,7 @@ var
   tmp: string = '';
   nr: integer = 1;
   i: integer;
-  date, freq2, numberToExp, EQSL_QSL_RCVD, QSL_RCVD, QSL_SENT: string;
+  date, freq2, numberToExp, EQSL_QSL_RCVD, QSL_RCVD, QSL_SENT, MY_LAT, MY_LON: string;
 
 begin
 
@@ -184,9 +187,11 @@ begin
   Writeln(f, '<EOH>');
   Q1.Close;
 
-  if rbFileExportAll.Checked = True then
+  if rbFileExportAll.Checked = True then begin
     Q1.SQL.Text := 'select * from ' + LogTable + ' ORDER BY UnUsedIndex ASC';
+  end;
 
+  Q2.SQL.Text := 'select * from LogBookInfo WHERE LogTable = ' + QuotedStr(LogTable);
 
   if RadioButton1.Checked = True then
   begin
@@ -223,6 +228,7 @@ begin
 
   MainForm.ExportAdifSelect := False;
   Q1.Open();
+  Q2.Open();
   try
     Q1.First;
     while not Q1.EOF do
@@ -423,6 +429,26 @@ begin
       if Q1.Fields.FieldByName('QSOAddInfo').AsString <> '' then begin
       tmp := '<COMMENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOAddInfo').AsString, CheckBox2.Checked);
+      Write(f, tmp);
+      end;
+
+      if Q2.Fields.FieldByName('Loc').AsString <> '' then begin
+      tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(Q2.Fields.FieldByName(
+        'Loc').AsString, CheckBox2.Checked);
+      Write(f, tmp);
+      end;
+
+      MY_LAT:=Q2.Fields.FieldByName('Lat').AsString;
+      while Length(MY_LAT) > 6 do Delete(MY_LAT,Length(MY_LAT),1);
+      if Q2.Fields.FieldByName('Lat').AsString <> '' then begin
+      tmp := '<MY_LAT' + dmFunc.StringToADIF(MY_LAT, CheckBox2.Checked);
+      Write(f, tmp);
+      end;
+
+      MY_LON:=Q2.Fields.FieldByName('Lon').AsString;
+      while Length(MY_LON) > 6 do Delete(MY_LON,Length(MY_LON),1);
+      if Q2.Fields.FieldByName('Lon').AsString <> '' then begin
+      tmp := '<MY_LON' + dmFunc.StringToADIF(MY_LON, CheckBox2.Checked);
       end;
 
       if CheckBox2.Checked = True then
