@@ -186,6 +186,7 @@ begin
   Writeln(f);
   Writeln(f, '<EOH>');
   Q1.Close;
+  Q2.Close;
 
   if rbFileExportAll.Checked = True then begin
     Q1.SQL.Text := 'select * from ' + LogTable + ' ORDER BY UnUsedIndex ASC';
