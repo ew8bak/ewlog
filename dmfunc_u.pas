@@ -26,7 +26,6 @@ type
 type
   TdmFunc = class(TDataModule)
   private
-    fGrayLineOffset: currency;
     fDataDir: string;
     fDebugLevel: integer;
     { private declarations }
@@ -373,7 +372,6 @@ end;
 function TdmFunc.nr(ch: char): integer;
 var
   letters: string;
-  i: integer;
 begin
   letters := 'ABCDEFGHIJKLMNOPQRSTUVWX';
   Result := Pos(ch, letters);
@@ -384,7 +382,7 @@ procedure TdmFunc.CoordinateFromLocator(loc: string;
 var
   a, b, c, d, e, f: integer;
 begin
-  DecimalSeparator:='.';
+  DefaultFormatSettings.DecimalSeparator:='.';
   if not dmFunc.IsLocOK(loc) then
     exit;
 
@@ -860,10 +858,10 @@ begin
   end;
 
   if Pos('.', MHz) > 0 then
-    MHz[Pos('.', MHz)] := DecimalSeparator;
+    MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
 
   if pos(',', MHz) > 0 then
-    MHz[pos(',', MHz)] := DecimalSeparator;
+    MHz[pos(',', MHz)] := DefaultFormatSettings.DecimalSeparator;
 
 if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
  exit;
@@ -1024,10 +1022,10 @@ begin
   band := 0;
 
   if Pos('.', MHz) > 0 then
-    MHz[Pos('.', MHz)] := DecimalSeparator;
+    MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
 
   if pos(',', MHz) > 0 then
-    MHz[pos(',', MHz)] := DecimalSeparator;
+    MHz[pos(',', MHz)] := DefaultFormatSettings.DecimalSeparator;
 
   if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
     exit;
@@ -1099,10 +1097,10 @@ begin
   end;
 
   if Pos('.', MHz) > 0 then
-    MHz[Pos('.', MHz)] := DecimalSeparator;
+    MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
 
   if pos(',', MHz) > 0 then
-    MHz[pos(',', MHz)] := DecimalSeparator;
+    MHz[pos(',', MHz)] := DefaultFormatSettings.DecimalSeparator;
 
   if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
     exit;
@@ -1680,7 +1678,7 @@ var
   long: integer;
 begin
   long:=Length(AString);
-  temp := ToBytes(AString,enUTF8);
+  temp := ToBytes(AString,IndyTextEncoding_UTF8);
   Pack(AData,long);
   AppendBytes(AData,temp);
 end;
@@ -1725,7 +1723,7 @@ end;
 
 procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AValue: LongInt);
 begin
-  AValue := NToHl(BytesToLongInt(AData, index));
+  AValue := NToHl(BytesToInt32(AData, index));
   index := index + SizeOf(AValue);
 end;
 
@@ -1745,7 +1743,7 @@ begin
   Unpack(AData,index,length);
   if length <> LongInt($ffffffff) then
   begin
-    AString := BytesToString(AData,index,length,enUtf8);
+    AString := BytesToString(AData,index,length,IndyTextEncoding_UTF8);
     index := index + length;
   end
   else AString := '';
@@ -1766,7 +1764,7 @@ end;
 
 procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AValue: Longword) overload;
 begin
-  AValue := Longword(NToHl(BytesToLongInt(AData, index)));
+  AValue := Longword(NToHl(BytesToInt32(AData, index)));
   index := index + SizeOf(AValue);
 end;
 
@@ -1781,12 +1779,10 @@ procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var ADateTim
 var
   dt: Int64;
   tm: Longword;
-  ts: Byte;
   temp: Double;
 begin
   Unpack(AData,index,dt);
   Unpack(AData,index,tm);
-  ts := AData[index];
   index := index + 1;
   temp := dt;
   ADateTime := IncMilliSecond(JulianDateToDateTime(temp),tm);

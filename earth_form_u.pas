@@ -49,7 +49,7 @@ end;
 procedure TEarth.FormPaint(Sender: TObject);
 var
   r: Trect;
-  lat, long: currency;
+  lat: currency;
   lat1, long1: currency;
 begin
   if (la1 = '......') or (la1 = '') or (lo1 = '......') or

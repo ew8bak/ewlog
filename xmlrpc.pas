@@ -105,7 +105,6 @@ end;
 function XMLEncodeStr(Input: string): string;
 var
   p: integer;
-  x: string;
 begin
   Result := Input;
   if Length(Result) = 0 then Exit;
@@ -279,7 +278,7 @@ begin
       r := Copy(response,p+8,q-(p+8));
       // convert to correct regional format
       p := Pos('.',r);
-      if p > 0 then r[p] := DecimalSeparator;
+      if p > 0 then r[p] := DefaultFormatSettings.DecimalSeparator;
       Result := StrToFloatDef(r,0.0);
     end;
   end;

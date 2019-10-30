@@ -254,8 +254,7 @@ procedure TTRXForm.SynTRX;
 var
   b : String = '';
   f : Double;
-  m,fs : String;
-  i,fhz: integer;
+  m : String;
 begin
   if Assigned(radio) then
   begin

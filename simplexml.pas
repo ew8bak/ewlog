@@ -567,9 +567,9 @@ function XSTRToFloat(s: TXmlString): Double;
 var
   aPos: Integer;
 begin
-  if '.' = DecimalSeparator then
+  if '.' = DefaultFormatSettings.DecimalSeparator then
     aPos := Pos(',', s)
-  else if ',' = DecimalSeparator then
+  else if ',' = DefaultFormatSettings.DecimalSeparator then
     aPos := Pos('.', s)
   else begin
     aPos := Pos(',', s);
@@ -578,7 +578,7 @@ begin
   end;
 
   if aPos <> 0 then
-    s[aPos] := TXmlChar(DecimalSeparator);
+    s[aPos] := TXmlChar(DefaultFormatSettings.DecimalSeparator);
   Result := StrToFloat(s);
 end;
 
@@ -587,7 +587,7 @@ var
   aPos: Integer;
 begin
   Result := FloatToStr(v);
-  aPos := Pos(DecimalSeparator, Result);
+  aPos := Pos(DefaultFormatSettings.DecimalSeparator, Result);
   if aPos <> 0 then
     Result[aPos] := '.';
 end;

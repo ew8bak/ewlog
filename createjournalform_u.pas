@@ -111,7 +111,7 @@ end;
 procedure TCreateJournalForm.Button2Click(Sender: TObject);
 var
   LOG_PREFIX: string;
-  CountStr, i: integer;
+  CountStr: integer;
 begin
   if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
     (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') or

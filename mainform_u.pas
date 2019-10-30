@@ -1383,13 +1383,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
-  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
-  QSOAddInfo, Marker: string;
-  ManualSet: integer; DigiBand, Continent, ShortNote: string;
-  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
-  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
-  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
+  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
+  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
+  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
+  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
+  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
+  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -1606,7 +1606,11 @@ var
   azim, qra, loc: string;
 begin
   Result := False;
-
+  loc:='';
+  qra:='';
+  azim:='';
+  la:=0;
+  lo:=0;
   with MainForm.SQLQuery2 do
   begin
     Close;
@@ -1993,7 +1997,8 @@ var
   curr_f: extended;
   carr: integer;
 begin
-
+  currmode:='';
+  currfreq:='';
   if Fldigi_IsRunning then
   begin
     if Fl_Timer.Interval > 1000 then
@@ -2800,11 +2805,20 @@ end;
 
 procedure TMainForm.dxClientReceive(aSocket: TLSocket);
 var
-  DX, Call, Freq, Comment, Time, Loc: string;
+  DX, Call, Freq, Comment, Time, Loc, Band: string;
   TelnetLine: string;
   Data: PTreeData;
   XNode: PVirtualNode;
+  ShowSpot: boolean;
 begin
+  DX := '';
+  Call := '';
+  Freq := '';
+  Comment := '';
+  Time := '';
+  Loc := '';
+  Band := '';
+  showspot := False;
   if dxClient.GetMessage(TelnetLine) > 0 then
   begin
     TelnetLine := Trim(TelnetLine);
@@ -2827,7 +2841,29 @@ begin
       Loc := StringReplace(TelnetLine.Substring(76, 4), ' ', '', [rfReplaceAll]);
     end;
 
-    if Length(DX) > 0 then
+    Band := dmFunc.GetTelnetBandFromFreq(Freq);
+    if not ShowSpot then
+    begin
+      case Band of
+        '160M': showspot := ClusterFilter.cb160m.Checked;
+        '80M': showspot := ClusterFilter.cb80m.Checked;
+        '60M': showspot := ClusterFilter.cb60m.Checked;
+        '40M': showspot := ClusterFilter.cb40m.Checked;
+        '30M': showspot := ClusterFilter.cb30m.Checked;
+        '20M': showspot := ClusterFilter.cb20m.Checked;
+        '17M': showspot := ClusterFilter.cb17m.Checked;
+        '15M': showspot := ClusterFilter.cb15m.Checked;
+        '12M': showspot := ClusterFilter.cb12m.Checked;
+        '10M': showspot := ClusterFilter.cb10m.Checked;
+        '6M': showspot := ClusterFilter.cb6m.Checked;
+        '4M': showspot := ClusterFilter.cb4m.Checked;
+        '2M': showspot := ClusterFilter.cb2m.Checked;
+        '70CM': showspot := ClusterFilter.cb70cm.Checked;
+      end;
+    end;
+
+
+    if (Length(DX) > 0) and ShowSpot then
     begin
       if FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False) = nil then
       begin
@@ -3088,14 +3124,14 @@ begin
     MenuItem118.Checked := True;
     MenuItem117.Checked := False;
     SetDefaultLang('en');
-    ComboBox7.ItemIndex:=3;
+    ComboBox7.ItemIndex := 3;
   end;
   if Language = 'Ru' then
   begin
     MenuItem117.Checked := True;
     MenuItem118.Checked := False;
     SetDefaultLang('ru');
-    ComboBox7.ItemIndex:=3;
+    ComboBox7.ItemIndex := 3;
   end;
 
   if MenuItem86.Checked = True then
@@ -3696,7 +3732,7 @@ end;
 procedure TMainForm.MenuItem117Click(Sender: TObject);
 begin
   SetDefaultLang('ru');
-  ComboBox7.ItemIndex:=3;
+  ComboBox7.ItemIndex := 3;
   Language := 'Ru';
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
@@ -3711,7 +3747,7 @@ end;
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
   SetDefaultLang('en');
-  ComboBox7.ItemIndex:=3;
+  ComboBox7.ItemIndex := 3;
   Language := 'En';
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
@@ -4454,7 +4490,7 @@ var
   p: integer;
   wsjt_args: string;
 begin
-
+  wsjt_args:='';
   p := Pos('.EXE', UpperCase(wsjt_path));
   if p > 0 then
   begin
@@ -4589,6 +4625,7 @@ var
   p: integer;
   fl_args: string;
 begin
+  fl_args:='';
   p := Pos('.EXE', UpperCase(fl_path));
   if p > 0 then
   begin
@@ -5292,6 +5329,10 @@ var
   FmtStngs: TFormatSettings;
   state: string;
 begin
+  state:='';
+  QSL_SENT:='';
+  QSL_SENT_ADV:='';
+  NameBand:='';
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
   if EditFlag = False then

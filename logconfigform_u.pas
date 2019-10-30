@@ -109,7 +109,7 @@ uses MainForm_U, CreateJournalForm_U, dmFunc_U;
 
 function TLogConfigForm.SelectCall(SelCall: string): string;
 begin
-  DecimalSeparator := '.';
+ DefaultFormatSettings.DecimalSeparator := '.';
   if DefaultDB = 'MySQL' then
     LogConfigForm.SQLQuery1.DataBase := MainForm.MySQLLOGDBConnection
   else

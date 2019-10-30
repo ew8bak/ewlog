@@ -58,7 +58,7 @@ end;
 function SendHRD(hrduser, hrdcode, call: string; timestarted, datestarted: TDateTime;
   qsofreq, mode, rsts, rstr, qslinfo, locat: string; inform: integer): boolean;
 var
-  logdata, url, response, appname: string;
+  logdata, url, appname: string;
   res: TStringList;
 
 
