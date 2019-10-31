@@ -61,7 +61,7 @@ begin
   UniqueCallsQuery.Active := True;
   OblastQuery.Active := True;
   CountryQuery.Active := True;
-  DBGrid1.Columns.Items[0].Width := 100;
+  DBGrid1.Columns.Items[0].Width := 40;
   DBGrid1.Columns.Items[1].Width := 130;
   DBGrid1.Columns.Items[2].Width := 50;
   DBGrid1.Columns.Items[3].Width := 50;
@@ -76,9 +76,8 @@ begin
   DBGrid1.Columns.Items[12].Width := 70;
   DBGrid1.Columns.Items[13].Width := 70;
   DBGrid1.Columns.Items[14].Width := 70;
-  DBGrid1.Columns.Items[15].Width := 70;
 
-  DBGrid2.Columns.Items[0].Width := 70;
+  DBGrid2.Columns.Items[0].Width := 40;
   DBGrid2.Columns.Items[1].Width := 70;
   DBGrid2.Columns.Items[2].Width := 70;
   DBGrid2.Columns.Items[3].Width := 70;
@@ -93,7 +92,6 @@ begin
   DBGrid2.Columns.Items[12].Width := 70;
   DBGrid2.Columns.Items[13].Width := 70;
   DBGrid2.Columns.Items[14].Width := 70;
-  DBGrid2.Columns.Items[15].Width := 70;
 
   DBGrid3.Columns.Items[0].Width := 40;
   DBGrid3.Columns.Items[1].Width := 70;
@@ -110,7 +108,6 @@ begin
   DBGrid3.Columns.Items[12].Width := 70;
   DBGrid3.Columns.Items[13].Width := 70;
   DBGrid3.Columns.Items[14].Width := 70;
-  DBGrid3.Columns.Items[15].Width := 70;
 end;
 
 procedure TManagerBasePrefixForm.FormClose(Sender: TObject;

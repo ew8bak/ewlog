@@ -4512,6 +4512,19 @@ object MainForm: TMainForm
         0000000000000000000000000000000000000000000000000000
       }
     end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem120: TMenuItem
+      Caption = 'Print Select QSO'
+      object MenuItem121: TMenuItem
+        Caption = 'With mark QSL Printed'
+      end
+      object MenuItem122: TMenuItem
+        Caption = 'Without mark QSL Printed'
+        OnClick = MenuItem122Click
+      end
+    end
     object MenuItem19: TMenuItem
       Caption = '-'
     end
@@ -5119,5 +5132,11 @@ object MainForm: TMainForm
   object PrintDialog1: TPrintDialog
     left = 832
     top = 528
+  end
+  object PrintQuery: TSQLQuery
+    FieldDefs = <>
+    Params = <>
+    left = 1026
+    top = 507
   end
 end

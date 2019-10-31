@@ -147,6 +147,10 @@ type
     MenuItem117: TMenuItem;
     MenuItem118: TMenuItem;
     MenuItem119: TMenuItem;
+    MenuItem120: TMenuItem;
+    MenuItem121: TMenuItem;
+    MenuItem122: TMenuItem;
+    N2: TMenuItem;
     N1: TMenuItem;
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
@@ -252,6 +256,7 @@ type
     SpeedButton28: TSpeedButton;
     SpeedButton29: TSpeedButton;
     qBands: TSQLQuery;
+    PrintQuery: TSQLQuery;
     UniqueCallsQuery: TSQLQuery;
     TabSheet2: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
@@ -478,6 +483,7 @@ type
     procedure MenuItem117Click(Sender: TObject);
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
+    procedure MenuItem122Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
     procedure MenuItem13Click(Sender: TObject);
     procedure MenuItem14Click(Sender: TObject);
@@ -1609,11 +1615,11 @@ var
   azim, qra, loc: string;
 begin
   Result := False;
-  loc:='';
-  qra:='';
-  azim:='';
-  la:=0;
-  lo:=0;
+  loc := '';
+  qra := '';
+  azim := '';
+  la := 0;
+  lo := 0;
   with MainForm.SQLQuery2 do
   begin
     Close;
@@ -2000,8 +2006,8 @@ var
   curr_f: extended;
   carr: integer;
 begin
-  currmode:='';
-  currfreq:='';
+  currmode := '';
+  currfreq := '';
   if Fldigi_IsRunning then
   begin
     if Fl_Timer.Interval > 1000 then
@@ -3791,6 +3797,58 @@ begin
 
 end;
 
+procedure TMainForm.MenuItem122Click(Sender: TObject);
+var
+  i: integer;
+  PrintArray: array of integer;
+  PrintOK: boolean;
+  numberToPrint: string;
+begin
+  PrintOK := False;
+  PrintQuery.Close;
+  numberToPrint:='';
+
+  if DefaultDB = 'MySQL' then
+    PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
+  else
+    PrintQuery.DataBase := MainForm.SQLiteDBConnection;
+
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
+      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
+      SetLength(PrintArray, DBGrid1.SelectedRows.Count);
+      PrintArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
+        'UnUsedIndex').AsInteger;
+    end;
+    PrintOK := True;
+  end;
+
+  if PrintOK then
+  begin
+    for i := 0 to High(PrintArray) do
+    begin
+      if i > 0 then
+        numberToPrint := numberToPrint + ', ';
+      numberToPrint := numberToPrint + IntToStr(PrintArray[i]);
+    end;
+    for i := 0 to Length(PrintArray) - 1 do
+    begin
+      PrintQuery.SQL.Text := 'SELECT * FROM ' + LogTable +
+        ' WHERE `UnUsedIndex` in (' + numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
+    end;
+  end;
+  PrintOK := False;
+  PrintQuery.Open;
+  PrintQuery.First;
+  while not PrintQuery.EOF do
+  begin
+    ShowMessage(PrintQuery.Fields.FieldByName('CallSign').AsString);
+    PrintQuery.Next;
+  end;
+end;
+
 //Поставить QSO в очередь на печать
 procedure TMainForm.MenuItem12Click(Sender: TObject);
 var
@@ -4252,6 +4310,7 @@ var
 begin
   if (UnUsIndex <> 0) then
   begin
+    exportAdifForm.Show;
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
@@ -4493,7 +4552,7 @@ var
   p: integer;
   wsjt_args: string;
 begin
-  wsjt_args:='';
+  wsjt_args := '';
   p := Pos('.EXE', UpperCase(wsjt_path));
   if p > 0 then
   begin
@@ -4628,7 +4687,7 @@ var
   p: integer;
   fl_args: string;
 begin
-  fl_args:='';
+  fl_args := '';
   p := Pos('.EXE', UpperCase(fl_path));
   if p > 0 then
   begin
@@ -5332,10 +5391,10 @@ var
   FmtStngs: TFormatSettings;
   state: string;
 begin
-  state:='';
-  QSL_SENT:='';
-  QSL_SENT_ADV:='';
-  NameBand:='';
+  state := '';
+  QSL_SENT := '';
+  QSL_SENT_ADV := '';
+  NameBand := '';
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
   if EditFlag = False then

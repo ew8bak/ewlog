@@ -2945,6 +2945,18 @@ msgstr ""
 msgid "QSL Queued"
 msgstr ""
 
+#: tmainform.menuitem120.caption
+msgid "Print Select QSO"
+msgstr ""
+
+#: tmainform.menuitem121.caption
+msgid "With mark QSL Printed"
+msgstr ""
+
+#: tmainform.menuitem122.caption
+msgid "Without mark QSL Printed"
+msgstr ""
+
 #: tmainform.menuitem13.caption
 msgctxt "tmainform.menuitem13.caption"
 msgid "QSL Printed"
