@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="3244"/>
-        <CursorPos X="3" Y="3247"/>
+        <TopLine Value="3242"/>
+        <CursorPos X="3" Y="3242"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -114,7 +114,6 @@
         <CursorPos Y="160"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="dmfunc_u.pas"/>
@@ -476,7 +475,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="169"/>
+        <UsageCount Value="172"/>
       </Unit41>
       <Unit42>
         <Filename Value="hiddentsettings_u.pas"/>
@@ -486,7 +485,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="129"/>
-        <UsageCount Value="134"/>
+        <UsageCount Value="137"/>
       </Unit42>
       <Unit43>
         <Filename Value="RegExpr.pas"/>

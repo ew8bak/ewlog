@@ -451,7 +451,6 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure frDesigner1LoadReport(Report: TfrReport; var ReportName: String);
     procedure Label50Click(Sender: TObject);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
@@ -3238,12 +3237,6 @@ begin
   MapView1.Zoom := 1;
   MapView1.DoubleBuffered := True;
   MapView1.Active := True;
-
-end;
-
-procedure TMainForm.frDesigner1LoadReport(Report: TfrReport;
-  var ReportName: String);
-begin
 
 end;
 
