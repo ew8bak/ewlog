@@ -5,13 +5,13 @@ unit MainForm_U;
 interface
 
 uses
-  Classes, SysUtils, mysql56conn, sqldb, sqlite3conn, DB, BufDataset,
-  dbf, FileUtil, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls, DBGrids,
+  Classes, SysUtils, mysql56conn, sqldb, sqlite3conn, DB, BufDataset, dbf,
+  FileUtil, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls, DBGrids,
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
-  IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList,
-  Grids, INIFiles, mvMapViewer, LCLType, LazSysUtils,
-  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG,
-  RegExpr, mvTypes, gettext, LResources, LCLTranslator;
+  IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList, Grids, INIFiles,
+  mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn,
+  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr,
+  mvTypes, gettext, LResources, LCLTranslator;
 
 resourcestring
   rQSL = 'QSL';
@@ -112,6 +112,8 @@ type
     ComboBox8: TComboBox;
     Edit12: TEdit;
     Edit13: TEdit;
+    frDesigner1: TfrDesigner;
+    frReport1: TfrReport;
     IdIPWatch1: TIdIPWatch;
     Label49: TLabel;
     Label50: TLabel;
@@ -242,6 +244,7 @@ type
     Panel9: TPanel;
     PopupMenu2: TPopupMenu;
     PopupDxCluster: TPopupMenu;
+    PrintDialog1: TPrintDialog;
     SpeedButton24: TSpeedButton;
     SpeedButton25: TSpeedButton;
     SpeedButton26: TSpeedButton;
@@ -448,6 +451,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure frDesigner1LoadReport(Report: TfrReport; var ReportName: String);
     procedure Label50Click(Sender: TObject);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
@@ -3234,6 +3238,12 @@ begin
   MapView1.Zoom := 1;
   MapView1.DoubleBuffered := True;
   MapView1.Active := True;
+
+end;
+
+procedure TMainForm.frDesigner1LoadReport(Report: TfrReport;
+  var ReportName: String);
+begin
 
 end;
 

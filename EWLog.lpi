@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="7"/>
-      <BuildNr Value="160"/>
+      <BuildNr Value="161"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -111,43 +111,49 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="12">
+    <RequiredPackages Count="14">
       <Item1>
-        <PackageName Value="lazMapViewerPkg"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item1>
       <Item2>
-        <PackageName Value="virtualtreeview_package"/>
+        <PackageName Value="lazreport"/>
       </Item2>
       <Item3>
-        <PackageName Value="indylaz"/>
+        <PackageName Value="lazMapViewerPkg"/>
       </Item3>
       <Item4>
-        <PackageName Value="laz_synapse"/>
+        <PackageName Value="virtualtreeview_package"/>
       </Item4>
       <Item5>
-        <PackageName Value="lnetvisual"/>
+        <PackageName Value="indylaz"/>
       </Item5>
       <Item6>
-        <PackageName Value="DBFLaz"/>
+        <PackageName Value="laz_synapse"/>
       </Item6>
       <Item7>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="lnetvisual"/>
       </Item7>
       <Item8>
-        <PackageName Value="MemDSLaz"/>
+        <PackageName Value="DBFLaz"/>
       </Item8>
       <Item9>
-        <PackageName Value="SDFLaz"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item9>
       <Item10>
-        <PackageName Value="FCL"/>
+        <PackageName Value="MemDSLaz"/>
       </Item10>
       <Item11>
-        <PackageName Value="SQLDBLaz"/>
+        <PackageName Value="SDFLaz"/>
       </Item11>
       <Item12>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
       </Item12>
+      <Item13>
+        <PackageName Value="SQLDBLaz"/>
+      </Item13>
+      <Item14>
+        <PackageName Value="LCL"/>
+      </Item14>
     </RequiredPackages>
     <Units Count="43">
       <Unit0>

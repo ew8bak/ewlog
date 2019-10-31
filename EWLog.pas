@@ -8,7 +8,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, sdflaz, memdslaz, datetimectrls, dbflaz,
+  Forms, sdflaz, memdslaz, datetimectrls, dbflaz, printer4lazarus,
   MainForm_U, editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U,
   ExportAdifForm_u, CreateJournalForm_U, ImportADIFForm_U, dmFunc_U,
   SimpleXML, eqsl, xmlrpc, fldigi, DXCCEditForm_U, ManagerBasePrefixForm_U,
