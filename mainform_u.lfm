@@ -5118,25 +5118,339 @@ object MainForm: TMainForm
     top = 558
   end
   object frReport1: TfrReport
+    Dataset = frDBDataSet1
     InitialZoom = pzDefault
     Options = []
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
+    ReportType = rtMultiple
     DataType = dtDataSet
-    left = 685
+    left = 696
     top = 520
-  end
-  object frDesigner1: TfrDesigner
-    left = 760
-    top = 528
   end
   object PrintDialog1: TPrintDialog
     left = 832
     top = 528
   end
   object PrintQuery: TSQLQuery
-    FieldDefs = <>
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'UnUsedIndex'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'CallSign'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'QSODate'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'QSOTime'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'QSOBand'
+        DataType = ftString
+        Precision = -1
+        Size = 10
+      end    
+      item
+        Name = 'QSOMode'
+        DataType = ftString
+        Precision = -1
+        Size = 7
+      end    
+      item
+        Name = 'QSOReportSent'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end    
+      item
+        Name = 'QSOReportRecived'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end    
+      item
+        Name = 'OMName'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end    
+      item
+        Name = 'OMQTH'
+        DataType = ftString
+        Precision = -1
+        Size = 50
+      end    
+      item
+        Name = 'State'
+        DataType = ftString
+        Precision = -1
+        Size = 25
+      end    
+      item
+        Name = 'Grid'
+        DataType = ftString
+        Precision = -1
+        Size = 6
+      end    
+      item
+        Name = 'IOTA'
+        DataType = ftString
+        Precision = -1
+        Size = 6
+      end    
+      item
+        Name = 'QSLManager'
+        DataType = ftString
+        Precision = -1
+        Size = 9
+      end    
+      item
+        Name = 'QSLSent'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'QSLSentAdv'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'QSLSentDate'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'QSLRec'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'QSLRecDate'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'MainPrefix'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'DXCCPrefix'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'CQZone'
+        DataType = ftString
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'ITUZone'
+        DataType = ftString
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'QSOAddInfo'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'Marker'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'ManualSet'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'DigiBand'
+        DataType = ftFloat
+        Precision = -1
+      end    
+      item
+        Name = 'Continent'
+        DataType = ftString
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'ShortNote'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end    
+      item
+        Name = 'QSLReceQSLcc'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'LoTWRec'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'LoTWRecDate'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'QSLInfo'
+        DataType = ftString
+        Precision = -1
+        Size = 100
+      end    
+      item
+        Name = 'Call'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'State1'
+        DataType = ftString
+        Precision = -1
+        Size = 25
+      end    
+      item
+        Name = 'State2'
+        DataType = ftString
+        Precision = -1
+        Size = 25
+      end    
+      item
+        Name = 'State3'
+        DataType = ftString
+        Precision = -1
+        Size = 25
+      end    
+      item
+        Name = 'State4'
+        DataType = ftString
+        Precision = -1
+        Size = 25
+      end    
+      item
+        Name = 'WPX'
+        DataType = ftString
+        Precision = -1
+        Size = 10
+      end    
+      item
+        Name = 'AwardsEx'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = 'ValidDX'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'SRX'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'SRX_STRING'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end    
+      item
+        Name = 'STX'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'STX_STRING'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end    
+      item
+        Name = 'SAT_NAME'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'SAT_MODE'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'PROP_MODE'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'LoTWSent'
+        DataType = ftSmallint
+        Precision = -1
+      end    
+      item
+        Name = 'QSL_RCVD_VIA'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'QSL_SENT_VIA'
+        DataType = ftString
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'DXCC'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'USERS'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'NoCalcDXCC'
+        DataType = ftSmallint
+        Precision = -1
+      end>
+    SQL.Strings = (
+      ''
+    )
     Params = <>
     left = 1026
     top = 507
+  end
+  object frDBDataSet1: TfrDBDataSet
+    DataSet = PrintQuery
+    left = 626
+    top = 531
   end
 end

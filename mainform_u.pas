@@ -9,7 +9,7 @@ uses
   FileUtil, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls, DBGrids,
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
   IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList, Grids, INIFiles,
-  mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn,
+  mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn, LR_DBSet,
   lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr,
   mvTypes, gettext, LResources, LCLTranslator;
 
@@ -112,7 +112,7 @@ type
     ComboBox8: TComboBox;
     Edit12: TEdit;
     Edit13: TEdit;
-    frDesigner1: TfrDesigner;
+    frDBDataSet1: TfrDBDataSet;
     frReport1: TfrReport;
     IdIPWatch1: TIdIPWatch;
     Label49: TLabel;
@@ -3841,12 +3841,8 @@ begin
   end;
   PrintOK := False;
   PrintQuery.Open;
-  PrintQuery.First;
-  while not PrintQuery.EOF do
-  begin
-    ShowMessage(PrintQuery.Fields.FieldByName('CallSign').AsString);
-    PrintQuery.Next;
-  end;
+  frReport1.LoadFromFile('report.lrf');
+  frReport1.ShowReport;
 end;
 
 //Поставить QSO в очередь на печать
