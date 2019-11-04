@@ -905,6 +905,10 @@ msgstr "Использовать как справочник?"
 msgid "Start DX cluster automatically"
 msgstr "Запускать DX кластер автоматически"
 
+#: tconfigform.checkbox5.caption
+msgid "Printing with preview"
+msgstr ""
+
 #: tconfigform.groupbox1.caption
 msgid "Data Base"
 msgstr "База данных"

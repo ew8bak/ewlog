@@ -485,6 +485,7 @@ type
     procedure MenuItem117Click(Sender: TObject);
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
+    procedure MenuItem121Click(Sender: TObject);
     procedure MenuItem122Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
     procedure MenuItem13Click(Sender: TObject);
@@ -612,6 +613,7 @@ type
     FlagList: TImageList;
     FlagSList: TStringList;
     Language: string;
+    PrintPrev: boolean;
 
     PhotoQrzString: string;
     PhotoJPEG: TJPEGImage;
@@ -729,6 +731,7 @@ var
   CheckForm: string;
   sprav: string;
   seleditnum: integer;
+
 
 
 implementation
@@ -3129,6 +3132,7 @@ begin
   PassLog := IniF.ReadString('SetLog', 'Pass', '');
   sprav := IniF.ReadString('SetLog', 'Sprav', '');
   Language := IniF.ReadString('SetLog', 'Language', 'En');
+  PrintPrev := IniF.ReadBool('SetLog', 'PrintPrev', False);
 
   if Language = 'En' then
   begin
@@ -3799,6 +3803,112 @@ begin
 
 end;
 
+procedure TMainForm.MenuItem121Click(Sender: TObject);
+var
+  i: integer;
+  PrintArray: array of integer;
+  PrintOK: boolean;
+  numberToPrint: string;
+  NumberCopies: integer;
+  ind: integer;
+begin
+  PrintOK := False;
+  PrintQuery.Close;
+  numberToPrint := '';
+
+  if DefaultDB = 'MySQL' then
+    PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
+  else
+    PrintQuery.DataBase := MainForm.SQLiteDBConnection;
+
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
+      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
+      SetLength(PrintArray, DBGrid1.SelectedRows.Count);
+      PrintArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
+        'UnUsedIndex').AsInteger;
+    end;
+    PrintOK := True;
+  end;
+
+  if (UnUsIndex <> 0) then
+  begin
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    begin
+      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
+      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      with EditQSO_Form.UPDATE_Query do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('UPDATE ' + LogTable +
+          ' SET `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
+        Params.ParamByName('QSLSentAdv').AsString := 'P';
+        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
+        ExecSQL;
+      end;
+    end;
+    SQLTransaction1.Commit;
+    SelDB(CallLogBook);
+    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+  end;
+
+  if PrintOK then
+  begin
+    for i := 0 to High(PrintArray) do
+    begin
+      if i > 0 then
+        numberToPrint := numberToPrint + ', ';
+      numberToPrint := numberToPrint + IntToStr(PrintArray[i]);
+    end;
+    for i := 0 to Length(PrintArray) - 1 do
+    begin
+      PrintQuery.SQL.Text := 'SELECT * FROM ' + LogTable +
+        ' WHERE `UnUsedIndex` in (' + numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
+    end;
+  end;
+  PrintOK := False;
+  PrintQuery.Open;
+  frReport1.LoadFromFile('report.lrf');
+
+  if PrintPrev = True then
+    frReport1.ShowReport
+  else
+  begin
+    ind := Printer.PrinterIndex;
+    if not frReport1.PrepareReport then
+      Exit;
+
+    with PrintDialog1 do
+    begin
+      Options := [poPageNums];
+      Copies := 1;
+      Collate := True;
+      FromPage := 1;
+      ToPage := frReport1.EMFPages.Count;
+      MaxPage := frReport1.EMFPages.Count;
+      if Execute then
+      begin
+        if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
+          frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
+          frReport1.PrepareReport
+        else
+          exit;
+        if PrintDialog1.PrintRange = prPageNums then
+        begin
+          FromPage := PrintDialog1.FromPage;
+          ToPage := PrintDialog1.ToPage;
+        end;
+        NumberCopies := PrintDialog1.Copies;
+        frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
+          NumberCopies);
+      end;
+    end;
+  end;
+end;
+
 procedure TMainForm.MenuItem122Click(Sender: TObject);
 var
   i: integer;
@@ -3846,35 +3956,39 @@ begin
   PrintOK := False;
   PrintQuery.Open;
   frReport1.LoadFromFile('report.lrf');
-  // frReport1.ShowReport;
 
-  ind := Printer.PrinterIndex;
-  if not frReport1.PrepareReport then
-    Exit;
-
-  with PrintDialog1 do
+  if PrintPrev = True then
+    frReport1.ShowReport
+  else
   begin
-    Options := [poPageNums];
-    Copies := 1;
-    Collate := True;
-    FromPage := 1;
-    ToPage := frReport1.EMFPages.Count;
-    MaxPage := frReport1.EMFPages.Count;
-    if Execute then
+    ind := Printer.PrinterIndex;
+    if not frReport1.PrepareReport then
+      Exit;
+
+    with PrintDialog1 do
     begin
-      if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
-        frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
-        frReport1.PrepareReport
-      else
-        exit;
-      if PrintDialog1.PrintRange = prPageNums then
+      Options := [poPageNums];
+      Copies := 1;
+      Collate := True;
+      FromPage := 1;
+      ToPage := frReport1.EMFPages.Count;
+      MaxPage := frReport1.EMFPages.Count;
+      if Execute then
       begin
-        FromPage := PrintDialog1.FromPage;
-        ToPage := PrintDialog1.ToPage;
+        if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
+          frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
+          frReport1.PrepareReport
+        else
+          exit;
+        if PrintDialog1.PrintRange = prPageNums then
+        begin
+          FromPage := PrintDialog1.FromPage;
+          ToPage := PrintDialog1.ToPage;
+        end;
+        NumberCopies := PrintDialog1.Copies;
+        frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
+          NumberCopies);
       end;
-      NumberCopies := PrintDialog1.Copies;
-      frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
-        NumberCopies);
     end;
   end;
 end;

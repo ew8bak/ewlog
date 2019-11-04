@@ -43,6 +43,7 @@ type
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
     Edit1: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
@@ -147,6 +148,11 @@ begin
     IniF.WriteString('SetLog', 'Sprav', 'True')
   else
     IniF.WriteString('SetLog', 'Sprav', 'False');
+   if CheckBox5.Checked = True then
+    IniF.WriteBool('SetLog', 'PrintPrev', True)
+  else
+    IniF.WriteBool('SetLog', 'PrintPrev', False);
+   MainForm.PrintPrev:=CheckBox5.Checked;
 end;
 
 procedure TConfigForm.ReadINI;
@@ -185,6 +191,10 @@ begin
   else
     CheckBox3.Checked := False;
 
+  if IniF.ReadBool('SetLog', 'PrintPrev', False) = True then
+    CheckBox5.Checked := True
+  else
+    CheckBox5.Checked := False;
 end;
 
 procedure TConfigForm.Button2Click(Sender: TObject);

@@ -4519,6 +4519,7 @@ object MainForm: TMainForm
       Caption = 'Print Select QSO'
       object MenuItem121: TMenuItem
         Caption = 'With mark QSL Printed'
+        OnClick = MenuItem121Click
       end
       object MenuItem122: TMenuItem
         Caption = 'Without mark QSL Printed'

@@ -32,5 +32,6 @@
 {"hash":214774905,"name":"tconfigform.groupbox4.caption","sourcebytes":[81,82,90,46,82,85,32,88,77,76,32,65,80,73],"value":"QRZ.RU XML API"},
 {"hash":5463550,"name":"tconfigform.label18.caption","sourcebytes":[76,111,103,105,110],"value":"Login"},
 {"hash":145417188,"name":"tconfigform.label19.caption","sourcebytes":[80,97,115,115,119,111,114,100],"value":"Password"},
-{"hash":103590479,"name":"tconfigform.checkbox3.caption","sourcebytes":[85,115,101,32,97,115,32,97,32,114,101,102,101,114,101,110,99,101,63],"value":"Use as a reference?"}
+{"hash":103590479,"name":"tconfigform.checkbox3.caption","sourcebytes":[85,115,101,32,97,115,32,97,32,114,101,102,101,114,101,110,99,101,63],"value":"Use as a reference?"},
+{"hash":1496759,"name":"tconfigform.checkbox5.caption","sourcebytes":[80,114,105,110,116,105,110,103,32,119,105,116,104,32,112,114,101,118,105,101,119],"value":"Printing with preview"}
 ]}
