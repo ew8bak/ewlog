@@ -484,6 +484,7 @@ type
     procedure MenuItem115Click(Sender: TObject);
     procedure MenuItem117Click(Sender: TObject);
     procedure MenuItem118Click(Sender: TObject);
+    procedure MenuItem119Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem121Click(Sender: TObject);
     procedure MenuItem122Click(Sender: TObject);
@@ -3771,6 +3772,11 @@ begin
     MenuItem118.Checked := True;
     MenuItem117.Checked := False;
   end;
+end;
+
+procedure TMainForm.MenuItem119Click(Sender: TObject);
+begin
+
 end;
 
 //QSL получена
