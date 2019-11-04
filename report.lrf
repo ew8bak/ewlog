@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2019-11-01 12:37:43"/>
+    <ReportLastChange Value="2019-11-04 10:38:52"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -76,7 +76,7 @@
           <Size>
             <Left Value="48"/>
             <Top Value="80"/>
-            <Width Value="96"/>
+            <Width Value="108"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -117,7 +117,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -130,9 +130,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="160"/>
+            <Left Value="156"/>
             <Top Value="80"/>
-            <Width Value="96"/>
+            <Width Value="108"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -173,7 +173,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -186,9 +186,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="272"/>
+            <Left Value="264"/>
             <Top Value="80"/>
-            <Width Value="96"/>
+            <Width Value="116"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -229,7 +229,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -242,9 +242,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="384"/>
+            <Left Value="380"/>
             <Top Value="80"/>
-            <Width Value="96"/>
+            <Width Value="100"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -285,7 +285,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -298,9 +298,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="496"/>
+            <Left Value="480"/>
             <Top Value="80"/>
-            <Width Value="96"/>
+            <Width Value="120"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -341,7 +341,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -354,9 +354,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="608"/>
+            <Left Value="600"/>
             <Top Value="80"/>
-            <Width Value="96"/>
+            <Width Value="104"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -397,7 +397,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -410,9 +410,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="46"/>
+            <Left Value="50"/>
             <Top Value="54"/>
-            <Width Value="80"/>
+            <Width Value="104"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -453,7 +453,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -466,9 +466,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="174"/>
+            <Left Value="158"/>
             <Top Value="54"/>
-            <Width Value="40"/>
+            <Width Value="104"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -509,7 +509,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -522,9 +522,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="274"/>
+            <Left Value="266"/>
             <Top Value="54"/>
-            <Width Value="32"/>
+            <Width Value="112"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -565,7 +565,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -578,9 +578,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="402"/>
+            <Left Value="382"/>
             <Top Value="54"/>
-            <Width Value="36"/>
+            <Width Value="96"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -621,7 +621,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -634,9 +634,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="486"/>
+            <Left Value="482"/>
             <Top Value="54"/>
-            <Width Value="36"/>
+            <Width Value="116"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -677,7 +677,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -692,7 +692,7 @@
           <Size>
             <Left Value="602"/>
             <Top Value="54"/>
-            <Width Value="48"/>
+            <Width Value="100"/>
             <Height Value="18"/>
           </Size>
           <Flags Value="3"/>
@@ -733,7 +733,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taCenter"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -981,7 +981,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="48"/>
-            <Top Value="80"/>
+            <Top Value="76"/>
             <Width Value="656"/>
             <Height Value="0"/>
           </Size>

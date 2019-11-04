@@ -5132,7 +5132,6 @@ object MainForm: TMainForm
     top = 528
   end
   object PrintQuery: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'UnUsedIndex'
@@ -5452,5 +5451,14 @@ object MainForm: TMainForm
     DataSet = PrintQuery
     left = 626
     top = 531
+  end
+  object frTextExport1: TfrTextExport
+    ShowExportParamsDlg = True
+    left = 724
+    top = 587
+  end
+  object frCSVExport1: TfrCSVExport
+    left = 816
+    top = 592
   end
 end

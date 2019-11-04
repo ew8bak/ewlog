@@ -10,8 +10,8 @@ uses
   ComCtrls, StdCtrls, EditBtn, Buttons, DBCtrls, DateTimePicker, DateUtils,
   IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList, Grids, INIFiles,
   mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn, LR_DBSet,
-  lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif, FPReadPNG, RegExpr,
-  mvTypes, gettext, LResources, LCLTranslator;
+  LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
+  FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, Printers;
 
 resourcestring
   rQSL = 'QSL';
@@ -112,8 +112,10 @@ type
     ComboBox8: TComboBox;
     Edit12: TEdit;
     Edit13: TEdit;
+    frCSVExport1: TfrCSVExport;
     frDBDataSet1: TfrDBDataSet;
     frReport1: TfrReport;
+    frTextExport1: TfrTextExport;
     IdIPWatch1: TIdIPWatch;
     Label49: TLabel;
     Label50: TLabel;
@@ -1392,13 +1394,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
-  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
-  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
-  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
-  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
+  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
+  QSOAddInfo, Marker: string;
+  ManualSet: integer; DigiBand, Continent, ShortNote: string;
+  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
+  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
+  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -3803,10 +3805,12 @@ var
   PrintArray: array of integer;
   PrintOK: boolean;
   numberToPrint: string;
+  NumberCopies: integer;
+  ind: integer;
 begin
   PrintOK := False;
   PrintQuery.Close;
-  numberToPrint:='';
+  numberToPrint := '';
 
   if DefaultDB = 'MySQL' then
     PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
@@ -3842,7 +3846,37 @@ begin
   PrintOK := False;
   PrintQuery.Open;
   frReport1.LoadFromFile('report.lrf');
-  frReport1.ShowReport;
+  // frReport1.ShowReport;
+
+  ind := Printer.PrinterIndex;
+  if not frReport1.PrepareReport then
+    Exit;
+
+  with PrintDialog1 do
+  begin
+    Options := [poPageNums];
+    Copies := 1;
+    Collate := True;
+    FromPage := 1;
+    ToPage := frReport1.EMFPages.Count;
+    MaxPage := frReport1.EMFPages.Count;
+    if Execute then
+    begin
+      if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
+        frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
+        frReport1.PrepareReport
+      else
+        exit;
+      if PrintDialog1.PrintRange = prPageNums then
+      begin
+        FromPage := PrintDialog1.FromPage;
+        ToPage := PrintDialog1.ToPage;
+      end;
+      NumberCopies := PrintDialog1.Copies;
+      frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
+        NumberCopies);
+    end;
+  end;
 end;
 
 //Поставить QSO в очередь на печать
