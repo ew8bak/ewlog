@@ -163,8 +163,16 @@ begin
 
             MainForm.EditButton1.Text := DXCall;
             MainForm.Edit3.Text := DXGrid;
-            MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
+
+            if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
+              (dmFunc.GetAdifBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
+              MainForm.ComboBox1.Text := dmFunc.GetAdifBandFromFreq(
+                FormatFloat('0.000"."00', frequency / 1000000))
+            else
+              MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
+
             MainForm.ComboBox2.Text := mode;
+            MainForm.ComboBox2Change(MainForm.ComboBox2);
             MainForm.ComboBox4.Text := report;
           end;
 
@@ -245,11 +253,19 @@ begin
             MainForm.DateEdit1.Date := date;
             MainForm.DateTimePicker1.Time := date;
             MainForm.EditButton1.Text := DXCall;
-            MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
+
+             if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
+              (dmFunc.GetAdifBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
+              MainForm.ComboBox1.Text := dmFunc.GetAdifBandFromFreq(
+                FormatFloat('0.000"."00', frequency / 1000000))
+            else
+              MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
+
             MainForm.Edit3.Text := DXGrid;
             MainForm.ComboBox2.Text := mode;
             MainForm.ComboBox4.Text := report;
             MainForm.ComboBox5.Text := reportReceived;
+            if DXName <> '' then
             MainForm.Edit1.Text := DXName;
             MainForm.Edit11.Text := comments;
             MainForm.SpeedButton8.Click;

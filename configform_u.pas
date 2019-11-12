@@ -109,7 +109,7 @@ var
 implementation
 
 uses
-  MainForm_U, UpdateForm_U;
+  MainForm_U, UpdateForm_U, dmFunc_U;
 
 {$R *.lfm}
 
@@ -254,18 +254,27 @@ end;
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
 var
   i: integer;
+  tmpBand:String;
 begin
+  tmpBand:=MainForm.ComboBox1.Text;
+  if Pos('M',tmpBand) = 0 then begin
   if CheckBox2.Checked = True then
   begin
     MainForm.ComboBox1.Items.Clear;
     for i := 0 to 12 do
       MainForm.ComboBox1.Items.Add(constBandName[i]);
+      delete(tmpBand, length(tmpBand)-2, 1);
+      MainForm.ComboBox1.Text:=dmFunc.GetAdifBandFromFreq(tmpBand);
+  end;
   end
-  else
+  else begin
+  if CheckBox2.Checked = False then
   begin
     MainForm.ComboBox1.Items.Clear;
     for i := 0 to 12 do
       MainForm.ComboBox1.Items.Add(constKhzBandName[i]);
+     MainForm.ComboBox1.Text:=dmFunc.FreqFromBand(tmpBand, MainForm.ComboBox2.Text);
+  end;
   end;
 end;
 

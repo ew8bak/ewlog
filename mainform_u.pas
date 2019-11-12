@@ -719,7 +719,7 @@ var
   fldigikeepontop: boolean = False;
   timedif: integer;
   lastID: integer;
-  fl_path, XMLRPC_FL_USE, FLDIGI_USE, wsjt_path, WSJT_USE: string;
+  fl_path, FLDIGI_USE, wsjt_path, WSJT_USE: string;
   myLocator: string;
   dbSel: string;
   useMAPS: string;
@@ -3069,7 +3069,6 @@ begin
 
       fl_path := IniF.ReadString('FLDIGI', 'FldigiPATH', '');
       wsjt_path := IniF.ReadString('WSJT', 'WSJTPATH', '');
-      XMLRPC_FL_USE := IniF.ReadString('FLDIGI', 'XMLRPC', '');
       FLDIGI_USE := IniF.ReadString('FLDIGI', 'USEFLDIGI', '');
       WSJT_USE := IniF.ReadString('WSJT', 'USEWSJT', '');
 
@@ -5931,8 +5930,6 @@ begin
             ['EWLog', rLogConWSJT]);
           {$ENDIF}
           MenuItem74.Enabled := False;
-          ComboBox2.Text := 'JT65';
-          ComboBox2Change(Sender);
         end;
       end;
     end;

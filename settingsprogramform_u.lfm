@@ -10,15 +10,15 @@ object SettingsProgramForm: TSettingsProgramForm
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object GroupBox1: TGroupBox
     Left = 8
     Height = 79
     Top = 0
     Width = 270
     Caption = 'Fldigi'
-    ClientHeight = 59
-    ClientWidth = 266
+    ClientHeight = 63
+    ClientWidth = 268
     Font.Height = -12
     ParentFont = False
     TabOrder = 0
@@ -48,27 +48,16 @@ object SettingsProgramForm: TSettingsProgramForm
       ParentFont = False
       TabOrder = 0
     end
-    object CheckBox1: TCheckBox
-      Left = 138
-      Height = 23
-      Top = 40
-      Width = 133
-      AutoSize = False
-      Caption = 'Use XML-RPC'
-      Font.Height = -12
-      ParentFont = False
-      TabOrder = 1
-    end
     object CheckBox2: TCheckBox
+      AnchorSideLeft.Control = GroupBox1
       Left = 0
       Height = 23
       Top = 40
-      Width = 138
-      AutoSize = False
+      Width = 78
       Caption = 'Use Fldigi'
       Font.Height = -12
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
     end
   end
   object Button1: TButton
@@ -99,8 +88,8 @@ object SettingsProgramForm: TSettingsProgramForm
     Top = 88
     Width = 266
     Caption = 'WSJT-X'
-    ClientHeight = 59
-    ClientWidth = 262
+    ClientHeight = 63
+    ClientWidth = 264
     Font.Height = -12
     ParentFont = False
     TabOrder = 3
@@ -131,11 +120,11 @@ object SettingsProgramForm: TSettingsProgramForm
       TabOrder = 0
     end
     object CheckBox4: TCheckBox
+      AnchorSideLeft.Control = GroupBox2
       Left = 0
       Height = 23
       Top = 40
-      Width = 146
-      AutoSize = False
+      Width = 89
       Caption = 'Use WSJT-X'
       Font.Height = -12
       ParentFont = False

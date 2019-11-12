@@ -850,7 +850,7 @@ begin
   Delete(MHz,8,Length(MHz));
   Delete(MHz,7,Length(MHz));
   end;
-
+;
   if Length(MHz) = 8 then  begin
   Delete(MHz,8,Length(MHz));
   Delete(MHz,7,Length(MHz));

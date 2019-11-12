@@ -15,7 +15,6 @@ type
   TSettingsProgramForm = class(TForm)
     Button1: TButton;
     Button2: TButton;
-    CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox4: TCheckBox;
     FileNameEdit1: TFileNameEdit;
@@ -52,8 +51,6 @@ end;
 procedure TSettingsProgramForm.FormShow(Sender: TObject);
 begin
   FileNameEdit1.Text:=fl_path;
-  If XMLRPC_FL_USE = 'YES' then CheckBox1.Checked:=True
-  else CheckBox1.Checked:=False;
   If FLDIGI_USE = 'YES' then CheckBox2.Checked:=True
   else CheckBox2.Checked:=False;
   FileNameEdit2.Text:=wsjt_path;
@@ -65,12 +62,8 @@ procedure TSettingsProgramForm.Button1Click(Sender: TObject);
 begin
   IniF.WriteString('FLDIGI', 'FldigiPATH', FileNameEdit1.Text);
   IniF.WriteString('WSJT', 'WSJTPATH', FileNameEdit2.Text);
-  case CheckBox1.Checked of
-  True: IniF.WriteString('FLDIGI', 'XMLRPC', 'YES');
-  False: IniF.WriteString('FLDIGI', 'XMLRPC', 'NO');
-  end;
 
-    case CheckBox4.Checked of
+  case CheckBox4.Checked of
   True: IniF.WriteString('WSJT', 'USEWSJT', 'YES');
   False: IniF.WriteString('WSJT', 'USEWSJT', 'NO');
   end;

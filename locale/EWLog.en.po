@@ -3757,10 +3757,6 @@ msgctxt "tsettingsprogramform.caption"
 msgid "External programs"
 msgstr ""
 
-#: tsettingsprogramform.checkbox1.caption
-msgid "Use XML-RPC"
-msgstr ""
-
 #: tsettingsprogramform.checkbox2.caption
 msgid "Use Fldigi"
 msgstr ""
