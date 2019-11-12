@@ -4702,6 +4702,7 @@ var
   p: integer;
   wsjt_args: string;
 begin
+
   wsjt_args := '';
   p := Pos('.EXE', UpperCase(wsjt_path));
   if p > 0 then
