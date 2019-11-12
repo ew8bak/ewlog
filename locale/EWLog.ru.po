@@ -907,7 +907,7 @@ msgstr "Запускать DX кластер автоматически"
 
 #: tconfigform.checkbox5.caption
 msgid "Printing with preview"
-msgstr ""
+msgstr "Печать с предварительным просмотром"
 
 #: tconfigform.groupbox1.caption
 msgid "Data Base"
@@ -2953,7 +2953,7 @@ msgstr "Английский"
 
 #: tmainform.menuitem119.caption
 msgid "Download Languages"
-msgstr ""
+msgstr "Загрузить переводы"
 
 #: tmainform.menuitem12.caption
 msgid "QSL Queued"
@@ -2961,15 +2961,15 @@ msgstr "QSL в очередь"
 
 #: tmainform.menuitem120.caption
 msgid "Print Select QSO"
-msgstr ""
+msgstr "Печать выбранного QSO"
 
 #: tmainform.menuitem121.caption
 msgid "With mark QSL Printed"
-msgstr ""
+msgstr "С пометкой QSL Напечатана"
 
 #: tmainform.menuitem122.caption
 msgid "Without mark QSL Printed"
-msgstr ""
+msgstr "Без пометки QSL напечатана"
 
 #: tmainform.menuitem13.caption
 msgctxt "tmainform.menuitem13.caption"
@@ -4087,7 +4087,7 @@ msgstr "Синхронизация"
 
 #: tsyndbdate.caption
 msgid "Date Sync"
-msgstr ""
+msgstr "Дата синхронизации"
 
 #: tsyndbdate.label1.caption
 msgid "Select a synchronization start date"
@@ -4430,4 +4430,3 @@ msgstr "Статус обновления: Загрузка"
 #: updateform_u.rupdatestatusrequiredinstall
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
-
