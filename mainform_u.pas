@@ -2977,7 +2977,10 @@ procedure TMainForm.FormCreate(Sender: TObject);
 var
   PathMyDoc: string;
   i, j: integer;
+  Lang: string = '';
+  FallbackLang: string = '';
 begin
+  GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
       {$IFDEF UNIX}
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
@@ -2988,6 +2991,23 @@ begin
   MapView1.CachePath := PathMyDoc + 'cache\';
     {$ENDIF UNIX}
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
+  Language := IniF.ReadString('SetLog', 'Language', '');
+  if Language = '' then
+    Language := FallbackLang;
+  if Language = 'en' then
+  begin
+    MenuItem118.Checked := True;
+    MenuItem117.Checked := False;
+    SetDefaultLang('en');
+    ComboBox7.ItemIndex := 3;
+  end;
+  if Language = 'ru' then
+  begin
+    MenuItem117.Checked := True;
+    MenuItem118.Checked := False;
+    SetDefaultLang('ru');
+    ComboBox7.ItemIndex := 3;
+  end;
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
   VirtualStringTree1.Images := FlagList;
@@ -3112,8 +3132,8 @@ begin
   LTCPComponent1.ReuseAddress := True;
   LTCPSyncDesk.ReuseAddress := True;
 
-//  ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
-//  freqchange := True;
+  //  ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
+  //  freqchange := True;
   if usewsjt then
     WSJT_Timer.Enabled := True;
   if usefldigi then
@@ -3130,23 +3150,8 @@ begin
   LoginLog := IniF.ReadString('SetLog', 'Login', '');
   PassLog := IniF.ReadString('SetLog', 'Pass', '');
   sprav := IniF.ReadString('SetLog', 'Sprav', '');
-  Language := IniF.ReadString('SetLog', 'Language', 'En');
-  PrintPrev := IniF.ReadBool('SetLog', 'PrintPrev', False);
 
-  if Language = 'En' then
-  begin
-    MenuItem118.Checked := True;
-    MenuItem117.Checked := False;
-    SetDefaultLang('en');
-    ComboBox7.ItemIndex := 3;
-  end;
-  if Language = 'Ru' then
-  begin
-    MenuItem117.Checked := True;
-    MenuItem118.Checked := False;
-    SetDefaultLang('ru');
-    ComboBox7.ItemIndex := 3;
-  end;
+  PrintPrev := IniF.ReadBool('SetLog', 'PrintPrev', False);
 
   if MenuItem86.Checked = True then
     TRXForm.Show;
@@ -3180,8 +3185,8 @@ begin
   VirtualStringTree1.ShowHint := True;
   VirtualStringTree1.HintMode := hmHint;
 
-   ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
-   freqchange := True;
+  ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
+  freqchange := True;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -3750,11 +3755,11 @@ procedure TMainForm.MenuItem117Click(Sender: TObject);
 begin
   SetDefaultLang('ru');
   ComboBox7.ItemIndex := 3;
-  Language := 'Ru';
+  Language := 'ru';
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
 
-  if Language = 'Ru' then
+  if Language = 'ru' then
   begin
     MenuItem117.Checked := True;
     MenuItem118.Checked := False;
@@ -3765,10 +3770,10 @@ procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
   SetDefaultLang('en');
   ComboBox7.ItemIndex := 3;
-  Language := 'En';
+  Language := 'en';
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
-  if Language = 'En' then
+  if Language = 'en' then
   begin
     MenuItem118.Checked := True;
     MenuItem117.Checked := False;
@@ -5926,7 +5931,7 @@ begin
             ['EWLog', rLogConWSJT]);
           {$ENDIF}
           if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
-          MenuItem74.Enabled := False;
+            MenuItem74.Enabled := False;
         end;
       end;
     end;
@@ -5945,7 +5950,7 @@ begin
         ['EWLog', rLogNConWSJT]);
       {$ENDIF}
       if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
-      MenuItem74.Enabled := True;
+        MenuItem74.Enabled := True;
       ComboBox2.ItemIndex := 0;
       ComboBox2Change(Sender);
       Clr();
