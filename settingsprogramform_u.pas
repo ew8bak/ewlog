@@ -36,6 +36,7 @@ var
   SettingsProgramForm: TSettingsProgramForm;
 
 implementation
+
 uses
   MainForm_U;
 
@@ -50,12 +51,22 @@ end;
 
 procedure TSettingsProgramForm.FormShow(Sender: TObject);
 begin
-  FileNameEdit1.Text:=fl_path;
-  If FLDIGI_USE = 'YES' then CheckBox2.Checked:=True
-  else CheckBox2.Checked:=False;
-  FileNameEdit2.Text:=wsjt_path;
-  If WSJT_USE = 'YES' then CheckBox4.Checked:=True
-  else CheckBox4.Checked:=False;
+
+  fl_path := IniF.ReadString('FLDIGI', 'FldigiPATH', '');
+  wsjt_path := IniF.ReadString('WSJT', 'WSJTPATH', '');
+  FLDIGI_USE := IniF.ReadString('FLDIGI', 'USEFLDIGI', '');
+  WSJT_USE := IniF.ReadString('WSJT', 'USEWSJT', '');
+
+  FileNameEdit1.Text := fl_path;
+  if FLDIGI_USE = 'YES' then
+    CheckBox2.Checked := True
+  else
+    CheckBox2.Checked := False;
+  FileNameEdit2.Text := wsjt_path;
+  if WSJT_USE = 'YES' then
+    CheckBox4.Checked := True
+  else
+    CheckBox4.Checked := False;
 end;
 
 procedure TSettingsProgramForm.Button1Click(Sender: TObject);
@@ -64,16 +75,31 @@ begin
   IniF.WriteString('WSJT', 'WSJTPATH', FileNameEdit2.Text);
 
   case CheckBox4.Checked of
-  True: IniF.WriteString('WSJT', 'USEWSJT', 'YES');
-  False: IniF.WriteString('WSJT', 'USEWSJT', 'NO');
+    True:
+    begin
+      IniF.WriteString('WSJT', 'USEWSJT', 'YES');
+      MainForm.MenuItem43.Enabled := True;
+    end;
+    False:
+    begin
+      IniF.WriteString('WSJT', 'USEWSJT', 'NO');
+      MainForm.MenuItem43.Enabled := False;
+    end
   end;
 
   case CheckBox2.Checked of
-  True: begin IniF.WriteString('FLDIGI', 'USEFLDIGI', 'YES'); MainForm.MenuItem74.Enabled:=True; end;
-  False: begin IniF.WriteString('FLDIGI', 'USEFLDIGI', 'NO'); MainForm.MenuItem74.Enabled:=False; end;
+    True:
+    begin
+      IniF.WriteString('FLDIGI', 'USEFLDIGI', 'YES');
+      MainForm.MenuItem74.Enabled := True;
+    end;
+    False:
+    begin
+      IniF.WriteString('FLDIGI', 'USEFLDIGI', 'NO');
+      MainForm.MenuItem74.Enabled := False;
+    end;
   end;
   SettingsProgramForm.Close;
 end;
 
 end.
-

@@ -484,7 +484,6 @@ type
     procedure MenuItem115Click(Sender: TObject);
     procedure MenuItem117Click(Sender: TObject);
     procedure MenuItem118Click(Sender: TObject);
-    procedure MenuItem119Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem121Click(Sender: TObject);
     procedure MenuItem122Click(Sender: TObject);
@@ -3113,8 +3112,8 @@ begin
   LTCPComponent1.ReuseAddress := True;
   LTCPSyncDesk.ReuseAddress := True;
 
-  ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
-  freqchange := True;
+//  ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
+//  freqchange := True;
   if usewsjt then
     WSJT_Timer.Enabled := True;
   if usefldigi then
@@ -3180,6 +3179,9 @@ begin
   end;
   VirtualStringTree1.ShowHint := True;
   VirtualStringTree1.HintMode := hmHint;
+
+   ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
+   freqchange := True;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -3771,11 +3773,6 @@ begin
     MenuItem118.Checked := True;
     MenuItem117.Checked := False;
   end;
-end;
-
-procedure TMainForm.MenuItem119Click(Sender: TObject);
-begin
-
 end;
 
 //QSL получена
@@ -4701,7 +4698,6 @@ var
   p: integer;
   wsjt_args: string;
 begin
-
   wsjt_args := '';
   p := Pos('.EXE', UpperCase(wsjt_path));
   if p > 0 then
@@ -5929,6 +5925,7 @@ begin
           SysUtils.ExecuteProcess('/usr/bin/notify-send',
             ['EWLog', rLogConWSJT]);
           {$ENDIF}
+          if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
           MenuItem74.Enabled := False;
         end;
       end;
@@ -5947,9 +5944,11 @@ begin
       SysUtils.ExecuteProcess('/usr/bin/notify-send',
         ['EWLog', rLogNConWSJT]);
       {$ENDIF}
+      if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
       MenuItem74.Enabled := True;
       ComboBox2.ItemIndex := 0;
       ComboBox2Change(Sender);
+      Clr();
     end;
     Exit;
   end;
