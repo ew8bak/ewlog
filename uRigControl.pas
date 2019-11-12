@@ -171,7 +171,6 @@ function TRigControl.StartRigctld : Boolean;
 var
   cmd : String;
 begin
-
   cmd := fRigCtldPath + ' ' +RigCtldArgs;
   {
   cmd := StringReplace(cmd,'%m',IntToStr(fRigId),[rfReplaceAll, rfIgnoreCase]);
