@@ -584,6 +584,7 @@ type
     procedure MenuItem96Click(Sender: TObject);
     procedure MenuItem98Click(Sender: TObject);
     procedure MenuItem99Click(Sender: TObject);
+    procedure LangItemClick(Sender: TObject);
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
@@ -717,6 +718,7 @@ type
     procedure FindCountryFlag(Country: string);
     function FindCountry(ISOCode: string): string;
     function FindLanguageFiles(Dir: string): TStringList;
+    function FindISOCountry(Country: string): string;
   end;
 
 var
@@ -812,6 +814,24 @@ type
 {$R *.lfm}
 
 { TMainForm }
+
+function TMainForm.FindISOCountry(Country: string): string;
+var
+  ISOList: TStringList;
+  LanguageList: TStringList;
+  Index: integer;
+begin
+  Result := '';
+  ISOList := TStringList.Create;
+  LanguageList := TStringList.Create;
+  ISOList.AddStrings(constLanguageISO);
+  LanguageList.AddStrings(constLanguage);
+  Index := LanguageList.IndexOf(Country);
+  if Index <> -1 then
+  Result := ISOList.Strings[Index]
+  else
+  Result := 'None';
+end;
 
 function TMainForm.FindCountry(ISOCode: string): string;
 var
@@ -3053,14 +3073,8 @@ var
   i, j: integer;
   Lang: string = '';
   FallbackLang: string = '';
-//  LangList:TStringList;
 begin
-//  LangList:=TStringList.Create;
   GetLanguageIDs(Lang, FallbackLang);
-//  LangList:=FindLanguageFiles('locale');
-
-//  for i:=0 to LangList.Count-1 do
-//  ShowMessage(FindCountry(LangList.Strings[i]));
 
   GetingHint := 0;
       {$IFDEF UNIX}
@@ -3074,7 +3088,8 @@ begin
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
-    Language := FallbackLang;
+  Language := FallbackLang;
+  SetDefaultLang(Language);
 
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
@@ -3819,21 +3834,58 @@ begin
   end;
 end;
 
+procedure TMainForm.LangItemClick(Sender: TObject);
+var
+  MenuItem: TMenuItem;
+begin
+  MenuItem := (Sender as TMenuItem);
+  SetDefaultLang(FindISOCountry(MenuItem.Caption));
+  ComboBox7.ItemIndex:=3;
+  Language:=FindISOCountry(MenuItem.Caption);
+  SelDB(DBLookupComboBox1.KeyValue);
+  CallLogBook := DBLookupComboBox1.KeyValue;
+end;
+
 procedure TMainForm.MenuItem116Click(Sender: TObject);
  var
    LangItem: TMenuItem;
    LangList: TStringList;
    i: Integer;
 begin
+ // try
+    if MenuItem116.Count > 2 then begin
+    for i:=0 to MenuItem116.Count do
+    MenuItem116.Delete(i);
+    end;
   LangList:=TStringList.Create;
   LangList:=FindLanguageFiles('locale');
-
   for i:=0 to LangList.Count-1 do begin
     LangItem:=TMenuItem.Create(Self);
     LangItem.Name:='LangItem'+IntToStr(i);
     LangItem.Caption:=FindCountry(LangList.Strings[i]);
+    LangItem.OnClick:=@LangItemClick;
+    LangItem.Tag:=99;
     MenuItem116.Insert(i,LangItem);
   end;
+//  except
+//    on E:Exception do begin
+//    for  i := MainForm.ComponentCount - 1 downto 0 do
+//    if (MainForm.Components[i] is TMenuItem) then
+//    if (MainForm.Components[i] as TMenuItem).Tag = 99 then
+//     (MainForm.Components[i] as TMenuItem).Free;
+//    LangList.Free;
+//      LangList:=TStringList.Create;
+//  LangList:=FindLanguageFiles('locale');
+//      for i:=0 to LangList.Count-1 do begin
+//    LangItem:=TMenuItem.Create(Self);
+//    LangItem.Name:='LangItem'+IntToStr(i);
+//    LangItem.Caption:=FindCountry(LangList.Strings[i]);
+ //   LangItem.OnClick:=@LangItemClick;
+ //   LangItem.Tag:=99;
+ //   MenuItem116.Insert(i,LangItem);
+ // end;
+//  end;
+//  end;
 end;
 
 //QSL получена
