@@ -837,7 +837,7 @@ var
 begin
   LangList := TStringList.Create;
   LangList := FindAllFiles(Dir, 'EWLog.*.po', False, faNormal);
-  LangList.Text := StringReplace(LangList.Text, 'locale/EWLog.', '', [rfreplaceall]);
+  LangList.Text := StringReplace(LangList.Text, 'locale'+DirectorySeparator+'EWLog.', '', [rfreplaceall]);
   LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
   Result := LangList;
 end;
@@ -3821,7 +3821,7 @@ end;
 
 procedure TMainForm.MenuItem116Click(Sender: TObject);
  var
-   LangItem: array of TMenuItem;
+   LangItem: TMenuItem;
    LangList: TStringList;
    i: Integer;
 begin
@@ -3829,11 +3829,11 @@ begin
   LangList:=FindLanguageFiles('locale');
 
   for i:=0 to LangList.Count-1 do begin
-    LangItem[i]:=TMenuItem.Create(MenuItem116);
-  LangItem[i].Caption:=LangList.Strings[i];
-   end;
-
-  MenuItem116.Add(LangItem);
+    LangItem:=TMenuItem.Create(Self);
+    LangItem.Name:='LangItem'+IntToStr(i);
+    LangItem.Caption:=FindCountry(LangList.Strings[i]);
+    MenuItem116.Insert(i,LangItem);
+  end;
 end;
 
 //QSL получена
