@@ -11,7 +11,8 @@ uses
   IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList, Grids, INIFiles,
   mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn, LR_DBSet,
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
-  FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, Printers;
+  FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator,
+  Printers, DefaultTranslator;
 
 resourcestring
   rQSL = 'QSL';
@@ -85,6 +86,51 @@ const
     'QSLSentDate', 'QSLRecDate', 'LoTWRecDate', 'MainPrefix', 'DXCCPrefix', 'CQZone',
     'ITUZone', 'ManualSet', 'Continent', 'ValidDX', 'QSL_RCVD_VIA', 'QSL_SENT_VIA',
     'USERS', 'NoCalcDXCC');
+  constLanguageISO: array [0..141] of string =
+    ('aa', 'ab', 'af', 'am', 'ar', 'as', 'ay', 'az', 'ba', 'be', 'bg', 'bh', 'bi',
+    'bn', 'bo', 'br', 'ca', 'co',
+    'cs', 'cy', 'da', 'de', 'dz', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fa', 'fi',
+    'fj', 'fo', 'fr', 'fy', 'ga',
+    'gd', 'gl', 'gn', 'gu', 'ha', 'hi', 'he', 'hr', 'hu', 'hy', 'ia', 'id', 'ie',
+    'ik', 'in', 'is', 'it', 'iu',
+    'iw', 'ja', 'ji', 'jw', 'ka', 'kk', 'kl', 'km', 'kn', 'ko', 'ks', 'ku', 'ky',
+    'la', 'ln', 'lo', 'lt', 'lv',
+    'mg', 'mi', 'mk', 'ml', 'mn', 'mo', 'mr', 'ms', 'mt', 'my', 'na', 'ne', 'nl',
+    'no', 'oc', 'om', 'or', 'pa',
+    'pl', 'ps', 'pt', 'qu', 'rm', 'rn', 'ro', 'ru', 'rw', 'sa', 'sd', 'sg', 'sh',
+    'si', 'sk', 'sl', 'sm', 'sn',
+    'so', 'sq', 'sr', 'ss', 'st', 'su', 'sv', 'sw', 'ta', 'te', 'tg', 'th', 'ti',
+    'tk', 'tl', 'tn', 'to', 'tr',
+    'ts', 'tt', 'tw', 'ug', 'uk', 'ur', 'uz', 'vi', 'vo', 'wo', 'xh', 'yi', 'yo', 'za', 'zh', 'zu');
+  constLanguage: array [0..141] of string =
+    ('Afar', 'Abkhazian', 'Afrikaans', 'Amharic', 'Arabic', 'Assamese', 'Aymara', 'Azerbaijani',
+    'Bashkir', 'Byelorussian', 'Bulgarian', 'Bihari', 'Bislama', 'Bengali',
+    'Tibetan', 'Breton', 'Catalan',
+    'Corsican', 'Czech', 'Welch', 'Danish', 'German', 'Bhutani', 'Greek',
+    'English', 'Esperanto', 'Spanish',
+    'Estonian', 'Basque', 'Persian', 'Finnish', 'Fiji', 'Faeroese', 'French', 'Frisian', 'Irish',
+    'Scots Gaelic', 'Galician', 'Guarani', 'Gujarati', 'Hausa', 'Hindi',
+    'Hebrew', 'Croatian', 'Hungarian',
+    'Armenian', 'Interlingua', 'Indonesian', 'Interlingue', 'Inupiak',
+    'former Indonesian', 'Icelandic',
+    'Italian', 'Inuktitut (Eskimo)', 'former Hebrew', 'Japanese',
+    'former Yiddish', 'Javanese', 'Georgian',
+    'Kazakh', 'Greenlandic', 'Cambodian', 'Kannada', 'Korean', 'Kashmiri', 'Kurdish', 'Kirghiz',
+    'Latin', 'Lingala', 'Laothian', 'Lithuanian', 'Latvian', 'Malagasy',
+    'Maori', 'Macedonian', 'Malayalam',
+    'Mongolian', 'Moldavian', 'Marathi', 'Malay', 'Maltese', 'Burmese',
+    'Nauru', 'Nepali', 'Dutch', 'Norwegian',
+    'Occitan', '(Afan) Oromo', 'Oriya', 'Punjabi', 'Polish', 'Pashto',
+    'Portuguese', 'Quechua', 'Rhaeto-Romance',
+    'Kirundi', 'Romanian', 'Russian', 'Kinyarwanda', 'Sanskrit', 'Sindhi',
+    'Sangro', 'Serbo-Croatian', 'Singhalese',
+    'Slovak', 'Slovenian', 'Samoan', 'Shona', 'Somali', 'Albanian', 'Serbian',
+    'Siswati', 'Sesotho', 'Sudanese',
+    'Swedish', 'Swahili', 'Tamil', 'Tegulu', 'Tajik', 'Thai', 'Tigrinya',
+    'Turkmen', 'Tagalog', 'Setswana',
+    'Tonga', 'Turkish', 'Tsonga', 'Tatar', 'Twi', 'Uigur', 'Ukrainian',
+    'Urdu', 'Uzbek', 'Vietnamese',
+    'Volapuk', 'Wolof', 'Xhosa', 'Yiddish', 'Yoruba', 'Zhuang', 'Chinese', 'Zulu');
   constColumnWidth: array[0..28] of integer =
     (30, 35, 65, 45, 65, 65, 50, 70, 90, 40, 50, 35, 35, 50, 64, 64,
     64, 64, 55, 55, 55, 55,
@@ -146,8 +192,6 @@ type
     MenuItem114: TMenuItem;
     MenuItem115: TMenuItem;
     MenuItem116: TMenuItem;
-    MenuItem117: TMenuItem;
-    MenuItem118: TMenuItem;
     MenuItem119: TMenuItem;
     MenuItem120: TMenuItem;
     MenuItem121: TMenuItem;
@@ -482,8 +526,7 @@ type
     procedure MenuItem113Click(Sender: TObject);
     procedure MenuItem114Click(Sender: TObject);
     procedure MenuItem115Click(Sender: TObject);
-    procedure MenuItem117Click(Sender: TObject);
-    procedure MenuItem118Click(Sender: TObject);
+    procedure MenuItem116Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem121Click(Sender: TObject);
     procedure MenuItem122Click(Sender: TObject);
@@ -672,6 +715,8 @@ type
     function GetModeFromFreq(MHz: string): string;
     function SearchCountry(CallName: string; Province: boolean): string;
     procedure FindCountryFlag(Country: string);
+    function FindCountry(ISOCode: string): string;
+    function FindLanguageFiles(Dir: string): TStringList;
   end;
 
 var
@@ -767,6 +812,35 @@ type
 {$R *.lfm}
 
 { TMainForm }
+
+function TMainForm.FindCountry(ISOCode: string): string;
+var
+  ISOList: TStringList;
+  LanguageList: TStringList;
+  Index: integer;
+begin
+  Result := '';
+  ISOList := TStringList.Create;
+  LanguageList := TStringList.Create;
+  ISOList.AddStrings(constLanguageISO);
+  LanguageList.AddStrings(constLanguage);
+  Index := ISOList.IndexOf(ISOCode);
+  if Index <> -1 then
+  Result := LanguageList.Strings[Index]
+  else
+  Result := 'None';
+end;
+
+function TMainForm.FindLanguageFiles(Dir: string): TStringList;
+var
+  LangList: TStringList;
+begin
+  LangList := TStringList.Create;
+  LangList := FindAllFiles(Dir, 'EWLog.*.po', False, faNormal);
+  LangList.Text := StringReplace(LangList.Text, 'locale/EWLog.', '', [rfreplaceall]);
+  LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
+  Result := LangList;
+end;
 
 procedure TMainForm.FindCountryFlag(Country: string);
 var
@@ -1397,13 +1471,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
-  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
-  QSOAddInfo, Marker: string;
-  ManualSet: integer; DigiBand, Continent, ShortNote: string;
-  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
-  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
-  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
+  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
+  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
+  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
+  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
+  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
+  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -2979,8 +3053,15 @@ var
   i, j: integer;
   Lang: string = '';
   FallbackLang: string = '';
+//  LangList:TStringList;
 begin
+//  LangList:=TStringList.Create;
   GetLanguageIDs(Lang, FallbackLang);
+//  LangList:=FindLanguageFiles('locale');
+
+//  for i:=0 to LangList.Count-1 do
+//  ShowMessage(FindCountry(LangList.Strings[i]));
+
   GetingHint := 0;
       {$IFDEF UNIX}
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
@@ -2994,20 +3075,7 @@ begin
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
     Language := FallbackLang;
-  if Language = 'en' then
-  begin
-    MenuItem118.Checked := True;
-    MenuItem117.Checked := False;
-    SetDefaultLang('en');
-    ComboBox7.ItemIndex := 3;
-  end;
-  if Language = 'ru' then
-  begin
-    MenuItem117.Checked := True;
-    MenuItem118.Checked := False;
-    SetDefaultLang('ru');
-    ComboBox7.ItemIndex := 3;
-  end;
+
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
   VirtualStringTree1.Images := FlagList;
@@ -3751,33 +3819,21 @@ begin
   end;
 end;
 
-procedure TMainForm.MenuItem117Click(Sender: TObject);
+procedure TMainForm.MenuItem116Click(Sender: TObject);
+ var
+   LangItem: array of TMenuItem;
+   LangList: TStringList;
+   i: Integer;
 begin
-  SetDefaultLang('ru');
-  ComboBox7.ItemIndex := 3;
-  Language := 'ru';
-  SelDB(DBLookupComboBox1.KeyValue);
-  CallLogBook := DBLookupComboBox1.KeyValue;
+  LangList:=TStringList.Create;
+  LangList:=FindLanguageFiles('locale');
 
-  if Language = 'ru' then
-  begin
-    MenuItem117.Checked := True;
-    MenuItem118.Checked := False;
-  end;
-end;
+  for i:=0 to LangList.Count-1 do begin
+    LangItem[i]:=TMenuItem.Create(MenuItem116);
+  LangItem[i].Caption:=LangList.Strings[i];
+   end;
 
-procedure TMainForm.MenuItem118Click(Sender: TObject);
-begin
-  SetDefaultLang('en');
-  ComboBox7.ItemIndex := 3;
-  Language := 'en';
-  SelDB(DBLookupComboBox1.KeyValue);
-  CallLogBook := DBLookupComboBox1.KeyValue;
-  if Language = 'en' then
-  begin
-    MenuItem118.Checked := True;
-    MenuItem117.Checked := False;
-  end;
+  MenuItem116.Add(LangItem);
 end;
 
 //QSL получена

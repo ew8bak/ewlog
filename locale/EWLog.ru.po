@@ -2943,14 +2943,6 @@ msgstr "Очистить окно"
 msgid "Language"
 msgstr "Язык"
 
-#: tmainform.menuitem117.caption
-msgid "Russian"
-msgstr "Русский"
-
-#: tmainform.menuitem118.caption
-msgid "English"
-msgstr "Английский"
-
 #: tmainform.menuitem119.caption
 msgid "Download Languages"
 msgstr "Загрузить переводы"

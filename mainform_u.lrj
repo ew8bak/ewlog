@@ -165,8 +165,6 @@
 {"hash":137563085,"name":"tmainform.menuitem52.caption","sourcebytes":[67,111,110,102,105,103,117,114,101,32,112,114,111,103,114,97,109],"value":"Configure program"},
 {"hash":62250949,"name":"tmainform.menuitem99.caption","sourcebytes":[67,111,110,102,105,103,117,114,101,32,116,97,98,108,101],"value":"Configure table"},
 {"hash":139375349,"name":"tmainform.menuitem116.caption","sourcebytes":[76,97,110,103,117,97,103,101],"value":"Language"},
-{"hash":164273966,"name":"tmainform.menuitem117.caption","sourcebytes":[82,117,115,115,105,97,110],"value":"Russian"},
-{"hash":206450904,"name":"tmainform.menuitem118.caption","sourcebytes":[69,110,103,108,105,115,104],"value":"English"},
 {"hash":86755987,"name":"tmainform.menuitem119.caption","sourcebytes":[68,111,119,110,108,111,97,100,32,76,97,110,103,117,97,103,101,115],"value":"Download Languages"},
 {"hash":135165141,"name":"tmainform.menuitem89.caption","sourcebytes":[83,119,105,116,99,104,32,100,97,116,97,98,97,115,101],"value":"Switch database"},
 {"hash":98633860,"name":"tmainform.menuitem91.caption","sourcebytes":[87,105,122,97,114,100],"value":"Wizard"},

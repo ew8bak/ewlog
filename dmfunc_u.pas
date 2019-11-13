@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
-  DateUtils, Sockets, IdGlobal,LazUTF8, strutils,
+  DateUtils, Sockets, IdGlobal,LazUTF8, strutils, Translations, LazFileUtils,
   {$IFDEF WINDOWS}
   Windows;
   {$ELSE}
@@ -99,6 +99,8 @@ type
 
 var
   dmFunc: TdmFunc;
+  DefaultLang: String = '';
+
   {$IFDEF WINDOWS}
   wsjt_handle: hWnd;
   {$ENDIF}

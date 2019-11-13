@@ -3245,16 +3245,7 @@ object MainForm: TMainForm
       end
       object MenuItem116: TMenuItem
         Caption = 'Language'
-        object MenuItem117: TMenuItem
-          AutoCheck = True
-          Caption = 'Russian'
-          OnClick = MenuItem117Click
-        end
-        object MenuItem118: TMenuItem
-          AutoCheck = True
-          Caption = 'English'
-          OnClick = MenuItem118Click
-        end
+        OnClick = MenuItem116Click
         object N1: TMenuItem
           Caption = '-'
         end

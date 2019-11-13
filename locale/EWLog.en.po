@@ -2933,14 +2933,6 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: tmainform.menuitem117.caption
-msgid "Russian"
-msgstr ""
-
-#: tmainform.menuitem118.caption
-msgid "English"
-msgstr ""
-
 #: tmainform.menuitem119.caption
 msgid "Download Languages"
 msgstr ""
