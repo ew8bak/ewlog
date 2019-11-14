@@ -101,21 +101,25 @@ const
     'si', 'sk', 'sl', 'sm', 'sn',
     'so', 'sq', 'sr', 'ss', 'st', 'su', 'sv', 'sw', 'ta', 'te', 'tg', 'th', 'ti',
     'tk', 'tl', 'tn', 'to', 'tr',
-    'ts', 'tt', 'tw', 'ug', 'uk', 'ur', 'uz', 'vi', 'vo', 'wo', 'xh', 'yi', 'yo', 'za', 'zh', 'zu');
+    'ts', 'tt', 'tw', 'ug', 'uk', 'ur', 'uz', 'vi', 'vo', 'wo', 'xh',
+    'yi', 'yo', 'za', 'zh', 'zu');
   constLanguage: array [0..141] of string =
-    ('Afar', 'Abkhazian', 'Afrikaans', 'Amharic', 'Arabic', 'Assamese', 'Aymara', 'Azerbaijani',
+    ('Afar', 'Abkhazian', 'Afrikaans', 'Amharic', 'Arabic', 'Assamese',
+    'Aymara', 'Azerbaijani',
     'Bashkir', 'Byelorussian', 'Bulgarian', 'Bihari', 'Bislama', 'Bengali',
     'Tibetan', 'Breton', 'Catalan',
     'Corsican', 'Czech', 'Welch', 'Danish', 'German', 'Bhutani', 'Greek',
     'English', 'Esperanto', 'Spanish',
-    'Estonian', 'Basque', 'Persian', 'Finnish', 'Fiji', 'Faeroese', 'French', 'Frisian', 'Irish',
+    'Estonian', 'Basque', 'Persian', 'Finnish', 'Fiji', 'Faeroese',
+    'French', 'Frisian', 'Irish',
     'Scots Gaelic', 'Galician', 'Guarani', 'Gujarati', 'Hausa', 'Hindi',
     'Hebrew', 'Croatian', 'Hungarian',
     'Armenian', 'Interlingua', 'Indonesian', 'Interlingue', 'Inupiak',
     'former Indonesian', 'Icelandic',
     'Italian', 'Inuktitut (Eskimo)', 'former Hebrew', 'Japanese',
     'former Yiddish', 'Javanese', 'Georgian',
-    'Kazakh', 'Greenlandic', 'Cambodian', 'Kannada', 'Korean', 'Kashmiri', 'Kurdish', 'Kirghiz',
+    'Kazakh', 'Greenlandic', 'Cambodian', 'Kannada', 'Korean',
+    'Kashmiri', 'Kurdish', 'Kirghiz',
     'Latin', 'Lingala', 'Laothian', 'Lithuanian', 'Latvian', 'Malagasy',
     'Maori', 'Macedonian', 'Malayalam',
     'Mongolian', 'Moldavian', 'Marathi', 'Malay', 'Maltese', 'Burmese',
@@ -828,9 +832,9 @@ begin
   LanguageList.AddStrings(constLanguage);
   Index := LanguageList.IndexOf(Country);
   if Index <> -1 then
-  Result := ISOList.Strings[Index]
+    Result := ISOList.Strings[Index]
   else
-  Result := 'None';
+    Result := 'None';
 end;
 
 function TMainForm.FindCountry(ISOCode: string): string;
@@ -846,9 +850,9 @@ begin
   LanguageList.AddStrings(constLanguage);
   Index := ISOList.IndexOf(ISOCode);
   if Index <> -1 then
-  Result := LanguageList.Strings[Index]
+    Result := LanguageList.Strings[Index]
   else
-  Result := 'None';
+    Result := 'None';
 end;
 
 function TMainForm.FindLanguageFiles(Dir: string): TStringList;
@@ -857,7 +861,8 @@ var
 begin
   LangList := TStringList.Create;
   LangList := FindAllFiles(Dir, 'EWLog.*.po', False, faNormal);
-  LangList.Text := StringReplace(LangList.Text, 'locale'+DirectorySeparator+'EWLog.', '', [rfreplaceall]);
+  LangList.Text := StringReplace(LangList.Text, 'locale' + DirectorySeparator +
+    'EWLog.', '', [rfreplaceall]);
   LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
   Result := LangList;
 end;
@@ -3088,7 +3093,7 @@ begin
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
-  Language := FallbackLang;
+    Language := FallbackLang;
   SetDefaultLang(Language);
 
   FlagList := TImageList.Create(Self);
@@ -3840,52 +3845,35 @@ var
 begin
   MenuItem := (Sender as TMenuItem);
   SetDefaultLang(FindISOCountry(MenuItem.Caption));
-  ComboBox7.ItemIndex:=3;
-  Language:=FindISOCountry(MenuItem.Caption);
+  ComboBox7.ItemIndex := 3;
+  Language := FindISOCountry(MenuItem.Caption);
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
 end;
 
 procedure TMainForm.MenuItem116Click(Sender: TObject);
- var
-   LangItem: TMenuItem;
-   LangList: TStringList;
-   i: Integer;
+var
+  LangItem: TMenuItem;
+  LangList: TStringList;
+  i: integer;
 begin
- // try
-    if MenuItem116.Count > 2 then begin
-    for i:=0 to MenuItem116.Count do
-    MenuItem116.Delete(i);
-    end;
-  LangList:=TStringList.Create;
-  LangList:=FindLanguageFiles('locale');
-  for i:=0 to LangList.Count-1 do begin
-    LangItem:=TMenuItem.Create(Self);
-    LangItem.Name:='LangItem'+IntToStr(i);
-    LangItem.Caption:=FindCountry(LangList.Strings[i]);
-    LangItem.OnClick:=@LangItemClick;
-    LangItem.Tag:=99;
-    MenuItem116.Insert(i,LangItem);
+  for i := MainForm.ComponentCount - 1 downto 0 do
+    if (MainForm.Components[i] is TMenuItem) then
+      if (MainForm.Components[i] as TMenuItem).Tag = 99 then
+        (MainForm.Components[i] as TMenuItem).Free;
+
+  LangList := TStringList.Create;
+  LangList := FindLanguageFiles('locale');
+  for i := 0 to LangList.Count - 1 do
+  begin
+    LangItem := TMenuItem.Create(Self);
+    LangItem.Name := 'LangItem' + IntToStr(i);
+    LangItem.Caption := FindCountry(LangList.Strings[i]);
+    LangItem.OnClick := @LangItemClick;
+    LangItem.Tag := 99;
+    MenuItem116.Insert(i, LangItem);
   end;
-//  except
-//    on E:Exception do begin
-//    for  i := MainForm.ComponentCount - 1 downto 0 do
-//    if (MainForm.Components[i] is TMenuItem) then
-//    if (MainForm.Components[i] as TMenuItem).Tag = 99 then
-//     (MainForm.Components[i] as TMenuItem).Free;
-//    LangList.Free;
-//      LangList:=TStringList.Create;
-//  LangList:=FindLanguageFiles('locale');
-//      for i:=0 to LangList.Count-1 do begin
-//    LangItem:=TMenuItem.Create(Self);
-//    LangItem.Name:='LangItem'+IntToStr(i);
-//    LangItem.Caption:=FindCountry(LangList.Strings[i]);
- //   LangItem.OnClick:=@LangItemClick;
- //   LangItem.Tag:=99;
- //   MenuItem116.Insert(i,LangItem);
- // end;
-//  end;
-//  end;
+  LangList.Free;
 end;
 
 //QSL получена
