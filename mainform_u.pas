@@ -861,8 +861,7 @@ var
 begin
   LangList := TStringList.Create;
   LangList := FindAllFiles(Dir, 'EWLog.*.po', False, faNormal);
-  LangList.Text := StringReplace(LangList.Text, 'locale' + DirectorySeparator +
-    'EWLog.', '', [rfreplaceall]);
+  LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator + 'EWLog.', '', [rfreplaceall]);
   LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
   Result := LangList;
 end;
@@ -1496,13 +1495,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
-  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
-  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
-  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
-  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
+  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
+  QSOAddInfo, Marker: string;
+  ManualSet: integer; DigiBand, Continent, ShortNote: string;
+  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
+  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
+  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -3094,7 +3093,7 @@ begin
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
     Language := FallbackLang;
-  SetDefaultLang(Language);
+  SetDefaultLang(Language,PathMyDoc+DirectorySeparator+'locale');
 
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
@@ -3842,9 +3841,16 @@ end;
 procedure TMainForm.LangItemClick(Sender: TObject);
 var
   MenuItem: TMenuItem;
+  PathMyDoc: string;
 begin
+   {$IFDEF UNIX}
+  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    {$ENDIF UNIX}
   MenuItem := (Sender as TMenuItem);
-  SetDefaultLang(FindISOCountry(MenuItem.Caption));
+  SetDefaultLang(FindISOCountry(MenuItem.Caption),PathMyDoc + 'locale');
   ComboBox7.ItemIndex := 3;
   Language := FindISOCountry(MenuItem.Caption);
   SelDB(DBLookupComboBox1.KeyValue);
@@ -3856,14 +3862,21 @@ var
   LangItem: TMenuItem;
   LangList: TStringList;
   i: integer;
+  PathMyDoc: string;
 begin
+     {$IFDEF UNIX}
+  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    {$ENDIF UNIX}
   for i := MainForm.ComponentCount - 1 downto 0 do
     if (MainForm.Components[i] is TMenuItem) then
       if (MainForm.Components[i] as TMenuItem).Tag = 99 then
         (MainForm.Components[i] as TMenuItem).Free;
 
   LangList := TStringList.Create;
-  LangList := FindLanguageFiles('locale');
+  LangList := FindLanguageFiles(PathMyDoc + 'locale');
   for i := 0 to LangList.Count - 1 do
   begin
     LangItem := TMenuItem.Create(Self);
