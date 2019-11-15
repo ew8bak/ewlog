@@ -11,8 +11,8 @@ uses
   IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList, Grids, INIFiles,
   mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn, LR_DBSet,
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
-  FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator,
-  Printers, DefaultTranslator;
+  FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
+  Printers, DefaultTranslator,zipper;
 
 resourcestring
   rQSL = 'QSL';
@@ -77,6 +77,7 @@ resourcestring
   rLogConWSJT = 'EWLog connected to WSJT';
   rLogNConWSJT = 'EWLog not connected to WSJT';
   rQSOTotal = ' Total ';
+  rLanguageComplite = 'Translation files download successfully';
 
 
 const
@@ -531,6 +532,7 @@ type
     procedure MenuItem114Click(Sender: TObject);
     procedure MenuItem115Click(Sender: TObject);
     procedure MenuItem116Click(Sender: TObject);
+    procedure MenuItem119Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem121Click(Sender: TObject);
     procedure MenuItem122Click(Sender: TObject);
@@ -3887,6 +3889,38 @@ begin
     MenuItem116.Insert(i, LangItem);
   end;
   LangList.Free;
+end;
+
+procedure TMainForm.MenuItem119Click(Sender: TObject);
+var
+  HTTP: THTTPSend;
+  updatePATH: string;
+  UnZipper: TUnZipper;
+begin
+   {$IFDEF UNIX}
+  updatePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+   {$ELSE}
+  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+  SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+   {$ENDIF UNIX}
+   ForceDirectories(updatePATH+'locale');
+   HTTP := THTTPSend.Create;
+   UnZipper := TUnZipper.Create;
+   try
+     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/locale.zip') then
+      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'locale.zip');
+   finally
+     HTTP.Free;
+     try
+       UnZipper.FileName := updatePATH + 'updates'+DirectorySeparator+'locale.zip';
+       UnZipper.OutputPath := updatePATH + 'locale'+DirectorySeparator;
+       UnZipper.Examine;
+       UnZipper.UnZipAllFiles;
+     finally
+       UnZipper.Free;
+       ShowMessage(rLanguageComplite);
+     end;
+   end;
 end;
 
 //QSL получена

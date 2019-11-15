@@ -3251,6 +3251,7 @@ object MainForm: TMainForm
         end
         object MenuItem119: TMenuItem
           Caption = 'Download Languages'
+          OnClick = MenuItem119Click
         end
       end
       object MenuItem100: TMenuItem

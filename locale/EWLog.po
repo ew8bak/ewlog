@@ -303,6 +303,10 @@ msgctxt "mainform_u.rituzone"
 msgid "ITU Zone"
 msgstr ""
 
+#: mainform_u.rlanguagecomplite
+msgid "Translation files download successfully"
+msgstr ""
+
 #: mainform_u.rlogconwsjt
 msgid "EWLog connected to WSJT"
 msgstr ""
