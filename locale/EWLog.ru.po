@@ -315,7 +315,7 @@ msgstr "ITU Зона"
 
 #: mainform_u.rlanguagecomplite
 msgid "Translation files download successfully"
-msgstr ""
+msgstr "Файлы переводов успешно загружены"
 
 #: mainform_u.rlogconwsjt
 msgid "EWLog connected to WSJT"
@@ -4426,4 +4426,3 @@ msgstr "Статус обновления: Загрузка"
 #: updateform_u.rupdatestatusrequiredinstall
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
-
