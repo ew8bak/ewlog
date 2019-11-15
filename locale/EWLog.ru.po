@@ -4426,3 +4426,4 @@ msgstr "Статус обновления: Загрузка"
 #: updateform_u.rupdatestatusrequiredinstall
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
+

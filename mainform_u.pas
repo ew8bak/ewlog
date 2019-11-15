@@ -1390,6 +1390,7 @@ end;
 
 procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
 begin
+  callNameS:=dmFunc.ExtractCallsign(callNameS);
   SQLQuery2.Close;
   SQLQuery2.SQL.Clear;
 
@@ -1414,8 +1415,9 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-      + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign LIKE ' + QuotedStr(callNameS)+' or CallSign LIKE '+QuotedStr(callNameS+'/%'));
-
+    // + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +  QuotedStr(callNameS)+' or CallSign LIKE '+QuotedStr(callNameS+'/%');
+     + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign LIKE ' + QuotedStr(callNameS+'/%'));
+      ShowMessage(SQLQuery2.SQL.Text);
       //+ ' WHERE CallSign = "' + callNameS + '"');
   //Application.ProcessMessages;
   SQLQuery2.Open;
