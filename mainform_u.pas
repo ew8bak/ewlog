@@ -1403,8 +1403,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign = "' +
-      callNameS + '"')
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign LIKE ' + QuotedStr(callNameS)+' or CallSign LIKE '+QuotedStr(callNameS+'/%'))
   else
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1415,9 +1414,10 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-      + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = "' +
-      callNameS + '"');
-  Application.ProcessMessages;
+      + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign LIKE ' + QuotedStr(callNameS)+' or CallSign LIKE '+QuotedStr(callNameS+'/%'));
+
+      //+ ' WHERE CallSign = "' + callNameS + '"');
+  //Application.ProcessMessages;
   SQLQuery2.Open;
 
   if (SQLQuery2.RecordCount > 0) and (ind = 1) and (EditButton1.Text <> '') then
