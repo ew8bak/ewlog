@@ -5839,7 +5839,6 @@ begin
       Params.ParamByName('QSOTime').AsString :=
         TimeToStr(DateTimePicker1.Time, FmtStngs);
       Params.ParamByName('QSOBand').AsString := NameBand;
-      ShowMessage(NameBand);
       Params.ParamByName('QSOMode').AsString := ComboBox2.Text;
       Params.ParamByName('QSOReportSent').AsString := ComboBox4.Text;
       Params.ParamByName('QSOReportRecived').AsString := ComboBox5.Text;
