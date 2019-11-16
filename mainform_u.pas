@@ -3963,11 +3963,13 @@ var
   numberToPrint: string;
   NumberCopies: integer;
   ind: integer;
+  resStream: TLazarusResourceStream;
 begin
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
-
+  resStream:=TLazarusResourceStream.Create('report',nil);
+  try
   if DefaultDB = 'MySQL' then
     PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
   else
@@ -4023,8 +4025,9 @@ begin
   end;
   PrintOK := False;
   PrintQuery.Open;
-  frReport1.LoadFromFile('report.lrf');
-
+ // frReport1.LoadFromFile('report.lrf');
+  frReport1.LoadFromStream(resStream);
+   // ShowMessage(res.Value);
   if PrintPrev = True then
     frReport1.ShowReport
   else
@@ -4059,6 +4062,9 @@ begin
       end;
     end;
   end;
+  finally
+    resStream.Free;
+  end;
 end;
 
 procedure TMainForm.MenuItem122Click(Sender: TObject);
@@ -4069,11 +4075,13 @@ var
   numberToPrint: string;
   NumberCopies: integer;
   ind: integer;
+  res: TResourceStream;
 begin
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
-
+  res:=TResourceStream.Create(HINSTANCE,'report',RT_RCDATA);
+ try
   if DefaultDB = 'MySQL' then
     PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
   else
@@ -4107,7 +4115,9 @@ begin
   end;
   PrintOK := False;
   PrintQuery.Open;
-  frReport1.LoadFromFile('report.lrf');
+ // frReport1.LoadFromFile('report.lrf');
+  frReport1.LoadFromStream(res);
+
 
   if PrintPrev = True then
     frReport1.ShowReport
@@ -4143,6 +4153,9 @@ begin
       end;
     end;
   end;
+ finally
+   res.Free;
+ end;
 end;
 
 //Поставить QSO в очередь на печать
