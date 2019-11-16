@@ -12,7 +12,7 @@ uses
   mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn, LR_DBSet,
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
   FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
-  Printers, DefaultTranslator,zipper;
+  Printers, DefaultTranslator, zipper;
 
 resourcestring
   rQSL = 'QSL';
@@ -863,7 +863,8 @@ var
 begin
   LangList := TStringList.Create;
   LangList := FindAllFiles(Dir, 'EWLog.*.po', False, faNormal);
-  LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator + 'EWLog.', '', [rfreplaceall]);
+  LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
+    'EWLog.', '', [rfreplaceall]);
   LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
   Result := LangList;
 end;
@@ -1390,7 +1391,7 @@ end;
 
 procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
 begin
-  callNameS:=dmFunc.ExtractCallsign(callNameS);
+  callNameS := dmFunc.ExtractCallsign(callNameS);
   SQLQuery2.Close;
   SQLQuery2.SQL.Clear;
 
@@ -1404,7 +1405,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign LIKE ' + QuotedStr(callNameS)+' or CallSign LIKE '+QuotedStr(callNameS+'/%'))
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign LIKE ' +
+      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%'))
   else
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1415,11 +1417,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-    // + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +  QuotedStr(callNameS)+' or CallSign LIKE '+QuotedStr(callNameS+'/%');
-     + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign LIKE ' + QuotedStr(callNameS+'/%'));
-      ShowMessage(SQLQuery2.SQL.Text);
-      //+ ' WHERE CallSign = "' + callNameS + '"');
-  //Application.ProcessMessages;
+      + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
+      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%'));
   SQLQuery2.Open;
 
   if (SQLQuery2.RecordCount > 0) and (ind = 1) and (EditButton1.Text <> '') then
@@ -1499,13 +1498,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
-  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
-  QSOAddInfo, Marker: string;
-  ManualSet: integer; DigiBand, Continent, ShortNote: string;
-  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
-  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
-  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
+  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
+  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
+  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
+  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
+  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
+  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -1719,8 +1718,9 @@ var
   i, j: integer;
   R: extended;
   la, lo: currency;
-  azim, qra, loc: string;
+  azim, qra, loc, callnames: string;
 begin
+  callnames := dmFunc.ExtractCallsign(CallName);
   Result := False;
   loc := '';
   qra := '';
@@ -1741,8 +1741,8 @@ begin
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-        + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign = "' +
-        CallName + '"')
+        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
+        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%'))
     else
       SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
         ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1753,8 +1753,8 @@ begin
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = "' +
-        CallName + '"');
+        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
+        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%'));
     Open;
   end;
 
@@ -3097,7 +3097,7 @@ begin
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
     Language := FallbackLang;
-  SetDefaultLang(Language,PathMyDoc+DirectorySeparator+'locale');
+  SetDefaultLang(Language, PathMyDoc + DirectorySeparator + 'locale');
 
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
@@ -3854,7 +3854,7 @@ begin
     GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
     {$ENDIF UNIX}
   MenuItem := (Sender as TMenuItem);
-  SetDefaultLang(FindISOCountry(MenuItem.Caption),PathMyDoc + 'locale');
+  SetDefaultLang(FindISOCountry(MenuItem.Caption), PathMyDoc + 'locale');
   ComboBox7.ItemIndex := 3;
   Language := FindISOCountry(MenuItem.Caption);
   SelDB(DBLookupComboBox1.KeyValue);
@@ -3903,26 +3903,26 @@ begin
   updatePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
    {$ELSE}
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-  SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
    {$ENDIF UNIX}
-   ForceDirectories(updatePATH+'locale');
-   HTTP := THTTPSend.Create;
-   UnZipper := TUnZipper.Create;
-   try
-     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/locale.zip') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'locale.zip');
-   finally
-     HTTP.Free;
-     try
-       UnZipper.FileName := updatePATH + 'updates'+DirectorySeparator+'locale.zip';
-       UnZipper.OutputPath := updatePATH + 'locale'+DirectorySeparator;
-       UnZipper.Examine;
-       UnZipper.UnZipAllFiles;
-     finally
-       UnZipper.Free;
-       ShowMessage(rLanguageComplite);
-     end;
-   end;
+  ForceDirectories(updatePATH + 'locale');
+  HTTP := THTTPSend.Create;
+  UnZipper := TUnZipper.Create;
+  try
+    if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/locale.zip') then
+      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator + 'locale.zip');
+  finally
+    HTTP.Free;
+    try
+      UnZipper.FileName := updatePATH + 'updates' + DirectorySeparator + 'locale.zip';
+      UnZipper.OutputPath := updatePATH + 'locale' + DirectorySeparator;
+      UnZipper.Examine;
+      UnZipper.UnZipAllFiles;
+    finally
+      UnZipper.Free;
+      ShowMessage(rLanguageComplite);
+    end;
+  end;
 end;
 
 //QSL получена
@@ -5813,6 +5813,10 @@ begin
   if EditFlag = True then
   begin
 
+    if Pos('M',ComboBox1.Text) > 0 then
+      NameBand := dmFunc.FreqFromBand(ComboBox1.Text, ComboBox2.Text)
+    else
+      NameBand := ComboBox1.Text;
     DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
 
     with SaveQSOQuery do
@@ -5835,6 +5839,7 @@ begin
       Params.ParamByName('QSOTime').AsString :=
         TimeToStr(DateTimePicker1.Time, FmtStngs);
       Params.ParamByName('QSOBand').AsString := NameBand;
+      ShowMessage(NameBand);
       Params.ParamByName('QSOMode').AsString := ComboBox2.Text;
       Params.ParamByName('QSOReportSent').AsString := ComboBox4.Text;
       Params.ParamByName('QSOReportRecived').AsString := ComboBox5.Text;
@@ -5859,6 +5864,8 @@ begin
       ExecSQL;
     end;
     SQLTransaction1.Commit;
+    EditFlag := False;
+    CheckBox1.Checked:=True;
     SelDB(CallLogBook);
     Clr();
   end;

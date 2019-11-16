@@ -729,7 +729,7 @@ msgid "HAM LOG EWLog"
 msgstr ""
 
 #: tabout_form.label2.caption
-msgid "Version 1.1"
+msgid "Version"
 msgstr ""
 
 #: tabout_form.label3.caption
@@ -738,6 +738,10 @@ msgstr ""
 
 #: tabout_form.label4.caption
 msgid "Copyright 2015 - 2019 Vladimir Karpenko"
+msgstr ""
+
+#: tabout_form.label5.caption
+msgid "Label5"
 msgstr ""
 
 #: tchangelog_form.button1.caption

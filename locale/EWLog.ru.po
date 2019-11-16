@@ -739,8 +739,8 @@ msgid "HAM LOG EWLog"
 msgstr "Аппаратный журнал EWLog"
 
 #: tabout_form.label2.caption
-msgid "Version 1.1"
-msgstr "Версия 1.1"
+msgid "Version"
+msgstr "Версия"
 
 #: tabout_form.label3.caption
 msgid "Designed by EW8BAK"
@@ -749,6 +749,10 @@ msgstr "Разработан EW8BAK"
 #: tabout_form.label4.caption
 msgid "Copyright 2015 - 2019 Vladimir Karpenko"
 msgstr "Copyright 2015 - 2019 Владимир Карпенко"
+
+#: tabout_form.label5.caption
+msgid "Label5"
+msgstr ""
 
 #: tchangelog_form.button1.caption
 msgctxt "tchangelog_form.button1.caption"

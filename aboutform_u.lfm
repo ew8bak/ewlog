@@ -9,8 +9,9 @@ object About_Form: TAbout_Form
   ClientHeight = 126
   ClientWidth = 316
   FormStyle = fsStayOnTop
+  OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object Label1: TLabel
     Left = 16
     Height = 28
@@ -26,8 +27,8 @@ object About_Form: TAbout_Form
     Left = 16
     Height = 25
     Top = 40
-    Width = 99
-    Caption = 'Version 1.1'
+    Width = 67
+    Caption = 'Version'
     Font.Height = -19
     Font.Style = [fsBold]
     ParentColor = False
@@ -109,5 +110,19 @@ object About_Form: TAbout_Form
       EBCCC038F01130B086000B00E2F17FC3FF3DC07F0300B673F688335940870000
       000049454E44AE426082
     }
+  end
+  object Label5: TLabel
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrBottom
+    Left = 88
+    Height = 25
+    Top = 40
+    Width = 58
+    BorderSpacing.Left = 5
+    Caption = 'Label5'
+    Font.Height = -19
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
   end
 end
