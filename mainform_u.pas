@@ -1406,7 +1406,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign LIKE ' +
-      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%'))
+      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/% ORDER BY UnUsedIndex ASC'))
   else
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1418,7 +1418,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
       + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%'));
+      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/% ORDER BY UnUsedIndex ASC'));
   SQLQuery2.Open;
 
   if (SQLQuery2.RecordCount > 0) and (ind = 1) and (EditButton1.Text <> '') then
@@ -1498,13 +1498,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
-  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
-  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
-  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
-  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
+  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
+  QSOAddInfo, Marker: string;
+  ManualSet: integer; DigiBand, Continent, ShortNote: string;
+  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
+  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
+  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -1742,7 +1742,7 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
         + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%'))
+        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/% ORDER BY UnUsedIndex ASC'))
     else
       SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
         ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1754,7 +1754,7 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
         + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%'));
+        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/% ORDER BY UnUsedIndex ASC'));
     Open;
   end;
 
@@ -3910,7 +3910,8 @@ begin
   UnZipper := TUnZipper.Create;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/locale.zip') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator + 'locale.zip');
+      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator +
+        'locale.zip');
   finally
     HTTP.Free;
     try
@@ -3964,104 +3965,110 @@ var
   NumberCopies: integer;
   ind: integer;
   resStream: TLazarusResourceStream;
+  reportPATH: string;
 begin
+     {$IFDEF UNIX}
+  reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+   {$ELSE}
+  reportPATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+   {$ENDIF UNIX}
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
-  resStream:=TLazarusResourceStream.Create('report',nil);
+  resStream := TLazarusResourceStream.Create('report', nil);
   try
-  if DefaultDB = 'MySQL' then
-    PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
-  else
-    PrintQuery.DataBase := MainForm.SQLiteDBConnection;
+    if DefaultDB = 'MySQL' then
+      PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
+    else
+      PrintQuery.DataBase := MainForm.SQLiteDBConnection;
 
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    if (UnUsIndex <> 0) then
     begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      SetLength(PrintArray, DBGrid1.SelectedRows.Count);
-      PrintArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
-        'UnUsedIndex').AsInteger;
-    end;
-    PrintOK := True;
-  end;
-
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-    begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do
+      for i := 0 to DBGrid1.SelectedRows.Count - 1 do
       begin
-        Close;
-        SQL.Clear;
-        SQL.Add('UPDATE ' + LogTable +
-          ' SET `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('QSLSentAdv').AsString := 'P';
-        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-        ExecSQL;
+        DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
+        SetLength(PrintArray, DBGrid1.SelectedRows.Count);
+        PrintArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
+          'UnUsedIndex').AsInteger;
       end;
+      PrintOK := True;
     end;
-    SQLTransaction1.Commit;
-    SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
-  end;
 
-  if PrintOK then
-  begin
-    for i := 0 to High(PrintArray) do
+    if (UnUsIndex <> 0) then
     begin
-      if i > 0 then
-        numberToPrint := numberToPrint + ', ';
-      numberToPrint := numberToPrint + IntToStr(PrintArray[i]);
-    end;
-    for i := 0 to Length(PrintArray) - 1 do
-    begin
-      PrintQuery.SQL.Text := 'SELECT * FROM ' + LogTable +
-        ' WHERE `UnUsedIndex` in (' + numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
-    end;
-  end;
-  PrintOK := False;
-  PrintQuery.Open;
- // frReport1.LoadFromFile('report.lrf');
-  frReport1.LoadFromStream(resStream);
-   // ShowMessage(res.Value);
-  if PrintPrev = True then
-    frReport1.ShowReport
-  else
-  begin
-    ind := Printer.PrinterIndex;
-    if not frReport1.PrepareReport then
-      Exit;
-
-    with PrintDialog1 do
-    begin
-      Options := [poPageNums];
-      Copies := 1;
-      Collate := True;
-      FromPage := 1;
-      ToPage := frReport1.EMFPages.Count;
-      MaxPage := frReport1.EMFPages.Count;
-      if Execute then
+      for i := 0 to DBGrid1.SelectedRows.Count - 1 do
       begin
-        if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
-          frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
-          frReport1.PrepareReport
-        else
-          exit;
-        if PrintDialog1.PrintRange = prPageNums then
+        DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
+        UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+        with EditQSO_Form.UPDATE_Query do
         begin
-          FromPage := PrintDialog1.FromPage;
-          ToPage := PrintDialog1.ToPage;
+          Close;
+          SQL.Clear;
+          SQL.Add('UPDATE ' + LogTable +
+            ' SET `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
+          Params.ParamByName('QSLSentAdv').AsString := 'P';
+          Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
+          ExecSQL;
         end;
-        NumberCopies := PrintDialog1.Copies;
-        frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
-          NumberCopies);
+      end;
+      SQLTransaction1.Commit;
+      SelDB(CallLogBook);
+      DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    end;
+
+    if PrintOK then
+    begin
+      for i := 0 to High(PrintArray) do
+      begin
+        if i > 0 then
+          numberToPrint := numberToPrint + ', ';
+        numberToPrint := numberToPrint + IntToStr(PrintArray[i]);
+      end;
+      for i := 0 to Length(PrintArray) - 1 do
+      begin
+        PrintQuery.SQL.Text := 'SELECT * FROM ' + LogTable +
+          ' WHERE `UnUsedIndex` in (' + numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
       end;
     end;
-  end;
+    PrintOK := False;
+    PrintQuery.Open;
+    resStream.SaveToFile(reportPATH + 'rep.lrf');
+    frReport1.LoadFromFile(reportPATH + 'rep.lrf');
+    if PrintPrev = True then
+      frReport1.ShowReport
+    else
+    begin
+      ind := Printer.PrinterIndex;
+      if not frReport1.PrepareReport then
+        Exit;
+
+      with PrintDialog1 do
+      begin
+        Options := [poPageNums];
+        Copies := 1;
+        Collate := True;
+        FromPage := 1;
+        ToPage := frReport1.EMFPages.Count;
+        MaxPage := frReport1.EMFPages.Count;
+        if Execute then
+        begin
+          if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
+            frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
+            frReport1.PrepareReport
+          else
+            exit;
+          if PrintDialog1.PrintRange = prPageNums then
+          begin
+            FromPage := PrintDialog1.FromPage;
+            ToPage := PrintDialog1.ToPage;
+          end;
+          NumberCopies := PrintDialog1.Copies;
+          frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
+            NumberCopies);
+        end;
+      end;
+    end;
   finally
     resStream.Free;
   end;
@@ -4075,87 +4082,94 @@ var
   numberToPrint: string;
   NumberCopies: integer;
   ind: integer;
-  res: TResourceStream;
+  resStream: TLazarusResourceStream;
+  reportPATH: String;
 begin
+   {$IFDEF UNIX}
+  reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+   {$ELSE}
+  reportPATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+   {$ENDIF UNIX}
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
-  res:=TResourceStream.Create(HINSTANCE,'report',RT_RCDATA);
- try
-  if DefaultDB = 'MySQL' then
-    PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
-  else
-    PrintQuery.DataBase := MainForm.SQLiteDBConnection;
+  resStream := TLazarusResourceStream.Create('report', nil);
+  try
+    if DefaultDB = 'MySQL' then
+      PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
+    else
+      PrintQuery.DataBase := MainForm.SQLiteDBConnection;
 
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+    if (UnUsIndex <> 0) then
     begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      SetLength(PrintArray, DBGrid1.SelectedRows.Count);
-      PrintArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
-        'UnUsedIndex').AsInteger;
-    end;
-    PrintOK := True;
-  end;
-
-  if PrintOK then
-  begin
-    for i := 0 to High(PrintArray) do
-    begin
-      if i > 0 then
-        numberToPrint := numberToPrint + ', ';
-      numberToPrint := numberToPrint + IntToStr(PrintArray[i]);
-    end;
-    for i := 0 to Length(PrintArray) - 1 do
-    begin
-      PrintQuery.SQL.Text := 'SELECT * FROM ' + LogTable +
-        ' WHERE `UnUsedIndex` in (' + numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
-    end;
-  end;
-  PrintOK := False;
-  PrintQuery.Open;
- // frReport1.LoadFromFile('report.lrf');
-  frReport1.LoadFromStream(res);
-
-
-  if PrintPrev = True then
-    frReport1.ShowReport
-  else
-  begin
-    ind := Printer.PrinterIndex;
-    if not frReport1.PrepareReport then
-      Exit;
-
-    with PrintDialog1 do
-    begin
-      Options := [poPageNums];
-      Copies := 1;
-      Collate := True;
-      FromPage := 1;
-      ToPage := frReport1.EMFPages.Count;
-      MaxPage := frReport1.EMFPages.Count;
-      if Execute then
+      for i := 0 to DBGrid1.SelectedRows.Count - 1 do
       begin
-        if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
-          frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
-          frReport1.PrepareReport
-        else
-          exit;
-        if PrintDialog1.PrintRange = prPageNums then
-        begin
-          FromPage := PrintDialog1.FromPage;
-          ToPage := PrintDialog1.ToPage;
-        end;
-        NumberCopies := PrintDialog1.Copies;
-        frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
-          NumberCopies);
+        DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
+        SetLength(PrintArray, DBGrid1.SelectedRows.Count);
+        PrintArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
+          'UnUsedIndex').AsInteger;
+      end;
+      PrintOK := True;
+    end;
+
+    if PrintOK then
+    begin
+      for i := 0 to High(PrintArray) do
+      begin
+        if i > 0 then
+          numberToPrint := numberToPrint + ', ';
+        numberToPrint := numberToPrint + IntToStr(PrintArray[i]);
+      end;
+      for i := 0 to Length(PrintArray) - 1 do
+      begin
+        PrintQuery.SQL.Text := 'SELECT * FROM ' + LogTable +
+          ' WHERE `UnUsedIndex` in (' + numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
       end;
     end;
+    PrintOK := False;
+    PrintQuery.Open;
+    resStream.SaveToFile(reportPATH+'rep.lrf');
+    frReport1.LoadFromFile(reportPATH+'rep.lrf');
+
+
+    if PrintPrev = True then
+      frReport1.ShowReport
+    else
+    begin
+      ind := Printer.PrinterIndex;
+      if not frReport1.PrepareReport then
+        Exit;
+
+      with PrintDialog1 do
+      begin
+        Options := [poPageNums];
+        Copies := 1;
+        Collate := True;
+        FromPage := 1;
+        ToPage := frReport1.EMFPages.Count;
+        MaxPage := frReport1.EMFPages.Count;
+        if Execute then
+        begin
+          if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
+            frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
+            frReport1.PrepareReport
+          else
+            exit;
+          if PrintDialog1.PrintRange = prPageNums then
+          begin
+            FromPage := PrintDialog1.FromPage;
+            ToPage := PrintDialog1.ToPage;
+          end;
+          NumberCopies := PrintDialog1.Copies;
+          frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
+            NumberCopies);
+        end;
+      end;
+    end;
+  finally
+    resStream.Free;
   end;
- finally
-   res.Free;
- end;
 end;
 
 //Поставить QSO в очередь на печать
@@ -5826,7 +5840,7 @@ begin
   if EditFlag = True then
   begin
 
-    if Pos('M',ComboBox1.Text) > 0 then
+    if Pos('M', ComboBox1.Text) > 0 then
       NameBand := dmFunc.FreqFromBand(ComboBox1.Text, ComboBox2.Text)
     else
       NameBand := ComboBox1.Text;
@@ -5877,7 +5891,7 @@ begin
     end;
     SQLTransaction1.Commit;
     EditFlag := False;
-    CheckBox1.Checked:=True;
+    CheckBox1.Checked := True;
     SelDB(CallLogBook);
     Clr();
   end;
