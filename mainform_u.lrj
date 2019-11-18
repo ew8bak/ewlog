@@ -199,6 +199,7 @@
 {"hash":135060228,"name":"tmainform.menuitem17.caption","sourcebytes":[81,83,76,32,100,111,32,110,111,116,32,115,101,110,100],"value":"QSL do not send"},
 {"hash":181298564,"name":"tmainform.menuitem18.caption","sourcebytes":[70,105,110,100,32,81,83,76,77,97,110,97,103,101,114,32,105,110,102,111,32,105,110,32,116,111,32,73,110,116,101,114,110,101,116],"value":"Find QSLManager info in to Internet"},
 {"hash":247903583,"name":"tmainform.menuitem120.caption","sourcebytes":[80,114,105,110,116,32,83,101,108,101,99,116,32,81,83,79],"value":"Print Select QSO"},
+{"hash":189781284,"name":"tmainform.menuitem117.caption","sourcebytes":[77,97,110,117,97,108,32,112,114,105,110,116],"value":"Manual print"},
 {"hash":8340068,"name":"tmainform.menuitem121.caption","sourcebytes":[87,105,116,104,32,109,97,114,107,32,81,83,76,32,80,114,105,110,116,101,100],"value":"With mark QSL Printed"},
 {"hash":56603396,"name":"tmainform.menuitem122.caption","sourcebytes":[87,105,116,104,111,117,116,32,109,97,114,107,32,81,83,76,32,80,114,105,110,116,101,100],"value":"Without mark QSL Printed"},
 {"hash":215628737,"name":"tmainform.menuitem20.caption","sourcebytes":[81,83,76,32,119,97,115,32,114,101,99,101,105,118,101,100,32,118,105,97],"value":"QSL was received via"},

@@ -197,6 +197,7 @@ type
     MenuItem114: TMenuItem;
     MenuItem115: TMenuItem;
     MenuItem116: TMenuItem;
+    MenuItem117: TMenuItem;
     MenuItem119: TMenuItem;
     MenuItem120: TMenuItem;
     MenuItem121: TMenuItem;
@@ -532,6 +533,7 @@ type
     procedure MenuItem114Click(Sender: TObject);
     procedure MenuItem115Click(Sender: TObject);
     procedure MenuItem116Click(Sender: TObject);
+    procedure MenuItem117Click(Sender: TObject);
     procedure MenuItem119Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem121Click(Sender: TObject);
@@ -799,7 +801,7 @@ uses
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u, register_form_u,
-  logtcpform_u, filterForm_U, hiddentsettings_u;
+  logtcpform_u, print_sticker_u, hiddentsettings_u;
 
 type
   PTreeData = ^TTreeData;
@@ -1406,7 +1408,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign LIKE ' +
-      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/% ORDER BY UnUsedIndex ASC'))
+      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%') + ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
   else
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1418,7 +1420,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
       + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/% ORDER BY UnUsedIndex ASC'));
+      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%') + ' ORDER BY date(QSODate), time(QSOTime) ASC');
   SQLQuery2.Open;
 
   if (SQLQuery2.RecordCount > 0) and (ind = 1) and (EditButton1.Text <> '') then
@@ -1742,7 +1744,7 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
         + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/% ORDER BY UnUsedIndex ASC'))
+        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%') + ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
     else
       SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
         ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1754,7 +1756,7 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
         + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/% ORDER BY UnUsedIndex ASC'));
+        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%') + ' ORDER BY date(QSODate), time(QSOTime) ASC');
     Open;
   end;
 
@@ -3891,6 +3893,11 @@ begin
     MenuItem116.Insert(i, LangItem);
   end;
   LangList.Free;
+end;
+
+procedure TMainForm.MenuItem117Click(Sender: TObject);
+begin
+  PrintSticker_Form.Show;
 end;
 
 procedure TMainForm.MenuItem119Click(Sender: TObject);

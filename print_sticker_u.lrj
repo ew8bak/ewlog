@@ -1,0 +1,19 @@
+{"version":1,"strings":[
+{"hash":222287810,"name":"tprintsticker_form.caption","sourcebytes":[80,114,105,110,116,32,83,116,105,99,107,101,114],"value":"Print Sticker"},
+{"hash":4960369,"name":"tprintsticker_form.edit1.text","sourcebytes":[69,100,105,116,49],"value":"Edit1"},
+{"hash":6159272,"name":"tprintsticker_form.label1.caption","sourcebytes":[87,105,100,116,104],"value":"Width"},
+{"hash":4960370,"name":"tprintsticker_form.edit2.text","sourcebytes":[69,100,105,116,50],"value":"Edit2"},
+{"hash":82574836,"name":"tprintsticker_form.label2.caption","sourcebytes":[72,101,105,103,104,116],"value":"Height"},
+{"hash":4960371,"name":"tprintsticker_form.edit3.text","sourcebytes":[69,100,105,116,51],"value":"Edit3"},
+{"hash":147032435,"name":"tprintsticker_form.label3.caption","sourcebytes":[82,101,109,97,114,107,115],"value":"Remarks"},
+{"hash":4960372,"name":"tprintsticker_form.edit4.text","sourcebytes":[69,100,105,116,52],"value":"Edit4"},
+{"hash":22231,"name":"tprintsticker_form.label4.caption","sourcebytes":[82,73,71],"value":"RIG"},
+{"hash":4960373,"name":"tprintsticker_form.edit5.text","sourcebytes":[69,100,105,116,53],"value":"Edit5"},
+{"hash":140166401,"name":"tprintsticker_form.label5.caption","sourcebytes":[65,110,116,101,110,110,97],"value":"Antenna"},
+{"hash":211697602,"name":"tprintsticker_form.checkbox1.caption","sourcebytes":[80,114,105,110,116,32,97,108,108,32,83,116,105,99,107,101,114],"value":"Print all Sticker"},
+{"hash":211697602,"name":"tprintsticker_form.checkbox2.caption","sourcebytes":[80,114,105,110,116,32,97,108,108,32,83,116,105,99,107,101,114],"value":"Print all Sticker"},
+{"hash":201257043,"name":"tprintsticker_form.label6.caption","sourcebytes":[78,117,109,98,101,114,32,111,102,32,108,105,110,101,115],"value":"Number of lines"},
+{"hash":60021969,"name":"tprintsticker_form.combobox1.text","sourcebytes":[67,111,109,98,111,66,111,120,49],"value":"ComboBox1"},
+{"hash":5072307,"name":"tprintsticker_form.label7.caption","sourcebytes":[70,111,110,116,115],"value":"Fonts"},
+{"hash":5738580,"name":"tprintsticker_form.button1.caption","sourcebytes":[80,114,105,110,116],"value":"Print"}
+]}

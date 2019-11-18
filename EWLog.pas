@@ -8,16 +8,16 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, sdflaz, memdslaz, datetimectrls, dbflaz, printer4lazarus,
-  MainForm_U, editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U,
-  ExportAdifForm_u, CreateJournalForm_U, ImportADIFForm_U, dmFunc_U,
-  SimpleXML, eqsl, xmlrpc, fldigi, DXCCEditForm_U, ManagerBasePrefixForm_U,
-  azidis3, aziloc, QSLManagerForm_U, SettingsCAT_U, uRigControl, TRXForm_U,
-  lnetvisual, hrdlog, SettingsProgramForm_U, AboutForm_U, ServiceForm_U,
-  setupForm_U, UpdateForm_U, Changelog_Form_U, Earth_Form_U, IOTA_Form_U,
-  ConfigGridForm_U, sendtelnetspot_form_U, ClusterFilter_Form_U,
-  ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
-  ThanksForm_u, register_form_u, filterForm_U, hiddentsettings_u;
+  Forms, sdflaz, memdslaz, datetimectrls, dbflaz, printer4lazarus, MainForm_U,
+  editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
+  CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, SimpleXML, eqsl, xmlrpc,
+  fldigi, DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc,
+  QSLManagerForm_U, SettingsCAT_U, uRigControl, TRXForm_U, lnetvisual, hrdlog,
+  SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U,
+  Changelog_Form_U, Earth_Form_U, IOTA_Form_U, ConfigGridForm_U,
+  sendtelnetspot_form_U, ClusterFilter_Form_U, ClusterServer_Form_U,
+  STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, register_form_u,
+  filterForm_U, hiddentsettings_u, print_sticker_u, zcomponent, rxnew;
 
 {$R *.res}
 
@@ -60,6 +60,7 @@ begin
   Application.CreateForm(TRegisterForm, RegisterForm);
   Application.CreateForm(TfilterForm, filterForm);
   Application.CreateForm(ThiddenSettings, hiddenSettings);
+  Application.CreateForm(TPrintSticker_Form, PrintSticker_Form);
   Application.Run;
 end.
 

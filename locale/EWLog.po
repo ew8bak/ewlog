@@ -2941,6 +2941,10 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
+#: tmainform.menuitem117.caption
+msgid "Manual print"
+msgstr ""
+
 #: tmainform.menuitem119.caption
 msgid "Download Languages"
 msgstr ""
@@ -3417,6 +3421,77 @@ msgstr ""
 #: tmanagerbaseprefixform.tabsheet3.caption
 msgctxt "tmanagerbaseprefixform.tabsheet3.caption"
 msgid "Country"
+msgstr ""
+
+#: tprintsticker_form.button1.caption
+msgid "Print"
+msgstr ""
+
+#: tprintsticker_form.caption
+msgid "Print Sticker"
+msgstr ""
+
+#: tprintsticker_form.checkbox1.caption
+msgctxt "tprintsticker_form.checkbox1.caption"
+msgid "Print all Sticker"
+msgstr ""
+
+#: tprintsticker_form.checkbox2.caption
+msgctxt "tprintsticker_form.checkbox2.caption"
+msgid "Print all Sticker"
+msgstr ""
+
+#: tprintsticker_form.combobox1.text
+msgid "ComboBox1"
+msgstr ""
+
+#: tprintsticker_form.edit1.text
+msgid "Edit1"
+msgstr ""
+
+#: tprintsticker_form.edit2.text
+msgid "Edit2"
+msgstr ""
+
+#: tprintsticker_form.edit3.text
+msgid "Edit3"
+msgstr ""
+
+#: tprintsticker_form.edit4.text
+msgid "Edit4"
+msgstr ""
+
+#: tprintsticker_form.edit5.text
+msgid "Edit5"
+msgstr ""
+
+#: tprintsticker_form.label1.caption
+msgid "Width"
+msgstr ""
+
+#: tprintsticker_form.label2.caption
+msgid "Height"
+msgstr ""
+
+#: tprintsticker_form.label3.caption
+msgid "Remarks"
+msgstr ""
+
+#: tprintsticker_form.label4.caption
+msgctxt "tprintsticker_form.label4.caption"
+msgid "RIG"
+msgstr ""
+
+#: tprintsticker_form.label5.caption
+msgid "Antenna"
+msgstr ""
+
+#: tprintsticker_form.label6.caption
+msgid "Number of lines"
+msgstr ""
+
+#: tprintsticker_form.label7.caption
+msgid "Fonts"
 msgstr ""
 
 #: tqslmanager_form.button1.caption
@@ -4214,6 +4289,7 @@ msgid "B"
 msgstr ""
 
 #: ttrxform.caption
+msgctxt "ttrxform.caption"
 msgid "RIG"
 msgstr ""
 
