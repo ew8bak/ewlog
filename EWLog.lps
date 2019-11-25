@@ -706,7 +706,7 @@
         <UsageCount Value="10"/>
       </Unit74>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="2270" Column="12" TopLine="2267"/>
@@ -757,75 +757,71 @@
       </Position12>
       <Position13>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1169" TopLine="1311"/>
+        <Caret Line="1166" Column="49" TopLine="1151"/>
       </Position13>
       <Position14>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1166" Column="49" TopLine="1151"/>
+        <Caret Line="1172" TopLine="1151"/>
       </Position14>
       <Position15>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1172" TopLine="1151"/>
+        <Caret Line="1173" TopLine="1151"/>
       </Position15>
       <Position16>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1173" TopLine="1151"/>
+        <Caret Line="1174" TopLine="1151"/>
       </Position16>
       <Position17>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1174" TopLine="1151"/>
+        <Caret Line="1175" TopLine="1151"/>
       </Position17>
       <Position18>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1175" TopLine="1151"/>
+        <Caret Line="1176" TopLine="1151"/>
       </Position18>
       <Position19>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1176" TopLine="1151"/>
+        <Caret Line="1177" TopLine="1151"/>
       </Position19>
       <Position20>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1177" TopLine="1151"/>
+        <Caret Line="1179" TopLine="1151"/>
       </Position20>
       <Position21>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1179" TopLine="1151"/>
+        <Caret Line="1180" TopLine="1152"/>
       </Position21>
       <Position22>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1180" TopLine="1152"/>
+        <Caret Line="1323" TopLine="1307"/>
       </Position22>
       <Position23>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1323" TopLine="1307"/>
+        <Caret Line="1326" TopLine="1309"/>
       </Position23>
       <Position24>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1326" TopLine="1309"/>
+        <Caret Line="1325" Column="46" TopLine="1297"/>
       </Position24>
       <Position25>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="1325" Column="46" TopLine="1297"/>
       </Position25>
       <Position26>
         <Filename Value="importadifform_u.pas"/>
+        <Caret Line="304" Column="35" TopLine="275"/>
       </Position26>
       <Position27>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="304" Column="35" TopLine="275"/>
+        <Caret Line="306" Column="34" TopLine="277"/>
       </Position27>
       <Position28>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="306" Column="34" TopLine="277"/>
+        <Caret Line="303" Column="9" TopLine="280"/>
       </Position28>
       <Position29>
         <Filename Value="importadifform_u.pas"/>
-        <Caret Line="303" Column="9" TopLine="280"/>
-      </Position29>
-      <Position30>
-        <Filename Value="importadifform_u.pas"/>
         <Caret Line="1300" Column="46" TopLine="1293"/>
-      </Position30>
+      </Position29>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

@@ -5,8 +5,8 @@ object MainForm: TMainForm
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 672
+  ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
   Menu = MainMenu1
@@ -4512,6 +4512,7 @@ object MainForm: TMainForm
       Caption = 'Print Select QSO'
       object MenuItem117: TMenuItem
         Caption = 'Manual print'
+        Enabled = False
         OnClick = MenuItem117Click
       end
       object MenuItem121: TMenuItem
