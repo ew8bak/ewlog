@@ -19,9 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="3871"/>
-        <CursorPos X="25" Y="3900"/>
+        <TopLine Value="3937"/>
+        <CursorPos X="58" Y="3891"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -68,11 +67,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="250"/>
         <CursorPos X="26" Y="260"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -81,7 +79,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="212"/>
         <CursorPos X="7" Y="234"/>
         <UsageCount Value="200"/>
@@ -106,10 +104,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="148"/>
-        <CursorPos Y="160"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="1151"/>
+        <CursorPos X="15" Y="1319"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="dmfunc_u.pas"/>
@@ -118,10 +119,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="31"/>
-        <CursorPos X="35" Y="33"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="1228"/>
+        <CursorPos X="13" Y="1253"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="simplexml.pas"/>
@@ -261,11 +263,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsProgramForm_U"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="19"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="22"/>
         <CursorPos X="59" Y="57"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit24>
       <Unit25>
         <Filename Value="aboutform_u.pas"/>
@@ -274,11 +275,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutForm_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="49" Y="37"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit25>
       <Unit26>
         <Filename Value="serviceform_u.pas"/>
@@ -311,11 +311,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="25"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="97"/>
         <CursorPos Y="132"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit28>
       <Unit29>
         <Filename Value="changelog_form_u.pas"/>
@@ -336,11 +335,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Earth_Form_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="39"/>
         <CursorPos X="3" Y="41"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="iota_form_u.pas"/>
@@ -360,10 +358,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigGridForm_U"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="51"/>
         <CursorPos X="3" Y="86"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
       </Unit32>
       <Unit33>
         <Filename Value="sendtelnetspot_form_u.pas"/>
@@ -475,7 +473,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="129"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="179"/>
       </Unit42>
       <Unit43>
         <Filename Value="print_sticker_u.pas"/>
@@ -483,11 +481,9 @@
         <ComponentName Value="PrintSticker_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="11"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="23"/>
       </Unit43>
       <Unit44>
         <Filename Value="RegExpr.pas"/>
@@ -713,121 +709,122 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1216" Column="18" TopLine="1205"/>
+        <Caret Line="2270" Column="12" TopLine="2267"/>
       </Position1>
       <Position2>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1421" Column="103" TopLine="1360"/>
+        <Caret Line="718" Column="24" TopLine="699"/>
       </Position2>
       <Position3>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2269" Column="3" TopLine="2267"/>
+        <Caret Line="1213" Column="30" TopLine="1200"/>
       </Position3>
       <Position4>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="718" Column="24" TopLine="702"/>
+        <Caret Line="702" Column="28" TopLine="683"/>
       </Position4>
       <Position5>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1213" Column="30" TopLine="1193"/>
+        <Caret Line="1216" Column="18" TopLine="1200"/>
       </Position5>
       <Position6>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="716" Column="26" TopLine="700"/>
+        <Caret Line="1409" Column="72" TopLine="1388"/>
       </Position6>
       <Position7>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1217" Column="17" TopLine="1206"/>
+        <Caret Line="5563" Column="3" TopLine="5561"/>
       </Position7>
       <Position8>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1757" Column="9" TopLine="1730"/>
+        <Caret Line="5570" Column="3" TopLine="5568"/>
       </Position8>
       <Position9>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2270" Column="12" TopLine="2267"/>
+        <Caret Line="804" Column="32" TopLine="791"/>
       </Position9>
       <Position10>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="718" Column="24" TopLine="699"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1318" TopLine="1289"/>
       </Position10>
       <Position11>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1213" Column="30" TopLine="1200"/>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="1253" Column="13" TopLine="1228"/>
       </Position11>
       <Position12>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="702" Column="28" TopLine="683"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1168" TopLine="1156"/>
       </Position12>
       <Position13>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1216" Column="18" TopLine="1200"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1169" TopLine="1311"/>
       </Position13>
       <Position14>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1409" Column="72" TopLine="1388"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1166" Column="49" TopLine="1151"/>
       </Position14>
       <Position15>
-        <Filename Value="print_sticker_u.pas"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1172" TopLine="1151"/>
       </Position15>
       <Position16>
-        <Filename Value="print_sticker_u.pas"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1173" TopLine="1151"/>
       </Position16>
       <Position17>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="51" Column="40" TopLine="12"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1174" TopLine="1151"/>
       </Position17>
       <Position18>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="5563" Column="3" TopLine="5561"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1175" TopLine="1151"/>
       </Position18>
       <Position19>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="5570" Column="3" TopLine="5568"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1176" TopLine="1151"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="804" Column="32" TopLine="791"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1177" TopLine="1151"/>
       </Position20>
       <Position21>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="52" Column="40" TopLine="12"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1179" TopLine="1151"/>
       </Position21>
       <Position22>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="55" TopLine="17"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1180" TopLine="1152"/>
       </Position22>
       <Position23>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="54" TopLine="17"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1323" TopLine="1307"/>
       </Position23>
       <Position24>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="55" TopLine="17"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1326" TopLine="1309"/>
       </Position24>
       <Position25>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="54" TopLine="17"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1325" Column="46" TopLine="1297"/>
       </Position25>
       <Position26>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="23" Column="18" TopLine="16"/>
+        <Filename Value="importadifform_u.pas"/>
       </Position26>
       <Position27>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="8" Column="72"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="304" Column="35" TopLine="275"/>
       </Position27>
       <Position28>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="9" Column="11"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="306" Column="34" TopLine="277"/>
       </Position28>
       <Position29>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="8" Column="72"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="303" Column="9" TopLine="280"/>
       </Position29>
       <Position30>
-        <Filename Value="print_sticker_u.pas"/>
-        <Caret Line="9" Column="13"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="1300" Column="46" TopLine="1293"/>
       </Position30>
     </JumpHistory>
     <RunParams>

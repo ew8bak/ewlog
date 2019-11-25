@@ -1239,7 +1239,7 @@ var
   Fmt: TFormatSettings;
 begin
   Result := True;
-  tmp := fmt.ShortDateFormat;
+{  tmp := fmt.ShortDateFormat;
   fmt.ShortDateFormat := 'YYYYMMDD';
   fmt.LongDateFormat := 'YYYYMMDD';
   try
@@ -1250,7 +1250,7 @@ begin
     end;
   finally
     fmt.ShortDateFormat := tmp;
-  end;
+  end;     }
 end;
 
 function TdmFunc.IsAdifOK(qsodate, time_on, time_off, call, freq, mode, rst_s, rst_r, iota,

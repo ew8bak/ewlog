@@ -300,6 +300,7 @@ begin
 
         Count := 0;
         Len := 0;
+
         while not ((PosEOR > 0) or EOF(f)) do
         begin
           Inc(len);
@@ -1156,7 +1157,6 @@ begin
             if DUPEQuery.Fields.Fields[0].AsInteger > 0 then
             begin
               Application.ProcessMessages;
-              MainForm.SQLTransaction1.Rollback;
               Inc(errr);
               Label2.Caption :=
                 rNumberDup + ' ' + IntToStr(errr);
@@ -1297,9 +1297,7 @@ begin
               ImportQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
 
               ImportQuery.ExecSQL;
-
-              note := dmFunc.MyTrim(note);
-
+               note := dmFunc.MyTrim(note);
               Inc(RecCount);
               lblCount.Caption :=
                 rImportRecord + ' ' + IntToStr(RecCount);
@@ -1315,8 +1313,8 @@ begin
       MainForm.SQLTransaction1.Rollback;
     end;
   finally
-    MainForm.SQLTransaction1.Commit;
-    lblComplete.Caption := rDone;
+   MainForm.SQLTransaction1.Commit;
+   lblComplete.Caption := rDone;
     Button1.Enabled := True;
     CloseFile(f);
     MainForm.SelDB(CallLogBook);
@@ -1340,19 +1338,6 @@ end;
 
 procedure TImportADIFForm.FormCreate(Sender: TObject);
 begin
-  if DefaultDB = 'MySQL' then
-  begin
-    DUPEQuery.DataBase := MainForm.MySQLLOGDBConnection;
-    ImportQuery.DataBase := MainForm.MySQLLOGDBConnection;
-    MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
-  end
-  else
-  begin
-    DUPEQuery.DataBase := MainForm.SQLiteDBConnection;
-    ImportQuery.DataBase := MainForm.SQLiteDBConnection;
-    MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
-  end;
-  Button1.Caption := rImport;
 end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
