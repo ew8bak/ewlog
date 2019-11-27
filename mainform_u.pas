@@ -78,6 +78,7 @@ resourcestring
   rLogNConWSJT = 'EWLog not connected to WSJT';
   rQSOTotal = ' Total ';
   rLanguageComplite = 'Translation files download successfully';
+  rCleanUpJournal = 'Are you sure you want to clear all entries?';
 
 
 const
@@ -198,6 +199,7 @@ type
     MenuItem115: TMenuItem;
     MenuItem116: TMenuItem;
     MenuItem117: TMenuItem;
+    MenuItem118: TMenuItem;
     MenuItem119: TMenuItem;
     MenuItem120: TMenuItem;
     MenuItem121: TMenuItem;
@@ -534,6 +536,7 @@ type
     procedure MenuItem115Click(Sender: TObject);
     procedure MenuItem116Click(Sender: TObject);
     procedure MenuItem117Click(Sender: TObject);
+    procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem119Click(Sender: TObject);
     procedure MenuItem11Click(Sender: TObject);
     procedure MenuItem121Click(Sender: TObject);
@@ -1408,7 +1411,8 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign LIKE ' +
-      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%') + ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
+      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%') +
+      ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
   else
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1420,7 +1424,8 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
       + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%') + ' ORDER BY date(QSODate), time(QSOTime) ASC');
+      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%') +
+      ' ORDER BY date(QSODate), time(QSOTime) ASC');
   SQLQuery2.Open;
 
   if (SQLQuery2.RecordCount > 0) and (ind = 1) and (EditButton1.Text <> '') then
@@ -1500,13 +1505,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
-  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
-  QSOAddInfo, Marker: string;
-  ManualSet: integer; DigiBand, Continent, ShortNote: string;
-  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
-  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
-  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
+  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
+  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
+  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
+  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
+  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
+  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -1744,7 +1749,8 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
         + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%') + ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
+        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%') +
+        ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
     else
       SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
         ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1756,7 +1762,8 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
         + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%') + ' ORDER BY date(QSODate), time(QSOTime) ASC');
+        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%') +
+        ' ORDER BY date(QSODate), time(QSOTime) ASC');
     Open;
   end;
 
@@ -3900,6 +3907,26 @@ begin
   PrintSticker_Form.Show;
 end;
 
+procedure TMainForm.MenuItem118Click(Sender: TObject);
+begin
+  try
+    if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
+      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes  then
+    begin
+      with DeleteQSOQuery do
+      begin
+        SQL.Clear;
+        SQL.Text := 'DELETE FROM ' + LogTable;
+        Prepare;
+        ExecSQL;
+      end;
+    end;
+  finally
+    SQLTransaction1.Commit;
+    SelDB(CallLogBook);
+  end;
+end;
+
 procedure TMainForm.MenuItem119Click(Sender: TObject);
 var
   HTTP: THTTPSend;
@@ -4034,8 +4061,9 @@ begin
       end;
       for i := 0 to Length(PrintArray) - 1 do
       begin
-        PrintQuery.SQL.Text := 'SELECT * FROM ' + LogTable +
-          ' WHERE `UnUsedIndex` in (' + numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
+        PrintQuery.SQL.Text :=
+          'SELECT * FROM ' + LogTable + ' WHERE `UnUsedIndex` in (' +
+          numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
       end;
     end;
     PrintOK := False;
@@ -4090,7 +4118,7 @@ var
   NumberCopies: integer;
   ind: integer;
   resStream: TLazarusResourceStream;
-  reportPATH: String;
+  reportPATH: string;
 begin
    {$IFDEF UNIX}
   reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
@@ -4130,14 +4158,15 @@ begin
       end;
       for i := 0 to Length(PrintArray) - 1 do
       begin
-        PrintQuery.SQL.Text := 'SELECT * FROM ' + LogTable +
-          ' WHERE `UnUsedIndex` in (' + numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
+        PrintQuery.SQL.Text :=
+          'SELECT * FROM ' + LogTable + ' WHERE `UnUsedIndex` in (' +
+          numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
       end;
     end;
     PrintOK := False;
     PrintQuery.Open;
-    resStream.SaveToFile(reportPATH+'rep.lrf');
-    frReport1.LoadFromFile(reportPATH+'rep.lrf');
+    resStream.SaveToFile(reportPATH + 'rep.lrf');
+    frReport1.LoadFromFile(reportPATH + 'rep.lrf');
 
 
     if PrintPrev = True then

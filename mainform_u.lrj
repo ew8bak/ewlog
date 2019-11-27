@@ -145,6 +145,7 @@
 {"hash":113276983,"name":"tmainform.menuitem55.caption","sourcebytes":[79,112,101,110,32,108,111,103],"value":"Open log"},
 {"hash":208786055,"name":"tmainform.menuitem56.caption","sourcebytes":[67,114,101,97,116,101,32,110,101,119,32,108,111,103],"value":"Create new log"},
 {"hash":33130206,"name":"tmainform.menuitem7.caption","sourcebytes":[76,111,103,115,32,99,111,110,102,105,103,117,114,97,116,105,111,110],"value":"Logs configuration"},
+{"hash":88248716,"name":"tmainform.menuitem118.caption","sourcebytes":[67,108,101,97,114,32,97,108,108,32,106,111,117,114,110,97,108],"value":"Clear all journal"},
 {"hash":180779253,"name":"tmainform.menuitem58.caption","sourcebytes":[67,111,109,112,97,99,116,32,97,110,100,32,82,101,112,97,105,114,32,68,97,116,97,98,97,115,101],"value":"Compact and Repair Database"},
 {"hash":195331447,"name":"tmainform.menuitem60.caption","sourcebytes":[83,101,114,118,105,99,101,115,32,111,102,32,101,81,83,76,32,97,110,100,32,76,79,84,87],"value":"Services of eQSL and LOTW"},
 {"hash":113558079,"name":"tmainform.menuitem61.caption","sourcebytes":[69,120,112,111,114,116,32,73,110,102,111,114,109,97,116,105,111,110,32,102,114,111,109,32,97,32,76,111,103,98,111,111,107,32,116,111],"value":"Export Information from a Logbook to"},

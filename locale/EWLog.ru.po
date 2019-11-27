@@ -235,6 +235,10 @@ msgstr "Проверьте настройки MySQL"
 msgid "Check SQLite DB Settings"
 msgstr "Проверьте настройки SQLite"
 
+#: mainform_u.rcleanupjournal
+msgid "Are you sure you want to clear all entries?"
+msgstr ""
+
 #: mainform_u.rclearqso
 msgid "Clear QSO input window"
 msgstr "Очистить поле ввода QSO"
@@ -2953,6 +2957,10 @@ msgstr "Язык"
 
 #: tmainform.menuitem117.caption
 msgid "Manual print"
+msgstr ""
+
+#: tmainform.menuitem118.caption
+msgid "Clear all journal"
 msgstr ""
 
 #: tmainform.menuitem119.caption
