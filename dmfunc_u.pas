@@ -1260,7 +1260,7 @@ var
 begin
   w := 0;
   Result := True;
-  DebugLevel:=1;
+  DebugLevel:=0;
   if not IsDateOK(qsodate) then
   begin
     Result := False;
