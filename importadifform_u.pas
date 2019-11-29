@@ -78,6 +78,7 @@ var
   stop: integer = 0;
 begin
   try
+    Result:='';
     start := s.IndexOf('<' + field + ':');
     if (start >= 0) then
     begin
