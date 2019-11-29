@@ -3493,7 +3493,7 @@ begin
       CloseFile(AdifFile);
 
       ImportADIFForm.FileNameEdit1.Text := PathMyDoc + 'ImportMobile.adi';
-      ImportADIFForm.ADIFImport;
+      ImportADIFForm.ADIFImport('a');
       Stream.Free;
       ImportAdifMobile := False;
     end;
