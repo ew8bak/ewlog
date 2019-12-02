@@ -19,9 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="5800"/>
-        <CursorPos X="49" Y="5822"/>
+        <TopLine Value="5733"/>
+        <CursorPos X="86" Y="5916"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -105,9 +104,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="283"/>
-        <CursorPos X="38" Y="273"/>
+        <TopLine Value="556"/>
+        <CursorPos X="11" Y="409"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -120,7 +120,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="736"/>
+        <TopLine Value="751"/>
         <CursorPos X="33" Y="745"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -483,7 +483,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="11"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="60"/>
       </Unit43>
       <Unit44>
         <Filename Value="RegExpr.pas"/>

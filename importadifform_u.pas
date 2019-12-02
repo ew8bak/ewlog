@@ -534,7 +534,7 @@ begin
               ImportQuery.Params.ParamByName('LoTWRecDate').IsNull;
 
             ImportQuery.Params.ParamByName('QSLInfo').AsString := QSLMSG;
-            ImportQuery.Params.ParamByName('Call').AsString := CALL;
+            ImportQuery.Params.ParamByName('Call').AsString := dmFunc.ExtractCallsign(CALL);
             ImportQuery.Params.ParamByName('State1').AsString := STATE1;
             ImportQuery.Params.ParamByName('State2').AsString := STATE2;
             ImportQuery.Params.ParamByName('State3').AsString := STATE3;

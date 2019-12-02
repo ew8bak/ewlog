@@ -5913,7 +5913,7 @@ begin
       Params.ParamByName('QSOAddInfo').AsString := Edit11.Text;
       Params.ParamByName('DigiBand').AsString := FloatToStr(DigiBand);
       Params.ParamByName('ShortNote').AsString := Edit11.Text;
-      Params.ParamByName('Call').AsString := EditButton1.Text;
+      Params.ParamByName('Call').AsString := dmFunc.ExtractCallsign(EditButton1.Text);
       Params.ParamByName('State1').AsString := Edit10.Text;
       Params.ParamByName('State2').AsString := Edit9.Text;
       Params.ParamByName('State3').AsString := Edit8.Text;
