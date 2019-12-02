@@ -106,8 +106,8 @@
         <UnitName Value="ImportADIFForm_U"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="517"/>
-        <CursorPos X="82" Y="475"/>
+        <TopLine Value="254"/>
+        <CursorPos X="50" Y="269"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -483,7 +483,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="11"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="54"/>
       </Unit43>
       <Unit44>
         <Filename Value="RegExpr.pas"/>
@@ -717,7 +717,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="1891"/>
         <CursorPos X="105" Y="1908"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit76>
