@@ -407,50 +407,72 @@ begin
               ':QSL_SENT_VIA, :DXCC,:NoCalcDXCC)';
 
             ImportQuery.Prepare;
-            ImportQuery.Params.ParamByName('CallSign').AsString := CALL;
+            ImportQuery.Params[0].AsString:=CALL;
+          //  ImportQuery.Params.ParamByName('CallSign').AsString := CALL;
             if DefaultDB = 'MySQL' then
-              ImportQuery.Params.ParamByName('QSODate').AsString := QSO_DATE
+             // ImportQuery.Params.ParamByName('QSODate').AsString := QSO_DATE
+              ImportQuery.Params[1].AsString := QSO_DATE
             else
-              ImportQuery.Params.ParamByName('QSODate').AsDate :=
-                EncodeDate(yyyy, mm, dd);
-            ImportQuery.Params.ParamByName('QSOTime').AsString := QSOTIME;
-            ImportQuery.Params.ParamByName('QSOBand').AsString := FREQ;
-            ImportQuery.Params.ParamByName('QSOMode').AsString := MODE;
-            ImportQuery.Params.ParamByName('QSOReportSent').AsString := RST_SENT;
-            ImportQuery.Params.ParamByName('QSOReportRecived').AsString := RST_RCVD;
-            ImportQuery.Params.ParamByName('OMName').AsString := sNAME;
-            ImportQuery.Params.ParamByName('OMQTH').AsString := QTH;
-            ImportQuery.Params.ParamByName('State').AsString := STATE;
-            ImportQuery.Params.ParamByName('Grid').AsString := GRIDSQUARE;
-            ImportQuery.Params.ParamByName('IOTA').AsString := IOTA;
-            ImportQuery.Params.ParamByName('QSLManager').AsString := QSL_VIA;
+             // ImportQuery.Params.ParamByName('QSODate').AsDate :=
+              ImportQuery.Params[1].AsDate := EncodeDate(yyyy, mm, dd);
+            ImportQuery.Params[2].AsString:=QSOTIME;
+           // ImportQuery.Params.ParamByName('QSOTime').AsString := QSOTIME;
+           ImportQuery.Params[3].AsString:=FREQ;
+           // ImportQuery.Params.ParamByName('QSOBand').AsString := FREQ;
+           ImportQuery.Params[4].AsString:=MODE;
+           ImportQuery.Params[5].AsString:=RST_SENT;
+           ImportQuery.Params[6].AsString:=RST_RCVD;
+           ImportQuery.Params[7].AsString:=sNAME;
+           ImportQuery.Params[8].AsString:=QTH;
+           ImportQuery.Params[9].AsString:=STATE;
+           ImportQuery.Params[10].AsString:=GRIDSQUARE;
+           ImportQuery.Params[11].AsString:=IOTA;
+           ImportQuery.Params[12].AsString:=QSL_VIA;
+          //  ImportQuery.Params.ParamByName('QSOMode').AsString := MODE;
+          //  ImportQuery.Params.ParamByName('QSOReportSent').AsString := RST_SENT;
+          //  ImportQuery.Params.ParamByName('QSOReportRecived').AsString := RST_RCVD;
+          //  ImportQuery.Params.ParamByName('OMName').AsString := sNAME;
+          //  ImportQuery.Params.ParamByName('OMQTH').AsString := QTH;
+          //  ImportQuery.Params.ParamByName('State').AsString := STATE;
+          //  ImportQuery.Params.ParamByName('Grid').AsString := GRIDSQUARE;
+          //  ImportQuery.Params.ParamByName('IOTA').AsString := IOTA;
+          //  ImportQuery.Params.ParamByName('QSLManager').AsString := QSL_VIA;
 
             if QSL_SENT = 'Y' then
             begin
-              ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'T';
+              ImportQuery.Params[13].AsInteger:=1;
+              ImportQuery.Params[14].AsString:='T';
+           //   ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
+           //   ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'T';
             end;
 
             if QSL_SENT = 'Q' then
             begin
-              ImportQuery.Params.ParamByName('QSLSent').IsNull;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'Q';
+              ImportQuery.Params[13].IsNull;
+              ImportQuery.Params[14].AsString:='Q';
+             // ImportQuery.Params.ParamByName('QSLSent').IsNull;
+             // ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'Q';
             end;
 
             if QSL_SENT = 'N' then
             begin
-              ImportQuery.Params.ParamByName('QSLSent').IsNull;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'F';
+              ImportQuery.Params[13].IsNull;
+              ImportQuery.Params[14].AsString:='F';
+             // ImportQuery.Params.ParamByName('QSLSent').IsNull;
+             // ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'F';
             end;
 
             if (QSL_SENT = '') and (QSL_STATUS = '') then
             begin
-              ImportQuery.Params.ParamByName('QSLSent').IsNull;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'F';
+              ImportQuery.Params[13].IsNull;
+              ImportQuery.Params[14].AsString:='F';
+            //  ImportQuery.Params.ParamByName('QSLSent').IsNull;
+            //  ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'F';
             end;
 
             if QSL_STATUS <> '' then
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := QSL_STATUS;
+            ImportQuery.Params[14].AsString:=QSL_STATUS;
+             // ImportQuery.Params.ParamByName('QSLSentAdv').AsString := QSL_STATUS;
 
             if QSLSDATE <> '' then
             begin
@@ -460,20 +482,27 @@ begin
               dd := StrToInt(QSLSDATE[7] + QSLSDATE[8]);
 
               if DefaultDB = 'MySQL' then
-                ImportQuery.Params.ParamByName('QSLSentDate').AsString := QSLSDATE
+              //  ImportQuery.Params.ParamByName('QSLSentDate').AsString := QSLSDATE
+                ImportQuery.Params[15].AsString := QSLSDATE
               else
-                ImportQuery.Params.ParamByName('QSLSentDate').AsDate :=
+              //  ImportQuery.Params.ParamByName('QSLSentDate').AsDate :=
+              ImportQuery.Params[15].AsDate :=
                   EncodeDate(yyyy, mm, dd);
-              ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'T';
+              ImportQuery.Params[13].AsInteger:=1;
+              ImportQuery.Params[14].AsString:='T';
+            //  ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
+            //  ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'T';
             end
             else
-              ImportQuery.Params.ParamByName('QSLSentDate').IsNull;
+            ImportQuery.Params[15].IsNull;
+            //  ImportQuery.Params.ParamByName('QSLSentDate').IsNull;
 
             if QSL_RCVD = 'Y' then
-              ImportQuery.Params.ParamByName('QSLRec').AsInteger := 1;
+            ImportQuery.Params[16].AsInteger:= 1;
+             // ImportQuery.Params.ParamByName('QSLRec').AsInteger := 1;
             if QSL_RCVD = 'N' then
-              ImportQuery.Params.ParamByName('QSLRec').AsInteger := 0;
+            ImportQuery.Params[16].AsInteger:= 0;
+            //  ImportQuery.Params.ParamByName('QSLRec').AsInteger := 0;
 
             if QSLRDATE <> '' then
             begin
@@ -483,38 +512,56 @@ begin
               dd := StrToInt(QSLRDATE[7] + QSLRDATE[8]);
 
               if DefaultDB = 'MySQL' then
-                ImportQuery.Params.ParamByName('QSLRecDate').AsString := QSLRDATE
+               // ImportQuery.Params.ParamByName('QSLRecDate').AsString := QSLRDATE
+                ImportQuery.Params[17].AsString:= QSLRDATE
               else
-                ImportQuery.Params.ParamByName('QSLRecDate').AsDate :=
+              //  ImportQuery.Params.ParamByName('QSLRecDate').AsDate :=
+                ImportQuery.Params[17].AsDate:=
                   EncodeDate(yyyy, mm, dd);
-              ImportQuery.Params.ParamByName('QSLRec').AsInteger := 1;
+              ImportQuery.Params[16].AsInteger:= 1;
+             // ImportQuery.Params.ParamByName('QSLRec').AsInteger := 1;
             end
             else
-              ImportQuery.Params.ParamByName('QSLRecDate').IsNull;
-
-            ImportQuery.Params.ParamByName('MainPrefix').AsString := PFX;
-            ImportQuery.Params.ParamByName('DXCCPrefix').AsString := DXCC_PREF;
-            ImportQuery.Params.ParamByName('CQZone').AsString := CQZ;
-            ImportQuery.Params.ParamByName('ITUZone').AsString := ITUZ;
-            ImportQuery.Params.ParamByName('QSOAddInfo').AsString := COMMENT;
+             // ImportQuery.Params.ParamByName('QSLRecDate').IsNull;
+             ImportQuery.Params[17].IsNull;
+            ImportQuery.Params[18].AsString:=PFX;
+            ImportQuery.Params[19].AsString:=DXCC_PREF;
+            ImportQuery.Params[20].AsString:=CQZ;
+            ImportQuery.Params[21].AsString:=ITUZ;
+            ImportQuery.Params[22].AsString:=COMMENT;
+          //  ImportQuery.Params.ParamByName('MainPrefix').AsString := PFX;
+          //  ImportQuery.Params.ParamByName('DXCCPrefix').AsString := DXCC_PREF;
+          //  ImportQuery.Params.ParamByName('CQZone').AsString := CQZ;
+          //  ImportQuery.Params.ParamByName('ITUZone').AsString := ITUZ;
+          //  ImportQuery.Params.ParamByName('QSOAddInfo').AsString := COMMENT;
             if MARKER = 'Y' then
-            ImportQuery.Params.ParamByName('Marker').AsString := '1'
+            ImportQuery.Params[23].AsString:='1'
+           // ImportQuery.Params.ParamByName('Marker').AsString := '1'
             else
-            ImportQuery.Params.ParamByName('Marker').AsString := '0';
-            ImportQuery.Params.ParamByName('ManualSet').AsString := '0';
-            ImportQuery.Params.ParamByName('DigiBand').AsString := BAND;
-            ImportQuery.Params.ParamByName('Continent').AsString := CONT;
-            ImportQuery.Params.ParamByName('ShortNote').AsString := COMMENT;
+            ImportQuery.Params[23].AsString:='0';
+           // ImportQuery.Params.ParamByName('Marker').AsString := '0';
+            ImportQuery.Params[24].AsString:='0';
+            ImportQuery.Params[25].AsString:=BAND;
+            ImportQuery.Params[26].AsString:=CONT;
+            ImportQuery.Params[27].AsString:=COMMENT;
+          //  ImportQuery.Params.ParamByName('ManualSet').AsString := '0';
+          //  ImportQuery.Params.ParamByName('DigiBand').AsString := BAND;
+          //  ImportQuery.Params.ParamByName('Continent').AsString := CONT;
+          //  ImportQuery.Params.ParamByName('ShortNote').AsString := COMMENT;
 
             if EQSL_QSL_RCVD = 'Y' then
-              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '1'
+            ImportQuery.Params[28].AsString := '1'
+           //   ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '1'
             else
-              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '0';
+            //  ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '0';
+              ImportQuery.Params[28].AsString := '0';
 
             if (LOTW_QSL_RCVD = 'L') or (LOTW_QSL_RCVD = 'Y') then
-              ImportQuery.Params.ParamByName('LoTWRec').AsString := '1'
+            ImportQuery.Params[29].AsString := '1'
+            //  ImportQuery.Params.ParamByName('LoTWRec').AsString := '1'
             else
-              ImportQuery.Params.ParamByName('LoTWRec').AsString := '0';
+              ImportQuery.Params[29].AsString := '0';
+            //  ImportQuery.Params.ParamByName('LoTWRec').AsString := '0';
 
             if LOTW_QSLRDATE <> '' then
             begin
@@ -524,47 +571,74 @@ begin
               dd := StrToInt(LOTW_QSLRDATE[7] + LOTW_QSLRDATE[8]);
 
               if DefaultDB = 'MySQL' then
-                ImportQuery.Params.ParamByName('LoTWRecDate').AsString := LOTW_QSLRDATE
+                ImportQuery.Params[30].AsString := LOTW_QSLRDATE
+               // ImportQuery.Params.ParamByName('LoTWRecDate').AsString := LOTW_QSLRDATE
               else
-                ImportQuery.Params.ParamByName('LoTWRecDate').AsDate :=
+               // ImportQuery.Params.ParamByName('LoTWRecDate').AsDate :=
+                ImportQuery.Params[30].AsDate :=
                   EncodeDate(yyyy, mm, dd);
-              ImportQuery.Params.ParamByName('LoTWRec').AsInteger := 1;
+              ImportQuery.Params[29].AsString := '1';
+            //  ImportQuery.Params.ParamByName('LoTWRec').AsInteger := 1;
             end
             else
-              ImportQuery.Params.ParamByName('LoTWRecDate').IsNull;
+            ImportQuery.Params[30].IsNull;
+            //  ImportQuery.Params.ParamByName('LoTWRecDate').IsNull;
+            ImportQuery.Params[31].AsString := QSLMSG;
+            ImportQuery.Params[32].AsString := dmFunc.ExtractCallsign(CALL);
+            ImportQuery.Params[33].AsString := STATE1;
+            ImportQuery.Params[34].AsString := STATE2;
+            ImportQuery.Params[35].AsString := STATE3;
+            ImportQuery.Params[36].AsString := STATE4;
 
-            ImportQuery.Params.ParamByName('QSLInfo').AsString := QSLMSG;
-            ImportQuery.Params.ParamByName('Call').AsString := dmFunc.ExtractCallsign(CALL);
-            ImportQuery.Params.ParamByName('State1').AsString := STATE1;
-            ImportQuery.Params.ParamByName('State2').AsString := STATE2;
-            ImportQuery.Params.ParamByName('State3').AsString := STATE3;
-            ImportQuery.Params.ParamByName('State4').AsString := STATE4;
+           // ImportQuery.Params.ParamByName('QSLInfo').AsString := QSLMSG;
+           // ImportQuery.Params.ParamByName('Call').AsString := dmFunc.ExtractCallsign(CALL);
+           // ImportQuery.Params.ParamByName('State1').AsString := STATE1;
+           // ImportQuery.Params.ParamByName('State2').AsString := STATE2;
+           // ImportQuery.Params.ParamByName('State3').AsString := STATE3;
+           // ImportQuery.Params.ParamByName('State4').AsString := STATE4;
             //WPX
             //   ImportQuery.Params.ParamByName('WPX').AsString := PFX;
             //AwardsEx
             if ValidDX = 'N' then
-            ImportQuery.Params.ParamByName('ValidDX').AsString := '0' else
-            ImportQuery.Params.ParamByName('ValidDX').AsString := '1';
-            ImportQuery.Params.ParamByName('SRX').AsString := SRX;
-            ImportQuery.Params.ParamByName('SRX_STRING').AsString := SRX_STRING;
-            ImportQuery.Params.ParamByName('STX').AsString := STX;
-            ImportQuery.Params.ParamByName('STX_STRING').AsString := STX_STRING;
-            ImportQuery.Params.ParamByName('SAT_NAME').AsString := SAT_NAME;
-            ImportQuery.Params.ParamByName('SAT_MODE').AsString := SAT_MODE;
-            ImportQuery.Params.ParamByName('PROP_MODE').AsString := PROP_MODE;
+            ImportQuery.Params[39].AsString := '0' else
+            //ImportQuery.Params.ParamByName('ValidDX').AsString := '0' else
+              ImportQuery.Params[39].AsString := '1';
+            //ImportQuery.Params.ParamByName('ValidDX').AsString := '1';
+            ImportQuery.Params[40].AsString := SRX;
+            ImportQuery.Params[41].AsString := SRX_STRING;
+            ImportQuery.Params[42].AsString := STX;
+            ImportQuery.Params[43].AsString := STX_STRING;
+            ImportQuery.Params[44].AsString := SAT_NAME;
+            ImportQuery.Params[45].AsString := SAT_MODE;
+            ImportQuery.Params[46].AsString := PROP_MODE;
+
+          //  ImportQuery.Params.ParamByName('SRX').AsString := SRX;
+          //  ImportQuery.Params.ParamByName('SRX_STRING').AsString := SRX_STRING;
+          //  ImportQuery.Params.ParamByName('STX').AsString := STX;
+          //  ImportQuery.Params.ParamByName('STX_STRING').AsString := STX_STRING;
+          //  ImportQuery.Params.ParamByName('SAT_NAME').AsString := SAT_NAME;
+          //  ImportQuery.Params.ParamByName('SAT_MODE').AsString := SAT_MODE;
+          //  ImportQuery.Params.ParamByName('PROP_MODE').AsString := PROP_MODE;
 
             if LOTW_QSL_SENT = 'Y' then
-              ImportQuery.Params.ParamByName('LoTWSent').AsInteger := 1;
+            ImportQuery.Params[47].AsInteger := 1;
+            //  ImportQuery.Params.ParamByName('LoTWSent').AsInteger := 1;
             if LOTW_QSL_SENT = 'N' then
-              ImportQuery.Params.ParamByName('LoTWSent').AsInteger := 0;
+            ImportQuery.Params[47].AsInteger := 0;
+            //  ImportQuery.Params.ParamByName('LoTWSent').AsInteger := 0;
 
-            ImportQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
-            ImportQuery.Params.ParamByName('QSL_SENT_VIA').AsString := QSL_SENT_VIA;
-            ImportQuery.Params.ParamByName('DXCC').AsString := DXCC;
+            ImportQuery.Params[48].AsString := QSL_RCVD_VIA;
+            ImportQuery.Params[49].AsString := QSL_SENT_VIA;
+            ImportQuery.Params[50].AsString := DXCC;
+           // ImportQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
+           // ImportQuery.Params.ParamByName('QSL_SENT_VIA').AsString := QSL_SENT_VIA;
+           // ImportQuery.Params.ParamByName('DXCC').AsString := DXCC;
             if NoCalcDXCC = 'Y' then
-            ImportQuery.Params.ParamByName('NoCalcDXCC').AsString := '1'
+            ImportQuery.Params[51].AsString:='1'
+           // ImportQuery.Params.ParamByName('NoCalcDXCC').AsString := '1'
             else
-            ImportQuery.Params.ParamByName('NoCalcDXCC').AsString := '0';
+            ImportQuery.Params[51].AsString:='0';
+           // ImportQuery.Params.ParamByName('NoCalcDXCC').AsString := '0';
 
             ImportQuery.ExecSQL;
 
