@@ -1529,7 +1529,6 @@ begin
       + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
       + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
       + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`)'
-      //+ 'VALUES (:IUnUsedIndex, :ICallSign, :IQSODate, :IQSOTime, :IQSOBand, :IQSOMode, :IQSOReportSent,'
       + 'VALUES (:ICallSign, :IQSODate, :IQSOTime, :IQSOBand, :IQSOMode, :IQSOReportSent,'
       + ':IQSOReportRecived, :IOMName, :IOMQTH, :IState, :IGrid, :IIOTA, :IQSLManager, :IQSLSent,'
       + ':IQSLSentAdv, :IQSLSentDate, :IQSLRec, :IQSLRecDate, :IMainPrefix, :IDXCCPrefix, :ICQZone,'
@@ -5820,7 +5819,7 @@ begin
         Label45.Caption, Label47.Caption, Edit11.Text, BoolToStr(CheckBox5.Checked), 0,
         FloatToStr(DigiBand),
         Label43.Caption, Edit11.Text, 0, '', 'NULL', SetQSLInfo,
-        EditButton1.Text, Edit10.Text, Edit9.Text, Edit8.Text, Edit7.Text,
+        dmFunc.ExtractCallsign(EditButton1.Text), Edit10.Text, Edit9.Text, Edit8.Text, Edit7.Text,
         Label38.Caption, 'NULL',
         IntToStr(1), 0, '', 0, '', '', '', '', 0, '', ComboBox6.Text,
         IntToStr(DXCCNum), '', 0,

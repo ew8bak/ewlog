@@ -740,6 +740,8 @@ begin
 	until (GetTickCount - start) >= n;
 end;
 
+
+
 function TdmFunc.ExtractCallsign(call: string): string;
 var
   Before: string = '';
@@ -783,12 +785,9 @@ begin
       exit;
     end;
 
-    //  if dmDXCC.JeVyjimka(After) then
-    //    Result := Before
-    //  else
-    //    Result := After
   end;
 end;
+
 
 function TdmFunc.CompleteLoc(loc: string): string;
 begin
