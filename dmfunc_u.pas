@@ -30,6 +30,7 @@ type
     fDebugLevel: integer;
     { private declarations }
   public
+    function ExtractWPXPrefix(call: string): string;
     function GetTelnetBandFromFreq(MHz: string): string;
     function ReplaceCountry(Country: string): string;
     function Extention(FileName:string):String;
@@ -732,15 +733,19 @@ end;
 
 procedure TdmFunc.Delay(n: Cardinal);
 var
-	start: Cardinal;
+start: Cardinal;
 begin
-	start := GetTickCount;
-  repeat
-    Application.ProcessMessages;
-	until (GetTickCount - start) >= n;
+start := GetTickCount;
+repeat
+Application.ProcessMessages;
+until (GetTickCount - start) >= n;
 end;
 
-
+function TdmFunc.ExtractWPXPrefix(Call: string): string;
+begin
+if Length(Call) < 3 then
+Result := Call;
+end;
 
 function TdmFunc.ExtractCallsign(call: string): string;
 var
