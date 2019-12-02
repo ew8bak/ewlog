@@ -78,6 +78,8 @@ var
   stop: integer = 0;
 begin
   field := UpperCase(field);
+  if field = 'VALIDDX' then field:='ValidDX';
+  if field = 'NOCALCDXCC' then field:='NoCalcDXCC';
   try
     Result := '';
     start := s.IndexOf('<' + field + ':');
@@ -155,6 +157,7 @@ var
   SUBMODE: string;
   TIME_OFF: string;
   TIME_ON: string;
+  ValidDX: string;
   PosEOH: word;
   PosEOR: word;
   QSOTIME: string;
@@ -233,6 +236,7 @@ begin
         SUBMODE := '';
         TIME_OFF := '';
         TIME_ON := '';
+        ValidDX := '';
 
         Readln(f, s);
         PosEOR := Pos('<EOR>', UpperCase(s));
@@ -296,6 +300,7 @@ begin
         SUBMODE := getField(s, 'SUBMODE');
         TIME_OFF := getField(s, 'TIME_OFF');
         TIME_ON := getField(s, 'TIME_ON');
+        ValidDX := getField(s, 'ValidDX');
 
         if PosEOR > 0 then
         begin
@@ -322,7 +327,7 @@ begin
           if FREQ = '' then
             FREQ := dmFunc.FreqFromBand(BAND, MODE);
           FREQ := FormatFloat('0.000"."00', StrToFloat(FREQ));
-          BAND := dmFunc.GetAdifBandFromFreq(FREQ);
+          BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ));
 
           yyyy := StrToInt(QSO_DATE[1] + QSO_DATE[2] + QSO_DATE[3] +
             QSO_DATE[4]);
@@ -374,6 +379,7 @@ begin
             Inc(errr);
             Label2.Caption :=
               rNumberDup + ' ' + IntToStr(errr);
+            Break;
           end
           else                   //Если всё норм -> поехали добавлять)
           begin
@@ -384,19 +390,19 @@ begin
             ImportQuery.SQL.Text :=
               'INSERT INTO ' + LogTable + ' (' +
               'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOReportSent,' +
-              'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLSent,' +
+              'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
               'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix,' +
-              'DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, DigiBand, Continent,' +
+              'DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
               'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, Call, State1, State2, ' +
-              'State3, State4, WPX, AwardsEx, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,' +
+              'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,' +
               'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
               'NoCalcDXCC) VALUES (' +
               ':CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOReportSent,' +
-              ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLSent,' +
+              ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,' +
               ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix,' +
-              ':DXCCPrefix, :CQZone, :ITUZone, :QSOAddInfo, :Marker, :DigiBand, :Continent,' +
+              ':DXCCPrefix, :CQZone, :ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent,' +
               ':ShortNote, :QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1,' +
-              ':State2, :State3, :State4, :WPX, :AwardsEx, :SRX, :SRX_STRING, :STX,'+
+              ':State2, :State3, :State4, :WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX,'+
               ':STX_STRING, :SAT_NAME, :SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA,' +
               ':QSL_SENT_VIA, :DXCC,:NoCalcDXCC)';
 
@@ -417,6 +423,7 @@ begin
             ImportQuery.Params.ParamByName('State').AsString := STATE;
             ImportQuery.Params.ParamByName('Grid').AsString := GRIDSQUARE;
             ImportQuery.Params.ParamByName('IOTA').AsString := IOTA;
+            ImportQuery.Params.ParamByName('QSLManager').AsString := QSL_VIA;
 
             if QSL_SENT = 'Y' then
             begin
@@ -490,10 +497,14 @@ begin
             ImportQuery.Params.ParamByName('CQZone').AsString := CQZ;
             ImportQuery.Params.ParamByName('ITUZone').AsString := ITUZ;
             ImportQuery.Params.ParamByName('QSOAddInfo').AsString := COMMENT;
-            ImportQuery.Params.ParamByName('Marker').AsString := MARKER;
+            if MARKER = 'Y' then
+            ImportQuery.Params.ParamByName('Marker').AsString := '1'
+            else
+            ImportQuery.Params.ParamByName('Marker').AsString := '0';
+            ImportQuery.Params.ParamByName('ManualSet').AsString := '0';
             ImportQuery.Params.ParamByName('DigiBand').AsString := BAND;
             ImportQuery.Params.ParamByName('Continent').AsString := CONT;
-            //ShortNote
+            ImportQuery.Params.ParamByName('ShortNote').AsString := COMMENT;
 
             if EQSL_QSL_RCVD = 'Y' then
               ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '1'
@@ -531,6 +542,9 @@ begin
             //WPX
             //   ImportQuery.Params.ParamByName('WPX').AsString := PFX;
             //AwardsEx
+            if ValidDX = 'N' then
+            ImportQuery.Params.ParamByName('ValidDX').AsString := '0' else
+            ImportQuery.Params.ParamByName('ValidDX').AsString := '1';
             ImportQuery.Params.ParamByName('SRX').AsString := SRX;
             ImportQuery.Params.ParamByName('SRX_STRING').AsString := SRX_STRING;
             ImportQuery.Params.ParamByName('STX').AsString := STX;
@@ -547,116 +561,13 @@ begin
             ImportQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
             ImportQuery.Params.ParamByName('QSL_SENT_VIA').AsString := QSL_SENT_VIA;
             ImportQuery.Params.ParamByName('DXCC').AsString := DXCC;
-            //NoCalcDXCC
-
-
-
-
-           { if DefaultDB = 'MySQL' then
-              ImportQuery.Params.ParamByName('QSODate').AsString := QSO_DATE
+            if NoCalcDXCC = 'Y' then
+            ImportQuery.Params.ParamByName('NoCalcDXCC').AsString := '1'
             else
-              ImportQuery.Params.ParamByName('QSODate').AsDate :=
-                EncodeDate(yyyy, mm, dd);
-
-            ImportQuery.Params.ParamByName('QSOTime').AsString := QSOTIME;
-            ImportQuery.Params.ParamByName('CallSign').AsString := CALL;
-            ImportQuery.Params.ParamByName('QSOBand').AsString := FREQ;
-            ImportQuery.Params.ParamByName('QSOMode').AsString := MODE;
-            ImportQuery.Params.ParamByName('QSOReportSent').AsString := RST_SENT;
-            ImportQuery.Params.ParamByName('QSOReportRecived').AsString := RST_RCVD;
-            ImportQuery.Params.ParamByName('OMName').AsString := sNAME;
-            ImportQuery.Params.ParamByName('OMQTH').AsString := QTH;
-            ImportQuery.Params.ParamByName('QSL_SENT_VIA').AsString := QSL_SENT_VIA;
-            ImportQuery.Params.ParamByName('IOTA').AsString := IOTA;
-            ImportQuery.Params.ParamByName('ITUZone').AsString := ITUZ;
-            ImportQuery.Params.ParamByName('Grid').AsString := GRIDSQUARE;
-            ImportQuery.Params.ParamByName('QSOAddInfo').AsString := COMMENT;
-            ImportQuery.Params.ParamByName('DXCCPrefix').AsString := DXCC;
-            ImportQuery.Params.ParamByName('DigiBand').AsString := BAND;
-            ImportQuery.Params.ParamByName('State').AsString := STATE;
-            ImportQuery.Params.ParamByName('CQZone').AsString := CQZ;
-            ImportQuery.Params.ParamByName('Continent').AsString := CONT;
-
-            if QSL_STATUS <> '' then
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := QSL_STATUS;
-
-            if QSL_SENT = 'Y' then
-            begin
-              ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'T';
-            end;
-
-            if QSL_SENT = 'Q' then
-            begin
-              ImportQuery.Params.ParamByName('QSLSent').IsNull;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'Q';
-            end;
-
-            if (QSL_SENT = '') and (QSL_STATUS = '') then
-            begin
-              ImportQuery.Params.ParamByName('QSLSent').IsNull;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'F';
-            end;
-
-            if LOTW_QSL_RCVD = 'L' then
-              ImportQuery.Params.ParamByName('LoTWRec').AsString := '1'
-            else
-              ImportQuery.Params.ParamByName('LoTWRec').AsString := '0';
-
-
-            if QSLSDATE <> '' then
-            begin
-              yyyy := StrToInt(QSLSDATE[1] + QSLSDATE[2] + QSLSDATE[3] +
-                QSLSDATE[4]);
-              mm := StrToInt(QSLSDATE[5] + QSLSDATE[6]);
-              dd := StrToInt(QSLSDATE[7] + QSLSDATE[8]);
-
-              if DefaultDB = 'MySQL' then
-                ImportQuery.Params.ParamByName('QSLSentDate').AsString := QSLSDATE
-              else
-                ImportQuery.Params.ParamByName('QSLSentDate').AsDate :=
-                  EncodeDate(yyyy, mm, dd);
-              ImportQuery.Params.ParamByName('QSLSent').AsInteger := 1;
-              ImportQuery.Params.ParamByName('QSLSentAdv').AsString := 'T';
-
-            end
-            else
-            begin
-              ImportQuery.Params.ParamByName('QSLSentDate').IsNull;
-              ImportQuery.Params.ParamByName('QSLSent').IsNull;
-            end;
-
-            if QSL_RCVD = 'Y' then
-              ImportQuery.Params.ParamByName('QSLRec').AsInteger := 1;
-
-            if QSLRDATE <> '' then
-            begin
-              yyyy := StrToInt(QSLRDATE[1] + QSLRDATE[2] + QSLRDATE[3] +
-                QSLRDATE[4]);
-              mm := StrToInt(QSLRDATE[5] + QSLRDATE[6]);
-              dd := StrToInt(QSLRDATE[7] + QSLRDATE[8]);
-
-              if DefaultDB = 'MySQL' then
-                ImportQuery.Params.ParamByName('QSLRecDate').AsString := QSLRDATE
-              else
-                ImportQuery.Params.ParamByName('QSLRecDate').AsDate :=
-                  EncodeDate(yyyy, mm, dd);
-              ImportQuery.Params.ParamByName('QSLRec').AsInteger := 1;
-            end
-            else
-            begin
-              ImportQuery.Params.ParamByName('QSLRecDate').IsNull;
-              ImportQuery.Params.ParamByName('QSLRec').AsInteger := 0;
-            end;
-
-            if EQSL_QSL_RCVD = 'Y' then
-              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '1'
-            else
-              ImportQuery.Params.ParamByName('QSLReceQSLcc').AsString := '0';
-
-            ImportQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSL_RCVD_VIA;  }
+            ImportQuery.Params.ParamByName('NoCalcDXCC').AsString := '0';
 
             ImportQuery.ExecSQL;
+
             Inc(RecCount);
             if RecCount mod 1000 = 0 then
             begin
