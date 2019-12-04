@@ -98,6 +98,21 @@ begin
   end;
 end;
 
+function Q(s: string): string;
+var
+  i: integer;
+  Quote: char;
+  char2: char;
+begin
+  Quote := #39;
+  char2 := ',';
+  Result := s;
+  for i := Length(Result) downto 1 do
+    if Result[i] = Quote then
+      Insert(Quote, Result, i);
+  Result := Quote + Result + Quote + char2;
+end;
+
 procedure TImportADIFForm.ADIFImport(path: string);
 var
   i: integer;
@@ -534,41 +549,26 @@ begin
 
           Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOReportSent,' +
-            'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
-            +
+            'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix,' +
             'DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,'
-            + 'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
-            + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
-            + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-            'NoCalcDXCC) VALUES (' + QuotedStr(CALL) + ',' +
-            QuotedStr(paramQSODate) + ',' + QuotedStr(QSOTIME) +
-            ',' + QuotedStr(FREQ) + ',' + QuotedStr(MODE) + ',' +
-            QuotedStr(RST_SENT) + ',' + QuotedStr(RST_RCVD) +
-            ',' + QuotedStr(sNAME) + ', ' + QuotedStr(QTH) + ',' +
-            QuotedStr(STATE) + ',' + QuotedStr(GRIDSQUARE) + ',' +
-            QuotedStr(IOTA) + ',' + QuotedStr(QSL_VIA) + ',' +
-            QuotedStr(paramQSLSent) + ',' + QuotedStr(paramQSLSentAdv) +
-            ',' + QuotedStr(paramQSLSDATE) + ',' + QuotedStr(ParamQSL_RCVD) +
-            ',' + QuotedStr(paramQSLRDATE) + ',' + QuotedStr(PFX) +
-            ','  + QuotedStr(DXCC_PREF) + ',' + QuotedStr(CQZ) +
-            ',' + QuotedStr(ITUZ) + ',' + QuotedStr(COMMENT) +
-            ',' + QuotedStr(paramMARKER) + ', ' + QuotedStr('0') +
-            ',' + QuotedStr(BAND) + ',' + QuotedStr(CONT) + ',' +
-            ''+ QuotedStr(COMMENT) + ',' + QuotedStr(paramEQSL_QSL_RCVD) +
-            ',' + QuotedStr(paramLOTW_QSL_RCVD) + ',' +
-            QuotedStr(paramLOTW_QSLRDATE) + ',' + QuotedStr(QSLMSG) +
-            ',' + QuotedStr(dmFunc.ExtractCallsign(CALL)) + ',' +
-            QuotedStr(STATE1) + ',' + QuotedStr(STATE2) + ',' +
-            QuotedStr(STATE3) + ',' + QuotedStr(STATE4) + ',' +
-            QuotedStr('WPX') + ',' + QuotedStr('Awards') + ',' +
-            QuotedStr(paramValidDX) + ',' + QuotedStr(SRX) + ',' +
-            QuotedStr(SRX_STRING) + ',' + QuotedStr(STX) + ',' +
-            QuotedStr(STX_STRING) + ',' + QuotedStr(SAT_NAME) +
-            ',' + QuotedStr(SAT_MODE) + ',' + QuotedStr(PROP_MODE) +
-            ',' + QuotedStr(paramLOTW_QSL_SENT) + ',' + QuotedStr(QSL_RCVD_VIA) +
-            ',' + QuotedStr(QSL_SENT_VIA) + ',' + QuotedStr(DXCC) +
-            ',' + QuotedStr(paramNoCalcDXCC) + ')';
+            +
+            'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
+            +
+            'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
+            +
+            'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
+            'NoCalcDXCC) VALUES (' + Q(CALL) + Q(paramQSODate) + Q(QSOTIME) + Q(FREQ) +
+            Q(MODE) + Q(RST_SENT) + Q(RST_RCVD) + Q(sNAME) + Q(QTH) + Q(STATE) + Q(GRIDSQUARE) +
+            Q(IOTA) + Q(QSL_VIA) + Q(paramQSLSent) + Q(paramQSLSentAdv) + Q(paramQSLSDATE) +
+            Q(ParamQSL_RCVD) + Q(paramQSLRDATE) + Q(PFX) + Q(DXCC_PREF) + Q(CQZ) +
+            Q(ITUZ) + Q(COMMENT) + Q(paramMARKER) + Q('0') + Q(BAND) + Q(CONT) + Q(COMMENT) +
+            Q(paramEQSL_QSL_RCVD) + Q(paramLOTW_QSL_RCVD) + Q(paramLOTW_QSLRDATE) +
+            Q(QSLMSG) + Q(dmFunc.ExtractCallsign(CALL)) + Q(STATE1) + Q(STATE2) +
+            Q(STATE3) + Q(STATE4) + Q('WPX') + Q('Awards') + Q(paramValidDX) + Q(
+            SRX) + Q(SRX_STRING) + Q(STX) + Q(STX_STRING) + Q(SAT_NAME) + Q(SAT_MODE) + Q(
+            PROP_MODE) + Q(paramLOTW_QSL_SENT) + Q(QSL_RCVD_VIA) +
+            Q(QSL_SENT_VIA) + Q(DXCC) + QuotedStr(paramNoCalcDXCC) + ')';
 
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)
@@ -584,8 +584,8 @@ begin
         end;
 
       except
-        on E : Exception do
-        WriteLn(E.ClassName+' : '+E.Message);
+        on E: Exception do
+          WriteLn(E.ClassName + ' : ' + E.Message);
       end;
     end;
   finally
