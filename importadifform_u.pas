@@ -348,6 +348,10 @@ begin
 
         if PosEOR > 0 then
         begin
+
+          if Length(Memo1.Text) > 0 then
+          COMMENT:=Memo1.Text;
+
           if GuessEncoding(sNAME) <> 'utf8' then
             sNAME := CP1251ToUTF8(sNAME);
           if GuessEncoding(QTH) <> 'utf8' then
