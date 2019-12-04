@@ -44,7 +44,6 @@ type
     Memo1: TMemo;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
-    ImportQuery: TSQLQuery;
     DUPEQuery: TSQLQuery;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -195,7 +194,6 @@ var
   paramQSLRDATE: string;
   paramLOTW_QSLRDATE: string;
   Query: string;
-
 begin
   RecCount := 0;
   PosEOH := 0;
@@ -550,24 +548,24 @@ begin
           Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
-            'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix,' +
-            'DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,'
+            'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
+            'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,'
             +
             'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
-            +
-            'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
-            +
-            'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-            'NoCalcDXCC) VALUES (' + Q(CALL) + Q(paramQSODate) + Q(QSOTIME) + Q(FREQ) +
-            Q(MODE) + Q(RST_SENT) + Q(RST_RCVD) + Q(sNAME) + Q(QTH) + Q(STATE) + Q(GRIDSQUARE) +
-            Q(IOTA) + Q(QSL_VIA) + Q(paramQSLSent) + Q(paramQSLSentAdv) + Q(paramQSLSDATE) +
-            Q(ParamQSL_RCVD) + Q(paramQSLRDATE) + Q(PFX) + Q(DXCC_PREF) + Q(CQZ) +
-            Q(ITUZ) + Q(COMMENT) + Q(paramMARKER) + Q('0') + Q(BAND) + Q(CONT) + Q(COMMENT) +
-            Q(paramEQSL_QSL_RCVD) + Q(paramLOTW_QSL_RCVD) + Q(paramLOTW_QSLRDATE) +
-            Q(QSLMSG) + Q(dmFunc.ExtractCallsign(CALL)) + Q(STATE1) + Q(STATE2) +
-            Q(STATE3) + Q(STATE4) + Q('WPX') + Q('Awards') + Q(paramValidDX) + Q(
-            SRX) + Q(SRX_STRING) + Q(STX) + Q(STX_STRING) + Q(SAT_NAME) + Q(SAT_MODE) + Q(
-            PROP_MODE) + Q(paramLOTW_QSL_SENT) + Q(QSL_RCVD_VIA) +
+            + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
+            + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,'
+            + 'NoCalcDXCC) VALUES (' + Q(CALL) + Q(paramQSODate) +
+            Q(QSOTIME) + Q(FREQ) + Q(MODE) + Q(RST_SENT) + Q(RST_RCVD) +
+            Q(sNAME) + Q(QTH) + Q(STATE) + Q(GRIDSQUARE) + Q(IOTA) +
+            Q(QSL_VIA) + Q(paramQSLSent) + Q(paramQSLSentAdv) + Q(paramQSLSDATE) +
+            Q(ParamQSL_RCVD) + Q(paramQSLRDATE) + Q(PFX) + Q(DXCC_PREF) +
+            Q(CQZ) + Q(ITUZ) + Q(COMMENT) + Q(paramMARKER) + Q('0') +
+            Q(BAND) + Q(CONT) + Q(COMMENT) + Q(paramEQSL_QSL_RCVD) +
+            Q(paramLOTW_QSL_RCVD) + Q(paramLOTW_QSLRDATE) + Q(QSLMSG) +
+            Q(dmFunc.ExtractCallsign(CALL)) + Q(STATE1) + Q(STATE2) + Q(STATE3) +
+            Q(STATE4) + Q('WPX') + Q('Awards') + Q(paramValidDX) + Q(SRX) +
+            Q(SRX_STRING) + Q(STX) + Q(STX_STRING) + Q(SAT_NAME) + Q(SAT_MODE) +
+            Q(PROP_MODE) + Q(paramLOTW_QSL_SENT) + Q(QSL_RCVD_VIA) +
             Q(QSL_SENT_VIA) + Q(DXCC) + QuotedStr(paramNoCalcDXCC) + ')';
 
           if MainForm.MySQLLOGDBConnection.Connected then
@@ -659,16 +657,14 @@ end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
 begin
-  if DefaultDB = 'MySQL' then
+  if MainForm.MySQLLOGDBConnection.Connected then
   begin
     DUPEQuery.DataBase := MainForm.MySQLLOGDBConnection;
-    ImportQuery.DataBase := MainForm.MySQLLOGDBConnection;
     MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
   end
   else
   begin
     DUPEQuery.DataBase := MainForm.SQLiteDBConnection;
-    ImportQuery.DataBase := MainForm.SQLiteDBConnection;
     MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
   Button1.Enabled := True;

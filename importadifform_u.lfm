@@ -527,14 +527,6 @@ object ImportADIFForm: TImportADIFForm
     ParentColor = False
     ParentFont = False
   end
-  object ImportQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
-    Params = <>
-    left = 32
-    top = 80
-  end
   object DUPEQuery: TSQLQuery
     FieldDefs = <>
     Database = MainForm.MySQLLOGDBConnection
