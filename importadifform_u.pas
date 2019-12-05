@@ -106,6 +106,11 @@ begin
   Quote := #39;
   char2 := ',';
   Result := s;
+  if Result = 'NULL' then
+  begin
+    Result := Result + char2;
+    exit;
+  end;
   for i := Length(Result) downto 1 do
     if Result[i] = Quote then
       Insert(Quote, Result, i);
@@ -178,7 +183,6 @@ var
   PosEOH: word;
   PosEOR: word;
   QSOTIME: string;
-  errr, RecCount: integer;
   yyyy, mm, dd: word;
   paramQSLSent: string;
   paramQSLSentAdv: string;
@@ -194,8 +198,24 @@ var
   paramQSLRDATE: string;
   paramLOTW_QSLRDATE: string;
   Query: string;
+  DupeCount: integer;
+  ErrorCount, RecCount: integer;
 begin
+
+  if MainForm.MySQLLOGDBConnection.Connected then
+    MainForm.MySQLLOGDBConnection.ExecuteDirect(
+      'ALTER TABLE ' + LogTable +
+      ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime)')
+  else
+  begin
+    MainForm.SQLiteDBConnection.ExecuteDirect('DROP INDEX IF EXISTS Dupe_index');
+    MainForm.SQLiteDBConnection.ExecuteDirect('CREATE UNIQUE INDEX Dupe_index ON ' +
+      LogTable + '(CallSign, QSODate, QSOTime)');
+  end;
+
   RecCount := 0;
+  DupeCount := 0;
+  ErrorCount := 0;
   PosEOH := 0;
   PosEOR := 0;
   try
@@ -350,7 +370,7 @@ begin
         begin
 
           if Length(Memo1.Text) > 0 then
-          COMMENT:=Memo1.Text;
+            COMMENT := Memo1.Text;
 
           if GuessEncoding(sNAME) <> 'utf8' then
             sNAME := CP1251ToUTF8(sNAME);
@@ -402,35 +422,6 @@ begin
         Continue;
       end;}
 
-        {  DUPEQuery.Close;         //Проверка на дубликаты
-          DUPEQuery.SQL.Clear;
-          if DefaultDB = 'MySQL' then
-          begin
-            DUPEQuery.SQL.Text :=
-              'SELECT COUNT(*) FROM ' + LogTable + ' WHERE QSODate = ' +
-              QuotedStr(QSO_DATE) + ' AND QSOTime = ' + QuotedStr(QSOTIME) +
-              ' AND CallSign = ' + QuotedStr(CALL);
-
-          end
-          else
-          begin
-            DUPEQuery.SQL.Text :=
-              'SELECT COUNT(*) FROM ' + LogTable +
-              ' WHERE strftime(''%Y-%m-%d'',QSODate) = ' +
-              QuotedStr(QSO_DATE) + ' AND QSOTime = ' + QuotedStr(QSOTIME) +
-              ' AND CallSign = ' + QuotedStr(CALL);
-          end;
-          DUPEQuery.Open;
-          if DUPEQuery.Fields.Fields[0].AsInteger > 0 then
-          begin
-            Inc(errr);
-            Label2.Caption :=
-              rNumberDup + ' ' + IntToStr(errr);
-            Break;
-          end
-          else                   //Если всё норм -> поехали добавлять)
-          begin  }
-
           if MainForm.MySQLLOGDBConnection.Connected then
             paramQSODate := dmFunc.ADIFDateToDate(QSO_DATE)
           else
@@ -478,7 +469,7 @@ begin
             paramQSLSentAdv := 'T';
           end
           else
-            paramQSLSDATE := '';
+            paramQSLSDATE := 'NULL';
 
           if QSL_RCVD = 'Y' then
             paramQSL_RCVD := '1';
@@ -499,7 +490,7 @@ begin
             paramQSL_RCVD := '1';
           end
           else
-            paramQSLRDATE := '';
+            paramQSLRDATE := 'NULL';
 
           if MARKER = 'Y' then
             paramMARKER := '1'
@@ -531,7 +522,7 @@ begin
             paramLOTW_QSL_RCVD := '1';
           end
           else
-            paramLOTW_QSLRDATE := '';
+            paramLOTW_QSLRDATE := 'NULL';
 
           if ValidDX = 'N' then
             paramValidDX := '0'
@@ -541,13 +532,18 @@ begin
           if LOTW_QSL_SENT = 'Y' then
             paramLOTW_QSL_SENT := '1';
 
-          if LOTW_QSL_SENT = 'N' then
+          if (LOTW_QSL_SENT = 'N') or (LOTW_QSL_SENT = '') then
             paramLOTW_QSL_SENT := '0';
 
           if NoCalcDXCC = 'Y' then
             paramNoCalcDXCC := '1'
           else
             paramNoCalcDXCC := '0';
+
+          if SRX = '' then
+            SRX := 'NULL';
+          if STX = '' then
+            STX := 'NULL';
 
           Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOReportSent,' +
@@ -561,14 +557,15 @@ begin
             + 'NoCalcDXCC) VALUES (' + Q(CALL) + Q(paramQSODate) +
             Q(QSOTIME) + Q(FREQ) + Q(MODE) + Q(RST_SENT) + Q(RST_RCVD) +
             Q(sNAME) + Q(QTH) + Q(STATE) + Q(GRIDSQUARE) + Q(IOTA) +
-            Q(QSL_VIA) + Q(paramQSLSent) + Q(paramQSLSentAdv) + Q(paramQSLSDATE) +
-            Q(ParamQSL_RCVD) + Q(paramQSLRDATE) + Q(PFX) + Q(DXCC_PREF) +
-            Q(CQZ) + Q(ITUZ) + Q(COMMENT) + Q(paramMARKER) + Q('0') +
-            Q(BAND) + Q(CONT) + Q(COMMENT) + Q(paramEQSL_QSL_RCVD) +
-            Q(paramLOTW_QSL_RCVD) + Q(paramLOTW_QSLRDATE) + Q(QSLMSG) +
-            Q(dmFunc.ExtractCallsign(CALL)) + Q(STATE1) + Q(STATE2) + Q(STATE3) +
-            Q(STATE4) + Q('WPX') + Q('Awards') + Q(paramValidDX) + Q(SRX) +
-            Q(SRX_STRING) + Q(STX) + Q(STX_STRING) + Q(SAT_NAME) + Q(SAT_MODE) +
+            Q(QSL_VIA) + Q(paramQSLSent) + Q(paramQSLSentAdv) +
+            Q(paramQSLSDATE) + Q(ParamQSL_RCVD) + Q(paramQSLRDATE) +
+            Q(PFX) + Q(DXCC_PREF) + Q(CQZ) + Q(ITUZ) + Q(COMMENT) +
+            Q(paramMARKER) + Q('0') + Q(BAND) + Q(CONT) + Q(COMMENT) +
+            Q(paramEQSL_QSL_RCVD) + Q(paramLOTW_QSL_RCVD) +
+            Q(paramLOTW_QSLRDATE) + Q(QSLMSG) + Q(dmFunc.ExtractCallsign(CALL)) +
+            Q(STATE1) + Q(STATE2) + Q(STATE3) + Q(STATE4) + Q('WPX') +
+            Q('Awards') + Q(paramValidDX) + Q(SRX) + Q(SRX_STRING) +
+            Q(STX) + Q(STX_STRING) + Q(SAT_NAME) + Q(SAT_MODE) +
             Q(PROP_MODE) + Q(paramLOTW_QSL_SENT) + Q(QSL_RCVD_VIA) +
             Q(QSL_SENT_VIA) + Q(DXCC) + QuotedStr(paramNoCalcDXCC) + ')';
 
@@ -586,8 +583,23 @@ begin
         end;
 
       except
-        on E: Exception do
-          WriteLn(E.ClassName + ' : ' + E.Message);
+        on E: ESQLDatabaseError do
+        begin
+          WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
+          if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
+          begin
+            Inc(DupeCount);
+            Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
+            WriteWrongADIF(s);
+          end;
+          if E.ErrorCode = 1366 then
+          begin
+            Inc(ErrorCount);
+            lblErrors.Caption := rImportErrors + ':' + IntToStr(ErrorCount);
+            WriteWrongADIF(s);
+          end;
+        end;
+
       end;
     end;
   finally
