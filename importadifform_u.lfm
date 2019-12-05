@@ -355,9 +355,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object CheckBox1: TCheckBox
     Left = 144
-    Height = 23
+    Height = 19
     Top = 4
-    Width = 188
+    Width = 179
     Caption = 'Compute DXCC from callsign'
     Enabled = False
     Font.Height = -12
@@ -367,9 +367,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object CheckBox2: TCheckBox
     Left = 144
-    Height = 23
+    Height = 19
     Top = 24
-    Width = 132
+    Width = 121
     Caption = 'Remove Duplicates'
     Checked = True
     Font.Height = -12
@@ -383,24 +383,24 @@ object ImportADIFForm: TImportADIFForm
     Top = 48
     Width = 264
     Caption = 'Save time'
-    ClientHeight = 28
-    ClientWidth = 262
+    ClientHeight = 24
+    ClientWidth = 260
     Font.Height = -12
     ParentFont = False
     TabOrder = 2
     object RadioButton1: TRadioButton
       Left = 8
-      Height = 23
+      Height = 19
       Top = 0
-      Width = 104
+      Width = 97
       Caption = 'Time OFF QSO'
       TabOrder = 1
     end
     object RadioButton2: TRadioButton
       Left = 144
-      Height = 23
+      Height = 19
       Top = 0
-      Width = 101
+      Width = 94
       Caption = 'Time ON QSO'
       Checked = True
       TabOrder = 0
@@ -418,9 +418,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object Label1: TLabel
     Left = 144
-    Height = 13
+    Height = 15
     Top = 96
-    Width = 186
+    Width = 181
     Caption = 'Comment for all imported records'
     Font.Height = -12
     ParentColor = False
@@ -428,7 +428,7 @@ object ImportADIFForm: TImportADIFForm
   end
   object FileNameEdit1: TFileNameEdit
     Left = 144
-    Height = 24
+    Height = 21
     Top = 168
     Width = 280
     Filter = '*.adi|*.adi'
@@ -468,9 +468,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object lblComplete: TLabel
     Left = 480
-    Height = 13
+    Height = 15
     Top = 88
-    Width = 42
+    Width = 41
     Caption = 'Waiting'
     Font.Height = -12
     ParentColor = False
@@ -478,9 +478,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object lblCount: TLabel
     Left = 416
-    Height = 13
+    Height = 15
     Top = 24
-    Width = 98
+    Width = 94
     Caption = 'Imported Records'
     Font.Height = -12
     ParentColor = False
@@ -488,9 +488,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object lblErrors: TLabel
     Left = 416
-    Height = 13
+    Height = 15
     Top = 40
-    Width = 74
+    Width = 69
     Caption = 'Import Errors'
     Font.Height = -12
     ParentColor = False
@@ -498,9 +498,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object lblErrorLog: TLabel
     Left = 416
-    Height = 13
+    Height = 15
     Top = 56
-    Width = 50
+    Width = 44
     Caption = 'Error file'
     Font.Height = -12
     ParentColor = False
@@ -509,9 +509,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object Label2: TLabel
     Left = 416
-    Height = 13
+    Height = 15
     Top = 72
-    Width = 119
+    Width = 115
     Caption = 'Number of duplicates'
     Font.Height = -12
     ParentColor = False
@@ -519,9 +519,9 @@ object ImportADIFForm: TImportADIFForm
   end
   object Label3: TLabel
     Left = 416
-    Height = 13
+    Height = 15
     Top = 88
-    Width = 37
+    Width = 35
     Caption = 'Status:'
     Font.Height = -12
     ParentColor = False

@@ -19,9 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="4996"/>
-        <CursorPos X="13" Y="5003"/>
+        <CursorPos X="79" Y="5005"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -105,9 +104,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="589"/>
-        <CursorPos X="39" Y="300"/>
+        <TopLine Value="577"/>
+        <CursorPos X="70" Y="598"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>

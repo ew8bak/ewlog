@@ -587,21 +587,26 @@ begin
       except
         on E: ESQLDatabaseError do
         begin
-          WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
+        //  WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
           if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
           begin
             Inc(DupeCount);
+            if DupeCount mod 100 = 0 then begin
             Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
-            WriteWrongADIF(s);
+            Application.ProcessMessages;
+            end;
+            Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
           end;
           if E.ErrorCode = 1366 then
           begin
             Inc(ErrorCount);
+            if ErrorCount mod 100 = 0 then begin
             lblErrors.Caption := rImportErrors + ':' + IntToStr(ErrorCount);
+            Application.ProcessMessages;
+            end;
             WriteWrongADIF(s);
           end;
         end;
-
       end;
     end;
   finally
