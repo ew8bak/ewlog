@@ -571,6 +571,7 @@ type
     procedure MenuItem53Click(Sender: TObject);
     procedure MenuItem55Click(Sender: TObject);
     procedure MenuItem56Click(Sender: TObject);
+    procedure MenuItem58Click(Sender: TObject);
     procedure MenuItem60Click(Sender: TObject);
     procedure MenuItem63Click(Sender: TObject);
     procedure MenuItem65Click(Sender: TObject);
@@ -4991,6 +4992,15 @@ end;
 procedure TMainForm.MenuItem56Click(Sender: TObject);
 begin
   CreateJournalForm.Show;
+end;
+
+procedure TMainForm.MenuItem58Click(Sender: TObject);
+begin
+ { if MySQLLOGDBConnection.Connected then
+  MySQLLOGDBConnection.ExecuteDirect('')
+  else begin
+  SQLiteDBConnection.ExecuteDirect('END; VACUUM; REINDEX; BEGIN; COMMIT;');
+  end;     }
 end;
 
 procedure TMainForm.MenuItem60Click(Sender: TObject);

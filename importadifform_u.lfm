@@ -1,7 +1,7 @@
 object ImportADIFForm: TImportADIFForm
-  Left = 363
+  Left = 263
   Height = 195
-  Top = 409
+  Top = 269
   Width = 600
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -526,13 +526,5 @@ object ImportADIFForm: TImportADIFForm
     Font.Height = -12
     ParentColor = False
     ParentFont = False
-  end
-  object DUPEQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
-    Params = <>
-    left = 32
-    top = 24
   end
 end

@@ -44,7 +44,6 @@ type
     Memo1: TMemo;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
-    DUPEQuery: TSQLQuery;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FileNameEdit1ButtonClick(Sender: TObject);
@@ -303,6 +302,9 @@ begin
         ValidDX := '';
 
         Readln(f, s);
+        if GuessEncoding(s) <> 'utf8' then
+          sNAME := CP1251ToUTF8(s);
+
         PosEOR := Pos('<EOR>', UpperCase(s));
         if not (PosEOR > 0) then
           Continue;
@@ -372,12 +374,12 @@ begin
           if Length(Memo1.Text) > 0 then
             COMMENT := Memo1.Text;
 
-          if GuessEncoding(sNAME) <> 'utf8' then
-            sNAME := CP1251ToUTF8(sNAME);
-          if GuessEncoding(QTH) <> 'utf8' then
-            QTH := CP1251ToUTF8(QTH);
-          if GuessEncoding(COMMENT) <> 'utf8' then
-            COMMENT := CP1251ToUTF8(COMMENT);
+          //  if GuessEncoding(sNAME) <> 'utf8' then
+          //    sNAME := CP1251ToUTF8(sNAME);
+          //   if GuessEncoding(QTH) <> 'utf8' then
+          //     QTH := CP1251ToUTF8(QTH);
+          //   if GuessEncoding(COMMENT) <> 'utf8' then
+          //     COMMENT := CP1251ToUTF8(COMMENT);
 
           if (TIME_ON <> '') then
             TIME_ON := TIME_ON[1] + TIME_ON[2] + ':' + TIME_ON[3] + TIME_ON[4];
@@ -674,15 +676,10 @@ end;
 procedure TImportADIFForm.FormShow(Sender: TObject);
 begin
   if MainForm.MySQLLOGDBConnection.Connected then
-  begin
-    DUPEQuery.DataBase := MainForm.MySQLLOGDBConnection;
-    MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
-  end
+    MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection
   else
-  begin
-    DUPEQuery.DataBase := MainForm.SQLiteDBConnection;
     MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
-  end;
+
   Button1.Enabled := True;
   Button1.Caption := rImport;
   FileNameEdit1.Text := '';
