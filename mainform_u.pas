@@ -1232,7 +1232,7 @@ begin
       'QSO № ' + IntToStr(DBGrid1.DataSource.DataSet.RecNo) +
       rQSOTotal + IntToStr(MainForm.LOGBookQuery.RecordCount);
   except
-    on E: Exception do
+    on E: ESQLDatabaseError do
     begin
       if Pos('has gone away', E.Message) > 0 then
       begin
@@ -1397,11 +1397,11 @@ end;
 
 procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
 begin
-  callNameS := dmFunc.ExtractCallsign(callNameS);
+ // callNameS := dmFunc.ExtractCallsign(callNameS);
   SQLQuery2.Close;
   SQLQuery2.SQL.Clear;
 
-  if DefaultDB = 'MySQL' then
+  if MySQLLOGDBConnection.Connected then
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' +
@@ -1411,8 +1411,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE CallSign LIKE ' +
-      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%') +
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE Call LIKE ' +
+      QuotedStr(callNameS) +
       ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
   else
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
@@ -1424,8 +1424,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-      + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-      QuotedStr(callNameS) + ' or CallSign LIKE ' + QuotedStr(callNameS + '/%') +
+      + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE Call = ' +
+      QuotedStr(callNameS) +
       ' ORDER BY date(QSODate), time(QSOTime) ASC');
   SQLQuery2.Open;
 
@@ -1725,9 +1725,9 @@ var
   i, j: integer;
   R: extended;
   la, lo: currency;
-  azim, qra, loc, callnames: string;
+  azim, qra, loc: string;
 begin
-  callnames := dmFunc.ExtractCallsign(CallName);
+ // callnames := dmFunc.ExtractCallsign(CallName);
   Result := False;
   loc := '';
   qra := '';
@@ -1738,7 +1738,7 @@ begin
   begin
     Close;
     SQL.Clear;
-    if DefaultDB = 'MySQL' then
+    if MySQLLOGDBConnection.Connected then
       SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
         ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
         + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
@@ -1748,8 +1748,8 @@ begin
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%') +
+        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE Call = ' +
+        QuotedStr(CallName) +
         ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
     else
       SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
@@ -1761,8 +1761,8 @@ begin
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE CallSign = ' +
-        QuotedStr(callnames) + ' or CallSign LIKE ' + QuotedStr(callnames + '/%') +
+        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE Call = ' +
+        QuotedStr(CallName) +
         ' ORDER BY date(QSODate), time(QSOTime) ASC');
     Open;
   end;
@@ -2060,7 +2060,7 @@ begin
       LogBookQuery.Close;
       LogBookQuery.SQL.Clear;
 
-      if DefaultDB = 'MySQL' then
+      if MySQLLOGDBConnection.Connected then
       begin
         LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
           ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -3492,8 +3492,7 @@ begin
       Writeln(AdifFile, s);
       CloseFile(AdifFile);
 
-      ImportADIFForm.FileNameEdit1.Text := PathMyDoc + 'ImportMobile.adi';
-      ImportADIFForm.ADIFImport('a');
+      ImportADIFForm.ADIFImport(PathMyDoc + 'ImportMobile.adi');
       Stream.Free;
       ImportAdifMobile := False;
     end;

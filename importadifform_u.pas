@@ -548,6 +548,10 @@ begin
           if STX = '' then
             STX := 'NULL';
 
+          if CheckBox1.Checked then begin
+          //MainForm.;
+          end;
+
           Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +

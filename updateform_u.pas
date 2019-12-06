@@ -246,7 +246,7 @@ end;
 procedure TUpdate_Form.FormCreate(Sender: TObject);
 begin
       {$IFDEF WINDOWS}
-  MainForm.CheckUpdatesTimer.Enabled := True;
+//  MainForm.CheckUpdatesTimer.Enabled := True;
     {$ENDIF WINDOWS}
 end;
 

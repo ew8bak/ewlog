@@ -12,7 +12,7 @@ object Update_Form: TUpdate_Form
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object GroupBox1: TGroupBox
     Left = 0
     Height = 229
@@ -20,8 +20,8 @@ object Update_Form: TUpdate_Form
     Width = 274
     Align = alClient
     Caption = 'Update'
-    ClientHeight = 213
-    ClientWidth = 272
+    ClientHeight = 209
+    ClientWidth = 270
     Font.Height = -12
     ParentFont = False
     TabOrder = 0
@@ -29,10 +29,10 @@ object Update_Form: TUpdate_Form
       AnchorSideLeft.Control = GroupBox1
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 61
-      Height = 13
+      Left = 64
+      Height = 15
       Top = 8
-      Width = 81
+      Width = 76
       Alignment = taCenter
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
@@ -46,9 +46,9 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 142
-      Height = 13
+      Height = 15
       Top = 8
-      Width = 35
+      Width = 34
       BorderSpacing.Left = 142
       BorderSpacing.Right = 100
       Caption = 'Actual'
@@ -62,9 +62,9 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 82
-      Height = 13
+      Height = 15
       Top = 32
-      Width = 60
+      Width = 58
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
       Caption = 'Last check:'
@@ -77,7 +77,7 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 142
-      Height = 13
+      Height = 15
       Top = 32
       Width = 9
       BorderSpacing.Left = 142
@@ -92,10 +92,10 @@ object Update_Form: TUpdate_Form
       AnchorSideLeft.Side = asrCenter
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 49
-      Height = 13
+      Left = 50
+      Height = 15
       Top = 56
-      Width = 93
+      Width = 90
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
       Caption = 'Program version:'
@@ -108,7 +108,7 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 142
-      Height = 13
+      Height = 15
       Top = 56
       Width = 9
       BorderSpacing.Left = 142
@@ -122,10 +122,10 @@ object Update_Form: TUpdate_Form
       AnchorSideLeft.Side = asrCenter
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 59
-      Height = 13
+      Left = 64
+      Height = 15
       Top = 80
-      Width = 83
+      Width = 76
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
       Caption = 'Server Version:'
@@ -138,7 +138,7 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 142
-      Height = 13
+      Height = 15
       Top = 80
       Width = 9
       BorderSpacing.Left = 142
@@ -156,9 +156,9 @@ object Update_Form: TUpdate_Form
     end
     object Label9: TLabel
       Left = 16
-      Height = 13
+      Height = 15
       Top = 112
-      Width = 85
+      Width = 81
       Caption = 'Update process'
       Font.Height = -12
       ParentColor = False
@@ -188,9 +188,9 @@ object Update_Form: TUpdate_Form
     end
     object Label10: TLabel
       Left = 16
-      Height = 13
+      Height = 15
       Top = 152
-      Width = 45
+      Width = 43
       Caption = 'File size:'
       Font.Height = -12
       ParentColor = False

@@ -471,6 +471,8 @@ begin
       SQL_Query.SQL.Text := 'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_'+LOG_PREFIX+'` '+
       '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
       SQL_Query.ExecSQL;
+      SQL_Query.SQL.Text:='CREATE INDEX `Call_index` ON `Log_TABLE_'+LOG_PREFIX+'` (`Call`);';
+      SQL_Query.ExecSQL;
       ProgressBar1.Position := 77;
       SQL_Transaction.Commit;
       SQL_Query.Close;
@@ -806,6 +808,8 @@ begin
         SQL_Query.ExecSQL;
         SQL_Query.SQL.Text := 'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_'+LOG_PREFIX+'` '+
           '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
+      SQL_Query.ExecSQL;
+            SQL_Query.SQL.Text:='CREATE INDEX `Call_index` ON `Log_TABLE_'+LOG_PREFIX+'` (`Call`);';
       SQL_Query.ExecSQL;
         ProgressBar1.Position := 77;
         SQL_Transaction.Commit;
