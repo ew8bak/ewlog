@@ -497,8 +497,6 @@ type
     procedure dxClientDisconnect(aSocket: TLSocket);
     procedure dxClientReceive(aSocket: TLSocket);
     procedure Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
-    procedure Edit1Change(Sender: TObject);
-    procedure Edit2Change(Sender: TObject);
     procedure EditButton1ButtonClick(Sender: TObject);
     procedure EditButton1Change(Sender: TObject);
     procedure EditButton1KeyDown(Sender: TObject; var Key: word;
@@ -1257,6 +1255,7 @@ begin
   sDBPath := GetEnvironmentVariable('SystemDrive') +
     GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
     {$ENDIF UNIX}
+
   if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
   begin
     CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
@@ -1273,6 +1272,7 @@ begin
 
   MySQLLOGDBConnection.Connected := False;
   SQLiteDBConnection.Connected := False;
+  ServiceDBConnection.Connected := False;
   ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
   ServiceDBConnection.Connected := True;
 
@@ -1305,9 +1305,12 @@ begin
       SysUtils.ExecuteProcess('/usr/bin/notify-send',
         ['EWLog', rWelcomeMessageMySQL]);
       {$ENDIF}
-    except
-      ShowMessage(rCheckSettingsMySQL);
-      InitializeDB('SQLite');
+
+
+    finally
+
+      //  ShowMessage(rCheckSettingsMySQL);
+      //  InitializeDB('SQLite');
     end;
   end
   else
@@ -1334,9 +1337,9 @@ begin
       SysUtils.ExecuteProcess('/usr/bin/notify-send',
         ['EWLog', rWelcomeMessageSQLIte]);
       {$ENDIF}
-    except
-      ShowMessage(rCheckSettingsSQLIte);
-      InitializeDB('MySQL');
+    finally
+      //  ShowMessage(rCheckSettingsSQLIte);
+      //  InitializeDB('MySQL');
     end;
   end;
 
@@ -1389,15 +1392,19 @@ begin
       UniqueCallsQuery.Next;
     end;
 
-  except
-    ShowMessage(rDataBaseFault);
-    SetupForm.Show;
+
+  finally
+
   end;
+  //  except
+  //   ShowMessage(rDataBaseFault);
+  //   SetupForm.Show;
+  // end;
 end;
 
 procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
 begin
- // callNameS := dmFunc.ExtractCallsign(callNameS);
+  // callNameS := dmFunc.ExtractCallsign(callNameS);
   SQLQuery2.Close;
   SQLQuery2.SQL.Clear;
 
@@ -1411,7 +1418,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE Call LIKE ' +
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
       QuotedStr(callNameS) +
       ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
   else
@@ -1424,9 +1431,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-      + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE Call = ' +
-      QuotedStr(callNameS) +
-      ' ORDER BY date(QSODate), time(QSOTime) ASC');
+      + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE `Call` = ' +
+      QuotedStr(callNameS) + ' ORDER BY date(QSODate), time(QSOTime) ASC');
   SQLQuery2.Open;
 
   if (SQLQuery2.RecordCount > 0) and (ind = 1) and (EditButton1.Text <> '') then
@@ -1506,13 +1512,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
-  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
-  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
-  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
-  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
+  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
+  QSOAddInfo, Marker: string;
+  ManualSet: integer; DigiBand, Continent, ShortNote: string;
+  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
+  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
+  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -1636,8 +1642,9 @@ begin
       Edit6.Text := SearchCallBookQuery.FieldByName('Manager').AsString;
       Edit11.Text := SearchCallBookQuery.FieldByName('Note').AsString;
     end;
-  except
-    CallBookLiteConnection.Connected := True;
+    //  except
+  finally
+    //    CallBookLiteConnection.Connected := True;
   end;
 end;
 
@@ -1727,7 +1734,7 @@ var
   la, lo: currency;
   azim, qra, loc: string;
 begin
- // callnames := dmFunc.ExtractCallsign(CallName);
+  // callnames := dmFunc.ExtractCallsign(CallName);
   Result := False;
   loc := '';
   qra := '';
@@ -1748,7 +1755,7 @@ begin
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE Call = ' +
+        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE `Call` = ' +
         QuotedStr(CallName) +
         ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
     else
@@ -1761,9 +1768,8 @@ begin
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE Call = ' +
-        QuotedStr(CallName) +
-        ' ORDER BY date(QSODate), time(QSOTime) ASC');
+        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE `Call` = ' +
+        QuotedStr(CallName) + ' ORDER BY date(QSODate), time(QSOTime) ASC');
     Open;
   end;
 
@@ -2270,7 +2276,12 @@ begin
   IniF.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
   IniF.WriteString('SetLog', 'PastBand', ComboBox1.Text);
   IniF.WriteString('SetLog', 'Language', Language);
+  if CheckBox3.Checked = True then
+    IniF.WriteString('SetLog', 'UseMAPS', 'YES')
+  else
+    IniF.WriteString('SetLog', 'UseMAPS', 'NO');
   TRXForm.Close;
+  IniF.Free;
 end;
 
 procedure TMainForm.DBGrid1CellClick(Column: TColumn);
@@ -3039,39 +3050,6 @@ begin
   end;
 end;
 
-procedure TMainForm.Edit1Change(Sender: TObject);
-var
-  s: UTF8String;
-begin
-  s := Edit1.Text;
-  if UTF8Length(s) > 0 then
-  begin
-    Edit1.SelStart := UTF8Length(s);
-    Edit1.Text := UTF8UpperCase(UTF8Copy(s, 1, 1)) +
-      UTF8LowerCase(UTF8Copy(s, 2, UTF8Length(s)));
-  end;
-
-end;
-
-procedure TMainForm.Edit2Change(Sender: TObject);
-var
-  s: UTF8String;
-begin
-  s := Edit2.Text;
-  if UTF8Length(s) > 0 then
-  begin
-    Edit2.SelStart := UTF8Length(s);
-
-    if (UTF8Pos('Г.', s) > 0) or (UTF8Pos('С.', s) > 0) or (UTF8Pos('П.', s) > 0) then
-      Edit2.Text := UTF8LowerCase(UTF8Copy(s, 1, 2)) +
-        UTF8UpperCase(UTF8Copy(s, 3, 2)) + UTF8LowerCase(UTF8Copy(s, 5, UTF8Length(s)));
-
-    if (UTF8Pos('СТ.', s) > 0) then
-      Edit2.Text := UTF8LowerCase(UTF8Copy(s, 1, 3)) +
-        UTF8UpperCase(UTF8Copy(s, 4, 2)) + UTF8LowerCase(UTF8Copy(s, 6, UTF8Length(s)));
-  end;
-end;
-
 procedure TMainForm.EditButton1ButtonClick(Sender: TObject);
 begin
   if (CallBookLiteConnection.Connected = True) and
@@ -3302,10 +3280,7 @@ begin
     PhotoGroup.Free;
   end;
 
-  if CheckBox3.Checked = True then
-    IniF.WriteString('SetLog', 'UseMAPS', 'YES')
-  else
-    IniF.WriteString('SetLog', 'UseMAPS', 'NO');
+
   FlagList.Free;
   FlagSList.Free;
   PrefixProvinceList.Free;
@@ -3316,7 +3291,6 @@ begin
     PrefixExpARRLArray[i].reg.Free;
     PrefixExpProvinceArray[i].reg.Free;
   end;
-  IniF.Free;
   LTCPComponent1.Free;
   LUDPComponent1.Free;
   TrayIcon1.Free;
@@ -3910,7 +3884,7 @@ procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
   try
     if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
-      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes  then
+      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     begin
       with DeleteQSOQuery do
       begin
@@ -5557,7 +5531,18 @@ begin
 end;
 
 procedure TMainForm.MenuItem89Click(Sender: TObject);
+var
+  i: integer;
 begin
+  PrefixProvinceList.Free;
+  PrefixARRLList.Free;
+  UniqueCallsList.Free;
+  for i := 0 to 1000 do
+  begin
+    PrefixExpARRLArray[i].reg.Free;
+    PrefixExpProvinceArray[i].reg.Free;
+  end;
+
   if dbSel = 'SQLite' then
   begin
     InitializeDB('MySQL');
@@ -5828,7 +5813,9 @@ begin
         Label45.Caption, Label47.Caption, Edit11.Text, BoolToStr(CheckBox5.Checked), 0,
         FloatToStr(DigiBand),
         Label43.Caption, Edit11.Text, 0, '', 'NULL', SetQSLInfo,
-        dmFunc.ExtractCallsign(EditButton1.Text), Edit10.Text, Edit9.Text, Edit8.Text, Edit7.Text,
+        dmFunc.ExtractCallsign(EditButton1.Text), Edit10.Text,
+        Edit9.Text, Edit8.Text, Edit7.Text,
+
         dmFunc.ExtractWPXPrefix(EditButton1.Text), 'NULL',
         IntToStr(1), 0, '', 0, '', '', '', '', 0, '', ComboBox6.Text,
         IntToStr(DXCCNum), '', 0,

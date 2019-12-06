@@ -214,7 +214,7 @@ begin
   except
     on E: ESQLDatabaseError do
     begin
-    //  WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
+      //  WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
       if E.ErrorCode = 1091 then
         MainForm.MySQLLOGDBConnection.ExecuteDirect('ALTER TABLE ' +
           LogTable + ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
@@ -548,10 +548,6 @@ begin
           if STX = '' then
             STX := 'NULL';
 
-          if CheckBox1.Checked then begin
-          //MainForm.;
-          end;
-
           Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
@@ -570,11 +566,12 @@ begin
             Q(paramMARKER) + Q('0') + Q(BAND) + Q(CONT) + Q(COMMENT) +
             Q(paramEQSL_QSL_RCVD) + Q(paramLOTW_QSL_RCVD) +
             Q(paramLOTW_QSLRDATE) + Q(QSLMSG) + Q(dmFunc.ExtractCallsign(CALL)) +
-            Q(STATE1) + Q(STATE2) + Q(STATE3) + Q(STATE4) + Q(dmFunc.ExtractWPXPrefix(CALL)) +
-            Q('Awards') + Q(paramValidDX) + Q(SRX) + Q(SRX_STRING) +
-            Q(STX) + Q(STX_STRING) + Q(SAT_NAME) + Q(SAT_MODE) +
-            Q(PROP_MODE) + Q(paramLOTW_QSL_SENT) + Q(QSL_RCVD_VIA) +
-            Q(QSL_SENT_VIA) + Q(DXCC) + QuotedStr(paramNoCalcDXCC) + ')';
+            Q(STATE1) + Q(STATE2) + Q(STATE3) + Q(STATE4) +
+            Q(dmFunc.ExtractWPXPrefix(CALL)) + Q('Awards') + Q(paramValidDX) +
+            Q(SRX) + Q(SRX_STRING) + Q(STX) + Q(STX_STRING) + Q(SAT_NAME) +
+            Q(SAT_MODE) + Q(PROP_MODE) + Q(paramLOTW_QSL_SENT) +
+            Q(QSL_RCVD_VIA) + Q(QSL_SENT_VIA) + Q(DXCC) +
+            QuotedStr(paramNoCalcDXCC) + ')';
 
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)
@@ -592,7 +589,7 @@ begin
       except
         on E: ESQLDatabaseError do
         begin
-         // WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
+          // WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
           if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
           begin
             Inc(DupeCount);
@@ -687,10 +684,12 @@ end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected then
-    MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection
-  else
+  if MainForm.MySQLLOGDBConnection.Connected then begin
+    MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
+  end
+  else begin
     MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
+  end;
 
   Button1.Enabled := True;
   Button1.Caption := rImport;

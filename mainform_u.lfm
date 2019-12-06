@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 729
+  Left = 709
   Height = 692
-  Top = 174
+  Top = 285
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -333,7 +333,6 @@ object MainForm: TMainForm
         BorderSpacing.Left = 209
         BorderSpacing.Top = 2
         Font.Height = -12
-        OnChange = Edit1Change
         ParentFont = False
         TabOrder = 1
       end
@@ -349,7 +348,6 @@ object MainForm: TMainForm
         BorderSpacing.Left = 209
         BorderSpacing.Top = 2
         Font.Height = -12
-        OnChange = Edit2Change
         ParentFont = False
         TabOrder = 2
       end

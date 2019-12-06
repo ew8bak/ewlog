@@ -316,7 +316,7 @@ begin
         SQL_Transaction.Commit;
         Label24.Caption := rSuccessful;
       except
-        on E: Exception do
+        on E: ESQLDatabaseError do
         begin
           if Pos('Server connect failed', E.Message) > 0 then
           begin
@@ -658,7 +658,7 @@ begin
           Label24.Caption := rSuccessful;
 
         except
-          on E: Exception do
+          on E: ESQLDatabaseError do
           begin
             if Pos('Server connect failed', E.Message) > 0 then
             begin
