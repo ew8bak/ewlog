@@ -30,13 +30,14 @@ type
   private
     fDataDir: string;
     fDebugLevel: integer;
-    function antepenultimate_char(s: string): string;
+
+    { private declarations }
+  public
+        function antepenultimate_char(s: string): string;
     function penultimate_char(s: string): string;
     function last_char(s: string): char;
     function notHaveDigits(s: string): boolean;
     function find_last_digit(s: string): integer;
-    { private declarations }
-  public
     function ExtractWPXPrefix(call: string): string;
     function GetTelnetBandFromFreq(MHz: string): string;
     function ReplaceCountry(Country: string): string;
@@ -132,17 +133,17 @@ uses MainForm_U;
 
 function TdmFunc.antepenultimate_char(s: string): string;
 begin
-  Result := s.Substring(s.Length - 3, s.Length - 2);
+  Result := s.Substring(s.Length - 3, 1);
 end;
 
 function TdmFunc.penultimate_char(s: string): string;
 begin
-  Result := s.Substring(s.Length - 2, s.Length - 1);
+  Result := s.Substring(s.Length - 2, 1);
 end;
 
 function TdmFunc.last_char(s: string): char;
 begin
-  Result := s.Chars[s.Length];
+  Result := s.Chars[s.Length-1];
 end;
 
 function TdmFunc.notHaveDigits(s: string): boolean;
@@ -166,7 +167,7 @@ var
   i, Count: integer;
 begin
   Count := -1;
-  for i := 0 to s.Length do
+  for i := 0 to s.Length - 1 do
   begin
     if IsDigit(s.Chars[i]) then
       Count := i;
@@ -190,8 +191,11 @@ var
   rv: string;
 begin
 
-  if Call.Length < 3 then
+  if Call.length < 3 then begin
     Result := '';
+    exit;
+  end;
+
   callsign := Call;
 
   if callsign.EndsWith('/QRP') then
@@ -222,8 +226,10 @@ begin
     end;
   end;
 
-  if (notHaveDigits(callsign)) then
+  if (notHaveDigits(callsign)) then begin
     Result := (callsign.substring(0, 2) + '0');
+    exit;
+  end;
 
   slash_posn := callsign.indexOf('/');
 
@@ -234,6 +240,7 @@ begin
       callsign := callsign.substring(0, last_digit_posn) + portable_district +
         callsign.substring(last_digit_posn + 1);
     Result := callsign.substring(0, min(callsign.length, last_digit_posn + 1));
+    exit;
   end;
 
   left := callsign.substring(0, slash_posn);
@@ -241,8 +248,10 @@ begin
   right := callsign.substring(slash_posn + 1);
   right_size := right.length;
 
-  if (left_size = right_size) then
+  if (left_size = right_size) then begin
     Result := left;
+    exit;
+  end;
 
   if left_size < right_size then
     designator := left
