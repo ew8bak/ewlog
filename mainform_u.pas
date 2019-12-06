@@ -2002,7 +2002,6 @@ var
   engText: string;
   foundPrefix: boolean;
 begin
-  ShowMessage(dmFunc.ExtractWPXPrefix(EditButton1.Text));
   EditButton1.SelStart := seleditnum;
   engText := dmFunc.RusToEng(EditButton1.Text);
   if (engText <> EditButton1.Text) then
