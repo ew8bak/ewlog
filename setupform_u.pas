@@ -300,7 +300,8 @@ begin
           ' ADD KEY `MainPrefix` (`MainPrefix`),' + ' ADD KEY `QSOMode` (`QSOMode`),' +
           ' ADD KEY `State` (`State`),' + ' ADD KEY `State1` (`State1`),' +
           ' ADD KEY `State2` (`State2`),' + ' ADD KEY `State3` (`State3`),' +
-          ' ADD KEY `State4` (`State4`),' + ' ADD KEY `WPX` (`WPX`);';
+          ' ADD KEY `State4` (`State4`),' + ' ADD KEY `WPX` (`WPX`),'+
+          ' ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`);';
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 84;
         SQL_Transaction.Commit;
@@ -466,6 +467,9 @@ begin
         ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
         ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
         ' `NoCalcDXCC` tinyint(1) DEFAULT 0' + ' )';
+      SQL_Query.ExecSQL;
+      SQL_Query.SQL.Text := 'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_'+LOG_PREFIX+'` '+
+      '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
       SQL_Query.ExecSQL;
       ProgressBar1.Position := 77;
       SQL_Transaction.Commit;
@@ -635,7 +639,8 @@ begin
             ' ADD KEY `MainPrefix` (`MainPrefix`),' + ' ADD KEY `QSOMode` (`QSOMode`),' +
             ' ADD KEY `State` (`State`),' + ' ADD KEY `State1` (`State1`),' +
             ' ADD KEY `State2` (`State2`),' + ' ADD KEY `State3` (`State3`),' +
-            ' ADD KEY `State4` (`State4`),' + ' ADD KEY `WPX` (`WPX`);';
+            ' ADD KEY `State4` (`State4`),' + ' ADD KEY `WPX` (`WPX`),'+
+            ' ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`);';
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 84;
           SQL_Transaction.Commit;
@@ -799,6 +804,9 @@ begin
           ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
           ' `NoCalcDXCC` tinyint(1) DEFAULT 0' + ' )';
         SQL_Query.ExecSQL;
+        SQL_Query.SQL.Text := 'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_'+LOG_PREFIX+'` '+
+          '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
+      SQL_Query.ExecSQL;
         ProgressBar1.Position := 77;
         SQL_Transaction.Commit;
         SQL_Query.Close;

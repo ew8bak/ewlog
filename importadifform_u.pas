@@ -200,18 +200,26 @@ var
   DupeCount: integer;
   ErrorCount, RecCount: integer;
 begin
-
-  if MainForm.MySQLLOGDBConnection.Connected then
-    MainForm.MySQLLOGDBConnection.ExecuteDirect(
-      'ALTER TABLE ' + LogTable +
-      ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime)')
-  else
-  begin
-    MainForm.SQLiteDBConnection.ExecuteDirect('DROP INDEX IF EXISTS Dupe_index');
-    MainForm.SQLiteDBConnection.ExecuteDirect('CREATE UNIQUE INDEX Dupe_index ON ' +
-      LogTable + '(CallSign, QSODate, QSOTime)');
+  try
+    if MainForm.MySQLLOGDBConnection.Connected then
+      MainForm.MySQLLOGDBConnection.ExecuteDirect(
+        'ALTER TABLE ' + LogTable +
+        ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)')
+    else
+    begin
+      MainForm.SQLiteDBConnection.ExecuteDirect('DROP INDEX IF EXISTS Dupe_index');
+      MainForm.SQLiteDBConnection.ExecuteDirect('CREATE UNIQUE INDEX Dupe_index ON ' +
+        LogTable + '(CallSign, QSODate, QSOTime, QSOBand)');
+    end;
+  except
+    on E: ESQLDatabaseError do
+    begin
+    //  WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
+      if E.ErrorCode = 1091 then
+        MainForm.MySQLLOGDBConnection.ExecuteDirect('ALTER TABLE ' +
+          LogTable + ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
+    end;
   end;
-
   RecCount := 0;
   DupeCount := 0;
   ErrorCount := 0;
@@ -373,13 +381,6 @@ begin
 
           if Length(Memo1.Text) > 0 then
             COMMENT := Memo1.Text;
-
-          //  if GuessEncoding(sNAME) <> 'utf8' then
-          //    sNAME := CP1251ToUTF8(sNAME);
-          //   if GuessEncoding(QTH) <> 'utf8' then
-          //     QTH := CP1251ToUTF8(QTH);
-          //   if GuessEncoding(COMMENT) <> 'utf8' then
-          //     COMMENT := CP1251ToUTF8(COMMENT);
 
           if (TIME_ON <> '') then
             TIME_ON := TIME_ON[1] + TIME_ON[2] + ':' + TIME_ON[3] + TIME_ON[4];
@@ -587,22 +588,24 @@ begin
       except
         on E: ESQLDatabaseError do
         begin
-        //  WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
+         // WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
           if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
           begin
             Inc(DupeCount);
-            if DupeCount mod 100 = 0 then begin
-            Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
-            Application.ProcessMessages;
+            if DupeCount mod 100 = 0 then
+            begin
+              Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
+              Application.ProcessMessages;
             end;
             Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
           end;
           if E.ErrorCode = 1366 then
           begin
             Inc(ErrorCount);
-            if ErrorCount mod 100 = 0 then begin
-            lblErrors.Caption := rImportErrors + ':' + IntToStr(ErrorCount);
-            Application.ProcessMessages;
+            if ErrorCount mod 100 = 0 then
+            begin
+              lblErrors.Caption := rImportErrors + ':' + IntToStr(ErrorCount);
+              Application.ProcessMessages;
             end;
             WriteWrongADIF(s);
           end;

@@ -741,6 +741,11 @@ Application.ProcessMessages;
 until (GetTickCount - start) >= n;
 end;
 
+function antepenultimate_char(s: string): string;
+begin
+Result:= s.
+end;
+
 function TdmFunc.ExtractWPXPrefix(Call: string): string;
 begin
 if Length(Call) < 3 then
