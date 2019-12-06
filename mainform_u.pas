@@ -5830,7 +5830,7 @@ begin
         FloatToStr(DigiBand),
         Label43.Caption, Edit11.Text, 0, '', 'NULL', SetQSLInfo,
         dmFunc.ExtractCallsign(EditButton1.Text), Edit10.Text, Edit9.Text, Edit8.Text, Edit7.Text,
-        Label38.Caption, 'NULL',
+        dmFunc.ExtractWPXPrefix(EditButton1.Text), 'NULL',
         IntToStr(1), 0, '', 0, '', '', '', '', 0, '', ComboBox6.Text,
         IntToStr(DXCCNum), '', 0,
         LogTable);
