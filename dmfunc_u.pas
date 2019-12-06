@@ -5,9 +5,10 @@ unit dmFunc_U;
 interface
 
 uses
-  Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
-  DateUtils, Sockets, IdGlobal,LazUTF8, strutils, Translations, LazFileUtils,
+  DateUtils, Sockets, IdGlobal, LazUTF8, strutils, Translations, LazFileUtils,
+
   {$IFDEF WINDOWS}
   Windows;
   {$ELSE}
@@ -17,9 +18,10 @@ uses
 const
   ERR_FILE = 'errors.adi';
   MyWhiteSpace = [#0..#31];
-  cNO_ANGLE=-999;
+  cNO_ANGLE = -999;
   CATHamLib = 2;
   CATdisabled = 0;
+
 type
   TExplodeArray = array of string;
 
@@ -28,16 +30,23 @@ type
   private
     fDataDir: string;
     fDebugLevel: integer;
+    function antepenultimate_char(s: string): string;
+    function penultimate_char(s: string): string;
+    function last_char(s: string): char;
+    function notHaveDigits(s: string): boolean;
+    function find_last_digit(s: string): integer;
     { private declarations }
   public
     function ExtractWPXPrefix(call: string): string;
     function GetTelnetBandFromFreq(MHz: string): string;
     function ReplaceCountry(Country: string): string;
-    function Extention(FileName:string):String;
-    procedure LoadRigList(RigCtlBinaryPath : String;RigList : TStringList);
-    procedure LoadRigListCombo(CurrentRigId : String; RigList : TStringList; RigComboBox : TComboBox);
-    procedure LoadRigsToComboBox(CurrentRigId : String; RigCtlBinaryPath : String; RigComboBox : TComboBox);
-    function GetRigIdFromComboBoxItem(ItemText : String) : String;
+    function Extention(FileName: string): string;
+    procedure LoadRigList(RigCtlBinaryPath: string; RigList: TStringList);
+    procedure LoadRigListCombo(CurrentRigId: string; RigList: TStringList;
+      RigComboBox: TComboBox);
+    procedure LoadRigsToComboBox(CurrentRigId: string; RigCtlBinaryPath: string;
+      RigComboBox: TComboBox);
+    function GetRigIdFromComboBoxItem(ItemText: string): string;
     procedure DistanceFromCoordinate(my_loc: string; latitude, longitude: real;
       var qra, azim: string);
     procedure Delay(n: cardinal);
@@ -50,8 +59,8 @@ type
     procedure ModifyWAZITU(var waz, itu: string);
     function FreqFromBand(band, mode: string): string;
     function LetterFromMode(mode: string): string;
-    function IsAdifOK(qsodate, time_on, time_off, call, freq, mode, rst_s, rst_r, iota,
-      itu, waz, loc, my_loc, band: string): boolean;
+    function IsAdifOK(qsodate, time_on, time_off, call, freq, mode,
+      rst_s, rst_r, iota, itu, waz, loc, my_loc, band: string): boolean;
     function IsDateOK(date: string): boolean;
     function IsTimeOK(time: string): boolean;
     function IsModeOK(mode: string): boolean;
@@ -61,55 +70,196 @@ type
     function Explode(const cSeparator, vString: string): TExplodeArray;
     function StrToDateFormat(sDate: string): TDateTime;
     function GetIDCall(callsign: string): string;
-    function StringToADIF(tex: string; kp: boolean ): string;
+    function StringToADIF(tex: string; kp: boolean): string;
     function GetAdifBandFromFreq(MHz: string): string;
     function IsLocOK(loc: string): boolean;
     function CompleteLoc(loc: string): string;
     function ExtractCallsign(call: string): string;
     function Vincenty(Lat1, Lon1, Lat2, Lon2: extended): extended;
     function LatLongToGrid(Lat, Long: real): string;
-    function RunProgram( progpath, args: string ): boolean;
-    function RusToEng(Text: AnsiString): UTF8String;
-    function  GetRadioRigCtldCommandLine(radio : Word) : String;
+    function RunProgram(progpath, args: string): boolean;
+    function RusToEng(Text: ansistring): UTF8String;
+    function GetRadioRigCtldCommandLine(radio: word): string;
     function StrToFreq(const freqstr: string): extended;
-    function GetDigiBandFromFreq(MHz: string): Double;
+    function GetDigiBandFromFreq(MHz: string): double;
     procedure CoordinateFromLocator(loc: string; var latitude, longitude: currency);
     function nr(ch: char): integer;
-    function par_str(s:string;n:Integer):string;
-    function Split(delimiter:string; str:string; limit:integer=MaxInt):TStringArray;
+    function par_str(s: string; n: integer): string;
+    function Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
     procedure BandMode(freq: string; var b, md: integer);
-    procedure Pack(var AData: TIdBytes; const AValue: LongInt) overload;
+    procedure Pack(var AData: TIdBytes; const AValue: longint) overload;
     procedure Pack(var AData: TIdBytes; const AString: string) overload;
     procedure Pack(var AData: TIdBytes; const AValue: QWord) overload;
-    procedure Pack(var AData: TIdBytes; const AValue: Int64) overload;
-    procedure Pack(var AData: TIdBytes; const AFlag: Boolean) overload;
-    procedure Pack(var AData: TIdBytes; const AValue: Longword) overload;
-    procedure Pack(var AData: TIdBytes; const AValue: Double) overload;
+    procedure Pack(var AData: TIdBytes; const AValue: int64) overload;
+    procedure Pack(var AData: TIdBytes; const AFlag: boolean) overload;
+    procedure Pack(var AData: TIdBytes; const AValue: longword) overload;
+    procedure Pack(var AData: TIdBytes; const AValue: double) overload;
     procedure Pack(var AData: TIdBytes; const ADateTime: TDateTime) overload;
 
-    procedure Unpack(const AData: TIdBytes; var index: Integer; var AValue: LongInt) overload;
-    procedure Unpack(const AData: TIdBytes; var index: Integer; var AString: string) overload;
-    procedure Unpack(const AData: TIdBytes; var index: Integer; var AValue: QWord) overload;
-    procedure Unpack(const AData: TIdBytes; var index: Integer; var AValue: Int64) overload;
-    procedure Unpack(const AData: TIdBytes; var index: Integer; var AFlag: Boolean) overload;
-    procedure Unpack(const AData: TIdBytes; var index: Integer; var AValue: Longword) overload;
-    procedure Unpack(const AData: TIdBytes; var index: Integer; var AValue: Double) overload;
-    procedure Unpack(const AData: TIdBytes; var index: Integer; var ADateTime: TDateTime) overload;
+    procedure Unpack(const AData: TIdBytes; var index: integer;
+      var AValue: longint) overload;
+    procedure Unpack(const AData: TIdBytes; var index: integer;
+      var AString: string) overload;
+    procedure Unpack(const AData: TIdBytes; var index: integer;
+      var AValue: QWord) overload;
+    procedure Unpack(const AData: TIdBytes; var index: integer;
+      var AValue: int64) overload;
+    procedure Unpack(const AData: TIdBytes; var index: integer;
+      var AFlag: boolean) overload;
+    procedure Unpack(const AData: TIdBytes; var index: integer;
+      var AValue: longword) overload;
+    procedure Unpack(const AData: TIdBytes; var index: integer;
+      var AValue: double) overload;
+    procedure Unpack(const AData: TIdBytes; var index: integer;
+      var ADateTime: TDateTime) overload;
     { public declarations }
   end;
 
 var
   dmFunc: TdmFunc;
-  DefaultLang: String = '';
+  DefaultLang: string = '';
 
   {$IFDEF WINDOWS}
   wsjt_handle: hWnd;
   {$ENDIF}
 
 implementation
+
 uses MainForm_U;
 
 {$R *.lfm}
+
+
+function TdmFunc.antepenultimate_char(s: string): string;
+begin
+  Result := s.Substring(s.Length - 3, s.Length - 2);
+end;
+
+function TdmFunc.penultimate_char(s: string): string;
+begin
+  Result := s.Substring(s.Length - 2, s.Length - 1);
+end;
+
+function TdmFunc.last_char(s: string): char;
+begin
+  Result := s.Chars[s.Length];
+end;
+
+function TdmFunc.notHaveDigits(s: string): boolean;
+var
+  Count, i: integer;
+begin
+  Count := 0;
+  for i := 0 to s.Length - 1 do
+  begin
+    if IsDigit(s.Chars[i]) then
+      Count := Count + 1;
+  end;
+  if Count = 0 then
+    Result := True
+  else
+    Result := False;
+end;
+
+function TdmFunc.find_last_digit(s: string): integer;
+var
+  i, Count: integer;
+begin
+  Count := -1;
+  for i := 0 to s.Length do
+  begin
+    if IsDigit(s.Chars[i]) then
+      Count := i;
+  end;
+  Result := Count;
+end;
+
+function TdmFunc.ExtractWPXPrefix(Call: string): string;
+var
+  callsign: string;
+  portable_district: char = #0;
+  portables: string = 'AEJMP';
+  mobiles: array [0..2] of string = ('AM', 'MA', 'MM');
+  item: string;
+  slash_posn, last_digit_posn, i: integer;
+  left: string;
+  left_size: integer;
+  right: string;
+  right_size: integer;
+  designator: string;
+  rv: string;
+begin
+
+  if Call.Length < 3 then
+    Result := '';
+  callsign := Call;
+
+  if callsign.EndsWith('/QRP') then
+    callsign := callsign.Substring(0, callsign.Length - 4);
+
+  if (callsign.Length >= 2) and (penultimate_char(callsign).Equals('/')) then
+  begin
+    if portables.IndexOf(last_char(callsign)) >= 0 then
+      callsign := callsign.substring(0, callsign.length - 2)
+    else
+    if IsDigit(last_char(callsign)) then
+    begin
+      portable_district := last_char(callsign);
+      callsign := callsign.substring(0, callsign.length - 2);
+    end;
+  end;
+
+  if (callsign.Length >= 3) and (antepenultimate_char(callsign).Equals('/')) then
+  begin
+    for i := 0 to 2 do
+    begin
+      item := mobiles[i];
+      if item.Equals(callsign.substring(callsign.length - 2)) then
+      begin
+        callsign := callsign.substring(0, callsign.length - 3);
+        Break;
+      end;
+    end;
+  end;
+
+  if (notHaveDigits(callsign)) then
+    Result := (callsign.substring(0, 2) + '0');
+
+  slash_posn := callsign.indexOf('/');
+
+  if ((slash_posn < 0) or (slash_posn = callsign.length - 1)) then
+  begin
+    last_digit_posn := find_last_digit(callsign);
+    if (portable_district <> #0) then
+      callsign := callsign.substring(0, last_digit_posn) + portable_district +
+        callsign.substring(last_digit_posn + 1);
+    Result := callsign.substring(0, min(callsign.length, last_digit_posn + 1));
+  end;
+
+  left := callsign.substring(0, slash_posn);
+  left_size := left.length;
+  right := callsign.substring(slash_posn + 1);
+  right_size := right.length;
+
+  if (left_size = right_size) then
+    Result := left;
+
+  if left_size < right_size then
+    designator := left
+  else
+    designator := right;
+
+  if notHaveDigits(designator) then
+    designator := designator + '0';
+
+  rv := designator;
+  if rv.length = 1 then
+  begin
+    if rv.substring(0, 1).equals(call.substring(0, 1)) then
+      rv := call.Substring(0, 2);
+  end;
+  Result := rv;
+end;
 
 function TdmFunc.GetTelnetBandFromFreq(MHz: string): string;
 var
@@ -239,7 +389,7 @@ begin
     Result := 'San-Marino';
     exit;
   end;
-   if (Country = 'Puerto Rico') then
+  if (Country = 'Puerto Rico') then
   begin
     Result := 'Puerto-Rico';
     exit;
@@ -247,78 +397,100 @@ begin
   Result := Country;
 end;
 
-function TdmFunc.Extention(FileName:string):String;
-var i:integer;
-  begin
-    i:=Length(FileName);
-    while (i>0)and(FileName[i]<>'.') do i:=i-1;
-    if i<=0 then Result:='' else Result:=Copy(FileName,i,Length(FileName));
-  end;
-
-function TdmFunc.Split(delimiter:string; str:string; limit:integer=MaxInt):TStringArray;
+function TdmFunc.Extention(FileName: string): string;
 var
-  p,cc,dsize:integer;
+  i: integer;
+begin
+  i := Length(FileName);
+  while (i > 0) and (FileName[i] <> '.') do
+    i := i - 1;
+  if i <= 0 then
+    Result := ''
+  else
+    Result := Copy(FileName, i, Length(FileName));
+end;
+
+function TdmFunc.Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
+var
+  p, cc, dsize: integer;
 begin
   cc := 0;
   dsize := length(delimiter);
   if dsize = 0 then
   begin
-    setlength(result,1);
-    result[0] := str;
+    setlength(Result, 1);
+    Result[0] := str;
     exit;
   end;
-  while cc+1 < limit do
+  while cc + 1 < limit do
   begin
-    p := pos(delimiter,str);
+    p := pos(delimiter, str);
     if p > 0 then
     begin
-      inc(cc);
-      setlength(result,cc);
-      result[cc-1] := copy(str,1,p-1);
-      delete(str,1,p+dsize-1);
-    end else break;
+      Inc(cc);
+      setlength(Result, cc);
+      Result[cc - 1] := copy(str, 1, p - 1);
+      Delete(str, 1, p + dsize - 1);
+    end
+    else
+      break;
   end;
-  inc(cc);
-  setlength(result,cc);
-  result[cc-1] := str;
+  Inc(cc);
+  setlength(Result, cc);
+  Result[cc - 1] := str;
 end;
 
-function TdmFunc.par_str(s:string;n:Integer):string; // s - строка, n - нужный элемент
+function TdmFunc.par_str(s: string; n: integer): string;
+  // s - строка, n - нужный элемент
 var
-  i:integer;
+  i: integer;
 begin
-if n<=0 then begin result:=''; Exit; end; // если введен 0 или отриц. число то выходим;
-
-if n=1 then Delete(s, pos(':', s),Length(s)) else     // если элемент первый то выводим его иначе дальше в цикл ищем нужный по кол-ву разделитель
- For i:=1 to n-1 do
+  if n <= 0 then
   begin
-    if pos(':', s)=0 then begin result:=''; Exit; end;  // если разделитель не найден то выходим;
-    Delete(s, 1, pos(':', s));  //удаляем все до разделителя
-    if i=n-1 then if pos(':', s)<>0 then Delete(s, pos(':', s),Length(s));  // удаляем все после нужного элемента
-  end;
-Result:=s;
+    Result := '';
+    Exit;
+  end; // если введен 0 или отриц. число то выходим;
+
+  if n = 1 then
+    Delete(s, pos(':', s), Length(s))
+  else     // если элемент первый то выводим его иначе дальше в цикл ищем нужный по кол-ву разделитель
+    for i := 1 to n - 1 do
+    begin
+      if pos(':', s) = 0 then
+      begin
+        Result := '';
+        Exit;
+      end;  // если разделитель не найден то выходим;
+      Delete(s, 1, pos(':', s));  //удаляем все до разделителя
+      if i = n - 1 then
+        if pos(':', s) <> 0 then
+          Delete(s, pos(':', s), Length(s));
+      // удаляем все после нужного элемента
+    end;
+  Result := s;
 end;
 
-procedure TdmFunc.LoadRigList(RigCtlBinaryPath : String;RigList : TStringList);
+procedure TdmFunc.LoadRigList(RigCtlBinaryPath: string; RigList: TStringList);
 var
-  p : TProcess;
-  OutputStream : TStream;
-  BytesRead : LongInt;
-  Buffer : array [1..2048] of Byte;
+  p: TProcess;
+  OutputStream: TStream;
+  BytesRead: longint;
+  Buffer: array [1..2048] of byte;
 begin
   p := TProcess.Create(nil);
   try
     p.Executable := RigCtlBinaryPath;
     p.Parameters.add('-l');
     p.Options := p.Options + [poUsePipes];
-    p.ShowWindow:=swoHIDE;;
+    p.ShowWindow := swoHIDE;
+    ;
     p.Execute;
-    OutputStream:=TMemoryStream.Create;
+    OutputStream := TMemoryStream.Create;
     repeat
-      BytesRead:=p.Output.Read(Buffer, 2048);
-      OutputStream.Write(Buffer,BytesRead);
+      BytesRead := p.Output.Read(Buffer, 2048);
+      OutputStream.Write(Buffer, BytesRead);
     until BytesRead = 0;
-    OutputStream.Position:=0;
+    OutputStream.Position := 0;
     RigList.LoadFromStream(OutputStream);
   finally
     FreeAndNil(p);
@@ -326,50 +498,52 @@ begin
   end;
 end;
 
-procedure TdmFunc.LoadRigListCombo(CurrentRigId : String; RigList : TStringList; RigComboBox : TComboBox);
+procedure TdmFunc.LoadRigListCombo(CurrentRigId: string; RigList: TStringList;
+  RigComboBox: TComboBox);
 var
-  i       : Integer;
-  RigId   : String;
-  RigName : String;
-  RigType : String;
-  CmbText : String = '';
+  i: integer;
+  RigId: string;
+  RigName: string;
+  RigType: string;
+  CmbText: string = '';
 begin
-  for i:= 1 to RigList.Count-1 do
+  for i := 1 to RigList.Count - 1 do
   begin
-    RigId   := trim(copy(RigList.Strings[i],1,7));
-    if RigId<>'' then
+    RigId := trim(copy(RigList.Strings[i], 1, 7));
+    if RigId <> '' then
     begin
-      RigName := trim(copy(RigList.Strings[i],8,24));
-      RigType := trim(copy(RigList.Strings[i],32,23));
+      RigName := trim(copy(RigList.Strings[i], 8, 24));
+      RigType := trim(copy(RigList.Strings[i], 32, 23));
       RigComboBox.Items.Add(RigId + ' ' + RigName + ' ' + RigType + ' ');
       if (RigId = CurrentRigId) then
       begin
-        CmbText := RigId + ' ' + RigName + ' ' + RigType + ' '
-      end
-    end
+        CmbText := RigId + ' ' + RigName + ' ' + RigType + ' ';
+      end;
+    end;
   end;
-  if (CmbText='') then
+  if (CmbText = '') then
     RigComboBox.ItemIndex := 0
   else
-    RigComboBox.Text := CmbText
+    RigComboBox.Text := CmbText;
 end;
 
-procedure TdmFunc.LoadRigsToComboBox(CurrentRigId : String; RigCtlBinaryPath : String; RigComboBox : TComboBox);
+procedure TdmFunc.LoadRigsToComboBox(CurrentRigId: string;
+  RigCtlBinaryPath: string; RigComboBox: TComboBox);
 var
-  RigList : TStringList;
+  RigList: TStringList;
 begin
   RigList := TStringList.Create;
   try
-    LoadRigList(RigCtlBinaryPath,RigList);
-    LoadRigListCombo(CurrentRigId,RigList,RigComboBox)
+    LoadRigList(RigCtlBinaryPath, RigList);
+    LoadRigListCombo(CurrentRigId, RigList, RigComboBox)
   finally
     FreeAndNil(RigList)
-  end
+  end;
 end;
 
-function TdmFunc.GetRigIdFromComboBoxItem(ItemText : String) : String;
+function TdmFunc.GetRigIdFromComboBoxItem(ItemText: string): string;
 begin
-  Result := Copy(ItemText,1,Pos(' ',ItemText)-1)
+  Result := Copy(ItemText, 1, Pos(' ', ItemText) - 1);
 end;
 
 function TdmFunc.nr(ch: char): integer;
@@ -380,12 +554,11 @@ begin
   Result := Pos(ch, letters);
 end;
 
-procedure TdmFunc.CoordinateFromLocator(loc: string;
-  var latitude, longitude: currency);
+procedure TdmFunc.CoordinateFromLocator(loc: string; var latitude, longitude: currency);
 var
   a, b, c, d, e, f: integer;
 begin
-  DefaultFormatSettings.DecimalSeparator:='.';
+  DefaultFormatSettings.DecimalSeparator := '.';
   if not dmFunc.IsLocOK(loc) then
     exit;
 
@@ -425,16 +598,16 @@ end;
 
 function TdmFunc.StrToFreq(const freqstr: string): extended;
 var
-	i: Integer;
+  i: integer;
 begin
-	Result := 0.0;
-	i := 1;
-	while i <= Length(freqstr) do
-	begin
-		Result := (Result * 10) + (Ord(freqstr[i]) - Ord('0'));
-		inc(i);
-	end;
-	Result := Result / 1000;
+  Result := 0.0;
+  i := 1;
+  while i <= Length(freqstr) do
+  begin
+    Result := (Result * 10) + (Ord(freqstr[i]) - Ord('0'));
+    Inc(i);
+  end;
+  Result := Result / 1000;
 end;
 
 
@@ -453,26 +626,26 @@ begin
   end;
 
   if IniF.ReadString(section, 'model', '') <> IntToStr(2) then
-  Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ' +
-    '-r ' + IniF.ReadString(section, 'device', '') + ' ' +
-    '-t ' + IniF.ReadString(section, 'RigCtldPort', '4532') + ' '
-    else
-  Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ' +
-    '-t ' + IniF.ReadString(section, 'RigCtldPort', '4532') + ' ';
+    Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ' +
+      '-r ' + IniF.ReadString(section, 'device', '') + ' ' + '-t ' +
+      IniF.ReadString(section, 'RigCtldPort', '4532') + ' '
+  else
+    Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ' +
+      '-t ' + IniF.ReadString(section, 'RigCtldPort', '4532') + ' ';
 
-    Result := Result + IniF.ReadString(section, 'ExtraRigCtldArgs', '') + ' ';
+  Result := Result + IniF.ReadString(section, 'ExtraRigCtldArgs', '') + ' ';
 
   case IniF.ReadInteger(section, 'SerialSpeed', 0) of
-  0: arg := '';
-  1: arg := '-s 1200 ';
-  2: arg := '-s 2400 ';
-  3: arg := '-s 4800 ';
-  4: arg := '-s 9600 ';
-  5: arg := '-s 14400 ';
-  6: arg := '-s 19200 ';
-  7: arg := '-s 38400 ';
-  8: arg := '-s 57600 ';
-  9: arg := '-s 115200 '
+    0: arg := '';
+    1: arg := '-s 1200 ';
+    2: arg := '-s 2400 ';
+    3: arg := '-s 4800 ';
+    4: arg := '-s 9600 ';
+    5: arg := '-s 14400 ';
+    6: arg := '-s 19200 ';
+    7: arg := '-s 38400 ';
+    8: arg := '-s 57600 ';
+    9: arg := '-s 115200 '
 
     else
       arg := ''
@@ -549,100 +722,374 @@ begin
   end;
 end;
 
-function TdmFunc.RusToEng(Text: AnsiString): UTF8String;
-var i:integer;
+function TdmFunc.RusToEng(Text: ansistring): UTF8String;
+var
+  i: integer;
 begin
-   for i:=1 to UTF8Length(text) do
+  for i := 1 to UTF8Length(Text) do
+  begin
+    if UTF8copy(Text, i, 1) = 'а' then
     begin
-      if UTF8copy(text,i,1)='а' then begin UTF8Delete(text,i,1); UTF8Insert('f',text,i); end;
-      if UTF8copy(text,i,1)='б' then begin UTF8Delete(text,i,1); UTF8Insert(',',text,i); end;
-      if UTF8copy(text,i,1)='в' then begin UTF8Delete(text,i,1); UTF8Insert('d',text,i); end;
-      if UTF8copy(text,i,1)='г' then begin UTF8Delete(text,i,1); UTF8Insert('u',text,i); end;
-      if UTF8copy(text,i,1)='д' then begin UTF8Delete(text,i,1); UTF8Insert('l',text,i); end;
-      if UTF8copy(text,i,1)='е' then begin UTF8Delete(text,i,1); UTF8Insert('t',text,i); end;
-      if UTF8copy(text,i,1)='ё' then begin UTF8Delete(text,i,1); UTF8Insert('`',text,i); end;
-      if UTF8copy(text,i,1)='ж' then begin UTF8Delete(text,i,1); UTF8Insert(';',text,i); end;
-      if UTF8copy(text,i,1)='з' then begin UTF8Delete(text,i,1); UTF8Insert('p',text,i); end;
-      if UTF8copy(text,i,1)='и' then begin UTF8Delete(text,i,1); UTF8Insert('b',text,i); end;
-      if UTF8copy(text,i,1)='й' then begin UTF8Delete(text,i,1); UTF8Insert('q',text,i); end;
-      if UTF8copy(text,i,1)='к' then begin UTF8Delete(text,i,1); UTF8Insert('r',text,i); end;
-      if UTF8copy(text,i,1)='л' then begin UTF8Delete(text,i,1); UTF8Insert('k',text,i); end;
-      if UTF8copy(text,i,1)='м' then begin UTF8Delete(text,i,1); UTF8Insert('v',text,i); end;
-      if UTF8copy(text,i,1)='н' then begin UTF8Delete(text,i,1); UTF8Insert('y',text,i); end;
-      if UTF8copy(text,i,1)='о' then begin UTF8Delete(text,i,1); UTF8Insert('j',text,i); end;
-      if UTF8copy(text,i,1)='п' then begin UTF8Delete(text,i,1); UTF8Insert('g',text,i); end;
-      if UTF8copy(text,i,1)='р' then begin UTF8Delete(text,i,1); UTF8Insert('h',text,i); end;
-      if UTF8copy(text,i,1)='с' then begin UTF8Delete(text,i,1); UTF8Insert('c',text,i); end;
-      if UTF8copy(text,i,1)='т' then begin UTF8Delete(text,i,1); UTF8Insert('n',text,i); end;
-      if UTF8copy(text,i,1)='у' then begin UTF8Delete(text,i,1); UTF8Insert('e',text,i); end;
-      if UTF8copy(text,i,1)='ф' then begin UTF8Delete(text,i,1); UTF8Insert('a',text,i); end;
-      if UTF8copy(text,i,1)='х' then begin UTF8Delete(text,i,1); UTF8Insert('[',text,i); end;
-      if UTF8copy(text,i,1)='ц' then begin UTF8Delete(text,i,1); UTF8Insert('w',text,i); end;
-      if UTF8copy(text,i,1)='ч' then begin UTF8Delete(text,i,1); UTF8Insert('x',text,i); end;
-      if UTF8copy(text,i,1)='ш' then begin UTF8Delete(text,i,1); UTF8Insert('i',text,i); end;
-      if UTF8copy(text,i,1)='щ' then begin UTF8Delete(text,i,1); UTF8Insert('o',text,i); end;
-      if UTF8copy(text,i,1)='ъ' then begin UTF8Delete(text,i,1); UTF8Insert(']',text,i); end;
-      if UTF8copy(text,i,1)='ы' then begin UTF8Delete(text,i,1); UTF8Insert('s',text,i); end;
-      if UTF8copy(text,i,1)='ь' then begin UTF8Delete(text,i,1); UTF8Insert('m',text,i); end;
-      if UTF8copy(text,i,1)='э' then begin UTF8Delete(text,i,1); UTF8Insert('''',text,i); end;
-      if UTF8copy(text,i,1)='ю' then begin UTF8Delete(text,i,1); UTF8Insert('.',text,i); end;
-      if UTF8copy(text,i,1)='я' then begin UTF8Delete(text,i,1); UTF8Insert('z',text,i); end;
-      if UTF8copy(text,i,1)='А' then begin UTF8Delete(text,i,1); UTF8Insert('F',text,i); end;
-      if UTF8copy(text,i,1)='Б' then begin UTF8Delete(text,i,1); UTF8Insert(',',text,i); end;
-      if UTF8copy(text,i,1)='В' then begin UTF8Delete(text,i,1); UTF8Insert('D',text,i); end;
-      if UTF8copy(text,i,1)='Г' then begin UTF8Delete(text,i,1); UTF8Insert('U',text,i); end;
-      if UTF8copy(text,i,1)='Д' then begin UTF8Delete(text,i,1); UTF8Insert('L',text,i); end;
-      if UTF8copy(text,i,1)='Е' then begin UTF8Delete(text,i,1); UTF8Insert('T',text,i); end;
-      if UTF8copy(text,i,1)='Ё' then begin UTF8Delete(text,i,1); UTF8Insert('`',text,i); end;
-      if UTF8copy(text,i,1)='Ж' then begin UTF8Delete(text,i,1); UTF8Insert(';',text,i); end;
-      if UTF8copy(text,i,1)='З' then begin UTF8Delete(text,i,1); UTF8Insert('P',text,i); end;
-      if UTF8copy(text,i,1)='И' then begin UTF8Delete(text,i,1); UTF8Insert('B',text,i); end;
-      if UTF8copy(text,i,1)='Й' then begin UTF8Delete(text,i,1); UTF8Insert('Q',text,i); end;
-      if UTF8copy(text,i,1)='К' then begin UTF8Delete(text,i,1); UTF8Insert('R',text,i); end;
-      if UTF8copy(text,i,1)='Л' then begin UTF8Delete(text,i,1); UTF8Insert('K',text,i); end;
-      if UTF8copy(text,i,1)='М' then begin UTF8Delete(text,i,1); UTF8Insert('V',text,i); end;
-      if UTF8copy(text,i,1)='Н' then begin UTF8Delete(text,i,1); UTF8Insert('Y',text,i); end;
-      if UTF8copy(text,i,1)='О' then begin UTF8Delete(text,i,1); UTF8Insert('J',text,i); end;
-      if UTF8copy(text,i,1)='П' then begin UTF8Delete(text,i,1); UTF8Insert('G',text,i); end;
-      if UTF8copy(text,i,1)='Р' then begin UTF8Delete(text,i,1); UTF8Insert('H',text,i); end;
-      if UTF8copy(text,i,1)='С' then begin UTF8Delete(text,i,1); UTF8Insert('C',text,i); end;
-      if UTF8copy(text,i,1)='Т' then begin UTF8Delete(text,i,1); UTF8Insert('N',text,i); end;
-      if UTF8copy(text,i,1)='У' then begin UTF8Delete(text,i,1); UTF8Insert('E',text,i); end;
-      if UTF8copy(text,i,1)='Ф' then begin UTF8Delete(text,i,1); UTF8Insert('A',text,i); end;
-      if UTF8copy(text,i,1)='Х' then begin UTF8Delete(text,i,1); UTF8Insert('[',text,i); end;
-      if UTF8copy(text,i,1)='Ц' then begin UTF8Delete(text,i,1); UTF8Insert('W',text,i); end;
-      if UTF8copy(text,i,1)='Ч' then begin UTF8Delete(text,i,1); UTF8Insert('X',text,i); end;
-      if UTF8copy(text,i,1)='Ш' then begin UTF8Delete(text,i,1); UTF8Insert('I',text,i); end;
-      if UTF8copy(text,i,1)='Щ' then begin UTF8Delete(text,i,1); UTF8Insert('O',text,i); end;
-      if UTF8copy(text,i,1)='Ъ' then begin UTF8Delete(text,i,1); UTF8Insert(']',text,i); end;
-      if UTF8copy(text,i,1)='Ы' then begin UTF8Delete(text,i,1); UTF8Insert('S',text,i); end;
-      if UTF8copy(text,i,1)='Ь' then begin UTF8Delete(text,i,1); UTF8Insert('M',text,i); end;
-      if UTF8copy(text,i,1)='Э' then begin UTF8Delete(text,i,1); UTF8Insert('''',text,i); end;
-      if UTF8copy(text,i,1)='Ю' then begin UTF8Delete(text,i,1); UTF8Insert('.',text,i); end;
-      if UTF8copy(text,i,1)='Я' then begin UTF8Delete(text,i,1); UTF8Insert('Z',text,i); end;
-      if UTF8copy(text,i,1)='.' then begin UTF8Delete(text,i,1); UTF8Insert('/',text,i); end;
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('f', Text, i);
     end;
+    if UTF8copy(Text, i, 1) = 'б' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert(',', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'в' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('d', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'г' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('u', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'д' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('l', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'е' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('t', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ё' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('`', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ж' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert(';', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'з' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('p', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'и' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('b', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'й' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('q', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'к' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('r', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'л' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('k', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'м' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('v', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'н' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('y', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'о' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('j', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'п' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('g', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'р' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('h', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'с' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('c', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'т' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('n', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'у' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('e', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ф' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('a', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'х' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('[', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ц' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('w', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ч' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('x', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ш' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('i', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'щ' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('o', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ъ' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert(']', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ы' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('s', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ь' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('m', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'э' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('''', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'ю' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('.', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'я' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('z', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'А' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('F', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Б' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert(',', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'В' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('D', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Г' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('U', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Д' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('L', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Е' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('T', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ё' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('`', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ж' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert(';', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'З' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('P', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'И' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('B', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Й' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('Q', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'К' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('R', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Л' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('K', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'М' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('V', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Н' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('Y', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'О' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('J', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'П' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('G', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Р' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('H', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'С' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('C', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Т' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('N', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'У' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('E', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ф' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('A', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Х' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('[', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ц' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('W', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ч' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('X', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ш' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('I', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Щ' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('O', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ъ' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert(']', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ы' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('S', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ь' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('M', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Э' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('''', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Ю' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('.', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = 'Я' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('Z', Text, i);
+    end;
+    if UTF8copy(Text, i, 1) = '.' then
+    begin
+      UTF8Delete(Text, i, 1);
+      UTF8Insert('/', Text, i);
+    end;
+  end;
 
-result:=Text;
+  Result := Text;
 end;
 
-function TdmFunc.RunProgram( progpath, args: string ): boolean;
+function TdmFunc.RunProgram(progpath, args: string): boolean;
 var
   progdir: string;
   process: TProcess;
 begin
-  Result := false;
-  if not FileExists(progpath) then Exit;
+  Result := False;
+  if not FileExists(progpath) then
+    Exit;
   Delay(20);
-	progdir := ExtractFilePath(progpath);
-  Delete(progdir,Length(progdir),1);
+  progdir := ExtractFilePath(progpath);
+  Delete(progdir, Length(progdir), 1);
   process := TProcess.Create(nil);
   try
     try
-      process.CommandLine := Trim(progpath+' '+args);
-      process.Options := [poNoConsole {$IFDEF WINDOWS}, poNewProcessGroup {$ENDIF}];
+      process.CommandLine := Trim(progpath + ' ' + args);
+      process.Options := [poNoConsole
+{$IFDEF WINDOWS}
+        , poNewProcessGroup
+{$ENDIF}
+        ];
       process.Execute;
-      Result := true;
+      Result := True;
     except
     end;
   finally
@@ -687,7 +1134,8 @@ begin
   lon1 := lon1 * (PI / 180);
   lat1 := lat1 * (PI / 180);
   lon2 := lon2 * (PI / 180);
-  lat2 := lat2 * (PI / 180); //Пересчет значений координат в радианы
+  lat2 := lat2 * (PI / 180);
+  //Пересчет значений координат в радианы
   TanU1 := (1 - f) * Tan(lat1);
   TanU2 := (1 - f) * Tan(lat2);
   U1 := ArcTan(TanU1);
@@ -731,25 +1179,14 @@ begin
   Result := b * APARAM * (Sigma - DSigma);
 end;
 
-procedure TdmFunc.Delay(n: Cardinal);
+procedure TdmFunc.Delay(n: cardinal);
 var
-start: Cardinal;
+  start: cardinal;
 begin
-start := GetTickCount;
-repeat
-Application.ProcessMessages;
-until (GetTickCount - start) >= n;
-end;
-
-function antepenultimate_char(s: string): string;
-begin
-Result:= s.
-end;
-
-function TdmFunc.ExtractWPXPrefix(Call: string): string;
-begin
-if Length(Call) < 3 then
-Result := Call;
+  start := GetTickCount;
+  repeat
+    Application.ProcessMessages;
+  until (GetTickCount - start) >= n;
 end;
 
 function TdmFunc.ExtractCallsign(call: string): string;
@@ -850,22 +1287,25 @@ begin
   Result := '';
   band := '';
 
-  if Length(MHz) = 10 then  begin
-  Delete(MHz,10,Length(MHz));
-  Delete(MHz,9,Length(MHz));
-  Delete(MHz,8,Length(MHz));
+  if Length(MHz) = 10 then
+  begin
+    Delete(MHz, 10, Length(MHz));
+    Delete(MHz, 9, Length(MHz));
+    Delete(MHz, 8, Length(MHz));
   end;
 
-  if Length(MHz) = 9 then  begin
-  Delete(MHz,9,Length(MHz));
-  Delete(MHz,8,Length(MHz));
-  Delete(MHz,7,Length(MHz));
+  if Length(MHz) = 9 then
+  begin
+    Delete(MHz, 9, Length(MHz));
+    Delete(MHz, 8, Length(MHz));
+    Delete(MHz, 7, Length(MHz));
   end;
-;
-  if Length(MHz) = 8 then  begin
-  Delete(MHz,8,Length(MHz));
-  Delete(MHz,7,Length(MHz));
-  Delete(MHz,6,Length(MHz));
+  ;
+  if Length(MHz) = 8 then
+  begin
+    Delete(MHz, 8, Length(MHz));
+    Delete(MHz, 7, Length(MHz));
+    Delete(MHz, 6, Length(MHz));
   end;
 
   if Pos('.', MHz) > 0 then
@@ -874,8 +1314,8 @@ begin
   if pos(',', MHz) > 0 then
     MHz[pos(',', MHz)] := DefaultFormatSettings.DecimalSeparator;
 
-if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
- exit;
+  if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
+    exit;
 
   if tmp < 1 then
   begin
@@ -919,10 +1359,10 @@ end;
 
 function TdmFunc.StringToADIF(tex: string; kp: boolean): string;
 begin
-  if kp=True then
-  Result := ':' + IntToStr(UTF8Length(tex)) + '>' + tex      //За байт
+  if kp = True then
+    Result := ':' + IntToStr(UTF8Length(tex)) + '>' + tex      //За байт
   else
-  Result := ':' + IntToStr(Length(tex)) + '>' + tex;        //За два байта
+    Result := ':' + IntToStr(Length(tex)) + '>' + tex;        //За два байта
 end;
 
 function TdmFunc.GetIDCall(callsign: string): string;
@@ -1079,32 +1519,35 @@ begin
   Result := band;
 end;
 
-function TdmFunc.GetDigiBandFromFreq(MHz: string): Double;
+function TdmFunc.GetDigiBandFromFreq(MHz: string): double;
 var
   x: integer;
   tmp: currency;
   Dec: currency;
-  band: Double;
+  band: double;
 begin
   Result := 0;
   band := 0;
 
-  if Length(MHz) = 10 then  begin
-  Delete(MHz,10,Length(MHz));
-  Delete(MHz,9,Length(MHz));
-  Delete(MHz,8,Length(MHz));
+  if Length(MHz) = 10 then
+  begin
+    Delete(MHz, 10, Length(MHz));
+    Delete(MHz, 9, Length(MHz));
+    Delete(MHz, 8, Length(MHz));
   end;
 
-  if Length(MHz) = 9 then  begin
-  Delete(MHz,9,Length(MHz));
-  Delete(MHz,8,Length(MHz));
-  Delete(MHz,7,Length(MHz));
+  if Length(MHz) = 9 then
+  begin
+    Delete(MHz, 9, Length(MHz));
+    Delete(MHz, 8, Length(MHz));
+    Delete(MHz, 7, Length(MHz));
   end;
 
-  if Length(MHz) = 8 then  begin
-  Delete(MHz,8,Length(MHz));
-  Delete(MHz,7,Length(MHz));
-  Delete(MHz,6,Length(MHz));
+  if Length(MHz) = 8 then
+  begin
+    Delete(MHz, 8, Length(MHz));
+    Delete(MHz, 7, Length(MHz));
+    Delete(MHz, 6, Length(MHz));
   end;
 
   if Pos('.', MHz) > 0 then
@@ -1262,14 +1705,14 @@ begin
   end;     }
 end;
 
-function TdmFunc.IsAdifOK(qsodate, time_on, time_off, call, freq, mode, rst_s, rst_r, iota,
-  itu, waz, loc, my_loc, band: string): boolean;
+function TdmFunc.IsAdifOK(qsodate, time_on, time_off, call, freq,
+  mode, rst_s, rst_r, iota, itu, waz, loc, my_loc, band: string): boolean;
 var
   w: integer;
 begin
   w := 0;
   Result := True;
-  DebugLevel:=0;
+  DebugLevel := 0;
   if not IsDateOK(qsodate) then
   begin
     Result := False;
@@ -1307,7 +1750,7 @@ begin
     begin
       Result := False;
       if DebugLevel >= 1 then
-        ShowMessage('Wrong QSO mode: '+ mode);
+        ShowMessage('Wrong QSO mode: ' + mode);
       exit;
     end;
   end;
@@ -1324,16 +1767,16 @@ begin
   if rst_r = '' then
   begin
     Result := False;
-    if DebugLevel >=1 then
+    if DebugLevel >= 1 then
       ShowMessage('Wrong QSO rst_r');
-    exit
+    exit;
   end;
   if rst_s = '' then
   begin
     Result := False;
-    if DebugLevel >=1 then
+    if DebugLevel >= 1 then
       ShowMessage('Wrong QSO rst_s');
-    exit
+    exit;
   end;
 
   if waz <> '' then
@@ -1431,7 +1874,7 @@ begin
   end;
   if band = '60M' then
   begin
-      Result := '5.200.00';
+    Result := '5.200.00';
     exit;
   end;
   if band = '40M' then
@@ -1635,51 +2078,105 @@ begin
 end;
 
 procedure TdmFunc.BandMode(freq: string; var b, md: integer);
- var
-   f: double;
- begin
-   b := 0;
-   md := 2;
-   try
-     f := StrToFloat(freq) / 1000;
-     b := Trunc(f);
-     if b = 29 then Dec(b);
-     if (b > 50) and (b <= 54) then b := 50;
-     if (b > 144) and (b <= 148) then b := 144;
-     if (b >= 430) then b := 432;
-     case b of
-     1:  if f < 1.84 then md := 3 else md := 1;
-     3:  if f < 3.6 then md := 3 else md := 1;
-     5:  md := 2;
-     7:  if f < 7.035 then md := 3 else if f < 7.043 then md := 6 else md := 1;
-     10: if f < 10.14 then md := 3 else md := 6;
-     14: if f < 14.07 then md := 3 else if f < 14.1 then md := 6 else md := 2;
-     18: if f < 18.095 then md := 3 else if f < 18.11 then md := 6 else md := 2;
-     21: if f < 21.07 then md := 3 else if f < 21.11 then md := 6 else md := 2;
-     24: if f < 24.915 then md := 3 else if f < 24.93 then md := 6 else md := 2;
-     28: if f < 28.07 then md := 3 else if f < 28.1 then md := 6 else if f < 29.5 then md := 2 else md := 4;
-     50: if f < 50.11 then md := 3 else md := 2;
-     70: md := 3;
-     144: if f < 144.2 then md := 3 else md := 2;
-     432: if f < 432.2 then md := 3 else md := 2;
-     end;
-    // if (md = 3) and cwrev then md := 7;
-   except
-   end;
- end;
-
-//Функции для WSJT
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: LongInt);
+var
+  f: double;
 begin
-  AppendBytes(AData,ToBytes(HToNl(AValue)));
+  b := 0;
+  md := 2;
+  try
+    f := StrToFloat(freq) / 1000;
+    b := Trunc(f);
+    if b = 29 then
+      Dec(b);
+    if (b > 50) and (b <= 54) then
+      b := 50;
+    if (b > 144) and (b <= 148) then
+      b := 144;
+    if (b >= 430) then
+      b := 432;
+    case b of
+      1: if f < 1.84 then
+          md := 3
+        else
+          md := 1;
+      3: if f < 3.6 then
+          md := 3
+        else
+          md := 1;
+      5: md := 2;
+      7: if f < 7.035 then
+          md := 3
+        else if f < 7.043 then
+          md := 6
+        else
+          md := 1;
+      10: if f < 10.14 then
+          md := 3
+        else
+          md := 6;
+      14: if f < 14.07 then
+          md := 3
+        else if f < 14.1 then
+          md := 6
+        else
+          md := 2;
+      18: if f < 18.095 then
+          md := 3
+        else if f < 18.11 then
+          md := 6
+        else
+          md := 2;
+      21: if f < 21.07 then
+          md := 3
+        else if f < 21.11 then
+          md := 6
+        else
+          md := 2;
+      24: if f < 24.915 then
+          md := 3
+        else if f < 24.93 then
+          md := 6
+        else
+          md := 2;
+      28: if f < 28.07 then
+          md := 3
+        else if f < 28.1 then
+          md := 6
+        else if f < 29.5 then
+          md := 2
+        else
+          md := 4;
+      50: if f < 50.11 then
+          md := 3
+        else
+          md := 2;
+      70: md := 3;
+      144: if f < 144.2 then
+          md := 3
+        else
+          md := 2;
+      432: if f < 432.2 then
+          md := 3
+        else
+          md := 2;
+    end;
+    // if (md = 3) and cwrev then md := 7;
+  except
+  end;
 end;
 
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: Int64) overload;
+//Функции для WSJT
+procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: longint);
+begin
+  AppendBytes(AData, ToBytes(HToNl(AValue)));
+end;
+
+procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: int64) overload;
 begin
   {$IFNDEF BIG_ENDIAN}
-  AppendBytes(AData,ToBytes(SwapEndian(AValue)));
+  AppendBytes(AData, ToBytes(SwapEndian(AValue)));
   {$ELSE}
-  AppendBytes(AData,ToBytes(AValue));
+  AppendBytes(AData, ToBytes(AValue));
   {$ENDIF}
 end;
 
@@ -1688,57 +2185,58 @@ var
   temp: TIdBytes;
   long: integer;
 begin
-  long:=Length(AString);
-  temp := ToBytes(AString,IndyTextEncoding_UTF8);
-  Pack(AData,long);
-  AppendBytes(AData,temp);
+  long := Length(AString);
+  temp := ToBytes(AString, IndyTextEncoding_UTF8);
+  Pack(AData, long);
+  AppendBytes(AData, temp);
 end;
 
 procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: QWord) overload;
 var
-   temp: Int64 absolute AValue;
+  temp: int64 absolute AValue;
 begin
-  Pack(AData,temp);
+  Pack(AData, temp);
 end;
 
-procedure TdmFunc.Pack(var AData: TIdBytes; const AFlag: Boolean) overload;
+procedure TdmFunc.Pack(var AData: TIdBytes; const AFlag: boolean) overload;
 var
-   temp: Integer;
+  temp: integer;
 begin
   if AFlag then
-  temp := -1
+    temp := -1
   else
-  temp := 0;
-  AppendBytes(AData,ToBytes(temp));
+    temp := 0;
+  AppendBytes(AData, ToBytes(temp));
 end;
 
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: Longword) overload;
+procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: longword) overload;
 begin
-  AppendBytes(AData,ToBytes(HToNl(AValue)));
+  AppendBytes(AData, ToBytes(HToNl(AValue)));
 end;
 
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: Double) overload;
+procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: double) overload;
 var
   temp: QWord absolute AValue;
 begin
-  Pack(AData,temp);
+  Pack(AData, temp);
 end;
 
 procedure TdmFunc.Pack(var AData: TIdBytes; const ADateTime: TDateTime) overload;
 begin
-  Pack(AData,MilliSecondOfTheDay(ADateTime));
-  Pack(AData,QWord(DateTimeToJulianDate(ADateTime)));
-  Pack(AData,Byte(1));
+  Pack(AData, MilliSecondOfTheDay(ADateTime));
+  Pack(AData, QWord(DateTimeToJulianDate(ADateTime)));
+  Pack(AData, byte(1));
 end;
 
 
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AValue: LongInt);
+procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer; var AValue: longint);
 begin
   AValue := NToHl(BytesToInt32(AData, index));
   index := index + SizeOf(AValue);
 end;
 
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AValue: Int64) overload;
+procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
+  var AValue: int64) overload;
 begin
   AValue := BytesToInt64(AData, index);
   index := index + SizeOf(AValue);
@@ -1747,56 +2245,63 @@ begin
   {$ENDIF}
 end;
 
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AString: string) overload;
+procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
+  var AString: string) overload;
 var
-  length: LongInt;
+  length: longint;
 begin
-  Unpack(AData,index,length);
-  if length <> LongInt($ffffffff) then
+  Unpack(AData, index, length);
+  if length <> longint($ffffffff) then
   begin
-    AString := BytesToString(AData,index,length,IndyTextEncoding_UTF8);
+    AString := BytesToString(AData, index, length, IndyTextEncoding_UTF8);
     index := index + length;
   end
-  else AString := '';
+  else
+    AString := '';
 end;
 
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AValue: QWord) overload;
+procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
+  var AValue: QWord) overload;
 var
-   temp: Int64 absolute AValue;
+  temp: int64 absolute AValue;
 begin
-  Unpack(AData,index,temp);
+  Unpack(AData, index, temp);
 end;
 
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AFlag: Boolean) overload;
+procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
+  var AFlag: boolean) overload;
 begin
   AFlag := AData[index] <> 0;
   index := index + 1;
 end;
 
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AValue: Longword) overload;
+procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
+  var AValue: longword) overload;
 begin
-  AValue := Longword(NToHl(BytesToInt32(AData, index)));
+  AValue := longword(NToHl(BytesToInt32(AData, index)));
   index := index + SizeOf(AValue);
 end;
 
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var AValue: Double) overload;
+procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
+  var AValue: double) overload;
 var
   temp: QWord absolute AValue;
 begin
-  Unpack(AData,index,temp);
+  Unpack(AData, index, temp);
 end;
 
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: Integer; var ADateTime: TDateTime) overload;
+procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
+  var ADateTime: TDateTime) overload;
 var
-  dt: Int64;
-  tm: Longword;
-  temp: Double;
+  dt: int64;
+  tm: longword;
+  temp: double;
 begin
-  Unpack(AData,index,dt);
-  Unpack(AData,index,tm);
+  Unpack(AData, index, dt);
+  Unpack(AData, index, tm);
   index := index + 1;
   temp := dt;
-  ADateTime := IncMilliSecond(JulianDateToDateTime(temp),tm);
+  ADateTime := IncMilliSecond(JulianDateToDateTime(temp), tm);
 end;
 
 

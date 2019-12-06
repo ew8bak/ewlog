@@ -566,7 +566,7 @@ begin
             Q(paramMARKER) + Q('0') + Q(BAND) + Q(CONT) + Q(COMMENT) +
             Q(paramEQSL_QSL_RCVD) + Q(paramLOTW_QSL_RCVD) +
             Q(paramLOTW_QSLRDATE) + Q(QSLMSG) + Q(dmFunc.ExtractCallsign(CALL)) +
-            Q(STATE1) + Q(STATE2) + Q(STATE3) + Q(STATE4) + Q('WPX') +
+            Q(STATE1) + Q(STATE2) + Q(STATE3) + Q(STATE4) + Q(dmFunc.ExtractWPXPrefix(CALL)) +
             Q('Awards') + Q(paramValidDX) + Q(SRX) + Q(SRX_STRING) +
             Q(STX) + Q(STX_STRING) + Q(SAT_NAME) + Q(SAT_MODE) +
             Q(PROP_MODE) + Q(paramLOTW_QSL_SENT) + Q(QSL_RCVD_VIA) +
