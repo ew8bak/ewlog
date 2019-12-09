@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, Buttons;
+
 resourcestring
   rAllfieldsmustbefilled = 'All fields must be filled!';
   rLogaddedsuccessfully = 'Log added successfully';
@@ -89,22 +90,22 @@ begin
     CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection
   else
     CreateTableQuery.DataBase := MainForm.SQLiteDBConnection;
-        if DefaultDB='MySQL' then
-      MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1
-      else
-      MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
+  if DefaultDB = 'MySQL' then
+    MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1
+  else
+    MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
 end;
 
 procedure TCreateJournalForm.FormShow(Sender: TObject);
 begin
-    if DefaultDB = 'MySQL' then
+  if DefaultDB = 'MySQL' then
     CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection
   else
     CreateTableQuery.DataBase := MainForm.SQLiteDBConnection;
-         if DefaultDB='MySQL' then
-      MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1
-      else
-      MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
+  if DefaultDB = 'MySQL' then
+    MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1
+  else
+    MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
 
 end;
 
@@ -114,8 +115,8 @@ var
   CountStr: integer;
 begin
   if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
-    (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') or
-    (Edit8.Text = '') or (Edit9.Text = '') then
+    (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or
+    (Edit7.Text = '') or (Edit8.Text = '') or (Edit9.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
   else
     try
@@ -148,76 +149,93 @@ begin
       MainForm.SQLTransaction1.Commit;
       CreateTableQuery.Close;
       if DefaultDB = 'MySQL' then
-      CreateTableQuery.SQL.Text :=
-        'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
-       '(' + ' `UnUsedIndex` integer NOT NULL,' +
-        ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-        ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
-        ' `QSOMode` varchar(7) DEFAULT NULL,' +
-        ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
-        ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-        ' `OMName` varchar(20) DEFAULT NULL,' + ' `OMQTH` varchar(25) DEFAULT NULL,' +
-        ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
-        ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-        ' `QSLSent` tinyint(1) DEFAULT NULL,' + ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-        ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
-        ' `QSLRecDate` datetime DEFAULT NULL,' + ' `MainPrefix` varchar(5) DEFAULT NULL,' +
-        ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
-        ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
-        ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
-        ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
-        ' `ShortNote` varchar(30) DEFAULT NULL,' +
-        ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
-        ' `LoTWRec` tinyint(1) DEFAULT NULL,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
-        ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
-        ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
-        ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
-        ' `WPX` varchar(10) DEFAULT NULL,' + ' `AwardsEx` longtext,' +
-        ' `ValidDX` tinyint(1) DEFAULT NULL,' + ' `SRX` int(11) DEFAULT NULL,' +
-        ' `SRX_STRING` varchar(15) DEFAULT NULL,' + ' `STX` int(11) DEFAULT NULL,' +
-        ' `STX_STRING` varchar(15) DEFAULT NULL,' +
-        ' `SAT_NAME` varchar(20) DEFAULT NULL,' + ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-        ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT NULL,' +
-        ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
-        ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' + ' `DXCC` varchar(5) DEFAULT NULL,' +
-        ' `USERS` varchar(5) DEFAULT NULL,' + ' `NoCalcDXCC` tinyint(1) DEFAULT NULL' +
-        ' )'
-        else
         CreateTableQuery.SQL.Text :=
-        'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
-        '(' + ' `UnUsedIndex` integer PRIMARY KEY AUTOINCREMENT NOT NULL,' +
-        ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-        ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
-        ' `QSOMode` varchar(7) DEFAULT NULL,' +
-        ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
-        ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-        ' `OMName` varchar(20) DEFAULT NULL,' + ' `OMQTH` varchar(25) DEFAULT NULL,' +
-        ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
-        ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-        ' `QSLSent` tinyint(1) DEFAULT NULL,' + ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-        ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
-        ' `QSLRecDate` datetime DEFAULT NULL,' + ' `MainPrefix` varchar(5) DEFAULT NULL,' +
-        ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
-        ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
-        ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
-        ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
-        ' `ShortNote` varchar(30) DEFAULT NULL,' +
-        ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
-        ' `LoTWRec` tinyint(1) DEFAULT NULL,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
-        ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
-        ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
-        ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
-        ' `WPX` varchar(10) DEFAULT NULL,' + ' `AwardsEx` longtext,' +
-        ' `ValidDX` tinyint(1) DEFAULT NULL,' + ' `SRX` int(11) DEFAULT NULL,' +
-        ' `SRX_STRING` varchar(15) DEFAULT NULL,' + ' `STX` int(11) DEFAULT NULL,' +
-        ' `STX_STRING` varchar(15) DEFAULT NULL,' +
-        ' `SAT_NAME` varchar(20) DEFAULT NULL,' + ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-        ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT NULL,' +
-        ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
-        ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' + ' `DXCC` varchar(5) DEFAULT NULL,' +
-        ' `USERS` varchar(5) DEFAULT NULL,' + ' `NoCalcDXCC` tinyint(1) DEFAULT NULL' +
-        ' )';
-      CreateTableQuery.ExecSQL;
+          'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
+          '(' + ' `UnUsedIndex` integer NOT NULL,' +
+          ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
+          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
+          ' `QSOMode` varchar(7) DEFAULT NULL,' +
+          ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
+          ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
+          ' `OMName` varchar(20) DEFAULT NULL,' + ' `OMQTH` varchar(25) DEFAULT NULL,' +
+          ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
+          ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
+          ' `QSLSent` tinyint(1) DEFAULT NULL,' +
+          ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
+          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
+          ' `QSLRecDate` datetime DEFAULT NULL,' +
+          ' `MainPrefix` varchar(5) DEFAULT NULL,' +
+          ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
+          ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
+          ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
+          ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
+          ' `ShortNote` varchar(30) DEFAULT NULL,' +
+          ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
+          ' `LoTWRec` tinyint(1) DEFAULT NULL,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
+          ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
+          ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
+          ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
+          ' `WPX` varchar(10) DEFAULT NULL,' + ' `AwardsEx` longtext,' +
+          ' `ValidDX` tinyint(1) DEFAULT NULL,' + ' `SRX` int(11) DEFAULT NULL,' +
+          ' `SRX_STRING` varchar(15) DEFAULT NULL,' + ' `STX` int(11) DEFAULT NULL,' +
+          ' `STX_STRING` varchar(15) DEFAULT NULL,' +
+          ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
+          ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
+          ' `PROP_MODE` varchar(20) DEFAULT NULL,' +
+          ' `LoTWSent` tinyint(1) DEFAULT NULL,' +
+          ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
+          ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
+          ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
+          ' `NoCalcDXCC` tinyint(1) DEFAULT NULL' + ' )'
+      else
+      begin
+        CreateTableQuery.SQL.Text :=
+          'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
+          '(' + ' `UnUsedIndex` integer PRIMARY KEY AUTOINCREMENT NOT NULL,' +
+          ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
+          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
+          ' `QSOMode` varchar(7) DEFAULT NULL,' +
+          ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
+          ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
+          ' `OMName` varchar(20) DEFAULT NULL,' + ' `OMQTH` varchar(25) DEFAULT NULL,' +
+          ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
+          ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
+          ' `QSLSent` tinyint(1) DEFAULT NULL,' +
+          ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
+          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
+          ' `QSLRecDate` datetime DEFAULT NULL,' +
+          ' `MainPrefix` varchar(5) DEFAULT NULL,' +
+          ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
+          ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
+          ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
+          ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
+          ' `ShortNote` varchar(30) DEFAULT NULL,' +
+          ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
+          ' `LoTWRec` tinyint(1) DEFAULT NULL,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
+          ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
+          ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
+          ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
+          ' `WPX` varchar(10) DEFAULT NULL,' + ' `AwardsEx` longtext,' +
+          ' `ValidDX` tinyint(1) DEFAULT NULL,' + ' `SRX` int(11) DEFAULT NULL,' +
+          ' `SRX_STRING` varchar(15) DEFAULT NULL,' + ' `STX` int(11) DEFAULT NULL,' +
+          ' `STX_STRING` varchar(15) DEFAULT NULL,' +
+          ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
+          ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
+          ' `PROP_MODE` varchar(20) DEFAULT NULL,' +
+          ' `LoTWSent` tinyint(1) DEFAULT NULL,' +
+          ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
+          ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
+          ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
+          ' `NoCalcDXCC` tinyint(1) DEFAULT NULL' + ' )';
+        CreateTableQuery.ExecSQL;
+        CreateTableQuery.SQL.Text :=
+          'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_' + LOG_PREFIX + '` ' +
+          '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
+        CreateTableQuery.ExecSQL;
+        CreateTableQuery.SQL.Text :=
+          'CREATE INDEX `Call_index` ON `Log_TABLE_' + LOG_PREFIX + '` (`Call`);';
+        CreateTableQuery.ExecSQL;
+      end;
       MainForm.SQLTransaction1.Commit;
       if DefaultDB = 'MySQL' then
       begin
@@ -225,13 +243,15 @@ begin
         CreateTableQuery.SQL.Text :=
           'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
           ' ADD PRIMARY KEY (`UnUsedIndex`),' + ' ADD KEY `Call` (`Call`),' +
-          ' ADD KEY `CallSign` (`CallSign`),' + ' ADD KEY `QSODate` (`QSODate`,`QSOTime`),' +
+          ' ADD KEY `CallSign` (`CallSign`),' +
+          ' ADD KEY `QSODate` (`QSODate`,`QSOTime`),' +
           ' ADD KEY `DigiBand` (`DigiBand`),' + ' ADD KEY `DXCC` (`DXCC`),' +
           ' ADD KEY `DXCCPrefix` (`DXCCPrefix`),' + ' ADD KEY `IOTA` (`IOTA`),' +
           ' ADD KEY `MainPrefix` (`MainPrefix`),' + ' ADD KEY `QSOMode` (`QSOMode`),' +
           ' ADD KEY `State` (`State`),' + ' ADD KEY `State1` (`State1`),' +
           ' ADD KEY `State2` (`State2`),' + ' ADD KEY `State3` (`State3`),' +
-          ' ADD KEY `State4` (`State4`),' + ' ADD KEY `WPX` (`WPX`);';
+          ' ADD KEY `State4` (`State4`),' + ' ADD KEY `WPX` (`WPX`),' +
+          ' ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`);';
         CreateTableQuery.ExecSQL;
         MainForm.SQLTransaction1.Commit;
         CreateTableQuery.Close;
