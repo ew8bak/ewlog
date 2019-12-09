@@ -659,6 +659,7 @@ type
     procedure WSJT_TimerTimer(Sender: TObject);
 
   private
+    fAllRecords: Integer;
     { private declarations }
 
   public
@@ -1653,6 +1654,12 @@ begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
+  LOGBookQuery.SQL.Text:='SELECT Count(*) from '+LogDB;
+  LOGBookQuery.Open;
+  fAllRecords:=LOGBookQuery.Fields[0].AsInteger;
+  LOGBookQuery.Close;
+   LogBookQuery.SQL.Clear;
+
   if DefaultDB = 'MySQL' then
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
@@ -1665,7 +1672,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-      ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC');
+      ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC LIMIT 100');
   end
   else
   begin
@@ -1679,15 +1686,15 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-      ' ORDER BY date(QSODate), time(QSOTime) ASC');
+      ' ORDER BY date(QSODate), time(QSOTime) ASC LIMIT 100 OFFSET '+IntToStr(fAllRecords-100));
   end;
 
   LogBookQuery.Open;
   LOGBookQuery.Last;
-  lastID := MainForm.DBGrid1.DataSource.DataSet.RecNo;
+  lastID := fAllRecords;
   StatusBar1.Panels.Items[1].Text :=
     'QSO № ' + IntToStr(lastID) + rQSOTotal +
-    IntToStr(MainForm.LOGBookQuery.RecordCount);
+    IntToStr(fAllRecords);
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
