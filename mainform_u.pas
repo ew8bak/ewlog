@@ -82,6 +82,7 @@ resourcestring
 
 
 const
+  offsetRec: integer = 100;
   constColumnName: array [0..28] of string =
     ('QSL', 'QSLs', 'QSODate', 'QSOTime', 'QSOBand', 'CallSign', 'QSOMode', 'OMName',
     'OMQTH', 'State', 'Grid', 'QSOReportSent', 'QSOReportRecived', 'IOTA', 'QSLManager',
@@ -1228,8 +1229,8 @@ begin
     Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     StatusBar1.Panels.Items[1].Text :=
-      'QSO № ' + IntToStr(DBGrid1.DataSource.DataSet.RecNo) +
-      rQSOTotal + IntToStr(MainForm.LOGBookQuery.RecordCount);
+      'QSO № ' + IntToStr(fAllRecords - offsetRec + DBGrid1.DataSource.DataSet.RecNo) +
+      rQSOTotal + IntToStr(fAllRecords);
   except
     on E: ESQLDatabaseError do
     begin
@@ -1686,7 +1687,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-      ' ORDER BY date(QSODate), time(QSOTime) ASC LIMIT 100 OFFSET '+IntToStr(fAllRecords-100));
+      ' ORDER BY date(QSODate), time(QSOTime) ASC LIMIT 100 OFFSET '+IntToStr(fAllRecords-offsetRec));
   end;
 
   LogBookQuery.Open;
