@@ -82,7 +82,6 @@ resourcestring
 
 
 const
-  offsetRec: integer = 100;
   constColumnName: array [0..28] of string =
     ('QSL', 'QSLs', 'QSODate', 'QSOTime', 'QSOBand', 'CallSign', 'QSOMode', 'OMName',
     'OMQTH', 'State', 'Grid', 'QSOReportSent', 'QSOReportRecived', 'IOTA', 'QSLManager',
@@ -660,7 +659,6 @@ type
     procedure WSJT_TimerTimer(Sender: TObject);
 
   private
-    fAllRecords: Integer;
     { private declarations }
 
   public
@@ -1229,8 +1227,8 @@ begin
     Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     StatusBar1.Panels.Items[1].Text :=
-      'QSO № ' + IntToStr(fAllRecords - offsetRec + DBGrid1.DataSource.DataSet.RecNo) +
-      rQSOTotal + IntToStr(fAllRecords);
+      'QSO № ' + IntToStr(DBGrid1.DataSource.DataSet.RecNo) +
+      rQSOTotal + IntToStr(MainForm.LOGBookQuery.RecordCount);
   except
     on E: ESQLDatabaseError do
     begin
@@ -1655,12 +1653,6 @@ begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
-  LOGBookQuery.SQL.Text:='SELECT Count(*) from '+LogDB;
-  LOGBookQuery.Open;
-  fAllRecords:=LOGBookQuery.Fields[0].AsInteger;
-  LOGBookQuery.Close;
-   LogBookQuery.SQL.Clear;
-
   if DefaultDB = 'MySQL' then
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
@@ -1673,7 +1665,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-      ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC LIMIT 100');
+      ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC');
   end
   else
   begin
@@ -1687,15 +1679,15 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-      ' ORDER BY date(QSODate), time(QSOTime) ASC LIMIT 100 OFFSET '+IntToStr(fAllRecords-offsetRec));
+      ' ORDER BY date(QSODate), time(QSOTime) ASC');
   end;
 
   LogBookQuery.Open;
   LOGBookQuery.Last;
-  lastID := fAllRecords;
+  lastID := MainForm.DBGrid1.DataSource.DataSet.RecNo;
   StatusBar1.Panels.Items[1].Text :=
     'QSO № ' + IntToStr(lastID) + rQSOTotal +
-    IntToStr(fAllRecords);
+    IntToStr(MainForm.LOGBookQuery.RecordCount);
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
