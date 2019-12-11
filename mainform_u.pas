@@ -82,6 +82,7 @@ resourcestring
 
 
 const
+  offsetRec: integer = 500;
   constColumnName: array [0..28] of string =
     ('QSL', 'QSLs', 'QSODate', 'QSOTime', 'QSOBand', 'CallSign', 'QSOMode', 'OMName',
     'OMQTH', 'State', 'Grid', 'QSOReportSent', 'QSOReportRecived', 'IOTA', 'QSLManager',
@@ -509,6 +510,7 @@ type
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Label50Click(Sender: TObject);
+    procedure LOGBookQueryBeforeScroll(DataSet: TDataSet);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
@@ -663,6 +665,8 @@ type
 
   public
     { public declarations }
+    fAllRecords: integer;
+    FlagPagination: boolean;
     Command: string;
     FlagList: TImageList;
     FlagSList: TStringList;
@@ -701,7 +705,7 @@ type
 
     inupdate: boolean;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
-    procedure SelectLogDatabase(LogDB: string);
+    procedure SelectLogDatabase(LogDB: string; allrec, ofrec: integer);
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
@@ -1227,8 +1231,8 @@ begin
     Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     StatusBar1.Panels.Items[1].Text :=
-      'QSO № ' + IntToStr(DBGrid1.DataSource.DataSet.RecNo) +
-      rQSOTotal + IntToStr(MainForm.LOGBookQuery.RecordCount);
+      'QSO № ' + IntToStr(fAllRecords + LOGBookQuery.RecNo - offsetRec) +
+      rQSOTotal + IntToStr(fAllRecords);
   except
     on E: ESQLDatabaseError do
     begin
@@ -1393,6 +1397,7 @@ begin
     end;
 
 
+
   finally
 
   end;
@@ -1512,13 +1517,13 @@ end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
   QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv, QSLSentDate,
-  QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone,
-  QSOAddInfo, Marker: string;
-  ManualSet: integer; DigiBand, Continent, ShortNote: string;
-  QSLReceQSLcc: integer; LotWRec, LotWRecDate, QSLInfo, Call, State1,
-  State2, State3, State4, WPX, AwardsEx, ValidDX: string; SRX: integer;
-  SRX_String: string; STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
+  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
+  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
+  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
+  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
+  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
+  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
+  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
   LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
   NoCalcDXCC: integer; NLogDB: string);
 begin
@@ -1648,14 +1653,14 @@ begin
   end;
 end;
 
-procedure TMainForm.SelectLogDatabase(LogDB: string);
+procedure TMainForm.SelectLogDatabase(LogDB: string; allrec, ofrec: integer);
 begin
+  FlagPagination := True;
   LogBookQuery.Close;
-  LogBookQuery.SQL.Clear;
 
   if DefaultDB = 'MySQL' then
   begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
+    LogBookQuery.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' +
       '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
@@ -1665,29 +1670,32 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-      ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC');
+	  ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
+	  + LogDB + ' ORDER BY QSODate2, QSOTime2 ASC LIMIT :n,1000) as lim USING(UnUsedIndex)';
   end
   else
   begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+    LogBookQuery.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
+      'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' +
       '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-      ' ORDER BY date(QSODate), time(QSOTime) ASC');
+      +
+      '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,' +
+      '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,' +
+      '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,' +
+      '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
+      +
+      LogDB + ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
+      + LogDB + ' ORDER BY QSODate2, QSOTime2 ASC LIMIT :n,1000) as lim USING(UnUsedIndex)';
   end;
-
+  LOGBookQuery.Params[0].AsInteger := allrec - ofrec;
   LogBookQuery.Open;
-  LOGBookQuery.Last;
-  lastID := MainForm.DBGrid1.DataSource.DataSet.RecNo;
+  //LOGBookQuery.Last;
+  lastID := fAllRecords + LOGBookQuery.RecNo - offsetRec;
   StatusBar1.Panels.Items[1].Text :=
     'QSO № ' + IntToStr(lastID) + rQSOTotal +
-    IntToStr(MainForm.LOGBookQuery.RecordCount);
+    IntToStr(fAllRecords);
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
@@ -1719,8 +1727,15 @@ begin
     HRDLogin := MainForm.LogBookInfoQuery.FieldByName('HRDLogLogin').AsString;
     HRDCode := MainForm.LogBookInfoQuery.FieldByName('HRDLogPassword').AsString;
     AutoHRDLog := MainForm.LogBookInfoQuery.FieldByName('AutoHRDLog').AsBoolean;
-    MainForm.SelectLogDatabase(LogTable);
+
+    LOGBookQuery.Close;
+    LOGBookQuery.SQL.Text := 'select COUNT(*) from ' + LogTable;
+    LOGBookQuery.Open;
+    fAllRecords := LOGBookQuery.Fields[0].AsInteger;
+    LOGBookQuery.Close;
+    MainForm.SelectLogDatabase(LogTable, fAllRecords, offsetRec);
     MainForm.DBGrid1.DataSource.DataSet.Last;
+     FlagPagination := False;
   end;
   SetGrid();
   LogBookFieldQuery.Open;
@@ -2376,7 +2391,7 @@ end;
 procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
-    SelectLogDatabase(LogTable);
+    SelectLogDatabase(LogTable, fAllRecords, offsetRec);
 end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
@@ -3338,6 +3353,38 @@ begin
   Update_Form.Show;
 end;
 
+procedure TMainForm.LOGBookQueryBeforeScroll(DataSet: TDataSet);
+var
+  recnom: integer;
+begin
+  recnom := DataSet.RecNo;
+  if fAllRecords = 0 then
+    exit;
+  if (FlagPagination <> True) and (DataSet.RecNo < 100) then
+  begin
+    offsetRec := offsetRec + 500;
+    SelectLogDatabase(LogTable,fAllRecords, offsetRec);
+    DataSet.RecNo := recnom + 500;
+    Application.ProcessMessages;
+    FlagPagination := False;
+  end;
+  if (FlagPagination <> True) and (DataSet.RecNo > 900) then
+  begin
+    offsetRec := offsetRec - 500;
+    if offsetRec < 0 then
+      offsetRec := 0
+    else
+    begin
+      SelectLogDatabase(LogTable,fAllRecords, offsetRec);
+      DataSet.RecNo := recnom - 500;
+      Application.ProcessMessages;
+      FlagPagination := False;
+    end;
+  end;
+  recnom := DataSet.RecNo;
+
+end;
+
 procedure TMainForm.LTCPComponent1Accept(aSocket: TLSocket);
 begin
   StatusBar1.Panels.Items[0].Text :=
@@ -3713,7 +3760,7 @@ end;
 
 procedure TMainForm.MenuItem109Click(Sender: TObject);
 begin
-  SelectLogDatabase(LogTable);
+  SelectLogDatabase(LogTable, fAllRecords, offsetRec);
 end;
 
 //QSL получена и отправлена на печать

@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 709
+  Left = 473
   Height = 692
-  Top = 285
+  Top = 170
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -3434,6 +3434,7 @@ object MainForm: TMainForm
   end
   object LOGBookQuery: TSQLQuery
     FieldDefs = <>
+    BeforeScroll = LOGBookQueryBeforeScroll
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
