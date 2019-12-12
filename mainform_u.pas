@@ -22,6 +22,7 @@ resourcestring
   rQSOBand = 'Band';
   rCallSign = 'Callsign';
   rQSOMode = 'Mode';
+  rQSOSubMode = 'SubMode';
   rOMName = 'Name';
   rOMQTH = 'QTH';
   rState = 'State';
@@ -83,8 +84,9 @@ resourcestring
 
 const
   offsetRec: integer = 500;
-  constColumnName: array [0..28] of string =
-    ('QSL', 'QSLs', 'QSODate', 'QSOTime', 'QSOBand', 'CallSign', 'QSOMode', 'OMName',
+  constColumnName: array [0..29] of string =
+    ('QSL', 'QSLs', 'QSODate', 'QSOTime', 'QSOBand', 'CallSign',
+    'QSOMode', 'QSOSubMode', 'OMName',
     'OMQTH', 'State', 'Grid', 'QSOReportSent', 'QSOReportRecived', 'IOTA', 'QSLManager',
     'QSLSentDate', 'QSLRecDate', 'LoTWRecDate', 'MainPrefix', 'DXCCPrefix', 'CQZone',
     'ITUZone', 'ManualSet', 'Continent', 'ValidDX', 'QSL_RCVD_VIA', 'QSL_SENT_VIA',
@@ -138,8 +140,8 @@ const
     'Tonga', 'Turkish', 'Tsonga', 'Tatar', 'Twi', 'Uigur', 'Ukrainian',
     'Urdu', 'Uzbek', 'Vietnamese',
     'Volapuk', 'Wolof', 'Xhosa', 'Yiddish', 'Yoruba', 'Zhuang', 'Chinese', 'Zulu');
-  constColumnWidth: array[0..28] of integer =
-    (30, 35, 65, 45, 65, 65, 50, 70, 90, 40, 50, 35, 35, 50, 64, 64,
+  constColumnWidth: array[0..29] of integer =
+    (30, 35, 65, 45, 65, 65, 50, 50, 70, 90, 40, 50, 35, 35, 50, 64, 64,
     64, 64, 55, 55, 55, 55,
     64, 70, 64, 64, 64, 64, 64);
   constBandName: array [0..12] of string =
@@ -163,6 +165,7 @@ type
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
     ComboBox8: TComboBox;
+    ComboBox9: TComboBox;
     Edit12: TEdit;
     Edit13: TEdit;
     frCSVExport1: TfrCSVExport;
@@ -303,6 +306,8 @@ type
     Panel9: TPanel;
     PopupMenu2: TPopupMenu;
     PopupDxCluster: TPopupMenu;
+    CheckTableQuery: TSQLQuery;
+    subModesQuery: TSQLQuery;
     PrintDialog1: TPrintDialog;
     SpeedButton24: TSpeedButton;
     SpeedButton25: TSpeedButton;
@@ -677,14 +682,15 @@ type
     PhotoJPEG: TJPEGImage;
     PhotoGIF: TGIFImage;
     PhotoPNG: TPortableNetworkGraphic;
+    subModesList: TStringList;
     tIMG: TImage;
     PhotoGroup: TGroupBox;
     ColorTextGrid: integer;
     ColorBackGrid: integer;
     SizeTextGrid: integer;
-    columnsGrid: array[0..28] of string;
-    columnsWidth: array[0..28] of integer;
-    columnsVisible: array[0..28] of boolean;
+    columnsGrid: array[0..29] of string;
+    columnsWidth: array[0..29] of integer;
+    columnsVisible: array[0..29] of boolean;
     RegisterLog, LoginLog, PassLog: string;
     PhotoDir: string;
     ExportAdifSelect: boolean;
@@ -710,7 +716,7 @@ type
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
     procedure SaveQSO(CallSing: string; QSODate: TDateTime;
-      QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived,
+      QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSOReportRecived,
       OmName, OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
       QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
       ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
@@ -733,6 +739,8 @@ type
     function FindCountry(ISOCode: string): string;
     function FindLanguageFiles(Dir: string): TStringList;
     function FindISOCountry(Country: string): string;
+    function FindMode(submode: string): string;
+    procedure addModes(modeItem: String; subModesFlag: Boolean);
   end;
 
 var
@@ -741,6 +749,7 @@ var
   QTH_LON: currency;
   PrefixProvinceCount: integer;
   PrefixARRLCount: integer;
+  subModesCount: integer;
   UniqueCallsCount: integer;
   UniqueCallsList: TStringList;
   PrefixProvinceList: TStringList;
@@ -828,6 +837,60 @@ type
 {$R *.lfm}
 
 { TMainForm }
+
+procedure TMainForm.addModes(modeItem: String; subModesFlag: Boolean);
+var
+  i: integer;
+  subModes: TStringList;
+begin
+  subModesQuery.Close;
+  ComboBox9.Items.Clear;
+  subModes:=TStringList.Create;
+  subModes.Delimiter:=',';
+
+  if subModesFlag = False then begin
+  ComboBox2.Items.Clear;
+  subModesQuery.SQL.Text := 'SELECT * FROM Modes';
+  subModesQuery.Open;
+  subModesQuery.First;
+  for i := 0 to subModesQuery.RecordCount - 1 do
+  begin
+    ComboBox2.Items.Add(subModesQuery.FieldByName('mode').AsString);
+    subModesQuery.Next;
+  end;
+  subModesQuery.Close;
+  end
+  else begin
+  subModesQuery.Close;
+   subModesQuery.SQL.Text := 'SELECT submode FROM Modes WHERE mode = '+QuotedStr(modeItem);
+   subModesQuery.Open;
+   subModes.DelimitedText:=subModesQuery.FieldByName('submode').AsString;
+   ComboBox9.Items:=subModes;
+  end;
+end;
+
+function TMainForm.FindMode(submode: string): string;
+var
+  i, j: integer;
+begin
+  for j := 0 to subModesList.Count - 1 do
+    if AnsiContainsText(subModesList.Strings[j], submode + ',') or
+      AnsiContainsText(subModesList.Strings[j], ', ' + submode) then
+    begin
+      i := j;
+      break;
+    end;
+
+  with subModesQuery do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select * from modes where _id = "' + IntToStr(i + 1) + '"');
+    Open;
+  end;
+  Result := subModesQuery.FieldByName('mode').AsString;
+  subModesQuery.Close;
+end;
 
 function TMainForm.FindISOCountry(Country: string): string;
 var
@@ -1047,7 +1110,7 @@ procedure TMainForm.SetGrid;
 var
   i: integer;
 begin
-  for i := 0 to 28 do
+  for i := 0 to 29 do
   begin
     columnsGrid[i] := IniF.ReadString('GridSettings', 'Columns' +
       IntToStr(i), constColumnName[i]);
@@ -1065,7 +1128,7 @@ begin
   DBGrid2.Color := ColorBackGrid;
 
   //Для первого грида
-  for i := 0 to 28 do
+  for i := 0 to 29 do
   begin
     DBGrid1.Columns.Items[i].FieldName := columnsGrid[i];
     DBGrid1.Columns.Items[i].Width := columnsWidth[i];
@@ -1077,6 +1140,7 @@ begin
       'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := rQSOBand;
       'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
       'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
+      'QSOSubMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOSubMode;
       'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
       'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
       'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
@@ -1109,32 +1173,33 @@ begin
       'QSOBand': DBGrid1.Columns.Items[i].Visible := columnsVisible[4];
       'CallSign': DBGrid1.Columns.Items[i].Visible := columnsVisible[5];
       'QSOMode': DBGrid1.Columns.Items[i].Visible := columnsVisible[6];
-      'OMName': DBGrid1.Columns.Items[i].Visible := columnsVisible[7];
-      'OMQTH': DBGrid1.Columns.Items[i].Visible := columnsVisible[8];
-      'State': DBGrid1.Columns.Items[i].Visible := columnsVisible[9];
-      'Grid': DBGrid1.Columns.Items[i].Visible := columnsVisible[10];
-      'QSOReportSent': DBGrid1.Columns.Items[i].Visible := columnsVisible[11];
-      'QSOReportRecived': DBGrid1.Columns.Items[i].Visible := columnsVisible[12];
-      'IOTA': DBGrid1.Columns.Items[i].Visible := columnsVisible[13];
-      'QSLManager': DBGrid1.Columns.Items[i].Visible := columnsVisible[14];
-      'QSLSentDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[15];
-      'QSLRecDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[16];
-      'LoTWRecDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[17];
-      'MainPrefix': DBGrid1.Columns.Items[i].Visible := columnsVisible[18];
-      'DXCCPrefix': DBGrid1.Columns.Items[i].Visible := columnsVisible[19];
-      'CQZone': DBGrid1.Columns.Items[i].Visible := columnsVisible[20];
-      'ITUZone': DBGrid1.Columns.Items[i].Visible := columnsVisible[21];
-      'ManualSet': DBGrid1.Columns.Items[i].Visible := columnsVisible[22];
-      'Continent': DBGrid1.Columns.Items[i].Visible := columnsVisible[23];
-      'ValidDX': DBGrid1.Columns.Items[i].Visible := columnsVisible[24];
-      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Visible := columnsVisible[25];
-      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Visible := columnsVisible[26];
-      'USERS': DBGrid1.Columns.Items[i].Visible := columnsVisible[27];
-      'NoCalcDXCC': DBGrid1.Columns.Items[i].Visible := columnsVisible[28];
+      'QSOSubMode': DBGrid1.Columns.Items[i].Visible := columnsVisible[7];
+      'OMName': DBGrid1.Columns.Items[i].Visible := columnsVisible[8];
+      'OMQTH': DBGrid1.Columns.Items[i].Visible := columnsVisible[9];
+      'State': DBGrid1.Columns.Items[i].Visible := columnsVisible[10];
+      'Grid': DBGrid1.Columns.Items[i].Visible := columnsVisible[11];
+      'QSOReportSent': DBGrid1.Columns.Items[i].Visible := columnsVisible[12];
+      'QSOReportRecived': DBGrid1.Columns.Items[i].Visible := columnsVisible[13];
+      'IOTA': DBGrid1.Columns.Items[i].Visible := columnsVisible[14];
+      'QSLManager': DBGrid1.Columns.Items[i].Visible := columnsVisible[15];
+      'QSLSentDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[16];
+      'QSLRecDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[17];
+      'LoTWRecDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[18];
+      'MainPrefix': DBGrid1.Columns.Items[i].Visible := columnsVisible[19];
+      'DXCCPrefix': DBGrid1.Columns.Items[i].Visible := columnsVisible[20];
+      'CQZone': DBGrid1.Columns.Items[i].Visible := columnsVisible[21];
+      'ITUZone': DBGrid1.Columns.Items[i].Visible := columnsVisible[22];
+      'ManualSet': DBGrid1.Columns.Items[i].Visible := columnsVisible[23];
+      'Continent': DBGrid1.Columns.Items[i].Visible := columnsVisible[24];
+      'ValidDX': DBGrid1.Columns.Items[i].Visible := columnsVisible[25];
+      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Visible := columnsVisible[26];
+      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Visible := columnsVisible[27];
+      'USERS': DBGrid1.Columns.Items[i].Visible := columnsVisible[28];
+      'NoCalcDXCC': DBGrid1.Columns.Items[i].Visible := columnsVisible[29];
     end;
   end;
   //Для второго грида
-  for i := 0 to 28 do
+  for i := 0 to 29 do
   begin
     DBGrid2.Columns.Items[i].FieldName := columnsGrid[i];
     DBGrid2.Columns.Items[i].Width := columnsWidth[i];
@@ -1146,6 +1211,7 @@ begin
       'QSOBand': DBGrid2.Columns.Items[i].Title.Caption := rQSOBand;
       'CallSign': DBGrid2.Columns.Items[i].Title.Caption := rCallSign;
       'QSOMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOMode;
+      'QSOSubMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOSubMode;
       'OMName': DBGrid2.Columns.Items[i].Title.Caption := rOMName;
       'OMQTH': DBGrid2.Columns.Items[i].Title.Caption := rOMQTH;
       'State': DBGrid2.Columns.Items[i].Title.Caption := rState;
@@ -1178,28 +1244,29 @@ begin
       'QSOBand': DBGrid2.Columns.Items[i].Visible := columnsVisible[4];
       'CallSign': DBGrid2.Columns.Items[i].Visible := columnsVisible[5];
       'QSOMode': DBGrid2.Columns.Items[i].Visible := columnsVisible[6];
-      'OMName': DBGrid2.Columns.Items[i].Visible := columnsVisible[7];
-      'OMQTH': DBGrid2.Columns.Items[i].Visible := columnsVisible[8];
-      'State': DBGrid2.Columns.Items[i].Visible := columnsVisible[9];
-      'Grid': DBGrid2.Columns.Items[i].Visible := columnsVisible[10];
-      'QSOReportSent': DBGrid2.Columns.Items[i].Visible := columnsVisible[11];
-      'QSOReportRecived': DBGrid2.Columns.Items[i].Visible := columnsVisible[12];
-      'IOTA': DBGrid2.Columns.Items[i].Visible := columnsVisible[13];
-      'QSLManager': DBGrid2.Columns.Items[i].Visible := columnsVisible[14];
-      'QSLSentDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[15];
-      'QSLRecDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[16];
-      'LoTWRecDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[17];
-      'MainPrefix': DBGrid2.Columns.Items[i].Visible := columnsVisible[18];
-      'DXCCPrefix': DBGrid2.Columns.Items[i].Visible := columnsVisible[19];
-      'CQZone': DBGrid2.Columns.Items[i].Visible := columnsVisible[20];
-      'ITUZone': DBGrid2.Columns.Items[i].Visible := columnsVisible[21];
-      'ManualSet': DBGrid2.Columns.Items[i].Visible := columnsVisible[22];
-      'Continent': DBGrid2.Columns.Items[i].Visible := columnsVisible[23];
-      'ValidDX': DBGrid2.Columns.Items[i].Visible := columnsVisible[24];
-      'QSL_RCVD_VIA': DBGrid2.Columns.Items[i].Visible := columnsVisible[25];
-      'QSL_SENT_VIA': DBGrid2.Columns.Items[i].Visible := columnsVisible[26];
-      'USERS': DBGrid2.Columns.Items[i].Visible := columnsVisible[27];
-      'NoCalcDXCC': DBGrid2.Columns.Items[i].Visible := columnsVisible[28];
+      'QSOSubMode': DBGrid2.Columns.Items[i].Visible := columnsVisible[7];
+      'OMName': DBGrid2.Columns.Items[i].Visible := columnsVisible[8];
+      'OMQTH': DBGrid2.Columns.Items[i].Visible := columnsVisible[9];
+      'State': DBGrid2.Columns.Items[i].Visible := columnsVisible[10];
+      'Grid': DBGrid2.Columns.Items[i].Visible := columnsVisible[11];
+      'QSOReportSent': DBGrid2.Columns.Items[i].Visible := columnsVisible[12];
+      'QSOReportRecived': DBGrid2.Columns.Items[i].Visible := columnsVisible[13];
+      'IOTA': DBGrid2.Columns.Items[i].Visible := columnsVisible[14];
+      'QSLManager': DBGrid2.Columns.Items[i].Visible := columnsVisible[15];
+      'QSLSentDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[16];
+      'QSLRecDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[17];
+      'LoTWRecDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[18];
+      'MainPrefix': DBGrid2.Columns.Items[i].Visible := columnsVisible[19];
+      'DXCCPrefix': DBGrid2.Columns.Items[i].Visible := columnsVisible[20];
+      'CQZone': DBGrid2.Columns.Items[i].Visible := columnsVisible[21];
+      'ITUZone': DBGrid2.Columns.Items[i].Visible := columnsVisible[22];
+      'ManualSet': DBGrid2.Columns.Items[i].Visible := columnsVisible[23];
+      'Continent': DBGrid2.Columns.Items[i].Visible := columnsVisible[24];
+      'ValidDX': DBGrid2.Columns.Items[i].Visible := columnsVisible[25];
+      'QSL_RCVD_VIA': DBGrid2.Columns.Items[i].Visible := columnsVisible[26];
+      'QSL_SENT_VIA': DBGrid2.Columns.Items[i].Visible := columnsVisible[27];
+      'USERS': DBGrid2.Columns.Items[i].Visible := columnsVisible[28];
+      'NoCalcDXCC': DBGrid2.Columns.Items[i].Visible := columnsVisible[29];
     end;
   end;
 
@@ -1302,6 +1369,7 @@ begin
       DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
       LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
       SQLQuery2.DataBase := MySQLLOGDBConnection;
+      CheckTableQuery.DataBase := MySQLLOGDBConnection;
       {$IFDEF WINDOWS}
       TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
       TrayIcon1.ShowBalloonHint;
@@ -1334,6 +1402,7 @@ begin
       DeleteQSOQuery.DataBase := SQLiteDBConnection;
       LogBookInfoQuery.DataBase := SQLiteDBConnection;
       SQLQuery2.DataBase := SQLiteDBConnection;
+      CheckTableQuery.DataBase := SQLiteDBConnection;
       {$IFDEF WINDOWS}
       TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
       TrayIcon1.ShowBalloonHint;
@@ -1353,27 +1422,36 @@ begin
   PrefixARRLQuery.DataBase := ServiceDBConnection;
   UniqueCallsQuery.DataBase := ServiceDBConnection;
   qBands.DataBase := ServiceDBConnection;
+  subModesQuery.DataBase := ServiceDBConnection;
   try
+
+    AddModes('', False);
+    subModesQuery.SQL.Text:='select _id, submode from Modes';
     LogBookInfoQuery.Active := True;
     LogBookFieldQuery.Active := True;
     PrefixProvinceQuery.Active := True;
     PrefixARRLQuery.Active := True;
     UniqueCallsQuery.Active := True;
+    subModesQuery.Active := True;
 
     DBLookupComboBox1.KeyValue := CallLogBook;
     SelDB(CallLogBook);
 
+
+    subModesList := TStringList.Create;
     PrefixProvinceList := TStringList.Create;
     PrefixARRLList := TStringList.Create;
     UniqueCallsList := TStringList.Create;
     PrefixProvinceCount := PrefixProvinceQuery.RecordCount;
     PrefixARRLCount := PrefixARRLQuery.RecordCount;
     UniqueCallsCount := UniqueCallsQuery.RecordCount;
+    subModesCount := subModesQuery.RecordCount;
 
     DBGrid1.DataSource.DataSet.Last;
     PrefixProvinceQuery.First;
     PrefixARRLQuery.First;
     UniqueCallsQuery.First;
+    subModesQuery.First;
     for i := 0 to PrefixProvinceCount do
     begin
       PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
@@ -1396,7 +1474,11 @@ begin
       UniqueCallsQuery.Next;
     end;
 
-
+    for i := 0 to subModesCount do
+    begin
+      subModesList.Add(subModesQuery.FieldByName('submode').AsString);
+      subModesQuery.Next;
+    end;
 
   finally
 
@@ -1415,7 +1497,7 @@ begin
 
   if MySQLLOGDBConnection.Connected then
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' +
       '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -1428,7 +1510,7 @@ begin
       ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
   else
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' +
       '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -1516,8 +1598,8 @@ begin
 end;
 
 procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
-  QSOTime, QSOBand, QSOMode, QSOReportSent, QSOReportRecived, OmName,
-  OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
+  QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSOReportRecived,
+  OmName, OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
   QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
   ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
   DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
@@ -1532,7 +1614,7 @@ begin
     Close;
     SQL.Clear;
     SQL.Add('INSERT INTO ' + NLogDB +
-      '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, ' +
+      '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, `QSOSubMode`, ' +
       '`QSOReportSent`, `QSOReportRecived`, `OMName`, `OMQTH`, `State`, `Grid`, `IOTA`,'
       +
       '`QSLManager`, `QSLSent`, `QSLSentAdv`, `QSLSentDate`, `QSLRec`, `QSLRecDate`,' +
@@ -1541,7 +1623,7 @@ begin
       + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
       + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
       + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`)'
-      + 'VALUES (:ICallSign, :IQSODate, :IQSOTime, :IQSOBand, :IQSOMode, :IQSOReportSent,'
+      + 'VALUES (:ICallSign, :IQSODate, :IQSOTime, :IQSOBand, :IQSOMode, :IQSOSubMode, :IQSOReportSent,'
       + ':IQSOReportRecived, :IOMName, :IOMQTH, :IState, :IGrid, :IIOTA, :IQSLManager, :IQSLSent,'
       + ':IQSLSentAdv, :IQSLSentDate, :IQSLRec, :IQSLRecDate, :IMainPrefix, :IDXCCPrefix, :ICQZone,'
       + ':IITUZone, :IQSOAddInfo, :IMarker, :IManualSet, :IDigiBand, :IContinent, :IShortNote,'
@@ -1554,6 +1636,7 @@ begin
     Params.ParamByName('IQSOTime').AsString := QSOTime;
     Params.ParamByName('IQSOBand').AsString := QSOBand;
     Params.ParamByName('IQSOMode').AsString := QSOMode;
+    Params.ParamByName('IQSOSubMode').AsString := QSOSubMode;
     Params.ParamByName('IQSOReportSent').AsString := QSOReportSent;
     Params.ParamByName('IQSOReportRecived').AsString := QSOReportRecived;
     Params.ParamByName('IOMName').AsString := OmName;
@@ -1661,7 +1744,7 @@ begin
   if DefaultDB = 'MySQL' then
   begin
     LogBookQuery.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' +
       '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -1670,32 +1753,30 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-	  ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
-	  + LogDB + ' ORDER BY QSODate2, QSOTime2 ASC LIMIT :n,1000) as lim USING(UnUsedIndex)';
+      ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
+      LogDB + ' ORDER BY QSODate2, QSOTime2 ASC LIMIT :n,1000) as lim USING(UnUsedIndex)';
   end
   else
   begin
     LogBookQuery.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
-      'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' +
       '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      +
-      '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,' +
-      '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,' +
-      '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,' +
-      '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
-      +
-      LogDB + ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
-      + LogDB + ' ORDER BY QSODate2, QSOTime2 ASC LIMIT :n,1000) as lim USING(UnUsedIndex)';
+      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
+      + LogDB +
+      ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
+      LogDB + ' ORDER BY QSODate2, QSOTime2 ASC LIMIT :n,1000) as lim USING(UnUsedIndex)';
   end;
   LOGBookQuery.Params[0].AsInteger := allrec - ofrec;
   LogBookQuery.Open;
   //LOGBookQuery.Last;
   lastID := fAllRecords + LOGBookQuery.RecNo - offsetRec;
   StatusBar1.Panels.Items[1].Text :=
-    'QSO № ' + IntToStr(lastID) + rQSOTotal +
-    IntToStr(fAllRecords);
+    'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
@@ -1728,6 +1809,20 @@ begin
     HRDCode := MainForm.LogBookInfoQuery.FieldByName('HRDLogPassword').AsString;
     AutoHRDLog := MainForm.LogBookInfoQuery.FieldByName('AutoHRDLog').AsBoolean;
 
+    CheckTableQuery.Close;
+    CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable;
+    CheckTableQuery.Open;
+    if CheckTableQuery.FindField('QSOSubMode') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE ' + LogTable + ' ADD COLUMN QSOSubMode varchar(15);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+
+
     LOGBookQuery.Close;
     LOGBookQuery.SQL.Text := 'select COUNT(*) from ' + LogTable;
     LOGBookQuery.Open;
@@ -1735,7 +1830,7 @@ begin
     LOGBookQuery.Close;
     MainForm.SelectLogDatabase(LogTable, fAllRecords, offsetRec);
     MainForm.DBGrid1.DataSource.DataSet.Last;
-     FlagPagination := False;
+    FlagPagination := False;
   end;
   SetGrid();
   LogBookFieldQuery.Open;
@@ -1762,7 +1857,7 @@ begin
     SQL.Clear;
     if MySQLLOGDBConnection.Connected then
       SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
         + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
         + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
         + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -1775,7 +1870,7 @@ begin
         ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
     else
       SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-        ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+        ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
         + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
         + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
         + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -2084,7 +2179,7 @@ begin
       if MySQLLOGDBConnection.Connected then
       begin
         LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-          ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+          ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
           + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
           + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
           + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -2099,7 +2194,7 @@ begin
       else
       begin
         LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-          ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+          ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
           + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
           + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
           + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -2261,13 +2356,13 @@ begin
   end;
 
   //Сохранение размещения колонок
-  for i := 0 to 28 do
+  for i := 0 to 29 do
   begin
     IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
 
-  for i := 0 to 28 do
+  for i := 0 to 29 do
   begin
     if DBGrid1.Columns.Items[i].Width <> 0 then
       IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
@@ -2309,7 +2404,7 @@ var
   i: integer;
 begin
   //Сохранение размещения колонок
-  for i := 0 to 28 do
+  for i := 0 to 29 do
   begin
     IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
@@ -2321,7 +2416,7 @@ procedure TMainForm.DBGrid1ColumnSized(Sender: TObject);
 var
   i: integer;
 begin
-  for i := 0 to 28 do
+  for i := 0 to 29 do
   begin
     if DBGrid1.Columns.Items[i].Width <> 0 then
       IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
@@ -2426,6 +2521,9 @@ var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
 begin
+
+  addModes(ComboBox2.Text,True);
+
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
     (ComboBox2.Text <> 'USB') or (ComboBox2.Text <> 'JT44') or
@@ -3301,6 +3399,7 @@ begin
   PrefixProvinceList.Free;
   PrefixARRLList.Free;
   UniqueCallsList.Free;
+  subModesList.Free;
   for i := 0 to 1000 do
   begin
     PrefixExpARRLArray[i].reg.Free;
@@ -3363,7 +3462,7 @@ begin
   if (FlagPagination <> True) and (DataSet.RecNo < 100) then
   begin
     offsetRec := offsetRec + 500;
-    SelectLogDatabase(LogTable,fAllRecords, offsetRec);
+    SelectLogDatabase(LogTable, fAllRecords, offsetRec);
     DataSet.RecNo := recnom + 500;
     Application.ProcessMessages;
     FlagPagination := False;
@@ -3375,7 +3474,7 @@ begin
       offsetRec := 0
     else
     begin
-      SelectLogDatabase(LogTable,fAllRecords, offsetRec);
+      SelectLogDatabase(LogTable, fAllRecords, offsetRec);
       DataSet.RecNo := recnom - 500;
       Application.ProcessMessages;
       FlagPagination := False;
@@ -3580,7 +3679,7 @@ begin
   if DefaultDB = 'MySQL' then
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3594,7 +3693,7 @@ begin
   else
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3617,7 +3716,7 @@ begin
   if DefaultDB = 'MySQL' then
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3631,7 +3730,7 @@ begin
   else
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3654,7 +3753,7 @@ begin
   if DefaultDB = 'MySQL' then
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3668,7 +3767,7 @@ begin
   else
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3691,7 +3790,7 @@ begin
   if DefaultDB = 'MySQL' then
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3705,7 +3804,7 @@ begin
   else
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3729,7 +3828,7 @@ begin
   if DefaultDB = 'MySQL' then
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -3743,7 +3842,7 @@ begin
   else
   begin
     LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOReportSent`,`QSOReportRecived`,'
+      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
       + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -4231,7 +4330,7 @@ end;
 //Поставить QSO в очередь на печать
 procedure TMainForm.MenuItem12Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4239,6 +4338,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4252,7 +4352,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4260,7 +4360,7 @@ end;
 //QSL напечатана
 procedure TMainForm.MenuItem13Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4268,6 +4368,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4281,14 +4382,14 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 end;
 
 //QSL отправлена
 procedure TMainForm.MenuItem14Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4296,6 +4397,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4311,7 +4413,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4319,7 +4421,7 @@ end;
 //QSL не отправлена
 procedure TMainForm.MenuItem16Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4327,6 +4429,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4342,7 +4445,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4350,7 +4453,7 @@ end;
 //QSL не отправлять
 procedure TMainForm.MenuItem17Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4358,6 +4461,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4371,7 +4475,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4379,7 +4483,7 @@ end;
 //QSL получена через B - бюро
 procedure TMainForm.MenuItem21Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4387,6 +4491,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4400,7 +4505,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4408,7 +4513,7 @@ end;
 //QSL Получена через D - Direct
 procedure TMainForm.MenuItem22Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4416,6 +4521,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4429,7 +4535,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4437,7 +4543,7 @@ end;
 //QSL получена через E - Electronic
 procedure TMainForm.MenuItem23Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4445,6 +4551,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4459,7 +4566,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4467,7 +4574,7 @@ end;
 //QSL получена через M - менеджера
 procedure TMainForm.MenuItem24Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4475,6 +4582,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4488,7 +4596,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4496,7 +4604,7 @@ end;
 //QSL получена через G - GlobalQSL
 procedure TMainForm.MenuItem25Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4504,6 +4612,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4517,7 +4626,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4525,7 +4634,7 @@ end;
 //QSL Отправелена через B - Бюро
 procedure TMainForm.MenuItem27Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4533,6 +4642,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4546,7 +4656,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4554,7 +4664,7 @@ end;
 //QSL отправлена через D - Direct
 procedure TMainForm.MenuItem28Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4562,6 +4672,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4575,7 +4686,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4583,7 +4694,7 @@ end;
 //QSL отправлена через E - Electronic
 procedure TMainForm.MenuItem29Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4591,6 +4702,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4604,7 +4716,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4612,7 +4724,7 @@ end;
 //QSL отправлена через M - менеджер
 procedure TMainForm.MenuItem30Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4620,6 +4732,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4633,7 +4746,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4641,7 +4754,7 @@ end;
 //QSL отправлена через G - GlobalQSL
 procedure TMainForm.MenuItem31Click(Sender: TObject);
 var
-  i: integer;
+  i, recnom: integer;
 begin
   if (UnUsIndex <> 0) then
   begin
@@ -4649,6 +4762,7 @@ begin
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      recnom := LOGBookQuery.RecNo;
       with EditQSO_Form.UPDATE_Query do
       begin
         Close;
@@ -4662,7 +4776,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
+    DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 
 end;
@@ -4718,6 +4832,7 @@ begin
       starttime := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
       freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
       mode := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
+      submode := DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
       rsts := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
       rstr := DBGrid1.DataSource.DataSet.FieldByName('QSOReportRecived').AsString;
       locat := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
@@ -4745,6 +4860,7 @@ begin
       starttime := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
       freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
       mode := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
+      submode := DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
       rst := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
       qslinf := SetQSLInfo;
       information := 1;
@@ -5850,7 +5966,7 @@ begin
         state := Edit4.Text;
 
       SaveQSO(EditButton1.Text, DateEdit1.Date, FormatDateTime('hh:nn', timeQSO),
-        NameBand, ComboBox2.Text, ComboBox4.Text,
+        NameBand, ComboBox2.Text, 'submode', ComboBox4.Text,
         ComboBox5.Text,
         Edit1.Text, Edit2.Text,
         state,

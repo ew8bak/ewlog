@@ -24,6 +24,7 @@ type
     starttime: TDateTime;
     freq: string;
     mode: string;
+    submode: string;
     rst: string;
     qslinf: string;
     information: integer;

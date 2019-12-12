@@ -429,6 +429,10 @@ msgctxt "mainform_u.rqsoreportsent"
 msgid "RSTs"
 msgstr ""
 
+#: mainform_u.rqsosubmode
+msgid "SubMode"
+msgstr ""
+
 #: mainform_u.rqsosync
 msgctxt "mainform_u.rqsosync"
 msgid "QSO"
@@ -2344,52 +2348,52 @@ msgstr ""
 
 #: tmainform.dbgrid1.columns[10].title.caption
 msgctxt "tmainform.dbgrid1.columns[10].title.caption"
-msgid "Grid"
+msgid "State"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[11].title.caption
 msgctxt "tmainform.dbgrid1.columns[11].title.caption"
-msgid "RSTs"
+msgid "Grid"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[12].title.caption
 msgctxt "tmainform.dbgrid1.columns[12].title.caption"
-msgid "RSTr"
+msgid "RSTs"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[13].title.caption
 msgctxt "tmainform.dbgrid1.columns[13].title.caption"
-msgid "IOTA"
+msgid "RSTr"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[14].title.caption
 msgctxt "tmainform.dbgrid1.columns[14].title.caption"
-msgid "Manager"
+msgid "IOTA"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[15].title.caption
 msgctxt "tmainform.dbgrid1.columns[15].title.caption"
-msgid "QSLs Date"
+msgid "Manager"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[16].title.caption
 msgctxt "tmainform.dbgrid1.columns[16].title.caption"
-msgid "QSLr Date"
+msgid "QSLs Date"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[17].title.caption
 msgctxt "tmainform.dbgrid1.columns[17].title.caption"
-msgid "LOTWr Date"
+msgid "QSLr Date"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[18].title.caption
 msgctxt "tmainform.dbgrid1.columns[18].title.caption"
-msgid "Prefix"
+msgid "LOTWr Date"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[19].title.caption
 msgctxt "tmainform.dbgrid1.columns[19].title.caption"
-msgid "DXCC"
+msgid "Prefix"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[1].title.caption
@@ -2399,46 +2403,51 @@ msgstr ""
 
 #: tmainform.dbgrid1.columns[20].title.caption
 msgctxt "tmainform.dbgrid1.columns[20].title.caption"
-msgid "CQ Zone"
+msgid "DXCC"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[21].title.caption
 msgctxt "tmainform.dbgrid1.columns[21].title.caption"
-msgid "ITU Zone"
+msgid "CQ Zone"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[22].title.caption
 msgctxt "tmainform.dbgrid1.columns[22].title.caption"
-msgid "Manual Set"
+msgid "ITU Zone"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[23].title.caption
 msgctxt "tmainform.dbgrid1.columns[23].title.caption"
-msgid "Continent"
+msgid "Manual Set"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[24].title.caption
 msgctxt "tmainform.dbgrid1.columns[24].title.caption"
-msgid "Valid DX"
+msgid "Continent"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[25].title.caption
 msgctxt "tmainform.dbgrid1.columns[25].title.caption"
-msgid "QSL r VIA"
+msgid "Valid DX"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[26].title.caption
 msgctxt "tmainform.dbgrid1.columns[26].title.caption"
-msgid "QSL s VIA"
+msgid "QSL r VIA"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[27].title.caption
 msgctxt "tmainform.dbgrid1.columns[27].title.caption"
-msgid "User"
+msgid "QSL s VIA"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[28].title.caption
 msgctxt "tmainform.dbgrid1.columns[28].title.caption"
+msgid "User"
+msgstr ""
+
+#: tmainform.dbgrid1.columns[29].title.caption
+msgctxt "tmainform.dbgrid1.columns[29].title.caption"
 msgid "No calc DXCC"
 msgstr ""
 
@@ -2469,17 +2478,17 @@ msgstr ""
 
 #: tmainform.dbgrid1.columns[7].title.caption
 msgctxt "tmainform.dbgrid1.columns[7].title.caption"
-msgid "Name"
+msgid "QSOSubMode"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[8].title.caption
 msgctxt "tmainform.dbgrid1.columns[8].title.caption"
-msgid "QTH"
+msgid "Name"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[9].title.caption
 msgctxt "tmainform.dbgrid1.columns[9].title.caption"
-msgid "State"
+msgid "QTH"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[0].title.caption
@@ -2489,52 +2498,52 @@ msgstr ""
 
 #: tmainform.dbgrid2.columns[10].title.caption
 msgctxt "tmainform.dbgrid2.columns[10].title.caption"
-msgid "Grid"
+msgid "State"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[11].title.caption
 msgctxt "tmainform.dbgrid2.columns[11].title.caption"
-msgid "RSTs"
+msgid "Grid"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[12].title.caption
 msgctxt "tmainform.dbgrid2.columns[12].title.caption"
-msgid "RSTr"
+msgid "RSTs"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[13].title.caption
 msgctxt "tmainform.dbgrid2.columns[13].title.caption"
-msgid "IOTA"
+msgid "RSTr"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[14].title.caption
 msgctxt "tmainform.dbgrid2.columns[14].title.caption"
-msgid "Manager"
+msgid "IOTA"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[15].title.caption
 msgctxt "tmainform.dbgrid2.columns[15].title.caption"
-msgid "QSLs Date"
+msgid "Manager"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[16].title.caption
 msgctxt "tmainform.dbgrid2.columns[16].title.caption"
-msgid "QSLr Date"
+msgid "QSLs Date"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[17].title.caption
 msgctxt "tmainform.dbgrid2.columns[17].title.caption"
-msgid "LOTWr Date"
+msgid "QSLr Date"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[18].title.caption
 msgctxt "tmainform.dbgrid2.columns[18].title.caption"
-msgid "Prefix"
+msgid "LOTWr Date"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[19].title.caption
 msgctxt "tmainform.dbgrid2.columns[19].title.caption"
-msgid "DXCC"
+msgid "Prefix"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[1].title.caption
@@ -2544,46 +2553,51 @@ msgstr ""
 
 #: tmainform.dbgrid2.columns[20].title.caption
 msgctxt "tmainform.dbgrid2.columns[20].title.caption"
-msgid "CQ Zone"
+msgid "DXCC"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[21].title.caption
 msgctxt "tmainform.dbgrid2.columns[21].title.caption"
-msgid "ITU Zone"
+msgid "CQ Zone"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[22].title.caption
 msgctxt "tmainform.dbgrid2.columns[22].title.caption"
-msgid "Manual Set"
+msgid "ITU Zone"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[23].title.caption
 msgctxt "tmainform.dbgrid2.columns[23].title.caption"
-msgid "Continent"
+msgid "Manual Set"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[24].title.caption
 msgctxt "tmainform.dbgrid2.columns[24].title.caption"
-msgid "Valid DX"
+msgid "Continent"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[25].title.caption
 msgctxt "tmainform.dbgrid2.columns[25].title.caption"
-msgid "QSL r VIA"
+msgid "Valid DX"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[26].title.caption
 msgctxt "tmainform.dbgrid2.columns[26].title.caption"
-msgid "QSL s VIA"
+msgid "QSL r VIA"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[27].title.caption
 msgctxt "tmainform.dbgrid2.columns[27].title.caption"
-msgid "User"
+msgid "QSL s VIA"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[28].title.caption
 msgctxt "tmainform.dbgrid2.columns[28].title.caption"
+msgid "User"
+msgstr ""
+
+#: tmainform.dbgrid2.columns[29].title.caption
+msgctxt "tmainform.dbgrid2.columns[29].title.caption"
 msgid "No calc DXCC"
 msgstr ""
 
@@ -2614,17 +2628,17 @@ msgstr ""
 
 #: tmainform.dbgrid2.columns[7].title.caption
 msgctxt "tmainform.dbgrid2.columns[7].title.caption"
-msgid "Name"
+msgid "QSOSubMode"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[8].title.caption
 msgctxt "tmainform.dbgrid2.columns[8].title.caption"
-msgid "QTH"
+msgid "Name"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[9].title.caption
 msgctxt "tmainform.dbgrid2.columns[9].title.caption"
-msgid "State"
+msgid "QTH"
 msgstr ""
 
 #: tmainform.label1.caption

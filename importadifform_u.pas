@@ -394,6 +394,9 @@ begin
           if (MODE = 'USB') or (MODE = 'LSB') then
             MODE := 'SSB';
 
+          if MODE.Length=0 then
+          MODE:=MainForm.FindMode(SUBMODE);
+
           if FREQ = '' then
             FREQ := dmFunc.FreqFromBand(BAND, MODE);
           FREQ := FormatFloat('0.000"."00', StrToFloat(FREQ));
@@ -549,7 +552,7 @@ begin
             STX := 'NULL';
 
           Query := 'INSERT INTO ' + LogTable + ' (' +
-            'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOReportSent,' +
+            'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
             'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,'
@@ -558,7 +561,7 @@ begin
             + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
             + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,'
             + 'NoCalcDXCC) VALUES (' + Q(CALL) + Q(paramQSODate) +
-            Q(QSOTIME) + Q(FREQ) + Q(MODE) + Q(RST_SENT) + Q(RST_RCVD) +
+            Q(QSOTIME) + Q(FREQ) + Q(MODE) + Q(SUBMODE) + Q(RST_SENT) + Q(RST_RCVD) +
             Q(sNAME) + Q(QTH) + Q(STATE) + Q(GRIDSQUARE) + Q(IOTA) +
             Q(QSL_VIA) + Q(paramQSLSent) + Q(paramQSLSentAdv) +
             Q(paramQSLSDATE) + Q(ParamQSL_RCVD) + Q(paramQSLRDATE) +

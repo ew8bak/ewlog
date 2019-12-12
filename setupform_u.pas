@@ -253,6 +253,7 @@ begin
           ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
           ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
           ' `QSOMode` varchar(7) DEFAULT NULL,' +
+          ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
           ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
           ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
           ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
@@ -436,6 +437,7 @@ begin
         ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
         ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
         ' `QSOMode` varchar(7) DEFAULT NULL,' +
+        ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
         ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
         ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
         ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
@@ -594,6 +596,7 @@ begin
             ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
             ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
             ' `QSOMode` varchar(7) DEFAULT NULL,' +
+            ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
             ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
             ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
             ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
@@ -774,6 +777,7 @@ begin
           ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
           ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
           ' `QSOMode` varchar(7) DEFAULT NULL,' +
+          ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
           ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
           ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
           ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
