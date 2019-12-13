@@ -1359,52 +1359,52 @@ msgstr ""
 
 #: teditqso_form.dbgrid1.columns[10].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[10].title.caption"
-msgid "Grid"
+msgid "State"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[11].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[11].title.caption"
-msgid "RSTs"
+msgid "Grid"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[12].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[12].title.caption"
-msgid "RSTr"
+msgid "RSTs"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[13].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[13].title.caption"
-msgid "IOTA"
+msgid "RSTr"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[14].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[14].title.caption"
-msgid "Manager"
+msgid "IOTA"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[15].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[15].title.caption"
-msgid "QSLs Date"
+msgid "Manager"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[16].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[16].title.caption"
-msgid "QSLr Date"
+msgid "QSLs Date"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[17].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[17].title.caption"
-msgid "LOTWr Date"
+msgid "QSLr Date"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[18].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[18].title.caption"
-msgid "Prefix"
+msgid "LOTWr Date"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[19].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[19].title.caption"
-msgid "DXCC"
+msgid "Prefix"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[1].title.caption
@@ -1414,46 +1414,51 @@ msgstr ""
 
 #: teditqso_form.dbgrid1.columns[20].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[20].title.caption"
-msgid "CQ Zone"
+msgid "DXCC"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[21].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[21].title.caption"
-msgid "ITU Zone"
+msgid "CQ Zone"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[22].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[22].title.caption"
-msgid "Manual Set"
+msgid "ITU Zone"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[23].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[23].title.caption"
-msgid "Continent"
+msgid "Manual Set"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[24].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[24].title.caption"
-msgid "Valid DX"
+msgid "Continent"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[25].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[25].title.caption"
-msgid "QSL r VIA"
+msgid "Valid DX"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[26].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[26].title.caption"
-msgid "QSL s VIA"
+msgid "QSL r VIA"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[27].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[27].title.caption"
-msgid "User"
+msgid "QSL s VIA"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[28].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[28].title.caption"
+msgid "User"
+msgstr ""
+
+#: teditqso_form.dbgrid1.columns[29].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[29].title.caption"
 msgid "No calc DXCC"
 msgstr ""
 
@@ -1484,17 +1489,17 @@ msgstr ""
 
 #: teditqso_form.dbgrid1.columns[7].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[7].title.caption"
-msgid "Name"
+msgid "QSOSubMode"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[8].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[8].title.caption"
-msgid "QTH"
+msgid "Name"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[9].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[9].title.caption"
-msgid "State"
+msgid "QTH"
 msgstr ""
 
 #: teditqso_form.groupbox1.caption

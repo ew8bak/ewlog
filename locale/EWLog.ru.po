@@ -1368,53 +1368,73 @@ msgid "QSL"
 msgstr "QSL"
 
 #: teditqso_form.dbgrid1.columns[10].title.caption
+#, fuzzy
+#| msgid "Grid"
 msgctxt "teditqso_form.dbgrid1.columns[10].title.caption"
-msgid "Grid"
+msgid "State"
 msgstr "Локатор"
 
 #: teditqso_form.dbgrid1.columns[11].title.caption
+#, fuzzy
+#| msgid "RSTs"
 msgctxt "teditqso_form.dbgrid1.columns[11].title.caption"
-msgid "RSTs"
+msgid "Grid"
 msgstr "RSTs"
 
 #: teditqso_form.dbgrid1.columns[12].title.caption
+#, fuzzy
+#| msgid "RSTr"
 msgctxt "teditqso_form.dbgrid1.columns[12].title.caption"
-msgid "RSTr"
+msgid "RSTs"
 msgstr "RSTr"
 
 #: teditqso_form.dbgrid1.columns[13].title.caption
+#, fuzzy
+#| msgid "IOTA"
 msgctxt "teditqso_form.dbgrid1.columns[13].title.caption"
-msgid "IOTA"
+msgid "RSTr"
 msgstr "IOTA"
 
 #: teditqso_form.dbgrid1.columns[14].title.caption
+#, fuzzy
+#| msgid "Manager"
 msgctxt "teditqso_form.dbgrid1.columns[14].title.caption"
-msgid "Manager"
+msgid "IOTA"
 msgstr "Менеджер"
 
 #: teditqso_form.dbgrid1.columns[15].title.caption
+#, fuzzy
+#| msgid "QSLs Date"
 msgctxt "teditqso_form.dbgrid1.columns[15].title.caption"
-msgid "QSLs Date"
+msgid "Manager"
 msgstr "QSLs Дата"
 
 #: teditqso_form.dbgrid1.columns[16].title.caption
+#, fuzzy
+#| msgid "QSLr Date"
 msgctxt "teditqso_form.dbgrid1.columns[16].title.caption"
-msgid "QSLr Date"
+msgid "QSLs Date"
 msgstr "QSLr Дата"
 
 #: teditqso_form.dbgrid1.columns[17].title.caption
+#, fuzzy
+#| msgid "LOTWr Date"
 msgctxt "teditqso_form.dbgrid1.columns[17].title.caption"
-msgid "LOTWr Date"
+msgid "QSLr Date"
 msgstr "LOTWr Дата"
 
 #: teditqso_form.dbgrid1.columns[18].title.caption
+#, fuzzy
+#| msgid "Prefix"
 msgctxt "teditqso_form.dbgrid1.columns[18].title.caption"
-msgid "Prefix"
+msgid "LOTWr Date"
 msgstr "Префикс"
 
 #: teditqso_form.dbgrid1.columns[19].title.caption
+#, fuzzy
+#| msgid "DXCC"
 msgctxt "teditqso_form.dbgrid1.columns[19].title.caption"
-msgid "DXCC"
+msgid "Prefix"
 msgstr "DXCC"
 
 #: teditqso_form.dbgrid1.columns[1].title.caption
@@ -1423,49 +1443,72 @@ msgid "QSLs"
 msgstr "QSLs"
 
 #: teditqso_form.dbgrid1.columns[20].title.caption
+#, fuzzy
+#| msgid "CQ Zone"
 msgctxt "teditqso_form.dbgrid1.columns[20].title.caption"
-msgid "CQ Zone"
+msgid "DXCC"
 msgstr "CQ Зона"
 
 #: teditqso_form.dbgrid1.columns[21].title.caption
+#, fuzzy
+#| msgid "ITU Zone"
 msgctxt "teditqso_form.dbgrid1.columns[21].title.caption"
-msgid "ITU Zone"
+msgid "CQ Zone"
 msgstr "ITU Зона"
 
 #: teditqso_form.dbgrid1.columns[22].title.caption
+#, fuzzy
+#| msgid "Manual Set"
 msgctxt "teditqso_form.dbgrid1.columns[22].title.caption"
-msgid "Manual Set"
+msgid "ITU Zone"
 msgstr "Manual Set"
 
 #: teditqso_form.dbgrid1.columns[23].title.caption
+#, fuzzy
+#| msgid "Continent"
 msgctxt "teditqso_form.dbgrid1.columns[23].title.caption"
-msgid "Continent"
+msgid "Manual Set"
 msgstr "Континент"
 
 #: teditqso_form.dbgrid1.columns[24].title.caption
+#, fuzzy
+#| msgid "Valid DX"
 msgctxt "teditqso_form.dbgrid1.columns[24].title.caption"
-msgid "Valid DX"
+msgid "Continent"
 msgstr "Valid DX"
 
 #: teditqso_form.dbgrid1.columns[25].title.caption
+#, fuzzy
+#| msgid "QSL r VIA"
 msgctxt "teditqso_form.dbgrid1.columns[25].title.caption"
-msgid "QSL r VIA"
+msgid "Valid DX"
 msgstr "QSL r VIA"
 
 #: teditqso_form.dbgrid1.columns[26].title.caption
+#, fuzzy
+#| msgid "QSL s VIA"
 msgctxt "teditqso_form.dbgrid1.columns[26].title.caption"
-msgid "QSL s VIA"
+msgid "QSL r VIA"
 msgstr "QSL s VIA"
 
 #: teditqso_form.dbgrid1.columns[27].title.caption
+#, fuzzy
+#| msgid "User"
 msgctxt "teditqso_form.dbgrid1.columns[27].title.caption"
-msgid "User"
+msgid "QSL s VIA"
 msgstr "User"
 
 #: teditqso_form.dbgrid1.columns[28].title.caption
+#, fuzzy
+#| msgid "No calc DXCC"
 msgctxt "teditqso_form.dbgrid1.columns[28].title.caption"
-msgid "No calc DXCC"
+msgid "User"
 msgstr "No calc DXCC"
+
+#: teditqso_form.dbgrid1.columns[29].title.caption
+msgctxt "teditqso_form.dbgrid1.columns[29].title.caption"
+msgid "No calc DXCC"
+msgstr ""
 
 #: teditqso_form.dbgrid1.columns[2].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[2].title.caption"
@@ -1493,18 +1536,24 @@ msgid "Mode"
 msgstr "Мода"
 
 #: teditqso_form.dbgrid1.columns[7].title.caption
+#, fuzzy
+#| msgid "Name"
 msgctxt "teditqso_form.dbgrid1.columns[7].title.caption"
-msgid "Name"
+msgid "QSOSubMode"
 msgstr "Имя"
 
 #: teditqso_form.dbgrid1.columns[8].title.caption
+#, fuzzy
+#| msgid "QTH"
 msgctxt "teditqso_form.dbgrid1.columns[8].title.caption"
-msgid "QTH"
+msgid "Name"
 msgstr "QTH"
 
 #: teditqso_form.dbgrid1.columns[9].title.caption
+#, fuzzy
+#| msgid "State"
 msgctxt "teditqso_form.dbgrid1.columns[9].title.caption"
-msgid "State"
+msgid "QTH"
 msgstr "State"
 
 #: teditqso_form.groupbox1.caption

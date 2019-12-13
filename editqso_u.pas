@@ -25,10 +25,12 @@ type
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
     ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
     ComboBox4: TComboBox;
     ComboBox6: TComboBox;
     ComboBox7: TComboBox;
     BandsQueryDS: TDataSource;
+    ComboBox9: TComboBox;
     Edit21: TEdit;
     SATQueryDS: TDataSource;
     ModesQueryDS: TDataSource;
@@ -40,7 +42,6 @@ type
     DBGrid1: TDBGrid;
     DBLookupComboBox1: TDBLookupComboBox;
     DBLookupComboBox2: TDBLookupComboBox;
-    DBLookupComboBox3: TDBLookupComboBox;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -124,6 +125,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure ComboBox2Change(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -220,13 +222,14 @@ begin
     Close;
     SQL.Clear;
     SQL.Add('UPDATE ' + LogTable +
-      ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, `QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode, `QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived, `OMName`=:OMName, `OMQTH`=:OMQTH, `State`=:State, `Grid`=:Grid, `IOTA`=:IOTA, `QSLManager`=:QSLManager, `QSLSent`=:QSLSent, `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `MainPrefix`=:MainPrefix, `DXCCPrefix`=:DXCCPrefix, `CQZone`=:CQZone, `ITUZone`=:ITUZone, `QSOAddInfo`=:QSOAddInfo, `Marker`=:Marker, `ManualSet`=:ManualSet, `DigiBand`=:DigiBand, `Continent`=:Continent, `ShortNote`=:ShortNote, `QSLReceQSLcc`=:QSLReceQSLcc, `LoTWRec`=:LoTWRec, `LoTWRecDate`=:LoTWRecDate, `QSLInfo`=:QSLInfo, `Call`=:Call, `State1`=:State1, `State2`=:State2, `State3`=:State3, `State4`=:State4, `WPX`=:WPX, `ValidDX`=:ValidDX, `SRX`=:SRX, `SRX_STRING`=:SRX_STRING, `STX`=:STX, `STX_STRING`=:STX_STRING, `SAT_NAME`=:SAT_NAME, `SAT_MODE`=:SAT_MODE, `PROP_MODE`=:PROP_MODE, `LoTWSent`=:LoTWSent, `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSL_SENT_VIA`=:QSL_SENT_VIA, `DXCC`=:DXCC, `NoCalcDXCC`=:NoCalcDXCC WHERE `UnUsedIndex`=:UnUsedIndex');
+      ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, `QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode,`QSOSubMode`=:QSOSubMode, `QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived, `OMName`=:OMName, `OMQTH`=:OMQTH, `State`=:State, `Grid`=:Grid, `IOTA`=:IOTA, `QSLManager`=:QSLManager, `QSLSent`=:QSLSent, `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `MainPrefix`=:MainPrefix, `DXCCPrefix`=:DXCCPrefix, `CQZone`=:CQZone, `ITUZone`=:ITUZone, `QSOAddInfo`=:QSOAddInfo, `Marker`=:Marker, `ManualSet`=:ManualSet, `DigiBand`=:DigiBand, `Continent`=:Continent, `ShortNote`=:ShortNote, `QSLReceQSLcc`=:QSLReceQSLcc, `LoTWRec`=:LoTWRec, `LoTWRecDate`=:LoTWRecDate, `QSLInfo`=:QSLInfo, `Call`=:Call, `State1`=:State1, `State2`=:State2, `State3`=:State3, `State4`=:State4, `WPX`=:WPX, `ValidDX`=:ValidDX, `SRX`=:SRX, `SRX_STRING`=:SRX_STRING, `STX`=:STX, `STX_STRING`=:STX_STRING, `SAT_NAME`=:SAT_NAME, `SAT_MODE`=:SAT_MODE, `PROP_MODE`=:PROP_MODE, `LoTWSent`=:LoTWSent, `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSL_SENT_VIA`=:QSL_SENT_VIA, `DXCC`=:DXCC, `NoCalcDXCC`=:NoCalcDXCC WHERE `UnUsedIndex`=:UnUsedIndex');
     Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
     Params.ParamByName('CallSign').AsString := Edit1.Text;
     Params.ParamByName('QSODate').AsDateTime := DateEdit1.Date;
     Params.ParamByName('QSOTime').AsString := TimeToStr(DateTimePicker1.Time, FmtStngs);
     Params.ParamByName('QSOBand').AsString := ComboBox1.Text;
-    Params.ParamByName('QSOMode').AsString := DBLookupComboBox3.Text;
+    Params.ParamByName('QSOMode').AsString := ComboBox2.Text;
+    Params.ParamByName('QSOSubMode').AsString := ComboBox9.Text;
     Params.ParamByName('QSOReportSent').AsString := Edit2.Text;
     Params.ParamByName('QSOReportRecived').AsString := Edit3.Text;
     Params.ParamByName('OMName').AsString := Edit4.Text;
@@ -382,6 +385,11 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);
+begin
+ ComboBox9.Items:=MainForm.addModes(ComboBox2.Text,True);
 end;
 
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
@@ -578,7 +586,7 @@ begin
     SATQuery.Active := True;
     MainForm.VHFTypeQuery.Active := True;
 
-  for i := 0 to 28 do
+  for i := 0 to 29 do
   begin
     DBGrid1.Columns.Items[i].FieldName := Mainform.columnsGrid[i];
     DBGrid1.Columns.Items[i].Width := Mainform.columnsWidth[i];
@@ -590,6 +598,7 @@ begin
       'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := rQSOBand;
       'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
       'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
+      'QSOSubMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOSubMode;
       'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
       'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
       'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
@@ -615,6 +624,7 @@ begin
     end;
     end;
   end;
+  ComboBox2.Items:=MainForm.ComboBox2.Items;
 end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);
@@ -643,9 +653,11 @@ begin
     SATQuery.Active := True;
     MainForm.VHFTypeQuery.Active := True;
   end;
+  if ComboBox2.Text<>'' then
+  ComboBox2Change(Self);
   Button4.Click;
   Edit1.SetFocus;
-  except on E: Exception do begin
+  except on E: ESQLDatabaseError do begin
     if Pos('has gone away',E.Message) > 0 then begin
     ShowMessage(rMySQLHasGoneAway);
     UseCallBook:='NO';

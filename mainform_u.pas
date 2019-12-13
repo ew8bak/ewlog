@@ -307,6 +307,7 @@ type
     PopupMenu2: TPopupMenu;
     PopupDxCluster: TPopupMenu;
     CheckTableQuery: TSQLQuery;
+    ScrollBar1: TScrollBar;
     subModesQuery: TSQLQuery;
     PrintDialog1: TPrintDialog;
     SpeedButton24: TSpeedButton;
@@ -603,6 +604,7 @@ type
     procedure MenuItem99Click(Sender: TObject);
     procedure LangItemClick(Sender: TObject);
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
+    procedure ScrollBar1Change(Sender: TObject);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
     procedure SpeedButton18MouseLeave(Sender: TObject);
@@ -740,7 +742,7 @@ type
     function FindLanguageFiles(Dir: string): TStringList;
     function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
-    procedure addModes(modeItem: String; subModesFlag: Boolean);
+    function addModes(modeItem: String; subModesFlag: Boolean): TStringList;
   end;
 
 var
@@ -838,7 +840,7 @@ type
 
 { TMainForm }
 
-procedure TMainForm.addModes(modeItem: String; subModesFlag: Boolean);
+function TMainForm.addModes(modeItem: String; subModesFlag: Boolean): TStringList;
 var
   i: integer;
   subModes: TStringList;
@@ -861,11 +863,11 @@ begin
   subModesQuery.Close;
   end
   else begin
-  subModesQuery.Close;
+   subModesQuery.Close;
    subModesQuery.SQL.Text := 'SELECT submode FROM Modes WHERE mode = '+QuotedStr(modeItem);
    subModesQuery.Open;
    subModes.DelimitedText:=subModesQuery.FieldByName('submode').AsString;
-   ComboBox9.Items:=subModes;
+   Result:=subModes;
   end;
 end;
 
@@ -1830,6 +1832,10 @@ begin
     LOGBookQuery.Close;
     MainForm.SelectLogDatabase(LogTable, fAllRecords, offsetRec);
     MainForm.DBGrid1.DataSource.DataSet.Last;
+    ScrollBar1.Max:=fAllRecords;
+    ScrollBar1.Min:=0;
+    ScrollBar1.PageSize:=500;
+    ScrollBar1.Position:=fAllRecords;
     FlagPagination := False;
   end;
   SetGrid();
@@ -2385,6 +2391,8 @@ begin
   IniF.WriteBool('SetLog', 'TRXForm', ShowTRXForm);
   IniF.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
   IniF.WriteString('SetLog', 'PastBand', ComboBox1.Text);
+  IniF.WriteString('SetLog', 'PastMode', ComboBox2.Text);
+  IniF.WriteString('SetLog', 'PastSubMode', ComboBox9.Text);
   IniF.WriteString('SetLog', 'Language', Language);
   if CheckBox3.Checked = True then
     IniF.WriteString('SetLog', 'UseMAPS', 'YES')
@@ -2522,7 +2530,7 @@ var
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
 begin
 
-  addModes(ComboBox2.Text,True);
+  ComboBox9.Items:=addModes(ComboBox2.Text,True);
 
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
@@ -2630,8 +2638,10 @@ begin
       DBGrid1.DataSource.DataSet.FieldByName('ITUZone').AsString;
     EditQSO_Form.CheckBox3.Checked :=
       DBGrid1.DataSource.DataSet.FieldByName('Marker').AsBoolean;
-    EditQSO_Form.DBLookupComboBox3.Text :=
+    EditQSO_Form.ComboBox2.Text :=
       DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
+    EditQSO_Form.ComboBox9.Text :=
+      DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
 
     EditQSO_Form.ComboBox1.Text :=
       DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
@@ -3309,7 +3319,9 @@ begin
       else
         MenuItem89.Caption := rSwitchDBMySQL;
       InitializeDB(DefaultDB);
-
+     ComboBox2.ItemIndex:=ComboBox2.Items.IndexOf(IniF.ReadString('SetLog', 'PastMode', ''));
+     ComboBox2Change(Self);
+     ComboBox9.ItemIndex:=ComboBox9.Items.IndexOf(IniF.ReadString('SetLog', 'PastSubMode', ''));
     end;
 
 
@@ -3323,8 +3335,6 @@ begin
   LTCPComponent1.ReuseAddress := True;
   LTCPSyncDesk.ReuseAddress := True;
 
-  //  ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
-  //  freqchange := True;
   if usewsjt then
     WSJT_Timer.Enabled := True;
   if usefldigi then
@@ -4964,8 +4974,10 @@ begin
         DBGrid1.DataSource.DataSet.FieldByName('ITUZone').AsString;
       EditQSO_Form.CheckBox3.Checked :=
         DBGrid1.DataSource.DataSet.FieldByName('Marker').AsBoolean;
-      EditQSO_Form.DBLookupComboBox3.Text :=
+      EditQSO_Form.ComboBox2.Text :=
         DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
+      EditQSO_Form.ComboBox9.Text :=
+        DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
 
       EditQSO_Form.ComboBox1.Text :=
         DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
@@ -5768,6 +5780,11 @@ begin
   end;
 end;
 
+procedure TMainForm.ScrollBar1Change(Sender: TObject);
+begin
+  SelectLogDatabase(LogTable, ScrollBar1.Position, offsetRec);
+end;
+
 procedure TMainForm.SpeedButton16Click(Sender: TObject);
 begin
   CheckForm := 'Main';
@@ -5966,7 +5983,7 @@ begin
         state := Edit4.Text;
 
       SaveQSO(EditButton1.Text, DateEdit1.Date, FormatDateTime('hh:nn', timeQSO),
-        NameBand, ComboBox2.Text, 'submode', ComboBox4.Text,
+        NameBand, ComboBox2.Text, ComboBox9.Text, ComboBox4.Text,
         ComboBox5.Text,
         Edit1.Text, Edit2.Text,
         state,
