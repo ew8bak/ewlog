@@ -85,6 +85,17 @@ resourcestring
 
 const
   offsetRec: integer = 500;
+  etalonField: array [0..56] of string =
+    ('UnUsedIndex', 'CallSign', 'QSODate', 'QSOTime', 'QSOBand', 'QSOMode',
+    'QSOReportSent', 'QSOReportRecived', 'OMName',
+    'OMQTH', 'State', 'Grid', 'IOTA', 'QSLManager', 'QSLSent', 'QSLSentAdv',
+    'QSLSentDate', 'QSLRec', 'QSLRecDate', 'MainPrefix', 'DXCCPrefix', 'CQZone',
+    'ITUZone', 'QSOAddInfo', 'Marker', 'ManualSet', 'DigiBand', 'Continent',
+    'ShortNote', 'QSLReceQSLcc', 'LoTWRec', 'LoTWRecDate', 'QSLInfo',
+    'Call', 'State1', 'State2', 'State3', 'State4', 'WPX', 'AwardsEx', 'ValidDX',
+    'SRX', 'SRX_STRING', 'STX', 'STX_STRING', 'SAT_NAME',
+    'SAT_MODE', 'PROP_MODE', 'LoTWSent', 'QSL_RCVD_VIA', 'QSL_SENT_VIA',
+    'DXCC', 'USERS', 'NoCalcDXCC', 'QSOSubMode', 'MY_STATE', 'MY_GRIDSQUARE');
   constColumnName: array [0..29] of string =
     ('QSL', 'QSLs', 'QSODate', 'QSOTime', 'QSOBand', 'CallSign',
     'QSOMode', 'QSOSubMode', 'OMName',
@@ -1135,8 +1146,9 @@ begin
   DBGrid2.Color := ColorBackGrid;
 
   if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
-  QBAND:=rQSOBand else
-  QBAND:=rQSOBandFreq;
+    QBAND := rQSOBand
+  else
+    QBAND := rQSOBandFreq;
 
   //Для первого грида
   for i := 0 to 29 do
@@ -1821,9 +1833,29 @@ begin
     AutoHRDLog := MainForm.LogBookInfoQuery.FieldByName('AutoHRDLog').AsBoolean;
 
     CheckTableQuery.Close;
-    CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable;
+    CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable + ' LIMIT 1';
     CheckTableQuery.Open;
-    if CheckTableQuery.FindField('QSOSubMode') = nil then
+
+    try
+    if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_GRIDSQUARE varchar(15);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+       if CheckTableQuery.FindField('MY_STATE') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_STATE varchar(15);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+     if CheckTableQuery.FindField('QSOSubMode') = nil then
     begin
       CheckTableQuery.Close;
       CheckTableQuery.SQL.Text :=
@@ -1832,6 +1864,10 @@ begin
       SQLTransaction1.Commit;
     end;
 
+
+    except
+
+    end;
 
 
     LOGBookQuery.Close;
@@ -3351,11 +3387,11 @@ begin
       else
         MenuItem89.Caption := rSwitchDBMySQL;
       InitializeDB(DefaultDB);
-      ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(IniF.ReadString('SetLog',
-        'PastMode', ''));
+      ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(
+        IniF.ReadString('SetLog', 'PastMode', ''));
       ComboBox2Change(Self);
-      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(IniF.ReadString('SetLog',
-        'PastSubMode', ''));
+      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(
+        IniF.ReadString('SetLog', 'PastSubMode', ''));
     end;
 
 

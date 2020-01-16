@@ -1622,7 +1622,7 @@ object MainForm: TMainForm
         end      
         item
           Title.Caption = 'Frequency'
-          Width = 55
+          Width = 64
           FieldName = 'QSOBand'
         end      
         item
@@ -2371,7 +2371,7 @@ object MainForm: TMainForm
             end          
             item
               Title.Caption = 'Frequency'
-              Width = 55
+              Width = 64
               FieldName = 'QSOBand'
             end          
             item
