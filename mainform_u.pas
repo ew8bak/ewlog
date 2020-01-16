@@ -20,6 +20,7 @@ resourcestring
   rQSODate = 'Date';
   rQSOTime = 'Time';
   rQSOBand = 'Band';
+  rQSOBandFreq = 'Frequency';
   rCallSign = 'Callsign';
   rQSOMode = 'Mode';
   rQSOSubMode = 'SubMode';
@@ -742,7 +743,7 @@ type
     function FindLanguageFiles(Dir: string): TStringList;
     function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
-    function addModes(modeItem: String; subModesFlag: Boolean): TStringList;
+    function addModes(modeItem: string; subModesFlag: boolean): TStringList;
   end;
 
 var
@@ -840,34 +841,37 @@ type
 
 { TMainForm }
 
-function TMainForm.addModes(modeItem: String; subModesFlag: Boolean): TStringList;
+function TMainForm.addModes(modeItem: string; subModesFlag: boolean): TStringList;
 var
   i: integer;
   subModes: TStringList;
 begin
   subModesQuery.Close;
   ComboBox9.Items.Clear;
-  subModes:=TStringList.Create;
-  subModes.Delimiter:=',';
+  subModes := TStringList.Create;
+  subModes.Delimiter := ',';
 
-  if subModesFlag = False then begin
-  ComboBox2.Items.Clear;
-  subModesQuery.SQL.Text := 'SELECT * FROM Modes';
-  subModesQuery.Open;
-  subModesQuery.First;
-  for i := 0 to subModesQuery.RecordCount - 1 do
+  if subModesFlag = False then
   begin
-    ComboBox2.Items.Add(subModesQuery.FieldByName('mode').AsString);
-    subModesQuery.Next;
-  end;
-  subModesQuery.Close;
+    ComboBox2.Items.Clear;
+    subModesQuery.SQL.Text := 'SELECT * FROM Modes';
+    subModesQuery.Open;
+    subModesQuery.First;
+    for i := 0 to subModesQuery.RecordCount - 1 do
+    begin
+      ComboBox2.Items.Add(subModesQuery.FieldByName('mode').AsString);
+      subModesQuery.Next;
+    end;
+    subModesQuery.Close;
   end
-  else begin
-   subModesQuery.Close;
-   subModesQuery.SQL.Text := 'SELECT submode FROM Modes WHERE mode = '+QuotedStr(modeItem);
-   subModesQuery.Open;
-   subModes.DelimitedText:=subModesQuery.FieldByName('submode').AsString;
-   Result:=subModes;
+  else
+  begin
+    subModesQuery.Close;
+    subModesQuery.SQL.Text := 'SELECT submode FROM Modes WHERE mode = ' +
+      QuotedStr(modeItem);
+    subModesQuery.Open;
+    subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
+    Result := subModes;
   end;
 end;
 
@@ -1111,6 +1115,7 @@ end;
 procedure TMainForm.SetGrid;
 var
   i: integer;
+  QBAND: string;
 begin
   for i := 0 to 29 do
   begin
@@ -1129,6 +1134,10 @@ begin
   DBGrid2.Font.Size := SizeTextGrid;
   DBGrid2.Color := ColorBackGrid;
 
+  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  QBAND:=rQSOBand else
+  QBAND:=rQSOBandFreq;
+
   //Для первого грида
   for i := 0 to 29 do
   begin
@@ -1139,7 +1148,7 @@ begin
       'QSLs': DBGrid1.Columns.Items[i].Title.Caption := rQSLs;
       'QSODate': DBGrid1.Columns.Items[i].Title.Caption := rQSODate;
       'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := rQSOTime;
-      'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := rQSOBand;
+      'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := QBAND;
       'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
       'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
       'QSOSubMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOSubMode;
@@ -1210,7 +1219,7 @@ begin
       'QSLs': DBGrid2.Columns.Items[i].Title.Caption := rQSLs;
       'QSODate': DBGrid2.Columns.Items[i].Title.Caption := rQSODate;
       'QSOTime': DBGrid2.Columns.Items[i].Title.Caption := rQSOTime;
-      'QSOBand': DBGrid2.Columns.Items[i].Title.Caption := rQSOBand;
+      'QSOBand': DBGrid2.Columns.Items[i].Title.Caption := QBAND;
       'CallSign': DBGrid2.Columns.Items[i].Title.Caption := rCallSign;
       'QSOMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOMode;
       'QSOSubMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOSubMode;
@@ -1428,7 +1437,7 @@ begin
   try
 
     AddModes('', False);
-    subModesQuery.SQL.Text:='select _id, submode from Modes';
+    subModesQuery.SQL.Text := 'select _id, submode from Modes';
     LogBookInfoQuery.Active := True;
     LogBookFieldQuery.Active := True;
     PrefixProvinceQuery.Active := True;
@@ -1832,10 +1841,10 @@ begin
     LOGBookQuery.Close;
     MainForm.SelectLogDatabase(LogTable, fAllRecords, offsetRec);
     MainForm.DBGrid1.DataSource.DataSet.Last;
-    ScrollBar1.Max:=fAllRecords;
-    ScrollBar1.Min:=0;
-    ScrollBar1.PageSize:=500;
-    ScrollBar1.Position:=fAllRecords;
+    ScrollBar1.Max := fAllRecords;
+    ScrollBar1.Min := 0;
+    ScrollBar1.PageSize := 500;
+    ScrollBar1.Position := fAllRecords;
     FlagPagination := False;
   end;
   SetGrid();
@@ -2530,7 +2539,7 @@ var
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
 begin
 
-  ComboBox9.Items:=addModes(ComboBox2.Text,True);
+  ComboBox9.Items := addModes(ComboBox2.Text, True);
 
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
@@ -2719,6 +2728,7 @@ end;
 procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
+
   if LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
     with DBGrid1.Canvas do
     begin
@@ -2875,6 +2885,17 @@ begin
       end;
     end;
   end;
+
+  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  begin
+    if (Column.FieldName = 'QSOBand') then
+    begin
+      DBGrid1.Canvas.FillRect(Rect);
+      DBGrid1.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
+        dmFunc.GetAdifBandFromFreq(LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
+    end;
+  end;
+
 end;
 
 procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -3036,6 +3057,17 @@ begin
       end;
     end;
   end;
+
+  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  begin
+    if (Column.FieldName = 'QSOBand') then
+    begin
+      DBGrid2.Canvas.FillRect(Rect);
+      DBGrid2.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
+        dmFunc.GetAdifBandFromFreq(DataSource2.DataSet.FieldByName('QSOBand').AsString));
+    end;
+  end;
+
 end;
 
 procedure TMainForm.DBLookupComboBox1CloseUp(Sender: TObject);
@@ -3319,9 +3351,11 @@ begin
       else
         MenuItem89.Caption := rSwitchDBMySQL;
       InitializeDB(DefaultDB);
-     ComboBox2.ItemIndex:=ComboBox2.Items.IndexOf(IniF.ReadString('SetLog', 'PastMode', ''));
-     ComboBox2Change(Self);
-     ComboBox9.ItemIndex:=ComboBox9.Items.IndexOf(IniF.ReadString('SetLog', 'PastSubMode', ''));
+      ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(IniF.ReadString('SetLog',
+        'PastMode', ''));
+      ComboBox2Change(Self);
+      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(IniF.ReadString('SetLog',
+        'PastSubMode', ''));
     end;
 
 

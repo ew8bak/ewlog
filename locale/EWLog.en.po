@@ -405,6 +405,11 @@ msgctxt "mainform_u.rqsoband"
 msgid "Band"
 msgstr ""
 
+#: mainform_u.rqsobandfreq
+msgctxt "mainform_u.rqsobandfreq"
+msgid "Frequency"
+msgstr ""
+
 #: mainform_u.rqsodate
 msgctxt "mainform_u.rqsodate"
 msgid "Date"
@@ -2468,7 +2473,7 @@ msgstr ""
 
 #: tmainform.dbgrid1.columns[4].title.caption
 msgctxt "tmainform.dbgrid1.columns[4].title.caption"
-msgid "Band"
+msgid "Frequency"
 msgstr ""
 
 #: tmainform.dbgrid1.columns[5].title.caption
@@ -2618,7 +2623,7 @@ msgstr ""
 
 #: tmainform.dbgrid2.columns[4].title.caption
 msgctxt "tmainform.dbgrid2.columns[4].title.caption"
-msgid "Band"
+msgid "Frequency"
 msgstr ""
 
 #: tmainform.dbgrid2.columns[5].title.caption

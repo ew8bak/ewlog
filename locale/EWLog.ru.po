@@ -411,9 +411,17 @@ msgid "QSL s VIA"
 msgstr "QSL s VIA"
 
 #: mainform_u.rqsoband
+#, fuzzy
+#| msgid "Band"
 msgctxt "mainform_u.rqsoband"
 msgid "Band"
 msgstr "Диапазон"
+
+#: mainform_u.rqsobandfreq
+#, fuzzy
+msgctxt "mainform_u.rqsobandfreq"
+msgid "Frequency"
+msgstr "Частота"
 
 #: mainform_u.rqsodate
 msgctxt "mainform_u.rqsodate"
@@ -2560,8 +2568,10 @@ msgid "Time"
 msgstr "Время"
 
 #: tmainform.dbgrid1.columns[4].title.caption
+#, fuzzy
+#| msgid "Band"
 msgctxt "tmainform.dbgrid1.columns[4].title.caption"
-msgid "Band"
+msgid "Frequency"
 msgstr "Диапазон"
 
 #: tmainform.dbgrid1.columns[5].title.caption
@@ -2755,8 +2765,10 @@ msgid "Time"
 msgstr "Время"
 
 #: tmainform.dbgrid2.columns[4].title.caption
+#, fuzzy
+#| msgid "Band"
 msgctxt "tmainform.dbgrid2.columns[4].title.caption"
-msgid "Band"
+msgid "Frequency"
 msgstr "Диапазон"
 
 #: tmainform.dbgrid2.columns[5].title.caption

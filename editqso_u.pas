@@ -554,6 +554,16 @@ begin
     end;
   end;
 
+  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  begin
+    if (Column.FieldName = 'QSOBand') then
+    begin
+      DBGrid1.Canvas.FillRect(Rect);
+      DBGrid1.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
+        dmFunc.GetAdifBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
+    end;
+  end;
+
 end;
 
 procedure TEditQSO_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);

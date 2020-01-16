@@ -109,7 +109,7 @@ var
 implementation
 
 uses
-  MainForm_U, UpdateForm_U, dmFunc_U;
+  MainForm_U, UpdateForm_U, dmFunc_U, editqso_u;
 
 {$R *.lfm}
 
@@ -265,6 +265,7 @@ begin
       MainForm.ComboBox1.Items.Add(constBandName[i]);
       delete(tmpBand, length(tmpBand)-2, 1);
       MainForm.ComboBox1.Text:=dmFunc.GetAdifBandFromFreq(tmpBand);
+      IniF.WriteString('SetLog', 'ShowBand', 'True');
   end;
   end
   else begin
@@ -274,8 +275,13 @@ begin
     for i := 0 to 12 do
       MainForm.ComboBox1.Items.Add(constKhzBandName[i]);
      MainForm.ComboBox1.Text:=dmFunc.FreqFromBand(tmpBand, MainForm.ComboBox2.Text);
+     IniF.WriteString('SetLog', 'ShowBand', 'False');
   end;
   end;
+  MainForm.DBGrid1.Invalidate;
+  MainForm.DBGrid2.Invalidate;
+  MainForm.SetGrid;
+  EditQSO_Form.DBGrid1.Invalidate;
 end;
 
 procedure TConfigForm.CheckBox3Change(Sender: TObject);
