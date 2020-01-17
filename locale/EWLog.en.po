@@ -1805,6 +1805,27 @@ msgstr ""
 msgid "Save file as"
 msgstr ""
 
+#: tfamm_form.caption
+msgid "Frequency and Modulation Manager"
+msgstr ""
+
+#: tfamm_form.listview1.columns[0].caption
+msgctxt "tfamm_form.listview1.columns[0].caption"
+msgid "Band"
+msgstr ""
+
+#: tfamm_form.listview1.columns[1].caption
+msgid "Begin (MHz)"
+msgstr ""
+
+#: tfamm_form.listview1.columns[2].caption
+msgid "End (MHz)"
+msgstr ""
+
+#: tfamm_form.listview1.columns[3].caption
+msgid "Enabled"
+msgstr ""
+
 #: tfilterform.caption
 msgctxt "tfilterform.caption"
 msgid "Record Filter"
@@ -2995,6 +3016,10 @@ msgstr ""
 
 #: tmainform.menuitem122.caption
 msgid "Without mark QSL Printed"
+msgstr ""
+
+#: tmainform.menuitem123.caption
+msgid "Freq and Mode Manager"
 msgstr ""
 
 #: tmainform.menuitem13.caption
