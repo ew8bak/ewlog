@@ -867,7 +867,7 @@ begin
   if subModesFlag = False then
   begin
     ComboBox2.Items.Clear;
-    subModesQuery.SQL.Text := 'SELECT * FROM Modes';
+    subModesQuery.SQL.Text := 'SELECT * FROM Modes WHERE Enable = 1';
     subModesQuery.Open;
     subModesQuery.First;
     for i := 0 to subModesQuery.RecordCount - 1 do

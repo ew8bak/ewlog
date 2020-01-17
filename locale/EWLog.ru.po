@@ -448,6 +448,7 @@ msgid "RSTs"
 msgstr "RSTs"
 
 #: mainform_u.rqsosubmode
+msgctxt "mainform_u.rqsosubmode"
 msgid "SubMode"
 msgstr ""
 
@@ -1881,6 +1882,18 @@ msgid "End (MHz)"
 msgstr ""
 
 #: tfamm_form.listview1.columns[3].caption
+msgctxt "tfamm_form.listview1.columns[3].caption"
+msgid "Enabled"
+msgstr ""
+
+#: tfamm_form.listview2.columns[0].caption
+#, fuzzy
+msgctxt "tfamm_form.listview2.columns[0].caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tfamm_form.listview2.columns[1].caption
+msgctxt "tfamm_form.listview2.columns[1].caption"
 msgid "Enabled"
 msgstr ""
 

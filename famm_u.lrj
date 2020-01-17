@@ -3,5 +3,7 @@
 {"hash":297028,"name":"tfamm_form.listview1.columns[0].caption","sourcebytes":[66,97,110,100],"value":"Band"},
 {"hash":6660553,"name":"tfamm_form.listview1.columns[1].caption","sourcebytes":[66,101,103,105,110,32,40,77,72,122,41],"value":"Begin (MHz)"},
 {"hash":103633801,"name":"tfamm_form.listview1.columns[2].caption","sourcebytes":[69,110,100,32,40,77,72,122,41],"value":"End (MHz)"},
-{"hash":206017268,"name":"tfamm_form.listview1.columns[3].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"}
+{"hash":206017268,"name":"tfamm_form.listview1.columns[3].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"},
+{"hash":345509,"name":"tfamm_form.listview2.columns[0].caption","sourcebytes":[77,111,100,101],"value":"Mode"},
+{"hash":206017268,"name":"tfamm_form.listview2.columns[1].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"}
 ]}

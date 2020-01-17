@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Релиз"/>
-    <Units Count="72">
+    <Units Count="71">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -20,8 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="822"/>
-        <CursorPos X="59" Y="835"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="859"/>
+        <CursorPos X="68" Y="870"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -481,7 +482,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="11"/>
-        <UsageCount Value="129"/>
+        <UsageCount Value="133"/>
       </Unit43>
       <Unit44>
         <Filename Value="RegExpr.pas"/>
@@ -527,176 +528,170 @@
         <UsageCount Value="8"/>
       </Unit49>
       <Unit50>
-        <Filename Value="logtcpform_u.pas"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="0"/>
-      </Unit50>
-      <Unit51>
         <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
         <UnitName Value="DBGrids"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2043"/>
         <CursorPos Y="2061"/>
         <UsageCount Value="2"/>
-      </Unit51>
-      <Unit52>
+      </Unit50>
+      <Unit51>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\Indy10\System\IdGlobal.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1890"/>
         <CursorPos X="105" Y="1908"/>
         <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit52>
-      <Unit53>
+      </Unit51>
+      <Unit52>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
         <UnitName Value="LazTracer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos Y="50"/>
         <UsageCount Value="2"/>
-      </Unit53>
-      <Unit54>
+      </Unit52>
+      <Unit53>
         <Filename Value="C:\lazarus\components\lazutils\laztracer.pas"/>
         <UnitName Value="LazTracer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos Y="29"/>
         <UsageCount Value="2"/>
-      </Unit54>
-      <Unit55>
+      </Unit53>
+      <Unit54>
         <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1214"/>
         <CursorPos Y="1235"/>
         <UsageCount Value="2"/>
-      </Unit55>
-      <Unit56>
+      </Unit54>
+      <Unit55>
         <Filename Value="D:\usr\lib\fpc\src\packages\paszlib\src\zipper.pp"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="2"/>
-      </Unit56>
-      <Unit57>
+      </Unit55>
+      <Unit56>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-res\src\resource.pp"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="39"/>
         <UsageCount Value="2"/>
-      </Unit57>
-      <Unit58>
+      </Unit56>
+      <Unit57>
         <Filename Value="D:\usr\lib\lazarus\components\lazreport\source\lr_class.pas"/>
         <UnitName Value="LR_Class"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2485"/>
         <CursorPos X="18" Y="2514"/>
         <UsageCount Value="2"/>
-      </Unit58>
-      <Unit59>
+      </Unit57>
+      <Unit58>
         <Filename Value="D:\usr\lib\lazarus\components\lazreport\source\lr_utils.pas"/>
         <UnitName Value="LR_Utils"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="169"/>
         <CursorPos X="22" Y="183"/>
         <UsageCount Value="2"/>
-      </Unit59>
-      <Unit60>
+      </Unit58>
+      <Unit59>
         <Filename Value="C:\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1828"/>
         <CursorPos X="3" Y="1849"/>
         <UsageCount Value="2"/>
-      </Unit60>
-      <Unit61>
+      </Unit59>
+      <Unit60>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2308"/>
         <CursorPos Y="2326"/>
         <UsageCount Value="12"/>
-      </Unit61>
-      <Unit62>
+      </Unit60>
+      <Unit61>
         <Filename Value="D:\usr\lib\fpc\src\rtl\objpas\sysutils\sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="45" Y="247"/>
         <UsageCount Value="6"/>
-      </Unit62>
-      <Unit63>
+      </Unit61>
+      <Unit62>
         <Filename Value="D:\usr\lib\fpc\src\rtl\unix\sysutils.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1562"/>
         <CursorPos X="60" Y="177"/>
         <UsageCount Value="6"/>
-      </Unit63>
-      <Unit64>
+      </Unit62>
+      <Unit63>
         <Filename Value="D:\usr\lib\fpc\src\rtl\unix\classes.pp"/>
         <UnitName Value="Classes"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="20"/>
         <UsageCount Value="6"/>
-      </Unit64>
-      <Unit65>
+      </Unit63>
+      <Unit64>
         <Filename Value="D:\usr\lib\fpc\src\packages\rtl-objpas\src\inc\dateutils.pp"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="6"/>
-      </Unit65>
-      <Unit66>
+      </Unit64>
+      <Unit65>
         <Filename Value="D:\usr\lib\lazarus\lcl\lcltype.pp"/>
         <UnitName Value="LCLType"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3172"/>
         <UsageCount Value="6"/>
-      </Unit66>
-      <Unit67>
+      </Unit65>
+      <Unit66>
         <Filename Value="..\.lazarus\onlinepackagemanager\packages\Indy10\System\IdGlobal.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1888"/>
         <CursorPos X="105" Y="1908"/>
         <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit67>
-      <Unit68>
+      </Unit66>
+      <Unit67>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-db\src\sqldb\mysql\mysqlconn.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="596"/>
         <CursorPos Y="613"/>
         <UsageCount Value="8"/>
-      </Unit68>
-      <Unit69>
+      </Unit67>
+      <Unit68>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="941"/>
         <CursorPos Y="958"/>
         <UsageCount Value="8"/>
-      </Unit69>
-      <Unit70>
+      </Unit68>
+      <Unit69>
         <Filename Value="..\..\..\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
         <UnitName Value="LazTracer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos Y="50"/>
         <UsageCount Value="10"/>
-      </Unit70>
-      <Unit71>
+      </Unit69>
+      <Unit70>
         <Filename Value="famm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FaMM_Form"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="48"/>
-        <CursorPos X="18" Y="84"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="34"/>
+        <CursorPos X="51" Y="46"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit71>
+      </Unit70>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="99" Column="3" TopLine="79"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="18" Column="35"/>
       </Position1>
       <Position2>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="14" Column="35"/>
+        <Caret Line="17" Column="35"/>
       </Position2>
       <Position3>
         <Filename Value="famm_u.pas"/>
@@ -704,75 +699,75 @@
       </Position3>
       <Position4>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="17" Column="35"/>
+        <Caret Line="3" Column="30"/>
       </Position4>
       <Position5>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="18" Column="35"/>
+        <Caret Line="53" Column="5" TopLine="20"/>
       </Position5>
       <Position6>
-        <Filename Value="famm_u.pas"/>
-        <Caret Line="3" Column="30"/>
-      </Position6>
-      <Position7>
-        <Filename Value="famm_u.pas"/>
-        <Caret Line="53" Column="5" TopLine="20"/>
-      </Position7>
-      <Position8>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="791" Column="3" TopLine="771"/>
-      </Position8>
-      <Position9>
+      </Position6>
+      <Position7>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="793" Column="3" TopLine="773"/>
+      </Position7>
+      <Position8>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="46" Column="51" TopLine="16"/>
+      </Position8>
+      <Position9>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="41" Column="20" TopLine="18"/>
       </Position9>
       <Position10>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="46" Column="51" TopLine="16"/>
+        <Caret Line="54" Column="56" TopLine="30"/>
       </Position10>
       <Position11>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="41" Column="20" TopLine="18"/>
+        <Caret Line="53" Column="56" TopLine="29"/>
       </Position11>
       <Position12>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="54" Column="56" TopLine="30"/>
+        <Caret Line="60" Column="23" TopLine="35"/>
       </Position12>
       <Position13>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="53" Column="56" TopLine="29"/>
+        <Caret Line="59" Column="71" TopLine="33"/>
       </Position13>
       <Position14>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="60" Column="23" TopLine="35"/>
+        <Caret Line="67" Column="25" TopLine="48"/>
       </Position14>
       <Position15>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="59" Column="71" TopLine="33"/>
+        <Caret Line="65" TopLine="40"/>
       </Position15>
       <Position16>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="67" Column="25" TopLine="48"/>
+        <Caret Line="52" Column="40" TopLine="38"/>
       </Position16>
       <Position17>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="65" TopLine="40"/>
+        <Caret Line="51" Column="40" TopLine="37"/>
       </Position17>
       <Position18>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="52" Column="40" TopLine="38"/>
+        <Caret Line="9" Column="30"/>
       </Position18>
       <Position19>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="51" Column="40" TopLine="37"/>
+        <Caret Line="47" Column="12" TopLine="22"/>
       </Position19>
       <Position20>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="9" Column="30"/>
+        <Caret Line="46" Column="12" TopLine="21"/>
       </Position20>
       <Position21>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="47" Column="12" TopLine="22"/>
+        <Caret Line="45" Column="12" TopLine="20"/>
       </Position21>
       <Position22>
         <Filename Value="famm_u.pas"/>
@@ -784,31 +779,31 @@
       </Position23>
       <Position24>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="46" Column="12" TopLine="21"/>
+        <Caret Line="61" Column="14" TopLine="30"/>
       </Position24>
       <Position25>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="45" Column="12" TopLine="20"/>
+        <Caret Line="60" Column="29" TopLine="30"/>
       </Position25>
       <Position26>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="61" Column="14" TopLine="30"/>
+        <Caret Line="59" Column="29" TopLine="29"/>
       </Position26>
       <Position27>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="60" Column="29" TopLine="30"/>
+        <Caret Line="54" TopLine="30"/>
       </Position27>
       <Position28>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="59" Column="29" TopLine="29"/>
+        <Caret Line="58" Column="17" TopLine="35"/>
       </Position28>
       <Position29>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="54" TopLine="30"/>
+        <Caret Line="64" Column="31" TopLine="37"/>
       </Position29>
       <Position30>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="58" Column="17" TopLine="35"/>
+        <Caret Line="63" Column="31" TopLine="36"/>
       </Position30>
     </JumpHistory>
     <RunParams>

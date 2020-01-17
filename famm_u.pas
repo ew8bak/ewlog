@@ -13,9 +13,9 @@ type
   { TFaMM_Form }
 
   TFaMM_Form = class(TForm)
-    ListBox1: TListBox;
     FMQuery: TSQLQuery;
     ListView1: TListView;
+    ListView2: TListView;
     procedure FormShow(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
   private
@@ -42,13 +42,17 @@ begin
   try
     FMQuery.DataBase := MainForm.ServiceDBConnection;
 
-    ListBox1.Clear;
+    ListView2.Clear;
     FMQuery.SQL.Text := ('SELECT * FROM Modes');
     FMQuery.Open;
-    FMQuery.First;
-    for i := 0 to FMQuery.RecordCount - 1 do
+    while (not FMQuery.EOF) do
     begin
-      ListBox1.Items.Add(FMQuery.FieldByName('mode').Value);
+      ListItem := ListView2.Items.Add;
+      ListItem.Caption := VarToStr(FMQuery['mode']);
+      with ListItem.SubItems do
+      begin
+        Add(VarToStr(FMQuery['enable']));
+      end;
       FMQuery.Next;
     end;
     FMQuery.Close;
