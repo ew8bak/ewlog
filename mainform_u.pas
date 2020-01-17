@@ -1866,6 +1866,8 @@ begin
 
 
     except
+      on E: ESQLDatabaseError do
+
 
     end;
 
