@@ -155,7 +155,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="45">
+    <Units Count="46">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -468,9 +468,16 @@
       <Unit44>
         <Filename Value="famm_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="FaMM_Form"/>
+        <ComponentName Value="FM_Form"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit44>
+      <Unit45>
+        <Filename Value="mmform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MM_Form"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit45>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

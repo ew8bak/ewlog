@@ -1,9 +1,7 @@
 {"version":1,"strings":[
-{"hash":210869602,"name":"tfamm_form.caption","sourcebytes":[70,114,101,113,117,101,110,99,121,32,97,110,100,32,77,111,100,117,108,97,116,105,111,110,32,77,97,110,97,103,101,114],"value":"Frequency and Modulation Manager"},
-{"hash":297028,"name":"tfamm_form.listview1.columns[0].caption","sourcebytes":[66,97,110,100],"value":"Band"},
-{"hash":6660553,"name":"tfamm_form.listview1.columns[1].caption","sourcebytes":[66,101,103,105,110,32,40,77,72,122,41],"value":"Begin (MHz)"},
-{"hash":103633801,"name":"tfamm_form.listview1.columns[2].caption","sourcebytes":[69,110,100,32,40,77,72,122,41],"value":"End (MHz)"},
-{"hash":206017268,"name":"tfamm_form.listview1.columns[3].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"},
-{"hash":345509,"name":"tfamm_form.listview2.columns[0].caption","sourcebytes":[77,111,100,101],"value":"Mode"},
-{"hash":206017268,"name":"tfamm_form.listview2.columns[1].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"}
+{"hash":260921874,"name":"tfm_form.caption","sourcebytes":[70,114,101,113,117,101,110,99,121,32,77,97,110,97,103,101,114],"value":"Frequency Manager"},
+{"hash":297028,"name":"tfm_form.listview1.columns[0].caption","sourcebytes":[66,97,110,100],"value":"Band"},
+{"hash":6660553,"name":"tfm_form.listview1.columns[1].caption","sourcebytes":[66,101,103,105,110,32,40,77,72,122,41],"value":"Begin (MHz)"},
+{"hash":103633801,"name":"tfm_form.listview1.columns[2].caption","sourcebytes":[69,110,100,32,40,77,72,122,41],"value":"End (MHz)"},
+{"hash":206017268,"name":"tfm_form.listview1.columns[3].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"}
 ]}

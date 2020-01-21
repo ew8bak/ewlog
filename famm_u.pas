@@ -10,12 +10,11 @@ uses
 
 type
 
-  { TFaMM_Form }
+  { TFM_Form }
 
-  TFaMM_Form = class(TForm)
+  TFM_Form = class(TForm)
     FMQuery: TSQLQuery;
     ListView1: TListView;
-    ListView2: TListView;
     procedure FormShow(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
   private
@@ -25,37 +24,22 @@ type
   end;
 
 var
-  FaMM_Form: TFaMM_Form;
+  FM_Form: TFM_Form;
 
 implementation
 
 {$R *.lfm}
 uses dmFunc_U, MainForm_U;
 
-{ TFaMM_Form }
+{ TFM_Form }
 
-procedure TFaMM_Form.FormShow(Sender: TObject);
+procedure TFM_Form.FormShow(Sender: TObject);
 var
   I: integer;
   ListItem: TListItem;
 begin
   try
     FMQuery.DataBase := MainForm.ServiceDBConnection;
-
-    ListView2.Clear;
-    FMQuery.SQL.Text := ('SELECT * FROM Modes');
-    FMQuery.Open;
-    while (not FMQuery.EOF) do
-    begin
-      ListItem := ListView2.Items.Add;
-      ListItem.Caption := VarToStr(FMQuery['mode']);
-      with ListItem.SubItems do
-      begin
-        Add(VarToStr(FMQuery['enable']));
-      end;
-      FMQuery.Next;
-    end;
-    FMQuery.Close;
 
     ListView1.Clear;
     FMQuery.SQL.Text := ('SELECT * FROM Bands');
@@ -77,7 +61,7 @@ begin
   end;
 end;
 
-procedure TFaMM_Form.ListView1Click(Sender: TObject);
+procedure TFM_Form.ListView1Click(Sender: TObject);
 begin
   if ListView1.Selected.Selected then
   begin

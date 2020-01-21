@@ -1863,44 +1863,36 @@ msgstr "Экспортировать всё"
 msgid "Save file as"
 msgstr "Сохранить файл как"
 
-#: tfamm_form.caption
-msgid "Frequency and Modulation Manager"
-msgstr ""
-
-#: tfamm_form.listview1.columns[0].caption
-#, fuzzy
-msgctxt "tfamm_form.listview1.columns[0].caption"
-msgid "Band"
-msgstr "Диапазон"
-
-#: tfamm_form.listview1.columns[1].caption
-msgid "Begin (MHz)"
-msgstr ""
-
-#: tfamm_form.listview1.columns[2].caption
-msgid "End (MHz)"
-msgstr ""
-
-#: tfamm_form.listview1.columns[3].caption
-msgctxt "tfamm_form.listview1.columns[3].caption"
-msgid "Enabled"
-msgstr ""
-
-#: tfamm_form.listview2.columns[0].caption
-#, fuzzy
-msgctxt "tfamm_form.listview2.columns[0].caption"
-msgid "Mode"
-msgstr "Мода"
-
-#: tfamm_form.listview2.columns[1].caption
-msgctxt "tfamm_form.listview2.columns[1].caption"
-msgid "Enabled"
-msgstr ""
-
 #: tfilterform.caption
 msgctxt "tfilterform.caption"
 msgid "Record Filter"
 msgstr "Фильтр записей"
+
+#: tfm_form.caption
+msgctxt "tfm_form.caption"
+msgid "Frequency Manager"
+msgstr ""
+
+#: tfm_form.listview1.columns[0].caption
+#, fuzzy
+msgctxt "tfm_form.listview1.columns[0].caption"
+msgid "Band"
+msgstr "Диапазон"
+
+#: tfm_form.listview1.columns[1].caption
+msgctxt "tfm_form.listview1.columns[1].caption"
+msgid "Begin (MHz)"
+msgstr ""
+
+#: tfm_form.listview1.columns[2].caption
+msgctxt "tfm_form.listview1.columns[2].caption"
+msgid "End (MHz)"
+msgstr ""
+
+#: tfm_form.listview1.columns[3].caption
+msgctxt "tfm_form.listview1.columns[3].caption"
+msgid "Enabled"
+msgstr ""
 
 #: thiddensettings.button1.caption
 msgctxt "thiddensettings.button1.caption"
@@ -3184,7 +3176,13 @@ msgid "Without mark QSL Printed"
 msgstr "Без пометки QSL напечатана"
 
 #: tmainform.menuitem123.caption
-msgid "Freq and Mode Manager"
+msgctxt "tmainform.menuitem123.caption"
+msgid "Frequency Manager"
+msgstr ""
+
+#: tmainform.menuitem124.caption
+msgctxt "tmainform.menuitem124.caption"
+msgid "Modulation Manager"
 msgstr ""
 
 #: tmainform.menuitem13.caption
@@ -3644,6 +3642,49 @@ msgstr "Области"
 msgctxt "tmanagerbaseprefixform.tabsheet3.caption"
 msgid "Country"
 msgstr "Страна"
+
+#: tmm_form.button1.caption
+#, fuzzy
+#| msgid "Save"
+msgctxt "tmm_form.button1.caption"
+msgid "Close"
+msgstr "Сохранить"
+
+#: tmm_form.button2.caption
+#, fuzzy
+#| msgid "Save"
+msgctxt "tmm_form.button2.caption"
+msgid "Save SubMode"
+msgstr "Сохранить"
+
+#: tmm_form.caption
+msgctxt "tmm_form.caption"
+msgid "Modulation Manager"
+msgstr ""
+
+#: tmm_form.checkbox1.caption
+msgid "Enabled Modulation"
+msgstr ""
+
+#: tmm_form.groupbox1.caption
+msgid "Options"
+msgstr ""
+
+#: tmm_form.labelededit1.editlabel.caption
+msgctxt "tmm_form.labelededit1.editlabel.caption"
+msgid "SubMode"
+msgstr ""
+
+#: tmm_form.listview1.columns[0].caption
+#, fuzzy
+msgctxt "tmm_form.listview1.columns[0].caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tmm_form.listview1.columns[1].caption
+msgctxt "tmm_form.listview1.columns[1].caption"
+msgid "Enabled"
+msgstr ""
 
 #: tprintsticker_form.button1.caption
 msgid "Print"

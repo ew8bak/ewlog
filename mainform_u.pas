@@ -221,6 +221,7 @@ type
     MenuItem121: TMenuItem;
     MenuItem122: TMenuItem;
     MenuItem123: TMenuItem;
+    MenuItem124: TMenuItem;
     N2: TMenuItem;
     N1: TMenuItem;
     MenuItem12: TMenuItem;
@@ -561,6 +562,7 @@ type
     procedure MenuItem121Click(Sender: TObject);
     procedure MenuItem122Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
+    procedure MenuItem124Click(Sender: TObject);
     procedure MenuItem12Click(Sender: TObject);
     procedure MenuItem13Click(Sender: TObject);
     procedure MenuItem14Click(Sender: TObject);
@@ -832,7 +834,7 @@ uses
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u, register_form_u,
-  logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u;
+  logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u;
 
 type
   PTreeData = ^TTreeData;
@@ -4413,7 +4415,12 @@ end;
 
 procedure TMainForm.MenuItem123Click(Sender: TObject);
 begin
-  FaMM_Form.Show;
+  FM_Form.Show;
+end;
+
+procedure TMainForm.MenuItem124Click(Sender: TObject);
+begin
+  MM_Form.show;
 end;
 
 //Поставить QSO в очередь на печать

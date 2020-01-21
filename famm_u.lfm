@@ -1,19 +1,19 @@
-object FaMM_Form: TFaMM_Form
-  Left = 527
+object FM_Form: TFM_Form
+  Left = 498
   Height = 410
-  Top = 235
+  Top = 152
   Width = 806
-  Caption = 'Frequency and Modulation Manager'
+  Caption = 'Frequency Manager'
   ClientHeight = 410
   ClientWidth = 806
   OnShow = FormShow
   LCLVersion = '2.0.6.0'
   object ListView1: TListView
-    Left = 480
+    Left = 0
     Height = 410
     Top = 0
-    Width = 326
-    Align = alRight
+    Width = 342
+    Align = alLeft
     Columns = <    
       item
         AutoSize = True
@@ -32,39 +32,18 @@ object FaMM_Form: TFaMM_Form
       end    
       item
         Caption = 'Enabled'
-        Width = 126
+        Width = 142
       end>
     ScrollBars = ssAutoBoth
     TabOrder = 0
     ViewStyle = vsReport
     OnClick = ListView1Click
   end
-  object ListView2: TListView
-    Left = 0
-    Height = 410
-    Top = 0
-    Width = 168
-    Align = alLeft
-    Columns = <    
-      item
-        AutoSize = True
-        Caption = 'Mode'
-        Width = 46
-      end    
-      item
-        AutoSize = True
-        Caption = 'Enabled'
-        Width = 120
-      end>
-    ScrollBars = ssAutoBoth
-    TabOrder = 1
-    ViewStyle = vsReport
-  end
   object FMQuery: TSQLQuery
     PacketRecords = 100
     FieldDefs = <>
     Params = <>
-    left = 184
-    top = 360
+    left = 712
+    top = 328
   end
 end

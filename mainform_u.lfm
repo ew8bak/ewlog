@@ -3363,8 +3363,12 @@ object MainForm: TMainForm
         OnClick = MenuItem99Click
       end
       object MenuItem123: TMenuItem
-        Caption = 'Freq and Mode Manager'
+        Caption = 'Frequency Manager'
         OnClick = MenuItem123Click
+      end
+      object MenuItem124: TMenuItem
+        Caption = 'Modulation Manager'
+        OnClick = MenuItem124Click
       end
       object MenuItem116: TMenuItem
         Caption = 'Language'
