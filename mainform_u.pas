@@ -1464,7 +1464,6 @@ begin
     DBLookupComboBox1.KeyValue := CallLogBook;
     SelDB(CallLogBook);
 
-
     subModesList := TStringList.Create;
     PrefixProvinceList := TStringList.Create;
     PrefixARRLList := TStringList.Create;
