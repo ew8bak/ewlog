@@ -1,18 +1,19 @@
 object FM_Form: TFM_Form
-  Left = 498
+  Left = 454
   Height = 410
-  Top = 152
-  Width = 806
+  Top = 145
+  Width = 602
+  BorderStyle = bsSingle
   Caption = 'Frequency Manager'
   ClientHeight = 410
-  ClientWidth = 806
+  ClientWidth = 602
   OnShow = FormShow
   LCLVersion = '2.0.6.0'
   object ListView1: TListView
     Left = 0
     Height = 410
     Top = 0
-    Width = 342
+    Width = 312
     Align = alLeft
     Columns = <    
       item
@@ -31,19 +32,114 @@ object FM_Form: TFM_Form
         Width = 72
       end    
       item
+        AutoSize = True
         Caption = 'Enabled'
-        Width = 142
+        Width = 112
       end>
     ScrollBars = ssAutoBoth
     TabOrder = 0
     ViewStyle = vsReport
     OnClick = ListView1Click
   end
+  object GroupBox1: TGroupBox
+    Left = 320
+    Height = 160
+    Top = 8
+    Width = 273
+    Caption = 'Options'
+    ClientHeight = 144
+    ClientWidth = 271
+    TabOrder = 1
+    object LabeledEdit1: TLabeledEdit
+      Left = 8
+      Height = 25
+      Top = 24
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'Band'
+      EditLabel.ParentColor = False
+      TabOrder = 0
+    end
+    object LabeledEdit2: TLabeledEdit
+      Left = 96
+      Height = 25
+      Top = 24
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'MHz Begin'
+      EditLabel.ParentColor = False
+      TabOrder = 1
+    end
+    object LabeledEdit3: TLabeledEdit
+      Left = 184
+      Height = 25
+      Top = 24
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'MHz End'
+      EditLabel.ParentColor = False
+      TabOrder = 2
+    end
+    object CheckBox1: TCheckBox
+      Left = 8
+      Height = 23
+      Top = 112
+      Width = 101
+      Caption = 'Enabled Band'
+      OnClick = CheckBox1Click
+      TabOrder = 3
+    end
+    object LabeledEdit4: TLabeledEdit
+      Left = 8
+      Height = 25
+      Top = 72
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'CW Begin'
+      EditLabel.ParentColor = False
+      TabOrder = 4
+    end
+    object LabeledEdit5: TLabeledEdit
+      Left = 96
+      Height = 25
+      Top = 72
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'Digi Begin'
+      EditLabel.ParentColor = False
+      TabOrder = 5
+    end
+    object LabeledEdit6: TLabeledEdit
+      Left = 184
+      Height = 25
+      Top = 72
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'SSB Begin'
+      EditLabel.ParentColor = False
+      TabOrder = 6
+    end
+  end
+  object Button1: TButton
+    Left = 518
+    Height = 25
+    Top = 376
+    Width = 75
+    Caption = 'Close'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
   object FMQuery: TSQLQuery
     PacketRecords = 100
     FieldDefs = <>
     Params = <>
-    left = 712
-    top = 328
+    left = 368
+    top = 248
   end
 end

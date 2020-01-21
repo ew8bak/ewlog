@@ -480,7 +480,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="11"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="138"/>
       </Unit43>
       <Unit44>
         <Filename Value="famm_u.pas"/>
@@ -488,10 +488,11 @@
         <ComponentName Value="FM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="37"/>
-        <CursorPos Y="66"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="58"/>
+        <CursorPos X="15" Y="77"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit44>
@@ -499,14 +500,14 @@
         <Filename Value="RegExpr.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="186"/>
       </Unit45>
       <Unit46>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="170"/>
         <CursorPos Y="198"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit46>
       <Unit47>
         <Filename Value="D:\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\ltelnet.pp"/>
@@ -514,7 +515,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="411"/>
         <CursorPos Y="432"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit47>
       <Unit48>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvmapviewer.pas"/>
@@ -522,7 +523,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="114"/>
         <CursorPos X="28" Y="127"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit48>
       <Unit49>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvtypes.pas"/>
@@ -530,13 +531,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="3" Y="41"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit49>
       <Unit50>
         <Filename Value="D:\karpe.GML-VKARPENKO-W\AppData\Local\lazarus\onlinepackagemanager\packages\synapse40.1\ssl_openssl.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="89"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit50>
       <Unit51>
         <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
@@ -544,14 +545,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2043"/>
         <CursorPos Y="2061"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit51>
       <Unit52>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\Indy10\System\IdGlobal.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1890"/>
         <CursorPos X="105" Y="1908"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit52>
       <Unit53>
@@ -560,7 +561,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos Y="50"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit53>
       <Unit54>
         <Filename Value="C:\lazarus\components\lazutils\laztracer.pas"/>
@@ -568,25 +569,25 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos Y="29"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit54>
       <Unit55>
         <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1214"/>
         <CursorPos Y="1235"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit55>
       <Unit56>
         <Filename Value="D:\usr\lib\fpc\src\packages\paszlib\src\zipper.pp"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit56>
       <Unit57>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-res\src\resource.pp"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="39"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit57>
       <Unit58>
         <Filename Value="D:\usr\lib\lazarus\components\lazreport\source\lr_class.pas"/>
@@ -594,7 +595,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2485"/>
         <CursorPos X="18" Y="2514"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit58>
       <Unit59>
         <Filename Value="D:\usr\lib\lazarus\components\lazreport\source\lr_utils.pas"/>
@@ -602,7 +603,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="169"/>
         <CursorPos X="22" Y="183"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit59>
       <Unit60>
         <Filename Value="C:\lazarus\lcl\forms.pp"/>
@@ -610,54 +611,54 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1828"/>
         <CursorPos X="3" Y="1849"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
       </Unit60>
       <Unit61>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2308"/>
         <CursorPos Y="2326"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit61>
       <Unit62>
         <Filename Value="D:\usr\lib\fpc\src\rtl\objpas\sysutils\sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="45" Y="247"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit62>
       <Unit63>
         <Filename Value="D:\usr\lib\fpc\src\rtl\unix\sysutils.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1562"/>
         <CursorPos X="60" Y="177"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit63>
       <Unit64>
         <Filename Value="D:\usr\lib\fpc\src\rtl\unix\classes.pp"/>
         <UnitName Value="Classes"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="20"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit64>
       <Unit65>
         <Filename Value="D:\usr\lib\fpc\src\packages\rtl-objpas\src\inc\dateutils.pp"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit65>
       <Unit66>
         <Filename Value="D:\usr\lib\lazarus\lcl\lcltype.pp"/>
         <UnitName Value="LCLType"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3172"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit66>
       <Unit67>
         <Filename Value="..\.lazarus\onlinepackagemanager\packages\Indy10\System\IdGlobal.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1888"/>
         <CursorPos X="105" Y="1908"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
@@ -665,14 +666,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="596"/>
         <CursorPos Y="613"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit68>
       <Unit69>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="941"/>
         <CursorPos Y="958"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit69>
       <Unit70>
         <Filename Value="..\..\..\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
@@ -680,20 +681,19 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos Y="50"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit70>
       <Unit71>
         <Filename Value="mmform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MM_Form"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="91"/>
-        <CursorPos X="8" Y="107"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="42"/>
+        <CursorPos X="3" Y="74"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit71>
       <Unit72>
         <Filename Value="..\..\..\usr\lib\lazarus\lcl\stdctrls.pp"/>
@@ -704,111 +704,127 @@
         <UsageCount Value="10"/>
       </Unit72>
     </Units>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="872" Column="68" TopLine="851"/>
+        <Filename Value="mmform_u.pas"/>
+        <Caret Line="64" Column="50" TopLine="46"/>
       </Position1>
       <Position2>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="837" Column="69" TopLine="818"/>
+        <Filename Value="mmform_u.pas"/>
+        <Caret Line="74" Column="3" TopLine="49"/>
       </Position2>
       <Position3>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="8" Column="83"/>
+        <Caret Line="76" Column="32" TopLine="53"/>
       </Position3>
       <Position4>
-        <Filename Value="famm_u.pas"/>
-        <Caret Line="33" Column="28" TopLine="5"/>
+        <Filename Value="mmform_u.pas"/>
+        <Caret Line="102" Column="22" TopLine="68"/>
       </Position4>
       <Position5>
-        <Filename Value="famm_u.pas"/>
-        <Caret Line="32" Column="28" TopLine="5"/>
+        <Filename Value="mmform_u.pas"/>
+        <Caret Line="80" Column="31" TopLine="68"/>
       </Position5>
       <Position6>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="8" Column="83"/>
+        <Caret Line="81" Column="31" TopLine="69"/>
       </Position6>
       <Position7>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="9" Column="31"/>
+        <Caret Line="82" Column="31" TopLine="70"/>
       </Position7>
       <Position8>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="72" Column="43" TopLine="38"/>
+        <Caret Line="81" Column="31" TopLine="69"/>
       </Position8>
       <Position9>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="76" Column="35" TopLine="44"/>
+        <Caret Line="80" Column="31" TopLine="68"/>
       </Position9>
       <Position10>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="62" Column="50" TopLine="44"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="4423" Column="10" TopLine="4003"/>
       </Position10>
       <Position11>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="64" Column="50" TopLine="46"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="854" Column="56" TopLine="845"/>
       </Position11>
       <Position12>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="74" Column="3" TopLine="49"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="859" Column="28" TopLine="854"/>
       </Position12>
       <Position13>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="76" Column="32" TopLine="53"/>
+        <Caret Line="89" Column="12" TopLine="68"/>
       </Position13>
       <Position14>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="102" Column="22" TopLine="68"/>
+        <Caret Line="95" Column="9" TopLine="68"/>
       </Position14>
       <Position15>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="80" Column="31" TopLine="68"/>
+        <Caret Line="97" Column="9" TopLine="70"/>
       </Position15>
       <Position16>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="81" Column="31" TopLine="69"/>
+        <Caret Line="112" Column="57" TopLine="91"/>
       </Position16>
       <Position17>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="82" Column="31" TopLine="70"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="66" TopLine="37"/>
       </Position17>
       <Position18>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="81" Column="31" TopLine="69"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="67" TopLine="38"/>
       </Position18>
       <Position19>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="80" Column="31" TopLine="68"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="74" TopLine="40"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="4423" Column="10" TopLine="4003"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="69" Column="9" TopLine="45"/>
       </Position20>
       <Position21>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="854" Column="56" TopLine="845"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="70" Column="9" TopLine="46"/>
       </Position21>
       <Position22>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="859" Column="28" TopLine="854"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="71" Column="9" TopLine="47"/>
       </Position22>
       <Position23>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="89" Column="12" TopLine="68"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="72" Column="9" TopLine="48"/>
       </Position23>
       <Position24>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="95" Column="9" TopLine="68"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="71" Column="9" TopLine="47"/>
       </Position24>
       <Position25>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="97" Column="9" TopLine="70"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="72" Column="9" TopLine="48"/>
       </Position25>
       <Position26>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="112" Column="57" TopLine="91"/>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="85" Column="42" TopLine="49"/>
       </Position26>
+      <Position27>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="86" Column="42" TopLine="50"/>
+      </Position27>
+      <Position28>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="87" Column="42" TopLine="51"/>
+      </Position28>
+      <Position29>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="97" Column="40" TopLine="58"/>
+      </Position29>
+      <Position30>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="89" Column="46" TopLine="69"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

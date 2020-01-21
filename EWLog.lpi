@@ -476,6 +476,7 @@
         <Filename Value="mmform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MM_Form"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit45>
     </Units>

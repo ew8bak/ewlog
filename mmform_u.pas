@@ -44,7 +44,6 @@ uses dmFunc_U, MainForm_U;
 
 procedure TMM_Form.ReloadList;
 var
-  I: integer;
   ListItem: TListItem;
 begin
   try

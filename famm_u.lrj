@@ -3,5 +3,14 @@
 {"hash":297028,"name":"tfm_form.listview1.columns[0].caption","sourcebytes":[66,97,110,100],"value":"Band"},
 {"hash":6660553,"name":"tfm_form.listview1.columns[1].caption","sourcebytes":[66,101,103,105,110,32,40,77,72,122,41],"value":"Begin (MHz)"},
 {"hash":103633801,"name":"tfm_form.listview1.columns[2].caption","sourcebytes":[69,110,100,32,40,77,72,122,41],"value":"End (MHz)"},
-{"hash":206017268,"name":"tfm_form.listview1.columns[3].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"}
+{"hash":206017268,"name":"tfm_form.listview1.columns[3].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"},
+{"hash":108725763,"name":"tfm_form.groupbox1.caption","sourcebytes":[79,112,116,105,111,110,115],"value":"Options"},
+{"hash":297028,"name":"tfm_form.labelededit1.editlabel.caption","sourcebytes":[66,97,110,100],"value":"Band"},
+{"hash":206105614,"name":"tfm_form.labelededit2.editlabel.caption","sourcebytes":[77,72,122,32,66,101,103,105,110],"value":"MHz Begin"},
+{"hash":33311764,"name":"tfm_form.labelededit3.editlabel.caption","sourcebytes":[77,72,122,32,69,110,100],"value":"MHz End"},
+{"hash":262209380,"name":"tfm_form.checkbox1.caption","sourcebytes":[69,110,97,98,108,101,100,32,66,97,110,100],"value":"Enabled Band"},
+{"hash":155761022,"name":"tfm_form.labelededit4.editlabel.caption","sourcebytes":[67,87,32,66,101,103,105,110],"value":"CW Begin"},
+{"hash":189534766,"name":"tfm_form.labelededit5.editlabel.caption","sourcebytes":[68,105,103,105,32,66,101,103,105,110],"value":"Digi Begin"},
+{"hash":71886222,"name":"tfm_form.labelededit6.editlabel.caption","sourcebytes":[83,83,66,32,66,101,103,105,110],"value":"SSB Begin"},
+{"hash":4863637,"name":"tfm_form.button1.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
 ]}

@@ -13,11 +13,23 @@ type
   { TFM_Form }
 
   TFM_Form = class(TForm)
+    Button1: TButton;
+    CheckBox1: TCheckBox;
     FMQuery: TSQLQuery;
+    GroupBox1: TGroupBox;
+    LabeledEdit1: TLabeledEdit;
+    LabeledEdit2: TLabeledEdit;
+    LabeledEdit3: TLabeledEdit;
+    LabeledEdit4: TLabeledEdit;
+    LabeledEdit5: TLabeledEdit;
+    LabeledEdit6: TLabeledEdit;
     ListView1: TListView;
+    procedure Button1Click(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
   private
+    procedure ReloadList;
 
   public
 
@@ -33,9 +45,8 @@ uses dmFunc_U, MainForm_U;
 
 { TFM_Form }
 
-procedure TFM_Form.FormShow(Sender: TObject);
+procedure TFM_Form.ReloadList;
 var
-  I: integer;
   ListItem: TListItem;
 begin
   try
@@ -61,6 +72,33 @@ begin
   end;
 end;
 
+procedure TFM_Form.FormShow(Sender: TObject);
+begin
+  ReloadList;
+end;
+
+procedure TFM_Form.Button1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFM_Form.CheckBox1Click(Sender: TObject);
+var
+  SelectIndex: integer;
+begin
+  if Assigned(ListView1.Selected) then
+  begin
+    FMQuery.SQL.Text := ('UPDATE Bands SET Enable = ' +
+      BoolToStr(CheckBox1.Checked, '1', '0') + ' WHERE band = ' +
+      QuotedStr(ListView1.Selected.Caption));
+    SelectIndex := ListView1.ItemIndex;
+    FMQuery.ExecSQL;
+    FMQuery.SQLTransaction.Commit;
+    ReloadList;
+    ListView1.ItemIndex := SelectIndex;
+  end;
+end;
+
 procedure TFM_Form.ListView1Click(Sender: TObject);
 begin
   if ListView1.Selected.Selected then
@@ -68,7 +106,13 @@ begin
     FMQuery.SQL.Text := ('SELECT * FROM Bands WHERE band = ' + QuotedStr(
       ListView1.Selected.Caption));
     FMQuery.Open;
-    ShowMessage(FMQuery['b_begin']);
+    LabeledEdit1.Text := FMQuery['band'];
+    LabeledEdit2.Text := FMQuery['b_begin'];
+    LabeledEdit3.Text := FMQuery['b_end'];
+    LabeledEdit4.Text := FMQuery['cw'];
+    LabeledEdit5.Text := FMQuery['digi'];
+    LabeledEdit6.Text := FMQuery['ssb'];
+    CheckBox1.Checked := FMQuery['enable'];
     FMQuery.Close;
   end;
 end;
