@@ -12,5 +12,6 @@
 {"hash":155761022,"name":"tfm_form.labelededit4.editlabel.caption","sourcebytes":[67,87,32,66,101,103,105,110],"value":"CW Begin"},
 {"hash":189534766,"name":"tfm_form.labelededit5.editlabel.caption","sourcebytes":[68,105,103,105,32,66,101,103,105,110],"value":"Digi Begin"},
 {"hash":71886222,"name":"tfm_form.labelededit6.editlabel.caption","sourcebytes":[83,83,66,32,66,101,103,105,110],"value":"SSB Begin"},
+{"hash":208986052,"name":"tfm_form.button2.caption","sourcebytes":[83,97,118,101,32,66,97,110,100],"value":"Save Band"},
 {"hash":4863637,"name":"tfm_form.button1.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
 ]}

@@ -14,6 +14,7 @@ type
 
   TFM_Form = class(TForm)
     Button1: TButton;
+    Button2: TButton;
     CheckBox1: TCheckBox;
     FMQuery: TSQLQuery;
     GroupBox1: TGroupBox;
@@ -25,6 +26,7 @@ type
     LabeledEdit6: TLabeledEdit;
     ListView1: TListView;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
@@ -80,6 +82,26 @@ end;
 procedure TFM_Form.Button1Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TFM_Form.Button2Click(Sender: TObject);
+var
+  SelectIndex: integer;
+begin
+  if Assigned(ListView1.Selected) then
+  begin
+    FMQuery.SQL.Text := ('UPDATE Bands SET band = ' +
+      QuotedStr(LabeledEdit1.Text) + ', b_begin = ' + QuotedStr(LabeledEdit2.Text) +
+      ', b_end = ' + QuotedStr(LabeledEdit3.Text) + ', cw = ' +
+      QuotedStr(LabeledEdit4.Text) + ', digi = ' +
+      QuotedStr(LabeledEdit5.Text) + ', ssb = ' + QuotedStr(LabeledEdit6.Text) +
+      ' WHERE band = ' + QuotedStr(ListView1.Selected.Caption));
+    SelectIndex := ListView1.ItemIndex;
+    FMQuery.ExecSQL;
+    FMQuery.SQLTransaction.Commit;
+    ReloadList;
+    ListView1.ItemIndex := SelectIndex;
+  end;
 end;
 
 procedure TFM_Form.CheckBox1Click(Sender: TObject);

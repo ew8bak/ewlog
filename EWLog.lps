@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="73">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -480,7 +480,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="11"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="139"/>
       </Unit43>
       <Unit44>
         <Filename Value="famm_u.pas"/>
@@ -490,9 +490,9 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="58"/>
-        <CursorPos X="15" Y="77"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="79"/>
+        <CursorPos X="8" Y="104"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit44>
@@ -690,9 +690,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="42"/>
-        <CursorPos X="3" Y="74"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="99"/>
+        <CursorPos X="14" Y="119"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit71>
       <Unit72>
@@ -707,123 +707,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="64" Column="50" TopLine="46"/>
+        <Caret Line="80" Column="31" TopLine="68"/>
       </Position1>
       <Position2>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="74" Column="3" TopLine="49"/>
+        <Caret Line="81" Column="31" TopLine="69"/>
       </Position2>
       <Position3>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="76" Column="32" TopLine="53"/>
+        <Caret Line="82" Column="31" TopLine="70"/>
       </Position3>
       <Position4>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="102" Column="22" TopLine="68"/>
+        <Caret Line="81" Column="31" TopLine="69"/>
       </Position4>
       <Position5>
         <Filename Value="mmform_u.pas"/>
         <Caret Line="80" Column="31" TopLine="68"/>
       </Position5>
       <Position6>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="81" Column="31" TopLine="69"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="4423" Column="10" TopLine="4003"/>
       </Position6>
       <Position7>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="82" Column="31" TopLine="70"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="854" Column="56" TopLine="845"/>
       </Position7>
       <Position8>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="81" Column="31" TopLine="69"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="859" Column="28" TopLine="854"/>
       </Position8>
       <Position9>
         <Filename Value="mmform_u.pas"/>
-        <Caret Line="80" Column="31" TopLine="68"/>
+        <Caret Line="89" Column="12" TopLine="68"/>
       </Position9>
       <Position10>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="4423" Column="10" TopLine="4003"/>
-      </Position10>
-      <Position11>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="854" Column="56" TopLine="845"/>
-      </Position11>
-      <Position12>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="859" Column="28" TopLine="854"/>
-      </Position12>
-      <Position13>
-        <Filename Value="mmform_u.pas"/>
-        <Caret Line="89" Column="12" TopLine="68"/>
-      </Position13>
-      <Position14>
         <Filename Value="mmform_u.pas"/>
         <Caret Line="95" Column="9" TopLine="68"/>
-      </Position14>
-      <Position15>
+      </Position10>
+      <Position11>
         <Filename Value="mmform_u.pas"/>
         <Caret Line="97" Column="9" TopLine="70"/>
-      </Position15>
-      <Position16>
+      </Position11>
+      <Position12>
         <Filename Value="mmform_u.pas"/>
         <Caret Line="112" Column="57" TopLine="91"/>
+      </Position12>
+      <Position13>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="66" TopLine="37"/>
+      </Position13>
+      <Position14>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="67" TopLine="38"/>
+      </Position14>
+      <Position15>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="74" TopLine="40"/>
+      </Position15>
+      <Position16>
+        <Filename Value="famm_u.pas"/>
+        <Caret Line="69" Column="9" TopLine="45"/>
       </Position16>
       <Position17>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="66" TopLine="37"/>
+        <Caret Line="70" Column="9" TopLine="46"/>
       </Position17>
       <Position18>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="67" TopLine="38"/>
+        <Caret Line="71" Column="9" TopLine="47"/>
       </Position18>
       <Position19>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="74" TopLine="40"/>
+        <Caret Line="72" Column="9" TopLine="48"/>
       </Position19>
       <Position20>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="69" Column="9" TopLine="45"/>
+        <Caret Line="71" Column="9" TopLine="47"/>
       </Position20>
       <Position21>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="70" Column="9" TopLine="46"/>
+        <Caret Line="72" Column="9" TopLine="48"/>
       </Position21>
       <Position22>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="71" Column="9" TopLine="47"/>
+        <Caret Line="85" Column="42" TopLine="49"/>
       </Position22>
       <Position23>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="72" Column="9" TopLine="48"/>
+        <Caret Line="86" Column="42" TopLine="50"/>
       </Position23>
       <Position24>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="71" Column="9" TopLine="47"/>
+        <Caret Line="87" Column="42" TopLine="51"/>
       </Position24>
       <Position25>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="72" Column="9" TopLine="48"/>
+        <Caret Line="97" Column="40" TopLine="58"/>
       </Position25>
       <Position26>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="85" Column="42" TopLine="49"/>
+        <Caret Line="89" Column="46" TopLine="69"/>
       </Position26>
       <Position27>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="86" Column="42" TopLine="50"/>
+        <Caret Line="92" Column="49" TopLine="63"/>
       </Position27>
       <Position28>
-        <Filename Value="famm_u.pas"/>
-        <Caret Line="87" Column="42" TopLine="51"/>
+        <Filename Value="mmform_u.pas"/>
+        <Caret Line="74" Column="3" TopLine="42"/>
       </Position28>
       <Position29>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="97" Column="40" TopLine="58"/>
+        <Caret Line="99" Column="49" TopLine="65"/>
       </Position29>
       <Position30>
         <Filename Value="famm_u.pas"/>
-        <Caret Line="89" Column="46" TopLine="69"/>
+        <Caret Line="96" Column="133" TopLine="82"/>
       </Position30>
     </JumpHistory>
     <RunParams>

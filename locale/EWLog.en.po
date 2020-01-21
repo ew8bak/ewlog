@@ -1816,6 +1816,10 @@ msgctxt "tfm_form.button1.caption"
 msgid "Close"
 msgstr ""
 
+#: tfm_form.button2.caption
+msgid "Save Band"
+msgstr ""
+
 #: tfm_form.caption
 msgctxt "tfm_form.caption"
 msgid "Frequency Manager"

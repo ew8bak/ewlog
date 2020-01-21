@@ -1,7 +1,7 @@
 object FM_Form: TFM_Form
-  Left = 454
+  Left = 335
   Height = 410
-  Top = 145
+  Top = 142
   Width = 602
   BorderStyle = bsSingle
   Caption = 'Frequency Manager'
@@ -124,6 +124,20 @@ object FM_Form: TFM_Form
       EditLabel.Caption = 'SSB Begin'
       EditLabel.ParentColor = False
       TabOrder = 6
+    end
+    object Button2: TButton
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 194
+      Height = 29
+      Top = 106
+      Width = 70
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      BorderSpacing.Right = 7
+      Caption = 'Save Band'
+      OnClick = Button2Click
+      TabOrder = 7
     end
   end
   object Button1: TButton
