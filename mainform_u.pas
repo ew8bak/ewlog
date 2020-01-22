@@ -2635,8 +2635,8 @@ end;
 
 procedure TMainForm.ComboBox2Change(Sender: TObject);
 var
-  //RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
-  //RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
+  RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
+  RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
   deldot: string;
 begin
   deldot := ComboBox1.Text;
@@ -2656,7 +2656,7 @@ begin
   else
     ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
 
- { if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
+  if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
     (ComboBox2.Text <> 'USB') or (ComboBox2.Text <> 'JT44') or
     (ComboBox2.Text <> 'JT65') or (ComboBox2.Text <> 'JT6M') or
@@ -2691,7 +2691,7 @@ begin
     ComboBox4.Text := '-10';
     ComboBox5.Items.Clear;
     ComboBox5.Text := '-10';
-  end; }
+  end;
   freqchange := True;
 end;
 
