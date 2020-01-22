@@ -1551,7 +1551,6 @@ object MainForm: TMainForm
           'V4'
           'VOI'
         )
-        OnChange = ComboBox2Change
         ParentFont = False
         Style = csOwnerDrawEditableVariable
         TabOrder = 25

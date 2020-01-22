@@ -914,9 +914,11 @@ begin
     else
     begin
       if mode = 'SSB' then
-        ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('ssb').AsFloat));
+        ComboBox1.Items.Add(FormatFloat(view_freq,
+          BandsQuery.FieldByName('ssb').AsFloat));
       if mode = 'CW' then
-        ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('cw').AsFloat));
+        ComboBox1.Items.Add(FormatFloat(view_freq,
+          BandsQuery.FieldByName('cw').AsFloat));
       if (mode <> 'CW') and (mode <> 'SSB') then
         ComboBox1.Items.Add(FormatFloat(view_freq,
           BandsQuery.FieldByName('b_begin').AsFloat));
@@ -2610,20 +2612,48 @@ begin
 end;
 
 procedure TMainForm.ComboBox1Change(Sender: TObject);
+var
+  deldot: string;
 begin
   freqchange := True;
+  deldot := ComboBox1.Text;
+  if Pos('M', deldot) > 0 then
+  begin
+    deldot := dmFunc.FreqFromBand(deldot, ComboBox2.Text);
+    Delete(deldot, length(deldot) - 2, 1);
+  end
+  else
+    Delete(deldot, length(deldot) - 2, 1);
+  if StrToDouble(deldot) >= 10 then
+    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
+  else
+    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
 end;
 
 procedure TMainForm.ComboBox2Change(Sender: TObject);
 var
-  RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
-  RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
+  //RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
+  //RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
+  deldot: string;
 begin
-
+  deldot := ComboBox1.Text;
+  if Pos('M', deldot) > 0 then
+  begin
+    deldot := dmFunc.FreqFromBand(deldot, ComboBox2.Text);
+    Delete(deldot, length(deldot) - 2, 1);
+  end
+  else
+    Delete(deldot, length(deldot) - 2, 1);
   ComboBox9.Items := addModes(ComboBox2.Text, True);
   addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
+  if ComboBox2.Text <> 'SSB' then
+    ComboBox9.Text := '';
+  if StrToDouble(deldot) >= 10 then
+    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
+  else
+    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
 
-  if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
+ { if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
     (ComboBox2.Text <> 'USB') or (ComboBox2.Text <> 'JT44') or
     (ComboBox2.Text <> 'JT65') or (ComboBox2.Text <> 'JT6M') or
@@ -2658,7 +2688,7 @@ begin
     ComboBox4.Text := '-10';
     ComboBox5.Items.Clear;
     ComboBox5.Text := '-10';
-  end;
+  end; }
   freqchange := True;
 end;
 
@@ -2692,7 +2722,7 @@ end;
 
 procedure TMainForm.DBGrid1DblClick(Sender: TObject);
 begin
-  EditQSO_Form.ComboBox1.Items:=ComboBox1.Items;
+  EditQSO_Form.ComboBox1.Items := ComboBox1.Items;
   if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
   begin
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
@@ -5047,7 +5077,7 @@ end;
 
 procedure TMainForm.MenuItem42Click(Sender: TObject);
 begin
-  EditQSO_Form.ComboBox1.Items:=ComboBox1.Items;
+  EditQSO_Form.ComboBox1.Items := ComboBox1.Items;
   if LogBookQuery.RecordCount > 0 then
   begin
     if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
