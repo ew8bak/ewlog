@@ -2624,10 +2624,13 @@ begin
   end
   else
     Delete(deldot, length(deldot) - 2, 1);
+
+  if ComboBox2.Text = 'SSB' then begin
   if StrToDouble(deldot) >= 10 then
     ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
   else
     ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
+  end;
 end;
 
 procedure TMainForm.ComboBox2Change(Sender: TObject);
