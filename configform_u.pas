@@ -256,7 +256,7 @@ var
   i: integer;
   tmpBand:String;
 begin
-  tmpBand:=MainForm.ComboBox1.Text;
+ { tmpBand:=MainForm.ComboBox1.Text;
   if Pos('M',tmpBand) = 0 then begin
   if CheckBox2.Checked = True then
   begin
@@ -281,7 +281,7 @@ begin
   MainForm.DBGrid1.Invalidate;
   MainForm.DBGrid2.Invalidate;
   MainForm.SetGrid;
-  EditQSO_Form.DBGrid1.Invalidate;
+  EditQSO_Form.DBGrid1.Invalidate; }
 end;
 
 procedure TConfigForm.CheckBox3Change(Sender: TObject);

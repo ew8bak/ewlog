@@ -84,6 +84,7 @@ resourcestring
 
 
 const
+  view_freq = '0.000"."00';
   offsetRec: integer = 500;
   etalonField: array [0..56] of string =
     ('UnUsedIndex', 'CallSign', 'QSODate', 'QSOTime', 'QSOBand', 'QSOMode',
@@ -156,13 +157,13 @@ const
     (30, 35, 65, 45, 65, 65, 50, 50, 70, 90, 40, 50, 35, 35, 50, 64, 64,
     64, 64, 55, 55, 55, 55,
     64, 70, 64, 64, 64, 64, 64);
-  constBandName: array [0..12] of string =
+ { constBandName: array [0..12] of string =
     ('160M', '80M', '60M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M',
     '70CM');
   constKhzBandName: array [0..12] of string =
     ('1.800.00', '3.500.00', '5.000.00', '7.000.00', '10.000.00', '14.000.00',
     '18.000.00', '21.000.00', '24.000.00', '28.000.00', '54.000.00', '144.000.00',
-    '430.000.00');
+    '430.000.00');      }
 
 type
 
@@ -322,6 +323,7 @@ type
     PopupDxCluster: TPopupMenu;
     CheckTableQuery: TSQLQuery;
     ScrollBar1: TScrollBar;
+    BandsQuery: TSQLQuery;
     subModesQuery: TSQLQuery;
     PrintDialog1: TPrintDialog;
     SpeedButton24: TSpeedButton;
@@ -759,6 +761,7 @@ type
     function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
     function addModes(modeItem: string; subModesFlag: boolean): TStringList;
+    procedure addBands(FreqBand: string);
   end;
 
 var
@@ -888,6 +891,27 @@ begin
     subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
     Result := subModes;
   end;
+end;
+
+procedure TMainForm.addBands(FreqBand: string);
+var
+  i: integer;
+begin
+    BandsQuery.Close;
+    ComboBox1.Items.Clear;
+    BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
+    BandsQuery.Open;
+    BandsQuery.First;
+    DefaultFormatSettings.DecimalSeparator:='.';
+    for i := 0 to BandsQuery.RecordCount - 1 do
+    begin
+      if FreqBand = 'True' then
+      ComboBox1.Items.Add(BandsQuery.FieldByName('band').AsString)
+      else
+      ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('b_begin').AsFloat));
+      BandsQuery.Next;
+    end;
+    BandsQuery.Close;
 end;
 
 function TMainForm.FindMode(submode: string): string;
@@ -1450,8 +1474,9 @@ begin
   UniqueCallsQuery.DataBase := ServiceDBConnection;
   qBands.DataBase := ServiceDBConnection;
   subModesQuery.DataBase := ServiceDBConnection;
+  BandsQuery.DataBase:=ServiceDBConnection;
   try
-
+    addBands(IniF.ReadString('SetLog', 'ShowBand', ''));
     AddModes('', False);
     subModesQuery.SQL.Text := 'select _id, submode from Modes';
     LogBookInfoQuery.Active := True;
@@ -3446,7 +3471,7 @@ begin
   else
     MenuItem112.Click;
 
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+ { if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
   begin
     ComboBox1.Items.Clear;
     for i := 0 to 12 do
@@ -3457,7 +3482,7 @@ begin
     ComboBox1.Items.Clear;
     for i := 0 to 12 do
       ComboBox1.Items.Add(constKhzBandName[i]);
-  end;
+  end; }
   VirtualStringTree1.ShowHint := True;
   VirtualStringTree1.HintMode := hmHint;
 

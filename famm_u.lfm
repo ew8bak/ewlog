@@ -1,7 +1,7 @@
 object FM_Form: TFM_Form
-  Left = 335
+  Left = 631
   Height = 410
-  Top = 142
+  Top = 141
   Width = 602
   BorderStyle = bsSingle
   Caption = 'Frequency Manager'
