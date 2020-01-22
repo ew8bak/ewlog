@@ -993,19 +993,6 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Right = 25
       Font.Height = -12
       ItemHeight = 0
-      Items.Strings = (
-        '1.800.00'
-        '3.500.00'
-        '7.000.00'
-        '10.000.00'
-        '14.000.00'
-        '18.000.00'
-        '21.000.00'
-        '24.000.00'
-        '28.000.00'
-        '144.000.00'
-        '430.000.00'
-      )
       ParentFont = False
       TabOrder = 26
     end

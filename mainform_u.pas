@@ -897,30 +897,37 @@ procedure TMainForm.addBands(FreqBand: string; mode: string);
 var
   i: integer;
   lastBand: integer;
+  lastBandName: string;
 begin
-    lastBand:=ComboBox1.ItemIndex;
-    BandsQuery.Close;
-    ComboBox1.Items.Clear;
-    BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
-    BandsQuery.Open;
-    BandsQuery.First;
-    DefaultFormatSettings.DecimalSeparator:='.';
-    for i := 0 to BandsQuery.RecordCount - 1 do
-    begin
-      if FreqBand = 'True' then
+  lastBand := ComboBox1.ItemIndex;
+  lastBandName := ComboBox1.Text;
+  BandsQuery.Close;
+  ComboBox1.Items.Clear;
+  BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
+  BandsQuery.Open;
+  BandsQuery.First;
+  DefaultFormatSettings.DecimalSeparator := '.';
+  for i := 0 to BandsQuery.RecordCount - 1 do
+  begin
+    if FreqBand = 'True' then
       ComboBox1.Items.Add(BandsQuery.FieldByName('band').AsString)
-      else begin
+    else
+    begin
       if mode = 'SSB' then
-      ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('ssb').AsFloat));
+        ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('ssb').AsFloat));
       if mode = 'CW' then
-      ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('cw').AsFloat));
+        ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('cw').AsFloat));
       if (mode <> 'CW') and (mode <> 'SSB') then
-      ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('b_begin').AsFloat));
-      end;
-      BandsQuery.Next;
+        ComboBox1.Items.Add(FormatFloat(view_freq,
+          BandsQuery.FieldByName('b_begin').AsFloat));
     end;
-    BandsQuery.Close;
-    ComboBox1.ItemIndex:=lastBand;
+    BandsQuery.Next;
+  end;
+  BandsQuery.Close;
+  if ComboBox1.Items.IndexOf(lastBandName) >= 0 then
+    ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(lastBandName)
+  else
+    ComboBox1.ItemIndex := lastBand;
 end;
 
 function TMainForm.FindMode(submode: string): string;
@@ -1483,10 +1490,10 @@ begin
   UniqueCallsQuery.DataBase := ServiceDBConnection;
   qBands.DataBase := ServiceDBConnection;
   subModesQuery.DataBase := ServiceDBConnection;
-  BandsQuery.DataBase:=ServiceDBConnection;
+  BandsQuery.DataBase := ServiceDBConnection;
   try
     AddModes('', False);
- //   addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
+    //   addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
     subModesQuery.SQL.Text := 'select _id, submode from Modes';
     LogBookInfoQuery.Active := True;
     LogBookFieldQuery.Active := True;
@@ -1874,37 +1881,36 @@ begin
     CheckTableQuery.Open;
 
     try
-    if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
-    begin
-      CheckTableQuery.Close;
-      CheckTableQuery.SQL.Text :=
-        'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_GRIDSQUARE varchar(15);';
-      CheckTableQuery.ExecSQL;
-      SQLTransaction1.Commit;
-    end;
+      if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_GRIDSQUARE varchar(15);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
 
-       if CheckTableQuery.FindField('MY_STATE') = nil then
-    begin
-      CheckTableQuery.Close;
-      CheckTableQuery.SQL.Text :=
-        'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_STATE varchar(15);';
-      CheckTableQuery.ExecSQL;
-      SQLTransaction1.Commit;
-    end;
+      if CheckTableQuery.FindField('MY_STATE') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_STATE varchar(15);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
 
-     if CheckTableQuery.FindField('QSOSubMode') = nil then
-    begin
-      CheckTableQuery.Close;
-      CheckTableQuery.SQL.Text :=
-        'ALTER TABLE ' + LogTable + ' ADD COLUMN QSOSubMode varchar(15);';
-      CheckTableQuery.ExecSQL;
-      SQLTransaction1.Commit;
-    end;
+      if CheckTableQuery.FindField('QSOSubMode') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE ' + LogTable + ' ADD COLUMN QSOSubMode varchar(15);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
 
 
     except
       on E: ESQLDatabaseError do
-
 
     end;
 
@@ -2615,7 +2621,7 @@ var
 begin
 
   ComboBox9.Items := addModes(ComboBox2.Text, True);
-  addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
+  addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
 
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
@@ -2686,6 +2692,7 @@ end;
 
 procedure TMainForm.DBGrid1DblClick(Sender: TObject);
 begin
+  EditQSO_Form.ComboBox1.Items:=ComboBox1.Items;
   if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
   begin
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
@@ -3434,7 +3441,7 @@ begin
         IniF.ReadString('SetLog', 'PastSubMode', ''));
     end;
 
-    addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
+    addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
 
   finally
   end;
@@ -3485,8 +3492,9 @@ begin
   VirtualStringTree1.ShowHint := True;
   VirtualStringTree1.HintMode := hmHint;
   if ComboBox1.Items.Count >= IniF.ReadInteger('SetLog', 'PastBand', 0) then
-  ComboBox1.ItemIndex := IniF.ReadInteger('SetLog', 'PastBand', 0) else
-  ComboBox1.ItemIndex := 0;
+    ComboBox1.ItemIndex := IniF.ReadInteger('SetLog', 'PastBand', 0)
+  else
+    ComboBox1.ItemIndex := 0;
   freqchange := True;
 end;
 
@@ -4443,7 +4451,7 @@ end;
 
 procedure TMainForm.MenuItem124Click(Sender: TObject);
 begin
-  MM_Form.show;
+  MM_Form.Show;
 end;
 
 //Поставить QSO в очередь на печать
@@ -5039,6 +5047,7 @@ end;
 
 procedure TMainForm.MenuItem42Click(Sender: TObject);
 begin
+  EditQSO_Form.ComboBox1.Items:=ComboBox1.Items;
   if LogBookQuery.RecordCount > 0 then
   begin
     if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
