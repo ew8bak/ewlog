@@ -118,7 +118,7 @@ begin
     FMQuery.SQLTransaction.Commit;
     ReloadList;
     ListView1.ItemIndex := SelectIndex;
-    MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''));
+    MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),MainForm.ComboBox2.Text);
   end;
 end;
 

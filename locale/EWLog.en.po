@@ -2391,11 +2391,6 @@ msgctxt "tmainform.combobox1.text"
 msgid "7.000.00"
 msgstr ""
 
-#: tmainform.combobox2.text
-msgctxt "tmainform.combobox2.text"
-msgid "SSB"
-msgstr ""
-
 #: tmainform.combobox4.text
 msgctxt "tmainform.combobox4.text"
 msgid "59"

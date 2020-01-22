@@ -252,36 +252,23 @@ begin
 end;
 
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
-var
-  i: integer;
-  tmpBand:String;
 begin
- { tmpBand:=MainForm.ComboBox1.Text;
-  if Pos('M',tmpBand) = 0 then begin
   if CheckBox2.Checked = True then
   begin
-    MainForm.ComboBox1.Items.Clear;
-    for i := 0 to 12 do
-      MainForm.ComboBox1.Items.Add(constBandName[i]);
-      delete(tmpBand, length(tmpBand)-2, 1);
-      MainForm.ComboBox1.Text:=dmFunc.GetAdifBandFromFreq(tmpBand);
       IniF.WriteString('SetLog', 'ShowBand', 'True');
-  end;
+      MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),MainForm.ComboBox2.Text);
   end
   else begin
   if CheckBox2.Checked = False then
   begin
-    MainForm.ComboBox1.Items.Clear;
-    for i := 0 to 12 do
-      MainForm.ComboBox1.Items.Add(constKhzBandName[i]);
-     MainForm.ComboBox1.Text:=dmFunc.FreqFromBand(tmpBand, MainForm.ComboBox2.Text);
      IniF.WriteString('SetLog', 'ShowBand', 'False');
+     MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),MainForm.ComboBox2.Text);
   end;
   end;
   MainForm.DBGrid1.Invalidate;
   MainForm.DBGrid2.Invalidate;
   MainForm.SetGrid;
-  EditQSO_Form.DBGrid1.Invalidate; }
+  EditQSO_Form.DBGrid1.Invalidate;
 end;
 
 procedure TConfigForm.CheckBox3Change(Sender: TObject);

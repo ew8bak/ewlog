@@ -761,7 +761,7 @@ type
     function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
     function addModes(modeItem: string; subModesFlag: boolean): TStringList;
-    procedure addBands(FreqBand: string);
+    procedure addBands(FreqBand: string; mode: string);
   end;
 
 var
@@ -893,10 +893,12 @@ begin
   end;
 end;
 
-procedure TMainForm.addBands(FreqBand: string);
+procedure TMainForm.addBands(FreqBand: string; mode: string);
 var
   i: integer;
+  lastBand: integer;
 begin
+    lastBand:=ComboBox1.ItemIndex;
     BandsQuery.Close;
     ComboBox1.Items.Clear;
     BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
@@ -907,11 +909,18 @@ begin
     begin
       if FreqBand = 'True' then
       ComboBox1.Items.Add(BandsQuery.FieldByName('band').AsString)
-      else
+      else begin
+      if mode = 'SSB' then
+      ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('ssb').AsFloat));
+      if mode = 'CW' then
+      ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('cw').AsFloat));
+      if (mode <> 'CW') and (mode <> 'SSB') then
       ComboBox1.Items.Add(FormatFloat(view_freq, BandsQuery.FieldByName('b_begin').AsFloat));
+      end;
       BandsQuery.Next;
     end;
     BandsQuery.Close;
+    ComboBox1.ItemIndex:=lastBand;
 end;
 
 function TMainForm.FindMode(submode: string): string;
@@ -1476,8 +1485,8 @@ begin
   subModesQuery.DataBase := ServiceDBConnection;
   BandsQuery.DataBase:=ServiceDBConnection;
   try
-    addBands(IniF.ReadString('SetLog', 'ShowBand', ''));
     AddModes('', False);
+ //   addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
     subModesQuery.SQL.Text := 'select _id, submode from Modes';
     LogBookInfoQuery.Active := True;
     LogBookFieldQuery.Active := True;
@@ -2465,7 +2474,7 @@ begin
   IniF.WriteString('TelnetCluster', 'ServerDef', ComboBox3.Text);
   IniF.WriteBool('SetLog', 'TRXForm', ShowTRXForm);
   IniF.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
-  IniF.WriteString('SetLog', 'PastBand', ComboBox1.Text);
+  IniF.WriteInteger('SetLog', 'PastBand', ComboBox1.ItemIndex);
   IniF.WriteString('SetLog', 'PastMode', ComboBox2.Text);
   IniF.WriteString('SetLog', 'PastSubMode', ComboBox9.Text);
   IniF.WriteString('SetLog', 'Language', Language);
@@ -2606,6 +2615,7 @@ var
 begin
 
   ComboBox9.Items := addModes(ComboBox2.Text, True);
+  addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
 
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
@@ -3424,6 +3434,7 @@ begin
         IniF.ReadString('SetLog', 'PastSubMode', ''));
     end;
 
+    addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
 
   finally
   end;
@@ -3471,22 +3482,11 @@ begin
   else
     MenuItem112.Click;
 
- { if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
-  begin
-    ComboBox1.Items.Clear;
-    for i := 0 to 12 do
-      ComboBox1.Items.Add(constBandName[i]);
-  end
-  else
-  begin
-    ComboBox1.Items.Clear;
-    for i := 0 to 12 do
-      ComboBox1.Items.Add(constKhzBandName[i]);
-  end; }
   VirtualStringTree1.ShowHint := True;
   VirtualStringTree1.HintMode := hmHint;
-
-  ComboBox1.Text := IniF.ReadString('SetLog', 'PastBand', '7.000.00');
+  if ComboBox1.Items.Count >= IniF.ReadInteger('SetLog', 'PastBand', 0) then
+  ComboBox1.ItemIndex := IniF.ReadInteger('SetLog', 'PastBand', 0) else
+  ComboBox1.ItemIndex := 0;
   freqchange := True;
 end;
 
@@ -3528,7 +3528,6 @@ end;
 
 procedure TMainForm.FormResize(Sender: TObject);
 begin
-
   Label50.Left := Panel1.Width - 165;
   ComboBox3.Width := MainForm.Width - 655;
   SpeedButton19.Left := Panel9.Width - 27;
