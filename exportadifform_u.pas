@@ -337,7 +337,7 @@ begin
       end;
 
       if Q1.Fields.FieldByName('QSOBand').AsString <> '' then begin
-      tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetAdifBandFromFreq(
+      tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
         Q1.Fields.FieldByName('QSOBand').AsString), CheckBox2.Checked);
       Write(f, tmp);
       end;
@@ -586,7 +586,7 @@ begin
         'DXCCPrefix').AsString, CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
-      tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetAdifBandFromFreq(
+      tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
         Q1.Fields.FieldByName('QSOBand').AsString), CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 

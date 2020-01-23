@@ -39,7 +39,7 @@ type
     function notHaveDigits(s: string): boolean;
     function find_last_digit(s: string): integer;
     function ExtractWPXPrefix(call: string): string;
-    function GetTelnetBandFromFreq(MHz: string): string;
+    function GetBandFromFreq(MHz: string): string;
     function ReplaceCountry(Country: string): string;
     function Extention(FileName: string): string;
     procedure LoadRigList(RigCtlBinaryPath: string; RigList: TStringList);
@@ -51,14 +51,14 @@ type
     procedure DistanceFromCoordinate(my_loc: string; latitude, longitude: real;
       var qra, azim: string);
     procedure Delay(n: cardinal);
-    procedure InsertModes(cmbMode: TComboBox);
+//    procedure InsertModes(cmbMode: TComboBox);
     property DataDir: string read fDataDir write fDataDir;
     property DebugLevel: integer read fDebugLevel write fDebugLevel;
     function ADIFDateToDate(date: string): string;
     function MyTrim(tex: string): string;
     function RemoveSpaces(S: string): string;
     procedure ModifyWAZITU(var waz, itu: string);
-    function FreqFromBand(band, mode: string): string;
+    function GetFreqFromBand(band, mode: string): Double;
     function LetterFromMode(mode: string): string;
     function IsAdifOK(qsodate, time_on, time_off, call, freq, mode,
       rst_s, rst_r, iota, itu, waz, loc, my_loc, band: string): boolean;
@@ -67,12 +67,12 @@ type
     function IsModeOK(mode: string): boolean;
     function IsFreqOK(freq: string): boolean;
     function IsIOTAOK(iota: string): boolean;
-    function GetBandFromFreq(MHz: string): integer;
+//    function GetBandFromFreq(MHz: string): integer;
     function Explode(const cSeparator, vString: string): TExplodeArray;
     function StrToDateFormat(sDate: string): TDateTime;
     function GetIDCall(callsign: string): string;
     function StringToADIF(tex: string; kp: boolean): string;
-    function GetAdifBandFromFreq(MHz: string): string;
+//    function GetAdifBandFromFreq(MHz: string): string;
     function IsLocOK(loc: string): boolean;
     function CompleteLoc(loc: string): string;
     function ExtractCallsign(call: string): string;
@@ -87,7 +87,7 @@ type
     function nr(ch: char): integer;
     function par_str(s: string; n: integer): string;
     function Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
-    procedure BandMode(freq: string; var b, md: integer);
+ //   procedure BandMode(freq: string; var b, md: integer);
     procedure Pack(var AData: TIdBytes; const AValue: longint) overload;
     procedure Pack(var AData: TIdBytes; const AString: string) overload;
     procedure Pack(var AData: TIdBytes; const AValue: QWord) overload;
@@ -129,6 +129,328 @@ implementation
 uses MainForm_U;
 
 {$R *.lfm}
+
+function TdmFunc.LetterFromMode(mode: string): string;
+begin
+  if (mode = 'CW') or (mode = 'CWQ') then
+    Result := 'C'
+  else
+  begin
+    if (mode = 'FM') or (mode = 'SSB') or (mode = 'AM') then
+      Result := 'F'
+    else
+      Result := 'D';
+  end;
+end;
+
+function TdmFunc.GetFreqFromBand(band, mode: string): Double;
+begin
+  Result := 0;
+  mode := UpperCase(mode);
+  band := UpperCase(band);
+  if band = '2190M' then
+  begin
+    Result := 0.139;
+    exit;
+  end;
+  if band = '630M' then
+  begin
+    Result := 0.480;
+    exit;
+  end;
+  if band = '160M' then
+  begin
+    if (mode = 'CW') then
+      Result := 1.8
+    else
+      Result := 1.85;
+    exit;
+  end;
+  if band = '80M' then
+  begin
+    if (mode = 'CW') then
+      Result := 3.52
+    else
+      Result := 3.6;
+    exit;
+  end;
+  if band = '60M' then
+  begin
+    Result := 5.2;
+    exit;
+  end;
+  if band = '40M' then
+  begin
+    if (mode = 'CW') then
+      Result := 7.02
+    else
+      Result := 7.055;
+    exit;
+  end;
+  if band = '30M' then
+  begin
+    Result := 10.1;
+    exit;
+  end;
+  if band = '20M' then
+  begin
+    if (mode = 'CW') then
+      Result := 14.025
+    else
+    begin
+      if (Pos('PSK', mode) > 0) then
+        Result := 14.075
+      else
+      begin
+        if (mode = 'RTTY') then
+          Result := 14.085
+        else
+          Result := 14.15;
+      end;
+    end;
+  end;
+  if band = '17M' then
+  begin
+    if (mode = 'CW') then
+      Result := 18.07
+    else
+      Result := 18.1;
+    exit;
+  end;
+  if band = '15M' then
+  begin
+    if (mode = 'CW') then
+      Result := 21.05
+    else
+    begin
+      if (Pos('PSK', mode) > 0) then
+        Result := 21.075
+      else
+      begin
+        if mode = 'RTTY' then
+          Result := 21.085
+        else
+          Result := 21.2;
+      end;
+    end;
+    exit;
+  end;
+  if band = '12M' then
+  begin
+    if (mode = 'CW') then
+      Result := 24.916
+    else
+    begin
+      if LetterFromMode(mode) = 'D' then
+        Result := 24.917
+      else
+        Result := 24.932;
+    end;
+    exit;
+  end;
+  if band = '10M' then
+  begin
+    if (mode = 'CW') then
+      Result := 28.05
+    else
+    begin
+      if LetterFromMode(mode) = 'D' then
+        Result := 28.1
+      else
+        Result := 28.2;
+    end;
+    exit;
+  end;
+  if band = '6M' then
+  begin
+    Result := 50.1;
+    exit;
+  end;
+  if band = '6M' then
+  begin
+    if mode = 'CW' then
+      Result := 70.05
+    else
+      Result := 70.0875;
+  end;
+  if band = '2M' then
+  begin
+    if (mode = 'CW') then
+      Result := 144.05
+    else
+      Result := 144.28;
+    exit;
+  end;
+  if band = '70CM' then
+  begin
+    if mode = 'CW' then
+      Result := 432.1
+    else
+      Result := 432.2;
+    exit;
+  end;
+  if band = '23CM' then
+  begin
+    Result := 1295.15;
+    exit;
+  end;
+  if band = '13CM' then
+  begin
+    Result := 2300;
+    exit;
+  end;
+  if band = '9CM' then
+  begin
+    Result := 3400;
+    exit;
+  end;
+  if band = '6CM' then
+  begin
+    Result := 5650;
+    exit;
+  end;
+  if band = '3CM' then
+  begin
+    Result := 10000;
+    exit;
+  end;
+  if band = '1.25CM' then
+  begin
+    Result := 24000;
+    exit;
+  end;
+  if band = '6MM' then
+  begin
+    Result := 47000;
+    exit;
+  end;
+  if band = '4MM' then
+    Result := 77500;
+end;
+
+function TdmFunc.GetBandFromFreq(MHz: string): string;
+var
+  x: integer;
+  tmp: currency;
+  Dec: currency;
+  band: string;
+  dotcount,i:integer;
+begin
+  Result := '';
+  band := '';
+  dotcount:=0;
+
+  for i:=1 to length(MHz) do
+  if MHz[i] = '.' then inc(dotcount);
+
+  if dotcount > 1 then
+  Delete(MHz, length(MHz) - 2, 1);
+
+  if Pos('.', MHz) > 0 then
+    MHz[Pos('.', MHz)] := FormatSettings.DecimalSeparator;
+
+  if pos(',', MHz) > 0 then
+    MHz[pos(',', MHz)] := FormatSettings.DecimalSeparator;
+
+  if not TryStrToCurr(MHz, tmp) then
+    exit;
+
+  if tmp < 1 then
+  begin
+    Dec := Int(frac(tmp) * 1000);
+    if ((Dec >= 133) and (Dec <= 139)) then
+      Result := '2190M';
+    if ((Dec >= 472) and (Dec <= 480)) then
+      Result := '630M';
+    exit;
+  end;
+  x := trunc(tmp);
+  case x of
+    1: Band := '160M';
+    3: band := '80M';
+    5: band := '60M';
+    7: band := '40M';
+    10: band := '30M';
+    14: band := '20M';
+    18: Band := '17M';
+    21: Band := '15M';
+    24: Band := '12M';
+    28..30: Band := '10M';
+    50..53: Band := '6M';
+    70..72: Band := '4M';
+    144..149: Band := '2M';
+    219..225: Band := '1.25M';
+    430..440: band := '70CM';
+    900..929: band := '33CM';
+    1240..1300: Band := '23CM';
+    2300..2450: Band := '13CM';
+    3400..3475: band := '9CM';
+    5650..5850: Band := '6CM';
+    10000..10500: band := '3CM';
+    24000..24250: band := '1.25CM';
+    47000..47200: band := '6MM';
+    76000..84000: band := '4MM'
+  end;
+  Result := band;
+end;
+
+function TdmFunc.GetDigiBandFromFreq(MHz: string): double;
+var
+  x: integer;
+  tmp: currency;
+  Dec: currency;
+  band: double;
+begin
+  Result := 0;
+  band := 0;
+
+  if Pos('.', MHz) > 0 then
+    MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
+
+  if pos(',', MHz) > 0 then
+    MHz[pos(',', MHz)] := DefaultFormatSettings.DecimalSeparator;
+
+  if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
+    exit;
+
+  if tmp < 1 then
+  begin
+    Dec := Int(frac(tmp) * 1000);
+    if ((Dec >= 133) and (Dec <= 139)) then
+      Result := 0.137;
+    if ((Dec >= 472) and (Dec <= 480)) then
+      Result := 0.475;
+      exit;
+    end;
+  x := trunc(tmp);
+  case x of
+    1: Band := 1.8;
+    3: band := 3.5;
+    5: band := 5;
+    7: band := 7;
+    10: band := 10;
+    14: band := 14;
+    18: Band := 18;
+    21: Band := 21;
+    24: Band := 24;
+    28..29: Band := 28;
+    50..53: Band := 50;
+    70..72: Band := 70;
+    144..146: Band := 144;
+    219..225: band := 219;
+    430..440: band := 430;
+    902..928: band := 925;
+    1240..1300: Band := 1300;
+    2300..2450: Band := 2450;
+    3400..3475: band := 3475;
+    5650..5850: Band := 5850;
+    10000..10500: band := 10500;
+    24000..24250: band := 24250;
+    47000..47200: band := 47200;
+    76000..84000: band := 84000;
+  end;
+  Result := band;
+end;
 
 
 function TdmFunc.antepenultimate_char(s: string): string;
@@ -270,64 +592,7 @@ begin
   Result := rv;
 end;
 
-function TdmFunc.GetTelnetBandFromFreq(MHz: string): string;
-var
-  x: integer;
-  tmp: currency;
-  Dec: currency;
-  band: string;
-begin
-  Result := '';
-  band := '';
-  if Pos('.', MHz) > 0 then
-    MHz[Pos('.', MHz)] := FormatSettings.DecimalSeparator;
 
-  if pos(',', MHz) > 0 then
-    MHz[pos(',', MHz)] := FormatSettings.DecimalSeparator;
-
-  if not TryStrToCurr(MHz, tmp) then
-    exit;
-  tmp := tmp / 1000;
-  if tmp < 1 then
-  begin
-    Dec := Int(frac(tmp) * 1000);
-    if ((Dec >= 133) and (Dec <= 139)) then
-      Result := '2190M';
-    if ((Dec >= 472) and (Dec <= 480)) then
-      Result := '630M';
-    exit;
-  end;
-  x := trunc(tmp);
-
-  case x of
-    1: Band := '160M';
-    3: band := '80M';
-    5: band := '60M';
-    7: band := '40M';
-    10: band := '30M';
-    14: band := '20M';
-    18: Band := '17M';
-    21: Band := '15M';
-    24: Band := '12M';
-    28..30: Band := '10M';
-    50..53: Band := '6M';
-    70..72: Band := '4M';
-    144..149: Band := '2M';
-    219..225: Band := '1.25M';
-    430..440: band := '70CM';
-    900..929: band := '33CM';
-    1240..1300: Band := '23CM';
-    2300..2450: Band := '13CM';  //12 cm
-    3400..3475: band := '9CM';
-    5650..5850: Band := '6CM';
-
-    10000..10500: band := '3CM';
-    24000..24250: band := '1.25CM';
-    47000..47200: band := '6MM';
-    76000..84000: band := '4MM'
-  end;
-  Result := band;
-end;
 
 function TdmFunc.ReplaceCountry(Country: string): string;
 begin
@@ -567,16 +832,22 @@ procedure TdmFunc.CoordinateFromLocator(loc: string; var latitude, longitude: cu
 var
   a, b, c, d, e, f: integer;
 begin
-  DefaultFormatSettings.DecimalSeparator := '.';
+  a:=0;
+  b:=0;
+  c:=0;
+  d:=0;
+  e:=0;
+  f:=0;
   if not dmFunc.IsLocOK(loc) then
     exit;
-
   a := nr(loc[1]);
   b := nr(loc[2]);
   c := StrToInt(loc[3]);
   d := StrToInt(loc[4]);
-  e := nr(loc[5]);
-  f := nr(loc[6]);
+  if Length(loc) > 4 then
+    e := nr(loc[5]);
+  if Length(loc) > 5 then
+    f := nr(loc[6]);
 
   longitude := (a - 10) * 20 + c * 2 + (e - 1) * 0.083333333333333333330 +
     0.08333333333333333333 / 2;
@@ -1286,86 +1557,6 @@ begin
     Result := False;
 end;
 
-function TdmFunc.GetAdifBandFromFreq(MHz: string): string;
-var
-  x: integer;
-  tmp: currency;
-  Dec: currency;
-  band: string;
-begin
-  Result := '';
-  band := '';
-
-  if Length(MHz) = 10 then
-  begin
-    Delete(MHz, 10, Length(MHz));
-    Delete(MHz, 9, Length(MHz));
-    Delete(MHz, 8, Length(MHz));
-  end;
-
-  if Length(MHz) = 9 then
-  begin
-    Delete(MHz, 9, Length(MHz));
-    Delete(MHz, 8, Length(MHz));
-    Delete(MHz, 7, Length(MHz));
-  end;
-  ;
-  if Length(MHz) = 8 then
-  begin
-    Delete(MHz, 8, Length(MHz));
-    Delete(MHz, 7, Length(MHz));
-    Delete(MHz, 6, Length(MHz));
-  end;
-
-  if Pos('.', MHz) > 0 then
-    MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
-
-  if pos(',', MHz) > 0 then
-    MHz[pos(',', MHz)] := DefaultFormatSettings.DecimalSeparator;
-
-  if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
-    exit;
-
-  if tmp < 1 then
-  begin
-    Dec := Int(frac(tmp) * 1000);
-    if ((Dec >= 133) and (Dec <= 139)) then
-    begin
-      Result := '2190M';
-      exit;
-    end;
-  end;
-  x := trunc(tmp);
-  case x of
-    1: Band := '160M';
-    3: band := '80M';
-    5: band := '60M';
-    7: band := '40M';
-    10: band := '30M';
-    14: band := '20M';
-    18: Band := '17M';
-    21: Band := '15M';
-    24: Band := '12M';
-    28..29: Band := '10M';
-    50..53: Band := '6M';
-    70..72: Band := '4M';
-    144..146: Band := '2M';
-    430..440: band := '70CM';
-
-    1240..1300: Band := '23CM';
-    2300..2450: Band := '13CM';
-    3400..3475: band := '9CM';
-    5650..5850: Band := '6CM';
-
-    10000..10500: band := '3CM';
-    24000..24250: band := '1.25CM';
-    47000..47200: band := '6MM';
-    76000..84000: band := '4MM';
-  end;
-  Result := band;
-end;
-
-
 function TdmFunc.StringToADIF(tex: string; kp: boolean): string;
 begin
   if kp = True then
@@ -1471,196 +1662,19 @@ begin
   Result := True;
 end;
 
-function TdmFunc.GetBandFromFreq(MHz: string): integer;
-var
-  x: integer;
-  tmp: currency;
-  Dec: currency;
-  band: integer;
-begin
-  Result := 0;
-  band := 0;
-
-  if Pos('.', MHz) > 0 then
-    MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
-
-  if pos(',', MHz) > 0 then
-    MHz[pos(',', MHz)] := DefaultFormatSettings.DecimalSeparator;
-
-  if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
-    exit;
-
-  if tmp < 1 then
-  begin
-    Dec := Int(frac(tmp) * 1000);
-    if ((Dec >= 133) and (Dec <= 139)) then
-    begin
-      Result := 137;
-      exit;
-    end;
-  end;
-  x := trunc(tmp);
-  case x of
-    1: Band := 160;
-    3: band := 80;
-    7: band := 40;
-    10: band := 30;
-    14: band := 20;
-    18: Band := 17;
-    21: Band := 15;
-    24: Band := 12;
-    28..29: Band := 10;
-    50..53: Band := 6;
-    70..72: Band := 4;
-    144..146: Band := 2;
-    430..440: band := 70;
-
-    1240..1300: Band := 1300;  //23 cm
-    2300..2450: Band := 2450;  //12 cm
-    3400..3475: band := 3475;
-    5650..5850: Band := 5850;
-
-    10000..10500: band := 10500;
-    24000..24250: band := 24250;
-    47000..47200: band := 47200;
-    76000..84000: band := 84000;
-  end;
-  Result := band;
-end;
-
-function TdmFunc.GetDigiBandFromFreq(MHz: string): double;
-var
-  x: integer;
-  tmp: currency;
-  Dec: currency;
-  band: double;
-begin
-  Result := 0;
-  band := 0;
-
-  if Length(MHz) = 10 then
-  begin
-    Delete(MHz, 10, Length(MHz));
-    Delete(MHz, 9, Length(MHz));
-    Delete(MHz, 8, Length(MHz));
-  end;
-
-  if Length(MHz) = 9 then
-  begin
-    Delete(MHz, 9, Length(MHz));
-    Delete(MHz, 8, Length(MHz));
-    Delete(MHz, 7, Length(MHz));
-  end;
-
-  if Length(MHz) = 8 then
-  begin
-    Delete(MHz, 8, Length(MHz));
-    Delete(MHz, 7, Length(MHz));
-    Delete(MHz, 6, Length(MHz));
-  end;
-
-  if Pos('.', MHz) > 0 then
-    MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
-
-  if pos(',', MHz) > 0 then
-    MHz[pos(',', MHz)] := DefaultFormatSettings.DecimalSeparator;
-
-  if not TextToFloat(PChar(MHZ), tmp, fvCurrency) then
-    exit;
-
-  if tmp < 1 then
-  begin
-    Dec := Int(frac(tmp) * 1000);
-    if ((Dec >= 133) and (Dec <= 139)) then
-    begin
-      Result := 137;
-      exit;
-    end;
-  end;
-  x := trunc(tmp);
-  case x of
-    1: Band := 1.8;
-    3: band := 3.5;
-    7: band := 7;
-    10: band := 10;
-    14: band := 14;
-    18: Band := 18;
-    21: Band := 21;
-    24: Band := 24;
-    28..29: Band := 28;
-    50..53: Band := 50;
-    70..72: Band := 70;
-    144..146: Band := 144;
-    430..440: band := 430;
-
-    1240..1300: Band := 1300;  //23 cm
-    2300..2450: Band := 2450;  //12 cm
-    3400..3475: band := 3475;
-    5650..5850: Band := 5850;
-
-    10000..10500: band := 10500;
-    24000..24250: band := 24250;
-    47000..47200: band := 47200;
-    76000..84000: band := 84000;
-  end;
-  Result := band;
-end;
-
 function TdmFunc.IsFreqOK(freq: string): boolean;
 begin
-  if GetBandFromFreq(freq) = 0 then
+ { if GetBandFromFreq(freq) = 0 then
     Result := False
   else
-    Result := True;
-end;
-
-procedure TdmFunc.InsertModes(cmbMode: TComboBox);
-begin
-  cmbMode.Clear;
-  cmbMode.Items.Add('SSB');
-  cmbMode.Items.Add('CW');
-  cmbMode.Items.Add('AM');
-  cmbMode.Items.Add('FM');
-  cmbMode.Items.Add('RTTY');
-  cmbMode.Items.Add('SSTV');
-  cmbMode.Items.Add('PACTOR');
-  cmbMode.Items.Add('PSK');
-  cmbMode.Items.Add('ATV');
-  cmbMode.Items.Add('CLOVER');
-  cmbMode.Items.Add('GTOR');
-  cmbMode.Items.Add('MTOR');
-  cmbMode.Items.Add('PSK31');
-  cmbMode.Items.Add('BPSK125');
-  cmbMode.Items.Add('PSK125');
-  cmbMode.Items.Add('PSK63');
-  cmbMode.Items.Add('QPSK125');
-  cmbMode.Items.Add('HELL');
-  cmbMode.Items.Add('MT63');
-  cmbMode.Items.Add('QRSS');
-  cmbMode.Items.Add('CWQ');
-  cmbMode.Items.Add('BPSK31');
-  cmbMode.Items.Add('MFSK');
-  cmbMode.Items.Add('JT44');
-  cmbMode.Items.Add('FSK44');
-  cmbMode.Items.Add('WSJT');
-  cmbMode.Items.Add('AMTOR');
-  cmbMode.Items.Add('THROB');
-  cmbMode.Items.Add('BPSK63');
-  cmbMode.Items.Add('PACKET');
-  cmbMode.Items.Add('OLIVIA');
-  cmbMode.Items.Add('MFSK16');
-  cmbMode.Items.Add('OPERA');
-  cmbMode.Items.Add('JT65');
-  cmbMode.Items.Add('JT9');
-  cmbMode.Items.Add('FT8');
-  cmbMode.Items.Add('QPSK63');
+    Result := True;  }
 end;
 
 function TdmFunc.IsModeOK(mode: string): boolean;
 var
   cmb: TComboBox;
 begin
-  Result := False;
+ { Result := False;
   cmb := TComboBox.Create(nil);
   try
     cmb.Clear;
@@ -1669,7 +1683,7 @@ begin
       Result := True
   finally
     cmb.Free
-  end;
+  end; }
 end;
 
 function TdmFunc.IsTimeOK(time: string): boolean;
@@ -1719,7 +1733,7 @@ function TdmFunc.IsAdifOK(qsodate, time_on, time_off, call, freq,
 var
   w: integer;
 begin
-  w := 0;
+ { w := 0;
   Result := True;
   DebugLevel := 0;
   if not IsDateOK(qsodate) then
@@ -1852,187 +1866,7 @@ begin
       Result := 'F'
     else
       Result := 'D';
-  end;
-end;
-
-function TdmFunc.FreqFromBand(band, mode: string): string;
-begin
-  Result := '';
-  mode := UpperCase(mode);
-  band := UpperCase(band);
-  if band = '2190M' then
-  begin
-    Result := '0.13900';
-    exit;
-  end;
-  if band = '160M' then
-  begin
-    if (mode = 'CW') then
-      Result := '1.80000'
-    else
-      Result := '1.85000';
-    exit;
-  end;
-  if band = '80M' then
-  begin
-    if (mode = 'CW') then
-      Result := '3.520.00'
-    else
-      Result := '3.600.00';
-    exit;
-  end;
-  if band = '60M' then
-  begin
-    Result := '5.200.00';
-    exit;
-  end;
-  if band = '40M' then
-  begin
-    if (mode = 'CW') then
-      Result := '7.020.00'
-    else
-      Result := '7.055.00';
-    exit;
-  end;
-  if band = '30M' then
-  begin
-    Result := '10.100.00';
-    exit;
-  end;
-  if band = '20M' then
-  begin
-    if (mode = 'CW') then
-      Result := '14.025.00'
-    else
-    begin
-      if (Pos('PSK', mode) > 0) then
-        Result := '14.075.00'
-      else
-      begin
-        if (mode = 'RTTY') then
-          Result := '14.085.00'
-        else
-          Result := '14.150.00';
-      end;
-    end;
-  end;
-  if band = '17M' then
-  begin
-    if (mode = 'CW') then
-      Result := '18.070.00'
-    else
-      Result := '18.100.00';
-    exit;
-  end;
-  if band = '15M' then
-  begin
-    if (mode = 'CW') then
-      Result := '21.050.00'
-    else
-    begin
-      if (Pos('PSK', mode) > 0) then
-        Result := '21.075.00'
-      else
-      begin
-        if mode = 'RTTY' then
-          Result := '21.085.00'
-        else
-          Result := '21.200.00';
-      end;
-    end;
-    exit;
-  end;
-  if band = '12M' then
-  begin
-    if (mode = 'CW') then
-      Result := '24.916.00'
-    else
-    begin
-      if LetterFromMode(mode) = 'D' then
-        Result := '24.917.00'
-      else
-        Result := '24.932.00';
-    end;
-    exit;
-  end;
-  if band = '10M' then
-  begin
-    if (mode = 'CW') then
-      Result := '28.050.00'
-    else
-    begin
-      if LetterFromMode(mode) = 'D' then
-        Result := '28.100.00'
-      else
-        Result := '28.200.00';
-    end;
-    exit;
-  end;
-  if band = '6M' then
-  begin
-    Result := '50.100.00';
-    exit;
-  end;
-  if band = '6M' then
-  begin
-    if mode = 'CW' then
-      Result := ' 70.050.00'
-    else
-      Result := '70.087.50';
-  end;
-  if band = '2M' then
-  begin
-    if (mode = 'CW') then
-      Result := '144.050.00'
-    else
-      Result := '144.280.00';
-    exit;
-  end;
-  if band = '70CM' then
-  begin
-    if mode = 'CW' then
-      Result := '432.100.00'
-    else
-      Result := '432.200.00';
-    exit;
-  end;
-  if band = '23CM' then
-  begin
-    Result := '1295150';
-    exit;
-  end;
-  if band = '13CM' then
-  begin
-    Result := '2300000';
-    exit;
-  end;
-  if band = '9CM' then
-  begin
-    Result := '3500000';
-    exit;
-  end;
-  if band = '6CM' then
-  begin
-    Result := '5650000';
-    exit;
-  end;
-  if band = '3CM' then
-  begin
-    Result := '1010000';
-    exit;
-  end;
-  if band = '1.25CM' then
-  begin
-    Result := '2400000';
-    exit;
-  end;
-  if band = '6MM' then
-  begin
-    Result := '47000';
-    exit;
-  end;
-  if band = '4MM' then
-    Result := '75000';
+  end;    }
 end;
 
 procedure TdmFunc.ModifyWAZITU(var waz, itu: string);
@@ -2083,94 +1917,6 @@ begin
     m := Date[5] + Date[6];
     d := Date[7] + Date[8];
     Result := y + '-' + m + '-' + d;
-  end;
-end;
-
-procedure TdmFunc.BandMode(freq: string; var b, md: integer);
-var
-  f: double;
-begin
-  b := 0;
-  md := 2;
-  try
-    f := StrToFloat(freq) / 1000;
-    b := Trunc(f);
-    if b = 29 then
-      Dec(b);
-    if (b > 50) and (b <= 54) then
-      b := 50;
-    if (b > 144) and (b <= 148) then
-      b := 144;
-    if (b >= 430) then
-      b := 432;
-    case b of
-      1: if f < 1.84 then
-          md := 3
-        else
-          md := 1;
-      3: if f < 3.6 then
-          md := 3
-        else
-          md := 1;
-      5: md := 2;
-      7: if f < 7.035 then
-          md := 3
-        else if f < 7.043 then
-          md := 6
-        else
-          md := 1;
-      10: if f < 10.14 then
-          md := 3
-        else
-          md := 6;
-      14: if f < 14.07 then
-          md := 3
-        else if f < 14.1 then
-          md := 6
-        else
-          md := 2;
-      18: if f < 18.095 then
-          md := 3
-        else if f < 18.11 then
-          md := 6
-        else
-          md := 2;
-      21: if f < 21.07 then
-          md := 3
-        else if f < 21.11 then
-          md := 6
-        else
-          md := 2;
-      24: if f < 24.915 then
-          md := 3
-        else if f < 24.93 then
-          md := 6
-        else
-          md := 2;
-      28: if f < 28.07 then
-          md := 3
-        else if f < 28.1 then
-          md := 6
-        else if f < 29.5 then
-          md := 2
-        else
-          md := 4;
-      50: if f < 50.11 then
-          md := 3
-        else
-          md := 2;
-      70: md := 3;
-      144: if f < 144.2 then
-          md := 3
-        else
-          md := 2;
-      432: if f < 432.2 then
-          md := 3
-        else
-          md := 2;
-    end;
-    // if (md = 3) and cwrev then md := 7;
-  except
   end;
 end;
 

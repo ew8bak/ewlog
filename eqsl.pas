@@ -94,7 +94,7 @@ begin
   AddData('CALL', call);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', datestarted));
   AddData('TIME_ON', FormatDateTime('hhnnss', timestarted));
-  AddData('BAND', dmFunc.GetAdifBandFromFreq(qsofreq));
+  AddData('BAND', dmFunc.GetBandFromFreq(qsofreq));
   AddData('MODE', mode);
   AddData('SUBMODE',submode);
   AddData('RST_SENT', rst);

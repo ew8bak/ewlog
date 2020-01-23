@@ -165,8 +165,8 @@ begin
             MainForm.Edit3.Text := DXGrid;
 
             if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
-              (dmFunc.GetAdifBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
-              MainForm.ComboBox1.Text := dmFunc.GetAdifBandFromFreq(
+              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
+              MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
             else
               MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
@@ -255,8 +255,8 @@ begin
             MainForm.EditButton1.Text := DXCall;
 
              if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
-              (dmFunc.GetAdifBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
-              MainForm.ComboBox1.Text := dmFunc.GetAdifBandFromFreq(
+              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
+              MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
             else
               MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);

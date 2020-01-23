@@ -274,8 +274,8 @@ begin
     MainForm.ComboBox1.Text := FormatFloat(empty_freq, f);
 
   if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
-    (dmFunc.GetAdifBandFromFreq(FormatFloat(khz_freq, f)) <> '') then
-    MainForm.ComboBox1.Text := dmFunc.GetAdifBandFromFreq(FormatFloat(khz_freq, f));
+    (dmFunc.GetBandFromFreq(FormatFloat(khz_freq, f)) <> '') then
+    MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(khz_freq, f));
 
   if (Pos('FM', m) > 0) and (Pos('PKTFM', m) <= 0) and (Pos('WFM', m) <= 0) then
     m := 'FM';

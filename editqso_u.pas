@@ -560,7 +560,7 @@ begin
     begin
       DBGrid1.Canvas.FillRect(Rect);
       DBGrid1.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
-        dmFunc.GetAdifBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
+        dmFunc.GetBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
     end;
   end;
 

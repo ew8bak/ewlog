@@ -1095,7 +1095,7 @@ var
   tmp: extended;
 begin
   Result := '';
-  band := dmFunc.GetTelnetBandFromFreq(MHz);
+  band := dmFunc.GetBandFromFreq(MHz);
 
   MHz := MHz.replace('.', DefaultFormatSettings.DecimalSeparator);
   MHz := MHz.replace(',', DefaultFormatSettings.DecimalSeparator);
@@ -1108,7 +1108,7 @@ begin
   try
     qBands.Open;
     tmp := StrToFloat(MHz);
-    tmp := tmp / 1000;
+
     if qBands.RecordCount > 0 then
     begin
       if ((tmp >= qBands.FieldByName('B_BEGIN').AsCurrency) and
@@ -2430,7 +2430,7 @@ begin
         begin
           currfreq := stmp;
           curr_f := dmFunc.StrToFreq(stmp);
-          stmp := FormatFloat('0.000"."00', curr_f / 1000);
+          stmp := FormatFloat(view_freq, curr_f / 1000);
           ComboBox1.Text := stmp;
         end;
       end;
@@ -2619,7 +2619,7 @@ begin
   deldot := ComboBox1.Text;
   if Pos('M', deldot) > 0 then
   begin
-    deldot := dmFunc.FreqFromBand(deldot, ComboBox2.Text);
+    deldot := FormatFloat(view_freq, dmFunc.GetFreqFromBand(deldot, ComboBox2.Text));
     Delete(deldot, length(deldot) - 2, 1);
   end
   else
@@ -2642,7 +2642,7 @@ begin
   deldot := ComboBox1.Text;
   if Pos('M', deldot) > 0 then
   begin
-    deldot := dmFunc.FreqFromBand(deldot, ComboBox2.Text);
+    deldot := FormatFloat(view_freq,dmFunc.GetFreqFromBand(deldot, ComboBox2.Text));
     Delete(deldot, length(deldot) - 2, 1);
   end
   else
@@ -2844,7 +2844,6 @@ end;
 procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
-
   if LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
     with DBGrid1.Canvas do
     begin
@@ -3008,7 +3007,7 @@ begin
     begin
       DBGrid1.Canvas.FillRect(Rect);
       DBGrid1.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
-        dmFunc.GetAdifBandFromFreq(LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
+        dmFunc.GetBandFromFreq(LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
     end;
   end;
 
@@ -3180,7 +3179,7 @@ begin
     begin
       DBGrid2.Canvas.FillRect(Rect);
       DBGrid2.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
-        dmFunc.GetAdifBandFromFreq(DataSource2.DataSet.FieldByName('QSOBand').AsString));
+        dmFunc.GetBandFromFreq(DataSource2.DataSet.FieldByName('QSOBand').AsString));
     end;
   end;
 
@@ -3217,7 +3216,9 @@ var
   Data: PTreeData;
   XNode: PVirtualNode;
   ShowSpot: boolean;
+  freqMhz: Double;
 begin
+  freqMhz := 0;
   DX := '';
   Call := '';
   Freq := '';
@@ -3248,10 +3249,15 @@ begin
       Loc := StringReplace(TelnetLine.Substring(76, 4), ' ', '', [rfReplaceAll]);
     end;
 
-    Band := dmFunc.GetTelnetBandFromFreq(Freq);
+    if Freq <> '' then
+    freqMhz:=StrToDouble(Freq)/1000;
+
+    Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
     if not ShowSpot then
     begin
       case Band of
+        '2190M': showspot := True;
+        '630M': showspot := True;
         '160M': showspot := ClusterFilter.cb160m.Checked;
         '80M': showspot := ClusterFilter.cb80m.Checked;
         '60M': showspot := ClusterFilter.cb60m.Checked;
@@ -3265,43 +3271,50 @@ begin
         '6M': showspot := ClusterFilter.cb6m.Checked;
         '4M': showspot := ClusterFilter.cb4m.Checked;
         '2M': showspot := ClusterFilter.cb2m.Checked;
+        '1.25M': showspot := True;
         '70CM': showspot := ClusterFilter.cb70cm.Checked;
+        '33CM': showspot := True;
+        '23CM': showspot := True;
+        '13CM': showspot := True;
+        '9CM': showspot := True;
+        '6CM': showspot := True;
+        '3CM': showspot := True;
+        '1.25CM': showspot := True;
+        '6MM': showspot := True;
+        '4MM': showspot := True;
       end;
     end;
 
-
     if (Length(DX) > 0) and ShowSpot then
     begin
-      if FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False) = nil then
+      if FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False) = nil then
       begin
         XNode := VirtualStringTree1.AddChild(nil);
         Data := VirtualStringTree1.GetNodeData(Xnode);
-        Data^.DX := dmFunc.GetTelnetBandFromFreq(Freq);
+        Data^.DX := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
         XNode := VirtualStringTree1.AddChild(
-          FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False));
+          FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False));
         Data := VirtualStringTree1.GetNodeData(Xnode);
         Data^.Spots := DX;
         Data^.Call := Call;
         Data^.Freq := Freq;
-        Data^.Moda := GetModeFromFreq(Freq);
+        Data^.Moda := GetModeFromFreq(FloatToStr(freqMhz));
         Data^.Comment := Comment;
         Data^.Time := Time;
         Data^.Loc := Loc;
         Data^.Country := SearchCountry(DX, False);
-
         VirtualStringTree1.Expanded[XNode^.Parent] := True;
-
         FindCountryFlag(Data^.Country);
       end
       else
       begin
         XNode := VirtualStringTree1.InsertNode(
-          FindNode(dmFunc.GetTelnetBandFromFreq(Freq), False), amAddChildFirst);
+          FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False), amAddChildFirst);
         Data := VirtualStringTree1.GetNodeData(Xnode);
         Data^.Spots := DX;
         Data^.Call := Call;
         Data^.Freq := Freq;
-        Data^.Moda := GetModeFromFreq(Freq);
+        Data^.Moda := GetModeFromFreq(FloatToStr(freqMhz));
         Data^.Comment := Comment;
         Data^.Time := Time;
         Data^.Loc := Loc;
@@ -6122,7 +6135,7 @@ begin
       end;
 
       if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
-        NameBand := dmFunc.FreqFromBand(ComboBox1.Text, ComboBox2.Text)
+        NameBand := FormatFloat(view_freq,dmFunc.GetFreqFromBand(ComboBox1.Text, ComboBox2.Text))
       else
         NameBand := ComboBox1.Text;
 
@@ -6203,7 +6216,7 @@ begin
   begin
 
     if Pos('M', ComboBox1.Text) > 0 then
-      NameBand := dmFunc.FreqFromBand(ComboBox1.Text, ComboBox2.Text)
+      NameBand := FormatFloat(view_freq,dmFunc.GetFreqFromBand(ComboBox1.Text, ComboBox2.Text))
     else
       NameBand := ComboBox1.Text;
     DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
