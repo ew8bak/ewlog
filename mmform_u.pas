@@ -25,8 +25,11 @@ type
     procedure CheckBox1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
+    procedure ListView1SelectItem(Sender: TObject; Item: TListItem;
+      Selected: Boolean);
   private
-    procedure ReloadList;
+    procedure ReloadList(mode, enable: string);
+    procedure LoadList;
 
   public
 
@@ -42,16 +45,29 @@ uses dmFunc_U, MainForm_U;
 
 { TMM_Form }
 
-procedure TMM_Form.ReloadList;
+procedure TMM_Form.ReloadList(mode, enable: string);
+var
+  Item: TListItem;
+begin
+  try
+    Item:=ListView1.Selected;
+    if Item <> nil then begin
+      Item.Caption:=mode;
+      Item.SubItems[0]:=enable;
+    end;
+  finally
+  end;
+end;
+
+procedure TMM_Form.LoadList;
 var
   ListItem: TListItem;
 begin
   try
     MMQuery.DataBase := MainForm.ServiceDBConnection;
-
-    ListView1.Clear;
     MMQuery.SQL.Text := ('SELECT * FROM Modes');
     MMQuery.Open;
+    ListView1.Clear;
     while (not MMQuery.EOF) do
     begin
       ListItem := ListView1.Items.Add;
@@ -71,7 +87,7 @@ procedure TMM_Form.FormShow(Sender: TObject);
 begin
   if Length(LabeledEdit1.Text) = 0 then
     LabeledEdit1.Text := 'none';
-  ReloadList;
+  LoadList;
 end;
 
 procedure TMM_Form.CheckBox1Click(Sender: TObject);
@@ -86,7 +102,7 @@ begin
     SelectIndex := ListView1.ItemIndex;
     MMQuery.ExecSQL;
     MMQuery.SQLTransaction.Commit;
-    ReloadList;
+    ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked,'True','False'));
     ListView1.ItemIndex := SelectIndex;
     MainForm.AddModes('', False);
   end;
@@ -114,14 +130,20 @@ begin
     SelectIndex := ListView1.ItemIndex;
     MMQuery.ExecSQL;
     MMQuery.SQLTransaction.Commit;
-    ReloadList;
+    ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked,'True','False'));
     ListView1.ItemIndex := SelectIndex;
   end;
 end;
 
 procedure TMM_Form.ListView1Click(Sender: TObject);
 begin
-  if ListView1.Selected.Selected then
+
+end;
+
+procedure TMM_Form.ListView1SelectItem(Sender: TObject; Item: TListItem;
+  Selected: Boolean);
+begin
+    if Selected then
   begin
     MMQuery.SQL.Text := ('SELECT * FROM Modes WHERE mode = ' + QuotedStr(
       ListView1.Selected.Caption));

@@ -29,9 +29,11 @@ type
     procedure Button2Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ListView1Click(Sender: TObject);
+    procedure ListView1SelectItem(Sender: TObject; Item: TListItem;
+      Selected: Boolean);
   private
-    procedure ReloadList;
+    procedure ReloadList(band, b_begin, b_end, enable: string);
+    procedure LoadList;
 
   public
 
@@ -47,16 +49,31 @@ uses dmFunc_U, MainForm_U;
 
 { TFM_Form }
 
-procedure TFM_Form.ReloadList;
+procedure TFM_Form.ReloadList(band, b_begin, b_end, enable: string);
+var
+  Item: TListItem;
+begin
+  try
+    Item:=ListView1.Selected;
+    if Item <> nil then begin
+      Item.Caption:=band;
+      Item.SubItems[0]:=b_begin;
+      Item.SubItems[1]:=b_end;
+      Item.SubItems[2]:=enable;
+    end;
+  finally
+  end;
+end;
+
+procedure TFM_Form.LoadList;
 var
   ListItem: TListItem;
 begin
   try
     FMQuery.DataBase := MainForm.ServiceDBConnection;
-
-    ListView1.Clear;
     FMQuery.SQL.Text := ('SELECT * FROM Bands');
     FMQuery.Open;
+    ListView1.Clear;
     while (not FMQuery.EOF) do
     begin
       ListItem := ListView1.Items.Add;
@@ -76,7 +93,7 @@ end;
 
 procedure TFM_Form.FormShow(Sender: TObject);
 begin
-  ReloadList;
+  LoadList;
 end;
 
 procedure TFM_Form.Button1Click(Sender: TObject);
@@ -99,7 +116,7 @@ begin
     SelectIndex := ListView1.ItemIndex;
     FMQuery.ExecSQL;
     FMQuery.SQLTransaction.Commit;
-    ReloadList;
+    ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text, BoolToStr(CheckBox1.Checked,'True','False'));
     ListView1.ItemIndex := SelectIndex;
   end;
 end;
@@ -116,16 +133,16 @@ begin
     SelectIndex := ListView1.ItemIndex;
     FMQuery.ExecSQL;
     FMQuery.SQLTransaction.Commit;
-    ReloadList;
+    ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text, BoolToStr(CheckBox1.Checked,'True','False'));
     ListView1.ItemIndex := SelectIndex;
     MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),MainForm.ComboBox2.Text);
   end;
 end;
 
-procedure TFM_Form.ListView1Click(Sender: TObject);
+procedure TFM_Form.ListView1SelectItem(Sender: TObject; Item: TListItem;
+  Selected: Boolean);
 begin
-  if ListView1.Selected.Selected then
-  begin
+  if Selected then begin
     FMQuery.SQL.Text := ('SELECT * FROM Bands WHERE band = ' + QuotedStr(
       ListView1.Selected.Caption));
     FMQuery.Open;
