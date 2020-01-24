@@ -2370,6 +2370,23 @@ msgctxt "tlogconfigform.label24.caption"
 msgid "Password"
 msgstr "Пароль"
 
+#: tlogconfigform.label25.caption
+#, fuzzy
+msgctxt "tlogconfigform.label25.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tlogconfigform.label26.caption
+#, fuzzy
+msgctxt "tlogconfigform.label26.caption"
+msgid "Password"
+msgstr "Пароль"
+
+#: tlogconfigform.label27.caption
+msgctxt "tlogconfigform.label27.caption"
+msgid "LoTW"
+msgstr ""
+
 #: tlogconfigform.label3.caption
 msgid "Log set"
 msgstr "Настройки журнала"
@@ -2421,6 +2438,11 @@ msgstr "Оператор"
 #: tlogconfigform.tabsheet2.caption
 msgid "Services"
 msgstr "Сервисы"
+
+#: tlogconfigform.tabsheet3.caption
+msgctxt "tlogconfigform.tabsheet3.caption"
+msgid "LoTW"
+msgstr ""
 
 #: tmainform.caption
 msgid "EWLog - HAM Journal"

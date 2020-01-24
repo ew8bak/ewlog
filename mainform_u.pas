@@ -1916,6 +1916,32 @@ begin
 
     end;
 
+    CheckTableQuery.Close;
+    CheckTableQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
+    CheckTableQuery.Open;
+
+    try
+      if CheckTableQuery.FindField('LoTW_User') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_User varchar(20);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('LoTW_Password') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_Password varchar(50);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+    except
+      on E: ESQLDatabaseError do
+    end;
 
     LOGBookQuery.Close;
     LOGBookQuery.SQL.Text := 'select COUNT(*) from ' + LogTable;

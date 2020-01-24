@@ -32,6 +32,8 @@ type
     Edit14: TEdit;
     Edit15: TEdit;
     Edit16: TEdit;
+    Edit17: TEdit;
+    Edit18: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
@@ -57,6 +59,9 @@ type
     Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -76,6 +81,7 @@ type
     PopupMenu1: TPopupMenu;
     SQLQuery1: TSQLQuery;
     SQLQuery2: TSQLQuery;
+    TabSheet3: TTabSheet;
     UpdateConfQuery: TSQLQuery;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;

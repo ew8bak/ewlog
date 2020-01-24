@@ -590,6 +590,74 @@ object LogConfigForm: TLogConfigForm
           TabOrder = 8
         end
       end
+      object TabSheet3: TTabSheet
+        Caption = 'LoTW'
+        ClientHeight = 396
+        ClientWidth = 271
+        object Label25: TLabel
+          AnchorSideTop.Control = Edit17
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit17
+          Left = 39
+          Height = 13
+          Top = 38
+          Width = 30
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 3
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Edit17: TEdit
+          Left = 72
+          Height = 21
+          Top = 34
+          Width = 152
+          AutoSize = False
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Label26: TLabel
+          AnchorSideTop.Control = Edit18
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit18
+          Left = 18
+          Height = 13
+          Top = 70
+          Width = 51
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 3
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Edit18: TEdit
+          Left = 72
+          Height = 21
+          Top = 66
+          Width = 152
+          AutoSize = False
+          EchoMode = emPassword
+          Font.Height = -12
+          ParentFont = False
+          PasswordChar = '*'
+          TabOrder = 1
+        end
+        object Label27: TLabel
+          Left = 16
+          Height = 13
+          Top = 16
+          Width = 33
+          Caption = 'LoTW'
+          Font.Height = -12
+          Font.Style = [fsBold, fsUnderline]
+          ParentColor = False
+          ParentFont = False
+        end
+      end
     end
   end
   object Panel2: TPanel

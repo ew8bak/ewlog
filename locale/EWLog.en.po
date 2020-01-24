@@ -2310,6 +2310,21 @@ msgctxt "tlogconfigform.label24.caption"
 msgid "Password"
 msgstr ""
 
+#: tlogconfigform.label25.caption
+msgctxt "tlogconfigform.label25.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.label26.caption
+msgctxt "tlogconfigform.label26.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.label27.caption
+msgctxt "tlogconfigform.label27.caption"
+msgid "LoTW"
+msgstr ""
+
 #: tlogconfigform.label3.caption
 msgid "Log set"
 msgstr ""
@@ -2360,6 +2375,11 @@ msgstr ""
 
 #: tlogconfigform.tabsheet2.caption
 msgid "Services"
+msgstr ""
+
+#: tlogconfigform.tabsheet3.caption
+msgctxt "tlogconfigform.tabsheet3.caption"
+msgid "LoTW"
 msgstr ""
 
 #: tmainform.caption
