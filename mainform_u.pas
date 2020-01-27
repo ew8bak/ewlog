@@ -1803,6 +1803,8 @@ begin
 end;
 
 procedure TMainForm.SelectLogDatabase(LogDB: string);
+var
+  fAllRecords: integer;
 begin
   //FlagPagination := True;
   LogBookQuery.Close;
@@ -1820,7 +1822,7 @@ begin
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
       ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
-      LogDB + ' ORDER BY QSODate2, QSOTime2 ASC ) as lim USING(UnUsedIndex)';
+      LogDB + ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
   end
   else
   begin
@@ -1835,14 +1837,15 @@ begin
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
       + LogDB +
       ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
-      LogDB + ' ORDER BY QSODate2, QSOTime2 ASC ) as lim USING(UnUsedIndex)';
+      LogDB + ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
   end;
-  //  LOGBookQuery.Params[0].AsInteger := allrec - ofrec;
+
   LogBookQuery.Open;
   //LOGBookQuery.Last;
-  // lastID := fAllRecords + LOGBookQuery.RecNo - offsetRec;
-  // StatusBar1.Panels.Items[1].Text :=
-  //   'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
+   lastID := LOGBookQuery.RecNo;
+   fAllRecords := LOGBookQuery.RecordCount;
+  StatusBar1.Panels.Items[1].Text :=
+     'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
