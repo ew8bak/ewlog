@@ -322,7 +322,6 @@ type
     PopupMenu2: TPopupMenu;
     PopupDxCluster: TPopupMenu;
     CheckTableQuery: TSQLQuery;
-    ScrollBar1: TScrollBar;
     BandsQuery: TSQLQuery;
     subModesQuery: TSQLQuery;
     PrintDialog1: TPrintDialog;
@@ -690,8 +689,6 @@ type
 
   public
     { public declarations }
-    fAllRecords: integer;
-    FlagPagination: boolean;
     Command: string;
     FlagList: TImageList;
     FlagSList: TStringList;
@@ -731,7 +728,7 @@ type
 
     inupdate: boolean;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
-    procedure SelectLogDatabase(LogDB: string; allrec, ofrec: integer);
+    procedure SelectLogDatabase(LogDB: string);//; allrec, ofrec: integer);
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
@@ -1367,8 +1364,8 @@ begin
     Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     StatusBar1.Panels.Items[1].Text :=
-      'QSO № ' + IntToStr(fAllRecords + LOGBookQuery.RecNo - offsetRec) +
-      rQSOTotal + IntToStr(fAllRecords);
+      'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal;
+    // + IntToStr(fAllRecords);
   except
     on E: ESQLDatabaseError do
     begin
@@ -1516,7 +1513,7 @@ begin
     UniqueCallsCount := UniqueCallsQuery.RecordCount;
     subModesCount := subModesQuery.RecordCount;
 
-    DBGrid1.DataSource.DataSet.Last;
+    //DBGrid1.DataSource.DataSet.Last;
     PrefixProvinceQuery.First;
     PrefixARRLQuery.First;
     UniqueCallsQuery.First;
@@ -1805,9 +1802,9 @@ begin
   end;
 end;
 
-procedure TMainForm.SelectLogDatabase(LogDB: string; allrec, ofrec: integer);
+procedure TMainForm.SelectLogDatabase(LogDB: string);
 begin
-  FlagPagination := True;
+  //FlagPagination := True;
   LogBookQuery.Close;
 
   if DefaultDB = 'MySQL' then
@@ -1823,7 +1820,7 @@ begin
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
       ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
-      LogDB + ' ORDER BY QSODate2, QSOTime2 ASC LIMIT :n,1000) as lim USING(UnUsedIndex)';
+      LogDB + ' ORDER BY QSODate2, QSOTime2 ASC ) as lim USING(UnUsedIndex)';
   end
   else
   begin
@@ -1838,14 +1835,14 @@ begin
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
       + LogDB +
       ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
-      LogDB + ' ORDER BY QSODate2, QSOTime2 ASC LIMIT :n,1000) as lim USING(UnUsedIndex)';
+      LogDB + ' ORDER BY QSODate2, QSOTime2 ASC ) as lim USING(UnUsedIndex)';
   end;
-  LOGBookQuery.Params[0].AsInteger := allrec - ofrec;
+  //  LOGBookQuery.Params[0].AsInteger := allrec - ofrec;
   LogBookQuery.Open;
   //LOGBookQuery.Last;
-  lastID := fAllRecords + LOGBookQuery.RecNo - offsetRec;
-  StatusBar1.Panels.Items[1].Text :=
-    'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
+  // lastID := fAllRecords + LOGBookQuery.RecNo - offsetRec;
+  // StatusBar1.Panels.Items[1].Text :=
+  //   'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
@@ -1943,18 +1940,18 @@ begin
       on E: ESQLDatabaseError do
     end;
 
-    LOGBookQuery.Close;
-    LOGBookQuery.SQL.Text := 'select COUNT(*) from ' + LogTable;
-    LOGBookQuery.Open;
-    fAllRecords := LOGBookQuery.Fields[0].AsInteger;
-    LOGBookQuery.Close;
-    MainForm.SelectLogDatabase(LogTable, fAllRecords, offsetRec);
-    MainForm.DBGrid1.DataSource.DataSet.Last;
-    ScrollBar1.Max := fAllRecords;
-    ScrollBar1.Min := 0;
-    ScrollBar1.PageSize := 500;
-    ScrollBar1.Position := fAllRecords;
-    FlagPagination := False;
+    //    LOGBookQuery.Close;
+    //    LOGBookQuery.SQL.Text := 'select COUNT(*) from ' + LogTable;
+    //    LOGBookQuery.Open;
+    //    fAllRecords := LOGBookQuery.Fields[0].AsInteger;
+    //   LOGBookQuery.Close;
+    MainForm.SelectLogDatabase(LogTable);//, fAllRecords, offsetRec);
+    //   MainForm.DBGrid1.DataSource.DataSet.Last;
+    //   ScrollBar1.Max := fAllRecords;
+    //   ScrollBar1.Min := 0;
+    //   ScrollBar1.PageSize := 500;
+    //   ScrollBar1.Position := fAllRecords;
+    //   FlagPagination := False;
   end;
   SetGrid();
   LogBookFieldQuery.Open;
@@ -2331,11 +2328,11 @@ begin
           ' ORDER BY `UnUsedIndex`' + '');
       end;
       LogBookQuery.Open;
-      LOGBookQuery.Last;
-      lastID := MainForm.DBGrid1.DataSource.DataSet.RecNo;
-      StatusBar1.Panels.Items[1].Text :=
-        'QSO № ' + IntToStr(lastID) + rQSOTotal +
-        IntToStr(MainForm.LOGBookQuery.RecordCount);
+      // LOGBookQuery.Last;
+      // lastID := MainForm.DBGrid1.DataSource.DataSet.RecNo;
+      //  StatusBar1.Panels.Items[1].Text :=
+      //    'QSO № ' + IntToStr(lastID) + rQSOTotal +
+      //    IntToStr(MainForm.LOGBookQuery.RecordCount);
     end;
   end;
 
@@ -2612,7 +2609,7 @@ end;
 procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
-    SelectLogDatabase(LogTable, fAllRecords, offsetRec);
+    SelectLogDatabase(LogTable);//, fAllRecords, offsetRec);
 end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
@@ -2651,11 +2648,12 @@ begin
   else
     Delete(deldot, length(deldot) - 2, 1);
 
-  if ComboBox2.Text = 'SSB' then begin
-  if StrToDouble(deldot) >= 10 then
-    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
-  else
-    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
+  if ComboBox2.Text = 'SSB' then
+  begin
+    if StrToDouble(deldot) >= 10 then
+      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
+    else
+      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
   end;
 end;
 
@@ -2668,7 +2666,7 @@ begin
   deldot := ComboBox1.Text;
   if Pos('M', deldot) > 0 then
   begin
-    deldot := FormatFloat(view_freq,dmFunc.GetFreqFromBand(deldot, ComboBox2.Text));
+    deldot := FormatFloat(view_freq, dmFunc.GetFreqFromBand(deldot, ComboBox2.Text));
     Delete(deldot, length(deldot) - 2, 1);
   end
   else
@@ -2869,79 +2867,67 @@ end;
 
 procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
+var
+  Field_QSL: string;
+  Field_QSLs: string;
 begin
+  Field_QSL := LOGBookDS.DataSet.FieldByName('QSL').AsString;
+  Field_QSLs := LOGBookDS.DataSet.FieldByName('QSLs').AsString;
+
   if LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
     with DBGrid1.Canvas do
     begin
-      FillRect(Rect);
+      Brush.Color := clRed;
+      Font.Color := clBlack;
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clRed;
-        Font.Color := clBlack;
       end;
       FillRect(Rect);
       DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then
+  if (Field_QSL = '100') or (Field_QSL = '110') then
+    with DBGrid1.Canvas do
+    begin
+      Brush.Color := clFuchsia;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+
+  if (Field_QSLs = '10') or (Field_QSLs = '11') then
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
+      Brush.Color := clLime;
+      Font.Color := clBlack;
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clFuchsia;
-        Font.Color := clBlack;
       end;
       FillRect(Rect);
       DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') or
-    (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then
-    with DBGrid1.Canvas do
-    begin
-      FillRect(Rect);
-      if (gdSelected in State) then
-      begin
-        Brush.Color := clHighlight;
-        Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clLime;
-        Font.Color := clBlack;
-      end;
-      FillRect(Rect);
-      DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-    end;
-
-  if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') or
-    (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then
-    if (Column.FieldName = 'CallSign') then
+  if (Column.FieldName = 'CallSign') then
+    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') then
     begin
       with DBGrid1.Canvas do
       begin
+        Brush.Color := clYellow;
+        Font.Color := clBlack;
         if (gdSelected in State) then
         begin
           Brush.Color := clHighlight;
           Font.Color := clWhite;
-        end
-        else
-        begin
-          Brush.Color := clYellow;
-          Font.Color := clBlack;
         end;
         FillRect(Rect);
         DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
@@ -2953,49 +2939,29 @@ begin
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '000') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth(''), Rect.Top + 0, '');
-      end;
+      if (Field_QSL = '000') then
+        TextOut(Rect.Right - 6 - TextWidth(''), Rect.Top + 0, '');
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
-      end;
+      if (Field_QSL = '100') then
+        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PE'),
-          Rect.Top + 0, 'PE');
-      end;
+      if (Field_QSL = '110') then
+        TextOut(Rect.Right - 10 - TextWidth('PE'), Rect.Top + 0, 'PE');
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('PLE'),
-          Rect.Top + 0, 'PLE');
-      end;
+      if (Field_QSL = '111') then
+        TextOut(Rect.Right - 6 - TextWidth('PLE'), Rect.Top + 0, 'PLE');
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('E'), Rect.Top + 0, 'E');
-      end;
+      if (Field_QSL = '010') then
+        TextOut(Rect.Right - 6 - TextWidth('E'), Rect.Top + 0, 'E');
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '001') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('L'), Rect.Top + 0, 'L');
-      end;
+      if (Field_QSL = '001') then
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '101') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PL'),
-          Rect.Top + 0, 'PL');
-      end;
+      if (Field_QSL = '101') then
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
 
-      if (LOGBookDS.DataSet.FieldByName('QSL').AsString = '011') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('LE'),
-          Rect.Top + 0, 'LE');
-      end;
+      if (Field_QSL = '011') then
+        TextOut(Rect.Right - 10 - TextWidth('LE'), Rect.Top + 0, 'LE');
     end;
   end;
 
@@ -3004,30 +2970,22 @@ begin
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '00') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth(''), Rect.Top + 0, '');
-      end;
+      if (Field_QSLs = '00') then
+        TextOut(Rect.Right - 6 - TextWidth(''), Rect.Top + 0, '');
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
-      end;
+      if (Field_QSLs = '10') then
+        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PL'),
-          Rect.Top + 0, 'PE');
-      end;
+      if (Field_QSLs = '11') then
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PE');
 
-      if (LOGBookDS.DataSet.FieldByName('QSLs').AsString = '01') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('L'), Rect.Top + 0, 'PLE');
-      end;
+      if (Field_QSLs = '01') then
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'PLE');
     end;
   end;
 
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+
+  if ConfigForm.CheckBox2.Checked = True then
   begin
     if (Column.FieldName = 'QSOBand') then
     begin
@@ -3242,7 +3200,7 @@ var
   Data: PTreeData;
   XNode: PVirtualNode;
   ShowSpot: boolean;
-  freqMhz: Double;
+  freqMhz: double;
 begin
   freqMhz := 0;
   DX := '';
@@ -3276,7 +3234,7 @@ begin
     end;
 
     if Freq <> '' then
-    freqMhz:=StrToDouble(Freq)/1000;
+      freqMhz := StrToDouble(Freq) / 1000;
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
     if not ShowSpot then
@@ -3642,34 +3600,7 @@ begin
 end;
 
 procedure TMainForm.LOGBookQueryBeforeScroll(DataSet: TDataSet);
-var
-  recnom: integer;
 begin
-  recnom := DataSet.RecNo;
-  if fAllRecords = 0 then
-    exit;
-  if (FlagPagination <> True) and (DataSet.RecNo < 100) then
-  begin
-    offsetRec := offsetRec + 500;
-    SelectLogDatabase(LogTable, fAllRecords, offsetRec);
-    DataSet.RecNo := recnom + 500;
-    Application.ProcessMessages;
-    FlagPagination := False;
-  end;
-  if (FlagPagination <> True) and (DataSet.RecNo > 900) then
-  begin
-    offsetRec := offsetRec - 500;
-    if offsetRec < 0 then
-      offsetRec := 0
-    else
-    begin
-      SelectLogDatabase(LogTable, fAllRecords, offsetRec);
-      DataSet.RecNo := recnom - 500;
-      Application.ProcessMessages;
-      FlagPagination := False;
-    end;
-  end;
-  recnom := DataSet.RecNo;
 
 end;
 
@@ -3894,7 +3825,7 @@ begin
       QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  LOGBookQuery.Last;
+  // LOGBookQuery.Last;
 end;
 
 procedure TMainForm.MenuItem105Click(Sender: TObject);
@@ -3931,7 +3862,7 @@ begin
       QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  LOGBookQuery.Last;
+  // LOGBookQuery.Last;
 end;
 
 procedure TMainForm.MenuItem106Click(Sender: TObject);
@@ -3968,7 +3899,7 @@ begin
       QuotedStr(IntToStr(0)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  LOGBookQuery.Last;
+  // LOGBookQuery.Last;
 end;
 
 procedure TMainForm.MenuItem107Click(Sender: TObject);
@@ -4005,7 +3936,7 @@ begin
       QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  LOGBookQuery.Last;
+  //LOGBookQuery.Last;
 
 end;
 
@@ -4043,12 +3974,12 @@ begin
       QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  LOGBookQuery.Last;
+  // LOGBookQuery.Last;
 end;
 
 procedure TMainForm.MenuItem109Click(Sender: TObject);
 begin
-  SelectLogDatabase(LogTable, fAllRecords, offsetRec);
+  SelectLogDatabase(LogTable);//, fAllRecords, offsetRec);
 end;
 
 //QSL получена и отправлена на печать
@@ -5972,7 +5903,7 @@ end;
 
 procedure TMainForm.ScrollBar1Change(Sender: TObject);
 begin
-  SelectLogDatabase(LogTable, ScrollBar1.Position, offsetRec);
+  SelectLogDatabase(LogTable);//, ScrollBar1.Position, offsetRec);
 end;
 
 procedure TMainForm.SpeedButton16Click(Sender: TObject);
@@ -6161,7 +6092,8 @@ begin
       end;
 
       if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
-        NameBand := FormatFloat(view_freq,dmFunc.GetFreqFromBand(ComboBox1.Text, ComboBox2.Text))
+        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+          ComboBox1.Text, ComboBox2.Text))
       else
         NameBand := ComboBox1.Text;
 
@@ -6242,7 +6174,9 @@ begin
   begin
 
     if Pos('M', ComboBox1.Text) > 0 then
-      NameBand := FormatFloat(view_freq,dmFunc.GetFreqFromBand(ComboBox1.Text, ComboBox2.Text))
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+        ComboBox1.Text, ComboBox2.Text))
+
     else
       NameBand := ComboBox1.Text;
     DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);

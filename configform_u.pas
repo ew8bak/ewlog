@@ -88,6 +88,7 @@ type
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SaveINI;
     procedure ReadINI;
@@ -281,6 +282,11 @@ begin
     IniF.WriteString('SetLog', 'Sprav', 'True')
   else
     IniF.WriteString('SetLog', 'Sprav', 'False');
+end;
+
+procedure TConfigForm.FormCreate(Sender: TObject);
+begin
+  ReadINI;
 end;
 
 procedure TConfigForm.FormShow(Sender: TObject);
