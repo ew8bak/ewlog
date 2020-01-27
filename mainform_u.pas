@@ -1354,7 +1354,7 @@ end;
 procedure TMainForm.SelectQSO;
 begin
   try
-    SearchCallLog(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, 0, False);
+    SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString), 0, False);
     SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
     Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
     Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
@@ -1549,15 +1549,11 @@ begin
   finally
 
   end;
-  //  except
-  //   ShowMessage(rDataBaseFault);
-  //   SetupForm.Show;
-  // end;
 end;
 
 procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
 begin
-  // callNameS := dmFunc.ExtractCallsign(callNameS);
+ // callNameS := dmFunc.ExtractCallsign(callNameS);
   SQLQuery2.Close;
   SQLQuery2.SQL.Clear;
 
@@ -1585,7 +1581,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
       + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE `Call` = ' +
-      QuotedStr(callNameS) + ' ORDER BY date(QSODate), time(QSOTime) ASC');
+      QuotedStr(callNameS) + ' ORDER BY date(QSODate) ASC, time(QSOTime) ASC');
   SQLQuery2.Open;
 
   if (SQLQuery2.RecordCount > 0) and (ind = 1) and (EditButton1.Text <> '') then
@@ -2908,7 +2904,6 @@ begin
   if (Field_QSLs = '10') or (Field_QSLs = '11') then
     with DBGrid1.Canvas do
     begin
-      FillRect(Rect);
       Brush.Color := clLime;
       Font.Color := clBlack;
       if (gdSelected in State) then
@@ -2942,8 +2937,6 @@ begin
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
-      if (Field_QSL = '000') then
-        TextOut(Rect.Right - 6 - TextWidth(''), Rect.Top + 0, '');
 
       if (Field_QSL = '100') then
         TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
@@ -2973,9 +2966,6 @@ begin
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
-      if (Field_QSLs = '00') then
-        TextOut(Rect.Right - 6 - TextWidth(''), Rect.Top + 0, '');
-
       if (Field_QSLs = '10') then
         TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
@@ -3025,16 +3015,12 @@ begin
     (DataSource2.DataSet.FieldByName('QSL').AsString = '110') then
     with DBGrid2.Canvas do
     begin
-      FillRect(Rect);
+    Brush.Color := clFuchsia;
+        Font.Color := clBlack;
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clFuchsia;
-        Font.Color := clBlack;
       end;
       FillRect(Rect);
       DBGrid2.DefaultDrawColumnCell(Rect, DataCol, Column, State);
@@ -3044,7 +3030,6 @@ begin
     (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') then
     with DBGrid2.Canvas do
     begin
-      FillRect(Rect);
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;

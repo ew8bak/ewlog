@@ -399,7 +399,6 @@ begin
 
           if FREQ = '' then
             FREQ := FormatFloat('0.000"."00',dmFunc.GetFreqFromBand(BAND, MODE));
-         // FREQ := FormatFloat('0.000"."00', StrToFloat(FREQ));
           BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ));
 
           yyyy := StrToInt(QSO_DATE[1] + QSO_DATE[2] + QSO_DATE[3] +
