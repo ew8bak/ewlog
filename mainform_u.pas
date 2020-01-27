@@ -1354,8 +1354,9 @@ end;
 procedure TMainForm.SelectQSO;
 begin
   try
-    SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString), 0, False);
-    SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
+//    SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString), 0, False);
+  //  SearchCallLog('R6AF', 0, False);
+    SearchPrefix(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString), True);
     Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
     Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
     Label19.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString;
