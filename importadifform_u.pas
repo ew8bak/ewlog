@@ -70,12 +70,43 @@ uses dmFunc_U, MainForm_U;
 
 { TImportADIFForm }
 
+procedure CheckMode(modulation: string; var ResSubMode, ResMode: string);
+begin
+  case modulation of
+    'BPSK62':
+    begin
+      ResMode := 'PSK';
+      ResSubMode := 'PSK62';
+    end;
+    'MFSK16':
+    begin
+      ResMode := 'MFSK';
+      ResSubMode := 'MFSK16';
+    end;
+    'PSK31':
+    begin
+      ResMode := 'PSK';
+      ResSubMode := 'PSK31';
+    end;
+    'LSB':
+    begin
+      ResMode := 'SSB';
+      ResSubMode := 'LSB';
+    end;
+    'USB':
+    begin
+      ResMode := 'SSB';
+      ResSubMode := 'USB';
+    end;
+  end;
+end;
+
 function getField(s, field: string): string;
 var
   start: integer = 0;
   stop: integer = 0;
 begin
-  field := UpperCase(field);
+
   if field = 'VALIDDX' then
     field := 'ValidDX';
   if field = 'NOCALCDXCC' then
@@ -94,6 +125,9 @@ begin
   except
     Result := '';
   end;
+
+  if (Result = '') and (field <> LowerCase(field)) then
+    Result := getField(s, LowerCase(field));
 end;
 
 function Q(s: string): string;
@@ -135,6 +169,7 @@ var
   EQSL_QSL_RCVD: string;
   EQSL_QSL_SENT: string;
   FREQ: string;
+  FREQ_Float: double;
   FREQ_RX: string;
   GRIDSQUARE: string;
   IOTA: string;
@@ -146,6 +181,7 @@ var
   MARKER: string;
   MODE: string;
   MY_GRIDSQUARE: string;
+  MY_STATE: string;
   sNAME: string;
   NOTES: string;
   NoCalcDXCC: string;
@@ -214,7 +250,6 @@ begin
   except
     on E: ESQLDatabaseError do
     begin
-      //  WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
       if E.ErrorCode = 1091 then
         MainForm.MySQLLOGDBConnection.ExecuteDirect('ALTER TABLE ' +
           LogTable + ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
@@ -264,6 +299,7 @@ begin
         EQSL_QSL_RCVD := '';
         EQSL_QSL_SENT := '';
         FREQ := '';
+        FREQ_Float := 0;
         FREQ_RX := '';
         GRIDSQUARE := '';
         IOTA := '';
@@ -275,6 +311,7 @@ begin
         MARKER := '';
         MODE := '';
         MY_GRIDSQUARE := '';
+        MY_STATE := '';
         sNAME := '';
         NOTES := '';
         NoCalcDXCC := '';
@@ -342,6 +379,7 @@ begin
         MARKER := getField(s, 'MARKER');
         MODE := getField(s, 'MODE');
         MY_GRIDSQUARE := getField(s, 'MY_GRIDSQUARE');
+        MY_STATE := getField(s, 'MY_STATE');
         sNAME := getField(s, 'NAME');
         NOTES := getField(s, 'NOTES');
         NoCalcDXCC := getField(s, 'NoCalcDXCC');
@@ -391,15 +429,17 @@ begin
             RST_SENT := '599';
           if ((MODE = 'CW') and (RST_RCVD = '')) then
             RST_RCVD := '599';
-          if (MODE = 'USB') or (MODE = 'LSB') then
-            MODE := 'SSB';
 
-          if MODE.Length=0 then
-          MODE:=MainForm.FindMode(SUBMODE);
+          CheckMode(MODE, SUBMODE, MODE);
 
           if FREQ = '' then
-            FREQ := FormatFloat('0.000"."00',dmFunc.GetFreqFromBand(BAND, MODE));
-          BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ));
+            FREQ := FormatFloat('0.000"."00', dmFunc.GetFreqFromBand(BAND, MODE))
+          else
+            FREQ_Float := StrToFloat(FREQ);
+
+          FREQ := FormatFloat('0.000"."00', FREQ_Float);
+
+          BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FloatToStr(FREQ_Float)));
 
           yyyy := StrToInt(QSO_DATE[1] + QSO_DATE[2] + QSO_DATE[3] +
             QSO_DATE[4]);
@@ -410,22 +450,6 @@ begin
             QSOTIME := TIME_OFF;
           if RadioButton2.Checked = True then
             QSOTIME := TIME_ON;
-
-    {  if not dmFunc.IsAdifOK(QSO_DATE, QSOTIME, QSOTIME, CALL, FREQ,
-        MODE, RST_SENT, RST_RCVD, IOTA, ITUZ, CQZ, GRIDSQUARE, MY_GRIDSQUARE, BAND) then
-      begin
-        Inc(err);
-        lblErrors.Caption :=
-          rImportErrors + ' ' + IntToStr(err);
-        lblErrorLog.Caption :=
-          rFileError + PathMyDoc + ERR_FILE;
-        Repaint;
-        Application.ProcessMessages;
-        WriteWrongADIF(Lines);
-        Len := 0;
-        SetLength(Lines, 0);
-        Continue;
-      end;}
 
           if MainForm.MySQLLOGDBConnection.Connected then
             paramQSODate := dmFunc.ADIFDateToDate(QSO_DATE)
@@ -559,21 +583,21 @@ begin
             'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
             + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
             + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,'
-            + 'NoCalcDXCC) VALUES (' + Q(CALL) + Q(paramQSODate) +
-            Q(QSOTIME) + Q(FREQ) + Q(MODE) + Q(SUBMODE) + Q(RST_SENT) + Q(RST_RCVD) +
-            Q(sNAME) + Q(QTH) + Q(STATE) + Q(GRIDSQUARE) + Q(IOTA) +
-            Q(QSL_VIA) + Q(paramQSLSent) + Q(paramQSLSentAdv) +
-            Q(paramQSLSDATE) + Q(ParamQSL_RCVD) + Q(paramQSLRDATE) +
-            Q(PFX) + Q(DXCC_PREF) + Q(CQZ) + Q(ITUZ) + Q(COMMENT) +
-            Q(paramMARKER) + Q('0') + Q(BAND) + Q(CONT) + Q(COMMENT) +
-            Q(paramEQSL_QSL_RCVD) + Q(paramLOTW_QSL_RCVD) +
+            + 'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE) VALUES (' + Q(CALL) +
+            Q(paramQSODate) + Q(QSOTIME) + Q(FREQ) + Q(MODE) + Q(SUBMODE) +
+            Q(RST_SENT) + Q(RST_RCVD) + Q(sNAME) + Q(QTH) + Q(STATE) +
+            Q(GRIDSQUARE) + Q(IOTA) + Q(QSL_VIA) + Q(paramQSLSent) +
+            Q(paramQSLSentAdv) + Q(paramQSLSDATE) + Q(ParamQSL_RCVD) +
+            Q(paramQSLRDATE) + Q(PFX) + Q(DXCC_PREF) + Q(CQZ) + Q(ITUZ) +
+            Q(COMMENT) + Q(paramMARKER) + Q('0') + Q(BAND) + Q(CONT) +
+            Q(COMMENT) + Q(paramEQSL_QSL_RCVD) + Q(paramLOTW_QSL_RCVD) +
             Q(paramLOTW_QSLRDATE) + Q(QSLMSG) + Q(dmFunc.ExtractCallsign(CALL)) +
             Q(STATE1) + Q(STATE2) + Q(STATE3) + Q(STATE4) +
             Q(dmFunc.ExtractWPXPrefix(CALL)) + Q('Awards') + Q(paramValidDX) +
             Q(SRX) + Q(SRX_STRING) + Q(STX) + Q(STX_STRING) + Q(SAT_NAME) +
             Q(SAT_MODE) + Q(PROP_MODE) + Q(paramLOTW_QSL_SENT) +
             Q(QSL_RCVD_VIA) + Q(QSL_SENT_VIA) + Q(DXCC) +
-            QuotedStr(paramNoCalcDXCC) + ')';
+            Q(paramNoCalcDXCC) + Q(MY_STATE) + QuotedStr(MY_GRIDSQUARE) + ')';
 
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)
@@ -591,7 +615,6 @@ begin
       except
         on E: ESQLDatabaseError do
         begin
-          // WriteLn(IntToStr(E.ErrorCode) + ' : ' + E.Message);
           if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
           begin
             Inc(DupeCount);
@@ -686,10 +709,12 @@ end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected then begin
+  if MainForm.MySQLLOGDBConnection.Connected then
+  begin
     MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
   end
-  else begin
+  else
+  begin
     MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
 

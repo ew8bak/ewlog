@@ -531,7 +531,6 @@ type
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Label50Click(Sender: TObject);
-    procedure LOGBookQueryBeforeScroll(DataSet: TDataSet);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
@@ -819,6 +818,7 @@ var
   CheckForm: string;
   sprav: string;
   seleditnum: integer;
+  fAllRecords: integer;
 
 
 
@@ -1354,9 +1354,8 @@ end;
 procedure TMainForm.SelectQSO;
 begin
   try
-//    SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString), 0, False);
-  //  SearchCallLog('R6AF', 0, False);
-    SearchPrefix(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString), True);
+    SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString), 0, False);
+    SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
     Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
     Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
     Label19.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString;
@@ -1365,8 +1364,7 @@ begin
     Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     StatusBar1.Panels.Items[1].Text :=
-      'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal;
-    // + IntToStr(fAllRecords);
+      'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
   except
     on E: ESQLDatabaseError do
     begin
@@ -1554,10 +1552,8 @@ end;
 
 procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
 begin
- // callNameS := dmFunc.ExtractCallsign(callNameS);
   SQLQuery2.Close;
   SQLQuery2.SQL.Clear;
-
   if MySQLLOGDBConnection.Connected then
     SQLQuery2.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
@@ -1800,10 +1796,11 @@ begin
 end;
 
 procedure TMainForm.SelectLogDatabase(LogDB: string);
-var
-  fAllRecords: integer;
 begin
-  //FlagPagination := True;
+  LogBookQuery.Close;
+  LogBookQuery.SQL.Text:='SELECT COUNT(*) FROM '+LogDB;
+  LogBookQuery.Open;
+  fAllRecords := LogBookQuery.Fields[0].AsInteger;
   LogBookQuery.Close;
 
   if DefaultDB = 'MySQL' then
@@ -1838,9 +1835,7 @@ begin
   end;
 
   LogBookQuery.Open;
-  //LOGBookQuery.Last;
-   lastID := LOGBookQuery.RecNo;
-   fAllRecords := LOGBookQuery.RecordCount;
+  lastID := LOGBookQuery.RecNo;
   StatusBar1.Panels.Items[1].Text :=
      'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
 end;
@@ -1940,18 +1935,7 @@ begin
       on E: ESQLDatabaseError do
     end;
 
-    //    LOGBookQuery.Close;
-    //    LOGBookQuery.SQL.Text := 'select COUNT(*) from ' + LogTable;
-    //    LOGBookQuery.Open;
-    //    fAllRecords := LOGBookQuery.Fields[0].AsInteger;
-    //   LOGBookQuery.Close;
-    MainForm.SelectLogDatabase(LogTable);//, fAllRecords, offsetRec);
-    //   MainForm.DBGrid1.DataSource.DataSet.Last;
-    //   ScrollBar1.Max := fAllRecords;
-    //   ScrollBar1.Min := 0;
-    //   ScrollBar1.PageSize := 500;
-    //   ScrollBar1.Position := fAllRecords;
-    //   FlagPagination := False;
+    MainForm.SelectLogDatabase(LogTable);
   end;
   SetGrid();
   LogBookFieldQuery.Open;
@@ -1965,125 +1949,20 @@ var
   la, lo: currency;
   azim, qra, loc: string;
 begin
-  // callnames := dmFunc.ExtractCallsign(CallName);
   Result := False;
-  loc := '';
-  qra := '';
-  azim := '';
-  la := 0;
-  lo := 0;
-  with MainForm.SQLQuery2 do
-  begin
-    Close;
-    SQL.Clear;
-    if MySQLLOGDBConnection.Connected then
-      SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-        + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE `Call` = ' +
-        QuotedStr(CallName) +
-        ' ORDER BY YEAR(QSODate), MONTH(QSODate), DAY(QSODate), QSOTime ASC')
-    else
-      SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-        ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-        + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) as `QSL`, (`QSLSent`||'
-        + '`LoTWSent`) as `QSLs` FROM ' + LogTable + ' WHERE `Call` = ' +
-        QuotedStr(CallName) + ' ORDER BY date(QSODate), time(QSOTime) ASC');
-    Open;
-  end;
-
+   loc := '';
+   qra := '';
+   azim := '';
+   la := 0;
+   lo := 0;
   if UniqueCallsList.IndexOf(CallName) > -1 then
-  begin
-    with MainForm.PrefixQuery do
-    begin
-      Close;
-      SQL.Clear;
-      SQL.Add('select * from UniqueCalls where _id = "' +
-        IntToStr(UniqueCallsList.IndexOf(CallName)) + '"');
-      Open;
-      MainForm.Label33.Caption := FieldByName('Country').AsString;
-      MainForm.Label34.Caption := FieldByName('ARRLPrefix').AsString;
-      MainForm.Label38.Caption := FieldByName('Prefix').AsString;
-      MainForm.Label45.Caption := FieldByName('CQZone').AsString;
-      MainForm.Label47.Caption := FieldByName('ITUZone').AsString;
-      MainForm.Label43.Caption := FieldByName('Continent').AsString;
-      MainForm.Label40.Caption := FieldByName('Latitude').AsString;
-      MainForm.Label42.Caption := FieldByName('Longitude').AsString;
-      CallLAT := FieldByName('Latitude').AsString;
-      CallLON := FieldByName('Longitude').AsString;
-      DXCCNum := FieldByName('DXCC').AsInteger;
-    end;
-
-    if gridloc = True then
-      loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-
-    la1 := CallLAT;
-    lo1 := CallLON;
-
-    if (UTF8Pos('W', lo1) <> 0) then
-      lo1 := '-' + lo1;
-    if (UTF8Pos('S', la1) <> 0) then
-      la1 := '-' + la1;
-    Delete(la1, length(la1), 1);
-    Delete(lo1, length(lo1), 1);
-
-    if gridloc = True then
-    begin
-      if MainForm.Edit3.Text <> '' then
-        loc := MainForm.Edit3.Text;
-    end
-    else
-      loc := MainForm.Edit3.Text;
-
-    if (loc <> '') and dmFunc.IsLocOK(loc) then
-    begin
-      dmFunc.CoordinateFromLocator(loc, la, lo);
-
-      la1 := CurrToStr(la);
-      lo1 := CurrToStr(lo);
-
-      if loc = SetLoc then
-        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
-      else
-        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
-    end
-    else
-    begin
-      R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
-        StrToFloat(lo1)) / 1000;
-    end;
-    MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
-    ///////АЗИМУТ
-    dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
-      strtofloat(lo1), qra, azim);
-    MainForm.Label32.Caption := azim;
-    Result := True;
-    exit;
-  end;
-
-  for i := 0 to PrefixProvinceCount do
-  begin
-    if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-      (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
     begin
       with MainForm.PrefixQuery do
       begin
         Close;
         SQL.Clear;
-        SQL.Add('select * from Province where _id = "' +
-          IntToStr(PrefixExpProvinceArray[i].id) + '"');
+        SQL.Add('select * from UniqueCalls where _id = "' +
+          IntToStr(UniqueCallsList.IndexOf(CallName)) + '"');
         Open;
         MainForm.Label33.Caption := FieldByName('Country').AsString;
         MainForm.Label34.Caption := FieldByName('ARRLPrefix').AsString;
@@ -2096,7 +1975,6 @@ begin
         CallLAT := FieldByName('Latitude').AsString;
         CallLON := FieldByName('Longitude').AsString;
         DXCCNum := FieldByName('DXCC').AsInteger;
-        timedif := FieldByName('TimeDiff').AsInteger;
       end;
 
       if gridloc = True then
@@ -2145,90 +2023,162 @@ begin
       Result := True;
       exit;
     end;
-  end;
 
-  for j := 0 to PrefixARRLCount do
-  begin
-    if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
-      (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+    for i := 0 to PrefixProvinceCount do
     begin
-      with MainForm.PrefixQuery do
+      if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
+        (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
       begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from CountryDataEx where _id = "' +
-          IntToStr(PrefixExpARRLArray[j].id) + '"');
-        Open;
-        if (FieldByName('Status').AsString = 'Deleted') then
+        with MainForm.PrefixQuery do
         begin
-          PrefixExpARRLArray[j].reg.ExecNext;
-          Exit;
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from Province where _id = "' +
+            IntToStr(PrefixExpProvinceArray[i].id) + '"');
+          Open;
+          MainForm.Label33.Caption := FieldByName('Country').AsString;
+          MainForm.Label34.Caption := FieldByName('ARRLPrefix').AsString;
+          MainForm.Label38.Caption := FieldByName('Prefix').AsString;
+          MainForm.Label45.Caption := FieldByName('CQZone').AsString;
+          MainForm.Label47.Caption := FieldByName('ITUZone').AsString;
+          MainForm.Label43.Caption := FieldByName('Continent').AsString;
+          MainForm.Label40.Caption := FieldByName('Latitude').AsString;
+          MainForm.Label42.Caption := FieldByName('Longitude').AsString;
+          CallLAT := FieldByName('Latitude').AsString;
+          CallLON := FieldByName('Longitude').AsString;
+          DXCCNum := FieldByName('DXCC').AsInteger;
+          timedif := FieldByName('TimeDiff').AsInteger;
         end;
-      end;
-      MainForm.Label33.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
-      MainForm.Label34.Caption :=
-        MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      MainForm.Label38.Caption :=
-        MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      MainForm.Label45.Caption := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-      MainForm.Label47.Caption := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-      MainForm.Label43.Caption :=
-        MainForm.PrefixQuery.FieldByName('Continent').AsString;
-      MainForm.Label40.Caption :=
-        MainForm.PrefixQuery.FieldByName('Latitude').AsString;
-      CallLAT := MainForm.PrefixQuery.FieldByName('Latitude').AsString;
-      MainForm.Label42.Caption :=
-        MainForm.PrefixQuery.FieldByName('Longitude').AsString;
 
-      CallLON := MainForm.PrefixQuery.FieldByName('Longitude').AsString;
-      DXCCNum := MainForm.PrefixQuery.FieldByName('DXCC').AsInteger;
-      timedif := MainForm.PrefixQuery.FieldByName('TimeDiff').AsInteger;
-      loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+        if gridloc = True then
+          loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
 
-      la1 := CallLAT;
-      lo1 := CallLON;
+        la1 := CallLAT;
+        lo1 := CallLON;
 
-      if (UTF8Pos('W', lo1) <> 0) then
-        lo1 := '-' + lo1;
-      if (UTF8Pos('S', la1) <> 0) then
-        la1 := '-' + la1;
-      Delete(la1, length(la1), 1);
-      Delete(lo1, length(lo1), 1);
+        if (UTF8Pos('W', lo1) <> 0) then
+          lo1 := '-' + lo1;
+        if (UTF8Pos('S', la1) <> 0) then
+          la1 := '-' + la1;
+        Delete(la1, length(la1), 1);
+        Delete(lo1, length(lo1), 1);
 
-      loc := MainForm.Edit3.Text;
-      if gridloc = True then
-      begin
-        if MainForm.Edit3.Text <> '' then
-          loc := MainForm.Edit3.Text;
-      end;
-
-      if (loc <> '') and dmFunc.IsLocOK(loc) then
-      begin
-        dmFunc.CoordinateFromLocator(loc, la, lo);
-
-        la1 := CurrToStr(la);
-        lo1 := CurrToStr(lo);
-        if loc = SetLoc then
-          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
+        if gridloc = True then
+        begin
+          if MainForm.Edit3.Text <> '' then
+            loc := MainForm.Edit3.Text;
+        end
         else
-          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
-      end
-      else
-      begin
-        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
-          StrToFloat(lo1)) / 1000;
+          loc := MainForm.Edit3.Text;
+
+        if (loc <> '') and dmFunc.IsLocOK(loc) then
+        begin
+          dmFunc.CoordinateFromLocator(loc, la, lo);
+
+          la1 := CurrToStr(la);
+          lo1 := CurrToStr(lo);
+
+          if loc = SetLoc then
+            R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
+          else
+            R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
+        end
+        else
+        begin
+          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
+            StrToFloat(lo1)) / 1000;
+        end;
+        MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
+        ///////АЗИМУТ
+        dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
+          strtofloat(lo1), qra, azim);
+        MainForm.Label32.Caption := azim;
+        Result := True;
+        exit;
       end;
-
-      MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
-      ////Азимут
-      dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
-        strtofloat(lo1), qra, azim);
-      MainForm.Label32.Caption := azim;// +'/'+azim2;
-      Result := True;
-      exit;
     end;
-  end;
 
+    for j := 0 to PrefixARRLCount do
+    begin
+      if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
+        (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+      begin
+        with MainForm.PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from CountryDataEx where _id = "' +
+            IntToStr(PrefixExpARRLArray[j].id) + '"');
+          Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[j].reg.ExecNext;
+            Exit;
+          end;
+        end;
+        MainForm.Label33.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
+        MainForm.Label34.Caption :=
+          MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+        MainForm.Label38.Caption :=
+          MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+        MainForm.Label45.Caption := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
+        MainForm.Label47.Caption := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
+        MainForm.Label43.Caption :=
+          MainForm.PrefixQuery.FieldByName('Continent').AsString;
+        MainForm.Label40.Caption :=
+          MainForm.PrefixQuery.FieldByName('Latitude').AsString;
+        CallLAT := MainForm.PrefixQuery.FieldByName('Latitude').AsString;
+        MainForm.Label42.Caption :=
+          MainForm.PrefixQuery.FieldByName('Longitude').AsString;
+
+        CallLON := MainForm.PrefixQuery.FieldByName('Longitude').AsString;
+        DXCCNum := MainForm.PrefixQuery.FieldByName('DXCC').AsInteger;
+        timedif := MainForm.PrefixQuery.FieldByName('TimeDiff').AsInteger;
+        loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+
+        la1 := CallLAT;
+        lo1 := CallLON;
+
+        if (UTF8Pos('W', lo1) <> 0) then
+          lo1 := '-' + lo1;
+        if (UTF8Pos('S', la1) <> 0) then
+          la1 := '-' + la1;
+        Delete(la1, length(la1), 1);
+        Delete(lo1, length(lo1), 1);
+
+        loc := MainForm.Edit3.Text;
+        if gridloc = True then
+        begin
+          if MainForm.Edit3.Text <> '' then
+            loc := MainForm.Edit3.Text;
+        end;
+
+        if (loc <> '') and dmFunc.IsLocOK(loc) then
+        begin
+          dmFunc.CoordinateFromLocator(loc, la, lo);
+
+          la1 := CurrToStr(la);
+          lo1 := CurrToStr(lo);
+          if loc = SetLoc then
+            R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
+          else
+            R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
+        end
+        else
+        begin
+          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
+            StrToFloat(lo1)) / 1000;
+        end;
+
+        MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
+        ////Азимут
+        dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
+          strtofloat(lo1), qra, azim);
+        MainForm.Label32.Caption := azim;// +'/'+azim2;
+        Result := True;
+        exit;
+      end;
+    end;
 end;
 
 procedure TMainForm.EditButton1Change(Sender: TObject);
@@ -2274,7 +2224,7 @@ begin
 
     if CheckBox6.Checked = False then
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
-    foundPrefix := SearchPrefix(dmFunc.ExtractCallsign(EditButton1.Text), False);
+    foundPrefix := SearchPrefix(EditButton1.Text, False);
 
     if foundPrefix and CheckBox3.Checked = True then
     begin
@@ -2609,7 +2559,7 @@ end;
 procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
-    SelectLogDatabase(LogTable);//, fAllRecords, offsetRec);
+    SelectLogDatabase(LogTable);
 end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
@@ -2870,11 +2820,13 @@ procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
 var
   Field_QSL: string;
   Field_QSLs: string;
+  Field_QSLSentAdv: string;
 begin
   Field_QSL := LOGBookDS.DataSet.FieldByName('QSL').AsString;
   Field_QSLs := LOGBookDS.DataSet.FieldByName('QSLs').AsString;
+  Field_QSLSentAdv := LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString;
 
-  if LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
+  if Field_QSLSentAdv = 'N' then
     with DBGrid1.Canvas do
     begin
       Brush.Color := clRed;
@@ -2932,7 +2884,6 @@ begin
         DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
       end;
     end;
-
   if (Column.FieldName = 'QSL') then
   begin
     with DBGrid1.Canvas do
@@ -2961,7 +2912,6 @@ begin
         TextOut(Rect.Right - 10 - TextWidth('LE'), Rect.Top + 0, 'LE');
     end;
   end;
-
   if (Column.FieldName = 'QSLs') then
   begin
     with DBGrid1.Canvas do
@@ -2977,8 +2927,6 @@ begin
         TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'PLE');
     end;
   end;
-
-
   if ConfigForm.CheckBox2.Checked = True then
   begin
     if (Column.FieldName = 'QSOBand') then
@@ -2988,36 +2936,24 @@ begin
         dmFunc.GetBandFromFreq(LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
     end;
   end;
-
 end;
 
 procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
+var
+  Field_QSL: string;
+  Field_QSLs: string;
+  Field_QSLSentAdv: string;
 begin
-  if DataSource2.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
-    with DBGrid2.Canvas do
-    begin
-      FillRect(Rect);
-      if (gdSelected in State) then
-      begin
-        Brush.Color := clHighlight;
-        Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clRed;
-        Font.Color := clBlack;
-      end;
-      FillRect(Rect);
-      DBGrid2.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-    end;
+  Field_QSL := DataSource2.DataSet.FieldByName('QSL').AsString;
+  Field_QSLs := DataSource2.DataSet.FieldByName('QSLs').AsString;
+  Field_QSLSentAdv := DataSource2.DataSet.FieldByName('QSLSentAdv').AsString;
 
-  if (DataSource2.DataSet.FieldByName('QSL').AsString = '100') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = '110') then
+ if Field_QSLSentAdv = 'N' then
     with DBGrid2.Canvas do
     begin
-    Brush.Color := clFuchsia;
-        Font.Color := clBlack;
+      Brush.Color := clRed;
+      Font.Color := clBlack;
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;
@@ -3027,126 +2963,94 @@ begin
       DBGrid2.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (DataSource2.DataSet.FieldByName('QSLs').AsString = '10') or
-    (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') then
+  if (Field_QSL = '100') or (Field_QSL = '110') then
     with DBGrid2.Canvas do
     begin
+      Brush.Color := clFuchsia;
+      Font.Color := clBlack;
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clLime;
-        Font.Color := clBlack;
       end;
       FillRect(Rect);
       DBGrid2.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (DataSource2.DataSet.FieldByName('QSL').AsString = '010') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = '110') or
-    (DataSource2.DataSet.FieldByName('QSL').AsString = '111') then
-    if (Column.FieldName = 'CallSign') then
+  if (Field_QSLs = '10') or (Field_QSLs = '11') then
+    with DBGrid2.Canvas do
+    begin
+      Brush.Color := clLime;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid2.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+
+  if (Column.FieldName = 'CallSign') then
+    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') then
     begin
       with DBGrid2.Canvas do
       begin
+        Brush.Color := clYellow;
+        Font.Color := clBlack;
         if (gdSelected in State) then
         begin
           Brush.Color := clHighlight;
           Font.Color := clWhite;
-        end
-        else
-        begin
-          Brush.Color := clYellow;
-          Font.Color := clBlack;
         end;
         FillRect(Rect);
         DBGrid2.DefaultDrawColumnCell(Rect, DataCol, Column, State);
       end;
     end;
-
   if (Column.FieldName = 'QSL') then
   begin
     with DBGrid2.Canvas do
     begin
       FillRect(Rect);
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '000') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth(''), Rect.Top + 0, '');
-      end;
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '100') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
-      end;
+      if (Field_QSL = '100') then
+        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '110') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PE'),
-          Rect.Top + 0, 'PE');
-      end;
+      if (Field_QSL = '110') then
+        TextOut(Rect.Right - 10 - TextWidth('PE'), Rect.Top + 0, 'PE');
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '111') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('PLE'),
-          Rect.Top + 0, 'PLE');
-      end;
+      if (Field_QSL = '111') then
+        TextOut(Rect.Right - 6 - TextWidth('PLE'), Rect.Top + 0, 'PLE');
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '010') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('E'), Rect.Top + 0, 'E');
-      end;
+      if (Field_QSL = '010') then
+        TextOut(Rect.Right - 6 - TextWidth('E'), Rect.Top + 0, 'E');
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '001') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('L'), Rect.Top + 0, 'L');
-      end;
+      if (Field_QSL = '001') then
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '101') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PL'),
-          Rect.Top + 0, 'PL');
-      end;
+      if (Field_QSL = '101') then
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
 
-      if (DataSource2.DataSet.FieldByName('QSL').AsString = '011') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('LE'),
-          Rect.Top + 0, 'LE');
-      end;
+      if (Field_QSL = '011') then
+        TextOut(Rect.Right - 10 - TextWidth('LE'), Rect.Top + 0, 'LE');
     end;
   end;
-
   if (Column.FieldName = 'QSLs') then
   begin
     with DBGrid2.Canvas do
     begin
       FillRect(Rect);
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '00') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth(''), Rect.Top + 0, '');
-      end;
+      if (Field_QSLs = '10') then
+        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '10') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
-      end;
+      if (Field_QSLs = '11') then
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PE');
 
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '11') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid2.Canvas.TextWidth('PL'),
-          Rect.Top + 0, 'PE');
-      end;
-
-      if (DataSource2.DataSet.FieldByName('QSLs').AsString = '01') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid2.Canvas.TextWidth('L'), Rect.Top + 0, 'PLE');
-      end;
+      if (Field_QSLs = '01') then
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'PLE');
     end;
   end;
-
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  if ConfigForm.CheckBox2.Checked = True then
   begin
     if (Column.FieldName = 'QSOBand') then
     begin
@@ -3155,7 +3059,6 @@ begin
         dmFunc.GetBandFromFreq(DataSource2.DataSet.FieldByName('QSOBand').AsString));
     end;
   end;
-
 end;
 
 procedure TMainForm.DBLookupComboBox1CloseUp(Sender: TObject);
@@ -3467,10 +3370,8 @@ begin
 
   LTCPComponent1.Listen(6666);
   LUDPComponent1.Listen(6667);
-  LUDPSyncDesk.Listen(6669);
-  LTCPSyncDesk.Listen(6668);
   LTCPComponent1.ReuseAddress := True;
-  LTCPSyncDesk.ReuseAddress := True;
+
 
   if usewsjt then
     WSJT_Timer.Enabled := True;
@@ -3481,8 +3382,6 @@ begin
   //Автозапуск кластера
   if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
     SpeedButton18.Click;
-
-  //перенесено из FormShow
 
   RegisterLog := IniF.ReadString('SetLog', 'Register', '');
   LoginLog := IniF.ReadString('SetLog', 'Login', '');
@@ -3495,7 +3394,6 @@ begin
     TRXForm.Show;
 
   UnUsIndex := 0;
-
   SetGrid;
 
   if ShowTRXForm = False then
@@ -3529,8 +3427,6 @@ begin
     tIMG.Free;
     PhotoGroup.Free;
   end;
-
-
   FlagList.Free;
   FlagSList.Free;
   PrefixProvinceList.Free;
@@ -3580,17 +3476,11 @@ begin
   MapView1.Zoom := 1;
   MapView1.DoubleBuffered := True;
   MapView1.Active := True;
-
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
 begin
   Update_Form.Show;
-end;
-
-procedure TMainForm.LOGBookQueryBeforeScroll(DataSet: TDataSet);
-begin
-
 end;
 
 procedure TMainForm.LTCPComponent1Accept(aSocket: TLSocket);
