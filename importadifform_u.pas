@@ -70,6 +70,72 @@ uses dmFunc_U, MainForm_U;
 
 { TImportADIFForm }
 
+procedure SearchPrefix(CallName: string; var MainPrefix, DXCCPrefix, CQZone, ITUZone, Continent, DXCC: string);
+var
+  i, j: integer;
+  BoolPrefix: boolean;
+begin
+  if CallName.Length < 1 then
+  begin
+    exit;
+  end;
+  BoolPrefix := False;
+
+    for i := 0 to PrefixProvinceCount do
+    begin
+      if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
+        (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
+      begin
+        BoolPrefix := True;
+        with MainForm.PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from Province where _id = "' +
+            IntToStr(PrefixExpProvinceArray[i].id) + '"');
+          Open;
+        end;
+        Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
+        CQZone:=MainForm.PrefixQuery.FieldByName('CQZone').AsString;
+        ITUZone:=MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
+        MainPrefix:=MainForm.PrefixQuery.FieldByName('Prefix').AsString;
+        DXCCPrefix:=MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+        DXCC:=MainForm.PrefixQuery.FieldByName('DXCC').AsString;
+        exit;
+      end;
+    end;
+  if BoolPrefix = False then
+  begin
+    for j := 0 to PrefixARRLCount do
+    begin
+      if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
+        (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+      begin
+        with MainForm.PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from CountryDataEx where _id = "' +
+            IntToStr(PrefixExpARRLArray[j].id) + '"');
+          Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[j].reg.ExecNext;
+            Exit;
+          end;
+          Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
+          CQZone:=MainForm.PrefixQuery.FieldByName('CQZone').AsString;
+          ITUZone:=MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
+          MainPrefix:=MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+          DXCCPrefix:=MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+          DXCC:=MainForm.PrefixQuery.FieldByName('DXCC').AsString;
+        end;
+        Exit;
+      end;
+    end;
+  end;
+end;
+
 procedure CheckMode(modulation: string; var ResSubMode, ResMode: string);
 begin
   case modulation of
@@ -573,6 +639,9 @@ begin
             SRX := 'NULL';
           if STX = '' then
             STX := 'NULL';
+
+          if CheckBox1.Checked then
+          SearchPrefix(CALL,PFX,DXCC_PREF,CQZ,ITUZ,CONT,DXCC);
 
           Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +

@@ -359,10 +359,11 @@ object ImportADIFForm: TImportADIFForm
     Top = 4
     Width = 188
     Caption = 'Compute DXCC from callsign'
-    Enabled = False
+    Checked = True
     Font.Height = -12
     Font.Style = [fsBold]
     ParentFont = False
+    State = cbChecked
     TabOrder = 0
   end
   object CheckBox2: TCheckBox
