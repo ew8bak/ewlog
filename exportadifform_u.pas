@@ -177,9 +177,9 @@ begin
   end;
 
   date := FormatDateTime('yyyy-mm-dd', now);
-  Writeln(f, '<ADIF_VER:5>2.2.1');
+  Writeln(f, '<ADIF_VER:5>3.0.2');
   Writeln(f, 'ADIF export from EWLOG');
-  Writeln(f, 'Copyright (C) 2015-2019 by EW8BAK');
+  Writeln(f, 'Copyright (C) 2015-2020 by EW8BAK');
   Writeln(f);
   Writeln(f, 'Internet: https://www.ew8bak.ru');
   Writeln(f, 'Generated date ' + date);
@@ -430,6 +430,12 @@ begin
       if Q1.Fields.FieldByName('QSOAddInfo').AsString <> '' then begin
       tmp := '<COMMENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
         'QSOAddInfo').AsString, CheckBox2.Checked);
+      Write(f, tmp);
+      end;
+
+      if Q1.Fields.FieldByName('MY_STATE').AsString <> '' then begin
+      tmp := '<MY_STATE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+        'MY_STATE').AsString, CheckBox2.Checked);
       Write(f, tmp);
       end;
 
