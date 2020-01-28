@@ -26,21 +26,18 @@ type
     CheckBox6: TCheckBox;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
+    ComboBox3: TComboBox;
     ComboBox4: TComboBox;
     ComboBox6: TComboBox;
     ComboBox7: TComboBox;
-    BandsQueryDS: TDataSource;
     ComboBox9: TComboBox;
     Edit21: TEdit;
-    SATQueryDS: TDataSource;
-    ModesQueryDS: TDataSource;
     DateEdit1: TDateEdit;
     DateEdit2: TDateEdit;
     DateEdit3: TDateEdit;
     DateEdit4: TDateEdit;
     DateTimePicker1: TDateTimePicker;
     DBGrid1: TDBGrid;
-    DBLookupComboBox1: TDBLookupComboBox;
     DBLookupComboBox2: TDBLookupComboBox;
     Edit1: TEdit;
     Edit10: TEdit;
@@ -111,9 +108,6 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
-    ModesQuery: TSQLQuery;
-    BandsQuery: TSQLQuery;
-    SATQuery: TSQLQuery;
     TerrQuery: TSQLQuery;
     UPDATE_Query: TSQLQuery;
     TabSheet1: TTabSheet;
@@ -298,7 +292,7 @@ begin
     Params.ParamByName('STX_STRING').AsString := '';
     Params.ParamByName('SAT_NAME').AsString := DBLookupComboBox2.Text;
     Params.ParamByName('SAT_MODE').AsString := ComboBox4.Text;
-    Params.ParamByName('PROP_MODE').AsString := DBLookupComboBox1.Text;
+    Params.ParamByName('PROP_MODE').AsString := ComboBox3.Text;
 
     //Пока нету лотв ставлю 0
     Params.ParamByName('LoTWSent').AsString := '0';
@@ -587,14 +581,14 @@ begin
       UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
     end;
 
-    ModesQuery.DataBase := MainForm.ServiceDBConnection;
-    BandsQuery.DataBase := MainForm.ServiceDBConnection;
-    SATQuery.DataBase := MainForm.ServiceDBConnection;
+  //  ModesQuery.DataBase := MainForm.ServiceDBConnection;
+  //  BandsQuery.DataBase := MainForm.ServiceDBConnection;
+    //SATQuery.DataBase := MainForm.ServiceDBConnection;
 
-    ModesQuery.Active := True;
-    BandsQuery.Active := True;
-    SATQuery.Active := True;
-    MainForm.VHFTypeQuery.Active := True;
+  //  ModesQuery.Active := True;
+  //  BandsQuery.Active := True;
+   // SATQuery.Active := True;
+  //  MainForm.VHFTypeQuery.Active := True;
 
   for i := 0 to 29 do
   begin
@@ -654,14 +648,14 @@ begin
       UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
     end;
 
-    ModesQuery.DataBase := MainForm.ServiceDBConnection;
-    BandsQuery.DataBase := MainForm.ServiceDBConnection;
-    SATQuery.DataBase := MainForm.ServiceDBConnection;
+  //  ModesQuery.DataBase := MainForm.ServiceDBConnection;
+  //  BandsQuery.DataBase := MainForm.ServiceDBConnection;
+    //SATQuery.DataBase := MainForm.ServiceDBConnection;
 
-    ModesQuery.Active := True;
-    BandsQuery.Active := True;
-    SATQuery.Active := True;
-    MainForm.VHFTypeQuery.Active := True;
+ //   ModesQuery.Active := True;
+ //   BandsQuery.Active := True;
+   // SATQuery.Active := True;
+  //  MainForm.VHFTypeQuery.Active := True;
   end;
   if ComboBox2.Text<>'' then
   ComboBox2Change(Self);

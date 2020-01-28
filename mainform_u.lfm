@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 448
+  Left = 319
   Height = 692
-  Top = 153
+  Top = 141
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -4950,33 +4950,6 @@ object MainForm: TMainForm
       }
       OnClick = MenuItem51Click
     end
-  end
-  object VHFTypeQuery: TSQLQuery
-    FieldDefs = <    
-      item
-        Name = 'id'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'Type'
-        DataType = ftString
-        Precision = -1
-        Size = 150
-      end>
-    Database = MySQLLOGDBConnection
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'SELECT * FROM VHFType'
-    )
-    Params = <>
-    left = 336
-    top = 424
-  end
-  object VHFTypeDS: TDataSource
-    DataSet = VHFTypeQuery
-    left = 400
-    top = 420
   end
   object DeleteQSOQuery: TSQLQuery
     FieldDefs = <>

@@ -356,7 +356,6 @@ type
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
     Timer3: TTimer;
-    VHFTypeDS: TDataSource;
     MenuItem8: TMenuItem;
     PopupMenu1: TPopupMenu;
     SaveQSOinBase: TAction;
@@ -486,7 +485,6 @@ type
     SearchCallBookQuery: TSQLQuery;
     LogBookFieldQuery: TSQLQuery;
     SaveQSOQuery: TSQLQuery;
-    VHFTypeQuery: TSQLQuery;
     SQLQuery2: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
     CallBookTransaction: TSQLTransaction;
@@ -1481,7 +1479,7 @@ begin
     end;
   end;
 
-  VHFTypeQuery.DataBase := ServiceDBConnection;
+  //VHFTypeQuery.DataBase := ServiceDBConnection;
   PrefixProvinceQuery.DataBase := ServiceDBConnection;
   PrefixQuery.DataBase := ServiceDBConnection;
   PrefixARRLQuery.DataBase := ServiceDBConnection;
@@ -2808,7 +2806,7 @@ begin
     if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
       EditQSO_Form.RadioButton5.Checked := True;
 
-    EditQSO_Form.DBLookupComboBox1.KeyValue :=
+    EditQSO_Form.ComboBox3.Text :=
       DBGrid1.DataSource.DataSet.FieldByName('PROP_MODE').AsString;
 
     EditQSO_Form.Show;
@@ -5046,7 +5044,7 @@ begin
       if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
         EditQSO_Form.RadioButton5.Checked := True;
 
-      EditQSO_Form.DBLookupComboBox1.KeyValue :=
+      EditQSO_Form.ComboBox3.Text :=
         DBGrid1.DataSource.DataSet.FieldByName('PROP_MODE').AsString;
 
       EditQSO_Form.Show;

@@ -868,9 +868,7 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object Label23: TLabel
-      AnchorSideTop.Control = DBLookupComboBox1
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = DBLookupComboBox1
       Left = 261
       Height = 13
       Top = 151
@@ -935,28 +933,6 @@ object EditQSO_Form: TEditQSO_Form
       OnClick = SpeedButton11Click
       ParentFont = False
     end
-    object DBLookupComboBox1: TDBLookupComboBox
-      AnchorSideTop.Control = ComboBox4
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = GroupBox1
-      AnchorSideRight.Side = asrBottom
-      Left = 330
-      Height = 23
-      Top = 146
-      Width = 112
-      Anchors = [akTop, akLeft, akRight]
-      AutoSize = False
-      BorderSpacing.Top = 2
-      BorderSpacing.Right = 35
-      Font.Height = -12
-      KeyField = 'Type'
-      ListField = 'Type'
-      ListFieldIndex = 0
-      ListSource = MainForm.VHFTypeDS
-      LookupCache = False
-      ParentFont = False
-      TabOrder = 24
-    end
     object DBLookupComboBox2: TDBLookupComboBox
       AnchorSideTop.Control = Edit18
       AnchorSideTop.Side = asrBottom
@@ -974,10 +950,9 @@ object EditQSO_Form: TEditQSO_Form
       KeyField = 'Name'
       ListField = 'Name'
       ListFieldIndex = 0
-      ListSource = SATQueryDS
       LookupCache = False
       ParentFont = False
-      TabOrder = 25
+      TabOrder = 24
     end
     object ComboBox1: TComboBox
       AnchorSideTop.Side = asrBottom
@@ -994,7 +969,7 @@ object EditQSO_Form: TEditQSO_Form
       Font.Height = -12
       ItemHeight = 0
       ParentFont = False
-      TabOrder = 26
+      TabOrder = 25
     end
     object Edit21: TEdit
       AnchorSideTop.Control = ComboBox1
@@ -1011,7 +986,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Right = 35
       Font.Height = -12
       ParentFont = False
-      TabOrder = 27
+      TabOrder = 26
     end
     object Edit15: TEdit
       AnchorSideTop.Control = Memo1
@@ -1024,7 +999,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Top = 5
       Font.Height = -11
       ParentFont = False
-      TabOrder = 28
+      TabOrder = 27
     end
     object Edit16: TEdit
       AnchorSideTop.Control = Edit15
@@ -1037,7 +1012,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Top = 5
       Font.Height = -11
       ParentFont = False
-      TabOrder = 29
+      TabOrder = 28
     end
     object ComboBox9: TComboBox
       AnchorSideLeft.Control = ComboBox2
@@ -1057,7 +1032,7 @@ object EditQSO_Form: TEditQSO_Form
       ItemHeight = 16
       ParentFont = False
       Style = csOwnerDrawEditableVariable
-      TabOrder = 30
+      TabOrder = 29
     end
     object ComboBox2: TComboBox
       AnchorSideTop.Control = ComboBox1
@@ -1072,6 +1047,27 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Left = 37
       BorderSpacing.Top = 2
       BorderSpacing.Right = 4
+      Font.Height = -11
+      ItemHeight = 16
+      OnChange = ComboBox2Change
+      ParentFont = False
+      Style = csOwnerDrawEditableVariable
+      TabOrder = 30
+    end
+    object ComboBox3: TComboBox
+      AnchorSideTop.Control = ComboBox4
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 330
+      Height = 22
+      Top = 146
+      Width = 112
+      Anchors = [akTop, akRight]
+      AutoSize = False
+      BorderSpacing.Left = 37
+      BorderSpacing.Top = 2
+      BorderSpacing.Right = 35
       Font.Height = -11
       ItemHeight = 16
       OnChange = ComboBox2Change
@@ -1620,54 +1616,6 @@ object EditQSO_Form: TEditQSO_Form
     Params = <>
     left = 408
     top = 420
-  end
-  object ModesQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
-    SQL.Strings = (
-      'SELECT * FROM Modes'
-    )
-    Params = <>
-    left = 96
-    top = 224
-  end
-  object ModesQueryDS: TDataSource
-    DataSet = ModesQuery
-    left = 184
-    top = 160
-  end
-  object BandsQueryDS: TDataSource
-    DataSet = BandsQuery
-    left = 16
-    top = 160
-  end
-  object BandsQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
-    SQL.Strings = (
-      'SELECT * FROM Bands'
-    )
-    Params = <>
-    left = 16
-    top = 280
-  end
-  object SATQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
-    SQL.Strings = (
-      'SELECT * FROM Satellite'
-    )
-    Params = <>
-    left = 381
-    top = 348
-  end
-  object SATQueryDS: TDataSource
-    DataSet = SATQuery
-    left = 352
-    top = 408
   end
   object TerrQuery: TSQLQuery
     FieldDefs = <>
