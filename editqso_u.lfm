@@ -1625,4 +1625,10 @@ object EditQSO_Form: TEditQSO_Form
     left = 256
     top = 88
   end
+  object SatPropQuery: TSQLQuery
+    FieldDefs = <>
+    Params = <>
+    left = 32
+    top = 544
+  end
 end

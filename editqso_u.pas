@@ -108,6 +108,7 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
+    SatPropQuery: TSQLQuery;
     TerrQuery: TSQLQuery;
     UPDATE_Query: TSQLQuery;
     TabSheet1: TTabSheet;
@@ -583,6 +584,7 @@ begin
 
   //  ModesQuery.DataBase := MainForm.ServiceDBConnection;
   //  BandsQuery.DataBase := MainForm.ServiceDBConnection;
+  SatPropQuery.DataBase:=MainForm.ServiceDBConnection;
     //SATQuery.DataBase := MainForm.ServiceDBConnection;
 
   //  ModesQuery.Active := True;
@@ -632,6 +634,8 @@ begin
 end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);
+var
+  i:integer;
 begin
   try
   if InitLog_DB = 'YES' then
@@ -647,18 +651,20 @@ begin
       TerrQuery.DataBase := MainForm.SQLiteDBConnection;
       UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
     end;
-
-  //  ModesQuery.DataBase := MainForm.ServiceDBConnection;
-  //  BandsQuery.DataBase := MainForm.ServiceDBConnection;
-    //SATQuery.DataBase := MainForm.ServiceDBConnection;
-
- //   ModesQuery.Active := True;
- //   BandsQuery.Active := True;
-   // SATQuery.Active := True;
-  //  MainForm.VHFTypeQuery.Active := True;
   end;
+
   if ComboBox2.Text<>'' then
   ComboBox2Change(Self);
+
+  SatPropQuery.SQL.Text:='SELECT * FROM PropMode';
+  SatPropQuery.Open;
+  SatPropQuery.First;
+  for i := 0 to SatPropQuery.RecordCount - 1 do begin
+  ComboBox3.Items.Add(SatPropQuery.FieldByName('Type').AsString);
+  SatPropQuery.Next;
+  end;
+  SatPropQuery.Close;
+
   Button4.Click;
   Edit1.SetFocus;
   except on E: ESQLDatabaseError do begin
