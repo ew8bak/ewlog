@@ -53,6 +53,7 @@ var
   temp: TStringStream;
   Response: TStringList;
 begin
+  Result:='';
   HTTP := THTTPSend.Create;
   temp := TStringStream.Create('');
   Response := TStringList.Create;
@@ -76,6 +77,7 @@ var
   temp: TStringStream;
   Response: TStringList;
 begin
+  Result:='';
   HTTP := THTTPSend.Create;
   temp := TStringStream.Create('');
   Response := TStringList.Create;
@@ -137,7 +139,7 @@ procedure ThiddenSettings.CatTimerTimer(Sender: TObject);
 begin
   if MainForm.freqchange = True then
     Memo1.Lines.Add(SendRadio(StringReplace(MainForm.ComboBox1.Text, '.', '', [rfReplaceAll]) +
-      '0', MainForm.ComboBox2.Text, DateTimeToStr(Now), API_key, 'EWLog', address_serv));
+      '0', MainForm.ComboBox2.Text, DateTimeToStr(Now), API_key, 'EWLog', address_serv+'/index.php/api/radio/'));
   MainForm.freqchange := False;
 end;
 

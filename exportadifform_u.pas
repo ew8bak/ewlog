@@ -178,7 +178,7 @@ begin
 
   date := FormatDateTime('yyyy-mm-dd', now);
   Writeln(f, '<ADIF_VER:5>3.0.2');
-  Writeln(f, 'ADIF export from EWLOG');
+  Writeln(f, 'ADIF export from EWLog');
   Writeln(f, 'Copyright (C) 2015-2020 by EW8BAK');
   Writeln(f);
   Writeln(f, 'Internet: https://www.ew8bak.ru');
