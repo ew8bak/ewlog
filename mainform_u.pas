@@ -501,9 +501,8 @@ type
     //{$IfDef WINDOWS}
     procedure CheckUpdatesTimerStartTimer(Sender: TObject);
     procedure CheckUpdatesTimerTimer(Sender: TObject);
-    procedure ComboBox1Change(Sender: TObject);
-    //{$ENDIF WINDOWS}
-    procedure ComboBox2Change(Sender: TObject);
+    procedure ComboBox1CloseUp(Sender: TObject);
+    procedure ComboBox2CloseUp(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
     procedure ComboBox8Change(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
@@ -514,7 +513,6 @@ type
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
-    procedure DBLookupComboBox1Change(Sender: TObject);
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
     procedure dxClientConnect(aSocket: TLSocket);
     procedure dxClientDisconnect(aSocket: TLSocket);
@@ -862,14 +860,15 @@ var
   i: integer;
   subModes: TStringList;
 begin
+  try
   subModesQuery.Close;
-  ComboBox9.Items.Clear;
+  //ComboBox9.Items.Clear;
   subModes := TStringList.Create;
   subModes.Delimiter := ',';
 
   if subModesFlag = False then
   begin
-    ComboBox2.Items.Clear;
+   // ComboBox2.Items.Clear;
     subModesQuery.SQL.Text := 'SELECT * FROM Modes WHERE Enable = 1';
     subModesQuery.Open;
     subModesQuery.First;
@@ -888,6 +887,11 @@ begin
     subModesQuery.Open;
     subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
     Result := subModes;
+    subModesQuery.Close;
+
+  end;
+  finally
+
   end;
 end;
 
@@ -1492,6 +1496,7 @@ begin
   subModesQuery.DataBase := ServiceDBConnection;
   BandsQuery.DataBase := ServiceDBConnection;
   try
+    ComboBox2.Items.Clear;
     AddModes('', False);
     //   addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
     subModesQuery.SQL.Text := 'select _id, submode from Modes';
@@ -2335,7 +2340,8 @@ begin
 
           MenuItem43.Enabled := False;
           ComboBox2.Text := Fldigi_GetMode;
-          ComboBox2Change(Sender);
+         // ComboBox2Change(Sender);
+         ComboBox2CloseUp(Sender);
         end;
       end;
     end;
@@ -2354,7 +2360,8 @@ begin
         ['EWLog', 'не подключен к Fldigi']);
       {$ENDIF}
       ComboBox2.ItemIndex := 0;
-      ComboBox2Change(Sender);
+     // ComboBox2Change(Sender);
+     ComboBox2CloseUp(Sender);
       MenuItem43.Enabled := True;
     end;
     Exit;
@@ -2586,7 +2593,7 @@ begin
   {$ENDIF WINDOWS}
 end;
 
-procedure TMainForm.ComboBox1Change(Sender: TObject);
+procedure TMainForm.ComboBox1CloseUp(Sender: TObject);
 var
   deldot: string;
 begin
@@ -2607,9 +2614,10 @@ begin
     else
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
   end;
+
 end;
 
-procedure TMainForm.ComboBox2Change(Sender: TObject);
+procedure TMainForm.ComboBox2CloseUp(Sender: TObject);
 var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
@@ -2623,6 +2631,7 @@ begin
   end
   else
     Delete(deldot, length(deldot) - 2, 1);
+  ComboBox9.Items.Clear;
   ComboBox9.Items := addModes(ComboBox2.Text, True);
   addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
   if ComboBox2.Text <> 'SSB' then
@@ -3063,11 +3072,6 @@ begin
   end;
 end;
 
-procedure TMainForm.DBLookupComboBox1Change(Sender: TObject);
-begin
-
-end;
-
 procedure TMainForm.DBLookupComboBox1CloseUp(Sender: TObject);
 begin
   SelDB(DBLookupComboBox1.KeyValue);
@@ -3375,7 +3379,8 @@ begin
       InitializeDB(DefaultDB);
       ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(
         IniF.ReadString('SetLog', 'PastMode', ''));
-      ComboBox2Change(Self);
+   //   ComboBox2Change(Self);
+   ComboBox2CloseUp(Self);
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(
         IniF.ReadString('SetLog', 'PastSubMode', ''));
       addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
@@ -3402,8 +3407,8 @@ begin
   finally
   end;
 
-  LTCPComponent1.Listen(6666);
-  LUDPComponent1.Listen(6667);
+  LTCPComponent1.Listen(49153);
+  LUDPComponent1.Listen(49152);
   LTCPComponent1.ReuseAddress := True;
 
 
@@ -6369,7 +6374,8 @@ begin
       if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
         MenuItem74.Enabled := True;
       ComboBox2.ItemIndex := 0;
-      ComboBox2Change(Sender);
+      //ComboBox2Change(Sender);
+      ComboBox2CloseUp(Sender);
       Clr();
     end;
     Exit;

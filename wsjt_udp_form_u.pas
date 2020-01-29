@@ -172,7 +172,7 @@ begin
               MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
 
             MainForm.ComboBox2.Text := mode;
-            MainForm.ComboBox2Change(MainForm.ComboBox2);
+      //      MainForm.ComboBox2Change(MainForm.ComboBox2);
             MainForm.ComboBox4.Text := report;
           end;
 
