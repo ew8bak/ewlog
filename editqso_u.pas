@@ -207,10 +207,14 @@ var
   FmtStngs: TFormatSettings;
   DigiBand: Double;
   ind:Integer;
+  FREQ_string: string;
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
-  DigiBand:=dmFunc.GetDigiBandFromFreq(ComboBox1.Text);
+  FREQ_string:=ComboBox1.Text;
+  Delete(FREQ_string, length(FREQ_string) - 2, 1);
+  DigiBand:=dmFunc.GetDigiBandFromFreq(FREQ_string);
+
   ind:=MainForm.DBGrid1.DataSource.DataSet.RecNo;
   with UPDATE_Query do
   begin
@@ -266,7 +270,6 @@ begin
     Params.ParamByName('Marker').AsBoolean := CheckBox3.Checked;
     Params.ParamByName('ManualSet').AsBoolean := False;
 
-
     Params.ParamByName('DigiBand').AsString := FloatToStr(DigiBand);
 
     Params.ParamByName('Continent').AsString := Edit13.Text;
@@ -287,9 +290,9 @@ begin
     Params.ParamByName('State4').AsString := Edit12.Text;
     Params.ParamByName('WPX').AsString := Edit8.Text;
     Params.ParamByName('ValidDX').AsBoolean := CheckBox2.Checked;
-    Params.ParamByName('SRX').AsString := '';
+    Params.ParamByName('SRX').IsNull;
     Params.ParamByName('SRX_STRING').AsString := '';
-    Params.ParamByName('STX').AsString := '';
+    Params.ParamByName('STX').IsNull;
     Params.ParamByName('STX_STRING').AsString := '';
     Params.ParamByName('SAT_NAME').AsString := DBLookupComboBox2.Text;
     Params.ParamByName('SAT_MODE').AsString := ComboBox4.Text;

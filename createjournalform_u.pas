@@ -166,7 +166,7 @@ begin
           ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
           ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
           ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
-          ' `ShortNote` varchar(30) DEFAULT NULL,' +
+          ' `ShortNote` varchar(200) DEFAULT NULL,' +
           ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
           ' `LoTWRec` tinyint(1) DEFAULT NULL,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
           ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
@@ -208,7 +208,7 @@ begin
           ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
           ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
           ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
-          ' `ShortNote` varchar(30) DEFAULT NULL,' +
+          ' `ShortNote` varchar(200) DEFAULT NULL,' +
           ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
           ' `LoTWRec` tinyint(1) DEFAULT NULL,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
           ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +

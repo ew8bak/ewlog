@@ -597,7 +597,7 @@ end;
 function TdmFunc.ReplaceCountry(Country: string): string;
 begin
   Result := '';
-  if (Country = 'European Russia') or (Country = 'Asiatic Russia') or
+  if (Country = 'Russia (European)') or (Country = 'Russia (Asiatic)') or
     (Country = 'Kaliningrad') then
   begin
     Result := 'Russia';

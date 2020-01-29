@@ -5689,7 +5689,6 @@ end;
 
 procedure TMainForm.MenuItem86Click(Sender: TObject);
 begin
-
   if MenuItem111.Checked = True then
   begin
     PhotoJPEG.Free;
@@ -5709,11 +5708,9 @@ begin
     TRXForm.Align := alClient;
     TRXForm.Show;
     ShowTRXForm := True;
-    //TRXForm.Show;
   end
   else
     TRXForm.Hide;
-
 end;
 
 procedure TMainForm.MenuItem87Click(Sender: TObject);
@@ -5806,7 +5803,7 @@ end;
 
 procedure TMainForm.ScrollBar1Change(Sender: TObject);
 begin
-  SelectLogDatabase(LogTable);//, ScrollBar1.Position, offsetRec);
+  SelectLogDatabase(LogTable);
 end;
 
 procedure TMainForm.SpeedButton16Click(Sender: TObject);
@@ -5943,6 +5940,7 @@ var
   QSL_SENT_ADV, QSL_SENT, dift: string;
   DigiBand: double;
   NameBand: string;
+  DigiBand_String: string;
   timeQSO: TTime;
   FmtStngs: TFormatSettings;
   state: string;
@@ -6000,7 +5998,9 @@ begin
       else
         NameBand := ComboBox1.Text;
 
-      DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
+      DigiBand_String := NameBand;
+      Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
+      DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String); ;
 
       if Edit13.Text <> '' then
         state := Edit4.Text + '-' + Edit13.Text;
@@ -6075,14 +6075,15 @@ begin
 
   if EditFlag = True then
   begin
-
     if Pos('M', ComboBox1.Text) > 0 then
       NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
         ComboBox1.Text, ComboBox2.Text))
-
     else
       NameBand := ComboBox1.Text;
-    DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
+
+    DigiBand_String := NameBand;
+    Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
+    DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
 
     with SaveQSOQuery do
     begin
