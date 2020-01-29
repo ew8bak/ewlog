@@ -1245,11 +1245,6 @@ msgstr "Создать"
 msgid "Create new journal"
 msgstr "Создать новый журнал"
 
-#: tcreatejournalform.combobox1.text
-msgctxt "tcreatejournalform.combobox1.text"
-msgid "A"
-msgstr ""
-
 #: tcreatejournalform.edit10.text
 msgctxt "tcreatejournalform.edit10.text"
 msgid "TNX for QSO! 73!"
@@ -1277,10 +1272,6 @@ msgstr "Описание"
 #: tcreatejournalform.label11.caption
 msgid "Long"
 msgstr "Долгота"
-
-#: tcreatejournalform.label2.caption
-msgid "Index"
-msgstr "Индекс"
 
 #: tcreatejournalform.label3.caption
 msgid "Call name"
@@ -3109,6 +3100,10 @@ msgstr "Позывной"
 #: tmainform.label50.caption
 msgid "New update available"
 msgstr "Доступно новое обновление"
+
+#: tmainform.label51.caption
+msgid "My grid"
+msgstr ""
 
 #: tmainform.label6.caption
 msgctxt "tmainform.label6.caption"

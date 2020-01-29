@@ -173,6 +173,7 @@ procedure TSetupForm.InitializedDB;
 var
   CountStr: integer;
 begin
+  try
   if (CheckedDB = 1) and (MySQL_Current = False) then
   begin
     try
@@ -202,7 +203,7 @@ begin
           '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
           '`EQSLPassword` varchar(200) DEFAULT NULL, ' + '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
           '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoHRDLog` tinyint(1) DEFAULT NULL ' + ') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
+          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' + ') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
         SQL_Query.ExecSQL;
         SQL_Query.Close;
         SQL_Query.SQL.Text := 'ALTER TABLE `LogBookInfo` ADD PRIMARY KEY (`id`)';
@@ -284,7 +285,8 @@ begin
           ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
           ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
           ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-          ' `NoCalcDXCC` tinyint(1) DEFAULT 0' + ' )';
+          ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
+          ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 77;
         SQL_Transaction.Commit;
@@ -343,7 +345,6 @@ begin
       IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
       IniF.WriteString('SetLog', 'LogBookInit', 'YES');
       IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
-      IniF.Free;
     end;
   end;
 
@@ -357,7 +358,6 @@ begin
     IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
     IniF.WriteString('SetLog', 'LogBookInit', 'YES');
     IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
-    IniF.Free;
     ProgressBar1.Position := 100;
     Label24.Caption := rSuccessful;
     Button4.Enabled := True;
@@ -389,7 +389,7 @@ begin
         '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
         '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' + '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
         '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-        '`AutoHRDLog` tinyint(1) DEFAULT NULL );';
+        '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50))';
       SQL_Query.ExecSQL;
       ProgressBar1.Position := 35;
       Application.ProcessMessages;
@@ -468,7 +468,8 @@ begin
         ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
         ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
         ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-        ' `NoCalcDXCC` tinyint(1) DEFAULT 0' + ' )';
+        ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
+        ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
       SQL_Query.ExecSQL;
       SQL_Query.SQL.Text := 'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_'+LOG_PREFIX+'` '+
       '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
@@ -493,7 +494,6 @@ begin
       IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
       IniF.WriteString('SetLog', 'LogBookInit', 'YES');
       IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
-      IniF.Free;
     end;
   end;
 
@@ -508,7 +508,6 @@ begin
     IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
     IniF.WriteString('SetLog', 'LogBookInit', 'YES');
     IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
-    IniF.Free;
     ProgressBar1.Position := 100;
     Label24.Caption := rSuccessful;
     Button4.Enabled := True;
@@ -545,7 +544,7 @@ begin
             '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
             '`EQSLPassword` varchar(200) DEFAULT NULL, ' + '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
             '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-            '`AutoHRDLog` tinyint(1) DEFAULT NULL ' + ') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
+            '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' + ') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
           SQL_Query.ExecSQL;
           SQL_Query.Close;
           SQL_Query.SQL.Text := 'ALTER TABLE `LogBookInfo` ADD PRIMARY KEY (`id`)';
@@ -627,7 +626,8 @@ begin
             ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
             ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
             ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-            ' `NoCalcDXCC` tinyint(1) DEFAULT 0' + ' )';
+            ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
+            ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 77;
           SQL_Transaction.Commit;
@@ -729,7 +729,7 @@ begin
           '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
           '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' + '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
           '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoHRDLog` tinyint(1) DEFAULT NULL );';
+          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50));';
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 35;
         Application.ProcessMessages;
@@ -808,7 +808,8 @@ begin
           ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
           ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
           ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-          ' `NoCalcDXCC` tinyint(1) DEFAULT 0' + ' )';
+          ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
+          ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
         SQL_Query.ExecSQL;
         SQL_Query.SQL.Text := 'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_'+LOG_PREFIX+'` '+
           '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
@@ -826,7 +827,6 @@ begin
         IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
         IniF.WriteString('SetLog', 'LogBookInit', 'YES');
         IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
-        IniF.Free;
       end;
     end;
 
@@ -835,11 +835,14 @@ begin
       IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
       IniF.WriteString('SetLog', 'LogBookInit', 'YES');
       IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
-      IniF.Free;
       ProgressBar1.Position := 100;
       Label24.Caption := rSuccessful;
     end;
     Button4.Enabled := True;
+  end;
+
+  finally
+ // IniF.Free;
   end;
 
 end;
@@ -1096,6 +1099,7 @@ procedure TSetupForm.Edit11Change(Sender: TObject);
 var
   lat, lon: currency;
 begin
+  FormatSettings.DecimalSeparator:='.';
   if dmFunc.IsLocOK(Edit11.Text) then
   begin
     dmFunc.CoordinateFromLocator(Edit11.Text, lat, lon);

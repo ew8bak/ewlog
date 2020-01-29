@@ -20,7 +20,6 @@ type
   TCreateJournalForm = class(TForm)
     Button1: TButton;
     Button2: TButton;
-    ComboBox1: TComboBox;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit2: TEdit;
@@ -36,7 +35,6 @@ type
     GroupBox3: TGroupBox;
     Label1: TLabel;
     Label11: TLabel;
-    Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -86,27 +84,26 @@ end;
 
 procedure TCreateJournalForm.FormCreate(Sender: TObject);
 begin
-  if DefaultDB = 'MySQL' then
-    CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection
-  else
+  if MainForm.MySQLLOGDBConnection.Connected then begin
+    CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection;
+    MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
+  end
+  else begin
     CreateTableQuery.DataBase := MainForm.SQLiteDBConnection;
-  if DefaultDB = 'MySQL' then
-    MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1
-  else
     MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
+  end;
 end;
 
 procedure TCreateJournalForm.FormShow(Sender: TObject);
 begin
-  if DefaultDB = 'MySQL' then
-    CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection
-  else
+  if MainForm.MySQLLOGDBConnection.Connected then begin
+    CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection;
+    MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
+  end
+  else begin
     CreateTableQuery.DataBase := MainForm.SQLiteDBConnection;
-  if DefaultDB = 'MySQL' then
-    MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1
-  else
     MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
-
+  end;
 end;
 
 procedure TCreateJournalForm.Button2Click(Sender: TObject);
@@ -115,8 +112,7 @@ var
   CountStr: integer;
 begin
   if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
-    (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or
-    (Edit7.Text = '') or (Edit8.Text = '') or (Edit9.Text = '') then
+    (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
   else
     try
@@ -148,7 +144,7 @@ begin
       CreateTableQuery.ExecSQL;
       MainForm.SQLTransaction1.Commit;
       CreateTableQuery.Close;
-      if DefaultDB = 'MySQL' then
+      if MainForm.MySQLLOGDBConnection.Connected then
         CreateTableQuery.SQL.Text :=
           'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
           '(' + ' `UnUsedIndex` integer NOT NULL,' +
@@ -186,8 +182,9 @@ begin
           ' `LoTWSent` tinyint(1) DEFAULT NULL,' +
           ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
           ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
-          ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-          ' `NoCalcDXCC` tinyint(1) DEFAULT NULL' + ' )'
+          ' `DXCC` varchar(5) DEFAULT 0,' + ' `USERS` varchar(5) DEFAULT NULL,' +
+          ' `NoCalcDXCC` tinyint(1) DEFAULT NULL, `MY_STATE` varchar(15), '+
+          ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )'
       else
       begin
         CreateTableQuery.SQL.Text :=
@@ -228,18 +225,20 @@ begin
           ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
           ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
           ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-          ' `NoCalcDXCC` tinyint(1) DEFAULT NULL' + ' )';
+          ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
+          ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
         CreateTableQuery.ExecSQL;
         CreateTableQuery.SQL.Text :=
-          'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_' + LOG_PREFIX + '` ' +
+          'CREATE UNIQUE INDEX `Dupe_index_'+LOG_PREFIX+'` ON `Log_TABLE_' + LOG_PREFIX + '` ' +
           '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
         CreateTableQuery.ExecSQL;
         CreateTableQuery.SQL.Text :=
-          'CREATE INDEX `Call_index` ON `Log_TABLE_' + LOG_PREFIX + '` (`Call`);';
+          'CREATE INDEX `Call_index_'+LOG_PREFIX+'` ON `Log_TABLE_' + LOG_PREFIX + '` (`Call`);';
         CreateTableQuery.ExecSQL;
       end;
       MainForm.SQLTransaction1.Commit;
-      if DefaultDB = 'MySQL' then
+
+      if MainForm.MySQLLOGDBConnection.Connected then
       begin
         CreateTableQuery.Close;
         CreateTableQuery.SQL.Text :=

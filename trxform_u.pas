@@ -342,6 +342,7 @@ begin
   Result := True;
   if not radio.Connected then
   begin
+    tmrRadio.Enabled := False;
     FreeAndNil(radio);
   end;
 end;

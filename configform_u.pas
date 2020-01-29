@@ -254,6 +254,8 @@ end;
 
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
 begin
+      if InitLog_DB = 'YES' then
+    begin
   if CheckBox2.Checked = True then
   begin
       IniF.WriteString('SetLog', 'ShowBand', 'True');
@@ -270,6 +272,7 @@ begin
   MainForm.DBGrid2.Invalidate;
   MainForm.SetGrid;
   EditQSO_Form.DBGrid1.Invalidate;
+    end;
 end;
 
 procedure TConfigForm.CheckBox3Change(Sender: TObject);

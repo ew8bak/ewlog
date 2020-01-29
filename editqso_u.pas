@@ -629,8 +629,9 @@ begin
       'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
     end;
     end;
-  end;
   ComboBox2.Items:=MainForm.ComboBox2.Items;
+  end;
+
 end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);

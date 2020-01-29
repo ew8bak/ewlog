@@ -1232,11 +1232,6 @@ msgstr ""
 msgid "Create new journal"
 msgstr ""
 
-#: tcreatejournalform.combobox1.text
-msgctxt "tcreatejournalform.combobox1.text"
-msgid "A"
-msgstr ""
-
 #: tcreatejournalform.edit10.text
 msgctxt "tcreatejournalform.edit10.text"
 msgid "TNX for QSO! 73!"
@@ -1263,10 +1258,6 @@ msgstr ""
 
 #: tcreatejournalform.label11.caption
 msgid "Long"
-msgstr ""
-
-#: tcreatejournalform.label2.caption
-msgid "Index"
 msgstr ""
 
 #: tcreatejournalform.label3.caption
@@ -2952,6 +2943,10 @@ msgstr ""
 
 #: tmainform.label50.caption
 msgid "New update available"
+msgstr ""
+
+#: tmainform.label51.caption
+msgid "My grid"
 msgstr ""
 
 #: tmainform.label6.caption

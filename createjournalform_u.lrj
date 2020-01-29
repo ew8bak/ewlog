@@ -1,8 +1,6 @@
 {"version":1,"strings":[
 {"hash":78710188,"name":"tcreatejournalform.caption","sourcebytes":[67,114,101,97,116,101,32,110,101,119,32,106,111,117,114,110,97,108],"value":"Create new journal"},
 {"hash":156067838,"name":"tcreatejournalform.label1.caption","sourcebytes":[68,101,115,99,114,105,112,116,105,111,110],"value":"Description"},
-{"hash":65,"name":"tcreatejournalform.combobox1.text","sourcebytes":[65],"value":"A"},
-{"hash":5262024,"name":"tcreatejournalform.label2.caption","sourcebytes":[73,110,100,101,120],"value":"Index"},
 {"hash":157868862,"name":"tcreatejournalform.groupbox1.caption","sourcebytes":[73,110,102,111,114,109,97,116,105,111,110],"value":"Information"},
 {"hash":48697269,"name":"tcreatejournalform.label3.caption","sourcebytes":[67,97,108,108,32,110,97,109,101],"value":"Call name"},
 {"hash":22152,"name":"tcreatejournalform.label4.caption","sourcebytes":[81,84,72],"value":"QTH"},

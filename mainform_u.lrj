@@ -4,6 +4,7 @@
 {"hash":193207391,"name":"tmainform.speedbutton9.hint","sourcebytes":[67,108,101,97,114,32,81,83,79],"value":"Clear QSO"},
 {"hash":203209943,"name":"tmainform.label49.caption","sourcebytes":[67,117,114,114,101,110,116,32,108,111,103],"value":"Current log"},
 {"hash":64148485,"name":"tmainform.label50.caption","sourcebytes":[78,101,119,32,117,112,100,97,116,101,32,97,118,97,105,108,97,98,108,101],"value":"New update available"},
+{"hash":79095972,"name":"tmainform.label51.caption","sourcebytes":[77,121,32,103,114,105,100],"value":"My grid"},
 {"hash":905,"name":"tmainform.combobox4.text","sourcebytes":[53,57],"value":"59"},
 {"hash":905,"name":"tmainform.combobox5.text","sourcebytes":[53,57],"value":"59"},
 {"hash":305317,"name":"tmainform.label1.caption","sourcebytes":[68,97,116,101],"value":"Date"},

@@ -138,9 +138,14 @@ begin
   LogConfigForm.Edit6.Text := LogConfigForm.SQLQuery1.FieldByName('Loc').AsString;
   LogConfigForm.Edit7.Text := LogConfigForm.SQLQuery1.FieldByName('CQ').AsString;
   LogConfigForm.Edit8.Text := LogConfigForm.SQLQuery1.FieldByName('Lat').AsString;
+
+  if LogConfigForm.SQLQuery1.FieldByName('Lat').AsString <> '' then
   QTH_LAT := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lat').AsString);
+
   LogConfigForm.Edit9.Text := LogConfigForm.SQLQuery1.FieldByName('Lon').AsString;
+  if LogConfigForm.SQLQuery1.FieldByName('Lon').AsString <> '' then
   QTH_LON := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lon').AsString);
+
   LogConfigForm.Edit10.Text := LogConfigForm.SQLQuery1.FieldByName('QSLInfo').AsString;
   LogConfigForm.Edit11.Text := LogConfigForm.SQLQuery1.FieldByName('EQSLLogin').AsString;
   LogConfigForm.Edit12.Text :=
