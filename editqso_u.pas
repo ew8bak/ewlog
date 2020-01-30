@@ -122,7 +122,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+      DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -151,7 +151,7 @@ uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_
 
 procedure TEditQSO_Form.SpeedButton11Click(Sender: TObject);
 begin
-  CheckForm:='Edit';
+  CheckForm := 'Edit';
   InformationForm.Show;
 end;
 
@@ -162,12 +162,12 @@ end;
 
 procedure TEditQSO_Form.SpeedButton1Click(Sender: TObject);
 begin
-  CountryEditForm.CountryQditQuery.DataBase:=MainForm.ServiceDBConnection;
+  CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM CountryDataEx';
   CountryEditForm.CountryQditQuery.Open;
-  MainForm.SQLServiceTransaction.Active:=true;
+  MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'ARRLList';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('ARRLPrefix', Edit7.Text, []);
   CountryEditForm.Show;
@@ -175,13 +175,13 @@ end;
 
 procedure TEditQSO_Form.SpeedButton2Click(Sender: TObject);
 begin
-  CountryEditForm.CountryQditQuery.DataBase:=MainForm.ServiceDBConnection;
+  CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
 
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM Province';
   CountryEditForm.CountryQditQuery.Open;
-  MainForm.SQLServiceTransaction.Active:=true;
+  MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'Province';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('Prefix', Edit8.Text, []);
   CountryEditForm.Show;
@@ -205,17 +205,17 @@ end;
 procedure TEditQSO_Form.Button3Click(Sender: TObject);
 var
   FmtStngs: TFormatSettings;
-  DigiBand: Double;
-  ind:Integer;
+  DigiBand: double;
+  ind: integer;
   FREQ_string: string;
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
-  FREQ_string:=ComboBox1.Text;
+  FREQ_string := ComboBox1.Text;
   Delete(FREQ_string, length(FREQ_string) - 2, 1);
-  DigiBand:=dmFunc.GetDigiBandFromFreq(FREQ_string);
+  DigiBand := dmFunc.GetDigiBandFromFreq(FREQ_string);
 
-  ind:=MainForm.DBGrid1.DataSource.DataSet.RecNo;
+  ind := MainForm.DBGrid1.DataSource.DataSet.RecNo;
   with UPDATE_Query do
   begin
     Close;
@@ -251,16 +251,16 @@ begin
       Params.ParamByName('QSLSentAdv').AsString := 'N';
 
     if DateEdit3.Text <> '' then
-    Params.ParamByName('QSLSentDate').AsDate := DateEdit3.Date
+      Params.ParamByName('QSLSentDate').AsDate := DateEdit3.Date
     else
-    Params.ParamByName('QSLSentDate').IsNull;
+      Params.ParamByName('QSLSentDate').IsNull;
 
     Params.ParamByName('QSLRec').AsBoolean := CheckBox4.Checked;
 
     if DateEdit2.Text <> '' then
-    Params.ParamByName('QSLRecDate').AsDate := DateEdit2.Date
+      Params.ParamByName('QSLRecDate').AsDate := DateEdit2.Date
     else
-    Params.ParamByName('QSLRecDate').IsNull;
+      Params.ParamByName('QSLRecDate').IsNull;
 
     Params.ParamByName('DXCC').AsString := Edit6.Text;
     Params.ParamByName('DXCCPrefix').AsString := Edit7.Text;
@@ -278,9 +278,9 @@ begin
     Params.ParamByName('LoTWRec').AsBoolean := CheckBox6.Checked;
 
     if DateEdit4.Text <> '' then
-    Params.ParamByName('LoTWRecDate').AsDate := DateEdit4.Date
+      Params.ParamByName('LoTWRecDate').AsDate := DateEdit4.Date
     else
-    Params.ParamByName('LoTWRecDate').IsNull;
+      Params.ParamByName('LoTWRecDate').IsNull;
 
     Params.ParamByName('QSLInfo').AsString := Edit20.Text;
     Params.ParamByName('Call').AsString := Edit1.Text;
@@ -302,13 +302,13 @@ begin
     Params.ParamByName('LoTWSent').AsString := '0';
 
     if ComboBox6.Text <> '' then
-    Params.ParamByName('QSL_RCVD_VIA').AsString := ComboBox6.Text
+      Params.ParamByName('QSL_RCVD_VIA').AsString := ComboBox6.Text
     else
-    Params.ParamByName('QSL_RCVD_VIA').IsNull;
+      Params.ParamByName('QSL_RCVD_VIA').IsNull;
     if ComboBox7.Text <> '' then
-    Params.ParamByName('QSL_SENT_VIA').AsString := ComboBox7.Text
+      Params.ParamByName('QSL_SENT_VIA').AsString := ComboBox7.Text
     else
-    Params.ParamByName('QSL_SENT_VIA').IsNull;
+      Params.ParamByName('QSL_SENT_VIA').IsNull;
     Params.ParamByName('NoCalcDXCC').AsBoolean := CheckBox1.Checked;
     Params.ParamByName('MainPrefix').AsString := Edit8.Text;
     ExecSQL;
@@ -336,14 +336,16 @@ begin
 
   for i := 0 to PrefixProvinceCount do
   begin
-    if (PrefixExpProvinceArray[i].reg.Exec(Edit1.Text)) and (PrefixExpProvinceArray[i].reg.Match[0] = Edit1.Text) then
+    if (PrefixExpProvinceArray[i].reg.Exec(Edit1.Text)) and
+      (PrefixExpProvinceArray[i].reg.Match[0] = Edit1.Text) then
     begin
       BoolPrefix := True;
       with MainForm.PrefixQuery do
       begin
         Close;
         SQL.Clear;
-        SQL.Add('select * from Province where _id = "' + IntToStr(PrefixExpProvinceArray[i].id) + '"');
+        SQL.Add('select * from Province where _id = "' +
+          IntToStr(PrefixExpProvinceArray[i].id) + '"');
         Open;
       end;
       GroupBox1.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
@@ -359,17 +361,20 @@ begin
   begin
     for j := 0 to PrefixARRLCount do
     begin
-      if (PrefixExpARRLArray[j].reg.Exec(Edit1.Text)) and (PrefixExpARRLArray[j].reg.Match[0] = Edit1.Text) then
+      if (PrefixExpARRLArray[j].reg.Exec(Edit1.Text)) and
+        (PrefixExpARRLArray[j].reg.Match[0] = Edit1.Text) then
       begin
         with MainForm.PrefixQuery do
         begin
           Close;
           SQL.Clear;
-          SQL.Add('select * from CountryDataEx where _id = "' + IntToStr(PrefixExpARRLArray[j].id) + '"');
+          SQL.Add('select * from CountryDataEx where _id = "' +
+            IntToStr(PrefixExpARRLArray[j].id) + '"');
           Open;
-        if FieldByName('Status').AsString = 'Deleted' then begin
-          PrefixExpARRLArray[j].reg.ExecNext;
-          Exit;
+          if FieldByName('Status').AsString = 'Deleted' then
+          begin
+            PrefixExpARRLArray[j].reg.ExecNext;
+            Exit;
           end;
 
         end;
@@ -386,12 +391,17 @@ begin
 end;
 
 procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);
+var
+  modesString: TStringList;
 begin
- ComboBox9.Items:=MainForm.addModes(ComboBox2.Text,True);
+  modesString := TStringList.Create;
+  MainForm.addModes(ComboBox2.Text, True, modesString);
+  ComboBox9.Items := modesString;
+  modesString.Free;
 end;
 
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
-  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+  const Rect: TRect; DataCol: integer; Column: TColumn; State: TGridDrawState);
 var
   i: integer;
 begin
@@ -558,7 +568,8 @@ begin
     begin
       DBGrid1.Canvas.FillRect(Rect);
       DBGrid1.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
-        dmFunc.GetBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
+        dmFunc.GetBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName(
+        'QSOBand').AsString));
     end;
   end;
 
@@ -570,7 +581,8 @@ begin
 end;
 
 procedure TEditQSO_Form.FormCreate(Sender: TObject);
-var i:integer;
+var
+  i: integer;
 begin
   if InitLog_DB = 'YES' then
   begin
@@ -585,108 +597,112 @@ begin
       UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
     end;
 
-  //  ModesQuery.DataBase := MainForm.ServiceDBConnection;
-  //  BandsQuery.DataBase := MainForm.ServiceDBConnection;
-  SatPropQuery.DataBase:=MainForm.ServiceDBConnection;
+    //  ModesQuery.DataBase := MainForm.ServiceDBConnection;
+    //  BandsQuery.DataBase := MainForm.ServiceDBConnection;
+    SatPropQuery.DataBase := MainForm.ServiceDBConnection;
     //SATQuery.DataBase := MainForm.ServiceDBConnection;
 
-  //  ModesQuery.Active := True;
-  //  BandsQuery.Active := True;
-   // SATQuery.Active := True;
-  //  MainForm.VHFTypeQuery.Active := True;
+    //  ModesQuery.Active := True;
+    //  BandsQuery.Active := True;
+    // SATQuery.Active := True;
+    //  MainForm.VHFTypeQuery.Active := True;
 
-  for i := 0 to 29 do
-  begin
-    DBGrid1.Columns.Items[i].FieldName := Mainform.columnsGrid[i];
-    DBGrid1.Columns.Items[i].Width := Mainform.columnsWidth[i];
-    case Mainform.columnsGrid[i] of
-      'QSL': DBGrid1.Columns.Items[i].Title.Caption := rQSL;
-      'QSLs': DBGrid1.Columns.Items[i].Title.Caption := rQSLs;
-      'QSODate': DBGrid1.Columns.Items[i].Title.Caption := rQSODate;
-      'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := rQSOTime;
-      'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := rQSOBand;
-      'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
-      'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
-      'QSOSubMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOSubMode;
-      'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
-      'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
-      'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
-      'Grid': DBGrid1.Columns.Items[i].Title.Caption := rGrid;
-      'QSOReportSent': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportSent;
-      'QSOReportRecived': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportRecived;
-      'IOTA': DBGrid1.Columns.Items[i].Title.Caption := rIOTA;
-      'QSLManager': DBGrid1.Columns.Items[i].Title.Caption := rQSLManager;
-      'QSLSentDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLSentDate;
-      'QSLRecDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLRecDate;
-      'LoTWRecDate': DBGrid1.Columns.Items[i].Title.Caption := rLoTWRecDate;
-      'MainPrefix': DBGrid1.Columns.Items[i].Title.Caption := rMainPrefix;
-      'DXCCPrefix': DBGrid1.Columns.Items[i].Title.Caption := rDXCCPrefix;
-      'CQZone': DBGrid1.Columns.Items[i].Title.Caption := rCQZone;
-      'ITUZone': DBGrid1.Columns.Items[i].Title.Caption := rITUZone;
-      'ManualSet': DBGrid1.Columns.Items[i].Title.Caption := rManualSet;
-      'Continent': DBGrid1.Columns.Items[i].Title.Caption := rContinent;
-      'ValidDX': DBGrid1.Columns.Items[i].Title.Caption := rValidDX;
-      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
-      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
-      'USERS': DBGrid1.Columns.Items[i].Title.Caption := rUSERS;
-      'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
+    for i := 0 to 29 do
+    begin
+      DBGrid1.Columns.Items[i].FieldName := Mainform.columnsGrid[i];
+      DBGrid1.Columns.Items[i].Width := Mainform.columnsWidth[i];
+      case Mainform.columnsGrid[i] of
+        'QSL': DBGrid1.Columns.Items[i].Title.Caption := rQSL;
+        'QSLs': DBGrid1.Columns.Items[i].Title.Caption := rQSLs;
+        'QSODate': DBGrid1.Columns.Items[i].Title.Caption := rQSODate;
+        'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := rQSOTime;
+        'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := rQSOBand;
+        'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
+        'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
+        'QSOSubMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOSubMode;
+        'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
+        'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
+        'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
+        'Grid': DBGrid1.Columns.Items[i].Title.Caption := rGrid;
+        'QSOReportSent': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportSent;
+        'QSOReportRecived': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportRecived;
+        'IOTA': DBGrid1.Columns.Items[i].Title.Caption := rIOTA;
+        'QSLManager': DBGrid1.Columns.Items[i].Title.Caption := rQSLManager;
+        'QSLSentDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLSentDate;
+        'QSLRecDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLRecDate;
+        'LoTWRecDate': DBGrid1.Columns.Items[i].Title.Caption := rLoTWRecDate;
+        'MainPrefix': DBGrid1.Columns.Items[i].Title.Caption := rMainPrefix;
+        'DXCCPrefix': DBGrid1.Columns.Items[i].Title.Caption := rDXCCPrefix;
+        'CQZone': DBGrid1.Columns.Items[i].Title.Caption := rCQZone;
+        'ITUZone': DBGrid1.Columns.Items[i].Title.Caption := rITUZone;
+        'ManualSet': DBGrid1.Columns.Items[i].Title.Caption := rManualSet;
+        'Continent': DBGrid1.Columns.Items[i].Title.Caption := rContinent;
+        'ValidDX': DBGrid1.Columns.Items[i].Title.Caption := rValidDX;
+        'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
+        'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
+        'USERS': DBGrid1.Columns.Items[i].Title.Caption := rUSERS;
+        'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
+      end;
     end;
-    end;
-  ComboBox2.Items:=MainForm.ComboBox2.Items;
+    ComboBox2.Items := MainForm.ComboBox2.Items;
   end;
 
 end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);
 var
-  i:integer;
+  i: integer;
 begin
   try
-  if InitLog_DB = 'YES' then
-  begin
+    if InitLog_DB = 'YES' then
+    begin
 
-    if DefaultDB = 'MySQL' then
+      if DefaultDB = 'MySQL' then
+      begin
+        TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
+        UPDATE_Query.DataBase := MainForm.MySQLLOGDBConnection;
+      end
+      else
+      begin
+        TerrQuery.DataBase := MainForm.SQLiteDBConnection;
+        UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
+      end;
+    end;
+
+    if ComboBox2.Text <> '' then
+      ComboBox2Change(Self);
+
+    SatPropQuery.SQL.Text := 'SELECT * FROM PropMode';
+    SatPropQuery.Open;
+    SatPropQuery.First;
+    for i := 0 to SatPropQuery.RecordCount - 1 do
     begin
-      TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
-      UPDATE_Query.DataBase := MainForm.MySQLLOGDBConnection;
-    end
-    else
+      ComboBox3.Items.Add(SatPropQuery.FieldByName('Type').AsString);
+      SatPropQuery.Next;
+    end;
+    SatPropQuery.Close;
+
+    Button4.Click;
+    Edit1.SetFocus;
+  except
+    on E: ESQLDatabaseError do
     begin
-      TerrQuery.DataBase := MainForm.SQLiteDBConnection;
-      UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
+      if Pos('has gone away', E.Message) > 0 then
+      begin
+        ShowMessage(rMySQLHasGoneAway);
+        UseCallBook := 'NO';
+        DefaultDB := 'SQLite';
+        dbSel := 'SQLite';
+        MainForm.InitializeDB('SQLite');
+      end;
     end;
   end;
-
-  if ComboBox2.Text<>'' then
-  ComboBox2Change(Self);
-
-  SatPropQuery.SQL.Text:='SELECT * FROM PropMode';
-  SatPropQuery.Open;
-  SatPropQuery.First;
-  for i := 0 to SatPropQuery.RecordCount - 1 do begin
-  ComboBox3.Items.Add(SatPropQuery.FieldByName('Type').AsString);
-  SatPropQuery.Next;
-  end;
-  SatPropQuery.Close;
-
-  Button4.Click;
-  Edit1.SetFocus;
-  except on E: ESQLDatabaseError do begin
-    if Pos('has gone away',E.Message) > 0 then begin
-    ShowMessage(rMySQLHasGoneAway);
-    UseCallBook:='NO';
-    DefaultDB:='SQLite';
-    dbSel:='SQLite';
-    MainForm.InitializeDB('SQLite');
-    end;
-    end;
-end;
 
 end;
 
 procedure TEditQSO_Form.SpeedButton10Click(Sender: TObject);
 begin
-STATE_Form.Show;
+  STATE_Form.Show;
 end;
 
 end.

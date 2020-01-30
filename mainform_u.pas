@@ -755,7 +755,7 @@ type
     function FindLanguageFiles(Dir: string): TStringList;
     function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
-    function addModes(modeItem: string; subModesFlag: boolean): TStringList;
+    procedure addModes(modeItem: string; subModesFlag: boolean; var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
   end;
 
@@ -855,26 +855,21 @@ type
 
 { TMainForm }
 
-function TMainForm.addModes(modeItem: string; subModesFlag: boolean): TStringList;
+procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean; var subModes:TStringList);
 var
   i: integer;
-  subModes: TStringList;
 begin
-  try
-  subModesQuery.Close;
-  //ComboBox9.Items.Clear;
-  subModes := TStringList.Create;
-  subModes.Delimiter := ',';
+    subModesQuery.Close;
+    subModes.Delimiter := ',';
 
   if subModesFlag = False then
   begin
-   // ComboBox2.Items.Clear;
     subModesQuery.SQL.Text := 'SELECT * FROM Modes WHERE Enable = 1';
     subModesQuery.Open;
     subModesQuery.First;
     for i := 0 to subModesQuery.RecordCount - 1 do
     begin
-      ComboBox2.Items.Add(subModesQuery.FieldByName('mode').AsString);
+      subModes.Add(subModesQuery.FieldByName('mode').AsString);
       subModesQuery.Next;
     end;
     subModesQuery.Close;
@@ -886,12 +881,7 @@ begin
       QuotedStr(modeItem);
     subModesQuery.Open;
     subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
-    Result := subModes;
     subModesQuery.Close;
-
-  end;
-  finally
-
   end;
 end;
 
@@ -1390,6 +1380,7 @@ procedure TMainForm.InitializeDB(dbS: string);
 var
   i: integer;
   sDBPath: string;
+  modesString: TStringList;
 begin
      {$IFDEF UNIX}
   sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
@@ -1496,8 +1487,11 @@ begin
   subModesQuery.DataBase := ServiceDBConnection;
   BandsQuery.DataBase := ServiceDBConnection;
   try
+  modesString:=TStringList.Create;
     ComboBox2.Items.Clear;
-    AddModes('', False);
+    AddModes('', False, modesString);
+    ComboBox2.Items:=modesString;
+    modesString.Free;
     //   addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
     subModesQuery.SQL.Text := 'select _id, submode from Modes';
     LogBookInfoQuery.Active := True;
@@ -2622,7 +2616,9 @@ var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
   deldot: string;
+  modesString: TStringList;
 begin
+  modesString:=TStringList.Create;
   deldot := ComboBox1.Text;
   if Pos('M', deldot) > 0 then
   begin
@@ -2632,7 +2628,9 @@ begin
   else
     Delete(deldot, length(deldot) - 2, 1);
   ComboBox9.Items.Clear;
-  ComboBox9.Items := addModes(ComboBox2.Text, True);
+  addModes(ComboBox2.Text, True, modesString);
+  ComboBox9.Items:=modesString;
+  modesString.Free;
   addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
   if ComboBox2.Text <> 'SSB' then
     ComboBox9.Text := '';

@@ -93,7 +93,10 @@ end;
 procedure TMM_Form.CheckBox1Click(Sender: TObject);
 var
   SelectIndex: integer;
+  modesString: TStringList;
 begin
+  modesString:=TStringList.Create;
+  MainForm.ComboBox2.Items.Clear;
   if Assigned(ListView1.Selected) then
   begin
     MMQuery.SQL.Text := ('UPDATE Modes SET Enable = ' +
@@ -104,7 +107,9 @@ begin
     MMQuery.SQLTransaction.Commit;
     ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked,'True','False'));
     ListView1.ItemIndex := SelectIndex;
-    MainForm.AddModes('', False);
+    MainForm.AddModes('', False, modesString);
+    MainForm.ComboBox2.Items:=modesString;
+    modesString.Free;
   end;
 end;
 
