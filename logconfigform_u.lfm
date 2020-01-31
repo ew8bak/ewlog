@@ -1,5 +1,5 @@
 object LogConfigForm: TLogConfigForm
-  Left = 857
+  Left = 460
   Height = 462
   Top = 120
   Width = 469

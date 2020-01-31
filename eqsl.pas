@@ -85,7 +85,6 @@ var
       end;
   end;
 begin
-
   Result := False;
   // Создание данных для отправки
   logdata := 'EWLog <ADIF_VER:4>1.00';

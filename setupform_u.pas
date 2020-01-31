@@ -202,6 +202,8 @@ begin
           '`QSLInfo` varchar(200) NOT NULL DEFAULT ''TNX For QSO TU 73!'', ' +
           '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
           '`EQSLPassword` varchar(200) DEFAULT NULL, ' + '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
+          '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
+          '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
           '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
           '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' + ') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
         SQL_Query.ExecSQL;
@@ -387,7 +389,10 @@ begin
         '`QSLInfo` varchar(200) NOT NULL DEFAULT `TNX For QSO TU 73!`, ' +
         '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
         '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
-        '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' + '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
+        '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
+        '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
+        '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
+        '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
         '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
         '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50))';
       SQL_Query.ExecSQL;
@@ -543,6 +548,8 @@ begin
             '`QSLInfo` varchar(200) NOT NULL DEFAULT ''TNX For QSO TU 73!'', ' +
             '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
             '`EQSLPassword` varchar(200) DEFAULT NULL, ' + '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
+            '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
+            '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
             '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
             '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' + ') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
           SQL_Query.ExecSQL;
@@ -727,7 +734,10 @@ begin
           '`QSLInfo` varchar(200) NOT NULL DEFAULT `TNX For QSO TU 73!`, ' +
           '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
           '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' + '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
+          '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
+          '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
+          '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
+          '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
           '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
           '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50));';
         SQL_Query.ExecSQL;

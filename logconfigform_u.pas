@@ -95,7 +95,7 @@ type
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
   private
-    function SelectCall(SelCall: string): string;
+    procedure SelectCall(SelCall: string);
     { private declarations }
   public
     { public declarations }
@@ -113,7 +113,7 @@ uses MainForm_U, CreateJournalForm_U, dmFunc_U;
 
 { TLogConfigForm }
 
-function TLogConfigForm.SelectCall(SelCall: string): string;
+procedure TLogConfigForm.SelectCall(SelCall: string);
 begin
  DefaultFormatSettings.DecimalSeparator := '.';
   if DefaultDB = 'MySQL' then
@@ -158,6 +158,16 @@ begin
     LogConfigForm.SQLQuery1.FieldByName('HRDLogPassword').AsString;
   LogConfigForm.CheckBox2.Checked :=
     LogConfigForm.SQLQuery1.FieldByName('AutoHRDLog').AsBoolean;
+    LogConfigForm.Edit15.Text :=
+    LogConfigForm.SQLQuery1.FieldByName('HamQTHLogin').AsString;
+  LogConfigForm.Edit16.Text :=
+    LogConfigForm.SQLQuery1.FieldByName('HamQTHPassword').AsString;
+  LogConfigForm.CheckBox3.Checked :=
+    LogConfigForm.SQLQuery1.FieldByName('AutoHamQTH').AsBoolean;
+   LogConfigForm.Edit17.Text :=
+    LogConfigForm.SQLQuery1.FieldByName('LoTW_User').AsString;
+  LogConfigForm.Edit18.Text :=
+    LogConfigForm.SQLQuery1.FieldByName('LoTW_Password').AsString;
   id := LogConfigForm.SQLQuery1.FieldByName('id').AsInteger;
 end;
 
@@ -177,7 +187,10 @@ begin
       ' `CQ`=:CQ, `Loc`=:Loc, `Lat`=:Lat, `Lon`=:Lon, `Discription`=:Discription,' +
       ' `QSLInfo`=:QSLInfo, `EQSLLogin`=:EQSLLogin, `EQSLPassword`=:EQSLPassword,' +
       ' `AutoEQSLcc`=:AutoEQSLcc, `HRDLogLogin`=:HRDLogLogin,' +
-      ' `HRDLogPassword`=:HRDLogPassword, `AutoHRDLog`=:AutoHRDLog WHERE `id`=:id');
+      ' `HRDLogPassword`=:HRDLogPassword, `AutoHRDLog`=:AutoHRDLog,' +
+      ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword,' +
+      ' `AutoHamQTH`=:AutoHamQTH, `LoTW_User`=:LoTW_User,' +
+      ' `LoTW_Password`=:LoTW_Password WHERE `id`=:id');
     Params.ParamByName('CallName').AsString := Edit2.Text;
     Params.ParamByName('Name').AsString := Edit3.Text;
     Params.ParamByName('QTH').AsString := Edit4.Text;
@@ -194,6 +207,12 @@ begin
     Params.ParamByName('HRDLogLogin').AsString := Edit13.Text;
     Params.ParamByName('HRDLogPassword').AsString := Edit14.Text;
     Params.ParamByName('AutoHRDLog').AsBoolean := CheckBox2.Checked;
+    Params.ParamByName('HamQTHLogin').AsString := Edit15.Text;
+    Params.ParamByName('HamQTHPassword').AsString := Edit16.Text;
+    Params.ParamByName('AutoHamQTH').AsBoolean := CheckBox3.Checked;
+    Params.ParamByName('LoTW_User').AsString := Edit17.Text;
+    Params.ParamByName('LoTW_Password').AsString := Edit18.Text;
+
     Params.ParamByName('id').AsInteger := id;
     ExecSQL;
   end;

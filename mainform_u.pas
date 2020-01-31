@@ -756,7 +756,8 @@ type
     function FindLanguageFiles(Dir: string): TStringList;
     function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
-    procedure addModes(modeItem: string; subModesFlag: boolean; var subModes: TStringList);
+    procedure addModes(modeItem: string; subModesFlag: boolean;
+      var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
   end;
 
@@ -793,8 +794,8 @@ var
   UseCallBook: string;
   InitLog_DB: string;
   LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
-  eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode: string;
-  AutoEQSLcc, AutoHRDLog: boolean;
+  eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode, HamQTHLogin, HamQTHPassword: string;
+  AutoEQSLcc, AutoHRDLog, AutoHamQTH: boolean;
   tx, txWSJT: boolean;
   connected, connectedWSJT: boolean;
   usefldigi: boolean = True;
@@ -828,7 +829,7 @@ uses
   ConfigForm_U, ManagerBasePrefixForm_U, ExportAdifForm_u, CreateJournalForm_U,
   ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi, aziloc,
   QSLManagerForm_U, SettingsCAT_U,
-  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog,
+  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog, hamqth,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U,
   UpdateForm_U, Earth_Form_U,
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
@@ -856,12 +857,13 @@ type
 
 { TMainForm }
 
-procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean; var subModes:TStringList);
+procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
+  var subModes: TStringList);
 var
   i: integer;
 begin
-    subModesQuery.Close;
-    subModes.Delimiter := ',';
+  subModesQuery.Close;
+  subModes.Delimiter := ',';
 
   if subModesFlag = False then
   begin
@@ -1488,10 +1490,10 @@ begin
   subModesQuery.DataBase := ServiceDBConnection;
   BandsQuery.DataBase := ServiceDBConnection;
   try
-  modesString:=TStringList.Create;
+    modesString := TStringList.Create;
     ComboBox2.Items.Clear;
     AddModes('', False, modesString);
-    ComboBox2.Items:=modesString;
+    ComboBox2.Items := modesString;
     modesString.Free;
     //   addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
     subModesQuery.SQL.Text := 'select _id, submode from Modes';
@@ -1844,6 +1846,60 @@ end;
 
 procedure TMainForm.SelDB(calllbook: string);
 begin
+  CheckTableQuery.Close;
+  CheckTableQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
+  CheckTableQuery.Open;
+
+  try
+    if CheckTableQuery.FindField('LoTW_User') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN LoTW_User varchar(20);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+    if CheckTableQuery.FindField('LoTW_Password') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN LoTW_Password varchar(50);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+    if CheckTableQuery.FindField('HamQTHLogin') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN HamQTHLogin varchar(20);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+    if CheckTableQuery.FindField('HamQTHPassword') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN HamQTHPassword varchar(50);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+    if CheckTableQuery.FindField('AutoHamQTH') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN AutoHamQTH tinyint(1);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+  except
+    on E: ESQLDatabaseError do
+  end;
+
   with MainForm.LogBookInfoQuery do
   begin
     Close;
@@ -1871,6 +1927,10 @@ begin
     HRDLogin := MainForm.LogBookInfoQuery.FieldByName('HRDLogLogin').AsString;
     HRDCode := MainForm.LogBookInfoQuery.FieldByName('HRDLogPassword').AsString;
     AutoHRDLog := MainForm.LogBookInfoQuery.FieldByName('AutoHRDLog').AsBoolean;
+
+    HamQTHLogin := MainForm.LogBookInfoQuery.FieldByName('HamQTHLogin').AsString;
+    HamQTHPassword := MainForm.LogBookInfoQuery.FieldByName('HamQTHPassword').AsString;
+    AutoHamQTH := MainForm.LogBookInfoQuery.FieldByName('AutoHamQTH').AsBoolean;
 
     CheckTableQuery.Close;
     CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable + ' LIMIT 1';
@@ -1908,33 +1968,6 @@ begin
     except
       on E: ESQLDatabaseError do
 
-    end;
-
-    CheckTableQuery.Close;
-    CheckTableQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
-    CheckTableQuery.Open;
-
-    try
-      if CheckTableQuery.FindField('LoTW_User') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_User varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('LoTW_Password') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_Password varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-    except
-      on E: ESQLDatabaseError do
     end;
 
     MainForm.SelectLogDatabase(LogTable);
@@ -2335,8 +2368,8 @@ begin
 
           MenuItem43.Enabled := False;
           ComboBox2.Text := Fldigi_GetMode;
-         // ComboBox2Change(Sender);
-         ComboBox2CloseUp(Sender);
+          // ComboBox2Change(Sender);
+          ComboBox2CloseUp(Sender);
         end;
       end;
     end;
@@ -2355,8 +2388,8 @@ begin
         ['EWLog', 'не подключен к Fldigi']);
       {$ENDIF}
       ComboBox2.ItemIndex := 0;
-     // ComboBox2Change(Sender);
-     ComboBox2CloseUp(Sender);
+      // ComboBox2Change(Sender);
+      ComboBox2CloseUp(Sender);
       MenuItem43.Enabled := True;
     end;
     Exit;
@@ -2619,7 +2652,7 @@ var
   deldot: string;
   modesString: TStringList;
 begin
-  modesString:=TStringList.Create;
+  modesString := TStringList.Create;
   deldot := ComboBox1.Text;
   if Pos('M', deldot) > 0 then
   begin
@@ -2630,7 +2663,7 @@ begin
     Delete(deldot, length(deldot) - 2, 1);
   ComboBox9.Items.Clear;
   addModes(ComboBox2.Text, True, modesString);
-  ComboBox9.Items:=modesString;
+  ComboBox9.Items := modesString;
   modesString.Free;
   addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
   if ComboBox2.Text <> 'SSB' then
@@ -3378,8 +3411,8 @@ begin
       InitializeDB(DefaultDB);
       ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(
         IniF.ReadString('SetLog', 'PastMode', ''));
-   //   ComboBox2Change(Self);
-   ComboBox2CloseUp(Self);
+      //   ComboBox2Change(Self);
+      ComboBox2CloseUp(Self);
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(
         IniF.ReadString('SetLog', 'PastSubMode', ''));
       addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
@@ -6009,7 +6042,8 @@ begin
 
       DigiBand_String := NameBand;
       Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
-      DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String); ;
+      DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
+      ;
 
       if Edit13.Text <> '' then
         state := Edit4.Text + '-' + Edit13.Text;
@@ -6049,7 +6083,7 @@ begin
           starttime := DateTimePicker1.Time;
           freq := NameBand;
           mode := ComboBox2.Text;
-          submode:= ComboBox9.Text;
+          submode := ComboBox9.Text;
           rst := ComboBox4.Text;
           qslinf := SetQSLInfo;
           Start;
@@ -6070,7 +6104,30 @@ begin
           starttime := DateTimePicker1.Time;
           freq := NameBand;
           mode := ComboBox2.Text;
-          submode:= ComboBox9.Text;
+          submode := ComboBox9.Text;
+          rsts := ComboBox4.Text;
+          rstr := ComboBox5.Text;
+          locat := Edit3.Text;
+          qslinf := SetQSLInfo;
+          Start;
+        end;
+      end;
+
+      if AutoHamQTH = True then
+      begin
+        SendHamQTHThread := TSendHamQTHThread.Create;
+        if Assigned(SendHamQTHThread.FatalException) then
+          raise SendHamQTHThread.FatalException;
+        with SendHamQTHThread do
+        begin
+          userid := HamQTHLogin;
+          userpwd := HamQTHPassword;
+          call := EditButton1.Text;
+          startdate := DateEdit1.Date;
+          starttime := DateTimePicker1.Time;
+          freq := NameBand;
+          mode := ComboBox2.Text;
+          submode := ComboBox9.Text;
           rsts := ComboBox4.Text;
           rstr := ComboBox5.Text;
           locat := Edit3.Text;
@@ -6380,9 +6437,9 @@ begin
       {$ENDIF}
       if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
         MenuItem74.Enabled := True;
-  //    ComboBox2.ItemIndex := lastBand;
+      //    ComboBox2.ItemIndex := lastBand;
       //ComboBox2Change(Sender);
-  //    ComboBox2CloseUp(Sender);
+      //    ComboBox2CloseUp(Sender);
       Clr();
     end;
     Exit;

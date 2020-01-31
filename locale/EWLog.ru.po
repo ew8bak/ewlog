@@ -162,6 +162,31 @@ msgctxt "exportadifform_u.rwarning"
 msgid "Warning!"
 msgstr "Внимание!"
 
+#: hamqth.ranswerserver
+msgctxt "hamqth.ranswerserver"
+msgid "Server response:"
+msgstr ""
+
+#: hamqth.rerrorsendingsata
+msgctxt "hamqth.rerrorsendingsata"
+msgid "Error sending data"
+msgstr ""
+
+#: hamqth.rnoentryadded
+msgctxt "hamqth.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr ""
+
+#: hamqth.rrecordaddedsuccessfully
+msgctxt "hamqth.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr ""
+
+#: hamqth.runknownuser
+msgctxt "hamqth.runknownuser"
+msgid "Unknown user! See settings"
+msgstr ""
+
 #: hrdlog.ranswerserver
 msgctxt "hrdlog.ranswerserver"
 msgid "Server response:"
@@ -173,14 +198,17 @@ msgid "Error sending data"
 msgstr ""
 
 #: hrdlog.rnoentryadded
+msgctxt "hrdlog.rnoentryadded"
 msgid "No entry added! Perhaps a duplicate!"
 msgstr ""
 
 #: hrdlog.rrecordaddedsuccessfully
+msgctxt "hrdlog.rrecordaddedsuccessfully"
 msgid "Record added successfully"
 msgstr ""
 
 #: hrdlog.runknownuser
+msgctxt "hrdlog.runknownuser"
 msgid "Unknown user! See settings"
 msgstr ""
 
