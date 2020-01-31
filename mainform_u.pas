@@ -593,6 +593,7 @@ type
     procedure MenuItem55Click(Sender: TObject);
     procedure MenuItem56Click(Sender: TObject);
     procedure MenuItem58Click(Sender: TObject);
+    procedure MenuItem5Click(Sender: TObject);
     procedure MenuItem60Click(Sender: TObject);
     procedure MenuItem63Click(Sender: TObject);
     procedure MenuItem65Click(Sender: TObject);
@@ -5178,6 +5179,11 @@ begin
   end;     }
 end;
 
+procedure TMainForm.MenuItem5Click(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.MenuItem60Click(Sender: TObject);
 begin
   ServiceForm.Show;
@@ -6043,6 +6049,7 @@ begin
           starttime := DateTimePicker1.Time;
           freq := NameBand;
           mode := ComboBox2.Text;
+          submode:= ComboBox9.Text;
           rst := ComboBox4.Text;
           qslinf := SetQSLInfo;
           Start;
@@ -6335,6 +6342,7 @@ procedure TMainForm.WSJT_TimerTimer(Sender: TObject);
 begin
   if WSJT_UDP_Form.WSJT_IsRunning then
   begin
+
     if WSJT_Timer.Interval > 1000 then
     begin
       WSJT_Timer.Interval := 1000;
@@ -6371,9 +6379,9 @@ begin
       {$ENDIF}
       if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
         MenuItem74.Enabled := True;
-      ComboBox2.ItemIndex := 0;
+  //    ComboBox2.ItemIndex := lastBand;
       //ComboBox2Change(Sender);
-      ComboBox2CloseUp(Sender);
+  //    ComboBox2CloseUp(Sender);
       Clr();
     end;
     Exit;

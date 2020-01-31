@@ -252,7 +252,7 @@ begin
           'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
           '(' + ' `UnUsedIndex` int(11) NOT NULL,' +
           ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
+          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
           ' `QSOMode` varchar(7) DEFAULT NULL,' +
           ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
           ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
@@ -435,7 +435,7 @@ begin
         'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
         '(' + ' `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
         ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-        ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
+        ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
         ' `QSOMode` varchar(7) DEFAULT NULL,' +
         ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
         ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
@@ -593,7 +593,7 @@ begin
             'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
             '(' + ' `UnUsedIndex` int(11) NOT NULL,' +
             ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-            ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
+            ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
             ' `QSOMode` varchar(7) DEFAULT NULL,' +
             ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
             ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
@@ -775,7 +775,7 @@ begin
           'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
           '(' + ' `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
           ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
+          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
           ' `QSOMode` varchar(7) DEFAULT NULL,' +
           ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
           ' `QSOReportSent` varchar(15) DEFAULT NULL,' +

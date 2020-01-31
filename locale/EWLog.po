@@ -94,6 +94,14 @@ msgstr ""
 msgid "Log added successfully"
 msgstr ""
 
+#: eqsl.ranswerserver
+msgid "Server response:"
+msgstr ""
+
+#: eqsl.rerrorsendingsata
+msgid "Error sending data"
+msgstr ""
+
 #: exportadifform_u.ppleasefile
 msgid "Please specify a file for export!"
 msgstr ""

@@ -3448,6 +3448,7 @@ object MainForm: TMainForm
     object MenuItem5: TMenuItem
       Caption = 'Quick start'
       Enabled = False
+      OnClick = MenuItem5Click
     end
     object MenuItem6: TMenuItem
       Caption = 'Help'

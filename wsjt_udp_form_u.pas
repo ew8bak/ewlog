@@ -125,11 +125,11 @@ var
 begin
   peerPort := ABinding.PeerPort;
 
-  //Memo1.Lines.Add('Datagram received - length: ' + IntToStr(Length(AData)));
+  Memo1.Lines.Add('Datagram received - length: ' + IntToStr(Length(AData)));
   while index < Length(AData) do
   begin
     dmFunc.Unpack(AData, index, magic);
-    //  Memo1.Lines.Add('index:' + IntToStr(index) + ' magic:$' + IntToHex(magic,8));
+     Memo1.Lines.Add('index:' + IntToStr(index) + ' magic:$' + IntToHex(magic,8));
     if (magic = longint($ADBCCBDA)) and (index < Length(AData)) then
     begin
       dmFunc.Unpack(AData, index, schema);
@@ -146,7 +146,6 @@ begin
           end;
           1:
           begin
-
             dmFunc.Unpack(AData, index, frequency);
             dmFunc.Unpack(AData, index, mode);
             dmFunc.Unpack(AData, index, DXCall);
@@ -171,8 +170,14 @@ begin
             else
               MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
 
+            if mode <> 'FT4' then begin
             MainForm.ComboBox2.Text := mode;
-      //      MainForm.ComboBox2Change(MainForm.ComboBox2);
+            MainForm.ComboBox9.Text := '';
+            end
+            else begin
+            MainForm.ComboBox2.Text := 'MFSK';
+            MainForm.ComboBox9.Text := 'FT4';
+            end;
             MainForm.ComboBox4.Text := report;
           end;
 

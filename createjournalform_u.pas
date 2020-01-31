@@ -149,12 +149,12 @@ begin
           'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
           '(' + ' `UnUsedIndex` integer NOT NULL,' +
           ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
+          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
           ' `QSOMode` varchar(7) DEFAULT NULL,' +
           ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
           ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
           ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-          ' `OMName` varchar(20) DEFAULT NULL,' + ' `OMQTH` varchar(25) DEFAULT NULL,' +
+          ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
           ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
           ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
           ' `QSLSent` tinyint(1) DEFAULT NULL,' +
@@ -191,12 +191,12 @@ begin
           'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
           '(' + ' `UnUsedIndex` integer PRIMARY KEY AUTOINCREMENT NOT NULL,' +
           ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(10) DEFAULT NULL,' +
+          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
           ' `QSOMode` varchar(7) DEFAULT NULL,' +
           ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
           ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
           ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-          ' `OMName` varchar(20) DEFAULT NULL,' + ' `OMQTH` varchar(25) DEFAULT NULL,' +
+          ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
           ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
           ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
           ' `QSLSent` tinyint(1) DEFAULT NULL,' +

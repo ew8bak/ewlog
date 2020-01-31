@@ -104,6 +104,14 @@ msgstr "Выполнено успешно! Перезапустите прогр
 msgid "Log added successfully"
 msgstr "Журнал успешно добавлен"
 
+#: eqsl.ranswerserver
+msgid "Server response:"
+msgstr ""
+
+#: eqsl.rerrorsendingsata
+msgid "Error sending data"
+msgstr ""
+
 #: exportadifform_u.ppleasefile
 msgid "Please specify a file for export!"
 msgstr ""

@@ -8,7 +8,10 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils,Dialogs, LazUTF8;
+  Classes, SysUtils, Dialogs, LazUTF8;
+resourcestring
+  rAnswerServer = 'Server response:';
+  rErrorSendingSata = 'Error sending data';
 
 type
   TEQSLSentEvent = procedure of object;
@@ -16,6 +19,11 @@ type
   TSendEQSLThread = class(TThread)
   protected
     procedure Execute; override;
+    procedure ShowResult;
+    function SendEQSL(eqsluser, eqslpasswd, call: string;
+  timestarted, datestarted: TDateTime; qsofreq, mode, submode, rst, qslinfo: string;
+  inform: integer): boolean;
+
   public
     userid: string;
     userpwd: string;
@@ -27,13 +35,13 @@ type
     submode: string;
     rst: string;
     qslinf: string;
+    result_mes: string;
     information: integer;
     OnEQSLSent: TEQSLSentEvent;
     constructor Create;
   end;
 
-function SendEQSL(eqsluser, eqslpasswd, call: string; timestarted, datestarted: TDateTime;
-  qsofreq, mode, rst, qslinfo: string; inform:integer): boolean;
+
 function StripStr(t, s: string): string;
 
 var
@@ -41,17 +49,18 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, dmFunc_U, MainForm_U;
+uses Forms, LCLType, HTTPSend, dmFunc_U;
 
 function StripStr(t, s: string): string;
 begin
-Result := StringReplace(s,t,'',[rfReplaceAll]);
+  Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function SendEQSL(eqsluser, eqslpasswd, call: string; timestarted, datestarted: TDateTime;
-  qsofreq, mode, rst, qslinfo: string; inform:integer): boolean;
+function TSendEQSLThread.SendEQSL(eqsluser, eqslpasswd, call: string;
+  timestarted, datestarted: TDateTime; qsofreq, mode, submode, rst, qslinfo: string;
+  inform: integer): boolean;
 var
-  logdata, url, response, submode: string;
+  logdata, url, response: string;
   res: TStringList;
 
   procedure AddData(const datatype, Data: string);
@@ -75,14 +84,7 @@ var
           Result := Result + '%' + IntToHex(Ord(s[i]), 2);
       end;
   end;
-
 begin
-  if Pos('BPSK', mode) > 0 then begin
-   submode:=mode;
-   Delete(submode,Pos('BPSK',submode),1);
-   Delete(mode,Pos('BPSK',mode)+4,Length(mode));
-   Delete(mode,Pos('BPSK',mode),1);
-  end;
 
   Result := False;
   // Создание данных для отправки
@@ -96,12 +98,12 @@ begin
   AddData('TIME_ON', FormatDateTime('hhnnss', timestarted));
   AddData('BAND', dmFunc.GetBandFromFreq(qsofreq));
   AddData('MODE', mode);
-  AddData('SUBMODE',submode);
+  AddData('SUBMODE', submode);
   AddData('RST_SENT', rst);
   AddData('QSLMSG', qslinfo);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
- // ShowMessage(logdata);
+  // ShowMessage(logdata);
   // Генерация http запроса
   url := 'http://www.eqsl.cc/qslcard/importADIF.cfm?ADIFData=' + URLEncode(logdata);
   // Отправка запроса
@@ -117,17 +119,16 @@ begin
           res.Delete(0);
         while (res.Count > 0) and (Trim(res.Strings[0]) = '') do
           res.Delete(0);
-            if res.Count > 0 then response := Trim(StripStr('<BR>',res.Strings[0]));
+        if res.Count > 0 then
+          response := Trim(StripStr('<BR>', res.Strings[0]));
         Result := Pos('records added', response) > 0;
-        if (not Result) or (inform=1) then
-          Application.MessageBox(PChar('Ответ сервера: ' + response),
-            'eQSL', MB_ICONEXCLAMATION);
+        if (not Result) or (inform = 1) then
+        result_mes:=response;
       end
       else
-        Application.MessageBox('Ошибка отправки данных', 'eQSL Ошибка',
-          MB_ICONEXCLAMATION);
-    except
-      Application.MessageBox('Неизвестное исключение', 'eQSL Ошибка', MB_ICONEXCLAMATION);
+      result_mes:=rErrorSendingSata;
+    except on E: Exception do
+      result_mes:=E.Message;
     end;
   finally
     res.Destroy;
@@ -141,11 +142,20 @@ begin
   inherited Create(True);
 end;
 
+procedure TSendEQSLThread.ShowResult;
+begin
+  if Length(result_mes) > 0 then
+  Application.MessageBox(PChar(rAnswerServer + result_mes),
+  'eQSL', MB_ICONEXCLAMATION);
+end;
+
 procedure TSendEQSLThread.Execute;
 begin
-  if SendEQSL(userid, userpwd, call, starttime, startdate, freq, mode, rst, qslinf, information) then
+  if SendEQSL(userid, userpwd, call, starttime, startdate, freq, mode, submode,
+    rst, qslinf, information) then
     if Assigned(OnEQSLSent) then
       Synchronize(OnEQSLSent);
+  Synchronize(@ShowResult);
 end;
 
 end.
