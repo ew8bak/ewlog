@@ -95,10 +95,12 @@ msgid "Log added successfully"
 msgstr ""
 
 #: eqsl.ranswerserver
+msgctxt "eqsl.ranswerserver"
 msgid "Server response:"
 msgstr ""
 
 #: eqsl.rerrorsendingsata
+msgctxt "eqsl.rerrorsendingsata"
 msgid "Error sending data"
 msgstr ""
 
@@ -148,6 +150,28 @@ msgstr ""
 #: exportadifform_u.rwarning
 msgctxt "exportadifform_u.rwarning"
 msgid "Warning!"
+msgstr ""
+
+#: hrdlog.ranswerserver
+msgctxt "hrdlog.ranswerserver"
+msgid "Server response:"
+msgstr ""
+
+#: hrdlog.rerrorsendingsata
+msgctxt "hrdlog.rerrorsendingsata"
+msgid "Error sending data"
+msgstr ""
+
+#: hrdlog.rnoentryadded
+msgid "No entry added! Perhaps a duplicate!"
+msgstr ""
+
+#: hrdlog.rrecordaddedsuccessfully
+msgid "Record added successfully"
+msgstr ""
+
+#: hrdlog.runknownuser
+msgid "Unknown user! See settings"
 msgstr ""
 
 #: importadifform_u.rdone

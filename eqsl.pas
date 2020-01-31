@@ -23,7 +23,8 @@ type
     function SendEQSL(eqsluser, eqslpasswd, call: string;
   timestarted, datestarted: TDateTime; qsofreq, mode, submode, rst, qslinfo: string;
   inform: integer): boolean;
-
+  private
+  result_mes: string;
   public
     userid: string;
     userpwd: string;
@@ -35,7 +36,6 @@ type
     submode: string;
     rst: string;
     qslinf: string;
-    result_mes: string;
     information: integer;
     OnEQSLSent: TEQSLSentEvent;
     constructor Create;

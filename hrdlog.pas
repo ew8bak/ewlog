@@ -10,6 +10,13 @@ uses
   {$ENDIF}
   Classes, SysUtils, strutils;
 
+resourcestring
+  rAnswerServer = 'Server response:';
+  rErrorSendingSata = 'Error sending data';
+  rRecordAddedSuccessfully = 'Record added successfully';
+  rNoEntryAdded = 'No entry added! Perhaps a duplicate!';
+  rUnknownUser = 'Unknown user! See settings';
+
 const
   UploadURL = 'http://robot.hrdlog.net/NewEntry.aspx';
 
@@ -19,6 +26,13 @@ type
   TSendHRDThread = class(TThread)
   protected
     procedure Execute; override;
+    procedure ShowResult;
+    function SendHRD(hrduser, hrdcode, call: string;
+      timestarted, datestarted: TDateTime;
+      qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string;
+      inform: integer): boolean;
+  private
+    result_mes: string;
   public
     userid: string;
     userpwd: string;
@@ -37,8 +51,6 @@ type
     constructor Create;
   end;
 
-function SendHRD(hrduser, hrdcode, call: string; timestarted, datestarted: TDateTime;
-  qsofreq, mode, rsts, rstr, qslinfo, locat: string; inform: integer): boolean;
 function StripStr(t, s: string): string;
 
 var
@@ -49,15 +61,16 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, dmFunc_U, MainForm_U;
+uses Forms, LCLType, HTTPSend, dmFunc_U;
 
 function StripStr(t, s: string): string;
 begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function SendHRD(hrduser, hrdcode, call: string; timestarted, datestarted: TDateTime;
-  qsofreq, mode, rsts, rstr, qslinfo, locat: string; inform: integer): boolean;
+function TSendHRDThread.SendHRD(hrduser, hrdcode, call: string;
+  timestarted, datestarted: TDateTime;
+  qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string; inform: integer): boolean;
 var
   logdata, url, appname: string;
   res: TStringList;
@@ -96,12 +109,14 @@ begin
   AddData('TIME_ON', FormatDateTime('hhnnss', timestarted));
   AddData('BAND', dmFunc.GetBandFromFreq(qsofreq));
   AddData('MODE', mode);
+  AddData('SUBMODE', submode);
   AddData('RST_SENT', rsts);
   AddData('RST_RCVD', rstr);
   AddData('QSLMSG', qslinfo);
   AddData('GRIDSQUARE', locat);
+  Delete(qsofreq, length(qsofreq) - 2, 1); //Удаляем последнюю точку
   AddData('FREQ', qsofreq);
-  AddData('LOG_PGM', 'EW8BAK_Log');
+  AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   // Генерация http запроса
   url := 'Callsign=' + hrduser + '&Code=' + hrdcode + '&App=' + appname +
@@ -112,8 +127,8 @@ begin
     try
       uploadok := HttpPostURL(UploadURL, url, dataStream);
     except
-      Application.MessageBox('Ошибка отправки данных', 'HRDLog Ошибка',
-        MB_ICONEXCLAMATION);
+      on E: Exception do
+        result_mes := E.Message;
     end;
   finally
   end;
@@ -128,14 +143,11 @@ begin
       if inform = 1 then
       begin
         if pos('<insert>1</insert>', Res.Text) > 0 then
-          Application.MessageBox(PChar('Запись успешно добавлена'),
-            'HRDLog', MB_ICONEXCLAMATION);
+          result_mes := rRecordAddedSuccessfully;
         if pos('<insert>0</insert>', Res.Text) > 0 then
-          Application.MessageBox(PChar('Запись не добавлена! Возможно дубликат!'),
-            'HRDLog', MB_ICONEXCLAMATION);
+          result_mes := rNoEntryAdded;
         if pos('<error>Unknown user</error>', Res.Text) > 0 then
-          Application.MessageBox(PChar('Неизвестный пользователь! Посмотрите настройки'),
-            'HRDLog', MB_ICONEXCLAMATION);
+          result_mes := rUnknownUser;
       end;
     finally
       res.Destroy;
@@ -152,12 +164,20 @@ begin
   inherited Create(True);
 end;
 
+procedure TSendHRDThread.ShowResult;
+begin
+  if Length(result_mes) > 0 then
+    Application.MessageBox(PChar(rAnswerServer + result_mes),
+      'HRDLog', MB_ICONEXCLAMATION);
+end;
+
 procedure TSendHRDThread.Execute;
 begin
   if SendHRD(userid, userpwd, call, starttime, startdate, freq, mode,
-    rsts, rstr, locat, qslinf, information) then
+    submode, rsts, rstr, qslinf, locat, information) then
     if Assigned(OnHRDSent) then
       Synchronize(OnHRDSent);
+  Synchronize(@ShowResult);
 end;
 
 end.

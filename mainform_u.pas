@@ -6070,6 +6070,7 @@ begin
           starttime := DateTimePicker1.Time;
           freq := NameBand;
           mode := ComboBox2.Text;
+          submode:= ComboBox9.Text;
           rsts := ComboBox4.Text;
           rstr := ComboBox5.Text;
           locat := Edit3.Text;
