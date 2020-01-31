@@ -1,11 +1,14 @@
 object hiddenSettings: ThiddenSettings
-  Left = 535
-  Height = 310
-  Top = 231
-  Width = 459
+  Left = 370
+  Height = 273
+  Top = 230
+  Width = 380
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
   Caption = 'Hidden Settings'
-  ClientHeight = 310
-  ClientWidth = 459
+  ClientHeight = 273
+  ClientWidth = 380
+  FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.0.6.0'
@@ -56,6 +59,7 @@ object hiddenSettings: ThiddenSettings
       Top = 8
       Width = 85
       Caption = 'Use API CAT'
+      OnChange = CheckBox1Change
       TabOrder = 0
     end
     object CheckBox2: TCheckBox
@@ -64,13 +68,14 @@ object hiddenSettings: ThiddenSettings
       Top = 32
       Width = 114
       Caption = 'Use API send data'
+      OnChange = CheckBox2Change
       TabOrder = 1
     end
   end
   object Button1: TButton
-    Left = 360
+    Left = 294
     Height = 25
-    Top = 264
+    Top = 240
     Width = 75
     Caption = 'Save'
     OnClick = Button1Click
@@ -87,7 +92,7 @@ object hiddenSettings: ThiddenSettings
   object CatTimer: TTimer
     Enabled = False
     OnTimer = CatTimerTimer
-    left = 392
-    top = 40
+    left = 312
+    top = 48
   end
 end
