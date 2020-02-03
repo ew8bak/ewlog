@@ -47,14 +47,14 @@ type
     qslinf: string;
     locat: string;
     information, inform: integer;
-    OnClubLogSent: THamQTHSentEvent;
+    OnClubLogSent: TClubLogSentEvent;
     constructor Create;
   end;
 
 function StripStr(t, s: string): string;
 
 var
-  SendClubLogThread: TClubLogThread;
+  SendClubLogThread: TSendClubLogThread;
   dataStream: TMemoryStream;
   uploadok: boolean;
 

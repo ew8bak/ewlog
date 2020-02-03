@@ -1,6 +1,31 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: clublog.ranswerserver
+msgctxt "clublog.ranswerserver"
+msgid "Server response:"
+msgstr ""
+
+#: clublog.rerrorsendingsata
+msgctxt "clublog.rerrorsendingsata"
+msgid "Error sending data"
+msgstr ""
+
+#: clublog.rnoentryadded
+msgctxt "clublog.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr ""
+
+#: clublog.rrecordaddedsuccessfully
+msgctxt "clublog.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr ""
+
+#: clublog.runknownuser
+msgctxt "clublog.runknownuser"
+msgid "Unknown user! See settings"
+msgstr ""
+
 #: configform_u.rbyte
 msgid " byte"
 msgstr ""

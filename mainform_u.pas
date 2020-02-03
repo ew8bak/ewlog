@@ -794,8 +794,8 @@ var
   UseCallBook: string;
   InitLog_DB: string;
   LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
-  eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode, HamQTHLogin, HamQTHPassword: string;
-  AutoEQSLcc, AutoHRDLog, AutoHamQTH: boolean;
+  eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode, HamQTHLogin, HamQTHPassword, ClubLogLogin, ClubLogPassword: string;
+  AutoEQSLcc, AutoHRDLog, AutoHamQTH, AutoClubLog: boolean;
   tx, txWSJT: boolean;
   connected, connectedWSJT: boolean;
   usefldigi: boolean = True;
@@ -829,7 +829,7 @@ uses
   ConfigForm_U, ManagerBasePrefixForm_U, ExportAdifForm_u, CreateJournalForm_U,
   ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi, aziloc,
   QSLManagerForm_U, SettingsCAT_U,
-  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog, hamqth,
+  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog, hamqth, clublog,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U,
   UpdateForm_U, Earth_Form_U,
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
@@ -1958,6 +1958,10 @@ begin
     HamQTHLogin := MainForm.LogBookInfoQuery.FieldByName('HamQTHLogin').AsString;
     HamQTHPassword := MainForm.LogBookInfoQuery.FieldByName('HamQTHPassword').AsString;
     AutoHamQTH := MainForm.LogBookInfoQuery.FieldByName('AutoHamQTH').AsBoolean;
+
+    ClubLogLogin := MainForm.LogBookInfoQuery.FieldByName('ClubLog_User').AsString;
+    ClubLogPassword := MainForm.LogBookInfoQuery.FieldByName('ClubLog_Password').AsString;
+    AutoClubLog := MainForm.LogBookInfoQuery.FieldByName('AutoClubLog').AsBoolean;
 
     CheckTableQuery.Close;
     CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable + ' LIMIT 1';
@@ -6163,6 +6167,31 @@ begin
         end;
       end;
 
+      //Отправка в ClubLog
+     { if AutoClubLog = True then
+      begin
+        SendClubLogThread := TSendClubLogThread.Create;
+        if Assigned(SendClubLogThread.FatalException) then
+          raise SendClubLogThread.FatalException;
+        with SendClubLogThread do
+        begin
+          userid := HamQTHLogin;
+          userpwd := HamQTHPassword;
+          call := EditButton1.Text;
+          startdate := DateEdit1.Date;
+          starttime := DateTimePicker1.Time;
+          freq := NameBand;
+          mode := ComboBox2.Text;
+          submode := ComboBox9.Text;
+          rsts := ComboBox4.Text;
+          rstr := ComboBox5.Text;
+          locat := Edit3.Text;
+          qslinf := SetQSLInfo;
+          Start;
+        end;
+      end; }
+
+      //Скрытые настройки, отправка в CloudLog
       if hiddenSettings.apisend then
       hiddenSettings.SendQSO(hiddenSettings.API_key, hiddenSettings.address_serv +
         '/index.php/api/qso/', EditButton1.Text,
