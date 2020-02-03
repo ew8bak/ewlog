@@ -1851,6 +1851,33 @@ begin
   CheckTableQuery.Open;
 
   try
+      if CheckTableQuery.FindField('ClubLog_User') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN ClubLog_User varchar(20);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+    if CheckTableQuery.FindField('ClubLog_Password') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN ClubLog_Password varchar(50);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+     if CheckTableQuery.FindField('AutoClubLog') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN AutoClubLog tinyint(1);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
     if CheckTableQuery.FindField('LoTW_User') = nil then
     begin
       CheckTableQuery.Close;

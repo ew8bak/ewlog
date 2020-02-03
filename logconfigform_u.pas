@@ -23,7 +23,7 @@ type
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
-    ComboBox1: TComboBox;
+    CheckBox4: TCheckBox;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -34,7 +34,9 @@ type
     Edit16: TEdit;
     Edit17: TEdit;
     Edit18: TEdit;
+    Edit19: TEdit;
     Edit2: TEdit;
+    Edit20: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
     Edit5: TEdit;
@@ -62,7 +64,9 @@ type
     Label25: TLabel;
     Label26: TLabel;
     Label27: TLabel;
-    Label3: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
@@ -115,7 +119,7 @@ uses MainForm_U, CreateJournalForm_U, dmFunc_U;
 
 procedure TLogConfigForm.SelectCall(SelCall: string);
 begin
- DefaultFormatSettings.DecimalSeparator := '.';
+  DefaultFormatSettings.DecimalSeparator := '.';
   if DefaultDB = 'MySQL' then
     LogConfigForm.SQLQuery1.DataBase := MainForm.MySQLLOGDBConnection
   else
@@ -140,11 +144,11 @@ begin
   LogConfigForm.Edit8.Text := LogConfigForm.SQLQuery1.FieldByName('Lat').AsString;
 
   if LogConfigForm.SQLQuery1.FieldByName('Lat').AsString <> '' then
-  QTH_LAT := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lat').AsString);
+    QTH_LAT := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lat').AsString);
 
   LogConfigForm.Edit9.Text := LogConfigForm.SQLQuery1.FieldByName('Lon').AsString;
   if LogConfigForm.SQLQuery1.FieldByName('Lon').AsString <> '' then
-  QTH_LON := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lon').AsString);
+    QTH_LON := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lon').AsString);
 
   LogConfigForm.Edit10.Text := LogConfigForm.SQLQuery1.FieldByName('QSLInfo').AsString;
   LogConfigForm.Edit11.Text := LogConfigForm.SQLQuery1.FieldByName('EQSLLogin').AsString;
@@ -158,16 +162,23 @@ begin
     LogConfigForm.SQLQuery1.FieldByName('HRDLogPassword').AsString;
   LogConfigForm.CheckBox2.Checked :=
     LogConfigForm.SQLQuery1.FieldByName('AutoHRDLog').AsBoolean;
-    LogConfigForm.Edit15.Text :=
+  LogConfigForm.Edit15.Text :=
     LogConfigForm.SQLQuery1.FieldByName('HamQTHLogin').AsString;
   LogConfigForm.Edit16.Text :=
     LogConfigForm.SQLQuery1.FieldByName('HamQTHPassword').AsString;
   LogConfigForm.CheckBox3.Checked :=
     LogConfigForm.SQLQuery1.FieldByName('AutoHamQTH').AsBoolean;
-   LogConfigForm.Edit17.Text :=
+  LogConfigForm.Edit17.Text :=
     LogConfigForm.SQLQuery1.FieldByName('LoTW_User').AsString;
   LogConfigForm.Edit18.Text :=
     LogConfigForm.SQLQuery1.FieldByName('LoTW_Password').AsString;
+  LogConfigForm.Edit19.Text :=
+    LogConfigForm.SQLQuery1.FieldByName('ClubLog_User').AsString;
+  LogConfigForm.Edit20.Text :=
+    LogConfigForm.SQLQuery1.FieldByName('ClubLog_Password').AsString;
+  LogConfigForm.CheckBox4.Checked :=
+    LogConfigForm.SQLQuery1.FieldByName('AutoClubLog').AsBoolean;
+
   id := LogConfigForm.SQLQuery1.FieldByName('id').AsInteger;
 end;
 
@@ -189,7 +200,8 @@ begin
       ' `AutoEQSLcc`=:AutoEQSLcc, `HRDLogLogin`=:HRDLogLogin,' +
       ' `HRDLogPassword`=:HRDLogPassword, `AutoHRDLog`=:AutoHRDLog,' +
       ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword,' +
-      ' `AutoHamQTH`=:AutoHamQTH, `LoTW_User`=:LoTW_User,' +
+      ' `ClubLog_User`=:ClubLog_User, `ClubLog_Password`=:ClubLog_Password,' +
+      ' `AutoHamQTH`=:AutoHamQTH, `AutoClubLog`=:AutoClubLog, `LoTW_User`=:LoTW_User,' +
       ' `LoTW_Password`=:LoTW_Password WHERE `id`=:id');
     Params.ParamByName('CallName').AsString := Edit2.Text;
     Params.ParamByName('Name').AsString := Edit3.Text;
@@ -212,6 +224,9 @@ begin
     Params.ParamByName('AutoHamQTH').AsBoolean := CheckBox3.Checked;
     Params.ParamByName('LoTW_User').AsString := Edit17.Text;
     Params.ParamByName('LoTW_Password').AsString := Edit18.Text;
+    Params.ParamByName('ClubLog_User').AsString := Edit19.Text;
+    Params.ParamByName('ClubLog_Password').AsString := Edit20.Text;
+    Params.ParamByName('AutoClubLog').AsBoolean := CheckBox4.Checked;
 
     Params.ParamByName('id').AsInteger := id;
     ExecSQL;

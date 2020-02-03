@@ -2333,10 +2333,11 @@ msgctxt "tlogconfigform.checkbox3.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
-#: tlogconfigform.combobox1.text
-msgctxt "tlogconfigform.combobox1.text"
-msgid "A"
-msgstr ""
+#: tlogconfigform.checkbox4.caption
+#, fuzzy
+msgctxt "tlogconfigform.checkbox4.caption"
+msgid "Upload every time a logbook entry is added"
+msgstr "Загружать каждый раз, при добавлении QSO"
 
 #: tlogconfigform.edit10.text
 msgid "TNX For QSO TU 73!"
@@ -2438,9 +2439,21 @@ msgctxt "tlogconfigform.label27.caption"
 msgid "LoTW"
 msgstr ""
 
-#: tlogconfigform.label3.caption
-msgid "Log set"
-msgstr "Настройки журнала"
+#: tlogconfigform.label28.caption
+msgid "ClubLog"
+msgstr ""
+
+#: tlogconfigform.label29.caption
+#, fuzzy
+msgctxt "tlogconfigform.label29.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tlogconfigform.label30.caption
+#, fuzzy
+msgctxt "tlogconfigform.label30.caption"
+msgid "Password"
+msgstr "Пароль"
 
 #: tlogconfigform.label4.caption
 msgid "Station detalis"
@@ -2487,13 +2500,15 @@ msgid "Operator"
 msgstr "Оператор"
 
 #: tlogconfigform.tabsheet2.caption
+msgctxt "tlogconfigform.tabsheet2.caption"
 msgid "Services"
 msgstr "Сервисы"
 
 #: tlogconfigform.tabsheet3.caption
+#, fuzzy
 msgctxt "tlogconfigform.tabsheet3.caption"
-msgid "LoTW"
-msgstr ""
+msgid "Services"
+msgstr "Сервисы"
 
 #: tmainform.caption
 msgid "EWLog - HAM Journal"

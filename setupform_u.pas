@@ -205,7 +205,8 @@ begin
           '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
           '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
           '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' + ') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
+          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' +
+          '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoHRDLog` tinyint(1) DEFAULT NULL ' +') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
         SQL_Query.ExecSQL;
         SQL_Query.Close;
         SQL_Query.SQL.Text := 'ALTER TABLE `LogBookInfo` ADD PRIMARY KEY (`id`)';
@@ -394,7 +395,8 @@ begin
         '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
         '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
         '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-        '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50))';
+        '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' +
+        '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL);';
       SQL_Query.ExecSQL;
       ProgressBar1.Position := 35;
       Application.ProcessMessages;
@@ -551,7 +553,8 @@ begin
             '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
             '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
             '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-            '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' + ') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
+            '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' +
+            '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoHRDLog` tinyint(1) DEFAULT NULL ' +') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
           SQL_Query.ExecSQL;
           SQL_Query.Close;
           SQL_Query.SQL.Text := 'ALTER TABLE `LogBookInfo` ADD PRIMARY KEY (`id`)';
@@ -739,7 +742,8 @@ begin
           '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
           '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
           '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50));';
+          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' +
+          '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL);';
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 35;
         Application.ProcessMessages;

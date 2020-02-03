@@ -2273,9 +2273,9 @@ msgctxt "tlogconfigform.checkbox3.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.combobox1.text
-msgctxt "tlogconfigform.combobox1.text"
-msgid "A"
+#: tlogconfigform.checkbox4.caption
+msgctxt "tlogconfigform.checkbox4.caption"
+msgid "Upload every time a logbook entry is added"
 msgstr ""
 
 #: tlogconfigform.edit10.text
@@ -2376,8 +2376,18 @@ msgctxt "tlogconfigform.label27.caption"
 msgid "LoTW"
 msgstr ""
 
-#: tlogconfigform.label3.caption
-msgid "Log set"
+#: tlogconfigform.label28.caption
+msgid "ClubLog"
+msgstr ""
+
+#: tlogconfigform.label29.caption
+msgctxt "tlogconfigform.label29.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.label30.caption
+msgctxt "tlogconfigform.label30.caption"
+msgid "Password"
 msgstr ""
 
 #: tlogconfigform.label4.caption
@@ -2425,12 +2435,13 @@ msgid "Operator"
 msgstr ""
 
 #: tlogconfigform.tabsheet2.caption
+msgctxt "tlogconfigform.tabsheet2.caption"
 msgid "Services"
 msgstr ""
 
 #: tlogconfigform.tabsheet3.caption
 msgctxt "tlogconfigform.tabsheet3.caption"
-msgid "LoTW"
+msgid "Services"
 msgstr ""
 
 #: tmainform.caption
