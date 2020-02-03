@@ -17,7 +17,8 @@ uses
   Changelog_Form_U, Earth_Form_U, IOTA_Form_U, ConfigGridForm_U,
   sendtelnetspot_form_U, ClusterFilter_Form_U, ClusterServer_Form_U,
   STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, register_form_u,
-  filterForm_U, hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth;
+  filterForm_U, hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth,
+  clublog;
 
 {$R *.res}
 
