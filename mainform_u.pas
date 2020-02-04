@@ -794,7 +794,8 @@ var
   UseCallBook: string;
   InitLog_DB: string;
   LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
-  eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode, HamQTHLogin, HamQTHPassword, ClubLogLogin, ClubLogPassword: string;
+  eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode, HamQTHLogin,
+  HamQTHPassword, ClubLogLogin, ClubLogPassword: string;
   AutoEQSLcc, AutoHRDLog, AutoHamQTH, AutoClubLog: boolean;
   tx, txWSJT: boolean;
   connected, connectedWSJT: boolean;
@@ -856,6 +857,30 @@ type
 {$R *.lfm}
 
 { TMainForm }
+
+procedure ConvertDIGI(digimodestr: string; var digimode, subdigimode: string);
+
+  function ExtractDigits(const Value: string): string;
+  var
+    i: integer;
+  begin
+    Result := '';
+
+    for i := 0 to Length(Value) do
+      if Value[i] in ['0'..'9'] then
+        Result := Result + Value[i];
+  end;
+
+begin
+  digimode:='';
+  subdigimode:='';
+  if Pos('BPSK', digimodestr) > 0 then
+  begin
+    digimode := 'PSK';
+    subdigimode := ExtractDigits(digimodestr);
+  end else
+  digimode:=digimodestr;
+end;
 
 procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
   var subModes: TStringList);
@@ -1851,7 +1876,7 @@ begin
   CheckTableQuery.Open;
 
   try
-      if CheckTableQuery.FindField('ClubLog_User') = nil then
+    if CheckTableQuery.FindField('ClubLog_User') = nil then
     begin
       CheckTableQuery.Close;
       CheckTableQuery.SQL.Text :=
@@ -1869,7 +1894,7 @@ begin
       SQLTransaction1.Commit;
     end;
 
-     if CheckTableQuery.FindField('AutoClubLog') = nil then
+    if CheckTableQuery.FindField('AutoClubLog') = nil then
     begin
       CheckTableQuery.Close;
       CheckTableQuery.SQL.Text :=
@@ -1960,7 +1985,8 @@ begin
     AutoHamQTH := MainForm.LogBookInfoQuery.FieldByName('AutoHamQTH').AsBoolean;
 
     ClubLogLogin := MainForm.LogBookInfoQuery.FieldByName('ClubLog_User').AsString;
-    ClubLogPassword := MainForm.LogBookInfoQuery.FieldByName('ClubLog_Password').AsString;
+    ClubLogPassword := MainForm.LogBookInfoQuery.FieldByName(
+      'ClubLog_Password').AsString;
     AutoClubLog := MainForm.LogBookInfoQuery.FieldByName('AutoClubLog').AsBoolean;
 
     CheckTableQuery.Close;
@@ -2371,7 +2397,7 @@ var
   stmp: string;
   currfreq: string;
   currmode: string;
-  mode: string;
+  mode, digimode,subdigimode: string;
   curr_f: extended;
   carr: integer;
 begin
@@ -2459,7 +2485,10 @@ begin
         begin
           currmode := mode;
           mode := Fldigi_GetMode;
-          Combobox2.Text := mode;
+         // Combobox2.Text := mode;
+         ConvertDIGI(mode,digimode,subdigimode);
+         ComboBox2.Text:=digimode;
+         ComboBox9.Text:=digimode+subdigimode;
         end;
       end;
 
@@ -6193,12 +6222,12 @@ begin
 
       //Скрытые настройки, отправка в CloudLog
       if hiddenSettings.apisend then
-      hiddenSettings.SendQSO(hiddenSettings.API_key, hiddenSettings.address_serv +
-        '/index.php/api/qso/', EditButton1.Text,
-        FormatDateTime('yyyymmdd', DateEdit1.Date), FormatDateTime(
-        'hhnnss', DateTimePicker1.Time), NameBand, ComboBox2.Text, ComboBox9.Text,
-        ComboBox4.Text, ComboBox5.Text, Edit1.Text, Edit2.Text, Edit4.Text,
-        Edit3.Text, Edit11.Text);
+        hiddenSettings.SendQSO(hiddenSettings.API_key, hiddenSettings.address_serv +
+          '/index.php/api/qso/', EditButton1.Text,
+          FormatDateTime('yyyymmdd', DateEdit1.Date), FormatDateTime(
+          'hhnnss', DateTimePicker1.Time), NameBand, ComboBox2.Text, ComboBox9.Text,
+          ComboBox4.Text, ComboBox5.Text, Edit1.Text, Edit2.Text, Edit4.Text,
+          Edit3.Text, Edit11.Text);
 
       SelDB(CallLogBook);
       Clr();
