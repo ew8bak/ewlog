@@ -652,13 +652,13 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = Edit19
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit19
-          Left = 39
+          Left = -1
           Height = 13
           Top = 156
-          Width = 30
+          Width = 70
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
-          Caption = 'Login'
+          Caption = 'Login (email)'
           Font.Height = -12
           ParentColor = False
           ParentFont = False

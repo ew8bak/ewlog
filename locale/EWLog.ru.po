@@ -2470,8 +2470,9 @@ msgstr ""
 
 #: tlogconfigform.label29.caption
 #, fuzzy
+#| msgid "Login"
 msgctxt "tlogconfigform.label29.caption"
-msgid "Login"
+msgid "Login (email)"
 msgstr "Логин"
 
 #: tlogconfigform.label30.caption

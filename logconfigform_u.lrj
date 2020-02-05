@@ -34,7 +34,7 @@
 {"hash":145417188,"name":"tlogconfigform.label26.caption","sourcebytes":[80,97,115,115,119,111,114,100],"value":"Password"},
 {"hash":341143,"name":"tlogconfigform.label27.caption","sourcebytes":[76,111,84,87],"value":"LoTW"},
 {"hash":171668247,"name":"tlogconfigform.label28.caption","sourcebytes":[67,108,117,98,76,111,103],"value":"ClubLog"},
-{"hash":5463550,"name":"tlogconfigform.label29.caption","sourcebytes":[76,111,103,105,110],"value":"Login"},
+{"hash":234717081,"name":"tlogconfigform.label29.caption","sourcebytes":[76,111,103,105,110,32,40,101,109,97,105,108,41],"value":"Login (email)"},
 {"hash":145417188,"name":"tlogconfigform.label30.caption","sourcebytes":[80,97,115,115,119,111,114,100],"value":"Password"},
 {"hash":118720436,"name":"tlogconfigform.checkbox4.caption","sourcebytes":[85,112,108,111,97,100,32,101,118,101,114,121,32,116,105,109,101,32,97,32,108,111,103,98,111,111,107,32,101,110,116,114,121,32,105,115,32,97,100,100,101,100],"value":"Upload every time a logbook entry is added"},
 {"hash":366789,"name":"tlogconfigform.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"},

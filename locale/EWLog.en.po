@@ -2407,7 +2407,7 @@ msgstr ""
 
 #: tlogconfigform.label29.caption
 msgctxt "tlogconfigform.label29.caption"
-msgid "Login"
+msgid "Login (email)"
 msgstr ""
 
 #: tlogconfigform.label30.caption

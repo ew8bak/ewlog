@@ -8,7 +8,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils;
+  Classes, SysUtils, strutils, ssl_openssl;
 
 resourcestring
   rAnswerServer = 'Server response:';
@@ -27,7 +27,7 @@ type
   protected
     procedure Execute; override;
     procedure ShowResult;
-    function SendClubLog(clubloguser, clublogpassword, call: string;
+    function SendClubLog(clubloguser, clublogpassword, clubcall, call: string;
       timestarted, datestarted: TDateTime;
       qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string;
       inform: integer): boolean;
@@ -36,6 +36,7 @@ type
   public
     userid: string;
     userpwd: string;
+    usercall: string;
     call: string;
     startdate: TDateTime;
     starttime: TDateTime;
@@ -68,7 +69,7 @@ begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function TSendClubLogThread.SendClubLog(clubloguser, clublogpassword, call: string;
+function TSendClubLogThread.SendClubLog(clubloguser, clublogpassword, clubcall, call: string;
   timestarted, datestarted: TDateTime;
   qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string; inform: integer): boolean;
 var
@@ -119,7 +120,7 @@ begin
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   // Генерация http запроса
-  url := 'u=' + clubloguser + '&p=' + clublogpassword + '&c='+ '&prg=' + appname + '&cmd=INSERT' +
+  url := 'email=' + clubloguser + '&password=' + clublogpassword + '&callsign=' + clubcall+ '&api=68679acdccd815f0545873ca81eed96d9806f8f0' +
     '&adif=' + UrlEncode(logdata);
   // Отправка запроса
   res := TStringList.Create;
@@ -138,7 +139,7 @@ begin
       res := TStringList.Create;
       dataStream.Position := 0;
       res.LoadFromStream(dataStream);
-     // result_mes:=res.Text;
+      //result_mes:=res.Text;
       if res.Text <> '' then
         Result := AnsiContainsStr(res.Text, '<insert>1</insert>');
       if inform = 1 then
@@ -174,7 +175,7 @@ end;
 
 procedure TSendClubLogThread.Execute;
 begin
-  if SendClubLog(userid, userpwd, call, starttime, startdate, freq, mode,
+  if SendClubLog(userid, userpwd, usercall, call, starttime, startdate, freq, mode,
     submode, rsts, rstr, qslinf, locat, information) then
     if Assigned(OnClubLogSent) then
       Synchronize(OnClubLogSent);

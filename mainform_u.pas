@@ -6103,7 +6103,6 @@ begin
       DigiBand_String := NameBand;
       Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
       DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
-      ;
 
       if Edit13.Text <> '' then
         state := Edit4.Text + '-' + Edit13.Text;
@@ -6197,15 +6196,16 @@ begin
       end;
 
       //Отправка в ClubLog
-     { if AutoClubLog = True then
+      if AutoClubLog = True then
       begin
         SendClubLogThread := TSendClubLogThread.Create;
         if Assigned(SendClubLogThread.FatalException) then
           raise SendClubLogThread.FatalException;
         with SendClubLogThread do
         begin
-          userid := HamQTHLogin;
-          userpwd := HamQTHPassword;
+          userid := ClubLogLogin;
+          userpwd := ClubLogPassword;
+          usercall:= CallLogBook;
           call := EditButton1.Text;
           startdate := DateEdit1.Date;
           starttime := DateTimePicker1.Time;
@@ -6218,7 +6218,7 @@ begin
           qslinf := SetQSLInfo;
           Start;
         end;
-      end; }
+      end;
 
       //Скрытые настройки, отправка в CloudLog
       if hiddenSettings.apisend then
