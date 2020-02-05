@@ -1939,6 +1939,10 @@ msgstr "Экспорт в Win1251"
 msgid "Export to eQSL"
 msgstr "Экспорт в eQSL"
 
+#: texportadifform.checkbox4.caption
+msgid "Convert to Latin"
+msgstr ""
+
 #: texportadifform.label1.caption
 msgctxt "texportadifform.label1.caption"
 msgid "Number of QSO: 0"

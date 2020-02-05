@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
-  httpsend, RegExpr, LazUtils, LazFileUtils;
+  httpsend, LazUtils, LazFileUtils, ssl_openssl;
 
 resourcestring
   rNotDataForConnect =
@@ -46,6 +46,7 @@ type
     SpeedButton1: TSpeedButton;
     UPDATEQuery: TSQLQuery;
     StatusBar1: TStatusBar;
+    procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -154,6 +155,36 @@ begin
   end;
 end;
 
+procedure TServiceForm.Button1Click(Sender: TObject);
+const
+  LotW_URL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
+var
+  fullURL, LoadFilePATH : string;
+  LoadFile: TFileStream;
+begin
+  if (LotWLogin = '') or (LotWPassword = '') then
+    ShowMessage(rNotDataForConnect)
+  else
+  begin
+    try
+       {$IFDEF UNIX}
+      LoadFile:=TFileStream.Create(GetEnvironmentVariable('HOME')+'/EWLog/LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi',fmCreate);
+      LoadFilePATH:=GetEnvironmentVariable('HOME')+'/EWLog/LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi';
+      {$ELSE}
+      Label6.Caption:=rStatusSaveFile;
+      LoadFilePATH:=GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH')+'\EWLog\LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi';
+      LoadFile:=TFileStream.Create(GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH')+'\EWLog\LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi',fmCreate);
+      {$ENDIF UNIX}
+      fullURL:=LotW_URL+'login='+LotWLogin+'&password='+LotWPassword+'&qso_query=1&qso_qsldetail="yes"'+
+      '&qso_qslsince='+FormatDateTime('yyyymmdd', DateEdit1.Date);
+      Application.ProcessMessages;
+      HttpGetBinary(fullURL, LoadFile);
+    finally
+      LoadFile.Free;
+    end;
+  end;
+end;
+
 procedure TServiceForm.FormShow(Sender: TObject);
 begin
   if DefaultDB = 'MySQL' then
@@ -166,6 +197,7 @@ begin
     UPDATEQuery.DataBase := MainForm.SQLiteDBConnection;
     MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
+  DateEdit1.Date := Now;
   DateEdit2.Date := Now;
 end;
 

@@ -1882,6 +1882,10 @@ msgstr ""
 msgid "Export to eQSL"
 msgstr ""
 
+#: texportadifform.checkbox4.caption
+msgid "Convert to Latin"
+msgstr ""
+
 #: texportadifform.label1.caption
 msgctxt "texportadifform.label1.caption"
 msgid "Number of QSO: 0"

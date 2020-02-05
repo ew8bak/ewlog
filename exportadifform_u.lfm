@@ -1,7 +1,7 @@
 object exportAdifForm: TexportAdifForm
-  Left = 793
+  Left = 393
   Height = 192
-  Top = 287
+  Top = 185
   Width = 442
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -26,9 +26,9 @@ object exportAdifForm: TexportAdifForm
   end
   object Label1: TLabel
     Left = 120
-    Height = 15
+    Height = 13
     Top = 144
-    Width = 97
+    Width = 100
     Caption = 'Number of QSO: 0'
     Font.Height = -12
     ParentColor = False
@@ -36,9 +36,9 @@ object exportAdifForm: TexportAdifForm
   end
   object rbFileExportAll: TRadioButton
     Left = 120
-    Height = 19
+    Height = 23
     Top = 8
-    Width = 161
+    Width = 172
     Caption = 'Export all showed contacts'
     Checked = True
     Font.Height = -12
@@ -49,9 +49,9 @@ object exportAdifForm: TexportAdifForm
   end
   object RadioButton1: TRadioButton
     Left = 120
-    Height = 19
+    Height = 23
     Top = 32
-    Width = 132
+    Width = 147
     Caption = 'Selected date interval'
     Font.Height = -12
     OnClick = RadioButton1Click
@@ -83,7 +83,7 @@ object exportAdifForm: TexportAdifForm
   end
   object Label3: TLabel
     Left = 128
-    Height = 15
+    Height = 13
     Top = 56
     Width = 28
     Caption = 'From'
@@ -93,7 +93,7 @@ object exportAdifForm: TexportAdifForm
   end
   object DateEdit1: TDateEdit
     Left = 120
-    Height = 21
+    Height = 24
     Top = 72
     Width = 130
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
@@ -107,9 +107,9 @@ object exportAdifForm: TexportAdifForm
   end
   object Label4: TLabel
     Left = 128
-    Height = 15
+    Height = 13
     Top = 96
-    Width = 12
+    Width = 13
     Caption = 'To'
     Font.Height = -12
     ParentColor = False
@@ -117,7 +117,7 @@ object exportAdifForm: TexportAdifForm
   end
   object DateEdit2: TDateEdit
     Left = 120
-    Height = 21
+    Height = 24
     Top = 114
     Width = 130
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
@@ -131,9 +131,9 @@ object exportAdifForm: TexportAdifForm
   end
   object CheckBox1: TCheckBox
     Left = 296
-    Height = 19
+    Height = 23
     Top = 8
-    Width = 96
+    Width = 107
     Caption = 'Export to ADIF'
     Checked = True
     Font.Height = -12
@@ -483,9 +483,9 @@ object exportAdifForm: TexportAdifForm
   end
   object CheckBox3: TCheckBox
     Left = 296
-    Height = 19
+    Height = 23
     Top = 32
-    Width = 98
+    Width = 109
     Caption = 'Export to eQSL'
     Enabled = False
     Font.Height = -12
@@ -494,27 +494,36 @@ object exportAdifForm: TexportAdifForm
   end
   object CheckBox2: TCheckBox
     Left = 296
-    Height = 19
+    Height = 23
     Top = 56
-    Width = 119
+    Width = 132
     Caption = 'Export on Win1251'
     TabOrder = 8
+  end
+  object CheckBox4: TCheckBox
+    Left = 296
+    Height = 23
+    Top = 80
+    Width = 115
+    Caption = 'Convert to Latin'
+    Enabled = False
+    TabOrder = 9
   end
   object Q1: TSQLQuery
     FieldDefs = <>
     Database = MainForm.MySQLLOGDBConnection
     Transaction = MainForm.SQLTransaction1
     Params = <>
-    left = 304
-    top = 80
+    left = 256
+    top = 72
   end
   object SaveDialog1: TSaveDialog
     OnClose = SaveDialog1Close
     Title = 'Save file as'
     DefaultExt = '.adi'
     Filter = '*.adi|*.adi'
-    left = 368
-    top = 80
+    left = 216
+    top = 152
   end
   object Q2: TSQLQuery
     FieldDefs = <>

@@ -1,7 +1,7 @@
 object ServiceForm: TServiceForm
-  Left = 308
+  Left = 324
   Height = 236
-  Top = 275
+  Top = 144
   Width = 500
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -417,7 +417,6 @@ object ServiceForm: TServiceForm
     ButtonWidth = 23
     AutoSize = False
     NumGlyphs = 1
-    Enabled = False
     Font.Height = -12
     MaxLength = 0
     ParentFont = False
@@ -444,8 +443,8 @@ object ServiceForm: TServiceForm
     Top = 104
     Width = 128
     Caption = 'Connect with LotW'
-    Enabled = False
     Font.Height = -12
+    OnClick = Button1Click
     ParentFont = False
     TabOrder = 3
   end

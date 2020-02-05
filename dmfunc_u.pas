@@ -33,7 +33,7 @@ type
 
     { private declarations }
   public
-        function antepenultimate_char(s: string): string;
+    function antepenultimate_char(s: string): string;
     function penultimate_char(s: string): string;
     function last_char(s: string): char;
     function notHaveDigits(s: string): boolean;

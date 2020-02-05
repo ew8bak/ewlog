@@ -31,6 +31,7 @@ type
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
     DateEdit1: TDateEdit;
     DateEdit2: TDateEdit;
     Image1: TImage;

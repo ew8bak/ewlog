@@ -796,6 +796,7 @@ var
   LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
   eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode, HamQTHLogin,
   HamQTHPassword, ClubLogLogin, ClubLogPassword, QRZComLogin, QRZComPassword: string;
+  LotWLogin, LotWPassword: string;
   AutoEQSLcc, AutoHRDLog, AutoHamQTH, AutoClubLog, AutoQRZCom: boolean;
   tx, txWSJT: boolean;
   connected, connectedWSJT: boolean;
@@ -2003,6 +2004,8 @@ begin
     LogTable := MainForm.LogBookInfoQuery.FieldByName('LogTable').AsString;
     eQSLccLogin := MainForm.LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
     eQSLccPassword := MainForm.LogBookInfoQuery.FieldByName('EQSLPassword').AsString;
+    LotWLogin := MainForm.LogBookInfoQuery.FieldByName('LoTW_User').AsString;
+    LotWPassword := MainForm.LogBookInfoQuery.FieldByName('LoTW_Password').AsString;
     AutoEQSLcc := MainForm.LogBookInfoQuery.FieldByName('AutoEQSLcc').AsBoolean;
     HRDLogin := MainForm.LogBookInfoQuery.FieldByName('HRDLogLogin').AsString;
     HRDCode := MainForm.LogBookInfoQuery.FieldByName('HRDLogPassword').AsString;
