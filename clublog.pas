@@ -29,8 +29,7 @@ type
     procedure ShowResult;
     function SendClubLog(clubloguser, clublogpassword, clubcall, call: string;
       timestarted, datestarted: TDateTime;
-      qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string;
-      inform: integer): boolean;
+      qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string): boolean;
   private
     result_mes: string;
   public
@@ -47,7 +46,6 @@ type
     rstr: string;
     qslinf: string;
     locat: string;
-    information, inform: integer;
     OnClubLogSent: TClubLogSentEvent;
     constructor Create;
   end;
@@ -69,11 +67,11 @@ begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function TSendClubLogThread.SendClubLog(clubloguser, clublogpassword, clubcall, call: string;
-  timestarted, datestarted: TDateTime;
-  qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string; inform: integer): boolean;
+function TSendClubLogThread.SendClubLog(clubloguser, clublogpassword,
+  clubcall, call: string; timestarted, datestarted: TDateTime;
+  qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string): boolean;
 var
-  logdata, url, appname: string;
+  logdata, url: string;
   res: TStringList;
 
 
@@ -103,7 +101,6 @@ begin
   dataStream := TMemoryStream.Create;
   Result := False;
   // Создание данных для отправки
-  appname := 'EWLog';
   // Запись
   AddData('CALL', call);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', datestarted));
@@ -120,7 +117,8 @@ begin
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   // Генерация http запроса
-  url := 'email=' + clubloguser + '&password=' + clublogpassword + '&callsign=' + clubcall+ '&api=68679acdccd815f0545873ca81eed96d9806f8f0' +
+  url := 'email=' + clubloguser + '&password=' + clublogpassword +
+    '&callsign=' + clubcall + '&api=68679acdccd815f0545873ca81eed96d9806f8f0' +
     '&adif=' + UrlEncode(logdata);
   // Отправка запроса
   res := TStringList.Create;
@@ -139,17 +137,12 @@ begin
       res := TStringList.Create;
       dataStream.Position := 0;
       res.LoadFromStream(dataStream);
-      //result_mes:=res.Text;
-      if res.Text <> '' then
-        Result := AnsiContainsStr(res.Text, '<insert>1</insert>');
-      if inform = 1 then
+      if Pos('OK', Trim(res.Text)) > 0 then
+        Result := True
+      else
       begin
-        if pos('<insert>1</insert>', Res.Text) > 0 then
-          result_mes := rRecordAddedSuccessfully;
-        if pos('<insert>0</insert>', Res.Text) > 0 then
-          result_mes := rNoEntryAdded;
-        if pos('<error>Unknown user</error>', Res.Text) > 0 then
-          result_mes := rUnknownUser;
+        Result := False;
+        result_mes := res.Text;
       end;
     finally
       res.Destroy;
@@ -175,8 +168,8 @@ end;
 
 procedure TSendClubLogThread.Execute;
 begin
-  if SendClubLog(userid, userpwd, usercall, call, starttime, startdate, freq, mode,
-    submode, rsts, rstr, qslinf, locat, information) then
+  if SendClubLog(userid, userpwd, usercall, call, starttime, startdate,
+    freq, mode, submode, rsts, rstr, qslinf, locat) then
     if Assigned(OnClubLogSent) then
       Synchronize(OnClubLogSent);
   Synchronize(@ShowResult);

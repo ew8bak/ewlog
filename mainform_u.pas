@@ -6189,6 +6189,10 @@ begin
           submode := ComboBox9.Text;
           rsts := ComboBox4.Text;
           rstr := ComboBox5.Text;
+          opname := Edit1.Text;
+          opqth := Edit2.Text;
+          opcont := Label43.Caption;
+          mygrid:= '';
           locat := Edit3.Text;
           qslinf := SetQSLInfo;
           Start;

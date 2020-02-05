@@ -29,8 +29,7 @@ type
     procedure ShowResult;
     function SendHamQTH(hamqthuser, hamqthpassword, call: string;
       timestarted, datestarted: TDateTime;
-      qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string;
-      inform: integer): boolean;
+      qsofreq, mode, submode, rsts, rstr, name, qth, cont, my_grid, qslinfo, locat: string): boolean;
   private
     result_mes: string;
   public
@@ -44,9 +43,12 @@ type
     submode: string;
     rsts: string;
     rstr: string;
+    opname: string;
+    opqth: string;
+    opcont: string;
+    mygrid: string;
     qslinf: string;
     locat: string;
-    information, inform: integer;
     OnHamQTHSent: THamQTHSentEvent;
     constructor Create;
   end;
@@ -70,7 +72,7 @@ end;
 
 function TSendHamQTHThread.SendHamQTH(hamqthuser, hamqthpassword, call: string;
   timestarted, datestarted: TDateTime;
-  qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string; inform: integer): boolean;
+  qsofreq, mode, submode, rsts, rstr, name, qth, cont, my_grid, qslinfo, locat: string): boolean;
 var
   logdata, url, appname: string;
   res: TStringList;
@@ -112,6 +114,10 @@ begin
   AddData('SUBMODE', submode);
   AddData('RST_SENT', rsts);
   AddData('RST_RCVD', rstr);
+  AddData('NAME', name);
+  AddData('QTH', qth);
+  AddData('MY_GRIDSQUARE', my_grid);
+  AddData('CONT', cont);
   AddData('QSLMSG', qslinfo);
   AddData('GRIDSQUARE', locat);
   Delete(qsofreq, length(qsofreq) - 2, 1); //Удаляем последнюю точку
@@ -119,8 +125,8 @@ begin
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   // Генерация http запроса
-  url := 'u=' + hamqthuser + '&p=' + hamqthpassword + '&c='+ '&prg=' + appname + '&cmd=INSERT' +
-    '&adif=' + UrlEncode(logdata);
+  url := 'u=' + hamqthuser + '&p=' + hamqthpassword + '&c=' + '&prg=' +
+    appname + '&cmd=INSERT' + '&adif=' + UrlEncode(logdata);
   // Отправка запроса
   res := TStringList.Create;
   try
@@ -138,17 +144,12 @@ begin
       res := TStringList.Create;
       dataStream.Position := 0;
       res.LoadFromStream(dataStream);
-     // result_mes:=res.Text;
-      if res.Text <> '' then
-        Result := AnsiContainsStr(res.Text, '<insert>1</insert>');
-      if inform = 1 then
+      if Pos('QSO inserted', Trim(res.Text)) > 0 then
+        Result := True
+      else
       begin
-        if pos('<insert>1</insert>', Res.Text) > 0 then
-          result_mes := rRecordAddedSuccessfully;
-        if pos('<insert>0</insert>', Res.Text) > 0 then
-          result_mes := rNoEntryAdded;
-        if pos('<error>Unknown user</error>', Res.Text) > 0 then
-          result_mes := rUnknownUser;
+        Result := False;
+        result_mes := res.Text;
       end;
     finally
       res.Destroy;
@@ -174,8 +175,8 @@ end;
 
 procedure TSendHamQTHThread.Execute;
 begin
-  if SendHamQTH(userid, userpwd, call, starttime, startdate, freq, mode,
-    submode, rsts, rstr, qslinf, locat, information) then
+  if SendHamQTH(userid, userpwd, call, starttime, startdate, freq,
+    mode, submode, rsts, rstr, opname, opqth, opcont, mygrid, qslinf, locat) then
     if Assigned(OnHamQTHSent) then
       Synchronize(OnHamQTHSent);
   Synchronize(@ShowResult);

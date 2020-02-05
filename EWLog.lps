@@ -20,8 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="6201"/>
-        <CursorPos X="36" Y="6185"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="6103"/>
+        <CursorPos X="32" Y="6202"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -56,13 +57,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="175"/>
-        <CursorPos X="37" Y="203"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="181"/>
+        <CursorPos X="53" Y="185"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="configform_u.pas"/>
@@ -136,9 +134,9 @@
       <Unit11>
         <Filename Value="eqsl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="80"/>
-        <CursorPos X="46" Y="97"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="98"/>
+        <CursorPos X="95" Y="117"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit11>
@@ -251,9 +249,9 @@
       <Unit23>
         <Filename Value="hrdlog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="9"/>
-        <CursorPos X="46" Y="124"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="94"/>
+        <CursorPos X="40" Y="150"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit23>
@@ -471,8 +469,9 @@
         <ComponentName Value="hiddenSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
-        <CursorPos X="24" Y="9"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="87"/>
+        <CursorPos X="40" Y="84"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit42>
@@ -495,7 +494,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
         <CursorPos Y="53"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="97"/>
       </Unit44>
       <Unit45>
         <Filename Value="mmform_u.pas"/>
@@ -506,24 +505,24 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="89"/>
         <CursorPos X="26" Y="112"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="90"/>
       </Unit45>
       <Unit46>
         <Filename Value="hamqth.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="10"/>
-        <CursorPos X="23" Y="144"/>
-        <UsageCount Value="29"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="2"/>
+        <CursorPos X="43" Y="113"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit46>
       <Unit47>
         <Filename Value="clublog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="92"/>
-        <CursorPos X="9" Y="142"/>
-        <UsageCount Value="24"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="139"/>
+        <CursorPos X="33" Y="112"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit47>
       <Unit48>
@@ -752,11 +751,10 @@
       <Unit79>
         <Filename Value="..\..\..\usr\lib\lazarus\lcl\dbgrids.pas"/>
         <UnitName Value="DBGrids"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="3284"/>
         <CursorPos Y="3311"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="..\..\..\usr\lib\lazarus\lcl\grids.pas"/>
@@ -876,7 +874,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="156"/>
         <CursorPos Y="176"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="10"/>
       </Unit95>
       <Unit96>
         <Filename Value="..\..\..\usr\lib\lazarus\lcl\interfaces\gtk2\gtk2callback.inc"/>
@@ -1007,123 +1005,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Caret Line="6195" Column="26" TopLine="6181"/>
       </Position1>
       <Position2>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6119" TopLine="6097"/>
+        <Caret Line="3035" TopLine="3023"/>
       </Position2>
       <Position3>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Caret Line="3042" TopLine="3023"/>
       </Position3>
       <Position4>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6118" TopLine="6097"/>
+        <Caret Line="6201" TopLine="6188"/>
       </Position4>
       <Position5>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Caret Line="6185" Column="36" TopLine="6130"/>
       </Position5>
       <Position6>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6118" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="179" Column="34" TopLine="152"/>
       </Position6>
       <Position7>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Caret Line="4967" Column="45" TopLine="4958"/>
       </Position7>
       <Position8>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6116" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="182" TopLine="170"/>
       </Position8>
       <Position9>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="187" Column="43" TopLine="170"/>
       </Position9>
       <Position10>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6116" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="185" TopLine="170"/>
       </Position10>
       <Position11>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="184" TopLine="170"/>
       </Position11>
       <Position12>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6115" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="193" TopLine="170"/>
       </Position12>
       <Position13>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="192" TopLine="170"/>
       </Position13>
       <Position14>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6114" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="193" TopLine="170"/>
       </Position14>
       <Position15>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="192" TopLine="170"/>
       </Position15>
       <Position16>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6114" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="193" TopLine="170"/>
       </Position16>
       <Position17>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="191" TopLine="170"/>
       </Position17>
       <Position18>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6114" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="195" TopLine="170"/>
       </Position18>
       <Position19>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6113" TopLine="6097"/>
+        <Filename Value="hiddentsettings_u.pas"/>
+        <Caret Line="196" TopLine="170"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6132" TopLine="6195"/>
+        <Filename Value="clublog.pas"/>
+        <Caret Line="123" Column="68" TopLine="113"/>
       </Position20>
       <Position21>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6153" TopLine="6134"/>
+        <Filename Value="clublog.pas"/>
+        <Caret Line="144" TopLine="134"/>
       </Position21>
       <Position22>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6176" TopLine="6157"/>
+        <Filename Value="clublog.pas"/>
+        <Caret Line="145" TopLine="134"/>
       </Position22>
       <Position23>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6200" TopLine="6181"/>
+        <Filename Value="clublog.pas"/>
+        <Caret Line="152" TopLine="134"/>
       </Position23>
       <Position24>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6195" Column="26" TopLine="6181"/>
+        <Filename Value="clublog.pas"/>
+        <Caret Line="153" TopLine="134"/>
       </Position24>
       <Position25>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3035" TopLine="3023"/>
+        <Filename Value="clublog.pas"/>
+        <Caret Line="157" TopLine="134"/>
       </Position25>
       <Position26>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3042" TopLine="3023"/>
+        <Filename Value="hamqth.pas"/>
+        <Caret Line="141" Column="8" TopLine="118"/>
       </Position26>
       <Position27>
-        <Filename Value="..\..\..\usr\lib\lazarus\lcl\dbgrids.pas"/>
-        <Caret Line="3303" TopLine="3284"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6246" Column="5" TopLine="6216"/>
       </Position27>
       <Position28>
-        <Filename Value="..\..\..\usr\lib\lazarus\lcl\dbgrids.pas"/>
-        <Caret Line="3310" TopLine="3284"/>
+        <Filename Value="clublog.pas"/>
+        <Caret Line="173" Column="51" TopLine="44"/>
       </Position28>
       <Position29>
-        <Filename Value="..\..\..\usr\lib\lazarus\lcl\dbgrids.pas"/>
-        <Caret Line="3311" TopLine="3284"/>
+        <Filename Value="hamqth.pas"/>
+        <Caret Line="122" TopLine="95"/>
       </Position29>
       <Position30>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6201" TopLine="6188"/>
+        <Caret Line="6196" Column="23" TopLine="6178"/>
       </Position30>
     </JumpHistory>
     <RunParams>

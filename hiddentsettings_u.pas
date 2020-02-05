@@ -173,11 +173,24 @@ begin
 end;
 
 procedure ThiddenSettings.CatTimerTimer(Sender: TObject);
+var
+  tempfreq: string;
 begin
   if MainForm.freqchange = True then
-    Memo1.Lines.Add(SendRadio(StringReplace(MainForm.ComboBox1.Text,
-      '.', '', [rfReplaceAll]) + '0', MainForm.ComboBox2.Text,
-      DateTimeToStr(Now), API_key, 'EWLog', address_serv + '/index.php/api/radio/'));
+  begin
+
+    if Pos('M', MainForm.ComboBox1.Text) > 0 then
+      tempfreq := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+        MainForm.ComboBox1.Text, MainForm.ComboBox2.Text))
+    else
+    begin
+      tempfreq := MainForm.ComboBox1.Text;
+      Delete(tempfreq, length(tempfreq) - 2, 1);
+    end;
+      Memo1.Lines.Add(SendRadio(StringReplace(tempfreq,
+        '.', '', [rfReplaceAll]) + '0', MainForm.ComboBox2.Text,
+        DateTimeToStr(Now), API_key, 'EWLog', address_serv + '/index.php/api/radio/'));
+  end;
   MainForm.freqchange := False;
 end;
 
