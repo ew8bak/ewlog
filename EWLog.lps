@@ -9,7 +9,8 @@
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="61" Y="17"/>
+        <TopLine Value="35"/>
+        <CursorPos Y="68"/>
         <UsageCount Value="200"/>
       </Unit0>
       <Unit1>
@@ -19,6 +20,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="777"/>
         <CursorPos X="14" Y="797"/>
         <UsageCount Value="200"/>
@@ -283,10 +285,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="160"/>
-        <CursorPos X="35" Y="180"/>
+        <CursorPos X="48" Y="179"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -524,7 +525,7 @@
         <Filename Value="qrzcom.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="105"/>
+        <TopLine Value="104"/>
         <CursorPos Y="87"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
@@ -1006,7 +1007,7 @@
         <UsageCount Value="9"/>
       </Unit113>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="6246" Column="5" TopLine="6216"/>
@@ -1123,6 +1124,10 @@
         <Filename Value="serviceform_u.pas"/>
         <Caret Line="162" Column="4" TopLine="142"/>
       </Position29>
+      <Position30>
+        <Filename Value="serviceform_u.pas"/>
+        <Caret Line="179" Column="48" TopLine="160"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

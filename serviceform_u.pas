@@ -176,7 +176,7 @@ begin
       LoadFile:=TFileStream.Create(GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH')+'\EWLog\LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi',fmCreate);
       {$ENDIF UNIX}
       fullURL:=LotW_URL+'login='+LotWLogin+'&password='+LotWPassword+'&qso_query=1&qso_qsldetail="yes"'+
-      '&qso_qslsince='+FormatDateTime('yyyymmdd', DateEdit1.Date);
+      '&qso_qslsince='+FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
       Application.ProcessMessages;
       HttpGetBinary(fullURL, LoadFile);
     finally
