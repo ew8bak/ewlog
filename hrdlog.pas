@@ -8,7 +8,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils;
+  Classes, SysUtils, strutils, ssl_openssl;
 
 resourcestring
   rAnswerServer = 'Server response:';

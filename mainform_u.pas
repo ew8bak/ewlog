@@ -795,8 +795,8 @@ var
   InitLog_DB: string;
   LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
   eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode, HamQTHLogin,
-  HamQTHPassword, ClubLogLogin, ClubLogPassword: string;
-  AutoEQSLcc, AutoHRDLog, AutoHamQTH, AutoClubLog: boolean;
+  HamQTHPassword, ClubLogLogin, ClubLogPassword, QRZComLogin, QRZComPassword: string;
+  AutoEQSLcc, AutoHRDLog, AutoHamQTH, AutoClubLog, AutoQRZCom: boolean;
   tx, txWSJT: boolean;
   connected, connectedWSJT: boolean;
   usefldigi: boolean = True;
@@ -830,7 +830,7 @@ uses
   ConfigForm_U, ManagerBasePrefixForm_U, ExportAdifForm_u, CreateJournalForm_U,
   ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi, aziloc,
   QSLManagerForm_U, SettingsCAT_U,
-  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog, hamqth, clublog,
+  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog, hamqth, clublog, qrzcom,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U,
   UpdateForm_U, Earth_Form_U,
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
@@ -872,14 +872,15 @@ procedure ConvertDIGI(digimodestr: string; var digimode, subdigimode: string);
   end;
 
 begin
-  digimode:='';
-  subdigimode:='';
+  digimode := '';
+  subdigimode := '';
   if Pos('BPSK', digimodestr) > 0 then
   begin
     digimode := 'PSK';
     subdigimode := ExtractDigits(digimodestr);
-  end else
-  digimode:=digimodestr;
+  end
+  else
+    digimode := digimodestr;
 end;
 
 procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
@@ -1903,6 +1904,33 @@ begin
       SQLTransaction1.Commit;
     end;
 
+    if CheckTableQuery.FindField('QRZCOM_User') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN QRZCOM_User varchar(20);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+    if CheckTableQuery.FindField('QRZCOM_Password') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN QRZCOM_Password varchar(50);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+    if CheckTableQuery.FindField('AutoQRZCom') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN AutoQRZCom tinyint(1);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
     if CheckTableQuery.FindField('LoTW_User') = nil then
     begin
       CheckTableQuery.Close;
@@ -1988,6 +2016,11 @@ begin
     ClubLogPassword := MainForm.LogBookInfoQuery.FieldByName(
       'ClubLog_Password').AsString;
     AutoClubLog := MainForm.LogBookInfoQuery.FieldByName('AutoClubLog').AsBoolean;
+
+    QRZComLogin := MainForm.LogBookInfoQuery.FieldByName('QRZCOM_User').AsString;
+    QRZComPassword := MainForm.LogBookInfoQuery.FieldByName(
+      'QRZCOM_Password').AsString;
+    AutoQRZCom := MainForm.LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
 
     CheckTableQuery.Close;
     CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable + ' LIMIT 1';
@@ -2397,7 +2430,7 @@ var
   stmp: string;
   currfreq: string;
   currmode: string;
-  mode, digimode,subdigimode: string;
+  mode, digimode, subdigimode: string;
   curr_f: extended;
   carr: integer;
 begin
@@ -2485,10 +2518,10 @@ begin
         begin
           currmode := mode;
           mode := Fldigi_GetMode;
-         // Combobox2.Text := mode;
-         ConvertDIGI(mode,digimode,subdigimode);
-         ComboBox2.Text:=digimode;
-         ComboBox9.Text:=digimode+subdigimode;
+          // Combobox2.Text := mode;
+          ConvertDIGI(mode, digimode, subdigimode);
+          ComboBox2.Text := digimode;
+          ComboBox9.Text := digimode + subdigimode;
         end;
       end;
 
@@ -6111,19 +6144,14 @@ begin
 
       SaveQSO(EditButton1.Text, DateEdit1.Date, FormatDateTime('hh:nn', timeQSO),
         NameBand, ComboBox2.Text, ComboBox9.Text, ComboBox4.Text,
-        ComboBox5.Text,
-        Edit1.Text, Edit2.Text,
-        state,
-        Edit3.Text, Edit5.Text,
+        ComboBox5.Text, Edit1.Text, Edit2.Text, state, Edit3.Text, Edit5.Text,
         Edit6.Text, QSL_SENT, QSL_SENT_ADV, 'NULL', '0', 'NULL', Label38.Caption,
-        Label34.Caption,
-        Label45.Caption, Label47.Caption, Edit11.Text, BoolToStr(CheckBox5.Checked), 0,
-        FloatToStr(DigiBand),
-        Label43.Caption, Edit11.Text, 0, '', 'NULL', SetQSLInfo,
+        Label34.Caption, Label45.Caption, Label47.Caption, Edit11.Text,
+        BoolToStr(CheckBox5.Checked), 0,
+        FloatToStr(DigiBand), Label43.Caption, Edit11.Text, 0, '', 'NULL', SetQSLInfo,
         dmFunc.ExtractCallsign(EditButton1.Text), Edit10.Text,
-        Edit9.Text, Edit8.Text, Edit7.Text,
-
-        dmFunc.ExtractWPXPrefix(EditButton1.Text), 'NULL',
+        Edit9.Text, Edit8.Text, Edit7.Text, dmFunc.ExtractWPXPrefix(
+        EditButton1.Text), 'NULL',
         IntToStr(1), 0, '', 0, '', '', '', '', 0, '', ComboBox6.Text,
         IntToStr(DXCCNum), '', 0,
         LogTable);
@@ -6192,7 +6220,35 @@ begin
           opname := Edit1.Text;
           opqth := Edit2.Text;
           opcont := Label43.Caption;
-          mygrid:= '';
+          mygrid := '';
+          locat := Edit3.Text;
+          qslinf := SetQSLInfo;
+          Start;
+        end;
+      end;
+
+      //Отправка в QRZ.COM
+      if AutoQRZCom = True then
+      begin
+        SendQRZComThread := TSendQRZComThread.Create;
+        if Assigned(SendQRZComThread.FatalException) then
+          raise SendQRZComThread.FatalException;
+        with SendQRZComThread do
+        begin
+          userid := QRZComLogin;
+          userpwd := QRZComPassword;
+          call := EditButton1.Text;
+          startdate := DateEdit1.Date;
+          starttime := DateTimePicker1.Time;
+          freq := NameBand;
+          mode := ComboBox2.Text;
+          submode := ComboBox9.Text;
+          rsts := ComboBox4.Text;
+          rstr := ComboBox5.Text;
+          opname := Edit1.Text;
+          opqth := Edit2.Text;
+          opcont := Label43.Caption;
+          mygrid := '';
           locat := Edit3.Text;
           qslinf := SetQSLInfo;
           Start;
@@ -6209,7 +6265,7 @@ begin
         begin
           userid := ClubLogLogin;
           userpwd := ClubLogPassword;
-          usercall:= CallLogBook;
+          usercall := CallLogBook;
           call := EditButton1.Text;
           startdate := DateEdit1.Date;
           starttime := DateTimePicker1.Time;

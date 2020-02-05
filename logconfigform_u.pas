@@ -24,6 +24,7 @@ type
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -37,6 +38,8 @@ type
     Edit19: TEdit;
     Edit2: TEdit;
     Edit20: TEdit;
+    Edit21: TEdit;
+    Edit22: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
     Edit5: TEdit;
@@ -67,6 +70,9 @@ type
     Label28: TLabel;
     Label29: TLabel;
     Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
@@ -178,6 +184,12 @@ begin
     LogConfigForm.SQLQuery1.FieldByName('ClubLog_Password').AsString;
   LogConfigForm.CheckBox4.Checked :=
     LogConfigForm.SQLQuery1.FieldByName('AutoClubLog').AsBoolean;
+  LogConfigForm.Edit21.Text :=
+    LogConfigForm.SQLQuery1.FieldByName('QRZCOM_User').AsString;
+  LogConfigForm.Edit22.Text :=
+    LogConfigForm.SQLQuery1.FieldByName('QRZCOM_Password').AsString;
+  LogConfigForm.CheckBox5.Checked :=
+    LogConfigForm.SQLQuery1.FieldByName('AutoQRZCom').AsBoolean;
 
   id := LogConfigForm.SQLQuery1.FieldByName('id').AsInteger;
 end;
@@ -199,7 +211,8 @@ begin
       ' `QSLInfo`=:QSLInfo, `EQSLLogin`=:EQSLLogin, `EQSLPassword`=:EQSLPassword,' +
       ' `AutoEQSLcc`=:AutoEQSLcc, `HRDLogLogin`=:HRDLogLogin,' +
       ' `HRDLogPassword`=:HRDLogPassword, `AutoHRDLog`=:AutoHRDLog,' +
-      ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword,' +
+      ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword, `AutoQRZCom`=:AutoQRZCom,'
+      + ' `QRZCOM_User`=:QRZCOM_User, `QRZCOM_Password`=:QRZCOM_Password,' +
       ' `ClubLog_User`=:ClubLog_User, `ClubLog_Password`=:ClubLog_Password,' +
       ' `AutoHamQTH`=:AutoHamQTH, `AutoClubLog`=:AutoClubLog, `LoTW_User`=:LoTW_User,' +
       ' `LoTW_Password`=:LoTW_Password WHERE `id`=:id');
@@ -227,6 +240,9 @@ begin
     Params.ParamByName('ClubLog_User').AsString := Edit19.Text;
     Params.ParamByName('ClubLog_Password').AsString := Edit20.Text;
     Params.ParamByName('AutoClubLog').AsBoolean := CheckBox4.Checked;
+    Params.ParamByName('QRZCOM_User').AsString := Edit21.Text;
+    Params.ParamByName('QRZCOM_Password').AsString := Edit22.Text;
+    Params.ParamByName('AutoQRZCom').AsBoolean := CheckBox5.Checked;
 
     Params.ParamByName('id').AsInteger := id;
     ExecSQL;

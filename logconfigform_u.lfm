@@ -712,6 +712,83 @@ object LogConfigForm: TLogConfigForm
           ParentFont = False
           TabOrder = 4
         end
+        object CheckBox5: TCheckBox
+          AnchorSideLeft.Control = TabSheet3
+          Left = 5
+          Height = 23
+          Top = 334
+          Width = 263
+          BorderSpacing.Left = 5
+          Caption = 'Upload every time a logbook entry is added'
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 5
+        end
+        object Label31: TLabel
+          AnchorSideTop.Control = Edit21
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit21
+          Left = 39
+          Height = 13
+          Top = 280
+          Width = 30
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 3
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Edit21: TEdit
+          Left = 72
+          Height = 21
+          Top = 276
+          Width = 152
+          AutoSize = False
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 6
+        end
+        object Edit22: TEdit
+          Left = 72
+          Height = 21
+          Top = 308
+          Width = 152
+          AutoSize = False
+          EchoMode = emPassword
+          Font.Height = -12
+          ParentFont = False
+          PasswordChar = '*'
+          TabOrder = 7
+        end
+        object Label32: TLabel
+          AnchorSideTop.Control = Edit22
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit22
+          Left = 29
+          Height = 13
+          Top = 312
+          Width = 40
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 3
+          Caption = 'API key'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label33: TLabel
+          AnchorSideLeft.Control = TabSheet3
+          Left = 18
+          Height = 13
+          Top = 248
+          Width = 54
+          BorderSpacing.Left = 18
+          Caption = 'QRZ.COM'
+          Font.Height = -12
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
       end
     end
   end

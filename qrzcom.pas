@@ -1,4 +1,4 @@
-unit hamqth;
+unit qrzcom;
 
 {$mode objfpc}{$H+}
 
@@ -18,16 +18,16 @@ resourcestring
   rUnknownUser = 'Unknown user! See settings';
 
 const
-  UploadURL = 'http://www.hamqth.com/qso_realtime.php';
+  UploadURL = 'http://logbook.qrz.com/api';
 
 type
-  THamQTHSentEvent = procedure of object;
+  TQRZComSentEvent = procedure of object;
 
-  TSendHamQTHThread = class(TThread)
+  TSendQRZComThread = class(TThread)
   protected
     procedure Execute; override;
     procedure ShowResult;
-    function SendHamQTH(hamqthuser, hamqthpassword, call: string;
+    function SendQRZCom(qrzcomuser, qrzcompassword, call: string;
       timestarted, datestarted: TDateTime;
       qsofreq, mode, submode, rsts, rstr, name, qth, cont, my_grid, qslinfo, locat: string): boolean;
   private
@@ -49,14 +49,14 @@ type
     mygrid: string;
     qslinf: string;
     locat: string;
-    OnHamQTHSent: THamQTHSentEvent;
+    OnQRZComSent: TQRZComSentEvent;
     constructor Create;
   end;
 
 function StripStr(t, s: string): string;
 
 var
-  SendHamQTHThread: TSendHamQTHThread;
+  SendQRZComThread: TSendQRZComThread;
   dataStream: TMemoryStream;
   uploadok: boolean;
 
@@ -70,11 +70,11 @@ begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function TSendHamQTHThread.SendHamQTH(hamqthuser, hamqthpassword, call: string;
+function TSendQRZComThread.SendQRZCom(qrzcomuser, qrzcompassword, call: string;
   timestarted, datestarted: TDateTime;
   qsofreq, mode, submode, rsts, rstr, name, qth, cont, my_grid, qslinfo, locat: string): boolean;
 var
-  logdata, url, appname: string;
+  logdata, url: string;
   res: TStringList;
 
 
@@ -104,7 +104,6 @@ begin
   dataStream := TMemoryStream.Create;
   Result := False;
   // Создание данных для отправки
-  appname := 'EWLog';
   // Запись
   AddData('CALL', call);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', datestarted));
@@ -125,8 +124,7 @@ begin
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   // Генерация http запроса
-  url := 'u=' + hamqthuser + '&p=' + hamqthpassword + '&c=' + '&prg=' +
-    appname + '&cmd=INSERT' + '&adif=' + UrlEncode(logdata);
+  url := 'KEY=' + qrzcompassword + '&ACTION=INSERT' + '&ADIF=' + UrlEncode(logdata);
   // Отправка запроса
   res := TStringList.Create;
   try
@@ -144,7 +142,7 @@ begin
       res := TStringList.Create;
       dataStream.Position := 0;
       res.LoadFromStream(dataStream);
-      if Pos('QSO inserted', Trim(res.Text)) > 0 then
+      if Pos('RESULT=OK', Trim(res.Text)) > 0 then
         Result := True
       else
       begin
@@ -159,26 +157,26 @@ begin
 
 end;
 
-constructor TSendHamQTHThread.Create;
+constructor TSendQRZComThread.Create;
 begin
   FreeOnTerminate := True;
-  OnHamQTHSent := nil;
+  OnQRZComSent := nil;
   inherited Create(True);
 end;
 
-procedure TSendHamQTHThread.ShowResult;
+procedure TSendQRZComThread.ShowResult;
 begin
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
       'HamQTH', MB_ICONEXCLAMATION);
 end;
 
-procedure TSendHamQTHThread.Execute;
+procedure TSendQRZComThread.Execute;
 begin
-  if SendHamQTH(userid, userpwd, call, starttime, startdate, freq,
+  if SendQRZCom(userid, userpwd, call, starttime, startdate, freq,
     mode, submode, rsts, rstr, opname, opqth, opcont, mygrid, qslinf, locat) then
-    if Assigned(OnHamQTHSent) then
-      Synchronize(OnHamQTHSent);
+    if Assigned(OnQRZComSent) then
+      Synchronize(OnQRZComSent);
   Synchronize(@ShowResult);
 end;
 

@@ -8,7 +8,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, Dialogs, LazUTF8;
+  Classes, SysUtils, Dialogs, LazUTF8, ssl_openssl;
 resourcestring
   rAnswerServer = 'Server response:';
   rErrorSendingSata = 'Error sending data';

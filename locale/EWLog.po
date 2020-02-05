@@ -592,6 +592,31 @@ msgstr ""
 msgid "SQLite database selected! Welcome!"
 msgstr ""
 
+#: qrzcom.ranswerserver
+msgctxt "qrzcom.ranswerserver"
+msgid "Server response:"
+msgstr ""
+
+#: qrzcom.rerrorsendingsata
+msgctxt "qrzcom.rerrorsendingsata"
+msgid "Error sending data"
+msgstr ""
+
+#: qrzcom.rnoentryadded
+msgctxt "qrzcom.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr ""
+
+#: qrzcom.rrecordaddedsuccessfully
+msgctxt "qrzcom.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr ""
+
+#: qrzcom.runknownuser
+msgctxt "qrzcom.runknownuser"
+msgid "Unknown user! See settings"
+msgstr ""
+
 #: register_form_u.rnotfind
 msgid "Could not find"
 msgstr ""
@@ -2092,6 +2117,7 @@ msgid "HAMQTH"
 msgstr ""
 
 #: tinformationform.checkbox3.caption
+msgctxt "tinformationform.checkbox3.caption"
 msgid "QRZ.COM"
 msgstr ""
 
@@ -2303,6 +2329,11 @@ msgctxt "tlogconfigform.checkbox4.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
+#: tlogconfigform.checkbox5.caption
+msgctxt "tlogconfigform.checkbox5.caption"
+msgid "Upload every time a logbook entry is added"
+msgstr ""
+
 #: tlogconfigform.edit10.text
 msgid "TNX For QSO TU 73!"
 msgstr ""
@@ -2413,6 +2444,20 @@ msgstr ""
 #: tlogconfigform.label30.caption
 msgctxt "tlogconfigform.label30.caption"
 msgid "Password"
+msgstr ""
+
+#: tlogconfigform.label31.caption
+msgctxt "tlogconfigform.label31.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.label32.caption
+msgid "API key"
+msgstr ""
+
+#: tlogconfigform.label33.caption
+msgctxt "tlogconfigform.label33.caption"
+msgid "QRZ.COM"
 msgstr ""
 
 #: tlogconfigform.label4.caption
