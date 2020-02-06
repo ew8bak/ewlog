@@ -144,6 +144,11 @@ begin
       ResMode := 'PSK';
       ResSubMode := 'PSK62';
     end;
+    'BPSK63':
+    begin
+      ResMode := 'PSK';
+      ResSubMode := 'PSK63';
+    end;
     'MFSK16':
     begin
       ResMode := 'MFSK';
@@ -153,6 +158,11 @@ begin
     begin
       ResMode := 'PSK';
       ResSubMode := 'PSK31';
+    end;
+    'PSK63':
+    begin
+      ResMode := 'PSK';
+      ResSubMode := 'PSK63';
     end;
     'LSB':
     begin

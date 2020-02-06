@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
-  httpsend, LazUtils, LazFileUtils, ssl_openssl;
+  httpsend, LazUtils, LazFileUtils, ssl_openssl, dateutils;
 
 resourcestring
   rNotDataForConnect =
@@ -54,6 +54,7 @@ type
   private
     { private declarations }
     procedure eQSLAdifImport(FilePATH: string);
+    procedure LotWImport(FilePATH: string);
   public
     { public declarations }
   end;
@@ -65,6 +66,159 @@ implementation
 
 {$R *.lfm}
 uses dmFunc_U, MainForm_U;
+
+function Q(s: string): string;
+var
+  i: integer;
+  Quote: char;
+  char2: char;
+begin
+  Quote := #39;
+  char2 := ',';
+  Result := s;
+  if Result = 'NULL' then
+  begin
+    Result := Result + char2;
+    exit;
+  end;
+  for i := Length(Result) downto 1 do
+    if Result[i] = Quote then
+      Insert(Quote, Result, i);
+  Result := Quote + Result + Quote + char2;
+end;
+
+procedure TServiceForm.LotWImport(FilePATH: string);
+
+  function getField(str, field: string): string;
+  var
+    start: integer = 0;
+    stop: integer = 0;
+  begin
+    try
+      Result := '';
+      start := str.IndexOf('<' + field + ':');
+      if (start >= 0) then
+      begin
+        str := str.Substring(start + field.Length);
+        start := str.IndexOf('>');
+        stop := str.IndexOf('<');
+        if (start < stop) and (start > -1) then
+          Result := str.Substring(start + 1, stop - start - 1);
+      end;
+    except
+      Result := '';
+    end;
+
+    if (Result = '') and (field <> LowerCase(field)) then
+      Result := getField(str, LowerCase(field));
+  end;
+
+var
+  i: integer;
+  f: TextFile;
+  s: string;
+  CALL: string;
+  BAND: string;
+  FREQ: string;
+  MODE: string;
+  QSO_DATE: string;
+  TIME_ON: string;
+  QSL_RCVD: string;
+  QSLRDATE: string;
+  DXCC: string;
+  PFX: string;
+  GRIDSQUARE: string;
+  CQZ: string;
+  ITUZ: string;
+  Query: string;
+  paramQSLRDATE: string;
+  DupeCount: integer;
+  ErrorCount, RecCount: integer;
+  PosEOH: word;
+  PosEOR: word;
+  yyyy, mm, dd: word;
+begin
+  RecCount := 0;
+  DupeCount := 0;
+  ErrorCount := 0;
+  PosEOH := 0;
+  PosEOR := 0;
+  try
+    AssignFile(f, FilePATH);
+    Reset(f);
+    while not (PosEOH > 0) do
+    begin
+      Readln(f, s);
+      PosEOH := Pos('<EOH>', UpperCase(s));
+    end;
+    while not (EOF(f)) do
+    begin
+      try
+        CALL := '';
+        BAND := '';
+        FREQ := '';
+        MODE := '';
+        QSO_DATE := '';
+        TIME_ON := '';
+        QSL_RCVD := '';
+        QSLRDATE := '';
+        DXCC := '';
+        PFX := '';
+        GRIDSQUARE := '';
+        CQZ := '';
+        ITUZ := '';
+        paramQSLRDATE := '';
+
+        Readln(f, s);
+        s:=Trim(s);
+        PosEOR := Pos('<EOR>', UpperCase(s));
+        if not (PosEOR > 0) then
+          Continue;
+
+        CALL := getField(s, 'CALL');
+        BAND := getField(s, 'BAND');
+        FREQ := getField(s, 'FREQ');
+        MODE := getField(s, 'MODE');
+        QSO_DATE := getField(s, 'QSO_DATE');
+        TIME_ON := getField(s, 'TIME_ON');
+        QSL_RCVD := getField(s, 'QSL_RCVD');
+        QSLRDATE := getField(s, 'QSLRDATE');
+        DXCC := getField(s, 'DXCC');
+        PFX := getField(s, 'PFX');
+        GRIDSQUARE := getField(s, 'GRIDSQUARE');
+        CQZ := getField(s, 'CQZ');
+        ITUZ := getField(s, 'ITUZ');
+        if PosEOR > 0 then
+        begin
+          if QSLRDATE <> '' then
+          begin
+            yyyy := StrToInt(QSLRDATE[1] + QSLRDATE[2] + QSLRDATE[3] +
+              QSLRDATE[4]);
+            mm := StrToInt(QSLRDATE[5] + QSLRDATE[6]);
+            dd := StrToInt(QSLRDATE[7] + QSLRDATE[8]);
+            if MainForm.MySQLLOGDBConnection.Connected then
+              paramQSLRDATE := dmFunc.ADIFDateToDate(QSLRDATE)
+            else
+              paramQSLRDATE :=
+                FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
+          end;
+          Query := 'UPDATE ' + LogTable + ' SET GRID = ' + Q(GRIDSQUARE) +
+            ', CQZone = ' + Q(CQZ) + ', ITUZone = ' + Q(ITUZ) + ', WPX = ' + Q(PFX) + ', DXCC = ' + Q(DXCC) +
+            ', LoTWRec = `1`, LoTWRecDate = ' + Q(paramQSLRDATE) +
+            ' WHERE CallSign = '+Q(CALL)+' AND strftime(''%Y%m%d'',QSODate) = '+QuotedStr(QSO_DATE)+';';
+          UPDATEQuery.SQL.Text:=Query;
+          UPDATEQuery.ExecSQL;
+          MainForm.SQLTransaction1.Commit;
+        end;
+      except
+        MainForm.SQLTransaction1.Rollback;
+      end;
+    end;
+  finally
+    CloseFile(f);
+    MainForm.SelDB(CallLogBook);
+  end;
+end;
 
 procedure TServiceForm.FormCreate(Sender: TObject);
 begin
@@ -159,7 +313,7 @@ procedure TServiceForm.Button1Click(Sender: TObject);
 const
   LotW_URL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
 var
-  fullURL, LoadFilePATH : string;
+  fullURL, LoadFilePATH: string;
   LoadFile: TFileStream;
 begin
   if (LotWLogin = '') or (LotWPassword = '') then
@@ -168,20 +322,28 @@ begin
   begin
     try
        {$IFDEF UNIX}
-      LoadFile:=TFileStream.Create(GetEnvironmentVariable('HOME')+'/EWLog/LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi',fmCreate);
-      LoadFilePATH:=GetEnvironmentVariable('HOME')+'/EWLog/LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi';
+      LoadFile := TFileStream.Create(GetEnvironmentVariable('HOME') +
+        '/EWLog/LotW_' + FormatDateTime('yyyymmdd', DateEdit1.Date) + '.adi', fmCreate);
+      LoadFilePATH := GetEnvironmentVariable('HOME') + '/EWLog/LotW_' +
+        FormatDateTime('yyyymmdd', DateEdit1.Date) + '.adi';
       {$ELSE}
-      Label6.Caption:=rStatusSaveFile;
-      LoadFilePATH:=GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH')+'\EWLog\LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi';
-      LoadFile:=TFileStream.Create(GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH')+'\EWLog\LotW_'+FormatDateTime('yyyymmdd', DateEdit1.Date)+'.adi',fmCreate);
+      Label6.Caption := rStatusSaveFile;
+      LoadFilePATH := GetEnvironmentVariable('SystemDrive') +
+        GetEnvironmentVariable('HOMEPATH') + '\EWLog\LotW_' +
+        FormatDateTime('yyyymmdd', DateEdit1.Date) + '.adi';
+      LoadFile := TFileStream.Create(GetEnvironmentVariable('SystemDrive') +
+        GetEnvironmentVariable('HOMEPATH') + '\EWLog\LotW_' +
+        FormatDateTime('yyyymmdd', DateEdit1.Date) + '.adi', fmCreate);
       {$ENDIF UNIX}
-      fullURL:=LotW_URL+'login='+LotWLogin+'&password='+LotWPassword+'&qso_query=1&qso_qsldetail="yes"'+
-      '&qso_qslsince='+FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
+      fullURL := LotW_URL + 'login=' + LotWLogin + '&password=' +
+        LotWPassword + '&qso_query=1&qso_qsldetail="yes"' + '&qso_qslsince=' +
+        FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
       Application.ProcessMessages;
       HttpGetBinary(fullURL, LoadFile);
     finally
       LoadFile.Free;
     end;
+    LotWImport(LoadFilePATH);
   end;
 end;
 
