@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Релиз"/>
+    <BuildModes Active="Дебаг"/>
     <Units Count="114">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="768"/>
-        <CursorPos X="16" Y="787"/>
+        <TopLine Value="4190"/>
+        <CursorPos X="75" Y="4222"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -105,7 +105,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="412"/>
+        <TopLine Value="423"/>
         <CursorPos X="8" Y="348"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -285,8 +285,8 @@
         <UnitName Value="ServiceForm_U"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="160"/>
-        <CursorPos X="6" Y="176"/>
+        <TopLine Value="231"/>
+        <CursorPos X="8" Y="255"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -492,7 +492,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
         <CursorPos Y="53"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="108"/>
       </Unit44>
       <Unit45>
         <Filename Value="mmform_u.pas"/>
@@ -503,14 +503,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="89"/>
         <CursorPos X="26" Y="112"/>
-        <UsageCount Value="97"/>
+        <UsageCount Value="101"/>
       </Unit45>
       <Unit46>
         <Filename Value="hamqth.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="43" Y="11"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="43"/>
       </Unit46>
       <Unit47>
         <Filename Value="clublog.pas"/>
@@ -518,7 +518,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="43" Y="11"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="38"/>
       </Unit47>
       <Unit48>
         <Filename Value="qrzcom.pas"/>
@@ -526,7 +526,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos Y="87"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="30"/>
       </Unit48>
       <Unit49>
         <Filename Value="RegExpr.pas"/>
@@ -1008,123 +1008,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="191" TopLine="159"/>
+        <Caret Line="258" TopLine="226"/>
       </Position1>
       <Position2>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="154" TopLine="135"/>
+        <Caret Line="254" TopLine="226"/>
       </Position2>
       <Position3>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="156" TopLine="135"/>
+        <Caret Line="258" TopLine="226"/>
       </Position3>
       <Position4>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="157" TopLine="135"/>
+        <Caret Line="254" TopLine="226"/>
       </Position4>
       <Position5>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="158" TopLine="135"/>
+        <Caret Line="258" TopLine="226"/>
       </Position5>
       <Position6>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="159" TopLine="153"/>
+        <Caret Line="255" TopLine="226"/>
       </Position6>
       <Position7>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="160" TopLine="153"/>
+        <Caret Line="258" TopLine="226"/>
       </Position7>
       <Position8>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="161" TopLine="153"/>
+        <Caret Line="255" TopLine="226"/>
       </Position8>
       <Position9>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="162" TopLine="153"/>
+        <Caret Line="258" TopLine="226"/>
       </Position9>
       <Position10>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="163" TopLine="153"/>
+        <Caret Line="255" TopLine="226"/>
       </Position10>
       <Position11>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="164" TopLine="153"/>
+        <Caret Line="258" TopLine="226"/>
       </Position11>
       <Position12>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="165" TopLine="153"/>
+        <Caret Line="255" TopLine="226"/>
       </Position12>
       <Position13>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="166" TopLine="153"/>
+        <Caret Line="258" TopLine="226"/>
       </Position13>
       <Position14>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="167" TopLine="153"/>
+        <Caret Line="256" TopLine="226"/>
       </Position14>
       <Position15>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="168" TopLine="153"/>
+        <Caret Line="258" TopLine="226"/>
       </Position15>
       <Position16>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="169" TopLine="153"/>
+        <Caret Line="256" TopLine="226"/>
       </Position16>
       <Position17>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="170" TopLine="153"/>
+        <Caret Line="258" TopLine="226"/>
       </Position17>
       <Position18>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="172" TopLine="153"/>
+        <Caret Line="257" TopLine="226"/>
       </Position18>
       <Position19>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="98" TopLine="77"/>
+        <Caret Line="258" TopLine="226"/>
       </Position19>
       <Position20>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="174" TopLine="155"/>
+        <Caret Line="257" TopLine="226"/>
       </Position20>
       <Position21>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="178" TopLine="155"/>
+        <Caret Line="258" TopLine="226"/>
       </Position21>
       <Position22>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="98" TopLine="78"/>
+        <Caret Line="257" TopLine="226"/>
       </Position22>
       <Position23>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="99" TopLine="78"/>
+        <Caret Line="258" TopLine="226"/>
       </Position23>
       <Position24>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="100" TopLine="78"/>
+        <Caret Line="259" TopLine="227"/>
       </Position24>
       <Position25>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="98" TopLine="78"/>
+        <Caret Line="204" TopLine="239"/>
       </Position25>
       <Position26>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="99" TopLine="78"/>
+        <Caret Line="254" Column="31" TopLine="234"/>
       </Position26>
       <Position27>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="100" TopLine="78"/>
+        <Caret Line="257" Column="15" TopLine="234"/>
       </Position27>
       <Position28>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="102" TopLine="78"/>
+        <Caret Line="256" Column="56" TopLine="234"/>
       </Position28>
       <Position29>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="103" TopLine="78"/>
+        <Caret Line="260" Column="39" TopLine="234"/>
       </Position29>
       <Position30>
         <Filename Value="serviceform_u.pas"/>
-        <Caret Line="104" TopLine="78"/>
+        <Caret Line="256" Column="29" TopLine="234"/>
       </Position30>
     </JumpHistory>
     <RunParams>

@@ -113,9 +113,30 @@ procedure TServiceForm.LotWImport(FilePATH: string);
       Result := getField(str, LowerCase(field));
   end;
 
+  function StreamToString(aStream: TStream): string;
+  var
+    SS: TStringStream;
+  begin
+    if aStream <> nil then
+    begin
+      SS := TStringStream.Create('');
+      try
+        SS.CopyFrom(aStream, 0);
+        Result := SS.DataString;
+      finally
+        SS.Free;
+      end;
+    end
+    else
+    begin
+      Result := '';
+    end;
+  end;
+
 var
   i: integer;
   f: TextFile;
+  temp_f: TextFile;
   s: string;
   CALL: string;
   BAND: string;
@@ -137,21 +158,47 @@ var
   PosEOH: word;
   PosEOR: word;
   yyyy, mm, dd: word;
+  Stream: TMemoryStream;
+  TempFile: string;
 begin
+  {$IFDEF UNIX}
+  TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +'EWLog'+DirectorySeparator+'temp.adi';
+  {$ELSE}
+  TempFile := GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH') + DirectorySeparator +'EWLog'+DirectorySeparator+'temp.adi';
+  {$ENDIF UNIX}
   RecCount := 0;
   DupeCount := 0;
   ErrorCount := 0;
   PosEOH := 0;
   PosEOR := 0;
   try
+    Stream := TMemoryStream.Create;
     AssignFile(f, FilePATH);
     Reset(f);
+
     while not (PosEOH > 0) do
     begin
       Readln(f, s);
       PosEOH := Pos('<EOH>', UpperCase(s));
     end;
-    while not (EOF(f)) do
+
+    while not EOF(f) do
+    begin
+      Readln(f, s);
+      s := StringReplace(s, #10, '', [rfReplaceAll]);
+      s := StringReplace(s, #13, '', [rfReplaceAll]);
+      s := StringReplace(UpperCase(s), '<EOR>', '<EOR>'#10, [rfReplaceAll]);
+      if Length(s) > 0 then
+      begin
+        Stream.Write(s[1], length(s));
+      end;
+    end;
+    Stream.SaveToFile(TempFile);
+
+    AssignFile(temp_f, TempFile);
+    Reset(temp_f);
+
+    while not (EOF(temp_f)) do
     begin
       try
         CALL := '';
@@ -169,8 +216,9 @@ begin
         ITUZ := '';
         paramQSLRDATE := '';
 
-        Readln(f, s);
-        s:=Trim(s);
+        Readln(temp_f, s);
+        s := Trim(s);
+
         PosEOR := Pos('<EOR>', UpperCase(s));
         if not (PosEOR > 0) then
           Continue;
@@ -203,10 +251,12 @@ begin
                 FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
           end;
           Query := 'UPDATE ' + LogTable + ' SET GRID = ' + Q(GRIDSQUARE) +
-            ', CQZone = ' + Q(CQZ) + ', ITUZone = ' + Q(ITUZ) + ', WPX = ' + Q(PFX) + ', DXCC = ' + Q(DXCC) +
-            ', LoTWRec = `1`, LoTWRecDate = ' + Q(paramQSLRDATE) +
-            ' WHERE CallSign = '+Q(CALL)+' AND strftime(''%Y%m%d'',QSODate) = '+QuotedStr(QSO_DATE)+';';
-          UPDATEQuery.SQL.Text:=Query;
+            'CQZone = ' + Q(CQZ) + 'ITUZone = ' + Q(ITUZ) +
+            'WPX = ' + Q(PFX) + 'DXCC = ' + Q(DXCC) +
+            'LoTWRec = ''1'', LoTWRecDate = ' + QuotedStr(paramQSLRDATE) +
+            ' WHERE CallSign = ' + QuotedStr(CALL) + ' AND strftime(''%Y%m%d'',QSODate) = ' +
+            QuotedStr(QSO_DATE) + ';';
+          UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
           MainForm.SQLTransaction1.Commit;
         end;
@@ -216,6 +266,8 @@ begin
     end;
   finally
     CloseFile(f);
+    CloseFile(temp_f);
+    Stream.Free;
     MainForm.SelDB(CallLogBook);
   end;
 end;
