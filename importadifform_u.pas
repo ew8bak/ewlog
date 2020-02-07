@@ -177,54 +177,6 @@ begin
   end;
 end;
 
-function getField(s, field: string): string;
-var
-  start: integer = 0;
-  stop: integer = 0;
-begin
-
-  if field = 'VALIDDX' then
-    field := 'ValidDX';
-  if field = 'NOCALCDXCC' then
-    field := 'NoCalcDXCC';
-  try
-    Result := '';
-    start := s.IndexOf('<' + field + ':');
-    if (start >= 0) then
-    begin
-      s := s.Substring(start + field.Length);
-      start := s.IndexOf('>');
-      stop := s.IndexOf('<');
-      if (start < stop) and (start > -1) then
-        Result := s.Substring(start + 1, stop - start - 1);
-    end;
-  except
-    Result := '';
-  end;
-
-  if (Result = '') and (field <> LowerCase(field)) then
-    Result := getField(s, LowerCase(field));
-end;
-
-function Q(s: string): string;
-var
-  i: integer;
-  Quote: char;
-  char2: char;
-begin
-  Quote := #39;
-  char2 := ',';
-  Result := s;
-  if Result = 'NULL' then
-  begin
-    Result := Result + char2;
-    exit;
-  end;
-  for i := Length(Result) downto 1 do
-    if Result[i] = Quote then
-      Insert(Quote, Result, i);
-  Result := Quote + Result + Quote + char2;
-end;
 
 procedure TImportADIFForm.ADIFImport(path: string);
 var
@@ -430,65 +382,65 @@ begin
         if not (PosEOR > 0) then
           Continue;
 
-        BAND := getField(s, 'BAND');
-        BAND_RX := getField(s, 'BAND_RX');
-        CALL := getField(s, 'CALL');
-        COMMENT := getField(s, 'COMMENT');
-        CONT := getField(s, 'CONT');
-        COUNTRY := getField(s, 'COUNTRY');
-        CQZ := getField(s, 'CQZ');
-        DXCC := getField(s, 'DXCC');
-        DXCC_PREF := getField(s, 'DXCC_PREF');
-        EQSL_QSLRDATE := getField(s, 'EQSL_QSLRDATE');
-        EQSL_QSLSDATE := getField(s, 'EQSL_QSLSDATE');
-        EQSL_QSL_RCVD := getField(s, 'EQSL_QSL_RCVD');
-        EQSL_QSL_SENT := getField(s, 'EQSL_QSL_SENT');
-        FREQ := getField(s, 'FREQ');
-        FREQ_RX := getField(s, 'FREQ_RX');
-        GRIDSQUARE := getField(s, 'GRIDSQUARE');
-        IOTA := getField(s, 'IOTA');
-        ITUZ := getField(s, 'ITUZ');
-        LOTW_QSLRDATE := getField(s, 'LOTW_QSLRDATE');
-        LOTW_QSLSDATE := getField(s, 'LOTW_QSLSDATE');
-        LOTW_QSL_RCVD := getField(s, 'LOTW_QSL_RCVD');
-        LOTW_QSL_SENT := getField(s, 'LOTW_QSL_SENT');
-        MARKER := getField(s, 'MARKER');
-        MODE := getField(s, 'MODE');
-        MY_GRIDSQUARE := getField(s, 'MY_GRIDSQUARE');
-        MY_STATE := getField(s, 'MY_STATE');
-        sNAME := getField(s, 'NAME');
-        NOTES := getField(s, 'NOTES');
-        NoCalcDXCC := getField(s, 'NoCalcDXCC');
-        PFX := getField(s, 'PFX');
-        PROP_MODE := getField(s, 'PROP_MODE');
-        QSLMSG := getField(s, 'QSLMSG');
-        QSLRDATE := getField(s, 'QSLRDATE');
-        QSLSDATE := getField(s, 'QSLSDATE');
-        QSL_RCVD := getField(s, 'QSL_RCVD');
-        QSL_RCVD_VIA := getField(s, 'QSL_RCVD_VIA');
-        QSL_SENT := getField(s, 'QSL_SENT');
-        QSL_SENT_VIA := getField(s, 'QSL_SENT_VIA');
-        QSL_VIA := getField(s, 'QSL_VIA');
-        QSO_DATE := getField(s, 'QSO_DATE');
-        QSL_STATUS := getField(s, 'QSL_STATUS');
-        QTH := getField(s, 'QTH');
-        RST_RCVD := getField(s, 'RST_RCVD');
-        RST_SENT := getField(s, 'RST_SENT');
-        SAT_MODE := getField(s, 'SAT_MODE');
-        SAT_NAME := getField(s, 'SAT_NAME');
-        SRX := getField(s, 'SRX');
-        SRX_STRING := getField(s, 'SRX_STRING');
-        STATE := getField(s, 'STATE');
-        STATE1 := getField(s, 'STATE1');
-        STATE2 := getField(s, 'STATE2');
-        STATE3 := getField(s, 'STATE3');
-        STATE4 := getField(s, 'STATE4');
-        STX := getField(s, 'STX');
-        STX_STRING := getField(s, 'STX_STRING');
-        SUBMODE := getField(s, 'SUBMODE');
-        TIME_OFF := getField(s, 'TIME_OFF');
-        TIME_ON := getField(s, 'TIME_ON');
-        ValidDX := getField(s, 'ValidDX');
+        BAND := dmFunc.getField(s, 'BAND');
+        BAND_RX := dmFunc.getField(s, 'BAND_RX');
+        CALL := dmFunc.getField(s, 'CALL');
+        COMMENT := dmFunc.getField(s, 'COMMENT');
+        CONT := dmFunc.getField(s, 'CONT');
+        COUNTRY := dmFunc.getField(s, 'COUNTRY');
+        CQZ := dmFunc.getField(s, 'CQZ');
+        DXCC := dmFunc.getField(s, 'DXCC');
+        DXCC_PREF := dmFunc.getField(s, 'DXCC_PREF');
+        EQSL_QSLRDATE := dmFunc.getField(s, 'EQSL_QSLRDATE');
+        EQSL_QSLSDATE := dmFunc.getField(s, 'EQSL_QSLSDATE');
+        EQSL_QSL_RCVD := dmFunc.getField(s, 'EQSL_QSL_RCVD');
+        EQSL_QSL_SENT := dmFunc.getField(s, 'EQSL_QSL_SENT');
+        FREQ := dmFunc.getField(s, 'FREQ');
+        FREQ_RX := dmFunc.getField(s, 'FREQ_RX');
+        GRIDSQUARE := dmFunc.getField(s, 'GRIDSQUARE');
+        IOTA := dmFunc.getField(s, 'IOTA');
+        ITUZ := dmFunc.getField(s, 'ITUZ');
+        LOTW_QSLRDATE := dmFunc.getField(s, 'LOTW_QSLRDATE');
+        LOTW_QSLSDATE := dmFunc.getField(s, 'LOTW_QSLSDATE');
+        LOTW_QSL_RCVD := dmFunc.getField(s, 'LOTW_QSL_RCVD');
+        LOTW_QSL_SENT := dmFunc.getField(s, 'LOTW_QSL_SENT');
+        MARKER := dmFunc.getField(s, 'MARKER');
+        MODE := dmFunc.getField(s, 'MODE');
+        MY_GRIDSQUARE := dmFunc.getField(s, 'MY_GRIDSQUARE');
+        MY_STATE := dmFunc.getField(s, 'MY_STATE');
+        sNAME := dmFunc.getField(s, 'NAME');
+        NOTES := dmFunc.getField(s, 'NOTES');
+        NoCalcDXCC := dmFunc.getField(s, 'NoCalcDXCC');
+        PFX := dmFunc.getField(s, 'PFX');
+        PROP_MODE := dmFunc.getField(s, 'PROP_MODE');
+        QSLMSG := dmFunc.getField(s, 'QSLMSG');
+        QSLRDATE := dmFunc.getField(s, 'QSLRDATE');
+        QSLSDATE := dmFunc.getField(s, 'QSLSDATE');
+        QSL_RCVD := dmFunc.getField(s, 'QSL_RCVD');
+        QSL_RCVD_VIA := dmFunc.getField(s, 'QSL_RCVD_VIA');
+        QSL_SENT := dmFunc.getField(s, 'QSL_SENT');
+        QSL_SENT_VIA := dmFunc.getField(s, 'QSL_SENT_VIA');
+        QSL_VIA := dmFunc.getField(s, 'QSL_VIA');
+        QSO_DATE := dmFunc.getField(s, 'QSO_DATE');
+        QSL_STATUS := dmFunc.getField(s, 'QSL_STATUS');
+        QTH := dmFunc.getField(s, 'QTH');
+        RST_RCVD := dmFunc.getField(s, 'RST_RCVD');
+        RST_SENT := dmFunc.getField(s, 'RST_SENT');
+        SAT_MODE := dmFunc.getField(s, 'SAT_MODE');
+        SAT_NAME := dmFunc.getField(s, 'SAT_NAME');
+        SRX := dmFunc.getField(s, 'SRX');
+        SRX_STRING := dmFunc.getField(s, 'SRX_STRING');
+        STATE := dmFunc.getField(s, 'STATE');
+        STATE1 := dmFunc.getField(s, 'STATE1');
+        STATE2 := dmFunc.getField(s, 'STATE2');
+        STATE3 := dmFunc.getField(s, 'STATE3');
+        STATE4 := dmFunc.getField(s, 'STATE4');
+        STX := dmFunc.getField(s, 'STX');
+        STX_STRING := dmFunc.getField(s, 'STX_STRING');
+        SUBMODE := dmFunc.getField(s, 'SUBMODE');
+        TIME_OFF := dmFunc.getField(s, 'TIME_OFF');
+        TIME_ON := dmFunc.getField(s, 'TIME_ON');
+        ValidDX := dmFunc.getField(s, 'ValidDX');
 
         if PosEOR > 0 then
         begin
@@ -662,21 +614,21 @@ begin
             'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
             + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
             + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,'
-            + 'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE) VALUES (' + Q(CALL) +
-            Q(paramQSODate) + Q(QSOTIME) + Q(FREQ) + Q(MODE) + Q(SUBMODE) +
-            Q(RST_SENT) + Q(RST_RCVD) + Q(sNAME) + Q(QTH) + Q(STATE) +
-            Q(GRIDSQUARE) + Q(IOTA) + Q(QSL_VIA) + Q(paramQSLSent) +
-            Q(paramQSLSentAdv) + Q(paramQSLSDATE) + Q(ParamQSL_RCVD) +
-            Q(paramQSLRDATE) + Q(PFX) + Q(DXCC_PREF) + Q(CQZ) + Q(ITUZ) +
-            Q(COMMENT) + Q(paramMARKER) + Q('0') + Q(BAND) + Q(CONT) +
-            Q(COMMENT) + Q(paramEQSL_QSL_RCVD) + Q(paramLOTW_QSL_RCVD) +
-            Q(paramLOTW_QSLRDATE) + Q(QSLMSG) + Q(dmFunc.ExtractCallsign(CALL)) +
-            Q(STATE1) + Q(STATE2) + Q(STATE3) + Q(STATE4) +
-            Q(dmFunc.ExtractWPXPrefix(CALL)) + Q('Awards') + Q(paramValidDX) +
-            Q(SRX) + Q(SRX_STRING) + Q(STX) + Q(STX_STRING) + Q(SAT_NAME) +
-            Q(SAT_MODE) + Q(PROP_MODE) + Q(paramLOTW_QSL_SENT) +
-            Q(QSL_RCVD_VIA) + Q(QSL_SENT_VIA) + Q(DXCC) +
-            Q(paramNoCalcDXCC) + Q(MY_STATE) + QuotedStr(MY_GRIDSQUARE) + ')';
+            + 'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE) VALUES (' + dmFunc.Q(CALL) +
+            dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) + dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
+            dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) + dmFunc.Q(QTH) + dmFunc.Q(STATE) +
+            dmFunc.Q(GRIDSQUARE) + dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
+            dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) + dmFunc.Q(ParamQSL_RCVD) +
+            dmFunc.Q(paramQSLRDATE) + dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) + dmFunc.Q(ITUZ) +
+            dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) + dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
+            dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) + dmFunc.Q(paramLOTW_QSL_RCVD) +
+            dmFunc.Q(paramLOTW_QSLRDATE) + dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
+            dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) + dmFunc.Q(STATE4) +
+            dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) + dmFunc.Q('') + dmFunc.Q(paramValidDX) +
+            dmFunc.Q(SRX) + dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) + dmFunc.Q(SAT_NAME) +
+            dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) + dmFunc.Q(paramLOTW_QSL_SENT) +
+            dmFunc.Q(QSL_RCVD_VIA) + dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) +
+            dmFunc.Q(paramNoCalcDXCC) + dmFunc.Q(MY_STATE) + QuotedStr(MY_GRIDSQUARE) + ')';
 
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)

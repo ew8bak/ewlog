@@ -33,6 +33,8 @@ type
 
     { private declarations }
   public
+    function Q(s: string): string;
+    function getField(str, field: string): string;
     function antepenultimate_char(s: string): string;
     function penultimate_char(s: string): string;
     function last_char(s: string): char;
@@ -129,6 +131,54 @@ implementation
 uses MainForm_U;
 
 {$R *.lfm}
+
+function TdmFunc.Q(s: string): string;
+var
+  i: integer;
+  Quote: char;
+  char2: char;
+begin
+  Quote := #39;
+  char2 := ',';
+  Result := s;
+  if Result = 'NULL' then
+  begin
+    Result := Result + char2;
+    exit;
+  end;
+  for i := Length(Result) downto 1 do
+    if Result[i] = Quote then
+      Insert(Quote, Result, i);
+  Result := Quote + Result + Quote + char2;
+end;
+
+function TdmFunc.getField(str, field: string): string;
+var
+  start: integer = 0;
+  stop: integer = 0;
+begin
+  if field = 'VALIDDX' then
+    field := 'ValidDX';
+  if field = 'NOCALCDXCC' then
+    field := 'NoCalcDXCC';
+  try
+    Result := '';
+    start := str.IndexOf('<' + field + ':');
+    if (start >= 0) then
+    begin
+      str := str.Substring(start + field.Length);
+      start := str.IndexOf('>');
+      stop := str.IndexOf('<');
+      if (start < stop) and (start > -1) then
+        Result := str.Substring(start + 1, stop - start - 1);
+    end;
+  except
+    Result := '';
+  end;
+
+  if (Result = '') and (field <> LowerCase(field)) then
+    Result := getField(str, LowerCase(field));
+end;
 
 function TdmFunc.LetterFromMode(mode: string): string;
 begin

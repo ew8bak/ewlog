@@ -67,72 +67,7 @@ implementation
 {$R *.lfm}
 uses dmFunc_U, MainForm_U;
 
-function Q(s: string): string;
-var
-  i: integer;
-  Quote: char;
-  char2: char;
-begin
-  Quote := #39;
-  char2 := ',';
-  Result := s;
-  if Result = 'NULL' then
-  begin
-    Result := Result + char2;
-    exit;
-  end;
-  for i := Length(Result) downto 1 do
-    if Result[i] = Quote then
-      Insert(Quote, Result, i);
-  Result := Quote + Result + Quote + char2;
-end;
-
 procedure TServiceForm.LotWImport(FilePATH: string);
-
-  function getField(str, field: string): string;
-  var
-    start: integer = 0;
-    stop: integer = 0;
-  begin
-    try
-      Result := '';
-      start := str.IndexOf('<' + field + ':');
-      if (start >= 0) then
-      begin
-        str := str.Substring(start + field.Length);
-        start := str.IndexOf('>');
-        stop := str.IndexOf('<');
-        if (start < stop) and (start > -1) then
-          Result := str.Substring(start + 1, stop - start - 1);
-      end;
-    except
-      Result := '';
-    end;
-
-    if (Result = '') and (field <> LowerCase(field)) then
-      Result := getField(str, LowerCase(field));
-  end;
-
-  function StreamToString(aStream: TStream): string;
-  var
-    SS: TStringStream;
-  begin
-    if aStream <> nil then
-    begin
-      SS := TStringStream.Create('');
-      try
-        SS.CopyFrom(aStream, 0);
-        Result := SS.DataString;
-      finally
-        SS.Free;
-      end;
-    end
-    else
-    begin
-      Result := '';
-    end;
-  end;
-
 var
   i: integer;
   f: TextFile;
@@ -151,6 +86,8 @@ var
   GRIDSQUARE: string;
   CQZ: string;
   ITUZ: string;
+  APP_LOTW_2XQSL: string;
+  paramAPP_LOTW_2XQSL: string;
   Query: string;
   paramQSLRDATE: string;
   DupeCount: integer;
@@ -214,6 +151,7 @@ begin
         GRIDSQUARE := '';
         CQZ := '';
         ITUZ := '';
+        APP_LOTW_2XQSL := '';
         paramQSLRDATE := '';
 
         Readln(temp_f, s);
@@ -223,21 +161,28 @@ begin
         if not (PosEOR > 0) then
           Continue;
 
-        CALL := getField(s, 'CALL');
-        BAND := getField(s, 'BAND');
-        FREQ := getField(s, 'FREQ');
-        MODE := getField(s, 'MODE');
-        QSO_DATE := getField(s, 'QSO_DATE');
-        TIME_ON := getField(s, 'TIME_ON');
-        QSL_RCVD := getField(s, 'QSL_RCVD');
-        QSLRDATE := getField(s, 'QSLRDATE');
-        DXCC := getField(s, 'DXCC');
-        PFX := getField(s, 'PFX');
-        GRIDSQUARE := getField(s, 'GRIDSQUARE');
-        CQZ := getField(s, 'CQZ');
-        ITUZ := getField(s, 'ITUZ');
+        CALL := dmFunc.getField(s, 'CALL');
+        BAND := dmFunc.getField(s, 'BAND');
+        FREQ := dmFunc.getField(s, 'FREQ');
+        MODE := dmFunc.getField(s, 'MODE');
+        QSO_DATE := dmFunc.getField(s, 'QSO_DATE');
+        TIME_ON := dmFunc.getField(s, 'TIME_ON');
+        QSL_RCVD := dmFunc.getField(s, 'QSL_RCVD');
+        QSLRDATE := dmFunc.getField(s, 'QSLRDATE');
+        DXCC := dmFunc.getField(s, 'DXCC');
+        PFX := dmFunc.getField(s, 'PFX');
+        GRIDSQUARE := dmFunc.getField(s, 'GRIDSQUARE');
+        CQZ := dmFunc.getField(s, 'CQZ');
+        ITUZ := dmFunc.getField(s, 'ITUZ');
+        APP_LOTW_2XQSL := dmFunc.getField(s, 'APP_LOTW_2XQSL');
+
         if PosEOR > 0 then
         begin
+
+          if APP_LOTW_2XQSL = 'Y' then
+          paramAPP_LOTW_2XQSL:='1' else
+          paramAPP_LOTW_2XQSL:='0';
+
           if QSLRDATE <> '' then
           begin
             yyyy := StrToInt(QSLRDATE[1] + QSLRDATE[2] + QSLRDATE[3] +
@@ -250,9 +195,14 @@ begin
               paramQSLRDATE :=
                 FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
           end;
-          Query := 'UPDATE ' + LogTable + ' SET GRID = ' + Q(GRIDSQUARE) +
-            'CQZone = ' + Q(CQZ) + 'ITUZone = ' + Q(ITUZ) +
-            'WPX = ' + Q(PFX) + 'DXCC = ' + Q(DXCC) +
+
+          if MainForm.MySQLLOGDBConnection.Connected then
+          Query:=''
+          else
+          Query := 'UPDATE ' + LogTable + ' SET GRID = ' + dmFunc.Q(GRIDSQUARE) +
+            'CQZone = ' + dmFunc.Q(CQZ) + 'ITUZone = ' + dmFunc.Q(ITUZ) +
+            'WPX = ' + dmFunc.Q(PFX) + 'DXCC = ' + dmFunc.Q(DXCC) +
+            'LoTWSent = ' + dmFunc.Q(paramAPP_LOTW_2XQSL) +
             'LoTWRec = ''1'', LoTWRecDate = ' + QuotedStr(paramQSLRDATE) +
             ' WHERE CallSign = ' + QuotedStr(CALL) + ' AND strftime(''%Y%m%d'',QSODate) = ' +
             QuotedStr(QSO_DATE) + ';';
@@ -274,7 +224,7 @@ end;
 
 procedure TServiceForm.FormCreate(Sender: TObject);
 begin
-  if DefaultDB = 'MySQL' then
+  if MainForm.MySQLLOGDBConnection.Connected then
   begin
     UPDATEQuery.DataBase := MainForm.MySQLLOGDBConnection;
     MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
@@ -401,7 +351,7 @@ end;
 
 procedure TServiceForm.FormShow(Sender: TObject);
 begin
-  if DefaultDB = 'MySQL' then
+  if MainForm.MySQLLOGDBConnection.Connected then
   begin
     UPDATEQuery.DataBase := MainForm.MySQLLOGDBConnection;
     MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
@@ -668,7 +618,7 @@ begin
 
               UPDATEQuery.Close;
               UPDATEQuery.SQL.Clear;
-              if DefaultDB = 'MySQL' then
+              if MainForm.MySQLLOGDBConnection.Connected then
                 UPDATEQuery.SQL.Add('UPDATE ' + LogTable +
                   ' SET QSL_RCVD_VIA =:QSL_RCVD_VIA, QSLReceQSLcc =:QSLReceQSLcc, '
                   +
