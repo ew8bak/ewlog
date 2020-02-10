@@ -7,18 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
-  httpsend, LazUtils, LazFileUtils, ssl_openssl, dateutils;
-
-resourcestring
-  rNotDataForConnect =
-    'The log configuration, do not specify the data to connect to eQSL.cc';
-  rStatusConnecteQSL = 'Status: Connceting to eQSL.cc';
-  rStatusDownloadeQSL = 'Status: Download eQSL.cc';
-  rStatusSaveFile = 'Status: Saving file';
-  rStatusNotData = 'Status: Not data';
-  rStatusDone = 'Status: Done';
-  rProcessedData = 'Processed data:';
-
+  httpsend, LazUtils, LazFileUtils, ssl_openssl, dateutils, resourcestr;
 
 type
 

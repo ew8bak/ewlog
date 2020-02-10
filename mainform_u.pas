@@ -12,159 +12,7 @@ uses
   mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn, LR_DBSet,
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
   FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
-  Printers, DefaultTranslator, zipper;
-
-resourcestring
-  rQSL = 'QSL';
-  rQSLs = 'QSLs';
-  rQSODate = 'Date';
-  rQSOTime = 'Time';
-  rQSOBand = 'Band';
-  rQSOBandFreq = 'Frequency';
-  rCallSign = 'Callsign';
-  rQSOMode = 'Mode';
-  rQSOSubMode = 'SubMode';
-  rOMName = 'Name';
-  rOMQTH = 'QTH';
-  rState = 'State';
-  rGrid = 'Grid';
-  rQSOReportSent = 'RSTs';
-  rQSOReportRecived = 'RSTr';
-  rIOTA = 'IOTA';
-  rQSLManager = 'Manager';
-  rQSLSentDate = 'QSLs Date';
-  rQSLRecDate = 'QSLr Date';
-  rLoTWRecDate = 'LOTWr Date';
-  rMainPrefix = 'Prefix';
-  rDXCCPrefix = 'DXCC';
-  rCQZone = 'CQ Zone';
-  rITUZone = 'ITU Zone';
-  rManualSet = 'Manual Set';
-  rContinent = 'Continent';
-  rValidDX = 'Valid DX';
-  rQSL_RCVD_VIA = 'QSL r VIA';
-  rQSL_SENT_VIA = 'QSL s VIA';
-  rUSERS = 'User';
-  rNoCalcDXCC = 'No Calc DXCC';
-  rMySQLHasGoneAway =
-    'NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite';
-  rWelcomeMessageMySQL = 'MySQL database selected! Welcome!';
-  rWelcomeMessageSQLIte = 'SQLite database selected! Welcome!';
-  rCheckSettingsMySQL = 'Check MySQL DB Settings';
-  rCheckSettingsSQLIte = 'Check SQLite DB Settings';
-  rDataBaseFault = 'Something went wrong ... Check the settings';
-  rWarning = 'Warning!';
-  rQSONotSave = 'QSO not saved, quit anyway ?!';
-  rDXClusterDisconnect = 'You are disconnected from the DX cluster';
-  rSwitchDBSQLIte = 'Switch base to SQLite';
-  rSwitchDBMySQL = 'Switch base to MySQL';
-  rDBNotInit = 'The database is not initialized, go to the settings?';
-  rClientConnected = 'Client Connected:';
-  rPhotoFromQRZru = 'Photo from QRZ.RU';
-  rDeleteRecord = 'Delete Record ';
-  rDuplicates = 'Duplicates ';
-  rSyncOK = 'Done! Number of duplicates ';
-  rSync = ', in sync ';
-  rQSOsync = 'QSO';
-  rDBError = 'Error while working with the database. Check connection and settings';
-  rMySQLNotSet = 'MySQL database settings not configured';
-  rNotCallsign = 'No callsign entered to view';
-  rDXClusterConnecting = 'Connect to Telnet Cluster';
-  rDXClusterDisconnecting = 'Disconnect from Telnet Cluster';
-  rDXClusterWindowClear = 'Clear DX Cluster window';
-  rSendSpot = 'Send spot';
-  rEnCall = 'You must enter a callsign';
-  rSaveQSO = 'Save QSO';
-  rClearQSO = 'Clear QSO input window';
-  rLogConWSJT = 'EWLog connected to WSJT';
-  rLogNConWSJT = 'EWLog not connected to WSJT';
-  rQSOTotal = ' Total ';
-  rLanguageComplite = 'Translation files download successfully';
-  rCleanUpJournal = 'Are you sure you want to clear all entries?';
-
-
-const
-  view_freq = '0.000"."00';
-  offsetRec: integer = 500;
-  etalonField: array [0..56] of string =
-    ('UnUsedIndex', 'CallSign', 'QSODate', 'QSOTime', 'QSOBand', 'QSOMode',
-    'QSOReportSent', 'QSOReportRecived', 'OMName',
-    'OMQTH', 'State', 'Grid', 'IOTA', 'QSLManager', 'QSLSent', 'QSLSentAdv',
-    'QSLSentDate', 'QSLRec', 'QSLRecDate', 'MainPrefix', 'DXCCPrefix', 'CQZone',
-    'ITUZone', 'QSOAddInfo', 'Marker', 'ManualSet', 'DigiBand', 'Continent',
-    'ShortNote', 'QSLReceQSLcc', 'LoTWRec', 'LoTWRecDate', 'QSLInfo',
-    'Call', 'State1', 'State2', 'State3', 'State4', 'WPX', 'AwardsEx', 'ValidDX',
-    'SRX', 'SRX_STRING', 'STX', 'STX_STRING', 'SAT_NAME',
-    'SAT_MODE', 'PROP_MODE', 'LoTWSent', 'QSL_RCVD_VIA', 'QSL_SENT_VIA',
-    'DXCC', 'USERS', 'NoCalcDXCC', 'QSOSubMode', 'MY_STATE', 'MY_GRIDSQUARE');
-  constColumnName: array [0..29] of string =
-    ('QSL', 'QSLs', 'QSODate', 'QSOTime', 'QSOBand', 'CallSign',
-    'QSOMode', 'QSOSubMode', 'OMName',
-    'OMQTH', 'State', 'Grid', 'QSOReportSent', 'QSOReportRecived', 'IOTA', 'QSLManager',
-    'QSLSentDate', 'QSLRecDate', 'LoTWRecDate', 'MainPrefix', 'DXCCPrefix', 'CQZone',
-    'ITUZone', 'ManualSet', 'Continent', 'ValidDX', 'QSL_RCVD_VIA', 'QSL_SENT_VIA',
-    'USERS', 'NoCalcDXCC');
-  constLanguageISO: array [0..141] of string =
-    ('aa', 'ab', 'af', 'am', 'ar', 'as', 'ay', 'az', 'ba', 'be', 'bg', 'bh', 'bi',
-    'bn', 'bo', 'br', 'ca', 'co',
-    'cs', 'cy', 'da', 'de', 'dz', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fa', 'fi',
-    'fj', 'fo', 'fr', 'fy', 'ga',
-    'gd', 'gl', 'gn', 'gu', 'ha', 'hi', 'he', 'hr', 'hu', 'hy', 'ia', 'id', 'ie',
-    'ik', 'in', 'is', 'it', 'iu',
-    'iw', 'ja', 'ji', 'jw', 'ka', 'kk', 'kl', 'km', 'kn', 'ko', 'ks', 'ku', 'ky',
-    'la', 'ln', 'lo', 'lt', 'lv',
-    'mg', 'mi', 'mk', 'ml', 'mn', 'mo', 'mr', 'ms', 'mt', 'my', 'na', 'ne', 'nl',
-    'no', 'oc', 'om', 'or', 'pa',
-    'pl', 'ps', 'pt', 'qu', 'rm', 'rn', 'ro', 'ru', 'rw', 'sa', 'sd', 'sg', 'sh',
-    'si', 'sk', 'sl', 'sm', 'sn',
-    'so', 'sq', 'sr', 'ss', 'st', 'su', 'sv', 'sw', 'ta', 'te', 'tg', 'th', 'ti',
-    'tk', 'tl', 'tn', 'to', 'tr',
-    'ts', 'tt', 'tw', 'ug', 'uk', 'ur', 'uz', 'vi', 'vo', 'wo', 'xh',
-    'yi', 'yo', 'za', 'zh', 'zu');
-  constLanguage: array [0..141] of string =
-    ('Afar', 'Abkhazian', 'Afrikaans', 'Amharic', 'Arabic', 'Assamese',
-    'Aymara', 'Azerbaijani',
-    'Bashkir', 'Byelorussian', 'Bulgarian', 'Bihari', 'Bislama', 'Bengali',
-    'Tibetan', 'Breton', 'Catalan',
-    'Corsican', 'Czech', 'Welch', 'Danish', 'German', 'Bhutani', 'Greek',
-    'English', 'Esperanto', 'Spanish',
-    'Estonian', 'Basque', 'Persian', 'Finnish', 'Fiji', 'Faeroese',
-    'French', 'Frisian', 'Irish',
-    'Scots Gaelic', 'Galician', 'Guarani', 'Gujarati', 'Hausa', 'Hindi',
-    'Hebrew', 'Croatian', 'Hungarian',
-    'Armenian', 'Interlingua', 'Indonesian', 'Interlingue', 'Inupiak',
-    'former Indonesian', 'Icelandic',
-    'Italian', 'Inuktitut (Eskimo)', 'former Hebrew', 'Japanese',
-    'former Yiddish', 'Javanese', 'Georgian',
-    'Kazakh', 'Greenlandic', 'Cambodian', 'Kannada', 'Korean',
-    'Kashmiri', 'Kurdish', 'Kirghiz',
-    'Latin', 'Lingala', 'Laothian', 'Lithuanian', 'Latvian', 'Malagasy',
-    'Maori', 'Macedonian', 'Malayalam',
-    'Mongolian', 'Moldavian', 'Marathi', 'Malay', 'Maltese', 'Burmese',
-    'Nauru', 'Nepali', 'Dutch', 'Norwegian',
-    'Occitan', '(Afan) Oromo', 'Oriya', 'Punjabi', 'Polish', 'Pashto',
-    'Portuguese', 'Quechua', 'Rhaeto-Romance',
-    'Kirundi', 'Romanian', 'Russian', 'Kinyarwanda', 'Sanskrit', 'Sindhi',
-    'Sangro', 'Serbo-Croatian', 'Singhalese',
-    'Slovak', 'Slovenian', 'Samoan', 'Shona', 'Somali', 'Albanian', 'Serbian',
-    'Siswati', 'Sesotho', 'Sudanese',
-    'Swedish', 'Swahili', 'Tamil', 'Tegulu', 'Tajik', 'Thai', 'Tigrinya',
-    'Turkmen', 'Tagalog', 'Setswana',
-    'Tonga', 'Turkish', 'Tsonga', 'Tatar', 'Twi', 'Uigur', 'Ukrainian',
-    'Urdu', 'Uzbek', 'Vietnamese',
-    'Volapuk', 'Wolof', 'Xhosa', 'Yiddish', 'Yoruba', 'Zhuang', 'Chinese', 'Zulu');
-  constColumnWidth: array[0..29] of integer =
-    (30, 35, 65, 45, 65, 65, 50, 50, 70, 90, 40, 50, 35, 35, 50, 64, 64,
-    64, 64, 55, 55, 55, 55,
-    64, 70, 64, 64, 64, 64, 64);
- { constBandName: array [0..12] of string =
-    ('160M', '80M', '60M', '40M', '30M', '20M', '17M', '15M', '12M', '10M', '6M', '2M',
-    '70CM');
-  constKhzBandName: array [0..12] of string =
-    ('1.800.00', '3.500.00', '5.000.00', '7.000.00', '10.000.00', '14.000.00',
-    '18.000.00', '21.000.00', '24.000.00', '28.000.00', '54.000.00', '144.000.00',
-    '430.000.00');      }
-
+  Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u;
 type
 
   { TMainForm }
@@ -196,7 +44,6 @@ type
     LUDPComponent1: TLUDPComponent;
     LUDPSyncDesk: TLUDPComponent;
     MapView1: TMapView;
-
     Memo1: TMemo;
     MenuItem10: TMenuItem;
     MenuItem100: TMenuItem;
@@ -731,17 +578,7 @@ type
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
-    procedure SaveQSO(CallSing: string; QSODate: TDateTime;
-      QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSOReportRecived,
-      OmName, OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
-      QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
-      ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-      DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
-      LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3,
-      State4, WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-      STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
-      LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
-      NoCalcDXCC: integer; NLogDB: string);
+    procedure SaveQSO(var SQSO: TQSO);
     procedure SearchCallInCallBook(CallName: string);
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
     procedure InitializeDB(dbS: string);
@@ -831,7 +668,8 @@ uses
   ConfigForm_U, ManagerBasePrefixForm_U, ExportAdifForm_u, CreateJournalForm_U,
   ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi, aziloc,
   QSLManagerForm_U, SettingsCAT_U,
-  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog, hamqth, clublog, qrzcom,
+  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog,
+  hamqth, clublog, qrzcom,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U,
   UpdateForm_U, Earth_Form_U,
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
@@ -958,6 +796,7 @@ function TMainForm.FindMode(submode: string): string;
 var
   i, j: integer;
 begin
+  i:=0;
   for j := 0 to subModesList.Count - 1 do
     if AnsiContainsText(subModesList.Strings[j], submode + ',') or
       AnsiContainsText(subModesList.Strings[j], ', ' + submode) then
@@ -1687,23 +1526,13 @@ begin
   end;
 end;
 
-procedure TMainForm.SaveQSO(CallSing: string; QSODate: TDateTime;
-  QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSOReportRecived,
-  OmName, OmQTH, State0, Grid, IOTA, QSLManager, QSLSent, QSLSentAdv,
-  QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone,
-  ITUZone, QSOAddInfo, Marker: string; ManualSet: integer;
-  DigiBand, Continent, ShortNote: string; QSLReceQSLcc: integer;
-  LotWRec, LotWRecDate, QSLInfo, Call, State1, State2, State3, State4,
-  WPX, AwardsEx, ValidDX: string; SRX: integer; SRX_String: string;
-  STX: integer; STX_String, SAT_NAME, SAT_MODE, PROP_MODE: string;
-  LotWSent: integer; QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS: string;
-  NoCalcDXCC: integer; NLogDB: string);
+procedure TMainForm.SaveQSO(var SQSO: TQSO);
 begin
   with MainForm.SaveQSOQuery do
   begin
     Close;
     SQL.Clear;
-    SQL.Add('INSERT INTO ' + NLogDB +
+    SQL.Add('INSERT INTO ' + SQSO.NLogDB +
       '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, `QSOSubMode`, ' +
       '`QSOReportSent`, `QSOReportRecived`, `OMName`, `OMQTH`, `State`, `Grid`, `IOTA`,'
       +
@@ -1721,78 +1550,80 @@ begin
       + ':IWPX, :IAwardsEx, :IValidDX, :ISRX, :ISRX_STRING, :ISTX, :ISTX_STRING, :ISAT_NAME,'
       + ':ISAT_MODE, :IPROP_MODE, :ILoTWSent, :IQSL_RCVD_VIA, :IQSL_SENT_VIA, :IDXCC, :IUSERS, :INoCalcDXCC)');
 
-    Params.ParamByName('ICallSign').AsString := CallSing;
-    Params.ParamByName('IQSODate').AsDateTime := QSODate;
-    Params.ParamByName('IQSOTime').AsString := QSOTime;
-    Params.ParamByName('IQSOBand').AsString := QSOBand;
-    Params.ParamByName('IQSOMode').AsString := QSOMode;
-    Params.ParamByName('IQSOSubMode').AsString := QSOSubMode;
-    Params.ParamByName('IQSOReportSent').AsString := QSOReportSent;
-    Params.ParamByName('IQSOReportRecived').AsString := QSOReportRecived;
-    Params.ParamByName('IOMName').AsString := OmName;
-    Params.ParamByName('IOMQTH').AsString := OmQTH;
-    Params.ParamByName('IState').AsString := State0;
-    Params.ParamByName('IGrid').AsString := Grid;
-    Params.ParamByName('IIOTA').AsString := IOTA;
-    Params.ParamByName('IQSLManager').AsString := QSLManager;
-    Params.ParamByName('IQSLSent').AsString := QSLSent;
-    Params.ParamByName('IQSLSentAdv').AsString := QSLSentAdv;
-    if QSLSentDate = 'NULL' then
+    Params.ParamByName('ICallSign').AsString := SQSO.CallSing;
+    Params.ParamByName('IQSODate').AsDateTime := SQSO.QSODate;
+    Params.ParamByName('IQSOTime').AsString := SQSO.QSOTime;
+    Params.ParamByName('IQSOBand').AsString := SQSO.QSOBand;
+    Params.ParamByName('IQSOMode').AsString := SQSO.QSOMode;
+    Params.ParamByName('IQSOSubMode').AsString := SQSO.QSOSubMode;
+    Params.ParamByName('IQSOReportSent').AsString := SQSO.QSOReportSent;
+    Params.ParamByName('IQSOReportRecived').AsString := SQSO.QSOReportRecived;
+    Params.ParamByName('IOMName').AsString := SQSO.OmName;
+    Params.ParamByName('IOMQTH').AsString := SQSO.OmQTH;
+    Params.ParamByName('IState').AsString := SQSO.State0;
+    Params.ParamByName('IGrid').AsString := SQSO.Grid;
+    Params.ParamByName('IIOTA').AsString := SQSO.IOTA;
+    Params.ParamByName('IQSLManager').AsString := SQSO.QSLManager;
+    Params.ParamByName('IQSLSent').AsString := SQSO.QSLSent;
+    Params.ParamByName('IQSLSentAdv').AsString := SQSO.QSLSentAdv;
+
+    if SQSO.QSLSentDate = 'NULL' then
       Params.ParamByName('IQSLSentDate').IsNull
     else
-      Params.ParamByName('IQSLSentDate').AsString := QSLSentDate;
-    Params.ParamByName('IQSLRec').AsString := QSLRec;
-    if QSLRecDate = 'NULL' then
+      Params.ParamByName('IQSLSentDate').AsString := SQSO.QSLSentDate;
+    Params.ParamByName('IQSLRec').AsString := SQSO.QSLRec;
+    if SQSO.QSLRecDate = 'NULL' then
       Params.ParamByName('IQSLRecDate').IsNull
     else
-      Params.ParamByName('IQSLRecDate').AsString := QSLRecDate;
-    Params.ParamByName('IMainPrefix').AsString := MainPrefix;
-    Params.ParamByName('IDXCCPrefix').AsString := DXCCPrefix;
-    Params.ParamByName('ICQZone').AsString := CQZone;
-    Params.ParamByName('IITUZone').AsString := ITUZone;
-    Params.ParamByName('IQSOAddInfo').AsString := QSOAddInfo;
-    Params.ParamByName('IMarker').AsString := Marker;
-    Params.ParamByName('IManualSet').AsInteger := ManualSet;
-    Params.ParamByName('IDigiBand').AsString := DigiBand;
-    Params.ParamByName('IContinent').AsString := Continent;
-    Params.ParamByName('IShortNote').AsString := ShortNote;
-    Params.ParamByName('IQSLReceQSLcc').AsInteger := QSLReceQSLcc;
-    if LotWRec = '' then
+      Params.ParamByName('IQSLRecDate').AsString := SQSO.QSLRecDate;
+
+    Params.ParamByName('IMainPrefix').AsString := SQSO.MainPrefix;
+    Params.ParamByName('IDXCCPrefix').AsString := SQSO.DXCCPrefix;
+    Params.ParamByName('ICQZone').AsString := SQSO.CQZone;
+    Params.ParamByName('IITUZone').AsString := SQSO.ITUZone;
+    Params.ParamByName('IQSOAddInfo').AsString := SQSO.QSOAddInfo;
+    Params.ParamByName('IMarker').AsString := SQSO.Marker;
+    Params.ParamByName('IManualSet').AsInteger := SQSO.ManualSet;
+    Params.ParamByName('IDigiBand').AsString := SQSO.DigiBand;
+    Params.ParamByName('IContinent').AsString := SQSO.Continent;
+    Params.ParamByName('IShortNote').AsString := SQSO.ShortNote;
+    Params.ParamByName('IQSLReceQSLcc').AsInteger := SQSO.QSLReceQSLcc;
+    if SQSO.LotWRec = '' then
       Params.ParamByName('ILoTWRec').AsInteger := 0
     else
       Params.ParamByName('ILoTWRec').AsInteger := 1;
-    if LotWRecDate = 'NULL' then
+    if SQSO.LotWRecDate = 'NULL' then
       Params.ParamByName('ILoTWRecDate').IsNull
     else
-      Params.ParamByName('ILoTWRecDate').AsString := LotWRecDate;
-    Params.ParamByName('IQSLInfo').AsString := QSLInfo;
-    Params.ParamByName('ICall').AsString := Call;
-    Params.ParamByName('IState1').AsString := State1;
-    Params.ParamByName('IState2').AsString := State2;
-    Params.ParamByName('IState3').AsString := State3;
-    Params.ParamByName('IState4').AsString := State4;
-    Params.ParamByName('IWPX').AsString := WPX;
-    Params.ParamByName('IAwardsEx').AsString := AwardsEx;
-    Params.ParamByName('IValidDX').AsString := ValidDX;
-    Params.ParamByName('ISRX').AsInteger := SRX;
-    Params.ParamByName('ISRX_STRING').AsString := SRX_String;
-    Params.ParamByName('ISTX').AsInteger := STX;
-    Params.ParamByName('ISTX_STRING').AsString := STX_String;
-    Params.ParamByName('ISAT_NAME').AsString := SAT_NAME;
-    Params.ParamByName('ISAT_MODE').AsString := SAT_MODE;
-    Params.ParamByName('IPROP_MODE').AsString := PROP_MODE;
-    Params.ParamByName('ILoTWSent').AsInteger := LotWSent;
-    if QSL_RCVD_VIA = '' then
+      Params.ParamByName('ILoTWRecDate').AsString := SQSO.LotWRecDate;
+    Params.ParamByName('IQSLInfo').AsString := SQSO.QSLInfo;
+    Params.ParamByName('ICall').AsString := SQSO.Call;
+    Params.ParamByName('IState1').AsString := SQSO.State1;
+    Params.ParamByName('IState2').AsString := SQSO.State2;
+    Params.ParamByName('IState3').AsString := SQSO.State3;
+    Params.ParamByName('IState4').AsString := SQSO.State4;
+    Params.ParamByName('IWPX').AsString := SQSO.WPX;
+    Params.ParamByName('IAwardsEx').AsString := SQSO.AwardsEx;
+    Params.ParamByName('IValidDX').AsString := SQSO.ValidDX;
+    Params.ParamByName('ISRX').AsInteger := SQSO.SRX;
+    Params.ParamByName('ISRX_STRING').AsString := SQSO.SRX_String;
+    Params.ParamByName('ISTX').AsInteger := SQSO.STX;
+    Params.ParamByName('ISTX_STRING').AsString := SQSO.STX_String;
+    Params.ParamByName('ISAT_NAME').AsString := SQSO.SAT_NAME;
+    Params.ParamByName('ISAT_MODE').AsString := SQSO.SAT_MODE;
+    Params.ParamByName('IPROP_MODE').AsString := SQSO.PROP_MODE;
+    Params.ParamByName('ILoTWSent').AsInteger := SQSO.LotWSent;
+    if SQSO.QSL_RCVD_VIA = '' then
       Params.ParamByName('IQSL_RCVD_VIA').IsNull
     else
-      Params.ParamByName('IQSL_RCVD_VIA').AsString := QSL_RCVD_VIA;
-    if QSL_SENT_VIA = '' then
+      Params.ParamByName('IQSL_RCVD_VIA').AsString := SQSO.QSL_RCVD_VIA;
+    if SQSO.QSL_SENT_VIA = '' then
       Params.ParamByName('IQSL_SENT_VIA').IsNull
     else
-      Params.ParamByName('IQSL_SENT_VIA').AsString := QSL_SENT_VIA;
-    Params.ParamByName('IDXCC').AsString := DXCC;
-    Params.ParamByName('IUSERS').AsString := USERS;
-    Params.ParamByName('INoCalcDXCC').AsInteger := NoCalcDXCC;
+      Params.ParamByName('IQSL_SENT_VIA').AsString := SQSO.QSL_SENT_VIA;
+    Params.ParamByName('IDXCC').AsString := SQSO.DXCC;
+    Params.ParamByName('IUSERS').AsString := SQSO.USERS;
+    Params.ParamByName('INoCalcDXCC').AsInteger := SQSO.NoCalcDXCC;
     ExecSQL;
   end;
   MainForm.SQLTransaction1.Commit;
@@ -2056,13 +1887,9 @@ begin
         CheckTableQuery.ExecSQL;
         SQLTransaction1.Commit;
       end;
-
-
     except
       on E: ESQLDatabaseError do
-
     end;
-
     MainForm.SelectLogDatabase(LogTable);
   end;
   SetGrid();
@@ -4498,6 +4325,7 @@ procedure TMainForm.MenuItem12Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4528,6 +4356,7 @@ procedure TMainForm.MenuItem13Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4557,6 +4386,7 @@ procedure TMainForm.MenuItem14Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4589,6 +4419,7 @@ procedure TMainForm.MenuItem16Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4621,6 +4452,7 @@ procedure TMainForm.MenuItem17Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4651,6 +4483,7 @@ procedure TMainForm.MenuItem21Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4681,6 +4514,7 @@ procedure TMainForm.MenuItem22Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4711,6 +4545,7 @@ procedure TMainForm.MenuItem23Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4742,6 +4577,7 @@ procedure TMainForm.MenuItem24Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4774,6 +4610,7 @@ var
 begin
   if (UnUsIndex <> 0) then
   begin
+    recnom:=0;
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
@@ -4802,6 +4639,7 @@ procedure TMainForm.MenuItem27Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4832,6 +4670,7 @@ procedure TMainForm.MenuItem28Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4862,6 +4701,7 @@ procedure TMainForm.MenuItem29Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4892,6 +4732,7 @@ procedure TMainForm.MenuItem30Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4922,6 +4763,7 @@ procedure TMainForm.MenuItem31Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  recnom:=0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -6082,6 +5924,7 @@ var
   timeQSO: TTime;
   FmtStngs: TFormatSettings;
   state: string;
+  SQSO: TQSO;
 begin
   state := '';
   QSL_SENT := '';
@@ -6145,19 +5988,62 @@ begin
       if Edit13.Text = '' then
         state := Edit4.Text;
 
-      SaveQSO(EditButton1.Text, DateEdit1.Date, FormatDateTime('hh:nn', timeQSO),
-        NameBand, ComboBox2.Text, ComboBox9.Text, ComboBox4.Text,
-        ComboBox5.Text, Edit1.Text, Edit2.Text, state, Edit3.Text, Edit5.Text,
-        Edit6.Text, QSL_SENT, QSL_SENT_ADV, 'NULL', '0', 'NULL', Label38.Caption,
-        Label34.Caption, Label45.Caption, Label47.Caption, Edit11.Text,
-        BoolToStr(CheckBox5.Checked), 0,
-        FloatToStr(DigiBand), Label43.Caption, Edit11.Text, 0, '', 'NULL', SetQSLInfo,
-        dmFunc.ExtractCallsign(EditButton1.Text), Edit10.Text,
-        Edit9.Text, Edit8.Text, Edit7.Text, dmFunc.ExtractWPXPrefix(
-        EditButton1.Text), 'NULL',
-        IntToStr(1), 0, '', 0, '', '', '', '', 0, '', ComboBox6.Text,
-        IntToStr(DXCCNum), '', 0,
-        LogTable);
+      SQSO.CallSing := EditButton1.Text;
+      SQSO.QSODate := DateEdit1.Date;
+      SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
+      SQSO.QSOBand := NameBand;
+      SQSO.QSOMode := ComboBox2.Text;
+      SQSO.QSOSubMode := ComboBox9.Text;
+      SQSO.QSOReportSent := ComboBox4.Text;
+      SQSO.QSOReportRecived := ComboBox5.Text;
+      SQSO.OmName := Edit1.Text;
+      SQSO.OmQTH := Edit2.Text;
+      SQSO.State0 := state;
+      SQSO.Grid := Edit3.Text;
+      SQSO.IOTA := Edit5.Text;
+      SQSO.QSLManager := Edit6.Text;
+      SQSO.QSLSent := QSL_SENT;
+      SQSO.QSLSentAdv := QSL_SENT_ADV;
+      SQSO.QSLSentDate := 'NULL';
+      SQSO.QSLRec := '0';
+      SQSO.QSLRecDate := 'NULL';
+      SQSO.MainPrefix := Label38.Caption;
+      SQSO.DXCCPrefix := Label34.Caption;
+      SQSO.CQZone := Label45.Caption;
+      SQSO.ITUZone := Label47.Caption;
+      SQSO.QSOAddInfo := Edit11.Text;
+      SQSO.Marker := BoolToStr(CheckBox5.Checked);
+      SQSO.ManualSet := 0;
+      SQSO.DigiBand := FloatToStr(DigiBand);
+      SQSO.Continent := Label43.Caption;
+      SQSO.ShortNote := Edit11.Text;
+      SQSO.QSLReceQSLcc := 0;
+      SQSO.LotWRec := '';
+      SQSO.LotWRecDate := 'NULL';
+      SQSO.QSLInfo := SetQSLInfo;
+      SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
+      SQSO.State1 := Edit10.Text;
+      SQSO.State2 := Edit9.Text;
+      SQSO.State3 := Edit8.Text;
+      SQSO.State4 := Edit7.Text;
+      SQSO.WPX := dmFunc.ExtractWPXPrefix(EditButton1.Text);
+      SQSO.AwardsEx := 'NULL';
+      SQSO.ValidDX := IntToStr(1);
+      SQSO.SRX := 0;
+      SQSO.SRX_String := '';
+      SQSO.STX := 0;
+      SQSO.STX_String := '';
+      SQSO.SAT_NAME := '';
+      SQSO.SAT_MODE := '';
+      SQSO.PROP_MODE := '';
+      SQSO.LotWSent := 0;
+      SQSO.QSL_RCVD_VIA := '';
+      SQSO.QSL_SENT_VIA := ComboBox6.Text;
+      SQSO.DXCC := IntToStr(DXCCNum);
+      SQSO.USERS := '';
+      SQSO.NoCalcDXCC := 0;
+      SQSO.NLogDB := LogTable;
+      SaveQSO(SQSO);
 
       if AutoEQSLcc = True then
       begin

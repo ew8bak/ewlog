@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, DateTimePicker, Forms, Controls, Graphics,
   Dialogs, StdCtrls, ComCtrls, EditBtn, Buttons, ExtCtrls, DBGrids, DBCtrls,
-  InformationForm_U, sqldb, DB, RegExpr, Grids;
+  InformationForm_U, sqldb, DB, RegExpr, Grids, resourcestr;
 
 type
 

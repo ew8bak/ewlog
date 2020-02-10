@@ -6,12 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, ComCtrls, Buttons, DBCtrls, Menus, DB, LCLType;
-
-resourcestring
-  rDeleteLog = 'Are you sure you want to delete the log ?!';
-  rCannotDelDef = 'Cannot delete default log';
-  rDefaultLogSel = 'Default log selected';
+  ExtCtrls, StdCtrls, ComCtrls, Buttons, DBCtrls, Menus, DB, LCLType, resourcestr;
 
 type
 

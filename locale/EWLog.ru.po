@@ -243,6 +243,7 @@ msgid "Done"
 msgstr "Готово"
 
 #: importadifform_u.rfileerror
+msgctxt "importadifform_u.rfileerror"
 msgid "Error file:"
 msgstr "Файл ошибок:"
 
@@ -262,6 +263,7 @@ msgid "Imported Records"
 msgstr "Импортировано записей"
 
 #: importadifform_u.rnothingimport
+msgctxt "importadifform_u.rnothingimport"
 msgid "Nothing to import"
 msgstr "Нечего импортировать"
 
@@ -276,34 +278,42 @@ msgid "Processing"
 msgstr "Обработка"
 
 #: informationform_u.rerrorxmlapi
+msgctxt "informationform_u.rerrorxmlapi"
 msgid "Error XML API:"
 msgstr "Ошибка XML API:"
 
 #: informationform_u.rinformationfromhamqth
+msgctxt "informationform_u.rinformationfromhamqth"
 msgid "Information from HAMQTH"
 msgstr "Информация из HAMQTH"
 
 #: informationform_u.rinformationfromqrzcom
+msgctxt "informationform_u.rinformationfromqrzcom"
 msgid "Information from QRZ.com"
 msgstr "Информация из QRZ.COM"
 
 #: informationform_u.rinformationfromqrzru
+msgctxt "informationform_u.rinformationfromqrzru"
 msgid "Information from QRZ.ru"
 msgstr "Информация из QRZ.RU"
 
 #: informationform_u.rnotconfigqrzru
+msgctxt "informationform_u.rnotconfigqrzru"
 msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
 msgstr "В настройках, необходимо ввести логин и пароль, для доступа к XML API QRZ.ru"
 
 #: logconfigform_u.rcannotdeldef
+msgctxt "logconfigform_u.rcannotdeldef"
 msgid "Cannot delete default log"
 msgstr "Нельзя удалить журнал по умолчанию"
 
 #: logconfigform_u.rdefaultlogsel
+msgctxt "logconfigform_u.rdefaultlogsel"
 msgid "Default log selected"
 msgstr "Журнал по умолчанию выбран"
 
 #: logconfigform_u.rdeletelog
+msgctxt "logconfigform_u.rdeletelog"
 msgid "Are you sure you want to delete the log ?!"
 msgstr "Вы действительно хотите удалить журнал ?!"
 
@@ -313,22 +323,27 @@ msgid "Callsign"
 msgstr "Позывной"
 
 #: mainform_u.rchecksettingsmysql
+msgctxt "mainform_u.rchecksettingsmysql"
 msgid "Check MySQL DB Settings"
 msgstr "Проверьте настройки MySQL"
 
 #: mainform_u.rchecksettingssqlite
+msgctxt "mainform_u.rchecksettingssqlite"
 msgid "Check SQLite DB Settings"
 msgstr "Проверьте настройки SQLite"
 
 #: mainform_u.rcleanupjournal
+msgctxt "mainform_u.rcleanupjournal"
 msgid "Are you sure you want to clear all entries?"
 msgstr ""
 
 #: mainform_u.rclearqso
+msgctxt "mainform_u.rclearqso"
 msgid "Clear QSO input window"
 msgstr "Очистить поле ввода QSO"
 
 #: mainform_u.rclientconnected
+msgctxt "mainform_u.rclientconnected"
 msgid "Client Connected:"
 msgstr "Клиент подключён:"
 
@@ -343,22 +358,27 @@ msgid "CQ Zone"
 msgstr "CQ Зона"
 
 #: mainform_u.rdatabasefault
+msgctxt "mainform_u.rdatabasefault"
 msgid "Something went wrong ... Check the settings"
 msgstr "Что-то пошло не так... Проверьте настройки"
 
 #: mainform_u.rdberror
+msgctxt "mainform_u.rdberror"
 msgid "Error while working with the database. Check connection and settings"
 msgstr "Ошибка работы с базой данных. проверьте подключение и настройки"
 
 #: mainform_u.rdbnotinit
+msgctxt "mainform_u.rdbnotinit"
 msgid "The database is not initialized, go to the settings?"
 msgstr "База данных не инициализирована, перейти к настройкам?"
 
 #: mainform_u.rdeleterecord
+msgctxt "mainform_u.rdeleterecord"
 msgid "Delete Record "
 msgstr "Удалить запись "
 
 #: mainform_u.rduplicates
+msgctxt "mainform_u.rduplicates"
 msgid "Duplicates "
 msgstr "Дубликаты "
 
@@ -368,22 +388,27 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: mainform_u.rdxclusterconnecting
+msgctxt "mainform_u.rdxclusterconnecting"
 msgid "Connect to Telnet Cluster"
 msgstr "Соединиться с DX кластером"
 
 #: mainform_u.rdxclusterdisconnect
+msgctxt "mainform_u.rdxclusterdisconnect"
 msgid "You are disconnected from the DX cluster"
 msgstr "Вы отключены от DX кластера"
 
 #: mainform_u.rdxclusterdisconnecting
+msgctxt "mainform_u.rdxclusterdisconnecting"
 msgid "Disconnect from Telnet Cluster"
 msgstr "Отключиться от DX кластера"
 
 #: mainform_u.rdxclusterwindowclear
+msgctxt "mainform_u.rdxclusterwindowclear"
 msgid "Clear DX Cluster window"
 msgstr "Очистить окно DX кластера"
 
 #: mainform_u.rencall
+msgctxt "mainform_u.rencall"
 msgid "You must enter a callsign"
 msgstr "Вы должны ввести позывной"
 
@@ -403,14 +428,17 @@ msgid "ITU Zone"
 msgstr "ITU Зона"
 
 #: mainform_u.rlanguagecomplite
+msgctxt "mainform_u.rlanguagecomplite"
 msgid "Translation files download successfully"
 msgstr "Файлы переводов успешно загружены"
 
 #: mainform_u.rlogconwsjt
+msgctxt "mainform_u.rlogconwsjt"
 msgid "EWLog connected to WSJT"
 msgstr "EWLog подключился к WSJT"
 
 #: mainform_u.rlognconwsjt
+msgctxt "mainform_u.rlognconwsjt"
 msgid "EWLog not connected to WSJT"
 msgstr "EWLog отключился от WSJT"
 
@@ -430,10 +458,12 @@ msgid "Manual Set"
 msgstr "Manual Set"
 
 #: mainform_u.rmysqlhasgoneaway
+msgctxt "mainform_u.rmysqlhasgoneaway"
 msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
 msgstr "Нет подключения к MySQL! Проверьте подключение и настройки. Подключаюсь к SQLIte"
 
 #: mainform_u.rmysqlnotset
+msgctxt "mainform_u.rmysqlnotset"
 msgid "MySQL database settings not configured"
 msgstr "База данных MySQL не настроена"
 
@@ -443,6 +473,7 @@ msgid "No Calc DXCC"
 msgstr "No Calc DXCC"
 
 #: mainform_u.rnotcallsign
+msgctxt "mainform_u.rnotcallsign"
 msgid "No callsign entered to view"
 msgstr "Не введён позывной для просмотра"
 
@@ -457,6 +488,7 @@ msgid "QTH"
 msgstr "QTH"
 
 #: mainform_u.rphotofromqrzru
+msgctxt "mainform_u.rphotofromqrzru"
 msgid "Photo from QRZ.RU"
 msgstr "Фото из QRZ.RU"
 
@@ -519,6 +551,7 @@ msgid "Mode"
 msgstr "Мода"
 
 #: mainform_u.rqsonotsave
+msgctxt "mainform_u.rqsonotsave"
 msgid "QSO not saved, quit anyway ?!"
 msgstr "QSO не сохранено, действительно выйти?!"
 
@@ -548,6 +581,7 @@ msgid "Time"
 msgstr "Время"
 
 #: mainform_u.rqsototal
+msgctxt "mainform_u.rqsototal"
 msgid " Total "
 msgstr " из "
 
@@ -567,18 +601,22 @@ msgid "State"
 msgstr "State"
 
 #: mainform_u.rswitchdbmysql
+msgctxt "mainform_u.rswitchdbmysql"
 msgid "Switch base to MySQL"
 msgstr "Переключиться на MySQL"
 
 #: mainform_u.rswitchdbsqlite
+msgctxt "mainform_u.rswitchdbsqlite"
 msgid "Switch base to SQLite"
 msgstr "Переключиться на SQLite"
 
 #: mainform_u.rsync
+msgctxt "mainform_u.rsync"
 msgid ", in sync "
 msgstr ""
 
 #: mainform_u.rsyncok
+msgctxt "mainform_u.rsyncok"
 msgid "Done! Number of duplicates "
 msgstr "Готово! Количество дубликатов "
 
@@ -598,10 +636,12 @@ msgid "Warning!"
 msgstr "Внимание!"
 
 #: mainform_u.rwelcomemessagemysql
+msgctxt "mainform_u.rwelcomemessagemysql"
 msgid "MySQL database selected! Welcome!"
 msgstr "Выбрана база данных MySQL! Добро пожаловать!"
 
 #: mainform_u.rwelcomemessagesqlite
+msgctxt "mainform_u.rwelcomemessagesqlite"
 msgid "SQLite database selected! Welcome!"
 msgstr "Выбрана база данных SQLite! Добро пожаловать!"
 
@@ -654,11 +694,536 @@ msgstr "Успешно зарегистрировано"
 msgid "Wrong password"
 msgstr "Не верный пароль"
 
+#: resourcestr.rcallsign
+#, fuzzy
+msgctxt "resourcestr.rcallsign"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: resourcestr.rcannotdeldef
+#, fuzzy
+msgctxt "resourcestr.rcannotdeldef"
+msgid "Cannot delete default log"
+msgstr "Нельзя удалить журнал по умолчанию"
+
+#: resourcestr.rchecksettingsmysql
+#, fuzzy
+msgctxt "resourcestr.rchecksettingsmysql"
+msgid "Check MySQL DB Settings"
+msgstr "Проверьте настройки MySQL"
+
+#: resourcestr.rchecksettingssqlite
+#, fuzzy
+msgctxt "resourcestr.rchecksettingssqlite"
+msgid "Check SQLite DB Settings"
+msgstr "Проверьте настройки SQLite"
+
+#: resourcestr.rcleanupjournal
+msgctxt "resourcestr.rcleanupjournal"
+msgid "Are you sure you want to clear all entries?"
+msgstr ""
+
+#: resourcestr.rclearqso
+#, fuzzy
+msgctxt "resourcestr.rclearqso"
+msgid "Clear QSO input window"
+msgstr "Очистить поле ввода QSO"
+
+#: resourcestr.rclientconnected
+#, fuzzy
+msgctxt "resourcestr.rclientconnected"
+msgid "Client Connected:"
+msgstr "Клиент подключён:"
+
+#: resourcestr.rcontinent
+#, fuzzy
+msgctxt "resourcestr.rcontinent"
+msgid "Continent"
+msgstr "Континент"
+
+#: resourcestr.rcqzone
+#, fuzzy
+msgctxt "resourcestr.rcqzone"
+msgid "CQ Zone"
+msgstr "CQ Зона"
+
+#: resourcestr.rdatabasefault
+#, fuzzy
+msgctxt "resourcestr.rdatabasefault"
+msgid "Something went wrong ... Check the settings"
+msgstr "Что-то пошло не так... Проверьте настройки"
+
+#: resourcestr.rdberror
+#, fuzzy
+msgctxt "resourcestr.rdberror"
+msgid "Error while working with the database. Check connection and settings"
+msgstr "Ошибка работы с базой данных. проверьте подключение и настройки"
+
+#: resourcestr.rdbnotinit
+#, fuzzy
+msgctxt "resourcestr.rdbnotinit"
+msgid "The database is not initialized, go to the settings?"
+msgstr "База данных не инициализирована, перейти к настройкам?"
+
+#: resourcestr.rdefaultlogsel
+#, fuzzy
+msgctxt "resourcestr.rdefaultlogsel"
+msgid "Default log selected"
+msgstr "Журнал по умолчанию выбран"
+
+#: resourcestr.rdeletelog
+#, fuzzy
+msgctxt "resourcestr.rdeletelog"
+msgid "Are you sure you want to delete the log ?!"
+msgstr "Вы действительно хотите удалить журнал ?!"
+
+#: resourcestr.rdeleterecord
+#, fuzzy
+msgctxt "resourcestr.rdeleterecord"
+msgid "Delete Record "
+msgstr "Удалить запись "
+
+#: resourcestr.rdone
+#, fuzzy
+msgctxt "resourcestr.rdone"
+msgid "Done"
+msgstr "Готово"
+
+#: resourcestr.rduplicates
+#, fuzzy
+msgctxt "resourcestr.rduplicates"
+msgid "Duplicates "
+msgstr "Дубликаты "
+
+#: resourcestr.rdxccprefix
+#, fuzzy
+msgctxt "resourcestr.rdxccprefix"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: resourcestr.rdxclusterconnecting
+#, fuzzy
+msgctxt "resourcestr.rdxclusterconnecting"
+msgid "Connect to Telnet Cluster"
+msgstr "Соединиться с DX кластером"
+
+#: resourcestr.rdxclusterdisconnect
+#, fuzzy
+msgctxt "resourcestr.rdxclusterdisconnect"
+msgid "You are disconnected from the DX cluster"
+msgstr "Вы отключены от DX кластера"
+
+#: resourcestr.rdxclusterdisconnecting
+#, fuzzy
+msgctxt "resourcestr.rdxclusterdisconnecting"
+msgid "Disconnect from Telnet Cluster"
+msgstr "Отключиться от DX кластера"
+
+#: resourcestr.rdxclusterwindowclear
+#, fuzzy
+msgctxt "resourcestr.rdxclusterwindowclear"
+msgid "Clear DX Cluster window"
+msgstr "Очистить окно DX кластера"
+
+#: resourcestr.rencall
+#, fuzzy
+msgctxt "resourcestr.rencall"
+msgid "You must enter a callsign"
+msgstr "Вы должны ввести позывной"
+
+#: resourcestr.rerrorxmlapi
+#, fuzzy
+msgctxt "resourcestr.rerrorxmlapi"
+msgid "Error XML API:"
+msgstr "Ошибка XML API:"
+
+#: resourcestr.rfileerror
+#, fuzzy
+msgctxt "resourcestr.rfileerror"
+msgid "Error file:"
+msgstr "Файл ошибок:"
+
+#: resourcestr.rgrid
+#, fuzzy
+msgctxt "resourcestr.rgrid"
+msgid "Grid"
+msgstr "Локатор"
+
+#: resourcestr.rimport
+#, fuzzy
+msgctxt "resourcestr.rimport"
+msgid "Import"
+msgstr "Импорт"
+
+#: resourcestr.rimporterrors
+#, fuzzy
+msgctxt "resourcestr.rimporterrors"
+msgid "Import Errors"
+msgstr "Ошибки импорта"
+
+#: resourcestr.rimportrecord
+#, fuzzy
+msgctxt "resourcestr.rimportrecord"
+msgid "Imported Records"
+msgstr "Импортировано записей"
+
+#: resourcestr.rinformationfromhamqth
+#, fuzzy
+msgctxt "resourcestr.rinformationfromhamqth"
+msgid "Information from HAMQTH"
+msgstr "Информация из HAMQTH"
+
+#: resourcestr.rinformationfromqrzcom
+#, fuzzy
+msgctxt "resourcestr.rinformationfromqrzcom"
+msgid "Information from QRZ.com"
+msgstr "Информация из QRZ.COM"
+
+#: resourcestr.rinformationfromqrzru
+#, fuzzy
+msgctxt "resourcestr.rinformationfromqrzru"
+msgid "Information from QRZ.ru"
+msgstr "Информация из QRZ.RU"
+
+#: resourcestr.riota
+#, fuzzy
+msgctxt "resourcestr.riota"
+msgid "IOTA"
+msgstr "IOTA"
+
+#: resourcestr.rituzone
+#, fuzzy
+msgctxt "resourcestr.rituzone"
+msgid "ITU Zone"
+msgstr "ITU Зона"
+
+#: resourcestr.rlanguagecomplite
+#, fuzzy
+msgctxt "resourcestr.rlanguagecomplite"
+msgid "Translation files download successfully"
+msgstr "Файлы переводов успешно загружены"
+
+#: resourcestr.rlogconwsjt
+#, fuzzy
+msgctxt "resourcestr.rlogconwsjt"
+msgid "EWLog connected to WSJT"
+msgstr "EWLog подключился к WSJT"
+
+#: resourcestr.rlognconwsjt
+#, fuzzy
+msgctxt "resourcestr.rlognconwsjt"
+msgid "EWLog not connected to WSJT"
+msgstr "EWLog отключился от WSJT"
+
+#: resourcestr.rlotwrecdate
+#, fuzzy
+msgctxt "resourcestr.rlotwrecdate"
+msgid "LOTWr Date"
+msgstr "LOTWr Дата"
+
+#: resourcestr.rmainprefix
+#, fuzzy
+msgctxt "resourcestr.rmainprefix"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: resourcestr.rmanualset
+#, fuzzy
+msgctxt "resourcestr.rmanualset"
+msgid "Manual Set"
+msgstr "Manual Set"
+
+#: resourcestr.rmysqlhasgoneaway
+#, fuzzy
+msgctxt "resourcestr.rmysqlhasgoneaway"
+msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
+msgstr "Нет подключения к MySQL! Проверьте подключение и настройки. Подключаюсь к SQLIte"
+
+#: resourcestr.rmysqlnotset
+#, fuzzy
+msgctxt "resourcestr.rmysqlnotset"
+msgid "MySQL database settings not configured"
+msgstr "База данных MySQL не настроена"
+
+#: resourcestr.rnocalcdxcc
+#, fuzzy
+msgctxt "resourcestr.rnocalcdxcc"
+msgid "No Calc DXCC"
+msgstr "No Calc DXCC"
+
+#: resourcestr.rnotcallsign
+#, fuzzy
+msgctxt "resourcestr.rnotcallsign"
+msgid "No callsign entered to view"
+msgstr "Не введён позывной для просмотра"
+
+#: resourcestr.rnotconfigqrzru
+#, fuzzy
+msgctxt "resourcestr.rnotconfigqrzru"
+msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
+msgstr "В настройках, необходимо ввести логин и пароль, для доступа к XML API QRZ.ru"
+
+#: resourcestr.rnotdataforconnect
+msgctxt "resourcestr.rnotdataforconnect"
+msgid "The log configuration, do not specify the data to connect to eQSL.cc"
+msgstr ""
+
+#: resourcestr.rnothingimport
+#, fuzzy
+msgctxt "resourcestr.rnothingimport"
+msgid "Nothing to import"
+msgstr "Нечего импортировать"
+
+#: resourcestr.rnumberdup
+#, fuzzy
+msgctxt "resourcestr.rnumberdup"
+msgid "Number of duplicates"
+msgstr "Количество дубликатов"
+
+#: resourcestr.romname
+#, fuzzy
+msgctxt "resourcestr.romname"
+msgid "Name"
+msgstr "Имя"
+
+#: resourcestr.romqth
+#, fuzzy
+msgctxt "resourcestr.romqth"
+msgid "QTH"
+msgstr "QTH"
+
+#: resourcestr.rphotofromqrzru
+#, fuzzy
+msgctxt "resourcestr.rphotofromqrzru"
+msgid "Photo from QRZ.RU"
+msgstr "Фото из QRZ.RU"
+
+#: resourcestr.rprocesseddata
+#, fuzzy
+msgctxt "resourcestr.rprocesseddata"
+msgid "Processed data:"
+msgstr "Обработка данных:"
+
+#: resourcestr.rprocessing
+#, fuzzy
+msgctxt "resourcestr.rprocessing"
+msgid "Processing"
+msgstr "Обработка"
+
+#: resourcestr.rqsl
+#, fuzzy
+msgctxt "resourcestr.rqsl"
+msgid "QSL"
+msgstr "QSL"
+
+#: resourcestr.rqslmanager
+#, fuzzy
+msgctxt "resourcestr.rqslmanager"
+msgid "Manager"
+msgstr "Менеджер"
+
+#: resourcestr.rqslrecdate
+#, fuzzy
+msgctxt "resourcestr.rqslrecdate"
+msgid "QSLr Date"
+msgstr "QSLr Дата"
+
+#: resourcestr.rqsls
+#, fuzzy
+msgctxt "resourcestr.rqsls"
+msgid "QSLs"
+msgstr "QSLs"
+
+#: resourcestr.rqslsentdate
+#, fuzzy
+msgctxt "resourcestr.rqslsentdate"
+msgid "QSLs Date"
+msgstr "QSLs Дата"
+
+#: resourcestr.rqsl_rcvd_via
+#, fuzzy
+msgctxt "resourcestr.rqsl_rcvd_via"
+msgid "QSL r VIA"
+msgstr "QSL r VIA"
+
+#: resourcestr.rqsl_sent_via
+#, fuzzy
+msgctxt "resourcestr.rqsl_sent_via"
+msgid "QSL s VIA"
+msgstr "QSL s VIA"
+
+#: resourcestr.rqsoband
+#, fuzzy
+msgctxt "resourcestr.rqsoband"
+msgid "Band"
+msgstr "Диапазон"
+
+#: resourcestr.rqsobandfreq
+#, fuzzy
+msgctxt "resourcestr.rqsobandfreq"
+msgid "Frequency"
+msgstr "Частота"
+
+#: resourcestr.rqsodate
+#, fuzzy
+msgctxt "resourcestr.rqsodate"
+msgid "Date"
+msgstr "Дата"
+
+#: resourcestr.rqsomode
+#, fuzzy
+msgctxt "resourcestr.rqsomode"
+msgid "Mode"
+msgstr "Мода"
+
+#: resourcestr.rqsonotsave
+#, fuzzy
+msgctxt "resourcestr.rqsonotsave"
+msgid "QSO not saved, quit anyway ?!"
+msgstr "QSO не сохранено, действительно выйти?!"
+
+#: resourcestr.rqsoreportrecived
+#, fuzzy
+msgctxt "resourcestr.rqsoreportrecived"
+msgid "RSTr"
+msgstr "RSTr"
+
+#: resourcestr.rqsoreportsent
+#, fuzzy
+msgctxt "resourcestr.rqsoreportsent"
+msgid "RSTs"
+msgstr "RSTs"
+
+#: resourcestr.rqsosubmode
+msgctxt "resourcestr.rqsosubmode"
+msgid "SubMode"
+msgstr ""
+
+#: resourcestr.rqsosync
+#, fuzzy
+msgctxt "resourcestr.rqsosync"
+msgid "QSO"
+msgstr "QSO"
+
+#: resourcestr.rqsotime
+#, fuzzy
+msgctxt "resourcestr.rqsotime"
+msgid "Time"
+msgstr "Время"
+
+#: resourcestr.rqsototal
+#, fuzzy
+msgctxt "resourcestr.rqsototal"
+msgid " Total "
+msgstr " из "
+
+#: resourcestr.rsaveqso
+#, fuzzy
+msgctxt "resourcestr.rsaveqso"
+msgid "Save QSO"
+msgstr "Сохранить QSO"
+
+#: resourcestr.rsendspot
+#, fuzzy
+msgctxt "resourcestr.rsendspot"
+msgid "Send spot"
+msgstr "Отправить спот"
+
+#: resourcestr.rstate
+#, fuzzy
+msgctxt "resourcestr.rstate"
+msgid "State"
+msgstr "State"
+
+#: resourcestr.rstatusconnecteqsl
+#, fuzzy
+msgctxt "resourcestr.rstatusconnecteqsl"
+msgid "Status: Connceting to eQSL.cc"
+msgstr "Статус: Соединение с eQSL.cc"
+
+#: resourcestr.rstatusdone
+#, fuzzy
+msgctxt "resourcestr.rstatusdone"
+msgid "Status: Done"
+msgstr "Статус: Готово"
+
+#: resourcestr.rstatusdownloadeqsl
+#, fuzzy
+msgctxt "resourcestr.rstatusdownloadeqsl"
+msgid "Status: Download eQSL.cc"
+msgstr "Статус: Загрузка eQSL.cc"
+
+#: resourcestr.rstatusnotdata
+#, fuzzy
+msgctxt "resourcestr.rstatusnotdata"
+msgid "Status: Not data"
+msgstr "Статус: Нет данных"
+
+#: resourcestr.rstatussavefile
+#, fuzzy
+msgctxt "resourcestr.rstatussavefile"
+msgid "Status: Saving file"
+msgstr "Статус: Сохранение файла"
+
+#: resourcestr.rswitchdbmysql
+#, fuzzy
+msgctxt "resourcestr.rswitchdbmysql"
+msgid "Switch base to MySQL"
+msgstr "Переключиться на MySQL"
+
+#: resourcestr.rswitchdbsqlite
+#, fuzzy
+msgctxt "resourcestr.rswitchdbsqlite"
+msgid "Switch base to SQLite"
+msgstr "Переключиться на SQLite"
+
+#: resourcestr.rsync
+msgctxt "resourcestr.rsync"
+msgid ", in sync "
+msgstr ""
+
+#: resourcestr.rsyncok
+#, fuzzy
+msgctxt "resourcestr.rsyncok"
+msgid "Done! Number of duplicates "
+msgstr "Готово! Количество дубликатов "
+
+#: resourcestr.rusers
+#, fuzzy
+msgctxt "resourcestr.rusers"
+msgid "User"
+msgstr "User"
+
+#: resourcestr.rvaliddx
+#, fuzzy
+msgctxt "resourcestr.rvaliddx"
+msgid "Valid DX"
+msgstr "Valid DX"
+
+#: resourcestr.rwarning
+#, fuzzy
+msgctxt "resourcestr.rwarning"
+msgid "Warning!"
+msgstr "Внимание!"
+
+#: resourcestr.rwelcomemessagemysql
+#, fuzzy
+msgctxt "resourcestr.rwelcomemessagemysql"
+msgid "MySQL database selected! Welcome!"
+msgstr "Выбрана база данных MySQL! Добро пожаловать!"
+
+#: resourcestr.rwelcomemessagesqlite
+#, fuzzy
+msgctxt "resourcestr.rwelcomemessagesqlite"
+msgid "SQLite database selected! Welcome!"
+msgstr "Выбрана база данных SQLite! Добро пожаловать!"
+
 #: sendtelnetspot_form_u.rnotalldata
 msgid "Not all data entered"
 msgstr "Не все данные заполнены"
 
 #: serviceform_u.rnotdataforconnect
+msgctxt "serviceform_u.rnotdataforconnect"
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
 msgstr ""
 
@@ -668,22 +1233,27 @@ msgid "Processed data:"
 msgstr "Обработка данных:"
 
 #: serviceform_u.rstatusconnecteqsl
+msgctxt "serviceform_u.rstatusconnecteqsl"
 msgid "Status: Connceting to eQSL.cc"
 msgstr "Статус: Соединение с eQSL.cc"
 
 #: serviceform_u.rstatusdone
+msgctxt "serviceform_u.rstatusdone"
 msgid "Status: Done"
 msgstr "Статус: Готово"
 
 #: serviceform_u.rstatusdownloadeqsl
+msgctxt "serviceform_u.rstatusdownloadeqsl"
 msgid "Status: Download eQSL.cc"
 msgstr "Статус: Загрузка eQSL.cc"
 
 #: serviceform_u.rstatusnotdata
+msgctxt "serviceform_u.rstatusnotdata"
 msgid "Status: Not data"
 msgstr "Статус: Нет данных"
 
 #: serviceform_u.rstatussavefile
+msgctxt "serviceform_u.rstatussavefile"
 msgid "Status: Saving file"
 msgstr "Статус: Сохранение файла"
 

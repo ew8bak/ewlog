@@ -6,14 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  EditBtn, ExtCtrls, httpsend, LCLIntf, IntfGraphics;
-resourcestring
-  rErrorXMLAPI = 'Error XML API:';
-  rNotConfigQRZRU = 'Specify the Login and Password for accessing the XML API QRZ.ru in the settings';
-  rInformationFromQRZRU = 'Information from QRZ.ru';
-  rInformationFromQRZCOM = 'Information from QRZ.com';
-  rInformationFromHamQTH = 'Information from HAMQTH';
-
+  EditBtn, ExtCtrls, httpsend, LCLIntf, IntfGraphics, resourcestr;
 type
 
   { TInformationForm }

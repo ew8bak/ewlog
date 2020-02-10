@@ -6,17 +6,8 @@ interface
 
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, EditBtn, LCLType, LConvEncoding, LazUTF8, LCLIntf, dateutils;
-
-resourcestring
-  rDone = 'Done';
-  rImport = 'Import';
-  rImportRecord = 'Imported Records';
-  rFileError = 'Error file:';
-  rImportErrors = 'Import Errors';
-  rNumberDup = 'Number of duplicates';
-  rNothingImport = 'Nothing to import';
-  rProcessing = 'Processing';
+  ExtCtrls, StdCtrls, EditBtn, LCLType, LConvEncoding, LazUTF8, LCLIntf,
+  dateutils, resourcestr;
 
 const
   ERR_FILE = 'errors.adi';
@@ -70,7 +61,8 @@ uses dmFunc_U, MainForm_U;
 
 { TImportADIFForm }
 
-procedure SearchPrefix(CallName: string; var MainPrefix, DXCCPrefix, CQZone, ITUZone, Continent, DXCC: string);
+procedure SearchPrefix(CallName: string;
+  var MainPrefix, DXCCPrefix, CQZone, ITUZone, Continent, DXCC: string);
 var
   i, j: integer;
   BoolPrefix: boolean;
@@ -81,29 +73,29 @@ begin
   end;
   BoolPrefix := False;
 
-    for i := 0 to PrefixProvinceCount do
+  for i := 0 to PrefixProvinceCount do
+  begin
+    if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
+      (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
     begin
-      if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-        (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
+      BoolPrefix := True;
+      with MainForm.PrefixQuery do
       begin
-        BoolPrefix := True;
-        with MainForm.PrefixQuery do
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('select * from Province where _id = "' +
-            IntToStr(PrefixExpProvinceArray[i].id) + '"');
-          Open;
-        end;
-        Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-        CQZone:=MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-        ITUZone:=MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-        MainPrefix:=MainForm.PrefixQuery.FieldByName('Prefix').AsString;
-        DXCCPrefix:=MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-        DXCC:=MainForm.PrefixQuery.FieldByName('DXCC').AsString;
-        exit;
+        Close;
+        SQL.Clear;
+        SQL.Add('select * from Province where _id = "' +
+          IntToStr(PrefixExpProvinceArray[i].id) + '"');
+        Open;
       end;
+      Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
+      CQZone := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
+      ITUZone := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
+      MainPrefix := MainForm.PrefixQuery.FieldByName('Prefix').AsString;
+      DXCCPrefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+      DXCC := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
+      exit;
     end;
+  end;
   if BoolPrefix = False then
   begin
     for j := 0 to PrefixARRLCount do
@@ -124,11 +116,11 @@ begin
             Exit;
           end;
           Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-          CQZone:=MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-          ITUZone:=MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-          MainPrefix:=MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-          DXCCPrefix:=MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-          DXCC:=MainForm.PrefixQuery.FieldByName('DXCC').AsString;
+          CQZone := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
+          ITUZone := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
+          MainPrefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+          DXCCPrefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+          DXCC := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
         end;
         Exit;
       end;
@@ -603,7 +595,7 @@ begin
             STX := 'NULL';
 
           if CheckBox1.Checked then
-          SearchPrefix(CALL,PFX,DXCC_PREF,CQZ,ITUZ,CONT,DXCC);
+            SearchPrefix(CALL, PFX, DXCC_PREF, CQZ, ITUZ, CONT, DXCC);
 
           Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
@@ -614,21 +606,28 @@ begin
             'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
             + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
             + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,'
-            + 'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE) VALUES (' + dmFunc.Q(CALL) +
-            dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) + dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
-            dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) + dmFunc.Q(QTH) + dmFunc.Q(STATE) +
-            dmFunc.Q(GRIDSQUARE) + dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
-            dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) + dmFunc.Q(ParamQSL_RCVD) +
-            dmFunc.Q(paramQSLRDATE) + dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) + dmFunc.Q(ITUZ) +
-            dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) + dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
-            dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) + dmFunc.Q(paramLOTW_QSL_RCVD) +
-            dmFunc.Q(paramLOTW_QSLRDATE) + dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
-            dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) + dmFunc.Q(STATE4) +
-            dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) + dmFunc.Q('') + dmFunc.Q(paramValidDX) +
-            dmFunc.Q(SRX) + dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) + dmFunc.Q(SAT_NAME) +
+            + 'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE) VALUES (' +
+            dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
+            dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
+            dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
+            dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
+            dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
+            dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
+            dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
+            dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) + dmFunc.Q(ITUZ) +
+            dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) + dmFunc.Q('0') +
+            dmFunc.Q(BAND) + dmFunc.Q(CONT) + dmFunc.Q(COMMENT) +
+            dmFunc.Q(paramEQSL_QSL_RCVD) + dmFunc.Q(paramLOTW_QSL_RCVD) +
+            dmFunc.Q(paramLOTW_QSLRDATE) + dmFunc.Q(QSLMSG) +
+            dmFunc.Q(dmFunc.ExtractCallsign(CALL)) + dmFunc.Q(STATE1) +
+            dmFunc.Q(STATE2) + dmFunc.Q(STATE3) + dmFunc.Q(STATE4) +
+            dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) + dmFunc.Q('') +
+            dmFunc.Q(paramValidDX) + dmFunc.Q(SRX) + dmFunc.Q(SRX_STRING) +
+            dmFunc.Q(STX) + dmFunc.Q(STX_STRING) + dmFunc.Q(SAT_NAME) +
             dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) + dmFunc.Q(paramLOTW_QSL_SENT) +
-            dmFunc.Q(QSL_RCVD_VIA) + dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) +
-            dmFunc.Q(paramNoCalcDXCC) + dmFunc.Q(MY_STATE) + QuotedStr(MY_GRIDSQUARE) + ')';
+            dmFunc.Q(QSL_RCVD_VIA) + dmFunc.Q(QSL_SENT_VIA) +
+            dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) + dmFunc.Q(MY_STATE) +
+            QuotedStr(MY_GRIDSQUARE) + ')';
 
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)
