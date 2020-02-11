@@ -64,6 +64,8 @@ type
     NoCalcDXCC: integer;
     My_State: string[15];
     My_Grid: string[15];
+    My_Lat: string[15];
+    My_Lon: string[15];
     NLogDB: string;
   end;
 

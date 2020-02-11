@@ -1544,14 +1544,14 @@ begin
       + '`DigiBand`, `Continent`, `ShortNote`, `QSLReceQSLcc`, `LoTWRec`, `LoTWRecDate`,'
       + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
       + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
-      + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`, `MY_STATE`, `MY_GRIDSQUARE`)'
+      + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`, `MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`)'
       + 'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,'
       + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,'
       + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,'
       + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,'
       + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,'
       + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,'
-      + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE)');
+      + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON)');
 
     Params.ParamByName('CallSign').AsString := SQSO.CallSing;
     Params.ParamByName('QSODate').AsDateTime := SQSO.QSODate;
@@ -1629,6 +1629,8 @@ begin
     Params.ParamByName('NoCalcDXCC').AsInteger := SQSO.NoCalcDXCC;
     Params.ParamByName('MY_STATE').AsString:=SQSO.My_State;
     Params.ParamByName('MY_GRIDSQUARE').AsString:=SQSO.My_Grid;
+    Params.ParamByName('MY_LAT').AsString:=SQSO.My_Lat;
+    Params.ParamByName('MY_LON').AsString:=SQSO.My_Lon;
     ExecSQL;
   end;
   MainForm.SQLTransaction1.Commit;
@@ -3052,6 +3054,8 @@ end;
 
 procedure TMainForm.DBLookupComboBox1CloseUp(Sender: TObject);
 begin
+  Edit14.Clear;
+  Edit15.Clear;
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
   if Pos('/', DBLookupComboBox1.Text) > 0 then
@@ -5955,6 +5959,7 @@ var
   timeQSO: TTime;
   FmtStngs: TFormatSettings;
   state: string;
+  lat, lon: currency;
   SQSO: TQSO;
 begin
   state := '';
@@ -6081,6 +6086,11 @@ begin
 
       SQSO.My_State:=Edit15.Text;
 
+      if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then begin
+      dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
+      SQSO.My_Lat:=CurrToStr(lat);
+      SQSO.My_Lon:=CurrToStr(lon);
+      end;
       SQSO.NLogDB := LogTable;
       SaveQSO(SQSO);
 
