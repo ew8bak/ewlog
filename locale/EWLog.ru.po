@@ -3827,6 +3827,10 @@ msgstr "Доступно новое обновление"
 msgid "My grid"
 msgstr ""
 
+#: tmainform.label52.caption
+msgid "My state"
+msgstr ""
+
 #: tmainform.label6.caption
 msgctxt "tmainform.label6.caption"
 msgid "Name"
