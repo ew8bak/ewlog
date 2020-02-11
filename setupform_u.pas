@@ -205,8 +205,8 @@ begin
           '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
           '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
           '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' +
-          '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoHRDLog` tinyint(1) DEFAULT NULL ' +
+          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
+          '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoHRDLog` tinyint(1) DEFAULT NULL, ' +
           '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL '+') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
         SQL_Query.ExecSQL;
         SQL_Query.Close;
@@ -396,8 +396,8 @@ begin
         '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
         '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
         '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-        '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' +
-        '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL ' +
+        '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
+        '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, ' +
         '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL);';
       SQL_Query.ExecSQL;
       ProgressBar1.Position := 35;
@@ -555,8 +555,8 @@ begin
             '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
             '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
             '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-            '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' +
-            '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoHRDLog` tinyint(1) DEFAULT NULL ' +
+            '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
+            '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoHRDLog` tinyint(1) DEFAULT NULL, ' +
             '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL '+') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
           SQL_Query.ExecSQL;
           SQL_Query.Close;
@@ -745,8 +745,8 @@ begin
           '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
           '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
           '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50) ' +
-          '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL ' +
+          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
+          '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, ' +
           '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL);';
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 35;

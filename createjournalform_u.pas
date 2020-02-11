@@ -275,9 +275,10 @@ begin
       Edit7.Clear;
       Edit8.Clear;
       Edit9.Clear;
-      //MainForm.SelDB(CallLogBook);
-      ShowMessage(rHaltLog);
-      Application.Terminate;
+     // MainForm.SelDB(Edit2.Text);
+     MainForm.InitializeDB(DefaultDB);
+    //  ShowMessage(rHaltLog);
+    //  Application.Terminate;
       //InitDB_Form.Close;
     end;
 end;
