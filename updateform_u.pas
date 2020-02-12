@@ -28,16 +28,14 @@ type
     Label8: TLabel;
     Label9: TLabel;
     ProgressBar1: TProgressBar;
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     {$IFDEF WINDOWS}
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     function CheckUpdate: boolean;
-    procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     function GetSize(URL: string): int64;
     {$ELSE}
-    procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     {$ENDIF WINDOWS}
@@ -82,6 +80,70 @@ uses
 {$R *.lfm}
 
 { TUpdate_Form }
+
+procedure TUpdate_Form.FormCreate(Sender: TObject);
+var
+  VerFile: file of ver;
+  VerFiles: ver;
+  updatePATH: string;
+begin
+  VerFiles.version:='0.0.0';
+  VerFiles.lastupdate:=DateTimeToStr(Now);
+  VerFiles.changelog:='';
+    {$IFDEF UNIX}
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+    SysUtils.GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    {$ENDIF UNIX}
+  if DirectoryExists(updatePATH + 'updates') = False then
+    CreateDir(updatePATH + 'updates');
+
+  if FileExists(updatePATH + 'updates' + DirectorySeparator + 'version.info') = False then begin
+   AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator + 'version.info');
+   Rewrite(VerFile);
+   Write(VerFile,VerFiles);
+   CloseFile(VerFile);
+  end;
+
+  if FileExists(updatePATH + 'updates' + DirectorySeparator + 'versioncallbook.info') = False then begin
+    AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator + 'versioncallbook.info');
+    Rewrite(VerFile);
+    Write(VerFile,VerFiles);
+    CloseFile(VerFile);
+  end;
+end;
+
+procedure TUpdate_Form.FormShow(Sender: TObject);
+var
+  VerFile: file of ver;
+  VerFiles: ver;
+  updatePATH: string;
+begin
+   {$IFDEF UNIX}
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+    updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+        SysUtils.GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    {$ENDIF UNIX}
+  if FileExists(updatePATH + 'updates'+DirectorySeparator+'version.info') then
+  begin
+    AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
+    Reset(VerFile);
+    Read(VerFile, VerFiles);
+    Label4.Caption := VerFiles.lastupdate;
+    CloseFile(VerFile);
+  end;
+
+  Button1.Caption := rButtonCheck;
+  Label10.Caption := rSizeFile;
+  Label9.Caption := rUpdateStatus;
+  {$IFDEF WINDOWS}
+  Label6.Caption := GetMyVersion;
+  {$ENDIF}
+  ProgressBar1.Position := 0;
+end;
+
 {$IFDEF WINDOWS}
 
 function TUpdate_Form.GetSize(URL: string): int64;
@@ -234,67 +296,6 @@ begin
 
   except
   end;
-end;
-
-procedure TUpdate_Form.FormCreate(Sender: TObject);
-var
-  VerFile: file of ver;
-  VerFiles: ver;
-  updatePATH: string;
-begin
-  VerFiles.version:='0.0.0';
-  VerFiles.lastupdate:=DateTimeToStr(Now);
-  VerFiles.changelog:='';
-    {$IFDEF UNIX}
-  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysUtils.GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
-    {$ENDIF UNIX}
-  if DirectoryExists(updatePATH + 'updates') = False then
-    CreateDir(updatePATH + 'updates');
-
-  if FileExists(updatePATH + 'updates' + DirectorySeparator + 'version.info') = False then begin
-   AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator + 'version.info');
-   Rewrite(VerFile);
-   Write(VerFile,VerFiles);
-   CloseFile(VerFile);
-  end;
-
-  if FileExists(updatePATH + 'updates' + DirectorySeparator + 'versioncallbook.info') = False then begin
-    AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator + 'versioncallbook.info');
-    Rewrite(VerFile);
-    Write(VerFile,VerFiles);
-    CloseFile(VerFile);
-  end;
-end;
-
-procedure TUpdate_Form.FormShow(Sender: TObject);
-var
-  VerFile: file of ver;
-  VerFiles: ver;
-  updatePATH: string;
-begin
-   {$IFDEF UNIX}
-  updatePATH := '/etc/EWLog/';
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
-  if FileExists(updatePATH + 'updates\version.info') then
-  begin
-    AssignFile(VerFile, updatePATH + 'updates\version.info');
-    Reset(VerFile);
-    Read(VerFile, VerFiles);
-    Label4.Caption := VerFiles.lastupdate;
-    CloseFile(VerFile);
-  end;
-
-  Button1.Caption := rButtonCheck;
-  Label10.Caption := rSizeFile;
-  Label9.Caption := rUpdateStatus;
-  Label6.Caption := GetMyVersion;
-  ProgressBar1.Position := 0;
 end;
 
 procedure TUpdate_Form.Button2Click(Sender: TObject);
@@ -487,10 +488,6 @@ begin
 end;
 
  {$ELSE}
-procedure TUpdate_Form.FormShow(Sender: TObject);
-begin
-
-end;
 
 procedure TUpdate_Form.Button1Click(Sender: TObject);
 begin
@@ -498,11 +495,6 @@ begin
 end;
 
 procedure TUpdate_Form.Button2Click(Sender: TObject);
-begin
-
-end;
-
-procedure TUpdate_Form.FormCreate(Sender: TObject);
 begin
 
 end;

@@ -305,9 +305,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="2"/>
-        <CursorPos X="7" Y="190"/>
+        <TopLine Value="28"/>
+        <CursorPos Y="39"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -538,8 +539,8 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
+        <TopLine Value="69"/>
         <CursorPos X="3" Y="108"/>
         <UsageCount Value="27"/>
         <Loaded Value="True"/>
@@ -995,124 +996,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3521" Column="14" TopLine="3493"/>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="260" Column="14" TopLine="248"/>
       </Position1>
       <Position2>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="271" Column="86" TopLine="238"/>
+        <Caret Line="289" TopLine="272"/>
       </Position2>
       <Position3>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="260" Column="14" TopLine="248"/>
+        <Caret Line="277" Column="31" TopLine="250"/>
       </Position3>
       <Position4>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="289" TopLine="272"/>
+        <Caret Line="298" TopLine="281"/>
       </Position4>
       <Position5>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="277" Column="31" TopLine="250"/>
+        <Caret Line="257" TopLine="247"/>
       </Position5>
       <Position6>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="298" TopLine="281"/>
+        <Caret Line="272" Column="25" TopLine="256"/>
       </Position6>
       <Position7>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="257" TopLine="247"/>
+        <Caret Line="268" Column="4" TopLine="252"/>
       </Position7>
       <Position8>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="272" Column="25" TopLine="256"/>
+        <Caret Line="281" Column="5" TopLine="259"/>
       </Position8>
       <Position9>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="268" Column="4" TopLine="252"/>
+        <Caret Line="280" Column="12" TopLine="252"/>
       </Position9>
       <Position10>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="281" Column="5" TopLine="259"/>
+        <Caret Line="282" Column="23" TopLine="257"/>
       </Position10>
       <Position11>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="280" Column="12" TopLine="252"/>
+        <Caret Line="259" Column="11" TopLine="240"/>
       </Position11>
       <Position12>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="282" Column="23" TopLine="257"/>
+        <Caret Line="262" Column="13" TopLine="235"/>
       </Position12>
       <Position13>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="259" Column="11" TopLine="240"/>
+        <Caret Line="257" Column="25" TopLine="252"/>
       </Position13>
       <Position14>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="262" Column="13" TopLine="235"/>
+        <Caret Line="201" Column="71" TopLine="191"/>
       </Position14>
       <Position15>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="257" Column="25" TopLine="252"/>
+        <Caret Line="192" Column="79" TopLine="180"/>
       </Position15>
       <Position16>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="201" Column="71" TopLine="191"/>
+        <Caret Line="282" Column="4" TopLine="258"/>
       </Position16>
       <Position17>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="192" Column="79" TopLine="180"/>
+        <Caret Line="203" Column="31" TopLine="186"/>
       </Position17>
       <Position18>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="282" Column="4" TopLine="258"/>
+        <Caret Line="279" TopLine="262"/>
       </Position18>
       <Position19>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="203" Column="31" TopLine="186"/>
+        <Caret Line="462" Column="3" TopLine="459"/>
       </Position19>
       <Position20>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="279" TopLine="262"/>
+        <Caret Line="53" Column="14" TopLine="37"/>
       </Position20>
       <Position21>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="462" Column="3" TopLine="459"/>
+        <Caret Line="274" Column="28" TopLine="274"/>
       </Position21>
       <Position22>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="53" Column="14" TopLine="37"/>
+        <Caret Line="456" Column="9" TopLine="453"/>
       </Position22>
       <Position23>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="274" Column="28" TopLine="274"/>
+        <Caret Line="53" Column="14" TopLine="33"/>
       </Position23>
       <Position24>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="456" Column="9" TopLine="453"/>
+        <Caret Line="197" Column="25" TopLine="174"/>
       </Position24>
       <Position25>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="53" Column="14" TopLine="33"/>
+        <Caret Line="196" Column="11" TopLine="177"/>
       </Position25>
       <Position26>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="197" Column="25" TopLine="174"/>
+        <Caret Line="191" Column="23" TopLine="178"/>
       </Position26>
       <Position27>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="196" Column="11" TopLine="177"/>
+        <Caret Line="209" Column="45" TopLine="202"/>
       </Position27>
       <Position28>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="191" Column="23" TopLine="178"/>
+        <Caret Line="190" Column="7"/>
       </Position28>
       <Position29>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="209" Column="45" TopLine="202"/>
+        <Caret Line="506" TopLine="414"/>
       </Position29>
       <Position30>
         <Filename Value="updateform_u.pas"/>
-        <Caret Line="11" TopLine="22"/>
+        <Caret Line="133" Column="66" TopLine="106"/>
       </Position30>
     </JumpHistory>
     <RunParams>
