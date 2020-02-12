@@ -118,14 +118,17 @@ msgid "Update status: Update required"
 msgstr "Статус обновления: Требует обновления"
 
 #: createjournalform_u.rallfieldsmustbefilled
+msgctxt "createjournalform_u.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
 msgstr "Всё поля должны быть заполнены!"
 
 #: createjournalform_u.rhaltlog
+msgctxt "createjournalform_u.rhaltlog"
 msgid "The program will be completed, restart it!"
 msgstr "Выполнено успешно! Перезапустите программу"
 
 #: createjournalform_u.rlogaddedsuccessfully
+msgctxt "createjournalform_u.rlogaddedsuccessfully"
 msgid "Log added successfully"
 msgstr "Журнал успешно добавлен"
 
@@ -237,6 +240,448 @@ msgctxt "hrdlog.runknownuser"
 msgid "Unknown user! See settings"
 msgstr ""
 
+#: importadifform_u.rdone
+#, fuzzy
+msgctxt "importadifform_u.rdone"
+msgid "Done"
+msgstr "Готово"
+
+#: importadifform_u.rfileerror
+msgctxt "importadifform_u.rfileerror"
+msgid "Error file:"
+msgstr ""
+
+#: importadifform_u.rimport
+#, fuzzy
+msgctxt "importadifform_u.rimport"
+msgid "Import"
+msgstr "Импорт"
+
+#: importadifform_u.rimporterrors
+#, fuzzy
+msgctxt "importadifform_u.rimporterrors"
+msgid "Import Errors"
+msgstr "Ошибки импорта"
+
+#: importadifform_u.rimportrecord
+#, fuzzy
+msgctxt "importadifform_u.rimportrecord"
+msgid "Imported Records"
+msgstr "Импортировано записей"
+
+#: importadifform_u.rnothingimport
+msgctxt "importadifform_u.rnothingimport"
+msgid "Nothing to import"
+msgstr ""
+
+#: importadifform_u.rnumberdup
+#, fuzzy
+msgctxt "importadifform_u.rnumberdup"
+msgid "Number of duplicates"
+msgstr "Количество дубликатов"
+
+#: importadifform_u.rprocessing
+#, fuzzy
+msgctxt "importadifform_u.rprocessing"
+msgid "Processing"
+msgstr "Обработка"
+
+#: informationform_u.rerrorxmlapi
+msgctxt "informationform_u.rerrorxmlapi"
+msgid "Error XML API:"
+msgstr ""
+
+#: informationform_u.rinformationfromhamqth
+msgctxt "informationform_u.rinformationfromhamqth"
+msgid "Information from HAMQTH"
+msgstr ""
+
+#: informationform_u.rinformationfromqrzcom
+msgctxt "informationform_u.rinformationfromqrzcom"
+msgid "Information from QRZ.com"
+msgstr ""
+
+#: informationform_u.rinformationfromqrzru
+msgctxt "informationform_u.rinformationfromqrzru"
+msgid "Information from QRZ.ru"
+msgstr ""
+
+#: informationform_u.rnotconfigqrzru
+msgctxt "informationform_u.rnotconfigqrzru"
+msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
+msgstr ""
+
+#: logconfigform_u.rcannotdeldef
+msgctxt "logconfigform_u.rcannotdeldef"
+msgid "Cannot delete default log"
+msgstr ""
+
+#: logconfigform_u.rdefaultlogsel
+msgctxt "logconfigform_u.rdefaultlogsel"
+msgid "Default log selected"
+msgstr ""
+
+#: logconfigform_u.rdeletelog
+msgctxt "logconfigform_u.rdeletelog"
+msgid "Are you sure you want to delete the log ?!"
+msgstr ""
+
+#: mainform_u.rcallsign
+#, fuzzy
+msgctxt "mainform_u.rcallsign"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: mainform_u.rchecksettingsmysql
+msgctxt "mainform_u.rchecksettingsmysql"
+msgid "Check MySQL DB Settings"
+msgstr ""
+
+#: mainform_u.rchecksettingssqlite
+msgctxt "mainform_u.rchecksettingssqlite"
+msgid "Check SQLite DB Settings"
+msgstr ""
+
+#: mainform_u.rcleanupjournal
+msgctxt "mainform_u.rcleanupjournal"
+msgid "Are you sure you want to clear all entries?"
+msgstr ""
+
+#: mainform_u.rclearqso
+msgctxt "mainform_u.rclearqso"
+msgid "Clear QSO input window"
+msgstr ""
+
+#: mainform_u.rclientconnected
+msgctxt "mainform_u.rclientconnected"
+msgid "Client Connected:"
+msgstr ""
+
+#: mainform_u.rcontinent
+#, fuzzy
+msgctxt "mainform_u.rcontinent"
+msgid "Continent"
+msgstr "Континент"
+
+#: mainform_u.rcqzone
+#, fuzzy
+msgctxt "mainform_u.rcqzone"
+msgid "CQ Zone"
+msgstr "CQ Zone"
+
+#: mainform_u.rdatabasefault
+msgctxt "mainform_u.rdatabasefault"
+msgid "Something went wrong ... Check the settings"
+msgstr ""
+
+#: mainform_u.rdberror
+msgctxt "mainform_u.rdberror"
+msgid "Error while working with the database. Check connection and settings"
+msgstr ""
+
+#: mainform_u.rdbnotinit
+msgctxt "mainform_u.rdbnotinit"
+msgid "The database is not initialized, go to the settings?"
+msgstr ""
+
+#: mainform_u.rdeleterecord
+msgctxt "mainform_u.rdeleterecord"
+msgid "Delete Record "
+msgstr ""
+
+#: mainform_u.rduplicates
+msgctxt "mainform_u.rduplicates"
+msgid "Duplicates "
+msgstr ""
+
+#: mainform_u.rdxccprefix
+#, fuzzy
+msgctxt "mainform_u.rdxccprefix"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: mainform_u.rdxclusterconnecting
+msgctxt "mainform_u.rdxclusterconnecting"
+msgid "Connect to Telnet Cluster"
+msgstr ""
+
+#: mainform_u.rdxclusterdisconnect
+msgctxt "mainform_u.rdxclusterdisconnect"
+msgid "You are disconnected from the DX cluster"
+msgstr ""
+
+#: mainform_u.rdxclusterdisconnecting
+msgctxt "mainform_u.rdxclusterdisconnecting"
+msgid "Disconnect from Telnet Cluster"
+msgstr ""
+
+#: mainform_u.rdxclusterwindowclear
+msgctxt "mainform_u.rdxclusterwindowclear"
+msgid "Clear DX Cluster window"
+msgstr ""
+
+#: mainform_u.rencall
+msgctxt "mainform_u.rencall"
+msgid "You must enter a callsign"
+msgstr ""
+
+#: mainform_u.rgrid
+#, fuzzy
+msgctxt "mainform_u.rgrid"
+msgid "Grid"
+msgstr "Grid"
+
+#: mainform_u.riota
+#, fuzzy
+msgctxt "mainform_u.riota"
+msgid "IOTA"
+msgstr "IOTA"
+
+#: mainform_u.rituzone
+#, fuzzy
+msgctxt "mainform_u.rituzone"
+msgid "ITU Zone"
+msgstr "ITU Zone"
+
+#: mainform_u.rlanguagecomplite
+msgctxt "mainform_u.rlanguagecomplite"
+msgid "Translation files download successfully"
+msgstr ""
+
+#: mainform_u.rlogconwsjt
+msgctxt "mainform_u.rlogconwsjt"
+msgid "EWLog connected to WSJT"
+msgstr ""
+
+#: mainform_u.rlognconwsjt
+msgctxt "mainform_u.rlognconwsjt"
+msgid "EWLog not connected to WSJT"
+msgstr ""
+
+#: mainform_u.rlotwrecdate
+#, fuzzy
+msgctxt "mainform_u.rlotwrecdate"
+msgid "LOTWr Date"
+msgstr "LOTWr Дата"
+
+#: mainform_u.rmainprefix
+#, fuzzy
+msgctxt "mainform_u.rmainprefix"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: mainform_u.rmanualset
+#, fuzzy
+msgctxt "mainform_u.rmanualset"
+msgid "Manual Set"
+msgstr "Manual Set"
+
+#: mainform_u.rmysqlhasgoneaway
+msgctxt "mainform_u.rmysqlhasgoneaway"
+msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
+msgstr ""
+
+#: mainform_u.rmysqlnotset
+msgctxt "mainform_u.rmysqlnotset"
+msgid "MySQL database settings not configured"
+msgstr ""
+
+#: mainform_u.rnocalcdxcc
+#, fuzzy
+msgctxt "mainform_u.rnocalcdxcc"
+msgid "No Calc DXCC"
+msgstr "No Calc DXCC"
+
+#: mainform_u.rnotcallsign
+msgctxt "mainform_u.rnotcallsign"
+msgid "No callsign entered to view"
+msgstr ""
+
+#: mainform_u.romname
+#, fuzzy
+msgctxt "mainform_u.romname"
+msgid "Name"
+msgstr "Имя"
+
+#: mainform_u.romqth
+#, fuzzy
+msgctxt "mainform_u.romqth"
+msgid "QTH"
+msgstr "QTH"
+
+#: mainform_u.rphotofromqrzru
+msgctxt "mainform_u.rphotofromqrzru"
+msgid "Photo from QRZ.RU"
+msgstr ""
+
+#: mainform_u.rqsl
+#, fuzzy
+msgctxt "mainform_u.rqsl"
+msgid "QSL"
+msgstr "QSL"
+
+#: mainform_u.rqslmanager
+#, fuzzy
+msgctxt "mainform_u.rqslmanager"
+msgid "Manager"
+msgstr "Менеджер"
+
+#: mainform_u.rqslrecdate
+#, fuzzy
+msgctxt "mainform_u.rqslrecdate"
+msgid "QSLr Date"
+msgstr "QSLr Дата"
+
+#: mainform_u.rqsls
+#, fuzzy
+msgctxt "mainform_u.rqsls"
+msgid "QSLs"
+msgstr "QSLs"
+
+#: mainform_u.rqslsentdate
+#, fuzzy
+msgctxt "mainform_u.rqslsentdate"
+msgid "QSLs Date"
+msgstr "QSLs Дата"
+
+#: mainform_u.rqsl_rcvd_via
+msgctxt "mainform_u.rqsl_rcvd_via"
+msgid "QSL r VIA"
+msgstr ""
+
+#: mainform_u.rqsl_sent_via
+msgctxt "mainform_u.rqsl_sent_via"
+msgid "QSL s VIA"
+msgstr ""
+
+#: mainform_u.rqsoband
+#, fuzzy
+msgctxt "mainform_u.rqsoband"
+msgid "Band"
+msgstr "Диапазон"
+
+#: mainform_u.rqsobandfreq
+#, fuzzy
+msgctxt "mainform_u.rqsobandfreq"
+msgid "Frequency"
+msgstr "Частота"
+
+#: mainform_u.rqsodate
+#, fuzzy
+msgctxt "mainform_u.rqsodate"
+msgid "Date"
+msgstr "Дата"
+
+#: mainform_u.rqsomode
+#, fuzzy
+msgctxt "mainform_u.rqsomode"
+msgid "Mode"
+msgstr "Мода"
+
+#: mainform_u.rqsonotsave
+msgctxt "mainform_u.rqsonotsave"
+msgid "QSO not saved, quit anyway ?!"
+msgstr ""
+
+#: mainform_u.rqsoreportrecived
+#, fuzzy
+msgctxt "mainform_u.rqsoreportrecived"
+msgid "RSTr"
+msgstr "RSTr"
+
+#: mainform_u.rqsoreportsent
+#, fuzzy
+msgctxt "mainform_u.rqsoreportsent"
+msgid "RSTs"
+msgstr "RSTs"
+
+#: mainform_u.rqsosubmode
+msgctxt "mainform_u.rqsosubmode"
+msgid "SubMode"
+msgstr ""
+
+#: mainform_u.rqsosync
+#, fuzzy
+msgctxt "mainform_u.rqsosync"
+msgid "QSO"
+msgstr "рий"
+
+#: mainform_u.rqsotime
+#, fuzzy
+msgctxt "mainform_u.rqsotime"
+msgid "Time"
+msgstr "Время"
+
+#: mainform_u.rqsototal
+msgctxt "mainform_u.rqsototal"
+msgid " Total "
+msgstr ""
+
+#: mainform_u.rsaveqso
+#, fuzzy
+msgctxt "mainform_u.rsaveqso"
+msgid "Save QSO"
+msgstr "Сохранить QSO"
+
+#: mainform_u.rsendspot
+#, fuzzy
+msgctxt "mainform_u.rsendspot"
+msgid "Send spot"
+msgstr "Отправить спот"
+
+#: mainform_u.rstate
+#, fuzzy
+msgctxt "mainform_u.rstate"
+msgid "State"
+msgstr "State"
+
+#: mainform_u.rswitchdbmysql
+msgctxt "mainform_u.rswitchdbmysql"
+msgid "Switch base to MySQL"
+msgstr ""
+
+#: mainform_u.rswitchdbsqlite
+msgctxt "mainform_u.rswitchdbsqlite"
+msgid "Switch base to SQLite"
+msgstr ""
+
+#: mainform_u.rsync
+msgctxt "mainform_u.rsync"
+msgid ", in sync "
+msgstr ""
+
+#: mainform_u.rsyncok
+msgctxt "mainform_u.rsyncok"
+msgid "Done! Number of duplicates "
+msgstr ""
+
+#: mainform_u.rusers
+#, fuzzy
+msgctxt "mainform_u.rusers"
+msgid "User"
+msgstr "User"
+
+#: mainform_u.rvaliddx
+msgctxt "mainform_u.rvaliddx"
+msgid "Valid DX"
+msgstr ""
+
+#: mainform_u.rwarning
+#, fuzzy
+msgctxt "mainform_u.rwarning"
+msgid "Warning!"
+msgstr "Внимание!"
+
+#: mainform_u.rwelcomemessagemysql
+msgctxt "mainform_u.rwelcomemessagemysql"
+msgid "MySQL database selected! Welcome!"
+msgstr ""
+
+#: mainform_u.rwelcomemessagesqlite
+msgctxt "mainform_u.rwelcomemessagesqlite"
+msgid "SQLite database selected! Welcome!"
+msgstr ""
+
 #: qrzcom.ranswerserver
 msgctxt "qrzcom.ranswerserver"
 msgid "Server response:"
@@ -285,6 +730,12 @@ msgstr "Успешно зарегистрировано"
 #: register_form_u.rwrongpassword
 msgid "Wrong password"
 msgstr "Не верный пароль"
+
+#: resourcestr.rallfieldsmustbefilled
+#, fuzzy
+msgctxt "resourcestr.rallfieldsmustbefilled"
+msgid "All fields must be filled!"
+msgstr "Всё поля должны быть заполнены!"
 
 #: resourcestr.rcallsign
 #, fuzzy
@@ -441,6 +892,12 @@ msgctxt "resourcestr.rgrid"
 msgid "Grid"
 msgstr "Локатор"
 
+#: resourcestr.rhaltlog
+#, fuzzy
+msgctxt "resourcestr.rhaltlog"
+msgid "The program will be completed, restart it!"
+msgstr "Выполнено успешно! Перезапустите программу"
+
 #: resourcestr.rimport
 #, fuzzy
 msgctxt "resourcestr.rimport"
@@ -494,6 +951,12 @@ msgstr "ITU Зона"
 msgctxt "resourcestr.rlanguagecomplite"
 msgid "Translation files download successfully"
 msgstr "Файлы переводов успешно загружены"
+
+#: resourcestr.rlogaddedsuccessfully
+#, fuzzy
+msgctxt "resourcestr.rlogaddedsuccessfully"
+msgid "Log added successfully"
+msgstr "Журнал успешно добавлен"
 
 #: resourcestr.rlogconwsjt
 #, fuzzy
@@ -721,6 +1184,11 @@ msgctxt "resourcestr.rsendspot"
 msgid "Send spot"
 msgstr "Отправить спот"
 
+#: resourcestr.rsetasdefaultjournal
+msgctxt "resourcestr.rsetasdefaultjournal"
+msgid "Set as default journal?"
+msgstr ""
+
 #: resourcestr.rstate
 #, fuzzy
 msgctxt "resourcestr.rstate"
@@ -769,6 +1237,10 @@ msgctxt "resourcestr.rswitchdbsqlite"
 msgid "Switch base to SQLite"
 msgstr "Переключиться на SQLite"
 
+#: resourcestr.rswitchtoanewlog
+msgid "Switch to a new log?"
+msgstr ""
+
 #: resourcestr.rsync
 msgctxt "resourcestr.rsync"
 msgid ", in sync "
@@ -813,6 +1285,42 @@ msgstr "Выбрана база данных SQLite! Добро пожалова
 #: sendtelnetspot_form_u.rnotalldata
 msgid "Not all data entered"
 msgstr "Не все данные заполнены"
+
+#: serviceform_u.rnotdataforconnect
+msgctxt "serviceform_u.rnotdataforconnect"
+msgid "The log configuration, do not specify the data to connect to eQSL.cc"
+msgstr ""
+
+#: serviceform_u.rprocesseddata
+#, fuzzy
+msgctxt "serviceform_u.rprocesseddata"
+msgid "Processed data:"
+msgstr "Обработка данных:"
+
+#: serviceform_u.rstatusconnecteqsl
+msgctxt "serviceform_u.rstatusconnecteqsl"
+msgid "Status: Connceting to eQSL.cc"
+msgstr ""
+
+#: serviceform_u.rstatusdone
+msgctxt "serviceform_u.rstatusdone"
+msgid "Status: Done"
+msgstr ""
+
+#: serviceform_u.rstatusdownloadeqsl
+msgctxt "serviceform_u.rstatusdownloadeqsl"
+msgid "Status: Download eQSL.cc"
+msgstr ""
+
+#: serviceform_u.rstatusnotdata
+msgctxt "serviceform_u.rstatusnotdata"
+msgid "Status: Not data"
+msgstr ""
+
+#: serviceform_u.rstatussavefile
+msgctxt "serviceform_u.rstatussavefile"
+msgid "Status: Saving file"
+msgstr ""
 
 #: settingscat_u.rlibhamlibnotfound
 msgid "HamLib library not found"

@@ -5212,7 +5212,8 @@ end;
 
 procedure TMainForm.MenuItem69Click(Sender: TObject);
 begin
-  Application.Terminate;
+  //Application.Terminate;
+  Close;
 end;
 
 procedure TMainForm.MenuItem70Click(Sender: TObject);

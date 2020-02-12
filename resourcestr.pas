@@ -99,6 +99,12 @@ resourcestring
   rNumberDup = 'Number of duplicates';
   rNothingImport = 'Nothing to import';
   rProcessing = 'Processing';
+  rSetAsDefaultJournal = 'Set as default journal?';
+  rAllfieldsmustbefilled = 'All fields must be filled!';
+  rLogaddedsuccessfully = 'Log added successfully';
+  rHaltLog = 'The program will be completed, restart it!';
+  rSwitchToANewLog = 'Switch to a new log?';
+
 
 implementation
 
