@@ -3363,16 +3363,15 @@ var
   FallbackLang: string = '';
 begin
   GetLanguageIDs(Lang, FallbackLang);
-
   GetingHint := 0;
-      {$IFDEF UNIX}
+
+  {$IFDEF UNIX}
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-  MapView1.CachePath := PathMyDoc + 'cache/';
-    {$ELSE}
+  {$ELSE}
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
     GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
-  MapView1.CachePath := PathMyDoc + 'cache\';
-    {$ENDIF UNIX}
+  {$ENDIF UNIX}
+  MapView1.CachePath := PathMyDoc + 'cache'+DirectorySeparator;
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
@@ -3384,7 +3383,6 @@ begin
   VirtualStringTree1.Images := FlagList;
   useMAPS := INiF.ReadString('SetLog', 'UseMAPS', '');
   EditFlag := False;
-  //Application.ProcessMessages;
   StayForm := True;
   AdifFromMobileSyncStart := False;
   ExportAdifSelect := False;
@@ -3398,10 +3396,9 @@ begin
   end;
 
   InitIni;
-
-  LTCPComponent1.Listen(49153);
-  LUDPComponent1.Listen(49152);
   LTCPComponent1.ReuseAddress := True;
+  LTCPComponent1.Listen(49152);
+  LUDPComponent1.Listen(49153);
 
 
   if usewsjt then
@@ -3409,12 +3406,10 @@ begin
   if usefldigi then
     Fl_Timer.Enabled := True;
 
-
   RegisterLog := IniF.ReadString('SetLog', 'Register', '');
   LoginLog := IniF.ReadString('SetLog', 'Login', '');
   PassLog := IniF.ReadString('SetLog', 'Pass', '');
   sprav := IniF.ReadString('SetLog', 'Sprav', '');
-
   PrintPrev := IniF.ReadBool('SetLog', 'PrintPrev', False);
 
   if MenuItem86.Checked = True then
@@ -3657,7 +3652,7 @@ begin
   if aSocket.GetMessage(mess) > 0 then
   begin
     if mess = 'GetIP' then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':6666');
+      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':49152');
     if mess = 'Hello' then
       LUDPComponent1.SendMessage('Welcome!');
   end;
