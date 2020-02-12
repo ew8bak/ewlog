@@ -7,25 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, LazUTF8, StdCtrls,
   ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} httpsend,
-  blcksock, synautil;
-resourcestring
-  rUpdateStatusCheckUpdate = 'Update status: Check version';
-  rUpdateRequired = 'Update required';
-  rUpdateStatusDownload = 'Update status: Download?';
-  rButtonDownload = 'Download';
-  rUpdateStatusActual = 'Update status: Actual';
-  rButtonCheck = 'Check';
-  rSizeFile = 'File size: ';
-  rUpdateStatus = 'Update status: ';
-  rUpdateStatusDownloads = 'Update status: Downloads';
-  rUpdateStatusDownloadBase = 'Update status: Download Database';
-  rUpdateStatusDownloadCallbook = 'Update status: Download CallBook';
-  rUpdateDontCopy = 'Do not copy';
-  rUpdateStatusDownloadChanges = 'Update status: Download Changes';
-  rUpdateStatusRequiredInstall = 'Update status: Installation required';
-  rButtonInstall = 'Install';
-  rBytes = ' bytes';
-
+  blcksock, synautil, ResourceStr;
 
 type
 
@@ -186,27 +168,38 @@ begin
       with THTTPSend.Create do
       begin
         Label9.Caption := rUpdateStatusCheckUpdate;
+        LoadFile := TFileStream.Create(updatePATH + 'updates'+DirectorySeparator+'versiononserver.info',
+            fmCreate);
         if HTTPMethod('GET', 'http://update.ew8bak.ru/version_server.info') then
         begin
-          LoadFile := TFileStream.Create(updatePATH + 'updates\versiononserver.info',
-            fmCreate);
           HttpGetBinary('http://update.ew8bak.ru/version_server.info', LoadFile);
           LoadFile.Free;
-          //Free;
+        end else begin
+          LoadFile.Seek(0, soFromEnd);
+          LoadFile.WriteBuffer('1.1.1',Length('1.1.1'));
+          LoadFile.Free;
         end;
         Free;
       end;
 
-      AssignFile(ver_serverFile, updatePATH + 'updates\versiononserver.info');
+      AssignFile(ver_serverFile, updatePATH + 'updates'+DirectorySeparator+'versiononserver.info');
       Reset(ver_serverFile);
       while not EOF(ver_serverFile) do
         ReadLn(ver_serverFile, version_server);
+
+      if version_server = '1.1.1' then
+      Label8.Caption := rFailedToLoadData
+      else
       Label8.Caption := version_server;
-      version_current_INT := StrToInt(StringReplace(GetMyVersion, '.', '', [rfReplaceAll]));
-      version_server_INT := StrToInt(StringReplace(version_server, '.', '', [rfReplaceAll]));
+
+      version_current_INT := StrToInt(StringReplace(GetMyVersion, '.',
+        '', [rfReplaceAll]));
+      version_server_INT := StrToInt(StringReplace(version_server,
+        '.', '', [rfReplaceAll]));
       CloseFile(ver_serverFile);
 
-      while Length(IntToStr(version_current_INT)) > Length(IntToStr(version_server_INT)) do
+      while Length(IntToStr(version_current_INT)) >
+        Length(IntToStr(version_server_INT)) do
         version_server_INT := version_server_INT * 10;
 
       if version_current_INT < version_server_INT then
@@ -222,7 +215,7 @@ begin
         Result := False;
       end;
 
-      AssignFile(VerFile, updatePATH + 'updates\version.info');
+      AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
       Rewrite(VerFile);
       VerFiles.version := Label8.Caption;
       VerFiles.lastupdate := DateTimeToStr(Now);
@@ -231,7 +224,7 @@ begin
     end
     else
     begin
-      AssignFile(VerFile, updatePATH + 'updates\version.info');
+      AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
       Rewrite(VerFile);
       VerFiles.version := Label8.Caption;
       VerFiles.lastupdate := DateTimeToStr(Now);
@@ -244,10 +237,36 @@ begin
 end;
 
 procedure TUpdate_Form.FormCreate(Sender: TObject);
+var
+  VerFile: file of ver;
+  VerFiles: ver;
+  updatePATH: string;
 begin
-      {$IFDEF WINDOWS}
-//  MainForm.CheckUpdatesTimer.Enabled := True;
-    {$ENDIF WINDOWS}
+  VerFiles.version:='0.0.0';
+  VerFiles.lastupdate:=DateTimeToStr(Now);
+  VerFiles.changelog:='';
+    {$IFDEF UNIX}
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+    SysUtils.GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    {$ENDIF UNIX}
+  if DirectoryExists(updatePATH + 'updates') = False then
+    CreateDir(updatePATH + 'updates');
+
+  if FileExists(updatePATH + 'updates' + DirectorySeparator + 'version.info') = False then begin
+   AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator + 'version.info');
+   Rewrite(VerFile);
+   Write(VerFile,VerFiles);
+   CloseFile(VerFile);
+  end;
+
+  if FileExists(updatePATH + 'updates' + DirectorySeparator + 'versioncallbook.info') = False then begin
+    AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator + 'versioncallbook.info');
+    Rewrite(VerFile);
+    Write(VerFile,VerFiles);
+    CloseFile(VerFile);
+  end;
 end;
 
 procedure TUpdate_Form.FormShow(Sender: TObject);
@@ -262,11 +281,14 @@ begin
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
-  AssignFile(VerFile, updatePATH + 'updates\version.info');
-  Reset(VerFile);
-  Read(VerFile, VerFiles);
-  Label4.Caption := VerFiles.lastupdate;
-  CloseFile(VerFile);
+  if FileExists(updatePATH + 'updates\version.info') then
+  begin
+    AssignFile(VerFile, updatePATH + 'updates\version.info');
+    Reset(VerFile);
+    Read(VerFile, VerFiles);
+    Label4.Caption := VerFiles.lastupdate;
+    CloseFile(VerFile);
+  end;
 
   Button1.Caption := rButtonCheck;
   Label10.Caption := rSizeFile;
@@ -370,8 +392,8 @@ begin
     MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
     MainForm.CallBookLiteConnection.Connected := False;
     UseCallBook := 'NO';
-    if FileUtil.CopyFile(updatePATH + 'updates\callbook.db', updatePATH + 'callbook.db',
-      True, True) then
+    if FileUtil.CopyFile(updatePATH + 'updates\callbook.db', updatePATH +
+      'callbook.db', True, True) then
     begin
       DeleteFile(PChar(updatePATH + 'updates\callbook.db'));
       MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';

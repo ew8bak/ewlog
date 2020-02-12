@@ -104,7 +104,23 @@ resourcestring
   rLogaddedsuccessfully = 'Log added successfully';
   rHaltLog = 'The program will be completed, restart it!';
   rSwitchToANewLog = 'Switch to a new log?';
-
+  rFailedToLoadData = 'Failed to load data';
+  rUpdateStatusCheckUpdate = 'Update status: Check version';
+  rUpdateRequired = 'Update required';
+  rUpdateStatusDownload = 'Update status: Download?';
+  rButtonDownload = 'Download';
+  rUpdateStatusActual = 'Update status: Actual';
+  rButtonCheck = 'Check';
+  rSizeFile = 'File size: ';
+  rUpdateStatus = 'Update status: ';
+  rUpdateStatusDownloads = 'Update status: Downloads';
+  rUpdateStatusDownloadBase = 'Update status: Download Database';
+  rUpdateStatusDownloadCallbook = 'Update status: Download CallBook';
+  rUpdateDontCopy = 'Do not copy';
+  rUpdateStatusDownloadChanges = 'Update status: Download Changes';
+  rUpdateStatusRequiredInstall = 'Update status: Installation required';
+  rButtonInstall = 'Install';
+  rBytes = ' bytes';
 
 implementation
 

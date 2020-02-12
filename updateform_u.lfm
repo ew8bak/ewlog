@@ -1,7 +1,7 @@
 object Update_Form: TUpdate_Form
-  Left = 1292
+  Left = 672
   Height = 229
-  Top = 212
+  Top = 177
   Width = 274
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog

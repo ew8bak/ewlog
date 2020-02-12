@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
 #: clublog.ranswerserver
 msgctxt "clublog.ranswerserver"
@@ -116,21 +116,6 @@ msgstr "Статус обновления: Не могу скопировать"
 #: configform_u.rstatusupdaterequires
 msgid "Update status: Update required"
 msgstr "Статус обновления: Требует обновления"
-
-#: createjournalform_u.rallfieldsmustbefilled
-msgctxt "createjournalform_u.rallfieldsmustbefilled"
-msgid "All fields must be filled!"
-msgstr "Всё поля должны быть заполнены!"
-
-#: createjournalform_u.rhaltlog
-msgctxt "createjournalform_u.rhaltlog"
-msgid "The program will be completed, restart it!"
-msgstr "Выполнено успешно! Перезапустите программу"
-
-#: createjournalform_u.rlogaddedsuccessfully
-msgctxt "createjournalform_u.rlogaddedsuccessfully"
-msgid "Log added successfully"
-msgstr "Журнал успешно добавлен"
 
 #: eqsl.ranswerserver
 msgctxt "eqsl.ranswerserver"
@@ -240,448 +225,6 @@ msgctxt "hrdlog.runknownuser"
 msgid "Unknown user! See settings"
 msgstr ""
 
-#: importadifform_u.rdone
-#, fuzzy
-msgctxt "importadifform_u.rdone"
-msgid "Done"
-msgstr "Готово"
-
-#: importadifform_u.rfileerror
-msgctxt "importadifform_u.rfileerror"
-msgid "Error file:"
-msgstr ""
-
-#: importadifform_u.rimport
-#, fuzzy
-msgctxt "importadifform_u.rimport"
-msgid "Import"
-msgstr "Импорт"
-
-#: importadifform_u.rimporterrors
-#, fuzzy
-msgctxt "importadifform_u.rimporterrors"
-msgid "Import Errors"
-msgstr "Ошибки импорта"
-
-#: importadifform_u.rimportrecord
-#, fuzzy
-msgctxt "importadifform_u.rimportrecord"
-msgid "Imported Records"
-msgstr "Импортировано записей"
-
-#: importadifform_u.rnothingimport
-msgctxt "importadifform_u.rnothingimport"
-msgid "Nothing to import"
-msgstr ""
-
-#: importadifform_u.rnumberdup
-#, fuzzy
-msgctxt "importadifform_u.rnumberdup"
-msgid "Number of duplicates"
-msgstr "Количество дубликатов"
-
-#: importadifform_u.rprocessing
-#, fuzzy
-msgctxt "importadifform_u.rprocessing"
-msgid "Processing"
-msgstr "Обработка"
-
-#: informationform_u.rerrorxmlapi
-msgctxt "informationform_u.rerrorxmlapi"
-msgid "Error XML API:"
-msgstr ""
-
-#: informationform_u.rinformationfromhamqth
-msgctxt "informationform_u.rinformationfromhamqth"
-msgid "Information from HAMQTH"
-msgstr ""
-
-#: informationform_u.rinformationfromqrzcom
-msgctxt "informationform_u.rinformationfromqrzcom"
-msgid "Information from QRZ.com"
-msgstr ""
-
-#: informationform_u.rinformationfromqrzru
-msgctxt "informationform_u.rinformationfromqrzru"
-msgid "Information from QRZ.ru"
-msgstr ""
-
-#: informationform_u.rnotconfigqrzru
-msgctxt "informationform_u.rnotconfigqrzru"
-msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
-msgstr ""
-
-#: logconfigform_u.rcannotdeldef
-msgctxt "logconfigform_u.rcannotdeldef"
-msgid "Cannot delete default log"
-msgstr ""
-
-#: logconfigform_u.rdefaultlogsel
-msgctxt "logconfigform_u.rdefaultlogsel"
-msgid "Default log selected"
-msgstr ""
-
-#: logconfigform_u.rdeletelog
-msgctxt "logconfigform_u.rdeletelog"
-msgid "Are you sure you want to delete the log ?!"
-msgstr ""
-
-#: mainform_u.rcallsign
-#, fuzzy
-msgctxt "mainform_u.rcallsign"
-msgid "Callsign"
-msgstr "Позывной"
-
-#: mainform_u.rchecksettingsmysql
-msgctxt "mainform_u.rchecksettingsmysql"
-msgid "Check MySQL DB Settings"
-msgstr ""
-
-#: mainform_u.rchecksettingssqlite
-msgctxt "mainform_u.rchecksettingssqlite"
-msgid "Check SQLite DB Settings"
-msgstr ""
-
-#: mainform_u.rcleanupjournal
-msgctxt "mainform_u.rcleanupjournal"
-msgid "Are you sure you want to clear all entries?"
-msgstr ""
-
-#: mainform_u.rclearqso
-msgctxt "mainform_u.rclearqso"
-msgid "Clear QSO input window"
-msgstr ""
-
-#: mainform_u.rclientconnected
-msgctxt "mainform_u.rclientconnected"
-msgid "Client Connected:"
-msgstr ""
-
-#: mainform_u.rcontinent
-#, fuzzy
-msgctxt "mainform_u.rcontinent"
-msgid "Continent"
-msgstr "Континент"
-
-#: mainform_u.rcqzone
-#, fuzzy
-msgctxt "mainform_u.rcqzone"
-msgid "CQ Zone"
-msgstr "CQ Zone"
-
-#: mainform_u.rdatabasefault
-msgctxt "mainform_u.rdatabasefault"
-msgid "Something went wrong ... Check the settings"
-msgstr ""
-
-#: mainform_u.rdberror
-msgctxt "mainform_u.rdberror"
-msgid "Error while working with the database. Check connection and settings"
-msgstr ""
-
-#: mainform_u.rdbnotinit
-msgctxt "mainform_u.rdbnotinit"
-msgid "The database is not initialized, go to the settings?"
-msgstr ""
-
-#: mainform_u.rdeleterecord
-msgctxt "mainform_u.rdeleterecord"
-msgid "Delete Record "
-msgstr ""
-
-#: mainform_u.rduplicates
-msgctxt "mainform_u.rduplicates"
-msgid "Duplicates "
-msgstr ""
-
-#: mainform_u.rdxccprefix
-#, fuzzy
-msgctxt "mainform_u.rdxccprefix"
-msgid "DXCC"
-msgstr "DXCC"
-
-#: mainform_u.rdxclusterconnecting
-msgctxt "mainform_u.rdxclusterconnecting"
-msgid "Connect to Telnet Cluster"
-msgstr ""
-
-#: mainform_u.rdxclusterdisconnect
-msgctxt "mainform_u.rdxclusterdisconnect"
-msgid "You are disconnected from the DX cluster"
-msgstr ""
-
-#: mainform_u.rdxclusterdisconnecting
-msgctxt "mainform_u.rdxclusterdisconnecting"
-msgid "Disconnect from Telnet Cluster"
-msgstr ""
-
-#: mainform_u.rdxclusterwindowclear
-msgctxt "mainform_u.rdxclusterwindowclear"
-msgid "Clear DX Cluster window"
-msgstr ""
-
-#: mainform_u.rencall
-msgctxt "mainform_u.rencall"
-msgid "You must enter a callsign"
-msgstr ""
-
-#: mainform_u.rgrid
-#, fuzzy
-msgctxt "mainform_u.rgrid"
-msgid "Grid"
-msgstr "Grid"
-
-#: mainform_u.riota
-#, fuzzy
-msgctxt "mainform_u.riota"
-msgid "IOTA"
-msgstr "IOTA"
-
-#: mainform_u.rituzone
-#, fuzzy
-msgctxt "mainform_u.rituzone"
-msgid "ITU Zone"
-msgstr "ITU Zone"
-
-#: mainform_u.rlanguagecomplite
-msgctxt "mainform_u.rlanguagecomplite"
-msgid "Translation files download successfully"
-msgstr ""
-
-#: mainform_u.rlogconwsjt
-msgctxt "mainform_u.rlogconwsjt"
-msgid "EWLog connected to WSJT"
-msgstr ""
-
-#: mainform_u.rlognconwsjt
-msgctxt "mainform_u.rlognconwsjt"
-msgid "EWLog not connected to WSJT"
-msgstr ""
-
-#: mainform_u.rlotwrecdate
-#, fuzzy
-msgctxt "mainform_u.rlotwrecdate"
-msgid "LOTWr Date"
-msgstr "LOTWr Дата"
-
-#: mainform_u.rmainprefix
-#, fuzzy
-msgctxt "mainform_u.rmainprefix"
-msgid "Prefix"
-msgstr "Префикс"
-
-#: mainform_u.rmanualset
-#, fuzzy
-msgctxt "mainform_u.rmanualset"
-msgid "Manual Set"
-msgstr "Manual Set"
-
-#: mainform_u.rmysqlhasgoneaway
-msgctxt "mainform_u.rmysqlhasgoneaway"
-msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
-msgstr ""
-
-#: mainform_u.rmysqlnotset
-msgctxt "mainform_u.rmysqlnotset"
-msgid "MySQL database settings not configured"
-msgstr ""
-
-#: mainform_u.rnocalcdxcc
-#, fuzzy
-msgctxt "mainform_u.rnocalcdxcc"
-msgid "No Calc DXCC"
-msgstr "No Calc DXCC"
-
-#: mainform_u.rnotcallsign
-msgctxt "mainform_u.rnotcallsign"
-msgid "No callsign entered to view"
-msgstr ""
-
-#: mainform_u.romname
-#, fuzzy
-msgctxt "mainform_u.romname"
-msgid "Name"
-msgstr "Имя"
-
-#: mainform_u.romqth
-#, fuzzy
-msgctxt "mainform_u.romqth"
-msgid "QTH"
-msgstr "QTH"
-
-#: mainform_u.rphotofromqrzru
-msgctxt "mainform_u.rphotofromqrzru"
-msgid "Photo from QRZ.RU"
-msgstr ""
-
-#: mainform_u.rqsl
-#, fuzzy
-msgctxt "mainform_u.rqsl"
-msgid "QSL"
-msgstr "QSL"
-
-#: mainform_u.rqslmanager
-#, fuzzy
-msgctxt "mainform_u.rqslmanager"
-msgid "Manager"
-msgstr "Менеджер"
-
-#: mainform_u.rqslrecdate
-#, fuzzy
-msgctxt "mainform_u.rqslrecdate"
-msgid "QSLr Date"
-msgstr "QSLr Дата"
-
-#: mainform_u.rqsls
-#, fuzzy
-msgctxt "mainform_u.rqsls"
-msgid "QSLs"
-msgstr "QSLs"
-
-#: mainform_u.rqslsentdate
-#, fuzzy
-msgctxt "mainform_u.rqslsentdate"
-msgid "QSLs Date"
-msgstr "QSLs Дата"
-
-#: mainform_u.rqsl_rcvd_via
-msgctxt "mainform_u.rqsl_rcvd_via"
-msgid "QSL r VIA"
-msgstr ""
-
-#: mainform_u.rqsl_sent_via
-msgctxt "mainform_u.rqsl_sent_via"
-msgid "QSL s VIA"
-msgstr ""
-
-#: mainform_u.rqsoband
-#, fuzzy
-msgctxt "mainform_u.rqsoband"
-msgid "Band"
-msgstr "Диапазон"
-
-#: mainform_u.rqsobandfreq
-#, fuzzy
-msgctxt "mainform_u.rqsobandfreq"
-msgid "Frequency"
-msgstr "Частота"
-
-#: mainform_u.rqsodate
-#, fuzzy
-msgctxt "mainform_u.rqsodate"
-msgid "Date"
-msgstr "Дата"
-
-#: mainform_u.rqsomode
-#, fuzzy
-msgctxt "mainform_u.rqsomode"
-msgid "Mode"
-msgstr "Мода"
-
-#: mainform_u.rqsonotsave
-msgctxt "mainform_u.rqsonotsave"
-msgid "QSO not saved, quit anyway ?!"
-msgstr ""
-
-#: mainform_u.rqsoreportrecived
-#, fuzzy
-msgctxt "mainform_u.rqsoreportrecived"
-msgid "RSTr"
-msgstr "RSTr"
-
-#: mainform_u.rqsoreportsent
-#, fuzzy
-msgctxt "mainform_u.rqsoreportsent"
-msgid "RSTs"
-msgstr "RSTs"
-
-#: mainform_u.rqsosubmode
-msgctxt "mainform_u.rqsosubmode"
-msgid "SubMode"
-msgstr ""
-
-#: mainform_u.rqsosync
-#, fuzzy
-msgctxt "mainform_u.rqsosync"
-msgid "QSO"
-msgstr "рий"
-
-#: mainform_u.rqsotime
-#, fuzzy
-msgctxt "mainform_u.rqsotime"
-msgid "Time"
-msgstr "Время"
-
-#: mainform_u.rqsototal
-msgctxt "mainform_u.rqsototal"
-msgid " Total "
-msgstr ""
-
-#: mainform_u.rsaveqso
-#, fuzzy
-msgctxt "mainform_u.rsaveqso"
-msgid "Save QSO"
-msgstr "Сохранить QSO"
-
-#: mainform_u.rsendspot
-#, fuzzy
-msgctxt "mainform_u.rsendspot"
-msgid "Send spot"
-msgstr "Отправить спот"
-
-#: mainform_u.rstate
-#, fuzzy
-msgctxt "mainform_u.rstate"
-msgid "State"
-msgstr "State"
-
-#: mainform_u.rswitchdbmysql
-msgctxt "mainform_u.rswitchdbmysql"
-msgid "Switch base to MySQL"
-msgstr ""
-
-#: mainform_u.rswitchdbsqlite
-msgctxt "mainform_u.rswitchdbsqlite"
-msgid "Switch base to SQLite"
-msgstr ""
-
-#: mainform_u.rsync
-msgctxt "mainform_u.rsync"
-msgid ", in sync "
-msgstr ""
-
-#: mainform_u.rsyncok
-msgctxt "mainform_u.rsyncok"
-msgid "Done! Number of duplicates "
-msgstr ""
-
-#: mainform_u.rusers
-#, fuzzy
-msgctxt "mainform_u.rusers"
-msgid "User"
-msgstr "User"
-
-#: mainform_u.rvaliddx
-msgctxt "mainform_u.rvaliddx"
-msgid "Valid DX"
-msgstr ""
-
-#: mainform_u.rwarning
-#, fuzzy
-msgctxt "mainform_u.rwarning"
-msgid "Warning!"
-msgstr "Внимание!"
-
-#: mainform_u.rwelcomemessagemysql
-msgctxt "mainform_u.rwelcomemessagemysql"
-msgid "MySQL database selected! Welcome!"
-msgstr ""
-
-#: mainform_u.rwelcomemessagesqlite
-msgctxt "mainform_u.rwelcomemessagesqlite"
-msgid "SQLite database selected! Welcome!"
-msgstr ""
-
 #: qrzcom.ranswerserver
 msgctxt "qrzcom.ranswerserver"
 msgid "Server response:"
@@ -732,31 +275,46 @@ msgid "Wrong password"
 msgstr "Не верный пароль"
 
 #: resourcestr.rallfieldsmustbefilled
-#, fuzzy
 msgctxt "resourcestr.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
 msgstr "Всё поля должны быть заполнены!"
 
+#: resourcestr.rbuttoncheck
+msgctxt "resourcestr.rbuttoncheck"
+msgid "Check"
+msgstr "Проверить"
+
+#: resourcestr.rbuttondownload
+msgctxt "resourcestr.rbuttondownload"
+msgid "Download"
+msgstr "Загрузить"
+
+#: resourcestr.rbuttoninstall
+msgctxt "resourcestr.rbuttoninstall"
+msgid "Install"
+msgstr "Установить"
+
+#: resourcestr.rbytes
+msgctxt "resourcestr.rbytes"
+msgid " bytes"
+msgstr " байт"
+
 #: resourcestr.rcallsign
-#, fuzzy
 msgctxt "resourcestr.rcallsign"
 msgid "Callsign"
 msgstr "Позывной"
 
 #: resourcestr.rcannotdeldef
-#, fuzzy
 msgctxt "resourcestr.rcannotdeldef"
 msgid "Cannot delete default log"
 msgstr "Нельзя удалить журнал по умолчанию"
 
 #: resourcestr.rchecksettingsmysql
-#, fuzzy
 msgctxt "resourcestr.rchecksettingsmysql"
 msgid "Check MySQL DB Settings"
 msgstr "Проверьте настройки MySQL"
 
 #: resourcestr.rchecksettingssqlite
-#, fuzzy
 msgctxt "resourcestr.rchecksettingssqlite"
 msgid "Check SQLite DB Settings"
 msgstr "Проверьте настройки SQLite"
@@ -767,253 +325,215 @@ msgid "Are you sure you want to clear all entries?"
 msgstr ""
 
 #: resourcestr.rclearqso
-#, fuzzy
 msgctxt "resourcestr.rclearqso"
 msgid "Clear QSO input window"
 msgstr "Очистить поле ввода QSO"
 
 #: resourcestr.rclientconnected
-#, fuzzy
 msgctxt "resourcestr.rclientconnected"
 msgid "Client Connected:"
 msgstr "Клиент подключён:"
 
 #: resourcestr.rcontinent
-#, fuzzy
 msgctxt "resourcestr.rcontinent"
 msgid "Continent"
 msgstr "Континент"
 
 #: resourcestr.rcqzone
-#, fuzzy
 msgctxt "resourcestr.rcqzone"
 msgid "CQ Zone"
 msgstr "CQ Зона"
 
 #: resourcestr.rdatabasefault
-#, fuzzy
 msgctxt "resourcestr.rdatabasefault"
 msgid "Something went wrong ... Check the settings"
 msgstr "Что-то пошло не так... Проверьте настройки"
 
 #: resourcestr.rdberror
-#, fuzzy
 msgctxt "resourcestr.rdberror"
 msgid "Error while working with the database. Check connection and settings"
 msgstr "Ошибка работы с базой данных. проверьте подключение и настройки"
 
 #: resourcestr.rdbnotinit
-#, fuzzy
 msgctxt "resourcestr.rdbnotinit"
 msgid "The database is not initialized, go to the settings?"
 msgstr "База данных не инициализирована, перейти к настройкам?"
 
 #: resourcestr.rdefaultlogsel
-#, fuzzy
 msgctxt "resourcestr.rdefaultlogsel"
 msgid "Default log selected"
 msgstr "Журнал по умолчанию выбран"
 
 #: resourcestr.rdeletelog
-#, fuzzy
 msgctxt "resourcestr.rdeletelog"
 msgid "Are you sure you want to delete the log ?!"
 msgstr "Вы действительно хотите удалить журнал ?!"
 
 #: resourcestr.rdeleterecord
-#, fuzzy
 msgctxt "resourcestr.rdeleterecord"
 msgid "Delete Record "
 msgstr "Удалить запись "
 
 #: resourcestr.rdone
-#, fuzzy
 msgctxt "resourcestr.rdone"
 msgid "Done"
 msgstr "Готово"
 
 #: resourcestr.rduplicates
-#, fuzzy
 msgctxt "resourcestr.rduplicates"
 msgid "Duplicates "
 msgstr "Дубликаты "
 
 #: resourcestr.rdxccprefix
-#, fuzzy
 msgctxt "resourcestr.rdxccprefix"
 msgid "DXCC"
 msgstr "DXCC"
 
 #: resourcestr.rdxclusterconnecting
-#, fuzzy
 msgctxt "resourcestr.rdxclusterconnecting"
 msgid "Connect to Telnet Cluster"
 msgstr "Соединиться с DX кластером"
 
 #: resourcestr.rdxclusterdisconnect
-#, fuzzy
 msgctxt "resourcestr.rdxclusterdisconnect"
 msgid "You are disconnected from the DX cluster"
 msgstr "Вы отключены от DX кластера"
 
 #: resourcestr.rdxclusterdisconnecting
-#, fuzzy
 msgctxt "resourcestr.rdxclusterdisconnecting"
 msgid "Disconnect from Telnet Cluster"
 msgstr "Отключиться от DX кластера"
 
 #: resourcestr.rdxclusterwindowclear
-#, fuzzy
 msgctxt "resourcestr.rdxclusterwindowclear"
 msgid "Clear DX Cluster window"
 msgstr "Очистить окно DX кластера"
 
 #: resourcestr.rencall
-#, fuzzy
 msgctxt "resourcestr.rencall"
 msgid "You must enter a callsign"
 msgstr "Вы должны ввести позывной"
 
 #: resourcestr.rerrorxmlapi
-#, fuzzy
 msgctxt "resourcestr.rerrorxmlapi"
 msgid "Error XML API:"
 msgstr "Ошибка XML API:"
 
+#: resourcestr.rfailedtoloaddata
+msgid "Failed to load data"
+msgstr ""
+
 #: resourcestr.rfileerror
-#, fuzzy
 msgctxt "resourcestr.rfileerror"
 msgid "Error file:"
 msgstr "Файл ошибок:"
 
 #: resourcestr.rgrid
-#, fuzzy
 msgctxt "resourcestr.rgrid"
 msgid "Grid"
 msgstr "Локатор"
 
 #: resourcestr.rhaltlog
-#, fuzzy
 msgctxt "resourcestr.rhaltlog"
 msgid "The program will be completed, restart it!"
 msgstr "Выполнено успешно! Перезапустите программу"
 
 #: resourcestr.rimport
-#, fuzzy
 msgctxt "resourcestr.rimport"
 msgid "Import"
 msgstr "Импорт"
 
 #: resourcestr.rimporterrors
-#, fuzzy
 msgctxt "resourcestr.rimporterrors"
 msgid "Import Errors"
 msgstr "Ошибки импорта"
 
 #: resourcestr.rimportrecord
-#, fuzzy
 msgctxt "resourcestr.rimportrecord"
 msgid "Imported Records"
 msgstr "Импортировано записей"
 
 #: resourcestr.rinformationfromhamqth
-#, fuzzy
 msgctxt "resourcestr.rinformationfromhamqth"
 msgid "Information from HAMQTH"
 msgstr "Информация из HAMQTH"
 
 #: resourcestr.rinformationfromqrzcom
-#, fuzzy
 msgctxt "resourcestr.rinformationfromqrzcom"
 msgid "Information from QRZ.com"
 msgstr "Информация из QRZ.COM"
 
 #: resourcestr.rinformationfromqrzru
-#, fuzzy
 msgctxt "resourcestr.rinformationfromqrzru"
 msgid "Information from QRZ.ru"
 msgstr "Информация из QRZ.RU"
 
 #: resourcestr.riota
-#, fuzzy
 msgctxt "resourcestr.riota"
 msgid "IOTA"
 msgstr "IOTA"
 
 #: resourcestr.rituzone
-#, fuzzy
 msgctxt "resourcestr.rituzone"
 msgid "ITU Zone"
 msgstr "ITU Зона"
 
 #: resourcestr.rlanguagecomplite
-#, fuzzy
 msgctxt "resourcestr.rlanguagecomplite"
 msgid "Translation files download successfully"
 msgstr "Файлы переводов успешно загружены"
 
 #: resourcestr.rlogaddedsuccessfully
-#, fuzzy
 msgctxt "resourcestr.rlogaddedsuccessfully"
 msgid "Log added successfully"
 msgstr "Журнал успешно добавлен"
 
 #: resourcestr.rlogconwsjt
-#, fuzzy
 msgctxt "resourcestr.rlogconwsjt"
 msgid "EWLog connected to WSJT"
 msgstr "EWLog подключился к WSJT"
 
 #: resourcestr.rlognconwsjt
-#, fuzzy
 msgctxt "resourcestr.rlognconwsjt"
 msgid "EWLog not connected to WSJT"
 msgstr "EWLog отключился от WSJT"
 
 #: resourcestr.rlotwrecdate
-#, fuzzy
 msgctxt "resourcestr.rlotwrecdate"
 msgid "LOTWr Date"
 msgstr "LOTWr Дата"
 
 #: resourcestr.rmainprefix
-#, fuzzy
 msgctxt "resourcestr.rmainprefix"
 msgid "Prefix"
 msgstr "Префикс"
 
 #: resourcestr.rmanualset
-#, fuzzy
 msgctxt "resourcestr.rmanualset"
 msgid "Manual Set"
 msgstr "Manual Set"
 
 #: resourcestr.rmysqlhasgoneaway
-#, fuzzy
 msgctxt "resourcestr.rmysqlhasgoneaway"
 msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
 msgstr "Нет подключения к MySQL! Проверьте подключение и настройки. Подключаюсь к SQLIte"
 
 #: resourcestr.rmysqlnotset
-#, fuzzy
 msgctxt "resourcestr.rmysqlnotset"
 msgid "MySQL database settings not configured"
 msgstr "База данных MySQL не настроена"
 
 #: resourcestr.rnocalcdxcc
-#, fuzzy
 msgctxt "resourcestr.rnocalcdxcc"
 msgid "No Calc DXCC"
 msgstr "No Calc DXCC"
 
 #: resourcestr.rnotcallsign
-#, fuzzy
 msgctxt "resourcestr.rnotcallsign"
 msgid "No callsign entered to view"
 msgstr "Не введён позывной для просмотра"
 
 #: resourcestr.rnotconfigqrzru
-#, fuzzy
 msgctxt "resourcestr.rnotconfigqrzru"
 msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
 msgstr "В настройках, необходимо ввести логин и пароль, для доступа к XML API QRZ.ru"
@@ -1024,127 +544,106 @@ msgid "The log configuration, do not specify the data to connect to eQSL.cc"
 msgstr ""
 
 #: resourcestr.rnothingimport
-#, fuzzy
 msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
 msgstr "Нечего импортировать"
 
 #: resourcestr.rnumberdup
-#, fuzzy
 msgctxt "resourcestr.rnumberdup"
 msgid "Number of duplicates"
 msgstr "Количество дубликатов"
 
 #: resourcestr.romname
-#, fuzzy
 msgctxt "resourcestr.romname"
 msgid "Name"
 msgstr "Имя"
 
 #: resourcestr.romqth
-#, fuzzy
 msgctxt "resourcestr.romqth"
 msgid "QTH"
 msgstr "QTH"
 
 #: resourcestr.rphotofromqrzru
-#, fuzzy
 msgctxt "resourcestr.rphotofromqrzru"
 msgid "Photo from QRZ.RU"
 msgstr "Фото из QRZ.RU"
 
 #: resourcestr.rprocesseddata
-#, fuzzy
 msgctxt "resourcestr.rprocesseddata"
 msgid "Processed data:"
 msgstr "Обработка данных:"
 
 #: resourcestr.rprocessing
-#, fuzzy
 msgctxt "resourcestr.rprocessing"
 msgid "Processing"
 msgstr "Обработка"
 
 #: resourcestr.rqsl
-#, fuzzy
 msgctxt "resourcestr.rqsl"
 msgid "QSL"
 msgstr "QSL"
 
 #: resourcestr.rqslmanager
-#, fuzzy
 msgctxt "resourcestr.rqslmanager"
 msgid "Manager"
 msgstr "Менеджер"
 
 #: resourcestr.rqslrecdate
-#, fuzzy
 msgctxt "resourcestr.rqslrecdate"
 msgid "QSLr Date"
 msgstr "QSLr Дата"
 
 #: resourcestr.rqsls
-#, fuzzy
 msgctxt "resourcestr.rqsls"
 msgid "QSLs"
 msgstr "QSLs"
 
 #: resourcestr.rqslsentdate
-#, fuzzy
 msgctxt "resourcestr.rqslsentdate"
 msgid "QSLs Date"
 msgstr "QSLs Дата"
 
 #: resourcestr.rqsl_rcvd_via
-#, fuzzy
 msgctxt "resourcestr.rqsl_rcvd_via"
 msgid "QSL r VIA"
 msgstr "QSL r VIA"
 
 #: resourcestr.rqsl_sent_via
-#, fuzzy
 msgctxt "resourcestr.rqsl_sent_via"
 msgid "QSL s VIA"
 msgstr "QSL s VIA"
 
 #: resourcestr.rqsoband
-#, fuzzy
 msgctxt "resourcestr.rqsoband"
 msgid "Band"
 msgstr "Диапазон"
 
 #: resourcestr.rqsobandfreq
-#, fuzzy
 msgctxt "resourcestr.rqsobandfreq"
 msgid "Frequency"
 msgstr "Частота"
 
 #: resourcestr.rqsodate
-#, fuzzy
 msgctxt "resourcestr.rqsodate"
 msgid "Date"
 msgstr "Дата"
 
 #: resourcestr.rqsomode
-#, fuzzy
 msgctxt "resourcestr.rqsomode"
 msgid "Mode"
 msgstr "Мода"
 
 #: resourcestr.rqsonotsave
-#, fuzzy
 msgctxt "resourcestr.rqsonotsave"
 msgid "QSO not saved, quit anyway ?!"
 msgstr "QSO не сохранено, действительно выйти?!"
 
 #: resourcestr.rqsoreportrecived
-#, fuzzy
 msgctxt "resourcestr.rqsoreportrecived"
 msgid "RSTr"
 msgstr "RSTr"
 
 #: resourcestr.rqsoreportsent
-#, fuzzy
 msgctxt "resourcestr.rqsoreportsent"
 msgid "RSTs"
 msgstr "RSTs"
@@ -1155,31 +654,26 @@ msgid "SubMode"
 msgstr ""
 
 #: resourcestr.rqsosync
-#, fuzzy
 msgctxt "resourcestr.rqsosync"
 msgid "QSO"
 msgstr "QSO"
 
 #: resourcestr.rqsotime
-#, fuzzy
 msgctxt "resourcestr.rqsotime"
 msgid "Time"
 msgstr "Время"
 
 #: resourcestr.rqsototal
-#, fuzzy
 msgctxt "resourcestr.rqsototal"
 msgid " Total "
 msgstr " из "
 
 #: resourcestr.rsaveqso
-#, fuzzy
 msgctxt "resourcestr.rsaveqso"
 msgid "Save QSO"
 msgstr "Сохранить QSO"
 
 #: resourcestr.rsendspot
-#, fuzzy
 msgctxt "resourcestr.rsendspot"
 msgid "Send spot"
 msgstr "Отправить спот"
@@ -1189,57 +683,54 @@ msgctxt "resourcestr.rsetasdefaultjournal"
 msgid "Set as default journal?"
 msgstr ""
 
+#: resourcestr.rsizefile
+msgctxt "resourcestr.rsizefile"
+msgid "File size: "
+msgstr "Размер файла: "
+
 #: resourcestr.rstate
-#, fuzzy
 msgctxt "resourcestr.rstate"
 msgid "State"
 msgstr "State"
 
 #: resourcestr.rstatusconnecteqsl
-#, fuzzy
 msgctxt "resourcestr.rstatusconnecteqsl"
 msgid "Status: Connceting to eQSL.cc"
 msgstr "Статус: Соединение с eQSL.cc"
 
 #: resourcestr.rstatusdone
-#, fuzzy
 msgctxt "resourcestr.rstatusdone"
 msgid "Status: Done"
 msgstr "Статус: Готово"
 
 #: resourcestr.rstatusdownloadeqsl
-#, fuzzy
 msgctxt "resourcestr.rstatusdownloadeqsl"
 msgid "Status: Download eQSL.cc"
 msgstr "Статус: Загрузка eQSL.cc"
 
 #: resourcestr.rstatusnotdata
-#, fuzzy
 msgctxt "resourcestr.rstatusnotdata"
 msgid "Status: Not data"
 msgstr "Статус: Нет данных"
 
 #: resourcestr.rstatussavefile
-#, fuzzy
 msgctxt "resourcestr.rstatussavefile"
 msgid "Status: Saving file"
 msgstr "Статус: Сохранение файла"
 
 #: resourcestr.rswitchdbmysql
-#, fuzzy
 msgctxt "resourcestr.rswitchdbmysql"
 msgid "Switch base to MySQL"
 msgstr "Переключиться на MySQL"
 
 #: resourcestr.rswitchdbsqlite
-#, fuzzy
 msgctxt "resourcestr.rswitchdbsqlite"
 msgid "Switch base to SQLite"
 msgstr "Переключиться на SQLite"
 
 #: resourcestr.rswitchtoanewlog
 msgid "Switch to a new log?"
-msgstr ""
+msgstr "Переключиться на новый журнал?"
 
 #: resourcestr.rsync
 msgctxt "resourcestr.rsync"
@@ -1247,37 +738,86 @@ msgid ", in sync "
 msgstr ""
 
 #: resourcestr.rsyncok
-#, fuzzy
 msgctxt "resourcestr.rsyncok"
 msgid "Done! Number of duplicates "
 msgstr "Готово! Количество дубликатов "
 
+#: resourcestr.rupdatedontcopy
+msgctxt "resourcestr.rupdatedontcopy"
+msgid "Do not copy"
+msgstr "Не могу скопировать"
+
+#: resourcestr.rupdaterequired
+msgctxt "resourcestr.rupdaterequired"
+msgid "Update required"
+msgstr "Требует обновления"
+
+#: resourcestr.rupdatestatus
+msgctxt "resourcestr.rupdatestatus"
+msgid "Update status: "
+msgstr "Статус обновления: "
+
+#: resourcestr.rupdatestatusactual
+msgctxt "resourcestr.rupdatestatusactual"
+msgid "Update status: Actual"
+msgstr "Статус обновления: Актуально"
+
+#: resourcestr.rupdatestatuscheckupdate
+msgctxt "resourcestr.rupdatestatuscheckupdate"
+msgid "Update status: Check version"
+msgstr "Статус обновления: Проверка версии"
+
+#: resourcestr.rupdatestatusdownload
+msgctxt "resourcestr.rupdatestatusdownload"
+msgid "Update status: Download?"
+msgstr "Статус обновления: Загрузить?"
+
+#: resourcestr.rupdatestatusdownloadbase
+msgctxt "resourcestr.rupdatestatusdownloadbase"
+msgid "Update status: Download Database"
+msgstr "Статус обновления: Загрузка базы"
+
+#: resourcestr.rupdatestatusdownloadcallbook
+msgctxt "resourcestr.rupdatestatusdownloadcallbook"
+msgid "Update status: Download CallBook"
+msgstr "Статус обновления: Загрузка Callbook"
+
+#: resourcestr.rupdatestatusdownloadchanges
+msgctxt "resourcestr.rupdatestatusdownloadchanges"
+msgid "Update status: Download Changes"
+msgstr "Статус обновления: Загрузка изменений"
+
+#: resourcestr.rupdatestatusdownloads
+msgctxt "resourcestr.rupdatestatusdownloads"
+msgid "Update status: Downloads"
+msgstr "Статус обновления: Загрузка"
+
+#: resourcestr.rupdatestatusrequiredinstall
+msgctxt "resourcestr.rupdatestatusrequiredinstall"
+msgid "Update status: Installation required"
+msgstr "Статус обновления: Требует обновления"
+
 #: resourcestr.rusers
-#, fuzzy
 msgctxt "resourcestr.rusers"
 msgid "User"
 msgstr "User"
 
 #: resourcestr.rvaliddx
-#, fuzzy
 msgctxt "resourcestr.rvaliddx"
 msgid "Valid DX"
 msgstr "Valid DX"
 
 #: resourcestr.rwarning
-#, fuzzy
 msgctxt "resourcestr.rwarning"
 msgid "Warning!"
 msgstr "Внимание!"
 
 #: resourcestr.rwelcomemessagemysql
-#, fuzzy
 msgctxt "resourcestr.rwelcomemessagemysql"
 msgid "MySQL database selected! Welcome!"
 msgstr "Выбрана база данных MySQL! Добро пожаловать!"
 
 #: resourcestr.rwelcomemessagesqlite
-#, fuzzy
 msgctxt "resourcestr.rwelcomemessagesqlite"
 msgid "SQLite database selected! Welcome!"
 msgstr "Выбрана база данных SQLite! Добро пожаловать!"
@@ -1285,42 +825,6 @@ msgstr "Выбрана база данных SQLite! Добро пожалова
 #: sendtelnetspot_form_u.rnotalldata
 msgid "Not all data entered"
 msgstr "Не все данные заполнены"
-
-#: serviceform_u.rnotdataforconnect
-msgctxt "serviceform_u.rnotdataforconnect"
-msgid "The log configuration, do not specify the data to connect to eQSL.cc"
-msgstr ""
-
-#: serviceform_u.rprocesseddata
-#, fuzzy
-msgctxt "serviceform_u.rprocesseddata"
-msgid "Processed data:"
-msgstr "Обработка данных:"
-
-#: serviceform_u.rstatusconnecteqsl
-msgctxt "serviceform_u.rstatusconnecteqsl"
-msgid "Status: Connceting to eQSL.cc"
-msgstr ""
-
-#: serviceform_u.rstatusdone
-msgctxt "serviceform_u.rstatusdone"
-msgid "Status: Done"
-msgstr ""
-
-#: serviceform_u.rstatusdownloadeqsl
-msgctxt "serviceform_u.rstatusdownloadeqsl"
-msgid "Status: Download eQSL.cc"
-msgstr ""
-
-#: serviceform_u.rstatusnotdata
-msgctxt "serviceform_u.rstatusnotdata"
-msgid "Status: Not data"
-msgstr ""
-
-#: serviceform_u.rstatussavefile
-msgctxt "serviceform_u.rstatussavefile"
-msgid "Status: Saving file"
-msgstr ""
 
 #: settingscat_u.rlibhamlibnotfound
 msgid "HamLib library not found"
@@ -2113,74 +1617,54 @@ msgid "QSL"
 msgstr "QSL"
 
 #: teditqso_form.dbgrid1.columns[10].title.caption
-#, fuzzy
-#| msgid "Grid"
 msgctxt "teditqso_form.dbgrid1.columns[10].title.caption"
 msgid "State"
-msgstr "Локатор"
+msgstr "State"
 
 #: teditqso_form.dbgrid1.columns[11].title.caption
-#, fuzzy
-#| msgid "RSTs"
 msgctxt "teditqso_form.dbgrid1.columns[11].title.caption"
 msgid "Grid"
-msgstr "RSTs"
+msgstr "Локатор"
 
 #: teditqso_form.dbgrid1.columns[12].title.caption
-#, fuzzy
-#| msgid "RSTr"
 msgctxt "teditqso_form.dbgrid1.columns[12].title.caption"
 msgid "RSTs"
-msgstr "RSTr"
+msgstr "RSTs"
 
 #: teditqso_form.dbgrid1.columns[13].title.caption
-#, fuzzy
-#| msgid "IOTA"
 msgctxt "teditqso_form.dbgrid1.columns[13].title.caption"
 msgid "RSTr"
-msgstr "IOTA"
+msgstr "RSTr"
 
 #: teditqso_form.dbgrid1.columns[14].title.caption
-#, fuzzy
-#| msgid "Manager"
 msgctxt "teditqso_form.dbgrid1.columns[14].title.caption"
 msgid "IOTA"
-msgstr "Менеджер"
+msgstr "IOTA"
 
 #: teditqso_form.dbgrid1.columns[15].title.caption
-#, fuzzy
-#| msgid "QSLs Date"
 msgctxt "teditqso_form.dbgrid1.columns[15].title.caption"
 msgid "Manager"
-msgstr "QSLs Дата"
+msgstr "Менеджер"
 
 #: teditqso_form.dbgrid1.columns[16].title.caption
-#, fuzzy
-#| msgid "QSLr Date"
 msgctxt "teditqso_form.dbgrid1.columns[16].title.caption"
 msgid "QSLs Date"
-msgstr "QSLr Дата"
+msgstr "QSLs Дата"
 
 #: teditqso_form.dbgrid1.columns[17].title.caption
-#, fuzzy
-#| msgid "LOTWr Date"
 msgctxt "teditqso_form.dbgrid1.columns[17].title.caption"
 msgid "QSLr Date"
-msgstr "LOTWr Дата"
+msgstr "QSLr Дата"
 
 #: teditqso_form.dbgrid1.columns[18].title.caption
-#, fuzzy
-#| msgid "Prefix"
 msgctxt "teditqso_form.dbgrid1.columns[18].title.caption"
 msgid "LOTWr Date"
-msgstr "Префикс"
+msgstr "LOTWr Дата"
 
 #: teditqso_form.dbgrid1.columns[19].title.caption
-#, fuzzy
-#| msgid "DXCC"
 msgctxt "teditqso_form.dbgrid1.columns[19].title.caption"
 msgid "Prefix"
-msgstr "DXCC"
+msgstr "Префикс"
 
 #: teditqso_form.dbgrid1.columns[1].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[1].title.caption"
@@ -2188,67 +1672,49 @@ msgid "QSLs"
 msgstr "QSLs"
 
 #: teditqso_form.dbgrid1.columns[20].title.caption
-#, fuzzy
-#| msgid "CQ Zone"
 msgctxt "teditqso_form.dbgrid1.columns[20].title.caption"
 msgid "DXCC"
-msgstr "CQ Зона"
+msgstr "DXCC"
 
 #: teditqso_form.dbgrid1.columns[21].title.caption
-#, fuzzy
-#| msgid "ITU Zone"
 msgctxt "teditqso_form.dbgrid1.columns[21].title.caption"
 msgid "CQ Zone"
-msgstr "ITU Зона"
+msgstr "CQ Зона"
 
 #: teditqso_form.dbgrid1.columns[22].title.caption
-#, fuzzy
-#| msgid "Manual Set"
 msgctxt "teditqso_form.dbgrid1.columns[22].title.caption"
 msgid "ITU Zone"
-msgstr "Manual Set"
+msgstr "ITU Зона"
 
 #: teditqso_form.dbgrid1.columns[23].title.caption
-#, fuzzy
-#| msgid "Continent"
 msgctxt "teditqso_form.dbgrid1.columns[23].title.caption"
 msgid "Manual Set"
-msgstr "Континент"
+msgstr "Manual Set"
 
 #: teditqso_form.dbgrid1.columns[24].title.caption
-#, fuzzy
-#| msgid "Valid DX"
 msgctxt "teditqso_form.dbgrid1.columns[24].title.caption"
 msgid "Continent"
-msgstr "Valid DX"
+msgstr "Континент"
 
 #: teditqso_form.dbgrid1.columns[25].title.caption
-#, fuzzy
-#| msgid "QSL r VIA"
 msgctxt "teditqso_form.dbgrid1.columns[25].title.caption"
 msgid "Valid DX"
-msgstr "QSL r VIA"
+msgstr "Valid DX"
 
 #: teditqso_form.dbgrid1.columns[26].title.caption
-#, fuzzy
-#| msgid "QSL s VIA"
 msgctxt "teditqso_form.dbgrid1.columns[26].title.caption"
 msgid "QSL r VIA"
-msgstr "QSL s VIA"
+msgstr "QSL r VIA"
 
 #: teditqso_form.dbgrid1.columns[27].title.caption
-#, fuzzy
-#| msgid "User"
 msgctxt "teditqso_form.dbgrid1.columns[27].title.caption"
 msgid "QSL s VIA"
-msgstr "User"
+msgstr "QSL s VIA"
 
 #: teditqso_form.dbgrid1.columns[28].title.caption
-#, fuzzy
-#| msgid "No calc DXCC"
 msgctxt "teditqso_form.dbgrid1.columns[28].title.caption"
 msgid "User"
-msgstr "No calc DXCC"
+msgstr "User"
 
 #: teditqso_form.dbgrid1.columns[29].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[29].title.caption"
@@ -2281,25 +1747,19 @@ msgid "Mode"
 msgstr "Мода"
 
 #: teditqso_form.dbgrid1.columns[7].title.caption
-#, fuzzy
-#| msgid "Name"
 msgctxt "teditqso_form.dbgrid1.columns[7].title.caption"
 msgid "QSOSubMode"
-msgstr "Имя"
+msgstr "СабМода"
 
 #: teditqso_form.dbgrid1.columns[8].title.caption
-#, fuzzy
-#| msgid "QTH"
 msgctxt "teditqso_form.dbgrid1.columns[8].title.caption"
 msgid "Name"
-msgstr "QTH"
+msgstr "Имя"
 
 #: teditqso_form.dbgrid1.columns[9].title.caption
-#, fuzzy
-#| msgid "State"
 msgctxt "teditqso_form.dbgrid1.columns[9].title.caption"
 msgid "QTH"
-msgstr "State"
+msgstr "QTH"
 
 #: teditqso_form.groupbox1.caption
 msgctxt "teditqso_form.groupbox1.caption"
@@ -2609,23 +2069,22 @@ msgid "Record Filter"
 msgstr "Фильтр записей"
 
 #: tfm_form.button1.caption
-#, fuzzy
 msgctxt "tfm_form.button1.caption"
 msgid "Close"
 msgstr "Закрыть"
 
 #: tfm_form.button2.caption
 msgid "Save Band"
-msgstr ""
+msgstr "Сохранить диапазон"
 
 #: tfm_form.caption
 msgctxt "tfm_form.caption"
 msgid "Frequency Manager"
-msgstr ""
+msgstr "Частотный Менеджер"
 
 #: tfm_form.checkbox1.caption
 msgid "Enabled Band"
-msgstr ""
+msgstr "Включить диапазон"
 
 #: tfm_form.groupbox1.caption
 msgctxt "tfm_form.groupbox1.caption"
@@ -2633,7 +2092,6 @@ msgid "Options"
 msgstr ""
 
 #: tfm_form.labelededit1.editlabel.caption
-#, fuzzy
 msgctxt "tfm_form.labelededit1.editlabel.caption"
 msgid "Band"
 msgstr "Диапазон"
@@ -2659,7 +2117,6 @@ msgid "SSB Begin"
 msgstr ""
 
 #: tfm_form.listview1.columns[0].caption
-#, fuzzy
 msgctxt "tfm_form.listview1.columns[0].caption"
 msgid "Band"
 msgstr "Диапазон"
@@ -3024,13 +2481,11 @@ msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
 #: tlogconfigform.checkbox4.caption
-#, fuzzy
 msgctxt "tlogconfigform.checkbox4.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
 #: tlogconfigform.checkbox5.caption
-#, fuzzy
 msgctxt "tlogconfigform.checkbox5.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
@@ -3119,13 +2574,11 @@ msgid "Password"
 msgstr "Пароль"
 
 #: tlogconfigform.label25.caption
-#, fuzzy
 msgctxt "tlogconfigform.label25.caption"
 msgid "Login"
 msgstr "Логин"
 
 #: tlogconfigform.label26.caption
-#, fuzzy
 msgctxt "tlogconfigform.label26.caption"
 msgid "Password"
 msgstr "Пароль"
@@ -3140,20 +2593,16 @@ msgid "ClubLog"
 msgstr ""
 
 #: tlogconfigform.label29.caption
-#, fuzzy
-#| msgid "Login"
 msgctxt "tlogconfigform.label29.caption"
 msgid "Login (email)"
-msgstr "Логин"
+msgstr "Логин (email)"
 
 #: tlogconfigform.label30.caption
-#, fuzzy
 msgctxt "tlogconfigform.label30.caption"
 msgid "Password"
 msgstr "Пароль"
 
 #: tlogconfigform.label31.caption
-#, fuzzy
 msgctxt "tlogconfigform.label31.caption"
 msgid "Login"
 msgstr "Логин"
@@ -3217,7 +2666,6 @@ msgid "Services"
 msgstr "Сервисы"
 
 #: tlogconfigform.tabsheet3.caption
-#, fuzzy
 msgctxt "tlogconfigform.tabsheet3.caption"
 msgid "Services"
 msgstr "Сервисы"
@@ -3281,74 +2729,54 @@ msgid "QSL"
 msgstr "QSL"
 
 #: tmainform.dbgrid1.columns[10].title.caption
-#, fuzzy
-#| msgid "Grid"
 msgctxt "tmainform.dbgrid1.columns[10].title.caption"
 msgid "State"
-msgstr "Локатор"
+msgstr "State"
 
 #: tmainform.dbgrid1.columns[11].title.caption
-#, fuzzy
-#| msgid "RSTs"
 msgctxt "tmainform.dbgrid1.columns[11].title.caption"
 msgid "Grid"
-msgstr "RSTs"
+msgstr "Локатор"
 
 #: tmainform.dbgrid1.columns[12].title.caption
-#, fuzzy
-#| msgid "RSTr"
 msgctxt "tmainform.dbgrid1.columns[12].title.caption"
 msgid "RSTs"
-msgstr "RSTr"
+msgstr "RSTs"
 
 #: tmainform.dbgrid1.columns[13].title.caption
-#, fuzzy
-#| msgid "IOTA"
 msgctxt "tmainform.dbgrid1.columns[13].title.caption"
 msgid "RSTr"
-msgstr "IOTA"
+msgstr "RSTr"
 
 #: tmainform.dbgrid1.columns[14].title.caption
-#, fuzzy
-#| msgid "Manager"
 msgctxt "tmainform.dbgrid1.columns[14].title.caption"
 msgid "IOTA"
-msgstr "Менеджер"
+msgstr "IOTA"
 
 #: tmainform.dbgrid1.columns[15].title.caption
-#, fuzzy
-#| msgid "QSLs Date"
 msgctxt "tmainform.dbgrid1.columns[15].title.caption"
 msgid "Manager"
-msgstr "QSLs Дата"
+msgstr "Менеджер"
 
 #: tmainform.dbgrid1.columns[16].title.caption
-#, fuzzy
-#| msgid "QSLr Date"
 msgctxt "tmainform.dbgrid1.columns[16].title.caption"
 msgid "QSLs Date"
-msgstr "QSLr Дата"
+msgstr "QSLs Дата"
 
 #: tmainform.dbgrid1.columns[17].title.caption
-#, fuzzy
-#| msgid "LOTWr Date"
 msgctxt "tmainform.dbgrid1.columns[17].title.caption"
 msgid "QSLr Date"
-msgstr "LOTWr Дата"
+msgstr "QSLr Дата"
 
 #: tmainform.dbgrid1.columns[18].title.caption
-#, fuzzy
-#| msgid "Prefix"
 msgctxt "tmainform.dbgrid1.columns[18].title.caption"
 msgid "LOTWr Date"
-msgstr "Префикс"
+msgstr "LOTWr Дата"
 
 #: tmainform.dbgrid1.columns[19].title.caption
-#, fuzzy
-#| msgid "DXCC"
 msgctxt "tmainform.dbgrid1.columns[19].title.caption"
 msgid "Prefix"
-msgstr "DXCC"
+msgstr "Префикс"
 
 #: tmainform.dbgrid1.columns[1].title.caption
 msgctxt "tmainform.dbgrid1.columns[1].title.caption"
@@ -3356,73 +2784,54 @@ msgid "QSLs"
 msgstr "QSLs"
 
 #: tmainform.dbgrid1.columns[20].title.caption
-#, fuzzy
-#| msgid "CQ Zone"
 msgctxt "tmainform.dbgrid1.columns[20].title.caption"
 msgid "DXCC"
-msgstr "CQ Зона"
+msgstr "DXCC"
 
 #: tmainform.dbgrid1.columns[21].title.caption
-#, fuzzy
-#| msgid "ITU Zone"
 msgctxt "tmainform.dbgrid1.columns[21].title.caption"
 msgid "CQ Zone"
-msgstr "ITU Зона"
+msgstr "CQ Зона"
 
 #: tmainform.dbgrid1.columns[22].title.caption
-#, fuzzy
-#| msgid "Manual Set"
 msgctxt "tmainform.dbgrid1.columns[22].title.caption"
 msgid "ITU Zone"
-msgstr "Manual Set"
+msgstr "ITU Зона"
 
 #: tmainform.dbgrid1.columns[23].title.caption
-#, fuzzy
-#| msgid "Continent"
 msgctxt "tmainform.dbgrid1.columns[23].title.caption"
 msgid "Manual Set"
-msgstr "Континент"
+msgstr "Manual Set"
 
 #: tmainform.dbgrid1.columns[24].title.caption
-#, fuzzy
-#| msgid "Valid DX"
 msgctxt "tmainform.dbgrid1.columns[24].title.caption"
 msgid "Continent"
-msgstr "Valid DX"
+msgstr "Континент"
 
 #: tmainform.dbgrid1.columns[25].title.caption
-#, fuzzy
-#| msgid "QSL r VIA"
 msgctxt "tmainform.dbgrid1.columns[25].title.caption"
 msgid "Valid DX"
-msgstr "QSL r VIA"
+msgstr "Valid DX"
 
 #: tmainform.dbgrid1.columns[26].title.caption
-#, fuzzy
-#| msgid "QSL s VIA"
 msgctxt "tmainform.dbgrid1.columns[26].title.caption"
 msgid "QSL r VIA"
-msgstr "QSL s VIA"
+msgstr "QSL r VIA"
 
 #: tmainform.dbgrid1.columns[27].title.caption
-#, fuzzy
-#| msgid "User"
 msgctxt "tmainform.dbgrid1.columns[27].title.caption"
 msgid "QSL s VIA"
-msgstr "User"
+msgstr "QSL s VIA"
 
 #: tmainform.dbgrid1.columns[28].title.caption
-#, fuzzy
-#| msgid "No calc DXCC"
 msgctxt "tmainform.dbgrid1.columns[28].title.caption"
 msgid "User"
-msgstr "No calc DXCC"
+msgstr "User"
 
 #: tmainform.dbgrid1.columns[29].title.caption
-#, fuzzy
 msgctxt "tmainform.dbgrid1.columns[29].title.caption"
 msgid "No calc DXCC"
-msgstr "No calc DXCC"
+msgstr "No Calc DXCC"
 
 #: tmainform.dbgrid1.columns[2].title.caption
 msgctxt "tmainform.dbgrid1.columns[2].title.caption"
@@ -3435,11 +2844,9 @@ msgid "Time"
 msgstr "Время"
 
 #: tmainform.dbgrid1.columns[4].title.caption
-#, fuzzy
-#| msgid "Band"
 msgctxt "tmainform.dbgrid1.columns[4].title.caption"
 msgid "Frequency"
-msgstr "Диапазон"
+msgstr "Частота"
 
 #: tmainform.dbgrid1.columns[5].title.caption
 msgctxt "tmainform.dbgrid1.columns[5].title.caption"
@@ -3452,25 +2859,19 @@ msgid "Mode"
 msgstr "Мода"
 
 #: tmainform.dbgrid1.columns[7].title.caption
-#, fuzzy
-#| msgid "Name"
 msgctxt "tmainform.dbgrid1.columns[7].title.caption"
 msgid "QSOSubMode"
-msgstr "Имя"
+msgstr "СабМода"
 
 #: tmainform.dbgrid1.columns[8].title.caption
-#, fuzzy
-#| msgid "QTH"
 msgctxt "tmainform.dbgrid1.columns[8].title.caption"
 msgid "Name"
-msgstr "QTH"
+msgstr "Имя"
 
 #: tmainform.dbgrid1.columns[9].title.caption
-#, fuzzy
-#| msgid "State"
 msgctxt "tmainform.dbgrid1.columns[9].title.caption"
 msgid "QTH"
-msgstr "State"
+msgstr "QTH"
 
 #: tmainform.dbgrid2.columns[0].title.caption
 msgctxt "tmainform.dbgrid2.columns[0].title.caption"
@@ -3478,74 +2879,54 @@ msgid "QSL"
 msgstr "QSL"
 
 #: tmainform.dbgrid2.columns[10].title.caption
-#, fuzzy
-#| msgid "Grid"
 msgctxt "tmainform.dbgrid2.columns[10].title.caption"
 msgid "State"
-msgstr "Локатор"
+msgstr "State"
 
 #: tmainform.dbgrid2.columns[11].title.caption
-#, fuzzy
-#| msgid "RSTs"
 msgctxt "tmainform.dbgrid2.columns[11].title.caption"
 msgid "Grid"
-msgstr "RSTs"
+msgstr "Локатор"
 
 #: tmainform.dbgrid2.columns[12].title.caption
-#, fuzzy
-#| msgid "RSTr"
 msgctxt "tmainform.dbgrid2.columns[12].title.caption"
 msgid "RSTs"
-msgstr "RSTr"
+msgstr "RSTs"
 
 #: tmainform.dbgrid2.columns[13].title.caption
-#, fuzzy
-#| msgid "IOTA"
 msgctxt "tmainform.dbgrid2.columns[13].title.caption"
 msgid "RSTr"
-msgstr "IOTA"
+msgstr "RSTr"
 
 #: tmainform.dbgrid2.columns[14].title.caption
-#, fuzzy
-#| msgid "Manager"
 msgctxt "tmainform.dbgrid2.columns[14].title.caption"
 msgid "IOTA"
-msgstr "Менеджер"
+msgstr "IOTA"
 
 #: tmainform.dbgrid2.columns[15].title.caption
-#, fuzzy
-#| msgid "QSLs Date"
 msgctxt "tmainform.dbgrid2.columns[15].title.caption"
 msgid "Manager"
-msgstr "QSLs Дата"
+msgstr "Менеджер"
 
 #: tmainform.dbgrid2.columns[16].title.caption
-#, fuzzy
-#| msgid "QSLr Date"
 msgctxt "tmainform.dbgrid2.columns[16].title.caption"
 msgid "QSLs Date"
-msgstr "QSLr Дата"
+msgstr "QSLs Дата"
 
 #: tmainform.dbgrid2.columns[17].title.caption
-#, fuzzy
-#| msgid "LOTWr Date"
 msgctxt "tmainform.dbgrid2.columns[17].title.caption"
 msgid "QSLr Date"
-msgstr "LOTWr Дата"
+msgstr "QSLr Дата"
 
 #: tmainform.dbgrid2.columns[18].title.caption
-#, fuzzy
-#| msgid "Prefix"
 msgctxt "tmainform.dbgrid2.columns[18].title.caption"
 msgid "LOTWr Date"
-msgstr "Префикс"
+msgstr "LOTWr Дата"
 
 #: tmainform.dbgrid2.columns[19].title.caption
-#, fuzzy
-#| msgid "DXCC"
 msgctxt "tmainform.dbgrid2.columns[19].title.caption"
 msgid "Prefix"
-msgstr "DXCC"
+msgstr "Префикс"
 
 #: tmainform.dbgrid2.columns[1].title.caption
 msgctxt "tmainform.dbgrid2.columns[1].title.caption"
@@ -3553,73 +2934,54 @@ msgid "QSLs"
 msgstr "QSLs"
 
 #: tmainform.dbgrid2.columns[20].title.caption
-#, fuzzy
-#| msgid "CQ Zone"
 msgctxt "tmainform.dbgrid2.columns[20].title.caption"
 msgid "DXCC"
-msgstr "CQ Зона"
+msgstr "DXCC"
 
 #: tmainform.dbgrid2.columns[21].title.caption
-#, fuzzy
-#| msgid "ITU Zone"
 msgctxt "tmainform.dbgrid2.columns[21].title.caption"
 msgid "CQ Zone"
-msgstr "ITU Зона"
+msgstr "CQ Зона"
 
 #: tmainform.dbgrid2.columns[22].title.caption
-#, fuzzy
-#| msgid "Manual Set"
 msgctxt "tmainform.dbgrid2.columns[22].title.caption"
 msgid "ITU Zone"
-msgstr "Manual Set"
+msgstr "ITU Зона"
 
 #: tmainform.dbgrid2.columns[23].title.caption
-#, fuzzy
-#| msgid "Continent"
 msgctxt "tmainform.dbgrid2.columns[23].title.caption"
 msgid "Manual Set"
-msgstr "Континент"
+msgstr "Manual Set"
 
 #: tmainform.dbgrid2.columns[24].title.caption
-#, fuzzy
-#| msgid "Valid DX"
 msgctxt "tmainform.dbgrid2.columns[24].title.caption"
 msgid "Continent"
-msgstr "Valid DX"
+msgstr "Континент"
 
 #: tmainform.dbgrid2.columns[25].title.caption
-#, fuzzy
-#| msgid "QSL r VIA"
 msgctxt "tmainform.dbgrid2.columns[25].title.caption"
 msgid "Valid DX"
-msgstr "QSL r VIA"
+msgstr "Valid DX"
 
 #: tmainform.dbgrid2.columns[26].title.caption
-#, fuzzy
-#| msgid "QSL s VIA"
 msgctxt "tmainform.dbgrid2.columns[26].title.caption"
 msgid "QSL r VIA"
-msgstr "QSL s VIA"
+msgstr "QSL r VIA"
 
 #: tmainform.dbgrid2.columns[27].title.caption
-#, fuzzy
-#| msgid "User"
 msgctxt "tmainform.dbgrid2.columns[27].title.caption"
 msgid "QSL s VIA"
-msgstr "User"
+msgstr "QSL s VIA"
 
 #: tmainform.dbgrid2.columns[28].title.caption
-#, fuzzy
-#| msgid "No calc DXCC"
 msgctxt "tmainform.dbgrid2.columns[28].title.caption"
 msgid "User"
-msgstr "No calc DXCC"
+msgstr "User"
 
 #: tmainform.dbgrid2.columns[29].title.caption
-#, fuzzy
 msgctxt "tmainform.dbgrid2.columns[29].title.caption"
 msgid "No calc DXCC"
-msgstr "No calc DXCC"
+msgstr "No Calc DXCC"
 
 #: tmainform.dbgrid2.columns[2].title.caption
 msgctxt "tmainform.dbgrid2.columns[2].title.caption"
@@ -3632,11 +2994,9 @@ msgid "Time"
 msgstr "Время"
 
 #: tmainform.dbgrid2.columns[4].title.caption
-#, fuzzy
-#| msgid "Band"
 msgctxt "tmainform.dbgrid2.columns[4].title.caption"
 msgid "Frequency"
-msgstr "Диапазон"
+msgstr "Частота"
 
 #: tmainform.dbgrid2.columns[5].title.caption
 msgctxt "tmainform.dbgrid2.columns[5].title.caption"
@@ -3649,25 +3009,19 @@ msgid "Mode"
 msgstr "Мода"
 
 #: tmainform.dbgrid2.columns[7].title.caption
-#, fuzzy
-#| msgid "Name"
 msgctxt "tmainform.dbgrid2.columns[7].title.caption"
 msgid "QSOSubMode"
-msgstr "Имя"
+msgstr "СабМода"
 
 #: tmainform.dbgrid2.columns[8].title.caption
-#, fuzzy
-#| msgid "QTH"
 msgctxt "tmainform.dbgrid2.columns[8].title.caption"
 msgid "Name"
-msgstr "QTH"
+msgstr "Имя"
 
 #: tmainform.dbgrid2.columns[9].title.caption
-#, fuzzy
-#| msgid "State"
 msgctxt "tmainform.dbgrid2.columns[9].title.caption"
 msgid "QTH"
-msgstr "State"
+msgstr "QTH"
 
 #: tmainform.label1.caption
 msgctxt "tmainform.label1.caption"
@@ -3890,11 +3244,11 @@ msgstr "Доступно новое обновление"
 
 #: tmainform.label51.caption
 msgid "My grid"
-msgstr ""
+msgstr "Мой локатор"
 
 #: tmainform.label52.caption
 msgid "My state"
-msgstr ""
+msgstr "Мой State"
 
 #: tmainform.label6.caption
 msgctxt "tmainform.label6.caption"
@@ -4001,7 +3355,7 @@ msgstr ""
 
 #: tmainform.menuitem118.caption
 msgid "Clear all journal"
-msgstr ""
+msgstr "Очистить весь журнал"
 
 #: tmainform.menuitem119.caption
 msgid "Download Languages"
@@ -4026,12 +3380,12 @@ msgstr "Без пометки QSL напечатана"
 #: tmainform.menuitem123.caption
 msgctxt "tmainform.menuitem123.caption"
 msgid "Frequency Manager"
-msgstr ""
+msgstr "Частотный Менеджер"
 
 #: tmainform.menuitem124.caption
 msgctxt "tmainform.menuitem124.caption"
 msgid "Modulation Manager"
-msgstr ""
+msgstr "Менеджер Модуляций"
 
 #: tmainform.menuitem13.caption
 msgctxt "tmainform.menuitem13.caption"
@@ -4492,27 +3846,23 @@ msgid "Country"
 msgstr "Страна"
 
 #: tmm_form.button1.caption
-#, fuzzy
-#| msgid "Save"
 msgctxt "tmm_form.button1.caption"
 msgid "Close"
-msgstr "Сохранить"
+msgstr "Закрыть"
 
 #: tmm_form.button2.caption
-#, fuzzy
-#| msgid "Save"
 msgctxt "tmm_form.button2.caption"
 msgid "Save SubMode"
-msgstr "Сохранить"
+msgstr "Сохранить СабМоду"
 
 #: tmm_form.caption
 msgctxt "tmm_form.caption"
 msgid "Modulation Manager"
-msgstr ""
+msgstr "Менеджер Модуляций"
 
 #: tmm_form.checkbox1.caption
 msgid "Enabled Modulation"
-msgstr ""
+msgstr "Включить модуляцию"
 
 #: tmm_form.groupbox1.caption
 msgctxt "tmm_form.groupbox1.caption"
@@ -4522,10 +3872,9 @@ msgstr ""
 #: tmm_form.labelededit1.editlabel.caption
 msgctxt "tmm_form.labelededit1.editlabel.caption"
 msgid "SubMode"
-msgstr ""
+msgstr "Сохранить СабМода"
 
 #: tmm_form.listview1.columns[0].caption
-#, fuzzy
 msgctxt "tmm_form.listview1.columns[0].caption"
 msgid "Mode"
 msgstr "Мода"
@@ -4533,7 +3882,7 @@ msgstr "Мода"
 #: tmm_form.listview1.columns[1].caption
 msgctxt "tmm_form.listview1.columns[1].caption"
 msgid "Enabled"
-msgstr ""
+msgstr "Включить"
 
 #: tprintsticker_form.button1.caption
 msgid "Print"
@@ -5140,10 +4489,8 @@ msgstr ""
 "Успешно\n"
 
 #: tsetupform.label28.caption
-#, fuzzy
-#| msgid "Please run the application again. All the best! 73!"
 msgid "All the best! 73!"
-msgstr "Пожалуйста, запустите приложение еще раз. Всего наилучшего! 73!"
+msgstr "Всего наилучшего! 73!"
 
 #: tsetupform.label3.caption
 msgid "Database settings"
@@ -5546,30 +4893,37 @@ msgid "Check"
 msgstr "Проверить"
 
 #: updateform_u.rbuttondownload
+msgctxt "updateform_u.rbuttondownload"
 msgid "Download"
 msgstr "Загрузить"
 
 #: updateform_u.rbuttoninstall
+msgctxt "updateform_u.rbuttoninstall"
 msgid "Install"
 msgstr "Установить"
 
 #: updateform_u.rbytes
+msgctxt "updateform_u.rbytes"
 msgid " bytes"
 msgstr " байт"
 
 #: updateform_u.rsizefile
+msgctxt "updateform_u.rsizefile"
 msgid "File size: "
 msgstr "Размер файла: "
 
 #: updateform_u.rupdatedontcopy
+msgctxt "updateform_u.rupdatedontcopy"
 msgid "Do not copy"
 msgstr "Не могу скопировать"
 
 #: updateform_u.rupdaterequired
+msgctxt "updateform_u.rupdaterequired"
 msgid "Update required"
 msgstr "Требует обновления"
 
 #: updateform_u.rupdatestatus
+msgctxt "updateform_u.rupdatestatus"
 msgid "Update status: "
 msgstr "Статус обновления: "
 
@@ -5584,26 +4938,31 @@ msgid "Update status: Check version"
 msgstr "Статус обновления: Проверка версии"
 
 #: updateform_u.rupdatestatusdownload
+msgctxt "updateform_u.rupdatestatusdownload"
 msgid "Update status: Download?"
 msgstr "Статус обновления: Загрузить?"
 
 #: updateform_u.rupdatestatusdownloadbase
+msgctxt "updateform_u.rupdatestatusdownloadbase"
 msgid "Update status: Download Database"
 msgstr "Статус обновления: Загрузка базы"
 
 #: updateform_u.rupdatestatusdownloadcallbook
+msgctxt "updateform_u.rupdatestatusdownloadcallbook"
 msgid "Update status: Download CallBook"
 msgstr "Статус обновления: Загрузка Callbook"
 
 #: updateform_u.rupdatestatusdownloadchanges
+msgctxt "updateform_u.rupdatestatusdownloadchanges"
 msgid "Update status: Download Changes"
 msgstr "Статус обновления: Загрузка изменений"
 
 #: updateform_u.rupdatestatusdownloads
+msgctxt "updateform_u.rupdatestatusdownloads"
 msgid "Update status: Downloads"
 msgstr "Статус обновления: Загрузка"
 
 #: updateform_u.rupdatestatusrequiredinstall
+msgctxt "updateform_u.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
-

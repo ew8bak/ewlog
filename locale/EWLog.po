@@ -107,21 +107,6 @@ msgstr ""
 msgid "Update status: Update required"
 msgstr ""
 
-#: createjournalform_u.rallfieldsmustbefilled
-msgctxt "createjournalform_u.rallfieldsmustbefilled"
-msgid "All fields must be filled!"
-msgstr ""
-
-#: createjournalform_u.rhaltlog
-msgctxt "createjournalform_u.rhaltlog"
-msgid "The program will be completed, restart it!"
-msgstr ""
-
-#: createjournalform_u.rlogaddedsuccessfully
-msgctxt "createjournalform_u.rlogaddedsuccessfully"
-msgid "Log added successfully"
-msgstr ""
-
 #: eqsl.ranswerserver
 msgctxt "eqsl.ranswerserver"
 msgid "Server response:"
@@ -230,411 +215,6 @@ msgctxt "hrdlog.runknownuser"
 msgid "Unknown user! See settings"
 msgstr ""
 
-#: importadifform_u.rdone
-msgctxt "importadifform_u.rdone"
-msgid "Done"
-msgstr ""
-
-#: importadifform_u.rfileerror
-msgctxt "importadifform_u.rfileerror"
-msgid "Error file:"
-msgstr ""
-
-#: importadifform_u.rimport
-msgctxt "importadifform_u.rimport"
-msgid "Import"
-msgstr ""
-
-#: importadifform_u.rimporterrors
-msgctxt "importadifform_u.rimporterrors"
-msgid "Import Errors"
-msgstr ""
-
-#: importadifform_u.rimportrecord
-msgctxt "importadifform_u.rimportrecord"
-msgid "Imported Records"
-msgstr ""
-
-#: importadifform_u.rnothingimport
-msgctxt "importadifform_u.rnothingimport"
-msgid "Nothing to import"
-msgstr ""
-
-#: importadifform_u.rnumberdup
-msgctxt "importadifform_u.rnumberdup"
-msgid "Number of duplicates"
-msgstr ""
-
-#: importadifform_u.rprocessing
-msgctxt "importadifform_u.rprocessing"
-msgid "Processing"
-msgstr ""
-
-#: informationform_u.rerrorxmlapi
-msgctxt "informationform_u.rerrorxmlapi"
-msgid "Error XML API:"
-msgstr ""
-
-#: informationform_u.rinformationfromhamqth
-msgctxt "informationform_u.rinformationfromhamqth"
-msgid "Information from HAMQTH"
-msgstr ""
-
-#: informationform_u.rinformationfromqrzcom
-msgctxt "informationform_u.rinformationfromqrzcom"
-msgid "Information from QRZ.com"
-msgstr ""
-
-#: informationform_u.rinformationfromqrzru
-msgctxt "informationform_u.rinformationfromqrzru"
-msgid "Information from QRZ.ru"
-msgstr ""
-
-#: informationform_u.rnotconfigqrzru
-msgctxt "informationform_u.rnotconfigqrzru"
-msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
-msgstr ""
-
-#: logconfigform_u.rcannotdeldef
-msgctxt "logconfigform_u.rcannotdeldef"
-msgid "Cannot delete default log"
-msgstr ""
-
-#: logconfigform_u.rdefaultlogsel
-msgctxt "logconfigform_u.rdefaultlogsel"
-msgid "Default log selected"
-msgstr ""
-
-#: logconfigform_u.rdeletelog
-msgctxt "logconfigform_u.rdeletelog"
-msgid "Are you sure you want to delete the log ?!"
-msgstr ""
-
-#: mainform_u.rcallsign
-msgctxt "mainform_u.rcallsign"
-msgid "Callsign"
-msgstr ""
-
-#: mainform_u.rchecksettingsmysql
-msgctxt "mainform_u.rchecksettingsmysql"
-msgid "Check MySQL DB Settings"
-msgstr ""
-
-#: mainform_u.rchecksettingssqlite
-msgctxt "mainform_u.rchecksettingssqlite"
-msgid "Check SQLite DB Settings"
-msgstr ""
-
-#: mainform_u.rcleanupjournal
-msgctxt "mainform_u.rcleanupjournal"
-msgid "Are you sure you want to clear all entries?"
-msgstr ""
-
-#: mainform_u.rclearqso
-msgctxt "mainform_u.rclearqso"
-msgid "Clear QSO input window"
-msgstr ""
-
-#: mainform_u.rclientconnected
-msgctxt "mainform_u.rclientconnected"
-msgid "Client Connected:"
-msgstr ""
-
-#: mainform_u.rcontinent
-msgctxt "mainform_u.rcontinent"
-msgid "Continent"
-msgstr ""
-
-#: mainform_u.rcqzone
-msgctxt "mainform_u.rcqzone"
-msgid "CQ Zone"
-msgstr ""
-
-#: mainform_u.rdatabasefault
-msgctxt "mainform_u.rdatabasefault"
-msgid "Something went wrong ... Check the settings"
-msgstr ""
-
-#: mainform_u.rdberror
-msgctxt "mainform_u.rdberror"
-msgid "Error while working with the database. Check connection and settings"
-msgstr ""
-
-#: mainform_u.rdbnotinit
-msgctxt "mainform_u.rdbnotinit"
-msgid "The database is not initialized, go to the settings?"
-msgstr ""
-
-#: mainform_u.rdeleterecord
-msgctxt "mainform_u.rdeleterecord"
-msgid "Delete Record "
-msgstr ""
-
-#: mainform_u.rduplicates
-msgctxt "mainform_u.rduplicates"
-msgid "Duplicates "
-msgstr ""
-
-#: mainform_u.rdxccprefix
-msgctxt "mainform_u.rdxccprefix"
-msgid "DXCC"
-msgstr ""
-
-#: mainform_u.rdxclusterconnecting
-msgctxt "mainform_u.rdxclusterconnecting"
-msgid "Connect to Telnet Cluster"
-msgstr ""
-
-#: mainform_u.rdxclusterdisconnect
-msgctxt "mainform_u.rdxclusterdisconnect"
-msgid "You are disconnected from the DX cluster"
-msgstr ""
-
-#: mainform_u.rdxclusterdisconnecting
-msgctxt "mainform_u.rdxclusterdisconnecting"
-msgid "Disconnect from Telnet Cluster"
-msgstr ""
-
-#: mainform_u.rdxclusterwindowclear
-msgctxt "mainform_u.rdxclusterwindowclear"
-msgid "Clear DX Cluster window"
-msgstr ""
-
-#: mainform_u.rencall
-msgctxt "mainform_u.rencall"
-msgid "You must enter a callsign"
-msgstr ""
-
-#: mainform_u.rgrid
-msgctxt "mainform_u.rgrid"
-msgid "Grid"
-msgstr ""
-
-#: mainform_u.riota
-msgctxt "mainform_u.riota"
-msgid "IOTA"
-msgstr ""
-
-#: mainform_u.rituzone
-msgctxt "mainform_u.rituzone"
-msgid "ITU Zone"
-msgstr ""
-
-#: mainform_u.rlanguagecomplite
-msgctxt "mainform_u.rlanguagecomplite"
-msgid "Translation files download successfully"
-msgstr ""
-
-#: mainform_u.rlogconwsjt
-msgctxt "mainform_u.rlogconwsjt"
-msgid "EWLog connected to WSJT"
-msgstr ""
-
-#: mainform_u.rlognconwsjt
-msgctxt "mainform_u.rlognconwsjt"
-msgid "EWLog not connected to WSJT"
-msgstr ""
-
-#: mainform_u.rlotwrecdate
-msgctxt "mainform_u.rlotwrecdate"
-msgid "LOTWr Date"
-msgstr ""
-
-#: mainform_u.rmainprefix
-msgctxt "mainform_u.rmainprefix"
-msgid "Prefix"
-msgstr ""
-
-#: mainform_u.rmanualset
-msgctxt "mainform_u.rmanualset"
-msgid "Manual Set"
-msgstr ""
-
-#: mainform_u.rmysqlhasgoneaway
-msgctxt "mainform_u.rmysqlhasgoneaway"
-msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
-msgstr ""
-
-#: mainform_u.rmysqlnotset
-msgctxt "mainform_u.rmysqlnotset"
-msgid "MySQL database settings not configured"
-msgstr ""
-
-#: mainform_u.rnocalcdxcc
-msgctxt "mainform_u.rnocalcdxcc"
-msgid "No Calc DXCC"
-msgstr ""
-
-#: mainform_u.rnotcallsign
-msgctxt "mainform_u.rnotcallsign"
-msgid "No callsign entered to view"
-msgstr ""
-
-#: mainform_u.romname
-msgctxt "mainform_u.romname"
-msgid "Name"
-msgstr ""
-
-#: mainform_u.romqth
-msgctxt "mainform_u.romqth"
-msgid "QTH"
-msgstr ""
-
-#: mainform_u.rphotofromqrzru
-msgctxt "mainform_u.rphotofromqrzru"
-msgid "Photo from QRZ.RU"
-msgstr ""
-
-#: mainform_u.rqsl
-msgctxt "mainform_u.rqsl"
-msgid "QSL"
-msgstr ""
-
-#: mainform_u.rqslmanager
-msgctxt "mainform_u.rqslmanager"
-msgid "Manager"
-msgstr ""
-
-#: mainform_u.rqslrecdate
-msgctxt "mainform_u.rqslrecdate"
-msgid "QSLr Date"
-msgstr ""
-
-#: mainform_u.rqsls
-msgctxt "mainform_u.rqsls"
-msgid "QSLs"
-msgstr ""
-
-#: mainform_u.rqslsentdate
-msgctxt "mainform_u.rqslsentdate"
-msgid "QSLs Date"
-msgstr ""
-
-#: mainform_u.rqsl_rcvd_via
-msgctxt "mainform_u.rqsl_rcvd_via"
-msgid "QSL r VIA"
-msgstr ""
-
-#: mainform_u.rqsl_sent_via
-msgctxt "mainform_u.rqsl_sent_via"
-msgid "QSL s VIA"
-msgstr ""
-
-#: mainform_u.rqsoband
-msgctxt "mainform_u.rqsoband"
-msgid "Band"
-msgstr ""
-
-#: mainform_u.rqsobandfreq
-msgctxt "mainform_u.rqsobandfreq"
-msgid "Frequency"
-msgstr ""
-
-#: mainform_u.rqsodate
-msgctxt "mainform_u.rqsodate"
-msgid "Date"
-msgstr ""
-
-#: mainform_u.rqsomode
-msgctxt "mainform_u.rqsomode"
-msgid "Mode"
-msgstr ""
-
-#: mainform_u.rqsonotsave
-msgctxt "mainform_u.rqsonotsave"
-msgid "QSO not saved, quit anyway ?!"
-msgstr ""
-
-#: mainform_u.rqsoreportrecived
-msgctxt "mainform_u.rqsoreportrecived"
-msgid "RSTr"
-msgstr ""
-
-#: mainform_u.rqsoreportsent
-msgctxt "mainform_u.rqsoreportsent"
-msgid "RSTs"
-msgstr ""
-
-#: mainform_u.rqsosubmode
-msgctxt "mainform_u.rqsosubmode"
-msgid "SubMode"
-msgstr ""
-
-#: mainform_u.rqsosync
-msgctxt "mainform_u.rqsosync"
-msgid "QSO"
-msgstr ""
-
-#: mainform_u.rqsotime
-msgctxt "mainform_u.rqsotime"
-msgid "Time"
-msgstr ""
-
-#: mainform_u.rqsototal
-msgctxt "mainform_u.rqsototal"
-msgid " Total "
-msgstr ""
-
-#: mainform_u.rsaveqso
-msgctxt "mainform_u.rsaveqso"
-msgid "Save QSO"
-msgstr ""
-
-#: mainform_u.rsendspot
-msgctxt "mainform_u.rsendspot"
-msgid "Send spot"
-msgstr ""
-
-#: mainform_u.rstate
-msgctxt "mainform_u.rstate"
-msgid "State"
-msgstr ""
-
-#: mainform_u.rswitchdbmysql
-msgctxt "mainform_u.rswitchdbmysql"
-msgid "Switch base to MySQL"
-msgstr ""
-
-#: mainform_u.rswitchdbsqlite
-msgctxt "mainform_u.rswitchdbsqlite"
-msgid "Switch base to SQLite"
-msgstr ""
-
-#: mainform_u.rsync
-msgctxt "mainform_u.rsync"
-msgid ", in sync "
-msgstr ""
-
-#: mainform_u.rsyncok
-msgctxt "mainform_u.rsyncok"
-msgid "Done! Number of duplicates "
-msgstr ""
-
-#: mainform_u.rusers
-msgctxt "mainform_u.rusers"
-msgid "User"
-msgstr ""
-
-#: mainform_u.rvaliddx
-msgctxt "mainform_u.rvaliddx"
-msgid "Valid DX"
-msgstr ""
-
-#: mainform_u.rwarning
-msgctxt "mainform_u.rwarning"
-msgid "Warning!"
-msgstr ""
-
-#: mainform_u.rwelcomemessagemysql
-msgctxt "mainform_u.rwelcomemessagemysql"
-msgid "MySQL database selected! Welcome!"
-msgstr ""
-
-#: mainform_u.rwelcomemessagesqlite
-msgctxt "mainform_u.rwelcomemessagesqlite"
-msgid "SQLite database selected! Welcome!"
-msgstr ""
-
 #: qrzcom.ranswerserver
 msgctxt "qrzcom.ranswerserver"
 msgid "Server response:"
@@ -687,6 +267,26 @@ msgstr ""
 #: resourcestr.rallfieldsmustbefilled
 msgctxt "resourcestr.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
+msgstr ""
+
+#: resourcestr.rbuttoncheck
+msgctxt "resourcestr.rbuttoncheck"
+msgid "Check"
+msgstr ""
+
+#: resourcestr.rbuttondownload
+msgctxt "resourcestr.rbuttondownload"
+msgid "Download"
+msgstr ""
+
+#: resourcestr.rbuttoninstall
+msgctxt "resourcestr.rbuttoninstall"
+msgid "Install"
+msgstr ""
+
+#: resourcestr.rbytes
+msgctxt "resourcestr.rbytes"
+msgid " bytes"
 msgstr ""
 
 #: resourcestr.rcallsign
@@ -807,6 +407,10 @@ msgstr ""
 #: resourcestr.rerrorxmlapi
 msgctxt "resourcestr.rerrorxmlapi"
 msgid "Error XML API:"
+msgstr ""
+
+#: resourcestr.rfailedtoloaddata
+msgid "Failed to load data"
 msgstr ""
 
 #: resourcestr.rfileerror
@@ -1069,6 +673,11 @@ msgctxt "resourcestr.rsetasdefaultjournal"
 msgid "Set as default journal?"
 msgstr ""
 
+#: resourcestr.rsizefile
+msgctxt "resourcestr.rsizefile"
+msgid "File size: "
+msgstr ""
+
 #: resourcestr.rstate
 msgctxt "resourcestr.rstate"
 msgid "State"
@@ -1123,6 +732,61 @@ msgctxt "resourcestr.rsyncok"
 msgid "Done! Number of duplicates "
 msgstr ""
 
+#: resourcestr.rupdatedontcopy
+msgctxt "resourcestr.rupdatedontcopy"
+msgid "Do not copy"
+msgstr ""
+
+#: resourcestr.rupdaterequired
+msgctxt "resourcestr.rupdaterequired"
+msgid "Update required"
+msgstr ""
+
+#: resourcestr.rupdatestatus
+msgctxt "resourcestr.rupdatestatus"
+msgid "Update status: "
+msgstr ""
+
+#: resourcestr.rupdatestatusactual
+msgctxt "resourcestr.rupdatestatusactual"
+msgid "Update status: Actual"
+msgstr ""
+
+#: resourcestr.rupdatestatuscheckupdate
+msgctxt "resourcestr.rupdatestatuscheckupdate"
+msgid "Update status: Check version"
+msgstr ""
+
+#: resourcestr.rupdatestatusdownload
+msgctxt "resourcestr.rupdatestatusdownload"
+msgid "Update status: Download?"
+msgstr ""
+
+#: resourcestr.rupdatestatusdownloadbase
+msgctxt "resourcestr.rupdatestatusdownloadbase"
+msgid "Update status: Download Database"
+msgstr ""
+
+#: resourcestr.rupdatestatusdownloadcallbook
+msgctxt "resourcestr.rupdatestatusdownloadcallbook"
+msgid "Update status: Download CallBook"
+msgstr ""
+
+#: resourcestr.rupdatestatusdownloadchanges
+msgctxt "resourcestr.rupdatestatusdownloadchanges"
+msgid "Update status: Download Changes"
+msgstr ""
+
+#: resourcestr.rupdatestatusdownloads
+msgctxt "resourcestr.rupdatestatusdownloads"
+msgid "Update status: Downloads"
+msgstr ""
+
+#: resourcestr.rupdatestatusrequiredinstall
+msgctxt "resourcestr.rupdatestatusrequiredinstall"
+msgid "Update status: Installation required"
+msgstr ""
+
 #: resourcestr.rusers
 msgctxt "resourcestr.rusers"
 msgid "User"
@@ -1150,41 +814,6 @@ msgstr ""
 
 #: sendtelnetspot_form_u.rnotalldata
 msgid "Not all data entered"
-msgstr ""
-
-#: serviceform_u.rnotdataforconnect
-msgctxt "serviceform_u.rnotdataforconnect"
-msgid "The log configuration, do not specify the data to connect to eQSL.cc"
-msgstr ""
-
-#: serviceform_u.rprocesseddata
-msgctxt "serviceform_u.rprocesseddata"
-msgid "Processed data:"
-msgstr ""
-
-#: serviceform_u.rstatusconnecteqsl
-msgctxt "serviceform_u.rstatusconnecteqsl"
-msgid "Status: Connceting to eQSL.cc"
-msgstr ""
-
-#: serviceform_u.rstatusdone
-msgctxt "serviceform_u.rstatusdone"
-msgid "Status: Done"
-msgstr ""
-
-#: serviceform_u.rstatusdownloadeqsl
-msgctxt "serviceform_u.rstatusdownloadeqsl"
-msgid "Status: Download eQSL.cc"
-msgstr ""
-
-#: serviceform_u.rstatusnotdata
-msgctxt "serviceform_u.rstatusnotdata"
-msgid "Status: Not data"
-msgstr ""
-
-#: serviceform_u.rstatussavefile
-msgctxt "serviceform_u.rstatussavefile"
-msgid "Status: Saving file"
 msgstr ""
 
 #: settingscat_u.rlibhamlibnotfound
@@ -5252,30 +4881,37 @@ msgid "Check"
 msgstr ""
 
 #: updateform_u.rbuttondownload
+msgctxt "updateform_u.rbuttondownload"
 msgid "Download"
 msgstr ""
 
 #: updateform_u.rbuttoninstall
+msgctxt "updateform_u.rbuttoninstall"
 msgid "Install"
 msgstr ""
 
 #: updateform_u.rbytes
+msgctxt "updateform_u.rbytes"
 msgid " bytes"
 msgstr ""
 
 #: updateform_u.rsizefile
+msgctxt "updateform_u.rsizefile"
 msgid "File size: "
 msgstr ""
 
 #: updateform_u.rupdatedontcopy
+msgctxt "updateform_u.rupdatedontcopy"
 msgid "Do not copy"
 msgstr ""
 
 #: updateform_u.rupdaterequired
+msgctxt "updateform_u.rupdaterequired"
 msgid "Update required"
 msgstr ""
 
 #: updateform_u.rupdatestatus
+msgctxt "updateform_u.rupdatestatus"
 msgid "Update status: "
 msgstr ""
 
@@ -5290,26 +4926,32 @@ msgid "Update status: Check version"
 msgstr ""
 
 #: updateform_u.rupdatestatusdownload
+msgctxt "updateform_u.rupdatestatusdownload"
 msgid "Update status: Download?"
 msgstr ""
 
 #: updateform_u.rupdatestatusdownloadbase
+msgctxt "updateform_u.rupdatestatusdownloadbase"
 msgid "Update status: Download Database"
 msgstr ""
 
 #: updateform_u.rupdatestatusdownloadcallbook
+msgctxt "updateform_u.rupdatestatusdownloadcallbook"
 msgid "Update status: Download CallBook"
 msgstr ""
 
 #: updateform_u.rupdatestatusdownloadchanges
+msgctxt "updateform_u.rupdatestatusdownloadchanges"
 msgid "Update status: Download Changes"
 msgstr ""
 
 #: updateform_u.rupdatestatusdownloads
+msgctxt "updateform_u.rupdatestatusdownloads"
 msgid "Update status: Downloads"
 msgstr ""
 
 #: updateform_u.rupdatestatusrequiredinstall
+msgctxt "updateform_u.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr ""
 
