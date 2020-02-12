@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, LazUTF8, StdCtrls,
   ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} httpsend,
-  blcksock, synautil, ResourceStr;
+  blcksock, synautil, ResourceStr, resource, versiontypes, versionresource;
 
 type
 
@@ -81,6 +81,29 @@ uses
 
 { TUpdate_Form }
 
+function GetMyVersion: string;
+var
+  Stream: TResourceStream;
+  vr: TVersionResource;
+  fi: TVersionFixedInfo;
+begin
+  Result := '';
+  Stream := TResourceStream.CreateFromID(HINSTANCE, 1, PChar(RT_VERSION));
+  try
+    vr := TVersionResource.Create;
+    try
+      vr.SetCustomRawDataStream(Stream);
+      fi := vr.FixedInfo;
+      Result := Format('%d.%d.%d', [fi.FileVersion[0],
+        fi.FileVersion[1], fi.FileVersion[2], fi.FileVersion[3]]);
+    finally
+      vr.Free
+    end;
+  finally
+    Stream.Free
+  end;
+end;
+
 procedure TUpdate_Form.FormCreate(Sender: TObject);
 var
   VerFile: file of ver;
@@ -138,9 +161,7 @@ begin
   Button1.Caption := rButtonCheck;
   Label10.Caption := rSizeFile;
   Label9.Caption := rUpdateStatus;
-  {$IFDEF WINDOWS}
   Label6.Caption := GetMyVersion;
-  {$ENDIF}
   ProgressBar1.Position := 0;
 end;
 
@@ -173,7 +194,7 @@ begin
 end;
 
 
-function GetMyVersion: string;
+{function GetMyVersion: string;
 type
   TVerInfo = packed record
     Nevazhno: array[0..47] of byte;
@@ -195,7 +216,7 @@ begin
     s.Free;
   except;
   end;
-end;
+end;}
 
 
 function TUpdate_Form.CheckUpdate: boolean;
