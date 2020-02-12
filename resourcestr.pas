@@ -121,6 +121,7 @@ resourcestring
   rUpdateStatusRequiredInstall = 'Update status: Installation required';
   rButtonInstall = 'Install';
   rBytes = ' bytes';
+  rNoLogFileFound = 'No log file found! Check settings';
 
 implementation
 

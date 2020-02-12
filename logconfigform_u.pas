@@ -272,6 +272,7 @@ begin
       UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
     else
       UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
+    if MainForm.DBLookupComboBox1.Text <> '' then
     SelectCall(MainForm.DBLookupComboBox1.KeyValue);
   end;
 end;

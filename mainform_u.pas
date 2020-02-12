@@ -3254,6 +3254,12 @@ begin
 
       SQLiteFILE := IniF.ReadString('DataBases', 'FileSQLite', '');
 
+      if not FileExists(SQLiteFILE) and (SQLiteFILE <> '') then
+      begin
+        ShowMessage(rNoLogFileFound);
+        exit;
+      end;
+
       LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
       PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
 
@@ -3353,7 +3359,6 @@ end;
 procedure TMainForm.FormCreate(Sender: TObject);
 var
   PathMyDoc: string;
-  i, j: integer;
   Lang: string = '';
   FallbackLang: string = '';
 begin

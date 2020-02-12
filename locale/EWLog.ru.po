@@ -1030,6 +1030,10 @@ msgctxt "resourcestr.rnocalcdxcc"
 msgid "No Calc DXCC"
 msgstr "No Calc DXCC"
 
+#: resourcestr.rnologfilefound
+msgid "No log file found! Check settings"
+msgstr ""
+
 #: resourcestr.rnotcallsign
 msgctxt "resourcestr.rnotcallsign"
 msgid "No callsign entered to view"
