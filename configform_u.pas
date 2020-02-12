@@ -124,7 +124,6 @@ begin
   IniF.WriteString('DataBases', 'Password', Edit4.Text);
   IniF.WriteString('DataBases', 'DataBaseName', Edit5.Text);
   IniF.WriteString('DataBases', 'FileSQLite', FileNameEdit1.Text);
-
   IniF.WriteString('TelnetCluster', 'Login', Edit11.Text);
   IniF.WriteString('TelnetCluster', 'Password', Edit12.Text);
   IniF.WriteBool('TelnetCluster', 'AutoStart', CheckBox4.Checked);
@@ -149,11 +148,11 @@ begin
     IniF.WriteString('SetLog', 'Sprav', 'True')
   else
     IniF.WriteString('SetLog', 'Sprav', 'False');
-   if CheckBox5.Checked = True then
+  if CheckBox5.Checked = True then
     IniF.WriteBool('SetLog', 'PrintPrev', True)
   else
     IniF.WriteBool('SetLog', 'PrintPrev', False);
-   MainForm.PrintPrev:=CheckBox5.Checked;
+  MainForm.PrintPrev := CheckBox5.Checked;
 end;
 
 procedure TConfigForm.ReadINI;
@@ -242,9 +241,10 @@ end;
 
 procedure TConfigForm.CheckBox1Change(Sender: TObject);
 begin
-  if CheckBox1.Checked = True then begin
+  if CheckBox1.Checked = True then
+  begin
     CheckBox3.Checked := False;
-    MainForm.CallBookLiteConnection.Connected:=True;
+    MainForm.CallBookLiteConnection.Connected := True;
   end;
   if CheckBox1.Checked = True then
     IniF.WriteString('SetLog', 'UseCallBook', 'YES')
@@ -254,32 +254,36 @@ end;
 
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
 begin
-      if InitLog_DB = 'YES' then
+  if InitLog_DB = 'YES' then
+  begin
+    if CheckBox2.Checked = True then
     begin
-  if CheckBox2.Checked = True then
-  begin
       IniF.WriteString('SetLog', 'ShowBand', 'True');
-      MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),MainForm.ComboBox2.Text);
-  end
-  else begin
-  if CheckBox2.Checked = False then
-  begin
-     IniF.WriteString('SetLog', 'ShowBand', 'False');
-     MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),MainForm.ComboBox2.Text);
-  end;
-  end;
-  MainForm.DBGrid1.Invalidate;
-  MainForm.DBGrid2.Invalidate;
-  MainForm.SetGrid;
-  EditQSO_Form.DBGrid1.Invalidate;
+      MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),
+        MainForm.ComboBox2.Text);
+    end
+    else
+    begin
+      if CheckBox2.Checked = False then
+      begin
+        IniF.WriteString('SetLog', 'ShowBand', 'False');
+        MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),
+          MainForm.ComboBox2.Text);
+      end;
     end;
+    MainForm.DBGrid1.Invalidate;
+    MainForm.DBGrid2.Invalidate;
+    MainForm.SetGrid;
+    EditQSO_Form.DBGrid1.Invalidate;
+  end;
 end;
 
 procedure TConfigForm.CheckBox3Change(Sender: TObject);
 begin
-  if CheckBox3.Checked = True then begin
+  if CheckBox3.Checked = True then
+  begin
     CheckBox1.Checked := False;
-    MainForm.CallBookLiteConnection.Connected:=False;
+    MainForm.CallBookLiteConnection.Connected := False;
   end;
   if CheckBox3.Checked = True then
     IniF.WriteString('SetLog', 'Sprav', 'True')
@@ -319,8 +323,7 @@ begin
     CheckCallBook.SQL.Clear;
     CheckCallBook.SQL.Add('SELECT * FROM inform');
     CheckCallBook.Open;
-    Label10.Caption := rReleaseDate +
-      CheckCallBook.FieldByName('date').AsString;
+    Label10.Caption := rReleaseDate + CheckCallBook.FieldByName('date').AsString;
     Label14.Caption := CheckCallBook.FieldByName('version').AsString;
     CheckCallBook.Close;
   end
@@ -336,8 +339,8 @@ end;
 procedure TConfigForm.Button1Click(Sender: TObject);
 begin
   SaveINI;
-  LoginCluster:=Edit11.Text;
-  PasswordCluster:=Edit12.Text;
+  LoginCluster := Edit11.Text;
+  PasswordCluster := Edit12.Text;
   ConfigForm.Close;
 end;
 
@@ -360,26 +363,23 @@ begin
   with THTTPSend.Create do
   begin
     Label12.Caption := rStatusUpdateCheck;
+    LoadFile := TFileStream.Create(updatePATH + 'updates' +
+      DirectorySeparator + 'versioncallbook.info', fmCreate);
     if HTTPMethod('GET', 'http://update.ew8bak.ru/versioncallbook.info') then
     begin
-  {$IFDEF UNIX}
-      LoadFile := TFileStream.Create(updatePATH + 'updates/versioncallbook.info',
-        fmCreate);
-  {$ELSE}
-      LoadFile := TFileStream.Create(updatePATH + 'updates\versioncallbook.info',
-        fmCreate);
-  {$ENDIF UNIX}
       HttpGetBinary('http://update.ew8bak.ru/versioncallbook.info', LoadFile);
       LoadFile.Free;
-      Free;
+    end
+    else
+    begin
+      LoadFile.Seek(0, soFromEnd);
+      LoadFile.WriteBuffer('5.5', Length('5.5'));
+      LoadFile.Free;
     end;
+    Free;
   end;
-
-    {$IFDEF UNIX}
-  AssignFile(VerFile, updatePATH + 'updates/versioncallbook.info');
-  {$ELSE}
-  AssignFile(VerFile, updatePATH + 'updates\versioncallbook.info');
-  {$ENDIF UNIX}
+  AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator +
+    'versioncallbook.info');
 
   Reset(VerFile);
   Read(VerFile, a);
@@ -432,69 +432,54 @@ begin
   Label12.Caption := rStatusUpdateDownload;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/callbook.db') then
-    {$IFDEF UNIX}
-      HTTP.Document.SaveToFile(updatePATH + 'updates/callbook.db');
-    {$ELSE}
-    HTTP.Document.SaveToFile(updatePATH + 'updates\callbook.db');
-    {$ENDIF UNIX}
-
+      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator + 'callbook.db');
   finally
     HTTP.Free;
-    {$IFDEF UNIX}
-    if FileUtil.CopyFile(updatePATH + 'updates/callbook.db', updatePATH +
-      'callbook.db', True, True) then
-    {$ELSE}
-      if FileUtil.CopyFile(updatePATH + 'updates\callbook.db',
-        updatePATH + 'callbook.db', True, True) then
-    {$ENDIF UNIX}
 
-      begin
+    if FileUtil.CopyFile(updatePATH + 'updates' + DirectorySeparator + 'callbook.db',
+      updatePATH + 'callbook.db', True, True) then
+    begin
         {$IFDEF UNIX}
-        sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
+      sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
-        sDBPath := GetEnvironmentVariable('SystemDrive') +
-          GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+      sDBPath := GetEnvironmentVariable('SystemDrive') +
+        GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
     {$ENDIF UNIX}
-        if FileExistsUTF8(sDBPath + 'callbook.db') then
-        begin
-          MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
-          GroupBox2.Caption := rReferenceBook;
-          CheckCallBook.Close;
-          CheckCallBook.SQL.Clear;
-          CheckCallBook.SQL.Add('SELECT COUNT(*) as Count FROM Callbook');
-          CheckCallBook.Open;
-          Label11.Caption := rNumberOfRecords +
-            IntToStr(CheckCallBook.FieldByName('Count').AsInteger);
-          CheckCallBook.Close;
-          CheckCallBook.SQL.Clear;
-          CheckCallBook.SQL.Add('SELECT * FROM inform');
-          CheckCallBook.Open;
-          Label10.Caption := rReleaseDate +
-            CheckCallBook.FieldByName('date').AsString;
-          Label14.Caption := CheckCallBook.FieldByName('version').AsString;
-          CheckCallBook.Close;
-        end
-        else
-        begin
-          GroupBox2.Caption := rNoReferenceBookFound;
-          label11.Caption := rNumberOfRecordsNot;
-          Label10.Caption := rReleaseDateNot;
-          Label14.Caption := '---';
-        end;
-       {$IFDEF UNIX}
-        DeleteFileUTF8(updatePATH + 'updates/callbook.db');
-       {$ELSE}
-        DeleteFileUTF8(updatePATH + 'updates\callbook.db');
-      {$ENDIF UNIX}
-
-        MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
-        MainForm.CallBookLiteConnection.Connected := True;
-        UseCallBook := 'YES';
-        Button4.Caption := rOK;
-        Label12.Caption := rstatusUpdateDone;
+      if FileExistsUTF8(sDBPath + 'callbook.db') then
+      begin
+        MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
+        GroupBox2.Caption := rReferenceBook;
+        CheckCallBook.Close;
+        CheckCallBook.SQL.Clear;
+        CheckCallBook.SQL.Add('SELECT COUNT(*) as Count FROM Callbook');
+        CheckCallBook.Open;
+        Label11.Caption := rNumberOfRecords +
+          IntToStr(CheckCallBook.FieldByName('Count').AsInteger);
+        CheckCallBook.Close;
+        CheckCallBook.SQL.Clear;
+        CheckCallBook.SQL.Add('SELECT * FROM inform');
+        CheckCallBook.Open;
+        Label10.Caption := rReleaseDate +
+          CheckCallBook.FieldByName('date').AsString;
+        Label14.Caption := CheckCallBook.FieldByName('version').AsString;
+        CheckCallBook.Close;
       end
       else
-        Label12.Caption := rStatusUpdateNotCopy;
+      begin
+        GroupBox2.Caption := rNoReferenceBookFound;
+        label11.Caption := rNumberOfRecordsNot;
+        Label10.Caption := rReleaseDateNot;
+        Label14.Caption := '---';
+      end;
+      DeleteFileUTF8(updatePATH + 'updates' + DirectorySeparator + 'callbook.db');
+      MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
+      MainForm.CallBookLiteConnection.Connected := True;
+      UseCallBook := 'YES';
+      Button4.Caption := rOK;
+      Label12.Caption := rstatusUpdateDone;
+    end
+    else
+      Label12.Caption := rStatusUpdateNotCopy;
   end;
 end;
 
@@ -532,12 +517,11 @@ begin
     if ProgressBar1.Max > 0 then
     begin
       ProgressBar1.Position := Download;
-      label17.Caption := rDownloadFile +
-        IntToStr(Trunc((Download / ProgressBar1.Max) * 100)) + '%';
+      label17.Caption := rDownloadFile + IntToStr(Trunc(
+        (Download / ProgressBar1.Max) * 100)) + '%';
     end
     else
-      label17.Caption := rDownloadFile + IntToStr(Download) +
-        rByte;
+      label17.Caption := rDownloadFile + IntToStr(Download) + rByte;
     Application.ProcessMessages;
   end;
 end;
