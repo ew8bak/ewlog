@@ -4847,12 +4847,8 @@ msgid ""
 "Successfully\n"
 msgstr ""
 
-#: tsetupform.label27.caption
-msgid "The HAM log is now shutting down!"
-msgstr ""
-
 #: tsetupform.label28.caption
-msgid "Please run the application again. All the best! 73!"
+msgid "All the best! 73!"
 msgstr ""
 
 #: tsetupform.label3.caption

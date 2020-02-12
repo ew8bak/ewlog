@@ -5139,12 +5139,10 @@ msgstr ""
 "Поздравляю! Мастер настройки завершил  инициализацию базы данных \n"
 "Успешно\n"
 
-#: tsetupform.label27.caption
-msgid "The HAM log is now shutting down!"
-msgstr "Аппаратный журнал сейчас завершит работу!"
-
 #: tsetupform.label28.caption
-msgid "Please run the application again. All the best! 73!"
+#, fuzzy
+#| msgid "Please run the application again. All the best! 73!"
+msgid "All the best! 73!"
 msgstr "Пожалуйста, запустите приложение еще раз. Всего наилучшего! 73!"
 
 #: tsetupform.label3.caption

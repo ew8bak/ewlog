@@ -77,7 +77,6 @@ type
     Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
-    Label27: TLabel;
     Label28: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -1078,7 +1077,8 @@ end;
 
 procedure TSetupForm.Button5Click(Sender: TObject);
 begin
-  Application.Terminate;
+  MainForm.InitIni;
+  Close;
 end;
 
 procedure TSetupForm.Button6Click(Sender: TObject);

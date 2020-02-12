@@ -599,6 +599,7 @@ type
     procedure addModes(modeItem: string; subModesFlag: boolean;
       var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
+    procedure InitIni;
   end;
 
 var
@@ -1544,14 +1545,7 @@ begin
       + '`DigiBand`, `Continent`, `ShortNote`, `QSLReceQSLcc`, `LoTWRec`, `LoTWRecDate`,'
       + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
       + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
-      + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`, `MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`)'
-      + 'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,'
-      + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,'
-      + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,'
-      + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,'
-      + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,'
-      + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,'
-      + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON)');
+      + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`, `MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`)' + 'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,' + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,' + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,' + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,' + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,' + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,' + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON)');
 
     Params.ParamByName('CallSign').AsString := SQSO.CallSing;
     Params.ParamByName('QSODate').AsDateTime := SQSO.QSODate;
@@ -1627,10 +1621,10 @@ begin
     Params.ParamByName('DXCC').AsString := SQSO.DXCC;
     Params.ParamByName('USERS').AsString := SQSO.USERS;
     Params.ParamByName('NoCalcDXCC').AsInteger := SQSO.NoCalcDXCC;
-    Params.ParamByName('MY_STATE').AsString:=SQSO.My_State;
-    Params.ParamByName('MY_GRIDSQUARE').AsString:=SQSO.My_Grid;
-    Params.ParamByName('MY_LAT').AsString:=SQSO.My_Lat;
-    Params.ParamByName('MY_LON').AsString:=SQSO.My_Lon;
+    Params.ParamByName('MY_STATE').AsString := SQSO.My_State;
+    Params.ParamByName('MY_GRIDSQUARE').AsString := SQSO.My_Grid;
+    Params.ParamByName('MY_LAT').AsString := SQSO.My_Lat;
+    Params.ParamByName('MY_LON').AsString := SQSO.My_Lon;
     ExecSQL;
   end;
   MainForm.SQLTransaction1.Commit;
@@ -1877,7 +1871,7 @@ begin
         SQLTransaction1.Commit;
       end;
 
-       if CheckTableQuery.FindField('MY_LAT') = nil then
+      if CheckTableQuery.FindField('MY_LAT') = nil then
       begin
         CheckTableQuery.Close;
         CheckTableQuery.SQL.Text :=
@@ -1886,7 +1880,7 @@ begin
         SQLTransaction1.Commit;
       end;
 
-        if CheckTableQuery.FindField('MY_LON') = nil then
+      if CheckTableQuery.FindField('MY_LON') = nil then
       begin
         CheckTableQuery.Close;
         CheckTableQuery.SQL.Text :=
@@ -3229,48 +3223,10 @@ begin
   end;
 end;
 
-procedure TMainForm.FormCreate(Sender: TObject);
+procedure TMainForm.InitIni;
 var
-  PathMyDoc: string;
   i, j: integer;
-  Lang: string = '';
-  FallbackLang: string = '';
 begin
-  GetLanguageIDs(Lang, FallbackLang);
-
-  GetingHint := 0;
-      {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-  MapView1.CachePath := PathMyDoc + 'cache/';
-    {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
-  MapView1.CachePath := PathMyDoc + 'cache\';
-    {$ENDIF UNIX}
-  Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
-  Language := IniF.ReadString('SetLog', 'Language', '');
-  if Language = '' then
-    Language := FallbackLang;
-  SetDefaultLang(Language, PathMyDoc + DirectorySeparator + 'locale');
-
-  FlagList := TImageList.Create(Self);
-  FlagSList := TStringList.Create;
-  VirtualStringTree1.Images := FlagList;
-  useMAPS := INiF.ReadString('SetLog', 'UseMAPS', '');
-  EditFlag := False;
-  //Application.ProcessMessages;
-  StayForm := True;
-  AdifFromMobileSyncStart := False;
-  ExportAdifSelect := False;
-  ImportAdifMobile := False;
-  CheckBox3.Visible := True;
-  CheckBox5.Visible := True;
-  if useMAPS = 'YES' then
-  begin
-    MapView1.UseThreads := True;
-    MapView1.Center;
-  end;
-
   try
     InitLog_DB := INiF.ReadString('SetLog', 'LogBookInit', '');
     if InitLog_DB = 'YES' then
@@ -3329,13 +3285,10 @@ begin
       Delete(HostCluster, 1, 1);
       //Порт
       PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
-
-
       fl_path := IniF.ReadString('FLDIGI', 'FldigiPATH', '');
       wsjt_path := IniF.ReadString('WSJT', 'WSJTPATH', '');
       FLDIGI_USE := IniF.ReadString('FLDIGI', 'USEFLDIGI', '');
       WSJT_USE := IniF.ReadString('WSJT', 'USEWSJT', '');
-
       ShowTRXForm := IniF.ReadBool('SetLog', 'TRXForm', False);
 
       if FLDIGI_USE = 'YES' then
@@ -3365,7 +3318,6 @@ begin
       InitializeDB(DefaultDB);
       ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(
         IniF.ReadString('SetLog', 'PastMode', ''));
-      //   ComboBox2Change(Self);
       ComboBox2CloseUp(Self);
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(
         IniF.ReadString('SetLog', 'PastSubMode', ''));
@@ -3396,6 +3348,51 @@ begin
     end;
   finally
   end;
+end;
+
+procedure TMainForm.FormCreate(Sender: TObject);
+var
+  PathMyDoc: string;
+  i, j: integer;
+  Lang: string = '';
+  FallbackLang: string = '';
+begin
+  GetLanguageIDs(Lang, FallbackLang);
+
+  GetingHint := 0;
+      {$IFDEF UNIX}
+  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+  MapView1.CachePath := PathMyDoc + 'cache/';
+    {$ELSE}
+  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+  MapView1.CachePath := PathMyDoc + 'cache\';
+    {$ENDIF UNIX}
+  Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
+  Language := IniF.ReadString('SetLog', 'Language', '');
+  if Language = '' then
+    Language := FallbackLang;
+  SetDefaultLang(Language, PathMyDoc + DirectorySeparator + 'locale');
+
+  FlagList := TImageList.Create(Self);
+  FlagSList := TStringList.Create;
+  VirtualStringTree1.Images := FlagList;
+  useMAPS := INiF.ReadString('SetLog', 'UseMAPS', '');
+  EditFlag := False;
+  //Application.ProcessMessages;
+  StayForm := True;
+  AdifFromMobileSyncStart := False;
+  ExportAdifSelect := False;
+  ImportAdifMobile := False;
+  CheckBox3.Visible := True;
+  CheckBox5.Visible := True;
+  if useMAPS = 'YES' then
+  begin
+    MapView1.UseThreads := True;
+    MapView1.Center;
+  end;
+
+  InitIni;
 
   LTCPComponent1.Listen(49153);
   LUDPComponent1.Listen(49152);
@@ -5212,7 +5209,6 @@ end;
 
 procedure TMainForm.MenuItem69Click(Sender: TObject);
 begin
-  //Application.Terminate;
   Close;
 end;
 
@@ -6085,12 +6081,19 @@ begin
       else
         SQSO.My_Grid := SetLoc;
 
-      SQSO.My_State:=Edit15.Text;
+      SQSO.My_State := Edit15.Text;
 
-      if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then begin
-      dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
-      SQSO.My_Lat:=CurrToStr(lat);
-      SQSO.My_Lon:=CurrToStr(lon);
+      if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then
+      begin
+        dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
+        SQSO.My_Lat := CurrToStr(lat);
+        SQSO.My_Lon := CurrToStr(lon);
+
+
+
+
+
+
       end;
       SQSO.NLogDB := LogTable;
       SaveQSO(SQSO);
