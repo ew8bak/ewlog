@@ -3397,7 +3397,7 @@ begin
 
   InitIni;
   LTCPComponent1.ReuseAddress := True;
-  LTCPComponent1.Listen(49152);
+  LTCPComponent1.Listen(49154);
   LUDPComponent1.Listen(49153);
 
 
@@ -3621,6 +3621,7 @@ begin
       begin
         Readln(AdifFile, s);
         s := StringReplace(s, '<EOR>', '<EOR>'#10, [rfReplaceAll]);
+        s := StringReplace(s, '<EOH>', '<EOH>'#10, [rfReplaceAll]);
       end;
       CloseFile(AdifFile);
       Rewrite(AdifFile);
@@ -3652,7 +3653,7 @@ begin
   if aSocket.GetMessage(mess) > 0 then
   begin
     if mess = 'GetIP' then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':49152');
+      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':49154');
     if mess = 'Hello' then
       LUDPComponent1.SendMessage('Welcome!');
   end;

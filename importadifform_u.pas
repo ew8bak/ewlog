@@ -235,6 +235,8 @@ var
   TIME_OFF: string;
   TIME_ON: string;
   ValidDX: string;
+  MY_LAT: string;
+  MY_LON: string;
   PosEOH: word;
   PosEOR: word;
   QSOTIME: string;
@@ -365,6 +367,8 @@ begin
         TIME_OFF := '';
         TIME_ON := '';
         ValidDX := '';
+        MY_LAT := '';
+        MY_LON := '';
 
         Readln(f, s);
         if GuessEncoding(s) <> 'utf8' then
@@ -433,6 +437,8 @@ begin
         TIME_OFF := dmFunc.getField(s, 'TIME_OFF');
         TIME_ON := dmFunc.getField(s, 'TIME_ON');
         ValidDX := dmFunc.getField(s, 'ValidDX');
+        MY_LAT := dmFunc.getField(s, 'MY_LAT');
+        MY_LON := dmFunc.getField(s, 'MY_LON');
 
         if PosEOR > 0 then
         begin
@@ -601,12 +607,11 @@ begin
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
-            'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,'
-            +
-            'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
-            + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
-            + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,'
-            + 'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE) VALUES (' +
+            'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
+            'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, ' +
+            'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,' +
+            'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
+            'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON) VALUES (' +
             dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
             dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
             dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
@@ -614,20 +619,21 @@ begin
             dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
             dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
             dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
-            dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) + dmFunc.Q(ITUZ) +
-            dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) + dmFunc.Q('0') +
-            dmFunc.Q(BAND) + dmFunc.Q(CONT) + dmFunc.Q(COMMENT) +
-            dmFunc.Q(paramEQSL_QSL_RCVD) + dmFunc.Q(paramLOTW_QSL_RCVD) +
-            dmFunc.Q(paramLOTW_QSLRDATE) + dmFunc.Q(QSLMSG) +
-            dmFunc.Q(dmFunc.ExtractCallsign(CALL)) + dmFunc.Q(STATE1) +
-            dmFunc.Q(STATE2) + dmFunc.Q(STATE3) + dmFunc.Q(STATE4) +
-            dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) + dmFunc.Q('') +
-            dmFunc.Q(paramValidDX) + dmFunc.Q(SRX) + dmFunc.Q(SRX_STRING) +
-            dmFunc.Q(STX) + dmFunc.Q(STX_STRING) + dmFunc.Q(SAT_NAME) +
-            dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) + dmFunc.Q(paramLOTW_QSL_SENT) +
-            dmFunc.Q(QSL_RCVD_VIA) + dmFunc.Q(QSL_SENT_VIA) +
-            dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) + dmFunc.Q(MY_STATE) +
-            QuotedStr(MY_GRIDSQUARE) + ')';
+            dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) +
+            dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) +
+            dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
+            dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
+            dmFunc.Q(paramLOTW_QSL_RCVD) + dmFunc.Q(paramLOTW_QSLRDATE) +
+            dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
+            dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) +
+            dmFunc.Q(STATE4) + dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) +
+            dmFunc.Q('') + dmFunc.Q(paramValidDX) + dmFunc.Q(SRX) +
+            dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) +
+            dmFunc.Q(SAT_NAME) + dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) +
+            dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
+            dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
+            dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
+            QuotedStr(MY_LON) + ')';
 
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)

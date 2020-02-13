@@ -30,26 +30,22 @@ type
     ProgressBar1: TProgressBar;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    {$IFDEF WINDOWS}
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     function CheckUpdate: boolean;
     function GetSize(URL: string): int64;
-    {$ELSE}
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    {$ENDIF WINDOWS}
+
   private
     Download: int64;//счётчик закачанных данных
-    {$IFDEF WINDOWS}
+
     procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
       const Value: string);
     procedure DownloadFile;
     procedure DownloadDBFile;
     procedure DownloadCallBookFile;
     procedure DownloadChangeLOGFile;
+    {$IFDEF WINDOWS}
     function RunAsAdmin(const Handler: Hwnd; const Path, Params: string): boolean;
-
     {$ENDIF WINDOWS}
     { private declarations }
   public
@@ -59,7 +55,7 @@ type
   {$ELSE}
   const
     DownPATH: string = 'http://update.ew8bak.ru/EWLog_x86.exe';
-  {$ENDIF}
+  {$ENDIF WIN64}
     { public declarations }
   end;
 
@@ -165,8 +161,6 @@ begin
   ProgressBar1.Position := 0;
 end;
 
-{$IFDEF WINDOWS}
-
 function TUpdate_Form.GetSize(URL: string): int64;
 var
   i: integer;
@@ -194,31 +188,6 @@ begin
 end;
 
 
-{function GetMyVersion: string;
-type
-  TVerInfo = packed record
-    Nevazhno: array[0..47] of byte;
-    Minor, Major, Build, Release: word;
-  end;
-var
-  s: TResourceStream;
-  v: TVerInfo;
-begin
-  Result := '';
-  try
-    s := TResourceStream.Create(HInstance, '#1', RT_VERSION);
-    if s.Size > 0 then
-    begin
-      s.Read(v, SizeOf(v));
-      Result := IntToStr(v.Major) + '.' + IntToStr(v.Minor) + '.' +
-        IntToStr(v.Release);
-    end;
-    s.Free;
-  except;
-  end;
-end;}
-
-
 function TUpdate_Form.CheckUpdate: boolean;
 var
   VerFile: file of ver;
@@ -231,16 +200,15 @@ var
 begin
   try
      {$IFDEF UNIX}
-    updatePATH := '/etc/EWLog/';
+    updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
-
     updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
       SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
 
-    if FileExists(updatePATH + 'updates\version.info') then
+    if FileExists(updatePATH + 'updates'+DirectorySeparator+'version.info') then
     begin
-      AssignFile(VerFile, updatePATH + 'updates\version.info');
+      AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
       Reset(VerFile);
       Read(VerFile, VerFiles);
       last_update := VerFiles.lastupdate;
@@ -331,8 +299,8 @@ var
   updatePATH: string;
 begin
 
-     {$IFDEF UNIX}
-  updatePATH := '/etc/EWLog/';
+    {$IFDEF UNIX}
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
@@ -348,7 +316,7 @@ begin
   Label9.Caption := rUpdateStatusDownloads;
   try
     if HTTP.HTTPMethod('GET', DownPATH) then
-      HTTP.Document.SaveToFile(updatePATH + 'updates\EWLog.exe');
+      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'EWLog.exe');
   finally
     HTTP.Free;
     DownloadDBFile;
@@ -362,7 +330,7 @@ var
   updatePATH: string;
 begin
      {$IFDEF UNIX}
-  updatePATH := '/etc/EWLog/';
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
@@ -378,7 +346,7 @@ begin
   Label9.Caption := rUpdateStatusDownloadBase;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/serviceLOG.db') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates\serviceLOG.db');
+      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'serviceLOG.db');
   finally
     HTTP.Free;
     DownloadCallBookFile;
@@ -392,7 +360,7 @@ var
   updatePATH: string;
 begin
      {$IFDEF UNIX}
-  updatePATH := '/etc/EWLog/';
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
@@ -408,16 +376,16 @@ begin
   Label9.Caption := rUpdateStatusDownloadCallbook;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/callbook.db') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates\callbook.db');
+      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'callbook.db');
   finally
     HTTP.Free;
     MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
     MainForm.CallBookLiteConnection.Connected := False;
     UseCallBook := 'NO';
-    if FileUtil.CopyFile(updatePATH + 'updates\callbook.db', updatePATH +
+    if FileUtil.CopyFile(updatePATH + 'updates'+DirectorySeparator+'callbook.db', updatePATH +
       'callbook.db', True, True) then
     begin
-      DeleteFile(PChar(updatePATH + 'updates\callbook.db'));
+      DeleteFile(PChar(updatePATH + 'updates'+DirectorySeparator+'callbook.db'));
       MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
       MainForm.CallBookLiteConnection.Connected := True;
       UseCallBook := 'YES';
@@ -435,7 +403,7 @@ var
   updatePATH: string;
 begin
      {$IFDEF UNIX}
-  updatePATH := '/etc/EWLog/';
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';;
     {$ELSE}
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
@@ -451,10 +419,10 @@ begin
   Label9.Caption := rUpdateStatusDownloadChanges;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/changelog.txt') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates\changelog.txt');
+      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'changelog.txt');
   finally
     HTTP.Free;
-    Changelog_Form.Memo1.Lines.LoadFromFile(updatePATH + 'updates\changelog.txt');
+    Changelog_Form.Memo1.Lines.LoadFromFile(updatePATH + 'updates'+DirectorySeparator+'changelog.txt');
     Changelog_Form.Show;
     Label9.Caption := rUpdateStatusRequiredInstall;
     Button1.Caption := rButtonInstall;
@@ -467,7 +435,11 @@ begin
     CheckUpdate
   else
   if Button1.Caption = rButtonInstall then
+    {$IFDEF WINDOWS}
     RunAsAdmin(MainForm.Handle, 'UPDATE_EWLog.exe', '')
+    {$ELSE}
+    ShowMessage(rOnlyWindows)
+    {$ENDIF WINDOWS}
   else
   begin
     DownloadFile;
@@ -491,7 +463,7 @@ begin
     Application.ProcessMessages;
   end;
 end;
-
+{$IFDEF WINDOWS}
 function TUpdate_Form.RunAsAdmin(const Handler: Hwnd;
   const Path, Params: string): boolean;
 var
@@ -507,18 +479,6 @@ begin
   sei.nShow := SW_SHOWNORMAL;
   Result := ShellExecuteExA(@sei);
 end;
-
- {$ELSE}
-
-procedure TUpdate_Form.Button1Click(Sender: TObject);
-begin
-
-end;
-
-procedure TUpdate_Form.Button2Click(Sender: TObject);
-begin
-
-end;
-
 {$ENDIF WINDOWS}
+
 end.

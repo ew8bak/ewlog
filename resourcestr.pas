@@ -122,6 +122,7 @@ resourcestring
   rButtonInstall = 'Install';
   rBytes = ' bytes';
   rNoLogFileFound = 'No log file found! Check settings';
+  rOnlyWindows = 'The function is available only in the Windows system';
 
 implementation
 

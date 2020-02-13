@@ -977,6 +977,10 @@ msgctxt "resourcestr.romqth"
 msgid "QTH"
 msgstr ""
 
+#: resourcestr.ronlywindows
+msgid "The function is available only in the Windows system"
+msgstr ""
+
 #: resourcestr.rphotofromqrzru
 msgctxt "resourcestr.rphotofromqrzru"
 msgid "Photo from QRZ.RU"

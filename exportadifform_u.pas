@@ -209,7 +209,6 @@ begin
         QuotedStr(FormatDateTime('yyyy-mm-dd', DateEdit1.Date)) +
         ' and ' + QuotedStr(FormatDateTime('yyyy-mm-dd', DateEdit2.Date)) +
         ' ORDER BY UnUsedIndex ASC';
-    //  ShowMessage(Q1.SQL.Text);
   end;
 
   if MainForm.ExportAdifSelect = True then
