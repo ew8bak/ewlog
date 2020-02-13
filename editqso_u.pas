@@ -24,6 +24,7 @@ type
     CheckBox4: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
+    CheckBox7: TCheckBox;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
@@ -298,8 +299,7 @@ begin
     Params.ParamByName('SAT_MODE').AsString := ComboBox4.Text;
     Params.ParamByName('PROP_MODE').AsString := ComboBox3.Text;
 
-    //Пока нету лотв ставлю 0
-    Params.ParamByName('LoTWSent').AsString := '0';
+    Params.ParamByName('LoTWSent').AsBoolean := CheckBox7.Checked;
 
     if ComboBox6.Text <> '' then
       Params.ParamByName('QSL_RCVD_VIA').AsString := ComboBox6.Text

@@ -113,7 +113,7 @@ begin
       Readln(f, s);
       s := StringReplace(s, #10, '', [rfReplaceAll]);
       s := StringReplace(s, #13, '', [rfReplaceAll]);
-      s := StringReplace(UpperCase(s), '<EOR>', '<EOR>'#10, [rfReplaceAll]);
+      s := StringReplace(UpperCase(s), '<EOR>', '<EOR>'#13#10, [rfReplaceAll]);
       if Length(s) > 0 then
       begin
         Stream.Write(s[1], length(s));

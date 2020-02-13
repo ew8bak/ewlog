@@ -2755,6 +2755,8 @@ begin
       DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsBoolean;
     EditQSO_Form.CheckBox6.Checked :=
       DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsBoolean;
+    EditQSO_Form.CheckBox7.Checked :=
+      DBGrid1.DataSource.DataSet.FieldByName('LoTWSent').AsBoolean;
 
     if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'G' then
       EditQSO_Form.ComboBox6.ItemIndex := 5;
@@ -2906,10 +2908,10 @@ begin
         TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
       if (Field_QSLs = '11') then
-        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PE');
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
 
       if (Field_QSLs = '01') then
-        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'PLE');
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
     end;
   end;
   if ConfigForm.CheckBox2.Checked = True then
@@ -3029,10 +3031,10 @@ begin
         TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
       if (Field_QSLs = '11') then
-        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PE');
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
 
       if (Field_QSLs = '01') then
-        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'PLE');
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
     end;
   end;
   if ConfigForm.CheckBox2.Checked = True then
@@ -5040,6 +5042,8 @@ begin
         DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsBoolean;
       EditQSO_Form.CheckBox6.Checked :=
         DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsBoolean;
+      EditQSO_Form.CheckBox7.Checked :=
+        DBGrid1.DataSource.DataSet.FieldByName('LoTWSent').AsBoolean;
 
       if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'G' then
         EditQSO_Form.ComboBox6.ItemIndex := 5;

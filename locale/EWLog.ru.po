@@ -2157,6 +2157,10 @@ msgstr "Получена eQSL"
 msgid "Received LotW"
 msgstr "Получена LotW"
 
+#: teditqso_form.checkbox7.caption
+msgid "Sent LoTW"
+msgstr ""
+
 #: teditqso_form.datetimepicker1.textfornulldate
 msgctxt "teditqso_form.datetimepicker1.textfornulldate"
 msgid "NULL"

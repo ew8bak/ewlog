@@ -2059,6 +2059,10 @@ msgstr ""
 msgid "Received LotW"
 msgstr ""
 
+#: teditqso_form.checkbox7.caption
+msgid "Sent LoTW"
+msgstr ""
+
 #: teditqso_form.datetimepicker1.textfornulldate
 msgctxt "teditqso_form.datetimepicker1.textfornulldate"
 msgid "NULL"

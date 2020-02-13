@@ -57,6 +57,7 @@
 {"hash":53609394,"name":"teditqso_form.label25.caption","sourcebytes":[81,83,76,32,109,97,110,97,103,101,114],"value":"QSL manager"},
 {"hash":227232897,"name":"teditqso_form.label26.caption","sourcebytes":[81,83,76,32,119,97,115,32,115,101,110,116,32,118,105,97],"value":"QSL was sent via"},
 {"hash":132448687,"name":"teditqso_form.label27.caption","sourcebytes":[81,83,76,32,73,110,102,111],"value":"QSL Info"},
+{"hash":90541399,"name":"teditqso_form.checkbox7.caption","sourcebytes":[83,101,110,116,32,76,111,84,87],"value":"Sent LoTW"},
 {"hash":21335,"name":"teditqso_form.tabsheet2.caption","sourcebytes":[76,111,103],"value":"Log"},
 {"hash":22140,"name":"teditqso_form.dbgrid1.columns[0].title.caption","sourcebytes":[81,83,76],"value":"QSL"},
 {"hash":354355,"name":"teditqso_form.dbgrid1.columns[1].title.caption","sourcebytes":[81,83,76,115],"value":"QSLs"},

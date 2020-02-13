@@ -1393,6 +1393,19 @@ object EditQSO_Form: TEditQSO_Form
         Caption = 'QSL Info'
         ParentColor = False
       end
+      object CheckBox7: TCheckBox
+        AnchorSideLeft.Control = GroupBox3
+        AnchorSideTop.Control = GroupBox3
+        AnchorSideTop.Side = asrBottom
+        Left = 246
+        Height = 23
+        Top = 102
+        Width = 79
+        Caption = 'Sent LoTW'
+        Font.Height = -11
+        ParentFont = False
+        TabOrder = 6
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'Log'
