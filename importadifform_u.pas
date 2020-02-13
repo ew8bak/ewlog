@@ -477,6 +477,12 @@ begin
           if RadioButton2.Checked = True then
             QSOTIME := TIME_ON;
 
+          if (QSOTIME = '') and (TIME_OFF = '') then
+            QSOTIME := TIME_ON;
+
+          if (QSOTIME = '') and (TIME_ON = '') then
+            QSOTIME := TIME_OFF;
+
           if MainForm.MySQLLOGDBConnection.Connected then
             paramQSODate := dmFunc.ADIFDateToDate(QSO_DATE)
           else
@@ -528,7 +534,7 @@ begin
 
           if QSL_RCVD = 'Y' then
             paramQSL_RCVD := '1';
-          if QSL_RCVD = 'N' then
+          if (QSL_RCVD = 'N') or (QSL_RCVD = '') then
             ParamQSL_RCVD := '0';
 
           if QSLRDATE <> '' then
@@ -603,14 +609,21 @@ begin
           if CheckBox1.Checked then
             SearchPrefix(CALL, PFX, DXCC_PREF, CQZ, ITUZ, CONT, DXCC);
 
+          if GuessEncoding(sNAME) <> 'utf8' then
+            sNAME:= CP1251ToUTF8(sNAME);
+          if GuessEncoding(QTH) <> 'utf8' then
+            QTH := CP1251ToUTF8(QTH);
+          if GuessEncoding(COMMENT) <> 'utf8' then
+            COMMENT := CP1251ToUTF8(COMMENT);
+
           Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
             'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
-            'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, ' +
-            'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,' +
-            'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
+            'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
+            + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
+            + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
             'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON) VALUES (' +
             dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
             dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +

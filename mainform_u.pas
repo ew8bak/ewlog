@@ -2827,7 +2827,8 @@ begin
       DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (Field_QSL = '100') or (Field_QSL = '110') then
+  if (Field_QSL = '001') or (Field_QSL = '100') or (Field_QSL = '011') or
+    (Field_QSL = '110') or (Field_QSL = '111') or (Field_QSL = '101') then
     with DBGrid1.Canvas do
     begin
       Brush.Color := clFuchsia;
@@ -2844,6 +2845,22 @@ begin
   if (Field_QSLs = '10') or (Field_QSLs = '11') then
     with DBGrid1.Canvas do
     begin
+      Brush.Color := clAqua;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+
+  if ((Field_QSLs = '10') or (Field_QSLs = '11')) and
+    ((Field_QSL = '001') or (Field_QSL = '011') or (Field_QSL = '111') or
+    (Field_QSL = '101') or (Field_QSL = '110')) then
+    with DBGrid1.Canvas do
+    begin
       Brush.Color := clLime;
       Font.Color := clBlack;
       if (gdSelected in State) then
@@ -2856,7 +2873,8 @@ begin
     end;
 
   if (Column.FieldName = 'CallSign') then
-    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') then
+    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') or
+      (Field_QSL = '011') then
     begin
       with DBGrid1.Canvas do
       begin
@@ -2950,7 +2968,8 @@ begin
       DBGrid2.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (Field_QSL = '100') or (Field_QSL = '110') then
+  if (Field_QSL = '001') or (Field_QSL = '100') or (Field_QSL = '011') or
+    (Field_QSL = '110') or (Field_QSL = '111') or (Field_QSL = '101') then
     with DBGrid2.Canvas do
     begin
       Brush.Color := clFuchsia;
@@ -2967,6 +2986,22 @@ begin
   if (Field_QSLs = '10') or (Field_QSLs = '11') then
     with DBGrid2.Canvas do
     begin
+      Brush.Color := clAqua;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid2.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+
+  if ((Field_QSLs = '10') or (Field_QSLs = '11')) and
+    ((Field_QSL = '001') or (Field_QSL = '011') or (Field_QSL = '111') or
+    (Field_QSL = '101') or (Field_QSL = '110')) then
+    with DBGrid2.Canvas do
+    begin
       Brush.Color := clLime;
       Font.Color := clBlack;
       if (gdSelected in State) then
@@ -2979,7 +3014,8 @@ begin
     end;
 
   if (Column.FieldName = 'CallSign') then
-    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') then
+    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') or
+      (Field_QSL = '011') then
     begin
       with DBGrid2.Canvas do
       begin
@@ -3373,7 +3409,7 @@ begin
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
     GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
   {$ENDIF UNIX}
-  MapView1.CachePath := PathMyDoc + 'cache'+DirectorySeparator;
+  MapView1.CachePath := PathMyDoc + 'cache' + DirectorySeparator;
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
@@ -6093,9 +6129,6 @@ begin
         dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
         SQSO.My_Lat := CurrToStr(lat);
         SQSO.My_Lon := CurrToStr(lon);
-
-
-
 
 
 

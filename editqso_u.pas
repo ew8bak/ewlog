@@ -144,7 +144,7 @@ var
 
 implementation
 
-uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_Form_U;
+uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_Form_U, ConfigForm_U;
 
 {$R *.lfm}
 
@@ -403,176 +403,142 @@ end;
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: integer; Column: TColumn; State: TGridDrawState);
 var
-  i: integer;
+  Field_QSL: string;
+  Field_QSLs: string;
+  Field_QSLSentAdv: string;
 begin
-  if MainForm.LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
+  Field_QSL := MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString;
+  Field_QSLs := MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString;
+  Field_QSLSentAdv := MainForm.LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString;
+
+   if Field_QSLSentAdv = 'N' then
     with DBGrid1.Canvas do
     begin
-      FillRect(Rect);
+      Brush.Color := clRed;
+      Font.Color := clBlack;
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clRed;
-        Font.Color := clBlack;
       end;
       FillRect(Rect);
       DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') or
-    (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then
+  if (Field_QSL = '001') or (Field_QSL = '100') or (Field_QSL = '011') or
+    (Field_QSL = '110') or (Field_QSL = '111') or (Field_QSL = '101') then
     with DBGrid1.Canvas do
     begin
-      FillRect(Rect);
+      Brush.Color := clFuchsia;
+      Font.Color := clBlack;
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clFuchsia;
-        Font.Color := clBlack;
       end;
       FillRect(Rect);
       DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') or
-    (MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then
+  if (Field_QSLs = '10') or (Field_QSLs = '11') then
     with DBGrid1.Canvas do
     begin
-      FillRect(Rect);
+      Brush.Color := clAqua;
+      Font.Color := clBlack;
       if (gdSelected in State) then
       begin
         Brush.Color := clHighlight;
         Font.Color := clWhite;
-      end
-      else
-      begin
-        Brush.Color := clLime;
-        Font.Color := clBlack;
       end;
       FillRect(Rect);
       DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
     end;
 
-  if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') or
-    (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') or
-    (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then
-    if (Column.FieldName = 'CallSign') then
+  if ((Field_QSLs = '10') or (Field_QSLs = '11')) and
+    ((Field_QSL = '001') or (Field_QSL = '011') or (Field_QSL = '111') or
+    (Field_QSL = '101') or (Field_QSL = '110')) then
+    with DBGrid1.Canvas do
+    begin
+      Brush.Color := clLime;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+
+  if (Column.FieldName = 'CallSign') then
+    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') or
+      (Field_QSL = '011') then
     begin
       with DBGrid1.Canvas do
       begin
+        Brush.Color := clYellow;
+        Font.Color := clBlack;
         if (gdSelected in State) then
         begin
           Brush.Color := clHighlight;
           Font.Color := clWhite;
-        end
-        else
-        begin
-          Brush.Color := clYellow;
-          Font.Color := clBlack;
         end;
         FillRect(Rect);
         DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
       end;
     end;
-
   if (Column.FieldName = 'QSL') then
   begin
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '000') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth(''), Rect.Top + 0, '');
-      end;
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '100') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
-      end;
+      if (Field_QSL = '100') then
+        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '110') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PE'),
-          Rect.Top + 0, 'PE');
-      end;
+      if (Field_QSL = '110') then
+        TextOut(Rect.Right - 10 - TextWidth('PE'), Rect.Top + 0, 'PE');
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '111') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('PLE'),
-          Rect.Top + 0, 'PLE');
-      end;
+      if (Field_QSL = '111') then
+        TextOut(Rect.Right - 6 - TextWidth('PLE'), Rect.Top + 0, 'PLE');
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '010') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('E'), Rect.Top + 0, 'E');
-      end;
+      if (Field_QSL = '010') then
+        TextOut(Rect.Right - 6 - TextWidth('E'), Rect.Top + 0, 'E');
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '001') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('L'), Rect.Top + 0, 'L');
-      end;
+      if (Field_QSL = '001') then
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '101') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PL'),
-          Rect.Top + 0, 'PL');
-      end;
+      if (Field_QSL = '101') then
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString = '011') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('LE'),
-          Rect.Top + 0, 'LE');
-      end;
+      if (Field_QSL = '011') then
+        TextOut(Rect.Right - 10 - TextWidth('LE'), Rect.Top + 0, 'LE');
     end;
   end;
-
   if (Column.FieldName = 'QSLs') then
   begin
     with DBGrid1.Canvas do
     begin
       FillRect(Rect);
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString = '00') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth(''), Rect.Top + 0, '');
-      end;
+      if (Field_QSLs = '10') then
+        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString = '10') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('P'), Rect.Top + 0, 'P');
-      end;
+      if (Field_QSLs = '11') then
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
 
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString = '11') then
-      begin
-        TextOut(Rect.Right - 10 - DBGrid1.Canvas.TextWidth('PL'),
-          Rect.Top + 0, 'PE');
-      end;
-
-      if (MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString = '01') then
-      begin
-        TextOut(Rect.Right - 6 - DBGrid1.Canvas.TextWidth('L'), Rect.Top + 0, 'PLE');
-      end;
+      if (Field_QSLs = '01') then
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
     end;
   end;
-
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  if ConfigForm.CheckBox2.Checked = True then
   begin
     if (Column.FieldName = 'QSOBand') then
     begin
       DBGrid1.Canvas.FillRect(Rect);
       DBGrid1.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
-        dmFunc.GetBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName(
-        'QSOBand').AsString));
+        dmFunc.GetBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
     end;
   end;
-
 end;
 
 procedure TEditQSO_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
