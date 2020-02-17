@@ -6,7 +6,7 @@ object ServiceForm: TServiceForm
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Service eQSL and LotW'
-  ClientHeight = 213
+  ClientHeight = 216
   ClientWidth = 500
   Font.Height = -12
   FormStyle = fsStayOnTop
@@ -17,8 +17,8 @@ object ServiceForm: TServiceForm
   LCLVersion = '2.0.6.0'
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 15
-    Top = 198
+    Height = 23
+    Top = 193
     Width = 500
     Panels = <>
   end
@@ -370,9 +370,9 @@ object ServiceForm: TServiceForm
   end
   object Label1: TLabel
     Left = 192
-    Height = 14
+    Height = 17
     Top = 16
-    Width = 186
+    Width = 184
     Caption = 'Download QSL received after:'
     Font.Height = -13
     Font.Style = [fsBold]
@@ -387,7 +387,7 @@ object ServiceForm: TServiceForm
   end
   object Label2: TLabel
     Left = 136
-    Height = 14
+    Height = 17
     Top = 48
     Width = 33
     Caption = 'LotW'
@@ -398,9 +398,9 @@ object ServiceForm: TServiceForm
   end
   object Label3: TLabel
     Left = 432
-    Height = 14
+    Height = 17
     Top = 48
-    Width = 49
+    Width = 47
     Caption = 'eQSL.cc'
     Font.Height = -13
     Font.Style = [fsBold, fsUnderline]
@@ -467,9 +467,9 @@ object ServiceForm: TServiceForm
   end
   object Label4: TLabel
     Left = 136
-    Height = 13
+    Height = 15
     Top = 152
-    Width = 86
+    Width = 82
     Caption = 'Processed data:'
     Font.Height = -12
     ParentColor = False
@@ -477,9 +477,9 @@ object ServiceForm: TServiceForm
   end
   object Label5: TLabel
     Left = 136
-    Height = 13
+    Height = 15
     Top = 168
-    Width = 37
+    Width = 33
     Caption = 'Errors:'
     Font.Height = -12
     ParentColor = False
@@ -570,9 +570,9 @@ object ServiceForm: TServiceForm
   end
   object Label6: TLabel
     Left = 312
-    Height = 13
+    Height = 15
     Top = 152
-    Width = 65
+    Width = 62
     Caption = 'Status: Wait'
     Font.Height = -12
     ParentColor = False

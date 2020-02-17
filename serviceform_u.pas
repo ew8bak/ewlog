@@ -89,8 +89,8 @@ begin
     'EWLog' + DirectorySeparator + 'temp.adi';
   {$ELSE}
   TempFile := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + DirectorySeparator + 'EWLog' +
-    DirectorySeparator + 'temp.adi';
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + DirectorySeparator +
+    'EWLog' + DirectorySeparator + 'temp.adi';
   {$ENDIF UNIX}
   RecCount := 0;
   DupeCount := 0;
@@ -173,10 +173,11 @@ begin
           else
             Query := 'UPDATE ' + LogTable + ' SET QSOmode = ' +
               dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE) +
-              'Grid = ' + dmFunc.Q(GRIDSQUARE) + 'QSLInfo = ' +
-              dmFunc.Q(QSLMSG) + 'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
-              ' WHERE CallSign = ' + QuotedStr(CALL) +
-              ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) + ';';
+              'QSL_RCVD_VIA = ' + dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' +
+              dmFunc.Q(GRIDSQUARE) + 'QSLInfo = ' + dmFunc.Q(QSLMSG) +
+              'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) + ' WHERE CallSign = ' +
+              QuotedStr(CALL) + ' AND strftime(''%Y%m%d'',QSODate) = ' +
+              QuotedStr(QSO_DATE) + ';';
           UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
           MainForm.SQLTransaction1.Commit;
@@ -239,8 +240,8 @@ begin
     'EWLog' + DirectorySeparator + 'temp.adi';
   {$ELSE}
   TempFile := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + DirectorySeparator + 'EWLog' +
-    DirectorySeparator + 'temp.adi';
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + DirectorySeparator +
+    'EWLog' + DirectorySeparator + 'temp.adi';
   {$ENDIF UNIX}
   RecCount := 0;
   DupeCount := 0;
