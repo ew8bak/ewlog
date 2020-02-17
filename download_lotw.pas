@@ -8,7 +8,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ssl_openssl, ResourceStr;
+  Classes, SysUtils, ssl_openssl, ResourceStr, LazUTF8;
 
 const
   LotW_URL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';

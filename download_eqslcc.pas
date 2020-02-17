@@ -8,7 +8,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ssl_openssl, ResourceStr, LazFileUtils;
+  Classes, SysUtils, ssl_openssl, ResourceStr, LazFileUtils, LazUTF8;
 
 const
   DowneQSLcc_URL = 'http://www.eqsl.cc/qslcard/DownloadInBox.cfm?';
