@@ -8,6 +8,7 @@ uses
   Classes, SysUtils;
 
 resourcestring
+  rEWLogHAMJournal = 'EWLog - HAM Journal';
   rQSL = 'QSL';
   rQSLs = 'QSLs';
   rQSODate = 'Date';

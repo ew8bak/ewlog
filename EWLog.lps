@@ -9,8 +9,8 @@
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="15"/>
-        <CursorPos Y="69"/>
+        <TopLine Value="18"/>
+        <CursorPos Y="29"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -283,7 +283,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="57"/>
         <CursorPos Y="62"/>
@@ -541,9 +540,9 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="58"/>
-        <CursorPos X="17" Y="92"/>
+        <CursorPos X="45" Y="10"/>
         <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit50>

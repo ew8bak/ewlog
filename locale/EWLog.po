@@ -424,6 +424,11 @@ msgctxt "resourcestr.rerrorxmlapi"
 msgid "Error XML API:"
 msgstr ""
 
+#: resourcestr.rewloghamjournal
+msgctxt "resourcestr.rewloghamjournal"
+msgid "EWLog - HAM Journal"
+msgstr ""
+
 #: resourcestr.rfailedtoloaddata
 msgid "Failed to load data"
 msgstr ""
@@ -2696,6 +2701,7 @@ msgid "Services"
 msgstr ""
 
 #: tmainform.caption
+msgctxt "tmainform.caption"
 msgid "EWLog - HAM Journal"
 msgstr ""
 
