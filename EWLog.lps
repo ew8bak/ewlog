@@ -283,9 +283,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="157"/>
-        <CursorPos X="47" Y="164"/>
+        <TopLine Value="57"/>
+        <CursorPos Y="62"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -564,10 +565,9 @@
       <Unit53>
         <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="40"/>
-        <CursorPos X="41" Y="65"/>
+        <TopLine Value="28"/>
+        <CursorPos X="57" Y="57"/>
         <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit53>
@@ -575,7 +575,7 @@
         <Filename Value="download_eqslcc.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="103"/>
+        <TopLine Value="19"/>
         <CursorPos X="69" Y="11"/>
         <UsageCount Value="26"/>
         <Loaded Value="True"/>

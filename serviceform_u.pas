@@ -59,7 +59,6 @@ uses dmFunc_U, MainForm_U;
 
 procedure TServiceForm.eQSLImport(FilePATH: string);
 var
-  i: integer;
   f: TextFile;
   temp_f: TextFile;
   s: string;
@@ -72,6 +71,7 @@ var
   TIME_ON: string;
   QSL_SENT: string;
   QSL_SENT_VIA: string;
+  PROP_MODE: string;
   QSLMSG: string;
   GRIDSQUARE: string;
   paramQSL_SENT: string;
@@ -138,6 +138,7 @@ begin
         QSL_SENT_VIA := '';
         QSLMSG := '';
         QSL_SENT := '';
+        PROP_MODE := '';
         paramQSL_SENT := '';
 
         Readln(temp_f, s);
@@ -158,7 +159,7 @@ begin
         QSLMSG := dmFunc.getField(s, 'QSLMSG');
         RST_SENT := dmFunc.getField(s, 'RST_SENT');
         QSL_SENT := dmFunc.getField(s, 'QSL_SENT');
-
+        PROP_MODE := dmFunc.getField(s, 'PROP_MODE');
 
         if PosEOR > 0 then
         begin
@@ -175,9 +176,10 @@ begin
               dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE) +
               'QSL_RCVD_VIA = ' + dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' +
               dmFunc.Q(GRIDSQUARE) + 'QSLInfo = ' + dmFunc.Q(QSLMSG) +
-              'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) + ' WHERE CallSign = ' +
-              QuotedStr(CALL) + ' AND strftime(''%Y%m%d'',QSODate) = ' +
-              QuotedStr(QSO_DATE) + ';';
+              'QSOReportRecived = ' + dmFunc.Q(RST_SENT) + 'PROP_MODE = ' +
+              dmFunc.Q(PROP_MODE) + 'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
+              ' WHERE CallSign = ' + QuotedStr(CALL) +
+              ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) + ';';
           UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
           MainForm.SQLTransaction1.Commit;
