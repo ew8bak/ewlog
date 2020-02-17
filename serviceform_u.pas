@@ -45,7 +45,7 @@ type
     { private declarations }
   public
     procedure LotWImport(FilePATH: string);
-    procedure eQSLAdifImport(FilePATH: string);
+    procedure eQSLImport(FilePATH: string);
     { public declarations }
   end;
 
@@ -56,6 +56,152 @@ implementation
 
 {$R *.lfm}
 uses dmFunc_U, MainForm_U;
+
+procedure TServiceForm.eQSLImport(FilePATH: string);
+var
+  i: integer;
+  f: TextFile;
+  temp_f: TextFile;
+  s: string;
+  CALL: string;
+  BAND: string;
+  MODE: string;
+  SUBMODE: string;
+  RST_SENT: string;
+  QSO_DATE: string;
+  TIME_ON: string;
+  QSL_SENT: string;
+  QSL_SENT_VIA: string;
+  QSLMSG: string;
+  GRIDSQUARE: string;
+  paramQSL_SENT: string;
+  Query: string;
+  DupeCount: integer;
+  ErrorCount, RecCount: integer;
+  PosEOH: word;
+  PosEOR: word;
+  yyyy, mm, dd: word;
+  Stream: TMemoryStream;
+  TempFile: string;
+begin
+  {$IFDEF UNIX}
+  TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +
+    'EWLog' + DirectorySeparator + 'temp.adi';
+  {$ELSE}
+  TempFile := GetEnvironmentVariable('SystemDrive') +
+    GetEnvironmentVariable('HOMEPATH') + DirectorySeparator + 'EWLog' +
+    DirectorySeparator + 'temp.adi';
+  {$ENDIF UNIX}
+  RecCount := 0;
+  DupeCount := 0;
+  ErrorCount := 0;
+  PosEOH := 0;
+  PosEOR := 0;
+  try
+    Stream := TMemoryStream.Create;
+    AssignFile(f, FilePATH);
+    Reset(f);
+
+    while not (PosEOH > 0) do
+    begin
+      Readln(f, s);
+      PosEOH := Pos('<EOH>', UpperCase(s));
+    end;
+
+    while not EOF(f) do
+    begin
+      Readln(f, s);
+      s := StringReplace(s, #10, '', [rfReplaceAll]);
+      s := StringReplace(s, #13, '', [rfReplaceAll]);
+      s := StringReplace(UpperCase(s), '<EOR>', '<EOR>'#13#10, [rfReplaceAll]);
+      if Length(s) > 0 then
+      begin
+        Stream.Write(s[1], length(s));
+      end;
+    end;
+    Stream.SaveToFile(TempFile);
+
+    AssignFile(temp_f, TempFile);
+    Reset(temp_f);
+
+    while not (EOF(temp_f)) do
+    begin
+      try
+        CALL := '';
+        BAND := '';
+        MODE := '';
+        SUBMODE := '';
+        RST_SENT := '';
+        QSO_DATE := '';
+        TIME_ON := '';
+        GRIDSQUARE := '';
+        QSL_SENT_VIA := '';
+        QSLMSG := '';
+        QSL_SENT := '';
+        paramQSL_SENT := '';
+
+        Readln(temp_f, s);
+        s := Trim(s);
+
+        PosEOR := Pos('<EOR>', UpperCase(s));
+        if not (PosEOR > 0) then
+          Continue;
+
+        CALL := dmFunc.getField(s, 'CALL');
+        BAND := dmFunc.getField(s, 'BAND');
+        MODE := dmFunc.getField(s, 'MODE');
+        SUBMODE := dmFunc.getField(s, 'SUBMODE');
+        QSO_DATE := dmFunc.getField(s, 'QSO_DATE');
+        TIME_ON := dmFunc.getField(s, 'TIME_ON');
+        GRIDSQUARE := dmFunc.getField(s, 'GRIDSQUARE');
+        QSL_SENT_VIA := dmFunc.getField(s, 'QSL_SENT_VIA');
+        QSLMSG := dmFunc.getField(s, 'QSLMSG');
+        RST_SENT := dmFunc.getField(s, 'RST_SENT');
+        QSL_SENT := dmFunc.getField(s, 'QSL_SENT');
+
+
+        if PosEOR > 0 then
+        begin
+
+          if QSL_SENT = 'Y' then
+            paramQSL_SENT := '1'
+          else
+            paramQSL_SENT := '0';
+
+          if MainForm.MySQLLOGDBConnection.Connected then
+            Query := ''
+          else
+            Query := 'UPDATE ' + LogTable + ' SET QSOmode = ' +
+              dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE) +
+              'Grid = ' + dmFunc.Q(GRIDSQUARE) + 'QSLInfo = ' +
+              dmFunc.Q(QSLMSG) + 'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
+              ' WHERE CallSign = ' + QuotedStr(CALL) +
+              ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) + ';';
+          UPDATEQuery.SQL.Text := Query;
+          UPDATEQuery.ExecSQL;
+          MainForm.SQLTransaction1.Commit;
+
+          Inc(RecCount);
+          if RecCount mod 10 = 0 then
+          begin
+            Label4.Caption := rProcessedData + IntToStr(RecCount);
+            Application.ProcessMessages;
+          end;
+
+        end;
+      except
+        MainForm.SQLTransaction1.Rollback;
+      end;
+    end;
+  finally
+    CloseFile(f);
+    CloseFile(temp_f);
+    Stream.Free;
+    MainForm.SelDB(CallLogBook);
+    Label4.Caption := rProcessedData + IntToStr(RecCount);
+    Label6.Caption := rStatusDone;
+  end;
+end;
 
 procedure TServiceForm.LotWImport(FilePATH: string);
 var
@@ -171,7 +317,6 @@ begin
 
         if PosEOR > 0 then
         begin
-
           if APP_LOTW_2XQSL = 'Y' then
             paramAPP_LOTW_2XQSL := '1'
           else
@@ -247,19 +392,16 @@ begin
     ShowMessage(rNotDataForConnect)
   else
   begin
-    try
-      eQSLccThread := TeQSLccThread.Create;
-      if Assigned(eQSLccThread.FatalException) then
-        raise eQSLccThread.FatalException;
-      with eQSLccThread do
-      begin
-        user_eqslcc := eQSLccLogin;
-        password_eqslcc := eQSLccPassword;
-        date_eqslcc := FormatDateTime('yyyymmdd', DateEdit2.Date);
-        Start;
-      end;
-
-    finally
+    eQSLccThread := TeQSLccThread.Create;
+    if Assigned(eQSLccThread.FatalException) then
+      raise eQSLccThread.FatalException;
+    with eQSLccThread do
+    begin
+      user_eqslcc := eQSLccLogin;
+      password_eqslcc := eQSLccPassword;
+      date_eqslcc := FormatDateTime('yyyymmdd', DateEdit2.Date);
+      Start;
+      Label6.Caption := rStatusConnecteQSL;
     end;
   end;
 end;
@@ -270,20 +412,16 @@ begin
     ShowMessage(rNotDataForConnect)
   else
   begin
-    try
-      LoTWThread := TLoTWThread.Create;
-      if Assigned(LoTWThread.FatalException) then
-        raise LoTWThread.FatalException;
-      with LoTWThread do
-      begin
-        user_lotw := LotWLogin;
-        password_lotw := LotWPassword;
-        date_lotw := FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
-        Start;
-        Label6.Caption := rStatusConnectLotW;
-      end;
-
-    finally
+    LoTWThread := TLoTWThread.Create;
+    if Assigned(LoTWThread.FatalException) then
+      raise LoTWThread.FatalException;
+    with LoTWThread do
+    begin
+      user_lotw := LotWLogin;
+      password_lotw := LotWPassword;
+      date_lotw := FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
+      Start;
+      Label6.Caption := rStatusConnectLotW;
     end;
   end;
 end;
@@ -307,301 +445,7 @@ end;
 procedure TServiceForm.SpeedButton1Click(Sender: TObject);
 begin
   OpenDialog1.Execute;
-  eQSLAdifImport(OpenDialog1.FileName);
-end;
-
-procedure TServiceForm.eQSLAdifImport(FilePATH: string);
-var
-  adiFile: TextFile;
-  PosEOH: word;
-  PosEOR: word;
-  PosCall: word;
-  PosQSODate: word;
-  PosTimeOn: word;
-  PosBand: word;
-  PosMode: word;
-  PosRSTS: word;
-  PosQSLS: word;
-  PosQSLSV: word;
-  PosQSLMSG: word;
-  Call: string;
-  QSODate: string;
-  QSODateADIF: string;
-  TimeOn: string;
-  Band: string;
-  Mode: string;
-  RSTS: string;
-  QSLS: string;
-  QSLSV: string;
-  QSLMSG: string;
-  a: string;
-  Lines: array of string;
-  Len: integer;
-  Count: integer;
-  sCount: string;
-  i: integer;
-  Data: string;
-  RecCount: longint = 0;
-  ErrCount: longint = 0;
-begin
-  if FilePATH <> '' then
-  begin
-    try
-      try
-        AssignFile(adiFile, SysToUTF8(FilePATH));
-        Reset(adiFile);
-        while not (PosEOH > 0) do
-        begin
-          Readln(adiFile, a);
-          a := UpperCase(a);
-          PosEOH := Pos('<EOH>', a);
-        end;
-        while not EOF(adiFile) do
-        begin
-          Call := '';
-          QSODate := '';
-          QSODateADIF := '';
-          TimeOn := '';
-          Band := '';
-          Mode := '';
-          RSTS := '';
-          QSLS := '';
-          QSLSV := '';
-          QSLMSG := '';
-          PosEOR := 0;
-          Count := 0;
-          Len := 0;
-          while not ((PosEOR > 0) or EOF(adiFile)) do
-          begin
-            Inc(Len);
-            SetLength(Lines, Len);
-            Readln(adiFile, a);
-            a := Trim(a);
-            Lines[Len - 1] := a;
-            Data := a;
-            a := UpperCase(a);
-
-            PosEOR := Pos('<EOR>', a);
-            PosCALL := Pos('<CALL:', a);
-            PosQSODate := Pos('<QSO_DATE:8:D>', a);
-            PosTimeOn := Pos('<TIME_ON:', a);
-            PosBand := Pos('<BAND:', a);
-            PosMode := Pos('<MODE:', a);
-            PosRSTS := Pos('<RST_SENT:', a);
-            PosQSLS := Pos('<QSL_SENT:', a);
-            PosQSLSV := Pos('<QSL_SENT_VIA:', a);
-            PosQSLMSG := Pos('<QSLMSG:', a);
-
-            //Записываем позывной
-            if PosCall > 0 then
-            begin
-              Call := '';
-              sCount := '';
-              PosCall := PosCall + 6;
-              while not (a[PosCall] = '>') do
-              begin
-                sCount := sCount + a[PosCall];
-                Inc(PosCall);
-              end;
-              Count := StrToInt(sCount);
-              for i := PosCall + 1 to Count + PosCall do
-                Call := call + Data[i];
-            end;
-
-            //Записываем дату связи
-            if PosQSODate > 0 then
-            begin
-              QSODateADIF := '';
-              PosQSODate := PosQSODate + 12;
-              sCount := '';
-              for i := PosQSODate + 2 to PosQSODate + 9 do
-                QSODateADIF := QSODateADIF + Data[i];
-            end;
-
-            //Записываем время связи
-            if PosTimeOn > 0 then
-            begin
-              TimeOn := '';
-              PosTimeOn := PosTimeOn + 9;
-              sCount := '';
-              while not (a[PosTimeOn] = '>') do
-              begin
-                sCount := sCount + a[PosTimeOn];
-                Inc(PosTimeOn);
-              end;
-              Count := StrToInt(sCount);
-              for i := PosTimeOn + 1 to Count + PosTimeOn do
-                TimeOn := TimeOn + Data[i];
-              if (TimeOn <> '') then
-                TimeOn := TimeOn[1] + TimeOn[2] + ':' + TimeOn[3] + TimeOn[4];
-            end;
-
-            //Записываем диапазон
-            if PosBand > 0 then
-            begin
-              Band := '';
-              PosBand := PosBand + 6;
-              sCount := '';
-              while not (a[PosBand] = '>') do
-              begin
-                sCount := sCount + a[PosBand];
-                Inc(PosBand);
-              end;
-              Count := StrToInt(sCount);
-              for i := PosBand + 1 to Count + PosBand do
-                Band := Band + Data[i];
-            end;
-
-            //Записываем моду
-            if PosMode > 0 then
-            begin
-              Mode := '';
-              PosMode := PosMode + 6;
-              sCount := '';
-              while not (a[PosMode] = '>') do
-              begin
-                sCount := sCount + a[PosMode];
-                Inc(PosMode);
-              end;
-              Count := StrToInt(sCount);
-              for i := PosMode + 1 to Count + PosMode do
-                Mode := Mode + Data[i];
-              if Mode = 'BPSK31' then
-                Mode := 'PSK31';
-              if Mode = 'SST' then
-                Mode := 'SSTV';
-              if Mode = 'TTY' then
-                Mode := 'RTTY';
-              if Mode = 'WSTJ' then
-                Mode := 'FSK441';
-              if Mode = 'BPSK' then
-                Mode := 'PSK';
-            end;
-
-            // Записываем принятый рапорт
-            if PosRSTS > 0 then
-            begin
-              RSTS := '';
-              PosRSTS := PosRSTS + 10;
-              sCount := '';
-              while not (a[PosRSTS] = '>') do
-              begin
-                sCount := sCount + a[PosRSTS];
-                Inc(PosRSTS);
-              end;
-              Count := StrToInt(sCount);
-              for i := PosRSTS + 1 to Count + PosRSTS do
-                RSTS := RSTS + Data[i];
-            end;
-
-            //Записываем отправленая QSL
-            if PosQSLS > 0 then
-            begin
-              QSLS := '';
-              PosQSLS := PosQSLS + 10;
-              sCount := '';
-              while not (a[PosQSLS] = '>') do
-              begin
-                sCount := sCount + a[PosQSLS];
-                Inc(PosQSLS);
-              end;
-              Count := StrToInt(sCount);
-              for i := PosQSLS + 1 to Count + PosQSLS do
-                QSLS := QSLS + Data[i];
-            end;
-
-            //Записываем чем отправлена QSL
-            if PosQSLSV > 0 then
-            begin
-              QSLSV := '';
-              PosQSLSV := PosQSLSV + 14;
-              sCount := '';
-              while not (a[PosQSLSV] = '>') do
-              begin
-                sCount := sCount + a[PosQSLSV];
-                Inc(PosQSLSV);
-              end;
-              Count := StrToInt(sCount);
-              QSLSV := copy(Data, PosQSLSV + 1, Count);
-            end;
-
-            //Записываем сообщение
-            if PosQSLMSG > 0 then
-            begin
-              QSLMSG := '';
-              PosQSLMSG := PosQSLMSG + 8;
-              sCount := '';
-              while not (a[PosQSLMSG] = '>') do
-              begin
-                sCount := sCount + a[PosQSLMSG];
-                Inc(PosQSLMSG);
-              end;
-              Count := StrToInt(sCount);
-              for i := PosQSLMSG + 1 to Count + PosQSLMSG do
-                QSLMSG := QSLMSG + Data[i];
-            end;
-
-            if PosEOR > 0 then
-            begin
-              QSODate := dmFunc.ADIFDateToDate(QSODateADIF);
-              QSLSV := UpperCase(QSLSV);
-              QSLMSG := dmFunc.MyTrim(QSLMSG);
-              QSLMSG := copy(QSLMSG, 1, 200);
-              TimeOn := copy(TimeOn, 1, 5);
-              RSTS := dmFunc.MyTrim(RSTS);
-              if (Mode = 'USB') or (Mode = 'Mode') then
-                Mode := 'SSB';
-              Application.ProcessMessages;
-              if GuessEncoding(QSLMSG) <> 'utf8' then
-                QSLMSG := SysToUTF8(QSLMSG);
-
-              UPDATEQuery.Close;
-              UPDATEQuery.SQL.Clear;
-              if MainForm.MySQLLOGDBConnection.Connected then
-                UPDATEQuery.SQL.Add('UPDATE ' + LogTable +
-                  ' SET QSL_RCVD_VIA =:QSL_RCVD_VIA, QSLReceQSLcc =:QSLReceQSLcc, '
-                  +
-                  'QSLInfo =:QSLInfo WHERE CallSign =:CallSign AND QSODate =:QSODate')
-              else
-                UPDATEQuery.SQL.Add('UPDATE ' + LogTable +
-                  ' SET QSL_RCVD_VIA =:QSL_RCVD_VIA, QSLReceQSLcc =:QSLReceQSLcc, '
-                  +
-                  'QSLInfo =:QSLInfo WHERE CallSign =:CallSign AND strftime(''%Y-%m-%d'',QSODate) =:QSODate');
-
-              UPDATEQuery.Prepare;
-              if QSLS = 'Y' then
-              begin
-                UPDATEQuery.Params.ParamByName('QSLReceQSLcc').AsInteger := 1;
-              end
-              else
-              begin
-                UPDATEQuery.Params.ParamByName('QSLReceQSLcc').IsNull;
-              end;
-              UPDATEQuery.Params.ParamByName('QSL_RCVD_VIA').AsString := QSLSV;
-              UPDATEQuery.Params.ParamByName('QSLInfo').AsString := QSLMSG;
-              UPDATEQuery.Params.ParamByName('CallSign').AsString := Call;
-              UPDATEQuery.Params.ParamByName('QSODate').AsString := QSODate;
-
-              UPDATEQuery.ExecSQL;
-              MainForm.SQLTransaction1.Commit;
-              Application.ProcessMessages;
-              Inc(RecCount);
-              Label4.Caption := rProcessedData + IntToStr(RecCount);
-            end;
-          end;
-        end;
-
-      except
-        MainForm.SQLTransaction1.Rollback;
-      end;
-
-    finally
-      MainForm.SQLTransaction1.Commit;
-      CloseFile(adiFile);
-      MainForm.SelDB(CallLogBook);
-      Label6.Caption := rStatusDone;
-    end;
-  end;
+  eQSLImport(OpenDialog1.FileName);
 end;
 
 end.

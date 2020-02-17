@@ -125,7 +125,7 @@ begin
   if Length(result_mes) > 0 then
     ServiceForm.Label6.Caption := result_mes;
   if importFlag then
-    ServiceForm.eQSLAdifImport(SaveFile);
+    ServiceForm.eQSLImport(SaveFile);
 end;
 
 procedure TeQSLccThread.Execute;
