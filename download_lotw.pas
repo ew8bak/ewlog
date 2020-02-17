@@ -25,6 +25,7 @@ type
     date_lotw: string;
     result_mes: string;
     SaveFile: string;
+    importFlag: boolean;
     constructor Create;
     procedure ShowResult;
   end;
@@ -43,6 +44,7 @@ var
   response: string;
 begin
   Result := False;
+  importFlag := False;
   response := '';
   try
     {$IFDEF UNIX}
@@ -50,8 +52,8 @@ begin
       lotw_date + '.adi';
     {$ELSE}
     SaveFile := SysUtils.GetEnvironmentVariable('SystemDrive') +
-      SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '/EWLog/LotW_' +
-      lotw_date + '.adi';
+      SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) +
+      '/EWLog/LotW_' + lotw_date + '.adi';
     {$ENDIF UNIX}
     fullURL := LotW_URL + 'login=' + lotw_user + '&password=' +
       lotw_password + '&qso_query=1&qso_qsldetail="yes"' + '&qso_qslsince=' + lotw_date;
@@ -66,6 +68,7 @@ begin
       begin
         HTTP.Document.SaveToFile(SaveFile);
         result_mes := rStatusSaveFile;
+        importFlag := True;
       end;
     end;
   finally
@@ -84,8 +87,8 @@ procedure TLoTWThread.ShowResult;
 begin
   if Length(result_mes) > 0 then
     ServiceForm.Label6.Caption := result_mes;
-  if result_mes = rStatusSaveFile then
-  ServiceForm.LotWImport(SaveFile);
+  if importFlag then
+    ServiceForm.LotWImport(SaveFile);
 end;
 
 procedure TLoTWThread.Execute;

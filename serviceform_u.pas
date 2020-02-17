@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
-  httpsend, LazUtils, LazFileUtils, ssl_openssl, dateutils, resourcestr, download_lotw;
+  LazUtils, LazFileUtils, ssl_openssl, dateutils, resourcestr,
+  download_lotw, download_eqslcc;
 
 type
 
@@ -42,9 +43,9 @@ type
     procedure SpeedButton1Click(Sender: TObject);
   private
     { private declarations }
-    procedure eQSLAdifImport(FilePATH: string);
   public
     procedure LotWImport(FilePATH: string);
+    procedure eQSLAdifImport(FilePATH: string);
     { public declarations }
   end;
 
@@ -88,11 +89,12 @@ var
   TempFile: string;
 begin
   {$IFDEF UNIX}
-  TempFile := GetEnvironmentVariable('HOME') +
-    DirectorySeparator + 'EWLog' + DirectorySeparator + 'temp.adi';
+  TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +
+    'EWLog' + DirectorySeparator + 'temp.adi';
   {$ELSE}
-  TempFile := GetEnvironmentVariable('SystemDrive') + GetEnvironmentVariable('HOMEPATH') +
-    DirectorySeparator + 'EWLog' + DirectorySeparator + 'temp.adi';
+  TempFile := GetEnvironmentVariable('SystemDrive') +
+    GetEnvironmentVariable('HOMEPATH') + DirectorySeparator + 'EWLog' +
+    DirectorySeparator + 'temp.adi';
   {$ENDIF UNIX}
   RecCount := 0;
   DupeCount := 0;
@@ -191,23 +193,24 @@ begin
           if MainForm.MySQLLOGDBConnection.Connected then
             Query := ''
           else
-            Query := 'UPDATE ' + LogTable + ' SET GRID = ' + dmFunc.Q(GRIDSQUARE) +
-              'CQZone = ' + dmFunc.Q(CQZ) + 'ITUZone = ' + dmFunc.Q(ITUZ) +
-              'WPX = ' + dmFunc.Q(PFX) + 'DXCC = ' + dmFunc.Q(DXCC) +
-              'LoTWSent = ' + dmFunc.Q(paramAPP_LOTW_2XQSL) +
-              'LoTWRec = ''1'', LoTWRecDate = ' + QuotedStr(paramQSLRDATE) +
-              ' WHERE CallSign = ' + QuotedStr(CALL) +
-              ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) + ';';
+            Query := 'UPDATE ' + LogTable + ' SET GRID = ' +
+              dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
+              'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
+              'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
+              dmFunc.Q(paramAPP_LOTW_2XQSL) + 'LoTWRec = ''1'', LoTWRecDate = ' +
+              QuotedStr(paramQSLRDATE) + ' WHERE CallSign = ' +
+              QuotedStr(CALL) + ' AND strftime(''%Y%m%d'',QSODate) = ' +
+              QuotedStr(QSO_DATE) + ';';
           UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
           MainForm.SQLTransaction1.Commit;
 
-        Inc(RecCount);
-        if RecCount mod 10 = 0 then
-        begin
-          Label4.Caption := rProcessedData + IntToStr(RecCount);
-          Application.ProcessMessages;
-        end;
+          Inc(RecCount);
+          if RecCount mod 10 = 0 then
+          begin
+            Label4.Caption := rProcessedData + IntToStr(RecCount);
+            Application.ProcessMessages;
+          end;
 
         end;
       except
@@ -220,7 +223,7 @@ begin
     Stream.Free;
     MainForm.SelDB(CallLogBook);
     Label4.Caption := rProcessedData + IntToStr(RecCount);
-    Label6.Caption:=rStatusDone;
+    Label6.Caption := rStatusDone;
   end;
 end;
 
@@ -239,77 +242,25 @@ begin
 end;
 
 procedure TServiceForm.Button2Click(Sender: TObject);
-const
-  CDWNLD = '.adi">';
-var
-  FULLUrl, LoadFilePATH: string;
-  LoadFile: TFileStream;
-  i: integer;
-  eQSLPage: TStringList;
-  tmp: string;
-  getHttp: THTTPSend;
 begin
   if (eQSLccLogin = '') or (eQSLccPassword = '') then
     ShowMessage(rNotDataForConnect)
   else
   begin
-    eQSLPage := TStringList.Create;
-    getHttp := THTTPSend.Create;
     try
-      with getHttp do
+      eQSLccThread := TeQSLccThread.Create;
+      if Assigned(eQSLccThread.FatalException) then
+        raise eQSLccThread.FatalException;
+      with eQSLccThread do
       begin
-        Application.ProcessMessages;
-        Label6.Caption := rStatusConnecteQSL;
-        if HTTPMethod('GET', 'http://www.eqsl.cc/qslcard/DownloadInBox.cfm?UserName=' +
-          eQSLccLogin + '&Password=' + eQSLccPassword + '&RcvdSince=' +
-          FormatDateTime('yyyymmdd', DateEdit2.Date)) then
-        begin
-          Document.Seek(0, soBeginning);
-          eQSLPage.LoadFromStream(Document);
-          if Pos(CDWNLD, eQSLPage.Text) > 0 then
-          begin
-            for i := 0 to Pred(eQSLPage.Count) do
-            begin
-              if Pos(CDWNLD, eQSLPage[i]) > 0 then
-              begin
-                tmp := copy(eQSLPage[i], pos('HREF="', eQSLPage[i]) +
-                  6, length(eQSLPage[i]));
-                tmp := copy(eQSLPage[i], 1, pos('.adi"', eQSLPage[i]) + 3);
-                tmp := ExtractFileNameOnly(tmp) + ExtractFileExt(tmp);
-              end;
-            end;
-          end;
-        end;
+        user_eqslcc := eQSLccLogin;
+        password_eqslcc := eQSLccPassword;
+        date_eqslcc := FormatDateTime('yyyymmdd', DateEdit2.Date);
+        Start;
       end;
 
-      FULLUrl := 'http://www.eqsl.cc/downloadedfiles/' + tmp;
-
-       {$IFDEF UNIX}
-      LoadFile := TFileStream.Create(GetEnvironmentVariable('HOME') +
-        '/EWLog/eQSLcc_' + FormatDateTime('yyyymmdd', DateEdit2.Date) +
-        '.adi', fmCreate);
-      LoadFilePATH := GetEnvironmentVariable('HOME') + '/EWLog/eQSLcc_' +
-        FormatDateTime('yyyymmdd', DateEdit2.Date) + '.adi';
-      {$ELSE}
-      Label6.Caption := rStatusSaveFile;
-      LoadFilePATH := GetEnvironmentVariable('SystemDrive') +
-        GetEnvironmentVariable('HOMEPATH') + '\EWLog\eQSLcc_' +
-        FormatDateTime('yyyymmdd', DateEdit2.Date) + '.adi';
-      LoadFile := TFileStream.Create(GetEnvironmentVariable('SystemDrive') +
-        GetEnvironmentVariable('HOMEPATH') + '\EWLog\eQSLcc_' +
-        FormatDateTime('yyyymmdd', DateEdit2.Date) + '.adi', fmCreate);
-      {$ENDIF UNIX}
-      Application.ProcessMessages;
-      Label6.Caption := rStatusDownloadeQSL;
-      HttpGetBinary(FULLUrl, LoadFile);
-
     finally
-      getHttp.Free;
-      eQSLPage.Free;
-      LoadFile.Free;
-      eQSLAdifImport(LoadFilePATH);
     end;
-
   end;
 end;
 

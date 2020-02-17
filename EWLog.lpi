@@ -155,7 +155,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="54">
+    <Units Count="55">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -513,6 +513,10 @@
         <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit53>
+      <Unit54>
+        <Filename Value="download_eqslcc.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit54>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
