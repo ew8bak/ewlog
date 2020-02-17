@@ -155,7 +155,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="53">
+    <Units Count="54">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -509,6 +509,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="InitINI"/>
       </Unit52>
+      <Unit53>
+        <Filename Value="download_lotw.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit53>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

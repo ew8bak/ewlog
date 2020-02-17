@@ -86,10 +86,12 @@ resourcestring
   rNotDataForConnect =
     'The log configuration, do not specify the data to connect to eQSL.cc';
   rStatusConnecteQSL = 'Status: Connceting to eQSL.cc';
+  rStatusConnectLotW = 'Status: Connceting to LoTW';
   rStatusDownloadeQSL = 'Status: Download eQSL.cc';
   rStatusSaveFile = 'Status: Saving file';
   rStatusNotData = 'Status: Not data';
   rStatusDone = 'Status: Done';
+  rStatusIncorrect = 'Status: Username/password incorrect';
   rProcessedData = 'Processed data:';
   rDone = 'Done';
   rImport = 'Import';

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
-  httpsend, LazUtils, LazFileUtils, ssl_openssl, dateutils, resourcestr;
+  httpsend, LazUtils, LazFileUtils, ssl_openssl, dateutils, resourcestr, download_lotw;
 
 type
 
@@ -43,8 +43,8 @@ type
   private
     { private declarations }
     procedure eQSLAdifImport(FilePATH: string);
-    procedure LotWImport(FilePATH: string);
   public
+    procedure LotWImport(FilePATH: string);
     { public declarations }
   end;
 
@@ -88,9 +88,11 @@ var
   TempFile: string;
 begin
   {$IFDEF UNIX}
-  TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +'EWLog'+DirectorySeparator+'temp.adi';
+  TempFile := GetEnvironmentVariable('HOME') +
+    DirectorySeparator + 'EWLog' + DirectorySeparator + 'temp.adi';
   {$ELSE}
-  TempFile := GetEnvironmentVariable('SystemDrive')+GetEnvironmentVariable('HOMEPATH') + DirectorySeparator +'EWLog'+DirectorySeparator+'temp.adi';
+  TempFile := GetEnvironmentVariable('SystemDrive') + GetEnvironmentVariable('HOMEPATH') +
+    DirectorySeparator + 'EWLog' + DirectorySeparator + 'temp.adi';
   {$ENDIF UNIX}
   RecCount := 0;
   DupeCount := 0;
@@ -169,8 +171,9 @@ begin
         begin
 
           if APP_LOTW_2XQSL = 'Y' then
-          paramAPP_LOTW_2XQSL:='1' else
-          paramAPP_LOTW_2XQSL:='0';
+            paramAPP_LOTW_2XQSL := '1'
+          else
+            paramAPP_LOTW_2XQSL := '0';
 
           if QSLRDATE <> '' then
           begin
@@ -186,18 +189,26 @@ begin
           end;
 
           if MainForm.MySQLLOGDBConnection.Connected then
-          Query:=''
+            Query := ''
           else
-          Query := 'UPDATE ' + LogTable + ' SET GRID = ' + dmFunc.Q(GRIDSQUARE) +
-            'CQZone = ' + dmFunc.Q(CQZ) + 'ITUZone = ' + dmFunc.Q(ITUZ) +
-            'WPX = ' + dmFunc.Q(PFX) + 'DXCC = ' + dmFunc.Q(DXCC) +
-            'LoTWSent = ' + dmFunc.Q(paramAPP_LOTW_2XQSL) +
-            'LoTWRec = ''1'', LoTWRecDate = ' + QuotedStr(paramQSLRDATE) +
-            ' WHERE CallSign = ' + QuotedStr(CALL) + ' AND strftime(''%Y%m%d'',QSODate) = ' +
-            QuotedStr(QSO_DATE) + ';';
+            Query := 'UPDATE ' + LogTable + ' SET GRID = ' + dmFunc.Q(GRIDSQUARE) +
+              'CQZone = ' + dmFunc.Q(CQZ) + 'ITUZone = ' + dmFunc.Q(ITUZ) +
+              'WPX = ' + dmFunc.Q(PFX) + 'DXCC = ' + dmFunc.Q(DXCC) +
+              'LoTWSent = ' + dmFunc.Q(paramAPP_LOTW_2XQSL) +
+              'LoTWRec = ''1'', LoTWRecDate = ' + QuotedStr(paramQSLRDATE) +
+              ' WHERE CallSign = ' + QuotedStr(CALL) +
+              ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) + ';';
           UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
           MainForm.SQLTransaction1.Commit;
+
+        Inc(RecCount);
+        if RecCount mod 10 = 0 then
+        begin
+          Label4.Caption := rProcessedData + IntToStr(RecCount);
+          Application.ProcessMessages;
+        end;
+
         end;
       except
         MainForm.SQLTransaction1.Rollback;
@@ -208,6 +219,8 @@ begin
     CloseFile(temp_f);
     Stream.Free;
     MainForm.SelDB(CallLogBook);
+    Label4.Caption := rProcessedData + IntToStr(RecCount);
+    Label6.Caption:=rStatusDone;
   end;
 end;
 
@@ -301,40 +314,26 @@ begin
 end;
 
 procedure TServiceForm.Button1Click(Sender: TObject);
-const
-  LotW_URL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
-var
-  fullURL, LoadFilePATH: string;
-  LoadFile: TFileStream;
 begin
   if (LotWLogin = '') or (LotWPassword = '') then
     ShowMessage(rNotDataForConnect)
   else
   begin
     try
-       {$IFDEF UNIX}
-      LoadFile := TFileStream.Create(GetEnvironmentVariable('HOME') +
-        '/EWLog/LotW_' + FormatDateTime('yyyymmdd', DateEdit1.Date) + '.adi', fmCreate);
-      LoadFilePATH := GetEnvironmentVariable('HOME') + '/EWLog/LotW_' +
-        FormatDateTime('yyyymmdd', DateEdit1.Date) + '.adi';
-      {$ELSE}
-      Label6.Caption := rStatusSaveFile;
-      LoadFilePATH := GetEnvironmentVariable('SystemDrive') +
-        GetEnvironmentVariable('HOMEPATH') + '\EWLog\LotW_' +
-        FormatDateTime('yyyymmdd', DateEdit1.Date) + '.adi';
-      LoadFile := TFileStream.Create(GetEnvironmentVariable('SystemDrive') +
-        GetEnvironmentVariable('HOMEPATH') + '\EWLog\LotW_' +
-        FormatDateTime('yyyymmdd', DateEdit1.Date) + '.adi', fmCreate);
-      {$ENDIF UNIX}
-      fullURL := LotW_URL + 'login=' + LotWLogin + '&password=' +
-        LotWPassword + '&qso_query=1&qso_qsldetail="yes"' + '&qso_qslsince=' +
-        FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
-      Application.ProcessMessages;
-      HttpGetBinary(fullURL, LoadFile);
+      LoTWThread := TLoTWThread.Create;
+      if Assigned(LoTWThread.FatalException) then
+        raise LoTWThread.FatalException;
+      with LoTWThread do
+      begin
+        user_lotw := LotWLogin;
+        password_lotw := LotWPassword;
+        date_lotw := FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
+        Start;
+        Label6.Caption := rStatusConnectLotW;
+      end;
+
     finally
-      LoadFile.Free;
     end;
-    LotWImport(LoadFilePATH);
   end;
 end;
 
