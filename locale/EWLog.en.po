@@ -4155,7 +4155,7 @@ msgid "Comment"
 msgstr ""
 
 #: tserviceform.button1.caption
-msgid "Connect with LotW"
+msgid "Connect with LoTW"
 msgstr ""
 
 #: tserviceform.button2.caption
@@ -4163,7 +4163,7 @@ msgid "Connect with eQSL"
 msgstr ""
 
 #: tserviceform.caption
-msgid "Service eQSL and LotW"
+msgid "Service eQSL and LoTW"
 msgstr ""
 
 #: tserviceform.label1.caption
@@ -4171,7 +4171,8 @@ msgid "Download QSL received after:"
 msgstr ""
 
 #: tserviceform.label2.caption
-msgid "LotW"
+msgctxt "tserviceform.label2.caption"
+msgid "LoTW"
 msgstr ""
 
 #: tserviceform.label3.caption

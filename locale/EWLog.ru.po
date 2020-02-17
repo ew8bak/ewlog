@@ -4169,7 +4169,9 @@ msgid "Comment"
 msgstr "Комментарий"
 
 #: tserviceform.button1.caption
-msgid "Connect with LotW"
+#, fuzzy
+#| msgid "Connect with LotW"
+msgid "Connect with LoTW"
 msgstr "Соединиться с LotW"
 
 #: tserviceform.button2.caption
@@ -4177,7 +4179,9 @@ msgid "Connect with eQSL"
 msgstr "Соединиться с eQSL"
 
 #: tserviceform.caption
-msgid "Service eQSL and LotW"
+#, fuzzy
+#| msgid "Service eQSL and LotW"
+msgid "Service eQSL and LoTW"
 msgstr "Сервисы eQSL и LotW"
 
 #: tserviceform.label1.caption
@@ -4185,7 +4189,8 @@ msgid "Download QSL received after:"
 msgstr "Загрузить QSL полученные после:"
 
 #: tserviceform.label2.caption
-msgid "LotW"
+msgctxt "tserviceform.label2.caption"
+msgid "LoTW"
 msgstr ""
 
 #: tserviceform.label3.caption

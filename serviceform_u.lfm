@@ -5,7 +5,7 @@ object ServiceForm: TServiceForm
   Width = 500
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
-  Caption = 'Service eQSL and LotW'
+  Caption = 'Service eQSL and LoTW'
   ClientHeight = 216
   ClientWidth = 500
   Font.Height = -12
@@ -389,8 +389,8 @@ object ServiceForm: TServiceForm
     Left = 136
     Height = 17
     Top = 48
-    Width = 33
-    Caption = 'LotW'
+    Width = 36
+    Caption = 'LoTW'
     Font.Height = -13
     Font.Style = [fsBold, fsUnderline]
     ParentColor = False
@@ -442,7 +442,7 @@ object ServiceForm: TServiceForm
     Height = 25
     Top = 104
     Width = 128
-    Caption = 'Connect with LotW'
+    Caption = 'Connect with LoTW'
     Font.Height = -12
     OnClick = Button1Click
     ParentFont = False

@@ -448,6 +448,7 @@ end;
 procedure TServiceForm.SpeedButton1Click(Sender: TObject);
 begin
   OpenDialog1.Execute;
+  if OpenDialog1.FileName <> '' then
   eQSLImport(OpenDialog1.FileName);
 end;
 
