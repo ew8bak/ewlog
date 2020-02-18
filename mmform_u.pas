@@ -26,7 +26,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
     procedure ListView1SelectItem(Sender: TObject; Item: TListItem;
-      Selected: Boolean);
+      Selected: boolean);
   private
     procedure ReloadList(mode, enable: string);
     procedure LoadList;
@@ -50,10 +50,11 @@ var
   Item: TListItem;
 begin
   try
-    Item:=ListView1.Selected;
-    if Item <> nil then begin
-      Item.Caption:=mode;
-      Item.SubItems[0]:=enable;
+    Item := ListView1.Selected;
+    if Item <> nil then
+    begin
+      Item.Caption := mode;
+      Item.SubItems[0] := enable;
     end;
   finally
   end;
@@ -95,7 +96,7 @@ var
   SelectIndex: integer;
   modesString: TStringList;
 begin
-  modesString:=TStringList.Create;
+  modesString := TStringList.Create;
   MainForm.ComboBox2.Items.Clear;
   if Assigned(ListView1.Selected) then
   begin
@@ -105,10 +106,10 @@ begin
     SelectIndex := ListView1.ItemIndex;
     MMQuery.ExecSQL;
     MMQuery.SQLTransaction.Commit;
-    ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked,'True','False'));
+    ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
     MainForm.AddModes('', False, modesString);
-    MainForm.ComboBox2.Items:=modesString;
+    MainForm.ComboBox2.Items := modesString;
     modesString.Free;
   end;
 end;
@@ -135,7 +136,7 @@ begin
     SelectIndex := ListView1.ItemIndex;
     MMQuery.ExecSQL;
     MMQuery.SQLTransaction.Commit;
-    ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked,'True','False'));
+    ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
   end;
 end;
@@ -146,9 +147,9 @@ begin
 end;
 
 procedure TMM_Form.ListView1SelectItem(Sender: TObject; Item: TListItem;
-  Selected: Boolean);
+  Selected: boolean);
 begin
-    if Selected then
+  if Selected then
   begin
     MMQuery.SQL.Text := ('SELECT * FROM Modes WHERE mode = ' + QuotedStr(
       ListView1.Selected.Caption));

@@ -22,5 +22,6 @@
 {"hash":366789,"name":"tsettingscat.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"},
 {"hash":355745,"name":"tsettingscat.rig1.caption","sourcebytes":[82,73,71,49],"value":"RIG1"},
 {"hash":171938100,"name":"tsettingscat.label1.caption","sourcebytes":[80,97,116,104,32,102,111,114,32,72,97,109,76,105,98,32,82,105,103,99,116,108,100],"value":"Path for HamLib Rigctld"},
-{"hash":355746,"name":"tsettingscat.radiobutton1.caption","sourcebytes":[82,73,71,50],"value":"RIG2"}
+{"hash":355746,"name":"tsettingscat.radiobutton1.caption","sourcebytes":[82,73,71,50],"value":"RIG2"},
+{"hash":4863637,"name":"tsettingscat.button2.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
 ]}

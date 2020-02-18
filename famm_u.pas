@@ -30,7 +30,7 @@ type
     procedure CheckBox1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ListView1SelectItem(Sender: TObject; Item: TListItem;
-      Selected: Boolean);
+      Selected: boolean);
   private
     procedure ReloadList(band, b_begin, b_end, enable: string);
     procedure LoadList;
@@ -54,12 +54,13 @@ var
   Item: TListItem;
 begin
   try
-    Item:=ListView1.Selected;
-    if Item <> nil then begin
-      Item.Caption:=band;
-      Item.SubItems[0]:=b_begin;
-      Item.SubItems[1]:=b_end;
-      Item.SubItems[2]:=enable;
+    Item := ListView1.Selected;
+    if Item <> nil then
+    begin
+      Item.Caption := band;
+      Item.SubItems[0] := b_begin;
+      Item.SubItems[1] := b_end;
+      Item.SubItems[2] := enable;
     end;
   finally
   end;
@@ -110,13 +111,14 @@ begin
     FMQuery.SQL.Text := ('UPDATE Bands SET band = ' +
       QuotedStr(LabeledEdit1.Text) + ', b_begin = ' + QuotedStr(LabeledEdit2.Text) +
       ', b_end = ' + QuotedStr(LabeledEdit3.Text) + ', cw = ' +
-      QuotedStr(LabeledEdit4.Text) + ', digi = ' +
-      QuotedStr(LabeledEdit5.Text) + ', ssb = ' + QuotedStr(LabeledEdit6.Text) +
-      ' WHERE band = ' + QuotedStr(ListView1.Selected.Caption));
+      QuotedStr(LabeledEdit4.Text) + ', digi = ' + QuotedStr(LabeledEdit5.Text) +
+      ', ssb = ' + QuotedStr(LabeledEdit6.Text) + ' WHERE band = ' +
+      QuotedStr(ListView1.Selected.Caption));
     SelectIndex := ListView1.ItemIndex;
     FMQuery.ExecSQL;
     FMQuery.SQLTransaction.Commit;
-    ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text, BoolToStr(CheckBox1.Checked,'True','False'));
+    ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text,
+      BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
   end;
 end;
@@ -133,16 +135,18 @@ begin
     SelectIndex := ListView1.ItemIndex;
     FMQuery.ExecSQL;
     FMQuery.SQLTransaction.Commit;
-    ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text, BoolToStr(CheckBox1.Checked,'True','False'));
+    ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text,
+      BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
-    MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),MainForm.ComboBox2.Text);
+    MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''), MainForm.ComboBox2.Text);
   end;
 end;
 
 procedure TFM_Form.ListView1SelectItem(Sender: TObject; Item: TListItem;
-  Selected: Boolean);
+  Selected: boolean);
 begin
-  if Selected then begin
+  if Selected then
+  begin
     FMQuery.SQL.Text := ('SELECT * FROM Bands WHERE band = ' + QuotedStr(
       ListView1.Selected.Caption));
     FMQuery.Open;
