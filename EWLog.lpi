@@ -26,7 +26,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="1"/>
-      <RevisionNr Value="9"/>
+      <RevisionNr Value="7"/>
       <BuildNr Value="407"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
@@ -155,7 +155,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="55">
+    <Units Count="56">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -517,6 +517,11 @@
         <Filename Value="download_eqslcc.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit54>
+      <Unit55>
+        <Filename Value="downloadupdates.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DownloadUpdates"/>
+      </Unit55>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

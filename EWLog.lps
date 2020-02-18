@@ -3,16 +3,15 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Релиз"/>
-    <Units Count="116">
+    <BuildModes Active="Дебаг"/>
+    <Units Count="118">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="18"/>
-        <CursorPos Y="29"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2"/>
+        <CursorPos X="35" Y="22"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="mainform_u.pas"/>
@@ -118,8 +117,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="7"/>
-        <CursorPos X="58" Y="163"/>
+        <TopLine Value="19"/>
+        <CursorPos X="36" Y="33"/>
         <UsageCount Value="200"/>
       </Unit9>
       <Unit10>
@@ -272,8 +271,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="27"/>
-        <CursorPos X="44" Y="40"/>
+        <TopLine Value="7"/>
+        <CursorPos X="28" Y="43"/>
         <UsageCount Value="200"/>
       </Unit25>
       <Unit26>
@@ -283,11 +282,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="280"/>
-        <CursorPos X="59" Y="434"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="388"/>
+        <CursorPos Y="398"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit26>
       <Unit27>
         <Filename Value="setupform_u.pas"/>
@@ -310,10 +308,11 @@
         <UnitName Value="UpdateForm_U"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="403"/>
-        <CursorPos X="26" Y="224"/>
+        <TopLine Value="56"/>
+        <CursorPos Y="182"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit28>
       <Unit29>
         <Filename Value="changelog_form_u.pas"/>
@@ -492,7 +491,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
         <CursorPos Y="53"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="142"/>
       </Unit44>
       <Unit45>
         <Filename Value="mmform_u.pas"/>
@@ -503,7 +502,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="89"/>
         <CursorPos X="26" Y="112"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="135"/>
       </Unit45>
       <Unit46>
         <Filename Value="hamqth.pas"/>
@@ -511,7 +510,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="95"/>
         <CursorPos X="4" Y="172"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit46>
       <Unit47>
         <Filename Value="clublog.pas"/>
@@ -519,7 +518,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="43" Y="11"/>
-        <UsageCount Value="70"/>
+        <UsageCount Value="72"/>
       </Unit47>
       <Unit48>
         <Filename Value="qrzcom.pas"/>
@@ -527,7 +526,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos Y="87"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="64"/>
       </Unit48>
       <Unit49>
         <Filename Value="qso_record.pas"/>
@@ -535,23 +534,22 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="11" Y="68"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="51"/>
       </Unit49>
       <Unit50>
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="10"/>
-        <UsageCount Value="47"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="49"/>
       </Unit50>
       <Unit51>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="12"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="49"/>
       </Unit51>
       <Unit52>
         <Filename Value="initini.pas"/>
@@ -559,24 +557,24 @@
         <UnitName Value="InitINI"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="13"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="46"/>
       </Unit52>
       <Unit53>
         <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="28"/>
-        <CursorPos X="57" Y="57"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="42"/>
+        <CursorPos X="44" Y="61"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
       </Unit53>
       <Unit54>
         <Filename Value="download_eqslcc.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="19"/>
-        <CursorPos X="69" Y="11"/>
-        <UsageCount Value="26"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="78"/>
+        <CursorPos X="27" Y="100"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit54>
       <Unit55>
@@ -1026,128 +1024,128 @@
         <CursorPos X="3" Y="778"/>
         <UsageCount Value="10"/>
       </Unit115>
+      <Unit116>
+        <Filename Value="downloadupdates.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DownloadUpdates"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="26"/>
+        <CursorPos Y="44"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit116>
+      <Unit117>
+        <Filename Value="..\.lazarus\onlinepackagemanager\packages\synapse40.1\blcksock.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3798"/>
+        <UsageCount Value="10"/>
+      </Unit117>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="26" HistoryIndex="25">
       <Position1>
-        <Filename Value="download_eqslcc.pas"/>
-        <Caret Line="71" Column="45" TopLine="40"/>
-      </Position1>
-      <Position2>
-        <Filename Value="download_eqslcc.pas"/>
-        <Caret Line="45" Column="41" TopLine="39"/>
-      </Position2>
-      <Position3>
-        <Filename Value="download_eqslcc.pas"/>
-        <Caret Line="73" Column="22" TopLine="42"/>
-      </Position3>
-      <Position4>
-        <Filename Value="download_eqslcc.pas"/>
-        <Caret Line="74" TopLine="42"/>
-      </Position4>
-      <Position5>
-        <Filename Value="download_eqslcc.pas"/>
-        <Caret Line="93" TopLine="73"/>
-      </Position5>
-      <Position6>
-        <Filename Value="download_eqslcc.pas"/>
-        <Caret Line="95" TopLine="73"/>
-      </Position6>
-      <Position7>
-        <Filename Value="download_eqslcc.pas"/>
-        <Caret Line="109" Column="22" TopLine="81"/>
-      </Position7>
-      <Position8>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="320" Column="30" TopLine="289"/>
-      </Position8>
-      <Position9>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="45" Column="15" TopLine="26"/>
-      </Position9>
-      <Position10>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="373" Column="38" TopLine="354"/>
-      </Position10>
-      <Position11>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="137" Column="11" TopLine="134"/>
-      </Position11>
-      <Position12>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="189" Column="64" TopLine="173"/>
-      </Position12>
-      <Position13>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="49" TopLine="23"/>
-      </Position13>
-      <Position14>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="179" Column="82" TopLine="179"/>
-      </Position14>
-      <Position15>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="406" Column="5" TopLine="386"/>
-      </Position15>
-      <Position16>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="429" Column="5" TopLine="409"/>
-      </Position16>
-      <Position17>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="407" Column="28" TopLine="386"/>
-      </Position17>
-      <Position18>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="431" Column="22" TopLine="410"/>
-      </Position18>
-      <Position19>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="404" Column="43"/>
-      </Position19>
-      <Position20>
-        <Filename Value="download_eqslcc.pas"/>
-        <Caret Line="11" Column="69"/>
-      </Position20>
-      <Position21>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="176" Column="28" TopLine="163"/>
-      </Position21>
-      <Position22>
-        <Filename Value="serviceform_u.pas"/>
-        <Caret Line="62" TopLine="57"/>
-      </Position22>
-      <Position23>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="6147" Column="37" TopLine="6129"/>
-      </Position23>
-      <Position24>
+      </Position1>
+      <Position2>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="2560" Column="21" TopLine="2555"/>
-      </Position24>
-      <Position25>
+      </Position2>
+      <Position3>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="209" Column="22" TopLine="193"/>
-      </Position25>
-      <Position26>
+      </Position3>
+      <Position4>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="352" Column="32" TopLine="324"/>
-      </Position26>
-      <Position27>
+      </Position4>
+      <Position5>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="353" Column="32" TopLine="325"/>
-      </Position27>
-      <Position28>
+      </Position5>
+      <Position6>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="2544" Column="38" TopLine="2522"/>
-      </Position28>
-      <Position29>
+      </Position6>
+      <Position7>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="2559" Column="25" TopLine="2531"/>
-      </Position29>
-      <Position30>
+      </Position7>
+      <Position8>
         <Filename Value="updateform_u.pas"/>
         <Caret Line="35" Column="25" TopLine="19"/>
-      </Position30>
+      </Position8>
+      <Position9>
+        <Filename Value="downloadupdates.pas"/>
+        <Caret Column="21"/>
+      </Position9>
+      <Position10>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="80" TopLine="73"/>
+      </Position10>
+      <Position11>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="137" Column="28" TopLine="108"/>
+      </Position11>
+      <Position12>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="74" Column="58" TopLine="57"/>
+      </Position12>
+      <Position13>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="192" Column="32" TopLine="173"/>
+      </Position13>
+      <Position14>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="10" Column="21"/>
+      </Position14>
+      <Position15>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="19" Column="49"/>
+      </Position15>
+      <Position16>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="202" Column="21" TopLine="185"/>
+      </Position16>
+      <Position17>
+        <Filename Value="downloadupdates.pas"/>
+        <Caret Line="48" Column="38" TopLine="22"/>
+      </Position17>
+      <Position18>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="203" Column="55" TopLine="304"/>
+      </Position18>
+      <Position19>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="36" Column="14" TopLine="16"/>
+      </Position19>
+      <Position20>
+        <Filename Value="downloadupdates.pas"/>
+        <Caret Line="45" Column="14" TopLine="32"/>
+      </Position20>
+      <Position21>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="37" Column="14" TopLine="18"/>
+      </Position21>
+      <Position22>
+        <Filename Value="downloadupdates.pas"/>
+        <Caret Line="45" TopLine="32"/>
+      </Position22>
+      <Position23>
+        <Filename Value="downloadupdates.pas"/>
+        <Caret Line="44" Column="12" TopLine="32"/>
+      </Position23>
+      <Position24>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="203" Column="9" TopLine="172"/>
+      </Position24>
+      <Position25>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="183" TopLine="172"/>
+      </Position25>
+      <Position26>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="182" Column="17" TopLine="172"/>
+      </Position26>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

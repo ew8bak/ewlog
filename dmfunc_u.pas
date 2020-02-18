@@ -12,7 +12,7 @@ uses
   {$IFDEF WINDOWS}
   Windows;
   {$ELSE}
-  lclintf;
+  lclintf, versiontypes, versionresource;
   {$ENDIF}
 
 const
@@ -33,6 +33,7 @@ type
 
     { private declarations }
   public
+    function GetMyVersion: string;
     function Q(s: string): string;
     function getField(str, field: string): string;
     function antepenultimate_char(s: string): string;
@@ -131,6 +132,29 @@ implementation
 uses MainForm_U;
 
 {$R *.lfm}
+
+function TdmFunc.GetMyVersion: string;
+var
+  Stream: TResourceStream;
+  vr: TVersionResource;
+  fi: TVersionFixedInfo;
+begin
+  Result := '';
+  Stream := TResourceStream.CreateFromID(HINSTANCE, 1, PChar(RT_VERSION));
+  try
+    vr := TVersionResource.Create;
+    try
+      vr.SetCustomRawDataStream(Stream);
+      fi := vr.FixedInfo;
+      Result := Format('%d.%d.%d', [fi.FileVersion[0],
+        fi.FileVersion[1], fi.FileVersion[2], fi.FileVersion[3]]);
+    finally
+      vr.Free
+    end;
+  finally
+    Stream.Free
+  end;
+end;
 
 function TdmFunc.Q(s: string): string;
 var
@@ -807,7 +831,6 @@ begin
     p.Parameters.add('-l');
     p.Options := p.Options + [poUsePipes];
     p.ShowWindow := swoHIDE;
-    ;
     p.Execute;
     OutputStream := TMemoryStream.Create;
     repeat
@@ -1624,14 +1647,10 @@ begin
     exit;
   SetLength(pole, 0);
   pole := Explode('/', callsign);
-  // if dmData.JeVyjimka(pole[1]) then
-  //   Result := pole[0]
-  // else begin
   if Length(pole[0]) > Length(pole[1]) then  //FJ/G3TXF, RA1AA/1/M etc
     Result := pole[0]
   else
     Result := pole[1];
-  // end;
 end;
 
 function TdmFunc.StrToDateFormat(sDate: string): TDateTime;
@@ -1650,26 +1669,6 @@ begin
     fmt.ShortDateFormat := sdf;
     fmt.DateSeparator := sep;
   end;
-
-
-  {case iMask of
-    0 : begin
-          DateSeparator := '/';
-          ShortDateFormat := 'YYYY/MM/DD';
-          Result := StrToDateTime(sDate);
-        end;
-    1 : begin
-          DateSeparator := '.';
-          ShortDateFormat := 'DD.MM.YYYY';
-          Result := StrToDateTime(sDate);
-        end;
-    2 : begin
-          DateSeparator := '/';
-          ShortDateFormat := 'DD/MM/YYYY';
-          Result := StrToDateTime(sDate);
-        end;
-  end; //case
-  }
 end;
 
 function TdmFunc.Explode(const cSeparator, vString: string): TExplodeArray;

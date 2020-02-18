@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, LazUTF8, StdCtrls,
   ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} httpsend,
-  blcksock, synautil, ResourceStr, resource, versiontypes, versionresource;
+  blcksock, synautil, ResourceStr;
 
 type
 
@@ -32,11 +32,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    function CheckUpdate: boolean;
+    procedure CheckUpdate;
     function GetSize(URL: string): int64;
+    function CheckVersion: Boolean;
 
   private
     Download: int64;//счётчик закачанных данных
+    updatePATH: string;
 
     procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
       const Value: string);
@@ -71,40 +73,16 @@ type
 implementation
 
 uses
-  Changelog_Form_U, MainForm_U;
+  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U;
 
 {$R *.lfm}
 
 { TUpdate_Form }
 
-function GetMyVersion: string;
-var
-  Stream: TResourceStream;
-  vr: TVersionResource;
-  fi: TVersionFixedInfo;
-begin
-  Result := '';
-  Stream := TResourceStream.CreateFromID(HINSTANCE, 1, PChar(RT_VERSION));
-  try
-    vr := TVersionResource.Create;
-    try
-      vr.SetCustomRawDataStream(Stream);
-      fi := vr.FixedInfo;
-      Result := Format('%d.%d.%d', [fi.FileVersion[0],
-        fi.FileVersion[1], fi.FileVersion[2], fi.FileVersion[3]]);
-    finally
-      vr.Free
-    end;
-  finally
-    Stream.Free
-  end;
-end;
-
 procedure TUpdate_Form.FormCreate(Sender: TObject);
 var
   VerFile: file of ver;
   VerFiles: ver;
-  updatePATH: string;
 begin
   VerFiles.version:='0.0.0';
   VerFiles.lastupdate:=DateTimeToStr(Now);
@@ -115,6 +93,7 @@ begin
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
     SysUtils.GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
     {$ENDIF UNIX}
+
   if DirectoryExists(updatePATH + 'updates') = False then
     CreateDir(updatePATH + 'updates');
 
@@ -137,14 +116,7 @@ procedure TUpdate_Form.FormShow(Sender: TObject);
 var
   VerFile: file of ver;
   VerFiles: ver;
-  updatePATH: string;
 begin
-   {$IFDEF UNIX}
-  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-    updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-        SysUtils.GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
-    {$ENDIF UNIX}
   if FileExists(updatePATH + 'updates'+DirectorySeparator+'version.info') then
   begin
     AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
@@ -157,7 +129,7 @@ begin
   Button1.Caption := rButtonCheck;
   Label10.Caption := rSizeFile;
   Label9.Caption := rUpdateStatus;
-  Label6.Caption := GetMyVersion;
+  Label6.Caption := dmFunc.GetMyVersion;
   ProgressBar1.Position := 0;
 end;
 
@@ -187,50 +159,31 @@ begin
     end;
 end;
 
-
-function TUpdate_Form.CheckUpdate: boolean;
+function TUpdate_Form.CheckVersion: Boolean;
 var
   VerFile: file of ver;
   VerFiles: ver;
   ver_serverFile: TextFile;
   version_server, last_update: string;
   LoadFile: TFileStream;
-  updatePATH: string;
   version_server_INT, version_current_INT: integer;
 begin
-  try
-     {$IFDEF UNIX}
-    updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-    updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-      SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
-
+    try
     if FileExists(updatePATH + 'updates'+DirectorySeparator+'version.info') then
     begin
       AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
       Reset(VerFile);
       Read(VerFile, VerFiles);
       last_update := VerFiles.lastupdate;
-      Label6.Caption := GetMyVersion;
+      Label6.Caption := dmFunc.GetMyVersion;
       Label4.Caption := last_update;
       CloseFile(VerFile);
 
-      with THTTPSend.Create do
-      begin
-        Label9.Caption := rUpdateStatusCheckUpdate;
-        LoadFile := TFileStream.Create(updatePATH + 'updates'+DirectorySeparator+'versiononserver.info',
-            fmCreate);
-        if HTTPMethod('GET', 'http://update.ew8bak.ru/version_server.info') then
-        begin
-          HttpGetBinary('http://update.ew8bak.ru/version_server.info', LoadFile);
-          LoadFile.Free;
-        end else begin
-          LoadFile.Seek(0, soFromEnd);
-          LoadFile.WriteBuffer('1.1.1',Length('1.1.1'));
-          LoadFile.Free;
-        end;
-        Free;
+      if not FileExists(updatePATH + 'updates'+DirectorySeparator+'versiononserver.info') then begin
+        LoadFile := TFileStream.Create(updatePATH + 'updates'+DirectorySeparator+'versiononserver.info',fmCreate);
+        LoadFile.Seek(0, soFromEnd);
+        LoadFile.WriteBuffer('1.1.1',Length('1.1.1'));
+        LoadFile.Free;
       end;
 
       AssignFile(ver_serverFile, updatePATH + 'updates'+DirectorySeparator+'versiononserver.info');
@@ -243,7 +196,7 @@ begin
       else
       Label8.Caption := version_server;
 
-      version_current_INT := StrToInt(StringReplace(GetMyVersion, '.',
+      version_current_INT := StrToInt(StringReplace(dmFunc.GetMyVersion, '.',
         '', [rfReplaceAll]));
       version_server_INT := StrToInt(StringReplace(version_server,
         '.', '', [rfReplaceAll]));
@@ -287,6 +240,20 @@ begin
   end;
 end;
 
+procedure TUpdate_Form.CheckUpdate;
+begin
+    DownUpdThread := TDownUpdThread.Create;
+    if Assigned(DownUpdThread.FatalException) then
+      raise DownUpdThread.FatalException;
+    with DownUpdThread do
+    begin
+      name_file := 'versiononserver.info';
+      name_directory := updatePATH + 'updates'+DirectorySeparator;
+      url_file := 'http://update.ew8bak.ru/version_server.info';
+      Start;
+    end;
+end;
+
 procedure TUpdate_Form.Button2Click(Sender: TObject);
 begin
   Update_Form.Close;
@@ -296,15 +263,7 @@ procedure TUpdate_Form.DownloadFile;
 var
   HTTP: THTTPSend;
   MaxSize: int64;
-  updatePATH: string;
 begin
-
-    {$IFDEF UNIX}
-  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
   Download := 0;
   MaxSize := GetSize(DownPATH);
   if MaxSize > 0 then
@@ -327,14 +286,7 @@ procedure TUpdate_Form.DownloadDBFile;
 var
   HTTP: THTTPSend;
   MaxSize: int64;
-  updatePATH: string;
 begin
-     {$IFDEF UNIX}
-  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
   Download := 0;
   MaxSize := GetSize('http://update.ew8bak.ru/serviceLOG.db');
   if MaxSize > 0 then
@@ -357,14 +309,7 @@ procedure TUpdate_Form.DownloadCallBookFile;
 var
   HTTP: THTTPSend;
   MaxSize: int64;
-  updatePATH: string;
 begin
-     {$IFDEF UNIX}
-  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
   Download := 0;
   MaxSize := GetSize('http://update.ew8bak.ru/callbook.db');
   if MaxSize > 0 then
@@ -400,14 +345,7 @@ procedure TUpdate_Form.DownloadChangeLOGFile;
 var
   HTTP: THTTPSend;
   MaxSize: int64;
-  updatePATH: string;
 begin
-     {$IFDEF UNIX}
-  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';;
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
   Download := 0;
   MaxSize := GetSize('http://update.ew8bak.ru/changelog.txt');
   if MaxSize > 0 then
