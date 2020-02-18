@@ -124,6 +124,8 @@ resourcestring
   rUpdateStatusRequiredInstall = 'Update status: Installation required';
   rButtonInstall = 'Install';
   rBytes = ' bytes';
+  rKBytes = 'KB';
+  rMBytes = 'MB';
   rNoLogFileFound = 'No log file found! Check settings';
   rOnlyWindows = 'The function is available only in the Windows system';
 

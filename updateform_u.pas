@@ -33,9 +33,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure CheckUpdate;
-    function GetSize(URL: string): int64;
     function CheckVersion: Boolean;
-
   private
     Download: int64;//счётчик закачанных данных
     updatePATH: string;
@@ -131,32 +129,6 @@ begin
   Label9.Caption := rUpdateStatus;
   Label6.Caption := dmFunc.GetMyVersion;
   ProgressBar1.Position := 0;
-end;
-
-function TUpdate_Form.GetSize(URL: string): int64;
-var
-  i: integer;
-  size: string;
-  ch: char;
-begin
-  Result := -1;
-  with THTTPSend.Create do
-    if HTTPMethod('HEAD', URL) then
-    begin
-      for I := 0 to Headers.Count - 1 do
-      begin
-        if pos('content-length', lowercase(Headers[i])) > 0 then
-        begin
-          size := '';
-          for ch in Headers[i] do
-            if ch in ['0'..'9'] then
-              size := size + ch;
-          Result := StrToInt(size) + Length(Headers.Text);
-          break;
-        end;
-      end;
-      Free;
-    end;
 end;
 
 function TUpdate_Form.CheckVersion: Boolean;
@@ -270,7 +242,7 @@ var
   MaxSize: int64;
 begin
   Download := 0;
-  MaxSize := GetSize(DownPATH);
+  MaxSize := dmFunc.GetSize(DownPATH);
   if MaxSize > 0 then
     ProgressBar1.Max := MaxSize
   else
@@ -293,7 +265,7 @@ var
   MaxSize: int64;
 begin
   Download := 0;
-  MaxSize := GetSize('http://update.ew8bak.ru/serviceLOG.db');
+  MaxSize := dmFunc.GetSize('http://update.ew8bak.ru/serviceLOG.db');
   if MaxSize > 0 then
     ProgressBar1.Max := MaxSize
   else
@@ -316,7 +288,7 @@ var
   MaxSize: int64;
 begin
   Download := 0;
-  MaxSize := GetSize('http://update.ew8bak.ru/callbook.db');
+  MaxSize := dmFunc.GetSize('http://update.ew8bak.ru/callbook.db');
   if MaxSize > 0 then
     ProgressBar1.Max := MaxSize
   else
@@ -352,7 +324,7 @@ var
   MaxSize: int64;
 begin
   Download := 0;
-  MaxSize := GetSize('http://update.ew8bak.ru/changelog.txt');
+  MaxSize := dmFunc.GetSize('http://update.ew8bak.ru/changelog.txt');
   if MaxSize > 0 then
     ProgressBar1.Max := MaxSize
   else

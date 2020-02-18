@@ -893,6 +893,10 @@ msgctxt "resourcestr.rituzone"
 msgid "ITU Zone"
 msgstr ""
 
+#: resourcestr.rkbytes
+msgid "KB"
+msgstr ""
+
 #: resourcestr.rlanguagecomplite
 msgctxt "resourcestr.rlanguagecomplite"
 msgid "Translation files download successfully"
@@ -926,6 +930,10 @@ msgstr ""
 #: resourcestr.rmanualset
 msgctxt "resourcestr.rmanualset"
 msgid "Manual Set"
+msgstr ""
+
+#: resourcestr.rmbytes
+msgid "MB"
 msgstr ""
 
 #: resourcestr.rmysqlhasgoneaway
@@ -4632,13 +4640,13 @@ msgstr ""
 msgid "Status: Wait"
 msgstr ""
 
-#: tserviceform.menuitem1.caption
-msgctxt "tserviceform.menuitem1.caption"
-msgid "Server"
+#: tserviceform.label7.caption
+msgctxt "tserviceform.label7.caption"
+msgid "0"
 msgstr ""
 
-#: tserviceform.menuitem2.caption
-msgid "Export Log"
+#: tserviceform.label8.caption
+msgid "Download:"
 msgstr ""
 
 #: tserviceform.opendialog1.title

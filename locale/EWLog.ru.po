@@ -986,6 +986,10 @@ msgctxt "resourcestr.rituzone"
 msgid "ITU Zone"
 msgstr "ITU Зона"
 
+#: resourcestr.rkbytes
+msgid "KB"
+msgstr ""
+
 #: resourcestr.rlanguagecomplite
 msgctxt "resourcestr.rlanguagecomplite"
 msgid "Translation files download successfully"
@@ -1020,6 +1024,10 @@ msgstr "Префикс"
 msgctxt "resourcestr.rmanualset"
 msgid "Manual Set"
 msgstr "Manual Set"
+
+#: resourcestr.rmbytes
+msgid "MB"
+msgstr ""
 
 #: resourcestr.rmysqlhasgoneaway
 msgctxt "resourcestr.rmysqlhasgoneaway"
@@ -4735,14 +4743,14 @@ msgstr "Ошибки:"
 msgid "Status: Wait"
 msgstr "Статус: Ожидание"
 
-#: tserviceform.menuitem1.caption
-msgctxt "tserviceform.menuitem1.caption"
-msgid "Server"
-msgstr "Сервер"
+#: tserviceform.label7.caption
+msgctxt "tserviceform.label7.caption"
+msgid "0"
+msgstr ""
 
-#: tserviceform.menuitem2.caption
-msgid "Export Log"
-msgstr "Экспорт журнала"
+#: tserviceform.label8.caption
+msgid "Download:"
+msgstr ""
 
 #: tserviceform.opendialog1.title
 msgid "Open existing file"

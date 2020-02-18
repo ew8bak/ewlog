@@ -29,13 +29,12 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
-    MainMenu1: TMainMenu;
-    MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
+    Label7: TLabel;
+    Label8: TLabel;
     OpenDialog1: TOpenDialog;
+    ProgressBar1: TProgressBar;
     SpeedButton1: TSpeedButton;
     UPDATEQuery: TSQLQuery;
-    StatusBar1: TStatusBar;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -44,6 +43,7 @@ type
   private
     { private declarations }
   public
+    DownSize: double;
     procedure LotWImport(FilePATH: string);
     procedure eQSLImport(FilePATH: string);
     { public declarations }
@@ -391,6 +391,8 @@ end;
 
 procedure TServiceForm.Button2Click(Sender: TObject);
 begin
+  DownSize := 0;
+  ProgressBar1.Position := 0;
   if (eQSLccLogin = '') or (eQSLccPassword = '') then
     ShowMessage(rNotDataForConnect)
   else
@@ -404,13 +406,15 @@ begin
       password_eqslcc := eQSLccPassword;
       date_eqslcc := FormatDateTime('yyyymmdd', DateEdit2.Date);
       Start;
-      Label6.Caption := rStatusConnecteQSL;
     end;
+    Label6.Caption := rStatusConnecteQSL;
   end;
 end;
 
 procedure TServiceForm.Button1Click(Sender: TObject);
 begin
+  DownSize := 0;
+  ProgressBar1.Position := 0;
   if (LotWLogin = '') or (LotWPassword = '') then
     ShowMessage(rNotDataForConnect)
   else
@@ -443,13 +447,15 @@ begin
   end;
   DateEdit1.Date := Now;
   DateEdit2.Date := Now;
+  DownSize := 0;
+  ProgressBar1.Position := 0;
 end;
 
 procedure TServiceForm.SpeedButton1Click(Sender: TObject);
 begin
   OpenDialog1.Execute;
   if OpenDialog1.FileName <> '' then
-  eQSLImport(OpenDialog1.FileName);
+    eQSLImport(OpenDialog1.FileName);
 end;
 
 end.

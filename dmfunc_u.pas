@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
   DateUtils, Sockets, IdGlobal, LazUTF8, strutils, Translations, LazFileUtils,
-  versiontypes, versionresource,
+  versiontypes, versionresource, blcksock, httpsend,
 
   {$IFDEF WINDOWS}
   Windows;
@@ -34,6 +34,7 @@ type
 
     { private declarations }
   public
+    function GetSize(URL: string): int64;
     function GetMyVersion: string;
     function Q(s: string): string;
     function getField(str, field: string): string;
@@ -133,6 +134,32 @@ implementation
 uses MainForm_U;
 
 {$R *.lfm}
+
+function TdmFunc.GetSize(URL: string): int64;
+var
+  i: integer;
+  size: string;
+  ch: char;
+begin
+  Result := -1;
+  with THTTPSend.Create do
+    if HTTPMethod('HEAD', URL) then
+    begin
+      for I := 0 to Headers.Count - 1 do
+      begin
+        if pos('content-length', lowercase(Headers[i])) > 0 then
+        begin
+          size := '';
+          for ch in Headers[i] do
+            if ch in ['0'..'9'] then
+              size := size + ch;
+          Result := StrToInt(size) + Length(Headers.Text);
+          break;
+        end;
+      end;
+      Free;
+    end;
+end;
 
 function TdmFunc.GetMyVersion: string;
 var

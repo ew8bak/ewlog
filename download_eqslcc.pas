@@ -8,7 +8,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ssl_openssl, ResourceStr, LazFileUtils, LazUTF8;
+  Classes, SysUtils, ssl_openssl, ResourceStr, LazFileUtils, LazUTF8, blcksock;
 
 const
   DowneQSLcc_URL = 'http://www.eqsl.cc/qslcard/DownloadInBox.cfm?';
@@ -22,7 +22,13 @@ type
   protected
     procedure Execute; override;
     function DowneQSLcc(eqslcc_user, eqslcc_password, eqslcc_date: string): boolean;
+    procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
+      const Value: string);
+    procedure updSize;
+    procedure updAllSize;
   private
+    downSize: integer;
+    AllDownSize: int64;
   public
     user_eqslcc: string;
     password_eqslcc: string;
@@ -55,6 +61,7 @@ begin
   importFlag := False;
   try
     HTTP := THTTPSend.Create;
+    HTTP.Sock.OnStatus := @SynaProgress;
     eQSLPage := TStringList.Create;
     {$IFDEF UNIX}
     SaveFile := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/eQSLcc_' +
@@ -102,6 +109,8 @@ begin
     if not errFlag then
     begin
       fullURL := eQSLcc_URL + tmp;
+      AllDownSize := dmFunc.GetSize(fullURL);
+      Synchronize(@updAllSize);
       if HTTP.HTTPMethod('GET', fullURL) then
         HTTP.Document.SaveToFile(SaveFile);
       result_mes := rStatusSaveFile;
@@ -111,6 +120,34 @@ begin
     HTTP.Free;
     eQSLPage.Free;
     Result := True;
+  end;
+end;
+
+procedure TeQSLccThread.updAllSize;
+begin
+  ServiceForm.ProgressBar1.Position := 0;
+  if AllDownSize > 0 then
+    ServiceForm.ProgressBar1.Max := AllDownSize
+  else
+    ServiceForm.ProgressBar1.Max := 0;
+end;
+
+procedure TeQSLccThread.updSize;
+begin
+  ServiceForm.DownSize := ServiceForm.DownSize + downSize;
+  ServiceForm.Label7.Caption :=
+    FormatFloat('0.###', ServiceForm.DownSize / 1048576) + ' ' + rMBytes;
+  ServiceForm.ProgressBar1.Position := round(ServiceForm.DownSize);
+end;
+
+
+procedure TeQSLccThread.SynaProgress(Sender: TObject; Reason: THookSocketReason;
+  const Value: string);
+begin
+  if Reason = HR_ReadCount then
+  begin
+    downSize := StrToInt(Value);
+    Synchronize(@updSize);
   end;
 end;
 

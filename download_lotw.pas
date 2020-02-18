@@ -8,7 +8,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ssl_openssl, ResourceStr, LazUTF8;
+  Classes, SysUtils, ssl_openssl, ResourceStr, LazUTF8, blcksock;
 
 const
   LotW_URL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
@@ -18,7 +18,13 @@ type
   protected
     procedure Execute; override;
     function DownLoTW(lotw_user, lotw_password, lotw_date: string): boolean;
+    procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
+      const Value: string);
+    procedure updSize;
+    procedure updAllSize;
   private
+    downSize: integer;
+    AllDownSize: int64;
   public
     user_lotw: string;
     password_lotw: string;
@@ -58,6 +64,9 @@ begin
     fullURL := LotW_URL + 'login=' + lotw_user + '&password=' +
       lotw_password + '&qso_query=1&qso_qsldetail="yes"' + '&qso_qslsince=' + lotw_date;
     HTTP := THTTPSend.Create;
+    HTTP.Sock.OnStatus := @SynaProgress;
+    AllDownSize := dmFunc.GetSize(fullURL);
+    Synchronize(@updAllSize);
     if HTTP.HTTPMethod('GET', fullURL) then
     begin
       SetString(response, PChar(HTTP.Document.Memory), HTTP.Document.Size div
@@ -74,6 +83,33 @@ begin
   finally
     HTTP.Free;
     Result := True;
+  end;
+end;
+
+procedure TLoTWThread.updAllSize;
+begin
+  ServiceForm.ProgressBar1.Position := 0;
+  if AllDownSize > 0 then
+    ServiceForm.ProgressBar1.Max := AllDownSize
+  else
+    ServiceForm.ProgressBar1.Max := 0;
+end;
+
+procedure TLoTWThread.updSize;
+begin
+  ServiceForm.DownSize := ServiceForm.DownSize + downSize;
+  ServiceForm.Label7.Caption :=
+    FormatFloat('0.###', ServiceForm.DownSize / 1048576) + ' ' + rMBytes;
+  ServiceForm.ProgressBar1.Position := round(ServiceForm.DownSize);
+end;
+
+procedure TLoTWThread.SynaProgress(Sender: TObject; Reason: THookSocketReason;
+  const Value: string);
+begin
+  if Reason = HR_ReadCount then
+  begin
+    downSize := StrToInt(Value);
+    Synchronize(@updSize);
   end;
 end;
 
