@@ -8,11 +8,12 @@ uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
   DateUtils, Sockets, IdGlobal, LazUTF8, strutils, Translations, LazFileUtils,
+  versiontypes, versionresource,
 
   {$IFDEF WINDOWS}
   Windows;
   {$ELSE}
-  lclintf, versiontypes, versionresource;
+  lclintf;
   {$ENDIF}
 
 const

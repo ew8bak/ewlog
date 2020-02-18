@@ -191,8 +191,11 @@ begin
       while not EOF(ver_serverFile) do
         ReadLn(ver_serverFile, version_server);
 
-      if version_server = '1.1.1' then
-      Label8.Caption := rFailedToLoadData
+      if (version_server = '1.1.1') or (Pos('</html>',version_server) > 0) then begin
+      Label8.Caption := rFailedToLoadData;
+      CloseFile(ver_serverFile);
+      Exit;
+      end
       else
       Label8.Caption := version_server;
 
@@ -210,6 +213,7 @@ begin
       begin
         Label2.Caption := rUpdateRequired;
         Result := True;
+        MainForm.Label50.Visible:=True;
         Label9.Caption := rUpdateStatusDownload;
         Button1.Caption := rButtonDownload;
       end
@@ -217,6 +221,7 @@ begin
       begin
         Label9.Caption := rUpdateStatusActual;
         Result := False;
+        MainForm.Label50.Visible:=False;
       end;
 
       AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');

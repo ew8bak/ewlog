@@ -43,7 +43,11 @@ begin
   try
     HTTP := THTTPSend.Create;
     if HTTP.HTTPMethod('GET', file_url) then
-    HTTP.Document.SaveToFile(directory+file_name);
+    begin
+      if FileExists(directory + file_name) then
+        DeleteFileUTF8(directory + file_name);
+      HTTP.Document.SaveToFile(directory + file_name);
+    end;
   finally
     HTTP.Free;
     Result := True;
@@ -84,7 +88,7 @@ end;
 
 procedure TDownUpdThread.ShowResult;
 begin
- // if Length(result_mes) > 0 then
+  // if Length(result_mes) > 0 then
   Update_Form.CheckVersion;
 end;
 
@@ -95,4 +99,3 @@ begin
 end;
 
 end.
-

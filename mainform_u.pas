@@ -2543,24 +2543,12 @@ end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
 begin
-  {$IFDEF WINDOWS}
-  if Update_Form.CheckUpdate = True then
-    Label50.Visible := True
-  else
-    Label50.Visible := False;
- {$ENDIF WINDOWS}
+  Update_Form.CheckUpdate;
 end;
-
-
 
 procedure TMainForm.CheckUpdatesTimerTimer(Sender: TObject);
 begin
-  {$IFDEF WINDOWS}
-  if Update_Form.CheckUpdate = True then
-    Label50.Visible := True
-  else
-    Label50.Visible := False;
-  {$ENDIF WINDOWS}
+  Update_Form.CheckUpdate;
 end;
 
 procedure TMainForm.ComboBox1CloseUp(Sender: TObject);
@@ -3530,6 +3518,7 @@ begin
   MapView1.Zoom := 1;
   MapView1.DoubleBuffered := True;
   MapView1.Active := True;
+  CheckUpdatesTimer.Enabled:=True;
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
