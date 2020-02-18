@@ -363,9 +363,9 @@ object ServiceForm: TServiceForm
   end
   object Label1: TLabel
     Left = 192
-    Height = 14
+    Height = 17
     Top = 16
-    Width = 186
+    Width = 184
     Caption = 'Download QSL received after:'
     Font.Height = -13
     Font.Style = [fsBold]
@@ -380,9 +380,9 @@ object ServiceForm: TServiceForm
   end
   object Label2: TLabel
     Left = 136
-    Height = 14
+    Height = 17
     Top = 48
-    Width = 35
+    Width = 36
     Caption = 'LoTW'
     Font.Height = -13
     Font.Style = [fsBold, fsUnderline]
@@ -391,9 +391,9 @@ object ServiceForm: TServiceForm
   end
   object Label3: TLabel
     Left = 432
-    Height = 14
+    Height = 17
     Top = 48
-    Width = 49
+    Width = 47
     Caption = 'eQSL.cc'
     Font.Height = -13
     Font.Style = [fsBold, fsUnderline]
@@ -460,9 +460,9 @@ object ServiceForm: TServiceForm
   end
   object Label4: TLabel
     Left = 136
-    Height = 13
+    Height = 15
     Top = 152
-    Width = 86
+    Width = 82
     Caption = 'Processed data:'
     Font.Height = -12
     ParentColor = False
@@ -470,9 +470,9 @@ object ServiceForm: TServiceForm
   end
   object Label5: TLabel
     Left = 136
-    Height = 13
+    Height = 15
     Top = 168
-    Width = 37
+    Width = 33
     Caption = 'Errors:'
     Font.Height = -12
     ParentColor = False
@@ -563,9 +563,9 @@ object ServiceForm: TServiceForm
   end
   object Label6: TLabel
     Left = 312
-    Height = 13
+    Height = 15
     Top = 152
-    Width = 65
+    Width = 62
     Caption = 'Status: Wait'
     Font.Height = -12
     ParentColor = False
@@ -574,10 +574,10 @@ object ServiceForm: TServiceForm
   object Label7: TLabel
     AnchorSideLeft.Control = Label8
     AnchorSideLeft.Side = asrBottom
-    Left = 372
-    Height = 13
+    Left = 371
+    Height = 15
     Top = 168
-    Width = 7
+    Width = 6
     BorderSpacing.Left = 2
     Caption = '0'
     ParentColor = False
@@ -592,9 +592,9 @@ object ServiceForm: TServiceForm
   end
   object Label8: TLabel
     Left = 312
-    Height = 13
+    Height = 15
     Top = 168
-    Width = 58
+    Width = 57
     Caption = 'Download:'
     ParentColor = False
   end

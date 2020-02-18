@@ -448,6 +448,7 @@ begin
   DateEdit1.Date := Now;
   DateEdit2.Date := Now;
   DownSize := 0;
+  Label7.Caption:=FloatToStr(DownSize)+' '+rMBytes;
   ProgressBar1.Position := 0;
 end;
 
