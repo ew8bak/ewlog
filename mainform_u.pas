@@ -593,7 +593,7 @@ type
     function SearchCountry(CallName: string; Province: boolean): string;
     procedure FindCountryFlag(Country: string);
     function FindCountry(ISOCode: string): string;
-    function FindLanguageFiles(Dir: string): TStringList;
+    procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
     procedure addModes(modeItem: string; subModesFlag: boolean;
@@ -828,19 +828,19 @@ var
 begin
   Result := '';
   try
-  ISOList := TStringList.Create;
-  LanguageList := TStringList.Create;
-  ISOList.AddStrings(constLanguageISO);
-  LanguageList.AddStrings(constLanguage);
-  Index := LanguageList.IndexOf(Country);
-  if Index <> -1 then
-    Result := ISOList.Strings[Index]
-  else
-    Result := 'None';
+    ISOList := TStringList.Create;
+    LanguageList := TStringList.Create;
+    ISOList.AddStrings(constLanguageISO);
+    LanguageList.AddStrings(constLanguage);
+    Index := LanguageList.IndexOf(Country);
+    if Index <> -1 then
+      Result := ISOList.Strings[Index]
+    else
+      Result := 'None';
 
   finally
-  ISOList.Free;
-  LanguageList.Free;
+    ISOList.Free;
+    LanguageList.Free;
   end;
 end;
 
@@ -851,33 +851,29 @@ var
   Index: integer;
 begin
   try
-  Result := '';
-  ISOList := TStringList.Create;
-  LanguageList := TStringList.Create;
-  ISOList.AddStrings(constLanguageISO);
-  LanguageList.AddStrings(constLanguage);
-  Index := ISOList.IndexOf(ISOCode);
-  if Index <> -1 then
-    Result := LanguageList.Strings[Index]
-  else
-    Result := 'None';
+    Result := '';
+    ISOList := TStringList.Create;
+    LanguageList := TStringList.Create;
+    ISOList.AddStrings(constLanguageISO);
+    LanguageList.AddStrings(constLanguage);
+    Index := ISOList.IndexOf(ISOCode);
+    if Index <> -1 then
+      Result := LanguageList.Strings[Index]
+    else
+      Result := 'None';
 
   finally
-  ISOList.Free;
-  LanguageList.Free;
+    ISOList.Free;
+    LanguageList.Free;
   end;
 end;
 
-function TMainForm.FindLanguageFiles(Dir: string): TStringList;
-var
-  LangList: TStringList;
+procedure TMainForm.FindLanguageFiles(Dir: string; var LangList: TStringList);
 begin
-  LangList := TStringList.Create;
   LangList := FindAllFiles(Dir, 'EWLog.*.po', False, faNormal);
   LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
     'EWLog.', '', [rfreplaceall]);
   LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
-  Result := LangList;
 end;
 
 procedure TMainForm.FindCountryFlag(Country: string);
@@ -1267,6 +1263,7 @@ var
   sDBPath: string;
   modesString: TStringList;
 begin
+  try
      {$IFDEF UNIX}
   sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
@@ -1422,8 +1419,16 @@ begin
       subModesList.Add(subModesQuery.FieldByName('submode').AsString);
       subModesQuery.Next;
     end;
-
+  sleep(1);
   finally
+  end;
+
+  except
+    on E: Exception do begin
+    ShowMessage(E.ClassName+':'+E.Message);
+    SQLiteDBConnection.Connected:=False;
+    MySQLLOGDBConnection.Connected:=False;
+  end;
   end;
 end;
 
@@ -1655,9 +1660,8 @@ begin
       Edit6.Text := SearchCallBookQuery.FieldByName('Manager').AsString;
       Edit11.Text := SearchCallBookQuery.FieldByName('Note').AsString;
     end;
-    //  except
+
   finally
-    //    CallBookLiteConnection.Connected := True;
   end;
 end;
 
@@ -1866,56 +1870,56 @@ begin
 
     try
       try
-      if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_GRIDSQUARE varchar(15);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
+        if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
+        begin
+          CheckTableQuery.Close;
+          CheckTableQuery.SQL.Text :=
+            'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_GRIDSQUARE varchar(15);';
+          CheckTableQuery.ExecSQL;
+          SQLTransaction1.Commit;
+        end;
 
-      if CheckTableQuery.FindField('MY_LAT') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LAT varchar(15);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
+        if CheckTableQuery.FindField('MY_LAT') = nil then
+        begin
+          CheckTableQuery.Close;
+          CheckTableQuery.SQL.Text :=
+            'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LAT varchar(15);';
+          CheckTableQuery.ExecSQL;
+          SQLTransaction1.Commit;
+        end;
 
-      if CheckTableQuery.FindField('MY_LON') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LON varchar(15);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
+        if CheckTableQuery.FindField('MY_LON') = nil then
+        begin
+          CheckTableQuery.Close;
+          CheckTableQuery.SQL.Text :=
+            'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LON varchar(15);';
+          CheckTableQuery.ExecSQL;
+          SQLTransaction1.Commit;
+        end;
 
-      if CheckTableQuery.FindField('MY_STATE') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_STATE varchar(15);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
+        if CheckTableQuery.FindField('MY_STATE') = nil then
+        begin
+          CheckTableQuery.Close;
+          CheckTableQuery.SQL.Text :=
+            'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_STATE varchar(15);';
+          CheckTableQuery.ExecSQL;
+          SQLTransaction1.Commit;
+        end;
 
-      if CheckTableQuery.FindField('QSOSubMode') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE ' + LogTable + ' ADD COLUMN QSOSubMode varchar(15);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
+        if CheckTableQuery.FindField('QSOSubMode') = nil then
+        begin
+          CheckTableQuery.Close;
+          CheckTableQuery.SQL.Text :=
+            'ALTER TABLE ' + LogTable + ' ADD COLUMN QSOSubMode varchar(15);';
+          CheckTableQuery.ExecSQL;
+          SQLTransaction1.Commit;
+        end;
+      except
+        on E: ESQLDatabaseError do
       end;
-    except
-      on E: ESQLDatabaseError do
-    end;
 
     finally
-       CheckTableQuery.Close;
+      CheckTableQuery.Close;
     end;
     MainForm.SelectLogDatabase(LogTable);
   end;
@@ -2315,7 +2319,6 @@ begin
 
           MenuItem43.Enabled := False;
           ComboBox2.Text := Fldigi_GetMode;
-          // ComboBox2Change(Sender);
           ComboBox2CloseUp(Sender);
         end;
       end;
@@ -2375,7 +2378,6 @@ begin
         begin
           currmode := mode;
           mode := Fldigi_GetMode;
-          // Combobox2.Text := mode;
           ConvertDIGI(mode, digimode, subdigimode);
           ComboBox2.Text := digimode;
           ComboBox9.Text := digimode + subdigimode;
@@ -2606,10 +2608,13 @@ begin
   addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
   if ComboBox2.Text <> 'SSB' then
     ComboBox9.Text := '';
+
+  if deldot <> '' then begin
   if StrToDouble(deldot) >= 10 then
     ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
   else
     ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
+  end;
 
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or
@@ -3526,7 +3531,7 @@ begin
   MapView1.Zoom := 1;
   MapView1.DoubleBuffered := True;
   MapView1.Active := True;
-  CheckUpdatesTimer.Enabled:=True;
+  CheckUpdatesTimer.Enabled := True;
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
@@ -4059,7 +4064,7 @@ begin
         (MainForm.Components[i] as TMenuItem).Free;
 
   LangList := TStringList.Create;
-  LangList := FindLanguageFiles(PathMyDoc + 'locale');
+  FindLanguageFiles(PathMyDoc + 'locale', LangList);
   for i := 0 to LangList.Count - 1 do
   begin
     LangItem := TMenuItem.Create(Self);
