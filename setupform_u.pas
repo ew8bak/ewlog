@@ -504,7 +504,6 @@ begin
     MySQL_Connector.Connected := False;
     SQLite_Connector.Connected := False;
   end;
-
 end;
 
 procedure TSetupForm.FormShow(Sender: TObject);
@@ -532,7 +531,6 @@ begin
   CheckBox1.Checked := False;
   Button2.Enabled := True;
   Button10.Enabled := False;
-
 end;
 
 procedure TSetupForm.RadioButton1Change(Sender: TObject);

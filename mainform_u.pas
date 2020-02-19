@@ -827,6 +827,7 @@ var
   Index: integer;
 begin
   Result := '';
+  try
   ISOList := TStringList.Create;
   LanguageList := TStringList.Create;
   ISOList.AddStrings(constLanguageISO);
@@ -836,6 +837,11 @@ begin
     Result := ISOList.Strings[Index]
   else
     Result := 'None';
+
+  finally
+  ISOList.Free;
+  LanguageList.Free;
+  end;
 end;
 
 function TMainForm.FindCountry(ISOCode: string): string;
@@ -844,6 +850,7 @@ var
   LanguageList: TStringList;
   Index: integer;
 begin
+  try
   Result := '';
   ISOList := TStringList.Create;
   LanguageList := TStringList.Create;
@@ -854,6 +861,11 @@ begin
     Result := LanguageList.Strings[Index]
   else
     Result := 'None';
+
+  finally
+  ISOList.Free;
+  LanguageList.Free;
+  end;
 end;
 
 function TMainForm.FindLanguageFiles(Dir: string): TStringList;
@@ -1259,7 +1271,7 @@ begin
   sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   sDBPath := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
 
   if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
@@ -1315,9 +1327,6 @@ begin
 
 
     finally
-
-      //  ShowMessage(rCheckSettingsMySQL);
-      //  InitializeDB('SQLite');
     end;
   end
   else
@@ -1346,12 +1355,9 @@ begin
         ['EWLog', rWelcomeMessageSQLIte]);
       {$ENDIF}
     finally
-      //  ShowMessage(rCheckSettingsSQLIte);
-      //  InitializeDB('MySQL');
     end;
   end;
 
-  //VHFTypeQuery.DataBase := ServiceDBConnection;
   PrefixProvinceQuery.DataBase := ServiceDBConnection;
   PrefixQuery.DataBase := ServiceDBConnection;
   PrefixARRLQuery.DataBase := ServiceDBConnection;
@@ -1365,7 +1371,6 @@ begin
     AddModes('', False, modesString);
     ComboBox2.Items := modesString;
     modesString.Free;
-    //   addBands(IniF.ReadString('SetLog', 'ShowBand', ''),ComboBox2.Text);
     subModesQuery.SQL.Text := 'select _id, submode from Modes';
     LogBookInfoQuery.Active := True;
     LogBookFieldQuery.Active := True;
@@ -1386,7 +1391,6 @@ begin
     UniqueCallsCount := UniqueCallsQuery.RecordCount;
     subModesCount := subModesQuery.RecordCount;
 
-    //DBGrid1.DataSource.DataSet.Last;
     PrefixProvinceQuery.First;
     PrefixARRLQuery.First;
     UniqueCallsQuery.First;
@@ -1420,7 +1424,6 @@ begin
     end;
 
   finally
-
   end;
 end;
 
@@ -1862,6 +1865,7 @@ begin
     CheckTableQuery.Open;
 
     try
+      try
       if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
       begin
         CheckTableQuery.Close;
@@ -1908,6 +1912,10 @@ begin
       end;
     except
       on E: ESQLDatabaseError do
+    end;
+
+    finally
+       CheckTableQuery.Close;
     end;
     MainForm.SelectLogDatabase(LogTable);
   end;
@@ -4043,7 +4051,7 @@ begin
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
   for i := MainForm.ComponentCount - 1 downto 0 do
     if (MainForm.Components[i] is TMenuItem) then
@@ -5775,6 +5783,7 @@ begin
   PrefixProvinceList.Free;
   PrefixARRLList.Free;
   UniqueCallsList.Free;
+  subModesList.Free;
   for i := 0 to 1000 do
   begin
     PrefixExpARRLArray[i].reg.Free;

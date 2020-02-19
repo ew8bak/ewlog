@@ -89,7 +89,7 @@ begin
   updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysUtils.GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+   SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
 
   if DirectoryExists(updatePATH + 'updates') = False then
