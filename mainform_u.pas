@@ -1263,6 +1263,10 @@ var
   sDBPath: string;
   modesString: TStringList;
 begin
+    subModesList := TStringList.Create;
+    PrefixProvinceList := TStringList.Create;
+    PrefixARRLList := TStringList.Create;
+    UniqueCallsList := TStringList.Create;
   try
      {$IFDEF UNIX}
   sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
@@ -1379,10 +1383,6 @@ begin
     DBLookupComboBox1.KeyValue := CallLogBook;
     SelDB(CallLogBook);
 
-    subModesList := TStringList.Create;
-    PrefixProvinceList := TStringList.Create;
-    PrefixARRLList := TStringList.Create;
-    UniqueCallsList := TStringList.Create;
     PrefixProvinceCount := PrefixProvinceQuery.RecordCount;
     PrefixARRLCount := PrefixARRLQuery.RecordCount;
     UniqueCallsCount := UniqueCallsQuery.RecordCount;
@@ -1419,7 +1419,7 @@ begin
       subModesList.Add(subModesQuery.FieldByName('submode').AsString);
       subModesQuery.Next;
     end;
-  sleep(1);
+
   finally
   end;
 
