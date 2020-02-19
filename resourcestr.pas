@@ -128,6 +128,24 @@ resourcestring
   rMBytes = 'MB';
   rNoLogFileFound = 'No log file found! Check settings';
   rOnlyWindows = 'The function is available only in the Windows system';
+  rCreateTableLogBookInfo = 'Create table LogBookInfo';
+  rIchooseNumberOfRecords = 'I choose the number of records';
+  rFillInLogTable = 'Fill in the Log_Table_';
+  rFillInlogBookInfo = 'Fill in the LogBookInfo table';
+  rAddIndexInLogTable = 'Add index in Log_TABLE_';
+  rAddKeyInLogTable = 'Add key in Log_TABLE_';
+  rSuccessful = 'Successful';
+  rWait = 'Wait';
+  rNotConnected =
+    'No connection to the server. Go back to the connection settings step and check all the settings';
+  rNotUser =
+    'No database was found for this user. Check the user and database settings in the connection settings step';
+  rSuccessfulNext = 'Successful! Click NEXT';
+  rValueEmpty = 'One or more values are empty! Check';
+  rCheckPath = 'Check SQLite database path';
+  rValueCorr =
+    'One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically';
+
 
 implementation
 

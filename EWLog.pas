@@ -19,12 +19,12 @@ uses
   STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, register_form_u,
   filterForm_U, hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth,
   clublog, qrzcom, qso_record, resourcestr, const_u, initini, download_lotw,
-  download_eqslcc, DownloadUpdates;
+  download_eqslcc, DownloadUpdates, SetupSQLquery;
 
 {$R *.res}
 
 begin
-  Application.Title:='EWLog - HAM Journal';
+  Application.Title:=rEWLogHAMJournal;
   Application.Scaled:=True;
   RequireDerivedFormResource := True;
   Application.Initialize;

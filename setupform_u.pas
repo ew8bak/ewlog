@@ -6,22 +6,7 @@ interface
 
 uses
   Classes, SysUtils, mysql56conn, sqlite3conn, sqldb, FileUtil, Forms, Controls,
-  Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, Types;
-resourcestring
-rCreateTableLogBookInfo = 'Create table LogBookInfo';
-rIchooseNumberOfRecords = 'I choose the number of records';
-rFillInLogTable = 'Fill in the Log_Table_';
-rFillInlogBookInfo = 'Fill in the LogBookInfo table';
-rAddIndexInLogTable = 'Add index in Log_TABLE_';
-rAddKeyInLogTable = 'Add key in Log_TABLE_';
-rSuccessful = 'Successful';
-rWait = 'Wait';
-rNotConnected = 'No connection to the server. Go back to the connection settings step and check all the settings';
-rNotUser = 'No database was found for this user. Check the user and database settings in the connection settings step';
-rSuccessfulNext = 'Successful! Click NEXT';
-rValueEmpty = 'One or more values are empty! Check';
-rCheckPath = 'Check SQLite database path';
-rValueCorr = 'One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically';
+  Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, ResourceStr;
 
 type
 
@@ -158,7 +143,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U;
+uses dmFunc_U, MainForm_U, SetupSQLquery;
 
 var
   MySQL_Current: boolean;
@@ -173,357 +158,7 @@ var
   CountStr: integer;
 begin
   try
-  if (CheckedDB = 1) and (MySQL_Current = False) then
-  begin
-    try
-      try
-        Button4.Enabled := False;
-        Button8.Enabled := False;
-        MySQL_Connector.HostName := MySQL_HostName;
-        MySQL_Connector.Port := MySQL_Port;
-        MySQL_Connector.UserName := MySQL_LoginName;
-        MySQL_Connector.Password := MySQL_Password;
-        MySQL_Connector.DatabaseName := MySQL_BaseName;
-        MySQL_Connector.Transaction := SQL_Transaction;
-        SQL_Query.DataBase := MySQL_Connector;
-        MySQL_Connector.Connected := True;
-        SQL_Transaction.Active := True;
-        Application.ProcessMessages;
-        Label24.Caption := rCreateTableLogBookInfo;
-        SQL_Query.Close;
-        SQL_Query.SQL.Text := 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
-          '`id` int(11) NOT NULL, ' + '`LogTable` varchar(100) NOT NULL, ' +
-          '`CallName` varchar(15) NOT NULL, ' + '`Name` varchar(100) NOT NULL, ' +
-          '`QTH` varchar(100) NOT NULL, ' + '`ITU` int(11) NOT NULL, ' +
-          '`CQ` int(11) NOT NULL, ' + '`Loc` varchar(32) NOT NULL, ' +
-          '`Lat` varchar(20) NOT NULL, ' + '`Lon` varchar(20) NOT NULL, ' +
-          '`Discription` varchar(150) NOT NULL, ' +
-          '`QSLInfo` varchar(200) NOT NULL DEFAULT ''TNX For QSO TU 73!'', ' +
-          '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
-          '`EQSLPassword` varchar(200) DEFAULT NULL, ' + '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
-          '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
-          '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
-          '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
-          '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoHRDLog` tinyint(1) DEFAULT NULL, ' +
-          '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL '+') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
-        SQL_Query.ExecSQL;
-        SQL_Query.Close;
-        SQL_Query.SQL.Text := 'ALTER TABLE `LogBookInfo` ADD PRIMARY KEY (`id`)';
-        SQL_Query.ExecSQL;
-        ProgressBar1.Position := 35;
-        Application.ProcessMessages;
-        ProgressBar1.Position := 56;
-
-        SQL_Query.Transaction := SQL_Transaction;
-        LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
-        SQL_Query.Close;
-        Application.ProcessMessages;
-        Label24.Caption := rIchooseNumberOfRecords;
-        SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
-        SQL_Query.Open;
-        ProgressBar1.Position := 63;
-        CountStr := SQL_Query.Fields[0].AsInteger + 1;
-        SQL_Query.Close;
-        Application.ProcessMessages;
-        Label24.Caption := rFillInLogBookInfo;
-        SQL_Query.SQL.Text :=
-          'INSERT INTO LogBookInfo ' +
-          '(id,LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo,EQSLLogin,EQSLPassword)'
-          + ' VALUES (:id,:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo,:EQSLLogin,:EQSLPassword)';
-        SQL_Query.ParamByName('id').AsInteger := CountStr;
-        SQL_Query.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
-        SQL_Query.ParamByName('CallName').AsString := New_CallSign;
-        SQL_Query.ParamByName('Name').AsString := New_Name;
-        SQL_Query.ParamByName('QTH').AsString := New_QTH;
-        SQL_Query.ParamByName('ITU').AsString := New_ITU;
-        SQL_Query.ParamByName('CQ').AsString := New_CQ;
-        SQL_Query.ParamByName('Loc').AsString := New_Grid;
-        SQL_Query.ParamByName('Lat').AsString := New_Latitude;
-        SQL_Query.ParamByName('Lon').AsString := New_Longitude;
-        SQL_Query.ParamByName('Discription').AsString := Journal_Description;
-        SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-        SQL_Query.ParamByName('EQSLLogin').AsString := '';
-        SQL_Query.ParamByName('EQSLPassword').AsString := '';
-        SQL_Query.ExecSQL;
-        ProgressBar1.Position := 70;
-        SQL_Transaction.Commit;
-        SQL_Query.Close;
-        Application.ProcessMessages;
-        Label24.Caption := rFillInLogTable + LOG_PREFIX;
-        SQL_Query.SQL.Text :=
-          'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
-          '(' + ' `UnUsedIndex` int(11) NOT NULL,' +
-          ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
-          ' `QSOMode` varchar(7) DEFAULT NULL,' +
-          ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
-          ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
-          ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-          ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
-          ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
-          ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-          ' `QSLSent` tinyint(1) DEFAULT NULL,' +
-          ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
-          ' `QSLRecDate` datetime DEFAULT NULL,' +
-          ' `MainPrefix` varchar(5) DEFAULT NULL,' +
-          ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
-          ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
-          ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
-          ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
-          ' `ShortNote` varchar(200) DEFAULT NULL,' +
-          ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
-          ' `LoTWRec` tinyint(1) DEFAULT 0,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
-          ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
-          ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
-          ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
-          ' `WPX` varchar(10) DEFAULT NULL,' + ' `AwardsEx` longtext,' +
-          ' `ValidDX` tinyint(1) DEFAULT 1,' + ' `SRX` int(11) DEFAULT NULL,' +
-          ' `SRX_STRING` varchar(15) DEFAULT NULL,' + ' `STX` int(11) DEFAULT NULL,' +
-          ' `STX_STRING` varchar(15) DEFAULT NULL,' +
-          ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
-          ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-          ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT 0,' +
-          ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
-          ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
-          ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-          ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
-          ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
-        SQL_Query.ExecSQL;
-        ProgressBar1.Position := 77;
-        SQL_Transaction.Commit;
-        SQL_Query.Close;
-        Application.ProcessMessages;
-        Label24.Caption := rAddIndexInLogTable + LOG_PREFIX;
-        SQL_Query.SQL.Text :=
-          'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
-          ' ADD PRIMARY KEY (`UnUsedIndex`),' + ' ADD KEY `Call` (`Call`),' +
-          ' ADD KEY `CallSign` (`CallSign`),' +
-          ' ADD KEY `QSODate` (`QSODate`,`QSOTime`),' +
-          ' ADD KEY `DigiBand` (`DigiBand`),' + ' ADD KEY `DXCC` (`DXCC`),' +
-          ' ADD KEY `DXCCPrefix` (`DXCCPrefix`),' + ' ADD KEY `IOTA` (`IOTA`),' +
-          ' ADD KEY `MainPrefix` (`MainPrefix`),' + ' ADD KEY `QSOMode` (`QSOMode`),' +
-          ' ADD KEY `State` (`State`),' + ' ADD KEY `State1` (`State1`),' +
-          ' ADD KEY `State2` (`State2`),' + ' ADD KEY `State3` (`State3`),' +
-          ' ADD KEY `State4` (`State4`),' + ' ADD KEY `WPX` (`WPX`),'+
-          ' ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`);';
-        SQL_Query.ExecSQL;
-        ProgressBar1.Position := 84;
-        SQL_Transaction.Commit;
-        SQL_Query.Close;
-        Application.ProcessMessages;
-        Label24.Caption := rAddKeyInLogTable + LOG_PREFIX;
-        SQL_Query.SQL.Text :=
-          'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
-          ' MODIFY `UnUsedIndex` int(11) NOT NULL AUTO_INCREMENT;';
-        SQL_Query.ExecSQL;
-        ProgressBar1.Position := 100;
-        SQL_Transaction.Commit;
-        Label24.Caption := rSuccessful;
-      except
-        on E: ESQLDatabaseError do
-        begin
-          if Pos('Server connect failed', E.Message) > 0 then
-          begin
-            ShowMessage(rNotConnected);
-            Button8.Enabled := True;
-          end;
-          if Pos('Access denied for user', E.Message) > 0 then
-          begin
-            ShowMessage(rNotUser);
-            Button8.Enabled := True;
-          end;
-          Button8.Enabled := True;
-        end;
-      end;
-    finally
-      SQL_Transaction.Commit;
-      Button4.Enabled := True;
-      IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-      IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
-      IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
-      IniF.WriteString('DataBases', 'LoginName', MySQL_LoginName);
-      IniF.WriteString('DataBases', 'Password', MySQL_Password);
-      IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
-      IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-      IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
-    end;
-  end;
-
-  if (CheckedDB = 1) and (MySQL_Current = True) then
-  begin
-    IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-    IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
-    IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
-    IniF.WriteString('DataBases', 'LoginName', MySQL_LoginName);
-    IniF.WriteString('DataBases', 'Password', MySQL_Password);
-    IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
-    IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-    IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
-    ProgressBar1.Position := 100;
-    Label24.Caption := rSuccessful;
-    Button4.Enabled := True;
-  end;
-
-  if (CheckedDB = 2) and (SQLite_Current = False) then
-  begin
-    try
-      Button4.Enabled := False;
-      Button8.Enabled := False;
-
-      SQLite_Connector.DatabaseName := SQLitePATH;
-      SQLite_Connector.Transaction := SQL_Transaction;
-      SQL_Query.DataBase := SQLite_Connector;
-      SQLite_Connector.Connected := True;
-      SQL_Transaction.Active := True;
-      Application.ProcessMessages;
-      Label24.Caption := rCreateTableLogBookInfo;
-      SQL_Query.Close;
-      SQL_Query.SQL.Text := 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
-        '`id` int(11) NOT NULL, ' + '`LogTable` varchar(100) NOT NULL, ' +
-        '`CallName` varchar(15) NOT NULL, ' + '`Name` varchar(100) NOT NULL, ' +
-        '`QTH` varchar(100) NOT NULL, ' + '`ITU` int(11) NOT NULL, ' +
-        '`CQ` int(11) NOT NULL, ' + '`Loc` varchar(32) NOT NULL, ' +
-        '`Lat` varchar(20) NOT NULL, ' + '`Lon` varchar(20) NOT NULL, ' +
-        '`Discription` varchar(150) NOT NULL, ' +
-        '`QSLInfo` varchar(200) NOT NULL DEFAULT `TNX For QSO TU 73!`, ' +
-        '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
-        '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
-        '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
-        '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
-        '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
-        '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
-        '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-        '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
-        '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, ' +
-        '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL);';
-      SQL_Query.ExecSQL;
-      ProgressBar1.Position := 35;
-      Application.ProcessMessages;
-      ProgressBar1.Position := 56;
-
-      SQL_Query.Transaction := SQL_Transaction;
-      LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
-      SQL_Query.Close;
-      Application.ProcessMessages;
-      Label24.Caption := rIchooseNumberOfRecords;
-      SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
-      SQL_Query.Open;
-      ProgressBar1.Position := 63;
-      CountStr := SQL_Query.Fields[0].AsInteger + 1;
-      SQL_Query.Close;
-      Application.ProcessMessages;
-      Label24.Caption := rFillInlogBookInfo;
-      SQL_Query.SQL.Text :=
-        'INSERT INTO LogBookInfo ' +
-        '(id,LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo,EQSLLogin,EQSLPassword)'
-        + ' VALUES (:id,:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo,:EQSLLogin,:EQSLPassword)';
-      SQL_Query.ParamByName('id').AsInteger := CountStr;
-      SQL_Query.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
-      SQL_Query.ParamByName('CallName').AsString := New_CallSign;
-      SQL_Query.ParamByName('Name').AsString := New_Name;
-      SQL_Query.ParamByName('QTH').AsString := New_QTH;
-      SQL_Query.ParamByName('ITU').AsString := New_ITU;
-      SQL_Query.ParamByName('CQ').AsString := New_CQ;
-      SQL_Query.ParamByName('Loc').AsString := New_Grid;
-      SQL_Query.ParamByName('Lat').AsString := New_Latitude;
-      SQL_Query.ParamByName('Lon').AsString := New_Longitude;
-      SQL_Query.ParamByName('Discription').AsString := Journal_Description;
-      SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-      SQL_Query.ParamByName('EQSLLogin').AsString := '';
-      SQL_Query.ParamByName('EQSLPassword').AsString := '';
-      SQL_Query.ExecSQL;
-      ProgressBar1.Position := 70;
-      SQL_Transaction.Commit;
-      SQL_Query.Close;
-      Application.ProcessMessages;
-      Label24.Caption := rFillInLogTable + LOG_PREFIX;
-      SQL_Query.SQL.Text :=
-        'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
-        '(' + ' `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
-        ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-        ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
-        ' `QSOMode` varchar(7) DEFAULT NULL,' +
-        ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
-        ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
-        ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-        ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
-        ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
-        ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-        ' `QSLSent` tinyint(1) DEFAULT NULL,' +
-        ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-        ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
-        ' `QSLRecDate` datetime DEFAULT NULL,' +
-        ' `MainPrefix` varchar(5) DEFAULT NULL,' +
-        ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
-        ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
-        ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
-        ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
-        ' `ShortNote` varchar(200) DEFAULT NULL,' +
-        ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
-        ' `LoTWRec` tinyint(1) DEFAULT 0,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
-        ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
-        ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
-        ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
-        ' `WPX` varchar(10) DEFAULT NULL,' + ' `AwardsEx` longtext,' +
-        ' `ValidDX` tinyint(1) DEFAULT 1,' + ' `SRX` int(11) DEFAULT NULL,' +
-        ' `SRX_STRING` varchar(15) DEFAULT NULL,' + ' `STX` int(11) DEFAULT NULL,' +
-        ' `STX_STRING` varchar(15) DEFAULT NULL,' +
-        ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
-        ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-        ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT 0,' +
-        ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
-        ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
-        ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-        ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
-        ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
-      SQL_Query.ExecSQL;
-      SQL_Query.SQL.Text := 'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_'+LOG_PREFIX+'` '+
-      '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
-      SQL_Query.ExecSQL;
-      SQL_Query.SQL.Text:='CREATE INDEX `Call_index` ON `Log_TABLE_'+LOG_PREFIX+'` (`Call`);';
-      SQL_Query.ExecSQL;
-      ProgressBar1.Position := 77;
-      SQL_Transaction.Commit;
-      SQL_Query.Close;
-      ProgressBar1.Position := 84;
-      ProgressBar1.Position := 100;
-      Label24.Caption := rSuccessful;
-    finally
-      SQL_Transaction.Commit;
-      Button4.Enabled := True;
-      IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-      IniF.WriteString('DataBases', 'HostAddr', '');
-      IniF.WriteString('DataBases', 'Port', '');
-      IniF.WriteString('DataBases', 'LoginName', '');
-      IniF.WriteString('DataBases', 'Password', '');
-      IniF.WriteString('DataBases', 'DataBaseName', '');
-      IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
-      IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-      IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
-    end;
-  end;
-
-  if (CheckedDB = 2) and (SQLite_Current = True) then
-  begin
-    IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-    IniF.WriteString('DataBases', 'HostAddr', '');
-    IniF.WriteString('DataBases', 'Port', '');
-    IniF.WriteString('DataBases', 'LoginName', '');
-    IniF.WriteString('DataBases', 'Password', '');
-    IniF.WriteString('DataBases', 'DataBaseName', '');
-    IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
-    IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-    IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
-    ProgressBar1.Position := 100;
-    Label24.Caption := rSuccessful;
-    Button4.Enabled := True;
-  end;
-
-  if CheckedDB = 3 then
-  begin
-    if MySQL_Current = False then
+    if (CheckedDB = 1) and (MySQL_Current = False) then
     begin
       try
         try
@@ -541,33 +176,10 @@ begin
           Application.ProcessMessages;
           Label24.Caption := rCreateTableLogBookInfo;
           SQL_Query.Close;
-          SQL_Query.SQL.Text := 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
-            '`id` int(11) NOT NULL, ' + '`LogTable` varchar(100) NOT NULL, ' +
-            '`CallName` varchar(15) NOT NULL, ' + '`Name` varchar(100) NOT NULL, ' +
-            '`QTH` varchar(100) NOT NULL, ' + '`ITU` int(11) NOT NULL, ' +
-            '`CQ` int(11) NOT NULL, ' + '`Loc` varchar(32) NOT NULL, ' +
-            '`Lat` varchar(20) NOT NULL, ' + '`Lon` varchar(20) NOT NULL, ' +
-            '`Discription` varchar(150) NOT NULL, ' +
-            '`QSLInfo` varchar(200) NOT NULL DEFAULT ''TNX For QSO TU 73!'', ' +
-            '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
-            '`EQSLPassword` varchar(200) DEFAULT NULL, ' + '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
-            '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
-            '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
-            '`HRDLogLogin` varchar(200) DEFAULT NULL, ' + '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-            '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
-            '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoHRDLog` tinyint(1) DEFAULT NULL, ' +
-            '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL '+') ENGINE=InnoDB DEFAULT CHARSET=utf8;';
-          SQL_Query.ExecSQL;
-          SQL_Query.Close;
-          SQL_Query.SQL.Text := 'ALTER TABLE `LogBookInfo` ADD PRIMARY KEY (`id`)';
-          SQL_Query.ExecSQL;
-          ProgressBar1.Position := 35;
-          Application.ProcessMessages;
+          MySQL_Connector.ExecuteDirect(Table_LogBookInfo);
           ProgressBar1.Position := 56;
-
           SQL_Query.Transaction := SQL_Transaction;
           LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
-          SQL_Query.Close;
           Application.ProcessMessages;
           Label24.Caption := rIchooseNumberOfRecords;
           SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
@@ -575,12 +187,8 @@ begin
           ProgressBar1.Position := 63;
           CountStr := SQL_Query.Fields[0].AsInteger + 1;
           SQL_Query.Close;
-          Application.ProcessMessages;
-          Label24.Caption := rFillInlogBookInfo;
-          SQL_Query.SQL.Text :=
-            'INSERT INTO LogBookInfo ' +
-            '(id,LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo,EQSLLogin,EQSLPassword)'
-            + ' VALUES (:id,:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo,:EQSLLogin,:EQSLPassword)';
+          Label24.Caption := rFillInLogBookInfo;
+          SQL_Query.SQL.Text := Insert_Table_LogBookInfo;
           SQL_Query.ParamByName('id').AsInteger := CountStr;
           SQL_Query.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
           SQL_Query.ParamByName('CallName').AsString := New_CallSign;
@@ -593,85 +201,19 @@ begin
           SQL_Query.ParamByName('Lon').AsString := New_Longitude;
           SQL_Query.ParamByName('Discription').AsString := Journal_Description;
           SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-          SQL_Query.ParamByName('EQSLLogin').AsString := '';
-          SQL_Query.ParamByName('EQSLPassword').AsString := '';
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 70;
           SQL_Transaction.Commit;
           SQL_Query.Close;
-          Application.ProcessMessages;
           Label24.Caption := rFillInLogTable + LOG_PREFIX;
-          SQL_Query.SQL.Text :=
-            'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
-            '(' + ' `UnUsedIndex` int(11) NOT NULL,' +
-            ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-            ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
-            ' `QSOMode` varchar(7) DEFAULT NULL,' +
-            ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
-            ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
-            ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-            ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
-            ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
-            ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-            ' `QSLSent` tinyint(1) DEFAULT NULL,' +
-            ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-            ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
-            ' `QSLRecDate` datetime DEFAULT NULL,' +
-            ' `MainPrefix` varchar(5) DEFAULT NULL,' +
-            ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
-            ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
-            ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
-            ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
-            ' `ShortNote` varchar(200) DEFAULT NULL,' +
-            ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
-            ' `LoTWRec` tinyint(1) DEFAULT 0,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
-            ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
-            ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
-            ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
-            ' `WPX` varchar(10) DEFAULT NULL,' + ' `AwardsEx` longtext,' +
-            ' `ValidDX` tinyint(1) DEFAULT 1,' + ' `SRX` int(11) DEFAULT NULL,' +
-            ' `SRX_STRING` varchar(15) DEFAULT NULL,' + ' `STX` int(11) DEFAULT NULL,' +
-            ' `STX_STRING` varchar(15) DEFAULT NULL,' +
-            ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
-            ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-            ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT 0,' +
-            ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
-            ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
-            ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-            ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
-            ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
-          SQL_Query.ExecSQL;
+          MySQL_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'MySQL'));
           ProgressBar1.Position := 77;
-          SQL_Transaction.Commit;
-          SQL_Query.Close;
-          Application.ProcessMessages;
           Label24.Caption := rAddIndexInLogTable + LOG_PREFIX;
-          SQL_Query.SQL.Text :=
-            'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
-            ' ADD PRIMARY KEY (`UnUsedIndex`),' + ' ADD KEY `Call` (`Call`),' +
-            ' ADD KEY `CallSign` (`CallSign`),' +
-            ' ADD KEY `QSODate` (`QSODate`,`QSOTime`),' +
-            ' ADD KEY `DigiBand` (`DigiBand`),' + ' ADD KEY `DXCC` (`DXCC`),' +
-            ' ADD KEY `DXCCPrefix` (`DXCCPrefix`),' + ' ADD KEY `IOTA` (`IOTA`),' +
-            ' ADD KEY `MainPrefix` (`MainPrefix`),' + ' ADD KEY `QSOMode` (`QSOMode`),' +
-            ' ADD KEY `State` (`State`),' + ' ADD KEY `State1` (`State1`),' +
-            ' ADD KEY `State2` (`State2`),' + ' ADD KEY `State3` (`State3`),' +
-            ' ADD KEY `State4` (`State4`),' + ' ADD KEY `WPX` (`WPX`),'+
-            ' ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`);';
-          SQL_Query.ExecSQL;
+          MySQL_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX, 'MySQL'));
           ProgressBar1.Position := 84;
-          SQL_Transaction.Commit;
-          SQL_Query.Close;
-          Application.ProcessMessages;
           Label24.Caption := rAddKeyInLogTable + LOG_PREFIX;
-          SQL_Query.SQL.Text :=
-            'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '` ' +
-            ' MODIFY `UnUsedIndex` int(11) NOT NULL AUTO_INCREMENT;';
-          SQL_Query.ExecSQL;
           ProgressBar1.Position := 100;
-          SQL_Transaction.Commit;
           Label24.Caption := rSuccessful;
-
         except
           on E: ESQLDatabaseError do
           begin
@@ -688,9 +230,9 @@ begin
             Button8.Enabled := True;
           end;
         end;
-
       finally
         SQL_Transaction.Commit;
+        Button4.Enabled := True;
         IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
         IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
         IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
@@ -699,11 +241,10 @@ begin
         IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
         IniF.WriteString('SetLog', 'LogBookInit', 'YES');
         IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
-
       end;
     end;
 
-    if MySQL_Current = True then
+    if (CheckedDB = 1) and (MySQL_Current = True) then
     begin
       IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
       IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
@@ -715,59 +256,34 @@ begin
       IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
       ProgressBar1.Position := 100;
       Label24.Caption := rSuccessful;
+      Button4.Enabled := True;
     end;
 
-    if SQLite_Current = False then
+    if (CheckedDB = 2) and (SQLite_Current = False) then
     begin
       try
-        MySQL_Connector.Connected := False;
+        Button4.Enabled := False;
+        Button8.Enabled := False;
+
         SQLite_Connector.DatabaseName := SQLitePATH;
         SQLite_Connector.Transaction := SQL_Transaction;
         SQL_Query.DataBase := SQLite_Connector;
         SQLite_Connector.Connected := True;
         SQL_Transaction.Active := True;
-        Application.ProcessMessages;
         Label24.Caption := rCreateTableLogBookInfo;
-        SQL_Query.Close;
-        SQL_Query.SQL.Text := 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
-          '`id` int(11) NOT NULL, ' + '`LogTable` varchar(100) NOT NULL, ' +
-          '`CallName` varchar(15) NOT NULL, ' + '`Name` varchar(100) NOT NULL, ' +
-          '`QTH` varchar(100) NOT NULL, ' + '`ITU` int(11) NOT NULL, ' +
-          '`CQ` int(11) NOT NULL, ' + '`Loc` varchar(32) NOT NULL, ' +
-          '`Lat` varchar(20) NOT NULL, ' + '`Lon` varchar(20) NOT NULL, ' +
-          '`Discription` varchar(150) NOT NULL, ' +
-          '`QSLInfo` varchar(200) NOT NULL DEFAULT `TNX For QSO TU 73!`, ' +
-          '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
-          '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
-          '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
-          '`HamQTHPassword` varchar(200) DEFAULT NULL, ' + '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
-          '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
-          '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-          '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
-          '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, ' +
-          '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL);';
-        SQL_Query.ExecSQL;
-        ProgressBar1.Position := 35;
-        Application.ProcessMessages;
+        SQLite_Connector.ExecuteDirect(Table_LogBookInfo);
         ProgressBar1.Position := 56;
-
         SQL_Query.Transaction := SQL_Transaction;
         LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
         SQL_Query.Close;
-        Application.ProcessMessages;
         Label24.Caption := rIchooseNumberOfRecords;
         SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
         SQL_Query.Open;
         ProgressBar1.Position := 63;
         CountStr := SQL_Query.Fields[0].AsInteger + 1;
         SQL_Query.Close;
-        Application.ProcessMessages;
         Label24.Caption := rFillInlogBookInfo;
-        SQL_Query.SQL.Text :=
-          'INSERT INTO LogBookInfo ' +
-          '(id,LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo,EQSLLogin,EQSLPassword)'
-          + ' VALUES (:id,:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo,:EQSLLogin,:EQSLPassword)';
+        SQL_Query.SQL.Text := Insert_Table_LogBookInfo;
         SQL_Query.ParamByName('id').AsInteger := CountStr;
         SQL_Query.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
         SQL_Query.ParamByName('CallName').AsString := New_CallSign;
@@ -780,86 +296,213 @@ begin
         SQL_Query.ParamByName('Lon').AsString := New_Longitude;
         SQL_Query.ParamByName('Discription').AsString := Journal_Description;
         SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-        SQL_Query.ParamByName('EQSLLogin').AsString := '';
-        SQL_Query.ParamByName('EQSLPassword').AsString := '';
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 70;
         SQL_Transaction.Commit;
         SQL_Query.Close;
-        Application.ProcessMessages;
-        Label24.Caption := rFillInLogTable + LOG_PREFIX + ' in SQLite';
-        SQL_Query.SQL.Text :=
-          'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX + '` ' +
-          '(' + ' `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
-          ' `CallSign` varchar(20) DEFAULT NULL,' + ' `QSODate` datetime DEFAULT NULL,' +
-          ' `QSOTime` varchar(5) DEFAULT NULL,' + ' `QSOBand` varchar(20) DEFAULT NULL,' +
-          ' `QSOMode` varchar(7) DEFAULT NULL,' +
-          ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
-          ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
-          ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-          ' `OMName` varchar(30) DEFAULT NULL,' + ' `OMQTH` varchar(50) DEFAULT NULL,' +
-          ' `State` varchar(25) DEFAULT NULL,' + ' `Grid` varchar(6) DEFAULT NULL,' +
-          ' `IOTA` varchar(6) DEFAULT NULL,' + ' `QSLManager` varchar(9) DEFAULT NULL,' +
-          ' `QSLSent` tinyint(1) DEFAULT NULL,' +
-          ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-          ' `QSLSentDate` datetime DEFAULT NULL,' + ' `QSLRec` tinyint(1) DEFAULT NULL,' +
-          ' `QSLRecDate` datetime DEFAULT NULL,' +
-          ' `MainPrefix` varchar(5) DEFAULT NULL,' +
-          ' `DXCCPrefix` varchar(5) DEFAULT NULL,' + ' `CQZone` varchar(2) DEFAULT NULL,' +
-          ' `ITUZone` varchar(2) DEFAULT NULL,' + ' `QSOAddInfo` longtext,' +
-          ' `Marker` int(11) DEFAULT NULL,' + ' `ManualSet` tinyint(1) DEFAULT NULL,' +
-          ' `DigiBand` double DEFAULT NULL,' + ' `Continent` varchar(2) DEFAULT NULL,' +
-          ' `ShortNote` varchar(200) DEFAULT NULL,' +
-          ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
-          ' `LoTWRec` tinyint(1) DEFAULT 0,' + ' `LoTWRecDate` datetime DEFAULT NULL,' +
-          ' `QSLInfo` varchar(100) DEFAULT NULL,' + ' `Call` varchar(20) DEFAULT NULL,' +
-          ' `State1` varchar(25) DEFAULT NULL,' + ' `State2` varchar(25) DEFAULT NULL,' +
-          ' `State3` varchar(25) DEFAULT NULL,' + ' `State4` varchar(25) DEFAULT NULL,' +
-          ' `WPX` varchar(10) DEFAULT NULL,' + ' `AwardsEx` longtext,' +
-          ' `ValidDX` tinyint(1) DEFAULT 1,' + ' `SRX` int(11) DEFAULT NULL,' +
-          ' `SRX_STRING` varchar(15) DEFAULT NULL,' + ' `STX` int(11) DEFAULT NULL,' +
-          ' `STX_STRING` varchar(15) DEFAULT NULL,' +
-          ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
-          ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-          ' `PROP_MODE` varchar(20) DEFAULT NULL,' + ' `LoTWSent` tinyint(1) DEFAULT 0,' +
-          ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
-          ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
-          ' `DXCC` varchar(5) DEFAULT NULL,' + ' `USERS` varchar(5) DEFAULT NULL,' +
-          ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), '+
-          ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15)'+' )';
-        SQL_Query.ExecSQL;
-        SQL_Query.SQL.Text := 'CREATE UNIQUE INDEX `Dupe_index` ON `Log_TABLE_'+LOG_PREFIX+'` '+
-          '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
-      SQL_Query.ExecSQL;
-            SQL_Query.SQL.Text:='CREATE INDEX `Call_index` ON `Log_TABLE_'+LOG_PREFIX+'` (`Call`);';
-      SQL_Query.ExecSQL;
-        ProgressBar1.Position := 77;
-        SQL_Transaction.Commit;
-        SQL_Query.Close;
-        ProgressBar1.Position := 84;
+        Label24.Caption := rFillInLogTable + LOG_PREFIX;
+        SQLite_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
+        SQLite_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX, 'SQLite'));
         ProgressBar1.Position := 100;
         Label24.Caption := rSuccessful;
       finally
         SQL_Transaction.Commit;
+        Button4.Enabled := True;
+        IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+        IniF.WriteString('DataBases', 'HostAddr', '');
+        IniF.WriteString('DataBases', 'Port', '');
+        IniF.WriteString('DataBases', 'LoginName', '');
+        IniF.WriteString('DataBases', 'Password', '');
+        IniF.WriteString('DataBases', 'DataBaseName', '');
         IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
         IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-        IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
+        IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
       end;
     end;
 
-    if SQLite_Current = True then
+    if (CheckedDB = 2) and (SQLite_Current = True) then
     begin
+      IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+      IniF.WriteString('DataBases', 'HostAddr', '');
+      IniF.WriteString('DataBases', 'Port', '');
+      IniF.WriteString('DataBases', 'LoginName', '');
+      IniF.WriteString('DataBases', 'Password', '');
+      IniF.WriteString('DataBases', 'DataBaseName', '');
       IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
       IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-      IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
+      IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
       ProgressBar1.Position := 100;
       Label24.Caption := rSuccessful;
+      Button4.Enabled := True;
     end;
-    Button4.Enabled := True;
-  end;
+
+    if CheckedDB = 3 then
+    begin
+      if MySQL_Current = False then
+      begin
+        try
+          try
+            Button4.Enabled := False;
+            Button8.Enabled := False;
+            MySQL_Connector.HostName := MySQL_HostName;
+            MySQL_Connector.Port := MySQL_Port;
+            MySQL_Connector.UserName := MySQL_LoginName;
+            MySQL_Connector.Password := MySQL_Password;
+            MySQL_Connector.DatabaseName := MySQL_BaseName;
+            MySQL_Connector.Transaction := SQL_Transaction;
+            SQL_Query.DataBase := MySQL_Connector;
+            MySQL_Connector.Connected := True;
+            SQL_Transaction.Active := True;
+            Label24.Caption := rCreateTableLogBookInfo;
+            SQL_Query.Close;
+            MySQL_Connector.ExecuteDirect(Table_LogBookInfo);
+            ProgressBar1.Position := 56;
+            SQL_Query.Transaction := SQL_Transaction;
+            LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
+            Label24.Caption := rIchooseNumberOfRecords;
+            SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
+            SQL_Query.Open;
+            ProgressBar1.Position := 63;
+            CountStr := SQL_Query.Fields[0].AsInteger + 1;
+            SQL_Query.Close;
+            Label24.Caption := rFillInlogBookInfo;
+            SQL_Query.SQL.Text := Insert_Table_LogBookInfo;
+            SQL_Query.ParamByName('id').AsInteger := CountStr;
+            SQL_Query.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
+            SQL_Query.ParamByName('CallName').AsString := New_CallSign;
+            SQL_Query.ParamByName('Name').AsString := New_Name;
+            SQL_Query.ParamByName('QTH').AsString := New_QTH;
+            SQL_Query.ParamByName('ITU').AsString := New_ITU;
+            SQL_Query.ParamByName('CQ').AsString := New_CQ;
+            SQL_Query.ParamByName('Loc').AsString := New_Grid;
+            SQL_Query.ParamByName('Lat').AsString := New_Latitude;
+            SQL_Query.ParamByName('Lon').AsString := New_Longitude;
+            SQL_Query.ParamByName('Discription').AsString := Journal_Description;
+            SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
+            SQL_Query.ExecSQL;
+            ProgressBar1.Position := 70;
+            SQL_Transaction.Commit;
+            SQL_Query.Close;
+            Label24.Caption := rFillInLogTable + LOG_PREFIX;
+            MySQL_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'MySQL'));
+            Label24.Caption := rAddIndexInLogTable + LOG_PREFIX;
+            MySQL_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX, 'MySQL'));
+            ProgressBar1.Position := 84;
+            Label24.Caption := rAddKeyInLogTable + LOG_PREFIX;
+            ProgressBar1.Position := 100;
+            Label24.Caption := rSuccessful;
+
+          except
+            on E: ESQLDatabaseError do
+            begin
+              if Pos('Server connect failed', E.Message) > 0 then
+              begin
+                ShowMessage(rNotConnected);
+                Button8.Enabled := True;
+              end;
+              if Pos('Access denied for user', E.Message) > 0 then
+              begin
+                ShowMessage(rNotUser);
+                Button8.Enabled := True;
+              end;
+              Button8.Enabled := True;
+            end;
+          end;
+
+        finally
+          SQL_Transaction.Commit;
+          IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+          IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
+          IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
+          IniF.WriteString('DataBases', 'LoginName', MySQL_LoginName);
+          IniF.WriteString('DataBases', 'Password', MySQL_Password);
+          IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
+          IniF.WriteString('SetLog', 'LogBookInit', 'YES');
+          IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
+
+        end;
+      end;
+
+      if MySQL_Current = True then
+      begin
+        IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+        IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
+        IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
+        IniF.WriteString('DataBases', 'LoginName', MySQL_LoginName);
+        IniF.WriteString('DataBases', 'Password', MySQL_Password);
+        IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
+        IniF.WriteString('SetLog', 'LogBookInit', 'YES');
+        IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
+        ProgressBar1.Position := 100;
+        Label24.Caption := rSuccessful;
+      end;
+
+      if SQLite_Current = False then
+      begin
+        try
+          MySQL_Connector.Connected := False;
+          SQLite_Connector.DatabaseName := SQLitePATH;
+          SQLite_Connector.Transaction := SQL_Transaction;
+          SQL_Query.DataBase := SQLite_Connector;
+          SQLite_Connector.Connected := True;
+          SQL_Transaction.Active := True;
+          Application.ProcessMessages;
+          Label24.Caption := rCreateTableLogBookInfo;
+          SQL_Query.Close;
+          SQLite_Connector.ExecuteDirect(Table_LogBookInfo);
+          SQL_Query.Transaction := SQL_Transaction;
+          LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
+          Label24.Caption := rIchooseNumberOfRecords;
+          SQL_Query.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
+          SQL_Query.Open;
+          ProgressBar1.Position := 63;
+          CountStr := SQL_Query.Fields[0].AsInteger + 1;
+          SQL_Query.Close;
+          Label24.Caption := rFillInlogBookInfo;
+          SQL_Query.SQL.Text := Insert_Table_LogBookInfo;
+          SQL_Query.ParamByName('id').AsInteger := CountStr;
+          SQL_Query.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
+          SQL_Query.ParamByName('CallName').AsString := New_CallSign;
+          SQL_Query.ParamByName('Name').AsString := New_Name;
+          SQL_Query.ParamByName('QTH').AsString := New_QTH;
+          SQL_Query.ParamByName('ITU').AsString := New_ITU;
+          SQL_Query.ParamByName('CQ').AsString := New_CQ;
+          SQL_Query.ParamByName('Loc').AsString := New_Grid;
+          SQL_Query.ParamByName('Lat').AsString := New_Latitude;
+          SQL_Query.ParamByName('Lon').AsString := New_Longitude;
+          SQL_Query.ParamByName('Discription').AsString := Journal_Description;
+          SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
+          SQL_Query.ExecSQL;
+          ProgressBar1.Position := 70;
+          SQL_Transaction.Commit;
+          SQL_Query.Close;
+          Label24.Caption := rFillInLogTable + LOG_PREFIX + ' in SQLite';
+          SQLite_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
+          SQLite_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX, 'SQLite'));
+          ProgressBar1.Position := 100;
+          Label24.Caption := rSuccessful;
+        finally
+          SQL_Transaction.Commit;
+          IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
+          IniF.WriteString('SetLog', 'LogBookInit', 'YES');
+          IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
+        end;
+      end;
+
+      if SQLite_Current = True then
+      begin
+        IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
+        IniF.WriteString('SetLog', 'LogBookInit', 'YES');
+        IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
+        ProgressBar1.Position := 100;
+        Label24.Caption := rSuccessful;
+      end;
+      Button4.Enabled := True;
+    end;
 
   finally
- // IniF.Free;
+    MySQL_Connector.Connected := False;
+    SQLite_Connector.Connected := False;
   end;
 
 end;
@@ -873,22 +516,22 @@ begin
   MySQL_Current := False;
   SQLite_Current := False;
   Label24.Caption := rWait;
-    Edit1.Enabled := False;
-    Edit2.Enabled := False;
-    Edit3.Enabled := False;
-    Edit4.Enabled := False;
-    Edit5.Enabled := False;
-    Edit6.Enabled := True;
-    SpeedButton1.Enabled := True;
-    CheckBox4.Checked := True;
-    CheckBox4.Enabled := False;
-    CheckBox3.Enabled := False;
-    CheckBox3.Checked := False;
-    CheckBox2.Enabled := True;
-    CheckBox1.Enabled := False;
-    CheckBox1.Checked := False;
-    Button2.Enabled := True;
-    Button10.Enabled := False;
+  Edit1.Enabled := False;
+  Edit2.Enabled := False;
+  Edit3.Enabled := False;
+  Edit4.Enabled := False;
+  Edit5.Enabled := False;
+  Edit6.Enabled := True;
+  SpeedButton1.Enabled := True;
+  CheckBox4.Checked := True;
+  CheckBox4.Enabled := False;
+  CheckBox3.Enabled := False;
+  CheckBox3.Checked := False;
+  CheckBox2.Enabled := True;
+  CheckBox1.Enabled := False;
+  CheckBox1.Checked := False;
+  Button2.Enabled := True;
+  Button10.Enabled := False;
 
 end;
 
@@ -960,13 +603,15 @@ end;
 
 procedure TSetupForm.SpeedButton1Click(Sender: TObject);
 begin
-  if CheckBox2.Checked=False then begin
- if SaveDialog1.Execute then
-  Edit6.Text := SaveDialog1.FileName;
+  if CheckBox2.Checked = False then
+  begin
+    if SaveDialog1.Execute then
+      Edit6.Text := SaveDialog1.FileName;
   end
-  else begin
- if OpenDialog1.Execute then
-  Edit6.Text := OpenDialog1.FileName;
+  else
+  begin
+    if OpenDialog1.Execute then
+      Edit6.Text := OpenDialog1.FileName;
   end;
 end;
 
@@ -986,10 +631,11 @@ begin
       MySQL_Connector.Password := Edit4.Text;
       MySQL_Connector.DatabaseName := Edit5.Text;
       MySQL_Connector.Connected := True;
-      if MySQL_Connector.Connected = True then begin
+      if MySQL_Connector.Connected = True then
+      begin
         Button2.Enabled := True;
         ShowMessage(rSuccessfulNext);
-        end
+      end
     except
       on E: Exception do
         ShowMessage(E.Message);
@@ -1117,7 +763,7 @@ procedure TSetupForm.Edit11Change(Sender: TObject);
 var
   lat, lon: currency;
 begin
-  FormatSettings.DecimalSeparator:='.';
+  FormatSettings.DecimalSeparator := '.';
   if dmFunc.IsLocOK(Edit11.Text) then
   begin
     dmFunc.CoordinateFromLocator(Edit11.Text, lat, lon);

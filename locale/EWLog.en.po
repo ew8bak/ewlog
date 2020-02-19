@@ -684,6 +684,16 @@ msgstr ""
 msgid "Wrong password"
 msgstr ""
 
+#: resourcestr.raddindexinlogtable
+msgctxt "resourcestr.raddindexinlogtable"
+msgid "Add index in Log_TABLE_"
+msgstr ""
+
+#: resourcestr.raddkeyinlogtable
+msgctxt "resourcestr.raddkeyinlogtable"
+msgid "Add key in Log_TABLE_"
+msgstr ""
+
 #: resourcestr.rallfieldsmustbefilled
 msgctxt "resourcestr.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
@@ -719,6 +729,11 @@ msgctxt "resourcestr.rcannotdeldef"
 msgid "Cannot delete default log"
 msgstr ""
 
+#: resourcestr.rcheckpath
+msgctxt "resourcestr.rcheckpath"
+msgid "Check SQLite database path"
+msgstr ""
+
 #: resourcestr.rchecksettingsmysql
 msgctxt "resourcestr.rchecksettingsmysql"
 msgid "Check MySQL DB Settings"
@@ -752,6 +767,11 @@ msgstr ""
 #: resourcestr.rcqzone
 msgctxt "resourcestr.rcqzone"
 msgid "CQ Zone"
+msgstr ""
+
+#: resourcestr.rcreatetablelogbookinfo
+msgctxt "resourcestr.rcreatetablelogbookinfo"
+msgid "Create table LogBookInfo"
 msgstr ""
 
 #: resourcestr.rdatabasefault
@@ -843,6 +863,16 @@ msgctxt "resourcestr.rfileerror"
 msgid "Error file:"
 msgstr ""
 
+#: resourcestr.rfillinlogbookinfo
+msgctxt "resourcestr.rfillinlogbookinfo"
+msgid "Fill in the LogBookInfo table"
+msgstr ""
+
+#: resourcestr.rfillinlogtable
+msgctxt "resourcestr.rfillinlogtable"
+msgid "Fill in the Log_Table_"
+msgstr ""
+
 #: resourcestr.rgrid
 msgctxt "resourcestr.rgrid"
 msgid "Grid"
@@ -851,6 +881,11 @@ msgstr ""
 #: resourcestr.rhaltlog
 msgctxt "resourcestr.rhaltlog"
 msgid "The program will be completed, restart it!"
+msgstr ""
+
+#: resourcestr.richoosenumberofrecords
+msgctxt "resourcestr.richoosenumberofrecords"
+msgid "I choose the number of records"
 msgstr ""
 
 #: resourcestr.rimport
@@ -965,6 +1000,11 @@ msgctxt "resourcestr.rnotconfigqrzru"
 msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
 msgstr ""
 
+#: resourcestr.rnotconnected
+msgctxt "resourcestr.rnotconnected"
+msgid "No connection to the server. Go back to the connection settings step and check all the settings"
+msgstr ""
+
 #: resourcestr.rnotdataforconnect
 msgctxt "resourcestr.rnotdataforconnect"
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
@@ -973,6 +1013,11 @@ msgstr ""
 #: resourcestr.rnothingimport
 msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
+msgstr ""
+
+#: resourcestr.rnotuser
+msgctxt "resourcestr.rnotuser"
+msgid "No database was found for this user. Check the user and database settings in the connection settings step"
 msgstr ""
 
 #: resourcestr.rnumberdup
@@ -1157,6 +1202,16 @@ msgctxt "resourcestr.rstatussavefile"
 msgid "Status: Saving file"
 msgstr ""
 
+#: resourcestr.rsuccessful
+msgctxt "resourcestr.rsuccessful"
+msgid "Successful"
+msgstr ""
+
+#: resourcestr.rsuccessfulnext
+msgctxt "resourcestr.rsuccessfulnext"
+msgid "Successful! Click NEXT"
+msgstr ""
+
 #: resourcestr.rswitchdbmysql
 msgctxt "resourcestr.rswitchdbmysql"
 msgid "Switch base to MySQL"
@@ -1246,6 +1301,21 @@ msgctxt "resourcestr.rvaliddx"
 msgid "Valid DX"
 msgstr ""
 
+#: resourcestr.rvaluecorr
+msgctxt "resourcestr.rvaluecorr"
+msgid "One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically"
+msgstr ""
+
+#: resourcestr.rvalueempty
+msgctxt "resourcestr.rvalueempty"
+msgid "One or more values are empty! Check"
+msgstr ""
+
+#: resourcestr.rwait
+msgctxt "resourcestr.rwait"
+msgid "Wait"
+msgstr ""
+
 #: resourcestr.rwarning
 msgctxt "resourcestr.rwarning"
 msgid "Warning!"
@@ -1305,54 +1375,67 @@ msgid "HamLib library not found"
 msgstr ""
 
 #: setupform_u.raddindexinlogtable
+msgctxt "setupform_u.raddindexinlogtable"
 msgid "Add index in Log_TABLE_"
 msgstr ""
 
 #: setupform_u.raddkeyinlogtable
+msgctxt "setupform_u.raddkeyinlogtable"
 msgid "Add key in Log_TABLE_"
 msgstr ""
 
 #: setupform_u.rcheckpath
+msgctxt "setupform_u.rcheckpath"
 msgid "Check SQLite database path"
 msgstr ""
 
 #: setupform_u.rcreatetablelogbookinfo
+msgctxt "setupform_u.rcreatetablelogbookinfo"
 msgid "Create table LogBookInfo"
 msgstr ""
 
 #: setupform_u.rfillinlogbookinfo
+msgctxt "setupform_u.rfillinlogbookinfo"
 msgid "Fill in the LogBookInfo table"
 msgstr ""
 
 #: setupform_u.rfillinlogtable
+msgctxt "setupform_u.rfillinlogtable"
 msgid "Fill in the Log_Table_"
 msgstr ""
 
 #: setupform_u.richoosenumberofrecords
+msgctxt "setupform_u.richoosenumberofrecords"
 msgid "I choose the number of records"
 msgstr ""
 
 #: setupform_u.rnotconnected
+msgctxt "setupform_u.rnotconnected"
 msgid "No connection to the server. Go back to the connection settings step and check all the settings"
 msgstr ""
 
 #: setupform_u.rnotuser
+msgctxt "setupform_u.rnotuser"
 msgid "No database was found for this user. Check the user and database settings in the connection settings step"
 msgstr ""
 
 #: setupform_u.rsuccessful
+msgctxt "setupform_u.rsuccessful"
 msgid "Successful"
 msgstr ""
 
 #: setupform_u.rsuccessfulnext
+msgctxt "setupform_u.rsuccessfulnext"
 msgid "Successful! Click NEXT"
 msgstr ""
 
 #: setupform_u.rvaluecorr
+msgctxt "setupform_u.rvaluecorr"
 msgid "One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically"
 msgstr ""
 
 #: setupform_u.rvalueempty
+msgctxt "setupform_u.rvalueempty"
 msgid "One or more values are empty! Check"
 msgstr ""
 

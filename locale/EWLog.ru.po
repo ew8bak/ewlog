@@ -694,6 +694,18 @@ msgstr "Успешно зарегистрировано"
 msgid "Wrong password"
 msgstr "Не верный пароль"
 
+#: resourcestr.raddindexinlogtable
+#, fuzzy
+msgctxt "resourcestr.raddindexinlogtable"
+msgid "Add index in Log_TABLE_"
+msgstr "Добавляю индекс в Log_TABLE_"
+
+#: resourcestr.raddkeyinlogtable
+#, fuzzy
+msgctxt "resourcestr.raddkeyinlogtable"
+msgid "Add key in Log_TABLE_"
+msgstr "Добавляю ключ в Log_TABLE_"
+
 #: resourcestr.rallfieldsmustbefilled
 msgctxt "resourcestr.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
@@ -729,6 +741,12 @@ msgctxt "resourcestr.rcannotdeldef"
 msgid "Cannot delete default log"
 msgstr "Нельзя удалить журнал по умолчанию"
 
+#: resourcestr.rcheckpath
+#, fuzzy
+msgctxt "resourcestr.rcheckpath"
+msgid "Check SQLite database path"
+msgstr "Проверьте путь к базе SQLite"
+
 #: resourcestr.rchecksettingsmysql
 msgctxt "resourcestr.rchecksettingsmysql"
 msgid "Check MySQL DB Settings"
@@ -763,6 +781,12 @@ msgstr "Континент"
 msgctxt "resourcestr.rcqzone"
 msgid "CQ Zone"
 msgstr "CQ Зона"
+
+#: resourcestr.rcreatetablelogbookinfo
+#, fuzzy
+msgctxt "resourcestr.rcreatetablelogbookinfo"
+msgid "Create table LogBookInfo"
+msgstr "Создаю таблицу LogBookInfo"
 
 #: resourcestr.rdatabasefault
 msgctxt "resourcestr.rdatabasefault"
@@ -853,6 +877,18 @@ msgctxt "resourcestr.rfileerror"
 msgid "Error file:"
 msgstr "Файл ошибок:"
 
+#: resourcestr.rfillinlogbookinfo
+#, fuzzy
+msgctxt "resourcestr.rfillinlogbookinfo"
+msgid "Fill in the LogBookInfo table"
+msgstr "Заполняю таблицу LogBookInfo"
+
+#: resourcestr.rfillinlogtable
+#, fuzzy
+msgctxt "resourcestr.rfillinlogtable"
+msgid "Fill in the Log_Table_"
+msgstr "Заполняю таблицу Log_Table_"
+
 #: resourcestr.rgrid
 msgctxt "resourcestr.rgrid"
 msgid "Grid"
@@ -862,6 +898,12 @@ msgstr "Локатор"
 msgctxt "resourcestr.rhaltlog"
 msgid "The program will be completed, restart it!"
 msgstr "Выполнено успешно! Перезапустите программу"
+
+#: resourcestr.richoosenumberofrecords
+#, fuzzy
+msgctxt "resourcestr.richoosenumberofrecords"
+msgid "I choose the number of records"
+msgstr "Выбираю количество записей"
 
 #: resourcestr.rimport
 msgctxt "resourcestr.rimport"
@@ -975,6 +1017,12 @@ msgctxt "resourcestr.rnotconfigqrzru"
 msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
 msgstr "В настройках, необходимо ввести логин и пароль, для доступа к XML API QRZ.ru"
 
+#: resourcestr.rnotconnected
+#, fuzzy
+msgctxt "resourcestr.rnotconnected"
+msgid "No connection to the server. Go back to the connection settings step and check all the settings"
+msgstr "Нет подключения к серверу. Вернитесь к этапу настроек соединения и проверьте все настройки"
+
 #: resourcestr.rnotdataforconnect
 msgctxt "resourcestr.rnotdataforconnect"
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
@@ -984,6 +1032,12 @@ msgstr "В конфигурации журнала, не указаны данн
 msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
 msgstr "Нечего импортировать"
+
+#: resourcestr.rnotuser
+#, fuzzy
+msgctxt "resourcestr.rnotuser"
+msgid "No database was found for this user. Check the user and database settings in the connection settings step"
+msgstr "База данных не была найдена для этого пользователя. Проверьте настройки пользователя и базы данных на этапе настроек соединения"
 
 #: resourcestr.rnumberdup
 msgctxt "resourcestr.rnumberdup"
@@ -1167,6 +1221,18 @@ msgctxt "resourcestr.rstatussavefile"
 msgid "Status: Saving file"
 msgstr "Статус: Сохранение файла"
 
+#: resourcestr.rsuccessful
+#, fuzzy
+msgctxt "resourcestr.rsuccessful"
+msgid "Successful"
+msgstr "Готово"
+
+#: resourcestr.rsuccessfulnext
+#, fuzzy
+msgctxt "resourcestr.rsuccessfulnext"
+msgid "Successful! Click NEXT"
+msgstr "Готово! Нажмите далее"
+
 #: resourcestr.rswitchdbmysql
 msgctxt "resourcestr.rswitchdbmysql"
 msgid "Switch base to MySQL"
@@ -1256,6 +1322,24 @@ msgctxt "resourcestr.rvaliddx"
 msgid "Valid DX"
 msgstr "Valid DX"
 
+#: resourcestr.rvaluecorr
+#, fuzzy
+msgctxt "resourcestr.rvaluecorr"
+msgid "One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically"
+msgstr "Одно или несколько полей не заполнены или заполнены неправильно! Все поля и правильный локатор должны быть заполнены. Долгота и широта устанавливаются автоматически"
+
+#: resourcestr.rvalueempty
+#, fuzzy
+msgctxt "resourcestr.rvalueempty"
+msgid "One or more values are empty! Check"
+msgstr "Одно или несколько значений не заполнено. Проверьте"
+
+#: resourcestr.rwait
+#, fuzzy
+msgctxt "resourcestr.rwait"
+msgid "Wait"
+msgstr "Ожидание"
+
 #: resourcestr.rwarning
 msgctxt "resourcestr.rwarning"
 msgid "Warning!"
@@ -1315,54 +1399,67 @@ msgid "HamLib library not found"
 msgstr "Не найдена библиотека HamLib"
 
 #: setupform_u.raddindexinlogtable
+msgctxt "setupform_u.raddindexinlogtable"
 msgid "Add index in Log_TABLE_"
 msgstr "Добавляю индекс в Log_TABLE_"
 
 #: setupform_u.raddkeyinlogtable
+msgctxt "setupform_u.raddkeyinlogtable"
 msgid "Add key in Log_TABLE_"
 msgstr "Добавляю ключ в Log_TABLE_"
 
 #: setupform_u.rcheckpath
+msgctxt "setupform_u.rcheckpath"
 msgid "Check SQLite database path"
 msgstr "Проверьте путь к базе SQLite"
 
 #: setupform_u.rcreatetablelogbookinfo
+msgctxt "setupform_u.rcreatetablelogbookinfo"
 msgid "Create table LogBookInfo"
 msgstr "Создаю таблицу LogBookInfo"
 
 #: setupform_u.rfillinlogbookinfo
+msgctxt "setupform_u.rfillinlogbookinfo"
 msgid "Fill in the LogBookInfo table"
 msgstr "Заполняю таблицу LogBookInfo"
 
 #: setupform_u.rfillinlogtable
+msgctxt "setupform_u.rfillinlogtable"
 msgid "Fill in the Log_Table_"
 msgstr "Заполняю таблицу Log_Table_"
 
 #: setupform_u.richoosenumberofrecords
+msgctxt "setupform_u.richoosenumberofrecords"
 msgid "I choose the number of records"
 msgstr "Выбираю количество записей"
 
 #: setupform_u.rnotconnected
+msgctxt "setupform_u.rnotconnected"
 msgid "No connection to the server. Go back to the connection settings step and check all the settings"
 msgstr "Нет подключения к серверу. Вернитесь к этапу настроек соединения и проверьте все настройки"
 
 #: setupform_u.rnotuser
+msgctxt "setupform_u.rnotuser"
 msgid "No database was found for this user. Check the user and database settings in the connection settings step"
 msgstr "База данных не была найдена для этого пользователя. Проверьте настройки пользователя и базы данных на этапе настроек соединения"
 
 #: setupform_u.rsuccessful
+msgctxt "setupform_u.rsuccessful"
 msgid "Successful"
 msgstr "Готово"
 
 #: setupform_u.rsuccessfulnext
+msgctxt "setupform_u.rsuccessfulnext"
 msgid "Successful! Click NEXT"
 msgstr "Готово! Нажмите далее"
 
 #: setupform_u.rvaluecorr
+msgctxt "setupform_u.rvaluecorr"
 msgid "One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically"
 msgstr "Одно или несколько полей не заполнены или заполнены неправильно! Все поля и правильный локатор должны быть заполнены. Долгота и широта устанавливаются автоматически"
 
 #: setupform_u.rvalueempty
+msgctxt "setupform_u.rvalueempty"
 msgid "One or more values are empty! Check"
 msgstr "Одно или несколько значений не заполнено. Проверьте"
 
@@ -5461,3 +5558,4 @@ msgstr "Статус обновления: Загрузка"
 msgctxt "updateform_u.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
+
