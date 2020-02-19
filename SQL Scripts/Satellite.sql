@@ -1,4 +1,0 @@
-CREATE TABLE IF NOT EXISTS `Satellite` (
-  `_id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `Name` varchar(50) NOT NULL
-);
