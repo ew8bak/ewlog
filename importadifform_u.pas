@@ -277,6 +277,18 @@ begin
           LogTable + ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
     end;
   end;
+
+  if MainForm.MySQLLOGDBConnection.Connected then
+  begin
+    MainForm.MySQLLOGDBConnection.ExecuteDirect('SET autocommit = 0');
+    MainForm.MySQLLOGDBConnection.ExecuteDirect('BEGIN');
+  end
+  else begin
+      MainForm.SQLiteDBConnection.Transaction.Options:=[stoExplicitStart];
+ //  MainForm.SQLiteDBConnection.ExecuteDirect('autocommit=0');
+    MainForm.SQLiteDBConnection.ExecuteDirect('BEGIN');
+   end;
+
   RecCount := 0;
   DupeCount := 0;
   ErrorCount := 0;
@@ -610,7 +622,7 @@ begin
             SearchPrefix(CALL, PFX, DXCC_PREF, CQZ, ITUZ, CONT, DXCC);
 
           if GuessEncoding(sNAME) <> 'utf8' then
-            sNAME:= CP1251ToUTF8(sNAME);
+            sNAME := CP1251ToUTF8(sNAME);
           if GuessEncoding(QTH) <> 'utf8' then
             QTH := CP1251ToUTF8(QTH);
           if GuessEncoding(COMMENT) <> 'utf8' then
