@@ -538,6 +538,17 @@ type
 
   public
     { public declarations }
+    PrefixExpProvinceArray: array [0..1000] of record
+      reg: TRegExpr;
+      id: integer;
+    end;
+    PrefixExpARRLArray: array [0..1000] of record
+      reg: TRegExpr;
+      id: integer;
+    end;
+    UniqueCallsList: TStringList;
+    PrefixProvinceList: TStringList;
+    PrefixARRLList: TStringList;
     Command: string;
     FlagList: TImageList;
     FlagSList: TStringList;
@@ -610,19 +621,7 @@ var
   PrefixARRLCount: integer;
   subModesCount: integer;
   UniqueCallsCount: integer;
-  UniqueCallsList: TStringList;
-  PrefixProvinceList: TStringList;
-  PrefixARRLList: TStringList;
   GetingHint: integer;
-  PrefixExpProvinceArray: array [0..1000] of record
-    reg: TRegExpr;
-    id: integer;
-  end;
-  PrefixExpARRLArray: array [0..1000] of record
-    reg: TRegExpr;
-    id: integer;
-  end;
-
   IniF: TINIFile;
   CallLogBook: string;
   SetCallName, LogTable, SetDiscription, SetNameC, SetQTH, SetITU,
@@ -744,7 +743,6 @@ begin
       subModes.Add(subModesQuery.FieldByName('mode').AsString);
       subModesQuery.Next;
     end;
-    subModesQuery.Close;
   end
   else
   begin
@@ -753,8 +751,8 @@ begin
       QuotedStr(modeItem);
     subModesQuery.Open;
     subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
-    subModesQuery.Close;
   end;
+  subModesQuery.Close;
 end;
 
 procedure TMainForm.addBands(FreqBand: string; mode: string);
@@ -1263,172 +1261,177 @@ var
   sDBPath: string;
   modesString: TStringList;
 begin
-    subModesList := TStringList.Create;
-    PrefixProvinceList := TStringList.Create;
-    PrefixARRLList := TStringList.Create;
-    UniqueCallsList := TStringList.Create;
+  subModesList := TStringList.Create;
+  PrefixProvinceList := TStringList.Create;
+  PrefixARRLList := TStringList.Create;
+  UniqueCallsList := TStringList.Create;
   try
      {$IFDEF UNIX}
-  sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
+    sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
-  sDBPath := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    sDBPath := GetEnvironmentVariable('SystemDrive') +
+      SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
 
-  if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
-  begin
-    CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
-    CallBookLiteConnection.Connected := True;
-  end;
+    if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
+    begin
+      CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
+      CallBookLiteConnection.Connected := True;
+    end;
 
-  if not (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
-  begin
-    ShowMessage(
-      'Не найден файл справочника, продолжу работать без его. Зайдите в настройки программы для загрузки');
-    CallBookLiteConnection.Connected := False;
-    UseCallBook := 'NO';
-  end;
+    if not (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
+    begin
+      ShowMessage(
+        'Не найден файл справочника, продолжу работать без его. Зайдите в настройки программы для загрузки');
+      CallBookLiteConnection.Connected := False;
+      UseCallBook := 'NO';
+    end;
 
-  MySQLLOGDBConnection.Connected := False;
-  SQLiteDBConnection.Connected := False;
-  ServiceDBConnection.Connected := False;
-  ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
-  ServiceDBConnection.Connected := True;
+    MySQLLOGDBConnection.Connected := False;
+    SQLiteDBConnection.Connected := False;
+    ServiceDBConnection.Connected := False;
+    ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
+    ServiceDBConnection.Connected := True;
 
-  if dbS = 'MySQL' then
-  begin
-    DefaultDB := 'MySQL';
-    dbSel := 'MySQL';
-    MenuItem83.Enabled := False;
-    MenuItem82.Enabled := True;
-    try
-      SQLTransaction1.DataBase := MySQLLOGDBConnection;
-      MySQLLOGDBConnection.Transaction := SQLTransaction1;
-      MySQLLOGDBConnection.HostName := HostDB;
-      MySQLLOGDBConnection.Port := StrToInt(PortDB);
-      MySQLLOGDBConnection.UserName := LoginBD;
-      MySQLLOGDBConnection.Password := PasswdDB;
-      MySQLLOGDBConnection.DatabaseName := NameDB;
-      MySQLLOGDBConnection.Connected := True;
-      DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
-      LogBookFieldQuery.DataBase := MySQLLOGDBConnection;
-      LOGBookQuery.DataBase := MySQLLOGDBConnection;
-      SaveQSOQuery.DataBase := MySQLLOGDBConnection;
-      DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
-      LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
-      SQLQuery2.DataBase := MySQLLOGDBConnection;
-      CheckTableQuery.DataBase := MySQLLOGDBConnection;
+    if dbS = 'MySQL' then
+    begin
+      DefaultDB := 'MySQL';
+      dbSel := 'MySQL';
+      MenuItem83.Enabled := False;
+      MenuItem82.Enabled := True;
+      try
+        SQLTransaction1.DataBase := MySQLLOGDBConnection;
+        MySQLLOGDBConnection.Transaction := SQLTransaction1;
+        MySQLLOGDBConnection.HostName := HostDB;
+        MySQLLOGDBConnection.Port := StrToInt(PortDB);
+        MySQLLOGDBConnection.UserName := LoginBD;
+        MySQLLOGDBConnection.Password := PasswdDB;
+        MySQLLOGDBConnection.DatabaseName := NameDB;
+        MySQLLOGDBConnection.Connected := True;
+        DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
+        LogBookFieldQuery.DataBase := MySQLLOGDBConnection;
+        LOGBookQuery.DataBase := MySQLLOGDBConnection;
+        SaveQSOQuery.DataBase := MySQLLOGDBConnection;
+        DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
+        LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
+        SQLQuery2.DataBase := MySQLLOGDBConnection;
+        CheckTableQuery.DataBase := MySQLLOGDBConnection;
       {$IFDEF WINDOWS}
-      TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
-      TrayIcon1.ShowBalloonHint;
+        TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
+        TrayIcon1.ShowBalloonHint;
       {$ELSE}
-      SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        ['EWLog', rWelcomeMessageMySQL]);
+        SysUtils.ExecuteProcess('/usr/bin/notify-send',
+          ['EWLog', rWelcomeMessageMySQL]);
       {$ENDIF}
 
 
-    finally
-    end;
-  end
-  else
-  begin
-    DefaultDB := 'SQLite';
-    dbSel := 'SQLite';
-    MenuItem82.Enabled := False;
-    MenuItem83.Enabled := True;
-    try
-      SQLiteDBConnection.DatabaseName := SQLiteFILE;
-      SQLTransaction1.DataBase := SQLiteDBConnection;
-      SQLiteDBConnection.Transaction := SQLTransaction1;
-      DeleteQSOQuery.DataBase := SQLiteDBConnection;
-      LogBookFieldQuery.DataBase := SQLiteDBConnection;
-      LOGBookQuery.DataBase := SQLiteDBConnection;
-      SaveQSOQuery.DataBase := SQLiteDBConnection;
-      DeleteQSOQuery.DataBase := SQLiteDBConnection;
-      LogBookInfoQuery.DataBase := SQLiteDBConnection;
-      SQLQuery2.DataBase := SQLiteDBConnection;
-      CheckTableQuery.DataBase := SQLiteDBConnection;
+      finally
+      end;
+    end
+    else
+    begin
+      DefaultDB := 'SQLite';
+      dbSel := 'SQLite';
+      MenuItem82.Enabled := False;
+      MenuItem83.Enabled := True;
+      try
+        SQLiteDBConnection.DatabaseName := SQLiteFILE;
+        SQLTransaction1.DataBase := SQLiteDBConnection;
+        SQLiteDBConnection.Transaction := SQLTransaction1;
+        DeleteQSOQuery.DataBase := SQLiteDBConnection;
+        LogBookFieldQuery.DataBase := SQLiteDBConnection;
+        LOGBookQuery.DataBase := SQLiteDBConnection;
+        SaveQSOQuery.DataBase := SQLiteDBConnection;
+        DeleteQSOQuery.DataBase := SQLiteDBConnection;
+        LogBookInfoQuery.DataBase := SQLiteDBConnection;
+        SQLQuery2.DataBase := SQLiteDBConnection;
+        CheckTableQuery.DataBase := SQLiteDBConnection;
       {$IFDEF WINDOWS}
-      TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
-      TrayIcon1.ShowBalloonHint;
+        TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
+        TrayIcon1.ShowBalloonHint;
       {$ELSE}
-      SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        ['EWLog', rWelcomeMessageSQLIte]);
+        SysUtils.ExecuteProcess('/usr/bin/notify-send',
+          ['EWLog', rWelcomeMessageSQLIte]);
       {$ENDIF}
+      finally
+      end;
+    end;
+
+    PrefixProvinceQuery.DataBase := ServiceDBConnection;
+    PrefixQuery.DataBase := ServiceDBConnection;
+    PrefixARRLQuery.DataBase := ServiceDBConnection;
+    UniqueCallsQuery.DataBase := ServiceDBConnection;
+    qBands.DataBase := ServiceDBConnection;
+    subModesQuery.DataBase := ServiceDBConnection;
+    BandsQuery.DataBase := ServiceDBConnection;
+    try
+      modesString := TStringList.Create;
+      ComboBox2.Items.Clear;
+      AddModes('', False, modesString);
+      ComboBox2.Items := modesString;
+      modesString.Free;
+      subModesQuery.SQL.Text := 'select _id, submode from Modes';
+      LogBookInfoQuery.Active := True;
+      LogBookFieldQuery.Active := True;
+      PrefixProvinceQuery.Active := True;
+      PrefixARRLQuery.Active := True;
+      UniqueCallsQuery.Active := True;
+      subModesQuery.Active := True;
+
+      DBLookupComboBox1.KeyValue := CallLogBook;
+      SelDB(CallLogBook);
+
+      PrefixProvinceCount := PrefixProvinceQuery.RecordCount;
+      PrefixARRLCount := PrefixARRLQuery.RecordCount;
+      UniqueCallsCount := UniqueCallsQuery.RecordCount;
+      subModesCount := subModesQuery.RecordCount;
+
+      PrefixProvinceQuery.First;
+      PrefixARRLQuery.First;
+      UniqueCallsQuery.First;
+      subModesQuery.First;
+      for i := 0 to PrefixProvinceCount do
+      begin
+        PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
+        PrefixExpProvinceArray[i].reg := TRegExpr.Create;
+        PrefixExpProvinceArray[i].reg.Expression := PrefixProvinceList.Strings[i];
+        PrefixExpProvinceArray[i].id := PrefixProvinceQuery.FieldByName('_id').AsInteger;
+        PrefixProvinceQuery.Next;
+      end;
+      for i := 0 to PrefixARRLCount do
+      begin
+        PrefixARRLList.Add(PrefixARRLQuery.FieldByName('PrefixList').AsString);
+        PrefixExpARRLArray[i].reg := TRegExpr.Create;
+        PrefixExpARRLArray[i].reg.Expression := PrefixARRLList.Strings[i];
+        PrefixExpARRLArray[i].id := PrefixARRLQuery.FieldByName('_id').AsInteger;
+        PrefixARRLQuery.Next;
+      end;
+      for i := 0 to UniqueCallsCount do
+      begin
+        UniqueCallsList.Add(UniqueCallsQuery.FieldByName('Callsign').AsString);
+        UniqueCallsQuery.Next;
+      end;
+
+      for i := 0 to subModesCount do
+      begin
+        subModesList.Add(subModesQuery.FieldByName('submode').AsString);
+        subModesQuery.Next;
+      end;
+
     finally
     end;
-  end;
-
-  PrefixProvinceQuery.DataBase := ServiceDBConnection;
-  PrefixQuery.DataBase := ServiceDBConnection;
-  PrefixARRLQuery.DataBase := ServiceDBConnection;
-  UniqueCallsQuery.DataBase := ServiceDBConnection;
-  qBands.DataBase := ServiceDBConnection;
-  subModesQuery.DataBase := ServiceDBConnection;
-  BandsQuery.DataBase := ServiceDBConnection;
-  try
-    modesString := TStringList.Create;
-    ComboBox2.Items.Clear;
-    AddModes('', False, modesString);
-    ComboBox2.Items := modesString;
-    modesString.Free;
-    subModesQuery.SQL.Text := 'select _id, submode from Modes';
-    LogBookInfoQuery.Active := True;
-    LogBookFieldQuery.Active := True;
-    PrefixProvinceQuery.Active := True;
-    PrefixARRLQuery.Active := True;
-    UniqueCallsQuery.Active := True;
-    subModesQuery.Active := True;
-
-    DBLookupComboBox1.KeyValue := CallLogBook;
-    SelDB(CallLogBook);
-
-    PrefixProvinceCount := PrefixProvinceQuery.RecordCount;
-    PrefixARRLCount := PrefixARRLQuery.RecordCount;
-    UniqueCallsCount := UniqueCallsQuery.RecordCount;
-    subModesCount := subModesQuery.RecordCount;
-
-    PrefixProvinceQuery.First;
-    PrefixARRLQuery.First;
-    UniqueCallsQuery.First;
-    subModesQuery.First;
-    for i := 0 to PrefixProvinceCount do
-    begin
-      PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
-      PrefixExpProvinceArray[i].reg := TRegExpr.Create;
-      PrefixExpProvinceArray[i].reg.Expression := PrefixProvinceList.Strings[i];
-      PrefixExpProvinceArray[i].id := PrefixProvinceQuery.FieldByName('_id').AsInteger;
-      PrefixProvinceQuery.Next;
-    end;
-    for i := 0 to PrefixARRLCount do
-    begin
-      PrefixARRLList.Add(PrefixARRLQuery.FieldByName('PrefixList').AsString);
-      PrefixExpARRLArray[i].reg := TRegExpr.Create;
-      PrefixExpARRLArray[i].reg.Expression := PrefixARRLList.Strings[i];
-      PrefixExpARRLArray[i].id := PrefixARRLQuery.FieldByName('_id').AsInteger;
-      PrefixARRLQuery.Next;
-    end;
-    for i := 0 to UniqueCallsCount do
-    begin
-      UniqueCallsList.Add(UniqueCallsQuery.FieldByName('Callsign').AsString);
-      UniqueCallsQuery.Next;
-    end;
-
-    for i := 0 to subModesCount do
-    begin
-      subModesList.Add(subModesQuery.FieldByName('submode').AsString);
-      subModesQuery.Next;
-    end;
-
-  finally
-  end;
 
   except
-    on E: Exception do begin
-    ShowMessage(E.ClassName+':'+E.Message);
-    SQLiteDBConnection.Connected:=False;
-    MySQLLOGDBConnection.Connected:=False;
-  end;
+    on E: Exception do
+    begin
+      ShowMessage(E.ClassName + ':' + E.Message);
+      SQLiteDBConnection.Connected := False;
+      MySQLLOGDBConnection.Connected := False;
+      FreeAndNil(subModesList);
+      FreeAndNil(PrefixProvinceList);
+      FreeAndNil(PrefixARRLList);
+      FreeAndNil(UniqueCallsList);
+    end;
   end;
 end;
 
@@ -2609,11 +2612,12 @@ begin
   if ComboBox2.Text <> 'SSB' then
     ComboBox9.Text := '';
 
-  if deldot <> '' then begin
-  if StrToDouble(deldot) >= 10 then
-    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
-  else
-    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
+  if deldot <> '' then
+  begin
+    if StrToDouble(deldot) >= 10 then
+      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
+    else
+      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
   end;
 
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
@@ -5791,8 +5795,8 @@ begin
   subModesList.Free;
   for i := 0 to 1000 do
   begin
-    PrefixExpARRLArray[i].reg.Free;
-    PrefixExpProvinceArray[i].reg.Free;
+    FreeAndNil(PrefixExpARRLArray[i].reg);
+    FreeAndNil(PrefixExpProvinceArray[i].reg);
   end;
 
   if dbSel = 'SQLite' then
@@ -6132,8 +6136,6 @@ begin
         dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
         SQSO.My_Lat := CurrToStr(lat);
         SQSO.My_Lon := CurrToStr(lon);
-
-
 
       end;
       SQSO.NLogDB := LogTable;

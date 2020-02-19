@@ -51,9 +51,6 @@ var
   SNR: longint;
   WSJT_Run: boolean = False;
 
-
-
-
 implementation
 
 uses dmFunc_U, MainForm_U;
@@ -84,7 +81,7 @@ end;
 
 procedure TWSJT_UDP_Form.FormDestroy(Sender: TObject);
 begin
-  IdUDPServer1.Free;
+  FreeAndNil(IdUDPServer1);
   //IdUDPServer1.Destroy;
 end;
 
