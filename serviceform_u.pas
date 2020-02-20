@@ -170,7 +170,14 @@ begin
             paramQSL_SENT := '0';
 
           if MainForm.MySQLLOGDBConnection.Connected then
-            Query := ''
+            Query := 'UPDATE ' + LogTable + ' SET QSOmode = ' +
+              dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE) +
+              'QSL_RCVD_VIA = ' + dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' +
+              dmFunc.Q(GRIDSQUARE) + 'QSLInfo = ' + dmFunc.Q(QSLMSG) +
+              'QSOReportRecived = ' + dmFunc.Q(RST_SENT) + 'PROP_MODE = ' +
+              dmFunc.Q(PROP_MODE) + 'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
+              ' WHERE CallSign = ' + QuotedStr(CALL) +
+              ' AND QSODate = ' + QuotedStr(QSO_DATE) + ';'
           else
             Query := 'UPDATE ' + LogTable + ' SET QSOmode = ' +
               dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE) +
@@ -182,12 +189,12 @@ begin
               ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) + ';';
           UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
-          MainForm.SQLTransaction1.Commit;
 
           Inc(RecCount);
           if RecCount mod 10 = 0 then
           begin
             Label4.Caption := rProcessedData + IntToStr(RecCount);
+             MainForm.SQLTransaction1.Commit;
             Application.ProcessMessages;
           end;
 
@@ -197,6 +204,7 @@ begin
       end;
     end;
   finally
+     MainForm.SQLTransaction1.Commit;
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
@@ -339,7 +347,14 @@ begin
           end;
 
           if MainForm.MySQLLOGDBConnection.Connected then
-            Query := ''
+            Query := 'UPDATE ' + LogTable + ' SET GRID = ' +
+              dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
+              'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
+              'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
+              dmFunc.Q(paramAPP_LOTW_2XQSL) + 'LoTWRec = ''1'', LoTWRecDate = ' +
+              QuotedStr(paramQSLRDATE) + ' WHERE CallSign = ' +
+              QuotedStr(CALL) + ' AND QSODate = ' +
+              QuotedStr(QSO_DATE) + ';'
           else
             Query := 'UPDATE ' + LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
@@ -351,12 +366,12 @@ begin
               QuotedStr(QSO_DATE) + ';';
           UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
-          MainForm.SQLTransaction1.Commit;
 
           Inc(RecCount);
           if RecCount mod 10 = 0 then
           begin
             Label4.Caption := rProcessedData + IntToStr(RecCount);
+             MainForm.SQLTransaction1.Commit;
             Application.ProcessMessages;
           end;
 
@@ -366,6 +381,7 @@ begin
       end;
     end;
   finally
+     MainForm.SQLTransaction1.Commit;
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
