@@ -116,8 +116,10 @@ function Fldigi_GetRSTin_Log: string;
 function Fldigi_GetQTH_Log: string;
 
 function Fldigi_GetFrequency: double;
+function Fldigi_GetFrequencyField: string;
 procedure Fldigi_SetFrequency( frequency: double );
 procedure Fldigi_ChangeFrequency( increment: double );
+function Fldigi_GetModemId: string;
 
 function Fldigi_GetQSOFrequency: double;
 
@@ -260,6 +262,12 @@ begin
   Result := StrToFloatDef(RequestStr(fl_host,'log.get_frequency'),0.0);
 end;
 
+function Fldigi_GetFrequencyField: string;
+// frequency is in Hz
+begin
+  Result := RequestStrN(fl_host,'log.get_frequency');
+end;
+
 function Fldigi_IsAFC: boolean;
 begin
   Result := RequestBool(fl_host,'main.get_afc');
@@ -341,6 +349,13 @@ begin
     if p > 0 then Delete(Result,p,1)
   until p = 0;
 end;
+
+function Fldigi_GetModemId: string;
+begin
+  Result := RequestStrN(fl_host,'modem.get_id');
+end;
+
+
 
 procedure Fldigi_SetMode( mode: string );
 var

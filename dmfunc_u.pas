@@ -988,7 +988,7 @@ begin
     Result := (Result * 10) + (Ord(freqstr[i]) - Ord('0'));
     Inc(i);
   end;
-  Result := Result / 1000;
+  Result := Result / 10000000;
 end;
 
 

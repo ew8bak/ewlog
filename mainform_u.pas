@@ -679,7 +679,7 @@ uses
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u, register_form_u,
-  logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u;
+  logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u, flDigiModem;
 
 type
   PTreeData = ^TTreeData;
@@ -700,31 +700,6 @@ type
 {$R *.lfm}
 
 { TMainForm }
-
-procedure ConvertDIGI(digimodestr: string; var digimode, subdigimode: string);
-
-  function ExtractDigits(const Value: string): string;
-  var
-    i: integer;
-  begin
-    Result := '';
-
-    for i := 0 to Length(Value) do
-      if Value[i] in ['0'..'9'] then
-        Result := Result + Value[i];
-  end;
-
-begin
-  digimode := '';
-  subdigimode := '';
-  if Pos('BPSK', digimodestr) > 0 then
-  begin
-    digimode := 'PSK';
-    subdigimode := ExtractDigits(digimodestr);
-  end
-  else
-    digimode := digimodestr;
-end;
 
 procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
   var subModes: TStringList);
@@ -1305,7 +1280,7 @@ begin
         MySQLLOGDBConnection.Transaction := SQLTransaction1;
         MySQLLOGDBConnection.HostName := HostDB;
         if PortDB <> '' then
-        MySQLLOGDBConnection.Port := StrToInt(PortDB);
+          MySQLLOGDBConnection.Port := StrToInt(PortDB);
         MySQLLOGDBConnection.UserName := LoginBD;
         MySQLLOGDBConnection.Password := PasswdDB;
         MySQLLOGDBConnection.DatabaseName := NameDB;
@@ -2292,11 +2267,12 @@ var
   stmp: string;
   currfreq: string;
   currmode: string;
+  currsubdigimode: string;
   mode, digimode, subdigimode: string;
-  curr_f: extended;
-  carr: integer;
+  curr_f: Extended;
 begin
   currmode := '';
+  currsubdigimode:= '';
   currfreq := '';
   if Fldigi_IsRunning then
   begin
@@ -2319,7 +2295,9 @@ begin
       {$ENDIF}
 
           MenuItem43.Enabled := False;
-          ComboBox2.Text := Fldigi_GetMode;
+          dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId), mode, subdigimode);
+         ComboBox2.Text:=mode;
+         ComboBox9.Text:=subdigimode;
           ComboBox2CloseUp(Sender);
         end;
       end;
@@ -2339,19 +2317,17 @@ begin
         ['EWLog', 'не подключен к Fldigi']);
       {$ENDIF}
       ComboBox2.ItemIndex := 0;
-      // ComboBox2Change(Sender);
       ComboBox2CloseUp(Sender);
       MenuItem43.Enabled := True;
     end;
     Exit;
   end;
-  if fldigiactive then // use Fldigi XML-RPC communication
+  if fldigiactive then
   begin
     if not connected then
     begin
-      stmp := Format('%.11d', [Trunc(Fldigi_GetFrequency)]);
-      mode := Fldigi_GetMode;
-      carr := Fldigi_GetCarrier;
+      stmp := Fldigi_GetFrequencyField;
+      dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId),mode, subdigimode);
 
       EditButton1.Text := Fldigi_GetCall_Log;
       if Fldigi_GetName_Log <> '' then
@@ -2372,28 +2348,29 @@ begin
       if Fldigi_GetLocator_Log <> '' then
         Edit3.Text := Fldigi_GetLocator_Log;
 
-      if mode <> currmode then
+      if (mode <> currmode) or (subdigimode <> currsubdigimode) then
       begin
-        mode := Fldigi_GetMode;
+        dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId),mode,subdigimode);
         if mode <> currmode then
         begin
           currmode := mode;
-          mode := Fldigi_GetMode;
-          ConvertDIGI(mode, digimode, subdigimode);
-          ComboBox2.Text := digimode;
-          ComboBox9.Text := digimode + subdigimode;
+          subdigimode:= currsubdigimode;
+          dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId),mode, subdigimode);
+          ComboBox9.Text := subdigimode;
+          ComboBox2.Text := mode;
         end;
       end;
 
       if stmp <> currfreq then
       begin
-        stmp := Format('%.11d', [Trunc(Fldigi_GetFrequency + carr)]);
-
+        stmp := Fldigi_GetFrequencyField;
         if stmp <> currfreq then
         begin
           currfreq := stmp;
           curr_f := dmFunc.StrToFreq(stmp);
-          stmp := FormatFloat(view_freq, curr_f / 1000);
+          stmp := FormatFloat(view_freq, curr_f);
+          if ConfigForm.CheckBox2.Checked = True then
+          ComboBox1.Text := dmFunc.GetBandFromFreq(stmp) else
           ComboBox1.Text := stmp;
         end;
       end;
@@ -2410,7 +2387,8 @@ begin
     if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     begin
-      Application.Terminate;
+      //Application.Terminate;
+      CloseAction:=caFree;
     end
     else
       CloseAction := caNone;
@@ -5793,7 +5771,7 @@ end;
 
 procedure TMainForm.FreeObj;
 var
-  i: Integer;
+  i: integer;
 begin
   FreeAndNil(PrefixProvinceList);
   FreeAndNil(PrefixARRLList);
@@ -6131,10 +6109,11 @@ begin
         dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
         SQSO.My_Lat := CurrToStr(lat);
         SQSO.My_Lon := CurrToStr(lon);
-      end else
+      end
+      else
       begin
-      SQSO.My_Lat:='';
-      SQSO.My_Lon:='';
+        SQSO.My_Lat := '';
+        SQSO.My_Lon := '';
       end;
       SQSO.NLogDB := LogTable;
       SaveQSO(SQSO);

@@ -155,7 +155,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="57">
+    <Units Count="58">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -527,6 +527,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
       </Unit56>
+      <Unit57>
+        <Filename Value="fldigimodem.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="flDigiModem"/>
+      </Unit57>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
