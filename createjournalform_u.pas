@@ -110,9 +110,10 @@ var
   LOG_PREFIX: string;
   CountStr: integer;
   newLogBookname: string;
+  i: integer;
 begin
   if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
-    (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') then
+    (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
   else
     try
@@ -173,6 +174,8 @@ begin
       begin
         IniF.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
       end;
+
+      MainForm.FreeObj;
       MainForm.InitializeDB(DefaultDB);
       if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then

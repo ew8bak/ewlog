@@ -306,7 +306,7 @@ begin
   sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   sDBPath := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
 
   if FileExistsUTF8(sDBPath + 'callbook.db') then

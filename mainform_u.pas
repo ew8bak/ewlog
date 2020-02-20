@@ -611,6 +611,7 @@ type
       var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
     procedure InitIni;
+    procedure FreeObj;
   end;
 
 var
@@ -1303,6 +1304,7 @@ begin
         SQLTransaction1.DataBase := MySQLLOGDBConnection;
         MySQLLOGDBConnection.Transaction := SQLTransaction1;
         MySQLLOGDBConnection.HostName := HostDB;
+        if PortDB <> '' then
         MySQLLOGDBConnection.Port := StrToInt(PortDB);
         MySQLLOGDBConnection.UserName := LoginBD;
         MySQLLOGDBConnection.Password := PasswdDB;
@@ -1427,10 +1429,7 @@ begin
       ShowMessage(E.ClassName + ':' + E.Message);
       SQLiteDBConnection.Connected := False;
       MySQLLOGDBConnection.Connected := False;
-      FreeAndNil(subModesList);
-      FreeAndNil(PrefixProvinceList);
-      FreeAndNil(PrefixARRLList);
-      FreeAndNil(UniqueCallsList);
+      FreeObj;
     end;
   end;
 end;
@@ -1688,8 +1687,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LogDB +
-      ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
-      LogDB + ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
+      ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC';
   end
   else
   begin
@@ -3489,15 +3487,7 @@ begin
   end;
   FlagList.Free;
   FlagSList.Free;
-  PrefixProvinceList.Free;
-  PrefixARRLList.Free;
-  UniqueCallsList.Free;
-  subModesList.Free;
-  for i := 0 to 1000 do
-  begin
-    PrefixExpARRLArray[i].reg.Free;
-    PrefixExpProvinceArray[i].reg.Free;
-  end;
+  FreeObj;
   LTCPComponent1.Free;
   LUDPComponent1.Free;
   TrayIcon1.Free;
@@ -5786,19 +5776,9 @@ begin
 end;
 
 procedure TMainForm.MenuItem89Click(Sender: TObject);
-var
-  i: integer;
 begin
-  PrefixProvinceList.Free;
-  PrefixARRLList.Free;
-  UniqueCallsList.Free;
-  subModesList.Free;
-  for i := 0 to 1000 do
-  begin
-    FreeAndNil(PrefixExpARRLArray[i].reg);
-    FreeAndNil(PrefixExpProvinceArray[i].reg);
-  end;
-
+  //очищаем обьекты
+  FreeObj;
   if dbSel = 'SQLite' then
   begin
     InitializeDB('MySQL');
@@ -5808,6 +5788,21 @@ begin
   begin
     InitializeDB('SQLite');
     MenuItem89.Caption := rSwitchDBMySQL;
+  end;
+end;
+
+procedure TMainForm.FreeObj;
+var
+  i: Integer;
+begin
+  FreeAndNil(PrefixProvinceList);
+  FreeAndNil(PrefixARRLList);
+  FreeAndNil(UniqueCallsList);
+  FreeAndNil(subModesList);
+  for i := 0 to 1000 do
+  begin
+    FreeAndNil(PrefixExpARRLArray[i].reg);
+    FreeAndNil(PrefixExpProvinceArray[i].reg);
   end;
 end;
 
@@ -6125,8 +6120,8 @@ begin
       SQSO.NoCalcDXCC := 0;
 
       if Edit14.Text <> '' then
-        SQSO.My_Grid := Edit14.Text
-      else
+        SQSO.My_Grid := Edit14.Text;
+      if SetLoc <> '' then
         SQSO.My_Grid := SetLoc;
 
       SQSO.My_State := Edit15.Text;
@@ -6136,7 +6131,10 @@ begin
         dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
         SQSO.My_Lat := CurrToStr(lat);
         SQSO.My_Lon := CurrToStr(lon);
-
+      end else
+      begin
+      SQSO.My_Lat:='';
+      SQSO.My_Lon:='';
       end;
       SQSO.NLogDB := LogTable;
       SaveQSO(SQSO);

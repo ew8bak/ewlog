@@ -282,12 +282,7 @@ begin
   begin
     MainForm.MySQLLOGDBConnection.ExecuteDirect('SET autocommit = 0');
     MainForm.MySQLLOGDBConnection.ExecuteDirect('BEGIN');
-  end
-  else begin
-      MainForm.SQLiteDBConnection.Transaction.Options:=[stoExplicitStart];
- //  MainForm.SQLiteDBConnection.ExecuteDirect('autocommit=0');
-    MainForm.SQLiteDBConnection.ExecuteDirect('BEGIN');
-   end;
+  end;
 
   RecCount := 0;
   DupeCount := 0;
@@ -670,6 +665,9 @@ begin
         if RecCount mod 1000 = 0 then
         begin
           lblCount.Caption := rImportRecord + ' ' + IntToStr(RecCount);
+          if MainForm.MySQLLOGDBConnection.Connected then
+          MainForm.SQLTransaction1.Commit;
+
           Application.ProcessMessages;
         end;
 
@@ -720,7 +718,7 @@ begin
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
 
 
@@ -798,7 +796,7 @@ begin
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
   {$ELSE}
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
   {$ENDIF UNIX}
   OpenDocument(PathMyDoc + ERR_FILE);
 

@@ -723,16 +723,7 @@ procedure TSetupForm.Button5Click(Sender: TObject);
 var
   i: integer;
 begin
-  FreeAndNil(MainForm.subModesList);
-  FreeAndNil(MainForm.PrefixProvinceList);
-  FreeAndNil(MainForm.PrefixARRLList);
-  FreeAndNil(MainForm.UniqueCallsList);
-   for i := 0 to 1000 do
-  begin
-    FreeAndNil(MainForm.PrefixExpARRLArray[i].reg);
-    FreeAndNil(MainForm.PrefixExpProvinceArray[i].reg);
-  end;
-
+  MainForm.FreeObj;
   MainForm.InitIni;
   Close;
 end;
