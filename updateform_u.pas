@@ -71,7 +71,7 @@ type
 implementation
 
 uses
-  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U;
+  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U, analyticThread;
 
 {$R *.lfm}
 
@@ -219,7 +219,7 @@ end;
 
 procedure TUpdate_Form.CheckUpdate;
 begin
-    DownUpdThread := TDownUpdThread.Create;
+   DownUpdThread := TDownUpdThread.Create;
     if Assigned(DownUpdThread.FatalException) then
       raise DownUpdThread.FatalException;
     with DownUpdThread do
@@ -227,6 +227,18 @@ begin
       name_file := 'versiononserver.info';
       name_directory := updatePATH + 'updates'+DirectorySeparator;
       url_file := 'http://update.ew8bak.ru/version_server.info';
+      Start;
+    end;
+
+    analytThread := TanalyticThread.Create;
+    if Assigned(analytThread.FatalException) then
+      raise analytThread.FatalException;
+    with analytThread do
+    begin
+      user_call:='';
+      user_os:='';
+      user_version:=dmFunc.GetMyVersion;
+      num_start:=0;
       Start;
     end;
 end;

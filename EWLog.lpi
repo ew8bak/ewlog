@@ -155,7 +155,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="58">
+    <Units Count="59">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -532,6 +532,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="flDigiModem"/>
       </Unit57>
+      <Unit58>
+        <Filename Value="analyticthread.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="analyticThread"/>
+      </Unit58>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
