@@ -46,7 +46,7 @@ type
     procedure WriteWrongADIF(Lines: array of string);
     { private declarations }
   public
-    procedure ADIFImport(path: string);
+    procedure ADIFImport(path: string; mobile: Boolean);
     { public declarations }
   end;
 
@@ -170,7 +170,7 @@ begin
 end;
 
 
-procedure TImportADIFForm.ADIFImport(path: string);
+procedure TImportADIFForm.ADIFImport(path: string; mobile:Boolean);
 var
   i: integer;
   f: TextFile;
@@ -257,6 +257,7 @@ var
   Query: string;
   DupeCount: integer;
   ErrorCount, RecCount: integer;
+  TempQuery: string;
 begin
   try
     if MainForm.MySQLLOGDBConnection.Connected then
@@ -376,6 +377,7 @@ begin
         ValidDX := '';
         MY_LAT := '';
         MY_LON := '';
+        TempQuery := '';
 
         Readln(f, s);
         if GuessEncoding(s) <> 'utf8' then
@@ -623,7 +625,40 @@ begin
           if GuessEncoding(COMMENT) <> 'utf8' then
             COMMENT := CP1251ToUTF8(COMMENT);
 
-          Query := 'INSERT INTO ' + LogTable + ' (' +
+          if mobile = False then
+          TempQuery := 'INSERT INTO ' + LogTable + ' (' +
+            'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
+            'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
+            'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
+            'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
+            'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
+            + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
+            + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
+            'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON) VALUES (' +
+            dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
+            dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
+            dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
+            dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
+            dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
+            dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
+            dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
+            dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) +
+            dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) +
+            dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
+            dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
+            dmFunc.Q(paramLOTW_QSL_RCVD) + dmFunc.Q(paramLOTW_QSLRDATE) +
+            dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
+            dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) +
+            dmFunc.Q(STATE4) + dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) +
+            dmFunc.Q('') + dmFunc.Q(paramValidDX) + dmFunc.Q(SRX) +
+            dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) +
+            dmFunc.Q(SAT_NAME) + dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) +
+            dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
+            dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
+            dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
+            QuotedStr(MY_LON) + ')'
+            else begin
+            Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
@@ -654,6 +689,11 @@ begin
             dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
             dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
             QuotedStr(MY_LON) + ')';
+            if MainForm.MySQLLOGDBConnection.Connected then
+            Query:= TempQuery + ' ON DUPLICATE KEY UPDATE SYNC = VALUES(1)'
+            else
+            Query:= TempQuery + ' ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
+            end;
 
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)
@@ -814,7 +854,7 @@ begin
     begin
       DeleteFile(dmFunc.DataDir + ERR_FILE);
       lblComplete.Caption := rProcessing;
-      ADIFImport(SysToUTF8(FileNameEdit1.Text));
+      ADIFImport(SysToUTF8(FileNameEdit1.Text), False);
     end
     else
       ImportADIFForm.Close;

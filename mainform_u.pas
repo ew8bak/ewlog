@@ -2230,7 +2230,7 @@ begin
           + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
           + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
           + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-          ' WHERE `CallSign` LIKE ' + QuotedStr(EditButton1.Text + '%') +
+          ' WHERE `Call` LIKE ' + QuotedStr(EditButton1.Text + '%') +
           ' ORDER BY `UnUsedIndex`' + '');
       end
       else
@@ -2245,7 +2245,7 @@ begin
           + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
           + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
           + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-          ' WHERE `CallSign` LIKE ' + QuotedStr(EditButton1.Text + '%') +
+          ' WHERE `Call` LIKE ' + QuotedStr(EditButton1.Text + '%') +
           ' ORDER BY `UnUsedIndex`' + '');
       end;
       LogBookQuery.Open;
@@ -3653,7 +3653,7 @@ begin
       Writeln(AdifFile, s);
       CloseFile(AdifFile);
 
-      ImportADIFForm.ADIFImport(PathMyDoc + 'ImportMobile.adi');
+      ImportADIFForm.ADIFImport(PathMyDoc + 'ImportMobile.adi', True);
       Stream.Free;
       ImportAdifMobile := False;
     end;
