@@ -246,7 +246,9 @@ begin
       raise analytThread.FatalException;
     with analytThread do
     begin
-      user_call:=IniF.ReadString('SetLog', 'DefaultCallLogBook', 'NULL');
+      if IniF.ReadString('SetLog', 'DefaultCallLogBook', '') <> '' then
+      user_call:=IniF.ReadString('SetLog', 'DefaultCallLogBook', '') else
+      user_call:='nil';
       user_os:=type_os;
       user_version:=dmFunc.GetMyVersion;
       num_start:=IniF.ReadInteger('SetLog', 'StartNum', 0);
