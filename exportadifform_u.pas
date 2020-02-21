@@ -525,16 +525,16 @@ begin
     Q1.SQL.Text := 'select * from ' + LogTable + ' ORDER BY UnUsedIndex ASC';
   if (range = 'Date') then
   begin
-    if DefaultDB = 'MySQL' then
+    if MainForm.MySQLLOGDBConnection.Connected then
       Q1.SQL.Text := 'SELECT * FROM ' + LogTable + ' WHERE QSODate >= ' +
         '''' + FormatDateTime('yyyy-mm-dd', StrToDate(date)) +
-        '''' + ' ORDER BY UnUsedIndex ASC'
+        '''' + ' OR SYNC = 0 ORDER BY UnUsedIndex ASC'
     else
       Q1.SQL.Text :=
         'SELECT * FROM ' + LogTable + ' WHERE ' + 'strftime(' +
         QuotedStr('%Y-%m-%d') + ',QSODate) >= ' +
         QuotedStr(FormatDateTime('yyyy-mm-dd', StrToDate(date))) +
-        ' ORDER BY UnUsedIndex ASC';
+        ' OR SYNC = 0 ORDER BY UnUsedIndex ASC';
   end;
   Q1.Open();
   try

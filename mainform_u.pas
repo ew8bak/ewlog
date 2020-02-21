@@ -1877,7 +1877,7 @@ begin
         begin
           CheckTableQuery.Close;
           CheckTableQuery.SQL.Text :=
-            'ALTER TABLE ' + LogTable + ' ADD COLUMN SYNC tinyint(1);';
+            'ALTER TABLE ' + LogTable + ' ADD COLUMN SYNC tinyint(1) DEFAULT 0;';
           CheckTableQuery.ExecSQL;
           SQLTransaction1.Commit;
         end;
