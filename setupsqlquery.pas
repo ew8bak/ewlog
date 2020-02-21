@@ -88,7 +88,7 @@ begin
     ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
     ' `DXCC` varchar(5) DEFAULT NULL, `USERS` varchar(5) DEFAULT NULL,' +
     ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), ' +
-    ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15) ';
+    ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15), `SYNC` tinyint(1)';
   if Database = 'MySQL' then
   Result := TempResult + ')';
   if Database = 'SQLite' then

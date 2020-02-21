@@ -1873,6 +1873,15 @@ begin
           SQLTransaction1.Commit;
         end;
 
+         if CheckTableQuery.FindField('SYNC') = nil then
+        begin
+          CheckTableQuery.Close;
+          CheckTableQuery.SQL.Text :=
+            'ALTER TABLE ' + LogTable + ' ADD COLUMN SYNC tinyint(1);';
+          CheckTableQuery.ExecSQL;
+          SQLTransaction1.Commit;
+        end;
+
         if CheckTableQuery.FindField('MY_STATE') = nil then
         begin
           CheckTableQuery.Close;
