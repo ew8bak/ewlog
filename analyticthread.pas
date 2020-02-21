@@ -11,7 +11,7 @@ uses
   Classes, SysUtils, ssl_openssl, LazUTF8, blcksock;
 
 const
-  POST_URL = '';
+  POST_URL = 'https://analytic.ewlog.ru/analytic.php';
 
 type
   TanalyticThread = class(TThread)
@@ -49,11 +49,13 @@ begin
     HTTP.MimeType := 'application/json';
     temp.Size := 0;
     temp.WriteString('{"user":"' + call_user + '", "os":"' + os_user +
-      '","version":' + version_user + ',"num":"' + IntToStr(start_num) +
-      '","timestamp":"' + FormatDateTime('yyyy-mm-dd hh:nn', Now) + '"}');
+      '","version":"' + version_user + '","num":' + IntToStr(start_num) +
+      ',"timestamp":"' + FormatDateTime('yyyy-mm-dd hh:nn', Now) + '"}');
     HTTP.Document.LoadFromStream(temp);
     if HTTP.HTTPMethod('POST', POST_URL) then
-    Result := True;
+    begin
+      Result := True;
+    end;
   finally
     HTTP.Free;
     temp.Free;

@@ -2381,7 +2381,10 @@ end;
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
   i: integer;
+  num_start:integer;
 begin
+  num_start:=IniF.ReadInteger('SetLog', 'StartNum', 0);
+  num_start:=num_start+1;
   if EditButton1.Text <> '' then
   begin
     if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
@@ -2427,6 +2430,7 @@ begin
   IniF.WriteString('SetLog', 'PastMode', ComboBox2.Text);
   IniF.WriteString('SetLog', 'PastSubMode', ComboBox9.Text);
   IniF.WriteString('SetLog', 'Language', Language);
+  IniF.WriteInteger('SetLog', 'StartNum', num_start);
   if CheckBox3.Checked = True then
     IniF.WriteString('SetLog', 'UseMAPS', 'YES')
   else

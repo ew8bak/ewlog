@@ -8,6 +8,17 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, LazUTF8, StdCtrls,
   ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} httpsend,
   blcksock, synautil, ResourceStr;
+const
+  {$IFDEF WIN64}
+  type_os = 'Windows x64';
+  {$ENDIF WIN64}
+  {$IFDEF WIN32}
+  type_os = 'Windows x86';
+  {$ENDIF WIN32}
+  {$IFDEF LINUX}
+  type_os = 'Linux';
+  {$ENDIF LINUX}
+
 
 type
 
@@ -235,10 +246,10 @@ begin
       raise analytThread.FatalException;
     with analytThread do
     begin
-      user_call:='';
-      user_os:='';
+      user_call:=IniF.ReadString('SetLog', 'DefaultCallLogBook', 'NULL');
+      user_os:=type_os;
       user_version:=dmFunc.GetMyVersion;
-      num_start:=0;
+      num_start:=IniF.ReadInteger('SetLog', 'StartNum', 0);
       Start;
     end;
 end;
