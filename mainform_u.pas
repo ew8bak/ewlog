@@ -1530,7 +1530,7 @@ begin
       + '`DigiBand`, `Continent`, `ShortNote`, `QSLReceQSLcc`, `LoTWRec`, `LoTWRecDate`,'
       + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
       + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
-      + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`, `MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`)' + 'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,' + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,' + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,' + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,' + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,' + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,' + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON)');
+      + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`, `MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`, `SYNC`)' + 'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,' + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,' + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,' + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,' + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,' + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,' + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON, :SYNC)');
 
     Params.ParamByName('CallSign').AsString := SQSO.CallSing;
     Params.ParamByName('QSODate').AsDateTime := SQSO.QSODate;
@@ -1610,6 +1610,7 @@ begin
     Params.ParamByName('MY_GRIDSQUARE').AsString := SQSO.My_Grid;
     Params.ParamByName('MY_LAT').AsString := SQSO.My_Lat;
     Params.ParamByName('MY_LON').AsString := SQSO.My_Lon;
+    Params.ParamByName('SYNC').AsInteger := SQSO.SYNC;
     ExecSQL;
   end;
   MainForm.SQLTransaction1.Commit;
@@ -1846,6 +1847,27 @@ begin
 
     try
       try
+
+        try
+          if MainForm.MySQLLOGDBConnection.Connected then
+            MainForm.MySQLLOGDBConnection.ExecuteDirect(
+              'ALTER TABLE ' + LogTable +
+              ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)')
+          else
+          begin
+            MainForm.SQLiteDBConnection.ExecuteDirect('DROP INDEX IF EXISTS Dupe_index');
+            MainForm.SQLiteDBConnection.ExecuteDirect('CREATE UNIQUE INDEX Dupe_index ON ' +
+              LogTable + '(CallSign, QSODate, QSOTime, QSOBand)');
+          end;
+        except
+          on E: ESQLDatabaseError do
+          begin
+            if E.ErrorCode = 1091 then
+              MainForm.MySQLLOGDBConnection.ExecuteDirect('ALTER TABLE ' +
+                LogTable + ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
+          end;
+        end;
+
         if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
         begin
           CheckTableQuery.Close;
@@ -1873,7 +1895,7 @@ begin
           SQLTransaction1.Commit;
         end;
 
-         if CheckTableQuery.FindField('SYNC') = nil then
+        if CheckTableQuery.FindField('SYNC') = nil then
         begin
           CheckTableQuery.Close;
           CheckTableQuery.SQL.Text :=
@@ -2229,9 +2251,8 @@ begin
           + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
           + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
           + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-          + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-          ' WHERE `Call` LIKE ' + QuotedStr(EditButton1.Text + '%') +
-          ' ORDER BY `UnUsedIndex`' + '');
+          + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
+          QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
       end
       else
       begin
@@ -2244,9 +2265,8 @@ begin
           + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
           + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
           + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-          + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-          ' WHERE `Call` LIKE ' + QuotedStr(EditButton1.Text + '%') +
-          ' ORDER BY `UnUsedIndex`' + '');
+          + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
+          QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
       end;
       LogBookQuery.Open;
       // LOGBookQuery.Last;
@@ -2278,10 +2298,10 @@ var
   currmode: string;
   currsubdigimode: string;
   mode, digimode, subdigimode: string;
-  curr_f: Extended;
+  curr_f: extended;
 begin
   currmode := '';
-  currsubdigimode:= '';
+  currsubdigimode := '';
   currfreq := '';
   if Fldigi_IsRunning then
   begin
@@ -2305,8 +2325,8 @@ begin
 
           MenuItem43.Enabled := False;
           dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId), mode, subdigimode);
-         ComboBox2.Text:=mode;
-         ComboBox9.Text:=subdigimode;
+          ComboBox2.Text := mode;
+          ComboBox9.Text := subdigimode;
           ComboBox2CloseUp(Sender);
         end;
       end;
@@ -2336,7 +2356,7 @@ begin
     if not connected then
     begin
       stmp := Fldigi_GetFrequencyField;
-      dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId),mode, subdigimode);
+      dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId), mode, subdigimode);
 
       EditButton1.Text := Fldigi_GetCall_Log;
       if Fldigi_GetName_Log <> '' then
@@ -2359,12 +2379,12 @@ begin
 
       if (mode <> currmode) or (subdigimode <> currsubdigimode) then
       begin
-        dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId),mode,subdigimode);
+        dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId), mode, subdigimode);
         if mode <> currmode then
         begin
           currmode := mode;
-          subdigimode:= currsubdigimode;
-          dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId),mode, subdigimode);
+          subdigimode := currsubdigimode;
+          dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId), mode, subdigimode);
           ComboBox9.Text := subdigimode;
           ComboBox2.Text := mode;
         end;
@@ -2379,8 +2399,9 @@ begin
           curr_f := dmFunc.StrToFreq(stmp);
           stmp := FormatFloat(view_freq, curr_f);
           if ConfigForm.CheckBox2.Checked = True then
-          ComboBox1.Text := dmFunc.GetBandFromFreq(stmp) else
-          ComboBox1.Text := stmp;
+            ComboBox1.Text := dmFunc.GetBandFromFreq(stmp)
+          else
+            ComboBox1.Text := stmp;
         end;
       end;
     end;
@@ -2390,17 +2411,18 @@ end;
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
   i: integer;
-  num_start:integer;
+  num_start: integer;
 begin
-  num_start:=IniF.ReadInteger('SetLog', 'StartNum', 0);
-  num_start:=num_start+1;
+  num_start := IniF.ReadInteger('SetLog', 'StartNum', 0);
+  num_start := num_start + 1;
   if EditButton1.Text <> '' then
   begin
     if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     begin
       //Application.Terminate;
-      CloseAction:=caFree;
+      CloseAction := caFree;
+
     end
     else
       CloseAction := caNone;
@@ -6109,6 +6131,7 @@ begin
       SQSO.DXCC := IntToStr(DXCCNum);
       SQSO.USERS := '';
       SQSO.NoCalcDXCC := 0;
+      SQSO.SYNC := 0;
 
       if Edit14.Text <> '' then
         SQSO.My_Grid := Edit14.Text;

@@ -259,25 +259,6 @@ var
   ErrorCount, RecCount: integer;
   TempQuery: string;
 begin
-  try
-    if MainForm.MySQLLOGDBConnection.Connected then
-      MainForm.MySQLLOGDBConnection.ExecuteDirect(
-        'ALTER TABLE ' + LogTable +
-        ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)')
-    else
-    begin
-      MainForm.SQLiteDBConnection.ExecuteDirect('DROP INDEX IF EXISTS Dupe_index');
-      MainForm.SQLiteDBConnection.ExecuteDirect('CREATE UNIQUE INDEX Dupe_index ON ' +
-        LogTable + '(CallSign, QSODate, QSOTime, QSOBand)');
-    end;
-  except
-    on E: ESQLDatabaseError do
-    begin
-      if E.ErrorCode = 1091 then
-        MainForm.MySQLLOGDBConnection.ExecuteDirect('ALTER TABLE ' +
-          LogTable + ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
-    end;
-  end;
 
   if MainForm.MySQLLOGDBConnection.Connected then
   begin
@@ -625,8 +606,8 @@ begin
           if GuessEncoding(COMMENT) <> 'utf8' then
             COMMENT := CP1251ToUTF8(COMMENT);
 
-          if mobile = False then
-          TempQuery := 'INSERT INTO ' + LogTable + ' (' +
+          if mobile = False then begin
+          Query := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
@@ -634,7 +615,7 @@ begin
             'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
             + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
             + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-            'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON) VALUES (' +
+            'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
             dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
             dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
             dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
@@ -656,9 +637,10 @@ begin
             dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
             dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
             dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
-            QuotedStr(MY_LON) + ')'
+            dmFunc.Q(MY_LON) + QuotedStr('0') +')';
+            end
             else begin
-            Query := 'INSERT INTO ' + LogTable + ' (' +
+            TempQuery := 'INSERT INTO ' + LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
@@ -666,7 +648,7 @@ begin
             'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
             + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
             + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-            'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON) VALUES (' +
+            'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
             dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
             dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
             dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
@@ -688,7 +670,7 @@ begin
             dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
             dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
             dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
-            QuotedStr(MY_LON) + ')';
+            dmFunc.Q(MY_LON) + QuotedStr('1') + ')';
             if MainForm.MySQLLOGDBConnection.Connected then
             Query:= TempQuery + ' ON DUPLICATE KEY UPDATE SYNC = VALUES(1)'
             else

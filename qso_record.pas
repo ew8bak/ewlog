@@ -66,6 +66,7 @@ type
     My_Grid: string[15];
     My_Lat: string[15];
     My_Lon: string[15];
+    SYNC: integer;
     NLogDB: string;
   end;
 
