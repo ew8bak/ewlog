@@ -1594,7 +1594,7 @@ begin
     if Length(Before) > Length(middle) then
       Result := Before // RA1AA/1/M
     else
-      Result := Middle; //KH6/OK2CQR/P
+      Result := Middle; //KH6/OK2CQR/QRP
   end
   else
   begin

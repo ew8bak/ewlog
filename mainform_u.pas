@@ -3699,7 +3699,7 @@ var
 begin
   if aSocket.GetMessage(mess) > 0 then
   begin
-    if mess = 'GetIP' then
+    if mess = 'GetIP:' + DBLookupComboBox1.KeyValue then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':49154');
     if mess = 'Hello' then
       LUDPComponent1.SendMessage('Welcome!');

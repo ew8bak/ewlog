@@ -110,7 +110,7 @@ end;
 
 procedure TexportAdifForm.FormShow(Sender: TObject);
 begin
-  if DefaultDB = 'MySQL' then
+  if MainForm.MySQLLOGDBConnection.Connected then
   begin
     Q1.DataBase := MainForm.MySQLLOGDBConnection;
     Q2.DataBase := MainForm.MySQLLOGDBConnection;
@@ -266,7 +266,8 @@ begin
       if Q1.Fields.FieldByName('QSOBand').AsString <> '' then
       begin
         freq2 := Q1.Fields.FieldByName('QSOBand').AsString;
-        Delete(freq2, Length(freq2) - 2, 1);   //Удаляю последнюю точку
+        Delete(freq2, Length(freq2) - 2, 1);
+        //Удаляю последнюю точку
         tmp := '<FREQ' + dmFunc.StringToADIF(FormatFloat('0.#####', StrToFloat(freq2)),
           CheckBox2.Checked);
         Write(f, tmp);
@@ -509,6 +510,8 @@ begin
   finally
     CloseFile(f);
     Label2.Caption := rDone;
+    Q1.Close;
+    Q2.Close;
     ShowMessage(rExportCompl)
   end;
 end;
@@ -568,86 +571,134 @@ begin
       tmp := '<TIME_OFF' + dmFunc.StringToADIF(tmp, CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
-      tmp := '<MODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSOMode').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
-
-      freq2 := Q1.Fields.FieldByName('QSOBand').AsString;
-
-      Delete(freq2, Length(freq2) - 2, 1);   //Удаляю последнюю точку
-
-      tmp := '<FREQ' + dmFunc.StringToADIF(freq2, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
-
-      tmp := '<RST_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSOReportSent').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
-
-      if Q1.Fields.FieldByName('STX').AsString <> '0' then
+      if Q1.Fields.FieldByName('QSLSentDate').AsString <> '' then
       begin
-        tmp := '<STX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-          'STX').AsString, CheckBox2.Checked);
+        tmp := '<MODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSOMode').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+        freq2 := Q1.Fields.FieldByName('QSOBand').AsString;
+        Delete(freq2, Length(freq2) - 2, 1);   //Удаляю последнюю точку
+        tmp := '<FREQ' + dmFunc.StringToADIF(freq2, CheckBox2.Checked);
         tmp2 := tmp2 + tmp;
       end;
 
-      tmp := '<RST_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSOReportRecived').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
-
-      if Q1.Fields.FieldByName('SRX').AsString <> '0' then
+      if Q1.Fields.FieldByName('QSOReportSent').AsString <> '' then
       begin
-        tmp := '<SRX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-          'SRX').AsString, CheckBox2.Checked);
+        tmp := '<RST_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSOReportSent').AsString, CheckBox2.Checked);
         tmp2 := tmp2 + tmp;
       end;
 
-      tmp := '<NAME' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'OMName').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('STX').AsString <> '' then
+      begin
+        if Q1.Fields.FieldByName('STX').AsString <> '0' then
+        begin
+          tmp := '<STX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+            'STX').AsString, CheckBox2.Checked);
+          tmp2 := tmp2 + tmp;
+        end;
+      end;
 
-      tmp := '<QTH' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'OMQTH').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('QSOReportRecived').AsString <> '' then
+      begin
+        tmp := '<RST_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSOReportRecived').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<STATE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'State').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('SRX').AsString <> '' then
+      begin
+        if Q1.Fields.FieldByName('SRX').AsString <> '0' then
+        begin
+          tmp := '<SRX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+            'SRX').AsString, CheckBox2.Checked);
+          tmp2 := tmp2 + tmp;
+        end;
+      end;
 
-      tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'Grid').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('OMName').AsString <> '' then
+      begin
+        tmp := '<NAME' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'OMName').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<PFX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'WPX').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('OMQTH').AsString <> '' then
+      begin
+        tmp := '<QTH' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'OMQTH').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<DXCC_PREF' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'DXCCPrefix').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('State').AsString <> '' then
+      begin
+        tmp := '<STATE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'State').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
-        Q1.Fields.FieldByName('QSOBand').AsString), CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('Grid').AsString <> '' then
+      begin
+        tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'Grid').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<CQZ' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'CQZone').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('WPX').AsString <> '' then
+      begin
+        tmp := '<PFX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'WPX').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<ITUZ' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'ITUZone').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('DXCCPrefix').AsString <> '' then
+      begin
+        tmp := '<DXCC_PREF' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'DXCCPrefix').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<CONT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'Continent').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('QSOBand').AsString <> '' then
+      begin
+        tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
+          Q1.Fields.FieldByName('QSOBand').AsString), CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<QSLMSG' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLInfo').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('CQZone').AsString <> '' then
+      begin
+        tmp := '<CQZ' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'CQZone').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLReceQSLcc').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('ITUZone').AsString <> '' then
+      begin
+        tmp := '<ITUZ' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'ITUZone').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if Q1.Fields.FieldByName('Continent').AsString <> '' then
+      begin
+        tmp := '<CONT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'Continent').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if Q1.Fields.FieldByName('QSLInfo').AsString <> '' then
+      begin
+        tmp := '<QSLMSG' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSLInfo').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if Q1.Fields.FieldByName('QSLReceQSLcc').AsString <> '' then
+      begin
+        tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSLReceQSLcc').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
       if Q1.Fields.FieldByName('QSLSentDate').AsString <> '' then
       begin
@@ -665,29 +716,76 @@ begin
         tmp2 := tmp2 + tmp;
       end;
 
-      tmp := '<QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLRec').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('QSLRec').AsString <> '' then
+      begin
+        tmp := '<QSL_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSLRec').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSL_RCVD_VIA').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('QSL_RCVD_VIA').AsString <> '' then
+      begin
+        tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSL_RCVD_VIA').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<QSL_SENT_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSL_SENT_VIA').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('QSL_SENT_VIA').AsString <> '' then
+      begin
+        tmp := '<QSL_SENT_VIA' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSL_SENT_VIA').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<QSL_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSLSent').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('QSLSent').AsString <> '' then
+      begin
+        tmp := '<QSL_SENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSLSent').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<DXCC' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'DXCC').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('DXCC').AsString <> '' then
+      begin
+        tmp := '<DXCC' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'DXCC').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
 
-      tmp := '<COMMENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-        'QSOAddInfo').AsString, CheckBox2.Checked);
-      tmp2 := tmp2 + tmp;
+      if Q1.Fields.FieldByName('QSOAddInfo').AsString <> '' then
+      begin
+        tmp := '<COMMENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSOAddInfo').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if Q1.Fields.FieldByName('MY_STATE').AsString <> '' then
+      begin
+        tmp := '<MY_STATE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'MY_STATE').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if Q1.Fields.FieldByName('MY_GRIDSQUARE').AsString <> '' then
+      begin
+        tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'MY_GRIDSQUARE').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if Q1.Fields.FieldByName('MY_LAT').AsString <> '' then
+      begin
+        tmp := '<MY_LAT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'MY_LAT').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if Q1.Fields.FieldByName('MY_LON').AsString <> '' then
+      begin
+        tmp := '<MY_LON' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'MY_LON').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
       tmp := '<EOR>';
       tmp2 := tmp2 + tmp;
       tmp := #13;
