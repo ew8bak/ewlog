@@ -201,6 +201,7 @@ begin
           SQL_Query.ParamByName('Lon').AsString := New_Longitude;
           SQL_Query.ParamByName('Discription').AsString := Journal_Description;
           SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
+          SQL_Query.ParamByName('Table_version').AsString := Table_version;
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 70;
           SQL_Transaction.Commit;
@@ -296,6 +297,7 @@ begin
         SQL_Query.ParamByName('Lon').AsString := New_Longitude;
         SQL_Query.ParamByName('Discription').AsString := Journal_Description;
         SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
+        SQL_Query.ParamByName('Table_version').AsString := Table_version;
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 70;
         SQL_Transaction.Commit;
@@ -379,6 +381,7 @@ begin
             SQL_Query.ParamByName('Lon').AsString := New_Longitude;
             SQL_Query.ParamByName('Discription').AsString := Journal_Description;
             SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
+            SQL_Query.ParamByName('Table_version').AsString := Table_version;
             SQL_Query.ExecSQL;
             ProgressBar1.Position := 70;
             SQL_Transaction.Commit;
@@ -472,6 +475,7 @@ begin
           SQL_Query.ParamByName('Lon').AsString := New_Longitude;
           SQL_Query.ParamByName('Discription').AsString := Journal_Description;
           SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
+          SQL_Query.ParamByName('Table_version').AsString := Table_version;
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 70;
           SQL_Transaction.Commit;

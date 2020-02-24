@@ -137,6 +137,7 @@ begin
       CreateTableQuery.ParamByName('Lon').AsString := Edit9.Text;
       CreateTableQuery.ParamByName('Discription').AsString := Edit1.Text;
       CreateTableQuery.ParamByName('QSLInfo').AsString := Edit10.Text;
+      CreateTableQuery.ParamByName('Table_version').AsString := Table_version;
       CreateTableQuery.ExecSQL;
       MainForm.SQLTransaction1.Commit;
       CreateTableQuery.Close;
