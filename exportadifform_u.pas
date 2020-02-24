@@ -571,7 +571,7 @@ begin
       tmp := '<TIME_OFF' + dmFunc.StringToADIF(tmp, CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
-      if Q1.Fields.FieldByName('QSLSentDate').AsString <> '' then
+      if Q1.Fields.FieldByName('QSOMode').AsString <> '' then
       begin
         tmp := '<MODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
           'QSOMode').AsString, CheckBox2.Checked);
