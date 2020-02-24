@@ -3700,7 +3700,9 @@ begin
   if aSocket.GetMessage(mess) > 0 then
   begin
     if mess = 'GetIP:' + DBLookupComboBox1.KeyValue then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':49154');
+      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':49154')
+    else
+     StatusBar1.Panels.Items[0].Text := rSyncErrCall;
     if mess = 'Hello' then
       LUDPComponent1.SendMessage('Welcome!');
   end;

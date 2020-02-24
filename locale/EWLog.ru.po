@@ -1335,6 +1335,10 @@ msgctxt "resourcestr.rsync"
 msgid ", in sync "
 msgstr ""
 
+#: resourcestr.rsyncerrcall
+msgid "Sync Error: Call Not Found"
+msgstr ""
+
 #: resourcestr.rsyncok
 msgctxt "resourcestr.rsyncok"
 msgid "Done! Number of duplicates "

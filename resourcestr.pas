@@ -126,6 +126,7 @@ resourcestring
   rBytes = ' bytes';
   rKBytes = 'KB';
   rMBytes = 'MB';
+  rSyncErrCall = 'Sync Error: Call Not Found';
   rNoLogFileFound = 'No log file found! Check settings';
   rOnlyWindows = 'The function is available only in the Windows system';
   rCreateTableLogBookInfo = 'Create table LogBookInfo';
