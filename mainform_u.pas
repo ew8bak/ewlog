@@ -1694,10 +1694,10 @@ begin
   CheckTableQuery.Close;
 
   if calllbook = '' then
-    CheckTableQuery.SQL.Text:=('SELECT * FROM LogBookInfo LIMIT 1')
+    CheckTableQuery.SQL.Text := ('SELECT * FROM LogBookInfo LIMIT 1')
   else
-    CheckTableQuery.SQL.Text:=('SELECT * FROM LogBookInfo WHERE CallName = ' +
-      QuotedStr(calllbook));
+    CheckTableQuery.SQL.Text :=
+      ('SELECT * FROM LogBookInfo WHERE CallName = ' + QuotedStr(calllbook));
   CheckTableQuery.Open;
 
   try
@@ -1711,10 +1711,10 @@ begin
     end;
 
     if calllbook = '' then
-      CheckTableQuery.SQL.Text:=('SELECT * FROM LogBookInfo LIMIT 1')
+      CheckTableQuery.SQL.Text := ('SELECT * FROM LogBookInfo LIMIT 1')
     else
-      CheckTableQuery.SQL.Text:=('SELECT * FROM LogBookInfo WHERE CallName = ' +
-        QuotedStr(calllbook));
+      CheckTableQuery.SQL.Text :=
+        ('SELECT * FROM LogBookInfo WHERE CallName = ' + QuotedStr(calllbook));
     CheckTableQuery.Open;
     ver_table := CheckTableQuery.FieldByName('Table_version').AsString;
 
@@ -3139,21 +3139,24 @@ procedure TMainForm.DBLookupComboBox1CloseUp(Sender: TObject);
 begin
   Edit14.Clear;
   Edit15.Clear;
-  SelDB(DBLookupComboBox1.KeyValue);
-  CallLogBook := DBLookupComboBox1.KeyValue;
-  if Pos('/', DBLookupComboBox1.Text) > 0 then
+  if DBLookupComboBox1.ItemIndex >= 0 then
   begin
-    Label51.Visible := True;
-    Edit14.Visible := True;
-    Label52.Visible := True;
-    Edit15.Visible := True;
-  end
-  else
-  begin
-    Label51.Visible := False;
-    Edit14.Visible := False;
-    Label52.Visible := False;
-    Edit15.Visible := False;
+    SelDB(DBLookupComboBox1.KeyValue);
+    CallLogBook := DBLookupComboBox1.KeyValue;
+    if Pos('/', DBLookupComboBox1.Text) > 0 then
+    begin
+      Label51.Visible := True;
+      Edit14.Visible := True;
+      Label52.Visible := True;
+      Edit15.Visible := True;
+    end
+    else
+    begin
+      Label51.Visible := False;
+      Edit14.Visible := False;
+      Label52.Visible := False;
+      Edit15.Visible := False;
+    end;
   end;
 end;
 
@@ -3642,7 +3645,7 @@ begin
   PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-   SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
 
   AdifDataSyncAll := False;
@@ -6170,10 +6173,11 @@ begin
       SQSO.NoCalcDXCC := 0;
       SQSO.SYNC := 0;
 
-      if Edit14.Text <> '' then
-        SQSO.My_Grid := Edit14.Text;
       if SetLoc <> '' then
         SQSO.My_Grid := SetLoc;
+
+      if Edit14.Text <> '' then
+        SQSO.My_Grid := Edit14.Text;
 
       SQSO.My_State := Edit15.Text;
 

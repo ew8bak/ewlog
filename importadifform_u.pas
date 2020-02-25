@@ -696,7 +696,7 @@ begin
             dmFunc.Q(MY_LON) + QuotedStr('1');
 
             if MainForm.MySQLLOGDBConnection.Connected then
-            Query:= TempQuery + ') ON DUPLICATE KEY UPDATE SYNC = VALUES(1)'
+            Query:= TempQuery + ') ON DUPLICATE KEY UPDATE SYNC = 1'
             else
             Query:= TempQuery + ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
             end;

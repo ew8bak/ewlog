@@ -58,12 +58,12 @@ begin
     '` ( `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
     ' `CallSign` varchar(20) DEFAULT NULL, `QSODate` datetime DEFAULT NULL,' +
     ' `QSOTime` varchar(5) DEFAULT NULL, `QSOBand` varchar(20) DEFAULT NULL,' +
-    ' `QSOMode` varchar(7) DEFAULT NULL,' +
+    ' `QSOMode` varchar(15) DEFAULT NULL,' +
     ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
     ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
     ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
     ' `OMName` varchar(30) DEFAULT NULL, `OMQTH` varchar(50) DEFAULT NULL,' +
-    ' `State` varchar(25) DEFAULT NULL, `Grid` varchar(6) DEFAULT NULL,' +
+    ' `State` varchar(25) DEFAULT NULL, `Grid` varchar(8) DEFAULT NULL,' +
     ' `IOTA` varchar(6) DEFAULT NULL, `QSLManager` varchar(9) DEFAULT NULL,' +
     ' `QSLSent` tinyint(1) DEFAULT NULL,' + ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
     ' `QSLSentDate` datetime DEFAULT NULL, `QSLRec` tinyint(1) DEFAULT NULL,' +

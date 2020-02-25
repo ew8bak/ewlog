@@ -301,11 +301,11 @@ begin
     Params.ParamByName('LoTWSent').AsBoolean := CheckBox7.Checked;
 
     if ComboBox6.Text <> '' then
-      Params.ParamByName('QSL_RCVD_VIA').AsString := ComboBox6.Text
+      Params.ParamByName('QSL_RCVD_VIA').AsString := ComboBox6.Text[1]
     else
       Params.ParamByName('QSL_RCVD_VIA').IsNull;
     if ComboBox7.Text <> '' then
-      Params.ParamByName('QSL_SENT_VIA').AsString := ComboBox7.Text
+      Params.ParamByName('QSL_SENT_VIA').AsString := ComboBox7.Text[1]
     else
       Params.ParamByName('QSL_SENT_VIA').IsNull;
     Params.ParamByName('NoCalcDXCC').AsBoolean := CheckBox1.Checked;
