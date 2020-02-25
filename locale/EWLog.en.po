@@ -5160,6 +5160,11 @@ msgctxt "tstate_form.dbgrid1.columns[2].title.caption"
 msgid "Name State/City"
 msgstr ""
 
+#: tstate_form.dbgrid1.columns[3].title.caption
+msgctxt "tstate_form.dbgrid1.columns[3].title.caption"
+msgid "Country"
+msgstr ""
+
 #: tstate_form.label1.caption
 msgctxt "tstate_form.label1.caption"
 msgid "STATE"

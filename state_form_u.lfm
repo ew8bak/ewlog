@@ -2,11 +2,11 @@ object STATE_Form: TSTATE_Form
   Left = 434
   Height = 435
   Top = 179
-  Width = 475
+  Width = 558
   BorderStyle = bsDialog
   Caption = 'STATE'
   ClientHeight = 435
-  ClientWidth = 475
+  ClientWidth = 558
   FormStyle = fsStayOnTop
   OnClose = FormClose
   OnShow = FormShow
@@ -16,13 +16,13 @@ object STATE_Form: TSTATE_Form
     Left = 0
     Height = 374
     Top = 0
-    Width = 475
+    Width = 558
     Align = alClient
     Color = clWindow
     Columns = <    
       item
         Title.Caption = 'id'
-        Width = 30
+        Width = 50
         FieldName = '_id'
       end    
       item
@@ -32,13 +32,18 @@ object STATE_Form: TSTATE_Form
       end    
       item
         Title.Caption = 'Name State/City'
-        Width = 300
+        Width = 350
         FieldName = 'Name'
+      end    
+      item
+        Title.Caption = 'Country'
+        Width = 80
+        FieldName = 'Country'
       end>
     DataSource = STATE_DS
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     ReadOnly = True
-    Scrollbars = ssVertical
+    Scrollbars = ssAutoBoth
     TabOrder = 0
     OnDblClick = DBGrid1DblClick
   end
@@ -46,10 +51,10 @@ object STATE_Form: TSTATE_Form
     Left = 0
     Height = 61
     Top = 374
-    Width = 475
+    Width = 558
     Align = alBottom
     ClientHeight = 61
-    ClientWidth = 475
+    ClientWidth = 558
     TabOrder = 1
     object Edit1: TEdit
       Left = 8

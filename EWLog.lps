@@ -20,8 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="6112"/>
-        <CursorPos Y="6117"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="5822"/>
+        <CursorPos X="3" Y="5951"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -401,10 +402,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="STATE_Form_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="11"/>
-        <CursorPos X="39" Y="34"/>
+        <TopLine Value="50"/>
+        <CursorPos X="63" Y="23"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1143,7 +1143,7 @@
         <UsageCount Value="8"/>
       </Unit130>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="1713" TopLine="1685"/>
@@ -1244,6 +1244,14 @@
         <Filename Value="editqso_u.pas"/>
         <Caret Line="375" Column="22" TopLine="342"/>
       </Position25>
+      <Position26>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6117" TopLine="6112"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="5961" Column="27" TopLine="5948"/>
+      </Position27>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
