@@ -115,7 +115,7 @@ begin
        'ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
 
   if Database = 'SQLite' then
-    Result := 'CREATE INDEX `Call_index` ON `Log_TABLE_'+LOG_PREFIX+'` (`Call`);';
+    Result := 'CREATE INDEX `Call_index'+LOG_PREFIX+'` ON `Log_TABLE_'+LOG_PREFIX+'` (`Call`);';
 
 end;
 

@@ -40,6 +40,7 @@ type
     CreateTableQuery: TSQLQuery;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Edit2Change(Sender: TObject);
     procedure Edit7Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -156,7 +157,7 @@ begin
         MainForm.SQLiteDBConnection.ExecuteDirect(dmSQL.CreateIndex(
           LOG_PREFIX, 'SQLite'));
       end;
-
+      MainForm.SQLTransaction1.Commit;
     finally
       newLogBookName := Edit2.Text;
       Edit1.Clear;
@@ -185,6 +186,18 @@ begin
         MainForm.DBLookupComboBox1.DroppedDown := True;
       end;
     end;
+end;
+
+procedure TCreateJournalForm.Edit2Change(Sender: TObject);
+begin
+  if MainForm.DBLookupComboBox1.Items.IndexOf(Edit2.Text) >= 0 then begin
+    Edit2.Color := clRed;
+    Button2.Enabled:=False;
+  end
+  else begin
+    Edit2.Color := clDefault;
+    Button2.Enabled:=True;
+  end;
 end;
 
 procedure TCreateJournalForm.Button1Click(Sender: TObject);
