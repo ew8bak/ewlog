@@ -29,7 +29,6 @@ type
     ComboBox8: TComboBox;
     ComboBox9: TComboBox;
     Edit12: TEdit;
-    Edit13: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
     frCSVExport1: TfrCSVExport;
@@ -382,6 +381,7 @@ type
     procedure Label50Click(Sender: TObject);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
+    procedure LTCPComponent1Disconnect(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LTCPComponent1Receive(aSocket: TLSocket);
     procedure LTCPSyncDeskAccept(aSocket: TLSocket);
@@ -1492,7 +1492,6 @@ begin
   MainForm.Edit9.Clear;
   MainForm.Edit8.Clear;
   MainForm.Edit11.Clear;
-  MainForm.Edit13.Clear;
   MainForm.ComboBox4.ItemIndex := 0;
   MainForm.ComboBox5.ItemIndex := 0;
   EditFlag := False;
@@ -3606,6 +3605,11 @@ begin
       {$ENDIF}
     end;
   end;
+end;
+
+procedure TMainForm.LTCPComponent1Disconnect(aSocket: TLSocket);
+begin
+  MainForm.StatusBar1.Panels.Items[0].Text := rDone;
 end;
 
 procedure TMainForm.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
@@ -6110,11 +6114,6 @@ begin
       Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
       DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
 
-      if Edit13.Text <> '' then
-        state := Edit4.Text + '-' + Edit13.Text;
-      if Edit13.Text = '' then
-        state := Edit4.Text;
-
       SQSO.CallSing := EditButton1.Text;
       SQSO.QSODate := DateEdit1.Date;
       SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
@@ -6125,7 +6124,7 @@ begin
       SQSO.QSOReportRecived := ComboBox5.Text;
       SQSO.OmName := Edit1.Text;
       SQSO.OmQTH := Edit2.Text;
-      SQSO.State0 := state;
+      SQSO.State0 := Edit4.Text;
       SQSO.Grid := Edit3.Text;
       SQSO.IOTA := Edit5.Text;
       SQSO.QSLManager := Edit6.Text;

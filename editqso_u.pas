@@ -32,7 +32,6 @@ type
     ComboBox6: TComboBox;
     ComboBox7: TComboBox;
     ComboBox9: TComboBox;
-    Edit21: TEdit;
     DateEdit1: TDateEdit;
     DateEdit2: TDateEdit;
     DateEdit3: TDateEdit;

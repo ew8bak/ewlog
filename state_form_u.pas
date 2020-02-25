@@ -61,7 +61,6 @@ end;
 procedure TSTATE_Form.DBGrid1DblClick(Sender: TObject);
 begin
   MainForm.Edit4.Text:=STATE_Query.FieldByName('State').AsString;
-  MainForm.Edit13.Text:=STATE_Query.FieldByName('Numb').AsString;
 end;
 
 procedure TSTATE_Form.Edit2Change(Sender: TObject);

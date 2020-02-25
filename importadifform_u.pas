@@ -670,17 +670,19 @@ begin
             dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
             dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
             dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
-            dmFunc.Q(MY_LON) + QuotedStr('1') + ')';
-            if MainForm.MySQLLOGDBConnection.Connected then
-            Query:= TempQuery + ' ON DUPLICATE KEY UPDATE SYNC = VALUES(1)'
-            else
-            Query:= TempQuery + ' ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
-            end;
+            dmFunc.Q(MY_LON) + QuotedStr('1');
 
+            if MainForm.MySQLLOGDBConnection.Connected then
+            Query:= TempQuery + ') ON DUPLICATE KEY UPDATE SYNC = VALUES(1)'
+            else
+            Query:= TempQuery + ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
+            end;
+                ShowMessage(Query);
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)
           else
             MainForm.SQLiteDBConnection.ExecuteDirect(Query);
+
         end;
 
         Inc(RecCount);

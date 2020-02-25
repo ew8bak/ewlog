@@ -523,6 +523,18 @@ var
   nr: integer = 1;
   freq2: string;
 begin
+
+  if MainForm.MySQLLOGDBConnection.Connected then
+  begin
+    Q1.DataBase := MainForm.MySQLLOGDBConnection;
+    Q2.DataBase := MainForm.MySQLLOGDBConnection;
+  end
+  else
+  begin
+    Q1.DataBase := MainForm.SQLiteDBConnection;
+    Q2.DataBase := MainForm.SQLiteDBConnection;
+  end;
+
   Q1.Close;
   if (range = 'All') then
     Q1.SQL.Text := 'select * from ' + LogTable + ' ORDER BY UnUsedIndex ASC';
@@ -577,7 +589,8 @@ begin
           'QSOMode').AsString, CheckBox2.Checked);
         tmp2 := tmp2 + tmp;
         freq2 := Q1.Fields.FieldByName('QSOBand').AsString;
-        Delete(freq2, Length(freq2) - 2, 1);   //Удаляю последнюю точку
+        Delete(freq2, Length(freq2) - 2, 1);
+        //Удаляю последнюю точку
         tmp := '<FREQ' + dmFunc.StringToADIF(freq2, CheckBox2.Checked);
         tmp2 := tmp2 + tmp;
       end;
