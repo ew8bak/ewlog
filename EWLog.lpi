@@ -37,7 +37,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="EWLog"/>
+            <Filename Value="BIN\$(TargetCPU)-$(TargetOS)\ewlog"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -45,7 +45,6 @@
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
-            <TargetCPU Value="x86_64"/>
             <Optimizations>
               <OptimizationLevel Value="3"/>
             </Optimizations>

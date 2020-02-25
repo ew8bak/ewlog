@@ -674,7 +674,6 @@
         <TopLine Value="1888"/>
         <CursorPos X="105" Y="1908"/>
         <UsageCount Value="8"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit66>
       <Unit67>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
@@ -1114,7 +1113,6 @@
         <TopLine Value="78"/>
         <CursorPos X="3" Y="152"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit126>
       <Unit127>
         <Filename Value="D:\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdThread.pas"/>
@@ -1122,7 +1120,6 @@
         <TopLine Value="712"/>
         <CursorPos X="25" Y="742"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit127>
       <Unit128>
         <Filename Value="D:\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdThreadSafe.pas"/>
@@ -1130,14 +1127,12 @@
         <TopLine Value="54"/>
         <CursorPos X="16" Y="72"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit128>
       <Unit129>
         <Filename Value="D:\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\System\IdGlobal.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1362"/>
         <UsageCount Value="7"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit129>
       <Unit130>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\datih.inc"/>
