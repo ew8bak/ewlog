@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, EditBtn, LCLType, LConvEncoding, LazUTF8, LCLIntf,
-  dateutils, resourcestr;
+  dateutils, resourcestr, LCLProc;
 
 const
   ERR_FILE = 'errors.adi';
@@ -128,9 +128,15 @@ begin
   end;
 end;
 
-procedure CheckMode(modulation: string; var ResSubMode, ResMode: string);
+procedure CheckMode(modulation, Freq: string; var ResSubMode, ResMode: string);
 begin
+  Delete(Freq, length(Freq) - 2, 1);
   case modulation of
+    'BPSK31':
+    begin
+      ResMode := 'PSK';
+      ResSubMode := 'PSK31';
+    end;
     'BPSK62':
     begin
       ResMode := 'PSK';
@@ -140,6 +146,11 @@ begin
     begin
       ResMode := 'PSK';
       ResSubMode := 'PSK63';
+    end;
+    'BPSK125':
+    begin
+      ResMode := 'PSK';
+      ResSubMode := 'PSK125';
     end;
     'MFSK16':
     begin
@@ -156,6 +167,11 @@ begin
       ResMode := 'PSK';
       ResSubMode := 'PSK63';
     end;
+    'PSK125':
+    begin
+      ResMode := 'PSK';
+      ResSubMode := 'PSK125';
+    end;
     'LSB':
     begin
       ResMode := 'SSB';
@@ -165,6 +181,13 @@ begin
     begin
       ResMode := 'SSB';
       ResSubMode := 'USB';
+    end;
+     'SSB':
+    begin
+      ResMode := 'SSB';
+      if StrToDouble(Freq) >= 10 then
+      ResSubMode := 'USB' else
+      ResSubMode := 'LSB';
     end;
   end;
 end;
@@ -446,14 +469,14 @@ begin
           if ((MODE = 'CW') and (RST_RCVD = '')) then
             RST_RCVD := '599';
 
-          CheckMode(MODE, SUBMODE, MODE);
-
           if FREQ = '' then
             FREQ := FormatFloat('0.000"."00', dmFunc.GetFreqFromBand(BAND, MODE))
           else
             FREQ_Float := StrToFloat(FREQ);
 
           FREQ := FormatFloat('0.000"."00', FREQ_Float);
+
+          CheckMode(MODE, FREQ, SUBMODE, MODE);
 
           BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FloatToStr(FREQ_Float)));
 

@@ -1,7 +1,7 @@
 object STATE_Form: TSTATE_Form
-  Left = 434
+  Left = 513
   Height = 435
-  Top = 179
+  Top = 173
   Width = 558
   BorderStyle = bsDialog
   Caption = 'STATE'

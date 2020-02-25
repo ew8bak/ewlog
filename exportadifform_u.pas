@@ -379,8 +379,8 @@ begin
 
       if Q1.Fields.FieldByName('QSLInfo').AsString <> '' then
       begin
-        tmp := '<QSLMSG' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-          'QSLInfo').AsString, CheckBox2.Checked);
+        tmp := '<QSLMSG' + dmFunc.StringToADIF(dmFunc.MyTrim(Q1.Fields.FieldByName(
+          'QSLInfo').AsString), CheckBox2.Checked);
         Write(f, tmp);
       end;
 
@@ -453,8 +453,8 @@ begin
 
       if Q1.Fields.FieldByName('QSOAddInfo').AsString <> '' then
       begin
-        tmp := '<COMMENT' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-          'QSOAddInfo').AsString, CheckBox2.Checked);
+        tmp := '<COMMENT' + dmFunc.StringToADIF(dmFunc.MyTrim(Q1.Fields.FieldByName(
+          'QSOAddInfo').AsString), CheckBox2.Checked);
         if CheckBox2.Checked = True then
           Write(f, UTF8ToCP1251(tmp))
         else
