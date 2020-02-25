@@ -2,8 +2,7 @@
 {"hash":5801605,"name":"tstate_form.caption","sourcebytes":[83,84,65,84,69],"value":"STATE"},
 {"hash":1780,"name":"tstate_form.dbgrid1.columns[0].title.caption","sourcebytes":[105,100],"value":"id"},
 {"hash":5941413,"name":"tstate_form.dbgrid1.columns[1].title.caption","sourcebytes":[83,116,97,116,101],"value":"State"},
-{"hash":89929922,"name":"tstate_form.dbgrid1.columns[2].title.caption","sourcebytes":[78,117,109,98,101,114],"value":"Number"},
-{"hash":152469177,"name":"tstate_form.dbgrid1.columns[3].title.caption","sourcebytes":[78,97,109,101,32,83,116,97,116,101,47,67,105,116,121],"value":"Name State/City"},
+{"hash":152469177,"name":"tstate_form.dbgrid1.columns[2].title.caption","sourcebytes":[78,97,109,101,32,83,116,97,116,101,47,67,105,116,121],"value":"Name State/City"},
 {"hash":5801605,"name":"tstate_form.label1.caption","sourcebytes":[83,84,65,84,69],"value":"STATE"},
 {"hash":346165,"name":"tstate_form.label2.caption","sourcebytes":[78,97,109,101],"value":"Name"},
 {"hash":4863637,"name":"tstate_form.button1.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}

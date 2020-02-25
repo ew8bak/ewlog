@@ -11,7 +11,7 @@ object STATE_Form: TSTATE_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 374
@@ -29,11 +29,6 @@ object STATE_Form: TSTATE_Form
         Title.Caption = 'State'
         Width = 50
         FieldName = 'State'
-      end    
-      item
-        Title.Caption = 'Number'
-        Width = 50
-        FieldName = 'Numb'
       end    
       item
         Title.Caption = 'Name State/City'
@@ -58,7 +53,7 @@ object STATE_Form: TSTATE_Form
     TabOrder = 1
     object Edit1: TEdit
       Left = 8
-      Height = 23
+      Height = 25
       Top = 24
       Width = 96
       OnChange = Edit1Change
@@ -66,15 +61,15 @@ object STATE_Form: TSTATE_Form
     end
     object Label1: TLabel
       Left = 8
-      Height = 15
+      Height = 13
       Top = 4
-      Width = 30
+      Width = 33
       Caption = 'STATE'
       ParentColor = False
     end
     object Edit2: TEdit
       Left = 160
-      Height = 23
+      Height = 25
       Top = 24
       Width = 168
       CharCase = ecUppercase
@@ -83,7 +78,7 @@ object STATE_Form: TSTATE_Form
     end
     object Label2: TLabel
       Left = 160
-      Height = 15
+      Height = 13
       Top = 4
       Width = 32
       Caption = 'Name'
