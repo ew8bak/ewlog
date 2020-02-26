@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="9"/>
-      <BuildNr Value="423"/>
+      <BuildNr Value="424"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -60,6 +60,12 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <Verbosity>
+              <ShowNotes Value="False"/>
+              <ShowHints Value="False"/>
+            </Verbosity>
+          </Other>
         </CompilerOptions>
       </Item2>
       <Item3 Name="Дебаг">
