@@ -724,8 +724,6 @@ begin
 end;
 
 procedure TSetupForm.Button5Click(Sender: TObject);
-var
-  i: integer;
 begin
   MainForm.FreeObj;
   MainForm.InitIni;

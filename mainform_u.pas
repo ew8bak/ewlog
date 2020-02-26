@@ -443,7 +443,6 @@ type
     procedure MenuItem55Click(Sender: TObject);
     procedure MenuItem56Click(Sender: TObject);
     procedure MenuItem58Click(Sender: TObject);
-    procedure MenuItem5Click(Sender: TObject);
     procedure MenuItem60Click(Sender: TObject);
     procedure MenuItem63Click(Sender: TObject);
     procedure MenuItem65Click(Sender: TObject);
@@ -5275,11 +5274,6 @@ begin
   else begin
   SQLiteDBConnection.ExecuteDirect('END; VACUUM; REINDEX; BEGIN; COMMIT;');
   end;     }
-end;
-
-procedure TMainForm.MenuItem5Click(Sender: TObject);
-begin
-
 end;
 
 procedure TMainForm.MenuItem60Click(Sender: TObject);

@@ -141,7 +141,6 @@ begin
       CreateTableQuery.ParamByName('Table_version').AsString := Table_version;
       CreateTableQuery.ExecSQL;
       MainForm.SQLTransaction1.Commit;
-      CreateTableQuery.Close;
 
       if MainForm.MySQLLOGDBConnection.Connected then
       begin

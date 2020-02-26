@@ -636,7 +636,7 @@ begin
 
     if ComboBox2.Text <> '' then
       ComboBox2Change(Self);
-
+    ComboBox3.Items.Clear;
     SatPropQuery.SQL.Text := 'SELECT * FROM PropMode';
     SatPropQuery.Open;
     SatPropQuery.First;

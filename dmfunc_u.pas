@@ -222,7 +222,7 @@ begin
       start := str.IndexOf('>');
       stop := str.IndexOf('<');
       if (start < stop) and (start > -1) then
-        Result := str.Substring(start + 1, stop - start - 1);
+        Result := TrimRight(str.Substring(start + 1, stop - start - 1));
     end;
   except
     Result := '';
