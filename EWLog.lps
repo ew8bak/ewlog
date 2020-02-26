@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="132">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -21,7 +21,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="6149"/>
+        <TopLine Value="6164"/>
         <CursorPos X="36" Y="6182"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
