@@ -63,6 +63,7 @@ EWLog
 .deploy/
 backup/
 lib/
+BIN/
 night_build/
 __history/
 __recovery/
