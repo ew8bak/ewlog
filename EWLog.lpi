@@ -67,7 +67,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="EWLog"/>
+            <Filename Value="BIN\$(TargetCPU)-$(TargetOS)\ewlog-debug"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>

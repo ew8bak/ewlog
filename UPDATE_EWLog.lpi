@@ -50,7 +50,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="UPDATE_EWLog"/>
+      <Filename Value="BIN\$(TargetCPU)-$(TargetOS)\UPDATE_EWLog"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
