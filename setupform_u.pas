@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, mysql56conn, sqlite3conn, sqldb, FileUtil, Forms, Controls,
-  Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, ResourceStr;
+  Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, ResourceStr, LCLType;
 
 type
 
@@ -611,7 +611,23 @@ begin
   if CheckBox2.Checked = False then
   begin
     if SaveDialog1.Execute then
+    begin
+      if FileExists(SaveDialog1.FileName) then
+        if Application.MessageBox(PChar(rFileExist), PChar(rWarning),
+          MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+        begin
+          if not DeleteFile(SaveDialog1.FileName) then
+          begin
+            ShowMessage(rFileUsed);
+            Exit;
+          end;
+        end
+        else
+        begin
+          Exit;
+        end;
       Edit6.Text := SaveDialog1.FileName;
+    end;
   end
   else
   begin

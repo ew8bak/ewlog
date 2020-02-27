@@ -456,6 +456,10 @@ msgctxt "resourcestr.rencall"
 msgid "You must enter a callsign"
 msgstr "Вы должны ввести позывной"
 
+#: resourcestr.rerrorservicedb
+msgid "Service database not found! Verify program installation integrity. File serviceLOG.db"
+msgstr ""
+
 #: resourcestr.rerrorxmlapi
 msgctxt "resourcestr.rerrorxmlapi"
 msgid "Error XML API:"
@@ -474,6 +478,14 @@ msgstr "Ошибка загрузки данных"
 msgctxt "resourcestr.rfileerror"
 msgid "Error file:"
 msgstr "Файл ошибок:"
+
+#: resourcestr.rfileexist
+msgid "File exists! Overwrite? All data from this file is destroyed"
+msgstr ""
+
+#: resourcestr.rfileused
+msgid "File is used. Removal is not possible"
+msgstr ""
 
 #: resourcestr.rfillinlogbookinfo
 #, fuzzy
@@ -1331,6 +1343,10 @@ msgstr "Запускать DX кластер автоматически"
 msgid "Printing with preview"
 msgstr "Печать с предварительным просмотром"
 
+#: tconfigform.checkbox6.caption
+msgid "Send MY_STATE and MY_GRIDSQUARE"
+msgstr ""
+
 #: tconfigform.groupbox1.caption
 msgid "Data Base"
 msgstr "База данных"
@@ -1401,6 +1417,10 @@ msgstr "Пароль"
 msgctxt "tconfigform.label2.caption"
 msgid "Server"
 msgstr "Сервер"
+
+#: tconfigform.label20.caption
+msgid "to QSL Info"
+msgstr ""
 
 #: tconfigform.label3.caption
 msgctxt "tconfigform.label3.caption"

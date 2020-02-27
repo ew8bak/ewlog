@@ -126,6 +126,8 @@ resourcestring
   rBytes = ' bytes';
   rKBytes = 'KB';
   rMBytes = 'MB';
+  rFileExist = 'File exists! Overwrite? All data from this file is destroyed';
+  rFileUsed = 'File is used. Removal is not possible';
   rErrorServiceDB = 'Service database not found! Verify program installation integrity. File serviceLOG.db';
   rSyncErrCall = 'Sync Error: Call Not Found';
   rNoLogFileFound = 'No log file found! Check settings';

@@ -439,6 +439,10 @@ msgctxt "resourcestr.rencall"
 msgid "You must enter a callsign"
 msgstr ""
 
+#: resourcestr.rerrorservicedb
+msgid "Service database not found! Verify program installation integrity. File serviceLOG.db"
+msgstr ""
+
 #: resourcestr.rerrorxmlapi
 msgctxt "resourcestr.rerrorxmlapi"
 msgid "Error XML API:"
@@ -456,6 +460,14 @@ msgstr ""
 #: resourcestr.rfileerror
 msgctxt "resourcestr.rfileerror"
 msgid "Error file:"
+msgstr ""
+
+#: resourcestr.rfileexist
+msgid "File exists! Overwrite? All data from this file is destroyed"
+msgstr ""
+
+#: resourcestr.rfileused
+msgid "File is used. Removal is not possible"
 msgstr ""
 
 #: resourcestr.rfillinlogbookinfo
@@ -1304,6 +1316,10 @@ msgstr ""
 msgid "Printing with preview"
 msgstr ""
 
+#: tconfigform.checkbox6.caption
+msgid "Send MY_STATE and MY_GRIDSQUARE"
+msgstr ""
+
 #: tconfigform.groupbox1.caption
 msgid "Data Base"
 msgstr ""
@@ -1373,6 +1389,10 @@ msgstr ""
 #: tconfigform.label2.caption
 msgctxt "tconfigform.label2.caption"
 msgid "Server"
+msgstr ""
+
+#: tconfigform.label20.caption
+msgid "to QSL Info"
 msgstr ""
 
 #: tconfigform.label3.caption
