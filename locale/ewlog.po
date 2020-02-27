@@ -844,6 +844,10 @@ msgctxt "resourcestr.rencall"
 msgid "You must enter a callsign"
 msgstr ""
 
+#: resourcestr.rerrorservicedb
+msgid "Service database not found! Verify program installation integrity. File serviceLOG.db"
+msgstr ""
+
 #: resourcestr.rerrorxmlapi
 msgctxt "resourcestr.rerrorxmlapi"
 msgid "Error XML API:"

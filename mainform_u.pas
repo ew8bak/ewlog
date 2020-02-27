@@ -844,9 +844,9 @@ end;
 
 procedure TMainForm.FindLanguageFiles(Dir: string; var LangList: TStringList);
 begin
-  LangList := FindAllFiles(Dir, 'EWLog.*.po', False, faNormal);
+  LangList := FindAllFiles(Dir, 'ewlog.*.po', False, faNormal);
   LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
-    'EWLog.', '', [rfreplaceall]);
+    'ewlog.', '', [rfreplaceall]);
   LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
 end;
 
@@ -1265,7 +1265,16 @@ begin
     MySQLLOGDBConnection.Connected := False;
     SQLiteDBConnection.Connected := False;
     ServiceDBConnection.Connected := False;
+
+    if not FileExists(sDBPath + 'serviceLOG.db') then begin
+      ServiceDBConnection.DatabaseName := ExtractFileDir(ParamStr(0)) +DirectorySeparator+'serviceLOG.db';
+    end else
     ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
+    if not FileExists(ServiceDBConnection.DatabaseName) then begin
+      ShowMessage(rErrorServiceDB);
+      Exit;
+    end;
+
     ServiceDBConnection.Connected := True;
 
     if dbS = 'MySQL' then

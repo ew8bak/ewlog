@@ -126,6 +126,7 @@ resourcestring
   rBytes = ' bytes';
   rKBytes = 'KB';
   rMBytes = 'MB';
+  rErrorServiceDB = 'Service database not found! Verify program installation integrity. File serviceLOG.db';
   rSyncErrCall = 'Sync Error: Call Not Found';
   rNoLogFileFound = 'No log file found! Check settings';
   rOnlyWindows = 'The function is available only in the Windows system';
