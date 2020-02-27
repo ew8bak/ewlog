@@ -3191,7 +3191,7 @@ end;
 
 procedure TMainForm.dxClientReceive(aSocket: TLSocket);
 var
-  DX, Call, Freq, Comment, Time, Loc, Band: string;
+  DX, Call, Freq, Comment, Time, Loc, Band, Mode: string;
   TelnetLine: string;
   Data: PTreeData;
   XNode: PVirtualNode;
@@ -3233,6 +3233,7 @@ begin
       freqMhz := StrToDouble(Freq) / 1000;
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
+    Mode := GetModeFromFreq(FloatToStr(freqMhz));
     if not ShowSpot then
     begin
       case Band of
@@ -3263,6 +3264,12 @@ begin
         '6MM': showspot := True;
         '4MM': showspot := True;
       end;
+      case Mode of
+        'LSB': ShowSpot:=ClusterFilter.cbSSB.Checked;
+        'USB': ShowSpot:=ClusterFilter.cbSSB.Checked;
+        'CW': ShowSpot:=ClusterFilter.cbCW.Checked;
+        'DIGI': ShowSpot:=ClusterFilter.cbData.Checked;
+      end;
     end;
 
     if (Length(DX) > 0) and ShowSpot then
@@ -3278,7 +3285,7 @@ begin
         Data^.Spots := DX;
         Data^.Call := Call;
         Data^.Freq := Freq;
-        Data^.Moda := GetModeFromFreq(FloatToStr(freqMhz));
+        Data^.Moda := Mode;
         Data^.Comment := Comment;
         Data^.Time := Time;
         Data^.Loc := Loc;
@@ -3294,7 +3301,7 @@ begin
         Data^.Spots := DX;
         Data^.Call := Call;
         Data^.Freq := Freq;
-        Data^.Moda := GetModeFromFreq(FloatToStr(freqMhz));
+        Data^.Moda := Mode;
         Data^.Comment := Comment;
         Data^.Time := Time;
         Data^.Loc := Loc;

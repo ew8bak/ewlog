@@ -8,6 +8,7 @@
 {"hash":73400750,"name":"tthanks_form.label6.caption","sourcebytes":[65,110,100,32,116,111,32,97,108,108,32,116,104,101,32,112,101,111,112,108,101,32,119,104,111,32,114,101,115,112,111,110,100,101,100,32,116,111,32,116,104,101,32,100,101,118,101,108,111,112,109,101,110,116,32,58,41,46,32,77,97,121,98,101,32,115,111,109,101,111,110,101,32,102,111,114,103,111,116,32,46,46,46],"value":"And to all the people who responded to the development :). Maybe someone forgot ..."},
 {"hash":250499974,"name":"tthanks_form.label7.caption","sourcebytes":[83,101,114,103,101,121,32,75,111,114,104,111,118],"value":"Sergey Korhov"},
 {"hash":161048486,"name":"tthanks_form.label8.caption","sourcebytes":[82,88,51,68,81,88,32,45,32,86,108,97,100,105,109,105,114,32,65,110,116,105,112,111,118],"value":"RX3DQX - Vladimir Antipov"},
-{"hash":72019006,"name":"tthanks_form.label9.caption","sourcebytes":[82,57,87,66,90,32,45,83,101,114,103,101,121,32,78,111,104,114,105,110],"value":"R9WBZ -Sergey Nohrin"},
-{"hash":65161043,"name":"tthanks_form.label10.caption","sourcebytes":[85,84,53,81,66,67,32,45,32,89,117,114,105,32,76,117,98,101,110,101,99],"value":"UT5QBC - Yuri Lubenec"}
+{"hash":134307582,"name":"tthanks_form.label9.caption","sourcebytes":[82,57,87,66,90,32,45,32,83,101,114,103,101,121,32,78,111,104,114,105,110],"value":"R9WBZ - Sergey Nohrin"},
+{"hash":65161043,"name":"tthanks_form.label10.caption","sourcebytes":[85,84,53,81,66,67,32,45,32,89,117,114,105,32,76,117,98,101,110,101,99],"value":"UT5QBC - Yuri Lubenec"},
+{"hash":165722390,"name":"tthanks_form.label11.caption","sourcebytes":[82,88,48,84,88,32,45,32,79,108,101,103,32,67,104,117,100,97,101,118],"value":"RX0TX - Oleg Chudaev"}
 ]}

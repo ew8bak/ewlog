@@ -1237,10 +1237,6 @@ msgstr ""
 msgid "80М"
 msgstr ""
 
-#: tclusterfilter.cballmodes.caption
-msgid "All mode"
-msgstr ""
-
 #: tclusterfilter.cbcw.caption
 msgctxt "tclusterfilter.cbcw.caption"
 msgid "CW"
@@ -4795,6 +4791,10 @@ msgstr ""
 msgid "UT5QBC - Yuri Lubenec"
 msgstr ""
 
+#: tthanks_form.label11.caption
+msgid "RX0TX - Oleg Chudaev"
+msgstr ""
+
 #: tthanks_form.label2.caption
 msgid "EW2MS - Mikhail Senko"
 msgstr ""
@@ -4824,7 +4824,7 @@ msgid "RX3DQX - Vladimir Antipov"
 msgstr ""
 
 #: tthanks_form.label9.caption
-msgid "R9WBZ -Sergey Nohrin"
+msgid "R9WBZ - Sergey Nohrin"
 msgstr ""
 
 #: ttrxform.btn10m.caption

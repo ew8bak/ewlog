@@ -18,6 +18,5 @@
 {"hash":5528259,"name":"tclusterfilter.groupbox2.caption","sourcebytes":[77,111,100,101,115],"value":"Modes"},
 {"hash":22642,"name":"tclusterfilter.cbssb.caption","sourcebytes":[83,83,66],"value":"SSB"},
 {"hash":1159,"name":"tclusterfilter.cbcw.caption","sourcebytes":[67,87],"value":"CW"},
-{"hash":307161,"name":"tclusterfilter.cbdata.caption","sourcebytes":[68,105,103,105],"value":"Digi"},
-{"hash":48709925,"name":"tclusterfilter.cballmodes.caption","sourcebytes":[65,108,108,32,109,111,100,101],"value":"All mode"}
+{"hash":307161,"name":"tclusterfilter.cbdata.caption","sourcebytes":[68,105,103,105],"value":"Digi"}
 ]}

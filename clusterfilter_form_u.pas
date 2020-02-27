@@ -29,7 +29,6 @@ type
     cbSSB: TCheckBox;
     cbCW: TCheckBox;
     cbData: TCheckBox;
-    cbAllModes: TCheckBox;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);

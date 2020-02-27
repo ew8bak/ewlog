@@ -2,14 +2,14 @@ object Thanks_Form: TThanks_Form
   Left = 251
   Height = 192
   Top = 146
-  Width = 462
+  Width = 470
   BorderStyle = bsDialog
   Caption = 'Thanks'
   ClientHeight = 192
-  ClientWidth = 462
+  ClientWidth = 470
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object Label1: TLabel
     Left = 8
     Height = 15
@@ -67,9 +67,9 @@ object Thanks_Form: TThanks_Form
     ParentColor = False
   end
   object Label7: TLabel
-    Left = 24
+    Left = 224
     Height = 15
-    Top = 144
+    Top = 32
     Width = 76
     Caption = 'Sergey Korhov'
     Font.Color = clRed
@@ -87,9 +87,9 @@ object Thanks_Form: TThanks_Form
     ParentFont = False
   end
   object Image1: TImage
-    Left = 350
+    Left = 360
     Height = 90
-    Top = 48
+    Top = 21
     Width = 96
     OnClick = Image1Click
     Picture.Data = {
@@ -371,8 +371,8 @@ object Thanks_Form: TThanks_Form
     Left = 24
     Height = 15
     Top = 128
-    Width = 121
-    Caption = 'R9WBZ -Sergey Nohrin'
+    Width = 124
+    Caption = 'R9WBZ - Sergey Nohrin'
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
@@ -386,5 +386,21 @@ object Thanks_Form: TThanks_Form
     Font.Color = clRed
     ParentColor = False
     ParentFont = False
+  end
+  object Label11: TLabel
+    Left = 24
+    Height = 15
+    Top = 144
+    Width = 119
+    Caption = 'RX0TX - Oleg Chudaev'
+    Font.Color = clRed
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel1: TBevel
+    Left = 200
+    Height = 127
+    Top = 32
+    Width = 3
   end
 end

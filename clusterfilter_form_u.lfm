@@ -12,7 +12,7 @@ object ClusterFilter: TClusterFilter
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object GroupBox1: TGroupBox
     Left = 8
     Height = 150
@@ -235,18 +235,6 @@ object ClusterFilter: TClusterFilter
       ParentFont = False
       State = cbChecked
       TabOrder = 2
-    end
-    object cbAllModes: TCheckBox
-      Left = 8
-      Height = 19
-      Top = 32
-      Width = 65
-      Caption = 'All mode'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 3
     end
   end
 end
