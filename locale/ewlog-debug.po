@@ -1743,6 +1743,10 @@ msgstr ""
 msgid "Printing with preview"
 msgstr ""
 
+#: tconfigform.checkbox6.caption
+msgid "Send MY_STATE and MY_GRIDSQUARE"
+msgstr ""
+
 #: tconfigform.groupbox1.caption
 msgid "Data Base"
 msgstr ""
@@ -1812,6 +1816,10 @@ msgstr ""
 #: tconfigform.label2.caption
 msgctxt "tconfigform.label2.caption"
 msgid "Server"
+msgstr ""
+
+#: tconfigform.label20.caption
+msgid "to QSL Info"
 msgstr ""
 
 #: tconfigform.label3.caption

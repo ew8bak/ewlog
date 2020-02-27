@@ -662,6 +662,7 @@ var
   sprav: string;
   seleditnum: integer;
   fAllRecords: integer;
+  StateToQSLInfo: Boolean;
 
 
 
@@ -3328,12 +3329,12 @@ begin
       HostDB := IniF.ReadString('DataBases', 'HostAddr', '');
       PortDB := IniF.ReadString('DataBases', 'Port', '');
       NameDB := IniF.ReadString('DataBases', 'DataBaseName', '');
-
       PhotoDir := IniF.ReadString('SetLog', 'PhotoDir', '');
 
       RegisterLog := IniF.ReadString('SetLog', 'Register', '');
       LoginLog := IniF.ReadString('SetLog', 'Login', '');
       PassLog := IniF.ReadString('SetLog', 'Pass', '');
+      StateToQSLInfo := IniF.ReadBool('SetLog', 'StateToQSLInfo', False);
 
       LoginCallBook := IniF.ReadString('CallBookDB', 'LoginName', '');
       PasswdCallBook := IniF.ReadString('CallBookDB', 'Password', '');
@@ -6141,7 +6142,15 @@ begin
       SQSO.QSLReceQSLcc := 0;
       SQSO.LotWRec := '';
       SQSO.LotWRecDate := 'NULL';
-      SQSO.QSLInfo := SetQSLInfo;
+
+      if not StateToQSLInfo then
+      SQSO.QSLInfo := SetQSLInfo
+      else begin
+      if (Edit14.Text <> '') or (Edit15.Text <> '') then
+      SQSO.QSLInfo:= Edit15.Text + ' ' + Edit14.Text else
+      SQSO.QSLInfo:=SetQSLInfo;
+      end;
+
       SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
       SQSO.State1 := Edit10.Text;
       SQSO.State2 := Edit9.Text;

@@ -44,6 +44,7 @@ type
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
     CheckBox5: TCheckBox;
+    CheckBox6: TCheckBox;
     Edit1: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
@@ -70,6 +71,7 @@ type
     Label18: TLabel;
     Label19: TLabel;
     Label2: TLabel;
+    Label20: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -88,6 +90,7 @@ type
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
+    procedure CheckBox6Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SaveINI;
@@ -141,7 +144,7 @@ begin
     IniF.WriteString('SetLog', 'ShowBand', 'True')
   else
     IniF.WriteString('SetLog', 'ShowBand', 'False');
-
+  IniF.WriteBool('SetLog', 'StateToQSLInfo', CheckBox6.Checked);
   IniF.WriteString('SetLog', 'QRZ_Login', Edit6.Text);
   IniF.WriteString('SetLog', 'QRZ_Pass', Edit7.Text);
   if CheckBox3.Checked = True then
@@ -190,6 +193,8 @@ begin
     CheckBox3.Checked := True
   else
     CheckBox3.Checked := False;
+
+ CheckBox6.Checked:=IniF.ReadBool('SetLog', 'StateToQSLInfo', False);
 
   if IniF.ReadBool('SetLog', 'PrintPrev', False) = True then
     CheckBox5.Checked := True
@@ -289,6 +294,11 @@ begin
     IniF.WriteString('SetLog', 'Sprav', 'True')
   else
     IniF.WriteString('SetLog', 'Sprav', 'False');
+end;
+
+procedure TConfigForm.CheckBox6Change(Sender: TObject);
+begin
+  StateToQSLInfo := CheckBox6.Checked;
 end;
 
 procedure TConfigForm.FormCreate(Sender: TObject);
