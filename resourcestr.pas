@@ -5,7 +5,7 @@ unit ResourceStr;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, const_u;
 
 resourcestring
   rEWLogHAMJournal = 'EWLog - HAM Journal';
@@ -147,10 +147,11 @@ resourcestring
   rSuccessfulNext = 'Successful! Click NEXT';
   rValueEmpty = 'One or more values are empty! Check';
   rCheckPath = 'Check SQLite database path';
+  rPath = 'Path';
   rValueCorr =
     'One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically';
-
-
+  rUpdateSQLiteDLL = 'Update sqlite3.dll to version ' + min_sqlite_version + ' or higher.'+#10#13+'Current Latest Version '+curr_sqlite_version +#10#13 + 'Full work program can not be guaranteed';
+  rSQLiteCurrentVersion = 'Installed version of sqlite3.dll';
 implementation
 
 end.

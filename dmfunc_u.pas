@@ -92,6 +92,7 @@ type
     function nr(ch: char): integer;
     function par_str(s: string; n: integer): string;
     function Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
+    function CheckSQLiteVersion(versionDLL: string): Boolean;
  //   procedure BandMode(freq: string; var b, md: integer);
     procedure Pack(var AData: TIdBytes; const AValue: longint) overload;
     procedure Pack(var AData: TIdBytes; const AString: string) overload;
@@ -131,9 +132,24 @@ var
 
 implementation
 
-uses MainForm_U;
+uses MainForm_U, const_u;
 
 {$R *.lfm}
+
+function TdmFunc.CheckSQLiteVersion(versionDLL: string): Boolean;
+var
+verInst, VerMin: Integer;
+begin
+  Result:=True;
+  try
+  verMin:=StrToInt(StringReplace(min_sqlite_version,'.','',[rfReplaceAll]));
+  verInst:=StrToInt(StringReplace(versionDLL,'.','',[rfReplaceAll]));
+  if verInst<VerMin then
+  Result := False;
+  except
+    Result:=True;
+  end;
+end;
 
 function TdmFunc.GetSize(URL: string): int64;
 var

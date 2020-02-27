@@ -646,6 +646,10 @@ msgstr ""
 msgid "The function is available only in the Windows system"
 msgstr ""
 
+#: resourcestr.rpath
+msgid "Path"
+msgstr ""
+
 #: resourcestr.rphotofromqrzru
 msgctxt "resourcestr.rphotofromqrzru"
 msgid "Photo from QRZ.RU"
@@ -771,6 +775,10 @@ msgctxt "resourcestr.rsizefile"
 msgid "File size: "
 msgstr ""
 
+#: resourcestr.rsqlitecurrentversion
+msgid "Installed version of sqlite3.dll"
+msgstr ""
+
 #: resourcestr.rstate
 msgctxt "resourcestr.rstate"
 msgid "State"
@@ -855,6 +863,13 @@ msgstr ""
 #: resourcestr.rupdaterequired
 msgctxt "resourcestr.rupdaterequired"
 msgid "Update required"
+msgstr ""
+
+#: resourcestr.rupdatesqlitedll
+msgid ""
+"Update sqlite3.dll to version 3.24.0 or higher.\n"
+"Current Latest Version 3.31.1\n"
+"Full work program can not be guaranteed\n"
 msgstr ""
 
 #: resourcestr.rupdatestatus

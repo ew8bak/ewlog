@@ -9,6 +9,8 @@ uses
 
 const
   view_freq = '0.000"."00';
+  min_sqlite_version = '3.24.0';
+  curr_sqlite_version = '3.31.1';
   etalonField: array [0..56] of string =
     ('UnUsedIndex', 'CallSign', 'QSODate', 'QSOTime', 'QSOBand', 'QSOMode',
     'QSOReportSent', 'QSOReportRecived', 'OMName',

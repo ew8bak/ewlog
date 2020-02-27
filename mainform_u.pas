@@ -662,9 +662,8 @@ var
   sprav: string;
   seleditnum: integer;
   fAllRecords: integer;
-  StateToQSLInfo: Boolean;
-
-
+  StateToQSLInfo: boolean;
+  sqlite_version: string;
 
 implementation
 
@@ -1266,16 +1265,25 @@ begin
     SQLiteDBConnection.Connected := False;
     ServiceDBConnection.Connected := False;
 
-    if not FileExists(sDBPath + 'serviceLOG.db') then begin
-      ServiceDBConnection.DatabaseName := ExtractFileDir(ParamStr(0)) +DirectorySeparator+'serviceLOG.db';
-    end else
-    ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
-    if not FileExists(ServiceDBConnection.DatabaseName) then begin
+    if not FileExists(sDBPath + 'serviceLOG.db') then
+    begin
+      ServiceDBConnection.DatabaseName :=
+        ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'serviceLOG.db';
+    end
+    else
+      ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
+    if not FileExists(ServiceDBConnection.DatabaseName) then
+    begin
       ShowMessage(rErrorServiceDB);
       Exit;
     end;
 
     ServiceDBConnection.Connected := True;
+    CheckTableQuery.DataBase := ServiceDBConnection;
+    CheckTableQuery.SQL.Text := 'SELECT sqlite_version()';
+    CheckTableQuery.Open;
+    sqlite_version := CheckTableQuery.Fields.Fields[0].AsString;
+    CheckTableQuery.Close;
 
     if dbS = 'MySQL' then
     begin
@@ -2461,11 +2469,7 @@ begin
   begin
     if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-    begin
-      //Application.Terminate;
-      CloseAction := caFree;
-
-    end
+      CloseAction := caFree
     else
       CloseAction := caNone;
   end;
@@ -3575,10 +3579,18 @@ begin
       SetupForm.Show;
   end;
 
+  if not dmFunc.CheckSQLiteVersion(sqlite_version) then
+    if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
+      rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 + rPath + ':'+#10#13+
+      ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'sqlite3.dll'),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONWARNING) = idYes then
+      OpenURL('https://www.sqlite.org/download.html');
+
   if useMAPS = 'YES' then
     CheckBox3.Checked := True
   else
     CheckBox3.Checked := False;
+
   CheckBox3.Enabled := True;
   MapView1.Zoom := 1;
   MapView1.DoubleBuffered := True;
@@ -6153,11 +6165,13 @@ begin
       SQSO.LotWRecDate := 'NULL';
 
       if not StateToQSLInfo then
-      SQSO.QSLInfo := SetQSLInfo
-      else begin
-      if (Edit14.Text <> '') or (Edit15.Text <> '') then
-      SQSO.QSLInfo:= Edit15.Text + ' ' + Edit14.Text else
-      SQSO.QSLInfo:=SetQSLInfo;
+        SQSO.QSLInfo := SetQSLInfo
+      else
+      begin
+        if (Edit14.Text <> '') or (Edit15.Text <> '') then
+          SQSO.QSLInfo := Edit15.Text + ' ' + Edit14.Text
+        else
+          SQSO.QSLInfo := SetQSLInfo;
       end;
 
       SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
