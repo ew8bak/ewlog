@@ -3481,6 +3481,10 @@ begin
   PathMyDoc := GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
   {$ENDIF UNIX}
+
+  if not DirectoryExists(PathMyDoc) then
+    CreateDir(PathMyDoc);
+
   MapView1.CachePath := PathMyDoc + 'cache' + DirectorySeparator;
   Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
   Language := IniF.ReadString('SetLog', 'Language', '');

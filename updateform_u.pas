@@ -103,7 +103,7 @@ begin
    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
     {$ENDIF UNIX}
 
-  if DirectoryExists(updatePATH + 'updates') = False then
+  if not DirectoryExists(updatePATH + 'updates') then
     CreateDir(updatePATH + 'updates');
 
   if FileExists(updatePATH + 'updates' + DirectorySeparator + 'version.info') = False then begin
