@@ -1782,7 +1782,6 @@ object MainForm: TMainForm
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAutoSizeColumns, dgAnyButtonCanSelect]
       ParentFont = False
       ReadOnly = True
-      Scrollbars = ssAutoBoth
       TabOrder = 0
       TitleFont.Height = -11
       TitleFont.Name = 'Droid Sans'
