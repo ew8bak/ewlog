@@ -1261,7 +1261,6 @@ begin
       CallBookLiteConnection.Connected := False;
       UseCallBook := 'NO';
     end;
-
     MySQLLOGDBConnection.Connected := False;
     SQLiteDBConnection.Connected := False;
     ServiceDBConnection.Connected := False;

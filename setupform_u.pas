@@ -478,7 +478,7 @@ begin
           SQL_Query.ParamByName('Table_version').AsString := Table_version;
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 70;
-          SQL_Transaction.Commit;
+          // SQL_Transaction.Commit;
           SQL_Query.Close;
           Label24.Caption := rFillInLogTable + LOG_PREFIX + ' in SQLite';
           SQLite_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
@@ -505,8 +505,11 @@ begin
     end;
 
   finally
+    SQL_Transaction.Commit;
+    SQL_Transaction.EndTransaction;
     MySQL_Connector.Connected := False;
     SQLite_Connector.Connected := False;
+    SQL_Transaction.Active := False;
   end;
 end;
 

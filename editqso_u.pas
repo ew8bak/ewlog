@@ -551,7 +551,7 @@ var
 begin
   if InitLog_DB = 'YES' then
   begin
-    if DefaultDB = 'MySQL' then
+    if MainForm.MySQLLOGDBConnection.Connected then
     begin
       TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
       UPDATE_Query.DataBase := MainForm.MySQLLOGDBConnection;
@@ -561,16 +561,6 @@ begin
       TerrQuery.DataBase := MainForm.SQLiteDBConnection;
       UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
     end;
-
-    //  ModesQuery.DataBase := MainForm.ServiceDBConnection;
-    //  BandsQuery.DataBase := MainForm.ServiceDBConnection;
-    SatPropQuery.DataBase := MainForm.ServiceDBConnection;
-    //SATQuery.DataBase := MainForm.ServiceDBConnection;
-
-    //  ModesQuery.Active := True;
-    //  BandsQuery.Active := True;
-    // SATQuery.Active := True;
-    //  MainForm.VHFTypeQuery.Active := True;
 
     for i := 0 to 29 do
     begin
@@ -621,8 +611,8 @@ begin
   try
     if InitLog_DB = 'YES' then
     begin
-
-      if DefaultDB = 'MySQL' then
+      SatPropQuery.DataBase := MainForm.ServiceDBConnection;
+      if MainForm.MySQLLOGDBConnection.Connected then
       begin
         TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
         UPDATE_Query.DataBase := MainForm.MySQLLOGDBConnection;

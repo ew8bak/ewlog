@@ -118,6 +118,7 @@ begin
     ShowMessage(rAllfieldsmustbefilled)
   else
     try
+     // MainForm.SQLTransaction1.EndTransaction;
       LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
       CreateTableQuery.Close;
       CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
@@ -156,7 +157,7 @@ begin
         MainForm.SQLiteDBConnection.ExecuteDirect(dmSQL.CreateIndex(
           LOG_PREFIX, 'SQLite'));
       end;
-      MainForm.SQLTransaction1.Commit;
+       MainForm.SQLTransaction1.Commit;
     finally
       newLogBookName := Edit2.Text;
       Edit1.Clear;
