@@ -98,11 +98,13 @@ begin
   begin
     CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection;
     MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
+    CreateTableQuery.Transaction:=MainForm.SQLTransaction1;
   end
   else
   begin
     CreateTableQuery.DataBase := MainForm.SQLiteDBConnection;
     MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
+    CreateTableQuery.Transaction:=MainForm.SQLTransaction1;
   end;
 end;
 
@@ -118,7 +120,6 @@ begin
     ShowMessage(rAllfieldsmustbefilled)
   else
     try
-     // MainForm.SQLTransaction1.EndTransaction;
       LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
       CreateTableQuery.Close;
       CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';

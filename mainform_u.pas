@@ -1298,8 +1298,6 @@ begin
         SysUtils.ExecuteProcess('/usr/bin/notify-send',
           ['EWLog', rWelcomeMessageMySQL]);
       {$ENDIF}
-
-
       finally
       end;
     end
@@ -1963,6 +1961,7 @@ begin
     end;
     MainForm.SelectLogDatabase(LogTable);
   end;
+  CheckTableQuery.Close;
   SetGrid();
   LogBookFieldQuery.Open;
   DBLookupComboBox1.KeyValue := calllbook;
