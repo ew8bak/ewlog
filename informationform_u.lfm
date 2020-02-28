@@ -1,7 +1,7 @@
 object InformationForm: TInformationForm
-  Left = 850
+  Left = 878
   Height = 658
-  Top = 194
+  Top = 184
   Width = 411
   BorderStyle = bsDialog
   Caption = 'Information'
@@ -13,7 +13,7 @@ object InformationForm: TInformationForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object GroupBox1: TGroupBox
     Left = 6
     Height = 246

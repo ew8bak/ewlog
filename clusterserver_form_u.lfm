@@ -1,7 +1,7 @@
 object ClusterServer_Form: TClusterServer_Form
-  Left = 451
+  Left = 447
   Height = 151
-  Top = 211
+  Top = 169
   Width = 337
   BorderStyle = bsDialog
   Caption = 'Editing DX servers'
@@ -11,7 +11,7 @@ object ClusterServer_Form: TClusterServer_Form
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.6.0'
   object StringGrid1: TStringGrid
     Left = 0
     Height = 128

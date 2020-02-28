@@ -1,7 +1,7 @@
 object ConfigGrid_Form: TConfigGrid_Form
-  Left = 351
+  Left = 354
   Height = 277
-  Top = 210
+  Top = 268
   Width = 651
   BorderStyle = bsDialog
   Caption = 'Table display settings'
@@ -10,7 +10,7 @@ object ConfigGrid_Form: TConfigGrid_Form
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object Label1: TLabel
     Left = 24
     Height = 15

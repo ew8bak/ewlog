@@ -1,7 +1,7 @@
 object ClusterFilter: TClusterFilter
-  Left = 1492
+  Left = 1484
   Height = 164
-  Top = 217
+  Top = 182
   Width = 349
   BorderStyle = bsDialog
   Caption = 'Cluster Filter'

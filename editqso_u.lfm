@@ -1,7 +1,7 @@
 object EditQSO_Form: TEditQSO_Form
-  Left = 932
+  Left = 931
   Height = 590
-  Top = 190
+  Top = 217
   Width = 491
   BorderStyle = bsDialog
   Caption = 'QSO Editor'

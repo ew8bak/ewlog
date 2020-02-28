@@ -1,7 +1,7 @@
 object ImportADIFForm: TImportADIFForm
-  Left = 237
+  Left = 289
   Height = 195
-  Top = 233
+  Top = 228
   Width = 600
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog

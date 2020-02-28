@@ -1,7 +1,7 @@
 object ServiceForm: TServiceForm
-  Left = 324
+  Left = 497
   Height = 208
-  Top = 144
+  Top = 218
   Width = 500
   HorzScrollBar.Visible = False
   BorderIcons = [biSystemMenu]

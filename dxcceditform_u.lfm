@@ -1,7 +1,7 @@
 object CountryEditForm: TCountryEditForm
-  Left = 375
+  Left = 448
   Height = 449
-  Top = 242
+  Top = 237
   Width = 687
   Caption = 'Editing Country Information'
   ClientHeight = 449
@@ -11,7 +11,7 @@ object CountryEditForm: TCountryEditForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.6.0'
   object Panel1: TPanel
     Left = 0
     Height = 36

@@ -1,7 +1,7 @@
 object ManagerBasePrefixForm: TManagerBasePrefixForm
-  Left = 465
+  Left = 436
   Height = 534
-  Top = 189
+  Top = 172
   Width = 863
   Caption = 'Prefix Manager'
   ClientHeight = 534
@@ -9,7 +9,7 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
   Font.Height = -12
   OnClose = FormClose
   OnShow = FormShow
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.6.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 534

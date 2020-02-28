@@ -107,21 +107,6 @@ msgstr ""
 msgid "Update status: Update required"
 msgstr ""
 
-#: createjournalform_u.rallfieldsmustbefilled
-msgctxt "createjournalform_u.rallfieldsmustbefilled"
-msgid "All fields must be filled!"
-msgstr ""
-
-#: createjournalform_u.rhaltlog
-msgctxt "createjournalform_u.rhaltlog"
-msgid "The program will be completed, restart it!"
-msgstr ""
-
-#: createjournalform_u.rlogaddedsuccessfully
-msgctxt "createjournalform_u.rlogaddedsuccessfully"
-msgid "Log added successfully"
-msgstr ""
-
 #: eqsl.ranswerserver
 msgctxt "eqsl.ranswerserver"
 msgid "Server response:"

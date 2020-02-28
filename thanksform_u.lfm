@@ -1,5 +1,5 @@
 object Thanks_Form: TThanks_Form
-  Left = 251
+  Left = 309
   Height = 192
   Top = 146
   Width = 470

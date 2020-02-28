@@ -1,7 +1,7 @@
 object hiddenSettings: ThiddenSettings
-  Left = 370
+  Left = 366
   Height = 273
-  Top = 230
+  Top = 256
   Width = 380
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle

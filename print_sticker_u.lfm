@@ -1,7 +1,7 @@
 object PrintSticker_Form: TPrintSticker_Form
-  Left = 235
+  Left = 237
   Height = 239
-  Top = 123
+  Top = 106
   Width = 408
   Caption = 'Print Sticker'
   ClientHeight = 239

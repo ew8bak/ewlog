@@ -24,7 +24,7 @@ msgstr "Ошибка отправки данных"
 #: clublog.rnoentryadded
 msgctxt "clublog.rnoentryadded"
 msgid "No entry added! Perhaps a duplicate!"
-msgstr "Запись не добавлена! Похоже на дубликат"
+msgstr "Запись не добавлена! Похоже на дубликат!"
 
 #: clublog.rrecordaddedsuccessfully
 msgctxt "clublog.rrecordaddedsuccessfully"
@@ -117,24 +117,6 @@ msgstr "Статус обновления: Не могу скопировать"
 msgid "Update status: Update required"
 msgstr "Статус обновления: Требует обновления"
 
-#: createjournalform_u.rallfieldsmustbefilled
-#, fuzzy
-msgctxt "createjournalform_u.rallfieldsmustbefilled"
-msgid "All fields must be filled!"
-msgstr "Всё поля должны быть заполнены!"
-
-#: createjournalform_u.rhaltlog
-#, fuzzy
-msgctxt "createjournalform_u.rhaltlog"
-msgid "The program will be completed, restart it!"
-msgstr "Выполнено успешно! Перезапустите программу"
-
-#: createjournalform_u.rlogaddedsuccessfully
-#, fuzzy
-msgctxt "createjournalform_u.rlogaddedsuccessfully"
-msgid "Log added successfully"
-msgstr "Журнал успешно добавлен"
-
 #: eqsl.ranswerserver
 msgctxt "eqsl.ranswerserver"
 msgid "Server response:"
@@ -147,7 +129,7 @@ msgstr "Ошибка отправки данных"
 
 #: exportadifform_u.ppleasefile
 msgid "Please specify a file for export!"
-msgstr ""
+msgstr "Пожалуйста укажите файл для экспорта"
 
 #: exportadifform_u.rdone
 msgctxt "exportadifform_u.rdone"
@@ -206,7 +188,7 @@ msgstr "Ошибка отправки данных"
 #: hamqth.rnoentryadded
 msgctxt "hamqth.rnoentryadded"
 msgid "No entry added! Perhaps a duplicate!"
-msgstr "Запись не добавлена! Похоже на дубликат"
+msgstr "Запись не добавлена! Похоже на дубликат!"
 
 #: hamqth.rrecordaddedsuccessfully
 msgctxt "hamqth.rrecordaddedsuccessfully"
@@ -231,7 +213,7 @@ msgstr "Ошибка отправки данных"
 #: hrdlog.rnoentryadded
 msgctxt "hrdlog.rnoentryadded"
 msgid "No entry added! Perhaps a duplicate!"
-msgstr "Запись не добавлена! Похоже на дубликат"
+msgstr "Запись не добавлена! Похоже на дубликат!"
 
 #: hrdlog.rrecordaddedsuccessfully
 msgctxt "hrdlog.rrecordaddedsuccessfully"
@@ -256,7 +238,7 @@ msgstr "Ошибка отправки данных"
 #: qrzcom.rnoentryadded
 msgctxt "qrzcom.rnoentryadded"
 msgid "No entry added! Perhaps a duplicate!"
-msgstr "Запись не добавлена! Похоже на дубликат"
+msgstr "Запись не добавлена! Похоже на дубликат!"
 
 #: qrzcom.rrecordaddedsuccessfully
 msgctxt "qrzcom.rrecordaddedsuccessfully"
@@ -293,13 +275,11 @@ msgid "Wrong password"
 msgstr "Не верный пароль"
 
 #: resourcestr.raddindexinlogtable
-#, fuzzy
 msgctxt "resourcestr.raddindexinlogtable"
 msgid "Add index in Log_TABLE_"
 msgstr "Добавляю индекс в Log_TABLE_"
 
 #: resourcestr.raddkeyinlogtable
-#, fuzzy
 msgctxt "resourcestr.raddkeyinlogtable"
 msgid "Add key in Log_TABLE_"
 msgstr "Добавляю ключ в Log_TABLE_"
@@ -340,7 +320,6 @@ msgid "Cannot delete default log"
 msgstr "Нельзя удалить журнал по умолчанию"
 
 #: resourcestr.rcheckpath
-#, fuzzy
 msgctxt "resourcestr.rcheckpath"
 msgid "Check SQLite database path"
 msgstr "Проверьте путь к базе SQLite"
@@ -381,7 +360,6 @@ msgid "CQ Zone"
 msgstr "CQ Зона"
 
 #: resourcestr.rcreatetablelogbookinfo
-#, fuzzy
 msgctxt "resourcestr.rcreatetablelogbookinfo"
 msgid "Create table LogBookInfo"
 msgstr "Создаю таблицу LogBookInfo"
@@ -458,7 +436,7 @@ msgstr "Вы должны ввести позывной"
 
 #: resourcestr.rerrorservicedb
 msgid "Service database not found! Verify program installation integrity. File serviceLOG.db"
-msgstr ""
+msgstr "Сервисная база данных не найдена! Проверьте установку. Файл serviceLOG.db"
 
 #: resourcestr.rerrorxmlapi
 msgctxt "resourcestr.rerrorxmlapi"
@@ -481,20 +459,18 @@ msgstr "Файл ошибок:"
 
 #: resourcestr.rfileexist
 msgid "File exists! Overwrite? All data from this file is destroyed"
-msgstr ""
+msgstr "Файл существует! Перезаписать? Все данные из этого файла уничтожатся"
 
 #: resourcestr.rfileused
 msgid "File is used. Removal is not possible"
-msgstr ""
+msgstr "Файл занят. Удаление не возможно"
 
 #: resourcestr.rfillinlogbookinfo
-#, fuzzy
 msgctxt "resourcestr.rfillinlogbookinfo"
 msgid "Fill in the LogBookInfo table"
 msgstr "Заполняю таблицу LogBookInfo"
 
 #: resourcestr.rfillinlogtable
-#, fuzzy
 msgctxt "resourcestr.rfillinlogtable"
 msgid "Fill in the Log_Table_"
 msgstr "Заполняю таблицу Log_Table_"
@@ -507,10 +483,9 @@ msgstr "Локатор"
 #: resourcestr.rhaltlog
 msgctxt "resourcestr.rhaltlog"
 msgid "The program will be completed, restart it!"
-msgstr "Выполнено успешно! Перезапустите программу"
+msgstr "Выполнено успешно! Перезапустите программу!"
 
 #: resourcestr.richoosenumberofrecords
-#, fuzzy
 msgctxt "resourcestr.richoosenumberofrecords"
 msgid "I choose the number of records"
 msgstr "Выбираю количество записей"
@@ -628,7 +603,6 @@ msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the se
 msgstr "В настройках, необходимо ввести логин и пароль, для доступа к XML API QRZ.ru"
 
 #: resourcestr.rnotconnected
-#, fuzzy
 msgctxt "resourcestr.rnotconnected"
 msgid "No connection to the server. Go back to the connection settings step and check all the settings"
 msgstr "Нет подключения к серверу. Вернитесь к этапу настроек соединения и проверьте все настройки"
@@ -644,7 +618,6 @@ msgid "Nothing to import"
 msgstr "Нечего импортировать"
 
 #: resourcestr.rnotuser
-#, fuzzy
 msgctxt "resourcestr.rnotuser"
 msgid "No database was found for this user. Check the user and database settings in the connection settings step"
 msgstr "База данных не была найдена для этого пользователя. Проверьте настройки пользователя и базы данных на этапе настроек соединения"
@@ -670,7 +643,7 @@ msgstr "Данная функция доступна только в Windows"
 
 #: resourcestr.rpath
 msgid "Path"
-msgstr ""
+msgstr "Путь"
 
 #: resourcestr.rphotofromqrzru
 msgctxt "resourcestr.rphotofromqrzru"
@@ -799,7 +772,7 @@ msgstr "Размер файла: "
 
 #: resourcestr.rsqlitecurrentversion
 msgid "Installed version of sqlite3.dll"
-msgstr ""
+msgstr "Установленная версия sqlite3.dll"
 
 #: resourcestr.rstate
 msgctxt "resourcestr.rstate"
@@ -840,13 +813,11 @@ msgid "Status: Saving file"
 msgstr "Статус: Сохранение файла"
 
 #: resourcestr.rsuccessful
-#, fuzzy
 msgctxt "resourcestr.rsuccessful"
 msgid "Successful"
 msgstr "Готово"
 
 #: resourcestr.rsuccessfulnext
-#, fuzzy
 msgctxt "resourcestr.rsuccessfulnext"
 msgid "Successful! Click NEXT"
 msgstr "Готово! Нажмите далее"
@@ -872,7 +843,7 @@ msgstr ""
 
 #: resourcestr.rsyncerrcall
 msgid "Sync Error: Call Not Found"
-msgstr ""
+msgstr "Ошибка синхронизации: Позывной не наёден"
 
 #: resourcestr.rsyncok
 msgctxt "resourcestr.rsyncok"
@@ -895,6 +866,9 @@ msgid ""
 "Current Latest Version 3.31.1\n"
 "Full work program can not be guaranteed\n"
 msgstr ""
+"Обновите sqlite3.dll до версии 3.24.0 или выше\n"
+"Текущая последняя версия 3.31.1\n"
+"Стабильная работа программы не гарантируется\n"
 
 #: resourcestr.rupdatestatus
 msgctxt "resourcestr.rupdatestatus"
@@ -952,19 +926,16 @@ msgid "Valid DX"
 msgstr "Valid DX"
 
 #: resourcestr.rvaluecorr
-#, fuzzy
 msgctxt "resourcestr.rvaluecorr"
 msgid "One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically"
 msgstr "Одно или несколько полей не заполнены или заполнены неправильно! Все поля и правильный локатор должны быть заполнены. Долгота и широта устанавливаются автоматически"
 
 #: resourcestr.rvalueempty
-#, fuzzy
 msgctxt "resourcestr.rvalueempty"
 msgid "One or more values are empty! Check"
 msgstr "Одно или несколько значений не заполнено. Проверьте"
 
 #: resourcestr.rwait
-#, fuzzy
 msgctxt "resourcestr.rwait"
 msgid "Wait"
 msgstr "Ожидание"
@@ -1356,7 +1327,7 @@ msgstr "Печать с предварительным просмотром"
 
 #: tconfigform.checkbox6.caption
 msgid "Send MY_STATE and MY_GRIDSQUARE"
-msgstr ""
+msgstr "Отправить MY_STATE and MY_GRIDSQUARE"
 
 #: tconfigform.groupbox1.caption
 msgid "Data Base"
@@ -1431,7 +1402,7 @@ msgstr "Сервер"
 
 #: tconfigform.label20.caption
 msgid "to QSL Info"
-msgstr ""
+msgstr "в поле QSLInfo"
 
 #: tconfigform.label3.caption
 msgctxt "tconfigform.label3.caption"
@@ -4776,14 +4747,11 @@ msgid "State"
 msgstr "State"
 
 #: tstate_form.dbgrid1.columns[2].title.caption
-#, fuzzy
-#| msgid "Number"
 msgctxt "tstate_form.dbgrid1.columns[2].title.caption"
 msgid "Name State/City"
-msgstr "Номер"
+msgstr "Район/Город"
 
 #: tstate_form.dbgrid1.columns[3].title.caption
-#, fuzzy
 msgctxt "tstate_form.dbgrid1.columns[3].title.caption"
 msgid "Country"
 msgstr "Страна"
@@ -4825,7 +4793,7 @@ msgstr "UT5QBC - Юрий Лубенец"
 
 #: tthanks_form.label11.caption
 msgid "RX0TX - Oleg Chudaev"
-msgstr ""
+msgstr "RX0TX - Олег Чудаев"
 
 #: tthanks_form.label2.caption
 msgid "EW2MS - Mikhail Senko"
@@ -4856,8 +4824,6 @@ msgid "RX3DQX - Vladimir Antipov"
 msgstr "RX3DQX - Владимир Антипов"
 
 #: tthanks_form.label9.caption
-#, fuzzy
-#| msgid "R9WBZ -Sergey Nohrin"
 msgid "R9WBZ - Sergey Nohrin"
 msgstr "R9WBZ - Сергей Нохрин"
 
@@ -5167,4 +5133,3 @@ msgstr "Статус обновления: Загрузка"
 msgctxt "updateform_u.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
-

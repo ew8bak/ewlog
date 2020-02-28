@@ -1,7 +1,7 @@
 object SettingsProgramForm: TSettingsProgramForm
-  Left = 487
+  Left = 582
   Height = 213
-  Top = 322
+  Top = 279
   Width = 298
   BorderStyle = bsDialog
   Caption = 'External programs'

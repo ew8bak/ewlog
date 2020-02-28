@@ -1,7 +1,7 @@
 object IOTA_Form: TIOTA_Form
-  Left = 314
+  Left = 338
   Height = 373
-  Top = 212
+  Top = 190
   Width = 618
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -13,7 +13,7 @@ object IOTA_Form: TIOTA_Form
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.6.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 312
