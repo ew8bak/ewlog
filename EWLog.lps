@@ -20,8 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="4124"/>
-        <CursorPos X="55" Y="4157"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="1257"/>
+        <CursorPos X="62" Y="1277"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -242,9 +243,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="254"/>
+        <TopLine Value="614"/>
         <CursorPos X="26" Y="653"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>

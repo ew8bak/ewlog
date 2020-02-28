@@ -1266,12 +1266,14 @@ begin
     ServiceDBConnection.Connected := False;
 
     if not FileExists(sDBPath + 'serviceLOG.db') then
-    begin
       ServiceDBConnection.DatabaseName :=
-        ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'serviceLOG.db';
-    end
+        ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'serviceLOG.db'
     else
       ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
+    {$IFDEF LINUX}
+    if not FileExists(ServiceDBConnection.DatabaseName) then
+      ServiceDBConnection.DatabaseName := '/usr/share/ewlog/serviceLOG.db';
+    {$ENDIF LINUX}
     if not FileExists(ServiceDBConnection.DatabaseName) then
     begin
       ShowMessage(rErrorServiceDB);
@@ -3265,10 +3267,10 @@ begin
         '4MM': showspot := True;
       end;
       case Mode of
-        'LSB': ShowSpot:=ClusterFilter.cbSSB.Checked;
-        'USB': ShowSpot:=ClusterFilter.cbSSB.Checked;
-        'CW': ShowSpot:=ClusterFilter.cbCW.Checked;
-        'DIGI': ShowSpot:=ClusterFilter.cbData.Checked;
+        'LSB': ShowSpot := ClusterFilter.cbSSB.Checked;
+        'USB': ShowSpot := ClusterFilter.cbSSB.Checked;
+        'CW': ShowSpot := ClusterFilter.cbCW.Checked;
+        'DIGI': ShowSpot := ClusterFilter.cbData.Checked;
       end;
     end;
 
@@ -3592,9 +3594,10 @@ begin
 
   if not dmFunc.CheckSQLiteVersion(sqlite_version) then
     if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
-      rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 + rPath + ':'+#10#13+
-      ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'sqlite3.dll'),
-      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONWARNING) = idYes then
+      rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
+      rPath + ':' + #10#13 + ExtractFileDir(ParamStr(0)) + DirectorySeparator +
+      'sqlite3.dll'), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
+      MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
 
   if useMAPS = 'YES' then
@@ -4155,7 +4158,7 @@ begin
     LangItem.OnClick := @LangItemClick;
     LangItem.Tag := 99;
     if FindCountry(LangList.Strings[i]) <> 'None' then
-    MenuItem116.Insert(i, LangItem);
+      MenuItem116.Insert(i, LangItem);
   end;
   LangList.Free;
 end;
@@ -4198,8 +4201,8 @@ begin
     SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
    {$ENDIF UNIX}
 
-   if DirectoryExists(updatePATH + 'locale') then
-   DeleteDirectory(updatePATH + 'locale', False);
+  if DirectoryExists(updatePATH + 'locale') then
+    DeleteDirectory(updatePATH + 'locale', False);
 
   ForceDirectories(updatePATH + 'locale');
   HTTP := THTTPSend.Create;
