@@ -4154,6 +4154,7 @@ begin
     LangItem.Caption := FindCountry(LangList.Strings[i]);
     LangItem.OnClick := @LangItemClick;
     LangItem.Tag := 99;
+    if FindCountry(LangList.Strings[i]) <> 'None' then
     MenuItem116.Insert(i, LangItem);
   end;
   LangList.Free;
@@ -4196,6 +4197,10 @@ begin
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
    {$ENDIF UNIX}
+
+   if DirectoryExists(updatePATH + 'locale') then
+   DeleteDirectory(updatePATH + 'locale', False);
+
   ForceDirectories(updatePATH + 'locale');
   HTTP := THTTPSend.Create;
   UnZipper := TUnZipper.Create;

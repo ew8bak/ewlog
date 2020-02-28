@@ -79,7 +79,7 @@ begin
     SaveDialog1.FileName := MainForm.DBLookupComboBox1.Text + '_' +
       FormatDateTime('yyyy-mm-dd', now);
     SaveDialog1.InitialDir := IniF.ReadString('SetLog', 'ExportPath', '');
-    SaveDialog1.Execute;
+  if  SaveDialog1.Execute then begin
     if SaveDialog1.FileName = '' then
     begin
       Application.MessageBox(
@@ -95,6 +95,7 @@ begin
       Application.MessageBox(PChar(rNoMethodExport),
         PChar(rWarning),
         mb_ok + mb_IconWarning);
+  end;
   end;
 end;
 
