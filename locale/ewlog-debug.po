@@ -107,21 +107,6 @@ msgstr ""
 msgid "Update status: Update required"
 msgstr ""
 
-#: createjournalform_u.rallfieldsmustbefilled
-msgctxt "createjournalform_u.rallfieldsmustbefilled"
-msgid "All fields must be filled!"
-msgstr ""
-
-#: createjournalform_u.rhaltlog
-msgctxt "createjournalform_u.rhaltlog"
-msgid "The program will be completed, restart it!"
-msgstr ""
-
-#: createjournalform_u.rlogaddedsuccessfully
-msgctxt "createjournalform_u.rlogaddedsuccessfully"
-msgid "Log added successfully"
-msgstr ""
-
 #: eqsl.ranswerserver
 msgctxt "eqsl.ranswerserver"
 msgid "Server response:"
@@ -962,76 +947,6 @@ msgstr ""
 
 #: settingscat_u.rlibhamlibnotfound
 msgid "HamLib library not found"
-msgstr ""
-
-#: setupform_u.raddindexinlogtable
-msgctxt "setupform_u.raddindexinlogtable"
-msgid "Add index in Log_TABLE_"
-msgstr ""
-
-#: setupform_u.raddkeyinlogtable
-msgctxt "setupform_u.raddkeyinlogtable"
-msgid "Add key in Log_TABLE_"
-msgstr ""
-
-#: setupform_u.rcheckpath
-msgctxt "setupform_u.rcheckpath"
-msgid "Check SQLite database path"
-msgstr ""
-
-#: setupform_u.rcreatetablelogbookinfo
-msgctxt "setupform_u.rcreatetablelogbookinfo"
-msgid "Create table LogBookInfo"
-msgstr ""
-
-#: setupform_u.rfillinlogbookinfo
-msgctxt "setupform_u.rfillinlogbookinfo"
-msgid "Fill in the LogBookInfo table"
-msgstr ""
-
-#: setupform_u.rfillinlogtable
-msgctxt "setupform_u.rfillinlogtable"
-msgid "Fill in the Log_Table_"
-msgstr ""
-
-#: setupform_u.richoosenumberofrecords
-msgctxt "setupform_u.richoosenumberofrecords"
-msgid "I choose the number of records"
-msgstr ""
-
-#: setupform_u.rnotconnected
-msgctxt "setupform_u.rnotconnected"
-msgid "No connection to the server. Go back to the connection settings step and check all the settings"
-msgstr ""
-
-#: setupform_u.rnotuser
-msgctxt "setupform_u.rnotuser"
-msgid "No database was found for this user. Check the user and database settings in the connection settings step"
-msgstr ""
-
-#: setupform_u.rsuccessful
-msgctxt "setupform_u.rsuccessful"
-msgid "Successful"
-msgstr ""
-
-#: setupform_u.rsuccessfulnext
-msgctxt "setupform_u.rsuccessfulnext"
-msgid "Successful! Click NEXT"
-msgstr ""
-
-#: setupform_u.rvaluecorr
-msgctxt "setupform_u.rvaluecorr"
-msgid "One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically"
-msgstr ""
-
-#: setupform_u.rvalueempty
-msgctxt "setupform_u.rvalueempty"
-msgid "One or more values are empty! Check"
-msgstr ""
-
-#: setupform_u.rwait
-msgctxt "setupform_u.rwait"
-msgid "Wait"
 msgstr ""
 
 #: simplexml.ssimplexmlerror1
@@ -5041,85 +4956,5 @@ msgstr ""
 
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
-msgstr ""
-
-#: updateform_u.rbuttoncheck
-msgctxt "updateform_u.rbuttoncheck"
-msgid "Check"
-msgstr ""
-
-#: updateform_u.rbuttondownload
-msgctxt "updateform_u.rbuttondownload"
-msgid "Download"
-msgstr ""
-
-#: updateform_u.rbuttoninstall
-msgctxt "updateform_u.rbuttoninstall"
-msgid "Install"
-msgstr ""
-
-#: updateform_u.rbytes
-msgctxt "updateform_u.rbytes"
-msgid " bytes"
-msgstr ""
-
-#: updateform_u.rsizefile
-msgctxt "updateform_u.rsizefile"
-msgid "File size: "
-msgstr ""
-
-#: updateform_u.rupdatedontcopy
-msgctxt "updateform_u.rupdatedontcopy"
-msgid "Do not copy"
-msgstr ""
-
-#: updateform_u.rupdaterequired
-msgctxt "updateform_u.rupdaterequired"
-msgid "Update required"
-msgstr ""
-
-#: updateform_u.rupdatestatus
-msgctxt "updateform_u.rupdatestatus"
-msgid "Update status: "
-msgstr ""
-
-#: updateform_u.rupdatestatusactual
-msgctxt "updateform_u.rupdatestatusactual"
-msgid "Update status: Actual"
-msgstr ""
-
-#: updateform_u.rupdatestatuscheckupdate
-msgctxt "updateform_u.rupdatestatuscheckupdate"
-msgid "Update status: Check version"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownload
-msgctxt "updateform_u.rupdatestatusdownload"
-msgid "Update status: Download?"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownloadbase
-msgctxt "updateform_u.rupdatestatusdownloadbase"
-msgid "Update status: Download Database"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownloadcallbook
-msgctxt "updateform_u.rupdatestatusdownloadcallbook"
-msgid "Update status: Download CallBook"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownloadchanges
-msgctxt "updateform_u.rupdatestatusdownloadchanges"
-msgid "Update status: Download Changes"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownloads
-msgctxt "updateform_u.rupdatestatusdownloads"
-msgid "Update status: Downloads"
-msgstr ""
-
-#: updateform_u.rupdatestatusrequiredinstall
-msgctxt "updateform_u.rupdatestatusrequiredinstall"
-msgid "Update status: Installation required"
 msgstr ""
 

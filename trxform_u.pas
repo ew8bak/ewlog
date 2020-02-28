@@ -620,51 +620,61 @@ end;
 
 procedure TTRXForm.btnVFOAClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetCurrVFO(VFOA);
 end;
 
 procedure TTRXForm.btnVFOBClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetCurrVFO(VFOB);
 end;
 
 procedure TTRXForm.btnFMClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   SetMode('FM', 0);
 end;
 
 procedure TTRXForm.btnRTTYClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   SetMode('RTTY', 0);
 end;
 
 procedure TTRXForm.btnCWClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   SetMode('CW', 0);
 end;
 
 procedure TTRXForm.btnAMClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   SetMode('AM', 0);
 end;
 
 procedure TTRXForm.btn160mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(1800);
 end;
 
 procedure TTRXForm.btn15mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(21150);
 end;
 
 procedure TTRXForm.btn12mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(24900);
 end;
 
 procedure TTRXForm.btn10mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(28500);
 end;
 
@@ -680,41 +690,49 @@ end;
 
 procedure TTRXForm.btn17mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(18100);
 end;
 
 procedure TTRXForm.btn20mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(14150);
 end;
 
 procedure TTRXForm.btn30mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(10100);
 end;
 
 procedure TTRXForm.btn40mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(7100);
 end;
 
 procedure TTRXForm.btn6mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(50100);
 end;
 
 procedure TTRXForm.btn70cm1Click(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(430500);
 end;
 
 procedure TTRXForm.btn70cmClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(145500);
 end;
 
 procedure TTRXForm.btn80mClick(Sender: TObject);
 begin
+  if Assigned(radio) then
   radio.SetFreqKHz(3600);
 end;
 
