@@ -23,11 +23,6 @@ object WSJT_UDP_Form: TWSJT_UDP_Form
       item
         IP = '127.0.0.1'
         Port = 2237
-      end    
-      item
-        IP = '::'
-        IPVersion = Id_IPv6
-        Port = 0
       end>
     DefaultPort = 2237
     OnUDPRead = IdUDPServer1UDPRead
