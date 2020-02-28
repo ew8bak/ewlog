@@ -20,8 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="1257"/>
-        <CursorPos X="62" Y="1277"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="3585"/>
+        <CursorPos X="3" Y="3613"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -420,7 +421,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WSJT_UDP_Form_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="58"/>
         <CursorPos X="19" Y="101"/>
@@ -1175,7 +1175,7 @@
         <UsageCount Value="10"/>
       </Unit134>
     </Units>
-    <JumpHistory Count="17" HistoryIndex="16">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="3474" TopLine="3456"/>
@@ -1244,6 +1244,18 @@
         <Filename Value="trxform_u.pas"/>
         <Caret Line="337" Column="37" TopLine="330"/>
       </Position17>
+      <Position18>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1277" Column="62" TopLine="1257"/>
+      </Position18>
+      <Position19>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="4130" Column="3" TopLine="4109"/>
+      </Position19>
+      <Position20>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3549" TopLine="3547"/>
+      </Position20>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

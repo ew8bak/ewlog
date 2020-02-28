@@ -3610,6 +3610,7 @@ begin
   MapView1.DoubleBuffered := True;
   MapView1.Active := True;
   CheckUpdatesTimer.Enabled := True;
+  ComboBox7.ItemIndex := 3;
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
@@ -4124,10 +4125,10 @@ begin
     {$ENDIF UNIX}
   MenuItem := (Sender as TMenuItem);
   SetDefaultLang(FindISOCountry(MenuItem.Caption), PathMyDoc + 'locale');
-  ComboBox7.ItemIndex := 3;
   Language := FindISOCountry(MenuItem.Caption);
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
+  ComboBox7.ItemIndex := 3;
 end;
 
 procedure TMainForm.MenuItem116Click(Sender: TObject);
