@@ -93,6 +93,7 @@ type
     function par_str(s: string; n: integer): string;
     function Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
     function CheckSQLiteVersion(versionDLL: string): Boolean;
+    procedure GetRIGMode(rigmode:string; var mode, submode:string);
  //   procedure BandMode(freq: string; var b, md: integer);
     procedure Pack(var AData: TIdBytes; const AValue: longint) overload;
     procedure Pack(var AData: TIdBytes; const AString: string) overload;
@@ -135,6 +136,43 @@ implementation
 uses MainForm_U, const_u;
 
 {$R *.lfm}
+
+procedure TdmFunc.GetRIGMode(rigmode:string; var mode, submode:string);
+begin
+  if (Pos('FM', rigmode) > 0) and (Pos('PKTFM', rigmode) <= 0) and (Pos('WFM', rigmode) <= 0) then begin
+     mode := 'FM';
+     submode:= '';
+  end;
+   if (Pos('USB', rigmode) > 0) and (Pos('PKTUSB', rigmode) <= 0) then begin
+     mode := 'SSB';
+     submode := 'USB';
+   end;
+   if (Pos('LSB', rigmode) > 0) and (Pos('PKTLSB', rigmode) <= 0) then begin
+     mode := 'SSB';
+     submode := 'LSB';
+   end;
+   if (Pos('AM', rigmode) > 0) then begin
+     mode := 'AM';
+     submode:= '';
+   end;
+   if (Pos('CW', rigmode) > 0) then begin
+     mode := 'CW';
+     submode:= '';
+   end;
+   if (Pos('PKTFM', rigmode) > 0) then begin
+     mode := 'PKT';
+     submode:= 'PKTFM';
+   end;
+   if (Pos('PKTUSB', rigmode) > 0) or (Pos('PKTLSB', rigmode) > 0) or (Pos('RTTY', rigmode) > 0) then begin
+     mode := 'RTTY';
+     submode:= '';
+   end;
+
+   if (Pos('WFM', rigmode) > 0) then begin
+     mode := 'WFM';
+     submode:= '';
+   end;
+end;
 
 function TdmFunc.CheckSQLiteVersion(versionDLL: string): Boolean;
 var

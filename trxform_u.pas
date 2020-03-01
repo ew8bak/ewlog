@@ -186,7 +186,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U;
+  MainForm_U, dmFunc_U, const_u, ConfigForm_U;
 
 {$R *.lfm}
 
@@ -254,10 +254,13 @@ end;
 
 procedure TTRXForm.SynTRX;
 var
-  b: string = '';
   f: double;
   m: string;
+  mode, submode: string;
 begin
+  m := '';
+  mode := '';
+  submode := '';
   if Assigned(radio) then
   begin
     f := radio.GetFreqMHz;
@@ -270,30 +273,23 @@ begin
   else
     f := 0;
 
-  if (FormatFloat(empty_freq, f) <> '0.000.00') and (fldigiactive = False) then
-    MainForm.ComboBox1.Text := FormatFloat(empty_freq, f);
+  if (fldigiactive = False) and (f <> 0) then
+  begin
+    if ConfigForm.CheckBox2.Checked = True then
+      MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, f))
+    else
+      MainForm.ComboBox1.Text := FormatFloat(view_freq, f);
+  end;
 
-  if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
-    (dmFunc.GetBandFromFreq(FormatFloat(khz_freq, f)) <> '') then
-    MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(khz_freq, f));
+  if m <> '' then
+    dmFunc.GetRIGMode(m, mode, submode);
 
-  if (Pos('FM', m) > 0) and (Pos('PKTFM', m) <= 0) and (Pos('WFM', m) <= 0) then
-    m := 'FM';
-  if ((Pos('USB', m) > 0) or (Pos('LSB', m) > 0)) and (Pos('PKTUSB', m) <= 0) then
-    m := 'SSB';
-  if (Pos('AM', m) > 0) then
-    m := 'AM';
-  if (Pos('CW', m) > 0) then
-    m := 'CW';
-  if (Pos('PKTFM', m) > 0) then
-    m := 'PKTFM';
-  if (Pos('PKTUSB', m) > 0) or (Pos('PKTLSB', m) > 0) then
-    m := 'RTTY';
-  if (Pos('WFM', m) > 0) then
-    m := 'WFM';
 
   if (fldigiactive = False) and (m <> '') then
-    MainForm.ComboBox2.Text := m;
+  begin
+    MainForm.ComboBox2.Text := mode;
+    MainForm.ComboBox9.Text := submode;
+  end;
   lblMode.Caption := m;
 end;
 
@@ -621,61 +617,61 @@ end;
 procedure TTRXForm.btnVFOAClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetCurrVFO(VFOA);
+    radio.SetCurrVFO(VFOA);
 end;
 
 procedure TTRXForm.btnVFOBClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetCurrVFO(VFOB);
+    radio.SetCurrVFO(VFOB);
 end;
 
 procedure TTRXForm.btnFMClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  SetMode('FM', 0);
+    SetMode('FM', 0);
 end;
 
 procedure TTRXForm.btnRTTYClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  SetMode('RTTY', 0);
+    SetMode('RTTY', 0);
 end;
 
 procedure TTRXForm.btnCWClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  SetMode('CW', 0);
+    SetMode('CW', 0);
 end;
 
 procedure TTRXForm.btnAMClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  SetMode('AM', 0);
+    SetMode('AM', 0);
 end;
 
 procedure TTRXForm.btn160mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(1800);
+    radio.SetFreqKHz(1800);
 end;
 
 procedure TTRXForm.btn15mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(21150);
+    radio.SetFreqKHz(21150);
 end;
 
 procedure TTRXForm.btn12mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(24900);
+    radio.SetFreqKHz(24900);
 end;
 
 procedure TTRXForm.btn10mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(28500);
+    radio.SetFreqKHz(28500);
 end;
 
 procedure TTRXForm.Arrow1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
@@ -691,49 +687,49 @@ end;
 procedure TTRXForm.btn17mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(18100);
+    radio.SetFreqKHz(18100);
 end;
 
 procedure TTRXForm.btn20mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(14150);
+    radio.SetFreqKHz(14150);
 end;
 
 procedure TTRXForm.btn30mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(10100);
+    radio.SetFreqKHz(10100);
 end;
 
 procedure TTRXForm.btn40mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(7100);
+    radio.SetFreqKHz(7100);
 end;
 
 procedure TTRXForm.btn6mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(50100);
+    radio.SetFreqKHz(50100);
 end;
 
 procedure TTRXForm.btn70cm1Click(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(430500);
+    radio.SetFreqKHz(430500);
 end;
 
 procedure TTRXForm.btn70cmClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(145500);
+    radio.SetFreqKHz(145500);
 end;
 
 procedure TTRXForm.btn80mClick(Sender: TObject);
 begin
   if Assigned(radio) then
-  radio.SetFreqKHz(3600);
+    radio.SetFreqKHz(3600);
 end;
 
 procedure TTRXForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
