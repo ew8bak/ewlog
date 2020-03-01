@@ -1576,6 +1576,11 @@ msgctxt "tconfiggrid_form.checkbox3.caption"
 msgid "Date"
 msgstr ""
 
+#: tconfiggrid_form.checkbox30.caption
+msgctxt "tconfiggrid_form.checkbox30.caption"
+msgid "SubMode"
+msgstr ""
+
 #: tconfiggrid_form.checkbox4.caption
 msgctxt "tconfiggrid_form.checkbox4.caption"
 msgid "Time"

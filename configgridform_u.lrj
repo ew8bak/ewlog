@@ -36,5 +36,6 @@
 {"hash":117822963,"name":"tconfiggrid_form.checkbox29.caption","sourcebytes":[78,111,32,67,97,108,99,32,68,88,67,67],"value":"No Calc DXCC"},
 {"hash":366789,"name":"tconfiggrid_form.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"},
 {"hash":77089212,"name":"tconfiggrid_form.button2.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
-{"hash":180128884,"name":"tconfiggrid_form.button3.caption","sourcebytes":[68,101,102,97,117,108,116],"value":"Default"}
+{"hash":180128884,"name":"tconfiggrid_form.button3.caption","sourcebytes":[68,101,102,97,117,108,116],"value":"Default"},
+{"hash":179783157,"name":"tconfiggrid_form.checkbox30.caption","sourcebytes":[83,117,98,77,111,100,101],"value":"SubMode"}
 ]}

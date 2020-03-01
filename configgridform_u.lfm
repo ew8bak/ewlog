@@ -146,9 +146,9 @@ object ConfigGrid_Form: TConfigGrid_Form
     TabOrder = 7
   end
   object CheckBox8: TCheckBox
-    Left = 208
+    Left = 207
     Height = 19
-    Top = 208
+    Top = 232
     Width = 52
     Caption = 'Name'
     Font.Height = -12
@@ -421,5 +421,13 @@ object ConfigGrid_Form: TConfigGrid_Form
     OnChange = ColorBox2Change
     ParentFont = False
     TabOrder = 34
+  end
+  object CheckBox30: TCheckBox
+    Left = 208
+    Height = 19
+    Top = 208
+    Width = 71
+    Caption = 'SubMode'
+    TabOrder = 35
   end
 end
