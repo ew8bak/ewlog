@@ -52,8 +52,6 @@ type
     procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
       const Value: string);
     procedure DownloadFile;
-    procedure DownloadDBFile;
-    procedure DownloadCallBookFile;
     procedure DownloadChangeLOGFile;
     {$IFDEF WINDOWS}
     function RunAsAdmin(const Handler: Hwnd; const Path, Params: string): boolean;
@@ -62,21 +60,20 @@ type
   public
     {$IFDEF WIN64}
   const
-    DownPATH: string = 'http://update.ew8bak.ru/EWLog_x64.exe';
+    DownPATHssl: string = 'https://update.ewlog.ru/';
+    DownPATH: string = 'http://notsslupdate.ewlog.ru/';
+    DownEXE: string = 'setup_ewlog_x64.exe';
   {$ELSE}
   const
-    DownPATH: string = 'http://update.ew8bak.ru/EWLog_x86.exe';
+    DownPATHssl: string = 'https://update.ewlog.ru/';
+    DownPATH: string = 'http://notsslupdate.ewlog.ru/';
+    DownEXE: string = 'setup_ewlog_x86.exe';
   {$ENDIF WIN64}
     { public declarations }
   end;
 
 var
   Update_Form: TUpdate_Form;
-
-type
-  ver = record
-    version, lastupdate, changelog: string[20];
-  end;
 
 
 implementation
@@ -89,52 +86,19 @@ uses
 { TUpdate_Form }
 
 procedure TUpdate_Form.FormCreate(Sender: TObject);
-var
-  VerFile: file of ver;
-  VerFiles: ver;
 begin
-  VerFiles.version:='0.0.0';
-  VerFiles.lastupdate:=DateTimeToStr(Now);
-  VerFiles.changelog:='';
     {$IFDEF UNIX}
-  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/';
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/updates/';
     {$ELSE}
   updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-   SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+   SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\updates\';
     {$ENDIF UNIX}
-
-  if not DirectoryExists(updatePATH + 'updates') then
-    CreateDir(updatePATH + 'updates');
-
-  if FileExists(updatePATH + 'updates' + DirectorySeparator + 'version.info') = False then begin
-   AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator + 'version.info');
-   Rewrite(VerFile);
-   Write(VerFile,VerFiles);
-   CloseFile(VerFile);
-  end;
-
-  if FileExists(updatePATH + 'updates' + DirectorySeparator + 'versioncallbook.info') = False then begin
-    AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator + 'versioncallbook.info');
-    Rewrite(VerFile);
-    Write(VerFile,VerFiles);
-    CloseFile(VerFile);
-  end;
+  if not DirectoryExists(updatePATH) then
+    CreateDir(updatePATH);
 end;
 
 procedure TUpdate_Form.FormShow(Sender: TObject);
-var
-  VerFile: file of ver;
-  VerFiles: ver;
 begin
-  if FileExists(updatePATH + 'updates'+DirectorySeparator+'version.info') then
-  begin
-    AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
-    Reset(VerFile);
-    Read(VerFile, VerFiles);
-    Label4.Caption := VerFiles.lastupdate;
-    CloseFile(VerFile);
-  end;
-
   Button1.Caption := rButtonCheck;
   Label10.Caption := rSizeFile;
   Label9.Caption := rUpdateStatus;
@@ -144,61 +108,46 @@ end;
 
 function TUpdate_Form.CheckVersion: Boolean;
 var
-  VerFile: file of ver;
-  VerFiles: ver;
-  ver_serverFile: TextFile;
-  version_server, last_update: string;
-  LoadFile: TFileStream;
-  version_server_INT, version_current_INT: integer;
+version_curr: Integer;
+version_serv: Integer;
+version_servStr: String;
+version_file: TextFile;
+version_file_stream: TFileStream;
 begin
     try
-    if FileExists(updatePATH + 'updates'+DirectorySeparator+'version.info') then
-    begin
-      AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
-      Reset(VerFile);
-      Read(VerFile, VerFiles);
-      last_update := VerFiles.lastupdate;
-      Label6.Caption := dmFunc.GetMyVersion;
-      Label4.Caption := last_update;
-      CloseFile(VerFile);
-
-      if not FileExists(updatePATH + 'updates'+DirectorySeparator+'versiononserver.info') then begin
-        LoadFile := TFileStream.Create(updatePATH + 'updates'+DirectorySeparator+'versiononserver.info',fmCreate);
-        LoadFile.Seek(0, soFromEnd);
-        LoadFile.WriteBuffer('1.1.1',Length('1.1.1'));
-        LoadFile.Free;
+       if not FileExists(updatePATH + 'version') then begin
+        version_file_stream := TFileStream.Create(updatePATH +'version',fmCreate);
+        version_file_stream.Seek(0, soFromEnd);
+        version_file_stream.WriteBuffer('1.1.1',Length('1.1.1'));
+        version_file_stream.Free;
       end;
 
-      AssignFile(ver_serverFile, updatePATH + 'updates'+DirectorySeparator+'versiononserver.info');
-      Reset(ver_serverFile);
-      while not EOF(ver_serverFile) do
-        ReadLn(ver_serverFile, version_server);
+      version_curr:=StrToInt(StringReplace(dmFunc.GetMyVersion,'.','',[rfReplaceAll]));
+      AssignFile(version_file, updatePATH + 'version');
+      Reset(version_file);
+      while not EOF(version_file) do
+        ReadLn(version_file, version_servStr);
 
-      if (version_server = '1.1.1') or (Pos('</html>',version_server) > 0) then begin
+       if (version_servStr = '1.1.1') or (Pos('</html>',version_servStr) > 0) then begin
       Label8.Caption := rFailedToLoadData;
-      CloseFile(ver_serverFile);
+      CloseFile(version_file);
       Exit;
       end
-      else
-      Label8.Caption := version_server;
+      else begin
+      Label8.Caption := version_servStr;
+      version_serv:=StrToInt(StringReplace(version_servStr,'.','',[rfReplaceAll]));
+      end;
 
-      version_current_INT := StrToInt(StringReplace(dmFunc.GetMyVersion, '.',
-        '', [rfReplaceAll]));
-      version_server_INT := StrToInt(StringReplace(version_server,
-        '.', '', [rfReplaceAll]));
-      CloseFile(ver_serverFile);
-
-      while Length(IntToStr(version_current_INT)) >
-        Length(IntToStr(version_server_INT)) do
-        version_server_INT := version_server_INT * 10;
-
-      if version_current_INT < version_server_INT then
+     if version_curr < version_serv then
       begin
         Label2.Caption := rUpdateRequired;
         Result := True;
         MainForm.Label50.Visible:=True;
         Label9.Caption := rUpdateStatusDownload;
         Button1.Caption := rButtonDownload;
+      if dmFunc.GetSize(DownPATHssl+DownEXE) = -1 then
+        label10.Caption := rSizeFile + FormatFloat('0.##', dmFunc.GetSize(DownPATH+DownEXE)/1048576) + rMBytes else
+        label10.Caption := rSizeFile + FormatFloat('0.##', dmFunc.GetSize(DownPATHssl+DownEXE)/1048576) + rMBytes
       end
       else
       begin
@@ -207,24 +156,8 @@ begin
         MainForm.Label50.Visible:=False;
       end;
 
-      AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
-      Rewrite(VerFile);
-      VerFiles.version := Label8.Caption;
-      VerFiles.lastupdate := DateTimeToStr(Now);
-      Write(VerFile, VerFiles);
-      CloseFile(VerFile);
-    end
-    else
-    begin
-      AssignFile(VerFile, updatePATH + 'updates'+DirectorySeparator+'version.info');
-      Rewrite(VerFile);
-      VerFiles.version := Label8.Caption;
-      VerFiles.lastupdate := DateTimeToStr(Now);
-      Write(VerFile, VerFiles);
-      CloseFile(VerFile);
-    end;
-
-  except
+  finally;
+    CloseFile(version_file);
   end;
 end;
 
@@ -235,9 +168,10 @@ begin
       raise DownUpdThread.FatalException;
     with DownUpdThread do
     begin
-      name_file := 'versiononserver.info';
-      name_directory := updatePATH + 'updates'+DirectorySeparator;
-      url_file := 'http://update.ew8bak.ru/version_server.info';
+      name_file := 'version';
+      name_directory := updatePATH;
+      url_file := DownPATH + 'version';
+      urlssl_file := DownPATHssl + 'version';
       Start;
     end;
 
@@ -267,7 +201,10 @@ var
   MaxSize: int64;
 begin
   Download := 0;
-  MaxSize := dmFunc.GetSize(DownPATH);
+  if dmFunc.GetSize(DownPATHssl+DownEXE) = -1 then
+  MaxSize := dmFunc.GetSize(DownPATH+DownEXE) else
+  MaxSize := dmFunc.GetSize(DownPATHssl+DownEXE);
+
   if MaxSize > 0 then
     ProgressBar1.Max := MaxSize
   else
@@ -276,69 +213,12 @@ begin
   HTTP.Sock.OnStatus := @SynaProgress;
   Label9.Caption := rUpdateStatusDownloads;
   try
-    if HTTP.HTTPMethod('GET', DownPATH) then
-      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'EWLog.exe');
+    if HTTP.HTTPMethod('GET', DownPATHssl+DownEXE) then
+      HTTP.Document.SaveToFile(updatePATH + DownEXE) else
+    if HTTP.HTTPMethod('GET', DownPATH+DownEXE) then
+      HTTP.Document.SaveToFile(updatePATH + DownEXE)
   finally
     HTTP.Free;
-    DownloadDBFile;
-  end;
-end;
-
-procedure TUpdate_Form.DownloadDBFile;
-var
-  HTTP: THTTPSend;
-  MaxSize: int64;
-begin
-  Download := 0;
-  MaxSize := dmFunc.GetSize('http://update.ew8bak.ru/serviceLOG.db');
-  if MaxSize > 0 then
-    ProgressBar1.Max := MaxSize
-  else
-    ProgressBar1.Max := 0;
-  HTTP := THTTPSend.Create;
-  HTTP.Sock.OnStatus := @SynaProgress;
-  Label9.Caption := rUpdateStatusDownloadBase;
-  try
-    if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/serviceLOG.db') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'serviceLOG.db');
-  finally
-    HTTP.Free;
-    DownloadCallBookFile;
-  end;
-end;
-
-procedure TUpdate_Form.DownloadCallBookFile;
-var
-  HTTP: THTTPSend;
-  MaxSize: int64;
-begin
-  Download := 0;
-  MaxSize := dmFunc.GetSize('http://update.ew8bak.ru/callbook.db');
-  if MaxSize > 0 then
-    ProgressBar1.Max := MaxSize
-  else
-    ProgressBar1.Max := 0;
-  HTTP := THTTPSend.Create;
-  HTTP.Sock.OnStatus := @SynaProgress;
-  Label9.Caption := rUpdateStatusDownloadCallbook;
-  try
-    if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/callbook.db') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'callbook.db');
-  finally
-    HTTP.Free;
-    MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
-    MainForm.CallBookLiteConnection.Connected := False;
-    UseCallBook := 'NO';
-    if FileUtil.CopyFile(updatePATH + 'updates'+DirectorySeparator+'callbook.db', updatePATH +
-      'callbook.db', True, True) then
-    begin
-      DeleteFile(PChar(updatePATH + 'updates'+DirectorySeparator+'callbook.db'));
-      MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
-      MainForm.CallBookLiteConnection.Connected := True;
-      UseCallBook := 'YES';
-    end
-    else
-      Label9.Caption := rUpdateDontCopy;
     DownloadChangeLOGFile;
   end;
 end;
@@ -349,7 +229,10 @@ var
   MaxSize: int64;
 begin
   Download := 0;
-  MaxSize := dmFunc.GetSize('http://update.ew8bak.ru/changelog.txt');
+  if dmFunc.GetSize(DownPATHssl+'changelog.txt') = -1 then
+  MaxSize := dmFunc.GetSize(DownPATH+'changelog.txt') else
+  MaxSize := dmFunc.GetSize(DownPATHssl+'changelog.txt');
+
   if MaxSize > 0 then
     ProgressBar1.Max := MaxSize
   else
@@ -358,11 +241,13 @@ begin
   HTTP.Sock.OnStatus := @SynaProgress;
   Label9.Caption := rUpdateStatusDownloadChanges;
   try
-    if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/changelog.txt') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates'+DirectorySeparator+'changelog.txt');
+    if HTTP.HTTPMethod('GET', DownPATHssl+'changelog.txt') then
+      HTTP.Document.SaveToFile(updatePATH + 'changelog.txt') else
+          if HTTP.HTTPMethod('GET', DownPATH+'changelog.txt') then
+      HTTP.Document.SaveToFile(updatePATH + 'changelog.txt');
   finally
     HTTP.Free;
-    Changelog_Form.Memo1.Lines.LoadFromFile(updatePATH + 'updates'+DirectorySeparator+'changelog.txt');
+    Changelog_Form.Memo1.Lines.LoadFromFile(updatePATH +'changelog.txt');
     Changelog_Form.Show;
     Label9.Caption := rUpdateStatusRequiredInstall;
     Button1.Caption := rButtonInstall;
@@ -376,7 +261,7 @@ begin
   else
   if Button1.Caption = rButtonInstall then
     {$IFDEF WINDOWS}
-    RunAsAdmin(MainForm.Handle, 'UPDATE_EWLog.exe', '')
+    RunAsAdmin(MainForm.Handle, updatePATH + DownEXE, '')
     {$ELSE}
     ShowMessage(rOnlyWindows)
     {$ENDIF WINDOWS}

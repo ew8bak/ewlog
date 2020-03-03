@@ -8,19 +8,20 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ssl_openssl, LazFileUtils, LazUTF8;
+  Classes, SysUtils, LazFileUtils, LazUTF8, ssl_openssl;
 
 type
   TDownUpdThread = class(TThread)
   protected
     procedure Execute; override;
-    function DownUpdates(file_name, directory, file_url: string): boolean;
+    function DownUpdates(file_name, directory, file_url, file_urlssl: string): boolean;
     function GetSize(URL: string): int64;
   private
   public
     name_file: string;
     name_directory: string;
     url_file: string;
+    urlssl_file: string;
     result_mes: string;
     SaveFile: string;
     importFlag: boolean;
@@ -33,15 +34,23 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, dmFunc_U, UpdateForm_U;
+uses Forms, LCLType, HTTPSend, dmFunc_U, UpdateForm_U, ResourceStr;
 
-function TDownUpdThread.DownUpdates(file_name, directory, file_url: string): boolean;
+function TDownUpdThread.DownUpdates(file_name, directory, file_url,
+  file_urlssl: string): boolean;
 var
   HTTP: THTTPSend;
 begin
   Result := False;
   try
     HTTP := THTTPSend.Create;
+    if HTTP.HTTPMethod('GET', file_urlssl) then
+    begin
+      if FileExists(directory + file_name) then
+        DeleteFileUTF8(directory + file_name);
+      HTTP.Document.SaveToFile(directory + file_name);
+    end
+    else
     if HTTP.HTTPMethod('GET', file_url) then
     begin
       if FileExists(directory + file_name) then
@@ -94,7 +103,7 @@ end;
 
 procedure TDownUpdThread.Execute;
 begin
-  if DownUpdates(name_file, name_directory, url_file) then
+  if DownUpdates(name_file, name_directory, url_file, urlssl_file) then
     Synchronize(@ShowResult);
 end;
 
