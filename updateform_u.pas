@@ -261,7 +261,8 @@ begin
   else
   if Button1.Caption = rButtonInstall then
     {$IFDEF WINDOWS}
-    RunAsAdmin(MainForm.Handle, updatePATH + DownEXE, '')
+    //RunAsAdmin(MainForm.Handle, updatePATH + DownEXE, '')
+    dmFunc.RunProgram(updatePATH + DownEXE, '');
     {$ELSE}
     ShowMessage(rOnlyWindows)
     {$ENDIF WINDOWS}
