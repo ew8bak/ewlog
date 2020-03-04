@@ -118,8 +118,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="1496"/>
-        <CursorPos X="37" Y="1506"/>
+        <TopLine Value="1502"/>
+        <CursorPos X="2" Y="1516"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit9>
@@ -311,8 +311,8 @@
         <UnitName Value="UpdateForm_U"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="249"/>
-        <CursorPos X="2" Y="268"/>
+        <TopLine Value="258"/>
+        <CursorPos X="23" Y="95"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1169,7 +1169,7 @@
         <UsageCount Value="9"/>
       </Unit133>
       <Unit134>
-        <Filename Value="..\..\..\usr\lib\fpc\src\packages\fcl-base\src\gettext.pp"/>
+        <Filename Value="D:\usr\lib\fpc\src\packages\fcl-base\src\gettext.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="313"/>
         <CursorPos X="3" Y="315"/>

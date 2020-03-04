@@ -1512,8 +1512,8 @@ begin
   if not FileExists(progpath) then
     Exit;
   Delay(20);
-  progdir := ExtractFilePath(progpath);
-  Delete(progdir, Length(progdir), 1);
+  progdir := SysToUTF8(ExtractFilePath(progpath));
+  UTF8Delete(progdir, UTF8Length(progdir), 1);
   process := TProcess.Create(nil);
   try
     try
