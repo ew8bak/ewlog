@@ -49,6 +49,7 @@ begin
       if FileExists(directory + file_name) then
         DeleteFileUTF8(directory + file_name);
       HTTP.Document.SaveToFile(directory + file_name);
+      Result := True;
     end
     else
     if HTTP.HTTPMethod('GET', file_url) then
@@ -56,10 +57,10 @@ begin
       if FileExists(directory + file_name) then
         DeleteFileUTF8(directory + file_name);
       HTTP.Document.SaveToFile(directory + file_name);
+      Result := True;
     end;
   finally
     HTTP.Free;
-    Result := True;
   end;
 end;
 
