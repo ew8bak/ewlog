@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
   DateUtils, Sockets, IdGlobal, LazUTF8, strutils, Translations, LazFileUtils,
-  versiontypes, versionresource, blcksock, httpsend,
+  versiontypes, versionresource, blcksock, httpsend, UTF8Process,
 
   {$IFDEF WINDOWS}
   Windows;
@@ -1506,7 +1506,7 @@ end;
 function TdmFunc.RunProgram(progpath, args: string): boolean;
 var
   progdir: string;
-  process: TProcess;
+  process: TProcessUTF8;
 begin
   Result := False;
   if not FileExists(progpath) then
@@ -1514,10 +1514,10 @@ begin
   Delay(20);
   progdir := SysToUTF8(ExtractFilePath(progpath));
   UTF8Delete(progdir, UTF8Length(progdir), 1);
-  process := TProcess.Create(nil);
+  process := TProcessUTF8.Create(nil);
   try
     try
-      process.CommandLine := Trim(progpath + ' ' + args);
+      process.Executable:=Trim(progpath + ' ' + args);
       process.Options := [poNoConsole
 {$IFDEF WINDOWS}
         , poNewProcessGroup

@@ -117,9 +117,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="1502"/>
-        <CursorPos X="2" Y="1516"/>
+        <TopLine Value="1508"/>
+        <CursorPos X="7" Y="1520"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit9>
@@ -309,10 +310,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="258"/>
-        <CursorPos X="23" Y="95"/>
+        <TopLine Value="257"/>
+        <CursorPos X="21" Y="267"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1176,7 +1176,7 @@
         <UsageCount Value="9"/>
       </Unit134>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="downloadupdates.pas"/>
         <Caret Line="52" Column="38" TopLine="32"/>
@@ -1293,6 +1293,10 @@
         <Filename Value="updateform_u.pas"/>
         <Caret Line="268" Column="4" TopLine="255"/>
       </Position29>
+      <Position30>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="1517" Column="26" TopLine="1502"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

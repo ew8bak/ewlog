@@ -117,6 +117,24 @@ msgstr "Статус обновления: Не могу скопировать"
 msgid "Update status: Update required"
 msgstr "Статус обновления: Требует обновления"
 
+#: createjournalform_u.rallfieldsmustbefilled
+#, fuzzy
+msgctxt "createjournalform_u.rallfieldsmustbefilled"
+msgid "All fields must be filled!"
+msgstr "Всё поля должны быть заполнены!"
+
+#: createjournalform_u.rhaltlog
+#, fuzzy
+msgctxt "createjournalform_u.rhaltlog"
+msgid "The program will be completed, restart it!"
+msgstr "Выполнено успешно! Перезапустите программу!"
+
+#: createjournalform_u.rlogaddedsuccessfully
+#, fuzzy
+msgctxt "createjournalform_u.rlogaddedsuccessfully"
+msgid "Log added successfully"
+msgstr "Журнал успешно добавлен"
+
 #: eqsl.ranswerserver
 msgctxt "eqsl.ranswerserver"
 msgid "Server response:"
