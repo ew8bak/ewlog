@@ -260,12 +260,12 @@ begin
     CheckUpdate
   else
   if Button1.Caption = rButtonInstall then
-    {$IFDEF WINDOWS}
+  //  {$IFDEF WINDOWS}
     //RunAsAdmin(MainForm.Handle, updatePATH + DownEXE, '')
-    dmFunc.RunProgram(updatePATH + DownEXE, '');
-    {$ELSE}
-    ShowMessage(rOnlyWindows)
-    {$ENDIF WINDOWS}
+    dmFunc.RunProgram(updatePATH + DownEXE, '')
+ //   {$ELSE}
+ //   ShowMessage(rOnlyWindows)
+ //   {$ENDIF WINDOWS}
   else
   begin
     DownloadFile;
