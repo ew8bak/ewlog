@@ -28,6 +28,9 @@ Source: "C:\Users\karpe\Desktop\BUILD\x86\callbook.db"; DestDir: "{userdocs}\..\
 Name: "{group}\EWLog"; Filename: "{app}\EWLog.exe"
 Name: "{commondesktop}\EWLog"; Filename: "{app}\EWLog.exe"; Tasks: desktopicon
 
+[Run]
+Filename: {app}\ewlog.exe; Description: {cm:LaunchProgram,EWLog}; Flags: nowait showcheckbox
+
 [code]
 procedure CurPageChanged(CurPageID: Integer);
 var
