@@ -27,3 +27,14 @@ Source: "C:\Users\karpe\Desktop\BUILD\x86\callbook.db"; DestDir: "{userdocs}\..\
 [Icons]
 Name: "{group}\EWLog"; Filename: "{app}\EWLog.exe"
 Name: "{commondesktop}\EWLog"; Filename: "{app}\EWLog.exe"; Tasks: desktopicon
+
+[code]
+procedure CurPageChanged(CurPageID: Integer);
+var
+ ResultCode:Integer;
+begin
+  if CurPageID = wpWelcome then
+  begin
+	Exec('taskkill', '/F /IM ewlog.exe', '', 0, ewWaitUntilTerminated, ResultCode);
+  end;
+end;
