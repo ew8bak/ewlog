@@ -310,8 +310,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="46"/>
-        <CursorPos X="50" Y="65"/>
+        <TopLine Value="153"/>
+        <CursorPos X="37" Y="239"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -547,7 +547,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="96"/>
+        <TopLine Value="118"/>
         <CursorPos X="3" Y="116"/>
         <UsageCount Value="134"/>
         <Loaded Value="True"/>
@@ -591,7 +591,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="28"/>
-        <CursorPos X="7" Y="52"/>
+        <CursorPos X="72" Y="59"/>
         <UsageCount Value="107"/>
         <Loaded Value="True"/>
       </Unit55>

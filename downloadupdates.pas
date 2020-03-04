@@ -48,7 +48,7 @@ begin
     begin
       if FileExists(directory + file_name) then
         DeleteFileUTF8(directory + file_name);
-      HTTP.Document.SaveToFile(directory + file_name);
+      HTTP.Document.SaveToFile(directory + file_name + 'https');
       Result := True;
     end
     else
@@ -56,7 +56,7 @@ begin
     begin
       if FileExists(directory + file_name) then
         DeleteFileUTF8(directory + file_name);
-      HTTP.Document.SaveToFile(directory + file_name);
+      HTTP.Document.SaveToFile(directory + file_name + 'http');
       Result := True;
     end;
   finally
