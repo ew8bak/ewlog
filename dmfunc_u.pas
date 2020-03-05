@@ -94,6 +94,9 @@ type
     function Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
     function CheckSQLiteVersion(versionDLL: string): Boolean;
     procedure GetRIGMode(rigmode:string; var mode, submode:string);
+    {$IFDEF WINDOWS}
+    function GetWindowsVersion: string;
+    {$ENDIF WINDOWS}
  //   procedure BandMode(freq: string; var b, md: integer);
     procedure Pack(var AData: TIdBytes; const AValue: longint) overload;
     procedure Pack(var AData: TIdBytes; const AString: string) overload;
@@ -136,6 +139,43 @@ implementation
 uses MainForm_U, const_u;
 
 {$R *.lfm}
+{$IFDEF WINDOWS}
+function TdmFunc.GetWindowsVersion: string;
+var
+Os : OSVERSIONINFO;
+begin
+  Os.dwOSVersionInfoSize := sizeof(Os);
+    GetVersionEx(Os);
+    if ((Os.dwMinorVersion = 1) and (Os.dwMajorVersion = 5)) then
+    begin
+    Result:=('Windows XP');
+    end
+    else if ((Os.dwMinorVersion = 0) and (Os.dwMajorVersion = 6)) then
+    begin
+    Result:=('Windows Vista');
+    end
+    else if ((Os.dwMinorVersion = 1) and (Os.dwMajorVersion = 6)) then
+    begin
+    Result:=('Windows 7');
+    end
+    else if ((Os.dwMinorVersion = 2) and (Os.dwMajorVersion = 6)) then
+    begin
+    Result:=('Windows 8');
+    end
+    else if ((Os.dwMinorVersion = 3) and (Os.dwMajorVersion = 6)) then
+    begin
+    Result:=('Windows 8.1');
+    end
+    else if ((Os.dwMinorVersion = 0) and (Os.dwMajorVersion = 10)) then
+    begin
+    Result:=('Windows 10');
+    end
+    else
+    begin
+     Result:='Major:'+IntToStr(os.dwMajorVersion)+', Minor:'+IntToStr(os.dwMinorVersion);
+    end;
+end;
+{$ENDIF WINDOWS}
 
 procedure TdmFunc.GetRIGMode(rigmode:string; var mode, submode:string);
 begin

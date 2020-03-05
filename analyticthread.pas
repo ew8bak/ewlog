@@ -17,12 +17,13 @@ type
   TanalyticThread = class(TThread)
   protected
     procedure Execute; override;
-    function Upload(call_user, os_user, version_user: string;
+    function Upload(call_user, os_user, os_version_user, version_user: string;
       start_num: integer): boolean;
   private
   public
     user_call: string;
     user_os: string;
+    user_version_os: string;
     user_version: string;
     num_start: integer;
     constructor Create;
@@ -36,7 +37,7 @@ implementation
 
 uses Forms, LCLType, HTTPSend, dmFunc_U;
 
-function TanalyticThread.Upload(call_user, os_user, version_user: string;
+function TanalyticThread.Upload(call_user, os_user, os_version_user, version_user: string;
   start_num: integer): boolean;
 var
   HTTP: THTTPSend;
@@ -48,7 +49,7 @@ begin
     temp := TStringStream.Create('');
     HTTP.MimeType := 'application/json';
     temp.Size := 0;
-    temp.WriteString('{"user":"' + call_user + '", "os":"' + os_user +
+    temp.WriteString('{"user":"' + call_user + '", "os":"' + os_user + '", "version_os":"' + os_version_user +
       '","version":"' + version_user + '","num":' + IntToStr(start_num) +
       ',"timestamp":"' + FormatDateTime('yyyy-mm-dd hh:nn', Now) + '"}');
     HTTP.Document.LoadFromStream(temp);
@@ -77,7 +78,7 @@ end;
 
 procedure TanalyticThread.Execute;
 begin
-  if Upload(user_call, user_os, user_version, num_start) then
+  if Upload(user_call, user_os, user_version, user_version_os, num_start) then
     Synchronize(@ShowResult);
 end;
 

@@ -61,11 +61,13 @@ type
     DownPATHssl: string = 'https://update.ewlog.ru/';
     DownPATH: string = 'http://notsslupdate.ewlog.ru/';
     DownEXE: string = 'setup_ewlog_x64.exe';
+    DownEXEXP: string = 'setup_ewlog_x86_xp.exe';
   {$ELSE}
   const
     DownPATHssl: string = 'https://update.ewlog.ru/';
     DownPATH: string = 'http://notsslupdate.ewlog.ru/';
     DownEXE: string = 'setup_ewlog_x86.exe';
+    DownEXEXP: string = 'setup_ewlog_x86_xp.exe';
   {$ENDIF WIN64}
     { public declarations }
   end;
@@ -182,6 +184,7 @@ begin
       user_call:=IniF.ReadString('SetLog', 'DefaultCallLogBook', '') else
       user_call:='nil';
       user_os:=type_os;
+      user_version_os:=dmFunc.GetWindowsVersion;
       user_version:=dmFunc.GetMyVersion;
       num_start:=IniF.ReadInteger('SetLog', 'StartNum', 0);
       Start;
@@ -197,11 +200,16 @@ procedure TUpdate_Form.DownloadFile;
 var
   HTTP: THTTPSend;
   MaxSize: int64;
+  DownFile: string;
 begin
   Download := 0;
-  if dmFunc.GetSize(DownPATHssl+DownEXE) = -1 then
-  MaxSize := dmFunc.GetSize(DownPATH+DownEXE) else
-  MaxSize := dmFunc.GetSize(DownPATHssl+DownEXE);
+  if dmFunc.GetWindowsVersion = 'Windows XP' then
+  DownFile:=DownEXEXP else
+  DownFile:=DownEXE;
+
+  if dmFunc.GetSize(DownPATHssl+DownFile) = -1 then
+  MaxSize := dmFunc.GetSize(DownPATH+DownFile) else
+  MaxSize := dmFunc.GetSize(DownPATHssl+DownFile);
 
   if MaxSize > 0 then
     ProgressBar1.Max := MaxSize
@@ -211,10 +219,10 @@ begin
   HTTP.Sock.OnStatus := @SynaProgress;
   Label9.Caption := rUpdateStatusDownloads;
   try
-    if HTTP.HTTPMethod('GET', DownPATHssl+DownEXE) then
-      HTTP.Document.SaveToFile(updatePATH + DownEXE) else
-    if HTTP.HTTPMethod('GET', DownPATH+DownEXE) then
-      HTTP.Document.SaveToFile(updatePATH + DownEXE)
+    if HTTP.HTTPMethod('GET', DownPATHssl+DownFile) then
+      HTTP.Document.SaveToFile(updatePATH + DownFile) else
+    if HTTP.HTTPMethod('GET', DownPATH+DownFile) then
+      HTTP.Document.SaveToFile(updatePATH + DownFile)
   finally
     HTTP.Free;
     DownloadChangeLOGFile;
