@@ -117,24 +117,6 @@ msgstr "Статус обновления: Не могу скопировать"
 msgid "Update status: Update required"
 msgstr "Статус обновления: Требует обновления"
 
-#: createjournalform_u.rallfieldsmustbefilled
-#, fuzzy
-msgctxt "createjournalform_u.rallfieldsmustbefilled"
-msgid "All fields must be filled!"
-msgstr "Всё поля должны быть заполнены!"
-
-#: createjournalform_u.rhaltlog
-#, fuzzy
-msgctxt "createjournalform_u.rhaltlog"
-msgid "The program will be completed, restart it!"
-msgstr "Выполнено успешно! Перезапустите программу!"
-
-#: createjournalform_u.rlogaddedsuccessfully
-#, fuzzy
-msgctxt "createjournalform_u.rlogaddedsuccessfully"
-msgid "Log added successfully"
-msgstr "Журнал успешно добавлен"
-
 #: eqsl.ranswerserver
 msgctxt "eqsl.ranswerserver"
 msgid "Server response:"
@@ -980,76 +962,6 @@ msgstr "Не все данные заполнены"
 #: settingscat_u.rlibhamlibnotfound
 msgid "HamLib library not found"
 msgstr "Не найдена библиотека HamLib"
-
-#: setupform_u.raddindexinlogtable
-msgctxt "setupform_u.raddindexinlogtable"
-msgid "Add index in Log_TABLE_"
-msgstr "Добавляю индекс в Log_TABLE_"
-
-#: setupform_u.raddkeyinlogtable
-msgctxt "setupform_u.raddkeyinlogtable"
-msgid "Add key in Log_TABLE_"
-msgstr "Добавляю ключ в Log_TABLE_"
-
-#: setupform_u.rcheckpath
-msgctxt "setupform_u.rcheckpath"
-msgid "Check SQLite database path"
-msgstr "Проверьте путь к базе SQLite"
-
-#: setupform_u.rcreatetablelogbookinfo
-msgctxt "setupform_u.rcreatetablelogbookinfo"
-msgid "Create table LogBookInfo"
-msgstr "Создаю таблицу LogBookInfo"
-
-#: setupform_u.rfillinlogbookinfo
-msgctxt "setupform_u.rfillinlogbookinfo"
-msgid "Fill in the LogBookInfo table"
-msgstr "Заполняю таблицу LogBookInfo"
-
-#: setupform_u.rfillinlogtable
-msgctxt "setupform_u.rfillinlogtable"
-msgid "Fill in the Log_Table_"
-msgstr "Заполняю таблицу Log_Table_"
-
-#: setupform_u.richoosenumberofrecords
-msgctxt "setupform_u.richoosenumberofrecords"
-msgid "I choose the number of records"
-msgstr "Выбираю количество записей"
-
-#: setupform_u.rnotconnected
-msgctxt "setupform_u.rnotconnected"
-msgid "No connection to the server. Go back to the connection settings step and check all the settings"
-msgstr "Нет подключения к серверу. Вернитесь к этапу настроек соединения и проверьте все настройки"
-
-#: setupform_u.rnotuser
-msgctxt "setupform_u.rnotuser"
-msgid "No database was found for this user. Check the user and database settings in the connection settings step"
-msgstr "База данных не была найдена для этого пользователя. Проверьте настройки пользователя и базы данных на этапе настроек соединения"
-
-#: setupform_u.rsuccessful
-msgctxt "setupform_u.rsuccessful"
-msgid "Successful"
-msgstr "Готово"
-
-#: setupform_u.rsuccessfulnext
-msgctxt "setupform_u.rsuccessfulnext"
-msgid "Successful! Click NEXT"
-msgstr "Готово! Нажмите далее"
-
-#: setupform_u.rvaluecorr
-msgctxt "setupform_u.rvaluecorr"
-msgid "One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically"
-msgstr "Одно или несколько полей не заполнены или заполнены неправильно! Все поля и правильный локатор должны быть заполнены. Долгота и широта устанавливаются автоматически"
-
-#: setupform_u.rvalueempty
-msgctxt "setupform_u.rvalueempty"
-msgid "One or more values are empty! Check"
-msgstr "Одно или несколько значений не заполнено. Проверьте"
-
-#: setupform_u.rwait
-msgctxt "setupform_u.rwait"
-msgid "Wait"
-msgstr "Ожидание"
 
 #: simplexml.ssimplexmlerror1
 msgid "Error when retriving element list: index out of bounds"
@@ -5077,84 +4989,4 @@ msgstr "Процесс обновления"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
-
-#: updateform_u.rbuttoncheck
-msgctxt "updateform_u.rbuttoncheck"
-msgid "Check"
-msgstr "Проверить"
-
-#: updateform_u.rbuttondownload
-msgctxt "updateform_u.rbuttondownload"
-msgid "Download"
-msgstr "Загрузить"
-
-#: updateform_u.rbuttoninstall
-msgctxt "updateform_u.rbuttoninstall"
-msgid "Install"
-msgstr "Установить"
-
-#: updateform_u.rbytes
-msgctxt "updateform_u.rbytes"
-msgid " bytes"
-msgstr " байт"
-
-#: updateform_u.rsizefile
-msgctxt "updateform_u.rsizefile"
-msgid "File size: "
-msgstr "Размер файла: "
-
-#: updateform_u.rupdatedontcopy
-msgctxt "updateform_u.rupdatedontcopy"
-msgid "Do not copy"
-msgstr "Не могу скопировать"
-
-#: updateform_u.rupdaterequired
-msgctxt "updateform_u.rupdaterequired"
-msgid "Update required"
-msgstr "Требует обновления"
-
-#: updateform_u.rupdatestatus
-msgctxt "updateform_u.rupdatestatus"
-msgid "Update status: "
-msgstr "Статус обновления: "
-
-#: updateform_u.rupdatestatusactual
-msgctxt "updateform_u.rupdatestatusactual"
-msgid "Update status: Actual"
-msgstr "Статус обновления: Актуально"
-
-#: updateform_u.rupdatestatuscheckupdate
-msgctxt "updateform_u.rupdatestatuscheckupdate"
-msgid "Update status: Check version"
-msgstr "Статус обновления: Проверка версии"
-
-#: updateform_u.rupdatestatusdownload
-msgctxt "updateform_u.rupdatestatusdownload"
-msgid "Update status: Download?"
-msgstr "Статус обновления: Загрузить?"
-
-#: updateform_u.rupdatestatusdownloadbase
-msgctxt "updateform_u.rupdatestatusdownloadbase"
-msgid "Update status: Download Database"
-msgstr "Статус обновления: Загрузка базы"
-
-#: updateform_u.rupdatestatusdownloadcallbook
-msgctxt "updateform_u.rupdatestatusdownloadcallbook"
-msgid "Update status: Download CallBook"
-msgstr "Статус обновления: Загрузка Callbook"
-
-#: updateform_u.rupdatestatusdownloadchanges
-msgctxt "updateform_u.rupdatestatusdownloadchanges"
-msgid "Update status: Download Changes"
-msgstr "Статус обновления: Загрузка изменений"
-
-#: updateform_u.rupdatestatusdownloads
-msgctxt "updateform_u.rupdatestatusdownloads"
-msgid "Update status: Downloads"
-msgstr "Статус обновления: Загрузка"
-
-#: updateform_u.rupdatestatusrequiredinstall
-msgctxt "updateform_u.rupdatestatusrequiredinstall"
-msgid "Update status: Installation required"
-msgstr "Статус обновления: Требует обновления"
 

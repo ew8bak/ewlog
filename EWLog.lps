@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Релиз"/>
-    <Units Count="135">
+    <Units Count="136">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="2345"/>
-        <CursorPos X="12" Y="2354"/>
+        <TopLine Value="1427"/>
+        <CursorPos X="68" Y="1442"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -81,10 +81,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="98"/>
+        <TopLine Value="55"/>
         <CursorPos X="7" Y="98"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="createjournalform_u.pas"/>
@@ -117,12 +118,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="1508"/>
+        <TopLine Value="1504"/>
         <CursorPos X="7" Y="1520"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="simplexml.pas"/>
@@ -310,9 +311,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="257"/>
-        <CursorPos X="21" Y="267"/>
+        <TopLine Value="19"/>
+        <CursorPos Y="56"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -517,7 +519,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="95"/>
         <CursorPos X="4" Y="172"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="166"/>
       </Unit46>
       <Unit47>
         <Filename Value="clublog.pas"/>
@@ -525,7 +527,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="43" Y="11"/>
-        <UsageCount Value="157"/>
+        <UsageCount Value="161"/>
       </Unit47>
       <Unit48>
         <Filename Value="qrzcom.pas"/>
@@ -533,7 +535,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos Y="87"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="153"/>
       </Unit48>
       <Unit49>
         <Filename Value="qso_record.pas"/>
@@ -541,16 +543,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="8" Y="43"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="140"/>
       </Unit49>
       <Unit50>
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="118"/>
+        <TopLine Value="116"/>
         <CursorPos X="3" Y="116"/>
-        <UsageCount Value="134"/>
+        <UsageCount Value="138"/>
         <Loaded Value="True"/>
       </Unit50>
       <Unit51>
@@ -558,7 +560,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="12" Y="11"/>
-        <UsageCount Value="134"/>
+        <UsageCount Value="138"/>
         <Loaded Value="True"/>
       </Unit51>
       <Unit52>
@@ -567,7 +569,7 @@
         <UnitName Value="InitINI"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="13"/>
-        <UsageCount Value="131"/>
+        <UsageCount Value="135"/>
       </Unit52>
       <Unit53>
         <Filename Value="download_lotw.pas"/>
@@ -575,7 +577,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="102"/>
         <CursorPos X="33" Y="108"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="122"/>
       </Unit53>
       <Unit54>
         <Filename Value="download_eqslcc.pas"/>
@@ -583,16 +585,15 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
         <CursorPos X="33" Y="11"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="117"/>
       </Unit54>
       <Unit55>
         <Filename Value="downloadupdates.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadUpdates"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="6"/>
         <CursorPos X="90" Y="61"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="111"/>
         <Loaded Value="True"/>
       </Unit55>
       <Unit56>
@@ -602,7 +603,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="27" Y="61"/>
-        <UsageCount Value="99"/>
+        <UsageCount Value="103"/>
       </Unit56>
       <Unit57>
         <Filename Value="fldigimodem.pas"/>
@@ -611,7 +612,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="183"/>
         <CursorPos X="85" Y="12"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="83"/>
       </Unit57>
       <Unit58>
         <Filename Value="analyticthread.pas"/>
@@ -619,7 +620,7 @@
         <UnitName Value="analyticThread"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="33" Y="11"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="78"/>
       </Unit58>
       <Unit59>
         <Filename Value="RegExpr.pas"/>
@@ -1175,127 +1176,135 @@
         <CursorPos X="3" Y="315"/>
         <UsageCount Value="9"/>
       </Unit134>
+      <Unit135>
+        <Filename Value="..\.lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
+        <UnitName Value="lNet"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1531"/>
+        <CursorPos Y="1551"/>
+        <UsageCount Value="10"/>
+      </Unit135>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="52" Column="38" TopLine="32"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3688" TopLine="3671"/>
       </Position1>
       <Position2>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="46" TopLine="32"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3760" TopLine="3720"/>
       </Position2>
       <Position3>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="48" TopLine="32"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3679" TopLine="3659"/>
       </Position3>
       <Position4>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="49" TopLine="32"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3685" TopLine="3659"/>
       </Position4>
       <Position5>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="46" TopLine="28"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3686" TopLine="3659"/>
       </Position5>
       <Position6>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="48" TopLine="28"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3688" TopLine="3659"/>
       </Position6>
       <Position7>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="50" TopLine="28"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3690" TopLine="3659"/>
       </Position7>
       <Position8>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="59" TopLine="28"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3703" TopLine="3684"/>
       </Position8>
       <Position9>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="46" TopLine="28"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3705" TopLine="3684"/>
       </Position9>
       <Position10>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="48" TopLine="28"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3706" TopLine="3684"/>
       </Position10>
       <Position11>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="50" TopLine="28"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3707" TopLine="3684"/>
       </Position11>
       <Position12>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="210" Column="25" TopLine="195"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3709" TopLine="3684"/>
       </Position12>
       <Position13>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="211" TopLine="195"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3710" TopLine="3684"/>
       </Position13>
       <Position14>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="204" Column="3" TopLine="75"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3711" TopLine="3684"/>
       </Position14>
       <Position15>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="256" Column="3" TopLine="254"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3712" TopLine="3684"/>
       </Position15>
       <Position16>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="46" Column="15" TopLine="26"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3713" TopLine="3684"/>
       </Position16>
       <Position17>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="200" Column="10" TopLine="176"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3717" TopLine="3685"/>
       </Position17>
       <Position18>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="201" TopLine="176"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3727" TopLine="3708"/>
       </Position18>
       <Position19>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="203" TopLine="176"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3737" TopLine="3708"/>
       </Position19>
       <Position20>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="102" Column="65" TopLine="72"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3760" TopLine="3741"/>
       </Position20>
       <Position21>
-        <Filename Value="downloadupdates.pas"/>
-        <Caret Line="101" Column="28" TopLine="71"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3672" Column="34" TopLine="3659"/>
       </Position21>
       <Position22>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="47" Column="14" TopLine="27"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="5624" Column="20" TopLine="5592"/>
       </Position22>
       <Position23>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="148" Column="56" TopLine="129"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="5629" Column="25" TopLine="5597"/>
       </Position23>
       <Position24>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="147" TopLine="135"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="5664" Column="29" TopLine="5632"/>
       </Position24>
       <Position25>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="148" TopLine="135"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="203" Column="18" TopLine="184"/>
       </Position25>
       <Position26>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="151" TopLine="135"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="339" Column="14" TopLine="307"/>
       </Position26>
       <Position27>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="149" Column="86" TopLine="135"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1312" Column="18" TopLine="1280"/>
       </Position27>
       <Position28>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="150" Column="92" TopLine="130"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1340" Column="18" TopLine="1308"/>
       </Position28>
       <Position29>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="268" Column="4" TopLine="255"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1431" Column="36" TopLine="1425"/>
       </Position29>
       <Position30>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1517" Column="26" TopLine="1502"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="1460" Column="30" TopLine="1428"/>
       </Position30>
     </JumpHistory>
     <RunParams>

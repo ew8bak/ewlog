@@ -53,9 +53,7 @@ type
       const Value: string);
     procedure DownloadFile;
     procedure DownloadChangeLOGFile;
-    {$IFDEF WINDOWS}
-    function RunAsAdmin(const Handler: Hwnd; const Path, Params: string): boolean;
-    {$ENDIF WINDOWS}
+
     { private declarations }
   public
     {$IFDEF WIN64}
@@ -146,8 +144,8 @@ begin
         Label9.Caption := rUpdateStatusDownload;
         Button1.Caption := rButtonDownload;
       if dmFunc.GetSize(DownPATHssl+DownEXE) = -1 then
-        label10.Caption := rSizeFile + FormatFloat('0.##', dmFunc.GetSize(DownPATH+DownEXE)/1048576) + rMBytes else
-        label10.Caption := rSizeFile + FormatFloat('0.##', dmFunc.GetSize(DownPATHssl+DownEXE)/1048576) + rMBytes
+        label10.Caption := rSizeFile + FormatFloat('0.##', dmFunc.GetSize(DownPATH+DownEXE)/1048576) + ' ' + rMBytes else
+        label10.Caption := rSizeFile + FormatFloat('0.##', dmFunc.GetSize(DownPATHssl+DownEXE)/1048576) + ' ' + rMBytes
       end
       else
       begin
@@ -261,7 +259,6 @@ begin
   else
   if Button1.Caption = rButtonInstall then
     {$IFDEF WINDOWS}
-    //RunAsAdmin(MainForm.Handle, updatePATH + DownEXE, '')
     dmFunc.RunProgram(updatePATH + DownEXE, '')
     {$ELSE}
     ShowMessage(rOnlyWindows)
@@ -289,22 +286,5 @@ begin
     Application.ProcessMessages;
   end;
 end;
-{$IFDEF WINDOWS}
-function TUpdate_Form.RunAsAdmin(const Handler: Hwnd;
-  const Path, Params: string): boolean;
-var
-  sei: TShellExecuteInfoA;
-begin
-  FillChar(sei, SizeOf(sei), 0);
-  sei.cbSize := SizeOf(sei);
-  sei.Wnd := Handler;
-  sei.fMask := SEE_MASK_FLAG_DDEWAIT or SEE_MASK_FLAG_NO_UI;
-  sei.lpVerb := 'runas';
-  sei.lpFile := PAnsiChar(Path);
-  sei.lpParameters := PAnsiChar(Params);
-  sei.nShow := SW_SHOWNORMAL;
-  Result := ShellExecuteExA(@sei);
-end;
-{$ENDIF WINDOWS}
 
 end.
