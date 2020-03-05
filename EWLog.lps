@@ -309,12 +309,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="19"/>
-        <CursorPos Y="56"/>
+        <TopLine Value="130"/>
+        <CursorPos X="58" Y="64"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit28>
       <Unit29>
         <Filename Value="changelog_form_u.pas"/>
@@ -588,7 +588,9 @@
         <Filename Value="downloadupdates.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadUpdates"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
+        <TopLine Value="76"/>
         <CursorPos X="90" Y="61"/>
         <UsageCount Value="111"/>
         <Loaded Value="True"/>
