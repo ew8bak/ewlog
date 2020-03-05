@@ -184,7 +184,11 @@ begin
       user_call:=IniF.ReadString('SetLog', 'DefaultCallLogBook', '') else
       user_call:='nil';
       user_os:=type_os;
+      {$IFDEF WINDOWS}
       user_version_os:=dmFunc.GetWindowsVersion;
+      {$ELSE}
+      user_version_os:='Linux NoNaMe';
+      {$ENDIF WINDOWS}
       user_version:=dmFunc.GetMyVersion;
       num_start:=IniF.ReadInteger('SetLog', 'StartNum', 0);
       Start;
@@ -203,8 +207,10 @@ var
   DownFile: string;
 begin
   Download := 0;
+  {$IFDEF WINDOWS}
   if dmFunc.GetWindowsVersion = 'Windows XP' then
   DownFile:=DownEXEXP else
+  {$ENDIF WINDOWS}
   DownFile:=DownEXE;
 
   if dmFunc.GetSize(DownPATHssl+DownFile) = -1 then
