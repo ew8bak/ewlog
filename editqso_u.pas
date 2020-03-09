@@ -143,7 +143,7 @@ var
 
 implementation
 
-uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_Form_U, ConfigForm_U;
+uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_Form_U, ConfigForm_U, const_u;
 
 {$R *.lfm}
 
@@ -208,6 +208,7 @@ var
   DigiBand: double;
   ind: integer;
   FREQ_string: string;
+  NameBand: String;
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
@@ -226,7 +227,15 @@ begin
     Params.ParamByName('CallSign').AsString := Edit1.Text;
     Params.ParamByName('QSODate').AsDateTime := DateEdit1.Date;
     Params.ParamByName('QSOTime').AsString := TimeToStr(DateTimePicker1.Time, FmtStngs);
-    Params.ParamByName('QSOBand').AsString := ComboBox1.Text;
+
+    if Pos('M', ComboBox1.Text) > 0 then
+        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+          ComboBox1.Text, ComboBox2.Text))
+      else
+        NameBand := ComboBox1.Text;
+
+    Params.ParamByName('QSOBand').AsString :=  NameBand;
+
     Params.ParamByName('QSOMode').AsString := ComboBox2.Text;
     Params.ParamByName('QSOSubMode').AsString := ComboBox9.Text;
     Params.ParamByName('QSOReportSent').AsString := Edit2.Text;
