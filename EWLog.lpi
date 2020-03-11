@@ -26,8 +26,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="2"/>
-      <RevisionNr Value="2"/>
-      <BuildNr Value="512"/>
+      <RevisionNr Value="3"/>
+      <BuildNr Value="522"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="59">
+    <Units Count="60">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -542,6 +542,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="analyticThread"/>
       </Unit58>
+      <Unit59>
+        <Filename Value="getsessionid.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="getSessionID"/>
+      </Unit59>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -587,9 +587,17 @@ msgctxt "resourcestr.rnotcallsign"
 msgid "No callsign entered to view"
 msgstr ""
 
+#: resourcestr.rnotconfigqrzcom
+msgid "Specify the Login and Password for accessing the XML API QRZ.COM in the settings"
+msgstr ""
+
 #: resourcestr.rnotconfigqrzru
 msgctxt "resourcestr.rnotconfigqrzru"
-msgid "Specify the Login and Password for accessing the XML API QRZ.ru in the settings"
+msgid "Specify the Login and Password for accessing the XML API QRZ.RU in the settings"
+msgstr ""
+
+#: resourcestr.rnotconfigsprav
+msgid "Default reference book is not specified. Go to the program settings and select the QRZ.RU or QRZ.COM reference book"
 msgstr ""
 
 #: resourcestr.rnotconnected
@@ -1231,6 +1239,7 @@ msgid "Use bands in meters"
 msgstr ""
 
 #: tconfigform.checkbox3.caption
+msgctxt "tconfigform.checkbox3.caption"
 msgid "Use as a reference?"
 msgstr ""
 
@@ -1244,6 +1253,11 @@ msgstr ""
 
 #: tconfigform.checkbox6.caption
 msgid "Send MY_STATE and MY_GRIDSQUARE"
+msgstr ""
+
+#: tconfigform.checkbox7.caption
+msgctxt "tconfigform.checkbox7.caption"
+msgid "Use as a reference?"
 msgstr ""
 
 #: tconfigform.groupbox1.caption
@@ -1262,6 +1276,10 @@ msgstr ""
 
 #: tconfigform.groupbox4.caption
 msgid "QRZ.RU XML API"
+msgstr ""
+
+#: tconfigform.groupbox5.caption
+msgid "QRZ.COM XML API"
 msgstr ""
 
 #: tconfigform.label1.caption
@@ -1319,6 +1337,16 @@ msgstr ""
 
 #: tconfigform.label20.caption
 msgid "to QSL Info"
+msgstr ""
+
+#: tconfigform.label21.caption
+msgctxt "tconfigform.label21.caption"
+msgid "Login"
+msgstr ""
+
+#: tconfigform.label22.caption
+msgctxt "tconfigform.label22.caption"
+msgid "Password"
 msgstr ""
 
 #: tconfigform.label3.caption

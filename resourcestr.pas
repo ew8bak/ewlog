@@ -77,7 +77,10 @@ resourcestring
   rCleanUpJournal = 'Are you sure you want to clear all entries?';
   rErrorXMLAPI = 'Error XML API:';
   rNotConfigQRZRU =
-    'Specify the Login and Password for accessing the XML API QRZ.ru in the settings';
+    'Specify the Login and Password for accessing the XML API QRZ.RU in the settings';
+  rNotConfigQRZCOM =
+    'Specify the Login and Password for accessing the XML API QRZ.COM in the settings';
+  rNotConfigSprav = 'Default reference book is not specified. Go to the program settings and select the QRZ.RU or QRZ.COM reference book';
   rInformationFromQRZRU = 'Information from QRZ.ru';
   rInformationFromQRZCOM = 'Information from QRZ.com';
   rInformationFromHamQTH = 'Information from HAMQTH';

@@ -465,7 +465,7 @@ object ConfigForm: TConfigForm
   object CheckBox2: TCheckBox
     Left = 568
     Height = 23
-    Top = 168
+    Top = 256
     Width = 136
     Caption = 'Use bands in meters'
     OnChange = CheckBox2Change
@@ -473,17 +473,17 @@ object ConfigForm: TConfigForm
   end
   object GroupBox4: TGroupBox
     Left = 568
-    Height = 152
+    Height = 112
     Top = 8
     Width = 224
     Caption = 'QRZ.RU XML API'
-    ClientHeight = 136
+    ClientHeight = 96
     ClientWidth = 222
     TabOrder = 6
     object Edit6: TEdit
       Left = 72
       Height = 25
-      Top = 24
+      Top = 8
       Width = 136
       Font.Height = -12
       ParentFont = False
@@ -492,7 +492,7 @@ object ConfigForm: TConfigForm
     object Edit7: TEdit
       Left = 72
       Height = 25
-      Top = 56
+      Top = 40
       Width = 136
       Font.Height = -12
       ParentFont = False
@@ -504,7 +504,7 @@ object ConfigForm: TConfigForm
       AnchorSideRight.Control = Edit6
       Left = 37
       Height = 13
-      Top = 30
+      Top = 14
       Width = 30
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -517,7 +517,7 @@ object ConfigForm: TConfigForm
       AnchorSideRight.Control = Edit7
       Left = 16
       Height = 13
-      Top = 62
+      Top = 46
       Width = 51
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -527,7 +527,7 @@ object ConfigForm: TConfigForm
     object CheckBox3: TCheckBox
       Left = 0
       Height = 23
-      Top = 104
+      Top = 70
       Width = 133
       Caption = 'Use as a reference?'
       DoubleBuffered = False
@@ -539,7 +539,7 @@ object ConfigForm: TConfigForm
   object CheckBox5: TCheckBox
     Left = 568
     Height = 23
-    Top = 192
+    Top = 280
     Width = 144
     Caption = 'Printing with preview'
     OnChange = CheckBox2Change
@@ -548,7 +548,7 @@ object ConfigForm: TConfigForm
   object CheckBox6: TCheckBox
     Left = 568
     Height = 23
-    Top = 216
+    Top = 304
     Width = 222
     Caption = 'Send MY_STATE and MY_GRIDSQUARE'
     OnChange = CheckBox6Change
@@ -560,11 +560,76 @@ object ConfigForm: TConfigForm
     AnchorSideTop.Side = asrBottom
     Left = 593
     Height = 13
-    Top = 239
+    Top = 327
     Width = 61
     BorderSpacing.Left = 25
     Caption = 'to QSL Info'
     ParentColor = False
+  end
+  object GroupBox5: TGroupBox
+    Left = 568
+    Height = 112
+    Top = 128
+    Width = 224
+    Caption = 'QRZ.COM XML API'
+    ClientHeight = 96
+    ClientWidth = 222
+    TabOrder = 9
+    object Edit8: TEdit
+      Left = 72
+      Height = 25
+      Top = 8
+      Width = 136
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Edit9: TEdit
+      Left = 72
+      Height = 25
+      Top = 40
+      Width = 136
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Label21: TLabel
+      AnchorSideTop.Control = Edit8
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Edit8
+      Left = 37
+      Height = 13
+      Top = 14
+      Width = 30
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Login'
+      ParentColor = False
+    end
+    object Label22: TLabel
+      AnchorSideTop.Control = Edit9
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Edit9
+      Left = 16
+      Height = 13
+      Top = 46
+      Width = 51
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Password'
+      ParentColor = False
+    end
+    object CheckBox7: TCheckBox
+      Left = 0
+      Height = 23
+      Top = 72
+      Width = 133
+      Caption = 'Use as a reference?'
+      DoubleBuffered = False
+      OnChange = CheckBox7Change
+      ParentDoubleBuffered = False
+      TabOrder = 2
+    end
   end
   object CheckCallBook: TSQLQuery
     FieldDefs = <>

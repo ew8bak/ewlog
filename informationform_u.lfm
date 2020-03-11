@@ -1,7 +1,7 @@
 object InformationForm: TInformationForm
-  Left = 878
+  Left = 380
   Height = 658
-  Top = 184
+  Top = 213
   Width = 411
   BorderStyle = bsDialog
   Caption = 'Information'
@@ -20,18 +20,18 @@ object InformationForm: TInformationForm
     Top = 6
     Width = 396
     Caption = 'Callsign'
-    ClientHeight = 224
-    ClientWidth = 392
+    ClientHeight = 229
+    ClientWidth = 394
     Font.Height = -13
     ParentFont = False
     TabOrder = 0
     object Label1: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 52
-      Height = 15
+      Left = 55
+      Height = 13
       Top = 6
-      Width = 45
+      Width = 44
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'Callsign:'
@@ -42,10 +42,10 @@ object InformationForm: TInformationForm
     object Label2: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 51
-      Height = 15
+      Left = 52
+      Height = 13
       Top = 24
-      Width = 46
+      Width = 47
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'Country:'
@@ -56,8 +56,8 @@ object InformationForm: TInformationForm
     object Label3: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 62
-      Height = 15
+      Left = 64
+      Height = 13
       Top = 42
       Width = 35
       Anchors = [akTop, akRight]
@@ -70,10 +70,10 @@ object InformationForm: TInformationForm
     object Label4: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 43
-      Height = 15
+      Left = 42
+      Height = 13
       Top = 60
-      Width = 54
+      Width = 57
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'Address 1:'
@@ -85,9 +85,9 @@ object InformationForm: TInformationForm
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 52
-      Height = 15
+      Height = 13
       Top = 78
-      Width = 45
+      Width = 47
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'Address:'
@@ -98,10 +98,10 @@ object InformationForm: TInformationForm
     object Label6: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 72
-      Height = 15
+      Left = 73
+      Height = 13
       Top = 96
-      Width = 25
+      Width = 26
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'Grid:'
@@ -112,8 +112,8 @@ object InformationForm: TInformationForm
     object Label7: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 32
-      Height = 15
+      Left = 34
+      Height = 13
       Top = 114
       Width = 65
       Anchors = [akTop, akRight]
@@ -126,10 +126,10 @@ object InformationForm: TInformationForm
     object Label8: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 68
-      Height = 15
+      Left = 67
+      Height = 13
       Top = 132
-      Width = 29
+      Width = 32
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'State:'
@@ -140,10 +140,10 @@ object InformationForm: TInformationForm
     object Label9: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 40
-      Height = 15
+      Left = 38
+      Height = 13
       Top = 150
-      Width = 57
+      Width = 61
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'Telephone:'
@@ -154,10 +154,10 @@ object InformationForm: TInformationForm
     object Label10: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 60
-      Height = 15
+      Left = 63
+      Height = 13
       Top = 168
-      Width = 37
+      Width = 36
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'E-Mail:'
@@ -168,10 +168,10 @@ object InformationForm: TInformationForm
     object Label11: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 74
-      Height = 15
+      Left = 77
+      Height = 13
       Top = 186
-      Width = 23
+      Width = 22
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'ICQ:'
@@ -182,10 +182,10 @@ object InformationForm: TInformationForm
     object Label12: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 52
-      Height = 15
+      Left = 53
+      Height = 13
       Top = 204
-      Width = 45
+      Width = 46
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
       Caption = 'QSL VIA:'
@@ -196,9 +196,9 @@ object InformationForm: TInformationForm
     object Label14: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 6
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -208,9 +208,9 @@ object InformationForm: TInformationForm
     object Label15: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 24
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -220,9 +220,9 @@ object InformationForm: TInformationForm
     object Label16: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 42
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -232,9 +232,9 @@ object InformationForm: TInformationForm
     object Label17: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 60
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -244,9 +244,9 @@ object InformationForm: TInformationForm
     object Label18: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 78
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -256,9 +256,9 @@ object InformationForm: TInformationForm
     object Label19: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 96
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -268,9 +268,9 @@ object InformationForm: TInformationForm
     object Label20: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 114
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -280,9 +280,9 @@ object InformationForm: TInformationForm
     object Label21: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 132
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -292,9 +292,9 @@ object InformationForm: TInformationForm
     object Label22: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 150
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -304,9 +304,9 @@ object InformationForm: TInformationForm
     object Label23: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 168
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -316,9 +316,9 @@ object InformationForm: TInformationForm
     object Label24: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 186
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -328,9 +328,9 @@ object InformationForm: TInformationForm
     object Label25: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 204
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -340,9 +340,9 @@ object InformationForm: TInformationForm
     object Label26: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 100
-      Height = 15
+      Height = 13
       Top = 204
-      Width = 20
+      Width = 23
       BorderSpacing.Left = 100
       Caption = 'text'
       Font.Height = -12
@@ -356,16 +356,16 @@ object InformationForm: TInformationForm
     Top = 258
     Width = 120
     Caption = 'Search in:'
-    ClientHeight = 58
-    ClientWidth = 116
+    ClientHeight = 62
+    ClientWidth = 118
     Font.Height = -12
     ParentFont = False
     TabOrder = 1
     object CheckBox1: TCheckBox
       Left = 12
-      Height = 19
+      Height = 23
       Top = 0
-      Width = 61
+      Width = 69
       Caption = 'QRZ.RU'
       Checked = True
       State = cbChecked
@@ -373,9 +373,9 @@ object InformationForm: TInformationForm
     end
     object CheckBox2: TCheckBox
       Left = 12
-      Height = 19
+      Height = 23
       Top = 18
-      Width = 72
+      Width = 76
       Caption = 'HAMQTH'
       Checked = True
       State = cbChecked
@@ -383,9 +383,9 @@ object InformationForm: TInformationForm
     end
     object CheckBox3: TCheckBox
       Left = 12
-      Height = 19
+      Height = 23
       Top = 36
-      Width = 74
+      Width = 79
       Caption = 'QRZ.COM'
       Checked = True
       State = cbChecked
@@ -459,9 +459,9 @@ object InformationForm: TInformationForm
   end
   object Label13: TLabel
     Left = 6
-    Height = 15
+    Height = 13
     Top = 342
-    Width = 188
+    Width = 198
     Caption = 'Upload photos from the Internet to:'
     Font.Height = -12
     ParentColor = False
@@ -469,7 +469,7 @@ object InformationForm: TInformationForm
   end
   object DirectoryEdit1: TDirectoryEdit
     Left = 192
-    Height = 21
+    Height = 24
     Top = 336
     Width = 208
     ShowHidden = False
@@ -487,12 +487,5 @@ object InformationForm: TInformationForm
     Width = 396
     Proportional = True
     Stretch = True
-  end
-  object Timer1: TTimer
-    Enabled = False
-    OnTimer = Timer1StartTimer
-    OnStartTimer = Timer1StartTimer
-    left = 309
-    top = 53
   end
 end

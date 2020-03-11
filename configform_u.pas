@@ -45,6 +45,7 @@ type
     CheckBox4: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
+    CheckBox7: TCheckBox;
     Edit1: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
@@ -54,11 +55,14 @@ type
     Edit5: TEdit;
     Edit6: TEdit;
     Edit7: TEdit;
+    Edit8: TEdit;
+    Edit9: TEdit;
     FileNameEdit1: TFileNameEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
+    GroupBox5: TGroupBox;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -72,6 +76,8 @@ type
     Label19: TLabel;
     Label2: TLabel;
     Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -91,6 +97,7 @@ type
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
     procedure CheckBox6Change(Sender: TObject);
+    procedure CheckBox7Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SaveINI;
@@ -144,9 +151,19 @@ begin
     IniF.WriteString('SetLog', 'ShowBand', 'True')
   else
     IniF.WriteString('SetLog', 'ShowBand', 'False');
+
+  if CheckBox7.Checked = True then
+    IniF.WriteString('SetLog', 'SpravQRZCOM', 'True')
+  else
+    IniF.WriteString('SetLog', 'SpravQRZCOM', 'False');
+
   IniF.WriteBool('SetLog', 'StateToQSLInfo', CheckBox6.Checked);
   IniF.WriteString('SetLog', 'QRZ_Login', Edit6.Text);
   IniF.WriteString('SetLog', 'QRZ_Pass', Edit7.Text);
+
+  IniF.WriteString('SetLog', 'QRZCOM_Login', Edit8.Text);
+  IniF.WriteString('SetLog', 'QRZCOM_Pass', Edit9.Text);
+
   if CheckBox3.Checked = True then
     IniF.WriteString('SetLog', 'Sprav', 'True')
   else
@@ -189,12 +206,20 @@ begin
   Edit6.Text := IniF.ReadString('SetLog', 'QRZ_Login', '');
   Edit7.Text := IniF.ReadString('SetLog', 'QRZ_Pass', '');
 
+  Edit8.Text := IniF.ReadString('SetLog', 'QRZCOM_Login', '');
+  Edit9.Text := IniF.ReadString('SetLog', 'QRZCOM_Pass', '');
+
   if IniF.ReadString('SetLog', 'Sprav', '') = 'True' then
     CheckBox3.Checked := True
   else
     CheckBox3.Checked := False;
 
- CheckBox6.Checked:=IniF.ReadBool('SetLog', 'StateToQSLInfo', False);
+  if IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'True' then
+    CheckBox7.Checked := True
+  else
+    CheckBox7.Checked := False;
+
+  CheckBox6.Checked := IniF.ReadBool('SetLog', 'StateToQSLInfo', False);
 
   if IniF.ReadBool('SetLog', 'PrintPrev', False) = True then
     CheckBox5.Checked := True
@@ -249,6 +274,7 @@ begin
   if CheckBox1.Checked = True then
   begin
     CheckBox3.Checked := False;
+    CheckBox7.Checked := False;
     MainForm.CallBookLiteConnection.Connected := True;
   end;
   if CheckBox1.Checked = True then
@@ -288,6 +314,7 @@ begin
   if CheckBox3.Checked = True then
   begin
     CheckBox1.Checked := False;
+    CheckBox7.Checked := False;
     MainForm.CallBookLiteConnection.Connected := False;
   end;
   if CheckBox3.Checked = True then
@@ -299,6 +326,20 @@ end;
 procedure TConfigForm.CheckBox6Change(Sender: TObject);
 begin
   StateToQSLInfo := CheckBox6.Checked;
+end;
+
+procedure TConfigForm.CheckBox7Change(Sender: TObject);
+begin
+  if CheckBox7.Checked = True then
+  begin
+    CheckBox1.Checked := False;
+    CheckBox3.Checked := False;
+    MainForm.CallBookLiteConnection.Connected := False;
+  end;
+  if CheckBox7.Checked = True then
+    IniF.WriteString('SetLog', 'SpravQRZCOM', 'True')
+  else
+    IniF.WriteString('SetLog', 'SpravQRZCOM', 'False');
 end;
 
 procedure TConfigForm.FormCreate(Sender: TObject);
@@ -442,12 +483,13 @@ begin
   Label12.Caption := rStatusUpdateDownload;
   try
     if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/callbook.db') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator + 'callbook.db');
+      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator +
+        'callbook.db');
   finally
     HTTP.Free;
 
-    if FileUtil.CopyFile(updatePATH + 'updates' + DirectorySeparator + 'callbook.db',
-      updatePATH + 'callbook.db', True, True) then
+    if FileUtil.CopyFile(updatePATH + 'updates' + DirectorySeparator +
+      'callbook.db', updatePATH + 'callbook.db', True, True) then
     begin
         {$IFDEF UNIX}
       sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';

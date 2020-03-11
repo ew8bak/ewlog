@@ -35,5 +35,9 @@
 {"hash":103590479,"name":"tconfigform.checkbox3.caption","sourcebytes":[85,115,101,32,97,115,32,97,32,114,101,102,101,114,101,110,99,101,63],"value":"Use as a reference?"},
 {"hash":1496759,"name":"tconfigform.checkbox5.caption","sourcebytes":[80,114,105,110,116,105,110,103,32,119,105,116,104,32,112,114,101,118,105,101,119],"value":"Printing with preview"},
 {"hash":77198709,"name":"tconfigform.checkbox6.caption","sourcebytes":[83,101,110,100,32,77,89,95,83,84,65,84,69,32,97,110,100,32,77,89,95,71,82,73,68,83,81,85,65,82,69],"value":"Send MY_STATE and MY_GRIDSQUARE"},
-{"hash":127922607,"name":"tconfigform.label20.caption","sourcebytes":[116,111,32,81,83,76,32,73,110,102,111],"value":"to QSL Info"}
+{"hash":127922607,"name":"tconfigform.label20.caption","sourcebytes":[116,111,32,81,83,76,32,73,110,102,111],"value":"to QSL Info"},
+{"hash":37105513,"name":"tconfigform.groupbox5.caption","sourcebytes":[81,82,90,46,67,79,77,32,88,77,76,32,65,80,73],"value":"QRZ.COM XML API"},
+{"hash":5463550,"name":"tconfigform.label21.caption","sourcebytes":[76,111,103,105,110],"value":"Login"},
+{"hash":145417188,"name":"tconfigform.label22.caption","sourcebytes":[80,97,115,115,119,111,114,100],"value":"Password"},
+{"hash":103590479,"name":"tconfigform.checkbox7.caption","sourcebytes":[85,115,101,32,97,115,32,97,32,114,101,102,101,114,101,110,99,101,63],"value":"Use as a reference?"}
 ]}

@@ -2268,9 +2268,9 @@ begin
     if (CallBookLiteConnection.Connected = True) and
       (IniF.ReadString('SetLog', 'Sprav', '') = 'False') then
       SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
-    if (CallBookLiteConnection.Connected = False) and
-      (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then
-      InformationForm.QRZRUsprav(EditButton1.Text, MenuItem111.Checked);
+//    if (CallBookLiteConnection.Connected = False) and
+//      (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then
+//      InformationForm.QRZRUsprav(EditButton1.Text, MenuItem111.Checked);
 
     if CheckBox6.Checked = False then
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
@@ -3336,7 +3336,7 @@ begin
   if (CallBookLiteConnection.Connected = False) and
     (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then
   begin
-    InformationForm.QRZRUsprav(EditButton1.Text, MenuItem111.Checked);
+//    InformationForm.QRZRUsprav(EditButton1.Text, MenuItem111.Checked);
   end;
 end;
 
