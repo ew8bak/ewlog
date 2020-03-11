@@ -24,7 +24,7 @@ type
     qrzru_pass: string;
 
     constructor Create;
-    procedure ShowResult;
+    procedure ResultProc;
   end;
 
 var
@@ -129,15 +129,15 @@ begin
   inherited Create(True);
 end;
 
-procedure TGetSessionThread.ShowResult;
+procedure TGetSessionThread.ResultProc;
 begin
-
+  InformationForm.ReloadInformation;
 end;
 
 procedure TGetSessionThread.Execute;
 begin
   if GetSession(qrzcom_login, qrzcom_pass, qrzru_login, qrzru_pass) then
-    Synchronize(@ShowResult);
+    Synchronize(@ResultProc);
 end;
 
 end.

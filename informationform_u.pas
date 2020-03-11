@@ -60,19 +60,20 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure SessionTimerStartTimer(Sender: TObject);
   private
     calsign: string;
-    ErrorCall: string;
-    loginQRZru: string;
-    passQRZru: string;
-    loginQRZcom: string;
-    passQRZcom: string;
+    statusInfo: boolean;
+    ErrorCode: string;
     { private declarations }
   public
     sessionNumQRZRU: string;
     sessionNumQRZCOM: string;
-  //  procedure GetInformation;
+    procedure GetInformation(Call: string);
+    procedure GetQRZru(Call: string);
+    procedure GetQRZcom(Call: string);
+    procedure GetSession;
+    function GetError(error_msg: string): boolean;
+    procedure ReloadInformation;
     { public declarations }
   end;
 
@@ -86,6 +87,363 @@ uses MainForm_U, editqso_u, dmFunc_U, getSessionID;
 {$R *.lfm}
 
 { TInformationForm }
+
+function TInformationForm.GetError(error_msg: string): boolean;
+begin
+  Result := False;
+  if (error_msg = 'Invalid session key') or (error_msg = 'Session Timeout') or
+    (error_msg = 'Session does not exist or expired') then
+  begin
+    Result := True;
+    GetSession;
+    Exit;
+  end;
+
+  if (Pos('Not found:', ErrorCode) > 0) then
+  begin
+    MainForm.StatusBar1.Panels.Items[0].Text := 'QRZ.COM XML:' + ErrorCode;
+    Result := True;
+    Exit;
+  end;
+
+  if (Pos('Callsign not found', ErrorCode) > 0) then
+  begin
+    MainForm.StatusBar1.Panels.Items[0].Text := 'QRZ.RU XML:' + ErrorCode;
+    Result := True;
+    Exit;
+  end;
+
+end;
+
+procedure TInformationForm.ReloadInformation;
+begin
+  if ErrorCode <> '' then
+  begin
+    ErrorCode := '';
+    GetInformation(calsign);
+  end;
+end;
+
+procedure TInformationForm.GetSession;
+begin
+  GetSessionThread := TGetSessionThread.Create;
+  if Assigned(GetSessionThread.FatalException) then
+    raise GetSessionThread.FatalException;
+  with GetSessionThread do
+  begin
+    qrzcom_login := IniF.ReadString('SetLog', 'QRZCOM_Login', '');
+    qrzcom_pass := IniF.ReadString('SetLog', 'QRZCOM_Pass', '');
+    qrzru_login := IniF.ReadString('SetLog', 'QRZ_Login', '');
+    qrzru_pass := IniF.ReadString('SetLog', 'QRZ_Pass', '');
+    Start;
+  end;
+end;
+
+procedure TInformationForm.GetQRZcom(Call: string);
+var
+  resp, PhotoString: string;
+  beginSTR, endSTR: integer;
+  Photo: TJPEGImage;
+begin
+  try
+    ErrorCode := '';
+    Photo := TJPEGImage.Create;
+    PhotoString := '';
+    Photo.Clear;
+
+    with THTTPSend.Create do
+    begin
+      if HTTPMethod('GET', 'http://xmldata.qrz.com/xml/current/?s=' +
+        sessionNumQRZCOM + ';callsign=' + Call) then
+      begin
+        SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
+      end;
+      Free;
+    end;
+
+    //Обработка ошибки
+    beginSTR := resp.IndexOf('<Error>');
+    endSTR := resp.IndexOf('</Error>');
+    if (beginSTR <> endSTR) then
+      errorCode := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    if ErrorCode <> '' then
+      if GetError(ErrorCode) then
+        Exit;
+
+    //Позывной
+    beginSTR := resp.IndexOf('<call>');
+    endSTR := resp.IndexOf('</call>');
+    if (beginSTR <> endSTR) then
+    begin
+      Label14.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+      GroupBox1.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+    end;
+
+    //Имя
+    beginSTR := resp.IndexOf('<fname>');
+    endSTR := resp.IndexOf('</fname>');
+    if (beginSTR <> endSTR) then
+      Label16.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    //Город
+    beginSTR := resp.IndexOf('<addr1>');
+    endSTR := resp.IndexOf('</addr1>');
+    if (beginSTR <> endSTR) then
+      Label17.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    //Локатор
+    beginSTR := resp.IndexOf('<grid>');
+    endSTR := resp.IndexOf('</grid>');
+    if (beginSTR <> endSTR) then
+      Label19.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+
+    //State
+    beginSTR := resp.IndexOf('<state>');
+    endSTR := resp.IndexOf('</state>');
+    if (beginSTR <> endSTR) then
+      Label21.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    //Страна
+    beginSTR := resp.IndexOf('<country>');
+    endSTR := resp.IndexOf('</country>');
+    if (beginSTR <> endSTR) then
+      Label15.Caption := resp.Substring(beginSTR + 9, endSTR - beginSTR - 9);
+
+    //Дом страница
+    beginSTR := resp.IndexOf('<url>');
+    endSTR := resp.IndexOf('</url>');
+    if (beginSTR <> endSTR) then
+      Label20.Caption := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
+
+    //Телефон
+    beginSTR := resp.IndexOf('<telephone>');
+    endSTR := resp.IndexOf('</telephone>');
+    if (beginSTR <> endSTR) then
+      Label22.Caption := resp.Substring(beginSTR + 11, endSTR - beginSTR - 11);
+
+    //email
+    beginSTR := resp.IndexOf('<email>');
+    endSTR := resp.IndexOf('</email>');
+    if (beginSTR <> endSTR) then
+      Label23.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    //улица
+    beginSTR := resp.IndexOf('<addr2>');
+    endSTR := resp.IndexOf('</addr2>');
+    if (beginSTR <> endSTR) then
+      Label18.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    //icq
+    beginSTR := resp.IndexOf('<icq>');
+    endSTR := resp.IndexOf('</icq>');
+    if (beginSTR <> endSTR) then
+      Label24.Caption := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
+
+    //QSL VIA
+    beginSTR := resp.IndexOf('<qslvia>');
+    endSTR := resp.IndexOf('</qslvia>');
+    if (beginSTR <> endSTR) then
+      Label26.Caption := resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
+
+    //Photo
+    beginSTR := resp.IndexOf('<image>');
+    endSTR := resp.IndexOf('</image>');
+    if (beginSTR <> endSTR) then
+      PhotoString := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    if PhotoString <> '' then
+    begin
+      InformationForm.Height := 658;
+      with THTTPSend.Create do
+      begin
+        if HTTPMethod('GET', PhotoString) then
+        begin
+          Photo.LoadFromStream(Document);
+          if DirectoryEdit1.Text <> '' then
+            Photo.SaveToFile(DirectoryEdit1.Text + DirectorySeparator + Call + '.jpg');
+        end;
+        Free;
+      end;
+      Image1.Picture.Assign(Photo);
+    end
+    else
+      InformationForm.Height := 364;
+  finally
+    Photo.Free;
+  end;
+end;
+
+procedure TInformationForm.GetQRZru(Call: string);
+var
+  resp, PhotoString: string;
+  beginSTR, endSTR: integer;
+  Photo: TJPEGImage;
+begin
+  try
+    ErrorCode := '';
+    Photo := TJPEGImage.Create;
+    PhotoString := '';
+    Photo.Clear;
+
+    with THTTPSend.Create do
+    begin
+      if HTTPMethod('GET', 'http://api.qrz.ru/callsign?id=' +
+        sessionNumQRZRU + '&callsign=' + Call) then
+      begin
+        SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
+      end;
+      Free;
+    end;
+
+    //Обработка ошибки
+    beginSTR := resp.IndexOf('<error>');
+    endSTR := resp.IndexOf('</error>');
+    if (beginSTR <> endSTR) then
+      ErrorCode := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    if ErrorCode <> '' then
+      if GetError(ErrorCode) then
+        Exit;
+
+    //Позывной
+    beginSTR := resp.IndexOf('<call>');
+    endSTR := resp.IndexOf('</call>');
+    if (beginSTR <> endSTR) then
+    begin
+      Label14.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+      GroupBox1.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+    end;
+
+    //Имя
+    beginSTR := resp.IndexOf('<name>');
+    endSTR := resp.IndexOf('</name>');
+    if (beginSTR <> endSTR) then
+      Label16.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+
+    //Фамилия
+    beginSTR := resp.IndexOf('<surname>');
+    endSTR := resp.IndexOf('</surname>');
+    if (beginSTR <> endSTR) then
+      Label16.Caption := Label16.Caption + ' ' +
+        resp.Substring(beginSTR + 9, endSTR - beginSTR - 9);
+
+    //Город
+    beginSTR := resp.IndexOf('<city>');
+    endSTR := resp.IndexOf('</city>');
+    if (beginSTR <> endSTR) then
+      Label17.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+
+    //Локатор
+    beginSTR := resp.IndexOf('<qthloc>');
+    endSTR := resp.IndexOf('</qthloc>');
+    if (beginSTR <> endSTR) then
+      Label19.Caption := resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
+
+    //State
+    beginSTR := resp.IndexOf('<state>');
+    endSTR := resp.IndexOf('</state>');
+    if (beginSTR <> endSTR) then
+      Label21.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    //Страна
+    beginSTR := resp.IndexOf('<country>');
+    endSTR := resp.IndexOf('</country>');
+    if (beginSTR <> endSTR) then
+      Label15.Caption := resp.Substring(beginSTR + 9, endSTR - beginSTR - 9);
+
+    //Дом страница
+    beginSTR := resp.IndexOf('<url>');
+    endSTR := resp.IndexOf('</url>');
+    if (beginSTR <> endSTR) then
+      Label20.Caption := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
+
+
+    //Телефон
+    beginSTR := resp.IndexOf('<telephone>');
+    endSTR := resp.IndexOf('</telephone>');
+    if (beginSTR <> endSTR) then
+      Label22.Caption := resp.Substring(beginSTR + 11, endSTR - beginSTR - 11);
+
+    //email
+    beginSTR := resp.IndexOf('<email>');
+    endSTR := resp.IndexOf('</email>');
+    if (beginSTR <> endSTR) then
+      Label23.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+    //улица
+    beginSTR := resp.IndexOf('<street>');
+    endSTR := resp.IndexOf('</street>');
+    if (beginSTR <> endSTR) then
+      Label18.Caption := resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
+
+    //icq
+    beginSTR := resp.IndexOf('<icq>');
+    endSTR := resp.IndexOf('</icq>');
+    if (beginSTR <> endSTR) then
+      Label24.Caption := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
+
+    //QSL VIA
+    beginSTR := resp.IndexOf('<qslvia>');
+    endSTR := resp.IndexOf('</qslvia>');
+    if (beginSTR <> endSTR) then
+      Label26.Caption := resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
+
+    //Photo
+    beginSTR := resp.IndexOf('<file>');
+    endSTR := resp.IndexOf('</file>');
+    if (beginSTR <> endSTR) then
+      PhotoString := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
+
+    if PhotoString <> '' then
+    begin
+      InformationForm.Height := 658;
+      with THTTPSend.Create do
+      begin
+        if HTTPMethod('GET', PhotoString) then
+        begin
+          Photo.LoadFromStream(Document);
+          if DirectoryEdit1.Text <> '' then
+            Photo.SaveToFile(DirectoryEdit1.Text + DirectorySeparator + Call + '.jpg');
+        end;
+        Free;
+      end;
+      Image1.Picture.Assign(Photo);
+    end
+    else
+      InformationForm.Height := 364;
+  finally
+    Photo.Free;
+  end;
+end;
+
+procedure TInformationForm.GetInformation(Call: string);
+begin
+  if Call <> '' then
+  begin
+    if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
+    begin
+      if sessionNumQRZRU <> '' then
+      begin
+        //Получение данных с QRZ.RU
+        GetQRZru(Call);
+      end
+      else
+        GetSession;
+    end;
+
+    if IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'True' then
+    begin
+      if sessionNumQRZCOM <> '' then
+      begin
+        //Получение данных с QRZ.COM
+        GetQRZcom(Call);
+      end
+      else
+        GetSession;
+    end;
+  end;
+end;
 
 procedure TInformationForm.FormShow(Sender: TObject);
 begin
@@ -104,15 +462,20 @@ begin
   Label25.Caption := '';
   Label26.Caption := '';
   GroupBox1.Caption := rCallSign;
-  ErrorCall := '';
-  loginQRZru := IniF.ReadString('SetLog', 'QRZ_Login', '');
-  passQRZru := IniF.ReadString('SetLog', 'QRZ_Pass', '');
-
-  loginQRZcom := IniF.ReadString('SetLog', 'QRZCOM_Login', '');
-  passQRZcom := IniF.ReadString('SetLog', 'QRZCOM_Pass', '');
+  ErrorCode := '';
+  calsign := '';
+  statusInfo := False;
 
   DirectoryEdit1.Text := MainForm.PhotoDir;
 
+  if (MainForm.EditButton1.Text <> '') and (EditQSO_Form.Edit1.Text = '') then
+    calsign := MainForm.EditButton1.Text
+  else
+    calsign := EditQSO_Form.Edit1.Text;
+
+  GetInformation(calsign);
+
+{
   if (IniF.ReadString('SetLog', 'Sprav', 'False') = 'False') and
     (IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'False') then
     ShowMessage(rNotConfigSprav)
@@ -168,12 +531,7 @@ begin
     //   HAMQTH(calsign);
     InformationForm.Caption := rInformationFromHamQTH;
   end;
-
-end;
-
-procedure TInformationForm.SessionTimerStartTimer(Sender: TObject);
-begin
-
+   }
 end;
 
 procedure TInformationForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -195,22 +553,12 @@ begin
   Label25.Caption := '';
   Label26.Caption := '';
   GroupBox1.Caption := rCallSign;
-
 end;
 
 procedure TInformationForm.FormCreate(Sender: TObject);
 begin
-  GetSessionThread := TGetSessionThread.Create;
-  if Assigned(GetSessionThread.FatalException) then
-    raise GetSessionThread.FatalException;
-  with GetSessionThread do
-  begin
-    qrzcom_login:=IniF.ReadString('SetLog', 'QRZCOM_Login', '');
-    qrzcom_pass:=IniF.ReadString('SetLog', 'QRZCOM_Pass', '');
-    qrzru_login:=IniF.ReadString('SetLog', 'QRZ_Login', '');
-    qrzru_pass:=IniF.ReadString('SetLog', 'QRZ_Pass', '');
-    Start;
-  end;
+  ErrorCode := '';
+  GetSession;
 end;
 
 procedure TInformationForm.Button1Click(Sender: TObject);
