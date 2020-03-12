@@ -20,12 +20,12 @@ uses
   filterForm_U, hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth,
   clublog, qrzcom, qso_record, resourcestr, const_u, initini, download_lotw,
   download_eqslcc, DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread,
-  getSessionID;
+  getSessionID, GetPhotoFromInternet;
 
 {$R *.res}
 
 begin
-  Application.Title:='EWLog - HAM Journal';
+  Application.Title:=rEWLogHAMJournal;
   Application.Scaled:=True;
   RequireDerivedFormResource := True;
   Application.Initialize;

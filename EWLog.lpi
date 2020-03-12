@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="60">
+    <Units Count="61">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -547,6 +547,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSessionID"/>
       </Unit59>
+      <Unit60>
+        <Filename Value="getphotofrominternet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GetPhotoFromInternet"/>
+      </Unit60>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -83,14 +83,14 @@ type
     statusInfo: boolean;
     ViewReload: boolean;
     ErrorCode: string;
-    PhotoJPEG: TJPEGImage;
-    PhotoGIF: TGIFImage;
-    PhotoPNG: TPortableNetworkGraphic;
     { private declarations }
   public
     sessionNumQRZRU: string;
     sessionNumQRZCOM: string;
     sessionNumHAMQTH: string;
+    PhotoJPEG: TJPEGImage;
+    PhotoGIF: TGIFImage;
+    PhotoPNG: TPortableNetworkGraphic;
     Inform: TInform;
     procedure GetInformation(Call: string; Main: boolean);
     procedure GetQRZru(Call: string);
@@ -100,6 +100,7 @@ type
     procedure GetPhoto(url, Call: string);
     procedure ReloadInformation;
     procedure ViewInfo(Main: boolean);
+    procedure ViewPhoto(url, call: string);
     procedure LabelClear;
     function GetError(error_msg: string): boolean;
     function GetXMLField(resp, field: string): string;
@@ -111,7 +112,7 @@ var
 
 implementation
 
-uses MainForm_U, editqso_u, dmFunc_U, getSessionID;
+uses MainForm_U, editqso_u, dmFunc_U, getSessionID, GetPhotoFromInternet;
 
 {$R *.lfm}
 
@@ -135,9 +136,45 @@ begin
   Label26.Caption := '';
 end;
 
+procedure TInformationForm.ViewPhoto(url, call: string);
+begin
+  try
+    if url <> '' then
+    begin
+      if DirectoryEdit1.Text <> '' then
+      begin
+        if dmFunc.Extention(url) = '.gif' then
+          PhotoGIF.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
+            Call + '.gif');
+        if dmFunc.Extention(url) = '.jpg' then
+          PhotoJPEG.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
+            Call + '.jpg');
+        if dmFunc.Extention(url) = '.png' then
+          PhotoPNG.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
+            Call + '.png');
+      end;
+
+      if dmFunc.Extention(url) = '.gif' then
+        Image1.Picture.Assign(PhotoGIF);
+      if dmFunc.Extention(url) = '.jpg' then
+        Image1.Picture.Assign(PhotoJPEG);
+      if dmFunc.Extention(url) = '.png' then
+        Image1.Picture.Assign(PhotoPNG);
+    end;
+
+  finally
+    PhotoJPEG.Free;
+    PhotoGIF.Free;
+    PhotoPNG.Free;
+  end;
+end;
+
 procedure TInformationForm.ViewInfo(Main: boolean);
 begin
   try
+    if Inform.Callsign <> '' then
+      MainForm.StatusBar1.Panels.Items[0].Text := '';
+
     if Main then
     begin
       MainForm.Edit1.Text := Inform.Name;
@@ -180,42 +217,13 @@ end;
 
 procedure TInformationForm.GetPhoto(url, Call: string);
 begin
-  if url <> '' then
-  begin
-    with THTTPSend.Create do
-    begin
-      if HTTPMethod('GET', url) then
-      begin
-        Delete(url, Pos('?', url), Length(url));
-        if dmFunc.Extention(url) = '.gif' then
-          PhotoGIF.LoadFromStream(Document);
-        if dmFunc.Extention(url) = '.jpg' then
-          PhotoJPEG.LoadFromStream(Document);
-        if dmFunc.Extention(url) = '.png' then
-          PhotoPNG.LoadFromStream(Document);
-
-        if DirectoryEdit1.Text <> '' then
-        begin
-          if dmFunc.Extention(url) = '.gif' then
-            PhotoGIF.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
-              Call + '.gif');
-          if dmFunc.Extention(url) = '.jpg' then
-            PhotoJPEG.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
-              Call + '.jpg');
-          if dmFunc.Extention(url) = '.png' then
-            PhotoPNG.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
-              Call + '.png');
-        end;
-      end;
-      Free;
-    end;
-    if dmFunc.Extention(url) = '.gif' then
-      Image1.Picture.Assign(PhotoGIF);
-    if dmFunc.Extention(url) = '.jpg' then
-      Image1.Picture.Assign(PhotoJPEG);
-    if dmFunc.Extention(url) = '.png' then
-      Image1.Picture.Assign(PhotoPNG);
-  end;
+  GetPhotoThread := TGetPhotoThread.Create;
+  if Assigned(GetPhotoThread.FatalException) then
+    raise GetPhotoThread.FatalException;
+  Delete(url, Pos('?', url), Length(url));
+  GetPhotoThread.url := url;
+  GetPhotoThread.call := Call;
+  GetPhotoThread.Start;
 end;
 
 function TInformationForm.GetError(error_msg: string): boolean;
@@ -304,9 +312,7 @@ begin
     Inform.ICQ := GetXMLField(resp, 'icq');
     GetPhoto(GetXMLField(resp, 'picture'), Call);
   finally
-    FreeAndNil(PhotoGIF);
-    FreeAndNil(PhotoJPEG);
-    FreeAndNil(PhotoPNG);
+
   end;
 end;
 
@@ -354,9 +360,6 @@ begin
     else
       statusInfo := False;
 
-    FreeAndNil(PhotoGIF);
-    FreeAndNil(PhotoJPEG);
-    FreeAndNil(PhotoPNG);
   end;
 end;
 
@@ -401,9 +404,7 @@ begin
       statusInfo := True
     else
       statusInfo := False;
-    FreeAndNil(PhotoGIF);
-    FreeAndNil(PhotoJPEG);
-    FreeAndNil(PhotoPNG);
+
   end;
 end;
 
@@ -412,10 +413,11 @@ begin
   if Call <> '' then
   begin
     ViewReload := Main;
-    Image1.Picture.Clear;
     PhotoJPEG := TJPEGImage.Create;
+
     PhotoGIF := TGIFImage.Create;
     PhotoPNG := TPortableNetworkGraphic.Create;
+    Image1.Picture.Clear;
     if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
     begin
       if sessionNumQRZRU <> '' then
@@ -448,7 +450,6 @@ begin
       else
         GetSession;
     end;
-
   end;
 end;
 
@@ -490,9 +491,7 @@ end;
 
 procedure TInformationForm.FormDestroy(Sender: TObject);
 begin
-  FreeAndNil(PhotoGIF);
-  FreeAndNil(PhotoJPEG);
-  FreeAndNil(PhotoPNG);
+
 end;
 
 procedure TInformationForm.Button1Click(Sender: TObject);
