@@ -6,7 +6,12 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  EditBtn, ExtCtrls, httpsend, LCLIntf, IntfGraphics, resourcestr;
+  EditBtn, ExtCtrls, httpsend, LCLIntf, IntfGraphics, resourcestr, openssl;
+
+const
+  URL_QRZRU = 'https://api.qrz.ru/callsign?id=';
+  URL_QRZCOM = 'https://xmldata.qrz.com/xml/current/?s=';
+  URL_HAMQTH = 'https://www.hamqth.com/xml.php?id=';
 
 type
 
@@ -59,21 +64,29 @@ type
     procedure Button6Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     calsign: string;
     statusInfo: boolean;
     ErrorCode: string;
+    PhotoJPEG: TJPEGImage;
+    PhotoGIF: TGIFImage;
+    PhotoPNG: TPortableNetworkGraphic;
     { private declarations }
   public
     sessionNumQRZRU: string;
     sessionNumQRZCOM: string;
+    sessionNumHAMQTH: string;
     procedure GetInformation(Call: string);
     procedure GetQRZru(Call: string);
     procedure GetQRZcom(Call: string);
+    procedure GetHAMQTH(Call: string);
     procedure GetSession;
-    function GetError(error_msg: string): boolean;
+    procedure GetPhoto(url, Call: string);
     procedure ReloadInformation;
+    function GetError(error_msg: string): boolean;
+    function GetXMLField(resp, field: string): string;
     { public declarations }
   end;
 
@@ -88,6 +101,60 @@ uses MainForm_U, editqso_u, dmFunc_U, getSessionID;
 
 { TInformationForm }
 
+function TInformationForm.GetXMLField(resp, field: string): string;
+var
+  beginSTR, endSTR, lenField: integer;
+begin
+  Result := '';
+  lenField := Length(field) + 2;
+  beginSTR := resp.IndexOf('<' + field + '>');
+  endSTR := resp.IndexOf('</' + field + '>');
+  if (beginSTR <> endSTR) then
+    Result := resp.Substring(beginSTR + lenField, endSTR - beginSTR - lenField);
+end;
+
+procedure TInformationForm.GetPhoto(url, Call: string);
+begin
+  if url <> '' then
+  begin
+    InformationForm.Height := 658;
+    with THTTPSend.Create do
+    begin
+      if HTTPMethod('GET', url) then
+      begin
+        if dmFunc.Extention(url) = '.gif' then
+          PhotoGIF.LoadFromStream(Document);
+        if dmFunc.Extention(url) = '.jpg' then
+          PhotoJPEG.LoadFromStream(Document);
+        if dmFunc.Extention(url) = '.png' then
+          PhotoPNG.LoadFromStream(Document);
+
+        if DirectoryEdit1.Text <> '' then
+        begin
+          if dmFunc.Extention(url) = '.gif' then
+            PhotoGIF.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
+              Call + '.gif');
+          if dmFunc.Extention(url) = '.jpg' then
+            PhotoJPEG.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
+              Call + '.jpg');
+          if dmFunc.Extention(url) = '.png' then
+            PhotoPNG.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
+              Call + '.png');
+        end;
+      end;
+      Free;
+    end;
+    if dmFunc.Extention(url) = '.gif' then
+      Image1.Picture.Assign(PhotoGIF);
+    if dmFunc.Extention(url) = '.jpg' then
+      Image1.Picture.Assign(PhotoJPEG);
+    if dmFunc.Extention(url) = '.png' then
+      Image1.Picture.Assign(PhotoPNG);
+  end
+  else
+    InformationForm.Height := 364;
+end;
+
 function TInformationForm.GetError(error_msg: string): boolean;
 begin
   Result := False;
@@ -101,14 +168,14 @@ begin
 
   if (Pos('Not found:', ErrorCode) > 0) then
   begin
-    MainForm.StatusBar1.Panels.Items[0].Text := 'QRZ.COM XML:' + ErrorCode;
+    MainForm.StatusBar1.Panels.Items[0].Text := ErrorCode;
     Result := True;
     Exit;
   end;
 
   if (Pos('Callsign not found', ErrorCode) > 0) then
   begin
-    MainForm.StatusBar1.Panels.Items[0].Text := 'QRZ.RU XML:' + ErrorCode;
+    MainForm.StatusBar1.Panels.Items[0].Text := ErrorCode;
     Result := True;
     Exit;
   end;
@@ -139,22 +206,16 @@ begin
   end;
 end;
 
-procedure TInformationForm.GetQRZcom(Call: string);
+procedure TInformationForm.GetHAMQTH(Call: string);
 var
-  resp, PhotoString: string;
-  beginSTR, endSTR: integer;
-  Photo: TJPEGImage;
+  resp: string;
 begin
   try
     ErrorCode := '';
-    Photo := TJPEGImage.Create;
-    PhotoString := '';
-    Photo.Clear;
-
     with THTTPSend.Create do
     begin
-      if HTTPMethod('GET', 'http://xmldata.qrz.com/xml/current/?s=' +
-        sessionNumQRZCOM + ';callsign=' + Call) then
+      if HTTPMethod('GET', URL_HAMQTH + sessionNumHAMQTH + '&callsign=' +
+        Call + '&prg=EWLog') then
       begin
         SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
       end;
@@ -162,134 +223,114 @@ begin
     end;
 
     //Обработка ошибки
-    beginSTR := resp.IndexOf('<Error>');
-    endSTR := resp.IndexOf('</Error>');
-    if (beginSTR <> endSTR) then
-      errorCode := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+    ErrorCode := GetXMLField(resp, 'error');
+    if ErrorCode <> '' then
+      if GetError(ErrorCode) then
+        Exit;
+
+    //Позывной
+    Label14.Caption := GetXMLField(resp, 'callsign');
+    GroupBox1.Caption := Label14.Caption;
+    //Имя
+    Label16.Caption := GetXMLField(resp, 'nick');
+    //Город
+    Label17.Caption := GetXMLField(resp, 'street');
+    //Локатор
+    Label19.Caption := GetXMLField(resp, 'grid');
+    //State
+    Label21.Caption := GetXMLField(resp, 'state');
+    //Страна
+    Label15.Caption := GetXMLField(resp, 'country');
+    //Дом страница
+    Label20.Caption := GetXMLField(resp, 'web');
+    //Телефон
+    Label22.Caption := GetXMLField(resp, 'telephone');
+    //email
+    Label23.Caption := GetXMLField(resp, 'email');
+    //улица
+    Label18.Caption := GetXMLField(resp, 'adr_city');
+    //icq
+    Label24.Caption := GetXMLField(resp, 'icq');
+    //Photo
+    GetPhoto(GetXMLField(resp, 'picture'), Call);
+  finally
+    FreeAndNil(PhotoGIF);
+    FreeAndNil(PhotoJPEG);
+    FreeAndNil(PhotoPNG);
+  end;
+end;
+
+procedure TInformationForm.GetQRZcom(Call: string);
+var
+  resp: string;
+begin
+  try
+    ErrorCode := '';
+
+    with THTTPSend.Create do
+    begin
+      if HTTPMethod('GET', URL_QRZCOM + sessionNumQRZCOM +
+        ';callsign=' + Call) then
+      begin
+        SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
+      end;
+      Free;
+    end;
+
+    //Обработка ошибки
+    errorCode := GetXMLField(resp, 'Error');
 
     if ErrorCode <> '' then
       if GetError(ErrorCode) then
         Exit;
 
     //Позывной
-    beginSTR := resp.IndexOf('<call>');
-    endSTR := resp.IndexOf('</call>');
-    if (beginSTR <> endSTR) then
-    begin
-      Label14.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
-      GroupBox1.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
-    end;
-
+    Label14.Caption := GetXMLField(resp, 'call');
+    GroupBox1.Caption := Label14.Caption;
     //Имя
-    beginSTR := resp.IndexOf('<fname>');
-    endSTR := resp.IndexOf('</fname>');
-    if (beginSTR <> endSTR) then
-      Label16.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-
+    Label16.Caption := GetXMLField(resp, 'fname');
     //Город
-    beginSTR := resp.IndexOf('<addr1>');
-    endSTR := resp.IndexOf('</addr1>');
-    if (beginSTR <> endSTR) then
-      Label17.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-
+    Label17.Caption := GetXMLField(resp, 'addr1');
     //Локатор
-    beginSTR := resp.IndexOf('<grid>');
-    endSTR := resp.IndexOf('</grid>');
-    if (beginSTR <> endSTR) then
-      Label19.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
-
+    Label19.Caption := GetXMLField(resp, 'grid');
     //State
-    beginSTR := resp.IndexOf('<state>');
-    endSTR := resp.IndexOf('</state>');
-    if (beginSTR <> endSTR) then
-      Label21.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-
+    Label21.Caption := GetXMLField(resp, 'state');
     //Страна
-    beginSTR := resp.IndexOf('<country>');
-    endSTR := resp.IndexOf('</country>');
-    if (beginSTR <> endSTR) then
-      Label15.Caption := resp.Substring(beginSTR + 9, endSTR - beginSTR - 9);
-
+    Label15.Caption := GetXMLField(resp, 'country');
     //Дом страница
-    beginSTR := resp.IndexOf('<url>');
-    endSTR := resp.IndexOf('</url>');
-    if (beginSTR <> endSTR) then
-      Label20.Caption := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
-
+    Label20.Caption := GetXMLField(resp, 'url');
     //Телефон
-    beginSTR := resp.IndexOf('<telephone>');
-    endSTR := resp.IndexOf('</telephone>');
-    if (beginSTR <> endSTR) then
-      Label22.Caption := resp.Substring(beginSTR + 11, endSTR - beginSTR - 11);
-
+    Label22.Caption := GetXMLField(resp, 'telephone');
     //email
-    beginSTR := resp.IndexOf('<email>');
-    endSTR := resp.IndexOf('</email>');
-    if (beginSTR <> endSTR) then
-      Label23.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-
+    Label23.Caption := GetXMLField(resp, 'email');
     //улица
-    beginSTR := resp.IndexOf('<addr2>');
-    endSTR := resp.IndexOf('</addr2>');
-    if (beginSTR <> endSTR) then
-      Label18.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-
+    Label18.Caption := GetXMLField(resp, 'addr2');
     //icq
-    beginSTR := resp.IndexOf('<icq>');
-    endSTR := resp.IndexOf('</icq>');
-    if (beginSTR <> endSTR) then
-      Label24.Caption := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
-
+    Label24.Caption := GetXMLField(resp, 'icq');
     //QSL VIA
-    beginSTR := resp.IndexOf('<qslvia>');
-    endSTR := resp.IndexOf('</qslvia>');
-    if (beginSTR <> endSTR) then
-      Label26.Caption := resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
-
+    Label26.Caption := GetXMLField(resp, 'qslvia');
     //Photo
-    beginSTR := resp.IndexOf('<image>');
-    endSTR := resp.IndexOf('</image>');
-    if (beginSTR <> endSTR) then
-      PhotoString := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-
-    if PhotoString <> '' then
-    begin
-      InformationForm.Height := 658;
-      with THTTPSend.Create do
-      begin
-        if HTTPMethod('GET', PhotoString) then
-        begin
-          Photo.LoadFromStream(Document);
-          if DirectoryEdit1.Text <> '' then
-            Photo.SaveToFile(DirectoryEdit1.Text + DirectorySeparator + Call + '.jpg');
-        end;
-        Free;
-      end;
-      Image1.Picture.Assign(Photo);
-    end
-    else
-      InformationForm.Height := 364;
+    GetPhoto(GetXMLField(resp, 'image'), Call);
   finally
-    Photo.Free;
+    if Label14.Caption <> '' then
+      statusInfo := True
+    else
+      statusInfo := False;
+    FreeAndNil(PhotoGIF);
+    FreeAndNil(PhotoJPEG);
+    FreeAndNil(PhotoPNG);
   end;
 end;
 
 procedure TInformationForm.GetQRZru(Call: string);
 var
-  resp, PhotoString: string;
-  beginSTR, endSTR: integer;
-  Photo: TJPEGImage;
+  resp: string;
 begin
   try
     ErrorCode := '';
-    Photo := TJPEGImage.Create;
-    PhotoString := '';
-    Photo.Clear;
-
     with THTTPSend.Create do
     begin
-      if HTTPMethod('GET', 'http://api.qrz.ru/callsign?id=' +
-        sessionNumQRZRU + '&callsign=' + Call) then
+      if HTTPMethod('GET', URL_QRZRU + sessionNumQRZRU + '&callsign=' + Call) then
       begin
         SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
       end;
@@ -297,123 +338,45 @@ begin
     end;
 
     //Обработка ошибки
-    beginSTR := resp.IndexOf('<error>');
-    endSTR := resp.IndexOf('</error>');
-    if (beginSTR <> endSTR) then
-      ErrorCode := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+    ErrorCode := GetXMLField(resp, 'error');
 
     if ErrorCode <> '' then
       if GetError(ErrorCode) then
         Exit;
 
     //Позывной
-    beginSTR := resp.IndexOf('<call>');
-    endSTR := resp.IndexOf('</call>');
-    if (beginSTR <> endSTR) then
-    begin
-      Label14.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
-      GroupBox1.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
-    end;
-
+    Label14.Caption := GetXMLField(resp, 'call');
+    GroupBox1.Caption := Label14.Caption;
     //Имя
-    beginSTR := resp.IndexOf('<name>');
-    endSTR := resp.IndexOf('</name>');
-    if (beginSTR <> endSTR) then
-      Label16.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
-
+    Label16.Caption := GetXMLField(resp, 'name');
     //Фамилия
-    beginSTR := resp.IndexOf('<surname>');
-    endSTR := resp.IndexOf('</surname>');
-    if (beginSTR <> endSTR) then
-      Label16.Caption := Label16.Caption + ' ' +
-        resp.Substring(beginSTR + 9, endSTR - beginSTR - 9);
-
+    Label16.Caption := Label16.Caption + ' ' + GetXMLField(resp, 'surname');
     //Город
-    beginSTR := resp.IndexOf('<city>');
-    endSTR := resp.IndexOf('</city>');
-    if (beginSTR <> endSTR) then
-      Label17.Caption := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
-
+    Label17.Caption := GetXMLField(resp, 'city');
     //Локатор
-    beginSTR := resp.IndexOf('<qthloc>');
-    endSTR := resp.IndexOf('</qthloc>');
-    if (beginSTR <> endSTR) then
-      Label19.Caption := resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
-
+    Label19.Caption := GetXMLField(resp, 'qthloc');
     //State
-    beginSTR := resp.IndexOf('<state>');
-    endSTR := resp.IndexOf('</state>');
-    if (beginSTR <> endSTR) then
-      Label21.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-
+    Label21.Caption := GetXMLField(resp, 'state');
     //Страна
-    beginSTR := resp.IndexOf('<country>');
-    endSTR := resp.IndexOf('</country>');
-    if (beginSTR <> endSTR) then
-      Label15.Caption := resp.Substring(beginSTR + 9, endSTR - beginSTR - 9);
-
+    Label15.Caption := GetXMLField(resp, 'country');
     //Дом страница
-    beginSTR := resp.IndexOf('<url>');
-    endSTR := resp.IndexOf('</url>');
-    if (beginSTR <> endSTR) then
-      Label20.Caption := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
-
-
+    Label20.Caption := GetXMLField(resp, 'url');
     //Телефон
-    beginSTR := resp.IndexOf('<telephone>');
-    endSTR := resp.IndexOf('</telephone>');
-    if (beginSTR <> endSTR) then
-      Label22.Caption := resp.Substring(beginSTR + 11, endSTR - beginSTR - 11);
-
+    Label22.Caption := GetXMLField(resp, 'telephone');
     //email
-    beginSTR := resp.IndexOf('<email>');
-    endSTR := resp.IndexOf('</email>');
-    if (beginSTR <> endSTR) then
-      Label23.Caption := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-
+    Label23.Caption := GetXMLField(resp, 'email');
     //улица
-    beginSTR := resp.IndexOf('<street>');
-    endSTR := resp.IndexOf('</street>');
-    if (beginSTR <> endSTR) then
-      Label18.Caption := resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
-
+    Label18.Caption := GetXMLField(resp, 'street');
     //icq
-    beginSTR := resp.IndexOf('<icq>');
-    endSTR := resp.IndexOf('</icq>');
-    if (beginSTR <> endSTR) then
-      Label24.Caption := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
-
+    Label24.Caption := GetXMLField(resp, 'icq');
     //QSL VIA
-    beginSTR := resp.IndexOf('<qslvia>');
-    endSTR := resp.IndexOf('</qslvia>');
-    if (beginSTR <> endSTR) then
-      Label26.Caption := resp.Substring(beginSTR + 8, endSTR - beginSTR - 8);
-
+    Label26.Caption := GetXMLField(resp, 'qslvia');
     //Photo
-    beginSTR := resp.IndexOf('<file>');
-    endSTR := resp.IndexOf('</file>');
-    if (beginSTR <> endSTR) then
-      PhotoString := resp.Substring(beginSTR + 6, endSTR - beginSTR - 6);
-
-    if PhotoString <> '' then
-    begin
-      InformationForm.Height := 658;
-      with THTTPSend.Create do
-      begin
-        if HTTPMethod('GET', PhotoString) then
-        begin
-          Photo.LoadFromStream(Document);
-          if DirectoryEdit1.Text <> '' then
-            Photo.SaveToFile(DirectoryEdit1.Text + DirectorySeparator + Call + '.jpg');
-        end;
-        Free;
-      end;
-      Image1.Picture.Assign(Photo);
-    end
-    else
-      InformationForm.Height := 364;
+    GetPhoto(GetXMLField(resp, 'file'), Call);
   finally
-    Photo.Free;
+    FreeAndNil(PhotoGIF);
+    FreeAndNil(PhotoJPEG);
+    FreeAndNil(PhotoPNG);
   end;
 end;
 
@@ -421,12 +384,14 @@ procedure TInformationForm.GetInformation(Call: string);
 begin
   if Call <> '' then
   begin
+    PhotoJPEG := TJPEGImage.Create;
+    PhotoGIF := TGIFImage.Create;
+    PhotoPNG := TPortableNetworkGraphic.Create;
     if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
     begin
       if sessionNumQRZRU <> '' then
       begin
-        //Получение данных с QRZ.RU
-        GetQRZru(Call);
+        GetQRZru(Call);  //Получение данных с QRZ.RU
       end
       else
         GetSession;
@@ -436,12 +401,22 @@ begin
     begin
       if sessionNumQRZCOM <> '' then
       begin
-        //Получение данных с QRZ.COM
-        GetQRZcom(Call);
+        GetQRZcom(Call); //Получение данных с QRZ.COM
       end
       else
         GetSession;
     end;
+
+    if not statusInfo then
+    begin
+      if sessionNumHAMQTH <> '' then
+      begin
+        GetHAMQTH(Call); //Получение данных с HAMQTH
+      end
+      else
+        GetSession;
+    end;
+
   end;
 end;
 
@@ -464,7 +439,6 @@ begin
   GroupBox1.Caption := rCallSign;
   ErrorCode := '';
   calsign := '';
-  statusInfo := False;
 
   DirectoryEdit1.Text := MainForm.PhotoDir;
 
@@ -474,64 +448,6 @@ begin
     calsign := EditQSO_Form.Edit1.Text;
 
   GetInformation(calsign);
-
-{
-  if (IniF.ReadString('SetLog', 'Sprav', 'False') = 'False') and
-    (IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'False') then
-    ShowMessage(rNotConfigSprav)
-  else
-    ErrorCall := 'F';
-
-  if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
-    if (loginQRZru = '') or (passQRZru = '') then
-      ShowMessage(rNotConfigQRZRU);
-  if IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'True' then
-    if (loginQRZcom = '') or (passQRZcom = '') then
-      ShowMessage(rNotConfigQRZCOM);
-
-
-  if (MainForm.EditButton1.Text <> '') and (EditQSO_Form.Edit1.Text = '') then
-    calsign := MainForm.EditButton1.Text
-  else
-    calsign := EditQSO_Form.Edit1.Text;
-
-  if IniF.ReadString('SetLog', 'Sprav', '') = 'True' then
-    if (loginQRZru = '') or (passQRZru = '') then
-    begin
-      ShowMessage(rNotConfigQRZRU);
-      ErrorCall := 'F';
-    end
-    else
-    begin
-      InformationForm.Caption := rInformationFromQRZRU;
-      //   QRZRU(calsign);
-      if (ErrorCall <> '') and (ErrorCall <> 'F') then
-        ShowMessage('QRZ.RU:' + ErrorCall);
-    end;
-
-
-  if IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'True' then
-    if (loginQRZcom <> '') or (passQRZcom <> '') then
-    begin
-      ShowMessage(rNotConfigQRZCOM);
-      ErrorCall := 'F';
-    end
-    else
-    begin
-      InformationForm.Caption := rInformationFromQRZCOM;
-      //     QRZCOM(calsign);
-      if (ErrorCall <> '') and (ErrorCall <> 'F') then
-        ShowMessage('QRZ.COM:' + ErrorCall);
-    end;
-
-
-  if ErrorCall <> '' then
-  begin
-    ErrorCall := '';
-    //   HAMQTH(calsign);
-    InformationForm.Caption := rInformationFromHamQTH;
-  end;
-   }
 end;
 
 procedure TInformationForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -559,6 +475,13 @@ procedure TInformationForm.FormCreate(Sender: TObject);
 begin
   ErrorCode := '';
   GetSession;
+end;
+
+procedure TInformationForm.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(PhotoGIF);
+  FreeAndNil(PhotoJPEG);
+  FreeAndNil(PhotoPNG);
 end;
 
 procedure TInformationForm.Button1Click(Sender: TObject);

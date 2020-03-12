@@ -1,7 +1,7 @@
 object InformationForm: TInformationForm
-  Left = 380
+  Left = 835
   Height = 658
-  Top = 213
+  Top = 215
   Width = 411
   BorderStyle = bsDialog
   Caption = 'Information'
@@ -11,6 +11,7 @@ object InformationForm: TInformationForm
   FormStyle = fsSystemStayOnTop
   OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '2.0.6.0'

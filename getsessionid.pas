@@ -41,14 +41,14 @@ var
   beginSTR, endSTR: integer;
 begin
   try
-    Result:=False;
+    Result := False;
     errorCode := '';
     error := '';
 
     if (login_qrzru <> '') and (pass_qrzru <> '') then
     begin
-          errorCode := '';
-          error := '';
+      errorCode := '';
+      error := '';
       with THTTPSend.Create do
       begin
         if HTTPMethod('GET', 'http://api.qrz.ru/login?u=' + login_qrzru +
@@ -83,8 +83,8 @@ begin
 
     if (login_qrzcom <> '') and (pass_qrzcom <> '') then
     begin
-         errorCode := '';
-         error := '';
+      errorCode := '';
+      error := '';
       with THTTPSend.Create do
       begin
         if HTTPMethod('GET', 'http://xmldata.qrz.com/xml/?username=' +
@@ -117,9 +117,35 @@ begin
       end;
     end;
 
+    //HAMQTH
+    error := '';
+    with THTTPSend.Create do
+    begin
+      if HTTPMethod('GET', 'http://www.hamqth.com/xml.php?u=ew8bak&p=Ml197895551ml') then
+      begin
+        SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
+      end;
+      Free;
+    end;
+
+    beginSTR := resp.IndexOf('<session_id>');
+    endSTR := resp.IndexOf('</session_id>');
+    if (beginSTR <> endSTR) then
+      InformationForm.sessionNumHAMQTH := resp.Substring(beginSTR + 12, endSTR - beginSTR - 12);
+    beginSTR := resp.IndexOf('<error>');
+    endSTR := resp.IndexOf('</error>');
+    if (beginSTR <> endSTR) then
+      error := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+    if error <> '' then
+    begin
+      MainForm.StatusBar1.Panels.Items[0].Text := 'HAMQTH XML:' + error;
+    end;
+
+
   finally
-    if (InformationForm.sessionNumQRZCOM <> '') or (InformationForm.sessionNumQRZRU <> '') then
-    Result:=True;
+    if (InformationForm.sessionNumQRZCOM <> '') or
+      (InformationForm.sessionNumQRZRU <> '') then
+      Result := True;
   end;
 end;
 
