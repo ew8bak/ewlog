@@ -2468,11 +2468,13 @@ msgid "Name:"
 msgstr ""
 
 #: tinformationform.label4.caption
-msgid "Address 1:"
+msgctxt "tinformationform.label4.caption"
+msgid "Address:"
 msgstr ""
 
 #: tinformationform.label5.caption
-msgid "Address:"
+msgctxt "tinformationform.label5.caption"
+msgid "City:"
 msgstr ""
 
 #: tinformationform.label6.caption

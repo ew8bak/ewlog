@@ -1,7 +1,7 @@
 object InformationForm: TInformationForm
-  Left = 488
+  Left = 509
   Height = 367
-  Top = 212
+  Top = 199
   Width = 828
   BorderStyle = bsDialog
   Caption = 'Information'
@@ -72,13 +72,13 @@ object InformationForm: TInformationForm
     object Label4: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 42
+      Left = 52
       Height = 13
       Top = 60
-      Width = 57
+      Width = 47
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Address 1:'
+      Caption = 'Address:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -86,13 +86,13 @@ object InformationForm: TInformationForm
     object Label5: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 52
+      Left = 75
       Height = 13
       Top = 78
-      Width = 47
+      Width = 24
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 295
-      Caption = 'Address:'
+      Caption = 'City:'
       Font.Height = -12
       ParentColor = False
       ParentFont = False

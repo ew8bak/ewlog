@@ -2491,11 +2491,17 @@ msgid "Name:"
 msgstr "Имя:"
 
 #: tinformationform.label4.caption
-msgid "Address 1:"
+#, fuzzy
+#| msgid "Address 1:"
+msgctxt "tinformationform.label4.caption"
+msgid "Address:"
 msgstr "Адрес 1:"
 
 #: tinformationform.label5.caption
-msgid "Address:"
+#, fuzzy
+#| msgid "Address:"
+msgctxt "tinformationform.label5.caption"
+msgid "City:"
 msgstr "Адрес:"
 
 #: tinformationform.label6.caption

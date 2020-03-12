@@ -81,6 +81,7 @@ type
   private
     calsign: string;
     statusInfo: boolean;
+    ViewReload: boolean;
     ErrorCode: string;
     PhotoJPEG: TJPEGImage;
     PhotoGIF: TGIFImage;
@@ -91,7 +92,7 @@ type
     sessionNumQRZCOM: string;
     sessionNumHAMQTH: string;
     Inform: TInform;
-    procedure GetInformation(Call: string);
+    procedure GetInformation(Call: string; Main: boolean);
     procedure GetQRZru(Call: string);
     procedure GetQRZcom(Call: string);
     procedure GetHAMQTH(Call: string);
@@ -99,6 +100,7 @@ type
     procedure GetPhoto(url, Call: string);
     procedure ReloadInformation;
     procedure ViewInfo(Main: boolean);
+    procedure LabelClear;
     function GetError(error_msg: string): boolean;
     function GetXMLField(resp, field: string): string;
     { public declarations }
@@ -115,15 +117,33 @@ uses MainForm_U, editqso_u, dmFunc_U, getSessionID;
 
 { TInformationForm }
 
+procedure TInformationForm.LabelClear;
+begin
+  Label14.Caption := '';
+  Label15.Caption := '';
+  Label16.Caption := '';
+  Label17.Caption := '';
+  Label18.Caption := '';
+  Label19.Caption := '';
+  Label20.Caption := '';
+  Label21.Caption := '';
+  Label22.Caption := '';
+  Label23.Caption := '';
+  Label23.Caption := '';
+  Label24.Caption := '';
+  Label25.Caption := '';
+  Label26.Caption := '';
+end;
+
 procedure TInformationForm.ViewInfo(Main: boolean);
 begin
   try
     if Main then
     begin
-      MainForm.Edit1.Text:=Inform.Name;
-      MainForm.Edit2.Text:=Inform.Address;
-      MainForm.Edit3.Text:=Inform.Grid;
-      MainForm.Edit4.Text:=Inform.State;
+      MainForm.Edit1.Text := Inform.Name;
+      MainForm.Edit2.Text := Inform.Address;
+      MainForm.Edit3.Text := Inform.Grid;
+      MainForm.Edit4.Text := Inform.State;
     end
     else
     begin
@@ -139,6 +159,7 @@ begin
       Label22.Caption := Inform.Telephone;
       Label23.Caption := Inform.eMail;
       Label24.Caption := Inform.ICQ;
+      Label26.Caption := Inform.QSL_VIA;
     end;
   finally
     FillChar(Inform, SizeOf(Inform), 0)
@@ -229,7 +250,7 @@ begin
   if ErrorCode <> '' then
   begin
     ErrorCode := '';
-    GetInformation(calsign);
+    GetInformation(calsign, ViewReload);
   end;
 end;
 
@@ -283,7 +304,6 @@ begin
     Inform.ICQ := GetXMLField(resp, 'icq');
     GetPhoto(GetXMLField(resp, 'picture'), Call);
   finally
-    ViewInfo(False);
     FreeAndNil(PhotoGIF);
     FreeAndNil(PhotoJPEG);
     FreeAndNil(PhotoPNG);
@@ -314,38 +334,26 @@ begin
       if GetError(ErrorCode) then
         Exit;
 
-    //Позывной
-    Label14.Caption := GetXMLField(resp, 'call');
-    GroupBox1.Caption := Label14.Caption;
-    //Имя
-    Label16.Caption := GetXMLField(resp, 'fname');
-    //Город
-    Label17.Caption := GetXMLField(resp, 'addr1');
-    //Локатор
-    Label19.Caption := GetXMLField(resp, 'grid');
-    //State
-    Label21.Caption := GetXMLField(resp, 'state');
-    //Страна
-    Label15.Caption := GetXMLField(resp, 'country');
-    //Дом страница
-    Label20.Caption := GetXMLField(resp, 'url');
-    //Телефон
-    Label22.Caption := GetXMLField(resp, 'telephone');
-    //email
-    Label23.Caption := GetXMLField(resp, 'email');
-    //улица
-    Label18.Caption := GetXMLField(resp, 'addr2');
-    //icq
-    Label24.Caption := GetXMLField(resp, 'icq');
-    //QSL VIA
-    Label26.Caption := GetXMLField(resp, 'qslvia');
+    Inform.Callsign := GetXMLField(resp, 'call');
+    Inform.Name := GetXMLField(resp, 'fname');
+    Inform.Address := GetXMLField(resp, 'addr2');
+    Inform.Address1 := GetXMLField(resp, 'addr1');
+    Inform.Grid := GetXMLField(resp, 'grid');
+    Inform.State := GetXMLField(resp, 'state');
+    Inform.Country := GetXMLField(resp, 'country');
+    Inform.HomePage := GetXMLField(resp, 'url');
+    Inform.Telephone := GetXMLField(resp, 'telephone');
+    Inform.eMail := GetXMLField(resp, 'email');
+    Inform.ICQ := GetXMLField(resp, 'icq');
+    Inform.QSL_VIA := GetXMLField(resp, 'qslvia');
     //Photo
     GetPhoto(GetXMLField(resp, 'image'), Call);
   finally
-    if Label14.Caption <> '' then
+    if Inform.Callsign <> '' then
       statusInfo := True
     else
       statusInfo := False;
+
     FreeAndNil(PhotoGIF);
     FreeAndNil(PhotoJPEG);
     FreeAndNil(PhotoPNG);
@@ -374,37 +382,22 @@ begin
       if GetError(ErrorCode) then
         Exit;
 
-    //Позывной
-    Label14.Caption := GetXMLField(resp, 'call');
-    GroupBox1.Caption := Label14.Caption;
-    //Имя
-    Label16.Caption := GetXMLField(resp, 'name');
-    //Фамилия
-    Label16.Caption := Label16.Caption + ' ' + GetXMLField(resp, 'surname');
-    //Город
-    Label17.Caption := GetXMLField(resp, 'city');
-    //Локатор
-    Label19.Caption := GetXMLField(resp, 'qthloc');
-    //State
-    Label21.Caption := GetXMLField(resp, 'state');
-    //Страна
-    Label15.Caption := GetXMLField(resp, 'country');
-    //Дом страница
-    Label20.Caption := GetXMLField(resp, 'url');
-    //Телефон
-    Label22.Caption := GetXMLField(resp, 'telephone');
-    //email
-    Label23.Caption := GetXMLField(resp, 'email');
-    //улица
-    Label18.Caption := GetXMLField(resp, 'street');
-    //icq
-    Label24.Caption := GetXMLField(resp, 'icq');
-    //QSL VIA
-    Label26.Caption := GetXMLField(resp, 'qslvia');
+    Inform.Callsign := GetXMLField(resp, 'call');
+    Inform.Name := GetXMLField(resp, 'name') + ' ' + GetXMLField(resp, 'surname');
+    Inform.Address := GetXMLField(resp, 'city');
+    Inform.Address1 := GetXMLField(resp, 'street');
+    Inform.Grid := GetXMLField(resp, 'qthloc');
+    Inform.State := GetXMLField(resp, 'state');
+    Inform.Country := GetXMLField(resp, 'country');
+    Inform.HomePage := GetXMLField(resp, 'url');
+    Inform.Telephone := GetXMLField(resp, 'telephone');
+    Inform.eMail := GetXMLField(resp, 'email');
+    Inform.ICQ := GetXMLField(resp, 'icq');
+    Inform.QSL_VIA := GetXMLField(resp, 'qslvia');
     //Photo
     GetPhoto(GetXMLField(resp, 'file'), Call);
   finally
-    if Label14.Caption <> '' then
+    if Inform.Callsign <> '' then
       statusInfo := True
     else
       statusInfo := False;
@@ -414,10 +407,11 @@ begin
   end;
 end;
 
-procedure TInformationForm.GetInformation(Call: string);
+procedure TInformationForm.GetInformation(Call: string; Main: boolean);
 begin
   if Call <> '' then
   begin
+    ViewReload := Main;
     Image1.Picture.Clear;
     PhotoJPEG := TJPEGImage.Create;
     PhotoGIF := TGIFImage.Create;
@@ -425,7 +419,10 @@ begin
     if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
     begin
       if sessionNumQRZRU <> '' then
-        GetQRZru(Call)  //Получение данных с QRZ.RU
+      begin
+        GetQRZru(Call);
+        ViewInfo(Main);
+      end
       else
         GetSession;
     end;
@@ -433,7 +430,10 @@ begin
     if IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'True' then
     begin
       if sessionNumQRZCOM <> '' then
-        GetQRZcom(Call) //Получение данных с QRZ.COM
+      begin
+        GetQRZcom(Call);
+        ViewInfo(Main);
+      end
       else
         GetSession;
     end;
@@ -441,7 +441,10 @@ begin
     if not statusInfo then
     begin
       if sessionNumHAMQTH <> '' then
-        GetHAMQTH(Call) //Получение данных с HAMQTH
+      begin
+        GetHAMQTH(Call);
+        ViewInfo(Main);
+      end
       else
         GetSession;
     end;
@@ -451,20 +454,7 @@ end;
 
 procedure TInformationForm.FormShow(Sender: TObject);
 begin
-  Label14.Caption := '';
-  Label15.Caption := '';
-  Label16.Caption := '';
-  Label17.Caption := '';
-  Label18.Caption := '';
-  Label19.Caption := '';
-  Label20.Caption := '';
-  Label21.Caption := '';
-  Label22.Caption := '';
-  Label23.Caption := '';
-  Label23.Caption := '';
-  Label24.Caption := '';
-  Label25.Caption := '';
-  Label26.Caption := '';
+  LabelClear;
   GroupBox1.Caption := rCallSign;
   ErrorCode := '';
   calsign := '';
@@ -476,7 +466,7 @@ begin
   else
     calsign := EditQSO_Form.Edit1.Text;
 
-  GetInformation(calsign);
+  GetInformation(calsign, False);
 end;
 
 procedure TInformationForm.GroupBox1Click(Sender: TObject);
@@ -488,20 +478,7 @@ procedure TInformationForm.FormClose(Sender: TObject; var CloseAction: TCloseAct
 begin
   IniF.WriteString('SetLog', 'PhotoDir', DirectoryEdit1.Text);
   MainForm.PhotoDir := DirectoryEdit1.Text;
-  Label14.Caption := '';
-  Label15.Caption := '';
-  Label16.Caption := '';
-  Label17.Caption := '';
-  Label18.Caption := '';
-  Label19.Caption := '';
-  Label20.Caption := '';
-  Label21.Caption := '';
-  Label22.Caption := '';
-  Label23.Caption := '';
-  Label23.Caption := '';
-  Label24.Caption := '';
-  Label25.Caption := '';
-  Label26.Caption := '';
+  LabelClear;
   GroupBox1.Caption := rCallSign;
 end;
 

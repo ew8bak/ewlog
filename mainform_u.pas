@@ -1493,14 +1493,14 @@ begin
       if SQLQuery2.FieldByName('QSLManager').AsString <> '' then
         Edit6.Text := SQLQuery2.FieldByName('QSLManager').AsString;
     end;
-  end else begin
+  end{ else begin
   Edit1.Clear;
   Edit2.Clear;
   Edit3.Clear;
   Edit4.Clear;
   Edit5.Clear;
   Edit6.Clear;
-  end;
+  end; }
 end;
 
 
@@ -2246,6 +2246,13 @@ var
   engText: string;
   foundPrefix: boolean;
 begin
+  Edit1.Clear;
+  Edit2.Clear;
+  Edit3.Clear;
+  Edit4.Clear;
+  Edit5.Clear;
+  Edit6.Clear;
+
   EditButton1.SelStart := seleditnum;
   engText := dmFunc.RusToEng(EditButton1.Text);
   if (engText <> EditButton1.Text) then
@@ -2269,18 +2276,22 @@ begin
       label45.Caption := '..';
       label47.Caption := '..';
       label42.Caption := '.......';
-      exit;
+      Exit;
     end;
 
-    if (CallBookLiteConnection.Connected = True) and
-      (IniF.ReadString('SetLog', 'Sprav', '') = 'False') then
-      SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
+//    if (CallBookLiteConnection.Connected = True) and
+//      (IniF.ReadString('SetLog', 'Sprav', '') = 'False') then
+//      SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
 //    if (CallBookLiteConnection.Connected = False) and
 //      (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then
 //      InformationForm.QRZRUsprav(EditButton1.Text, MenuItem111.Checked);
 
     if CheckBox6.Checked = False then
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
+
+//if Length(dmFunc.ExtractCallsign(EditButton1.Text))>3 then
+//InformationForm.GetInformation(EditButton1.Text, True);
+
     foundPrefix := SearchPrefix(EditButton1.Text, False);
 
     if foundPrefix and CheckBox3.Checked = True then
