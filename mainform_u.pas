@@ -1433,8 +1433,7 @@ begin
     SQLQuery2.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
       ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      +
-      '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
       + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
@@ -1449,8 +1448,7 @@ begin
     SQLQuery2.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
       'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
       + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      +
-      '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
       + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
       + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
@@ -2286,10 +2284,6 @@ begin
       (IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
       SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
 
-    if (CallBookLiteConnection.Connected = False) and
-      (Length(dmFunc.ExtractCallsign(EditButton1.Text)) > 3) then
-      InformationForm.GetInformation(EditButton1.Text, True);
-
     if CheckBox6.Checked = False then
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
 
@@ -2365,6 +2359,12 @@ begin
     seleditnum := EditButton1.SelStart;
   if (EditButton1.SelLength <> 0) and (Key = VK_BACK) then
     seleditnum := EditButton1.SelStart;
+  if (Key = VK_RETURN) then
+  begin
+    if (CallBookLiteConnection.Connected = False) and
+      (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
+      InformationForm.GetInformation(EditButton1.Text, True);
+  end;
 end;
 
 procedure TMainForm.Fl_TimerTimer(Sender: TObject);
