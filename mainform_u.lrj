@@ -178,7 +178,7 @@
 {"hash":165750492,"name":"tmainform.menuitem85.caption","sourcebytes":[84,114,97,110,115,99,101,105,118,101,114,32,67,111,110,116,114,111,108],"value":"Transceiver Control"},
 {"hash":1359,"name":"tmainform.menuitem88.caption","sourcebytes":[78,111],"value":"No"},
 {"hash":61194525,"name":"tmainform.menuitem86.caption","sourcebytes":[68,105,115,112,108,97,121,32,99,111,110,116,114,111,108,32,102,111,114,109],"value":"Display control form"},
-{"hash":95796309,"name":"tmainform.menuitem110.caption","sourcebytes":[68,105,115,112,108,97,121,105,110,103,32,112,104,111,116,111,115,32,119,105,116,104,32,81,82,90,46,82,85],"value":"Displaying photos with QRZ.RU"},
+{"hash":116546394,"name":"tmainform.menuitem110.caption","sourcebytes":[68,105,115,112,108,97,121,105,110,103,32,112,104,111,116,111,115,32,119,105,116,104,32,81,82,90],"value":"Displaying photos with QRZ"},
 {"hash":1374,"name":"tmainform.menuitem111.caption","sourcebytes":[79,110],"value":"On"},
 {"hash":21958,"name":"tmainform.menuitem112.caption","sourcebytes":[79,102,102],"value":"Off"},
 {"hash":247563221,"name":"tmainform.menuitem72.caption","sourcebytes":[67,111,109,112,97,99,116,32,109,111,100,101],"value":"Compact mode"},

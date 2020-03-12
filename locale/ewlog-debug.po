@@ -611,8 +611,8 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-#: resourcestr.rphotofromqrzru
-msgid "Photo from QRZ.RU"
+#: resourcestr.rphotofromqrz
+msgid "Photo from QRZ | HAMQTH"
 msgstr ""
 
 #: resourcestr.rprocesseddata
@@ -3362,7 +3362,7 @@ msgid "QSL Received"
 msgstr ""
 
 #: tmainform.menuitem110.caption
-msgid "Displaying photos with QRZ.RU"
+msgid "Displaying photos with QRZ"
 msgstr ""
 
 #: tmainform.menuitem111.caption

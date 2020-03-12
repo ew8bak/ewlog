@@ -1,11 +1,11 @@
 object MainForm: TMainForm
   Left = 308
-  Height = 694
-  Top = 106
+  Height = 693
+  Top = 107
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
-  ClientHeight = 671
+  ClientHeight = 670
   ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
@@ -246,12 +246,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 261
+    Height = 260
     Top = 32
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 261
+    ClientHeight = 260
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1607,16 +1607,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 261
+    Height = 260
     Top = 32
     Width = 734
     Align = alClient
-    ClientHeight = 261
+    ClientHeight = 260
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 259
+      Height = 258
       Top = 1
       Width = 732
       Align = alClient
@@ -1795,7 +1795,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 293
+    Top = 292
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -3421,7 +3421,7 @@ object MainForm: TMainForm
         end
       end
       object MenuItem110: TMenuItem
-        Caption = 'Displaying photos with QRZ.RU'
+        Caption = 'Displaying photos with QRZ'
         object MenuItem111: TMenuItem
           AutoCheck = True
           Caption = 'On'

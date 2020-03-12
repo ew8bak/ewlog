@@ -655,10 +655,9 @@ msgstr "Данная функция доступна только в Windows"
 msgid "Path"
 msgstr "Путь"
 
-#: resourcestr.rphotofromqrzru
-msgctxt "resourcestr.rphotofromqrzru"
-msgid "Photo from QRZ.RU"
-msgstr "Фото из QRZ.RU"
+#: resourcestr.rphotofromqrz
+msgid "Photo from QRZ | HAMQTH"
+msgstr ""
 
 #: resourcestr.rprocesseddata
 msgctxt "resourcestr.rprocesseddata"
@@ -3433,7 +3432,9 @@ msgid "QSL Received"
 msgstr "QSL Получена"
 
 #: tmainform.menuitem110.caption
-msgid "Displaying photos with QRZ.RU"
+#, fuzzy
+#| msgid "Displaying photos with QRZ.RU"
+msgid "Displaying photos with QRZ"
 msgstr "Отображать фото из QRZ.RU"
 
 #: tmainform.menuitem111.caption

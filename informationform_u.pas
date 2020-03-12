@@ -14,6 +14,20 @@ const
   URL_HAMQTH = 'https://www.hamqth.com/xml.php?id=';
 
 type
+  TInform = record
+    Callsign: string;
+    Country: string;
+    Name: string;
+    Address1: string;
+    Address: string;
+    Grid: string;
+    HomePage: string;
+    State: string;
+    Telephone: string;
+    eMail: string;
+    ICQ: string;
+    QSL_VIA: string;
+  end;
 
   { TInformationForm }
 
@@ -63,6 +77,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure GroupBox1Click(Sender: TObject);
   private
     calsign: string;
     statusInfo: boolean;
@@ -75,6 +90,7 @@ type
     sessionNumQRZRU: string;
     sessionNumQRZCOM: string;
     sessionNumHAMQTH: string;
+    Inform: TInform;
     procedure GetInformation(Call: string);
     procedure GetQRZru(Call: string);
     procedure GetQRZcom(Call: string);
@@ -82,6 +98,7 @@ type
     procedure GetSession;
     procedure GetPhoto(url, Call: string);
     procedure ReloadInformation;
+    procedure ViewInfo(Main: boolean);
     function GetError(error_msg: string): boolean;
     function GetXMLField(resp, field: string): string;
     { public declarations }
@@ -97,6 +114,36 @@ uses MainForm_U, editqso_u, dmFunc_U, getSessionID;
 {$R *.lfm}
 
 { TInformationForm }
+
+procedure TInformationForm.ViewInfo(Main: boolean);
+begin
+  try
+    if Main then
+    begin
+      MainForm.Edit1.Text:=Inform.Name;
+      MainForm.Edit2.Text:=Inform.Address;
+      MainForm.Edit3.Text:=Inform.Grid;
+      MainForm.Edit4.Text:=Inform.State;
+    end
+    else
+    begin
+      Label14.Caption := Inform.Callsign;
+      GroupBox1.Caption := Label14.Caption;
+      Label16.Caption := Inform.Name;
+      Label17.Caption := Inform.Address1;
+      Label18.Caption := Inform.Address;
+      Label19.Caption := Inform.Grid;
+      Label21.Caption := Inform.State;
+      Label15.Caption := Inform.Country;
+      Label20.Caption := Inform.HomePage;
+      Label22.Caption := Inform.Telephone;
+      Label23.Caption := Inform.eMail;
+      Label24.Caption := Inform.ICQ;
+    end;
+  finally
+    FillChar(Inform, SizeOf(Inform), 0)
+  end;
+end;
 
 function TInformationForm.GetXMLField(resp, field: string): string;
 var
@@ -147,7 +194,7 @@ begin
       Image1.Picture.Assign(PhotoJPEG);
     if dmFunc.Extention(url) = '.png' then
       Image1.Picture.Assign(PhotoPNG);
-  end
+  end;
 end;
 
 function TInformationForm.GetError(error_msg: string): boolean;
@@ -223,32 +270,20 @@ begin
       if GetError(ErrorCode) then
         Exit;
 
-    //Позывной
-    Label14.Caption := GetXMLField(resp, 'callsign');
-    GroupBox1.Caption := Label14.Caption;
-    //Имя
-    Label16.Caption := GetXMLField(resp, 'nick');
-    //Город
-    Label17.Caption := GetXMLField(resp, 'street');
-    //Локатор
-    Label19.Caption := GetXMLField(resp, 'grid');
-    //State
-    Label21.Caption := GetXMLField(resp, 'state');
-    //Страна
-    Label15.Caption := GetXMLField(resp, 'country');
-    //Дом страница
-    Label20.Caption := GetXMLField(resp, 'web');
-    //Телефон
-    Label22.Caption := GetXMLField(resp, 'telephone');
-    //email
-    Label23.Caption := GetXMLField(resp, 'email');
-    //улица
-    Label18.Caption := GetXMLField(resp, 'adr_city');
-    //icq
-    Label24.Caption := GetXMLField(resp, 'icq');
-    //Photo
+    Inform.Callsign := GetXMLField(resp, 'callsign');
+    Inform.Name := GetXMLField(resp, 'nick');
+    Inform.Address1 := GetXMLField(resp, 'street');
+    Inform.Grid := GetXMLField(resp, 'grid');
+    Inform.State := GetXMLField(resp, 'state');
+    Inform.Country := GetXMLField(resp, 'country');
+    Inform.HomePage := GetXMLField(resp, 'web');
+    Inform.Telephone := GetXMLField(resp, 'telephone');
+    Inform.eMail := GetXMLField(resp, 'email');
+    Inform.Address := GetXMLField(resp, 'adr_city');
+    Inform.ICQ := GetXMLField(resp, 'icq');
     GetPhoto(GetXMLField(resp, 'picture'), Call);
   finally
+    ViewInfo(False);
     FreeAndNil(PhotoGIF);
     FreeAndNil(PhotoJPEG);
     FreeAndNil(PhotoPNG);
@@ -442,6 +477,11 @@ begin
     calsign := EditQSO_Form.Edit1.Text;
 
   GetInformation(calsign);
+end;
+
+procedure TInformationForm.GroupBox1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TInformationForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);

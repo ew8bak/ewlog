@@ -54,7 +54,7 @@ resourcestring
   rSwitchDBMySQL = 'Switch base to MySQL';
   rDBNotInit = 'The database is not initialized, go to the settings?';
   rClientConnected = 'Client Connected:';
-  rPhotoFromQRZru = 'Photo from QRZ.RU';
+  rPhotoFromQRZ = 'Photo from QRZ | HAMQTH';
   rDeleteRecord = 'Delete Record ';
   rDuplicates = 'Duplicates ';
   rSyncOK = 'Done! Number of duplicates ';

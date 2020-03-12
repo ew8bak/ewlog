@@ -1,7 +1,7 @@
 object InformationForm: TInformationForm
-  Left = 787
+  Left = 488
   Height = 367
-  Top = 178
+  Top = 212
   Width = 828
   BorderStyle = bsDialog
   Caption = 'Information'
@@ -26,6 +26,7 @@ object InformationForm: TInformationForm
     Font.Height = -13
     ParentFont = False
     TabOrder = 0
+    OnClick = GroupBox1Click
     object Label1: TLabel
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
@@ -196,11 +197,11 @@ object InformationForm: TInformationForm
     end
     object Label14: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 6
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -208,11 +209,11 @@ object InformationForm: TInformationForm
     end
     object Label15: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 24
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -220,11 +221,11 @@ object InformationForm: TInformationForm
     end
     object Label16: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 42
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -232,11 +233,11 @@ object InformationForm: TInformationForm
     end
     object Label17: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 60
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -244,11 +245,11 @@ object InformationForm: TInformationForm
     end
     object Label18: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 78
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -256,11 +257,11 @@ object InformationForm: TInformationForm
     end
     object Label19: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 96
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -268,11 +269,11 @@ object InformationForm: TInformationForm
     end
     object Label20: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 114
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -280,11 +281,11 @@ object InformationForm: TInformationForm
     end
     object Label21: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 132
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -292,11 +293,11 @@ object InformationForm: TInformationForm
     end
     object Label22: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 150
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -304,11 +305,11 @@ object InformationForm: TInformationForm
     end
     object Label23: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 168
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -316,11 +317,11 @@ object InformationForm: TInformationForm
     end
     object Label24: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 186
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -340,11 +341,11 @@ object InformationForm: TInformationForm
     end
     object Label26: TLabel
       AnchorSideLeft.Control = GroupBox1
-      Left = 100
+      Left = 105
       Height = 13
       Top = 204
       Width = 23
-      BorderSpacing.Left = 100
+      BorderSpacing.Left = 105
       Caption = 'text'
       Font.Height = -12
       ParentColor = False
@@ -431,9 +432,7 @@ object InformationForm: TInformationForm
       Top = 0
       Width = 414
       Align = alClient
-      AutoSize = True
       Proportional = True
-      Stretch = True
     end
   end
   object Label13: TLabel
@@ -450,7 +449,7 @@ object InformationForm: TInformationForm
     Left = 8
     Height = 24
     Top = 336
-    Width = 280
+    Width = 394
     ShowHidden = False
     ButtonWidth = 23
     NumGlyphs = 1

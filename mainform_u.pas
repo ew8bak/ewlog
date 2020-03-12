@@ -4052,7 +4052,7 @@ begin
   PhotoGroup := TGroupBox.Create(Panel13);
   PhotoGroup.Parent := Panel13;
   PhotoGroup.Align := alClient;
-  PhotoGroup.Caption := rPhotoFromQRZru;
+  PhotoGroup.Caption := rPhotoFromQRZ;
   if MenuItem86.Checked = True then
   begin
     ShowTRXForm := False;
