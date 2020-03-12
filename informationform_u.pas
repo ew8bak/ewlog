@@ -24,12 +24,9 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
     DirectoryEdit1: TDirectoryEdit;
     GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
+    GroupBox3: TGroupBox;
     Image1: TImage;
     Label1: TLabel;
     Label10: TLabel;
@@ -117,7 +114,6 @@ procedure TInformationForm.GetPhoto(url, Call: string);
 begin
   if url <> '' then
   begin
-    InformationForm.Height := 658;
     with THTTPSend.Create do
     begin
       if HTTPMethod('GET', url) then
@@ -152,8 +148,6 @@ begin
     if dmFunc.Extention(url) = '.png' then
       Image1.Picture.Assign(PhotoPNG);
   end
-  else
-    InformationForm.Height := 364;
 end;
 
 function TInformationForm.GetError(error_msg: string): boolean;
@@ -389,6 +383,7 @@ procedure TInformationForm.GetInformation(Call: string);
 begin
   if Call <> '' then
   begin
+    Image1.Picture.Clear;
     PhotoJPEG := TJPEGImage.Create;
     PhotoGIF := TGIFImage.Create;
     PhotoPNG := TPortableNetworkGraphic.Create;

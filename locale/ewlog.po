@@ -2364,26 +2364,13 @@ msgctxt "tinformationform.caption"
 msgid "Information"
 msgstr ""
 
-#: tinformationform.checkbox1.caption
-msgid "QRZ.RU"
-msgstr ""
-
-#: tinformationform.checkbox2.caption
-msgid "HAMQTH"
-msgstr ""
-
-#: tinformationform.checkbox3.caption
-msgctxt "tinformationform.checkbox3.caption"
-msgid "QRZ.COM"
-msgstr ""
-
 #: tinformationform.groupbox1.caption
 msgctxt "tinformationform.groupbox1.caption"
 msgid "Callsign"
 msgstr ""
 
-#: tinformationform.groupbox2.caption
-msgid "Search in:"
+#: tinformationform.groupbox3.caption
+msgid "Photo"
 msgstr ""
 
 #: tinformationform.label1.caption

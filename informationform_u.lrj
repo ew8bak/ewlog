@@ -26,15 +26,12 @@
 {"hash":503028,"name":"tinformationform.label24.caption","sourcebytes":[116,101,120,116],"value":"text"},
 {"hash":503028,"name":"tinformationform.label25.caption","sourcebytes":[116,101,120,116],"value":"text"},
 {"hash":503028,"name":"tinformationform.label26.caption","sourcebytes":[116,101,120,116],"value":"text"},
-{"hash":144700826,"name":"tinformationform.groupbox2.caption","sourcebytes":[83,101,97,114,99,104,32,105,110,58],"value":"Search in:"},
-{"hash":90690421,"name":"tinformationform.checkbox1.caption","sourcebytes":[81,82,90,46,82,85],"value":"QRZ.RU"},
-{"hash":80094856,"name":"tinformationform.checkbox2.caption","sourcebytes":[72,65,77,81,84,72],"value":"HAMQTH"},
-{"hash":108865645,"name":"tinformationform.checkbox3.caption","sourcebytes":[81,82,90,46,67,79,77],"value":"QRZ.COM"},
 {"hash":48669433,"name":"tinformationform.button1.caption","sourcebytes":[65,108,108,32,99,111,112,121],"value":"All copy"},
 {"hash":5668481,"name":"tinformationform.button2.caption","sourcebytes":[81,82,90,67,81],"value":"QRZCQ"},
 {"hash":113270540,"name":"tinformationform.button3.caption","sourcebytes":[79,112,101,110,32,85,82,76],"value":"Open URL"},
 {"hash":252068148,"name":"tinformationform.button4.caption","sourcebytes":[67,111,112,121,32,99,111,109,109,101,110,116],"value":"Copy comment"},
 {"hash":155275074,"name":"tinformationform.button5.caption","sourcebytes":[80,83,75,32,82,101,112,111,114,116,101,114],"value":"PSK Reporter"},
 {"hash":171667831,"name":"tinformationform.button6.caption","sourcebytes":[67,108,117,98,76,79,71],"value":"ClubLOG"},
+{"hash":5699247,"name":"tinformationform.groupbox3.caption","sourcebytes":[80,104,111,116,111],"value":"Photo"},
 {"hash":195693674,"name":"tinformationform.label13.caption","sourcebytes":[85,112,108,111,97,100,32,112,104,111,116,111,115,32,102,114,111,109,32,116,104,101,32,73,110,116,101,114,110,101,116,32,116,111,58],"value":"Upload photos from the Internet to:"}
 ]}
