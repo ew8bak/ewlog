@@ -3,14 +3,14 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
-    <Units Count="125">
+    <BuildModes Active="Релиз"/>
+    <Units Count="126">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
-        <CursorPos X="40" Y="16"/>
+        <CursorPos X="64" Y="23"/>
         <UsageCount Value="200"/>
       </Unit0>
       <Unit1>
@@ -44,12 +44,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="472"/>
-        <CursorPos Y="494"/>
+        <TopLine Value="430"/>
+        <CursorPos X="28" Y="426"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="logconfigform_u.pas"/>
@@ -119,11 +119,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="177"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="176"/>
         <CursorPos X="38" Y="146"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="simplexml.pas"/>
@@ -516,7 +515,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="95"/>
         <CursorPos X="4" Y="172"/>
-        <UsageCount Value="195"/>
+        <UsageCount Value="197"/>
       </Unit46>
       <Unit47>
         <Filename Value="clublog.pas"/>
@@ -524,7 +523,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="43" Y="11"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="192"/>
       </Unit47>
       <Unit48>
         <Filename Value="qrzcom.pas"/>
@@ -532,7 +531,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos Y="87"/>
-        <UsageCount Value="182"/>
+        <UsageCount Value="184"/>
       </Unit48>
       <Unit49>
         <Filename Value="qso_record.pas"/>
@@ -540,25 +539,23 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="25" Y="11"/>
-        <UsageCount Value="169"/>
+        <UsageCount Value="171"/>
       </Unit49>
       <Unit50>
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="19" Y="11"/>
-        <UsageCount Value="167"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="169"/>
       </Unit50>
       <Unit51>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
         <CursorPos X="12" Y="11"/>
-        <UsageCount Value="167"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="169"/>
       </Unit51>
       <Unit52>
         <Filename Value="initini.pas"/>
@@ -566,7 +563,7 @@
         <UnitName Value="InitINI"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="13"/>
-        <UsageCount Value="164"/>
+        <UsageCount Value="166"/>
       </Unit52>
       <Unit53>
         <Filename Value="download_lotw.pas"/>
@@ -574,7 +571,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="102"/>
         <CursorPos X="33" Y="108"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="153"/>
       </Unit53>
       <Unit54>
         <Filename Value="download_eqslcc.pas"/>
@@ -582,7 +579,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
         <CursorPos X="33" Y="11"/>
-        <UsageCount Value="146"/>
+        <UsageCount Value="148"/>
       </Unit54>
       <Unit55>
         <Filename Value="downloadupdates.pas"/>
@@ -591,7 +588,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="69" Y="39"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="142"/>
       </Unit55>
       <Unit56>
         <Filename Value="setupsqlquery.pas"/>
@@ -600,7 +597,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="27" Y="61"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="134"/>
       </Unit56>
       <Unit57>
         <Filename Value="fldigimodem.pas"/>
@@ -609,7 +606,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="183"/>
         <CursorPos X="85" Y="12"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="114"/>
       </Unit57>
       <Unit58>
         <Filename Value="analyticthread.pas"/>
@@ -618,614 +615,625 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="50" Y="47"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="109"/>
       </Unit58>
       <Unit59>
         <Filename Value="getsessionid.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSessionID"/>
         <EditorIndex Value="5"/>
-        <CursorPos X="5" Y="27"/>
-        <UsageCount Value="43"/>
+        <TopLine Value="128"/>
+        <CursorPos X="63" Y="140"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
       </Unit59>
       <Unit60>
+        <Filename Value="getphotofrominternet.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GetPhotoFromInternet"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="31"/>
+        <CursorPos X="54" Y="46"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+      </Unit60>
+      <Unit61>
         <Filename Value="RegExpr.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6"/>
         <UsageCount Value="172"/>
-      </Unit60>
-      <Unit61>
+      </Unit61>
+      <Unit62>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="137"/>
         <CursorPos Y="165"/>
         <UsageCount Value="7"/>
-      </Unit61>
-      <Unit62>
+      </Unit62>
+      <Unit63>
         <Filename Value="D:\vkarpenko\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\ltelnet.pp"/>
         <UnitName Value="lTelnet"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="411"/>
         <CursorPos Y="432"/>
         <UsageCount Value="3"/>
-      </Unit62>
-      <Unit63>
+      </Unit63>
+      <Unit64>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvmapviewer.pas"/>
         <UnitName Value="mvMapViewer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="664"/>
         <CursorPos Y="684"/>
         <UsageCount Value="7"/>
-      </Unit63>
-      <Unit64>
+      </Unit64>
+      <Unit65>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvtypes.pas"/>
         <UnitName Value="mvTypes"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="3" Y="41"/>
         <UsageCount Value="3"/>
-      </Unit64>
-      <Unit65>
+      </Unit65>
+      <Unit66>
         <Filename Value="D:\karpe.GML-VKARPENKO-W\AppData\Local\lazarus\onlinepackagemanager\packages\synapse40.1\ssl_openssl.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="89"/>
         <UsageCount Value="3"/>
-      </Unit65>
-      <Unit66>
+      </Unit66>
+      <Unit67>
         <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
         <UnitName Value="DBGrids"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2043"/>
         <CursorPos Y="2061"/>
         <UsageCount Value="7"/>
-      </Unit66>
-      <Unit67>
+      </Unit67>
+      <Unit68>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\Indy10\System\IdGlobal.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1888"/>
         <CursorPos X="105" Y="1908"/>
         <UsageCount Value="5"/>
-      </Unit67>
-      <Unit68>
+      </Unit68>
+      <Unit69>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
         <UnitName Value="LazTracer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="34" Y="49"/>
         <UsageCount Value="3"/>
-      </Unit68>
-      <Unit69>
+      </Unit69>
+      <Unit70>
         <Filename Value="C:\lazarus\components\lazutils\laztracer.pas"/>
         <UnitName Value="LazTracer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos Y="29"/>
         <UsageCount Value="7"/>
-      </Unit69>
-      <Unit70>
+      </Unit70>
+      <Unit71>
         <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1214"/>
         <CursorPos Y="1235"/>
         <UsageCount Value="7"/>
-      </Unit70>
-      <Unit71>
+      </Unit71>
+      <Unit72>
         <Filename Value="D:\usr\lib\fpc\src\packages\paszlib\src\zipper.pp"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="7"/>
-      </Unit71>
-      <Unit72>
+      </Unit72>
+      <Unit73>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-res\src\resource.pp"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="39"/>
         <UsageCount Value="7"/>
-      </Unit72>
-      <Unit73>
+      </Unit73>
+      <Unit74>
         <Filename Value="D:\usr\lib\lazarus\components\lazreport\source\lr_class.pas"/>
         <UnitName Value="LR_Class"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2485"/>
         <CursorPos X="18" Y="2514"/>
         <UsageCount Value="7"/>
-      </Unit73>
-      <Unit74>
+      </Unit74>
+      <Unit75>
         <Filename Value="D:\usr\lib\lazarus\components\lazreport\source\lr_utils.pas"/>
         <UnitName Value="LR_Utils"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="169"/>
         <CursorPos X="22" Y="183"/>
         <UsageCount Value="7"/>
-      </Unit74>
-      <Unit75>
+      </Unit75>
+      <Unit76>
         <Filename Value="C:\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1828"/>
         <CursorPos X="3" Y="1849"/>
         <UsageCount Value="7"/>
-      </Unit75>
-      <Unit76>
+      </Unit76>
+      <Unit77>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2154"/>
         <CursorPos Y="2174"/>
         <UsageCount Value="7"/>
-      </Unit76>
-      <Unit77>
+      </Unit77>
+      <Unit78>
         <Filename Value="D:\usr\lib\fpc\src\rtl\objpas\sysutils\sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="45" Y="247"/>
         <UsageCount Value="1"/>
-      </Unit77>
-      <Unit78>
+      </Unit78>
+      <Unit79>
         <Filename Value="D:\usr\lib\fpc\src\rtl\unix\sysutils.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1562"/>
         <CursorPos X="60" Y="177"/>
         <UsageCount Value="1"/>
-      </Unit78>
-      <Unit79>
+      </Unit79>
+      <Unit80>
         <Filename Value="D:\usr\lib\fpc\src\rtl\unix\classes.pp"/>
         <UnitName Value="Classes"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="20"/>
         <UsageCount Value="1"/>
-      </Unit79>
-      <Unit80>
+      </Unit80>
+      <Unit81>
         <Filename Value="D:\usr\lib\fpc\src\packages\rtl-objpas\src\inc\dateutils.pp"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="1"/>
-      </Unit80>
-      <Unit81>
+      </Unit81>
+      <Unit82>
         <Filename Value="D:\usr\lib\lazarus\lcl\lcltype.pp"/>
         <UnitName Value="LCLType"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3172"/>
         <UsageCount Value="1"/>
-      </Unit81>
-      <Unit82>
+      </Unit82>
+      <Unit83>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-db\src\sqldb\mysql\mysqlconn.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="596"/>
         <CursorPos Y="613"/>
         <UsageCount Value="3"/>
-      </Unit82>
-      <Unit83>
+      </Unit83>
+      <Unit84>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="941"/>
         <CursorPos Y="958"/>
         <UsageCount Value="3"/>
-      </Unit83>
-      <Unit84>
+      </Unit84>
+      <Unit85>
         <Filename Value="D:\usr\lib\lazarus\lcl\stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1505"/>
         <CursorPos X="21" Y="1405"/>
         <UsageCount Value="6"/>
-      </Unit84>
-      <Unit85>
+      </Unit85>
+      <Unit86>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2222"/>
         <CursorPos Y="2242"/>
         <UsageCount Value="2"/>
-      </Unit85>
-      <Unit86>
+      </Unit86>
+      <Unit87>
         <Filename Value="D:\usr\lib\lazarus\lcl\dbgrids.pas"/>
         <UnitName Value="DBGrids"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3284"/>
         <CursorPos Y="3311"/>
         <UsageCount Value="2"/>
-      </Unit86>
-      <Unit87>
+      </Unit87>
+      <Unit88>
         <Filename Value="D:\usr\lib\lazarus\lcl\grids.pas"/>
         <UnitName Value="Grids"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6847"/>
         <CursorPos X="29" Y="6872"/>
         <UsageCount Value="8"/>
-      </Unit87>
-      <Unit88>
+      </Unit88>
+      <Unit89>
         <Filename Value="D:\usr\lib\lazarus\lcl\groupededit.pp"/>
         <UnitName Value="GroupedEdit"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="416"/>
         <CursorPos Y="436"/>
         <UsageCount Value="8"/>
-      </Unit88>
-      <Unit89>
+      </Unit89>
+      <Unit90>
         <Filename Value="D:\usr\lib\lazarus\lcl\maskedit.pp"/>
         <UnitName Value="MaskEdit"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1599"/>
         <CursorPos Y="1619"/>
         <UsageCount Value="8"/>
-      </Unit89>
-      <Unit90>
+      </Unit90>
+      <Unit91>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\lconvencoding.pas"/>
         <UnitName Value="LConvEncoding"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7237"/>
         <CursorPos Y="7264"/>
         <UsageCount Value="2"/>
-      </Unit90>
-      <Unit91>
+      </Unit91>
+      <Unit92>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2940"/>
         <CursorPos Y="2915"/>
         <UsageCount Value="7"/>
-      </Unit91>
-      <Unit92>
+      </Unit92>
+      <Unit93>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos Y="22"/>
         <UsageCount Value="2"/>
-      </Unit92>
-      <Unit93>
+      </Unit93>
+      <Unit94>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="150"/>
         <CursorPos Y="170"/>
         <UsageCount Value="2"/>
-      </Unit93>
-      <Unit94>
+      </Unit94>
+      <Unit95>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5393"/>
         <CursorPos Y="5412"/>
         <UsageCount Value="2"/>
-      </Unit94>
-      <Unit95>
+      </Unit95>
+      <Unit96>
         <Filename Value="D:\usr\lib\lazarus\lcl\lclmessageglue.pas"/>
         <UnitName Value="LCLMessageGlue"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="100"/>
         <CursorPos Y="123"/>
         <UsageCount Value="2"/>
-      </Unit95>
-      <Unit96>
+      </Unit96>
+      <Unit97>
         <Filename Value="D:\usr\lib\lazarus\lcl\interfaces\gtk2\gtk2wsstdctrls.pp"/>
         <UnitName Value="Gtk2WSStdCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2442"/>
         <CursorPos Y="2462"/>
         <UsageCount Value="2"/>
-      </Unit96>
-      <Unit97>
+      </Unit97>
+      <Unit98>
         <Filename Value="D:\usr\lib\lazarus\lcl\customtimer.pas"/>
         <UnitName Value="CustomTimer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="156"/>
         <CursorPos Y="176"/>
         <UsageCount Value="1"/>
-      </Unit97>
-      <Unit98>
+      </Unit98>
+      <Unit99>
         <Filename Value="D:\usr\lib\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="41" Y="70"/>
         <UsageCount Value="5"/>
-      </Unit98>
-      <Unit99>
+      </Unit99>
+      <Unit100>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7866"/>
         <CursorPos Y="7885"/>
         <UsageCount Value="7"/>
-      </Unit99>
-      <Unit100>
+      </Unit100>
+      <Unit101>
         <Filename Value="ssl_openssl.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="79"/>
         <CursorPos X="3" Y="99"/>
         <UsageCount Value="1"/>
-      </Unit100>
-      <Unit101>
+      </Unit101>
+      <Unit102>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\lazfileutils.pas"/>
         <UnitName Value="LazFileUtils"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="18" Y="10"/>
         <UsageCount Value="3"/>
-      </Unit101>
-      <Unit102>
+      </Unit102>
+      <Unit103>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\synapse40.1\httpsend.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="63"/>
         <CursorPos X="3" Y="83"/>
         <UsageCount Value="3"/>
-      </Unit102>
-      <Unit103>
+      </Unit103>
+      <Unit104>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\synapse40.1\blcksock.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="160"/>
         <CursorPos X="22" Y="190"/>
         <UsageCount Value="3"/>
-      </Unit103>
-      <Unit104>
+      </Unit104>
+      <Unit105>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\dynhasharray.pp"/>
         <UnitName Value="DynHashArray"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="467"/>
         <CursorPos Y="494"/>
         <UsageCount Value="3"/>
-      </Unit104>
-      <Unit105>
+      </Unit105>
+      <Unit106>
         <Filename Value="D:\usr\lib\lazarus\lcl\interfaces\gtk2\gtk2winapi.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8162"/>
         <CursorPos Y="8182"/>
         <UsageCount Value="3"/>
-      </Unit105>
-      <Unit106>
+      </Unit106>
+      <Unit107>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\inc\objpas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="266"/>
         <CursorPos Y="283"/>
         <UsageCount Value="4"/>
-      </Unit106>
-      <Unit107>
+      </Unit107>
+      <Unit108>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\sysutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="303"/>
         <CursorPos X="13" Y="320"/>
         <UsageCount Value="4"/>
-      </Unit107>
-      <Unit108>
+      </Unit108>
+      <Unit109>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\sysutils.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="151"/>
         <CursorPos X="9" Y="158"/>
         <UsageCount Value="4"/>
-      </Unit108>
-      <Unit109>
+      </Unit109>
+      <Unit110>
         <Filename Value="D:\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdUDPServer.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <CursorPos X="3" Y="152"/>
         <UsageCount Value="4"/>
-      </Unit109>
-      <Unit110>
+      </Unit110>
+      <Unit111>
         <Filename Value="D:\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdThread.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="712"/>
         <CursorPos X="25" Y="742"/>
         <UsageCount Value="4"/>
-      </Unit110>
-      <Unit111>
+      </Unit111>
+      <Unit112>
         <Filename Value="D:\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdThreadSafe.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="54"/>
         <CursorPos X="16" Y="72"/>
         <UsageCount Value="4"/>
-      </Unit111>
-      <Unit112>
+      </Unit112>
+      <Unit113>
         <Filename Value="D:\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\System\IdGlobal.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1362"/>
         <UsageCount Value="4"/>
-      </Unit112>
-      <Unit113>
+      </Unit113>
+      <Unit114>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\datih.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="111"/>
         <CursorPos X="10" Y="128"/>
         <UsageCount Value="5"/>
-      </Unit113>
-      <Unit114>
+      </Unit114>
+      <Unit115>
         <Filename Value="D:\usr\lib\lazarus\lcl\lclproc.pas"/>
         <UnitName Value="LCLProc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="125"/>
         <CursorPos X="10" Y="145"/>
         <UsageCount Value="7"/>
-      </Unit114>
-      <Unit115>
+      </Unit115>
+      <Unit116>
         <Filename Value="C:\lazarus\lcl\lclmessageglue.pas"/>
         <UnitName Value="LCLMessageGlue"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="99"/>
         <CursorPos Y="105"/>
         <UsageCount Value="7"/>
-      </Unit115>
-      <Unit116>
+      </Unit116>
+      <Unit117>
         <Filename Value="C:\lazarus\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2228"/>
         <CursorPos Y="2256"/>
         <UsageCount Value="7"/>
-      </Unit116>
-      <Unit117>
+      </Unit117>
+      <Unit118>
         <Filename Value="D:\usr\lib\fpc\src\packages\fcl-base\src\gettext.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="313"/>
         <CursorPos X="3" Y="315"/>
         <UsageCount Value="7"/>
-      </Unit117>
-      <Unit118>
+      </Unit118>
+      <Unit119>
         <Filename Value="..\.lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
         <UnitName Value="lNet"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1531"/>
         <CursorPos Y="1551"/>
         <UsageCount Value="8"/>
-      </Unit118>
-      <Unit119>
+      </Unit119>
+      <Unit120>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\fpimagebitmap.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="121"/>
         <CursorPos Y="141"/>
         <UsageCount Value="8"/>
-      </Unit119>
-      <Unit120>
+      </Unit120>
+      <Unit121>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="134"/>
         <CursorPos Y="165"/>
         <UsageCount Value="9"/>
-      </Unit120>
-      <Unit121>
+      </Unit121>
+      <Unit122>
         <Filename Value="C:\usr\lib\lazarus\lcl\customtimer.pas"/>
         <UnitName Value="CustomTimer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="116"/>
         <CursorPos Y="136"/>
         <UsageCount Value="9"/>
-      </Unit121>
-      <Unit122>
+      </Unit122>
+      <Unit123>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2222"/>
         <CursorPos Y="2254"/>
         <UsageCount Value="9"/>
-      </Unit122>
-      <Unit123>
-        <Filename Value="getphotofrominternet.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="GetPhotoFromInternet"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="24"/>
-        <CursorPos X="57" Y="41"/>
-        <UsageCount Value="24"/>
-        <Loaded Value="True"/>
       </Unit123>
       <Unit124>
         <Filename Value="C:\lazarus\lcl\include\rasterimage.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="400"/>
         <CursorPos Y="417"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit124>
+      <Unit125>
+        <Filename Value="getinfofrominternetthread.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GetInfoFromInternetThread"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="27"/>
+        <CursorPos Y="37"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit125>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="60" Column="30" TopLine="34"/>
+        <Caret Line="36" TopLine="21"/>
       </Position1>
       <Position2>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="66" Column="6" TopLine="34"/>
+        <Caret Line="38" TopLine="21"/>
       </Position2>
       <Position3>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="78" Column="38" TopLine="52"/>
+        <Caret Line="40" TopLine="21"/>
       </Position3>
       <Position4>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="11" Column="57"/>
+        <Caret Line="42" TopLine="21"/>
       </Position4>
       <Position5>
-        <Filename Value="informationform_u.pas"/>
-        <Caret Line="497" Column="3" TopLine="388"/>
+        <Filename Value="getphotofrominternet.pas"/>
+        <Caret Line="43" TopLine="21"/>
       </Position5>
       <Position6>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="51" Column="25" TopLine="17"/>
+        <Caret Line="44" TopLine="21"/>
       </Position6>
       <Position7>
-        <Filename Value="informationform_u.pas"/>
-        <Caret Line="91" Column="27" TopLine="138"/>
+        <Filename Value="getphotofrominternet.pas"/>
+        <Caret Line="47" TopLine="21"/>
       </Position7>
       <Position8>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="47" Column="25" TopLine="40"/>
+        <Caret Line="73" Column="13" TopLine="47"/>
       </Position8>
       <Position9>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="37" TopLine="30"/>
+        <Caret Line="11" Column="70" TopLine="4"/>
       </Position9>
       <Position10>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="38" TopLine="30"/>
+        <Caret Line="75" Column="16" TopLine="35"/>
       </Position10>
       <Position11>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="40" TopLine="30"/>
+        <Caret Line="74" Column="42" TopLine="49"/>
       </Position11>
       <Position12>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="42" TopLine="30"/>
+        <Caret Line="44" Column="71" TopLine="33"/>
       </Position12>
       <Position13>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="44" TopLine="30"/>
+        <Caret Line="19" TopLine="2"/>
       </Position13>
       <Position14>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="46" TopLine="30"/>
+        <Filename Value="getinfofrominternetthread.pas"/>
+        <Caret Column="31"/>
       </Position14>
       <Position15>
         <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="48" TopLine="30"/>
+        <Caret Line="18" Column="43"/>
       </Position15>
       <Position16>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="49" TopLine="30"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="97" Column="43" TopLine="86"/>
       </Position16>
       <Position17>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="19" TopLine="21"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="114" Column="100" TopLine="146"/>
       </Position17>
       <Position18>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="36" TopLine="21"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="307" Column="59" TopLine="284"/>
       </Position18>
       <Position19>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="38" TopLine="21"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="355" Column="57" TopLine="332"/>
       </Position19>
       <Position20>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="40" TopLine="21"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="426" TopLine="402"/>
       </Position20>
       <Position21>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="42" TopLine="21"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="395" TopLine="378"/>
       </Position21>
       <Position22>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="43" TopLine="21"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="396" TopLine="378"/>
       </Position22>
       <Position23>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="44" TopLine="21"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="397" TopLine="378"/>
       </Position23>
       <Position24>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="47" TopLine="21"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="398" TopLine="378"/>
       </Position24>
       <Position25>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="73" Column="13" TopLine="47"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="399" TopLine="378"/>
       </Position25>
       <Position26>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="11" Column="70" TopLine="4"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="401" TopLine="378"/>
       </Position26>
       <Position27>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="75" Column="16" TopLine="35"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="402" TopLine="378"/>
       </Position27>
       <Position28>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="74" Column="42" TopLine="49"/>
+        <Filename Value="getinfofrominternetthread.pas"/>
+        <Caret Line="37" TopLine="33"/>
       </Position28>
       <Position29>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="44" Column="71" TopLine="33"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="97" Column="15" TopLine="81"/>
       </Position29>
       <Position30>
-        <Filename Value="getphotofrominternet.pas"/>
-        <Caret Line="19" TopLine="2"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="358" Column="18" TopLine="329"/>
       </Position30>
     </JumpHistory>
     <RunParams>

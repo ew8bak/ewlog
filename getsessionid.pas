@@ -17,6 +17,10 @@ type
     function GetSession(login_qrzcom, pass_qrzcom, login_qrzru, pass_qrzru:
       string): boolean;
   private
+    sessionNumHAMQTH: string;
+    sessionNumQRZRU: string;
+    sessionNumQRZCOM: string;
+    errorCode, error: string;
   public
     qrzcom_login: string;
     qrzcom_pass: string;
@@ -37,7 +41,7 @@ uses Forms, LCLType, HTTPSend, ResourceStr, MainForm_U, InformationForm_U;
 function TGetSessionThread.GetSession(login_qrzcom, pass_qrzcom,
   login_qrzru, pass_qrzru: string): boolean;
 var
-  resp, errorCode, error: string;
+  resp: string;
   beginSTR, endSTR: integer;
 begin
   try
@@ -62,23 +66,15 @@ begin
       beginSTR := resp.IndexOf('<session_id>');
       endSTR := resp.IndexOf('</session_id>');
       if (beginSTR <> endSTR) then
-        InformationForm.sessionNumQRZRU :=
-          resp.Substring(beginSTR + 12, endSTR - beginSTR - 12);
+        sessionNumQRZRU := resp.Substring(beginSTR + 12, endSTR - beginSTR - 12);
       beginSTR := resp.IndexOf('<errorcode>');
       endSTR := resp.IndexOf('</errorcode>');
       if (beginSTR <> endSTR) then
         errorCode := resp.Substring(beginSTR + 11, endSTR - beginSTR - 11);
-      if errorCode <> '' then
-        MainForm.StatusBar1.Panels.Items[0].Text := rErrorXMLAPI + errorCode;
-
       beginSTR := resp.IndexOf('<error>');
       endSTR := resp.IndexOf('</error>');
       if (beginSTR <> endSTR) then
         error := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-      if error <> '' then
-      begin
-        MainForm.StatusBar1.Panels.Items[0].Text := 'QRZ.RU XML:' + error;
-      end;
     end;
 
     if (login_qrzcom <> '') and (pass_qrzcom <> '') then
@@ -98,23 +94,15 @@ begin
       beginSTR := resp.IndexOf('<Key>');
       endSTR := resp.IndexOf('</Key>');
       if (beginSTR <> endSTR) then
-        InformationForm.sessionNumQRZCOM :=
-          resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
+        sessionNumQRZCOM := resp.Substring(beginSTR + 5, endSTR - beginSTR - 5);
       beginSTR := resp.IndexOf('<errorcode>');
       endSTR := resp.IndexOf('</errorcode>');
       if (beginSTR <> endSTR) then
         errorCode := resp.Substring(beginSTR + 11, endSTR - beginSTR - 11);
-      if errorCode <> '' then
-        MainForm.StatusBar1.Panels.Items[0].Text := rErrorXMLAPI + errorCode;
-
       beginSTR := resp.IndexOf('<Error>');
       endSTR := resp.IndexOf('</Error>');
       if (beginSTR <> endSTR) then
         error := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-      if error <> '' then
-      begin
-        MainForm.StatusBar1.Panels.Items[0].Text := 'QRZ.COM XML:' + error;
-      end;
     end;
 
     //HAMQTH
@@ -131,20 +119,15 @@ begin
     beginSTR := resp.IndexOf('<session_id>');
     endSTR := resp.IndexOf('</session_id>');
     if (beginSTR <> endSTR) then
-      InformationForm.sessionNumHAMQTH := resp.Substring(beginSTR + 12, endSTR - beginSTR - 12);
+      sessionNumHAMQTH := resp.Substring(beginSTR + 12, endSTR - beginSTR - 12);
     beginSTR := resp.IndexOf('<error>');
     endSTR := resp.IndexOf('</error>');
     if (beginSTR <> endSTR) then
       error := resp.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-    if error <> '' then
-    begin
-      MainForm.StatusBar1.Panels.Items[0].Text := 'HAMQTH XML:' + error;
-    end;
-
 
   finally
-    if (InformationForm.sessionNumQRZCOM <> '') or
-      (InformationForm.sessionNumQRZRU <> '') then
+    if (sessionNumQRZCOM <> '') or
+      (sessionNumQRZRU <> '') or (sessionNumHAMQTH <> '') then
       Result := True;
   end;
 end;
@@ -157,6 +140,16 @@ end;
 
 procedure TGetSessionThread.ResultProc;
 begin
+  if errorCode <> '' then
+    MainForm.StatusBar1.Panels.Items[0].Text := rErrorXMLAPI + errorCode;
+  if error <> '' then
+  begin
+    MainForm.StatusBar1.Panels.Items[0].Text := rErrorXMLAPI + error;
+  end;
+
+  InformationForm.sessionNumQRZRU := sessionNumQRZRU;
+  InformationForm.sessionNumQRZCOM := sessionNumQRZCOM;
+  InformationForm.sessionNumHAMQTH := sessionNumHAMQTH;
   InformationForm.ReloadInformation;
 end;
 

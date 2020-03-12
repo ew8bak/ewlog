@@ -1,4 +1,4 @@
-unit GetPhotoFromInternet;
+unit GetInfoFromInternetThread;
 
 {$mode objfpc}{$H+}
 
@@ -11,35 +11,34 @@ uses
   Classes, SysUtils, LazFileUtils, LazUTF8, ssl_openssl;
 
 type
-  TGetPhotoThread = class(TThread)
+  TGetInfoThread = class(TThread)
   protected
     procedure Execute; override;
-    procedure GetPhoto(url: string);
+    procedure GetInfo(url: string);
   private
-     PhotoStream: TMemoryStream;
+    resp: String;
   public
     url: string;
-    Call: string;
+    from: string;
     constructor Create;
     procedure ResultProc;
   end;
 
 var
-  GetPhotoThread: TGetPhotoThread;
+  GetInfoThread: TGetInfoThread;
 
 implementation
 
 uses Forms, LCLType, HTTPSend, MainForm_U, InformationForm_U, dmFunc_U;
 
-procedure TGetPhotoThread.GetPhoto(url: string);
+procedure TGetInfoThread.GetInfo(url: string);
 begin
   try
-     PhotoStream:=TMemoryStream.Create;
-     with THTTPSend.Create do
+   with THTTPSend.Create do
     begin
       if HTTPMethod('GET', url) then
       begin
-        PhotoStream.LoadFromStream(Document);
+        SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
       end;
       Free;
     end;
@@ -49,21 +48,20 @@ begin
   end;
 end;
 
-constructor TGetPhotoThread.Create;
+constructor TGetInfoThread.Create;
 begin
   FreeOnTerminate := True;
   inherited Create(True);
 end;
 
-procedure TGetPhotoThread.ResultProc;
+procedure TGetInfoThread.ResultProc;
 begin
-  InformationForm.ViewPhoto(PhotoStream,url,call);
-  PhotoStream.Free;
+  InformationForm.GetInfoFromThread(resp, from);
 end;
 
-procedure TGetPhotoThread.Execute;
+procedure TGetInfoThread.Execute;
 begin
-  GetPhoto(url);
+  GetInfo(url);
 end;
 
 end.
