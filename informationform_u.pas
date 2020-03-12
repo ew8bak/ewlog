@@ -122,6 +122,7 @@ begin
     begin
       if HTTPMethod('GET', url) then
       begin
+        Delete(url, Pos('?', url), Length(url));
         if dmFunc.Extention(url) = '.gif' then
           PhotoGIF.LoadFromStream(Document);
         if dmFunc.Extention(url) = '.jpg' then
@@ -374,6 +375,10 @@ begin
     //Photo
     GetPhoto(GetXMLField(resp, 'file'), Call);
   finally
+    if Label14.Caption <> '' then
+      statusInfo := True
+    else
+      statusInfo := False;
     FreeAndNil(PhotoGIF);
     FreeAndNil(PhotoJPEG);
     FreeAndNil(PhotoPNG);
@@ -390,9 +395,7 @@ begin
     if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
     begin
       if sessionNumQRZRU <> '' then
-      begin
-        GetQRZru(Call);  //Получение данных с QRZ.RU
-      end
+        GetQRZru(Call)  //Получение данных с QRZ.RU
       else
         GetSession;
     end;
@@ -400,9 +403,7 @@ begin
     if IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'True' then
     begin
       if sessionNumQRZCOM <> '' then
-      begin
-        GetQRZcom(Call); //Получение данных с QRZ.COM
-      end
+        GetQRZcom(Call) //Получение данных с QRZ.COM
       else
         GetSession;
     end;
@@ -410,9 +411,7 @@ begin
     if not statusInfo then
     begin
       if sessionNumHAMQTH <> '' then
-      begin
-        GetHAMQTH(Call); //Получение данных с HAMQTH
-      end
+        GetHAMQTH(Call) //Получение данных с HAMQTH
       else
         GetSession;
     end;

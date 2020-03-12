@@ -1493,6 +1493,13 @@ begin
       if SQLQuery2.FieldByName('QSLManager').AsString <> '' then
         Edit6.Text := SQLQuery2.FieldByName('QSLManager').AsString;
     end;
+  end else begin
+  Edit1.Clear;
+  Edit2.Clear;
+  Edit3.Clear;
+  Edit4.Clear;
+  Edit5.Clear;
+  Edit6.Clear;
   end;
 end;
 
