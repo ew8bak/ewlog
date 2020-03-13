@@ -3673,6 +3673,7 @@ begin
  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
   if (Pos('Address already in use', msg) > 0) or (Pos('Error on bind', msg) > 0) then begin
   LTCPComponent1.Listen(port_tcp[1]);
+  LUDPComponent1.Listen(port_udp[1]);
   lastTCPport:=port_tcp[1];
   MainForm.StatusBar1.Panels.Items[0].Text := '' ;
   end;

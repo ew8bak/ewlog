@@ -20,9 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="3658"/>
-        <CursorPos X="49" Y="3674"/>
+        <TopLine Value="3677"/>
+        <CursorPos X="28" Y="3677"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -550,8 +549,9 @@
       <Unit51>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="3" Y="15"/>
+        <CursorPos X="52" Y="13"/>
         <UsageCount Value="176"/>
         <Loaded Value="True"/>
       </Unit51>
