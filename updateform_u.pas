@@ -128,7 +128,7 @@ begin
       while not EOF(version_file) do
         ReadLn(version_file, version_servStr);
 
-       if (version_servStr = '1.1.1') or (Pos('</html>',version_servStr) > 0) then begin
+       if (version_servStr = '1.1.1') or (Pos('</html>',version_servStr) > 0) or (Pos('not found', version_servStr) > 0) then begin
       Label8.Caption := rFailedToLoadData;
       CloseFile(version_file);
       Exit;
