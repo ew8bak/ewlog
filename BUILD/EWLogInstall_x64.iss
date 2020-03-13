@@ -1,7 +1,7 @@
 [Setup]
 AppId={{EBB023A8-C51A-4432-B382-BE05DE58DF31}
 AppName=EWLog
-AppVersion=1.1.9
+AppVersion=1.2.3
 DefaultDirName={pf}\EWLog
 DefaultGroupName=EWLog
 UninstallDisplayIcon={app}\ewlog.exe
@@ -10,7 +10,7 @@ SolidCompression=yes
 OutputDir=C:\Users\karpe\Desktop\BUILD
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
-OutputBaseFilename=setup_ewlog_1_1_9_x64
+OutputBaseFilename=setup_ewlog_1_2_3_x64
 
 [Languages]
 Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
