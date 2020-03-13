@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="3672"/>
-        <CursorPos X="89" Y="3674"/>
+        <TopLine Value="3679"/>
+        <CursorPos Y="3675"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -521,7 +521,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="43" Y="11"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="199"/>
       </Unit47>
       <Unit48>
         <Filename Value="qrzcom.pas"/>
@@ -529,7 +529,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos Y="87"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="191"/>
       </Unit48>
       <Unit49>
         <Filename Value="qso_record.pas"/>
@@ -537,7 +537,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="25" Y="11"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="178"/>
       </Unit49>
       <Unit50>
         <Filename Value="resourcestr.pas"/>
@@ -545,14 +545,14 @@
         <UnitName Value="ResourceStr"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="19" Y="11"/>
-        <UsageCount Value="175"/>
+        <UsageCount Value="176"/>
       </Unit50>
       <Unit51>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="41" Y="14"/>
-        <UsageCount Value="175"/>
+        <CursorPos X="3" Y="15"/>
+        <UsageCount Value="176"/>
         <Loaded Value="True"/>
       </Unit51>
       <Unit52>
@@ -561,7 +561,7 @@
         <UnitName Value="InitINI"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="13"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="173"/>
       </Unit52>
       <Unit53>
         <Filename Value="download_lotw.pas"/>
@@ -569,7 +569,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="102"/>
         <CursorPos X="33" Y="108"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="160"/>
       </Unit53>
       <Unit54>
         <Filename Value="download_eqslcc.pas"/>
@@ -577,7 +577,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
         <CursorPos X="33" Y="11"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="155"/>
       </Unit54>
       <Unit55>
         <Filename Value="downloadupdates.pas"/>
@@ -586,7 +586,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="69" Y="39"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="149"/>
       </Unit55>
       <Unit56>
         <Filename Value="setupsqlquery.pas"/>
@@ -595,7 +595,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="27" Y="61"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="141"/>
       </Unit56>
       <Unit57>
         <Filename Value="fldigimodem.pas"/>
@@ -604,7 +604,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="183"/>
         <CursorPos X="85" Y="12"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="121"/>
       </Unit57>
       <Unit58>
         <Filename Value="analyticthread.pas"/>
@@ -613,7 +613,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="50" Y="47"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="116"/>
       </Unit58>
       <Unit59>
         <Filename Value="getsessionid.pas"/>
@@ -622,7 +622,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="122"/>
         <CursorPos X="63" Y="140"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="52"/>
       </Unit59>
       <Unit60>
         <Filename Value="getphotofrominternet.pas"/>
@@ -630,7 +630,7 @@
         <UnitName Value="GetPhotoFromInternet"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="37"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="33"/>
       </Unit60>
       <Unit61>
         <Filename Value="getinfofrominternetthread.pas"/>
@@ -639,7 +639,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="10" Y="59"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="28"/>
       </Unit61>
       <Unit62>
         <Filename Value="RegExpr.pas"/>
@@ -1158,7 +1158,7 @@
         <UsageCount Value="10"/>
       </Unit132>
     </Units>
-    <JumpHistory Count="20" HistoryIndex="19">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="2350" Column="34" TopLine="2338"/>
@@ -1239,6 +1239,38 @@
         <Filename Value="mainform_u.pas"/>
         <Caret Line="3795" Column="84" TopLine="3793"/>
       </Position20>
+      <Position21>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3788" Column="65" TopLine="3767"/>
+      </Position21>
+      <Position22>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3671" Column="90" TopLine="3669"/>
+      </Position22>
+      <Position23>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="660" Column="24" TopLine="640"/>
+      </Position23>
+      <Position24>
+        <Filename Value="const_u.pas"/>
+        <Caret Line="15" Column="45"/>
+      </Position24>
+      <Position25>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3673" TopLine="3664"/>
+      </Position25>
+      <Position26>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3676" Column="45" TopLine="3652"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3797" Column="79" TopLine="3758"/>
+      </Position27>
+      <Position28>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3535" Column="28" TopLine="3517"/>
+      </Position28>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

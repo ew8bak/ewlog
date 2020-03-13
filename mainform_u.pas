@@ -382,11 +382,8 @@ type
     procedure LTCPComponent1Disconnect(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LTCPComponent1Receive(aSocket: TLSocket);
-    procedure LTCPSyncDeskAccept(aSocket: TLSocket);
-    procedure LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
-    procedure LUDPSyncDeskReceive(aSocket: TLSocket);
     procedure MenuItem101Click(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem103Click(Sender: TObject);
@@ -660,6 +657,7 @@ var
   fAllRecords: integer;
   StateToQSLInfo: boolean;
   sqlite_version: string;
+  lastTCPport: integer;
 
 implementation
 
@@ -3534,6 +3532,7 @@ begin
   InitIni;
   LTCPComponent1.ReuseAddress := True;
   LTCPComponent1.Listen(port_tcp[0]);
+  lastTCPport:=port_tcp[0];
   LUDPComponent1.Listen(port_udp[0]);
 
 
@@ -3671,7 +3670,13 @@ end;
 
 procedure TMainForm.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
-  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
+ MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
+  if Pos('Address already in use', msg) > 0 then begin
+  LTCPComponent1.Listen(port_tcp[1]);
+  lastTCPport:=port_tcp[1];
+  MainForm.StatusBar1.Panels.Items[0].Text := '' ;
+  end;
+
 end;
 
 function TMainForm.GetNewChunk: string;
@@ -3779,17 +3784,6 @@ begin
   end;
 end;
 
-procedure TMainForm.LTCPSyncDeskAccept(aSocket: TLSocket);
-begin
-  StatusBar1.Panels.Items[0].Text :=
-    rClientConnected + aSocket.PeerAddress;
-end;
-
-procedure TMainForm.LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
-begin
-  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + msg;
-end;
-
 procedure TMainForm.LUDPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
   MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
@@ -3802,22 +3796,9 @@ begin
   if aSocket.GetMessage(mess) > 0 then
   begin
     if mess = 'GetIP:' + DBLookupComboBox1.KeyValue then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':49154')
+      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':'+IntToStr(lastTCPport))
     else
       StatusBar1.Panels.Items[0].Text := rSyncErrCall;
-    if mess = 'Hello' then
-      LUDPComponent1.SendMessage('Welcome!');
-  end;
-end;
-
-procedure TMainForm.LUDPSyncDeskReceive(aSocket: TLSocket);
-var
-  mess: string;
-begin
-  if aSocket.GetMessage(mess) > 0 then
-  begin
-    if mess = 'GetIP' then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':6668');
     if mess = 'Hello' then
       LUDPComponent1.SendMessage('Welcome!');
   end;
