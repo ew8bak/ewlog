@@ -658,6 +658,7 @@ var
   StateToQSLInfo: boolean;
   sqlite_version: string;
   lastTCPport: integer;
+  lastUDPport: integer;
 
 implementation
 
@@ -2245,7 +2246,7 @@ begin
   Edit6.Clear;
 
   if MenuItem111.Checked = True then
-  tIMG.Picture.Clear;
+    tIMG.Picture.Clear;
 
   EditButton1.SelStart := seleditnum;
   engText := dmFunc.RusToEng(EditButton1.Text);
@@ -3491,6 +3492,7 @@ var
   PathMyDoc: string;
   Lang: string = '';
   FallbackLang: string = '';
+  i: integer;
 begin
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
@@ -3530,10 +3532,29 @@ begin
   end;
 
   InitIni;
+  lastUDPport := -1;
+  lastTCPport := -1;
   LTCPComponent1.ReuseAddress := True;
-  LTCPComponent1.Listen(port_tcp[0]);
-  lastTCPport:=port_tcp[0];
-  LUDPComponent1.Listen(port_udp[0]);
+
+  for i := 0 to 5 do
+    if LUDPComponent1.Listen(port_udp[i]) then
+    begin
+      lastUDPport := port_udp[i];
+      Break;
+    end;
+  if lastUDPport = -1 then
+    MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
+
+  for i := 0 to 5 do
+    if LTCPComponent1.Listen(port_tcp[i]) then
+    begin
+      lastTCPport := port_tcp[i];
+      MainForm.StatusBar1.Panels.Items[0].Text :=
+        'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport);
+      Break;
+    end;
+  if lastUDPport = -1 then
+    MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
 
 
   if usewsjt then
@@ -3573,9 +3594,9 @@ var
 begin
   if MenuItem111.Checked = True then
   begin
-   // PhotoJPEG.Free;
-   // PhotoGIF.Free;
-   // PhotoPNG.Free;
+    // PhotoJPEG.Free;
+    // PhotoGIF.Free;
+    // PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
@@ -3670,13 +3691,17 @@ end;
 
 procedure TMainForm.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
- MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
-  if (Pos('Address already in use', msg) > 0) or (Pos('Error on bind', msg) > 0) then begin
-  LTCPComponent1.Listen(port_tcp[1]);
-  LUDPComponent1.Listen(port_udp[1]);
-  lastTCPport:=port_tcp[1];
-  MainForm.StatusBar1.Panels.Items[0].Text := '' ;
-  end;
+  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
+ { if ((Pos('Address already in use', msg) > 0) or (Pos('Error on bind', msg) > 0)) and
+    (lastTCPport <> port_tcp[1]) then
+  begin
+    LTCPComponent1.Disconnect(True);
+    LUDPComponent1.Disconnect(True);
+    LTCPComponent1.Listen(port_tcp[1]);
+    LUDPComponent1.Listen(port_udp[1]);
+    lastTCPport := port_tcp[1];
+    MainForm.StatusBar1.Panels.Items[0].Text := '';
+  end; }
 
 end;
 
@@ -3788,6 +3813,17 @@ end;
 procedure TMainForm.LUDPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
   MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
+{  if ((Pos('Address already in use', msg) > 0) or (Pos('Error on bind', msg) > 0)) and
+    (lastUDPport <> port_udp[1]) then
+  begin
+    LTCPComponent1.Disconnect(True);
+    LUDPComponent1.Disconnect(True);
+    LTCPComponent1.Listen(port_tcp[1]);
+    LUDPComponent1.Listen(port_udp[1]);
+    lastTCPport := port_tcp[1];
+    lastUDPport := port_udp[1];
+    MainForm.StatusBar1.Panels.Items[0].Text := '';
+  end; }
 end;
 
 procedure TMainForm.LUDPComponent1Receive(aSocket: TLSocket);
@@ -3797,7 +3833,7 @@ begin
   if aSocket.GetMessage(mess) > 0 then
   begin
     if mess = 'GetIP:' + DBLookupComboBox1.KeyValue then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':'+IntToStr(lastTCPport))
+      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' + IntToStr(lastTCPport))
     else
       StatusBar1.Panels.Items[0].Text := rSyncErrCall;
     if mess = 'Hello' then
@@ -4060,9 +4096,9 @@ begin
   //отоброжение фото с qrz.ru
   if MenuItem111.Checked = True then
   begin
-//    PhotoJPEG := TJPEGImage.Create;
-//    PhotoGIF := TGIFImage.Create;
-//    PhotoPNG := TPortableNetworkGraphic.Create;
+    //    PhotoJPEG := TJPEGImage.Create;
+    //    PhotoGIF := TGIFImage.Create;
+    //    PhotoPNG := TPortableNetworkGraphic.Create;
     tIMG := TImage.Create(Self);
     tIMG.Parent := PhotoGroup;
     tIMG.Align := alClient;
@@ -4071,9 +4107,9 @@ begin
   end
   else
   begin
-//    PhotoJPEG.Free;
-//    PhotoGIF.Free;
-//    PhotoPNG.Free;
+    //    PhotoJPEG.Free;
+    //    PhotoGIF.Free;
+    //    PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
@@ -4083,9 +4119,9 @@ procedure TMainForm.MenuItem112Click(Sender: TObject);
 begin
   if MenuItem111.Checked = True then
   begin
- //   PhotoJPEG.Free;
- //   PhotoGIF.Free;
- //   PhotoPNG.Free;
+    //   PhotoJPEG.Free;
+    //   PhotoGIF.Free;
+    //   PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
@@ -5839,9 +5875,6 @@ procedure TMainForm.MenuItem86Click(Sender: TObject);
 begin
   if MenuItem111.Checked = True then
   begin
- //   PhotoJPEG.Free;
- //   PhotoGIF.Free;
- //   PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
@@ -6097,11 +6130,9 @@ var
   DigiBand_String: string;
   timeQSO: TTime;
   FmtStngs: TFormatSettings;
-  state: string;
   lat, lon: currency;
   SQSO: TQSO;
 begin
-  state := '';
   QSL_SENT := '';
   QSL_SENT_ADV := '';
   NameBand := '';
