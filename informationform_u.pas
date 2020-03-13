@@ -75,6 +75,7 @@ type
     procedure Button6Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     PhotoJPEG: TJPEGImage;
@@ -99,7 +100,7 @@ type
     procedure GetPhoto(url, Call: string);
     procedure ReloadInformation;
     procedure ViewInfo(Main: boolean);
-    procedure ViewPhoto(Photo: TMemoryStream; url, call: string);
+    procedure ViewPhoto(Photo: TMemoryStream; url, call: string; Main: boolean);
     procedure LabelClear;
     function GetError(error_msg: string): boolean;
     function GetXMLField(resp, field: string): string;
@@ -136,20 +137,21 @@ begin
   Label26.Caption := '';
 end;
 
-procedure TInformationForm.ViewPhoto(Photo: TMemoryStream; url, call: string);
+procedure TInformationForm.ViewPhoto(Photo: TMemoryStream; url, call: string;
+  Main: boolean);
 begin
   try
     if url <> '' then
     begin
+      if dmFunc.Extention(url) = '.gif' then
+        InformationForm.PhotoGIF.LoadFromStream(Photo);
+      if dmFunc.Extention(url) = '.jpg' then
+        InformationForm.PhotoJPEG.LoadFromStream(Photo);
+      if dmFunc.Extention(url) = '.png' then
+        InformationForm.PhotoPNG.LoadFromStream(Photo);
+
       if DirectoryEdit1.Text <> '' then
       begin
-        if dmFunc.Extention(url) = '.gif' then
-          InformationForm.PhotoGIF.LoadFromStream(Photo);
-        if dmFunc.Extention(url) = '.jpg' then
-          InformationForm.PhotoJPEG.LoadFromStream(Photo);
-        if dmFunc.Extention(url) = '.png' then
-          InformationForm.PhotoPNG.LoadFromStream(Photo);
-
         if dmFunc.Extention(url) = '.gif' then
           PhotoGIF.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
             Call + '.gif');
@@ -160,19 +162,30 @@ begin
           PhotoPNG.SaveToFile(DirectoryEdit1.Text + DirectorySeparator +
             Call + '.png');
       end;
-
-      if dmFunc.Extention(url) = '.gif' then
-        Image1.Picture.Assign(PhotoGIF);
-      if dmFunc.Extention(url) = '.jpg' then
-        Image1.Picture.Assign(PhotoJPEG);
-      if dmFunc.Extention(url) = '.png' then
-        Image1.Picture.Assign(PhotoPNG);
+      if not Main then
+      begin
+        if dmFunc.Extention(url) = '.gif' then
+          Image1.Picture.Assign(PhotoGIF);
+        if dmFunc.Extention(url) = '.jpg' then
+          Image1.Picture.Assign(PhotoJPEG);
+        if dmFunc.Extention(url) = '.png' then
+          Image1.Picture.Assign(PhotoPNG);
+      end
+      else if MainForm.MenuItem111.Checked = True then
+      begin
+        if dmFunc.Extention(url) = '.gif' then
+          MainForm.tIMG.Picture.Assign(PhotoGIF);
+        if dmFunc.Extention(url) = '.jpg' then
+          MainForm.tIMG.Picture.Assign(PhotoJPEG);
+        if dmFunc.Extention(url) = '.png' then
+          MainForm.tIMG.Picture.Assign(PhotoPNG);
+      end;
     end;
 
   finally
-    PhotoJPEG.Free;
-    PhotoGIF.Free;
-    PhotoPNG.Free;
+    FreeAndNil(PhotoJPEG);
+    FreeAndNil(PhotoGIF);
+    FreeAndNil(PhotoPNG);
   end;
 end;
 
@@ -206,7 +219,11 @@ begin
       Label26.Caption := Inform.QSL_VIA;
     end;
   finally
-    FillChar(Inform, SizeOf(Inform), 0)
+    if Inform.Callsign <> '' then
+      statusInfo := True
+    else
+      statusInfo := False;
+   // FillChar(Inform, SizeOf(Inform), 0)
   end;
 end;
 
@@ -230,6 +247,7 @@ begin
   Delete(url, Pos('?', url), Length(url));
   GetPhotoThread.url := url;
   GetPhotoThread.call := Call;
+  GetPhotoThread.Main := ViewReload;
   GetPhotoThread.Start;
 end;
 
@@ -288,25 +306,33 @@ procedure TInformationForm.GetInfoFromThread(resp, from: string);
 begin
   if from = 'HAMQTH' then
   begin
-    //Обработка ошибки
-    ErrorCode := GetXMLField(resp, 'error');
-    if ErrorCode <> '' then
-      if GetError(ErrorCode) then
-        Exit;
+    try
+      //Обработка ошибки
+      ErrorCode := GetXMLField(resp, 'error');
+      if ErrorCode <> '' then
+        if GetError(ErrorCode) then
+          Exit;
 
-    Inform.Callsign := GetXMLField(resp, 'callsign');
-    Inform.Name := GetXMLField(resp, 'nick');
-    Inform.Address1 := GetXMLField(resp, 'street');
-    Inform.Grid := GetXMLField(resp, 'grid');
-    Inform.State := GetXMLField(resp, 'state');
-    Inform.Country := GetXMLField(resp, 'country');
-    Inform.HomePage := GetXMLField(resp, 'web');
-    Inform.Telephone := GetXMLField(resp, 'telephone');
-    Inform.eMail := GetXMLField(resp, 'email');
-    Inform.Address := GetXMLField(resp, 'adr_city');
-    Inform.ICQ := GetXMLField(resp, 'icq');
-    GetPhoto(GetXMLField(resp, 'picture'), Inform.Callsign);
+      Inform.Callsign := GetXMLField(resp, 'callsign');
+      Inform.Name := GetXMLField(resp, 'nick');
+      Inform.Address1 := GetXMLField(resp, 'street');
+      Inform.Grid := GetXMLField(resp, 'grid');
+      Inform.State := GetXMLField(resp, 'state');
+      Inform.Country := GetXMLField(resp, 'country');
+      Inform.HomePage := GetXMLField(resp, 'web');
+      Inform.Telephone := GetXMLField(resp, 'telephone');
+      Inform.eMail := GetXMLField(resp, 'email');
+      Inform.Address := GetXMLField(resp, 'adr_city');
+      Inform.ICQ := GetXMLField(resp, 'icq');
+      GetPhoto(GetXMLField(resp, 'picture'), Inform.Callsign);
+    finally
+      if Inform.Callsign <> '' then
+        statusInfo := True
+      else
+        statusInfo := False;
+    end;
   end;
+
   if from = 'QRZRU' then
   begin
     try
@@ -329,7 +355,6 @@ begin
       Inform.eMail := GetXMLField(resp, 'email');
       Inform.ICQ := GetXMLField(resp, 'icq');
       Inform.QSL_VIA := GetXMLField(resp, 'qslvia');
-      //Photo
       GetPhoto(GetXMLField(resp, 'file'), Inform.Callsign);
 
     finally
@@ -339,6 +364,7 @@ begin
         statusInfo := False;
     end;
   end;
+
   if from = 'QRZCOM' then
   begin
     try
@@ -361,7 +387,6 @@ begin
       Inform.eMail := GetXMLField(resp, 'email');
       Inform.ICQ := GetXMLField(resp, 'icq');
       Inform.QSL_VIA := GetXMLField(resp, 'qslvia');
-      //Photo
       GetPhoto(GetXMLField(resp, 'image'), Inform.Callsign);
 
     finally
@@ -371,47 +396,59 @@ begin
         statusInfo := False;
     end;
   end;
+
+  if not statusInfo then
+  begin
+    if sessionNumHAMQTH <> '' then
+    begin
+      GetHAMQTH(calsign);
+    end
+    else
+      GetSession;
+  end;
+
   ViewInfo(ViewReload);
 end;
 
 procedure TInformationForm.GetHAMQTH(Call: string);
 begin
-    ErrorCode := '';
-    GetInfoThread := TGetInfoThread.Create;
-    if Assigned(GetInfoThread.FatalException) then
-      raise GetInfoThread.FatalException;
-    GetInfoThread.url := URL_HAMQTH + sessionNumHAMQTH + '&callsign=' +
-      Call + '&prg=EWLog';
-    GetInfoThread.from := 'HAMQTH';
-    GetInfoThread.Start;
+  ErrorCode := '';
+  GetInfoThread := TGetInfoThread.Create;
+  if Assigned(GetInfoThread.FatalException) then
+    raise GetInfoThread.FatalException;
+  GetInfoThread.url := URL_HAMQTH + sessionNumHAMQTH + '&callsign=' +
+    Call + '&prg=EWLog';
+  GetInfoThread.from := 'HAMQTH';
+  GetInfoThread.Start;
 end;
 
 procedure TInformationForm.GetQRZcom(Call: string);
 begin
-    ErrorCode := '';
-    GetInfoThread := TGetInfoThread.Create;
-    if Assigned(GetInfoThread.FatalException) then
-      raise GetInfoThread.FatalException;
-    GetInfoThread.url := URL_QRZCOM + sessionNumQRZCOM + ';callsign=' + Call;
-    GetInfoThread.from := 'QRZCOM';
-    GetInfoThread.Start;
+  ErrorCode := '';
+  GetInfoThread := TGetInfoThread.Create;
+  if Assigned(GetInfoThread.FatalException) then
+    raise GetInfoThread.FatalException;
+  GetInfoThread.url := URL_QRZCOM + sessionNumQRZCOM + ';callsign=' + Call;
+  GetInfoThread.from := 'QRZCOM';
+  GetInfoThread.Start;
 end;
 
 procedure TInformationForm.GetQRZru(Call: string);
 begin
-    ErrorCode := '';
-    GetInfoThread := TGetInfoThread.Create;
-    if Assigned(GetInfoThread.FatalException) then
-      raise GetInfoThread.FatalException;
-    GetInfoThread.url := URL_QRZRU + sessionNumQRZRU + '&callsign=' + Call;
-    GetInfoThread.from := 'QRZRU';
-    GetInfoThread.Start;
+  ErrorCode := '';
+  GetInfoThread := TGetInfoThread.Create;
+  if Assigned(GetInfoThread.FatalException) then
+    raise GetInfoThread.FatalException;
+  GetInfoThread.url := URL_QRZRU + sessionNumQRZRU + '&callsign=' + Call;
+  GetInfoThread.from := 'QRZRU';
+  GetInfoThread.Start;
 end;
 
 procedure TInformationForm.GetInformation(Call: string; Main: boolean);
 begin
   if Call <> '' then
   begin
+    calsign := Call;
     ViewReload := Main;
     PhotoJPEG := TJPEGImage.Create;
     PhotoGIF := TGIFImage.Create;
@@ -437,7 +474,8 @@ begin
         GetSession;
     end;
 
-   { if not statusInfo then
+    if (IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'False') and
+      (IniF.ReadString('SetLog', 'Sprav', 'False') = 'False') then
     begin
       if sessionNumHAMQTH <> '' then
       begin
@@ -445,7 +483,7 @@ begin
       end
       else
         GetSession;
-    end;}
+    end;
   end;
 end;
 
@@ -478,6 +516,13 @@ procedure TInformationForm.FormCreate(Sender: TObject);
 begin
   ErrorCode := '';
   GetSession;
+end;
+
+procedure TInformationForm.FormDestroy(Sender: TObject);
+begin
+   FreeAndNil(PhotoJPEG);
+   FreeAndNil(PhotoGIF);
+   FreeAndNil(PhotoPNG);
 end;
 
 procedure TInformationForm.Button1Click(Sender: TObject);

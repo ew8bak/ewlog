@@ -9,6 +9,8 @@ uses
 
 const
   view_freq = '0.000"."00';
+  port_udp: array [0..5] of integer = (49153, 49155, 49157, 49159, 49161, 52300);
+  port_tcp: array [0..5] of integer = (49154, 49156, 49158, 49160, 49162, 52301);
   min_sqlite_version = '3.24.0';
   curr_sqlite_version = '3.31.1';
   etalonField: array [0..56] of string =

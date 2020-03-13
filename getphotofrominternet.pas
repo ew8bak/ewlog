@@ -20,6 +20,7 @@ type
   public
     url: string;
     Call: string;
+    Main: Boolean;
     constructor Create;
     procedure ResultProc;
   end;
@@ -57,7 +58,7 @@ end;
 
 procedure TGetPhotoThread.ResultProc;
 begin
-  InformationForm.ViewPhoto(PhotoStream,url,call);
+  InformationForm.ViewPhoto(PhotoStream,url,call, Main);
   PhotoStream.Free;
 end;
 

@@ -41,10 +41,8 @@ type
     Label51: TLabel;
     Label52: TLabel;
     LTCPComponent1: TLTCPComponent;
-    LTCPSyncDesk: TLTCPComponent;
     dxClient: TLTelnetClientComponent;
     LUDPComponent1: TLUDPComponent;
-    LUDPSyncDesk: TLUDPComponent;
     MapView1: TMapView;
     Memo1: TMemo;
     MenuItem10: TMenuItem;
@@ -386,6 +384,7 @@ type
     procedure LTCPComponent1Receive(aSocket: TLSocket);
     procedure LTCPSyncDeskAccept(aSocket: TLSocket);
     procedure LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
+    procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
     procedure LUDPSyncDeskReceive(aSocket: TLSocket);
     procedure MenuItem101Click(Sender: TObject);
@@ -555,9 +554,6 @@ type
     PrintPrev: boolean;
 
     PhotoQrzString: string;
-    PhotoJPEG: TJPEGImage;
-    PhotoGIF: TGIFImage;
-    PhotoPNG: TPortableNetworkGraphic;
     subModesList: TStringList;
     tIMG: TImage;
     PhotoGroup: TGroupBox;
@@ -1535,10 +1531,7 @@ begin
   ComboBox6.Text := '';
   if MenuItem111.Checked = True then
   begin
-    PhotoJPEG.Clear;
-    PhotoGIF.Clear;
-    PhotoPNG.Clear;
-    tIMG.Picture := nil;
+    tIMG.Picture.Clear;
   end;
 end;
 
@@ -2252,6 +2245,9 @@ begin
   Edit4.Clear;
   Edit5.Clear;
   Edit6.Clear;
+
+  if MenuItem111.Checked = True then
+  tIMG.Picture.Clear;
 
   EditButton1.SelStart := seleditnum;
   engText := dmFunc.RusToEng(EditButton1.Text);
@@ -3537,8 +3533,8 @@ begin
 
   InitIni;
   LTCPComponent1.ReuseAddress := True;
-  LTCPComponent1.Listen(49154);
-  LUDPComponent1.Listen(49153);
+  LTCPComponent1.Listen(port_tcp[0]);
+  LUDPComponent1.Listen(port_udp[0]);
 
 
   if usewsjt then
@@ -3578,9 +3574,9 @@ var
 begin
   if MenuItem111.Checked = True then
   begin
-    PhotoJPEG.Free;
-    PhotoGIF.Free;
-    PhotoPNG.Free;
+   // PhotoJPEG.Free;
+   // PhotoGIF.Free;
+   // PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
@@ -3675,7 +3671,7 @@ end;
 
 procedure TMainForm.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
-  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + msg;
+  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
 end;
 
 function TMainForm.GetNewChunk: string;
@@ -3792,6 +3788,11 @@ end;
 procedure TMainForm.LTCPSyncDeskError(const msg: string; aSocket: TLSocket);
 begin
   MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + msg;
+end;
+
+procedure TMainForm.LUDPComponent1Error(const msg: string; aSocket: TLSocket);
+begin
+  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
 end;
 
 procedure TMainForm.LUDPComponent1Receive(aSocket: TLSocket);
@@ -4077,9 +4078,9 @@ begin
   //отоброжение фото с qrz.ru
   if MenuItem111.Checked = True then
   begin
-    PhotoJPEG := TJPEGImage.Create;
-    PhotoGIF := TGIFImage.Create;
-    PhotoPNG := TPortableNetworkGraphic.Create;
+//    PhotoJPEG := TJPEGImage.Create;
+//    PhotoGIF := TGIFImage.Create;
+//    PhotoPNG := TPortableNetworkGraphic.Create;
     tIMG := TImage.Create(Self);
     tIMG.Parent := PhotoGroup;
     tIMG.Align := alClient;
@@ -4088,9 +4089,9 @@ begin
   end
   else
   begin
-    PhotoJPEG.Free;
-    PhotoGIF.Free;
-    PhotoPNG.Free;
+//    PhotoJPEG.Free;
+//    PhotoGIF.Free;
+//    PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
@@ -4100,9 +4101,9 @@ procedure TMainForm.MenuItem112Click(Sender: TObject);
 begin
   if MenuItem111.Checked = True then
   begin
-    PhotoJPEG.Free;
-    PhotoGIF.Free;
-    PhotoPNG.Free;
+ //   PhotoJPEG.Free;
+ //   PhotoGIF.Free;
+ //   PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
@@ -5856,9 +5857,9 @@ procedure TMainForm.MenuItem86Click(Sender: TObject);
 begin
   if MenuItem111.Checked = True then
   begin
-    PhotoJPEG.Free;
-    PhotoGIF.Free;
-    PhotoPNG.Free;
+ //   PhotoJPEG.Free;
+ //   PhotoGIF.Free;
+ //   PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;

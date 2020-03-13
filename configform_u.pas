@@ -276,7 +276,8 @@ begin
     CheckBox3.Checked := False;
     CheckBox7.Checked := False;
     MainForm.CallBookLiteConnection.Connected := True;
-  end;
+  end else
+  MainForm.CallBookLiteConnection.Connected := False;
   if CheckBox1.Checked = True then
     IniF.WriteString('SetLog', 'UseCallBook', 'YES')
   else
