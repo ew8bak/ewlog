@@ -223,7 +223,6 @@ begin
       statusInfo := True
     else
       statusInfo := False;
-   // FillChar(Inform, SizeOf(Inform), 0)
   end;
 end;
 
@@ -303,7 +302,10 @@ begin
 end;
 
 procedure TInformationForm.GetInfoFromThread(resp, from: string);
+var
+pictureURL: string;
 begin
+  pictureURL:='';
   if from = 'HAMQTH' then
   begin
     try
@@ -324,7 +326,9 @@ begin
       Inform.eMail := GetXMLField(resp, 'email');
       Inform.Address := GetXMLField(resp, 'adr_city');
       Inform.ICQ := GetXMLField(resp, 'icq');
-      GetPhoto(GetXMLField(resp, 'picture'), Inform.Callsign);
+      pictureURL:= GetXMLField(resp, 'picture');
+      if pictureURL <> '' then
+      GetPhoto(pictureURL, Inform.Callsign);
     finally
       if Inform.Callsign <> '' then
         statusInfo := True
@@ -355,7 +359,9 @@ begin
       Inform.eMail := GetXMLField(resp, 'email');
       Inform.ICQ := GetXMLField(resp, 'icq');
       Inform.QSL_VIA := GetXMLField(resp, 'qslvia');
-      GetPhoto(GetXMLField(resp, 'file'), Inform.Callsign);
+      pictureURL:= GetXMLField(resp, 'file');
+      if pictureURL <> '' then
+      GetPhoto(pictureURL, Inform.Callsign);
 
     finally
       if Inform.Callsign <> '' then
@@ -387,7 +393,9 @@ begin
       Inform.eMail := GetXMLField(resp, 'email');
       Inform.ICQ := GetXMLField(resp, 'icq');
       Inform.QSL_VIA := GetXMLField(resp, 'qslvia');
-      GetPhoto(GetXMLField(resp, 'image'), Inform.Callsign);
+      pictureURL:= GetXMLField(resp, 'image');
+      if pictureURL <> '' then
+      GetPhoto(pictureURL, Inform.Callsign);
 
     finally
       if Inform.Callsign <> '' then
