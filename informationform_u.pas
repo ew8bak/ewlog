@@ -18,6 +18,7 @@ type
     Callsign: string;
     Country: string;
     Name: string;
+    SurName: string;
     Address1: string;
     Address: string;
     Grid: string;
@@ -206,7 +207,7 @@ begin
     begin
       Label14.Caption := Inform.Callsign;
       GroupBox1.Caption := Label14.Caption;
-      Label16.Caption := Inform.Name;
+      Label16.Caption := Inform.Name + ' ' + Inform.SurName;
       Label17.Caption := Inform.Address1;
       Label18.Caption := Inform.Address;
       Label19.Caption := Inform.Grid;
@@ -348,7 +349,8 @@ begin
           Exit;
 
       Inform.Callsign := GetXMLField(resp, 'call');
-      Inform.Name := GetXMLField(resp, 'name') + ' ' + GetXMLField(resp, 'surname');
+      Inform.Name := GetXMLField(resp, 'name');
+      Inform.SurName:= GetXMLField(resp, 'surname');
       Inform.Address := GetXMLField(resp, 'city');
       Inform.Address1 := GetXMLField(resp, 'street');
       Inform.Grid := GetXMLField(resp, 'qthloc');
