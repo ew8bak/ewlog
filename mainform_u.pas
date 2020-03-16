@@ -6563,20 +6563,37 @@ var
 begin
   XNode := VirtualStringTree1.FocusedNode;
   Data := VirtualStringTree1.GetNodeData(XNode);
-  if Length(Data^.Spots) > 1 then begin
+  if Length(Data^.Spots) > 1 then
+  begin
     EditButton1.Text := Data^.Spots;
     if (CallBookLiteConnection.Connected = False) and
       (Length(dmFunc.ExtractCallsign(Data^.Spots)) >= 3) then
       InformationForm.GetInformation(Data^.Spots, True);
 
-    if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) then begin
-    TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
-    if Data^.Moda = 'DIGI' then
-    TRXForm.SetMode('USB',0) else
-    TRXForm.SetMode(Data^.Moda,0)
+    if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
+      (TRXForm.radio.GetFreqHz > 0) then
+    begin
+      TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
+      if Data^.Moda = 'DIGI' then
+        TRXForm.SetMode('USB', 0)
+      else
+        TRXForm.SetMode(Data^.Moda, 0);
+    end
+    else
+    begin
+      ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
+      if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
+      begin
+        ComboBox2.ItemIndex := ComboBox2.Items.IndexOf('SSB');
+        ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(Data^.Moda);
+      end;
+      if Data^.Moda = 'CW' then
+      begin
+        ComboBox2.ItemIndex := ComboBox2.Items.IndexOf('CW');
+        ComboBox9.Text := '';
+      end;
     end;
   end;
-
 end;
 
 procedure TMainForm.VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
