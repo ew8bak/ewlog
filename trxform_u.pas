@@ -327,7 +327,9 @@ begin
     radio.RigDevice := IniF.ReadString('TRX' + n, 'device', '');
   radio.RigCtldPort := StrToInt(IniF.ReadString('TRX' + n, 'RigCtldPort', '4532'));
   radio.RigCtldHost := IniF.ReadString('TRX' + n, 'host', '127.0.0.1');
-  radio.RigPoll := StrToInt(IniF.ReadString('TRX' + n, 'Poll', '100'));
+  if StrToInt(IniF.ReadString('TRX' + n, 'Poll', '100')) < 3 then
+  radio.RigPoll := 3 else
+  radio.RigPoll := StrToInt(IniF.ReadString('TRX' + n, 'Poll', '3'));
   radio.RigSendCWR := IniF.ReadBool('TRX' + n, 'CWR', False);
   rbRadio1.Caption := IniF.ReadString('TRX' + n, 'name', '');
   TRXForm.Caption := IniF.ReadString('TRX' + n, 'name', '');
