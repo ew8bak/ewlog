@@ -458,6 +458,7 @@ procedure TInformationForm.GetInformation(Call: string; Main: boolean);
 begin
   if Call <> '' then
   begin
+    Call := dmFunc.ExtractCallSign(Call);
     calsign := Call;
     ViewReload := Main;
     PhotoJPEG := TJPEGImage.Create;

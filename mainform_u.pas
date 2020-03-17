@@ -2358,7 +2358,7 @@ begin
   begin
     if (CallBookLiteConnection.Connected = False) and
       (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
-      InformationForm.GetInformation(dmFunc.ExtractCallsign(EditButton1.Text), True);
+      InformationForm.GetInformation(EditButton1.Text, True);
   end;
 end;
 
@@ -6567,8 +6567,8 @@ begin
   begin
     EditButton1.Text := Data^.Spots;
     if (CallBookLiteConnection.Connected = False) and
-      (Length(dmFunc.ExtractCallsign(Data^.Spots)) >= 3) then
-      InformationForm.GetInformation(dmFunc.ExtractCallsign(Data^.Spots), True);
+      (Length(Data^.Spots) >= 3) then
+      InformationForm.GetInformation(Data^.Spots, True);
 
     if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
       (TRXForm.radio.GetFreqHz > 0) then
