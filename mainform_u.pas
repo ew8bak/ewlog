@@ -2358,7 +2358,7 @@ begin
   begin
     if (CallBookLiteConnection.Connected = False) and
       (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
-      InformationForm.GetInformation(EditButton1.Text, True);
+      InformationForm.GetInformation(dmFunc.ExtractCallsign(EditButton1.Text), True);
   end;
 end;
 
@@ -3536,16 +3536,16 @@ begin
   lastTCPport := -1;
   LTCPComponent1.ReuseAddress := True;
 
-  for i := 0 to 5 do
+{  for i := 0 to 5 do
     if LUDPComponent1.Listen(port_udp[i]) then
     begin
       lastUDPport := port_udp[i];
       Break;
     end;
   if lastUDPport = -1 then
-    MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
+    MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket'; }
 
-  for i := 0 to 5 do
+  for i := 3 to 5 do
     if LTCPComponent1.Listen(port_tcp[i]) then
     begin
       lastTCPport := port_tcp[i];
@@ -3553,7 +3553,7 @@ begin
         'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport);
       Break;
     end;
-  if lastUDPport = -1 then
+  if lastTCPport = -1 then
     MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
 
 
@@ -6568,7 +6568,7 @@ begin
     EditButton1.Text := Data^.Spots;
     if (CallBookLiteConnection.Connected = False) and
       (Length(dmFunc.ExtractCallsign(Data^.Spots)) >= 3) then
-      InformationForm.GetInformation(Data^.Spots, True);
+      InformationForm.GetInformation(dmFunc.ExtractCallsign(Data^.Spots), True);
 
     if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
       (TRXForm.radio.GetFreqHz > 0) then
@@ -6581,7 +6581,11 @@ begin
     end
     else
     begin
+      if ConfigForm.CheckBox2.Checked = True then
+      ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000))
+    else
       ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
+
       if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
       begin
         ComboBox2.ItemIndex := ComboBox2.Items.IndexOf('SSB');
