@@ -3536,14 +3536,14 @@ begin
   lastTCPport := -1;
   LTCPComponent1.ReuseAddress := True;
 
-{  for i := 0 to 5 do
+  for i := 0 to 5 do
     if LUDPComponent1.Listen(port_udp[i]) then
     begin
       lastUDPport := port_udp[i];
       Break;
     end;
   if lastUDPport = -1 then
-    MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket'; }
+    MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
 
   for i := 3 to 5 do
     if LTCPComponent1.Listen(port_tcp[i]) then
