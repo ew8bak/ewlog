@@ -6588,12 +6588,20 @@ begin
 
       if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
       begin
-        ComboBox2.ItemIndex := ComboBox2.Items.IndexOf('SSB');
-        ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(Data^.Moda);
+        ComboBox2.Text:='SSB';
+        ComboBox2CloseUp(Sender);
+        ComboBox9.Text:=Data^.Moda;
+      end;
+      if Data^.Moda = 'DIGI' then
+      begin
+        ComboBox2.Text:='SSB';
+        ComboBox2CloseUp(Sender);
+        ComboBox9.Text:='USB';
       end;
       if Data^.Moda = 'CW' then
       begin
-        ComboBox2.ItemIndex := ComboBox2.Items.IndexOf('CW');
+        ComboBox2.Text:='CW';
+        ComboBox2CloseUp(Sender);
         ComboBox9.Text := '';
       end;
     end;
