@@ -471,10 +471,11 @@ begin
 
           if FREQ = '' then
             FREQ := FormatFloat('0.000"."00', dmFunc.GetFreqFromBand(BAND, MODE))
-          else
+          else begin
             FREQ_Float := StrToFloat(FREQ);
+            FREQ := FormatFloat('0.000"."00', FREQ_Float);
+          end;
 
-          FREQ := FormatFloat('0.000"."00', FREQ_Float);
 
           CheckMode(MODE, FREQ, SUBMODE, MODE);
 
