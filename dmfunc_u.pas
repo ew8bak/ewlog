@@ -1100,10 +1100,15 @@ begin
     exit;
   end;
 
-  if IniF.ReadString(section, 'model', '') <> IntToStr(2) then
-    Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ' +
-      '-r ' + IniF.ReadString(section, 'device', '') + ' ' + '-t ' +
+  if IniF.ReadString(section, 'model', '') <> IntToStr(2) then begin
+    Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ';
+    if Pos('FLRig',IniF.ReadString(section, 'name', '')) or (Pos('TRXManager',IniF.ReadString(section, 'name', ''))) > 0 then
+    Result:=Result + IniF.ReadString(section, 'device', '') + ' ' + '-t ' +
       IniF.ReadString(section, 'RigCtldPort', '4532') + ' '
+    else
+      Result:=Result +'-r ' + IniF.ReadString(section, 'device', '') + ' ' + '-t ' +
+      IniF.ReadString(section, 'RigCtldPort', '4532') + ' ';
+  end
   else
     Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ' +
       '-t ' + IniF.ReadString(section, 'RigCtldPort', '4532') + ' ';

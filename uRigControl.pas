@@ -227,15 +227,15 @@ begin
     Writeln('')
   end;
 
-  if (RigId = 1) then
-  begin
-    Result := False;
-    exit
-  end;
+ // if (RigId = 1) then
+ // begin
+ //   Result := False;
+ //   exit
+//  end;
 
   if fRunRigCtld then
   begin
-    if not StartRigctld then
+    if (not StartRigctld) and (RigId <> 2) then
     begin
       if fDebugMode then Writeln('rigctld failed to start!');
       Result := False;
@@ -450,8 +450,8 @@ begin
           BadRcvd := 0;
           fMode.mode := a[i];
           fMode.raw  := a[i];
-          if (fMode.mode = 'USB') or (fMode.mode = 'LSB') then
-            fMode.mode := 'SSB';
+       //   if (fMode.mode = 'USB') or (fMode.mode = 'LSB') then
+       //     fMode.mode := 'SSB';
           if fMode.mode = 'CWR' then
             fMode.mode := 'CW'
         end

@@ -302,6 +302,7 @@ begin
   begin
     FreeAndNil(radio);
   end;
+
   Application.ProcessMessages;
   //Sleep(500);
 

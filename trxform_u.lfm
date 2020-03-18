@@ -16,9 +16,9 @@ object TRXForm: TTRXForm
   LCLVersion = '2.0.6.0'
   object lblMode: TLabel
     Left = 16
-    Height = 21
+    Height = 17
     Top = 5
-    Width = 28
+    Width = 29
     Caption = 'SSB'
     Font.Color = clBlue
     Font.Height = -16
@@ -105,9 +105,9 @@ object TRXForm: TTRXForm
   end
   object rbRadio1: TRadioButton
     Left = 32
-    Height = 19
+    Height = 23
     Top = 136
-    Width = 47
+    Width = 55
     Caption = 'RIG 1'
     Checked = True
     OnClick = rbRadio1Click
@@ -116,9 +116,9 @@ object TRXForm: TTRXForm
   end
   object rbRadio2: TRadioButton
     Left = 389
-    Height = 19
+    Height = 23
     Top = 136
-    Width = 47
+    Width = 55
     Caption = 'RIG 2'
     Enabled = False
     OnClick = rbRadio2Click
@@ -500,9 +500,9 @@ object TRXForm: TTRXForm
   end
   object Label1: TLabel
     Left = 61
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -515,9 +515,9 @@ object TRXForm: TTRXForm
   end
   object Label2: TLabel
     Left = 95
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -530,9 +530,9 @@ object TRXForm: TTRXForm
   end
   object Label3: TLabel
     Left = 131
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -545,9 +545,9 @@ object TRXForm: TTRXForm
   end
   object Label4: TLabel
     Left = 181
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -560,9 +560,9 @@ object TRXForm: TTRXForm
   end
   object Label5: TLabel
     Left = 218
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -575,9 +575,9 @@ object TRXForm: TTRXForm
   end
   object Label6: TLabel
     Left = 253
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -590,9 +590,9 @@ object TRXForm: TTRXForm
   end
   object Label7: TLabel
     Left = 303
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -605,9 +605,9 @@ object TRXForm: TTRXForm
   end
   object Label8: TLabel
     Left = 339
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -620,9 +620,9 @@ object TRXForm: TTRXForm
   end
   object Label9: TLabel
     Left = 165
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 18
+    Width = 16
     Caption = '.'
     Font.Color = clBlue
     Font.Height = -67
@@ -632,9 +632,9 @@ object TRXForm: TTRXForm
   end
   object Label10: TLabel
     Left = 288
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 18
+    Width = 16
     Caption = '.'
     Font.Color = clBlue
     Font.Height = -67
@@ -670,9 +670,9 @@ object TRXForm: TTRXForm
   end
   object Label11: TLabel
     Left = 376
-    Height = 89
+    Height = 74
     Top = 0
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
