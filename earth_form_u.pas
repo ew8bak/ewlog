@@ -13,11 +13,9 @@ type
   { TEarth }
 
   TEarth = class(TForm)
-    Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
   private
     { private declarations }
   public
@@ -73,11 +71,6 @@ begin
     lat1 := lat1 * -1;
     TraceLine^.DrawTrace(True, QTH_LON, lat, long1, lat1);
   end;
-end;
-
-procedure TEarth.Timer1Timer(Sender: TObject);
-begin
-  Refresh;
 end;
 
 end.

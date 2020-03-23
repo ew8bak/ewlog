@@ -234,7 +234,6 @@
       <Unit21>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="465"/>
         <CursorPos X="44" Y="475"/>
@@ -341,10 +340,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Earth_Form_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="39"/>
-        <CursorPos X="3" Y="41"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="42"/>
+        <CursorPos X="76" Y="60"/>
         <UsageCount Value="202"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="iota_form_u.pas"/>
@@ -668,7 +670,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="411"/>
         <CursorPos Y="432"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit64>
       <Unit65>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\lazmapviewer\source\mvmapviewer.pas"/>
@@ -684,13 +686,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="24"/>
         <CursorPos X="3" Y="41"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit66>
       <Unit67>
         <Filename Value="D:\karpe.GML-VKARPENKO-W\AppData\Local\lazarus\onlinepackagemanager\packages\synapse40.1\ssl_openssl.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="89"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit67>
       <Unit68>
         <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
@@ -713,7 +715,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="34" Y="49"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit70>
       <Unit71>
         <Filename Value="C:\lazarus\components\lazutils\laztracer.pas"/>
@@ -777,14 +779,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="596"/>
         <CursorPos Y="613"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit79>
       <Unit80>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="941"/>
         <CursorPos Y="958"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit80>
       <Unit81>
         <Filename Value="D:\usr\lib\lazarus\lcl\stdctrls.pp"/>
@@ -906,21 +908,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="18" Y="10"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit96>
       <Unit97>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\synapse40.1\httpsend.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="63"/>
         <CursorPos X="3" Y="83"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit97>
       <Unit98>
         <Filename Value="D:\.lazarus\onlinepackagemanager\packages\synapse40.1\blcksock.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="160"/>
         <CursorPos X="22" Y="190"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit98>
       <Unit99>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\dynhasharray.pp"/>
@@ -928,14 +930,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="467"/>
         <CursorPos Y="494"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit99>
       <Unit100>
         <Filename Value="D:\usr\lib\lazarus\lcl\interfaces\gtk2\gtk2winapi.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8162"/>
         <CursorPos Y="8182"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit100>
       <Unit101>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\inc\objpas.inc"/>
@@ -1120,11 +1122,10 @@
       <Unit126>
         <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
         <UnitName Value="lNet"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1661"/>
         <CursorPos Y="1669"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit126>
       <Unit127>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
@@ -1158,86 +1159,86 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit130>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="441" Column="10" TopLine="420"/>
+        <Caret Line="430" TopLine="420"/>
       </Position1>
       <Position2>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="428" TopLine="420"/>
+        <Caret Line="432" TopLine="420"/>
       </Position2>
       <Position3>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="429" TopLine="420"/>
+        <Caret Line="434" TopLine="420"/>
       </Position3>
       <Position4>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="430" TopLine="420"/>
+        <Caret Line="436" TopLine="420"/>
       </Position4>
       <Position5>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="432" TopLine="420"/>
+        <Caret Line="437" TopLine="420"/>
       </Position5>
       <Position6>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="434" TopLine="420"/>
+        <Caret Line="430" TopLine="420"/>
       </Position6>
       <Position7>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="436" TopLine="420"/>
+        <Caret Line="480" TopLine="425"/>
       </Position7>
       <Position8>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="437" TopLine="420"/>
+        <Caret Line="426" Column="7" TopLine="420"/>
       </Position8>
       <Position9>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="430" TopLine="420"/>
+        <Caret Line="428" TopLine="420"/>
       </Position9>
       <Position10>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="480" TopLine="425"/>
+        <Caret Line="427" TopLine="420"/>
       </Position10>
       <Position11>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="426" Column="7" TopLine="420"/>
+        <Caret Line="428" TopLine="420"/>
       </Position11>
       <Position12>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="428" TopLine="420"/>
+        <Caret Line="429" TopLine="420"/>
       </Position12>
       <Position13>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="427" TopLine="420"/>
+        <Caret Line="430" TopLine="420"/>
       </Position13>
       <Position14>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="428" TopLine="420"/>
+        <Caret Line="432" TopLine="420"/>
       </Position14>
       <Position15>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="429" TopLine="420"/>
+        <Caret Line="434" TopLine="420"/>
       </Position15>
       <Position16>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="430" TopLine="420"/>
+        <Caret Line="492" TopLine="467"/>
       </Position16>
       <Position17>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="432" TopLine="420"/>
+        <Caret Line="487" TopLine="479"/>
       </Position17>
       <Position18>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="434" TopLine="420"/>
+        <Caret Line="499" TopLine="479"/>
       </Position18>
       <Position19>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="492" TopLine="467"/>
+        <Caret Line="500" TopLine="479"/>
       </Position19>
       <Position20>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="487" TopLine="479"/>
+        <Caret Line="501" TopLine="479"/>
       </Position20>
       <Position21>
         <Filename Value="uRigControl.pas"/>
@@ -1245,40 +1246,32 @@
       </Position21>
       <Position22>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="500" TopLine="479"/>
+        <Caret Line="427" TopLine="410"/>
       </Position22>
       <Position23>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="501" TopLine="479"/>
+        <Caret Line="425" Column="27" TopLine="410"/>
       </Position23>
       <Position24>
-        <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
-        <Caret Line="381" Column="14" TopLine="362"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="427" TopLine="410"/>
       </Position24>
       <Position25>
-        <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
-        <Caret Line="1669" TopLine="1661"/>
-      </Position25>
-      <Position26>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="499" TopLine="479"/>
-      </Position26>
-      <Position27>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="427" TopLine="410"/>
-      </Position27>
-      <Position28>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="425" Column="27" TopLine="410"/>
-      </Position28>
-      <Position29>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="427" TopLine="410"/>
-      </Position29>
-      <Position30>
         <Filename Value="uRigControl.pas"/>
         <Caret Line="511" TopLine="497"/>
-      </Position30>
+      </Position25>
+      <Position26>
+        <Filename Value="earth_form_u.pas"/>
+        <Caret Line="41" Column="3" TopLine="39"/>
+      </Position26>
+      <Position27>
+        <Filename Value="earth_form_u.pas"/>
+        <Caret Line="61" Column="76" TopLine="43"/>
+      </Position27>
+      <Position28>
+        <Filename Value="earth_form_u.pas"/>
+        <Caret Line="60" Column="76" TopLine="42"/>
+      </Position28>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

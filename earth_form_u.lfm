@@ -8,10 +8,4 @@ object Earth: TEarth
   OnDestroy = FormDestroy
   OnPaint = FormPaint
   LCLVersion = '2.0.6.0'
-  object Timer1: TTimer
-    Interval = 100
-    OnTimer = Timer1Timer
-    left = 205
-    top = 85
-  end
 end
