@@ -2621,11 +2621,13 @@ begin
     MapView1.Center;
     MapView1.Visible := True;
     MapView1.Parent := Panel10;
-    Earth.Hide;
+    MapView1.Enabled:=True;
+    Earth.Close;
   end
   else
   begin
     MapView1.Visible := False;
+    MapView1.Enabled:=False;
     Earth.Parent := Panel10;
     Earth.BorderStyle := bsNone;
     Earth.Align := alClient;
@@ -3599,8 +3601,6 @@ begin
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
-var
-  i: integer;
 begin
   if MenuItem111.Checked = True then
   begin
