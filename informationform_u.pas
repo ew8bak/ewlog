@@ -145,11 +145,14 @@ begin
     if url <> '' then
     begin
       if dmFunc.Extention(url) = '.gif' then
-        InformationForm.PhotoGIF.LoadFromStream(Photo);
+        if Assigned(PhotoGIF) then
+          PhotoGIF.LoadFromStream(Photo);
       if dmFunc.Extention(url) = '.jpg' then
-        InformationForm.PhotoJPEG.LoadFromStream(Photo);
+        if Assigned(PhotoJPEG) then
+          PhotoJPEG.LoadFromStream(Photo);
       if dmFunc.Extention(url) = '.png' then
-        InformationForm.PhotoPNG.LoadFromStream(Photo);
+        if Assigned(PhotoPNG) then
+          PhotoPNG.LoadFromStream(Photo);
 
       if DirectoryEdit1.Text <> '' then
       begin
@@ -304,9 +307,9 @@ end;
 
 procedure TInformationForm.GetInfoFromThread(resp, from: string);
 var
-pictureURL: string;
+  pictureURL: string;
 begin
-  pictureURL:='';
+  pictureURL := '';
   if from = 'HAMQTH' then
   begin
     try
@@ -327,9 +330,9 @@ begin
       Inform.eMail := GetXMLField(resp, 'email');
       Inform.Address := GetXMLField(resp, 'adr_city');
       Inform.ICQ := GetXMLField(resp, 'icq');
-      pictureURL:= GetXMLField(resp, 'picture');
+      pictureURL := GetXMLField(resp, 'picture');
       if pictureURL <> '' then
-      GetPhoto(pictureURL, Inform.Callsign);
+        GetPhoto(pictureURL, Inform.Callsign);
     finally
       if Inform.Callsign <> '' then
         statusInfo := True
@@ -350,7 +353,7 @@ begin
 
       Inform.Callsign := GetXMLField(resp, 'call');
       Inform.Name := GetXMLField(resp, 'name');
-      Inform.SurName:= GetXMLField(resp, 'surname');
+      Inform.SurName := GetXMLField(resp, 'surname');
       Inform.Address := GetXMLField(resp, 'city');
       Inform.Address1 := GetXMLField(resp, 'street');
       Inform.Grid := GetXMLField(resp, 'qthloc');
@@ -361,9 +364,9 @@ begin
       Inform.eMail := GetXMLField(resp, 'email');
       Inform.ICQ := GetXMLField(resp, 'icq');
       Inform.QSL_VIA := GetXMLField(resp, 'qslvia');
-      pictureURL:= GetXMLField(resp, 'file');
+      pictureURL := GetXMLField(resp, 'file');
       if pictureURL <> '' then
-      GetPhoto(pictureURL, Inform.Callsign);
+        GetPhoto(pictureURL, Inform.Callsign);
 
     finally
       if Inform.Callsign <> '' then
@@ -395,9 +398,9 @@ begin
       Inform.eMail := GetXMLField(resp, 'email');
       Inform.ICQ := GetXMLField(resp, 'icq');
       Inform.QSL_VIA := GetXMLField(resp, 'qslvia');
-      pictureURL:= GetXMLField(resp, 'image');
+      pictureURL := GetXMLField(resp, 'image');
       if pictureURL <> '' then
-      GetPhoto(pictureURL, Inform.Callsign);
+        GetPhoto(pictureURL, Inform.Callsign);
 
     finally
       if Inform.Callsign <> '' then
@@ -461,8 +464,11 @@ begin
     Call := dmFunc.ExtractCallSign(Call);
     calsign := Call;
     ViewReload := Main;
+    if not Assigned(PhotoJPEG) then
     PhotoJPEG := TJPEGImage.Create;
+    if not Assigned(PhotoGIF) then
     PhotoGIF := TGIFImage.Create;
+    if not Assigned(PhotoPNG) then
     PhotoPNG := TPortableNetworkGraphic.Create;
     Image1.Picture.Clear;
     if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
@@ -526,14 +532,17 @@ end;
 procedure TInformationForm.FormCreate(Sender: TObject);
 begin
   ErrorCode := '';
+  PhotoJPEG := nil;
+  PhotoGIF := nil;
+  PhotoPNG := nil;
   GetSession;
 end;
 
 procedure TInformationForm.FormDestroy(Sender: TObject);
 begin
-   FreeAndNil(PhotoJPEG);
-   FreeAndNil(PhotoGIF);
-   FreeAndNil(PhotoPNG);
+  FreeAndNil(PhotoJPEG);
+  FreeAndNil(PhotoGIF);
+  FreeAndNil(PhotoPNG);
 end;
 
 procedure TInformationForm.Button1Click(Sender: TObject);

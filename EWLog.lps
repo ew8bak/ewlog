@@ -44,9 +44,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="478"/>
-        <CursorPos X="41" Y="461"/>
+        <TopLine Value="446"/>
+        <CursorPos X="45" Y="460"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit3>
@@ -340,9 +341,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Earth_Form_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="42"/>
+        <TopLine Value="36"/>
         <CursorPos X="76" Y="60"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
@@ -630,8 +630,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSessionID"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="122"/>
-        <CursorPos X="63" Y="140"/>
+        <TopLine Value="27"/>
+        <CursorPos X="3" Y="35"/>
         <UsageCount Value="78"/>
       </Unit59>
       <Unit60>
@@ -639,7 +639,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetPhotoFromInternet"/>
         <EditorIndex Value="-1"/>
-        <CursorPos Y="37"/>
+        <CursorPos X="51" Y="42"/>
         <UsageCount Value="59"/>
       </Unit60>
       <Unit61>
@@ -1159,38 +1159,38 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit130>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="430" TopLine="420"/>
+        <Caret Line="434" TopLine="420"/>
       </Position1>
       <Position2>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="432" TopLine="420"/>
+        <Caret Line="436" TopLine="420"/>
       </Position2>
       <Position3>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="434" TopLine="420"/>
+        <Caret Line="437" TopLine="420"/>
       </Position3>
       <Position4>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="436" TopLine="420"/>
+        <Caret Line="430" TopLine="420"/>
       </Position4>
       <Position5>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="437" TopLine="420"/>
+        <Caret Line="480" TopLine="425"/>
       </Position5>
       <Position6>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="430" TopLine="420"/>
+        <Caret Line="426" Column="7" TopLine="420"/>
       </Position6>
       <Position7>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="480" TopLine="425"/>
+        <Caret Line="428" TopLine="420"/>
       </Position7>
       <Position8>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="426" Column="7" TopLine="420"/>
+        <Caret Line="427" TopLine="420"/>
       </Position8>
       <Position9>
         <Filename Value="uRigControl.pas"/>
@@ -1198,51 +1198,51 @@
       </Position9>
       <Position10>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="427" TopLine="420"/>
+        <Caret Line="429" TopLine="420"/>
       </Position10>
       <Position11>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="428" TopLine="420"/>
+        <Caret Line="430" TopLine="420"/>
       </Position11>
       <Position12>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="429" TopLine="420"/>
+        <Caret Line="432" TopLine="420"/>
       </Position12>
       <Position13>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="430" TopLine="420"/>
+        <Caret Line="434" TopLine="420"/>
       </Position13>
       <Position14>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="432" TopLine="420"/>
+        <Caret Line="492" TopLine="467"/>
       </Position14>
       <Position15>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="434" TopLine="420"/>
+        <Caret Line="487" TopLine="479"/>
       </Position15>
       <Position16>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="492" TopLine="467"/>
+        <Caret Line="499" TopLine="479"/>
       </Position16>
       <Position17>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="487" TopLine="479"/>
+        <Caret Line="500" TopLine="479"/>
       </Position17>
       <Position18>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="499" TopLine="479"/>
+        <Caret Line="501" TopLine="479"/>
       </Position18>
       <Position19>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="500" TopLine="479"/>
+        <Caret Line="499" TopLine="479"/>
       </Position19>
       <Position20>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="501" TopLine="479"/>
+        <Caret Line="427" TopLine="410"/>
       </Position20>
       <Position21>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="499" TopLine="479"/>
+        <Caret Line="425" Column="27" TopLine="410"/>
       </Position21>
       <Position22>
         <Filename Value="uRigControl.pas"/>
@@ -1250,28 +1250,36 @@
       </Position22>
       <Position23>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="425" Column="27" TopLine="410"/>
+        <Caret Line="511" TopLine="497"/>
       </Position23>
       <Position24>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="427" TopLine="410"/>
+        <Filename Value="earth_form_u.pas"/>
+        <Caret Line="41" Column="3" TopLine="39"/>
       </Position24>
       <Position25>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="511" TopLine="497"/>
+        <Filename Value="earth_form_u.pas"/>
+        <Caret Line="61" Column="76" TopLine="43"/>
       </Position25>
       <Position26>
         <Filename Value="earth_form_u.pas"/>
-        <Caret Line="41" Column="3" TopLine="39"/>
+        <Caret Line="60" Column="76" TopLine="42"/>
       </Position26>
       <Position27>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="61" Column="76" TopLine="43"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="529" Column="12" TopLine="518"/>
       </Position27>
       <Position28>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="60" Column="76" TopLine="42"/>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="537" Column="24" TopLine="518"/>
       </Position28>
+      <Position29>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="539" Column="23" TopLine="518"/>
+      </Position29>
+      <Position30>
+        <Filename Value="informationform_u.pas"/>
+        <Caret Line="379" Column="99" TopLine="239"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
