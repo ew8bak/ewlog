@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 303
-  Height = 693
-  Top = 144
+  Left = 404
+  Height = 737
+  Top = 149
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
-  ClientHeight = 670
+  ClientHeight = 714
   ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
@@ -16,7 +16,7 @@ object MainForm: TMainForm
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   OnShow = FormShow
-  Position = poScreenCenter
+  Position = poDefault
   LCLVersion = '2.0.6.0'
   object Panel1: TPanel
     Left = 0
@@ -246,12 +246,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 283
+    Height = 304
     Top = 32
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 283
+    ClientHeight = 304
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1597,7 +1597,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 23
+      Height = 44
       Top = 259
       Width = 472
       Align = alClient
@@ -1607,16 +1607,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 283
+    Height = 304
     Top = 32
     Width = 734
     Align = alClient
-    ClientHeight = 283
+    ClientHeight = 304
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 281
+      Height = 302
       Top = 1
       Width = 732
       Align = alClient
@@ -1795,7 +1795,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 315
+    Top = 336
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -2346,16 +2346,16 @@ object MainForm: TMainForm
         Left = 1
         Height = 111
         Top = 1
-        Width = 726
+        Width = 730
         Align = alTop
         ClientHeight = 111
-        ClientWidth = 726
+        ClientWidth = 730
         TabOrder = 0
         object DBGrid2: TDBGrid
           Left = 1
-          Height = 105
+          Height = 109
           Top = 1
-          Width = 720
+          Width = 728
           Align = alClient
           Color = clWindow
           Columns = <          
@@ -2527,20 +2527,20 @@ object MainForm: TMainForm
       end
       object Panel8: TPanel
         Left = 1
-        Height = 259
+        Height = 263
         Top = 112
-        Width = 726
+        Width = 730
         Align = alClient
-        ClientHeight = 259
-        ClientWidth = 726
+        ClientHeight = 263
+        ClientWidth = 730
         Font.Height = -12
         ParentFont = False
         TabOrder = 1
         object PageControl1: TPageControl
           Left = 1
-          Height = 253
+          Height = 261
           Top = 1
-          Width = 720
+          Width = 728
           ActivePage = TabSheet2
           Align = alClient
           Font.Height = -13
@@ -2550,8 +2550,8 @@ object MainForm: TMainForm
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
-            ClientHeight = 249
-            ClientWidth = 716
+            ClientHeight = 231
+            ClientWidth = 718
             object Memo1: TMemo
               Left = 0
               Height = 180
@@ -2877,16 +2877,16 @@ object MainForm: TMainForm
           end
           object TabSheet2: TTabSheet
             Caption = 'Telnet DX Cluster'
-            ClientHeight = 221
-            ClientWidth = 710
+            ClientHeight = 231
+            ClientWidth = 718
             object Panel9: TPanel
               Left = 0
               Height = 28
               Top = 0
-              Width = 710
+              Width = 718
               Align = alTop
               ClientHeight = 28
-              ClientWidth = 710
+              ClientWidth = 718
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -2956,8 +2956,8 @@ object MainForm: TMainForm
                 TabOrder = 0
               end
               object SpeedButton19: TSpeedButton
-                Left = 681
-                Height = 22
+                Left = 693
+                Height = 26
                 Top = 1
                 Width = 24
                 Align = alRight
@@ -3187,9 +3187,9 @@ object MainForm: TMainForm
             object VirtualStringTree1: TVirtualStringTree
               Cursor = 63
               Left = 0
-              Height = 193
+              Height = 203
               Top = 28
-              Width = 710
+              Width = 718
               Align = alClient
               DefaultText = 'Node'
               Font.Height = -11

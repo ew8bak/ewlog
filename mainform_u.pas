@@ -604,6 +604,7 @@ type
     procedure addBands(FreqBand: string; mode: string);
     procedure InitIni;
     procedure FreeObj;
+    procedure tIMGClick(Sender: TObject);
   end;
 
 var
@@ -673,7 +674,7 @@ uses
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u, register_form_u,
-  logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u, flDigiModem;
+  logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u, flDigiModem, viewPhoto_U;
 
 type
   PTreeData = ^TTreeData;
@@ -2245,9 +2246,13 @@ begin
   Edit5.Clear;
   Edit6.Clear;
 
-  if MenuItem111.Checked = True then
+  if MenuItem111.Checked = True then begin
     tIMG.Picture.Clear;
-
+     if Assigned(viewPhoto.Image1.Picture.Graphic) then begin
+      viewPhoto.Image1.Picture.Clear;
+      viewPhoto.Close;
+    end;
+  end;
   EditButton1.SelStart := seleditnum;
   engText := dmFunc.RusToEng(EditButton1.Text);
   if (engText <> EditButton1.Text) then
@@ -2513,6 +2518,8 @@ begin
 
   if MainForm.WindowState <> wsMaximized then
   begin
+    IniF.WriteInteger('SetLog', 'Left', MainForm.Left);
+    IniF.WriteInteger('SetLog', 'Top', MainForm.Top);
     IniF.WriteInteger('SetLog', 'Width', MainForm.Width);
     IniF.WriteInteger('SetLog', 'Height', MainForm.Height);
     IniF.WriteString('SetLog', 'FormState', 'Normal');
@@ -3438,6 +3445,9 @@ begin
       else
         MenuItem43.Enabled := False;
 
+      MainForm.Left:= IniF.ReadInteger('SetLog', 'Left', 0);
+      MainForm.Top:=IniF.ReadInteger('SetLog', 'Top', 0);
+
       MainForm.Width := IniF.ReadInteger('SetLog', 'Width', 1043);
       MainForm.Height := IniF.ReadInteger('SetLog', 'Height', 671);
       if IniF.ReadString('SetLog', 'FormState', '') = 'Maximized' then
@@ -3594,9 +3604,6 @@ var
 begin
   if MenuItem111.Checked = True then
   begin
-    // PhotoJPEG.Free;
-    // PhotoGIF.Free;
-    // PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
@@ -4096,32 +4103,36 @@ begin
   //отоброжение фото с qrz.ru
   if MenuItem111.Checked = True then
   begin
-    //    PhotoJPEG := TJPEGImage.Create;
-    //    PhotoGIF := TGIFImage.Create;
-    //    PhotoPNG := TPortableNetworkGraphic.Create;
     tIMG := TImage.Create(Self);
     tIMG.Parent := PhotoGroup;
     tIMG.Align := alClient;
     tIMG.Proportional := True;
     tIMG.Stretch := True;
+    tIMG.OnClick :=@tIMGClick;
   end
   else
   begin
-    //    PhotoJPEG.Free;
-    //    PhotoGIF.Free;
-    //    PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;
+end;
+
+procedure TMainForm.tIMGClick(Sender: TObject);
+begin
+  if Sender is TImage then
+   with TImage(Sender) do
+    begin
+    if Assigned(tIMG.Picture.Graphic) then begin
+      viewPhoto.Image1.Picture.Assign(tIMG.Picture);
+      viewPhoto.Show;
+    end;
+    end;
 end;
 
 procedure TMainForm.MenuItem112Click(Sender: TObject);
 begin
   if MenuItem111.Checked = True then
   begin
-    //   PhotoJPEG.Free;
-    //   PhotoGIF.Free;
-    //   PhotoPNG.Free;
     tIMG.Free;
     PhotoGroup.Free;
   end;

@@ -2392,6 +2392,7 @@ msgid "Callsign"
 msgstr "Позывной"
 
 #: tinformationform.groupbox3.caption
+msgctxt "tinformationform.groupbox3.caption"
 msgid "Photo"
 msgstr ""
 
@@ -5012,6 +5013,11 @@ msgstr ""
 #: tupdate_form.label9.caption
 msgid "Update process"
 msgstr "Процесс обновления"
+
+#: tviewphoto.caption
+msgctxt "tviewphoto.caption"
+msgid "Photo"
+msgstr ""
 
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
