@@ -378,6 +378,7 @@ begin
     Label10.Caption := rReleaseDate + CheckCallBook.FieldByName('date').AsString;
     Label14.Caption := CheckCallBook.FieldByName('version').AsString;
     CheckCallBook.Close;
+    MainForm.CallBookLiteConnection.Connected:=False;
   end
   else
   begin

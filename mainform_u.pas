@@ -660,6 +660,7 @@ var
   sqlite_version: string;
   lastTCPport: integer;
   lastUDPport: integer;
+  _l, _t, _w, _h: Integer;
 
 implementation
 
@@ -3453,11 +3454,12 @@ begin
       else
         MenuItem43.Enabled := False;
 
-      MainForm.Left := IniF.ReadInteger('SetLog', 'Left', 0);
-      MainForm.Top := IniF.ReadInteger('SetLog', 'Top', 0);
+      _l := IniF.ReadInteger('SetLog', 'Left', 0);
+      _t := IniF.ReadInteger('SetLog', 'Top', 0);
 
-      MainForm.Width := IniF.ReadInteger('SetLog', 'Width', 1043);
-      MainForm.Height := IniF.ReadInteger('SetLog', 'Height', 671);
+      _w := IniF.ReadInteger('SetLog', 'Width', 1043);
+      _h := IniF.ReadInteger('SetLog', 'Height', 671);
+
       if IniF.ReadString('SetLog', 'FormState', '') = 'Maximized' then
         MainForm.WindowState := wsMaximized;
 
@@ -3638,6 +3640,7 @@ end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
+  MainForm.SetBounds(_l, _t, _w, _h);
   if InitLog_DB <> 'YES' then
   begin
     if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
