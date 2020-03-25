@@ -674,7 +674,8 @@ uses
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u, register_form_u,
-  logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u, flDigiModem, viewPhoto_U;
+  logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
+  flDigiModem, viewPhoto_U;
 
 type
   PTreeData = ^TTreeData;
@@ -2246,9 +2247,11 @@ begin
   Edit5.Clear;
   Edit6.Clear;
 
-  if MenuItem111.Checked = True then begin
+  if MenuItem111.Checked = True then
+  begin
     tIMG.Picture.Clear;
-     if Assigned(viewPhoto.Image1.Picture.Graphic) then begin
+    if Assigned(viewPhoto.Image1.Picture.Graphic) then
+    begin
       viewPhoto.Image1.Picture.Clear;
       viewPhoto.Close;
     end;
@@ -2621,13 +2624,13 @@ begin
     MapView1.Center;
     MapView1.Visible := True;
     MapView1.Parent := Panel10;
-    MapView1.Enabled:=True;
+    MapView1.Enabled := True;
     Earth.Close;
   end
   else
   begin
     MapView1.Visible := False;
-    MapView1.Enabled:=False;
+    MapView1.Enabled := False;
     Earth.Parent := Panel10;
     Earth.BorderStyle := bsNone;
     Earth.Align := alClient;
@@ -3260,7 +3263,10 @@ begin
     end;
 
     if Freq <> '' then
-      freqMhz := StrToDouble(Freq) / 1000;
+      if TryStrToFloat(Freq, freqMhz) then
+        freqMhz := freqMhz / 1000
+      else
+        exit;
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
     Mode := GetModeFromFreq(FloatToStr(freqMhz));
@@ -3447,8 +3453,8 @@ begin
       else
         MenuItem43.Enabled := False;
 
-      MainForm.Left:= IniF.ReadInteger('SetLog', 'Left', 0);
-      MainForm.Top:=IniF.ReadInteger('SetLog', 'Top', 0);
+      MainForm.Left := IniF.ReadInteger('SetLog', 'Left', 0);
+      MainForm.Top := IniF.ReadInteger('SetLog', 'Top', 0);
 
       MainForm.Width := IniF.ReadInteger('SetLog', 'Width', 1043);
       MainForm.Height := IniF.ReadInteger('SetLog', 'Height', 671);
@@ -3699,17 +3705,6 @@ end;
 procedure TMainForm.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
   MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
- { if ((Pos('Address already in use', msg) > 0) or (Pos('Error on bind', msg) > 0)) and
-    (lastTCPport <> port_tcp[1]) then
-  begin
-    LTCPComponent1.Disconnect(True);
-    LUDPComponent1.Disconnect(True);
-    LTCPComponent1.Listen(port_tcp[1]);
-    LUDPComponent1.Listen(port_udp[1]);
-    lastTCPport := port_tcp[1];
-    MainForm.StatusBar1.Panels.Items[0].Text := '';
-  end; }
-
 end;
 
 function TMainForm.GetNewChunk: string;
@@ -3820,17 +3815,6 @@ end;
 procedure TMainForm.LUDPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
   MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
-{  if ((Pos('Address already in use', msg) > 0) or (Pos('Error on bind', msg) > 0)) and
-    (lastUDPport <> port_udp[1]) then
-  begin
-    LTCPComponent1.Disconnect(True);
-    LUDPComponent1.Disconnect(True);
-    LTCPComponent1.Listen(port_tcp[1]);
-    LUDPComponent1.Listen(port_udp[1]);
-    lastTCPport := port_tcp[1];
-    lastUDPport := port_udp[1];
-    MainForm.StatusBar1.Panels.Items[0].Text := '';
-  end; }
 end;
 
 procedure TMainForm.LUDPComponent1Receive(aSocket: TLSocket);
@@ -4108,7 +4092,7 @@ begin
     tIMG.Align := alClient;
     tIMG.Proportional := True;
     tIMG.Stretch := True;
-    tIMG.OnClick :=@tIMGClick;
+    tIMG.OnClick := @tIMGClick;
   end
   else
   begin
@@ -4120,12 +4104,13 @@ end;
 procedure TMainForm.tIMGClick(Sender: TObject);
 begin
   if Sender is TImage then
-   with TImage(Sender) do
+    with TImage(Sender) do
     begin
-    if Assigned(tIMG.Picture.Graphic) then begin
-      viewPhoto.Image1.Picture.Assign(tIMG.Picture);
-      viewPhoto.Show;
-    end;
+      if Assigned(tIMG.Picture.Graphic) then
+      begin
+        viewPhoto.Image1.Picture.Assign(tIMG.Picture);
+        viewPhoto.Show;
+      end;
     end;
 end;
 
@@ -6593,25 +6578,26 @@ begin
     else
     begin
       if ConfigForm.CheckBox2.Checked = True then
-      ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000))
-    else
-      ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
+        ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq,
+          StrToFloat(Data^.Freq) / 1000))
+      else
+        ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
 
       if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
       begin
-        ComboBox2.Text:='SSB';
+        ComboBox2.Text := 'SSB';
         ComboBox2CloseUp(Sender);
-        ComboBox9.Text:=Data^.Moda;
+        ComboBox9.Text := Data^.Moda;
       end;
       if Data^.Moda = 'DIGI' then
       begin
-        ComboBox2.Text:='SSB';
+        ComboBox2.Text := 'SSB';
         ComboBox2CloseUp(Sender);
-        ComboBox9.Text:='USB';
+        ComboBox9.Text := 'USB';
       end;
       if Data^.Moda = 'CW' then
       begin
-        ComboBox2.Text:='CW';
+        ComboBox2.Text := 'CW';
         ComboBox2CloseUp(Sender);
         ComboBox9.Text := '';
       end;
