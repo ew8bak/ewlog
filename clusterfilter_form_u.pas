@@ -5,7 +5,8 @@ unit ClusterFilter_Form_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  ComCtrls, CheckLst;
 
 type
 
@@ -29,6 +30,7 @@ type
     cbSSB: TCheckBox;
     cbCW: TCheckBox;
     cbData: TCheckBox;
+    CheckListBox1: TCheckListBox;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -47,7 +49,7 @@ var
 implementation
 
 uses
-  MainForm_U;
+  MainForm_U, const_u, ResourceStr;
 
 {$R *.lfm}
 
@@ -79,12 +81,15 @@ end;
 
 procedure TClusterFilter.FormCreate(Sender: TObject);
 begin
-  ReadBandsModes;
+  //ReadBandsModes;
 end;
 
 procedure TClusterFilter.FormShow(Sender: TObject);
+var
+  i: Integer;
 begin
-  ReadBandsModes;
+  for i:=Length(bandsMm) - 1 downto 0 do
+    CheckListBox1.Items.Add(bandsMm[i]);
 end;
 
 end.
