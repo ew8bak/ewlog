@@ -340,188 +340,30 @@ begin
 end;
 
 function TdmFunc.GetFreqFromBand(band, mode: string): Double;
+var
+  bandsMmList: TStringList;
+  i, index: Integer;
 begin
+  try
   Result := 0;
+  bandsMmList := TStringList.Create;
   mode := UpperCase(mode);
   band := UpperCase(band);
-  if band = '2190M' then
-  begin
-    Result := 0.139;
-    exit;
-  end;
-  if band = '630M' then
-  begin
-    Result := 0.480;
-    exit;
-  end;
-  if band = '160M' then
-  begin
-    if (mode = 'CW') then
-      Result := 1.8
-    else
-      Result := 1.85;
-    exit;
-  end;
-  if band = '80M' then
-  begin
-    if (mode = 'CW') then
-      Result := 3.52
-    else
-      Result := 3.6;
-    exit;
-  end;
-  if band = '60M' then
-  begin
-    Result := 5.2;
-    exit;
-  end;
-  if band = '40M' then
-  begin
-    if (mode = 'CW') then
-      Result := 7.02
-    else
-      Result := 7.055;
-    exit;
-  end;
-  if band = '30M' then
-  begin
-    Result := 10.1;
-    exit;
-  end;
-  if band = '20M' then
-  begin
-    if (mode = 'CW') then
-      Result := 14.025
-    else
-    begin
-      if (Pos('PSK', mode) > 0) then
-        Result := 14.075
-      else
-      begin
-        if (mode = 'RTTY') then
-          Result := 14.085
-        else
-          Result := 14.15;
-      end;
+  for i:=0 to Length(bandsMm) do
+  bandsMmList.Add(bandsMm[i]);
+  index := bandsMmList.indexOf(band);
+    if mode = 'CW' then begin
+       Result := StrToDouble(bandsCW[index]);
+       exit;
     end;
-  end;
-  if band = '17M' then
-  begin
-    if (mode = 'CW') then
-      Result := 18.07
-    else
-      Result := 18.1;
-    exit;
-  end;
-  if band = '15M' then
-  begin
-    if (mode = 'CW') then
-      Result := 21.05
-    else
-    begin
-      if (Pos('PSK', mode) > 0) then
-        Result := 21.075
-      else
-      begin
-        if mode = 'RTTY' then
-          Result := 21.085
-        else
-          Result := 21.2;
-      end;
+    if mode = 'RTTY' then begin
+      Result := StrToDouble(bandsRTTY[index]);
+      exit;
     end;
-    exit;
+    Result := StrToDouble(bandsOther[index]);
+  finally
+   bandsMmList.Free;
   end;
-  if band = '12M' then
-  begin
-    if (mode = 'CW') then
-      Result := 24.916
-    else
-    begin
-      if LetterFromMode(mode) = 'D' then
-        Result := 24.917
-      else
-        Result := 24.932;
-    end;
-    exit;
-  end;
-  if band = '10M' then
-  begin
-    if (mode = 'CW') then
-      Result := 28.05
-    else
-    begin
-      if LetterFromMode(mode) = 'D' then
-        Result := 28.1
-      else
-        Result := 28.2;
-    end;
-    exit;
-  end;
-  if band = '6M' then
-  begin
-    Result := 50.1;
-    exit;
-  end;
-  if band = '6M' then
-  begin
-    if mode = 'CW' then
-      Result := 70.05
-    else
-      Result := 70.0875;
-  end;
-  if band = '2M' then
-  begin
-    if (mode = 'CW') then
-      Result := 144.05
-    else
-      Result := 144.28;
-    exit;
-  end;
-  if band = '70CM' then
-  begin
-    if mode = 'CW' then
-      Result := 432.1
-    else
-      Result := 432.2;
-    exit;
-  end;
-  if band = '23CM' then
-  begin
-    Result := 1295.15;
-    exit;
-  end;
-  if band = '13CM' then
-  begin
-    Result := 2300;
-    exit;
-  end;
-  if band = '9CM' then
-  begin
-    Result := 3400;
-    exit;
-  end;
-  if band = '6CM' then
-  begin
-    Result := 5650;
-    exit;
-  end;
-  if band = '3CM' then
-  begin
-    Result := 10000;
-    exit;
-  end;
-  if band = '1.25CM' then
-  begin
-    Result := 24000;
-    exit;
-  end;
-  if band = '6MM' then
-  begin
-    Result := 47000;
-    exit;
-  end;
-  if band = '4MM' then
-    Result := 77500;
 end;
 
 function TdmFunc.GetBandFromFreq(MHz: string): string;
