@@ -3321,10 +3321,6 @@ msgctxt "tmainform.menuitem10.caption"
 msgid "QSL Received"
 msgstr ""
 
-#: tmainform.menuitem101.caption
-msgid "Registration"
-msgstr ""
-
 #: tmainform.menuitem102.caption
 msgid "Donations"
 msgstr ""
@@ -4071,68 +4067,6 @@ msgstr ""
 #: tqslmanager_form.label6.caption
 msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
-msgstr ""
-
-#: tregisterform.button1.caption
-msgid "ОК"
-msgstr ""
-
-#: tregisterform.button2.caption
-msgid "Help Project"
-msgstr ""
-
-#: tregisterform.caption
-msgid "Register EWLog"
-msgstr ""
-
-#: tregisterform.groupbox1.caption
-msgid "New user"
-msgstr ""
-
-#: tregisterform.groupbox2.caption
-msgid "Registered user"
-msgstr ""
-
-#: tregisterform.label1.caption
-msgctxt "tregisterform.label1.caption"
-msgid "Callsign:"
-msgstr ""
-
-#: tregisterform.label2.caption
-msgid "Last Name:"
-msgstr ""
-
-#: tregisterform.label3.caption
-msgid "First name:"
-msgstr ""
-
-#: tregisterform.label4.caption
-msgctxt "tregisterform.label4.caption"
-msgid "E-Mail:"
-msgstr ""
-
-#: tregisterform.label5.caption
-msgctxt "tregisterform.label5.caption"
-msgid "Password:"
-msgstr ""
-
-#: tregisterform.label6.caption
-msgctxt "tregisterform.label6.caption"
-msgid "Callsign:"
-msgstr ""
-
-#: tregisterform.label7.caption
-msgctxt "tregisterform.label7.caption"
-msgid "Password:"
-msgstr ""
-
-#: tregisterform.label8.caption
-msgctxt "tregisterform.label8.caption"
-msgid "Status:"
-msgstr ""
-
-#: tregisterform.label9.caption
-msgid "Not registered"
 msgstr ""
 
 #: tsendtelnetspot.button1.caption

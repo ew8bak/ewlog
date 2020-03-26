@@ -349,14 +349,19 @@ begin
   bandsMmList := TStringList.Create;
   mode := UpperCase(mode);
   band := UpperCase(band);
-  for i:=0 to Length(bandsMm) do
-  bandsMmList.Add(bandsMm[i]);
-  index := bandsMmList.indexOf(band);
+
+    if (mode = 'RTTY') or (Pos('PSK', mode) > 0) or (Pos('JT', mode) > 0) or (mode = 'FT8') then
+    mode := 'DIGI';
+
+    for i:=0 to Length(bandsMm) - 1 do
+    bandsMmList.Add(bandsMm[i]);
+    index := bandsMmList.indexOf(band);
+
     if mode = 'CW' then begin
        Result := StrToDouble(bandsCW[index]);
        exit;
     end;
-    if mode = 'RTTY' then begin
+    if mode = 'DIGI' then begin
       Result := StrToDouble(bandsRTTY[index]);
       exit;
     end;

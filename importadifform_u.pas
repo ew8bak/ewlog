@@ -55,7 +55,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U;
+uses dmFunc_U, MainForm_U, const_u;
 
 {$R *.lfm}
 
@@ -470,10 +470,10 @@ begin
             RST_RCVD := '599';
 
           if FREQ = '' then
-            FREQ := FormatFloat('0.000"."00', dmFunc.GetFreqFromBand(BAND, MODE))
+            FREQ := FormatFloat(view_freq, dmFunc.GetFreqFromBand(BAND, MODE))
           else begin
             FREQ_Float := StrToFloat(FREQ);
-            FREQ := FormatFloat('0.000"."00', FREQ_Float);
+            FREQ := FormatFloat(view_freq, FREQ_Float);
           end;
 
 
