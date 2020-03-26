@@ -47,7 +47,6 @@ type
     Memo1: TMemo;
     MenuItem10: TMenuItem;
     MenuItem100: TMenuItem;
-    MenuItem101: TMenuItem;
     MenuItem102: TMenuItem;
     MenuItem103: TMenuItem;
     MenuItem104: TMenuItem;
@@ -384,7 +383,6 @@ type
     procedure LTCPComponent1Receive(aSocket: TLSocket);
     procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
-    procedure MenuItem101Click(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem103Click(Sender: TObject);
     procedure MenuItem104Click(Sender: TObject);
@@ -674,7 +672,7 @@ uses
   UpdateForm_U, Earth_Form_U,
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
-  ThanksForm_u, register_form_u,
+  ThanksForm_u,
   logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
   flDigiModem, viewPhoto_U;
 
@@ -3833,11 +3831,6 @@ begin
     if mess = 'Hello' then
       LUDPComponent1.SendMessage('Welcome!');
   end;
-end;
-
-procedure TMainForm.MenuItem101Click(Sender: TObject);
-begin
-  registerform.Show;
 end;
 
 procedure TMainForm.MenuItem102Click(Sender: TObject);

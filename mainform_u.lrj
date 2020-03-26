@@ -191,7 +191,6 @@
 {"hash":322608,"name":"tmainform.menuitem6.caption","sourcebytes":[72,101,108,112],"value":"Help"},
 {"hash":96905381,"name":"tmainform.menuitem92.caption","sourcebytes":[85,112,100,97,116,101],"value":"Update"},
 {"hash":95323427,"name":"tmainform.menuitem63.caption","sourcebytes":[84,104,97,110,107,115],"value":"Thanks"},
-{"hash":235098366,"name":"tmainform.menuitem101.caption","sourcebytes":[82,101,103,105,115,116,114,97,116,105,111,110],"value":"Registration"},
 {"hash":76205875,"name":"tmainform.menuitem102.caption","sourcebytes":[68,111,110,97,116,105,111,110,115],"value":"Donations"},
 {"hash":4691652,"name":"tmainform.menuitem94.caption","sourcebytes":[65,98,111,117,116],"value":"About"},
 {"hash":244154767,"name":"tmainform.menuitem8.caption","sourcebytes":[77,97,114,107,32,116,104,105,115,32,81,83,79],"value":"Mark this QSO"},

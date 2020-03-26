@@ -8,10 +8,11 @@
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="32"/>
-        <CursorPos X="77" Y="23"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="28"/>
+        <CursorPos X="59" Y="19"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="mainform_u.pas"/>
@@ -21,8 +22,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="3637"/>
-        <CursorPos X="37" Y="3650"/>
+        <TopLine Value="3818"/>
+        <CursorPos Y="3835"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -45,7 +46,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="134"/>
         <CursorPos X="47" Y="147"/>
         <UsageCount Value="200"/>
@@ -75,7 +76,6 @@
         <CursorPos X="53" Y="381"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -120,7 +120,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="137"/>
         <CursorPos X="17" Y="202"/>
         <UsageCount Value="200"/>
@@ -245,7 +245,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="265"/>
         <CursorPos X="36" Y="260"/>
         <UsageCount Value="200"/>
@@ -337,7 +337,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Earth_Form_U"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="37"/>
         <CursorPos X="20" Y="54"/>
         <UsageCount Value="202"/>
@@ -456,8 +456,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="62"/>
-        <CursorPos Y="80"/>
+        <TopLine Value="211"/>
+        <CursorPos X="32" Y="74"/>
         <UsageCount Value="201"/>
       </Unit40>
       <Unit41>
@@ -652,7 +652,7 @@
         <ComponentName Value="viewPhoto"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="viewPhoto_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="8"/>
         <CursorPos X="17" Y="18"/>
         <UsageCount Value="30"/>
@@ -1182,123 +1182,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4122" Column="25" TopLine="4096"/>
+        <Caret Line="3447" Column="44" TopLine="3426"/>
       </Position1>
       <Position2>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="605" Column="15" TopLine="587"/>
-      </Position2>
-      <Position3>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3447" Column="44" TopLine="3426"/>
-      </Position3>
-      <Position4>
         <Filename Value="viewphoto_u.pas"/>
         <Caret Column="15"/>
-      </Position4>
-      <Position5>
+      </Position2>
+      <Position3>
         <Filename Value="viewphoto_u.pas"/>
         <Caret Line="35"/>
-      </Position5>
-      <Position6>
+      </Position3>
+      <Position4>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="2629" Column="27" TopLine="2616"/>
-      </Position6>
-      <Position7>
+      </Position4>
+      <Position5>
         <Filename Value="dmfunc_u.pas"/>
         <Caret Line="1111" Column="46" TopLine="1106"/>
-      </Position7>
-      <Position8>
+      </Position5>
+      <Position6>
         <Filename Value="dmfunc_u.pas"/>
         <Caret Line="95" Column="32" TopLine="77"/>
+      </Position6>
+      <Position7>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6600" Column="32" TopLine="6562"/>
+      </Position7>
+      <Position8>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3259" Column="31" TopLine="3243"/>
       </Position8>
       <Position9>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6600" Column="32" TopLine="6562"/>
+        <Caret Line="3279" Column="44" TopLine="3247"/>
       </Position9>
       <Position10>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3259" Column="31" TopLine="3243"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="289" Column="3" TopLine="260"/>
       </Position10>
       <Position11>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3279" Column="44" TopLine="3247"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="355" Column="3" TopLine="348"/>
       </Position11>
       <Position12>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="289" Column="3" TopLine="260"/>
+        <Caret Line="104" Column="15" TopLine="88"/>
       </Position12>
       <Position13>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="355" Column="3" TopLine="348"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2367" Column="36" TopLine="2355"/>
       </Position13>
       <Position14>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="104" Column="15" TopLine="88"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="605" Column="15" TopLine="590"/>
       </Position14>
       <Position15>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3269" Column="17" TopLine="3335"/>
+        <Caret Line="663" Column="5" TopLine="639"/>
       </Position15>
       <Position16>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2367" Column="36" TopLine="2355"/>
+        <Caret Line="1555" Column="816" TopLine="1527"/>
       </Position16>
       <Position17>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3515" Column="3" TopLine="3538"/>
+        <Caret Line="1633" Column="55" TopLine="1605"/>
       </Position17>
       <Position18>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="605" Column="15" TopLine="590"/>
+        <Caret Line="1634" Column="55" TopLine="1606"/>
       </Position18>
       <Position19>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="663" Column="5" TopLine="639"/>
+        <Caret Line="1933" Column="45" TopLine="1905"/>
       </Position19>
       <Position20>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1555" Column="816" TopLine="1527"/>
+        <Caret Line="1937" Column="60" TopLine="1909"/>
       </Position20>
       <Position21>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1633" Column="55" TopLine="1605"/>
+        <Caret Line="1942" Column="45" TopLine="1914"/>
       </Position21>
       <Position22>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1634" Column="55" TopLine="1606"/>
+        <Caret Line="1946" Column="60" TopLine="1918"/>
       </Position22>
       <Position23>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1933" Column="45" TopLine="1905"/>
+        <Caret Line="2061" Column="44" TopLine="2033"/>
       </Position23>
       <Position24>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1937" Column="60" TopLine="1909"/>
+        <Caret Line="2063" Column="44" TopLine="2035"/>
       </Position24>
       <Position25>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1942" Column="45" TopLine="1914"/>
+        <Caret Line="2067" Column="33" TopLine="2039"/>
       </Position25>
       <Position26>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1946" Column="60" TopLine="1918"/>
+        <Caret Line="3462" Column="3" TopLine="3439"/>
       </Position26>
       <Position27>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2061" Column="44" TopLine="2033"/>
+        <Filename Value="EWLog.pas"/>
+        <Caret Line="19" Column="59" TopLine="28"/>
       </Position27>
       <Position28>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2063" Column="44" TopLine="2035"/>
+        <Caret Line="677" Column="15" TopLine="657"/>
       </Position28>
       <Position29>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2067" Column="33" TopLine="2039"/>
+        <Caret Line="3836" TopLine="3819"/>
       </Position29>
       <Position30>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3462" Column="3" TopLine="3439"/>
+        <Caret Line="3835" TopLine="3818"/>
       </Position30>
     </JumpHistory>
     <RunParams>
