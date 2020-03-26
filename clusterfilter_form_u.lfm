@@ -8,203 +8,24 @@ object ClusterFilter: TClusterFilter
   ClientHeight = 349
   ClientWidth = 508
   FormStyle = fsStayOnTop
-  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '2.0.6.0'
-  object GroupBox1: TGroupBox
-    Left = 303
-    Height = 150
-    Top = 144
-    Width = 161
-    Caption = 'Bands'
-    ClientHeight = 134
-    ClientWidth = 159
-    TabOrder = 0
-    object cb160m: TCheckBox
-      Left = 8
-      Height = 23
-      Top = 8
-      Width = 54
-      Caption = '160М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 0
-    end
-    object cb80m: TCheckBox
-      Left = 8
-      Height = 23
-      Top = 24
-      Width = 48
-      Caption = '80М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 1
-    end
-    object cb60m: TCheckBox
-      Left = 8
-      Height = 23
-      Top = 40
-      Width = 48
-      Caption = '60М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 2
-    end
-    object cb40m: TCheckBox
-      Left = 8
-      Height = 23
-      Top = 56
-      Width = 48
-      Caption = '40М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 3
-    end
-    object cb30m: TCheckBox
-      Left = 8
-      Height = 23
-      Top = 72
-      Width = 48
-      Caption = '30М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 4
-    end
-    object cb20m: TCheckBox
-      Left = 8
-      Height = 23
-      Top = 88
-      Width = 48
-      Caption = '20М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 5
-    end
-    object cb17m: TCheckBox
-      Left = 8
-      Height = 23
-      Top = 104
-      Width = 48
-      Caption = '17М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 6
-    end
-    object cb15m: TCheckBox
-      Left = 96
-      Height = 23
-      Top = 8
-      Width = 48
-      Caption = '15М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 7
-    end
-    object cb12m: TCheckBox
-      Left = 96
-      Height = 23
-      Top = 24
-      Width = 48
-      Caption = '12М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 8
-    end
-    object cb10m: TCheckBox
-      Left = 96
-      Height = 23
-      Top = 40
-      Width = 48
-      Caption = '10М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 9
-    end
-    object cb6m: TCheckBox
-      Left = 96
-      Height = 23
-      Top = 56
-      Width = 42
-      Caption = '6М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 10
-    end
-    object cb4m: TCheckBox
-      Left = 96
-      Height = 23
-      Top = 72
-      Width = 42
-      Caption = '4М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 11
-    end
-    object cb2m: TCheckBox
-      Left = 96
-      Height = 23
-      Top = 88
-      Width = 42
-      Caption = '2М'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 12
-    end
-    object cb70cm: TCheckBox
-      Left = 96
-      Height = 23
-      Top = 104
-      Width = 55
-      Caption = '70СМ'
-      Checked = True
-      Font.Height = -11
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 13
-    end
-  end
   object GroupBox2: TGroupBox
-    Left = 296
-    Height = 97
-    Top = 24
-    Width = 168
+    Left = 176
+    Height = 73
+    Top = 0
+    Width = 176
     Caption = 'Modes'
-    ClientHeight = 81
-    ClientWidth = 166
-    TabOrder = 1
+    ClientHeight = 53
+    ClientWidth = 172
+    TabOrder = 0
     object cbSSB: TCheckBox
       Left = 8
-      Height = 23
+      Height = 19
       Top = 8
-      Width = 45
+      Width = 38
       Caption = 'SSB'
       Checked = True
       Font.Height = -11
@@ -214,9 +35,9 @@ object ClusterFilter: TClusterFilter
     end
     object cbCW: TCheckBox
       Left = 56
-      Height = 23
+      Height = 19
       Top = 8
-      Width = 43
+      Width = 38
       Caption = 'CW'
       Checked = True
       Font.Height = -11
@@ -226,9 +47,9 @@ object ClusterFilter: TClusterFilter
     end
     object cbData: TCheckBox
       Left = 104
-      Height = 23
+      Height = 19
       Top = 8
-      Width = 46
+      Width = 41
       Caption = 'Digi'
       Checked = True
       Font.Height = -11
@@ -241,10 +62,10 @@ object ClusterFilter: TClusterFilter
     Left = 0
     Height = 349
     Top = 0
-    Width = 116
+    Width = 160
     Align = alLeft
     ItemHeight = 0
-    TabOrder = 2
-    TopIndex = -1
+    OnClickCheck = CheckListBox1ClickCheck
+    TabOrder = 1
   end
 end

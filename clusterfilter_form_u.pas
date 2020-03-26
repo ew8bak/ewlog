@@ -13,31 +13,17 @@ type
   { TClusterFilter }
 
   TClusterFilter = class(TForm)
-    cb160m: TCheckBox;
-    cb80m: TCheckBox;
-    cb6m: TCheckBox;
-    cb4m: TCheckBox;
-    cb2m: TCheckBox;
-    cb70cm: TCheckBox;
-    cb60m: TCheckBox;
-    cb40m: TCheckBox;
-    cb30m: TCheckBox;
-    cb20m: TCheckBox;
-    cb17m: TCheckBox;
-    cb15m: TCheckBox;
-    cb12m: TCheckBox;
-    cb10m: TCheckBox;
     cbSSB: TCheckBox;
     cbCW: TCheckBox;
     cbData: TCheckBox;
     CheckListBox1: TCheckListBox;
-    GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure CheckListBox1ClickCheck(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    procedure ReadBandsModes();
+    procedure ReadBandsModes;
+    procedure WriteBandsModes;
     { private declarations }
   public
     { public declarations }
@@ -55,41 +41,47 @@ uses
 
 { TClusterFilter }
 
-procedure TClusterFilter.ReadBandsModes();
+procedure TClusterFilter.ReadBandsModes;
 var
   i: integer;
 begin
-  for i := 0 to ComponentCount - 1 do
-    if Components[i] is TCheckBox then
-    begin
-      (Components[i] as TCheckBox).Checked :=
-        IniF.ReadBool('TelnetCluster', 'BandsModes' + IntToStr(i), True);
-    end;
+  for i := 0 to CheckListBox1.Items.Count - 1 do
+  begin
+    CheckListBox1.Checked[i] :=
+      IniF.ReadBool('TelnetCluster', 'BandsModes' + IntToStr(i), True);
+  end;
 end;
 
-procedure TClusterFilter.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TClusterFilter.WriteBandsModes;
 var
   i: integer;
 begin
-  for i := 0 to ComponentCount - 1 do
-    if Components[i] is TCheckBox then
-    begin
-      IniF.WriteBool('TelnetCluster', 'BandsModes' + IntToStr(i),
-        (Components[i] as TCheckBox).Checked);
-    end;
+  for i := 0 to CheckListBox1.Items.Count - 1 do
+  begin
+    IniF.WriteBool('TelnetCluster', 'BandsModes' + IntToStr(i),
+      CheckListBox1.Checked[i]);
+  end;
 end;
 
 procedure TClusterFilter.FormCreate(Sender: TObject);
+var
+  i: integer;
 begin
-  //ReadBandsModes;
+  for i := Length(bandsMm) - 1 downto 0 do
+  begin
+    CheckListBox1.Items.Add(bandsMm[i] + ' / ' + bandsHz[i] + ' ' + rMHZ);
+  end;
+  ReadBandsModes;
+end;
+
+procedure TClusterFilter.CheckListBox1ClickCheck(Sender: TObject);
+begin
+  WriteBandsModes;
 end;
 
 procedure TClusterFilter.FormShow(Sender: TObject);
-var
-  i: Integer;
 begin
-  for i:=Length(bandsMm) - 1 downto 0 do
-    CheckListBox1.Items.Add(bandsMm[i]);
+  ReadBandsModes;
 end;
 
 end.

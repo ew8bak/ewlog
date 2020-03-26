@@ -3272,32 +3272,30 @@ begin
     if not ShowSpot then
     begin
       case Band of
-        '2190M': showspot := True;
-        '630M': showspot := True;
-        '160M': showspot := ClusterFilter.cb160m.Checked;
-        '80M': showspot := ClusterFilter.cb80m.Checked;
-        '60M': showspot := ClusterFilter.cb60m.Checked;
-        '40M': showspot := ClusterFilter.cb40m.Checked;
-        '30M': showspot := ClusterFilter.cb30m.Checked;
-        '20M': showspot := ClusterFilter.cb20m.Checked;
-        '17M': showspot := ClusterFilter.cb17m.Checked;
-        '15M': showspot := ClusterFilter.cb15m.Checked;
-        '12M': showspot := ClusterFilter.cb12m.Checked;
-        '10M': showspot := ClusterFilter.cb10m.Checked;
-        '6M': showspot := ClusterFilter.cb6m.Checked;
-        '4M': showspot := ClusterFilter.cb4m.Checked;
-        '2M': showspot := ClusterFilter.cb2m.Checked;
-        '1.25M': showspot := True;
-        '70CM': showspot := ClusterFilter.cb70cm.Checked;
-        '33CM': showspot := True;
-        '23CM': showspot := True;
-        '13CM': showspot := True;
-        '9CM': showspot := True;
-        '6CM': showspot := True;
-        '3CM': showspot := True;
-        '1.25CM': showspot := True;
-        '6MM': showspot := True;
-        '4MM': showspot := True;
+        '2190M': showspot := ClusterFilter.CheckListBox1.Checked[1];
+        '630M': showspot :=  ClusterFilter.CheckListBox1.Checked[2];
+        '160M': showspot := ClusterFilter.CheckListBox1.Checked[3];
+        '80M': showspot := ClusterFilter.CheckListBox1.Checked[4];
+        '60M': showspot := ClusterFilter.CheckListBox1.Checked[5];
+        '40M': showspot := ClusterFilter.CheckListBox1.Checked[6];
+        '30M': showspot := ClusterFilter.CheckListBox1.Checked[7];
+        '20M': showspot := ClusterFilter.CheckListBox1.Checked[8];
+        '17M': showspot := ClusterFilter.CheckListBox1.Checked[9];
+        '15M': showspot := ClusterFilter.CheckListBox1.Checked[10];
+        '12M': showspot := ClusterFilter.CheckListBox1.Checked[11];
+        '10M': showspot := ClusterFilter.CheckListBox1.Checked[12];
+        '6M': showspot := ClusterFilter.CheckListBox1.Checked[13];
+        '4M': showspot := ClusterFilter.CheckListBox1.Checked[14];
+        '2M': showspot := ClusterFilter.CheckListBox1.Checked[15];
+        '70CM': showspot := ClusterFilter.CheckListBox1.Checked[16];
+        '23CM': showspot := ClusterFilter.CheckListBox1.Checked[17];
+        '13CM': showspot := ClusterFilter.CheckListBox1.Checked[18];
+        '9CM': showspot := ClusterFilter.CheckListBox1.Checked[19];
+        '6CM': showspot := ClusterFilter.CheckListBox1.Checked[20];
+        '3CM': showspot := ClusterFilter.CheckListBox1.Checked[21];
+        '1.25CM': showspot := ClusterFilter.CheckListBox1.Checked[22];
+        '6MM': showspot := ClusterFilter.CheckListBox1.Checked[23];
+        '4MM': showspot := ClusterFilter.CheckListBox1.Checked[24];
       end;
       case Mode of
         'LSB': ShowSpot := ClusterFilter.cbSSB.Checked;
