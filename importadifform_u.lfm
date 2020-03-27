@@ -9,7 +9,6 @@ object ImportADIFForm: TImportADIFForm
   ClientHeight = 198
   ClientWidth = 606
   FormStyle = fsStayOnTop
-  OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '2.0.6.0'
@@ -442,8 +441,8 @@ object ImportADIFForm: TImportADIFForm
     MaxLength = 0
     ParentFont = False
     TabOrder = 4
-    OnButtonClick = FileNameEdit1ButtonClick
     OnChange = FileNameEdit1Change
+    OnClick = FileNameEdit1ButtonClick
   end
   object Button1: TButton
     Left = 432

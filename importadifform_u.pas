@@ -39,7 +39,6 @@ type
     procedure Button2Click(Sender: TObject);
     procedure FileNameEdit1ButtonClick(Sender: TObject);
     procedure FileNameEdit1Change(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure lblErrorLogClick(Sender: TObject);
   private
@@ -807,11 +806,8 @@ end;
 
 procedure TImportADIFForm.FileNameEdit1Change(Sender: TObject);
 begin
+  if Length(ExtractFilePath(FileNameEdit1.FileName)) > 0 then
   IniF.WriteString('SetLog', 'ImportPath', ExtractFilePath(FileNameEdit1.FileName));
-end;
-
-procedure TImportADIFForm.FormCreate(Sender: TObject);
-begin
 end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);

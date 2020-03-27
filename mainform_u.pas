@@ -171,6 +171,7 @@ type
     PopupDxCluster: TPopupMenu;
     CheckTableQuery: TSQLQuery;
     BandsQuery: TSQLQuery;
+    Shape1: TShape;
     subModesQuery: TSQLQuery;
     PrintDialog1: TPrintDialog;
     SpeedButton24: TSpeedButton;
@@ -1489,14 +1490,7 @@ begin
       if SQLQuery2.FieldByName('QSLManager').AsString <> '' then
         Edit6.Text := SQLQuery2.FieldByName('QSLManager').AsString;
     end;
-  end;{ else begin
-  Edit1.Clear;
-  Edit2.Clear;
-  Edit3.Clear;
-  Edit4.Clear;
-  Edit5.Clear;
-  Edit6.Clear;
-  end; }
+  end;
 end;
 
 
@@ -2245,6 +2239,7 @@ begin
   Edit4.Clear;
   Edit5.Clear;
   Edit6.Clear;
+  Shape1.Pen.Style:=psClear;
 
   if MenuItem111.Checked = True then
   begin
@@ -2288,6 +2283,7 @@ begin
 
     if CheckBox6.Checked = False then
       SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
+
 
     foundPrefix := SearchPrefix(EditButton1.Text, False);
 
@@ -3227,7 +3223,8 @@ var
   TelnetLine: string;
   Data: PTreeData;
   XNode: PVirtualNode;
-  ShowSpot: boolean;
+  ShowSpotBand: boolean;
+  ShowSpotMode: boolean;
   freqMhz: double;
 begin
   freqMhz := 0;
@@ -3238,7 +3235,8 @@ begin
   Time := '';
   Loc := '';
   Band := '';
-  showspot := False;
+  ShowSpotBand := False;
+  ShowSpotMode := False;
   if dxClient.GetMessage(TelnetLine) > 0 then
   begin
     TelnetLine := Trim(TelnetLine);
@@ -3269,43 +3267,44 @@ begin
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
     Mode := GetModeFromFreq(FloatToStr(freqMhz));
-    if not ShowSpot then
+    if Length(Band) > 0 then begin
+    if (not ShowSpotBand) or (not ShowSpotMode) then
     begin
       case Band of
-        '2190M': showspot := ClusterFilter.CheckListBox1.Checked[1];
-        '630M': showspot :=  ClusterFilter.CheckListBox1.Checked[2];
-        '160M': showspot := ClusterFilter.CheckListBox1.Checked[3];
-        '80M': showspot := ClusterFilter.CheckListBox1.Checked[4];
-        '60M': showspot := ClusterFilter.CheckListBox1.Checked[5];
-        '40M': showspot := ClusterFilter.CheckListBox1.Checked[6];
-        '30M': showspot := ClusterFilter.CheckListBox1.Checked[7];
-        '20M': showspot := ClusterFilter.CheckListBox1.Checked[8];
-        '17M': showspot := ClusterFilter.CheckListBox1.Checked[9];
-        '15M': showspot := ClusterFilter.CheckListBox1.Checked[10];
-        '12M': showspot := ClusterFilter.CheckListBox1.Checked[11];
-        '10M': showspot := ClusterFilter.CheckListBox1.Checked[12];
-        '6M': showspot := ClusterFilter.CheckListBox1.Checked[13];
-        '4M': showspot := ClusterFilter.CheckListBox1.Checked[14];
-        '2M': showspot := ClusterFilter.CheckListBox1.Checked[15];
-        '70CM': showspot := ClusterFilter.CheckListBox1.Checked[16];
-        '23CM': showspot := ClusterFilter.CheckListBox1.Checked[17];
-        '13CM': showspot := ClusterFilter.CheckListBox1.Checked[18];
-        '9CM': showspot := ClusterFilter.CheckListBox1.Checked[19];
-        '6CM': showspot := ClusterFilter.CheckListBox1.Checked[20];
-        '3CM': showspot := ClusterFilter.CheckListBox1.Checked[21];
-        '1.25CM': showspot := ClusterFilter.CheckListBox1.Checked[22];
-        '6MM': showspot := ClusterFilter.CheckListBox1.Checked[23];
-        '4MM': showspot := ClusterFilter.CheckListBox1.Checked[24];
+        '2190M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[0];
+        '630M': ShowSpotBand :=  ClusterFilter.CheckListBox1.Checked[1];
+        '160M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[2];
+        '80M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[3];
+        '60M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[4];
+        '40M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[5];
+        '30M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[6];
+        '20M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[7];
+        '17M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[8];
+        '15M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[9];
+        '12M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[10];
+        '10M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[11];
+        '6M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[12];
+        '4M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[13];
+        '2M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[14];
+        '70CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[15];
+        '23CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[16];
+        '13CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[17];
+        '9CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[18];
+        '6CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[29];
+        '3CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[20];
+        '1.25CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[21];
+        '6MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[22];
+        '4MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[23];
       end;
       case Mode of
-        'LSB': ShowSpot := ClusterFilter.cbSSB.Checked;
-        'USB': ShowSpot := ClusterFilter.cbSSB.Checked;
-        'CW': ShowSpot := ClusterFilter.cbCW.Checked;
-        'DIGI': ShowSpot := ClusterFilter.cbData.Checked;
+        'LSB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
+        'USB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
+        'CW': ShowSpotMode := ClusterFilter.cbCW.Checked;
+        'DIGI': ShowSpotMode := ClusterFilter.cbData.Checked;
       end;
     end;
-
-    if (Length(DX) > 0) and ShowSpot then
+    end;
+    if (Length(DX) > 0) and ShowSpotBand and ShowSpotMode then
     begin
       if FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False) = nil then
       begin
@@ -3510,6 +3509,7 @@ var
   FallbackLang: string = '';
   i: integer;
 begin
+  Shape1.Pen.Style:=psClear;
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
 
