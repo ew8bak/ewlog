@@ -3,5 +3,12 @@
 {"hash":5528259,"name":"tclusterfilter.groupbox2.caption","sourcebytes":[77,111,100,101,115],"value":"Modes"},
 {"hash":22642,"name":"tclusterfilter.cbssb.caption","sourcebytes":[83,83,66],"value":"SSB"},
 {"hash":1159,"name":"tclusterfilter.cbcw.caption","sourcebytes":[67,87],"value":"CW"},
-{"hash":307161,"name":"tclusterfilter.cbdata.caption","sourcebytes":[68,105,103,105],"value":"Digi"}
+{"hash":307161,"name":"tclusterfilter.cbdata.caption","sourcebytes":[68,105,103,105],"value":"Digi"},
+{"hash":256170,"name":"tclusterfilter.edit1.text","sourcebytes":[58,67,87,58],"value":":CW:"},
+{"hash":187819962,"name":"tclusterfilter.edit2.text","sourcebytes":[58,65,77,58,70,77,58,83,83,66,58],"value":":AM:FM:SSB:"},
+{"hash":93709018,"name":"tclusterfilter.edit3.text","sourcebytes":[58,80,83,75,51,49,58,82,84,84,89,58,70,84,56,58,74,84,54,53,58],"value":":PSK31:RTTY:FT8:JT65:"},
+{"hash":46046410,"name":"tclusterfilter.label1.caption","sourcebytes":[68,101,108,101,116,101,32,115,112,111,116,115,32,111,108,100,101,114,32,116,104,101,110,58],"value":"Delete spots older then:"},
+{"hash":67488435,"name":"tclusterfilter.label2.caption","sourcebytes":[109,105,110,117,116,101,115],"value":"minutes"},
+{"hash":4863637,"name":"tclusterfilter.button1.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":366789,"name":"tclusterfilter.button2.caption","sourcebytes":[83,97,118,101],"value":"Save"}
 ]}

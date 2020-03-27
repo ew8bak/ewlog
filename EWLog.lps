@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="135">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -20,9 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="3273"/>
-        <CursorPos X="71" Y="3278"/>
+        <TopLine Value="3264"/>
+        <CursorPos X="67" Y="3275"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -383,9 +382,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterFilter_Form_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="5"/>
-        <CursorPos X="68" Y="72"/>
+        <TopLine Value="53"/>
+        <CursorPos X="71" Y="69"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -586,7 +586,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
         <CursorPos X="33" Y="11"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="200"/>
       </Unit54>
       <Unit55>
         <Filename Value="downloadupdates.pas"/>
@@ -595,7 +595,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="69" Y="39"/>
-        <UsageCount Value="192"/>
+        <UsageCount Value="194"/>
       </Unit55>
       <Unit56>
         <Filename Value="setupsqlquery.pas"/>
@@ -604,7 +604,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos X="27" Y="61"/>
-        <UsageCount Value="184"/>
+        <UsageCount Value="186"/>
       </Unit56>
       <Unit57>
         <Filename Value="fldigimodem.pas"/>
@@ -613,7 +613,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="183"/>
         <CursorPos X="85" Y="12"/>
-        <UsageCount Value="164"/>
+        <UsageCount Value="166"/>
       </Unit57>
       <Unit58>
         <Filename Value="analyticthread.pas"/>
@@ -622,7 +622,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="50" Y="47"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="161"/>
       </Unit58>
       <Unit59>
         <Filename Value="getsessionid.pas"/>
@@ -631,7 +631,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="3" Y="35"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="97"/>
       </Unit59>
       <Unit60>
         <Filename Value="getphotofrominternet.pas"/>
@@ -639,7 +639,7 @@
         <UnitName Value="GetPhotoFromInternet"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="51" Y="42"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="78"/>
       </Unit60>
       <Unit61>
         <Filename Value="getinfofrominternetthread.pas"/>
@@ -648,7 +648,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="10" Y="59"/>
-        <UsageCount Value="71"/>
+        <UsageCount Value="73"/>
       </Unit61>
       <Unit62>
         <Filename Value="viewphoto_u.pas"/>
@@ -659,7 +659,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="17" Y="18"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="39"/>
       </Unit62>
       <Unit63>
         <Filename Value="RegExpr.pas"/>
@@ -1192,124 +1192,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3830" Column="57" TopLine="3818"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="88" TopLine="56"/>
       </Position1>
       <Position2>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="60" Column="25" TopLine="44"/>
+        <Caret Line="93" Column="89" TopLine="63"/>
       </Position2>
       <Position3>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="62" Column="25" TopLine="46"/>
+        <Caret Line="73" Column="10" TopLine="55"/>
       </Position3>
       <Position4>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="92" Column="3" TopLine="57"/>
+        <Caret Line="41" Column="15" TopLine="41"/>
       </Position4>
       <Position5>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="91" Column="3" TopLine="56"/>
+        <Caret Line="87" Column="68" TopLine="65"/>
       </Position5>
       <Position6>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="8" Column="76"/>
+        <Caret Line="86" Column="68" TopLine="64"/>
       </Position6>
       <Position7>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="92" Column="3" TopLine="56"/>
+        <Caret Line="85" Column="68" TopLine="63"/>
       </Position7>
       <Position8>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="99" Column="7" TopLine="62"/>
+        <Caret Line="84" Column="68" TopLine="62"/>
       </Position8>
       <Position9>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="98" Column="7" TopLine="61"/>
+        <Caret Line="83" Column="68" TopLine="61"/>
       </Position9>
       <Position10>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="88" TopLine="56"/>
+        <Caret Line="82" Column="68" TopLine="60"/>
       </Position10>
       <Position11>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="93" Column="89" TopLine="63"/>
+        <Caret Line="81" Column="68" TopLine="59"/>
       </Position11>
       <Position12>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="73" Column="10" TopLine="55"/>
+        <Caret Line="80" Column="68" TopLine="58"/>
       </Position12>
       <Position13>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="41" Column="15" TopLine="41"/>
+        <Caret Line="79" Column="68" TopLine="57"/>
       </Position13>
       <Position14>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6085" Column="3" TopLine="6116"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="78" Column="68" TopLine="56"/>
       </Position14>
       <Position15>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="87" Column="68" TopLine="65"/>
+        <Caret Line="77" Column="68" TopLine="55"/>
       </Position15>
       <Position16>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="86" Column="68" TopLine="64"/>
+        <Caret Line="76" Column="68" TopLine="54"/>
       </Position16>
       <Position17>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="85" Column="68" TopLine="63"/>
+        <Caret Line="75" Column="68" TopLine="53"/>
       </Position17>
       <Position18>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="84" Column="68" TopLine="62"/>
+        <Caret Line="74" Column="68" TopLine="52"/>
       </Position18>
       <Position19>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="83" Column="68" TopLine="61"/>
+        <Caret Line="73" Column="68" TopLine="51"/>
       </Position19>
       <Position20>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="82" Column="68" TopLine="60"/>
+        <Caret Line="72" Column="68" TopLine="5"/>
       </Position20>
       <Position21>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="81" Column="68" TopLine="59"/>
+        <Caret Line="73" Column="68" TopLine="34"/>
       </Position21>
       <Position22>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="80" Column="68" TopLine="58"/>
+        <Caret Line="74" Column="68" TopLine="35"/>
       </Position22>
       <Position23>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="79" Column="68" TopLine="57"/>
+        <Caret Line="75" Column="68" TopLine="36"/>
       </Position23>
       <Position24>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="78" Column="68" TopLine="56"/>
+        <Caret Line="76" Column="68" TopLine="37"/>
       </Position24>
       <Position25>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="77" Column="68" TopLine="55"/>
+        <Caret Line="77" Column="68" TopLine="38"/>
       </Position25>
       <Position26>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="76" Column="68" TopLine="54"/>
+        <Caret Line="78" Column="68" TopLine="39"/>
       </Position26>
       <Position27>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="75" Column="68" TopLine="53"/>
+        <Caret Line="80" Column="68" TopLine="41"/>
       </Position27>
       <Position28>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="74" Column="68" TopLine="52"/>
+        <Caret Line="92" Column="22" TopLine="61"/>
       </Position28>
       <Position29>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="73" Column="68" TopLine="51"/>
+        <Caret Line="89" Column="18" TopLine="63"/>
       </Position29>
       <Position30>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="72" Column="68" TopLine="50"/>
+        <Caret Line="75" Column="67" TopLine="51"/>
       </Position30>
     </JumpHistory>
     <RunParams>

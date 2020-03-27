@@ -13,19 +13,24 @@ object ClusterFilter: TClusterFilter
   Position = poMainFormCenter
   LCLVersion = '2.0.6.0'
   object GroupBox2: TGroupBox
-    Left = 176
-    Height = 73
+    Left = 160
+    Height = 225
     Top = 0
-    Width = 176
+    Width = 336
     Caption = 'Modes'
-    ClientHeight = 53
-    ClientWidth = 172
+    ClientHeight = 209
+    ClientWidth = 334
     TabOrder = 0
     object cbSSB: TCheckBox
-      Left = 8
-      Height = 19
-      Top = 8
-      Width = 38
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideTop.Control = Edit1
+      AnchorSideTop.Side = asrBottom
+      Left = 10
+      Height = 23
+      Top = 68
+      Width = 45
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
       Caption = 'SSB'
       Checked = True
       Font.Height = -11
@@ -34,10 +39,14 @@ object ClusterFilter: TClusterFilter
       TabOrder = 0
     end
     object cbCW: TCheckBox
-      Left = 56
-      Height = 19
-      Top = 8
-      Width = 38
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideTop.Control = GroupBox2
+      Left = 10
+      Height = 23
+      Top = 5
+      Width = 43
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 5
       Caption = 'CW'
       Checked = True
       Font.Height = -11
@@ -46,16 +55,60 @@ object ClusterFilter: TClusterFilter
       TabOrder = 1
     end
     object cbData: TCheckBox
-      Left = 104
-      Height = 19
-      Top = 8
-      Width = 41
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideTop.Control = Edit2
+      AnchorSideTop.Side = asrBottom
+      Left = 10
+      Height = 23
+      Top = 131
+      Width = 46
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
       Caption = 'Digi'
       Checked = True
       Font.Height = -11
       ParentFont = False
       State = cbChecked
       TabOrder = 2
+    end
+    object Edit1: TEdit
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideTop.Control = cbCW
+      AnchorSideTop.Side = asrBottom
+      Left = 10
+      Height = 25
+      Top = 33
+      Width = 296
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 5
+      TabOrder = 3
+      Text = ':CW:'
+    end
+    object Edit2: TEdit
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideTop.Control = cbSSB
+      AnchorSideTop.Side = asrBottom
+      Left = 10
+      Height = 25
+      Top = 96
+      Width = 296
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 5
+      TabOrder = 4
+      Text = ':AM:FM:SSB:'
+    end
+    object Edit3: TEdit
+      AnchorSideLeft.Control = GroupBox2
+      AnchorSideTop.Control = cbData
+      AnchorSideTop.Side = asrBottom
+      Left = 10
+      Height = 25
+      Top = 159
+      Width = 296
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 5
+      TabOrder = 5
+      Text = ':PSK31:RTTY:FT8:JT65:'
     end
   end
   object CheckListBox1: TCheckListBox
@@ -67,5 +120,71 @@ object ClusterFilter: TClusterFilter
     ItemHeight = 0
     OnClickCheck = CheckListBox1ClickCheck
     TabOrder = 1
+    TopIndex = -1
+  end
+  object Label1: TLabel
+    AnchorSideLeft.Control = GroupBox2
+    AnchorSideTop.Control = GroupBox2
+    AnchorSideTop.Side = asrBottom
+    Left = 170
+    Height = 13
+    Top = 245
+    Width = 134
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 20
+    Caption = 'Delete spots older then:'
+    ParentColor = False
+  end
+  object SpinEdit1: TSpinEdit
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrCenter
+    Left = 309
+    Height = 25
+    Top = 239
+    Width = 72
+    BorderSpacing.Left = 5
+    MinValue = 1
+    TabOrder = 2
+    Value = 15
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = SpinEdit1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = GroupBox2
+    AnchorSideTop.Side = asrBottom
+    Left = 386
+    Height = 13
+    Top = 245
+    Width = 44
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 20
+    Caption = 'minutes'
+    ParentColor = False
+  end
+  object Button1: TButton
+    AnchorSideRight.Control = GroupBox2
+    AnchorSideRight.Side = asrBottom
+    Left = 408
+    Height = 29
+    Top = 304
+    Width = 88
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Close'
+    OnClick = Button1Click
+    TabOrder = 3
+  end
+  object Button2: TButton
+    AnchorSideRight.Control = Button1
+    Left = 310
+    Height = 29
+    Top = 304
+    Width = 88
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 10
+    Caption = 'Save'
+    OnClick = Button2Click
+    TabOrder = 4
   end
 end
