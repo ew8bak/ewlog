@@ -37,6 +37,7 @@ type
     frTextExport1: TfrTextExport;
     IdIPWatch1: TIdIPWatch;
     Image1: TImage;
+    Image2: TImage;
     Label49: TLabel;
     Label50: TLabel;
     Label51: TLabel;
@@ -2326,6 +2327,7 @@ var
   DBand, DMode: boolean;
 begin
   DBand:=False;
+  DMode:=False;
   Edit1.Clear;
   Edit2.Clear;
   Edit3.Clear;
@@ -2381,9 +2383,10 @@ begin
     foundPrefix := SearchPrefix(EditButton1.Text, False);
     SelectQSO(False);
 
-    if Length(EditButton1.Text) >= 3 then
+    if Length(EditButton1.Text) >= 2 then
     CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand);
     Image1.Visible:=DBand;
+    Image2.Visible:=DMode;
 
     if foundPrefix and CheckBox3.Checked = True then
     begin
