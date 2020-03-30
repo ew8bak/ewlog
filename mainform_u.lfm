@@ -1505,12 +1505,12 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = ComboBox1
         AnchorSideTop.Side = asrBottom
-        Left = 122
+        Left = 105
         Height = 22
         Top = 85
         Width = 60
         AutoSize = False
-        BorderSpacing.Left = 18
+        BorderSpacing.Left = 1
         BorderSpacing.Top = 2
         Font.Height = -11
         ItemHeight = 16
@@ -1652,11 +1652,11 @@ object MainForm: TMainForm
         Visible = False
       end
       object Image2: TImage
-        AnchorSideLeft.Control = ComboBox2
+        AnchorSideLeft.Control = ComboBox9
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = ComboBox2
+        AnchorSideTop.Control = ComboBox9
         AnchorSideTop.Side = asrCenter
-        Left = 105
+        Left = 166
         Height = 15
         Top = 89
         Width = 15
