@@ -587,7 +587,7 @@ type
     procedure SearchCallInCallBook(CallName: string);
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
     procedure InitializeDB(dbS: string);
-    procedure SelectQSO;
+    procedure SelectQSO(grid:Boolean);
     procedure SetGrid;
     function GetNewChunk: string;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
@@ -1197,9 +1197,16 @@ begin
   end;
 end;
 
-procedure TMainForm.SelectQSO;
+procedure TMainForm.SelectQSO(grid:Boolean);
 begin
   try
+    Label17.Caption:='';
+    Label18.Caption:='';
+    Label19.Caption:='';
+    Label20.Caption:='';
+    Label21.Caption:='';
+    Label22.Caption:='';
+    if grid then begin
     SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName(
       'CallSign').AsString), 0, False);
     SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
@@ -1212,6 +1219,15 @@ begin
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     StatusBar1.Panels.Items[1].Text :=
       'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
+    end else begin
+      if DBGrid2.DataSource.DataSet.RecordCount > 0 then
+    Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
+    Label18.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSODate').AsString;
+    Label19.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOTime').AsString;
+    Label20.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOBand').AsString;
+    Label21.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOMode').AsString;
+    Label22.Caption := DBGrid2.DataSource.DataSet.FieldByName('OMName').AsString;
+    end;
   except
     on E: ESQLDatabaseError do
     begin
@@ -2286,7 +2302,7 @@ begin
 
 
     foundPrefix := SearchPrefix(EditButton1.Text, False);
-
+    SelectQSO(False);
     if foundPrefix and CheckBox3.Checked = True then
     begin
       val(lo1, Long, Error);
@@ -2337,11 +2353,6 @@ begin
           QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
       end;
       LogBookQuery.Open;
-      // LOGBookQuery.Last;
-      // lastID := MainForm.DBGrid1.DataSource.DataSet.RecNo;
-      //  StatusBar1.Panels.Items[1].Text :=
-      //    'QSO № ' + IntToStr(lastID) + rQSOTotal +
-      //    IntToStr(MainForm.LOGBookQuery.RecordCount);
     end;
   end;
 
@@ -2544,7 +2555,7 @@ end;
 
 procedure TMainForm.DBGrid1CellClick(Column: TColumn);
 begin
-  SelectQSO;
+  SelectQSO(True);
 end;
 
 procedure TMainForm.DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
