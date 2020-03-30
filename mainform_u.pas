@@ -36,6 +36,7 @@ type
     frReport1: TfrReport;
     frTextExport1: TfrTextExport;
     IdIPWatch1: TIdIPWatch;
+    Image1: TImage;
     Label49: TLabel;
     Label50: TLabel;
     Label51: TLabel;
@@ -604,6 +605,7 @@ type
     procedure InitIni;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
+    procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand: boolean);
   end;
 
 var
@@ -697,6 +699,70 @@ type
 
 { TMainForm }
 
+procedure TMainForm.CheckDXCC(callsign, mode, band: string; var DMode, DBand: boolean);
+var
+  Query: TSQLQuery;
+  dxcc, i: integer;
+  digiBand: Double;
+  nameBand: string;
+begin
+  if Pos('M',band) > 0 then
+  NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+  nameBand:=band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand:=dmFunc.GetDigiBandFromFreq(nameBand);
+
+  try
+    for i := 0 to PrefixARRLCount do
+    begin
+      if (PrefixExpARRLArray[i].reg.Exec(callsign)) and
+        (PrefixExpARRLArray[i].reg.Match[0] = callsign) then
+      begin
+        with PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select DXCC, Status from CountryDataEx where _id = "' +
+            IntToStr(PrefixExpARRLArray[i].id) + '"');
+          Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[i].reg.ExecNext;
+            Exit;
+          end;
+          dxcc := FieldByName('DXCC').AsInteger;
+        end;
+      end;
+    end;
+
+    Query := TSQLQuery.Create(nil);
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND QSOMode = ' + QuotedStr(mode);
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DMode := False
+    else
+      DMode := True;
+    Query.Close;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' + FloatToStr(digiBand);
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DBand := False
+    else
+      DBand := True;
+  finally
+    Query.Free;
+  end;
+end;
+
 procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
   var subModes: TStringList);
 var
@@ -721,8 +787,8 @@ begin
     else
     begin
       subModesQuery.Close;
-      subModesQuery.SQL.Text := 'SELECT submode FROM Modes WHERE mode = ' +
-        QuotedStr(modeItem);
+      subModesQuery.SQL.Text :=
+        'SELECT submode FROM Modes WHERE mode = ' + QuotedStr(modeItem);
       subModesQuery.Open;
       subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
     end;
@@ -2257,7 +2323,9 @@ var
   Error: integer;
   engText: string;
   foundPrefix: boolean;
+  DBand, DMode: boolean;
 begin
+  DBand:=False;
   Edit1.Clear;
   Edit2.Clear;
   Edit3.Clear;
@@ -2312,6 +2380,11 @@ begin
 
     foundPrefix := SearchPrefix(EditButton1.Text, False);
     SelectQSO(False);
+
+    if Length(EditButton1.Text) >= 3 then
+    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand);
+    Image1.Visible:=DBand;
+
     if foundPrefix and CheckBox3.Checked = True then
     begin
       val(lo1, Long, Error);
@@ -3658,7 +3731,7 @@ end;
 procedure TMainForm.FormShow(Sender: TObject);
 begin
   if (_l <> 0) and (_t <> 0) and (_w <> 0) and (_h <> 0) then
-  MainForm.SetBounds(_l, _t, _w, _h);
+    MainForm.SetBounds(_l, _t, _w, _h);
   if InitLog_DB <> 'YES' then
   begin
     if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
@@ -4226,23 +4299,24 @@ end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
-  if MySQLLOGDBConnection.Connected or SQLiteDBConnection.Connected then begin
-  try
-    if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
-      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-    begin
-      with DeleteQSOQuery do
+  if MySQLLOGDBConnection.Connected or SQLiteDBConnection.Connected then
+  begin
+    try
+      if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
+        MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin
-        SQL.Clear;
-        SQL.Text := 'DELETE FROM ' + LogTable;
-        Prepare;
-        ExecSQL;
+        with DeleteQSOQuery do
+        begin
+          SQL.Clear;
+          SQL.Text := 'DELETE FROM ' + LogTable;
+          Prepare;
+          ExecSQL;
+        end;
       end;
+    finally
+      SQLTransaction1.Commit;
+      SelDB(CallLogBook);
     end;
-  finally
-    SQLTransaction1.Commit;
-    SelDB(CallLogBook);
-  end;
   end;
 end;
 

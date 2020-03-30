@@ -246,12 +246,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 451
+    Height = 428
     Top = 32
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 451
+    ClientHeight = 428
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1608,10 +1608,53 @@ object MainForm: TMainForm
         BorderSpacing.Top = 5
         BorderSpacing.Right = 205
       end
+      object Image1: TImage
+        AnchorSideLeft.Control = ComboBox1
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = ComboBox1
+        AnchorSideTop.Side = asrCenter
+        Left = 142
+        Height = 15
+        Top = 65
+        Width = 15
+        BorderSpacing.Left = 2
+        Center = True
+        Picture.Data = {
+          07544269746D617036030000424D360300000000000036000000280000001000
+          0000100000000100180000000000000300000000000000000000000000000000
+          0000FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+          FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+          FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+          00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+          0000FF0000FF0000FF0000FF0000FFFF00FF0000FF0000FF0000FF0000FF0000
+          FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FFFF
+          00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+          0000FF0000FF0000FF0000FF0000FFFF00FFF7FFFFF7FFFFF7FFFFF7FFFFF7FF
+          FFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFFF
+          00FF000000000000F7FFFFF7FFFF000000F7FFFF000000F7FFFFF7FFFF000000
+          000000F7FFFFF7FFFF000000000000FF00FF000000F7FFFF000000F7FFFF0000
+          00F7FFFF000000F7FFFF000000F7FFFFF7FFFFF7FFFF000000F7FFFFF7FFFFFF
+          00FF000000F7FFFF000000F7FFFFF7FFFF000000F7FFFFF7FFFF000000F7FFFF
+          F7FFFFF7FFFF000000F7FFFFF7FFFFFF00FF000000F7FFFF000000F7FFFF0000
+          00F7FFFF000000F7FFFF000000F7FFFFF7FFFFF7FFFF000000F7FFFFF7FFFFFF
+          00FF000000000000F7FFFFF7FFFF000000F7FFFF000000F7FFFFF7FFFF000000
+          000000F7FFFFF7FFFF000000000000FF00FFF7FFFFF7FFFFF7FFFFF7FFFFF7FF
+          FFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFFF
+          00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+          0000FF0000FF0000FF0000FF0000FFFF00FF0000FF0000FF0000FF0000FF0000
+          FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FFFF
+          00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+          0000FF0000FF0000FF0000FF0000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+          FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+          00FF
+        }
+        Transparent = True
+        Visible = False
+      end
     end
     object Panel13: TPanel
       Left = 1
-      Height = 190
+      Height = 167
       Top = 260
       Width = 472
       Align = alClient
@@ -1621,16 +1664,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 451
+    Height = 428
     Top = 32
     Width = 734
     Align = alClient
-    ClientHeight = 451
+    ClientHeight = 428
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 449
+      Height = 426
       Top = 1
       Width = 732
       Align = alClient
@@ -1809,7 +1852,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 483
+    Top = 460
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -2360,16 +2403,16 @@ object MainForm: TMainForm
         Left = 1
         Height = 111
         Top = 1
-        Width = 726
+        Width = 730
         Align = alTop
         ClientHeight = 111
-        ClientWidth = 726
+        ClientWidth = 730
         TabOrder = 0
         object DBGrid2: TDBGrid
           Left = 1
-          Height = 105
+          Height = 109
           Top = 1
-          Width = 720
+          Width = 728
           Align = alClient
           Color = clWindow
           Columns = <          
@@ -2541,20 +2584,20 @@ object MainForm: TMainForm
       end
       object Panel8: TPanel
         Left = 1
-        Height = 259
+        Height = 263
         Top = 112
-        Width = 726
+        Width = 730
         Align = alClient
-        ClientHeight = 259
-        ClientWidth = 726
+        ClientHeight = 263
+        ClientWidth = 730
         Font.Height = -12
         ParentFont = False
         TabOrder = 1
         object PageControl1: TPageControl
           Left = 1
-          Height = 253
+          Height = 261
           Top = 1
-          Width = 720
+          Width = 728
           ActivePage = TabSheet2
           Align = alClient
           Font.Height = -13
@@ -2564,8 +2607,8 @@ object MainForm: TMainForm
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
-            ClientHeight = 249
-            ClientWidth = 716
+            ClientHeight = 231
+            ClientWidth = 718
             object Memo1: TMemo
               Left = 0
               Height = 180
@@ -2891,16 +2934,16 @@ object MainForm: TMainForm
           end
           object TabSheet2: TTabSheet
             Caption = 'Telnet DX Cluster'
-            ClientHeight = 221
-            ClientWidth = 710
+            ClientHeight = 231
+            ClientWidth = 718
             object Panel9: TPanel
               Left = 0
               Height = 28
               Top = 0
-              Width = 710
+              Width = 718
               Align = alTop
               ClientHeight = 28
-              ClientWidth = 710
+              ClientWidth = 718
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -2970,8 +3013,8 @@ object MainForm: TMainForm
                 TabOrder = 0
               end
               object SpeedButton19: TSpeedButton
-                Left = 681
-                Height = 22
+                Left = 693
+                Height = 26
                 Top = 1
                 Width = 24
                 Align = alRight
@@ -3201,9 +3244,9 @@ object MainForm: TMainForm
             object VirtualStringTree1: TVirtualStringTree
               Cursor = 63
               Left = 0
-              Height = 193
+              Height = 203
               Top = 28
-              Width = 710
+              Width = 718
               Align = alClient
               DefaultText = 'Node'
               Font.Height = -11
