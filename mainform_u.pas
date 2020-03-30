@@ -587,7 +587,7 @@ type
     procedure SearchCallInCallBook(CallName: string);
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
     procedure InitializeDB(dbS: string);
-    procedure SelectQSO(grid:Boolean);
+    procedure SelectQSO(grid: boolean);
     procedure SetGrid;
     function GetNewChunk: string;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
@@ -659,7 +659,7 @@ var
   sqlite_version: string;
   lastTCPport: integer;
   lastUDPport: integer;
-  _l, _t, _w, _h: Integer;
+  _l, _t, _w, _h: integer;
 
 implementation
 
@@ -702,29 +702,32 @@ procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
 var
   i: integer;
 begin
-  subModesQuery.Close;
-  subModes.Delimiter := ',';
-
-  if subModesFlag = False then
-  begin
-    subModesQuery.SQL.Text := 'SELECT * FROM Modes WHERE Enable = 1';
-    subModesQuery.Open;
-    subModesQuery.First;
-    for i := 0 to subModesQuery.RecordCount - 1 do
-    begin
-      subModes.Add(subModesQuery.FieldByName('mode').AsString);
-      subModesQuery.Next;
-    end;
-  end
-  else
+  if ServiceDBConnection.Connected then
   begin
     subModesQuery.Close;
-    subModesQuery.SQL.Text := 'SELECT submode FROM Modes WHERE mode = ' +
-      QuotedStr(modeItem);
-    subModesQuery.Open;
-    subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
+    subModes.Delimiter := ',';
+
+    if subModesFlag = False then
+    begin
+      subModesQuery.SQL.Text := 'SELECT * FROM Modes WHERE Enable = 1';
+      subModesQuery.Open;
+      subModesQuery.First;
+      for i := 0 to subModesQuery.RecordCount - 1 do
+      begin
+        subModes.Add(subModesQuery.FieldByName('mode').AsString);
+        subModesQuery.Next;
+      end;
+    end
+    else
+    begin
+      subModesQuery.Close;
+      subModesQuery.SQL.Text := 'SELECT submode FROM Modes WHERE mode = ' +
+        QuotedStr(modeItem);
+      subModesQuery.Open;
+      subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
+    end;
+    subModesQuery.Close;
   end;
-  subModesQuery.Close;
 end;
 
 procedure TMainForm.addBands(FreqBand: string; mode: string);
@@ -733,37 +736,40 @@ var
   lastBand: integer;
   lastBandName: string;
 begin
-  lastBand := ComboBox1.ItemIndex;
-  lastBandName := ComboBox1.Text;
-  BandsQuery.Close;
-  ComboBox1.Items.Clear;
-  BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
-  BandsQuery.Open;
-  BandsQuery.First;
   DefaultFormatSettings.DecimalSeparator := '.';
-  for i := 0 to BandsQuery.RecordCount - 1 do
+  if ServiceDBConnection.Connected then
   begin
-    if FreqBand = 'True' then
-      ComboBox1.Items.Add(BandsQuery.FieldByName('band').AsString)
-    else
+    lastBand := ComboBox1.ItemIndex;
+    lastBandName := ComboBox1.Text;
+    BandsQuery.Close;
+    ComboBox1.Items.Clear;
+    BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
+    BandsQuery.Open;
+    BandsQuery.First;
+    for i := 0 to BandsQuery.RecordCount - 1 do
     begin
-      if mode = 'SSB' then
-        ComboBox1.Items.Add(FormatFloat(view_freq,
-          BandsQuery.FieldByName('ssb').AsFloat));
-      if mode = 'CW' then
-        ComboBox1.Items.Add(FormatFloat(view_freq,
-          BandsQuery.FieldByName('cw').AsFloat));
-      if (mode <> 'CW') and (mode <> 'SSB') then
-        ComboBox1.Items.Add(FormatFloat(view_freq,
-          BandsQuery.FieldByName('b_begin').AsFloat));
+      if FreqBand = 'True' then
+        ComboBox1.Items.Add(BandsQuery.FieldByName('band').AsString)
+      else
+      begin
+        if mode = 'SSB' then
+          ComboBox1.Items.Add(FormatFloat(view_freq,
+            BandsQuery.FieldByName('ssb').AsFloat));
+        if mode = 'CW' then
+          ComboBox1.Items.Add(FormatFloat(view_freq,
+            BandsQuery.FieldByName('cw').AsFloat));
+        if (mode <> 'CW') and (mode <> 'SSB') then
+          ComboBox1.Items.Add(FormatFloat(view_freq,
+            BandsQuery.FieldByName('b_begin').AsFloat));
+      end;
+      BandsQuery.Next;
     end;
-    BandsQuery.Next;
+    BandsQuery.Close;
+    if ComboBox1.Items.IndexOf(lastBandName) >= 0 then
+      ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(lastBandName)
+    else
+      ComboBox1.ItemIndex := lastBand;
   end;
-  BandsQuery.Close;
-  if ComboBox1.Items.IndexOf(lastBandName) >= 0 then
-    ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(lastBandName)
-  else
-    ComboBox1.ItemIndex := lastBand;
 end;
 
 function TMainForm.FindMode(submode: string): string;
@@ -1197,36 +1203,39 @@ begin
   end;
 end;
 
-procedure TMainForm.SelectQSO(grid:Boolean);
+procedure TMainForm.SelectQSO(grid: boolean);
 begin
   try
-    Label17.Caption:='';
-    Label18.Caption:='';
-    Label19.Caption:='';
-    Label20.Caption:='';
-    Label21.Caption:='';
-    Label22.Caption:='';
-    if grid then begin
-    SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName(
-      'CallSign').AsString), 0, False);
-    SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
-    Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
-    Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
-    Label19.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString;
-    Label20.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-    Label21.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-    Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-    UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-    StatusBar1.Panels.Items[1].Text :=
-      'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
-    end else begin
+    Label17.Caption := '';
+    Label18.Caption := '';
+    Label19.Caption := '';
+    Label20.Caption := '';
+    Label21.Caption := '';
+    Label22.Caption := '';
+    if grid then
+    begin
+      SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName(
+        'CallSign').AsString), 0, False);
+      SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
+      Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
+      Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
+      Label19.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString;
+      Label20.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
+      Label21.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
+      Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
+      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      StatusBar1.Panels.Items[1].Text :=
+        'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
+    end
+    else
+    begin
       if DBGrid2.DataSource.DataSet.RecordCount > 0 then
-    Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
-    Label18.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSODate').AsString;
-    Label19.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOTime').AsString;
-    Label20.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOBand').AsString;
-    Label21.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOMode').AsString;
-    Label22.Caption := DBGrid2.DataSource.DataSet.FieldByName('OMName').AsString;
+        Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
+      Label18.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSODate').AsString;
+      Label19.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOTime').AsString;
+      Label20.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOBand').AsString;
+      Label21.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOMode').AsString;
+      Label22.Caption := DBGrid2.DataSource.DataSet.FieldByName('OMName').AsString;
     end;
   except
     on E: ESQLDatabaseError do
@@ -2255,7 +2264,7 @@ begin
   Edit4.Clear;
   Edit5.Clear;
   Edit6.Clear;
-  Shape1.Pen.Style:=psClear;
+  Shape1.Pen.Style := psClear;
 
   if MenuItem111.Checked = True then
   begin
@@ -2401,11 +2410,11 @@ begin
         begin
 
       {$IFDEF WINDOWS}
-          TrayIcon1.BalloonHint := 'EWLog подключен к Fldigi';
+          TrayIcon1.BalloonHint := rConnectedToFldigi;
           TrayIcon1.ShowBalloonHint;
       {$ELSE}
           SysUtils.ExecuteProcess('/usr/bin/notify-send',
-            ['EWLog', 'подключен к Fldigi']);
+            ['EWLog', rConnectedToFldigi]);
       {$ENDIF}
 
           MenuItem43.Enabled := False;
@@ -2424,11 +2433,11 @@ begin
     if not connected then
     begin
       {$IFDEF WINDOWS}
-      TrayIcon1.BalloonHint := 'EWLog не подключен к Fldigi';
+      TrayIcon1.BalloonHint := rDisconnectedFromFldigi;
       TrayIcon1.ShowBalloonHint;
       {$ELSE}
       SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        ['EWLog', 'не подключен к Fldigi']);
+        ['EWLog', rDisconnectedFromFldigi]);
       {$ENDIF}
       ComboBox2.ItemIndex := 0;
       ComboBox2CloseUp(Sender);
@@ -3278,42 +3287,43 @@ begin
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
     Mode := GetModeFromFreq(FloatToStr(freqMhz));
-    if Length(Band) > 0 then begin
-    if (not ShowSpotBand) or (not ShowSpotMode) then
+    if Length(Band) > 0 then
     begin
-      case Band of
-        '2190M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[0];
-        '630M': ShowSpotBand :=  ClusterFilter.CheckListBox1.Checked[1];
-        '160M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[2];
-        '80M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[3];
-        '60M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[4];
-        '40M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[5];
-        '30M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[6];
-        '20M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[7];
-        '17M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[8];
-        '15M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[9];
-        '12M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[10];
-        '10M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[11];
-        '6M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[12];
-        '4M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[13];
-        '2M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[14];
-        '70CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[15];
-        '23CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[16];
-        '13CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[17];
-        '9CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[18];
-        '6CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[29];
-        '3CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[20];
-        '1.25CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[21];
-        '6MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[22];
-        '4MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[23];
+      if (not ShowSpotBand) or (not ShowSpotMode) then
+      begin
+        case Band of
+          '2190M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[0];
+          '630M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[1];
+          '160M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[2];
+          '80M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[3];
+          '60M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[4];
+          '40M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[5];
+          '30M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[6];
+          '20M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[7];
+          '17M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[8];
+          '15M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[9];
+          '12M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[10];
+          '10M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[11];
+          '6M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[12];
+          '4M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[13];
+          '2M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[14];
+          '70CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[15];
+          '23CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[16];
+          '13CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[17];
+          '9CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[18];
+          '6CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[29];
+          '3CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[20];
+          '1.25CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[21];
+          '6MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[22];
+          '4MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[23];
+        end;
+        case Mode of
+          'LSB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
+          'USB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
+          'CW': ShowSpotMode := ClusterFilter.cbCW.Checked;
+          'DIGI': ShowSpotMode := ClusterFilter.cbData.Checked;
+        end;
       end;
-      case Mode of
-        'LSB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
-        'USB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
-        'CW': ShowSpotMode := ClusterFilter.cbCW.Checked;
-        'DIGI': ShowSpotMode := ClusterFilter.cbData.Checked;
-      end;
-    end;
     end;
     if (Length(DX) > 0) and ShowSpotBand and ShowSpotMode then
     begin
@@ -3520,7 +3530,7 @@ var
   FallbackLang: string = '';
   i: integer;
 begin
-  Shape1.Pen.Style:=psClear;
+  Shape1.Pen.Style := psClear;
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
 
@@ -3647,6 +3657,7 @@ end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
+  if (_l <> 0) and (_t <> 0) and (_w <> 0) and (_h <> 0) then
   MainForm.SetBounds(_l, _t, _w, _h);
   if InitLog_DB <> 'YES' then
   begin
@@ -4215,6 +4226,7 @@ end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
+  if MySQLLOGDBConnection.Connected or SQLiteDBConnection.Connected then begin
   try
     if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
@@ -4230,6 +4242,7 @@ begin
   finally
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
+  end;
   end;
 end;
 

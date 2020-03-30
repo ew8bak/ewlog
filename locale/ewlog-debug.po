@@ -333,6 +333,10 @@ msgstr ""
 msgid "Client Connected:"
 msgstr ""
 
+#: resourcestr.rconnectedtofldigi
+msgid "connected to fldigi"
+msgstr ""
+
 #: resourcestr.rcontinent
 msgctxt "resourcestr.rcontinent"
 msgid "Continent"
@@ -370,6 +374,10 @@ msgstr ""
 
 #: resourcestr.rdeleterecord
 msgid "Delete Record "
+msgstr ""
+
+#: resourcestr.rdisconnectedfromfldigi
+msgid "disconnected from fldigi"
 msgstr ""
 
 #: resourcestr.rdone

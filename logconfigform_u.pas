@@ -196,6 +196,7 @@ end;
 
 procedure TLogConfigForm.Button1Click(Sender: TObject);
 begin
+  if MainForm.MySQLLOGDBConnection.Connected or MainForm.SQLiteDBConnection.Connected then begin
   with UpdateConfQuery do
   begin
     Close;
@@ -245,6 +246,7 @@ begin
   MainForm.SQLTransaction1.Commit;
   MainForm.SelDB(CallLogBook);
   LogConfigForm.Close;
+  end;
 end;
 
 procedure TLogConfigForm.Edit6Change(Sender: TObject);
@@ -273,7 +275,7 @@ begin
     else
       UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
     if MainForm.DBLookupComboBox1.Text <> '' then
-    SelectCall(MainForm.DBLookupComboBox1.KeyValue);
+      SelectCall(MainForm.DBLookupComboBox1.KeyValue);
   end;
 end;
 
@@ -281,57 +283,65 @@ procedure TLogConfigForm.FormShow(Sender: TObject);
 var
   i: integer;
 begin
-  try
-    if InitLog_DB = 'YES' then
-    begin
-
-      if DefaultDB = 'MySQL' then
-        SQLQuery2.DataBase := MainForm.MySQLLOGDBConnection
-      else
-        SQLQuery2.DataBase := MainForm.SQLiteDBConnection;
-
-
-      if DefaultDB = 'MySQL' then
-        UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
-      else
-        UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
-      SelectCall(MainForm.DBLookupComboBox1.KeyValue);
-    end;
-
-    ListBox1.Clear;
-    SQLQuery2.SQL.Clear;
-    SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo');
-    SQLQuery2.Open;
-    SQLQuery2.First;
-    for i := 0 to SQLQuery2.RecordCount - 1 do
-    begin
-      ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
-      SQLQuery2.Next;
-    end;
-    for i := 0 to ListBox1.Count - 1 do
-      if Pos(MainForm.DBLookupComboBox1.KeyValue, ListBox1.Items[i]) > 0 then
+  if MainForm.MySQLLOGDBConnection.Connected or
+    MainForm.SQLiteDBConnection.Connected then
+  begin
+    try
+      if InitLog_DB = 'YES' then
       begin
-        ListBox1.Selected[i] := True;
-        exit;
+
+        if DefaultDB = 'MySQL' then
+          SQLQuery2.DataBase := MainForm.MySQLLOGDBConnection
+        else
+          SQLQuery2.DataBase := MainForm.SQLiteDBConnection;
+
+
+        if DefaultDB = 'MySQL' then
+          UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
+        else
+          UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
+        SelectCall(MainForm.DBLookupComboBox1.KeyValue);
       end;
 
-    if CallLogBook = ListBox1.Items.Text then
-      Label15.Visible := True
-    else
-      Label15.Visible := False;
-  except
-    on E: Exception do
-      ShowMessage(E.Message);
+      ListBox1.Clear;
+      SQLQuery2.SQL.Clear;
+      SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo');
+      SQLQuery2.Open;
+      SQLQuery2.First;
+      for i := 0 to SQLQuery2.RecordCount - 1 do
+      begin
+        ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
+        SQLQuery2.Next;
+      end;
+      for i := 0 to ListBox1.Count - 1 do
+        if Pos(MainForm.DBLookupComboBox1.KeyValue, ListBox1.Items[i]) > 0 then
+        begin
+          ListBox1.Selected[i] := True;
+          exit;
+        end;
+
+      if CallLogBook = ListBox1.Items.Text then
+        Label15.Visible := True
+      else
+        Label15.Visible := False;
+    except
+      on E: Exception do
+        ShowMessage(E.Message);
+    end;
   end;
 end;
 
 procedure TLogConfigForm.ListBox1Click(Sender: TObject);
 begin
-  SelectCall(ListBox1.Items[ListBox1.ItemIndex]);
-  if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
-    Label15.Visible := True
-  else
-    Label15.Visible := False;
+  if MainForm.MySQLLOGDBConnection.Connected or
+    MainForm.SQLiteDBConnection.Connected then
+  begin
+    SelectCall(ListBox1.Items[ListBox1.ItemIndex]);
+    if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
+      Label15.Visible := True
+    else
+      Label15.Visible := False;
+  end;
 end;
 
 procedure TLogConfigForm.MenuItem1Click(Sender: TObject);
@@ -345,63 +355,71 @@ var
   droptablename: string;
   i: integer;
 begin
-  if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
-    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+  if MainForm.MySQLLOGDBConnection.Connected or
+    MainForm.SQLiteDBConnection.Connected then
   begin
-    if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
+    if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
+      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     begin
-      ShowMessage(rCannotDelDef);
-      exit;
-    end;
-
-    SQLQuery2.Close;
-    SQLQuery2.SQL.Clear;
-    SQLQuery2.SQL.Add('select * from LogBookInfo where CallName = "' +
-      ListBox1.Items[ListBox1.ItemIndex] + '"');
-    SQLQuery2.Open;
-    droptablename := SQLQuery2.FieldByName('LogTable').Value;
-    SQLQuery2.Close;
-    SQLQuery2.SQL.Clear;
-    SQLQuery2.SQL.Add('DROP TABLE "' + droptablename + '"');
-    SQLQuery2.ExecSQL;
-    SQLQuery2.SQL.Clear;
-    SQLQuery2.SQL.Add('delete from LogBookInfo where CallName = "' +
-      ListBox1.Items[ListBox1.ItemIndex] + '"');
-    SQLQuery2.ExecSQL;
-    SQLQuery2.SQLTransaction.Commit;
-    SQLQuery2.SQL.Clear;
-    ListBox1.Clear;
-    SQLQuery2.SQL.Clear;
-    SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo');
-    SQLQuery2.Open;
-    SQLQuery2.First;
-    for i := 0 to SQLQuery2.RecordCount - 1 do
-    begin
-      ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
-      SQLQuery2.Next;
-    end;
-    MainForm.SelDB(CallLogBook);
-    for i := 0 to ListBox1.Count - 1 do
-      if Pos(MainForm.DBLookupComboBox1.KeyValue, ListBox1.Items[i]) > 0 then
+      if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
       begin
-        ListBox1.Selected[i] := True;
+        ShowMessage(rCannotDelDef);
         exit;
       end;
-  end
-  else
-    Exit;
+
+      SQLQuery2.Close;
+      SQLQuery2.SQL.Clear;
+      SQLQuery2.SQL.Add('select * from LogBookInfo where CallName = "' +
+        ListBox1.Items[ListBox1.ItemIndex] + '"');
+      SQLQuery2.Open;
+      droptablename := SQLQuery2.FieldByName('LogTable').Value;
+      SQLQuery2.Close;
+      SQLQuery2.SQL.Clear;
+      SQLQuery2.SQL.Add('DROP TABLE "' + droptablename + '"');
+      SQLQuery2.ExecSQL;
+      SQLQuery2.SQL.Clear;
+      SQLQuery2.SQL.Add('delete from LogBookInfo where CallName = "' +
+        ListBox1.Items[ListBox1.ItemIndex] + '"');
+      SQLQuery2.ExecSQL;
+      SQLQuery2.SQLTransaction.Commit;
+      SQLQuery2.SQL.Clear;
+      ListBox1.Clear;
+      SQLQuery2.SQL.Clear;
+      SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo');
+      SQLQuery2.Open;
+      SQLQuery2.First;
+      for i := 0 to SQLQuery2.RecordCount - 1 do
+      begin
+        ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
+        SQLQuery2.Next;
+      end;
+      MainForm.SelDB(CallLogBook);
+      for i := 0 to ListBox1.Count - 1 do
+        if Pos(MainForm.DBLookupComboBox1.KeyValue, ListBox1.Items[i]) > 0 then
+        begin
+          ListBox1.Selected[i] := True;
+          exit;
+        end;
+    end
+    else
+      Exit;
+  end;
 end;
 
 procedure TLogConfigForm.MenuItem4Click(Sender: TObject);
 begin
-  IniF.WriteString('SetLog', 'DefaultCallLogBook', ListBox1.Items[ListBox1.ItemIndex]);
-  ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
-  MainForm.DBLookupComboBox1.KeyValue := ListBox1.Items[ListBox1.ItemIndex];
-  MainForm.DBLookupComboBox1CloseUp(Self);
-  if ListBox1.Items[ListBox1.ItemIndex] = MainForm.DBLookupComboBox1.KeyValue then
-    Label15.Visible := True
-  else
-    Label15.Visible := False;
+  if MainForm.MySQLLOGDBConnection.Connected or
+    MainForm.SQLiteDBConnection.Connected then
+  begin
+    IniF.WriteString('SetLog', 'DefaultCallLogBook', ListBox1.Items[ListBox1.ItemIndex]);
+    ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
+    MainForm.DBLookupComboBox1.KeyValue := ListBox1.Items[ListBox1.ItemIndex];
+    MainForm.DBLookupComboBox1CloseUp(Self);
+    if ListBox1.Items[ListBox1.ItemIndex] = MainForm.DBLookupComboBox1.KeyValue then
+      Label15.Visible := True
+    else
+      Label15.Visible := False;
+  end;
 end;
 
 end.

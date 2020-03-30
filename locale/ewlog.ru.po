@@ -349,6 +349,10 @@ msgctxt "resourcestr.rclientconnected"
 msgid "Client Connected:"
 msgstr "Клиент подключён:"
 
+#: resourcestr.rconnectedtofldigi
+msgid "connected to fldigi"
+msgstr ""
+
 #: resourcestr.rcontinent
 msgctxt "resourcestr.rcontinent"
 msgid "Continent"
@@ -393,6 +397,10 @@ msgstr "Вы действительно хотите удалить журнал
 msgctxt "resourcestr.rdeleterecord"
 msgid "Delete Record "
 msgstr "Удалить запись "
+
+#: resourcestr.rdisconnectedfromfldigi
+msgid "disconnected from fldigi"
+msgstr ""
 
 #: resourcestr.rdone
 msgctxt "resourcestr.rdone"

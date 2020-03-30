@@ -55,7 +55,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery;
+uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U;
 
 {$R *.lfm}
 
@@ -113,12 +113,12 @@ var
   LOG_PREFIX: string;
   CountStr: integer;
   newLogBookname: string;
-  i: integer;
 begin
   if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
     (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
-  else
+  else begin
+    if MainForm.MySQLLOGDBConnection.Connected or MainForm.SQLiteDBConnection.Connected then begin
     try
       LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
       CreateTableQuery.Close;
@@ -186,6 +186,11 @@ begin
         MainForm.DBLookupComboBox1.SetFocus;
         MainForm.DBLookupComboBox1.DroppedDown := True;
       end;
+    end;
+    end else
+    if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
+      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      SetupForm.Show;
     end;
 end;
 

@@ -156,6 +156,8 @@ resourcestring
   rUpdateSQLiteDLL = 'Update sqlite3.dll to version ' + min_sqlite_version + ' or higher.'+#10#13+'Current Latest Version '+curr_sqlite_version +#10#13 + 'Full work program can not be guaranteed';
   rSQLiteCurrentVersion = 'Installed version of sqlite3.dll';
   rMHZ  = 'MHz';
+  rConnectedToFldigi = 'connected to fldigi';
+  rDisconnectedFromFldigi = 'disconnected from fldigi';
 implementation
 
 end.

@@ -220,6 +220,10 @@ verInst, VerMin: Integer;
 begin
   Result:=True;
   try
+  if versionDLL = '' then begin
+  Result:=True;
+  Exit;
+  end;
   verMin:=StrToInt(StringReplace(min_sqlite_version,'.','',[rfReplaceAll]));
   verInst:=StrToInt(StringReplace(versionDLL,'.','',[rfReplaceAll]));
   if verInst<VerMin then
