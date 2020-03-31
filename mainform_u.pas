@@ -2488,8 +2488,6 @@ begin
   Image3.Visible := DCall;
 
   Shape1.Visible := (QSL <> 0);
-  Shape1.Pen.Color := clBlack;
-  Shape1.pen.Style := psSolid;
 
   if QSL = 1 then
     Shape1.Brush.Color := clFuchsia;
@@ -3714,7 +3712,7 @@ var
   FallbackLang: string = '';
   i: integer;
 begin
-  Shape1.Pen.Style := psClear;
+  Shape1.Visible:=False;
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
 
