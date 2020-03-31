@@ -38,6 +38,7 @@ type
     IdIPWatch1: TIdIPWatch;
     Image1: TImage;
     Image2: TImage;
+    Image3: TImage;
     Label49: TLabel;
     Label50: TLabel;
     Label51: TLabel;
@@ -606,7 +607,7 @@ type
     procedure InitIni;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
-    procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand: boolean);
+    procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
   end;
 
 var
@@ -700,7 +701,7 @@ type
 
 { TMainForm }
 
-procedure TMainForm.CheckDXCC(callsign, mode, band: string; var DMode, DBand: boolean);
+procedure TMainForm.CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
 var
   Query: TSQLQuery;
   dxcc, i: integer;
@@ -744,6 +745,16 @@ begin
     else
       Query.DataBase := SQLiteDBConnection;
     Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc);
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DCall := False
+    else
+      DCall := True;
+    Query.Close;
+
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND QSOMode = ' + QuotedStr(mode);
     Query.Open;
@@ -1605,6 +1616,9 @@ begin
   MainForm.ComboBox4.ItemIndex := 0;
   MainForm.ComboBox5.ItemIndex := 0;
   EditFlag := False;
+  Image1.Visible:=False;
+  Image2.Visible:=False;
+  Image3.Visible:=False;
 
   if CheckBox3.Checked then
   begin
@@ -2324,10 +2338,11 @@ var
   Error: integer;
   engText: string;
   foundPrefix: boolean;
-  DBand, DMode: boolean;
+  DBand, DMode, DCall: boolean;
 begin
   DBand:=False;
   DMode:=False;
+  DCall:=False;
   Edit1.Clear;
   Edit2.Clear;
   Edit3.Clear;
@@ -2384,9 +2399,10 @@ begin
     SelectQSO(False);
 
     if Length(EditButton1.Text) >= 2 then
-    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand);
+    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
     Image1.Visible:=DBand;
     Image2.Visible:=DMode;
+    Image3.Visible:=DCall;
 
     if foundPrefix and CheckBox3.Checked = True then
     begin
