@@ -608,6 +608,8 @@ type
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
     procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
+    procedure CheckQSL(callsign, band, mode: string; var QSL: integer);
+    function FindDXCC(callsign: string): integer;
   end;
 
 var
@@ -701,6 +703,90 @@ type
 
 { TMainForm }
 
+function TMainForm.FindDXCC(callsign: string): integer;
+var
+  i: integer;
+begin
+  Result := -1;
+  for i := 0 to PrefixARRLCount do
+  begin
+    if (PrefixExpARRLArray[i].reg.Exec(callsign)) and
+      (PrefixExpARRLArray[i].reg.Match[0] = callsign) then
+    begin
+      with PrefixQuery do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('select DXCC, Status from CountryDataEx where _id = "' +
+          IntToStr(PrefixExpARRLArray[i].id) + '"');
+        Open;
+        if (FieldByName('Status').AsString = 'Deleted') then
+        begin
+          PrefixExpARRLArray[i].reg.ExecNext;
+          Exit;
+        end;
+        Result := FieldByName('DXCC').AsInteger;
+      end;
+    end;
+  end;
+end;
+
+procedure TMainForm.CheckQSL(callsign, band, mode: string; var QSL: integer);
+var
+  Query: TSQLQuery;
+  dxcc, i: integer;
+  digiBand: double;
+  nameBand: string;
+begin
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+
+  try
+    dxcc := FindDXCC(callsign);
+    Query := TSQLQuery.Create(nil);
+
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount = 0 then
+    begin
+      QSL := 0;
+      Exit;
+    end;
+    Query.Close;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount = 0 then
+    begin
+      QSL := 2;
+      Exit;
+    end
+    else
+    begin
+      QSL := 0;
+      Exit;
+    end;
+    Query.Close;
+
+  finally
+    Query.Free;
+  end;
+end;
+
 procedure TMainForm.CheckDXCC(callsign, mode, band: string;
   var DMode, DBand, DCall: boolean);
 var
@@ -718,28 +804,7 @@ begin
   digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
 
   try
-    for i := 0 to PrefixARRLCount do
-    begin
-      if (PrefixExpARRLArray[i].reg.Exec(callsign)) and
-        (PrefixExpARRLArray[i].reg.Match[0] = callsign) then
-      begin
-        with PrefixQuery do
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('select DXCC, Status from CountryDataEx where _id = "' +
-            IntToStr(PrefixExpARRLArray[i].id) + '"');
-          Open;
-          if (FieldByName('Status').AsString = 'Deleted') then
-          begin
-            PrefixExpARRLArray[i].reg.ExecNext;
-            Exit;
-          end;
-          dxcc := FieldByName('DXCC').AsInteger;
-        end;
-      end;
-    end;
-
+    dxcc := FindDXCC(callsign);
     Query := TSQLQuery.Create(nil);
     if MySQLLOGDBConnection.Connected then
       Query.DataBase := MySQLLOGDBConnection
@@ -2341,17 +2406,19 @@ var
   engText: string;
   foundPrefix: boolean;
   DBand, DMode, DCall: boolean;
+  QSL: integer;
 begin
   DBand := False;
   DMode := False;
   DCall := False;
+  QSL := 0;
+
   Edit1.Clear;
   Edit2.Clear;
   Edit3.Clear;
   Edit4.Clear;
   Edit5.Clear;
   Edit6.Clear;
-  Shape1.Pen.Style := psClear;
 
   if MenuItem111.Checked = True then
   begin
@@ -2370,93 +2437,104 @@ begin
     exit;
   end;
 
-  if not EditFlag then
+  if EditFlag then
+    Exit;
+  if EditButton1.Text = '' then
   begin
-    if EditButton1.Text = '' then
+    clr();
+    label32.Caption := '.......';
+    label33.Caption := '.......';
+    label34.Caption := '.......';
+    label37.Caption := '.......';
+    label38.Caption := '.......';
+    label40.Caption := '.......';
+    label43.Caption := '.......';
+    label45.Caption := '..';
+    label47.Caption := '..';
+    label42.Caption := '.......';
+    Exit;
+  end;
+
+  if (CallBookLiteConnection.Connected) and
+    ((IniF.ReadString('SetLog', 'Sprav', '') = 'False') or
+    (IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
+    SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
+
+  if not CheckBox6.Checked then
+    SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
+
+  foundPrefix := SearchPrefix(EditButton1.Text, False);
+  SelectQSO(False);
+
+  if Length(EditButton1.Text) >= 2 then
+  begin
+    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
+    CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
+  end;
+  Image1.Visible := DBand;
+  Image2.Visible := DMode;
+  Image3.Visible := DCall;
+
+  Shape1.Visible := (QSL <> 0);
+  Shape1.Pen.Color := clBlack;
+  Shape1.pen.Style := psSolid;
+
+  if QSL = 1 then
+    Shape1.Brush.Color := clFuchsia;
+
+  if QSL = 2 then
+    Shape1.Brush.Color := clLime;
+
+  if foundPrefix and CheckBox3.Checked then
+  begin
+    val(lo1, Long, Error);
+    if Error = 0 then
     begin
-      clr();
-      label32.Caption := '.......';
-      label33.Caption := '.......';
-      label34.Caption := '.......';
-      label37.Caption := '.......';
-      label38.Caption := '.......';
-      label40.Caption := '.......';
-      label43.Caption := '.......';
-      label45.Caption := '..';
-      label47.Caption := '..';
-      label42.Caption := '.......';
-      Exit;
-    end;
-
-    if (CallBookLiteConnection.Connected = True) and
-      ((IniF.ReadString('SetLog', 'Sprav', '') = 'False') or
-      (IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
-      SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
-
-    if CheckBox6.Checked = False then
-      SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
-
-
-    foundPrefix := SearchPrefix(EditButton1.Text, False);
-    SelectQSO(False);
-
-    if Length(EditButton1.Text) >= 2 then
-      CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
-    Image1.Visible := DBand;
-    Image2.Visible := DMode;
-    Image3.Visible := DCall;
-
-    if foundPrefix and CheckBox3.Checked = True then
-    begin
-      val(lo1, Long, Error);
+      Centre.Lon := Long;
+      val(la1, Lat, Error);
       if Error = 0 then
       begin
-        Centre.Lon := Long;
-        val(la1, Lat, Error);
-        if Error = 0 then
-        begin
-          Centre.Lat := Lat;
-          MapView1.Zoom := 9;
-          MapView1.Center := Centre;
-        end;
+        Centre.Lat := Lat;
+        MapView1.Zoom := 9;
+        MapView1.Center := Centre;
       end;
     end;
+  end;
 
-    if CheckBox6.Checked = True then
+  if CheckBox6.Checked then
+  begin
+    LogBookQuery.Close;
+    LogBookQuery.SQL.Clear;
+
+    if MySQLLOGDBConnection.Connected then
     begin
-      LogBookQuery.Close;
-      LogBookQuery.SQL.Clear;
-
-      if MySQLLOGDBConnection.Connected then
-      begin
-        LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-          ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-          + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-          + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-          + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-          + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-          + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-          + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-          + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-          + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
-          QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
-      end
-      else
-      begin
-        LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-          ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-          + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-          + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-          + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-          + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-          + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-          + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-          + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-          + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
-          QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
-      end;
-      LogBookQuery.Open;
+      LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
+        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+        + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
+        + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
+        QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
+    end
+    else
+    begin
+      LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
+        ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+        + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
+        + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
+        QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
     end;
+    LogBookQuery.Open;
   end;
 
 end;
