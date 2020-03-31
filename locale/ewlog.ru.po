@@ -613,6 +613,14 @@ msgctxt "resourcestr.rmysqlnotset"
 msgid "MySQL database settings not configured"
 msgstr "База данных MySQL не настроена"
 
+#: resourcestr.rneedqsl
+msgid "Need QSL"
+msgstr ""
+
+#: resourcestr.rnewdxccinbm
+msgid "New DXCC in BM"
+msgstr ""
+
 #: resourcestr.rnocalcdxcc
 msgctxt "resourcestr.rnocalcdxcc"
 msgid "No Calc DXCC"

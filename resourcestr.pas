@@ -158,6 +158,8 @@ resourcestring
   rMHZ  = 'MHz';
   rConnectedToFldigi = 'connected to fldigi';
   rDisconnectedFromFldigi = 'disconnected from fldigi';
+  rNewDXCCInBM = 'New DXCC in BM';
+  rNeedQSL = 'Need QSL';
 implementation
 
 end.

@@ -12,7 +12,7 @@ uses
   mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn, LR_DBSet,
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
   FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
-  Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u, SetupSQLquery;
+  Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u, SetupSQLquery, Types;
 
 type
 
@@ -468,6 +468,8 @@ type
     procedure LangItemClick(Sender: TObject);
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
     procedure ScrollBar1Change(Sender: TObject);
+    procedure Shape1MouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
     procedure SpeedButton18MouseLeave(Sender: TObject);
@@ -6188,6 +6190,16 @@ end;
 procedure TMainForm.ScrollBar1Change(Sender: TObject);
 begin
   SelectLogDatabase(LogTable);
+end;
+
+procedure TMainForm.Shape1MouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  if Shape1.Brush.Color = clLime then
+  Shape1.Hint:=rNewDXCCInBM;
+  if Shape1.Brush.Color = clFuchsia then
+  Shape1.Hint:=rNeedQSL;
+  Shape1.ShowHint:=True;
 end;
 
 procedure TMainForm.SpeedButton16Click(Sender: TObject);

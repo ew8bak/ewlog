@@ -1607,6 +1607,7 @@ object MainForm: TMainForm
         Anchors = [akTop, akRight]
         BorderSpacing.Top = 5
         BorderSpacing.Right = 205
+        OnMouseWheel = Shape1MouseWheel
       end
       object Image1: TImage
         AnchorSideLeft.Control = ComboBox1

@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Релиз"/>
-    <Units Count="138">
+    <Units Count="137">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="1676"/>
-        <CursorPos X="24" Y="1700"/>
+        <TopLine Value="6195"/>
+        <CursorPos X="24" Y="6202"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -548,10 +548,11 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="13" Y="55"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="129"/>
+        <CursorPos X="15" Y="161"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit50>
       <Unit51>
         <Filename Value="const_u.pas"/>
@@ -715,7 +716,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1888"/>
         <CursorPos X="105" Y="1908"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit70>
       <Unit71>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
@@ -901,7 +902,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="41" Y="70"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit95>
       <Unit96>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
@@ -1000,7 +1001,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="111"/>
         <CursorPos X="10" Y="128"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit109>
       <Unit110>
         <Filename Value="D:\usr\lib\lazarus\lcl\lclproc.pas"/>
@@ -1050,9 +1051,9 @@
       <Unit116>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="134"/>
-        <CursorPos Y="165"/>
-        <UsageCount Value="4"/>
+        <TopLine Value="596"/>
+        <CursorPos Y="643"/>
+        <UsageCount Value="9"/>
       </Unit116>
       <Unit117>
         <Filename Value="C:\usr\lib\lazarus\lcl\customtimer.pas"/>
@@ -1188,29 +1189,21 @@
         <UsageCount Value="9"/>
       </Unit134>
       <Unit135>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\include\customform.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="596"/>
-        <CursorPos Y="643"/>
-        <UsageCount Value="9"/>
-      </Unit135>
-      <Unit136>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
+        <Filename Value="C:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
         <UnitName Value="LazTracer"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="30"/>
         <CursorPos Y="50"/>
         <UsageCount Value="9"/>
-      </Unit136>
-      <Unit137>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\extctrls.pp"/>
+      </Unit135>
+      <Unit136>
+        <Filename Value="C:\usr\lib\lazarus\lcl\extctrls.pp"/>
         <UnitName Value="ExtCtrls"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="593"/>
         <CursorPos X="14" Y="610"/>
         <UsageCount Value="13"/>
-        <Loaded Value="True"/>
-      </Unit137>
+      </Unit136>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
@@ -1327,11 +1320,11 @@
       </Position28>
       <Position29>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6334" Column="3" TopLine="6587"/>
+        <Caret Line="588" Column="15" TopLine="570"/>
       </Position29>
       <Position30>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="588" Column="15" TopLine="570"/>
+        <Caret Line="1695" Column="33" TopLine="1678"/>
       </Position30>
     </JumpHistory>
     <RunParams>
