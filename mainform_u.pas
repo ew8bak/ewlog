@@ -701,20 +701,21 @@ type
 
 { TMainForm }
 
-procedure TMainForm.CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
+procedure TMainForm.CheckDXCC(callsign, mode, band: string;
+  var DMode, DBand, DCall: boolean);
 var
   Query: TSQLQuery;
   dxcc, i: integer;
-  digiBand: Double;
+  digiBand: double;
   nameBand: string;
 begin
-  if Pos('M',band) > 0 then
-  NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
   else
-  nameBand:=band;
+    nameBand := band;
 
   Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand:=dmFunc.GetDigiBandFromFreq(nameBand);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
 
   try
     for i := 0 to PrefixARRLCount do
@@ -747,16 +748,16 @@ begin
     Query.Transaction := SQLTransaction1;
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc);
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
     Query.Open;
     if Query.RecordCount > 0 then
       DCall := False
     else
       DCall := True;
     Query.Close;
-
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND QSOMode = ' + QuotedStr(mode);
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND QSOMode = ' +
+      QuotedStr(mode) + ' LIMIT 1';
     Query.Open;
     if Query.RecordCount > 0 then
       DMode := False
@@ -764,7 +765,8 @@ begin
       DMode := True;
     Query.Close;
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' + FloatToStr(digiBand);
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' LIMIT 1';
     Query.Open;
     if Query.RecordCount > 0 then
       DBand := False
@@ -1616,9 +1618,9 @@ begin
   MainForm.ComboBox4.ItemIndex := 0;
   MainForm.ComboBox5.ItemIndex := 0;
   EditFlag := False;
-  Image1.Visible:=False;
-  Image2.Visible:=False;
-  Image3.Visible:=False;
+  Image1.Visible := False;
+  Image2.Visible := False;
+  Image3.Visible := False;
 
   if CheckBox3.Checked then
   begin
@@ -2340,9 +2342,9 @@ var
   foundPrefix: boolean;
   DBand, DMode, DCall: boolean;
 begin
-  DBand:=False;
-  DMode:=False;
-  DCall:=False;
+  DBand := False;
+  DMode := False;
+  DCall := False;
   Edit1.Clear;
   Edit2.Clear;
   Edit3.Clear;
@@ -2399,10 +2401,10 @@ begin
     SelectQSO(False);
 
     if Length(EditButton1.Text) >= 2 then
-    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
-    Image1.Visible:=DBand;
-    Image2.Visible:=DMode;
-    Image3.Visible:=DCall;
+      CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
+    Image1.Visible := DBand;
+    Image2.Visible := DMode;
+    Image3.Visible := DCall;
 
     if foundPrefix and CheckBox3.Checked = True then
     begin

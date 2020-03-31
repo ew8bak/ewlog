@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 402
+  Left = 411
   Height = 861
-  Top = 134
+  Top = 117
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
