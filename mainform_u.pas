@@ -757,6 +757,17 @@ begin
     Query.Transaction := SQLTransaction1;
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) +  ' AND QSLRec = 1 LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+    begin
+      QSL := 0;
+      Exit;
+    end;
+    Query.Close;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
     Query.Open;
     if Query.RecordCount = 0 then
@@ -768,7 +779,7 @@ begin
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' LIMIT 1';
+      FloatToStr(digiBand) + ' AND QSLRec = 0 LIMIT 1';
     Query.Open;
     if Query.RecordCount = 0 then
     begin
@@ -777,7 +788,7 @@ begin
     end
     else
     begin
-      QSL := 0;
+      QSL := 1;
       Exit;
     end;
     Query.Close;
@@ -1686,6 +1697,7 @@ begin
   Image1.Visible := False;
   Image2.Visible := False;
   Image3.Visible := False;
+  Shape1.Visible:=False;
 
   if CheckBox3.Checked then
   begin
