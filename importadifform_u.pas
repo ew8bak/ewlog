@@ -281,7 +281,7 @@ var
   ErrorCount, RecCount: integer;
   TempQuery: string;
 begin
-
+  Button1.Enabled:=False;
   if MainForm.MySQLLOGDBConnection.Connected then
   begin
     MainForm.MySQLLOGDBConnection.ExecuteDirect('SET autocommit = 0');
@@ -751,6 +751,7 @@ begin
     Button1.Enabled := True;
     CloseFile(f);
     MainForm.SelDB(CallLogBook);
+    Button1.Enabled:=True;
   end;
 
 end;

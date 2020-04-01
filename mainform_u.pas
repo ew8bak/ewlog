@@ -12,7 +12,8 @@ uses
   mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_Desgn, LR_DBSet,
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
   FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
-  Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u, SetupSQLquery, Types;
+  Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u,
+  SetupSQLquery, Types;
 
 type
 
@@ -468,8 +469,7 @@ type
     procedure LangItemClick(Sender: TObject);
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
     procedure ScrollBar1Change(Sender: TObject);
-    procedure Shape1MouseWheel(Sender: TObject; Shift: TShiftState;
-      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+    procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
     procedure SpeedButton18MouseLeave(Sender: TObject);
@@ -760,7 +760,7 @@ begin
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) +  ' AND QSLRec = 1 LIMIT 1';
+      FloatToStr(digiBand) + ' AND QSLRec = 1 LIMIT 1';
     Query.Open;
     if Query.RecordCount > 0 then
     begin
@@ -1699,7 +1699,7 @@ begin
   Image1.Visible := False;
   Image2.Visible := False;
   Image3.Visible := False;
-  Shape1.Visible:=False;
+  Shape1.Visible := False;
 
   if CheckBox3.Checked then
   begin
@@ -3714,7 +3714,7 @@ var
   FallbackLang: string = '';
   i: integer;
 begin
-  Shape1.Visible:=False;
+  Shape1.Visible := False;
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
 
@@ -6192,14 +6192,12 @@ begin
   SelectLogDatabase(LogTable);
 end;
 
-procedure TMainForm.Shape1MouseWheel(Sender: TObject; Shift: TShiftState;
-  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+procedure TMainForm.Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
 begin
   if Shape1.Brush.Color = clLime then
-  Shape1.Hint:=rNewDXCCInBM;
+    Shape1.Hint := rNewDXCCInBM;
   if Shape1.Brush.Color = clFuchsia then
-  Shape1.Hint:=rNeedQSL;
-  Shape1.ShowHint:=True;
+    Shape1.Hint := rNeedQSL;
 end;
 
 procedure TMainForm.SpeedButton16Click(Sender: TObject);
@@ -6347,6 +6345,19 @@ begin
   NameBand := '';
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
+
+  if (Length(ComboBox1.Text) = 0) then
+  begin
+    ShowMessage(rCheckBand);
+    Exit;
+  end;
+
+  if (Length(ComboBox2.Text) = 0) then
+  begin
+    ShowMessage(rCheckMode);
+    Exit;
+  end;
+
   if EditFlag = False then
   begin
     dift := FormatDateTime('hh', Now - NowUTC);

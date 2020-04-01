@@ -158,8 +158,10 @@ resourcestring
   rMHZ  = 'MHz';
   rConnectedToFldigi = 'connected to fldigi';
   rDisconnectedFromFldigi = 'disconnected from fldigi';
-  rNewDXCCInBM = 'New DXCC in BM';
-  rNeedQSL = 'Need QSL';
+  rNewDXCCInBM = 'A new country in BM';
+  rNeedQSL = 'QSL is needed';
+  rCheckBand = 'Band is empty. Check';
+  rCheckMode = 'Mode is empty. Check';
 implementation
 
 end.

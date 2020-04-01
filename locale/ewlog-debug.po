@@ -308,6 +308,14 @@ msgstr ""
 msgid "Cannot delete default log"
 msgstr ""
 
+#: resourcestr.rcheckband
+msgid "Band is empty. Check"
+msgstr ""
+
+#: resourcestr.rcheckmode
+msgid "Mode is empty. Check"
+msgstr ""
+
 #: resourcestr.rcheckpath
 msgctxt "resourcestr.rcheckpath"
 msgid "Check SQLite database path"
@@ -555,6 +563,14 @@ msgstr ""
 
 #: resourcestr.rmysqlnotset
 msgid "MySQL database settings not configured"
+msgstr ""
+
+#: resourcestr.rneedqsl
+msgid "QSL is needed"
+msgstr ""
+
+#: resourcestr.rnewdxccinbm
+msgid "A new country in BM"
 msgstr ""
 
 #: resourcestr.rnocalcdxcc

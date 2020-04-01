@@ -207,6 +207,7 @@ var
   DownFile: string;
 begin
   Download := 0;
+  Button1.Enabled:=False;
   {$IFDEF WINDOWS}
   if dmFunc.GetWindowsVersion = 'Windows XP' then
   DownFile:=DownEXEXP else
@@ -262,6 +263,7 @@ begin
     Changelog_Form.Memo1.Lines.LoadFromFile(updatePATH +'changelog.txt');
     Changelog_Form.Show;
     Label9.Caption := rUpdateStatusRequiredInstall;
+    Button1.Enabled:=True;
     Button1.Caption := rButtonInstall;
   end;
 end;
@@ -278,10 +280,7 @@ begin
     ShowMessage(rOnlyWindows)
     {$ENDIF WINDOWS}
   else
-  begin
     DownloadFile;
-  end;
-
 end;
 
 procedure TUpdate_Form.SynaProgress(Sender: TObject; Reason: THookSocketReason;
