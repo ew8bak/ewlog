@@ -2465,6 +2465,28 @@ begin
   DCall := False;
   QSL := 0;
 
+  if Length(EditButton1.Text) >= 2 then
+  begin
+    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
+    CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
+    Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+  end;
+
+  Image1.Visible := DBand;
+  Image2.Visible := DMode;
+  Image3.Visible := DCall;
+
+  Shape1.Visible := (QSL <> 0);
+
+  if QSL = 1 then
+    Shape1.Brush.Color := clFuchsia;
+
+  if QSL = 2 then
+    Shape1.Brush.Color := clLime;
+
+  if (Sender = ComboBox1) or (Sender = ComboBox2) then
+    Exit;
+
   Edit1.Clear;
   Edit2.Clear;
   Edit3.Clear;
@@ -2517,25 +2539,6 @@ begin
 
   foundPrefix := SearchPrefix(EditButton1.Text, False);
   SelectQSO(False);
-
-  if Length(EditButton1.Text) >= 2 then
-  begin
-    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
-    CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
-    Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-  end;
-  Image1.Visible := DBand;
-  Image2.Visible := DMode;
-  Image3.Visible := DCall;
-
-  Shape1.Visible := (QSL <> 0);
-
-
-  if QSL = 1 then
-    Shape1.Brush.Color := clFuchsia;
-
-  if QSL = 2 then
-    Shape1.Brush.Color := clLime;
 
   if foundPrefix and CheckBox3.Checked then
   begin
@@ -2915,6 +2918,9 @@ begin
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
   end;
 
+  if Length(EditButton1.Text) >= 2 then
+    EditButton1Change(ComboBox1);
+
 end;
 
 procedure TMainForm.ComboBox2CloseUp(Sender: TObject);
@@ -2986,6 +2992,9 @@ begin
     ComboBox5.Text := '-10';
   end;
   freqchange := True;
+
+  if Length(EditButton1.Text) >= 2 then
+    EditButton1Change(ComboBox2);
 end;
 
 procedure TMainForm.ComboBox3Change(Sender: TObject);
