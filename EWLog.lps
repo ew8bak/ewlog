@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="6347"/>
-        <CursorPos X="33" Y="6347"/>
+        <TopLine Value="647"/>
+        <CursorPos X="48" Y="587"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -291,10 +291,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="54"/>
-        <CursorPos X="3" Y="473"/>
+        <TopLine Value="13"/>
+        <CursorPos X="55" Y="354"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit26>
       <Unit27>
         <Filename Value="setupform_u.pas"/>
@@ -1311,23 +1312,23 @@
       </Position25>
       <Position26>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6347" Column="33" TopLine="6354"/>
+        <Caret Line="6348" Column="33" TopLine="6348"/>
       </Position26>
       <Position27>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6348" Column="33" TopLine="6348"/>
+        <Caret Line="6347" Column="33" TopLine="6347"/>
       </Position27>
       <Position28>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6347" Column="33" TopLine="6347"/>
+        <Caret Line="6348" Column="33" TopLine="6348"/>
       </Position28>
       <Position29>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6348" Column="33" TopLine="6348"/>
+        <Caret Line="6347" Column="33" TopLine="6347"/>
       </Position29>
       <Position30>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6347" Column="33" TopLine="6347"/>
+        <Filename Value="serviceform_u.pas"/>
+        <Caret Line="473" Column="3" TopLine="434"/>
       </Position30>
     </JumpHistory>
     <RunParams>

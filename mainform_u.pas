@@ -584,7 +584,7 @@ type
 
     inupdate: boolean;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
-    procedure SelectLogDatabase(LogDB: string);//; allrec, ofrec: integer);
+    procedure SelectLogDatabase(LogDB: string);
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
@@ -6972,9 +6972,7 @@ begin
       {$ENDIF}
       if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
         MenuItem74.Enabled := True;
-      //    ComboBox2.ItemIndex := lastBand;
-      //ComboBox2Change(Sender);
-      //    ComboBox2CloseUp(Sender);
+
       Clr();
     end;
     Exit;
