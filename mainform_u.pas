@@ -44,6 +44,7 @@ type
     Label50: TLabel;
     Label51: TLabel;
     Label52: TLabel;
+    Label53: TLabel;
     LTCPComponent1: TLTCPComponent;
     dxClient: TLTelnetClientComponent;
     LUDPComponent1: TLUDPComponent;
@@ -612,6 +613,7 @@ type
     procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
     procedure CheckQSL(callsign, band, mode: string; var QSL: integer);
     function FindDXCC(callsign: string): integer;
+    function FindWorkedCall(callsign, band, mode: string): boolean;
   end;
 
 var
@@ -704,6 +706,41 @@ type
 {$R *.lfm}
 
 { TMainForm }
+
+function TMainForm.FindWorkedCall(callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+begin
+  Result := False;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    Query := TSQLQuery.Create(nil);
+
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE Call = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
+
+  finally
+    Query.Free;
+  end;
+end;
 
 function TMainForm.FindDXCC(callsign: string): integer;
 var
@@ -1700,6 +1737,7 @@ begin
   Image2.Visible := False;
   Image3.Visible := False;
   Shape1.Visible := False;
+  Label53.Visible := False;
 
   if CheckBox3.Checked then
   begin
@@ -2484,12 +2522,14 @@ begin
   begin
     CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
     CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
+    Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
   end;
   Image1.Visible := DBand;
   Image2.Visible := DMode;
   Image3.Visible := DCall;
 
   Shape1.Visible := (QSL <> 0);
+
 
   if QSL = 1 then
     Shape1.Brush.Color := clFuchsia;
@@ -3715,6 +3755,8 @@ var
   i: integer;
 begin
   Shape1.Visible := False;
+  Label53.Visible := False;
+
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
 

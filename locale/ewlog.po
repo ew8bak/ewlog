@@ -3337,6 +3337,10 @@ msgstr ""
 msgid "My state"
 msgstr ""
 
+#: tmainform.label53.caption
+msgid "Worked"
+msgstr ""
+
 #: tmainform.label6.caption
 msgctxt "tmainform.label6.caption"
 msgid "Name"

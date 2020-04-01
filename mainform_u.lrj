@@ -51,6 +51,7 @@
 {"hash":342540,"name":"tmainform.datetimepicker1.textfornulldate","sourcebytes":[78,85,76,76],"value":"NULL"},
 {"hash":20132496,"name":"tmainform.combobox1.text","sourcebytes":[55,46,48,48,48,46,48,48],"value":"7.000.00"},
 {"hash":80755394,"name":"tmainform.checkbox6.caption","sourcebytes":[70,105,108,116,101,114],"value":"Filter"},
+{"hash":98996660,"name":"tmainform.label53.caption","sourcebytes":[87,111,114,107,101,100],"value":"Worked"},
 {"hash":22140,"name":"tmainform.dbgrid1.columns[0].title.caption","sourcebytes":[81,83,76],"value":"QSL"},
 {"hash":354355,"name":"tmainform.dbgrid1.columns[1].title.caption","sourcebytes":[81,83,76,115],"value":"QSLs"},
 {"hash":305317,"name":"tmainform.dbgrid1.columns[2].title.caption","sourcebytes":[68,97,116,101],"value":"Date"},
