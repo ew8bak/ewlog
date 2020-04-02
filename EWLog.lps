@@ -20,7 +20,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="921"/>
         <CursorPos X="67" Y="927"/>
         <UsageCount Value="200"/>
@@ -60,7 +59,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="225"/>
         <CursorPos X="7" Y="249"/>
         <UsageCount Value="200"/>
@@ -97,7 +96,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CreateJournalForm_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="113"/>
         <CursorPos X="99" Y="121"/>
         <UsageCount Value="200"/>
@@ -111,7 +110,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="721"/>
         <CursorPos X="26" Y="754"/>
         <UsageCount Value="200"/>
@@ -124,7 +123,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="378"/>
         <CursorPos X="33" Y="378"/>
         <UsageCount Value="200"/>
@@ -249,10 +248,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="260"/>
         <CursorPos X="36" Y="260"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit22>
       <Unit23>
         <Filename Value="hrdlog.pas"/>
@@ -292,7 +294,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="13"/>
         <CursorPos X="55" Y="354"/>
         <UsageCount Value="200"/>
@@ -317,7 +319,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="238"/>
         <CursorPos X="74" Y="256"/>
         <UsageCount Value="200"/>
@@ -553,7 +555,7 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="126"/>
         <CursorPos X="13" Y="163"/>
         <UsageCount Value="201"/>
@@ -562,7 +564,7 @@
       <Unit51>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="16"/>
         <CursorPos X="13" Y="34"/>
         <UsageCount Value="201"/>
@@ -1209,7 +1211,7 @@
         <UsageCount Value="13"/>
       </Unit136>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="6347" Column="33" TopLine="6347"/>
@@ -1320,16 +1322,8 @@
       </Position27>
       <Position28>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="712" Column="29" TopLine="720"/>
-      </Position28>
-      <Position29>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2550" Column="4" TopLine="2606"/>
-      </Position29>
-      <Position30>
-        <Filename Value="mainform_u.pas"/>
         <Caret Line="595" Column="14" TopLine="580"/>
-      </Position30>
+      </Position28>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

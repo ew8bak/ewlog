@@ -1,12 +1,12 @@
 object TRXForm: TTRXForm
   Left = 498
-  Height = 170
+  Height = 205
   Top = 161
   Width = 470
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsDialog
   Caption = 'RIG'
-  ClientHeight = 170
+  ClientHeight = 205
   ClientWidth = 470
   FormStyle = fsStayOnTop
   OnClose = FormClose
@@ -16,9 +16,9 @@ object TRXForm: TTRXForm
   LCLVersion = '2.0.6.0'
   object lblMode: TLabel
     Left = 16
-    Height = 17
+    Height = 21
     Top = 5
-    Width = 29
+    Width = 28
     Caption = 'SSB'
     Font.Color = clBlue
     Font.Height = -16
@@ -29,7 +29,7 @@ object TRXForm: TTRXForm
   object btnCW: TButton
     Left = 32
     Height = 18
-    Top = 112
+    Top = 152
     Width = 28
     Caption = 'CW'
     Font.Height = -11
@@ -40,7 +40,7 @@ object TRXForm: TTRXForm
   object btnSSB: TButton
     Left = 60
     Height = 18
-    Top = 112
+    Top = 152
     Width = 28
     Caption = 'SSB'
     Font.Height = -11
@@ -51,7 +51,7 @@ object TRXForm: TTRXForm
   object btnRTTY: TButton
     Left = 88
     Height = 18
-    Top = 112
+    Top = 152
     Width = 28
     Caption = 'DIG'
     Font.Height = -11
@@ -62,7 +62,7 @@ object TRXForm: TTRXForm
   object btnAM: TButton
     Left = 116
     Height = 18
-    Top = 112
+    Top = 152
     Width = 28
     Caption = 'AM'
     Font.Height = -11
@@ -73,7 +73,7 @@ object TRXForm: TTRXForm
   object btnFM: TButton
     Left = 144
     Height = 18
-    Top = 112
+    Top = 152
     Width = 28
     Caption = 'FM'
     Font.Height = -11
@@ -84,7 +84,7 @@ object TRXForm: TTRXForm
   object btnVFOA: TButton
     Left = 379
     Height = 18
-    Top = 112
+    Top = 152
     Width = 28
     Caption = 'A'
     Font.Height = -11
@@ -95,7 +95,7 @@ object TRXForm: TTRXForm
   object btnVFOB: TButton
     Left = 408
     Height = 18
-    Top = 112
+    Top = 152
     Width = 28
     Caption = 'B'
     Font.Height = -11
@@ -105,9 +105,9 @@ object TRXForm: TTRXForm
   end
   object rbRadio1: TRadioButton
     Left = 32
-    Height = 23
-    Top = 136
-    Width = 55
+    Height = 19
+    Top = 176
+    Width = 47
     Caption = 'RIG 1'
     Checked = True
     OnClick = rbRadio1Click
@@ -116,9 +116,9 @@ object TRXForm: TTRXForm
   end
   object rbRadio2: TRadioButton
     Left = 389
-    Height = 23
-    Top = 136
-    Width = 55
+    Height = 19
+    Top = 176
+    Width = 47
     Caption = 'RIG 2'
     Enabled = False
     OnClick = rbRadio2Click
@@ -127,7 +127,7 @@ object TRXForm: TTRXForm
   object btn160m: TButton
     Left = 32
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '1.8'
@@ -139,7 +139,7 @@ object TRXForm: TTRXForm
   object btn80m: TButton
     Left = 60
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '3.5'
@@ -151,7 +151,7 @@ object TRXForm: TTRXForm
   object btn40m: TButton
     Left = 88
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '7'
@@ -163,7 +163,7 @@ object TRXForm: TTRXForm
   object btn30m: TButton
     Left = 116
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '10'
@@ -175,7 +175,7 @@ object TRXForm: TTRXForm
   object btn12m: TButton
     Left = 228
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '24'
@@ -187,7 +187,7 @@ object TRXForm: TTRXForm
   object btn15m: TButton
     Left = 200
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '21'
@@ -199,7 +199,7 @@ object TRXForm: TTRXForm
   object btn17m: TButton
     Left = 172
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '18'
@@ -211,7 +211,7 @@ object TRXForm: TTRXForm
   object btn20m: TButton
     Left = 144
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '14'
@@ -223,7 +223,7 @@ object TRXForm: TTRXForm
   object btn10m: TButton
     Left = 256
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '28'
@@ -235,7 +235,7 @@ object TRXForm: TTRXForm
   object btn6m: TButton
     Left = 288
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '50'
@@ -247,7 +247,7 @@ object TRXForm: TTRXForm
   object btn70cm: TButton
     Left = 344
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '144'
@@ -259,7 +259,7 @@ object TRXForm: TTRXForm
   object btn2m: TButton
     Left = 316
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '70'
@@ -270,7 +270,7 @@ object TRXForm: TTRXForm
   object btn70cm1: TButton
     Left = 372
     Height = 18
-    Top = 88
+    Top = 128
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '430'
@@ -282,7 +282,7 @@ object TRXForm: TTRXForm
   object btn70cm2: TButton
     Left = 400
     Height = 18
-    Top = 88
+    Top = 128
     Width = 36
     BorderSpacing.InnerBorder = 4
     Caption = '1200'
@@ -291,12 +291,16 @@ object TRXForm: TTRXForm
     TabOrder = 22
   end
   object Arrow1: TArrow
-    Left = 70
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label1
+    Left = 52
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -304,12 +308,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow2: TArrow
-    Left = 105
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label2
+    Left = 91
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -317,12 +325,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow3: TArrow
-    Left = 141
+    AnchorSideLeft.Control = Label3
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label3
+    Left = 130
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -330,12 +342,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow4: TArrow
-    Left = 192
+    AnchorSideLeft.Control = Label4
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label4
+    Left = 187
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -343,12 +359,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow5: TArrow
-    Left = 228
+    AnchorSideLeft.Control = Label5
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label5
+    Left = 226
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -356,12 +376,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow6: TArrow
-    Left = 262
+    AnchorSideLeft.Control = Label6
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label6
+    Left = 265
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -369,12 +393,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow7: TArrow
-    Left = 313
+    AnchorSideLeft.Control = Label7
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label7
+    Left = 322
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -382,12 +410,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow8: TArrow
-    Left = 349
+    AnchorSideLeft.Control = Label8
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label8
+    Left = 361
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -395,11 +427,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow9: TArrow
-    Left = 70
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label1
+    AnchorSideBottom.Side = asrBottom
+    Left = 52
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -408,11 +445,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow10: TArrow
-    Left = 105
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label2
+    AnchorSideBottom.Side = asrBottom
+    Left = 91
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -421,11 +463,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow11: TArrow
-    Left = 141
+    AnchorSideLeft.Control = Label3
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label3
+    AnchorSideBottom.Side = asrBottom
+    Left = 130
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -434,11 +481,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow12: TArrow
-    Left = 192
+    AnchorSideLeft.Control = Label4
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label4
+    AnchorSideBottom.Side = asrBottom
+    Left = 187
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -447,11 +499,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow13: TArrow
-    Left = 228
+    AnchorSideLeft.Control = Label5
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label5
+    AnchorSideBottom.Side = asrBottom
+    Left = 226
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -460,11 +517,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow14: TArrow
-    Left = 262
+    AnchorSideLeft.Control = Label6
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label6
+    AnchorSideBottom.Side = asrBottom
+    Left = 265
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -473,11 +535,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow15: TArrow
-    Left = 313
+    AnchorSideLeft.Control = Label7
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label7
+    AnchorSideBottom.Side = asrBottom
+    Left = 322
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -486,11 +553,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow16: TArrow
-    Left = 349
+    AnchorSideLeft.Control = Label8
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label8
+    AnchorSideBottom.Side = asrBottom
+    Left = 361
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -499,10 +571,12 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Label1: TLabel
-    Left = 61
-    Height = 74
-    Top = 0
-    Width = 38
+    AnchorSideLeft.Control = Owner
+    Left = 40
+    Height = 89
+    Top = 32
+    Width = 39
+    BorderSpacing.Left = 40
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -514,10 +588,12 @@ object TRXForm: TTRXForm
     OnMouseWheelUp = Label1MouseWheelUp
   end
   object Label2: TLabel
-    Left = 95
-    Height = 74
-    Top = 0
-    Width = 38
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrBottom
+    Left = 79
+    Height = 89
+    Top = 32
+    Width = 39
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -529,10 +605,12 @@ object TRXForm: TTRXForm
     OnMouseWheelUp = Label2MouseWheelUp
   end
   object Label3: TLabel
-    Left = 131
-    Height = 74
-    Top = 0
-    Width = 38
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrBottom
+    Left = 118
+    Height = 89
+    Top = 32
+    Width = 39
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -544,10 +622,12 @@ object TRXForm: TTRXForm
     OnMouseWheelUp = Label3MouseWheelUp
   end
   object Label4: TLabel
-    Left = 181
-    Height = 74
-    Top = 0
-    Width = 38
+    AnchorSideLeft.Control = Label9
+    AnchorSideLeft.Side = asrBottom
+    Left = 175
+    Height = 89
+    Top = 32
+    Width = 39
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -559,10 +639,12 @@ object TRXForm: TTRXForm
     OnMouseWheelUp = Label4MouseWheelUp
   end
   object Label5: TLabel
-    Left = 218
-    Height = 74
-    Top = 0
-    Width = 38
+    AnchorSideLeft.Control = Label4
+    AnchorSideLeft.Side = asrBottom
+    Left = 214
+    Height = 89
+    Top = 32
+    Width = 39
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -574,10 +656,12 @@ object TRXForm: TTRXForm
     OnMouseWheelUp = Label5MouseWheelUp
   end
   object Label6: TLabel
+    AnchorSideLeft.Control = Label5
+    AnchorSideLeft.Side = asrBottom
     Left = 253
-    Height = 74
-    Top = 0
-    Width = 38
+    Height = 89
+    Top = 32
+    Width = 39
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -589,10 +673,12 @@ object TRXForm: TTRXForm
     OnMouseWheelUp = Label6MouseWheelUp
   end
   object Label7: TLabel
-    Left = 303
-    Height = 74
-    Top = 0
-    Width = 38
+    AnchorSideLeft.Control = Label10
+    AnchorSideLeft.Side = asrBottom
+    Left = 310
+    Height = 89
+    Top = 32
+    Width = 39
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -604,10 +690,12 @@ object TRXForm: TTRXForm
     OnMouseWheelUp = Label7MouseWheelUp
   end
   object Label8: TLabel
-    Left = 339
-    Height = 74
-    Top = 0
-    Width = 38
+    AnchorSideLeft.Control = Label7
+    AnchorSideLeft.Side = asrBottom
+    Left = 349
+    Height = 89
+    Top = 32
+    Width = 39
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -619,10 +707,14 @@ object TRXForm: TTRXForm
     OnMouseWheelUp = Label8MouseWheelUp
   end
   object Label9: TLabel
-    Left = 165
-    Height = 74
-    Top = 0
-    Width = 16
+    AnchorSideLeft.Control = Label3
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrCenter
+    Left = 157
+    Height = 89
+    Top = 32
+    Width = 18
     Caption = '.'
     Font.Color = clBlue
     Font.Height = -67
@@ -631,10 +723,12 @@ object TRXForm: TTRXForm
     ParentFont = False
   end
   object Label10: TLabel
-    Left = 288
-    Height = 74
-    Top = 0
-    Width = 16
+    AnchorSideLeft.Control = Label6
+    AnchorSideLeft.Side = asrBottom
+    Left = 292
+    Height = 89
+    Top = 32
+    Width = 18
     Caption = '.'
     Font.Color = clBlue
     Font.Height = -67
@@ -643,12 +737,16 @@ object TRXForm: TTRXForm
     ParentFont = False
   end
   object Arrow17: TArrow
-    Left = 386
+    AnchorSideLeft.Control = Label11
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label11
+    Left = 400
     Height = 15
-    Top = 5
+    Top = 38
     Width = 15
-    ArrowColor = clBtnFace
+    ArrowColor = clBlue
     ArrowType = atUp
+    BorderSpacing.Top = 6
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
     OnMouseLeave = Arrow1MouseLeave
@@ -656,11 +754,16 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Arrow18: TArrow
-    Left = 386
+    AnchorSideLeft.Control = Label11
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label11
+    AnchorSideBottom.Side = asrBottom
+    Left = 400
     Height = 15
-    Top = 68
+    Top = 106
     Width = 15
-    ArrowColor = clBtnFace
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
     ArrowType = atDown
     Constraints.MinHeight = 8
     Constraints.MinWidth = 8
@@ -669,10 +772,12 @@ object TRXForm: TTRXForm
     ShadowType = stNone
   end
   object Label11: TLabel
-    Left = 376
-    Height = 74
-    Top = 0
-    Width = 38
+    AnchorSideLeft.Control = Label8
+    AnchorSideLeft.Side = asrBottom
+    Left = 388
+    Height = 89
+    Top = 32
+    Width = 39
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -688,6 +793,6 @@ object TRXForm: TTRXForm
     Interval = 50
     OnTimer = tmrRadioTimer
     left = 288
-    top = 120
+    top = 160
   end
 end
