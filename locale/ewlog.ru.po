@@ -3474,9 +3474,10 @@ msgid "Worked"
 msgstr ""
 
 #: tmainform.label54.caption
+#, fuzzy
 msgctxt "tmainform.label54.caption"
-msgid "LoTW"
-msgstr ""
+msgid "QSL"
+msgstr "QSL"
 
 #: tmainform.label6.caption
 msgctxt "tmainform.label6.caption"

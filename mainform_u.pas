@@ -616,6 +616,7 @@ type
     function FindDXCC(callsign: string): integer;
     function FindWorkedCall(callsign, band, mode: string): boolean;
     function WorkedLoTW(callsign, band, mode: string): boolean;
+    function WorkedQSL(callsign, band, mode: string): boolean;
   end;
 
 var
@@ -708,6 +709,40 @@ type
 {$R *.lfm}
 
 { TMainForm }
+function TMainForm.WorkedQSL(callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+begin
+  Result := False;
+   if Pos('M', band) > 0 then
+     NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+   else
+     nameBand := band;
+
+   Delete(nameBand, length(nameBand) - 2, 1);
+   digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+   try
+     Query := TSQLQuery.Create(nil);
+
+     if MySQLLOGDBConnection.Connected then
+       Query.DataBase := MySQLLOGDBConnection
+     else
+       Query.DataBase := SQLiteDBConnection;
+     Query.Transaction := SQLTransaction1;
+
+     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+       ' WHERE Call = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
+       FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+     Query.Open;
+     if Query.RecordCount > 0 then
+       Result := True;
+
+   finally
+     Query.Free;
+   end;
+end;
 
 function TMainForm.WorkedLoTW(callsign, band, mode: string): boolean;
 var
@@ -736,7 +771,7 @@ begin
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND LoTWRec = 1 LIMIT 1';
+      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
     Query.Open;
     if Query.RecordCount > 0 then
       Result := True;
@@ -2512,7 +2547,7 @@ begin
     CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
     CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
     Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-    Label54.Visible := WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    Label54.Visible:=WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;

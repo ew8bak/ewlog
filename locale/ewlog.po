@@ -3428,7 +3428,7 @@ msgstr ""
 
 #: tmainform.label54.caption
 msgctxt "tmainform.label54.caption"
-msgid "LoTW"
+msgid "QSL"
 msgstr ""
 
 #: tmainform.label6.caption

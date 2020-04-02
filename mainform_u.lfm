@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 411
+  Left = 352
   Height = 861
-  Top = 117
+  Top = 105
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -1762,9 +1762,9 @@ object MainForm: TMainForm
         Left = 428
         Height = 15
         Top = 30
-        Width = 32
+        Width = 22
         BorderSpacing.Left = 1
-        Caption = 'LoTW'
+        Caption = 'QSL'
         Font.Color = clRed
         Font.Height = -12
         Font.Style = [fsBold]
