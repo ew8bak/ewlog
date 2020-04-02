@@ -45,6 +45,7 @@ type
     Label51: TLabel;
     Label52: TLabel;
     Label53: TLabel;
+    Label54: TLabel;
     LTCPComponent1: TLTCPComponent;
     dxClient: TLTelnetClientComponent;
     LUDPComponent1: TLUDPComponent;
@@ -614,6 +615,7 @@ type
     procedure CheckQSL(callsign, band, mode: string; var QSL: integer);
     function FindDXCC(callsign: string): integer;
     function FindWorkedCall(callsign, band, mode: string): boolean;
+    function WorkedLoTW(callsign, band, mode: string): boolean;
   end;
 
 var
@@ -706,6 +708,43 @@ type
 {$R *.lfm}
 
 { TMainForm }
+
+function TMainForm.WorkedLoTW(callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+  dxcc: Integer;
+begin
+  Result := False;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    dxcc := FindDXCC(callsign);
+    Query := TSQLQuery.Create(nil);
+
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND LoTWRec = 1 LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
+
+  finally
+    Query.Free;
+  end;
+end;
 
 function TMainForm.FindWorkedCall(callsign, band, mode: string): boolean;
 var
@@ -1738,6 +1777,7 @@ begin
   Image3.Visible := False;
   Shape1.Visible := False;
   Label53.Visible := False;
+  Label54.Visible := False;
 
   if CheckBox3.Checked then
   begin
@@ -2463,6 +2503,8 @@ begin
   DBand := False;
   DMode := False;
   DCall := False;
+  Label53.Visible := False;
+  Label54.Visible := False;
   QSL := 0;
 
   if Length(EditButton1.Text) >= 2 then
@@ -2470,6 +2512,7 @@ begin
     CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
     CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
     Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    Label54.Visible := WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;
@@ -3765,6 +3808,7 @@ var
 begin
   Shape1.Visible := False;
   Label53.Visible := False;
+  Label54.Visible := False;
 
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
