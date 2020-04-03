@@ -79,23 +79,24 @@ begin
     SaveDialog1.FileName := MainForm.DBLookupComboBox1.Text + '_' +
       FormatDateTime('yyyy-mm-dd', now);
     SaveDialog1.InitialDir := IniF.ReadString('SetLog', 'ExportPath', '');
-  if  SaveDialog1.Execute then begin
-    if SaveDialog1.FileName = '' then
+    if SaveDialog1.Execute then
     begin
-      Application.MessageBox(
-        PChar(pPleaseFile), PChar(rWarning),
-        mb_ok + mb_IconWarning);
-      exit;
+      if SaveDialog1.FileName = '' then
+      begin
+        Application.MessageBox(
+          PChar(pPleaseFile), PChar(rWarning),
+          mb_ok + mb_IconWarning);
+        exit;
+      end;
+      ExportAll := rbFileExportAll.Checked;
+      FileName := SysToUTF8(SaveDialog1.FileName);
+      if CheckBox1.Checked = True then
+        ExportToAdif
+      else
+        Application.MessageBox(PChar(rNoMethodExport),
+          PChar(rWarning),
+          mb_ok + mb_IconWarning);
     end;
-    ExportAll := rbFileExportAll.Checked;
-    FileName := SysToUTF8(SaveDialog1.FileName);
-    if CheckBox1.Checked = True then
-      ExportToAdif
-    else
-      Application.MessageBox(PChar(rNoMethodExport),
-        PChar(rWarning),
-        mb_ok + mb_IconWarning);
-  end;
   end;
 end;
 
@@ -182,7 +183,7 @@ begin
   date := FormatDateTime('yyyy-mm-dd', now);
   Writeln(f, '<ADIF_VER:5>3.0.2');
   Writeln(f, 'ADIF export from EWLog');
-  Writeln(f, 'Copyright (C) 2015-2020 by EW8BAK');
+  Writeln(f, 'Copyleft 2015-2020 by EW8BAK');
   Writeln(f);
   Writeln(f, 'Internet: https://www.ew8bak.ru');
   Writeln(f, 'Generated date ' + date);
@@ -288,17 +289,33 @@ begin
         Write(f, tmp);
       end;
 
-      if (Q1.Fields.FieldByName('SRX').AsString <> '0') then
+      if (Q1.Fields.FieldByName('SRX').AsInteger <> 0) or
+        (not Q1.Fields.FieldByName('SRX').IsNull) then
       begin
         tmp := '<SRX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
           'SRX').AsString, CheckBox2.Checked);
         Write(f, tmp);
       end;
 
-      if Q1.Fields.FieldByName('STX').AsString <> '0' then
+      if (Q1.Fields.FieldByName('STX').AsInteger <> 0) or
+        (not Q1.Fields.FieldByName('STX').IsNull) then
       begin
         tmp := '<STX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
           'STX').AsString, CheckBox2.Checked);
+        Write(f, tmp);
+      end;
+
+      if (Q1.Fields.FieldByName('SRX_STRING').AsString <> '') then
+      begin
+        tmp := '<SRX_STRING' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'SRX_STRING').AsString, CheckBox2.Checked);
+        Write(f, tmp);
+      end;
+
+      if (Q1.Fields.FieldByName('STX_STRING').AsString <> '') then
+      begin
+        tmp := '<STX_STRING' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'STX_STRING').AsString, CheckBox2.Checked);
         Write(f, tmp);
       end;
 
@@ -380,8 +397,8 @@ begin
 
       if Q1.Fields.FieldByName('QSLInfo').AsString <> '' then
       begin
-        tmp := '<QSLMSG' + dmFunc.StringToADIF(dmFunc.MyTrim(Q1.Fields.FieldByName(
-          'QSLInfo').AsString), CheckBox2.Checked);
+        tmp := '<QSLMSG' + dmFunc.StringToADIF(
+          dmFunc.MyTrim(Q1.Fields.FieldByName('QSLInfo').AsString), CheckBox2.Checked);
         Write(f, tmp);
       end;
 
@@ -454,8 +471,9 @@ begin
 
       if Q1.Fields.FieldByName('QSOAddInfo').AsString <> '' then
       begin
-        tmp := '<COMMENT' + dmFunc.StringToADIF(dmFunc.MyTrim(Q1.Fields.FieldByName(
-          'QSOAddInfo').AsString), CheckBox2.Checked);
+        tmp := '<COMMENT' + dmFunc.StringToADIF(
+          dmFunc.MyTrim(Q1.Fields.FieldByName('QSOAddInfo').AsString),
+          CheckBox2.Checked);
         if CheckBox2.Checked = True then
           Write(f, UTF8ToCP1251(tmp))
         else
@@ -603,16 +621,6 @@ begin
         tmp2 := tmp2 + tmp;
       end;
 
-      if Q1.Fields.FieldByName('STX').AsString <> '' then
-      begin
-        if Q1.Fields.FieldByName('STX').AsString <> '0' then
-        begin
-          tmp := '<STX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-            'STX').AsString, CheckBox2.Checked);
-          tmp2 := tmp2 + tmp;
-        end;
-      end;
-
       if Q1.Fields.FieldByName('QSOReportRecived').AsString <> '' then
       begin
         tmp := '<RST_RCVD' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
@@ -620,14 +628,34 @@ begin
         tmp2 := tmp2 + tmp;
       end;
 
-      if Q1.Fields.FieldByName('SRX').AsString <> '' then
+      if (Q1.Fields.FieldByName('SRX').AsInteger <> 0) or
+        (not Q1.Fields.FieldByName('SRX').IsNull) then
       begin
-        if Q1.Fields.FieldByName('SRX').AsString <> '0' then
-        begin
-          tmp := '<SRX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-            'SRX').AsString, CheckBox2.Checked);
-          tmp2 := tmp2 + tmp;
-        end;
+        tmp := '<SRX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'SRX').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if (Q1.Fields.FieldByName('STX').AsInteger <> 0) or
+        (not Q1.Fields.FieldByName('STX').IsNull) then
+      begin
+        tmp := '<STX' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'STX').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if (Q1.Fields.FieldByName('SRX_STRING').AsString <> '') then
+      begin
+        tmp := '<SRX_STRING' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'SRX_STRING').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+      if (Q1.Fields.FieldByName('STX_STRING').AsString <> '') then
+      begin
+        tmp := '<STX_STRING' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'STX_STRING').AsString, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
       end;
 
       if Q1.Fields.FieldByName('OMName').AsString <> '' then
