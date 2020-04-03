@@ -18,17 +18,17 @@ object ClusterFilter: TClusterFilter
     Top = 0
     Width = 336
     Caption = 'Modes'
-    ClientHeight = 209
-    ClientWidth = 334
+    ClientHeight = 205
+    ClientWidth = 332
     TabOrder = 0
     object cbSSB: TCheckBox
       AnchorSideLeft.Control = GroupBox2
       AnchorSideTop.Control = Edit1
       AnchorSideTop.Side = asrBottom
       Left = 10
-      Height = 23
-      Top = 68
-      Width = 45
+      Height = 19
+      Top = 62
+      Width = 38
       BorderSpacing.Left = 10
       BorderSpacing.Top = 10
       Caption = 'SSB'
@@ -42,9 +42,9 @@ object ClusterFilter: TClusterFilter
       AnchorSideLeft.Control = GroupBox2
       AnchorSideTop.Control = GroupBox2
       Left = 10
-      Height = 23
+      Height = 19
       Top = 5
-      Width = 43
+      Width = 38
       BorderSpacing.Left = 10
       BorderSpacing.Top = 5
       Caption = 'CW'
@@ -59,9 +59,9 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Control = Edit2
       AnchorSideTop.Side = asrBottom
       Left = 10
-      Height = 23
-      Top = 131
-      Width = 46
+      Height = 19
+      Top = 119
+      Width = 41
       BorderSpacing.Left = 10
       BorderSpacing.Top = 10
       Caption = 'Digi'
@@ -76,8 +76,8 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Control = cbCW
       AnchorSideTop.Side = asrBottom
       Left = 10
-      Height = 25
-      Top = 33
+      Height = 23
+      Top = 29
       Width = 296
       BorderSpacing.Left = 10
       BorderSpacing.Top = 5
@@ -89,8 +89,8 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Control = cbSSB
       AnchorSideTop.Side = asrBottom
       Left = 10
-      Height = 25
-      Top = 96
+      Height = 23
+      Top = 86
       Width = 296
       BorderSpacing.Left = 10
       BorderSpacing.Top = 5
@@ -102,8 +102,8 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Control = cbData
       AnchorSideTop.Side = asrBottom
       Left = 10
-      Height = 25
-      Top = 159
+      Height = 23
+      Top = 143
       Width = 296
       BorderSpacing.Left = 10
       BorderSpacing.Top = 5
@@ -120,16 +120,15 @@ object ClusterFilter: TClusterFilter
     ItemHeight = 0
     OnClickCheck = CheckListBox1ClickCheck
     TabOrder = 1
-    TopIndex = -1
   end
   object Label1: TLabel
     AnchorSideLeft.Control = GroupBox2
     AnchorSideTop.Control = GroupBox2
     AnchorSideTop.Side = asrBottom
     Left = 170
-    Height = 13
+    Height = 15
     Top = 245
-    Width = 134
+    Width = 124
     BorderSpacing.Left = 10
     BorderSpacing.Top = 20
     Caption = 'Delete spots older then:'
@@ -140,9 +139,9 @@ object ClusterFilter: TClusterFilter
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Label1
     AnchorSideTop.Side = asrCenter
-    Left = 309
-    Height = 25
-    Top = 239
+    Left = 299
+    Height = 23
+    Top = 241
     Width = 72
     BorderSpacing.Left = 5
     MinValue = 1
@@ -154,10 +153,10 @@ object ClusterFilter: TClusterFilter
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = GroupBox2
     AnchorSideTop.Side = asrBottom
-    Left = 386
-    Height = 13
+    Left = 376
+    Height = 15
     Top = 245
-    Width = 44
+    Width = 43
     BorderSpacing.Left = 5
     BorderSpacing.Top = 20
     Caption = 'minutes'

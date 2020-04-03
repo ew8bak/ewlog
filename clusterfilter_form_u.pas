@@ -60,13 +60,16 @@ begin
     CheckListBox1.Checked[i] :=
       IniF.ReadBool('TelnetCluster', 'Bands' + IntToStr(i), True);
   end;
-  Edit1.Text:=IniF.ReadString('TelnetCluster', 'CWMode', '');
-  Edit2.Text:=IniF.ReadString('TelnetCluster', 'PhoneMode', '');
-  Edit3.Text:=IniF.ReadString('TelnetCluster', 'DIGIMode', '');
-  cbCW.Checked:=IniF.ReadBool('TelnetCluster', 'DX_CW', True);
-  cbSSB.Checked:=IniF.ReadBool('TelnetCluster', 'DX_Phone', True);
-  cbData.Checked:=IniF.ReadBool('TelnetCluster', 'DX_DIGI', True);
-  SpinEdit1.Value:=IniF.ReadInteger('TelnetCluster', 'spotDelTime', 15);
+  if Length(IniF.ReadString('TelnetCluster', 'CWMode', '')) > 0 then
+    Edit1.Text := IniF.ReadString('TelnetCluster', 'CWMode', '');
+  if Length(IniF.ReadString('TelnetCluster', 'PhoneMode', '')) > 0 then
+    Edit2.Text := IniF.ReadString('TelnetCluster', 'PhoneMode', '');
+  if Length(IniF.ReadString('TelnetCluster', 'DIGIMode', '')) > 0 then
+    Edit3.Text := IniF.ReadString('TelnetCluster', 'DIGIMode', '');
+  cbCW.Checked := IniF.ReadBool('TelnetCluster', 'DX_CW', True);
+  cbSSB.Checked := IniF.ReadBool('TelnetCluster', 'DX_Phone', True);
+  cbData.Checked := IniF.ReadBool('TelnetCluster', 'DX_DIGI', True);
+  SpinEdit1.Value := IniF.ReadInteger('TelnetCluster', 'spotDelTime', 15);
 end;
 
 procedure TClusterFilter.WriteBandsModes;
