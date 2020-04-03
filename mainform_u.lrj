@@ -104,6 +104,7 @@
 {"hash":782,"name":"tmainform.label47.caption","sourcebytes":[46,46],"value":".."},
 {"hash":113528956,"name":"tmainform.label48.caption","sourcebytes":[89,111,117,114,32,81,83,76],"value":"Your QSL"},
 {"hash":238686804,"name":"tmainform.combobox7.text","sourcebytes":[87,97,115,110,39,116,32,115,101,110,116],"value":"Wasn't sent"},
+{"hash":2923769,"name":"tmainform.label55.caption","sourcebytes":[40,67,102,109,41],"value":"(Cfm)"},
 {"hash":22140,"name":"tmainform.dbgrid2.columns[0].title.caption","sourcebytes":[81,83,76],"value":"QSL"},
 {"hash":354355,"name":"tmainform.dbgrid2.columns[1].title.caption","sourcebytes":[81,83,76,115],"value":"QSLs"},
 {"hash":305317,"name":"tmainform.dbgrid2.columns[2].title.caption","sourcebytes":[68,97,116,101],"value":"Date"},

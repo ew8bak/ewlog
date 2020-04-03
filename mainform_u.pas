@@ -46,6 +46,7 @@ type
     Label52: TLabel;
     Label53: TLabel;
     Label54: TLabel;
+    Label55: TLabel;
     LTCPComponent1: TLTCPComponent;
     dxClient: TLTelnetClientComponent;
     LUDPComponent1: TLUDPComponent;
@@ -829,9 +830,8 @@ begin
       with PrefixQuery do
       begin
         Close;
-        SQL.Clear;
-        SQL.Add('select DXCC, Status from CountryDataEx where _id = "' +
-          IntToStr(PrefixExpARRLArray[i].id) + '"');
+        SQL.Text:='SELECT DXCC, Status from CountryDataEx where _id = "' +
+          IntToStr(PrefixExpARRLArray[i].id) + '"';
         Open;
         if (FieldByName('Status').AsString = 'Deleted') then
         begin
@@ -839,15 +839,38 @@ begin
           Exit;
         end;
         Result := FieldByName('DXCC').AsInteger;
+        Close;
       end;
     end;
+  end;
+
+  if Result = -1 then begin
+     for i := 0 to PrefixProvinceCount do
+  begin
+    if (PrefixExpProvinceArray[i].reg.Exec(callsign)) and
+      (PrefixExpProvinceArray[i].reg.Match[0] = callsign) then
+    begin
+      with PrefixQuery do
+      begin
+        Close;
+        SQL.Text:='SELECT * from Province where _id = "' +
+          IntToStr(PrefixExpProvinceArray[i].id) + '"';
+        Open;
+        Result := FieldByName('DXCC').AsInteger;
+        if Result <> -1 then begin
+        Close;
+        Exit;
+        end;
+      end;
+    end;
+  end;
   end;
 end;
 
 procedure TMainForm.CheckQSL(callsign, band, mode: string; var QSL: integer);
 var
   Query: TSQLQuery;
-  dxcc, i: integer;
+  dxcc: integer;
   digiBand: double;
   nameBand: string;
 begin
@@ -871,7 +894,7 @@ begin
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND QSLRec = 1 LIMIT 1';
+      FloatToStr(digiBand) + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
     Query.Open;
     if Query.RecordCount > 0 then
     begin
@@ -892,7 +915,7 @@ begin
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND QSLRec = 0 LIMIT 1';
+      FloatToStr(digiBand) + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
     Query.Open;
     if Query.RecordCount = 0 then
     begin
@@ -1813,6 +1836,7 @@ begin
   Shape1.Visible := False;
   Label53.Visible := False;
   Label54.Visible := False;
+  Label55.Visible := False;
 
   if CheckBox3.Checked then
   begin
@@ -2540,6 +2564,7 @@ begin
   DCall := False;
   Label53.Visible := False;
   Label54.Visible := False;
+  Label55.Visible := False;
   QSL := 0;
 
   if Length(EditButton1.Text) >= 2 then
@@ -2548,6 +2573,7 @@ begin
     CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
     Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
     Label54.Visible:=WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    Label55.Visible:=WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;
@@ -3844,6 +3870,7 @@ begin
   Shape1.Visible := False;
   Label53.Visible := False;
   Label54.Visible := False;
+  Label55.Visible := False;
 
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;

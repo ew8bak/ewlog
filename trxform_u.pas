@@ -350,6 +350,25 @@ procedure TTRXForm.FormCreate(Sender: TObject);
 var
   n: string = '';
 begin
+  Arrow1.Visible:=False;
+  Arrow2.Visible:=False;
+  Arrow3.Visible:=False;
+  Arrow4.Visible:=False;
+  Arrow5.Visible:=False;
+  Arrow6.Visible:=False;
+  Arrow7.Visible:=False;
+  Arrow8.Visible:=False;
+  Arrow9.Visible:=False;
+  Arrow10.Visible:=False;
+  Arrow11.Visible:=False;
+  Arrow12.Visible:=False;
+  Arrow13.Visible:=False;
+  Arrow14.Visible:=False;
+  Arrow15.Visible:=False;
+  Arrow16.Visible:=False;
+  Arrow17.Visible:=False;
+  Arrow18.Visible:=False;
+
   Radio := nil;
   thRig := nil;
   AutoMode := True;

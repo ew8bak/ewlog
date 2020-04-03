@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 352
-  Height = 861
-  Top = 105
+  Left = 483
+  Height = 696
+  Top = 145
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
-  ClientHeight = 841
+  ClientHeight = 676
   ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
@@ -246,12 +246,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 431
+    Height = 266
     Top = 32
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 431
+    ClientHeight = 266
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1774,7 +1774,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 174
+      Height = 9
       Top = 256
       Width = 472
       Align = alClient
@@ -1784,16 +1784,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 431
+    Height = 266
     Top = 32
     Width = 734
     Align = alClient
-    ClientHeight = 431
+    ClientHeight = 266
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 429
+      Height = 264
       Top = 1
       Width = 732
       Align = alClient
@@ -1972,7 +1972,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 463
+    Top = 298
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -2508,6 +2508,23 @@ object MainForm: TMainForm
           UseThreads = True
           Zoom = 0
         end
+      end
+      object Label55: TLabel
+        AnchorSideLeft.Control = Label33
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Label33
+        AnchorSideTop.Side = asrCenter
+        Left = 76
+        Height = 15
+        Top = 26
+        Width = 31
+        BorderSpacing.Left = 3
+        Caption = '(Cfm)'
+        Font.Color = clRed
+        Font.Height = -12
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
       end
     end
     object Panel6: TPanel

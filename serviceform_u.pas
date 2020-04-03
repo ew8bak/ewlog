@@ -55,7 +55,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U;
+uses dmFunc_U, MainForm_U, const_u;
 
 procedure TServiceForm.eQSLImport(FilePATH: string);
 var
@@ -81,8 +81,11 @@ var
   PosEOH: word;
   PosEOR: word;
   yyyy, mm, dd: word;
+  digiBand: double;
+  nameBand: string;
   Stream: TMemoryStream;
   TempFile: string;
+  SQLString: string;
 begin
   {$IFDEF UNIX}
   TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +
@@ -140,7 +143,9 @@ begin
         QSL_SENT := '';
         PROP_MODE := '';
         paramQSL_SENT := '';
-
+        nameBand := '';
+        SQLString := '';
+        digiBand := -1;
         Readln(temp_f, s);
         s := Trim(s);
 
@@ -169,24 +174,42 @@ begin
           else
             paramQSL_SENT := '0';
 
-          if MainForm.MySQLLOGDBConnection.Connected then
-            Query := 'UPDATE ' + LogTable + ' SET QSOmode = ' +
-              dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE) +
-              'QSL_RCVD_VIA = ' + dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' +
-              dmFunc.Q(GRIDSQUARE) + 'QSLInfo = ' + dmFunc.Q(QSLMSG) +
-              'QSOReportRecived = ' + dmFunc.Q(RST_SENT) + 'PROP_MODE = ' +
-              dmFunc.Q(PROP_MODE) + 'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
-              ' WHERE CallSign = ' + QuotedStr(CALL) +
-              ' AND QSODate = ' + QuotedStr(QSO_DATE) + ';'
+          if Pos('M', BAND) > 0 then
+            NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(BAND, MODE))
           else
-            Query := 'UPDATE ' + LogTable + ' SET QSOmode = ' +
-              dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE) +
-              'QSL_RCVD_VIA = ' + dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' +
-              dmFunc.Q(GRIDSQUARE) + 'QSLInfo = ' + dmFunc.Q(QSLMSG) +
-              'QSOReportRecived = ' + dmFunc.Q(RST_SENT) + 'PROP_MODE = ' +
-              dmFunc.Q(PROP_MODE) + 'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
+            nameBand := BAND;
+
+          Delete(nameBand, length(nameBand) - 2, 1);
+          digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+
+          if Length(SUBMODE) > 0 then
+            SQLString := 'UPDATE ' + LogTable + ' SET QSOMode = ' +
+              dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE)
+          else
+            SQLString := 'UPDATE ' + LogTable + ' SET QSOMode = ' +
+              dmFunc.Q(MODE);
+
+          if MainForm.MySQLLOGDBConnection.Connected then
+            Query := SQLString + 'QSL_RCVD_VIA = ' +
+              dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
+              'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +
+              dmFunc.Q(RST_SENT) + 'PROP_MODE = ' + dmFunc.Q(PROP_MODE) +
+              'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
+              ' WHERE CallSign = ' + QuotedStr(CALL) + ' AND QSODate = ' +
+              QuotedStr(QSO_DATE) + ' AND DigiBand = ' + FloatToStr(digiBand) +
+              ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
+              QuotedStr(SUBMODE) + ')'
+          else
+            Query := SQLString + 'QSL_RCVD_VIA = ' +
+              dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
+              'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +
+              dmFunc.Q(RST_SENT) + 'PROP_MODE = ' + dmFunc.Q(PROP_MODE) +
+              'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
               ' WHERE CallSign = ' + QuotedStr(CALL) +
-              ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) + ';';
+              ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) +
+              ' AND DigiBand = ' + FloatToStr(digiBand) + ' AND (QSOMode = ' +
+              QuotedStr(MODE) + ' OR QSOSubMode = ' + QuotedStr(SUBMODE) + ')';
+
           UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
 
@@ -194,7 +217,7 @@ begin
           if RecCount mod 10 = 0 then
           begin
             Label4.Caption := rProcessedData + IntToStr(RecCount);
-             MainForm.SQLTransaction1.Commit;
+            MainForm.SQLTransaction1.Commit;
             Application.ProcessMessages;
           end;
 
@@ -204,13 +227,14 @@ begin
       end;
     end;
   finally
-     MainForm.SQLTransaction1.Commit;
+    MainForm.SQLTransaction1.Commit;
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
     MainForm.SelDB(CallLogBook);
     Label4.Caption := rProcessedData + IntToStr(RecCount);
     Label6.Caption := rStatusDone;
+    Button2.Enabled := True;
   end;
 end;
 
@@ -242,6 +266,8 @@ var
   PosEOH: word;
   PosEOR: word;
   yyyy, mm, dd: word;
+  digiBand: double;
+  nameBand: string;
   Stream: TMemoryStream;
   TempFile: string;
 begin
@@ -303,6 +329,8 @@ begin
         ITUZ := '';
         APP_LOTW_2XQSL := '';
         paramQSLRDATE := '';
+        nameBand := '';
+        digiBand := -1;
 
         Readln(temp_f, s);
         s := Trim(s);
@@ -346,6 +374,14 @@ begin
                 FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
           end;
 
+          if Pos('M', BAND) > 0 then
+            NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(BAND, MODE))
+          else
+            nameBand := BAND;
+
+          Delete(nameBand, length(nameBand) - 2, 1);
+          digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+
           if MainForm.MySQLLOGDBConnection.Connected then
             Query := 'UPDATE ' + LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
@@ -353,8 +389,9 @@ begin
               'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
               dmFunc.Q(paramAPP_LOTW_2XQSL) + 'LoTWRec = ''1'', LoTWRecDate = ' +
               QuotedStr(paramQSLRDATE) + ' WHERE CallSign = ' +
-              QuotedStr(CALL) + ' AND QSODate = ' +
-              QuotedStr(QSO_DATE) + ';'
+              QuotedStr(CALL) + ' AND DigiBand = ' + FloatToStr(digiBand) +
+              ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
+              QuotedStr(MODE) + ')'
           else
             Query := 'UPDATE ' + LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
@@ -363,7 +400,9 @@ begin
               dmFunc.Q(paramAPP_LOTW_2XQSL) + 'LoTWRec = ''1'', LoTWRecDate = ' +
               QuotedStr(paramQSLRDATE) + ' WHERE CallSign = ' +
               QuotedStr(CALL) + ' AND strftime(''%Y%m%d'',QSODate) = ' +
-              QuotedStr(QSO_DATE) + ';';
+              QuotedStr(QSO_DATE) + ' AND DigiBand = ' + FloatToStr(digiBand) +
+              ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
+              QuotedStr(MODE) + ')';
           UPDATEQuery.SQL.Text := Query;
           UPDATEQuery.ExecSQL;
 
@@ -371,7 +410,7 @@ begin
           if RecCount mod 10 = 0 then
           begin
             Label4.Caption := rProcessedData + IntToStr(RecCount);
-             MainForm.SQLTransaction1.Commit;
+            MainForm.SQLTransaction1.Commit;
             Application.ProcessMessages;
           end;
 
@@ -381,13 +420,15 @@ begin
       end;
     end;
   finally
-     MainForm.SQLTransaction1.Commit;
+    MainForm.SQLTransaction1.Commit;
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
     MainForm.SelDB(CallLogBook);
     Label4.Caption := rProcessedData + IntToStr(RecCount);
     Label6.Caption := rStatusDone;
+    Button1.Enabled := True;
+    IniF.WriteDate('SetLog', 'LastLoTW', Now);
   end;
 end;
 
@@ -413,6 +454,7 @@ begin
     ShowMessage(rNotDataForConnect)
   else
   begin
+    Button2.Enabled := False;
     eQSLccThread := TeQSLccThread.Create;
     if Assigned(eQSLccThread.FatalException) then
       raise eQSLccThread.FatalException;
@@ -435,6 +477,7 @@ begin
     ShowMessage(rNotDataForConnect)
   else
   begin
+    Button1.Enabled := False;
     LoTWThread := TLoTWThread.Create;
     if Assigned(LoTWThread.FatalException) then
       raise LoTWThread.FatalException;
@@ -461,10 +504,10 @@ begin
     UPDATEQuery.DataBase := MainForm.SQLiteDBConnection;
     MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
-  DateEdit1.Date := Now;
+  DateEdit1.Date := IniF.ReadDate('SetLog', 'LastLoTW', Now);
   DateEdit2.Date := Now;
   DownSize := 0;
-  Label7.Caption:=FloatToStr(DownSize)+' '+rMBytes;
+  Label7.Caption := FloatToStr(DownSize) + ' ' + rMBytes;
   ProgressBar1.Position := 0;
 end;
 

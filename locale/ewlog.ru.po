@@ -3479,6 +3479,10 @@ msgctxt "tmainform.label54.caption"
 msgid "QSL"
 msgstr "QSL"
 
+#: tmainform.label55.caption
+msgid "(Cfm)"
+msgstr ""
+
 #: tmainform.label6.caption
 msgctxt "tmainform.label6.caption"
 msgid "Name"
