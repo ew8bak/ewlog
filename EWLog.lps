@@ -289,9 +289,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="162"/>
-        <CursorPos X="41" Y="185"/>
+        <TopLine Value="472"/>
+        <CursorPos X="3" Y="474"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -575,10 +576,9 @@
       <Unit53>
         <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="45"/>
-        <CursorPos X="75" Y="65"/>
+        <TopLine Value="99"/>
+        <CursorPos X="33" Y="57"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit53>
@@ -1221,7 +1221,7 @@
         <UsageCount Value="10"/>
       </Unit138>
     </Units>
-    <JumpHistory Count="10" HistoryIndex="9">
+    <JumpHistory Count="11" HistoryIndex="10">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="809" Column="67" TopLine="799"/>
@@ -1262,6 +1262,10 @@
         <Filename Value="dmfunc_u.pas"/>
         <Caret Line="90" Column="14" TopLine="75"/>
       </Position10>
+      <Position11>
+        <Filename Value="serviceform_u.pas"/>
+        <Caret Line="185" Column="41" TopLine="299"/>
+      </Position11>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
