@@ -478,6 +478,9 @@ begin
 
           CheckMode(MODE, FREQ, SUBMODE, MODE);
 
+          if FREQ_Float = 0 then
+          BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ))
+          else
           BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FloatToStr(FREQ_Float)));
 
           yyyy := StrToInt(QSO_DATE[1] + QSO_DATE[2] + QSO_DATE[3] +

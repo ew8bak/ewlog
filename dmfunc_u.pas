@@ -447,9 +447,16 @@ var
   tmp: currency;
   Dec: currency;
   band: double;
+  dotcount, i: Integer;
 begin
   Result := 0;
   band := 0;
+  dotcount := 0;
+   for i:=1 to length(MHz) do
+  if MHz[i] = '.' then inc(dotcount);
+
+  if dotcount > 1 then
+  Delete(MHz, length(MHz) - 2, 1);
 
   if Pos('.', MHz) > 0 then
     MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
