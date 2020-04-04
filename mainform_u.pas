@@ -3813,9 +3813,6 @@ begin
       _w := IniF.ReadInteger('SetLog', 'Width', 1043);
       _h := IniF.ReadInteger('SetLog', 'Height', 671);
 
-      if IniF.ReadString('SetLog', 'FormState', '') = 'Maximized' then
-        MainForm.WindowState := wsMaximized;
-
       DateEdit1.Date := LazSysUtils.NowUTC;
       DateTimePicker1.Time := NowUTC;
       Label24.Caption := FormatDateTime('hh:mm:ss', Now);
@@ -4000,6 +3997,8 @@ procedure TMainForm.FormShow(Sender: TObject);
 begin
   if (_l <> 0) and (_t <> 0) and (_w <> 0) and (_h <> 0) then
     MainForm.SetBounds(_l, _t, _w, _h);
+  if IniF.ReadString('SetLog', 'FormState', '') = 'Maximized' then
+    MainForm.WindowState := wsMaximized;
   if InitLog_DB <> 'YES' then
   begin
     if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
