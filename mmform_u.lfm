@@ -9,6 +9,7 @@ object MM_Form: TMM_Form
   ClientWidth = 548
   OnShow = FormShow
   Position = poMainFormCenter
+  ShowInTaskBar = stAlways
   LCLVersion = '2.0.6.0'
   object ListView1: TListView
     Left = 0
@@ -27,6 +28,7 @@ object MM_Form: TMM_Form
         Caption = 'Enabled'
         Width = 57
       end>
+    ReadOnly = True
     RowSelect = True
     ScrollBars = ssAutoBoth
     TabOrder = 0
@@ -57,6 +59,8 @@ object MM_Form: TMM_Form
       EditLabel.Width = 288
       EditLabel.Caption = 'SubMode'
       EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 0
     end
     object CheckBox1: TCheckBox
@@ -67,7 +71,9 @@ object MM_Form: TMM_Form
       Width = 127
       BorderSpacing.Left = 2
       Caption = 'Enabled Modulation'
+      Font.Height = -12
       OnClick = CheckBox1Click
+      ParentFont = False
       TabOrder = 1
     end
     object Button2: TButton
@@ -81,7 +87,9 @@ object MM_Form: TMM_Form
       AutoSize = True
       BorderSpacing.Right = 2
       Caption = 'Save SubMode'
+      Font.Height = -12
       OnClick = Button2Click
+      ParentFont = False
       TabOrder = 2
     end
   end
@@ -91,7 +99,9 @@ object MM_Form: TMM_Form
     Top = 384
     Width = 75
     Caption = 'Close'
+    Font.Height = -12
     OnClick = Button1Click
+    ParentFont = False
     TabOrder = 2
   end
   object MMQuery: TSQLQuery

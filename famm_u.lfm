@@ -1,7 +1,7 @@
 object FM_Form: TFM_Form
-  Left = 400
+  Left = 310
   Height = 410
-  Top = 138
+  Top = 260
   Width = 602
   BorderStyle = bsSingle
   Caption = 'Frequency Manager'
@@ -9,6 +9,7 @@ object FM_Form: TFM_Form
   ClientWidth = 602
   OnShow = FormShow
   Position = poMainFormCenter
+  ShowInTaskBar = stAlways
   LCLVersion = '2.0.6.0'
   object ListView1: TListView
     Left = 0
@@ -37,6 +38,7 @@ object FM_Form: TFM_Form
         Caption = 'Enabled'
         Width = 57
       end>
+    ReadOnly = True
     RowSelect = True
     ScrollBars = ssAutoBoth
     TabOrder = 0
@@ -61,6 +63,8 @@ object FM_Form: TFM_Form
       EditLabel.Width = 80
       EditLabel.Caption = 'Band'
       EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 0
     end
     object LabeledEdit2: TLabeledEdit
@@ -72,6 +76,8 @@ object FM_Form: TFM_Form
       EditLabel.Width = 80
       EditLabel.Caption = 'MHz Begin'
       EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 1
     end
     object LabeledEdit3: TLabeledEdit
@@ -83,6 +89,8 @@ object FM_Form: TFM_Form
       EditLabel.Width = 80
       EditLabel.Caption = 'MHz End'
       EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 2
     end
     object CheckBox1: TCheckBox
@@ -91,7 +99,9 @@ object FM_Form: TFM_Form
       Top = 112
       Width = 92
       Caption = 'Enabled Band'
+      Font.Height = -12
       OnClick = CheckBox1Click
+      ParentFont = False
       TabOrder = 3
     end
     object LabeledEdit4: TLabeledEdit
@@ -103,6 +113,8 @@ object FM_Form: TFM_Form
       EditLabel.Width = 80
       EditLabel.Caption = 'CW Begin'
       EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 4
     end
     object LabeledEdit5: TLabeledEdit
@@ -114,6 +126,8 @@ object FM_Form: TFM_Form
       EditLabel.Width = 80
       EditLabel.Caption = 'Digi Begin'
       EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 5
     end
     object LabeledEdit6: TLabeledEdit
@@ -125,6 +139,8 @@ object FM_Form: TFM_Form
       EditLabel.Width = 80
       EditLabel.Caption = 'SSB Begin'
       EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 6
     end
     object Button2: TButton
@@ -138,7 +154,9 @@ object FM_Form: TFM_Form
       AutoSize = True
       BorderSpacing.Right = 7
       Caption = 'Save Band'
+      Font.Height = -12
       OnClick = Button2Click
+      ParentFont = False
       TabOrder = 7
     end
   end
@@ -148,7 +166,9 @@ object FM_Form: TFM_Form
     Top = 376
     Width = 75
     Caption = 'Close'
+    Font.Height = -12
     OnClick = Button1Click
+    ParentFont = False
     TabOrder = 2
   end
   object FMQuery: TSQLQuery
