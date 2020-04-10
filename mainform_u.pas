@@ -734,7 +734,7 @@ begin
      Query.Transaction := SQLTransaction1;
 
      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-       ' WHERE Call = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
+       ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
        FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
      Query.Open;
      if Query.RecordCount > 0 then
@@ -806,7 +806,7 @@ begin
     Query.Transaction := SQLTransaction1;
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE Call = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
+      ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
       FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
     Query.Open;
     if Query.RecordCount > 0 then
@@ -3680,7 +3680,7 @@ begin
         Data^.Time := Time;
         Data^.Loc := Loc;
         Data^.Country := SearchCountry(DX, False);
-        VirtualStringTree1.Expanded[XNode^.Parent] := True;
+        VirtualStringTree1.Expanded[XNode^.Parent] := False;
         FindCountryFlag(Data^.Country);
       end
       else

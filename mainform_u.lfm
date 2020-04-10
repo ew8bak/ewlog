@@ -20,12 +20,12 @@ object MainForm: TMainForm
   LCLVersion = '2.0.6.0'
   object Panel1: TPanel
     Left = 0
-    Height = 32
+    Height = 26
     Top = 0
     Width = 1208
     Align = alTop
     AutoSize = True
-    ClientHeight = 32
+    ClientHeight = 26
     ClientWidth = 1208
     TabOrder = 1
     object SpeedButton8: TSpeedButton
@@ -34,7 +34,7 @@ object MainForm: TMainForm
       Left = 1
       Height = 24
       Hint = 'Save QSO'
-      Top = 4
+      Top = 1
       Width = 25
       Action = SaveQSOinBase
       Font.Height = -11
@@ -87,7 +87,7 @@ object MainForm: TMainForm
       Left = 30
       Height = 24
       Hint = 'Clear QSO'
-      Top = 4
+      Top = 1
       Width = 25
       Action = ClearEdit
       Glyph.Data = {
@@ -137,7 +137,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 309
       Height = 24
-      Top = 4
+      Top = 1
       Width = 167
       Font.Height = -12
       KeyField = 'CallName'
@@ -157,7 +157,7 @@ object MainForm: TMainForm
       AnchorSideRight.Control = DBLookupComboBox1
       Left = 244
       Height = 15
-      Top = 9
+      Top = 6
       Width = 60
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -173,7 +173,7 @@ object MainForm: TMainForm
       AnchorSideRight.Side = asrBottom
       Left = 1074
       Height = 15
-      Top = 9
+      Top = 6
       Width = 113
       Align = alCustom
       Anchors = [akTop, akRight]
@@ -193,7 +193,7 @@ object MainForm: TMainForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 527
-      Height = 30
+      Height = 24
       Top = 1
       Width = 80
       AutoSize = False
@@ -208,7 +208,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 481
       Height = 15
-      Top = 9
+      Top = 6
       Width = 41
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
@@ -222,7 +222,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 617
       Height = 15
-      Top = 9
+      Top = 6
       Width = 45
       BorderSpacing.Left = 10
       BorderSpacing.Right = 5
@@ -235,7 +235,7 @@ object MainForm: TMainForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 667
-      Height = 30
+      Height = 24
       Top = 1
       Width = 80
       AutoSize = False
@@ -246,12 +246,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 266
-    Top = 32
+    Height = 272
+    Top = 26
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 266
+    ClientHeight = 272
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1774,7 +1774,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 9
+      Height = 15
       Top = 256
       Width = 472
       Align = alClient
@@ -1784,16 +1784,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 266
-    Top = 32
+    Height = 272
+    Top = 26
     Width = 734
     Align = alClient
-    ClientHeight = 266
+    ClientHeight = 272
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 264
+      Height = 270
       Top = 1
       Width = 732
       Align = alClient
