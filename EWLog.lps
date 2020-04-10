@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="139">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -1219,7 +1219,7 @@
         <UsageCount Value="10"/>
       </Unit138>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="26" HistoryIndex="25">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="792" TopLine="784"/>
@@ -1306,40 +1306,24 @@
       </Position21>
       <Position22>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="737" Column="24" TopLine="928"/>
+        <Caret Line="2562" Column="3" TopLine="2552"/>
       </Position22>
       <Position23>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2562" Column="3" TopLine="2552"/>
+        <Caret Line="618" Column="14" TopLine="603"/>
       </Position23>
       <Position24>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="618" Column="14" TopLine="603"/>
+        <Caret Line="811" TopLine="790"/>
       </Position24>
       <Position25>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="811" TopLine="790"/>
+        <Caret Line="812" TopLine="790"/>
       </Position25>
       <Position26>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="812" TopLine="790"/>
-      </Position26>
-      <Position27>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="737" Column="22" TopLine="1023"/>
-      </Position27>
-      <Position28>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2562" Column="3" TopLine="2621"/>
-      </Position28>
-      <Position29>
-        <Filename Value="mainform_u.pas"/>
         <Caret Line="592" Column="15" TopLine="577"/>
-      </Position29>
-      <Position30>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1744" Column="3" TopLine="1812"/>
-      </Position30>
+      </Position26>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
