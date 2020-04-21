@@ -50,6 +50,14 @@ var
   lat: currency;
   lat1, long1: currency;
 begin
+
+  if Pos('.', la1) > 0 then
+    la1[Pos('.', la1)] := DefaultFormatSettings.DecimalSeparator;
+
+  if pos(',', la1) > 0 then
+    la1[pos(',', la1)] := DefaultFormatSettings.DecimalSeparator;
+
+
   if (la1 = '......') or (la1 = '') or (lo1 = '......') or
     (lo1 = '') then
   begin

@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 391
+  Left = 377
   Height = 696
-  Top = 149
+  Top = 131
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -4114,6 +4114,7 @@ object MainForm: TMainForm
     end
     object ClearEdit: TAction
       DisableIfNoHandler = False
+      OnExecute = SpeedButton9Click
       ShortCut = 32835
     end
   end
@@ -5088,6 +5089,7 @@ object MainForm: TMainForm
     end
     object MenuItem46: TMenuItem
       Caption = 'Save to Excel'
+      Enabled = False
     end
     object MenuItem47: TMenuItem
       Caption = '-'

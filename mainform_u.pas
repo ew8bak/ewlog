@@ -717,32 +717,32 @@ var
   nameBand: string;
 begin
   Result := False;
-   if Pos('M', band) > 0 then
-     NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-   else
-     nameBand := band;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
 
-   Delete(nameBand, length(nameBand) - 2, 1);
-   digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-   try
-     Query := TSQLQuery.Create(nil);
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    Query := TSQLQuery.Create(nil);
 
-     if MySQLLOGDBConnection.Connected then
-       Query.DataBase := MySQLLOGDBConnection
-     else
-       Query.DataBase := SQLiteDBConnection;
-     Query.Transaction := SQLTransaction1;
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
 
-     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-       ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
-       FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
-     Query.Open;
-     if Query.RecordCount > 0 then
-       Result := True;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
 
-   finally
-     Query.Free;
-   end;
+  finally
+    Query.Free;
+  end;
 end;
 
 function TMainForm.WorkedLoTW(callsign, band, mode: string): boolean;
@@ -750,7 +750,7 @@ var
   Query: TSQLQuery;
   digiBand: double;
   nameBand: string;
-  dxcc: Integer;
+  dxcc: integer;
 begin
   Result := False;
   if Pos('M', band) > 0 then
@@ -830,7 +830,7 @@ begin
       with PrefixQuery do
       begin
         Close;
-        SQL.Text:='SELECT DXCC, Status from CountryDataEx where _id = "' +
+        SQL.Text := 'SELECT DXCC, Status from CountryDataEx where _id = "' +
           IntToStr(PrefixExpARRLArray[i].id) + '"';
         Open;
         if (FieldByName('Status').AsString = 'Deleted') then
@@ -844,26 +844,28 @@ begin
     end;
   end;
 
-  if Result = -1 then begin
-     for i := 0 to PrefixProvinceCount do
+  if Result = -1 then
   begin
-    if (PrefixExpProvinceArray[i].reg.Exec(callsign)) and
-      (PrefixExpProvinceArray[i].reg.Match[0] = callsign) then
+    for i := 0 to PrefixProvinceCount do
     begin
-      with PrefixQuery do
+      if (PrefixExpProvinceArray[i].reg.Exec(callsign)) and
+        (PrefixExpProvinceArray[i].reg.Match[0] = callsign) then
       begin
-        Close;
-        SQL.Text:='SELECT * from Province where _id = "' +
-          IntToStr(PrefixExpProvinceArray[i].id) + '"';
-        Open;
-        Result := FieldByName('DXCC').AsInteger;
-        if Result <> -1 then begin
-        Close;
-        Exit;
+        with PrefixQuery do
+        begin
+          Close;
+          SQL.Text := 'SELECT * from Province where _id = "' +
+            IntToStr(PrefixExpProvinceArray[i].id) + '"';
+          Open;
+          Result := FieldByName('DXCC').AsInteger;
+          if Result <> -1 then
+          begin
+            Close;
+            Exit;
+          end;
         end;
       end;
     end;
-  end;
   end;
 end;
 
@@ -1625,13 +1627,13 @@ begin
         LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
         SQLQuery2.DataBase := MySQLLOGDBConnection;
         CheckTableQuery.DataBase := MySQLLOGDBConnection;
-      {$IFDEF WINDOWS}
-        TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
-        TrayIcon1.ShowBalloonHint;
-      {$ELSE}
-        SysUtils.ExecuteProcess('/usr/bin/notify-send',
-          ['EWLog', rWelcomeMessageMySQL]);
-      {$ENDIF}
+ //     {$IFDEF WINDOWS}
+ //       TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
+//        TrayIcon1.ShowBalloonHint;
+ //     {$ELSE}
+ //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
+ //         ['EWLog', rWelcomeMessageMySQL]);
+ //     {$ENDIF}
       finally
       end;
     end
@@ -1653,13 +1655,13 @@ begin
         LogBookInfoQuery.DataBase := SQLiteDBConnection;
         SQLQuery2.DataBase := SQLiteDBConnection;
         CheckTableQuery.DataBase := SQLiteDBConnection;
-      {$IFDEF WINDOWS}
-        TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
-        TrayIcon1.ShowBalloonHint;
-      {$ELSE}
-        SysUtils.ExecuteProcess('/usr/bin/notify-send',
-          ['EWLog', rWelcomeMessageSQLIte]);
-      {$ENDIF}
+ //     {$IFDEF WINDOWS}
+ //       TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
+ //       TrayIcon1.ShowBalloonHint;
+ //     {$ELSE}
+ //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
+ //         ['EWLog', rWelcomeMessageSQLIte]);
+ //     {$ENDIF}
       finally
       end;
     end;
@@ -2538,7 +2540,7 @@ begin
           StrToFloat(lo1)) / 1000;
       end;
 
-      MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
+      MainForm.Label37.Caption := FormatFloat('0.00', R) + ' KM';
       ////Азимут
       dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
         strtofloat(lo1), qra, azim);
@@ -2572,8 +2574,8 @@ begin
     CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
     CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
     Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-    Label54.Visible:=WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-    Label55.Visible:=WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    Label54.Visible := WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    Label55.Visible := WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;
@@ -5659,28 +5661,29 @@ begin
 end;
 
 procedure TMainForm.MenuItem51Click(Sender: TObject);
+var
+  i, recnom: integer;
 begin
-  if LogBookQuery.RecordCount > 0 then
+ // recnom := 0;
+  if (UnUsIndex <> 0) then
   begin
-    if Application.MessageBox(PChar(rDeleteRecord +
-      DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString + '?!'),
-      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
     begin
-      try
-        with DeleteQSOQuery do
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('DELETE FROM ' + LogTable + ' WHERE UnUsedIndex = ' +
-            IntToStr(DBGrid1.DataSource.DataSet.FieldByName(
-            'UnUsedIndex').AsInteger) + ';');
-          ExecSQL;
-        end;
-      finally
-        SQLTransaction1.Commit;
-        SelDB(CallLogBook);
+      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
+      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+    //  recnom := LOGBookQuery.RecNo;
+      with DeleteQSOQuery do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('DELETE FROM ' + LogTable + ' WHERE `UnUsedIndex`=:UnUsedIndex');
+        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
+        ExecSQL;
       end;
     end;
+    SQLTransaction1.Commit;
+    SelDB(CallLogBook);
+  //  DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 end;
 
@@ -6908,7 +6911,7 @@ end;
 
 procedure TMainForm.Timer3Timer(Sender: TObject);
 begin
-  Panel10.Refresh;
+ Panel10.Refresh;
 end;
 
 procedure TMainForm.TrayIcon1DblClick(Sender: TObject);
