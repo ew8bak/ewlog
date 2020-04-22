@@ -20,9 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="6933"/>
-        <CursorPos X="24" Y="6926"/>
+        <CursorPos X="8" Y="6944"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="2570"/>
@@ -108,9 +107,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="403"/>
-        <CursorPos X="41" Y="476"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="770"/>
+        <CursorPos X="47" Y="783"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit8>
@@ -121,7 +121,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="439"/>
         <CursorPos X="40" Y="457"/>
         <UsageCount Value="200"/>
@@ -289,11 +289,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="472"/>
-        <CursorPos X="3" Y="474"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="404"/>
+        <CursorPos Y="425"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit26>
       <Unit27>
         <Filename Value="setupform_u.pas"/>
@@ -343,7 +344,6 @@
         <CursorPos X="7" Y="81"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="iota_form_u.pas"/>
@@ -559,7 +559,7 @@
       <Unit51>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="16"/>
         <CursorPos X="13" Y="34"/>
         <UsageCount Value="201"/>
@@ -576,7 +576,7 @@
       <Unit53>
         <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="98"/>
         <CursorPos X="33" Y="57"/>
         <UsageCount Value="200"/>
@@ -1106,14 +1106,13 @@
       <Unit123>
         <Filename Value="traceline.pas"/>
         <UnitName Value="TraceLine"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="690"/>
         <CursorPos Y="706"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit123>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="earth_form_u.pas"/>
         <Caret Line="72" TopLine="44"/>
@@ -1140,31 +1139,31 @@
       </Position6>
       <Position7>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6931" Column="2" TopLine="6950"/>
+        <Caret Line="5663" Column="3" TopLine="5595"/>
       </Position7>
       <Position8>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5663" Column="3" TopLine="5595"/>
+        <Caret Line="4887" TopLine="4885"/>
       </Position8>
       <Position9>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4887" TopLine="4885"/>
+        <Caret Line="5680" Column="43" TopLine="5658"/>
       </Position9>
       <Position10>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5680" Column="43" TopLine="5658"/>
+        <Caret Line="6934" Column="37" TopLine="6900"/>
       </Position10>
       <Position11>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6934" Column="37" TopLine="6900"/>
+        <Caret Line="5678" Column="34" TopLine="5663"/>
       </Position11>
       <Position12>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5678" Column="34" TopLine="5663"/>
+        <Caret Line="6508" Column="3" TopLine="6497"/>
       </Position12>
       <Position13>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="5429" Column="51" TopLine="5437"/>
+        <Caret Line="3008" Column="3" TopLine="3006"/>
       </Position13>
       <Position14>
         <Filename Value="mainform_u.pas"/>
@@ -1172,68 +1171,64 @@
       </Position14>
       <Position15>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3008" Column="3" TopLine="3006"/>
+        <Caret Line="6879" Column="3" TopLine="6877"/>
       </Position15>
       <Position16>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6508" Column="3" TopLine="6497"/>
+        <Caret Line="6499" Column="24" TopLine="6491"/>
       </Position16>
       <Position17>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6879" Column="3" TopLine="6877"/>
+        <Caret Line="6914" Column="18" TopLine="6912"/>
       </Position17>
       <Position18>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6499" Column="24" TopLine="6491"/>
+        <Caret Line="4029" Column="28" TopLine="4008"/>
       </Position18>
       <Position19>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6914" Column="18" TopLine="6912"/>
+        <Filename Value="earth_form_u.pas"/>
+        <Caret Line="41" TopLine="30"/>
       </Position19>
       <Position20>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4029" Column="28" TopLine="4008"/>
+        <Caret Line="6920" Column="3" TopLine="6917"/>
       </Position20>
       <Position21>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="41" TopLine="30"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6354" Column="41" TopLine="6346"/>
       </Position21>
       <Position22>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6920" Column="3" TopLine="6917"/>
+        <Caret Line="4029" Column="28" TopLine="4008"/>
       </Position22>
       <Position23>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6354" Column="41" TopLine="6346"/>
+        <Filename Value="earth_form_u.pas"/>
+        <Caret Line="39" Column="34" TopLine="29"/>
       </Position23>
       <Position24>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4029" Column="28" TopLine="4008"/>
+        <Caret Line="544" Column="27" TopLine="533"/>
       </Position24>
       <Position25>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="39" Column="34" TopLine="29"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6353" Column="40" TopLine="6350"/>
       </Position25>
       <Position26>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="544" Column="27" TopLine="533"/>
+        <Filename Value="earth_form_u.pas"/>
+        <Caret Line="81" Column="7" TopLine="50"/>
       </Position26>
       <Position27>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6353" Column="40" TopLine="6350"/>
+        <Caret Line="6920" Column="4" TopLine="6918"/>
       </Position27>
       <Position28>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="81" Column="7" TopLine="50"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="786" Column="5" TopLine="754"/>
       </Position28>
       <Position29>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2543" Column="64" TopLine="3272"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="45" Column="15" TopLine="28"/>
       </Position29>
-      <Position30>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6920" Column="4" TopLine="6918"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

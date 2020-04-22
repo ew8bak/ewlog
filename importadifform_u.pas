@@ -280,7 +280,19 @@ var
   DupeCount: integer;
   ErrorCount, RecCount: integer;
   TempQuery: string;
+  Stream: TMemoryStream;
+  TempFile: string;
+  temp_f: TextFile;
 begin
+   {$IFDEF UNIX}
+  TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +
+    'EWLog' + DirectorySeparator + 'temp.adi';
+  {$ELSE}
+  TempFile := GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + DirectorySeparator +
+    'EWLog' + DirectorySeparator + 'temp.adi';
+  {$ENDIF UNIX}
+
   Button1.Enabled:=False;
   if MainForm.MySQLLOGDBConnection.Connected then
   begin
@@ -294,6 +306,7 @@ begin
   PosEOH := 0;
   PosEOR := 0;
   try
+    Stream := TMemoryStream.Create;
     AssignFile(f, path);
     Reset(f);
     while not (PosEOH > 0) do
@@ -301,7 +314,24 @@ begin
       Readln(f, s);
       PosEOH := Pos('<EOH>', UpperCase(s));
     end;
-    while not (EOF(f)) do
+
+     while not EOF(f) do
+    begin
+      Readln(f, s);
+      s := StringReplace(s, #10, '', [rfReplaceAll]);
+      s := StringReplace(s, #13, '', [rfReplaceAll]);
+      s := StringReplace(UpperCase(s), '<EOR>', '<EOR>'#13#10, [rfReplaceAll]);
+      if Length(s) > 0 then
+      begin
+        Stream.Write(s[1], length(s));
+      end;
+    end;
+    Stream.SaveToFile(TempFile);
+
+    AssignFile(temp_f, TempFile);
+    Reset(temp_f);
+
+    while not (EOF(temp_f)) do
     begin
       try
         paramQSLSent := '';
@@ -382,7 +412,7 @@ begin
         MY_LON := '';
         TempQuery := '';
 
-        Readln(f, s);
+        Readln(temp_f, s);
         if GuessEncoding(s) <> 'utf8' then
           sNAME := CP1251ToUTF8(s);
 
@@ -753,6 +783,8 @@ begin
     lblComplete.Caption := rDone;
     Button1.Enabled := True;
     CloseFile(f);
+    CloseFile(temp_f);
+    Stream.Free;
     MainForm.SelDB(CallLogBook);
     Button1.Enabled:=True;
   end;
