@@ -46,10 +46,12 @@ type
     SpinEdit1: TSpinEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FileNameEdit1EditingDone(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RadioButton1Change(Sender: TObject);
     procedure RIG1Change(Sender: TObject);
     procedure LoadINI;
+    procedure LoadRIG;
     function GetSerialPortNames: string;
   private
     { private declarations }
@@ -71,6 +73,21 @@ uses
 {$R *.lfm}
 
 { TSettingsCAT }
+
+procedure TSettingsCAT.LoadRIG;
+var
+  dev: string;
+begin
+  cbManufacturer.Items.Clear;
+  if (FileExistsUTF8(FileNameEdit1.Text)) then
+  begin
+    dev := IniF.ReadString('TRX' + IntToStr(nTRX), 'model', '');
+    dmFunc.LoadRigsToComboBox(dev, StringReplace(FileNameEdit1.Text,
+      'rigctld', 'rigctl', [rfReplaceAll, rfIgnoreCase]), cbManufacturer);
+  end
+  else
+    ShowMessage(rLibHamLibNotFound);
+end;
 
 procedure TSettingsCAT.LoadINI;
 begin
@@ -132,25 +149,19 @@ begin
 end;
 
 procedure TSettingsCAT.FormShow(Sender: TObject);
-var
-  dev: string;
 begin
   cbCatPort.Items.CommaText := GetSerialPortNames;
-  cbManufacturer.Items.Clear;
-
+   {$IFDEF WINDOWS}
+   FileNameEdit1.Filter:='rigctld.exe|rigctld.exe';
+   {$ELSE}
+   FileNameEdit1.Filter:='rigctld|rigctld;
+   {$ENDIF}
   if RIG1.Checked then
     nTRX := 1
   else
     nTRX := 2;
   FileNameEdit1.Text := IniF.ReadString('TRX' + IntToStr(nTRX), 'RigCtldPath', '');
-  if (FileExistsUTF8(FileNameEdit1.Text)) then
-  begin
-    dev := IniF.ReadString('TRX' + IntToStr(nTRX), 'model', '');
-    dmFunc.LoadRigsToComboBox(dev, StringReplace(FileNameEdit1.Text,
-      'rigctld', 'rigctl', [rfReplaceAll, rfIgnoreCase]), cbManufacturer);
-  end
-  else
-    ShowMessage(rLibHamLibNotFound);
+  LoadRIG;
   LoadINI;
 end;
 
@@ -246,6 +257,11 @@ end;
 procedure TSettingsCAT.Button2Click(Sender: TObject);
 begin
   SettingsCAT.Close;
+end;
+
+procedure TSettingsCAT.FileNameEdit1EditingDone(Sender: TObject);
+begin
+  LoadRIG;
 end;
 
 function TSettingsCAT.GetSerialPortNames: string;

@@ -369,7 +369,6 @@ object SettingsCAT: TSettingsCAT
       Top = 72
       Width = 224
       DialogTitle = 'Path for rigctld'
-      Filter = 'rigctld.exe|rigctld.exe'
       FilterIndex = 0
       HideDirectories = False
       ButtonWidth = 23
@@ -377,6 +376,7 @@ object SettingsCAT: TSettingsCAT
       AutoSize = False
       MaxLength = 0
       TabOrder = 12
+      OnEditingDone = FileNameEdit1EditingDone
     end
     object SpinEdit1: TSpinEdit
       AnchorSideLeft.Control = cbManufacturer
