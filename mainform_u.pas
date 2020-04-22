@@ -567,6 +567,8 @@ type
     columnsGrid: array[0..29] of string;
     columnsWidth: array[0..29] of integer;
     columnsVisible: array[0..29] of boolean;
+    columnsDX: array[0..8] of string;
+    columnsDXWidth: array[0..8] of integer;
     RegisterLog, LoginLog, PassLog: string;
     PhotoDir: string;
     ExportAdifSelect: boolean;
@@ -597,6 +599,7 @@ type
     procedure InitializeDB(dbS: string);
     procedure SelectQSO(grid: boolean);
     procedure SetGrid;
+    procedure SetDXColumns(Save: boolean);
     function GetNewChunk: string;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     function GetModeFromFreq(MHz: string): string;
@@ -1312,6 +1315,35 @@ begin
   end;
 end;
 
+procedure TMainForm.SetDXColumns(Save: boolean);
+var
+  VSTSaveStream: TMemoryStream;
+  FilePATH: string;
+begin
+  {$IFDEF UNIX}
+  FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+  {$ELSE}
+  FilePATH := GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+  {$ENDIF UNIX}
+  try
+    VSTSaveStream := TMemoryStream.Create;
+    if Save then
+    begin
+      VirtualStringTree1.Header.SaveToStream(VSTSaveStream);
+      VSTSaveStream.SaveToFile(FilePATH + 'dxColumns.dat');
+    end
+    else
+    if FileExists(FilePATH + 'dxColumns.dat') then
+    begin
+      VSTSaveStream.LoadFromFile(FilePATH + 'dxColumns.dat');
+      VirtualStringTree1.Header.LoadFromStream(VSTSaveStream);
+    end;
+  finally
+    VSTSaveStream.Free;
+  end;
+end;
+
 procedure TMainForm.SetGrid;
 var
   i: integer;
@@ -1627,13 +1659,13 @@ begin
         LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
         SQLQuery2.DataBase := MySQLLOGDBConnection;
         CheckTableQuery.DataBase := MySQLLOGDBConnection;
- //     {$IFDEF WINDOWS}
- //       TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
-//        TrayIcon1.ShowBalloonHint;
- //     {$ELSE}
- //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
- //         ['EWLog', rWelcomeMessageMySQL]);
- //     {$ENDIF}
+        //     {$IFDEF WINDOWS}
+        //       TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
+        //        TrayIcon1.ShowBalloonHint;
+        //     {$ELSE}
+        //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
+        //         ['EWLog', rWelcomeMessageMySQL]);
+        //     {$ENDIF}
       finally
       end;
     end
@@ -1655,13 +1687,13 @@ begin
         LogBookInfoQuery.DataBase := SQLiteDBConnection;
         SQLQuery2.DataBase := SQLiteDBConnection;
         CheckTableQuery.DataBase := SQLiteDBConnection;
- //     {$IFDEF WINDOWS}
- //       TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
- //       TrayIcon1.ShowBalloonHint;
- //     {$ELSE}
- //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
- //         ['EWLog', rWelcomeMessageSQLIte]);
- //     {$ENDIF}
+        //     {$IFDEF WINDOWS}
+        //       TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
+        //       TrayIcon1.ShowBalloonHint;
+        //     {$ELSE}
+        //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
+        //         ['EWLog', rWelcomeMessageSQLIte]);
+        //     {$ENDIF}
       finally
       end;
     end;
@@ -2025,6 +2057,7 @@ begin
   lastID := LOGBookQuery.RecNo;
   StatusBar1.Panels.Items[1].Text :=
     'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
+ // SetGrid;
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
@@ -2850,7 +2883,6 @@ begin
     else
       CloseAction := caNone;
   end;
-
   //Сохранение размещения колонок
   for i := 0 to 29 do
   begin
@@ -2887,6 +2919,9 @@ begin
   IniF.WriteString('SetLog', 'PastSubMode', ComboBox9.Text);
   IniF.WriteString('SetLog', 'Language', Language);
   IniF.WriteInteger('SetLog', 'StartNum', num_start);
+
+  SetDXColumns(True);
+
   if CheckBox3.Checked = True then
     IniF.WriteString('SetLog', 'UseMAPS', 'YES')
   else
@@ -2990,6 +3025,7 @@ procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
     SelectLogDatabase(LogTable);
+  SetGrid;
 end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
@@ -3682,7 +3718,7 @@ begin
         Data^.Time := Time;
         Data^.Loc := Loc;
         Data^.Country := SearchCountry(DX, False);
-        VirtualStringTree1.Expanded[XNode^.Parent] := False;
+        VirtualStringTree1.Expanded[XNode^.Parent] := ClusterFilter.CheckBox1.Checked;
         FindCountryFlag(Data^.Country);
       end
       else
@@ -3950,6 +3986,7 @@ begin
 
   UnUsIndex := 0;
   SetGrid;
+  SetDXColumns(False);
 
   if ShowTRXForm = False then
     MenuItem88.Checked := True
@@ -5664,14 +5701,14 @@ procedure TMainForm.MenuItem51Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
- // recnom := 0;
+  // recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-    //  recnom := LOGBookQuery.RecNo;
+      //  recnom := LOGBookQuery.RecNo;
       with DeleteQSOQuery do
       begin
         Close;
@@ -5683,7 +5720,7 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-  //  DBGrid1.DataSource.DataSet.RecNo := recnom;
+    //  DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 end;
 
@@ -6911,7 +6948,7 @@ end;
 
 procedure TMainForm.Timer3Timer(Sender: TObject);
 begin
- Panel10.Refresh;
+  Panel10.Refresh;
 end;
 
 procedure TMainForm.TrayIcon1DblClick(Sender: TObject);

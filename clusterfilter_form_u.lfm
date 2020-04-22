@@ -1,7 +1,7 @@
 object ClusterFilter: TClusterFilter
-  Left = 502
+  Left = 493
   Height = 349
-  Top = 167
+  Top = 180
   Width = 508
   BorderStyle = bsDialog
   Caption = 'Cluster Filter'
@@ -185,5 +185,18 @@ object ClusterFilter: TClusterFilter
     Caption = 'Save'
     OnClick = Button2Click
     TabOrder = 4
+  end
+  object CheckBox1: TCheckBox
+    AnchorSideLeft.Control = GroupBox2
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    Left = 170
+    Height = 19
+    Top = 265
+    Width = 77
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 5
+    Caption = 'Expand list'
+    TabOrder = 5
   end
 end

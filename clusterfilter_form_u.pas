@@ -18,6 +18,7 @@ type
     cbSSB: TCheckBox;
     cbCW: TCheckBox;
     cbData: TCheckBox;
+    CheckBox1: TCheckBox;
     CheckListBox1: TCheckListBox;
     Edit1: TEdit;
     Edit2: TEdit;
@@ -69,6 +70,7 @@ begin
   cbCW.Checked := IniF.ReadBool('TelnetCluster', 'DX_CW', True);
   cbSSB.Checked := IniF.ReadBool('TelnetCluster', 'DX_Phone', True);
   cbData.Checked := IniF.ReadBool('TelnetCluster', 'DX_DIGI', True);
+  CheckBox1.Checked := IniF.ReadBool('TelnetCluster', 'Expand', True);
   SpinEdit1.Value := IniF.ReadInteger('TelnetCluster', 'spotDelTime', 15);
 end;
 
@@ -84,6 +86,7 @@ begin
   IniF.WriteBool('TelnetCluster', 'DX_CW', cbCW.Checked);
   IniF.WriteBool('TelnetCluster', 'DX_Phone', cbSSB.Checked);
   IniF.WriteBool('TelnetCluster', 'DX_DIGI', cbData.Checked);
+  IniF.WriteBool('TelnetCluster', 'Expand', CheckBox1.Checked);
   IniF.WriteString('TelnetCluster', 'CWMode', Edit1.Text);
   IniF.WriteString('TelnetCluster', 'PhoneMode', Edit2.Text);
   IniF.WriteString('TelnetCluster', 'DIGIMode', Edit3.Text);

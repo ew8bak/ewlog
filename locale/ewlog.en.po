@@ -1240,6 +1240,10 @@ msgctxt "tclusterfilter.cbssb.caption"
 msgid "SSB"
 msgstr ""
 
+#: tclusterfilter.checkbox1.caption
+msgid "Expand list"
+msgstr ""
+
 #: tclusterfilter.edit1.text
 msgid ":CW:"
 msgstr ""

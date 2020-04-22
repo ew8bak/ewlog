@@ -40,6 +40,12 @@ const
 
   min_sqlite_version = '3.24.0';
   curr_sqlite_version = '3.31.1';
+
+ { constDXColName: array [0..8] of string =
+    ('Band','DX','Spotter','Frequency', 'Mode', 'Comment', 'UTC', 'Grid', 'Country');
+  constDXColWidth: array [0..8] of Integer =
+    (70, 70, 90, 70, 50, 100, 40, 70, 150); }
+
   etalonField: array [0..56] of string =
     ('UnUsedIndex', 'CallSign', 'QSODate', 'QSOTime', 'QSOBand', 'QSOMode',
     'QSOReportSent', 'QSOReportRecived', 'OMName',
