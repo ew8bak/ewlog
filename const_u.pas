@@ -10,10 +10,26 @@ uses
 const
   view_freq = '0.000"."00';
 
+  {$IFDEF WIN64}
+const
+  DownPATHssl: string = 'https://update.ewlog.ru/';
+  DownPATH: string = 'http://notsslupdate.ewlog.ru/';
+  DownEXE: string = 'setup_ewlog_x64.exe';
+  DownEXEXP: string = 'setup_ewlog_x86_xp.exe';
+  {$ELSE}
+const
+  DownPATHssl: string = 'https://update.ewlog.ru/';
+  DownPATH: string = 'http://notsslupdate.ewlog.ru/';
+  DownEXE: string = 'setup_ewlog_x86.exe';
+  DownEXEXP: string = 'setup_ewlog_x86_xp.exe';
+  {$ENDIF WIN64}
+  DownLocaleURL = 'https://update.ewlog.ru/locale.zip';
+
   port_udp: array [0..5] of integer = (49153, 49155, 49157, 49159, 49161, 52300);
   port_tcp: array [0..5] of integer = (49154, 49156, 49158, 49160, 49162, 52301);
 
-  bandsCW: array [0..23] of string = ('77500', '47000', '24000', '10000', '5650', '3400', '2300',
+  bandsCW: array [0..23] of string =
+    ('77500', '47000', '24000', '10000', '5650', '3400', '2300',
     '1295.15', '432.1', '144.05', '70.05', '50.1', '28.05',
     '24.916', '21.05', '18.07', '14.025', '10.1', '7.02', '5.2', '3.52',
     '1.8', '0.48', '0.139');
@@ -30,11 +46,13 @@ const
     '24.932', '21.2', '18.1', '14.15', '10.1', '7.055', '5.2', '3.6',
     '1.85', '0.48', '0.139');
 
-  bandsMm: array [0..23] of string = ('4MM', '6MM', '1.25CM', '3CM', '6CM', '9CM', '13CM', '23CM',
+  bandsMm: array [0..23] of string =
+    ('4MM', '6MM', '1.25CM', '3CM', '6CM', '9CM', '13CM', '23CM',
     '70CM', '2M', '4M', '6M', '10M', '12M', '15M', '17M',
     '20M', '30M', '40M', '60M', '80M', '160M', '630M', '2190M');
 
-  bandsHz: array [0..23]  of string = ('84000', '47200', '24250', '10500', '5850', '3475', '2450',
+  bandsHz: array [0..23] of string =
+    ('84000', '47200', '24250', '10500', '5850', '3475', '2450',
     '1300', '430', '144', '72', '53', '28', '24', '21', '18',
     '14', '10', '7', '5.2', '3.5', '1.8', '0.48', '0.139');
 

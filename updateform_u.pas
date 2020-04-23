@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, LazUTF8, StdCtrls,
   ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} httpsend,
-  blcksock, synautil, ResourceStr;
+  blcksock, synautil, ResourceStr, const_u;
 const
   {$IFDEF WIN64}
   type_os = 'Windows x64';
@@ -56,19 +56,6 @@ type
 
     { private declarations }
   public
-    {$IFDEF WIN64}
-  const
-    DownPATHssl: string = 'https://update.ewlog.ru/';
-    DownPATH: string = 'http://notsslupdate.ewlog.ru/';
-    DownEXE: string = 'setup_ewlog_x64.exe';
-    DownEXEXP: string = 'setup_ewlog_x86_xp.exe';
-  {$ELSE}
-  const
-    DownPATHssl: string = 'https://update.ewlog.ru/';
-    DownPATH: string = 'http://notsslupdate.ewlog.ru/';
-    DownEXE: string = 'setup_ewlog_x86.exe';
-    DownEXEXP: string = 'setup_ewlog_x86_xp.exe';
-  {$ENDIF WIN64}
     { public declarations }
   end;
 

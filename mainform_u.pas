@@ -4662,7 +4662,7 @@ begin
   HTTP := THTTPSend.Create;
   UnZipper := TUnZipper.Create;
   try
-    if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/locale.zip') then
+    if HTTP.HTTPMethod('GET', DownLocaleURL) then
       HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator +
         'locale.zip');
   finally
