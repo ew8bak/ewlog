@@ -5,7 +5,7 @@ unit SettingsCAT_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, Process,
   EditBtn, Spin, SimpleXML, LazFileUtils, synaser {$IFDEF UNIX}, baseunix {$ENDIF};
 
 resourcestring
@@ -46,7 +46,7 @@ type
     SpinEdit1: TSpinEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure FileNameEdit1EditingDone(Sender: TObject);
+    procedure FileNameEdit1Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RadioButton1Change(Sender: TObject);
     procedure RIG1Change(Sender: TObject);
@@ -155,6 +155,8 @@ begin
    FileNameEdit1.Filter:='rigctld.exe|rigctld.exe';
    {$ELSE}
    FileNameEdit1.Filter:='rigctld|rigctld;
+   if Length(FileNameEdit1.Text) = 0 then
+   RunCommand('/bin/bash',['-c','which rigctld'], FileNameEdit1.Text)
    {$ENDIF}
   if RIG1.Checked then
     nTRX := 1
@@ -259,9 +261,10 @@ begin
   SettingsCAT.Close;
 end;
 
-procedure TSettingsCAT.FileNameEdit1EditingDone(Sender: TObject);
+procedure TSettingsCAT.FileNameEdit1Change(Sender: TObject);
 begin
-  LoadRIG;
+if Length(FileNameEdit1.Text) > 0 then
+   LoadRIG;
 end;
 
 function TSettingsCAT.GetSerialPortNames: string;

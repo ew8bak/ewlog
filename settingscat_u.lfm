@@ -376,7 +376,7 @@ object SettingsCAT: TSettingsCAT
       AutoSize = False
       MaxLength = 0
       TabOrder = 12
-      OnEditingDone = FileNameEdit1EditingDone
+      OnChange = FileNameEdit1Change
     end
     object SpinEdit1: TSpinEdit
       AnchorSideLeft.Control = cbManufacturer

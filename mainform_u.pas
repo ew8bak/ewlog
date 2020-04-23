@@ -13,7 +13,7 @@ uses
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
   FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
   Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u,
-  SetupSQLquery, Types;
+  SetupSQLquery, Types, LazFileUtils;
 
 type
 
@@ -1334,7 +1334,7 @@ begin
       VSTSaveStream.SaveToFile(FilePATH + 'dxColumns.dat');
     end
     else
-    if FileExists(FilePATH + 'dxColumns.dat') then
+    if FileExistsUTF8(FilePATH + 'dxColumns.dat') then
     begin
       VSTSaveStream.LoadFromFile(FilePATH + 'dxColumns.dat');
       VirtualStringTree1.Header.LoadFromStream(VSTSaveStream);
