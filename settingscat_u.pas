@@ -149,20 +149,27 @@ begin
 end;
 
 procedure TSettingsCAT.FormShow(Sender: TObject);
+var
+  s: string;
 begin
   cbCatPort.Items.CommaText := GetSerialPortNames;
+  FileNameEdit1.Text := IniF.ReadString('TRX' + IntToStr(nTRX), 'RigCtldPath', '');
    {$IFDEF WINDOWS}
-   FileNameEdit1.Filter:='rigctld.exe|rigctld.exe';
+  FileNameEdit1.Filter := 'rigctld.exe|rigctld.exe';
    {$ELSE}
-   FileNameEdit1.Filter:='rigctld|rigctld;
-   if Length(FileNameEdit1.Text) = 0 then
-   RunCommand('/bin/bash',['-c','which rigctld'], FileNameEdit1.Text)
+  FileNameEdit1.Filter := 'rigctld|rigctld';
+  if Length(FileNameEdit1.Text) = 0 then
+    if RunCommand('/bin/bash', ['-c', 'which rigctld'], s) then
+    begin
+      s := StringReplace(s, #10, '', [rfReplaceAll]);
+      s := StringReplace(s, #13, '', [rfReplaceAll]);
+      FileNameEdit1.Text := s;
+    end;
    {$ENDIF}
   if RIG1.Checked then
     nTRX := 1
   else
     nTRX := 2;
-  FileNameEdit1.Text := IniF.ReadString('TRX' + IntToStr(nTRX), 'RigCtldPath', '');
   LoadRIG;
   LoadINI;
 end;
@@ -263,8 +270,8 @@ end;
 
 procedure TSettingsCAT.FileNameEdit1Change(Sender: TObject);
 begin
-if Length(FileNameEdit1.Text) > 0 then
-   LoadRIG;
+  if Length(FileNameEdit1.Text) > 0 then
+    LoadRIG;
 end;
 
 function TSettingsCAT.GetSerialPortNames: string;

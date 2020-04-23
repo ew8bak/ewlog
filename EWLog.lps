@@ -108,8 +108,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="301"/>
-        <CursorPos X="40" Y="793"/>
+        <TopLine Value="305"/>
+        <CursorPos X="63" Y="322"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit8>
@@ -220,8 +220,8 @@
         <UnitName Value="SettingsCAT_U"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="142"/>
-        <CursorPos X="69" Y="159"/>
+        <TopLine Value="145"/>
+        <CursorPos X="56" Y="160"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1117,123 +1117,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1320" Column="33" TopLine="1318"/>
+        <Caret Line="6955" Column="57" TopLine="6934"/>
       </Position1>
       <Position2>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3982" Column="15" TopLine="3954"/>
+        <Caret Line="2910" Column="44" TopLine="2893"/>
       </Position2>
       <Position3>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6955" Column="57" TopLine="6934"/>
+        <Caret Line="602" Column="15" TopLine="586"/>
       </Position3>
       <Position4>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2910" Column="44" TopLine="2893"/>
+        <Caret Line="6949" Column="19" TopLine="6915"/>
       </Position4>
       <Position5>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="602" Column="15" TopLine="586"/>
+        <Caret Line="602" Column="27" TopLine="587"/>
       </Position5>
       <Position6>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="6949" Column="19" TopLine="6915"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="72" Column="75" TopLine="45"/>
       </Position6>
       <Position7>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="602" Column="27" TopLine="587"/>
+        <Caret Line="1334" Column="58" TopLine="1316"/>
       </Position7>
       <Position8>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="72" Column="75" TopLine="45"/>
+        <Caret Line="73" Column="75" TopLine="46"/>
       </Position8>
       <Position9>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1334" Column="58" TopLine="1316"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="117" Column="3" TopLine="91"/>
       </Position9>
       <Position10>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="73" Column="75" TopLine="46"/>
+        <Caret Line="37" Column="15" TopLine="21"/>
       </Position10>
       <Position11>
-        <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="117" Column="3" TopLine="91"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3719" Column="91" TopLine="3692"/>
       </Position11>
       <Position12>
-        <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="37" Column="15" TopLine="21"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3614" Column="15" TopLine="3596"/>
       </Position12>
       <Position13>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3719" Column="91" TopLine="3692"/>
+        <Caret Line="3620" Column="44" TopLine="3597"/>
       </Position13>
       <Position14>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3614" Column="15" TopLine="3596"/>
+        <Caret Line="3613" TopLine="3601"/>
       </Position14>
       <Position15>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3620" Column="44" TopLine="3597"/>
+        <Caret Line="624" Column="20" TopLine="610"/>
       </Position15>
       <Position16>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3613" TopLine="3601"/>
+        <Caret Line="3612" Column="5" TopLine="3608"/>
       </Position16>
       <Position17>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="624" Column="20" TopLine="610"/>
+        <Caret Line="3026" Column="18" TopLine="3023"/>
       </Position17>
       <Position18>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3612" Column="5" TopLine="3608"/>
+        <Caret Line="592" Column="15" TopLine="577"/>
       </Position18>
       <Position19>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3026" Column="18" TopLine="3023"/>
+        <Caret Line="2060" Column="5" TopLine="2029"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="592" Column="15" TopLine="577"/>
+        <Filename Value="settingscat_u.pas"/>
+        <Caret Line="147" Column="7" TopLine="113"/>
       </Position20>
       <Position21>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2060" Column="5" TopLine="2029"/>
+        <Filename Value="settingscat_u.pas"/>
+        <Caret Line="81" Column="35" TopLine="67"/>
       </Position21>
       <Position22>
         <Filename Value="settingscat_u.pas"/>
-        <Caret Line="147" Column="7" TopLine="113"/>
+        <Caret Line="77" Column="31" TopLine="59"/>
       </Position22>
       <Position23>
         <Filename Value="settingscat_u.pas"/>
-        <Caret Line="81" Column="35" TopLine="67"/>
+        <Caret Line="270" Column="56" TopLine="267"/>
       </Position23>
       <Position24>
         <Filename Value="settingscat_u.pas"/>
-        <Caret Line="77" Column="31" TopLine="59"/>
+        <Caret Line="259" Column="23" TopLine="238"/>
       </Position24>
       <Position25>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="270" Column="56" TopLine="267"/>
-      </Position25>
-      <Position26>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="259" Column="23" TopLine="238"/>
-      </Position26>
-      <Position27>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="3028" Column="11" TopLine="3008"/>
-      </Position27>
-      <Position28>
+      </Position25>
+      <Position26>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="602" Column="23" TopLine="586"/>
+      </Position26>
+      <Position27>
+        <Filename Value="settingscat_u.pas"/>
+        <Caret Line="264" Column="12" TopLine="70"/>
+      </Position27>
+      <Position28>
+        <Filename Value="settingscat_u.pas"/>
+        <Caret Line="153" Column="51" TopLine="142"/>
       </Position28>
       <Position29>
         <Filename Value="settingscat_u.pas"/>
-        <Caret Line="264" Column="12" TopLine="70"/>
+        <Caret Line="157" Column="43" TopLine="140"/>
       </Position29>
       <Position30>
         <Filename Value="settingscat_u.pas"/>
-        <Caret Line="87" Column="24" TopLine="118"/>
+        <Caret Line="159" Column="71" TopLine="142"/>
       </Position30>
     </JumpHistory>
     <RunParams>
