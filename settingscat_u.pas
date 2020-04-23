@@ -163,6 +163,7 @@ begin
     begin
       s := StringReplace(s, #10, '', [rfReplaceAll]);
       s := StringReplace(s, #13, '', [rfReplaceAll]);
+      if Length(s) <> 0 then
       FileNameEdit1.Text := s;
     end;
    {$ENDIF}

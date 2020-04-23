@@ -4044,7 +4044,7 @@ begin
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       SetupForm.Show;
   end;
-
+  {$IFDEF WINDOWS}
   if not dmFunc.CheckSQLiteVersion(sqlite_version) then
     if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
       rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
@@ -4052,6 +4052,15 @@ begin
       'sqlite3.dll'), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
+  {$ELSE}
+    if not dmFunc.CheckSQLiteVersion(sqlite_version) then
+    if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
+      rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
+      rPath + ':' + #10#13 + ExtractFileDir(ParamStr(0)) + DirectorySeparator +
+      'sqlite3.dll'), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
+      MB_ICONWARNING) = idYes then
+      OpenURL('https://www.sqlite.org/download.html');
+  {$ENDIF}
 
   if useMAPS = 'YES' then
     CheckBox3.Checked := True
