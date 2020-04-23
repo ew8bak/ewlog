@@ -153,6 +153,10 @@ var
   s: string;
 begin
   cbCatPort.Items.CommaText := GetSerialPortNames;
+  if RIG1.Checked then
+    nTRX := 1
+  else
+    nTRX := 2;
   FileNameEdit1.Text := IniF.ReadString('TRX' + IntToStr(nTRX), 'RigCtldPath', '');
    {$IFDEF WINDOWS}
   FileNameEdit1.Filter := 'rigctld.exe|rigctld.exe';
@@ -164,13 +168,9 @@ begin
       s := StringReplace(s, #10, '', [rfReplaceAll]);
       s := StringReplace(s, #13, '', [rfReplaceAll]);
       if Length(s) <> 0 then
-      FileNameEdit1.Text := s;
+        FileNameEdit1.Text := s;
     end;
    {$ENDIF}
-  if RIG1.Checked then
-    nTRX := 1
-  else
-    nTRX := 2;
   LoadRIG;
   LoadINI;
 end;

@@ -20,9 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="4044"/>
-        <CursorPos X="46" Y="4064"/>
+        <TopLine Value="4034"/>
+        <CursorPos X="55" Y="4049"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="2599"/>
@@ -220,8 +219,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="143"/>
-        <CursorPos X="12" Y="168"/>
+        <TopLine Value="142"/>
+        <CursorPos X="32" Y="156"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -236,10 +235,12 @@
       <Unit21>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="465"/>
-        <CursorPos X="44" Y="475"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="151"/>
+        <CursorPos X="43" Y="126"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit21>
       <Unit22>
         <Filename Value="trxform_u.pas"/>
@@ -248,10 +249,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="415"/>
-        <CursorPos X="57" Y="431"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="257"/>
+        <CursorPos Y="281"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit22>
       <Unit23>
         <Filename Value="hrdlog.pas"/>
@@ -579,7 +582,7 @@
         <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="97"/>
+        <TopLine Value="96"/>
         <CursorPos X="33" Y="57"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -635,7 +638,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="3" Y="35"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="164"/>
       </Unit59>
       <Unit60>
         <Filename Value="getphotofrominternet.pas"/>
@@ -643,7 +646,7 @@
         <UnitName Value="GetPhotoFromInternet"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="51" Y="42"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="145"/>
       </Unit60>
       <Unit61>
         <Filename Value="getinfofrominternetthread.pas"/>
@@ -652,7 +655,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="10" Y="59"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="140"/>
       </Unit61>
       <Unit62>
         <Filename Value="viewphoto_u.pas"/>
@@ -663,7 +666,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="17" Y="18"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="106"/>
       </Unit62>
       <Unit63>
         <Filename Value="RegExpr.pas"/>
@@ -1117,123 +1120,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3614" Column="15" TopLine="3596"/>
+        <Caret Line="642" Column="63" TopLine="614"/>
       </Position1>
       <Position2>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3620" Column="44" TopLine="3597"/>
+        <Caret Line="676" Column="9" TopLine="648"/>
       </Position2>
       <Position3>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3613" TopLine="3601"/>
+        <Caret Line="1787" Column="55" TopLine="1753"/>
       </Position3>
       <Position4>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="624" Column="20" TopLine="610"/>
+        <Caret Line="1802" Column="55" TopLine="1774"/>
       </Position4>
       <Position5>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3612" Column="5" TopLine="3608"/>
+        <Caret Line="4071" Column="12" TopLine="4041"/>
       </Position5>
       <Position6>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3026" Column="18" TopLine="3023"/>
+        <Caret Line="234" Column="30" TopLine="227"/>
       </Position6>
       <Position7>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="592" Column="15" TopLine="577"/>
+        <Filename Value="settingscat_u.pas"/>
+        <Caret Line="168" Column="12" TopLine="188"/>
       </Position7>
       <Position8>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2060" Column="5" TopLine="2029"/>
+        <Filename Value="settingscat_u.pas"/>
+        <Caret Line="198" Column="3" TopLine="149"/>
       </Position8>
       <Position9>
         <Filename Value="settingscat_u.pas"/>
-        <Caret Line="147" Column="7" TopLine="113"/>
+        <Caret Line="53" Column="15" TopLine="37"/>
       </Position9>
       <Position10>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="81" Column="35" TopLine="67"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="432" Column="46" TopLine="310"/>
       </Position10>
       <Position11>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="77" Column="31" TopLine="59"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="156" Column="5" TopLine="140"/>
       </Position11>
       <Position12>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="270" Column="56" TopLine="267"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="281" TopLine="257"/>
       </Position12>
       <Position13>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="259" Column="23" TopLine="238"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="95" Column="15" TopLine="80"/>
       </Position13>
       <Position14>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3028" Column="11" TopLine="3008"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="325" TopLine="318"/>
       </Position14>
       <Position15>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="602" Column="23" TopLine="586"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="31" Column="10" TopLine="14"/>
       </Position15>
       <Position16>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="264" Column="12" TopLine="70"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="309" Column="24" TopLine="281"/>
       </Position16>
       <Position17>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="153" Column="51" TopLine="142"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="314" Column="24" TopLine="286"/>
       </Position17>
       <Position18>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="157" Column="43" TopLine="140"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="320" Column="19" TopLine="292"/>
       </Position18>
       <Position19>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="159" Column="71" TopLine="142"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="325" Column="19" TopLine="297"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="146" Column="25" TopLine="137"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="372" Column="20" TopLine="344"/>
       </Position20>
       <Position21>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="203" Column="33" TopLine="175"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="375" Column="18" TopLine="347"/>
       </Position21>
       <Position22>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="204" Column="32" TopLine="176"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="387" Column="20" TopLine="359"/>
       </Position22>
       <Position23>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="206" Column="11" TopLine="178"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="390" Column="18" TopLine="362"/>
       </Position23>
       <Position24>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="508" Column="21" TopLine="480"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="402" Column="20" TopLine="374"/>
       </Position24>
       <Position25>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="642" Column="63" TopLine="614"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="405" Column="18" TopLine="377"/>
       </Position25>
       <Position26>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="676" Column="9" TopLine="648"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="437" TopLine="415"/>
       </Position26>
       <Position27>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1787" Column="55" TopLine="1753"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="281" TopLine="257"/>
       </Position27>
       <Position28>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1802" Column="55" TopLine="1774"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="325" TopLine="308"/>
       </Position28>
       <Position29>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="4071" Column="12" TopLine="4041"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="281" TopLine="257"/>
       </Position29>
       <Position30>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="234" Column="30" TopLine="227"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="437" TopLine="417"/>
       </Position30>
     </JumpHistory>
     <RunParams>
