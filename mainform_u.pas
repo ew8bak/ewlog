@@ -13,7 +13,7 @@ uses
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
   FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
   Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u,
-  SetupSQLquery, Types, LazFileUtils;
+  SetupSQLquery, Types, LazFileUtils, process;
 
 type
 
@@ -4033,6 +4033,8 @@ begin
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
+var
+  s: string;
 begin
   if (_l <> 0) and (_t <> 0) and (_w <> 0) and (_h <> 0) then
     MainForm.SetBounds(_l, _t, _w, _h);
@@ -4053,13 +4055,18 @@ begin
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
   {$ELSE}
-    if not dmFunc.CheckSQLiteVersion(sqlite_version) then
-    if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
+    if not dmFunc.CheckSQLiteVersion(sqlite_version) then begin
+      if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
+    begin
+      if Length(s) < 5 then
+      s:='/lib/'
+      end;
+      if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
       rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
-      rPath + ':' + #10#13 + ExtractFileDir(ParamStr(0)) + DirectorySeparator +
-      'sqlite3.dll'), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
+      rPath + ':' + #10#13 + s), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
+    end;
   {$ENDIF}
 
   if useMAPS = 'YES' then
