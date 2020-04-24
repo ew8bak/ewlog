@@ -408,6 +408,7 @@
         <CursorPos X="12" Y="87"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit35>
       <Unit36>
         <Filename Value="state_form_u.pas"/>
@@ -1116,7 +1117,7 @@
         <UsageCount Value="10"/>
       </Unit123>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="26" HistoryIndex="25">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="1802" Column="55" TopLine="1774"/>
@@ -1195,48 +1196,32 @@
       </Position19>
       <Position20>
         <Filename Value="sendtelnetspot_form_u.pas"/>
-        <Caret Line="8" Column="85" TopLine="22"/>
+        <Caret Line="37" Column="23" TopLine="19"/>
       </Position20>
       <Position21>
-        <Filename Value="sendtelnetspot_form_u.pas"/>
-        <Caret Line="37" Column="23" TopLine="19"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6607" Column="44" TopLine="6595"/>
       </Position21>
       <Position22>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6607" Column="44" TopLine="6595"/>
+        <Caret Line="6442" Column="3" TopLine="6439"/>
       </Position22>
       <Position23>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="6442" Column="3" TopLine="6439"/>
+        <Caret Line="615" Column="15" TopLine="600"/>
       </Position23>
       <Position24>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4039" Column="3" TopLine="4056"/>
+        <Caret Line="616" Column="15" TopLine="600"/>
       </Position24>
       <Position25>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="3905" Column="3" TopLine="3922"/>
+        <Caret Line="3802" Column="28" TopLine="3778"/>
       </Position25>
       <Position26>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="615" Column="15" TopLine="600"/>
-      </Position26>
-      <Position27>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3764" TopLine="3786"/>
-      </Position27>
-      <Position28>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="616" Column="15" TopLine="600"/>
-      </Position28>
-      <Position29>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="3802" Column="28" TopLine="3778"/>
-      </Position29>
-      <Position30>
         <Filename Value="clusterserver_form_u.pas"/>
         <Caret Line="57" Column="45" TopLine="57"/>
-      </Position30>
+      </Position26>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
