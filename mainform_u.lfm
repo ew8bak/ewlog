@@ -2735,17 +2735,17 @@ object MainForm: TMainForm
           Height = 261
           Top = 1
           Width = 728
-          ActivePage = TabSheet2
+          ActivePage = TabSheet1
           Align = alClient
           Font.Height = -13
           ParentFont = False
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
-            ClientHeight = 249
-            ClientWidth = 716
+            ClientHeight = 231
+            ClientWidth = 720
             object Memo1: TMemo
               Left = 0
               Height = 180

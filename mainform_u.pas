@@ -613,6 +613,7 @@ type
       var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
     procedure InitIni;
+    procedure InitClusterINI;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
     procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
@@ -3686,7 +3687,7 @@ begin
           '23CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[16];
           '13CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[17];
           '9CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[18];
-          '6CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[29];
+          '6CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[19];
           '3CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[20];
           '1.25CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[21];
           '6MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[22];
@@ -3761,9 +3762,44 @@ begin
   end;
 end;
 
-procedure TMainForm.InitIni;
+procedure TMainForm.InitClusterINI;
 var
   i, j: integer;
+begin
+   LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
+      PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
+
+      for i := 1 to 9 do
+      begin
+        TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' +
+          IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
+      end;
+      TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
+        'FREERC -> dx.freerc.ru:8000');
+      ComboBox3.Items.Clear;
+      ComboBox3.Items.AddStrings(TelStr);
+      if ComboBox3.Items.IndexOf(TelName) > -1 then
+        ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
+      else
+        ComboBox3.ItemIndex := 0;
+
+      ComboBox8.Items.Clear;
+      ComboBox8.Items.AddStrings(TelStr);
+      if ComboBox8.Items.IndexOf(TelName) > -1 then
+        ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
+      else
+        ComboBox8.ItemIndex := 0;
+
+      i := pos('>', ComboBox3.Text);
+      j := pos(':', ComboBox3.Text);
+      //Сервер
+      HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
+      Delete(HostCluster, 1, 1);
+      //Порт
+      PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
+end;
+
+procedure TMainForm.InitIni;
 begin
   try
     InitLog_DB := INiF.ReadString('SetLog', 'LogBookInit', '');
@@ -3798,37 +3834,6 @@ begin
         exit;
       end;
 
-      LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
-      PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
-
-      for i := 1 to 9 do
-      begin
-        TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' +
-          IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
-      end;
-      TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
-        'FREERC -> dx.freerc.ru:8000');
-      ComboBox3.Items.Clear;
-      ComboBox3.Items.AddStrings(TelStr);
-      if ComboBox3.Items.IndexOf(TelName) > -1 then
-        ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
-      else
-        ComboBox3.ItemIndex := 0;
-
-      ComboBox8.Items.Clear;
-      ComboBox8.Items.AddStrings(TelStr);
-      if ComboBox8.Items.IndexOf(TelName) > -1 then
-        ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
-      else
-        ComboBox8.ItemIndex := 0;
-
-      i := pos('>', ComboBox3.Text);
-      j := pos(':', ComboBox3.Text);
-      //Сервер
-      HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
-      Delete(HostCluster, 1, 1);
-      //Порт
-      PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
       fl_path := IniF.ReadString('FLDIGI', 'FldigiPATH', '');
       wsjt_path := IniF.ReadString('WSJT', 'WSJTPATH', '');
       FLDIGI_USE := IniF.ReadString('FLDIGI', 'USEFLDIGI', '');
@@ -3945,6 +3950,7 @@ begin
   end;
 
   InitIni;
+  InitClusterINI;
   lastUDPport := -1;
   lastTCPport := -1;
   LTCPComponent1.ReuseAddress := True;

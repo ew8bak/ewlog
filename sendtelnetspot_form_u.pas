@@ -5,7 +5,8 @@ unit sendtelnetspot_form_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, const_u;
+
 resourcestring
   rNotAllData = 'Not all data entered';
 
@@ -33,35 +34,41 @@ var
   SendTelnetSpot: TSendTelnetSpot;
 
 implementation
+
 uses
-  MainForm_U;
+  MainForm_U, dmFunc_U;
+
 {$R *.lfm}
 
 { TSendTelnetSpot }
 
 procedure TSendTelnetSpot.FormShow(Sender: TObject);
 begin
-ComboBox1.Text:=MainForm.ComboBox1.Text;
-Edit1.Text:=MainForm.EditButton1.Text;
+  if Pos('M', MainForm.ComboBox1.Text) > 0 then
+    ComboBox1.Text := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+      MainForm.ComboBox1.Text, MainForm.ComboBox2.Text))
+  else
+    ComboBox1.Text := MainForm.ComboBox1.Text;
+  Edit1.Text := MainForm.EditButton1.Text;
 end;
 
 procedure TSendTelnetSpot.Button1Click(Sender: TObject);
-  var
+var
   freq, call, comment: string;
   freq2: double;
 begin
-if (Edit1.Text <> '') and (Edit2.Text <> '') and (ComboBox1.Text <> '') then begin
-  call:=Edit1.Text;
-  freq:=ComboBox1.Text;
-  comment:=Edit2.Text;
-  delete(freq, length(freq)-2, 1);
-  freq2:=StrToFloat(freq);
-  MainForm.SendSpot(FloatToStr(freq2*1000), call, comment, '', '', '');
-  SendTelnetSpot.Close;
-end
-else
-ShowMessage(rNotAllData);
+  if (Edit1.Text <> '') and (Edit2.Text <> '') and (ComboBox1.Text <> '') then
+  begin
+    call := Edit1.Text;
+    freq := ComboBox1.Text;
+    comment := Edit2.Text;
+    Delete(freq, length(freq) - 2, 1);
+    freq2 := StrToFloat(freq);
+    MainForm.SendSpot(FloatToStr(freq2 * 1000), call, comment, '', '', '');
+    SendTelnetSpot.Close;
+  end
+  else
+    ShowMessage(rNotAllData);
 end;
 
 end.
-

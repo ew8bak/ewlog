@@ -84,6 +84,7 @@ begin
   PortArray[i]:=StringGrid1.Cells[2,i];
   IniF.WriteString('TelnetCluster','Server'+IntToStr(i),NameArray[i]+HostArray[i]+PortArray[i]);
   end;
+  MainForm.InitClusterINI;
   ClusterServer_Form.Close;
 end;
 

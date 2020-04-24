@@ -20,12 +20,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="4649"/>
-        <CursorPos X="44" Y="4665"/>
+        <TopLine Value="3755"/>
+        <CursorPos X="35" Y="3765"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
-          <Item0 Y="2599"/>
+          <Item0 Y="2600"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -108,7 +107,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="305"/>
         <CursorPos X="63" Y="322"/>
         <UsageCount Value="200"/>
@@ -121,7 +120,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="439"/>
         <CursorPos X="40" Y="457"/>
         <UsageCount Value="200"/>
@@ -219,12 +218,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="142"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="136"/>
         <CursorPos X="32" Y="156"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit19>
       <Unit20>
         <Filename Value="rig.pas"/>
@@ -291,7 +289,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="404"/>
         <CursorPos Y="425"/>
         <UsageCount Value="200"/>
@@ -316,11 +314,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <CursorPos X="43" Y="10"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit28>
       <Unit29>
         <Filename Value="changelog_form_u.pas"/>
@@ -341,7 +338,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Earth_Form_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="50"/>
         <CursorPos X="7" Y="81"/>
         <UsageCount Value="202"/>
@@ -378,10 +375,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="sendtelnetspot_form_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="24"/>
-        <CursorPos X="24" Y="63"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="40"/>
+        <CursorPos X="42" Y="56"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit33>
       <Unit34>
         <Filename Value="clusterfilter_form_u.pas"/>
@@ -390,9 +389,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterFilter_Form_U"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="64"/>
-        <CursorPos X="20" Y="73"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="12"/>
+        <CursorPos X="95" Y="82"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit34>
@@ -403,10 +402,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterServer_Form_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="42"/>
-        <CursorPos X="3" Y="81"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="56"/>
+        <CursorPos X="12" Y="87"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit35>
       <Unit36>
         <Filename Value="state_form_u.pas"/>
@@ -562,9 +563,9 @@
       <Unit51>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="9"/>
-        <CursorPos X="43" Y="21"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="21"/>
+        <CursorPos X="47" Y="44"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit51>
@@ -579,9 +580,9 @@
       <Unit53>
         <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="96"/>
-        <CursorPos X="33" Y="57"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="53"/>
+        <CursorPos X="29" Y="78"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit53>
@@ -636,7 +637,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="3" Y="35"/>
-        <UsageCount Value="164"/>
+        <UsageCount Value="166"/>
       </Unit59>
       <Unit60>
         <Filename Value="getphotofrominternet.pas"/>
@@ -644,7 +645,7 @@
         <UnitName Value="GetPhotoFromInternet"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="51" Y="42"/>
-        <UsageCount Value="145"/>
+        <UsageCount Value="147"/>
       </Unit60>
       <Unit61>
         <Filename Value="getinfofrominternetthread.pas"/>
@@ -653,7 +654,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="10" Y="59"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="142"/>
       </Unit61>
       <Unit62>
         <Filename Value="viewphoto_u.pas"/>
@@ -664,7 +665,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="17" Y="18"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="108"/>
       </Unit62>
       <Unit63>
         <Filename Value="RegExpr.pas"/>
@@ -1067,7 +1068,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="186"/>
         <CursorPos Y="203"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="10"/>
       </Unit117>
       <Unit118>
         <Filename Value="C:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
@@ -1115,51 +1116,127 @@
         <UsageCount Value="10"/>
       </Unit123>
     </Units>
-    <JumpHistory Count="11" HistoryIndex="10">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="642" Column="63" TopLine="614"/>
+        <Caret Line="1802" Column="55" TopLine="1774"/>
       </Position1>
       <Position2>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="676" Column="9" TopLine="648"/>
+        <Caret Line="4071" Column="12" TopLine="4041"/>
       </Position2>
       <Position3>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1787" Column="55" TopLine="1753"/>
+        <Caret Line="234" Column="30" TopLine="227"/>
       </Position3>
       <Position4>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1802" Column="55" TopLine="1774"/>
+        <Filename Value="settingscat_u.pas"/>
+        <Caret Line="198" Column="3" TopLine="149"/>
       </Position4>
       <Position5>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="4071" Column="12" TopLine="4041"/>
+        <Filename Value="settingscat_u.pas"/>
+        <Caret Line="53" Column="15" TopLine="37"/>
       </Position5>
       <Position6>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="234" Column="30" TopLine="227"/>
+        <Caret Line="4049" Column="55" TopLine="4034"/>
       </Position6>
       <Position7>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="198" Column="3" TopLine="149"/>
+        <Filename Value="updateform_u.pas"/>
+        <Caret Line="58" Column="9" TopLine="44"/>
       </Position7>
       <Position8>
-        <Filename Value="settingscat_u.pas"/>
-        <Caret Line="53" Column="15" TopLine="37"/>
+        <Filename Value="const_u.pas"/>
+        <Caret Line="26" Column="30" TopLine="8"/>
       </Position8>
       <Position9>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="4049" Column="55" TopLine="4034"/>
+        <Caret Line="4665" Column="44" TopLine="4649"/>
       </Position9>
       <Position10>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="58" Column="9" TopLine="44"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3654" Column="101" TopLine="3636"/>
       </Position10>
       <Position11>
-        <Filename Value="const_u.pas"/>
-        <Caret Line="26" Column="30" TopLine="8"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3660" TopLine="3636"/>
       </Position11>
+      <Position12>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3664" TopLine="3636"/>
+      </Position12>
+      <Position13>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3659" TopLine="3637"/>
+      </Position13>
+      <Position14>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3664" TopLine="3655"/>
+      </Position14>
+      <Position15>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3665" TopLine="3655"/>
+      </Position15>
+      <Position16>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3664" TopLine="3655"/>
+      </Position16>
+      <Position17>
+        <Filename Value="sendtelnetspot_form_u.pas"/>
+        <Caret Line="63" Column="24" TopLine="24"/>
+      </Position17>
+      <Position18>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3651" Column="55" TopLine="3637"/>
+      </Position18>
+      <Position19>
+        <Filename Value="sendtelnetspot_form_u.pas"/>
+        <Caret Line="45" Column="117" TopLine="33"/>
+      </Position19>
+      <Position20>
+        <Filename Value="sendtelnetspot_form_u.pas"/>
+        <Caret Line="8" Column="85" TopLine="22"/>
+      </Position20>
+      <Position21>
+        <Filename Value="sendtelnetspot_form_u.pas"/>
+        <Caret Line="37" Column="23" TopLine="19"/>
+      </Position21>
+      <Position22>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6607" Column="44" TopLine="6595"/>
+      </Position22>
+      <Position23>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6442" Column="3" TopLine="6439"/>
+      </Position23>
+      <Position24>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="4039" Column="3" TopLine="4056"/>
+      </Position24>
+      <Position25>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3905" Column="3" TopLine="3922"/>
+      </Position25>
+      <Position26>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="615" Column="15" TopLine="600"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3764" TopLine="3786"/>
+      </Position27>
+      <Position28>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="616" Column="15" TopLine="600"/>
+      </Position28>
+      <Position29>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3802" Column="28" TopLine="3778"/>
+      </Position29>
+      <Position30>
+        <Filename Value="clusterserver_form_u.pas"/>
+        <Caret Line="57" Column="45" TopLine="57"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
