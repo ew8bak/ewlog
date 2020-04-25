@@ -20,8 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="3755"/>
-        <CursorPos X="35" Y="3765"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="3777"/>
+        <CursorPos X="32" Y="3802"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="2600"/>
@@ -402,10 +403,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterServer_Form_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="56"/>
-        <CursorPos X="12" Y="87"/>
+        <TopLine Value="32"/>
+        <CursorPos X="42" Y="77"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1117,7 +1117,7 @@
         <UsageCount Value="10"/>
       </Unit123>
     </Units>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="1802" Column="55" TopLine="1774"/>
@@ -1222,6 +1222,22 @@
         <Filename Value="clusterserver_form_u.pas"/>
         <Caret Line="57" Column="45" TopLine="57"/>
       </Position26>
+      <Position27>
+        <Filename Value="clusterserver_form_u.pas"/>
+        <Caret Line="77" Column="42" TopLine="32"/>
+      </Position27>
+      <Position28>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6524" Column="30" TopLine="6507"/>
+      </Position28>
+      <Position29>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3910" Column="3" TopLine="3936"/>
+      </Position29>
+      <Position30>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="615" Column="15" TopLine="601"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

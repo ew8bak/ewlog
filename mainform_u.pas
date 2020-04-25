@@ -3797,6 +3797,9 @@ begin
       Delete(HostCluster, 1, 1);
       //Порт
       PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
+       //Автозапуск кластера
+      if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
+        SpeedButton18.Click;
 end;
 
 procedure TMainForm.InitIni;
@@ -3872,9 +3875,7 @@ begin
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(
         IniF.ReadString('SetLog', 'PastSubMode', ''));
       addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
-      //Автозапуск кластера
-      if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
-        SpeedButton18.Click;
+
 
       if ComboBox1.Items.Count >= IniF.ReadInteger('SetLog', 'PastBand', 0) then
         ComboBox1.ItemIndex := IniF.ReadInteger('SetLog', 'PastBand', 0)
