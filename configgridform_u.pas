@@ -176,6 +176,8 @@ begin
 end;
 
 procedure TConfigGrid_Form.ComboBox1Change(Sender: TObject);
+var
+  i: integer;
 begin
   case ComboBox1.ItemIndex of
     0: MainForm.DBGrid1.Font.Size := 8;
@@ -185,10 +187,10 @@ begin
   end;
 
   case ComboBox1.ItemIndex of
-    0: MainForm.DBGrid1.DefaultRowHeight:=15;
-    1: MainForm.DBGrid1.DefaultRowHeight:= MainForm.DBGrid1.Font.Size+12;
-    2: MainForm.DBGrid1.DefaultRowHeight:= MainForm.DBGrid1.Font.Size+12;
-    3: MainForm.DBGrid1.DefaultRowHeight:= MainForm.DBGrid1.Font.Size+12;
+    0: MainForm.DBGrid1.DefaultRowHeight := 15;
+    1: MainForm.DBGrid1.DefaultRowHeight := MainForm.DBGrid1.Font.Size + 12;
+    2: MainForm.DBGrid1.DefaultRowHeight := MainForm.DBGrid1.Font.Size + 12;
+    3: MainForm.DBGrid1.DefaultRowHeight := MainForm.DBGrid1.Font.Size + 12;
   end;
   case ComboBox1.ItemIndex of
     0: MainForm.DBGrid2.Font.Size := 8;
@@ -198,10 +200,29 @@ begin
   end;
 
   case ComboBox1.ItemIndex of
-    0: MainForm.DBGrid2.DefaultRowHeight:=15;
-    1: MainForm.DBGrid2.DefaultRowHeight:= MainForm.DBGrid2.Font.Size+12;
-    2: MainForm.DBGrid2.DefaultRowHeight:= MainForm.DBGrid2.Font.Size+12;
-    3: MainForm.DBGrid2.DefaultRowHeight:= MainForm.DBGrid2.Font.Size+12;
+    0: MainForm.DBGrid2.DefaultRowHeight := 15;
+    1: MainForm.DBGrid2.DefaultRowHeight := MainForm.DBGrid2.Font.Size + 12;
+    2: MainForm.DBGrid2.DefaultRowHeight := MainForm.DBGrid2.Font.Size + 12;
+    3: MainForm.DBGrid2.DefaultRowHeight := MainForm.DBGrid2.Font.Size + 12;
+  end;
+
+  for i := 0 to MainForm.DBGrid1.Columns.Count - 1 do
+  begin
+    case ComboBox1.ItemIndex of
+      0: MainForm.DBGrid1.Columns.Items[i].Title.Font.Size := 8;
+      1: MainForm.DBGrid1.Columns.Items[i].Title.Font.Size := 10;
+      2: MainForm.DBGrid1.Columns.Items[i].Title.Font.Size := 12;
+      3: MainForm.DBGrid1.Columns.Items[i].Title.Font.Size := 14;
+    end;
+  end;
+  for i := 0 to MainForm.DBGrid2.Columns.Count - 1 do
+  begin
+    case ComboBox1.ItemIndex of
+      0: MainForm.DBGrid2.Columns.Items[i].Title.Font.Size := 8;
+      1: MainForm.DBGrid2.Columns.Items[i].Title.Font.Size := 10;
+      2: MainForm.DBGrid2.Columns.Items[i].Title.Font.Size := 12;
+      3: MainForm.DBGrid2.Columns.Items[i].Title.Font.Size := 14;
+    end;
   end;
 
 end;
@@ -240,6 +261,13 @@ begin
   CheckBox29.Checked := IniF.ReadBool('GridSettings', 'ColVisible29', True);
   ColorBox1.Selected := MainForm.DBGrid1.Font.Color;
   ColorBox2.Selected := MainForm.DBGrid1.Color;
+
+  case IniF.ReadInteger('GridSettings', 'TextSize', 8) of
+    8: ComboBox1.ItemIndex := 0;
+    10: ComboBox1.ItemIndex := 1;
+    12: ComboBox1.ItemIndex := 2;
+    14: ComboBox1.ItemIndex := 3;
+  end;
 end;
 
 end.

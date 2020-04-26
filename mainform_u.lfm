@@ -1800,155 +1800,185 @@ object MainForm: TMainForm
       Color = clWindow
       Columns = <      
         item
+          Title.Font.Height = -11
           Title.Caption = 'QSL'
           Width = 36
           FieldName = 'QSL'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'QSLs'
           Width = 42
           FieldName = 'QSLs'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Date'
           Width = 37
           FieldName = 'QSODate'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Time'
           Width = 37
           FieldName = 'QSOTime'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Frequency'
           Width = 67
           FieldName = 'QSOBand'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Callsign'
           Width = 52
           FieldName = 'CallSign'
         end      
         item
           MinSize = 15
+          Title.Font.Height = -11
           Title.Caption = 'Mode'
           Width = 41
           FieldName = 'QSOMode'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'QSOSubMode'
           Width = 83
           FieldName = 'QSOSubMode'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Name'
           Width = 42
           FieldName = 'OMName'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'QTH'
           Width = 36
           FieldName = 'OMQTH'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'State'
           Width = 40
           FieldName = 'State'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Grid'
           Width = 35
           FieldName = 'Grid'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'RSTs'
           Width = 41
           FieldName = 'QSOReportSent'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'RSTr'
           Width = 39
           FieldName = 'QSOReportRecived'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'IOTA'
           Width = 39
           FieldName = 'IOTA'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Manager'
           Width = 57
           FieldName = 'QSLManager'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'QSLs Date'
           Width = 67
           FieldName = 'QSLSentDate'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'QSLr Date'
           Width = 65
           FieldName = 'QSLRecDate'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'LOTWr Date'
           Width = 74
           FieldName = 'LoTWRecDate'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Prefix'
           Width = 43
           FieldName = 'MainPrefix'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'DXCC'
           Width = 43
           FieldName = 'DXCCPrefix'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'CQ Zone'
           Width = 58
           FieldName = 'CQZone'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'ITU Zone'
           Width = 58
           FieldName = 'ITUZone'
         end      
         item
           ButtonStyle = cbsCheckboxColumn
+          Title.Font.Height = -11
           Title.Caption = 'Manual Set'
           Width = 68
           FieldName = 'ManualSet'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'Continent'
           Width = 60
           FieldName = 'Continent'
         end      
         item
           ButtonStyle = cbsCheckboxColumn
+          Title.Font.Height = -11
           Title.Caption = 'Valid DX'
           Width = 56
           FieldName = 'ValidDX'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'QSL r VIA'
           Width = 64
           FieldName = 'QSL_RCVD_VIA'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'QSL s VIA'
           Width = 66
           FieldName = 'QSL_SENT_VIA'
         end      
         item
+          Title.Font.Height = -11
           Title.Caption = 'User'
           Width = 38
           FieldName = 'USERS'
         end      
         item
           ButtonStyle = cbsCheckboxColumn
+          Title.Font.Height = -11
           Title.Caption = 'No calc DXCC'
           Width = 82
           FieldName = 'NoCalcDXCC'
@@ -2554,155 +2584,185 @@ object MainForm: TMainForm
           Color = clWindow
           Columns = <          
             item
+              Title.Font.Height = -11
               Title.Caption = 'QSL'
               Width = 36
               FieldName = 'QSL'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'QSLs'
               Width = 42
               FieldName = 'QSLs'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Date'
               Width = 37
               FieldName = 'QSODate'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Time'
               Width = 37
               FieldName = 'QSOTime'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Frequency'
               Width = 67
               FieldName = 'QSOBand'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Callsign'
               Width = 52
               FieldName = 'CallSign'
             end          
             item
               MinSize = 15
+              Title.Font.Height = -11
               Title.Caption = 'Mode'
               Width = 41
               FieldName = 'QSOMode'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'QSOSubMode'
               Width = 83
               FieldName = 'QSOSubMode'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Name'
               Width = 42
               FieldName = 'OMName'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'QTH'
               Width = 36
               FieldName = 'OMQTH'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'State'
               Width = 40
               FieldName = 'State'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Grid'
               Width = 35
               FieldName = 'Grid'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'RSTs'
               Width = 41
               FieldName = 'QSOReportSent'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'RSTr'
               Width = 39
               FieldName = 'QSOReportRecived'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'IOTA'
               Width = 39
               FieldName = 'IOTA'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Manager'
               Width = 57
               FieldName = 'QSLManager'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'QSLs Date'
               Width = 67
               FieldName = 'QSLSentDate'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'QSLr Date'
               Width = 65
               FieldName = 'QSLRecDate'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'LOTWr Date'
               Width = 74
               FieldName = 'LoTWRecDate'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Prefix'
               Width = 43
               FieldName = 'MainPrefix'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'DXCC'
               Width = 43
               FieldName = 'DXCCPrefix'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'CQ Zone'
               Width = 58
               FieldName = 'CQZone'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'ITU Zone'
               Width = 58
               FieldName = 'ITUZone'
             end          
             item
               ButtonStyle = cbsCheckboxColumn
+              Title.Font.Height = -11
               Title.Caption = 'Manual Set'
               Width = 68
               FieldName = 'ManualSet'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'Continent'
               Width = 60
               FieldName = 'Continent'
             end          
             item
               ButtonStyle = cbsCheckboxColumn
+              Title.Font.Height = -11
               Title.Caption = 'Valid DX'
               Width = 56
               FieldName = 'ValidDX'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'QSL r VIA'
               Width = 64
               FieldName = 'QSL_RCVD_VIA'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'QSL s VIA'
               Width = 66
               FieldName = 'QSL_SENT_VIA'
             end          
             item
+              Title.Font.Height = -11
               Title.Caption = 'User'
               Width = 38
               FieldName = 'USERS'
             end          
             item
               ButtonStyle = cbsCheckboxColumn
+              Title.Font.Height = -11
               Title.Caption = 'No calc DXCC'
               Width = 82
               FieldName = 'NoCalcDXCC'

@@ -1528,6 +1528,12 @@ begin
     12: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
     14: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
   end;
+
+  for i:=0 to DBGrid1.Columns.Count-1 do begin
+   DBGrid1.Columns.Items[i].Title.Font.Size:= SizeTextGrid;
+   DBGrid2.Columns.Items[i].Title.Font.Size:= SizeTextGrid;
+  end;
+
 end;
 
 procedure TMainForm.SelectQSO(grid: boolean);
