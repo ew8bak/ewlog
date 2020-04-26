@@ -678,6 +678,7 @@ var
   lastTCPport: integer;
   lastUDPport: integer;
   _l, _t, _w, _h: integer;
+  BM1,BM2:TBookmarkStr;
 
 implementation
 
@@ -714,6 +715,7 @@ type
 {$R *.lfm}
 
 { TMainForm }
+
 function TMainForm.WorkedQSL(callsign, band, mode: string): boolean;
 var
   Query: TSQLQuery;
