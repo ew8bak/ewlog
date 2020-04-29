@@ -30,7 +30,7 @@ type
     MainPrefix: string[5];
     DXCCPrefix: string[5];
     CQZone: string[2];
-    ITUZone: string[1];
+    ITUZone: string[2];
     QSOAddInfo: string;
     Marker: string[1];
     ManualSet: integer;
