@@ -450,8 +450,6 @@ begin
           BadRcvd := 0;
           fMode.mode := a[i];
           fMode.raw  := a[i];
-       //   if (fMode.mode = 'USB') or (fMode.mode = 'LSB') then
-       //     fMode.mode := 'SSB';
           if fMode.mode = 'CWR' then
             fMode.mode := 'CW'
         end
@@ -460,8 +458,8 @@ begin
           begin
             fFreq := 0;
             fVFO := VFOA;
-            fMode.mode := 'SSB';
-            fMode.raw  := 'SSB';
+            fMode.mode := '';
+            fMode.raw  := '';
             fMode.pass := 2700
           end
           else

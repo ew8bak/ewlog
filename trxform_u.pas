@@ -281,11 +281,11 @@ begin
       MainForm.ComboBox1.Text := FormatFloat(view_freq, f);
   end;
 
-  if m <> '' then
+  if Length(m) > 1 then
     dmFunc.GetRIGMode(m, mode, submode);
 
 
-  if (fldigiactive = False) and (m <> '') then
+  if (fldigiactive = False) and (Length(m) > 1) then
   begin
     MainForm.ComboBox2.Text := mode;
     MainForm.ComboBox9.Text := submode;
