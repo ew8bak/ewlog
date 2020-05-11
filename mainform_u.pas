@@ -1364,9 +1364,13 @@ begin
   ColorTextGrid := IniF.ReadInteger('GridSettings', 'TextColor', 0);
   SizeTextGrid := IniF.ReadInteger('GridSettings', 'TextSize', 8);
   ColorBackGrid := IniF.ReadInteger('GridSettings', 'BackColor', -2147483617);
+
   DBGrid1.Font.Size := SizeTextGrid;
+  DBGrid1.Font.Color := ColorTextGrid;
   DBGrid1.Color := ColorBackGrid;
+
   DBGrid2.Font.Size := SizeTextGrid;
+  DBGrid2.Font.Color := ColorTextGrid;
   DBGrid2.Color := ColorBackGrid;
 
   if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then

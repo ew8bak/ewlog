@@ -20,11 +20,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="3918"/>
-        <CursorPos Y="3934"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="1352"/>
+        <CursorPos X="60" Y="1357"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
-          <Item0 Y="2608"/>
+          <Item0 Y="2612"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -247,7 +248,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <TopLine Value="264"/>
         <CursorPos X="47" Y="288"/>
@@ -1078,59 +1078,59 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="302" TopLine="298"/>
+        <Caret Line="3" Column="7"/>
       </Position1>
       <Position2>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="270" TopLine="257"/>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="10" Column="14"/>
       </Position2>
       <Position3>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="302" TopLine="295"/>
+        <Caret Line="11" Column="9"/>
       </Position3>
       <Position4>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="11" Column="9"/>
+        <Caret Line="23" Column="17"/>
       </Position4>
       <Position5>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="3" Column="7"/>
+        <Caret Line="427" TopLine="421"/>
       </Position5>
       <Position6>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="10" Column="14"/>
+        <Caret Line="448" TopLine="436"/>
       </Position6>
       <Position7>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="11" Column="9"/>
+        <Caret Line="459" TopLine="436"/>
       </Position7>
       <Position8>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="23" Column="17"/>
+        <Caret Line="461" TopLine="436"/>
       </Position8>
       <Position9>
         <Filename Value="uRigControl.pas"/>
-        <Caret Line="427" TopLine="421"/>
+        <Caret Line="462" TopLine="436"/>
       </Position9>
       <Position10>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="448" TopLine="436"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="267" TopLine="267"/>
       </Position10>
       <Position11>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="459" TopLine="436"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="285" TopLine="267"/>
       </Position11>
       <Position12>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="461" TopLine="436"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="290" TopLine="267"/>
       </Position12>
       <Position13>
-        <Filename Value="uRigControl.pas"/>
-        <Caret Line="462" TopLine="436"/>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="285" TopLine="267"/>
       </Position13>
       <Position14>
         <Filename Value="trxform_u.pas"/>
-        <Caret Line="267" TopLine="267"/>
+        <Caret Line="290" TopLine="267"/>
       </Position14>
       <Position15>
         <Filename Value="trxform_u.pas"/>
@@ -1174,27 +1174,27 @@
       </Position24>
       <Position25>
         <Filename Value="trxform_u.pas"/>
-        <Caret Line="285" TopLine="267"/>
+        <Caret Line="284" Column="32" TopLine="264"/>
       </Position25>
       <Position26>
         <Filename Value="trxform_u.pas"/>
-        <Caret Line="290" TopLine="267"/>
+        <Caret Line="290" TopLine="264"/>
       </Position26>
       <Position27>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="285" TopLine="267"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3934" TopLine="3918"/>
       </Position27>
       <Position28>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="290" TopLine="267"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="4258" Column="81" TopLine="4245"/>
       </Position28>
       <Position29>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="284" Column="32" TopLine="264"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3919" Column="3" TopLine="3984"/>
       </Position29>
       <Position30>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="290" TopLine="264"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="601" Column="15" TopLine="586"/>
       </Position30>
     </JumpHistory>
     <RunParams>
