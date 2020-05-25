@@ -8,10 +8,12 @@
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="19"/>
-        <CursorPos X="59" Y="19"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="9"/>
+        <CursorPos X="38" Y="29"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="mainform_u.pas"/>
@@ -35,7 +37,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="602"/>
         <CursorPos X="32" Y="610"/>
         <UsageCount Value="200"/>
@@ -72,12 +74,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="418"/>
+        <TopLine Value="417"/>
         <CursorPos X="30" Y="407"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -122,7 +124,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="388"/>
         <CursorPos X="38" Y="1428"/>
         <UsageCount Value="200"/>
@@ -550,10 +552,11 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="126"/>
-        <CursorPos X="13" Y="163"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="3"/>
+        <CursorPos X="19" Y="11"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit50>
       <Unit51>
         <Filename Value="const_u.pas"/>
@@ -668,7 +671,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MinimalForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="564"/>
         <CursorPos X="38" Y="565"/>
         <UsageCount Value="34"/>
@@ -682,7 +685,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmMainFunc"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <CursorPos X="35" Y="563"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
@@ -1120,7 +1123,7 @@
         <UsageCount Value="10"/>
       </Unit123>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="dmmainfunc.pas"/>
         <Caret Line="563" Column="35" TopLine="543"/>
@@ -1233,14 +1236,6 @@
         <Filename Value="mainform_u.pas"/>
         <Caret Line="4335" Column="37" TopLine="4319"/>
       </Position28>
-      <Position29>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="5225" Column="24" TopLine="6660"/>
-      </Position29>
-      <Position30>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="83" Column="53" TopLine="150"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
