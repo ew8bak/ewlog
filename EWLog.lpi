@@ -576,6 +576,7 @@
         <Filename Value="dmmainfunc.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dm_MainFunc"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmMainFunc"/>
       </Unit64>

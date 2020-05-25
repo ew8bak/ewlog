@@ -541,6 +541,7 @@ type
 
   public
     { public declarations }
+    FilePATH: string;
     PrefixExpProvinceArray: array [0..1000] of record
       reg: TRegExpr;
       id: integer;
@@ -1034,14 +1035,7 @@ end;
 procedure TMainForm.SetDXColumns(Save: boolean);
 var
   VSTSaveStream: TMemoryStream;
-  FilePATH: string;
 begin
-  {$IFDEF UNIX}
-  FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-  {$ELSE}
-  FilePATH := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-  {$ENDIF UNIX}
   try
     VSTSaveStream := TMemoryStream.Create;
     if Save then
@@ -1112,7 +1106,6 @@ end;
 procedure TMainForm.InitializeDB(dbS: string);
 var
   i: integer;
-  sDBPath: string;
   modesString: TStringList;
 begin
   subModesList := TStringList.Create;
@@ -1120,20 +1113,13 @@ begin
   PrefixARRLList := TStringList.Create;
   UniqueCallsList := TStringList.Create;
   try
-     {$IFDEF UNIX}
-    sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-    sDBPath := GetEnvironmentVariable('SystemDrive') +
-      SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
-
-    if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
+    if (FileExists(FilePATH + 'callbook.db')) and (UseCallBook = 'YES') then
     begin
-      CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
+      CallBookLiteConnection.DatabaseName := FilePATH + 'callbook.db';
       CallBookLiteConnection.Connected := True;
     end;
 
-    if not (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
+    if not (FileExists(FilePATH + 'callbook.db')) and (UseCallBook = 'YES') then
     begin
       ShowMessage(
         'Не найден файл справочника, продолжу работать без его. Зайдите в настройки программы для загрузки');
@@ -1144,11 +1130,11 @@ begin
     SQLiteDBConnection.Connected := False;
     ServiceDBConnection.Connected := False;
 
-    if not FileExists(sDBPath + 'serviceLOG.db') then
+    if not FileExists(FilePATH + 'serviceLOG.db') then
       ServiceDBConnection.DatabaseName :=
         ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'serviceLOG.db'
     else
-      ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
+      ServiceDBConnection.DatabaseName := FilePATH + 'serviceLOG.db';
     {$IFDEF LINUX}
     if not FileExists(ServiceDBConnection.DatabaseName) then
       ServiceDBConnection.DatabaseName := '/usr/share/ewlog/serviceLOG.db';
@@ -1588,7 +1574,6 @@ begin
   lastID := LOGBookQuery.RecNo;
   StatusBar1.Panels.Items[1].Text :=
     'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
- // SetGrid;
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
@@ -1871,7 +1856,6 @@ begin
     MainForm.SelectLogDatabase(LogTable);
   end;
   CheckTableQuery.Close;
-  //SetGrid();
   dm_MainFunc.SetGrid(DBGrid1);
   dm_MainFunc.SetGrid(DBGrid2);
   LogBookFieldQuery.Open;
@@ -2478,7 +2462,6 @@ begin
     IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
- // SetGrid();
  dm_MainFunc.SetGrid(DBGrid1);
  dm_MainFunc.SetGrid(DBGrid2);
 end;
@@ -2495,7 +2478,6 @@ begin
     else
       IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
   end;
- // SetGrid();
  dm_MainFunc.SetGrid(DBGrid1);
  dm_MainFunc.SetGrid(DBGrid2);
 end;
@@ -2562,7 +2544,6 @@ procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
     SelectLogDatabase(LogTable);
-  //SetGrid;
   dm_MainFunc.SetGrid(DBGrid1);
   dm_MainFunc.SetGrid(DBGrid2);
 end;
@@ -3441,7 +3422,6 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 var
-  PathMyDoc: string;
   Lang: string = '';
   FallbackLang: string = '';
   i: integer;
@@ -3454,22 +3434,22 @@ begin
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
 
-  {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$IFDEF UNIX}
+  FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
   {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+  FilePATH := GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
   {$ENDIF UNIX}
 
-  if not DirectoryExists(PathMyDoc) then
-    CreateDir(PathMyDoc);
+  if not DirectoryExists(FilePATH) then
+    CreateDir(FilePATH);
 
-  MapView1.CachePath := PathMyDoc + 'cache' + DirectorySeparator;
-  Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
+  MapView1.CachePath := FilePATH + 'cache' + DirectorySeparator;
+  Inif := TINIFile.Create(FilePATH + 'settings.ini');
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
     Language := FallbackLang;
-  SetDefaultLang(Language, PathMyDoc + DirectorySeparator + 'locale');
+  SetDefaultLang(Language, FilePATH + DirectorySeparator + 'locale');
 
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
@@ -3530,7 +3510,6 @@ begin
     TRXForm.Show;
 
   UnUsIndex := 0;
- // SetGrid;
  dm_MainFunc.SetGrid(DBGrid1);
  dm_MainFunc.SetGrid(DBGrid2);
   SetDXColumns(False);
@@ -3693,16 +3672,9 @@ end;
 
 procedure TMainForm.LTCPComponent1Receive(aSocket: TLSocket);
 var
-  mess, rec_call, PathMyDoc, s: string;
+  mess, rec_call, s: string;
   AdifFile: TextFile;
 begin
-    {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
-
   AdifDataSyncAll := False;
   AdifDataSyncDate := False;
 
@@ -3759,8 +3731,8 @@ begin
     begin
       AdifFromMobileSyncStart := False;
       ImportAdifMobile := True;
-      Stream.SaveToFile(PathMyDoc + 'ImportMobile.adi');
-      AssignFile(AdifFile, PathMyDoc + 'ImportMobile.adi');
+      Stream.SaveToFile(FilePATH + 'ImportMobile.adi');
+      AssignFile(AdifFile, FilePATH + 'ImportMobile.adi');
       Reset(AdifFile);
       while not EOF(AdifFile) do
       begin
@@ -3773,7 +3745,7 @@ begin
       Writeln(AdifFile, s);
       CloseFile(AdifFile);
 
-      ImportADIFForm.ADIFImport(PathMyDoc + 'ImportMobile.adi', True);
+      ImportADIFForm.ADIFImport(FilePATH + 'ImportMobile.adi', True);
       Stream.Free;
       ImportAdifMobile := False;
     end;
@@ -4117,16 +4089,9 @@ end;
 procedure TMainForm.LangItemClick(Sender: TObject);
 var
   MenuItem: TMenuItem;
-  PathMyDoc: string;
 begin
-   {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
-    {$ENDIF UNIX}
   MenuItem := (Sender as TMenuItem);
-  SetDefaultLang(FindISOCountry(MenuItem.Caption), PathMyDoc + 'locale');
+  SetDefaultLang(FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
   Language := FindISOCountry(MenuItem.Caption);
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
@@ -4138,21 +4103,14 @@ var
   LangItem: TMenuItem;
   LangList: TStringList;
   i: integer;
-  PathMyDoc: string;
 begin
-     {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
   for i := MainForm.ComponentCount - 1 downto 0 do
     if (MainForm.Components[i] is TMenuItem) then
       if (MainForm.Components[i] as TMenuItem).Tag = 99 then
         (MainForm.Components[i] as TMenuItem).Free;
 
   LangList := TStringList.Create;
-  FindLanguageFiles(PathMyDoc + 'locale', LangList);
+  FindLanguageFiles(FilePATH + 'locale', LangList);
   for i := 0 to LangList.Count - 1 do
   begin
     LangItem := TMenuItem.Create(Self);
@@ -4197,31 +4155,24 @@ end;
 procedure TMainForm.MenuItem119Click(Sender: TObject);
 var
   HTTP: THTTPSend;
-  updatePATH: string;
   UnZipper: TUnZipper;
 begin
-   {$IFDEF UNIX}
-  updatePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-   {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-   {$ENDIF UNIX}
 
-  if DirectoryExists(updatePATH + 'locale') then
-    DeleteDirectory(updatePATH + 'locale', False);
+  if DirectoryExists(FilePATH + 'locale') then
+    DeleteDirectory(FilePATH + 'locale', False);
 
-  ForceDirectories(updatePATH + 'locale');
+  ForceDirectories(FilePATH + 'locale');
   HTTP := THTTPSend.Create;
   UnZipper := TUnZipper.Create;
   try
     if HTTP.HTTPMethod('GET', DownLocaleURL) then
-      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator +
+      HTTP.Document.SaveToFile(FilePATH + 'updates' + DirectorySeparator +
         'locale.zip');
   finally
     HTTP.Free;
     try
-      UnZipper.FileName := updatePATH + 'updates' + DirectorySeparator + 'locale.zip';
-      UnZipper.OutputPath := updatePATH + 'locale' + DirectorySeparator;
+      UnZipper.FileName := FilePATH + 'updates' + DirectorySeparator + 'locale.zip';
+      UnZipper.OutputPath := FilePATH + 'locale' + DirectorySeparator;
       UnZipper.Examine;
       UnZipper.UnZipAllFiles;
     finally
@@ -4270,14 +4221,7 @@ var
   NumberCopies: integer;
   ind: integer;
   resStream: TLazarusResourceStream;
-  reportPATH: string;
 begin
-     {$IFDEF UNIX}
-  reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-   {$ELSE}
-  reportPATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-   {$ENDIF UNIX}
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
@@ -4339,8 +4283,8 @@ begin
     end;
     PrintOK := False;
     PrintQuery.Open;
-    resStream.SaveToFile(reportPATH + 'rep.lrf');
-    frReport1.LoadFromFile(reportPATH + 'rep.lrf');
+    resStream.SaveToFile(FilePATH + 'rep.lrf');
+    frReport1.LoadFromFile(FilePATH + 'rep.lrf');
     if PrintPrev = True then
       frReport1.ShowReport
     else
@@ -4389,14 +4333,7 @@ var
   NumberCopies: integer;
   ind: integer;
   resStream: TLazarusResourceStream;
-  reportPATH: string;
 begin
-   {$IFDEF UNIX}
-  reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-   {$ELSE}
-  reportPATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-   {$ENDIF UNIX}
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
@@ -4436,8 +4373,8 @@ begin
     end;
     PrintOK := False;
     PrintQuery.Open;
-    resStream.SaveToFile(reportPATH + 'rep.lrf');
-    frReport1.LoadFromFile(reportPATH + 'rep.lrf');
+    resStream.SaveToFile(FilePATH + 'rep.lrf');
+    frReport1.LoadFromFile(FilePATH + 'rep.lrf');
 
 
     if PrintPrev = True then
@@ -5269,14 +5206,12 @@ procedure TMainForm.MenuItem51Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  // recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      //  recnom := LOGBookQuery.RecNo;
       with DeleteQSOQuery do
       begin
         Close;
@@ -5288,7 +5223,6 @@ begin
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
-    //  DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 end;
 

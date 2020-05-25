@@ -74,12 +74,7 @@ uses
 
 procedure TUpdate_Form.FormCreate(Sender: TObject);
 begin
-    {$IFDEF UNIX}
-  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/updates/';
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-   SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\updates\';
-    {$ENDIF UNIX}
+    updatePATH:=MainForm.FilePATH + 'updates' + DirectorySeparator;
   if not DirectoryExists(updatePATH) then
     CreateDir(updatePATH);
 end;
