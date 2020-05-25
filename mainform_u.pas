@@ -386,6 +386,7 @@ type
     procedure Label50Click(Sender: TObject);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
+    procedure LTCPComponent1Connect(aSocket: TLSocket);
     procedure LTCPComponent1Disconnect(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LTCPComponent1Receive(aSocket: TLSocket);
@@ -694,7 +695,7 @@ uses
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u,
   logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
-  flDigiModem, viewPhoto_U;
+  flDigiModem, viewPhoto_U, MinimalForm_U;
 
 type
   PTreeData = ^TTreeData;
@@ -4132,6 +4133,11 @@ begin
   end;
 end;
 
+procedure TMainForm.LTCPComponent1Connect(aSocket: TLSocket);
+begin
+  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ': Connected';
+end;
+
 procedure TMainForm.LTCPComponent1Disconnect(aSocket: TLSocket);
 begin
   MainForm.StatusBar1.Panels.Items[0].Text := rDone;
@@ -5821,10 +5827,10 @@ end;
 
 procedure TMainForm.MenuItem72Click(Sender: TObject);
 begin
-  Panel4.Hide;
-  Panel5.Hide;
-  Panel6.Hide;
-  MainForm.Height := 290;
+ MinimalForm.Show;
+ Timer1.Enabled:=False;
+ Timer3.Enabled:=False;
+ MainForm.Hide;
 end;
 
 procedure TMainForm.MenuItem73Click(Sender: TObject);

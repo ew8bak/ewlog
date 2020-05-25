@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="637"/>
+      <BuildNr Value="640"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="63">
+    <Units Count="64">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -564,6 +564,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="viewPhoto_U"/>
       </Unit62>
+      <Unit63>
+        <Filename Value="minimalform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MinimalForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MinimalForm_U"/>
+      </Unit63>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

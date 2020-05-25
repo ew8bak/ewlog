@@ -2869,10 +2869,12 @@ msgid "EWLog - HAM Journal"
 msgstr "EWLog - Аппаратный журнал"
 
 #: tmainform.checkbox1.caption
+msgctxt "tmainform.checkbox1.caption"
 msgid "Real time"
 msgstr "Реальное время"
 
 #: tmainform.checkbox2.caption
+msgctxt "tmainform.checkbox2.caption"
 msgid "Save in UTC"
 msgstr "Сохранить в UTC"
 
@@ -2881,6 +2883,7 @@ msgid "Map"
 msgstr "Карта"
 
 #: tmainform.checkbox5.caption
+msgctxt "tmainform.checkbox5.caption"
 msgid "Mark"
 msgstr "Метка"
 
@@ -2909,6 +2912,7 @@ msgid "Wasn't sent"
 msgstr "Не отправлена"
 
 #: tmainform.dateedit1.text
+msgctxt "tmainform.dateedit1.text"
 msgid "  .  .    "
 msgstr ""
 
@@ -3223,6 +3227,7 @@ msgid "Date"
 msgstr "Дата"
 
 #: tmainform.label10.caption
+msgctxt "tmainform.label10.caption"
 msgid "QSL Via"
 msgstr ""
 
@@ -3242,6 +3247,7 @@ msgid "IOTA"
 msgstr "IOTA"
 
 #: tmainform.label14.caption
+msgctxt "tmainform.label14.caption"
 msgid "MGR"
 msgstr ""
 
@@ -3256,6 +3262,7 @@ msgid "Comment"
 msgstr "Комментарий"
 
 #: tmainform.label17.caption
+msgctxt "tmainform.label17.caption"
 msgid "1"
 msgstr ""
 
@@ -3290,6 +3297,7 @@ msgid "Name"
 msgstr "Имя"
 
 #: tmainform.label23.caption
+msgctxt "tmainform.label23.caption"
 msgid "Local time "
 msgstr "Локальное время "
 
@@ -3309,6 +3317,7 @@ msgid "00:00:00"
 msgstr ""
 
 #: tmainform.label27.caption
+msgctxt "tmainform.label27.caption"
 msgid "Remote time"
 msgstr "Время у корреспондента"
 
@@ -3318,6 +3327,7 @@ msgid "00:00:00"
 msgstr ""
 
 #: tmainform.label29.caption
+msgctxt "tmainform.label29.caption"
 msgid "Azimuth"
 msgstr "Азимут"
 
@@ -3352,6 +3362,7 @@ msgid "......."
 msgstr ""
 
 #: tmainform.label35.caption
+msgctxt "tmainform.label35.caption"
 msgid "Distance"
 msgstr "Трасса"
 
@@ -3376,6 +3387,7 @@ msgid "Latitude"
 msgstr "Широта"
 
 #: tmainform.label4.caption
+msgctxt "tmainform.label4.caption"
 msgid "Time (UTC)"
 msgstr "Время (UTC)"
 
@@ -3420,6 +3432,7 @@ msgid ".."
 msgstr ""
 
 #: tmainform.label48.caption
+msgctxt "tmainform.label48.caption"
 msgid "Your QSL"
 msgstr "Моя QSL"
 
@@ -3445,6 +3458,7 @@ msgid "My state"
 msgstr "Мой State"
 
 #: tmainform.label53.caption
+msgctxt "tmainform.label53.caption"
 msgid "Worked"
 msgstr "Сработано"
 
@@ -3454,6 +3468,7 @@ msgid "QSL"
 msgstr "QSL"
 
 #: tmainform.label55.caption
+msgctxt "tmainform.label55.caption"
 msgid "(Cfm)"
 msgstr ""
 
@@ -3468,10 +3483,12 @@ msgid "QTH"
 msgstr "QTH"
 
 #: tmainform.label8.caption
+msgctxt "tmainform.label8.caption"
 msgid "RST sent"
 msgstr "RST отп"
 
 #: tmainform.label9.caption
+msgctxt "tmainform.label9.caption"
 msgid "RST rcvd"
 msgstr "RST пол"
 
@@ -4047,6 +4064,536 @@ msgstr "Области"
 msgctxt "tmanagerbaseprefixform.tabsheet3.caption"
 msgid "Country"
 msgstr "Страна"
+
+#: tminimalform.caption
+msgid "EWLog - HAM Journal minimal"
+msgstr ""
+
+#: tminimalform.checkbox1.caption
+#, fuzzy
+msgctxt "tminimalform.checkbox1.caption"
+msgid "Real time"
+msgstr "Реальное время"
+
+#: tminimalform.checkbox2.caption
+#, fuzzy
+msgctxt "tminimalform.checkbox2.caption"
+msgid "Save in UTC"
+msgstr "Сохранить в UTC"
+
+#: tminimalform.checkbox5.caption
+#, fuzzy
+msgctxt "tminimalform.checkbox5.caption"
+msgid "Mark"
+msgstr "Метка"
+
+#: tminimalform.combobox1.text
+msgctxt "tminimalform.combobox1.text"
+msgid "7.000.00"
+msgstr ""
+
+#: tminimalform.combobox4.text
+msgctxt "tminimalform.combobox4.text"
+msgid "59"
+msgstr ""
+
+#: tminimalform.combobox5.text
+msgctxt "tminimalform.combobox5.text"
+msgid "59"
+msgstr ""
+
+#: tminimalform.combobox7.text
+#, fuzzy
+msgctxt "tminimalform.combobox7.text"
+msgid "Wasn't sent"
+msgstr "Не отправлена"
+
+#: tminimalform.dateedit1.text
+msgctxt "tminimalform.dateedit1.text"
+msgid "  .  .    "
+msgstr ""
+
+#: tminimalform.datetimepicker1.textfornulldate
+msgctxt "tminimalform.datetimepicker1.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: tminimalform.dbgrid1.columns[0].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[0].title.caption"
+msgid "QSL"
+msgstr "QSL"
+
+#: tminimalform.dbgrid1.columns[10].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[10].title.caption"
+msgid "State"
+msgstr "State"
+
+#: tminimalform.dbgrid1.columns[11].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[11].title.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: tminimalform.dbgrid1.columns[12].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[12].title.caption"
+msgid "RSTs"
+msgstr "RSTs"
+
+#: tminimalform.dbgrid1.columns[13].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[13].title.caption"
+msgid "RSTr"
+msgstr "RSTr"
+
+#: tminimalform.dbgrid1.columns[14].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[14].title.caption"
+msgid "IOTA"
+msgstr "IOTA"
+
+#: tminimalform.dbgrid1.columns[15].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[15].title.caption"
+msgid "Manager"
+msgstr "Менеджер"
+
+#: tminimalform.dbgrid1.columns[16].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[16].title.caption"
+msgid "QSLs Date"
+msgstr "QSLs Дата"
+
+#: tminimalform.dbgrid1.columns[17].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[17].title.caption"
+msgid "QSLr Date"
+msgstr "QSLr Дата"
+
+#: tminimalform.dbgrid1.columns[18].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[18].title.caption"
+msgid "LOTWr Date"
+msgstr "LOTWr Дата"
+
+#: tminimalform.dbgrid1.columns[19].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[19].title.caption"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: tminimalform.dbgrid1.columns[1].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[1].title.caption"
+msgid "QSLs"
+msgstr "QSLs"
+
+#: tminimalform.dbgrid1.columns[20].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[20].title.caption"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: tminimalform.dbgrid1.columns[21].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[21].title.caption"
+msgid "CQ Zone"
+msgstr "CQ Зона"
+
+#: tminimalform.dbgrid1.columns[22].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[22].title.caption"
+msgid "ITU Zone"
+msgstr "ITU Зона"
+
+#: tminimalform.dbgrid1.columns[23].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[23].title.caption"
+msgid "Manual Set"
+msgstr "Manual Set"
+
+#: tminimalform.dbgrid1.columns[24].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[24].title.caption"
+msgid "Continent"
+msgstr "Континент"
+
+#: tminimalform.dbgrid1.columns[25].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[25].title.caption"
+msgid "Valid DX"
+msgstr "Valid DX"
+
+#: tminimalform.dbgrid1.columns[26].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[26].title.caption"
+msgid "QSL r VIA"
+msgstr "QSL r VIA"
+
+#: tminimalform.dbgrid1.columns[27].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[27].title.caption"
+msgid "QSL s VIA"
+msgstr "QSL s VIA"
+
+#: tminimalform.dbgrid1.columns[28].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[28].title.caption"
+msgid "User"
+msgstr "User"
+
+#: tminimalform.dbgrid1.columns[29].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[29].title.caption"
+msgid "No calc DXCC"
+msgstr "No Calc DXCC"
+
+#: tminimalform.dbgrid1.columns[2].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[2].title.caption"
+msgid "Date"
+msgstr "Дата"
+
+#: tminimalform.dbgrid1.columns[3].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[3].title.caption"
+msgid "Time"
+msgstr "Время"
+
+#: tminimalform.dbgrid1.columns[4].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[4].title.caption"
+msgid "Frequency"
+msgstr "Частота"
+
+#: tminimalform.dbgrid1.columns[5].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[5].title.caption"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: tminimalform.dbgrid1.columns[6].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[6].title.caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tminimalform.dbgrid1.columns[7].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[7].title.caption"
+msgid "QSOSubMode"
+msgstr "СабМода"
+
+#: tminimalform.dbgrid1.columns[8].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[8].title.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tminimalform.dbgrid1.columns[9].title.caption
+#, fuzzy
+msgctxt "tminimalform.dbgrid1.columns[9].title.caption"
+msgid "QTH"
+msgstr "QTH"
+
+#: tminimalform.label1.caption
+#, fuzzy
+msgctxt "tminimalform.label1.caption"
+msgid "Date"
+msgstr "Дата"
+
+#: tminimalform.label10.caption
+msgctxt "tminimalform.label10.caption"
+msgid "QSL Via"
+msgstr ""
+
+#: tminimalform.label11.caption
+#, fuzzy
+msgctxt "tminimalform.label11.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: tminimalform.label12.caption
+#, fuzzy
+msgctxt "tminimalform.label12.caption"
+msgid "State"
+msgstr "State"
+
+#: tminimalform.label13.caption
+#, fuzzy
+msgctxt "tminimalform.label13.caption"
+msgid "IOTA"
+msgstr "IOTA"
+
+#: tminimalform.label14.caption
+msgctxt "tminimalform.label14.caption"
+msgid "MGR"
+msgstr ""
+
+#: tminimalform.label15.caption
+#, fuzzy
+msgctxt "tminimalform.label15.caption"
+msgid "Azimuth"
+msgstr "Азимут"
+
+#: tminimalform.label16.caption
+#, fuzzy
+msgctxt "tminimalform.label16.caption"
+msgid "Comment"
+msgstr "Комментарий"
+
+#: tminimalform.label17.caption
+msgctxt "tminimalform.label17.caption"
+msgid "1"
+msgstr ""
+
+#: tminimalform.label18.caption
+#, fuzzy
+msgctxt "tminimalform.label18.caption"
+msgid "Date"
+msgstr "Дата"
+
+#: tminimalform.label19.caption
+#, fuzzy
+msgctxt "tminimalform.label19.caption"
+msgid "Time"
+msgstr "Время"
+
+#: tminimalform.label2.caption
+#, fuzzy
+msgctxt "tminimalform.label2.caption"
+msgid "Band"
+msgstr "Диапазон"
+
+#: tminimalform.label20.caption
+#, fuzzy
+msgctxt "tminimalform.label20.caption"
+msgid "Frequency"
+msgstr "Частота"
+
+#: tminimalform.label21.caption
+#, fuzzy
+msgctxt "tminimalform.label21.caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tminimalform.label22.caption
+#, fuzzy
+msgctxt "tminimalform.label22.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tminimalform.label23.caption
+#, fuzzy
+msgctxt "tminimalform.label23.caption"
+msgid "Local time "
+msgstr "Локальное время "
+
+#: tminimalform.label24.caption
+msgctxt "tminimalform.label24.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminimalform.label25.caption
+msgctxt "tminimalform.label25.caption"
+msgid "UTC"
+msgstr ""
+
+#: tminimalform.label26.caption
+msgctxt "tminimalform.label26.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminimalform.label27.caption
+#, fuzzy
+msgctxt "tminimalform.label27.caption"
+msgid "Remote time"
+msgstr "Время у корреспондента"
+
+#: tminimalform.label28.caption
+msgctxt "tminimalform.label28.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminimalform.label29.caption
+msgctxt "tminimalform.label29.caption"
+msgid "......."
+msgstr ""
+
+#: tminimalform.label3.caption
+#, fuzzy
+msgctxt "tminimalform.label3.caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tminimalform.label30.caption
+#, fuzzy
+msgctxt "tminimalform.label30.caption"
+msgid "Territory"
+msgstr "Территория"
+
+#: tminimalform.label31.caption
+msgctxt "tminimalform.label31.caption"
+msgid "......."
+msgstr ""
+
+#: tminimalform.label32.caption
+#, fuzzy
+msgctxt "tminimalform.label32.caption"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: tminimalform.label33.caption
+msgctxt "tminimalform.label33.caption"
+msgid "......."
+msgstr ""
+
+#: tminimalform.label34.caption
+msgctxt "tminimalform.label34.caption"
+msgid "(Cfm)"
+msgstr ""
+
+#: tminimalform.label35.caption
+#, fuzzy
+msgctxt "tminimalform.label35.caption"
+msgid "Distance"
+msgstr "Трасса"
+
+#: tminimalform.label36.caption
+msgctxt "tminimalform.label36.caption"
+msgid "......."
+msgstr ""
+
+#: tminimalform.label37.caption
+#, fuzzy
+msgctxt "tminimalform.label37.caption"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: tminimalform.label38.caption
+msgctxt "tminimalform.label38.caption"
+msgid "......."
+msgstr ""
+
+#: tminimalform.label39.caption
+#, fuzzy
+msgctxt "tminimalform.label39.caption"
+msgid "Latitude"
+msgstr "Широта"
+
+#: tminimalform.label4.caption
+#, fuzzy
+msgctxt "tminimalform.label4.caption"
+msgid "Time (UTC)"
+msgstr "Время (UTC)"
+
+#: tminimalform.label40.caption
+msgctxt "tminimalform.label40.caption"
+msgid "......."
+msgstr ""
+
+#: tminimalform.label41.caption
+#, fuzzy
+msgctxt "tminimalform.label41.caption"
+msgid "Longitude"
+msgstr "Долгота"
+
+#: tminimalform.label42.caption
+msgctxt "tminimalform.label42.caption"
+msgid "......."
+msgstr ""
+
+#: tminimalform.label43.caption
+#, fuzzy
+msgctxt "tminimalform.label43.caption"
+msgid "CQ"
+msgstr "CQ"
+
+#: tminimalform.label44.caption
+msgctxt "tminimalform.label44.caption"
+msgid ".."
+msgstr ""
+
+#: tminimalform.label45.caption
+#, fuzzy
+msgctxt "tminimalform.label45.caption"
+msgid "ITU"
+msgstr "ITU"
+
+#: tminimalform.label46.caption
+msgctxt "tminimalform.label46.caption"
+msgid ".."
+msgstr ""
+
+#: tminimalform.label47.caption
+msgctxt "tminimalform.label47.caption"
+msgid "......."
+msgstr ""
+
+#: tminimalform.label48.caption
+#, fuzzy
+msgctxt "tminimalform.label48.caption"
+msgid "Your QSL"
+msgstr "Моя QSL"
+
+#: tminimalform.label5.caption
+#, fuzzy
+msgctxt "tminimalform.label5.caption"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: tminimalform.label53.caption
+#, fuzzy
+msgctxt "tminimalform.label53.caption"
+msgid "Worked"
+msgstr "Сработано"
+
+#: tminimalform.label54.caption
+#, fuzzy
+msgctxt "tminimalform.label54.caption"
+msgid "QSL"
+msgstr "QSL"
+
+#: tminimalform.label6.caption
+#, fuzzy
+msgctxt "tminimalform.label6.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tminimalform.label7.caption
+#, fuzzy
+msgctxt "tminimalform.label7.caption"
+msgid "QTH"
+msgstr "QTH"
+
+#: tminimalform.label8.caption
+#, fuzzy
+msgctxt "tminimalform.label8.caption"
+msgid "RST sent"
+msgstr "RST отп"
+
+#: tminimalform.label9.caption
+#, fuzzy
+msgctxt "tminimalform.label9.caption"
+msgid "RST rcvd"
+msgstr "RST пол"
+
+#: tminimalform.speedbutton3.caption
+msgctxt "tminimalform.speedbutton3.caption"
+msgid " ... "
+msgstr ""
+
+#: tminimalform.speedbutton4.caption
+msgctxt "tminimalform.speedbutton4.caption"
+msgid " ... "
+msgstr ""
+
+#: tminimalform.speedbutton5.caption
+msgctxt "tminimalform.speedbutton5.caption"
+msgid " ... "
+msgstr ""
 
 #: tmm_form.button1.caption
 msgctxt "tmm_form.button1.caption"
@@ -5037,9 +5584,10 @@ msgid "Update process"
 msgstr "Процесс обновления"
 
 #: tviewphoto.caption
+#, fuzzy
 msgctxt "tviewphoto.caption"
 msgid "Photo"
-msgstr ""
+msgstr "Фото"
 
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
@@ -5124,3 +5672,4 @@ msgstr "Статус обновления: Загрузка"
 msgctxt "updateform_u.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
+

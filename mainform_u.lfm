@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 377
+  Left = 705
   Height = 696
-  Top = 131
+  Top = 157
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -374,7 +374,6 @@ object MainForm: TMainForm
         OnKeyDown = EditButton1KeyDown
         ParentFont = False
         PasswordChar = #0
-        ReadOnly = True
         TabOrder = 0
       end
       object Edit1: TEdit
@@ -740,7 +739,6 @@ object MainForm: TMainForm
         AutoSize = False
         BorderSpacing.Left = 381
         BorderSpacing.Top = 2
-        Color = clYellow
         Font.Height = -12
         ParentFont = False
         TabOrder = 11
@@ -5399,6 +5397,7 @@ object MainForm: TMainForm
     OnReceive = LTCPComponent1Receive
     OnError = LTCPComponent1Error
     OnDisconnect = LTCPComponent1Disconnect
+    OnConnect = LTCPComponent1Connect
     OnAccept = LTCPComponent1Accept
     OnCanSend = LTCPComponent1CanSend
     Timeout = 0
