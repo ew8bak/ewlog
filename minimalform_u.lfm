@@ -613,6 +613,7 @@ object MinimalForm: TMinimalForm
       Caption = 'Real time'
       Checked = True
       Font.Height = -12
+      OnChange = CheckBox1Change
       ParentFont = False
       State = cbChecked
       TabOrder = 5
@@ -630,6 +631,7 @@ object MinimalForm: TMinimalForm
       Caption = 'Save in UTC'
       Enabled = False
       Font.Height = -12
+      OnChange = CheckBox2Change
       ParentFont = False
       TabOrder = 6
     end
@@ -1221,6 +1223,7 @@ object MinimalForm: TMinimalForm
       BorderSpacing.Top = 2
       Font.Height = -11
       ItemHeight = 16
+      OnCloseUp = ComboBox1CloseUp
       ParentFont = False
       Style = csOwnerDrawEditableVariable
       TabOrder = 16
@@ -1315,6 +1318,7 @@ object MinimalForm: TMinimalForm
         'V4'
         'VOI'
       )
+      OnCloseUp = ComboBox2CloseUp
       ParentFont = False
       Style = csOwnerDrawEditableVariable
       TabOrder = 17

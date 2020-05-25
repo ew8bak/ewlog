@@ -1,0 +1,8 @@
+object dm_MainFunc: Tdm_MainFunc
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 256
+  VerticalOffset = 145
+  Width = 150
+  PPI = 96
+end

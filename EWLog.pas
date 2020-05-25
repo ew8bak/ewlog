@@ -20,7 +20,8 @@ uses
   hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom,
   qso_record, resourcestr, const_u, initini, download_lotw, download_eqslcc,
   DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread, getSessionID,
-  GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U, MinimalForm_U;
+  GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U, MinimalForm_U,
+  dmMainFunc;
 
 {$R *.res}
 
@@ -66,6 +67,7 @@ begin
   Application.CreateForm(TMM_Form, MM_Form);
   Application.CreateForm(TviewPhoto, viewPhoto);
   Application.CreateForm(TMinimalForm, MinimalForm);
+  Application.CreateForm(Tdm_MainFunc, dm_MainFunc);
   Application.Run;
 end.
 

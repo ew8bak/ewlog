@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, DB, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   DBGrids, Buttons, EditBtn, StdCtrls, DateTimePicker, LCLType, LazUTF8,
-  const_u, ResourceStr, Grids, LazSysUtils;
+  const_u, ResourceStr, Grids, LazSysUtils, LCLProc;
 
 type
 
@@ -105,6 +105,10 @@ type
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
     Time: TTimer;
+    procedure CheckBox1Change(Sender: TObject);
+    procedure CheckBox2Change(Sender: TObject);
+    procedure ComboBox1CloseUp(Sender: TObject);
+    procedure ComboBox2CloseUp(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure EditButton1Change(Sender: TObject);
@@ -119,15 +123,9 @@ type
   private
     DataSource: TDataSource;
     Query: TSQLQuery;
-    procedure SearchPrefix(CallName: string;
-      var Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent,
-      Latitude, Longitude, Distance, Azimuth: string);
-    procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
-    procedure SearchCallInLog(CallName: string; var setColors: TColor;
-      var OMName, OMQTH, Grid, State, IOTA, QSLManager: string);
     procedure Clr;
-    procedure SetGrid(var DBGRID: TDBGrid);
-    procedure addBands(FreqBand: string; mode: string);
+    procedure addBands(FreqBand, mode, lastBandName: string;
+      lastBand: integer; var ComboBox: TComboBox);
 
   public
 
@@ -138,7 +136,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U;
+uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U, dmMainFunc;
 
 {$R *.lfm}
 
@@ -170,7 +168,14 @@ begin
   Label53.Visible := False;
   Label54.Visible := False;
   Label34.Visible := False;
-  addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
+  ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(
+    IniF.ReadString('SetLog', 'PastMode', ''));
+
+  addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text,
+    MainForm.ComboBox1.Text, MainForm.ComboBox1.ItemIndex, ComboBox1);
+  ComboBox2CloseUp(Self);
+  ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(
+    IniF.ReadString('SetLog', 'PastSubMode', ''));
 end;
 
 procedure TMinimalForm.FormDestroy(Sender: TObject);
@@ -181,7 +186,7 @@ end;
 
 procedure TMinimalForm.FormShow(Sender: TObject);
 begin
-  SetGrid(DBGrid1);
+  dm_MainFunc.SetGrid(DBGrid1);
   Time.Enabled := True;
 end;
 
@@ -202,319 +207,49 @@ begin
   end;
 end;
 
-procedure TMinimalForm.addBands(FreqBand: string; mode: string);
+procedure TMinimalForm.addBands(FreqBand, mode, lastBandName: string;
+  lastBand: integer; var ComboBox: TComboBox);
 var
   i: integer;
-  lastBand: integer;
-  lastBandName: string;
+  BandsQuery: TSQLQuery;
 begin
-  DefaultFormatSettings.DecimalSeparator := '.';
-  if MainForm.ServiceDBConnection.Connected then
-  begin
-    lastBand := ComboBox1.ItemIndex;
-    lastBandName := ComboBox1.Text;
-    MainForm.BandsQuery.Close;
-    ComboBox1.Items.Clear;
-    MainForm.BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
-    MainForm.BandsQuery.Open;
-    MainForm.BandsQuery.First;
-    for i := 0 to MainForm.BandsQuery.RecordCount - 1 do
+  try
+    BandsQuery := TSQLQuery.Create(nil);
+    DefaultFormatSettings.DecimalSeparator := '.';
+    if MainForm.ServiceDBConnection.Connected then
     begin
-      if FreqBand = 'True' then
-        ComboBox1.Items.Add(MainForm.BandsQuery.FieldByName('band').AsString)
-      else
+      BandsQuery.DataBase := MainForm.ServiceDBConnection;
+      ComboBox.Items.Clear;
+      BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
+      BandsQuery.Open;
+      BandsQuery.First;
+      for i := 0 to BandsQuery.RecordCount - 1 do
       begin
-        if mode = 'SSB' then
-          ComboBox1.Items.Add(FormatFloat(view_freq,
-            MainForm.BandsQuery.FieldByName('ssb').AsFloat));
-        if mode = 'CW' then
-          ComboBox1.Items.Add(FormatFloat(view_freq,
-            MainForm.BandsQuery.FieldByName('cw').AsFloat));
-        if (mode <> 'CW') and (mode <> 'SSB') then
-          ComboBox1.Items.Add(FormatFloat(view_freq,
-            MainForm.BandsQuery.FieldByName('b_begin').AsFloat));
-      end;
-      MainForm.BandsQuery.Next;
-    end;
-    MainForm.BandsQuery.Close;
-    if ComboBox1.Items.IndexOf(lastBandName) >= 0 then
-      ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(lastBandName)
-    else
-      ComboBox1.ItemIndex := lastBand;
-  end;
-end;
-
-procedure TMinimalForm.SetGrid(var DBGRID: TDBGrid);
-var
-  i: integer;
-  QBAND: string;
-begin
-  for i := 0 to 29 do
-  begin
-    MainForm.columnsGrid[i] :=
-      IniF.ReadString('GridSettings', 'Columns' + IntToStr(i), constColumnName[i]);
-    MainForm.columnsWidth[i] :=
-      IniF.ReadInteger('GridSettings', 'ColWidth' + IntToStr(i), constColumnWidth[i]);
-    MainForm.columnsVisible[i] :=
-      IniF.ReadBool('GridSettings', 'ColVisible' + IntToStr(i), True);
-  end;
-
-  MainForm.ColorTextGrid := IniF.ReadInteger('GridSettings', 'TextColor', 0);
-  MainForm.SizeTextGrid := IniF.ReadInteger('GridSettings', 'TextSize', 8);
-  MainForm.ColorBackGrid := IniF.ReadInteger('GridSettings', 'BackColor', -2147483617);
-
-  DBGRID.Font.Size := MainForm.SizeTextGrid;
-  DBGRID.Font.Color := MainForm.ColorTextGrid;
-  DBGRID.Color := MainForm.ColorBackGrid;
-
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
-    QBAND := rQSOBand
-  else
-    QBAND := rQSOBandFreq;
-
-  for i := 0 to 29 do
-  begin
-    DBGRID.Columns.Items[i].FieldName := MainForm.columnsGrid[i];
-    DBGRID.Columns.Items[i].Width := MainForm.columnsWidth[i];
-    case MainForm.columnsGrid[i] of
-      'QSL': DBGRID.Columns.Items[i].Title.Caption := rQSL;
-      'QSLs': DBGRID.Columns.Items[i].Title.Caption := rQSLs;
-      'QSODate': DBGRID.Columns.Items[i].Title.Caption := rQSODate;
-      'QSOTime': DBGRID.Columns.Items[i].Title.Caption := rQSOTime;
-      'QSOBand': DBGRID.Columns.Items[i].Title.Caption := QBAND;
-      'CallSign': DBGRID.Columns.Items[i].Title.Caption := rCallSign;
-      'QSOMode': DBGRID.Columns.Items[i].Title.Caption := rQSOMode;
-      'QSOSubMode': DBGRID.Columns.Items[i].Title.Caption := rQSOSubMode;
-      'OMName': DBGRID.Columns.Items[i].Title.Caption := rOMName;
-      'OMQTH': DBGRID.Columns.Items[i].Title.Caption := rOMQTH;
-      'State': DBGRID.Columns.Items[i].Title.Caption := rState;
-      'Grid': DBGRID.Columns.Items[i].Title.Caption := rGrid;
-      'QSOReportSent': DBGRID.Columns.Items[i].Title.Caption := rQSOReportSent;
-      'QSOReportRecived': DBGRID.Columns.Items[i].Title.Caption := rQSOReportRecived;
-      'IOTA': DBGRID.Columns.Items[i].Title.Caption := rIOTA;
-      'QSLManager': DBGRID.Columns.Items[i].Title.Caption := rQSLManager;
-      'QSLSentDate': DBGRID.Columns.Items[i].Title.Caption := rQSLSentDate;
-      'QSLRecDate': DBGRID.Columns.Items[i].Title.Caption := rQSLRecDate;
-      'LoTWRecDate': DBGRID.Columns.Items[i].Title.Caption := rLoTWRecDate;
-      'MainPrefix': DBGRID.Columns.Items[i].Title.Caption := rMainPrefix;
-      'DXCCPrefix': DBGRID.Columns.Items[i].Title.Caption := rDXCCPrefix;
-      'CQZone': DBGRID.Columns.Items[i].Title.Caption := rCQZone;
-      'ITUZone': DBGRID.Columns.Items[i].Title.Caption := rITUZone;
-      'ManualSet': DBGRID.Columns.Items[i].Title.Caption := rManualSet;
-      'Continent': DBGRID.Columns.Items[i].Title.Caption := rContinent;
-      'ValidDX': DBGRID.Columns.Items[i].Title.Caption := rValidDX;
-      'QSL_RCVD_VIA': DBGRID.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
-      'QSL_SENT_VIA': DBGRID.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
-      'USERS': DBGRID.Columns.Items[i].Title.Caption := rUSERS;
-      'NoCalcDXCC': DBGRID.Columns.Items[i].Title.Caption := rNoCalcDXCC;
-    end;
-
-    case MainForm.columnsGrid[i] of
-      'QSL': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[0];
-      'QSLs': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[1];
-      'QSODate': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[2];
-      'QSOTime': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[3];
-      'QSOBand': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[4];
-      'CallSign': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[5];
-      'QSOMode': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[6];
-      'QSOSubMode': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[7];
-      'OMName': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[8];
-      'OMQTH': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[9];
-      'State': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[10];
-      'Grid': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[11];
-      'QSOReportSent': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[12];
-      'QSOReportRecived': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[13];
-      'IOTA': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[14];
-      'QSLManager': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[15];
-      'QSLSentDate': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[16];
-      'QSLRecDate': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[17];
-      'LoTWRecDate': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[18];
-      'MainPrefix': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[19];
-      'DXCCPrefix': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[20];
-      'CQZone': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[21];
-      'ITUZone': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[22];
-      'ManualSet': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[23];
-      'Continent': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[24];
-      'ValidDX': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[25];
-      'QSL_RCVD_VIA': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[26];
-      'QSL_SENT_VIA': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[27];
-      'USERS': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[28];
-      'NoCalcDXCC': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[29];
-    end;
-  end;
-
-  case MainForm.SizeTextGrid of
-    8: DBGRID.DefaultRowHeight := 15;
-    10: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-    12: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-    14: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-  end;
-
-  for i := 0 to DBGRID.Columns.Count - 1 do
-    DBGRID.Columns.Items[i].Title.Font.Size := MainForm.SizeTextGrid;
-end;
-
-procedure TMinimalForm.SearchCallInLog(CallName: string; var setColors: TColor;
-  var OMName, OMQTH, Grid, State, IOTA, QSLManager: string);
-begin
-  Query.Close;
-  if MainForm.MySQLLOGDBConnection.Connected then
-  begin
-    Query.DataBase := MainForm.MySQLLOGDBConnection;
-    Query.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
-      QuotedStr(CallName) +
-      ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC';
-  end
-  else
-  begin
-    Query.DataBase := MainForm.SQLiteDBConnection;
-    Query.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
-      'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
-      + LogTable +
-      ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
-      LogTable + ' WHERE `Call` LIKE ' + QuotedStr(CallName) +
-      ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
-  end;
-  Query.Transaction := MainForm.SQLTransaction1;
-  Query.Open;
-  if Query.RecordCount > 0 then
-  begin
-    setColors := clMoneyGreen;
-    OMName := Query.FieldByName('OMName').AsString;
-    OMQTH := Query.FieldByName('OMQTH').AsString;
-    Grid := Query.FieldByName('Grid').AsString;
-    State := Query.FieldByName('State').AsString;
-    IOTA := Query.FieldByName('IOTA').AsString;
-    QSLManager := Query.FieldByName('QSLManager').AsString;
-  end
-  else
-    setColors := clDefault;
-end;
-
-procedure TMinimalForm.GetDistAzim(la, lo: string; var Distance, Azimuth: string);
-var
-  R: extended;
-  azim, qra: string;
-begin
-  qra := '';
-  azim := '';
-  if (UTF8Pos('W', lo) <> 0) then
-    lo := '-' + lo;
-  if (UTF8Pos('S', la) <> 0) then
-    la := '-' + la;
-  Delete(la, length(la), 1);
-  Delete(lo, length(lo), 1);
-  R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la), StrToFloat(lo)) / 1000;
-  Distance := FormatFloat('0.00', R) + ' KM';
-  dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la),
-    strtofloat(lo), qra, azim);
-  Azimuth := azim;
-end;
-
-procedure TMinimalForm.SearchPrefix(CallName: string;
-  var Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent, Latitude,
-  Longitude, Distance, Azimuth: string);
-var
-  i, j: integer;
-begin
-  if MainForm.UniqueCallsList.IndexOf(CallName) > -1 then
-  begin
-    with MainForm.PrefixQuery do
-    begin
-      Close;
-      SQL.Clear;
-      SQL.Add('select * from UniqueCalls where _id = "' +
-        IntToStr(MainForm.UniqueCallsList.IndexOf(CallName)) + '"');
-      Open;
-      Country := FieldByName('Country').AsString;
-      ARRLPrefix := FieldByName('ARRLPrefix').AsString;
-      Prefix := FieldByName('Prefix').AsString;
-      CQZone := FieldByName('CQZone').AsString;
-      ITUZone := FieldByName('ITUZone').AsString;
-      Continent := FieldByName('Continent').AsString;
-      Latitude := FieldByName('Latitude').AsString;
-      Longitude := FieldByName('Longitude').AsString;
-      DXCCNum := FieldByName('DXCC').AsInteger;
-    end;
-    GetDistAzim(Latitude, Longitude, Distance, Azimuth);
-    Exit;
-  end;
-
-  for i := 0 to PrefixProvinceCount do
-  begin
-    if (MainForm.PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-      (MainForm.PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
-    begin
-      with MainForm.PrefixQuery do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from Province where _id = "' +
-          IntToStr(MainForm.PrefixExpProvinceArray[i].id) + '"');
-        Open;
-        Country := FieldByName('Country').AsString;
-        ARRLPrefix := FieldByName('ARRLPrefix').AsString;
-        Prefix := FieldByName('Prefix').AsString;
-        CQZone := FieldByName('CQZone').AsString;
-        ITUZone := FieldByName('ITUZone').AsString;
-        Continent := FieldByName('Continent').AsString;
-        Latitude := FieldByName('Latitude').AsString;
-        Longitude := FieldByName('Longitude').AsString;
-        DXCCNum := FieldByName('DXCC').AsInteger;
-        timedif := FieldByName('TimeDiff').AsInteger;
-      end;
-      GetDistAzim(Latitude, Longitude, Distance, Azimuth);
-      Exit;
-    end;
-  end;
-
-  for j := 0 to PrefixARRLCount do
-  begin
-    if (MainForm.PrefixExpARRLArray[j].reg.Exec(CallName)) and
-      (MainForm.PrefixExpARRLArray[j].reg.Match[0] = CallName) then
-    begin
-      with MainForm.PrefixQuery do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from CountryDataEx where _id = "' +
-          IntToStr(MainForm.PrefixExpARRLArray[j].id) + '"');
-        Open;
-        if (FieldByName('Status').AsString = 'Deleted') then
+        if FreqBand = 'True' then
+          ComboBox.Items.Add(BandsQuery.FieldByName('band').AsString)
+        else
         begin
-          MainForm.PrefixExpARRLArray[j].reg.ExecNext;
-          Exit;
+          if mode = 'SSB' then
+            ComboBox.Items.Add(FormatFloat(view_freq,
+              BandsQuery.FieldByName('ssb').AsFloat));
+          if mode = 'CW' then
+            ComboBox.Items.Add(FormatFloat(view_freq,
+              BandsQuery.FieldByName('cw').AsFloat));
+          if (mode <> 'CW') and (mode <> 'SSB') then
+            ComboBox.Items.Add(FormatFloat(view_freq,
+              BandsQuery.FieldByName('b_begin').AsFloat));
         end;
+        BandsQuery.Next;
       end;
-      Country := MainForm.PrefixQuery.FieldByName('Country').AsString;
-      ARRLPrefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      Prefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      CQZone := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-      ITUZone := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-      Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-      Latitude := MainForm.PrefixQuery.FieldByName('Latitude').AsString;
-      Longitude := MainForm.PrefixQuery.FieldByName('Longitude').AsString;
-      DXCCNum := MainForm.PrefixQuery.FieldByName('DXCC').AsInteger;
-      timedif := MainForm.PrefixQuery.FieldByName('TimeDiff').AsInteger;
-      GetDistAzim(Latitude, Longitude, Distance, Azimuth);
-      Exit;
+      BandsQuery.Close;
+      if ComboBox.Items.IndexOf(lastBandName) >= 0 then
+        ComboBox.ItemIndex := ComboBox.Items.IndexOf(lastBandName)
+      else
+        ComboBox.ItemIndex := lastBand;
     end;
+
+  finally
+    BandsQuery.Free;
   end;
 end;
 
@@ -545,15 +280,15 @@ begin
 
   if Length(EditButton1.Text) >= 2 then
   begin
-    MainForm.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text,
+    dm_MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text,
       DMode, DBand, DCall);
-    MainForm.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
-    Label53.Visible := MainForm.FindWorkedCall(EditButton1.Text,
+    dm_MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
+    Label53.Visible := dm_MainFunc.FindWorkedCall(EditButton1.Text,
       ComboBox1.Text, ComboBox2.Text);
-    Label54.Visible := MainForm.WorkedQSL(EditButton1.Text, ComboBox1.Text,
-      ComboBox2.Text);
-    Label34.Visible := MainForm.WorkedLoTW(EditButton1.Text, ComboBox1.Text,
-      ComboBox2.Text);
+    Label54.Visible := dm_MainFunc.WorkedQSL(EditButton1.Text,
+      ComboBox1.Text, ComboBox2.Text);
+    Label34.Visible := dm_MainFunc.WorkedLoTW(EditButton1.Text,
+      ComboBox1.Text, ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;
@@ -601,10 +336,10 @@ begin
     label42.Caption := '.......';
     Exit;
   end;
-  SearchCallInLog(dmFunc.ExtractCallsign(EditButton1.Text), setColors,
-    OMName, OMQTH, Grid, State, IOTA, QSLManager);
+  dm_MainFunc.SearchCallInLog(dmFunc.ExtractCallsign(EditButton1.Text), setColors,
+    OMName, OMQTH, Grid, State, IOTA, QSLManager, Query);
   EditButton1.Color := setColors;
-  SearchPrefix(EditButton1.Text, Country, ARRLPrefix,
+  dm_MainFunc.SearchPrefix(EditButton1.Text, Country, ARRLPrefix,
     Prefix, CQZone, ITUZone, Continent, Latitude, Longitude, Distance, Azimuth);
   Label31.Caption := Country;
   Label33.Caption := ARRLPrefix;
@@ -763,6 +498,92 @@ begin
         dmFunc.GetBandFromFreq(DataSource.DataSet.FieldByName('QSOBand').AsString));
     end;
   end;
+end;
+
+procedure TMinimalForm.ComboBox2CloseUp(Sender: TObject);
+var
+  modesString: TStringList;
+  deldot: string;
+begin
+  modesString := TStringList.Create;
+  deldot := ComboBox1.Text;
+  if Pos('M', deldot) > 0 then
+  begin
+    deldot := FormatFloat(view_freq, dmFunc.GetFreqFromBand(deldot, ComboBox2.Text));
+    Delete(deldot, length(deldot) - 2, 1);
+  end
+  else
+    Delete(deldot, length(deldot) - 2, 1);
+  ComboBox3.Items.Clear;
+  MainForm.addModes(ComboBox2.Text, True, modesString);
+  ComboBox3.Items := modesString;
+  modesString.Free;
+  addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text,
+    ComboBox1.Text, ComboBox1.ItemIndex, ComboBox1);
+  if ComboBox2.Text <> 'SSB' then
+    ComboBox3.Text := '';
+  if deldot <> '' then
+  begin
+    if StrToDouble(deldot) >= 10 then
+      ComboBox3.ItemIndex := ComboBox3.Items.IndexOf('USB')
+    else
+      ComboBox3.ItemIndex := ComboBox3.Items.IndexOf('LSB');
+  end;
+end;
+
+procedure TMinimalForm.ComboBox1CloseUp(Sender: TObject);
+var
+  deldot: string;
+begin
+  MainForm.freqchange := True;
+  deldot := ComboBox1.Text;
+  if Pos('M', deldot) > 0 then
+  begin
+    deldot := FormatFloat(view_freq, dmFunc.GetFreqFromBand(deldot, ComboBox2.Text));
+    Delete(deldot, length(deldot) - 2, 1);
+  end
+  else
+    Delete(deldot, length(deldot) - 2, 1);
+
+  if ComboBox2.Text = 'SSB' then
+  begin
+    if StrToDouble(deldot) >= 10 then
+      ComboBox3.ItemIndex := ComboBox3.Items.IndexOf('USB')
+    else
+      ComboBox3.ItemIndex := ComboBox3.Items.IndexOf('LSB');
+  end;
+
+  if Length(EditButton1.Text) >= 2 then
+    EditButton1Change(ComboBox1);
+end;
+
+procedure TMinimalForm.CheckBox1Change(Sender: TObject);
+begin
+  if CheckBox1.Checked = False then
+  begin
+    EditButton1.Font.Color := clRed;
+    DateTimePicker1.Font.Color := clRed;
+    DateEdit1.Font.Color := clRed;
+    CheckBox2.Enabled := True;
+    DateTimePicker1.ReadOnly := False;
+  end
+  else
+  begin
+    EditButton1.Font.Color := clDefault;
+    DateTimePicker1.Font.Color := clDefault;
+    DateEdit1.Font.Color := clDefault;
+    CheckBox2.Enabled := False;
+    CheckBox2.Checked := False;
+    DateTimePicker1.ReadOnly := True;
+  end;
+end;
+
+procedure TMinimalForm.CheckBox2Change(Sender: TObject);
+begin
+  if CheckBox2.Checked = True then
+    Label4.Caption := rQSOTime + ' (Local)'
+  else
+    Label4.Caption := rQSOTime + ' (UTC)';
 end;
 
 procedure TMinimalForm.Clr;
