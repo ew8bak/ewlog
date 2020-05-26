@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 705
+  Left = 670
   Height = 696
-  Top = 157
+  Top = 132
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -5349,12 +5349,6 @@ object MainForm: TMainForm
     Database = ServiceDBConnection
     left = 24
     top = 488
-  end
-  object Timer3: TTimer
-    Interval = 100
-    OnTimer = Timer3Timer
-    left = 600
-    top = 128
   end
   object TrayPopup: TPopupMenu
     left = 400

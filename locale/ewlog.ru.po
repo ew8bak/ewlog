@@ -2879,6 +2879,7 @@ msgid "Save in UTC"
 msgstr "Сохранить в UTC"
 
 #: tmainform.checkbox3.caption
+msgctxt "tmainform.checkbox3.caption"
 msgid "Map"
 msgstr "Карта"
 
@@ -4579,6 +4580,30 @@ msgstr "RST отп"
 msgctxt "tminimalform.label9.caption"
 msgid "RST rcvd"
 msgstr "RST пол"
+
+#: tminimalform.menuitem1.caption
+msgid "QSO Table"
+msgstr ""
+
+#: tminimalform.menuitem2.caption
+msgid "DX Cluster"
+msgstr ""
+
+#: tminimalform.menuitem3.caption
+#, fuzzy
+msgctxt "tminimalform.menuitem3.caption"
+msgid "Map"
+msgstr "Карта"
+
+#: tminimalform.menuitem4.caption
+#, fuzzy
+msgctxt "tminimalform.menuitem4.caption"
+msgid "Information"
+msgstr "Информация"
+
+#: tminimalform.menuitem5.caption
+msgid "Transceiver"
+msgstr ""
 
 #: tminimalform.speedbutton3.caption
 msgctxt "tminimalform.speedbutton3.caption"

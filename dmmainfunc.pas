@@ -5,27 +5,39 @@ unit dmMainFunc;
 interface
 
 uses
-  Classes, SysUtils, sqldb, DB, LazUTF8, LCLProc, LCLType, Graphics, DBGrids;
+  Classes, SysUtils, sqldb, DB, LazUTF8, LCLProc, LCLType, Graphics,
+  DBGrids, FileUtil, qso_record;
 
 type
   Tdm_MainFunc = class(TDataModule)
   private
 
   public
-    procedure SearchPrefix(CallName: string;
-  var Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent, Latitude,
-  Longitude, Distance, Azimuth: string);
+    procedure SearchPrefix(CallName, Grid: string;
+      var Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent,
+      Latitude, Longitude, Distance, Azimuth: string);
     procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
     procedure SearchCallInLog(CallName: string; var setColors: TColor;
-  var OMName, OMQTH, Grid, State, IOTA, QSLManager: string; var Query:TSQLQuery);
+      var OMName, OMQTH, Grid, State, IOTA, QSLManager: string; var Query: TSQLQuery);
     procedure SetGrid(var DBGRID: TDBGrid);
-    procedure CheckDXCC(callsign, mode, band: string;
-  var DMode, DBand, DCall: boolean);
+    procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
     procedure CheckQSL(callsign, band, mode: string; var QSL: integer);
+    procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
+    procedure FindCountryFlag(Country: string);
+    procedure SaveQSO(var SQSO: TQSO);
+    procedure GetLatLon(Latitude, Longitude: String; var Lat, Lon:String);
+    procedure StartEQSLThread(Login, Password, Callsign: string;
+      QSODate, QSOTime: TDateTime;
+      QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSLInfo: string);
+    procedure StartHRDLogThread(Login, Password, Callsign: string;
+      QSODate, QSOTime: TDateTime;
+      QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSOReportRcv, Grid, QSLInfo: string);
     function FindWorkedCall(callsign, band, mode: string): boolean;
     function WorkedLoTW(callsign, band, mode: string): boolean;
     function WorkedQSL(callsign, band, mode: string): boolean;
     function FindDXCC(callsign: string): integer;
+    function FindISOCountry(Country: string): string;
+    function FindCountry(ISOCode: string): string;
 
   end;
 
@@ -33,15 +45,280 @@ var
   dm_MainFunc: Tdm_MainFunc;
 
 implementation
-uses MainForm_U, dmFunc_U, const_u, ResourceStr;
+
+uses MainForm_U, dmFunc_U, const_u, ResourceStr, hrdlog,
+  hamqth, clublog, qrzcom, eqsl;
 
 {$R *.lfm}
 
-procedure Tdm_MainFunc.SearchPrefix(CallName: string;
+procedure Tdm_MainFunc.GetLatLon(Latitude, Longitude: String; var Lat, Lon:String);
+begin
+    if (UTF8Pos('W', Longitude) <> 0) then
+      Longitude := '-' + Longitude;
+    if (UTF8Pos('S', Latitude) <> 0) then
+      Latitude := '-' + Latitude;
+    Delete(Latitude, length(Latitude), 1);
+    Delete(Longitude, length(Longitude), 1);
+    Lat:=Latitude;
+    Lon:=Longitude;
+end;
+
+procedure Tdm_MainFunc.StartEQSLThread(Login, Password, Callsign: string;
+  QSODate, QSOTime: TDateTime;
+  QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSLInfo: string);
+begin
+  SendEQSLThread := TSendEQSLThread.Create;
+  if Assigned(SendEQSLThread.FatalException) then
+    raise SendEQSLThread.FatalException;
+  with SendEQSLThread do
+  begin
+    userid := Login;
+    userpwd := Password;
+    call := Callsign;
+    startdate := QSODate;
+    starttime := QSOTime;
+    freq := QSOBand;
+    mode := QSOMode;
+    submode := QSOSubMode;
+    rst := QSOReportSent;
+    qslinf := QSLInfo;
+    Start;
+  end;
+end;
+
+procedure Tdm_MainFunc.StartHRDLogThread(Login, Password, Callsign: string;
+  QSODate, QSOTime: TDateTime;
+  QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSOReportRcv, Grid, QSLInfo: string);
+begin
+  SendHRDThread := TSendHRDThread.Create;
+  if Assigned(SendHRDThread.FatalException) then
+    raise SendHRDThread.FatalException;
+  with SendHRDThread do
+  begin
+    userid := Login;
+    userpwd := Password;
+    call := Callsign;
+    startdate := QSODate;
+    starttime := QSOTime;
+    freq := QSOBand;
+    mode := QSOMode;
+    submode := QSOSubMode;
+    rsts := QSOReportSent;
+    rstr := QSOReportRcv;
+    locat := Grid;
+    qslinf := QSLInfo;
+    Start;
+  end;
+end;
+
+procedure Tdm_MainFunc.SaveQSO(var SQSO: TQSO);
+var
+  Query: TSQLQuery;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.Transaction := MainForm.SQLTransaction1;
+
+    if MainForm.MySQLLOGDBConnection.Connected then
+      Query.DataBase := MainForm.MySQLLOGDBConnection
+    else
+      Query.DataBase := MainForm.SQLiteDBConnection;
+
+    with Query do
+    begin
+      SQL.Text := 'INSERT INTO ' + SQSO.NLogDB +
+        '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, `QSOSubMode`, ' +
+        '`QSOReportSent`, `QSOReportRecived`, `OMName`, `OMQTH`, `State`, `Grid`, `IOTA`,'
+        + '`QSLManager`, `QSLSent`, `QSLSentAdv`, `QSLSentDate`, `QSLRec`, `QSLRecDate`,'
+        + '`MainPrefix`, `DXCCPrefix`, `CQZone`, `ITUZone`, `QSOAddInfo`, `Marker`, `ManualSet`,'
+        + '`DigiBand`, `Continent`, `ShortNote`, `QSLReceQSLcc`, `LoTWRec`, `LoTWRecDate`,'
+        + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
+        + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
+        + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`,'
+        + '`MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`, `SYNC`)' +
+        'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,'
+        + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,'
+        + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,'
+        + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,'
+        + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,'
+        + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,'
+        + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON, :SYNC)';
+
+      Params.ParamByName('CallSign').AsString := SQSO.CallSing;
+      Params.ParamByName('QSODate').AsDateTime := SQSO.QSODate;
+      Params.ParamByName('QSOTime').AsString := SQSO.QSOTime;
+      Params.ParamByName('QSOBand').AsString := SQSO.QSOBand;
+      Params.ParamByName('QSOMode').AsString := SQSO.QSOMode;
+      Params.ParamByName('QSOSubMode').AsString := SQSO.QSOSubMode;
+      Params.ParamByName('QSOReportSent').AsString := SQSO.QSOReportSent;
+      Params.ParamByName('QSOReportRecived').AsString := SQSO.QSOReportRecived;
+      Params.ParamByName('OMName').AsString := SQSO.OmName;
+      Params.ParamByName('OMQTH').AsString := SQSO.OmQTH;
+      Params.ParamByName('State').AsString := SQSO.State0;
+      Params.ParamByName('Grid').AsString := SQSO.Grid;
+      Params.ParamByName('IOTA').AsString := SQSO.IOTA;
+      Params.ParamByName('QSLManager').AsString := SQSO.QSLManager;
+      Params.ParamByName('QSLSent').AsString := SQSO.QSLSent;
+      Params.ParamByName('QSLSentAdv').AsString := SQSO.QSLSentAdv;
+
+      if SQSO.QSLSentDate = 'NULL' then
+        Params.ParamByName('QSLSentDate').IsNull
+      else
+        Params.ParamByName('QSLSentDate').AsString := SQSO.QSLSentDate;
+      Params.ParamByName('QSLRec').AsString := SQSO.QSLRec;
+      if SQSO.QSLRecDate = 'NULL' then
+        Params.ParamByName('QSLRecDate').IsNull
+      else
+        Params.ParamByName('QSLRecDate').AsString := SQSO.QSLRecDate;
+
+      Params.ParamByName('MainPrefix').AsString := SQSO.MainPrefix;
+      Params.ParamByName('DXCCPrefix').AsString := SQSO.DXCCPrefix;
+      Params.ParamByName('CQZone').AsString := SQSO.CQZone;
+      Params.ParamByName('ITUZone').AsString := SQSO.ITUZone;
+      Params.ParamByName('QSOAddInfo').AsString := SQSO.QSOAddInfo;
+      Params.ParamByName('Marker').AsString := SQSO.Marker;
+      Params.ParamByName('ManualSet').AsInteger := SQSO.ManualSet;
+      Params.ParamByName('DigiBand').AsString := SQSO.DigiBand;
+      Params.ParamByName('Continent').AsString := SQSO.Continent;
+      Params.ParamByName('ShortNote').AsString := SQSO.ShortNote;
+      Params.ParamByName('QSLReceQSLcc').AsInteger := SQSO.QSLReceQSLcc;
+      if SQSO.LotWRec = '' then
+        Params.ParamByName('LoTWRec').AsInteger := 0
+      else
+        Params.ParamByName('LoTWRec').AsInteger := 1;
+      if SQSO.LotWRecDate = 'NULL' then
+        Params.ParamByName('LoTWRecDate').IsNull
+      else
+        Params.ParamByName('LoTWRecDate').AsString := SQSO.LotWRecDate;
+      Params.ParamByName('QSLInfo').AsString := SQSO.QSLInfo;
+      Params.ParamByName('Call').AsString := SQSO.Call;
+      Params.ParamByName('State1').AsString := SQSO.State1;
+      Params.ParamByName('State2').AsString := SQSO.State2;
+      Params.ParamByName('State3').AsString := SQSO.State3;
+      Params.ParamByName('State4').AsString := SQSO.State4;
+      Params.ParamByName('WPX').AsString := SQSO.WPX;
+      Params.ParamByName('AwardsEx').AsString := SQSO.AwardsEx;
+      Params.ParamByName('ValidDX').AsString := SQSO.ValidDX;
+      Params.ParamByName('SRX').AsInteger := SQSO.SRX;
+      Params.ParamByName('SRX_STRING').AsString := SQSO.SRX_String;
+      Params.ParamByName('STX').AsInteger := SQSO.STX;
+      Params.ParamByName('STX_STRING').AsString := SQSO.STX_String;
+      Params.ParamByName('SAT_NAME').AsString := SQSO.SAT_NAME;
+      Params.ParamByName('SAT_MODE').AsString := SQSO.SAT_MODE;
+      Params.ParamByName('PROP_MODE').AsString := SQSO.PROP_MODE;
+      Params.ParamByName('LoTWSent').AsInteger := SQSO.LotWSent;
+      if SQSO.QSL_RCVD_VIA = '' then
+        Params.ParamByName('QSL_RCVD_VIA').IsNull
+      else
+        Params.ParamByName('QSL_RCVD_VIA').AsString := SQSO.QSL_RCVD_VIA;
+      if SQSO.QSL_SENT_VIA = '' then
+        Params.ParamByName('QSL_SENT_VIA').IsNull
+      else
+        Params.ParamByName('QSL_SENT_VIA').AsString := SQSO.QSL_SENT_VIA;
+      Params.ParamByName('DXCC').AsString := SQSO.DXCC;
+      Params.ParamByName('USERS').AsString := SQSO.USERS;
+      Params.ParamByName('NoCalcDXCC').AsInteger := SQSO.NoCalcDXCC;
+      Params.ParamByName('MY_STATE').AsString := SQSO.My_State;
+      Params.ParamByName('MY_GRIDSQUARE').AsString := SQSO.My_Grid;
+      Params.ParamByName('MY_LAT').AsString := SQSO.My_Lat;
+      Params.ParamByName('MY_LON').AsString := SQSO.My_Lon;
+      Params.ParamByName('SYNC').AsInteger := SQSO.SYNC;
+      ExecSQL;
+    end;
+    MainForm.SQLTransaction1.Commit;
+  finally
+    Query.Free;
+  end;
+end;
+
+function Tdm_MainFunc.FindISOCountry(Country: string): string;
+var
+  ISOList: TStringList;
+  LanguageList: TStringList;
+  Index: integer;
+begin
+  Result := '';
+  try
+    ISOList := TStringList.Create;
+    LanguageList := TStringList.Create;
+    ISOList.AddStrings(constLanguageISO);
+    LanguageList.AddStrings(constLanguage);
+    Index := LanguageList.IndexOf(Country);
+    if Index <> -1 then
+      Result := ISOList.Strings[Index]
+    else
+      Result := 'None';
+
+  finally
+    ISOList.Free;
+    LanguageList.Free;
+  end;
+end;
+
+function Tdm_MainFunc.FindCountry(ISOCode: string): string;
+var
+  ISOList: TStringList;
+  LanguageList: TStringList;
+  Index: integer;
+begin
+  try
+    Result := '';
+    ISOList := TStringList.Create;
+    LanguageList := TStringList.Create;
+    ISOList.AddStrings(constLanguageISO);
+    LanguageList.AddStrings(constLanguage);
+    Index := ISOList.IndexOf(ISOCode);
+    if Index <> -1 then
+      Result := LanguageList.Strings[Index]
+    else
+      Result := 'None';
+
+  finally
+    ISOList.Free;
+    LanguageList.Free;
+  end;
+end;
+
+procedure Tdm_MainFunc.FindLanguageFiles(Dir: string; var LangList: TStringList);
+begin
+  LangList := FindAllFiles(Dir, 'ewlog.*.po', False, faNormal);
+  LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
+    'ewlog.', '', [rfreplaceall]);
+  LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
+end;
+
+procedure Tdm_MainFunc.FindCountryFlag(Country: string);
+var
+  pImage: TPortableNetworkGraphic;
+begin
+  try
+    pImage := TPortableNetworkGraphic.Create;
+    pImage.LoadFromLazarusResource(dmFunc.ReplaceCountry(Country));
+    if MainForm.FlagSList.IndexOf(dmFunc.ReplaceCountry(Country)) = -1 then
+    begin
+      MainForm.FlagList.Add(pImage, nil);
+      MainForm.FlagSList.Add(dmFunc.ReplaceCountry(Country));
+    end;
+  except
+    on EResNotFound do
+    begin
+      pImage.LoadFromLazarusResource('Unknown');
+      if MainForm.FlagSList.IndexOf('Unknown') = -1 then
+      begin
+        MainForm.FlagList.Add(pImage, nil);
+        MainForm.FlagSList.Add('Unknown');
+      end;
+    end;
+  end;
+  pImage.Free;
+end;
+
+procedure Tdm_MainFunc.SearchPrefix(CallName, Grid: string;
   var Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent, Latitude,
   Longitude, Distance, Azimuth: string);
 var
   i, j: integer;
+  La, Lo: currency;
 begin
   if MainForm.UniqueCallsList.IndexOf(CallName) > -1 then
   begin
@@ -61,6 +338,12 @@ begin
       Latitude := FieldByName('Latitude').AsString;
       Longitude := FieldByName('Longitude').AsString;
       DXCCNum := FieldByName('DXCC').AsInteger;
+    end;
+    if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+    begin
+      dmFunc.CoordinateFromLocator(Grid, La, Lo);
+      Latitude := CurrToStr(La);
+      Longitude := CurrToStr(Lo);
     end;
     GetDistAzim(Latitude, Longitude, Distance, Azimuth);
     Exit;
@@ -88,6 +371,12 @@ begin
         Longitude := FieldByName('Longitude').AsString;
         DXCCNum := FieldByName('DXCC').AsInteger;
         timedif := FieldByName('TimeDiff').AsInteger;
+      end;
+      if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+      begin
+        dmFunc.CoordinateFromLocator(Grid, La, Lo);
+        Latitude := CurrToStr(La);
+        Longitude := CurrToStr(Lo);
       end;
       GetDistAzim(Latitude, Longitude, Distance, Azimuth);
       Exit;
@@ -122,6 +411,12 @@ begin
       Longitude := MainForm.PrefixQuery.FieldByName('Longitude').AsString;
       DXCCNum := MainForm.PrefixQuery.FieldByName('DXCC').AsInteger;
       timedif := MainForm.PrefixQuery.FieldByName('TimeDiff').AsInteger;
+      if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+      begin
+        dmFunc.CoordinateFromLocator(Grid, La, Lo);
+        Latitude := CurrToStr(La);
+        Longitude := CurrToStr(Lo);
+      end;
       GetDistAzim(Latitude, Longitude, Distance, Azimuth);
       Exit;
     end;
@@ -149,7 +444,7 @@ begin
 end;
 
 procedure Tdm_MainFunc.SearchCallInLog(CallName: string; var setColors: TColor;
-  var OMName, OMQTH, Grid, State, IOTA, QSLManager: string; var Query:TSQLQuery);
+  var OMName, OMQTH, Grid, State, IOTA, QSLManager: string; var Query: TSQLQuery);
 begin
   Query.Close;
   if MainForm.MySQLLOGDBConnection.Connected then
@@ -593,4 +888,3 @@ begin
 end;
 
 end.
-

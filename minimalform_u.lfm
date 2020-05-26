@@ -1,13 +1,14 @@
 object MinimalForm: TMinimalForm
-  Left = 227
-  Height = 423
-  Top = 166
+  Left = 261
+  Height = 452
+  Top = 209
   Width = 471
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'EWLog - HAM Journal minimal'
-  ClientHeight = 423
+  ClientHeight = 432
   ClientWidth = 471
+  Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -33,6 +34,7 @@ object MinimalForm: TMinimalForm
       Top = 2
       Width = 23
       BorderSpacing.Left = 1
+      OnClick = SpeedButton1Click
     end
     object SpeedButton2: TSpeedButton
       AnchorSideLeft.Control = SpeedButton1
@@ -50,7 +52,7 @@ object MinimalForm: TMinimalForm
   object Panel3: TPanel
     Left = 0
     Height = 113
-    Top = 310
+    Top = 319
     Width = 471
     Align = alBottom
     ClientHeight = 113
@@ -254,12 +256,12 @@ object MinimalForm: TMinimalForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 284
+    Height = 293
     Top = 26
     Width = 471
     Align = alClient
     AutoSize = True
-    ClientHeight = 284
+    ClientHeight = 293
     ClientWidth = 471
     ParentFont = False
     TabOrder = 2
@@ -1944,7 +1946,25 @@ object MinimalForm: TMinimalForm
   object Time: TTimer
     Enabled = False
     OnTimer = TimeTimer
-    left = 353
-    top = 16
+    left = 416
+  end
+  object MainMenu1: TMainMenu
+    left = 203
+    top = 272
+    object MenuItem1: TMenuItem
+      Caption = 'QSO Table'
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'DX Cluster'
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Map'
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Information'
+    end
+    object MenuItem5: TMenuItem
+      Caption = 'Transceiver'
+    end
   end
 end

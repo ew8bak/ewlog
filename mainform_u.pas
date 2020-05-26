@@ -211,7 +211,6 @@ type
     StatusBar1: TStatusBar;
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
-    Timer3: TTimer;
     MenuItem8: TMenuItem;
     PopupMenu1: TPopupMenu;
     SaveQSOinBase: TAction;
@@ -508,7 +507,6 @@ type
       X, Y: integer);
     procedure SQLiteDBConnectionAfterConnect(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure Timer3Timer(Sender: TObject);
     procedure TrayIcon1DblClick(Sender: TObject);
     procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
       Node: PVirtualNode);
@@ -594,10 +592,8 @@ type
     procedure SelectLogDatabase(LogDB: string);
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
-    procedure Clr();
-    procedure SaveQSO(var SQSO: TQSO);
+    procedure Clr;
     procedure SearchCallInCallBook(CallName: string);
-    function SearchPrefix(CallName: string; gridloc: boolean): boolean;
     procedure InitializeDB(dbS: string);
     procedure SelectQSO(grid: boolean);
     procedure SetDXColumns(Save: boolean);
@@ -605,10 +601,6 @@ type
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     function GetModeFromFreq(MHz: string): string;
     function SearchCountry(CallName: string; Province: boolean): string;
-    procedure FindCountryFlag(Country: string);
-    function FindCountry(ISOCode: string): string;
-    procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
-    function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
     procedure addModes(modeItem: string; subModesFlag: boolean;
       var subModes: TStringList);
@@ -673,7 +665,7 @@ var
   lastTCPport: integer;
   lastUDPport: integer;
   _l, _t, _w, _h: integer;
-  BM1,BM2:TBookmarkStr;
+  BM1, BM2: TBookmarkStr;
 
 implementation
 
@@ -810,87 +802,7 @@ begin
   subModesQuery.Close;
 end;
 
-function TMainForm.FindISOCountry(Country: string): string;
-var
-  ISOList: TStringList;
-  LanguageList: TStringList;
-  Index: integer;
-begin
-  Result := '';
-  try
-    ISOList := TStringList.Create;
-    LanguageList := TStringList.Create;
-    ISOList.AddStrings(constLanguageISO);
-    LanguageList.AddStrings(constLanguage);
-    Index := LanguageList.IndexOf(Country);
-    if Index <> -1 then
-      Result := ISOList.Strings[Index]
-    else
-      Result := 'None';
 
-  finally
-    ISOList.Free;
-    LanguageList.Free;
-  end;
-end;
-
-function TMainForm.FindCountry(ISOCode: string): string;
-var
-  ISOList: TStringList;
-  LanguageList: TStringList;
-  Index: integer;
-begin
-  try
-    Result := '';
-    ISOList := TStringList.Create;
-    LanguageList := TStringList.Create;
-    ISOList.AddStrings(constLanguageISO);
-    LanguageList.AddStrings(constLanguage);
-    Index := ISOList.IndexOf(ISOCode);
-    if Index <> -1 then
-      Result := LanguageList.Strings[Index]
-    else
-      Result := 'None';
-
-  finally
-    ISOList.Free;
-    LanguageList.Free;
-  end;
-end;
-
-procedure TMainForm.FindLanguageFiles(Dir: string; var LangList: TStringList);
-begin
-  LangList := FindAllFiles(Dir, 'ewlog.*.po', False, faNormal);
-  LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
-    'ewlog.', '', [rfreplaceall]);
-  LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
-end;
-
-procedure TMainForm.FindCountryFlag(Country: string);
-var
-  pImage: TPortableNetworkGraphic;
-begin
-  try
-    pImage := TPortableNetworkGraphic.Create;
-    pImage.LoadFromLazarusResource(dmFunc.ReplaceCountry(Country));
-    if FlagSList.IndexOf(dmFunc.ReplaceCountry(Country)) = -1 then
-    begin
-      FlagList.Add(pImage, nil);
-      FlagSList.Add(dmFunc.ReplaceCountry(Country));
-    end;
-  except
-    on EResNotFound do
-    begin
-      pImage.LoadFromLazarusResource('Unknown');
-      if FlagSList.IndexOf('Unknown') = -1 then
-      begin
-        FlagList.Add(pImage, nil);
-        FlagSList.Add('Unknown');
-      end;
-    end;
-  end;
-  pImage.Free;
-end;
 
 function TMainForm.SearchCountry(CallName: string; Province: boolean): string;
 var
@@ -1055,6 +967,10 @@ begin
 end;
 
 procedure TMainForm.SelectQSO(grid: boolean);
+var
+  Call, Gridsquare, Country, ARRLPrefix, Prefix, CQZone, ITUZone,
+  Continent, Latitude, Longitude, Distance, Azimuth: string;
+  Lat1, Lon1: string;
 begin
   try
     Label17.Caption := '';
@@ -1063,11 +979,30 @@ begin
     Label20.Caption := '';
     Label21.Caption := '';
     Label22.Caption := '';
+
     if grid then
     begin
+      Call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
+      Gridsquare := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
       SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName(
         'CallSign').AsString), 0, False);
-      SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
+      dm_MainFunc.SearchPrefix(Call, Gridsquare, Country, ARRLPrefix,
+        Prefix, CQZone, ITUZone, Continent, Latitude, Longitude, Distance, Azimuth);
+      Label33.Caption := Country;
+      Label34.Caption := ARRLPrefix;
+      Label38.Caption := Prefix;
+      Label45.Caption := CQZone;
+      Label47.Caption := ITUZone;
+      Label43.Caption := Continent;
+      Label40.Caption := Latitude;
+      Label42.Caption := Longitude;
+      Label37.Caption := Distance;
+      Label32.Caption := Azimuth;
+
+      dm_MainFunc.GetLatLon(Latitude, Longitude, Lat1, Lon1);
+      Earth.PaintLine(Lat1, Lon1);
+      Earth.PaintLine(Lat1, Lon1);
+
       Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
       Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
       Label19.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString;
@@ -1088,6 +1023,7 @@ begin
       Label21.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOMode').AsString;
       Label22.Caption := DBGrid2.DataSource.DataSet.FieldByName('OMName').AsString;
     end;
+
   except
     on E: ESQLDatabaseError do
     begin
@@ -1362,7 +1298,7 @@ begin
 end;
 
 
-procedure TMainForm.Clr();
+procedure TMainForm.Clr;
 var
   Centre: TRealPoint;
 begin
@@ -1402,107 +1338,6 @@ begin
   begin
     tIMG.Picture.Clear;
   end;
-end;
-
-procedure TMainForm.SaveQSO(var SQSO: TQSO);
-begin
-  with MainForm.SaveQSOQuery do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add('INSERT INTO ' + SQSO.NLogDB +
-      '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, `QSOSubMode`, ' +
-      '`QSOReportSent`, `QSOReportRecived`, `OMName`, `OMQTH`, `State`, `Grid`, `IOTA`,'
-      +
-      '`QSLManager`, `QSLSent`, `QSLSentAdv`, `QSLSentDate`, `QSLRec`, `QSLRecDate`,' +
-      '`MainPrefix`, `DXCCPrefix`, `CQZone`, `ITUZone`, `QSOAddInfo`, `Marker`, `ManualSet`,'
-      + '`DigiBand`, `Continent`, `ShortNote`, `QSLReceQSLcc`, `LoTWRec`, `LoTWRecDate`,'
-      + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
-      + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
-      + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`, `MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`, `SYNC`)' + 'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,' + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,' + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,' + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,' + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,' + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,' + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON, :SYNC)');
-
-    Params.ParamByName('CallSign').AsString := SQSO.CallSing;
-    Params.ParamByName('QSODate').AsDateTime := SQSO.QSODate;
-    Params.ParamByName('QSOTime').AsString := SQSO.QSOTime;
-    Params.ParamByName('QSOBand').AsString := SQSO.QSOBand;
-    Params.ParamByName('QSOMode').AsString := SQSO.QSOMode;
-    Params.ParamByName('QSOSubMode').AsString := SQSO.QSOSubMode;
-    Params.ParamByName('QSOReportSent').AsString := SQSO.QSOReportSent;
-    Params.ParamByName('QSOReportRecived').AsString := SQSO.QSOReportRecived;
-    Params.ParamByName('OMName').AsString := SQSO.OmName;
-    Params.ParamByName('OMQTH').AsString := SQSO.OmQTH;
-    Params.ParamByName('State').AsString := SQSO.State0;
-    Params.ParamByName('Grid').AsString := SQSO.Grid;
-    Params.ParamByName('IOTA').AsString := SQSO.IOTA;
-    Params.ParamByName('QSLManager').AsString := SQSO.QSLManager;
-    Params.ParamByName('QSLSent').AsString := SQSO.QSLSent;
-    Params.ParamByName('QSLSentAdv').AsString := SQSO.QSLSentAdv;
-
-    if SQSO.QSLSentDate = 'NULL' then
-      Params.ParamByName('QSLSentDate').IsNull
-    else
-      Params.ParamByName('QSLSentDate').AsString := SQSO.QSLSentDate;
-    Params.ParamByName('QSLRec').AsString := SQSO.QSLRec;
-    if SQSO.QSLRecDate = 'NULL' then
-      Params.ParamByName('QSLRecDate').IsNull
-    else
-      Params.ParamByName('QSLRecDate').AsString := SQSO.QSLRecDate;
-
-    Params.ParamByName('MainPrefix').AsString := SQSO.MainPrefix;
-    Params.ParamByName('DXCCPrefix').AsString := SQSO.DXCCPrefix;
-    Params.ParamByName('CQZone').AsString := SQSO.CQZone;
-    Params.ParamByName('ITUZone').AsString := SQSO.ITUZone;
-    Params.ParamByName('QSOAddInfo').AsString := SQSO.QSOAddInfo;
-    Params.ParamByName('Marker').AsString := SQSO.Marker;
-    Params.ParamByName('ManualSet').AsInteger := SQSO.ManualSet;
-    Params.ParamByName('DigiBand').AsString := SQSO.DigiBand;
-    Params.ParamByName('Continent').AsString := SQSO.Continent;
-    Params.ParamByName('ShortNote').AsString := SQSO.ShortNote;
-    Params.ParamByName('QSLReceQSLcc').AsInteger := SQSO.QSLReceQSLcc;
-    if SQSO.LotWRec = '' then
-      Params.ParamByName('LoTWRec').AsInteger := 0
-    else
-      Params.ParamByName('LoTWRec').AsInteger := 1;
-    if SQSO.LotWRecDate = 'NULL' then
-      Params.ParamByName('LoTWRecDate').IsNull
-    else
-      Params.ParamByName('LoTWRecDate').AsString := SQSO.LotWRecDate;
-    Params.ParamByName('QSLInfo').AsString := SQSO.QSLInfo;
-    Params.ParamByName('Call').AsString := SQSO.Call;
-    Params.ParamByName('State1').AsString := SQSO.State1;
-    Params.ParamByName('State2').AsString := SQSO.State2;
-    Params.ParamByName('State3').AsString := SQSO.State3;
-    Params.ParamByName('State4').AsString := SQSO.State4;
-    Params.ParamByName('WPX').AsString := SQSO.WPX;
-    Params.ParamByName('AwardsEx').AsString := SQSO.AwardsEx;
-    Params.ParamByName('ValidDX').AsString := SQSO.ValidDX;
-    Params.ParamByName('SRX').AsInteger := SQSO.SRX;
-    Params.ParamByName('SRX_STRING').AsString := SQSO.SRX_String;
-    Params.ParamByName('STX').AsInteger := SQSO.STX;
-    Params.ParamByName('STX_STRING').AsString := SQSO.STX_String;
-    Params.ParamByName('SAT_NAME').AsString := SQSO.SAT_NAME;
-    Params.ParamByName('SAT_MODE').AsString := SQSO.SAT_MODE;
-    Params.ParamByName('PROP_MODE').AsString := SQSO.PROP_MODE;
-    Params.ParamByName('LoTWSent').AsInteger := SQSO.LotWSent;
-    if SQSO.QSL_RCVD_VIA = '' then
-      Params.ParamByName('QSL_RCVD_VIA').IsNull
-    else
-      Params.ParamByName('QSL_RCVD_VIA').AsString := SQSO.QSL_RCVD_VIA;
-    if SQSO.QSL_SENT_VIA = '' then
-      Params.ParamByName('QSL_SENT_VIA').IsNull
-    else
-      Params.ParamByName('QSL_SENT_VIA').AsString := SQSO.QSL_SENT_VIA;
-    Params.ParamByName('DXCC').AsString := SQSO.DXCC;
-    Params.ParamByName('USERS').AsString := SQSO.USERS;
-    Params.ParamByName('NoCalcDXCC').AsInteger := SQSO.NoCalcDXCC;
-    Params.ParamByName('MY_STATE').AsString := SQSO.My_State;
-    Params.ParamByName('MY_GRIDSQUARE').AsString := SQSO.My_Grid;
-    Params.ParamByName('MY_LAT').AsString := SQSO.My_Lat;
-    Params.ParamByName('MY_LON').AsString := SQSO.My_Lon;
-    Params.ParamByName('SYNC').AsInteger := SQSO.SYNC;
-    ExecSQL;
-  end;
-  MainForm.SQLTransaction1.Commit;
 end;
 
 procedure TMainForm.SearchCallInCallBook(CallName: string);
@@ -1862,245 +1697,6 @@ begin
   DBLookupComboBox1.KeyValue := calllbook;
 end;
 
-function TMainForm.SearchPrefix(CallName: string; gridloc: boolean): boolean;
-var
-  i, j: integer;
-  R: extended;
-  la, lo: currency;
-  azim, qra, loc: string;
-begin
-  Result := False;
-  loc := '';
-  qra := '';
-  azim := '';
-  la := 0;
-  lo := 0;
-  if UniqueCallsList.IndexOf(CallName) > -1 then
-  begin
-    with MainForm.PrefixQuery do
-    begin
-      Close;
-      SQL.Clear;
-      SQL.Add('select * from UniqueCalls where _id = "' +
-        IntToStr(UniqueCallsList.IndexOf(CallName)) + '"');
-      Open;
-      MainForm.Label33.Caption := FieldByName('Country').AsString;
-      MainForm.Label34.Caption := FieldByName('ARRLPrefix').AsString;
-      MainForm.Label38.Caption := FieldByName('Prefix').AsString;
-      MainForm.Label45.Caption := FieldByName('CQZone').AsString;
-      MainForm.Label47.Caption := FieldByName('ITUZone').AsString;
-      MainForm.Label43.Caption := FieldByName('Continent').AsString;
-      MainForm.Label40.Caption := FieldByName('Latitude').AsString;
-      MainForm.Label42.Caption := FieldByName('Longitude').AsString;
-      CallLAT := FieldByName('Latitude').AsString;
-      CallLON := FieldByName('Longitude').AsString;
-      DXCCNum := FieldByName('DXCC').AsInteger;
-    end;
-
-    if gridloc = True then
-      loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-
-    la1 := CallLAT;
-    lo1 := CallLON;
-
-    if (UTF8Pos('W', lo1) <> 0) then
-      lo1 := '-' + lo1;
-    if (UTF8Pos('S', la1) <> 0) then
-      la1 := '-' + la1;
-    Delete(la1, length(la1), 1);
-    Delete(lo1, length(lo1), 1);
-
-    if gridloc = True then
-    begin
-      if MainForm.Edit3.Text <> '' then
-        loc := MainForm.Edit3.Text;
-    end
-    else
-      loc := MainForm.Edit3.Text;
-
-    if (loc <> '') and dmFunc.IsLocOK(loc) then
-    begin
-      dmFunc.CoordinateFromLocator(loc, la, lo);
-
-      la1 := CurrToStr(la);
-      lo1 := CurrToStr(lo);
-
-      if loc = SetLoc then
-        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
-      else
-        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
-    end
-    else
-    begin
-      R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
-        StrToFloat(lo1)) / 1000;
-    end;
-    MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
-    ///////АЗИМУТ
-    dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
-      strtofloat(lo1), qra, azim);
-    MainForm.Label32.Caption := azim;
-    Result := True;
-    exit;
-  end;
-
-  for i := 0 to PrefixProvinceCount do
-  begin
-    if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-      (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
-    begin
-      with MainForm.PrefixQuery do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from Province where _id = "' +
-          IntToStr(PrefixExpProvinceArray[i].id) + '"');
-        Open;
-        MainForm.Label33.Caption := FieldByName('Country').AsString;
-        MainForm.Label34.Caption := FieldByName('ARRLPrefix').AsString;
-        MainForm.Label38.Caption := FieldByName('Prefix').AsString;
-        MainForm.Label45.Caption := FieldByName('CQZone').AsString;
-        MainForm.Label47.Caption := FieldByName('ITUZone').AsString;
-        MainForm.Label43.Caption := FieldByName('Continent').AsString;
-        MainForm.Label40.Caption := FieldByName('Latitude').AsString;
-        MainForm.Label42.Caption := FieldByName('Longitude').AsString;
-        CallLAT := FieldByName('Latitude').AsString;
-        CallLON := FieldByName('Longitude').AsString;
-        DXCCNum := FieldByName('DXCC').AsInteger;
-        timedif := FieldByName('TimeDiff').AsInteger;
-      end;
-
-      if gridloc = True then
-        loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-
-      la1 := CallLAT;
-      lo1 := CallLON;
-
-      if (UTF8Pos('W', lo1) <> 0) then
-        lo1 := '-' + lo1;
-      if (UTF8Pos('S', la1) <> 0) then
-        la1 := '-' + la1;
-      Delete(la1, length(la1), 1);
-      Delete(lo1, length(lo1), 1);
-
-      if gridloc = True then
-      begin
-        if MainForm.Edit3.Text <> '' then
-          loc := MainForm.Edit3.Text;
-      end
-      else
-        loc := MainForm.Edit3.Text;
-
-      if (loc <> '') and dmFunc.IsLocOK(loc) then
-      begin
-        dmFunc.CoordinateFromLocator(loc, la, lo);
-
-        la1 := CurrToStr(la);
-        lo1 := CurrToStr(lo);
-
-        if loc = SetLoc then
-          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
-        else
-          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
-      end
-      else
-      begin
-        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
-          StrToFloat(lo1)) / 1000;
-      end;
-      MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
-      ///////АЗИМУТ
-      dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
-        strtofloat(lo1), qra, azim);
-      MainForm.Label32.Caption := azim;
-      Result := True;
-      exit;
-    end;
-  end;
-
-  for j := 0 to PrefixARRLCount do
-  begin
-    if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
-      (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
-    begin
-      with MainForm.PrefixQuery do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from CountryDataEx where _id = "' +
-          IntToStr(PrefixExpARRLArray[j].id) + '"');
-        Open;
-        if (FieldByName('Status').AsString = 'Deleted') then
-        begin
-          PrefixExpARRLArray[j].reg.ExecNext;
-          Exit;
-        end;
-      end;
-      MainForm.Label33.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
-      MainForm.Label34.Caption :=
-        MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      MainForm.Label38.Caption :=
-        MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      MainForm.Label45.Caption := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-      MainForm.Label47.Caption := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-      MainForm.Label43.Caption :=
-        MainForm.PrefixQuery.FieldByName('Continent').AsString;
-      MainForm.Label40.Caption :=
-        MainForm.PrefixQuery.FieldByName('Latitude').AsString;
-      CallLAT := MainForm.PrefixQuery.FieldByName('Latitude').AsString;
-      MainForm.Label42.Caption :=
-        MainForm.PrefixQuery.FieldByName('Longitude').AsString;
-
-      CallLON := MainForm.PrefixQuery.FieldByName('Longitude').AsString;
-      DXCCNum := MainForm.PrefixQuery.FieldByName('DXCC').AsInteger;
-      timedif := MainForm.PrefixQuery.FieldByName('TimeDiff').AsInteger;
-      loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-
-      la1 := CallLAT;
-      lo1 := CallLON;
-
-      if (UTF8Pos('W', lo1) <> 0) then
-        lo1 := '-' + lo1;
-      if (UTF8Pos('S', la1) <> 0) then
-        la1 := '-' + la1;
-      Delete(la1, length(la1), 1);
-      Delete(lo1, length(lo1), 1);
-
-      loc := MainForm.Edit3.Text;
-      if gridloc = True then
-      begin
-        if MainForm.Edit3.Text <> '' then
-          loc := MainForm.Edit3.Text;
-      end;
-
-      if (loc <> '') and dmFunc.IsLocOK(loc) then
-      begin
-        dmFunc.CoordinateFromLocator(loc, la, lo);
-
-        la1 := CurrToStr(la);
-        lo1 := CurrToStr(lo);
-        if loc = SetLoc then
-          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
-        else
-          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
-      end
-      else
-      begin
-        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
-          StrToFloat(lo1)) / 1000;
-      end;
-
-      MainForm.Label37.Caption := FormatFloat('0.00', R) + ' KM';
-      ////Азимут
-      dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
-        strtofloat(lo1), qra, azim);
-      MainForm.Label32.Caption := azim;// +'/'+azim2;
-      Result := True;
-      exit;
-    end;
-  end;
-end;
-
 procedure TMainForm.EditButton1Change(Sender: TObject);
 var
   Centre: TRealPoint;
@@ -2110,6 +1706,11 @@ var
   foundPrefix: boolean;
   DBand, DMode, DCall: boolean;
   QSL: integer;
+  Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent, Latitude,
+  Longitude, Distance, Azimuth: string;
+  OMName, OMQTH, Grid, State, IOTA, QSLManager: string;
+  setColors: TColor;
+  Lat1, Lon1: string;
 begin
   DBand := False;
   DMode := False;
@@ -2121,11 +1722,15 @@ begin
 
   if Length(EditButton1.Text) >= 2 then
   begin
-    dm_MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
+    dm_MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text,
+      DMode, DBand, DCall);
     dm_MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
-    Label53.Visible := dm_MainFunc.FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-    Label54.Visible := dm_MainFunc.WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-    Label55.Visible := dm_MainFunc.WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    Label53.Visible := dm_MainFunc.FindWorkedCall(EditButton1.Text,
+      ComboBox1.Text, ComboBox2.Text);
+    Label54.Visible := dm_MainFunc.WorkedQSL(EditButton1.Text,
+      ComboBox1.Text, ComboBox2.Text);
+    Label55.Visible := dm_MainFunc.WorkedLoTW(EditButton1.Text,
+      ComboBox1.Text, ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;
@@ -2171,7 +1776,7 @@ begin
     Exit;
   if EditButton1.Text = '' then
   begin
-    clr();
+    Clr;
     label32.Caption := '.......';
     label33.Caption := '.......';
     label34.Caption := '.......';
@@ -2193,16 +1798,33 @@ begin
   if not CheckBox6.Checked then
     SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
 
-  foundPrefix := SearchPrefix(EditButton1.Text, False);
+  dm_MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text, Country, ARRLPrefix,
+    Prefix, CQZone, ITUZone, Continent, Latitude, Longitude, Distance, Azimuth);
+
+  Label33.Caption := Country;
+  Label34.Caption := ARRLPrefix;
+  Label38.Caption := Prefix;
+  Label45.Caption := CQZone;
+  Label47.Caption := ITUZone;
+  Label43.Caption := Continent;
+  Label40.Caption := Latitude;
+  Label42.Caption := Longitude;
+  Label37.Caption := Distance;
+  Label32.Caption := Azimuth;
+
   SelectQSO(False);
 
-  if foundPrefix and CheckBox3.Checked then
+  dm_MainFunc.GetLatLon(Latitude, Longitude, Lat1, Lon1);
+  Earth.PaintLine(Lat1, Lon1);
+  Earth.PaintLine(Lat1, Lon1);
+
+  if CheckBox3.Checked then
   begin
-    val(lo1, Long, Error);
+    val(Lon1, Long, Error);
     if Error = 0 then
     begin
       Centre.Lon := Long;
-      val(la1, Lat, Error);
+      val(Lat1, Lat, Error);
       if Error = 0 then
       begin
         Centre.Lat := Lat;
@@ -2462,8 +2084,8 @@ begin
     IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
- dm_MainFunc.SetGrid(DBGrid1);
- dm_MainFunc.SetGrid(DBGrid2);
+  dm_MainFunc.SetGrid(DBGrid1);
+  dm_MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.DBGrid1ColumnSized(Sender: TObject);
@@ -2478,8 +2100,8 @@ begin
     else
       IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
   end;
- dm_MainFunc.SetGrid(DBGrid1);
- dm_MainFunc.SetGrid(DBGrid2);
+  dm_MainFunc.SetGrid(DBGrid1);
+  dm_MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.CheckBox1Change(Sender: TObject);
@@ -3239,7 +2861,7 @@ begin
         Data^.Loc := Loc;
         Data^.Country := SearchCountry(DX, False);
         VirtualStringTree1.Expanded[XNode^.Parent] := ClusterFilter.CheckBox1.Checked;
-        FindCountryFlag(Data^.Country);
+        dm_MainFunc.FindCountryFlag(Data^.Country);
       end
       else
       begin
@@ -3254,7 +2876,7 @@ begin
         Data^.Time := Time;
         Data^.Loc := Loc;
         Data^.Country := SearchCountry(DX, False);
-        FindCountryFlag(Data^.Country);
+        dm_MainFunc.FindCountryFlag(Data^.Country);
       end;
     end;
   end;
@@ -3285,40 +2907,40 @@ procedure TMainForm.InitClusterINI;
 var
   i, j: integer;
 begin
-   LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
-      PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
+  LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
+  PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
 
-      for i := 1 to 9 do
-      begin
-        TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' +
-          IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
-      end;
-      TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
-        'FREERC -> dx.freerc.ru:8000');
-      ComboBox3.Items.Clear;
-      ComboBox3.Items.AddStrings(TelStr);
-      if ComboBox3.Items.IndexOf(TelName) > -1 then
-        ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
-      else
-        ComboBox3.ItemIndex := 0;
+  for i := 1 to 9 do
+  begin
+    TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' + IntToStr(i),
+      'FREERC -> dx.feerc.ru:8000');
+  end;
+  TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
+    'FREERC -> dx.freerc.ru:8000');
+  ComboBox3.Items.Clear;
+  ComboBox3.Items.AddStrings(TelStr);
+  if ComboBox3.Items.IndexOf(TelName) > -1 then
+    ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
+  else
+    ComboBox3.ItemIndex := 0;
 
-      ComboBox8.Items.Clear;
-      ComboBox8.Items.AddStrings(TelStr);
-      if ComboBox8.Items.IndexOf(TelName) > -1 then
-        ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
-      else
-        ComboBox8.ItemIndex := 0;
+  ComboBox8.Items.Clear;
+  ComboBox8.Items.AddStrings(TelStr);
+  if ComboBox8.Items.IndexOf(TelName) > -1 then
+    ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
+  else
+    ComboBox8.ItemIndex := 0;
 
-      i := pos('>', ComboBox3.Text);
-      j := pos(':', ComboBox3.Text);
-      //Сервер
-      HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
-      Delete(HostCluster, 1, 1);
-      //Порт
-      PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
-       //Автозапуск кластера
-      if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
-        SpeedButton18.Click;
+  i := pos('>', ComboBox3.Text);
+  j := pos(':', ComboBox3.Text);
+  //Сервер
+  HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
+  Delete(HostCluster, 1, 1);
+  //Порт
+  PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
+  //Автозапуск кластера
+  if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
+    SpeedButton18.Click;
 end;
 
 procedure TMainForm.InitIni;
@@ -3510,8 +3132,8 @@ begin
     TRXForm.Show;
 
   UnUsIndex := 0;
- dm_MainFunc.SetGrid(DBGrid1);
- dm_MainFunc.SetGrid(DBGrid2);
+  dm_MainFunc.SetGrid(DBGrid1);
+  dm_MainFunc.SetGrid(DBGrid2);
   SetDXColumns(False);
 
   if ShowTRXForm = False then
@@ -3581,18 +3203,19 @@ begin
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
   {$ELSE}
-    if not dmFunc.CheckSQLiteVersion(sqlite_version) then begin
-      if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
+  if not dmFunc.CheckSQLiteVersion(sqlite_version) then
+  begin
+    if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
     begin
       if Length(s) < 5 then
-      s:='/lib/'
-      end;
-      if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
+        s := '/lib/';
+    end;
+    if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
       rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
       rPath + ':' + #10#13 + s), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
-    end;
+  end;
   {$ENDIF}
 
   if useMAPS = 'YES' then
@@ -4091,8 +3714,8 @@ var
   MenuItem: TMenuItem;
 begin
   MenuItem := (Sender as TMenuItem);
-  SetDefaultLang(FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
-  Language := FindISOCountry(MenuItem.Caption);
+  SetDefaultLang(dm_MainFunc.FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
+  Language := dm_MainFunc.FindISOCountry(MenuItem.Caption);
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
   ComboBox7.ItemIndex := 3;
@@ -4110,15 +3733,15 @@ begin
         (MainForm.Components[i] as TMenuItem).Free;
 
   LangList := TStringList.Create;
-  FindLanguageFiles(FilePATH + 'locale', LangList);
+  dm_MainFunc.FindLanguageFiles(FilePATH + 'locale', LangList);
   for i := 0 to LangList.Count - 1 do
   begin
     LangItem := TMenuItem.Create(Self);
     LangItem.Name := 'LangItem' + IntToStr(i);
-    LangItem.Caption := FindCountry(LangList.Strings[i]);
+    LangItem.Caption := dm_MainFunc.FindCountry(LangList.Strings[i]);
     LangItem.OnClick := @LangItemClick;
     LangItem.Tag := 99;
-    if FindCountry(LangList.Strings[i]) <> 'None' then
+    if dm_MainFunc.FindCountry(LangList.Strings[i]) <> 'None' then
       MenuItem116.Insert(i, LangItem);
   end;
   LangList.Free;
@@ -5288,10 +4911,9 @@ end;
 
 procedure TMainForm.MenuItem72Click(Sender: TObject);
 begin
- MinimalForm.Show;
- Timer1.Enabled:=False;
- Timer3.Enabled:=False;
- MainForm.Hide;
+  MinimalForm.Show;
+  Timer1.Enabled := False;
+  MainForm.Hide;
 end;
 
 procedure TMainForm.MenuItem73Click(Sender: TObject);
@@ -6193,50 +5815,21 @@ begin
         SQSO.My_Lon := '';
       end;
       SQSO.NLogDB := LogTable;
-      SaveQSO(SQSO);
+      dm_MainFunc.SaveQSO(SQSO);
 
       if AutoEQSLcc = True then
       begin
-        SendEQSLThread := TSendEQSLThread.Create;
-        if Assigned(SendEQSLThread.FatalException) then
-          raise SendEQSLThread.FatalException;
-        with SendEQSLThread do
-        begin
-          userid := eQSLccLogin;
-          userpwd := eQSLccPassword;
-          call := EditButton1.Text;
-          startdate := DateEdit1.Date;
-          starttime := DateTimePicker1.Time;
-          freq := NameBand;
-          mode := ComboBox2.Text;
-          submode := ComboBox9.Text;
-          rst := ComboBox4.Text;
-          qslinf := SetQSLInfo;
-          Start;
-        end;
+        dm_MainFunc.StartEQSLThread(eQSLccLogin, eQSLccPassword,
+          SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
+          SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent, SetQSLInfo);
       end;
 
       if AutoHRDLog = True then
       begin
-        SendHRDThread := TSendHRDThread.Create;
-        if Assigned(SendHRDThread.FatalException) then
-          raise SendHRDThread.FatalException;
-        with SendHRDThread do
-        begin
-          userid := HRDLogin;
-          userpwd := HRDCode;
-          call := EditButton1.Text;
-          startdate := DateEdit1.Date;
-          starttime := DateTimePicker1.Time;
-          freq := NameBand;
-          mode := ComboBox2.Text;
-          submode := ComboBox9.Text;
-          rsts := ComboBox4.Text;
-          rstr := ComboBox5.Text;
-          locat := Edit3.Text;
-          qslinf := SetQSLInfo;
-          Start;
-        end;
+        dm_MainFunc.StartHRDLogThread(eQSLccLogin, eQSLccPassword,
+          SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
+          SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent,
+          SQSO.QSOReportRecived, SQSO.Grid, SetQSLInfo);
       end;
 
       if AutoHamQTH = True then
@@ -6329,7 +5922,7 @@ begin
           Edit3.Text, Edit11.Text);
 
       SelDB(CallLogBook);
-      Clr();
+      Clr;
     end;
   end;
 
@@ -6392,7 +5985,7 @@ begin
     EditFlag := False;
     CheckBox1.Checked := True;
     SelDB(CallLogBook);
-    Clr();
+    Clr;
   end;
 end;
 
@@ -6409,7 +6002,7 @@ end;
 
 procedure TMainForm.SpeedButton9Click(Sender: TObject);
 begin
-  Clr();
+  Clr;
 end;
 
 procedure TMainForm.SpeedButton9MouseLeave(Sender: TObject);
@@ -6446,11 +6039,6 @@ begin
     DateTimePicker1.Time := NowUTC;
     DateEdit1.Date := NowUTC;
   end;
-end;
-
-procedure TMainForm.Timer3Timer(Sender: TObject);
-begin
-  Panel10.Refresh;
 end;
 
 procedure TMainForm.TrayIcon1DblClick(Sender: TObject);
@@ -6671,7 +6259,7 @@ begin
       if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
         MenuItem74.Enabled := True;
 
-      Clr();
+      Clr;
     end;
     Exit;
   end;

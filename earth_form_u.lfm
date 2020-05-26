@@ -6,6 +6,5 @@ object Earth: TEarth
   Caption = 'Earth'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnPaint = FormPaint
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.8.0'
 end
