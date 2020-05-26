@@ -15,6 +15,7 @@ type
   TEarth = class(TForm)
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
   private
     { private declarations }
   public
@@ -44,6 +45,12 @@ begin
   Dispose(TraceLine, Free);
 end;
 
+procedure TEarth.FormPaint(Sender: TObject);
+begin
+   Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
+   Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
+end;
+
 procedure TEarth.PaintLine(Latitude, Longitude: string);
 var
   r: Trect;
@@ -55,7 +62,7 @@ begin
   r.right := Width - 1;
   r.top := 0;
   r.bottom := Width * obvy div obsi - 1;
-  // TraceLine^.SunClock(Now-(dmFunc.GrayLineOffset/24));
+ //  TraceLine^.SunClock(Now-(dmFunc.GrayLineOffset/24));
   TraceLine^.Draw(r, Canvas);
   val(Latitude, Lat, Err);
   if Err = 0 then

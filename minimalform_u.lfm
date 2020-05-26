@@ -1959,6 +1959,7 @@ object MinimalForm: TMinimalForm
     end
     object MenuItem3: TMenuItem
       Caption = 'Map'
+      OnClick = MenuItem3Click
     end
     object MenuItem4: TMenuItem
       Caption = 'Information'

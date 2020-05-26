@@ -124,6 +124,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure TimeTimer(Sender: TObject);
@@ -143,7 +144,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U, dmMainFunc;
+uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U, dmMainFunc, Earth_Form_U;
 
 {$R *.lfm}
 
@@ -194,6 +195,11 @@ procedure TMinimalForm.FormShow(Sender: TObject);
 begin
   dm_MainFunc.SetGrid(DBGrid1);
   Time.Enabled := True;
+end;
+
+procedure TMinimalForm.MenuItem3Click(Sender: TObject);
+begin
+  Earth.Show;
 end;
 
 procedure TMinimalForm.SpeedButton1Click(Sender: TObject);
