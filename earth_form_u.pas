@@ -13,6 +13,7 @@ type
   { TEarth }
 
   TEarth = class(TForm)
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
@@ -35,6 +36,17 @@ uses MainForm_U, dmFunc_U;
 
 { TEarth }
 
+procedure TEarth.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  if Sender <> MainForm.CheckBox3 then
+  begin
+    Earth.Parent := MainForm.Panel10;
+    Earth.BorderStyle := bsNone;
+    Earth.Align := alClient;
+    CloseAction := caNone;
+  end;
+end;
+
 procedure TEarth.FormCreate(Sender: TObject);
 begin
   TraceLine := new(PTraceLine, init());
@@ -47,8 +59,7 @@ end;
 
 procedure TEarth.FormPaint(Sender: TObject);
 begin
-   Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
-   Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
+  Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
 end;
 
 procedure TEarth.PaintLine(Latitude, Longitude: string);
@@ -56,13 +67,13 @@ var
   r: Trect;
   Lat, Lon: extended;
   Err: integer;
-  QTH_Latitude: Extended;
+  QTH_Latitude: extended;
 begin
   r.left := 0;
   r.right := Width - 1;
   r.top := 0;
   r.bottom := Width * obvy div obsi - 1;
- //  TraceLine^.SunClock(Now-(dmFunc.GrayLineOffset/24));
+  //  TraceLine^.SunClock(Now-(dmFunc.GrayLineOffset/24));
   TraceLine^.Draw(r, Canvas);
   val(Latitude, Lat, Err);
   if Err = 0 then

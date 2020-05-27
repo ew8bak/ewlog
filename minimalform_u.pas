@@ -154,6 +154,9 @@ procedure TMinimalForm.FormClose(Sender: TObject; var CloseAction: TCloseAction)
 begin
   Time.Enabled := False;
   MainForm.Timer1.Enabled := True;
+  Earth.Parent := MainForm.Panel10;
+  Earth.BorderStyle := bsNone;
+  Earth.Align := alClient;
   MainForm.Show;
 end;
 
@@ -199,11 +202,14 @@ end;
 
 procedure TMinimalForm.MenuItem3Click(Sender: TObject);
 begin
+  Earth.Parent := nil;
+  Earth.BorderStyle := bsSizeable;
+  // Earth.Visible:=True;
   Earth.Show;
 end;
 
 procedure TMinimalForm.SpeedButton1Click(Sender: TObject);
-  var
+var
   QSL_SENT_ADV, QSL_SENT, dift: string;
   DigiBand: double;
   NameBand: string;
@@ -231,160 +237,161 @@ begin
     Exit;
   end;
 
-    dift := FormatDateTime('hh', Now - NowUTC);
-    if CheckBox2.Checked = True then
+  dift := FormatDateTime('hh', Now - NowUTC);
+  if CheckBox2.Checked = True then
+  begin
+    timeQSO := DateTimePicker1.Time - StrToTime(dift);
+  end
+  else
+    timeQSO := DateTimePicker1.Time;
+
+  if EditButton1.Text = '' then
+    ShowMessage(rEnCall)
+  else
+  begin
+
+    if ComboBox7.ItemIndex = 0 then
     begin
-      timeQSO := DateTimePicker1.Time - StrToTime(dift);
+      QSL_SENT_ADV := 'T';
+      QSL_SENT := '1';
+    end;
+    if ComboBox7.ItemIndex = 1 then
+    begin
+      QSL_SENT_ADV := 'P';
+      QSL_SENT := '0';
+    end;
+    if ComboBox7.ItemIndex = 2 then
+    begin
+      QSL_SENT_ADV := 'Q';
+      QSL_SENT := '0';
+    end;
+    if ComboBox7.ItemIndex = 3 then
+    begin
+      QSL_SENT_ADV := 'F';
+      QSL_SENT := '0';
+    end;
+    if ComboBox7.ItemIndex = 4 then
+    begin
+      QSL_SENT_ADV := 'N';
+      QSL_SENT := '0';
+    end;
+
+    if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+        ComboBox1.Text, ComboBox2.Text))
+    else
+      NameBand := ComboBox1.Text;
+
+    DigiBand_String := NameBand;
+    Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
+    DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
+
+    SQSO.CallSing := EditButton1.Text;
+    SQSO.QSODate := DateEdit1.Date;
+    SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
+    SQSO.QSOBand := NameBand;
+    SQSO.QSOMode := ComboBox2.Text;
+    SQSO.QSOSubMode := ComboBox3.Text;
+    SQSO.QSOReportSent := ComboBox4.Text;
+    SQSO.QSOReportRecived := ComboBox5.Text;
+    SQSO.OmName := Edit1.Text;
+    SQSO.OmQTH := Edit2.Text;
+    SQSO.State0 := Edit4.Text;
+    SQSO.Grid := Edit3.Text;
+    SQSO.IOTA := Edit5.Text;
+    SQSO.QSLManager := Edit6.Text;
+    SQSO.QSLSent := QSL_SENT;
+    SQSO.QSLSentAdv := QSL_SENT_ADV;
+    SQSO.QSLSentDate := 'NULL';
+    SQSO.QSLRec := '0';
+    SQSO.QSLRecDate := 'NULL';
+    SQSO.MainPrefix := Label38.Caption;
+    SQSO.DXCCPrefix := Label34.Caption;
+    SQSO.CQZone := Label45.Caption;
+    SQSO.ITUZone := Label47.Caption;
+    SQSO.QSOAddInfo := Edit11.Text;
+    SQSO.Marker := BoolToStr(CheckBox5.Checked);
+    SQSO.ManualSet := 0;
+    SQSO.DigiBand := FloatToStr(DigiBand);
+    SQSO.Continent := Label43.Caption;
+    SQSO.ShortNote := Edit11.Text;
+    SQSO.QSLReceQSLcc := 0;
+    SQSO.LotWRec := '';
+    SQSO.LotWRecDate := 'NULL';
+
+    if not StateToQSLInfo then
+      SQSO.QSLInfo := SetQSLInfo
+    else
+    begin
+      if (MainForm.Edit14.Text <> '') or (MainForm.Edit15.Text <> '') then
+        SQSO.QSLInfo := MainForm.Edit15.Text + ' ' + MainForm.Edit14.Text
+      else
+        SQSO.QSLInfo := SetQSLInfo;
+    end;
+
+    SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
+    SQSO.State1 := '';
+    SQSO.State2 := '';
+    SQSO.State3 := '';
+    SQSO.State4 := '';
+    SQSO.WPX := dmFunc.ExtractWPXPrefix(EditButton1.Text);
+    SQSO.AwardsEx := 'NULL';
+    SQSO.ValidDX := IntToStr(1);
+    SQSO.SRX := 0;
+    SQSO.SRX_String := '';
+    SQSO.STX := 0;
+    SQSO.STX_String := '';
+    SQSO.SAT_NAME := '';
+    SQSO.SAT_MODE := '';
+    SQSO.PROP_MODE := '';
+    SQSO.LotWSent := 0;
+    SQSO.QSL_RCVD_VIA := '';
+    SQSO.QSL_SENT_VIA := ComboBox6.Text;
+    SQSO.DXCC := IntToStr(DXCCNum);
+    SQSO.USERS := '';
+    SQSO.NoCalcDXCC := 0;
+    SQSO.SYNC := 0;
+
+    if SetLoc <> '' then
+      SQSO.My_Grid := SetLoc;
+
+    if MainForm.Edit14.Text <> '' then
+      SQSO.My_Grid := MainForm.Edit14.Text;
+
+    SQSO.My_State := MainForm.Edit15.Text;
+
+    if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then
+    begin
+      dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
+      SQSO.My_Lat := CurrToStr(lat);
+      SQSO.My_Lon := CurrToStr(lon);
     end
     else
-      timeQSO := DateTimePicker1.Time;
-
-    if EditButton1.Text = '' then
-      ShowMessage(rEnCall)
-    else
     begin
-
-      if ComboBox7.ItemIndex = 0 then
-      begin
-        QSL_SENT_ADV := 'T';
-        QSL_SENT := '1';
-      end;
-      if ComboBox7.ItemIndex = 1 then
-      begin
-        QSL_SENT_ADV := 'P';
-        QSL_SENT := '0';
-      end;
-      if ComboBox7.ItemIndex = 2 then
-      begin
-        QSL_SENT_ADV := 'Q';
-        QSL_SENT := '0';
-      end;
-      if ComboBox7.ItemIndex = 3 then
-      begin
-        QSL_SENT_ADV := 'F';
-        QSL_SENT := '0';
-      end;
-      if ComboBox7.ItemIndex = 4 then
-      begin
-        QSL_SENT_ADV := 'N';
-        QSL_SENT := '0';
-      end;
-
-      if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-          ComboBox1.Text, ComboBox2.Text))
-      else
-        NameBand := ComboBox1.Text;
-
-      DigiBand_String := NameBand;
-      Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
-      DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
-
-      SQSO.CallSing := EditButton1.Text;
-      SQSO.QSODate := DateEdit1.Date;
-      SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
-      SQSO.QSOBand := NameBand;
-      SQSO.QSOMode := ComboBox2.Text;
-      SQSO.QSOSubMode := ComboBox3.Text;
-      SQSO.QSOReportSent := ComboBox4.Text;
-      SQSO.QSOReportRecived := ComboBox5.Text;
-      SQSO.OmName := Edit1.Text;
-      SQSO.OmQTH := Edit2.Text;
-      SQSO.State0 := Edit4.Text;
-      SQSO.Grid := Edit3.Text;
-      SQSO.IOTA := Edit5.Text;
-      SQSO.QSLManager := Edit6.Text;
-      SQSO.QSLSent := QSL_SENT;
-      SQSO.QSLSentAdv := QSL_SENT_ADV;
-      SQSO.QSLSentDate := 'NULL';
-      SQSO.QSLRec := '0';
-      SQSO.QSLRecDate := 'NULL';
-      SQSO.MainPrefix := Label38.Caption;
-      SQSO.DXCCPrefix := Label34.Caption;
-      SQSO.CQZone := Label45.Caption;
-      SQSO.ITUZone := Label47.Caption;
-      SQSO.QSOAddInfo := Edit11.Text;
-      SQSO.Marker := BoolToStr(CheckBox5.Checked);
-      SQSO.ManualSet := 0;
-      SQSO.DigiBand := FloatToStr(DigiBand);
-      SQSO.Continent := Label43.Caption;
-      SQSO.ShortNote := Edit11.Text;
-      SQSO.QSLReceQSLcc := 0;
-      SQSO.LotWRec := '';
-      SQSO.LotWRecDate := 'NULL';
-
-      if not StateToQSLInfo then
-        SQSO.QSLInfo := SetQSLInfo
-      else
-      begin
-        if (MainForm.Edit14.Text <> '') or (MainForm.Edit15.Text <> '') then
-          SQSO.QSLInfo := MainForm.Edit15.Text + ' ' + MainForm.Edit14.Text
-        else
-          SQSO.QSLInfo := SetQSLInfo;
-      end;
-
-      SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
-      SQSO.State1 := '';
-      SQSO.State2 := '';
-      SQSO.State3 := '';
-      SQSO.State4 := '';
-      SQSO.WPX := dmFunc.ExtractWPXPrefix(EditButton1.Text);
-      SQSO.AwardsEx := 'NULL';
-      SQSO.ValidDX := IntToStr(1);
-      SQSO.SRX := 0;
-      SQSO.SRX_String := '';
-      SQSO.STX := 0;
-      SQSO.STX_String := '';
-      SQSO.SAT_NAME := '';
-      SQSO.SAT_MODE := '';
-      SQSO.PROP_MODE := '';
-      SQSO.LotWSent := 0;
-      SQSO.QSL_RCVD_VIA := '';
-      SQSO.QSL_SENT_VIA := ComboBox6.Text;
-      SQSO.DXCC := IntToStr(DXCCNum);
-      SQSO.USERS := '';
-      SQSO.NoCalcDXCC := 0;
-      SQSO.SYNC := 0;
-
-      if SetLoc <> '' then
-        SQSO.My_Grid := SetLoc;
-
-      if MainForm.Edit14.Text <> '' then
-        SQSO.My_Grid := MainForm.Edit14.Text;
-
-      SQSO.My_State := MainForm.Edit15.Text;
-
-      if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then
-      begin
-        dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
-        SQSO.My_Lat := CurrToStr(lat);
-        SQSO.My_Lon := CurrToStr(lon);
-      end
-      else
-      begin
-        SQSO.My_Lat := '';
-        SQSO.My_Lon := '';
-      end;
-      SQSO.NLogDB := LogTable;
-      dm_MainFunc.SaveQSO(SQSO);
-
-      if AutoEQSLcc = True then
-      begin
-        dm_MainFunc.StartEQSLThread(eQSLccLogin, eQSLccPassword,
-          SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
-          SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent, SetQSLInfo);
-      end;
-
-      if AutoHRDLog = True then
-      begin
-       dm_MainFunc.StartHRDLogThread(eQSLccLogin, eQSLccPassword,
-          SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
-          SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent, SQSO.QSOReportRecived, SQSO.Grid, SetQSLInfo);
-      end;
-
-      MainForm.SelDB(CallLogBook);
-      Clr;
+      SQSO.My_Lat := '';
+      SQSO.My_Lon := '';
     end;
+    SQSO.NLogDB := LogTable;
+    dm_MainFunc.SaveQSO(SQSO);
+
+    if AutoEQSLcc = True then
+    begin
+      dm_MainFunc.StartEQSLThread(eQSLccLogin, eQSLccPassword,
+        SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
+        SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent, SetQSLInfo);
+    end;
+
+    if AutoHRDLog = True then
+    begin
+      dm_MainFunc.StartHRDLogThread(eQSLccLogin, eQSLccPassword,
+        SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
+        SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent,
+        SQSO.QSOReportRecived, SQSO.Grid, SetQSLInfo);
+    end;
+
+    MainForm.SelDB(CallLogBook);
+    Clr;
+  end;
 end;
 
 procedure TMinimalForm.SpeedButton2Click(Sender: TObject);
@@ -459,6 +466,7 @@ var
   Longitude, Distance, Azimuth: string;
   OMName, OMQTH, Grid, State, IOTA, QSLManager: string;
   setColors: TColor;
+  Lat1, Lon1: string;
 begin
   setColors := clDefault;
   OMName := '';
@@ -554,6 +562,10 @@ begin
   Edit4.Text := State;
   Edit5.Text := IOTA;
   Edit6.Text := QSLManager;
+  dm_MainFunc.GetLatLon(Latitude, Longitude, Lat1, Lon1);
+  Earth.PaintLine(Lat1, Lon1);
+  Earth.PaintLine(Lat1, Lon1);
+
 end;
 
 procedure TMinimalForm.DBGrid1DrawColumnCell(Sender: TObject;

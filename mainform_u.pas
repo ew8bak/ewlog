@@ -23,6 +23,7 @@ type
   TMainForm = class(TForm)
     CallBookLiteConnection: TSQLite3Connection;
     CheckBox6: TCheckBox;
+    CheckTableQuery: TSQLQuery;
     ClearEdit: TAction;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
@@ -176,7 +177,6 @@ type
     Panel9: TPanel;
     PopupMenu2: TPopupMenu;
     PopupDxCluster: TPopupMenu;
-    CheckTableQuery: TSQLQuery;
     BandsQuery: TSQLQuery;
     Shape1: TShape;
     subModesQuery: TSQLQuery;
@@ -1112,13 +1112,6 @@ begin
         LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
         SQLQuery2.DataBase := MySQLLOGDBConnection;
         CheckTableQuery.DataBase := MySQLLOGDBConnection;
-        //     {$IFDEF WINDOWS}
-        //       TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
-        //        TrayIcon1.ShowBalloonHint;
-        //     {$ELSE}
-        //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        //         ['EWLog', rWelcomeMessageMySQL]);
-        //     {$ENDIF}
       finally
       end;
     end
@@ -1140,13 +1133,6 @@ begin
         LogBookInfoQuery.DataBase := SQLiteDBConnection;
         SQLQuery2.DataBase := SQLiteDBConnection;
         CheckTableQuery.DataBase := SQLiteDBConnection;
-        //     {$IFDEF WINDOWS}
-        //       TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
-        //       TrayIcon1.ShowBalloonHint;
-        //     {$ELSE}
-        //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        //         ['EWLog', rWelcomeMessageSQLIte]);
-        //     {$ENDIF}
       finally
       end;
     end;
@@ -1412,141 +1398,7 @@ begin
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
-var
-  ver_table: string;
 begin
-  ver_table := '';
-  CheckTableQuery.Close;
-
-  if calllbook = '' then
-    CheckTableQuery.SQL.Text := ('SELECT * FROM LogBookInfo LIMIT 1')
-  else
-    CheckTableQuery.SQL.Text :=
-      ('SELECT * FROM LogBookInfo WHERE CallName = ' + QuotedStr(calllbook));
-  CheckTableQuery.Open;
-
-  try
-    if CheckTableQuery.FindField('Table_version') = nil then
-    begin
-      CheckTableQuery.Close;
-      CheckTableQuery.SQL.Text :=
-        'ALTER TABLE LogBookInfo ADD COLUMN Table_version varchar(10);';
-      CheckTableQuery.ExecSQL;
-      SQLTransaction1.Commit;
-    end;
-
-    if calllbook = '' then
-      CheckTableQuery.SQL.Text := ('SELECT * FROM LogBookInfo LIMIT 1')
-    else
-      CheckTableQuery.SQL.Text :=
-        ('SELECT * FROM LogBookInfo WHERE CallName = ' + QuotedStr(calllbook));
-    CheckTableQuery.Open;
-    ver_table := CheckTableQuery.FieldByName('Table_version').AsString;
-
-    if ver_table <> Table_version then
-    begin
-      if CheckTableQuery.FindField('ClubLog_User') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN ClubLog_User varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('ClubLog_Password') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN ClubLog_Password varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('AutoClubLog') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN AutoClubLog tinyint(1);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('QRZCOM_User') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN QRZCOM_User varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('QRZCOM_Password') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN QRZCOM_Password varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('AutoQRZCom') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN AutoQRZCom tinyint(1);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('LoTW_User') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_User varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('LoTW_Password') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_Password varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('HamQTHLogin') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN HamQTHLogin varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('HamQTHPassword') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN HamQTHPassword varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('AutoHamQTH') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN AutoHamQTH tinyint(1);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-    end;
-  except
-    on E: ESQLDatabaseError do
-  end;
 
   with MainForm.LogBookInfoQuery do
   begin
@@ -1592,105 +1444,8 @@ begin
       'QRZCOM_Password').AsString;
     AutoQRZCom := MainForm.LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
 
-    CheckTableQuery.Close;
-    CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable + ' LIMIT 1';
-    CheckTableQuery.Open;
-
-    if ver_table <> Table_version then
-    begin
-      try
-        try
-          try
-            if MainForm.MySQLLOGDBConnection.Connected then
-              MainForm.MySQLLOGDBConnection.ExecuteDirect(
-                'ALTER TABLE ' + LogTable +
-                ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)')
-            else
-            begin
-              MainForm.SQLiteDBConnection.ExecuteDirect(
-                'DROP INDEX IF EXISTS Dupe_index');
-              MainForm.SQLiteDBConnection.ExecuteDirect(
-                'CREATE UNIQUE INDEX Dupe_index ON ' + LogTable +
-                '(CallSign, QSODate, QSOTime, QSOBand)');
-            end;
-          except
-            on E: ESQLDatabaseError do
-            begin
-              if E.ErrorCode = 1091 then
-                MainForm.MySQLLOGDBConnection.ExecuteDirect('ALTER TABLE ' +
-                  LogTable +
-                  ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
-            end;
-          end;
-
-          if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_GRIDSQUARE varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('MY_LAT') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LAT varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('MY_LON') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LON varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('SYNC') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN SYNC tinyint(1) DEFAULT 0;';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('MY_STATE') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_STATE varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('QSOSubMode') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN QSOSubMode varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-        except
-          on E: ESQLDatabaseError do
-        end;
-      finally
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'UPDATE LogBookInfo SET Table_version = ' + QuotedStr(Table_version) +
-          ' WHERE CallName = "' + calllbook + '"';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-    end;
     MainForm.SelectLogDatabase(LogTable);
   end;
-  CheckTableQuery.Close;
   dm_MainFunc.SetGrid(DBGrid1);
   dm_MainFunc.SetGrid(DBGrid2);
   LogBookFieldQuery.Open;
@@ -1787,6 +1542,8 @@ begin
     label45.Caption := '..';
     label47.Caption := '..';
     label42.Caption := '.......';
+    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
+    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
     Exit;
   end;
 
@@ -2149,7 +1906,7 @@ begin
     MapView1.Visible := True;
     MapView1.Parent := Panel10;
     MapView1.Enabled := True;
-    Earth.Close;
+    Earth.Hide;
   end
   else
   begin

@@ -2127,14 +2127,13 @@ object MainForm: TMainForm
       end
       object Label36: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label31
+        AnchorSideTop.Side = asrCenter
         Left = 101
         Height = 15
         Top = 46
         Width = 30
         BorderSpacing.Left = 100
-        BorderSpacing.Top = 5
         Caption = 'Prefix'
         Font.Height = -12
         ParentColor = False
@@ -2236,14 +2235,13 @@ object MainForm: TMainForm
       object Label43: TLabel
         AnchorSideLeft.Control = Label39
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label40
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label30
+        AnchorSideTop.Side = asrCenter
         Left = 282
         Height = 15
         Top = 26
         Width = 21
         BorderSpacing.Left = 3
-        BorderSpacing.Top = 5
         Caption = '.......'
         Font.Height = -12
         Font.Style = [fsBold]
@@ -2252,14 +2250,13 @@ object MainForm: TMainForm
       end
       object Label44: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label31
+        AnchorSideTop.Side = asrCenter
         Left = 226
         Height = 15
         Top = 46
         Width = 17
         BorderSpacing.Left = 225
-        BorderSpacing.Top = 5
         Caption = 'CQ'
         Font.Height = -12
         ParentColor = False
@@ -2284,14 +2281,13 @@ object MainForm: TMainForm
       end
       object Label46: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label31
+        AnchorSideTop.Side = asrCenter
         Left = 271
         Height = 15
         Top = 46
         Width = 17
         BorderSpacing.Left = 270
-        BorderSpacing.Top = 5
         Caption = 'ITU'
         Font.Height = -12
         ParentColor = False
@@ -2316,14 +2312,13 @@ object MainForm: TMainForm
       end
       object Label48: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label31
+        AnchorSideTop.Side = asrCenter
         Left = 322
         Height = 15
-        Top = 52
+        Top = 46
         Width = 48
         BorderSpacing.Left = 321
-        BorderSpacing.Top = 11
         Caption = 'Your QSL'
         Font.Height = -12
         ParentColor = False
@@ -2332,15 +2327,14 @@ object MainForm: TMainForm
       object ComboBox7: TComboBox
         AnchorSideLeft.Control = Label48
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label48
+        AnchorSideTop.Side = asrCenter
         Left = 372
         Height = 22
-        Top = 49
+        Top = 42
         Width = 96
         AutoSize = False
         BorderSpacing.Left = 2
-        BorderSpacing.Top = 8
         Font.Height = -12
         ItemHeight = 16
         ItemIndex = 3
@@ -2357,9 +2351,12 @@ object MainForm: TMainForm
         Text = 'Wasn''t sent'
       end
       object SpeedButton14: TSpeedButton
+        AnchorSideTop.Control = Label30
+        AnchorSideTop.Side = asrCenter
+        AnchorSideBottom.Control = ComboBox7
         Left = 408
         Height = 17
-        Top = 24
+        Top = 25
         Width = 20
         Enabled = False
         Glyph.Data = {
@@ -2402,11 +2399,15 @@ object MainForm: TMainForm
       object SpeedButton15: TSpeedButton
         AnchorSideLeft.Control = SpeedButton14
         AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = SpeedButton14
+        AnchorSideTop.Side = asrCenter
+        AnchorSideBottom.Control = ComboBox7
         Left = 430
         Height = 20
-        Top = 24
+        Top = 23
         Width = 20
         BorderSpacing.Left = 2
+        BorderSpacing.Bottom = 3
         Enabled = False
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -2448,9 +2449,11 @@ object MainForm: TMainForm
       object SpeedButton16: TSpeedButton
         AnchorSideLeft.Control = SpeedButton15
         AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = SpeedButton14
+        AnchorSideTop.Side = asrCenter
         Left = 452
         Height = 20
-        Top = 24
+        Top = 23
         Width = 20
         BorderSpacing.Left = 2
         Glyph.Data = {
@@ -5821,6 +5824,13 @@ object MainForm: TMainForm
     left = 768
     top = 144
   end
+  object BandsQuery: TSQLQuery
+    PacketRecords = 100
+    FieldDefs = <>
+    Params = <>
+    left = 574
+    top = 231
+  end
   object CheckTableQuery: TSQLQuery
     FieldDefs = <>
     Database = MySQLLOGDBConnection
@@ -5828,12 +5838,5 @@ object MainForm: TMainForm
     Params = <>
     left = 952
     top = 568
-  end
-  object BandsQuery: TSQLQuery
-    PacketRecords = 100
-    FieldDefs = <>
-    Params = <>
-    left = 574
-    top = 231
   end
 end
