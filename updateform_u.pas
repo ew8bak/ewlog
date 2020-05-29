@@ -66,7 +66,7 @@ var
 implementation
 
 uses
-  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U, analyticThread;
+  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U, analyticThread, dmMainFunc;
 
 {$R *.lfm}
 
@@ -74,7 +74,7 @@ uses
 
 procedure TUpdate_Form.FormCreate(Sender: TObject);
 begin
-    updatePATH:=MainForm.FilePATH + 'updates' + DirectorySeparator;
+    updatePATH:=FilePATH + 'updates' + DirectorySeparator;
   if not DirectoryExists(updatePATH) then
     CreateDir(updatePATH);
 end;

@@ -143,7 +143,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, SetupSQLquery;
+uses dmFunc_U, MainForm_U, SetupSQLquery, dmMainFunc;
 
 var
   MySQL_Current: boolean;
@@ -744,7 +744,7 @@ end;
 
 procedure TSetupForm.Button5Click(Sender: TObject);
 begin
-  MainForm.FreeObj;
+  dm_MainFunc.FreePrefix;
   MainForm.InitIni;
   Close;
 end;

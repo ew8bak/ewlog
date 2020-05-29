@@ -1966,6 +1966,7 @@ object MinimalForm: TMinimalForm
     end
     object MenuItem5: TMenuItem
       Caption = 'Transceiver'
+      OnClick = MenuItem5Click
     end
   end
 end

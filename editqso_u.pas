@@ -143,7 +143,8 @@ var
 
 implementation
 
-uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_Form_U, ConfigForm_U, const_u, dmMainFunc;
+uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U,
+  STATE_Form_U, ConfigForm_U, const_u, dmMainFunc;
 
 {$R *.lfm}
 
@@ -162,7 +163,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton1Click(Sender: TObject);
 begin
-  CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
+  CountryEditForm.CountryQditQuery.DataBase := dm_MainFunc.ServiceDBConnection;
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM CountryDataEx';
@@ -175,7 +176,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton2Click(Sender: TObject);
 begin
-  CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
+  CountryEditForm.CountryQditQuery.DataBase := dm_MainFunc.ServiceDBConnection;
 
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
@@ -208,7 +209,7 @@ var
   DigiBand: double;
   ind: integer;
   FREQ_string: string;
-  NameBand: String;
+  NameBand: string;
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
@@ -221,7 +222,7 @@ begin
   begin
     Close;
     SQL.Clear;
-    SQL.Add('UPDATE ' + LogTable +
+    SQL.Add('UPDATE ' + LBParam.LogTable +
       ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, `QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode,`QSOSubMode`=:QSOSubMode, `QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived, `OMName`=:OMName, `OMQTH`=:OMQTH, `State`=:State, `Grid`=:Grid, `IOTA`=:IOTA, `QSLManager`=:QSLManager, `QSLSent`=:QSLSent, `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `MainPrefix`=:MainPrefix, `DXCCPrefix`=:DXCCPrefix, `CQZone`=:CQZone, `ITUZone`=:ITUZone, `QSOAddInfo`=:QSOAddInfo, `Marker`=:Marker, `ManualSet`=:ManualSet, `DigiBand`=:DigiBand, `Continent`=:Continent, `ShortNote`=:ShortNote, `QSLReceQSLcc`=:QSLReceQSLcc, `LoTWRec`=:LoTWRec, `LoTWRecDate`=:LoTWRecDate, `QSLInfo`=:QSLInfo, `Call`=:Call, `State1`=:State1, `State2`=:State2, `State3`=:State3, `State4`=:State4, `WPX`=:WPX, `ValidDX`=:ValidDX, `SRX`=:SRX, `SRX_STRING`=:SRX_STRING, `STX`=:STX, `STX_STRING`=:STX_STRING, `SAT_NAME`=:SAT_NAME, `SAT_MODE`=:SAT_MODE, `PROP_MODE`=:PROP_MODE, `LoTWSent`=:LoTWSent, `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSL_SENT_VIA`=:QSL_SENT_VIA, `DXCC`=:DXCC, `NoCalcDXCC`=:NoCalcDXCC WHERE `UnUsedIndex`=:UnUsedIndex');
     Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
     Params.ParamByName('CallSign').AsString := Edit1.Text;
@@ -229,12 +230,12 @@ begin
     Params.ParamByName('QSOTime').AsString := TimeToStr(DateTimePicker1.Time, FmtStngs);
 
     if Pos('M', ComboBox1.Text) > 0 then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-          ComboBox1.Text, ComboBox2.Text))
-      else
-        NameBand := ComboBox1.Text;
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+        ComboBox1.Text, ComboBox2.Text))
+    else
+      NameBand := ComboBox1.Text;
 
-    Params.ParamByName('QSOBand').AsString :=  NameBand;
+    Params.ParamByName('QSOBand').AsString := NameBand;
 
     Params.ParamByName('QSOMode').AsString := ComboBox2.Text;
     Params.ParamByName('QSOSubMode').AsString := ComboBox9.Text;
@@ -328,74 +329,15 @@ begin
 end;
 
 procedure TEditQSO_Form.Button4Click(Sender: TObject);
-var
-  i, j: integer;
-  BoolPrefix: boolean;
 begin
-  BoolPrefix := False;
-
-  with TerrQuery do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add('select * from ' + LogTable + ' where CallSign = "' + Edit1.Text + '"');
-    Open;
-  end;
-
-  for i := 0 to PrefixProvinceCount do
-  begin
-    if (MainForm.PrefixExpProvinceArray[i].reg.Exec(Edit1.Text)) and
-      (MainForm.PrefixExpProvinceArray[i].reg.Match[0] = Edit1.Text) then
-    begin
-      BoolPrefix := True;
-      with MainForm.PrefixQuery do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from Province where _id = "' +
-          IntToStr(MainForm.PrefixExpProvinceArray[i].id) + '"');
-        Open;
-      end;
-      GroupBox1.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
-      Edit7.Text := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      Edit8.Text := MainForm.PrefixQuery.FieldByName('Prefix').AsString;
-      Edit15.Text := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-      Edit16.Text := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-      Edit13.Text := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-      Edit6.Text := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
-    end;
-  end;
-  if BoolPrefix = False then
-  begin
-    for j := 0 to PrefixARRLCount do
-    begin
-      if (MainForm.PrefixExpARRLArray[j].reg.Exec(Edit1.Text)) and
-        (MainForm.PrefixExpARRLArray[j].reg.Match[0] = Edit1.Text) then
-      begin
-        with MainForm.PrefixQuery do
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('select * from CountryDataEx where _id = "' +
-            IntToStr(MainForm.PrefixExpARRLArray[j].id) + '"');
-          Open;
-          if FieldByName('Status').AsString = 'Deleted' then
-          begin
-            MainForm.PrefixExpARRLArray[j].reg.ExecNext;
-            Exit;
-          end;
-
-        end;
-        GroupBox1.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
-        Edit7.Text := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-        Edit8.Text := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-        Edit15.Text := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-        Edit16.Text := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-        Edit13.Text := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-        Edit6.Text := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
-      end;
-    end;
-  end;
+  dm_MainFunc.SearchPrefix(Edit1.Text, Edit14.Text, PFXR);
+  GroupBox1.Caption := PFXR.Country;
+  Edit7.Text := PFXR.ARRLPrefix;
+  Edit8.Text := PFXR.Prefix;
+  Edit15.Text := PFXR.CQZone;
+  Edit16.Text := PFXR.ITUZone;
+  Edit13.Text := PFXR.Continent;
+  Edit6.Text := IntToStr(PFXR.DXCCNum);
 end;
 
 procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);
@@ -419,7 +361,7 @@ begin
   Field_QSLs := MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString;
   Field_QSLSentAdv := MainForm.LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString;
 
-   if Field_QSLSentAdv = 'N' then
+  if Field_QSLSentAdv = 'N' then
     with DBGrid1.Canvas do
     begin
       Brush.Color := clRed;
@@ -544,7 +486,8 @@ begin
     begin
       DBGrid1.Canvas.FillRect(Rect);
       DBGrid1.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
-        dmFunc.GetBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
+        dmFunc.GetBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName(
+        'QSOBand').AsString));
     end;
   end;
 end;
@@ -582,7 +525,7 @@ begin
   try
     if InitLog_DB = 'YES' then
     begin
-      SatPropQuery.DataBase := MainForm.ServiceDBConnection;
+      SatPropQuery.DataBase := dm_MainFunc.ServiceDBConnection;
       if MainForm.MySQLLOGDBConnection.Connected then
       begin
         TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;

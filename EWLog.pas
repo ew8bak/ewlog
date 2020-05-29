@@ -21,7 +21,7 @@ uses
   qso_record, resourcestr, const_u, initini, download_lotw, download_eqslcc,
   DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread, getSessionID,
   GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U, MinimalForm_U,
-  dmMainFunc;
+  dmMainFunc, LogBookTable_record, prefix_record;
 
 {$R *.res}
 
@@ -30,6 +30,7 @@ begin
   Application.Scaled:=True;
   RequireDerivedFormResource := True;
   Application.Initialize;
+  Application.CreateForm(Tdm_MainFunc, dm_MainFunc);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TEditQSO_Form, EditQSO_Form);
   Application.CreateForm(TInformationForm, InformationForm);
@@ -67,7 +68,6 @@ begin
   Application.CreateForm(TMM_Form, MM_Form);
   Application.CreateForm(TviewPhoto, viewPhoto);
   Application.CreateForm(TMinimalForm, MinimalForm);
-  Application.CreateForm(Tdm_MainFunc, dm_MainFunc);
   Application.Run;
 end.
 

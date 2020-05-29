@@ -45,7 +45,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U;
+uses dmFunc_U, MainForm_U, dmMainFunc;
 
 { TFM_Form }
 
@@ -71,7 +71,7 @@ var
   ListItem: TListItem;
 begin
   try
-    FMQuery.DataBase := MainForm.ServiceDBConnection;
+    FMQuery.DataBase := dm_MainFunc.ServiceDBConnection;
     FMQuery.SQL.Text := ('SELECT * FROM Bands');
     FMQuery.Open;
     ListView1.Clear;

@@ -125,6 +125,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
+    procedure MenuItem5Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure TimeTimer(Sender: TObject);
@@ -144,7 +145,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U, dmMainFunc, Earth_Form_U;
+uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U, dmMainFunc, Earth_Form_U, TRXForm_U;
 
 {$R *.lfm}
 
@@ -206,6 +207,11 @@ begin
   Earth.BorderStyle := bsSizeable;
   // Earth.Visible:=True;
   Earth.Show;
+end;
+
+procedure TMinimalForm.MenuItem5Click(Sender: TObject);
+begin
+  TRXForm.Show;
 end;
 
 procedure TMinimalForm.SpeedButton1Click(Sender: TObject);
@@ -320,13 +326,13 @@ begin
     SQSO.LotWRecDate := 'NULL';
 
     if not StateToQSLInfo then
-      SQSO.QSLInfo := SetQSLInfo
+      SQSO.QSLInfo := LBParam.QSLInfo
     else
     begin
       if (MainForm.Edit14.Text <> '') or (MainForm.Edit15.Text <> '') then
         SQSO.QSLInfo := MainForm.Edit15.Text + ' ' + MainForm.Edit14.Text
       else
-        SQSO.QSLInfo := SetQSLInfo;
+        SQSO.QSLInfo := LBParam.QSLInfo;
     end;
 
     SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
@@ -347,13 +353,13 @@ begin
     SQSO.LotWSent := 0;
     SQSO.QSL_RCVD_VIA := '';
     SQSO.QSL_SENT_VIA := ComboBox6.Text;
-    SQSO.DXCC := IntToStr(DXCCNum);
+  //  SQSO.DXCC := DXCCNum;
     SQSO.USERS := '';
     SQSO.NoCalcDXCC := 0;
     SQSO.SYNC := 0;
 
-    if SetLoc <> '' then
-      SQSO.My_Grid := SetLoc;
+    if LBParam.OpLoc <> '' then
+      SQSO.My_Grid := LBParam.OpLoc;
 
     if MainForm.Edit14.Text <> '' then
       SQSO.My_Grid := MainForm.Edit14.Text;
@@ -371,22 +377,22 @@ begin
       SQSO.My_Lat := '';
       SQSO.My_Lon := '';
     end;
-    SQSO.NLogDB := LogTable;
+    SQSO.NLogDB := LBParam.LogTable;
     dm_MainFunc.SaveQSO(SQSO);
 
-    if AutoEQSLcc = True then
+    if LBParam.AutoEQSLcc = True then
     begin
-      dm_MainFunc.StartEQSLThread(eQSLccLogin, eQSLccPassword,
+      dm_MainFunc.StartEQSLThread(LBParam.eQSLccLogin, LBParam.eQSLccPassword,
         SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
-        SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent, SetQSLInfo);
+        SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent, LBParam.QSLInfo);
     end;
 
-    if AutoHRDLog = True then
+    if LBParam.AutoHRDLog = True then
     begin
-      dm_MainFunc.StartHRDLogThread(eQSLccLogin, eQSLccPassword,
+      dm_MainFunc.StartHRDLogThread(LBParam.HRDLogin, LBParam.HRDCode,
         SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
         SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent,
-        SQSO.QSOReportRecived, SQSO.Grid, SetQSLInfo);
+        SQSO.QSOReportRecived, SQSO.Grid, LBParam.QSLInfo);
     end;
 
     MainForm.SelDB(CallLogBook);
@@ -403,7 +409,7 @@ procedure TMinimalForm.TimeTimer(Sender: TObject);
 begin
   Label24.Caption := FormatDateTime('hh:mm:ss', Now);
   Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
-  Label28.Caption := FormatDateTime('hh:mm:ss', NowUTC + timedif / 24);
+  Label28.Caption := FormatDateTime('hh:mm:ss', NowUTC + PFXR.TimeDiff / 24);
   if CheckBox1.Checked = True then
   begin
     DateTimePicker1.Time := NowUTC;
@@ -420,9 +426,9 @@ begin
   try
     BandsQuery := TSQLQuery.Create(nil);
     DefaultFormatSettings.DecimalSeparator := '.';
-    if MainForm.ServiceDBConnection.Connected then
+    if dm_MainFunc.ServiceDBConnection.Connected then
     begin
-      BandsQuery.DataBase := MainForm.ServiceDBConnection;
+      BandsQuery.DataBase := dm_MainFunc.ServiceDBConnection;
       ComboBox.Items.Clear;
       BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
       BandsQuery.Open;
@@ -465,6 +471,7 @@ var
   Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent, Latitude,
   Longitude, Distance, Azimuth: string;
   OMName, OMQTH, Grid, State, IOTA, QSLManager: string;
+  DXCCNum: Integer;
   setColors: TColor;
   Lat1, Lon1: string;
 begin
@@ -544,18 +551,17 @@ begin
   dm_MainFunc.SearchCallInLog(dmFunc.ExtractCallsign(EditButton1.Text), setColors,
     OMName, OMQTH, Grid, State, IOTA, QSLManager, Query);
   EditButton1.Color := setColors;
-  dm_MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text, Country, ARRLPrefix,
-    Prefix, CQZone, ITUZone, Continent, Latitude, Longitude, Distance, Azimuth);
-  Label31.Caption := Country;
-  Label33.Caption := ARRLPrefix;
-  Label38.Caption := Prefix;
-  Label44.Caption := CQZone;
-  Label46.Caption := ITUZone;
-  Label47.Caption := Continent;
-  Label40.Caption := Latitude;
-  Label42.Caption := Longitude;
-  Label36.Caption := Distance;
-  Label29.Caption := Azimuth;
+  dm_MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text, PFXR);
+  Label31.Caption := PFXR.Country;
+  Label33.Caption := PFXR.ARRLPrefix;
+  Label38.Caption := PFXR.Prefix;
+  Label44.Caption := PFXR.CQZone;
+  Label46.Caption := PFXR.ITUZone;
+  Label47.Caption := PFXR.Continent;
+  Label40.Caption := PFXR.Latitude;
+  Label42.Caption := PFXR.Longitude;
+  Label36.Caption := PFXR.Distance;
+  Label29.Caption := PFXR.Azimuth;
   Edit1.Text := OMName;
   Edit2.Text := OMQTH;
   Edit3.Text := Grid;

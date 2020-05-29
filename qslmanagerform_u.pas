@@ -54,7 +54,7 @@ var
 implementation
 
 {$R *.lfm}
-uses MainForm_U;
+uses MainForm_U, dmMainFunc;
 
 { TQSLManager_Form }
 
@@ -108,7 +108,7 @@ end;
 
 procedure TQSLManager_Form.FormShow(Sender: TObject);
 begin
-  ManagersQuery.DataBase := MainForm.ServiceDBConnection;
+  ManagersQuery.DataBase := dm_MainFunc.ServiceDBConnection;
   with ManagersQuery do
   begin
     Close;

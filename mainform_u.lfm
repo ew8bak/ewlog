@@ -143,7 +143,6 @@ object MainForm: TMainForm
       KeyField = 'CallName'
       ListField = 'CallName'
       ListFieldIndex = 0
-      ListSource = LogBookInfoDS
       LookupCache = False
       OnCloseUp = DBLookupComboBox1CloseUp
       ParentFont = False
@@ -3831,50 +3830,6 @@ object MainForm: TMainForm
     left = 920
     top = 336
   end
-  object PrefixProvinceQuery: TSQLQuery
-    PacketRecords = 2000
-    FieldDefs = <    
-      item
-        Name = 'PrefixList'
-        DataType = ftString
-        Precision = -1
-        Size = 765
-      end>
-    Database = MySQLLOGDBConnection
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'select _id, PrefixList from Province where EndDate == ""'
-    )
-    Params = <>
-    left = 112
-    top = 544
-  end
-  object PrefixQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MySQLLOGDBConnection
-    Transaction = SQLTransaction1
-    Params = <>
-    left = 432
-    top = 544
-  end
-  object PrefixARRLQuery: TSQLQuery
-    PacketRecords = 2000
-    FieldDefs = <    
-      item
-        Name = 'PrefixList'
-        DataType = ftString
-        Precision = -1
-        Size = 765
-      end>
-    Database = MySQLLOGDBConnection
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'select _id, PrefixList, Status from CountryDataEx where EndDate == ""'
-    )
-    Params = <>
-    left = 928
-    top = 64
-  end
   object SQLQuery2: TSQLQuery
     PacketRecords = 1000
     FieldDefs = <>
@@ -3886,103 +3841,6 @@ object MainForm: TMainForm
     Params = <>
     left = 856
     top = 64
-  end
-  object LogBookInfoQuery: TSQLQuery
-    FieldDefs = <    
-      item
-        Name = 'id'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'LogTable'
-        DataType = ftString
-        Precision = -1
-        Size = 300
-      end    
-      item
-        Name = 'CallName'
-        DataType = ftString
-        Precision = -1
-        Size = 45
-      end    
-      item
-        Name = 'Name'
-        DataType = ftString
-        Precision = -1
-        Size = 300
-      end    
-      item
-        Name = 'QTH'
-        DataType = ftString
-        Precision = -1
-        Size = 300
-      end    
-      item
-        Name = 'ITU'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'CQ'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'Loc'
-        DataType = ftString
-        Precision = -1
-        Size = 96
-      end    
-      item
-        Name = 'Lat'
-        DataType = ftString
-        Precision = -1
-        Size = 60
-      end    
-      item
-        Name = 'Lon'
-        DataType = ftString
-        Precision = -1
-        Size = 60
-      end    
-      item
-        Name = 'Discription'
-        DataType = ftString
-        Precision = -1
-        Size = 450
-      end    
-      item
-        Name = 'QSLInfo'
-        DataType = ftString
-        Precision = -1
-        Size = 600
-      end    
-      item
-        Name = 'EQSLLogin'
-        DataType = ftString
-        Precision = -1
-        Size = 600
-      end    
-      item
-        Name = 'EQSLPassword'
-        DataType = ftString
-        Precision = -1
-        Size = 600
-      end>
-    Database = MySQLLOGDBConnection
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'SELECT * FROM LogBookInfo'
-    )
-    Params = <>
-    left = 803
-    top = 224
-  end
-  object LogBookInfoDS: TDataSource
-    DataSet = LogBookFieldQuery
-    left = 672
-    top = 344
   end
   object CallBookTransaction: TSQLTransaction
     Active = False
@@ -4146,17 +4004,6 @@ object MainForm: TMainForm
     DataSet = SearchCallBookQuery
     left = 200
     top = 480
-  end
-  object LogBookFieldQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MySQLLOGDBConnection
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'select * from LogBookInfo'
-    )
-    Params = <>
-    left = 272
-    top = 544
   end
   object SaveQSOQuery: TSQLQuery
     FieldDefs = <>
@@ -5339,17 +5186,8 @@ object MainForm: TMainForm
     left = 184
     top = 416
   end
-  object ServiceDBConnection: TSQLite3Connection
-    Connected = False
-    LoginPrompt = False
-    KeepConnection = False
-    Transaction = SQLServiceTransaction
-    left = 400
-    top = 488
-  end
   object SQLServiceTransaction: TSQLTransaction
     Active = False
-    Database = ServiceDBConnection
     left = 24
     top = 488
   end
@@ -5429,7 +5267,6 @@ object MainForm: TMainForm
   end
   object qBands: TSQLQuery
     FieldDefs = <>
-    Database = ServiceDBConnection
     Transaction = SQLServiceTransaction
     Params = <>
     left = 1102
@@ -5450,18 +5287,6 @@ object MainForm: TMainForm
       Caption = 'Clear window'
       OnClick = MenuItem115Click
     end
-  end
-  object UniqueCallsQuery: TSQLQuery
-    PacketRecords = 10000
-    FieldDefs = <>
-    Database = MySQLLOGDBConnection
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'select Callsign from UniqueCalls'
-    )
-    Params = <>
-    left = 520
-    top = 558
   end
   object frReport1: TfrReport
     Dataset = frDBDataSet1

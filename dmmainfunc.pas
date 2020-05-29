@@ -5,17 +5,42 @@ unit dmMainFunc;
 interface
 
 uses
-  Classes, SysUtils, sqldb, DB, LazUTF8, LCLProc, LCLType, Graphics,
-  DBGrids, FileUtil, qso_record;
+  Classes, SysUtils, sqldb, sqlite3conn, DB, LazUTF8, LCLProc, LCLType,
+  Graphics, DBGrids, FileUtil, qso_record, LogBookTable_record, RegExpr,
+  Dialogs, prefix_record;
 
 type
+
+  { Tdm_MainFunc }
+
   Tdm_MainFunc = class(TDataModule)
+    LogBookInfoQuery: TSQLQuery;
+    ServiceDBConnection: TSQLite3Connection;
+    ServiceTransaction: TSQLTransaction;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
+    PrefixProvinceCount: integer;
+    PrefixARRLCount: integer;
+    UniqueCallsCount: integer;
+    UniqueCallsList: TStringList;
+    PrefixProvinceList: TStringList;
+    PrefixARRLList: TStringList;
+    PrefixExpProvinceArray: array [0..1000] of record
+      reg: TRegExpr;
+      id: integer;
+    end;
+    PrefixExpARRLArray: array [0..1000] of record
+      reg: TRegExpr;
+      id: integer;
+    end;
 
   public
-    procedure SearchPrefix(CallName, Grid: string;
-      var Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent,
-      Latitude, Longitude, Distance, Azimuth: string);
+    procedure FreePrefix;
+    procedure ServiceDBInit;
+    procedure InitPrefix;
+    procedure GetLogBookTable(Callsign: string);
+    procedure SearchPrefix(CallName, Grid: string; var PFXR: TPFXR);
     procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
     procedure SearchCallInLog(CallName: string; var setColors: TColor;
       var OMName, OMQTH, Grid, State, IOTA, QSLManager: string; var Query: TSQLQuery);
@@ -25,7 +50,7 @@ type
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure FindCountryFlag(Country: string);
     procedure SaveQSO(var SQSO: TQSO);
-    procedure GetLatLon(Latitude, Longitude: String; var Lat, Lon:String);
+    procedure GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
     procedure StartEQSLThread(Login, Password, Callsign: string;
       QSODate, QSOTime: TDateTime;
       QSOBand, QSOMode, QSOSubMode, QSOReportSent, QSLInfo: string);
@@ -43,6 +68,9 @@ type
 
 var
   dm_MainFunc: Tdm_MainFunc;
+  FilePATH: string;
+  LBParam: TLBParam;
+  PFXR: TPFXR;
 
 implementation
 
@@ -51,16 +79,160 @@ uses MainForm_U, dmFunc_U, const_u, ResourceStr, hrdlog,
 
 {$R *.lfm}
 
-procedure Tdm_MainFunc.GetLatLon(Latitude, Longitude: String; var Lat, Lon:String);
+procedure Tdm_MainFunc.DataModuleCreate(Sender: TObject);
 begin
-    if (UTF8Pos('W', Longitude) <> 0) then
-      Longitude := '-' + Longitude;
-    if (UTF8Pos('S', Latitude) <> 0) then
-      Latitude := '-' + Latitude;
-    Delete(Latitude, length(Latitude), 1);
-    Delete(Longitude, length(Longitude), 1);
-    Lat:=Latitude;
-    Lon:=Longitude;
+  {$IFDEF UNIX}
+  FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+  {$ELSE}
+  FilePATH := GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+  {$ENDIF UNIX}
+  if not DirectoryExists(FilePATH) then
+    CreateDir(FilePATH);
+end;
+
+procedure Tdm_MainFunc.DataModuleDestroy(Sender: TObject);
+begin
+ FreePrefix;
+end;
+
+procedure Tdm_MainFunc.ServiceDBInit;
+begin
+  ServiceDBConnection.Connected := False;
+  if not FileExists(FilePATH + 'serviceLOG.db') then
+    ServiceDBConnection.DatabaseName :=
+      ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'serviceLOG.db'
+  else
+    ServiceDBConnection.DatabaseName := FilePATH + 'serviceLOG.db';
+    {$IFDEF LINUX}
+  if not FileExists(ServiceDBConnection.DatabaseName) then
+    ServiceDBConnection.DatabaseName := '/usr/share/ewlog/serviceLOG.db';
+    {$ENDIF LINUX}
+  if not FileExists(ServiceDBConnection.DatabaseName) then
+  begin
+    ShowMessage(rErrorServiceDB);
+    Exit;
+  end;
+  ServiceDBConnection.Transaction := ServiceTransaction;
+  ServiceDBConnection.Connected := True;
+end;
+
+procedure Tdm_MainFunc.InitPrefix;
+var
+  i: integer;
+  PrefixProvinceQuery: TSQLQuery;
+  PrefixARRLQuery: TSQLQuery;
+  UniqueCallsQuery: TSQLQuery;
+begin
+  try
+    PrefixProvinceQuery := TSQLQuery.Create(nil);
+    PrefixARRLQuery := TSQLQuery.Create(nil);
+    UniqueCallsQuery := TSQLQuery.Create(nil);
+    PrefixProvinceQuery.PacketRecords := 2000;
+    PrefixARRLQuery.PacketRecords := 2000;
+    UniqueCallsQuery.PacketRecords := 10000;
+    PrefixProvinceList := TStringList.Create;
+    PrefixARRLList := TStringList.Create;
+    UniqueCallsList := TStringList.Create;
+    PrefixProvinceQuery.DataBase := ServiceDBConnection;
+    PrefixARRLQuery.DataBase := ServiceDBConnection;
+    UniqueCallsQuery.DataBase := ServiceDBConnection;
+    PrefixProvinceQuery.SQL.Text :=
+      'SELECT _id, PrefixList FROM Province WHERE EndDate == ""';
+    PrefixARRLQuery.SQL.Text :=
+      'SELECT _id, PrefixList, Status FROM CountryDataEx WHERE EndDate == ""';
+    UniqueCallsQuery.SQL.Text := 'SELECT Callsign FROM UniqueCalls';
+    PrefixProvinceQuery.Active := True;
+    PrefixARRLQuery.Active := True;
+    UniqueCallsQuery.Active := True;
+    PrefixProvinceCount := PrefixProvinceQuery.RecordCount;
+    PrefixARRLCount := PrefixARRLQuery.RecordCount;
+    UniqueCallsCount := UniqueCallsQuery.RecordCount;
+    PrefixProvinceQuery.First;
+    PrefixARRLQuery.First;
+    UniqueCallsQuery.First;
+    for i := 0 to PrefixProvinceCount do
+    begin
+      PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
+      PrefixExpProvinceArray[i].reg := TRegExpr.Create;
+      PrefixExpProvinceArray[i].reg.Expression := PrefixProvinceList.Strings[i];
+      PrefixExpProvinceArray[i].id := PrefixProvinceQuery.FieldByName('_id').AsInteger;
+      PrefixProvinceQuery.Next;
+    end;
+    for i := 0 to PrefixARRLCount do
+    begin
+      PrefixARRLList.Add(PrefixARRLQuery.FieldByName('PrefixList').AsString);
+      PrefixExpARRLArray[i].reg := TRegExpr.Create;
+      PrefixExpARRLArray[i].reg.Expression := PrefixARRLList.Strings[i];
+      PrefixExpARRLArray[i].id := PrefixARRLQuery.FieldByName('_id').AsInteger;
+      PrefixARRLQuery.Next;
+    end;
+    for i := 0 to UniqueCallsCount do
+    begin
+      UniqueCallsList.Add(UniqueCallsQuery.FieldByName('Callsign').AsString);
+      UniqueCallsQuery.Next;
+    end;
+
+  finally
+    PrefixProvinceQuery.Free;
+    PrefixARRLQuery.Free;
+    UniqueCallsQuery.Free;
+  end;
+
+end;
+
+procedure Tdm_MainFunc.GetLogBookTable(Callsign: string);
+begin
+  with LogBookInfoQuery do
+  begin
+    Close;
+    if Callsign = '' then
+      SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1'
+    else
+      SQL.Text := 'SELECT * FROM LogBookInfo WHERE CallName = "' + Callsign + '"';
+    Open;
+    LBParam.Discription := FieldByName('Discription').AsString;
+    LBParam.CallSign := FieldByName('CallName').AsString;
+    LBParam.OpName := FieldByName('Name').AsString;
+    LBParam.OpQTH := FieldByName('QTH').AsString;
+    LBParam.OpITU := FieldByName('ITU').AsString;
+    LBParam.OpLoc := FieldByName('Loc').AsString;
+    LBParam.OpCQ := FieldByName('CQ').AsString;
+    LBParam.OpLat := FieldByName('Lat').AsString;
+    LBParam.OpLon := FieldByName('Lon').AsString;
+    LBParam.QSLInfo := FieldByName('QSLInfo').AsString;
+    LBParam.LogTable := FieldByName('LogTable').AsString;
+    LBParam.eQSLccLogin := FieldByName('EQSLLogin').AsString;
+    LBParam.eQSLccPassword := FieldByName('EQSLPassword').AsString;
+    LBParam.LoTWLogin := FieldByName('LoTW_User').AsString;
+    LBParam.LoTWPassword := FieldByName('LoTW_Password').AsString;
+    LBParam.AutoEQSLcc := FieldByName('AutoEQSLcc').AsBoolean;
+    LBParam.HRDLogin := FieldByName('HRDLogLogin').AsString;
+    LBParam.HRDCode := FieldByName('HRDLogPassword').AsString;
+    LBParam.AutoHRDLog := FieldByName('AutoHRDLog').AsBoolean;
+    LBParam.HamQTHLogin := FieldByName('HamQTHLogin').AsString;
+    LBParam.HamQTHPassword := FieldByName('HamQTHPassword').AsString;
+    LBParam.AutoHamQTH := FieldByName('AutoHamQTH').AsBoolean;
+    LBParam.ClubLogLogin := FieldByName('ClubLog_User').AsString;
+    LBParam.ClubLogPassword := FieldByName('ClubLog_Password').AsString;
+    LBParam.AutoClubLog := FieldByName('AutoClubLog').AsBoolean;
+    LBParam.QRZComLogin := FieldByName('QRZCOM_User').AsString;
+    LBParam.QRZComPassword := FieldByName('QRZCOM_Password').AsString;
+    LBParam.AutoQRZCom := FieldByName('AutoQRZCom').AsBoolean;
+    Close;
+  end;
+end;
+
+procedure Tdm_MainFunc.GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
+begin
+  if (UTF8Pos('W', Longitude) <> 0) then
+    Longitude := '-' + Longitude;
+  if (UTF8Pos('S', Latitude) <> 0) then
+    Latitude := '-' + Latitude;
+  Delete(Latitude, length(Latitude), 1);
+  Delete(Longitude, length(Longitude), 1);
+  Lat := Latitude;
+  Lon := Longitude;
 end;
 
 procedure Tdm_MainFunc.StartEQSLThread(Login, Password, Callsign: string;
@@ -313,113 +485,116 @@ begin
   pImage.Free;
 end;
 
-procedure Tdm_MainFunc.SearchPrefix(CallName, Grid: string;
-  var Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent, Latitude,
-  Longitude, Distance, Azimuth: string);
+procedure Tdm_MainFunc.SearchPrefix(CallName, Grid: string; var PFXR: TPFXR);
 var
   i, j: integer;
   La, Lo: currency;
+  PrefixQuery: TSQLQuery;
 begin
-  if MainForm.UniqueCallsList.IndexOf(CallName) > -1 then
-  begin
-    with MainForm.PrefixQuery do
+  try
+    PrefixQuery := TSQLQuery.Create(nil);
+    PrefixQuery.DataBase := ServiceDBConnection;
+    if UniqueCallsList.IndexOf(CallName) > -1 then
     begin
-      Close;
-      SQL.Clear;
-      SQL.Add('select * from UniqueCalls where _id = "' +
-        IntToStr(MainForm.UniqueCallsList.IndexOf(CallName)) + '"');
-      Open;
-      Country := FieldByName('Country').AsString;
-      ARRLPrefix := FieldByName('ARRLPrefix').AsString;
-      Prefix := FieldByName('Prefix').AsString;
-      CQZone := FieldByName('CQZone').AsString;
-      ITUZone := FieldByName('ITUZone').AsString;
-      Continent := FieldByName('Continent').AsString;
-      Latitude := FieldByName('Latitude').AsString;
-      Longitude := FieldByName('Longitude').AsString;
-      DXCCNum := FieldByName('DXCC').AsInteger;
-    end;
-    if (Grid <> '') and dmFunc.IsLocOK(Grid) then
-    begin
-      dmFunc.CoordinateFromLocator(Grid, La, Lo);
-      Latitude := CurrToStr(La);
-      Longitude := CurrToStr(Lo);
-    end;
-    GetDistAzim(Latitude, Longitude, Distance, Azimuth);
-    Exit;
-  end;
-
-  for i := 0 to PrefixProvinceCount do
-  begin
-    if (MainForm.PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-      (MainForm.PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
-    begin
-      with MainForm.PrefixQuery do
+      with PrefixQuery do
       begin
         Close;
-        SQL.Clear;
-        SQL.Add('select * from Province where _id = "' +
-          IntToStr(MainForm.PrefixExpProvinceArray[i].id) + '"');
+        SQL.Text := 'select * from UniqueCalls where _id = "' +
+          IntToStr(UniqueCallsList.IndexOf(CallName)) + '"';
         Open;
-        Country := FieldByName('Country').AsString;
-        ARRLPrefix := FieldByName('ARRLPrefix').AsString;
-        Prefix := FieldByName('Prefix').AsString;
-        CQZone := FieldByName('CQZone').AsString;
-        ITUZone := FieldByName('ITUZone').AsString;
-        Continent := FieldByName('Continent').AsString;
-        Latitude := FieldByName('Latitude').AsString;
-        Longitude := FieldByName('Longitude').AsString;
-        DXCCNum := FieldByName('DXCC').AsInteger;
-        timedif := FieldByName('TimeDiff').AsInteger;
+        PFXR.Country := FieldByName('Country').AsString;
+        PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
+        PFXR.Prefix := FieldByName('Prefix').AsString;
+        PFXR.CQZone := FieldByName('CQZone').AsString;
+        PFXR.ITUZone := FieldByName('ITUZone').AsString;
+        PFXR.Continent := FieldByName('Continent').AsString;
+        PFXR.Latitude := FieldByName('Latitude').AsString;
+        PFXR.Longitude := FieldByName('Longitude').AsString;
+        PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
       end;
       if (Grid <> '') and dmFunc.IsLocOK(Grid) then
       begin
         dmFunc.CoordinateFromLocator(Grid, La, Lo);
-        Latitude := CurrToStr(La);
-        Longitude := CurrToStr(Lo);
+        PFXR.Latitude := CurrToStr(La);
+        PFXR.Longitude := CurrToStr(Lo);
       end;
-      GetDistAzim(Latitude, Longitude, Distance, Azimuth);
+      GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
       Exit;
     end;
-  end;
 
-  for j := 0 to PrefixARRLCount do
-  begin
-    if (MainForm.PrefixExpARRLArray[j].reg.Exec(CallName)) and
-      (MainForm.PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+    for i := 0 to PrefixProvinceCount do
     begin
-      with MainForm.PrefixQuery do
+      if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
+        (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
       begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from CountryDataEx where _id = "' +
-          IntToStr(MainForm.PrefixExpARRLArray[j].id) + '"');
-        Open;
-        if (FieldByName('Status').AsString = 'Deleted') then
+        with PrefixQuery do
         begin
-          MainForm.PrefixExpARRLArray[j].reg.ExecNext;
-          Exit;
+          Close;
+          SQL.Text := 'select * from Province where _id = "' +
+            IntToStr(PrefixExpProvinceArray[i].id) + '"';
+          Open;
+          PFXR.Country := FieldByName('Country').AsString;
+          PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
+          PFXR.Prefix := FieldByName('Prefix').AsString;
+          PFXR.CQZone := FieldByName('CQZone').AsString;
+          PFXR.ITUZone := FieldByName('ITUZone').AsString;
+          PFXR.Continent := FieldByName('Continent').AsString;
+          PFXR.Latitude := FieldByName('Latitude').AsString;
+          PFXR.Longitude := FieldByName('Longitude').AsString;
+          PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
+          PFXR.TimeDiff := FieldByName('TimeDiff').AsInteger;
         end;
+        if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+        begin
+          dmFunc.CoordinateFromLocator(Grid, La, Lo);
+          PFXR.Latitude := CurrToStr(La);
+          PFXR.Longitude := CurrToStr(Lo);
+        end;
+        GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+        Exit;
       end;
-      Country := MainForm.PrefixQuery.FieldByName('Country').AsString;
-      ARRLPrefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      Prefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      CQZone := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-      ITUZone := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-      Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-      Latitude := MainForm.PrefixQuery.FieldByName('Latitude').AsString;
-      Longitude := MainForm.PrefixQuery.FieldByName('Longitude').AsString;
-      DXCCNum := MainForm.PrefixQuery.FieldByName('DXCC').AsInteger;
-      timedif := MainForm.PrefixQuery.FieldByName('TimeDiff').AsInteger;
-      if (Grid <> '') and dmFunc.IsLocOK(Grid) then
-      begin
-        dmFunc.CoordinateFromLocator(Grid, La, Lo);
-        Latitude := CurrToStr(La);
-        Longitude := CurrToStr(Lo);
-      end;
-      GetDistAzim(Latitude, Longitude, Distance, Azimuth);
-      Exit;
     end;
+
+    for j := 0 to PrefixARRLCount do
+    begin
+      if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
+        (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+      begin
+        with PrefixQuery do
+        begin
+          Close;
+          SQL.Text := 'select * from CountryDataEx where _id = "' +
+            IntToStr(PrefixExpARRLArray[j].id) + '"';
+          Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[j].reg.ExecNext;
+            Exit;
+          end;
+        end;
+        PFXR.Country := PrefixQuery.FieldByName('Country').AsString;
+        PFXR.ARRLPrefix := PrefixQuery.FieldByName('ARRLPrefix').AsString;
+        PFXR.Prefix := PrefixQuery.FieldByName('ARRLPrefix').AsString;
+        PFXR.CQZone := PrefixQuery.FieldByName('CQZone').AsString;
+        PFXR.ITUZone := PrefixQuery.FieldByName('ITUZone').AsString;
+        PFXR.Continent := PrefixQuery.FieldByName('Continent').AsString;
+        PFXR.Latitude := PrefixQuery.FieldByName('Latitude').AsString;
+        PFXR.Longitude := PrefixQuery.FieldByName('Longitude').AsString;
+        PFXR.DXCCNum := PrefixQuery.FieldByName('DXCC').AsInteger;
+        PFXR.TimeDiff := PrefixQuery.FieldByName('TimeDiff').AsInteger;
+        if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+        begin
+          dmFunc.CoordinateFromLocator(Grid, La, Lo);
+          PFXR.Latitude := CurrToStr(La);
+          PFXR.Longitude := CurrToStr(Lo);
+        end;
+        GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+        Exit;
+      end;
+    end;
+
+  finally
+    PrefixQuery.Free;
   end;
 end;
 
@@ -438,7 +613,7 @@ begin
   Delete(lo, length(lo), 1);
   R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la), StrToFloat(lo)) / 1000;
   Distance := FormatFloat('0.00', R) + ' KM';
-  dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la),
+  dmFunc.DistanceFromCoordinate(LBParam.OpLoc, StrToFloat(la),
     strtofloat(lo), qra, azim);
   Azimuth := azim;
 end;
@@ -459,7 +634,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
+      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `Call` LIKE ' +
       QuotedStr(CallName) +
       ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC';
   end
@@ -475,9 +650,9 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
-      + LogTable +
+      + LBParam.LogTable +
       ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
-      LogTable + ' WHERE `Call` LIKE ' + QuotedStr(CallName) +
+      LBParam.LogTable + ' WHERE `Call` LIKE ' + QuotedStr(CallName) +
       ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
   end;
   Query.Transaction := MainForm.SQLTransaction1;
@@ -629,7 +804,7 @@ begin
       Query.DataBase := MainForm.SQLiteDBConnection;
     Query.Transaction := MainForm.SQLTransaction1;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
       FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
     Query.Open;
@@ -666,7 +841,7 @@ begin
       Query.DataBase := MainForm.SQLiteDBConnection;
     Query.Transaction := MainForm.SQLTransaction1;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
       FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
     Query.Open;
@@ -701,7 +876,7 @@ begin
       Query.DataBase := MainForm.SQLiteDBConnection;
     Query.Transaction := MainForm.SQLTransaction1;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
       FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
     Query.Open;
@@ -716,52 +891,60 @@ end;
 function Tdm_MainFunc.FindDXCC(callsign: string): integer;
 var
   i: integer;
+  PrefixQuery: TSQLQuery;
 begin
-  Result := -1;
-  for i := 0 to PrefixARRLCount do
-  begin
-    if (MainForm.PrefixExpARRLArray[i].reg.Exec(callsign)) and
-      (MainForm.PrefixExpARRLArray[i].reg.Match[0] = callsign) then
+  try
+    PrefixQuery := TSQLQuery.Create(nil);
+    PrefixQuery.DataBase := ServiceDBConnection;
+    Result := -1;
+    for i := 0 to PrefixARRLCount do
     begin
-      with MainForm.PrefixQuery do
+      if (PrefixExpARRLArray[i].reg.Exec(callsign)) and
+        (PrefixExpARRLArray[i].reg.Match[0] = callsign) then
       begin
-        Close;
-        SQL.Text := 'SELECT DXCC, Status from CountryDataEx where _id = "' +
-          IntToStr(MainForm.PrefixExpARRLArray[i].id) + '"';
-        Open;
-        if (FieldByName('Status').AsString = 'Deleted') then
-        begin
-          MainForm.PrefixExpARRLArray[i].reg.ExecNext;
-          Exit;
-        end;
-        Result := FieldByName('DXCC').AsInteger;
-        Close;
-      end;
-    end;
-  end;
-
-  if Result = -1 then
-  begin
-    for i := 0 to PrefixProvinceCount do
-    begin
-      if (MainForm.PrefixExpProvinceArray[i].reg.Exec(callsign)) and
-        (MainForm.PrefixExpProvinceArray[i].reg.Match[0] = callsign) then
-      begin
-        with MainForm.PrefixQuery do
+        with PrefixQuery do
         begin
           Close;
-          SQL.Text := 'SELECT * from Province where _id = "' +
-            IntToStr(MainForm.PrefixExpProvinceArray[i].id) + '"';
+          SQL.Text := 'SELECT DXCC, Status from CountryDataEx where _id = "' +
+            IntToStr(PrefixExpARRLArray[i].id) + '"';
           Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[i].reg.ExecNext;
+            Exit;
+          end;
           Result := FieldByName('DXCC').AsInteger;
-          if Result <> -1 then
+          Close;
+        end;
+      end;
+    end;
+
+    if Result = -1 then
+    begin
+      for i := 0 to PrefixProvinceCount do
+      begin
+        if (PrefixExpProvinceArray[i].reg.Exec(callsign)) and
+          (PrefixExpProvinceArray[i].reg.Match[0] = callsign) then
+        begin
+          with PrefixQuery do
           begin
             Close;
-            Exit;
+            SQL.Text := 'SELECT * from Province where _id = "' +
+              IntToStr(PrefixExpProvinceArray[i].id) + '"';
+            Open;
+            Result := FieldByName('DXCC').AsInteger;
+            if Result <> -1 then
+            begin
+              Close;
+              Exit;
+            end;
           end;
         end;
       end;
     end;
+
+  finally
+    PrefixQuery.Free;
   end;
 end;
 
@@ -790,7 +973,7 @@ begin
       Query.DataBase := MainForm.SQLiteDBConnection;
     Query.Transaction := MainForm.SQLTransaction1;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
       FloatToStr(digiBand) + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
     Query.Open;
@@ -801,7 +984,7 @@ begin
     end;
     Query.Close;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
     Query.Open;
     if Query.RecordCount = 0 then
@@ -811,7 +994,7 @@ begin
     end;
     Query.Close;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
       FloatToStr(digiBand) + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
     Query.Open;
@@ -857,7 +1040,7 @@ begin
       Query.DataBase := MainForm.SQLiteDBConnection;
     Query.Transaction := MainForm.SQLTransaction1;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
     Query.Open;
     if Query.RecordCount > 0 then
@@ -865,7 +1048,7 @@ begin
     else
       DCall := True;
     Query.Close;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND QSOMode = ' +
       QuotedStr(mode) + ' LIMIT 1';
     Query.Open;
@@ -874,7 +1057,7 @@ begin
     else
       DMode := True;
     Query.Close;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBParam.LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
       FloatToStr(digiBand) + ' LIMIT 1';
     Query.Open;
@@ -884,6 +1067,21 @@ begin
       DBand := True;
   finally
     Query.Free;
+  end;
+end;
+
+procedure Tdm_MainFunc.FreePrefix;
+var
+  i: integer;
+begin
+  FreeAndNil(PrefixProvinceList);
+  FreeAndNil(PrefixARRLList);
+  FreeAndNil(UniqueCallsList);
+  //FreeAndNil(subModesList);
+  for i := 0 to 1000 do
+  begin
+    FreeAndNil(PrefixExpARRLArray[i].reg);
+    FreeAndNil(PrefixExpProvinceArray[i].reg);
   end;
 end;
 
