@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, sqlite3conn, DB, LazUTF8, LCLProc, LCLType,
   Graphics, DBGrids, FileUtil, qso_record, LogBookTable_record, RegExpr,
-  Dialogs, prefix_record;
+  Dialogs, prefix_record, old_record, wsjt_record;
 
 type
 
@@ -26,6 +26,7 @@ type
     UniqueCallsList: TStringList;
     PrefixProvinceList: TStringList;
     PrefixARRLList: TStringList;
+    SearchPrefixQuery: TSQLQuery;
     PrefixExpProvinceArray: array [0..1000] of record
       reg: TRegExpr;
       id: integer;
@@ -36,11 +37,13 @@ type
     end;
 
   public
+    procedure WSJTtoForm(Save: boolean);
+    procedure ShowOldQSO(DBGRID: TDBGrid);
     procedure FreePrefix;
     procedure ServiceDBInit;
     procedure InitPrefix;
     procedure GetLogBookTable(Callsign: string);
-    procedure SearchPrefix(CallName, Grid: string; var PFXR: TPFXR);
+    procedure SearchPrefix(CallName, Grid: string);
     procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
     procedure SearchCallInLog(CallName: string; var setColors: TColor;
       var OMName, OMQTH, Grid, State, IOTA, QSLManager: string; var Query: TSQLQuery);
@@ -63,6 +66,7 @@ type
     function FindDXCC(callsign: string): integer;
     function FindISOCountry(Country: string): string;
     function FindCountry(ISOCode: string): string;
+    function SearchCountry(CallName: string; Province: boolean): string;
 
   end;
 
@@ -71,11 +75,13 @@ var
   FilePATH: string;
   LBParam: TLBParam;
   PFXR: TPFXR;
+  OldRec: TOldQSOR;
+  WSJTR: TWSJTR;
 
 implementation
 
 uses MainForm_U, dmFunc_U, const_u, ResourceStr, hrdlog,
-  hamqth, clublog, qrzcom, eqsl;
+  hamqth, clublog, qrzcom, eqsl, MinimalForm_U;
 
 {$R *.lfm}
 
@@ -89,11 +95,64 @@ begin
   {$ENDIF UNIX}
   if not DirectoryExists(FilePATH) then
     CreateDir(FilePATH);
+  SearchPrefixQuery := TSQLQuery.Create(nil);
 end;
 
 procedure Tdm_MainFunc.DataModuleDestroy(Sender: TObject);
 begin
- FreePrefix;
+  FreePrefix;
+end;
+
+procedure Tdm_MainFunc.WSJTtoForm(Save: boolean);
+begin
+  if Minimal then
+  begin
+    MinimalForm.EditButton1.Text := WSJTR.Call;
+    MinimalForm.Edit3.Text := WSJTR.Grid;
+    MinimalForm.ComboBox1.Text := WSJTR.Freq;
+    MinimalForm.ComboBox2.Text := WSJTR.Mode;
+    MinimalForm.ComboBox3.Text := WSJTR.SubMode;
+    MinimalForm.ComboBox4.Text := WSJTR.RSTs;
+    if Save then
+    begin
+      MinimalForm.CheckBox1.Checked := False;
+      MinimalForm.ComboBox5.Text := WSJTR.RSTr;
+      MinimalForm.DateEdit1.Date := WSJTR.Date;
+      MinimalForm.DateTimePicker1.Time := WSJTR.Date;
+      MinimalForm.Edit11.Text := WSJTR.Comment;
+      MinimalForm.SpeedButton1.Click;
+      MinimalForm.CheckBox1.Checked := True;
+    end;
+  end
+  else
+  begin
+    MainForm.EditButton1.Text := WSJTR.Call;
+    MainForm.Edit3.Text := WSJTR.Grid;
+    MainForm.ComboBox1.Text := WSJTR.Freq;
+    MainForm.ComboBox2.Text := WSJTR.Mode;
+    MainForm.ComboBox9.Text := WSJTR.SubMode;
+    MainForm.ComboBox4.Text := WSJTR.RSTs;
+    if Save then
+    begin
+      MainForm.CheckBox1.Checked := False;
+      MainForm.ComboBox5.Text := WSJTR.RSTr;
+      MainForm.DateEdit1.Date := WSJTR.Date;
+      MainForm.DateTimePicker1.Time := WSJTR.Date;
+      MainForm.Edit11.Text := WSJTR.Comment;
+      MainForm.SpeedButton8.Click;
+      MainForm.CheckBox1.Checked := True;
+    end;
+  end;
+end;
+
+procedure Tdm_MainFunc.ShowOldQSO(DBGRID: TDBGrid);
+begin
+  OldRec.Num := IntToStr(DBGRID.DataSource.DataSet.RecordCount);
+  OldRec.Date := DBGRID.DataSource.DataSet.FieldByName('QSODate').AsString;
+  OldRec.Time := DBGRID.DataSource.DataSet.FieldByName('QSOTime').AsString;
+  OldRec.Frequency := DBGRID.DataSource.DataSet.FieldByName('QSOBand').AsString;
+  OldRec.Mode := DBGRID.DataSource.DataSet.FieldByName('QSOMode').AsString;
+  OldRec.Name := DBGRID.DataSource.DataSet.FieldByName('OMName').AsString;
 end;
 
 procedure Tdm_MainFunc.ServiceDBInit;
@@ -115,6 +174,7 @@ begin
   end;
   ServiceDBConnection.Transaction := ServiceTransaction;
   ServiceDBConnection.Connected := True;
+  SearchPrefixQuery.DataBase := ServiceDBConnection;
 end;
 
 procedure Tdm_MainFunc.InitPrefix;
@@ -371,9 +431,15 @@ begin
       Params.ParamByName('WPX').AsString := SQSO.WPX;
       Params.ParamByName('AwardsEx').AsString := SQSO.AwardsEx;
       Params.ParamByName('ValidDX').AsString := SQSO.ValidDX;
-      Params.ParamByName('SRX').AsInteger := SQSO.SRX;
+      if SQSO.SRX = 0 then
+        Params.ParamByName('SRX').IsNull
+      else
+        Params.ParamByName('SRX').AsInteger := SQSO.SRX;
       Params.ParamByName('SRX_STRING').AsString := SQSO.SRX_String;
-      Params.ParamByName('STX').AsInteger := SQSO.STX;
+      if SQSO.STX = 0 then
+        Params.ParamByName('STX').IsNull
+      else
+        Params.ParamByName('STX').AsInteger := SQSO.STX;
       Params.ParamByName('STX_STRING').AsString := SQSO.STX_String;
       Params.ParamByName('SAT_NAME').AsString := SQSO.SAT_NAME;
       Params.ParamByName('SAT_MODE').AsString := SQSO.SAT_MODE;
@@ -485,22 +551,49 @@ begin
   pImage.Free;
 end;
 
-procedure Tdm_MainFunc.SearchPrefix(CallName, Grid: string; var PFXR: TPFXR);
+procedure Tdm_MainFunc.SearchPrefix(CallName, Grid: string);
 var
   i, j: integer;
   La, Lo: currency;
-  PrefixQuery: TSQLQuery;
 begin
-  try
-    PrefixQuery := TSQLQuery.Create(nil);
-    PrefixQuery.DataBase := ServiceDBConnection;
-    if UniqueCallsList.IndexOf(CallName) > -1 then
+  if UniqueCallsList.IndexOf(CallName) > -1 then
+  begin
+    with SearchPrefixQuery do
     begin
-      with PrefixQuery do
+      Close;
+      SQL.Text := 'select * from UniqueCalls where _id = "' +
+        IntToStr(UniqueCallsList.IndexOf(CallName)) + '"';
+      Open;
+      PFXR.Country := FieldByName('Country').AsString;
+      PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
+      PFXR.Prefix := FieldByName('Prefix').AsString;
+      PFXR.CQZone := FieldByName('CQZone').AsString;
+      PFXR.ITUZone := FieldByName('ITUZone').AsString;
+      PFXR.Continent := FieldByName('Continent').AsString;
+      PFXR.Latitude := FieldByName('Latitude').AsString;
+      PFXR.Longitude := FieldByName('Longitude').AsString;
+      PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
+    end;
+    if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+    begin
+      dmFunc.CoordinateFromLocator(Grid, La, Lo);
+      PFXR.Latitude := CurrToStr(La);
+      PFXR.Longitude := CurrToStr(Lo);
+    end;
+    GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+    Exit;
+  end;
+
+  for i := 0 to PrefixProvinceCount do
+  begin
+    if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
+      (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
+    begin
+      with SearchPrefixQuery do
       begin
         Close;
-        SQL.Text := 'select * from UniqueCalls where _id = "' +
-          IntToStr(UniqueCallsList.IndexOf(CallName)) + '"';
+        SQL.Text := 'select * from Province where _id = "' +
+          IntToStr(PrefixExpProvinceArray[i].id) + '"';
         Open;
         PFXR.Country := FieldByName('Country').AsString;
         PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
@@ -511,6 +604,7 @@ begin
         PFXR.Latitude := FieldByName('Latitude').AsString;
         PFXR.Longitude := FieldByName('Longitude').AsString;
         PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
+        PFXR.TimeDiff := FieldByName('TimeDiff').AsInteger;
       end;
       if (Grid <> '') and dmFunc.IsLocOK(Grid) then
       begin
@@ -521,75 +615,94 @@ begin
       GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
       Exit;
     end;
+  end;
 
-    for i := 0 to PrefixProvinceCount do
+  for j := 0 to PrefixARRLCount do
+  begin
+    if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
+      (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
     begin
-      if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-        (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
+      with SearchPrefixQuery do
       begin
-        with PrefixQuery do
+        Close;
+        SQL.Text := 'select * from CountryDataEx where _id = "' +
+          IntToStr(PrefixExpARRLArray[j].id) + '"';
+        Open;
+        if (FieldByName('Status').AsString = 'Deleted') then
         begin
-          Close;
-          SQL.Text := 'select * from Province where _id = "' +
-            IntToStr(PrefixExpProvinceArray[i].id) + '"';
-          Open;
-          PFXR.Country := FieldByName('Country').AsString;
-          PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
-          PFXR.Prefix := FieldByName('Prefix').AsString;
-          PFXR.CQZone := FieldByName('CQZone').AsString;
-          PFXR.ITUZone := FieldByName('ITUZone').AsString;
-          PFXR.Continent := FieldByName('Continent').AsString;
-          PFXR.Latitude := FieldByName('Latitude').AsString;
-          PFXR.Longitude := FieldByName('Longitude').AsString;
-          PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
-          PFXR.TimeDiff := FieldByName('TimeDiff').AsInteger;
+          PrefixExpARRLArray[j].reg.ExecNext;
+          Exit;
         end;
-        if (Grid <> '') and dmFunc.IsLocOK(Grid) then
-        begin
-          dmFunc.CoordinateFromLocator(Grid, La, Lo);
-          PFXR.Latitude := CurrToStr(La);
-          PFXR.Longitude := CurrToStr(Lo);
-        end;
-        GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
-        Exit;
       end;
-    end;
-
-    for j := 0 to PrefixARRLCount do
-    begin
-      if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
-        (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+      PFXR.Country := SearchPrefixQuery.FieldByName('Country').AsString;
+      PFXR.ARRLPrefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
+      PFXR.Prefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
+      PFXR.CQZone := SearchPrefixQuery.FieldByName('CQZone').AsString;
+      PFXR.ITUZone := SearchPrefixQuery.FieldByName('ITUZone').AsString;
+      PFXR.Continent := SearchPrefixQuery.FieldByName('Continent').AsString;
+      PFXR.Latitude := SearchPrefixQuery.FieldByName('Latitude').AsString;
+      PFXR.Longitude := SearchPrefixQuery.FieldByName('Longitude').AsString;
+      PFXR.DXCCNum := SearchPrefixQuery.FieldByName('DXCC').AsInteger;
+      PFXR.TimeDiff := SearchPrefixQuery.FieldByName('TimeDiff').AsInteger;
+      if (Grid <> '') and dmFunc.IsLocOK(Grid) then
       begin
-        with PrefixQuery do
+        dmFunc.CoordinateFromLocator(Grid, La, Lo);
+        PFXR.Latitude := CurrToStr(La);
+        PFXR.Longitude := CurrToStr(Lo);
+      end;
+      GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+      Exit;
+    end;
+  end;
+end;
+
+function Tdm_MainFunc.SearchCountry(CallName: string; Province: boolean): string;
+var
+  i, j: integer;
+  PrefixQuery: TSQLQuery;
+begin
+  try
+    PrefixQuery := TSQLQuery.Create(nil);
+    PrefixQuery.DataBase := ServiceDBConnection;
+    if Province then
+    begin
+      for i := 0 to PrefixProvinceCount do
+      begin
+        if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
+          (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
         begin
-          Close;
-          SQL.Text := 'select * from CountryDataEx where _id = "' +
-            IntToStr(PrefixExpARRLArray[j].id) + '"';
-          Open;
-          if (FieldByName('Status').AsString = 'Deleted') then
+          with PrefixQuery do
           begin
-            PrefixExpARRLArray[j].reg.ExecNext;
-            Exit;
+            SQL.Text := 'SELECT * FROM Province WHERE _id = "' +
+              IntToStr(PrefixExpProvinceArray[i].id) + '"';
+            Open;
+            Result := FieldByName('Country').AsString;
           end;
+          Exit;
         end;
-        PFXR.Country := PrefixQuery.FieldByName('Country').AsString;
-        PFXR.ARRLPrefix := PrefixQuery.FieldByName('ARRLPrefix').AsString;
-        PFXR.Prefix := PrefixQuery.FieldByName('ARRLPrefix').AsString;
-        PFXR.CQZone := PrefixQuery.FieldByName('CQZone').AsString;
-        PFXR.ITUZone := PrefixQuery.FieldByName('ITUZone').AsString;
-        PFXR.Continent := PrefixQuery.FieldByName('Continent').AsString;
-        PFXR.Latitude := PrefixQuery.FieldByName('Latitude').AsString;
-        PFXR.Longitude := PrefixQuery.FieldByName('Longitude').AsString;
-        PFXR.DXCCNum := PrefixQuery.FieldByName('DXCC').AsInteger;
-        PFXR.TimeDiff := PrefixQuery.FieldByName('TimeDiff').AsInteger;
-        if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+      end;
+    end
+    else
+    begin
+      for j := 0 to PrefixARRLCount do
+      begin
+        if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
+          (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
         begin
-          dmFunc.CoordinateFromLocator(Grid, La, Lo);
-          PFXR.Latitude := CurrToStr(La);
-          PFXR.Longitude := CurrToStr(Lo);
+          with PrefixQuery do
+          begin
+            SQL.Text := 'SELECT * FROM CountryDataEx WHERE _id = "' +
+              IntToStr(PrefixExpARRLArray[j].id) + '"';
+            Open;
+            if (FieldByName('Status').AsString = 'Deleted') then
+            begin
+              PrefixExpARRLArray[j].reg.ExecNext;
+              Exit;
+            end;
+          end;
+          Result := PrefixQuery.FieldByName('Country').AsString;
+          Exit;
         end;
-        GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
-        Exit;
       end;
     end;
 
@@ -1078,6 +1191,7 @@ begin
   FreeAndNil(PrefixARRLList);
   FreeAndNil(UniqueCallsList);
   //FreeAndNil(subModesList);
+  FreeAndNil(SearchPrefixQuery);
   for i := 0 to 1000 do
   begin
     FreeAndNil(PrefixExpARRLArray[i].reg);

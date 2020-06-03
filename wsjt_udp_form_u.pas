@@ -11,7 +11,7 @@ uses
   cthreads,
 {$ENDIF}{$ENDIF}
   Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils;
+  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, wsjt_record;
 
 const
   SJT65: string = '#';
@@ -53,7 +53,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U;
+uses dmFunc_U, MainForm_U, dmMainFunc;
 
 {$R *.lfm}
 
@@ -72,17 +72,12 @@ end;
 
 procedure TWSJT_UDP_Form.FormCreate(Sender: TObject);
 begin
-  //IdUDPServer1.Active:=True;
-  //IdUDPServer1.Active := False;
-  //IdUDPServer1.Bindings.Add.IPVersion := Id_IPv4;
   IdUDPServer1.Active := True;
-
 end;
 
 procedure TWSJT_UDP_Form.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(IdUDPServer1);
-  //IdUDPServer1.Destroy;
 end;
 
 procedure TWSJT_UDP_Form.IdUDPServer1UDPException(AThread: TIdUDPListenerThread;
@@ -93,6 +88,7 @@ end;
 
 function TWSJT_UDP_Form.decodeMode(mode: string): string;
 begin
+  Result := '';
   if mode = SJT65 then
     Result := 'JT65';
   if mode = SJT9 then
@@ -126,7 +122,7 @@ begin
   while index < Length(AData) do
   begin
     dmFunc.Unpack(AData, index, magic);
-     Memo1.Lines.Add('index:' + IntToStr(index) + ' magic:$' + IntToHex(magic,8));
+    Memo1.Lines.Add('index:' + IntToStr(index) + ' magic:$' + IntToHex(magic, 8));
     if (magic = longint($ADBCCBDA)) and (index < Length(AData)) then
     begin
       dmFunc.Unpack(AData, index, schema);
@@ -157,25 +153,28 @@ begin
             dmFunc.Unpack(AData, index, DEGrid);
             dmFunc.Unpack(AData, index, DXGrid);
 
-            MainForm.EditButton1.Text := DXCall;
-            MainForm.Edit3.Text := DXGrid;
-
+            WSJTR.Call := DXCall;
+            WSJTR.Grid := DXGrid;
             if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
-              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
-              MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
+              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <>
+              '') then
+              WSJTR.Freq := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
             else
-              MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
+              WSJTR.Freq := FormatFloat('0.000"."00', frequency / 1000000);
 
-            if mode <> 'FT4' then begin
-            MainForm.ComboBox2.Text := mode;
-            MainForm.ComboBox9.Text := '';
+            if mode <> 'FT4' then
+            begin
+              WSJTR.Mode := mode;
+              WSJTR.SubMode := '';
             end
-            else begin
-            MainForm.ComboBox2.Text := 'MFSK';
-            MainForm.ComboBox9.Text := 'FT4';
+            else
+            begin
+              WSJTR.Mode := 'MFSK';
+              WSJTR.SubMode := 'FT4';
             end;
-            MainForm.ComboBox4.Text := report;
+            WSJTR.RSTs := report;
+            dm_MainFunc.WSJTtoForm(False);
           end;
 
           2:
@@ -251,27 +250,28 @@ begin
               ' RST получено:' + reportReceived + ' TX мощность:' +
               TXPower + ' Комментарий:' + comments + ' Имя:' + DXName);
 
-            MainForm.CheckBox1.Checked := False;
-            MainForm.DateEdit1.Date := date;
-            MainForm.DateTimePicker1.Time := date;
-            MainForm.EditButton1.Text := DXCall;
-
-             if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
-              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
-              MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
+            WSJTR.Call := DXCall;
+            WSJTR.Grid := DXGrid;
+            WSJTR.Mode := mode;
+            WSJTR.RSTs := report;
+            WSJTR.RSTr := reportReceived;
+            WSJTR.Name := DXName;
+            WSJTR.Date := date;
+            WSJTR.Comment := comments;
+            if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
+              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <>
+              '') then
+              WSJTR.Freq := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
             else
-              MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
+              WSJTR.Freq := FormatFloat('0.000"."00', frequency / 1000000);
+            dm_MainFunc.WSJTtoForm(True);
+            //  MainForm.CheckBox1.Checked := False;
+            //  MainForm.DateEdit1.Date := date;
+            //  MainForm.DateTimePicker1.Time := date;
 
-            MainForm.Edit3.Text := DXGrid;
-            MainForm.ComboBox2.Text := mode;
-            MainForm.ComboBox4.Text := report;
-            MainForm.ComboBox5.Text := reportReceived;
-            if DXName <> '' then
-            MainForm.Edit1.Text := DXName;
-            MainForm.Edit11.Text := comments;
-            MainForm.SpeedButton8.Click;
-            MainForm.CheckBox1.Checked := True;
+            //  MainForm.SpeedButton8.Click;
+            //  MainForm.CheckBox1.Checked := True;
           end;
 
           12:

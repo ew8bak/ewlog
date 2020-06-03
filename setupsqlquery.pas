@@ -62,7 +62,7 @@ begin
     ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
     ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
     ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-    ' `OMName` varchar(30) DEFAULT NULL, `OMQTH` varchar(50) DEFAULT NULL,' +
+    ' `OMName` varchar(60) DEFAULT NULL, `OMQTH` varchar(100) DEFAULT NULL,' +
     ' `State` varchar(25) DEFAULT NULL, `Grid` varchar(8) DEFAULT NULL,' +
     ' `IOTA` varchar(6) DEFAULT NULL, `QSLManager` varchar(9) DEFAULT NULL,' +
     ' `QSLSent` tinyint(1) DEFAULT NULL,' + ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +

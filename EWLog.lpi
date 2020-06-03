@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="647"/>
+      <BuildNr Value="654"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="67">
+    <Units Count="69">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -589,6 +589,14 @@
         <Filename Value="prefix_record.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit66>
+      <Unit67>
+        <Filename Value="old_record.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit67>
+      <Unit68>
+        <Filename Value="wsjt_record.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit68>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

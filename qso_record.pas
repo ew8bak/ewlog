@@ -16,8 +16,8 @@ type
     QSOSubMode: string[15];
     QSOReportSent: string[8];
     QSOReportRecived: string[8];
-    OmName: string[30];
-    OmQTH: string[50];
+    OmName: string[60];
+    OmQTH: string[100];
     State0: string[25];
     Grid: string[6];
     IOTA: string[6];

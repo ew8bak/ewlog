@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 670
+  Left = 119
   Height = 696
-  Top = 132
+  Top = 222
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -5186,11 +5186,6 @@ object MainForm: TMainForm
     left = 184
     top = 416
   end
-  object SQLServiceTransaction: TSQLTransaction
-    Active = False
-    left = 24
-    top = 488
-  end
   object TrayPopup: TPopupMenu
     left = 400
     top = 360
@@ -5211,7 +5206,6 @@ object MainForm: TMainForm
     end
   end
   object WSJT_Timer: TTimer
-    Enabled = False
     Interval = 1200
     OnTimer = WSJT_TimerTimer
     left = 685
@@ -5264,13 +5258,6 @@ object MainForm: TMainForm
     LocalEcho = False
     left = 1120
     top = 312
-  end
-  object qBands: TSQLQuery
-    FieldDefs = <>
-    Transaction = SQLServiceTransaction
-    Params = <>
-    left = 1102
-    top = 85
   end
   object PopupDxCluster: TPopupMenu
     left = 1100

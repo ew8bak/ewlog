@@ -168,7 +168,6 @@ begin
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM CountryDataEx';
   CountryEditForm.CountryQditQuery.Open;
-  MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'ARRLList';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('ARRLPrefix', Edit7.Text, []);
   CountryEditForm.Show;
@@ -182,7 +181,6 @@ begin
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM Province';
   CountryEditForm.CountryQditQuery.Open;
-  MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'Province';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('Prefix', Edit8.Text, []);
   CountryEditForm.Show;
@@ -330,7 +328,7 @@ end;
 
 procedure TEditQSO_Form.Button4Click(Sender: TObject);
 begin
-  dm_MainFunc.SearchPrefix(Edit1.Text, Edit14.Text, PFXR);
+  dm_MainFunc.SearchPrefix(Edit1.Text, Edit14.Text);
   GroupBox1.Caption := PFXR.Country;
   Edit7.Text := PFXR.ARRLPrefix;
   Edit8.Text := PFXR.Prefix;

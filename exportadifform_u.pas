@@ -265,6 +265,13 @@ begin
         Write(f, tmp);
       end;
 
+      if Q1.Fields.FieldByName('QSOSubMode').AsString <> '' then
+      begin
+        tmp := '<SUBMODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSOSubMode').AsString, CheckBox2.Checked);
+        Write(f, tmp);
+      end;
+
       if Q1.Fields.FieldByName('QSOBand').AsString <> '' then
       begin
         freq2 := Q1.Fields.FieldByName('QSOBand').AsString;
@@ -611,6 +618,13 @@ begin
         Delete(freq2, Length(freq2) - 2, 1);
         //Удаляю последнюю точку
         tmp := '<FREQ' + dmFunc.StringToADIF(freq2, CheckBox2.Checked);
+        tmp2 := tmp2 + tmp;
+      end;
+
+       if Q1.Fields.FieldByName('QSOSubMode').AsString <> '' then
+      begin
+        tmp := '<SUBMODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSOSubMode').AsString, CheckBox2.Checked);
         tmp2 := tmp2 + tmp;
       end;
 

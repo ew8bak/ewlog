@@ -138,7 +138,7 @@ var
   CONT: string;
   COUNTRY: string;
   CQZ: string;
-  DXCC: integer;
+  DXCC: string;
   DXCC_PREF: string;
   EQSL_QSLRDATE: string;
   EQSL_QSLSDATE: string;
@@ -288,7 +288,7 @@ begin
         CONT := '';
         COUNTRY := '';
         CQZ := '';
-        DXCC := 0;
+        DXCC := '';
         DXCC_PREF := '';
         EQSL_QSLRDATE := '';
         EQSL_QSLSDATE := '';
@@ -360,7 +360,7 @@ begin
         CONT := dmFunc.getField(s, 'CONT');
         COUNTRY := dmFunc.getField(s, 'COUNTRY');
         CQZ := dmFunc.getField(s, 'CQZ');
-        DXCC := StrToInt(dmFunc.getField(s, 'DXCC'));
+        DXCC := dmFunc.getField(s, 'DXCC');
         DXCC_PREF := dmFunc.getField(s, 'DXCC_PREF');
         EQSL_QSLRDATE := dmFunc.getField(s, 'EQSL_QSLRDATE');
         EQSL_QSLSDATE := dmFunc.getField(s, 'EQSL_QSLSDATE');
@@ -588,13 +588,13 @@ begin
 
           if CheckBox1.Checked then
           begin
-            dm_MainFunc.SearchPrefix(CALL, '', PFXR);
+            dm_MainFunc.SearchPrefix(CALL, '');
             PFX := PFXR.Prefix;
             DXCC_PREF := PFXR.ARRLPrefix;
             CQZ := PFXR.CQZone;
             ITUZ := PFXR.ITUZone;
             CONT := PFXR.Continent;
-            DXCC := PFXR.DXCCNum;
+            DXCC := IntToStr(PFXR.DXCCNum);
           end;
 
           if GuessEncoding(sNAME) <> 'utf8' then
@@ -634,7 +634,7 @@ begin
               dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) +
               dmFunc.Q(SAT_NAME) + dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) +
               dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
-              dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(IntToStr(DXCC)) +
+              dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) +
               dmFunc.Q(paramNoCalcDXCC) + dmFunc.Q(MY_STATE) +
               dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) +
               QuotedStr('0') + ')';
@@ -669,7 +669,7 @@ begin
               dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) +
               dmFunc.Q(SAT_NAME) + dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) +
               dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
-              dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(IntToStr(DXCC)) +
+              dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) +
               dmFunc.Q(paramNoCalcDXCC) + dmFunc.Q(MY_STATE) +
               dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) +
               QuotedStr('1');

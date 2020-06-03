@@ -142,10 +142,12 @@ type
 
 var
   MinimalForm: TMinimalForm;
+  Minimal: Boolean;
 
 implementation
 
-uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U, dmMainFunc, Earth_Form_U, TRXForm_U;
+uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U, dmMainFunc,
+  Earth_Form_U, TRXForm_U;
 
 {$R *.lfm}
 
@@ -153,11 +155,13 @@ uses MainForm_U, dmFunc_U, InformationForm_U, ConfigForm_U, dmMainFunc, Earth_Fo
 
 procedure TMinimalForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  Clr;
   Time.Enabled := False;
   MainForm.Timer1.Enabled := True;
   Earth.Parent := MainForm.Panel10;
   Earth.BorderStyle := bsNone;
   Earth.Align := alClient;
+  Minimal:=False;
   MainForm.Show;
 end;
 
@@ -187,6 +191,7 @@ begin
   ComboBox2CloseUp(Self);
   ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(
     IniF.ReadString('SetLog', 'PastSubMode', ''));
+  Minimal:=False;
 end;
 
 procedure TMinimalForm.FormDestroy(Sender: TObject);
@@ -199,6 +204,7 @@ procedure TMinimalForm.FormShow(Sender: TObject);
 begin
   dm_MainFunc.SetGrid(DBGrid1);
   Time.Enabled := True;
+  Minimal:=True;
 end;
 
 procedure TMinimalForm.MenuItem3Click(Sender: TObject);
@@ -353,7 +359,7 @@ begin
     SQSO.LotWSent := 0;
     SQSO.QSL_RCVD_VIA := '';
     SQSO.QSL_SENT_VIA := ComboBox6.Text;
-  //  SQSO.DXCC := DXCCNum;
+    SQSO.DXCC := IntToStr(PFXR.DXCCNum);
     SQSO.USERS := '';
     SQSO.NoCalcDXCC := 0;
     SQSO.SYNC := 0;
@@ -471,7 +477,7 @@ var
   Country, ARRLPrefix, Prefix, CQZone, ITUZone, Continent, Latitude,
   Longitude, Distance, Azimuth: string;
   OMName, OMQTH, Grid, State, IOTA, QSLManager: string;
-  DXCCNum: Integer;
+  DXCCNum: integer;
   setColors: TColor;
   Lat1, Lon1: string;
 begin
@@ -546,12 +552,14 @@ begin
     label44.Caption := '..';
     label46.Caption := '..';
     label42.Caption := '.......';
+    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
+    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
     Exit;
   end;
   dm_MainFunc.SearchCallInLog(dmFunc.ExtractCallsign(EditButton1.Text), setColors,
     OMName, OMQTH, Grid, State, IOTA, QSLManager, Query);
   EditButton1.Color := setColors;
-  dm_MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text, PFXR);
+  dm_MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
   Label31.Caption := PFXR.Country;
   Label33.Caption := PFXR.ARRLPrefix;
   Label38.Caption := PFXR.Prefix;
@@ -562,16 +570,22 @@ begin
   Label42.Caption := PFXR.Longitude;
   Label36.Caption := PFXR.Distance;
   Label29.Caption := PFXR.Azimuth;
+  dm_MainFunc.ShowOldQSO(DBGrid1);
+  Label17.Caption:=OldRec.Num;
+  Label18.Caption:=OldRec.Date;
+  Label19.Caption:=OldRec.Time;
+  Label20.Caption:=OldRec.Frequency;
+  Label21.Caption:=OldRec.Mode;
+  Label22.Caption:=OldRec.Name;
   Edit1.Text := OMName;
   Edit2.Text := OMQTH;
   Edit3.Text := Grid;
   Edit4.Text := State;
   Edit5.Text := IOTA;
   Edit6.Text := QSLManager;
-  dm_MainFunc.GetLatLon(Latitude, Longitude, Lat1, Lon1);
+  dm_MainFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat1, Lon1);
   Earth.PaintLine(Lat1, Lon1);
   Earth.PaintLine(Lat1, Lon1);
-
 end;
 
 procedure TMinimalForm.DBGrid1DrawColumnCell(Sender: TObject;
