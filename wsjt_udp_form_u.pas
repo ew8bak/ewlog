@@ -266,12 +266,6 @@ begin
             else
               WSJTR.Freq := FormatFloat('0.000"."00', frequency / 1000000);
             dm_MainFunc.WSJTtoForm(True);
-            //  MainForm.CheckBox1.Checked := False;
-            //  MainForm.DateEdit1.Date := date;
-            //  MainForm.DateTimePicker1.Time := date;
-
-            //  MainForm.SpeedButton8.Click;
-            //  MainForm.CheckBox1.Checked := True;
           end;
 
           12:

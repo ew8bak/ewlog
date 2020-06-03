@@ -20,6 +20,7 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
+    OldInfoCall: string;
     PrefixProvinceCount: integer;
     PrefixARRLCount: integer;
     UniqueCallsCount: integer;
@@ -81,7 +82,7 @@ var
 implementation
 
 uses MainForm_U, dmFunc_U, const_u, ResourceStr, hrdlog,
-  hamqth, clublog, qrzcom, eqsl, MinimalForm_U;
+  hamqth, clublog, qrzcom, eqsl, MinimalForm_U, InformationForm_U;
 
 {$R *.lfm}
 
@@ -96,6 +97,7 @@ begin
   if not DirectoryExists(FilePATH) then
     CreateDir(FilePATH);
   SearchPrefixQuery := TSQLQuery.Create(nil);
+  OldInfoCall := '';
 end;
 
 procedure Tdm_MainFunc.DataModuleDestroy(Sender: TObject);
@@ -105,43 +107,57 @@ end;
 
 procedure Tdm_MainFunc.WSJTtoForm(Save: boolean);
 begin
-  if Minimal then
+  if WSJTR.Call.Length > 2 then
   begin
-    MinimalForm.EditButton1.Text := WSJTR.Call;
-    MinimalForm.Edit3.Text := WSJTR.Grid;
-    MinimalForm.ComboBox1.Text := WSJTR.Freq;
-    MinimalForm.ComboBox2.Text := WSJTR.Mode;
-    MinimalForm.ComboBox3.Text := WSJTR.SubMode;
-    MinimalForm.ComboBox4.Text := WSJTR.RSTs;
-    if Save then
+    if WSJTR.Call <> OldInfoCall then
+      if MainForm.CallBookLiteConnection.Connected = False then
+        InformationForm.GetInformation(WSJTR.Call, True);
+    OldInfoCall := WSJTR.Call;
+    if Minimal then
     begin
-      MinimalForm.CheckBox1.Checked := False;
-      MinimalForm.ComboBox5.Text := WSJTR.RSTr;
-      MinimalForm.DateEdit1.Date := WSJTR.Date;
-      MinimalForm.DateTimePicker1.Time := WSJTR.Date;
-      MinimalForm.Edit11.Text := WSJTR.Comment;
-      MinimalForm.SpeedButton1.Click;
-      MinimalForm.CheckBox1.Checked := True;
+      MinimalForm.EditButton1.Text := WSJTR.Call;
+      MinimalForm.Edit3.Text := WSJTR.Grid;
+      MinimalForm.ComboBox1.Text := WSJTR.Freq;
+      MinimalForm.ComboBox2.Text := WSJTR.Mode;
+      MinimalForm.ComboBox3.Text := WSJTR.SubMode;
+      MinimalForm.ComboBox4.Text := WSJTR.RSTs;
+      if Save then
+      begin
+        MinimalForm.CheckBox1.Checked := False;
+        MinimalForm.ComboBox5.Text := WSJTR.RSTr;
+        MinimalForm.DateEdit1.Date := WSJTR.Date;
+        MinimalForm.DateTimePicker1.Time := WSJTR.Date;
+        MinimalForm.Edit11.Text := WSJTR.Comment;
+        MinimalForm.SpeedButton1.Click;
+        MinimalForm.CheckBox1.Checked := True;
+      end;
+    end
+    else
+    begin
+      MainForm.EditButton1.Text := WSJTR.Call;
+      MainForm.Edit3.Text := WSJTR.Grid;
+      MainForm.ComboBox1.Text := WSJTR.Freq;
+      MainForm.ComboBox2.Text := WSJTR.Mode;
+      MainForm.ComboBox9.Text := WSJTR.SubMode;
+      MainForm.ComboBox4.Text := WSJTR.RSTs;
+      if Save then
+      begin
+        MainForm.CheckBox1.Checked := False;
+        MainForm.ComboBox5.Text := WSJTR.RSTr;
+        MainForm.DateEdit1.Date := WSJTR.Date;
+        MainForm.DateTimePicker1.Time := WSJTR.Date;
+        MainForm.Edit11.Text := WSJTR.Comment;
+        MainForm.SpeedButton8.Click;
+        MainForm.CheckBox1.Checked := True;
+      end;
     end;
   end
   else
   begin
-    MainForm.EditButton1.Text := WSJTR.Call;
-    MainForm.Edit3.Text := WSJTR.Grid;
-    MainForm.ComboBox1.Text := WSJTR.Freq;
-    MainForm.ComboBox2.Text := WSJTR.Mode;
-    MainForm.ComboBox9.Text := WSJTR.SubMode;
-    MainForm.ComboBox4.Text := WSJTR.RSTs;
-    if Save then
-    begin
-      MainForm.CheckBox1.Checked := False;
-      MainForm.ComboBox5.Text := WSJTR.RSTr;
-      MainForm.DateEdit1.Date := WSJTR.Date;
-      MainForm.DateTimePicker1.Time := WSJTR.Date;
-      MainForm.Edit11.Text := WSJTR.Comment;
-      MainForm.SpeedButton8.Click;
-      MainForm.CheckBox1.Checked := True;
-    end;
+    if Minimal then
+      MinimalForm.Clr
+    else
+      MainForm.Clr;
   end;
 end;
 

@@ -101,6 +101,9 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -126,23 +129,26 @@ type
     procedure FormShow(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
+    procedure MenuItem6Click(Sender: TObject);
+    procedure MenuItem7Click(Sender: TObject);
+    procedure MenuItem8Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure TimeTimer(Sender: TObject);
   private
     DataSource: TDataSource;
     Query: TSQLQuery;
-    procedure Clr;
     procedure addBands(FreqBand, mode, lastBandName: string;
       lastBand: integer; var ComboBox: TComboBox);
 
   public
+    procedure Clr;
 
   end;
 
 var
   MinimalForm: TMinimalForm;
-  Minimal: Boolean;
+  Minimal: boolean;
 
 implementation
 
@@ -161,7 +167,7 @@ begin
   Earth.Parent := MainForm.Panel10;
   Earth.BorderStyle := bsNone;
   Earth.Align := alClient;
-  Minimal:=False;
+  Minimal := False;
   MainForm.Show;
 end;
 
@@ -191,7 +197,7 @@ begin
   ComboBox2CloseUp(Self);
   ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(
     IniF.ReadString('SetLog', 'PastSubMode', ''));
-  Minimal:=False;
+  Minimal := False;
 end;
 
 procedure TMinimalForm.FormDestroy(Sender: TObject);
@@ -204,7 +210,7 @@ procedure TMinimalForm.FormShow(Sender: TObject);
 begin
   dm_MainFunc.SetGrid(DBGrid1);
   Time.Enabled := True;
-  Minimal:=True;
+  Minimal := True;
 end;
 
 procedure TMinimalForm.MenuItem3Click(Sender: TObject);
@@ -218,6 +224,25 @@ end;
 procedure TMinimalForm.MenuItem5Click(Sender: TObject);
 begin
   TRXForm.Show;
+end;
+
+procedure TMinimalForm.MenuItem6Click(Sender: TObject);
+begin
+
+end;
+
+procedure TMinimalForm.MenuItem7Click(Sender: TObject);
+begin
+  MinimalForm.FormStyle := fsSystemStayOnTop;
+  MenuItem7.Checked := True;
+  MenuItem8.Checked := False;
+end;
+
+procedure TMinimalForm.MenuItem8Click(Sender: TObject);
+begin
+  MinimalForm.FormStyle := fsNormal;
+  MenuItem8.Checked := True;
+  MenuItem7.Checked := False;
 end;
 
 procedure TMinimalForm.SpeedButton1Click(Sender: TObject);
@@ -571,12 +596,12 @@ begin
   Label36.Caption := PFXR.Distance;
   Label29.Caption := PFXR.Azimuth;
   dm_MainFunc.ShowOldQSO(DBGrid1);
-  Label17.Caption:=OldRec.Num;
-  Label18.Caption:=OldRec.Date;
-  Label19.Caption:=OldRec.Time;
-  Label20.Caption:=OldRec.Frequency;
-  Label21.Caption:=OldRec.Mode;
-  Label22.Caption:=OldRec.Name;
+  Label17.Caption := OldRec.Num;
+  Label18.Caption := OldRec.Date;
+  Label19.Caption := OldRec.Time;
+  Label20.Caption := OldRec.Frequency;
+  Label21.Caption := OldRec.Mode;
+  Label22.Caption := OldRec.Name;
   Edit1.Text := OMName;
   Edit2.Text := OMQTH;
   Edit3.Text := Grid;

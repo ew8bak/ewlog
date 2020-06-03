@@ -142,7 +142,6 @@ type
     MenuItem70: TMenuItem;
     MenuItem71: TMenuItem;
     MenuItem72: TMenuItem;
-    MenuItem73: TMenuItem;
     MenuItem74: TMenuItem;
     MenuItem75: TMenuItem;
     MenuItem76: TMenuItem;
@@ -441,7 +440,6 @@ type
     procedure MenuItem69Click(Sender: TObject);
     procedure MenuItem70Click(Sender: TObject);
     procedure MenuItem72Click(Sender: TObject);
-    procedure MenuItem73Click(Sender: TObject);
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MenuItem82Click(Sender: TObject);
@@ -4379,14 +4377,6 @@ begin
   MinimalForm.Show;
   Timer1.Enabled := False;
   MainForm.Hide;
-end;
-
-procedure TMainForm.MenuItem73Click(Sender: TObject);
-begin
-  Panel4.Show;
-  Panel5.Show;
-  Panel6.Show;
-  MainForm.Height := 672;
 end;
 
 //Запуск fldigi

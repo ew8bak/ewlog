@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 119
+  Left = 286
   Height = 696
-  Top = 222
+  Top = 173
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -3690,10 +3690,6 @@ object MainForm: TMainForm
       object MenuItem72: TMenuItem
         Caption = 'Compact mode'
         OnClick = MenuItem72Click
-      end
-      object MenuItem73: TMenuItem
-        Caption = 'Normal mode'
-        OnClick = MenuItem73Click
       end
     end
     object MenuItem4: TMenuItem

@@ -3852,10 +3852,6 @@ msgstr "Файл .TXT"
 msgid "Compact mode"
 msgstr "Компактный режим"
 
-#: tmainform.menuitem73.caption
-msgid "Normal mode"
-msgstr "Нормальный режим"
-
 #: tmainform.menuitem74.caption
 msgctxt "tmainform.menuitem74.caption"
 msgid "Fldigi"
@@ -4603,6 +4599,18 @@ msgstr "Информация"
 
 #: tminimalform.menuitem5.caption
 msgid "Transceiver"
+msgstr ""
+
+#: tminimalform.menuitem6.caption
+msgid "On TOP"
+msgstr ""
+
+#: tminimalform.menuitem7.caption
+msgid "ON"
+msgstr ""
+
+#: tminimalform.menuitem8.caption
+msgid "OFF"
 msgstr ""
 
 #: tminimalform.speedbutton3.caption

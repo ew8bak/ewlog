@@ -3839,10 +3839,6 @@ msgstr ""
 msgid "Compact mode"
 msgstr ""
 
-#: tmainform.menuitem73.caption
-msgid "Normal mode"
-msgstr ""
-
 #: tmainform.menuitem74.caption
 msgctxt "tmainform.menuitem74.caption"
 msgid "Fldigi"
@@ -4522,6 +4518,18 @@ msgstr ""
 
 #: tminimalform.menuitem5.caption
 msgid "Transceiver"
+msgstr ""
+
+#: tminimalform.menuitem6.caption
+msgid "On TOP"
+msgstr ""
+
+#: tminimalform.menuitem7.caption
+msgid "ON"
+msgstr ""
+
+#: tminimalform.menuitem8.caption
+msgid "OFF"
 msgstr ""
 
 #: tminimalform.speedbutton3.caption

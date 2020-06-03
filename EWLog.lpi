@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="654"/>
+      <BuildNr Value="660"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -619,10 +619,16 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="1">
+    <Exceptions Count="3">
       <Item1>
         <Name Value="EResNotFound"/>
       </Item1>
+      <Item2>
+        <Name Value="RunError(201)"/>
+      </Item2>
+      <Item3>
+        <Name Value="ERangeError"/>
+      </Item3>
     </Exceptions>
   </Debugging>
 </CONFIG>
