@@ -296,7 +296,7 @@ begin
     Params.ParamByName('State2').AsString := Edit9.Text;
     Params.ParamByName('State3').AsString := Edit11.Text;
     Params.ParamByName('State4').AsString := Edit12.Text;
-    Params.ParamByName('WPX').AsString := Edit8.Text;
+    Params.ParamByName('WPX').AsString := dmFunc.ExtractWPXPrefix(Edit1.Text);
     Params.ParamByName('ValidDX').AsBoolean := CheckBox2.Checked;
     Params.ParamByName('SRX').IsNull;
     Params.ParamByName('SRX_STRING').AsString := '';

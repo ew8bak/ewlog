@@ -761,56 +761,6 @@ begin
   subModesQuery.Close;
 end;
 
-{function TMainForm.GetModeFromFreq(MHz: string): string;
-var
-  Band: string;
-  tmp: extended;
-begin
-  Result := '';
-  band := dmFunc.GetBandFromFreq(MHz);
-
-  MHz := MHz.replace('.', DefaultFormatSettings.DecimalSeparator);
-  MHz := MHz.replace(',', DefaultFormatSettings.DecimalSeparator);
-
-  qBands.Close;
-  qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
-  if SQLServiceTransaction.Active then
-    SQLServiceTransaction.Rollback;
-  SQLServiceTransaction.StartTransaction;
-  try
-    qBands.Open;
-    tmp := StrToFloat(MHz);
-
-    if qBands.RecordCount > 0 then
-    begin
-      if ((tmp >= qBands.FieldByName('B_BEGIN').AsCurrency) and
-        (tmp <= qBands.FieldByName('CW').AsCurrency)) then
-        Result := 'CW'
-      else
-      begin
-        if ((tmp > qBands.FieldByName('DIGI').AsCurrency) and
-          (tmp <= qBands.FieldByName('SSB').AsCurrency)) then
-          Result := 'DIGI'
-        else
-        begin
-          if (tmp > 5) and (tmp < 6) then
-            Result := 'USB'
-          else
-          begin
-            if tmp > 10 then
-              Result := 'USB'
-            else
-              Result := 'LSB';
-          end;
-        end;
-      end;
-    end
-  finally
-    qBands.Close;
-    SQLServiceTransaction.Rollback
-  end;
-end;}
-
 function TMainForm.FindNode(const APattern: string; Country: boolean): PVirtualNode;
 var
   ANode: PVirtualNode;
@@ -2274,8 +2224,7 @@ begin
         exit;
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
-    // Mode := GetModeFromFreq(FloatToStr(freqMhz));
-    Mode := 'LSB';
+    Mode := dm_MainFunc.GetModeFromFreq(FloatToStr(freqMhz));
     if Length(Band) > 0 then
     begin
       if (not ShowSpotBand) or (not ShowSpotMode) then
@@ -5514,11 +5463,10 @@ begin
     if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
       (TRXForm.radio.GetFreqHz > 0) then
     begin
-      TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
       if Data^.Moda = 'DIGI' then
-        TRXForm.SetMode('USB', 0)
+      TRXForm.SetModeFreq('USB',Data^.Freq)
       else
-        TRXForm.SetMode(Data^.Moda, 0);
+      TRXForm.SetModeFreq(Data^.Moda,Data^.Freq);
     end
     else
     begin

@@ -29,7 +29,6 @@ type TRigControl = class
     fRunRigCtld  : Boolean;
     fMode        : TRigMode;
     fFreq        : Double;
-    fPTT         : String;
     fRigPoll     : Word;
     fRigCtldPort : Word;
     fLastError   : String;
@@ -51,46 +50,29 @@ type TRigControl = class
     procedure OnReceivedRcvdFreqMode(aSocket: TLSocket);
     procedure OnRigPollTimer(Sender: TObject);
   public
-
-
-    constructor Create;
+     constructor Create;
     destructor  Destroy; override;
-
-    property DebugMode   : Boolean read fDebugMode write fDebugMode;
+  property DebugMode   : Boolean read fDebugMode write fDebugMode;
 
     property RigCtldPath : String  read fRigCtldPath write fRigCtldPath;
-    //path to rigctld binary
     property RigCtldArgs : String  read fRigCtldArgs write fRigCtldArgs;
-    //rigctld command line arguments
     property RunRigCtld  : Boolean read fRunRigCtld  write fRunRigCtld;
-    //run rigctld command before connection
     property RigId       : Word    read fRigId       write fRigId;
-    //hamlib rig id
     property RigDevice   : String  read fRigDevice   write fRigDevice;
-    //port where is rig connected
     property RigCtldPort : Word    read fRigCtldPort write fRigCtldPort;
-    // port where rigctld is listening to connecions, default 4532
     property RigCtldHost : String  read fRigCtldHost write fRigCtldHost;
-    //host where is rigctld running
     property Connected   : Boolean read RigConnected;
-    //connect rigctld
     property RigPoll     : Word    read fRigPoll     write fRigPoll;
-    //poll rate in miliseconds
     property RigSendCWR  : Boolean read fRigSendCWR    write fRigSendCWR;
-    //send CWR instead of CW
     property LastError   : String  read fLastError;
-    //last error during operation
-        //RX offset for transvertor in MHz
     property RXOffset : Double read fRXOffset write fRXOffset;
-
-    //TX offset for transvertor in MHz
     property TXOffset : Double read fTXOffset write fTXOffset;
-
 
     function  GetCurrVFO  : TVFO;
     function  GetModePass : TRigMode;
+    function  GetPassOnly : word;
     function  GetModeOnly : String;
-    function  GetFreqHz   : integer;
+    function  GetFreqHz   : Double;
     function  GetFreqKHz  : Double;
     function  GetFreqMHz  : Double;
     function  GetModePass(vfo : TVFO) : TRigMode;  overload;
@@ -99,14 +81,17 @@ type TRigControl = class
     function  GetFreqKHz(vfo : TVFO)  : Double; overload;
     function  GetFreqMHz(vfo : TVFO)  : Double; overload;
     function  GetRawMode : String;
-    function GetBandwich(bw : string) : string;
 
     procedure SetCurrVFO(vfo : TVFO);
     procedure SetModePass(mode : TRigMode);
     procedure SetFreqKHz(freq : Double);
-    procedure SetFreqHz(freq : Integer);
     procedure ClearRit;
     procedure Restart;
+    procedure PwrOn;
+    procedure PwrOff;
+    procedure PwrStBy;
+    procedure PttOn;
+    procedure PttOff;
 end;
 
 implementation
@@ -172,11 +157,6 @@ var
   cmd : String;
 begin
   cmd := fRigCtldPath + ' ' +RigCtldArgs;
-  {
-  cmd := StringReplace(cmd,'%m',IntToStr(fRigId),[rfReplaceAll, rfIgnoreCase]);
-  cmd := StringReplace(cmd,'%r',fRigDevice,[rfReplaceAll, rfIgnoreCase]);
-  cmd := StringReplace(cmd,'%t',IntToStr(fRigCtldPort),[rfReplaceAll, rfIgnoreCase]);
-  }
   if DebugMode then ShowMessage('Starting RigCtld ...');
   if fDebugMode then ShowMessage(cmd);
   rigProcess.CommandLine := cmd;
@@ -187,21 +167,18 @@ begin
   except
     on E : Exception do
     begin
-
       if fDebugMode then
         ShowMessage('Starting rigctld E: '+E.Message);
       fLastError := E.Message;
       Result     := False;
-      TRXForm.tmrRadio.Enabled:=False;
+    //  TRXForm.tmrRadio.Enabled:=False;
       MainForm.MenuItem86.Enabled:=False;
-
       RunRigCtld:=False;
       exit;
     end
   end;
-  tmrRigPoll.Interval := fRigPoll*100;
+  tmrRigPoll.Interval := fRigPoll;
   tmrRigPoll.Enabled  := True;
-
   Result := True
 end;
 {$ENDIF UNIX}
@@ -227,36 +204,38 @@ begin
     Writeln('')
   end;
 
- // if (RigId = 1) then
- // begin
- //   Result := False;
- //   exit
-//  end;
+  if (RigId = 1) then
+  begin
+    Result := False;
+    exit
+  end;
 
   if fRunRigCtld then
   begin
-    if (not StartRigctld) and (RigId <> 2) then
+    if not StartRigctld then
     begin
       if fDebugMode then Writeln('rigctld failed to start!');
       Result := False;
       exit
-    end
-  end;
+    end else
+     if fDebugMode then Writeln('rigctld started!');
+  end else
+     if fDebugMode then Writeln('Not started rigctld process. (Run is set FALSE)');
 
-  if fDebugMode then Writeln('rigctld started!');
 
   rcvdFreqMode.Host := fRigCtldHost;
   rcvdFreqMode.Port := fRigCtldPort;
 
+  //rcvdFreqMode.Connect(fRigCtldHost,fRigCtldPort);
   if rcvdFreqMode.Connect(fRigCtldHost,fRigCtldPort) then
   begin
-    if fDebugMode then Writeln('Connected to ',fRigCtldHost,':',fRigCtldPort);
+    if fDebugMode then Writeln('Connected to rigctld @ ',fRigCtldHost,':',fRigCtldPort);
     result := True;
-    tmrRigPoll.Interval := fRigPoll*100;
+    tmrRigPoll.Interval := fRigPoll;
     tmrRigPoll.Enabled  := True
   end
   else begin
-    if fDebugMode then Writeln('NOT connected to ',fRigCtldHost,':',fRigCtldPort);
+    if fDebugMode then Writeln('NOT connected to rigctld @ ',fRigCtldHost,':',fRigCtldPort);
     fLastError := ERR_MSG;
     Result     := False
   end
@@ -265,9 +244,9 @@ end;
 procedure TRigControl.SetCurrVFO(vfo : TVFO);
 begin
   case vfo of
-    VFOA : RigCommand.Add('V VFOA');//sendCommand.SendMessage('V VFOA'+LineEnding);
-    VFOB : RigCommand.Add('V VFOB')//sendCommand.SendMessage('V VFOB'+LineEnding);
-  end //case
+    VFOA : RigCommand.Add('V VFOA');
+    VFOB : RigCommand.Add('V VFOB');
+  end;
 end;
 
 procedure TRigControl.SetModePass(mode : TRigMode);
@@ -279,12 +258,33 @@ end;
 
 procedure TRigControl.SetFreqKHz(freq : Double);
 begin
-  RigCommand.Add('F '+FloatToStr(freq*1000-TXOffset*1000000))
+  RigCommand.Add('F '+FloatToStr(freq*1000-TXOffset*1000000));
 end;
 
 procedure TRigControl.ClearRit;
 begin
-  RigCommand.Add('J 0')
+  RigCommand.Add('J 0');
+end;
+
+procedure TRigControl.PttOn;
+begin
+  RigCommand.Add('T 1')
+end;
+procedure TRigControl.PttOff;
+begin
+  RigCommand.Add('T 0')
+end;
+procedure TRigControl.PwrOn;
+begin
+  RigCommand.Add(#$87+' 1')
+end;
+procedure TRigControl.PwrOff;
+begin
+  RigCommand.Add(#$87+' 0')
+end;
+procedure TRigControl.PwrStBy;
+begin
+  RigCommand.Add(#$87+' 2')
 end;
 
 function TRigControl.GetCurrVFO  : TVFO;
@@ -302,17 +302,14 @@ begin
   result := fMode.mode
 end;
 
-function TRigControl.GetFreqHz : integer;
+function TRigControl.GetPassOnly : word;
 begin
-  {$IFDEF WIN64}
-  try
-  result := Trunc(fFreq) + Trunc(fRXOffset)*1000000;
-  except
-  end;
-  {$ENDIF}
-  {$IFDEF UNIX}
-  result := Trunc(fFreq) + Trunc(fRXOffset)*1000000;
-  {$ENDIF}
+  result := fMode.pass
+end;
+
+function TRigControl.GetFreqHz : Double;
+begin
+  result := fFreq + fRXOffset*1000000;
 end;
 
 function TRigControl.GetFreqKHz : Double;
@@ -353,11 +350,6 @@ begin
     SetCurrVFO(old_vfo)
   end;
   result := fMode.mode
-end;
-
-procedure TRigControl.SetFreqHz(freq : Integer);
-begin
-  RigCommand.Add('F '+IntToStr(freq))
 end;
 
 function TRigControl.GetFreqHz(vfo : TVFO)   : Double;
@@ -405,16 +397,6 @@ begin
   result := fFreq
 end;
 
-function TRigControl.GetBandwich(bw : string) : string;
-var
-  i:integer;
-begin
-  for i:=length(bw) downto 1 do
-if not(bw[i] in ['0'..'9']) then
-delete(bw,i,1);
-  Result:=bw;
-end;
-
 procedure TRigControl.OnReceivedRcvdFreqMode(aSocket: TLSocket);
 var
   msg : String;
@@ -425,7 +407,9 @@ begin
   if aSocket.GetMessage(msg) > 0 then
   begin
     msg := trim(msg);
+
     if DebugMode then Writeln('Msg from rig: ',msg);
+
     a := Explode(LineEnding,msg);
     for i:=0 to Length(a)-1 do
     begin
@@ -440,9 +424,6 @@ begin
         Continue
       end;
 
-
-      //if (a[i][1] in ['A'..'Z']) and (a[i][1] <> 'V' ) then //receiving mode info
-      //FT-920 returned VFO as MEM
       if (a[i][1] in ['A'..'Z']) and (a[i][1] <> 'V' ) and (a[i]<>'MEM') then//receiving mode info
       begin
         if Pos('RPRT',a[i]) = 0 then
@@ -450,6 +431,8 @@ begin
           BadRcvd := 0;
           fMode.mode := a[i];
           fMode.raw  := a[i];
+          if (fMode.mode = 'USB') or (fMode.mode = 'LSB') then
+            fMode.mode := 'SSB';
           if fMode.mode = 'CWR' then
             fMode.mode := 'CW'
         end
@@ -458,8 +441,8 @@ begin
           begin
             fFreq := 0;
             fVFO := VFOA;
-            fMode.mode := '';
-            fMode.raw  := '';
+            fMode.mode := 'SSB';
+            fMode.raw  := 'SSB';
             fMode.pass := 2700
           end
           else
@@ -474,7 +457,7 @@ begin
           fVFO := VFOA
       end
     end;
-  end
+  end;
 end;
 
 procedure TRigControl.OnRigPollTimer(Sender: TObject);
@@ -557,7 +540,7 @@ begin
   FreeAndNil(rigProcess);
   FreeAndNil(RigCommand);
   if DebugMode then Writeln(6);
-  tmrRigPoll.Free;
+  FreeAndNil(tmrRigPoll);
 end;
 
 end.

@@ -211,6 +211,7 @@ begin
   dm_MainFunc.SetGrid(DBGrid1);
   Time.Enabled := True;
   Minimal := True;
+  ComboBox7.ItemIndex:=3;
 end;
 
 procedure TMinimalForm.MenuItem3Click(Sender: TObject);
@@ -343,14 +344,14 @@ begin
     SQSO.QSLRec := '0';
     SQSO.QSLRecDate := 'NULL';
     SQSO.MainPrefix := Label38.Caption;
-    SQSO.DXCCPrefix := Label34.Caption;
-    SQSO.CQZone := Label45.Caption;
-    SQSO.ITUZone := Label47.Caption;
+    SQSO.DXCCPrefix := Label33.Caption;
+    SQSO.CQZone := Label44.Caption;
+    SQSO.ITUZone := Label46.Caption;
     SQSO.QSOAddInfo := Edit11.Text;
     SQSO.Marker := BoolToStr(CheckBox5.Checked);
     SQSO.ManualSet := 0;
     SQSO.DigiBand := FloatToStr(DigiBand);
-    SQSO.Continent := Label43.Caption;
+    SQSO.Continent := Label47.Caption;
     SQSO.ShortNote := Edit11.Text;
     SQSO.QSLReceQSLcc := 0;
     SQSO.LotWRec := '';

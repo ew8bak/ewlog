@@ -5418,7 +5418,8 @@ msgid "14"
 msgstr ""
 
 #: ttrxform.btn2m.caption
-msgid "70"
+msgctxt "ttrxform.btn2m.caption"
+msgid "144"
 msgstr ""
 
 #: ttrxform.btn30m.caption
@@ -5434,15 +5435,8 @@ msgid "50"
 msgstr ""
 
 #: ttrxform.btn70cm.caption
-msgid "144"
-msgstr ""
-
-#: ttrxform.btn70cm1.caption
+msgctxt "ttrxform.btn70cm.caption"
 msgid "430"
-msgstr ""
-
-#: ttrxform.btn70cm2.caption
-msgid "1200"
 msgstr ""
 
 #: ttrxform.btn80m.caption

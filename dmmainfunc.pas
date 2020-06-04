@@ -38,6 +38,7 @@ type
     end;
 
   public
+    function GetModeFromFreq(MHz: string): string;
     procedure WSJTtoForm(Save: boolean);
     procedure ShowOldQSO(DBGRID: TDBGrid);
     procedure FreePrefix;
@@ -103,6 +104,53 @@ end;
 procedure Tdm_MainFunc.DataModuleDestroy(Sender: TObject);
 begin
   FreePrefix;
+end;
+
+function Tdm_MainFunc.GetModeFromFreq(MHz: string): string;
+var
+  Band: string;
+  tmp: extended;
+  Query: TSQLQuery;
+begin
+  Result := '';
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.DataBase := ServiceDBConnection;
+    band := dmFunc.GetBandFromFreq(MHz);
+    MHz := MHz.replace('.', DefaultFormatSettings.DecimalSeparator);
+    MHz := MHz.replace(',', DefaultFormatSettings.DecimalSeparator);
+    Query.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
+    Query.Open;
+    tmp := StrToFloat(MHz);
+
+    if Query.RecordCount > 0 then
+    begin
+      if ((tmp >= Query.FieldByName('B_BEGIN').AsCurrency) and
+        (tmp <= Query.FieldByName('CW').AsCurrency)) then
+        Result := 'CW'
+      else
+      begin
+        if ((tmp > Query.FieldByName('DIGI').AsCurrency) and
+          (tmp <= Query.FieldByName('SSB').AsCurrency)) then
+          Result := 'DIGI'
+        else
+        begin
+          if (tmp > 5) and (tmp < 6) then
+            Result := 'USB'
+          else
+          begin
+            if tmp > 10 then
+              Result := 'USB'
+            else
+              Result := 'LSB';
+          end;
+        end;
+      end;
+    end
+  finally
+    Query.Close;
+    Query.Free;
+  end;
 end;
 
 procedure Tdm_MainFunc.WSJTtoForm(Save: boolean);
@@ -1206,7 +1254,7 @@ begin
   FreeAndNil(PrefixProvinceList);
   FreeAndNil(PrefixARRLList);
   FreeAndNil(UniqueCallsList);
-  //FreeAndNil(subModesList);
+  FreeAndNil(MainForm.subModesList);
   FreeAndNil(SearchPrefixQuery);
   for i := 0 to 1000 do
   begin
