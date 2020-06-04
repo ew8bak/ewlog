@@ -32,5 +32,6 @@
 {"hash":48,"name":"ttrxform.label8.caption","sourcebytes":[48],"value":"0"},
 {"hash":46,"name":"ttrxform.label9.caption","sourcebytes":[46],"value":"."},
 {"hash":46,"name":"ttrxform.label10.caption","sourcebytes":[46],"value":"."},
-{"hash":48,"name":"ttrxform.label11.caption","sourcebytes":[48],"value":"0"}
+{"hash":48,"name":"ttrxform.label11.caption","sourcebytes":[48],"value":"0"},
+{"hash":21908,"name":"ttrxform.button1.caption","sourcebytes":[80,84,84],"value":"PTT"}
 ]}

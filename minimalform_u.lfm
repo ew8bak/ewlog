@@ -1,7 +1,7 @@
 object MinimalForm: TMinimalForm
-  Left = 278
+  Left = 303
   Height = 452
-  Top = 172
+  Top = 328
   Width = 471
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle

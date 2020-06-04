@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Arrow, uRigControl,
+  ExtCtrls, Arrow, ActnList, uRigControl,
   lNetComponents, Types;
 
 const
@@ -55,6 +55,7 @@ type
     btnSSB: TButton;
     btnVFOA: TButton;
     btnVFOB: TButton;
+    Button1: TButton;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -80,7 +81,6 @@ type
     procedure btn30mClick(Sender: TObject);
     procedure btn40mClick(Sender: TObject);
     procedure btn6mClick(Sender: TObject);
-    procedure btn70cm1Click(Sender: TObject);
     procedure btn70cmClick(Sender: TObject);
     procedure btn80mClick(Sender: TObject);
     procedure btnAMClick(Sender: TObject);
@@ -90,6 +90,10 @@ type
     procedure btnSSBClick(Sender: TObject);
     procedure btnVFOAClick(Sender: TObject);
     procedure btnVFOBClick(Sender: TObject);
+    procedure Button1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure Button1MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
@@ -199,7 +203,6 @@ begin
   begin
     f := radio.GetFreqMHz;
     m := radio.GetModeOnly;
-    ShowFreq(radio.GetFreqHz);
   end
   else
     f := 0;
@@ -208,6 +211,7 @@ begin
   begin
     if ConfigForm.CheckBox2.Checked = True then
     begin
+        ShowFreq(radio.GetFreqHz);
       if Minimal then
         MinimalForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, f))
       else
@@ -215,6 +219,7 @@ begin
     end
     else
     begin
+        ShowFreq(radio.GetFreqHz);
       if Minimal then
         MinimalForm.ComboBox1.Text := FormatFloat(view_freq, f)
       else
@@ -694,6 +699,18 @@ begin
     radio.SetCurrVfo(VFOB);
 end;
 
+procedure TTRXForm.Button1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  radio.PttOn;
+end;
+
+procedure TTRXForm.Button1MouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  radio.PttOff;
+end;
+
 procedure TTRXForm.btnFMClick(Sender: TObject);
 begin
   SetMode('FM', GetBandWidth('FM'));
@@ -849,11 +866,6 @@ begin
   freq := GetFreqFromModeBand(9, mode);
   SetModeFreq(mode, freq);
   btn6m.Font.Color := clRed;
-end;
-
-procedure TTRXForm.btn70cm1Click(Sender: TObject);
-begin
-
 end;
 
 procedure TTRXForm.btn70cmClick(Sender: TObject);

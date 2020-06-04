@@ -5380,6 +5380,10 @@ msgstr ""
 msgid "B"
 msgstr ""
 
+#: ttrxform.button1.caption
+msgid "PTT"
+msgstr ""
+
 #: ttrxform.caption
 msgctxt "ttrxform.caption"
 msgid "RIG"

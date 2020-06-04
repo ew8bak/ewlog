@@ -10,7 +10,7 @@ object SettingsCAT: TSettingsCAT
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.8.0'
   object GroupBox1: TGroupBox
     Left = 8
     Height = 312
@@ -387,6 +387,7 @@ object SettingsCAT: TSettingsCAT
       Width = 62
       AutoSize = False
       BorderSpacing.Left = 2
+      MaxValue = 500
       MinValue = 3
       TabOrder = 13
       Value = 3

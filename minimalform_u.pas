@@ -224,6 +224,8 @@ end;
 
 procedure TMinimalForm.MenuItem5Click(Sender: TObject);
 begin
+   TRXForm.Parent := nil;
+  TRXForm.BorderStyle := bsSizeable;
   TRXForm.Show;
 end;
 

@@ -233,7 +233,7 @@ object TRXForm: TTRXForm
     TabOrder = 17
   end
   object btn6m: TButton
-    Left = 288
+    Left = 282
     Height = 18
     Top = 120
     Width = 28
@@ -245,7 +245,7 @@ object TRXForm: TTRXForm
     TabOrder = 18
   end
   object btn70cm: TButton
-    Left = 344
+    Left = 343
     Height = 18
     Top = 120
     Width = 28
@@ -257,7 +257,7 @@ object TRXForm: TTRXForm
     TabOrder = 19
   end
   object btn2m: TButton
-    Left = 316
+    Left = 312
     Height = 18
     Top = 120
     Width = 28
@@ -703,10 +703,20 @@ object TRXForm: TTRXForm
     ParentColor = False
     ParentFont = False
   end
+  object Button1: TButton
+    Left = 296
+    Height = 25
+    Top = 144
+    Width = 75
+    Caption = 'PTT'
+    OnMouseDown = Button1MouseDown
+    OnMouseUp = Button1MouseUp
+    TabOrder = 21
+  end
   object tmrRadio: TTimer
     Enabled = False
     OnTimer = tmrRadioTimer
-    left = 240
-    top = 155
+    left = 432
+    top = 8
   end
 end
