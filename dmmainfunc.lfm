@@ -3,10 +3,9 @@ object dm_MainFunc: Tdm_MainFunc
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 188
-  HorizontalOffset = 256
-  VerticalOffset = 145
+  HorizontalOffset = 367
+  VerticalOffset = 213
   Width = 504
-  PPI = 96
   object LogBookInfoQuery: TSQLQuery
     FieldDefs = <>
     Database = MainForm.MySQLLOGDBConnection
@@ -15,19 +14,20 @@ object dm_MainFunc: Tdm_MainFunc
       'SELECT * FROM LogBookInfo LIMIT 1'
     )
     Params = <>
-    left = 48
-    top = 16
+    Left = 48
+    Top = 16
   end
   object ServiceDBConnection: TSQLite3Connection
     Connected = False
     LoginPrompt = False
     KeepConnection = False
-    left = 168
-    top = 16
+    AlwaysUseBigint = False
+    Left = 168
+    Top = 16
   end
   object ServiceTransaction: TSQLTransaction
     Active = False
-    left = 288
-    top = 16
+    Left = 288
+    Top = 16
   end
 end
