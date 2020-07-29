@@ -66,7 +66,7 @@ var
 implementation
 
 uses
-  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U, analyticThread, dmMainFunc;
+  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U, analyticThread;
 
 {$R *.lfm}
 
@@ -74,7 +74,12 @@ uses
 
 procedure TUpdate_Form.FormCreate(Sender: TObject);
 begin
-    updatePATH:=FilePATH + 'updates' + DirectorySeparator;
+    {$IFDEF UNIX}
+  updatePATH := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/updates/';
+    {$ELSE}
+  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+   SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\updates\';
+    {$ENDIF UNIX}
   if not DirectoryExists(updatePATH) then
     CreateDir(updatePATH);
 end;

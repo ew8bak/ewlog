@@ -55,7 +55,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U, dmMainFunc;
+uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U;
 
 {$R *.lfm}
 
@@ -178,7 +178,7 @@ begin
         IniF.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
       end;
 
-      dm_MainFunc.FreePrefix;
+      MainForm.FreeObj;
       MainForm.InitializeDB(DefaultDB);
       if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then

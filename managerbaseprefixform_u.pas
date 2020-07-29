@@ -45,7 +45,7 @@ var
 
 implementation
 
-uses MainForm_U, dmMainFunc;
+uses MainForm_U;
 
 {$R *.lfm}
 
@@ -54,9 +54,9 @@ uses MainForm_U, dmMainFunc;
 procedure TManagerBasePrefixForm.FormShow(Sender: TObject);
 begin
 
-  UniqueCallsQuery.DataBase := dm_MainFunc.ServiceDBConnection;
-  OblastQuery.DataBase := dm_MainFunc.ServiceDBConnection;
-  CountryQuery.DataBase := dm_MainFunc.ServiceDBConnection;
+  UniqueCallsQuery.DataBase := MainForm.ServiceDBConnection;
+  OblastQuery.DataBase := MainForm.ServiceDBConnection;
+  CountryQuery.DataBase := MainForm.ServiceDBConnection;
 
   UniqueCallsQuery.Active := True;
   OblastQuery.Active := True;

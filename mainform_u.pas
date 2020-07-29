@@ -23,7 +23,6 @@ type
   TMainForm = class(TForm)
     CallBookLiteConnection: TSQLite3Connection;
     CheckBox6: TCheckBox;
-    CheckTableQuery: TSQLQuery;
     ClearEdit: TAction;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
@@ -142,6 +141,7 @@ type
     MenuItem70: TMenuItem;
     MenuItem71: TMenuItem;
     MenuItem72: TMenuItem;
+    MenuItem73: TMenuItem;
     MenuItem74: TMenuItem;
     MenuItem75: TMenuItem;
     MenuItem76: TMenuItem;
@@ -176,6 +176,7 @@ type
     Panel9: TPanel;
     PopupMenu2: TPopupMenu;
     PopupDxCluster: TPopupMenu;
+    CheckTableQuery: TSQLQuery;
     BandsQuery: TSQLQuery;
     Shape1: TShape;
     subModesQuery: TSQLQuery;
@@ -186,7 +187,9 @@ type
     SpeedButton27: TSpeedButton;
     SpeedButton28: TSpeedButton;
     SpeedButton29: TSpeedButton;
+    qBands: TSQLQuery;
     PrintQuery: TSQLQuery;
+    UniqueCallsQuery: TSQLQuery;
     TabSheet2: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
     WSJT_Timer: TTimer;
@@ -197,15 +200,18 @@ type
     SpeedButton21: TSpeedButton;
     SpeedButton22: TSpeedButton;
     SpeedButton23: TSpeedButton;
+    ServiceDBConnection: TSQLite3Connection;
     SQLiteDBConnection: TSQLite3Connection;
     CopySQLQuery: TSQLQuery;
     SQLiteTr: TSQLTransaction;
     DUPEQuery: TSQLQuery;
     CopySQLQuery2: TSQLQuery;
     DUPEQuery2: TSQLQuery;
+    SQLServiceTransaction: TSQLTransaction;
     StatusBar1: TStatusBar;
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
+    Timer3: TTimer;
     MenuItem8: TMenuItem;
     PopupMenu1: TPopupMenu;
     SaveQSOinBase: TAction;
@@ -231,6 +237,7 @@ type
     DataSource2: TDataSource;
     SearchRACDS: TDataSource;
     DBLookupComboBox1: TDBLookupComboBox;
+    LogBookInfoDS: TDataSource;
     DateEdit1: TDateEdit;
     DateTimePicker1: TDateTimePicker;
     DBGrid1: TDBGrid;
@@ -315,6 +322,9 @@ type
     Panel6: TPanel;
     Panel7: TPanel;
     Panel8: TPanel;
+    PrefixARRLQuery: TSQLQuery;
+    PrefixProvinceQuery: TSQLQuery;
+    PrefixQuery: TSQLQuery;
     SpeedButton1: TSpeedButton;
     SpeedButton14: TSpeedButton;
     SpeedButton15: TSpeedButton;
@@ -327,7 +337,9 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
+    LogBookInfoQuery: TSQLQuery;
     SearchCallBookQuery: TSQLQuery;
+    LogBookFieldQuery: TSQLQuery;
     SaveQSOQuery: TSQLQuery;
     SQLQuery2: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
@@ -340,6 +352,7 @@ type
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
     procedure CheckBox6Change(Sender: TObject);
+    //{$IfDef WINDOWS}
     procedure CheckUpdatesTimerStartTimer(Sender: TObject);
     procedure CheckUpdatesTimerTimer(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
@@ -373,7 +386,6 @@ type
     procedure Label50Click(Sender: TObject);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
-    procedure LTCPComponent1Connect(aSocket: TLSocket);
     procedure LTCPComponent1Disconnect(aSocket: TLSocket);
     procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LTCPComponent1Receive(aSocket: TLSocket);
@@ -440,6 +452,7 @@ type
     procedure MenuItem69Click(Sender: TObject);
     procedure MenuItem70Click(Sender: TObject);
     procedure MenuItem72Click(Sender: TObject);
+    procedure MenuItem73Click(Sender: TObject);
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MenuItem82Click(Sender: TObject);
@@ -458,6 +471,7 @@ type
     procedure MenuItem99Click(Sender: TObject);
     procedure LangItemClick(Sender: TObject);
     procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
+    procedure ScrollBar1Change(Sender: TObject);
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
@@ -493,6 +507,7 @@ type
       X, Y: integer);
     procedure SQLiteDBConnectionAfterConnect(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure Timer3Timer(Sender: TObject);
     procedure TrayIcon1DblClick(Sender: TObject);
     procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
       Node: PVirtualNode);
@@ -525,6 +540,17 @@ type
 
   public
     { public declarations }
+    PrefixExpProvinceArray: array [0..1000] of record
+      reg: TRegExpr;
+      id: integer;
+    end;
+    PrefixExpARRLArray: array [0..1000] of record
+      reg: TRegExpr;
+      id: integer;
+    end;
+    UniqueCallsList: TStringList;
+    PrefixProvinceList: TStringList;
+    PrefixARRLList: TStringList;
     Command: string;
     FlagList: TImageList;
     FlagSList: TStringList;
@@ -563,39 +589,66 @@ type
 
     inupdate: boolean;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
-    procedure SelectLogTable(LogDB: string);
+    procedure SelectLogDatabase(LogDB: string);
     procedure SelDB(calllbook: string);
-    procedure Clr;
- //   procedure SearchCallInCallBook(CallName: string);
+    procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
+    procedure Clr();
+    procedure SaveQSO(var SQSO: TQSO);
+    procedure SearchCallInCallBook(CallName: string);
+    function SearchPrefix(CallName: string; gridloc: boolean): boolean;
     procedure InitializeDB(dbS: string);
     procedure SelectQSO(grid: boolean);
+    procedure SetGrid;
     procedure SetDXColumns(Save: boolean);
     function GetNewChunk: string;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
-    //   function GetModeFromFreq(MHz: string): string;
+    function GetModeFromFreq(MHz: string): string;
+    function SearchCountry(CallName: string; Province: boolean): string;
+    procedure FindCountryFlag(Country: string);
+    function FindCountry(ISOCode: string): string;
+    procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
+    function FindISOCountry(Country: string): string;
     function FindMode(submode: string): string;
     procedure addModes(modeItem: string; subModesFlag: boolean;
       var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
     procedure InitIni;
     procedure InitClusterINI;
+    procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
+    procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
+    procedure CheckQSL(callsign, band, mode: string; var QSL: integer);
+    function FindDXCC(callsign: string): integer;
+    function FindWorkedCall(callsign, band, mode: string): boolean;
+    function WorkedLoTW(callsign, band, mode: string): boolean;
+    function WorkedQSL(callsign, band, mode: string): boolean;
   end;
 
 var
   MainForm: TMainForm;
-  IniF: TINIFile;
   QTH_LAT: currency;
   QTH_LON: currency;
+  PrefixProvinceCount: integer;
+  PrefixARRLCount: integer;
   subModesCount: integer;
+  UniqueCallsCount: integer;
   GetingHint: integer;
+  IniF: TINIFile;
   CallLogBook: string;
+  SetCallName, LogTable, SetDiscription, SetNameC, SetQTH, SetITU,
+  SetLoc, SetCQ, SetLat, SetLon, SetQSLInfo: string;
+  DXCCNum: integer;
+  CallLAT, CallLON, la1, lo1: string;
   UnUsIndex: integer;
   LoginBD, PasswdDB, NameDB, HostDB, PortDB, DefaultDB, SQLiteFILE: string;
   LoginCallBook, PasswdCallBook, NameCallBook, HostCallBook, PortCallBook: string;
   UseCallBook: string;
   InitLog_DB: string;
   LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
+  eQSLccLogin, eQSLccPassword, HRDLogin, HRDCode, HamQTHLogin,
+  HamQTHPassword, ClubLogLogin, ClubLogPassword, QRZComLogin, QRZComPassword: string;
+  LotWLogin, LotWPassword: string;
+  AutoEQSLcc, AutoHRDLog, AutoHamQTH, AutoClubLog, AutoQRZCom: boolean;
   tx, txWSJT: boolean;
   connected, connectedWSJT: boolean;
   usefldigi: boolean = True;
@@ -604,6 +657,7 @@ var
   wsjtactive: boolean = False;
   fldigiversion: string;
   fldigikeepontop: boolean = False;
+  timedif: integer;
   lastID: integer;
   fl_path, FLDIGI_USE, wsjt_path, WSJT_USE: string;
   myLocator: string;
@@ -624,7 +678,7 @@ var
   lastTCPport: integer;
   lastUDPport: integer;
   _l, _t, _w, _h: integer;
-  BM1, BM2: TBookmarkStr;
+  BM1,BM2:TBookmarkStr;
 
 implementation
 
@@ -640,7 +694,7 @@ uses
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u,
   logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
-  flDigiModem, viewPhoto_U, MinimalForm_U, dmMainFunc;
+  flDigiModem, viewPhoto_U;
 
 type
   PTreeData = ^TTreeData;
@@ -662,12 +716,293 @@ type
 
 { TMainForm }
 
+function TMainForm.WorkedQSL(callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+begin
+  Result := False;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    Query := TSQLQuery.Create(nil);
+
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
+
+  finally
+    Query.Free;
+  end;
+end;
+
+function TMainForm.WorkedLoTW(callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+  dxcc: integer;
+begin
+  Result := False;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    dxcc := FindDXCC(callsign);
+    Query := TSQLQuery.Create(nil);
+
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
+
+  finally
+    Query.Free;
+  end;
+end;
+
+function TMainForm.FindWorkedCall(callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+begin
+  Result := False;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    Query := TSQLQuery.Create(nil);
+
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
+
+  finally
+    Query.Free;
+  end;
+end;
+
+function TMainForm.FindDXCC(callsign: string): integer;
+var
+  i: integer;
+begin
+  Result := -1;
+  for i := 0 to PrefixARRLCount do
+  begin
+    if (PrefixExpARRLArray[i].reg.Exec(callsign)) and
+      (PrefixExpARRLArray[i].reg.Match[0] = callsign) then
+    begin
+      with PrefixQuery do
+      begin
+        Close;
+        SQL.Text := 'SELECT DXCC, Status from CountryDataEx where _id = "' +
+          IntToStr(PrefixExpARRLArray[i].id) + '"';
+        Open;
+        if (FieldByName('Status').AsString = 'Deleted') then
+        begin
+          PrefixExpARRLArray[i].reg.ExecNext;
+          Exit;
+        end;
+        Result := FieldByName('DXCC').AsInteger;
+        Close;
+      end;
+    end;
+  end;
+
+  if Result = -1 then
+  begin
+    for i := 0 to PrefixProvinceCount do
+    begin
+      if (PrefixExpProvinceArray[i].reg.Exec(callsign)) and
+        (PrefixExpProvinceArray[i].reg.Match[0] = callsign) then
+      begin
+        with PrefixQuery do
+        begin
+          Close;
+          SQL.Text := 'SELECT * from Province where _id = "' +
+            IntToStr(PrefixExpProvinceArray[i].id) + '"';
+          Open;
+          Result := FieldByName('DXCC').AsInteger;
+          if Result <> -1 then
+          begin
+            Close;
+            Exit;
+          end;
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TMainForm.CheckQSL(callsign, band, mode: string; var QSL: integer);
+var
+  Query: TSQLQuery;
+  dxcc: integer;
+  digiBand: double;
+  nameBand: string;
+begin
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+
+  try
+    dxcc := FindDXCC(callsign);
+    Query := TSQLQuery.Create(nil);
+
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+    begin
+      QSL := 0;
+      Exit;
+    end;
+    Query.Close;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount = 0 then
+    begin
+      QSL := 0;
+      Exit;
+    end;
+    Query.Close;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount = 0 then
+    begin
+      QSL := 2;
+      Exit;
+    end
+    else
+    begin
+      QSL := 1;
+      Exit;
+    end;
+    Query.Close;
+
+  finally
+    Query.Free;
+  end;
+end;
+
+procedure TMainForm.CheckDXCC(callsign, mode, band: string;
+  var DMode, DBand, DCall: boolean);
+var
+  Query: TSQLQuery;
+  dxcc, i: integer;
+  digiBand: double;
+  nameBand: string;
+begin
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+
+  try
+    dxcc := FindDXCC(callsign);
+    Query := TSQLQuery.Create(nil);
+    if MySQLLOGDBConnection.Connected then
+      Query.DataBase := MySQLLOGDBConnection
+    else
+      Query.DataBase := SQLiteDBConnection;
+    Query.Transaction := SQLTransaction1;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DCall := False
+    else
+      DCall := True;
+    Query.Close;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND QSOMode = ' +
+      QuotedStr(mode) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DMode := False
+    else
+      DMode := True;
+    Query.Close;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
+      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DBand := False
+    else
+      DBand := True;
+  finally
+    Query.Free;
+  end;
+end;
+
 procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
   var subModes: TStringList);
 var
   i: integer;
 begin
-  if dm_MainFunc.ServiceDBConnection.Connected then
+  if ServiceDBConnection.Connected then
   begin
     subModesQuery.Close;
     subModes.Delimiter := ',';
@@ -702,7 +1037,7 @@ var
   lastBandName: string;
 begin
   DefaultFormatSettings.DecimalSeparator := '.';
-  if dm_MainFunc.ServiceDBConnection.Connected then
+  if ServiceDBConnection.Connected then
   begin
     lastBand := ComboBox1.ItemIndex;
     lastBandName := ComboBox1.Text;
@@ -761,6 +1096,198 @@ begin
   subModesQuery.Close;
 end;
 
+function TMainForm.FindISOCountry(Country: string): string;
+var
+  ISOList: TStringList;
+  LanguageList: TStringList;
+  Index: integer;
+begin
+  Result := '';
+  try
+    ISOList := TStringList.Create;
+    LanguageList := TStringList.Create;
+    ISOList.AddStrings(constLanguageISO);
+    LanguageList.AddStrings(constLanguage);
+    Index := LanguageList.IndexOf(Country);
+    if Index <> -1 then
+      Result := ISOList.Strings[Index]
+    else
+      Result := 'None';
+
+  finally
+    ISOList.Free;
+    LanguageList.Free;
+  end;
+end;
+
+function TMainForm.FindCountry(ISOCode: string): string;
+var
+  ISOList: TStringList;
+  LanguageList: TStringList;
+  Index: integer;
+begin
+  try
+    Result := '';
+    ISOList := TStringList.Create;
+    LanguageList := TStringList.Create;
+    ISOList.AddStrings(constLanguageISO);
+    LanguageList.AddStrings(constLanguage);
+    Index := ISOList.IndexOf(ISOCode);
+    if Index <> -1 then
+      Result := LanguageList.Strings[Index]
+    else
+      Result := 'None';
+
+  finally
+    ISOList.Free;
+    LanguageList.Free;
+  end;
+end;
+
+procedure TMainForm.FindLanguageFiles(Dir: string; var LangList: TStringList);
+begin
+  LangList := FindAllFiles(Dir, 'ewlog.*.po', False, faNormal);
+  LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
+    'ewlog.', '', [rfreplaceall]);
+  LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
+end;
+
+procedure TMainForm.FindCountryFlag(Country: string);
+var
+  pImage: TPortableNetworkGraphic;
+begin
+  try
+    pImage := TPortableNetworkGraphic.Create;
+    pImage.LoadFromLazarusResource(dmFunc.ReplaceCountry(Country));
+    if FlagSList.IndexOf(dmFunc.ReplaceCountry(Country)) = -1 then
+    begin
+      FlagList.Add(pImage, nil);
+      FlagSList.Add(dmFunc.ReplaceCountry(Country));
+    end;
+  except
+    on EResNotFound do
+    begin
+      pImage.LoadFromLazarusResource('Unknown');
+      if FlagSList.IndexOf('Unknown') = -1 then
+      begin
+        FlagList.Add(pImage, nil);
+        FlagSList.Add('Unknown');
+      end;
+    end;
+  end;
+  pImage.Free;
+end;
+
+function TMainForm.SearchCountry(CallName: string; Province: boolean): string;
+var
+  i, j: integer;
+  BoolPrefix: boolean;
+begin
+  if CallName.Length < 1 then
+  begin
+    Result := '';
+    exit;
+  end;
+  BoolPrefix := False;
+  Result := '';
+  if Province = True then
+  begin
+    for i := 0 to PrefixProvinceCount do
+    begin
+      if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
+        (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
+      begin
+        BoolPrefix := True;
+        with MainForm.PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from Province where _id = "' +
+            IntToStr(PrefixExpProvinceArray[i].id) + '"');
+          Open;
+        end;
+        Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
+        exit;
+      end;
+    end;
+  end;
+  if BoolPrefix = False then
+  begin
+    for j := 0 to PrefixARRLCount do
+    begin
+      if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
+        (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+      begin
+        with MainForm.PrefixQuery do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('select * from CountryDataEx where _id = "' +
+            IntToStr(PrefixExpARRLArray[j].id) + '"');
+          Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[j].reg.ExecNext;
+            Exit;
+          end;
+          Result := MainForm.PrefixQuery.FieldByName('Country').AsString;
+        end;
+        Exit;
+      end;
+    end;
+  end;
+end;
+
+function TMainForm.GetModeFromFreq(MHz: string): string;
+var
+  Band: string;
+  tmp: extended;
+begin
+  Result := '';
+  band := dmFunc.GetBandFromFreq(MHz);
+
+  MHz := MHz.replace('.', DefaultFormatSettings.DecimalSeparator);
+  MHz := MHz.replace(',', DefaultFormatSettings.DecimalSeparator);
+
+  qBands.Close;
+  qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
+  if SQLServiceTransaction.Active then
+    SQLServiceTransaction.Rollback;
+  SQLServiceTransaction.StartTransaction;
+  try
+    qBands.Open;
+    tmp := StrToFloat(MHz);
+
+    if qBands.RecordCount > 0 then
+    begin
+      if ((tmp >= qBands.FieldByName('B_BEGIN').AsCurrency) and
+        (tmp <= qBands.FieldByName('CW').AsCurrency)) then
+        Result := 'CW'
+      else
+      begin
+        if ((tmp > qBands.FieldByName('DIGI').AsCurrency) and
+          (tmp <= qBands.FieldByName('SSB').AsCurrency)) then
+          Result := 'DIGI'
+        else
+        begin
+          if (tmp > 5) and (tmp < 6) then
+            Result := 'USB'
+          else
+          begin
+            if tmp > 10 then
+              Result := 'USB'
+            else
+              Result := 'LSB';
+          end;
+        end;
+      end;
+    end
+  finally
+    qBands.Close;
+    SQLServiceTransaction.Rollback
+  end;
+end;
+
 function TMainForm.FindNode(const APattern: string; Country: boolean): PVirtualNode;
 var
   ANode: PVirtualNode;
@@ -794,7 +1321,14 @@ end;
 procedure TMainForm.SetDXColumns(Save: boolean);
 var
   VSTSaveStream: TMemoryStream;
+  FilePATH: string;
 begin
+  {$IFDEF UNIX}
+  FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+  {$ELSE}
+  FilePATH := GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+  {$ENDIF UNIX}
   try
     VSTSaveStream := TMemoryStream.Create;
     if Save then
@@ -813,79 +1347,275 @@ begin
   end;
 end;
 
-procedure TMainForm.SelectQSO(grid: boolean);
+procedure TMainForm.SetGrid;
 var
-  Call, Gridsquare: string;
-  Lat1, Lon1: string;
+  i: integer;
+  QBAND: string;
 begin
-  Label17.Caption := '';
-  Label18.Caption := '';
-  Label19.Caption := '';
-  Label20.Caption := '';
-  Label21.Caption := '';
-  Label22.Caption := '';
-
-  if grid then
+  for i := 0 to 29 do
   begin
-    Call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-    Gridsquare := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+    columnsGrid[i] := IniF.ReadString('GridSettings', 'Columns' +
+      IntToStr(i), constColumnName[i]);
+    columnsWidth[i] := IniF.ReadInteger('GridSettings', 'ColWidth' +
+      IntToStr(i), constColumnWidth[i]);
+    columnsVisible[i] := IniF.ReadBool('GridSettings', 'ColVisible' + IntToStr(i), True);
+  end;
 
-    //  SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName(
-    //    'CallSign').AsString), 0, False);
+  ColorTextGrid := IniF.ReadInteger('GridSettings', 'TextColor', 0);
+  SizeTextGrid := IniF.ReadInteger('GridSettings', 'TextSize', 8);
+  ColorBackGrid := IniF.ReadInteger('GridSettings', 'BackColor', -2147483617);
 
-    dm_MainFunc.SearchPrefix(Call, Gridsquare);
-    Label33.Caption := PFXR.Country;
-    Label34.Caption := PFXR.ARRLPrefix;
-    Label38.Caption := PFXR.Prefix;
-    Label45.Caption := PFXR.CQZone;
-    Label47.Caption := PFXR.ITUZone;
-    Label43.Caption := PFXR.Continent;
-    Label40.Caption := PFXR.Latitude;
-    Label42.Caption := PFXR.Longitude;
-    Label37.Caption := PFXR.Distance;
-    Label32.Caption := PFXR.Azimuth;
+  DBGrid1.Font.Size := SizeTextGrid;
+  DBGrid1.Font.Color := ColorTextGrid;
+  DBGrid1.Color := ColorBackGrid;
 
-    dm_MainFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat1, Lon1);
-    Earth.PaintLine(Lat1, Lon1);
-    Earth.PaintLine(Lat1, Lon1);
+  DBGrid2.Font.Size := SizeTextGrid;
+  DBGrid2.Font.Color := ColorTextGrid;
+  DBGrid2.Color := ColorBackGrid;
 
-    Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
-    Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
-    Label19.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString;
-    Label20.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-    Label21.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-    Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-    UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-    StatusBar1.Panels.Items[1].Text :=
-      'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
-  end
+  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+    QBAND := rQSOBand
   else
+    QBAND := rQSOBandFreq;
+
+  //Для первого грида
+  for i := 0 to 29 do
   begin
-    if DBGrid2.DataSource.DataSet.RecordCount > 0 then
+    DBGrid1.Columns.Items[i].FieldName := columnsGrid[i];
+    DBGrid1.Columns.Items[i].Width := columnsWidth[i];
+    case columnsGrid[i] of
+      'QSL': DBGrid1.Columns.Items[i].Title.Caption := rQSL;
+      'QSLs': DBGrid1.Columns.Items[i].Title.Caption := rQSLs;
+      'QSODate': DBGrid1.Columns.Items[i].Title.Caption := rQSODate;
+      'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := rQSOTime;
+      'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := QBAND;
+      'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
+      'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
+      'QSOSubMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOSubMode;
+      'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
+      'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
+      'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
+      'Grid': DBGrid1.Columns.Items[i].Title.Caption := rGrid;
+      'QSOReportSent': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportSent;
+      'QSOReportRecived': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportRecived;
+      'IOTA': DBGrid1.Columns.Items[i].Title.Caption := rIOTA;
+      'QSLManager': DBGrid1.Columns.Items[i].Title.Caption := rQSLManager;
+      'QSLSentDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLSentDate;
+      'QSLRecDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLRecDate;
+      'LoTWRecDate': DBGrid1.Columns.Items[i].Title.Caption := rLoTWRecDate;
+      'MainPrefix': DBGrid1.Columns.Items[i].Title.Caption := rMainPrefix;
+      'DXCCPrefix': DBGrid1.Columns.Items[i].Title.Caption := rDXCCPrefix;
+      'CQZone': DBGrid1.Columns.Items[i].Title.Caption := rCQZone;
+      'ITUZone': DBGrid1.Columns.Items[i].Title.Caption := rITUZone;
+      'ManualSet': DBGrid1.Columns.Items[i].Title.Caption := rManualSet;
+      'Continent': DBGrid1.Columns.Items[i].Title.Caption := rContinent;
+      'ValidDX': DBGrid1.Columns.Items[i].Title.Caption := rValidDX;
+      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
+      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
+      'USERS': DBGrid1.Columns.Items[i].Title.Caption := rUSERS;
+      'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
+    end;
+
+    case columnsGrid[i] of
+      'QSL': DBGrid1.Columns.Items[i].Visible := columnsVisible[0];
+      'QSLs': DBGrid1.Columns.Items[i].Visible := columnsVisible[1];
+      'QSODate': DBGrid1.Columns.Items[i].Visible := columnsVisible[2];
+      'QSOTime': DBGrid1.Columns.Items[i].Visible := columnsVisible[3];
+      'QSOBand': DBGrid1.Columns.Items[i].Visible := columnsVisible[4];
+      'CallSign': DBGrid1.Columns.Items[i].Visible := columnsVisible[5];
+      'QSOMode': DBGrid1.Columns.Items[i].Visible := columnsVisible[6];
+      'QSOSubMode': DBGrid1.Columns.Items[i].Visible := columnsVisible[7];
+      'OMName': DBGrid1.Columns.Items[i].Visible := columnsVisible[8];
+      'OMQTH': DBGrid1.Columns.Items[i].Visible := columnsVisible[9];
+      'State': DBGrid1.Columns.Items[i].Visible := columnsVisible[10];
+      'Grid': DBGrid1.Columns.Items[i].Visible := columnsVisible[11];
+      'QSOReportSent': DBGrid1.Columns.Items[i].Visible := columnsVisible[12];
+      'QSOReportRecived': DBGrid1.Columns.Items[i].Visible := columnsVisible[13];
+      'IOTA': DBGrid1.Columns.Items[i].Visible := columnsVisible[14];
+      'QSLManager': DBGrid1.Columns.Items[i].Visible := columnsVisible[15];
+      'QSLSentDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[16];
+      'QSLRecDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[17];
+      'LoTWRecDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[18];
+      'MainPrefix': DBGrid1.Columns.Items[i].Visible := columnsVisible[19];
+      'DXCCPrefix': DBGrid1.Columns.Items[i].Visible := columnsVisible[20];
+      'CQZone': DBGrid1.Columns.Items[i].Visible := columnsVisible[21];
+      'ITUZone': DBGrid1.Columns.Items[i].Visible := columnsVisible[22];
+      'ManualSet': DBGrid1.Columns.Items[i].Visible := columnsVisible[23];
+      'Continent': DBGrid1.Columns.Items[i].Visible := columnsVisible[24];
+      'ValidDX': DBGrid1.Columns.Items[i].Visible := columnsVisible[25];
+      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Visible := columnsVisible[26];
+      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Visible := columnsVisible[27];
+      'USERS': DBGrid1.Columns.Items[i].Visible := columnsVisible[28];
+      'NoCalcDXCC': DBGrid1.Columns.Items[i].Visible := columnsVisible[29];
+    end;
+  end;
+  //Для второго грида
+  for i := 0 to 29 do
+  begin
+    DBGrid2.Columns.Items[i].FieldName := columnsGrid[i];
+    DBGrid2.Columns.Items[i].Width := columnsWidth[i];
+    case columnsGrid[i] of
+      'QSL': DBGrid2.Columns.Items[i].Title.Caption := rQSL;
+      'QSLs': DBGrid2.Columns.Items[i].Title.Caption := rQSLs;
+      'QSODate': DBGrid2.Columns.Items[i].Title.Caption := rQSODate;
+      'QSOTime': DBGrid2.Columns.Items[i].Title.Caption := rQSOTime;
+      'QSOBand': DBGrid2.Columns.Items[i].Title.Caption := QBAND;
+      'CallSign': DBGrid2.Columns.Items[i].Title.Caption := rCallSign;
+      'QSOMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOMode;
+      'QSOSubMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOSubMode;
+      'OMName': DBGrid2.Columns.Items[i].Title.Caption := rOMName;
+      'OMQTH': DBGrid2.Columns.Items[i].Title.Caption := rOMQTH;
+      'State': DBGrid2.Columns.Items[i].Title.Caption := rState;
+      'Grid': DBGrid2.Columns.Items[i].Title.Caption := rGrid;
+      'QSOReportSent': DBGrid2.Columns.Items[i].Title.Caption := rQSOReportSent;
+      'QSOReportRecived': DBGrid2.Columns.Items[i].Title.Caption := rQSOReportRecived;
+      'IOTA': DBGrid2.Columns.Items[i].Title.Caption := rIOTA;
+      'QSLManager': DBGrid2.Columns.Items[i].Title.Caption := rQSLManager;
+      'QSLSentDate': DBGrid2.Columns.Items[i].Title.Caption := rQSLSentDate;
+      'QSLRecDate': DBGrid2.Columns.Items[i].Title.Caption := rQSLRecDate;
+      'LoTWRecDate': DBGrid2.Columns.Items[i].Title.Caption := rLoTWRecDate;
+      'MainPrefix': DBGrid2.Columns.Items[i].Title.Caption := rMainPrefix;
+      'DXCCPrefix': DBGrid2.Columns.Items[i].Title.Caption := rDXCCPrefix;
+      'CQZone': DBGrid2.Columns.Items[i].Title.Caption := rCQZone;
+      'ITUZone': DBGrid2.Columns.Items[i].Title.Caption := rITUZone;
+      'ManualSet': DBGrid2.Columns.Items[i].Title.Caption := rManualSet;
+      'Continent': DBGrid2.Columns.Items[i].Title.Caption := rContinent;
+      'ValidDX': DBGrid2.Columns.Items[i].Title.Caption := rValidDX;
+      'QSL_RCVD_VIA': DBGrid2.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
+      'QSL_SENT_VIA': DBGrid2.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
+      'USERS': DBGrid2.Columns.Items[i].Title.Caption := rUSERS;
+      'NoCalcDXCC': DBGrid2.Columns.Items[i].Title.Caption := rNoCalcDXCC;
+    end;
+
+    case columnsGrid[i] of
+      'QSL': DBGrid2.Columns.Items[i].Visible := columnsVisible[0];
+      'QSLs': DBGrid2.Columns.Items[i].Visible := columnsVisible[1];
+      'QSODate': DBGrid2.Columns.Items[i].Visible := columnsVisible[2];
+      'QSOTime': DBGrid2.Columns.Items[i].Visible := columnsVisible[3];
+      'QSOBand': DBGrid2.Columns.Items[i].Visible := columnsVisible[4];
+      'CallSign': DBGrid2.Columns.Items[i].Visible := columnsVisible[5];
+      'QSOMode': DBGrid2.Columns.Items[i].Visible := columnsVisible[6];
+      'QSOSubMode': DBGrid2.Columns.Items[i].Visible := columnsVisible[7];
+      'OMName': DBGrid2.Columns.Items[i].Visible := columnsVisible[8];
+      'OMQTH': DBGrid2.Columns.Items[i].Visible := columnsVisible[9];
+      'State': DBGrid2.Columns.Items[i].Visible := columnsVisible[10];
+      'Grid': DBGrid2.Columns.Items[i].Visible := columnsVisible[11];
+      'QSOReportSent': DBGrid2.Columns.Items[i].Visible := columnsVisible[12];
+      'QSOReportRecived': DBGrid2.Columns.Items[i].Visible := columnsVisible[13];
+      'IOTA': DBGrid2.Columns.Items[i].Visible := columnsVisible[14];
+      'QSLManager': DBGrid2.Columns.Items[i].Visible := columnsVisible[15];
+      'QSLSentDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[16];
+      'QSLRecDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[17];
+      'LoTWRecDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[18];
+      'MainPrefix': DBGrid2.Columns.Items[i].Visible := columnsVisible[19];
+      'DXCCPrefix': DBGrid2.Columns.Items[i].Visible := columnsVisible[20];
+      'CQZone': DBGrid2.Columns.Items[i].Visible := columnsVisible[21];
+      'ITUZone': DBGrid2.Columns.Items[i].Visible := columnsVisible[22];
+      'ManualSet': DBGrid2.Columns.Items[i].Visible := columnsVisible[23];
+      'Continent': DBGrid2.Columns.Items[i].Visible := columnsVisible[24];
+      'ValidDX': DBGrid2.Columns.Items[i].Visible := columnsVisible[25];
+      'QSL_RCVD_VIA': DBGrid2.Columns.Items[i].Visible := columnsVisible[26];
+      'QSL_SENT_VIA': DBGrid2.Columns.Items[i].Visible := columnsVisible[27];
+      'USERS': DBGrid2.Columns.Items[i].Visible := columnsVisible[28];
+      'NoCalcDXCC': DBGrid2.Columns.Items[i].Visible := columnsVisible[29];
+    end;
+  end;
+
+  case SizeTextGrid of
+    8: DBGrid1.DefaultRowHeight := 15;
+    10: DBGrid1.DefaultRowHeight := DBGrid1.Font.Size + 12;
+    12: DBGrid1.DefaultRowHeight := DBGrid1.Font.Size + 12;
+    14: DBGrid1.DefaultRowHeight := DBGrid1.Font.Size + 12;
+  end;
+
+  case SizeTextGrid of
+    8: DBGrid2.DefaultRowHeight := 15;
+    10: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
+    12: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
+    14: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
+  end;
+
+  for i:=0 to DBGrid1.Columns.Count-1 do begin
+   DBGrid1.Columns.Items[i].Title.Font.Size:= SizeTextGrid;
+   DBGrid2.Columns.Items[i].Title.Font.Size:= SizeTextGrid;
+  end;
+
+end;
+
+procedure TMainForm.SelectQSO(grid: boolean);
+begin
+  try
+    Label17.Caption := '';
+    Label18.Caption := '';
+    Label19.Caption := '';
+    Label20.Caption := '';
+    Label21.Caption := '';
+    Label22.Caption := '';
+    if grid then
+    begin
+      SearchCallLog(dmfunc.ExtractCallsign(DBGrid1.DataSource.DataSet.FieldByName(
+        'CallSign').AsString), 0, False);
+      SearchPrefix(DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, True);
       Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
-    Label18.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSODate').AsString;
-    Label19.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOTime').AsString;
-    Label20.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOBand').AsString;
-    Label21.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOMode').AsString;
-    Label22.Caption := DBGrid2.DataSource.DataSet.FieldByName('OMName').AsString;
+      Label18.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsString;
+      Label19.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString;
+      Label20.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
+      Label21.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
+      Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
+      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      StatusBar1.Panels.Items[1].Text :=
+        'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
+    end
+    else
+    begin
+      if DBGrid2.DataSource.DataSet.RecordCount > 0 then
+        Label17.Caption := IntToStr(DBGrid2.DataSource.DataSet.RecordCount);
+      Label18.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSODate').AsString;
+      Label19.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOTime').AsString;
+      Label20.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOBand').AsString;
+      Label21.Caption := DBGrid2.DataSource.DataSet.FieldByName('QSOMode').AsString;
+      Label22.Caption := DBGrid2.DataSource.DataSet.FieldByName('OMName').AsString;
+    end;
+  except
+    on E: ESQLDatabaseError do
+    begin
+      if Pos('has gone away', E.Message) > 0 then
+      begin
+        ShowMessage(rMySQLHasGoneAway);
+        UseCallBook := 'NO';
+        DefaultDB := 'SQLite';
+        InitializeDB('SQLite');
+        dbSel := 'SQLite';
+      end;
+    end;
   end;
 end;
 
 procedure TMainForm.InitializeDB(dbS: string);
 var
   i: integer;
+  sDBPath: string;
   modesString: TStringList;
 begin
   subModesList := TStringList.Create;
-
+  PrefixProvinceList := TStringList.Create;
+  PrefixARRLList := TStringList.Create;
+  UniqueCallsList := TStringList.Create;
   try
-    if (FileExists(FilePATH + 'callbook.db')) and (UseCallBook = 'YES') then
+     {$IFDEF UNIX}
+    sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+    sDBPath := GetEnvironmentVariable('SystemDrive') +
+      SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    {$ENDIF UNIX}
+
+    if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
     begin
-      CallBookLiteConnection.DatabaseName := FilePATH + 'callbook.db';
+      CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
       CallBookLiteConnection.Connected := True;
     end;
 
-    if not (FileExists(FilePATH + 'callbook.db')) and (UseCallBook = 'YES') then
+    if not (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
     begin
       ShowMessage(
         'Не найден файл справочника, продолжу работать без его. Зайдите в настройки программы для загрузки');
@@ -894,8 +1624,29 @@ begin
     end;
     MySQLLOGDBConnection.Connected := False;
     SQLiteDBConnection.Connected := False;
+    ServiceDBConnection.Connected := False;
 
-    dm_MainFunc.ServiceDBInit;
+    if not FileExists(sDBPath + 'serviceLOG.db') then
+      ServiceDBConnection.DatabaseName :=
+        ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'serviceLOG.db'
+    else
+      ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
+    {$IFDEF LINUX}
+    if not FileExists(ServiceDBConnection.DatabaseName) then
+      ServiceDBConnection.DatabaseName := '/usr/share/ewlog/serviceLOG.db';
+    {$ENDIF LINUX}
+    if not FileExists(ServiceDBConnection.DatabaseName) then
+    begin
+      ShowMessage(rErrorServiceDB);
+      Exit;
+    end;
+
+    ServiceDBConnection.Connected := True;
+    CheckTableQuery.DataBase := ServiceDBConnection;
+    CheckTableQuery.SQL.Text := 'SELECT sqlite_version()';
+    CheckTableQuery.Open;
+    sqlite_version := CheckTableQuery.Fields.Fields[0].AsString;
+    CheckTableQuery.Close;
 
     if dbS = 'MySQL' then
     begin
@@ -914,13 +1665,20 @@ begin
         MySQLLOGDBConnection.DatabaseName := NameDB;
         MySQLLOGDBConnection.Connected := True;
         DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
+        LogBookFieldQuery.DataBase := MySQLLOGDBConnection;
         LOGBookQuery.DataBase := MySQLLOGDBConnection;
         SaveQSOQuery.DataBase := MySQLLOGDBConnection;
         DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
-        dm_MainFunc.LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
-
+        LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
         SQLQuery2.DataBase := MySQLLOGDBConnection;
         CheckTableQuery.DataBase := MySQLLOGDBConnection;
+        //     {$IFDEF WINDOWS}
+        //       TrayIcon1.BalloonHint := rWelcomeMessageMySQL;
+        //        TrayIcon1.ShowBalloonHint;
+        //     {$ELSE}
+        //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
+        //         ['EWLog', rWelcomeMessageMySQL]);
+        //     {$ENDIF}
       finally
       end;
     end
@@ -935,18 +1693,31 @@ begin
         SQLTransaction1.DataBase := SQLiteDBConnection;
         SQLiteDBConnection.Transaction := SQLTransaction1;
         DeleteQSOQuery.DataBase := SQLiteDBConnection;
+        LogBookFieldQuery.DataBase := SQLiteDBConnection;
         LOGBookQuery.DataBase := SQLiteDBConnection;
         SaveQSOQuery.DataBase := SQLiteDBConnection;
         DeleteQSOQuery.DataBase := SQLiteDBConnection;
-        dm_MainFunc.LogBookInfoQuery.DataBase := SQLiteDBConnection;
+        LogBookInfoQuery.DataBase := SQLiteDBConnection;
         SQLQuery2.DataBase := SQLiteDBConnection;
         CheckTableQuery.DataBase := SQLiteDBConnection;
+        //     {$IFDEF WINDOWS}
+        //       TrayIcon1.BalloonHint := rWelcomeMessageSQLIte;
+        //       TrayIcon1.ShowBalloonHint;
+        //     {$ELSE}
+        //       SysUtils.ExecuteProcess('/usr/bin/notify-send',
+        //         ['EWLog', rWelcomeMessageSQLIte]);
+        //     {$ENDIF}
       finally
       end;
     end;
 
-    subModesQuery.DataBase := dm_MainFunc.ServiceDBConnection;
-    BandsQuery.DataBase := dm_MainFunc.ServiceDBConnection;
+    PrefixProvinceQuery.DataBase := ServiceDBConnection;
+    PrefixQuery.DataBase := ServiceDBConnection;
+    PrefixARRLQuery.DataBase := ServiceDBConnection;
+    UniqueCallsQuery.DataBase := ServiceDBConnection;
+    qBands.DataBase := ServiceDBConnection;
+    subModesQuery.DataBase := ServiceDBConnection;
+    BandsQuery.DataBase := ServiceDBConnection;
     try
       modesString := TStringList.Create;
       ComboBox2.Items.Clear;
@@ -954,15 +1725,46 @@ begin
       ComboBox2.Items := modesString;
       modesString.Free;
       subModesQuery.SQL.Text := 'select _id, submode from Modes';
-      dm_MainFunc.LogBookInfoQuery.Active := True;
+      LogBookInfoQuery.Active := True;
+      LogBookFieldQuery.Active := True;
+      PrefixProvinceQuery.Active := True;
+      PrefixARRLQuery.Active := True;
+      UniqueCallsQuery.Active := True;
       subModesQuery.Active := True;
+
       DBLookupComboBox1.KeyValue := CallLogBook;
       SelDB(CallLogBook);
 
-      dm_MainFunc.InitPrefix;
-
+      PrefixProvinceCount := PrefixProvinceQuery.RecordCount;
+      PrefixARRLCount := PrefixARRLQuery.RecordCount;
+      UniqueCallsCount := UniqueCallsQuery.RecordCount;
       subModesCount := subModesQuery.RecordCount;
+
+      PrefixProvinceQuery.First;
+      PrefixARRLQuery.First;
+      UniqueCallsQuery.First;
       subModesQuery.First;
+      for i := 0 to PrefixProvinceCount do
+      begin
+        PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
+        PrefixExpProvinceArray[i].reg := TRegExpr.Create;
+        PrefixExpProvinceArray[i].reg.Expression := PrefixProvinceList.Strings[i];
+        PrefixExpProvinceArray[i].id := PrefixProvinceQuery.FieldByName('_id').AsInteger;
+        PrefixProvinceQuery.Next;
+      end;
+      for i := 0 to PrefixARRLCount do
+      begin
+        PrefixARRLList.Add(PrefixARRLQuery.FieldByName('PrefixList').AsString);
+        PrefixExpARRLArray[i].reg := TRegExpr.Create;
+        PrefixExpARRLArray[i].reg.Expression := PrefixARRLList.Strings[i];
+        PrefixExpARRLArray[i].id := PrefixARRLQuery.FieldByName('_id').AsInteger;
+        PrefixARRLQuery.Next;
+      end;
+      for i := 0 to UniqueCallsCount do
+      begin
+        UniqueCallsList.Add(UniqueCallsQuery.FieldByName('Callsign').AsString);
+        UniqueCallsQuery.Next;
+      end;
 
       for i := 0 to subModesCount do
       begin
@@ -979,12 +1781,84 @@ begin
       ShowMessage(E.ClassName + ':' + E.Message);
       SQLiteDBConnection.Connected := False;
       MySQLLOGDBConnection.Connected := False;
-      dm_MainFunc.FreePrefix;
+      FreeObj;
     end;
   end;
 end;
 
-procedure TMainForm.Clr;
+procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
+begin
+  SQLQuery2.Close;
+  if MySQLLOGDBConnection.Connected then
+  begin
+    SQLQuery2.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
+      QuotedStr(callNameS) +
+      ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC';
+  end
+  else
+  begin
+    SQLQuery2.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
+      'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
+      + LogTable +
+      ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
+      LogTable + ' WHERE `Call` LIKE ' + QuotedStr(callNameS) +
+      ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
+  end;
+  SQLQuery2.Open;
+
+  if (SQLQuery2.RecordCount > 0) and (ind = 1) and (EditButton1.Text <> '') then
+    EditButton1.Color := clMoneyGreen
+  else
+    EditButton1.Color := clDefault;
+
+  //Поиск и заполнение из внутриней базы
+  if (SQLQuery2.RecordCount > 0) and (EditButton1.Text <> '') and (ShowCall = True) then
+  begin
+    if UseCallBook <> 'YES' then
+    begin
+      Edit1.Text := SQLQuery2.FieldByName('OMName').AsString;
+      Edit2.Text := SQLQuery2.FieldByName('OMQTH').AsString;
+      Edit3.Text := SQLQuery2.FieldByName('Grid').AsString;
+      Edit4.Text := SQLQuery2.FieldByName('State').AsString;
+      Edit5.Text := SQLQuery2.FieldByName('IOTA').AsString;
+      Edit6.Text := SQLQuery2.FieldByName('QSLManager').AsString;
+    end
+    else
+    begin
+      if SQLQuery2.FieldByName('OMName').AsString <> '' then
+        Edit1.Text := SQLQuery2.FieldByName('OMName').AsString;
+      if SQLQuery2.FieldByName('OMQTH').AsString <> '' then
+        Edit2.Text := SQLQuery2.FieldByName('OMQTH').AsString;
+      if SQLQuery2.FieldByName('Grid').AsString <> '' then
+        Edit3.Text := SQLQuery2.FieldByName('Grid').AsString;
+      if SQLQuery2.FieldByName('State').AsString <> '' then
+        Edit4.Text := SQLQuery2.FieldByName('State').AsString;
+      if SQLQuery2.FieldByName('IOTA').AsString <> '' then
+        Edit5.Text := SQLQuery2.FieldByName('IOTA').AsString;
+      if SQLQuery2.FieldByName('QSLManager').AsString <> '' then
+        Edit6.Text := SQLQuery2.FieldByName('QSLManager').AsString;
+    end;
+  end;
+end;
+
+
+procedure TMainForm.Clr();
 var
   Centre: TRealPoint;
 begin
@@ -1026,9 +1900,111 @@ begin
   end;
 end;
 
-{procedure TMainForm.SearchCallInCallBook(CallName: string);
+procedure TMainForm.SaveQSO(var SQSO: TQSO);
+begin
+  with MainForm.SaveQSOQuery do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('INSERT INTO ' + SQSO.NLogDB +
+      '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, `QSOSubMode`, ' +
+      '`QSOReportSent`, `QSOReportRecived`, `OMName`, `OMQTH`, `State`, `Grid`, `IOTA`,'
+      +
+      '`QSLManager`, `QSLSent`, `QSLSentAdv`, `QSLSentDate`, `QSLRec`, `QSLRecDate`,' +
+      '`MainPrefix`, `DXCCPrefix`, `CQZone`, `ITUZone`, `QSOAddInfo`, `Marker`, `ManualSet`,'
+      + '`DigiBand`, `Continent`, `ShortNote`, `QSLReceQSLcc`, `LoTWRec`, `LoTWRecDate`,'
+      + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
+      + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
+      + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`, `MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`, `SYNC`)' + 'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,' + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,' + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,' + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,' + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,' + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,' + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON, :SYNC)');
+
+    Params.ParamByName('CallSign').AsString := SQSO.CallSing;
+    Params.ParamByName('QSODate').AsDateTime := SQSO.QSODate;
+    Params.ParamByName('QSOTime').AsString := SQSO.QSOTime;
+    Params.ParamByName('QSOBand').AsString := SQSO.QSOBand;
+    Params.ParamByName('QSOMode').AsString := SQSO.QSOMode;
+    Params.ParamByName('QSOSubMode').AsString := SQSO.QSOSubMode;
+    Params.ParamByName('QSOReportSent').AsString := SQSO.QSOReportSent;
+    Params.ParamByName('QSOReportRecived').AsString := SQSO.QSOReportRecived;
+    Params.ParamByName('OMName').AsString := SQSO.OmName;
+    Params.ParamByName('OMQTH').AsString := SQSO.OmQTH;
+    Params.ParamByName('State').AsString := SQSO.State0;
+    Params.ParamByName('Grid').AsString := SQSO.Grid;
+    Params.ParamByName('IOTA').AsString := SQSO.IOTA;
+    Params.ParamByName('QSLManager').AsString := SQSO.QSLManager;
+    Params.ParamByName('QSLSent').AsString := SQSO.QSLSent;
+    Params.ParamByName('QSLSentAdv').AsString := SQSO.QSLSentAdv;
+
+    if SQSO.QSLSentDate = 'NULL' then
+      Params.ParamByName('QSLSentDate').IsNull
+    else
+      Params.ParamByName('QSLSentDate').AsString := SQSO.QSLSentDate;
+    Params.ParamByName('QSLRec').AsString := SQSO.QSLRec;
+    if SQSO.QSLRecDate = 'NULL' then
+      Params.ParamByName('QSLRecDate').IsNull
+    else
+      Params.ParamByName('QSLRecDate').AsString := SQSO.QSLRecDate;
+
+    Params.ParamByName('MainPrefix').AsString := SQSO.MainPrefix;
+    Params.ParamByName('DXCCPrefix').AsString := SQSO.DXCCPrefix;
+    Params.ParamByName('CQZone').AsString := SQSO.CQZone;
+    Params.ParamByName('ITUZone').AsString := SQSO.ITUZone;
+    Params.ParamByName('QSOAddInfo').AsString := SQSO.QSOAddInfo;
+    Params.ParamByName('Marker').AsString := SQSO.Marker;
+    Params.ParamByName('ManualSet').AsInteger := SQSO.ManualSet;
+    Params.ParamByName('DigiBand').AsString := SQSO.DigiBand;
+    Params.ParamByName('Continent').AsString := SQSO.Continent;
+    Params.ParamByName('ShortNote').AsString := SQSO.ShortNote;
+    Params.ParamByName('QSLReceQSLcc').AsInteger := SQSO.QSLReceQSLcc;
+    if SQSO.LotWRec = '' then
+      Params.ParamByName('LoTWRec').AsInteger := 0
+    else
+      Params.ParamByName('LoTWRec').AsInteger := 1;
+    if SQSO.LotWRecDate = 'NULL' then
+      Params.ParamByName('LoTWRecDate').IsNull
+    else
+      Params.ParamByName('LoTWRecDate').AsString := SQSO.LotWRecDate;
+    Params.ParamByName('QSLInfo').AsString := SQSO.QSLInfo;
+    Params.ParamByName('Call').AsString := SQSO.Call;
+    Params.ParamByName('State1').AsString := SQSO.State1;
+    Params.ParamByName('State2').AsString := SQSO.State2;
+    Params.ParamByName('State3').AsString := SQSO.State3;
+    Params.ParamByName('State4').AsString := SQSO.State4;
+    Params.ParamByName('WPX').AsString := SQSO.WPX;
+    Params.ParamByName('AwardsEx').AsString := SQSO.AwardsEx;
+    Params.ParamByName('ValidDX').AsString := SQSO.ValidDX;
+    Params.ParamByName('SRX').AsInteger := SQSO.SRX;
+    Params.ParamByName('SRX_STRING').AsString := SQSO.SRX_String;
+    Params.ParamByName('STX').AsInteger := SQSO.STX;
+    Params.ParamByName('STX_STRING').AsString := SQSO.STX_String;
+    Params.ParamByName('SAT_NAME').AsString := SQSO.SAT_NAME;
+    Params.ParamByName('SAT_MODE').AsString := SQSO.SAT_MODE;
+    Params.ParamByName('PROP_MODE').AsString := SQSO.PROP_MODE;
+    Params.ParamByName('LoTWSent').AsInteger := SQSO.LotWSent;
+    if SQSO.QSL_RCVD_VIA = '' then
+      Params.ParamByName('QSL_RCVD_VIA').IsNull
+    else
+      Params.ParamByName('QSL_RCVD_VIA').AsString := SQSO.QSL_RCVD_VIA;
+    if SQSO.QSL_SENT_VIA = '' then
+      Params.ParamByName('QSL_SENT_VIA').IsNull
+    else
+      Params.ParamByName('QSL_SENT_VIA').AsString := SQSO.QSL_SENT_VIA;
+    Params.ParamByName('DXCC').AsString := SQSO.DXCC;
+    Params.ParamByName('USERS').AsString := SQSO.USERS;
+    Params.ParamByName('NoCalcDXCC').AsInteger := SQSO.NoCalcDXCC;
+    Params.ParamByName('MY_STATE').AsString := SQSO.My_State;
+    Params.ParamByName('MY_GRIDSQUARE').AsString := SQSO.My_Grid;
+    Params.ParamByName('MY_LAT').AsString := SQSO.My_Lat;
+    Params.ParamByName('MY_LON').AsString := SQSO.My_Lon;
+    Params.ParamByName('SYNC').AsInteger := SQSO.SYNC;
+    ExecSQL;
+  end;
+  MainForm.SQLTransaction1.Commit;
+end;
+
+procedure TMainForm.SearchCallInCallBook(CallName: string);
 begin
   try
+    Application.ProcessMessages;
     if (CallBookLiteConnection.Connected = True) or
       (SearchCallBookQuery.Active = True) then
     begin
@@ -1050,9 +2026,9 @@ begin
 
   finally
   end;
-end; }
+end;
 
-procedure TMainForm.SelectLogTable(LogDB: string);
+procedure TMainForm.SelectLogDatabase(LogDB: string);
 begin
   LogBookQuery.Close;
   LogBookQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LogDB;
@@ -1094,15 +2070,531 @@ begin
   lastID := LOGBookQuery.RecNo;
   StatusBar1.Panels.Items[1].Text :=
     'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
+ // SetGrid;
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
+var
+  ver_table: string;
 begin
-  dm_MainFunc.GetLogBookTable(calllbook);
-  MainForm.SelectLogTable(LBParam.LogTable);
-  dm_MainFunc.SetGrid(DBGrid1);
-  dm_MainFunc.SetGrid(DBGrid2);
+  ver_table := '';
+  CheckTableQuery.Close;
+
+  if calllbook = '' then
+    CheckTableQuery.SQL.Text := ('SELECT * FROM LogBookInfo LIMIT 1')
+  else
+    CheckTableQuery.SQL.Text :=
+      ('SELECT * FROM LogBookInfo WHERE CallName = ' + QuotedStr(calllbook));
+  CheckTableQuery.Open;
+
+  try
+    if CheckTableQuery.FindField('Table_version') = nil then
+    begin
+      CheckTableQuery.Close;
+      CheckTableQuery.SQL.Text :=
+        'ALTER TABLE LogBookInfo ADD COLUMN Table_version varchar(10);';
+      CheckTableQuery.ExecSQL;
+      SQLTransaction1.Commit;
+    end;
+
+    if calllbook = '' then
+      CheckTableQuery.SQL.Text := ('SELECT * FROM LogBookInfo LIMIT 1')
+    else
+      CheckTableQuery.SQL.Text :=
+        ('SELECT * FROM LogBookInfo WHERE CallName = ' + QuotedStr(calllbook));
+    CheckTableQuery.Open;
+    ver_table := CheckTableQuery.FieldByName('Table_version').AsString;
+
+    if ver_table <> Table_version then
+    begin
+      if CheckTableQuery.FindField('ClubLog_User') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN ClubLog_User varchar(20);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('ClubLog_Password') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN ClubLog_Password varchar(50);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('AutoClubLog') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN AutoClubLog tinyint(1);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('QRZCOM_User') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN QRZCOM_User varchar(20);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('QRZCOM_Password') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN QRZCOM_Password varchar(50);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('AutoQRZCom') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN AutoQRZCom tinyint(1);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('LoTW_User') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_User varchar(20);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('LoTW_Password') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_Password varchar(50);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('HamQTHLogin') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN HamQTHLogin varchar(20);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('HamQTHPassword') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN HamQTHPassword varchar(50);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+
+      if CheckTableQuery.FindField('AutoHamQTH') = nil then
+      begin
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'ALTER TABLE LogBookInfo ADD COLUMN AutoHamQTH tinyint(1);';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+    end;
+  except
+    on E: ESQLDatabaseError do
+  end;
+
+  with MainForm.LogBookInfoQuery do
+  begin
+    Close;
+    SQL.Clear;
+    if calllbook = '' then
+      SQL.Add('SELECT * FROM LogBookInfo LIMIT 1')
+    else
+      SQL.Add('select * from LogBookInfo where CallName = "' + calllbook + '"');
+    Open;
+
+    SetDiscription := MainForm.LogBookInfoQuery.FieldByName('Discription').AsString;
+    SetCallName := MainForm.LogBookInfoQuery.FieldByName('CallName').AsString;
+    SetNameC := MainForm.LogBookInfoQuery.FieldByName('Name').AsString;
+    SetQTH := MainForm.LogBookInfoQuery.FieldByName('QTH').AsString;
+    SetITU := MainForm.LogBookInfoQuery.FieldByName('ITU').AsString;
+    SetLoc := MainForm.LogBookInfoQuery.FieldByName('Loc').AsString;
+    SetCQ := MainForm.LogBookInfoQuery.FieldByName('CQ').AsString;
+    SetLat := MainForm.LogBookInfoQuery.FieldByName('Lat').AsString;
+    SetLon := MainForm.LogBookInfoQuery.FieldByName('Lon').AsString;
+    SetQSLInfo := MainForm.LogBookInfoQuery.FieldByName('QSLInfo').AsString;
+    LogTable := MainForm.LogBookInfoQuery.FieldByName('LogTable').AsString;
+    eQSLccLogin := MainForm.LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
+    eQSLccPassword := MainForm.LogBookInfoQuery.FieldByName('EQSLPassword').AsString;
+    LotWLogin := MainForm.LogBookInfoQuery.FieldByName('LoTW_User').AsString;
+    LotWPassword := MainForm.LogBookInfoQuery.FieldByName('LoTW_Password').AsString;
+    AutoEQSLcc := MainForm.LogBookInfoQuery.FieldByName('AutoEQSLcc').AsBoolean;
+    HRDLogin := MainForm.LogBookInfoQuery.FieldByName('HRDLogLogin').AsString;
+    HRDCode := MainForm.LogBookInfoQuery.FieldByName('HRDLogPassword').AsString;
+    AutoHRDLog := MainForm.LogBookInfoQuery.FieldByName('AutoHRDLog').AsBoolean;
+
+    HamQTHLogin := MainForm.LogBookInfoQuery.FieldByName('HamQTHLogin').AsString;
+    HamQTHPassword := MainForm.LogBookInfoQuery.FieldByName('HamQTHPassword').AsString;
+    AutoHamQTH := MainForm.LogBookInfoQuery.FieldByName('AutoHamQTH').AsBoolean;
+
+    ClubLogLogin := MainForm.LogBookInfoQuery.FieldByName('ClubLog_User').AsString;
+    ClubLogPassword := MainForm.LogBookInfoQuery.FieldByName(
+      'ClubLog_Password').AsString;
+    AutoClubLog := MainForm.LogBookInfoQuery.FieldByName('AutoClubLog').AsBoolean;
+
+    QRZComLogin := MainForm.LogBookInfoQuery.FieldByName('QRZCOM_User').AsString;
+    QRZComPassword := MainForm.LogBookInfoQuery.FieldByName(
+      'QRZCOM_Password').AsString;
+    AutoQRZCom := MainForm.LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
+
+    CheckTableQuery.Close;
+    CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable + ' LIMIT 1';
+    CheckTableQuery.Open;
+
+    if ver_table <> Table_version then
+    begin
+      try
+        try
+          try
+            if MainForm.MySQLLOGDBConnection.Connected then
+              MainForm.MySQLLOGDBConnection.ExecuteDirect(
+                'ALTER TABLE ' + LogTable +
+                ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)')
+            else
+            begin
+              MainForm.SQLiteDBConnection.ExecuteDirect(
+                'DROP INDEX IF EXISTS Dupe_index');
+              MainForm.SQLiteDBConnection.ExecuteDirect(
+                'CREATE UNIQUE INDEX Dupe_index ON ' + LogTable +
+                '(CallSign, QSODate, QSOTime, QSOBand)');
+            end;
+          except
+            on E: ESQLDatabaseError do
+            begin
+              if E.ErrorCode = 1091 then
+                MainForm.MySQLLOGDBConnection.ExecuteDirect('ALTER TABLE ' +
+                  LogTable +
+                  ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
+            end;
+          end;
+
+          if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
+          begin
+            CheckTableQuery.Close;
+            CheckTableQuery.SQL.Text :=
+              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_GRIDSQUARE varchar(15);';
+            CheckTableQuery.ExecSQL;
+            SQLTransaction1.Commit;
+          end;
+
+          if CheckTableQuery.FindField('MY_LAT') = nil then
+          begin
+            CheckTableQuery.Close;
+            CheckTableQuery.SQL.Text :=
+              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LAT varchar(15);';
+            CheckTableQuery.ExecSQL;
+            SQLTransaction1.Commit;
+          end;
+
+          if CheckTableQuery.FindField('MY_LON') = nil then
+          begin
+            CheckTableQuery.Close;
+            CheckTableQuery.SQL.Text :=
+              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LON varchar(15);';
+            CheckTableQuery.ExecSQL;
+            SQLTransaction1.Commit;
+          end;
+
+          if CheckTableQuery.FindField('SYNC') = nil then
+          begin
+            CheckTableQuery.Close;
+            CheckTableQuery.SQL.Text :=
+              'ALTER TABLE ' + LogTable + ' ADD COLUMN SYNC tinyint(1) DEFAULT 0;';
+            CheckTableQuery.ExecSQL;
+            SQLTransaction1.Commit;
+          end;
+
+          if CheckTableQuery.FindField('MY_STATE') = nil then
+          begin
+            CheckTableQuery.Close;
+            CheckTableQuery.SQL.Text :=
+              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_STATE varchar(15);';
+            CheckTableQuery.ExecSQL;
+            SQLTransaction1.Commit;
+          end;
+
+          if CheckTableQuery.FindField('QSOSubMode') = nil then
+          begin
+            CheckTableQuery.Close;
+            CheckTableQuery.SQL.Text :=
+              'ALTER TABLE ' + LogTable + ' ADD COLUMN QSOSubMode varchar(15);';
+            CheckTableQuery.ExecSQL;
+            SQLTransaction1.Commit;
+          end;
+        except
+          on E: ESQLDatabaseError do
+        end;
+      finally
+        CheckTableQuery.Close;
+        CheckTableQuery.SQL.Text :=
+          'UPDATE LogBookInfo SET Table_version = ' + QuotedStr(Table_version) +
+          ' WHERE CallName = "' + calllbook + '"';
+        CheckTableQuery.ExecSQL;
+        SQLTransaction1.Commit;
+      end;
+    end;
+    MainForm.SelectLogDatabase(LogTable);
+  end;
+  CheckTableQuery.Close;
+  SetGrid();
+  LogBookFieldQuery.Open;
   DBLookupComboBox1.KeyValue := calllbook;
+end;
+
+function TMainForm.SearchPrefix(CallName: string; gridloc: boolean): boolean;
+var
+  i, j: integer;
+  R: extended;
+  la, lo: currency;
+  azim, qra, loc: string;
+begin
+  Result := False;
+  loc := '';
+  qra := '';
+  azim := '';
+  la := 0;
+  lo := 0;
+  if UniqueCallsList.IndexOf(CallName) > -1 then
+  begin
+    with MainForm.PrefixQuery do
+    begin
+      Close;
+      SQL.Clear;
+      SQL.Add('select * from UniqueCalls where _id = "' +
+        IntToStr(UniqueCallsList.IndexOf(CallName)) + '"');
+      Open;
+      MainForm.Label33.Caption := FieldByName('Country').AsString;
+      MainForm.Label34.Caption := FieldByName('ARRLPrefix').AsString;
+      MainForm.Label38.Caption := FieldByName('Prefix').AsString;
+      MainForm.Label45.Caption := FieldByName('CQZone').AsString;
+      MainForm.Label47.Caption := FieldByName('ITUZone').AsString;
+      MainForm.Label43.Caption := FieldByName('Continent').AsString;
+      MainForm.Label40.Caption := FieldByName('Latitude').AsString;
+      MainForm.Label42.Caption := FieldByName('Longitude').AsString;
+      CallLAT := FieldByName('Latitude').AsString;
+      CallLON := FieldByName('Longitude').AsString;
+      DXCCNum := FieldByName('DXCC').AsInteger;
+    end;
+
+    if gridloc = True then
+      loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+
+    la1 := CallLAT;
+    lo1 := CallLON;
+
+    if (UTF8Pos('W', lo1) <> 0) then
+      lo1 := '-' + lo1;
+    if (UTF8Pos('S', la1) <> 0) then
+      la1 := '-' + la1;
+    Delete(la1, length(la1), 1);
+    Delete(lo1, length(lo1), 1);
+
+    if gridloc = True then
+    begin
+      if MainForm.Edit3.Text <> '' then
+        loc := MainForm.Edit3.Text;
+    end
+    else
+      loc := MainForm.Edit3.Text;
+
+    if (loc <> '') and dmFunc.IsLocOK(loc) then
+    begin
+      dmFunc.CoordinateFromLocator(loc, la, lo);
+
+      la1 := CurrToStr(la);
+      lo1 := CurrToStr(lo);
+
+      if loc = SetLoc then
+        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
+      else
+        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
+    end
+    else
+    begin
+      R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
+        StrToFloat(lo1)) / 1000;
+    end;
+    MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
+    ///////АЗИМУТ
+    dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
+      strtofloat(lo1), qra, azim);
+    MainForm.Label32.Caption := azim;
+    Result := True;
+    exit;
+  end;
+
+  for i := 0 to PrefixProvinceCount do
+  begin
+    if (PrefixExpProvinceArray[i].reg.Exec(CallName)) and
+      (PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
+    begin
+      with MainForm.PrefixQuery do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('select * from Province where _id = "' +
+          IntToStr(PrefixExpProvinceArray[i].id) + '"');
+        Open;
+        MainForm.Label33.Caption := FieldByName('Country').AsString;
+        MainForm.Label34.Caption := FieldByName('ARRLPrefix').AsString;
+        MainForm.Label38.Caption := FieldByName('Prefix').AsString;
+        MainForm.Label45.Caption := FieldByName('CQZone').AsString;
+        MainForm.Label47.Caption := FieldByName('ITUZone').AsString;
+        MainForm.Label43.Caption := FieldByName('Continent').AsString;
+        MainForm.Label40.Caption := FieldByName('Latitude').AsString;
+        MainForm.Label42.Caption := FieldByName('Longitude').AsString;
+        CallLAT := FieldByName('Latitude').AsString;
+        CallLON := FieldByName('Longitude').AsString;
+        DXCCNum := FieldByName('DXCC').AsInteger;
+        timedif := FieldByName('TimeDiff').AsInteger;
+      end;
+
+      if gridloc = True then
+        loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+
+      la1 := CallLAT;
+      lo1 := CallLON;
+
+      if (UTF8Pos('W', lo1) <> 0) then
+        lo1 := '-' + lo1;
+      if (UTF8Pos('S', la1) <> 0) then
+        la1 := '-' + la1;
+      Delete(la1, length(la1), 1);
+      Delete(lo1, length(lo1), 1);
+
+      if gridloc = True then
+      begin
+        if MainForm.Edit3.Text <> '' then
+          loc := MainForm.Edit3.Text;
+      end
+      else
+        loc := MainForm.Edit3.Text;
+
+      if (loc <> '') and dmFunc.IsLocOK(loc) then
+      begin
+        dmFunc.CoordinateFromLocator(loc, la, lo);
+
+        la1 := CurrToStr(la);
+        lo1 := CurrToStr(lo);
+
+        if loc = SetLoc then
+          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
+        else
+          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
+      end
+      else
+      begin
+        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
+          StrToFloat(lo1)) / 1000;
+      end;
+      MainForm.Label37.Caption := FormatFloat('0.00', R) + ' КМ';
+      ///////АЗИМУТ
+      dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
+        strtofloat(lo1), qra, azim);
+      MainForm.Label32.Caption := azim;
+      Result := True;
+      exit;
+    end;
+  end;
+
+  for j := 0 to PrefixARRLCount do
+  begin
+    if (PrefixExpARRLArray[j].reg.Exec(CallName)) and
+      (PrefixExpARRLArray[j].reg.Match[0] = CallName) then
+    begin
+      with MainForm.PrefixQuery do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('select * from CountryDataEx where _id = "' +
+          IntToStr(PrefixExpARRLArray[j].id) + '"');
+        Open;
+        if (FieldByName('Status').AsString = 'Deleted') then
+        begin
+          PrefixExpARRLArray[j].reg.ExecNext;
+          Exit;
+        end;
+      end;
+      MainForm.Label33.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
+      MainForm.Label34.Caption :=
+        MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+      MainForm.Label38.Caption :=
+        MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
+      MainForm.Label45.Caption := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
+      MainForm.Label47.Caption := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
+      MainForm.Label43.Caption :=
+        MainForm.PrefixQuery.FieldByName('Continent').AsString;
+      MainForm.Label40.Caption :=
+        MainForm.PrefixQuery.FieldByName('Latitude').AsString;
+      CallLAT := MainForm.PrefixQuery.FieldByName('Latitude').AsString;
+      MainForm.Label42.Caption :=
+        MainForm.PrefixQuery.FieldByName('Longitude').AsString;
+
+      CallLON := MainForm.PrefixQuery.FieldByName('Longitude').AsString;
+      DXCCNum := MainForm.PrefixQuery.FieldByName('DXCC').AsInteger;
+      timedif := MainForm.PrefixQuery.FieldByName('TimeDiff').AsInteger;
+      loc := MainForm.DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+
+      la1 := CallLAT;
+      lo1 := CallLON;
+
+      if (UTF8Pos('W', lo1) <> 0) then
+        lo1 := '-' + lo1;
+      if (UTF8Pos('S', la1) <> 0) then
+        la1 := '-' + la1;
+      Delete(la1, length(la1), 1);
+      Delete(lo1, length(lo1), 1);
+
+      loc := MainForm.Edit3.Text;
+      if gridloc = True then
+      begin
+        if MainForm.Edit3.Text <> '' then
+          loc := MainForm.Edit3.Text;
+      end;
+
+      if (loc <> '') and dmFunc.IsLocOK(loc) then
+      begin
+        dmFunc.CoordinateFromLocator(loc, la, lo);
+
+        la1 := CurrToStr(la);
+        lo1 := CurrToStr(lo);
+        if loc = SetLoc then
+          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 10000000
+        else
+          R := dmFunc.Vincenty(QTH_LAT, QTH_LON, la, lo) / 1000;
+      end
+      else
+      begin
+        R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la1),
+          StrToFloat(lo1)) / 1000;
+      end;
+
+      MainForm.Label37.Caption := FormatFloat('0.00', R) + ' KM';
+      ////Азимут
+      dmFunc.DistanceFromCoordinate(SetLoc, StrToFloat(la1),
+        strtofloat(lo1), qra, azim);
+      MainForm.Label32.Caption := azim;// +'/'+azim2;
+      Result := True;
+      exit;
+    end;
+  end;
 end;
 
 procedure TMainForm.EditButton1Change(Sender: TObject);
@@ -1111,11 +2603,9 @@ var
   Lat, Long: real;
   Error: integer;
   engText: string;
+  foundPrefix: boolean;
   DBand, DMode, DCall: boolean;
   QSL: integer;
-  OMName, OMQTH, Grid, State, IOTA, QSLManager: string;
-  setColors: TColor;
-  Lat1, Lon1: string;
 begin
   DBand := False;
   DMode := False;
@@ -1127,15 +2617,11 @@ begin
 
   if Length(EditButton1.Text) >= 2 then
   begin
-    dm_MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text,
-      DMode, DBand, DCall);
-    dm_MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
-    Label53.Visible := dm_MainFunc.FindWorkedCall(EditButton1.Text,
-      ComboBox1.Text, ComboBox2.Text);
-    Label54.Visible := dm_MainFunc.WorkedQSL(EditButton1.Text,
-      ComboBox1.Text, ComboBox2.Text);
-    Label55.Visible := dm_MainFunc.WorkedLoTW(EditButton1.Text,
-      ComboBox1.Text, ComboBox2.Text);
+    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
+    CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
+    Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    Label54.Visible := WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    Label55.Visible := WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;
@@ -1179,10 +2665,9 @@ begin
 
   if EditFlag then
     Exit;
-
   if EditButton1.Text = '' then
   begin
-    Clr;
+    clr();
     label32.Caption := '.......';
     label33.Caption := '.......';
     label34.Caption := '.......';
@@ -1193,59 +2678,27 @@ begin
     label45.Caption := '..';
     label47.Caption := '..';
     label42.Caption := '.......';
-    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
-    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
     Exit;
   end;
 
-  //  if (CallBookLiteConnection.Connected) and
-  //    ((IniF.ReadString('SetLog', 'Sprav', '') = 'False') or
-  //    (IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
-  //   SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
+  if (CallBookLiteConnection.Connected) and
+    ((IniF.ReadString('SetLog', 'Sprav', '') = 'False') or
+    (IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
+    SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
 
-  //  if not CheckBox6.Checked then
-  //    SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
+  if not CheckBox6.Checked then
+    SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
 
-  dm_MainFunc.SearchCallInLog(dmFunc.ExtractCallsign(EditButton1.Text), setColors,
-    OMName, OMQTH, Grid, State, IOTA, QSLManager, SQLQuery2);
-  EditButton1.Color := setColors;
-  dm_MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
-  dm_MainFunc.ShowOldQSO(DBGrid2);
+  foundPrefix := SearchPrefix(EditButton1.Text, False);
+  SelectQSO(False);
 
-  Edit1.Text := OMName;
-  Edit2.Text := OMQTH;
-  Edit3.Text := Grid;
-  Edit4.Text := State;
-  Edit5.Text := IOTA;
-  Edit6.Text := QSLManager;
-  Label33.Caption := PFXR.Country;
-  Label34.Caption := PFXR.ARRLPrefix;
-  Label38.Caption := PFXR.Prefix;
-  Label45.Caption := PFXR.CQZone;
-  Label47.Caption := PFXR.ITUZone;
-  Label43.Caption := PFXR.Continent;
-  Label40.Caption := PFXR.Latitude;
-  Label42.Caption := PFXR.Longitude;
-  Label37.Caption := PFXR.Distance;
-  Label32.Caption := PFXR.Azimuth;
-  Label17.Caption := OldRec.Num;
-  Label18.Caption := OldRec.Date;
-  Label19.Caption := OldRec.Time;
-  Label20.Caption := OldRec.Frequency;
-  Label21.Caption := OldRec.Mode;
-  Label22.Caption := OldRec.Name;
-
-  dm_MainFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat1, Lon1);
-  Earth.PaintLine(Lat1, Lon1);
-  Earth.PaintLine(Lat1, Lon1);
-
-  if CheckBox3.Checked then
+  if foundPrefix and CheckBox3.Checked then
   begin
-    val(Lon1, Long, Error);
+    val(lo1, Long, Error);
     if Error = 0 then
     begin
       Centre.Lon := Long;
-      val(Lat1, Lat, Error);
+      val(la1, Lat, Error);
       if Error = 0 then
       begin
         Centre.Lat := Lat;
@@ -1271,7 +2724,7 @@ begin
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-        + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `Call` LIKE ' +
+        + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
         QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
     end
     else
@@ -1285,7 +2738,7 @@ begin
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-        + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `Call` LIKE ' +
+        + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `Call` LIKE ' +
         QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
     end;
     LogBookQuery.Open;
@@ -1505,8 +2958,7 @@ begin
     IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
-  dm_MainFunc.SetGrid(DBGrid1);
-  dm_MainFunc.SetGrid(DBGrid2);
+  SetGrid();
 end;
 
 procedure TMainForm.DBGrid1ColumnSized(Sender: TObject);
@@ -1521,8 +2973,7 @@ begin
     else
       IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
   end;
-  dm_MainFunc.SetGrid(DBGrid1);
-  dm_MainFunc.SetGrid(DBGrid2);
+  SetGrid();
 end;
 
 procedure TMainForm.CheckBox1Change(Sender: TObject);
@@ -1570,7 +3021,7 @@ begin
     MapView1.Visible := True;
     MapView1.Parent := Panel10;
     MapView1.Enabled := True;
-    Earth.Hide;
+    Earth.Close;
   end
   else
   begin
@@ -1586,9 +3037,8 @@ end;
 procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
-    SelectLogTable(LBParam.LogTable);
-  dm_MainFunc.SetGrid(DBGrid1);
-  dm_MainFunc.SetGrid(DBGrid2);
+    SelectLogDatabase(LogTable);
+  SetGrid;
 end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
@@ -2224,7 +3674,7 @@ begin
         exit;
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
-    Mode := dm_MainFunc.GetModeFromFreq(FloatToStr(freqMhz));
+    Mode := GetModeFromFreq(FloatToStr(freqMhz));
     if Length(Band) > 0 then
     begin
       if (not ShowSpotBand) or (not ShowSpotMode) then
@@ -2280,9 +3730,9 @@ begin
         Data^.Comment := Comment;
         Data^.Time := Time;
         Data^.Loc := Loc;
-        Data^.Country := dm_MainFunc.SearchCountry(DX, False);
+        Data^.Country := SearchCountry(DX, False);
         VirtualStringTree1.Expanded[XNode^.Parent] := ClusterFilter.CheckBox1.Checked;
-        dm_MainFunc.FindCountryFlag(Data^.Country);
+        FindCountryFlag(Data^.Country);
       end
       else
       begin
@@ -2296,8 +3746,8 @@ begin
         Data^.Comment := Comment;
         Data^.Time := Time;
         Data^.Loc := Loc;
-        Data^.Country := dm_MainFunc.SearchCountry(DX, False);
-        dm_MainFunc.FindCountryFlag(Data^.Country);
+        Data^.Country := SearchCountry(DX, False);
+        FindCountryFlag(Data^.Country);
       end;
     end;
   end;
@@ -2314,9 +3764,9 @@ end;
 
 procedure TMainForm.EditButton1ButtonClick(Sender: TObject);
 begin
- { if (CallBookLiteConnection.Connected = True) and
+  if (CallBookLiteConnection.Connected = True) and
     (IniF.ReadString('SetLog', 'Sprav', '') = 'False') then
-    SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));}
+    SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
   if (CallBookLiteConnection.Connected = False) and
     (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then
   begin
@@ -2328,40 +3778,40 @@ procedure TMainForm.InitClusterINI;
 var
   i, j: integer;
 begin
-  LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
-  PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
+   LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
+      PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
 
-  for i := 1 to 9 do
-  begin
-    TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' + IntToStr(i),
-      'FREERC -> dx.feerc.ru:8000');
-  end;
-  TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
-    'FREERC -> dx.freerc.ru:8000');
-  ComboBox3.Items.Clear;
-  ComboBox3.Items.AddStrings(TelStr);
-  if ComboBox3.Items.IndexOf(TelName) > -1 then
-    ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
-  else
-    ComboBox3.ItemIndex := 0;
+      for i := 1 to 9 do
+      begin
+        TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' +
+          IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
+      end;
+      TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
+        'FREERC -> dx.freerc.ru:8000');
+      ComboBox3.Items.Clear;
+      ComboBox3.Items.AddStrings(TelStr);
+      if ComboBox3.Items.IndexOf(TelName) > -1 then
+        ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
+      else
+        ComboBox3.ItemIndex := 0;
 
-  ComboBox8.Items.Clear;
-  ComboBox8.Items.AddStrings(TelStr);
-  if ComboBox8.Items.IndexOf(TelName) > -1 then
-    ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
-  else
-    ComboBox8.ItemIndex := 0;
+      ComboBox8.Items.Clear;
+      ComboBox8.Items.AddStrings(TelStr);
+      if ComboBox8.Items.IndexOf(TelName) > -1 then
+        ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
+      else
+        ComboBox8.ItemIndex := 0;
 
-  i := pos('>', ComboBox3.Text);
-  j := pos(':', ComboBox3.Text);
-  //Сервер
-  HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
-  Delete(HostCluster, 1, 1);
-  //Порт
-  PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
-  //Автозапуск кластера
-  if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
-    SpeedButton18.Click;
+      i := pos('>', ComboBox3.Text);
+      j := pos(':', ComboBox3.Text);
+      //Сервер
+      HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
+      Delete(HostCluster, 1, 1);
+      //Порт
+      PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
+       //Автозапуск кластера
+      if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
+        SpeedButton18.Click;
 end;
 
 procedure TMainForm.InitIni;
@@ -2465,6 +3915,7 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 var
+  PathMyDoc: string;
   Lang: string = '';
   FallbackLang: string = '';
   i: integer;
@@ -2477,12 +3928,22 @@ begin
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
 
-  MapView1.CachePath := FilePATH + 'cache' + DirectorySeparator;
-  Inif := TINIFile.Create(FilePATH + 'settings.ini');
+  {$IFDEF UNIX}
+  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+  {$ELSE}
+  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+  {$ENDIF UNIX}
+
+  if not DirectoryExists(PathMyDoc) then
+    CreateDir(PathMyDoc);
+
+  MapView1.CachePath := PathMyDoc + 'cache' + DirectorySeparator;
+  Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
   Language := IniF.ReadString('SetLog', 'Language', '');
   if Language = '' then
     Language := FallbackLang;
-  SetDefaultLang(Language, FilePATH + DirectorySeparator + 'locale');
+  SetDefaultLang(Language, PathMyDoc + DirectorySeparator + 'locale');
 
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
@@ -2543,8 +4004,7 @@ begin
     TRXForm.Show;
 
   UnUsIndex := 0;
-  dm_MainFunc.SetGrid(DBGrid1);
-  dm_MainFunc.SetGrid(DBGrid2);
+  SetGrid;
   SetDXColumns(False);
 
   if ShowTRXForm = False then
@@ -2570,7 +4030,7 @@ begin
   end;
   FlagList.Free;
   FlagSList.Free;
-  dm_MainFunc.FreePrefix;
+  FreeObj;
   LTCPComponent1.Free;
   LUDPComponent1.Free;
   TrayIcon1.Free;
@@ -2614,19 +4074,18 @@ begin
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
   {$ELSE}
-  if not dmFunc.CheckSQLiteVersion(sqlite_version) then
-  begin
-    if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
+    if not dmFunc.CheckSQLiteVersion(sqlite_version) then begin
+      if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
     begin
       if Length(s) < 5 then
-        s := '/lib/';
-    end;
-    if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
+      s:='/lib/'
+      end;
+      if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
       rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
       rPath + ':' + #10#13 + s), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
-  end;
+    end;
   {$ENDIF}
 
   if useMAPS = 'YES' then
@@ -2673,11 +4132,6 @@ begin
   end;
 end;
 
-procedure TMainForm.LTCPComponent1Connect(aSocket: TLSocket);
-begin
-  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ': Connected';
-end;
-
 procedure TMainForm.LTCPComponent1Disconnect(aSocket: TLSocket);
 begin
   MainForm.StatusBar1.Panels.Items[0].Text := rDone;
@@ -2699,16 +4153,23 @@ begin
     res := res + AdifMobileString[0];
     AdifMobileString.Delete(0);
   end;
-  res := res + 'DataSyncSuccess:' + LBParam.CallSign + #13;
+  res := res + 'DataSyncSuccess:' + SetCallName + #13;
   Result := res;
   AdifMobileString.Free;
 end;
 
 procedure TMainForm.LTCPComponent1Receive(aSocket: TLSocket);
 var
-  mess, rec_call, s: string;
+  mess, rec_call, PathMyDoc, s: string;
   AdifFile: TextFile;
 begin
+    {$IFDEF UNIX}
+  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    {$ENDIF UNIX}
+
   AdifDataSyncAll := False;
   AdifDataSyncDate := False;
 
@@ -2717,7 +4178,7 @@ begin
     if Pos('DataSyncAll', mess) > 0 then
     begin
       rec_call := dmFunc.par_str(mess, 2);
-      if Pos(LBParam.CallSign, rec_call) > 0 then
+      if Pos(SetCallName, rec_call) > 0 then
       begin
         AdifMobileString := TStringList.Create;
         exportAdifForm.ExportToMobile('All', '');
@@ -2731,7 +4192,7 @@ begin
     begin
       AdifDataDate := dmFunc.par_str(mess, 2);
       rec_call := dmFunc.par_str(mess, 3);
-      if Pos(LBParam.CallSign, rec_call + #13) > 0 then
+      if Pos(SetCallName, rec_call + #13) > 0 then
       begin
         AdifMobileString := TStringList.Create;
         exportAdifForm.ExportToMobile('Date', AdifDataDate);
@@ -2744,7 +4205,7 @@ begin
     if Pos('DataSyncClientStart', mess) > 0 then
     begin
       rec_call := dmFunc.par_str(mess, 2);
-      if Pos(LBParam.CallSign, rec_call) > 0 then
+      if Pos(SetCallName, rec_call) > 0 then
       begin
         Stream := TMemoryStream.Create;
         AdifFromMobileSyncStart := True;
@@ -2765,8 +4226,8 @@ begin
     begin
       AdifFromMobileSyncStart := False;
       ImportAdifMobile := True;
-      Stream.SaveToFile(FilePATH + 'ImportMobile.adi');
-      AssignFile(AdifFile, FilePATH + 'ImportMobile.adi');
+      Stream.SaveToFile(PathMyDoc + 'ImportMobile.adi');
+      AssignFile(AdifFile, PathMyDoc + 'ImportMobile.adi');
       Reset(AdifFile);
       while not EOF(AdifFile) do
       begin
@@ -2779,7 +4240,7 @@ begin
       Writeln(AdifFile, s);
       CloseFile(AdifFile);
 
-      ImportADIFForm.ADIFImport(FilePATH + 'ImportMobile.adi', True);
+      ImportADIFForm.ADIFImport(PathMyDoc + 'ImportMobile.adi', True);
       Stream.Free;
       ImportAdifMobile := False;
     end;
@@ -2832,7 +4293,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `QSLRec` LIKE ' +
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLRec` LIKE ' +
       QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
   end
   else
@@ -2846,7 +4307,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `QSLRec` LIKE ' +
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLRec` LIKE ' +
       QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
@@ -2869,7 +4330,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `QSLSent` LIKE ' +
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSent` LIKE ' +
       QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
   end
   else
@@ -2883,7 +4344,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `QSLSent` LIKE ' +
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSent` LIKE ' +
       QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
@@ -2906,7 +4367,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `QSLSent` LIKE ' +
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSent` LIKE ' +
       QuotedStr(IntToStr(0)) + ' ORDER BY `UnUsedIndex`' + '');
   end
   else
@@ -2920,7 +4381,7 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable + ' WHERE `QSLSent` LIKE ' +
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSent` LIKE ' +
       QuotedStr(IntToStr(0)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
@@ -2943,8 +4404,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable +
-      ' WHERE `QSLSentAdv` LIKE ' + QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
+      QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
   end
   else
   begin
@@ -2957,8 +4418,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable +
-      ' WHERE `QSLSentAdv` LIKE ' + QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
+      QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
   //LOGBookQuery.Last;
@@ -2981,8 +4442,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable +
-      ' WHERE `QSLSentAdv` LIKE ' + QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
+      QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
   end
   else
   begin
@@ -2995,8 +4456,8 @@ begin
       + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LBParam.LogTable +
-      ' WHERE `QSLSentAdv` LIKE ' + QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
+      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
+      QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
   // LOGBookQuery.Last;
@@ -3004,7 +4465,7 @@ end;
 
 procedure TMainForm.MenuItem109Click(Sender: TObject);
 begin
-  SelectLogTable(LBParam.LogTable);
+  SelectLogDatabase(LogTable);//, fAllRecords, offsetRec);
 end;
 
 //QSL получена и отправлена на печать
@@ -3022,7 +4483,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSLRec').Value := 1;
         Params.ParamByName('QSLRecDate').AsDate := Now;
@@ -3123,10 +4584,17 @@ end;
 procedure TMainForm.LangItemClick(Sender: TObject);
 var
   MenuItem: TMenuItem;
+  PathMyDoc: string;
 begin
+   {$IFDEF UNIX}
+  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
+    {$ENDIF UNIX}
   MenuItem := (Sender as TMenuItem);
-  SetDefaultLang(dm_MainFunc.FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
-  Language := dm_MainFunc.FindISOCountry(MenuItem.Caption);
+  SetDefaultLang(FindISOCountry(MenuItem.Caption), PathMyDoc + 'locale');
+  Language := FindISOCountry(MenuItem.Caption);
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
   ComboBox7.ItemIndex := 3;
@@ -3137,22 +4605,29 @@ var
   LangItem: TMenuItem;
   LangList: TStringList;
   i: integer;
+  PathMyDoc: string;
 begin
+     {$IFDEF UNIX}
+  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
+    {$ELSE}
+  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    {$ENDIF UNIX}
   for i := MainForm.ComponentCount - 1 downto 0 do
     if (MainForm.Components[i] is TMenuItem) then
       if (MainForm.Components[i] as TMenuItem).Tag = 99 then
         (MainForm.Components[i] as TMenuItem).Free;
 
   LangList := TStringList.Create;
-  dm_MainFunc.FindLanguageFiles(FilePATH + 'locale', LangList);
+  FindLanguageFiles(PathMyDoc + 'locale', LangList);
   for i := 0 to LangList.Count - 1 do
   begin
     LangItem := TMenuItem.Create(Self);
     LangItem.Name := 'LangItem' + IntToStr(i);
-    LangItem.Caption := dm_MainFunc.FindCountry(LangList.Strings[i]);
+    LangItem.Caption := FindCountry(LangList.Strings[i]);
     LangItem.OnClick := @LangItemClick;
     LangItem.Tag := 99;
-    if dm_MainFunc.FindCountry(LangList.Strings[i]) <> 'None' then
+    if FindCountry(LangList.Strings[i]) <> 'None' then
       MenuItem116.Insert(i, LangItem);
   end;
   LangList.Free;
@@ -3174,7 +4649,7 @@ begin
         with DeleteQSOQuery do
         begin
           SQL.Clear;
-          SQL.Text := 'DELETE FROM ' + LBParam.LogTable;
+          SQL.Text := 'DELETE FROM ' + LogTable;
           Prepare;
           ExecSQL;
         end;
@@ -3189,24 +4664,31 @@ end;
 procedure TMainForm.MenuItem119Click(Sender: TObject);
 var
   HTTP: THTTPSend;
+  updatePATH: string;
   UnZipper: TUnZipper;
 begin
+   {$IFDEF UNIX}
+  updatePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+   {$ELSE}
+  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+   {$ENDIF UNIX}
 
-  if DirectoryExists(FilePATH + 'locale') then
-    DeleteDirectory(FilePATH + 'locale', False);
+  if DirectoryExists(updatePATH + 'locale') then
+    DeleteDirectory(updatePATH + 'locale', False);
 
-  ForceDirectories(FilePATH + 'locale');
+  ForceDirectories(updatePATH + 'locale');
   HTTP := THTTPSend.Create;
   UnZipper := TUnZipper.Create;
   try
     if HTTP.HTTPMethod('GET', DownLocaleURL) then
-      HTTP.Document.SaveToFile(FilePATH + 'updates' + DirectorySeparator +
+      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator +
         'locale.zip');
   finally
     HTTP.Free;
     try
-      UnZipper.FileName := FilePATH + 'updates' + DirectorySeparator + 'locale.zip';
-      UnZipper.OutputPath := FilePATH + 'locale' + DirectorySeparator;
+      UnZipper.FileName := updatePATH + 'updates' + DirectorySeparator + 'locale.zip';
+      UnZipper.OutputPath := updatePATH + 'locale' + DirectorySeparator;
       UnZipper.Examine;
       UnZipper.UnZipAllFiles;
     finally
@@ -3231,7 +4713,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSLRec').Value := 1;
         Params.ParamByName('QSLRecDate').AsDate := Now;
@@ -3255,7 +4737,14 @@ var
   NumberCopies: integer;
   ind: integer;
   resStream: TLazarusResourceStream;
+  reportPATH: string;
 begin
+     {$IFDEF UNIX}
+  reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+   {$ELSE}
+  reportPATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+   {$ENDIF UNIX}
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
@@ -3288,7 +4777,7 @@ begin
         begin
           Close;
           SQL.Clear;
-          SQL.Add('UPDATE ' + LBParam.LogTable +
+          SQL.Add('UPDATE ' + LogTable +
             ' SET `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
           Params.ParamByName('QSLSentAdv').AsString := 'P';
           Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3311,14 +4800,14 @@ begin
       for i := 0 to Length(PrintArray) - 1 do
       begin
         PrintQuery.SQL.Text :=
-          'SELECT * FROM ' + LBParam.LogTable + ' WHERE `UnUsedIndex` in (' +
+          'SELECT * FROM ' + LogTable + ' WHERE `UnUsedIndex` in (' +
           numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
       end;
     end;
     PrintOK := False;
     PrintQuery.Open;
-    resStream.SaveToFile(FilePATH + 'rep.lrf');
-    frReport1.LoadFromFile(FilePATH + 'rep.lrf');
+    resStream.SaveToFile(reportPATH + 'rep.lrf');
+    frReport1.LoadFromFile(reportPATH + 'rep.lrf');
     if PrintPrev = True then
       frReport1.ShowReport
     else
@@ -3367,7 +4856,14 @@ var
   NumberCopies: integer;
   ind: integer;
   resStream: TLazarusResourceStream;
+  reportPATH: string;
 begin
+   {$IFDEF UNIX}
+  reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+   {$ELSE}
+  reportPATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
+    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+   {$ENDIF UNIX}
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
@@ -3401,14 +4897,14 @@ begin
       for i := 0 to Length(PrintArray) - 1 do
       begin
         PrintQuery.SQL.Text :=
-          'SELECT * FROM ' + LBParam.LogTable + ' WHERE `UnUsedIndex` in (' +
+          'SELECT * FROM ' + LogTable + ' WHERE `UnUsedIndex` in (' +
           numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
       end;
     end;
     PrintOK := False;
     PrintQuery.Open;
-    resStream.SaveToFile(FilePATH + 'rep.lrf');
-    frReport1.LoadFromFile(FilePATH + 'rep.lrf');
+    resStream.SaveToFile(reportPATH + 'rep.lrf');
+    frReport1.LoadFromFile(reportPATH + 'rep.lrf');
 
 
     if PrintPrev = True then
@@ -3477,7 +4973,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSLSentAdv').AsString := 'Q';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3508,7 +5004,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSLSentAdv').AsString := 'P';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3538,7 +5034,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLSent`=:QSLSent WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSLSentAdv').AsString := 'T';
         Params.ParamByName('QSLSentDate').AsDate := Now;
@@ -3571,7 +5067,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate,`QSLSent`=:QSLSent WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSLSentAdv').AsString := 'F';
         Params.ParamByName('QSLSentDate').IsNull;
@@ -3604,7 +5100,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSLSentAdv').AsString := 'N';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3635,7 +5131,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_RCVD_VIA`=:QSL_RCVD_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_RCVD_VIA').AsString := 'B';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3666,7 +5162,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_RCVD_VIA`=:QSL_RCVD_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_RCVD_VIA').AsString := 'D';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3697,7 +5193,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSLReceQSLcc`=:QSLReceQSLcc WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_RCVD_VIA').AsString := 'E';
         Params.ParamByName('QSLReceQSLcc').AsBoolean := True;
@@ -3729,7 +5225,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_RCVD_VIA`=:QSL_RCVD_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_RCVD_VIA').AsString := 'M';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3760,7 +5256,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_RCVD_VIA`=:QSL_RCVD_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_RCVD_VIA').AsString := 'G';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3791,7 +5287,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_SENT_VIA`=:QSL_SENT_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_SENT_VIA').AsString := 'B';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3822,7 +5318,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_SENT_VIA`=:QSL_SENT_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_SENT_VIA').AsString := 'D';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3853,7 +5349,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_SENT_VIA`=:QSL_SENT_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_SENT_VIA').AsString := 'E';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3884,7 +5380,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_SENT_VIA`=:QSL_SENT_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_SENT_VIA').AsString := 'M';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3915,7 +5411,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBParam.LogTable +
+        SQL.Add('UPDATE ' + LogTable +
           ' SET `QSL_SENT_VIA`=:QSL_SENT_VIA WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('QSL_SENT_VIA').AsString := 'G';
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
@@ -3973,8 +5469,8 @@ begin
       raise SendHRDThread.FatalException;
     with SendHRDThread do
     begin
-      userid := LBParam.HRDLogin;
-      userpwd := LBParam.HRDCode;
+      userid := HRDLogin;
+      userpwd := HRDCode;
       call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
       startdate := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
       starttime := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
@@ -3984,7 +5480,7 @@ begin
       rsts := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
       rstr := DBGrid1.DataSource.DataSet.FieldByName('QSOReportRecived').AsString;
       locat := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-      qslinf := LBParam.QSLInfo;
+      qslinf := SetQSLInfo;
       information := 1;
       inform := 1;
       Start;
@@ -4001,8 +5497,8 @@ begin
       raise SendEQSLThread.FatalException;
     with SendEQSLThread do
     begin
-      userid := LBParam.eQSLccLogin;
-      userpwd := LBParam.eQSLccPassword;
+      userid := eQSLccLogin;
+      userpwd := eQSLccPassword;
       call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
       startdate := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
       starttime := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
@@ -4010,7 +5506,7 @@ begin
       mode := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
       submode := DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
       rst := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-      qslinf := LBParam.QSLInfo;
+      qslinf := SetQSLInfo;
       information := 1;
       Start;
     end;
@@ -4240,23 +5736,26 @@ procedure TMainForm.MenuItem51Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
+  // recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
     begin
       DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      //  recnom := LOGBookQuery.RecNo;
       with DeleteQSOQuery do
       begin
         Close;
         SQL.Clear;
-        SQL.Add('DELETE FROM ' + LBParam.LogTable + ' WHERE `UnUsedIndex`=:UnUsedIndex');
+        SQL.Add('DELETE FROM ' + LogTable + ' WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
         ExecSQL;
       end;
     end;
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
+    //  DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
 end;
 
@@ -4322,10 +5821,18 @@ end;
 
 procedure TMainForm.MenuItem72Click(Sender: TObject);
 begin
-  Clr;
-  MinimalForm.Show;
-  Timer1.Enabled := False;
-  MainForm.Hide;
+  Panel4.Hide;
+  Panel5.Hide;
+  Panel6.Hide;
+  MainForm.Height := 290;
+end;
+
+procedure TMainForm.MenuItem73Click(Sender: TObject);
+begin
+  Panel4.Show;
+  Panel5.Show;
+  Panel6.Show;
+  MainForm.Height := 672;
 end;
 
 //Запуск fldigi
@@ -4833,7 +6340,7 @@ end;
 procedure TMainForm.MenuItem89Click(Sender: TObject);
 begin
   //очищаем обьекты
-  dm_MainFunc.FreePrefix;
+  FreeObj;
   if dbSel = 'SQLite' then
   begin
     InitializeDB('MySQL');
@@ -4843,6 +6350,21 @@ begin
   begin
     InitializeDB('SQLite');
     MenuItem89.Caption := rSwitchDBMySQL;
+  end;
+end;
+
+procedure TMainForm.FreeObj;
+var
+  i: integer;
+begin
+  FreeAndNil(PrefixProvinceList);
+  FreeAndNil(PrefixARRLList);
+  FreeAndNil(UniqueCallsList);
+  FreeAndNil(subModesList);
+  for i := 0 to 1000 do
+  begin
+    FreeAndNil(PrefixExpARRLArray[i].reg);
+    FreeAndNil(PrefixExpProvinceArray[i].reg);
   end;
 end;
 
@@ -4894,6 +6416,11 @@ begin
     EditButton1.ReadOnly := False;
     DBGrid1.PopupMenu := PopupMenu1;
   end;
+end;
+
+procedure TMainForm.ScrollBar1Change(Sender: TObject);
+begin
+  SelectLogDatabase(LogTable);
 end;
 
 procedure TMainForm.Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
@@ -5147,13 +6674,13 @@ begin
       SQSO.LotWRecDate := 'NULL';
 
       if not StateToQSLInfo then
-        SQSO.QSLInfo := LBParam.QSLInfo
+        SQSO.QSLInfo := SetQSLInfo
       else
       begin
         if (Edit14.Text <> '') or (Edit15.Text <> '') then
           SQSO.QSLInfo := Edit15.Text + ' ' + Edit14.Text
         else
-          SQSO.QSLInfo := LBParam.QSLInfo;
+          SQSO.QSLInfo := SetQSLInfo;
       end;
 
       SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
@@ -5174,13 +6701,13 @@ begin
       SQSO.LotWSent := 0;
       SQSO.QSL_RCVD_VIA := '';
       SQSO.QSL_SENT_VIA := ComboBox6.Text;
-      SQSO.DXCC := IntToStr(PFXR.DXCCNum);
+      SQSO.DXCC := IntToStr(DXCCNum);
       SQSO.USERS := '';
       SQSO.NoCalcDXCC := 0;
       SQSO.SYNC := 0;
 
-      if LBParam.OpLoc <> '' then
-        SQSO.My_Grid := LBParam.OpLoc;
+      if SetLoc <> '' then
+        SQSO.My_Grid := SetLoc;
 
       if Edit14.Text <> '' then
         SQSO.My_Grid := Edit14.Text;
@@ -5198,33 +6725,62 @@ begin
         SQSO.My_Lat := '';
         SQSO.My_Lon := '';
       end;
-      SQSO.NLogDB := LBParam.LogTable;
-      dm_MainFunc.SaveQSO(SQSO);
+      SQSO.NLogDB := LogTable;
+      SaveQSO(SQSO);
 
-      if LBParam.AutoEQSLcc = True then
+      if AutoEQSLcc = True then
       begin
-        dm_MainFunc.StartEQSLThread(LBParam.eQSLccLogin, LBParam.eQSLccPassword,
-          SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
-          SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent, LBParam.QSLInfo);
+        SendEQSLThread := TSendEQSLThread.Create;
+        if Assigned(SendEQSLThread.FatalException) then
+          raise SendEQSLThread.FatalException;
+        with SendEQSLThread do
+        begin
+          userid := eQSLccLogin;
+          userpwd := eQSLccPassword;
+          call := EditButton1.Text;
+          startdate := DateEdit1.Date;
+          starttime := DateTimePicker1.Time;
+          freq := NameBand;
+          mode := ComboBox2.Text;
+          submode := ComboBox9.Text;
+          rst := ComboBox4.Text;
+          qslinf := SetQSLInfo;
+          Start;
+        end;
       end;
 
-      if LBParam.AutoHRDLog = True then
+      if AutoHRDLog = True then
       begin
-        dm_MainFunc.StartHRDLogThread(LBParam.HRDLogin, LBParam.HRDCode,
-          SQSO.CallSing, SQSO.QSODate, StrToTime(SQSO.QSOTime), SQSO.QSOBand,
-          SQSO.QSOMode, SQSO.QSOSubMode, SQSO.QSOReportSent,
-          SQSO.QSOReportRecived, SQSO.Grid, LBParam.QSLInfo);
+        SendHRDThread := TSendHRDThread.Create;
+        if Assigned(SendHRDThread.FatalException) then
+          raise SendHRDThread.FatalException;
+        with SendHRDThread do
+        begin
+          userid := HRDLogin;
+          userpwd := HRDCode;
+          call := EditButton1.Text;
+          startdate := DateEdit1.Date;
+          starttime := DateTimePicker1.Time;
+          freq := NameBand;
+          mode := ComboBox2.Text;
+          submode := ComboBox9.Text;
+          rsts := ComboBox4.Text;
+          rstr := ComboBox5.Text;
+          locat := Edit3.Text;
+          qslinf := SetQSLInfo;
+          Start;
+        end;
       end;
 
-      if LBParam.AutoHamQTH = True then
+      if AutoHamQTH = True then
       begin
         SendHamQTHThread := TSendHamQTHThread.Create;
         if Assigned(SendHamQTHThread.FatalException) then
           raise SendHamQTHThread.FatalException;
         with SendHamQTHThread do
         begin
-          userid := LBParam.HamQTHLogin;
-          userpwd := LBParam.HamQTHPassword;
+          userid := HamQTHLogin;
+          userpwd := HamQTHPassword;
           call := EditButton1.Text;
           startdate := DateEdit1.Date;
           starttime := DateTimePicker1.Time;
@@ -5238,21 +6794,21 @@ begin
           opcont := Label43.Caption;
           mygrid := '';
           locat := Edit3.Text;
-          qslinf := LBParam.QSLInfo;
+          qslinf := SetQSLInfo;
           Start;
         end;
       end;
 
       //Отправка в QRZ.COM
-      if LBParam.AutoQRZCom = True then
+      if AutoQRZCom = True then
       begin
         SendQRZComThread := TSendQRZComThread.Create;
         if Assigned(SendQRZComThread.FatalException) then
           raise SendQRZComThread.FatalException;
         with SendQRZComThread do
         begin
-          userid := LBParam.QRZComLogin;
-          userpwd := LBParam.QRZComPassword;
+          userid := QRZComLogin;
+          userpwd := QRZComPassword;
           call := EditButton1.Text;
           startdate := DateEdit1.Date;
           starttime := DateTimePicker1.Time;
@@ -5266,21 +6822,21 @@ begin
           opcont := Label43.Caption;
           mygrid := '';
           locat := Edit3.Text;
-          qslinf := LBParam.QSLInfo;
+          qslinf := SetQSLInfo;
           Start;
         end;
       end;
 
       //Отправка в ClubLog
-      if LBParam.AutoClubLog = True then
+      if AutoClubLog = True then
       begin
         SendClubLogThread := TSendClubLogThread.Create;
         if Assigned(SendClubLogThread.FatalException) then
           raise SendClubLogThread.FatalException;
         with SendClubLogThread do
         begin
-          userid := LBParam.ClubLogLogin;
-          userpwd := LBParam.ClubLogPassword;
+          userid := ClubLogLogin;
+          userpwd := ClubLogPassword;
           usercall := CallLogBook;
           call := EditButton1.Text;
           startdate := DateEdit1.Date;
@@ -5291,7 +6847,7 @@ begin
           rsts := ComboBox4.Text;
           rstr := ComboBox5.Text;
           locat := Edit3.Text;
-          qslinf := LBParam.QSLInfo;
+          qslinf := SetQSLInfo;
           Start;
         end;
       end;
@@ -5306,7 +6862,7 @@ begin
           Edit3.Text, Edit11.Text);
 
       SelDB(CallLogBook);
-      Clr;
+      Clr();
     end;
   end;
 
@@ -5326,7 +6882,7 @@ begin
     begin
       Close;
       SQL.Clear;
-      SQL.Add('UPDATE ' + LBParam.LogTable +
+      SQL.Add('UPDATE ' + LogTable +
         ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, ' +
         '`QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode,' +
         '`QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived,' +
@@ -5369,7 +6925,7 @@ begin
     EditFlag := False;
     CheckBox1.Checked := True;
     SelDB(CallLogBook);
-    Clr;
+    Clr();
   end;
 end;
 
@@ -5386,7 +6942,7 @@ end;
 
 procedure TMainForm.SpeedButton9Click(Sender: TObject);
 begin
-  Clr;
+  Clr();
 end;
 
 procedure TMainForm.SpeedButton9MouseLeave(Sender: TObject);
@@ -5417,12 +6973,17 @@ procedure TMainForm.Timer1Timer(Sender: TObject);
 begin
   Label24.Caption := FormatDateTime('hh:mm:ss', Now);
   Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
-  Label28.Caption := FormatDateTime('hh:mm:ss', NowUTC + PFXR.TimeDiff / 24);
+  Label28.Caption := FormatDateTime('hh:mm:ss', NowUTC + timedif / 24);
   if CheckBox1.Checked = True then
   begin
     DateTimePicker1.Time := NowUTC;
     DateEdit1.Date := NowUTC;
   end;
+end;
+
+procedure TMainForm.Timer3Timer(Sender: TObject);
+begin
+  Panel10.Refresh;
 end;
 
 procedure TMainForm.TrayIcon1DblClick(Sender: TObject);
@@ -5463,10 +7024,11 @@ begin
     if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
       (TRXForm.radio.GetFreqHz > 0) then
     begin
+      TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
       if Data^.Moda = 'DIGI' then
-      TRXForm.SetModeFreq('USB',Data^.Freq)
+        TRXForm.SetMode('USB', 0)
       else
-      TRXForm.SetModeFreq(Data^.Moda,Data^.Freq);
+        TRXForm.SetMode(Data^.Moda, 0);
     end
     else
     begin
@@ -5531,7 +7093,7 @@ var
   Data: PTreeData;
 begin
   Data := Sender.GetNodeData(Node);
-  HintText := dm_MainFunc.SearchCountry(Data^.Spots, True);
+  HintText := SearchCountry(Data^.Spots, True);
 end;
 
 procedure TMainForm.VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
@@ -5642,7 +7204,7 @@ begin
       if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
         MenuItem74.Enabled := True;
 
-      Clr;
+      Clr();
     end;
     Exit;
   end;

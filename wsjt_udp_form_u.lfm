@@ -8,7 +8,7 @@ object WSJT_UDP_Form: TWSJT_UDP_Form
   ClientWidth = 320
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '2.0.6.0'
   object Memo1: TMemo
     Left = 0
     Height = 240

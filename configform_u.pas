@@ -120,7 +120,7 @@ var
 implementation
 
 uses
-  MainForm_U, UpdateForm_U, dmFunc_U, editqso_u, dmMainFunc;
+  MainForm_U, UpdateForm_U, dmFunc_U, editqso_u;
 
 {$R *.lfm}
 
@@ -276,9 +276,8 @@ begin
     CheckBox3.Checked := False;
     CheckBox7.Checked := False;
     MainForm.CallBookLiteConnection.Connected := True;
-  end
-  else
-    MainForm.CallBookLiteConnection.Connected := False;
+  end else
+  MainForm.CallBookLiteConnection.Connected := False;
   if CheckBox1.Checked = True then
     IniF.WriteString('SetLog', 'UseCallBook', 'YES')
   else
@@ -306,8 +305,7 @@ begin
     end;
     MainForm.DBGrid1.Invalidate;
     MainForm.DBGrid2.Invalidate;
-    dm_MainFunc.SetGrid(MainForm.DBGrid1);
-    dm_MainFunc.SetGrid(MainForm.DBGrid2);
+    MainForm.SetGrid;
     EditQSO_Form.DBGrid1.Invalidate;
   end;
 end;
@@ -380,7 +378,7 @@ begin
     Label10.Caption := rReleaseDate + CheckCallBook.FieldByName('date').AsString;
     Label14.Caption := CheckCallBook.FieldByName('version').AsString;
     CheckCallBook.Close;
-    MainForm.CallBookLiteConnection.Connected := False;
+    MainForm.CallBookLiteConnection.Connected:=False;
   end
   else
   begin

@@ -114,7 +114,7 @@ var
 implementation
 
 uses MainForm_U, editqso_u, dmFunc_U, getSessionID, GetPhotoFromInternet,
-  GetInfoFromInternetThread, MinimalForm_U, WSJT_UDP_Form_U;
+  GetInfoFromInternetThread;
 
 {$R *.lfm}
 
@@ -201,22 +201,10 @@ begin
 
     if Main then
     begin
-      if Minimal then
-      begin
-        MinimalForm.Edit1.Text := Inform.Name;
-        MinimalForm.Edit2.Text := Inform.Address;
-        if not WSJT_UDP_Form.WSJT_IsRunning then
-        MinimalForm.Edit3.Text := Inform.Grid;
-        MinimalForm.Edit4.Text := Inform.State;
-      end
-      else
-      begin
-        MainForm.Edit1.Text := Inform.Name;
-        MainForm.Edit2.Text := Inform.Address;
-        if not WSJT_UDP_Form.WSJT_IsRunning then
-        MainForm.Edit3.Text := Inform.Grid;
-        MainForm.Edit4.Text := Inform.State;
-      end;
+      MainForm.Edit1.Text := Inform.Name;
+      MainForm.Edit2.Text := Inform.Address;
+      MainForm.Edit3.Text := Inform.Grid;
+      MainForm.Edit4.Text := Inform.State;
     end
     else
     begin
@@ -477,11 +465,11 @@ begin
     calsign := Call;
     ViewReload := Main;
     if not Assigned(PhotoJPEG) then
-      PhotoJPEG := TJPEGImage.Create;
+    PhotoJPEG := TJPEGImage.Create;
     if not Assigned(PhotoGIF) then
-      PhotoGIF := TGIFImage.Create;
+    PhotoGIF := TGIFImage.Create;
     if not Assigned(PhotoPNG) then
-      PhotoPNG := TPortableNetworkGraphic.Create;
+    PhotoPNG := TPortableNetworkGraphic.Create;
     Image1.Picture.Clear;
     if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
     begin

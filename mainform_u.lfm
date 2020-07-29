@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 273
+  Left = 377
   Height = 696
-  Top = 164
+  Top = 131
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
-  ClientHeight = 673
+  ClientHeight = 676
   ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
@@ -17,15 +17,15 @@ object MainForm: TMainForm
   OnResize = FormResize
   OnShow = FormShow
   Position = poDefault
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.8.0'
   object Panel1: TPanel
     Left = 0
-    Height = 30
+    Height = 26
     Top = 0
     Width = 1208
     Align = alTop
     AutoSize = True
-    ClientHeight = 30
+    ClientHeight = 26
     ClientWidth = 1208
     TabOrder = 1
     object SpeedButton8: TSpeedButton
@@ -34,7 +34,7 @@ object MainForm: TMainForm
       Left = 1
       Height = 24
       Hint = 'Save QSO'
-      Top = 3
+      Top = 1
       Width = 25
       Action = SaveQSOinBase
       Font.Height = -11
@@ -87,7 +87,7 @@ object MainForm: TMainForm
       Left = 30
       Height = 24
       Hint = 'Clear QSO'
-      Top = 3
+      Top = 1
       Width = 25
       Action = ClearEdit
       Glyph.Data = {
@@ -136,13 +136,14 @@ object MainForm: TMainForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 309
-      Height = 28
+      Height = 24
       Top = 1
       Width = 167
       Font.Height = -12
       KeyField = 'CallName'
       ListField = 'CallName'
       ListFieldIndex = 0
+      ListSource = LogBookInfoDS
       LookupCache = False
       OnCloseUp = DBLookupComboBox1CloseUp
       ParentFont = False
@@ -154,10 +155,10 @@ object MainForm: TMainForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = DBLookupComboBox1
-      Left = 241
-      Height = 13
-      Top = 9
-      Width = 63
+      Left = 244
+      Height = 15
+      Top = 6
+      Width = 60
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
       Caption = 'Current log'
@@ -170,10 +171,10 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = Panel1
       AnchorSideRight.Side = asrBottom
-      Left = 1070
-      Height = 13
-      Top = 9
-      Width = 117
+      Left = 1074
+      Height = 15
+      Top = 6
+      Width = 113
       Align = alCustom
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 20
@@ -193,7 +194,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 527
       Height = 24
-      Top = 3
+      Top = 1
       Width = 80
       AutoSize = False
       BorderSpacing.Left = 5
@@ -206,8 +207,8 @@ object MainForm: TMainForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 481
-      Height = 13
-      Top = 9
+      Height = 15
+      Top = 6
       Width = 41
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
@@ -220,9 +221,9 @@ object MainForm: TMainForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 617
-      Height = 13
-      Top = 9
-      Width = 47
+      Height = 15
+      Top = 6
+      Width = 45
       BorderSpacing.Left = 10
       BorderSpacing.Right = 5
       Caption = 'My state'
@@ -233,9 +234,9 @@ object MainForm: TMainForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 669
+      Left = 667
       Height = 24
-      Top = 3
+      Top = 1
       Width = 80
       AutoSize = False
       BorderSpacing.Left = 5
@@ -245,22 +246,22 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 288
-    Top = 30
+    Height = 272
+    Top = 26
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 288
+    ClientHeight = 272
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
       Left = 1
-      Height = 259
+      Height = 255
       Top = 1
       Width = 472
       Align = alTop
       AutoSize = True
-      ClientHeight = 259
+      ClientHeight = 255
       ClientWidth = 472
       ParentFont = False
       TabOrder = 0
@@ -270,7 +271,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 21
         Height = 2
-        Top = 21
+        Top = 23
         Width = 435
         BorderSpacing.Left = 20
         BorderSpacing.Top = 2
@@ -281,7 +282,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 210
         Height = 31
-        Top = 28
+        Top = 30
         Width = 200
         AutoSize = False
         BorderSpacing.Left = 209
@@ -373,6 +374,7 @@ object MainForm: TMainForm
         OnKeyDown = EditButton1KeyDown
         ParentFont = False
         PasswordChar = #0
+        ReadOnly = True
         TabOrder = 0
       end
       object Edit1: TEdit
@@ -381,7 +383,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 210
         Height = 21
-        Top = 61
+        Top = 63
         Width = 136
         AutoSize = False
         BorderSpacing.Left = 209
@@ -396,7 +398,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 210
         Height = 21
-        Top = 84
+        Top = 86
         Width = 136
         AutoSize = False
         BorderSpacing.Left = 209
@@ -411,7 +413,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 210
         Height = 22
-        Top = 107
+        Top = 109
         Width = 136
         AutoSize = False
         BorderSpacing.Left = 209
@@ -439,7 +441,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 210
         Height = 22
-        Top = 131
+        Top = 133
         Width = 136
         AutoSize = False
         BorderSpacing.Left = 209
@@ -466,9 +468,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = DateEdit1
         AnchorSideTop.Side = asrCenter
         Left = 6
-        Height = 13
-        Top = 42
-        Width = 26
+        Height = 15
+        Top = 43
+        Width = 24
         BorderSpacing.Left = 5
         Caption = 'Date'
         Font.Height = -12
@@ -480,9 +482,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = ComboBox1
         AnchorSideTop.Side = asrCenter
         Left = 6
-        Height = 13
-        Top = 66
-        Width = 28
+        Height = 15
+        Top = 67
+        Width = 27
         BorderSpacing.Left = 5
         Caption = 'Band'
         Font.Height = -12
@@ -494,8 +496,8 @@ object MainForm: TMainForm
         AnchorSideTop.Control = ComboBox2
         AnchorSideTop.Side = asrCenter
         Left = 6
-        Height = 13
-        Top = 90
+        Height = 15
+        Top = 91
         Width = 31
         BorderSpacing.Left = 5
         Caption = 'Mode'
@@ -508,9 +510,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = DateTimePicker1
         AnchorSideTop.Side = asrCenter
         Left = 6
-        Height = 13
-        Top = 113
-        Width = 59
+        Height = 15
+        Top = 115
+        Width = 58
         BorderSpacing.Left = 5
         Caption = 'Time (UTC)'
         Font.Height = -12
@@ -523,10 +525,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 164
-        Height = 13
-        Top = 37
-        Width = 41
+        Left = 163
+        Height = 15
+        Top = 38
+        Width = 42
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 148
         BorderSpacing.Right = 205
@@ -542,8 +544,8 @@ object MainForm: TMainForm
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
         Left = 173
-        Height = 13
-        Top = 65
+        Height = 15
+        Top = 66
         Width = 32
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 181
@@ -558,10 +560,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 181
-        Height = 13
-        Top = 88
-        Width = 24
+        Left = 182
+        Height = 15
+        Top = 89
+        Width = 23
         Anchors = [akTop, akRight]
         BorderSpacing.Right = 205
         Caption = 'QTH'
@@ -574,10 +576,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 157
-        Height = 13
-        Top = 112
-        Width = 48
+        Left = 161
+        Height = 15
+        Top = 113
+        Width = 44
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 163
         BorderSpacing.Right = 205
@@ -591,10 +593,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 157
-        Height = 13
-        Top = 136
-        Width = 48
+        Left = 160
+        Height = 15
+        Top = 137
+        Width = 45
         Anchors = [akTop, akRight]
         BorderSpacing.Right = 205
         Caption = 'RST rcvd'
@@ -607,9 +609,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Label4
         AnchorSideTop.Side = asrBottom
         Left = 11
-        Height = 23
-        Top = 128
-        Width = 78
+        Height = 19
+        Top = 132
+        Width = 69
         BorderSpacing.Left = 10
         BorderSpacing.Top = 2
         Caption = 'Real time'
@@ -625,9 +627,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = CheckBox1
         AnchorSideTop.Side = asrBottom
         Left = 11
-        Height = 23
+        Height = 19
         Top = 153
-        Width = 88
+        Width = 82
         BorderSpacing.Left = 10
         BorderSpacing.Top = 2
         Caption = 'Save in UTC'
@@ -643,7 +645,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 250
         Height = 20
-        Top = 155
+        Top = 157
         Width = 96
         AutoSize = False
         BorderSpacing.Left = 249
@@ -667,10 +669,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = EditButton1
         AnchorSideRight.Side = asrBottom
-        Left = 204
-        Height = 13
-        Top = 159
-        Width = 41
+        Left = 205
+        Height = 15
+        Top = 160
+        Width = 40
         Anchors = [akTop, akRight]
         BorderSpacing.Right = 165
         Caption = 'QSL Via'
@@ -684,9 +686,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Edit1
         AnchorSideTop.Side = asrCenter
         Left = 348
-        Height = 23
-        Top = 60
-        Width = 49
+        Height = 19
+        Top = 64
+        Width = 44
         BorderSpacing.Left = 2
         Caption = 'Map'
         Checked = True
@@ -738,6 +740,7 @@ object MainForm: TMainForm
         AutoSize = False
         BorderSpacing.Left = 381
         BorderSpacing.Top = 2
+        Color = clYellow
         Font.Height = -12
         ParentFont = False
         TabOrder = 11
@@ -763,8 +766,8 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Edit4
         AnchorSideTop.Side = asrCenter
         Left = 440
-        Height = 17
-        Top = 110
+        Height = 19
+        Top = 109
         Width = 19
         AutoSize = True
         BorderSpacing.Left = 2
@@ -779,8 +782,8 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Edit5
         AnchorSideTop.Side = asrCenter
         Left = 440
-        Height = 17
-        Top = 133
+        Height = 19
+        Top = 132
         Width = 19
         AutoSize = True
         BorderSpacing.Left = 2
@@ -795,8 +798,8 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Edit6
         AnchorSideTop.Side = asrCenter
         Left = 440
-        Height = 17
-        Top = 156
+        Height = 19
+        Top = 155
         Width = 19
         AutoSize = True
         BorderSpacing.Left = 2
@@ -812,10 +815,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
-        Left = 355
-        Height = 13
-        Top = 89
-        Width = 23
+        Left = 356
+        Height = 15
+        Top = 88
+        Width = 22
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
         BorderSpacing.Right = 87
@@ -831,10 +834,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
-        Left = 349
-        Height = 13
-        Top = 112
-        Width = 29
+        Left = 352
+        Height = 15
+        Top = 111
+        Width = 26
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
         BorderSpacing.Top = 8
@@ -851,10 +854,10 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
-        Left = 352
-        Height = 13
-        Top = 135
-        Width = 26
+        Left = 354
+        Height = 15
+        Top = 134
+        Width = 24
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
         BorderSpacing.Right = 87
@@ -871,8 +874,8 @@ object MainForm: TMainForm
         AnchorSideRight.Control = Edit3
         AnchorSideRight.Side = asrBottom
         Left = 352
-        Height = 13
-        Top = 158
+        Height = 15
+        Top = 157
         Width = 26
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
@@ -887,10 +890,10 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = CheckBox2
         AnchorSideTop.Side = asrCenter
-        Left = 100
-        Height = 23
+        Left = 94
+        Height = 19
         Top = 153
-        Width = 53
+        Width = 47
         BorderSpacing.Left = 1
         Caption = 'Mark'
         Font.Height = -12
@@ -902,9 +905,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = CheckBox2
         AnchorSideTop.Side = asrBottom
-        Left = 346
+        Left = 340
         Height = 21
-        Top = 188
+        Top = 184
         Width = 72
         AutoSize = False
         BorderSpacing.Top = 12
@@ -917,9 +920,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = CheckBox2
         AnchorSideTop.Side = asrBottom
-        Left = 251
+        Left = 246
         Height = 21
-        Top = 188
+        Top = 184
         Width = 72
         AutoSize = False
         BorderSpacing.Top = 12
@@ -932,9 +935,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = CheckBox2
         AnchorSideTop.Side = asrBottom
-        Left = 156
+        Left = 152
         Height = 21
-        Top = 188
+        Top = 184
         Width = 72
         AutoSize = False
         BorderSpacing.Top = 12
@@ -947,9 +950,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = CheckBox2
         AnchorSideTop.Side = asrBottom
-        Left = 61
+        Left = 58
         Height = 21
-        Top = 188
+        Top = 184
         Width = 72
         AutoSize = False
         BorderSpacing.Top = 12
@@ -962,10 +965,10 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Edit7
         AnchorSideTop.Side = asrCenter
-        Left = 418
-        Height = 17
-        Top = 190
-        Width = 23
+        Left = 412
+        Height = 19
+        Top = 185
+        Width = 22
         AutoSize = True
         Caption = ' .4. '
         Font.Height = -12
@@ -976,10 +979,10 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Edit8
         AnchorSideTop.Side = asrCenter
-        Left = 323
-        Height = 17
-        Top = 190
-        Width = 23
+        Left = 318
+        Height = 19
+        Top = 185
+        Width = 22
         AutoSize = True
         BorderSpacing.Top = 13
         Caption = ' .3. '
@@ -991,10 +994,10 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Edit9
         AnchorSideTop.Side = asrCenter
-        Left = 228
-        Height = 17
-        Top = 190
-        Width = 23
+        Left = 224
+        Height = 19
+        Top = 185
+        Width = 22
         AutoSize = True
         Caption = ' .2. '
         Font.Height = -12
@@ -1005,10 +1008,10 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Edit10
         AnchorSideTop.Side = asrCenter
-        Left = 133
-        Height = 17
-        Top = 190
-        Width = 23
+        Left = 130
+        Height = 19
+        Top = 185
+        Width = 22
         AutoSize = True
         Caption = ' .1. '
         Font.Height = -12
@@ -1019,9 +1022,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = CheckBox2
         AnchorSideTop.Side = asrBottom
         Left = 6
-        Height = 13
-        Top = 191
-        Width = 55
+        Height = 15
+        Top = 187
+        Width = 52
         BorderSpacing.Left = 5
         BorderSpacing.Top = 15
         Caption = 'Sub. State'
@@ -1034,9 +1037,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Edit10
         AnchorSideTop.Side = asrBottom
-        Left = 59
+        Left = 60
         Height = 21
-        Top = 213
+        Top = 209
         Width = 371
         AutoSize = False
         BorderSpacing.Left = 3
@@ -1050,9 +1053,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Label15
         AnchorSideTop.Side = asrBottom
         Left = 3
-        Height = 13
-        Top = 216
-        Width = 53
+        Height = 15
+        Top = 214
+        Width = 54
         BorderSpacing.Left = 2
         BorderSpacing.Top = 12
         Caption = 'Comment'
@@ -1066,7 +1069,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 38
         Height = 21
-        Top = 38
+        Top = 40
         Width = 102
         CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
         DefaultToday = True
@@ -1088,7 +1091,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 3
         Height = 19
-        Top = 239
+        Top = 235
         Width = 468
         BorderSpacing.Left = 2
         BorderSpacing.Top = 5
@@ -1098,8 +1101,8 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
         Left = 8
-        Height = 13
-        Top = 242
+        Height = 15
+        Top = 237
         Width = 7
         BorderSpacing.Left = 5
         Caption = '1'
@@ -1115,7 +1118,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 20
         Height = 18
-        Top = 239
+        Top = 235
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1125,9 +1128,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
         Left = 28
-        Height = 13
-        Top = 242
-        Width = 28
+        Height = 15
+        Top = 237
+        Width = 27
         BorderSpacing.Left = 5
         Caption = 'Date'
         Font.Height = -12
@@ -1140,10 +1143,10 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 69
-        Height = 13
-        Top = 242
-        Width = 27
+        Left = 68
+        Height = 15
+        Top = 237
+        Width = 28
         BorderSpacing.Left = 5
         Caption = 'Time'
         Font.Height = -12
@@ -1156,9 +1159,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 61
+        Left = 60
         Height = 18
-        Top = 239
+        Top = 235
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1168,9 +1171,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
         Left = 109
-        Height = 13
-        Top = 242
-        Width = 60
+        Height = 15
+        Top = 237
+        Width = 58
         BorderSpacing.Left = 5
         Caption = 'Frequency'
         Font.Height = -12
@@ -1185,7 +1188,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 101
         Height = 18
-        Top = 239
+        Top = 235
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1194,9 +1197,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 182
-        Height = 13
-        Top = 242
+        Left = 180
+        Height = 15
+        Top = 237
         Width = 32
         BorderSpacing.Left = 5
         Caption = 'Mode'
@@ -1210,9 +1213,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 174
+        Left = 172
         Height = 18
-        Top = 239
+        Top = 235
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1221,9 +1224,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 227
-        Height = 13
-        Top = 242
+        Left = 225
+        Height = 15
+        Top = 237
         Width = 33
         BorderSpacing.Left = 5
         Caption = 'Name'
@@ -1237,9 +1240,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 219
+        Left = 217
         Height = 18
-        Top = 239
+        Top = 235
         Width = 3
         BorderSpacing.Left = 5
       end
@@ -1247,9 +1250,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Panel12
         AnchorSideTop.Control = Panel12
         Left = 6
-        Height = 13
+        Height = 15
         Top = 6
-        Width = 59
+        Width = 58
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Local time '
@@ -1261,8 +1264,8 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label23
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 66
-        Height = 13
+        Left = 65
+        Height = 15
         Top = 6
         Width = 48
         BorderSpacing.Left = 1
@@ -1278,8 +1281,8 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label24
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 118
-        Height = 13
+        Left = 117
+        Height = 15
         Top = 6
         Width = 21
         BorderSpacing.Left = 4
@@ -1293,8 +1296,8 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label25
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 141
-        Height = 13
+        Left = 140
+        Height = 15
         Top = 6
         Width = 48
         BorderSpacing.Left = 2
@@ -1310,10 +1313,10 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label26
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 193
-        Height = 13
+        Left = 192
+        Height = 15
         Top = 6
-        Width = 72
+        Width = 68
         BorderSpacing.Left = 4
         BorderSpacing.Top = 5
         Caption = 'Remote time'
@@ -1325,8 +1328,8 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label27
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 267
-        Height = 13
+        Left = 262
+        Height = 15
         Top = 6
         Width = 48
         BorderSpacing.Left = 2
@@ -1343,9 +1346,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = ComboBox2
         AnchorSideTop.Side = asrBottom
         Left = 88
-        Height = 21
-        Top = 109
-        Width = 52
+        Height = 23
+        Top = 111
+        Width = 50
         CenturyFrom = 1941
         MaxDate = 2958465
         MinDate = -53780
@@ -1374,7 +1377,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 38
         Height = 22
-        Top = 61
+        Top = 63
         Width = 102
         AutoSize = False
         BorderSpacing.Left = 37
@@ -1393,7 +1396,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 38
         Height = 22
-        Top = 85
+        Top = 87
         Width = 66
         AutoSize = False
         BorderSpacing.Left = 37
@@ -1486,10 +1489,10 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = CheckBox3
         AnchorSideTop.Side = asrCenter
-        Left = 399
-        Height = 23
-        Top = 60
-        Width = 55
+        Left = 394
+        Height = 19
+        Top = 64
+        Width = 46
         BorderSpacing.Left = 2
         Caption = 'Filter'
         Font.Height = -12
@@ -1504,7 +1507,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrBottom
         Left = 105
         Height = 22
-        Top = 85
+        Top = 87
         Width = 60
         AutoSize = False
         BorderSpacing.Left = 1
@@ -1599,7 +1602,7 @@ object MainForm: TMainForm
         AnchorSideRight.Side = asrBottom
         Left = 195
         Height = 10
-        Top = 26
+        Top = 28
         Width = 10
         Anchors = [akTop, akRight]
         BorderSpacing.Top = 5
@@ -1615,7 +1618,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 142
         Height = 15
-        Top = 65
+        Top = 67
         Width = 15
         BorderSpacing.Left = 2
         Center = True
@@ -1658,7 +1661,7 @@ object MainForm: TMainForm
         AnchorSideTop.Side = asrCenter
         Left = 166
         Height = 15
-        Top = 89
+        Top = 91
         Width = 15
         BorderSpacing.Left = 1
         Center = True
@@ -1700,7 +1703,7 @@ object MainForm: TMainForm
         AnchorSideTop.Control = EditButton1
         Left = 412
         Height = 15
-        Top = 28
+        Top = 30
         Width = 15
         BorderSpacing.Left = 2
         Center = True
@@ -1742,9 +1745,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Label54
         AnchorSideTop.Side = asrBottom
         Left = 412
-        Height = 13
-        Top = 41
-        Width = 43
+        Height = 15
+        Top = 45
+        Width = 41
         BorderSpacing.Left = 2
         Caption = 'Worked'
         Font.Color = clRed
@@ -1757,9 +1760,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Image3
         Left = 428
-        Height = 13
-        Top = 28
-        Width = 23
+        Height = 15
+        Top = 30
+        Width = 22
         BorderSpacing.Left = 1
         Caption = 'QSL'
         Font.Color = clRed
@@ -1771,8 +1774,8 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 27
-      Top = 260
+      Height = 15
+      Top = 256
       Width = 472
       Align = alClient
       BevelOuter = bvNone
@@ -1781,16 +1784,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 288
-    Top = 30
+    Height = 272
+    Top = 26
     Width = 734
     Align = alClient
-    ClientHeight = 288
+    ClientHeight = 272
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 286
+      Height = 270
       Top = 1
       Width = 732
       Align = alClient
@@ -1799,13 +1802,13 @@ object MainForm: TMainForm
         item
           Title.Font.Height = -11
           Title.Caption = 'QSL'
-          Width = 35
+          Width = 34
           FieldName = 'QSL'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'QSLs'
-          Width = 40
+          Width = 39
           FieldName = 'QSLs'
         end      
         item
@@ -1823,26 +1826,26 @@ object MainForm: TMainForm
         item
           Title.Font.Height = -11
           Title.Caption = 'Frequency'
-          Width = 65
+          Width = 68
           FieldName = 'QSOBand'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'Callsign'
-          Width = 54
+          Width = 56
           FieldName = 'CallSign'
         end      
         item
           MinSize = 15
           Title.Font.Height = -11
           Title.Caption = 'Mode'
-          Width = 43
+          Width = 45
           FieldName = 'QSOMode'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'QSOSubMode'
-          Width = 83
+          Width = 88
           FieldName = 'QSOSubMode'
         end      
         item
@@ -1866,7 +1869,7 @@ object MainForm: TMainForm
         item
           Title.Font.Height = -11
           Title.Caption = 'Grid'
-          Width = 35
+          Width = 37
           FieldName = 'Grid'
         end      
         item
@@ -1884,68 +1887,68 @@ object MainForm: TMainForm
         item
           Title.Font.Height = -11
           Title.Caption = 'IOTA'
-          Width = 39
+          Width = 40
           FieldName = 'IOTA'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'Manager'
-          Width = 59
+          Width = 61
           FieldName = 'QSLManager'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'QSLs Date'
-          Width = 67
+          Width = 66
           FieldName = 'QSLSentDate'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'QSLr Date'
-          Width = 66
+          Width = 65
           FieldName = 'QSLRecDate'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'LOTWr Date'
-          Width = 75
+          Width = 77
           FieldName = 'LoTWRecDate'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'Prefix'
-          Width = 45
+          Width = 43
           FieldName = 'MainPrefix'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'DXCC'
-          Width = 44
+          Width = 43
           FieldName = 'DXCCPrefix'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'CQ Zone'
-          Width = 58
+          Width = 59
           FieldName = 'CQZone'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'ITU Zone'
-          Width = 59
+          Width = 61
           FieldName = 'ITUZone'
         end      
         item
           ButtonStyle = cbsCheckboxColumn
           Title.Font.Height = -11
           Title.Caption = 'Manual Set'
-          Width = 71
+          Width = 73
           FieldName = 'ManualSet'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'Continent'
-          Width = 63
+          Width = 67
           FieldName = 'Continent'
         end      
         item
@@ -1958,13 +1961,13 @@ object MainForm: TMainForm
         item
           Title.Font.Height = -11
           Title.Caption = 'QSL r VIA'
-          Width = 62
+          Width = 61
           FieldName = 'QSL_RCVD_VIA'
         end      
         item
           Title.Font.Height = -11
           Title.Caption = 'QSL s VIA'
-          Width = 63
+          Width = 62
           FieldName = 'QSL_SENT_VIA'
         end      
         item
@@ -1999,7 +2002,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 318
+    Top = 298
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -2019,9 +2022,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Panel5
         AnchorSideTop.Control = Panel5
         Left = 6
-        Height = 13
+        Height = 15
         Top = 6
-        Width = 46
+        Width = 45
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Azimuth'
@@ -2034,9 +2037,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Label29
         AnchorSideTop.Side = asrBottom
         Left = 6
-        Height = 13
-        Top = 24
-        Width = 49
+        Height = 15
+        Top = 26
+        Width = 43
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Territory'
@@ -2049,9 +2052,9 @@ object MainForm: TMainForm
         AnchorSideTop.Control = Label30
         AnchorSideTop.Side = asrBottom
         Left = 6
-        Height = 13
-        Top = 42
-        Width = 29
+        Height = 15
+        Top = 46
+        Width = 31
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'DXCC'
@@ -2063,8 +2066,8 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label29
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel5
-        Left = 55
-        Height = 13
+        Left = 54
+        Height = 15
         Top = 6
         Width = 21
         BorderSpacing.Left = 3
@@ -2081,9 +2084,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label32
         AnchorSideTop.Side = asrBottom
-        Left = 58
-        Height = 13
-        Top = 24
+        Left = 52
+        Height = 15
+        Top = 26
         Width = 21
         BorderSpacing.Left = 3
         BorderSpacing.Top = 5
@@ -2098,9 +2101,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label33
         AnchorSideTop.Side = asrBottom
-        Left = 38
-        Height = 13
-        Top = 42
+        Left = 40
+        Height = 15
+        Top = 46
         Width = 21
         BorderSpacing.Left = 3
         BorderSpacing.Top = 5
@@ -2114,9 +2117,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Panel5
         AnchorSideTop.Control = Panel5
         Left = 101
-        Height = 13
+        Height = 15
         Top = 6
-        Width = 48
+        Width = 45
         BorderSpacing.Left = 100
         BorderSpacing.Top = 5
         Caption = 'Distance'
@@ -2126,13 +2129,14 @@ object MainForm: TMainForm
       end
       object Label36: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label31
-        AnchorSideTop.Side = asrCenter
+        AnchorSideTop.Control = Label33
+        AnchorSideTop.Side = asrBottom
         Left = 101
-        Height = 13
-        Top = 42
-        Width = 33
+        Height = 15
+        Top = 46
+        Width = 30
         BorderSpacing.Left = 100
+        BorderSpacing.Top = 5
         Caption = 'Prefix'
         Font.Height = -12
         ParentColor = False
@@ -2142,8 +2146,8 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label35
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel5
-        Left = 152
-        Height = 13
+        Left = 149
+        Height = 15
         Top = 6
         Width = 21
         BorderSpacing.Left = 3
@@ -2159,9 +2163,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label33
         AnchorSideTop.Side = asrBottom
-        Left = 137
-        Height = 13
-        Top = 42
+        Left = 134
+        Height = 15
+        Top = 46
         Width = 21
         BorderSpacing.Left = 3
         BorderSpacing.Top = 5
@@ -2175,9 +2179,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Panel5
         AnchorSideTop.Control = Panel5
         Left = 236
-        Height = 13
+        Height = 15
         Top = 6
-        Width = 46
+        Width = 43
         BorderSpacing.Left = 235
         BorderSpacing.Top = 5
         Caption = 'Latitude'
@@ -2189,8 +2193,8 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label39
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel5
-        Left = 285
-        Height = 13
+        Left = 282
+        Height = 15
         Top = 6
         Width = 21
         BorderSpacing.Left = 3
@@ -2205,9 +2209,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Panel5
         AnchorSideTop.Control = Panel5
         Left = 353
-        Height = 13
+        Height = 15
         Top = 6
-        Width = 56
+        Width = 54
         BorderSpacing.Left = 352
         BorderSpacing.Top = 5
         Caption = 'Longitude'
@@ -2219,8 +2223,8 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label41
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel5
-        Left = 412
-        Height = 13
+        Left = 410
+        Height = 15
         Top = 6
         Width = 21
         BorderSpacing.Left = 3
@@ -2234,13 +2238,14 @@ object MainForm: TMainForm
       object Label43: TLabel
         AnchorSideLeft.Control = Label39
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label30
-        AnchorSideTop.Side = asrCenter
-        Left = 285
-        Height = 13
-        Top = 24
+        AnchorSideTop.Control = Label40
+        AnchorSideTop.Side = asrBottom
+        Left = 282
+        Height = 15
+        Top = 26
         Width = 21
         BorderSpacing.Left = 3
+        BorderSpacing.Top = 5
         Caption = '.......'
         Font.Height = -12
         Font.Style = [fsBold]
@@ -2249,13 +2254,14 @@ object MainForm: TMainForm
       end
       object Label44: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label31
-        AnchorSideTop.Side = asrCenter
+        AnchorSideTop.Control = Label33
+        AnchorSideTop.Side = asrBottom
         Left = 226
-        Height = 13
-        Top = 42
-        Width = 16
+        Height = 15
+        Top = 46
+        Width = 17
         BorderSpacing.Left = 225
+        BorderSpacing.Top = 5
         Caption = 'CQ'
         Font.Height = -12
         ParentColor = False
@@ -2266,9 +2272,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label33
         AnchorSideTop.Side = asrBottom
-        Left = 247
-        Height = 13
-        Top = 42
+        Left = 248
+        Height = 15
+        Top = 46
         Width = 6
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
@@ -2280,13 +2286,14 @@ object MainForm: TMainForm
       end
       object Label46: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label31
-        AnchorSideTop.Side = asrCenter
+        AnchorSideTop.Control = Label33
+        AnchorSideTop.Side = asrBottom
         Left = 271
-        Height = 13
-        Top = 42
-        Width = 18
+        Height = 15
+        Top = 46
+        Width = 17
         BorderSpacing.Left = 270
+        BorderSpacing.Top = 5
         Caption = 'ITU'
         Font.Height = -12
         ParentColor = False
@@ -2297,9 +2304,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label33
         AnchorSideTop.Side = asrBottom
-        Left = 294
-        Height = 13
-        Top = 42
+        Left = 293
+        Height = 15
+        Top = 46
         Width = 6
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
@@ -2311,13 +2318,14 @@ object MainForm: TMainForm
       end
       object Label48: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label31
-        AnchorSideTop.Side = asrCenter
+        AnchorSideTop.Control = Label33
+        AnchorSideTop.Side = asrBottom
         Left = 322
-        Height = 13
-        Top = 42
-        Width = 50
+        Height = 15
+        Top = 52
+        Width = 48
         BorderSpacing.Left = 321
+        BorderSpacing.Top = 11
         Caption = 'Your QSL'
         Font.Height = -12
         ParentColor = False
@@ -2326,14 +2334,15 @@ object MainForm: TMainForm
       object ComboBox7: TComboBox
         AnchorSideLeft.Control = Label48
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label48
-        AnchorSideTop.Side = asrCenter
-        Left = 374
+        AnchorSideTop.Control = Label33
+        AnchorSideTop.Side = asrBottom
+        Left = 372
         Height = 22
-        Top = 37
+        Top = 49
         Width = 96
         AutoSize = False
         BorderSpacing.Left = 2
+        BorderSpacing.Top = 8
         Font.Height = -12
         ItemHeight = 16
         ItemIndex = 3
@@ -2350,12 +2359,9 @@ object MainForm: TMainForm
         Text = 'Wasn''t sent'
       end
       object SpeedButton14: TSpeedButton
-        AnchorSideTop.Control = Label30
-        AnchorSideTop.Side = asrCenter
-        AnchorSideBottom.Control = ComboBox7
         Left = 408
         Height = 17
-        Top = 22
+        Top = 24
         Width = 20
         Enabled = False
         Glyph.Data = {
@@ -2398,15 +2404,11 @@ object MainForm: TMainForm
       object SpeedButton15: TSpeedButton
         AnchorSideLeft.Control = SpeedButton14
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = SpeedButton14
-        AnchorSideTop.Side = asrCenter
-        AnchorSideBottom.Control = ComboBox7
         Left = 430
         Height = 20
-        Top = 20
+        Top = 24
         Width = 20
         BorderSpacing.Left = 2
-        BorderSpacing.Bottom = 3
         Enabled = False
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -2448,11 +2450,9 @@ object MainForm: TMainForm
       object SpeedButton16: TSpeedButton
         AnchorSideLeft.Control = SpeedButton15
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = SpeedButton14
-        AnchorSideTop.Side = asrCenter
         Left = 452
         Height = 20
-        Top = 20
+        Top = 24
         Width = 20
         BorderSpacing.Left = 2
         Glyph.Data = {
@@ -2501,8 +2501,8 @@ object MainForm: TMainForm
       end
       object StatusBar1: TStatusBar
         Left = 1
-        Height = 15
-        Top = 360
+        Height = 23
+        Top = 352
         Width = 472
         Font.Height = -12
         Panels = <        
@@ -2519,7 +2519,7 @@ object MainForm: TMainForm
       object Panel10: TPanel
         Left = 1
         Height = 274
-        Top = 86
+        Top = 78
         Width = 472
         Align = alBottom
         ClientHeight = 274
@@ -2544,9 +2544,9 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label33
         AnchorSideTop.Side = asrCenter
-        Left = 82
-        Height = 13
-        Top = 24
+        Left = 76
+        Height = 15
+        Top = 26
         Width = 31
         BorderSpacing.Left = 3
         Caption = '(Cfm)'
@@ -2570,29 +2570,29 @@ object MainForm: TMainForm
         Left = 1
         Height = 111
         Top = 1
-        Width = 726
+        Width = 730
         Align = alTop
         ClientHeight = 111
-        ClientWidth = 726
+        ClientWidth = 730
         TabOrder = 0
         object DBGrid2: TDBGrid
           Left = 1
-          Height = 105
+          Height = 109
           Top = 1
-          Width = 720
+          Width = 728
           Align = alClient
           Color = clWindow
           Columns = <          
             item
               Title.Font.Height = -11
               Title.Caption = 'QSL'
-              Width = 35
+              Width = 34
               FieldName = 'QSL'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'QSLs'
-              Width = 40
+              Width = 39
               FieldName = 'QSLs'
             end          
             item
@@ -2610,26 +2610,26 @@ object MainForm: TMainForm
             item
               Title.Font.Height = -11
               Title.Caption = 'Frequency'
-              Width = 65
+              Width = 68
               FieldName = 'QSOBand'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'Callsign'
-              Width = 54
+              Width = 56
               FieldName = 'CallSign'
             end          
             item
               MinSize = 15
               Title.Font.Height = -11
               Title.Caption = 'Mode'
-              Width = 43
+              Width = 45
               FieldName = 'QSOMode'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'QSOSubMode'
-              Width = 83
+              Width = 88
               FieldName = 'QSOSubMode'
             end          
             item
@@ -2653,7 +2653,7 @@ object MainForm: TMainForm
             item
               Title.Font.Height = -11
               Title.Caption = 'Grid'
-              Width = 35
+              Width = 37
               FieldName = 'Grid'
             end          
             item
@@ -2671,68 +2671,68 @@ object MainForm: TMainForm
             item
               Title.Font.Height = -11
               Title.Caption = 'IOTA'
-              Width = 39
+              Width = 40
               FieldName = 'IOTA'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'Manager'
-              Width = 59
+              Width = 61
               FieldName = 'QSLManager'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'QSLs Date'
-              Width = 67
+              Width = 66
               FieldName = 'QSLSentDate'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'QSLr Date'
-              Width = 66
+              Width = 65
               FieldName = 'QSLRecDate'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'LOTWr Date'
-              Width = 75
+              Width = 77
               FieldName = 'LoTWRecDate'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'Prefix'
-              Width = 45
+              Width = 43
               FieldName = 'MainPrefix'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'DXCC'
-              Width = 44
+              Width = 43
               FieldName = 'DXCCPrefix'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'CQ Zone'
-              Width = 58
+              Width = 59
               FieldName = 'CQZone'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'ITU Zone'
-              Width = 59
+              Width = 61
               FieldName = 'ITUZone'
             end          
             item
               ButtonStyle = cbsCheckboxColumn
               Title.Font.Height = -11
               Title.Caption = 'Manual Set'
-              Width = 71
+              Width = 73
               FieldName = 'ManualSet'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'Continent'
-              Width = 63
+              Width = 67
               FieldName = 'Continent'
             end          
             item
@@ -2745,13 +2745,13 @@ object MainForm: TMainForm
             item
               Title.Font.Height = -11
               Title.Caption = 'QSL r VIA'
-              Width = 62
+              Width = 61
               FieldName = 'QSL_RCVD_VIA'
             end          
             item
               Title.Font.Height = -11
               Title.Caption = 'QSL s VIA'
-              Width = 63
+              Width = 62
               FieldName = 'QSL_SENT_VIA'
             end          
             item
@@ -2781,20 +2781,20 @@ object MainForm: TMainForm
       end
       object Panel8: TPanel
         Left = 1
-        Height = 259
+        Height = 263
         Top = 112
-        Width = 726
+        Width = 730
         Align = alClient
-        ClientHeight = 259
-        ClientWidth = 726
+        ClientHeight = 263
+        ClientWidth = 730
         Font.Height = -12
         ParentFont = False
         TabOrder = 1
         object PageControl1: TPageControl
           Left = 1
-          Height = 253
+          Height = 261
           Top = 1
-          Width = 720
+          Width = 728
           ActivePage = TabSheet2
           Align = alClient
           Font.Height = -13
@@ -2804,8 +2804,8 @@ object MainForm: TMainForm
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
-            ClientHeight = 249
-            ClientWidth = 716
+            ClientHeight = 231
+            ClientWidth = 720
             object Memo1: TMemo
               Left = 0
               Height = 180
@@ -3118,7 +3118,7 @@ object MainForm: TMainForm
                 Width = 388
                 AutoSize = False
                 Font.Height = -12
-                ItemHeight = 0
+                ItemHeight = 15
                 Items.Strings = (
                   'rn6bn.73.ru'
                 )
@@ -3131,16 +3131,16 @@ object MainForm: TMainForm
           end
           object TabSheet2: TTabSheet
             Caption = 'Telnet DX Cluster'
-            ClientHeight = 221
-            ClientWidth = 710
+            ClientHeight = 231
+            ClientWidth = 720
             object Panel9: TPanel
               Left = 0
               Height = 28
               Top = 0
-              Width = 710
+              Width = 720
               Align = alTop
               ClientHeight = 28
-              ClientWidth = 710
+              ClientWidth = 720
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -3200,7 +3200,7 @@ object MainForm: TMainForm
                 Width = 388
                 AutoSize = False
                 Font.Height = -12
-                ItemHeight = 0
+                ItemHeight = 15
                 Items.Strings = (
                   'rn6bn.73.ru'
                 )
@@ -3210,8 +3210,8 @@ object MainForm: TMainForm
                 TabOrder = 0
               end
               object SpeedButton19: TSpeedButton
-                Left = 681
-                Height = 22
+                Left = 695
+                Height = 26
                 Top = 1
                 Width = 24
                 Align = alRight
@@ -3441,9 +3441,9 @@ object MainForm: TMainForm
             object VirtualStringTree1: TVirtualStringTree
               Cursor = 63
               Left = 0
-              Height = 193
+              Height = 203
               Top = 28
-              Width = 710
+              Width = 720
               Align = alClient
               DefaultText = 'Node'
               Font.Height = -11
@@ -3520,8 +3520,8 @@ object MainForm: TMainForm
     end
   end
   object MainMenu1: TMainMenu
-    Left = 488
-    Top = 304
+    left = 488
+    top = 304
     object MenuItem1: TMenuItem
       Caption = 'LogBook'
       object MenuItem54: TMenuItem
@@ -3691,6 +3691,10 @@ object MainForm: TMainForm
         Caption = 'Compact mode'
         OnClick = MenuItem72Click
       end
+      object MenuItem73: TMenuItem
+        Caption = 'Normal mode'
+        OnClick = MenuItem73Click
+      end
     end
     object MenuItem4: TMenuItem
       Caption = 'External programs'
@@ -3736,8 +3740,8 @@ object MainForm: TMainForm
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
-    Left = 272
-    Top = 416
+    left = 272
+    top = 416
   end
   object TrayIcon1: TTrayIcon
     BalloonFlags = bfInfo
@@ -3784,13 +3788,13 @@ object MainForm: TMainForm
     }
     Visible = True
     OnDblClick = TrayIcon1DblClick
-    Left = 112
-    Top = 592
+    left = 112
+    top = 592
   end
   object DataSource2: TDataSource
     DataSet = SQLQuery2
-    Left = 600
-    Top = 312
+    left = 600
+    top = 312
   end
   object MySQLLOGDBConnection: TMySQL56Connection
     Connected = False
@@ -3801,19 +3805,19 @@ object MainForm: TMainForm
     CharSet = 'utf8'
     LogEvents = []
     SkipLibraryVersionCheck = True
-    Left = 527
-    Top = 152
+    left = 527
+    top = 152
   end
   object LOGBookDS: TDataSource
     DataSet = LOGBookQuery
-    Left = 527
-    Top = 56
+    left = 527
+    top = 56
   end
   object SQLTransaction1: TSQLTransaction
     Active = False
     Database = MySQLLOGDBConnection
-    Left = 208
-    Top = 600
+    left = 208
+    top = 600
   end
   object LOGBookQuery: TSQLQuery
     FieldDefs = <>
@@ -3823,8 +3827,52 @@ object MainForm: TMainForm
       'SELECT * FROM `Log_TABLE_20102015_122634` WHERE 1 ORDER BY `UnUsedIndex`'
     )
     Params = <>
-    Left = 920
-    Top = 336
+    left = 920
+    top = 336
+  end
+  object PrefixProvinceQuery: TSQLQuery
+    PacketRecords = 2000
+    FieldDefs = <    
+      item
+        Name = 'PrefixList'
+        DataType = ftString
+        Precision = -1
+        Size = 765
+      end>
+    Database = MySQLLOGDBConnection
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select _id, PrefixList from Province where EndDate == ""'
+    )
+    Params = <>
+    left = 112
+    top = 544
+  end
+  object PrefixQuery: TSQLQuery
+    FieldDefs = <>
+    Database = MySQLLOGDBConnection
+    Transaction = SQLTransaction1
+    Params = <>
+    left = 432
+    top = 544
+  end
+  object PrefixARRLQuery: TSQLQuery
+    PacketRecords = 2000
+    FieldDefs = <    
+      item
+        Name = 'PrefixList'
+        DataType = ftString
+        Precision = -1
+        Size = 765
+      end>
+    Database = MySQLLOGDBConnection
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select _id, PrefixList, Status from CountryDataEx where EndDate == ""'
+    )
+    Params = <>
+    left = 928
+    top = 64
   end
   object SQLQuery2: TSQLQuery
     PacketRecords = 1000
@@ -3835,14 +3883,111 @@ object MainForm: TMainForm
       ''
     )
     Params = <>
-    Left = 856
-    Top = 64
+    left = 856
+    top = 64
+  end
+  object LogBookInfoQuery: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'LogTable'
+        DataType = ftString
+        Precision = -1
+        Size = 300
+      end    
+      item
+        Name = 'CallName'
+        DataType = ftString
+        Precision = -1
+        Size = 45
+      end    
+      item
+        Name = 'Name'
+        DataType = ftString
+        Precision = -1
+        Size = 300
+      end    
+      item
+        Name = 'QTH'
+        DataType = ftString
+        Precision = -1
+        Size = 300
+      end    
+      item
+        Name = 'ITU'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'CQ'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'Loc'
+        DataType = ftString
+        Precision = -1
+        Size = 96
+      end    
+      item
+        Name = 'Lat'
+        DataType = ftString
+        Precision = -1
+        Size = 60
+      end    
+      item
+        Name = 'Lon'
+        DataType = ftString
+        Precision = -1
+        Size = 60
+      end    
+      item
+        Name = 'Discription'
+        DataType = ftString
+        Precision = -1
+        Size = 450
+      end    
+      item
+        Name = 'QSLInfo'
+        DataType = ftString
+        Precision = -1
+        Size = 600
+      end    
+      item
+        Name = 'EQSLLogin'
+        DataType = ftString
+        Precision = -1
+        Size = 600
+      end    
+      item
+        Name = 'EQSLPassword'
+        DataType = ftString
+        Precision = -1
+        Size = 600
+      end>
+    Database = MySQLLOGDBConnection
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'SELECT * FROM LogBookInfo'
+    )
+    Params = <>
+    left = 803
+    top = 224
+  end
+  object LogBookInfoDS: TDataSource
+    DataSet = LogBookFieldQuery
+    left = 672
+    top = 344
   end
   object CallBookTransaction: TSQLTransaction
     Active = False
     Database = CallBookLiteConnection
-    Left = 728
-    Top = 304
+    left = 728
+    top = 304
   end
   object SearchCallBookQuery: TSQLQuery
     FieldDefs = <    
@@ -3993,25 +4138,36 @@ object MainForm: TMainForm
       ''
     )
     Params = <>
-    Left = 720
-    Top = 64
+    left = 720
+    top = 64
   end
   object SearchRACDS: TDataSource
     DataSet = SearchCallBookQuery
-    Left = 200
-    Top = 480
+    left = 200
+    top = 480
+  end
+  object LogBookFieldQuery: TSQLQuery
+    FieldDefs = <>
+    Database = MySQLLOGDBConnection
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from LogBookInfo'
+    )
+    Params = <>
+    left = 272
+    top = 544
   end
   object SaveQSOQuery: TSQLQuery
     FieldDefs = <>
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
-    Left = 576
-    Top = 64
+    left = 576
+    top = 64
   end
   object ActionList1: TActionList
-    Left = 112
-    Top = 480
+    left = 112
+    top = 480
     object SaveQSOinBase: TAction
       DisableIfNoHandler = False
       OnExecute = SpeedButton8Click
@@ -4024,8 +4180,8 @@ object MainForm: TMainForm
     end
   end
   object PopupMenu1: TPopupMenu
-    Left = 1008
-    Top = 312
+    left = 1008
+    top = 312
     object MenuItem8: TMenuItem
       Caption = 'Mark this QSO'
       Bitmap.Data = {
@@ -5092,12 +5248,12 @@ object MainForm: TMainForm
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
-    Left = 24
-    Top = 544
+    left = 24
+    top = 544
   end
   object PopupMenu2: TPopupMenu
-    Left = 520
-    Top = 320
+    left = 520
+    top = 320
     object MenuItem75: TMenuItem
       Caption = 'Change Country Information'
       object MenuItem79: TMenuItem
@@ -5121,8 +5277,8 @@ object MainForm: TMainForm
     Enabled = False
     Interval = 1200
     OnTimer = Fl_TimerTimer
-    Left = 960
-    Top = 176
+    left = 960
+    top = 176
   end
   object SQLiteDBConnection: TSQLite3Connection
     Connected = False
@@ -5133,59 +5289,78 @@ object MainForm: TMainForm
     CharSet = 'UTF-8'
     HostName = 'localhost'
     LogEvents = []
-    AlwaysUseBigint = False
-    Left = 176
-    Top = 360
+    left = 176
+    top = 360
   end
   object CopySQLQuery: TSQLQuery
     FieldDefs = <>
     Database = SQLiteDBConnection
     Transaction = SQLiteTr
     Params = <>
-    Left = 24
-    Top = 360
+    left = 24
+    top = 360
   end
   object SQLiteTr: TSQLTransaction
     Active = False
     Database = SQLiteDBConnection
-    Left = 104
-    Top = 360
+    left = 104
+    top = 360
   end
   object DUPEQuery: TSQLQuery
     FieldDefs = <>
     Database = SQLiteDBConnection
     Transaction = SQLiteTr
     Params = <>
-    Left = 336
-    Top = 360
+    left = 336
+    top = 360
   end
   object CopySQLQuery2: TSQLQuery
     FieldDefs = <>
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
-    Left = 264
-    Top = 360
+    left = 264
+    top = 360
   end
   object DUPEQuery2: TSQLQuery
     FieldDefs = <>
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
-    Left = 24
-    Top = 420
+    left = 24
+    top = 420
   end
   object CheckUpdatesTimer: TTimer
     Enabled = False
     Interval = 3600000
     OnTimer = CheckUpdatesTimerTimer
     OnStartTimer = CheckUpdatesTimerStartTimer
-    Left = 184
-    Top = 416
+    left = 184
+    top = 416
+  end
+  object ServiceDBConnection: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Transaction = SQLServiceTransaction
+    left = 400
+    top = 488
+  end
+  object SQLServiceTransaction: TSQLTransaction
+    Active = False
+    Database = ServiceDBConnection
+    left = 24
+    top = 488
+  end
+  object Timer3: TTimer
+    Interval = 100
+    OnTimer = Timer3Timer
+    left = 600
+    top = 128
   end
   object TrayPopup: TPopupMenu
-    Left = 400
-    Top = 360
+    left = 400
+    top = 360
     object MenuItem95: TMenuItem
       Caption = 'Minimize to tray'
       OnClick = MenuItem95Click
@@ -5203,10 +5378,11 @@ object MainForm: TMainForm
     end
   end
   object WSJT_Timer: TTimer
+    Enabled = False
     Interval = 1200
     OnTimer = WSJT_TimerTimer
-    Left = 685
-    Top = 197
+    left = 685
+    top = 197
   end
   object CallBookLiteConnection: TSQLite3Connection
     Connected = False
@@ -5215,37 +5391,35 @@ object MainForm: TMainForm
     KeepConnection = False
     Transaction = CallBookTransaction
     CharSet = 'utf-8'
-    AlwaysUseBigint = False
-    Left = 808
-    Top = 312
+    left = 808
+    top = 312
   end
   object LTCPComponent1: TLTCPComponent
     Port = 0
     OnReceive = LTCPComponent1Receive
     OnError = LTCPComponent1Error
     OnDisconnect = LTCPComponent1Disconnect
-    OnConnect = LTCPComponent1Connect
     OnAccept = LTCPComponent1Accept
     OnCanSend = LTCPComponent1CanSend
     Timeout = 0
     ReuseAddress = False
-    Left = 1008
-    Top = 112
+    left = 1008
+    top = 112
   end
   object LUDPComponent1: TLUDPComponent
     Port = 0
     OnReceive = LUDPComponent1Receive
     OnError = LUDPComponent1Error
     Timeout = 0
-    Left = 896
-    Top = 120
+    left = 896
+    top = 120
   end
   object IdIPWatch1: TIdIPWatch
     Active = True
     HistoryEnabled = False
     HistoryFilename = 'iphist.dat'
-    Left = 688
-    Top = 145
+    left = 688
+    top = 145
   end
   object dxClient: TLTelnetClientComponent
     Port = 0
@@ -5254,12 +5428,20 @@ object MainForm: TMainForm
     OnReceive = dxClientReceive
     Timeout = 0
     LocalEcho = False
-    Left = 1120
-    Top = 312
+    left = 1120
+    top = 312
+  end
+  object qBands: TSQLQuery
+    FieldDefs = <>
+    Database = ServiceDBConnection
+    Transaction = SQLServiceTransaction
+    Params = <>
+    left = 1102
+    top = 85
   end
   object PopupDxCluster: TPopupMenu
-    Left = 1100
-    Top = 190
+    left = 1100
+    top = 190
     object MenuItem113: TMenuItem
       Caption = 'Paste in Callsign field'
       OnClick = MenuItem113Click
@@ -5273,6 +5455,18 @@ object MainForm: TMainForm
       OnClick = MenuItem115Click
     end
   end
+  object UniqueCallsQuery: TSQLQuery
+    PacketRecords = 10000
+    FieldDefs = <>
+    Database = MySQLLOGDBConnection
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select Callsign from UniqueCalls'
+    )
+    Params = <>
+    left = 520
+    top = 558
+  end
   object frReport1: TfrReport
     Dataset = frDBDataSet1
     InitialZoom = pzDefault
@@ -5280,12 +5474,12 @@ object MainForm: TMainForm
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     ReportType = rtMultiple
     DataType = dtDataSet
-    Left = 696
-    Top = 520
+    left = 696
+    top = 520
   end
   object PrintDialog1: TPrintDialog
-    Left = 832
-    Top = 528
+    left = 832
+    top = 528
   end
   object PrintQuery: TSQLQuery
     FieldDefs = <    
@@ -5600,22 +5794,22 @@ object MainForm: TMainForm
       ''
     )
     Params = <>
-    Left = 1026
-    Top = 507
+    left = 1026
+    top = 507
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = PrintQuery
-    Left = 626
-    Top = 531
+    left = 626
+    top = 531
   end
   object frTextExport1: TfrTextExport
     ShowExportParamsDlg = True
-    Left = 724
-    Top = 587
+    left = 724
+    top = 587
   end
   object frCSVExport1: TfrCSVExport
-    Left = 816
-    Top = 592
+    left = 816
+    top = 592
   end
   object subModesQuery: TSQLQuery
     PacketRecords = 100
@@ -5631,22 +5825,22 @@ object MainForm: TMainForm
       'select _id, submode from Modes'
     )
     Params = <>
-    Left = 768
-    Top = 144
-  end
-  object BandsQuery: TSQLQuery
-    PacketRecords = 100
-    FieldDefs = <>
-    Params = <>
-    Left = 574
-    Top = 231
+    left = 768
+    top = 144
   end
   object CheckTableQuery: TSQLQuery
     FieldDefs = <>
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
-    Left = 952
-    Top = 568
+    left = 952
+    top = 568
+  end
+  object BandsQuery: TSQLQuery
+    PacketRecords = 100
+    FieldDefs = <>
+    Params = <>
+    left = 574
+    top = 231
   end
 end

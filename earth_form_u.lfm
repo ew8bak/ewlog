@@ -1,12 +1,11 @@
 object Earth: TEarth
-  Left = 352
+  Left = 534
   Height = 240
-  Top = 153
+  Top = 181
   Width = 320
   Caption = 'Earth'
-  OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnPaint = FormPaint
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '2.0.6.0'
 end

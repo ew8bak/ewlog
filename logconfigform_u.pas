@@ -112,7 +112,7 @@ var
 
 implementation
 
-uses MainForm_U, CreateJournalForm_U, dmFunc_U, dmMainFunc;
+uses MainForm_U, CreateJournalForm_U, dmFunc_U;
 
 {$R *.lfm}
 
@@ -274,8 +274,8 @@ begin
       UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
     else
       UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
-    if LBParam.CallSign <> '' then
-      SelectCall(LBParam.CallSign);
+    if MainForm.DBLookupComboBox1.Text <> '' then
+      SelectCall(MainForm.DBLookupComboBox1.KeyValue);
   end;
 end;
 
@@ -300,7 +300,7 @@ begin
           UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
         else
           UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
-        SelectCall(LBParam.CallSign);
+        SelectCall(MainForm.DBLookupComboBox1.KeyValue);
       end;
 
       ListBox1.Clear;
@@ -314,7 +314,7 @@ begin
         SQLQuery2.Next;
       end;
       for i := 0 to ListBox1.Count - 1 do
-        if Pos(LBParam.CallSign, ListBox1.Items[i]) > 0 then
+        if Pos(MainForm.DBLookupComboBox1.KeyValue, ListBox1.Items[i]) > 0 then
         begin
           ListBox1.Selected[i] := True;
           exit;
@@ -395,7 +395,7 @@ begin
       end;
       MainForm.SelDB(CallLogBook);
       for i := 0 to ListBox1.Count - 1 do
-        if Pos(LBParam.CallSign, ListBox1.Items[i]) > 0 then
+        if Pos(MainForm.DBLookupComboBox1.KeyValue, ListBox1.Items[i]) > 0 then
         begin
           ListBox1.Selected[i] := True;
           exit;
@@ -415,7 +415,7 @@ begin
     ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
     MainForm.DBLookupComboBox1.KeyValue := ListBox1.Items[ListBox1.ItemIndex];
     MainForm.DBLookupComboBox1CloseUp(Self);
-    if ListBox1.Items[ListBox1.ItemIndex] = LBParam.CallSign then
+    if ListBox1.Items[ListBox1.ItemIndex] = MainForm.DBLookupComboBox1.KeyValue then
       Label15.Visible := True
     else
       Label15.Visible := False;

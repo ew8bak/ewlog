@@ -41,7 +41,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, dmMainFunc;
+uses dmFunc_U, MainForm_U;
 
 { TMM_Form }
 
@@ -65,7 +65,7 @@ var
   ListItem: TListItem;
 begin
   try
-    MMQuery.DataBase := dm_MainFunc.ServiceDBConnection;
+    MMQuery.DataBase := MainForm.ServiceDBConnection;
     MMQuery.SQL.Text := ('SELECT * FROM Modes');
     MMQuery.Open;
     ListView1.Clear;

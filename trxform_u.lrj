@@ -20,8 +20,10 @@
 {"hash":836,"name":"ttrxform.btn20m.caption","sourcebytes":[49,52],"value":"14"},
 {"hash":856,"name":"ttrxform.btn10m.caption","sourcebytes":[50,56],"value":"28"},
 {"hash":896,"name":"ttrxform.btn6m.caption","sourcebytes":[53,48],"value":"50"},
-{"hash":14176,"name":"ttrxform.btn70cm.caption","sourcebytes":[52,51,48],"value":"430"},
-{"hash":13428,"name":"ttrxform.btn2m.caption","sourcebytes":[49,52,52],"value":"144"},
+{"hash":13428,"name":"ttrxform.btn70cm.caption","sourcebytes":[49,52,52],"value":"144"},
+{"hash":928,"name":"ttrxform.btn2m.caption","sourcebytes":[55,48],"value":"70"},
+{"hash":14176,"name":"ttrxform.btn70cm1.caption","sourcebytes":[52,51,48],"value":"430"},
+{"hash":214320,"name":"ttrxform.btn70cm2.caption","sourcebytes":[49,50,48,48],"value":"1200"},
 {"hash":48,"name":"ttrxform.label1.caption","sourcebytes":[48],"value":"0"},
 {"hash":48,"name":"ttrxform.label2.caption","sourcebytes":[48],"value":"0"},
 {"hash":48,"name":"ttrxform.label3.caption","sourcebytes":[48],"value":"0"},
@@ -32,6 +34,5 @@
 {"hash":48,"name":"ttrxform.label8.caption","sourcebytes":[48],"value":"0"},
 {"hash":46,"name":"ttrxform.label9.caption","sourcebytes":[46],"value":"."},
 {"hash":46,"name":"ttrxform.label10.caption","sourcebytes":[46],"value":"."},
-{"hash":48,"name":"ttrxform.label11.caption","sourcebytes":[48],"value":"0"},
-{"hash":21908,"name":"ttrxform.button1.caption","sourcebytes":[80,84,84],"value":"PTT"}
+{"hash":48,"name":"ttrxform.label11.caption","sourcebytes":[48],"value":"0"}
 ]}

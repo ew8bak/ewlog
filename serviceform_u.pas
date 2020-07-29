@@ -55,7 +55,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, const_u, dmMainFunc;
+uses dmFunc_U, MainForm_U, const_u;
 
 procedure TServiceForm.eQSLImport(FilePATH: string);
 var
@@ -183,10 +183,10 @@ begin
           digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
 
           if Length(SUBMODE) > 0 then
-            SQLString := 'UPDATE ' + LBParam.LogTable + ' SET QSOMode = ' +
+            SQLString := 'UPDATE ' + LogTable + ' SET QSOMode = ' +
               dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE)
           else
-            SQLString := 'UPDATE ' + LBParam.LogTable + ' SET QSOMode = ' +
+            SQLString := 'UPDATE ' + LogTable + ' SET QSOMode = ' +
               dmFunc.Q(MODE);
 
           if MainForm.MySQLLOGDBConnection.Connected then
@@ -383,7 +383,7 @@ begin
           digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
 
           if MainForm.MySQLLOGDBConnection.Connected then
-            Query := 'UPDATE ' + LBParam.LogTable + ' SET GRID = ' +
+            Query := 'UPDATE ' + LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
               'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
               'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
@@ -393,7 +393,7 @@ begin
               ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
               QuotedStr(MODE) + ')'
           else
-            Query := 'UPDATE ' + LBParam.LogTable + ' SET GRID = ' +
+            Query := 'UPDATE ' + LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
               'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
               'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
@@ -450,7 +450,7 @@ procedure TServiceForm.Button2Click(Sender: TObject);
 begin
   DownSize := 0;
   ProgressBar1.Position := 0;
-  if (LBParam.eQSLccLogin = '') or (LBParam.eQSLccPassword = '') then
+  if (eQSLccLogin = '') or (eQSLccPassword = '') then
     ShowMessage(rNotDataForConnect)
   else
   begin
@@ -460,8 +460,8 @@ begin
       raise eQSLccThread.FatalException;
     with eQSLccThread do
     begin
-      user_eqslcc := LBParam.eQSLccLogin;
-      password_eqslcc := LBParam.eQSLccPassword;
+      user_eqslcc := eQSLccLogin;
+      password_eqslcc := eQSLccPassword;
       date_eqslcc := FormatDateTime('yyyymmdd', DateEdit2.Date);
       Start;
     end;
@@ -473,7 +473,7 @@ procedure TServiceForm.Button1Click(Sender: TObject);
 begin
   DownSize := 0;
   ProgressBar1.Position := 0;
-  if (LBParam.LoTWLogin = '') or (LBParam.LoTWPassword = '') then
+  if (LotWLogin = '') or (LotWPassword = '') then
     ShowMessage(rNotDataForConnect)
   else
   begin
@@ -483,8 +483,8 @@ begin
       raise LoTWThread.FatalException;
     with LoTWThread do
     begin
-      user_lotw := LBParam.LoTWLogin;
-      password_lotw := LBParam.LoTWPassword;
+      user_lotw := LotWLogin;
+      password_lotw := LotWPassword;
       date_lotw := FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
       Start;
       Label6.Caption := rStatusConnectLotW;

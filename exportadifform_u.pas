@@ -66,7 +66,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, dmMainFunc;
+uses dmFunc_U, MainForm_U;
 
 {$R *.lfm}
 
@@ -194,21 +194,21 @@ begin
 
   if rbFileExportAll.Checked = True then
   begin
-    Q1.SQL.Text := 'select * from ' + LBParam.LogTable + ' ORDER BY UnUsedIndex ASC';
+    Q1.SQL.Text := 'select * from ' + LogTable + ' ORDER BY UnUsedIndex ASC';
   end;
 
-  Q2.SQL.Text := 'select * from LogBookInfo WHERE LogTable = ' + QuotedStr(LBParam.LogTable);
+  Q2.SQL.Text := 'select * from LogBookInfo WHERE LogTable = ' + QuotedStr(LogTable);
 
   if RadioButton1.Checked = True then
   begin
     if DefaultDB = 'MySQL' then
-      Q1.SQL.Text := 'SELECT * FROM ' + LBParam.LogTable + ' WHERE QSODate BETWEEN ' +
+      Q1.SQL.Text := 'SELECT * FROM ' + LogTable + ' WHERE QSODate BETWEEN ' +
         '''' + FormatDateTime('yyyy-mm-dd', DateEdit1.Date) + '''' +
         ' and ' + '''' + FormatDateTime('yyyy-mm-dd', DateEdit2.Date) +
         '''' + ' ORDER BY UnUsedIndex ASC'
     else
       Q1.SQL.Text :=
-        'SELECT * FROM ' + LBParam.LogTable + ' WHERE ' + 'strftime(' +
+        'SELECT * FROM ' + LogTable + ' WHERE ' + 'strftime(' +
         QuotedStr('%Y-%m-%d') + ',QSODate) BETWEEN ' +
         QuotedStr(FormatDateTime('yyyy-mm-dd', DateEdit1.Date)) +
         ' and ' + QuotedStr(FormatDateTime('yyyy-mm-dd', DateEdit2.Date)) +
@@ -226,7 +226,7 @@ begin
     end;
     for i := 0 to Length(MainForm.ExportAdifArray) - 1 do
     begin
-      Q1.SQL.Text := 'SELECT * FROM ' + LBParam.LogTable + ' WHERE `UnUsedIndex` in (' +
+      Q1.SQL.Text := 'SELECT * FROM ' + LogTable + ' WHERE `UnUsedIndex` in (' +
         numberToExp + ')' + ' ORDER BY UnUsedIndex ASC';
     end;
   end;
@@ -262,13 +262,6 @@ begin
       begin
         tmp := '<MODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
           'QSOMode').AsString, CheckBox2.Checked);
-        Write(f, tmp);
-      end;
-
-      if Q1.Fields.FieldByName('QSOSubMode').AsString <> '' then
-      begin
-        tmp := '<SUBMODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-          'QSOSubMode').AsString, CheckBox2.Checked);
         Write(f, tmp);
       end;
 
@@ -563,16 +556,16 @@ begin
 
   Q1.Close;
   if (range = 'All') then
-    Q1.SQL.Text := 'select * from ' + LBParam.LogTable + ' ORDER BY UnUsedIndex ASC';
+    Q1.SQL.Text := 'select * from ' + LogTable + ' ORDER BY UnUsedIndex ASC';
   if (range = 'Date') then
   begin
     if MainForm.MySQLLOGDBConnection.Connected then
-      Q1.SQL.Text := 'SELECT * FROM ' + LBParam.LogTable + ' WHERE QSODate >= ' +
+      Q1.SQL.Text := 'SELECT * FROM ' + LogTable + ' WHERE QSODate >= ' +
         '''' + FormatDateTime('yyyy-mm-dd', StrToDate(date)) +
         '''' + ' OR SYNC = 0 ORDER BY UnUsedIndex ASC'
     else
       Q1.SQL.Text :=
-        'SELECT * FROM ' + LBParam.LogTable + ' WHERE ' + 'strftime(' +
+        'SELECT * FROM ' + LogTable + ' WHERE ' + 'strftime(' +
         QuotedStr('%Y-%m-%d') + ',QSODate) >= ' +
         QuotedStr(FormatDateTime('yyyy-mm-dd', StrToDate(date))) +
         ' OR SYNC = 0 ORDER BY UnUsedIndex ASC';
@@ -618,13 +611,6 @@ begin
         Delete(freq2, Length(freq2) - 2, 1);
         //Удаляю последнюю точку
         tmp := '<FREQ' + dmFunc.StringToADIF(freq2, CheckBox2.Checked);
-        tmp2 := tmp2 + tmp;
-      end;
-
-       if Q1.Fields.FieldByName('QSOSubMode').AsString <> '' then
-      begin
-        tmp := '<SUBMODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-          'QSOSubMode').AsString, CheckBox2.Checked);
         tmp2 := tmp2 + tmp;
       end;
 

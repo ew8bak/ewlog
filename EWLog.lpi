@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="661"/>
+      <BuildNr Value="637"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="69">
+    <Units Count="63">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -564,39 +564,6 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="viewPhoto_U"/>
       </Unit62>
-      <Unit63>
-        <Filename Value="minimalform_u.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="MinimalForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="MinimalForm_U"/>
-      </Unit63>
-      <Unit64>
-        <Filename Value="dmmainfunc.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="dm_MainFunc"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmMainFunc"/>
-      </Unit64>
-      <Unit65>
-        <Filename Value="logbooktable_record.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="LogBookTable_record"/>
-      </Unit65>
-      <Unit66>
-        <Filename Value="prefix_record.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit66>
-      <Unit67>
-        <Filename Value="old_record.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit67>
-      <Unit68>
-        <Filename Value="wsjt_record.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit68>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -619,16 +586,10 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="3">
+    <Exceptions Count="1">
       <Item1>
         <Name Value="EResNotFound"/>
       </Item1>
-      <Item2>
-        <Name Value="RunError(201)"/>
-      </Item2>
-      <Item3>
-        <Name Value="ERangeError"/>
-      </Item3>
     </Exceptions>
   </Debugging>
 </CONFIG>

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Arrow, ActnList, uRigControl,
+  ExtCtrls, Arrow, uRigControl,
   lNetComponents, Types;
 
 const
@@ -47,6 +47,8 @@ type
     btn40m: TButton;
     btn6m: TButton;
     btn70cm: TButton;
+    btn70cm1: TButton;
+    btn70cm2: TButton;
     btn80m: TButton;
     btnAM: TButton;
     btnCW: TButton;
@@ -55,7 +57,6 @@ type
     btnSSB: TButton;
     btnVFOA: TButton;
     btnVFOB: TButton;
-    Button1: TButton;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -71,16 +72,18 @@ type
     rbRadio1: TRadioButton;
     rbRadio2: TRadioButton;
     tmrRadio: TTimer;
+    procedure Arrow1MouseLeave(Sender: TObject);
+    procedure Arrow1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure btn10mClick(Sender: TObject);
     procedure btn12mClick(Sender: TObject);
     procedure btn15mClick(Sender: TObject);
     procedure btn160mClick(Sender: TObject);
     procedure btn17mClick(Sender: TObject);
     procedure btn20mClick(Sender: TObject);
-    procedure btn2mClick(Sender: TObject);
     procedure btn30mClick(Sender: TObject);
     procedure btn40mClick(Sender: TObject);
     procedure btn6mClick(Sender: TObject);
+    procedure btn70cm1Click(Sender: TObject);
     procedure btn70cmClick(Sender: TObject);
     procedure btn80mClick(Sender: TObject);
     procedure btnAMClick(Sender: TObject);
@@ -90,46 +93,72 @@ type
     procedure btnSSBClick(Sender: TObject);
     procedure btnVFOAClick(Sender: TObject);
     procedure btnVFOBClick(Sender: TObject);
-    procedure Button1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure Button1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
+    procedure Label11MouseLeave(Sender: TObject);
+    procedure Label11MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label11MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label1MouseLeave(Sender: TObject);
+    procedure Label1MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label1MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label2MouseLeave(Sender: TObject);
+    procedure Label2MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label2MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label3MouseLeave(Sender: TObject);
+    procedure Label3MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label3MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label4MouseLeave(Sender: TObject);
+    procedure Label4MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label4MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label5MouseLeave(Sender: TObject);
+    procedure Label5MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label5MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label6MouseLeave(Sender: TObject);
+    procedure Label6MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label6MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label7MouseLeave(Sender: TObject);
+    procedure Label7MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label7MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label8MouseLeave(Sender: TObject);
+    procedure Label8MouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
+    procedure Label8MouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: boolean);
     procedure rbRadio1Click(Sender: TObject);
     procedure rbRadio2Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
     procedure tmrRadioTimer(Sender: TObject);
-  private
-
-    old_mode: string;
-    function GetActualMode: string;
-    // function  GetModeNumber(mode : String) : Cardinal;
     procedure SetMode(mode: string; bandwidth: integer);
-    procedure ShowFreq(mHz: double);
-    { private declarations }
-  public
-    radio: TRigControl;
-    //  radio: TRigControl;
-    AutoMode: boolean;
-    // bwith: string;
-    procedure SynTRX;
-
-    function GetFreqFromModeBand(band: integer; smode: string): string;
-    //    function  GetModeFreqNewQSO(var mode,freq : String) : Boolean;
-    function GetBandWidth(mode: string): integer;
-    function GetModeBand(var mode, band: string): boolean;
-    function InicializeRig: boolean;
     function GetFreqHz: double;
     function GetFreqkHz: double;
     function GetFreqMHz: double;
-    function GetDislayFreq: string;
-    function GetRawMode: string;
-    procedure ClearButtonsColor;
+  private
 
-    procedure SetModeFreq(mode, freq: string);
-    procedure SetFreqModeBandWidth(freq: double; mode: string; BandWidth: integer);
-    procedure CloseRigs;
+    { private declarations }
+  public
+    radio: TRigControl;
+    AutoMode: boolean;
+    bwith: string;
+    procedure SynTRX;
+    procedure Freq(Hz: integer);
+    function InicializeRig: boolean;
     { public declarations }
   end;
 
@@ -157,18 +186,16 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U, const_u, ConfigForm_U, MinimalForm_U;
+  MainForm_U, dmFunc_U, const_u, ConfigForm_U;
 
 {$R *.lfm}
 
 { TTRXForm }
 
-procedure TTRXForm.ShowFreq(mHz: double);
+procedure TTRXForm.Freq(Hz: integer);
 var
   fr: array[1..9] of string;
-  hz: integer;
 begin
-  hz := trunc(mhz);
   fr[1] := IntToStr(hz mod 10);
   fr[2] := IntToStr(Trunc((hz mod 100) / 10));
   fr[3] := IntToStr(Trunc((hz mod 1000) / 100));
@@ -187,393 +214,6 @@ begin
   label7.Caption := fr[3];
   label8.Caption := fr[2];
   label11.Caption := fr[1];
-end;
-
-
-procedure TTRXForm.SynTRX;
-var
-  f: double;
-  m: string;
-  mode, submode: string;
-begin
-  m := '';
-  mode := '';
-  submode := '';
-  if Assigned(radio) then
-  begin
-    f := radio.GetFreqMHz;
-    m := radio.GetModeOnly;
-  end
-  else
-    f := 0;
-
-  if (fldigiactive = False) and (f <> 0) then
-  begin
-    if ConfigForm.CheckBox2.Checked = True then
-    begin
-        ShowFreq(radio.GetFreqHz);
-      if Minimal then
-        MinimalForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, f))
-      else
-        MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, f));
-    end
-    else
-    begin
-        ShowFreq(radio.GetFreqHz);
-      if Minimal then
-        MinimalForm.ComboBox1.Text := FormatFloat(view_freq, f)
-      else
-        MainForm.ComboBox1.Text := FormatFloat(view_freq, f);
-    end;
-  end;
-
-  if Length(m) > 1 then
-    dmFunc.GetRIGMode(m, mode, submode);
-
-
-  if (fldigiactive = False) and (Length(m) > 1) then
-  begin
-    if Minimal then
-    begin
-      MinimalForm.ComboBox2.Text := mode;
-      MinimalForm.ComboBox3.Text := submode;
-    end
-    else
-    begin
-      MainForm.ComboBox2.Text := mode;
-      MainForm.ComboBox9.Text := submode;
-    end;
-  end;
-  lblMode.Caption := m;
-end;
-
-function TTRXForm.InicializeRig: boolean;
-var
-  n: string = '';
-  id: integer = 0;
-  poll: integer;
-begin
-  if Assigned(radio) then
-  begin
-    FreeAndNil(radio);
-  end;
-
-  Application.ProcessMessages;
-  //Sleep(500);
-
-  // tmrRadio.Enabled := False;
-  tmrRadio.Enabled := False;
-
-  if rbRadio1.Checked then
-    n := '1'
-  else
-    n := '2';
-
-  radio := TRigControl.Create;
-
-  if not TryStrToInt(IniF.ReadString('TRX' + n, 'model', ''), id) then
-    radio.RigId := 1
-  else
-    radio.RigId := id;
-
-  radio.RigCtldPath := IniF.ReadString('TRX' + n, 'RigCtldPath', '') +
-    ' -T 127.0.0.1 -vvvvv';
-  radio.RigCtldArgs := dmFunc.GetRadioRigCtldCommandLine(StrToInt(n));
-  //  radio.RunRigCtld  := IniF.ReadBool('TRX'+n,'RunRigCtld',True);
-  if IniF.ReadString('TRX' + n, 'model', '') <> IntToStr(2) then
-    radio.RigDevice := IniF.ReadString('TRX' + n, 'device', '');
-  radio.RigCtldPort := StrToInt(IniF.ReadString('TRX' + n, 'RigCtldPort', '4532'));
-  radio.RigCtldHost := IniF.ReadString('TRX' + n, 'host', '127.0.0.1');
-  if not TryStrToInt(IniF.ReadString('TRX' + n, 'Poll', '500'), poll) then
-    poll := 500;
-  radio.RigPoll := poll;
-  radio.RigSendCWR := IniF.ReadBool('TRX' + n, 'CWR', False);
-  rbRadio1.Caption := IniF.ReadString('TRX' + n, 'name', '');
-  TRXForm.Caption := IniF.ReadString('TRX' + n, 'name', '');
-
-  tmrRadio.Interval := radio.RigPoll;
-  tmrRadio.Enabled := True;
-  Result := True;
-  if not radio.Connected then
-  begin
-    FreeAndNil(radio);
-  end;
-end;
-
-function TTRXForm.GetFreqFromModeBand(band: integer; smode: string): string;
-var
-  freq: currency = 0;
-  mode: integer = 0;
-begin
-  if smode = 'CW' then
-    mode := 0
-  else if smode = 'SSB' then
-    mode := 1
-  else if smode = 'RTTY' then
-    mode := 2
-  else if smode = 'AM' then
-    mode := 3
-  else if smode = 'FM' then
-    mode := 4;
-
-  case band of
-    0:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '160cw', 1830);
-        1: freq := IniF.ReadFloat('DefFreq', '160ssb', 1830);
-        2: freq := IniF.ReadFloat('DefFreq', '160rtty', 1845);
-        3: freq := IniF.ReadFloat('DefFreq', '160am', 1845);
-        4: freq := IniF.ReadFloat('DefFreq', '160fm', 1845);
-      end; //case
-    end;
-
-    1:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '80cw', 3525);
-        1: freq := IniF.ReadFloat('DefFreq', '80ssb', 3750);
-        2: freq := IniF.ReadFloat('DefFreq', '80rtty', 3590);
-        3: freq := IniF.ReadFloat('DefFreq', '80am', 3750);
-        4: freq := IniF.ReadFloat('DefFreq', '80fm', 3750);
-      end; //case
-    end;
-
-    2:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '40cw', 7015);
-        1: freq := IniF.ReadFloat('DefFreq', '40ssb', 7080);
-        2: freq := IniF.ReadFloat('DefFreq', '40rtty', 7040);
-        3: freq := IniF.ReadFloat('DefFreq', '40am', 7080);
-        4: freq := IniF.ReadFloat('DefFreq', '40fm', 7080);
-      end; //case
-    end;
-
-    3:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '30cw', 10110);
-        1: freq := IniF.ReadFloat('DefFreq', '30ssb', 10130);
-        2: freq := IniF.ReadFloat('DefFreq', '30rtty', 10130);
-        3: freq := IniF.ReadFloat('DefFreq', '30am', 10130);
-        4: freq := IniF.ReadFloat('DefFreq', '30fm', 10130);
-      end; //case
-    end;
-
-    4:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '20cw', 14025);
-        1: freq := IniF.ReadFloat('DefFreq', '20ssb', 14195);
-        2: freq := IniF.ReadFloat('DefFreq', '20rtty', 14090);
-        3: freq := IniF.ReadFloat('DefFreq', '20am', 14195);
-        4: freq := IniF.ReadFloat('DefFreq', '20fm', 14195);
-      end; //case
-    end;
-
-    5:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '17cw', 18080);
-        1: freq := IniF.ReadFloat('DefFreq', '17ssb', 18140);
-        2: freq := IniF.ReadFloat('DefFreq', '17rtty', 18110);
-        3: freq := IniF.ReadFloat('DefFreq', '17am', 18140);
-        4: freq := IniF.ReadFloat('DefFreq', '17fm', 18140);
-      end; //case
-    end;
-
-    6:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '15cw', 21025);
-        1: freq := IniF.ReadFloat('DefFreq', '15ssb', 21255);
-        2: freq := IniF.ReadFloat('DefFreq', '15rtty', 21090);
-        3: freq := IniF.ReadFloat('DefFreq', '15am', 21255);
-        4: freq := IniF.ReadFloat('DefFreq', '15fm', 21255);
-      end; //case
-    end;
-
-    7:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '12cw', 24895);
-        1: freq := IniF.ReadFloat('DefFreq', '12ssb', 24925);
-        2: freq := IniF.ReadFloat('DefFreq', '12rtty', 24910);
-        3: freq := IniF.ReadFloat('DefFreq', '12am', 24925);
-        4: freq := IniF.ReadFloat('DefFreq', '12fm', 24925);
-      end; //case
-    end;
-
-    8:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '10cw', 28025);
-        1: freq := IniF.ReadFloat('DefFreq', '10ssb', 28550);
-        2: freq := IniF.ReadFloat('DefFreq', '10rtty', 28090);
-        3: freq := IniF.ReadFloat('DefFreq', '10am', 28550);
-        4: freq := IniF.ReadFloat('DefFreq', '10fm', 28550);
-      end; //case
-    end;
-
-    9:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '6cw', 50090);
-        1: freq := IniF.ReadFloat('DefFreq', '6ssb', 51300);
-        2: freq := IniF.ReadFloat('DefFreq', '6rtty', 51300);
-        3: freq := IniF.ReadFloat('DefFreq', '6am', 51300);
-        4: freq := IniF.ReadFloat('DefFreq', '6fm', 51300);
-      end; //case
-    end;
-
-    10:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '2cw', 144050);
-        1: freq := IniF.ReadFloat('DefFreq', '2ssb', 144300);
-        2: freq := IniF.ReadFloat('DefFreq', '2rtty', 144300);
-        3: freq := IniF.ReadFloat('DefFreq', '2am', 144300);
-        4: freq := IniF.ReadFloat('DefFreq', '2fm', 145300);
-      end; //case
-    end;
-
-    11:
-    begin
-      case mode of
-        0: freq := IniF.ReadFloat('DefFreq', '70cw', 3525);
-        1: freq := IniF.ReadFloat('DefFreq', '70ssb', 3750);
-        2: freq := IniF.ReadFloat('DefFreq', '70rtty', 3590);
-        3: freq := IniF.ReadFloat('DefFreq', '70am', 3750);
-        4: freq := IniF.ReadFloat('DefFreq', '70fm', 3750);
-      end; //case
-    end;
-
-  end; //case
-  Result := FloatToStr(freq);
-end;
-
-function TTRXForm.GetModeBand(var mode, band: string): boolean;
-var
-  freq: string;
-begin
-  mode := '';
-  band := '';
-  Result := True;
-  freq := '';//lblFreq.Caption;
-  mode := GetActualMode;
-  if (freq = empty_freq) or (freq = '') then
-    Result := False
-  else
-    band := dmFunc.GetBandFromFreq(freq);
-end;
-
-function TTRXForm.GetBandWidth(mode: string): integer;
-var
-  section: string;
-begin
-  if rbRadio1.Checked then
-    section := 'Band1'
-  else
-    section := 'Band2';
-  Result := 500;
-  if (mode = 'LSB') or (mode = 'USB') then
-    mode := 'SSB';
-  if mode = 'CW' then
-    Result := (IniF.ReadInteger(section, 'CW', 500));
-  if mode = 'SSB' then
-    Result := (IniF.ReadInteger(section, 'SSB', 1800));
-  if mode = 'RTTY' then
-    Result := (IniF.ReadInteger(section, 'RTTY', 500));
-  if mode = 'AM' then
-    Result := (IniF.ReadInteger(section, 'AM', 3000));
-  if mode = 'FM' then
-    Result := (IniF.ReadInteger(section, 'FM', 2500));
-end;
-
-function TTRXForm.GetActualMode: string;
-begin
-  if Assigned(radio) then
-  begin
-    Result := radio.GetModeOnly;
-  end;
-end;
-
-procedure TTRXForm.SetMode(mode: string; bandwidth: integer);
-var
-  rmode: TRigMode;
-begin
-  if Assigned(radio) then
-  begin
-    rmode.mode := mode;
-    rmode.pass := bandwidth;
-    radio.SetModePass(rmode);
-  end;
-end;
-
-procedure TTRXForm.SetFreqModeBandWidth(freq: double; mode: string; BandWidth: integer);
-var
-  rmode: TRigMode;
-  RXOffset: currency;
-  TXOffset: currency;
-begin
-  if mode = 'SSB' then
-  begin
-    if (freq > 5000) and (freq < 6000) then
-      mode := 'USB'
-    else
-    begin
-      if freq > 10000 then
-        mode := 'USB'
-      else
-        mode := 'LSB';
-    end;
-  end;
-
-  if Assigned(radio) then
-  begin
-    // dmFunc.GetRXTXOffset(freq/1000,RXOffset,TXOffset);
-    //  radio.RXOffset := RXOffset;
-    //  radio.TXOffset := TXOffset;
-
-    radio.SetFreqKHz(freq);
-    if AutoMode then
-    begin
-      rmode.mode := mode;
-      rmode.pass := BandWidth;
-      radio.SetModePass(rmode);
-    end;
-  end;
-end;
-
-procedure TTRXForm.SetModeFreq(mode, freq: string); //freq in kHz
-var
-  bandwidth: integer = 0;
-  f: double = 0;
-begin
-  // if (lblFreq.Caption = empty_freq) then
-  //   exit;
-  bandwidth := GetBandWidth(mode);
-  f := StrToFloat(freq);
-  if mode = 'SSB' then
-  begin
-    if (f > 5000) and (f < 6000) then
-      mode := 'USB'
-    else
-    begin
-      if f > 10000 then
-        mode := 'USB'
-      else
-        mode := 'LSB';
-    end;
-  end;
-  SetFreqModeBandWidth(f, mode, bandwidth);
-end;
-
-procedure TTRXForm.CloseRigs;
-begin
-  if Assigned(radio) then
-    FreeAndNil(radio);
 end;
 
 function TTRXForm.GetFreqHz: double;
@@ -600,45 +240,134 @@ begin
     Result := 0;
 end;
 
-function TTRXForm.GetDislayFreq: string;
+procedure TTRXForm.SetMode(mode: string; bandwidth: integer);
+var
+  rmode: TRigMode;
 begin
   if Assigned(radio) then
-    Result := FormatFloat(empty_freq + ';;', radio.GetFreqMHz)
-  else
-    Result := FormatFloat(empty_freq + ';;', 0);
+  begin
+    rmode.mode := mode;
+    rmode.pass := bandwidth;
+    radio.SetModePass(rmode);
+  end;
 end;
 
-function TTRXForm.GetRawMode: string;
+procedure TTRXForm.SynTRX;
+var
+  f: double;
+  m: string;
+  mode, submode: string;
+begin
+  m := '';
+  mode := '';
+  submode := '';
+  if Assigned(radio) then
+  begin
+    f := radio.GetFreqMHz;
+    m := radio.GetModeOnly;
+    Freq(radio.GetFreqHz);
+   {$IFDEF WIN64}
+    bwith := radio.GetBandwich(radio.GetRawMode);
+  {$ENDIF}
+  end
+  else
+    f := 0;
+
+  if (fldigiactive = False) and (f <> 0) then
+  begin
+    if ConfigForm.CheckBox2.Checked = True then
+      MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, f))
+    else
+      MainForm.ComboBox1.Text := FormatFloat(view_freq, f);
+  end;
+
+  if Length(m) > 1 then
+    dmFunc.GetRIGMode(m, mode, submode);
+
+
+  if (fldigiactive = False) and (Length(m) > 1) then
+  begin
+    MainForm.ComboBox2.Text := mode;
+    MainForm.ComboBox9.Text := submode;
+  end;
+  lblMode.Caption := m;
+end;
+
+function TTRXForm.InicializeRig: boolean;
+var
+  n: string = '';
+  id: integer = 0;
 begin
   if Assigned(radio) then
-    Result := radio.GetRawMode
-  else
-    Result := '';
-end;
+  begin
+    FreeAndNil(radio);
+  end;
 
+  Application.ProcessMessages;
+  //Sleep(500);
+
+  tmrRadio.Enabled := False;
+
+  if rbRadio1.Checked then
+    n := '1'
+  else
+    n := '2';
+
+  radio := TRigControl.Create;
+
+  if not TryStrToInt(IniF.ReadString('TRX' + n, 'model', ''), id) then
+    radio.RigId := 1
+  else
+    radio.RigId := id;
+
+  radio.RigCtldPath := IniF.ReadString('TRX' + n, 'RigCtldPath', '') +
+    ' -T 127.0.0.1 -vvvvv';
+  radio.RigCtldArgs := dmFunc.GetRadioRigCtldCommandLine(StrToInt(n));
+  //  radio.RunRigCtld  := IniF.ReadBool('TRX'+n,'RunRigCtld',True);
+  if IniF.ReadString('TRX' + n, 'model', '') <> IntToStr(2) then
+    radio.RigDevice := IniF.ReadString('TRX' + n, 'device', '');
+  radio.RigCtldPort := StrToInt(IniF.ReadString('TRX' + n, 'RigCtldPort', '4532'));
+  radio.RigCtldHost := IniF.ReadString('TRX' + n, 'host', '127.0.0.1');
+  if StrToInt(IniF.ReadString('TRX' + n, 'Poll', '100')) < 3 then
+  radio.RigPoll := 3 else
+  radio.RigPoll := StrToInt(IniF.ReadString('TRX' + n, 'Poll', '3'));
+  radio.RigSendCWR := IniF.ReadBool('TRX' + n, 'CWR', False);
+  rbRadio1.Caption := IniF.ReadString('TRX' + n, 'name', '');
+  TRXForm.Caption := IniF.ReadString('TRX' + n, 'name', '');
+
+  tmrRadio.Interval := radio.RigPoll;
+  tmrRadio.Enabled := True;
+
+  Result := True;
+  if not radio.Connected then
+  begin
+    tmrRadio.Enabled := False;
+    FreeAndNil(radio);
+  end;
+end;
 
 procedure TTRXForm.FormCreate(Sender: TObject);
 var
   n: string = '';
 begin
-  Arrow1.Visible := False;
-  Arrow2.Visible := False;
-  Arrow3.Visible := False;
-  Arrow4.Visible := False;
-  Arrow5.Visible := False;
-  Arrow6.Visible := False;
-  Arrow7.Visible := False;
-  Arrow8.Visible := False;
-  Arrow9.Visible := False;
-  Arrow10.Visible := False;
-  Arrow11.Visible := False;
-  Arrow12.Visible := False;
-  Arrow13.Visible := False;
-  Arrow14.Visible := False;
-  Arrow15.Visible := False;
-  Arrow16.Visible := False;
-  Arrow17.Visible := False;
-  Arrow18.Visible := False;
+  Arrow1.Visible:=False;
+  Arrow2.Visible:=False;
+  Arrow3.Visible:=False;
+  Arrow4.Visible:=False;
+  Arrow5.Visible:=False;
+  Arrow6.Visible:=False;
+  Arrow7.Visible:=False;
+  Arrow8.Visible:=False;
+  Arrow9.Visible:=False;
+  Arrow10.Visible:=False;
+  Arrow11.Visible:=False;
+  Arrow12.Visible:=False;
+  Arrow13.Visible:=False;
+  Arrow14.Visible:=False;
+  Arrow15.Visible:=False;
+  Arrow16.Visible:=False;
+  Arrow17.Visible:=False;
+  Arrow18.Visible:=False;
 
   Radio := nil;
   thRig := nil;
@@ -661,6 +390,231 @@ begin
 
 end;
 
+procedure TTRXForm.Label11MouseLeave(Sender: TObject);
+begin
+  Arrow17.ArrowColor := clBtnFace;
+  Arrow18.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label11MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow18.ArrowColor := clBlue;
+  Arrow17.ArrowColor := clBtnFace;
+  Application.ProcessMessages;
+  //  radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+
+  //  Label4.Caption+Label5.Caption+
+  //  Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-1);
+end;
+
+procedure TTRXForm.Label11MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+var
+  freqCh: integer;
+begin
+  Arrow17.ArrowColor := clBlue;
+  Arrow18.ArrowColor := clBtnFace;
+  Application.ProcessMessages;
+  freqCH := StrToInt(Label1.Caption + Label2.Caption + Label3.Caption +
+    Label4.Caption + Label5.Caption + Label6.Caption + Label7.Caption +
+    Label8.Caption + Label11.Caption) + 1;
+  // radio.SetFreqHz(freqCh);
+end;
+
+procedure TTRXForm.Label1MouseLeave(Sender: TObject);
+begin
+  Arrow1.ArrowColor := clBtnFace;
+  Arrow9.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label1MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow9.ArrowColor := clBlue;
+  Arrow1.ArrowColor := clBtnFace;
+  //  radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  //Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-100000000);
+end;
+
+procedure TTRXForm.Label1MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow1.ArrowColor := clBlue;
+  Arrow9.ArrowColor := clBtnFace;
+
+  //radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  //Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+100000000);
+end;
+
+procedure TTRXForm.Label2MouseLeave(Sender: TObject);
+begin
+  Arrow2.ArrowColor := clBtnFace;
+  Arrow10.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label2MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow10.ArrowColor := clBlue;
+  Arrow2.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-10000000);
+end;
+
+procedure TTRXForm.Label2MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow2.ArrowColor := clBlue;
+  Arrow10.ArrowColor := clBtnFace;
+  //  radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+10000000);
+end;
+
+procedure TTRXForm.Label3MouseLeave(Sender: TObject);
+begin
+  Arrow3.ArrowColor := clBtnFace;
+  Arrow11.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label3MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow11.ArrowColor := clBlue;
+  Arrow3.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  //Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-1000000);
+end;
+
+procedure TTRXForm.Label3MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow3.ArrowColor := clBlue;
+  Arrow11.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+1000000);
+end;
+
+procedure TTRXForm.Label4MouseLeave(Sender: TObject);
+begin
+  Arrow4.ArrowColor := clBtnFace;
+  Arrow12.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label4MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow12.ArrowColor := clBlue;
+  Arrow4.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-100000);
+end;
+
+procedure TTRXForm.Label4MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow4.ArrowColor := clBlue;
+  Arrow12.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+100000);
+end;
+
+procedure TTRXForm.Label5MouseLeave(Sender: TObject);
+begin
+  Arrow5.ArrowColor := clBtnFace;
+  Arrow13.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label5MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow13.ArrowColor := clBlue;
+  Arrow5.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-10000);
+end;
+
+procedure TTRXForm.Label5MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow5.ArrowColor := clBlue;
+  Arrow13.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+10000);
+end;
+
+procedure TTRXForm.Label6MouseLeave(Sender: TObject);
+begin
+  Arrow6.ArrowColor := clBtnFace;
+  Arrow14.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label6MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow14.ArrowColor := clBlue;
+  Arrow6.ArrowColor := clBtnFace;
+  //    radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  //  Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-1000);
+end;
+
+procedure TTRXForm.Label6MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow6.ArrowColor := clBlue;
+  Arrow14.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+1000);
+end;
+
+procedure TTRXForm.Label7MouseLeave(Sender: TObject);
+begin
+  Arrow7.ArrowColor := clBtnFace;
+  Arrow15.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label7MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow15.ArrowColor := clBlue;
+  Arrow7.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-100);
+
+end;
+
+procedure TTRXForm.Label7MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow7.ArrowColor := clBlue;
+  Arrow15.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  // Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+100);
+end;
+
+procedure TTRXForm.Label8MouseLeave(Sender: TObject);
+begin
+  Arrow8.ArrowColor := clBtnFace;
+  Arrow16.ArrowColor := clBtnFace;
+end;
+
+procedure TTRXForm.Label8MouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow16.ArrowColor := clBlue;
+  Arrow8.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  //  Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)-10);
+end;
+
+procedure TTRXForm.Label8MouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: boolean);
+begin
+  Arrow8.ArrowColor := clBlue;
+  Arrow16.ArrowColor := clBtnFace;
+  //   radio.SetFreqHz(StrToInt(Label1.Caption+Label2.Caption+Label3.Caption+Label4.Caption+Label5.Caption+
+  //  Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+10);
+end;
+
 procedure TTRXForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if Assigned(thRig) then
@@ -672,224 +626,132 @@ var
   tmp: currency;
 begin
   if not TryStrToCurr(FormatFloat('0.00000', radio.GetFreqMHz), tmp) then
-    SetMode('LSB', GetBandWidth('SSB'))
+    SetMode('LSB', 0)
   else
   begin
-    if (tmp > 5) and (tmp < 6) then
-      SetMode('USB', GetBandWidth('SSB'))
+    if tmp > 10 then
+      SetMode('USB', 0)
     else
-    begin
-      if tmp > 10 then
-        SetMode('USB', GetBandWidth('SSB'))
-      else
-        SetMode('LSB', GetBandWidth('SSB'));
-    end;
+      SetMode('LSB', 0);
   end;
 end;
 
 procedure TTRXForm.btnVFOAClick(Sender: TObject);
 begin
   if Assigned(radio) then
-    radio.SetCurrVfo(VFOA);
+    radio.SetCurrVFO(VFOA);
 end;
 
 procedure TTRXForm.btnVFOBClick(Sender: TObject);
 begin
   if Assigned(radio) then
-    radio.SetCurrVfo(VFOB);
-end;
-
-procedure TTRXForm.Button1MouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  radio.PttOn;
-end;
-
-procedure TTRXForm.Button1MouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  radio.PttOff;
+    radio.SetCurrVFO(VFOB);
 end;
 
 procedure TTRXForm.btnFMClick(Sender: TObject);
 begin
-  SetMode('FM', GetBandWidth('FM'));
+  if Assigned(radio) then
+    SetMode('FM', 0);
 end;
 
 procedure TTRXForm.btnRTTYClick(Sender: TObject);
 begin
-  SetMode('RTTY', GetBandWidth('RTTY'));
+  if Assigned(radio) then
+    SetMode('RTTY', 0);
 end;
 
 procedure TTRXForm.btnCWClick(Sender: TObject);
 begin
-  SetMode('CW', GetBandWidth('CW'));
+  if Assigned(radio) then
+    SetMode('CW', 0);
 end;
 
 procedure TTRXForm.btnAMClick(Sender: TObject);
 begin
-  SetMode('AM', GetBandWidth('AM'));
-end;
-
-procedure TTRXForm.ClearButtonsColor;
-begin
-  btn160m.Font.Color := clDefault;
-  btn80m.Font.Color := clDefault;
-  btn40m.Font.Color := clDefault;
-  btn30m.Font.Color := clDefault;
-  btn20m.Font.Color := clDefault;
-  btn17m.Font.Color := clDefault;
-  btn15m.Font.Color := clDefault;
-  btn12m.Font.Color := clDefault;
-  btn10m.Font.Color := clDefault;
-  btn6m.Font.Color := clDefault;
-  btn2m.Font.Color := clDefault;
-  btn70cm.Font.Color := clDefault;
-
+  if Assigned(radio) then
+    SetMode('AM', 0);
 end;
 
 procedure TTRXForm.btn160mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(0, mode);
-  SetModeFreq(mode, freq);
-  btn160m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(1800);
 end;
 
 procedure TTRXForm.btn15mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(6, mode);
-  SetModeFreq(mode, freq);
-  btn15m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(21150);
 end;
 
 procedure TTRXForm.btn12mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(7, mode);
-  SetModeFreq(mode, freq);
-  btn12m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(24900);
 end;
 
 procedure TTRXForm.btn10mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(8, mode);
-  SetModeFreq(mode, freq);
-  btn10m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(28500);
+end;
+
+procedure TTRXForm.Arrow1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
+begin
+  TArrow(Sender).ArrowColor := clBlue;
+end;
+
+procedure TTRXForm.Arrow1MouseLeave(Sender: TObject);
+begin
+  TArrow(Sender).ArrowColor := clBtnFace;
 end;
 
 procedure TTRXForm.btn17mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(5, mode);
-  SetModeFreq(mode, freq);
-  btn17m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(18100);
 end;
 
 procedure TTRXForm.btn20mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(4, mode);
-  SetModeFreq(mode, freq);
-  btn20m.Font.Color := clRed;
-end;
-
-procedure TTRXForm.btn2mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
-begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(10, mode);
-  SetModeFreq(mode, freq);
-  btn2m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(14150);
 end;
 
 procedure TTRXForm.btn30mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(3, mode);
-  SetModeFreq(mode, freq);
-  btn30m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(10100);
 end;
 
 procedure TTRXForm.btn40mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(2, mode);
-  SetModeFreq(mode, freq);
-  btn40m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(7100);
 end;
 
 procedure TTRXForm.btn6mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(9, mode);
-  SetModeFreq(mode, freq);
-  btn6m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(50100);
+end;
+
+procedure TTRXForm.btn70cm1Click(Sender: TObject);
+begin
+  if Assigned(radio) then
+    radio.SetFreqKHz(430500);
 end;
 
 procedure TTRXForm.btn70cmClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(11, mode);
-  SetModeFreq(mode, freq);
-  btn70cm.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(145500);
 end;
 
 procedure TTRXForm.btn80mClick(Sender: TObject);
-var
-  freq: string = '';
-  mode: string = '';
 begin
-  ClearButtonsColor;
-  mode := GetActualMode;
-  freq := GetFreqFromModeBand(1, mode);
-  SetModeFreq(mode, freq);
-  btn80m.Font.Color := clRed;
+  if Assigned(radio) then
+    radio.SetFreqKHz(3600);
 end;
 
 procedure TTRXForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
@@ -906,6 +768,11 @@ end;
 procedure TTRXForm.rbRadio2Click(Sender: TObject);
 begin
   InicializeRig;
+end;
+
+procedure TTRXForm.Timer1Timer(Sender: TObject);
+begin
+
 end;
 
 procedure TTRXForm.tmrRadioTimer(Sender: TObject);

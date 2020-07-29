@@ -13,7 +13,6 @@ type
   { TEarth }
 
   TEarth = class(TForm)
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
@@ -21,7 +20,6 @@ type
     { private declarations }
   public
     TraceLine: PTraceLine;
-    procedure PaintLine(Latitude, Longitude: string);
     { public declarations }
   end;
 
@@ -36,17 +34,6 @@ uses MainForm_U, dmFunc_U;
 
 { TEarth }
 
-procedure TEarth.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-  if Sender <> MainForm.CheckBox3 then
-  begin
-    Earth.Parent := MainForm.Panel10;
-    Earth.BorderStyle := bsNone;
-    Earth.Align := alClient;
-    CloseAction := caNone;
-  end;
-end;
-
 procedure TEarth.FormCreate(Sender: TObject);
 begin
   TraceLine := new(PTraceLine, init());
@@ -58,32 +45,39 @@ begin
 end;
 
 procedure TEarth.FormPaint(Sender: TObject);
-begin
-  Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
-end;
-
-procedure TEarth.PaintLine(Latitude, Longitude: string);
 var
   r: Trect;
-  Lat, Lon: extended;
-  Err: integer;
-  QTH_Latitude: extended;
+  lat: currency;
+  lat1, long1: currency;
 begin
-  r.left := 0;
-  r.right := Width - 1;
-  r.top := 0;
-  r.bottom := Width * obvy div obsi - 1;
-  //  TraceLine^.SunClock(Now-(dmFunc.GrayLineOffset/24));
-  TraceLine^.Draw(r, Canvas);
-  val(Latitude, Lat, Err);
-  if Err = 0 then
-    val(Longitude, Lon, Err);
-  if Err = 0 then
+
+  if Pos('.', la1) > 0 then
+    la1[Pos('.', la1)] := DefaultFormatSettings.DecimalSeparator;
+
+  if pos(',', la1) > 0 then
+    la1[pos(',', la1)] := DefaultFormatSettings.DecimalSeparator;
+
+
+  if (la1 = '......') or (la1 = '') or (lo1 = '......') or
+    (lo1 = '') then
   begin
-    QTH_Latitude := QTH_LAT;
-    QTH_Latitude := QTH_Latitude * -1;
-    Lat := Lat * -1;
-    TraceLine^.DrawTrace(True, QTH_LON, QTH_Latitude, Lon, Lat);
+    la1 := CurrToStr(QTH_LAT);
+    lo1 := CurrToStr(QTH_LON);
+  end
+  else
+  begin
+    lat1 := StrToCurr(la1);
+    long1 := StrToCurr(lo1);
+    r.left := 0;
+    r.right := Width - 1;
+    r.top := 0;
+    r.bottom := Width * obvy div obsi - 1;
+    // TraceLine^.SunClock(Now-(dmFunc.GrayLineOffset/24));
+    TraceLine^.Draw(r, Canvas);
+    lat := QTH_LAT;
+    lat := lat * -1;
+    lat1 := lat1 * -1;
+    TraceLine^.DrawTrace(True, QTH_LON, lat, long1, lat1);
   end;
 end;
 
