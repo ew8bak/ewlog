@@ -107,21 +107,6 @@ msgstr ""
 msgid "Update status: Update required"
 msgstr ""
 
-#: createjournalform_u.rallfieldsmustbefilled
-msgctxt "createjournalform_u.rallfieldsmustbefilled"
-msgid "All fields must be filled!"
-msgstr ""
-
-#: createjournalform_u.rhaltlog
-msgctxt "createjournalform_u.rhaltlog"
-msgid "The program will be completed, restart it!"
-msgstr ""
-
-#: createjournalform_u.rlogaddedsuccessfully
-msgctxt "createjournalform_u.rlogaddedsuccessfully"
-msgid "Log added successfully"
-msgstr ""
-
 #: eqsl.ranswerserver
 msgctxt "eqsl.ranswerserver"
 msgid "Server response:"
@@ -253,30 +238,6 @@ msgstr ""
 #: qrzcom.runknownuser
 msgctxt "qrzcom.runknownuser"
 msgid "Unknown user! See settings"
-msgstr ""
-
-#: register_form_u.rnotfind
-msgid "Could not find"
-msgstr ""
-
-#: register_form_u.rregfailed
-msgid "Your registration failed"
-msgstr ""
-
-#: register_form_u.rregnumber
-msgid "Your registration number"
-msgstr ""
-
-#: register_form_u.rsuccessfullogin
-msgid "Successful login"
-msgstr ""
-
-#: register_form_u.rsuccessfullyregistered
-msgid "Successfully registered"
-msgstr ""
-
-#: register_form_u.rwrongpassword
-msgid "Wrong password"
 msgstr ""
 
 #: resourcestr.raddindexinlogtable
@@ -998,76 +959,6 @@ msgstr ""
 
 #: settingscat_u.rlibhamlibnotfound
 msgid "HamLib library not found"
-msgstr ""
-
-#: setupform_u.raddindexinlogtable
-msgctxt "setupform_u.raddindexinlogtable"
-msgid "Add index in Log_TABLE_"
-msgstr ""
-
-#: setupform_u.raddkeyinlogtable
-msgctxt "setupform_u.raddkeyinlogtable"
-msgid "Add key in Log_TABLE_"
-msgstr ""
-
-#: setupform_u.rcheckpath
-msgctxt "setupform_u.rcheckpath"
-msgid "Check SQLite database path"
-msgstr ""
-
-#: setupform_u.rcreatetablelogbookinfo
-msgctxt "setupform_u.rcreatetablelogbookinfo"
-msgid "Create table LogBookInfo"
-msgstr ""
-
-#: setupform_u.rfillinlogbookinfo
-msgctxt "setupform_u.rfillinlogbookinfo"
-msgid "Fill in the LogBookInfo table"
-msgstr ""
-
-#: setupform_u.rfillinlogtable
-msgctxt "setupform_u.rfillinlogtable"
-msgid "Fill in the Log_Table_"
-msgstr ""
-
-#: setupform_u.richoosenumberofrecords
-msgctxt "setupform_u.richoosenumberofrecords"
-msgid "I choose the number of records"
-msgstr ""
-
-#: setupform_u.rnotconnected
-msgctxt "setupform_u.rnotconnected"
-msgid "No connection to the server. Go back to the connection settings step and check all the settings"
-msgstr ""
-
-#: setupform_u.rnotuser
-msgctxt "setupform_u.rnotuser"
-msgid "No database was found for this user. Check the user and database settings in the connection settings step"
-msgstr ""
-
-#: setupform_u.rsuccessful
-msgctxt "setupform_u.rsuccessful"
-msgid "Successful"
-msgstr ""
-
-#: setupform_u.rsuccessfulnext
-msgctxt "setupform_u.rsuccessfulnext"
-msgid "Successful! Click NEXT"
-msgstr ""
-
-#: setupform_u.rvaluecorr
-msgctxt "setupform_u.rvaluecorr"
-msgid "One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically"
-msgstr ""
-
-#: setupform_u.rvalueempty
-msgctxt "setupform_u.rvalueempty"
-msgid "One or more values are empty! Check"
-msgstr ""
-
-#: setupform_u.rwait
-msgctxt "setupform_u.rwait"
-msgid "Wait"
 msgstr ""
 
 #: simplexml.ssimplexmlerror1
@@ -3839,6 +3730,10 @@ msgstr ""
 msgid "Compact mode"
 msgstr ""
 
+#: tmainform.menuitem73.caption
+msgid "Normal mode"
+msgstr ""
+
 #: tmainform.menuitem74.caption
 msgctxt "tmainform.menuitem74.caption"
 msgid "Fldigi"
@@ -4047,504 +3942,6 @@ msgstr ""
 #: tmanagerbaseprefixform.tabsheet3.caption
 msgctxt "tmanagerbaseprefixform.tabsheet3.caption"
 msgid "Country"
-msgstr ""
-
-#: tminimalform.caption
-msgid "EWLog - HAM Journal minimal"
-msgstr ""
-
-#: tminimalform.checkbox1.caption
-msgctxt "tminimalform.checkbox1.caption"
-msgid "Real time"
-msgstr ""
-
-#: tminimalform.checkbox2.caption
-msgctxt "tminimalform.checkbox2.caption"
-msgid "Save in UTC"
-msgstr ""
-
-#: tminimalform.checkbox5.caption
-msgctxt "tminimalform.checkbox5.caption"
-msgid "Mark"
-msgstr ""
-
-#: tminimalform.combobox1.text
-msgctxt "tminimalform.combobox1.text"
-msgid "7.000.00"
-msgstr ""
-
-#: tminimalform.combobox4.text
-msgctxt "tminimalform.combobox4.text"
-msgid "59"
-msgstr ""
-
-#: tminimalform.combobox5.text
-msgctxt "tminimalform.combobox5.text"
-msgid "59"
-msgstr ""
-
-#: tminimalform.combobox7.text
-msgctxt "tminimalform.combobox7.text"
-msgid "Wasn't sent"
-msgstr ""
-
-#: tminimalform.dateedit1.text
-msgctxt "tminimalform.dateedit1.text"
-msgid "  .  .    "
-msgstr ""
-
-#: tminimalform.datetimepicker1.textfornulldate
-msgctxt "tminimalform.datetimepicker1.textfornulldate"
-msgid "NULL"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[0].title.caption
-msgctxt "tminimalform.dbgrid1.columns[0].title.caption"
-msgid "QSL"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[10].title.caption
-msgctxt "tminimalform.dbgrid1.columns[10].title.caption"
-msgid "State"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[11].title.caption
-msgctxt "tminimalform.dbgrid1.columns[11].title.caption"
-msgid "Grid"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[12].title.caption
-msgctxt "tminimalform.dbgrid1.columns[12].title.caption"
-msgid "RSTs"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[13].title.caption
-msgctxt "tminimalform.dbgrid1.columns[13].title.caption"
-msgid "RSTr"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[14].title.caption
-msgctxt "tminimalform.dbgrid1.columns[14].title.caption"
-msgid "IOTA"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[15].title.caption
-msgctxt "tminimalform.dbgrid1.columns[15].title.caption"
-msgid "Manager"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[16].title.caption
-msgctxt "tminimalform.dbgrid1.columns[16].title.caption"
-msgid "QSLs Date"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[17].title.caption
-msgctxt "tminimalform.dbgrid1.columns[17].title.caption"
-msgid "QSLr Date"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[18].title.caption
-msgctxt "tminimalform.dbgrid1.columns[18].title.caption"
-msgid "LOTWr Date"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[19].title.caption
-msgctxt "tminimalform.dbgrid1.columns[19].title.caption"
-msgid "Prefix"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[1].title.caption
-msgctxt "tminimalform.dbgrid1.columns[1].title.caption"
-msgid "QSLs"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[20].title.caption
-msgctxt "tminimalform.dbgrid1.columns[20].title.caption"
-msgid "DXCC"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[21].title.caption
-msgctxt "tminimalform.dbgrid1.columns[21].title.caption"
-msgid "CQ Zone"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[22].title.caption
-msgctxt "tminimalform.dbgrid1.columns[22].title.caption"
-msgid "ITU Zone"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[23].title.caption
-msgctxt "tminimalform.dbgrid1.columns[23].title.caption"
-msgid "Manual Set"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[24].title.caption
-msgctxt "tminimalform.dbgrid1.columns[24].title.caption"
-msgid "Continent"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[25].title.caption
-msgctxt "tminimalform.dbgrid1.columns[25].title.caption"
-msgid "Valid DX"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[26].title.caption
-msgctxt "tminimalform.dbgrid1.columns[26].title.caption"
-msgid "QSL r VIA"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[27].title.caption
-msgctxt "tminimalform.dbgrid1.columns[27].title.caption"
-msgid "QSL s VIA"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[28].title.caption
-msgctxt "tminimalform.dbgrid1.columns[28].title.caption"
-msgid "User"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[29].title.caption
-msgctxt "tminimalform.dbgrid1.columns[29].title.caption"
-msgid "No calc DXCC"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[2].title.caption
-msgctxt "tminimalform.dbgrid1.columns[2].title.caption"
-msgid "Date"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[3].title.caption
-msgctxt "tminimalform.dbgrid1.columns[3].title.caption"
-msgid "Time"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[4].title.caption
-msgctxt "tminimalform.dbgrid1.columns[4].title.caption"
-msgid "Frequency"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[5].title.caption
-msgctxt "tminimalform.dbgrid1.columns[5].title.caption"
-msgid "Callsign"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[6].title.caption
-msgctxt "tminimalform.dbgrid1.columns[6].title.caption"
-msgid "Mode"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[7].title.caption
-msgctxt "tminimalform.dbgrid1.columns[7].title.caption"
-msgid "QSOSubMode"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[8].title.caption
-msgctxt "tminimalform.dbgrid1.columns[8].title.caption"
-msgid "Name"
-msgstr ""
-
-#: tminimalform.dbgrid1.columns[9].title.caption
-msgctxt "tminimalform.dbgrid1.columns[9].title.caption"
-msgid "QTH"
-msgstr ""
-
-#: tminimalform.label1.caption
-msgctxt "tminimalform.label1.caption"
-msgid "Date"
-msgstr ""
-
-#: tminimalform.label10.caption
-msgctxt "tminimalform.label10.caption"
-msgid "QSL Via"
-msgstr ""
-
-#: tminimalform.label11.caption
-msgctxt "tminimalform.label11.caption"
-msgid "Grid"
-msgstr ""
-
-#: tminimalform.label12.caption
-msgctxt "tminimalform.label12.caption"
-msgid "State"
-msgstr ""
-
-#: tminimalform.label13.caption
-msgctxt "tminimalform.label13.caption"
-msgid "IOTA"
-msgstr ""
-
-#: tminimalform.label14.caption
-msgctxt "tminimalform.label14.caption"
-msgid "MGR"
-msgstr ""
-
-#: tminimalform.label15.caption
-msgctxt "tminimalform.label15.caption"
-msgid "Azimuth"
-msgstr ""
-
-#: tminimalform.label16.caption
-msgctxt "tminimalform.label16.caption"
-msgid "Comment"
-msgstr ""
-
-#: tminimalform.label17.caption
-msgctxt "tminimalform.label17.caption"
-msgid "1"
-msgstr ""
-
-#: tminimalform.label18.caption
-msgctxt "tminimalform.label18.caption"
-msgid "Date"
-msgstr ""
-
-#: tminimalform.label19.caption
-msgctxt "tminimalform.label19.caption"
-msgid "Time"
-msgstr ""
-
-#: tminimalform.label2.caption
-msgctxt "tminimalform.label2.caption"
-msgid "Band"
-msgstr ""
-
-#: tminimalform.label20.caption
-msgctxt "tminimalform.label20.caption"
-msgid "Frequency"
-msgstr ""
-
-#: tminimalform.label21.caption
-msgctxt "tminimalform.label21.caption"
-msgid "Mode"
-msgstr ""
-
-#: tminimalform.label22.caption
-msgctxt "tminimalform.label22.caption"
-msgid "Name"
-msgstr ""
-
-#: tminimalform.label23.caption
-msgctxt "tminimalform.label23.caption"
-msgid "Local time "
-msgstr ""
-
-#: tminimalform.label24.caption
-msgctxt "tminimalform.label24.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tminimalform.label25.caption
-msgctxt "tminimalform.label25.caption"
-msgid "UTC"
-msgstr ""
-
-#: tminimalform.label26.caption
-msgctxt "tminimalform.label26.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tminimalform.label27.caption
-msgctxt "tminimalform.label27.caption"
-msgid "Remote time"
-msgstr ""
-
-#: tminimalform.label28.caption
-msgctxt "tminimalform.label28.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tminimalform.label29.caption
-msgctxt "tminimalform.label29.caption"
-msgid "......."
-msgstr ""
-
-#: tminimalform.label3.caption
-msgctxt "tminimalform.label3.caption"
-msgid "Mode"
-msgstr ""
-
-#: tminimalform.label30.caption
-msgctxt "tminimalform.label30.caption"
-msgid "Territory"
-msgstr ""
-
-#: tminimalform.label31.caption
-msgctxt "tminimalform.label31.caption"
-msgid "......."
-msgstr ""
-
-#: tminimalform.label32.caption
-msgctxt "tminimalform.label32.caption"
-msgid "DXCC"
-msgstr ""
-
-#: tminimalform.label33.caption
-msgctxt "tminimalform.label33.caption"
-msgid "......."
-msgstr ""
-
-#: tminimalform.label34.caption
-msgctxt "tminimalform.label34.caption"
-msgid "(Cfm)"
-msgstr ""
-
-#: tminimalform.label35.caption
-msgctxt "tminimalform.label35.caption"
-msgid "Distance"
-msgstr ""
-
-#: tminimalform.label36.caption
-msgctxt "tminimalform.label36.caption"
-msgid "......."
-msgstr ""
-
-#: tminimalform.label37.caption
-msgctxt "tminimalform.label37.caption"
-msgid "Prefix"
-msgstr ""
-
-#: tminimalform.label38.caption
-msgctxt "tminimalform.label38.caption"
-msgid "......."
-msgstr ""
-
-#: tminimalform.label39.caption
-msgctxt "tminimalform.label39.caption"
-msgid "Latitude"
-msgstr ""
-
-#: tminimalform.label4.caption
-msgctxt "tminimalform.label4.caption"
-msgid "Time (UTC)"
-msgstr ""
-
-#: tminimalform.label40.caption
-msgctxt "tminimalform.label40.caption"
-msgid "......."
-msgstr ""
-
-#: tminimalform.label41.caption
-msgctxt "tminimalform.label41.caption"
-msgid "Longitude"
-msgstr ""
-
-#: tminimalform.label42.caption
-msgctxt "tminimalform.label42.caption"
-msgid "......."
-msgstr ""
-
-#: tminimalform.label43.caption
-msgctxt "tminimalform.label43.caption"
-msgid "CQ"
-msgstr ""
-
-#: tminimalform.label44.caption
-msgctxt "tminimalform.label44.caption"
-msgid ".."
-msgstr ""
-
-#: tminimalform.label45.caption
-msgctxt "tminimalform.label45.caption"
-msgid "ITU"
-msgstr ""
-
-#: tminimalform.label46.caption
-msgctxt "tminimalform.label46.caption"
-msgid ".."
-msgstr ""
-
-#: tminimalform.label47.caption
-msgctxt "tminimalform.label47.caption"
-msgid "......."
-msgstr ""
-
-#: tminimalform.label48.caption
-msgctxt "tminimalform.label48.caption"
-msgid "Your QSL"
-msgstr ""
-
-#: tminimalform.label5.caption
-msgctxt "tminimalform.label5.caption"
-msgid "Callsign"
-msgstr ""
-
-#: tminimalform.label53.caption
-msgctxt "tminimalform.label53.caption"
-msgid "Worked"
-msgstr ""
-
-#: tminimalform.label54.caption
-msgctxt "tminimalform.label54.caption"
-msgid "QSL"
-msgstr ""
-
-#: tminimalform.label6.caption
-msgctxt "tminimalform.label6.caption"
-msgid "Name"
-msgstr ""
-
-#: tminimalform.label7.caption
-msgctxt "tminimalform.label7.caption"
-msgid "QTH"
-msgstr ""
-
-#: tminimalform.label8.caption
-msgctxt "tminimalform.label8.caption"
-msgid "RST sent"
-msgstr ""
-
-#: tminimalform.label9.caption
-msgctxt "tminimalform.label9.caption"
-msgid "RST rcvd"
-msgstr ""
-
-#: tminimalform.menuitem1.caption
-msgid "QSO Table"
-msgstr ""
-
-#: tminimalform.menuitem2.caption
-msgid "DX Cluster"
-msgstr ""
-
-#: tminimalform.menuitem3.caption
-msgctxt "tminimalform.menuitem3.caption"
-msgid "Map"
-msgstr ""
-
-#: tminimalform.menuitem4.caption
-msgctxt "tminimalform.menuitem4.caption"
-msgid "Information"
-msgstr ""
-
-#: tminimalform.menuitem5.caption
-msgid "Transceiver"
-msgstr ""
-
-#: tminimalform.menuitem6.caption
-msgid "On TOP"
-msgstr ""
-
-#: tminimalform.menuitem7.caption
-msgid "ON"
-msgstr ""
-
-#: tminimalform.menuitem8.caption
-msgid "OFF"
-msgstr ""
-
-#: tminimalform.speedbutton3.caption
-msgctxt "tminimalform.speedbutton3.caption"
-msgid " ... "
-msgstr ""
-
-#: tminimalform.speedbutton4.caption
-msgctxt "tminimalform.speedbutton4.caption"
-msgid " ... "
-msgstr ""
-
-#: tminimalform.speedbutton5.caption
-msgctxt "tminimalform.speedbutton5.caption"
-msgid " ... "
 msgstr ""
 
 #: tmm_form.button1.caption
@@ -5336,7 +4733,7 @@ msgstr ""
 
 #: ttrxform.btn2m.caption
 msgctxt "ttrxform.btn2m.caption"
-msgid "144"
+msgid "70"
 msgstr ""
 
 #: ttrxform.btn30m.caption
@@ -5353,7 +4750,16 @@ msgstr ""
 
 #: ttrxform.btn70cm.caption
 msgctxt "ttrxform.btn70cm.caption"
+msgid "144"
+msgstr ""
+
+#: ttrxform.btn70cm1.caption
+msgctxt "ttrxform.btn70cm1.caption"
 msgid "430"
+msgstr ""
+
+#: ttrxform.btn70cm2.caption
+msgid "1200"
 msgstr ""
 
 #: ttrxform.btn80m.caption
@@ -5389,10 +4795,6 @@ msgstr ""
 
 #: ttrxform.btnvfob.caption
 msgid "B"
-msgstr ""
-
-#: ttrxform.button1.caption
-msgid "PTT"
 msgstr ""
 
 #: ttrxform.caption
@@ -5538,85 +4940,5 @@ msgstr ""
 
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
-msgstr ""
-
-#: updateform_u.rbuttoncheck
-msgctxt "updateform_u.rbuttoncheck"
-msgid "Check"
-msgstr ""
-
-#: updateform_u.rbuttondownload
-msgctxt "updateform_u.rbuttondownload"
-msgid "Download"
-msgstr ""
-
-#: updateform_u.rbuttoninstall
-msgctxt "updateform_u.rbuttoninstall"
-msgid "Install"
-msgstr ""
-
-#: updateform_u.rbytes
-msgctxt "updateform_u.rbytes"
-msgid " bytes"
-msgstr ""
-
-#: updateform_u.rsizefile
-msgctxt "updateform_u.rsizefile"
-msgid "File size: "
-msgstr ""
-
-#: updateform_u.rupdatedontcopy
-msgctxt "updateform_u.rupdatedontcopy"
-msgid "Do not copy"
-msgstr ""
-
-#: updateform_u.rupdaterequired
-msgctxt "updateform_u.rupdaterequired"
-msgid "Update required"
-msgstr ""
-
-#: updateform_u.rupdatestatus
-msgctxt "updateform_u.rupdatestatus"
-msgid "Update status: "
-msgstr ""
-
-#: updateform_u.rupdatestatusactual
-msgctxt "updateform_u.rupdatestatusactual"
-msgid "Update status: Actual"
-msgstr ""
-
-#: updateform_u.rupdatestatuscheckupdate
-msgctxt "updateform_u.rupdatestatuscheckupdate"
-msgid "Update status: Check version"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownload
-msgctxt "updateform_u.rupdatestatusdownload"
-msgid "Update status: Download?"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownloadbase
-msgctxt "updateform_u.rupdatestatusdownloadbase"
-msgid "Update status: Download Database"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownloadcallbook
-msgctxt "updateform_u.rupdatestatusdownloadcallbook"
-msgid "Update status: Download CallBook"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownloadchanges
-msgctxt "updateform_u.rupdatestatusdownloadchanges"
-msgid "Update status: Download Changes"
-msgstr ""
-
-#: updateform_u.rupdatestatusdownloads
-msgctxt "updateform_u.rupdatestatusdownloads"
-msgid "Update status: Downloads"
-msgstr ""
-
-#: updateform_u.rupdatestatusrequiredinstall
-msgctxt "updateform_u.rupdatestatusrequiredinstall"
-msgid "Update status: Installation required"
 msgstr ""
 

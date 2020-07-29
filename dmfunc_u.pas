@@ -94,6 +94,7 @@ type
     function Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
     function CheckSQLiteVersion(versionDLL: string): Boolean;
     procedure GetRIGMode(rigmode:string; var mode, submode:string);
+    procedure GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
     {$IFDEF WINDOWS}
     function GetWindowsVersion: string;
     {$ENDIF WINDOWS}
@@ -176,6 +177,18 @@ begin
     end;
 end;
 {$ENDIF WINDOWS}
+
+procedure TdmFunc.GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
+begin
+  if (UTF8Pos('W', Longitude) <> 0) then
+    Longitude := '-' + Longitude;
+  if (UTF8Pos('S', Latitude) <> 0) then
+    Latitude := '-' + Latitude;
+  Delete(Latitude, length(Latitude), 1);
+  Delete(Longitude, length(Longitude), 1);
+  Lat := Latitude;
+  Lon := Longitude;
+end;
 
 procedure TdmFunc.GetRIGMode(rigmode:string; var mode, submode:string);
 begin

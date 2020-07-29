@@ -211,7 +211,6 @@ type
     StatusBar1: TStatusBar;
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
-    Timer3: TTimer;
     MenuItem8: TMenuItem;
     PopupMenu1: TPopupMenu;
     SaveQSOinBase: TAction;
@@ -1543,6 +1542,8 @@ begin
 end;
 
 procedure TMainForm.SelectQSO(grid: boolean);
+var
+  Lat1, Lon1: string;
 begin
   try
     Label17.Caption := '';
@@ -1563,6 +1564,11 @@ begin
       Label21.Caption := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
       Label22.Caption := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+
+      dmFunc.GetLatLon(Label40.Caption, Label42.Caption, Lat1, Lon1);
+      Earth.PaintLine(Lat1, Lon1);
+      Earth.PaintLine(Lat1, Lon1);
+
       StatusBar1.Panels.Items[1].Text :=
         'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
     end
@@ -2606,6 +2612,7 @@ var
   foundPrefix: boolean;
   DBand, DMode, DCall: boolean;
   QSL: integer;
+  Lat1, Lon1: string;
 begin
   DBand := False;
   DMode := False;
@@ -2678,6 +2685,8 @@ begin
     label45.Caption := '..';
     label47.Caption := '..';
     label42.Caption := '.......';
+    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
+    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
     Exit;
   end;
 
@@ -2707,6 +2716,10 @@ begin
       end;
     end;
   end;
+
+  dmFunc.GetLatLon(Label40.Caption, Label42.Caption, Lat1, Lon1);
+  Earth.PaintLine(Lat1, Lon1);
+  Earth.PaintLine(Lat1, Lon1);
 
   if CheckBox6.Checked then
   begin
@@ -6983,7 +6996,7 @@ end;
 
 procedure TMainForm.Timer3Timer(Sender: TObject);
 begin
-  Panel10.Refresh;
+
 end;
 
 procedure TMainForm.TrayIcon1DblClick(Sender: TObject);

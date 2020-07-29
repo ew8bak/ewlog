@@ -4,5 +4,4 @@ object dmFunc: TdmFunc
   HorizontalOffset = 255
   VerticalOffset = 158
   Width = 150
-  PPI = 96
 end
