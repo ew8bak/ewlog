@@ -26,6 +26,7 @@ type
     function ServiceDBInit: boolean;
     function LogbookDBInit: boolean;
     function ImbeddedCallBookInit(Use: boolean): boolean;
+    function SelectLogbookTable: Boolean;
     procedure GetLogBookTable(Callsign, typeDataBase: string);
 
   end;
@@ -35,6 +36,8 @@ var
   FilePATH: string;
   LBRecord: TLBRecord;
   DBRecord: TDBRecord;
+  DefLogBookQuery: TSQLQuery;
+
 
 implementation
 

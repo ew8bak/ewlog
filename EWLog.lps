@@ -620,7 +620,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="27"/>
         <CursorPos X="3" Y="35"/>
-        <UsageCount Value="193"/>
+        <UsageCount Value="196"/>
       </Unit59>
       <Unit60>
         <Filename Value="getphotofrominternet.pas"/>
@@ -628,7 +628,7 @@
         <UnitName Value="GetPhotoFromInternet"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="51" Y="42"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="177"/>
       </Unit60>
       <Unit61>
         <Filename Value="getinfofrominternetthread.pas"/>
@@ -637,7 +637,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="10" Y="59"/>
-        <UsageCount Value="169"/>
+        <UsageCount Value="172"/>
       </Unit61>
       <Unit62>
         <Filename Value="viewphoto_u.pas"/>
@@ -648,7 +648,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="17" Y="18"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="138"/>
       </Unit62>
       <Unit63>
         <Filename Value="initdb_dm.pas"/>
@@ -659,9 +659,9 @@
         <UnitName Value="InitDB_dm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="77"/>
-        <CursorPos X="43" Y="102"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="79"/>
+        <CursorPos X="10" Y="109"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit63>
@@ -672,7 +672,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="4"/>
         <CursorPos X="26" Y="11"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit64>
       <Unit65>
@@ -1089,7 +1089,7 @@
         <UnitName Value="DB_record"/>
         <EditorIndex Value="2"/>
         <CursorPos X="14" Y="13"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit121>
     </Units>
