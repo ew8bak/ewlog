@@ -16,7 +16,7 @@ type
     QSOSubMode: string[15];
     QSOReportSent: string[8];
     QSOReportRecived: string[8];
-    OmName: string[30];
+    OmName: string[50];
     OmQTH: string[50];
     State0: string[25];
     Grid: string[6];

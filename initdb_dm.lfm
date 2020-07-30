@@ -1,0 +1,56 @@
+object InitDB: TInitDB
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 230
+  HorizontalOffset = 348
+  VerticalOffset = 166
+  Width = 389
+  object ServiceDBConnection: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Transaction = ServiceTransaction
+    CharSet = 'utf-8'
+    AlwaysUseBigint = False
+    Left = 64
+    Top = 16
+  end
+  object ServiceTransaction: TSQLTransaction
+    Active = False
+    Database = ServiceDBConnection
+    Left = 64
+    Top = 72
+  end
+  object MySQLConnection: TMySQL57Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = True
+    CharSet = 'utf8'
+    SkipLibraryVersionCheck = True
+    Left = 192
+    Top = 16
+  end
+  object DefTransaction: TSQLTransaction
+    Active = False
+    Left = 304
+    Top = 16
+  end
+  object SQLiteConnection: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    CharSet = 'UTF-8'
+    HostName = 'localhost'
+    AlwaysUseBigint = False
+    Left = 192
+    Top = 72
+  end
+  object ImbeddedCallBookConnection: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    AlwaysUseBigint = False
+    Left = 192
+    Top = 136
+  end
+end

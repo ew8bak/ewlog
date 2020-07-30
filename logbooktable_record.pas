@@ -6,9 +6,8 @@ interface
 
 uses
   Classes, SysUtils;
-
 type
-  TLBParam = record
+  TLBRecord = record
     Discription: string[20];
     CallSign: string[20];
     OpName: string[30];
@@ -42,3 +41,4 @@ type
 implementation
 
 end.
+

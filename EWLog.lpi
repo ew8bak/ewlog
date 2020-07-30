@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="63">
+    <Units Count="64">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -442,128 +442,134 @@
         <UnitName Value="ThanksForm_u"/>
       </Unit39>
       <Unit40>
-        <Filename Value="register_form_u.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="RegisterForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit40>
-      <Unit41>
         <Filename Value="filterform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="filterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
-      </Unit41>
-      <Unit42>
+      </Unit40>
+      <Unit41>
         <Filename Value="hiddentsettings_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="hiddenSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit42>
-      <Unit43>
+      </Unit41>
+      <Unit42>
         <Filename Value="print_sticker_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PrintSticker_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit43>
-      <Unit44>
+      </Unit42>
+      <Unit43>
         <Filename Value="famm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit44>
-      <Unit45>
+      </Unit43>
+      <Unit44>
         <Filename Value="mmform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="hamqth.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit45>
       <Unit46>
-        <Filename Value="hamqth.pas"/>
+        <Filename Value="clublog.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit46>
       <Unit47>
-        <Filename Value="clublog.pas"/>
+        <Filename Value="qrzcom.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit47>
       <Unit48>
-        <Filename Value="qrzcom.pas"/>
+        <Filename Value="qso_record.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit48>
       <Unit49>
-        <Filename Value="qso_record.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit49>
-      <Unit50>
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
+      </Unit49>
+      <Unit50>
+        <Filename Value="const_u.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit50>
       <Unit51>
-        <Filename Value="const_u.pas"/>
+        <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit51>
       <Unit52>
-        <Filename Value="initini.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="InitINI"/>
-      </Unit52>
-      <Unit53>
-        <Filename Value="download_lotw.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit53>
-      <Unit54>
         <Filename Value="download_eqslcc.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit54>
-      <Unit55>
+      </Unit52>
+      <Unit53>
         <Filename Value="downloadupdates.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadUpdates"/>
-      </Unit55>
-      <Unit56>
+      </Unit53>
+      <Unit54>
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
-      </Unit56>
-      <Unit57>
+      </Unit54>
+      <Unit55>
         <Filename Value="fldigimodem.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="flDigiModem"/>
-      </Unit57>
-      <Unit58>
+      </Unit55>
+      <Unit56>
         <Filename Value="analyticthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="analyticThread"/>
-      </Unit58>
-      <Unit59>
+      </Unit56>
+      <Unit57>
         <Filename Value="getsessionid.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSessionID"/>
-      </Unit59>
-      <Unit60>
+      </Unit57>
+      <Unit58>
         <Filename Value="getphotofrominternet.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetPhotoFromInternet"/>
-      </Unit60>
-      <Unit61>
+      </Unit58>
+      <Unit59>
         <Filename Value="getinfofrominternetthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetInfoFromInternetThread"/>
-      </Unit61>
-      <Unit62>
+      </Unit59>
+      <Unit60>
         <Filename Value="viewphoto_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="viewPhoto"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="viewPhoto_U"/>
+      </Unit60>
+      <Unit61>
+        <Filename Value="initdb_dm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="InitDB"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="InitDB_dm"/>
+      </Unit61>
+      <Unit62>
+        <Filename Value="logbooktable_record.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LogBookTable_record"/>
       </Unit62>
+      <Unit63>
+        <Filename Value="db_record.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DB_record"/>
+      </Unit63>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

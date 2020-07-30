@@ -16,11 +16,12 @@ uses
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U,
   Changelog_Form_U, Earth_Form_U, IOTA_Form_U, ConfigGridForm_U,
   sendtelnetspot_form_U, ClusterFilter_Form_U, ClusterServer_Form_U,
-  STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u,
-  filterForm_U, hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth,
-  clublog, qrzcom, qso_record, resourcestr, const_u, initini, download_lotw,
-  download_eqslcc, DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread,
-  getSessionID, GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U;
+  STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U,
+  hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom,
+  qso_record, resourcestr, const_u, download_lotw, download_eqslcc,
+  DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread, getSessionID,
+  GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U,
+  LogBookTable_record, DB_record;
 
 {$R *.res}
 
