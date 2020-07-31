@@ -112,7 +112,7 @@ var
 
 implementation
 
-uses MainForm_U, CreateJournalForm_U, dmFunc_U;
+uses MainForm_U, CreateJournalForm_U, dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -124,7 +124,7 @@ begin
   if DefaultDB = 'MySQL' then
     LogConfigForm.SQLQuery1.DataBase := MainForm.MySQLLOGDBConnection
   else
-    LogConfigForm.SQLQuery1.DataBase := MainForm.SQLiteDBConnection;
+    LogConfigForm.SQLQuery1.DataBase := InitDB.SQLiteConnection;
 
   LogConfigForm.SQLQuery1.Close;
   LogConfigForm.SQLQuery1.SQL.Clear;
@@ -196,7 +196,7 @@ end;
 
 procedure TLogConfigForm.Button1Click(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected or MainForm.SQLiteDBConnection.Connected then begin
+  if MainForm.MySQLLOGDBConnection.Connected or InitDB.SQLiteConnection.Connected then begin
   with UpdateConfQuery do
   begin
     Close;
@@ -273,7 +273,7 @@ begin
     if DefaultDB = 'MySQL' then
       UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
     else
-      UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
+      UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
     if MainForm.DBLookupComboBox1.Text <> '' then
       SelectCall(MainForm.DBLookupComboBox1.KeyValue);
   end;
@@ -284,7 +284,7 @@ var
   i: integer;
 begin
   if MainForm.MySQLLOGDBConnection.Connected or
-    MainForm.SQLiteDBConnection.Connected then
+    InitDB.SQLiteConnection.Connected then
   begin
     try
       if InitLog_DB = 'YES' then
@@ -293,13 +293,13 @@ begin
         if DefaultDB = 'MySQL' then
           SQLQuery2.DataBase := MainForm.MySQLLOGDBConnection
         else
-          SQLQuery2.DataBase := MainForm.SQLiteDBConnection;
+          SQLQuery2.DataBase := InitDB.SQLiteConnection;
 
 
         if DefaultDB = 'MySQL' then
           UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
         else
-          UpdateConfQuery.DataBase := MainForm.SQLiteDBConnection;
+          UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
         SelectCall(MainForm.DBLookupComboBox1.KeyValue);
       end;
 
@@ -334,7 +334,7 @@ end;
 procedure TLogConfigForm.ListBox1Click(Sender: TObject);
 begin
   if MainForm.MySQLLOGDBConnection.Connected or
-    MainForm.SQLiteDBConnection.Connected then
+    InitDB.SQLiteConnection.Connected then
   begin
     SelectCall(ListBox1.Items[ListBox1.ItemIndex]);
     if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
@@ -356,7 +356,7 @@ var
   i: integer;
 begin
   if MainForm.MySQLLOGDBConnection.Connected or
-    MainForm.SQLiteDBConnection.Connected then
+    InitDB.SQLiteConnection.Connected then
   begin
     if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
@@ -409,9 +409,9 @@ end;
 procedure TLogConfigForm.MenuItem4Click(Sender: TObject);
 begin
   if MainForm.MySQLLOGDBConnection.Connected or
-    MainForm.SQLiteDBConnection.Connected then
+    InitDB.SQLiteConnection.Connected then
   begin
-    IniF.WriteString('SetLog', 'DefaultCallLogBook', ListBox1.Items[ListBox1.ItemIndex]);
+    INIFile.WriteString('SetLog', 'DefaultCallLogBook', ListBox1.Items[ListBox1.ItemIndex]);
     ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
     MainForm.DBLookupComboBox1.KeyValue := ListBox1.Items[ListBox1.ItemIndex];
     MainForm.DBLookupComboBox1CloseUp(Self);

@@ -143,7 +143,7 @@ var
 
 implementation
 
-uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_Form_U, ConfigForm_U, const_u;
+uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_Form_U, ConfigForm_U, const_u, InitDB_dm;
 
 {$R *.lfm}
 
@@ -162,12 +162,12 @@ end;
 
 procedure TEditQSO_Form.SpeedButton1Click(Sender: TObject);
 begin
-  CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
+ // CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM CountryDataEx';
   CountryEditForm.CountryQditQuery.Open;
-  MainForm.SQLServiceTransaction.Active := True;
+  //MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'ARRLList';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('ARRLPrefix', Edit7.Text, []);
   CountryEditForm.Show;
@@ -175,13 +175,13 @@ end;
 
 procedure TEditQSO_Form.SpeedButton2Click(Sender: TObject);
 begin
-  CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
+ // CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
 
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM Province';
   CountryEditForm.CountryQditQuery.Open;
-  MainForm.SQLServiceTransaction.Active := True;
+  //MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'Province';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('Prefix', Edit8.Text, []);
   CountryEditForm.Show;
@@ -341,7 +341,7 @@ begin
     SQL.Add('select * from ' + LogTable + ' where CallSign = "' + Edit1.Text + '"');
     Open;
   end;
-
+ {
   for i := 0 to PrefixProvinceCount do
   begin
     if (MainForm.PrefixExpProvinceArray[i].reg.Exec(Edit1.Text)) and
@@ -395,7 +395,7 @@ begin
         Edit6.Text := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
       end;
     end;
-  end;
+  end; }
 end;
 
 procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);
@@ -567,8 +567,8 @@ begin
     end
     else
     begin
-      TerrQuery.DataBase := MainForm.SQLiteDBConnection;
-      UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
+      TerrQuery.DataBase := InitDB.SQLiteConnection;
+      UPDATE_Query.DataBase := InitDB.SQLiteConnection;
     end;
 
     for i := 0 to 29 do
@@ -620,7 +620,7 @@ begin
   try
     if InitLog_DB = 'YES' then
     begin
-      SatPropQuery.DataBase := MainForm.ServiceDBConnection;
+    //  SatPropQuery.DataBase := MainForm.ServiceDBConnection;
       if MainForm.MySQLLOGDBConnection.Connected then
       begin
         TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
@@ -628,8 +628,8 @@ begin
       end
       else
       begin
-        TerrQuery.DataBase := MainForm.SQLiteDBConnection;
-        UPDATE_Query.DataBase := MainForm.SQLiteDBConnection;
+        TerrQuery.DataBase := InitDB.SQLiteConnection;
+        UPDATE_Query.DataBase := InitDB.SQLiteConnection;
       end;
     end;
 
@@ -655,9 +655,9 @@ begin
       begin
         ShowMessage(rMySQLHasGoneAway);
         UseCallBook := 'NO';
-        DefaultDB := 'SQLite';
-        dbSel := 'SQLite';
-        MainForm.InitializeDB('SQLite');
+     //   DefaultDB := 'SQLite';
+     //   dbSel := 'SQLite';
+     //   MainForm.InitializeDB('SQLite');
       end;
     end;
   end;

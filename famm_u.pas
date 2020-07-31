@@ -45,7 +45,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U;
+uses dmFunc_U, MainForm_U, InitDB_dm;
 
 { TFM_Form }
 
@@ -71,7 +71,7 @@ var
   ListItem: TListItem;
 begin
   try
-    FMQuery.DataBase := MainForm.ServiceDBConnection;
+    FMQuery.DataBase := InitDB.ServiceDBConnection;
     FMQuery.SQL.Text := ('SELECT * FROM Bands');
     FMQuery.Open;
     ListView1.Clear;
@@ -138,7 +138,7 @@ begin
     ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text,
       BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
-    MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''), MainForm.ComboBox2.Text);
+    MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''), MainForm.ComboBox2.Text);
   end;
 end;
 

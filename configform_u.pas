@@ -120,7 +120,7 @@ var
 implementation
 
 uses
-  MainForm_U, UpdateForm_U, dmFunc_U, editqso_u;
+  MainForm_U, UpdateForm_U, dmFunc_U, editqso_u, InitDB_dm;
 
 {$R *.lfm}
 
@@ -128,100 +128,100 @@ uses
 
 procedure TConfigForm.SaveINI;
 begin
-  IniF.WriteString('DataBases', 'HostAddr', Edit1.Text);
-  IniF.WriteString('DataBases', 'Port', Edit2.Text);
-  IniF.WriteString('DataBases', 'LoginName', Edit3.Text);
-  IniF.WriteString('DataBases', 'Password', Edit4.Text);
-  IniF.WriteString('DataBases', 'DataBaseName', Edit5.Text);
-  IniF.WriteString('DataBases', 'FileSQLite', FileNameEdit1.Text);
-  IniF.WriteString('TelnetCluster', 'Login', Edit11.Text);
-  IniF.WriteString('TelnetCluster', 'Password', Edit12.Text);
-  IniF.WriteBool('TelnetCluster', 'AutoStart', CheckBox4.Checked);
+  INIFile.WriteString('DataBases', 'HostAddr', Edit1.Text);
+  INIFile.WriteString('DataBases', 'Port', Edit2.Text);
+  INIFile.WriteString('DataBases', 'LoginName', Edit3.Text);
+  INIFile.WriteString('DataBases', 'Password', Edit4.Text);
+  INIFile.WriteString('DataBases', 'DataBaseName', Edit5.Text);
+  INIFile.WriteString('DataBases', 'FileSQLite', FileNameEdit1.Text);
+  INIFile.WriteString('TelnetCluster', 'Login', Edit11.Text);
+  INIFile.WriteString('TelnetCluster', 'Password', Edit12.Text);
+  INIFile.WriteBool('TelnetCluster', 'AutoStart', CheckBox4.Checked);
 
   if RadioButton1.Checked = True then
-    IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
+    INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
   else
-    IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
+    INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
   if CheckBox1.Checked = True then
-    IniF.WriteString('SetLog', 'UseCallBook', 'YES')
+    INIFile.WriteString('SetLog', 'UseCallBook', 'YES')
   else
-    IniF.WriteString('SetLog', 'UseCallBook', 'NO');
+    INIFile.WriteString('SetLog', 'UseCallBook', 'NO');
 
   if CheckBox2.Checked = True then
-    IniF.WriteString('SetLog', 'ShowBand', 'True')
+    INIFile.WriteString('SetLog', 'ShowBand', 'True')
   else
-    IniF.WriteString('SetLog', 'ShowBand', 'False');
+    INIFile.WriteString('SetLog', 'ShowBand', 'False');
 
   if CheckBox7.Checked = True then
-    IniF.WriteString('SetLog', 'SpravQRZCOM', 'True')
+    INIFile.WriteString('SetLog', 'SpravQRZCOM', 'True')
   else
-    IniF.WriteString('SetLog', 'SpravQRZCOM', 'False');
+    INIFile.WriteString('SetLog', 'SpravQRZCOM', 'False');
 
-  IniF.WriteBool('SetLog', 'StateToQSLInfo', CheckBox6.Checked);
-  IniF.WriteString('SetLog', 'QRZ_Login', Edit6.Text);
-  IniF.WriteString('SetLog', 'QRZ_Pass', Edit7.Text);
+  INIFile.WriteBool('SetLog', 'StateToQSLInfo', CheckBox6.Checked);
+  INIFile.WriteString('SetLog', 'QRZ_Login', Edit6.Text);
+  INIFile.WriteString('SetLog', 'QRZ_Pass', Edit7.Text);
 
-  IniF.WriteString('SetLog', 'QRZCOM_Login', Edit8.Text);
-  IniF.WriteString('SetLog', 'QRZCOM_Pass', Edit9.Text);
+  INIFile.WriteString('SetLog', 'QRZCOM_Login', Edit8.Text);
+  INIFile.WriteString('SetLog', 'QRZCOM_Pass', Edit9.Text);
 
   if CheckBox3.Checked = True then
-    IniF.WriteString('SetLog', 'Sprav', 'True')
+    INIFile.WriteString('SetLog', 'Sprav', 'True')
   else
-    IniF.WriteString('SetLog', 'Sprav', 'False');
+    INIFile.WriteString('SetLog', 'Sprav', 'False');
   if CheckBox5.Checked = True then
-    IniF.WriteBool('SetLog', 'PrintPrev', True)
+    INIFile.WriteBool('SetLog', 'PrintPrev', True)
   else
-    IniF.WriteBool('SetLog', 'PrintPrev', False);
+    INIFile.WriteBool('SetLog', 'PrintPrev', False);
   MainForm.PrintPrev := CheckBox5.Checked;
 end;
 
 procedure TConfigForm.ReadINI;
 begin
-  Edit1.Text := IniF.ReadString('DataBases', 'HostAddr', '');
-  if IniF.ReadString('DataBases', 'Port', '') = '' then
+  Edit1.Text := INIFile.ReadString('DataBases', 'HostAddr', '');
+  if INIFile.ReadString('DataBases', 'Port', '') = '' then
     Edit2.Text := '3306'
   else
-    Edit2.Text := IniF.ReadString('DataBases', 'Port', '');
-  Edit3.Text := IniF.ReadString('DataBases', 'LoginName', '');
-  Edit4.Text := IniF.ReadString('DataBases', 'Password', '');
-  Edit5.Text := IniF.ReadString('DataBases', 'DataBaseName', '');
-  Edit11.Text := IniF.ReadString('TelnetCluster', 'Login', '');
-  Edit12.Text := IniF.ReadString('TelnetCluster', 'Password', '');
-  CheckBox4.Checked := IniF.ReadBool('TelnetCluster', 'AutoStart', False);
-  FileNameEdit1.Text := IniF.ReadString('DataBases', 'FileSQLite', '');
-  if IniF.ReadString('DataBases', 'DefaultDataBase', '') = 'MySQL' then
+    Edit2.Text := INIFile.ReadString('DataBases', 'Port', '');
+  Edit3.Text := INIFile.ReadString('DataBases', 'LoginName', '');
+  Edit4.Text := INIFile.ReadString('DataBases', 'Password', '');
+  Edit5.Text := INIFile.ReadString('DataBases', 'DataBaseName', '');
+  Edit11.Text := INIFile.ReadString('TelnetCluster', 'Login', '');
+  Edit12.Text := INIFile.ReadString('TelnetCluster', 'Password', '');
+  CheckBox4.Checked := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
+  FileNameEdit1.Text := INIFile.ReadString('DataBases', 'FileSQLite', '');
+  if INIFile.ReadString('DataBases', 'DefaultDataBase', '') = 'MySQL' then
     RadioButton1.Checked := True
   else
     RadioButton2.Checked := True;
-  if IniF.ReadString('SetLog', 'UseCallBook', '') = 'YES' then
+  if INIFile.ReadString('SetLog', 'UseCallBook', '') = 'YES' then
     CheckBox1.Checked := True
   else
     CheckBox1.Checked := False;
 
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
     CheckBox2.Checked := True
   else
     CheckBox2.Checked := False;
 
-  Edit6.Text := IniF.ReadString('SetLog', 'QRZ_Login', '');
-  Edit7.Text := IniF.ReadString('SetLog', 'QRZ_Pass', '');
+  Edit6.Text := INIFile.ReadString('SetLog', 'QRZ_Login', '');
+  Edit7.Text := INIFile.ReadString('SetLog', 'QRZ_Pass', '');
 
-  Edit8.Text := IniF.ReadString('SetLog', 'QRZCOM_Login', '');
-  Edit9.Text := IniF.ReadString('SetLog', 'QRZCOM_Pass', '');
+  Edit8.Text := INIFile.ReadString('SetLog', 'QRZCOM_Login', '');
+  Edit9.Text := INIFile.ReadString('SetLog', 'QRZCOM_Pass', '');
 
-  if IniF.ReadString('SetLog', 'Sprav', '') = 'True' then
+  if INIFile.ReadString('SetLog', 'Sprav', '') = 'True' then
     CheckBox3.Checked := True
   else
     CheckBox3.Checked := False;
 
-  if IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'True' then
+  if INIFile.ReadString('SetLog', 'SpravQRZCOM', '') = 'True' then
     CheckBox7.Checked := True
   else
     CheckBox7.Checked := False;
 
-  CheckBox6.Checked := IniF.ReadBool('SetLog', 'StateToQSLInfo', False);
+  CheckBox6.Checked := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
 
-  if IniF.ReadBool('SetLog', 'PrintPrev', False) = True then
+  if INIFile.ReadBool('SetLog', 'PrintPrev', False) = True then
     CheckBox5.Checked := True
   else
     CheckBox5.Checked := False;
@@ -279,9 +279,9 @@ begin
   end else
   MainForm.CallBookLiteConnection.Connected := False;
   if CheckBox1.Checked = True then
-    IniF.WriteString('SetLog', 'UseCallBook', 'YES')
+    INIFile.WriteString('SetLog', 'UseCallBook', 'YES')
   else
-    IniF.WriteString('SetLog', 'UseCallBook', 'NO');
+    INIFile.WriteString('SetLog', 'UseCallBook', 'NO');
 end;
 
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
@@ -290,16 +290,16 @@ begin
   begin
     if CheckBox2.Checked = True then
     begin
-      IniF.WriteString('SetLog', 'ShowBand', 'True');
-      MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),
+      INIFile.WriteString('SetLog', 'ShowBand', 'True');
+      MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''),
         MainForm.ComboBox2.Text);
     end
     else
     begin
       if CheckBox2.Checked = False then
       begin
-        IniF.WriteString('SetLog', 'ShowBand', 'False');
-        MainForm.addBands(IniF.ReadString('SetLog', 'ShowBand', ''),
+        INIFile.WriteString('SetLog', 'ShowBand', 'False');
+        MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''),
           MainForm.ComboBox2.Text);
       end;
     end;
@@ -319,9 +319,9 @@ begin
     MainForm.CallBookLiteConnection.Connected := False;
   end;
   if CheckBox3.Checked = True then
-    IniF.WriteString('SetLog', 'Sprav', 'True')
+    INIFile.WriteString('SetLog', 'Sprav', 'True')
   else
-    IniF.WriteString('SetLog', 'Sprav', 'False');
+    INIFile.WriteString('SetLog', 'Sprav', 'False');
 end;
 
 procedure TConfigForm.CheckBox6Change(Sender: TObject);
@@ -338,9 +338,9 @@ begin
     MainForm.CallBookLiteConnection.Connected := False;
   end;
   if CheckBox7.Checked = True then
-    IniF.WriteString('SetLog', 'SpravQRZCOM', 'True')
+    INIFile.WriteString('SetLog', 'SpravQRZCOM', 'True')
   else
-    IniF.WriteString('SetLog', 'SpravQRZCOM', 'False');
+    INIFile.WriteString('SetLog', 'SpravQRZCOM', 'False');
 end;
 
 procedure TConfigForm.FormCreate(Sender: TObject);

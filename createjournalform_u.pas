@@ -55,7 +55,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U;
+uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -87,8 +87,8 @@ begin
   end
   else
   begin
-    CreateTableQuery.DataBase := MainForm.SQLiteDBConnection;
-    MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
+    CreateTableQuery.DataBase := InitDB.SQLiteConnection;
+   // MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
   end;
 end;
 
@@ -102,9 +102,9 @@ begin
   end
   else
   begin
-    CreateTableQuery.DataBase := MainForm.SQLiteDBConnection;
-    MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
-    CreateTableQuery.Transaction:=MainForm.SQLTransaction1;
+    CreateTableQuery.DataBase := InitDB.SQLiteConnection;
+   // MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
+    CreateTableQuery.Transaction:=InitDB.DefTransaction;
   end;
 end;
 
@@ -118,7 +118,7 @@ begin
     (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
   else begin
-    if MainForm.MySQLLOGDBConnection.Connected or MainForm.SQLiteDBConnection.Connected then begin
+    if MainForm.MySQLLOGDBConnection.Connected or InitDB.SQLiteConnection.Connected then begin
     try
       LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
       CreateTableQuery.Close;
@@ -153,9 +153,9 @@ begin
       end
       else
       begin
-        MainForm.SQLiteDBConnection.ExecuteDirect(
+        InitDB.SQLiteConnection.ExecuteDirect(
           dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
-        MainForm.SQLiteDBConnection.ExecuteDirect(dmSQL.CreateIndex(
+        InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
           LOG_PREFIX, 'SQLite'));
       end;
        MainForm.SQLTransaction1.Commit;
@@ -175,11 +175,11 @@ begin
       if Application.MessageBox(PChar(rSetAsDefaultJournal), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin
-        IniF.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
+        INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
       end;
 
       MainForm.FreeObj;
-      MainForm.InitializeDB(DefaultDB);
+    //  MainForm.InitializeDB(DefaultDB);
       if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin

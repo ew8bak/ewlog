@@ -53,7 +53,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U;
+uses dmFunc_U, MainForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -160,7 +160,7 @@ begin
             MainForm.EditButton1.Text := DXCall;
             MainForm.Edit3.Text := DXGrid;
 
-            if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
+            if (INIFile.ReadString('SetLog', 'ShowBand', '') = 'True') and
               (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
               MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
@@ -256,7 +256,7 @@ begin
             MainForm.DateTimePicker1.Time := date;
             MainForm.EditButton1.Text := DXCall;
 
-             if (IniF.ReadString('SetLog', 'ShowBand', '') = 'True') and
+             if (INIFile.ReadString('SetLog', 'ShowBand', '') = 'True') and
               (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
               MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))

@@ -68,7 +68,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U, TRXForm_U;
+  MainForm_U, dmFunc_U, TRXForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -81,7 +81,7 @@ begin
   cbManufacturer.Items.Clear;
   if (FileExistsUTF8(FileNameEdit1.Text)) then
   begin
-    dev := IniF.ReadString('TRX' + IntToStr(nTRX), 'model', '');
+    dev := INIFile.ReadString('TRX' + IntToStr(nTRX), 'model', '');
     dmFunc.LoadRigsToComboBox(dev, StringReplace(FileNameEdit1.Text,
       'rigctld', 'rigctl', [rfReplaceAll, rfIgnoreCase]), cbManufacturer);
   end
@@ -91,11 +91,11 @@ end;
 
 procedure TSettingsCAT.LoadINI;
 begin
-  cbCatPort.Text := IniF.ReadString('TRX' + IntToStr(nTRX), 'device', '');
-  EditCIVaddress.Text := IniF.ReadString('TRX' + IntToStr(nTRX), 'CiV', '');
-  SpinEdit1.Value := IniF.ReadInteger('TRX' + IntToStr(nTRX), 'Poll', 1);
+  cbCatPort.Text := INIFile.ReadString('TRX' + IntToStr(nTRX), 'device', '');
+  EditCIVaddress.Text := INIFile.ReadString('TRX' + IntToStr(nTRX), 'CiV', '');
+  SpinEdit1.Value := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'Poll', 1);
 
-  case IniF.ReadInteger('TRX' + IntToStr(nTRX), 'SerialSpeed', 0) of
+  case INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'SerialSpeed', 0) of
     0: cbBaudRate.ItemIndex := 0;
     1: cbBaudRate.ItemIndex := 1;
     2: cbBaudRate.ItemIndex := 2;
@@ -108,7 +108,7 @@ begin
     9: cbBaudRate.ItemIndex := 9;
   end;
 
-  case IniF.ReadInteger('TRX' + IntToStr(nTRX), 'DataBits', 0) of
+  case INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'DataBits', 0) of
     0: cbDataBits.ItemIndex := 0;
     1: cbDataBits.ItemIndex := 1;
     2: cbDataBits.ItemIndex := 2;
@@ -117,7 +117,7 @@ begin
     5: cbDataBits.ItemIndex := 5;
   end;
 
-  case IniF.ReadInteger('TRX' + IntToStr(nTRX), 'Parity', 0) of
+  case INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'Parity', 0) of
     0: cbParity.ItemIndex := 0;
     1: cbParity.ItemIndex := 1;
     2: cbParity.ItemIndex := 2;
@@ -126,21 +126,21 @@ begin
     5: cbParity.ItemIndex := 5;
   end;
 
-  case IniF.ReadInteger('TRX' + IntToStr(nTRX), 'HandShake', 0) of
+  case INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'HandShake', 0) of
     0: cbHandshake.ItemIndex := 0;
     1: cbHandshake.ItemIndex := 1;
     2: cbHandshake.ItemIndex := 2;
     3: cbHandshake.ItemIndex := 3;
   end;
 
-  case IniF.ReadInteger('TRX' + IntToStr(nTRX), 'DTR', 0) of
+  case INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'DTR', 0) of
     0: cbDTRstate.ItemIndex := 0;
     1: cbDTRstate.ItemIndex := 1;
     2: cbDTRstate.ItemIndex := 2;
     3: cbDTRstate.ItemIndex := 3;
   end;
 
-  case IniF.ReadInteger('TRX' + IntToStr(nTRX), 'RTS', 0) of
+  case INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'RTS', 0) of
     0: cbRTSstate.ItemIndex := 0;
     1: cbRTSstate.ItemIndex := 1;
     2: cbRTSstate.ItemIndex := 2;
@@ -157,7 +157,7 @@ begin
     nTRX := 1
   else
     nTRX := 2;
-  FileNameEdit1.Text := IniF.ReadString('TRX' + IntToStr(nTRX), 'RigCtldPath', '');
+  FileNameEdit1.Text := INIFile.ReadString('TRX' + IntToStr(nTRX), 'RigCtldPath', '');
    {$IFDEF WINDOWS}
   FileNameEdit1.Filter := 'rigctld.exe|rigctld.exe';
    {$ELSE}
@@ -202,64 +202,64 @@ begin
   model := cbManufacturer.Text;
   Delete(model, 1, pos(' ', model));
 
-  IniF.WriteString('TRX' + IntToStr(nTRX), 'RigCtldPath', FileNameEdit1.Text);
-  IniF.WriteString('TRX' + IntToStr(nTRX), 'model',
+  INIFile.WriteString('TRX' + IntToStr(nTRX), 'RigCtldPath', FileNameEdit1.Text);
+  INIFile.WriteString('TRX' + IntToStr(nTRX), 'model',
     dmFunc.GetRigIdFromComboBoxItem(cbManufacturer.Text));
-  IniF.WriteString('TRX' + IntToStr(nTRX), 'name', model);
-  IniF.WriteString('TRX' + IntToStr(nTRX), 'device', cbCatPort.Text);
-  IniF.WriteString('TRX' + IntToStr(nTRX), 'CiV', EditCIVaddress.Text);
-  IniF.WriteInteger('TRX' + IntToStr(nTRX), 'Poll', SpinEdit1.Value);
+  INIFile.WriteString('TRX' + IntToStr(nTRX), 'name', model);
+  INIFile.WriteString('TRX' + IntToStr(nTRX), 'device', cbCatPort.Text);
+  INIFile.WriteString('TRX' + IntToStr(nTRX), 'CiV', EditCIVaddress.Text);
+  INIFile.WriteInteger('TRX' + IntToStr(nTRX), 'Poll', SpinEdit1.Value);
 
   case cbBaudRate.ItemIndex of
-    0: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '');
-    1: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '1');
-    2: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '2');
-    3: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '3');
-    4: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '4');
-    5: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '5');
-    6: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '6');
-    7: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '7');
-    8: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '8');
-    9: IniF.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '9');
+    0: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '');
+    1: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '1');
+    2: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '2');
+    3: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '3');
+    4: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '4');
+    5: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '5');
+    6: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '6');
+    7: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '7');
+    8: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '8');
+    9: INIFile.WriteString('TRX' + IntToStr(nTRX), 'SerialSpeed', '9');
   end;
 
   case cbDataBits.ItemIndex of
-    0: IniF.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '');
-    1: IniF.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '1');
-    2: IniF.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '2');
-    3: IniF.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '3');
-    4: IniF.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '4');
-    5: IniF.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '5');
+    0: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '');
+    1: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '1');
+    2: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '2');
+    3: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '3');
+    4: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '4');
+    5: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DataBits', '5');
   end;
 
   case cbParity.ItemIndex of
-    0: IniF.WriteString('TRX' + IntToStr(nTRX), 'Parity', '');
-    1: IniF.WriteString('TRX' + IntToStr(nTRX), 'Parity', '1');
-    2: IniF.WriteString('TRX' + IntToStr(nTRX), 'Parity', '2');
-    3: IniF.WriteString('TRX' + IntToStr(nTRX), 'Parity', '3');
-    4: IniF.WriteString('TRX' + IntToStr(nTRX), 'Parity', '4');
-    5: IniF.WriteString('TRX' + IntToStr(nTRX), 'Parity', '5');
+    0: INIFile.WriteString('TRX' + IntToStr(nTRX), 'Parity', '');
+    1: INIFile.WriteString('TRX' + IntToStr(nTRX), 'Parity', '1');
+    2: INIFile.WriteString('TRX' + IntToStr(nTRX), 'Parity', '2');
+    3: INIFile.WriteString('TRX' + IntToStr(nTRX), 'Parity', '3');
+    4: INIFile.WriteString('TRX' + IntToStr(nTRX), 'Parity', '4');
+    5: INIFile.WriteString('TRX' + IntToStr(nTRX), 'Parity', '5');
   end;
 
   case cbHandshake.ItemIndex of
-    0: IniF.WriteString('TRX' + IntToStr(nTRX), 'HandShake', '');
-    1: IniF.WriteString('TRX' + IntToStr(nTRX), 'HandShake', '1');
-    2: IniF.WriteString('TRX' + IntToStr(nTRX), 'HandShake', '2');
-    3: IniF.WriteString('TRX' + IntToStr(nTRX), 'HandShake', '3');
+    0: INIFile.WriteString('TRX' + IntToStr(nTRX), 'HandShake', '');
+    1: INIFile.WriteString('TRX' + IntToStr(nTRX), 'HandShake', '1');
+    2: INIFile.WriteString('TRX' + IntToStr(nTRX), 'HandShake', '2');
+    3: INIFile.WriteString('TRX' + IntToStr(nTRX), 'HandShake', '3');
   end;
 
   case cbDTRstate.ItemIndex of
-    0: IniF.WriteString('TRX' + IntToStr(nTRX), 'DTR', '');
-    1: IniF.WriteString('TRX' + IntToStr(nTRX), 'DTR', '1');
-    2: IniF.WriteString('TRX' + IntToStr(nTRX), 'DTR', '2');
-    3: IniF.WriteString('TRX' + IntToStr(nTRX), 'DTR', '3');
+    0: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DTR', '');
+    1: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DTR', '1');
+    2: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DTR', '2');
+    3: INIFile.WriteString('TRX' + IntToStr(nTRX), 'DTR', '3');
   end;
 
   case cbRTSstate.ItemIndex of
-    0: IniF.WriteString('TRX' + IntToStr(nTRX), 'RTS', '');
-    1: IniF.WriteString('TRX' + IntToStr(nTRX), 'RTS', '1');
-    2: IniF.WriteString('TRX' + IntToStr(nTRX), 'RTS', '2');
-    3: IniF.WriteString('TRX' + IntToStr(nTRX), 'RTS', '3');
+    0: INIFile.WriteString('TRX' + IntToStr(nTRX), 'RTS', '');
+    1: INIFile.WriteString('TRX' + IntToStr(nTRX), 'RTS', '1');
+    2: INIFile.WriteString('TRX' + IntToStr(nTRX), 'RTS', '2');
+    3: INIFile.WriteString('TRX' + IntToStr(nTRX), 'RTS', '3');
   end;
   TRXForm.InicializeRig;
 end;

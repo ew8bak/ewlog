@@ -137,7 +137,7 @@ var
 
 implementation
 
-uses MainForm_U, const_u;
+uses MainForm_U, const_u, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 {$IFDEF WINDOWS}
@@ -965,28 +965,28 @@ var
 begin
   section := 'TRX' + IntToStr(radio);
 
-  if IniF.ReadString(section, 'model', '') = '' then
+  if INIFile.ReadString(section, 'model', '') = '' then
   begin
     Result := '';
     exit;
   end;
 
-  if IniF.ReadString(section, 'model', '') <> IntToStr(2) then begin
-    Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ';
-    if Pos('FLRig',IniF.ReadString(section, 'name', '')) or (Pos('TRXManager',IniF.ReadString(section, 'name', ''))) > 0 then
-    Result:=Result + IniF.ReadString(section, 'device', '') + ' ' + '-t ' +
-      IniF.ReadString(section, 'RigCtldPort', '4532') + ' '
+  if INIFile.ReadString(section, 'model', '') <> IntToStr(2) then begin
+    Result := '-m ' + INIFile.ReadString(section, 'model', '') + ' ';
+    if Pos('FLRig',INIFile.ReadString(section, 'name', '')) or (Pos('TRXManager',INIFile.ReadString(section, 'name', ''))) > 0 then
+    Result:=Result + INIFile.ReadString(section, 'device', '') + ' ' + '-t ' +
+      INIFile.ReadString(section, 'RigCtldPort', '4532') + ' '
     else
-      Result:=Result +'-r ' + IniF.ReadString(section, 'device', '') + ' ' + '-t ' +
-      IniF.ReadString(section, 'RigCtldPort', '4532') + ' ';
+      Result:=Result +'-r ' + INIFile.ReadString(section, 'device', '') + ' ' + '-t ' +
+      INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
   end
   else
-    Result := '-m ' + IniF.ReadString(section, 'model', '') + ' ' +
-      '-t ' + IniF.ReadString(section, 'RigCtldPort', '4532') + ' ';
+    Result := '-m ' + INIFile.ReadString(section, 'model', '') + ' ' +
+      '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
 
-  Result := Result + IniF.ReadString(section, 'ExtraRigCtldArgs', '') + ' ';
+  Result := Result + INIFile.ReadString(section, 'ExtraRigCtldArgs', '') + ' ';
 
-  case IniF.ReadInteger(section, 'SerialSpeed', 0) of
+  case INIFile.ReadInteger(section, 'SerialSpeed', 0) of
     0: arg := '';
     1: arg := '-s 1200 ';
     2: arg := '-s 2400 ';
@@ -1003,7 +1003,7 @@ begin
   end; //case
   Result := Result + arg;
 
-  case IniF.ReadInteger(section, 'DataBits', 0) of
+  case INIFile.ReadInteger(section, 'DataBits', 0) of
     0: arg := '';
     1: arg := 'data_bits=5';
     2: arg := 'data_bits=6';
@@ -1016,11 +1016,11 @@ begin
   if arg <> '' then
     set_conf := set_conf + arg + ',';
 
-  if IniF.ReadInteger(section, 'StopBits', 0) > 0 then
-    set_conf := set_conf + 'stop_bits=' + IntToStr(IniF.ReadInteger(
+  if INIFile.ReadInteger(section, 'StopBits', 0) > 0 then
+    set_conf := set_conf + 'stop_bits=' + IntToStr(INIFile.ReadInteger(
       section, 'StopBits', 0) - 1) + ',';
 
-  case IniF.ReadInteger(section, 'Parity', 0) of
+  case INIFile.ReadInteger(section, 'Parity', 0) of
     0: arg := '';
     1: arg := 'parity=None';
     2: arg := 'parity=Odd';
@@ -1033,7 +1033,7 @@ begin
   if arg <> '' then
     set_conf := set_conf + arg + ',';
 
-  case IniF.ReadInteger(section, 'HandShake', 0) of
+  case INIFile.ReadInteger(section, 'HandShake', 0) of
     0: arg := '';
     1: arg := 'serial_handshake=None';
     2: arg := 'serial_handshake=XONXOFF';
@@ -1044,7 +1044,7 @@ begin
   if arg <> '' then
     set_conf := set_conf + arg + ',';
 
-  case IniF.ReadInteger(section, 'DTR', 0) of
+  case INIFile.ReadInteger(section, 'DTR', 0) of
     0: arg := '';
     1: arg := 'dtr_state=Unset';
     2: arg := 'dtr_state=ON';
@@ -1055,7 +1055,7 @@ begin
   if arg <> '' then
     set_conf := set_conf + arg + ',';
 
-  case IniF.ReadInteger(section, 'RTS', 0) of
+  case INIFile.ReadInteger(section, 'RTS', 0) of
     0: arg := '';
     1: arg := 'rts_state=Unset';
     2: arg := 'rts_state=ON';

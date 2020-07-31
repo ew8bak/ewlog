@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 335
+  Left = 319
   Height = 696
-  Top = 250
+  Top = 310
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -3809,26 +3809,15 @@ object MainForm: TMainForm
     Top = 152
   end
   object LOGBookDS: TDataSource
-    DataSet = LOGBookQuery
-    Left = 527
-    Top = 56
+    DataSet = InitDB.DefLogBookQuery
+    Left = 512
+    Top = 72
   end
   object SQLTransaction1: TSQLTransaction
     Active = False
     Database = MySQLLOGDBConnection
     Left = 208
     Top = 600
-  end
-  object LOGBookQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MySQLLOGDBConnection
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'SELECT * FROM `Log_TABLE_20102015_122634` WHERE 1 ORDER BY `UnUsedIndex`'
-    )
-    Params = <>
-    Left = 920
-    Top = 336
   end
   object PrefixProvinceQuery: TSQLQuery
     PacketRecords = 2000
@@ -4141,11 +4130,6 @@ object MainForm: TMainForm
     Left = 720
     Top = 64
   end
-  object SearchRACDS: TDataSource
-    DataSet = SearchCallBookQuery
-    Left = 200
-    Top = 480
-  end
   object LogBookFieldQuery: TSQLQuery
     FieldDefs = <>
     Database = MySQLLOGDBConnection
@@ -4162,7 +4146,7 @@ object MainForm: TMainForm
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
-    Left = 576
+    Left = 600
     Top = 64
   end
   object ActionList1: TActionList
@@ -5280,22 +5264,8 @@ object MainForm: TMainForm
     Left = 960
     Top = 176
   end
-  object SQLiteDBConnection: TSQLite3Connection
-    Connected = False
-    LoginPrompt = False
-    AfterConnect = SQLiteDBConnectionAfterConnect
-    KeepConnection = False
-    Transaction = SQLiteTr
-    CharSet = 'UTF-8'
-    HostName = 'localhost'
-    LogEvents = []
-    AlwaysUseBigint = False
-    Left = 176
-    Top = 360
-  end
   object CopySQLQuery: TSQLQuery
     FieldDefs = <>
-    Database = SQLiteDBConnection
     Transaction = SQLiteTr
     Params = <>
     Left = 24
@@ -5303,13 +5273,11 @@ object MainForm: TMainForm
   end
   object SQLiteTr: TSQLTransaction
     Active = False
-    Database = SQLiteDBConnection
     Left = 104
     Top = 360
   end
   object DUPEQuery: TSQLQuery
     FieldDefs = <>
-    Database = SQLiteDBConnection
     Transaction = SQLiteTr
     Params = <>
     Left = 336
@@ -5338,21 +5306,6 @@ object MainForm: TMainForm
     OnStartTimer = CheckUpdatesTimerStartTimer
     Left = 184
     Top = 416
-  end
-  object ServiceDBConnection: TSQLite3Connection
-    Connected = False
-    LoginPrompt = False
-    KeepConnection = False
-    Transaction = SQLServiceTransaction
-    AlwaysUseBigint = False
-    Left = 400
-    Top = 488
-  end
-  object SQLServiceTransaction: TSQLTransaction
-    Active = False
-    Database = ServiceDBConnection
-    Left = 24
-    Top = 488
   end
   object TrayPopup: TPopupMenu
     Left = 400
@@ -5430,8 +5383,6 @@ object MainForm: TMainForm
   end
   object qBands: TSQLQuery
     FieldDefs = <>
-    Database = ServiceDBConnection
-    Transaction = SQLServiceTransaction
     Params = <>
     Left = 1102
     Top = 85

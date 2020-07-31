@@ -186,7 +186,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U, const_u, ConfigForm_U;
+  MainForm_U, dmFunc_U, const_u, ConfigForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -315,25 +315,25 @@ begin
 
   radio := TRigControl.Create;
 
-  if not TryStrToInt(IniF.ReadString('TRX' + n, 'model', ''), id) then
+  if not TryStrToInt(INIFile.ReadString('TRX' + n, 'model', ''), id) then
     radio.RigId := 1
   else
     radio.RigId := id;
 
-  radio.RigCtldPath := IniF.ReadString('TRX' + n, 'RigCtldPath', '') +
+  radio.RigCtldPath := INIFile.ReadString('TRX' + n, 'RigCtldPath', '') +
     ' -T 127.0.0.1 -vvvvv';
   radio.RigCtldArgs := dmFunc.GetRadioRigCtldCommandLine(StrToInt(n));
   //  radio.RunRigCtld  := IniF.ReadBool('TRX'+n,'RunRigCtld',True);
-  if IniF.ReadString('TRX' + n, 'model', '') <> IntToStr(2) then
-    radio.RigDevice := IniF.ReadString('TRX' + n, 'device', '');
-  radio.RigCtldPort := StrToInt(IniF.ReadString('TRX' + n, 'RigCtldPort', '4532'));
-  radio.RigCtldHost := IniF.ReadString('TRX' + n, 'host', '127.0.0.1');
-  if StrToInt(IniF.ReadString('TRX' + n, 'Poll', '100')) < 3 then
+  if INIFile.ReadString('TRX' + n, 'model', '') <> IntToStr(2) then
+    radio.RigDevice := INIFile.ReadString('TRX' + n, 'device', '');
+  radio.RigCtldPort := StrToInt(INIFile.ReadString('TRX' + n, 'RigCtldPort', '4532'));
+  radio.RigCtldHost := INIFile.ReadString('TRX' + n, 'host', '127.0.0.1');
+  if StrToInt(INIFile.ReadString('TRX' + n, 'Poll', '100')) < 3 then
   radio.RigPoll := 3 else
-  radio.RigPoll := StrToInt(IniF.ReadString('TRX' + n, 'Poll', '3'));
-  radio.RigSendCWR := IniF.ReadBool('TRX' + n, 'CWR', False);
-  rbRadio1.Caption := IniF.ReadString('TRX' + n, 'name', '');
-  TRXForm.Caption := IniF.ReadString('TRX' + n, 'name', '');
+  radio.RigPoll := StrToInt(INIFile.ReadString('TRX' + n, 'Poll', '3'));
+  radio.RigSendCWR := INIFile.ReadBool('TRX' + n, 'CWR', False);
+  rbRadio1.Caption := INIFile.ReadString('TRX' + n, 'name', '');
+  TRXForm.Caption := INIFile.ReadString('TRX' + n, 'name', '');
 
   tmrRadio.Interval := radio.RigPoll;
   tmrRadio.Enabled := True;
@@ -377,7 +377,7 @@ begin
   else
     n := '2';
 
-  if IniF.ReadString('TRX' + n, 'RigCtldPath', '') <> '' then
+  if INIFile.ReadString('TRX' + n, 'RigCtldPath', '') <> '' then
     InicializeRig;
 
   if ShowTRXForm = True then

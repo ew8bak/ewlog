@@ -38,7 +38,7 @@ var
 implementation
 
 uses
-  MainForm_U;
+  MainForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -52,10 +52,10 @@ end;
 procedure TSettingsProgramForm.FormShow(Sender: TObject);
 begin
 
-  fl_path := IniF.ReadString('FLDIGI', 'FldigiPATH', '');
-  wsjt_path := IniF.ReadString('WSJT', 'WSJTPATH', '');
-  FLDIGI_USE := IniF.ReadString('FLDIGI', 'USEFLDIGI', '');
-  WSJT_USE := IniF.ReadString('WSJT', 'USEWSJT', '');
+  fl_path := INIFile.ReadString('FLDIGI', 'FldigiPATH', '');
+  wsjt_path := INIFile.ReadString('WSJT', 'WSJTPATH', '');
+  FLDIGI_USE := INIFile.ReadString('FLDIGI', 'USEFLDIGI', '');
+  WSJT_USE := INIFile.ReadString('WSJT', 'USEWSJT', '');
 
   FileNameEdit1.Text := fl_path;
   if FLDIGI_USE = 'YES' then
@@ -71,18 +71,18 @@ end;
 
 procedure TSettingsProgramForm.Button1Click(Sender: TObject);
 begin
-  IniF.WriteString('FLDIGI', 'FldigiPATH', FileNameEdit1.Text);
-  IniF.WriteString('WSJT', 'WSJTPATH', FileNameEdit2.Text);
+  INIFile.WriteString('FLDIGI', 'FldigiPATH', FileNameEdit1.Text);
+  INIFile.WriteString('WSJT', 'WSJTPATH', FileNameEdit2.Text);
 
   case CheckBox4.Checked of
     True:
     begin
-      IniF.WriteString('WSJT', 'USEWSJT', 'YES');
+      INIFile.WriteString('WSJT', 'USEWSJT', 'YES');
       MainForm.MenuItem43.Enabled := True;
     end;
     False:
     begin
-      IniF.WriteString('WSJT', 'USEWSJT', 'NO');
+      INIFile.WriteString('WSJT', 'USEWSJT', 'NO');
       MainForm.MenuItem43.Enabled := False;
     end
   end;
@@ -90,12 +90,12 @@ begin
   case CheckBox2.Checked of
     True:
     begin
-      IniF.WriteString('FLDIGI', 'USEFLDIGI', 'YES');
+      INIFile.WriteString('FLDIGI', 'USEFLDIGI', 'YES');
       MainForm.MenuItem74.Enabled := True;
     end;
     False:
     begin
-      IniF.WriteString('FLDIGI', 'USEFLDIGI', 'NO');
+      INIFile.WriteString('FLDIGI', 'USEFLDIGI', 'NO');
       MainForm.MenuItem74.Enabled := False;
     end;
   end;

@@ -108,7 +108,7 @@ end;
 
 procedure TQSLManager_Form.FormShow(Sender: TObject);
 begin
-  ManagersQuery.DataBase := MainForm.ServiceDBConnection;
+ // ManagersQuery.DataBase := MainForm.ServiceDBConnection;
   with ManagersQuery do
   begin
     Close;

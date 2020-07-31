@@ -71,7 +71,7 @@ var
 
 implementation
 
-uses MainForm_U;
+uses MainForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -84,43 +84,43 @@ end;
 
 procedure TConfigGrid_Form.Button1Click(Sender: TObject);
 begin
-  IniF.WriteBool('GridSettings', 'ColVisible0', CheckBox1.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible1', CheckBox2.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible2', CheckBox3.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible3', CheckBox4.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible4', CheckBox5.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible5', CheckBox6.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible6', CheckBox7.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible7', CheckBox30.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible8', CheckBox8.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible9', CheckBox9.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible10', CheckBox10.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible11', CheckBox11.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible12', CheckBox12.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible13', CheckBox13.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible14', CheckBox14.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible15', CheckBox15.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible16', CheckBox16.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible17', CheckBox17.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible18', CheckBox18.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible19', CheckBox19.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible20', CheckBox20.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible21', CheckBox21.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible22', CheckBox22.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible23', CheckBox23.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible24', CheckBox24.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible25', CheckBox25.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible26', CheckBox26.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible27', CheckBox27.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible28', CheckBox28.Checked);
-  IniF.WriteBool('GridSettings', 'ColVisible29', CheckBox29.Checked);
-  IniF.WriteInteger('GridSettings', 'TextColor', ColorBox1.Selected);
-  IniF.WriteInteger('GridSettings', 'BackColor', ColorBox2.Selected);
+  INIFile.WriteBool('GridSettings', 'ColVisible0', CheckBox1.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible1', CheckBox2.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible2', CheckBox3.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible3', CheckBox4.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible4', CheckBox5.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible5', CheckBox6.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible6', CheckBox7.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible7', CheckBox30.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible8', CheckBox8.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible9', CheckBox9.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible10', CheckBox10.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible11', CheckBox11.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible12', CheckBox12.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible13', CheckBox13.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible14', CheckBox14.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible15', CheckBox15.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible16', CheckBox16.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible17', CheckBox17.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible18', CheckBox18.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible19', CheckBox19.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible20', CheckBox20.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible21', CheckBox21.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible22', CheckBox22.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible23', CheckBox23.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible24', CheckBox24.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible25', CheckBox25.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible26', CheckBox26.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible27', CheckBox27.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible28', CheckBox28.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible29', CheckBox29.Checked);
+  INIFile.WriteInteger('GridSettings', 'TextColor', ColorBox1.Selected);
+  INIFile.WriteInteger('GridSettings', 'BackColor', ColorBox2.Selected);
   case ComboBox1.ItemIndex of
-    0: IniF.WriteInteger('GridSettings', 'TextSize', 8);
-    1: IniF.WriteInteger('GridSettings', 'TextSize', 10);
-    2: IniF.WriteInteger('GridSettings', 'TextSize', 12);
-    3: IniF.WriteInteger('GridSettings', 'TextSize', 14);
+    0: INIFile.WriteInteger('GridSettings', 'TextSize', 8);
+    1: INIFile.WriteInteger('GridSettings', 'TextSize', 10);
+    2: INIFile.WriteInteger('GridSettings', 'TextSize', 12);
+    3: INIFile.WriteInteger('GridSettings', 'TextSize', 14);
   end;
 
   MainForm.SetGrid;
@@ -229,40 +229,40 @@ end;
 
 procedure TConfigGrid_Form.FormShow(Sender: TObject);
 begin
-  CheckBox1.Checked := IniF.ReadBool('GridSettings', 'ColVisible0', True);
-  CheckBox2.Checked := IniF.ReadBool('GridSettings', 'ColVisible1', True);
-  CheckBox3.Checked := IniF.ReadBool('GridSettings', 'ColVisible2', True);
-  CheckBox4.Checked := IniF.ReadBool('GridSettings', 'ColVisible3', True);
-  CheckBox5.Checked := IniF.ReadBool('GridSettings', 'ColVisible4', True);
-  CheckBox6.Checked := IniF.ReadBool('GridSettings', 'ColVisible5', True);
-  CheckBox7.Checked := IniF.ReadBool('GridSettings', 'ColVisible6', True);
-  CheckBox30.Checked := IniF.ReadBool('GridSettings', 'ColVisible7', True);
-  CheckBox8.Checked := IniF.ReadBool('GridSettings', 'ColVisible8', True);
-  CheckBox9.Checked := IniF.ReadBool('GridSettings', 'ColVisible9', True);
-  CheckBox10.Checked := IniF.ReadBool('GridSettings', 'ColVisible10', True);
-  CheckBox11.Checked := IniF.ReadBool('GridSettings', 'ColVisible11', True);
-  CheckBox12.Checked := IniF.ReadBool('GridSettings', 'ColVisible12', True);
-  CheckBox13.Checked := IniF.ReadBool('GridSettings', 'ColVisible13', True);
-  CheckBox14.Checked := IniF.ReadBool('GridSettings', 'ColVisible14', True);
-  CheckBox15.Checked := IniF.ReadBool('GridSettings', 'ColVisible15', True);
-  CheckBox16.Checked := IniF.ReadBool('GridSettings', 'ColVisible16', True);
-  CheckBox17.Checked := IniF.ReadBool('GridSettings', 'ColVisible17', True);
-  CheckBox18.Checked := IniF.ReadBool('GridSettings', 'ColVisible18', True);
-  CheckBox19.Checked := IniF.ReadBool('GridSettings', 'ColVisible19', True);
-  CheckBox20.Checked := IniF.ReadBool('GridSettings', 'ColVisible20', True);
-  CheckBox21.Checked := IniF.ReadBool('GridSettings', 'ColVisible21', True);
-  CheckBox22.Checked := IniF.ReadBool('GridSettings', 'ColVisible22', True);
-  CheckBox23.Checked := IniF.ReadBool('GridSettings', 'ColVisible23', True);
-  CheckBox24.Checked := IniF.ReadBool('GridSettings', 'ColVisible24', True);
-  CheckBox25.Checked := IniF.ReadBool('GridSettings', 'ColVisible25', True);
-  CheckBox26.Checked := IniF.ReadBool('GridSettings', 'ColVisible26', True);
-  CheckBox27.Checked := IniF.ReadBool('GridSettings', 'ColVisible27', True);
-  CheckBox28.Checked := IniF.ReadBool('GridSettings', 'ColVisible28', True);
-  CheckBox29.Checked := IniF.ReadBool('GridSettings', 'ColVisible29', True);
+  CheckBox1.Checked := INIFile.ReadBool('GridSettings', 'ColVisible0', True);
+  CheckBox2.Checked := INIFile.ReadBool('GridSettings', 'ColVisible1', True);
+  CheckBox3.Checked := INIFile.ReadBool('GridSettings', 'ColVisible2', True);
+  CheckBox4.Checked := INIFile.ReadBool('GridSettings', 'ColVisible3', True);
+  CheckBox5.Checked := INIFile.ReadBool('GridSettings', 'ColVisible4', True);
+  CheckBox6.Checked := INIFile.ReadBool('GridSettings', 'ColVisible5', True);
+  CheckBox7.Checked := INIFile.ReadBool('GridSettings', 'ColVisible6', True);
+  CheckBox30.Checked := INIFile.ReadBool('GridSettings', 'ColVisible7', True);
+  CheckBox8.Checked := INIFile.ReadBool('GridSettings', 'ColVisible8', True);
+  CheckBox9.Checked := INIFile.ReadBool('GridSettings', 'ColVisible9', True);
+  CheckBox10.Checked := INIFile.ReadBool('GridSettings', 'ColVisible10', True);
+  CheckBox11.Checked := INIFile.ReadBool('GridSettings', 'ColVisible11', True);
+  CheckBox12.Checked := INIFile.ReadBool('GridSettings', 'ColVisible12', True);
+  CheckBox13.Checked := INIFile.ReadBool('GridSettings', 'ColVisible13', True);
+  CheckBox14.Checked := INIFile.ReadBool('GridSettings', 'ColVisible14', True);
+  CheckBox15.Checked := INIFile.ReadBool('GridSettings', 'ColVisible15', True);
+  CheckBox16.Checked := INIFile.ReadBool('GridSettings', 'ColVisible16', True);
+  CheckBox17.Checked := INIFile.ReadBool('GridSettings', 'ColVisible17', True);
+  CheckBox18.Checked := INIFile.ReadBool('GridSettings', 'ColVisible18', True);
+  CheckBox19.Checked := INIFile.ReadBool('GridSettings', 'ColVisible19', True);
+  CheckBox20.Checked := INIFile.ReadBool('GridSettings', 'ColVisible20', True);
+  CheckBox21.Checked := INIFile.ReadBool('GridSettings', 'ColVisible21', True);
+  CheckBox22.Checked := INIFile.ReadBool('GridSettings', 'ColVisible22', True);
+  CheckBox23.Checked := INIFile.ReadBool('GridSettings', 'ColVisible23', True);
+  CheckBox24.Checked := INIFile.ReadBool('GridSettings', 'ColVisible24', True);
+  CheckBox25.Checked := INIFile.ReadBool('GridSettings', 'ColVisible25', True);
+  CheckBox26.Checked := INIFile.ReadBool('GridSettings', 'ColVisible26', True);
+  CheckBox27.Checked := INIFile.ReadBool('GridSettings', 'ColVisible27', True);
+  CheckBox28.Checked := INIFile.ReadBool('GridSettings', 'ColVisible28', True);
+  CheckBox29.Checked := INIFile.ReadBool('GridSettings', 'ColVisible29', True);
   ColorBox1.Selected := MainForm.DBGrid1.Font.Color;
   ColorBox2.Selected := MainForm.DBGrid1.Color;
 
-  case IniF.ReadInteger('GridSettings', 'TextSize', 8) of
+  case INIFile.ReadInteger('GridSettings', 'TextSize', 8) of
     8: ComboBox1.ItemIndex := 0;
     10: ComboBox1.ItemIndex := 1;
     12: ComboBox1.ItemIndex := 2;

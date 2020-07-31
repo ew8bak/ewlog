@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="3"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="637"/>
+      <BuildNr Value="638"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="64">
+    <Units Count="65">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -570,6 +570,13 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="DB_record"/>
       </Unit63>
+      <Unit64>
+        <Filename Value="mainfuncdm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainFunc"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="MainFuncDM"/>
+      </Unit64>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

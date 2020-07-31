@@ -54,9 +54,9 @@ uses MainForm_U;
 procedure TManagerBasePrefixForm.FormShow(Sender: TObject);
 begin
 
-  UniqueCallsQuery.DataBase := MainForm.ServiceDBConnection;
-  OblastQuery.DataBase := MainForm.ServiceDBConnection;
-  CountryQuery.DataBase := MainForm.ServiceDBConnection;
+ // UniqueCallsQuery.DataBase := MainForm.ServiceDBConnection;
+ // OblastQuery.DataBase := MainForm.ServiceDBConnection;
+ // CountryQuery.DataBase := MainForm.ServiceDBConnection;
 
   UniqueCallsQuery.Active := True;
   OblastQuery.Active := True;

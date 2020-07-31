@@ -48,7 +48,7 @@ function SendRadio(freq, mode, dt, key, radio, address: string): string;
 implementation
 
 uses
-  MainForm_U, dmFunc_U;
+  MainForm_U, dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -137,10 +137,10 @@ end;
 
 procedure ThiddenSettings.FormCreate(Sender: TObject);
 begin
-  address_serv := IniF.ReadString('Hidden', 'address', '');
-  API_key := IniF.ReadString('Hidden', 'apikey', '');
-  apicat := IniF.ReadBool('Hidden', 'apicat', False);
-  apisend := IniF.ReadBool('Hidden', 'apisend', False);
+  address_serv := INIFile.ReadString('Hidden', 'address', '');
+  API_key := INIFile.ReadString('Hidden', 'apikey', '');
+  apicat := INIFile.ReadBool('Hidden', 'apicat', False);
+  apisend := INIFile.ReadBool('Hidden', 'apisend', False);
   if apicat = True then
     CatTimer.Enabled := True
   else
@@ -149,10 +149,10 @@ end;
 
 procedure ThiddenSettings.FormShow(Sender: TObject);
 begin
-  address_serv := IniF.ReadString('Hidden', 'address', '');
-  API_key := IniF.ReadString('Hidden', 'apikey', '');
-  apicat := IniF.ReadBool('Hidden', 'apicat', False);
-  apisend := IniF.ReadBool('Hidden', 'apisend', False);
+  address_serv := INIFile.ReadString('Hidden', 'address', '');
+  API_key := INIFile.ReadString('Hidden', 'apikey', '');
+  apicat := INIFile.ReadBool('Hidden', 'apicat', False);
+  apisend := INIFile.ReadBool('Hidden', 'apisend', False);
   LabeledEdit1.Text := address_serv;
   LabeledEdit2.Text := API_key;
   CheckBox1.Checked := apicat;
@@ -165,10 +165,10 @@ end;
 
 procedure ThiddenSettings.Button1Click(Sender: TObject);
 begin
-  IniF.WriteString('Hidden', 'address', LabeledEdit1.Text);
-  IniF.WriteString('Hidden', 'apikey', LabeledEdit2.Text);
-  IniF.WriteBool('Hidden', 'apicat', CheckBox1.Checked);
-  IniF.WriteBool('Hidden', 'apisend', CheckBox2.Checked);
+  INIFile.WriteString('Hidden', 'address', LabeledEdit1.Text);
+  INIFile.WriteString('Hidden', 'apikey', LabeledEdit2.Text);
+  INIFile.WriteBool('Hidden', 'apicat', CheckBox1.Checked);
+  INIFile.WriteBool('Hidden', 'apisend', CheckBox2.Checked);
   hiddenSettings.Close;
 end;
 

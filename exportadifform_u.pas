@@ -66,7 +66,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U;
+uses dmFunc_U, MainForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -78,7 +78,7 @@ begin
   begin
     SaveDialog1.FileName := MainForm.DBLookupComboBox1.Text + '_' +
       FormatDateTime('yyyy-mm-dd', now);
-    SaveDialog1.InitialDir := IniF.ReadString('SetLog', 'ExportPath', '');
+    SaveDialog1.InitialDir := INIFile.ReadString('SetLog', 'ExportPath', '');
     if SaveDialog1.Execute then
     begin
       if SaveDialog1.FileName = '' then
@@ -119,8 +119,8 @@ begin
   end
   else
   begin
-    Q1.DataBase := MainForm.SQLiteDBConnection;
-    Q2.DataBase := MainForm.SQLiteDBConnection;
+    Q1.DataBase := InitDB.SQLiteConnection;
+    Q2.DataBase := InitDB.SQLiteConnection;
   end;
   if rbFileExportAll.Checked = True then
   begin
@@ -152,7 +152,7 @@ end;
 
 procedure TexportAdifForm.SaveDialog1Close(Sender: TObject);
 begin
-  IniF.WriteString('SetLog', 'ExportPath', ExtractFilePath(SaveDialog1.FileName));
+  INIFile.WriteString('SetLog', 'ExportPath', ExtractFilePath(SaveDialog1.FileName));
 end;
 
 function TexportAdifForm.ExportToAdif: word;
@@ -550,8 +550,8 @@ begin
   end
   else
   begin
-    Q1.DataBase := MainForm.SQLiteDBConnection;
-    Q2.DataBase := MainForm.SQLiteDBConnection;
+    Q1.DataBase := InitDB.SQLiteConnection;
+    Q2.DataBase := InitDB.SQLiteConnection;
   end;
 
   Q1.Close;

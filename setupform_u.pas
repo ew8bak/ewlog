@@ -143,7 +143,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, SetupSQLquery;
+uses dmFunc_U, MainForm_U, SetupSQLquery, InitDB_dm;
 
 var
   MySQL_Current: boolean;
@@ -234,27 +234,27 @@ begin
       finally
         SQL_Transaction.Commit;
         Button4.Enabled := True;
-        IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-        IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
-        IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
-        IniF.WriteString('DataBases', 'LoginName', MySQL_LoginName);
-        IniF.WriteString('DataBases', 'Password', MySQL_Password);
-        IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
-        IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-        IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
+        INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+        INIFile.WriteString('DataBases', 'HostAddr', MySQL_HostName);
+        INIFile.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
+        INIFile.WriteString('DataBases', 'LoginName', MySQL_LoginName);
+        INIFile.WriteString('DataBases', 'Password', MySQL_Password);
+        INIFile.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
+        INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+        INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
       end;
     end;
 
     if (CheckedDB = 1) and (MySQL_Current = True) then
     begin
-      IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-      IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
-      IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
-      IniF.WriteString('DataBases', 'LoginName', MySQL_LoginName);
-      IniF.WriteString('DataBases', 'Password', MySQL_Password);
-      IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
-      IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-      IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
+      INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+      INIFile.WriteString('DataBases', 'HostAddr', MySQL_HostName);
+      INIFile.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
+      INIFile.WriteString('DataBases', 'LoginName', MySQL_LoginName);
+      INIFile.WriteString('DataBases', 'Password', MySQL_Password);
+      INIFile.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
+      INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+      INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
       ProgressBar1.Position := 100;
       Label24.Caption := rSuccessful;
       Button4.Enabled := True;
@@ -310,29 +310,29 @@ begin
       finally
         SQL_Transaction.Commit;
         Button4.Enabled := True;
-        IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-        IniF.WriteString('DataBases', 'HostAddr', '');
-        IniF.WriteString('DataBases', 'Port', '');
-        IniF.WriteString('DataBases', 'LoginName', '');
-        IniF.WriteString('DataBases', 'Password', '');
-        IniF.WriteString('DataBases', 'DataBaseName', '');
-        IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
-        IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-        IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
+        INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+        INIFile.WriteString('DataBases', 'HostAddr', '');
+        INIFile.WriteString('DataBases', 'Port', '');
+        INIFile.WriteString('DataBases', 'LoginName', '');
+        INIFile.WriteString('DataBases', 'Password', '');
+        INIFile.WriteString('DataBases', 'DataBaseName', '');
+        INIFile.WriteString('DataBases', 'FileSQLite', SQLitePATH);
+        INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+        INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
       end;
     end;
 
     if (CheckedDB = 2) and (SQLite_Current = True) then
     begin
-      IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-      IniF.WriteString('DataBases', 'HostAddr', '');
-      IniF.WriteString('DataBases', 'Port', '');
-      IniF.WriteString('DataBases', 'LoginName', '');
-      IniF.WriteString('DataBases', 'Password', '');
-      IniF.WriteString('DataBases', 'DataBaseName', '');
-      IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
-      IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-      IniF.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
+      INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+      INIFile.WriteString('DataBases', 'HostAddr', '');
+      INIFile.WriteString('DataBases', 'Port', '');
+      INIFile.WriteString('DataBases', 'LoginName', '');
+      INIFile.WriteString('DataBases', 'Password', '');
+      INIFile.WriteString('DataBases', 'DataBaseName', '');
+      INIFile.WriteString('DataBases', 'FileSQLite', SQLitePATH);
+      INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+      INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
       ProgressBar1.Position := 100;
       Label24.Caption := rSuccessful;
       Button4.Enabled := True;
@@ -414,28 +414,28 @@ begin
 
         finally
           SQL_Transaction.Commit;
-          IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-          IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
-          IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
-          IniF.WriteString('DataBases', 'LoginName', MySQL_LoginName);
-          IniF.WriteString('DataBases', 'Password', MySQL_Password);
-          IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
-          IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-          IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
+          INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+          INIFile.WriteString('DataBases', 'HostAddr', MySQL_HostName);
+          INIFile.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
+          INIFile.WriteString('DataBases', 'LoginName', MySQL_LoginName);
+          INIFile.WriteString('DataBases', 'Password', MySQL_Password);
+          INIFile.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
+          INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+          INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
 
         end;
       end;
 
       if MySQL_Current = True then
       begin
-        IniF.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-        IniF.WriteString('DataBases', 'HostAddr', MySQL_HostName);
-        IniF.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
-        IniF.WriteString('DataBases', 'LoginName', MySQL_LoginName);
-        IniF.WriteString('DataBases', 'Password', MySQL_Password);
-        IniF.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
-        IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-        IniF.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
+        INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
+        INIFile.WriteString('DataBases', 'HostAddr', MySQL_HostName);
+        INIFile.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
+        INIFile.WriteString('DataBases', 'LoginName', MySQL_LoginName);
+        INIFile.WriteString('DataBases', 'Password', MySQL_Password);
+        INIFile.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
+        INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+        INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
         ProgressBar1.Position := 100;
         Label24.Caption := rSuccessful;
       end;
@@ -487,17 +487,17 @@ begin
           Label24.Caption := rSuccessful;
         finally
           SQL_Transaction.Commit;
-          IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
-          IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-          IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
+          INIFile.WriteString('DataBases', 'FileSQLite', SQLitePATH);
+          INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+          INIFile.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
         end;
       end;
 
       if SQLite_Current = True then
       begin
-        IniF.WriteString('DataBases', 'FileSQLite', SQLitePATH);
-        IniF.WriteString('SetLog', 'LogBookInit', 'YES');
-        IniF.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
+        INIFile.WriteString('DataBases', 'FileSQLite', SQLitePATH);
+        INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+        INIFile.WriteString('DataBases', 'DefaultDataBase', Default_DataBase);
         ProgressBar1.Position := 100;
         Label24.Caption := rSuccessful;
       end;
@@ -745,7 +745,7 @@ end;
 procedure TSetupForm.Button5Click(Sender: TObject);
 begin
   MainForm.FreeObj;
-  MainForm.InitIni;
+ // MainForm.InitIni;
   Close;
 end;
 

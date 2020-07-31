@@ -21,15 +21,17 @@ uses
   qso_record, resourcestr, const_u, download_lotw, download_eqslcc,
   DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread, getSessionID,
   GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U,
-  LogBookTable_record, DB_record;
+  LogBookTable_record, DB_record, MainFuncDM, InitDB_dm;
 
 {$R *.res}
 
 begin
-  Application.Title:='EWLog - HAM Journal';
+  Application.Title:=rEWLogHAMJournal;
   Application.Scaled:=True;
   RequireDerivedFormResource := True;
   Application.Initialize;
+  Application.CreateForm(TInitDB, InitDB);
+  Application.CreateForm(TMainFunc, MainFunc);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TEditQSO_Form, EditQSO_Form);
   Application.CreateForm(TInformationForm, InformationForm);

@@ -54,7 +54,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, const_u;
+uses dmFunc_U, MainForm_U, const_u, InitDB_dm;
 
 {$R *.lfm}
 
@@ -72,7 +72,7 @@ begin
   end;
   BoolPrefix := False;
 
-  for i := 0 to PrefixProvinceCount do
+ { for i := 0 to PrefixProvinceCount do
   begin
     if (MainForm.PrefixExpProvinceArray[i].reg.Exec(CallName)) and
       (MainForm.PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
@@ -124,7 +124,7 @@ begin
         Exit;
       end;
     end;
-  end;
+  end;  }
 end;
 
 procedure CheckMode(modulation, Freq: string; var ResSubMode, ResMode: string);
@@ -737,7 +737,7 @@ begin
           if MainForm.MySQLLOGDBConnection.Connected then
             MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)
           else
-            MainForm.SQLiteDBConnection.ExecuteDirect(Query);
+            InitDB.SQLiteConnection.ExecuteDirect(Query);
 
         end;
 
@@ -837,13 +837,13 @@ end;
 
 procedure TImportADIFForm.FileNameEdit1ButtonClick(Sender: TObject);
 begin
-  FileNameEdit1.InitialDir := Inif.ReadString('SetLog', 'ImportPath', '');
+  FileNameEdit1.InitialDir := INIFile.ReadString('SetLog', 'ImportPath', '');
 end;
 
 procedure TImportADIFForm.FileNameEdit1Change(Sender: TObject);
 begin
   if Length(ExtractFilePath(FileNameEdit1.FileName)) > 0 then
-  IniF.WriteString('SetLog', 'ImportPath', ExtractFilePath(FileNameEdit1.FileName));
+  INIFile.WriteString('SetLog', 'ImportPath', ExtractFilePath(FileNameEdit1.FileName));
 end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
@@ -854,7 +854,7 @@ begin
   end
   else
   begin
-    MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
+    MainForm.SQLTransaction1.DataBase := InitDB.SQLiteConnection;
   end;
 
   Button1.Enabled := True;

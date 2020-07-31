@@ -114,7 +114,7 @@ var
 implementation
 
 uses MainForm_U, editqso_u, dmFunc_U, getSessionID, GetPhotoFromInternet,
-  GetInfoFromInternetThread;
+  GetInfoFromInternetThread, InitDB_dm;
 
 {$R *.lfm}
 
@@ -297,10 +297,10 @@ begin
     raise GetSessionThread.FatalException;
   with GetSessionThread do
   begin
-    qrzcom_login := IniF.ReadString('SetLog', 'QRZCOM_Login', '');
-    qrzcom_pass := IniF.ReadString('SetLog', 'QRZCOM_Pass', '');
-    qrzru_login := IniF.ReadString('SetLog', 'QRZ_Login', '');
-    qrzru_pass := IniF.ReadString('SetLog', 'QRZ_Pass', '');
+    qrzcom_login := INIFile.ReadString('SetLog', 'QRZCOM_Login', '');
+    qrzcom_pass := INIFile.ReadString('SetLog', 'QRZCOM_Pass', '');
+    qrzru_login := INIFile.ReadString('SetLog', 'QRZ_Login', '');
+    qrzru_pass := INIFile.ReadString('SetLog', 'QRZ_Pass', '');
     Start;
   end;
 end;
@@ -471,7 +471,7 @@ begin
     if not Assigned(PhotoPNG) then
     PhotoPNG := TPortableNetworkGraphic.Create;
     Image1.Picture.Clear;
-    if IniF.ReadString('SetLog', 'Sprav', 'False') = 'True' then
+    if INIFile.ReadString('SetLog', 'Sprav', 'False') = 'True' then
     begin
       if sessionNumQRZRU <> '' then
       begin
@@ -481,7 +481,7 @@ begin
         GetSession;
     end;
 
-    if IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'True' then
+    if INIFile.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'True' then
     begin
       if sessionNumQRZCOM <> '' then
       begin
@@ -491,8 +491,8 @@ begin
         GetSession;
     end;
 
-    if (IniF.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'False') and
-      (IniF.ReadString('SetLog', 'Sprav', 'False') = 'False') then
+    if (INIFile.ReadString('SetLog', 'SpravQRZCOM', 'False') = 'False') and
+      (INIFile.ReadString('SetLog', 'Sprav', 'False') = 'False') then
     begin
       if sessionNumHAMQTH <> '' then
       begin
@@ -523,7 +523,7 @@ end;
 
 procedure TInformationForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  IniF.WriteString('SetLog', 'PhotoDir', DirectoryEdit1.Text);
+  INIFile.WriteString('SetLog', 'PhotoDir', DirectoryEdit1.Text);
   MainForm.PhotoDir := DirectoryEdit1.Text;
   LabelClear;
   GroupBox1.Caption := rCallSign;

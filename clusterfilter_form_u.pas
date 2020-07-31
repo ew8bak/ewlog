@@ -46,7 +46,7 @@ var
 implementation
 
 uses
-  MainForm_U, const_u, ResourceStr;
+  MainForm_U, const_u, ResourceStr, InitDB_dm;
 
 {$R *.lfm}
 
@@ -59,19 +59,19 @@ begin
   for i := 0 to CheckListBox1.Items.Count - 1 do
   begin
     CheckListBox1.Checked[i] :=
-      IniF.ReadBool('TelnetCluster', 'Bands' + IntToStr(i), True);
+      INIFile.ReadBool('TelnetCluster', 'Bands' + IntToStr(i), True);
   end;
-  if Length(IniF.ReadString('TelnetCluster', 'CWMode', '')) > 0 then
-    Edit1.Text := IniF.ReadString('TelnetCluster', 'CWMode', '');
-  if Length(IniF.ReadString('TelnetCluster', 'PhoneMode', '')) > 0 then
-    Edit2.Text := IniF.ReadString('TelnetCluster', 'PhoneMode', '');
-  if Length(IniF.ReadString('TelnetCluster', 'DIGIMode', '')) > 0 then
-    Edit3.Text := IniF.ReadString('TelnetCluster', 'DIGIMode', '');
-  cbCW.Checked := IniF.ReadBool('TelnetCluster', 'DX_CW', True);
-  cbSSB.Checked := IniF.ReadBool('TelnetCluster', 'DX_Phone', True);
-  cbData.Checked := IniF.ReadBool('TelnetCluster', 'DX_DIGI', True);
-  CheckBox1.Checked := IniF.ReadBool('TelnetCluster', 'Expand', True);
-  SpinEdit1.Value := IniF.ReadInteger('TelnetCluster', 'spotDelTime', 15);
+  if Length(INIFile.ReadString('TelnetCluster', 'CWMode', '')) > 0 then
+    Edit1.Text := INIFile.ReadString('TelnetCluster', 'CWMode', '');
+  if Length(INIFile.ReadString('TelnetCluster', 'PhoneMode', '')) > 0 then
+    Edit2.Text := INIFile.ReadString('TelnetCluster', 'PhoneMode', '');
+  if Length(INIFile.ReadString('TelnetCluster', 'DIGIMode', '')) > 0 then
+    Edit3.Text := INIFile.ReadString('TelnetCluster', 'DIGIMode', '');
+  cbCW.Checked := INIFile.ReadBool('TelnetCluster', 'DX_CW', True);
+  cbSSB.Checked := INIFile.ReadBool('TelnetCluster', 'DX_Phone', True);
+  cbData.Checked := INIFile.ReadBool('TelnetCluster', 'DX_DIGI', True);
+  CheckBox1.Checked := INIFile.ReadBool('TelnetCluster', 'Expand', True);
+  SpinEdit1.Value := INIFile.ReadInteger('TelnetCluster', 'spotDelTime', 15);
 end;
 
 procedure TClusterFilter.WriteBandsModes;
@@ -80,17 +80,17 @@ var
 begin
   for i := 0 to CheckListBox1.Items.Count - 1 do
   begin
-    IniF.WriteBool('TelnetCluster', 'Bands' + IntToStr(i),
+    INIFile.WriteBool('TelnetCluster', 'Bands' + IntToStr(i),
       CheckListBox1.Checked[i]);
   end;
-  IniF.WriteBool('TelnetCluster', 'DX_CW', cbCW.Checked);
-  IniF.WriteBool('TelnetCluster', 'DX_Phone', cbSSB.Checked);
-  IniF.WriteBool('TelnetCluster', 'DX_DIGI', cbData.Checked);
-  IniF.WriteBool('TelnetCluster', 'Expand', CheckBox1.Checked);
-  IniF.WriteString('TelnetCluster', 'CWMode', Edit1.Text);
-  IniF.WriteString('TelnetCluster', 'PhoneMode', Edit2.Text);
-  IniF.WriteString('TelnetCluster', 'DIGIMode', Edit3.Text);
-  IniF.WriteInteger('TelnetCluster', 'spotDelTime', SpinEdit1.Value);
+  INIFile.WriteBool('TelnetCluster', 'DX_CW', cbCW.Checked);
+  INIFile.WriteBool('TelnetCluster', 'DX_Phone', cbSSB.Checked);
+  INIFile.WriteBool('TelnetCluster', 'DX_DIGI', cbData.Checked);
+  INIFile.WriteBool('TelnetCluster', 'Expand', CheckBox1.Checked);
+  INIFile.WriteString('TelnetCluster', 'CWMode', Edit1.Text);
+  INIFile.WriteString('TelnetCluster', 'PhoneMode', Edit2.Text);
+  INIFile.WriteString('TelnetCluster', 'DIGIMode', Edit3.Text);
+  INIFile.WriteInteger('TelnetCluster', 'spotDelTime', SpinEdit1.Value);
 end;
 
 procedure TClusterFilter.FormCreate(Sender: TObject);

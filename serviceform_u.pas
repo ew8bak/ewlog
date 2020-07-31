@@ -55,7 +55,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, const_u;
+uses dmFunc_U, MainForm_U, const_u, InitDB_dm;
 
 procedure TServiceForm.eQSLImport(FilePATH: string);
 var
@@ -428,7 +428,7 @@ begin
     Label4.Caption := rProcessedData + IntToStr(RecCount);
     Label6.Caption := rStatusDone;
     Button1.Enabled := True;
-    IniF.WriteDate('SetLog', 'LastLoTW', Now);
+    INIFile.WriteDate('SetLog', 'LastLoTW', Now);
   end;
 end;
 
@@ -441,8 +441,8 @@ begin
   end
   else
   begin
-    UPDATEQuery.DataBase := MainForm.SQLiteDBConnection;
-    MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
+    UPDATEQuery.DataBase := InitDB.SQLiteConnection;
+  //  MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
 end;
 
@@ -501,10 +501,10 @@ begin
   end
   else
   begin
-    UPDATEQuery.DataBase := MainForm.SQLiteDBConnection;
-    MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
+    UPDATEQuery.DataBase := InitDB.SQLiteConnection;
+   // MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
-  DateEdit1.Date := IniF.ReadDate('SetLog', 'LastLoTW', Now);
+  DateEdit1.Date := INIFile.ReadDate('SetLog', 'LastLoTW', Now);
   DateEdit2.Date := Now;
   DownSize := 0;
   Label7.Caption := FloatToStr(DownSize) + ' ' + rMBytes;

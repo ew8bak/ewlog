@@ -26,7 +26,7 @@ var
 
 implementation
 
-uses MainForm_U;
+uses MainForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -34,14 +34,14 @@ uses MainForm_U;
 
 procedure TviewPhoto.FormShow(Sender: TObject);
 begin
-  viewPhoto.Left := IniF.ReadInteger('SetLog', 'PhotoFormLeft', 0);
-  viewPhoto.Top := IniF.ReadInteger('SetLog', 'PhotoFormTop', 0);
+  viewPhoto.Left := INIFile.ReadInteger('SetLog', 'PhotoFormLeft', 0);
+  viewPhoto.Top := INIFile.ReadInteger('SetLog', 'PhotoFormTop', 0);
 end;
 
 procedure TviewPhoto.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  IniF.WriteInteger('SetLog', 'PhotoFormLeft', viewPhoto.Left);
-  IniF.WriteInteger('SetLog', 'PhotoFormTop', viewPhoto.Top);
+  INIFile.WriteInteger('SetLog', 'PhotoFormLeft', viewPhoto.Left);
+  INIFile.WriteInteger('SetLog', 'PhotoFormTop', viewPhoto.Top);
 end;
 
 end.

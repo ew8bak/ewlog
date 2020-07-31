@@ -66,7 +66,7 @@ var
 implementation
 
 uses
-  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U, analyticThread;
+  Changelog_Form_U, MainForm_U, DownloadUpdates, dmFunc_U, analyticThread, InitDB_dm;
 
 {$R *.lfm}
 
@@ -165,8 +165,8 @@ begin
       raise analytThread.FatalException;
     with analytThread do
     begin
-      if IniF.ReadString('SetLog', 'DefaultCallLogBook', '') <> '' then
-      user_call:=IniF.ReadString('SetLog', 'DefaultCallLogBook', '') else
+      if INIFile.ReadString('SetLog', 'DefaultCallLogBook', '') <> '' then
+      user_call:=INIFile.ReadString('SetLog', 'DefaultCallLogBook', '') else
       user_call:='nil';
       user_os:=type_os;
       {$IFDEF WINDOWS}
@@ -175,7 +175,7 @@ begin
       user_version_os:='Linux NoNaMe';
       {$ENDIF WINDOWS}
       user_version:=dmFunc.GetMyVersion;
-      num_start:=IniF.ReadInteger('SetLog', 'StartNum', 0);
+      num_start:=INIFile.ReadInteger('SetLog', 'StartNum', 0);
       Start;
     end;
 end;

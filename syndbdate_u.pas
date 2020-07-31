@@ -29,7 +29,7 @@ var
 
 implementation
 
-uses MainForm_U;
+uses MainForm_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -266,11 +266,11 @@ begin
   if dbSel = 'SQLite' then
   begin
     try
-      copyUser := IniF.ReadString('DataBases', 'LoginName', '');
-      copyPass := IniF.ReadString('DataBases', 'Password', '');
-      copyHost := IniF.ReadString('DataBases', 'HostAddr', '');
-      copyPort := IniF.ReadString('DataBases', 'Port', '');
-      copyDB := IniF.ReadString('DataBases', 'DataBaseName', '');
+      copyUser := INIFile.ReadString('DataBases', 'LoginName', '');
+      copyPass := INIFile.ReadString('DataBases', 'Password', '');
+      copyHost := INIFile.ReadString('DataBases', 'HostAddr', '');
+      copyPort := INIFile.ReadString('DataBases', 'Port', '');
+      copyDB := INIFile.ReadString('DataBases', 'DataBaseName', '');
 
       if (copyUser = '') or (copyHost = '') or (copyDB = '') then
       begin

@@ -17,6 +17,8 @@ type
     MySQLPass: string;
     MySQLDBName: string;
     SQLitePATH: string;
+    InitDB: string[3];
+    DefCall: string;
     Connected: Boolean;
   end;
 

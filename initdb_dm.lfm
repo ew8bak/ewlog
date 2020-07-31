@@ -1,5 +1,6 @@
 object InitDB: TInitDB
   OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 230
   HorizontalOffset = 348
@@ -52,5 +53,11 @@ object InitDB: TInitDB
     AlwaysUseBigint = False
     Left = 192
     Top = 136
+  end
+  object DefLogBookQuery: TSQLQuery
+    FieldDefs = <>
+    Params = <>
+    Left = 304
+    Top = 96
   end
 end

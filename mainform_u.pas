@@ -200,14 +200,11 @@ type
     SpeedButton21: TSpeedButton;
     SpeedButton22: TSpeedButton;
     SpeedButton23: TSpeedButton;
-    ServiceDBConnection: TSQLite3Connection;
-    SQLiteDBConnection: TSQLite3Connection;
     CopySQLQuery: TSQLQuery;
     SQLiteTr: TSQLTransaction;
     DUPEQuery: TSQLQuery;
     CopySQLQuery2: TSQLQuery;
     DUPEQuery2: TSQLQuery;
-    SQLServiceTransaction: TSQLTransaction;
     StatusBar1: TStatusBar;
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
@@ -234,7 +231,6 @@ type
     ComboBox7: TComboBox;
     LOGBookDS: TDataSource;
     DataSource2: TDataSource;
-    SearchRACDS: TDataSource;
     DBLookupComboBox1: TDBLookupComboBox;
     LogBookInfoDS: TDataSource;
     DateEdit1: TDateEdit;
@@ -301,7 +297,6 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    LOGBookQuery: TSQLQuery;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -539,17 +534,17 @@ type
 
   public
     { public declarations }
-    PrefixExpProvinceArray: array [0..1000] of record
-      reg: TRegExpr;
-      id: integer;
-    end;
-    PrefixExpARRLArray: array [0..1000] of record
-      reg: TRegExpr;
-      id: integer;
-    end;
-    UniqueCallsList: TStringList;
-    PrefixProvinceList: TStringList;
-    PrefixARRLList: TStringList;
+ //   PrefixExpProvinceArray: array [0..1000] of record
+ //     reg: TRegExpr;
+ //     id: integer;
+ //   end;
+ //   PrefixExpARRLArray: array [0..1000] of record
+ //     reg: TRegExpr;
+ //     id: integer;
+ //   end;
+ //   UniqueCallsList: TStringList;
+ //   PrefixProvinceList: TStringList;
+ //   PrefixARRLList: TStringList;
     Command: string;
     FlagList: TImageList;
     FlagSList: TStringList;
@@ -592,10 +587,10 @@ type
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
-    procedure SaveQSO(var SQSO: TQSO);
+  //  procedure SaveQSO(var SQSO: TQSO);
     procedure SearchCallInCallBook(CallName: string);
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
-    procedure InitializeDB(dbS: string);
+//    procedure InitializeDB(dbS: string);
     procedure SelectQSO(grid: boolean);
     procedure SetGrid;
     procedure SetDXColumns(Save: boolean);
@@ -611,7 +606,7 @@ type
     procedure addModes(modeItem: string; subModesFlag: boolean;
       var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
-    procedure InitIni;
+ //   procedure InitIni;
     procedure InitClusterINI;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
@@ -627,12 +622,12 @@ var
   MainForm: TMainForm;
   QTH_LAT: currency;
   QTH_LON: currency;
-  PrefixProvinceCount: integer;
-  PrefixARRLCount: integer;
+ // PrefixProvinceCount: integer;
+ // PrefixARRLCount: integer;
   subModesCount: integer;
-  UniqueCallsCount: integer;
+ // UniqueCallsCount: integer;
   GetingHint: integer;
-  IniF: TINIFile;
+  //IniF: TINIFile;
   CallLogBook: string;
   SetCallName, LogTable, SetDiscription, SetNameC, SetQTH, SetITU,
   SetLoc, SetCQ, SetLat, SetLon, SetQSLInfo: string;
@@ -693,7 +688,7 @@ uses
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u,
   logtcpform_u, print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
-  flDigiModem, viewPhoto_U;
+  flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm;
 
 type
   PTreeData = ^TTreeData;
@@ -735,8 +730,8 @@ begin
     if MySQLLOGDBConnection.Connected then
       Query.DataBase := MySQLLOGDBConnection
     else
-      Query.DataBase := SQLiteDBConnection;
-    Query.Transaction := SQLTransaction1;
+      Query.DataBase := InitDB.SQLiteConnection;
+    Query.Transaction := InitDB.DefTransaction;
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
@@ -772,8 +767,8 @@ begin
     if MySQLLOGDBConnection.Connected then
       Query.DataBase := MySQLLOGDBConnection
     else
-      Query.DataBase := SQLiteDBConnection;
-    Query.Transaction := SQLTransaction1;
+      Query.DataBase := InitDB.SQLiteConnection;
+    Query.Transaction := InitDB.DefTransaction;
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
@@ -807,8 +802,8 @@ begin
     if MySQLLOGDBConnection.Connected then
       Query.DataBase := MySQLLOGDBConnection
     else
-      Query.DataBase := SQLiteDBConnection;
-    Query.Transaction := SQLTransaction1;
+      Query.DataBase := InitDB.SQLiteConnection;
+    Query.Transaction := InitDB.DefTransaction;
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
@@ -827,7 +822,7 @@ var
   i: integer;
 begin
   Result := -1;
-  for i := 0 to PrefixARRLCount do
+ { for i := 0 to PrefixARRLCount do
   begin
     if (PrefixExpARRLArray[i].reg.Exec(callsign)) and
       (PrefixExpARRLArray[i].reg.Match[0] = callsign) then
@@ -871,7 +866,7 @@ begin
         end;
       end;
     end;
-  end;
+  end;        }
 end;
 
 procedure TMainForm.CheckQSL(callsign, band, mode: string; var QSL: integer);
@@ -896,8 +891,8 @@ begin
     if MySQLLOGDBConnection.Connected then
       Query.DataBase := MySQLLOGDBConnection
     else
-      Query.DataBase := SQLiteDBConnection;
-    Query.Transaction := SQLTransaction1;
+      Query.DataBase := InitDB.SQLiteConnection;
+    Query.Transaction := InitDB.DefTransaction;
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
@@ -963,8 +958,8 @@ begin
     if MySQLLOGDBConnection.Connected then
       Query.DataBase := MySQLLOGDBConnection
     else
-      Query.DataBase := SQLiteDBConnection;
-    Query.Transaction := SQLTransaction1;
+      Query.DataBase := InitDB.SQLiteConnection;
+    Query.Transaction := InitDB.DefTransaction;
 
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
       ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
@@ -1001,7 +996,7 @@ procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
 var
   i: integer;
 begin
-  if ServiceDBConnection.Connected then
+  if InitDB.ServiceDBConnection.Connected then
   begin
     subModesQuery.Close;
     subModes.Delimiter := ',';
@@ -1036,7 +1031,7 @@ var
   lastBandName: string;
 begin
   DefaultFormatSettings.DecimalSeparator := '.';
-  if ServiceDBConnection.Connected then
+  if InitDB.ServiceDBConnection.Connected then
   begin
     lastBand := ComboBox1.ItemIndex;
     lastBandName := ComboBox1.Text;
@@ -1187,7 +1182,7 @@ begin
     Result := '';
     exit;
   end;
-  BoolPrefix := False;
+{  BoolPrefix := False;
   Result := '';
   if Province = True then
   begin
@@ -1234,7 +1229,7 @@ begin
         Exit;
       end;
     end;
-  end;
+  end;  }
 end;
 
 function TMainForm.GetModeFromFreq(MHz: string): string;
@@ -1250,9 +1245,9 @@ begin
 
   qBands.Close;
   qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
-  if SQLServiceTransaction.Active then
-    SQLServiceTransaction.Rollback;
-  SQLServiceTransaction.StartTransaction;
+//  if SQLServiceTransaction.Active then
+//    SQLServiceTransaction.Rollback;
+//  SQLServiceTransaction.StartTransaction;
   try
     qBands.Open;
     tmp := StrToFloat(MHz);
@@ -1283,7 +1278,7 @@ begin
     end
   finally
     qBands.Close;
-    SQLServiceTransaction.Rollback
+  //  SQLServiceTransaction.Rollback
   end;
 end;
 
@@ -1320,14 +1315,7 @@ end;
 procedure TMainForm.SetDXColumns(Save: boolean);
 var
   VSTSaveStream: TMemoryStream;
-  FilePATH: string;
 begin
-  {$IFDEF UNIX}
-  FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-  {$ELSE}
-  FilePATH := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-  {$ENDIF UNIX}
   try
     VSTSaveStream := TMemoryStream.Create;
     if Save then
@@ -1353,16 +1341,16 @@ var
 begin
   for i := 0 to 29 do
   begin
-    columnsGrid[i] := IniF.ReadString('GridSettings', 'Columns' +
+    columnsGrid[i] := INIFile.ReadString('GridSettings', 'Columns' +
       IntToStr(i), constColumnName[i]);
-    columnsWidth[i] := IniF.ReadInteger('GridSettings', 'ColWidth' +
+    columnsWidth[i] := INIFile.ReadInteger('GridSettings', 'ColWidth' +
       IntToStr(i), constColumnWidth[i]);
-    columnsVisible[i] := IniF.ReadBool('GridSettings', 'ColVisible' + IntToStr(i), True);
+    columnsVisible[i] := INIFile.ReadBool('GridSettings', 'ColVisible' + IntToStr(i), True);
   end;
 
-  ColorTextGrid := IniF.ReadInteger('GridSettings', 'TextColor', 0);
-  SizeTextGrid := IniF.ReadInteger('GridSettings', 'TextSize', 8);
-  ColorBackGrid := IniF.ReadInteger('GridSettings', 'BackColor', -2147483617);
+  ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
+  SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
+  ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', -2147483617);
 
   DBGrid1.Font.Size := SizeTextGrid;
   DBGrid1.Font.Color := ColorTextGrid;
@@ -1372,7 +1360,7 @@ begin
   DBGrid2.Font.Color := ColorTextGrid;
   DBGrid2.Color := ColorBackGrid;
 
-  if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+  if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
     QBAND := rQSOBand
   else
     QBAND := rQSOBandFreq;
@@ -1569,8 +1557,8 @@ begin
       Earth.PaintLine(Lat1, Lon1);
       Earth.PaintLine(Lat1, Lon1);
 
-      StatusBar1.Panels.Items[1].Text :=
-        'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
+     // StatusBar1.Panels.Items[1].Text :=
+     //   'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
     end
     else
     begin
@@ -1590,38 +1578,31 @@ begin
         ShowMessage(rMySQLHasGoneAway);
         UseCallBook := 'NO';
         DefaultDB := 'SQLite';
-        InitializeDB('SQLite');
+        //InitializeDB('SQLite');
         dbSel := 'SQLite';
       end;
     end;
   end;
 end;
 
-procedure TMainForm.InitializeDB(dbS: string);
+{procedure TMainForm.InitializeDB(dbS: string);
 var
   i: integer;
-  sDBPath: string;
   modesString: TStringList;
 begin
   subModesList := TStringList.Create;
-  PrefixProvinceList := TStringList.Create;
-  PrefixARRLList := TStringList.Create;
-  UniqueCallsList := TStringList.Create;
-  try
-     {$IFDEF UNIX}
-    sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-    sDBPath := GetEnvironmentVariable('SystemDrive') +
-      SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
+//  PrefixProvinceList := TStringList.Create;
+//  PrefixARRLList := TStringList.Create;
+//  UniqueCallsList := TStringList.Create;
+//  try
 
-    if (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
+    if (FileExists(FilePATH + 'callbook.db')) and (UseCallBook = 'YES') then
     begin
-      CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
+      CallBookLiteConnection.DatabaseName := FilePATH + 'callbook.db';
       CallBookLiteConnection.Connected := True;
     end;
 
-    if not (FileExists(sDBPath + 'callbook.db')) and (UseCallBook = 'YES') then
+    if not (FileExists(FilePATH + 'callbook.db')) and (UseCallBook = 'YES') then
     begin
       ShowMessage(
         'Не найден файл справочника, продолжу работать без его. Зайдите в настройки программы для загрузки');
@@ -1632,11 +1613,11 @@ begin
     SQLiteDBConnection.Connected := False;
     ServiceDBConnection.Connected := False;
 
-    if not FileExists(sDBPath + 'serviceLOG.db') then
+{    if not FileExists(FilePATH + 'serviceLOG.db') then
       ServiceDBConnection.DatabaseName :=
         ExtractFileDir(ParamStr(0)) + DirectorySeparator + 'serviceLOG.db'
     else
-      ServiceDBConnection.DatabaseName := sDBPath + 'serviceLOG.db';
+      ServiceDBConnection.DatabaseName := FilePATH + 'serviceLOG.db';
     {$IFDEF LINUX}
     if not FileExists(ServiceDBConnection.DatabaseName) then
       ServiceDBConnection.DatabaseName := '/usr/share/ewlog/serviceLOG.db';
@@ -1653,7 +1634,10 @@ begin
     CheckTableQuery.Open;
     sqlite_version := CheckTableQuery.Fields.Fields[0].AsString;
     CheckTableQuery.Close;
+ }
 
+
+ {
     if dbS = 'MySQL' then
     begin
       DefaultDB := 'MySQL';
@@ -1673,7 +1657,7 @@ begin
         DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
         LogBookFieldQuery.DataBase := MySQLLOGDBConnection;
         LOGBookQuery.DataBase := MySQLLOGDBConnection;
-        SaveQSOQuery.DataBase := MySQLLOGDBConnection;
+     //   SaveQSOQuery.DataBase := MySQLLOGDBConnection;
         DeleteQSOQuery.DataBase := MySQLLOGDBConnection;
         LogBookInfoQuery.DataBase := MySQLLOGDBConnection;
         SQLQuery2.DataBase := MySQLLOGDBConnection;
@@ -1701,7 +1685,7 @@ begin
         DeleteQSOQuery.DataBase := SQLiteDBConnection;
         LogBookFieldQuery.DataBase := SQLiteDBConnection;
         LOGBookQuery.DataBase := SQLiteDBConnection;
-        SaveQSOQuery.DataBase := SQLiteDBConnection;
+      //  SaveQSOQuery.DataBase := SQLiteDBConnection;
         DeleteQSOQuery.DataBase := SQLiteDBConnection;
         LogBookInfoQuery.DataBase := SQLiteDBConnection;
         SQLQuery2.DataBase := SQLiteDBConnection;
@@ -1789,8 +1773,8 @@ begin
       MySQLLOGDBConnection.Connected := False;
       FreeObj;
     end;
-  end;
-end;
+  end;  }
+end; }
 
 procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
 begin
@@ -1906,7 +1890,7 @@ begin
   end;
 end;
 
-procedure TMainForm.SaveQSO(var SQSO: TQSO);
+{procedure TMainForm.SaveQSO(var SQSO: TQSO);
 begin
   with MainForm.SaveQSOQuery do
   begin
@@ -2005,7 +1989,7 @@ begin
     ExecSQL;
   end;
   MainForm.SQLTransaction1.Commit;
-end;
+end; }
 
 procedure TMainForm.SearchCallInCallBook(CallName: string);
 begin
@@ -2036,7 +2020,7 @@ end;
 
 procedure TMainForm.SelectLogDatabase(LogDB: string);
 begin
-  LogBookQuery.Close;
+  {LogBookQuery.Close;
   LogBookQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LogDB;
   LogBookQuery.Open;
   fAllRecords := LogBookQuery.Fields[0].AsInteger;
@@ -2076,14 +2060,14 @@ begin
   lastID := LOGBookQuery.RecNo;
   StatusBar1.Panels.Items[1].Text :=
     'QSO № ' + IntToStr(lastID) + rQSOTotal + IntToStr(fAllRecords);
- // SetGrid;
+ // SetGrid;  }
 end;
 
 procedure TMainForm.SelDB(calllbook: string);
 var
   ver_table: string;
 begin
-  ver_table := '';
+ { ver_table := '';
   CheckTableQuery.Close;
 
   if calllbook = '' then
@@ -2275,7 +2259,7 @@ begin
                 ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)')
             else
             begin
-              MainForm.SQLiteDBConnection.ExecuteDirect(
+              InitDB.SQLiteConnection.ExecuteDirect(
                 'DROP INDEX IF EXISTS Dupe_index');
               MainForm.SQLiteDBConnection.ExecuteDirect(
                 'CREATE UNIQUE INDEX Dupe_index ON ' + LogTable +
@@ -2361,7 +2345,7 @@ begin
   CheckTableQuery.Close;
   SetGrid();
   LogBookFieldQuery.Open;
-  DBLookupComboBox1.KeyValue := calllbook;
+  DBLookupComboBox1.KeyValue := calllbook; }
 end;
 
 function TMainForm.SearchPrefix(CallName: string; gridloc: boolean): boolean;
@@ -2377,7 +2361,7 @@ begin
   azim := '';
   la := 0;
   lo := 0;
-  if UniqueCallsList.IndexOf(CallName) > -1 then
+ { if UniqueCallsList.IndexOf(CallName) > -1 then
   begin
     with MainForm.PrefixQuery do
     begin
@@ -2600,7 +2584,7 @@ begin
       Result := True;
       exit;
     end;
-  end;
+  end;     }
 end;
 
 procedure TMainForm.EditButton1Change(Sender: TObject);
@@ -2691,8 +2675,8 @@ begin
   end;
 
   if (CallBookLiteConnection.Connected) and
-    ((IniF.ReadString('SetLog', 'Sprav', '') = 'False') or
-    (IniF.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
+    ((INIFile.ReadString('SetLog', 'Sprav', '') = 'False') or
+    (INIFile.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
     SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
 
   if not CheckBox6.Checked then
@@ -2721,7 +2705,7 @@ begin
   Earth.PaintLine(Lat1, Lon1);
   Earth.PaintLine(Lat1, Lon1);
 
-  if CheckBox6.Checked then
+ { if CheckBox6.Checked then
   begin
     LogBookQuery.Close;
     LogBookQuery.SQL.Clear;
@@ -2755,7 +2739,7 @@ begin
         QuotedStr(EditButton1.Text + '%') + ' ORDER BY `UnUsedIndex`' + '');
     end;
     LogBookQuery.Open;
-  end;
+  end; }
 
 end;
 
@@ -2899,7 +2883,7 @@ var
   i: integer;
   num_start: integer;
 begin
-  num_start := IniF.ReadInteger('SetLog', 'StartNum', 0);
+  num_start := INIFile.ReadInteger('SetLog', 'StartNum', 0);
   num_start := num_start + 1;
   if EditButton1.Text <> '' then
   begin
@@ -2912,48 +2896,48 @@ begin
   //Сохранение размещения колонок
   for i := 0 to 29 do
   begin
-    IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
+    INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
 
   for i := 0 to 29 do
   begin
     if DBGrid1.Columns.Items[i].Width <> 0 then
-      IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
+      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
         DBGrid1.Columns.Items[i].Width)
     else
-      IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
+      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
   end;
 
   if MainForm.WindowState <> wsMaximized then
   begin
-    IniF.WriteInteger('SetLog', 'Left', MainForm.Left);
-    IniF.WriteInteger('SetLog', 'Top', MainForm.Top);
-    IniF.WriteInteger('SetLog', 'Width', MainForm.Width);
-    IniF.WriteInteger('SetLog', 'Height', MainForm.Height);
-    IniF.WriteString('SetLog', 'FormState', 'Normal');
+    INIFile.WriteInteger('SetLog', 'Left', MainForm.Left);
+    INIFile.WriteInteger('SetLog', 'Top', MainForm.Top);
+    INIFile.WriteInteger('SetLog', 'Width', MainForm.Width);
+    INIFile.WriteInteger('SetLog', 'Height', MainForm.Height);
+    INIFile.WriteString('SetLog', 'FormState', 'Normal');
   end;
 
   if MainForm.WindowState = wsMaximized then
-    IniF.WriteString('SetLog', 'FormState', 'Maximized');
+    INIFile.WriteString('SetLog', 'FormState', 'Maximized');
 
-  IniF.WriteString('TelnetCluster', 'ServerDef', ComboBox3.Text);
-  IniF.WriteBool('SetLog', 'TRXForm', ShowTRXForm);
-  IniF.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
-  IniF.WriteInteger('SetLog', 'PastBand', ComboBox1.ItemIndex);
-  IniF.WriteString('SetLog', 'PastMode', ComboBox2.Text);
-  IniF.WriteString('SetLog', 'PastSubMode', ComboBox9.Text);
-  IniF.WriteString('SetLog', 'Language', Language);
-  IniF.WriteInteger('SetLog', 'StartNum', num_start);
+  INIFile.WriteString('TelnetCluster', 'ServerDef', ComboBox3.Text);
+  INIFile.WriteBool('SetLog', 'TRXForm', ShowTRXForm);
+  INIFile.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
+  INIFile.WriteInteger('SetLog', 'PastBand', ComboBox1.ItemIndex);
+  INIFile.WriteString('SetLog', 'PastMode', ComboBox2.Text);
+  INIFile.WriteString('SetLog', 'PastSubMode', ComboBox9.Text);
+  INIFile.WriteString('SetLog', 'Language', Language);
+  INIFile.WriteInteger('SetLog', 'StartNum', num_start);
 
   SetDXColumns(True);
 
   if CheckBox3.Checked = True then
-    IniF.WriteString('SetLog', 'UseMAPS', 'YES')
+    INIFile.WriteString('SetLog', 'UseMAPS', 'YES')
   else
-    IniF.WriteString('SetLog', 'UseMAPS', 'NO');
+    INIFile.WriteString('SetLog', 'UseMAPS', 'NO');
   TRXForm.Close;
-  IniF.Free;
+  INIFile.Free;
 end;
 
 procedure TMainForm.DBGrid1CellClick(Column: TColumn);
@@ -2968,7 +2952,7 @@ begin
   //Сохранение размещения колонок
   for i := 0 to 29 do
   begin
-    IniF.WriteString('GridSettings', 'Columns' + IntToStr(i),
+    INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
   SetGrid();
@@ -2981,10 +2965,10 @@ begin
   for i := 0 to 29 do
   begin
     if DBGrid1.Columns.Items[i].Width <> 0 then
-      IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
+      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
         DBGrid1.Columns.Items[i].Width)
     else
-      IniF.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
+      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
   end;
   SetGrid();
 end;
@@ -3111,7 +3095,7 @@ begin
   addModes(ComboBox2.Text, True, modesString);
   ComboBox9.Items := modesString;
   modesString.Free;
-  addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
+  addBands(INIFile.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
   if ComboBox2.Text <> 'SSB' then
     ComboBox9.Text := '';
 
@@ -3778,10 +3762,10 @@ end;
 procedure TMainForm.EditButton1ButtonClick(Sender: TObject);
 begin
   if (CallBookLiteConnection.Connected = True) and
-    (IniF.ReadString('SetLog', 'Sprav', '') = 'False') then
+    (INIFile.ReadString('SetLog', 'Sprav', '') = 'False') then
     SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
   if (CallBookLiteConnection.Connected = False) and
-    (IniF.ReadString('SetLog', 'Sprav', '') = 'True') then
+    (INIFile.ReadString('SetLog', 'Sprav', '') = 'True') then
   begin
     InformationForm.GetInformation(EditButton1.Text, True);
   end;
@@ -3791,15 +3775,15 @@ procedure TMainForm.InitClusterINI;
 var
   i, j: integer;
 begin
-   LoginCluster := IniF.ReadString('TelnetCluster', 'Login', '');
-      PasswordCluster := IniF.ReadString('TelnetCluster', 'Password', '');
+   LoginCluster := INIFile.ReadString('TelnetCluster', 'Login', '');
+      PasswordCluster := INIFile.ReadString('TelnetCluster', 'Password', '');
 
       for i := 1 to 9 do
       begin
-        TelStr[i] := IniF.ReadString('TelnetCluster', 'Server' +
+        TelStr[i] := INIFile.ReadString('TelnetCluster', 'Server' +
           IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
       end;
-      TelName := IniF.ReadString('TelnetCluster', 'ServerDef',
+      TelName := INIFile.ReadString('TelnetCluster', 'ServerDef',
         'FREERC -> dx.freerc.ru:8000');
       ComboBox3.Items.Clear;
       ComboBox3.Items.AddStrings(TelStr);
@@ -3823,11 +3807,11 @@ begin
       //Порт
       PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
        //Автозапуск кластера
-      if IniF.ReadBool('TelnetCluster', 'AutoStart', False) = True then
+      if INIFile.ReadBool('TelnetCluster', 'AutoStart', False) = True then
         SpeedButton18.Click;
 end;
 
-procedure TMainForm.InitIni;
+{procedure TMainForm.InitIni;
 begin
   try
     InitLog_DB := INiF.ReadString('SetLog', 'LogBookInit', '');
@@ -3924,11 +3908,10 @@ begin
     end;
   finally
   end;
-end;
+end;}
 
 procedure TMainForm.FormCreate(Sender: TObject);
 var
-  PathMyDoc: string;
   Lang: string = '';
   FallbackLang: string = '';
   i: integer;
@@ -3937,31 +3920,24 @@ begin
   Label53.Visible := False;
   Label54.Visible := False;
   Label55.Visible := False;
+   DateEdit1.Date := LazSysUtils.NowUTC;
+    DateTimePicker1.Time := NowUTC;
+    Label24.Caption := FormatDateTime('hh:mm:ss', Now);
+    Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
 
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
+  MapView1.CachePath := FilePATH + 'cache' + DirectorySeparator;
 
-  {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-  {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-  {$ENDIF UNIX}
-
-  if not DirectoryExists(PathMyDoc) then
-    CreateDir(PathMyDoc);
-
-  MapView1.CachePath := PathMyDoc + 'cache' + DirectorySeparator;
-  Inif := TINIFile.Create(PathMyDoc + 'settings.ini');
-  Language := IniF.ReadString('SetLog', 'Language', '');
+  Language := INIFile.ReadString('SetLog', 'Language', '');
   if Language = '' then
     Language := FallbackLang;
-  SetDefaultLang(Language, PathMyDoc + DirectorySeparator + 'locale');
+  SetDefaultLang(Language, FilePATH + DirectorySeparator + 'locale');
 
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
   VirtualStringTree1.Images := FlagList;
-  useMAPS := INiF.ReadString('SetLog', 'UseMAPS', '');
+  useMAPS := INIFile.ReadString('SetLog', 'UseMAPS', '');
   EditFlag := False;
   StayForm := True;
   AdifFromMobileSyncStart := False;
@@ -3975,7 +3951,7 @@ begin
     MapView1.Center;
   end;
 
-  InitIni;
+ // InitIni;
   InitClusterINI;
   lastUDPport := -1;
   lastTCPport := -1;
@@ -4007,11 +3983,11 @@ begin
   if usefldigi then
     Fl_Timer.Enabled := True;
 
-  RegisterLog := IniF.ReadString('SetLog', 'Register', '');
-  LoginLog := IniF.ReadString('SetLog', 'Login', '');
-  PassLog := IniF.ReadString('SetLog', 'Pass', '');
-  sprav := IniF.ReadString('SetLog', 'Sprav', '');
-  PrintPrev := IniF.ReadBool('SetLog', 'PrintPrev', False);
+  RegisterLog := INIFile.ReadString('SetLog', 'Register', '');
+  LoginLog := INIFile.ReadString('SetLog', 'Login', '');
+  PassLog := INIFile.ReadString('SetLog', 'Pass', '');
+  sprav := INIFile.ReadString('SetLog', 'Sprav', '');
+  PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 
   if MenuItem86.Checked = True then
     TRXForm.Show;
@@ -4025,7 +4001,7 @@ begin
   else
     MenuItem86.Checked := True;
 
-  if IniF.ReadBool('SetLog', 'ImgForm', False) = True then
+  if INIFile.ReadBool('SetLog', 'ImgForm', False) = True then
     MenuItem111.Click
   else
     MenuItem112.Click;
@@ -4070,9 +4046,9 @@ var
 begin
   if (_l <> 0) and (_t <> 0) and (_w <> 0) and (_h <> 0) then
     MainForm.SetBounds(_l, _t, _w, _h);
-  if IniF.ReadString('SetLog', 'FormState', '') = 'Maximized' then
+  if INIFile.ReadString('SetLog', 'FormState', '') = 'Maximized' then
     MainForm.WindowState := wsMaximized;
-  if InitLog_DB <> 'YES' then
+  if DBRecord.InitDB <> 'YES' then
   begin
     if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
@@ -4173,16 +4149,9 @@ end;
 
 procedure TMainForm.LTCPComponent1Receive(aSocket: TLSocket);
 var
-  mess, rec_call, PathMyDoc, s: string;
+  mess, rec_call, s: string;
   AdifFile: TextFile;
 begin
-    {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
-
   AdifDataSyncAll := False;
   AdifDataSyncDate := False;
 
@@ -4239,8 +4208,8 @@ begin
     begin
       AdifFromMobileSyncStart := False;
       ImportAdifMobile := True;
-      Stream.SaveToFile(PathMyDoc + 'ImportMobile.adi');
-      AssignFile(AdifFile, PathMyDoc + 'ImportMobile.adi');
+      Stream.SaveToFile(FilePATH + 'ImportMobile.adi');
+      AssignFile(AdifFile, FilePATH + 'ImportMobile.adi');
       Reset(AdifFile);
       while not EOF(AdifFile) do
       begin
@@ -4253,7 +4222,7 @@ begin
       Writeln(AdifFile, s);
       CloseFile(AdifFile);
 
-      ImportADIFForm.ADIFImport(PathMyDoc + 'ImportMobile.adi', True);
+      ImportADIFForm.ADIFImport(FilePATH + 'ImportMobile.adi', True);
       Stream.Free;
       ImportAdifMobile := False;
     end;
@@ -4292,7 +4261,7 @@ end;
 
 procedure TMainForm.MenuItem104Click(Sender: TObject);
 begin
-  LogBookQuery.Close;
+  {LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
   if DefaultDB = 'MySQL' then
@@ -4324,12 +4293,12 @@ begin
       QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  // LOGBookQuery.Last;
+  // LOGBookQuery.Last; }
 end;
 
 procedure TMainForm.MenuItem105Click(Sender: TObject);
 begin
-  LogBookQuery.Close;
+ { LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
   if DefaultDB = 'MySQL' then
@@ -4361,12 +4330,12 @@ begin
       QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  // LOGBookQuery.Last;
+  // LOGBookQuery.Last; }
 end;
 
 procedure TMainForm.MenuItem106Click(Sender: TObject);
 begin
-  LogBookQuery.Close;
+ { LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
   if DefaultDB = 'MySQL' then
@@ -4398,12 +4367,12 @@ begin
       QuotedStr(IntToStr(0)) + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  // LOGBookQuery.Last;
+  // LOGBookQuery.Last;  }
 end;
 
 procedure TMainForm.MenuItem107Click(Sender: TObject);
 begin
-  LogBookQuery.Close;
+ {LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
   if DefaultDB = 'MySQL' then
@@ -4435,13 +4404,13 @@ begin
       QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  //LOGBookQuery.Last;
+  //LOGBookQuery.Last;  }
 
 end;
 
 procedure TMainForm.MenuItem108Click(Sender: TObject);
 begin
-  LogBookQuery.Close;
+ { LogBookQuery.Close;
   LogBookQuery.SQL.Clear;
 
   if DefaultDB = 'MySQL' then
@@ -4473,7 +4442,7 @@ begin
       QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
   end;
   LogBookQuery.Open;
-  // LOGBookQuery.Last;
+  // LOGBookQuery.Last; }
 end;
 
 procedure TMainForm.MenuItem109Click(Sender: TObject);
@@ -4599,14 +4568,8 @@ var
   MenuItem: TMenuItem;
   PathMyDoc: string;
 begin
-   {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
-    {$ENDIF UNIX}
   MenuItem := (Sender as TMenuItem);
-  SetDefaultLang(FindISOCountry(MenuItem.Caption), PathMyDoc + 'locale');
+  SetDefaultLang(FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
   Language := FindISOCountry(MenuItem.Caption);
   SelDB(DBLookupComboBox1.KeyValue);
   CallLogBook := DBLookupComboBox1.KeyValue;
@@ -4618,21 +4581,14 @@ var
   LangItem: TMenuItem;
   LangList: TStringList;
   i: integer;
-  PathMyDoc: string;
 begin
-     {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
   for i := MainForm.ComponentCount - 1 downto 0 do
     if (MainForm.Components[i] is TMenuItem) then
       if (MainForm.Components[i] as TMenuItem).Tag = 99 then
         (MainForm.Components[i] as TMenuItem).Free;
 
   LangList := TStringList.Create;
-  FindLanguageFiles(PathMyDoc + 'locale', LangList);
+  FindLanguageFiles(FilePATH + 'locale', LangList);
   for i := 0 to LangList.Count - 1 do
   begin
     LangItem := TMenuItem.Create(Self);
@@ -4653,7 +4609,7 @@ end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
-  if MySQLLOGDBConnection.Connected or SQLiteDBConnection.Connected then
+  if MySQLLOGDBConnection.Connected or InitDB.SQLiteConnection.Connected then
   begin
     try
       if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
@@ -4677,31 +4633,23 @@ end;
 procedure TMainForm.MenuItem119Click(Sender: TObject);
 var
   HTTP: THTTPSend;
-  updatePATH: string;
   UnZipper: TUnZipper;
 begin
-   {$IFDEF UNIX}
-  updatePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-   {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-   {$ENDIF UNIX}
+  if DirectoryExists(FilePATH + 'locale') then
+    DeleteDirectory(FilePATH + 'locale', False);
 
-  if DirectoryExists(updatePATH + 'locale') then
-    DeleteDirectory(updatePATH + 'locale', False);
-
-  ForceDirectories(updatePATH + 'locale');
+  ForceDirectories(FilePATH + 'locale');
   HTTP := THTTPSend.Create;
   UnZipper := TUnZipper.Create;
   try
     if HTTP.HTTPMethod('GET', DownLocaleURL) then
-      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator +
+      HTTP.Document.SaveToFile(FilePATH + 'updates' + DirectorySeparator +
         'locale.zip');
   finally
     HTTP.Free;
     try
-      UnZipper.FileName := updatePATH + 'updates' + DirectorySeparator + 'locale.zip';
-      UnZipper.OutputPath := updatePATH + 'locale' + DirectorySeparator;
+      UnZipper.FileName := FilePATH + 'updates' + DirectorySeparator + 'locale.zip';
+      UnZipper.OutputPath := FilePATH + 'locale' + DirectorySeparator;
       UnZipper.Examine;
       UnZipper.UnZipAllFiles;
     finally
@@ -4750,14 +4698,7 @@ var
   NumberCopies: integer;
   ind: integer;
   resStream: TLazarusResourceStream;
-  reportPATH: string;
 begin
-     {$IFDEF UNIX}
-  reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-   {$ELSE}
-  reportPATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-   {$ENDIF UNIX}
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
@@ -4766,7 +4707,7 @@ begin
     if DefaultDB = 'MySQL' then
       PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
     else
-      PrintQuery.DataBase := MainForm.SQLiteDBConnection;
+      PrintQuery.DataBase := InitDB.SQLiteConnection;
 
     if (UnUsIndex <> 0) then
     begin
@@ -4819,8 +4760,8 @@ begin
     end;
     PrintOK := False;
     PrintQuery.Open;
-    resStream.SaveToFile(reportPATH + 'rep.lrf');
-    frReport1.LoadFromFile(reportPATH + 'rep.lrf');
+    resStream.SaveToFile(FilePATH + 'rep.lrf');
+    frReport1.LoadFromFile(FilePATH + 'rep.lrf');
     if PrintPrev = True then
       frReport1.ShowReport
     else
@@ -4869,14 +4810,7 @@ var
   NumberCopies: integer;
   ind: integer;
   resStream: TLazarusResourceStream;
-  reportPATH: string;
 begin
-   {$IFDEF UNIX}
-  reportPATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-   {$ELSE}
-  reportPATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-   {$ENDIF UNIX}
   PrintOK := False;
   PrintQuery.Close;
   numberToPrint := '';
@@ -4885,7 +4819,7 @@ begin
     if DefaultDB = 'MySQL' then
       PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
     else
-      PrintQuery.DataBase := MainForm.SQLiteDBConnection;
+      PrintQuery.DataBase := InitDB.SQLiteConnection;
 
     if (UnUsIndex <> 0) then
     begin
@@ -4916,8 +4850,8 @@ begin
     end;
     PrintOK := False;
     PrintQuery.Open;
-    resStream.SaveToFile(reportPATH + 'rep.lrf');
-    frReport1.LoadFromFile(reportPATH + 'rep.lrf');
+    resStream.SaveToFile(FilePATH + 'rep.lrf');
+    frReport1.LoadFromFile(FilePATH + 'rep.lrf');
 
 
     if PrintPrev = True then
@@ -4974,7 +4908,7 @@ procedure TMainForm.MenuItem12Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -4996,7 +4930,7 @@ begin
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
-  end;
+  end; }
 
 end;
 
@@ -5005,7 +4939,7 @@ procedure TMainForm.MenuItem13Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5027,7 +4961,7 @@ begin
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
-  end;
+  end;  }
 end;
 
 //QSL отправлена
@@ -5035,7 +4969,7 @@ procedure TMainForm.MenuItem14Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5059,7 +4993,7 @@ begin
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
-  end;
+  end;     }
 
 end;
 
@@ -5068,7 +5002,7 @@ procedure TMainForm.MenuItem16Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5092,7 +5026,7 @@ begin
     SQLTransaction1.Commit;
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
-  end;
+  end;  }
 
 end;
 
@@ -5101,7 +5035,7 @@ procedure TMainForm.MenuItem17Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5124,7 +5058,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+  }
 end;
 
 //QSL получена через B - бюро
@@ -5132,7 +5066,7 @@ procedure TMainForm.MenuItem21Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5155,7 +5089,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+ }
 end;
 
 //QSL Получена через D - Direct
@@ -5163,7 +5097,7 @@ procedure TMainForm.MenuItem22Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+  {recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5186,7 +5120,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+  }
 end;
 
 //QSL получена через E - Electronic
@@ -5194,7 +5128,7 @@ procedure TMainForm.MenuItem23Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5218,7 +5152,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+  }
 end;
 
 //QSL получена через M - менеджера
@@ -5226,7 +5160,7 @@ procedure TMainForm.MenuItem24Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5249,7 +5183,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+    }
 end;
 
 //QSL получена через G - GlobalQSL
@@ -5257,7 +5191,7 @@ procedure TMainForm.MenuItem25Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  if (UnUsIndex <> 0) then
+{  if (UnUsIndex <> 0) then
   begin
     recnom := 0;
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5280,7 +5214,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+  }
 end;
 
 //QSL Отправелена через B - Бюро
@@ -5288,7 +5222,7 @@ procedure TMainForm.MenuItem27Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5311,7 +5245,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+ }
 end;
 
 //QSL отправлена через D - Direct
@@ -5319,7 +5253,7 @@ procedure TMainForm.MenuItem28Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5342,7 +5276,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+   }
 end;
 
 //QSL отправлена через E - Electronic
@@ -5350,7 +5284,7 @@ procedure TMainForm.MenuItem29Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5373,7 +5307,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+  }
 end;
 
 //QSL отправлена через M - менеджер
@@ -5381,7 +5315,7 @@ procedure TMainForm.MenuItem30Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5404,7 +5338,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+  }
 end;
 
 //QSL отправлена через G - GlobalQSL
@@ -5412,7 +5346,7 @@ procedure TMainForm.MenuItem31Click(Sender: TObject);
 var
   i, recnom: integer;
 begin
-  recnom := 0;
+ { recnom := 0;
   if (UnUsIndex <> 0) then
   begin
     for i := 0 to DBGrid1.SelectedRows.Count - 1 do
@@ -5435,7 +5369,7 @@ begin
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
-
+ }
 end;
 
 //Выбрать все записи в dbGrid1
@@ -5443,7 +5377,7 @@ procedure TMainForm.MenuItem35Click(Sender: TObject);
 var
   i: integer;
 begin
-  if Self.LogBookQuery.RecordCount > 0 then
+ { if Self.LogBookQuery.RecordCount > 0 then
   begin
     LogBookQuery.First;
     for i := 0 to Self.LogBookQuery.RecordCount - 1 do
@@ -5451,7 +5385,7 @@ begin
       Self.DBGrid1.SelectedRows.CurrentRowSelected := True;
       LogBookQuery.Next;
     end;
-  end;
+  end; }
 end;
 
 procedure TMainForm.MenuItem36Click(Sender: TObject);
@@ -5475,7 +5409,7 @@ end;
 
 procedure TMainForm.MenuItem37Click(Sender: TObject);
 begin
-  if LogBookQuery.RecordCount > 0 then
+{  if LogBookQuery.RecordCount > 0 then
   begin
     SendHRDThread := TSendHRDThread.Create;
     if Assigned(SendHRDThread.FatalException) then
@@ -5498,12 +5432,12 @@ begin
       inform := 1;
       Start;
     end;
-  end;
+  end; }
 end;
 
 procedure TMainForm.MenuItem38Click(Sender: TObject);
 begin
-  if LogBookQuery.RecordCount > 0 then
+{  if LogBookQuery.RecordCount > 0 then
   begin
     SendEQSLThread := TSendEQSLThread.Create;
     if Assigned(SendEQSLThread.FatalException) then
@@ -5523,13 +5457,13 @@ begin
       information := 1;
       Start;
     end;
-  end;
+  end; }
 end;
 
 procedure TMainForm.MenuItem40Click(Sender: TObject);
 begin
   ///Быстрое редактирование
-  if LogBookQuery.RecordCount > 0 then
+{  if LogBookQuery.RecordCount > 0 then
   begin
     EditFlag := True;
     CheckBox1.Checked := False;
@@ -5567,7 +5501,7 @@ begin
     ComboBox4.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
     ComboBox5.Text := DBGrid1.DataSource.DataSet.FieldByName(
       'QSOReportRecived').AsString;
-  end;
+  end;    }
 end;
 
 procedure TMainForm.MenuItem41Click(Sender: TObject);
@@ -5577,7 +5511,7 @@ end;
 
 procedure TMainForm.MenuItem42Click(Sender: TObject);
 begin
-  EditQSO_Form.ComboBox1.Items := ComboBox1.Items;
+{  EditQSO_Form.ComboBox1.Items := ComboBox1.Items;
   if LogBookQuery.RecordCount > 0 then
   begin
     if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
@@ -5701,7 +5635,7 @@ begin
 
       EditQSO_Form.Show;
     end;
-  end;
+  end; }
 end;
 
 procedure TMainForm.MenuItem43Click(Sender: TObject);
@@ -6087,11 +6021,11 @@ var
   copyHost, copyUser, copyPass, copyDB, copyPort: string;
 begin
   try
-    copyUser := IniF.ReadString('DataBases', 'LoginName', '');
-    copyPass := IniF.ReadString('DataBases', 'Password', '');
-    copyHost := IniF.ReadString('DataBases', 'HostAddr', '');
-    copyPort := IniF.ReadString('DataBases', 'Port', '');
-    copyDB := IniF.ReadString('DataBases', 'DataBaseName', '');
+    copyUser := INIFile.ReadString('DataBases', 'LoginName', '');
+    copyPass := INIFile.ReadString('DataBases', 'Password', '');
+    copyHost := INIFile.ReadString('DataBases', 'HostAddr', '');
+    copyPort := INIFile.ReadString('DataBases', 'Port', '');
+    copyDB := INIFile.ReadString('DataBases', 'DataBaseName', '');
 
     if (copyUser = '') or (copyHost = '') or (copyDB = '') then
     begin
@@ -6356,12 +6290,12 @@ begin
   FreeObj;
   if dbSel = 'SQLite' then
   begin
-    InitializeDB('MySQL');
+  //  InitializeDB('MySQL');
     MenuItem89.Caption := rSwitchDBSQLIte;
   end
   else
   begin
-    InitializeDB('SQLite');
+  //  InitializeDB('SQLite');
     MenuItem89.Caption := rSwitchDBMySQL;
   end;
 end;
@@ -6370,7 +6304,7 @@ procedure TMainForm.FreeObj;
 var
   i: integer;
 begin
-  FreeAndNil(PrefixProvinceList);
+ { FreeAndNil(PrefixProvinceList);
   FreeAndNil(PrefixARRLList);
   FreeAndNil(UniqueCallsList);
   FreeAndNil(subModesList);
@@ -6378,7 +6312,7 @@ begin
   begin
     FreeAndNil(PrefixExpARRLArray[i].reg);
     FreeAndNil(PrefixExpProvinceArray[i].reg);
-  end;
+  end;  }
 end;
 
 procedure TMainForm.MenuItem91Click(Sender: TObject);
@@ -6643,7 +6577,7 @@ begin
         QSL_SENT := '0';
       end;
 
-      if IniF.ReadString('SetLog', 'ShowBand', '') = 'True' then
+      if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
         NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
           ComboBox1.Text, ComboBox2.Text))
       else
@@ -6739,7 +6673,8 @@ begin
         SQSO.My_Lon := '';
       end;
       SQSO.NLogDB := LogTable;
-      SaveQSO(SQSO);
+      //SaveQSO(SQSO);
+      MainFunc.SaveQSO(SQSO);
 
       if AutoEQSLcc = True then
       begin
@@ -6971,7 +6906,7 @@ end;
 
 procedure TMainForm.SQLiteDBConnectionAfterConnect(Sender: TObject);
 begin
-  if SQLiteDBConnection.Connected = False then
+ { if SQLiteDBConnection.Connected = False then
   begin
     EditButton1.ReadOnly := True;
   end
@@ -6979,7 +6914,7 @@ begin
   begin
     EditButton1.ReadOnly := False;
     DBGrid1.PopupMenu := PopupMenu1;
-  end;
+  end; }
 end;
 
 procedure TMainForm.Timer1Timer(Sender: TObject);
@@ -7195,7 +7130,7 @@ begin
           SysUtils.ExecuteProcess('/usr/bin/notify-send',
             ['EWLog', rLogConWSJT]);
           {$ENDIF}
-          if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
+          if INIFile.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
             MenuItem74.Enabled := False;
         end;
       end;
@@ -7214,7 +7149,7 @@ begin
       SysUtils.ExecuteProcess('/usr/bin/notify-send',
         ['EWLog', rLogNConWSJT]);
       {$ENDIF}
-      if IniF.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
+      if INIFile.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
         MenuItem74.Enabled := True;
 
       Clr();
