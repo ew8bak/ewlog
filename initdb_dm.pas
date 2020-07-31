@@ -23,21 +23,6 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
-    PrefixProvinceCount: integer;
-    PrefixARRLCount: integer;
-    UniqueCallsCount: integer;
-    UniqueCallsList: TStringList;
-    PrefixProvinceList: TStringList;
-    PrefixARRLList: TStringList;
-    SearchPrefixQuery: TSQLQuery;
-    PrefixExpProvinceArray: array [0..1000] of record
-      reg: TRegExpr;
-      id: integer;
-    end;
-    PrefixExpARRLArray: array [0..1000] of record
-      reg: TRegExpr;
-      id: integer;
-    end;
 
   public
     function ServiceDBInit: boolean;
@@ -58,6 +43,21 @@ var
   LBRecord: TLBRecord;
   DBRecord: TDBRecord;
   CountAllRecords: integer;
+  UniqueCallsList: TStringList;
+  PrefixProvinceList: TStringList;
+  PrefixARRLList: TStringList;
+  PrefixProvinceCount: integer;
+  PrefixARRLCount: integer;
+  UniqueCallsCount: integer;
+  SearchPrefixQuery: TSQLQuery;
+  PrefixExpProvinceArray: array [0..1000] of record
+    reg: TRegExpr;
+    id: integer;
+  end;
+  PrefixExpARRLArray: array [0..1000] of record
+    reg: TRegExpr;
+    id: integer;
+  end;
 
 implementation
 

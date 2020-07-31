@@ -5,16 +5,22 @@ unit MainFuncDM;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr;
+  Classes, SysUtils, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
+  prefix_record, LazUTF8;
 
 type
 
   { TMainFunc }
 
   TMainFunc = class(TDataModule)
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
+    SearchPrefixQuery: TSQLQuery;
   public
     procedure SaveQSO(var SQSO: TQSO);
+    procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
+    function SearchPrefix(Callsign, Grid: string): TPFXR;
 
   end;
 
@@ -24,9 +30,147 @@ var
 
 implementation
 
-uses InitDB_dm;
+uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+function TMainFunc.SearchPrefix(Callsign, Grid: string): TPFXR;
+var
+  i, j: integer;
+  La, Lo: currency;
+  PFXR: TPFXR;
+begin
+  if UniqueCallsList.IndexOf(Callsign) > -1 then
+  begin
+    with SearchPrefixQuery do
+    begin
+      Close;
+      SQL.Text := 'SELECT * FROM UniqueCalls WHERE _id = "' +
+        IntToStr(UniqueCallsList.IndexOf(Callsign)) + '"';
+      Open;
+      PFXR.Country := FieldByName('Country').AsString;
+      PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
+      PFXR.Prefix := FieldByName('Prefix').AsString;
+      PFXR.CQZone := FieldByName('CQZone').AsString;
+      PFXR.ITUZone := FieldByName('ITUZone').AsString;
+      PFXR.Continent := FieldByName('Continent').AsString;
+      PFXR.Latitude := FieldByName('Latitude').AsString;
+      PFXR.Longitude := FieldByName('Longitude').AsString;
+      PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
+    end;
+    if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+    begin
+      dmFunc.CoordinateFromLocator(Grid, La, Lo);
+      PFXR.Latitude := CurrToStr(La);
+      PFXR.Longitude := CurrToStr(Lo);
+    end;
+    GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+    Exit;
+  end;
+
+  for i := 0 to PrefixProvinceCount do
+  begin
+    if (PrefixExpProvinceArray[i].reg.Exec(Callsign)) and
+      (PrefixExpProvinceArray[i].reg.Match[0] = Callsign) then
+    begin
+      with SearchPrefixQuery do
+      begin
+        Close;
+        SQL.Text := 'SELECT * FROM Province WHERE _id = "' +
+          IntToStr(PrefixExpProvinceArray[i].id) + '"';
+        Open;
+        PFXR.Country := FieldByName('Country').AsString;
+        PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
+        PFXR.Prefix := FieldByName('Prefix').AsString;
+        PFXR.CQZone := FieldByName('CQZone').AsString;
+        PFXR.ITUZone := FieldByName('ITUZone').AsString;
+        PFXR.Continent := FieldByName('Continent').AsString;
+        PFXR.Latitude := FieldByName('Latitude').AsString;
+        PFXR.Longitude := FieldByName('Longitude').AsString;
+        PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
+        PFXR.TimeDiff := FieldByName('TimeDiff').AsInteger;
+      end;
+      if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+      begin
+        dmFunc.CoordinateFromLocator(Grid, La, Lo);
+        PFXR.Latitude := CurrToStr(La);
+        PFXR.Longitude := CurrToStr(Lo);
+      end;
+      GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+      Exit;
+    end;
+  end;
+
+  for j := 0 to PrefixARRLCount do
+  begin
+    if (PrefixExpARRLArray[j].reg.Exec(Callsign)) and
+      (PrefixExpARRLArray[j].reg.Match[0] = Callsign) then
+    begin
+      with SearchPrefixQuery do
+      begin
+        Close;
+        SQL.Text := 'SELECT * FROM CountryDataEx WHERE _id = "' +
+          IntToStr(PrefixExpARRLArray[j].id) + '"';
+        Open;
+        if (FieldByName('Status').AsString = 'Deleted') then
+        begin
+          PrefixExpARRLArray[j].reg.ExecNext;
+          Exit;
+        end;
+      end;
+      PFXR.Country := SearchPrefixQuery.FieldByName('Country').AsString;
+      PFXR.ARRLPrefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
+      PFXR.Prefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
+      PFXR.CQZone := SearchPrefixQuery.FieldByName('CQZone').AsString;
+      PFXR.ITUZone := SearchPrefixQuery.FieldByName('ITUZone').AsString;
+      PFXR.Continent := SearchPrefixQuery.FieldByName('Continent').AsString;
+      PFXR.Latitude := SearchPrefixQuery.FieldByName('Latitude').AsString;
+      PFXR.Longitude := SearchPrefixQuery.FieldByName('Longitude').AsString;
+      PFXR.DXCCNum := SearchPrefixQuery.FieldByName('DXCC').AsInteger;
+      PFXR.TimeDiff := SearchPrefixQuery.FieldByName('TimeDiff').AsInteger;
+      if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+      begin
+        dmFunc.CoordinateFromLocator(Grid, La, Lo);
+        PFXR.Latitude := CurrToStr(La);
+        PFXR.Longitude := CurrToStr(Lo);
+      end;
+      GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+      Exit;
+    end;
+  end;
+  Result:=PFXR;
+end;
+
+procedure TMainFunc.GetDistAzim(la, lo: string; var Distance, Azimuth: string);
+var
+  R: extended;
+  azim, qra: string;
+begin
+  qra := '';
+  azim := '';
+  if (UTF8Pos('W', lo) <> 0) then
+    lo := '-' + lo;
+  if (UTF8Pos('S', la) <> 0) then
+    la := '-' + la;
+  Delete(la, length(la), 1);
+  Delete(lo, length(lo), 1);
+  R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la), StrToFloat(lo)) / 1000;
+  Distance := FormatFloat('0.00', R) + ' KM';
+  dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(la),
+    strtofloat(lo), qra, azim);
+  Azimuth := azim;
+end;
+
+procedure TMainFunc.DataModuleCreate(Sender: TObject);
+begin
+  SearchPrefixQuery := TSQLQuery.Create(nil);
+  SearchPrefixQuery.DataBase := InitDB.ServiceDBConnection;
+end;
+
+procedure TMainFunc.DataModuleDestroy(Sender: TObject);
+begin
+  FreeAndNil(SearchPrefixQuery);
+end;
 
 procedure TMainFunc.SaveQSO(var SQSO: TQSO);
 var

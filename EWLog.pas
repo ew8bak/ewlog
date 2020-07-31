@@ -21,7 +21,7 @@ uses
   qso_record, resourcestr, const_u, download_lotw, download_eqslcc,
   DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread, getSessionID,
   GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U,
-  LogBookTable_record, DB_record, MainFuncDM, InitDB_dm;
+  LogBookTable_record, DB_record, MainFuncDM, InitDB_dm, prefix_record, inifile_record;
 
 {$R *.res}
 
