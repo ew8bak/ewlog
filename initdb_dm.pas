@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
-  DB_record, ResourceStr, IniFiles, RegExpr;
+  DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8;
 
 type
 
