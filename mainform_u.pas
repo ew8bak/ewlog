@@ -610,10 +610,6 @@ type
     procedure InitClusterINI;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
-    function FindDXCC(callsign: string): integer;
-    function FindWorkedCall(callsign, band, mode: string): boolean;
-    function WorkedLoTW(callsign, band, mode: string): boolean;
-    function WorkedQSL(callsign, band, mode: string): boolean;
   end;
 
 var
@@ -707,165 +703,6 @@ type
 {$R *.lfm}
 
 { TMainForm }
-
-function TMainForm.WorkedQSL(callsign, band, mode: string): boolean;
-var
-  Query: TSQLQuery;
-  digiBand: double;
-  nameBand: string;
-begin
-  Result := False;
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-  try
-    Query := TSQLQuery.Create(nil);
-
-    if MySQLLOGDBConnection.Connected then
-      Query.DataBase := MySQLLOGDBConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-    Query.Transaction := InitDB.DefTransaction;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      Result := True;
-
-  finally
-    Query.Free;
-  end;
-end;
-
-function TMainForm.WorkedLoTW(callsign, band, mode: string): boolean;
-var
-  Query: TSQLQuery;
-  digiBand: double;
-  nameBand: string;
-  dxcc: integer;
-begin
-  Result := False;
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-  try
-    dxcc := FindDXCC(callsign);
-    Query := TSQLQuery.Create(nil);
-
-    if MySQLLOGDBConnection.Connected then
-      Query.DataBase := MySQLLOGDBConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-    Query.Transaction := InitDB.DefTransaction;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      Result := True;
-
-  finally
-    Query.Free;
-  end;
-end;
-
-function TMainForm.FindWorkedCall(callsign, band, mode: string): boolean;
-var
-  Query: TSQLQuery;
-  digiBand: double;
-  nameBand: string;
-begin
-  Result := False;
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-  try
-    Query := TSQLQuery.Create(nil);
-
-    if MySQLLOGDBConnection.Connected then
-      Query.DataBase := MySQLLOGDBConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-    Query.Transaction := InitDB.DefTransaction;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE `Call` = ' + QuotedStr(callsign) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      Result := True;
-
-  finally
-    Query.Free;
-  end;
-end;
-
-function TMainForm.FindDXCC(callsign: string): integer;
-var
-  i: integer;
-begin
-  Result := -1;
- { for i := 0 to PrefixARRLCount do
-  begin
-    if (PrefixExpARRLArray[i].reg.Exec(callsign)) and
-      (PrefixExpARRLArray[i].reg.Match[0] = callsign) then
-    begin
-      with PrefixQuery do
-      begin
-        Close;
-        SQL.Text := 'SELECT DXCC, Status from CountryDataEx where _id = "' +
-          IntToStr(PrefixExpARRLArray[i].id) + '"';
-        Open;
-        if (FieldByName('Status').AsString = 'Deleted') then
-        begin
-          PrefixExpARRLArray[i].reg.ExecNext;
-          Exit;
-        end;
-        Result := FieldByName('DXCC').AsInteger;
-        Close;
-      end;
-    end;
-  end;
-
-  if Result = -1 then
-  begin
-    for i := 0 to PrefixProvinceCount do
-    begin
-      if (PrefixExpProvinceArray[i].reg.Exec(callsign)) and
-        (PrefixExpProvinceArray[i].reg.Match[0] = callsign) then
-      begin
-        with PrefixQuery do
-        begin
-          Close;
-          SQL.Text := 'SELECT * from Province where _id = "' +
-            IntToStr(PrefixExpProvinceArray[i].id) + '"';
-          Open;
-          Result := FieldByName('DXCC').AsInteger;
-          if Result <> -1 then
-          begin
-            Close;
-            Exit;
-          end;
-        end;
-      end;
-    end;
-  end;        }
-end;
 
 procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
   var subModes: TStringList);
@@ -2552,9 +2389,9 @@ begin
   begin
    MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
    MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
-  //  Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-  //  Label54.Visible := WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-   // Label55.Visible := WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+   Label53.Visible := MainFunc.FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+   Label54.Visible := MainFunc.WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+   Label55.Visible := MainFunc.WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;

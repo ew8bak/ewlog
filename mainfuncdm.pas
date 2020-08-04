@@ -22,6 +22,9 @@ type
     procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
     procedure CheckDXCC(Callsign, mode, band: string; var DMode, DBand, DCall: boolean);
     procedure CheckQSL(Callsign, band, mode: string; var QSL: integer);
+    function FindWorkedCall(Callsign, band, mode: string): boolean;
+    function WorkedQSL(Callsign, band, mode: string): boolean;
+    function WorkedLoTW(Callsign, band, mode: string): boolean;
     function SearchPrefix(Callsign, Grid: string): TPFXR;
 
   end;
@@ -152,6 +155,108 @@ begin
       Exit;
     end;
     Query.Close;
+
+  finally
+    Query.Free;
+  end;
+end;
+
+function TMainFunc.FindWorkedCall(Callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+begin
+  Result := False;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.Transaction := InitDB.DefTransaction;
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
+
+  finally
+    Query.Free;
+  end;
+end;
+
+function TMainFunc.WorkedQSL(Callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+begin
+  Result := False;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.Transaction := InitDB.DefTransaction;
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
+
+  finally
+    Query.Free;
+  end;
+end;
+
+function TMainFunc.WorkedLoTW(Callsign, band, mode: string): boolean;
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+  PFXR: TPFXR;
+begin
+  Result := False;
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+  try
+    PFXR := SearchPrefix(Callsign, '');
+    Query := TSQLQuery.Create(nil);
+    Query.Transaction := InitDB.DefTransaction;
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := True;
 
   finally
     Query.Free;

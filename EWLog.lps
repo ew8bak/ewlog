@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="855"/>
-        <CursorPos Y="870"/>
+        <TopLine Value="2535"/>
+        <CursorPos X="32" Y="2557"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -673,8 +673,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="127"/>
-        <CursorPos X="36" Y="112"/>
+        <TopLine Value="15"/>
+        <CursorPos X="14" Y="27"/>
         <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1155,123 +1155,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="188" TopLine="168"/>
+        <Caret Line="189" TopLine="168"/>
       </Position1>
       <Position2>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="189" TopLine="168"/>
+        <Caret Line="190" TopLine="168"/>
       </Position2>
       <Position3>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="190" TopLine="168"/>
+        <Caret Line="191" TopLine="168"/>
       </Position3>
       <Position4>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="191" TopLine="168"/>
+        <Caret Line="197" TopLine="168"/>
       </Position4>
       <Position5>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="197" TopLine="168"/>
+        <Caret Line="198" TopLine="168"/>
       </Position5>
       <Position6>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="198" TopLine="168"/>
+        <Caret Line="199" TopLine="168"/>
       </Position6>
       <Position7>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="199" TopLine="168"/>
+        <Caret Line="202" TopLine="170"/>
       </Position7>
       <Position8>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="202" TopLine="170"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2639" TopLine="2620"/>
       </Position8>
       <Position9>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2639" TopLine="2620"/>
+        <Caret Line="2640" TopLine="2620"/>
       </Position9>
       <Position10>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2640" TopLine="2620"/>
+        <Caret Line="2641" TopLine="2620"/>
       </Position10>
       <Position11>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2641" TopLine="2620"/>
+        <Caret Line="2642" TopLine="2620"/>
       </Position11>
       <Position12>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2642" TopLine="2620"/>
+        <Caret Line="2643" TopLine="2620"/>
       </Position12>
       <Position13>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2643" TopLine="2620"/>
+        <Caret Line="2644" TopLine="2620"/>
       </Position13>
       <Position14>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2644" TopLine="2620"/>
+        <Caret Line="2645" TopLine="2620"/>
       </Position14>
       <Position15>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2645" TopLine="2620"/>
+        <Caret Line="2646" TopLine="2620"/>
       </Position15>
       <Position16>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2646" TopLine="2620"/>
+        <Caret Line="2647" TopLine="2620"/>
       </Position16>
       <Position17>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2647" TopLine="2620"/>
+        <Caret Line="2648" TopLine="2620"/>
       </Position17>
       <Position18>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2648" TopLine="2620"/>
+        <Caret Line="2650" TopLine="2620"/>
       </Position18>
       <Position19>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2650" TopLine="2620"/>
+        <Caret Line="2651" TopLine="2620"/>
       </Position19>
       <Position20>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2651" TopLine="2620"/>
+        <Caret Line="2652" TopLine="2620"/>
       </Position20>
       <Position21>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2652" TopLine="2620"/>
+        <Caret Line="2654" TopLine="2637"/>
       </Position21>
       <Position22>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2654" TopLine="2637"/>
+        <Caret Line="2657" TopLine="2637"/>
       </Position22>
       <Position23>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2657" TopLine="2637"/>
+        <Caret Line="2675" TopLine="2652"/>
       </Position23>
       <Position24>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2675" TopLine="2652"/>
+        <Caret Line="2677" TopLine="2652"/>
       </Position24>
       <Position25>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2677" TopLine="2652"/>
-      </Position25>
-      <Position26>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="48" TopLine="37"/>
+      </Position25>
+      <Position26>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2677" Column="22" TopLine="2667"/>
       </Position26>
       <Position27>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2677" Column="22" TopLine="2667"/>
+        <Caret Line="612" Column="42" TopLine="595"/>
       </Position27>
       <Position28>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="612" Column="42" TopLine="595"/>
+        <Caret Line="937" TopLine="860"/>
       </Position28>
       <Position29>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="937" TopLine="860"/>
+        <Caret Line="612" Column="42" TopLine="595"/>
       </Position29>
       <Position30>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="612" Column="42" TopLine="595"/>
+        <Caret Line="870" TopLine="855"/>
       </Position30>
     </JumpHistory>
     <RunParams>
