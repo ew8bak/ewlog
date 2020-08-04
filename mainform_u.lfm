@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 319
+  Left = 391
   Height = 696
-  Top = 310
+  Top = 192
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -1263,11 +1263,11 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label23
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 66
+        Left = 70
         Height = 13
         Top = 6
         Width = 48
-        BorderSpacing.Left = 1
+        BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = '00:00:00'
         Font.Color = clNavy
@@ -1277,14 +1277,13 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label25: TLabel
-        AnchorSideLeft.Control = Label24
-        AnchorSideLeft.Side = asrBottom
+        AnchorSideLeft.Control = Panel12
         AnchorSideTop.Control = Panel12
-        Left = 118
+        Left = 196
         Height = 13
         Top = 6
         Width = 21
-        BorderSpacing.Left = 4
+        BorderSpacing.Left = 195
         BorderSpacing.Top = 5
         Caption = 'UTC'
         Font.Height = -12
@@ -1295,11 +1294,11 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label25
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 141
+        Left = 222
         Height = 13
         Top = 6
         Width = 48
-        BorderSpacing.Left = 2
+        BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = '00:00:00'
         Font.Color = clNavy
@@ -1312,12 +1311,15 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label26
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 193
+        AnchorSideRight.Control = Label28
+        Left = 341
         Height = 13
         Top = 6
         Width = 72
+        Anchors = [akTop, akRight]
         BorderSpacing.Left = 4
         BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
         Caption = 'Remote time'
         Font.Height = -12
         ParentColor = False
@@ -1327,12 +1329,15 @@ object MainForm: TMainForm
         AnchorSideLeft.Control = Label27
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel12
-        Left = 267
+        AnchorSideRight.Control = Panel12
+        AnchorSideRight.Side = asrBottom
+        Left = 418
         Height = 13
         Top = 6
         Width = 48
-        BorderSpacing.Left = 2
+        Anchors = [akTop, akRight]
         BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
         Caption = '00:00:00'
         Font.Color = clNavy
         Font.Height = -12

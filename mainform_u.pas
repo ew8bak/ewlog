@@ -2161,6 +2161,7 @@ begin
     Label38.Caption := PFXR.Prefix;
     Label45.Caption := PFXR.CQZone;
     Label47.Caption := PFXR.ITUZone;
+    timedif := PFXR.TimeDiff;
   end;
   dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
   Earth.PaintLine(Lat, Lon);
@@ -2189,11 +2190,15 @@ begin
 
   if Length(EditButton1.Text) >= 2 then
   begin
-   MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
-   MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
-   Label53.Visible := MainFunc.FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-   Label54.Visible := MainFunc.WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-   Label55.Visible := MainFunc.WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+    MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text,
+      DMode, DBand, DCall);
+    MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
+    Label53.Visible := MainFunc.FindWorkedCall(EditButton1.Text,
+      ComboBox1.Text, ComboBox2.Text);
+    Label54.Visible := MainFunc.WorkedQSL(EditButton1.Text, ComboBox1.Text,
+      ComboBox2.Text);
+    Label55.Visible := MainFunc.WorkedLoTW(EditButton1.Text, ComboBox1.Text,
+      ComboBox2.Text);
   end;
 
   Image1.Visible := DBand;
@@ -2505,8 +2510,8 @@ begin
     INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
-    MainFunc.SetGrid(DBGrid1);
-    MainFunc.SetGrid(DBGrid2);
+  MainFunc.SetGrid(DBGrid1);
+  MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.DBGrid1ColumnSized(Sender: TObject);
@@ -2521,8 +2526,8 @@ begin
     else
       INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
   end;
-    MainFunc.SetGrid(DBGrid1);
-    MainFunc.SetGrid(DBGrid2);
+  MainFunc.SetGrid(DBGrid1);
+  MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.CheckBox1Change(Sender: TObject);

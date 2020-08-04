@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="2498"/>
-        <CursorPos Y="2524"/>
+        <TopLine Value="2153"/>
+        <CursorPos X="27" Y="2162"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1157,55 +1157,55 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2647" TopLine="2620"/>
+        <Caret Line="2657" TopLine="2637"/>
       </Position1>
       <Position2>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2648" TopLine="2620"/>
+        <Caret Line="2675" TopLine="2652"/>
       </Position2>
       <Position3>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2650" TopLine="2620"/>
+        <Caret Line="2677" TopLine="2652"/>
       </Position3>
       <Position4>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2651" TopLine="2620"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="48" TopLine="37"/>
       </Position4>
       <Position5>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2652" TopLine="2620"/>
+        <Caret Line="2677" Column="22" TopLine="2667"/>
       </Position5>
       <Position6>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2654" TopLine="2637"/>
+        <Caret Line="612" Column="42" TopLine="595"/>
       </Position6>
       <Position7>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2657" TopLine="2637"/>
+        <Caret Line="937" TopLine="860"/>
       </Position7>
       <Position8>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2675" TopLine="2652"/>
+        <Caret Line="612" Column="42" TopLine="595"/>
       </Position8>
       <Position9>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2677" TopLine="2652"/>
+        <Caret Line="870" TopLine="855"/>
       </Position9>
       <Position10>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="48" TopLine="37"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2556" Column="41" TopLine="2535"/>
       </Position10>
       <Position11>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2677" Column="22" TopLine="2667"/>
+        <Caret Line="616" TopLine="598"/>
       </Position11>
       <Position12>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="612" Column="42" TopLine="595"/>
+        <Caret Line="613" Column="22" TopLine="596"/>
       </Position12>
       <Position13>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="937" TopLine="860"/>
+        <Caret Line="744" Column="28" TopLine="712"/>
       </Position13>
       <Position14>
         <Filename Value="mainform_u.pas"/>
@@ -1213,67 +1213,67 @@
       </Position14>
       <Position15>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="870" TopLine="855"/>
+        <Caret Line="708" Column="34" TopLine="699"/>
       </Position15>
       <Position16>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="2556" Column="41" TopLine="2535"/>
+        <Caret Line="2428" Column="46" TopLine="2414"/>
       </Position16>
       <Position17>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="616" TopLine="598"/>
+        <Caret Line="612" Column="42" TopLine="595"/>
       </Position17>
       <Position18>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="613" Column="22" TopLine="596"/>
+        <Caret Line="1050" TopLine="1033"/>
       </Position18>
       <Position19>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="744" Column="28" TopLine="712"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="9" Column="43" TopLine="2"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="612" Column="42" TopLine="595"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="556" Column="13" TopLine="604"/>
       </Position20>
       <Position21>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="708" Column="34" TopLine="699"/>
+        <Caret Line="595" TopLine="577"/>
       </Position21>
       <Position22>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2428" Column="46" TopLine="2414"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="123" Column="71" TopLine="108"/>
       </Position22>
       <Position23>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="612" Column="42" TopLine="595"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="308" TopLine="289"/>
       </Position23>
       <Position24>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1050" TopLine="1033"/>
+        <Filename Value="configgridform_u.pas"/>
+        <Caret Line="74" Column="39" TopLine="55"/>
       </Position24>
       <Position25>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="9" Column="43" TopLine="2"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2524" TopLine="2498"/>
       </Position25>
       <Position26>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="556" Column="13" TopLine="604"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2591" Column="3" TopLine="2570"/>
       </Position26>
       <Position27>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="595" TopLine="577"/>
+        <Caret Line="3547" Column="51" TopLine="2802"/>
       </Position27>
       <Position28>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="123" Column="71" TopLine="108"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2119" Column="3" TopLine="2254"/>
       </Position28>
       <Position29>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="308" TopLine="289"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="6477" Column="3" TopLine="6475"/>
       </Position29>
       <Position30>
-        <Filename Value="configgridform_u.pas"/>
-        <Caret Line="74" Column="39" TopLine="55"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2530" Column="29" TopLine="2491"/>
       </Position30>
     </JumpHistory>
     <RunParams>
