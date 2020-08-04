@@ -81,7 +81,8 @@ begin
       if LogbookDBInit then
         if InitPrefix then
           if GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB) then
-            SelectLogbookTable(LBRecord.LogTable);
+           if not SelectLogbookTable(LBRecord.LogTable) then
+            ShowMessage(rDBError);
 end;
 
 procedure TInitDB.DataModuleDestroy(Sender: TObject);

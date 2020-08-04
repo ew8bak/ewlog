@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
-  prefix_record, LazUTF8;
+  prefix_record, LazUTF8, const_u;
 
 type
 
@@ -20,6 +20,8 @@ type
   public
     procedure SaveQSO(var SQSO: TQSO);
     procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
+    procedure CheckDXCC(Callsign, mode, band: string; var DMode, DBand, DCall: boolean);
+    procedure CheckQSL(Callsign, band, mode: string; var QSL: integer);
     function SearchPrefix(Callsign, Grid: string): TPFXR;
 
   end;
@@ -34,9 +36,131 @@ uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
 
+
+procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
+  var DMode, DBand, DCall: boolean);
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+  PFXR: TPFXR;
+begin
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+
+  try
+    PFXR := SearchPrefix(Callsign, '');
+    Query := TSQLQuery.Create(nil);
+    Query.Transaction := InitDB.DefTransaction;
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DCall := False
+    else
+      DCall := True;
+    Query.Close;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND QSOMode = ' +
+      QuotedStr(mode) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DMode := False
+    else
+      DMode := True;
+    Query.Close;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      DBand := False
+    else
+      DBand := True;
+  finally
+    Query.Free;
+  end;
+end;
+
+procedure TMainFunc.CheckQSL(Callsign, band, mode: string; var QSL: integer);
+var
+  Query: TSQLQuery;
+  digiBand: double;
+  nameBand: string;
+  PFXR: TPFXR;
+begin
+  if Pos('M', band) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+  else
+    nameBand := band;
+
+  Delete(nameBand, length(nameBand) - 2, 1);
+  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+
+  try
+    PFXR := SearchPrefix(Callsign, '');
+    Query := TSQLQuery.Create(nil);
+    Query.Transaction := InitDB.DefTransaction;
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount > 0 then
+    begin
+      QSL := 0;
+      Exit;
+    end;
+    Query.Close;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' LIMIT 1';
+    Query.Open;
+    if Query.RecordCount = 0 then
+    begin
+      QSL := 0;
+      Exit;
+    end;
+    Query.Close;
+
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
+      FloatToStr(digiBand) + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
+    Query.Open;
+    if Query.RecordCount = 0 then
+    begin
+      QSL := 2;
+      Exit;
+    end
+    else
+    begin
+      QSL := 1;
+      Exit;
+    end;
+    Query.Close;
+
+  finally
+    Query.Free;
+  end;
+end;
+
 function TMainFunc.SearchPrefix(Callsign, Grid: string): TPFXR;
 var
-  i, j: integer;
+  i: integer;
   La, Lo: currency;
   PFXR: TPFXR;
 begin
@@ -65,6 +189,7 @@ begin
       PFXR.Longitude := CurrToStr(Lo);
     end;
     GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+    Result := PFXR;
     Exit;
   end;
 
@@ -97,24 +222,25 @@ begin
         PFXR.Longitude := CurrToStr(Lo);
       end;
       GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+      Result := PFXR;
       Exit;
     end;
   end;
 
-  for j := 0 to PrefixARRLCount do
+  for i := 0 to PrefixARRLCount do
   begin
-    if (PrefixExpARRLArray[j].reg.Exec(Callsign)) and
-      (PrefixExpARRLArray[j].reg.Match[0] = Callsign) then
+    if (PrefixExpARRLArray[i].reg.Exec(Callsign)) and
+      (PrefixExpARRLArray[i].reg.Match[0] = Callsign) then
     begin
       with SearchPrefixQuery do
       begin
         Close;
         SQL.Text := 'SELECT * FROM CountryDataEx WHERE _id = "' +
-          IntToStr(PrefixExpARRLArray[j].id) + '"';
+          IntToStr(PrefixExpARRLArray[i].id) + '"';
         Open;
         if (FieldByName('Status').AsString = 'Deleted') then
         begin
-          PrefixExpARRLArray[j].reg.ExecNext;
+          PrefixExpARRLArray[i].reg.ExecNext;
           Exit;
         end;
       end;
@@ -135,10 +261,10 @@ begin
         PFXR.Longitude := CurrToStr(Lo);
       end;
       GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+      Result := PFXR;
       Exit;
     end;
   end;
-  Result:=PFXR;
 end;
 
 procedure TMainFunc.GetDistAzim(la, lo: string; var Distance, Azimuth: string);
@@ -154,6 +280,7 @@ begin
     la := '-' + la;
   Delete(la, length(la), 1);
   Delete(lo, length(lo), 1);
+  DefaultFormatSettings.DecimalSeparator := '.';
   R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la), StrToFloat(lo)) / 1000;
   Distance := FormatFloat('0.00', R) + ' KM';
   dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(la),

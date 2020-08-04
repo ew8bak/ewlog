@@ -13,7 +13,7 @@ uses
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
   FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
   Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u,
-  SetupSQLquery, Types, LazFileUtils, process;
+  SetupSQLquery, Types, LazFileUtils, process, prefix_record;
 
 type
 
@@ -534,17 +534,17 @@ type
 
   public
     { public declarations }
- //   PrefixExpProvinceArray: array [0..1000] of record
- //     reg: TRegExpr;
- //     id: integer;
- //   end;
- //   PrefixExpARRLArray: array [0..1000] of record
- //     reg: TRegExpr;
- //     id: integer;
- //   end;
- //   UniqueCallsList: TStringList;
- //   PrefixProvinceList: TStringList;
- //   PrefixARRLList: TStringList;
+    //   PrefixExpProvinceArray: array [0..1000] of record
+    //     reg: TRegExpr;
+    //     id: integer;
+    //   end;
+    //   PrefixExpARRLArray: array [0..1000] of record
+    //     reg: TRegExpr;
+    //     id: integer;
+    //   end;
+    //   UniqueCallsList: TStringList;
+    //   PrefixProvinceList: TStringList;
+    //   PrefixARRLList: TStringList;
     Command: string;
     FlagList: TImageList;
     FlagSList: TStringList;
@@ -587,10 +587,10 @@ type
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
-  //  procedure SaveQSO(var SQSO: TQSO);
+    //  procedure SaveQSO(var SQSO: TQSO);
     procedure SearchCallInCallBook(CallName: string);
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
-//    procedure InitializeDB(dbS: string);
+    //    procedure InitializeDB(dbS: string);
     procedure SelectQSO(grid: boolean);
     procedure SetGrid;
     procedure SetDXColumns(Save: boolean);
@@ -606,12 +606,10 @@ type
     procedure addModes(modeItem: string; subModesFlag: boolean;
       var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
- //   procedure InitIni;
+    //   procedure InitIni;
     procedure InitClusterINI;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
-    procedure CheckDXCC(callsign, mode, band: string; var DMode, DBand, DCall: boolean);
-    procedure CheckQSL(callsign, band, mode: string; var QSL: integer);
     function FindDXCC(callsign: string): integer;
     function FindWorkedCall(callsign, band, mode: string): boolean;
     function WorkedLoTW(callsign, band, mode: string): boolean;
@@ -622,10 +620,10 @@ var
   MainForm: TMainForm;
   QTH_LAT: currency;
   QTH_LON: currency;
- // PrefixProvinceCount: integer;
- // PrefixARRLCount: integer;
+  // PrefixProvinceCount: integer;
+  // PrefixARRLCount: integer;
   subModesCount: integer;
- // UniqueCallsCount: integer;
+  // UniqueCallsCount: integer;
   GetingHint: integer;
   //IniF: TINIFile;
   CallLogBook: string;
@@ -672,7 +670,7 @@ var
   lastTCPport: integer;
   lastUDPport: integer;
   _l, _t, _w, _h: integer;
-  BM1,BM2:TBookmarkStr;
+  BM1, BM2: TBookmarkStr;
 
 implementation
 
@@ -867,128 +865,6 @@ begin
       end;
     end;
   end;        }
-end;
-
-procedure TMainForm.CheckQSL(callsign, band, mode: string; var QSL: integer);
-var
-  Query: TSQLQuery;
-  dxcc: integer;
-  digiBand: double;
-  nameBand: string;
-begin
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-
-  try
-    dxcc := FindDXCC(callsign);
-    Query := TSQLQuery.Create(nil);
-
-    if MySQLLOGDBConnection.Connected then
-      Query.DataBase := MySQLLOGDBConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-    Query.Transaction := InitDB.DefTransaction;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-    begin
-      QSL := 0;
-      Exit;
-    end;
-    Query.Close;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount = 0 then
-    begin
-      QSL := 0;
-      Exit;
-    end;
-    Query.Close;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
-    Query.Open;
-    if Query.RecordCount = 0 then
-    begin
-      QSL := 2;
-      Exit;
-    end
-    else
-    begin
-      QSL := 1;
-      Exit;
-    end;
-    Query.Close;
-
-  finally
-    Query.Free;
-  end;
-end;
-
-procedure TMainForm.CheckDXCC(callsign, mode, band: string;
-  var DMode, DBand, DCall: boolean);
-var
-  Query: TSQLQuery;
-  dxcc, i: integer;
-  digiBand: double;
-  nameBand: string;
-begin
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-
-  try
-    dxcc := FindDXCC(callsign);
-    Query := TSQLQuery.Create(nil);
-    if MySQLLOGDBConnection.Connected then
-      Query.DataBase := MySQLLOGDBConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-    Query.Transaction := InitDB.DefTransaction;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      DCall := False
-    else
-      DCall := True;
-    Query.Close;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND QSOMode = ' +
-      QuotedStr(mode) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      DMode := False
-    else
-      DMode := True;
-    Query.Close;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LogTable +
-      ' WHERE DXCC = ' + IntToStr(dxcc) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      DBand := False
-    else
-      DBand := True;
-  finally
-    Query.Free;
-  end;
 end;
 
 procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
@@ -1245,9 +1121,9 @@ begin
 
   qBands.Close;
   qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
-//  if SQLServiceTransaction.Active then
-//    SQLServiceTransaction.Rollback;
-//  SQLServiceTransaction.StartTransaction;
+  //  if SQLServiceTransaction.Active then
+  //    SQLServiceTransaction.Rollback;
+  //  SQLServiceTransaction.StartTransaction;
   try
     qBands.Open;
     tmp := StrToFloat(MHz);
@@ -1278,7 +1154,7 @@ begin
     end
   finally
     qBands.Close;
-  //  SQLServiceTransaction.Rollback
+    //  SQLServiceTransaction.Rollback
   end;
 end;
 
@@ -1345,7 +1221,8 @@ begin
       IntToStr(i), constColumnName[i]);
     columnsWidth[i] := INIFile.ReadInteger('GridSettings', 'ColWidth' +
       IntToStr(i), constColumnWidth[i]);
-    columnsVisible[i] := INIFile.ReadBool('GridSettings', 'ColVisible' + IntToStr(i), True);
+    columnsVisible[i] := INIFile.ReadBool('GridSettings', 'ColVisible' +
+      IntToStr(i), True);
   end;
 
   ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
@@ -1522,9 +1399,10 @@ begin
     14: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
   end;
 
-  for i:=0 to DBGrid1.Columns.Count-1 do begin
-   DBGrid1.Columns.Items[i].Title.Font.Size:= SizeTextGrid;
-   DBGrid2.Columns.Items[i].Title.Font.Size:= SizeTextGrid;
+  for i := 0 to DBGrid1.Columns.Count - 1 do
+  begin
+    DBGrid1.Columns.Items[i].Title.Font.Size := SizeTextGrid;
+    DBGrid2.Columns.Items[i].Title.Font.Size := SizeTextGrid;
   end;
 
 end;
@@ -1557,8 +1435,8 @@ begin
       Earth.PaintLine(Lat1, Lon1);
       Earth.PaintLine(Lat1, Lon1);
 
-     // StatusBar1.Panels.Items[1].Text :=
-     //   'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
+      // StatusBar1.Panels.Items[1].Text :=
+      //   'QSO № ' + IntToStr(LOGBookQuery.RecNo) + rQSOTotal + IntToStr(fAllRecords);
     end
     else
     begin
@@ -2589,15 +2467,34 @@ end;
 
 procedure TMainForm.EditButton1Change(Sender: TObject);
 var
-  Centre: TRealPoint;
-  Lat, Long: real;
-  Error: integer;
+  //  Centre: TRealPoint;
+  //  Lat, Long: real;
+  //  Error: integer;
   engText: string;
-  foundPrefix: boolean;
+  //  foundPrefix: boolean;
   DBand, DMode, DCall: boolean;
   QSL: integer;
-  Lat1, Lon1: string;
+  Lat, Lon: string;
+  PFXR: TPFXR;
 begin
+  Edit1.Clear;
+  Edit2.Clear;
+  Edit3.Clear;
+  Edit4.Clear;
+  Edit5.Clear;
+  Edit6.Clear;
+  PFXR.Country := '';
+  PFXR.ARRLPrefix := '';
+  PFXR.Prefix := '';
+  PFXR.CQZone := '';
+  PFXR.ITUZone := '';
+  PFXR.Continent := '';
+  PFXR.Latitude := '';
+  PFXR.Longitude := '';
+  PFXR.DXCCNum := 0;
+  PFXR.TimeDiff := 0;
+  PFXR.Distance := '';
+  PFXR.Azimuth := '';
   DBand := False;
   DMode := False;
   DCall := False;
@@ -2605,47 +2502,6 @@ begin
   Label54.Visible := False;
   Label55.Visible := False;
   QSL := 0;
-
-  if Length(EditButton1.Text) >= 2 then
-  begin
-    CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
-    CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
-    Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-    Label54.Visible := WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-    Label55.Visible := WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-  end;
-
-  Image1.Visible := DBand;
-  Image2.Visible := DMode;
-  Image3.Visible := DCall;
-
-  Shape1.Visible := (QSL <> 0);
-
-  if QSL = 1 then
-    Shape1.Brush.Color := clFuchsia;
-
-  if QSL = 2 then
-    Shape1.Brush.Color := clLime;
-
-  if (Sender = ComboBox1) or (Sender = ComboBox2) then
-    Exit;
-
-  Edit1.Clear;
-  Edit2.Clear;
-  Edit3.Clear;
-  Edit4.Clear;
-  Edit5.Clear;
-  Edit6.Clear;
-
-  if MenuItem111.Checked = True then
-  begin
-    tIMG.Picture.Clear;
-    if Assigned(viewPhoto.Image1.Picture.Graphic) then
-    begin
-      viewPhoto.Image1.Picture.Clear;
-      viewPhoto.Close;
-    end;
-  end;
   EditButton1.SelStart := seleditnum;
   engText := dmFunc.RusToEng(EditButton1.Text);
   if (engText <> EditButton1.Text) then
@@ -2653,9 +2509,27 @@ begin
     EditButton1.Text := engText;
     exit;
   end;
+  if Length(EditButton1.Text) >= 1 then
+  begin
+    PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
+    Label32.Caption := PFXR.Azimuth;
+    Label37.Caption := PFXR.Distance;
+    Label40.Caption := PFXR.Latitude;
+    Label42.Caption := PFXR.Longitude;
+    Label33.Caption := PFXR.Country;
+    Label43.Caption := PFXR.Continent;
+    Label34.Caption := PFXR.ARRLPrefix;
+    Label38.Caption := PFXR.Prefix;
+    Label45.Caption := PFXR.CQZone;
+    Label47.Caption := PFXR.ITUZone;
+  end;
+  dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+  Earth.PaintLine(Lat, Lon);
+  Earth.PaintLine(Lat, Lon);
 
   if EditFlag then
     Exit;
+
   if EditButton1.Text = '' then
   begin
     clr();
@@ -2673,6 +2547,42 @@ begin
     Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
     Exit;
   end;
+
+  if Length(EditButton1.Text) >= 2 then
+  begin
+   MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text, DMode, DBand, DCall);
+   MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
+  //  Label53.Visible := FindWorkedCall(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+  //  Label54.Visible := WorkedQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+   // Label55.Visible := WorkedLoTW(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
+  end;
+
+  Image1.Visible := DBand;
+  Image2.Visible := DMode;
+  Image3.Visible := DCall;
+
+  Shape1.Visible := (QSL <> 0);
+
+  if QSL = 1 then
+    Shape1.Brush.Color := clFuchsia;
+
+  if QSL = 2 then
+    Shape1.Brush.Color := clLime;
+  {
+  if (Sender = ComboBox1) or (Sender = ComboBox2) then
+    Exit;
+
+
+  if MenuItem111.Checked = True then
+  begin
+    tIMG.Picture.Clear;
+    if Assigned(viewPhoto.Image1.Picture.Graphic) then
+    begin
+      viewPhoto.Image1.Picture.Clear;
+      viewPhoto.Close;
+    end;
+  end;
+
 
   if (CallBookLiteConnection.Connected) and
     ((INIFile.ReadString('SetLog', 'Sprav', '') = 'False') or
@@ -2704,6 +2614,7 @@ begin
   dmFunc.GetLatLon(Label40.Caption, Label42.Caption, Lat1, Lon1);
   Earth.PaintLine(Lat1, Lon1);
   Earth.PaintLine(Lat1, Lon1);
+ }
 
  { if CheckBox6.Checked then
   begin
@@ -3775,40 +3686,40 @@ procedure TMainForm.InitClusterINI;
 var
   i, j: integer;
 begin
-   LoginCluster := INIFile.ReadString('TelnetCluster', 'Login', '');
-      PasswordCluster := INIFile.ReadString('TelnetCluster', 'Password', '');
+  LoginCluster := INIFile.ReadString('TelnetCluster', 'Login', '');
+  PasswordCluster := INIFile.ReadString('TelnetCluster', 'Password', '');
 
-      for i := 1 to 9 do
-      begin
-        TelStr[i] := INIFile.ReadString('TelnetCluster', 'Server' +
-          IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
-      end;
-      TelName := INIFile.ReadString('TelnetCluster', 'ServerDef',
-        'FREERC -> dx.freerc.ru:8000');
-      ComboBox3.Items.Clear;
-      ComboBox3.Items.AddStrings(TelStr);
-      if ComboBox3.Items.IndexOf(TelName) > -1 then
-        ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
-      else
-        ComboBox3.ItemIndex := 0;
+  for i := 1 to 9 do
+  begin
+    TelStr[i] := INIFile.ReadString('TelnetCluster', 'Server' +
+      IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
+  end;
+  TelName := INIFile.ReadString('TelnetCluster', 'ServerDef',
+    'FREERC -> dx.freerc.ru:8000');
+  ComboBox3.Items.Clear;
+  ComboBox3.Items.AddStrings(TelStr);
+  if ComboBox3.Items.IndexOf(TelName) > -1 then
+    ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
+  else
+    ComboBox3.ItemIndex := 0;
 
-      ComboBox8.Items.Clear;
-      ComboBox8.Items.AddStrings(TelStr);
-      if ComboBox8.Items.IndexOf(TelName) > -1 then
-        ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
-      else
-        ComboBox8.ItemIndex := 0;
+  ComboBox8.Items.Clear;
+  ComboBox8.Items.AddStrings(TelStr);
+  if ComboBox8.Items.IndexOf(TelName) > -1 then
+    ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
+  else
+    ComboBox8.ItemIndex := 0;
 
-      i := pos('>', ComboBox3.Text);
-      j := pos(':', ComboBox3.Text);
-      //Сервер
-      HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
-      Delete(HostCluster, 1, 1);
-      //Порт
-      PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
-       //Автозапуск кластера
-      if INIFile.ReadBool('TelnetCluster', 'AutoStart', False) = True then
-        SpeedButton18.Click;
+  i := pos('>', ComboBox3.Text);
+  j := pos(':', ComboBox3.Text);
+  //Сервер
+  HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
+  Delete(HostCluster, 1, 1);
+  //Порт
+  PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
+  //Автозапуск кластера
+  if INIFile.ReadBool('TelnetCluster', 'AutoStart', False) = True then
+    SpeedButton18.Click;
 end;
 
 {procedure TMainForm.InitIni;
@@ -3920,10 +3831,10 @@ begin
   Label53.Visible := False;
   Label54.Visible := False;
   Label55.Visible := False;
-   DateEdit1.Date := LazSysUtils.NowUTC;
-    DateTimePicker1.Time := NowUTC;
-    Label24.Caption := FormatDateTime('hh:mm:ss', Now);
-    Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
+  DateEdit1.Date := LazSysUtils.NowUTC;
+  DateTimePicker1.Time := NowUTC;
+  Label24.Caption := FormatDateTime('hh:mm:ss', Now);
+  Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
 
   GetLanguageIDs(Lang, FallbackLang);
   GetingHint := 0;
@@ -3951,7 +3862,7 @@ begin
     MapView1.Center;
   end;
 
- // InitIni;
+  // InitIni;
   InitClusterINI;
   lastUDPport := -1;
   lastTCPport := -1;
@@ -4063,18 +3974,19 @@ begin
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
   {$ELSE}
-    if not dmFunc.CheckSQLiteVersion(sqlite_version) then begin
-      if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
+  if not dmFunc.CheckSQLiteVersion(sqlite_version) then
+  begin
+    if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
     begin
       if Length(s) < 5 then
-      s:='/lib/'
-      end;
-      if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
+        s := '/lib/';
+    end;
+    if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
       rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
       rPath + ':' + #10#13 + s), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
       MB_ICONWARNING) = idYes then
       OpenURL('https://www.sqlite.org/download.html');
-    end;
+  end;
   {$ENDIF}
 
   if useMAPS = 'YES' then
@@ -6290,12 +6202,12 @@ begin
   FreeObj;
   if dbSel = 'SQLite' then
   begin
-  //  InitializeDB('MySQL');
+    //  InitializeDB('MySQL');
     MenuItem89.Caption := rSwitchDBSQLIte;
   end
   else
   begin
-  //  InitializeDB('SQLite');
+    //  InitializeDB('SQLite');
     MenuItem89.Caption := rSwitchDBMySQL;
   end;
 end;

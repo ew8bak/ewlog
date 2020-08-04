@@ -8,7 +8,7 @@ uses
   Classes, SysUtils;
 type
    TPFXR = record
-    Country: string;
+    Country: string[100];
     ARRLPrefix: string[5];
     Prefix: string[5];
     CQZone: string[2];

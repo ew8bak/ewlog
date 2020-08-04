@@ -246,12 +246,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 288
+    Height = 265
     Top = 30
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 288
+    ClientHeight = 265
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -374,7 +374,6 @@ object MainForm: TMainForm
         OnKeyDown = EditButton1KeyDown
         ParentFont = False
         PasswordChar = #0
-        ReadOnly = True
         TabOrder = 0
       end
       object Edit1: TEdit
@@ -1774,7 +1773,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 27
+      Height = 4
       Top = 260
       Width = 472
       Align = alClient
@@ -1784,16 +1783,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 288
+    Height = 265
     Top = 30
     Width = 734
     Align = alClient
-    ClientHeight = 288
+    ClientHeight = 265
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 286
+      Height = 263
       Top = 1
       Width = 732
       Align = alClient
@@ -2002,7 +2001,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 318
+    Top = 295
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -2082,8 +2081,8 @@ object MainForm: TMainForm
       object Label33: TLabel
         AnchorSideLeft.Control = Label30
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label32
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label30
+        AnchorSideTop.Side = asrCenter
         Left = 58
         Height = 13
         Top = 24
@@ -2129,8 +2128,8 @@ object MainForm: TMainForm
       end
       object Label36: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label31
+        AnchorSideTop.Side = asrCenter
         Left = 101
         Height = 13
         Top = 42
@@ -2161,8 +2160,8 @@ object MainForm: TMainForm
       object Label38: TLabel
         AnchorSideLeft.Control = Label36
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label36
+        AnchorSideTop.Side = asrCenter
         Left = 137
         Height = 13
         Top = 42
@@ -2238,8 +2237,8 @@ object MainForm: TMainForm
       object Label43: TLabel
         AnchorSideLeft.Control = Label39
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label40
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label30
+        AnchorSideTop.Side = asrCenter
         Left = 285
         Height = 13
         Top = 24
@@ -2254,8 +2253,8 @@ object MainForm: TMainForm
       end
       object Label44: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label31
+        AnchorSideTop.Side = asrCenter
         Left = 226
         Height = 13
         Top = 42
@@ -2270,8 +2269,8 @@ object MainForm: TMainForm
       object Label45: TLabel
         AnchorSideLeft.Control = Label44
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label44
+        AnchorSideTop.Side = asrCenter
         Left = 247
         Height = 13
         Top = 42
@@ -2286,8 +2285,8 @@ object MainForm: TMainForm
       end
       object Label46: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label31
+        AnchorSideTop.Side = asrCenter
         Left = 271
         Height = 13
         Top = 42
@@ -2302,8 +2301,8 @@ object MainForm: TMainForm
       object Label47: TLabel
         AnchorSideLeft.Control = Label46
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label46
+        AnchorSideTop.Side = asrCenter
         Left = 294
         Height = 13
         Top = 42
@@ -2318,14 +2317,13 @@ object MainForm: TMainForm
       end
       object Label48: TLabel
         AnchorSideLeft.Control = Panel5
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label31
         Left = 322
         Height = 13
-        Top = 48
+        Top = 52
         Width = 50
         BorderSpacing.Left = 321
-        BorderSpacing.Top = 11
+        BorderSpacing.Top = 10
         Caption = 'Your QSL'
         Font.Height = -12
         ParentColor = False
@@ -2334,15 +2332,14 @@ object MainForm: TMainForm
       object ComboBox7: TComboBox
         AnchorSideLeft.Control = Label48
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Label33
-        AnchorSideTop.Side = asrBottom
+        AnchorSideTop.Control = Label48
+        AnchorSideTop.Side = asrCenter
         Left = 374
         Height = 22
-        Top = 45
+        Top = 47
         Width = 96
         AutoSize = False
         BorderSpacing.Left = 2
-        BorderSpacing.Top = 8
         Font.Height = -12
         ItemHeight = 16
         ItemIndex = 3
@@ -2570,16 +2567,16 @@ object MainForm: TMainForm
         Left = 1
         Height = 111
         Top = 1
-        Width = 726
+        Width = 730
         Align = alTop
         ClientHeight = 111
-        ClientWidth = 726
+        ClientWidth = 730
         TabOrder = 0
         object DBGrid2: TDBGrid
           Left = 1
-          Height = 105
+          Height = 109
           Top = 1
-          Width = 720
+          Width = 728
           Align = alClient
           Color = clWindow
           Columns = <          
@@ -2781,20 +2778,20 @@ object MainForm: TMainForm
       end
       object Panel8: TPanel
         Left = 1
-        Height = 259
+        Height = 263
         Top = 112
-        Width = 726
+        Width = 730
         Align = alClient
-        ClientHeight = 259
-        ClientWidth = 726
+        ClientHeight = 263
+        ClientWidth = 730
         Font.Height = -12
         ParentFont = False
         TabOrder = 1
         object PageControl1: TPageControl
           Left = 1
-          Height = 253
+          Height = 261
           Top = 1
-          Width = 720
+          Width = 728
           ActivePage = TabSheet2
           Align = alClient
           Font.Height = -13
@@ -2804,8 +2801,8 @@ object MainForm: TMainForm
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
-            ClientHeight = 249
-            ClientWidth = 716
+            ClientHeight = 231
+            ClientWidth = 718
             object Memo1: TMemo
               Left = 0
               Height = 180
@@ -3131,16 +3128,16 @@ object MainForm: TMainForm
           end
           object TabSheet2: TTabSheet
             Caption = 'Telnet DX Cluster'
-            ClientHeight = 221
-            ClientWidth = 710
+            ClientHeight = 231
+            ClientWidth = 718
             object Panel9: TPanel
               Left = 0
               Height = 28
               Top = 0
-              Width = 710
+              Width = 718
               Align = alTop
               ClientHeight = 28
-              ClientWidth = 710
+              ClientWidth = 718
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -3210,8 +3207,8 @@ object MainForm: TMainForm
                 TabOrder = 0
               end
               object SpeedButton19: TSpeedButton
-                Left = 681
-                Height = 22
+                Left = 693
+                Height = 26
                 Top = 1
                 Width = 24
                 Align = alRight
@@ -3441,9 +3438,9 @@ object MainForm: TMainForm
             object VirtualStringTree1: TVirtualStringTree
               Cursor = 63
               Left = 0
-              Height = 193
+              Height = 203
               Top = 28
-              Width = 710
+              Width = 718
               Align = alClient
               DefaultText = 'Node'
               Font.Height = -11
@@ -5268,13 +5265,13 @@ object MainForm: TMainForm
     FieldDefs = <>
     Transaction = SQLiteTr
     Params = <>
-    Left = 24
-    Top = 360
+    Left = 208
+    Top = 480
   end
   object SQLiteTr: TSQLTransaction
     Active = False
-    Left = 104
-    Top = 360
+    Left = 96
+    Top = 416
   end
   object DUPEQuery: TSQLQuery
     FieldDefs = <>
@@ -5288,8 +5285,8 @@ object MainForm: TMainForm
     Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
-    Left = 264
-    Top = 360
+    Left = 336
+    Top = 432
   end
   object DUPEQuery2: TSQLQuery
     FieldDefs = <>
