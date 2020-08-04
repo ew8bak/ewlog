@@ -120,7 +120,7 @@ var
 implementation
 
 uses
-  MainForm_U, UpdateForm_U, dmFunc_U, editqso_u, InitDB_dm;
+  MainForm_U, UpdateForm_U, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -305,7 +305,8 @@ begin
     end;
     MainForm.DBGrid1.Invalidate;
     MainForm.DBGrid2.Invalidate;
-    MainForm.SetGrid;
+    MainFunc.SetGrid(MainForm.DBGrid1);
+    MainFunc.SetGrid(MainForm.DBGrid2);
     EditQSO_Form.DBGrid1.Invalidate;
   end;
 end;

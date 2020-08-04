@@ -592,7 +592,6 @@ type
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
     //    procedure InitializeDB(dbS: string);
     procedure SelectQSO(grid: boolean);
-    procedure SetGrid;
     procedure SetDXColumns(Save: boolean);
     function GetNewChunk: string;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
@@ -1045,203 +1044,6 @@ begin
   finally
     VSTSaveStream.Free;
   end;
-end;
-
-procedure TMainForm.SetGrid;
-var
-  i: integer;
-  QBAND: string;
-begin
-  for i := 0 to 29 do
-  begin
-    columnsGrid[i] := INIFile.ReadString('GridSettings', 'Columns' +
-      IntToStr(i), constColumnName[i]);
-    columnsWidth[i] := INIFile.ReadInteger('GridSettings', 'ColWidth' +
-      IntToStr(i), constColumnWidth[i]);
-    columnsVisible[i] := INIFile.ReadBool('GridSettings', 'ColVisible' +
-      IntToStr(i), True);
-  end;
-
-  ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
-  SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
-  ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', -2147483617);
-
-  DBGrid1.Font.Size := SizeTextGrid;
-  DBGrid1.Font.Color := ColorTextGrid;
-  DBGrid1.Color := ColorBackGrid;
-
-  DBGrid2.Font.Size := SizeTextGrid;
-  DBGrid2.Font.Color := ColorTextGrid;
-  DBGrid2.Color := ColorBackGrid;
-
-  if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
-    QBAND := rQSOBand
-  else
-    QBAND := rQSOBandFreq;
-
-  //Для первого грида
-  for i := 0 to 29 do
-  begin
-    DBGrid1.Columns.Items[i].FieldName := columnsGrid[i];
-    DBGrid1.Columns.Items[i].Width := columnsWidth[i];
-    case columnsGrid[i] of
-      'QSL': DBGrid1.Columns.Items[i].Title.Caption := rQSL;
-      'QSLs': DBGrid1.Columns.Items[i].Title.Caption := rQSLs;
-      'QSODate': DBGrid1.Columns.Items[i].Title.Caption := rQSODate;
-      'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := rQSOTime;
-      'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := QBAND;
-      'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
-      'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
-      'QSOSubMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOSubMode;
-      'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
-      'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
-      'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
-      'Grid': DBGrid1.Columns.Items[i].Title.Caption := rGrid;
-      'QSOReportSent': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportSent;
-      'QSOReportRecived': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportRecived;
-      'IOTA': DBGrid1.Columns.Items[i].Title.Caption := rIOTA;
-      'QSLManager': DBGrid1.Columns.Items[i].Title.Caption := rQSLManager;
-      'QSLSentDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLSentDate;
-      'QSLRecDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLRecDate;
-      'LoTWRecDate': DBGrid1.Columns.Items[i].Title.Caption := rLoTWRecDate;
-      'MainPrefix': DBGrid1.Columns.Items[i].Title.Caption := rMainPrefix;
-      'DXCCPrefix': DBGrid1.Columns.Items[i].Title.Caption := rDXCCPrefix;
-      'CQZone': DBGrid1.Columns.Items[i].Title.Caption := rCQZone;
-      'ITUZone': DBGrid1.Columns.Items[i].Title.Caption := rITUZone;
-      'ManualSet': DBGrid1.Columns.Items[i].Title.Caption := rManualSet;
-      'Continent': DBGrid1.Columns.Items[i].Title.Caption := rContinent;
-      'ValidDX': DBGrid1.Columns.Items[i].Title.Caption := rValidDX;
-      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
-      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
-      'USERS': DBGrid1.Columns.Items[i].Title.Caption := rUSERS;
-      'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
-    end;
-
-    case columnsGrid[i] of
-      'QSL': DBGrid1.Columns.Items[i].Visible := columnsVisible[0];
-      'QSLs': DBGrid1.Columns.Items[i].Visible := columnsVisible[1];
-      'QSODate': DBGrid1.Columns.Items[i].Visible := columnsVisible[2];
-      'QSOTime': DBGrid1.Columns.Items[i].Visible := columnsVisible[3];
-      'QSOBand': DBGrid1.Columns.Items[i].Visible := columnsVisible[4];
-      'CallSign': DBGrid1.Columns.Items[i].Visible := columnsVisible[5];
-      'QSOMode': DBGrid1.Columns.Items[i].Visible := columnsVisible[6];
-      'QSOSubMode': DBGrid1.Columns.Items[i].Visible := columnsVisible[7];
-      'OMName': DBGrid1.Columns.Items[i].Visible := columnsVisible[8];
-      'OMQTH': DBGrid1.Columns.Items[i].Visible := columnsVisible[9];
-      'State': DBGrid1.Columns.Items[i].Visible := columnsVisible[10];
-      'Grid': DBGrid1.Columns.Items[i].Visible := columnsVisible[11];
-      'QSOReportSent': DBGrid1.Columns.Items[i].Visible := columnsVisible[12];
-      'QSOReportRecived': DBGrid1.Columns.Items[i].Visible := columnsVisible[13];
-      'IOTA': DBGrid1.Columns.Items[i].Visible := columnsVisible[14];
-      'QSLManager': DBGrid1.Columns.Items[i].Visible := columnsVisible[15];
-      'QSLSentDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[16];
-      'QSLRecDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[17];
-      'LoTWRecDate': DBGrid1.Columns.Items[i].Visible := columnsVisible[18];
-      'MainPrefix': DBGrid1.Columns.Items[i].Visible := columnsVisible[19];
-      'DXCCPrefix': DBGrid1.Columns.Items[i].Visible := columnsVisible[20];
-      'CQZone': DBGrid1.Columns.Items[i].Visible := columnsVisible[21];
-      'ITUZone': DBGrid1.Columns.Items[i].Visible := columnsVisible[22];
-      'ManualSet': DBGrid1.Columns.Items[i].Visible := columnsVisible[23];
-      'Continent': DBGrid1.Columns.Items[i].Visible := columnsVisible[24];
-      'ValidDX': DBGrid1.Columns.Items[i].Visible := columnsVisible[25];
-      'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Visible := columnsVisible[26];
-      'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Visible := columnsVisible[27];
-      'USERS': DBGrid1.Columns.Items[i].Visible := columnsVisible[28];
-      'NoCalcDXCC': DBGrid1.Columns.Items[i].Visible := columnsVisible[29];
-    end;
-  end;
-  //Для второго грида
-  for i := 0 to 29 do
-  begin
-    DBGrid2.Columns.Items[i].FieldName := columnsGrid[i];
-    DBGrid2.Columns.Items[i].Width := columnsWidth[i];
-    case columnsGrid[i] of
-      'QSL': DBGrid2.Columns.Items[i].Title.Caption := rQSL;
-      'QSLs': DBGrid2.Columns.Items[i].Title.Caption := rQSLs;
-      'QSODate': DBGrid2.Columns.Items[i].Title.Caption := rQSODate;
-      'QSOTime': DBGrid2.Columns.Items[i].Title.Caption := rQSOTime;
-      'QSOBand': DBGrid2.Columns.Items[i].Title.Caption := QBAND;
-      'CallSign': DBGrid2.Columns.Items[i].Title.Caption := rCallSign;
-      'QSOMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOMode;
-      'QSOSubMode': DBGrid2.Columns.Items[i].Title.Caption := rQSOSubMode;
-      'OMName': DBGrid2.Columns.Items[i].Title.Caption := rOMName;
-      'OMQTH': DBGrid2.Columns.Items[i].Title.Caption := rOMQTH;
-      'State': DBGrid2.Columns.Items[i].Title.Caption := rState;
-      'Grid': DBGrid2.Columns.Items[i].Title.Caption := rGrid;
-      'QSOReportSent': DBGrid2.Columns.Items[i].Title.Caption := rQSOReportSent;
-      'QSOReportRecived': DBGrid2.Columns.Items[i].Title.Caption := rQSOReportRecived;
-      'IOTA': DBGrid2.Columns.Items[i].Title.Caption := rIOTA;
-      'QSLManager': DBGrid2.Columns.Items[i].Title.Caption := rQSLManager;
-      'QSLSentDate': DBGrid2.Columns.Items[i].Title.Caption := rQSLSentDate;
-      'QSLRecDate': DBGrid2.Columns.Items[i].Title.Caption := rQSLRecDate;
-      'LoTWRecDate': DBGrid2.Columns.Items[i].Title.Caption := rLoTWRecDate;
-      'MainPrefix': DBGrid2.Columns.Items[i].Title.Caption := rMainPrefix;
-      'DXCCPrefix': DBGrid2.Columns.Items[i].Title.Caption := rDXCCPrefix;
-      'CQZone': DBGrid2.Columns.Items[i].Title.Caption := rCQZone;
-      'ITUZone': DBGrid2.Columns.Items[i].Title.Caption := rITUZone;
-      'ManualSet': DBGrid2.Columns.Items[i].Title.Caption := rManualSet;
-      'Continent': DBGrid2.Columns.Items[i].Title.Caption := rContinent;
-      'ValidDX': DBGrid2.Columns.Items[i].Title.Caption := rValidDX;
-      'QSL_RCVD_VIA': DBGrid2.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
-      'QSL_SENT_VIA': DBGrid2.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
-      'USERS': DBGrid2.Columns.Items[i].Title.Caption := rUSERS;
-      'NoCalcDXCC': DBGrid2.Columns.Items[i].Title.Caption := rNoCalcDXCC;
-    end;
-
-    case columnsGrid[i] of
-      'QSL': DBGrid2.Columns.Items[i].Visible := columnsVisible[0];
-      'QSLs': DBGrid2.Columns.Items[i].Visible := columnsVisible[1];
-      'QSODate': DBGrid2.Columns.Items[i].Visible := columnsVisible[2];
-      'QSOTime': DBGrid2.Columns.Items[i].Visible := columnsVisible[3];
-      'QSOBand': DBGrid2.Columns.Items[i].Visible := columnsVisible[4];
-      'CallSign': DBGrid2.Columns.Items[i].Visible := columnsVisible[5];
-      'QSOMode': DBGrid2.Columns.Items[i].Visible := columnsVisible[6];
-      'QSOSubMode': DBGrid2.Columns.Items[i].Visible := columnsVisible[7];
-      'OMName': DBGrid2.Columns.Items[i].Visible := columnsVisible[8];
-      'OMQTH': DBGrid2.Columns.Items[i].Visible := columnsVisible[9];
-      'State': DBGrid2.Columns.Items[i].Visible := columnsVisible[10];
-      'Grid': DBGrid2.Columns.Items[i].Visible := columnsVisible[11];
-      'QSOReportSent': DBGrid2.Columns.Items[i].Visible := columnsVisible[12];
-      'QSOReportRecived': DBGrid2.Columns.Items[i].Visible := columnsVisible[13];
-      'IOTA': DBGrid2.Columns.Items[i].Visible := columnsVisible[14];
-      'QSLManager': DBGrid2.Columns.Items[i].Visible := columnsVisible[15];
-      'QSLSentDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[16];
-      'QSLRecDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[17];
-      'LoTWRecDate': DBGrid2.Columns.Items[i].Visible := columnsVisible[18];
-      'MainPrefix': DBGrid2.Columns.Items[i].Visible := columnsVisible[19];
-      'DXCCPrefix': DBGrid2.Columns.Items[i].Visible := columnsVisible[20];
-      'CQZone': DBGrid2.Columns.Items[i].Visible := columnsVisible[21];
-      'ITUZone': DBGrid2.Columns.Items[i].Visible := columnsVisible[22];
-      'ManualSet': DBGrid2.Columns.Items[i].Visible := columnsVisible[23];
-      'Continent': DBGrid2.Columns.Items[i].Visible := columnsVisible[24];
-      'ValidDX': DBGrid2.Columns.Items[i].Visible := columnsVisible[25];
-      'QSL_RCVD_VIA': DBGrid2.Columns.Items[i].Visible := columnsVisible[26];
-      'QSL_SENT_VIA': DBGrid2.Columns.Items[i].Visible := columnsVisible[27];
-      'USERS': DBGrid2.Columns.Items[i].Visible := columnsVisible[28];
-      'NoCalcDXCC': DBGrid2.Columns.Items[i].Visible := columnsVisible[29];
-    end;
-  end;
-
-  case SizeTextGrid of
-    8: DBGrid1.DefaultRowHeight := 15;
-    10: DBGrid1.DefaultRowHeight := DBGrid1.Font.Size + 12;
-    12: DBGrid1.DefaultRowHeight := DBGrid1.Font.Size + 12;
-    14: DBGrid1.DefaultRowHeight := DBGrid1.Font.Size + 12;
-  end;
-
-  case SizeTextGrid of
-    8: DBGrid2.DefaultRowHeight := 15;
-    10: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
-    12: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
-    14: DBGrid2.DefaultRowHeight := DBGrid2.Font.Size + 12;
-  end;
-
-  for i := 0 to DBGrid1.Columns.Count - 1 do
-  begin
-    DBGrid1.Columns.Items[i].Title.Font.Size := SizeTextGrid;
-    DBGrid2.Columns.Items[i].Title.Font.Size := SizeTextGrid;
-  end;
-
 end;
 
 procedure TMainForm.SelectQSO(grid: boolean);
@@ -2703,7 +2505,8 @@ begin
     INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DBGrid1.Columns.Items[i].FieldName);
   end;
-  SetGrid();
+    MainFunc.SetGrid(DBGrid1);
+    MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.DBGrid1ColumnSized(Sender: TObject);
@@ -2718,7 +2521,8 @@ begin
     else
       INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
   end;
-  SetGrid();
+    MainFunc.SetGrid(DBGrid1);
+    MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.CheckBox1Change(Sender: TObject);
@@ -2783,7 +2587,8 @@ procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
     SelectLogDatabase(LogTable);
-  SetGrid;
+  MainFunc.SetGrid(DBGrid1);
+  MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
@@ -3741,7 +3546,8 @@ begin
     TRXForm.Show;
 
   UnUsIndex := 0;
-  SetGrid;
+  MainFunc.SetGrid(DBGrid1);
+  MainFunc.SetGrid(DBGrid2);
   SetDXColumns(False);
 
   if ShowTRXForm = False then

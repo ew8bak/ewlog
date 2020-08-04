@@ -71,7 +71,7 @@ var
 
 implementation
 
-uses MainForm_U, InitDB_dm;
+uses MainForm_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -123,7 +123,8 @@ begin
     3: INIFile.WriteInteger('GridSettings', 'TextSize', 14);
   end;
 
-  MainForm.SetGrid;
+  MainFunc.SetGrid(MainForm.DBGrid1);
+  MainFunc.SetGrid(MainForm.DBGrid2);
 end;
 
 procedure TConfigGrid_Form.Button3Click(Sender: TObject);
