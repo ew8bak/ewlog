@@ -15,8 +15,10 @@ type
     OpITU: string[2];
     OpCQ: string[2];
     OpLoc: string[6];
-    OpLat: string[15];
-    OpLon: string[15];
+    //OpLat: string[15];
+    //OpLon: string[15];
+    OpLat: Double;
+    OpLon: Double;
     QSLInfo: string[100];
     LogTable: string[30];
     eQSLccLogin: string[20];

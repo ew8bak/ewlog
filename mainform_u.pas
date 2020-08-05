@@ -346,7 +346,6 @@ type
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
     procedure CheckBox6Change(Sender: TObject);
-    //{$IfDef WINDOWS}
     procedure CheckUpdatesTimerStartTimer(Sender: TObject);
     procedure CheckUpdatesTimerTimer(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
@@ -534,17 +533,6 @@ type
 
   public
     { public declarations }
-    //   PrefixExpProvinceArray: array [0..1000] of record
-    //     reg: TRegExpr;
-    //     id: integer;
-    //   end;
-    //   PrefixExpARRLArray: array [0..1000] of record
-    //     reg: TRegExpr;
-    //     id: integer;
-    //   end;
-    //   UniqueCallsList: TStringList;
-    //   PrefixProvinceList: TStringList;
-    //   PrefixARRLList: TStringList;
     Command: string;
     FlagList: TImageList;
     FlagSList: TStringList;
@@ -563,7 +551,6 @@ type
     columnsVisible: array[0..29] of boolean;
     columnsDX: array[0..8] of string;
     columnsDXWidth: array[0..8] of integer;
-    RegisterLog, LoginLog, PassLog: string;
     PhotoDir: string;
     ExportAdifSelect: boolean;
     ExportAdifArray: array of integer;
@@ -587,10 +574,8 @@ type
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
-    //  procedure SaveQSO(var SQSO: TQSO);
     procedure SearchCallInCallBook(CallName: string);
     function SearchPrefix(CallName: string; gridloc: boolean): boolean;
-    //    procedure InitializeDB(dbS: string);
     procedure SelectQSO(grid: boolean);
     procedure SetDXColumns(Save: boolean);
     function GetNewChunk: string;
@@ -605,7 +590,6 @@ type
     procedure addModes(modeItem: string; subModesFlag: boolean;
       var subModes: TStringList);
     procedure addBands(FreqBand: string; mode: string);
-    //   procedure InitIni;
     procedure InitClusterINI;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
@@ -615,12 +599,8 @@ var
   MainForm: TMainForm;
   QTH_LAT: currency;
   QTH_LON: currency;
-  // PrefixProvinceCount: integer;
-  // PrefixARRLCount: integer;
   subModesCount: integer;
-  // UniqueCallsCount: integer;
   GetingHint: integer;
-  //IniF: TINIFile;
   CallLogBook: string;
   SetCallName, LogTable, SetDiscription, SetNameC, SetQTH, SetITU,
   SetLoc, SetCQ, SetLat, SetLon, SetQSLInfo: string;
@@ -1050,7 +1030,7 @@ procedure TMainForm.SelectQSO(grid: boolean);
 var
   Lat1, Lon1: string;
 begin
-  try
+ { try
     Label17.Caption := '';
     Label18.Caption := '';
     Label19.Caption := '';
@@ -1099,7 +1079,7 @@ begin
         dbSel := 'SQLite';
       end;
     end;
-  end;
+  end;     }
 end;
 
 {procedure TMainForm.InitializeDB(dbS: string);
@@ -2164,8 +2144,8 @@ begin
     timedif := PFXR.TimeDiff;
   end;
   dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
-  Earth.PaintLine(Lat, Lon);
-  Earth.PaintLine(Lat, Lon);
+  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
 
   if EditFlag then
     Exit;
@@ -2183,8 +2163,8 @@ begin
     label45.Caption := '..';
     label47.Caption := '..';
     label42.Caption := '.......';
-    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
-    Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
+    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon), LBRecord.OpLat, LBRecord.OpLon);
+    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon), LBRecord.OpLat, LBRecord.OpLon);
     Exit;
   end;
 
@@ -3541,9 +3521,6 @@ begin
   if usefldigi then
     Fl_Timer.Enabled := True;
 
-  RegisterLog := INIFile.ReadString('SetLog', 'Register', '');
-  LoginLog := INIFile.ReadString('SetLog', 'Login', '');
-  PassLog := INIFile.ReadString('SetLog', 'Pass', '');
   sprav := INIFile.ReadString('SetLog', 'Sprav', '');
   PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 

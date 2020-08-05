@@ -387,7 +387,7 @@ begin
   Delete(la, length(la), 1);
   Delete(lo, length(lo), 1);
   DefaultFormatSettings.DecimalSeparator := '.';
-  R := dmFunc.Vincenty(QTH_LAT, QTH_LON, StrToFloat(la), StrToFloat(lo)) / 1000;
+  R := dmFunc.Vincenty(LBRecord.OpLat, LBRecord.OpLon, StrToFloat(la), StrToFloat(lo)) / 1000;
   Distance := FormatFloat('0.00', R) + ' KM';
   dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(la),
     strtofloat(lo), qra, azim);

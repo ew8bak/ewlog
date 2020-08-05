@@ -73,6 +73,7 @@ begin
   FilePATH := GetEnvironmentVariable('SystemDrive') +
     SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
    {$ENDIF UNIX}
+  DefaultFormatSettings.DecimalSeparator := '.';
   if not DirectoryExists(FilePATH) then
     CreateDir(FilePATH);
   INIFile := TINIFile.Create(FilePATH + 'settings.ini');
@@ -183,8 +184,8 @@ begin
         LBRecord.OpITU := FieldByName('ITU').AsString;
         LBRecord.OpLoc := FieldByName('Loc').AsString;
         LBRecord.OpCQ := FieldByName('CQ').AsString;
-        LBRecord.OpLat := FieldByName('Lat').AsString;
-        LBRecord.OpLon := FieldByName('Lon').AsString;
+        LBRecord.OpLat := FieldByName('Lat').AsFloat;
+        LBRecord.OpLon := FieldByName('Lon').AsFloat;
         LBRecord.QSLInfo := FieldByName('QSLInfo').AsString;
         LBRecord.LogTable := FieldByName('LogTable').AsString;
         LBRecord.eQSLccLogin := FieldByName('EQSLLogin').AsString;

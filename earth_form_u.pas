@@ -20,7 +20,7 @@ type
     { private declarations }
   public
     TraceLine: PTraceLine;
-    procedure PaintLine(Latitude, Longitude: string);
+    procedure PaintLine(Latitude, Longitude: string; OpLat, OpLon: Double);
 
     { public declarations }
   end;
@@ -30,7 +30,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U;
+uses MainForm_U, dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -48,15 +48,15 @@ end;
 
 procedure TEarth.FormPaint(Sender: TObject);
 begin
-  Earth.PaintLine(CurrToStr(QTH_LAT), CurrToStr(QTH_LON));
+  Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon), LBRecord.OpLat, LBRecord.OpLon);
 end;
 
-procedure TEarth.PaintLine(Latitude, Longitude: string);
+procedure TEarth.PaintLine(Latitude, Longitude: string; OpLat, OpLon: Double);
 var
   r: Trect;
-  Lat, Lon: extended;
+  Lat, Lon: Double;
   Err: integer;
-  QTH_Latitude: extended;
+  QTH_Latitude: Double;
 begin
   r.left := 0;
   r.right := Width - 1;
@@ -69,10 +69,10 @@ begin
     val(Longitude, Lon, Err);
   if Err = 0 then
   begin
-    QTH_Latitude := QTH_LAT;
+    QTH_Latitude := OpLat;
     QTH_Latitude := QTH_Latitude * -1;
     Lat := Lat * -1;
-    TraceLine^.DrawTrace(True, QTH_LON, QTH_Latitude, Lon, Lat);
+    TraceLine^.DrawTrace(True, OpLon, QTH_Latitude, Lon, Lat);
   end;
 end;
 
