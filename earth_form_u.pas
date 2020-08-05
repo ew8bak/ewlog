@@ -20,7 +20,7 @@ type
     { private declarations }
   public
     TraceLine: PTraceLine;
-    procedure PaintLine(Latitude, Longitude: string; OpLat, OpLon: Double);
+    procedure PaintLine(Latitude, Longitude: string; OpLat, OpLon: double);
 
     { public declarations }
   end;
@@ -48,21 +48,22 @@ end;
 
 procedure TEarth.FormPaint(Sender: TObject);
 begin
-  Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon), LBRecord.OpLat, LBRecord.OpLon);
+  Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
+    LBRecord.OpLat, LBRecord.OpLon);
 end;
 
-procedure TEarth.PaintLine(Latitude, Longitude: string; OpLat, OpLon: Double);
+procedure TEarth.PaintLine(Latitude, Longitude: string; OpLat, OpLon: double);
 var
   r: Trect;
-  Lat, Lon: Double;
+  Lat, Lon: double;
   Err: integer;
-  QTH_Latitude: Double;
+  QTH_Latitude: double;
 begin
   r.left := 0;
   r.right := Width - 1;
   r.top := 0;
   r.bottom := Width * obvy div obsi - 1;
-  //  TraceLine^.SunClock(Now-(dmFunc.GrayLineOffset/24));
+  TraceLine^.SunClock(Now - (3 / 24));
   TraceLine^.Draw(r, Canvas);
   val(Latitude, Lat, Err);
   if Err = 0 then
