@@ -21,7 +21,6 @@ type
   TExplodeArray = array of string;
 
   TMainForm = class(TForm)
-    CallBookLiteConnection: TSQLite3Connection;
     CheckBox6: TCheckBox;
     ClearEdit: TAction;
     ComboBox1: TComboBox;
@@ -189,7 +188,6 @@ type
     SpeedButton29: TSpeedButton;
     qBands: TSQLQuery;
     PrintQuery: TSQLQuery;
-    UniqueCallsQuery: TSQLQuery;
     TabSheet2: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
     WSJT_Timer: TTimer;
@@ -200,11 +198,6 @@ type
     SpeedButton21: TSpeedButton;
     SpeedButton22: TSpeedButton;
     SpeedButton23: TSpeedButton;
-    CopySQLQuery: TSQLQuery;
-    SQLiteTr: TSQLTransaction;
-    DUPEQuery: TSQLQuery;
-    CopySQLQuery2: TSQLQuery;
-    DUPEQuery2: TSQLQuery;
     StatusBar1: TStatusBar;
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
@@ -316,8 +309,6 @@ type
     Panel7: TPanel;
     Panel8: TPanel;
     PrefixARRLQuery: TSQLQuery;
-    PrefixProvinceQuery: TSQLQuery;
-    PrefixQuery: TSQLQuery;
     SpeedButton1: TSpeedButton;
     SpeedButton14: TSpeedButton;
     SpeedButton15: TSpeedButton;
@@ -335,8 +326,6 @@ type
     LogBookFieldQuery: TSQLQuery;
     SaveQSOQuery: TSQLQuery;
     SQLQuery2: TSQLQuery;
-    SQLTransaction1: TSQLTransaction;
-    CallBookTransaction: TSQLTransaction;
     TabSheet1: TTabSheet;
     Timer1: TTimer;
     TrayIcon1: TTrayIcon;
@@ -570,7 +559,6 @@ type
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
     procedure Clr();
-    procedure SearchCallInCallBook(CallName: string);
     procedure SelectQSO(grid: boolean);
     procedure SetDXColumns(Save: boolean);
     function GetNewChunk: string;
@@ -1301,7 +1289,7 @@ begin
   end;
 end;
 
-procedure TMainForm.SearchCallInCallBook(CallName: string);
+{procedure TMainForm.SearchCallInCallBook(CallName: string);
 begin
   try
     Application.ProcessMessages;
@@ -1326,7 +1314,7 @@ begin
 
   finally
   end;
-end;
+end; }
 
 procedure TMainForm.SelDB(calllbook: string);
 var
@@ -1819,8 +1807,10 @@ begin
     seleditnum := EditButton1.SelStart;
   if (Key = VK_RETURN) then
   begin
-    if (CallBookLiteConnection.Connected = False) and
-      (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
+   // if (CallBookLiteConnection.Connected = False) and
+   //   (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
+   //   InformationForm.GetInformation(EditButton1.Text, True);
+   if Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3 then
       InformationForm.GetInformation(EditButton1.Text, True);
   end;
 end;
@@ -2062,9 +2052,7 @@ end;
 
 procedure TMainForm.CallBookLiteConnectionAfterDisconnect(Sender: TObject);
 begin
-  Application.ProcessMessages;
-  if MainForm.CloseQuery = False then
-    CallBookLiteConnection.Connected := True;
+
 end;
 
 procedure TMainForm.CheckBox2Change(Sender: TObject);
@@ -2828,14 +2816,14 @@ end;
 
 procedure TMainForm.EditButton1ButtonClick(Sender: TObject);
 begin
-  if (CallBookLiteConnection.Connected = True) and
+ { if (CallBookLiteConnection.Connected = True) and
     (INIFile.ReadString('SetLog', 'Sprav', '') = 'False') then
     SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
   if (CallBookLiteConnection.Connected = False) and
     (INIFile.ReadString('SetLog', 'Sprav', '') = 'True') then
   begin
     InformationForm.GetInformation(EditButton1.Text, True);
-  end;
+  end;}
 end;
 
 procedure TMainForm.InitClusterINI;
@@ -3538,7 +3526,7 @@ begin
         ExecSQL;
       end;
     end;
-    SQLTransaction1.Commit;
+    InitDB.DefTransaction.Commit;
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
   end;
@@ -3687,7 +3675,7 @@ begin
         end;
       end;
     finally
-      SQLTransaction1.Commit;
+      InitDB.DefTransaction.Commit;
       SelDB(CallLogBook);
     end;
   end;
@@ -3745,7 +3733,7 @@ begin
         ExecSQL;
       end;
     end;
-    SQLTransaction1.Commit;
+    InitDB.DefTransaction.Commit;
     SelDB(CallLogBook);
     DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
   end;
@@ -3801,7 +3789,7 @@ begin
           ExecSQL;
         end;
       end;
-      SQLTransaction1.Commit;
+      InitDB.DefTransaction.Commit;
       SelDB(CallLogBook);
       DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
     end;
@@ -4763,7 +4751,7 @@ begin
         ExecSQL;
       end;
     end;
-    SQLTransaction1.Commit;
+    InitDB.DefTransaction.Commit;
     SelDB(CallLogBook);
     //  DBGrid1.DataSource.DataSet.RecNo := recnom;
   end;
@@ -4878,7 +4866,7 @@ var
   LogTableSQLite: string;
   err, ok: integer;
 begin
-  try
+  {try
     Application.ProcessMessages;
     err := 0;
     ok := 0;
@@ -5073,7 +5061,7 @@ begin
       rSyncOK + IntToStr(err) + rSync + IntToStr(ok) + rQSOsync;
   except
     ShowMessage(rDBError);
-  end;
+  end;   }
 end;
 
 //Синхронизация из SQLite в MySQL
@@ -5927,7 +5915,7 @@ begin
         Params.ParamByName('QSL_SENT_VIA').IsNull;
       ExecSQL;
     end;
-    SQLTransaction1.Commit;
+    InitDB.DefTransaction.Commit;
     EditFlag := False;
     CheckBox1.Checked := True;
     SelDB(CallLogBook);
@@ -6023,9 +6011,9 @@ begin
   if Length(Data^.Spots) > 1 then
   begin
     EditButton1.Text := Data^.Spots;
-    if (CallBookLiteConnection.Connected = False) and
-      (Length(Data^.Spots) >= 3) then
-      InformationForm.GetInformation(Data^.Spots, True);
+   // if (CallBookLiteConnection.Connected = False) and
+   //   (Length(Data^.Spots) >= 3) then
+   //   InformationForm.GetInformation(Data^.Spots, True);
 
     if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
       (TRXForm.radio.GetFreqHz > 0) then

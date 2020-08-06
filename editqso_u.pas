@@ -321,7 +321,7 @@ begin
     Params.ParamByName('MainPrefix').AsString := Edit8.Text;
     ExecSQL;
   end;
-  MainForm.SQLTransaction1.Commit;
+  InitDB.DefTransaction.Commit;
   MainForm.SelDB(CallLogBook);
   MainForm.DBGrid1.DataSource.DataSet.RecNo := ind;
 

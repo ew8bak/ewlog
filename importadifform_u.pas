@@ -779,7 +779,7 @@ begin
     end;
   finally
     lblCount.Caption := rImportRecord + ' ' + IntToStr(RecCount);
-    MainForm.SQLTransaction1.Commit;
+    InitDB.DefTransaction.Commit;
     lblComplete.Caption := rDone;
     Button1.Enabled := True;
     CloseFile(f);
@@ -848,14 +848,14 @@ end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
 begin
-  if DBRecord.CurrentDB = 'MySQL' then
+ { if DBRecord.CurrentDB = 'MySQL' then
   begin
     MainForm.SQLTransaction1.DataBase := InitDB.MySQLConnection;
   end
   else
   begin
     MainForm.SQLTransaction1.DataBase := InitDB.SQLiteConnection;
-  end;
+  end;  }
 
   Button1.Enabled := True;
   Button1.Caption := rImport;

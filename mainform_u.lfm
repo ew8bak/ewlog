@@ -246,12 +246,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 288
+    Height = 265
     Top = 30
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 288
+    ClientHeight = 265
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1778,7 +1778,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 27
+      Height = 4
       Top = 260
       Width = 472
       Align = alClient
@@ -1788,16 +1788,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 288
+    Height = 265
     Top = 30
     Width = 734
     Align = alClient
-    ClientHeight = 288
+    ClientHeight = 265
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 286
+      Height = 263
       Top = 1
       Width = 732
       Align = alClient
@@ -2006,7 +2006,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 318
+    Top = 295
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -2572,16 +2572,16 @@ object MainForm: TMainForm
         Left = 1
         Height = 111
         Top = 1
-        Width = 726
+        Width = 730
         Align = alTop
         ClientHeight = 111
-        ClientWidth = 726
+        ClientWidth = 730
         TabOrder = 0
         object DBGrid2: TDBGrid
           Left = 1
-          Height = 105
+          Height = 109
           Top = 1
-          Width = 720
+          Width = 728
           Align = alClient
           Color = clWindow
           Columns = <          
@@ -2783,20 +2783,20 @@ object MainForm: TMainForm
       end
       object Panel8: TPanel
         Left = 1
-        Height = 259
+        Height = 263
         Top = 112
-        Width = 726
+        Width = 730
         Align = alClient
-        ClientHeight = 259
-        ClientWidth = 726
+        ClientHeight = 263
+        ClientWidth = 730
         Font.Height = -12
         ParentFont = False
         TabOrder = 1
         object PageControl1: TPageControl
           Left = 1
-          Height = 253
+          Height = 261
           Top = 1
-          Width = 720
+          Width = 728
           ActivePage = TabSheet2
           Align = alClient
           Font.Height = -13
@@ -2806,8 +2806,8 @@ object MainForm: TMainForm
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
-            ClientHeight = 249
-            ClientWidth = 716
+            ClientHeight = 231
+            ClientWidth = 718
             object Memo1: TMemo
               Left = 0
               Height = 180
@@ -3133,16 +3133,16 @@ object MainForm: TMainForm
           end
           object TabSheet2: TTabSheet
             Caption = 'Telnet DX Cluster'
-            ClientHeight = 221
-            ClientWidth = 710
+            ClientHeight = 231
+            ClientWidth = 718
             object Panel9: TPanel
               Left = 0
               Height = 28
               Top = 0
-              Width = 710
+              Width = 718
               Align = alTop
               ClientHeight = 28
-              ClientWidth = 710
+              ClientWidth = 718
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -3212,8 +3212,8 @@ object MainForm: TMainForm
                 TabOrder = 0
               end
               object SpeedButton19: TSpeedButton
-                Left = 681
-                Height = 22
+                Left = 693
+                Height = 26
                 Top = 1
                 Width = 24
                 Align = alRight
@@ -3443,9 +3443,9 @@ object MainForm: TMainForm
             object VirtualStringTree1: TVirtualStringTree
               Cursor = 63
               Left = 0
-              Height = 193
+              Height = 203
               Top = 28
-              Width = 710
+              Width = 718
               Align = alClient
               DefaultText = 'Node'
               Font.Height = -11
@@ -3803,35 +3803,6 @@ object MainForm: TMainForm
     Left = 512
     Top = 72
   end
-  object SQLTransaction1: TSQLTransaction
-    Active = False
-    Left = 208
-    Top = 600
-  end
-  object PrefixProvinceQuery: TSQLQuery
-    PacketRecords = 2000
-    FieldDefs = <    
-      item
-        Name = 'PrefixList'
-        DataType = ftString
-        Precision = -1
-        Size = 765
-      end>
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'select _id, PrefixList from Province where EndDate == ""'
-    )
-    Params = <>
-    Left = 112
-    Top = 544
-  end
-  object PrefixQuery: TSQLQuery
-    FieldDefs = <>
-    Transaction = SQLTransaction1
-    Params = <>
-    Left = 432
-    Top = 544
-  end
   object PrefixARRLQuery: TSQLQuery
     PacketRecords = 2000
     FieldDefs = <    
@@ -3841,7 +3812,6 @@ object MainForm: TMainForm
         Precision = -1
         Size = 765
       end>
-    Transaction = SQLTransaction1
     SQL.Strings = (
       'select _id, PrefixList, Status from CountryDataEx where EndDate == ""'
     )
@@ -3852,7 +3822,6 @@ object MainForm: TMainForm
   object SQLQuery2: TSQLQuery
     PacketRecords = 1000
     FieldDefs = <>
-    Transaction = SQLTransaction1
     SQL.Strings = (
       ''
     )
@@ -3943,7 +3912,6 @@ object MainForm: TMainForm
         Precision = -1
         Size = 600
       end>
-    Transaction = SQLTransaction1
     SQL.Strings = (
       'SELECT * FROM LogBookInfo'
     )
@@ -3955,12 +3923,6 @@ object MainForm: TMainForm
     DataSet = LogBookFieldQuery
     Left = 672
     Top = 344
-  end
-  object CallBookTransaction: TSQLTransaction
-    Active = False
-    Database = CallBookLiteConnection
-    Left = 728
-    Top = 304
   end
   object SearchCallBookQuery: TSQLQuery
     FieldDefs = <    
@@ -4105,8 +4067,6 @@ object MainForm: TMainForm
         Precision = -1
         Size = 60
       end>
-    Database = CallBookLiteConnection
-    Transaction = CallBookTransaction
     SQL.Strings = (
       ''
     )
@@ -4116,7 +4076,6 @@ object MainForm: TMainForm
   end
   object LogBookFieldQuery: TSQLQuery
     FieldDefs = <>
-    Transaction = SQLTransaction1
     SQL.Strings = (
       'select * from LogBookInfo'
     )
@@ -4126,7 +4085,6 @@ object MainForm: TMainForm
   end
   object SaveQSOQuery: TSQLQuery
     FieldDefs = <>
-    Transaction = SQLTransaction1
     Params = <>
     Left = 600
     Top = 64
@@ -5211,9 +5169,8 @@ object MainForm: TMainForm
   end
   object DeleteQSOQuery: TSQLQuery
     FieldDefs = <>
-    Transaction = SQLTransaction1
     Params = <>
-    Left = 24
+    Left = 56
     Top = 544
   end
   object PopupMenu2: TPopupMenu
@@ -5244,39 +5201,6 @@ object MainForm: TMainForm
     OnTimer = Fl_TimerTimer
     Left = 960
     Top = 176
-  end
-  object CopySQLQuery: TSQLQuery
-    FieldDefs = <>
-    Transaction = SQLiteTr
-    Params = <>
-    Left = 208
-    Top = 480
-  end
-  object SQLiteTr: TSQLTransaction
-    Active = False
-    Left = 96
-    Top = 416
-  end
-  object DUPEQuery: TSQLQuery
-    FieldDefs = <>
-    Transaction = SQLiteTr
-    Params = <>
-    Left = 336
-    Top = 360
-  end
-  object CopySQLQuery2: TSQLQuery
-    FieldDefs = <>
-    Transaction = SQLTransaction1
-    Params = <>
-    Left = 336
-    Top = 432
-  end
-  object DUPEQuery2: TSQLQuery
-    FieldDefs = <>
-    Transaction = SQLTransaction1
-    Params = <>
-    Left = 24
-    Top = 420
   end
   object CheckUpdatesTimer: TTimer
     Enabled = False
@@ -5311,17 +5235,6 @@ object MainForm: TMainForm
     OnTimer = WSJT_TimerTimer
     Left = 685
     Top = 197
-  end
-  object CallBookLiteConnection: TSQLite3Connection
-    Connected = False
-    LoginPrompt = False
-    AfterDisconnect = CallBookLiteConnectionAfterDisconnect
-    KeepConnection = False
-    Transaction = CallBookTransaction
-    CharSet = 'utf-8'
-    AlwaysUseBigint = False
-    Left = 808
-    Top = 312
   end
   object LTCPComponent1: TLTCPComponent
     Port = 0
@@ -5381,17 +5294,6 @@ object MainForm: TMainForm
       Caption = 'Clear window'
       OnClick = MenuItem115Click
     end
-  end
-  object UniqueCallsQuery: TSQLQuery
-    PacketRecords = 10000
-    FieldDefs = <>
-    Transaction = SQLTransaction1
-    SQL.Strings = (
-      'select Callsign from UniqueCalls'
-    )
-    Params = <>
-    Left = 520
-    Top = 558
   end
   object frReport1: TfrReport
     Dataset = frDBDataSet1
@@ -5745,7 +5647,6 @@ object MainForm: TMainForm
         DataType = ftString
         Size = 200
       end>
-    Transaction = SQLTransaction1
     SQL.Strings = (
       'select _id, submode from Modes'
     )
@@ -5755,7 +5656,6 @@ object MainForm: TMainForm
   end
   object CheckTableQuery: TSQLQuery
     FieldDefs = <>
-    Transaction = SQLTransaction1
     Params = <>
     Left = 952
     Top = 568

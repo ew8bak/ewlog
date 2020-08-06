@@ -263,7 +263,7 @@ begin
   else
   if Button4.Caption = rDownload then
   begin
-    MainForm.CallBookLiteConnection.Connected := False;
+   // MainForm.CallBookLiteConnection.Connected := False;
     //UseCallBook := 'NO';
     DownloadCallBookFile;
   end;
@@ -271,7 +271,7 @@ end;
 
 procedure TConfigForm.CheckBox1Change(Sender: TObject);
 begin
-  if CheckBox1.Checked = True then
+  {if CheckBox1.Checked = True then
   begin
     CheckBox3.Checked := False;
     CheckBox7.Checked := False;
@@ -281,7 +281,7 @@ begin
   if CheckBox1.Checked = True then
     INIFile.WriteString('SetLog', 'UseCallBook', 'YES')
   else
-    INIFile.WriteString('SetLog', 'UseCallBook', 'NO');
+    INIFile.WriteString('SetLog', 'UseCallBook', 'NO'); }
 end;
 
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
@@ -317,7 +317,7 @@ begin
   begin
     CheckBox1.Checked := False;
     CheckBox7.Checked := False;
-    MainForm.CallBookLiteConnection.Connected := False;
+   // MainForm.CallBookLiteConnection.Connected := False;
   end;
   if CheckBox3.Checked = True then
     INIFile.WriteString('SetLog', 'Sprav', 'True')
@@ -336,7 +336,7 @@ begin
   begin
     CheckBox1.Checked := False;
     CheckBox3.Checked := False;
-    MainForm.CallBookLiteConnection.Connected := False;
+   // MainForm.CallBookLiteConnection.Connected := False;
   end;
   if CheckBox7.Checked = True then
     INIFile.WriteString('SetLog', 'SpravQRZCOM', 'True')
@@ -367,7 +367,7 @@ begin
     GroupBox2.Caption := rReferenceBook;
     CheckCallBook.Close;
     CheckCallBook.SQL.Clear;
-    MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
+   // MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
     CheckCallBook.SQL.Add('SELECT COUNT(*) as Count FROM Callbook');
     CheckCallBook.Open;
     Label11.Caption := rNumberOfRecords +
@@ -379,7 +379,7 @@ begin
     Label10.Caption := rReleaseDate + CheckCallBook.FieldByName('date').AsString;
     Label14.Caption := CheckCallBook.FieldByName('version').AsString;
     CheckCallBook.Close;
-    MainForm.CallBookLiteConnection.Connected:=False;
+   // MainForm.CallBookLiteConnection.Connected:=False;
   end
   else
   begin
@@ -502,7 +502,7 @@ begin
     {$ENDIF UNIX}
       if FileExistsUTF8(sDBPath + 'callbook.db') then
       begin
-        MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
+      //  MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
         GroupBox2.Caption := rReferenceBook;
         CheckCallBook.Close;
         CheckCallBook.SQL.Clear;
@@ -527,8 +527,8 @@ begin
         Label14.Caption := '---';
       end;
       DeleteFileUTF8(updatePATH + 'updates' + DirectorySeparator + 'callbook.db');
-      MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
-      MainForm.CallBookLiteConnection.Connected := True;
+     // MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
+     // MainForm.CallBookLiteConnection.Connected := True;
       //UseCallBook := 'YES';
       Button4.Caption := rOK;
       Label12.Caption := rstatusUpdateDone;

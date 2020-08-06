@@ -217,17 +217,17 @@ begin
           if RecCount mod 10 = 0 then
           begin
             Label4.Caption := rProcessedData + IntToStr(RecCount);
-            MainForm.SQLTransaction1.Commit;
+            InitDB.DefTransaction.Commit;
             Application.ProcessMessages;
           end;
 
         end;
       except
-        MainForm.SQLTransaction1.Rollback;
+        InitDB.DefTransaction.Rollback;
       end;
     end;
   finally
-    MainForm.SQLTransaction1.Commit;
+    InitDB.DefTransaction.Commit;
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
@@ -410,17 +410,17 @@ begin
           if RecCount mod 10 = 0 then
           begin
             Label4.Caption := rProcessedData + IntToStr(RecCount);
-            MainForm.SQLTransaction1.Commit;
+            InitDB.DefTransaction.Commit;
             Application.ProcessMessages;
           end;
 
         end;
       except
-        MainForm.SQLTransaction1.Rollback;
+        InitDB.DefTransaction.Rollback;
       end;
     end;
   finally
-    MainForm.SQLTransaction1.Commit;
+    InitDB.DefTransaction.Commit;
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;

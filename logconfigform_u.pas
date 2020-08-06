@@ -243,7 +243,7 @@ begin
     Params.ParamByName('id').AsInteger := id;
     ExecSQL;
   end;
-  MainForm.SQLTransaction1.Commit;
+  InitDB.DefTransaction.Commit;
   MainForm.SelDB(CallLogBook);
   LogConfigForm.Close;
   end;

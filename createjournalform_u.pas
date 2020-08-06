@@ -142,7 +142,7 @@ begin
       CreateTableQuery.ParamByName('QSLInfo').AsString := Edit10.Text;
       CreateTableQuery.ParamByName('Table_version').AsString := Table_version;
       CreateTableQuery.ExecSQL;
-      MainForm.SQLTransaction1.Commit;
+      InitDB.DefTransaction.Commit;
 
       if DBRecord.CurrentDB = 'MySQL' then
       begin
