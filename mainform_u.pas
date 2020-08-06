@@ -3006,6 +3006,14 @@ begin
   end;
 
   InitClusterINI;
+
+
+  //загрузка диапазонов
+  for i:=0 to 25 do begin
+  if MainFunc.LoadBands(ComboBox2.Text)[i] <> '' then
+  ComboBox1.Items.Add(MainFunc.LoadBands(ComboBox2.Text)[i]);
+  end;
+
   lastUDPport := -1;
   lastTCPport := -1;
   LTCPComponent1.ReuseAddress := True;

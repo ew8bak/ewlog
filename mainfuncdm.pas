@@ -9,6 +9,7 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record;
 
 type
+  bandArray = array[0..25] of string;
 
   { TMainFunc }
 
@@ -28,6 +29,7 @@ type
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
     function SearchPrefix(Callsign, Grid: string): TPFXR;
+    function LoadBands(mode: string): bandArray;
 
   end;
 
@@ -41,6 +43,43 @@ implementation
 uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+function TMainFunc.LoadBands(mode: string): bandArray;
+var
+  Query: TSQLQuery;
+  BandList: bandArray;
+  i: integer;
+begin
+  try
+    if InitDB.ServiceDBConnection.Connected then
+    begin
+      Query := TSQLQuery.Create(nil);
+      Query.DataBase := InitDB.ServiceDBConnection;
+      Query.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
+      Query.Open;
+      Query.First;
+      for i := 0 to Query.RecordCount - 1 do
+      begin
+        if IniSet.showBand then
+          BandList[i] := Query.FieldByName('band').AsString
+        else
+        begin
+          if mode = 'SSB' then
+            BandList[i] := FormatFloat(view_freq, Query.FieldByName('ssb').AsFloat);
+          if mode = 'CW' then
+            BandList[i] := FormatFloat(view_freq, Query.FieldByName('cw').AsFloat);
+          if (mode <> 'CW') and (mode <> 'SSB') then
+            BandList[i] := FormatFloat(view_freq, Query.FieldByName('b_begin').AsFloat);
+        end;
+        Query.Next;
+      end;
+      Query.Close;
+    end;
+    Result := BandList;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
 
 procedure TMainFunc.LoadINIsettings;
 begin
@@ -63,6 +102,7 @@ begin
   IniSet.Map_Use := INIFile.ReadBool('SetLog', 'UseMAPS', False);
   IniSet.PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
   IniSet.FormState := INIFile.ReadString('SetLog', 'FormState', '');
+  IniSet.showBand := INIFile.ReadBool('SetLog', 'ShowBand', False);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

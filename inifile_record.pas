@@ -23,7 +23,7 @@ type
     _h: integer;
     PastMode: string;
     PastSubMode: string;
-    showBand: string;
+    showBand: boolean;
     PastBand: integer;
     NumStart: integer;
     Language: string;
