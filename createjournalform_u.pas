@@ -80,10 +80,10 @@ end;
 
 procedure TCreateJournalForm.FormCreate(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected then
+  if DBRecord.CurrentDB = 'MySQL' then
   begin
-    CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection;
-    MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
+    CreateTableQuery.DataBase := InitDB.MySQLConnection;
+    //MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
   end
   else
   begin
@@ -94,11 +94,11 @@ end;
 
 procedure TCreateJournalForm.FormShow(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected then
+  if DBRecord.CurrentDB = 'MySQL' then
   begin
-    CreateTableQuery.DataBase := MainForm.MySQLLOGDBConnection;
-    MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
-    CreateTableQuery.Transaction:=MainForm.SQLTransaction1;
+    CreateTableQuery.DataBase := InitDB.MySQLConnection;
+   // MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
+    CreateTableQuery.Transaction:=InitDB.DefTransaction;
   end
   else
   begin
@@ -118,7 +118,7 @@ begin
     (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
   else begin
-    if MainForm.MySQLLOGDBConnection.Connected or InitDB.SQLiteConnection.Connected then begin
+    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then begin
     try
       LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
       CreateTableQuery.Close;
@@ -144,11 +144,11 @@ begin
       CreateTableQuery.ExecSQL;
       MainForm.SQLTransaction1.Commit;
 
-      if MainForm.MySQLLOGDBConnection.Connected then
+      if DBRecord.CurrentDB = 'MySQL' then
       begin
-        MainForm.MySQLLOGDBConnection.ExecuteDirect(
+        InitDB.MySQLConnection.ExecuteDirect(
           dmSQL.Table_Log_Table(LOG_PREFIX, 'MySQL'));
-        MainForm.MySQLLOGDBConnection.ExecuteDirect(dmSQL.CreateIndex(
+        InitDB.MySQLConnection.ExecuteDirect(dmSQL.CreateIndex(
           LOG_PREFIX, 'MySQL'));
       end
       else
@@ -158,7 +158,7 @@ begin
         InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
           LOG_PREFIX, 'SQLite'));
       end;
-       MainForm.SQLTransaction1.Commit;
+       InitDB.DefTransaction.Commit;
     finally
       newLogBookName := Edit2.Text;
       Edit1.Clear;

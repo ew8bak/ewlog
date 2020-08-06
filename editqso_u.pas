@@ -560,10 +560,10 @@ var
 begin
   if DBRecord.InitDB = 'YES' then
   begin
-    if MainForm.MySQLLOGDBConnection.Connected then
+    if DBRecord.CurrentDB = 'MySQL' then
     begin
-      TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
-      UPDATE_Query.DataBase := MainForm.MySQLLOGDBConnection;
+      TerrQuery.DataBase := InitDB.MySQLConnection;
+      UPDATE_Query.DataBase := InitDB.MySQLConnection;
     end
     else
     begin
@@ -620,11 +620,11 @@ begin
   try
     if DBRecord.InitDB = 'YES' then
     begin
-    //  SatPropQuery.DataBase := MainForm.ServiceDBConnection;
-      if MainForm.MySQLLOGDBConnection.Connected then
+      SatPropQuery.DataBase := InitDB.ServiceDBConnection;
+      if DBRecord.CurrentDB = 'MySQL' then
       begin
-        TerrQuery.DataBase := MainForm.MySQLLOGDBConnection;
-        UPDATE_Query.DataBase := MainForm.MySQLLOGDBConnection;
+        TerrQuery.DataBase := InitDB.MySQLConnection;
+        UPDATE_Query.DataBase := InitDB.MySQLConnection;
       end
       else
       begin

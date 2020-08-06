@@ -305,7 +305,6 @@ type
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
-    MySQLLOGDBConnection: TMySQL56Connection;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -1190,7 +1189,7 @@ end; }
 
 procedure TMainForm.SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
 begin
-  SQLQuery2.Close;
+ { SQLQuery2.Close;
   if MySQLLOGDBConnection.Connected then
   begin
     SQLQuery2.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
@@ -1229,7 +1228,7 @@ begin
   else
     EditButton1.Color := clDefault;
 
- { //Поиск и заполнение из внутриней базы
+  //Поиск и заполнение из внутриней базы
   if (SQLQuery2.RecordCount > 0) and (EditButton1.Text <> '') and (ShowCall = True) then
   begin
     if UseCallBook <> 'YES' then
@@ -3673,7 +3672,7 @@ end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
 begin
-  if MySQLLOGDBConnection.Connected or InitDB.SQLiteConnection.Connected then
+  if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
   begin
     try
       if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
@@ -3769,7 +3768,7 @@ begin
   resStream := TLazarusResourceStream.Create('report', nil);
   try
     if DBRecord.DefaultDB  = 'MySQL' then
-      PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
+      PrintQuery.DataBase := InitDB.MySQLConnection
     else
       PrintQuery.DataBase := InitDB.SQLiteConnection;
 
@@ -3881,7 +3880,7 @@ begin
   resStream := TLazarusResourceStream.Create('report', nil);
   try
     if DBRecord.DefaultDB = 'MySQL' then
-      PrintQuery.DataBase := MainForm.MySQLLOGDBConnection
+      PrintQuery.DataBase := InitDB.MySQLConnection
     else
       PrintQuery.DataBase := InitDB.SQLiteConnection;
 
@@ -5084,7 +5083,7 @@ var
   err, ok: integer;
   copyHost, copyUser, copyPass, copyDB, copyPort: string;
 begin
-  try
+{  try
     copyUser := INIFile.ReadString('DataBases', 'LoginName', '');
     copyPass := INIFile.ReadString('DataBases', 'Password', '');
     copyHost := INIFile.ReadString('DataBases', 'HostAddr', '');
@@ -5304,7 +5303,7 @@ begin
     end;
   except
     ShowMessage(rDBError);
-  end;
+  end; }
 end;
 
 procedure TMainForm.MenuItem84Click(Sender: TObject);
@@ -5418,7 +5417,7 @@ end;
 
 procedure TMainForm.MySQLLOGDBConnectionAfterConnect(Sender: TObject);
 begin
-  if MySQLLOGDBConnection.Connected = False then
+ { if MySQLLOGDBConnection.Connected = False then
   begin
     EditButton1.ReadOnly := True;
   end
@@ -5426,7 +5425,7 @@ begin
   begin
     EditButton1.ReadOnly := False;
     DBGrid1.PopupMenu := PopupMenu1;
-  end;
+  end;    }
 end;
 
 procedure TMainForm.Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);

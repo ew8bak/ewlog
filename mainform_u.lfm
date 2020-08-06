@@ -3798,18 +3798,6 @@ object MainForm: TMainForm
     Left = 600
     Top = 312
   end
-  object MySQLLOGDBConnection: TMySQL56Connection
-    Connected = False
-    LoginPrompt = False
-    AfterConnect = MySQLLOGDBConnectionAfterConnect
-    KeepConnection = True
-    Transaction = SQLTransaction1
-    CharSet = 'utf8'
-    LogEvents = []
-    SkipLibraryVersionCheck = True
-    Left = 527
-    Top = 152
-  end
   object LOGBookDS: TDataSource
     DataSet = InitDB.DefLogBookQuery
     Left = 512
@@ -3817,7 +3805,6 @@ object MainForm: TMainForm
   end
   object SQLTransaction1: TSQLTransaction
     Active = False
-    Database = MySQLLOGDBConnection
     Left = 208
     Top = 600
   end
@@ -3830,7 +3817,6 @@ object MainForm: TMainForm
         Precision = -1
         Size = 765
       end>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
       'select _id, PrefixList from Province where EndDate == ""'
@@ -3841,7 +3827,6 @@ object MainForm: TMainForm
   end
   object PrefixQuery: TSQLQuery
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
     Left = 432
@@ -3856,7 +3841,6 @@ object MainForm: TMainForm
         Precision = -1
         Size = 765
       end>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
       'select _id, PrefixList, Status from CountryDataEx where EndDate == ""'
@@ -3868,7 +3852,6 @@ object MainForm: TMainForm
   object SQLQuery2: TSQLQuery
     PacketRecords = 1000
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
       ''
@@ -3960,7 +3943,6 @@ object MainForm: TMainForm
         Precision = -1
         Size = 600
       end>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
       'SELECT * FROM LogBookInfo'
@@ -4134,7 +4116,6 @@ object MainForm: TMainForm
   end
   object LogBookFieldQuery: TSQLQuery
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
       'select * from LogBookInfo'
@@ -4145,7 +4126,6 @@ object MainForm: TMainForm
   end
   object SaveQSOQuery: TSQLQuery
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
     Left = 600
@@ -5231,7 +5211,6 @@ object MainForm: TMainForm
   end
   object DeleteQSOQuery: TSQLQuery
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
     Left = 24
@@ -5287,7 +5266,6 @@ object MainForm: TMainForm
   end
   object CopySQLQuery2: TSQLQuery
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
     Left = 336
@@ -5295,7 +5273,6 @@ object MainForm: TMainForm
   end
   object DUPEQuery2: TSQLQuery
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
     Left = 24
@@ -5408,7 +5385,6 @@ object MainForm: TMainForm
   object UniqueCallsQuery: TSQLQuery
     PacketRecords = 10000
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
       'select Callsign from UniqueCalls'
@@ -5769,7 +5745,6 @@ object MainForm: TMainForm
         DataType = ftString
         Size = 200
       end>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     SQL.Strings = (
       'select _id, submode from Modes'
@@ -5780,7 +5755,6 @@ object MainForm: TMainForm
   end
   object CheckTableQuery: TSQLQuery
     FieldDefs = <>
-    Database = MySQLLOGDBConnection
     Transaction = SQLTransaction1
     Params = <>
     Left = 952

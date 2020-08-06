@@ -112,10 +112,10 @@ end;
 
 procedure TexportAdifForm.FormShow(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected then
+  if DBRecord.CurrentDB = 'MySQL' then
   begin
-    Q1.DataBase := MainForm.MySQLLOGDBConnection;
-    Q2.DataBase := MainForm.MySQLLOGDBConnection;
+    Q1.DataBase := InitDB.MySQLConnection;
+    Q2.DataBase := InitDB.MySQLConnection;
   end
   else
   begin
@@ -543,10 +543,10 @@ var
   freq2: string;
 begin
 
-  if MainForm.MySQLLOGDBConnection.Connected then
+  if DBRecord.CurrentDB = 'MySQL' then
   begin
-    Q1.DataBase := MainForm.MySQLLOGDBConnection;
-    Q2.DataBase := MainForm.MySQLLOGDBConnection;
+    Q1.DataBase := InitDB.MySQLConnection;
+    Q2.DataBase := InitDB.MySQLConnection;
   end
   else
   begin
@@ -559,7 +559,7 @@ begin
     Q1.SQL.Text := 'select * from ' + LBRecord.LogTable + ' ORDER BY UnUsedIndex ASC';
   if (range = 'Date') then
   begin
-    if MainForm.MySQLLOGDBConnection.Connected then
+    if DBRecord.CurrentDB = 'MySQL' then
       Q1.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable + ' WHERE QSODate >= ' +
         '''' + FormatDateTime('yyyy-mm-dd', StrToDate(date)) +
         '''' + ' OR SYNC = 0 ORDER BY UnUsedIndex ASC'

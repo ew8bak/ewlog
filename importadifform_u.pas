@@ -294,10 +294,10 @@ begin
   {$ENDIF UNIX}
 
   Button1.Enabled:=False;
-  if MainForm.MySQLLOGDBConnection.Connected then
+  if DBRecord.CurrentDB = 'MySQL' then
   begin
-    MainForm.MySQLLOGDBConnection.ExecuteDirect('SET autocommit = 0');
-    MainForm.MySQLLOGDBConnection.ExecuteDirect('BEGIN');
+    InitDB.MySQLConnection.ExecuteDirect('SET autocommit = 0');
+    InitDB.MySQLConnection.ExecuteDirect('BEGIN');
   end;
 
   RecCount := 0;
@@ -529,7 +529,7 @@ begin
           if (QSOTIME = '') and (TIME_ON = '') then
             QSOTIME := TIME_OFF;
 
-          if MainForm.MySQLLOGDBConnection.Connected then
+          if DBRecord.CurrentDB = 'MySQL' then
             paramQSODate := dmFunc.ADIFDateToDate(QSO_DATE)
           else
             paramQSODate := FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
@@ -567,7 +567,7 @@ begin
               QSLSDATE[4]);
             mm := StrToInt(QSLSDATE[5] + QSLSDATE[6]);
             dd := StrToInt(QSLSDATE[7] + QSLSDATE[8]);
-            if MainForm.MySQLLOGDBConnection.Connected then
+            if DBRecord.CurrentDB = 'MySQL' then
               paramQSLSDATE := dmFunc.ADIFDateToDate(QSLSDATE)
             else
               paramQSLSDATE :=
@@ -589,7 +589,7 @@ begin
               QSLRDATE[4]);
             mm := StrToInt(QSLRDATE[5] + QSLRDATE[6]);
             dd := StrToInt(QSLRDATE[7] + QSLRDATE[8]);
-            if MainForm.MySQLLOGDBConnection.Connected then
+            if DBRecord.CurrentDB = 'MySQL' then
               paramQSLRDATE := dmFunc.ADIFDateToDate(QSLRDATE)
             else
               paramQSLRDATE :=
@@ -621,7 +621,7 @@ begin
               LOTW_QSLRDATE[3] + LOTW_QSLRDATE[4]);
             mm := StrToInt(LOTW_QSLRDATE[5] + LOTW_QSLRDATE[6]);
             dd := StrToInt(LOTW_QSLRDATE[7] + LOTW_QSLRDATE[8]);
-            if MainForm.MySQLLOGDBConnection.Connected then
+            if DBRecord.CurrentDB = 'MySQL' then
               paramLOTW_QSLRDATE := dmFunc.ADIFDateToDate(LOTW_QSLRDATE)
             else
               paramLOTW_QSLRDATE :=
@@ -728,14 +728,14 @@ begin
             dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
             dmFunc.Q(MY_LON) + QuotedStr('1');
 
-            if MainForm.MySQLLOGDBConnection.Connected then
+            if DBRecord.CurrentDB = 'MySQL' then
             Query:= TempQuery + ') ON DUPLICATE KEY UPDATE SYNC = 1'
             else
             Query:= TempQuery + ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
             end;
 
-          if MainForm.MySQLLOGDBConnection.Connected then
-            MainForm.MySQLLOGDBConnection.ExecuteDirect(Query)
+          if DBRecord.CurrentDB = 'MySQL' then
+            InitDB.MySQLConnection.ExecuteDirect(Query)
           else
             InitDB.SQLiteConnection.ExecuteDirect(Query);
 
@@ -745,8 +745,8 @@ begin
         if RecCount mod 1000 = 0 then
         begin
           lblCount.Caption := rImportRecord + ' ' + IntToStr(RecCount);
-          if MainForm.MySQLLOGDBConnection.Connected then
-          MainForm.SQLTransaction1.Commit;
+          if DBRecord.CurrentDB = 'MySQL' then
+          InitDB.DefTransaction.Commit;
 
           Application.ProcessMessages;
         end;
@@ -848,9 +848,9 @@ end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected then
+  if DBRecord.CurrentDB = 'MySQL' then
   begin
-    MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
+    MainForm.SQLTransaction1.DataBase := InitDB.MySQLConnection;
   end
   else
   begin

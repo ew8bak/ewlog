@@ -189,7 +189,7 @@ begin
             SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET QSOMode = ' +
               dmFunc.Q(MODE);
 
-          if MainForm.MySQLLOGDBConnection.Connected then
+          if DBRecord.CurrentDB = 'MySQL' then
             Query := SQLString + 'QSL_RCVD_VIA = ' +
               dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
               'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +
@@ -367,7 +367,7 @@ begin
               QSLRDATE[4]);
             mm := StrToInt(QSLRDATE[5] + QSLRDATE[6]);
             dd := StrToInt(QSLRDATE[7] + QSLRDATE[8]);
-            if MainForm.MySQLLOGDBConnection.Connected then
+            if DBRecord.CurrentDB = 'MySQL' then
               paramQSLRDATE := dmFunc.ADIFDateToDate(QSLRDATE)
             else
               paramQSLRDATE :=
@@ -382,7 +382,7 @@ begin
           Delete(nameBand, length(nameBand) - 2, 1);
           digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
 
-          if MainForm.MySQLLOGDBConnection.Connected then
+          if DBRecord.CurrentDB = 'MySQL' then
             Query := 'UPDATE ' + LBRecord.LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
               'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
@@ -434,10 +434,10 @@ end;
 
 procedure TServiceForm.FormCreate(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected then
+  if DBRecord.CurrentDB = 'MySQL' then
   begin
-    UPDATEQuery.DataBase := MainForm.MySQLLOGDBConnection;
-    MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
+    UPDATEQuery.DataBase := InitDB.MySQLConnection;
+    //MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
   end
   else
   begin
@@ -494,10 +494,10 @@ end;
 
 procedure TServiceForm.FormShow(Sender: TObject);
 begin
-  if MainForm.MySQLLOGDBConnection.Connected then
+  if DBRecord.CurrentDB = 'MySQL' then
   begin
-    UPDATEQuery.DataBase := MainForm.MySQLLOGDBConnection;
-    MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
+    UPDATEQuery.DataBase := InitDB.MySQLConnection;
+    //MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
   end
   else
   begin
