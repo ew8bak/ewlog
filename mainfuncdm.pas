@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
-  prefix_record, LazUTF8, const_u, DBGrids;
+  prefix_record, LazUTF8, const_u, DBGrids, inifile_record;
 
 type
 
@@ -23,6 +23,7 @@ type
     procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
     procedure CheckDXCC(Callsign, mode, band: string; var DMode, DBand, DCall: boolean);
     procedure CheckQSL(Callsign, band, mode: string; var QSL: integer);
+    procedure LoadINIsettings;
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -32,6 +33,7 @@ type
 
 var
   MainFunc: TMainFunc;
+  IniSet: TINIR;
 
 
 implementation
@@ -40,6 +42,28 @@ uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
 
+procedure TMainFunc.LoadINIsettings;
+begin
+  IniSet.UseIntCallBook := INIFile.ReadBool('SetLog', 'IntCallBook', False);
+  IniSet.PhotoDir := INIFile.ReadString('SetLog', 'PhotoDir', '');
+  IniSet.StateToQSLInfo := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
+  IniSet.Fl_PATH := INIFile.ReadString('FLDIGI', 'FldigiPATH', '');
+  IniSet.WSJT_PATH := INIFile.ReadString('WSJT', 'WSJTPATH', '');
+  IniSet.FLDIGI_USE := INIFile.ReadBool('FLDIGI', 'USEFLDIGI', False);
+  IniSet.WSJT_USE := INIFile.ReadBool('WSJT', 'USEWSJT', False);
+  IniSet.ShowTRXForm := INIFile.ReadBool('SetLog', 'TRXForm', False);
+  IniSet._l := INIFile.ReadInteger('SetLog', 'Left', 0);
+  IniSet._t := INIFile.ReadInteger('SetLog', 'Top', 0);
+  IniSet._w := INIFile.ReadInteger('SetLog', 'Width', 1043);
+  IniSet._h := INIFile.ReadInteger('SetLog', 'Height', 671);
+  IniSet.PastMode := INIFile.ReadString('SetLog', 'PastMode', '');
+  IniSet.PastSubMode := INIFile.ReadString('SetLog', 'PastSubMode', '');
+  IniSet.PastBand := INIFile.ReadInteger('SetLog', 'PastBand', 0);
+  IniSet.Language := INIFile.ReadString('SetLog', 'Language', '');
+  IniSet.Map_Use := INIFile.ReadBool('SetLog', 'UseMAPS', False);
+  IniSet.PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
+  IniSet.FormState := INIFile.ReadString('SetLog', 'FormState', '');
+end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
   var DMode, DBand, DCall: boolean);
@@ -387,7 +411,8 @@ begin
   Delete(la, length(la), 1);
   Delete(lo, length(lo), 1);
   DefaultFormatSettings.DecimalSeparator := '.';
-  R := dmFunc.Vincenty(LBRecord.OpLat, LBRecord.OpLon, StrToFloat(la), StrToFloat(lo)) / 1000;
+  R := dmFunc.Vincenty(LBRecord.OpLat, LBRecord.OpLon, StrToFloat(la),
+    StrToFloat(lo)) / 1000;
   Distance := FormatFloat('0.00', R) + ' KM';
   dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(la),
     strtofloat(lo), qra, azim);
@@ -547,7 +572,8 @@ begin
 
   MainForm.ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
   MainForm.SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
-  MainForm.ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', -2147483617);
+  MainForm.ColorBackGrid := INIFile.ReadInteger('GridSettings',
+    'BackColor', -2147483617);
 
   DBGRID.Font.Size := MainForm.SizeTextGrid;
   DBGRID.Font.Color := MainForm.ColorTextGrid;

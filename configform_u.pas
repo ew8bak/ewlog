@@ -264,7 +264,7 @@ begin
   if Button4.Caption = rDownload then
   begin
     MainForm.CallBookLiteConnection.Connected := False;
-    UseCallBook := 'NO';
+    //UseCallBook := 'NO';
     DownloadCallBookFile;
   end;
 end;
@@ -286,7 +286,7 @@ end;
 
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
 begin
-  if InitLog_DB = 'YES' then
+  if DBRecord.InitDB = 'YES' then
   begin
     if CheckBox2.Checked = True then
     begin
@@ -327,7 +327,7 @@ end;
 
 procedure TConfigForm.CheckBox6Change(Sender: TObject);
 begin
-  StateToQSLInfo := CheckBox6.Checked;
+  IniSet.StateToQSLInfo := CheckBox6.Checked;
 end;
 
 procedure TConfigForm.CheckBox7Change(Sender: TObject);
@@ -529,7 +529,7 @@ begin
       DeleteFileUTF8(updatePATH + 'updates' + DirectorySeparator + 'callbook.db');
       MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
       MainForm.CallBookLiteConnection.Connected := True;
-      UseCallBook := 'YES';
+      //UseCallBook := 'YES';
       Button4.Caption := rOK;
       Label12.Caption := rstatusUpdateDone;
     end

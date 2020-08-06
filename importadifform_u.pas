@@ -663,7 +663,7 @@ begin
             COMMENT := CP1251ToUTF8(COMMENT);
 
           if mobile = False then begin
-          Query := 'INSERT INTO ' + LogTable + ' (' +
+          Query := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
@@ -696,7 +696,7 @@ begin
             dmFunc.Q(MY_LON) + QuotedStr('0') +')';
             end
             else begin
-            TempQuery := 'INSERT INTO ' + LogTable + ' (' +
+            TempQuery := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
             'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
             'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
             'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +

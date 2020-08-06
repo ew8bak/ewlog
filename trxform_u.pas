@@ -186,7 +186,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U, const_u, ConfigForm_U, InitDB_dm;
+  MainForm_U, dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -380,7 +380,7 @@ begin
   if INIFile.ReadString('TRX' + n, 'RigCtldPath', '') <> '' then
     InicializeRig;
 
-  if ShowTRXForm = True then
+  if IniSet.ShowTRXForm then
   begin
     TRXForm.Parent := MainForm.Panel13;
     TRXForm.BorderStyle := bsNone;

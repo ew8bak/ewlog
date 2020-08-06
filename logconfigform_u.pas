@@ -121,7 +121,7 @@ uses MainForm_U, CreateJournalForm_U, dmFunc_U, InitDB_dm;
 procedure TLogConfigForm.SelectCall(SelCall: string);
 begin
   DefaultFormatSettings.DecimalSeparator := '.';
-  if DefaultDB = 'MySQL' then
+  if DBRecord.DefaultDB = 'MySQL' then
     LogConfigForm.SQLQuery1.DataBase := MainForm.MySQLLOGDBConnection
   else
     LogConfigForm.SQLQuery1.DataBase := InitDB.SQLiteConnection;
@@ -145,11 +145,11 @@ begin
   LogConfigForm.Edit8.Text := LogConfigForm.SQLQuery1.FieldByName('Lat').AsString;
 
   if LogConfigForm.SQLQuery1.FieldByName('Lat').AsString <> '' then
-    QTH_LAT := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lat').AsString);
+    LBRecord.OpLat := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lat').AsString);
 
   LogConfigForm.Edit9.Text := LogConfigForm.SQLQuery1.FieldByName('Lon').AsString;
   if LogConfigForm.SQLQuery1.FieldByName('Lon').AsString <> '' then
-    QTH_LON := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lon').AsString);
+    LBRecord.OpLon := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lon').AsString);
 
   LogConfigForm.Edit10.Text := LogConfigForm.SQLQuery1.FieldByName('QSLInfo').AsString;
   LogConfigForm.Edit11.Text := LogConfigForm.SQLQuery1.FieldByName('EQSLLogin').AsString;
@@ -268,9 +268,9 @@ end;
 
 procedure TLogConfigForm.FormCreate(Sender: TObject);
 begin
-  if InitLog_DB = 'YES' then
+  if DBRecord.InitDB = 'YES' then
   begin
-    if DefaultDB = 'MySQL' then
+    if DBRecord.DefaultDB = 'MySQL' then
       UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
     else
       UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
@@ -287,16 +287,16 @@ begin
     InitDB.SQLiteConnection.Connected then
   begin
     try
-      if InitLog_DB = 'YES' then
+      if DBRecord.InitDB = 'YES' then
       begin
 
-        if DefaultDB = 'MySQL' then
+        if DBRecord.DefaultDB = 'MySQL' then
           SQLQuery2.DataBase := MainForm.MySQLLOGDBConnection
         else
           SQLQuery2.DataBase := InitDB.SQLiteConnection;
 
 
-        if DefaultDB = 'MySQL' then
+        if DBRecord.DefaultDB = 'MySQL' then
           UpdateConfQuery.DataBase := MainForm.MySQLLOGDBConnection
         else
           UpdateConfQuery.DataBase := InitDB.SQLiteConnection;

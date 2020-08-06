@@ -60,7 +60,7 @@ var
   end;
 
 implementation
-
+uses MainFuncDM;
 {$R *.lfm}
 
 { TInitDB }
@@ -84,6 +84,7 @@ begin
           if GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB) then
            if not SelectLogbookTable(LBRecord.LogTable) then
             ShowMessage(rDBError);
+  MainFunc.LoadINIsettings;
 end;
 
 procedure TInitDB.DataModuleDestroy(Sender: TObject);

@@ -52,12 +52,12 @@ end;
 procedure TSettingsProgramForm.FormShow(Sender: TObject);
 begin
 
-  fl_path := INIFile.ReadString('FLDIGI', 'FldigiPATH', '');
-  wsjt_path := INIFile.ReadString('WSJT', 'WSJTPATH', '');
-  FLDIGI_USE := INIFile.ReadString('FLDIGI', 'USEFLDIGI', '');
-  WSJT_USE := INIFile.ReadString('WSJT', 'USEWSJT', '');
+//  fl_path := INIFile.ReadString('FLDIGI', 'FldigiPATH', '');
+//  wsjt_path := INIFile.ReadString('WSJT', 'WSJTPATH', '');
+//  FLDIGI_USE := INIFile.ReadString('FLDIGI', 'USEFLDIGI', '');
+//  WSJT_USE := INIFile.ReadString('WSJT', 'USEWSJT', '');
 
-  FileNameEdit1.Text := fl_path;
+{  FileNameEdit1.Text := fl_path;
   if FLDIGI_USE = 'YES' then
     CheckBox2.Checked := True
   else
@@ -67,6 +67,7 @@ begin
     CheckBox4.Checked := True
   else
     CheckBox4.Checked := False;
+}
 end;
 
 procedure TSettingsProgramForm.Button1Click(Sender: TObject);

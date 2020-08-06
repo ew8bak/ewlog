@@ -6,24 +6,31 @@ interface
 
 uses
   Classes, SysUtils;
+
 type
-   TINIR = record
-   UseIntCallBook: string[3];
-   PhotoDir: string;
-   StateToQSLInfo: Boolean;
-   Fl_PATH: string;
-   WSJT_PATH: string;
-   FLDIGI_USE: Boolean;
-   WSJT_USE: Boolean;
-   ShowTRXForm: Boolean;
-   _l: Integer;
-   _t: Integer;
-   _w: Integer;
-   _h: Integer;
-   PastMode: string;
-   PastSubMode: string;
-   showBand: string;
-   PastBand: Integer;
+  TINIR = record
+    UseIntCallBook: boolean;
+    PhotoDir: string;
+    StateToQSLInfo: boolean;
+    Fl_PATH: string;
+    WSJT_PATH: string;
+    FLDIGI_USE: boolean;
+    WSJT_USE: boolean;
+    ShowTRXForm: boolean;
+    _l: integer;
+    _t: integer;
+    _w: integer;
+    _h: integer;
+    PastMode: string;
+    PastSubMode: string;
+    showBand: string;
+    PastBand: integer;
+    NumStart: integer;
+    Language: string;
+    Map_Use: boolean;
+    PrintPrev: boolean;
+    FormState: string;
+
   end;
 
 implementation

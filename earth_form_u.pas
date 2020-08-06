@@ -30,7 +30,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, InitDB_dm;
+uses dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 

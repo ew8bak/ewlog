@@ -221,7 +221,7 @@ begin
   begin
     Close;
     SQL.Clear;
-    SQL.Add('UPDATE ' + LogTable +
+    SQL.Add('UPDATE ' + LBRecord.LogTable +
       ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, `QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode,`QSOSubMode`=:QSOSubMode, `QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived, `OMName`=:OMName, `OMQTH`=:OMQTH, `State`=:State, `Grid`=:Grid, `IOTA`=:IOTA, `QSLManager`=:QSLManager, `QSLSent`=:QSLSent, `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `MainPrefix`=:MainPrefix, `DXCCPrefix`=:DXCCPrefix, `CQZone`=:CQZone, `ITUZone`=:ITUZone, `QSOAddInfo`=:QSOAddInfo, `Marker`=:Marker, `ManualSet`=:ManualSet, `DigiBand`=:DigiBand, `Continent`=:Continent, `ShortNote`=:ShortNote, `QSLReceQSLcc`=:QSLReceQSLcc, `LoTWRec`=:LoTWRec, `LoTWRecDate`=:LoTWRecDate, `QSLInfo`=:QSLInfo, `Call`=:Call, `State1`=:State1, `State2`=:State2, `State3`=:State3, `State4`=:State4, `WPX`=:WPX, `ValidDX`=:ValidDX, `SRX`=:SRX, `SRX_STRING`=:SRX_STRING, `STX`=:STX, `STX_STRING`=:STX_STRING, `SAT_NAME`=:SAT_NAME, `SAT_MODE`=:SAT_MODE, `PROP_MODE`=:PROP_MODE, `LoTWSent`=:LoTWSent, `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSL_SENT_VIA`=:QSL_SENT_VIA, `DXCC`=:DXCC, `NoCalcDXCC`=:NoCalcDXCC WHERE `UnUsedIndex`=:UnUsedIndex');
     Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
     Params.ParamByName('CallSign').AsString := Edit1.Text;
@@ -338,7 +338,7 @@ begin
   begin
     Close;
     SQL.Clear;
-    SQL.Add('select * from ' + LogTable + ' where CallSign = "' + Edit1.Text + '"');
+    SQL.Add('select * from ' + LBRecord.LogTable + ' where CallSign = "' + Edit1.Text + '"');
     Open;
   end;
  {
@@ -558,7 +558,7 @@ procedure TEditQSO_Form.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
-  if InitLog_DB = 'YES' then
+  if DBRecord.InitDB = 'YES' then
   begin
     if MainForm.MySQLLOGDBConnection.Connected then
     begin
@@ -618,7 +618,7 @@ var
   i: integer;
 begin
   try
-    if InitLog_DB = 'YES' then
+    if DBRecord.InitDB = 'YES' then
     begin
     //  SatPropQuery.DataBase := MainForm.ServiceDBConnection;
       if MainForm.MySQLLOGDBConnection.Connected then
@@ -654,7 +654,7 @@ begin
       if Pos('has gone away', E.Message) > 0 then
       begin
         ShowMessage(rMySQLHasGoneAway);
-        UseCallBook := 'NO';
+        //UseCallBook := 'NO';
      //   DefaultDB := 'SQLite';
      //   dbSel := 'SQLite';
      //   MainForm.InitializeDB('SQLite');

@@ -42,7 +42,7 @@ var
   LogTableSQLite: string;
   copyHost, copyUser, copyPass, copyDB, copyPort: string;
 begin
-
+{
   //Синхронизация из MySQL в SQLite
   if dbSel = 'MySQL' then
   begin
@@ -506,7 +506,7 @@ begin
     end;
     MainForm.DBGrid1.DataSource.DataSet.Filtered := False;
     MainForm.DBGrid1.DataSource.DataSet.Last;
-  end;
+  end;  }
 end;
 
 procedure TSynDBDate.FormShow(Sender: TObject);
