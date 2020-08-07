@@ -19,6 +19,7 @@ type
     SQLitePATH: string;
     InitDB: string[3];
     DefCall: string;
+    CurrCall: string;
     Connected: Boolean;
   end;
 

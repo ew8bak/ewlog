@@ -5662,7 +5662,6 @@ begin
         SQSO.My_Lon := '';
       end;
       SQSO.NLogDB := LBRecord.LogTable;
-      //SaveQSO(SQSO);
       MainFunc.SaveQSO(SQSO);
 
       if LBRecord.AutoEQSLcc then
@@ -5798,7 +5797,9 @@ begin
           ComboBox4.Text, ComboBox5.Text, Edit1.Text, Edit2.Text, Edit4.Text,
           Edit3.Text, Edit11.Text);
 
-      SelDB(CallLogBook);
+      if InitDB.GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB) then
+        if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+          ShowMessage(rDBError);
       Clr();
     end;
   end;
@@ -5861,7 +5862,9 @@ begin
     InitDB.DefTransaction.Commit;
     EditFlag := False;
     CheckBox1.Checked := True;
-    SelDB(CallLogBook);
+    if InitDB.GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB) then
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
     Clr();
   end;
 end;
