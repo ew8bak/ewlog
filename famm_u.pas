@@ -138,7 +138,7 @@ begin
     ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text,
       BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
-    MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''), MainForm.ComboBox2.Text);
+   // MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''), MainForm.ComboBox2.Text);
   end;
 end;
 

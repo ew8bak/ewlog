@@ -291,16 +291,16 @@ begin
     if CheckBox2.Checked = True then
     begin
       INIFile.WriteString('SetLog', 'ShowBand', 'True');
-      MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''),
-        MainForm.ComboBox2.Text);
+     // MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''),
+      //  MainForm.ComboBox2.Text);
     end
     else
     begin
       if CheckBox2.Checked = False then
       begin
         INIFile.WriteString('SetLog', 'ShowBand', 'False');
-        MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''),
-          MainForm.ComboBox2.Text);
+      //  MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''),
+       //   MainForm.ComboBox2.Text);
       end;
     end;
     MainForm.DBGrid1.Invalidate;

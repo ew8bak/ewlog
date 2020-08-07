@@ -568,10 +568,7 @@ type
     function FindCountry(ISOCode: string): string;
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     function FindISOCountry(Country: string): string;
-    function FindMode(submode: string): string;
-    procedure addModes(modeItem: string; subModesFlag: boolean;
-      var subModes: TStringList);
-    procedure addBands(FreqBand: string; mode: string);
+   // function FindMode(submode: string): string;
     procedure InitClusterINI;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
@@ -645,82 +642,7 @@ type
 
 { TMainForm }
 
-procedure TMainForm.addModes(modeItem: string; subModesFlag: boolean;
-  var subModes: TStringList);
-var
-  i: integer;
-begin
-  if InitDB.ServiceDBConnection.Connected then
-  begin
-    subModesQuery.Close;
-    subModes.Delimiter := ',';
-
-    if subModesFlag = False then
-    begin
-      subModesQuery.SQL.Text := 'SELECT * FROM Modes WHERE Enable = 1';
-      subModesQuery.Open;
-      subModesQuery.First;
-      for i := 0 to subModesQuery.RecordCount - 1 do
-      begin
-        subModes.Add(subModesQuery.FieldByName('mode').AsString);
-        subModesQuery.Next;
-      end;
-    end
-    else
-    begin
-      subModesQuery.Close;
-      subModesQuery.SQL.Text :=
-        'SELECT submode FROM Modes WHERE mode = ' + QuotedStr(modeItem);
-      subModesQuery.Open;
-      subModes.DelimitedText := subModesQuery.FieldByName('submode').AsString;
-    end;
-    subModesQuery.Close;
-  end;
-end;
-
-procedure TMainForm.addBands(FreqBand: string; mode: string);
-var
-  i: integer;
-  lastBand: integer;
-  lastBandName: string;
-begin
-  DefaultFormatSettings.DecimalSeparator := '.';
-  if InitDB.ServiceDBConnection.Connected then
-  begin
-    lastBand := ComboBox1.ItemIndex;
-    lastBandName := ComboBox1.Text;
-    BandsQuery.Close;
-    ComboBox1.Items.Clear;
-    BandsQuery.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
-    BandsQuery.Open;
-    BandsQuery.First;
-    for i := 0 to BandsQuery.RecordCount - 1 do
-    begin
-      if FreqBand = 'True' then
-        ComboBox1.Items.Add(BandsQuery.FieldByName('band').AsString)
-      else
-      begin
-        if mode = 'SSB' then
-          ComboBox1.Items.Add(FormatFloat(view_freq,
-            BandsQuery.FieldByName('ssb').AsFloat));
-        if mode = 'CW' then
-          ComboBox1.Items.Add(FormatFloat(view_freq,
-            BandsQuery.FieldByName('cw').AsFloat));
-        if (mode <> 'CW') and (mode <> 'SSB') then
-          ComboBox1.Items.Add(FormatFloat(view_freq,
-            BandsQuery.FieldByName('b_begin').AsFloat));
-      end;
-      BandsQuery.Next;
-    end;
-    BandsQuery.Close;
-    if ComboBox1.Items.IndexOf(lastBandName) >= 0 then
-      ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(lastBandName)
-    else
-      ComboBox1.ItemIndex := lastBand;
-  end;
-end;
-
-function TMainForm.FindMode(submode: string): string;
+{function TMainForm.FindMode(submode: string): string;
 var
   i, j: integer;
 begin
@@ -742,7 +664,7 @@ begin
   end;
   Result := subModesQuery.FieldByName('mode').AsString;
   subModesQuery.Close;
-end;
+end; }
 
 function TMainForm.FindISOCountry(Country: string): string;
 var
@@ -2135,9 +2057,8 @@ var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
   deldot: string;
-  modesString: TStringList;
+  i: Integer;
 begin
-  modesString := TStringList.Create;
   deldot := ComboBox1.Text;
   if Pos('M', deldot) > 0 then
   begin
@@ -2146,11 +2067,14 @@ begin
   end
   else
     Delete(deldot, length(deldot) - 2, 1);
+
+   //Загрузка сабмодуляций
   ComboBox9.Items.Clear;
-  addModes(ComboBox2.Text, True, modesString);
-  ComboBox9.Items := modesString;
-  modesString.Free;
-  addBands(INIFile.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
+  for i:=0 to 20 do begin
+  if MainFunc.LoadSubModes(ComboBox2.Text)[i] <> '' then
+  ComboBox9.Items.Add(MainFunc.LoadSubModes(ComboBox2.Text)[i]);
+  end;
+
   if ComboBox2.Text <> 'SSB' then
     ComboBox9.Text := '';
 
@@ -3007,12 +2931,20 @@ begin
 
   InitClusterINI;
 
+  //Загрузка модуляций
+  ComboBox2.Items.Clear;
+  for i:=0 to 46 do begin
+  if MainFunc.LoadModes[i] <> '' then
+  ComboBox2.Items.Add(MainFunc.LoadModes[i]);
+  end;
 
   //загрузка диапазонов
+  ComboBox1.Items.Clear;
   for i:=0 to 25 do begin
   if MainFunc.LoadBands(ComboBox2.Text)[i] <> '' then
   ComboBox1.Items.Add(MainFunc.LoadBands(ComboBox2.Text)[i]);
   end;
+
 
   lastUDPport := -1;
   lastTCPport := -1;

@@ -108,7 +108,7 @@ begin
     MMQuery.SQLTransaction.Commit;
     ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
-    MainForm.AddModes('', False, modesString);
+   // MainForm.AddModes('', False, modesString);
     MainForm.ComboBox2.Items := modesString;
     modesString.Free;
   end;

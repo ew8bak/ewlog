@@ -10,6 +10,8 @@ uses
 
 type
   bandArray = array[0..25] of string;
+  modeArray = array[0..46] of string;
+  SubmodeArray = array[0..20] of string;
 
   { TMainFunc }
 
@@ -30,6 +32,8 @@ type
     function WorkedLoTW(Callsign, band, mode: string): boolean;
     function SearchPrefix(Callsign, Grid: string): TPFXR;
     function LoadBands(mode: string): bandArray;
+    function LoadModes: modeArray;
+    function LoadSubModes(mode: string): SubmodeArray;
 
   end;
 
@@ -44,6 +48,61 @@ uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
 
+function TMainFunc.LoadSubModes(mode: string): SubmodeArray;
+var
+  i: integer;
+  Query: TSQLQuery;
+  SubModeList: SubmodeArray;
+  SubModeSlist: TStringList;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    SubModeSlist := TStringList.Create;
+    if InitDB.ServiceDBConnection.Connected then
+    begin
+      SubModeSlist.Delimiter := ',';
+      Query.DataBase := InitDB.ServiceDBConnection;
+      Query.SQL.Text := 'SELECT submode FROM Modes WHERE mode = ' + QuotedStr(mode);
+      Query.Open;
+      SubModeSlist.DelimitedText := Query.FieldByName('submode').AsString;
+      Query.Close;
+    end;
+    for i := 0 to SubModeSlist.Count - 1 do
+      SubModeList[i] := SubModeSlist.Strings[i];
+    Result := SubModeList;
+  finally
+    FreeAndNil(Query);
+    FreeAndNil(SubModeSlist);
+  end;
+end;
+
+function TMainFunc.LoadModes: modeArray;
+var
+  i: integer;
+  Query: TSQLQuery;
+  ModeList: modeArray;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if InitDB.ServiceDBConnection.Connected then
+    begin
+      Query.DataBase := InitDB.ServiceDBConnection;
+      Query.SQL.Text := 'SELECT * FROM Modes WHERE Enable = 1';
+      Query.Open;
+      Query.First;
+      for i := 0 to Query.RecordCount - 1 do
+      begin
+        ModeList[i] := Query.FieldByName('mode').AsString;
+        Query.Next;
+      end;
+      Query.Close;
+    end;
+    Result := ModeList;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
 function TMainFunc.LoadBands(mode: string): bandArray;
 var
   Query: TSQLQuery;
@@ -51,9 +110,9 @@ var
   i: integer;
 begin
   try
+    Query := TSQLQuery.Create(nil);
     if InitDB.ServiceDBConnection.Connected then
     begin
-      Query := TSQLQuery.Create(nil);
       Query.DataBase := InitDB.ServiceDBConnection;
       Query.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
       Query.Open;
