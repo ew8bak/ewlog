@@ -568,7 +568,7 @@ type
     function FindCountry(ISOCode: string): string;
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     function FindISOCountry(Country: string): string;
-   // function FindMode(submode: string): string;
+    // function FindMode(submode: string): string;
     procedure InitClusterINI;
     procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
@@ -1535,12 +1535,6 @@ var
   Lat, Lon: string;
   PFXR: TPFXR;
 begin
-  Edit1.Clear;
-  Edit2.Clear;
-  Edit3.Clear;
-  Edit4.Clear;
-  Edit5.Clear;
-  Edit6.Clear;
   PFXR.Country := '';
   PFXR.ARRLPrefix := '';
   PFXR.Prefix := '';
@@ -1567,24 +1561,6 @@ begin
     EditButton1.Text := engText;
     exit;
   end;
-  if Length(EditButton1.Text) >= 1 then
-  begin
-    PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
-    Label32.Caption := PFXR.Azimuth;
-    Label37.Caption := PFXR.Distance;
-    Label40.Caption := PFXR.Latitude;
-    Label42.Caption := PFXR.Longitude;
-    Label33.Caption := PFXR.Country;
-    Label43.Caption := PFXR.Continent;
-    Label34.Caption := PFXR.ARRLPrefix;
-    Label38.Caption := PFXR.Prefix;
-    Label45.Caption := PFXR.CQZone;
-    Label47.Caption := PFXR.ITUZone;
-    timedif := PFXR.TimeDiff;
-  end;
-  dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
-  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
 
   if EditFlag then
     Exit;
@@ -1602,8 +1578,10 @@ begin
     label45.Caption := '..';
     label47.Caption := '..';
     label42.Caption := '.......';
-    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon), LBRecord.OpLat, LBRecord.OpLon);
-    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon), LBRecord.OpLat, LBRecord.OpLon);
+    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
+      LBRecord.OpLat, LBRecord.OpLon);
+    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
+      LBRecord.OpLat, LBRecord.OpLon);
     Exit;
   end;
 
@@ -1631,10 +1609,37 @@ begin
 
   if QSL = 2 then
     Shape1.Brush.Color := clLime;
-  {
+
   if (Sender = ComboBox1) or (Sender = ComboBox2) then
     Exit;
 
+  Edit1.Clear;
+  Edit2.Clear;
+  Edit3.Clear;
+  Edit4.Clear;
+  Edit5.Clear;
+  Edit6.Clear;
+
+  if Length(EditButton1.Text) >= 1 then
+  begin
+    PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
+    Label32.Caption := PFXR.Azimuth;
+    Label37.Caption := PFXR.Distance;
+    Label40.Caption := PFXR.Latitude;
+    Label42.Caption := PFXR.Longitude;
+    Label33.Caption := PFXR.Country;
+    Label43.Caption := PFXR.Continent;
+    Label34.Caption := PFXR.ARRLPrefix;
+    Label38.Caption := PFXR.Prefix;
+    Label45.Caption := PFXR.CQZone;
+    Label47.Caption := PFXR.ITUZone;
+    timedif := PFXR.TimeDiff;
+  end;
+  dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+
+  {
 
   if MenuItem111.Checked = True then
   begin
@@ -1729,10 +1734,10 @@ begin
     seleditnum := EditButton1.SelStart;
   if (Key = VK_RETURN) then
   begin
-   // if (CallBookLiteConnection.Connected = False) and
-   //   (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
-   //   InformationForm.GetInformation(EditButton1.Text, True);
-   if Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3 then
+    // if (CallBookLiteConnection.Connected = False) and
+    //   (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
+    //   InformationForm.GetInformation(EditButton1.Text, True);
+    if Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3 then
       InformationForm.GetInformation(EditButton1.Text, True);
   end;
 end;
@@ -2057,7 +2062,7 @@ var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
   deldot: string;
-  i: Integer;
+  i: integer;
 begin
   deldot := ComboBox1.Text;
   if Pos('M', deldot) > 0 then
@@ -2068,10 +2073,10 @@ begin
   else
     Delete(deldot, length(deldot) - 2, 1);
 
-   //Загрузка сабмодуляций
+  //Загрузка сабмодуляций
   ComboBox9.Items.Clear;
-  for i:=0 to High(MainFunc.LoadSubModes(ComboBox2.Text)) do
-  ComboBox9.Items.Add(MainFunc.LoadSubModes(ComboBox2.Text)[i]);
+  for i := 0 to High(MainFunc.LoadSubModes(ComboBox2.Text)) do
+    ComboBox9.Items.Add(MainFunc.LoadSubModes(ComboBox2.Text)[i]);
 
 
   if ComboBox2.Text <> 'SSB' then
@@ -2705,7 +2710,7 @@ begin
         Data^.Comment := Comment;
         Data^.Time := Time;
         Data^.Loc := Loc;
-      //  Data^.Country := SearchCountry(DX, False);
+        //  Data^.Country := SearchCountry(DX, False);
         VirtualStringTree1.Expanded[XNode^.Parent] := ClusterFilter.CheckBox1.Checked;
         FindCountryFlag(Data^.Country);
       end
@@ -2721,7 +2726,7 @@ begin
         Data^.Comment := Comment;
         Data^.Time := Time;
         Data^.Loc := Loc;
-      //  Data^.Country := SearchCountry(DX, False);
+        //  Data^.Country := SearchCountry(DX, False);
         FindCountryFlag(Data^.Country);
       end;
     end;
@@ -2932,16 +2937,16 @@ begin
 
   //Загрузка модуляций
   ComboBox2.Items.Clear;
-  for i:=0 to High(MainFunc.LoadModes) do
-  ComboBox2.Items.Add(MainFunc.LoadModes[i]);
-  ComboBox2.ItemIndex:=ComboBox2.Items.IndexOf(IniSet.PastMode);
+  for i := 0 to High(MainFunc.LoadModes) do
+    ComboBox2.Items.Add(MainFunc.LoadModes[i]);
+  ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(IniSet.PastMode);
 
 
   //загрузка диапазонов
   ComboBox1.Items.Clear;
-  for i:=0 to High(MainFunc.LoadBands(ComboBox2.Text)) do
-  ComboBox1.Items.Add(MainFunc.LoadBands(ComboBox2.Text)[i]);
-  ComboBox1.ItemIndex:=IniSet.PastBand;
+  for i := 0 to High(MainFunc.LoadBands(ComboBox2.Text)) do
+    ComboBox1.Items.Add(MainFunc.LoadBands(ComboBox2.Text)[i]);
+  ComboBox1.ItemIndex := IniSet.PastBand;
 
   lastUDPport := -1;
   lastTCPport := -1;
@@ -2973,7 +2978,7 @@ begin
   if usefldigi then
     Fl_Timer.Enabled := True;
 
-//  sprav := INIFile.ReadString('SetLog', 'Sprav', '');
+  //  sprav := INIFile.ReadString('SetLog', 'Sprav', '');
   PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 
   if MenuItem86.Checked = True then
@@ -3692,7 +3697,7 @@ begin
   numberToPrint := '';
   resStream := TLazarusResourceStream.Create('report', nil);
   try
-    if DBRecord.DefaultDB  = 'MySQL' then
+    if DBRecord.DefaultDB = 'MySQL' then
       PrintQuery.DataBase := InitDB.MySQLConnection
     else
       PrintQuery.DataBase := InitDB.SQLiteConnection;
@@ -4639,8 +4644,8 @@ begin
     IniSet.WSJT_PATH := Copy(wsjt_args, 1, p + 3);
     Delete(wsjt_args, 1, p + 4);
   end;
-  if (IniSet.WSJT_PATH <> '') and FileExists(IniSet.WSJT_PATH) and not
-    WSJT_UDP_Form.WSJT_IsRunning then
+  if (IniSet.WSJT_PATH <> '') and FileExists(IniSet.WSJT_PATH) and
+    not WSJT_UDP_Form.WSJT_IsRunning then
   begin
     txWSJT := not connectedWSJT;
     if dmFunc.RunProgram(IniSet.WSJT_PATH, wsjt_args) then
@@ -4683,7 +4688,8 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('DELETE FROM ' + LBRecord.LogTable + ' WHERE `UnUsedIndex`=:UnUsedIndex');
+        SQL.Add('DELETE FROM ' + LBRecord.LogTable +
+          ' WHERE `UnUsedIndex`=:UnUsedIndex');
         Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
         ExecSQL;
       end;
@@ -5631,7 +5637,7 @@ begin
       SQSO.LotWSent := 0;
       SQSO.QSL_RCVD_VIA := '';
       SQSO.QSL_SENT_VIA := ComboBox6.Text;
- //     SQSO.DXCC := IntToStr(DXCCNum);
+      //     SQSO.DXCC := IntToStr(DXCCNum);
       SQSO.USERS := '';
       SQSO.NoCalcDXCC := 0;
       SQSO.SYNC := 0;
@@ -5948,9 +5954,9 @@ begin
   if Length(Data^.Spots) > 1 then
   begin
     EditButton1.Text := Data^.Spots;
-   // if (CallBookLiteConnection.Connected = False) and
-   //   (Length(Data^.Spots) >= 3) then
-   //   InformationForm.GetInformation(Data^.Spots, True);
+    // if (CallBookLiteConnection.Connected = False) and
+    //   (Length(Data^.Spots) >= 3) then
+    //   InformationForm.GetInformation(Data^.Spots, True);
 
     if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
       (TRXForm.radio.GetFreqHz > 0) then
