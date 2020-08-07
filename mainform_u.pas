@@ -2070,10 +2070,9 @@ begin
 
    //Загрузка сабмодуляций
   ComboBox9.Items.Clear;
-  for i:=0 to 20 do begin
-  if MainFunc.LoadSubModes(ComboBox2.Text)[i] <> '' then
+  for i:=0 to High(MainFunc.LoadSubModes(ComboBox2.Text)) do
   ComboBox9.Items.Add(MainFunc.LoadSubModes(ComboBox2.Text)[i]);
-  end;
+
 
   if ComboBox2.Text <> 'SSB' then
     ComboBox9.Text := '';
@@ -2933,18 +2932,14 @@ begin
 
   //Загрузка модуляций
   ComboBox2.Items.Clear;
-  for i:=0 to 46 do begin
-  if MainFunc.LoadModes[i] <> '' then
+  for i:=0 to High(MainFunc.LoadModes) do
   ComboBox2.Items.Add(MainFunc.LoadModes[i]);
-  end;
+
 
   //загрузка диапазонов
   ComboBox1.Items.Clear;
-  for i:=0 to 25 do begin
-  if MainFunc.LoadBands(ComboBox2.Text)[i] <> '' then
+  for i:=0 to High(MainFunc.LoadBands(ComboBox2.Text)) do
   ComboBox1.Items.Add(MainFunc.LoadBands(ComboBox2.Text)[i]);
-  end;
-
 
   lastUDPport := -1;
   lastTCPport := -1;

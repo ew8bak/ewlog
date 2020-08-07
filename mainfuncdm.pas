@@ -9,9 +9,9 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record;
 
 type
-  bandArray = array[0..25] of string;
-  modeArray = array[0..46] of string;
-  SubmodeArray = array[0..20] of string;
+  bandArray = array of string;
+  modeArray = array of string;
+  subModeArray = array of string;
 
   { TMainFunc }
 
@@ -33,7 +33,7 @@ type
     function SearchPrefix(Callsign, Grid: string): TPFXR;
     function LoadBands(mode: string): bandArray;
     function LoadModes: modeArray;
-    function LoadSubModes(mode: string): SubmodeArray;
+    function LoadSubModes(mode: string): subModeArray;
 
   end;
 
@@ -48,11 +48,11 @@ uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
 
-function TMainFunc.LoadSubModes(mode: string): SubmodeArray;
+function TMainFunc.LoadSubModes(mode: string): subModeArray;
 var
   i: integer;
   Query: TSQLQuery;
-  SubModeList: SubmodeArray;
+  SubModeList: subModeArray;
   SubModeSlist: TStringList;
 begin
   try
@@ -67,6 +67,9 @@ begin
       SubModeSlist.DelimitedText := Query.FieldByName('submode').AsString;
       Query.Close;
     end;
+    if SubModeSlist.Count = 0 then
+      Exit;
+    SetLength(SubModeList, SubModeSlist.Count);
     for i := 0 to SubModeSlist.Count - 1 do
       SubModeList[i] := SubModeSlist.Strings[i];
     Result := SubModeList;
@@ -89,6 +92,9 @@ begin
       Query.DataBase := InitDB.ServiceDBConnection;
       Query.SQL.Text := 'SELECT * FROM Modes WHERE Enable = 1';
       Query.Open;
+      if Query.RecordCount = 0 then
+        Exit;
+      SetLength(ModeList, Query.RecordCount);
       Query.First;
       for i := 0 to Query.RecordCount - 1 do
       begin
@@ -116,6 +122,9 @@ begin
       Query.DataBase := InitDB.ServiceDBConnection;
       Query.SQL.Text := 'SELECT * FROM Bands WHERE Enable = 1';
       Query.Open;
+      if Query.RecordCount = 0 then
+        Exit;
+      SetLength(BandList, Query.RecordCount);
       Query.First;
       for i := 0 to Query.RecordCount - 1 do
       begin
