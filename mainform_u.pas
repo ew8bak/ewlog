@@ -2934,12 +2934,14 @@ begin
   ComboBox2.Items.Clear;
   for i:=0 to High(MainFunc.LoadModes) do
   ComboBox2.Items.Add(MainFunc.LoadModes[i]);
+  ComboBox2.ItemIndex:=ComboBox2.Items.IndexOf(IniSet.PastMode);
 
 
   //загрузка диапазонов
   ComboBox1.Items.Clear;
   for i:=0 to High(MainFunc.LoadBands(ComboBox2.Text)) do
   ComboBox1.Items.Add(MainFunc.LoadBands(ComboBox2.Text)[i]);
+  ComboBox1.ItemIndex:=IniSet.PastBand;
 
   lastUDPport := -1;
   lastTCPport := -1;
