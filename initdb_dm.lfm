@@ -3,8 +3,8 @@ object InitDB: TInitDB
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 230
-  HorizontalOffset = 348
-  VerticalOffset = 147
+  HorizontalOffset = 342
+  VerticalOffset = 144
   Width = 389
   object ServiceDBConnection: TSQLite3Connection
     Connected = False

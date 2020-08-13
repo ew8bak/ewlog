@@ -274,8 +274,8 @@ begin
       UpdateConfQuery.DataBase := InitDB.MySQLConnection
     else
       UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
-    if MainForm.DBLookupComboBox1.Text <> '' then
-      SelectCall(MainForm.DBLookupComboBox1.KeyValue);
+    if MainForm.ComboBox10.Text <> '' then
+      SelectCall(MainForm.ComboBox10.Text);
   end;
 end;
 
@@ -300,7 +300,7 @@ begin
           UpdateConfQuery.DataBase := InitDB.MySQLConnection
         else
           UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
-        SelectCall(MainForm.DBLookupComboBox1.KeyValue);
+        SelectCall(MainForm.ComboBox10.Text);
       end;
 
       ListBox1.Clear;
@@ -314,7 +314,7 @@ begin
         SQLQuery2.Next;
       end;
       for i := 0 to ListBox1.Count - 1 do
-        if Pos(MainForm.DBLookupComboBox1.KeyValue, ListBox1.Items[i]) > 0 then
+        if Pos(MainForm.ComboBox10.Text, ListBox1.Items[i]) > 0 then
         begin
           ListBox1.Selected[i] := True;
           exit;
@@ -395,7 +395,7 @@ begin
       end;
       MainForm.SelDB(CallLogBook);
       for i := 0 to ListBox1.Count - 1 do
-        if Pos(MainForm.DBLookupComboBox1.KeyValue, ListBox1.Items[i]) > 0 then
+        if Pos(MainForm.ComboBox10.Text, ListBox1.Items[i]) > 0 then
         begin
           ListBox1.Selected[i] := True;
           exit;
@@ -413,9 +413,9 @@ begin
   begin
     INIFile.WriteString('SetLog', 'DefaultCallLogBook', ListBox1.Items[ListBox1.ItemIndex]);
     ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
-    MainForm.DBLookupComboBox1.KeyValue := ListBox1.Items[ListBox1.ItemIndex];
-    MainForm.DBLookupComboBox1CloseUp(Self);
-    if ListBox1.Items[ListBox1.ItemIndex] = MainForm.DBLookupComboBox1.KeyValue then
+    MainForm.ComboBox10.Text := ListBox1.Items[ListBox1.ItemIndex];
+    //MainForm.ComboBox10CloseUp(Self);
+    if ListBox1.Items[ListBox1.ItemIndex] = MainForm.ComboBox10.Text then
       Label15.Visible := True
     else
       Label15.Visible := False;

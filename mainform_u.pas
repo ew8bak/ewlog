@@ -25,6 +25,7 @@ type
     CheckBox6: TCheckBox;
     ClearEdit: TAction;
     ComboBox1: TComboBox;
+    ComboBox10: TComboBox;
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
     ComboBox8: TComboBox;
@@ -225,8 +226,6 @@ type
     ComboBox7: TComboBox;
     LOGBookDS: TDataSource;
     FindQSODS: TDataSource;
-    DBLookupComboBox1: TDBLookupComboBox;
-    LogBookInfoDS: TDataSource;
     DateEdit1: TDateEdit;
     DateTimePicker1: TDateTimePicker;
     DBGrid1: TDBGrid;
@@ -337,6 +336,7 @@ type
     procedure CheckBox6Change(Sender: TObject);
     procedure CheckUpdatesTimerStartTimer(Sender: TObject);
     procedure CheckUpdatesTimerTimer(Sender: TObject);
+    procedure ComboBox10Change(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
     procedure ComboBox2CloseUp(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
@@ -349,7 +349,6 @@ type
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
-    procedure DBLookupComboBox1CloseUp(Sender: TObject);
     procedure dxClientConnect(aSocket: TLSocket);
     procedure dxClientDisconnect(aSocket: TLSocket);
     procedure dxClientReceive(aSocket: TLSocket);
@@ -1630,12 +1629,12 @@ begin
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
 
   FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(EditButton1.Text));
-  Edit1.Text:=FoundQSOR.OMName;
-  Edit2.Text:=FoundQSOR.OMQTH;
-  Edit3.Text:=FoundQSOR.Grid;
-  Edit4.Text:=FoundQSOR.State;
-  Edit5.Text:=FoundQSOR.IOTA;
-  Edit6.Text:=FoundQSOR.QSLManager;
+  Edit1.Text := FoundQSOR.OMName;
+  Edit2.Text := FoundQSOR.OMQTH;
+  Edit3.Text := FoundQSOR.Grid;
+  Edit4.Text := FoundQSOR.State;
+  Edit5.Text := FoundQSOR.IOTA;
+  Edit6.Text := FoundQSOR.QSLManager;
   if FoundQSOR.Found then
     EditButton1.Color := clMoneyGreen
   else
@@ -2058,6 +2057,29 @@ end;
 procedure TMainForm.CheckUpdatesTimerTimer(Sender: TObject);
 begin
   Update_Form.CheckUpdate;
+end;
+
+procedure TMainForm.ComboBox10Change(Sender: TObject);
+begin
+  Edit14.Clear;
+  Edit15.Clear;
+  if ComboBox10.ItemIndex > -1 then
+  begin
+    if Pos('/', ComboBox10.Text) > 0 then
+    begin
+      Label51.Visible := True;
+      Edit14.Visible := True;
+      Label52.Visible := True;
+      Edit15.Visible := True;
+    end
+    else
+    begin
+      Label51.Visible := False;
+      Edit14.Visible := False;
+      Label52.Visible := False;
+      Edit15.Visible := False;
+    end;
+  end;
 end;
 
 procedure TMainForm.ComboBox1CloseUp(Sender: TObject);
@@ -2592,31 +2614,6 @@ begin
   end;
 end;
 
-procedure TMainForm.DBLookupComboBox1CloseUp(Sender: TObject);
-begin
-  Edit14.Clear;
-  Edit15.Clear;
-  if DBLookupComboBox1.ItemIndex >= 0 then
-  begin
-    SelDB(DBLookupComboBox1.KeyValue);
-    CallLogBook := DBLookupComboBox1.KeyValue;
-    if Pos('/', DBLookupComboBox1.Text) > 0 then
-    begin
-      Label51.Visible := True;
-      Edit14.Visible := True;
-      Label52.Visible := True;
-      Edit15.Visible := True;
-    end
-    else
-    begin
-      Label51.Visible := False;
-      Edit14.Visible := False;
-      Label52.Visible := False;
-      Edit15.Visible := False;
-    end;
-  end;
-end;
-
 procedure TMainForm.dxClientConnect(aSocket: TLSocket);
 begin
   SpeedButton18.Enabled := False;
@@ -2978,6 +2975,12 @@ begin
     ComboBox1.Items.Add(MainFunc.LoadBands(ComboBox2.Text)[i]);
   ComboBox1.ItemIndex := IniSet.PastBand;
 
+  //загрузка позывных журналов
+  ComboBox10.Items.Clear;
+  for i := 0 to High(MainFunc.GetAllCallsign) do
+    ComboBox10.Items.Add(MainFunc.GetAllCallsign[i]);
+ ComboBox10.ItemIndex := ComboBox10.Items.IndexOf(DBRecord.DefCall);
+
   lastUDPport := -1;
   lastTCPport := -1;
   LTCPComponent1.ReuseAddress := True;
@@ -3264,7 +3267,7 @@ var
 begin
   if aSocket.GetMessage(mess) > 0 then
   begin
-    if mess = 'GetIP:' + DBLookupComboBox1.KeyValue then
+    if mess = 'GetIP:' + ComboBox10.Text then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' + IntToStr(lastTCPport))
     else
       StatusBar1.Panels.Items[0].Text := rSyncErrCall;
@@ -3594,8 +3597,8 @@ begin
   MenuItem := (Sender as TMenuItem);
   SetDefaultLang(FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
   IniSet.Language := FindISOCountry(MenuItem.Caption);
-  SelDB(DBLookupComboBox1.KeyValue);
-  CallLogBook := DBLookupComboBox1.KeyValue;
+  SelDB(ComboBox10.Text);
+  CallLogBook := ComboBox10.Text;
   ComboBox7.ItemIndex := 3;
 end;
 
@@ -4742,8 +4745,8 @@ end;
 
 procedure TMainForm.MenuItem55Click(Sender: TObject);
 begin
-  DBLookupComboBox1.SetFocus;
-  DBLookupComboBox1.DroppedDown := True;
+  ComboBox10.SetFocus;
+  ComboBox10.DroppedDown := True;
 end;
 
 procedure TMainForm.MenuItem56Click(Sender: TObject);

@@ -13,6 +13,7 @@ type
   bandArray = array of string;
   modeArray = array of string;
   subModeArray = array of string;
+  CallsignArray = array of string;
 
   { TMainFunc }
 
@@ -38,7 +39,7 @@ type
     function LoadSubModes(mode: string): subModeArray;
     function FindQSO(Callsign: string): TFoundQSOR;
     function SelectQSO(DataSource: TDataSource): TSelQSOR;
-
+    function GetAllCallsign: CallsignArray;
 
   end;
 
@@ -52,6 +53,37 @@ implementation
 uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+function TMainFunc.GetAllCallsign: CallsignArray;
+var
+  i: integer;
+  Query: TSQLQuery;
+  CallsignList: CallsignArray;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+    Query.DataBase := InitDB.MySQLConnection
+    else
+    Query.DataBase := InitDB.SQLiteConnection;
+
+     Query.SQL.Text := 'SELECT CallName FROM LogBookInfo';
+      Query.Open;
+      if Query.RecordCount = 0 then
+        Exit;
+      SetLength(CallsignList, Query.RecordCount);
+      Query.First;
+      for i := 0 to Query.RecordCount - 1 do
+      begin
+        CallsignList[i] := Query.FieldByName('CallName').AsString;
+        Query.Next;
+      end;
+      Query.Close;
+    Result := CallsignList;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
 
 function TMainFunc.SelectQSO(DataSource: TDataSource): TSelQSOR;
 var

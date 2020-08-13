@@ -183,8 +183,8 @@ begin
       if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin
-        MainForm.DBLookupComboBox1.SetFocus;
-        MainForm.DBLookupComboBox1.DroppedDown := True;
+      //  MainForm.DBLookupComboBox1.SetFocus;
+      //  MainForm.DBLookupComboBox1.DroppedDown := True;
       end;
     end;
     end else
@@ -196,7 +196,7 @@ end;
 
 procedure TCreateJournalForm.Edit2Change(Sender: TObject);
 begin
-  if MainForm.DBLookupComboBox1.Items.IndexOf(Edit2.Text) >= 0 then begin
+  if MainForm.ComboBox10.Items.IndexOf(Edit2.Text) >= 0 then begin
     Edit2.Color := clRed;
     Button2.Enabled:=False;
   end

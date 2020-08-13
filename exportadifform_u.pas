@@ -76,7 +76,7 @@ begin
     exportAdifForm.Close
   else
   begin
-    SaveDialog1.FileName := MainForm.DBLookupComboBox1.Text + '_' +
+    SaveDialog1.FileName := MainForm.ComboBox10.Text + '_' +
       FormatDateTime('yyyy-mm-dd', now);
     SaveDialog1.InitialDir := INIFile.ReadString('SetLog', 'ExportPath', '');
     if SaveDialog1.Execute then
@@ -241,7 +241,7 @@ begin
       Label1.Caption := rNumberOfQSO + ' ' + IntToStr(Nr);
 
       tmp := '<OPERATOR' + dmFunc.StringToADIF(
-        dmFunc.RemoveSpaces(MainForm.DBLookupComboBox1.Text), CheckBox2.Checked);
+        dmFunc.RemoveSpaces(MainForm.ComboBox10.Text), CheckBox2.Checked);
       Write(f, tmp);
 
       tmp := '<CALL' + dmFunc.StringToADIF(
@@ -580,7 +580,7 @@ begin
         rSentRecord + ' ' + IntToStr(nr);
 
       tmp := '<OPERATOR' + dmFunc.StringToADIF(
-        dmFunc.RemoveSpaces(MainForm.DBLookupComboBox1.Text), CheckBox2.Checked);
+        dmFunc.RemoveSpaces(MainForm.ComboBox10.Text), CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
       tmp := '<CALL' + dmFunc.StringToADIF(
