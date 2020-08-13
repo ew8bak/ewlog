@@ -3733,9 +3733,9 @@ object MainForm: TMainForm
       end
     end
   end
-  object Timer1: TTimer
-    OnTimer = Timer1Timer
-    Left = 272
+  object TimeTimer: TTimer
+    OnTimer = TimeTimerTimer
+    Left = 336
     Top = 416
   end
   object TrayIcon1: TTrayIcon
@@ -3795,32 +3795,6 @@ object MainForm: TMainForm
     DataSet = InitDB.DefLogBookQuery
     Left = 512
     Top = 72
-  end
-  object PrefixARRLQuery: TSQLQuery
-    PacketRecords = 2000
-    FieldDefs = <    
-      item
-        Name = 'PrefixList'
-        DataType = ftString
-        Precision = -1
-        Size = 765
-      end>
-    SQL.Strings = (
-      'select _id, PrefixList, Status from CountryDataEx where EndDate == ""'
-    )
-    Params = <>
-    Left = 928
-    Top = 64
-  end
-  object SQLQuery2: TSQLQuery
-    PacketRecords = 1000
-    FieldDefs = <>
-    SQL.Strings = (
-      ''
-    )
-    Params = <>
-    Left = 512
-    Top = 160
   end
   object LogBookInfoQuery: TSQLQuery
     FieldDefs = <    
@@ -5263,6 +5237,8 @@ object MainForm: TMainForm
   end
   object qBands: TSQLQuery
     FieldDefs = <>
+    Database = InitDB.ServiceDBConnection
+    Transaction = InitDB.ServiceTransaction
     Params = <>
     Left = 1102
     Top = 85
@@ -5626,21 +5602,6 @@ object MainForm: TMainForm
   object frCSVExport1: TfrCSVExport
     Left = 816
     Top = 592
-  end
-  object subModesQuery: TSQLQuery
-    PacketRecords = 100
-    FieldDefs = <    
-      item
-        Name = 'submode'
-        DataType = ftString
-        Size = 200
-      end>
-    SQL.Strings = (
-      'select _id, submode from Modes'
-    )
-    Params = <>
-    Left = 768
-    Top = 144
   end
   object CheckTableQuery: TSQLQuery
     FieldDefs = <>
