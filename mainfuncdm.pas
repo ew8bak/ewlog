@@ -69,7 +69,6 @@ function TMainFunc.FindQSO(Callsign: string): TFoundQSOR;
 var
   FoundQSOR: TFoundQSOR;
 begin
-  try
     InitDB.FindQSOQuery.Close;
     if DBRecord.CurrentDB = 'MySQL' then
       InitDB.FindQSOQuery.DataBase := InitDB.MySQLConnection
@@ -118,8 +117,6 @@ begin
       FoundQSOR.QSLManager := InitDB.FindQSOQuery.FieldByName('QSLManager').AsString;
     end;
     Result := FoundQSOR;
-  finally
-  end;
 end;
 
 function TMainFunc.LoadSubModes(mode: string): subModeArray;
