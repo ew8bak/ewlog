@@ -5218,6 +5218,7 @@ var
   FmtStngs: TFormatSettings;
   lat, lon: currency;
   SQSO: TQSO;
+  PFXR: TPFXR;
 begin
   QSL_SENT := '';
   QSL_SENT_ADV := '';
@@ -5287,7 +5288,7 @@ begin
       DigiBand_String := NameBand;
       Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
       DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
-
+      PFXR:=MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
       SQSO.CallSing := EditButton1.Text;
       SQSO.QSODate := DateEdit1.Date;
       SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
@@ -5307,15 +5308,15 @@ begin
       SQSO.QSLSentDate := 'NULL';
       SQSO.QSLRec := '0';
       SQSO.QSLRecDate := 'NULL';
-      SQSO.MainPrefix := Label38.Caption;
-      SQSO.DXCCPrefix := Label34.Caption;
-      SQSO.CQZone := Label45.Caption;
-      SQSO.ITUZone := Label47.Caption;
+      SQSO.MainPrefix := PFXR.Prefix;
+      SQSO.DXCCPrefix := PFXR.ARRLPrefix;
+      SQSO.CQZone := PFXR.CQZone;
+      SQSO.ITUZone := PFXR.ITUZone;
       SQSO.QSOAddInfo := Edit11.Text;
       SQSO.Marker := BoolToStr(CheckBox5.Checked);
       SQSO.ManualSet := 0;
       SQSO.DigiBand := FloatToStr(DigiBand);
-      SQSO.Continent := Label43.Caption;
+      SQSO.Continent := PFXR.Continent;
       SQSO.ShortNote := Edit11.Text;
       SQSO.QSLReceQSLcc := 0;
       SQSO.LotWRec := '';
@@ -5349,7 +5350,7 @@ begin
       SQSO.LotWSent := 0;
       SQSO.QSL_RCVD_VIA := '';
       SQSO.QSL_SENT_VIA := ComboBox6.Text;
-      //     SQSO.DXCC := IntToStr(DXCCNum);
+      SQSO.DXCC := IntToStr(PFXR.DXCCNum);
       SQSO.USERS := '';
       SQSO.NoCalcDXCC := 0;
       SQSO.SYNC := 0;
