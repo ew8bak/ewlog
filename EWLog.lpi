@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="67">
+    <Units Count="69">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -586,6 +586,16 @@
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit66>
+      <Unit67>
+        <Filename Value="selectqso_record.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="selectQSO_record"/>
+      </Unit67>
+      <Unit68>
+        <Filename Value="foundqso_record.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="foundQSO_record"/>
+      </Unit68>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

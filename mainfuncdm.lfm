@@ -4,6 +4,6 @@ object MainFunc: TMainFunc
   OldCreateOrder = False
   Height = 251
   HorizontalOffset = 248
-  VerticalOffset = 140
+  VerticalOffset = 123
   Width = 253
 end

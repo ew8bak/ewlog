@@ -18,6 +18,7 @@ type
     SQLiteConnection: TSQLite3Connection;
     DefTransaction: TSQLTransaction;
     DefLogBookQuery: TSQLQuery;
+    FindQSOQuery: TSQLQuery;
     ServiceDBConnection: TSQLite3Connection;
     ServiceTransaction: TSQLTransaction;
     procedure DataModuleCreate(Sender: TObject);
@@ -60,7 +61,9 @@ var
   end;
 
 implementation
+
 uses MainFuncDM;
+
 {$R *.lfm}
 
 { TInitDB }
@@ -82,8 +85,8 @@ begin
       if LogbookDBInit then
         if InitPrefix then
           if GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB) then
-           if not SelectLogbookTable(LBRecord.LogTable) then
-            ShowMessage(rDBError);
+            if not SelectLogbookTable(LBRecord.LogTable) then
+              ShowMessage(rDBError);
   MainFunc.LoadINIsettings;
 end;
 
@@ -132,12 +135,14 @@ begin
     begin
       DBRecord.CurrentDB := 'MySQL';
       DefLogBookQuery.DataBase := MySQLConnection;
+      FindQSOQuery.DataBase := MySQLConnection;
       Result := True;
     end;
   end;
   if DBRecord.DefaultDB = 'SQLite' then
   begin
     DefTransaction.DataBase := SQLiteConnection;
+    FindQSOQuery.DataBase := SQLiteConnection;
     SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
     SQLiteConnection.Connected := True;
     if SQLiteConnection.Connected then
@@ -350,8 +355,6 @@ begin
         'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
         + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
         + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-
-
         + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
         + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
         + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'

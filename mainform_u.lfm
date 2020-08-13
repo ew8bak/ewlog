@@ -1,7 +1,7 @@
 object MainForm: TMainForm
   Left = 391
   Height = 696
-  Top = 192
+  Top = 170
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -2769,7 +2769,7 @@ object MainForm: TMainForm
               Width = 83
               FieldName = 'NoCalcDXCC'
             end>
-          DataSource = DataSource2
+          DataSource = FindQSODS
           DefaultRowHeight = 15
           Font.Height = -11
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
@@ -3793,8 +3793,8 @@ object MainForm: TMainForm
     Left = 112
     Top = 592
   end
-  object DataSource2: TDataSource
-    DataSet = SQLQuery2
+  object FindQSODS: TDataSource
+    DataSet = InitDB.FindQSOQuery
     Left = 600
     Top = 312
   end
@@ -3826,8 +3826,8 @@ object MainForm: TMainForm
       ''
     )
     Params = <>
-    Left = 856
-    Top = 64
+    Left = 512
+    Top = 160
   end
   object LogBookInfoQuery: TSQLQuery
     FieldDefs = <    

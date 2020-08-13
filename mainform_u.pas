@@ -13,7 +13,8 @@ uses
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils, FPReadGif,
   FPReadPNG, RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
   Printers, DefaultTranslator, zipper, qso_record, ResourceStr, const_u,
-  SetupSQLquery, Types, LazFileUtils, process, prefix_record;
+  SetupSQLquery, Types, LazFileUtils, process, prefix_record,
+  selectQSO_record, foundQSO_record;
 
 type
 
@@ -223,7 +224,7 @@ type
     ComboBox6: TComboBox;
     ComboBox7: TComboBox;
     LOGBookDS: TDataSource;
-    DataSource2: TDataSource;
+    FindQSODS: TDataSource;
     DBLookupComboBox1: TDBLookupComboBox;
     LogBookInfoDS: TDataSource;
     DateEdit1: TDateEdit;
@@ -558,7 +559,7 @@ type
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure SelDB(calllbook: string);
     procedure SearchCallLog(callNameS: string; ind: integer; ShowCall: boolean);
-    procedure Clr();
+    procedure Clr;
     procedure SelectQSO(grid: boolean);
     procedure SetDXColumns(Save: boolean);
     function GetNewChunk: string;
@@ -1169,7 +1170,7 @@ begin
 end;
 
 
-procedure TMainForm.Clr();
+procedure TMainForm.Clr;
 var
   Centre: TRealPoint;
 begin
@@ -1534,19 +1535,8 @@ var
   QSL: integer;
   Lat, Lon: string;
   PFXR: TPFXR;
+  FoundQSOR: TFoundQSOR;
 begin
-  PFXR.Country := '';
-  PFXR.ARRLPrefix := '';
-  PFXR.Prefix := '';
-  PFXR.CQZone := '';
-  PFXR.ITUZone := '';
-  PFXR.Continent := '';
-  PFXR.Latitude := '';
-  PFXR.Longitude := '';
-  PFXR.DXCCNum := 0;
-  PFXR.TimeDiff := 0;
-  PFXR.Distance := '';
-  PFXR.Azimuth := '';
   DBand := False;
   DMode := False;
   DCall := False;
@@ -1620,7 +1610,7 @@ begin
   Edit5.Clear;
   Edit6.Clear;
 
-  if Length(EditButton1.Text) >= 1 then
+  if Length(EditButton1.Text) > 0 then
   begin
     PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
     Label32.Caption := PFXR.Azimuth;
@@ -1639,6 +1629,17 @@ begin
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
 
+  FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(EditButton1.Text));
+  Edit1.Text:=FoundQSOR.OMName;
+  Edit2.Text:=FoundQSOR.OMQTH;
+  Edit3.Text:=FoundQSOR.Grid;
+  Edit4.Text:=FoundQSOR.State;
+  Edit5.Text:=FoundQSOR.IOTA;
+  Edit6.Text:=FoundQSOR.QSLManager;
+  if FoundQSOR.Found then
+    EditButton1.Color := clMoneyGreen
+  else
+    EditButton1.Color := clDefault;
   {
 
   if MenuItem111.Checked = True then
@@ -1922,8 +1923,37 @@ begin
 end;
 
 procedure TMainForm.DBGrid1CellClick(Column: TColumn);
+var
+  SelQSOR: TSelQSOR;
+  FoundQSOR: TFoundQSOR;
+  PFXR: TPFXR;
+  Lat, Lon: string;
 begin
-  SelectQSO(True);
+  SelQSOR := MainFunc.SelectQSO(LOGBookDS);
+  FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(
+    DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString));
+  PFXR := MainFunc.SearchPrefix(
+    DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, Edit3.Text);
+  Label17.Caption := IntToStr(FoundQSOR.CountQSO);
+  Label18.Caption := SelQSOR.QSODate;
+  Label19.Caption := SelQSOR.QSOTime;
+  Label20.Caption := SelQSOR.QSOBand;
+  Label21.Caption := SelQSOR.QSOMode;
+  Label22.Caption := SelQSOR.OMName;
+  Label32.Caption := PFXR.Azimuth;
+  Label37.Caption := PFXR.Distance;
+  Label40.Caption := PFXR.Latitude;
+  Label42.Caption := PFXR.Longitude;
+  Label33.Caption := PFXR.Country;
+  Label43.Caption := PFXR.Continent;
+  Label34.Caption := PFXR.ARRLPrefix;
+  Label38.Caption := PFXR.Prefix;
+  Label45.Caption := PFXR.CQZone;
+  Label47.Caption := PFXR.ITUZone;
+  timedif := PFXR.TimeDiff;
+  dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
 end;
 
 procedure TMainForm.DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
@@ -2428,9 +2458,9 @@ var
   Field_QSLs: string;
   Field_QSLSentAdv: string;
 begin
-  Field_QSL := DataSource2.DataSet.FieldByName('QSL').AsString;
-  Field_QSLs := DataSource2.DataSet.FieldByName('QSLs').AsString;
-  Field_QSLSentAdv := DataSource2.DataSet.FieldByName('QSLSentAdv').AsString;
+  Field_QSL := FindQSODS.DataSet.FieldByName('QSL').AsString;
+  Field_QSLs := FindQSODS.DataSet.FieldByName('QSLs').AsString;
+  Field_QSLSentAdv := FindQSODS.DataSet.FieldByName('QSLSentAdv').AsString;
 
   if Field_QSLSentAdv = 'N' then
     with DBGrid2.Canvas do
@@ -2557,7 +2587,7 @@ begin
     begin
       DBGrid2.Canvas.FillRect(Rect);
       DBGrid2.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
-        dmFunc.GetBandFromFreq(DataSource2.DataSet.FieldByName('QSOBand').AsString));
+        dmFunc.GetBandFromFreq(FindQSODS.DataSet.FieldByName('QSOBand').AsString));
     end;
   end;
 end;
