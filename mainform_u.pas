@@ -2063,6 +2063,13 @@ procedure TMainForm.ComboBox10Change(Sender: TObject);
 begin
   Edit14.Clear;
   Edit15.Clear;
+
+  if InitDB.GetLogBookTable(ComboBox10.Text, DBRecord.DefaultDB) then
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError)
+    else
+      DBRecord.CurrCall := ComboBox10.Text;
+
   if ComboBox10.ItemIndex > -1 then
   begin
     if Pos('/', ComboBox10.Text) > 0 then
@@ -2979,7 +2986,7 @@ begin
   ComboBox10.Items.Clear;
   for i := 0 to High(MainFunc.GetAllCallsign) do
     ComboBox10.Items.Add(MainFunc.GetAllCallsign[i]);
- ComboBox10.ItemIndex := ComboBox10.Items.IndexOf(DBRecord.DefCall);
+  ComboBox10.ItemIndex := ComboBox10.Items.IndexOf(DBRecord.DefCall);
 
   lastUDPport := -1;
   lastTCPport := -1;
