@@ -55,10 +55,10 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U, InitDB_dm;
+uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U,
+  InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
-
 
 procedure TCreateJournalForm.Edit7Change(Sender: TObject);
 var
@@ -88,7 +88,7 @@ begin
   else
   begin
     CreateTableQuery.DataBase := InitDB.SQLiteConnection;
-   // MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
+    // MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
   end;
 end;
 
@@ -97,14 +97,14 @@ begin
   if DBRecord.CurrentDB = 'MySQL' then
   begin
     CreateTableQuery.DataBase := InitDB.MySQLConnection;
-   // MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
-    CreateTableQuery.Transaction:=InitDB.DefTransaction;
+    // MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
+    CreateTableQuery.Transaction := InitDB.DefTransaction;
   end
   else
   begin
     CreateTableQuery.DataBase := InitDB.SQLiteConnection;
-   // MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
-    CreateTableQuery.Transaction:=InitDB.DefTransaction;
+    // MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
+    CreateTableQuery.Transaction := InitDB.DefTransaction;
   end;
 end;
 
@@ -117,92 +117,95 @@ begin
   if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
     (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
-  else begin
-    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then begin
-    try
-      LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
-      CreateTableQuery.Close;
-      CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
-      CreateTableQuery.Open;
-      CountStr := CreateTableQuery.Fields[0].AsInteger + 1;
-      CreateTableQuery.Close;
+  else
+  begin
+    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+    begin
+      try
+        LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
+        CreateTableQuery.Close;
+        CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
+        CreateTableQuery.Open;
+        CountStr := CreateTableQuery.Fields[0].AsInteger + 1;
+        CreateTableQuery.Close;
 
-      CreateTableQuery.SQL.Text := Insert_Table_LogBookInfo;
-      CreateTableQuery.ParamByName('id').AsInteger := CountStr;
-      CreateTableQuery.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
-      CreateTableQuery.ParamByName('CallName').AsString := Edit2.Text;
-      CreateTableQuery.ParamByName('Name').AsString := Edit4.Text;
-      CreateTableQuery.ParamByName('QTH').AsString := Edit3.Text;
-      CreateTableQuery.ParamByName('ITU').AsString := Edit5.Text;
-      CreateTableQuery.ParamByName('CQ').AsString := Edit6.Text;
-      CreateTableQuery.ParamByName('Loc').AsString := Edit7.Text;
-      CreateTableQuery.ParamByName('Lat').AsString := Edit8.Text;
-      CreateTableQuery.ParamByName('Lon').AsString := Edit9.Text;
-      CreateTableQuery.ParamByName('Discription').AsString := Edit1.Text;
-      CreateTableQuery.ParamByName('QSLInfo').AsString := Edit10.Text;
-      CreateTableQuery.ParamByName('Table_version').AsString := Table_version;
-      CreateTableQuery.ExecSQL;
-      InitDB.DefTransaction.Commit;
+        CreateTableQuery.SQL.Text := Insert_Table_LogBookInfo;
+        CreateTableQuery.ParamByName('id').AsInteger := CountStr;
+        CreateTableQuery.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
+        CreateTableQuery.ParamByName('CallName').AsString := Edit2.Text;
+        CreateTableQuery.ParamByName('Name').AsString := Edit4.Text;
+        CreateTableQuery.ParamByName('QTH').AsString := Edit3.Text;
+        CreateTableQuery.ParamByName('ITU').AsString := Edit5.Text;
+        CreateTableQuery.ParamByName('CQ').AsString := Edit6.Text;
+        CreateTableQuery.ParamByName('Loc').AsString := Edit7.Text;
+        CreateTableQuery.ParamByName('Lat').AsString := Edit8.Text;
+        CreateTableQuery.ParamByName('Lon').AsString := Edit9.Text;
+        CreateTableQuery.ParamByName('Discription').AsString := Edit1.Text;
+        CreateTableQuery.ParamByName('QSLInfo').AsString := Edit10.Text;
+        CreateTableQuery.ParamByName('Table_version').AsString := Table_version;
+        CreateTableQuery.ExecSQL;
+        InitDB.DefTransaction.Commit;
 
-      if DBRecord.CurrentDB = 'MySQL' then
-      begin
-        InitDB.MySQLConnection.ExecuteDirect(
-          dmSQL.Table_Log_Table(LOG_PREFIX, 'MySQL'));
-        InitDB.MySQLConnection.ExecuteDirect(dmSQL.CreateIndex(
-          LOG_PREFIX, 'MySQL'));
-      end
-      else
-      begin
-        InitDB.SQLiteConnection.ExecuteDirect(
-          dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
-        InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
-          LOG_PREFIX, 'SQLite'));
+        if DBRecord.CurrentDB = 'MySQL' then
+        begin
+          InitDB.MySQLConnection.ExecuteDirect(
+            dmSQL.Table_Log_Table(LOG_PREFIX, 'MySQL'));
+          InitDB.MySQLConnection.ExecuteDirect(dmSQL.CreateIndex(
+            LOG_PREFIX, 'MySQL'));
+        end
+        else
+        begin
+          InitDB.SQLiteConnection.ExecuteDirect(
+            dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
+          InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
+            LOG_PREFIX, 'SQLite'));
+        end;
+        InitDB.DefTransaction.Commit;
+      finally
+        newLogBookName := Edit2.Text;
+        Edit1.Clear;
+        Edit2.Clear;
+        Edit3.Clear;
+        Edit4.Clear;
+        Edit5.Clear;
+        Edit6.Clear;
+        Edit7.Clear;
+        Edit8.Clear;
+        Edit9.Clear;
+        if Application.MessageBox(PChar(rSetAsDefaultJournal), PChar(rWarning),
+          MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+        begin
+          INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
+        end;
+        InitDB.AllFree;
+        //  MainForm.InitializeDB(DefaultDB);
+        MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox1, MainForm.ComboBox10);
+        if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
+          MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+        begin
+          MainForm.ComboBox10.SetFocus;
+          MainForm.ComboBox10.DroppedDown := True;
+        end;
       end;
-       InitDB.DefTransaction.Commit;
-    finally
-      newLogBookName := Edit2.Text;
-      Edit1.Clear;
-      Edit2.Clear;
-      Edit3.Clear;
-      Edit4.Clear;
-      Edit5.Clear;
-      Edit6.Clear;
-      Edit7.Clear;
-      Edit8.Clear;
-      Edit9.Clear;
-      MainForm.TrayIcon1.BalloonHint := rLogaddedsuccessfully;
-      MainForm.TrayIcon1.ShowBalloonHint;
-      if Application.MessageBox(PChar(rSetAsDefaultJournal), PChar(rWarning),
-        MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      begin
-        INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
-      end;
-
-      InitDB.AllFree;
-    //  MainForm.InitializeDB(DefaultDB);
-      if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
-        MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      begin
-        MainForm.ComboBox10.SetFocus;
-        MainForm.ComboBox10.DroppedDown := True;
-      end;
-    end;
-    end else
+    end
+    else
     if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       SetupForm.Show;
-    end;
+  end;
 end;
 
 procedure TCreateJournalForm.Edit2Change(Sender: TObject);
 begin
-  if MainForm.ComboBox10.Items.IndexOf(Edit2.Text) >= 0 then begin
+  if MainForm.ComboBox10.Items.IndexOf(Edit2.Text) >= 0 then
+  begin
     Edit2.Color := clRed;
-    Button2.Enabled:=False;
+    Button2.Enabled := False;
   end
-  else begin
+  else
+  begin
     Edit2.Color := clDefault;
-    Button2.Enabled:=True;
+    Button2.Enabled := True;
   end;
 end;
 

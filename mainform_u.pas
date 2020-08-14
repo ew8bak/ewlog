@@ -1312,7 +1312,6 @@ begin
     EditButton1.Color := clMoneyGreen
   else
     EditButton1.Color := clDefault;
-  {
 
   if MenuItem111.Checked = True then
   begin
@@ -1324,6 +1323,7 @@ begin
     end;
   end;
 
+  {
 
   if (CallBookLiteConnection.Connected) and
     ((INIFile.ReadString('SetLog', 'Sprav', '') = 'False') or
@@ -2640,25 +2640,6 @@ begin
 
   InitClusterINI;
 
- { //Загрузка модуляций
-  ComboBox2.Items.Clear;
-  for i := 0 to High(MainFunc.LoadModes) do
-    ComboBox2.Items.Add(MainFunc.LoadModes[i]);
-  ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(IniSet.PastMode);
-
-
-  //загрузка диапазонов
-  ComboBox1.Items.Clear;
-  for i := 0 to High(MainFunc.LoadBands(ComboBox2.Text)) do
-    ComboBox1.Items.Add(MainFunc.LoadBands(ComboBox2.Text)[i]);
-  ComboBox1.ItemIndex := IniSet.PastBand;
-
-  //загрузка позывных журналов
-  ComboBox10.Items.Clear;
-  for i := 0 to High(MainFunc.GetAllCallsign) do
-    ComboBox10.Items.Add(MainFunc.GetAllCallsign[i]);
-  ComboBox10.ItemIndex := ComboBox10.Items.IndexOf(DBRecord.DefCall);}
-
   MainFunc.LoadBMSL(ComboBox2, ComboBox1, ComboBox10);
 
   lastUDPport := -1;
@@ -2691,7 +2672,6 @@ begin
   if usefldigi then
     Fl_Timer.Enabled := True;
 
-  //  sprav := INIFile.ReadString('SetLog', 'Sprav', '');
   PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 
   if MenuItem86.Checked = True then
@@ -5273,7 +5253,7 @@ begin
       DigiBand_String := NameBand;
       Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
       DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
-      PFXR:=MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
+      PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
       SQSO.CallSing := EditButton1.Text;
       SQSO.QSODate := DateEdit1.Date;
       SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);

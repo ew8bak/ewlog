@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 391
+  Left = 321
   Height = 696
-  Top = 162
+  Top = 126
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -20,12 +20,12 @@ object MainForm: TMainForm
   LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
-    Height = 29
+    Height = 26
     Top = 0
     Width = 1208
     Align = alTop
     AutoSize = True
-    ClientHeight = 29
+    ClientHeight = 26
     ClientWidth = 1208
     TabOrder = 1
     object SpeedButton8: TSpeedButton
@@ -34,7 +34,7 @@ object MainForm: TMainForm
       Left = 1
       Height = 24
       Hint = 'Save QSO'
-      Top = 2
+      Top = 1
       Width = 25
       Action = SaveQSOinBase
       Font.Height = -11
@@ -87,7 +87,7 @@ object MainForm: TMainForm
       Left = 30
       Height = 24
       Hint = 'Clear QSO'
-      Top = 2
+      Top = 1
       Width = 25
       Action = ClearEdit
       Glyph.Data = {
@@ -137,7 +137,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 241
       Height = 13
-      Top = 8
+      Top = 7
       Width = 63
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -153,7 +153,7 @@ object MainForm: TMainForm
       AnchorSideRight.Side = asrBottom
       Left = 1070
       Height = 13
-      Top = 8
+      Top = 7
       Width = 117
       Align = alCustom
       Anchors = [akTop, akRight]
@@ -174,7 +174,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 527
       Height = 24
-      Top = 2
+      Top = 1
       Width = 80
       AutoSize = False
       BorderSpacing.Left = 5
@@ -187,7 +187,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 481
       Height = 13
-      Top = 8
+      Top = 7
       Width = 41
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
@@ -201,7 +201,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 617
       Height = 13
-      Top = 8
+      Top = 7
       Width = 47
       BorderSpacing.Left = 10
       BorderSpacing.Right = 5
@@ -215,7 +215,7 @@ object MainForm: TMainForm
       AnchorSideTop.Side = asrCenter
       Left = 669
       Height = 24
-      Top = 2
+      Top = 1
       Width = 80
       AutoSize = False
       BorderSpacing.Left = 5
@@ -228,23 +228,27 @@ object MainForm: TMainForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 309
-      Height = 27
+      Height = 24
       Top = 1
       Width = 160
+      AutoSize = False
       BorderSpacing.Left = 5
+      Font.Height = -12
       ItemHeight = 0
       OnChange = ComboBox10Change
+      ParentFont = False
+      Style = csOwnerDrawFixed
       TabOrder = 2
     end
   end
   object Panel2: TPanel
     Left = 0
-    Height = 289
-    Top = 29
+    Height = 269
+    Top = 26
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 289
+    ClientHeight = 269
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1771,7 +1775,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 28
+      Height = 8
       Top = 260
       Width = 472
       Align = alClient
@@ -1781,16 +1785,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 289
-    Top = 29
+    Height = 269
+    Top = 26
     Width = 734
     Align = alClient
-    ClientHeight = 289
+    ClientHeight = 269
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 287
+      Height = 267
       Top = 1
       Width = 732
       Align = alClient
@@ -1999,7 +2003,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 318
+    Top = 295
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -2565,16 +2569,16 @@ object MainForm: TMainForm
         Left = 1
         Height = 111
         Top = 1
-        Width = 726
+        Width = 730
         Align = alTop
         ClientHeight = 111
-        ClientWidth = 726
+        ClientWidth = 730
         TabOrder = 0
         object DBGrid2: TDBGrid
           Left = 1
-          Height = 105
+          Height = 109
           Top = 1
-          Width = 720
+          Width = 728
           Align = alClient
           Color = clWindow
           Columns = <          
@@ -2776,20 +2780,20 @@ object MainForm: TMainForm
       end
       object Panel8: TPanel
         Left = 1
-        Height = 259
+        Height = 263
         Top = 112
-        Width = 726
+        Width = 730
         Align = alClient
-        ClientHeight = 259
-        ClientWidth = 726
+        ClientHeight = 263
+        ClientWidth = 730
         Font.Height = -12
         ParentFont = False
         TabOrder = 1
         object PageControl1: TPageControl
           Left = 1
-          Height = 253
+          Height = 261
           Top = 1
-          Width = 720
+          Width = 728
           ActivePage = TabSheet2
           Align = alClient
           Font.Height = -13
@@ -2799,8 +2803,8 @@ object MainForm: TMainForm
           TabPosition = tpBottom
           object TabSheet1: TTabSheet
             Caption = 'Telnet'
-            ClientHeight = 249
-            ClientWidth = 716
+            ClientHeight = 231
+            ClientWidth = 718
             object Memo1: TMemo
               Left = 0
               Height = 180
@@ -3126,16 +3130,16 @@ object MainForm: TMainForm
           end
           object TabSheet2: TTabSheet
             Caption = 'Telnet DX Cluster'
-            ClientHeight = 221
-            ClientWidth = 710
+            ClientHeight = 231
+            ClientWidth = 718
             object Panel9: TPanel
               Left = 0
               Height = 28
               Top = 0
-              Width = 710
+              Width = 718
               Align = alTop
               ClientHeight = 28
-              ClientWidth = 710
+              ClientWidth = 718
               Font.Height = -12
               ParentBidiMode = False
               ParentColor = False
@@ -3205,8 +3209,8 @@ object MainForm: TMainForm
                 TabOrder = 0
               end
               object SpeedButton19: TSpeedButton
-                Left = 681
-                Height = 22
+                Left = 693
+                Height = 26
                 Top = 1
                 Width = 24
                 Align = alRight
@@ -3436,9 +3440,9 @@ object MainForm: TMainForm
             object VirtualStringTree1: TVirtualStringTree
               Cursor = 63
               Left = 0
-              Height = 193
+              Height = 203
               Top = 28
-              Width = 710
+              Width = 718
               Align = alClient
               DefaultText = 'Node'
               Font.Height = -11
