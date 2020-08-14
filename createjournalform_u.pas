@@ -177,7 +177,7 @@ begin
         begin
           INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
         end;
-        InitDB.AllFree;
+        //InitDB.AllFree;
         //  MainForm.InitializeDB(DefaultDB);
         MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox1, MainForm.ComboBox10);
         if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
