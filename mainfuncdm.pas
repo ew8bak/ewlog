@@ -31,6 +31,7 @@ type
     procedure LoadINIsettings;
     procedure ClearPFXR(var PFXR: TPFXR);
     procedure LoadBMSL(var CBMode, CBBand, CBJournal: TComboBox);
+    procedure UpdateQSO(DBGrid: TDBGrid);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -54,6 +55,21 @@ implementation
 uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+procedure TMainFunc.UpdateQSO(DBGrid: TDBGrid);
+var
+  Query: TSQLQuery;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
 
 function TMainFunc.GetAllCallsign: CallsignArray;
 var

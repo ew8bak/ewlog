@@ -747,9 +747,6 @@ begin
 
   qBands.Close;
   qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
-  //  if SQLServiceTransaction.Active then
-  //    SQLServiceTransaction.Rollback;
-  //  SQLServiceTransaction.StartTransaction;
   try
     qBands.Open;
     tmp := StrToFloat(MHz);
@@ -780,7 +777,6 @@ begin
     end
   finally
     qBands.Close;
-    //  SQLServiceTransaction.Rollback
   end;
 end;
 
@@ -877,33 +873,6 @@ begin
     tIMG.Picture.Clear;
   end;
 end;
-
-{procedure TMainForm.SearchCallInCallBook(CallName: string);
-begin
-  try
-    Application.ProcessMessages;
-    if (CallBookLiteConnection.Connected = True) or
-      (SearchCallBookQuery.Active = True) then
-    begin
-      with SearchCallBookQuery do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('SELECT * FROM Callbook WHERE `Call` = "' + CallName + '"');
-        Application.ProcessMessages;
-        Open;
-      end;
-
-      Edit1.Text := SearchCallBookQuery.FieldByName('Name').AsString;
-      Edit2.Text := SearchCallBookQuery.FieldByName('QTH').AsString;
-      Edit3.Text := SearchCallBookQuery.FieldByName('Grid').AsString;
-      Edit6.Text := SearchCallBookQuery.FieldByName('Manager').AsString;
-      Edit11.Text := SearchCallBookQuery.FieldByName('Note').AsString;
-    end;
-
-  finally
-  end;
-end; }
 
 procedure TMainForm.SelDB(calllbook: string);
 var
@@ -1404,7 +1373,7 @@ begin
     // if (CallBookLiteConnection.Connected = False) and
     //   (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
     //   InformationForm.GetInformation(EditButton1.Text, True);
-    if Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3 then
+    if Length(dmFunc.ExtractCallsign(EditButton1.Text)) > 2 then
       InformationForm.GetInformation(EditButton1.Text, True);
   end;
 end;
