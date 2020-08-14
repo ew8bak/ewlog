@@ -160,7 +160,6 @@ type
     MenuItem88: TMenuItem;
     MenuItem89: TMenuItem;
     MenuItem9: TMenuItem;
-    DeleteQSOQuery: TSQLQuery;
     MenuItem90: TMenuItem;
     MenuItem91: TMenuItem;
     MenuItem92: TMenuItem;
@@ -177,8 +176,6 @@ type
     Panel9: TPanel;
     PopupMenu2: TPopupMenu;
     PopupDxCluster: TPopupMenu;
-    CheckTableQuery: TSQLQuery;
-    BandsQuery: TSQLQuery;
     Shape1: TShape;
     PrintDialog1: TPrintDialog;
     SpeedButton24: TSpeedButton;
@@ -319,9 +316,6 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
-    LogBookInfoQuery: TSQLQuery;
-    SearchCallBookQuery: TSQLQuery;
-    LogBookFieldQuery: TSQLQuery;
     SaveQSOQuery: TSQLQuery;
     TabSheet1: TTabSheet;
     TimeTimer: TTimer;
@@ -3294,24 +3288,32 @@ begin
 end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
+var
+  Query: TSQLQuery;
 begin
   if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
   begin
-    try
-      if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
-        MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      begin
-        with DeleteQSOQuery do
+    if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
+      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    begin
+      try
+        Query := TSQLQuery.Create(nil);
+        if DBRecord.CurrentDB = 'MySQL' then
+          Query.DataBase := InitDB.MySQLConnection
+        else
+          Query.DataBase := InitDB.SQLiteConnection;
+        with Query do
         begin
-          SQL.Clear;
           SQL.Text := 'DELETE FROM ' + LBRecord.LogTable;
           Prepare;
           ExecSQL;
         end;
+      finally
+        InitDB.DefTransaction.Commit;
+        FreeAndNil(Query);
+        if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+          ShowMessage(rDBError);
       end;
-    finally
-      InitDB.DefTransaction.Commit;
-      SelDB(CallLogBook);
     end;
   end;
 end;
@@ -4396,7 +4398,6 @@ begin
       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
         ShowMessage(rDBError);
     end;
-
   finally
     FreeAndNil(Query);
   end;
@@ -5550,8 +5551,8 @@ begin
     InitDB.DefTransaction.Commit;
     EditFlag := False;
     CheckBox1.Checked := True;
-      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-        ShowMessage(rDBError);
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
     Clr;
   end;
 end;
@@ -5715,7 +5716,6 @@ var
   Data: PTreeData;
 begin
   Data := Sender.GetNodeData(Node);
-  //HintText := SearchCountry(Data^.Spots, True);
 end;
 
 procedure TMainForm.VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;

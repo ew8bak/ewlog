@@ -3793,268 +3793,19 @@ object MainForm: TMainForm
   end
   object FindQSODS: TDataSource
     DataSet = InitDB.FindQSOQuery
-    Left = 600
-    Top = 312
+    Left = 512
+    Top = 144
   end
   object LOGBookDS: TDataSource
     DataSet = InitDB.DefLogBookQuery
     Left = 512
     Top = 72
   end
-  object LogBookInfoQuery: TSQLQuery
-    FieldDefs = <    
-      item
-        Name = 'id'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'LogTable'
-        DataType = ftString
-        Precision = -1
-        Size = 300
-      end    
-      item
-        Name = 'CallName'
-        DataType = ftString
-        Precision = -1
-        Size = 45
-      end    
-      item
-        Name = 'Name'
-        DataType = ftString
-        Precision = -1
-        Size = 300
-      end    
-      item
-        Name = 'QTH'
-        DataType = ftString
-        Precision = -1
-        Size = 300
-      end    
-      item
-        Name = 'ITU'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'CQ'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'Loc'
-        DataType = ftString
-        Precision = -1
-        Size = 96
-      end    
-      item
-        Name = 'Lat'
-        DataType = ftString
-        Precision = -1
-        Size = 60
-      end    
-      item
-        Name = 'Lon'
-        DataType = ftString
-        Precision = -1
-        Size = 60
-      end    
-      item
-        Name = 'Discription'
-        DataType = ftString
-        Precision = -1
-        Size = 450
-      end    
-      item
-        Name = 'QSLInfo'
-        DataType = ftString
-        Precision = -1
-        Size = 600
-      end    
-      item
-        Name = 'EQSLLogin'
-        DataType = ftString
-        Precision = -1
-        Size = 600
-      end    
-      item
-        Name = 'EQSLPassword'
-        DataType = ftString
-        Precision = -1
-        Size = 600
-      end>
-    SQL.Strings = (
-      'SELECT * FROM LogBookInfo'
-    )
-    Params = <>
-    Left = 803
-    Top = 224
-  end
-  object SearchCallBookQuery: TSQLQuery
-    FieldDefs = <    
-      item
-        Name = 'call_'
-        DataType = ftString
-        Precision = -1
-        Size = 30
-      end    
-      item
-        Name = 'qslmng_'
-        DataType = ftString
-        Precision = -1
-        Size = 30
-      end    
-      item
-        Name = 'fam_'
-        DataType = ftString
-        Precision = -1
-        Size = 90
-      end    
-      item
-        Name = 'im_'
-        DataType = ftString
-        Precision = -1
-        Size = 60
-      end    
-      item
-        Name = 'otch_'
-        DataType = ftString
-        Precision = -1
-        Size = 60
-      end    
-      item
-        Name = 'datrozh_'
-        DataType = ftDateTime
-        Precision = -1
-      end    
-      item
-        Name = 'strana_'
-        DataType = ftString
-        Precision = -1
-        Size = 45
-      end    
-      item
-        Name = 'ind_'
-        DataType = ftString
-        Precision = -1
-        Size = 42
-      end    
-      item
-        Name = 'reg_'
-        DataType = ftString
-        Precision = -1
-        Size = 120
-      end    
-      item
-        Name = 'gor_'
-        DataType = ftString
-        Precision = -1
-        Size = 120
-      end    
-      item
-        Name = 'ulic_'
-        DataType = ftString
-        Precision = -1
-        Size = 120
-      end    
-      item
-        Name = 'tel_'
-        DataType = ftString
-        Precision = -1
-        Size = 45
-      end    
-      item
-        Name = 'telmob_'
-        DataType = ftString
-        Precision = -1
-        Size = 48
-      end    
-      item
-        Name = 'icq_'
-        DataType = ftString
-        Precision = -1
-        Size = 33
-      end    
-      item
-        Name = 'email_'
-        DataType = ftString
-        Precision = -1
-        Size = 150
-      end    
-      item
-        Name = 'url_'
-        DataType = ftString
-        Precision = -1
-        Size = 150
-      end    
-      item
-        Name = 'qthloc_'
-        DataType = ftString
-        Precision = -1
-        Size = 18
-      end    
-      item
-        Name = 'da_'
-        DataType = ftString
-        Precision = -1
-        Size = 18
-      end    
-      item
-        Name = 'antenna_'
-        DataType = ftString
-        Precision = -1
-        Size = 45
-      end    
-      item
-        Name = 'trans_'
-        DataType = ftString
-        Precision = -1
-        Size = 45
-      end    
-      item
-        Name = 'usil_'
-        DataType = ftString
-        Precision = -1
-        Size = 45
-      end    
-      item
-        Name = 'datzap_'
-        DataType = ftDateTime
-        Precision = -1
-      end    
-      item
-        Name = 'verno_'
-        DataType = ftSmallint
-        Precision = -1
-      end    
-      item
-        Name = 'prim_'
-        DataType = ftString
-        Precision = -1
-        Size = 60
-      end>
-    SQL.Strings = (
-      ''
-    )
-    Params = <>
-    Left = 720
-    Top = 64
-  end
-  object LogBookFieldQuery: TSQLQuery
-    FieldDefs = <>
-    SQL.Strings = (
-      'select * from LogBookInfo'
-    )
-    Params = <>
-    Left = 272
-    Top = 544
-  end
   object SaveQSOQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
-    Left = 600
-    Top = 64
+    Left = 616
+    Top = 72
   end
   object ActionList1: TActionList
     Left = 112
@@ -5134,12 +4885,6 @@ object MainForm: TMainForm
       OnClick = MenuItem51Click
     end
   end
-  object DeleteQSOQuery: TSQLQuery
-    FieldDefs = <>
-    Params = <>
-    Left = 56
-    Top = 544
-  end
   object PopupMenu2: TPopupMenu
     Left = 768
     Top = 336
@@ -5227,8 +4972,8 @@ object MainForm: TMainForm
     Active = True
     HistoryEnabled = False
     HistoryFilename = 'iphist.dat'
-    Left = 688
-    Top = 145
+    Left = 720
+    Top = 104
   end
   object dxClient: TLTelnetClientComponent
     Port = 0
@@ -5237,8 +4982,8 @@ object MainForm: TMainForm
     OnReceive = dxClientReceive
     Timeout = 0
     LocalEcho = False
-    Left = 1120
-    Top = 312
+    Left = 1104
+    Top = 496
   end
   object qBands: TSQLQuery
     FieldDefs = <>
@@ -5271,12 +5016,12 @@ object MainForm: TMainForm
     PreviewButtons = [pbZoom, pbLoad, pbSave, pbPrint, pbFind, pbHelp, pbExit]
     ReportType = rtMultiple
     DataType = dtDataSet
-    Left = 696
-    Top = 520
+    Left = 704
+    Top = 507
   end
   object PrintDialog1: TPrintDialog
-    Left = 832
-    Top = 528
+    Left = 856
+    Top = 507
   end
   object PrintQuery: TSQLQuery
     FieldDefs = <    
@@ -5596,29 +5341,16 @@ object MainForm: TMainForm
   end
   object frDBDataSet1: TfrDBDataSet
     DataSet = PrintQuery
-    Left = 626
-    Top = 531
+    Left = 616
+    Top = 512
   end
   object frTextExport1: TfrTextExport
     ShowExportParamsDlg = True
     Left = 724
-    Top = 587
+    Top = 576
   end
   object frCSVExport1: TfrCSVExport
-    Left = 816
-    Top = 592
-  end
-  object CheckTableQuery: TSQLQuery
-    FieldDefs = <>
-    Params = <>
-    Left = 952
-    Top = 568
-  end
-  object BandsQuery: TSQLQuery
-    PacketRecords = 100
-    FieldDefs = <>
-    Params = <>
-    Left = 574
-    Top = 231
+    Left = 824
+    Top = 576
   end
 end
