@@ -1626,6 +1626,7 @@ begin
   dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+  UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
 end;
 
 procedure TMainForm.DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
@@ -4366,29 +4367,38 @@ end;
 
 procedure TMainForm.MenuItem51Click(Sender: TObject);
 var
-  i, recnom: integer;
+  i: integer;
+  Query: TSQLQuery;
 begin
-  // recnom := 0;
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
+  try
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+    if (UnUsIndex <> 0) then
     begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      //  recnom := LOGBookQuery.RecNo;
-      with DeleteQSOQuery do
+      for i := 0 to DBGrid1.SelectedRows.Count - 1 do
       begin
-        Close;
-        SQL.Clear;
-        SQL.Add('DELETE FROM ' + LBRecord.LogTable +
-          ' WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-        ExecSQL;
+        DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
+        UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+        with Query do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('DELETE FROM ' + LBRecord.LogTable +
+            ' WHERE `UnUsedIndex`=:UnUsedIndex');
+          Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
+          ExecSQL;
+        end;
       end;
+      InitDB.DefTransaction.Commit;
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
     end;
-    InitDB.DefTransaction.Commit;
-    SelDB(CallLogBook);
-    //  DBGrid1.DataSource.DataSet.RecNo := recnom;
+
+  finally
+    FreeAndNil(Query);
   end;
 end;
 
@@ -5540,10 +5550,9 @@ begin
     InitDB.DefTransaction.Commit;
     EditFlag := False;
     CheckBox1.Checked := True;
-    if InitDB.GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB) then
       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
         ShowMessage(rDBError);
-    Clr();
+    Clr;
   end;
 end;
 
@@ -5560,7 +5569,7 @@ end;
 
 procedure TMainForm.SpeedButton9Click(Sender: TObject);
 begin
-  Clr();
+  Clr;
 end;
 
 procedure TMainForm.SpeedButton9MouseLeave(Sender: TObject);
