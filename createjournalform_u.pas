@@ -178,13 +178,13 @@ begin
         INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
       end;
 
-      MainForm.FreeObj;
+      InitDB.AllFree;
     //  MainForm.InitializeDB(DefaultDB);
       if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin
-      //  MainForm.DBLookupComboBox1.SetFocus;
-      //  MainForm.DBLookupComboBox1.DroppedDown := True;
+        MainForm.ComboBox10.SetFocus;
+        MainForm.ComboBox10.DroppedDown := True;
       end;
     end;
     end else

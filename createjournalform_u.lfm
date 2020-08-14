@@ -1,7 +1,7 @@
 object CreateJournalForm: TCreateJournalForm
-  Left = 1495
+  Left = 1521
   Height = 200
-  Top = 271
+  Top = 210
   Width = 375
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -13,7 +13,7 @@ object CreateJournalForm: TCreateJournalForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object Edit1: TEdit
     Left = 72
     Height = 21
@@ -306,10 +306,8 @@ object CreateJournalForm: TCreateJournalForm
   end
   object CreateTableQuery: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     Params = <>
-    left = 136
-    top = 8
+    Left = 136
+    Top = 8
   end
 end

@@ -563,7 +563,6 @@ type
     function FindISOCountry(Country: string): string;
     // function FindMode(submode: string): string;
     procedure InitClusterINI;
-    procedure FreeObj;
     procedure tIMGClick(Sender: TObject);
   end;
 
@@ -2641,7 +2640,7 @@ begin
 
   InitClusterINI;
 
-  //Загрузка модуляций
+ { //Загрузка модуляций
   ComboBox2.Items.Clear;
   for i := 0 to High(MainFunc.LoadModes) do
     ComboBox2.Items.Add(MainFunc.LoadModes[i]);
@@ -2658,7 +2657,9 @@ begin
   ComboBox10.Items.Clear;
   for i := 0 to High(MainFunc.GetAllCallsign) do
     ComboBox10.Items.Add(MainFunc.GetAllCallsign[i]);
-  ComboBox10.ItemIndex := ComboBox10.Items.IndexOf(DBRecord.DefCall);
+  ComboBox10.ItemIndex := ComboBox10.Items.IndexOf(DBRecord.DefCall);}
+
+  MainFunc.LoadBMSL(ComboBox2, ComboBox1, ComboBox10);
 
   lastUDPport := -1;
   lastTCPport := -1;
@@ -2724,7 +2725,6 @@ begin
   end;
   FlagList.Free;
   FlagSList.Free;
-  FreeObj;
   LTCPComponent1.Free;
   LUDPComponent1.Free;
   TrayIcon1.Free;
@@ -5006,21 +5006,6 @@ begin
   end;}
 end;
 
-procedure TMainForm.FreeObj;
-var
-  i: integer;
-begin
- { FreeAndNil(PrefixProvinceList);
-  FreeAndNil(PrefixARRLList);
-  FreeAndNil(UniqueCallsList);
-  FreeAndNil(subModesList);
-  for i := 0 to 1000 do
-  begin
-    FreeAndNil(PrefixExpARRLArray[i].reg);
-    FreeAndNil(PrefixExpProvinceArray[i].reg);
-  end;  }
-end;
-
 procedure TMainForm.MenuItem91Click(Sender: TObject);
 begin
   SetupForm.Show;
@@ -5510,7 +5495,7 @@ begin
           ComboBox4.Text, ComboBox5.Text, Edit1.Text, Edit2.Text, Edit4.Text,
           Edit3.Text, Edit11.Text);
 
-      if InitDB.GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB) then
+      if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
       Clr();

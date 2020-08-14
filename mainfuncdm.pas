@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
-  foundQSO_record;
+  foundQSO_record, StdCtrls;
 
 type
   bandArray = array of string;
@@ -30,6 +30,7 @@ type
     procedure CheckQSL(Callsign, band, mode: string; var QSL: integer);
     procedure LoadINIsettings;
     procedure ClearPFXR(var PFXR: TPFXR);
+    procedure LoadBMSL(var CBMode, CBBand, CBJournal: TComboBox);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -63,22 +64,22 @@ begin
   try
     Query := TSQLQuery.Create(nil);
     if DBRecord.CurrentDB = 'MySQL' then
-    Query.DataBase := InitDB.MySQLConnection
+      Query.DataBase := InitDB.MySQLConnection
     else
-    Query.DataBase := InitDB.SQLiteConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
 
-     Query.SQL.Text := 'SELECT CallName FROM LogBookInfo';
-      Query.Open;
-      if Query.RecordCount = 0 then
-        Exit;
-      SetLength(CallsignList, Query.RecordCount);
-      Query.First;
-      for i := 0 to Query.RecordCount - 1 do
-      begin
-        CallsignList[i] := Query.FieldByName('CallName').AsString;
-        Query.Next;
-      end;
-      Query.Close;
+    Query.SQL.Text := 'SELECT CallName FROM LogBookInfo';
+    Query.Open;
+    if Query.RecordCount = 0 then
+      Exit;
+    SetLength(CallsignList, Query.RecordCount);
+    Query.First;
+    for i := 0 to Query.RecordCount - 1 do
+    begin
+      CallsignList[i] := Query.FieldByName('CallName').AsString;
+      Query.Next;
+    end;
+    Query.Close;
     Result := CallsignList;
   finally
     FreeAndNil(Query);
@@ -101,54 +102,54 @@ function TMainFunc.FindQSO(Callsign: string): TFoundQSOR;
 var
   FoundQSOR: TFoundQSOR;
 begin
-    InitDB.FindQSOQuery.Close;
-    if DBRecord.CurrentDB = 'MySQL' then
-      InitDB.FindQSOQuery.DataBase := InitDB.MySQLConnection
-    else
-      InitDB.FindQSOQuery.DataBase := InitDB.SQLiteConnection;
-    if DBRecord.CurrentDB = 'MySQL' then
-      InitDB.FindQSOQuery.SQL.Text :=
-        'SELECT `UnUsedIndex`, `CallSign`,' +
-        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-        + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-        + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
-        ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
-        ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC'
-    else
-      InitDB.FindQSOQuery.SQL.Text :=
-        'SELECT `UnUsedIndex`, `CallSign`,' +
-        'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-        + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
-        + LBRecord.LogTable +
-        ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
-        +
-        LBRecord.LogTable + ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
-        ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
-    InitDB.FindQSOQuery.Open;
-    if InitDB.FindQSOQuery.RecordCount > 0 then
-    begin
-      FoundQSOR.Found := True;
-      FoundQSOR.CountQSO := InitDB.FindQSOQuery.RecordCount;
-      FoundQSOR.OMName := InitDB.FindQSOQuery.FieldByName('OMName').AsString;
-      FoundQSOR.OMQTH := InitDB.FindQSOQuery.FieldByName('OMQTH').AsString;
-      FoundQSOR.Grid := InitDB.FindQSOQuery.FieldByName('Grid').AsString;
-      FoundQSOR.State := InitDB.FindQSOQuery.FieldByName('State').AsString;
-      FoundQSOR.IOTA := InitDB.FindQSOQuery.FieldByName('IOTA').AsString;
-      FoundQSOR.QSLManager := InitDB.FindQSOQuery.FieldByName('QSLManager').AsString;
-    end;
-    Result := FoundQSOR;
+  InitDB.FindQSOQuery.Close;
+  if DBRecord.CurrentDB = 'MySQL' then
+    InitDB.FindQSOQuery.DataBase := InitDB.MySQLConnection
+  else
+    InitDB.FindQSOQuery.DataBase := InitDB.SQLiteConnection;
+  if DBRecord.CurrentDB = 'MySQL' then
+    InitDB.FindQSOQuery.SQL.Text :=
+      'SELECT `UnUsedIndex`, `CallSign`,' +
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
+      + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
+      ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
+      ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC'
+  else
+    InitDB.FindQSOQuery.SQL.Text :=
+      'SELECT `UnUsedIndex`, `CallSign`,' +
+      'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
+      + LBRecord.LogTable +
+      ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
+      +
+      LBRecord.LogTable + ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
+      ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
+  InitDB.FindQSOQuery.Open;
+  if InitDB.FindQSOQuery.RecordCount > 0 then
+  begin
+    FoundQSOR.Found := True;
+    FoundQSOR.CountQSO := InitDB.FindQSOQuery.RecordCount;
+    FoundQSOR.OMName := InitDB.FindQSOQuery.FieldByName('OMName').AsString;
+    FoundQSOR.OMQTH := InitDB.FindQSOQuery.FieldByName('OMQTH').AsString;
+    FoundQSOR.Grid := InitDB.FindQSOQuery.FieldByName('Grid').AsString;
+    FoundQSOR.State := InitDB.FindQSOQuery.FieldByName('State').AsString;
+    FoundQSOR.IOTA := InitDB.FindQSOQuery.FieldByName('IOTA').AsString;
+    FoundQSOR.QSLManager := InitDB.FindQSOQuery.FieldByName('QSLManager').AsString;
+  end;
+  Result := FoundQSOR;
 end;
 
 function TMainFunc.LoadSubModes(mode: string): subModeArray;
@@ -506,7 +507,7 @@ var
   PFXR: TPFXR;
 begin
   ClearPFXR(PFXR);
-  Result:=PFXR;
+  Result := PFXR;
   if UniqueCallsList.IndexOf(Callsign) > -1 then
   begin
     with SearchPrefixQuery do
@@ -877,6 +878,27 @@ begin
 
   for i := 0 to DBGRID.Columns.Count - 1 do
     DBGRID.Columns.Items[i].Title.Font.Size := MainForm.SizeTextGrid;
+end;
+
+procedure TMainFunc.LoadBMSL(var CBMode, CBBand, CBJournal: TComboBox);
+var
+  i: integer;
+begin
+  //Загрузка модуляций
+  CBMode.Items.Clear;
+  for i := 0 to High(LoadModes) do
+    CBMode.Items.Add(LoadModes[i]);
+  CBMode.ItemIndex := CBMode.Items.IndexOf(IniSet.PastMode);
+  //загрузка диапазонов
+  CBBand.Items.Clear;
+  for i := 0 to High(LoadBands(CBMode.Text)) do
+    CBBand.Items.Add(LoadBands(CBMode.Text)[i]);
+  CBBand.ItemIndex := IniSet.PastBand;
+  //загрузка позывных журналов
+  CBJournal.Items.Clear;
+  for i := 0 to High(GetAllCallsign) do
+    CBJournal.Items.Add(GetAllCallsign[i]);
+  CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
 end;
 
 procedure TMainFunc.ClearPFXR(var PFXR: TPFXR);

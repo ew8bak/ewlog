@@ -214,6 +214,7 @@ begin
         Close;
       end;
       Result := True;
+      DBRecord.CurrCall := LBRecord.CallSign;
     except
       on E: Exception do
       begin
