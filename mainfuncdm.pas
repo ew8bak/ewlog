@@ -31,7 +31,7 @@ type
     procedure LoadINIsettings;
     procedure ClearPFXR(var PFXR: TPFXR);
     procedure LoadBMSL(var CBMode, CBBand, CBJournal: TComboBox);
-    procedure UpdateQSO(DBGrid: TDBGrid);
+    procedure UpdateQSO(DBGrid: TDBGrid; Field, Value: string);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -56,9 +56,11 @@ uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
 
-procedure TMainFunc.UpdateQSO(DBGrid: TDBGrid);
+procedure TMainFunc.UpdateQSO(DBGrid: TDBGrid; Field, Value: string);
 var
   Query: TSQLQuery;
+  i: integer;
+  RecIndex: integer;
 begin
   try
     Query := TSQLQuery.Create(nil);
@@ -66,6 +68,26 @@ begin
       Query.DataBase := InitDB.MySQLConnection
     else
       Query.DataBase := InitDB.SQLiteConnection;
+
+    for i := 0 to DBGrid.SelectedRows.Count - 1 do
+    begin
+      DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
+      RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      with Query do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('UPDATE ' + LBRecord.LogTable +
+          ' SET ' + QuotedStr(Field) + '=:' + Field + ' WHERE UnUsedIndex=:UnUsedIndex');
+        Params.ParamByName(Field).AsString := Value;
+        Params.ParamByName('UnUsedIndex').AsInteger := RecIndex;
+        ExecSQL;
+      end;
+    end;
+    InitDB.DefTransaction.Commit;
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
+
   finally
     FreeAndNil(Query);
   end;

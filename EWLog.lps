@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="3692"/>
-        <CursorPos X="26" Y="3602"/>
+        <TopLine Value="3712"/>
+        <CursorPos X="52" Y="3724"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -94,7 +94,7 @@
         <UnitName Value="CreateJournalForm_U"/>
         <EditorIndex Value="3"/>
         <TopLine Value="164"/>
-        <CursorPos X="52" Y="183"/>
+        <CursorPos X="35" Y="183"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -633,7 +633,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="27" Y="29"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="178"/>
       </Unit60>
       <Unit61>
         <Filename Value="initdb_dm.pas"/>
@@ -645,7 +645,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="58"/>
         <CursorPos X="40" Y="73"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit61>
@@ -655,7 +655,7 @@
         <UnitName Value="LogBookTable_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="18"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="66"/>
       </Unit62>
       <Unit63>
         <Filename Value="db_record.pas"/>
@@ -663,7 +663,7 @@
         <UnitName Value="DB_record"/>
         <EditorIndex Value="8"/>
         <CursorPos X="12" Y="21"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit63>
       <Unit64>
@@ -675,9 +675,9 @@
         <UnitName Value="MainFuncDM"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="38"/>
-        <CursorPos X="21" Y="59"/>
-        <UsageCount Value="59"/>
+        <TopLine Value="48"/>
+        <CursorPos X="48" Y="56"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit64>
@@ -686,14 +686,14 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="7" Y="22"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
       </Unit65>
       <Unit66>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23" Y="26"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
       </Unit66>
       <Unit67>
         <Filename Value="selectqso_record.pas"/>
@@ -701,7 +701,7 @@
         <UnitName Value="selectQSO_record"/>
         <EditorIndex Value="6"/>
         <CursorPos X="20" Y="16"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit67>
       <Unit68>
@@ -710,7 +710,7 @@
         <UnitName Value="foundQSO_record"/>
         <EditorIndex Value="7"/>
         <CursorPos X="13" Y="11"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit68>
       <Unit69>
@@ -1193,7 +1193,7 @@
         <UsageCount Value="9"/>
       </Unit133>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="950" Column="24" TopLine="918"/>
@@ -1310,6 +1310,10 @@
         <Filename Value="mainform_u.pas"/>
         <Caret Line="318" Column="32" TopLine="300"/>
       </Position29>
+      <Position30>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="83" Column="66" TopLine="55"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
