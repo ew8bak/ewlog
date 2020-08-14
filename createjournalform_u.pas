@@ -172,13 +172,16 @@ begin
         Edit7.Clear;
         Edit8.Clear;
         Edit9.Clear;
-        if Application.MessageBox(PChar(rSetAsDefaultJournal), PChar(rWarning),
-          MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+        if Application.MessageBox(PChar(rSetAsDefaultJournal),
+          PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin
           INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
         end;
-        //InitDB.AllFree;
-        //  MainForm.InitializeDB(DefaultDB);
+
+        if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
+          if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+            ShowMessage(rDBError);
+
         MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox1, MainForm.ComboBox10);
         if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
           MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then

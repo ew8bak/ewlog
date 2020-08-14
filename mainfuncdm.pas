@@ -63,6 +63,7 @@ var
 begin
   try
     Query := TSQLQuery.Create(nil);
+    Query.PacketRecords := 50;
     if DBRecord.CurrentDB = 'MySQL' then
       Query.DataBase := InitDB.MySQLConnection
     else
