@@ -3737,7 +3737,7 @@ begin
   SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2);
 end;
 
-//Удалить QSO
+//Удалить выделенное QSO
 procedure TMainForm.MenuItem51Click(Sender: TObject);
 begin
   MainFunc.DeleteQSO(DBGrid1);
