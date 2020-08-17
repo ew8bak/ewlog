@@ -32,6 +32,9 @@ type
     procedure ClearPFXR(var PFXR: TPFXR);
     procedure LoadBMSL(var CBMode, CBBand, CBJournal: TComboBox);
     procedure UpdateQSO(DBGrid: TDBGrid; Field, Value: string);
+    procedure DeleteQSO(DBGrid: TDBGrid);
+    procedure FilterQSO(Field, Value: string);
+    procedure SelectAllQSO(var DBGrid: TDBGrid);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -55,6 +58,88 @@ implementation
 uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+procedure TMainFunc.SelectAllQSO(var DBGrid: TDBGrid);
+var
+  i: integer;
+begin
+   if InitDB.DefLogBookQuery.RecordCount > 0 then
+  begin
+    InitDB.DefLogBookQuery.First;
+    for i := 0 to InitDB.DefLogBookQuery.RecordCount - 1 do
+    begin
+      DBGrid.SelectedRows.CurrentRowSelected := True;
+      InitDB.DefLogBookQuery.Next;
+    end;
+  end;
+end;
+
+procedure TMainFunc.FilterQSO(Field, Value: string);
+begin
+  InitDB.DefLogBookQuery.Close;
+  if DBRecord.CurrentDB = 'MySQL' then
+    InitDB.DefLogBookQuery.SQL.Text :=
+      'SELECT `UnUsedIndex`, `CallSign`,' +
+      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
+      + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
+      Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`' + ''
+  else
+    InitDB.DefLogBookQuery.SQL.Text :=
+      'SELECT `UnUsedIndex`, `CallSign`,' +
+      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
+      + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
+      Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`' + '';
+  InitDB.DefLogBookQuery.Open;
+end;
+
+procedure TMainFunc.DeleteQSO(DBGrid: TDBGrid);
+var
+  i: integer;
+  Query: TSQLQuery;
+  RecIndex: integer;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+
+    for i := 0 to DBGrid.SelectedRows.Count - 1 do
+    begin
+      DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
+      RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      with Query do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('DELETE FROM ' + LBRecord.LogTable +
+          ' WHERE `UnUsedIndex`=:UnUsedIndex');
+        Params.ParamByName('UnUsedIndex').AsInteger := RecIndex;
+        ExecSQL;
+      end;
+    end;
+    InitDB.DefTransaction.Commit;
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
+  finally
+    FreeAndNil(Query);
+  end;
+end;
 
 procedure TMainFunc.UpdateQSO(DBGrid: TDBGrid; Field, Value: string);
 var

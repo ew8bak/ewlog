@@ -2911,188 +2911,27 @@ end;
 
 procedure TMainForm.MenuItem104Click(Sender: TObject);
 begin
-  {LogBookQuery.Close;
-  LogBookQuery.SQL.Clear;
-
-  if DefaultDB = 'MySQL' then
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLRec` LIKE ' +
-      QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
-  end
-  else
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLRec` LIKE ' +
-      QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
-  end;
-  LogBookQuery.Open;
-  // LOGBookQuery.Last; }
+  MainFunc.FilterQSO('QSLRec', '1');
 end;
 
 procedure TMainForm.MenuItem105Click(Sender: TObject);
 begin
- { LogBookQuery.Close;
-  LogBookQuery.SQL.Clear;
-
-  if DefaultDB = 'MySQL' then
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSent` LIKE ' +
-      QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
-  end
-  else
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSent` LIKE ' +
-      QuotedStr(IntToStr(1)) + ' ORDER BY `UnUsedIndex`' + '');
-  end;
-  LogBookQuery.Open;
-  // LOGBookQuery.Last; }
+  MainFunc.FilterQSO('QSLSent', '1');
 end;
 
 procedure TMainForm.MenuItem106Click(Sender: TObject);
 begin
- { LogBookQuery.Close;
-  LogBookQuery.SQL.Clear;
-
-  if DefaultDB = 'MySQL' then
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSent` LIKE ' +
-      QuotedStr(IntToStr(0)) + ' ORDER BY `UnUsedIndex`' + '');
-  end
-  else
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSent` LIKE ' +
-      QuotedStr(IntToStr(0)) + ' ORDER BY `UnUsedIndex`' + '');
-  end;
-  LogBookQuery.Open;
-  // LOGBookQuery.Last;  }
+  MainFunc.FilterQSO('QSLSent', '0');
 end;
 
 procedure TMainForm.MenuItem107Click(Sender: TObject);
 begin
- {LogBookQuery.Close;
-  LogBookQuery.SQL.Clear;
-
-  if DefaultDB = 'MySQL' then
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
-      QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
-  end
-  else
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
-      QuotedStr('P') + ' ORDER BY `UnUsedIndex`' + '');
-  end;
-  LogBookQuery.Open;
-  //LOGBookQuery.Last;  }
-
+  MainFunc.FilterQSO('QSLSentAdv', 'P');
 end;
 
 procedure TMainForm.MenuItem108Click(Sender: TObject);
 begin
- { LogBookQuery.Close;
-  LogBookQuery.SQL.Clear;
-
-  if DefaultDB = 'MySQL' then
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
-      QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
-  end
-  else
-  begin
-    LogBookQuery.SQL.Add('SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LogTable + ' WHERE `QSLSentAdv` LIKE ' +
-      QuotedStr('N') + ' ORDER BY `UnUsedIndex`' + '');
-  end;
-  LogBookQuery.Open;
-  // LOGBookQuery.Last; }
+  MainFunc.FilterQSO('QSLSentAdv', 'N');
 end;
 
 procedure TMainForm.MenuItem109Click(Sender: TObject);
@@ -3502,119 +3341,109 @@ end;
 //QSL получена
 procedure TMainForm.MenuItem11Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSLRec','1');
+  MainFunc.UpdateQSO(DBGrid1, 'QSLRec', '1');
 end;
 
 //QSL получена и отправлена на печать
 procedure TMainForm.MenuItem10Click(Sender: TObject);
 begin
- MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','Q');
+  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'Q');
 end;
 
 //Поставить QSO в очередь на печать
 procedure TMainForm.MenuItem12Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSLPrint','Q');
+  MainFunc.UpdateQSO(DBGrid1, 'QSLPrint', 'Q');
 end;
 
 //QSL напечатана
 procedure TMainForm.MenuItem13Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','P');
+  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'P');
 end;
 
 //QSL отправлена
 procedure TMainForm.MenuItem14Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','T');
+  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'T');
 end;
 
 //QSL не отправлена
 procedure TMainForm.MenuItem16Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','F');
+  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'F');
 end;
 
 //QSL не отправлять
 procedure TMainForm.MenuItem17Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','N');
+  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'N');
 end;
 
 //QSL получена через B - бюро
 procedure TMainForm.MenuItem21Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_RCVD_VIA','B');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'B');
 end;
 
 //QSL Получена через D - Direct
 procedure TMainForm.MenuItem22Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_RCVD_VIA','D');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'D');
 end;
 
 //QSL получена через E - Electronic
 procedure TMainForm.MenuItem23Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_RCVD_VIA','E');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'E');
 end;
 
 //QSL получена через M - менеджера
 procedure TMainForm.MenuItem24Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_RCVD_VIA','M');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'M');
 end;
 
 //QSL получена через G - GlobalQSL
 procedure TMainForm.MenuItem25Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_RCVD_VIA','G');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'G');
 end;
 
 //QSL Отправелена через B - Бюро
 procedure TMainForm.MenuItem27Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_SENT_VIA','B');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'B');
 end;
 
 //QSL отправлена через D - Direct
 procedure TMainForm.MenuItem28Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_SENT_VIA','D');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'D');
 end;
 
 //QSL отправлена через E - Electronic
 procedure TMainForm.MenuItem29Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_SENT_VIA','E');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'E');
 end;
 
 //QSL отправлена через M - менеджер
 procedure TMainForm.MenuItem30Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_SENT_VIA','M');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'M');
 end;
 
 //QSL отправлена через G - GlobalQSL
 procedure TMainForm.MenuItem31Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSL_SENT_VIA','G');
+  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'G');
 end;
 
 //Выбрать все записи в dbGrid1
 procedure TMainForm.MenuItem35Click(Sender: TObject);
-var
-  i: integer;
 begin
- { if Self.LogBookQuery.RecordCount > 0 then
-  begin
-    LogBookQuery.First;
-    for i := 0 to Self.LogBookQuery.RecordCount - 1 do
-    begin
-      Self.DBGrid1.SelectedRows.CurrentRowSelected := True;
-      LogBookQuery.Next;
-    end;
-  end; }
+  MainFunc.SelectAllQSO(DBGrid1);
 end;
 
 procedure TMainForm.MenuItem36Click(Sender: TObject);
@@ -3908,40 +3737,10 @@ begin
   SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2);
 end;
 
+//Удалить QSO
 procedure TMainForm.MenuItem51Click(Sender: TObject);
-var
-  i: integer;
-  Query: TSQLQuery;
 begin
-  try
-    Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-    if (UnUsIndex <> 0) then
-    begin
-      for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-      begin
-        DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-        UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-        with Query do
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('DELETE FROM ' + LBRecord.LogTable +
-            ' WHERE `UnUsedIndex`=:UnUsedIndex');
-          Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-          ExecSQL;
-        end;
-      end;
-      InitDB.DefTransaction.Commit;
-      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-        ShowMessage(rDBError);
-    end;
-  finally
-    FreeAndNil(Query);
-  end;
+  MainFunc.DeleteQSO(DBGrid1);
 end;
 
 procedure TMainForm.MenuItem52Click(Sender: TObject);
