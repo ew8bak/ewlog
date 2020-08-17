@@ -77,9 +77,65 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('UPDATE ' + LBRecord.LogTable +
-          ' SET ' + QuotedStr(Field) + '=:' + Field + ' WHERE UnUsedIndex=:UnUsedIndex');
-        Params.ParamByName(Field).AsString := Value;
+        if (Value = 'E') or (Value = 'F') or (Value = 'T') or
+          (Value = 'Q') or (Field = 'QSLRec') then
+        begin
+          if Value = 'E' then
+          begin
+            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+              QuotedStr(Field) + '=:' + Field +
+              ',QSLReceQSLcc=:QSLReceQSLcc WHERE UnUsedIndex=:UnUsedIndex');
+            Params.ParamByName(Field).AsString := Value;
+            Params.ParamByName('QSLReceQSLcc').AsBoolean := True;
+          end;
+          if Value = 'T' then
+          begin
+            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+              QuotedStr(Field) + '=:' + Field +
+              ',QSLSentDate=:QSLSentDate,QSLSent=:QSLSent WHERE UnUsedIndex=:UnUsedIndex');
+            Params.ParamByName(Field).AsString := Value;
+            Params.ParamByName('QSLSentDate').AsDate := Now;
+            Params.ParamByName('QSLSent').Value := 1;
+          end;
+          if Value = 'F' then
+          begin
+            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+              QuotedStr(Field) + '=:' + Field +
+              ',QSLSentDate=:QSLSentDate,QSLSent=:QSLSent WHERE UnUsedIndex=:UnUsedIndex');
+            Params.ParamByName(Field).AsString := Value;
+            Params.ParamByName('QSLSentDate').IsNull;
+            Params.ParamByName('QSLSent').Value := 0;
+          end;
+          if (Value = 'Q') and (Field = 'QSLSentAdv') then
+          begin
+            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+              QuotedStr(Field) + '=:' + Field +
+              ',QSLRec=:QSLRec, QSLRecDate=:QSLRecDate WHERE UnUsedIndex=:UnUsedIndex');
+            Params.ParamByName(Field).AsString := Value;
+            Params.ParamByName('QSLRec').Value := 1;
+            Params.ParamByName('QSLRecDate').AsDate := Now;
+          end;
+          if Field = 'QSLPrint' then
+          begin
+            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+              '`QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
+            Params.ParamByName('QSLSentAdv').AsString := Value;
+          end;
+          if Field = 'QSLRec' then
+          begin
+            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+              QuotedStr(Field) + '=:' + Field +
+              ',`QSLRecDate`=:QSLRecDate WHERE `UnUsedIndex`=:UnUsedIndex');
+            Params.ParamByName(Field).Value := Field;
+            Params.ParamByName('QSLRecDate').AsDate := Now;
+          end;
+        end
+        else
+        begin
+          SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+            QuotedStr(Field) + '=:' + Field + ' WHERE UnUsedIndex=:UnUsedIndex');
+          Params.ParamByName(Field).AsString := Value;
+        end;
         Params.ParamByName('UnUsedIndex').AsInteger := RecIndex;
         ExecSQL;
       end;

@@ -3100,37 +3100,6 @@ begin
   InitDB.SelectLogbookTable(LBRecord.LogTable);
 end;
 
-//QSL получена и отправлена на печать
-procedure TMainForm.MenuItem10Click(Sender: TObject);
-var
-  i: integer;
-begin
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-    begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('UPDATE ' + LBRecord.LogTable +
-          ' SET `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('QSLRec').Value := 1;
-        Params.ParamByName('QSLRecDate').AsDate := Now;
-        Params.ParamByName('QSLSentAdv').AsString := 'Q';
-        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-        ExecSQL;
-      end;
-    end;
-    InitDB.DefTransaction.Commit;
-    SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
-  end;
-
-end;
-
 procedure TMainForm.MenuItem111Click(Sender: TObject);
 begin
   PhotoGroup := TGroupBox.Create(Panel13);
@@ -3314,36 +3283,6 @@ begin
       ShowMessage(rLanguageComplite);
     end;
   end;
-end;
-
-//QSL получена
-procedure TMainForm.MenuItem11Click(Sender: TObject);
-var
-  i: integer;
-begin
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-    begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with EditQSO_Form.UPDATE_Query do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('UPDATE ' + LBRecord.LogTable +
-          ' SET `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('QSLRec').Value := 1;
-        Params.ParamByName('QSLRecDate').AsDate := Now;
-        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-        ExecSQL;
-      end;
-    end;
-    InitDB.DefTransaction.Commit;
-    SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
-  end;
-
 end;
 
 procedure TMainForm.MenuItem121Click(Sender: TObject);
@@ -3560,10 +3499,22 @@ begin
   MM_Form.Show;
 end;
 
+//QSL получена
+procedure TMainForm.MenuItem11Click(Sender: TObject);
+begin
+  MainFunc.UpdateQSO(DBGrid1,'QSLRec','1');
+end;
+
+//QSL получена и отправлена на печать
+procedure TMainForm.MenuItem10Click(Sender: TObject);
+begin
+ MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','Q');
+end;
+
 //Поставить QSO в очередь на печать
 procedure TMainForm.MenuItem12Click(Sender: TObject);
 begin
-  MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','Q');
+  MainFunc.UpdateQSO(DBGrid1,'QSLPrint','Q');
 end;
 
 //QSL напечатана
@@ -3574,68 +3525,14 @@ end;
 
 //QSL отправлена
 procedure TMainForm.MenuItem14Click(Sender: TObject);
-var
-  i, recnom: integer;
 begin
- { recnom := 0;
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-    begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      recnom := LOGBookQuery.RecNo;
-      with EditQSO_Form.UPDATE_Query do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('UPDATE ' + LogTable +
-          ' SET `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLSent`=:QSLSent WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('QSLSentAdv').AsString := 'T';
-        Params.ParamByName('QSLSentDate').AsDate := Now;
-        Params.ParamByName('QSLSent').Value := 1;
-        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-        ExecSQL;
-      end;
-    end;
-    SQLTransaction1.Commit;
-    SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := recnom;
-  end;     }
-
+  MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','T');
 end;
 
 //QSL не отправлена
 procedure TMainForm.MenuItem16Click(Sender: TObject);
-var
-  i, recnom: integer;
 begin
- { recnom := 0;
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-    begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      recnom := LOGBookQuery.RecNo;
-      with EditQSO_Form.UPDATE_Query do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('UPDATE ' + LogTable +
-          ' SET `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate,`QSLSent`=:QSLSent WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('QSLSentAdv').AsString := 'F';
-        Params.ParamByName('QSLSentDate').IsNull;
-        Params.ParamByName('QSLSent').Value := 0;
-        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-        ExecSQL;
-      end;
-    end;
-    SQLTransaction1.Commit;
-    SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := recnom;
-  end;  }
-
+  MainFunc.UpdateQSO(DBGrid1,'QSLSentAdv','F');
 end;
 
 //QSL не отправлять
@@ -3658,34 +3555,8 @@ end;
 
 //QSL получена через E - Electronic
 procedure TMainForm.MenuItem23Click(Sender: TObject);
-var
-  i, recnom: integer;
 begin
- { recnom := 0;
-  if (UnUsIndex <> 0) then
-  begin
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-    begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      recnom := LOGBookQuery.RecNo;
-      with EditQSO_Form.UPDATE_Query do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('UPDATE ' + LogTable +
-          ' SET `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSLReceQSLcc`=:QSLReceQSLcc WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('QSL_RCVD_VIA').AsString := 'E';
-        Params.ParamByName('QSLReceQSLcc').AsBoolean := True;
-        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-        ExecSQL;
-      end;
-    end;
-    SQLTransaction1.Commit;
-    SelDB(CallLogBook);
-    DBGrid1.DataSource.DataSet.RecNo := recnom;
-  end;
-  }
+  MainFunc.UpdateQSO(DBGrid1,'QSL_RCVD_VIA','E');
 end;
 
 //QSL получена через M - менеджера
