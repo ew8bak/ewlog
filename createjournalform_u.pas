@@ -182,7 +182,7 @@ begin
           if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
             ShowMessage(rDBError);
 
-        MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox1, MainForm.ComboBox10);
+        MainFunc.LoadBMSL(True, MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1, MainForm.ComboBox10);
         if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
           MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin

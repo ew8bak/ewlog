@@ -30,7 +30,8 @@ type
     procedure CheckQSL(Callsign, band, mode: string; var QSL: integer);
     procedure LoadINIsettings;
     procedure ClearPFXR(var PFXR: TPFXR);
-    procedure LoadBMSL(var CBMode, CBBand, CBJournal: TComboBox);
+    procedure LoadBMSL(SelectItem: boolean;
+      var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
     procedure UpdateQSO(DBGrid: TDBGrid; Field, Value: string);
     procedure DeleteQSO(DBGrid: TDBGrid);
     procedure FilterQSO(Field, Value: string);
@@ -63,7 +64,7 @@ procedure TMainFunc.SelectAllQSO(var DBGrid: TDBGrid);
 var
   i: integer;
 begin
-   if InitDB.DefLogBookQuery.RecordCount > 0 then
+  if InitDB.DefLogBookQuery.RecordCount > 0 then
   begin
     InitDB.DefLogBookQuery.First;
     for i := 0 to InitDB.DefLogBookQuery.RecordCount - 1 do
@@ -1060,7 +1061,8 @@ begin
     DBGRID.Columns.Items[i].Title.Font.Size := MainForm.SizeTextGrid;
 end;
 
-procedure TMainFunc.LoadBMSL(var CBMode, CBBand, CBJournal: TComboBox);
+procedure TMainFunc.LoadBMSL(SelectItem: boolean;
+  var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
 var
   i: integer;
 begin
@@ -1068,17 +1070,30 @@ begin
   CBMode.Items.Clear;
   for i := 0 to High(LoadModes) do
     CBMode.Items.Add(LoadModes[i]);
-  CBMode.ItemIndex := CBMode.Items.IndexOf(IniSet.PastMode);
+  if SelectItem then
+    CBMode.ItemIndex := CBMode.Items.IndexOf(IniSet.PastMode);
+  //Загрузка Sub модуляций
+  CBSubMode.Items.Clear;
+  for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
+    CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
+  if SelectItem then
+    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf(IniSet.PastSubMode);
   //загрузка диапазонов
   CBBand.Items.Clear;
   for i := 0 to High(LoadBands(CBMode.Text)) do
     CBBand.Items.Add(LoadBands(CBMode.Text)[i]);
-  CBBand.ItemIndex := IniSet.PastBand;
+  if SelectItem then
+    CBBand.ItemIndex := IniSet.PastBand;
+
   //загрузка позывных журналов
-  CBJournal.Items.Clear;
-  for i := 0 to High(GetAllCallsign) do
-    CBJournal.Items.Add(GetAllCallsign[i]);
-  CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+  if CBJournal <> nil then
+  begin
+    CBJournal.Items.Clear;
+    for i := 0 to High(GetAllCallsign) do
+      CBJournal.Items.Add(GetAllCallsign[i]);
+    if SelectItem then
+      CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+  end;
 end;
 
 procedure TMainFunc.ClearPFXR(var PFXR: TPFXR);

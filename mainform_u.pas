@@ -2604,7 +2604,7 @@ begin
 
   InitClusterINI;
 
-  MainFunc.LoadBMSL(ComboBox2, ComboBox1, ComboBox10);
+  MainFunc.LoadBMSL(True, ComboBox2, ComboBox9, ComboBox1, ComboBox10);
 
   lastUDPport := -1;
   lastTCPport := -1;
