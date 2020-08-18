@@ -30,8 +30,8 @@ type
     procedure CheckQSL(Callsign, band, mode: string; var QSL: integer);
     procedure LoadINIsettings;
     procedure ClearPFXR(var PFXR: TPFXR);
-    procedure LoadBMSL(SelectItem: boolean;
-      var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
+    procedure LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
+    procedure LoadBMSL(var CBMode, CBSubMode, CBBand: TComboBox); overload;
     procedure UpdateQSO(DBGrid: TDBGrid; Field, Value: string);
     procedure DeleteQSO(DBGrid: TDBGrid);
     procedure FilterQSO(Field, Value: string);
@@ -1061,8 +1061,7 @@ begin
     DBGRID.Columns.Items[i].Title.Font.Size := MainForm.SizeTextGrid;
 end;
 
-procedure TMainFunc.LoadBMSL(SelectItem: boolean;
-  var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
+procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
 var
   i: integer;
 begin
@@ -1070,30 +1069,41 @@ begin
   CBMode.Items.Clear;
   for i := 0 to High(LoadModes) do
     CBMode.Items.Add(LoadModes[i]);
-  if SelectItem then
-    CBMode.ItemIndex := CBMode.Items.IndexOf(IniSet.PastMode);
+  CBMode.ItemIndex := CBMode.Items.IndexOf(IniSet.PastMode);
   //Загрузка Sub модуляций
   CBSubMode.Items.Clear;
   for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
     CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
-  if SelectItem then
-    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf(IniSet.PastSubMode);
+  CBSubMode.ItemIndex := CBSubMode.Items.IndexOf(IniSet.PastSubMode);
   //загрузка диапазонов
   CBBand.Items.Clear;
   for i := 0 to High(LoadBands(CBMode.Text)) do
     CBBand.Items.Add(LoadBands(CBMode.Text)[i]);
-  if SelectItem then
-    CBBand.ItemIndex := IniSet.PastBand;
+  CBBand.ItemIndex := IniSet.PastBand;
 
   //загрузка позывных журналов
-  if CBJournal <> nil then
-  begin
-    CBJournal.Items.Clear;
-    for i := 0 to High(GetAllCallsign) do
-      CBJournal.Items.Add(GetAllCallsign[i]);
-    if SelectItem then
-      CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
-  end;
+  CBJournal.Items.Clear;
+  for i := 0 to High(GetAllCallsign) do
+    CBJournal.Items.Add(GetAllCallsign[i]);
+  CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+end;
+
+procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode, CBBand: TComboBox); overload;
+var
+  i: integer;
+begin
+  //Загрузка модуляций
+  CBMode.Items.Clear;
+  for i := 0 to High(LoadModes) do
+    CBMode.Items.Add(LoadModes[i]);
+  //Загрузка Sub модуляций
+  CBSubMode.Items.Clear;
+  for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
+    CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
+  //загрузка диапазонов
+  CBBand.Items.Clear;
+  for i := 0 to High(LoadBands(CBMode.Text)) do
+    CBBand.Items.Add(LoadBands(CBMode.Text)[i]);
 end;
 
 procedure TMainFunc.ClearPFXR(var PFXR: TPFXR);

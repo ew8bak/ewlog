@@ -2604,7 +2604,7 @@ begin
 
   InitClusterINI;
 
-  MainFunc.LoadBMSL(True, ComboBox2, ComboBox9, ComboBox1, ComboBox10);
+  MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1, ComboBox10);
 
     if ComboBox10.ItemIndex > -1 then
   begin

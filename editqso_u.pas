@@ -504,17 +504,6 @@ procedure TEditQSO_Form.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
-  if DBRecord.InitDB = 'YES' then
-  begin
-    if DBRecord.CurrentDB = 'MySQL' then
-    begin
-      UPDATE_Query.DataBase := InitDB.MySQLConnection;
-    end
-    else
-    begin
-      UPDATE_Query.DataBase := InitDB.SQLiteConnection;
-    end;
-
     for i := 0 to 29 do
     begin
       DBGrid1.Columns.Items[i].FieldName := Mainform.columnsGrid[i];
@@ -552,9 +541,7 @@ begin
         'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
       end;
     end;
-    ComboBox2.Items := MainForm.ComboBox2.Items;
-  end;
-
+   // ComboBox2.Items := MainForm.ComboBox2.Items;
 end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);
@@ -562,6 +549,7 @@ var
   i: integer;
 begin
   try
+    MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1);
     if DBRecord.InitDB = 'YES' then
     begin
       SatPropQuery.DataBase := InitDB.ServiceDBConnection;
