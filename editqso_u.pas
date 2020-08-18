@@ -501,47 +501,8 @@ begin
 end;
 
 procedure TEditQSO_Form.FormCreate(Sender: TObject);
-var
-  i: integer;
 begin
-    for i := 0 to 29 do
-    begin
-      DBGrid1.Columns.Items[i].FieldName := Mainform.columnsGrid[i];
-      DBGrid1.Columns.Items[i].Width := Mainform.columnsWidth[i];
-      case Mainform.columnsGrid[i] of
-        'QSL': DBGrid1.Columns.Items[i].Title.Caption := rQSL;
-        'QSLs': DBGrid1.Columns.Items[i].Title.Caption := rQSLs;
-        'QSODate': DBGrid1.Columns.Items[i].Title.Caption := rQSODate;
-        'QSOTime': DBGrid1.Columns.Items[i].Title.Caption := rQSOTime;
-        'QSOBand': DBGrid1.Columns.Items[i].Title.Caption := rQSOBand;
-        'CallSign': DBGrid1.Columns.Items[i].Title.Caption := rCallSign;
-        'QSOMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOMode;
-        'QSOSubMode': DBGrid1.Columns.Items[i].Title.Caption := rQSOSubMode;
-        'OMName': DBGrid1.Columns.Items[i].Title.Caption := rOMName;
-        'OMQTH': DBGrid1.Columns.Items[i].Title.Caption := rOMQTH;
-        'State': DBGrid1.Columns.Items[i].Title.Caption := rState;
-        'Grid': DBGrid1.Columns.Items[i].Title.Caption := rGrid;
-        'QSOReportSent': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportSent;
-        'QSOReportRecived': DBGrid1.Columns.Items[i].Title.Caption := rQSOReportRecived;
-        'IOTA': DBGrid1.Columns.Items[i].Title.Caption := rIOTA;
-        'QSLManager': DBGrid1.Columns.Items[i].Title.Caption := rQSLManager;
-        'QSLSentDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLSentDate;
-        'QSLRecDate': DBGrid1.Columns.Items[i].Title.Caption := rQSLRecDate;
-        'LoTWRecDate': DBGrid1.Columns.Items[i].Title.Caption := rLoTWRecDate;
-        'MainPrefix': DBGrid1.Columns.Items[i].Title.Caption := rMainPrefix;
-        'DXCCPrefix': DBGrid1.Columns.Items[i].Title.Caption := rDXCCPrefix;
-        'CQZone': DBGrid1.Columns.Items[i].Title.Caption := rCQZone;
-        'ITUZone': DBGrid1.Columns.Items[i].Title.Caption := rITUZone;
-        'ManualSet': DBGrid1.Columns.Items[i].Title.Caption := rManualSet;
-        'Continent': DBGrid1.Columns.Items[i].Title.Caption := rContinent;
-        'ValidDX': DBGrid1.Columns.Items[i].Title.Caption := rValidDX;
-        'QSL_RCVD_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_RCVD_VIA;
-        'QSL_SENT_VIA': DBGrid1.Columns.Items[i].Title.Caption := rQSL_SENT_VIA;
-        'USERS': DBGrid1.Columns.Items[i].Title.Caption := rUSERS;
-        'NoCalcDXCC': DBGrid1.Columns.Items[i].Title.Caption := rNoCalcDXCC;
-      end;
-    end;
-   // ComboBox2.Items := MainForm.ComboBox2.Items;
+
 end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);
@@ -550,6 +511,7 @@ var
 begin
   try
     MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1);
+    MainFunc.SetGrid(DBGrid1);
     if DBRecord.InitDB = 'YES' then
     begin
       SatPropQuery.DataBase := InitDB.ServiceDBConnection;

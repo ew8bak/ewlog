@@ -32,9 +32,10 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="532"/>
-        <CursorPos X="23" Y="552"/>
+        <TopLine Value="519"/>
+        <CursorPos X="29" Y="514"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -674,10 +675,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1038"/>
-        <CursorPos X="21" Y="1091"/>
+        <TopLine Value="967"/>
+        <CursorPos X="2" Y="958"/>
         <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit64>

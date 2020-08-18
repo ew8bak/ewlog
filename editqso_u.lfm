@@ -1395,9 +1395,9 @@ object EditQSO_Form: TEditQSO_Form
       ClientWidth = 469
       object DBGrid1: TDBGrid
         Left = 0
-        Height = 176
+        Height = 175
         Top = 0
-        Width = 471
+        Width = 469
         Align = alClient
         Color = clWindow
         Columns = <        
