@@ -346,13 +346,12 @@ begin
 end;
 
 procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);
-//var
-  //modesString: TStringList;
+var
+  i: integer;
 begin
- // modesString := TStringList.Create;
- // MainForm.addModes(ComboBox2.Text, True, modesString);
- // ComboBox9.Items := modesString;
- // modesString.Free;
+  ComboBox9.Items.Clear;
+  for i := 0 to High(MainFunc.LoadSubModes(ComboBox2.Text)) do
+    ComboBox9.Items.Add(MainFunc.LoadSubModes(ComboBox2.Text)[i]);
 end;
 
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
