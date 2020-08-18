@@ -1,7 +1,7 @@
 object EditQSO_Form: TEditQSO_Form
-  Left = 421
+  Left = 299
   Height = 590
-  Top = 177
+  Top = 168
   Width = 491
   BorderStyle = bsDialog
   Caption = 'QSO Editor'
@@ -13,7 +13,7 @@ object EditQSO_Form: TEditQSO_Form
   OnShow = FormShow
   Position = poMainFormCenter
   ShowInTaskBar = stNever
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object GroupBox1: TGroupBox
     Left = 7
     Height = 336
@@ -1551,7 +1551,6 @@ object EditQSO_Form: TEditQSO_Form
         ParentFont = False
         ReadOnly = True
         TabOrder = 0
-        TitleFont.Height = -11
         OnDrawColumnCell = DBGrid1DrawColumnCell
       end
     end
@@ -1603,27 +1602,17 @@ object EditQSO_Form: TEditQSO_Form
   end
   object UPDATE_Query: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     SQL.Strings = (
       ''
     )
     Params = <>
-    left = 408
-    top = 420
-  end
-  object TerrQuery: TSQLQuery
-    FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
-    Params = <>
-    left = 256
-    top = 88
+    Left = 408
+    Top = 420
   end
   object SatPropQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
-    left = 32
-    top = 544
+    Left = 32
+    Top = 544
   end
 end

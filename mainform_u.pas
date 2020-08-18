@@ -2606,6 +2606,24 @@ begin
 
   MainFunc.LoadBMSL(True, ComboBox2, ComboBox9, ComboBox1, ComboBox10);
 
+    if ComboBox10.ItemIndex > -1 then
+  begin
+    if Pos('/', ComboBox10.Text) > 0 then
+    begin
+      Label51.Visible := True;
+      Edit14.Visible := True;
+      Label52.Visible := True;
+      Edit15.Visible := True;
+    end
+    else
+    begin
+      Label51.Visible := False;
+      Edit14.Visible := False;
+      Label52.Visible := False;
+      Edit15.Visible := False;
+    end;
+  end;
+
   lastUDPport := -1;
   lastTCPport := -1;
   LTCPComponent1.ReuseAddress := True;

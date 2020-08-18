@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, DateTimePicker, Forms, Controls, Graphics,
   Dialogs, StdCtrls, ComCtrls, EditBtn, Buttons, ExtCtrls, DBGrids, DBCtrls,
-  InformationForm_U, sqldb, DB, RegExpr, Grids, resourcestr;
+  InformationForm_U, sqldb, DB, RegExpr, Grids, resourcestr, prefix_record;
 
 type
 
@@ -109,7 +109,6 @@ type
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
     SatPropQuery: TSQLQuery;
-    TerrQuery: TSQLQuery;
     UPDATE_Query: TSQLQuery;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -143,7 +142,9 @@ var
 
 implementation
 
-uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U, dmFunc_U, IOTA_Form_U, STATE_Form_U, ConfigForm_U, const_u, InitDB_dm;
+uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U,
+  dmFunc_U, IOTA_Form_U, STATE_Form_U,
+  ConfigForm_U, const_u, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -329,73 +330,19 @@ end;
 
 procedure TEditQSO_Form.Button4Click(Sender: TObject);
 var
-  i, j: integer;
-  BoolPrefix: boolean;
+  PFXR: TPFXR;
 begin
-  BoolPrefix := False;
-
-  with TerrQuery do
+  if Length(Edit1.Text) > 0 then
   begin
-    Close;
-    SQL.Clear;
-    SQL.Add('select * from ' + LBRecord.LogTable + ' where CallSign = "' + Edit1.Text + '"');
-    Open;
+    PFXR := MainFunc.SearchPrefix(Edit1.Text, Edit14.Text);
+    GroupBox1.Caption := PFXR.Country;
+    Edit7.Text := PFXR.ARRLPrefix;
+    Edit8.Text := PFXR.Prefix;
+    Edit15.Text := PFXR.CQZone;
+    Edit16.Text := PFXR.ITUZone;
+    Edit13.Text := PFXR.Continent;
+    Edit6.Text := IntToStr(PFXR.DXCCNum);
   end;
- {
-  for i := 0 to PrefixProvinceCount do
-  begin
-    if (MainForm.PrefixExpProvinceArray[i].reg.Exec(Edit1.Text)) and
-      (MainForm.PrefixExpProvinceArray[i].reg.Match[0] = Edit1.Text) then
-    begin
-      BoolPrefix := True;
-      with MainForm.PrefixQuery do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from Province where _id = "' +
-          IntToStr(MainForm.PrefixExpProvinceArray[i].id) + '"');
-        Open;
-      end;
-      GroupBox1.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
-      Edit7.Text := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      Edit8.Text := MainForm.PrefixQuery.FieldByName('Prefix').AsString;
-      Edit15.Text := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-      Edit16.Text := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-      Edit13.Text := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-      Edit6.Text := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
-    end;
-  end;
-  if BoolPrefix = False then
-  begin
-    for j := 0 to PrefixARRLCount do
-    begin
-      if (MainForm.PrefixExpARRLArray[j].reg.Exec(Edit1.Text)) and
-        (MainForm.PrefixExpARRLArray[j].reg.Match[0] = Edit1.Text) then
-      begin
-        with MainForm.PrefixQuery do
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('select * from CountryDataEx where _id = "' +
-            IntToStr(MainForm.PrefixExpARRLArray[j].id) + '"');
-          Open;
-          if FieldByName('Status').AsString = 'Deleted' then
-          begin
-            MainForm.PrefixExpARRLArray[j].reg.ExecNext;
-            Exit;
-          end;
-
-        end;
-        GroupBox1.Caption := MainForm.PrefixQuery.FieldByName('Country').AsString;
-        Edit7.Text := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-        Edit8.Text := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-        Edit15.Text := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-        Edit16.Text := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-        Edit13.Text := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-        Edit6.Text := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
-      end;
-    end;
-  end; }
 end;
 
 procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);
@@ -562,12 +509,10 @@ begin
   begin
     if DBRecord.CurrentDB = 'MySQL' then
     begin
-      TerrQuery.DataBase := InitDB.MySQLConnection;
       UPDATE_Query.DataBase := InitDB.MySQLConnection;
     end
     else
     begin
-      TerrQuery.DataBase := InitDB.SQLiteConnection;
       UPDATE_Query.DataBase := InitDB.SQLiteConnection;
     end;
 
@@ -623,12 +568,10 @@ begin
       SatPropQuery.DataBase := InitDB.ServiceDBConnection;
       if DBRecord.CurrentDB = 'MySQL' then
       begin
-        TerrQuery.DataBase := InitDB.MySQLConnection;
         UPDATE_Query.DataBase := InitDB.MySQLConnection;
       end
       else
       begin
-        TerrQuery.DataBase := InitDB.SQLiteConnection;
         UPDATE_Query.DataBase := InitDB.SQLiteConnection;
       end;
     end;
