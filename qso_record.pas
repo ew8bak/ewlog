@@ -24,9 +24,9 @@ type
     QSLManager: string[20];
     QSLSent: string[1];
     QSLSentAdv: string[1];
-    QSLSentDate: string;
+    QSLSentDate: TDateTime;
     QSLRec: string[1];
-    QSLRecDate: string;
+    QSLRecDate: TDateTime;
     MainPrefix: string[5];
     DXCCPrefix: string[5];
     CQZone: string[2];
@@ -39,7 +39,7 @@ type
     ShortNote: string[30];
     QSLReceQSLcc: integer;
     LotWRec: string[1];
-    LotWRecDate: string;
+    LotWRecDate: TDateTime;
     QSLInfo: string[100];
     Call: string[20];
     State1: string[25];

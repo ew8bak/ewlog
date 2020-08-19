@@ -74,14 +74,14 @@ begin
     if DBRecord.CurrentDB = 'MySQL' then
     begin
       QSODates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSODate));
-      QSLSentDate := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLSentDate));
+      QSLSentDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLSentDate));
       QSLRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLRecDate));
       LotWRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.LotWRecDate));
     end
     else
     begin
       QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
-      QSLSentDate := FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate));
+      QSLSentDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate));
       QSLRecDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLRecDate));
       LotWRecDates := FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate));
     end;
@@ -1118,9 +1118,9 @@ begin
     QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
       'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode,' +
       'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA,' +
-      'QSLManager, QSLSent, QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate,' +
+      'QSLManager, QSLSent, QSLSentAdv, QSLRec,' +
       'MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,' +
-      'DigiBand, Continent, ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate,' +
+      'DigiBand, Continent, ShortNote, QSLReceQSLcc, LoTWRec,' +
       'QSLInfo, Call, State1, State2, State3, State4, WPX, AwardsEx,' +
       'ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,' +
       'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC,' +
@@ -1131,14 +1131,13 @@ begin
       dmFunc.Q(SQSO.QSOReportRecived) + dmFunc.Q(SQSO.OmName) +
       dmFunc.Q(SQSO.OmQTH) + dmFunc.Q(SQSO.State0) + dmFunc.Q(SQSO.Grid) +
       dmFunc.Q(SQSO.IOTA) + dmFunc.Q(SQSO.QSLManager) + dmFunc.Q(SQSO.QSLSent) +
-      dmFunc.Q(SQSO.QSLSentAdv) + dmFunc.Q(SQSO.QSLSentDate) +
-      dmFunc.Q(SQSO.QSLRec) + dmFunc.Q(SQSO.QSLRecDate) +
-      dmFunc.Q(SQSO.MainPrefix) + dmFunc.Q(SQSO.DXCCPrefix) +
+      dmFunc.Q(SQSO.QSLSentAdv) +
+      dmFunc.Q(SQSO.QSLRec) + dmFunc.Q(SQSO.MainPrefix) + dmFunc.Q(SQSO.DXCCPrefix) +
       dmFunc.Q(SQSO.CQZone) + dmFunc.Q(SQSO.ITUZone) + dmFunc.Q(SQSO.QSOAddInfo) +
       dmFunc.Q(SQSO.Marker) + dmFunc.Q(IntToStr(SQSO.ManualSet)) +
       dmFunc.Q(SQSO.DigiBand) + dmFunc.Q(SQSO.Continent) +
       dmFunc.Q(SQSO.ShortNote) + dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) +
-      dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.LotWRecDate) +
+      dmFunc.Q(SQSO.LotWRec) +
       dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) + dmFunc.Q(SQSO.State1) +
       dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) + dmFunc.Q(SQSO.State4) +
       dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) + dmFunc.Q(SQSO.ValidDX) +

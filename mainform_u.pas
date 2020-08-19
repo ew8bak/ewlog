@@ -4010,9 +4010,7 @@ begin
       SQSO.QSLManager := Edit6.Text;
       SQSO.QSLSent := QSL_SENT;
       SQSO.QSLSentAdv := QSL_SENT_ADV;
-      SQSO.QSLSentDate := 'NULL';
       SQSO.QSLRec := '0';
-      SQSO.QSLRecDate := 'NULL';
       SQSO.MainPrefix := PFXR.Prefix;
       SQSO.DXCCPrefix := PFXR.ARRLPrefix;
       SQSO.CQZone := PFXR.CQZone;
@@ -4025,7 +4023,6 @@ begin
       SQSO.ShortNote := Edit11.Text;
       SQSO.QSLReceQSLcc := 0;
       SQSO.LotWRec := '';
-      SQSO.LotWRecDate := 'NULL';
 
       if not IniSet.StateToQSLInfo then
         SQSO.QSLInfo := LBRecord.QSLInfo

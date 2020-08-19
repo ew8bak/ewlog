@@ -20,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="3973"/>
-        <CursorPos X="20" Y="3997"/>
+        <TopLine Value="3997"/>
+        <CursorPos X="26" Y="4025"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,8 +33,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="277"/>
-        <CursorPos X="56" Y="303"/>
+        <TopLine Value="250"/>
+        <CursorPos Y="269"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -285,7 +285,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="382"/>
         <CursorPos X="38" Y="406"/>
         <UsageCount Value="200"/>
@@ -525,10 +525,10 @@
       <Unit48>
         <Filename Value="qso_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="34"/>
-        <CursorPos X="27" Y="61"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="27" Y="42"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit48>
       <Unit49>
         <Filename Value="resourcestr.pas"/>
@@ -672,8 +672,8 @@
         <UnitName Value="MainFuncDM"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="66"/>
-        <CursorPos X="45" Y="77"/>
+        <TopLine Value="71"/>
+        <CursorPos Y="84"/>
         <UsageCount Value="74"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1203,123 +1203,127 @@
         <UsageCount Value="10"/>
       </Unit135>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="333" Column="93" TopLine="301"/>
+        <Caret Line="111" Column="56" TopLine="92"/>
       </Position1>
       <Position2>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="337" Column="50" TopLine="305"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="213" Column="4" TopLine="187"/>
       </Position2>
       <Position3>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="406" Column="43" TopLine="374"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="10" Column="83"/>
       </Position3>
       <Position4>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="98" Column="43" TopLine="79"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="275" Column="3" TopLine="245"/>
       </Position4>
       <Position5>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="104" Column="34" TopLine="85"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="406" Column="14" TopLine="292"/>
       </Position5>
       <Position6>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="105" Column="43" TopLine="86"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="295" Column="43" TopLine="198"/>
       </Position6>
       <Position7>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="108" Column="53" TopLine="89"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="239" Column="64" TopLine="219"/>
       </Position7>
       <Position8>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="110" Column="89" TopLine="91"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="252" Column="50" TopLine="233"/>
       </Position8>
       <Position9>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="111" Column="56" TopLine="92"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="253" Column="56" TopLine="234"/>
       </Position9>
       <Position10>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="213" Column="4" TopLine="187"/>
+        <Caret Line="255" Column="49" TopLine="236"/>
       </Position10>
       <Position11>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="10" Column="83"/>
+        <Caret Line="266" Column="63" TopLine="242"/>
       </Position11>
       <Position12>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="275" Column="3" TopLine="245"/>
+        <Caret Line="262" Column="22" TopLine="243"/>
       </Position12>
       <Position13>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="406" Column="14" TopLine="292"/>
+        <Caret Line="266" Column="57" TopLine="244"/>
       </Position13>
       <Position14>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="295" Column="43" TopLine="198"/>
+        <Caret Line="267" Column="57" TopLine="244"/>
       </Position14>
       <Position15>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="239" Column="64" TopLine="219"/>
+        <Caret Line="215" Column="24" TopLine="198"/>
       </Position15>
       <Position16>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="252" Column="50" TopLine="233"/>
+        <Caret Line="207" TopLine="204"/>
       </Position16>
       <Position17>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="253" Column="56" TopLine="234"/>
+        <Caret Line="269" Column="28" TopLine="259"/>
       </Position17>
       <Position18>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="255" Column="49" TopLine="236"/>
+        <Caret Line="292" Column="21" TopLine="271"/>
       </Position18>
       <Position19>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="266" Column="63" TopLine="242"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="71" Column="22" TopLine="69"/>
       </Position19>
       <Position20>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="262" Column="22" TopLine="243"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="117" Column="58" TopLine="97"/>
       </Position20>
       <Position21>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="266" Column="57" TopLine="244"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="116" Column="28" TopLine="97"/>
       </Position21>
       <Position22>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="267" Column="57" TopLine="244"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="79" Column="30" TopLine="51"/>
       </Position22>
       <Position23>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="215" Column="24" TopLine="198"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="84" Column="19" TopLine="76"/>
       </Position23>
       <Position24>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="207" TopLine="204"/>
+        <Caret Line="273" Column="39" TopLine="223"/>
       </Position24>
       <Position25>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="269" Column="28" TopLine="259"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="3997" Column="20" TopLine="3973"/>
       </Position25>
       <Position26>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="292" Column="21" TopLine="271"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1121" Column="41" TopLine="1108"/>
       </Position26>
       <Position27>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="71" Column="22" TopLine="69"/>
+        <Caret Line="1135" Column="31" TopLine="1116"/>
       </Position27>
       <Position28>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="117" Column="58" TopLine="97"/>
+        <Caret Line="1140" Column="30" TopLine="1112"/>
       </Position28>
       <Position29>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="116" Column="28" TopLine="97"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="250" TopLine="231"/>
       </Position29>
+      <Position30>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="269" TopLine="250"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -1327,6 +1331,15 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="mainfuncdm.pas"/>
+        <Line Value="84"/>
+      </Item1>
+    </BreakPoints>
     <Watches Count="4">
       <Item1>
         <Expression Value="Freq"/>

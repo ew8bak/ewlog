@@ -247,13 +247,11 @@ begin
     UQSO.QSLSentAdv := 'F';
   if RadioButton5.Checked = True then
     UQSO.QSLSentAdv := 'N';
-  UQSO.QSLSentDate := 'NULL';
-  UQSO.QSLRecDate := 'NULL';
   if DateEdit3.Text <> '' then
-    UQSO.QSLSentDate := DateToStr(DateEdit3.Date);
+    UQSO.QSLSentDate := DateEdit3.Date;
   UQSO.QSLRec := BoolToStr(CheckBox4.Checked, '1', '0');
   if DateEdit2.Text <> '' then
-    UQSO.QSLRecDate := DateToStr(DateEdit2.Date);
+    UQSO.QSLRecDate := DateEdit2.Date;
   UQSO.DXCC := Edit6.Text;
   UQSO.DXCCPrefix := Edit7.Text;
   UQSO.CQZone := Edit15.Text;
@@ -268,9 +266,8 @@ begin
   if CheckBox5.Checked then
     UQSO.QSLReceQSLcc := 1;
   UQSO.LoTWRec := BoolToStr(CheckBox6.Checked, '1', '0');
-  UQSO.LoTWRecDate := 'NULL';
   if DateEdit4.Text <> '' then
-    UQSO.LoTWRecDate := DateToStr(DateEdit4.Date);
+    UQSO.LoTWRecDate := DateEdit4.Date;
   UQSO.QSLInfo := Edit20.Text;
   UQSO.Call := Edit1.Text;
   UQSO.State1 := Edit10.Text;
