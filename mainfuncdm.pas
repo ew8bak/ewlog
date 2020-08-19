@@ -67,14 +67,24 @@ uses InitDB_dm, dmFunc_U, MainForm_U;
 procedure TMainFunc.UpdateEditQSO(index: integer; SQSO: TQSO);
 var
   QueryTXT: string;
-  QSODates: string;
+  QSODates, QSLSentDates, QSLRecDates, LotWRecDates: string;
   SRXs, STXs: string;
 begin
   try
     if DBRecord.CurrentDB = 'MySQL' then
-      QSODates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSODate))
+    begin
+      QSODates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSODate));
+      QSLSentDate := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLSentDate));
+      QSLRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLRecDate));
+      LotWRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.LotWRecDate));
+    end
     else
+    begin
       QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
+      QSLSentDate := FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate));
+      QSLRecDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLRecDate));
+      LotWRecDates := FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate));
+    end;
 
     SRXs := IntToStr(SQSO.SRX);
     STXs := IntToStr(SQSO.STX);
@@ -98,8 +108,8 @@ begin
       'Grid = ' + dmFunc.Q(SQSO.Grid) + 'IOTA=' + dmFunc.Q(SQSO.IOTA) +
       'QSLManager = ' + dmFunc.Q(SQSO.QSLManager) + 'QSLSent = ' +
       dmFunc.Q(SQSO.QSLSent) + 'QSLSentAdv = ' + dmFunc.Q(SQSO.QSLSentAdv) +
-      'QSLSentDate = ' + dmFunc.Q(SQSO.QSLSentDate) + 'QSLRec = ' +
-      dmFunc.Q(SQSO.QSLRec) + 'QSLRecDate = ' + dmFunc.Q(SQSO.QSLRecDate) +
+      'QSLSentDate = ' + dmFunc.Q(QSLSentDates) + 'QSLRec = ' +
+      dmFunc.Q(SQSO.QSLRec) + 'QSLRecDate = ' + dmFunc.Q(QSLRecDates) +
       'MainPrefix = ' + dmFunc.Q(SQSO.MainPrefix) + 'DXCCPrefix=' +
       dmFunc.Q(SQSO.DXCCPrefix) + 'CQZone=' + dmFunc.Q(SQSO.CQZone) +
       'ITUZone = ' + dmFunc.Q(SQSO.ITUZone) + 'QSOAddInfo=' +
@@ -108,17 +118,16 @@ begin
       dmFunc.Q(SQSO.DigiBand) + 'Continent=' + dmFunc.Q(SQSO.Continent) +
       'ShortNote=' + dmFunc.Q(SQSO.ShortNote) + 'QSLReceQSLcc=' +
       dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) + 'LoTWRec=' + dmFunc.Q(SQSO.LotWRec) +
-      'LoTWRecDate=' + dmFunc.Q(SQSO.LotWRecDate) + 'QSLInfo=' +
+      'LoTWRecDate=' + dmFunc.Q(LotWRecDates) + 'QSLInfo=' +
       dmFunc.Q(SQSO.QSLInfo) + '`Call`=' + dmFunc.Q(SQSO.Call) +
       'State1=' + dmFunc.Q(SQSO.State1) + 'State2=' + dmFunc.Q(SQSO.State2) +
       'State3=' + dmFunc.Q(SQSO.State3) + 'State4=' + dmFunc.Q(SQSO.State4) +
       'WPX=' + dmFunc.Q(SQSO.WPX) + 'ValidDX=' + dmFunc.Q(SQSO.ValidDX) +
-      'SRX=' + dmFunc.Q(SRXs) + 'SRX_STRING=' +
-      dmFunc.Q(SQSO.SRX_String) + 'STX=' + dmFunc.Q(STXs) +
-      'STX_STRING=' + dmFunc.Q(SQSO.STX_String) + 'SAT_NAME=' +
-      dmFunc.Q(SQSO.SAT_NAME) + 'SAT_MODE=' + dmFunc.Q(SQSO.SAT_MODE) +
-      'PROP_MODE=' + dmFunc.Q(SQSO.PROP_MODE) + 'LoTWSent=' +
-      dmFunc.Q(IntToStr(SQSO.LotWSent)) + 'QSL_RCVD_VIA=' +
+      'SRX=' + dmFunc.Q(SRXs) + 'SRX_STRING=' + dmFunc.Q(SQSO.SRX_String) +
+      'STX=' + dmFunc.Q(STXs) + 'STX_STRING=' + dmFunc.Q(SQSO.STX_String) +
+      'SAT_NAME=' + dmFunc.Q(SQSO.SAT_NAME) + 'SAT_MODE=' +
+      dmFunc.Q(SQSO.SAT_MODE) + 'PROP_MODE=' + dmFunc.Q(SQSO.PROP_MODE) +
+      'LoTWSent=' + dmFunc.Q(IntToStr(SQSO.LotWSent)) + 'QSL_RCVD_VIA=' +
       dmFunc.Q(SQSO.QSL_RCVD_VIA) + 'QSL_SENT_VIA=' + dmFunc.Q(SQSO.QSL_SENT_VIA) +
       'DXCC=' + dmFunc.Q(SQSO.DXCC) + 'NoCalcDXCC=' +
       QuotedStr(IntToStr(SQSO.NoCalcDXCC)) + ' WHERE UnUsedIndex=' +
