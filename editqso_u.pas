@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, DateTimePicker, Forms, Controls, Graphics,
   Dialogs, StdCtrls, ComCtrls, EditBtn, Buttons, ExtCtrls, DBGrids, DBCtrls,
-  InformationForm_U, sqldb, DB, RegExpr, Grids, resourcestr, prefix_record;
+  InformationForm_U, sqldb, DB, RegExpr, Grids, resourcestr, prefix_record, qso_record;
 
 type
 
@@ -205,128 +205,102 @@ end;
 
 procedure TEditQSO_Form.Button3Click(Sender: TObject);
 var
+  UQSO: TQSO;
   FmtStngs: TFormatSettings;
+  NameBand, FREQ_string: string;
   DigiBand: double;
-  ind: integer;
-  FREQ_string: string;
-  NameBand: string;
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
+  if Pos('M', ComboBox1.Text) > 0 then
+    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+      ComboBox1.Text, ComboBox2.Text))
+  else
+    NameBand := ComboBox1.Text;
+
   FREQ_string := ComboBox1.Text;
   Delete(FREQ_string, length(FREQ_string) - 2, 1);
   DigiBand := dmFunc.GetDigiBandFromFreq(FREQ_string);
 
-  ind := MainForm.DBGrid1.DataSource.DataSet.RecNo;
-  with UPDATE_Query do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add('UPDATE ' + LBRecord.LogTable +
-      ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, `QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode,`QSOSubMode`=:QSOSubMode, `QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived, `OMName`=:OMName, `OMQTH`=:OMQTH, `State`=:State, `Grid`=:Grid, `IOTA`=:IOTA, `QSLManager`=:QSLManager, `QSLSent`=:QSLSent, `QSLSentAdv`=:QSLSentAdv, `QSLSentDate`=:QSLSentDate, `QSLRec`=:QSLRec, `QSLRecDate`=:QSLRecDate, `MainPrefix`=:MainPrefix, `DXCCPrefix`=:DXCCPrefix, `CQZone`=:CQZone, `ITUZone`=:ITUZone, `QSOAddInfo`=:QSOAddInfo, `Marker`=:Marker, `ManualSet`=:ManualSet, `DigiBand`=:DigiBand, `Continent`=:Continent, `ShortNote`=:ShortNote, `QSLReceQSLcc`=:QSLReceQSLcc, `LoTWRec`=:LoTWRec, `LoTWRecDate`=:LoTWRecDate, `QSLInfo`=:QSLInfo, `Call`=:Call, `State1`=:State1, `State2`=:State2, `State3`=:State3, `State4`=:State4, `WPX`=:WPX, `ValidDX`=:ValidDX, `SRX`=:SRX, `SRX_STRING`=:SRX_STRING, `STX`=:STX, `STX_STRING`=:STX_STRING, `SAT_NAME`=:SAT_NAME, `SAT_MODE`=:SAT_MODE, `PROP_MODE`=:PROP_MODE, `LoTWSent`=:LoTWSent, `QSL_RCVD_VIA`=:QSL_RCVD_VIA, `QSL_SENT_VIA`=:QSL_SENT_VIA, `DXCC`=:DXCC, `NoCalcDXCC`=:NoCalcDXCC WHERE `UnUsedIndex`=:UnUsedIndex');
-    Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-    Params.ParamByName('CallSign').AsString := Edit1.Text;
-    Params.ParamByName('QSODate').AsDateTime := DateEdit1.Date;
-    Params.ParamByName('QSOTime').AsString := TimeToStr(DateTimePicker1.Time, FmtStngs);
-
-    if Pos('M', ComboBox1.Text) > 0 then
-      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-        ComboBox1.Text, ComboBox2.Text))
-    else
-      NameBand := ComboBox1.Text;
-
-    Params.ParamByName('QSOBand').AsString := NameBand;
-
-    Params.ParamByName('QSOMode').AsString := ComboBox2.Text;
-    Params.ParamByName('QSOSubMode').AsString := ComboBox9.Text;
-    Params.ParamByName('QSOReportSent').AsString := Edit2.Text;
-    Params.ParamByName('QSOReportRecived').AsString := Edit3.Text;
-    Params.ParamByName('OMName').AsString := Edit4.Text;
-    Params.ParamByName('OMQTH').AsString := Edit5.Text;
-    Params.ParamByName('State').AsString := Edit17.Text;
-    Params.ParamByName('Grid').AsString := Edit14.Text;
-    Params.ParamByName('IOTA').AsString := Edit18.Text;
-    Params.ParamByName('QSLManager').AsString := Edit19.Text;
-    Params.ParamByName('QSLSent').AsBoolean := RadioButton1.Checked;
-
-    if RadioButton1.Checked = True then
-      Params.ParamByName('QSLSentAdv').AsString := 'T';
-    if RadioButton2.Checked = True then
-      Params.ParamByName('QSLSentAdv').AsString := 'P';
-    if RadioButton3.Checked = True then
-      Params.ParamByName('QSLSentAdv').AsString := 'Q';
-    if RadioButton4.Checked = True then
-      Params.ParamByName('QSLSentAdv').AsString := 'F';
-    if RadioButton5.Checked = True then
-      Params.ParamByName('QSLSentAdv').AsString := 'N';
-
-    if DateEdit3.Text <> '' then
-      Params.ParamByName('QSLSentDate').AsDate := DateEdit3.Date
-    else
-      Params.ParamByName('QSLSentDate').IsNull;
-
-    Params.ParamByName('QSLRec').AsBoolean := CheckBox4.Checked;
-
-    if DateEdit2.Text <> '' then
-      Params.ParamByName('QSLRecDate').AsDate := DateEdit2.Date
-    else
-      Params.ParamByName('QSLRecDate').IsNull;
-
-    Params.ParamByName('DXCC').AsString := Edit6.Text;
-    Params.ParamByName('DXCCPrefix').AsString := Edit7.Text;
-    Params.ParamByName('CQZone').AsString := Edit15.Text;
-    Params.ParamByName('ITUZone').AsString := Edit16.Text;
-    Params.ParamByName('QSOAddInfo').AsString := Memo1.Text;
-    Params.ParamByName('Marker').AsBoolean := CheckBox3.Checked;
-    Params.ParamByName('ManualSet').AsBoolean := False;
-
-    Params.ParamByName('DigiBand').AsString := FloatToStr(DigiBand);
-
-    Params.ParamByName('Continent').AsString := Edit13.Text;
-    Params.ParamByName('ShortNote').AsString := Memo1.Text;
-    Params.ParamByName('QSLReceQSLcc').AsBoolean := CheckBox5.Checked;
-    Params.ParamByName('LoTWRec').AsBoolean := CheckBox6.Checked;
-
-    if DateEdit4.Text <> '' then
-      Params.ParamByName('LoTWRecDate').AsDate := DateEdit4.Date
-    else
-      Params.ParamByName('LoTWRecDate').IsNull;
-
-    Params.ParamByName('QSLInfo').AsString := Edit20.Text;
-    Params.ParamByName('Call').AsString := Edit1.Text;
-    Params.ParamByName('State1').AsString := Edit10.Text;
-    Params.ParamByName('State2').AsString := Edit9.Text;
-    Params.ParamByName('State3').AsString := Edit11.Text;
-    Params.ParamByName('State4').AsString := Edit12.Text;
-    Params.ParamByName('WPX').AsString := Edit8.Text;
-    Params.ParamByName('ValidDX').AsBoolean := CheckBox2.Checked;
-    Params.ParamByName('SRX').IsNull;
-    Params.ParamByName('SRX_STRING').AsString := '';
-    Params.ParamByName('STX').IsNull;
-    Params.ParamByName('STX_STRING').AsString := '';
-    Params.ParamByName('SAT_NAME').AsString := DBLookupComboBox2.Text;
-    Params.ParamByName('SAT_MODE').AsString := ComboBox4.Text;
-    Params.ParamByName('PROP_MODE').AsString := ComboBox3.Text;
-
-    Params.ParamByName('LoTWSent').AsBoolean := CheckBox7.Checked;
-
-    if ComboBox6.Text <> '' then
-      Params.ParamByName('QSL_RCVD_VIA').AsString := ComboBox6.Text[1]
-    else
-      Params.ParamByName('QSL_RCVD_VIA').IsNull;
-    if ComboBox7.Text <> '' then
-      Params.ParamByName('QSL_SENT_VIA').AsString := ComboBox7.Text[1]
-    else
-      Params.ParamByName('QSL_SENT_VIA').IsNull;
-    Params.ParamByName('NoCalcDXCC').AsBoolean := CheckBox1.Checked;
-    Params.ParamByName('MainPrefix').AsString := Edit8.Text;
-    ExecSQL;
-  end;
-  InitDB.DefTransaction.Commit;
-   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
-  MainForm.DBGrid1.DataSource.DataSet.RecNo := ind;
-
+  UQSO.CallSing := Edit1.Text;
+  UQSO.QSODate := DateEdit1.Date;
+  UQSO.QSOTime := TimeToStr(DateTimePicker1.Time, FmtStngs);
+  UQSO.QSOBand := NameBand;
+  UQSO.QSOMode := ComboBox2.Text;
+  UQSO.QSOSubMode := ComboBox9.Text;
+  UQSO.QSOReportSent := Edit2.Text;
+  UQSO.QSOReportRecived := Edit3.Text;
+  UQSO.OMName := Edit4.Text;
+  UQSO.OMQTH := Edit5.Text;
+  UQSO.State0 := Edit17.Text;
+  UQSO.Grid := Edit14.Text;
+  UQSO.IOTA := Edit18.Text;
+  UQSO.QSLManager := Edit19.Text;
+  UQSO.QSLSent := BoolToStr(RadioButton1.Checked, '1', '0');
+  if RadioButton1.Checked = True then
+    UQSO.QSLSentAdv := 'T';
+  if RadioButton2.Checked = True then
+    UQSO.QSLSentAdv := 'P';
+  if RadioButton3.Checked = True then
+    UQSO.QSLSentAdv := 'Q';
+  if RadioButton4.Checked = True then
+    UQSO.QSLSentAdv := 'F';
+  if RadioButton5.Checked = True then
+    UQSO.QSLSentAdv := 'N';
+  UQSO.QSLSentDate := 'NULL';
+  UQSO.QSLRecDate := 'NULL';
+  if DateEdit3.Text <> '' then
+    UQSO.QSLSentDate := DateToStr(DateEdit3.Date);
+  UQSO.QSLRec := BoolToStr(CheckBox4.Checked, '1', '0');
+  if DateEdit2.Text <> '' then
+    UQSO.QSLRecDate := DateToStr(DateEdit2.Date);
+  UQSO.DXCC := Edit6.Text;
+  UQSO.DXCCPrefix := Edit7.Text;
+  UQSO.CQZone := Edit15.Text;
+  UQSO.ITUZone := Edit16.Text;
+  UQSO.QSOAddInfo := Memo1.Text;
+  UQSO.Marker := BoolToStr(CheckBox3.Checked, '1', '0');
+  UQSO.ManualSet := 0;
+  UQSO.DigiBand := FloatToStr(DigiBand);
+  UQSO.Continent := Edit13.Text;
+  UQSO.ShortNote := Memo1.Text;
+  UQSO.QSLReceQSLcc := 0;
+  if CheckBox5.Checked then
+    UQSO.QSLReceQSLcc := 1;
+  UQSO.LoTWRec := BoolToStr(CheckBox6.Checked, '1', '0');
+  UQSO.LoTWRecDate := 'NULL';
+  if DateEdit4.Text <> '' then
+    UQSO.LoTWRecDate := DateToStr(DateEdit4.Date);
+  UQSO.QSLInfo := Edit20.Text;
+  UQSO.Call := Edit1.Text;
+  UQSO.State1 := Edit10.Text;
+  UQSO.State2 := Edit9.Text;
+  UQSO.State3 := Edit11.Text;
+  UQSO.State4 := Edit12.Text;
+  UQSO.WPX := Edit8.Text;
+  UQSO.ValidDX := BoolToStr(CheckBox2.Checked, '1', '0');
+  UQSO.SRX := 0;
+  UQSO.SRX_STRING := '';
+  UQSO.STX := 0;
+  UQSO.STX_STRING := '';
+  UQSO.SAT_NAME := DBLookupComboBox2.Text;
+  UQSO.SAT_MODE := ComboBox4.Text;
+  UQSO.PROP_MODE := ComboBox3.Text;
+  UQSO.LoTWSent := 0;
+  if CheckBox7.Checked then
+    UQSO.LoTWSent := 1;
+  UQSO.NoCalcDXCC := 0;
+  if CheckBox1.Checked then
+    UQSO.NoCalcDXCC := 1;
+  UQSO.MainPrefix := Edit8.Text;
+  UQSO.QSL_RCVD_VIA := 'NULL';
+  UQSO.QSL_SENT_VIA := 'NULL';
+  if ComboBox6.Text <> '' then
+    UQSO.QSL_RCVD_VIA := ComboBox6.Text[1];
+  if ComboBox7.Text <> '' then
+    UQSO.QSL_SENT_VIA := ComboBox7.Text[1];
+  MainFunc.UpdateEditQSO(UnUsIndex, UQSO);
+  //  MainForm.DBGrid1.DataSource.DataSet.RecNo := ind;
 end;
 
 procedure TEditQSO_Form.Button4Click(Sender: TObject);
@@ -358,7 +332,8 @@ end;
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
-  MainFunc.DrawColumnGrid(MainForm.LOGBookDS.DataSet, Rect, DataCol, Column, State, DBGrid1);
+  MainFunc.DrawColumnGrid(MainForm.LOGBookDS.DataSet, Rect, DataCol,
+    Column, State, DBGrid1);
 end;
 
 procedure TEditQSO_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);

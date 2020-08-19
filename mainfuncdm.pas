@@ -34,6 +34,7 @@ type
     procedure LoadBMSL(var CBMode, CBSubMode, CBBand: TComboBox); overload;
     procedure UpdateQSO(DBGrid: TDBGrid; Field, Value: string);
     procedure DeleteQSO(DBGrid: TDBGrid);
+    procedure UpdateEditQSO(index: integer; SQSO: TQSO);
     procedure FilterQSO(Field, Value: string);
     procedure SelectAllQSO(var DBGrid: TDBGrid);
     procedure DrawColumnGrid(DS: TDataSet; Rect: TRect; DataCol: integer;
@@ -62,6 +63,76 @@ implementation
 uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+procedure TMainFunc.UpdateEditQSO(index: integer; SQSO: TQSO);
+var
+  QueryTXT: string;
+  QSODates: string;
+  SRXs, STXs: string;
+begin
+  try
+    if DBRecord.CurrentDB = 'MySQL' then
+      QSODates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSODate))
+    else
+      QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
+
+    SRXs := IntToStr(SQSO.SRX);
+    STXs := IntToStr(SQSO.STX);
+    if SQSO.SRX = 0 then
+      SRXs := 'NULL';
+    if SQSO.STX = 0 then
+      STXs := 'NULL';
+    if SQSO.QSL_RCVD_VIA = '' then
+      SQSO.QSL_RCVD_VIA := 'NULL';
+    if SQSO.QSL_SENT_VIA = '' then
+      SQSO.QSL_SENT_VIA := 'NULL';
+
+    QueryTXT := 'UPDATE ' + LBRecord.LogTable + ' SET ' + 'CallSign = ' +
+      dmFunc.Q(SQSO.CallSing) + 'QSODate = ' + dmFunc.Q(QSODates) +
+      'QSOTime = ' + dmFunc.Q(SQSO.QSOTime) + 'QSOBand = ' +
+      dmFunc.Q(SQSO.QSOBand) + 'QSOMode = ' + dmFunc.Q(SQSO.QSOMode) +
+      'QSOSubMode = ' + dmFunc.Q(SQSO.QSOSubMode) + 'QSOReportSent = ' +
+      dmFunc.Q(SQSO.QSOReportSent) + 'QSOReportRecived = ' +
+      dmFunc.Q(SQSO.QSOReportRecived) + 'OMName = ' + dmFunc.Q(SQSO.OmName) +
+      'OMQTH = ' + dmFunc.Q(SQSO.OmQTH) + 'State = ' + dmFunc.Q(SQSO.State0) +
+      'Grid = ' + dmFunc.Q(SQSO.Grid) + 'IOTA=' + dmFunc.Q(SQSO.IOTA) +
+      'QSLManager = ' + dmFunc.Q(SQSO.QSLManager) + 'QSLSent = ' +
+      dmFunc.Q(SQSO.QSLSent) + 'QSLSentAdv = ' + dmFunc.Q(SQSO.QSLSentAdv) +
+      'QSLSentDate = ' + dmFunc.Q(SQSO.QSLSentDate) + 'QSLRec = ' +
+      dmFunc.Q(SQSO.QSLRec) + 'QSLRecDate = ' + dmFunc.Q(SQSO.QSLRecDate) +
+      'MainPrefix = ' + dmFunc.Q(SQSO.MainPrefix) + 'DXCCPrefix=' +
+      dmFunc.Q(SQSO.DXCCPrefix) + 'CQZone=' + dmFunc.Q(SQSO.CQZone) +
+      'ITUZone = ' + dmFunc.Q(SQSO.ITUZone) + 'QSOAddInfo=' +
+      dmFunc.Q(SQSO.QSOAddInfo) + 'Marker = ' + dmFunc.Q(SQSO.Marker) +
+      'ManualSet=' + dmFunc.Q(IntToStr(SQSO.ManualSet)) + 'DigiBand = ' +
+      dmFunc.Q(SQSO.DigiBand) + 'Continent=' + dmFunc.Q(SQSO.Continent) +
+      'ShortNote=' + dmFunc.Q(SQSO.ShortNote) + 'QSLReceQSLcc=' +
+      dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) + 'LoTWRec=' + dmFunc.Q(SQSO.LotWRec) +
+      'LoTWRecDate=' + dmFunc.Q(SQSO.LotWRecDate) + 'QSLInfo=' +
+      dmFunc.Q(SQSO.QSLInfo) + '`Call`=' + dmFunc.Q(SQSO.Call) +
+      'State1=' + dmFunc.Q(SQSO.State1) + 'State2=' + dmFunc.Q(SQSO.State2) +
+      'State3=' + dmFunc.Q(SQSO.State3) + 'State4=' + dmFunc.Q(SQSO.State4) +
+      'WPX=' + dmFunc.Q(SQSO.WPX) + 'ValidDX=' + dmFunc.Q(SQSO.ValidDX) +
+      'SRX=' + dmFunc.Q(SRXs) + 'SRX_STRING=' +
+      dmFunc.Q(SQSO.SRX_String) + 'STX=' + dmFunc.Q(STXs) +
+      'STX_STRING=' + dmFunc.Q(SQSO.STX_String) + 'SAT_NAME=' +
+      dmFunc.Q(SQSO.SAT_NAME) + 'SAT_MODE=' + dmFunc.Q(SQSO.SAT_MODE) +
+      'PROP_MODE=' + dmFunc.Q(SQSO.PROP_MODE) + 'LoTWSent=' +
+      dmFunc.Q(IntToStr(SQSO.LotWSent)) + 'QSL_RCVD_VIA=' +
+      dmFunc.Q(SQSO.QSL_RCVD_VIA) + 'QSL_SENT_VIA=' + dmFunc.Q(SQSO.QSL_SENT_VIA) +
+      'DXCC=' + dmFunc.Q(SQSO.DXCC) + 'NoCalcDXCC=' +
+      QuotedStr(IntToStr(SQSO.NoCalcDXCC)) + ' WHERE UnUsedIndex=' +
+      QuotedStr(IntToStr(index));
+    if DBRecord.CurrentDB = 'MySQL' then
+      InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
+    else
+      InitDB.SQLiteConnection.ExecuteDirect(QueryTXT);
+  finally
+    InitDB.DefTransaction.Commit;
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
+  end;
+end;
 
 function TMainFunc.FindCountry(ISOCode: string): string;
 var
@@ -520,7 +591,7 @@ var
 begin
   try
     Query := TSQLQuery.Create(nil);
-    Query.PacketRecords:=50;
+    Query.PacketRecords := 50;
     SubModeSlist := TStringList.Create;
     if InitDB.ServiceDBConnection.Connected then
     begin
@@ -551,7 +622,7 @@ var
 begin
   try
     Query := TSQLQuery.Create(nil);
-    Query.PacketRecords:=50;
+    Query.PacketRecords := 50;
     if InitDB.ServiceDBConnection.Connected then
     begin
       Query.DataBase := InitDB.ServiceDBConnection;
@@ -582,7 +653,7 @@ var
 begin
   try
     Query := TSQLQuery.Create(nil);
-    Query.PacketRecords:=50;
+    Query.PacketRecords := 50;
     if InitDB.ServiceDBConnection.Connected then
     begin
       Query.DataBase := InitDB.ServiceDBConnection;
