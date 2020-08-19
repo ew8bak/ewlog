@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
-  foundQSO_record, StdCtrls;
+  foundQSO_record, StdCtrls, Grids, Graphics;
 
 type
   bandArray = array of string;
@@ -36,6 +36,8 @@ type
     procedure DeleteQSO(DBGrid: TDBGrid);
     procedure FilterQSO(Field, Value: string);
     procedure SelectAllQSO(var DBGrid: TDBGrid);
+    procedure DrawColumnGrid(DS: TDataSet; Rect: TRect; DataCol: integer;
+      Column: TColumn; State: TGridDrawState; var DBGrid: TDBGrid);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -59,6 +61,133 @@ implementation
 uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+procedure TMainFunc.DrawColumnGrid(DS: TDataSet; Rect: TRect;
+  DataCol: integer; Column: TColumn; State: TGridDrawState; var DBGrid: TDBGrid);
+var
+  Field_QSL: string;
+  Field_QSLs: string;
+  Field_QSLSentAdv: string;
+begin
+  Field_QSL := DS.FieldByName('QSL').AsString;
+  Field_QSLs := DS.FieldByName('QSLs').AsString;
+  Field_QSLSentAdv := DS.FieldByName('QSLSentAdv').AsString;
+  if Field_QSLSentAdv = 'N' then
+    with DBGrid.Canvas do
+    begin
+      Brush.Color := clRed;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+  if (Field_QSL = '001') or (Field_QSL = '100') or (Field_QSL = '011') or
+    (Field_QSL = '110') or (Field_QSL = '111') or (Field_QSL = '101') then
+    with DBGrid.Canvas do
+    begin
+      Brush.Color := clFuchsia;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+  if (Field_QSLs = '10') or (Field_QSLs = '11') then
+    with DBGrid.Canvas do
+    begin
+      Brush.Color := clAqua;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+  if ((Field_QSLs = '10') or (Field_QSLs = '11')) and
+    ((Field_QSL = '001') or (Field_QSL = '011') or (Field_QSL = '111') or
+    (Field_QSL = '101') or (Field_QSL = '110')) then
+    with DBGrid.Canvas do
+    begin
+      Brush.Color := clLime;
+      Font.Color := clBlack;
+      if (gdSelected in State) then
+      begin
+        Brush.Color := clHighlight;
+        Font.Color := clWhite;
+      end;
+      FillRect(Rect);
+      DBGrid.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+    end;
+  if (Column.FieldName = 'CallSign') then
+    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') or
+      (Field_QSL = '011') then
+    begin
+      with DBGrid.Canvas do
+      begin
+        Brush.Color := clYellow;
+        Font.Color := clBlack;
+        if (gdSelected in State) then
+        begin
+          Brush.Color := clHighlight;
+          Font.Color := clWhite;
+        end;
+        FillRect(Rect);
+        DBGrid.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+      end;
+    end;
+  if (Column.FieldName = 'QSL') then
+  begin
+    with DBGrid.Canvas do
+    begin
+      FillRect(Rect);
+      if (Field_QSL = '100') then
+        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
+      if (Field_QSL = '110') then
+        TextOut(Rect.Right - 10 - TextWidth('PE'), Rect.Top + 0, 'PE');
+      if (Field_QSL = '111') then
+        TextOut(Rect.Right - 6 - TextWidth('PLE'), Rect.Top + 0, 'PLE');
+      if (Field_QSL = '010') then
+        TextOut(Rect.Right - 6 - TextWidth('E'), Rect.Top + 0, 'E');
+      if (Field_QSL = '001') then
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
+      if (Field_QSL = '101') then
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
+      if (Field_QSL = '011') then
+        TextOut(Rect.Right - 10 - TextWidth('LE'), Rect.Top + 0, 'LE');
+    end;
+  end;
+  if (Column.FieldName = 'QSLs') then
+  begin
+    with DBGrid.Canvas do
+    begin
+      FillRect(Rect);
+      if (Field_QSLs = '10') then
+        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
+      if (Field_QSLs = '11') then
+        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
+      if (Field_QSLs = '01') then
+        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
+    end;
+  end;
+  if IniSet.showBand then
+  begin
+    if (Column.FieldName = 'QSOBand') then
+    begin
+      DBGrid.Canvas.FillRect(Rect);
+      DBGrid.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
+        dmFunc.GetBandFromFreq(DS.FieldByName('QSOBand').AsString));
+    end;
+  end;
+end;
 
 procedure TMainFunc.SelectAllQSO(var DBGrid: TDBGrid);
 var

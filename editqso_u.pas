@@ -163,7 +163,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton1Click(Sender: TObject);
 begin
- // CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
+  // CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM CountryDataEx';
@@ -176,7 +176,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton2Click(Sender: TObject);
 begin
- // CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
+  // CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
 
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
@@ -209,7 +209,7 @@ var
   DigiBand: double;
   ind: integer;
   FREQ_string: string;
-  NameBand: String;
+  NameBand: string;
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
@@ -230,12 +230,12 @@ begin
     Params.ParamByName('QSOTime').AsString := TimeToStr(DateTimePicker1.Time, FmtStngs);
 
     if Pos('M', ComboBox1.Text) > 0 then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-          ComboBox1.Text, ComboBox2.Text))
-      else
-        NameBand := ComboBox1.Text;
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+        ComboBox1.Text, ComboBox2.Text))
+    else
+      NameBand := ComboBox1.Text;
 
-    Params.ParamByName('QSOBand').AsString :=  NameBand;
+    Params.ParamByName('QSOBand').AsString := NameBand;
 
     Params.ParamByName('QSOMode').AsString := ComboBox2.Text;
     Params.ParamByName('QSOSubMode').AsString := ComboBox9.Text;
@@ -356,143 +356,8 @@ end;
 
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: integer; Column: TColumn; State: TGridDrawState);
-var
-  Field_QSL: string;
-  Field_QSLs: string;
-  Field_QSLSentAdv: string;
 begin
-  Field_QSL := MainForm.LOGBookDS.DataSet.FieldByName('QSL').AsString;
-  Field_QSLs := MainForm.LOGBookDS.DataSet.FieldByName('QSLs').AsString;
-  Field_QSLSentAdv := MainForm.LOGBookDS.DataSet.FieldByName('QSLSentAdv').AsString;
-
-   if Field_QSLSentAdv = 'N' then
-    with DBGrid1.Canvas do
-    begin
-      Brush.Color := clRed;
-      Font.Color := clBlack;
-      if (gdSelected in State) then
-      begin
-        Brush.Color := clHighlight;
-        Font.Color := clWhite;
-      end;
-      FillRect(Rect);
-      DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-    end;
-
-  if (Field_QSL = '001') or (Field_QSL = '100') or (Field_QSL = '011') or
-    (Field_QSL = '110') or (Field_QSL = '111') or (Field_QSL = '101') then
-    with DBGrid1.Canvas do
-    begin
-      Brush.Color := clFuchsia;
-      Font.Color := clBlack;
-      if (gdSelected in State) then
-      begin
-        Brush.Color := clHighlight;
-        Font.Color := clWhite;
-      end;
-      FillRect(Rect);
-      DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-    end;
-
-  if (Field_QSLs = '10') or (Field_QSLs = '11') then
-    with DBGrid1.Canvas do
-    begin
-      Brush.Color := clAqua;
-      Font.Color := clBlack;
-      if (gdSelected in State) then
-      begin
-        Brush.Color := clHighlight;
-        Font.Color := clWhite;
-      end;
-      FillRect(Rect);
-      DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-    end;
-
-  if ((Field_QSLs = '10') or (Field_QSLs = '11')) and
-    ((Field_QSL = '001') or (Field_QSL = '011') or (Field_QSL = '111') or
-    (Field_QSL = '101') or (Field_QSL = '110')) then
-    with DBGrid1.Canvas do
-    begin
-      Brush.Color := clLime;
-      Font.Color := clBlack;
-      if (gdSelected in State) then
-      begin
-        Brush.Color := clHighlight;
-        Font.Color := clWhite;
-      end;
-      FillRect(Rect);
-      DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-    end;
-
-  if (Column.FieldName = 'CallSign') then
-    if (Field_QSL = '010') or (Field_QSL = '110') or (Field_QSL = '111') or
-      (Field_QSL = '011') then
-    begin
-      with DBGrid1.Canvas do
-      begin
-        Brush.Color := clYellow;
-        Font.Color := clBlack;
-        if (gdSelected in State) then
-        begin
-          Brush.Color := clHighlight;
-          Font.Color := clWhite;
-        end;
-        FillRect(Rect);
-        DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
-      end;
-    end;
-  if (Column.FieldName = 'QSL') then
-  begin
-    with DBGrid1.Canvas do
-    begin
-      FillRect(Rect);
-
-      if (Field_QSL = '100') then
-        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
-
-      if (Field_QSL = '110') then
-        TextOut(Rect.Right - 10 - TextWidth('PE'), Rect.Top + 0, 'PE');
-
-      if (Field_QSL = '111') then
-        TextOut(Rect.Right - 6 - TextWidth('PLE'), Rect.Top + 0, 'PLE');
-
-      if (Field_QSL = '010') then
-        TextOut(Rect.Right - 6 - TextWidth('E'), Rect.Top + 0, 'E');
-
-      if (Field_QSL = '001') then
-        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
-
-      if (Field_QSL = '101') then
-        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
-
-      if (Field_QSL = '011') then
-        TextOut(Rect.Right - 10 - TextWidth('LE'), Rect.Top + 0, 'LE');
-    end;
-  end;
-  if (Column.FieldName = 'QSLs') then
-  begin
-    with DBGrid1.Canvas do
-    begin
-      FillRect(Rect);
-      if (Field_QSLs = '10') then
-        TextOut(Rect.Right - 6 - TextWidth('P'), Rect.Top + 0, 'P');
-
-      if (Field_QSLs = '11') then
-        TextOut(Rect.Right - 10 - TextWidth('PL'), Rect.Top + 0, 'PL');
-
-      if (Field_QSLs = '01') then
-        TextOut(Rect.Right - 6 - TextWidth('L'), Rect.Top + 0, 'L');
-    end;
-  end;
-  if ConfigForm.CheckBox2.Checked = True then
-  begin
-    if (Column.FieldName = 'QSOBand') then
-    begin
-      DBGrid1.Canvas.FillRect(Rect);
-      DBGrid1.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
-        dmFunc.GetBandFromFreq(MainForm.LOGBookDS.DataSet.FieldByName('QSOBand').AsString));
-    end;
-  end;
+  MainFunc.DrawColumnGrid(MainForm.LOGBookDS.DataSet, Rect, DataCol, Column, State, DBGrid1);
 end;
 
 procedure TEditQSO_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -509,50 +374,37 @@ procedure TEditQSO_Form.FormShow(Sender: TObject);
 var
   i: integer;
 begin
-  try
-    MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1);
-    MainFunc.SetGrid(DBGrid1);
-    if DBRecord.InitDB = 'YES' then
-    begin
-      SatPropQuery.DataBase := InitDB.ServiceDBConnection;
-      if DBRecord.CurrentDB = 'MySQL' then
-      begin
-        UPDATE_Query.DataBase := InitDB.MySQLConnection;
-      end
-      else
-      begin
-        UPDATE_Query.DataBase := InitDB.SQLiteConnection;
-      end;
-    end;
+  MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1);
+  MainFunc.SetGrid(DBGrid1);
 
-    if ComboBox2.Text <> '' then
-      ComboBox2Change(Self);
-    ComboBox3.Items.Clear;
-    SatPropQuery.SQL.Text := 'SELECT * FROM PropMode';
-    SatPropQuery.Open;
-    SatPropQuery.First;
-    for i := 0 to SatPropQuery.RecordCount - 1 do
+  if DBRecord.InitDB = 'YES' then
+  begin
+    SatPropQuery.DataBase := InitDB.ServiceDBConnection;
+    if DBRecord.CurrentDB = 'MySQL' then
     begin
-      ComboBox3.Items.Add(SatPropQuery.FieldByName('Type').AsString);
-      SatPropQuery.Next;
-    end;
-    SatPropQuery.Close;
-
-    Button4.Click;
-    Edit1.SetFocus;
-  except
-    on E: ESQLDatabaseError do
+      UPDATE_Query.DataBase := InitDB.MySQLConnection;
+    end
+    else
     begin
-      if Pos('has gone away', E.Message) > 0 then
-      begin
-        ShowMessage(rMySQLHasGoneAway);
-        //UseCallBook := 'NO';
-     //   DefaultDB := 'SQLite';
-     //   dbSel := 'SQLite';
-     //   MainForm.InitializeDB('SQLite');
-      end;
+      UPDATE_Query.DataBase := InitDB.SQLiteConnection;
     end;
   end;
+
+  if ComboBox2.Text <> '' then
+    ComboBox2Change(Self);
+  ComboBox3.Items.Clear;
+  SatPropQuery.SQL.Text := 'SELECT * FROM PropMode';
+  SatPropQuery.Open;
+  SatPropQuery.First;
+  for i := 0 to SatPropQuery.RecordCount - 1 do
+  begin
+    ComboBox3.Items.Add(SatPropQuery.FieldByName('Type').AsString);
+    SatPropQuery.Next;
+  end;
+  SatPropQuery.Close;
+
+  Button4.Click;
+  Edit1.SetFocus;
 
 end;
 
