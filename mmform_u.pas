@@ -24,7 +24,6 @@ type
     procedure Button2Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ListView1Click(Sender: TObject);
     procedure ListView1SelectItem(Sender: TObject; Item: TListItem;
       Selected: boolean);
   private
@@ -41,7 +40,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, InitDB_dm;
+uses dmFunc_U, MainForm_U, InitDB_dm, MainFuncDM;
 
 { TMM_Form }
 
@@ -94,10 +93,10 @@ end;
 procedure TMM_Form.CheckBox1Click(Sender: TObject);
 var
   SelectIndex: integer;
-  modesString: TStringList;
+ // modesString: TStringList;
 begin
-  modesString := TStringList.Create;
-  MainForm.ComboBox2.Items.Clear;
+ // modesString := TStringList.Create;
+ // MainForm.ComboBox2.Items.Clear;
   if Assigned(ListView1.Selected) then
   begin
     MMQuery.SQL.Text := ('UPDATE Modes SET Enable = ' +
@@ -108,9 +107,10 @@ begin
     MMQuery.SQLTransaction.Commit;
     ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
-   // MainForm.AddModes('', False, modesString);
-    MainForm.ComboBox2.Items := modesString;
-    modesString.Free;
+    MainFunc.LoadBMSL(MainForm.ComboBox2,MainForm.ComboBox9, MainForm.ComboBox1);
+    // MainForm.AddModes('', False, modesString);
+   // MainForm.ComboBox2.Items := modesString;
+   // modesString.Free;
   end;
 end;
 
@@ -139,11 +139,6 @@ begin
     ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
   end;
-end;
-
-procedure TMM_Form.ListView1Click(Sender: TObject);
-begin
-
 end;
 
 procedure TMM_Form.ListView1SelectItem(Sender: TObject; Item: TListItem;

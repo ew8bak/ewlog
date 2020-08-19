@@ -520,6 +520,7 @@ var
 begin
   try
     Query := TSQLQuery.Create(nil);
+    Query.PacketRecords:=50;
     SubModeSlist := TStringList.Create;
     if InitDB.ServiceDBConnection.Connected then
     begin
@@ -550,6 +551,7 @@ var
 begin
   try
     Query := TSQLQuery.Create(nil);
+    Query.PacketRecords:=50;
     if InitDB.ServiceDBConnection.Connected then
     begin
       Query.DataBase := InitDB.ServiceDBConnection;
@@ -580,6 +582,7 @@ var
 begin
   try
     Query := TSQLQuery.Create(nil);
+    Query.PacketRecords:=50;
     if InitDB.ServiceDBConnection.Connected then
     begin
       Query.DataBase := InitDB.ServiceDBConnection;

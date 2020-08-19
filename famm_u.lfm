@@ -10,7 +10,7 @@ object FM_Form: TFM_Form
   OnShow = FormShow
   Position = poMainFormCenter
   ShowInTaskBar = stAlways
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object ListView1: TListView
     Left = 0
     Height = 410
@@ -21,22 +21,22 @@ object FM_Form: TFM_Form
       item
         AutoSize = True
         Caption = 'Band'
-        Width = 42
+        Width = 43
       end    
       item
         AutoSize = True
         Caption = 'Begin (MHz)'
-        Width = 81
+        Width = 83
       end    
       item
         AutoSize = True
         Caption = 'End (MHz)'
-        Width = 71
+        Width = 72
       end    
       item
         AutoSize = True
         Caption = 'Enabled'
-        Width = 57
+        Width = 112
       end>
     ReadOnly = True
     RowSelect = True
@@ -51,15 +51,15 @@ object FM_Form: TFM_Form
     Top = 8
     Width = 273
     Caption = 'Options'
-    ClientHeight = 140
-    ClientWidth = 269
+    ClientHeight = 144
+    ClientWidth = 271
     TabOrder = 1
     object LabeledEdit1: TLabeledEdit
       Left = 8
-      Height = 23
+      Height = 25
       Top = 24
       Width = 80
-      EditLabel.Height = 15
+      EditLabel.Height = 13
       EditLabel.Width = 80
       EditLabel.Caption = 'Band'
       EditLabel.ParentColor = False
@@ -69,10 +69,10 @@ object FM_Form: TFM_Form
     end
     object LabeledEdit2: TLabeledEdit
       Left = 96
-      Height = 23
+      Height = 25
       Top = 24
       Width = 80
-      EditLabel.Height = 15
+      EditLabel.Height = 13
       EditLabel.Width = 80
       EditLabel.Caption = 'MHz Begin'
       EditLabel.ParentColor = False
@@ -82,10 +82,10 @@ object FM_Form: TFM_Form
     end
     object LabeledEdit3: TLabeledEdit
       Left = 184
-      Height = 23
+      Height = 25
       Top = 24
       Width = 80
-      EditLabel.Height = 15
+      EditLabel.Height = 13
       EditLabel.Width = 80
       EditLabel.Caption = 'MHz End'
       EditLabel.ParentColor = False
@@ -95,9 +95,9 @@ object FM_Form: TFM_Form
     end
     object CheckBox1: TCheckBox
       Left = 8
-      Height = 19
+      Height = 23
       Top = 112
-      Width = 92
+      Width = 101
       Caption = 'Enabled Band'
       Font.Height = -12
       OnClick = CheckBox1Click
@@ -106,10 +106,10 @@ object FM_Form: TFM_Form
     end
     object LabeledEdit4: TLabeledEdit
       Left = 8
-      Height = 23
+      Height = 25
       Top = 72
       Width = 80
-      EditLabel.Height = 15
+      EditLabel.Height = 13
       EditLabel.Width = 80
       EditLabel.Caption = 'CW Begin'
       EditLabel.ParentColor = False
@@ -119,10 +119,10 @@ object FM_Form: TFM_Form
     end
     object LabeledEdit5: TLabeledEdit
       Left = 96
-      Height = 23
+      Height = 25
       Top = 72
       Width = 80
-      EditLabel.Height = 15
+      EditLabel.Height = 13
       EditLabel.Width = 80
       EditLabel.Caption = 'Digi Begin'
       EditLabel.ParentColor = False
@@ -132,10 +132,10 @@ object FM_Form: TFM_Form
     end
     object LabeledEdit6: TLabeledEdit
       Left = 184
-      Height = 23
+      Height = 25
       Top = 72
       Width = 80
-      EditLabel.Height = 15
+      EditLabel.Height = 13
       EditLabel.Width = 80
       EditLabel.Caption = 'SSB Begin'
       EditLabel.ParentColor = False
@@ -146,10 +146,10 @@ object FM_Form: TFM_Form
     object Button2: TButton
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 182
-      Height = 25
+      Left = 194
+      Height = 29
       Top = 106
-      Width = 80
+      Width = 70
       Anchors = [akTop, akRight]
       AutoSize = True
       BorderSpacing.Right = 7
@@ -175,7 +175,7 @@ object FM_Form: TFM_Form
     PacketRecords = 100
     FieldDefs = <>
     Params = <>
-    left = 368
-    top = 248
+    Left = 368
+    Top = 248
   end
 end
