@@ -510,9 +510,9 @@ type
   public
     { public declarations }
     Command: string;
+    PrintPrev: boolean;
     FlagList: TImageList;
     FlagSList: TStringList;
-    PrintPrev: boolean;
 
     PhotoQrzString: string;
     subModesList: TStringList;
@@ -545,16 +545,13 @@ type
 
     inupdate: boolean;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
-    procedure SelDB(calllbook: string);
     procedure Clr;
     procedure SetDXColumns(Save: boolean);
     function GetNewChunk: string;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     function GetModeFromFreq(MHz: string): string;
     procedure FindCountryFlag(Country: string);
-    function FindCountry(ISOCode: string): string;
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
-    function FindISOCountry(Country: string): string;
     procedure InitClusterINI;
     procedure tIMGClick(Sender: TObject);
   end;
@@ -627,62 +624,6 @@ type
 
 { TMainForm }
 
-function TMainForm.FindISOCountry(Country: string): string;
-var
-  ISOList: TStringList;
-  LanguageList: TStringList;
-  Index: integer;
-begin
-  Result := '';
-  try
-    ISOList := TStringList.Create;
-    LanguageList := TStringList.Create;
-    ISOList.AddStrings(constLanguageISO);
-    LanguageList.AddStrings(constLanguage);
-    Index := LanguageList.IndexOf(Country);
-    if Index <> -1 then
-      Result := ISOList.Strings[Index]
-    else
-      Result := 'None';
-
-  finally
-    ISOList.Free;
-    LanguageList.Free;
-  end;
-end;
-
-function TMainForm.FindCountry(ISOCode: string): string;
-var
-  ISOList: TStringList;
-  LanguageList: TStringList;
-  Index: integer;
-begin
-  try
-    Result := '';
-    ISOList := TStringList.Create;
-    LanguageList := TStringList.Create;
-    ISOList.AddStrings(constLanguageISO);
-    LanguageList.AddStrings(constLanguage);
-    Index := ISOList.IndexOf(ISOCode);
-    if Index <> -1 then
-      Result := LanguageList.Strings[Index]
-    else
-      Result := 'None';
-
-  finally
-    ISOList.Free;
-    LanguageList.Free;
-  end;
-end;
-
-procedure TMainForm.FindLanguageFiles(Dir: string; var LangList: TStringList);
-begin
-  LangList := FindAllFiles(Dir, 'ewlog.*.po', False, faNormal);
-  LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
-    'ewlog.', '', [rfreplaceall]);
-  LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
-end;
-
 procedure TMainForm.FindCountryFlag(Country: string);
 var
   pImage: TPortableNetworkGraphic;
@@ -708,6 +649,15 @@ begin
   end;
   pImage.Free;
 end;
+
+procedure TMainForm.FindLanguageFiles(Dir: string; var LangList: TStringList);
+begin
+  LangList := FindAllFiles(Dir, 'ewlog.*.po', False, faNormal);
+  LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
+    'ewlog.', '', [rfreplaceall]);
+  LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
+end;
+
 
 function TMainForm.GetModeFromFreq(MHz: string): string;
 var
@@ -847,291 +797,6 @@ begin
   begin
     tIMG.Picture.Clear;
   end;
-end;
-
-procedure TMainForm.SelDB(calllbook: string);
-var
-  ver_table: string;
-begin
- { ver_table := '';
-  CheckTableQuery.Close;
-
-  if calllbook = '' then
-    CheckTableQuery.SQL.Text := ('SELECT * FROM LogBookInfo LIMIT 1')
-  else
-    CheckTableQuery.SQL.Text :=
-      ('SELECT * FROM LogBookInfo WHERE CallName = ' + QuotedStr(calllbook));
-  CheckTableQuery.Open;
-
-  try
-    if CheckTableQuery.FindField('Table_version') = nil then
-    begin
-      CheckTableQuery.Close;
-      CheckTableQuery.SQL.Text :=
-        'ALTER TABLE LogBookInfo ADD COLUMN Table_version varchar(10);';
-      CheckTableQuery.ExecSQL;
-      SQLTransaction1.Commit;
-    end;
-
-    if calllbook = '' then
-      CheckTableQuery.SQL.Text := ('SELECT * FROM LogBookInfo LIMIT 1')
-    else
-      CheckTableQuery.SQL.Text :=
-        ('SELECT * FROM LogBookInfo WHERE CallName = ' + QuotedStr(calllbook));
-    CheckTableQuery.Open;
-    ver_table := CheckTableQuery.FieldByName('Table_version').AsString;
-
-    if ver_table <> Table_version then
-    begin
-      if CheckTableQuery.FindField('ClubLog_User') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN ClubLog_User varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('ClubLog_Password') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN ClubLog_Password varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('AutoClubLog') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN AutoClubLog tinyint(1);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('QRZCOM_User') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN QRZCOM_User varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('QRZCOM_Password') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN QRZCOM_Password varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('AutoQRZCom') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN AutoQRZCom tinyint(1);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('LoTW_User') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_User varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('LoTW_Password') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN LoTW_Password varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('HamQTHLogin') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN HamQTHLogin varchar(20);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('HamQTHPassword') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN HamQTHPassword varchar(50);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-
-      if CheckTableQuery.FindField('AutoHamQTH') = nil then
-      begin
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'ALTER TABLE LogBookInfo ADD COLUMN AutoHamQTH tinyint(1);';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-    end;
-  except
-    on E: ESQLDatabaseError do
-  end;
-
-  with MainForm.LogBookInfoQuery do
-  begin
-    Close;
-    SQL.Clear;
-    if calllbook = '' then
-      SQL.Add('SELECT * FROM LogBookInfo LIMIT 1')
-    else
-      SQL.Add('select * from LogBookInfo where CallName = "' + calllbook + '"');
-    Open;
-
-    SetDiscription := MainForm.LogBookInfoQuery.FieldByName('Discription').AsString;
-    SetCallName := MainForm.LogBookInfoQuery.FieldByName('CallName').AsString;
-    SetNameC := MainForm.LogBookInfoQuery.FieldByName('Name').AsString;
-    SetQTH := MainForm.LogBookInfoQuery.FieldByName('QTH').AsString;
-    SetITU := MainForm.LogBookInfoQuery.FieldByName('ITU').AsString;
-    SetLoc := MainForm.LogBookInfoQuery.FieldByName('Loc').AsString;
-    SetCQ := MainForm.LogBookInfoQuery.FieldByName('CQ').AsString;
-    SetLat := MainForm.LogBookInfoQuery.FieldByName('Lat').AsString;
-    SetLon := MainForm.LogBookInfoQuery.FieldByName('Lon').AsString;
-    SetQSLInfo := MainForm.LogBookInfoQuery.FieldByName('QSLInfo').AsString;
-    LogTable := MainForm.LogBookInfoQuery.FieldByName('LogTable').AsString;
-    eQSLccLogin := MainForm.LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
-    eQSLccPassword := MainForm.LogBookInfoQuery.FieldByName('EQSLPassword').AsString;
-    LotWLogin := MainForm.LogBookInfoQuery.FieldByName('LoTW_User').AsString;
-    LotWPassword := MainForm.LogBookInfoQuery.FieldByName('LoTW_Password').AsString;
-    AutoEQSLcc := MainForm.LogBookInfoQuery.FieldByName('AutoEQSLcc').AsBoolean;
-    HRDLogin := MainForm.LogBookInfoQuery.FieldByName('HRDLogLogin').AsString;
-    HRDCode := MainForm.LogBookInfoQuery.FieldByName('HRDLogPassword').AsString;
-    AutoHRDLog := MainForm.LogBookInfoQuery.FieldByName('AutoHRDLog').AsBoolean;
-
-    HamQTHLogin := MainForm.LogBookInfoQuery.FieldByName('HamQTHLogin').AsString;
-    HamQTHPassword := MainForm.LogBookInfoQuery.FieldByName('HamQTHPassword').AsString;
-    AutoHamQTH := MainForm.LogBookInfoQuery.FieldByName('AutoHamQTH').AsBoolean;
-
-    ClubLogLogin := MainForm.LogBookInfoQuery.FieldByName('ClubLog_User').AsString;
-    ClubLogPassword := MainForm.LogBookInfoQuery.FieldByName(
-      'ClubLog_Password').AsString;
-    AutoClubLog := MainForm.LogBookInfoQuery.FieldByName('AutoClubLog').AsBoolean;
-
-    QRZComLogin := MainForm.LogBookInfoQuery.FieldByName('QRZCOM_User').AsString;
-    QRZComPassword := MainForm.LogBookInfoQuery.FieldByName(
-      'QRZCOM_Password').AsString;
-    AutoQRZCom := MainForm.LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
-
-    CheckTableQuery.Close;
-    CheckTableQuery.SQL.Text := 'SELECT * FROM ' + LogTable + ' LIMIT 1';
-    CheckTableQuery.Open;
-
-    if ver_table <> Table_version then
-    begin
-      try
-        try
-          try
-            if MainForm.MySQLLOGDBConnection.Connected then
-              MainForm.MySQLLOGDBConnection.ExecuteDirect(
-                'ALTER TABLE ' + LogTable +
-                ' DROP INDEX Dupe_index, ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)')
-            else
-            begin
-              InitDB.SQLiteConnection.ExecuteDirect(
-                'DROP INDEX IF EXISTS Dupe_index');
-              MainForm.SQLiteDBConnection.ExecuteDirect(
-                'CREATE UNIQUE INDEX Dupe_index ON ' + LogTable +
-                '(CallSign, QSODate, QSOTime, QSOBand)');
-            end;
-          except
-            on E: ESQLDatabaseError do
-            begin
-              if E.ErrorCode = 1091 then
-                MainForm.MySQLLOGDBConnection.ExecuteDirect('ALTER TABLE ' +
-                  LogTable +
-                  ' ADD UNIQUE Dupe_index (CallSign, QSODate, QSOTime, QSOBand)');
-            end;
-          end;
-
-          if CheckTableQuery.FindField('MY_GRIDSQUARE') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_GRIDSQUARE varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('MY_LAT') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LAT varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('MY_LON') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_LON varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('SYNC') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN SYNC tinyint(1) DEFAULT 0;';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('MY_STATE') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN MY_STATE varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-
-          if CheckTableQuery.FindField('QSOSubMode') = nil then
-          begin
-            CheckTableQuery.Close;
-            CheckTableQuery.SQL.Text :=
-              'ALTER TABLE ' + LogTable + ' ADD COLUMN QSOSubMode varchar(15);';
-            CheckTableQuery.ExecSQL;
-            SQLTransaction1.Commit;
-          end;
-        except
-          on E: ESQLDatabaseError do
-        end;
-      finally
-        CheckTableQuery.Close;
-        CheckTableQuery.SQL.Text :=
-          'UPDATE LogBookInfo SET Table_version = ' + QuotedStr(Table_version) +
-          ' WHERE CallName = "' + calllbook + '"';
-        CheckTableQuery.ExecSQL;
-        SQLTransaction1.Commit;
-      end;
-    end;
-    MainForm.SelectLogDatabase(LogTable);
-  end;
-  CheckTableQuery.Close;
-  SetGrid();
-  LogBookFieldQuery.Open;
-  DBLookupComboBox1.KeyValue := calllbook; }
 end;
 
 procedure TMainForm.EditButton1Change(Sender: TObject);
@@ -2749,10 +2414,10 @@ var
   MenuItem: TMenuItem;
 begin
   MenuItem := (Sender as TMenuItem);
-  SetDefaultLang(FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
-  IniSet.Language := FindISOCountry(MenuItem.Caption);
-  SelDB(ComboBox10.Text);
-  CallLogBook := ComboBox10.Text;
+  SetDefaultLang(MainFunc.FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
+  IniSet.Language := MainFunc.FindISOCountry(MenuItem.Caption);
+   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
   ComboBox7.ItemIndex := 3;
 end;
 
@@ -2773,10 +2438,10 @@ begin
   begin
     LangItem := TMenuItem.Create(Self);
     LangItem.Name := 'LangItem' + IntToStr(i);
-    LangItem.Caption := FindCountry(LangList.Strings[i]);
+    LangItem.Caption := MainFunc.FindCountry(LangList.Strings[i]);
     LangItem.OnClick := @LangItemClick;
     LangItem.Tag := 99;
-    if FindCountry(LangList.Strings[i]) <> 'None' then
+    if MainFunc.FindCountry(LangList.Strings[i]) <> 'None' then
       MenuItem116.Insert(i, LangItem);
   end;
   LangList.Free;
@@ -2897,7 +2562,8 @@ begin
         end;
       end;
       InitDB.DefTransaction.Commit;
-      SelDB(CallLogBook);
+       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
       DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
     end;
 

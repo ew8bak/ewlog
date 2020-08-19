@@ -785,7 +785,8 @@ begin
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
-    MainForm.SelDB(CallLogBook);
+     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
     Button1.Enabled:=True;
   end;
 

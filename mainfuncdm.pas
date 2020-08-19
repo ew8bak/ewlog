@@ -48,6 +48,8 @@ type
     function FindQSO(Callsign: string): TFoundQSOR;
     function SelectQSO(DataSource: TDataSource): TSelQSOR;
     function GetAllCallsign: CallsignArray;
+    function FindISOCountry(Country: string): string;
+    function FindCountry(ISOCode: string): string;
 
   end;
 
@@ -55,12 +57,59 @@ var
   MainFunc: TMainFunc;
   IniSet: TINIR;
 
-
 implementation
 
 uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+function TMainFunc.FindCountry(ISOCode: string): string;
+var
+  ISOList: TStringList;
+  LanguageList: TStringList;
+  Index: integer;
+begin
+  try
+    Result := '';
+    ISOList := TStringList.Create;
+    LanguageList := TStringList.Create;
+    ISOList.AddStrings(constLanguageISO);
+    LanguageList.AddStrings(constLanguage);
+    Index := ISOList.IndexOf(ISOCode);
+    if Index <> -1 then
+      Result := LanguageList.Strings[Index]
+    else
+      Result := 'None';
+
+  finally
+    ISOList.Free;
+    LanguageList.Free;
+  end;
+end;
+
+function TMainFunc.FindISOCountry(Country: string): string;
+var
+  ISOList: TStringList;
+  LanguageList: TStringList;
+  Index: integer;
+begin
+  Result := '';
+  try
+    ISOList := TStringList.Create;
+    LanguageList := TStringList.Create;
+    ISOList.AddStrings(constLanguageISO);
+    LanguageList.AddStrings(constLanguage);
+    Index := LanguageList.IndexOf(Country);
+    if Index <> -1 then
+      Result := ISOList.Strings[Index]
+    else
+      Result := 'None';
+
+  finally
+    ISOList.Free;
+    LanguageList.Free;
+  end;
+end;
 
 procedure TMainFunc.DrawColumnGrid(DS: TDataSet; Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState; var DBGrid: TDBGrid);
@@ -960,13 +1009,6 @@ var
   SRXs, STXs, QSODates: string;
 begin
   try
-    Query := TSQLQuery.Create(nil);
-    Query.Transaction := InitDB.DefTransaction;
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-
     if SQSO.LotWRec = '' then
       SQSO.LotWRec := IntToStr(0)
     else

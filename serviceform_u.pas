@@ -231,7 +231,8 @@ begin
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
-    MainForm.SelDB(CallLogBook);
+     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
     Label4.Caption := rProcessedData + IntToStr(RecCount);
     Label6.Caption := rStatusDone;
     Button2.Enabled := True;
@@ -424,7 +425,8 @@ begin
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
-    MainForm.SelDB(CallLogBook);
+     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
     Label4.Caption := rProcessedData + IntToStr(RecCount);
     Label6.Caption := rStatusDone;
     Button1.Enabled := True;

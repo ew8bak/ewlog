@@ -244,7 +244,8 @@ begin
     ExecSQL;
   end;
   InitDB.DefTransaction.Commit;
-  MainForm.SelDB(CallLogBook);
+   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
   LogConfigForm.Close;
   end;
 end;
@@ -393,7 +394,8 @@ begin
         ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
         SQLQuery2.Next;
       end;
-      MainForm.SelDB(CallLogBook);
+       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
       for i := 0 to ListBox1.Count - 1 do
         if Pos(MainForm.ComboBox10.Text, ListBox1.Items[i]) > 0 then
         begin

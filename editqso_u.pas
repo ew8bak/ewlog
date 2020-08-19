@@ -323,7 +323,8 @@ begin
     ExecSQL;
   end;
   InitDB.DefTransaction.Commit;
-  MainForm.SelDB(CallLogBook);
+   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
   MainForm.DBGrid1.DataSource.DataSet.RecNo := ind;
 
 end;
