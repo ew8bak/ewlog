@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, EditBtn, LCLType, LConvEncoding, LazUTF8, LCLIntf,
-  dateutils, resourcestr, LCLProc;
+  dateutils, resourcestr, LCLProc, prefix_record;
 
 const
   ERR_FILE = 'errors.adi';
@@ -45,7 +45,7 @@ type
     procedure WriteWrongADIF(Lines: array of string);
     { private declarations }
   public
-    procedure ADIFImport(path: string; mobile: Boolean);
+    procedure ADIFImport(path: string; mobile: boolean);
     { public declarations }
   end;
 
@@ -54,78 +54,11 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, const_u, InitDB_dm;
+uses dmFunc_U, MainForm_U, const_u, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
 { TImportADIFForm }
-
-procedure SearchPrefix(CallName: string;
-  var MainPrefix, DXCCPrefix, CQZone, ITUZone, Continent, DXCC: string);
-var
-  i, j: integer;
-  BoolPrefix: boolean;
-begin
-  if CallName.Length < 1 then
-  begin
-    exit;
-  end;
-  BoolPrefix := False;
-
- { for i := 0 to PrefixProvinceCount do
-  begin
-    if (MainForm.PrefixExpProvinceArray[i].reg.Exec(CallName)) and
-      (MainForm.PrefixExpProvinceArray[i].reg.Match[0] = CallName) then
-    begin
-      BoolPrefix := True;
-      with MainForm.PrefixQuery do
-      begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from Province where _id = "' +
-          IntToStr(MainForm.PrefixExpProvinceArray[i].id) + '"');
-        Open;
-      end;
-      Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-      CQZone := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-      ITUZone := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-      MainPrefix := MainForm.PrefixQuery.FieldByName('Prefix').AsString;
-      DXCCPrefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-      DXCC := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
-      exit;
-    end;
-  end;
-  if BoolPrefix = False then
-  begin
-    for j := 0 to PrefixARRLCount do
-    begin
-      if (MainForm.PrefixExpARRLArray[j].reg.Exec(CallName)) and
-        (MainForm.PrefixExpARRLArray[j].reg.Match[0] = CallName) then
-      begin
-        with MainForm.PrefixQuery do
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('select * from CountryDataEx where _id = "' +
-            IntToStr(MainForm.PrefixExpARRLArray[j].id) + '"');
-          Open;
-          if (FieldByName('Status').AsString = 'Deleted') then
-          begin
-            MainForm.PrefixExpARRLArray[j].reg.ExecNext;
-            Exit;
-          end;
-          Continent := MainForm.PrefixQuery.FieldByName('Continent').AsString;
-          CQZone := MainForm.PrefixQuery.FieldByName('CQZone').AsString;
-          ITUZone := MainForm.PrefixQuery.FieldByName('ITUZone').AsString;
-          MainPrefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-          DXCCPrefix := MainForm.PrefixQuery.FieldByName('ARRLPrefix').AsString;
-          DXCC := MainForm.PrefixQuery.FieldByName('DXCC').AsString;
-        end;
-        Exit;
-      end;
-    end;
-  end;  }
-end;
 
 procedure CheckMode(modulation, Freq: string; var ResSubMode, ResMode: string);
 begin
@@ -181,18 +114,19 @@ begin
       ResMode := 'SSB';
       ResSubMode := 'USB';
     end;
-     'SSB':
+    'SSB':
     begin
       ResMode := 'SSB';
       if StrToDouble(Freq) >= 10 then
-      ResSubMode := 'USB' else
-      ResSubMode := 'LSB';
+        ResSubMode := 'USB'
+      else
+        ResSubMode := 'LSB';
     end;
   end;
 end;
 
 
-procedure TImportADIFForm.ADIFImport(path: string; mobile:Boolean);
+procedure TImportADIFForm.ADIFImport(path: string; mobile: boolean);
 var
   i: integer;
   f: TextFile;
@@ -283,6 +217,7 @@ var
   Stream: TMemoryStream;
   TempFile: string;
   temp_f: TextFile;
+  PFXR: TPFXR;
 begin
    {$IFDEF UNIX}
   TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +
@@ -293,7 +228,7 @@ begin
     'EWLog' + DirectorySeparator + 'temp.adi';
   {$ENDIF UNIX}
 
-  Button1.Enabled:=False;
+  Button1.Enabled := False;
   if DBRecord.CurrentDB = 'MySQL' then
   begin
     InitDB.MySQLConnection.ExecuteDirect('SET autocommit = 0');
@@ -315,7 +250,7 @@ begin
       PosEOH := Pos('<EOH>', UpperCase(s));
     end;
 
-     while not EOF(f) do
+    while not EOF(f) do
     begin
       Readln(f, s);
       s := StringReplace(s, #10, '', [rfReplaceAll]);
@@ -500,18 +435,18 @@ begin
 
           if FREQ = '' then
             FREQ := FormatFloat(view_freq, dmFunc.GetFreqFromBand(BAND, MODE))
-          else begin
+          else
+          begin
             FREQ_Float := StrToFloat(FREQ);
             FREQ := FormatFloat(view_freq, FREQ_Float);
           end;
 
-
           CheckMode(MODE, FREQ, SUBMODE, MODE);
 
           if FREQ_Float = 0 then
-          BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ))
+            BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ))
           else
-          BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FloatToStr(FREQ_Float)));
+            BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FloatToStr(FREQ_Float)));
 
           yyyy := StrToInt(QSO_DATE[1] + QSO_DATE[2] + QSO_DATE[3] +
             QSO_DATE[4]);
@@ -653,7 +588,15 @@ begin
             STX := 'NULL';
 
           if CheckBox1.Checked then
-            SearchPrefix(CALL, PFX, DXCC_PREF, CQZ, ITUZ, CONT, DXCC);
+          begin
+            PFXR := MainFunc.SearchPrefix(CALL, GRIDSQUARE);
+            PFX := PFXR.Prefix;
+            DXCC_PREF := PFXR.ARRLPrefix;
+            CQZ := PFXR.CQZone;
+            ITUZ := PFXR.ITUZone;
+            CONT := PFXR.Continent;
+            DXCC := IntToStr(PFXR.DXCCNum);
+          end;
 
           if GuessEncoding(sNAME) <> 'utf8' then
             sNAME := CP1251ToUTF8(sNAME);
@@ -662,77 +605,84 @@ begin
           if GuessEncoding(COMMENT) <> 'utf8' then
             COMMENT := CP1251ToUTF8(COMMENT);
 
-          if mobile = False then begin
-          Query := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-            'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
-            'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
-            'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
-            'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
-            'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
-            + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
-            + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-            'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
-            dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
-            dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
-            dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
-            dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
-            dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
-            dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
-            dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
-            dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) +
-            dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) +
-            dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
-            dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
-            dmFunc.Q(paramLOTW_QSL_RCVD) + dmFunc.Q(paramLOTW_QSLRDATE) +
-            dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
-            dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) +
-            dmFunc.Q(STATE4) + dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) +
-            dmFunc.Q('') + dmFunc.Q(paramValidDX) + dmFunc.Q(SRX) +
-            dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) +
-            dmFunc.Q(SAT_NAME) + dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) +
-            dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
-            dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
-            dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
-            dmFunc.Q(MY_LON) + QuotedStr('0') +')';
-            end
-            else begin
+          if mobile = False then
+          begin
+            Query := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
+              'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,'
+              +
+              'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
+              +
+              'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
+              'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
+              'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
+              + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
+              + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
+              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
+              dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
+              dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
+              dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
+              dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
+              dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
+              dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
+              dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
+              dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) +
+              dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) +
+              dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
+              dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
+              dmFunc.Q(paramLOTW_QSL_RCVD) + dmFunc.Q(paramLOTW_QSLRDATE) +
+              dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
+              dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) +
+              dmFunc.Q(STATE4) + dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) +
+              dmFunc.Q('') + dmFunc.Q(paramValidDX) + dmFunc.Q(SRX) +
+              dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) +
+              dmFunc.Q(SAT_NAME) + dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) +
+              dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
+              dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
+              dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
+              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + QuotedStr('0') + ')';
+          end
+          else
+          begin
             TempQuery := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-            'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,' +
-            'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,' +
-            'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
-            'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
-            'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
-            + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
-            + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-            'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
-            dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
-            dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
-            dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
-            dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
-            dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
-            dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
-            dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
-            dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) +
-            dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) +
-            dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
-            dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
-            dmFunc.Q(paramLOTW_QSL_RCVD) + dmFunc.Q(paramLOTW_QSLRDATE) +
-            dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
-            dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) +
-            dmFunc.Q(STATE4) + dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) +
-            dmFunc.Q('') + dmFunc.Q(paramValidDX) + dmFunc.Q(SRX) +
-            dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) +
-            dmFunc.Q(SAT_NAME) + dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) +
-            dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
-            dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
-            dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) + dmFunc.Q(MY_LAT) +
-            dmFunc.Q(MY_LON) + QuotedStr('1');
+              'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,'
+              +
+              'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
+              +
+              'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
+              'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
+              'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
+              + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
+              + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
+              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
+              dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
+              dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
+              dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
+              dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
+              dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
+              dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
+              dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
+              dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) +
+              dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) +
+              dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
+              dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
+              dmFunc.Q(paramLOTW_QSL_RCVD) + dmFunc.Q(paramLOTW_QSLRDATE) +
+              dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
+              dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) +
+              dmFunc.Q(STATE4) + dmFunc.Q(dmFunc.ExtractWPXPrefix(CALL)) +
+              dmFunc.Q('') + dmFunc.Q(paramValidDX) + dmFunc.Q(SRX) +
+              dmFunc.Q(SRX_STRING) + dmFunc.Q(STX) + dmFunc.Q(STX_STRING) +
+              dmFunc.Q(SAT_NAME) + dmFunc.Q(SAT_MODE) + dmFunc.Q(PROP_MODE) +
+              dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
+              dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
+              dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
+              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + QuotedStr('1');
 
             if DBRecord.CurrentDB = 'MySQL' then
-            Query:= TempQuery + ') ON DUPLICATE KEY UPDATE SYNC = 1'
+              Query := TempQuery + ') ON DUPLICATE KEY UPDATE SYNC = 1'
             else
-            Query:= TempQuery + ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
-            end;
+              Query := TempQuery +
+                ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
+          end;
 
           if DBRecord.CurrentDB = 'MySQL' then
             InitDB.MySQLConnection.ExecuteDirect(Query)
@@ -746,7 +696,7 @@ begin
         begin
           lblCount.Caption := rImportRecord + ' ' + IntToStr(RecCount);
           if DBRecord.CurrentDB = 'MySQL' then
-          InitDB.DefTransaction.Commit;
+            InitDB.DefTransaction.Commit;
 
           Application.ProcessMessages;
         end;
@@ -785,9 +735,9 @@ begin
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
-     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
-    Button1.Enabled:=True;
+    Button1.Enabled := True;
   end;
 
 end;
@@ -796,19 +746,10 @@ procedure TImportADIFForm.WriteWrongADIF(Lines: array of string);
 var
   f: TextFile;
   i: integer;
-  PathMyDoc: string;
 begin
-   {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
-
-
-  if FileExists(PathMyDoc + ERR_FILE) then
+  if FileExists(FilePATH + ERR_FILE) then
   begin
-    AssignFile(f, PathMyDoc + ERR_FILE);
+    AssignFile(f, FilePATH + ERR_FILE);
     Append(f);
     for i := 0 to Length(Lines) - 1 do
       WriteLn(f, Lines[i]);
@@ -817,7 +758,7 @@ begin
   end
   else
   begin
-    AssignFile(f, PathMyDoc + ERR_FILE);
+    AssignFile(f, FilePATH + ERR_FILE);
     Rewrite(f);
     for i := 0 to Length(Lines) - 1 do
       WriteLn(f, Lines[i]);
@@ -844,20 +785,11 @@ end;
 procedure TImportADIFForm.FileNameEdit1Change(Sender: TObject);
 begin
   if Length(ExtractFilePath(FileNameEdit1.FileName)) > 0 then
-  INIFile.WriteString('SetLog', 'ImportPath', ExtractFilePath(FileNameEdit1.FileName));
+    INIFile.WriteString('SetLog', 'ImportPath', ExtractFilePath(FileNameEdit1.FileName));
 end;
 
 procedure TImportADIFForm.FormShow(Sender: TObject);
 begin
- { if DBRecord.CurrentDB = 'MySQL' then
-  begin
-    MainForm.SQLTransaction1.DataBase := InitDB.MySQLConnection;
-  end
-  else
-  begin
-    MainForm.SQLTransaction1.DataBase := InitDB.SQLiteConnection;
-  end;  }
-
   Button1.Enabled := True;
   Button1.Caption := rImport;
   FileNameEdit1.Text := '';
@@ -866,21 +798,11 @@ begin
   lblCount.Caption := rImportRecord + ' ';
   lblErrors.Caption := rImportErrors + ' ';
   lblErrorLog.Caption := rFileError;
-
 end;
 
 procedure TImportADIFForm.lblErrorLogClick(Sender: TObject);
-var
-  PathMyDoc: string;
 begin
- {$IFDEF UNIX}
-  PathMyDoc := GetEnvironmentVariable('HOME') + '/EWLog/';
-  {$ELSE}
-  PathMyDoc := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-  {$ENDIF UNIX}
-  OpenDocument(PathMyDoc + ERR_FILE);
-
+  OpenDocument(FilePATH + ERR_FILE);
 end;
 
 procedure TImportADIFForm.Button1Click(Sender: TObject);
