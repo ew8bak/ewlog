@@ -555,7 +555,6 @@ type
     function FindCountry(ISOCode: string): string;
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     function FindISOCountry(Country: string): string;
-    // function FindMode(submode: string): string;
     procedure InitClusterINI;
     procedure tIMGClick(Sender: TObject);
   end;
@@ -596,7 +595,7 @@ implementation
 
 uses
   ConfigForm_U, ManagerBasePrefixForm_U, ExportAdifForm_u, CreateJournalForm_U,
-  ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi,
+  ImportADIFForm_U, dmFunc_U, eqsl, fldigi,
   QSLManagerForm_U, SettingsCAT_U,
   TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog,
   hamqth, clublog, qrzcom,
@@ -627,30 +626,6 @@ type
 {$R *.lfm}
 
 { TMainForm }
-
-{function TMainForm.FindMode(submode: string): string;
-var
-  i, j: integer;
-begin
-  i := 0;
-  for j := 0 to subModesList.Count - 1 do
-    if AnsiContainsText(subModesList.Strings[j], submode + ',') or
-      AnsiContainsText(subModesList.Strings[j], ', ' + submode) then
-    begin
-      i := j;
-      break;
-    end;
-
-  with subModesQuery do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add('select * from modes where _id = "' + IntToStr(i + 1) + '"');
-    Open;
-  end;
-  Result := subModesQuery.FieldByName('mode').AsString;
-  subModesQuery.Close;
-end; }
 
 function TMainForm.FindISOCountry(Country: string): string;
 var

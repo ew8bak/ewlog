@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
-  foundQSO_record, StdCtrls, Grids, Graphics;
+  foundQSO_record, StdCtrls, Grids, Graphics, DateUtils;
 
 type
   bandArray = array of string;
@@ -956,7 +956,8 @@ end;
 
 procedure TMainFunc.SaveQSO(var SQSO: TQSO);
 var
-  Query: TSQLQuery;
+  QueryTXT: string;
+  SRXs, STXs, QSODates: string;
 begin
   try
     Query := TSQLQuery.Create(nil);
@@ -966,116 +967,70 @@ begin
     else
       Query.DataBase := InitDB.SQLiteConnection;
 
-    with Query do
-    begin
-      SQL.Text := 'INSERT INTO ' + SQSO.NLogDB +
-        '(`CallSign`, `QSODate`, `QSOTime`, `QSOBand`, `QSOMode`, `QSOSubMode`, ' +
-        '`QSOReportSent`, `QSOReportRecived`, `OMName`, `OMQTH`, `State`, `Grid`, `IOTA`,'
-        + '`QSLManager`, `QSLSent`, `QSLSentAdv`, `QSLSentDate`, `QSLRec`, `QSLRecDate`,'
-        + '`MainPrefix`, `DXCCPrefix`, `CQZone`, `ITUZone`, `QSOAddInfo`, `Marker`, `ManualSet`,'
-        + '`DigiBand`, `Continent`, `ShortNote`, `QSLReceQSLcc`, `LoTWRec`, `LoTWRecDate`,'
-        + '`QSLInfo`, `Call`, `State1`, `State2`, `State3`, `State4`, `WPX`, `AwardsEx`, '
-        + '`ValidDX`, `SRX`, `SRX_STRING`, `STX`, `STX_STRING`, `SAT_NAME`, `SAT_MODE`,'
-        + '`PROP_MODE`, `LoTWSent`, `QSL_RCVD_VIA`, `QSL_SENT_VIA`, `DXCC`, `USERS`, `NoCalcDXCC`,'
-        + '`MY_STATE`, `MY_GRIDSQUARE`, `MY_LAT`, `MY_LON`, `SYNC`)' +
-        'VALUES (:CallSign, :QSODate, :QSOTime, :QSOBand, :QSOMode, :QSOSubMode, :QSOReportSent,'
-        + ':QSOReportRecived, :OMName, :OMQTH, :State, :Grid, :IOTA, :QSLManager, :QSLSent,'
-        + ':QSLSentAdv, :QSLSentDate, :QSLRec, :QSLRecDate, :MainPrefix, :DXCCPrefix, :CQZone,'
-        + ':ITUZone, :QSOAddInfo, :Marker, :ManualSet, :DigiBand, :Continent, :ShortNote,'
-        + ':QSLReceQSLcc, :LoTWRec, :LoTWRecDate, :QSLInfo, :Call, :State1, :State2, :State3, :State4,'
-        + ':WPX, :AwardsEx, :ValidDX, :SRX, :SRX_STRING, :STX, :STX_STRING, :SAT_NAME,'
-        + ':SAT_MODE, :PROP_MODE, :LoTWSent, :QSL_RCVD_VIA, :QSL_SENT_VIA, :DXCC, :USERS, :NoCalcDXCC, :MY_STATE, :MY_GRIDSQUARE, :MY_LAT, :MY_LON, :SYNC)';
+    if SQSO.LotWRec = '' then
+      SQSO.LotWRec := IntToStr(0)
+    else
+      SQSO.LotWRec := IntToStr(1);
+    SRXs := IntToStr(SQSO.SRX);
+    STXs := IntToStr(SQSO.STX);
 
-      Params.ParamByName('CallSign').AsString := SQSO.CallSing;
-      Params.ParamByName('QSODate').AsDateTime := SQSO.QSODate;
-      Params.ParamByName('QSOTime').AsString := SQSO.QSOTime;
-      Params.ParamByName('QSOBand').AsString := SQSO.QSOBand;
-      Params.ParamByName('QSOMode').AsString := SQSO.QSOMode;
-      Params.ParamByName('QSOSubMode').AsString := SQSO.QSOSubMode;
-      Params.ParamByName('QSOReportSent').AsString := SQSO.QSOReportSent;
-      Params.ParamByName('QSOReportRecived').AsString := SQSO.QSOReportRecived;
-      Params.ParamByName('OMName').AsString := SQSO.OmName;
-      Params.ParamByName('OMQTH').AsString := SQSO.OmQTH;
-      Params.ParamByName('State').AsString := SQSO.State0;
-      Params.ParamByName('Grid').AsString := SQSO.Grid;
-      Params.ParamByName('IOTA').AsString := SQSO.IOTA;
-      Params.ParamByName('QSLManager').AsString := SQSO.QSLManager;
-      Params.ParamByName('QSLSent').AsString := SQSO.QSLSent;
-      Params.ParamByName('QSLSentAdv').AsString := SQSO.QSLSentAdv;
+    if SQSO.SRX = 0 then
+      SRXs := 'NULL';
 
-      if SQSO.QSLSentDate = 'NULL' then
-        Params.ParamByName('QSLSentDate').IsNull
-      else
-        Params.ParamByName('QSLSentDate').AsString := SQSO.QSLSentDate;
-      Params.ParamByName('QSLRec').AsString := SQSO.QSLRec;
-      if SQSO.QSLRecDate = 'NULL' then
-        Params.ParamByName('QSLRecDate').IsNull
-      else
-        Params.ParamByName('QSLRecDate').AsString := SQSO.QSLRecDate;
+    if SQSO.STX = 0 then
+      STXs := 'NULL';
 
-      Params.ParamByName('MainPrefix').AsString := SQSO.MainPrefix;
-      Params.ParamByName('DXCCPrefix').AsString := SQSO.DXCCPrefix;
-      Params.ParamByName('CQZone').AsString := SQSO.CQZone;
-      Params.ParamByName('ITUZone').AsString := SQSO.ITUZone;
-      Params.ParamByName('QSOAddInfo').AsString := SQSO.QSOAddInfo;
-      Params.ParamByName('Marker').AsString := SQSO.Marker;
-      Params.ParamByName('ManualSet').AsInteger := SQSO.ManualSet;
-      Params.ParamByName('DigiBand').AsString := SQSO.DigiBand;
-      Params.ParamByName('Continent').AsString := SQSO.Continent;
-      Params.ParamByName('ShortNote').AsString := SQSO.ShortNote;
-      Params.ParamByName('QSLReceQSLcc').AsInteger := SQSO.QSLReceQSLcc;
-      if SQSO.LotWRec = '' then
-        Params.ParamByName('LoTWRec').AsInteger := 0
-      else
-        Params.ParamByName('LoTWRec').AsInteger := 1;
-      if SQSO.LotWRecDate = 'NULL' then
-        Params.ParamByName('LoTWRecDate').IsNull
-      else
-        Params.ParamByName('LoTWRecDate').AsString := SQSO.LotWRecDate;
-      Params.ParamByName('QSLInfo').AsString := SQSO.QSLInfo;
-      Params.ParamByName('Call').AsString := SQSO.Call;
-      Params.ParamByName('State1').AsString := SQSO.State1;
-      Params.ParamByName('State2').AsString := SQSO.State2;
-      Params.ParamByName('State3').AsString := SQSO.State3;
-      Params.ParamByName('State4').AsString := SQSO.State4;
-      Params.ParamByName('WPX').AsString := SQSO.WPX;
-      Params.ParamByName('AwardsEx').AsString := SQSO.AwardsEx;
-      Params.ParamByName('ValidDX').AsString := SQSO.ValidDX;
-      if SQSO.SRX = 0 then
-        Params.ParamByName('SRX').IsNull
-      else
-        Params.ParamByName('SRX').AsInteger := SQSO.SRX;
-      Params.ParamByName('SRX_STRING').AsString := SQSO.SRX_String;
-      if SQSO.STX = 0 then
-        Params.ParamByName('STX').IsNull
-      else
-        Params.ParamByName('STX').AsInteger := SQSO.STX;
-      Params.ParamByName('STX_STRING').AsString := SQSO.STX_String;
-      Params.ParamByName('SAT_NAME').AsString := SQSO.SAT_NAME;
-      Params.ParamByName('SAT_MODE').AsString := SQSO.SAT_MODE;
-      Params.ParamByName('PROP_MODE').AsString := SQSO.PROP_MODE;
-      Params.ParamByName('LoTWSent').AsInteger := SQSO.LotWSent;
-      if SQSO.QSL_RCVD_VIA = '' then
-        Params.ParamByName('QSL_RCVD_VIA').IsNull
-      else
-        Params.ParamByName('QSL_RCVD_VIA').AsString := SQSO.QSL_RCVD_VIA;
-      if SQSO.QSL_SENT_VIA = '' then
-        Params.ParamByName('QSL_SENT_VIA').IsNull
-      else
-        Params.ParamByName('QSL_SENT_VIA').AsString := SQSO.QSL_SENT_VIA;
-      Params.ParamByName('DXCC').AsString := SQSO.DXCC;
-      Params.ParamByName('USERS').AsString := SQSO.USERS;
-      Params.ParamByName('NoCalcDXCC').AsInteger := SQSO.NoCalcDXCC;
-      Params.ParamByName('MY_STATE').AsString := SQSO.My_State;
-      Params.ParamByName('MY_GRIDSQUARE').AsString := SQSO.My_Grid;
-      Params.ParamByName('MY_LAT').AsString := SQSO.My_Lat;
-      Params.ParamByName('MY_LON').AsString := SQSO.My_Lon;
-      Params.ParamByName('SYNC').AsInteger := SQSO.SYNC;
-      ExecSQL;
-    end;
-    InitDB.DefTransaction.Commit;
+    if SQSO.QSL_RCVD_VIA = '' then
+      SQSO.QSL_RCVD_VIA := 'NULL';
+    if SQSO.QSL_SENT_VIA = '' then
+      SQSO.QSL_SENT_VIA := 'NULL';
+
+    if DBRecord.CurrentDB = 'MySQL' then
+      QSODates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSODate))
+    else
+      QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
+
+    QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
+      'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode,' +
+      'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA,' +
+      'QSLManager, QSLSent, QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate,' +
+      'MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,' +
+      'DigiBand, Continent, ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate,' +
+      'QSLInfo, Call, State1, State2, State3, State4, WPX, AwardsEx,' +
+      'ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,' +
+      'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC,' +
+      'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
+      dmFunc.Q(SQSO.CallSing) + dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) +
+      dmFunc.Q(SQSO.QSOBand) + dmFunc.Q(SQSO.QSOMode) +
+      dmFunc.Q(SQSO.QSOSubMode) + dmFunc.Q(SQSO.QSOReportSent) +
+      dmFunc.Q(SQSO.QSOReportRecived) + dmFunc.Q(SQSO.OmName) +
+      dmFunc.Q(SQSO.OmQTH) + dmFunc.Q(SQSO.State0) + dmFunc.Q(SQSO.Grid) +
+      dmFunc.Q(SQSO.IOTA) + dmFunc.Q(SQSO.QSLManager) + dmFunc.Q(SQSO.QSLSent) +
+      dmFunc.Q(SQSO.QSLSentAdv) + dmFunc.Q(SQSO.QSLSentDate) +
+      dmFunc.Q(SQSO.QSLRec) + dmFunc.Q(SQSO.QSLRecDate) +
+      dmFunc.Q(SQSO.MainPrefix) + dmFunc.Q(SQSO.DXCCPrefix) +
+      dmFunc.Q(SQSO.CQZone) + dmFunc.Q(SQSO.ITUZone) + dmFunc.Q(SQSO.QSOAddInfo) +
+      dmFunc.Q(SQSO.Marker) + dmFunc.Q(IntToStr(SQSO.ManualSet)) +
+      dmFunc.Q(SQSO.DigiBand) + dmFunc.Q(SQSO.Continent) +
+      dmFunc.Q(SQSO.ShortNote) + dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) +
+      dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.LotWRecDate) +
+      dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) + dmFunc.Q(SQSO.State1) +
+      dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) + dmFunc.Q(SQSO.State4) +
+      dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) + dmFunc.Q(SQSO.ValidDX) +
+      dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) + dmFunc.Q(STXs) +
+      dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
+      dmFunc.Q(SQSO.SAT_MODE) + dmFunc.Q(SQSO.PROP_MODE) +
+      dmFunc.Q(IntToStr(SQSO.LotWSent)) + dmFunc.Q(SQSO.QSL_RCVD_VIA) +
+      dmFunc.Q(SQSO.QSL_SENT_VIA) + dmFunc.Q(SQSO.DXCC) + dmFunc.Q(SQSO.USERS) +
+      dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) + dmFunc.Q(SQSO.My_State) +
+      dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) + dmFunc.Q(SQSO.My_Lon) +
+      QuotedStr(IntToStr(SQSO.SYNC)) + ')';
+    if DBRecord.CurrentDB = 'MySQL' then
+      InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
+    else
+      InitDB.SQLiteConnection.ExecuteDirect(QueryTXT);
   finally
-    FreeAndNil(Query);
+    InitDB.DefTransaction.Commit;
   end;
 end;
 

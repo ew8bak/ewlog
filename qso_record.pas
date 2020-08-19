@@ -57,8 +57,8 @@ type
     SAT_MODE: string[20];
     PROP_MODE: string[20];
     LotWSent: integer;
-    QSL_RCVD_VIA: string[1];
-    QSL_SENT_VIA: string[1];
+    QSL_RCVD_VIA: string[4];
+    QSL_SENT_VIA: string[4];
     DXCC: string[5];
     USERS: string[5];
     NoCalcDXCC: integer;
