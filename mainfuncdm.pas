@@ -39,6 +39,7 @@ type
     procedure SelectAllQSO(var DBGrid: TDBGrid);
     procedure DrawColumnGrid(DS: TDataSet; Rect: TRect; DataCol: integer;
       Column: TColumn; State: TGridDrawState; var DBGrid: TDBGrid);
+    procedure CurrPosGrid(index: integer; var DBGrid: TDBGrid);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -51,6 +52,9 @@ type
     function GetAllCallsign: CallsignArray;
     function FindISOCountry(Country: string): string;
     function FindCountry(ISOCode: string): string;
+    function SelectEditQSO(index: integer): TQSO;
+    function IntToBool(Value: integer): boolean;
+    function StringToBool(Value: string): boolean;
 
   end;
 
@@ -63,6 +67,91 @@ implementation
 uses InitDB_dm, dmFunc_U, MainForm_U;
 
 {$R *.lfm}
+
+function TMainFunc.IntToBool(Value: integer): boolean;
+begin
+  case Value of
+    1: Result := True;
+    0: Result := False;
+  end;
+end;
+
+function TMainFunc.StringToBool(Value: string): boolean;
+begin
+  case Value of
+    '1': Result := True;
+    '0': Result := False;
+  end;
+end;
+
+function TMainFunc.SelectEditQSO(index: integer): TQSO;
+var
+  Query: TSQLQuery;
+  SelQSO: TQSO;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+
+    Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
+      ' WHERE UnUsedIndex = ' + IntToStr(index);
+    Query.Open;
+
+    SelQSO.CallSing := Query.FieldByName('CallSign').AsString;
+    SelQSO.QSODate := Query.FieldByName('QSODate').AsDateTime;
+    SelQSO.QSOTime := Query.FieldByName('QSOTime').AsString;
+    SelQSO.OMName := Query.FieldByName('OMName').AsString;
+    SelQSO.OMQTH := Query.FieldByName('OMQTH').AsString;
+    SelQSO.State0 := Query.FieldByName('State').AsString;
+    SelQSO.Grid := Query.FieldByName('Grid').AsString;
+    SelQSO.QSOReportSent := Query.FieldByName('QSOReportSent').AsString;
+    SelQSO.QSOReportRecived := Query.FieldByName('QSOReportRecived').AsString;
+    SelQSO.IOTA := Query.FieldByName('IOTA').AsString;
+    SelQSO.QSLSentDate := Query.FieldByName('QSLSentDate').AsDateTime;
+    SelQSO.QSLRecDate := Query.FieldByName('QSLRecDate').AsDateTime;
+    SelQSO.LoTWRecDate := Query.FieldByName('LoTWRecDate').AsDateTime;
+    SelQSO.MainPrefix := Query.FieldByName('MainPrefix').AsString;
+    SelQSO.DXCCPrefix := Query.FieldByName('DXCCPrefix').AsString;
+    SelQSO.DXCC := Query.FieldByName('DXCC').AsString;
+    SelQSO.CQZone := Query.FieldByName('CQZone').AsString;
+    SelQSO.ITUZone := Query.FieldByName('ITUZone').AsString;
+    SelQSO.Marker := Query.FieldByName('Marker').AsString;
+    SelQSO.QSOMode := Query.FieldByName('QSOMode').AsString;
+    SelQSO.QSOSubMode := Query.FieldByName('QSOSubMode').AsString;
+    SelQSO.QSOBand := Query.FieldByName('QSOBand').AsString;
+    SelQSO.Continent := Query.FieldByName('Continent').AsString;
+    SelQSO.QSLInfo := Query.FieldByName('QSLInfo').AsString;
+    SelQSO.ValidDX := Query.FieldByName('ValidDX').AsString;
+    SelQSO.QSLManager := Query.FieldByName('QSLManager').AsString;
+    SelQSO.State1 := Query.FieldByName('State1').AsString;
+    SelQSO.State2 := Query.FieldByName('State2').AsString;
+    SelQSO.State3 := Query.FieldByName('State3').AsString;
+    SelQSO.State4 := Query.FieldByName('State4').AsString;
+    SelQSO.QSOAddInfo := Query.FieldByName('QSOAddInfo').AsString;
+    SelQSO.NoCalcDXCC := Query.FieldByName('NoCalcDXCC').AsInteger;
+    SelQSO.QSLReceQSLcc := Query.FieldByName('QSLReceQSLcc').AsInteger;
+    SelQSO.QSLRec := Query.FieldByName('QSLRec').AsString;
+    SelQSO.LoTWRec := Query.FieldByName('LoTWRec').AsString;
+    SelQSO.LoTWSent := Query.FieldByName('LoTWSent').AsInteger;
+    SelQSO.QSL_RCVD_VIA := Query.FieldByName('QSL_RCVD_VIA').AsString;
+    SelQSO.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
+    SelQSO.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
+    SelQSO.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
+    Query.Close;
+    Result := SelQSO;
+
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
+procedure TMainFunc.CurrPosGrid(index: integer; var DBGrid: TDBGrid);
+begin
+  DBGrid.DataSource.DataSet.RecNo := index;
+end;
 
 procedure TMainFunc.UpdateEditQSO(index: integer; SQSO: TQSO);
 var
@@ -1131,24 +1220,24 @@ begin
       dmFunc.Q(SQSO.QSOReportRecived) + dmFunc.Q(SQSO.OmName) +
       dmFunc.Q(SQSO.OmQTH) + dmFunc.Q(SQSO.State0) + dmFunc.Q(SQSO.Grid) +
       dmFunc.Q(SQSO.IOTA) + dmFunc.Q(SQSO.QSLManager) + dmFunc.Q(SQSO.QSLSent) +
-      dmFunc.Q(SQSO.QSLSentAdv) +
-      dmFunc.Q(SQSO.QSLRec) + dmFunc.Q(SQSO.MainPrefix) + dmFunc.Q(SQSO.DXCCPrefix) +
+      dmFunc.Q(SQSO.QSLSentAdv) + dmFunc.Q(SQSO.QSLRec) +
+      dmFunc.Q(SQSO.MainPrefix) + dmFunc.Q(SQSO.DXCCPrefix) +
       dmFunc.Q(SQSO.CQZone) + dmFunc.Q(SQSO.ITUZone) + dmFunc.Q(SQSO.QSOAddInfo) +
       dmFunc.Q(SQSO.Marker) + dmFunc.Q(IntToStr(SQSO.ManualSet)) +
       dmFunc.Q(SQSO.DigiBand) + dmFunc.Q(SQSO.Continent) +
       dmFunc.Q(SQSO.ShortNote) + dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) +
-      dmFunc.Q(SQSO.LotWRec) +
-      dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) + dmFunc.Q(SQSO.State1) +
-      dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) + dmFunc.Q(SQSO.State4) +
-      dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) + dmFunc.Q(SQSO.ValidDX) +
-      dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) + dmFunc.Q(STXs) +
-      dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
+      dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) +
+      dmFunc.Q(SQSO.State1) + dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) +
+      dmFunc.Q(SQSO.State4) + dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) +
+      dmFunc.Q(SQSO.ValidDX) + dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) +
+      dmFunc.Q(STXs) + dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
       dmFunc.Q(SQSO.SAT_MODE) + dmFunc.Q(SQSO.PROP_MODE) +
       dmFunc.Q(IntToStr(SQSO.LotWSent)) + dmFunc.Q(SQSO.QSL_RCVD_VIA) +
       dmFunc.Q(SQSO.QSL_SENT_VIA) + dmFunc.Q(SQSO.DXCC) + dmFunc.Q(SQSO.USERS) +
       dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) + dmFunc.Q(SQSO.My_State) +
       dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) + dmFunc.Q(SQSO.My_Lon) +
       QuotedStr(IntToStr(SQSO.SYNC)) + ')';
+
     if DBRecord.CurrentDB = 'MySQL' then
       InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
     else

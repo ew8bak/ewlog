@@ -109,7 +109,6 @@ type
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
     SatPropQuery: TSQLQuery;
-    UPDATE_Query: TSQLQuery;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -123,7 +122,6 @@ type
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpeedButton10Click(Sender: TObject);
     procedure SpeedButton11Click(Sender: TObject);
@@ -247,11 +245,9 @@ begin
     UQSO.QSLSentAdv := 'F';
   if RadioButton5.Checked = True then
     UQSO.QSLSentAdv := 'N';
-  if DateEdit3.Text <> '' then
-    UQSO.QSLSentDate := DateEdit3.Date;
+  UQSO.QSLSentDate := DateEdit3.Date;
   UQSO.QSLRec := BoolToStr(CheckBox4.Checked, '1', '0');
-  if DateEdit2.Text <> '' then
-    UQSO.QSLRecDate := DateEdit2.Date;
+  UQSO.QSLRecDate := DateEdit2.Date;
   UQSO.DXCC := Edit6.Text;
   UQSO.DXCCPrefix := Edit7.Text;
   UQSO.CQZone := Edit15.Text;
@@ -266,8 +262,7 @@ begin
   if CheckBox5.Checked then
     UQSO.QSLReceQSLcc := 1;
   UQSO.LoTWRec := BoolToStr(CheckBox6.Checked, '1', '0');
-  if DateEdit4.Text <> '' then
-    UQSO.LoTWRecDate := DateEdit4.Date;
+  UQSO.LoTWRecDate := DateEdit4.Date;
   UQSO.QSLInfo := Edit20.Text;
   UQSO.Call := Edit1.Text;
   UQSO.State1 := Edit10.Text;
@@ -297,7 +292,7 @@ begin
   if ComboBox7.Text <> '' then
     UQSO.QSL_SENT_VIA := ComboBox7.Text[1];
   MainFunc.UpdateEditQSO(UnUsIndex, UQSO);
-  //  MainForm.DBGrid1.DataSource.DataSet.RecNo := ind;
+  MainFunc.CurrPosGrid(GridRecordIndex, MainForm.DBGrid1);
 end;
 
 procedure TEditQSO_Form.Button4Click(Sender: TObject);
@@ -338,30 +333,83 @@ begin
   Edit1.Text := '';
 end;
 
-procedure TEditQSO_Form.FormCreate(Sender: TObject);
-begin
-
-end;
-
 procedure TEditQSO_Form.FormShow(Sender: TObject);
 var
   i: integer;
+  SelQSO: TQSO;
 begin
   MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1);
   MainFunc.SetGrid(DBGrid1);
 
-  if DBRecord.InitDB = 'YES' then
-  begin
-    SatPropQuery.DataBase := InitDB.ServiceDBConnection;
-    if DBRecord.CurrentDB = 'MySQL' then
-    begin
-      UPDATE_Query.DataBase := InitDB.MySQLConnection;
-    end
-    else
-    begin
-      UPDATE_Query.DataBase := InitDB.SQLiteConnection;
-    end;
+  SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+  Edit1.Text := SelQSO.CallSing;
+  DateEdit1.Date := SelQSO.QSODate;
+  DateTimePicker1.Time := StrToTime(SelQSO.QSOTime);
+  Edit4.Text := SelQSO.OMName;
+  Edit5.Text := SelQSO.OMQTH;
+  Edit17.Text := SelQSO.State0;
+  Edit14.Text := SelQSO.Grid;
+  Edit2.Text := SelQSO.QSOReportSent;
+  Edit3.Text := SelQSO.QSOReportRecived;
+  Edit18.Text := SelQSO.IOTA;
+  DateEdit3.Date := SelQSO.QSLSentDate;
+  DateEdit2.Date := SelQSO.QSLRecDate;
+  DateEdit4.Date := SelQSO.LoTWRecDate;
+  Edit8.Text := SelQSO.MainPrefix;
+  Edit7.Text := SelQSO.DXCCPrefix;
+  Edit6.Text := SelQSO.DXCC;
+  Edit15.Text := SelQSO.CQZone;
+  Edit16.Text := SelQSO.ITUZone;
+  CheckBox3.Checked := MainFunc.StringToBool(SelQSO.Marker);
+  ComboBox2.Text := SelQSO.QSOMode;
+  ComboBox9.Text := SelQSO.QSOSubMode;
+  ComboBox1.Text := SelQSO.QSOBand;
+  Edit13.Text := SelQSO.Continent;
+  Edit20.Text := SelQSO.QSLInfo;
+  CheckBox2.Checked := MainFunc.StringToBool(SelQSO.ValidDX);
+  Edit19.Text := SelQSO.QSLManager;
+  Edit10.Text := SelQSO.State1;
+  Edit9.Text := SelQSO.State2;
+  Edit11.Text := SelQSO.State3;
+  Edit12.Text := SelQSO.State4;
+  Memo1.Text := SelQSO.QSOAddInfo;
+  CheckBox1.Checked := MainFunc.IntToBool(SelQSO.NoCalcDXCC);
+  CheckBox5.Checked := MainFunc.IntToBool(SelQSO.QSLReceQSLcc);
+  CheckBox4.Checked := MainFunc.StringToBool(SelQSO.QSLRec);
+  CheckBox6.Checked := MainFunc.StringToBool(SelQSO.LoTWRec);
+  CheckBox7.Checked := MainFunc.IntToBool(SelQSO.LoTWSent);
+  ComboBox3.Text := SelQSO.PROP_MODE;
+
+  case SelQSO.QSL_RCVD_VIA of
+    '': ComboBox6.ItemIndex := 0;
+    'B': ComboBox6.ItemIndex := 1;
+    'D': ComboBox6.ItemIndex := 2;
+    'E': ComboBox6.ItemIndex := 3;
+    'M': ComboBox6.ItemIndex := 4;
+    'G': ComboBox6.ItemIndex := 5;
   end;
+
+  case SelQSO.QSL_SENT_VIA of
+    '': ComboBox6.ItemIndex := 0;
+    'B': ComboBox6.ItemIndex := 1;
+    'D': ComboBox6.ItemIndex := 2;
+    'E': ComboBox6.ItemIndex := 3;
+    'M': ComboBox6.ItemIndex := 4;
+    'G': ComboBox6.ItemIndex := 5;
+  end;
+
+  case SelQSO.QSLSentAdv of
+    'P': RadioButton2.Checked := True;
+    'T': RadioButton1.Checked := True;
+    'Q': RadioButton3.Checked := True;
+    'F': RadioButton4.Checked := True;
+    'N': RadioButton5.Checked := True;
+  end;
+
+  if DBRecord.InitDB = 'YES' then
+
+    SatPropQuery.DataBase := InitDB.ServiceDBConnection;
+
 
   if ComboBox2.Text <> '' then
     ComboBox2Change(Self);
@@ -375,10 +423,8 @@ begin
     SatPropQuery.Next;
   end;
   SatPropQuery.Close;
-
   Button4.Click;
   Edit1.SetFocus;
-
 end;
 
 procedure TEditQSO_Form.SpeedButton10Click(Sender: TObject);

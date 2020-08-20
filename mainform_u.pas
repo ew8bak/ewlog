@@ -562,6 +562,7 @@ var
   GetingHint: integer;
   CallLogBook: string;
   UnUsIndex: integer;
+  GridRecordIndex: integer;
   LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
   tx, txWSJT: boolean;
   connected, connectedWSJT: boolean;
@@ -1493,128 +1494,15 @@ end;
 
 procedure TMainForm.DBGrid1DblClick(Sender: TObject);
 begin
-  EditQSO_Form.ComboBox1.Items := ComboBox1.Items;
-  if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
-  begin
-    UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-    EditQSO_Form.Edit1.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-    EditQSO_Form.DateEdit1.Date :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-    EditQSO_Form.DateTimePicker1.Time :=
-      StrToTime(DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString);
-    EditQSO_Form.Edit1.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-    EditQSO_Form.Edit4.Text := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-    EditQSO_Form.Edit5.Text := DBGrid1.DataSource.DataSet.FieldByName('OMQTH').AsString;
-    EditQSO_Form.Edit17.Text := DBGrid1.DataSource.DataSet.FieldByName('State').AsString;
-    EditQSO_Form.Edit14.Text := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-    EditQSO_Form.Edit2.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-    EditQSO_Form.Edit3.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSOReportRecived').AsString;
-    EditQSO_Form.Edit18.Text := DBGrid1.DataSource.DataSet.FieldByName('IOTA').AsString;
-    EditQSO_Form.DateEdit3.Date :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSLSentDate').AsDateTime;
-    EditQSO_Form.DateEdit2.Date :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSLRecDate').AsDateTime;
-    EditQSO_Form.DateEdit4.Date :=
-      DBGrid1.DataSource.DataSet.FieldByName('LoTWRecDate').AsDateTime;
-    EditQSO_Form.Edit8.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('MainPrefix').AsString;
-    EditQSO_Form.Edit7.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('DXCCPrefix').AsString;
-    EditQSO_Form.Edit6.Text := DBGrid1.DataSource.DataSet.FieldByName('DXCC').AsString;
-    EditQSO_Form.Edit15.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('CQZone').AsString;
-    EditQSO_Form.Edit16.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('ITUZone').AsString;
-    EditQSO_Form.CheckBox3.Checked :=
-      DBGrid1.DataSource.DataSet.FieldByName('Marker').AsBoolean;
-    EditQSO_Form.ComboBox2.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-    EditQSO_Form.ComboBox9.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
-
-    EditQSO_Form.ComboBox1.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-
-    EditQSO_Form.Edit13.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('Continent').AsString;
-    EditQSO_Form.Edit20.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSLInfo').AsString;
-    EditQSO_Form.CheckBox2.Checked :=
-      DBGrid1.DataSource.DataSet.FieldByName('ValidDX').AsBoolean;
-    EditQSO_Form.Edit19.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSLManager').AsString;
-    EditQSO_Form.Edit10.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('State1').AsString;
-    EditQSO_Form.Edit9.Text := DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
-    EditQSO_Form.Edit11.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
-    EditQSO_Form.Edit12.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
-    EditQSO_Form.Memo1.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
-    EditQSO_Form.CheckBox1.Checked :=
-      DBGrid1.DataSource.DataSet.FieldByName('NoCalcDXCC').AsBoolean;
-    EditQSO_Form.CheckBox5.Checked :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSLReceQSLcc').AsBoolean;
-    EditQSO_Form.CheckBox4.Checked :=
-      DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsBoolean;
-    EditQSO_Form.CheckBox6.Checked :=
-      DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsBoolean;
-    EditQSO_Form.CheckBox7.Checked :=
-      DBGrid1.DataSource.DataSet.FieldByName('LoTWSent').AsBoolean;
-
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'G' then
-      EditQSO_Form.ComboBox6.ItemIndex := 5;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'B' then
-      EditQSO_Form.ComboBox6.ItemIndex := 1;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'D' then
-      EditQSO_Form.ComboBox6.ItemIndex := 2;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'E' then
-      EditQSO_Form.ComboBox6.ItemIndex := 3;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'M' then
-      EditQSO_Form.ComboBox6.ItemIndex := 4;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = '' then
-      EditQSO_Form.ComboBox6.ItemIndex := 0;
-
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'G' then
-      EditQSO_Form.ComboBox7.ItemIndex := 5;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'B' then
-      EditQSO_Form.ComboBox7.ItemIndex := 1;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'D' then
-      EditQSO_Form.ComboBox7.ItemIndex := 2;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'E' then
-      EditQSO_Form.ComboBox7.ItemIndex := 3;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'M' then
-      EditQSO_Form.ComboBox7.ItemIndex := 4;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = '' then
-      EditQSO_Form.ComboBox7.ItemIndex := 0;
-
-    if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'P' then
-      EditQSO_Form.RadioButton2.Checked := True;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'T' then
-      EditQSO_Form.RadioButton1.Checked := True;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'Q' then
-      EditQSO_Form.RadioButton3.Checked := True;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'F' then
-      EditQSO_Form.RadioButton4.Checked := True;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
-      EditQSO_Form.RadioButton5.Checked := True;
-
-    EditQSO_Form.ComboBox3.Text :=
-      DBGrid1.DataSource.DataSet.FieldByName('PROP_MODE').AsString;
-
-    EditQSO_Form.Show;
-  end;
+  GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
+  UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+  EditQSO_Form.Show;
 end;
 
 procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
- MainFunc.DrawColumnGrid(LOGBookDS.DataSet, Rect, DataCol, Column, State, DBGrid1);
+  MainFunc.DrawColumnGrid(LOGBookDS.DataSet, Rect, DataCol, Column, State, DBGrid1);
 end;
 
 procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -1976,7 +1864,7 @@ begin
 
   MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1, ComboBox10);
 
-    if ComboBox10.ItemIndex > -1 then
+  if ComboBox10.ItemIndex > -1 then
   begin
     if Pos('/', ComboBox10.Text) > 0 then
     begin
@@ -2416,8 +2304,8 @@ begin
   MenuItem := (Sender as TMenuItem);
   SetDefaultLang(MainFunc.FindISOCountry(MenuItem.Caption), FilePATH + 'locale');
   IniSet.Language := MainFunc.FindISOCountry(MenuItem.Caption);
-   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
+  if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+    ShowMessage(rDBError);
   ComboBox7.ItemIndex := 3;
 end;
 
@@ -2550,7 +2438,7 @@ begin
       begin
         DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
         UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-        with EditQSO_Form.UPDATE_Query do
+     {   with EditQSO_Form.UPDATE_Query do
         begin
           Close;
           SQL.Clear;
@@ -2559,11 +2447,11 @@ begin
           Params.ParamByName('QSLSentAdv').AsString := 'P';
           Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
           ExecSQL;
-        end;
+        end; }
       end;
       InitDB.DefTransaction.Commit;
-       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
       DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
     end;
 

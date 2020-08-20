@@ -9,7 +9,6 @@ object EditQSO_Form: TEditQSO_Form
   ClientWidth = 491
   DefaultMonitor = dmMainForm
   OnClose = FormClose
-  OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
   ShowInTaskBar = stNever
@@ -1599,15 +1598,6 @@ object EditQSO_Form: TEditQSO_Form
     OnClick = Button3Click
     ParentFont = False
     TabOrder = 4
-  end
-  object UPDATE_Query: TSQLQuery
-    FieldDefs = <>
-    SQL.Strings = (
-      ''
-    )
-    Params = <>
-    Left = 408
-    Top = 420
   end
   object SatPropQuery: TSQLQuery
     FieldDefs = <>
