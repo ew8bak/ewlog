@@ -935,29 +935,6 @@ begin
 
   if not CheckBox6.Checked then
     SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
-
-  foundPrefix := SearchPrefix(EditButton1.Text, False);
-  SelectQSO(False);
-
-  if foundPrefix and CheckBox3.Checked then
-  begin
-    val(lo1, Long, Error);
-    if Error = 0 then
-    begin
-      Centre.Lon := Long;
-      val(la1, Lat, Error);
-      if Error = 0 then
-      begin
-        Centre.Lat := Lat;
-        MapView1.Zoom := 9;
-        MapView1.Center := Centre;
-      end;
-    end;
-  end;
-
-  dmFunc.GetLatLon(Label40.Caption, Label42.Caption, Lat1, Lon1);
-  Earth.PaintLine(Lat1, Lon1);
-  Earth.PaintLine(Lat1, Lon1);
  }
 
  { if CheckBox6.Checked then

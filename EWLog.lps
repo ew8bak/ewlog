@@ -20,8 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="841"/>
-        <CursorPos X="34" Y="902"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="889"/>
+        <CursorPos X="70" Y="937"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -665,20 +666,18 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="66"/>
-        <CursorPos X="25" Y="77"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="99"/>
+        <CursorPos X="45" Y="82"/>
         <UsageCount Value="81"/>
         <Loaded Value="True"/>
       </Unit64>
       <Unit65>
         <Filename Value="prefix_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="14" Y="19"/>
         <UsageCount Value="72"/>
-        <Loaded Value="True"/>
       </Unit65>
       <Unit66>
         <Filename Value="inifile_record.pas"/>
