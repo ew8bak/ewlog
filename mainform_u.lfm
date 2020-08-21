@@ -2777,6 +2777,7 @@ object MainForm: TMainForm
           TitleFont.Height = -11
           TitleFont.Name = 'Droid Sans'
           OnDrawColumnCell = DBGrid2DrawColumnCell
+          OnDblClick = DBGrid2DblClick
         end
       end
       object Panel8: TPanel
@@ -3799,12 +3800,6 @@ object MainForm: TMainForm
   object LOGBookDS: TDataSource
     DataSet = InitDB.DefLogBookQuery
     Left = 512
-    Top = 72
-  end
-  object SaveQSOQuery: TSQLQuery
-    FieldDefs = <>
-    Params = <>
-    Left = 616
     Top = 72
   end
   object ActionList1: TActionList

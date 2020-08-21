@@ -316,7 +316,6 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
-    SaveQSOQuery: TSQLQuery;
     TabSheet1: TTabSheet;
     TimeTimer: TTimer;
     TrayIcon1: TTrayIcon;
@@ -337,6 +336,7 @@ type
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
+    procedure DBGrid2DblClick(Sender: TObject);
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure dxClientConnect(aSocket: TLSocket);
@@ -830,7 +830,7 @@ begin
 
   if EditButton1.Text = '' then
   begin
-    clr();
+    Clr;
     label32.Caption := '.......';
     label33.Caption := '.......';
     label34.Caption := '.......';
@@ -1479,6 +1479,13 @@ procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
   MainFunc.DrawColumnGrid(LOGBookDS.DataSet, Rect, DataCol, Column, State, DBGrid1);
+end;
+
+procedure TMainForm.DBGrid2DblClick(Sender: TObject);
+begin
+  GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
+  UnUsIndex := DBGrid2.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+  EditQSO_Form.Show;
 end;
 
 procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -2774,8 +2781,8 @@ end;
 procedure TMainForm.MenuItem40Click(Sender: TObject);
 begin
   ///Быстрое редактирование
-{  if LogBookQuery.RecordCount > 0 then
-  begin
+  //if LogBookQuery.RecordCount > 0 then
+  //begin
     EditFlag := True;
     CheckBox1.Checked := False;
     CheckBox2.Checked := True;
@@ -2797,22 +2804,19 @@ begin
     Edit9.Text := DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
     Edit8.Text := DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
     Edit7.Text := DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'G' then
-      ComboBox6.ItemIndex := 5;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'B' then
-      ComboBox6.ItemIndex := 1;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'D' then
-      ComboBox6.ItemIndex := 2;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'E' then
-      ComboBox6.ItemIndex := 3;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'M' then
-      ComboBox6.ItemIndex := 4;
-    if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = '' then
-      ComboBox6.ItemIndex := 0;
+    case DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString of
+      '': ComboBox6.ItemIndex := 0;
+      'B': ComboBox6.ItemIndex := 1;
+      'D': ComboBox6.ItemIndex := 2;
+      'E': ComboBox6.ItemIndex := 3;
+      'M': ComboBox6.ItemIndex := 4;
+      'G': ComboBox6.ItemIndex := 5;
+    end;
+
     ComboBox4.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
     ComboBox5.Text := DBGrid1.DataSource.DataSet.FieldByName(
       'QSOReportRecived').AsString;
-  end;    }
+ // end;
 end;
 
 procedure TMainForm.MenuItem41Click(Sender: TObject);
@@ -3831,7 +3835,7 @@ begin
 
   if EditFlag = True then
   begin
-    if Pos('M', ComboBox1.Text) > 0 then
+  {  if Pos('M', ComboBox1.Text) > 0 then
       NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
         ComboBox1.Text, ComboBox2.Text))
     else
@@ -3884,7 +3888,7 @@ begin
         Params.ParamByName('QSL_SENT_VIA').IsNull;
       ExecSQL;
     end;
-    InitDB.DefTransaction.Commit;
+    InitDB.DefTransaction.Commit;  }
     EditFlag := False;
     CheckBox1.Checked := True;
     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
