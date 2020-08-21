@@ -3817,6 +3817,7 @@ object MainForm: TMainForm
     end
   end
   object PopupMenu1: TPopupMenu
+    OnPopup = PopupMenu1Popup
     Left = 1008
     Top = 312
     object MenuItem8: TMenuItem
@@ -4747,7 +4748,6 @@ object MainForm: TMainForm
     end
     object MenuItem45: TMenuItem
       Caption = 'Copy to another log'
-      Enabled = False
       Bitmap.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         2000000000000004000064000000640000000000000000000000AE7C53FFAE7C

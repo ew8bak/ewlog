@@ -1,6 +1,31 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: cloudlog.ranswerserver
+msgctxt "cloudlog.ranswerserver"
+msgid "Server response:"
+msgstr ""
+
+#: cloudlog.rerrorsendingsata
+msgctxt "cloudlog.rerrorsendingsata"
+msgid "Error sending data"
+msgstr ""
+
+#: cloudlog.rnoentryadded
+msgctxt "cloudlog.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr ""
+
+#: cloudlog.rrecordaddedsuccessfully
+msgctxt "cloudlog.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr ""
+
+#: cloudlog.runknownuser
+msgctxt "cloudlog.runknownuser"
+msgid "Unknown user! See settings"
+msgstr ""
+
 #: clublog.ranswerserver
 msgctxt "clublog.ranswerserver"
 msgid "Server response:"

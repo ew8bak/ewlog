@@ -441,6 +441,7 @@ type
     procedure MenuItem98Click(Sender: TObject);
     procedure MenuItem99Click(Sender: TObject);
     procedure LangItemClick(Sender: TObject);
+    procedure PopupMenu1Popup(Sender: TObject);
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
@@ -2286,6 +2287,26 @@ begin
   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
     ShowMessage(rDBError);
   ComboBox7.ItemIndex := 3;
+end;
+
+procedure TMainForm.PopupMenu1Popup(Sender: TObject);
+var
+  LogItem: TMenuItem;
+  i: integer;
+begin
+  for i := MainForm.ComponentCount - 1 downto 0 do
+    if (MainForm.Components[i] is TMenuItem) then
+      if (MainForm.Components[i] as TMenuItem).Tag = 98 then
+        (MainForm.Components[i] as TMenuItem).Free;
+  for i := 0 to High(MainFunc.GetAllCallsign) do
+  begin
+    LogItem := TMenuItem.Create(Self);
+    LogItem.Name := 'LogItem' + IntToStr(i);
+    LogItem.Caption := MainFunc.GetAllCallsign[i];
+    // LogItem.OnClick := @LogItemClick;
+    LogItem.Tag := 98;
+    MenuItem45.Insert(i, LogItem);
+  end;
 end;
 
 procedure TMainForm.MenuItem116Click(Sender: TObject);
