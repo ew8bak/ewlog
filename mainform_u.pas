@@ -799,9 +799,9 @@ end;
 
 procedure TMainForm.EditButton1Change(Sender: TObject);
 var
-  //  Centre: TRealPoint;
-  //  Lat, Long: real;
-  //  Error: integer;
+  //   Centre: TRealPoint;
+  //  Lati, Long: real;
+  //   Error: integer;
   engText: string;
   //  foundPrefix: boolean;
   DBand, DMode, DCall: boolean;
@@ -901,6 +901,8 @@ begin
   dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+  if PFXR.Found and CheckBox3.Checked then
+    MainFunc.LoadMaps(Lat, Lon, MapView1);
 
   FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(EditButton1.Text));
   Edit1.Text := FoundQSOR.OMName;

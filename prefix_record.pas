@@ -6,8 +6,9 @@ interface
 
 uses
   Classes, SysUtils;
+
 type
-   TPFXR = record
+  TPFXR = record
     Country: string[100];
     ARRLPrefix: string[5];
     Prefix: string[5];
@@ -20,9 +21,9 @@ type
     TimeDiff: integer;
     Distance: string;
     Azimuth: string;
+    Found: boolean;
   end;
 
 implementation
 
 end.
-

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
-  foundQSO_record, StdCtrls, Grids, Graphics, DateUtils;
+  foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer;
 
 type
   bandArray = array of string;
@@ -41,6 +41,7 @@ type
       Column: TColumn; State: TGridDrawState; var DBGrid: TDBGrid);
     procedure CurrPosGrid(index: integer; var DBGrid: TDBGrid);
     procedure SendQSOto(via: string; SendQSO: TQSO);
+    procedure LoadMaps(Lat, Long: string; var MapView: TMapView);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -68,6 +69,26 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl;
 
 {$R *.lfm}
+
+procedure TMainFunc.LoadMaps(Lat, Long: string; var MapView: TMapView);
+var
+  Center: TRealPoint;
+  LatR, LongR: real;
+  error: integer;
+begin
+     val(Long, LongR, Error);
+    if error = 0 then
+    begin
+      Center.Lon := LongR;
+      val(Lat, LatR, Error);
+      if error = 0 then
+      begin
+        Center.Lat := LatR;
+        MapView.Zoom := 9;
+        MapView.Center := Center;
+      end;
+    end;
+end;
 
 procedure TMainFunc.SendQSOto(via: string; SendQSO: TQSO);
 begin
@@ -1125,6 +1146,7 @@ begin
       PFXR.Longitude := CurrToStr(Lo);
     end;
     GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+    PFXR.Found := True;
     Result := PFXR;
     Exit;
   end;
@@ -1158,6 +1180,7 @@ begin
         PFXR.Longitude := CurrToStr(Lo);
       end;
       GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+      PFXR.Found := True;
       Result := PFXR;
       Exit;
     end;
@@ -1197,6 +1220,7 @@ begin
         PFXR.Longitude := CurrToStr(Lo);
       end;
       GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+      PFXR.Found := True;
       Result := PFXR;
       Exit;
     end;
@@ -1478,6 +1502,7 @@ begin
   PFXR.TimeDiff := 0;
   PFXR.Distance := '';
   PFXR.Azimuth := '';
+  PFXR.Found := False;
 end;
 
 end.
