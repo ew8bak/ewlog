@@ -799,11 +799,7 @@ end;
 
 procedure TMainForm.EditButton1Change(Sender: TObject);
 var
-  //   Centre: TRealPoint;
-  //  Lati, Long: real;
-  //   Error: integer;
   engText: string;
-  //  foundPrefix: boolean;
   DBand, DMode, DCall: boolean;
   QSL: integer;
   Lat, Lon: string;
