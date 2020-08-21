@@ -441,6 +441,7 @@ type
     procedure MenuItem98Click(Sender: TObject);
     procedure MenuItem99Click(Sender: TObject);
     procedure LangItemClick(Sender: TObject);
+    procedure CopyToLogItemClick(Sender: TObject);
     procedure PopupMenu1Popup(Sender: TObject);
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure SpeedButton16Click(Sender: TObject);
@@ -2289,6 +2290,14 @@ begin
   ComboBox7.ItemIndex := 3;
 end;
 
+procedure TMainForm.CopyToLogItemClick(Sender: TObject);
+var
+  MenuItem: TMenuItem;
+begin
+  MenuItem := (Sender as TMenuItem);
+ ShowMessage('Copy to ' + MenuItem.Caption);
+end;
+
 procedure TMainForm.PopupMenu1Popup(Sender: TObject);
 var
   LogItem: TMenuItem;
@@ -2303,8 +2312,10 @@ begin
     LogItem := TMenuItem.Create(Self);
     LogItem.Name := 'LogItem' + IntToStr(i);
     LogItem.Caption := MainFunc.GetAllCallsign[i];
-    // LogItem.OnClick := @LogItemClick;
+    LogItem.OnClick := @CopyToLogItemClick;
     LogItem.Tag := 98;
+    if LogItem.Caption = LBRecord.CallSign then
+      LogItem.Enabled := False;
     MenuItem45.Insert(i, LogItem);
   end;
 end;
