@@ -2779,40 +2779,40 @@ begin
   ///Быстрое редактирование
   //if LogBookQuery.RecordCount > 0 then
   //begin
-    EditFlag := True;
-    CheckBox1.Checked := False;
-    CheckBox2.Checked := True;
-    EditButton1.Font.Color := clBlack;
-    EditButton1.Color := clRed;
-    EditButton1.Text := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-    Edit1.Text := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-    Edit2.Text := DBGrid1.DataSource.DataSet.FieldByName('OMQTH').AsString;
-    Edit3.Text := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-    Edit4.Text := DBGrid1.DataSource.DataSet.FieldByName('State').AsString;
-    Edit5.Text := DBGrid1.DataSource.DataSet.FieldByName('IOTA').AsString;
-    Edit6.Text := DBGrid1.DataSource.DataSet.FieldByName('QSLManager').AsString;
-    ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-    ComboBox2.Items.IndexOf(DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString);
-    DateTimePicker1.Time := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
-    DateEdit1.Date := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-    Edit11.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
-    Edit10.Text := DBGrid1.DataSource.DataSet.FieldByName('State1').AsString;
-    Edit9.Text := DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
-    Edit8.Text := DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
-    Edit7.Text := DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
-    case DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString of
-      '': ComboBox6.ItemIndex := 0;
-      'B': ComboBox6.ItemIndex := 1;
-      'D': ComboBox6.ItemIndex := 2;
-      'E': ComboBox6.ItemIndex := 3;
-      'M': ComboBox6.ItemIndex := 4;
-      'G': ComboBox6.ItemIndex := 5;
-    end;
+  EditFlag := True;
+  CheckBox1.Checked := False;
+  CheckBox2.Checked := True;
+  EditButton1.Font.Color := clBlack;
+  EditButton1.Color := clRed;
+  EditButton1.Text := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
+  Edit1.Text := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
+  Edit2.Text := DBGrid1.DataSource.DataSet.FieldByName('OMQTH').AsString;
+  Edit3.Text := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+  Edit4.Text := DBGrid1.DataSource.DataSet.FieldByName('State').AsString;
+  Edit5.Text := DBGrid1.DataSource.DataSet.FieldByName('IOTA').AsString;
+  Edit6.Text := DBGrid1.DataSource.DataSet.FieldByName('QSLManager').AsString;
+  ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
+  ComboBox2.Items.IndexOf(DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString);
+  DateTimePicker1.Time := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
+  DateEdit1.Date := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
+  Edit11.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
+  Edit10.Text := DBGrid1.DataSource.DataSet.FieldByName('State1').AsString;
+  Edit9.Text := DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
+  Edit8.Text := DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
+  Edit7.Text := DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
+  case DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString of
+    '': ComboBox6.ItemIndex := 0;
+    'B': ComboBox6.ItemIndex := 1;
+    'D': ComboBox6.ItemIndex := 2;
+    'E': ComboBox6.ItemIndex := 3;
+    'M': ComboBox6.ItemIndex := 4;
+    'G': ComboBox6.ItemIndex := 5;
+  end;
 
-    ComboBox4.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-    ComboBox5.Text := DBGrid1.DataSource.DataSet.FieldByName(
-      'QSOReportRecived').AsString;
- // end;
+  ComboBox4.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
+  ComboBox5.Text := DBGrid1.DataSource.DataSet.FieldByName(
+    'QSOReportRecived').AsString;
+  // end;
 end;
 
 procedure TMainForm.MenuItem41Click(Sender: TObject);
@@ -3686,31 +3686,17 @@ begin
       ShowMessage(rEnCall)
     else
     begin
-
-      if ComboBox7.ItemIndex = 0 then
-      begin
-        QSL_SENT_ADV := 'T';
-        QSL_SENT := '1';
-      end;
-      if ComboBox7.ItemIndex = 1 then
-      begin
-        QSL_SENT_ADV := 'P';
-        QSL_SENT := '0';
-      end;
-      if ComboBox7.ItemIndex = 2 then
-      begin
-        QSL_SENT_ADV := 'Q';
-        QSL_SENT := '0';
-      end;
-      if ComboBox7.ItemIndex = 3 then
-      begin
-        QSL_SENT_ADV := 'F';
-        QSL_SENT := '0';
-      end;
-      if ComboBox7.ItemIndex = 4 then
-      begin
-        QSL_SENT_ADV := 'N';
-        QSL_SENT := '0';
+      QSL_SENT := '0';
+      case ComboBox7.ItemIndex of
+        0:
+        begin
+          QSL_SENT_ADV := 'T';
+          QSL_SENT := '1';
+        end;
+        1: QSL_SENT_ADV := 'P';
+        2: QSL_SENT_ADV := 'Q';
+        3: QSL_SENT_ADV := 'F';
+        4: QSL_SENT_ADV := 'N';
       end;
 
       if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
