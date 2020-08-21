@@ -66,7 +66,7 @@ var
 implementation
 
 uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
-  hamqth, clublog, qrzcom, eqsl;
+  hamqth, clublog, qrzcom, eqsl, cloudlog;
 
 {$R *.lfm}
 
@@ -76,22 +76,33 @@ var
   LatR, LongR: real;
   error: integer;
 begin
-     val(Long, LongR, Error);
+  val(Long, LongR, Error);
+  if error = 0 then
+  begin
+    Center.Lon := LongR;
+    val(Lat, LatR, Error);
     if error = 0 then
     begin
-      Center.Lon := LongR;
-      val(Lat, LatR, Error);
-      if error = 0 then
-      begin
-        Center.Lat := LatR;
-        MapView.Zoom := 9;
-        MapView.Center := Center;
-      end;
+      Center.Lat := LatR;
+      MapView.Zoom := 9;
+      MapView.Center := Center;
     end;
+  end;
 end;
 
 procedure TMainFunc.SendQSOto(via: string; SendQSO: TQSO);
 begin
+  //Отправка в CloudLog
+  if IniSet.AutoCloudLog and (via = 'cloudlog') then
+  begin
+    SendCloudLogThread := TSendCloudLogThread.Create;
+    if Assigned(SendCloudLogThread.FatalException) then
+      raise SendCloudLogThread.FatalException;
+    SendCloudLogThread.SendQSO := SendQSO;
+    SendCloudLogThread.server := IniSet.CloudLogServer;
+    SendCloudLogThread.key := IniSet.CloudLogApiKey;
+    SendCloudLogThread.Start;
+  end;
   //Отправка в eQSLcc
   if LBRecord.AutoEQSLcc and (via = 'eqslcc') then
   begin
@@ -888,6 +899,9 @@ begin
   IniSet.PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
   IniSet.FormState := INIFile.ReadString('SetLog', 'FormState', '');
   IniSet.showBand := INIFile.ReadBool('SetLog', 'ShowBand', False);
+  IniSet.CloudLogServer := INIFile.ReadString('SetLog', 'CloudLogServer', '');
+  IniSet.CloudLogApiKey := INIFile.ReadString('SetLog', 'CloudLogApi', '');
+  IniSet.AutoCloudLog := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

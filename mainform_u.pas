@@ -3812,15 +3812,16 @@ begin
       MainFunc.SendQSOto('hrdlog', SQSO);
       MainFunc.SendQSOto('hamqth', SQSO);
       MainFunc.SendQSOto('qrzcom', SQSO);
+      MainFunc.SendQSOto('cloudlog', SQSO);
 
       //Скрытые настройки, отправка в CloudLog
-      if hiddenSettings.apisend then
-        hiddenSettings.SendQSO(hiddenSettings.API_key, hiddenSettings.address_serv +
-          '/index.php/api/qso/', EditButton1.Text,
-          FormatDateTime('yyyymmdd', DateEdit1.Date), FormatDateTime(
-          'hhnnss', DateTimePicker1.Time), NameBand, ComboBox2.Text, ComboBox9.Text,
-          ComboBox4.Text, ComboBox5.Text, Edit1.Text, Edit2.Text, Edit4.Text,
-          Edit3.Text, Edit11.Text);
+  //    if hiddenSettings.apisend then
+  //      hiddenSettings.SendQSO(hiddenSettings.API_key, hiddenSettings.address_serv +
+  //        '/index.php/api/qso/', EditButton1.Text,
+  //        FormatDateTime('yyyymmdd', DateEdit1.Date), FormatDateTime(
+  //        'hhnnss', DateTimePicker1.Time), NameBand, ComboBox2.Text, ComboBox9.Text,
+  //        ComboBox4.Text, ComboBox5.Text, Edit1.Text, Edit2.Text, Edit4.Text,
+   //       Edit3.Text, Edit11.Text);
 
       if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then

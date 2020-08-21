@@ -31,9 +31,6 @@ type
   private
 
   public
-    procedure SendQSO(key, address, call, date, time, freq, mode,
-      submode, rsts, rstr, omname, qth, state, grid, comment: string);
-  public
     address_serv, API_key: string;
     apicat, apisend: boolean;
 
@@ -51,59 +48,6 @@ uses
   MainForm_U, dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
-
-procedure ThiddenSettings.SendQSO(key, address, call, date, time,
-  freq, mode, submode, rsts, rstr, omname, qth, state, grid, comment: string);
-var
-  HTTP: THTTPSend;
-  temp: TStringStream;
-  Response: TStringList;
-  logdata, json: string;
-
-  procedure AddData(const datatype, Data: string);
-  begin
-    if Data <> '' then
-      logdata := logdata + Format('<%s:%d>%s', [datatype, Length(Data), Data]);
-  end;
-
-begin
-  try
-    HTTP := THTTPSend.Create;
-    HTTP.MimeType := 'application/json';
-    temp := TStringStream.Create('');
-    Response := TStringList.Create;
-    logdata := '';
-    AddData('CALL', call);
-    AddData('QSO_DATE', date);
-    AddData('TIME_ON', time);
-    AddData('BAND', dmFunc.GetBandFromFreq(freq));
-    AddData('MODE', mode);
-    AddData('SUBMODE', submode);
-    AddData('RST_SENT', rsts);
-    AddData('RST_RCVD', rstr);
-    AddData('COMMENT', comment);
-    AddData('QTH', qth);
-    AddData('NAME', omname);
-    AddData('STATE', state);
-    AddData('GRIDSQUARE', grid);
-    Delete(freq, length(freq) - 2, 1); //Удаляем последнюю точку
-    AddData('FREQ', freq);
-    logdata := logdata + '<EOR>';
-    json := '{"key":"' + key + '", "type":"adif", "string":"' + logdata + '"}';
-    temp.Size := 0;
-    temp.WriteString(json);
-    HTTP.Document.LoadFromStream(temp);
-    if HTTP.HTTPMethod('POST', address) then
-    begin
-      Response.LoadFromStream(HTTP.Document);
-      Memo1.Lines.Add(Response.Text);
-    end;
-  finally
-    temp.Free;
-    HTTP.Free;
-    Response.Free;
-  end;
-end;
 
 function SendRadio(freq, mode, dt, key, radio, address: string): string;
 var

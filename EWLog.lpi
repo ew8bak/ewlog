@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="69">
+    <Units Count="70">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -596,6 +596,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="foundQSO_record"/>
       </Unit68>
+      <Unit69>
+        <Filename Value="cloudlog.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit69>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

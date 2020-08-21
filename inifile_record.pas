@@ -30,6 +30,9 @@ type
     Map_Use: boolean;
     PrintPrev: boolean;
     FormState: string;
+    CloudLogServer: string;
+    CloudLogApiKey: string;
+    AutoCloudLog: boolean;
 
   end;
 
