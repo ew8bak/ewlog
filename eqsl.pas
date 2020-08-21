@@ -8,7 +8,8 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, Dialogs, LazUTF8, ssl_openssl;
+  Classes, SysUtils, Dialogs, LazUTF8, ssl_openssl, qso_record;
+
 resourcestring
   rAnswerServer = 'Server response:';
   rErrorSendingSata = 'Error sending data';
@@ -20,23 +21,14 @@ type
   protected
     procedure Execute; override;
     procedure ShowResult;
-    function SendEQSL(eqsluser, eqslpasswd, call: string;
-  timestarted, datestarted: TDateTime; qsofreq, mode, submode, rst, qslinfo: string;
-  inform: integer): boolean;
+    function SendEQSL(SendQSOr: TQSO): boolean;
   private
-  result_mes: string;
+    result_mes: string;
   public
-    userid: string;
-    userpwd: string;
-    call: string;
-    startdate: TDateTime;
-    starttime: TDateTime;
-    freq: string;
-    mode: string;
-    submode: string;
-    rst: string;
-    qslinf: string;
-    information: integer;
+    SendQSO: TQSO;
+    user: string;
+    password: string;
+    callsign: string;
     OnEQSLSent: TEQSLSentEvent;
     constructor Create;
   end;
@@ -56,9 +48,7 @@ begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function TSendEQSLThread.SendEQSL(eqsluser, eqslpasswd, call: string;
-  timestarted, datestarted: TDateTime; qsofreq, mode, submode, rst, qslinfo: string;
-  inform: integer): boolean;
+function TSendEQSLThread.SendEQSL(SendQSOr:TQSO): boolean;
 var
   logdata, url, response: string;
   res: TStringList;
@@ -84,22 +74,24 @@ var
           Result := Result + '%' + IntToHex(Ord(s[i]), 2);
       end;
   end;
+
 begin
   Result := False;
   // Создание данных для отправки
   logdata := 'EWLog <ADIF_VER:4>1.00';
-  AddData('EQSL_USER', eqsluser);
-  AddData('EQSL_PSWD', eqslpasswd);
+  AddData('EQSL_USER', user);
+  AddData('EQSL_PSWD', password);
   logdata := logdata + '<EOH>';
   // Запись
-  AddData('CALL', call);
-  AddData('QSO_DATE', FormatDateTime('yyyymmdd', datestarted));
-  AddData('TIME_ON', FormatDateTime('hhnnss', timestarted));
-  AddData('BAND', dmFunc.GetBandFromFreq(qsofreq));
-  AddData('MODE', mode);
-  AddData('SUBMODE', submode);
-  AddData('RST_SENT', rst);
-  AddData('QSLMSG', qslinfo);
+  AddData('CALL', SendQSOr.CallSing);
+  AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
+  SendQSOr.QSOTime:= StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
+  AddData('TIME_ON', SendQSOr.QSOTime);
+  AddData('BAND', dmFunc.GetBandFromFreq(SendQSOr.QSOBand));
+  AddData('MODE', SendQSOr.QSOMode);
+  AddData('SUBMODE', SendQSOr.QSOSubMode);
+  AddData('RST_SENT', SendQSOr.QSOReportSent);
+  AddData('QSLMSG', SendQSOr.QSLInfo);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   // ShowMessage(logdata);
@@ -121,13 +113,14 @@ begin
         if res.Count > 0 then
           response := Trim(StripStr('<BR>', res.Strings[0]));
         Result := Pos('records added', response) > 0;
-        if (not Result) or (inform = 1) then
-        result_mes:=response;
+    //    if (not Result) or (inform = 1) then
+          result_mes := response;
       end
       else
-      result_mes:=rErrorSendingSata;
-    except on E: Exception do
-      result_mes:=E.Message;
+        result_mes := rErrorSendingSata;
+    except
+      on E: Exception do
+        result_mes := E.Message;
     end;
   finally
     res.Destroy;
@@ -144,14 +137,13 @@ end;
 procedure TSendEQSLThread.ShowResult;
 begin
   if Length(result_mes) > 0 then
-  Application.MessageBox(PChar(rAnswerServer + result_mes),
-  'eQSL', MB_ICONEXCLAMATION);
+    Application.MessageBox(PChar(rAnswerServer + result_mes),
+      'eQSL', MB_ICONEXCLAMATION);
 end;
 
 procedure TSendEQSLThread.Execute;
 begin
-  if SendEQSL(userid, userpwd, call, starttime, startdate, freq, mode, submode,
-    rst, qslinf, information) then
+  if SendEQSL(SendQSO) then
     if Assigned(OnEQSLSent) then
       Synchronize(OnEQSLSent);
   Synchronize(@ShowResult);

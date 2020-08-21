@@ -40,6 +40,7 @@ type
     procedure DrawColumnGrid(DS: TDataSet; Rect: TRect; DataCol: integer;
       Column: TColumn; State: TGridDrawState; var DBGrid: TDBGrid);
     procedure CurrPosGrid(index: integer; var DBGrid: TDBGrid);
+    procedure SendQSOto(via: string; SendQSO: TQSO);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -55,7 +56,6 @@ type
     function SelectEditQSO(index: integer): TQSO;
     function IntToBool(Value: integer): boolean;
     function StringToBool(Value: string): boolean;
-
   end;
 
 var
@@ -64,9 +64,70 @@ var
 
 implementation
 
-uses InitDB_dm, dmFunc_U, MainForm_U;
+uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
+  hamqth, clublog, qrzcom, eqsl;
 
 {$R *.lfm}
+
+procedure TMainFunc.SendQSOto(via: string; SendQSO: TQSO);
+begin
+  //Отправка в eQSLcc
+  if LBRecord.AutoEQSLcc and (via = 'eqslcc') then
+  begin
+    SendEQSLThread := TSendEQSLThread.Create;
+    if Assigned(SendEQSLThread.FatalException) then
+      raise SendEQSLThread.FatalException;
+    SendEQSLThread.SendQSO := SendQSO;
+    SendEQSLThread.user := LBRecord.eQSLccLogin;
+    SendEQSLThread.password := LBRecord.eQSLccPassword;
+    SendEQSLThread.Start;
+  end;
+  //Отправка в HRDLOG
+  if LBRecord.AutoHRDLog and (via = 'hrdlog') then
+  begin
+    SendHRDThread := TSendHRDThread.Create;
+    if Assigned(SendHRDThread.FatalException) then
+      raise SendHRDThread.FatalException;
+    SendHRDThread.SendQSO := SendQSO;
+    SendHRDThread.user := LBRecord.HRDLogin;
+    SendHRDThread.password := LBRecord.HRDCode;
+    SendHRDThread.Start;
+  end;
+  //Отправка в HAMQTH
+  if LBRecord.AutoHamQTH and (via = 'hamqth') then
+  begin
+    SendHamQTHThread := TSendHamQTHThread.Create;
+    if Assigned(SendHamQTHThread.FatalException) then
+      raise SendHamQTHThread.FatalException;
+    SendHamQTHThread.SendQSO := SendQSO;
+    SendHamQTHThread.user := LBRecord.HamQTHLogin;
+    SendHamQTHThread.password := LBRecord.HamQTHPassword;
+    SendHamQTHThread.Start;
+  end;
+  //Отправка в QRZ.COM
+  if LBRecord.AutoQRZCom and (via = 'qrzcom') then
+  begin
+    SendQRZComThread := TSendQRZComThread.Create;
+    if Assigned(SendQRZComThread.FatalException) then
+      raise SendQRZComThread.FatalException;
+    SendQRZComThread.SendQSO := SendQSO;
+    SendQRZComThread.user := LBRecord.QRZComLogin;
+    SendQRZComThread.password := LBRecord.QRZComPassword;
+    SendQRZComThread.Start;
+  end;
+  //Отправка в ClubLog
+  if LBRecord.AutoClubLog and (via = 'clublog') then
+  begin
+    SendClubLogThread := TSendClubLogThread.Create;
+    if Assigned(SendClubLogThread.FatalException) then
+      raise SendClubLogThread.FatalException;
+    SendClubLogThread.SendQSO := SendQSO;
+    SendClubLogThread.user := LBRecord.ClubLogLogin;
+    SendClubLogThread.password := LBRecord.ClubLogPassword;
+    SendClubLogThread.callsign := LBRecord.CallSign;
+    SendClubLogThread.Start;
+  end;
+end;
 
 function TMainFunc.IntToBool(Value: integer): boolean;
 begin

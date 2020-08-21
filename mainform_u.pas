@@ -441,7 +441,6 @@ type
     procedure MenuItem98Click(Sender: TObject);
     procedure MenuItem99Click(Sender: TObject);
     procedure LangItemClick(Sender: TObject);
-    procedure MySQLLOGDBConnectionAfterConnect(Sender: TObject);
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
@@ -475,7 +474,6 @@ type
     procedure SpeedButton9MouseLeave(Sender: TObject);
     procedure SpeedButton9MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
-    procedure SQLiteDBConnectionAfterConnect(Sender: TObject);
     procedure TimeTimerTimer(Sender: TObject);
     procedure TrayIcon1DblClick(Sender: TObject);
     procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
@@ -593,10 +591,9 @@ implementation
 
 uses
   ConfigForm_U, ManagerBasePrefixForm_U, ExportAdifForm_u, CreateJournalForm_U,
-  ImportADIFForm_U, dmFunc_U, eqsl, fldigi,
+  ImportADIFForm_U, dmFunc_U, fldigi,
   QSLManagerForm_U, SettingsCAT_U,
-  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U, hrdlog,
-  hamqth, clublog, qrzcom,
+  TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U,
   UpdateForm_U, Earth_Form_U,
   IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
@@ -2846,131 +2843,9 @@ end;
 
 procedure TMainForm.MenuItem42Click(Sender: TObject);
 begin
-{  EditQSO_Form.ComboBox1.Items := ComboBox1.Items;
-  if LogBookQuery.RecordCount > 0 then
-  begin
-    if DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString <> '' then
-    begin
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      EditQSO_Form.Edit1.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-      EditQSO_Form.DateEdit1.Date :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-      EditQSO_Form.DateTimePicker1.Time :=
-        StrToTime(DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsString);
-      EditQSO_Form.Edit1.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-      EditQSO_Form.Edit4.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-      EditQSO_Form.Edit5.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('OMQTH').AsString;
-      EditQSO_Form.Edit17.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('State').AsString;
-      EditQSO_Form.Edit14.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-      EditQSO_Form.Edit2.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-      EditQSO_Form.Edit3.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSOReportRecived').AsString;
-      EditQSO_Form.Edit18.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('IOTA').AsString;
-      EditQSO_Form.DateEdit3.Date :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSLSentDate').AsDateTime;
-      EditQSO_Form.DateEdit2.Date :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSLRecDate').AsDateTime;
-      EditQSO_Form.DateEdit4.Date :=
-        DBGrid1.DataSource.DataSet.FieldByName('LoTWRecDate').AsDateTime;
-      EditQSO_Form.Edit8.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('MainPrefix').AsString;
-      EditQSO_Form.Edit7.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('DXCCPrefix').AsString;
-      EditQSO_Form.Edit6.Text := DBGrid1.DataSource.DataSet.FieldByName('DXCC').AsString;
-      EditQSO_Form.Edit15.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('CQZone').AsString;
-      EditQSO_Form.Edit16.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('ITUZone').AsString;
-      EditQSO_Form.CheckBox3.Checked :=
-        DBGrid1.DataSource.DataSet.FieldByName('Marker').AsBoolean;
-      EditQSO_Form.ComboBox2.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-      EditQSO_Form.ComboBox9.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
-
-      EditQSO_Form.ComboBox1.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-
-      EditQSO_Form.Edit13.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('Continent').AsString;
-      EditQSO_Form.Edit20.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSLInfo').AsString;
-      EditQSO_Form.CheckBox2.Checked :=
-        DBGrid1.DataSource.DataSet.FieldByName('ValidDX').AsBoolean;
-      EditQSO_Form.Edit19.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSLManager').AsString;
-      EditQSO_Form.Edit10.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('State1').AsString;
-      EditQSO_Form.Edit9.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
-      EditQSO_Form.Edit11.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
-      EditQSO_Form.Edit12.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
-      EditQSO_Form.Memo1.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
-      EditQSO_Form.CheckBox1.Checked :=
-        DBGrid1.DataSource.DataSet.FieldByName('NoCalcDXCC').AsBoolean;
-      EditQSO_Form.CheckBox5.Checked :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSLReceQSLcc').AsBoolean;
-      EditQSO_Form.CheckBox4.Checked :=
-        DBGrid1.DataSource.DataSet.FieldByName('QSLRec').AsBoolean;
-      EditQSO_Form.CheckBox6.Checked :=
-        DBGrid1.DataSource.DataSet.FieldByName('LoTWRec').AsBoolean;
-      EditQSO_Form.CheckBox7.Checked :=
-        DBGrid1.DataSource.DataSet.FieldByName('LoTWSent').AsBoolean;
-
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'G' then
-        EditQSO_Form.ComboBox6.ItemIndex := 5;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'B' then
-        EditQSO_Form.ComboBox6.ItemIndex := 1;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'D' then
-        EditQSO_Form.ComboBox6.ItemIndex := 2;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'E' then
-        EditQSO_Form.ComboBox6.ItemIndex := 3;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = 'M' then
-        EditQSO_Form.ComboBox6.ItemIndex := 4;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString = '' then
-        EditQSO_Form.ComboBox6.ItemIndex := 0;
-
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'G' then
-        EditQSO_Form.ComboBox7.ItemIndex := 5;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'B' then
-        EditQSO_Form.ComboBox7.ItemIndex := 1;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'D' then
-        EditQSO_Form.ComboBox7.ItemIndex := 2;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'E' then
-        EditQSO_Form.ComboBox7.ItemIndex := 3;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = 'M' then
-        EditQSO_Form.ComboBox7.ItemIndex := 4;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSL_SENT_VIA').AsString = '' then
-        EditQSO_Form.ComboBox7.ItemIndex := 0;
-
-      if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'P' then
-        EditQSO_Form.RadioButton2.Checked := True;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'T' then
-        EditQSO_Form.RadioButton1.Checked := True;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'Q' then
-        EditQSO_Form.RadioButton3.Checked := True;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'F' then
-        EditQSO_Form.RadioButton4.Checked := True;
-      if DBGrid1.DataSource.DataSet.FieldByName('QSLSentAdv').AsString = 'N' then
-        EditQSO_Form.RadioButton5.Checked := True;
-
-      EditQSO_Form.ComboBox3.Text :=
-        DBGrid1.DataSource.DataSet.FieldByName('PROP_MODE').AsString;
-
-      EditQSO_Form.Show;
-    end;
-  end; }
+  GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
+  UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+  EditQSO_Form.Show;
 end;
 
 procedure TMainForm.MenuItem43Click(Sender: TObject);
@@ -3651,19 +3526,6 @@ begin
   ConfigGrid_Form.Show;
 end;
 
-procedure TMainForm.MySQLLOGDBConnectionAfterConnect(Sender: TObject);
-begin
- { if MySQLLOGDBConnection.Connected = False then
-  begin
-    EditButton1.ReadOnly := True;
-  end
-  else
-  begin
-    EditButton1.ReadOnly := False;
-    DBGrid1.PopupMenu := PopupMenu1;
-  end;    }
-end;
-
 procedure TMainForm.Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
 begin
   if Shape1.Brush.Color = clLime then
@@ -3966,130 +3828,11 @@ begin
       end;
       SQSO.NLogDB := LBRecord.LogTable;
       MainFunc.SaveQSO(SQSO);
-
-      if LBRecord.AutoEQSLcc then
-      begin
-        SendEQSLThread := TSendEQSLThread.Create;
-        if Assigned(SendEQSLThread.FatalException) then
-          raise SendEQSLThread.FatalException;
-        with SendEQSLThread do
-        begin
-          userid := LBRecord.eQSLccLogin;
-          userpwd := LBRecord.eQSLccPassword;
-          call := EditButton1.Text;
-          startdate := DateEdit1.Date;
-          starttime := DateTimePicker1.Time;
-          freq := NameBand;
-          mode := ComboBox2.Text;
-          submode := ComboBox9.Text;
-          rst := ComboBox4.Text;
-          qslinf := LBRecord.QSLInfo;
-          Start;
-        end;
-      end;
-
-      if LBRecord.AutoHRDLog then
-      begin
-        SendHRDThread := TSendHRDThread.Create;
-        if Assigned(SendHRDThread.FatalException) then
-          raise SendHRDThread.FatalException;
-        with SendHRDThread do
-        begin
-          userid := LBRecord.HRDLogin;
-          userpwd := LBRecord.HRDCode;
-          call := EditButton1.Text;
-          startdate := DateEdit1.Date;
-          starttime := DateTimePicker1.Time;
-          freq := NameBand;
-          mode := ComboBox2.Text;
-          submode := ComboBox9.Text;
-          rsts := ComboBox4.Text;
-          rstr := ComboBox5.Text;
-          locat := Edit3.Text;
-          qslinf := LBRecord.QSLInfo;
-          Start;
-        end;
-      end;
-
-      if LBRecord.AutoHamQTH = True then
-      begin
-        SendHamQTHThread := TSendHamQTHThread.Create;
-        if Assigned(SendHamQTHThread.FatalException) then
-          raise SendHamQTHThread.FatalException;
-        with SendHamQTHThread do
-        begin
-          userid := LBRecord.HamQTHLogin;
-          userpwd := LBRecord.HamQTHPassword;
-          call := EditButton1.Text;
-          startdate := DateEdit1.Date;
-          starttime := DateTimePicker1.Time;
-          freq := NameBand;
-          mode := ComboBox2.Text;
-          submode := ComboBox9.Text;
-          rsts := ComboBox4.Text;
-          rstr := ComboBox5.Text;
-          opname := Edit1.Text;
-          opqth := Edit2.Text;
-          opcont := Label43.Caption;
-          mygrid := '';
-          locat := Edit3.Text;
-          qslinf := LBRecord.QSLInfo;
-          Start;
-        end;
-      end;
-
-      //Отправка в QRZ.COM
-      if LBRecord.AutoQRZCom = True then
-      begin
-        SendQRZComThread := TSendQRZComThread.Create;
-        if Assigned(SendQRZComThread.FatalException) then
-          raise SendQRZComThread.FatalException;
-        with SendQRZComThread do
-        begin
-          userid := LBRecord.QRZComLogin;
-          userpwd := LBRecord.QRZComPassword;
-          call := EditButton1.Text;
-          startdate := DateEdit1.Date;
-          starttime := DateTimePicker1.Time;
-          freq := NameBand;
-          mode := ComboBox2.Text;
-          submode := ComboBox9.Text;
-          rsts := ComboBox4.Text;
-          rstr := ComboBox5.Text;
-          opname := Edit1.Text;
-          opqth := Edit2.Text;
-          opcont := Label43.Caption;
-          mygrid := '';
-          locat := Edit3.Text;
-          qslinf := LBRecord.QSLInfo;
-          Start;
-        end;
-      end;
-
-      //Отправка в ClubLog
-      if LBRecord.AutoClubLog = True then
-      begin
-        SendClubLogThread := TSendClubLogThread.Create;
-        if Assigned(SendClubLogThread.FatalException) then
-          raise SendClubLogThread.FatalException;
-        with SendClubLogThread do
-        begin
-          userid := LBRecord.ClubLogLogin;
-          userpwd := LBRecord.ClubLogPassword;
-          usercall := CallLogBook;
-          call := EditButton1.Text;
-          startdate := DateEdit1.Date;
-          starttime := DateTimePicker1.Time;
-          freq := NameBand;
-          mode := ComboBox2.Text;
-          submode := ComboBox9.Text;
-          rsts := ComboBox4.Text;
-          rstr := ComboBox5.Text;
-          locat := Edit3.Text;
-          qslinf := LBRecord.QSLInfo;
-          Start;
-        end;
-      end;
+      MainFunc.SendQSOto('clublog', SQSO);
+      MainFunc.SendQSOto('eqslcc', SQSO);
+      MainFunc.SendQSOto('hrdlog', SQSO);
+      MainFunc.SendQSOto('hamqth', SQSO);
+      MainFunc.SendQSOto('qrzcom', SQSO);
 
       //Скрытые настройки, отправка в CloudLog
       if hiddenSettings.apisend then
@@ -4103,7 +3846,7 @@ begin
       if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
-      Clr();
+      Clr;
     end;
   end;
 
@@ -4198,18 +3941,6 @@ begin
   StatusBar1.Panels.Items[0].Text := rClearQSO;
 end;
 
-procedure TMainForm.SQLiteDBConnectionAfterConnect(Sender: TObject);
-begin
- { if SQLiteDBConnection.Connected = False then
-  begin
-    EditButton1.ReadOnly := True;
-  end
-  else
-  begin
-    EditButton1.ReadOnly := False;
-    DBGrid1.PopupMenu := PopupMenu1;
-  end; }
-end;
 
 procedure TMainForm.TimeTimerTimer(Sender: TObject);
 begin

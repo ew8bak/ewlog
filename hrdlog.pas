@@ -8,7 +8,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, ssl_openssl;
+  Classes, SysUtils, strutils, ssl_openssl, qso_record;
 
 resourcestring
   rAnswerServer = 'Server response:';
@@ -27,26 +27,14 @@ type
   protected
     procedure Execute; override;
     procedure ShowResult;
-    function SendHRD(hrduser, hrdcode, call: string;
-      timestarted, datestarted: TDateTime;
-      qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string;
-      inform: integer): boolean;
+    function SendHRD(SendQSOr:TQSO): boolean;
   private
     result_mes: string;
   public
-    userid: string;
-    userpwd: string;
-    call: string;
-    startdate: TDateTime;
-    starttime: TDateTime;
-    freq: string;
-    mode: string;
-    submode: string;
-    rsts: string;
-    rstr: string;
-    qslinf: string;
-    locat: string;
-    information, inform: integer;
+    SendQSO: TQSO;
+    user: string;
+    password: string;
+    callsign: string;
     OnHRDSent: THRDSentEvent;
     constructor Create;
   end;
@@ -68,9 +56,7 @@ begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function TSendHRDThread.SendHRD(hrduser, hrdcode, call: string;
-  timestarted, datestarted: TDateTime;
-  qsofreq, mode, submode, rsts, rstr, qslinfo, locat: string; inform: integer): boolean;
+function TSendHRDThread.SendHRD(SendQSOr:TQSO): boolean;
 var
   logdata, url, appname: string;
   res: TStringList;
@@ -104,22 +90,23 @@ begin
   // Создание данных для отправки
   appname := 'EWLog';
   // Запись
-  AddData('CALL', call);
-  AddData('QSO_DATE', FormatDateTime('yyyymmdd', datestarted));
-  AddData('TIME_ON', FormatDateTime('hhnnss', timestarted));
-  AddData('BAND', dmFunc.GetBandFromFreq(qsofreq));
-  AddData('MODE', mode);
-  AddData('SUBMODE', submode);
-  AddData('RST_SENT', rsts);
-  AddData('RST_RCVD', rstr);
-  AddData('QSLMSG', qslinfo);
-  AddData('GRIDSQUARE', locat);
-  Delete(qsofreq, length(qsofreq) - 2, 1); //Удаляем последнюю точку
-  AddData('FREQ', qsofreq);
+  AddData('CALL', SendQSOr.CallSing);
+  AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
+  SendQSOr.QSOTime:= StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
+  AddData('TIME_ON', SendQSOr.QSOTime);
+  AddData('BAND', dmFunc.GetBandFromFreq(SendQSOr.QSOBand));
+  AddData('MODE', SendQSOr.QSOMode);
+  AddData('SUBMODE', SendQSOr.QSOSubMode);
+  AddData('RST_SENT', SendQSOr.QSOReportSent);
+  AddData('RST_RCVD', SendQSOr.QSOReportRecived);
+  AddData('QSLMSG', SendQSOr.QSLInfo);
+  AddData('GRIDSQUARE', SendQSOr.Grid);
+  Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1); //Удаляем последнюю точку
+  AddData('FREQ', SendQSOr.QSOBand);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   // Генерация http запроса
-  url := 'Callsign=' + hrduser + '&Code=' + hrdcode + '&App=' + appname +
+  url := 'Callsign=' + user + '&Code=' + password + '&App=' + appname +
     '&ADIFData=' + UrlEncode(logdata);
   // Отправка запроса
   res := TStringList.Create;
@@ -140,15 +127,15 @@ begin
       res.LoadFromStream(dataStream);
       if res.Text <> '' then
         Result := AnsiContainsStr(res.Text, '<insert>1</insert>');
-      if inform = 1 then
-      begin
+      //if inform = 1 then
+      //begin
         if pos('<insert>1</insert>', Res.Text) > 0 then
           result_mes := rRecordAddedSuccessfully;
         if pos('<insert>0</insert>', Res.Text) > 0 then
           result_mes := rNoEntryAdded;
         if pos('<error>Unknown user</error>', Res.Text) > 0 then
           result_mes := rUnknownUser;
-      end;
+      //end;
     finally
       res.Destroy;
       dataStream.Free;
@@ -173,8 +160,7 @@ end;
 
 procedure TSendHRDThread.Execute;
 begin
-  if SendHRD(userid, userpwd, call, starttime, startdate, freq, mode,
-    submode, rsts, rstr, qslinf, locat, information) then
+  if SendHRD(SendQSO) then
     if Assigned(OnHRDSent) then
       Synchronize(OnHRDSent);
   Synchronize(@ShowResult);

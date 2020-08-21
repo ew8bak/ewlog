@@ -8,7 +8,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, ssl_openssl;
+  Classes, SysUtils, strutils, ssl_openssl, qso_record;
 
 resourcestring
   rAnswerServer = 'Server response:';
@@ -27,28 +27,14 @@ type
   protected
     procedure Execute; override;
     procedure ShowResult;
-    function SendHamQTH(hamqthuser, hamqthpassword, call: string;
-      timestarted, datestarted: TDateTime;
-      qsofreq, mode, submode, rsts, rstr, name, qth, cont, my_grid, qslinfo, locat: string): boolean;
+    function SendHamQTH(SendQSOr: TQSO): boolean;
   private
     result_mes: string;
   public
-    userid: string;
-    userpwd: string;
-    call: string;
-    startdate: TDateTime;
-    starttime: TDateTime;
-    freq: string;
-    mode: string;
-    submode: string;
-    rsts: string;
-    rstr: string;
-    opname: string;
-    opqth: string;
-    opcont: string;
-    mygrid: string;
-    qslinf: string;
-    locat: string;
+    SendQSO: TQSO;
+    user: string;
+    password: string;
+    callsign: string;
     OnHamQTHSent: THamQTHSentEvent;
     constructor Create;
   end;
@@ -70,13 +56,10 @@ begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function TSendHamQTHThread.SendHamQTH(hamqthuser, hamqthpassword, call: string;
-  timestarted, datestarted: TDateTime;
-  qsofreq, mode, submode, rsts, rstr, name, qth, cont, my_grid, qslinfo, locat: string): boolean;
+function TSendHamQTHThread.SendHamQTH(SendQSOr: TQSO): boolean;
 var
   logdata, url, appname: string;
   res: TStringList;
-
 
   procedure AddData(const datatype, Data: string);
   begin
@@ -106,27 +89,29 @@ begin
   // Создание данных для отправки
   appname := 'EWLog';
   // Запись
-  AddData('CALL', call);
-  AddData('QSO_DATE', FormatDateTime('yyyymmdd', datestarted));
-  AddData('TIME_ON', FormatDateTime('hhnnss', timestarted));
-  AddData('BAND', dmFunc.GetBandFromFreq(qsofreq));
-  AddData('MODE', mode);
-  AddData('SUBMODE', submode);
-  AddData('RST_SENT', rsts);
-  AddData('RST_RCVD', rstr);
-  AddData('NAME', name);
-  AddData('QTH', qth);
-  AddData('MY_GRIDSQUARE', my_grid);
-  AddData('CONT', cont);
-  AddData('QSLMSG', qslinfo);
-  AddData('GRIDSQUARE', locat);
-  Delete(qsofreq, length(qsofreq) - 2, 1); //Удаляем последнюю точку
-  AddData('FREQ', qsofreq);
+  AddData('CALL', SendQSOr.CallSing);
+  AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
+  SendQSOr.QSOTime := StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
+  AddData('TIME_ON', SendQSOr.QSOTime);
+  AddData('BAND', dmFunc.GetBandFromFreq(SendQSOr.QSOBand));
+  AddData('MODE', SendQSOr.QSOMode);
+  AddData('SUBMODE', SendQSOr.QSOSubMode);
+  AddData('RST_SENT', SendQSOr.QSOReportSent);
+  AddData('RST_RCVD', SendQSOr.QSOReportRecived);
+  AddData('NAME', SendQSOr.OmName);
+  AddData('QTH', SendQSOr.OmQTH);
+  AddData('MY_GRIDSQUARE', SendQSOr.My_Grid);
+  AddData('CONT', SendQSOr.Continent);
+  AddData('QSLMSG', SendQSOr.QSLInfo);
+  AddData('GRIDSQUARE', SendQSOr.Grid);
+  Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);
+  //Удаляем последнюю точку
+  AddData('FREQ', SendQSOr.QSOBand);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   // Генерация http запроса
-  url := 'u=' + hamqthuser + '&p=' + hamqthpassword + '&c=' + '&prg=' +
-    appname + '&cmd=INSERT' + '&adif=' + UrlEncode(logdata);
+  url := 'u=' + user + '&p=' + password + '&c=' + '&prg=' + appname +
+    '&cmd=INSERT' + '&adif=' + UrlEncode(logdata);
   // Отправка запроса
   res := TStringList.Create;
   try
@@ -175,8 +160,7 @@ end;
 
 procedure TSendHamQTHThread.Execute;
 begin
-  if SendHamQTH(userid, userpwd, call, starttime, startdate, freq,
-    mode, submode, rsts, rstr, opname, opqth, opcont, mygrid, qslinf, locat) then
+  if SendHamQTH(SendQSO) then
     if Assigned(OnHamQTHSent) then
       Synchronize(OnHamQTHSent);
   Synchronize(@ShowResult);
