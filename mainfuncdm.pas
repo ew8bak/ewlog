@@ -42,7 +42,7 @@ type
     procedure CurrPosGrid(index: integer; var DBGrid: TDBGrid);
     procedure SendQSOto(via: string; SendQSO: TQSO);
     procedure LoadMaps(Lat, Long: string; var MapView: TMapView);
-    procedure CopyToJournal(index: integer; toCallsign: string);
+    procedure CopyToJournal(DBGrid: TDBGrid; toCallsign: string);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -71,10 +71,11 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
 
 {$R *.lfm}
 
-procedure TMainFunc.CopyToJournal(index: integer; toCallsign: string);
+procedure TMainFunc.CopyToJournal(DBGrid: TDBGrid; toCallsign: string);
 var
   Query: TSQLQuery;
   toTable: string;
+  i, RecIndex: integer;
 begin
   try
     Query := TSQLQuery.Create(nil);
@@ -87,12 +88,19 @@ begin
     Query.Open;
     toTable := Query.Fields[0].AsString;
     Query.Close;
-    Query.SQL.Text := 'INSERT INTO ' + toTable + ' SELECT * FROM ' +
-      LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(index);
-    Query.ExecSQL;
-    InitDB.DefTransaction.Commit;
+    for i := 0 to DBGrid.SelectedRows.Count - 1 do
+    begin
+      DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
+      RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      Query.SQL.Text := 'INSERT INTO ' + toTable + ' SELECT * FROM ' +
+        LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(RecIndex);
+      Query.ExecSQL;
+    end;
   finally
+    InitDB.DefTransaction.Commit;
     FreeAndNil(Query);
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
   end;
 end;
 

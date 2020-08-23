@@ -2296,7 +2296,7 @@ var
   MenuItem: TMenuItem;
 begin
   MenuItem := (Sender as TMenuItem);
-  MainFunc.CopyToJournal(DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger, MenuItem.Caption);
+  MainFunc.CopyToJournal(DBGrid1, MenuItem.Caption);
 end;
 
 procedure TMainForm.PopupMenu1Popup(Sender: TObject);
