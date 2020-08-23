@@ -42,6 +42,7 @@ type
     procedure CurrPosGrid(index: integer; var DBGrid: TDBGrid);
     procedure SendQSOto(via: string; SendQSO: TQSO);
     procedure LoadMaps(Lat, Long: string; var MapView: TMapView);
+    procedure CopyToJournal(index: integer; toCallsign: string);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -69,6 +70,31 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog;
 
 {$R *.lfm}
+
+procedure TMainFunc.CopyToJournal(index: integer; toCallsign: string);
+var
+  Query: TSQLQuery;
+  toTable: string;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
+    Query.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = "' +
+      toCallsign + '"';
+    Query.Open;
+    toTable := Query.Fields[0].AsString;
+    Query.Close;
+    Query.SQL.Text := 'INSERT INTO ' + toTable + ' SELECT * FROM ' +
+      LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(index);
+    Query.ExecSQL;
+    InitDB.DefTransaction.Commit;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
 
 procedure TMainFunc.LoadMaps(Lat, Long: string; var MapView: TMapView);
 var

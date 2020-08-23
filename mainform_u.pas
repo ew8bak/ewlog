@@ -480,6 +480,7 @@ type
     procedure TrayIcon1DblClick(Sender: TObject);
     procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
       Node: PVirtualNode);
+    procedure VirtualStringTree1Click(Sender: TObject);
     procedure VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
       Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: integer);
     procedure VirtualStringTree1DblClick(Sender: TObject);
@@ -2295,7 +2296,7 @@ var
   MenuItem: TMenuItem;
 begin
   MenuItem := (Sender as TMenuItem);
- ShowMessage('Copy to ' + MenuItem.Caption);
+  MainFunc.CopyToJournal(DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger, MenuItem.Caption);
 end;
 
 procedure TMainForm.PopupMenu1Popup(Sender: TObject);
@@ -3955,6 +3956,37 @@ procedure TMainForm.VirtualStringTree1Change(Sender: TBaseVirtualTree;
   Node: PVirtualNode);
 begin
   VirtualStringTree1.Refresh;
+end;
+
+procedure TMainForm.VirtualStringTree1Click(Sender: TObject);
+var
+  XNode: PVirtualNode;
+  Data: PTreeData;
+  PFXR: TPFXR;
+  Lat, Lon: string;
+begin
+  XNode := VirtualStringTree1.FocusedNode;
+  Data := VirtualStringTree1.GetNodeData(XNode);
+  if Length(Data^.Spots) > 1 then
+  begin
+    PFXR := MainFunc.SearchPrefix(Data^.Spots, Data^.Loc);
+    Label32.Caption := PFXR.Azimuth;
+    Label37.Caption := PFXR.Distance;
+    Label40.Caption := PFXR.Latitude;
+    Label42.Caption := PFXR.Longitude;
+    Label33.Caption := PFXR.Country;
+    Label43.Caption := PFXR.Continent;
+    Label34.Caption := PFXR.ARRLPrefix;
+    Label38.Caption := PFXR.Prefix;
+    Label45.Caption := PFXR.CQZone;
+    Label47.Caption := PFXR.ITUZone;
+    timedif := PFXR.TimeDiff;
+    dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+    if PFXR.Found and CheckBox3.Checked then
+      MainFunc.LoadMaps(Lat, Lon, MapView1);
+  end;
 end;
 
 procedure TMainForm.VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
