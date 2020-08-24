@@ -33,6 +33,7 @@ type
     CloudLogServer: string;
     CloudLogApiKey: string;
     AutoCloudLog: boolean;
+    FreqToCloudLog: boolean;
 
   end;
 

@@ -39,5 +39,10 @@
 {"hash":37105513,"name":"tconfigform.groupbox5.caption","sourcebytes":[81,82,90,46,67,79,77,32,88,77,76,32,65,80,73],"value":"QRZ.COM XML API"},
 {"hash":5463550,"name":"tconfigform.label21.caption","sourcebytes":[76,111,103,105,110],"value":"Login"},
 {"hash":145417188,"name":"tconfigform.label22.caption","sourcebytes":[80,97,115,115,119,111,114,100],"value":"Password"},
-{"hash":103590479,"name":"tconfigform.checkbox7.caption","sourcebytes":[85,115,101,32,97,115,32,97,32,114,101,102,101,114,101,110,99,101,63],"value":"Use as a reference?"}
+{"hash":103590479,"name":"tconfigform.checkbox7.caption","sourcebytes":[85,115,101,32,97,115,32,97,32,114,101,102,101,114,101,110,99,101,63],"value":"Use as a reference?"},
+{"hash":57382903,"name":"tconfigform.groupbox6.caption","sourcebytes":[67,108,111,117,100,76,111,103],"value":"CloudLog"},
+{"hash":94149826,"name":"tconfigform.label23.caption","sourcebytes":[83,101,114,118,101,114],"value":"Server"},
+{"hash":106358727,"name":"tconfigform.checkbox8.caption","sourcebytes":[83,101,110,100,32,65,68,73,32,116,111,32,67,108,111,117,100,76,111,103],"value":"Send ADI to CloudLog"},
+{"hash":108275959,"name":"tconfigform.checkbox9.caption","sourcebytes":[83,101,110,100,32,70,114,101,113,32,116,111,32,67,108,111,117,100,76,111,103],"value":"Send Freq to CloudLog"},
+{"hash":105607561,"name":"tconfigform.label24.caption","sourcebytes":[65,80,73,32,107,101,121],"value":"API key"}
 ]}

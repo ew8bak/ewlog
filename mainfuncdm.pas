@@ -986,6 +986,7 @@ begin
   IniSet.CloudLogServer := INIFile.ReadString('SetLog', 'CloudLogServer', '');
   IniSet.CloudLogApiKey := INIFile.ReadString('SetLog', 'CloudLogApi', '');
   IniSet.AutoCloudLog := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
+  IniSet.FreqToCloudLog:= INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

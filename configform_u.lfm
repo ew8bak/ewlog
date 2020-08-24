@@ -2,19 +2,19 @@ object ConfigForm: TConfigForm
   Left = 387
   Height = 443
   Top = 171
-  Width = 801
+  Width = 1032
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Program settings'
   ClientHeight = 443
-  ClientWidth = 801
+  ClientWidth = 1032
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '2.0.10.0'
   object Button1: TButton
-    Left = 704
+    Left = 936
     Height = 25
     Top = 400
     Width = 75
@@ -25,7 +25,7 @@ object ConfigForm: TConfigForm
     TabOrder = 0
   end
   object Button2: TButton
-    Left = 608
+    Left = 840
     Height = 25
     Top = 400
     Width = 75
@@ -629,6 +629,72 @@ object ConfigForm: TConfigForm
       OnChange = CheckBox7Change
       ParentDoubleBuffered = False
       TabOrder = 2
+    end
+  end
+  object GroupBox6: TGroupBox
+    Left = 800
+    Height = 145
+    Top = 8
+    Width = 216
+    Caption = 'CloudLog'
+    ClientHeight = 129
+    ClientWidth = 214
+    TabOrder = 10
+    object Edit10: TEdit
+      Left = 64
+      Height = 25
+      Top = 8
+      Width = 136
+      TabOrder = 0
+    end
+    object Label23: TLabel
+      AnchorSideTop.Control = Edit10
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Edit10
+      Left = 23
+      Height = 13
+      Top = 14
+      Width = 36
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Server'
+      ParentColor = False
+    end
+    object CheckBox8: TCheckBox
+      Left = 3
+      Height = 23
+      Top = 72
+      Width = 145
+      Caption = 'Send ADI to CloudLog'
+      TabOrder = 1
+    end
+    object CheckBox9: TCheckBox
+      Left = 3
+      Height = 23
+      Top = 96
+      Width = 150
+      Caption = 'Send Freq to CloudLog'
+      TabOrder = 2
+    end
+    object Edit13: TEdit
+      Left = 64
+      Height = 25
+      Top = 40
+      Width = 136
+      TabOrder = 3
+    end
+    object Label24: TLabel
+      AnchorSideTop.Control = Edit13
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Edit13
+      Left = 19
+      Height = 13
+      Top = 46
+      Width = 40
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'API key'
+      ParentColor = False
     end
   end
 end

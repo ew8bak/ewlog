@@ -46,9 +46,13 @@ type
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
+    CheckBox8: TCheckBox;
+    CheckBox9: TCheckBox;
     Edit1: TEdit;
+    Edit10: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
+    Edit13: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
@@ -63,6 +67,7 @@ type
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
     GroupBox5: TGroupBox;
+    GroupBox6: TGroupBox;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -78,6 +83,8 @@ type
     Label20: TLabel;
     Label21: TLabel;
     Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -137,6 +144,9 @@ begin
   INIFile.WriteString('TelnetCluster', 'Password', Edit12.Text);
   INIFile.WriteBool('TelnetCluster', 'AutoStart', CheckBox4.Checked);
 
+  INIFile.WriteString('SetLog', 'CloudLogServer', Edit10.Text);
+  INIFile.WriteString('SetLog', 'CloudLogApi', Edit13.Text);
+
   if RadioButton1.Checked then
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
   else
@@ -171,6 +181,17 @@ begin
     INIFile.WriteBool('SetLog', 'PrintPrev', True)
   else
     INIFile.WriteBool('SetLog', 'PrintPrev', False);
+
+   if CheckBox8.Checked then
+    INIFile.WriteBool('SetLog', 'AutoCloudLog', True)
+  else
+    INIFile.WriteBool('SetLog', 'AutoCloudLog', False);
+
+  if CheckBox9.Checked then
+    INIFile.WriteBool('SetLog', 'FreqToCloudLog', True)
+  else
+    INIFile.WriteBool('SetLog', 'FreqToCloudLog', False);
+
   MainForm.PrintPrev := CheckBox5.Checked;
 end;
 
@@ -186,6 +207,11 @@ begin
   Edit5.Text := INIFile.ReadString('DataBases', 'DataBaseName', '');
   Edit11.Text := INIFile.ReadString('TelnetCluster', 'Login', '');
   Edit12.Text := INIFile.ReadString('TelnetCluster', 'Password', '');
+
+  Edit10.Text := INIFile.ReadString('SetLog', 'CloudLogServer', '');
+  Edit13.Text := INIFile.ReadString('SetLog', 'CloudLogApi', '');
+  CheckBox8.Checked := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
+  CheckBox9.Checked := INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
   CheckBox4.Checked := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
   FileNameEdit1.Text := INIFile.ReadString('DataBases', 'FileSQLite', '');
   if INIFile.ReadString('DataBases', 'DefaultDataBase', '') = 'MySQL' then
