@@ -88,7 +88,6 @@ type
     ProgressBar1: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
-    CheckCallBook: TSQLQuery;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -138,21 +137,21 @@ begin
   INIFile.WriteString('TelnetCluster', 'Password', Edit12.Text);
   INIFile.WriteBool('TelnetCluster', 'AutoStart', CheckBox4.Checked);
 
-  if RadioButton1.Checked = True then
+  if RadioButton1.Checked then
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
   else
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
-  if CheckBox1.Checked = True then
+  if CheckBox1.Checked then
     INIFile.WriteString('SetLog', 'UseCallBook', 'YES')
   else
     INIFile.WriteString('SetLog', 'UseCallBook', 'NO');
 
-  if CheckBox2.Checked = True then
+  if CheckBox2.Checked then
     INIFile.WriteString('SetLog', 'ShowBand', 'True')
   else
     INIFile.WriteString('SetLog', 'ShowBand', 'False');
 
-  if CheckBox7.Checked = True then
+  if CheckBox7.Checked then
     INIFile.WriteString('SetLog', 'SpravQRZCOM', 'True')
   else
     INIFile.WriteString('SetLog', 'SpravQRZCOM', 'False');
@@ -164,11 +163,11 @@ begin
   INIFile.WriteString('SetLog', 'QRZCOM_Login', Edit8.Text);
   INIFile.WriteString('SetLog', 'QRZCOM_Pass', Edit9.Text);
 
-  if CheckBox3.Checked = True then
+  if CheckBox3.Checked then
     INIFile.WriteString('SetLog', 'Sprav', 'True')
   else
     INIFile.WriteString('SetLog', 'Sprav', 'False');
-  if CheckBox5.Checked = True then
+  if CheckBox5.Checked then
     INIFile.WriteBool('SetLog', 'PrintPrev', True)
   else
     INIFile.WriteBool('SetLog', 'PrintPrev', False);
@@ -288,20 +287,17 @@ procedure TConfigForm.CheckBox2Change(Sender: TObject);
 begin
   if DBRecord.InitDB = 'YES' then
   begin
-    if CheckBox2.Checked = True then
+    if CheckBox2.Checked then
     begin
       INIFile.WriteString('SetLog', 'ShowBand', 'True');
-     // MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''),
-      //  MainForm.ComboBox2.Text);
+      IniSet.showBand := True;
+      MainFunc.LoadBMSL(MainForm.ComboBox2,MainForm.ComboBox9,MainForm.ComboBox1);
     end
     else
     begin
-      if CheckBox2.Checked = False then
-      begin
         INIFile.WriteString('SetLog', 'ShowBand', 'False');
-      //  MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''),
-       //   MainForm.ComboBox2.Text);
-      end;
+        IniSet.showBand:=False;
+       MainFunc.LoadBMSL(MainForm.ComboBox2,MainForm.ComboBox9,MainForm.ComboBox1);
     end;
     MainForm.DBGrid1.Invalidate;
     MainForm.DBGrid2.Invalidate;
@@ -319,7 +315,7 @@ begin
     CheckBox7.Checked := False;
    // MainForm.CallBookLiteConnection.Connected := False;
   end;
-  if CheckBox3.Checked = True then
+  if CheckBox3.Checked then
     INIFile.WriteString('SetLog', 'Sprav', 'True')
   else
     INIFile.WriteString('SetLog', 'Sprav', 'False');
@@ -355,7 +351,7 @@ var
 begin
   ReadINI;
   Button4.Caption := rCheckUpdates;
-  {$IFDEF UNIX}
+{  {$IFDEF UNIX}
   sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}
   sDBPath := GetEnvironmentVariable('SystemDrive') +
@@ -387,7 +383,7 @@ begin
     label11.Caption := rNumberOfRecordsNot;
     Label10.Caption := rReleaseDateNot;
     Label14.Caption := '---';
-  end;
+  end; }
 end;
 
 procedure TConfigForm.Button1Click(Sender: TObject);
@@ -491,7 +487,7 @@ begin
   finally
     HTTP.Free;
 
-    if FileUtil.CopyFile(updatePATH + 'updates' + DirectorySeparator +
+  {  if FileUtil.CopyFile(updatePATH + 'updates' + DirectorySeparator +
       'callbook.db', updatePATH + 'callbook.db', True, True) then
     begin
         {$IFDEF UNIX}
@@ -534,7 +530,7 @@ begin
       Label12.Caption := rstatusUpdateDone;
     end
     else
-      Label12.Caption := rStatusUpdateNotCopy;
+      Label12.Caption := rStatusUpdateNotCopy;   }
   end;
 end;
 

@@ -1306,22 +1306,11 @@ begin
 end;
 
 procedure TMainForm.ComboBox1CloseUp(Sender: TObject);
-var
-  deldot: string;
 begin
   freqchange := True;
-  deldot := ComboBox1.Text;
-  if Pos('M', deldot) > 0 then
-  begin
-    deldot := FormatFloat(view_freq, dmFunc.GetFreqFromBand(deldot, ComboBox2.Text));
-    Delete(deldot, length(deldot) - 2, 1);
-  end
-  else
-    Delete(deldot, length(deldot) - 2, 1);
-
   if ComboBox2.Text = 'SSB' then
   begin
-    if StrToDouble(deldot) >= 10 then
+    if StrToDouble(MainFunc.FormatFreq(ComboBox1.Text, ComboBox2.Text)) >= 10 then
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
     else
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
@@ -1329,25 +1318,14 @@ begin
 
   if Length(EditButton1.Text) >= 2 then
     EditButton1Change(ComboBox1);
-
 end;
 
 procedure TMainForm.ComboBox2CloseUp(Sender: TObject);
 var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
-  deldot: string;
   i: integer;
 begin
-  deldot := ComboBox1.Text;
-  if Pos('M', deldot) > 0 then
-  begin
-    deldot := FormatFloat(view_freq, dmFunc.GetFreqFromBand(deldot, ComboBox2.Text));
-    Delete(deldot, length(deldot) - 2, 1);
-  end
-  else
-    Delete(deldot, length(deldot) - 2, 1);
-
   //Загрузка сабмодуляций
   ComboBox9.Items.Clear;
   for i := 0 to High(MainFunc.LoadSubModes(ComboBox2.Text)) do
@@ -1357,13 +1335,11 @@ begin
   if ComboBox2.Text <> 'SSB' then
     ComboBox9.Text := '';
 
-  if deldot <> '' then
-  begin
-    if StrToDouble(deldot) >= 10 then
+    if StrToDouble(MainFunc.FormatFreq(ComboBox1.Text, ComboBox2.Text)) >= 10 then
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
     else
       ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
-  end;
+
 
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or
     (ComboBox2.Text <> 'FM') or (ComboBox2.Text <> 'LSB') or

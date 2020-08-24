@@ -58,6 +58,7 @@ type
     function SelectEditQSO(index: integer): TQSO;
     function IntToBool(Value: integer): boolean;
     function StringToBool(Value: string): boolean;
+    function FormatFreq(Value, mode: string): string;
   end;
 
 var
@@ -70,6 +71,22 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog;
 
 {$R *.lfm}
+
+function TMainFunc.FormatFreq(Value, mode: string): string;
+begin
+  Result := '';
+  if Value <> '' then
+  begin
+    if Pos('M', Value) > 0 then
+    begin
+      Value := FormatFloat(view_freq, dmFunc.GetFreqFromBand(Value, mode));
+      Delete(Value, length(Value) - 2, 1);
+    end
+    else
+      Delete(Value, length(Value) - 2, 1);
+    Result := Value;
+  end;
+end;
 
 procedure TMainFunc.CopyToJournal(DBGrid: TDBGrid; toCallsign: string);
 var
