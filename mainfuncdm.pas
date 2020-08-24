@@ -78,23 +78,32 @@ var
   i, RecIndex: integer;
 begin
   try
-    Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-    Query.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = "' +
-      toCallsign + '"';
-    Query.Open;
-    toTable := Query.Fields[0].AsString;
-    Query.Close;
-    for i := 0 to DBGrid.SelectedRows.Count - 1 do
-    begin
-      DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
-      RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      Query.SQL.Text := 'INSERT INTO ' + toTable + ' SELECT * FROM ' +
-        LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(RecIndex);
-      Query.ExecSQL;
+    try
+      Query := TSQLQuery.Create(nil);
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
+      Query.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = "' +
+        toCallsign + '"';
+      Query.Open;
+      toTable := Query.Fields[0].AsString;
+      Query.Close;
+      for i := 0 to DBGrid.SelectedRows.Count - 1 do
+      begin
+        DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
+        RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+        Query.SQL.Text := 'INSERT INTO ' + toTable + ' (' + CopyField +
+          ')' + ' SELECT ' + CopyField + ' FROM ' + LBRecord.LogTable +
+          ' WHERE UnUsedIndex = ' + IntToStr(RecIndex);
+        Query.ExecSQL;
+      end;
+    except
+      on E: ESQLDatabaseError do
+      begin
+        if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
+          ShowMessage(rLogEntryExist);
+      end;
     end;
   finally
     InitDB.DefTransaction.Commit;

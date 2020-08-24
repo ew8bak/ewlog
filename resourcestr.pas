@@ -162,6 +162,7 @@ resourcestring
   rNeedQSL = 'QSL is needed';
   rCheckBand = 'Band is empty. Check';
   rCheckMode = 'Mode is empty. Check';
+  rLogEntryExist = 'Log entry already exists';
 implementation
 
 end.

@@ -571,6 +571,10 @@ msgctxt "resourcestr.rlogconwsjt"
 msgid "EWLog connected to WSJT"
 msgstr "EWLog подключился к WSJT"
 
+#: resourcestr.rlogentryexist
+msgid "Log entry already exists"
+msgstr ""
+
 #: resourcestr.rlognconwsjt
 msgctxt "resourcestr.rlognconwsjt"
 msgid "EWLog not connected to WSJT"
