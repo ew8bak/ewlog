@@ -36,7 +36,6 @@ type
     procedure DeleteQSO(DBGrid: TDBGrid);
     procedure UpdateEditQSO(index: integer; SQSO: TQSO);
     procedure FilterQSO(Field, Value: string);
-    procedure FilterCallsign(Callsign: string);
     procedure SelectAllQSO(var DBGrid: TDBGrid);
     procedure DrawColumnGrid(DS: TDataSet; Rect: TRect; DataCol: integer;
       Column: TColumn; State: TGridDrawState; var DBGrid: TDBGrid);
@@ -71,37 +70,6 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog;
 
 {$R *.lfm}
-
-procedure TMainFunc.FilterCallsign(Callsign: string);
-begin
-  InitDB.DefLogBookQuery.Close;
-  if DBRecord.CurrentDB = 'MySQL' then
-    InitDB.DefLogBookQuery.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
-      ' WHERE `Call` LIKE ' + QuotedStr(Callsign + '%') + ' ORDER BY `UnUsedIndex`'
-
-  else
-    InitDB.DefLogBookQuery.SQL.Text := 'SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
-      ' WHERE `Call` LIKE ' + QuotedStr(Callsign + '%') + ' ORDER BY `UnUsedIndex`';
-  InitDB.DefLogBookQuery.Open;
-end;
 
 procedure TMainFunc.CopyToJournal(DBGrid: TDBGrid; toCallsign: string);
 var
@@ -605,7 +573,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
       + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
-      Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`' + ''
+      Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`'
   else
     InitDB.DefLogBookQuery.SQL.Text :=
       'SELECT `UnUsedIndex`, `CallSign`,' +
@@ -618,7 +586,7 @@ begin
       + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
       + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
       + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
-      Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`' + '';
+      Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`';
   InitDB.DefLogBookQuery.Open;
 end;
 

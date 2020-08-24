@@ -762,20 +762,20 @@ procedure TMainForm.Clr;
 var
   Centre: TRealPoint;
 begin
-  MainForm.EditButton1.Clear;
-  MainForm.EditButton1.Color := clDefault;
-  MainForm.Edit1.Clear;
-  MainForm.Edit2.Clear;
-  MainForm.Edit3.Clear;
-  MainForm.Edit4.Clear;
-  MainForm.Edit5.Clear;
-  MainForm.Edit6.Clear;
-  MainForm.Edit10.Clear;
-  MainForm.Edit9.Clear;
-  MainForm.Edit8.Clear;
-  MainForm.Edit11.Clear;
-  MainForm.ComboBox4.ItemIndex := 0;
-  MainForm.ComboBox5.ItemIndex := 0;
+  EditButton1.Clear;
+  EditButton1.Color := clDefault;
+  Edit1.Clear;
+  Edit2.Clear;
+  Edit3.Clear;
+  Edit4.Clear;
+  Edit5.Clear;
+  Edit6.Clear;
+  Edit10.Clear;
+  Edit9.Clear;
+  Edit8.Clear;
+  Edit11.Clear;
+  ComboBox4.ItemIndex := 0;
+  ComboBox5.ItemIndex := 0;
   EditFlag := False;
   Image1.Visible := False;
   Image2.Visible := False;
@@ -829,7 +829,7 @@ begin
 
   if CheckBox6.Checked then
   begin
-    MainFunc.FilterCallsign(EditButton1.Text);
+    MainFunc.FilterQSO('Call',EditButton1.Text+'%');
     Exit;
   end;
 
@@ -937,9 +937,6 @@ begin
     ((INIFile.ReadString('SetLog', 'Sprav', '') = 'False') or
     (INIFile.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
     SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
-
-  if not CheckBox6.Checked then
-    SearchCallLog(dmFunc.ExtractCallsign(EditButton1.Text), 1, True);
  }
 
 
