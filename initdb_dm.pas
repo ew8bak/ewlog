@@ -21,6 +21,7 @@ type
     FindQSOQuery: TSQLQuery;
     ServiceDBConnection: TSQLite3Connection;
     ServiceTransaction: TSQLTransaction;
+    ImbeddedCallBookTransaction: TSQLTransaction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -88,6 +89,7 @@ begin
             if not SelectLogbookTable(LBRecord.LogTable) then
               ShowMessage(rDBError);
   MainFunc.LoadINIsettings;
+  ImbeddedCallBookInit(IniSet.UseIntCallBook);
 end;
 
 procedure TInitDB.DataModuleDestroy(Sender: TObject);
@@ -158,7 +160,12 @@ function TInitDB.ImbeddedCallBookInit(Use: boolean): boolean;
 begin
   Result := False;
   if (FileExists(FilePATH + 'callbook.db')) and (Use) then
+  begin
     ImbeddedCallBookConnection.DatabaseName := FilePATH + 'callbook.db';
+    ImbeddedCallBookConnection.Connected := True;
+  end
+  else
+    ImbeddedCallBookConnection.Connected := False;
   if ImbeddedCallBookConnection.Connected then
     Result := True;
 end;

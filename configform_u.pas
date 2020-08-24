@@ -262,7 +262,7 @@ begin
   else
   if Button4.Caption = rDownload then
   begin
-   // MainForm.CallBookLiteConnection.Connected := False;
+    // MainForm.CallBookLiteConnection.Connected := False;
     //UseCallBook := 'NO';
     DownloadCallBookFile;
   end;
@@ -270,17 +270,20 @@ end;
 
 procedure TConfigForm.CheckBox1Change(Sender: TObject);
 begin
-  {if CheckBox1.Checked = True then
+  if CheckBox1.Checked then
   begin
+    InitDB.ImbeddedCallBookInit(CheckBox1.Checked);
+    IniSet.UseIntCallBook := True;
+    INIFile.WriteBool('SetLog', 'IntCallBook', True);
     CheckBox3.Checked := False;
     CheckBox7.Checked := False;
-    MainForm.CallBookLiteConnection.Connected := True;
-  end else
-  MainForm.CallBookLiteConnection.Connected := False;
-  if CheckBox1.Checked = True then
-    INIFile.WriteString('SetLog', 'UseCallBook', 'YES')
+  end
   else
-    INIFile.WriteString('SetLog', 'UseCallBook', 'NO'); }
+  begin
+    InitDB.ImbeddedCallBookInit(CheckBox1.Checked);
+    IniSet.UseIntCallBook := False;
+    INIFile.WriteBool('SetLog', 'IntCallBook', False);
+  end;
 end;
 
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
@@ -291,13 +294,13 @@ begin
     begin
       INIFile.WriteString('SetLog', 'ShowBand', 'True');
       IniSet.showBand := True;
-      MainFunc.LoadBMSL(MainForm.ComboBox2,MainForm.ComboBox9,MainForm.ComboBox1);
+      MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1);
     end
     else
     begin
-        INIFile.WriteString('SetLog', 'ShowBand', 'False');
-        IniSet.showBand:=False;
-       MainFunc.LoadBMSL(MainForm.ComboBox2,MainForm.ComboBox9,MainForm.ComboBox1);
+      INIFile.WriteString('SetLog', 'ShowBand', 'False');
+      IniSet.showBand := False;
+      MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1);
     end;
     MainForm.DBGrid1.Invalidate;
     MainForm.DBGrid2.Invalidate;
@@ -313,7 +316,7 @@ begin
   begin
     CheckBox1.Checked := False;
     CheckBox7.Checked := False;
-   // MainForm.CallBookLiteConnection.Connected := False;
+    // MainForm.CallBookLiteConnection.Connected := False;
   end;
   if CheckBox3.Checked then
     INIFile.WriteString('SetLog', 'Sprav', 'True')
@@ -332,7 +335,7 @@ begin
   begin
     CheckBox1.Checked := False;
     CheckBox3.Checked := False;
-   // MainForm.CallBookLiteConnection.Connected := False;
+    // MainForm.CallBookLiteConnection.Connected := False;
   end;
   if CheckBox7.Checked = True then
     INIFile.WriteString('SetLog', 'SpravQRZCOM', 'True')

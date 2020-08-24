@@ -829,7 +829,7 @@ begin
 
   if CheckBox6.Checked then
   begin
-    MainFunc.FilterQSO('Call',EditButton1.Text+'%');
+    MainFunc.FilterQSO('Call', EditButton1.Text + '%');
     Exit;
   end;
 
@@ -921,6 +921,16 @@ begin
   else
     EditButton1.Color := clDefault;
 
+  if not FoundQSOR.Found and IniSet.UseIntCallBook then
+  begin
+    FoundQSOR := MainFunc.FindInCallBook(dmfunc.ExtractCallsign(EditButton1.Text));
+    Edit1.Text := FoundQSOR.OMName;
+    Edit2.Text := FoundQSOR.OMQTH;
+    Edit3.Text := FoundQSOR.Grid;
+    Edit4.Text := FoundQSOR.State;
+    Edit6.Text := FoundQSOR.QSLManager;
+  end;
+
   if MenuItem111.Checked = True then
   begin
     tIMG.Picture.Clear;
@@ -938,7 +948,6 @@ begin
     (INIFile.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
     SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
  }
-
 
 end;
 
@@ -1335,10 +1344,10 @@ begin
   if ComboBox2.Text <> 'SSB' then
     ComboBox9.Text := '';
 
-    if StrToDouble(MainFunc.FormatFreq(ComboBox1.Text, ComboBox2.Text)) >= 10 then
-      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
-    else
-      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
+  if StrToDouble(MainFunc.FormatFreq(ComboBox1.Text, ComboBox2.Text)) >= 10 then
+    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('USB')
+  else
+    ComboBox9.ItemIndex := ComboBox9.Items.IndexOf('LSB');
 
 
   if (ComboBox2.Text <> 'SSB') or (ComboBox2.Text <> 'AM') or

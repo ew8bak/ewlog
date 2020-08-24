@@ -5,7 +5,7 @@ object InitDB: TInitDB
   Height = 230
   HorizontalOffset = 277
   VerticalOffset = 177
-  Width = 389
+  Width = 473
   object ServiceDBConnection: TSQLite3Connection
     Connected = False
     LoginPrompt = False
@@ -50,6 +50,7 @@ object InitDB: TInitDB
     Connected = False
     LoginPrompt = False
     KeepConnection = False
+    Transaction = ImbeddedCallBookTransaction
     AlwaysUseBigint = False
     Left = 192
     Top = 136
@@ -58,12 +59,18 @@ object InitDB: TInitDB
     FieldDefs = <>
     Params = <>
     Left = 304
-    Top = 96
+    Top = 88
   end
   object FindQSOQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
     Left = 56
+    Top = 136
+  end
+  object ImbeddedCallBookTransaction: TSQLTransaction
+    Active = False
+    Database = ImbeddedCallBookConnection
+    Left = 376
     Top = 136
   end
 end

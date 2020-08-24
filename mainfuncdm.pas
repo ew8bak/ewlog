@@ -59,6 +59,7 @@ type
     function IntToBool(Value: integer): boolean;
     function StringToBool(Value: string): boolean;
     function FormatFreq(Value, mode: string): string;
+    function FindInCallBook(Callsign: string): TFoundQSOR;
   end;
 
 var
@@ -71,6 +72,29 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog;
 
 {$R *.lfm}
+
+function TMainFunc.FindInCallBook(Callsign: string): TFoundQSOR;
+var
+  Query: TSQLQuery;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.DataBase := InitDB.ImbeddedCallBookConnection;
+    if InitDB.ImbeddedCallBookConnection.Connected = True then
+    begin
+      Query.SQL.Text := 'SELECT * FROM `Callbook` WHERE `Call` = ' + QuotedStr(Callsign);
+      Query.Open;
+      Result.OMName := Query.Fields[2].AsString;
+      Result.OMQTH := Query.Fields[3].AsString;
+      Result.Grid := Query.Fields[4].AsString;
+      Result.State := Query.Fields[5].AsString;
+      Result.QSLManager := Query.Fields[6].AsString;
+      Query.Close;
+    end;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
 
 function TMainFunc.FormatFreq(Value, mode: string): string;
 begin
