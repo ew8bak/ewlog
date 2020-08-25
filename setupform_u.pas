@@ -744,11 +744,9 @@ end;
 
 procedure TSetupForm.Button5Click(Sender: TObject);
 begin
-   InitDB.AllFree;
-   InitDB.DataModuleCreate(SetupForm);
-   MainForm.LoadComboBoxItem;
- // MainForm.InitIni;
-
+  InitDB.AllFree;
+  InitDB.DataModuleCreate(SetupForm);
+  MainForm.LoadComboBoxItem;
   Close;
 end;
 
