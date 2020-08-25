@@ -11,7 +11,7 @@ object STATE_Form: TSTATE_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 374
@@ -58,7 +58,7 @@ object STATE_Form: TSTATE_Form
     TabOrder = 1
     object Edit1: TEdit
       Left = 8
-      Height = 23
+      Height = 25
       Top = 24
       Width = 96
       OnChange = Edit1Change
@@ -66,15 +66,15 @@ object STATE_Form: TSTATE_Form
     end
     object Label1: TLabel
       Left = 8
-      Height = 15
+      Height = 13
       Top = 4
-      Width = 30
+      Width = 33
       Caption = 'STATE'
       ParentColor = False
     end
     object Edit2: TEdit
       Left = 160
-      Height = 23
+      Height = 25
       Top = 24
       Width = 168
       CharCase = ecUppercase
@@ -83,7 +83,7 @@ object STATE_Form: TSTATE_Form
     end
     object Label2: TLabel
       Left = 160
-      Height = 15
+      Height = 13
       Top = 4
       Width = 32
       Caption = 'Name'
@@ -101,15 +101,15 @@ object STATE_Form: TSTATE_Form
   end
   object STATE_Query: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.ServiceDBConnection
-    Transaction = MainForm.SQLServiceTransaction
+    Database = InitDB.ServiceDBConnection
+    Transaction = InitDB.ServiceTransaction
     Params = <>
-    left = 328
-    top = 200
+    Left = 328
+    Top = 200
   end
   object STATE_DS: TDataSource
     DataSet = STATE_Query
-    left = 240
-    top = 128
+    Left = 240
+    Top = 128
   end
 end

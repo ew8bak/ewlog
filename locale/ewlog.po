@@ -307,7 +307,7 @@ msgstr ""
 
 #: resourcestr.rcannotdeldef
 msgctxt "resourcestr.rcannotdeldef"
-msgid "Cannot delete default log"
+msgid "Cannot delete default or current log"
 msgstr ""
 
 #: resourcestr.rcheckband
@@ -879,6 +879,10 @@ msgctxt "resourcestr.rsyncok"
 msgid "Done! Number of duplicates "
 msgstr ""
 
+#: resourcestr.rtablelogdberror
+msgid "Log table ERROR"
+msgstr ""
+
 #: resourcestr.rupdatedontcopy
 msgctxt "resourcestr.rupdatedontcopy"
 msgid "Do not copy"
@@ -1265,6 +1269,14 @@ msgctxt "tconfigform.checkbox7.caption"
 msgid "Use as a reference?"
 msgstr ""
 
+#: tconfigform.checkbox8.caption
+msgid "Send ADI to CloudLog"
+msgstr ""
+
+#: tconfigform.checkbox9.caption
+msgid "Send Freq to CloudLog"
+msgstr ""
+
 #: tconfigform.groupbox1.caption
 msgid "Data Base"
 msgstr ""
@@ -1285,6 +1297,10 @@ msgstr ""
 
 #: tconfigform.groupbox5.caption
 msgid "QRZ.COM XML API"
+msgstr ""
+
+#: tconfigform.groupbox6.caption
+msgid "CloudLog"
 msgstr ""
 
 #: tconfigform.label1.caption
@@ -1352,6 +1368,16 @@ msgstr ""
 #: tconfigform.label22.caption
 msgctxt "tconfigform.label22.caption"
 msgid "Password"
+msgstr ""
+
+#: tconfigform.label23.caption
+msgctxt "tconfigform.label23.caption"
+msgid "Server"
+msgstr ""
+
+#: tconfigform.label24.caption
+msgctxt "tconfigform.label24.caption"
+msgid "API key"
 msgstr ""
 
 #: tconfigform.label3.caption
@@ -2703,6 +2729,7 @@ msgid "Login"
 msgstr ""
 
 #: tlogconfigform.label32.caption
+msgctxt "tlogconfigform.label32.caption"
 msgid "API key"
 msgstr ""
 

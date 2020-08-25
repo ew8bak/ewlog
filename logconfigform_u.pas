@@ -319,20 +319,22 @@ begin
       SQLQuery2.First;
       for i := 0 to SQLQuery2.RecordCount - 1 do
       begin
-        ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
+        ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').AsString);
         SQLQuery2.Next;
       end;
       for i := 0 to ListBox1.Count - 1 do
         if Pos(MainForm.ComboBox10.Text, ListBox1.Items[i]) > 0 then
         begin
           ListBox1.Selected[i] := True;
-          exit;
+          //exit;
+          Break;
         end;
 
-      if CallLogBook = ListBox1.Items.Text then
+      if ListBox1.Items[ListBox1.ItemIndex] = DBRecord.DefCall then
         Label15.Visible := True
       else
         Label15.Visible := False;
+
     except
       on E: Exception do
         ShowMessage(E.Message);
@@ -347,7 +349,7 @@ begin
     if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
     begin
       SelectCall(ListBox1.Items[ListBox1.ItemIndex]);
-      if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
+      if ListBox1.Items[ListBox1.ItemIndex] = DBRecord.DefCall then
         Label15.Visible := True
       else
         Label15.Visible := False;
@@ -373,7 +375,8 @@ begin
       if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin
-        if (DBRecord.DefCall = ListBox1.Items[ListBox1.ItemIndex]) or (DBRecord.CurrCall = ListBox1.Items[ListBox1.ItemIndex]) then
+        if (DBRecord.DefCall = ListBox1.Items[ListBox1.ItemIndex]) or
+          (DBRecord.CurrCall = ListBox1.Items[ListBox1.ItemIndex]) then
         begin
           ShowMessage(rCannotDelDef);
           exit;
@@ -429,10 +432,11 @@ begin
     begin
       INIFile.WriteString('SetLog', 'DefaultCallLogBook',
         ListBox1.Items[ListBox1.ItemIndex]);
+      DBRecord.DefCall := ListBox1.Items[ListBox1.ItemIndex];
       ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
-      MainForm.ComboBox10.Text := ListBox1.Items[ListBox1.ItemIndex];
+      // MainForm.ComboBox10.Text := ListBox1.Items[ListBox1.ItemIndex];
       //MainForm.ComboBox10CloseUp(Self);
-      if ListBox1.Items[ListBox1.ItemIndex] = MainForm.ComboBox10.Text then
+      if ListBox1.Items[ListBox1.ItemIndex] = DBRecord.DefCall then
         Label15.Visible := True
       else
         Label15.Visible := False;

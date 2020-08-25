@@ -321,8 +321,10 @@ msgid "Callsign"
 msgstr "Позывной"
 
 #: resourcestr.rcannotdeldef
+#, fuzzy
+#| msgid "Cannot delete default log"
 msgctxt "resourcestr.rcannotdeldef"
-msgid "Cannot delete default log"
+msgid "Cannot delete default or current log"
 msgstr "Нельзя удалить журнал по умолчанию"
 
 #: resourcestr.rcheckband
@@ -895,6 +897,10 @@ msgctxt "resourcestr.rsyncok"
 msgid "Done! Number of duplicates "
 msgstr "Готово! Количество дубликатов "
 
+#: resourcestr.rtablelogdberror
+msgid "Log table ERROR"
+msgstr ""
+
 #: resourcestr.rupdatedontcopy
 msgctxt "resourcestr.rupdatedontcopy"
 msgid "Do not copy"
@@ -1284,6 +1290,14 @@ msgctxt "tconfigform.checkbox7.caption"
 msgid "Use as a reference?"
 msgstr "Использовать как справочник?"
 
+#: tconfigform.checkbox8.caption
+msgid "Send ADI to CloudLog"
+msgstr ""
+
+#: tconfigform.checkbox9.caption
+msgid "Send Freq to CloudLog"
+msgstr ""
+
 #: tconfigform.groupbox1.caption
 msgid "Data Base"
 msgstr "База данных"
@@ -1304,6 +1318,10 @@ msgstr "QRZ.RU XML API"
 
 #: tconfigform.groupbox5.caption
 msgid "QRZ.COM XML API"
+msgstr ""
+
+#: tconfigform.groupbox6.caption
+msgid "CloudLog"
 msgstr ""
 
 #: tconfigform.label1.caption
@@ -1372,6 +1390,17 @@ msgstr "Логин"
 msgctxt "tconfigform.label22.caption"
 msgid "Password"
 msgstr "Пароль"
+
+#: tconfigform.label23.caption
+#, fuzzy
+msgctxt "tconfigform.label23.caption"
+msgid "Server"
+msgstr "Сервер"
+
+#: tconfigform.label24.caption
+msgctxt "tconfigform.label24.caption"
+msgid "API key"
+msgstr ""
 
 #: tconfigform.label3.caption
 msgctxt "tconfigform.label3.caption"
@@ -2726,6 +2755,7 @@ msgid "Login"
 msgstr "Логин"
 
 #: tlogconfigform.label32.caption
+msgctxt "tlogconfigform.label32.caption"
 msgid "API key"
 msgstr ""
 

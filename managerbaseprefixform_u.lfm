@@ -9,7 +9,7 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
   Font.Height = -12
   OnClose = FormClose
   OnShow = FormShow
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 534
@@ -21,21 +21,21 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Unique Callsigns'
-      ClientHeight = 506
-      ClientWidth = 855
+      ClientHeight = 505
+      ClientWidth = 853
       object Panel1: TPanel
         Left = 0
         Height = 28
         Top = 0
-        Width = 855
+        Width = 853
         Align = alTop
         TabOrder = 0
       end
       object DBGrid1: TDBGrid
         Left = 0
-        Height = 452
+        Height = 451
         Top = 28
-        Width = 855
+        Width = 853
         Align = alClient
         Color = clWindow
         Columns = <>
@@ -46,16 +46,16 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
       object Panel4: TPanel
         Left = 0
         Height = 26
-        Top = 480
-        Width = 855
+        Top = 479
+        Width = 853
         Align = alBottom
         TabOrder = 2
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Province'
-      ClientHeight = 506
-      ClientWidth = 855
+      ClientHeight = 505
+      ClientWidth = 853
       object Panel2: TPanel
         Left = 0
         Height = 28
@@ -87,8 +87,8 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Country'
-      ClientHeight = 506
-      ClientWidth = 855
+      ClientHeight = 505
+      ClientWidth = 853
       object Panel3: TPanel
         Left = 0
         Height = 28
@@ -121,50 +121,44 @@ object ManagerBasePrefixForm: TManagerBasePrefixForm
   end
   object UniqueCallsQuery: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     SQL.Strings = (
       'SELECT * FROM UniqueCalls'
     )
     Params = <>
-    left = 512
-    top = 312
+    Left = 512
+    Top = 312
   end
   object OblastQuery: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     SQL.Strings = (
       'SELECT * FROM Province'
     )
     Params = <>
-    left = 672
-    top = 328
+    Left = 640
+    Top = 288
   end
   object CountryQuery: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     SQL.Strings = (
       'SELECT * FROM CountryDataEx'
     )
     Params = <>
-    left = 736
-    top = 328
+    Left = 728
+    Top = 304
   end
   object UCallsDS: TDataSource
     DataSet = UniqueCallsQuery
-    left = 736
-    top = 400
+    Left = 736
+    Top = 400
   end
   object OblDS: TDataSource
     DataSet = OblastQuery
-    left = 624
-    top = 400
+    Left = 624
+    Top = 400
   end
   object CountryDS: TDataSource
     DataSet = CountryQuery
-    left = 680
-    top = 400
+    Left = 680
+    Top = 400
   end
 end

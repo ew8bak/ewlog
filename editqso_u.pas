@@ -161,7 +161,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton1Click(Sender: TObject);
 begin
-  // CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
+  CountryEditForm.CountryQditQuery.DataBase := InitDB.ServiceDBConnection;
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM CountryDataEx';
@@ -174,7 +174,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton2Click(Sender: TObject);
 begin
-  // CountryEditForm.CountryQditQuery.DataBase := MainForm.ServiceDBConnection;
+   CountryEditForm.CountryQditQuery.DataBase := InitDB.ServiceDBConnection;
 
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;

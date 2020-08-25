@@ -515,9 +515,7 @@ type
     PrintPrev: boolean;
     FlagList: TImageList;
     FlagSList: TStringList;
-
     PhotoQrzString: string;
-    subModesList: TStringList;
     tIMG: TImage;
     PhotoGroup: TGroupBox;
     ColorTextGrid: integer;
@@ -561,9 +559,7 @@ type
 
 var
   MainForm: TMainForm;
-  subModesCount: integer;
   GetingHint: integer;
-  CallLogBook: string;
   UnUsIndex: integer;
   GridRecordIndex: integer;
   LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
