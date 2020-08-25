@@ -176,6 +176,7 @@ begin
           PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin
           INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
+          DBRecord.DefCall:=newLogBookName;
         end;
 
         if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
@@ -183,6 +184,7 @@ begin
             ShowMessage(rDBError);
 
         MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1, MainForm.ComboBox10);
+
         if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
           MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin

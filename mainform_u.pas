@@ -433,6 +433,7 @@ type
     procedure MenuItem87Click(Sender: TObject);
     procedure MenuItem88Click(Sender: TObject);
     procedure MenuItem89Click(Sender: TObject);
+    procedure MenuItem8Click(Sender: TObject);
     procedure MenuItem91Click(Sender: TObject);
     procedure MenuItem92Click(Sender: TObject);
     procedure MenuItem94Click(Sender: TObject);
@@ -555,6 +556,7 @@ type
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure InitClusterINI;
     procedure tIMGClick(Sender: TObject);
+    procedure LoadComboBoxItem;
   end;
 
 var
@@ -1157,32 +1159,35 @@ var
   PFXR: TPFXR;
   Lat, Lon: string;
 begin
-  SelQSOR := MainFunc.SelectQSO(LOGBookDS);
-  FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(
-    DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString));
-  PFXR := MainFunc.SearchPrefix(
-    DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, Edit3.Text);
-  Label17.Caption := IntToStr(FoundQSOR.CountQSO);
-  Label18.Caption := SelQSOR.QSODate;
-  Label19.Caption := SelQSOR.QSOTime;
-  Label20.Caption := SelQSOR.QSOBand;
-  Label21.Caption := SelQSOR.QSOMode;
-  Label22.Caption := SelQSOR.OMName;
-  Label32.Caption := PFXR.Azimuth;
-  Label37.Caption := PFXR.Distance;
-  Label40.Caption := PFXR.Latitude;
-  Label42.Caption := PFXR.Longitude;
-  Label33.Caption := PFXR.Country;
-  Label43.Caption := PFXR.Continent;
-  Label34.Caption := PFXR.ARRLPrefix;
-  Label38.Caption := PFXR.Prefix;
-  Label45.Caption := PFXR.CQZone;
-  Label47.Caption := PFXR.ITUZone;
-  timedif := PFXR.TimeDiff;
-  dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
-  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-  UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+  if LOGBookDS.DataSet.Fields[0].AsString <> '' then
+  begin
+    SelQSOR := MainFunc.SelectQSO(LOGBookDS);
+    FoundQSOR := MainFunc.FindQSO(DBGrid1.DataSource.DataSet.FieldByName(
+      'Call').AsString);
+    PFXR := MainFunc.SearchPrefix(
+      DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, Edit3.Text);
+    Label17.Caption := IntToStr(FoundQSOR.CountQSO);
+    Label18.Caption := SelQSOR.QSODate;
+    Label19.Caption := SelQSOR.QSOTime;
+    Label20.Caption := SelQSOR.QSOBand;
+    Label21.Caption := SelQSOR.QSOMode;
+    Label22.Caption := SelQSOR.OMName;
+    Label32.Caption := PFXR.Azimuth;
+    Label37.Caption := PFXR.Distance;
+    Label40.Caption := PFXR.Latitude;
+    Label42.Caption := PFXR.Longitude;
+    Label33.Caption := PFXR.Country;
+    Label43.Caption := PFXR.Continent;
+    Label34.Caption := PFXR.ARRLPrefix;
+    Label38.Caption := PFXR.Prefix;
+    Label45.Caption := PFXR.CQZone;
+    Label47.Caption := PFXR.ITUZone;
+    timedif := PFXR.TimeDiff;
+    dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+    UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+  end;
 end;
 
 procedure TMainForm.DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
@@ -1422,9 +1427,15 @@ end;
 
 procedure TMainForm.DBGrid1DblClick(Sender: TObject);
 begin
-  GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
-  UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-  EditQSO_Form.Show;
+  if InitRecord.SelectLogbookTable then
+  begin
+    if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
+    begin
+      GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
+      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      EditQSO_Form.Show;
+    end;
+  end;
 end;
 
 procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -1435,9 +1446,15 @@ end;
 
 procedure TMainForm.DBGrid2DblClick(Sender: TObject);
 begin
-  GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
-  UnUsIndex := DBGrid2.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-  EditQSO_Form.Show;
+  if InitRecord.SelectLogbookTable then
+  begin
+    if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
+    begin
+      GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
+      UnUsIndex := DBGrid2.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      EditQSO_Form.Show;
+    end;
+  end;
 end;
 
 procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -1755,6 +1772,28 @@ begin
   end;
 end;}
 
+procedure TMainForm.LoadComboBoxItem;
+begin
+  MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1, ComboBox10);
+  if ComboBox10.ItemIndex > -1 then
+  begin
+    if Pos('/', ComboBox10.Text) > 0 then
+    begin
+      Label51.Visible := True;
+      Edit14.Visible := True;
+      Label52.Visible := True;
+      Edit15.Visible := True;
+    end
+    else
+    begin
+      Label51.Visible := False;
+      Edit14.Visible := False;
+      Label52.Visible := False;
+      Edit15.Visible := False;
+    end;
+  end;
+end;
+
 procedure TMainForm.FormCreate(Sender: TObject);
 var
   Lang: string = '';
@@ -1797,25 +1836,7 @@ begin
 
   InitClusterINI;
 
-  MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1, ComboBox10);
-
-  if ComboBox10.ItemIndex > -1 then
-  begin
-    if Pos('/', ComboBox10.Text) > 0 then
-    begin
-      Label51.Visible := True;
-      Edit14.Visible := True;
-      Label52.Visible := True;
-      Edit15.Visible := True;
-    end
-    else
-    begin
-      Label51.Visible := False;
-      Edit14.Visible := False;
-      Label52.Visible := False;
-      Edit15.Visible := False;
-    end;
-  end;
+  LoadComboBoxItem;
 
   lastUDPport := -1;
   lastTCPport := -1;
@@ -2257,20 +2278,23 @@ var
   LogItem: TMenuItem;
   i: integer;
 begin
-  for i := MainForm.ComponentCount - 1 downto 0 do
-    if (MainForm.Components[i] is TMenuItem) then
-      if (MainForm.Components[i] as TMenuItem).Tag = 98 then
-        (MainForm.Components[i] as TMenuItem).Free;
-  for i := 0 to High(MainFunc.GetAllCallsign) do
+  if DBRecord.InitDB = 'YES' then
   begin
-    LogItem := TMenuItem.Create(Self);
-    LogItem.Name := 'LogItem' + IntToStr(i);
-    LogItem.Caption := MainFunc.GetAllCallsign[i];
-    LogItem.OnClick := @CopyToLogItemClick;
-    LogItem.Tag := 98;
-    if LogItem.Caption = LBRecord.CallSign then
-      LogItem.Enabled := False;
-    MenuItem45.Insert(i, LogItem);
+    for i := MainForm.ComponentCount - 1 downto 0 do
+      if (MainForm.Components[i] is TMenuItem) then
+        if (MainForm.Components[i] as TMenuItem).Tag = 98 then
+          (MainForm.Components[i] as TMenuItem).Free;
+    for i := 0 to High(MainFunc.GetAllCallsign) do
+    begin
+      LogItem := TMenuItem.Create(Self);
+      LogItem.Name := 'LogItem' + IntToStr(i);
+      LogItem.Caption := MainFunc.GetAllCallsign[i];
+      LogItem.OnClick := @CopyToLogItemClick;
+      LogItem.Tag := 98;
+      if LogItem.Caption = LBRecord.CallSign then
+        LogItem.Enabled := False;
+      MenuItem45.Insert(i, LogItem);
+    end;
   end;
 end;
 
@@ -2765,40 +2789,42 @@ begin
   ///Быстрое редактирование
   //if LogBookQuery.RecordCount > 0 then
   //begin
-  EditFlag := True;
-  CheckBox1.Checked := False;
-  CheckBox2.Checked := True;
-  EditButton1.Font.Color := clBlack;
-  EditButton1.Color := clRed;
-  EditButton1.Text := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-  Edit1.Text := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-  Edit2.Text := DBGrid1.DataSource.DataSet.FieldByName('OMQTH').AsString;
-  Edit3.Text := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-  Edit4.Text := DBGrid1.DataSource.DataSet.FieldByName('State').AsString;
-  Edit5.Text := DBGrid1.DataSource.DataSet.FieldByName('IOTA').AsString;
-  Edit6.Text := DBGrid1.DataSource.DataSet.FieldByName('QSLManager').AsString;
-  ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-  ComboBox2.Items.IndexOf(DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString);
-  DateTimePicker1.Time := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
-  DateEdit1.Date := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-  Edit11.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
-  Edit10.Text := DBGrid1.DataSource.DataSet.FieldByName('State1').AsString;
-  Edit9.Text := DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
-  Edit8.Text := DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
-  Edit7.Text := DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
-  case DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString of
-    '': ComboBox6.ItemIndex := 0;
-    'B': ComboBox6.ItemIndex := 1;
-    'D': ComboBox6.ItemIndex := 2;
-    'E': ComboBox6.ItemIndex := 3;
-    'M': ComboBox6.ItemIndex := 4;
-    'G': ComboBox6.ItemIndex := 5;
-  end;
+  if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
+  begin
+    EditFlag := True;
+    CheckBox1.Checked := False;
+    CheckBox2.Checked := True;
+    EditButton1.Font.Color := clBlack;
+    EditButton1.Color := clRed;
+    EditButton1.Text := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
+    Edit1.Text := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
+    Edit2.Text := DBGrid1.DataSource.DataSet.FieldByName('OMQTH').AsString;
+    Edit3.Text := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
+    Edit4.Text := DBGrid1.DataSource.DataSet.FieldByName('State').AsString;
+    Edit5.Text := DBGrid1.DataSource.DataSet.FieldByName('IOTA').AsString;
+    Edit6.Text := DBGrid1.DataSource.DataSet.FieldByName('QSLManager').AsString;
+    ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
+    ComboBox2.Items.IndexOf(DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString);
+    DateTimePicker1.Time := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
+    DateEdit1.Date := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
+    Edit11.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
+    Edit10.Text := DBGrid1.DataSource.DataSet.FieldByName('State1').AsString;
+    Edit9.Text := DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
+    Edit8.Text := DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
+    Edit7.Text := DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
+    case DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString of
+      '': ComboBox6.ItemIndex := 0;
+      'B': ComboBox6.ItemIndex := 1;
+      'D': ComboBox6.ItemIndex := 2;
+      'E': ComboBox6.ItemIndex := 3;
+      'M': ComboBox6.ItemIndex := 4;
+      'G': ComboBox6.ItemIndex := 5;
+    end;
 
-  ComboBox4.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-  ComboBox5.Text := DBGrid1.DataSource.DataSet.FieldByName(
-    'QSOReportRecived').AsString;
-  // end;
+    ComboBox4.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
+    ComboBox5.Text := DBGrid1.DataSource.DataSet.FieldByName(
+      'QSOReportRecived').AsString;
+  end;
 end;
 
 procedure TMainForm.MenuItem41Click(Sender: TObject);
@@ -2808,9 +2834,15 @@ end;
 
 procedure TMainForm.MenuItem42Click(Sender: TObject);
 begin
-  GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
-  UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-  EditQSO_Form.Show;
+  if InitRecord.SelectLogbookTable then
+  begin
+    if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
+    begin
+      GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
+      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+      EditQSO_Form.Show;
+    end;
+  end;
 end;
 
 procedure TMainForm.MenuItem43Click(Sender: TObject);
@@ -3454,6 +3486,11 @@ begin
   end;}
 end;
 
+procedure TMainForm.MenuItem8Click(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.MenuItem91Click(Sender: TObject);
 begin
   SetupForm.Show;
@@ -3640,161 +3677,163 @@ var
   SQSO: TQSO;
   PFXR: TPFXR;
 begin
-  QSL_SENT := '';
-  QSL_SENT_ADV := '';
-  NameBand := '';
-  FmtStngs.TimeSeparator := ':';
-  FmtStngs.LongTimeFormat := 'hh:nn';
-
-  if (Length(ComboBox1.Text) = 0) then
+  if InitRecord.SelectLogbookTable then
   begin
-    ShowMessage(rCheckBand);
-    Exit;
-  end;
+    QSL_SENT := '';
+    QSL_SENT_ADV := '';
+    NameBand := '';
+    FmtStngs.TimeSeparator := ':';
+    FmtStngs.LongTimeFormat := 'hh:nn';
 
-  if (Length(ComboBox2.Text) = 0) then
-  begin
-    ShowMessage(rCheckMode);
-    Exit;
-  end;
-
-  if EditFlag = False then
-  begin
-    dift := FormatDateTime('hh', Now - NowUTC);
-    if CheckBox2.Checked = True then
+    if (Length(ComboBox1.Text) = 0) then
     begin
-      timeQSO := DateTimePicker1.Time - StrToTime(dift);
-    end
-    else
-      timeQSO := DateTimePicker1.Time;
+      ShowMessage(rCheckBand);
+      Exit;
+    end;
 
-    if EditButton1.Text = '' then
-      ShowMessage(rEnCall)
-    else
+    if (Length(ComboBox2.Text) = 0) then
     begin
-      QSL_SENT := '0';
-      case ComboBox7.ItemIndex of
-        0:
-        begin
-          QSL_SENT_ADV := 'T';
-          QSL_SENT := '1';
-        end;
-        1: QSL_SENT_ADV := 'P';
-        2: QSL_SENT_ADV := 'Q';
-        3: QSL_SENT_ADV := 'F';
-        4: QSL_SENT_ADV := 'N';
-      end;
+      ShowMessage(rCheckMode);
+      Exit;
+    end;
 
-      if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-          ComboBox1.Text, ComboBox2.Text))
-      else
-        NameBand := ComboBox1.Text;
-
-      DigiBand_String := NameBand;
-      Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
-      DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
-      PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
-      SQSO.CallSing := EditButton1.Text;
-      SQSO.QSODate := DateEdit1.Date;
-      SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
-      SQSO.QSOBand := NameBand;
-      SQSO.QSOMode := ComboBox2.Text;
-      SQSO.QSOSubMode := ComboBox9.Text;
-      SQSO.QSOReportSent := ComboBox4.Text;
-      SQSO.QSOReportRecived := ComboBox5.Text;
-      SQSO.OmName := Edit1.Text;
-      SQSO.OmQTH := Edit2.Text;
-      SQSO.State0 := Edit4.Text;
-      SQSO.Grid := Edit3.Text;
-      SQSO.IOTA := Edit5.Text;
-      SQSO.QSLManager := Edit6.Text;
-      SQSO.QSLSent := QSL_SENT;
-      SQSO.QSLSentAdv := QSL_SENT_ADV;
-      SQSO.QSLRec := '0';
-      SQSO.MainPrefix := PFXR.Prefix;
-      SQSO.DXCCPrefix := PFXR.ARRLPrefix;
-      SQSO.CQZone := PFXR.CQZone;
-      SQSO.ITUZone := PFXR.ITUZone;
-      SQSO.QSOAddInfo := Edit11.Text;
-      SQSO.Marker := BoolToStr(CheckBox5.Checked);
-      SQSO.ManualSet := 0;
-      SQSO.DigiBand := FloatToStr(DigiBand);
-      SQSO.Continent := PFXR.Continent;
-      SQSO.ShortNote := Edit11.Text;
-      SQSO.QSLReceQSLcc := 0;
-      SQSO.LotWRec := '';
-
-      if not IniSet.StateToQSLInfo then
-        SQSO.QSLInfo := LBRecord.QSLInfo
-      else
+    if EditFlag = False then
+    begin
+      dift := FormatDateTime('hh', Now - NowUTC);
+      if CheckBox2.Checked = True then
       begin
-        if (Edit14.Text <> '') or (Edit15.Text <> '') then
-          SQSO.QSLInfo := Edit15.Text + ' ' + Edit14.Text
-        else
-          SQSO.QSLInfo := LBRecord.QSLInfo;
-      end;
-
-      SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
-      SQSO.State1 := Edit10.Text;
-      SQSO.State2 := Edit9.Text;
-      SQSO.State3 := Edit8.Text;
-      SQSO.State4 := Edit7.Text;
-      SQSO.WPX := dmFunc.ExtractWPXPrefix(EditButton1.Text);
-      SQSO.AwardsEx := 'NULL';
-      SQSO.ValidDX := IntToStr(1);
-      SQSO.SRX := 0;
-      SQSO.SRX_String := '';
-      SQSO.STX := 0;
-      SQSO.STX_String := '';
-      SQSO.SAT_NAME := '';
-      SQSO.SAT_MODE := '';
-      SQSO.PROP_MODE := '';
-      SQSO.LotWSent := 0;
-      SQSO.QSL_RCVD_VIA := '';
-      SQSO.QSL_SENT_VIA := ComboBox6.Text;
-      SQSO.DXCC := IntToStr(PFXR.DXCCNum);
-      SQSO.USERS := '';
-      SQSO.NoCalcDXCC := 0;
-      SQSO.SYNC := 0;
-
-      if LBRecord.OpLoc <> '' then
-        SQSO.My_Grid := LBRecord.OpLoc;
-
-      if Edit14.Text <> '' then
-        SQSO.My_Grid := Edit14.Text;
-
-      SQSO.My_State := Edit15.Text;
-
-      if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then
-      begin
-        dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
-        SQSO.My_Lat := CurrToStr(lat);
-        SQSO.My_Lon := CurrToStr(lon);
+        timeQSO := DateTimePicker1.Time - StrToTime(dift);
       end
       else
+        timeQSO := DateTimePicker1.Time;
+
+      if EditButton1.Text = '' then
+        ShowMessage(rEnCall)
+      else
       begin
-        SQSO.My_Lat := '';
-        SQSO.My_Lon := '';
+        QSL_SENT := '0';
+        case ComboBox7.ItemIndex of
+          0:
+          begin
+            QSL_SENT_ADV := 'T';
+            QSL_SENT := '1';
+          end;
+          1: QSL_SENT_ADV := 'P';
+          2: QSL_SENT_ADV := 'Q';
+          3: QSL_SENT_ADV := 'F';
+          4: QSL_SENT_ADV := 'N';
+        end;
+
+        if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
+          NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+            ComboBox1.Text, ComboBox2.Text))
+        else
+          NameBand := ComboBox1.Text;
+
+        DigiBand_String := NameBand;
+        Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
+        DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
+        PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
+        SQSO.CallSing := EditButton1.Text;
+        SQSO.QSODate := DateEdit1.Date;
+        SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
+        SQSO.QSOBand := NameBand;
+        SQSO.QSOMode := ComboBox2.Text;
+        SQSO.QSOSubMode := ComboBox9.Text;
+        SQSO.QSOReportSent := ComboBox4.Text;
+        SQSO.QSOReportRecived := ComboBox5.Text;
+        SQSO.OmName := Edit1.Text;
+        SQSO.OmQTH := Edit2.Text;
+        SQSO.State0 := Edit4.Text;
+        SQSO.Grid := Edit3.Text;
+        SQSO.IOTA := Edit5.Text;
+        SQSO.QSLManager := Edit6.Text;
+        SQSO.QSLSent := QSL_SENT;
+        SQSO.QSLSentAdv := QSL_SENT_ADV;
+        SQSO.QSLRec := '0';
+        SQSO.MainPrefix := PFXR.Prefix;
+        SQSO.DXCCPrefix := PFXR.ARRLPrefix;
+        SQSO.CQZone := PFXR.CQZone;
+        SQSO.ITUZone := PFXR.ITUZone;
+        SQSO.QSOAddInfo := Edit11.Text;
+        SQSO.Marker := BoolToStr(CheckBox5.Checked);
+        SQSO.ManualSet := 0;
+        SQSO.DigiBand := FloatToStr(DigiBand);
+        SQSO.Continent := PFXR.Continent;
+        SQSO.ShortNote := Edit11.Text;
+        SQSO.QSLReceQSLcc := 0;
+        SQSO.LotWRec := '';
+
+        if not IniSet.StateToQSLInfo then
+          SQSO.QSLInfo := LBRecord.QSLInfo
+        else
+        begin
+          if (Edit14.Text <> '') or (Edit15.Text <> '') then
+            SQSO.QSLInfo := Edit15.Text + ' ' + Edit14.Text
+          else
+            SQSO.QSLInfo := LBRecord.QSLInfo;
+        end;
+
+        SQSO.Call := dmFunc.ExtractCallsign(EditButton1.Text);
+        SQSO.State1 := Edit10.Text;
+        SQSO.State2 := Edit9.Text;
+        SQSO.State3 := Edit8.Text;
+        SQSO.State4 := Edit7.Text;
+        SQSO.WPX := dmFunc.ExtractWPXPrefix(EditButton1.Text);
+        SQSO.AwardsEx := 'NULL';
+        SQSO.ValidDX := IntToStr(1);
+        SQSO.SRX := 0;
+        SQSO.SRX_String := '';
+        SQSO.STX := 0;
+        SQSO.STX_String := '';
+        SQSO.SAT_NAME := '';
+        SQSO.SAT_MODE := '';
+        SQSO.PROP_MODE := '';
+        SQSO.LotWSent := 0;
+        SQSO.QSL_RCVD_VIA := '';
+        SQSO.QSL_SENT_VIA := ComboBox6.Text;
+        SQSO.DXCC := IntToStr(PFXR.DXCCNum);
+        SQSO.USERS := '';
+        SQSO.NoCalcDXCC := 0;
+        SQSO.SYNC := 0;
+
+        if LBRecord.OpLoc <> '' then
+          SQSO.My_Grid := LBRecord.OpLoc;
+
+        if Edit14.Text <> '' then
+          SQSO.My_Grid := Edit14.Text;
+
+        SQSO.My_State := Edit15.Text;
+
+        if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then
+        begin
+          dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
+          SQSO.My_Lat := CurrToStr(lat);
+          SQSO.My_Lon := CurrToStr(lon);
+        end
+        else
+        begin
+          SQSO.My_Lat := '';
+          SQSO.My_Lon := '';
+        end;
+        SQSO.NLogDB := LBRecord.LogTable;
+        MainFunc.SaveQSO(SQSO);
+        MainFunc.SendQSOto('clublog', SQSO);
+        MainFunc.SendQSOto('eqslcc', SQSO);
+        MainFunc.SendQSOto('hrdlog', SQSO);
+        MainFunc.SendQSOto('hamqth', SQSO);
+        MainFunc.SendQSOto('qrzcom', SQSO);
+        MainFunc.SendQSOto('cloudlog', SQSO);
+
+        if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
+          if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+            ShowMessage(rDBError);
+        Clr;
       end;
-      SQSO.NLogDB := LBRecord.LogTable;
-      MainFunc.SaveQSO(SQSO);
-      MainFunc.SendQSOto('clublog', SQSO);
-      MainFunc.SendQSOto('eqslcc', SQSO);
-      MainFunc.SendQSOto('hrdlog', SQSO);
-      MainFunc.SendQSOto('hamqth', SQSO);
-      MainFunc.SendQSOto('qrzcom', SQSO);
-      MainFunc.SendQSOto('cloudlog', SQSO);
-
-      if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
-        if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-          ShowMessage(rDBError);
-      Clr;
     end;
-  end;
 
-  if EditFlag = True then
-  begin
+    if EditFlag = True then
+    begin
   {  if Pos('M', ComboBox1.Text) > 0 then
       NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
         ComboBox1.Text, ComboBox2.Text))
@@ -3849,11 +3888,12 @@ begin
       ExecSQL;
     end;
     InitDB.DefTransaction.Commit;  }
-    EditFlag := False;
-    CheckBox1.Checked := True;
-    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
-    Clr;
+      EditFlag := False;
+      CheckBox1.Checked := True;
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
+      Clr;
+    end;
   end;
 end;
 

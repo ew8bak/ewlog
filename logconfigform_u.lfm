@@ -12,7 +12,7 @@ object LogConfigForm: TLogConfigForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 186
     Height = 427
@@ -839,15 +839,13 @@ object LogConfigForm: TLogConfigForm
   end
   object SQLQuery1: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     Params = <>
-    left = 408
-    top = 112
+    Left = 408
+    Top = 112
   end
   object PopupMenu1: TPopupMenu
-    left = 72
-    top = 288
+    Left = 72
+    Top = 288
     object MenuItem4: TMenuItem
       Caption = 'Set default'
       OnClick = MenuItem4Click
@@ -869,18 +867,14 @@ object LogConfigForm: TLogConfigForm
   end
   object UpdateConfQuery: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     Params = <>
-    left = 104
-    top = 152
+    Left = 104
+    Top = 152
   end
   object SQLQuery2: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     Params = <>
-    left = 408
-    top = 184
+    Left = 408
+    Top = 184
   end
 end

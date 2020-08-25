@@ -43,6 +43,7 @@ type
     procedure SendQSOto(via: string; SendQSO: TQSO);
     procedure LoadMaps(Lat, Long: string; var MapView: TMapView);
     procedure CopyToJournal(DBGrid: TDBGrid; toCallsign: string);
+    procedure LoadJournalItem(var CBJournal: TComboBox);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
     function WorkedLoTW(Callsign, band, mode: string): boolean;
@@ -601,34 +602,40 @@ end;
 
 procedure TMainFunc.FilterQSO(Field, Value: string);
 begin
-  InitDB.DefLogBookQuery.Close;
-  if DBRecord.CurrentDB = 'MySQL' then
-    InitDB.DefLogBookQuery.SQL.Text :=
-      'SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
-      Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`'
-  else
-    InitDB.DefLogBookQuery.SQL.Text :=
-      'SELECT `UnUsedIndex`, `CallSign`,' +
-      ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-      + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
-      Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`';
-  InitDB.DefLogBookQuery.Open;
+  if InitRecord.SelectLogbookTable then
+  begin
+    if DBRecord.InitDB = 'YES' then
+    begin
+      InitDB.DefLogBookQuery.Close;
+      if DBRecord.CurrentDB = 'MySQL' then
+        InitDB.DefLogBookQuery.SQL.Text :=
+          'SELECT `UnUsedIndex`, `CallSign`,' +
+          ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+          + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+          + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+          + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+          + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+          + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+          + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+          + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
+          + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
+          Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`'
+      else
+        InitDB.DefLogBookQuery.SQL.Text :=
+          'SELECT `UnUsedIndex`, `CallSign`,' +
+          ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+          + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+          + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+          + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+          + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+          + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+          + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+          + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
+          + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
+          Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`';
+      InitDB.DefLogBookQuery.Open;
+    end;
+  end;
 end;
 
 procedure TMainFunc.DeleteQSO(DBGrid: TDBGrid);
@@ -637,32 +644,35 @@ var
   Query: TSQLQuery;
   RecIndex: integer;
 begin
-  try
-    Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
+  if DBRecord.InitDB = 'YES' then
+  begin
+    try
+      Query := TSQLQuery.Create(nil);
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
 
-    for i := 0 to DBGrid.SelectedRows.Count - 1 do
-    begin
-      DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
-      RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with Query do
+      for i := 0 to DBGrid.SelectedRows.Count - 1 do
       begin
-        Close;
-        SQL.Clear;
-        SQL.Add('DELETE FROM ' + LBRecord.LogTable +
-          ' WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('UnUsedIndex').AsInteger := RecIndex;
-        ExecSQL;
+        DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
+        RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+        with Query do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('DELETE FROM ' + LBRecord.LogTable +
+            ' WHERE `UnUsedIndex`=:UnUsedIndex');
+          Params.ParamByName('UnUsedIndex').AsInteger := RecIndex;
+          ExecSQL;
+        end;
       end;
+      InitDB.DefTransaction.Commit;
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
+    finally
+      FreeAndNil(Query);
     end;
-    InitDB.DefTransaction.Commit;
-    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
-  finally
-    FreeAndNil(Query);
   end;
 end;
 
@@ -672,90 +682,96 @@ var
   i: integer;
   RecIndex: integer;
 begin
-  try
-    Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-
-    for i := 0 to DBGrid.SelectedRows.Count - 1 do
+  if InitRecord.SelectLogbookTable then
+  begin
+    if DBRecord.InitDB = 'YES' then
     begin
-      DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
-      RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      with Query do
-      begin
-        Close;
-        SQL.Clear;
-        if (Value = 'E') or (Value = 'F') or (Value = 'T') or
-          (Value = 'Q') or (Field = 'QSLRec') then
-        begin
-          if Value = 'E' then
-          begin
-            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
-              QuotedStr(Field) + '=:' + Field +
-              ',QSLReceQSLcc=:QSLReceQSLcc WHERE UnUsedIndex=:UnUsedIndex');
-            Params.ParamByName(Field).AsString := Value;
-            Params.ParamByName('QSLReceQSLcc').AsBoolean := True;
-          end;
-          if Value = 'T' then
-          begin
-            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
-              QuotedStr(Field) + '=:' + Field +
-              ',QSLSentDate=:QSLSentDate,QSLSent=:QSLSent WHERE UnUsedIndex=:UnUsedIndex');
-            Params.ParamByName(Field).AsString := Value;
-            Params.ParamByName('QSLSentDate').AsDate := Now;
-            Params.ParamByName('QSLSent').Value := 1;
-          end;
-          if Value = 'F' then
-          begin
-            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
-              QuotedStr(Field) + '=:' + Field +
-              ',QSLSentDate=:QSLSentDate,QSLSent=:QSLSent WHERE UnUsedIndex=:UnUsedIndex');
-            Params.ParamByName(Field).AsString := Value;
-            Params.ParamByName('QSLSentDate').IsNull;
-            Params.ParamByName('QSLSent').Value := 0;
-          end;
-          if (Value = 'Q') and (Field = 'QSLSentAdv') then
-          begin
-            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
-              QuotedStr(Field) + '=:' + Field +
-              ',QSLRec=:QSLRec, QSLRecDate=:QSLRecDate WHERE UnUsedIndex=:UnUsedIndex');
-            Params.ParamByName(Field).AsString := Value;
-            Params.ParamByName('QSLRec').Value := 1;
-            Params.ParamByName('QSLRecDate').AsDate := Now;
-          end;
-          if Field = 'QSLPrint' then
-          begin
-            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
-              '`QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
-            Params.ParamByName('QSLSentAdv').AsString := Value;
-          end;
-          if Field = 'QSLRec' then
-          begin
-            SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
-              QuotedStr(Field) + '=:' + Field +
-              ',`QSLRecDate`=:QSLRecDate WHERE `UnUsedIndex`=:UnUsedIndex');
-            Params.ParamByName(Field).Value := Field;
-            Params.ParamByName('QSLRecDate').AsDate := Now;
-          end;
-        end
+      try
+        Query := TSQLQuery.Create(nil);
+        if DBRecord.CurrentDB = 'MySQL' then
+          Query.DataBase := InitDB.MySQLConnection
         else
+          Query.DataBase := InitDB.SQLiteConnection;
+
+        for i := 0 to DBGrid.SelectedRows.Count - 1 do
         begin
-          SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
-            QuotedStr(Field) + '=:' + Field + ' WHERE UnUsedIndex=:UnUsedIndex');
-          Params.ParamByName(Field).AsString := Value;
+          DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
+          RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+          with Query do
+          begin
+            Close;
+            SQL.Clear;
+            if (Value = 'E') or (Value = 'F') or (Value = 'T') or
+              (Value = 'Q') or (Field = 'QSLRec') then
+            begin
+              if Value = 'E' then
+              begin
+                SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+                  QuotedStr(Field) + '=:' + Field +
+                  ',QSLReceQSLcc=:QSLReceQSLcc WHERE UnUsedIndex=:UnUsedIndex');
+                Params.ParamByName(Field).AsString := Value;
+                Params.ParamByName('QSLReceQSLcc').AsBoolean := True;
+              end;
+              if Value = 'T' then
+              begin
+                SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+                  QuotedStr(Field) + '=:' + Field +
+                  ',QSLSentDate=:QSLSentDate,QSLSent=:QSLSent WHERE UnUsedIndex=:UnUsedIndex');
+                Params.ParamByName(Field).AsString := Value;
+                Params.ParamByName('QSLSentDate').AsDate := Now;
+                Params.ParamByName('QSLSent').Value := 1;
+              end;
+              if Value = 'F' then
+              begin
+                SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+                  QuotedStr(Field) + '=:' + Field +
+                  ',QSLSentDate=:QSLSentDate,QSLSent=:QSLSent WHERE UnUsedIndex=:UnUsedIndex');
+                Params.ParamByName(Field).AsString := Value;
+                Params.ParamByName('QSLSentDate').IsNull;
+                Params.ParamByName('QSLSent').Value := 0;
+              end;
+              if (Value = 'Q') and (Field = 'QSLSentAdv') then
+              begin
+                SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+                  QuotedStr(Field) + '=:' + Field +
+                  ',QSLRec=:QSLRec, QSLRecDate=:QSLRecDate WHERE UnUsedIndex=:UnUsedIndex');
+                Params.ParamByName(Field).AsString := Value;
+                Params.ParamByName('QSLRec').Value := 1;
+                Params.ParamByName('QSLRecDate').AsDate := Now;
+              end;
+              if Field = 'QSLPrint' then
+              begin
+                SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+                  '`QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
+                Params.ParamByName('QSLSentAdv').AsString := Value;
+              end;
+              if Field = 'QSLRec' then
+              begin
+                SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+                  QuotedStr(Field) + '=:' + Field +
+                  ',`QSLRecDate`=:QSLRecDate WHERE `UnUsedIndex`=:UnUsedIndex');
+                Params.ParamByName(Field).Value := Field;
+                Params.ParamByName('QSLRecDate').AsDate := Now;
+              end;
+            end
+            else
+            begin
+              SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+                QuotedStr(Field) + '=:' + Field + ' WHERE UnUsedIndex=:UnUsedIndex');
+              Params.ParamByName(Field).AsString := Value;
+            end;
+            Params.ParamByName('UnUsedIndex').AsInteger := RecIndex;
+            ExecSQL;
+          end;
         end;
-        Params.ParamByName('UnUsedIndex').AsInteger := RecIndex;
-        ExecSQL;
+        InitDB.DefTransaction.Commit;
+        if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+          ShowMessage(rDBError);
+
+      finally
+        FreeAndNil(Query);
       end;
     end;
-    InitDB.DefTransaction.Commit;
-    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
-
-  finally
-    FreeAndNil(Query);
   end;
 end;
 
@@ -765,29 +781,32 @@ var
   Query: TSQLQuery;
   CallsignList: CallsignArray;
 begin
-  try
-    Query := TSQLQuery.Create(nil);
-    Query.PacketRecords := 50;
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
+  if InitRecord.SelectLogbookTable then
+  begin
+    try
+      Query := TSQLQuery.Create(nil);
+      Query.PacketRecords := 50;
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
 
-    Query.SQL.Text := 'SELECT CallName FROM LogBookInfo';
-    Query.Open;
-    if Query.RecordCount = 0 then
-      Exit;
-    SetLength(CallsignList, Query.RecordCount);
-    Query.First;
-    for i := 0 to Query.RecordCount - 1 do
-    begin
-      CallsignList[i] := Query.FieldByName('CallName').AsString;
-      Query.Next;
+      Query.SQL.Text := 'SELECT CallName FROM LogBookInfo';
+      Query.Open;
+      if Query.RecordCount = 0 then
+        Exit;
+      SetLength(CallsignList, Query.RecordCount);
+      Query.First;
+      for i := 0 to Query.RecordCount - 1 do
+      begin
+        CallsignList[i] := Query.FieldByName('CallName').AsString;
+        Query.Next;
+      end;
+      Query.Close;
+      Result := CallsignList;
+    finally
+      FreeAndNil(Query);
     end;
-    Query.Close;
-    Result := CallsignList;
-  finally
-    FreeAndNil(Query);
   end;
 end;
 
@@ -807,54 +826,57 @@ function TMainFunc.FindQSO(Callsign: string): TFoundQSOR;
 var
   FoundQSOR: TFoundQSOR;
 begin
-  InitDB.FindQSOQuery.Close;
-  if DBRecord.CurrentDB = 'MySQL' then
-    InitDB.FindQSOQuery.DataBase := InitDB.MySQLConnection
-  else
-    InitDB.FindQSOQuery.DataBase := InitDB.SQLiteConnection;
-  if DBRecord.CurrentDB = 'MySQL' then
-    InitDB.FindQSOQuery.SQL.Text :=
-      'SELECT `UnUsedIndex`, `CallSign`,' +
-      ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-      + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
-      ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
-      ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC'
-  else
-    InitDB.FindQSOQuery.SQL.Text :=
-      'SELECT `UnUsedIndex`, `CallSign`,' +
-      'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-      + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-      + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-      + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-      + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-      + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-      + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-      + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
-      + LBRecord.LogTable +
-      ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
-      +
-      LBRecord.LogTable + ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
-      ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
-  InitDB.FindQSOQuery.Open;
-  if InitDB.FindQSOQuery.RecordCount > 0 then
+  if InitRecord.SelectLogbookTable then
   begin
-    FoundQSOR.Found := True;
-    FoundQSOR.CountQSO := InitDB.FindQSOQuery.RecordCount;
-    FoundQSOR.OMName := InitDB.FindQSOQuery.FieldByName('OMName').AsString;
-    FoundQSOR.OMQTH := InitDB.FindQSOQuery.FieldByName('OMQTH').AsString;
-    FoundQSOR.Grid := InitDB.FindQSOQuery.FieldByName('Grid').AsString;
-    FoundQSOR.State := InitDB.FindQSOQuery.FieldByName('State').AsString;
-    FoundQSOR.IOTA := InitDB.FindQSOQuery.FieldByName('IOTA').AsString;
-    FoundQSOR.QSLManager := InitDB.FindQSOQuery.FieldByName('QSLManager').AsString;
+    InitDB.FindQSOQuery.Close;
+    if DBRecord.CurrentDB = 'MySQL' then
+      InitDB.FindQSOQuery.DataBase := InitDB.MySQLConnection
+    else
+      InitDB.FindQSOQuery.DataBase := InitDB.SQLiteConnection;
+    if DBRecord.CurrentDB = 'MySQL' then
+      InitDB.FindQSOQuery.SQL.Text :=
+        'SELECT `UnUsedIndex`, `CallSign`,' +
+        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+        + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
+        + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
+        ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
+        ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC'
+    else
+      InitDB.FindQSOQuery.SQL.Text :=
+        'SELECT `UnUsedIndex`, `CallSign`,' +
+        'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+        + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
+        + LBRecord.LogTable +
+        ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
+        +
+        LBRecord.LogTable + ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
+        ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
+    InitDB.FindQSOQuery.Open;
+    if InitDB.FindQSOQuery.RecordCount > 0 then
+    begin
+      FoundQSOR.Found := True;
+      FoundQSOR.CountQSO := InitDB.FindQSOQuery.RecordCount;
+      FoundQSOR.OMName := InitDB.FindQSOQuery.FieldByName('OMName').AsString;
+      FoundQSOR.OMQTH := InitDB.FindQSOQuery.FieldByName('OMQTH').AsString;
+      FoundQSOR.Grid := InitDB.FindQSOQuery.FieldByName('Grid').AsString;
+      FoundQSOR.State := InitDB.FindQSOQuery.FieldByName('State').AsString;
+      FoundQSOR.IOTA := InitDB.FindQSOQuery.FieldByName('IOTA').AsString;
+      FoundQSOR.QSLManager := InitDB.FindQSOQuery.FieldByName('QSLManager').AsString;
+    end;
+    Result := FoundQSOR;
   end;
-  Result := FoundQSOR;
 end;
 
 function TMainFunc.LoadSubModes(mode: string): subModeArray;
@@ -986,7 +1008,7 @@ begin
   IniSet.CloudLogServer := INIFile.ReadString('SetLog', 'CloudLogServer', '');
   IniSet.CloudLogApiKey := INIFile.ReadString('SetLog', 'CloudLogApi', '');
   IniSet.AutoCloudLog := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
-  IniSet.FreqToCloudLog:= INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
+  IniSet.FreqToCloudLog := INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -997,50 +1019,53 @@ var
   nameBand: string;
   PFXR: TPFXR;
 begin
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
+  if InitRecord.SelectLogbookTable then
+  begin
+    if Pos('M', band) > 0 then
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
+    else
+      nameBand := band;
 
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+    Delete(nameBand, length(nameBand) - 2, 1);
+    digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
 
-  try
-    PFXR := SearchPrefix(Callsign, '');
-    Query := TSQLQuery.Create(nil);
-    Query.Transaction := InitDB.DefTransaction;
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
+    try
+      PFXR := SearchPrefix(Callsign, '');
+      Query := TSQLQuery.Create(nil);
+      Query.Transaction := InitDB.DefTransaction;
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      DCall := False
-    else
-      DCall := True;
-    Query.Close;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND QSOMode = ' +
-      QuotedStr(mode) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      DMode := False
-    else
-      DMode := True;
-    Query.Close;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      DBand := False
-    else
-      DBand := True;
-  finally
-    Query.Free;
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' LIMIT 1';
+      Query.Open;
+      if Query.RecordCount > 0 then
+        DCall := False
+      else
+        DCall := True;
+      Query.Close;
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND QSOMode = ' +
+        QuotedStr(mode) + ' LIMIT 1';
+      Query.Open;
+      if Query.RecordCount > 0 then
+        DMode := False
+      else
+        DMode := True;
+      Query.Close;
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
+        FloatToStr(digiBand) + ' LIMIT 1';
+      Query.Open;
+      if Query.RecordCount > 0 then
+        DBand := False
+      else
+        DBand := True;
+    finally
+      Query.Free;
+    end;
   end;
 end;
 
@@ -1051,62 +1076,65 @@ var
   nameBand: string;
   PFXR: TPFXR;
 begin
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-
-  try
-    PFXR := SearchPrefix(Callsign, '');
-    Query := TSQLQuery.Create(nil);
-    Query.Transaction := InitDB.DefTransaction;
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
+  if InitRecord.SelectLogbookTable then
+  begin
+    if Pos('M', band) > 0 then
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
     else
-      Query.DataBase := InitDB.SQLiteConnection;
+      nameBand := band;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-    begin
-      QSL := 0;
-      Exit;
+    Delete(nameBand, length(nameBand) - 2, 1);
+    digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+
+    try
+      PFXR := SearchPrefix(Callsign, '');
+      Query := TSQLQuery.Create(nil);
+      Query.Transaction := InitDB.DefTransaction;
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
+
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
+        FloatToStr(digiBand) + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
+      Query.Open;
+      if Query.RecordCount > 0 then
+      begin
+        QSL := 0;
+        Exit;
+      end;
+      Query.Close;
+
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' LIMIT 1';
+      Query.Open;
+      if Query.RecordCount = 0 then
+      begin
+        QSL := 0;
+        Exit;
+      end;
+      Query.Close;
+
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
+        FloatToStr(digiBand) + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
+      Query.Open;
+      if Query.RecordCount = 0 then
+      begin
+        QSL := 2;
+        Exit;
+      end
+      else
+      begin
+        QSL := 1;
+        Exit;
+      end;
+      Query.Close;
+
+    finally
+      Query.Free;
     end;
-    Query.Close;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount = 0 then
-    begin
-      QSL := 0;
-      Exit;
-    end;
-    Query.Close;
-
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
-    Query.Open;
-    if Query.RecordCount = 0 then
-    begin
-      QSL := 2;
-      Exit;
-    end
-    else
-    begin
-      QSL := 1;
-      Exit;
-    end;
-    Query.Close;
-
-  finally
-    Query.Free;
   end;
 end;
 
@@ -1117,29 +1145,32 @@ var
   nameBand: string;
 begin
   Result := False;
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-  try
-    Query := TSQLQuery.Create(nil);
-    Query.Transaction := InitDB.DefTransaction;
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
+  if InitRecord.SelectLogbookTable then
+  begin
+    if Pos('M', band) > 0 then
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
     else
-      Query.DataBase := InitDB.SQLiteConnection;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      Result := True;
+      nameBand := band;
 
-  finally
-    Query.Free;
+    Delete(nameBand, length(nameBand) - 2, 1);
+    digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+    try
+      Query := TSQLQuery.Create(nil);
+      Query.Transaction := InitDB.DefTransaction;
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
+        FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
+      Query.Open;
+      if Query.RecordCount > 0 then
+        Result := True;
+
+    finally
+      Query.Free;
+    end;
   end;
 end;
 
@@ -1150,29 +1181,32 @@ var
   nameBand: string;
 begin
   Result := False;
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-  try
-    Query := TSQLQuery.Create(nil);
-    Query.Transaction := InitDB.DefTransaction;
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
+  if InitRecord.SelectLogbookTable then
+  begin
+    if Pos('M', band) > 0 then
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
     else
-      Query.DataBase := InitDB.SQLiteConnection;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      Result := True;
+      nameBand := band;
 
-  finally
-    Query.Free;
+    Delete(nameBand, length(nameBand) - 2, 1);
+    digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+    try
+      Query := TSQLQuery.Create(nil);
+      Query.Transaction := InitDB.DefTransaction;
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
+        FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+      Query.Open;
+      if Query.RecordCount > 0 then
+        Result := True;
+
+    finally
+      Query.Free;
+    end;
   end;
 end;
 
@@ -1184,31 +1218,34 @@ var
   PFXR: TPFXR;
 begin
   Result := False;
-  if Pos('M', band) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-  else
-    nameBand := band;
-
-  Delete(nameBand, length(nameBand) - 2, 1);
-  digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-  try
-    PFXR := SearchPrefix(Callsign, '');
-    Query := TSQLQuery.Create(nil);
-    Query.Transaction := InitDB.DefTransaction;
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
+  if InitRecord.SelectLogbookTable then
+  begin
+    if Pos('M', band) > 0 then
+      NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
     else
-      Query.DataBase := InitDB.SQLiteConnection;
+      nameBand := band;
 
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-      FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      Result := True;
+    Delete(nameBand, length(nameBand) - 2, 1);
+    digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+    try
+      PFXR := SearchPrefix(Callsign, '');
+      Query := TSQLQuery.Create(nil);
+      Query.Transaction := InitDB.DefTransaction;
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
 
-  finally
-    Query.Free;
+      Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+        ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
+        FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+      Query.Open;
+      if Query.RecordCount > 0 then
+        Result := True;
+
+    finally
+      Query.Free;
+    end;
   end;
 end;
 
@@ -1220,46 +1257,15 @@ var
 begin
   ClearPFXR(PFXR);
   Result := PFXR;
-  if UniqueCallsList.IndexOf(Callsign) > -1 then
+  if InitRecord.InitPrefix then
   begin
-    with SearchPrefixQuery do
-    begin
-      Close;
-      SQL.Text := 'SELECT * FROM UniqueCalls WHERE _id = "' +
-        IntToStr(UniqueCallsList.IndexOf(Callsign)) + '"';
-      Open;
-      PFXR.Country := FieldByName('Country').AsString;
-      PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
-      PFXR.Prefix := FieldByName('Prefix').AsString;
-      PFXR.CQZone := FieldByName('CQZone').AsString;
-      PFXR.ITUZone := FieldByName('ITUZone').AsString;
-      PFXR.Continent := FieldByName('Continent').AsString;
-      PFXR.Latitude := FieldByName('Latitude').AsString;
-      PFXR.Longitude := FieldByName('Longitude').AsString;
-      PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
-    end;
-    if (Grid <> '') and dmFunc.IsLocOK(Grid) then
-    begin
-      dmFunc.CoordinateFromLocator(Grid, La, Lo);
-      PFXR.Latitude := CurrToStr(La);
-      PFXR.Longitude := CurrToStr(Lo);
-    end;
-    GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
-    PFXR.Found := True;
-    Result := PFXR;
-    Exit;
-  end;
-
-  for i := 0 to PrefixProvinceCount do
-  begin
-    if (PrefixExpProvinceArray[i].reg.Exec(Callsign)) and
-      (PrefixExpProvinceArray[i].reg.Match[0] = Callsign) then
+    if UniqueCallsList.IndexOf(Callsign) > -1 then
     begin
       with SearchPrefixQuery do
       begin
         Close;
-        SQL.Text := 'SELECT * FROM Province WHERE _id = "' +
-          IntToStr(PrefixExpProvinceArray[i].id) + '"';
+        SQL.Text := 'SELECT * FROM UniqueCalls WHERE _id = "' +
+          IntToStr(UniqueCallsList.IndexOf(Callsign)) + '"';
         Open;
         PFXR.Country := FieldByName('Country').AsString;
         PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
@@ -1270,7 +1276,6 @@ begin
         PFXR.Latitude := FieldByName('Latitude').AsString;
         PFXR.Longitude := FieldByName('Longitude').AsString;
         PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
-        PFXR.TimeDiff := FieldByName('TimeDiff').AsInteger;
       end;
       if (Grid <> '') and dmFunc.IsLocOK(Grid) then
       begin
@@ -1283,45 +1288,80 @@ begin
       Result := PFXR;
       Exit;
     end;
-  end;
 
-  for i := 0 to PrefixARRLCount do
-  begin
-    if (PrefixExpARRLArray[i].reg.Exec(Callsign)) and
-      (PrefixExpARRLArray[i].reg.Match[0] = Callsign) then
+    for i := 0 to PrefixProvinceCount do
     begin
-      with SearchPrefixQuery do
+      if (PrefixExpProvinceArray[i].reg.Exec(Callsign)) and
+        (PrefixExpProvinceArray[i].reg.Match[0] = Callsign) then
       begin
-        Close;
-        SQL.Text := 'SELECT * FROM CountryDataEx WHERE _id = "' +
-          IntToStr(PrefixExpARRLArray[i].id) + '"';
-        Open;
-        if (FieldByName('Status').AsString = 'Deleted') then
+        with SearchPrefixQuery do
         begin
-          PrefixExpARRLArray[i].reg.ExecNext;
-          Exit;
+          Close;
+          SQL.Text := 'SELECT * FROM Province WHERE _id = "' +
+            IntToStr(PrefixExpProvinceArray[i].id) + '"';
+          Open;
+          PFXR.Country := FieldByName('Country').AsString;
+          PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
+          PFXR.Prefix := FieldByName('Prefix').AsString;
+          PFXR.CQZone := FieldByName('CQZone').AsString;
+          PFXR.ITUZone := FieldByName('ITUZone').AsString;
+          PFXR.Continent := FieldByName('Continent').AsString;
+          PFXR.Latitude := FieldByName('Latitude').AsString;
+          PFXR.Longitude := FieldByName('Longitude').AsString;
+          PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
+          PFXR.TimeDiff := FieldByName('TimeDiff').AsInteger;
         end;
+        if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+        begin
+          dmFunc.CoordinateFromLocator(Grid, La, Lo);
+          PFXR.Latitude := CurrToStr(La);
+          PFXR.Longitude := CurrToStr(Lo);
+        end;
+        GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+        PFXR.Found := True;
+        Result := PFXR;
+        Exit;
       end;
-      PFXR.Country := SearchPrefixQuery.FieldByName('Country').AsString;
-      PFXR.ARRLPrefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
-      PFXR.Prefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
-      PFXR.CQZone := SearchPrefixQuery.FieldByName('CQZone').AsString;
-      PFXR.ITUZone := SearchPrefixQuery.FieldByName('ITUZone').AsString;
-      PFXR.Continent := SearchPrefixQuery.FieldByName('Continent').AsString;
-      PFXR.Latitude := SearchPrefixQuery.FieldByName('Latitude').AsString;
-      PFXR.Longitude := SearchPrefixQuery.FieldByName('Longitude').AsString;
-      PFXR.DXCCNum := SearchPrefixQuery.FieldByName('DXCC').AsInteger;
-      PFXR.TimeDiff := SearchPrefixQuery.FieldByName('TimeDiff').AsInteger;
-      if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+    end;
+
+    for i := 0 to PrefixARRLCount do
+    begin
+      if (PrefixExpARRLArray[i].reg.Exec(Callsign)) and
+        (PrefixExpARRLArray[i].reg.Match[0] = Callsign) then
       begin
-        dmFunc.CoordinateFromLocator(Grid, La, Lo);
-        PFXR.Latitude := CurrToStr(La);
-        PFXR.Longitude := CurrToStr(Lo);
+        with SearchPrefixQuery do
+        begin
+          Close;
+          SQL.Text := 'SELECT * FROM CountryDataEx WHERE _id = "' +
+            IntToStr(PrefixExpARRLArray[i].id) + '"';
+          Open;
+          if (FieldByName('Status').AsString = 'Deleted') then
+          begin
+            PrefixExpARRLArray[i].reg.ExecNext;
+            Exit;
+          end;
+        end;
+        PFXR.Country := SearchPrefixQuery.FieldByName('Country').AsString;
+        PFXR.ARRLPrefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
+        PFXR.Prefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
+        PFXR.CQZone := SearchPrefixQuery.FieldByName('CQZone').AsString;
+        PFXR.ITUZone := SearchPrefixQuery.FieldByName('ITUZone').AsString;
+        PFXR.Continent := SearchPrefixQuery.FieldByName('Continent').AsString;
+        PFXR.Latitude := SearchPrefixQuery.FieldByName('Latitude').AsString;
+        PFXR.Longitude := SearchPrefixQuery.FieldByName('Longitude').AsString;
+        PFXR.DXCCNum := SearchPrefixQuery.FieldByName('DXCC').AsInteger;
+        PFXR.TimeDiff := SearchPrefixQuery.FieldByName('TimeDiff').AsInteger;
+        if (Grid <> '') and dmFunc.IsLocOK(Grid) then
+        begin
+          dmFunc.CoordinateFromLocator(Grid, La, Lo);
+          PFXR.Latitude := CurrToStr(La);
+          PFXR.Longitude := CurrToStr(Lo);
+        end;
+        GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
+        PFXR.Found := True;
+        Result := PFXR;
+        Exit;
       end;
-      GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
-      PFXR.Found := True;
-      Result := PFXR;
-      Exit;
     end;
   end;
 end;
@@ -1561,12 +1601,14 @@ begin
   for i := 0 to High(LoadBands(CBMode.Text)) do
     CBBand.Items.Add(LoadBands(CBMode.Text)[i]);
   CBBand.ItemIndex := IniSet.PastBand;
-
-  //загрузка позывных журналов
-  CBJournal.Items.Clear;
-  for i := 0 to High(GetAllCallsign) do
-    CBJournal.Items.Add(GetAllCallsign[i]);
-  CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+  if DBRecord.InitDB = 'YES' then
+  begin
+    //загрузка позывных журналов
+    CBJournal.Items.Clear;
+    for i := 0 to High(GetAllCallsign) do
+      CBJournal.Items.Add(GetAllCallsign[i]);
+    CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+  end;
 end;
 
 procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode, CBBand: TComboBox); overload;
@@ -1585,6 +1627,20 @@ begin
   CBBand.Items.Clear;
   for i := 0 to High(LoadBands(CBMode.Text)) do
     CBBand.Items.Add(LoadBands(CBMode.Text)[i]);
+end;
+
+procedure TMainFunc.LoadJournalItem(var CBJournal: TComboBox);
+var
+  i: integer;
+begin
+  if DBRecord.InitDB = 'YES' then
+  begin
+    //загрузка позывных журналов
+    CBJournal.Items.Clear;
+    for i := 0 to High(GetAllCallsign) do
+      CBJournal.Items.Add(GetAllCallsign[i]);
+    CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+  end;
 end;
 
 procedure TMainFunc.ClearPFXR(var PFXR: TPFXR);

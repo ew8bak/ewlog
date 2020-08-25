@@ -85,7 +85,7 @@ resourcestring
   rInformationFromQRZCOM = 'Information from QRZ.com';
   rInformationFromHamQTH = 'Information from HAMQTH';
   rDeleteLog = 'Are you sure you want to delete the log ?!';
-  rCannotDelDef = 'Cannot delete default log';
+  rCannotDelDef = 'Cannot delete default or current log';
   rDefaultLogSel = 'Default log selected';
   rNotDataForConnect =
     'The log configuration, do not specify the data to connect to eQSL.cc';
@@ -163,6 +163,7 @@ resourcestring
   rCheckBand = 'Band is empty. Check';
   rCheckMode = 'Mode is empty. Check';
   rLogEntryExist = 'Log entry already exists';
+  rTableLogDBError = 'Log table ERROR';
 implementation
 
 end.

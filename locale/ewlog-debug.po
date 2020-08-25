@@ -306,7 +306,7 @@ msgid "Callsign"
 msgstr ""
 
 #: resourcestr.rcannotdeldef
-msgid "Cannot delete default log"
+msgid "Cannot delete default or current log"
 msgstr ""
 
 #: resourcestr.rcheckband
@@ -834,6 +834,10 @@ msgstr ""
 
 #: resourcestr.rsyncok
 msgid "Done! Number of duplicates "
+msgstr ""
+
+#: resourcestr.rtablelogdberror
+msgid "Log table ERROR"
 msgstr ""
 
 #: resourcestr.rupdatedontcopy

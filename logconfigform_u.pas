@@ -112,7 +112,7 @@ var
 
 implementation
 
-uses MainForm_U, CreateJournalForm_U, dmFunc_U, InitDB_dm;
+uses MainForm_U, CreateJournalForm_U, dmFunc_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -129,64 +129,70 @@ begin
   LogConfigForm.SQLQuery1.Close;
   LogConfigForm.SQLQuery1.SQL.Clear;
   if SelCall = '' then
-    LogConfigForm.SQLQuery1.SQL.Add('SELECT * FROM LogBookInfo LIMIT 1');
-
-  LogConfigForm.SQLQuery1.SQL.Add('select * from LogBookInfo where CallName = "' +
-    SelCall + '"');
+    LogConfigForm.SQLQuery1.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1'
+  else
+    LogConfigForm.SQLQuery1.SQL.Text :=
+      'SELECT * FROM LogBookInfo WHERE CallName = "' + SelCall + '"';
   LogConfigForm.SQLQuery1.Open;
-  LogConfigForm.Edit1.Text := LogConfigForm.SQLQuery1.FieldByName(
-    'Discription').AsString;
-  LogConfigForm.Edit2.Text := LogConfigForm.SQLQuery1.FieldByName('CallName').AsString;
-  LogConfigForm.Edit3.Text := LogConfigForm.SQLQuery1.FieldByName('Name').AsString;
-  LogConfigForm.Edit4.Text := LogConfigForm.SQLQuery1.FieldByName('QTH').AsString;
-  LogConfigForm.Edit5.Text := LogConfigForm.SQLQuery1.FieldByName('ITU').AsString;
-  LogConfigForm.Edit6.Text := LogConfigForm.SQLQuery1.FieldByName('Loc').AsString;
-  LogConfigForm.Edit7.Text := LogConfigForm.SQLQuery1.FieldByName('CQ').AsString;
-  LogConfigForm.Edit8.Text := LogConfigForm.SQLQuery1.FieldByName('Lat').AsString;
+  if LogConfigForm.SQLQuery1.FieldByName('CallName').AsString <> '' then
+  begin
+    LogConfigForm.Edit1.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('Discription').AsString;
+    LogConfigForm.Edit2.Text := LogConfigForm.SQLQuery1.FieldByName('CallName').AsString;
+    LogConfigForm.Edit3.Text := LogConfigForm.SQLQuery1.FieldByName('Name').AsString;
+    LogConfigForm.Edit4.Text := LogConfigForm.SQLQuery1.FieldByName('QTH').AsString;
+    LogConfigForm.Edit5.Text := LogConfigForm.SQLQuery1.FieldByName('ITU').AsString;
+    LogConfigForm.Edit6.Text := LogConfigForm.SQLQuery1.FieldByName('Loc').AsString;
+    LogConfigForm.Edit7.Text := LogConfigForm.SQLQuery1.FieldByName('CQ').AsString;
+    LogConfigForm.Edit8.Text := LogConfigForm.SQLQuery1.FieldByName('Lat').AsString;
 
-  if LogConfigForm.SQLQuery1.FieldByName('Lat').AsString <> '' then
-    LBRecord.OpLat := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lat').AsString);
+    if LogConfigForm.SQLQuery1.FieldByName('Lat').AsString <> '' then
+      LBRecord.OpLat := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lat').AsString);
 
-  LogConfigForm.Edit9.Text := LogConfigForm.SQLQuery1.FieldByName('Lon').AsString;
-  if LogConfigForm.SQLQuery1.FieldByName('Lon').AsString <> '' then
-    LBRecord.OpLon := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lon').AsString);
+    LogConfigForm.Edit9.Text := LogConfigForm.SQLQuery1.FieldByName('Lon').AsString;
+    if LogConfigForm.SQLQuery1.FieldByName('Lon').AsString <> '' then
+      LBRecord.OpLon := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lon').AsString);
 
-  LogConfigForm.Edit10.Text := LogConfigForm.SQLQuery1.FieldByName('QSLInfo').AsString;
-  LogConfigForm.Edit11.Text := LogConfigForm.SQLQuery1.FieldByName('EQSLLogin').AsString;
-  LogConfigForm.Edit12.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('EQSLPassword').AsString;
-  LogConfigForm.CheckBox1.Checked :=
-    LogConfigForm.SQLQuery1.FieldByName('AutoEQSLcc').AsBoolean;
-  LogConfigForm.Edit13.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('HRDLogLogin').AsString;
-  LogConfigForm.Edit14.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('HRDLogPassword').AsString;
-  LogConfigForm.CheckBox2.Checked :=
-    LogConfigForm.SQLQuery1.FieldByName('AutoHRDLog').AsBoolean;
-  LogConfigForm.Edit15.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('HamQTHLogin').AsString;
-  LogConfigForm.Edit16.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('HamQTHPassword').AsString;
-  LogConfigForm.CheckBox3.Checked :=
-    LogConfigForm.SQLQuery1.FieldByName('AutoHamQTH').AsBoolean;
-  LogConfigForm.Edit17.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('LoTW_User').AsString;
-  LogConfigForm.Edit18.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('LoTW_Password').AsString;
-  LogConfigForm.Edit19.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('ClubLog_User').AsString;
-  LogConfigForm.Edit20.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('ClubLog_Password').AsString;
-  LogConfigForm.CheckBox4.Checked :=
-    LogConfigForm.SQLQuery1.FieldByName('AutoClubLog').AsBoolean;
-  LogConfigForm.Edit21.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('QRZCOM_User').AsString;
-  LogConfigForm.Edit22.Text :=
-    LogConfigForm.SQLQuery1.FieldByName('QRZCOM_Password').AsString;
-  LogConfigForm.CheckBox5.Checked :=
-    LogConfigForm.SQLQuery1.FieldByName('AutoQRZCom').AsBoolean;
+    LogConfigForm.Edit10.Text := LogConfigForm.SQLQuery1.FieldByName('QSLInfo').AsString;
+    LogConfigForm.Edit11.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('EQSLLogin').AsString;
+    LogConfigForm.Edit12.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('EQSLPassword').AsString;
+    LogConfigForm.CheckBox1.Checked :=
+      LogConfigForm.SQLQuery1.FieldByName('AutoEQSLcc').AsBoolean;
+    LogConfigForm.Edit13.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('HRDLogLogin').AsString;
+    LogConfigForm.Edit14.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('HRDLogPassword').AsString;
+    LogConfigForm.CheckBox2.Checked :=
+      LogConfigForm.SQLQuery1.FieldByName('AutoHRDLog').AsBoolean;
+    LogConfigForm.Edit15.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('HamQTHLogin').AsString;
+    LogConfigForm.Edit16.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('HamQTHPassword').AsString;
+    LogConfigForm.CheckBox3.Checked :=
+      LogConfigForm.SQLQuery1.FieldByName('AutoHamQTH').AsBoolean;
+    LogConfigForm.Edit17.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('LoTW_User').AsString;
+    LogConfigForm.Edit18.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('LoTW_Password').AsString;
+    LogConfigForm.Edit19.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('ClubLog_User').AsString;
+    LogConfigForm.Edit20.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('ClubLog_Password').AsString;
+    LogConfigForm.CheckBox4.Checked :=
+      LogConfigForm.SQLQuery1.FieldByName('AutoClubLog').AsBoolean;
+    LogConfigForm.Edit21.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('QRZCOM_User').AsString;
+    LogConfigForm.Edit22.Text :=
+      LogConfigForm.SQLQuery1.FieldByName('QRZCOM_Password').AsString;
+    LogConfigForm.CheckBox5.Checked :=
+      LogConfigForm.SQLQuery1.FieldByName('AutoQRZCom').AsBoolean;
 
-  id := LogConfigForm.SQLQuery1.FieldByName('id').AsInteger;
+    id := LogConfigForm.SQLQuery1.FieldByName('id').AsInteger;
+  end
+  else
+    ShowMessage(rTableLogDBError);
 end;
 
 procedure TLogConfigForm.Button2Click(Sender: TObject);
@@ -196,57 +202,60 @@ end;
 
 procedure TLogConfigForm.Button1Click(Sender: TObject);
 begin
-  if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then begin
-  with UpdateConfQuery do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Add('UPDATE LogBookInfo' +
-      ' SET `CallName`=:CallName,`Name`=:Name,`QTH`=:QTH, `ITU`=:ITU,' +
-      ' `CQ`=:CQ, `Loc`=:Loc, `Lat`=:Lat, `Lon`=:Lon, `Discription`=:Discription,' +
-      ' `QSLInfo`=:QSLInfo, `EQSLLogin`=:EQSLLogin, `EQSLPassword`=:EQSLPassword,' +
-      ' `AutoEQSLcc`=:AutoEQSLcc, `HRDLogLogin`=:HRDLogLogin,' +
-      ' `HRDLogPassword`=:HRDLogPassword, `AutoHRDLog`=:AutoHRDLog,' +
-      ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword, `AutoQRZCom`=:AutoQRZCom,'
-      + ' `QRZCOM_User`=:QRZCOM_User, `QRZCOM_Password`=:QRZCOM_Password,' +
-      ' `ClubLog_User`=:ClubLog_User, `ClubLog_Password`=:ClubLog_Password,' +
-      ' `AutoHamQTH`=:AutoHamQTH, `AutoClubLog`=:AutoClubLog, `LoTW_User`=:LoTW_User,' +
-      ' `LoTW_Password`=:LoTW_Password WHERE `id`=:id');
-    Params.ParamByName('CallName').AsString := Edit2.Text;
-    Params.ParamByName('Name').AsString := Edit3.Text;
-    Params.ParamByName('QTH').AsString := Edit4.Text;
-    Params.ParamByName('ITU').AsString := Edit5.Text;
-    Params.ParamByName('CQ').AsString := Edit7.Text;
-    Params.ParamByName('Loc').AsString := Edit6.Text;
-    Params.ParamByName('Lat').AsString := Edit8.Text;
-    Params.ParamByName('Lon').AsString := Edit9.Text;
-    Params.ParamByName('Discription').AsString := Edit1.Text;
-    Params.ParamByName('QSLInfo').AsString := Edit10.Text;
-    Params.ParamByName('EQSLLogin').AsString := Edit11.Text;
-    Params.ParamByName('EQSLPassword').AsString := Edit12.Text;
-    Params.ParamByName('AutoEQSLcc').AsBoolean := CheckBox1.Checked;
-    Params.ParamByName('HRDLogLogin').AsString := Edit13.Text;
-    Params.ParamByName('HRDLogPassword').AsString := Edit14.Text;
-    Params.ParamByName('AutoHRDLog').AsBoolean := CheckBox2.Checked;
-    Params.ParamByName('HamQTHLogin').AsString := Edit15.Text;
-    Params.ParamByName('HamQTHPassword').AsString := Edit16.Text;
-    Params.ParamByName('AutoHamQTH').AsBoolean := CheckBox3.Checked;
-    Params.ParamByName('LoTW_User').AsString := Edit17.Text;
-    Params.ParamByName('LoTW_Password').AsString := Edit18.Text;
-    Params.ParamByName('ClubLog_User').AsString := Edit19.Text;
-    Params.ParamByName('ClubLog_Password').AsString := Edit20.Text;
-    Params.ParamByName('AutoClubLog').AsBoolean := CheckBox4.Checked;
-    Params.ParamByName('QRZCOM_User').AsString := Edit21.Text;
-    Params.ParamByName('QRZCOM_Password').AsString := Edit22.Text;
-    Params.ParamByName('AutoQRZCom').AsBoolean := CheckBox5.Checked;
 
-    Params.ParamByName('id').AsInteger := id;
-    ExecSQL;
-  end;
-  InitDB.DefTransaction.Commit;
-   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+  if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+  begin
+    with UpdateConfQuery do
+    begin
+      Close;
+      SQL.Clear;
+      SQL.Add('UPDATE LogBookInfo' +
+        ' SET `CallName`=:CallName,`Name`=:Name,`QTH`=:QTH, `ITU`=:ITU,' +
+        ' `CQ`=:CQ, `Loc`=:Loc, `Lat`=:Lat, `Lon`=:Lon, `Discription`=:Discription,' +
+        ' `QSLInfo`=:QSLInfo, `EQSLLogin`=:EQSLLogin, `EQSLPassword`=:EQSLPassword,' +
+        ' `AutoEQSLcc`=:AutoEQSLcc, `HRDLogLogin`=:HRDLogLogin,' +
+        ' `HRDLogPassword`=:HRDLogPassword, `AutoHRDLog`=:AutoHRDLog,' +
+        ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword, `AutoQRZCom`=:AutoQRZCom,'
+        + ' `QRZCOM_User`=:QRZCOM_User, `QRZCOM_Password`=:QRZCOM_Password,' +
+        ' `ClubLog_User`=:ClubLog_User, `ClubLog_Password`=:ClubLog_Password,' +
+        ' `AutoHamQTH`=:AutoHamQTH, `AutoClubLog`=:AutoClubLog, `LoTW_User`=:LoTW_User,'
+        +
+        ' `LoTW_Password`=:LoTW_Password WHERE `id`=:id');
+      Params.ParamByName('CallName').AsString := Edit2.Text;
+      Params.ParamByName('Name').AsString := Edit3.Text;
+      Params.ParamByName('QTH').AsString := Edit4.Text;
+      Params.ParamByName('ITU').AsString := Edit5.Text;
+      Params.ParamByName('CQ').AsString := Edit7.Text;
+      Params.ParamByName('Loc').AsString := Edit6.Text;
+      Params.ParamByName('Lat').AsString := Edit8.Text;
+      Params.ParamByName('Lon').AsString := Edit9.Text;
+      Params.ParamByName('Discription').AsString := Edit1.Text;
+      Params.ParamByName('QSLInfo').AsString := Edit10.Text;
+      Params.ParamByName('EQSLLogin').AsString := Edit11.Text;
+      Params.ParamByName('EQSLPassword').AsString := Edit12.Text;
+      Params.ParamByName('AutoEQSLcc').AsBoolean := CheckBox1.Checked;
+      Params.ParamByName('HRDLogLogin').AsString := Edit13.Text;
+      Params.ParamByName('HRDLogPassword').AsString := Edit14.Text;
+      Params.ParamByName('AutoHRDLog').AsBoolean := CheckBox2.Checked;
+      Params.ParamByName('HamQTHLogin').AsString := Edit15.Text;
+      Params.ParamByName('HamQTHPassword').AsString := Edit16.Text;
+      Params.ParamByName('AutoHamQTH').AsBoolean := CheckBox3.Checked;
+      Params.ParamByName('LoTW_User').AsString := Edit17.Text;
+      Params.ParamByName('LoTW_Password').AsString := Edit18.Text;
+      Params.ParamByName('ClubLog_User').AsString := Edit19.Text;
+      Params.ParamByName('ClubLog_Password').AsString := Edit20.Text;
+      Params.ParamByName('AutoClubLog').AsBoolean := CheckBox4.Checked;
+      Params.ParamByName('QRZCOM_User').AsString := Edit21.Text;
+      Params.ParamByName('QRZCOM_Password').AsString := Edit22.Text;
+      Params.ParamByName('AutoQRZCom').AsBoolean := CheckBox5.Checked;
+
+      Params.ParamByName('id').AsInteger := id;
+      ExecSQL;
+    end;
+    InitDB.DefTransaction.Commit;
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
-  LogConfigForm.Close;
+    LogConfigForm.Close;
   end;
 end;
 
@@ -284,8 +293,7 @@ procedure TLogConfigForm.FormShow(Sender: TObject);
 var
   i: integer;
 begin
-  if InitDB.MySQLConnection.Connected or
-    InitDB.SQLiteConnection.Connected then
+  if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
   begin
     try
       if DBRecord.InitDB = 'YES' then
@@ -301,7 +309,7 @@ begin
           UpdateConfQuery.DataBase := InitDB.MySQLConnection
         else
           UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
-        SelectCall(MainForm.ComboBox10.Text);
+        SelectCall(DBRecord.CurrCall);
       end;
 
       ListBox1.Clear;
@@ -334,14 +342,16 @@ end;
 
 procedure TLogConfigForm.ListBox1Click(Sender: TObject);
 begin
-  if InitDB.MySQLConnection.Connected or
-    InitDB.SQLiteConnection.Connected then
+  if ListBox1.ItemIndex <> -1 then
   begin
-    SelectCall(ListBox1.Items[ListBox1.ItemIndex]);
-    if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
-      Label15.Visible := True
-    else
-      Label15.Visible := False;
+    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+    begin
+      SelectCall(ListBox1.Items[ListBox1.ItemIndex]);
+      if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
+        Label15.Visible := True
+      else
+        Label15.Visible := False;
+    end;
   end;
 end;
 
@@ -356,71 +366,77 @@ var
   droptablename: string;
   i: integer;
 begin
-  if InitDB.MySQLConnection.Connected or
-    InitDB.SQLiteConnection.Connected then
+  if ListBox1.ItemIndex <> -1 then
   begin
-    if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
-      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
     begin
-      if CallLogBook = ListBox1.Items[ListBox1.ItemIndex] then
+      if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
+        MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin
-        ShowMessage(rCannotDelDef);
-        exit;
-      end;
-
-      SQLQuery2.Close;
-      SQLQuery2.SQL.Clear;
-      SQLQuery2.SQL.Add('select * from LogBookInfo where CallName = "' +
-        ListBox1.Items[ListBox1.ItemIndex] + '"');
-      SQLQuery2.Open;
-      droptablename := SQLQuery2.FieldByName('LogTable').Value;
-      SQLQuery2.Close;
-      SQLQuery2.SQL.Clear;
-      SQLQuery2.SQL.Add('DROP TABLE "' + droptablename + '"');
-      SQLQuery2.ExecSQL;
-      SQLQuery2.SQL.Clear;
-      SQLQuery2.SQL.Add('delete from LogBookInfo where CallName = "' +
-        ListBox1.Items[ListBox1.ItemIndex] + '"');
-      SQLQuery2.ExecSQL;
-      SQLQuery2.SQLTransaction.Commit;
-      SQLQuery2.SQL.Clear;
-      ListBox1.Clear;
-      SQLQuery2.SQL.Clear;
-      SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo');
-      SQLQuery2.Open;
-      SQLQuery2.First;
-      for i := 0 to SQLQuery2.RecordCount - 1 do
-      begin
-        ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
-        SQLQuery2.Next;
-      end;
-       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
-      for i := 0 to ListBox1.Count - 1 do
-        if Pos(MainForm.ComboBox10.Text, ListBox1.Items[i]) > 0 then
+        if (DBRecord.DefCall = ListBox1.Items[ListBox1.ItemIndex]) or (DBRecord.CurrCall = ListBox1.Items[ListBox1.ItemIndex]) then
         begin
-          ListBox1.Selected[i] := True;
+          ShowMessage(rCannotDelDef);
           exit;
         end;
-    end
-    else
-      Exit;
+
+        SQLQuery2.Close;
+        SQLQuery2.SQL.Clear;
+        SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo WHERE CallName = "' +
+          ListBox1.Items[ListBox1.ItemIndex] + '"');
+        SQLQuery2.Open;
+        droptablename := SQLQuery2.FieldByName('LogTable').Value;
+        SQLQuery2.Close;
+        SQLQuery2.SQL.Clear;
+        SQLQuery2.SQL.Add('DROP TABLE "' + droptablename + '"');
+        SQLQuery2.ExecSQL;
+        SQLQuery2.SQL.Clear;
+        SQLQuery2.SQL.Add('DELETE FROM LogBookInfo WHERE CallName = "' +
+          ListBox1.Items[ListBox1.ItemIndex] + '"');
+        SQLQuery2.ExecSQL;
+        SQLQuery2.SQLTransaction.Commit;
+        SQLQuery2.SQL.Clear;
+        ListBox1.Clear;
+        SQLQuery2.SQL.Clear;
+        SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo');
+        SQLQuery2.Open;
+        SQLQuery2.First;
+        for i := 0 to SQLQuery2.RecordCount - 1 do
+        begin
+          ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
+          SQLQuery2.Next;
+        end;
+        if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+          ShowMessage(rDBError);
+        for i := 0 to ListBox1.Count - 1 do
+          if Pos(DBRecord.CurrCall, ListBox1.Items[i]) > 0 then
+          begin
+            ListBox1.Selected[i] := True;
+            MainFunc.LoadJournalItem(MainForm.ComboBox10);
+            exit;
+          end;
+      end
+      else
+        Exit;
+    end;
   end;
 end;
 
 procedure TLogConfigForm.MenuItem4Click(Sender: TObject);
 begin
-  if InitDB.MySQLConnection.Connected or
-    InitDB.SQLiteConnection.Connected then
+  if ListBox1.ItemIndex <> -1 then
   begin
-    INIFile.WriteString('SetLog', 'DefaultCallLogBook', ListBox1.Items[ListBox1.ItemIndex]);
-    ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
-    MainForm.ComboBox10.Text := ListBox1.Items[ListBox1.ItemIndex];
-    //MainForm.ComboBox10CloseUp(Self);
-    if ListBox1.Items[ListBox1.ItemIndex] = MainForm.ComboBox10.Text then
-      Label15.Visible := True
-    else
-      Label15.Visible := False;
+    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+    begin
+      INIFile.WriteString('SetLog', 'DefaultCallLogBook',
+        ListBox1.Items[ListBox1.ItemIndex]);
+      ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
+      MainForm.ComboBox10.Text := ListBox1.Items[ListBox1.ItemIndex];
+      //MainForm.ComboBox10CloseUp(Self);
+      if ListBox1.Items[ListBox1.ItemIndex] = MainForm.ComboBox10.Text then
+        Label15.Visible := True
+      else
+        Label15.Visible := False;
+    end;
   end;
 end;
 

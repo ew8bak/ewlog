@@ -3899,6 +3899,7 @@ object MainForm: TMainForm
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
+      OnClick = MenuItem8Click
     end
     object MenuItem9: TMenuItem
       Caption = '-'

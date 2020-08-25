@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
-  DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8;
+  DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record;
 
 type
 
@@ -44,6 +44,7 @@ var
   INIFile: TINIFile;
   LBRecord: TLBRecord;
   DBRecord: TDBRecord;
+  InitRecord: TInitRecord;
   CountAllRecords: integer;
   UniqueCallsList: TStringList;
   PrefixProvinceList: TStringList;
@@ -63,7 +64,7 @@ var
 
 implementation
 
-uses MainFuncDM;
+uses MainFuncDM, setupForm_U;
 
 {$R *.lfm}
 
@@ -71,23 +72,48 @@ uses MainFuncDM;
 
 procedure TInitDB.DataModuleCreate(Sender: TObject);
 begin
+  if Sender <> SetupForm then
+  begin
   {$IFDEF UNIX}
-  FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+    FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
    {$ELSE}
-  FilePATH := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    FilePATH := GetEnvironmentVariable('SystemDrive') +
+      SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
    {$ENDIF UNIX}
-  DefaultFormatSettings.DecimalSeparator := '.';
-  if not DirectoryExists(FilePATH) then
-    CreateDir(FilePATH);
-  INIFile := TINIFile.Create(FilePATH + 'settings.ini');
-  if InitDBINI then
-    if ServiceDBInit then
-      if LogbookDBInit then
-        if InitPrefix then
-          if GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB) then
-            if not SelectLogbookTable(LBRecord.LogTable) then
-              ShowMessage(rDBError);
+    DefaultFormatSettings.DecimalSeparator := '.';
+    if not DirectoryExists(FilePATH) then
+      CreateDir(FilePATH);
+    INIFile := TINIFile.Create(FilePATH + 'settings.ini');
+  end
+  else
+  begin
+    SQLiteConnection.Connected := False;
+    MySQLConnection.Connected := False;
+  end;
+  InitRecord.ServiceDBInit := False;
+  InitRecord.InitDBINI := False;
+  InitRecord.LogbookDBInit := False;
+  InitRecord.InitPrefix := False;
+  InitRecord.GetLogBookTable := False;
+  InitRecord.SelectLogbookTable := False;
+  InitRecord.LoadINIsettings := False;
+
+  if not ServiceDBInit then
+    ShowMessage('Service database Init ERROR')
+  else
+  if InitDBINI and (DBRecord.InitDB = 'YES') then
+  if (not LogbookDBInit) and (DBRecord.InitDB = 'YES') then
+    ShowMessage('Logbook database ERROR')
+  else
+  if not InitPrefix then
+    ShowMessage('Init Prefix ERROR')
+  else
+  if (not GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB)) and
+    (DBRecord.InitDB = 'YES') then
+    ShowMessage('LogBook Table ERROR')
+  else
+  if (not SelectLogbookTable(LBRecord.LogTable)) and (DBRecord.InitDB = 'YES') then
+    ShowMessage(rDBError);
   MainFunc.LoadINIsettings;
   ImbeddedCallBookInit(IniSet.UseIntCallBook);
 end;
@@ -118,7 +144,10 @@ begin
   ServiceDBConnection.Transaction := ServiceTransaction;
   ServiceDBConnection.Connected := True;
   if ServiceDBConnection.Connected then
+  begin
     Result := True;
+    InitRecord.ServiceDBInit := True;
+  end;
 end;
 
 function TInitDB.LogbookDBInit: boolean;
@@ -139,6 +168,7 @@ begin
       DefLogBookQuery.DataBase := MySQLConnection;
       FindQSOQuery.DataBase := MySQLConnection;
       Result := True;
+      InitRecord.LogbookDBInit := True;
     end;
   end;
   if DBRecord.DefaultDB = 'SQLite' then
@@ -152,6 +182,7 @@ begin
       DBRecord.CurrentDB := 'SQLite';
       DefLogBookQuery.DataBase := SQLiteConnection;
       Result := True;
+      InitRecord.LogbookDBInit := True;
     end;
   end;
 end;
@@ -174,63 +205,71 @@ function TInitDB.GetLogBookTable(Callsign, typeDataBase: string): boolean;
 var
   LogBookInfoQuery: TSQLQuery;
 begin
-  try
+  Result := False;
+  if DBRecord.InitDB = 'YES' then
+  begin
     try
-      Result := False;
-      LogBookInfoQuery := TSQLQuery.Create(nil);
-      if typeDataBase = 'MySQL' then
-        LogBookInfoQuery.DataBase := MySQLConnection
-      else
-        LogBookInfoQuery.DataBase := SQLiteConnection;
-      with LogBookInfoQuery do
-      begin
-        Close;
-        if Callsign = '' then
-          SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1'
+      try
+        LogBookInfoQuery := TSQLQuery.Create(nil);
+        if typeDataBase = 'MySQL' then
+          LogBookInfoQuery.DataBase := MySQLConnection
         else
-          SQL.Text := 'SELECT * FROM LogBookInfo WHERE CallName = "' + Callsign + '"';
-        Open;
-        LBRecord.Discription := FieldByName('Discription').AsString;
-        LBRecord.CallSign := FieldByName('CallName').AsString;
-        LBRecord.OpName := FieldByName('Name').AsString;
-        LBRecord.OpQTH := FieldByName('QTH').AsString;
-        LBRecord.OpITU := FieldByName('ITU').AsString;
-        LBRecord.OpLoc := FieldByName('Loc').AsString;
-        LBRecord.OpCQ := FieldByName('CQ').AsString;
-        LBRecord.OpLat := FieldByName('Lat').AsFloat;
-        LBRecord.OpLon := FieldByName('Lon').AsFloat;
-        LBRecord.QSLInfo := FieldByName('QSLInfo').AsString;
-        LBRecord.LogTable := FieldByName('LogTable').AsString;
-        LBRecord.eQSLccLogin := FieldByName('EQSLLogin').AsString;
-        LBRecord.eQSLccPassword := FieldByName('EQSLPassword').AsString;
-        LBRecord.LoTWLogin := FieldByName('LoTW_User').AsString;
-        LBRecord.LoTWPassword := FieldByName('LoTW_Password').AsString;
-        LBRecord.AutoEQSLcc := FieldByName('AutoEQSLcc').AsBoolean;
-        LBRecord.HRDLogin := FieldByName('HRDLogLogin').AsString;
-        LBRecord.HRDCode := FieldByName('HRDLogPassword').AsString;
-        LBRecord.AutoHRDLog := FieldByName('AutoHRDLog').AsBoolean;
-        LBRecord.HamQTHLogin := FieldByName('HamQTHLogin').AsString;
-        LBRecord.HamQTHPassword := FieldByName('HamQTHPassword').AsString;
-        LBRecord.AutoHamQTH := FieldByName('AutoHamQTH').AsBoolean;
-        LBRecord.ClubLogLogin := FieldByName('ClubLog_User').AsString;
-        LBRecord.ClubLogPassword := FieldByName('ClubLog_Password').AsString;
-        LBRecord.AutoClubLog := FieldByName('AutoClubLog').AsBoolean;
-        LBRecord.QRZComLogin := FieldByName('QRZCOM_User').AsString;
-        LBRecord.QRZComPassword := FieldByName('QRZCOM_Password').AsString;
-        LBRecord.AutoQRZCom := FieldByName('AutoQRZCom').AsBoolean;
-        Close;
+          LogBookInfoQuery.DataBase := SQLiteConnection;
+        LogBookInfoQuery.Close;
+        if Callsign = '' then
+          LogBookInfoQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1'
+        else
+          LogBookInfoQuery.SQL.Text :=
+            'SELECT * FROM LogBookInfo WHERE CallName = "' + Callsign + '"';
+        LogBookInfoQuery.Open;
+        if LogBookInfoQuery.FieldByName('CallName').AsString <> '' then
+        begin
+          LBRecord.Discription := LogBookInfoQuery.FieldByName('Discription').AsString;
+          LBRecord.CallSign := LogBookInfoQuery.FieldByName('CallName').AsString;
+          LBRecord.OpName := LogBookInfoQuery.FieldByName('Name').AsString;
+          LBRecord.OpQTH := LogBookInfoQuery.FieldByName('QTH').AsString;
+          LBRecord.OpITU := LogBookInfoQuery.FieldByName('ITU').AsString;
+          LBRecord.OpLoc := LogBookInfoQuery.FieldByName('Loc').AsString;
+          LBRecord.OpCQ := LogBookInfoQuery.FieldByName('CQ').AsString;
+          LBRecord.OpLat := LogBookInfoQuery.FieldByName('Lat').AsFloat;
+          LBRecord.OpLon := LogBookInfoQuery.FieldByName('Lon').AsFloat;
+          LBRecord.QSLInfo := LogBookInfoQuery.FieldByName('QSLInfo').AsString;
+          LBRecord.LogTable := LogBookInfoQuery.FieldByName('LogTable').AsString;
+          LBRecord.eQSLccLogin := LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
+          LBRecord.eQSLccPassword := LogBookInfoQuery.FieldByName('EQSLPassword').AsString;
+          LBRecord.LoTWLogin := LogBookInfoQuery.FieldByName('LoTW_User').AsString;
+          LBRecord.LoTWPassword := LogBookInfoQuery.FieldByName('LoTW_Password').AsString;
+          LBRecord.AutoEQSLcc := LogBookInfoQuery.FieldByName('AutoEQSLcc').AsBoolean;
+          LBRecord.HRDLogin := LogBookInfoQuery.FieldByName('HRDLogLogin').AsString;
+          LBRecord.HRDCode := LogBookInfoQuery.FieldByName('HRDLogPassword').AsString;
+          LBRecord.AutoHRDLog := LogBookInfoQuery.FieldByName('AutoHRDLog').AsBoolean;
+          LBRecord.HamQTHLogin := LogBookInfoQuery.FieldByName('HamQTHLogin').AsString;
+          LBRecord.HamQTHPassword :=
+            LogBookInfoQuery.FieldByName('HamQTHPassword').AsString;
+          LBRecord.AutoHamQTH := LogBookInfoQuery.FieldByName('AutoHamQTH').AsBoolean;
+          LBRecord.ClubLogLogin := LogBookInfoQuery.FieldByName('ClubLog_User').AsString;
+          LBRecord.ClubLogPassword :=
+            LogBookInfoQuery.FieldByName('ClubLog_Password').AsString;
+          LBRecord.AutoClubLog := LogBookInfoQuery.FieldByName('AutoClubLog').AsBoolean;
+          LBRecord.QRZComLogin := LogBookInfoQuery.FieldByName('QRZCOM_User').AsString;
+          LBRecord.QRZComPassword :=
+            LogBookInfoQuery.FieldByName('QRZCOM_Password').AsString;
+          LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
+          LogBookInfoQuery.Close;
+          Result := True;
+          InitRecord.GetLogBookTable := True;
+          DBRecord.CurrCall := LBRecord.CallSign;
+        end;
+      except
+        on E: Exception do
+        begin
+          ShowMessage('Error: ' + E.ClassName + #13#10 + E.Message);
+          Result := False;
+        end;
       end;
-      Result := True;
-      DBRecord.CurrCall := LBRecord.CallSign;
-    except
-      on E: Exception do
-      begin
-        ShowMessage('Error: ' + E.ClassName + #13#10 + E.Message);
-        Result := False;
-      end;
+    finally
+      FreeAndNil(LogBookInfoQuery);
     end;
-  finally
-    FreeAndNil(LogBookInfoQuery);
   end;
 end;
 
@@ -292,6 +331,7 @@ begin
         UniqueCallsQuery.Next;
       end;
       Result := True;
+      InitRecord.InitPrefix := True;
     except
       on E: Exception do
       begin
@@ -310,7 +350,7 @@ end;
 function TInitDB.InitDBINI: boolean;
 begin
   Result := False;
-  DBRecord.InitDB := INIFile.ReadString('SetLog', 'LogBookInit', '');
+  DBRecord.InitDB := INIFile.ReadString('SetLog', 'LogBookInit', 'NO');
   if DBRecord.InitDB = 'YES' then
   begin
     DBRecord.DefCall := INIFile.ReadString('SetLog', 'DefaultCallLogBook', '');
@@ -328,6 +368,7 @@ begin
       exit;
     end;
     Result := True;
+    InitRecord.InitDBINI := True;
   end;
 end;
 
@@ -335,6 +376,8 @@ function TInitDB.SelectLogbookTable(LogTable: string): boolean;
 begin
   try
     Result := False;
+    if LogTable = '' then
+      Exit;
     DefLogBookQuery.Close;
     DefLogBookQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LogTable;
     DefLogBookQuery.Open;
@@ -374,6 +417,7 @@ begin
     end;
     DefLogBookQuery.Open;
     Result := True;
+    InitRecord.SelectLogbookTable := True;
   except
     on E: Exception do
     begin
