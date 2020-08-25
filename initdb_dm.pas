@@ -222,6 +222,14 @@ begin
           LogBookInfoQuery.SQL.Text :=
             'SELECT * FROM LogBookInfo WHERE CallName = "' + Callsign + '"';
         LogBookInfoQuery.Open;
+
+        if LogBookInfoQuery.FieldByName('CallName').AsString = '' then
+        begin
+          LogBookInfoQuery.Close;
+          LogBookInfoQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
+          LogBookInfoQuery.Open;
+        end;
+
         if LogBookInfoQuery.FieldByName('CallName').AsString <> '' then
         begin
           LBRecord.Discription := LogBookInfoQuery.FieldByName('Discription').AsString;

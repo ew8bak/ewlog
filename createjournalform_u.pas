@@ -124,13 +124,13 @@ begin
       try
         LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
         CreateTableQuery.Close;
-        CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
-        CreateTableQuery.Open;
-        CountStr := CreateTableQuery.Fields[0].AsInteger + 1;
-        CreateTableQuery.Close;
+       // CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
+       // CreateTableQuery.Open;
+      //  CountStr := CreateTableQuery.Fields[0].AsInteger + 1;
+       // CreateTableQuery.Close;
 
         CreateTableQuery.SQL.Text := Insert_Table_LogBookInfo;
-        CreateTableQuery.ParamByName('id').AsInteger := CountStr;
+       // CreateTableQuery.ParamByName('id').AsInteger := CountStr;
         CreateTableQuery.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
         CreateTableQuery.ParamByName('CallName').AsString := Edit2.Text;
         CreateTableQuery.ParamByName('Name').AsString := Edit4.Text;
