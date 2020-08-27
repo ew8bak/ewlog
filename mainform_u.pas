@@ -806,6 +806,7 @@ var
   Lat, Lon: string;
   PFXR: TPFXR;
   FoundQSOR: TFoundQSOR;
+  editButtonLeng: integer;
 begin
   DBand := False;
   DMode := False;
@@ -814,6 +815,7 @@ begin
   Label54.Visible := False;
   Label55.Visible := False;
   QSL := 0;
+  editButtonLeng := Length(EditButton1.Text);
   EditButton1.SelStart := seleditnum;
   engText := dmFunc.RusToEng(EditButton1.Text);
   if (engText <> EditButton1.Text) then
@@ -851,7 +853,7 @@ begin
     Exit;
   end;
 
-  if Length(EditButton1.Text) >= 2 then
+  if editButtonLeng > 1 then
   begin
     MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text,
       DMode, DBand, DCall);
@@ -886,7 +888,7 @@ begin
   Edit5.Clear;
   Edit6.Clear;
 
-  if Length(EditButton1.Text) > 0 then
+  if (editButtonLeng > 0) and (editButtonLeng < 5) then
   begin
     PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
     Label32.Caption := PFXR.Azimuth;
