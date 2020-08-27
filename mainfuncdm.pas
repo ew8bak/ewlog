@@ -99,7 +99,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('FindInCallBook:' + E.Message);
   end;
 end;
 
@@ -330,7 +330,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('SelectEditQSO:' + E.Message);
   end;
 end;
 
@@ -888,7 +888,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('FindQSO:' + E.Message);
   end;
 end;
 
@@ -1073,7 +1073,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('CheckDXCC:' + E.Message);
   end;
 end;
 
@@ -1140,7 +1140,7 @@ begin
 
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('CheckQSL:' + E.Message);
   end;
 end;
 
@@ -1173,7 +1173,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('FindWorkedCall:' + E.Message);
   end;
 end;
 
@@ -1206,7 +1206,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('WorkedQSL:' + E.Message);
   end;
 end;
 
@@ -1242,7 +1242,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('WorkedLoTW:' + E.Message);
   end;
 end;
 
@@ -1361,7 +1361,7 @@ begin
     end;
   except
     on E: Exception do
-      ShowMessage(E.Message);
+      ShowMessage('SearchPrefix:' + E.Message);
   end;
 end;
 

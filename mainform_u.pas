@@ -807,6 +807,7 @@ var
   PFXR: TPFXR;
   FoundQSOR: TFoundQSOR;
   editButtonLeng: integer;
+  editButtonText: string;
 begin
   DBand := False;
   DMode := False;
@@ -823,17 +824,18 @@ begin
     EditButton1.Text := engText;
     exit;
   end;
+    editButtonText:= EditButton1.Text;
 
   if EditFlag then
     Exit;
 
   if CheckBox6.Checked then
   begin
-    MainFunc.FilterQSO('Call', EditButton1.Text + '%');
+    MainFunc.FilterQSO('Call', editButtonText + '%');
     Exit;
   end;
 
-  if EditButton1.Text = '' then
+  if editButtonText = '' then
   begin
     Clr;
     label32.Caption := '.......';
@@ -855,14 +857,14 @@ begin
 
   if editButtonLeng > 1 then
   begin
-    MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text,
+    MainFunc.CheckDXCC(editButtonText, ComboBox2.Text, ComboBox1.Text,
       DMode, DBand, DCall);
-    QSL := MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
-    Label53.Visible := MainFunc.FindWorkedCall(EditButton1.Text,
+    QSL := MainFunc.CheckQSL(editButtonText, ComboBox1.Text, ComboBox2.Text);
+    Label53.Visible := MainFunc.FindWorkedCall(editButtonText,
       ComboBox1.Text, ComboBox2.Text);
-    Label54.Visible := MainFunc.WorkedQSL(EditButton1.Text, ComboBox1.Text,
+    Label54.Visible := MainFunc.WorkedQSL(editButtonText, ComboBox1.Text,
       ComboBox2.Text);
-    Label55.Visible := MainFunc.WorkedLoTW(EditButton1.Text, ComboBox1.Text,
+    Label55.Visible := MainFunc.WorkedLoTW(editButtonText, ComboBox1.Text,
       ComboBox2.Text);
   end;
 
@@ -890,7 +892,7 @@ begin
 
   if (editButtonLeng > 0) and (editButtonLeng < 5) then
   begin
-    PFXR := MainFunc.SearchPrefix(EditButton1.Text, Edit3.Text);
+    PFXR := MainFunc.SearchPrefix(editButtonText, Edit3.Text);
     Label32.Caption := PFXR.Azimuth;
     Label37.Caption := PFXR.Distance;
     Label40.Caption := PFXR.Latitude;
@@ -909,7 +911,7 @@ begin
   if PFXR.Found and CheckBox3.Checked then
     MainFunc.LoadMaps(Lat, Lon, MapView1);
 
-  FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(EditButton1.Text));
+  FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(editButtonText));
   Edit1.Text := FoundQSOR.OMName;
   Edit2.Text := FoundQSOR.OMQTH;
   Edit3.Text := FoundQSOR.Grid;
@@ -930,7 +932,7 @@ begin
 
   if not FoundQSOR.Found and IniSet.UseIntCallBook then
   begin
-    FoundQSOR := MainFunc.FindInCallBook(dmfunc.ExtractCallsign(EditButton1.Text));
+    FoundQSOR := MainFunc.FindInCallBook(dmfunc.ExtractCallsign(editButtonText));
     Edit1.Text := FoundQSOR.OMName;
     Edit2.Text := FoundQSOR.OMQTH;
     Edit3.Text := FoundQSOR.Grid;

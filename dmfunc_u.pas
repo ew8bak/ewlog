@@ -84,7 +84,7 @@ type
     function Vincenty(Lat1, Lon1, Lat2, Lon2: extended): extended;
     function LatLongToGrid(Lat, Long: real): string;
     function RunProgram(progpath, args: string): boolean;
-    function RusToEng(Text: ansistring): UTF8String;
+    function RusToEng(Text: string): string;
     function GetRadioRigCtldCommandLine(radio: word): string;
     function StrToFreq(const freqstr: string): extended;
     function GetDigiBandFromFreq(MHz: string): double;
@@ -1073,11 +1073,11 @@ begin
   end;
 end;
 
-function TdmFunc.RusToEng(Text: ansistring): UTF8String;
+function TdmFunc.RusToEng(Text: string): string;
 var
   i: integer;
 begin
-  for i := 1 to UTF8Length(Text) do
+  for i := 1 to Length(Text) do
   begin
     if UTF8copy(Text, i, 1) = 'а' then
     begin
