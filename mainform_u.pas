@@ -824,7 +824,7 @@ begin
     EditButton1.Text := engText;
     exit;
   end;
-    editButtonText:= EditButton1.Text;
+  editButtonText := EditButton1.Text;
 
   if EditFlag then
     Exit;
@@ -918,12 +918,12 @@ begin
   Edit4.Text := FoundQSOR.State;
   Edit5.Text := FoundQSOR.IOTA;
   Edit6.Text := FoundQSOR.QSLManager;
-  Label17.Caption:= IntToStr(FoundQSOR.CountQSO);
-  Label18.Caption:= FoundQSOR.QSODate;
-  Label19.Caption:= FoundQSOR.QSOTime;
-  Label20.Caption:= FoundQSOR.QSOBand;
-  label21.Caption:= FoundQSOR.QSOMode;
-  label22.Caption:= FoundQSOR.OMName;
+  Label17.Caption := IntToStr(FoundQSOR.CountQSO);
+  Label18.Caption := FoundQSOR.QSODate;
+  Label19.Caption := FoundQSOR.QSOTime;
+  Label20.Caption := FoundQSOR.QSOBand;
+  label21.Caption := FoundQSOR.QSOMode;
+  label22.Caption := FoundQSOR.OMName;
 
   if FoundQSOR.Found then
     EditButton1.Color := clMoneyGreen
@@ -1434,14 +1434,11 @@ end;
 
 procedure TMainForm.DBGrid1DblClick(Sender: TObject);
 begin
-  if InitRecord.SelectLogbookTable then
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
   begin
-    if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
-    begin
-      GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      EditQSO_Form.Show;
-    end;
+    GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
+    UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+    EditQSO_Form.Show;
   end;
 end;
 
@@ -1453,14 +1450,11 @@ end;
 
 procedure TMainForm.DBGrid2DblClick(Sender: TObject);
 begin
-  if InitRecord.SelectLogbookTable then
+  if InitRecord.SelectLogbookTable and (DBGrid2.SelectedIndex <> 0) then
   begin
-    if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
-    begin
-      GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
-      UnUsIndex := DBGrid2.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      EditQSO_Form.Show;
-    end;
+    GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
+    UnUsIndex := DBGrid2.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+    EditQSO_Form.Show;
   end;
 end;
 
@@ -2241,6 +2235,7 @@ var
 begin
   XNode := VirtualStringTree1.FocusedNode;
   Data := VirtualStringTree1.GetNodeData(XNode);
+  if VirtualStringTree1.SelectedCount <> 0 then
   if Length(Data^.Spots) > 1 then
     EditButton1.Text := Data^.Spots;
 end;
@@ -3967,25 +3962,28 @@ var
 begin
   XNode := VirtualStringTree1.FocusedNode;
   Data := VirtualStringTree1.GetNodeData(XNode);
-  if Length(Data^.Spots) > 1 then
+  if VirtualStringTree1.SelectedCount <> 0 then
   begin
-    PFXR := MainFunc.SearchPrefix(Data^.Spots, Data^.Loc);
-    Label32.Caption := PFXR.Azimuth;
-    Label37.Caption := PFXR.Distance;
-    Label40.Caption := PFXR.Latitude;
-    Label42.Caption := PFXR.Longitude;
-    Label33.Caption := PFXR.Country;
-    Label43.Caption := PFXR.Continent;
-    Label34.Caption := PFXR.ARRLPrefix;
-    Label38.Caption := PFXR.Prefix;
-    Label45.Caption := PFXR.CQZone;
-    Label47.Caption := PFXR.ITUZone;
-    timedif := PFXR.TimeDiff;
-    dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
-    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-    if PFXR.Found and CheckBox3.Checked then
-      MainFunc.LoadMaps(Lat, Lon, MapView1);
+    if Length(Data^.Spots) > 1 then
+    begin
+      PFXR := MainFunc.SearchPrefix(Data^.Spots, Data^.Loc);
+      Label32.Caption := PFXR.Azimuth;
+      Label37.Caption := PFXR.Distance;
+      Label40.Caption := PFXR.Latitude;
+      Label42.Caption := PFXR.Longitude;
+      Label33.Caption := PFXR.Country;
+      Label43.Caption := PFXR.Continent;
+      Label34.Caption := PFXR.ARRLPrefix;
+      Label38.Caption := PFXR.Prefix;
+      Label45.Caption := PFXR.CQZone;
+      Label47.Caption := PFXR.ITUZone;
+      timedif := PFXR.TimeDiff;
+      dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+      Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+      Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+      if PFXR.Found and CheckBox3.Checked then
+        MainFunc.LoadMaps(Lat, Lon, MapView1);
+    end;
   end;
 end;
 
@@ -4003,47 +4001,50 @@ var
 begin
   XNode := VirtualStringTree1.FocusedNode;
   Data := VirtualStringTree1.GetNodeData(XNode);
-  if Length(Data^.Spots) > 1 then
+  if VirtualStringTree1.SelectedCount <> 0 then
   begin
-    EditButton1.Text := Data^.Spots;
-    // if (CallBookLiteConnection.Connected = False) and
-    //   (Length(Data^.Spots) >= 3) then
-    //   InformationForm.GetInformation(Data^.Spots, True);
-
-    if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
-      (TRXForm.radio.GetFreqHz > 0) then
+    if Length(Data^.Spots) > 1 then
     begin
-      TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
-      if Data^.Moda = 'DIGI' then
-        TRXForm.SetMode('USB', 0)
-      else
-        TRXForm.SetMode(Data^.Moda, 0);
-    end
-    else
-    begin
-      if ConfigForm.CheckBox2.Checked = True then
-        ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq,
-          StrToFloat(Data^.Freq) / 1000))
-      else
-        ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
+      EditButton1.Text := Data^.Spots;
+      // if (CallBookLiteConnection.Connected = False) and
+      //   (Length(Data^.Spots) >= 3) then
+      //   InformationForm.GetInformation(Data^.Spots, True);
 
-      if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
+      if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
+        (TRXForm.radio.GetFreqHz > 0) then
       begin
-        ComboBox2.Text := 'SSB';
-        ComboBox2CloseUp(Sender);
-        ComboBox9.Text := Data^.Moda;
-      end;
-      if Data^.Moda = 'DIGI' then
+        TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
+        if Data^.Moda = 'DIGI' then
+          TRXForm.SetMode('USB', 0)
+        else
+          TRXForm.SetMode(Data^.Moda, 0);
+      end
+      else
       begin
-        ComboBox2.Text := 'SSB';
-        ComboBox2CloseUp(Sender);
-        ComboBox9.Text := 'USB';
-      end;
-      if Data^.Moda = 'CW' then
-      begin
-        ComboBox2.Text := 'CW';
-        ComboBox2CloseUp(Sender);
-        ComboBox9.Text := '';
+        if ConfigForm.CheckBox2.Checked = True then
+          ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq,
+            StrToFloat(Data^.Freq) / 1000))
+        else
+          ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
+
+        if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
+        begin
+          ComboBox2.Text := 'SSB';
+          ComboBox2CloseUp(Sender);
+          ComboBox9.Text := Data^.Moda;
+        end;
+        if Data^.Moda = 'DIGI' then
+        begin
+          ComboBox2.Text := 'SSB';
+          ComboBox2CloseUp(Sender);
+          ComboBox9.Text := 'USB';
+        end;
+        if Data^.Moda = 'CW' then
+        begin
+          ComboBox2.Text := 'CW';
+          ComboBox2CloseUp(Sender);
+          ComboBox9.Text := '';
+        end;
       end;
     end;
   end;
