@@ -3218,7 +3218,7 @@ msgstr ""
 
 #: tmainform.label20.caption
 msgctxt "tmainform.label20.caption"
-msgid "Frequency"
+msgid "Band"
 msgstr ""
 
 #: tmainform.label21.caption

@@ -1169,9 +1169,9 @@ object MainForm: TMainForm
         Left = 109
         Height = 15
         Top = 237
-        Width = 58
+        Width = 28
         BorderSpacing.Left = 5
-        Caption = 'Frequency'
+        Caption = 'Band'
         Font.Height = -12
         Font.Style = [fsBold]
         ParentColor = False
@@ -1193,7 +1193,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 180
+        Left = 150
         Height = 15
         Top = 237
         Width = 32
@@ -1209,7 +1209,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 172
+        Left = 142
         Height = 18
         Top = 235
         Width = 3
@@ -1220,7 +1220,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 225
+        Left = 195
         Height = 15
         Top = 237
         Width = 33
@@ -1236,7 +1236,7 @@ object MainForm: TMainForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Bevel2
         AnchorSideTop.Side = asrCenter
-        Left = 217
+        Left = 187
         Height = 18
         Top = 235
         Width = 3

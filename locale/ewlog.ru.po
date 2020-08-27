@@ -3238,8 +3238,10 @@ msgid "Band"
 msgstr "Диап"
 
 #: tmainform.label20.caption
+#, fuzzy
+#| msgid "Frequency"
 msgctxt "tmainform.label20.caption"
-msgid "Frequency"
+msgid "Band"
 msgstr "Частота"
 
 #: tmainform.label21.caption

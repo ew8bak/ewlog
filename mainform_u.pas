@@ -838,6 +838,7 @@ begin
   if editButtonText = '' then
   begin
     Clr;
+
     label32.Caption := '.......';
     label33.Caption := '.......';
     label34.Caption := '.......';
@@ -2236,8 +2237,8 @@ begin
   XNode := VirtualStringTree1.FocusedNode;
   Data := VirtualStringTree1.GetNodeData(XNode);
   if VirtualStringTree1.SelectedCount <> 0 then
-  if Length(Data^.Spots) > 1 then
-    EditButton1.Text := Data^.Spots;
+    if Length(Data^.Spots) > 1 then
+      EditButton1.Text := Data^.Spots;
 end;
 
 procedure TMainForm.MenuItem114Click(Sender: TObject);
@@ -4022,8 +4023,8 @@ begin
       else
       begin
         if ConfigForm.CheckBox2.Checked = True then
-          ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq,
-            StrToFloat(Data^.Freq) / 1000))
+          ComboBox1.Text := dmFunc.GetBandFromFreq(
+            FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000))
         else
           ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
 
