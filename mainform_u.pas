@@ -857,7 +857,7 @@ begin
   begin
     MainFunc.CheckDXCC(EditButton1.Text, ComboBox2.Text, ComboBox1.Text,
       DMode, DBand, DCall);
-    MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text, QSL);
+    QSL := MainFunc.CheckQSL(EditButton1.Text, ComboBox1.Text, ComboBox2.Text);
     Label53.Visible := MainFunc.FindWorkedCall(EditButton1.Text,
       ComboBox1.Text, ComboBox2.Text);
     Label54.Visible := MainFunc.WorkedQSL(EditButton1.Text, ComboBox1.Text,

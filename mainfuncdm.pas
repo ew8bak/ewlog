@@ -27,7 +27,6 @@ type
     procedure SetGrid(var DBGRID: TDBGrid);
     procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
     procedure CheckDXCC(Callsign, mode, band: string; var DMode, DBand, DCall: boolean);
-    procedure CheckQSL(Callsign, band, mode: string; var QSL: integer);
     procedure LoadINIsettings;
     procedure ClearPFXR(var PFXR: TPFXR);
     procedure LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
@@ -61,6 +60,7 @@ type
     function StringToBool(Value: string): boolean;
     function FormatFreq(Value, mode: string): string;
     function FindInCallBook(Callsign: string): TFoundQSOR;
+    function CheckQSL(Callsign, band, mode: string): integer;
   end;
 
 var
@@ -1028,21 +1028,11 @@ procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
   var DMode, DBand, DCall: boolean);
 var
   Query: TSQLQuery;
-  digiBand: double;
-  nameBand: string;
   PFXR: TPFXR;
 begin
   try
     if InitRecord.SelectLogbookTable then
     begin
-      if Pos('M', band) > 0 then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-      else
-        nameBand := band;
-
-      Delete(nameBand, length(nameBand) - 2, 1);
-      digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-
       try
         PFXR := SearchPrefix(Callsign, '');
         Query := TSQLQuery.Create(nil);
@@ -1071,7 +1061,7 @@ begin
         Query.Close;
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          FloatToStr(digiBand) + ' LIMIT 1';
+          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) + ' LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
           DBand := False
@@ -1087,24 +1077,14 @@ begin
   end;
 end;
 
-procedure TMainFunc.CheckQSL(Callsign, band, mode: string; var QSL: integer);
+function TMainFunc.CheckQSL(Callsign, band, mode: string): integer;
 var
   Query: TSQLQuery;
-  digiBand: double;
-  nameBand: string;
   PFXR: TPFXR;
 begin
   try
     if InitRecord.SelectLogbookTable then
     begin
-      if Pos('M', band) > 0 then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-      else
-        nameBand := band;
-
-      Delete(nameBand, length(nameBand) - 2, 1);
-      digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
-
       try
         PFXR := SearchPrefix(Callsign, '');
         Query := TSQLQuery.Create(nil);
@@ -1116,11 +1096,12 @@ begin
 
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          FloatToStr(digiBand) + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
+          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
         begin
-          QSL := 0;
+          Result := 0;
           Exit;
         end;
         Query.Close;
@@ -1130,23 +1111,24 @@ begin
         Query.Open;
         if Query.RecordCount = 0 then
         begin
-          QSL := 0;
+          Result := 0;
           Exit;
         end;
         Query.Close;
 
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          FloatToStr(digiBand) + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
+          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
         Query.Open;
         if Query.RecordCount = 0 then
         begin
-          QSL := 2;
+          Result := 2;
           Exit;
         end
         else
         begin
-          QSL := 1;
+          Result := 1;
           Exit;
         end;
         Query.Close;
@@ -1165,20 +1147,11 @@ end;
 function TMainFunc.FindWorkedCall(Callsign, band, mode: string): boolean;
 var
   Query: TSQLQuery;
-  digiBand: double;
-  nameBand: string;
 begin
   try
     Result := False;
     if InitRecord.SelectLogbookTable then
     begin
-      if Pos('M', band) > 0 then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-      else
-        nameBand := band;
-
-      Delete(nameBand, length(nameBand) - 2, 1);
-      digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
       try
         Query := TSQLQuery.Create(nil);
         Query.Transaction := InitDB.DefTransaction;
@@ -1188,7 +1161,8 @@ begin
           Query.DataBase := InitDB.SQLiteConnection;
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
-          FloatToStr(digiBand) + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
+          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
           Result := True;
@@ -1206,20 +1180,11 @@ end;
 function TMainFunc.WorkedQSL(Callsign, band, mode: string): boolean;
 var
   Query: TSQLQuery;
-  digiBand: double;
-  nameBand: string;
 begin
   try
     Result := False;
     if InitRecord.SelectLogbookTable then
     begin
-      if Pos('M', band) > 0 then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-      else
-        nameBand := band;
-
-      Delete(nameBand, length(nameBand) - 2, 1);
-      digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
       try
         Query := TSQLQuery.Create(nil);
         Query.Transaction := InitDB.DefTransaction;
@@ -1229,7 +1194,8 @@ begin
           Query.DataBase := InitDB.SQLiteConnection;
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
-          FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
           Result := True;
@@ -1247,21 +1213,12 @@ end;
 function TMainFunc.WorkedLoTW(Callsign, band, mode: string): boolean;
 var
   Query: TSQLQuery;
-  digiBand: double;
-  nameBand: string;
   PFXR: TPFXR;
 begin
   try
     Result := False;
     if InitRecord.SelectLogbookTable then
     begin
-      if Pos('M', band) > 0 then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(band, mode))
-      else
-        nameBand := band;
-
-      Delete(nameBand, length(nameBand) - 2, 1);
-      digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
       try
         PFXR := SearchPrefix(Callsign, '');
         Query := TSQLQuery.Create(nil);
@@ -1273,7 +1230,8 @@ begin
 
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          FloatToStr(digiBand) + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
           Result := True;
@@ -1292,11 +1250,9 @@ function TMainFunc.SearchPrefix(Callsign, Grid: string): TPFXR;
 var
   i: integer;
   La, Lo: currency;
-  PFXR: TPFXR;
 begin
   try
-    ClearPFXR(PFXR);
-    Result := PFXR;
+    ClearPFXR(Result);
     if InitRecord.InitPrefix then
     begin
       if UniqueCallsList.IndexOf(Callsign) > -1 then
@@ -1307,25 +1263,24 @@ begin
           SQL.Text := 'SELECT * FROM UniqueCalls WHERE _id = "' +
             IntToStr(UniqueCallsList.IndexOf(Callsign)) + '"';
           Open;
-          PFXR.Country := FieldByName('Country').AsString;
-          PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
-          PFXR.Prefix := FieldByName('Prefix').AsString;
-          PFXR.CQZone := FieldByName('CQZone').AsString;
-          PFXR.ITUZone := FieldByName('ITUZone').AsString;
-          PFXR.Continent := FieldByName('Continent').AsString;
-          PFXR.Latitude := FieldByName('Latitude').AsString;
-          PFXR.Longitude := FieldByName('Longitude').AsString;
-          PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
+          Result.Country := FieldByName('Country').AsString;
+          Result.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
+          Result.Prefix := FieldByName('Prefix').AsString;
+          Result.CQZone := FieldByName('CQZone').AsString;
+          Result.ITUZone := FieldByName('ITUZone').AsString;
+          Result.Continent := FieldByName('Continent').AsString;
+          Result.Latitude := FieldByName('Latitude').AsString;
+          Result.Longitude := FieldByName('Longitude').AsString;
+          Result.DXCCNum := FieldByName('DXCC').AsInteger;
         end;
         if (Grid <> '') and dmFunc.IsLocOK(Grid) then
         begin
           dmFunc.CoordinateFromLocator(Grid, La, Lo);
-          PFXR.Latitude := CurrToStr(La);
-          PFXR.Longitude := CurrToStr(Lo);
+          Result.Latitude := CurrToStr(La);
+          Result.Longitude := CurrToStr(Lo);
         end;
-        GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
-        PFXR.Found := True;
-        Result := PFXR;
+        GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance, Result.Azimuth);
+        Result.Found := True;
         Exit;
       end;
 
@@ -1340,26 +1295,26 @@ begin
             SQL.Text := 'SELECT * FROM Province WHERE _id = "' +
               IntToStr(PrefixExpProvinceArray[i].id) + '"';
             Open;
-            PFXR.Country := FieldByName('Country').AsString;
-            PFXR.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
-            PFXR.Prefix := FieldByName('Prefix').AsString;
-            PFXR.CQZone := FieldByName('CQZone').AsString;
-            PFXR.ITUZone := FieldByName('ITUZone').AsString;
-            PFXR.Continent := FieldByName('Continent').AsString;
-            PFXR.Latitude := FieldByName('Latitude').AsString;
-            PFXR.Longitude := FieldByName('Longitude').AsString;
-            PFXR.DXCCNum := FieldByName('DXCC').AsInteger;
-            PFXR.TimeDiff := FieldByName('TimeDiff').AsInteger;
+            Result.Country := FieldByName('Country').AsString;
+            Result.ARRLPrefix := FieldByName('ARRLPrefix').AsString;
+            Result.Prefix := FieldByName('Prefix').AsString;
+            Result.CQZone := FieldByName('CQZone').AsString;
+            Result.ITUZone := FieldByName('ITUZone').AsString;
+            Result.Continent := FieldByName('Continent').AsString;
+            Result.Latitude := FieldByName('Latitude').AsString;
+            Result.Longitude := FieldByName('Longitude').AsString;
+            Result.DXCCNum := FieldByName('DXCC').AsInteger;
+            Result.TimeDiff := FieldByName('TimeDiff').AsInteger;
           end;
           if (Grid <> '') and dmFunc.IsLocOK(Grid) then
           begin
             dmFunc.CoordinateFromLocator(Grid, La, Lo);
-            PFXR.Latitude := CurrToStr(La);
-            PFXR.Longitude := CurrToStr(Lo);
+            Result.Latitude := CurrToStr(La);
+            Result.Longitude := CurrToStr(Lo);
           end;
-          GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
-          PFXR.Found := True;
-          Result := PFXR;
+          GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance,
+            Result.Azimuth);
+          Result.Found := True;
           Exit;
         end;
       end;
@@ -1381,25 +1336,25 @@ begin
               Exit;
             end;
           end;
-          PFXR.Country := SearchPrefixQuery.FieldByName('Country').AsString;
-          PFXR.ARRLPrefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
-          PFXR.Prefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
-          PFXR.CQZone := SearchPrefixQuery.FieldByName('CQZone').AsString;
-          PFXR.ITUZone := SearchPrefixQuery.FieldByName('ITUZone').AsString;
-          PFXR.Continent := SearchPrefixQuery.FieldByName('Continent').AsString;
-          PFXR.Latitude := SearchPrefixQuery.FieldByName('Latitude').AsString;
-          PFXR.Longitude := SearchPrefixQuery.FieldByName('Longitude').AsString;
-          PFXR.DXCCNum := SearchPrefixQuery.FieldByName('DXCC').AsInteger;
-          PFXR.TimeDiff := SearchPrefixQuery.FieldByName('TimeDiff').AsInteger;
+          Result.Country := SearchPrefixQuery.FieldByName('Country').AsString;
+          Result.ARRLPrefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
+          Result.Prefix := SearchPrefixQuery.FieldByName('ARRLPrefix').AsString;
+          Result.CQZone := SearchPrefixQuery.FieldByName('CQZone').AsString;
+          Result.ITUZone := SearchPrefixQuery.FieldByName('ITUZone').AsString;
+          Result.Continent := SearchPrefixQuery.FieldByName('Continent').AsString;
+          Result.Latitude := SearchPrefixQuery.FieldByName('Latitude').AsString;
+          Result.Longitude := SearchPrefixQuery.FieldByName('Longitude').AsString;
+          Result.DXCCNum := SearchPrefixQuery.FieldByName('DXCC').AsInteger;
+          Result.TimeDiff := SearchPrefixQuery.FieldByName('TimeDiff').AsInteger;
           if (Grid <> '') and dmFunc.IsLocOK(Grid) then
           begin
             dmFunc.CoordinateFromLocator(Grid, La, Lo);
-            PFXR.Latitude := CurrToStr(La);
-            PFXR.Longitude := CurrToStr(Lo);
+            Result.Latitude := CurrToStr(La);
+            Result.Longitude := CurrToStr(Lo);
           end;
-          GetDistAzim(PFXR.Latitude, PFXR.Longitude, PFXR.Distance, PFXR.Azimuth);
-          PFXR.Found := True;
-          Result := PFXR;
+          GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance,
+            Result.Azimuth);
+          Result.Found := True;
           Exit;
         end;
       end;
