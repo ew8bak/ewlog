@@ -916,6 +916,13 @@ begin
   Edit4.Text := FoundQSOR.State;
   Edit5.Text := FoundQSOR.IOTA;
   Edit6.Text := FoundQSOR.QSLManager;
+  Label17.Caption:= IntToStr(FoundQSOR.CountQSO);
+  Label18.Caption:= FoundQSOR.QSODate;
+  Label19.Caption:= FoundQSOR.QSOTime;
+  Label20.Caption:= FoundQSOR.QSOBand;
+  label21.Caption:= FoundQSOR.QSOMode;
+  label22.Caption:= FoundQSOR.OMName;
+
   if FoundQSOR.Found then
     EditButton1.Color := clMoneyGreen
   else

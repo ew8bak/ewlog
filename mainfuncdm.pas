@@ -271,7 +271,6 @@ end;
 function TMainFunc.SelectEditQSO(index: integer): TQSO;
 var
   Query: TSQLQuery;
-  SelQSO: TQSO;
 begin
   try
     try
@@ -285,49 +284,47 @@ begin
         ' WHERE UnUsedIndex = ' + IntToStr(index);
       Query.Open;
 
-      SelQSO.CallSing := Query.FieldByName('CallSign').AsString;
-      SelQSO.QSODate := Query.FieldByName('QSODate').AsDateTime;
-      SelQSO.QSOTime := Query.FieldByName('QSOTime').AsString;
-      SelQSO.OMName := Query.FieldByName('OMName').AsString;
-      SelQSO.OMQTH := Query.FieldByName('OMQTH').AsString;
-      SelQSO.State0 := Query.FieldByName('State').AsString;
-      SelQSO.Grid := Query.FieldByName('Grid').AsString;
-      SelQSO.QSOReportSent := Query.FieldByName('QSOReportSent').AsString;
-      SelQSO.QSOReportRecived := Query.FieldByName('QSOReportRecived').AsString;
-      SelQSO.IOTA := Query.FieldByName('IOTA').AsString;
-      SelQSO.QSLSentDate := Query.FieldByName('QSLSentDate').AsDateTime;
-      SelQSO.QSLRecDate := Query.FieldByName('QSLRecDate').AsDateTime;
-      SelQSO.LoTWRecDate := Query.FieldByName('LoTWRecDate').AsDateTime;
-      SelQSO.MainPrefix := Query.FieldByName('MainPrefix').AsString;
-      SelQSO.DXCCPrefix := Query.FieldByName('DXCCPrefix').AsString;
-      SelQSO.DXCC := Query.FieldByName('DXCC').AsString;
-      SelQSO.CQZone := Query.FieldByName('CQZone').AsString;
-      SelQSO.ITUZone := Query.FieldByName('ITUZone').AsString;
-      SelQSO.Marker := Query.FieldByName('Marker').AsString;
-      SelQSO.QSOMode := Query.FieldByName('QSOMode').AsString;
-      SelQSO.QSOSubMode := Query.FieldByName('QSOSubMode').AsString;
-      SelQSO.QSOBand := Query.FieldByName('QSOBand').AsString;
-      SelQSO.Continent := Query.FieldByName('Continent').AsString;
-      SelQSO.QSLInfo := Query.FieldByName('QSLInfo').AsString;
-      SelQSO.ValidDX := Query.FieldByName('ValidDX').AsString;
-      SelQSO.QSLManager := Query.FieldByName('QSLManager').AsString;
-      SelQSO.State1 := Query.FieldByName('State1').AsString;
-      SelQSO.State2 := Query.FieldByName('State2').AsString;
-      SelQSO.State3 := Query.FieldByName('State3').AsString;
-      SelQSO.State4 := Query.FieldByName('State4').AsString;
-      SelQSO.QSOAddInfo := Query.FieldByName('QSOAddInfo').AsString;
-      SelQSO.NoCalcDXCC := Query.FieldByName('NoCalcDXCC').AsInteger;
-      SelQSO.QSLReceQSLcc := Query.FieldByName('QSLReceQSLcc').AsInteger;
-      SelQSO.QSLRec := Query.FieldByName('QSLRec').AsString;
-      SelQSO.LoTWRec := Query.FieldByName('LoTWRec').AsString;
-      SelQSO.LoTWSent := Query.FieldByName('LoTWSent').AsInteger;
-      SelQSO.QSL_RCVD_VIA := Query.FieldByName('QSL_RCVD_VIA').AsString;
-      SelQSO.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
-      SelQSO.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
-      SelQSO.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
+      Result.CallSing := Query.FieldByName('CallSign').AsString;
+      Result.QSODate := Query.FieldByName('QSODate').AsDateTime;
+      Result.QSOTime := Query.FieldByName('QSOTime').AsString;
+      Result.OMName := Query.FieldByName('OMName').AsString;
+      Result.OMQTH := Query.FieldByName('OMQTH').AsString;
+      Result.State0 := Query.FieldByName('State').AsString;
+      Result.Grid := Query.FieldByName('Grid').AsString;
+      Result.QSOReportSent := Query.FieldByName('QSOReportSent').AsString;
+      Result.QSOReportRecived := Query.FieldByName('QSOReportRecived').AsString;
+      Result.IOTA := Query.FieldByName('IOTA').AsString;
+      Result.QSLSentDate := Query.FieldByName('QSLSentDate').AsDateTime;
+      Result.QSLRecDate := Query.FieldByName('QSLRecDate').AsDateTime;
+      Result.LoTWRecDate := Query.FieldByName('LoTWRecDate').AsDateTime;
+      Result.MainPrefix := Query.FieldByName('MainPrefix').AsString;
+      Result.DXCCPrefix := Query.FieldByName('DXCCPrefix').AsString;
+      Result.DXCC := Query.FieldByName('DXCC').AsString;
+      Result.CQZone := Query.FieldByName('CQZone').AsString;
+      Result.ITUZone := Query.FieldByName('ITUZone').AsString;
+      Result.Marker := Query.FieldByName('Marker').AsString;
+      Result.QSOMode := Query.FieldByName('QSOMode').AsString;
+      Result.QSOSubMode := Query.FieldByName('QSOSubMode').AsString;
+      Result.QSOBand := Query.FieldByName('QSOBand').AsString;
+      Result.Continent := Query.FieldByName('Continent').AsString;
+      Result.QSLInfo := Query.FieldByName('QSLInfo').AsString;
+      Result.ValidDX := Query.FieldByName('ValidDX').AsString;
+      Result.QSLManager := Query.FieldByName('QSLManager').AsString;
+      Result.State1 := Query.FieldByName('State1').AsString;
+      Result.State2 := Query.FieldByName('State2').AsString;
+      Result.State3 := Query.FieldByName('State3').AsString;
+      Result.State4 := Query.FieldByName('State4').AsString;
+      Result.QSOAddInfo := Query.FieldByName('QSOAddInfo').AsString;
+      Result.NoCalcDXCC := Query.FieldByName('NoCalcDXCC').AsInteger;
+      Result.QSLReceQSLcc := Query.FieldByName('QSLReceQSLcc').AsInteger;
+      Result.QSLRec := Query.FieldByName('QSLRec').AsString;
+      Result.LoTWRec := Query.FieldByName('LoTWRec').AsString;
+      Result.LoTWSent := Query.FieldByName('LoTWSent').AsInteger;
+      Result.QSL_RCVD_VIA := Query.FieldByName('QSL_RCVD_VIA').AsString;
+      Result.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
+      Result.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
+      Result.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
       Query.Close;
-      Result := SelQSO;
-
     finally
       FreeAndNil(Query);
     end;
@@ -822,22 +819,19 @@ begin
 end;
 
 function TMainFunc.SelectQSO(DataSource: TDataSource): TSelQSOR;
-var
-  SelQSOR: TSelQSOR;
 begin
-  SelQSOR.QSODate := DataSource.DataSet.FieldByName('QSODate').AsString;
-  SelQSOR.QSOTime := DataSource.DataSet.FieldByName('QSOTime').AsString;
-  SelQSOR.QSOBand := DataSource.DataSet.FieldByName('QSOBand').AsString;
-  SelQSOR.QSOMode := DataSource.DataSet.FieldByName('QSOMode').AsString;
-  SelQSOR.OMName := DataSource.DataSet.FieldByName('OMName').AsString;
-  Result := SelQSOR;
+  Result.QSODate := DataSource.DataSet.FieldByName('QSODate').AsString;
+  Result.QSOTime := DataSource.DataSet.FieldByName('QSOTime').AsString;
+  Result.QSOBand := DataSource.DataSet.FieldByName('QSOBand').AsString;
+  Result.QSOMode := DataSource.DataSet.FieldByName('QSOMode').AsString;
+  Result.OMName := DataSource.DataSet.FieldByName('OMName').AsString;
 end;
 
 function TMainFunc.FindQSO(Callsign: string): TFoundQSOR;
-var
-  FoundQSOR: TFoundQSOR;
 begin
   try
+    Result.Found := False;
+    Result.CountQSO := 0;
     if InitRecord.SelectLogbookTable then
     begin
       InitDB.FindQSOQuery.Close;
@@ -872,22 +866,25 @@ begin
           + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
           + LBRecord.LogTable +
           ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
-          +
-          LBRecord.LogTable + ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
+          + LBRecord.LogTable + ' WHERE `Call` LIKE ' +
+          QuotedStr(Callsign) +
           ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
       InitDB.FindQSOQuery.Open;
       if InitDB.FindQSOQuery.RecordCount > 0 then
       begin
-        FoundQSOR.Found := True;
-        FoundQSOR.CountQSO := InitDB.FindQSOQuery.RecordCount;
-        FoundQSOR.OMName := InitDB.FindQSOQuery.FieldByName('OMName').AsString;
-        FoundQSOR.OMQTH := InitDB.FindQSOQuery.FieldByName('OMQTH').AsString;
-        FoundQSOR.Grid := InitDB.FindQSOQuery.FieldByName('Grid').AsString;
-        FoundQSOR.State := InitDB.FindQSOQuery.FieldByName('State').AsString;
-        FoundQSOR.IOTA := InitDB.FindQSOQuery.FieldByName('IOTA').AsString;
-        FoundQSOR.QSLManager := InitDB.FindQSOQuery.FieldByName('QSLManager').AsString;
+        Result.Found := True;
+        Result.CountQSO := InitDB.FindQSOQuery.RecordCount;
+        Result.OMName := InitDB.FindQSOQuery.FieldByName('OMName').AsString;
+        Result.QSOTime := InitDB.FindQSOQuery.FieldByName('QSOTime').AsString;
+        Result.QSODate := InitDB.FindQSOQuery.FieldByName('QSODate').AsString;
+        Result.QSOBand := InitDB.FindQSOQuery.FieldByName('QSOBand').AsString;
+        Result.QSOMode := InitDB.FindQSOQuery.FieldByName('QSOMode').AsString;
+        Result.OMQTH := InitDB.FindQSOQuery.FieldByName('OMQTH').AsString;
+        Result.Grid := InitDB.FindQSOQuery.FieldByName('Grid').AsString;
+        Result.State := InitDB.FindQSOQuery.FieldByName('State').AsString;
+        Result.IOTA := InitDB.FindQSOQuery.FieldByName('IOTA').AsString;
+        Result.QSLManager := InitDB.FindQSOQuery.FieldByName('QSLManager').AsString;
       end;
-      Result := FoundQSOR;
     end;
   except
     on E: Exception do

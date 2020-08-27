@@ -11,6 +11,10 @@ type
   TFoundQSOR = record
     OMName: string;
     OMQTH: string;
+    QSODate: string;
+    QSOTime: string;
+    QSOBand: string;
+    QSOMode: string;
     Grid: string;
     State: string;
     IOTA: string;

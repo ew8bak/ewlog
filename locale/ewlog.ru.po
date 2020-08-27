@@ -3219,7 +3219,7 @@ msgstr "Комментарий"
 
 #: tmainform.label17.caption
 msgctxt "tmainform.label17.caption"
-msgid "1"
+msgid "0"
 msgstr ""
 
 #: tmainform.label18.caption

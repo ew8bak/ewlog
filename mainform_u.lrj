@@ -36,7 +36,7 @@
 {"hash":6226933,"name":"tmainform.label15.caption","sourcebytes":[83,117,98,46,32,83,116,97,116,101],"value":"Sub. State"},
 {"hash":174341140,"name":"tmainform.label16.caption","sourcebytes":[67,111,109,109,101,110,116],"value":"Comment"},
 {"hash":36831520,"name":"tmainform.dateedit1.text","sourcebytes":[32,32,46,32,32,46,32,32,32,32],"value":"  .  .    "},
-{"hash":49,"name":"tmainform.label17.caption","sourcebytes":[49],"value":"1"},
+{"hash":48,"name":"tmainform.label17.caption","sourcebytes":[48],"value":"0"},
 {"hash":305317,"name":"tmainform.label18.caption","sourcebytes":[68,97,116,101],"value":"Date"},
 {"hash":372789,"name":"tmainform.label19.caption","sourcebytes":[84,105,109,101],"value":"Time"},
 {"hash":210503977,"name":"tmainform.label20.caption","sourcebytes":[70,114,101,113,117,101,110,99,121],"value":"Frequency"},
