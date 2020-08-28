@@ -22,7 +22,8 @@ uses
   DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread, getSessionID,
   GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U,
   LogBookTable_record, DB_record, MainFuncDM, InitDB_dm, prefix_record,
-  inifile_record, selectQSO_record, foundQSO_record, cloudlog, init_record;
+  inifile_record, selectQSO_record, foundQSO_record, cloudlog, init_record,
+  WsjtUtils;
 
 {$R *.res}
 

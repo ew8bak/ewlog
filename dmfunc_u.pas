@@ -7,14 +7,9 @@ interface
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
-  DateUtils, Sockets, IdGlobal, LazUTF8, strutils, Translations, LazFileUtils,
-  versiontypes, versionresource, blcksock, httpsend, UTF8Process,
-
-  {$IFDEF WINDOWS}
-  Windows;
-  {$ELSE}
-  lclintf;
-  {$ENDIF}
+  DateUtils, LazUTF8, strutils, Translations, LazFileUtils,
+  versiontypes, versionresource, blcksock, httpsend, UTF8Process, {$IFDEF WINDOWS}
+  Windows;{$ELSE}lclintf;{$ENDIF}
 
 const
   ERR_FILE = 'errors.adi';
@@ -98,32 +93,6 @@ type
     {$IFDEF WINDOWS}
     function GetWindowsVersion: string;
     {$ENDIF WINDOWS}
- //   procedure BandMode(freq: string; var b, md: integer);
-    procedure Pack(var AData: TIdBytes; const AValue: longint) overload;
-    procedure Pack(var AData: TIdBytes; const AString: string) overload;
-    procedure Pack(var AData: TIdBytes; const AValue: QWord) overload;
-    procedure Pack(var AData: TIdBytes; const AValue: int64) overload;
-    procedure Pack(var AData: TIdBytes; const AFlag: boolean) overload;
-    procedure Pack(var AData: TIdBytes; const AValue: longword) overload;
-    procedure Pack(var AData: TIdBytes; const AValue: double) overload;
-    procedure Pack(var AData: TIdBytes; const ADateTime: TDateTime) overload;
-
-    procedure Unpack(const AData: TIdBytes; var index: integer;
-      var AValue: longint) overload;
-    procedure Unpack(const AData: TIdBytes; var index: integer;
-      var AString: string) overload;
-    procedure Unpack(const AData: TIdBytes; var index: integer;
-      var AValue: QWord) overload;
-    procedure Unpack(const AData: TIdBytes; var index: integer;
-      var AValue: int64) overload;
-    procedure Unpack(const AData: TIdBytes; var index: integer;
-      var AFlag: boolean) overload;
-    procedure Unpack(const AData: TIdBytes; var index: integer;
-      var AValue: longword) overload;
-    procedure Unpack(const AData: TIdBytes; var index: integer;
-      var AValue: double) overload;
-    procedure Unpack(const AData: TIdBytes; var index: integer;
-      var ADateTime: TDateTime) overload;
     { public declarations }
   end;
 
@@ -1966,147 +1935,5 @@ begin
     Result := y + '-' + m + '-' + d;
   end;
 end;
-
-//Функции для WSJT
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: longint);
-begin
-  AppendBytes(AData, ToBytes(HToNl(AValue)));
-end;
-
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: int64) overload;
-begin
-  {$IFNDEF BIG_ENDIAN}
-  AppendBytes(AData, ToBytes(SwapEndian(AValue)));
-  {$ELSE}
-  AppendBytes(AData, ToBytes(AValue));
-  {$ENDIF}
-end;
-
-procedure TdmFunc.Pack(var AData: TIdBytes; const AString: string) overload;
-var
-  temp: TIdBytes;
-  long: integer;
-begin
-  long := Length(AString);
-  temp := ToBytes(AString, IndyTextEncoding_UTF8);
-  Pack(AData, long);
-  AppendBytes(AData, temp);
-end;
-
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: QWord) overload;
-var
-  temp: int64 absolute AValue;
-begin
-  Pack(AData, temp);
-end;
-
-procedure TdmFunc.Pack(var AData: TIdBytes; const AFlag: boolean) overload;
-var
-  temp: integer;
-begin
-  if AFlag then
-    temp := -1
-  else
-    temp := 0;
-  AppendBytes(AData, ToBytes(temp));
-end;
-
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: longword) overload;
-begin
-  AppendBytes(AData, ToBytes(HToNl(AValue)));
-end;
-
-procedure TdmFunc.Pack(var AData: TIdBytes; const AValue: double) overload;
-var
-  temp: QWord absolute AValue;
-begin
-  Pack(AData, temp);
-end;
-
-procedure TdmFunc.Pack(var AData: TIdBytes; const ADateTime: TDateTime) overload;
-begin
-  Pack(AData, MilliSecondOfTheDay(ADateTime));
-  Pack(AData, QWord(DateTimeToJulianDate(ADateTime)));
-  Pack(AData, byte(1));
-end;
-
-
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer; var AValue: longint);
-begin
-  AValue := NToHl(BytesToInt32(AData, index));
-  index := index + SizeOf(AValue);
-end;
-
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
-  var AValue: int64) overload;
-begin
-  AValue := BytesToInt64(AData, index);
-  index := index + SizeOf(AValue);
-  {$IFNDEF BIG_ENDIAN}
-  AValue := SwapEndian(AValue);
-  {$ENDIF}
-end;
-
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
-  var AString: string) overload;
-var
-  length: longint;
-begin
-  Unpack(AData, index, length);
-  if length <> longint($ffffffff) then
-  begin
-    AString := BytesToString(AData, index, length, IndyTextEncoding_UTF8);
-    index := index + length;
-  end
-  else
-    AString := '';
-end;
-
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
-  var AValue: QWord) overload;
-var
-  temp: int64 absolute AValue;
-begin
-  Unpack(AData, index, temp);
-end;
-
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
-  var AFlag: boolean) overload;
-begin
-  AFlag := AData[index] <> 0;
-  index := index + 1;
-end;
-
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
-  var AValue: longword) overload;
-begin
-  AValue := longword(NToHl(BytesToInt32(AData, index)));
-  index := index + SizeOf(AValue);
-end;
-
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
-  var AValue: double) overload;
-var
-  temp: QWord absolute AValue;
-begin
-  Unpack(AData, index, temp);
-end;
-
-procedure TdmFunc.Unpack(const AData: TIdBytes; var index: integer;
-  var ADateTime: TDateTime) overload;
-var
-  dt: int64;
-  tm: longword;
-  temp: double;
-begin
-  Unpack(AData, index, dt);
-  Unpack(AData, index, tm);
-  index := index + 1;
-  temp := dt;
-  ADateTime := IncMilliSecond(JulianDateToDateTime(temp), tm);
-end;
-
-
-
 
 end.

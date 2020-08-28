@@ -832,11 +832,7 @@ begin
   try
     Result.Found := False;
     Result.CountQSO := 0;
-    Result.QSODate := rQSODate;
-    Result.QSOTime := rQSOTime;
-    Result.QSOBand := rQSOBand;
-    Result.QSOMode := rQSOMode;
-    Result.OMName := rOMName;
+
     if InitRecord.SelectLogbookTable then
     begin
       InitDB.FindQSOQuery.Close;

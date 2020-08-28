@@ -11,7 +11,7 @@ uses
   cthreads,
 {$ENDIF}{$ENDIF}
   Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils;
+  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils;
 
 const
   SJT65: string = '#';
@@ -76,13 +76,12 @@ begin
   //IdUDPServer1.Active := False;
   //IdUDPServer1.Bindings.Add.IPVersion := Id_IPv4;
   IdUDPServer1.Active := True;
-
+ // wSJT_UDP_Form.show;
 end;
 
 procedure TWSJT_UDP_Form.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(IdUDPServer1);
-  //IdUDPServer1.Destroy;
 end;
 
 procedure TWSJT_UDP_Form.IdUDPServer1UDPException(AThread: TIdUDPListenerThread;
@@ -112,6 +111,7 @@ var
   frequency: QWord;
   isNew, TXEnabled, transmitting, Decoding: boolean;
   tm: longword;
+  //tm: cardinal;
   ztime: TDateTime;
   DT: double;
   DF: cardinal;
@@ -122,18 +122,18 @@ var
 begin
   peerPort := ABinding.PeerPort;
 
-  Memo1.Lines.Add('Datagram received - length: ' + IntToStr(Length(AData)));
+ // Memo1.Lines.Add('Datagram received - length: ' + IntToStr(Length(AData)));
   while index < Length(AData) do
   begin
-    dmFunc.Unpack(AData, index, magic);
-     Memo1.Lines.Add('index:' + IntToStr(index) + ' magic:$' + IntToHex(magic,8));
+    Unpack(AData, index, magic);
+  //   Memo1.Lines.Add('index:' + IntToStr(index) + ' magic:$' + IntToHex(magic,8));
     if (magic = longint($ADBCCBDA)) and (index < Length(AData)) then
     begin
-      dmFunc.Unpack(AData, index, schema);
+      Unpack(AData, index, schema);
       if (schema = 2) and (index < Length(AData)) then
       begin
-        dmFunc.Unpack(AData, index, messageType);
-        dmFunc.Unpack(AData, index, id);
+        Unpack(AData, index, messageType);
+        Unpack(AData, index, id);
         Memo1.Lines.Add('Message type:' + IntToStr(messageType) + ' from:[' + id + ']');
         case messageType of
           0:
@@ -143,19 +143,19 @@ begin
           end;
           1:
           begin
-            dmFunc.Unpack(AData, index, frequency);
-            dmFunc.Unpack(AData, index, mode);
-            dmFunc.Unpack(AData, index, DXCall);
-            dmFunc.Unpack(AData, index, report);
-            dmFunc.Unpack(AData, index, TXMode);
-            dmFunc.Unpack(AData, index, TXEnabled);
-            dmFunc.Unpack(AData, index, transmitting);
-            dmFunc.Unpack(AData, index, Decoding);
-            dmFunc.Unpack(AData, index, RXDF);
-            dmFunc.Unpack(AData, index, TXDF);
-            dmFunc.Unpack(AData, index, DECall);
-            dmFunc.Unpack(AData, index, DEGrid);
-            dmFunc.Unpack(AData, index, DXGrid);
+            Unpack(AData, index, frequency);
+            Unpack(AData, index, mode);
+            Unpack(AData, index, DXCall);
+            Unpack(AData, index, report);
+            Unpack(AData, index, TXMode);
+            Unpack(AData, index, TXEnabled);
+            Unpack(AData, index, transmitting);
+            Unpack(AData, index, Decoding);
+            Unpack(AData, index, RXDF);
+            Unpack(AData, index, TXDF);
+            Unpack(AData, index, DECall);
+            Unpack(AData, index, DEGrid);
+            Unpack(AData, index, DXGrid);
 
             MainForm.EditButton1.Text := DXCall;
             MainForm.Edit3.Text := DXGrid;
@@ -180,14 +180,14 @@ begin
 
           2:
           begin
-            dmFunc.Unpack(AData, index, isNew);
-            dmFunc.Unpack(AData, index, tm);
+            Unpack(AData, index, isNew);
+            Unpack(AData, index, tm);
             ztime := IncMilliSecond(0, tm);
-            dmFunc.Unpack(AData, index, SNR);
-            dmFunc.Unpack(AData, index, DT);
-            dmFunc.Unpack(AData, index, DF);
-            dmFunc.Unpack(AData, index, mode);
-            dmFunc.Unpack(AData, index, message);
+            Unpack(AData, index, SNR);
+            Unpack(AData, index, DT);
+            Unpack(AData, index, DF);
+            Unpack(AData, index, mode);
+            Unpack(AData, index, message);
 
             Memomessage := 'Декодировано:' + ' ' +
               BoolToStr(isNew) + ' ' + FormatDateTime('hhmm', ztime) +
@@ -232,16 +232,16 @@ begin
 
           5:
           begin
-            dmFunc.Unpack(AData, index, date);
-            dmFunc.Unpack(AData, index, DXCall);
-            dmFunc.Unpack(AData, index, DXGrid);
-            dmFunc.Unpack(AData, index, frequency);
-            dmFunc.Unpack(AData, index, mode);
-            dmFunc.Unpack(AData, index, report);
-            dmFunc.Unpack(AData, index, reportReceived);
-            dmFunc.Unpack(AData, index, TXPower);
-            dmFunc.Unpack(AData, index, comments);
-            dmFunc.Unpack(AData, index, DXName);
+            Unpack(AData, index, date);
+            Unpack(AData, index, DXCall);
+            Unpack(AData, index, DXGrid);
+            Unpack(AData, index, frequency);
+            Unpack(AData, index, mode);
+            Unpack(AData, index, report);
+            Unpack(AData, index, reportReceived);
+            Unpack(AData, index, TXPower);
+            Unpack(AData, index, comments);
+            Unpack(AData, index, DXName);
 
             Memo1.Lines.Add('QSO сохранено: Дата:' +
               FormatDateTime('dd.mm.yyyy hh:mm:ss', date) +
@@ -276,8 +276,9 @@ begin
 
           12:
           begin
-            dmFunc.Unpack(AData, index, id);
-            dmFunc.Unpack(AData, index, adif_text);
+           // Unpack(AData, index, id);
+            Unpack(AData, index, adif_text);
+            writeln('Index:' + id + ', ADIF:' + adif_text);
             memo1.Lines.Add('Index:' + id + ', ADIF:' + adif_text);
           end
 

@@ -1865,8 +1865,8 @@ begin
     MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
 
 
-  if usewsjt then
-    WSJT_Timer.Enabled := True;
+  //if usewsjt then
+  //  WSJT_Timer.Enabled := True;
   if usefldigi then
     Fl_Timer.Enabled := True;
 
@@ -2124,11 +2124,11 @@ var
 begin
   if aSocket.GetMessage(mess) > 0 then
   begin
-    if mess = 'GetIP:' + ComboBox10.Text then
+    if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' + DBRecord.CurrCall+#10) then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' + IntToStr(lastTCPport))
     else
       StatusBar1.Panels.Items[0].Text := rSyncErrCall;
-    if mess = 'Hello' then
+    if (mess = 'Hello') or (mess = 'Hello'+#10) then
       LUDPComponent1.SendMessage('Welcome!');
   end;
 end;
@@ -4154,7 +4154,7 @@ end;
 
 procedure TMainForm.WSJT_TimerTimer(Sender: TObject);
 begin
-  if WSJT_UDP_Form.WSJT_IsRunning then
+  {if WSJT_UDP_Form.WSJT_IsRunning then
   begin
 
     if WSJT_Timer.Interval > 1000 then
@@ -4197,7 +4197,7 @@ begin
       Clr();
     end;
     Exit;
-  end;
+  end; }
 end;
 
 procedure TMainForm.SendSpot(freq, call, cname, mode, rsts, grid: string);
