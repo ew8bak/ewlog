@@ -278,7 +278,7 @@ begin
           begin
            // Unpack(AData, index, id);
             Unpack(AData, index, adif_text);
-            writeln('Index:' + id + ', ADIF:' + adif_text);
+            //writeln('Index:' + id + ', ADIF:' + adif_text);
             memo1.Lines.Add('Index:' + id + ', ADIF:' + adif_text);
           end
 

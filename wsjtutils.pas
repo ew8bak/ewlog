@@ -152,14 +152,14 @@ procedure Unpack(const AData: TIdBytes; var index: integer;
   var AValue: longword) overload;
 begin
 
- // AValue := BytesToInt32(AData, index);
- // AValue := Int32 (GStack.HostToNetwork(UInt32(AValue)));
+  AValue := BytesToUInt32(AData, index);
+  AValue := LongWord (GStack.HostToNetwork(LongWord(AValue)));
  // AValue := NToHl(BytesToInt32(AData, index));
- // index := index + SizeOf(AValue);
+  index := index + SizeOf(AValue);
 
   ///
-  AValue := longword(NToHl(BytesToInt32(AData, index)));
-  index := index + SizeOf(AValue);
+  //AValue := longword(NToHl(BytesToInt32(AData, index)));
+  //index := index + SizeOf(AValue);
 end;
 
 procedure Unpack(const AData: TIdBytes; var index: integer; var AValue: double) overload;
