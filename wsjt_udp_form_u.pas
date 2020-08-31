@@ -72,11 +72,7 @@ end;
 
 procedure TWSJT_UDP_Form.FormCreate(Sender: TObject);
 begin
-  //IdUDPServer1.Active:=True;
-  //IdUDPServer1.Active := False;
-  //IdUDPServer1.Bindings.Add.IPVersion := Id_IPv4;
   IdUDPServer1.Active := True;
- // wSJT_UDP_Form.show;
 end;
 
 procedure TWSJT_UDP_Form.FormDestroy(Sender: TObject);

@@ -23,7 +23,7 @@ uses
   GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U,
   LogBookTable_record, DB_record, MainFuncDM, InitDB_dm, prefix_record,
   inifile_record, selectQSO_record, foundQSO_record, cloudlog, init_record,
-  WsjtUtils;
+  WsjtUtils, digi_record;
 
 {$R *.res}
 
