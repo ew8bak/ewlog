@@ -13,6 +13,7 @@ type
     procedure GetSession;
 
   public
+    InfoR:TInformRecord;
 
   end;
 
@@ -21,7 +22,24 @@ var
 
 implementation
 
+uses
+  getSessionID, GetPhotoFromInternet, GetInfoFromInternetThread, MainFuncDM;
+
 {$R *.lfm}
 
-end.
+procedure TInfoDM.GetSession;
+begin
+  GetSessionThread := TGetSessionThread.Create;
+  if Assigned(GetSessionThread.FatalException) then
+    raise GetSessionThread.FatalException;
+  with GetSessionThread do
+  begin
+    qrzcom_login := IniSet.QRZCOM_Login;
+    qrzcom_pass := IniSet.QRZCOM_Pass;
+    qrzru_login := IniSet.QRZRU_Login;
+    qrzru_pass := IniSet.QRZRU_Pass;
+    Start;
+  end;
+end;
 
+end.

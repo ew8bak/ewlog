@@ -34,7 +34,10 @@ type
     CloudLogApiKey: string;
     AutoCloudLog: boolean;
     FreqToCloudLog: boolean;
-
+    QRZCOM_Login: string;
+    QRZCOM_Pass: string;
+    QRZRU_Login: string;
+    QRZRU_Pass: string;
   end;
 
 implementation
