@@ -140,8 +140,8 @@ begin
           Exit;
       InfoR.Callsign := GetXMLField(response, 'call');
       InfoR.Name := GetXMLField(response, 'fname');
-      InfoR.Address := GetXMLField(response, 'addr2');
-      InfoR.City := GetXMLField(response, 'addr1');
+      InfoR.City := GetXMLField(response, 'addr2');
+      InfoR.Address := GetXMLField(response, 'addr1');
       InfoR.Grid := GetXMLField(response, 'grid');
       InfoR.State := GetXMLField(response, 'state');
       InfoR.Country := GetXMLField(response, 'country');
