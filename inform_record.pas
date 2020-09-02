@@ -29,6 +29,7 @@ type
     PhotoURL: string;
     Error: string;
     ErrorCode: string;
+    Sender: string;
     PhotoJPEG: TJPEGImage;
     PhotoGIF: TGIFImage;
     PhotoPNG: TPortableNetworkGraphic;

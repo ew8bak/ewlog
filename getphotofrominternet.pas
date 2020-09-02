@@ -30,7 +30,7 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, MainForm_U, InformationForm_U, dmFunc_U;
+uses Forms, LCLType, HTTPSend, infoDM_U;
 
 procedure TGetPhotoThread.GetPhoto(url: string);
 begin
@@ -58,7 +58,7 @@ end;
 
 procedure TGetPhotoThread.ResultProc;
 begin
-  InformationForm.ViewPhoto(PhotoStream,url,call, Main);
+  InfoDM.ViewPhoto(PhotoStream,url);
   PhotoStream.Free;
 end;
 

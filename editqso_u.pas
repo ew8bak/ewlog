@@ -150,7 +150,8 @@ uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U,
 
 procedure TEditQSO_Form.SpeedButton11Click(Sender: TObject);
 begin
-  CheckForm := 'Edit';
+  InformationForm.FromForm := 'EditForm';
+  InformationForm.Callsign:=dmFunc.ExtractCallsign(Edit1.Text);
   InformationForm.Show;
 end;
 

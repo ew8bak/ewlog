@@ -1027,7 +1027,9 @@ begin
   IniSet.QRZCOM_Pass := INIFile.ReadString('SetLog', 'QRZCOM_Pass', '');
   IniSet.QRZRU_Login := INIFile.ReadString('SetLog', 'QRZRU_Login', '');
   IniSet.QRZRU_Pass := INIFile.ReadString('SetLog', 'QRZRU_Pass', '');
-
+  IniSet.CallBookSystem := INIFile.ReadString('SetLog', 'CallBookSystem', '');
+  IniSet.HAMQTH_Login := INIFile.ReadString('SetLog', 'HAMQTH_Login', '');
+  IniSet.HAMQTH_Pass := INIFile.ReadString('SetLog', 'HAMQTH_Pass', '');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

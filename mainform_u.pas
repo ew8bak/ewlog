@@ -14,7 +14,7 @@ uses
   RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
   Printers, zipper, qso_record, ResourceStr, const_u,
   Types, LazFileUtils, process, prefix_record,
-  selectQSO_record, foundQSO_record;
+  selectQSO_record, foundQSO_record, inform_record;
 
 type
 
@@ -555,6 +555,8 @@ type
     procedure InitClusterINI;
     procedure tIMGClick(Sender: TObject);
     procedure LoadComboBoxItem;
+    procedure LoadFromInternetCallBook(info: TInformRecord);
+    procedure LoadPhotoFromInternetCallbook(info: TInformRecord);
   end;
 
 var
@@ -601,7 +603,7 @@ uses
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u,
   print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
-  flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm;
+  flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm, infoDM_U;
 
 type
   PTreeData = ^TTreeData;
@@ -622,6 +624,31 @@ type
 {$R *.lfm}
 
 { TMainForm }
+
+procedure TMainForm.LoadFromInternetCallBook(info: TInformRecord);
+begin
+  Edit1.Text := info.Name;
+  Edit2.Text := info.City;
+  Edit3.Text := info.Grid;
+  Edit4.Text := info.State;
+  if Length(info.Error) > 0 then
+    StatusBar1.Panels.Items[0].Text := info.Error
+  else
+    StatusBar1.Panels.Items[0].Text := '';
+end;
+
+procedure TMainForm.LoadPhotoFromInternetCallbook(info: TInformRecord);
+begin
+  if MenuItem111.Checked then
+  begin
+    if dmFunc.Extention(info.PhotoURL) = '.gif' then
+      tIMG.Picture.Assign(info.PhotoGIF);
+    if dmFunc.Extention(info.PhotoURL) = '.jpg' then
+      tIMG.Picture.Assign(info.PhotoJPEG);
+    if dmFunc.Extention(info.PhotoURL) = '.png' then
+      tIMG.Picture.Assign(info.PhotoPNG);
+  end;
+end;
 
 procedure TMainForm.FindCountryFlag(Country: string);
 var
@@ -972,13 +999,7 @@ begin
   if (EditButton1.SelLength <> 0) and (Key = VK_BACK) then
     seleditnum := EditButton1.SelStart;
   if (Key = VK_RETURN) then
-  begin
-    // if (CallBookLiteConnection.Connected = False) and
-    //   (Length(dmFunc.ExtractCallsign(EditButton1.Text)) >= 3) then
-    //   InformationForm.GetInformation(EditButton1.Text, True);
-    if Length(dmFunc.ExtractCallsign(EditButton1.Text)) > 2 then
-      InformationForm.GetInformation(EditButton1.Text, True);
-  end;
+    InfoDM.GetInformation(dmFunc.ExtractCallsign(EditButton1.Text), 'MainForm');
 end;
 
 procedure TMainForm.Fl_TimerTimer(Sender: TObject);
@@ -2124,11 +2145,12 @@ var
 begin
   if aSocket.GetMessage(mess) > 0 then
   begin
-    if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' + DBRecord.CurrCall+#10) then
+    if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' +
+      DBRecord.CurrCall + #10) then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' + IntToStr(lastTCPport))
     else
       StatusBar1.Panels.Items[0].Text := rSyncErrCall;
-    if (mess = 'Hello') or (mess = 'Hello'+#10) then
+    if (mess = 'Hello') or (mess = 'Hello' + #10) then
       LUDPComponent1.SendMessage('Welcome!');
   end;
 end;
@@ -3541,9 +3563,12 @@ end;
 
 procedure TMainForm.SpeedButton16Click(Sender: TObject);
 begin
-  CheckForm := 'Main';
   if EditButton1.Text <> '' then
-    InformationForm.Show
+  begin
+    InformationForm.Callsign := dmFunc.ExtractCallsign(EditButton1.Text);
+    InformationForm.FromForm := 'MainForm';
+    InformationForm.Show;
+  end
   else
     ShowMessage(rNotCallsign);
 end;

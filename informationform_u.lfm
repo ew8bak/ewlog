@@ -10,8 +10,6 @@ object InformationForm: TInformationForm
   DefaultMonitor = dmMainForm
   FormStyle = fsSystemStayOnTop
   OnClose = FormClose
-  OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '2.0.10.0'

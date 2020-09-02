@@ -36,8 +36,11 @@ type
     FreqToCloudLog: boolean;
     QRZCOM_Login: string;
     QRZCOM_Pass: string;
+    HAMQTH_Login: string;
+    HAMQTH_Pass: string;
     QRZRU_Login: string;
     QRZRU_Pass: string;
+    CallBookSystem: string;
   end;
 
 implementation

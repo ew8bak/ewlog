@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="75">
+    <Units Count="76">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -625,6 +625,11 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="infoDM_U"/>
       </Unit74>
+      <Unit75>
+        <Filename Value="getsession.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="getSession"/>
+      </Unit75>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

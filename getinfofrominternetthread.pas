@@ -8,18 +8,17 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, LazFileUtils, LazUTF8, ssl_openssl;
+  Classes, SysUtils, LazFileUtils, LazUTF8, ssl_openssl, httpsend;
 
 type
   TGetInfoThread = class(TThread)
   protected
     procedure Execute; override;
-    procedure GetInfo(url: string);
+    function GetInfo(url: string): Boolean;
   private
     resp: String;
   public
     url: string;
-    from: string;
     constructor Create;
     procedure ResultProc;
   end;
@@ -28,11 +27,12 @@ var
   GetInfoThread: TGetInfoThread;
 
 implementation
+uses
+infoDM_U;
 
-uses Forms, LCLType, HTTPSend, MainForm_U, InformationForm_U, dmFunc_U;
-
-procedure TGetInfoThread.GetInfo(url: string);
+function TGetInfoThread.GetInfo(url: string): Boolean;
 begin
+  Result:=False;
   try
    with THTTPSend.Create do
     begin
@@ -44,7 +44,7 @@ begin
     end;
 
   finally
-  Synchronize(@ResultProc);
+   Result:=True;
   end;
 end;
 
@@ -56,12 +56,12 @@ end;
 
 procedure TGetInfoThread.ResultProc;
 begin
-  InformationForm.GetInfoFromThread(resp, from);
+  InfoDM.GetResponseFromThread(resp);
 end;
 
 procedure TGetInfoThread.Execute;
 begin
-  GetInfo(url);
+  if GetInfo(url) then Synchronize(@ResultProc);
 end;
 
 end.
