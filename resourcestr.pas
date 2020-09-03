@@ -164,6 +164,8 @@ resourcestring
   rCheckMode = 'Mode is empty. Check';
   rLogEntryExist = 'Log entry already exists';
   rTableLogDBError = 'Log table ERROR';
+  rCheckBoxFormMain = 'Default form: MAIN';
+  rCheckBoxFormMini = 'Default form: MINI';
 implementation
 
 end.

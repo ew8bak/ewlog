@@ -3899,7 +3899,6 @@ object MainForm: TMainForm
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
-      OnClick = MenuItem8Click
     end
     object MenuItem9: TMenuItem
       Caption = '-'
@@ -4937,13 +4936,6 @@ object MainForm: TMainForm
       Caption = 'Exit'
       OnClick = MenuItem98Click
     end
-  end
-  object WSJT_Timer: TTimer
-    Enabled = False
-    Interval = 1200
-    OnTimer = WSJT_TimerTimer
-    Left = 685
-    Top = 197
   end
   object LTCPComponent1: TLTCPComponent
     Port = 0

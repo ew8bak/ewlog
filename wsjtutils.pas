@@ -104,7 +104,6 @@ procedure Unpack(const AData: TIdBytes; var index: integer; var AValue: longint)
 begin
   AValue := BytesToInt32(AData, index);
   AValue := Int32(GStack.HostToNetwork(UInt32(AValue)));
- // AValue := NToHl(BytesToInt32(AData, index));
   index := index + SizeOf(AValue);
 end;
 
@@ -115,9 +114,6 @@ begin
   {$IFNDEF BIG_ENDIAN}
   AValue := SwapEndian(AValue);
   {$ENDIF}
-//  AValue := BytesToInt64(AData, index);
-//  AValue := Int64(GStack.NetworkToHost(UInt64(AValue)));
-//  index := index + SizeOf(AValue);
 end;
 
 procedure Unpack(const AData: TIdBytes; var index: integer;
@@ -154,12 +150,7 @@ begin
 
   AValue := BytesToUInt32(AData, index);
   AValue := LongWord (GStack.HostToNetwork(LongWord(AValue)));
- // AValue := NToHl(BytesToInt32(AData, index));
   index := index + SizeOf(AValue);
-
-  ///
-  //AValue := longword(NToHl(BytesToInt32(AData, index)));
-  //index := index + SizeOf(AValue);
 end;
 
 procedure Unpack(const AData: TIdBytes; var index: integer; var AValue: double) overload;

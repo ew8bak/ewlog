@@ -40,7 +40,6 @@ type
     Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
-    Label25: TLabel;
     Label26: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -124,7 +123,6 @@ begin
   Label23.Caption := '';
   Label23.Caption := '';
   Label24.Caption := '';
-  Label25.Caption := '';
   Label26.Caption := '';
   Image1.Picture.Clear;
 end;

@@ -697,4 +697,63 @@ object ConfigForm: TConfigForm
       ParentColor = False
     end
   end
+  object GroupBox7: TGroupBox
+    Left = 800
+    Height = 112
+    Top = 160
+    Width = 216
+    Caption = 'HAMQTH XML API'
+    ClientHeight = 96
+    ClientWidth = 214
+    TabOrder = 11
+    object Edit14: TEdit
+      Left = 64
+      Height = 25
+      Top = 8
+      Width = 136
+      TabOrder = 0
+    end
+    object Edit15: TEdit
+      Left = 64
+      Height = 25
+      Top = 40
+      Width = 136
+      TabOrder = 1
+    end
+    object Label25: TLabel
+      AnchorSideTop.Control = Edit14
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Edit14
+      Left = 29
+      Height = 13
+      Top = 14
+      Width = 30
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Login'
+      ParentColor = False
+    end
+    object Label26: TLabel
+      AnchorSideTop.Control = Edit15
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Edit15
+      Left = 8
+      Height = 13
+      Top = 46
+      Width = 51
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Password'
+      ParentColor = False
+    end
+  end
+  object CheckBox10: TCheckBox
+    Left = 568
+    Height = 23
+    Top = 344
+    Width = 101
+    Caption = 'Default form:'
+    OnChange = CheckBox10Change
+    TabOrder = 12
+  end
 end

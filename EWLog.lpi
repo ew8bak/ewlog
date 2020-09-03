@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="76">
+    <Units Count="77">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -630,6 +630,12 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSession"/>
       </Unit75>
+      <Unit76>
+        <Filename Value="miniform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MiniForm"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit76>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

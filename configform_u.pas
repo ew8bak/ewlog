@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock,
+  StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
   synautil;
 
 resourcestring
@@ -40,6 +40,7 @@ type
     Button3: TButton;
     Button4: TButton;
     CheckBox1: TCheckBox;
+    CheckBox10: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
@@ -53,6 +54,8 @@ type
     Edit11: TEdit;
     Edit12: TEdit;
     Edit13: TEdit;
+    Edit14: TEdit;
+    Edit15: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
@@ -68,6 +71,7 @@ type
     GroupBox4: TGroupBox;
     GroupBox5: TGroupBox;
     GroupBox6: TGroupBox;
+    GroupBox7: TGroupBox;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -85,6 +89,8 @@ type
     Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -99,6 +105,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure CheckBox10Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
@@ -182,7 +189,7 @@ begin
   else
     INIFile.WriteBool('SetLog', 'PrintPrev', False);
 
-   if CheckBox8.Checked then
+  if CheckBox8.Checked then
     INIFile.WriteBool('SetLog', 'AutoCloudLog', True)
   else
     INIFile.WriteBool('SetLog', 'AutoCloudLog', False);
@@ -193,6 +200,12 @@ begin
     INIFile.WriteBool('SetLog', 'FreqToCloudLog', False);
 
   MainForm.PrintPrev := CheckBox5.Checked;
+
+  if CheckBox10.Checked then
+    INIFile.WriteString('SetLog', 'MainForm', 'MAIN')
+  else
+    INIFile.WriteString('SetLog', 'MainForm', 'MINI');
+
 end;
 
 procedure TConfigForm.ReadINI;
@@ -294,6 +307,20 @@ begin
   end;
 end;
 
+procedure TConfigForm.CheckBox10Change(Sender: TObject);
+begin
+  if CheckBox10.Checked then
+  begin
+    CheckBox10.Caption := rCheckBoxFormMain;
+    IniSet.MainForm := 'MAIN';
+  end
+  else
+  begin
+    CheckBox10.Caption := rCheckBoxFormMini;
+    IniSet.MainForm := 'MINI';
+  end;
+end;
+
 procedure TConfigForm.CheckBox1Change(Sender: TObject);
 begin
   if CheckBox1.Checked then
@@ -380,6 +407,16 @@ var
 begin
   ReadINI;
   Button4.Caption := rCheckUpdates;
+  if IniSet.MainForm = 'MAIN' then
+  begin
+    CheckBox10.Caption := rCheckBoxFormMain;
+    CheckBox10.Checked := True;
+  end
+  else
+  begin
+    CheckBox10.Caption := rCheckBoxFormMini;
+    CheckBox10.Checked := False;
+  end;
 {  {$IFDEF UNIX}
   sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
     {$ELSE}

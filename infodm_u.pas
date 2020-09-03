@@ -253,7 +253,6 @@ begin
   end;
   if (Length(error) > 0) or (Length(errorcode) > 0) then
   begin
-   // ShowMessage('Error:' + error + '; Error code:' + errorcode);
     InfoR.Error := error;
     InfoR.ErrorCode := errorcode;
   end;

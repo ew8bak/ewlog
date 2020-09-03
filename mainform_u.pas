@@ -188,7 +188,6 @@ type
     PrintQuery: TSQLQuery;
     TabSheet2: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
-    WSJT_Timer: TTimer;
     TrayPopup: TPopupMenu;
     SpeedButton18: TSpeedButton;
     SpeedButton19: TSpeedButton;
@@ -433,7 +432,6 @@ type
     procedure MenuItem87Click(Sender: TObject);
     procedure MenuItem88Click(Sender: TObject);
     procedure MenuItem89Click(Sender: TObject);
-    procedure MenuItem8Click(Sender: TObject);
     procedure MenuItem91Click(Sender: TObject);
     procedure MenuItem92Click(Sender: TObject);
     procedure MenuItem94Click(Sender: TObject);
@@ -504,7 +502,6 @@ type
       HitInfo: TVTHeaderHitInfo);
     procedure VirtualStringTree1NodeClick(Sender: TBaseVirtualTree;
       const HitInfo: THitInfo);
-    procedure WSJT_TimerTimer(Sender: TObject);
 
   private
     { private declarations }
@@ -521,11 +518,6 @@ type
     ColorTextGrid: integer;
     ColorBackGrid: integer;
     SizeTextGrid: integer;
-    columnsGrid: array[0..29] of string;
-    columnsWidth: array[0..29] of integer;
-    columnsVisible: array[0..29] of boolean;
-    columnsDX: array[0..8] of string;
-    columnsDXWidth: array[0..8] of integer;
     PhotoDir: string;
     ExportAdifSelect: boolean;
     ExportAdifArray: array of integer;
@@ -546,7 +538,6 @@ type
     inupdate: boolean;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure Clr;
-    procedure SetDXColumns(Save: boolean);
     function GetNewChunk: string;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     function GetModeFromFreq(MHz: string): string;
@@ -761,28 +752,6 @@ begin
   end;
 end;
 
-procedure TMainForm.SetDXColumns(Save: boolean);
-var
-  VSTSaveStream: TMemoryStream;
-begin
-  try
-    VSTSaveStream := TMemoryStream.Create;
-    if Save then
-    begin
-      VirtualStringTree1.Header.SaveToStream(VSTSaveStream);
-      VSTSaveStream.SaveToFile(FilePATH + 'dxColumns.dat');
-    end
-    else
-    if FileExistsUTF8(FilePATH + 'dxColumns.dat') then
-    begin
-      VSTSaveStream.LoadFromFile(FilePATH + 'dxColumns.dat');
-      VirtualStringTree1.Header.LoadFromStream(VSTSaveStream);
-    end;
-  finally
-    VSTSaveStream.Free;
-  end;
-end;
-
 procedure TMainForm.Clr;
 var
   Centre: TRealPoint;
@@ -977,15 +946,6 @@ begin
       viewPhoto.Close;
     end;
   end;
-
-  {
-
-  if (CallBookLiteConnection.Connected) and
-    ((INIFile.ReadString('SetLog', 'Sprav', '') = 'False') or
-    (INIFile.ReadString('SetLog', 'SpravQRZCOM', '') = 'False')) then
-    SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
- }
-
 end;
 
 procedure TMainForm.EditButton1KeyDown(Sender: TObject; var Key: word;
@@ -1025,15 +985,6 @@ begin
         fldigiversion := Fldigi_GetVersion;
         if not connected then
         begin
-
-      {$IFDEF WINDOWS}
-          TrayIcon1.BalloonHint := rConnectedToFldigi;
-          TrayIcon1.ShowBalloonHint;
-      {$ELSE}
-          SysUtils.ExecuteProcess('/usr/bin/notify-send',
-            ['EWLog', rConnectedToFldigi]);
-      {$ENDIF}
-
           MenuItem43.Enabled := False;
           dmFlModem.GetModemName(StrToInt(Fldigi_GetModemId), mode, subdigimode);
           ComboBox2.Text := mode;
@@ -1049,13 +1000,6 @@ begin
     fldigiactive := False;
     if not connected then
     begin
-      {$IFDEF WINDOWS}
-      TrayIcon1.BalloonHint := rDisconnectedFromFldigi;
-      TrayIcon1.ShowBalloonHint;
-      {$ELSE}
-      SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        ['EWLog', rDisconnectedFromFldigi]);
-      {$ENDIF}
       ComboBox2.ItemIndex := 0;
       ComboBox2CloseUp(Sender);
       MenuItem43.Enabled := True;
@@ -1135,20 +1079,7 @@ begin
       CloseAction := caNone;
   end;
   //Сохранение размещения колонок
-  for i := 0 to 29 do
-  begin
-    INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
-      DBGrid1.Columns.Items[i].FieldName);
-  end;
-
-  for i := 0 to 29 do
-  begin
-    if DBGrid1.Columns.Items[i].Width <> 0 then
-      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
-        DBGrid1.Columns.Items[i].Width)
-    else
-      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
-  end;
+  MainFunc.SaveGrids(DBGrid1);
 
   if MainForm.WindowState <> wsMaximized then
   begin
@@ -1171,7 +1102,7 @@ begin
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
   INIFile.WriteInteger('SetLog', 'StartNum', num_start);
 
-  SetDXColumns(True);
+  MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
 
   if CheckBox3.Checked = True then
     INIFile.WriteString('SetLog', 'UseMAPS', 'YES')
@@ -1885,9 +1816,6 @@ begin
   if lastTCPport = -1 then
     MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
 
-
-  //if usewsjt then
-  //  WSJT_Timer.Enabled := True;
   if usefldigi then
     Fl_Timer.Enabled := True;
 
@@ -1899,7 +1827,7 @@ begin
   UnUsIndex := 0;
   MainFunc.SetGrid(DBGrid1);
   MainFunc.SetGrid(DBGrid2);
-  SetDXColumns(False);
+  MainFunc.SetDXColumns(VirtualStringTree1, False, VirtualStringTree1);
 
   if not IniSet.ShowTRXForm then
     MenuItem88.Checked := True
@@ -1993,6 +1921,7 @@ begin
   MapView1.Active := True;
   CheckUpdatesTimer.Enabled := True;
   ComboBox7.ItemIndex := 3;
+  IniSet.CurrentForm:='MAIN';
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
@@ -2887,8 +2816,8 @@ begin
     not WSJT_UDP_Form.WSJT_IsRunning then
   begin
     txWSJT := not connectedWSJT;
-    if dmFunc.RunProgram(IniSet.WSJT_PATH, wsjt_args) then
-      WSJT_Timer.Interval := 1200;
+  //  if dmFunc.RunProgram(IniSet.WSJT_PATH, wsjt_args) then
+  //    WSJT_Timer.Interval := 1200;
   end;
 end;
 
@@ -3509,11 +3438,6 @@ begin
     //  InitializeDB('SQLite');
     MenuItem89.Caption := rSwitchDBMySQL;
   end;}
-end;
-
-procedure TMainForm.MenuItem8Click(Sender: TObject);
-begin
-
 end;
 
 procedure TMainForm.MenuItem91Click(Sender: TObject);
@@ -4177,53 +4101,6 @@ begin
   VirtualStringTree1.Selected[XNode] := True;
 end;
 
-procedure TMainForm.WSJT_TimerTimer(Sender: TObject);
-begin
-  {if WSJT_UDP_Form.WSJT_IsRunning then
-  begin
-
-    if WSJT_Timer.Interval > 1000 then
-    begin
-      WSJT_Timer.Interval := 1000;
-      wsjtactive := usewsjt;
-      if wsjtactive then
-      begin
-        if not connectedWSJT then
-        begin
-          {$IFDEF WINDOWS}
-          TrayIcon1.BalloonHint := rLogConWSJT;
-          TrayIcon1.ShowBalloonHint;
-          {$ELSE}
-          SysUtils.ExecuteProcess('/usr/bin/notify-send',
-            ['EWLog', rLogConWSJT]);
-          {$ENDIF}
-          if INIFile.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
-            MenuItem74.Enabled := False;
-        end;
-      end;
-    end;
-  end
-  else if WSJT_Timer.Interval = 1000 then
-  begin
-    WSJT_Timer.Interval := 10000;
-    wsjtactive := False;
-    if not connectedWSJT then
-    begin
-      {$IFDEF WINDOWS}
-      TrayIcon1.BalloonHint := rLogNConWSJT;
-      TrayIcon1.ShowBalloonHint;
-      {$ELSE}
-      SysUtils.ExecuteProcess('/usr/bin/notify-send',
-        ['EWLog', rLogNConWSJT]);
-      {$ENDIF}
-      if INIFile.ReadString('FLDIGI', 'USEFLDIGI', '') = 'YES' then
-        MenuItem74.Enabled := True;
-
-      Clr();
-    end;
-    Exit;
-  end; }
-end;
 
 procedure TMainForm.SendSpot(freq, call, cname, mode, rsts, grid: string);
 var

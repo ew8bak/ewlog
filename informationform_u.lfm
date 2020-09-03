@@ -324,18 +324,6 @@ object InformationForm: TInformationForm
       ParentColor = False
       ParentFont = False
     end
-    object Label25: TLabel
-      AnchorSideLeft.Control = GroupBox1
-      Left = 100
-      Height = 13
-      Top = 204
-      Width = 23
-      BorderSpacing.Left = 100
-      Caption = 'text'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
     object Label26: TLabel
       AnchorSideLeft.Control = GroupBox1
       Left = 105

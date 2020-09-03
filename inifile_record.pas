@@ -41,6 +41,8 @@ type
     QRZRU_Login: string;
     QRZRU_Pass: string;
     CallBookSystem: string;
+    MainForm: string;
+    CurrentForm: string;
   end;
 
 implementation

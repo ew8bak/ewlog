@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, DB, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
-  foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer;
+  foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
+  VirtualTrees, LazFileUtils;
 
 type
   bandArray = array of string;
@@ -23,6 +24,9 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
+    procedure SaveGrids(DbGrid: TDBGrid);
+    procedure SetDXColumns(VST: TVirtualStringTree; Save: boolean;
+      var VirtualST: TVirtualStringTree);
     procedure SaveQSO(var SQSO: TQSO);
     procedure SetGrid(var DBGRID: TDBGrid);
     procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
@@ -66,6 +70,11 @@ type
 var
   MainFunc: TMainFunc;
   IniSet: TINIR;
+  columnsGrid: array[0..29] of string;
+  columnsWidth: array[0..29] of integer;
+  columnsVisible: array[0..29] of boolean;
+  columnsDX: array[0..8] of string;
+  columnsDXWidth: array[0..8] of integer;
 
 implementation
 
@@ -73,6 +82,49 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog;
 
 {$R *.lfm}
+
+procedure TMainFunc.SaveGrids(DbGrid: TDBGrid);
+var
+  i: Integer;
+begin
+   for i := 0 to 29 do
+  begin
+    INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
+      DbGrid.Columns.Items[i].FieldName);
+  end;
+
+  for i := 0 to 29 do
+  begin
+    if DbGrid.Columns.Items[i].Width <> 0 then
+      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
+        DbGrid.Columns.Items[i].Width)
+    else
+      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
+  end;
+end;
+
+procedure TMainFunc.SetDXColumns(VST: TVirtualStringTree; Save: boolean;
+  var VirtualST: TVirtualStringTree);
+var
+  VSTSaveStream: TMemoryStream;
+begin
+  try
+    VSTSaveStream := TMemoryStream.Create;
+    if Save then
+    begin
+      VST.Header.SaveToStream(VSTSaveStream);
+      VSTSaveStream.SaveToFile(FilePATH + 'dxColumns.dat');
+    end
+    else
+    if FileExistsUTF8(FilePATH + 'dxColumns.dat') then
+    begin
+      VSTSaveStream.LoadFromFile(FilePATH + 'dxColumns.dat');
+      VirtualST.Header.LoadFromStream(VSTSaveStream);
+    end;
+  finally
+    VSTSaveStream.Free;
+  end;
+end;
 
 function TMainFunc.FindInCallBook(Callsign: string): TFoundQSOR;
 var
@@ -1030,6 +1082,7 @@ begin
   IniSet.CallBookSystem := INIFile.ReadString('SetLog', 'CallBookSystem', '');
   IniSet.HAMQTH_Login := INIFile.ReadString('SetLog', 'HAMQTH_Login', '');
   IniSet.HAMQTH_Pass := INIFile.ReadString('SetLog', 'HAMQTH_Pass', '');
+  IniSet.MainForm := INIFile.ReadString('SetLog', 'MainForm', 'MAIN');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -1485,11 +1538,11 @@ var
 begin
   for i := 0 to 29 do
   begin
-    MainForm.columnsGrid[i] :=
+    columnsGrid[i] :=
       INIFile.ReadString('GridSettings', 'Columns' + IntToStr(i), constColumnName[i]);
-    MainForm.columnsWidth[i] :=
+    columnsWidth[i] :=
       INIFile.ReadInteger('GridSettings', 'ColWidth' + IntToStr(i), constColumnWidth[i]);
-    MainForm.columnsVisible[i] :=
+    columnsVisible[i] :=
       INIFile.ReadBool('GridSettings', 'ColVisible' + IntToStr(i), True);
   end;
 
@@ -1509,9 +1562,9 @@ begin
 
   for i := 0 to 29 do
   begin
-    DBGRID.Columns.Items[i].FieldName := MainForm.columnsGrid[i];
-    DBGRID.Columns.Items[i].Width := MainForm.columnsWidth[i];
-    case MainForm.columnsGrid[i] of
+    DBGRID.Columns.Items[i].FieldName := columnsGrid[i];
+    DBGRID.Columns.Items[i].Width := columnsWidth[i];
+    case columnsGrid[i] of
       'QSL': DBGRID.Columns.Items[i].Title.Caption := rQSL;
       'QSLs': DBGRID.Columns.Items[i].Title.Caption := rQSLs;
       'QSODate': DBGRID.Columns.Items[i].Title.Caption := rQSODate;
@@ -1544,37 +1597,37 @@ begin
       'NoCalcDXCC': DBGRID.Columns.Items[i].Title.Caption := rNoCalcDXCC;
     end;
 
-    case MainForm.columnsGrid[i] of
-      'QSL': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[0];
-      'QSLs': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[1];
-      'QSODate': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[2];
-      'QSOTime': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[3];
-      'QSOBand': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[4];
-      'CallSign': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[5];
-      'QSOMode': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[6];
-      'QSOSubMode': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[7];
-      'OMName': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[8];
-      'OMQTH': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[9];
-      'State': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[10];
-      'Grid': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[11];
-      'QSOReportSent': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[12];
-      'QSOReportRecived': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[13];
-      'IOTA': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[14];
-      'QSLManager': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[15];
-      'QSLSentDate': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[16];
-      'QSLRecDate': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[17];
-      'LoTWRecDate': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[18];
-      'MainPrefix': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[19];
-      'DXCCPrefix': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[20];
-      'CQZone': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[21];
-      'ITUZone': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[22];
-      'ManualSet': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[23];
-      'Continent': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[24];
-      'ValidDX': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[25];
-      'QSL_RCVD_VIA': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[26];
-      'QSL_SENT_VIA': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[27];
-      'USERS': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[28];
-      'NoCalcDXCC': DBGRID.Columns.Items[i].Visible := MainForm.columnsVisible[29];
+    case columnsGrid[i] of
+      'QSL': DBGRID.Columns.Items[i].Visible := columnsVisible[0];
+      'QSLs': DBGRID.Columns.Items[i].Visible := columnsVisible[1];
+      'QSODate': DBGRID.Columns.Items[i].Visible := columnsVisible[2];
+      'QSOTime': DBGRID.Columns.Items[i].Visible := columnsVisible[3];
+      'QSOBand': DBGRID.Columns.Items[i].Visible := columnsVisible[4];
+      'CallSign': DBGRID.Columns.Items[i].Visible := columnsVisible[5];
+      'QSOMode': DBGRID.Columns.Items[i].Visible := columnsVisible[6];
+      'QSOSubMode': DBGRID.Columns.Items[i].Visible := columnsVisible[7];
+      'OMName': DBGRID.Columns.Items[i].Visible := columnsVisible[8];
+      'OMQTH': DBGRID.Columns.Items[i].Visible := columnsVisible[9];
+      'State': DBGRID.Columns.Items[i].Visible := columnsVisible[10];
+      'Grid': DBGRID.Columns.Items[i].Visible := columnsVisible[11];
+      'QSOReportSent': DBGRID.Columns.Items[i].Visible := columnsVisible[12];
+      'QSOReportRecived': DBGRID.Columns.Items[i].Visible := columnsVisible[13];
+      'IOTA': DBGRID.Columns.Items[i].Visible := columnsVisible[14];
+      'QSLManager': DBGRID.Columns.Items[i].Visible := columnsVisible[15];
+      'QSLSentDate': DBGRID.Columns.Items[i].Visible := columnsVisible[16];
+      'QSLRecDate': DBGRID.Columns.Items[i].Visible := columnsVisible[17];
+      'LoTWRecDate': DBGRID.Columns.Items[i].Visible := columnsVisible[18];
+      'MainPrefix': DBGRID.Columns.Items[i].Visible := columnsVisible[19];
+      'DXCCPrefix': DBGRID.Columns.Items[i].Visible := columnsVisible[20];
+      'CQZone': DBGRID.Columns.Items[i].Visible := columnsVisible[21];
+      'ITUZone': DBGRID.Columns.Items[i].Visible := columnsVisible[22];
+      'ManualSet': DBGRID.Columns.Items[i].Visible := columnsVisible[23];
+      'Continent': DBGRID.Columns.Items[i].Visible := columnsVisible[24];
+      'ValidDX': DBGRID.Columns.Items[i].Visible := columnsVisible[25];
+      'QSL_RCVD_VIA': DBGRID.Columns.Items[i].Visible := columnsVisible[26];
+      'QSL_SENT_VIA': DBGRID.Columns.Items[i].Visible := columnsVisible[27];
+      'USERS': DBGRID.Columns.Items[i].Visible := columnsVisible[28];
+      'NoCalcDXCC': DBGRID.Columns.Items[i].Visible := columnsVisible[29];
     end;
   end;
 

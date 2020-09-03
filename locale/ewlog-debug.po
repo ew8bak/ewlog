@@ -313,6 +313,14 @@ msgstr ""
 msgid "Band is empty. Check"
 msgstr ""
 
+#: resourcestr.rcheckboxformmain
+msgid "Default form: MAIN"
+msgstr ""
+
+#: resourcestr.rcheckboxformmini
+msgid "Default form: MINI"
+msgstr ""
+
 #: resourcestr.rcheckmode
 msgid "Mode is empty. Check"
 msgstr ""
@@ -1198,6 +1206,10 @@ msgstr ""
 msgid "Use reference?"
 msgstr ""
 
+#: tconfigform.checkbox10.caption
+msgid "Default form:"
+msgstr ""
+
 #: tconfigform.checkbox2.caption
 msgid "Use bands in meters"
 msgstr ""
@@ -1256,6 +1268,10 @@ msgstr ""
 
 #: tconfigform.groupbox6.caption
 msgid "CloudLog"
+msgstr ""
+
+#: tconfigform.groupbox7.caption
+msgid "HAMQTH XML API"
 msgstr ""
 
 #: tconfigform.label1.caption
@@ -1333,6 +1349,16 @@ msgstr ""
 #: tconfigform.label24.caption
 msgctxt "tconfigform.label24.caption"
 msgid "API key"
+msgstr ""
+
+#: tconfigform.label25.caption
+msgctxt "tconfigform.label25.caption"
+msgid "Login"
+msgstr ""
+
+#: tconfigform.label26.caption
+msgctxt "tconfigform.label26.caption"
+msgid "Password"
 msgstr ""
 
 #: tconfigform.label3.caption
@@ -2439,11 +2465,6 @@ msgstr ""
 
 #: tinformationform.label24.caption
 msgctxt "tinformationform.label24.caption"
-msgid "text"
-msgstr ""
-
-#: tinformationform.label25.caption
-msgctxt "tinformationform.label25.caption"
 msgid "text"
 msgstr ""
 
@@ -3945,6 +3966,10 @@ msgstr ""
 #: tmanagerbaseprefixform.tabsheet3.caption
 msgctxt "tmanagerbaseprefixform.tabsheet3.caption"
 msgid "Country"
+msgstr ""
+
+#: tminiform.caption
+msgid "MiniForm"
 msgstr ""
 
 #: tmm_form.button1.caption

@@ -11,7 +11,7 @@ uses
   cthreads,
 {$ENDIF}{$ENDIF}
   Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils;
+  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils, qso_record;
 
 const
   SJT65: string = '#';
@@ -53,7 +53,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, InitDB_dm;
+uses dmFunc_U, MainForm_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -156,7 +156,7 @@ begin
             MainForm.EditButton1.Text := DXCall;
             MainForm.Edit3.Text := DXGrid;
 
-            if (INIFile.ReadString('SetLog', 'ShowBand', '') = 'True') and
+            if IniSet.showBand and
               (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
               MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
@@ -252,7 +252,7 @@ begin
             MainForm.DateTimePicker1.Time := date;
             MainForm.EditButton1.Text := DXCall;
 
-             if (INIFile.ReadString('SetLog', 'ShowBand', '') = 'True') and
+             if IniSet.showBand and
               (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
               MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
