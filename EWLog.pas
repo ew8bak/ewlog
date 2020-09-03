@@ -85,7 +85,8 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   inform_record,
   infoDM_U,
   getSession,
-  miniform_u;
+  miniform_u,
+  ImbedCallBookCheckRec;
 
 {$R *.res}
 

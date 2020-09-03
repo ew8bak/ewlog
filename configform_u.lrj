@@ -48,5 +48,6 @@
 {"hash":188270809,"name":"tconfigform.groupbox7.caption","sourcebytes":[72,65,77,81,84,72,32,88,77,76,32,65,80,73],"value":"HAMQTH XML API"},
 {"hash":5463550,"name":"tconfigform.label25.caption","sourcebytes":[76,111,103,105,110],"value":"Login"},
 {"hash":145417188,"name":"tconfigform.label26.caption","sourcebytes":[80,97,115,115,119,111,114,100],"value":"Password"},
+{"hash":103590479,"name":"tconfigform.checkbox11.caption","sourcebytes":[85,115,101,32,97,115,32,97,32,114,101,102,101,114,101,110,99,101,63],"value":"Use as a reference?"},
 {"hash":215082362,"name":"tconfigform.checkbox10.caption","sourcebytes":[68,101,102,97,117,108,116,32,102,111,114,109,58],"value":"Default form:"}
 ]}

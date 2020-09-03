@@ -85,9 +85,9 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
 
 procedure TMainFunc.SaveGrids(DbGrid: TDBGrid);
 var
-  i: Integer;
+  i: integer;
 begin
-   for i := 0 to 29 do
+  for i := 0 to 29 do
   begin
     INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
       DbGrid.Columns.Items[i].FieldName);
@@ -139,11 +139,24 @@ begin
         Query.SQL.Text := 'SELECT * FROM `Callbook` WHERE `Call` = ' +
           QuotedStr(Callsign);
         Query.Open;
-        Result.OMName := Query.Fields[2].AsString;
-        Result.OMQTH := Query.Fields[3].AsString;
-        Result.Grid := Query.Fields[4].AsString;
-        Result.State := Query.Fields[5].AsString;
-        Result.QSLManager := Query.Fields[6].AsString;
+        if Query.RecordCount > 0 then
+        begin
+          Result.OMName := Query.Fields[2].AsString;
+          Result.OMQTH := Query.Fields[3].AsString;
+          Result.Grid := Query.Fields[4].AsString;
+          Result.State := Query.Fields[5].AsString;
+          Result.QSLManager := Query.Fields[6].AsString;
+          Result.Found := True;
+        end
+        else
+        begin
+          Result.Found := False;
+          Result.OMName := '';
+          Result.OMQTH := '';
+          Result.Grid := '';
+          Result.State := '';
+          Result.QSLManager := '';
+        end;
         Query.Close;
       end;
     finally

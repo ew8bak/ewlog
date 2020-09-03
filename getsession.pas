@@ -100,7 +100,7 @@ begin
     begin
       with THTTPSend.Create do
       begin
-        if HTTPMethod('GET', HAMQTH_URL + 'u=ew8bak&p=Ml197895551ml') then
+        if HTTPMethod('GET', HAMQTH_URL + 'u='+user+'&p='+key+'') then
         begin
           SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
         end;

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
-  DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record;
+  DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec;
 
 type
 
@@ -27,6 +27,7 @@ type
   private
 
   public
+    function ImbeddedCallBookCheck(PathDB: string): TImbedCallBookCheckRec;
     function ServiceDBInit: boolean;
     function LogbookDBInit: boolean;
     function ImbeddedCallBookInit(Use: boolean): boolean;
@@ -102,18 +103,18 @@ begin
     ShowMessage('Service database Init ERROR')
   else
   if InitDBINI and (DBRecord.InitDB = 'YES') then
-  if (not LogbookDBInit) and (DBRecord.InitDB = 'YES') then
-    ShowMessage('Logbook database ERROR')
-  else
-  if not InitPrefix then
-    ShowMessage('Init Prefix ERROR')
-  else
-  if (not GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB)) and
-    (DBRecord.InitDB = 'YES') then
-    ShowMessage('LogBook Table ERROR')
-  else
-  if (not SelectLogbookTable(LBRecord.LogTable)) and (DBRecord.InitDB = 'YES') then
-    ShowMessage(rDBError);
+    if (not LogbookDBInit) and (DBRecord.InitDB = 'YES') then
+      ShowMessage('Logbook database ERROR')
+    else
+    if not InitPrefix then
+      ShowMessage('Init Prefix ERROR')
+    else
+    if (not GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB)) and
+      (DBRecord.InitDB = 'YES') then
+      ShowMessage('LogBook Table ERROR')
+    else
+    if (not SelectLogbookTable(LBRecord.LogTable)) and (DBRecord.InitDB = 'YES') then
+      ShowMessage(rDBError);
   MainFunc.LoadINIsettings;
   ImbeddedCallBookInit(IniSet.UseIntCallBook);
 end;
@@ -201,6 +202,48 @@ begin
     Result := True;
 end;
 
+function TInitDB.ImbeddedCallBookCheck(PathDB: string): TImbedCallBookCheckRec;
+var
+  Query: TSQLQuery;
+begin
+  try
+    Result.Found := False;
+    if ImbeddedCallBookConnection.Connected then
+      ImbeddedCallBookInit(False);
+    if FileExists(PathDB) then
+    begin
+      try
+        ImbeddedCallBookConnection.DatabaseName := PathDB;
+        Query := TSQLQuery.Create(nil);
+        Query.DataBase := ImbeddedCallBookConnection;
+        ImbeddedCallBookConnection.Connected := True;
+        Query.SQL.Text := 'SELECT COUNT(*) as Count FROM Callbook';
+        Query.Open;
+        Result.NumberOfRec := Query.FieldByName('Count').AsInteger;
+        Query.Close;
+        Query.SQL.Text := 'SELECT * FROM inform';
+        Query.Open;
+        Result.ReleaseDate := Query.FieldByName('date').AsString;
+        Result.Version := Query.FieldByName('version').AsString;
+        Query.Close;
+      finally
+        FreeAndNil(Query);
+        ImbeddedCallBookConnection.Connected := False;
+      end;
+      if Result.NumberOfRec > 0 then
+        Result.Found := True;
+    end;
+
+  except
+    on E: Exception do
+    begin
+      ShowMessage('ImbeddedCallBookCheck: Error: ' + E.ClassName +
+        #13#10 + E.Message);
+      Result.Found := False;
+    end;
+  end;
+end;
+
 function TInitDB.GetLogBookTable(Callsign, typeDataBase: string): boolean;
 var
   LogBookInfoQuery: TSQLQuery;
@@ -244,9 +287,11 @@ begin
           LBRecord.QSLInfo := LogBookInfoQuery.FieldByName('QSLInfo').AsString;
           LBRecord.LogTable := LogBookInfoQuery.FieldByName('LogTable').AsString;
           LBRecord.eQSLccLogin := LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
-          LBRecord.eQSLccPassword := LogBookInfoQuery.FieldByName('EQSLPassword').AsString;
+          LBRecord.eQSLccPassword :=
+            LogBookInfoQuery.FieldByName('EQSLPassword').AsString;
           LBRecord.LoTWLogin := LogBookInfoQuery.FieldByName('LoTW_User').AsString;
-          LBRecord.LoTWPassword := LogBookInfoQuery.FieldByName('LoTW_Password').AsString;
+          LBRecord.LoTWPassword :=
+            LogBookInfoQuery.FieldByName('LoTW_Password').AsString;
           LBRecord.AutoEQSLcc := LogBookInfoQuery.FieldByName('AutoEQSLcc').AsBoolean;
           LBRecord.HRDLogin := LogBookInfoQuery.FieldByName('HRDLogLogin').AsString;
           LBRecord.HRDCode := LogBookInfoQuery.FieldByName('HRDLogPassword').AsString;

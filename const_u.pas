@@ -24,6 +24,7 @@ const
   DownEXEXP: string = 'setup_ewlog_x86_xp.exe';
   {$ENDIF WIN64}
   DownLocaleURL = 'https://update.ewlog.ru/locale.zip';
+  DownIntCallbookURL = 'https://update.ewlog.ru/callbook.db';
 
   port_udp: array [0..5] of integer = (49153, 49155, 49157, 49159, 49161, 52300);
   port_tcp: array [0..5] of integer = (49154, 49156, 49158, 49160, 49162, 52301);

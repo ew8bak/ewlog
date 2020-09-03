@@ -1576,15 +1576,22 @@ begin
 end;
 
 procedure TMainForm.EditButton1ButtonClick(Sender: TObject);
+var
+  FoundQSOR: TFoundQSOR;
 begin
- { if (CallBookLiteConnection.Connected = True) and
-    (INIFile.ReadString('SetLog', 'Sprav', '') = 'False') then
-    SearchCallInCallBook(dmFunc.ExtractCallsign(EditButton1.Text));
-  if (CallBookLiteConnection.Connected = False) and
-    (INIFile.ReadString('SetLog', 'Sprav', '') = 'True') then
+  if InitDB.ImbeddedCallBookConnection.Connected then
   begin
-    InformationForm.GetInformation(EditButton1.Text, True);
-  end;}
+    FoundQSOR := MainFunc.FindInCallBook(dmfunc.ExtractCallsign(EditButton1.Text));
+    Edit1.Text := FoundQSOR.OMName;
+    Edit2.Text := FoundQSOR.OMQTH;
+    Edit3.Text := FoundQSOR.Grid;
+    Edit4.Text := FoundQSOR.State;
+    Edit6.Text := FoundQSOR.QSLManager;
+  end
+  else
+    InfoDM.GetInformation(dmFunc.ExtractCallsign(EditButton1.Text), 'MainForm');
+  if not FoundQSOR.Found then
+    InfoDM.GetInformation(dmFunc.ExtractCallsign(EditButton1.Text), 'MainForm');
 end;
 
 procedure TMainForm.InitClusterINI;
@@ -1921,7 +1928,7 @@ begin
   MapView1.Active := True;
   CheckUpdatesTimer.Enabled := True;
   ComboBox7.ItemIndex := 3;
-  IniSet.CurrentForm:='MAIN';
+  IniSet.CurrentForm := 'MAIN';
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
@@ -2816,8 +2823,8 @@ begin
     not WSJT_UDP_Form.WSJT_IsRunning then
   begin
     txWSJT := not connectedWSJT;
-  //  if dmFunc.RunProgram(IniSet.WSJT_PATH, wsjt_args) then
-  //    WSJT_Timer.Interval := 1200;
+    //  if dmFunc.RunProgram(IniSet.WSJT_PATH, wsjt_args) then
+    //    WSJT_Timer.Interval := 1200;
   end;
 end;
 

@@ -746,6 +746,15 @@ object ConfigForm: TConfigForm
       Caption = 'Password'
       ParentColor = False
     end
+    object CheckBox11: TCheckBox
+      Left = 3
+      Height = 23
+      Top = 72
+      Width = 133
+      Caption = 'Use as a reference?'
+      OnChange = CheckBox11Change
+      TabOrder = 2
+    end
   end
   object CheckBox10: TCheckBox
     Left = 568

@@ -1210,6 +1210,11 @@ msgstr ""
 msgid "Default form:"
 msgstr ""
 
+#: tconfigform.checkbox11.caption
+msgctxt "tconfigform.checkbox11.caption"
+msgid "Use as a reference?"
+msgstr ""
+
 #: tconfigform.checkbox2.caption
 msgid "Use bands in meters"
 msgstr ""

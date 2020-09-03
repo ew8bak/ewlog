@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="77">
+    <Units Count="78">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -636,6 +636,11 @@
         <ComponentName Value="MiniForm"/>
         <ResourceBaseClass Value="Form"/>
       </Unit76>
+      <Unit77>
+        <Filename Value="imbedcallbookcheckrec.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ImbedCallBookCheckRec"/>
+      </Unit77>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
-  synautil;
+  synautil, const_u, ImbedCallBookCheckRec;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -41,6 +41,7 @@ type
     Button4: TButton;
     CheckBox1: TCheckBox;
     CheckBox10: TCheckBox;
+    CheckBox11: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
@@ -106,6 +107,7 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure CheckBox10Change(Sender: TObject);
+    procedure CheckBox11Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
@@ -119,7 +121,6 @@ type
     procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
       const Value: string);
     procedure DownloadCallBookFile;
-    function GetSize(URL: string): int64;
   private
     Download: int64;
     { private declarations }
@@ -133,7 +134,7 @@ var
 implementation
 
 uses
-  MainForm_U, UpdateForm_U, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM;
+  MainForm_U, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -150,40 +151,27 @@ begin
   INIFile.WriteString('TelnetCluster', 'Login', Edit11.Text);
   INIFile.WriteString('TelnetCluster', 'Password', Edit12.Text);
   INIFile.WriteBool('TelnetCluster', 'AutoStart', CheckBox4.Checked);
-
   INIFile.WriteString('SetLog', 'CloudLogServer', Edit10.Text);
   INIFile.WriteString('SetLog', 'CloudLogApi', Edit13.Text);
+  INIFile.WriteBool('SetLog', 'IntCallBook', CheckBox1.Checked);
+  INIFile.WriteBool('SetLog', 'StateToQSLInfo', CheckBox6.Checked);
+  INIFile.WriteString('SetLog', 'QRZRU_Login', Edit6.Text);
+  INIFile.WriteString('SetLog', 'QRZRU_Pass', Edit7.Text);
+  INIFile.WriteString('SetLog', 'QRZCOM_Login', Edit8.Text);
+  INIFile.WriteString('SetLog', 'QRZCOM_Pass', Edit9.Text);
+  INIFile.WriteString('SetLog', 'HAMQTH_Login', Edit14.Text);
+  INIFile.WriteString('SetLog', 'HAMQTH_Pass', Edit15.Text);
 
   if RadioButton1.Checked then
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
   else
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
-  if CheckBox1.Checked then
-    INIFile.WriteString('SetLog', 'UseCallBook', 'YES')
-  else
-    INIFile.WriteString('SetLog', 'UseCallBook', 'NO');
 
   if CheckBox2.Checked then
     INIFile.WriteString('SetLog', 'ShowBand', 'True')
   else
     INIFile.WriteString('SetLog', 'ShowBand', 'False');
 
-  if CheckBox7.Checked then
-    INIFile.WriteString('SetLog', 'SpravQRZCOM', 'True')
-  else
-    INIFile.WriteString('SetLog', 'SpravQRZCOM', 'False');
-
-  INIFile.WriteBool('SetLog', 'StateToQSLInfo', CheckBox6.Checked);
-  INIFile.WriteString('SetLog', 'QRZ_Login', Edit6.Text);
-  INIFile.WriteString('SetLog', 'QRZ_Pass', Edit7.Text);
-
-  INIFile.WriteString('SetLog', 'QRZCOM_Login', Edit8.Text);
-  INIFile.WriteString('SetLog', 'QRZCOM_Pass', Edit9.Text);
-
-  if CheckBox3.Checked then
-    INIFile.WriteString('SetLog', 'Sprav', 'True')
-  else
-    INIFile.WriteString('SetLog', 'Sprav', 'False');
   if CheckBox5.Checked then
     INIFile.WriteBool('SetLog', 'PrintPrev', True)
   else
@@ -198,8 +186,6 @@ begin
     INIFile.WriteBool('SetLog', 'FreqToCloudLog', True)
   else
     INIFile.WriteBool('SetLog', 'FreqToCloudLog', False);
-
-  MainForm.PrintPrev := CheckBox5.Checked;
 
   if CheckBox10.Checked then
     INIFile.WriteString('SetLog', 'MainForm', 'MAIN')
@@ -231,38 +217,41 @@ begin
     RadioButton1.Checked := True
   else
     RadioButton2.Checked := True;
-  if INIFile.ReadString('SetLog', 'UseCallBook', '') = 'YES' then
-    CheckBox1.Checked := True
-  else
-    CheckBox1.Checked := False;
+
+  CheckBox1.Checked := INIFile.ReadBool('SetLog', 'IntCallBook', False);
 
   if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
     CheckBox2.Checked := True
   else
     CheckBox2.Checked := False;
 
-  Edit6.Text := INIFile.ReadString('SetLog', 'QRZ_Login', '');
-  Edit7.Text := INIFile.ReadString('SetLog', 'QRZ_Pass', '');
-
+  Edit6.Text := INIFile.ReadString('SetLog', 'QRZRU_Login', '');
+  Edit7.Text := INIFile.ReadString('SetLog', 'QRZRU_Pass', '');
   Edit8.Text := INIFile.ReadString('SetLog', 'QRZCOM_Login', '');
   Edit9.Text := INIFile.ReadString('SetLog', 'QRZCOM_Pass', '');
-
-  if INIFile.ReadString('SetLog', 'Sprav', '') = 'True' then
-    CheckBox3.Checked := True
-  else
-    CheckBox3.Checked := False;
-
-  if INIFile.ReadString('SetLog', 'SpravQRZCOM', '') = 'True' then
-    CheckBox7.Checked := True
-  else
-    CheckBox7.Checked := False;
+  Edit14.Text := INIFile.ReadString('SetLog', 'HAMQTH_Login', '');
+  Edit15.Text := INIFile.ReadString('SetLog', 'HAMQTH_Pass', '');
 
   CheckBox6.Checked := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
+  CheckBox5.Checked := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 
-  if INIFile.ReadBool('SetLog', 'PrintPrev', False) = True then
-    CheckBox5.Checked := True
+  if IniSet.CallBookSystem = 'QRZRU' then
+    CheckBox3.Checked:=True;
+  if IniSet.CallBookSystem = 'QRZCOM' then
+    CheckBox7.Checked:=True;
+  if IniSet.CallBookSystem = 'HAMQTH' then
+    CheckBox11.Checked:=True;
+
+  if IniSet.MainForm = 'MAIN' then
+  begin
+    CheckBox10.Caption := rCheckBoxFormMain;
+    CheckBox10.Checked := True;
+  end
   else
-    CheckBox5.Checked := False;
+  begin
+    CheckBox10.Caption := rCheckBoxFormMini;
+    CheckBox10.Checked := False;
+  end;
 end;
 
 procedure TConfigForm.Button2Click(Sender: TObject);
@@ -301,8 +290,7 @@ begin
   else
   if Button4.Caption = rDownload then
   begin
-    // MainForm.CallBookLiteConnection.Connected := False;
-    //UseCallBook := 'NO';
+    InitDB.ImbeddedCallBookInit(False);
     DownloadCallBookFile;
   end;
 end;
@@ -321,6 +309,25 @@ begin
   end;
 end;
 
+procedure TConfigForm.CheckBox11Change(Sender: TObject);
+begin
+  if CheckBox11.Checked then
+  begin
+    CheckBox7.Checked := False;
+    CheckBox3.Checked := False;
+  end;
+  if CheckBox11.Checked then
+  begin
+    INIFile.WriteString('SetLog', 'CallBookSystem', 'HAMQTH');
+    IniSet.CallBookSystem := 'HAMQTH';
+  end
+  else
+  begin
+    INIFile.WriteString('SetLog', 'CallBookSystem', '');
+    IniSet.CallBookSystem := '';
+  end;
+end;
+
 procedure TConfigForm.CheckBox1Change(Sender: TObject);
 begin
   if CheckBox1.Checked then
@@ -328,8 +335,6 @@ begin
     InitDB.ImbeddedCallBookInit(CheckBox1.Checked);
     IniSet.UseIntCallBook := True;
     INIFile.WriteBool('SetLog', 'IntCallBook', True);
-    CheckBox3.Checked := False;
-    CheckBox7.Checked := False;
   end
   else
   begin
@@ -367,14 +372,19 @@ procedure TConfigForm.CheckBox3Change(Sender: TObject);
 begin
   if CheckBox3.Checked = True then
   begin
-    CheckBox1.Checked := False;
     CheckBox7.Checked := False;
-    // MainForm.CallBookLiteConnection.Connected := False;
+    CheckBox11.Checked := False;
   end;
   if CheckBox3.Checked then
-    INIFile.WriteString('SetLog', 'Sprav', 'True')
+  begin
+    INIFile.WriteString('SetLog', 'CallBookSystem', 'QRZRU');
+    IniSet.CallBookSystem := 'QRZRU';
+  end
   else
-    INIFile.WriteString('SetLog', 'Sprav', 'False');
+  begin
+    INIFile.WriteString('SetLog', 'CallBookSystem', '');
+    IniSet.CallBookSystem := '';
+  end;
 end;
 
 procedure TConfigForm.CheckBox6Change(Sender: TObject);
@@ -386,14 +396,19 @@ procedure TConfigForm.CheckBox7Change(Sender: TObject);
 begin
   if CheckBox7.Checked = True then
   begin
-    CheckBox1.Checked := False;
     CheckBox3.Checked := False;
-    // MainForm.CallBookLiteConnection.Connected := False;
+    CheckBox11.Checked := False;
   end;
-  if CheckBox7.Checked = True then
-    INIFile.WriteString('SetLog', 'SpravQRZCOM', 'True')
+  if CheckBox7.Checked then
+  begin
+    INIFile.WriteString('SetLog', 'CallBookSystem', 'QRZCOM');
+    IniSet.CallBookSystem := 'QRZCOM';
+  end
   else
-    INIFile.WriteString('SetLog', 'SpravQRZCOM', 'False');
+  begin
+    INIFile.WriteString('SetLog', 'CallBookSystem', '');
+    IniSet.CallBookSystem := '';
+  end;
 end;
 
 procedure TConfigForm.FormCreate(Sender: TObject);
@@ -403,45 +418,19 @@ end;
 
 procedure TConfigForm.FormShow(Sender: TObject);
 var
-  sDBPath: string;
+  CheckRec: TImbedCallBookCheckRec;
 begin
   ReadINI;
   Button4.Caption := rCheckUpdates;
-  if IniSet.MainForm = 'MAIN' then
-  begin
-    CheckBox10.Caption := rCheckBoxFormMain;
-    CheckBox10.Checked := True;
-  end
-  else
-  begin
-    CheckBox10.Caption := rCheckBoxFormMini;
-    CheckBox10.Checked := False;
-  end;
-{  {$IFDEF UNIX}
-  sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  sDBPath := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
 
-  if FileExistsUTF8(sDBPath + 'callbook.db') then
+  CheckRec := InitDB.ImbeddedCallBookCheck(FilePATH + 'callbook.db');
+
+  if CheckRec.Found then
   begin
-    GroupBox2.Caption := rReferenceBook;
-    CheckCallBook.Close;
-    CheckCallBook.SQL.Clear;
-   // MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
-    CheckCallBook.SQL.Add('SELECT COUNT(*) as Count FROM Callbook');
-    CheckCallBook.Open;
-    Label11.Caption := rNumberOfRecords +
-      IntToStr(CheckCallBook.FieldByName('Count').AsInteger);
-    CheckCallBook.Close;
-    CheckCallBook.SQL.Clear;
-    CheckCallBook.SQL.Add('SELECT * FROM inform');
-    CheckCallBook.Open;
-    Label10.Caption := rReleaseDate + CheckCallBook.FieldByName('date').AsString;
-    Label14.Caption := CheckCallBook.FieldByName('version').AsString;
-    CheckCallBook.Close;
-   // MainForm.CallBookLiteConnection.Connected:=False;
+    Label11.Caption := rNumberOfRecords + IntToStr(CheckRec.NumberOfRec);
+    Label14.Caption := CheckRec.Version;
+    Label10.Caption := rReleaseDate + CheckRec.ReleaseDate;
+    CheckBox1.Enabled := True;
   end
   else
   begin
@@ -449,7 +438,10 @@ begin
     label11.Caption := rNumberOfRecordsNot;
     Label10.Caption := rReleaseDateNot;
     Label14.Caption := '---';
-  end; }
+    InitDB.ImbeddedCallBookInit(False);
+    CheckBox1.Checked := False;
+    CheckBox1.Enabled := False;
+  end;
 end;
 
 procedure TConfigForm.Button1Click(Sender: TObject);
@@ -457,6 +449,7 @@ begin
   SaveINI;
   LoginCluster := Edit11.Text;
   PasswordCluster := Edit12.Text;
+  MainFunc.LoadINIsettings;
   ConfigForm.Close;
 end;
 
@@ -528,17 +521,11 @@ procedure TConfigForm.DownloadCallBookFile;
 var
   HTTP: THTTPSend;
   MaxSize: int64;
-  updatePATH: string;
-  sDBPath: string;
+  CheckRec: TImbedCallBookCheckRec;
 begin
-     {$IFDEF UNIX}
-  updatePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
   Download := 0;
-  MaxSize := GetSize('http://update.ew8bak.ru/callbook.db');
+  MaxSize := 0;
+  MaxSize := dmFunc.GetSize(DownIntCallbookURL);
   if MaxSize > 0 then
     ProgressBar1.Max := MaxSize
   else
@@ -547,82 +534,38 @@ begin
   HTTP.Sock.OnStatus := @SynaProgress;
   Label12.Caption := rStatusUpdateDownload;
   try
-    if HTTP.HTTPMethod('GET', 'http://update.ew8bak.ru/callbook.db') then
-      HTTP.Document.SaveToFile(updatePATH + 'updates' + DirectorySeparator +
+    if HTTP.HTTPMethod('GET', DownIntCallbookURL) then
+      HTTP.Document.SaveToFile(FilePATH + 'updates' + DirectorySeparator +
         'callbook.db');
   finally
     HTTP.Free;
 
-  {  if FileUtil.CopyFile(updatePATH + 'updates' + DirectorySeparator +
-      'callbook.db', updatePATH + 'callbook.db', True, True) then
+    if FileUtil.CopyFile(FilePATH + 'updates' + DirectorySeparator +
+      'callbook.db', FilePATH + 'callbook.db', True, True) then
+      CheckRec := InitDB.ImbeddedCallBookCheck(FilePATH + 'callbook.db');
+
+    if CheckRec.Found then
     begin
-        {$IFDEF UNIX}
-      sDBPath := GetEnvironmentVariable('HOME') + '/EWLog/';
-    {$ELSE}
-      sDBPath := GetEnvironmentVariable('SystemDrive') +
-        GetEnvironmentVariable('HOMEPATH') + '\EWLog\';
-    {$ENDIF UNIX}
-      if FileExistsUTF8(sDBPath + 'callbook.db') then
-      begin
-      //  MainForm.CallBookLiteConnection.DatabaseName := sDBPath + 'callbook.db';
-        GroupBox2.Caption := rReferenceBook;
-        CheckCallBook.Close;
-        CheckCallBook.SQL.Clear;
-        CheckCallBook.SQL.Add('SELECT COUNT(*) as Count FROM Callbook');
-        CheckCallBook.Open;
-        Label11.Caption := rNumberOfRecords +
-          IntToStr(CheckCallBook.FieldByName('Count').AsInteger);
-        CheckCallBook.Close;
-        CheckCallBook.SQL.Clear;
-        CheckCallBook.SQL.Add('SELECT * FROM inform');
-        CheckCallBook.Open;
-        Label10.Caption := rReleaseDate +
-          CheckCallBook.FieldByName('date').AsString;
-        Label14.Caption := CheckCallBook.FieldByName('version').AsString;
-        CheckCallBook.Close;
-      end
-      else
-      begin
-        GroupBox2.Caption := rNoReferenceBookFound;
-        label11.Caption := rNumberOfRecordsNot;
-        Label10.Caption := rReleaseDateNot;
-        Label14.Caption := '---';
-      end;
-      DeleteFileUTF8(updatePATH + 'updates' + DirectorySeparator + 'callbook.db');
-     // MainForm.CallBookLiteConnection.DatabaseName := updatePATH + 'callbook.db';
-     // MainForm.CallBookLiteConnection.Connected := True;
-      //UseCallBook := 'YES';
+      Label11.Caption := rNumberOfRecords + IntToStr(CheckRec.NumberOfRec);
+      Label14.Caption := CheckRec.Version;
+      Label10.Caption := rReleaseDate + CheckRec.ReleaseDate;
+      InitDB.ImbeddedCallBookInit(True);
+      CheckBox1.Checked := True;
+      CheckBox1.Enabled := True;
+      GroupBox2.Caption := rReferenceBook;
       Button4.Caption := rOK;
-      Label12.Caption := rstatusUpdateDone;
     end
     else
-      Label12.Caption := rStatusUpdateNotCopy;   }
-  end;
-end;
-
-function TConfigForm.GetSize(URL: string): int64;
-var
-  i: integer;
-  size: string;
-  ch: char;
-begin
-  Result := -1;
-  with THTTPSend.Create do
-    if HTTPMethod('HEAD', URL) then
     begin
-      for I := 0 to Headers.Count - 1 do
-      begin
-        if pos('content-length', lowercase(Headers[i])) > 0 then
-        begin
-          size := '';
-          for ch in Headers[i] do
-            if ch in ['0'..'9'] then
-              size := size + ch;
-          Result := StrToInt(size) + Length(Headers.Text);
-          break;
-        end;
-      end;
+      GroupBox2.Caption := rNoReferenceBookFound;
+      label11.Caption := rNumberOfRecordsNot;
+      Label10.Caption := rReleaseDateNot;
+      Label14.Caption := '---';
+      InitDB.ImbeddedCallBookInit(False);
+      CheckBox1.Checked := False;
+      CheckBox1.Enabled := False;
     end;
+  end;
 end;
 
 procedure TConfigForm.SynaProgress(Sender: TObject; Reason: THookSocketReason;
