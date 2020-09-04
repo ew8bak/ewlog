@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, sqldb, DB,
   FileUtil, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls, DBGrids,
   ComCtrls, StdCtrls, EditBtn, Buttons, DateTimePicker, DateUtils,
-  IdIPWatch, LazUTF8, VirtualTrees, LCLProc, ActnList, Grids,
+  LazUTF8, VirtualTrees, LCLProc, ActnList, Grids,
   mvMapViewer, LCLType, LazSysUtils, PrintersDlgs, LR_Class, LR_DBSet,
   LR_E_TXT, LR_E_CSV, lNetComponents, LCLIntf, lNet, StrUtils,
   RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
@@ -503,9 +503,6 @@ type
     FlagSList: TStringList;
     tIMG: TImage;
     PhotoGroup: TGroupBox;
-    ColorTextGrid: integer;
-    ColorBackGrid: integer;
-    SizeTextGrid: integer;
     ExportAdifSelect: boolean;
     ExportAdifArray: array of integer;
     freqchange: boolean;
@@ -528,9 +525,8 @@ var
   GetingHint: integer;
   UnUsIndex: integer;
   GridRecordIndex: integer;
-  LoginCluster, PasswordCluster, HostCluster, PortCluster: string;
-  tx, txWSJT: boolean;
-  connected, connectedWSJT: boolean;
+  HostCluster, PortCluster: string;
+  connected: boolean;
   usefldigi: boolean = True;
   usewsjt: boolean = True;
   fldigiactive: boolean = False;
@@ -546,7 +542,6 @@ var
   TelStr: array[1..9] of string;
   TelServ, TelPort, TelName: string;
   exportSelectADIF: boolean = False;
-  CheckForm: string;
   seleditnum: integer;
   fAllRecords: integer;
   sqlite_version: string;
@@ -1036,7 +1031,6 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
-  i: integer;
   num_start: integer;
 begin
   num_start := INIFile.ReadInteger('SetLog', 'StartNum', 0);
@@ -1080,7 +1074,6 @@ begin
   else
     INIFile.WriteString('SetLog', 'UseMAPS', 'NO');
   TRXForm.Close;
-  INIFile.Free;
 end;
 
 procedure TMainForm.DBGrid1CellClick(Column: TColumn);
@@ -1122,31 +1115,15 @@ begin
 end;
 
 procedure TMainForm.DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
-var
-  i: integer;
 begin
-  //Сохранение размещения колонок
-  for i := 0 to 29 do
-  begin
-    INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
-      DBGrid1.Columns.Items[i].FieldName);
-  end;
+  MainFunc.SaveGridsColumnMoved(DBGrid1);
   MainFunc.SetGrid(DBGrid1);
   MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.DBGrid1ColumnSized(Sender: TObject);
-var
-  i: integer;
 begin
-  for i := 0 to 29 do
-  begin
-    if DBGrid1.Columns.Items[i].Width <> 0 then
-      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
-        DBGrid1.Columns.Items[i].Width)
-    else
-      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
-  end;
+  MainFunc.SaveGridsColumnSized(DBGrid1);
   MainFunc.SetGrid(DBGrid1);
   MainFunc.SetGrid(DBGrid2);
 end;
@@ -1432,10 +1409,10 @@ begin
     TelnetLine := Trim(TelnetLine);
     Memo1.Lines.Add(TelnetLine);
 
-    if Length(LoginCluster) > 0 then
+    if Length(IniSet.Cluster_Login) > 0 then
     begin
       if Pos('login', TelnetLine) > 0 then
-        dxClient.SendMessage(LoginCluster + #13#10, aSocket);
+        dxClient.SendMessage(IniSet.Cluster_Login + #13#10, aSocket);
     end;
     if Pos('DX de', TelnetLine) = 1 then
     begin
@@ -1569,8 +1546,8 @@ procedure TMainForm.InitClusterINI;
 var
   i, j: integer;
 begin
-  LoginCluster := INIFile.ReadString('TelnetCluster', 'Login', '');
-  PasswordCluster := INIFile.ReadString('TelnetCluster', 'Password', '');
+ // LoginCluster := INIFile.ReadString('TelnetCluster', 'Login', '');
+  //PasswordCluster := INIFile.ReadString('TelnetCluster', 'Password', '');
 
   for i := 1 to 9 do
   begin
@@ -1729,7 +1706,7 @@ var
 begin
   if (IniSet._l <> 0) and (IniSet._t <> 0) and (IniSet._w <> 0) and (IniSet._h <> 0) then
     MainForm.SetBounds(IniSet._l, IniSet._t, IniSet._w, IniSet._h);
-  if INIFile.ReadString('SetLog', 'FormState', '') = 'Maximized' then
+  if IniSet.FormState = 'Maximized' then
     MainForm.WindowState := wsMaximized;
   if DBRecord.InitDB <> 'YES' then
   begin
@@ -2511,7 +2488,7 @@ begin
   if (IniSet.WSJT_PATH <> '') and FileExists(IniSet.WSJT_PATH) and
     not WSJT_UDP_Form.WSJT_IsRunning then
   begin
-    txWSJT := not connectedWSJT;
+    //txWSJT := not connectedWSJT;
     //  if dmFunc.RunProgram(IniSet.WSJT_PATH, wsjt_args) then
     //    WSJT_Timer.Interval := 1200;
   end;
@@ -2634,7 +2611,7 @@ begin
   end;
   if (IniSet.Fl_PATH <> '') and FileExists(IniSet.Fl_PATH) and not Fldigi_IsRunning then
   begin
-    tx := not connected;
+    //tx := not connected;
     if dmFunc.RunProgram(IniSet.Fl_PATH, fl_args) then
       Fl_Timer.Interval := 1200;
   end;

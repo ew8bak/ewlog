@@ -447,8 +447,8 @@ end;
 procedure TConfigForm.Button1Click(Sender: TObject);
 begin
   SaveINI;
-  LoginCluster := Edit11.Text;
-  PasswordCluster := Edit12.Text;
+  IniSet.Cluster_Login := Edit11.Text;
+  IniSet.Cluster_Pass := Edit12.Text;
   MainFunc.LoadINIsettings;
   ConfigForm.Close;
 end;

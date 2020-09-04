@@ -43,6 +43,8 @@ type
     CallBookSystem: string;
     MainForm: string;
     CurrentForm: string;
+    Cluster_Login: string;
+    Cluster_Pass: string;
   end;
 
 implementation

@@ -43,6 +43,8 @@ var
   InitDB: TInitDB;
   FilePATH: string;
   INIFile: TINIFile;
+  ExceptFile: TextFile;
+  ExceptFilePATH: string;
   LBRecord: TLBRecord;
   DBRecord: TDBRecord;
   InitRecord: TInitRecord;
@@ -85,6 +87,12 @@ begin
     if not DirectoryExists(FilePATH) then
       CreateDir(FilePATH);
     INIFile := TINIFile.Create(FilePATH + 'settings.ini');
+    ExceptFilePATH := FilePATH + 'except.err';
+    AssignFile(ExceptFile, ExceptFilePATH);
+    if FileExists(ExceptFilePATH) then
+      Append(ExceptFile)
+    else
+      ReWrite(ExceptFile);
   end
   else
   begin
@@ -121,6 +129,8 @@ end;
 
 procedure TInitDB.DataModuleDestroy(Sender: TObject);
 begin
+  INIFile.Free;
+  CloseFile(ExceptFile);
   AllFree;
 end;
 
@@ -239,6 +249,8 @@ begin
     begin
       ShowMessage('ImbeddedCallBookCheck: Error: ' + E.ClassName +
         #13#10 + E.Message);
+      WriteLn(ExceptFile, 'ImbeddedCallBookCheck: Error: ' +
+        E.ClassName + ':' + E.Message);
       Result.Found := False;
     end;
   end;
@@ -317,6 +329,7 @@ begin
         on E: Exception do
         begin
           ShowMessage('Error: ' + E.ClassName + #13#10 + E.Message);
+          WriteLn(ExceptFile, 'GetLogBookTable:' + E.ClassName + ':' + E.Message);
           Result := False;
         end;
       end;
@@ -389,6 +402,7 @@ begin
       on E: Exception do
       begin
         ShowMessage('Error: ' + E.ClassName + #13#10 + E.Message);
+        WriteLn(ExceptFile, 'InitPrefix:' + E.ClassName + ':' + E.Message);
         Result := False;
       end;
     end;
@@ -475,6 +489,7 @@ begin
     on E: Exception do
     begin
       ShowMessage('Error: ' + E.ClassName + #13#10 + E.Message);
+      WriteLn(ExceptFile, 'SelectLogbookTable:' + E.ClassName + ':' + E.Message);
       Result := False;
     end;
   end;

@@ -331,6 +331,14 @@ msgstr "Нельзя удалить журнал по умолчанию"
 msgid "Band is empty. Check"
 msgstr ""
 
+#: resourcestr.rcheckboxformmain
+msgid "Default form: MAIN"
+msgstr ""
+
+#: resourcestr.rcheckboxformmini
+msgid "Default form: MINI"
+msgstr ""
+
 #: resourcestr.rcheckmode
 msgid "Mode is empty. Check"
 msgstr ""
@@ -1264,6 +1272,16 @@ msgstr "Настройки программы"
 msgid "Use reference?"
 msgstr "Использовать как справочник?"
 
+#: tconfigform.checkbox10.caption
+msgid "Default form:"
+msgstr ""
+
+#: tconfigform.checkbox11.caption
+#, fuzzy
+msgctxt "tconfigform.checkbox11.caption"
+msgid "Use as a reference?"
+msgstr "Использовать как справочник?"
+
 #: tconfigform.checkbox2.caption
 msgid "Use bands in meters"
 msgstr "Показывать диапазоны в метрах"
@@ -1322,6 +1340,10 @@ msgstr ""
 
 #: tconfigform.groupbox6.caption
 msgid "CloudLog"
+msgstr ""
+
+#: tconfigform.groupbox7.caption
+msgid "HAMQTH XML API"
 msgstr ""
 
 #: tconfigform.label1.caption
@@ -1401,6 +1423,18 @@ msgstr "Сервер"
 msgctxt "tconfigform.label24.caption"
 msgid "API key"
 msgstr ""
+
+#: tconfigform.label25.caption
+#, fuzzy
+msgctxt "tconfigform.label25.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tconfigform.label26.caption
+#, fuzzy
+msgctxt "tconfigform.label26.caption"
+msgid "Password"
+msgstr "Пароль"
 
 #: tconfigform.label3.caption
 msgctxt "tconfigform.label3.caption"
@@ -2509,11 +2543,6 @@ msgstr ""
 
 #: tinformationform.label24.caption
 msgctxt "tinformationform.label24.caption"
-msgid "text"
-msgstr ""
-
-#: tinformationform.label25.caption
-msgctxt "tinformationform.label25.caption"
 msgid "text"
 msgstr ""
 
@@ -4022,6 +4051,10 @@ msgstr "Области"
 msgctxt "tmanagerbaseprefixform.tabsheet3.caption"
 msgid "Country"
 msgstr "Страна"
+
+#: tminiform.caption
+msgid "MiniForm"
+msgstr ""
 
 #: tmm_form.button1.caption
 msgctxt "tmm_form.button1.caption"
