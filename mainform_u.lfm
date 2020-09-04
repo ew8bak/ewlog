@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 296
+  Left = 414
   Height = 696
-  Top = 145
+  Top = 222
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -4718,7 +4718,6 @@ object MainForm: TMainForm
     end
     object MenuItem103: TMenuItem
       Caption = 'Record Filter'
-      OnClick = MenuItem103Click
       object MenuItem104: TMenuItem
         Caption = 'Received QSL'
         OnClick = MenuItem104Click
@@ -4936,33 +4935,6 @@ object MainForm: TMainForm
       Caption = 'Exit'
       OnClick = MenuItem98Click
     end
-  end
-  object LTCPComponent1: TLTCPComponent
-    Port = 0
-    OnReceive = LTCPComponent1Receive
-    OnError = LTCPComponent1Error
-    OnDisconnect = LTCPComponent1Disconnect
-    OnAccept = LTCPComponent1Accept
-    OnCanSend = LTCPComponent1CanSend
-    Timeout = 0
-    ReuseAddress = False
-    Left = 1008
-    Top = 112
-  end
-  object LUDPComponent1: TLUDPComponent
-    Port = 0
-    OnReceive = LUDPComponent1Receive
-    OnError = LUDPComponent1Error
-    Timeout = 0
-    Left = 896
-    Top = 120
-  end
-  object IdIPWatch1: TIdIPWatch
-    Active = True
-    HistoryEnabled = False
-    HistoryFilename = 'iphist.dat'
-    Left = 720
-    Top = 104
   end
   object dxClient: TLTelnetClientComponent
     Port = 0

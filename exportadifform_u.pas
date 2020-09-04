@@ -66,7 +66,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, InitDB_dm;
+uses dmFunc_U, MainForm_U, InitDB_dm, serverDM_u;
 
 {$R *.lfm}
 
@@ -832,7 +832,7 @@ begin
       tmp2 := tmp2 + tmp;
       tmp := #13;
       tmp2 := tmp2 + tmp;
-      MainForm.AdifMobileString.Add(tmp2);
+      ServerDM.AdifMobileString.Add(tmp2);
       if (nr mod 100 = 0) then
       begin
         MainForm.StatusBar1.Repaint;

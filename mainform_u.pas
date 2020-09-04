@@ -37,7 +37,6 @@ type
     frDBDataSet1: TfrDBDataSet;
     frReport1: TfrReport;
     frTextExport1: TfrTextExport;
-    IdIPWatch1: TIdIPWatch;
     Image1: TImage;
     Image2: TImage;
     Image3: TImage;
@@ -48,9 +47,7 @@ type
     Label53: TLabel;
     Label54: TLabel;
     Label55: TLabel;
-    LTCPComponent1: TLTCPComponent;
     dxClient: TLTelnetClientComponent;
-    LUDPComponent1: TLUDPComponent;
     MapView1: TMapView;
     Memo1: TMemo;
     MenuItem10: TMenuItem;
@@ -354,15 +351,8 @@ type
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Label50Click(Sender: TObject);
-    procedure LTCPComponent1Accept(aSocket: TLSocket);
-    procedure LTCPComponent1CanSend(aSocket: TLSocket);
-    procedure LTCPComponent1Disconnect(aSocket: TLSocket);
-    procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
-    procedure LTCPComponent1Receive(aSocket: TLSocket);
     procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
-    procedure LUDPComponent1Receive(aSocket: TLSocket);
     procedure MenuItem102Click(Sender: TObject);
-    procedure MenuItem103Click(Sender: TObject);
     procedure MenuItem104Click(Sender: TObject);
     procedure MenuItem105Click(Sender: TObject);
     procedure MenuItem106Click(Sender: TObject);
@@ -508,37 +498,20 @@ type
 
   public
     { public declarations }
-    Command: string;
     PrintPrev: boolean;
     FlagList: TImageList;
     FlagSList: TStringList;
-    PhotoQrzString: string;
     tIMG: TImage;
     PhotoGroup: TGroupBox;
     ColorTextGrid: integer;
     ColorBackGrid: integer;
     SizeTextGrid: integer;
-    PhotoDir: string;
     ExportAdifSelect: boolean;
     ExportAdifArray: array of integer;
-    ExportAdifMobile: boolean;
-    ImportAdifMobile: boolean;
-    AdifMobileString: TStringList;
-    AdifFromMobileString: TStringList;
-    Stream: TMemoryStream;
-    AdifFromMobileSyncStart: boolean;
-    AdifMobileStringApply: boolean;
-    ready: boolean;
-    AdifDataSyncAll: boolean;
-    AdifDataSyncDate: boolean;
-    AdifDataDate: string;
-    BuffToSend: string;
     freqchange: boolean;
 
-    inupdate: boolean;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure Clr;
-    function GetNewChunk: string;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     function GetModeFromFreq(MHz: string): string;
     procedure FindCountryFlag(Country: string);
@@ -577,8 +550,6 @@ var
   seleditnum: integer;
   fAllRecords: integer;
   sqlite_version: string;
-  lastTCPport: integer;
-  lastUDPport: integer;
   BM1, BM2: TBookmarkStr;
 
 implementation
@@ -1634,105 +1605,6 @@ begin
     SpeedButton18.Click;
 end;
 
-{procedure TMainForm.InitIni;
-begin
-  try
-    InitLog_DB := INiF.ReadString('SetLog', 'LogBookInit', '');
-    if InitLog_DB = 'YES' then
-    begin
-      CallLogBook := INiF.ReadString('SetLog', 'DefaultCallLogBook', '');
-      UseCallBook := INiF.ReadString('SetLog', 'UseCallBook', 'No');
-      DefaultDB := IniF.ReadString('DataBases', 'DefaultDataBase', '');
-      LoginBD := IniF.ReadString('DataBases', 'LoginName', '');
-      PasswdDB := IniF.ReadString('DataBases', 'Password', '');
-      HostDB := IniF.ReadString('DataBases', 'HostAddr', '');
-      PortDB := IniF.ReadString('DataBases', 'Port', '');
-      NameDB := IniF.ReadString('DataBases', 'DataBaseName', '');
-      PhotoDir := IniF.ReadString('SetLog', 'PhotoDir', '');
-
-      RegisterLog := IniF.ReadString('SetLog', 'Register', '');
-      LoginLog := IniF.ReadString('SetLog', 'Login', '');
-      PassLog := IniF.ReadString('SetLog', 'Pass', '');
-      StateToQSLInfo := IniF.ReadBool('SetLog', 'StateToQSLInfo', False);
-
-      LoginCallBook := IniF.ReadString('CallBookDB', 'LoginName', '');
-      PasswdCallBook := IniF.ReadString('CallBookDB', 'Password', '');
-      HostCallBook := IniF.ReadString('CallBookDB', 'HostAddr', '');
-      PortCallBook := IniF.ReadString('CallBookDB', 'Port', '');
-      NameCallBook := IniF.ReadString('CallBookDB', 'DataBaseName', '');
-
-      SQLiteFILE := IniF.ReadString('DataBases', 'FileSQLite', '');
-
-      if not FileExists(SQLiteFILE) and (SQLiteFILE <> '') then
-      begin
-        ShowMessage(rNoLogFileFound);
-        exit;
-      end;
-
-      fl_path := IniF.ReadString('FLDIGI', 'FldigiPATH', '');
-      wsjt_path := IniF.ReadString('WSJT', 'WSJTPATH', '');
-      FLDIGI_USE := IniF.ReadString('FLDIGI', 'USEFLDIGI', '');
-      WSJT_USE := IniF.ReadString('WSJT', 'USEWSJT', '');
-      ShowTRXForm := IniF.ReadBool('SetLog', 'TRXForm', False);
-
-      if FLDIGI_USE = 'YES' then
-        MenuItem74.Enabled := True
-      else
-        MenuItem74.Enabled := False;
-
-      if WSJT_USE = 'YES' then
-        MenuItem43.Enabled := True
-      else
-        MenuItem43.Enabled := False;
-
-      _l := IniF.ReadInteger('SetLog', 'Left', 0);
-      _t := IniF.ReadInteger('SetLog', 'Top', 0);
-
-      _w := IniF.ReadInteger('SetLog', 'Width', 1043);
-      _h := IniF.ReadInteger('SetLog', 'Height', 671);
-
-      DateEdit1.Date := LazSysUtils.NowUTC;
-      DateTimePicker1.Time := NowUTC;
-      Label24.Caption := FormatDateTime('hh:mm:ss', Now);
-      Label26.Caption := FormatDateTime('hh:mm:ss', NowUTC);
-
-      if DefaultDB = 'MySQL' then
-        MenuItem89.Caption := rSwitchDBSQLIte
-      else
-        MenuItem89.Caption := rSwitchDBMySQL;
-      InitializeDB(DefaultDB);
-      ComboBox2.ItemIndex := ComboBox2.Items.IndexOf(
-        IniF.ReadString('SetLog', 'PastMode', ''));
-      ComboBox2CloseUp(Self);
-      ComboBox9.ItemIndex := ComboBox9.Items.IndexOf(
-        IniF.ReadString('SetLog', 'PastSubMode', ''));
-      addBands(IniF.ReadString('SetLog', 'ShowBand', ''), ComboBox2.Text);
-
-
-      if ComboBox1.Items.Count >= IniF.ReadInteger('SetLog', 'PastBand', 0) then
-        ComboBox1.ItemIndex := IniF.ReadInteger('SetLog', 'PastBand', 0)
-      else
-        ComboBox1.ItemIndex := 0;
-      freqchange := True;
-      if Pos('/', DBLookupComboBox1.Text) > 0 then
-      begin
-        Label51.Visible := True;
-        Edit14.Visible := True;
-        Label52.Visible := True;
-        Edit15.Visible := True;
-      end
-      else
-      begin
-        Label51.Visible := False;
-        Edit14.Visible := False;
-        Label52.Visible := False;
-        Edit15.Visible := False;
-      end;
-    end;
-  finally
-  end;
-end;}
-
 procedure TMainForm.LoadComboBoxItem;
 begin
   MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1, ComboBox10);
@@ -1759,7 +1631,6 @@ procedure TMainForm.FormCreate(Sender: TObject);
 var
   Lang: string = '';
   FallbackLang: string = '';
-  i: integer;
 begin
   Shape1.Visible := False;
   Label53.Visible := False;
@@ -1784,9 +1655,9 @@ begin
   useMAPS := INIFile.ReadString('SetLog', 'UseMAPS', '');
   EditFlag := False;
   StayForm := True;
-  AdifFromMobileSyncStart := False;
+
   ExportAdifSelect := False;
-  ImportAdifMobile := False;
+
   CheckBox3.Visible := True;
   CheckBox5.Visible := True;
   if useMAPS = 'YES' then
@@ -1796,32 +1667,7 @@ begin
   end;
 
   InitClusterINI;
-
   LoadComboBoxItem;
-
-  lastUDPport := -1;
-  lastTCPport := -1;
-  LTCPComponent1.ReuseAddress := True;
-
-  for i := 0 to 5 do
-    if LUDPComponent1.Listen(port_udp[i]) then
-    begin
-      lastUDPport := port_udp[i];
-      Break;
-    end;
-  if lastUDPport = -1 then
-    MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
-
-  for i := 0 to 5 do
-    if LTCPComponent1.Listen(port_tcp[i]) then
-    begin
-      lastTCPport := port_tcp[i];
-      MainForm.StatusBar1.Panels.Items[0].Text :=
-        'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport);
-      Break;
-    end;
-  if lastTCPport = -1 then
-    MainForm.StatusBar1.Panels.Items[0].Text := 'Can not create socket';
 
   if usefldigi then
     Fl_Timer.Enabled := True;
@@ -1859,8 +1705,6 @@ begin
   end;
   FlagList.Free;
   FlagSList.Free;
-  LTCPComponent1.Free;
-  LUDPComponent1.Free;
   TrayIcon1.Free;
 end;
 
@@ -1936,169 +1780,14 @@ begin
   Update_Form.Show;
 end;
 
-procedure TMainForm.LTCPComponent1Accept(aSocket: TLSocket);
-begin
-  StatusBar1.Panels.Items[0].Text :=
-    rClientConnected + aSocket.PeerAddress;
-end;
-
-procedure TMainForm.LTCPComponent1CanSend(aSocket: TLSocket);
-var
-  Sent: integer;
-  TempBuffer: string = '';
-begin
-  if (AdifDataSyncAll = True) or (AdifDataSyncDate = True) then
-  begin
-    TempBuffer := BuffToSend;
-    while TempBuffer <> '' do
-    begin
-      Sent := LTCPComponent1.SendMessage(TempBuffer, aSocket);
-      Delete(BuffToSend, 1, Sent);
-      TempBuffer := BuffToSend;
-      {$IFDEF LINUX}
-      Sleep(100);
-      {$ENDIF}
-    end;
-  end;
-end;
-
-procedure TMainForm.LTCPComponent1Disconnect(aSocket: TLSocket);
-begin
-  MainForm.StatusBar1.Panels.Items[0].Text := rDone;
-end;
-
-procedure TMainForm.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
-begin
-  MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
-end;
-
-function TMainForm.GetNewChunk: string;
-var
-  res: string;
-  i: integer;
-begin
-  res := '';
-  for i := 0 to AdifMobileString.Count - 1 do
-  begin
-    res := res + AdifMobileString[0];
-    AdifMobileString.Delete(0);
-  end;
-  res := res + 'DataSyncSuccess:' + LBRecord.CallSign + #13;
-  Result := res;
-  AdifMobileString.Free;
-end;
-
-procedure TMainForm.LTCPComponent1Receive(aSocket: TLSocket);
-var
-  mess, rec_call, s: string;
-  AdifFile: TextFile;
-begin
-  AdifDataSyncAll := False;
-  AdifDataSyncDate := False;
-
-  if aSocket.GetMessage(mess) > 0 then
-  begin
-    if Pos('DataSyncAll', mess) > 0 then
-    begin
-      rec_call := dmFunc.par_str(mess, 2);
-      if Pos(LBRecord.CallSign, rec_call) > 0 then
-      begin
-        AdifMobileString := TStringList.Create;
-        exportAdifForm.ExportToMobile('All', '');
-        AdifDataSyncAll := True;
-        BuffToSend := GetNewChunk;
-        LTCPComponent1.OnCanSend(LTCPComponent1.Iterator);
-      end;
-    end;
-
-    if Pos('DataSyncDate', mess) > 0 then
-    begin
-      AdifDataDate := dmFunc.par_str(mess, 2);
-      rec_call := dmFunc.par_str(mess, 3);
-      if Pos(LBRecord.CallSign, rec_call + #13) > 0 then
-      begin
-        AdifMobileString := TStringList.Create;
-        exportAdifForm.ExportToMobile('Date', AdifDataDate);
-        AdifDataSyncDate := True;
-        BuffToSend := GetNewChunk;
-        LTCPComponent1.OnCanSend(LTCPComponent1.Iterator);
-      end;
-    end;
-
-    if Pos('DataSyncClientStart', mess) > 0 then
-    begin
-      rec_call := dmFunc.par_str(mess, 2);
-      if Pos(LBRecord.CallSign, rec_call) > 0 then
-      begin
-        Stream := TMemoryStream.Create;
-        AdifFromMobileSyncStart := True;
-      end;
-    end;
-
-    if (AdifFromMobileSyncStart = True) then
-    begin
-      mess := StringReplace(mess, #10, '', [rfReplaceAll]);
-      mess := StringReplace(mess, #13, '', [rfReplaceAll]);
-      if Length(mess) > 0 then
-      begin
-        Stream.Write(mess[1], length(mess));
-      end;
-    end;
-
-    if Pos('DataSyncClientEnd', mess) > 0 then
-    begin
-      AdifFromMobileSyncStart := False;
-      ImportAdifMobile := True;
-      Stream.SaveToFile(FilePATH + 'ImportMobile.adi');
-      AssignFile(AdifFile, FilePATH + 'ImportMobile.adi');
-      Reset(AdifFile);
-      while not EOF(AdifFile) do
-      begin
-        Readln(AdifFile, s);
-        s := StringReplace(s, '<EOR>', '<EOR>'#10, [rfReplaceAll]);
-        s := StringReplace(s, '<EOH>', '<EOH>'#10, [rfReplaceAll]);
-      end;
-      CloseFile(AdifFile);
-      Rewrite(AdifFile);
-      Writeln(AdifFile, s);
-      CloseFile(AdifFile);
-
-      ImportADIFForm.ADIFImport(FilePATH + 'ImportMobile.adi', True);
-      Stream.Free;
-      ImportAdifMobile := False;
-    end;
-  end;
-end;
-
 procedure TMainForm.LUDPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
   MainForm.StatusBar1.Panels.Items[0].Text := asocket.peerAddress + ':' + SysToUTF8(msg);
 end;
 
-procedure TMainForm.LUDPComponent1Receive(aSocket: TLSocket);
-var
-  mess: string;
-begin
-  if aSocket.GetMessage(mess) > 0 then
-  begin
-    if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' +
-      DBRecord.CurrCall + #10) then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' + IntToStr(lastTCPport))
-    else
-      StatusBar1.Panels.Items[0].Text := rSyncErrCall;
-    if (mess = 'Hello') or (mess = 'Hello' + #10) then
-      LUDPComponent1.SendMessage('Welcome!');
-  end;
-end;
-
 procedure TMainForm.MenuItem102Click(Sender: TObject);
 begin
   openURL('https://yasobe.ru/na/ewlog');
-end;
-
-procedure TMainForm.MenuItem103Click(Sender: TObject);
-begin
-  //filterForm.Show;
 end;
 
 procedure TMainForm.MenuItem104Click(Sender: TObject);

@@ -86,7 +86,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   infoDM_U,
   getSession,
   miniform_u,
-  ImbedCallBookCheckRec;
+  ImbedCallBookCheckRec, serverDM_u;
 
 {$R *.res}
 
@@ -98,6 +98,7 @@ begin
   Application.CreateForm(TInitDB, InitDB);
   Application.CreateForm(TMainFunc, MainFunc);
   Application.CreateForm(TInfoDM, InfoDM);
+  Application.CreateForm(TServerDM, ServerDM);
 
   if IniSet.MainForm = 'MAIN' then
   begin
