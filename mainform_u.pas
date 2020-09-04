@@ -1362,7 +1362,7 @@ end;
 procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
-  MainFunc.DrawColumnGrid(LOGBookDS.DataSet, Rect, DataCol, Column, State, DBGrid2);
+  MainFunc.DrawColumnGrid(FindQSODS.DataSet, Rect, DataCol, Column, State, DBGrid2);
 end;
 
 procedure TMainForm.dxClientConnect(aSocket: TLSocket);
