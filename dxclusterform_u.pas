@@ -118,7 +118,8 @@ var
 begin
   comment := cname + ' ' + mode + ' ' + rsts;
   try
-    DXTelnetClient.SendMessage(Trim(Format('dx %s %s %s', [freq, call, comment])) + #13#10);
+    DXTelnetClient.SendMessage(Trim(Format('dx %s %s %s', [freq, call, comment])) +
+      #13#10);
   except
     on E: Exception do
       Memo1.Append(E.Message);
@@ -271,6 +272,8 @@ begin
         freqMhz := freqMhz / 1000
       else
         exit;
+    if Length(Loc) < 2 then
+      Loc := '';
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
     // Mode := GetModeFromFreq(FloatToStr(freqMhz));
@@ -556,7 +559,8 @@ begin
           ComboBox1.Text := dmFunc.GetBandFromFreq(
             FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000))
         else
-          MainForm.ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
+          MainForm.ComboBox1.Text :=
+            FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
 
         if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
         begin

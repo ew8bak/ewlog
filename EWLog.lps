@@ -21,9 +21,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="728"/>
-        <CursorPos Y="474"/>
+        <TopLine Value="732"/>
+        <CursorPos X="48" Y="734"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -801,8 +800,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="telnetClientThread"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="72"/>
-        <CursorPos Y="99"/>
+        <TopLine Value="49"/>
+        <CursorPos X="39" Y="49"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit79>
@@ -812,9 +811,10 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="104"/>
-        <CursorPos X="19" Y="121"/>
+        <TopLine Value="551"/>
+        <CursorPos X="67" Y="563"/>
         <UsageCount Value="26"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1357,7 +1357,7 @@
         <Loaded Value="True"/>
       </Unit152>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="2815" TopLine="2815"/>
@@ -1456,28 +1456,16 @@
       </Position24>
       <Position25>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1237" Column="3" TopLine="1261"/>
+        <Caret Line="1029" Column="19" TopLine="1011"/>
       </Position25>
       <Position26>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1318" Column="3" TopLine="1335"/>
+        <Caret Line="1295" Column="18" TopLine="1272"/>
       </Position26>
       <Position27>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="1237" Column="3" TopLine="1262"/>
-      </Position27>
-      <Position28>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1029" Column="19" TopLine="1011"/>
-      </Position28>
-      <Position29>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1295" Column="18" TopLine="1272"/>
-      </Position29>
-      <Position30>
-        <Filename Value="mainform_u.pas"/>
         <Caret Line="1291" TopLine="1268"/>
-      </Position30>
+      </Position27>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
