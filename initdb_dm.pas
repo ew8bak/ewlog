@@ -164,36 +164,47 @@ end;
 function TInitDB.LogbookDBInit: boolean;
 begin
   Result := False;
-  if DBRecord.DefaultDB = 'MySQL' then
-  begin
-    DefTransaction.DataBase := MySQLConnection;
-    MySQLConnection.HostName := DBRecord.MySQLHost;
-    MySQLConnection.Port := DBRecord.MySQLPort;
-    MySQLConnection.UserName := DBRecord.MySQLUser;
-    MySQLConnection.Password := DBRecord.MySQLPass;
-    MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
-    MySQLConnection.Connected := True;
-    if MySQLConnection.Connected then
+  try
+    if DBRecord.DefaultDB = 'MySQL' then
     begin
-      DBRecord.CurrentDB := 'MySQL';
-      DefLogBookQuery.DataBase := MySQLConnection;
-      FindQSOQuery.DataBase := MySQLConnection;
-      Result := True;
-      InitRecord.LogbookDBInit := True;
+      DefTransaction.DataBase := MySQLConnection;
+      MySQLConnection.HostName := DBRecord.MySQLHost;
+      MySQLConnection.Port := DBRecord.MySQLPort;
+      MySQLConnection.UserName := DBRecord.MySQLUser;
+      MySQLConnection.Password := DBRecord.MySQLPass;
+      MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
+      MySQLConnection.Connected := True;
+      if MySQLConnection.Connected then
+      begin
+        DBRecord.CurrentDB := 'MySQL';
+        DefLogBookQuery.DataBase := MySQLConnection;
+        FindQSOQuery.DataBase := MySQLConnection;
+        Result := True;
+        InitRecord.LogbookDBInit := True;
+      end;
     end;
-  end;
-  if DBRecord.DefaultDB = 'SQLite' then
-  begin
-    DefTransaction.DataBase := SQLiteConnection;
-    FindQSOQuery.DataBase := SQLiteConnection;
-    SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
-    SQLiteConnection.Connected := True;
-    if SQLiteConnection.Connected then
+    if DBRecord.DefaultDB = 'SQLite' then
     begin
-      DBRecord.CurrentDB := 'SQLite';
-      DefLogBookQuery.DataBase := SQLiteConnection;
-      Result := True;
-      InitRecord.LogbookDBInit := True;
+      DefTransaction.DataBase := SQLiteConnection;
+      FindQSOQuery.DataBase := SQLiteConnection;
+      SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
+      SQLiteConnection.Connected := True;
+      if SQLiteConnection.Connected then
+      begin
+        DBRecord.CurrentDB := 'SQLite';
+        DefLogBookQuery.DataBase := SQLiteConnection;
+        Result := True;
+        InitRecord.LogbookDBInit := True;
+      end;
+    end;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('LogbookDBInit: Error: ' + E.ClassName + #13#10 + E.Message);
+      WriteLn(ExceptFile, 'LogbookDBInit: Error: ' + E.ClassName +
+        ':' + E.Message);
+      InitRecord.LogbookDBInit := False;
+      Result := False;
     end;
   end;
 end;

@@ -9,8 +9,8 @@
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="117"/>
-        <CursorPos X="45" Y="126"/>
+        <TopLine Value="90"/>
+        <CursorPos Y="99"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -69,7 +69,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="145"/>
         <CursorPos X="3" Y="145"/>
         <UsageCount Value="200"/>
@@ -641,10 +641,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="450"/>
-        <CursorPos X="43" Y="488"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="53"/>
+        <CursorPos Y="166"/>
         <UsageCount Value="159"/>
+        <Loaded Value="True"/>
       </Unit61>
       <Unit62>
         <Filename Value="logbooktable_record.pas"/>
@@ -685,7 +687,7 @@
       <Unit66>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="19"/>
         <CursorPos X="26" Y="49"/>
         <UsageCount Value="142"/>
@@ -799,7 +801,7 @@
         <Filename Value="telnetclientthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="telnetClientThread"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="49"/>
         <CursorPos X="39" Y="49"/>
         <UsageCount Value="32"/>
@@ -811,7 +813,6 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="266"/>
         <CursorPos X="28" Y="275"/>
@@ -1350,122 +1351,134 @@
       <Unit152>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lnetcomponents.pas"/>
         <UnitName Value="lNetComponents"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="191"/>
         <CursorPos Y="208"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit152>
     </Units>
-    <JumpHistory Count="27" HistoryIndex="26">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2815" TopLine="2815"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="86" TopLine="66"/>
       </Position1>
       <Position2>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2814" TopLine="2814"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="87" TopLine="66"/>
       </Position2>
       <Position3>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2813" TopLine="2813"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="91" TopLine="69"/>
       </Position3>
       <Position4>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2812" TopLine="2812"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="92" TopLine="69"/>
       </Position4>
       <Position5>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2811" TopLine="2811"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="93" TopLine="69"/>
       </Position5>
       <Position6>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2810" TopLine="2810"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="102" TopLine="74"/>
       </Position6>
       <Position7>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2809" TopLine="2809"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="103" TopLine="75"/>
       </Position7>
       <Position8>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2808" TopLine="2808"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="104" TopLine="76"/>
       </Position8>
       <Position9>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2807" TopLine="2807"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="105" TopLine="78"/>
       </Position9>
       <Position10>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2806" TopLine="2806"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="106" TopLine="78"/>
       </Position10>
       <Position11>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2805" TopLine="2805"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="107" TopLine="79"/>
       </Position11>
       <Position12>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2804" TopLine="2804"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="108" TopLine="80"/>
       </Position12>
       <Position13>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2803" TopLine="2803"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="110" TopLine="82"/>
       </Position13>
       <Position14>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2802" TopLine="2802"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="113" TopLine="85"/>
       </Position14>
       <Position15>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2801" TopLine="2801"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="114" Column="24" TopLine="86"/>
       </Position15>
       <Position16>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2800" TopLine="2800"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="32" Column="27" TopLine="14"/>
       </Position16>
       <Position17>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2799" TopLine="2799"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="113" Column="13" TopLine="92"/>
       </Position17>
       <Position18>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2798" TopLine="2798"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="31" Column="14" TopLine="13"/>
       </Position18>
       <Position19>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2797" TopLine="2797"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="164" Column="23" TopLine="101"/>
       </Position19>
       <Position20>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2796" TopLine="2796"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="32" Column="14" TopLine="15"/>
       </Position20>
       <Position21>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="575" TopLine="571"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="166" TopLine="164"/>
       </Position21>
       <Position22>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1312" Column="38" TopLine="1296"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="91" TopLine="61"/>
       </Position22>
       <Position23>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="2771" Column="2" TopLine="2754"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="166" TopLine="155"/>
       </Position23>
       <Position24>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="427" Column="19" TopLine="412"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="167" TopLine="155"/>
       </Position24>
       <Position25>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1029" Column="19" TopLine="1011"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="170" TopLine="155"/>
       </Position25>
       <Position26>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1295" Column="18" TopLine="1272"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="171" TopLine="155"/>
       </Position26>
       <Position27>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="1291" TopLine="1268"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="172" TopLine="155"/>
       </Position27>
+      <Position28>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="173" TopLine="155"/>
+      </Position28>
+      <Position29>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="174" TopLine="155"/>
+      </Position29>
+      <Position30>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="208" TopLine="183"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -1473,6 +1486,15 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="EWLog.pas"/>
+        <Line Value="99"/>
+      </Item1>
+    </BreakPoints>
     <Watches Count="4">
       <Item1>
         <Expression Value="Freq"/>
