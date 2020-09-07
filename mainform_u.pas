@@ -27,10 +27,7 @@ type
     ComboBox1: TComboBox;
     ComboBox10: TComboBox;
     ComboBox2: TComboBox;
-    ComboBox3: TComboBox;
-    ComboBox8: TComboBox;
     ComboBox9: TComboBox;
-    Edit12: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
     frCSVExport1: TfrCSVExport;
@@ -47,9 +44,7 @@ type
     Label53: TLabel;
     Label54: TLabel;
     Label55: TLabel;
-    dxClient: TLTelnetClientComponent;
     MapView1: TMapView;
-    Memo1: TMemo;
     MenuItem10: TMenuItem;
     MenuItem100: TMenuItem;
     MenuItem102: TMenuItem;
@@ -64,9 +59,6 @@ type
     MenuItem110: TMenuItem;
     MenuItem111: TMenuItem;
     MenuItem112: TMenuItem;
-    MenuItem113: TMenuItem;
-    MenuItem114: TMenuItem;
-    MenuItem115: TMenuItem;
     MenuItem116: TMenuItem;
     MenuItem117: TMenuItem;
     MenuItem118: TMenuItem;
@@ -168,30 +160,13 @@ type
     MenuItem98: TMenuItem;
     MenuItem99: TMenuItem;
     Panel10: TPanel;
-    Panel11: TPanel;
     Panel12: TPanel;
-    Panel9: TPanel;
     PopupMenu2: TPopupMenu;
-    PopupDxCluster: TPopupMenu;
     Shape1: TShape;
     PrintDialog1: TPrintDialog;
-    SpeedButton24: TSpeedButton;
-    SpeedButton25: TSpeedButton;
-    SpeedButton26: TSpeedButton;
-    SpeedButton27: TSpeedButton;
-    SpeedButton28: TSpeedButton;
-    SpeedButton29: TSpeedButton;
     qBands: TSQLQuery;
     PrintQuery: TSQLQuery;
-    TabSheet2: TTabSheet;
-    VirtualStringTree1: TVirtualStringTree;
     TrayPopup: TPopupMenu;
-    SpeedButton18: TSpeedButton;
-    SpeedButton19: TSpeedButton;
-    SpeedButton20: TSpeedButton;
-    SpeedButton21: TSpeedButton;
-    SpeedButton22: TSpeedButton;
-    SpeedButton23: TSpeedButton;
     StatusBar1: TStatusBar;
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
@@ -290,7 +265,6 @@ type
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
-    PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -312,7 +286,6 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
-    TabSheet1: TTabSheet;
     TimeTimer: TTimer;
     TrayIcon1: TTrayIcon;
     procedure CheckBox1Change(Sender: TObject);
@@ -333,10 +306,6 @@ type
     procedure DBGrid2DblClick(Sender: TObject);
     procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
-    procedure dxClientConnect(aSocket: TLSocket);
-    procedure dxClientDisconnect(aSocket: TLSocket);
-    procedure dxClientReceive(aSocket: TLSocket);
-    procedure Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure EditButton1ButtonClick(Sender: TObject);
     procedure EditButton1Change(Sender: TObject);
     procedure EditButton1KeyDown(Sender: TObject; var Key: word;
@@ -360,9 +329,6 @@ type
     procedure MenuItem10Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
-    procedure MenuItem113Click(Sender: TObject);
-    procedure MenuItem114Click(Sender: TObject);
-    procedure MenuItem115Click(Sender: TObject);
     procedure MenuItem116Click(Sender: TObject);
     procedure MenuItem117Click(Sender: TObject);
     procedure MenuItem118Click(Sender: TObject);
@@ -433,24 +399,7 @@ type
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
-    procedure SpeedButton18MouseLeave(Sender: TObject);
-    procedure SpeedButton18MouseMove(Sender: TObject; Shift: TShiftState;
-      X, Y: integer);
-    procedure SpeedButton19Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton20MouseLeave(Sender: TObject);
-    procedure SpeedButton20MouseMove(Sender: TObject; Shift: TShiftState;
-      X, Y: integer);
-    procedure SpeedButton21MouseLeave(Sender: TObject);
-    procedure SpeedButton21MouseMove(Sender: TObject; Shift: TShiftState;
-      X, Y: integer);
-    procedure SpeedButton22Click(Sender: TObject);
-    procedure SpeedButton22MouseLeave(Sender: TObject);
-    procedure SpeedButton22MouseMove(Sender: TObject; Shift: TShiftState;
-      X, Y: integer);
-    procedure SpeedButton23Click(Sender: TObject);
-    procedure SpeedButton24Click(Sender: TObject);
-    procedure SpeedButton26Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButton8Click(Sender: TObject);
@@ -463,29 +412,6 @@ type
       X, Y: integer);
     procedure TimeTimerTimer(Sender: TObject);
     procedure TrayIcon1DblClick(Sender: TObject);
-    procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
-      Node: PVirtualNode);
-    procedure VirtualStringTree1Click(Sender: TObject);
-    procedure VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
-      Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: integer);
-    procedure VirtualStringTree1DblClick(Sender: TObject);
-    procedure VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
-      Node: PVirtualNode; Column: TColumnIndex);
-    procedure VirtualStringTree1FreeNode(Sender: TBaseVirtualTree;
-      Node: PVirtualNode);
-    procedure VirtualStringTree1GetHint(Sender: TBaseVirtualTree;
-      Node: PVirtualNode; Column: TColumnIndex;
-      var LineBreakStyle: TVTTooltipLineBreakStyle; var HintText: string);
-    procedure VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;
-      var NodeDataSize: integer);
-    procedure VirtualStringTree1GetText(Sender: TBaseVirtualTree;
-      Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
-      var CellText: string);
-    procedure VirtualStringTree1HeaderClick(Sender: TVTHeader;
-      HitInfo: TVTHeaderHitInfo);
-    procedure VirtualStringTree1NodeClick(Sender: TBaseVirtualTree;
-      const HitInfo: THitInfo);
-
   private
     { private declarations }
 
@@ -497,10 +423,7 @@ type
     ExportAdifSelect: boolean;
     ExportAdifArray: array of integer;
     freqchange: boolean;
-
-    procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure Clr;
-    function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     function GetModeFromFreq(MHz: string): string;
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure tIMGClick(Sender: TObject);
@@ -547,22 +470,6 @@ uses
   ThanksForm_u,
   print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
   flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm, infoDM_U, dxclusterform_u;
-
-type
-  PTreeData = ^TTreeData;
-
-  TTreeData = record
-    DX: string;
-    Spots: string;
-    Call: string;
-    Freq: string;
-    Moda: string;
-    Comment: string;
-    Time: string;
-    Country: string;
-    Loc: string;
-  end;
-
 
 {$R *.lfm}
 
@@ -645,36 +552,6 @@ begin
     end
   finally
     qBands.Close;
-  end;
-end;
-
-function TMainForm.FindNode(const APattern: string; Country: boolean): PVirtualNode;
-var
-  ANode: PVirtualNode;
-  DataNode: PTreeData;
-begin
-  Result := nil;
-  ANode := VirtualStringTree1.GetFirst();
-  while ANode <> nil do
-  begin
-    DataNode := VirtualStringTree1.GetNodeData(ANode);
-    if Country = False then
-    begin
-      if DataNode^.DX = APattern then
-      begin
-        Result := ANode;
-        exit;
-      end;
-    end
-    else
-    begin
-      if DataNode^.Country = APattern then
-      begin
-        Result := ANode;
-        exit;
-      end;
-    end;
-    ANode := VirtualStringTree1.GetNext(ANode);
   end;
 end;
 
@@ -1294,162 +1171,6 @@ begin
   MainFunc.DrawColumnGrid(FindQSODS.DataSet, Rect, DataCol, Column, State, DBGrid2);
 end;
 
-procedure TMainForm.dxClientConnect(aSocket: TLSocket);
-begin
-  SpeedButton18.Enabled := False;
-  SpeedButton24.Enabled := False;
-end;
-
-procedure TMainForm.dxClientDisconnect(aSocket: TLSocket);
-begin
-  Memo1.Append(rDXClusterDisconnect);
-
-  SpeedButton21.Enabled := False;
-  SpeedButton27.Enabled := False;
-  SpeedButton18.Enabled := True;
-  SpeedButton24.Enabled := True;
-  SpeedButton28.Enabled := False;
-  SpeedButton22.Enabled := False;
-end;
-
-procedure TMainForm.dxClientReceive(aSocket: TLSocket);
-var
-  DX, Call, Freq, Comment, Time, Loc, Band, Mode: string;
-  TelnetLine: string;
-  Data: PTreeData;
-  XNode: PVirtualNode;
-  ShowSpotBand: boolean;
-  ShowSpotMode: boolean;
-  freqMhz: double;
-  PFXR: TPFXR;
-begin
-  freqMhz := 0;
-  DX := '';
-  Call := '';
-  Freq := '';
-  Comment := '';
-  Time := '';
-  Loc := '';
-  Band := '';
-  ShowSpotBand := False;
-  ShowSpotMode := False;
-  if dxClient.GetMessage(TelnetLine) > 0 then
-  begin
-    TelnetLine := Trim(TelnetLine);
-    Memo1.Lines.Add(TelnetLine);
-
-    if Length(IniSet.Cluster_Login) > 0 then
-    begin
-      if Pos('login', TelnetLine) > 0 then
-        dxClient.SendMessage(IniSet.Cluster_Login + #13#10, aSocket);
-    end;
-    if Pos('DX de', TelnetLine) = 1 then
-    begin
-      TelnetLine := StringReplace(TelnetLine, ':', ' ', [rfReplaceAll]);
-      Call := StringReplace(TelnetLine.Substring(6, 8), ' ', '', [rfReplaceAll]);
-      Freq := StringReplace(TelnetLine.Substring(15, 10), ' ', '', [rfReplaceAll]);
-      DX := StringReplace(TelnetLine.Substring(26, 12), ' ', '', [rfReplaceAll]);
-      Comment := Trim(TelnetLine.Substring(39, 30));
-      Time := StringReplace(TelnetLine.Substring(70, 2) + ':' +
-        TelnetLine.Substring(72, 2), ' ', '', [rfReplaceAll]);
-      Loc := StringReplace(TelnetLine.Substring(76, 4), ' ', '', [rfReplaceAll]);
-    end;
-
-    if Freq <> '' then
-      if TryStrToFloat(Freq, freqMhz) then
-        freqMhz := freqMhz / 1000
-      else
-        exit;
-
-    Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
-    Mode := GetModeFromFreq(FloatToStr(freqMhz));
-    if Length(Band) > 0 then
-    begin
-      if (not ShowSpotBand) or (not ShowSpotMode) then
-      begin
-        case Band of
-          '2190M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[0];
-          '630M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[1];
-          '160M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[2];
-          '80M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[3];
-          '60M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[4];
-          '40M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[5];
-          '30M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[6];
-          '20M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[7];
-          '17M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[8];
-          '15M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[9];
-          '12M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[10];
-          '10M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[11];
-          '6M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[12];
-          '4M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[13];
-          '2M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[14];
-          '70CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[15];
-          '23CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[16];
-          '13CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[17];
-          '9CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[18];
-          '6CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[19];
-          '3CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[20];
-          '1.25CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[21];
-          '6MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[22];
-          '4MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[23];
-        end;
-        case Mode of
-          'LSB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
-          'USB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
-          'CW': ShowSpotMode := ClusterFilter.cbCW.Checked;
-          'DIGI': ShowSpotMode := ClusterFilter.cbData.Checked;
-        end;
-      end;
-    end;
-    if (Length(DX) > 0) and ShowSpotBand and ShowSpotMode then
-    begin
-      if FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False) = nil then
-      begin
-        XNode := VirtualStringTree1.AddChild(nil);
-        Data := VirtualStringTree1.GetNodeData(Xnode);
-        Data^.DX := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
-        XNode := VirtualStringTree1.AddChild(
-          FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False));
-        Data := VirtualStringTree1.GetNodeData(Xnode);
-        Data^.Spots := DX;
-        Data^.Call := Call;
-        Data^.Freq := Freq;
-        Data^.Moda := Mode;
-        Data^.Comment := Comment;
-        Data^.Time := Time;
-        Data^.Loc := Loc;
-        PFXR := MainFunc.SearchPrefix(DX, Loc);
-        Data^.Country := PFXR.Country;
-        VirtualStringTree1.Expanded[XNode^.Parent] := ClusterFilter.CheckBox1.Checked;
-      end
-      else
-      begin
-        XNode := VirtualStringTree1.InsertNode(
-          FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False), amAddChildFirst);
-        Data := VirtualStringTree1.GetNodeData(Xnode);
-        Data^.Spots := DX;
-        Data^.Call := Call;
-        Data^.Freq := Freq;
-        Data^.Moda := Mode;
-        Data^.Comment := Comment;
-        Data^.Time := Time;
-        Data^.Loc := Loc;
-        PFXR := MainFunc.SearchPrefix(DX, Loc);
-        Data^.Country := PFXR.Country;
-      end;
-    end;
-  end;
-end;
-
-procedure TMainForm.Edit12KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
-begin
-  if Key = 13 then
-  begin
-    dxClient.SendMessage(Edit12.Text + #13#10, nil);
-    Edit12.Clear;
-  end;
-end;
-
 procedure TMainForm.EditButton1ButtonClick(Sender: TObject);
 var
   FoundQSOR: TFoundQSOR;
@@ -1571,10 +1292,6 @@ end;
 procedure TMainForm.FormResize(Sender: TObject);
 begin
   Label50.Left := Panel1.Width - 165;
-  ComboBox3.Width := MainForm.Width - 655;
-  SpeedButton19.Left := Panel9.Width - 27;
-  ComboBox8.Width := MainForm.Width - 655;
-  SpeedButton25.Left := Panel9.Width - 27;
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -1627,6 +1344,12 @@ begin
   CheckUpdatesTimer.Enabled := True;
   ComboBox7.ItemIndex := 3;
   IniSet.CurrentForm := 'MAIN';
+
+  dxClusterForm.Parent := Panel8;
+  dxClusterForm.BorderStyle := bsNone;
+  dxClusterForm.Align := alClient;
+  dxClusterForm.Show;
+
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
@@ -1728,33 +1451,6 @@ begin
   end;
   MenuItem111.Checked := False;
   MenuItem112.Checked := True;
-end;
-
-procedure TMainForm.MenuItem113Click(Sender: TObject);
-var
-  XNode: PVirtualNode;
-  Data: PTreeData;
-begin
-  XNode := VirtualStringTree1.FocusedNode;
-  Data := VirtualStringTree1.GetNodeData(XNode);
-  if VirtualStringTree1.SelectedCount <> 0 then
-    if Length(Data^.Spots) > 1 then
-      EditButton1.Text := Data^.Spots;
-end;
-
-procedure TMainForm.MenuItem114Click(Sender: TObject);
-begin
-  VirtualStringTree1.DeleteSelectedNodes;
-end;
-
-procedure TMainForm.MenuItem115Click(Sender: TObject);
-begin
-  if not VirtualStringTree1.IsEmpty then
-  begin
-    VirtualStringTree1.BeginUpdate;
-    VirtualStringTree1.Clear;
-    VirtualStringTree1.EndUpdate;
-  end;
 end;
 
 procedure TMainForm.LangItemClick(Sender: TObject);
@@ -3052,79 +2748,10 @@ begin
   PopupMenu2.PopUp;
 end;
 
-procedure TMainForm.SpeedButton18MouseLeave(Sender: TObject);
-begin
-  StatusBar1.Panels.Items[0].Text := '';
-end;
-
-procedure TMainForm.SpeedButton18MouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: integer);
-begin
-  StatusBar1.Panels.Items[0].Text := rDXClusterConnecting;
-end;
-
-procedure TMainForm.SpeedButton19Click(Sender: TObject);
-begin
-  ClusterServer_Form.Show;
-end;
-
 procedure TMainForm.SpeedButton1Click(Sender: TObject);
 begin
   STATE_Form.Show;
   STATE_Form.Edit1.Text := Edit4.Text;
-end;
-
-procedure TMainForm.SpeedButton20MouseLeave(Sender: TObject);
-begin
-  StatusBar1.Panels.Items[0].Text := '';
-end;
-
-procedure TMainForm.SpeedButton20MouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: integer);
-begin
-  StatusBar1.Panels.Items[0].Text := rDXClusterWindowClear;
-end;
-
-procedure TMainForm.SpeedButton21MouseLeave(Sender: TObject);
-begin
-  StatusBar1.Panels.Items[0].Text := '';
-end;
-
-procedure TMainForm.SpeedButton21MouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: integer);
-begin
-  StatusBar1.Panels.Items[0].Text := rDXClusterDisconnecting;
-end;
-
-procedure TMainForm.SpeedButton22Click(Sender: TObject);
-begin
-  SendTelnetSpot.Show;
-end;
-
-procedure TMainForm.SpeedButton22MouseLeave(Sender: TObject);
-begin
-  StatusBar1.Panels.Items[0].Text := '';
-end;
-
-procedure TMainForm.SpeedButton22MouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: integer);
-begin
-  StatusBar1.Panels.Items[0].Text := rSendSpot;
-end;
-
-procedure TMainForm.SpeedButton23Click(Sender: TObject);
-begin
-  ClusterFilter.Show;
-end;
-
-procedure TMainForm.SpeedButton24Click(Sender: TObject);
-begin
-  dxClusterForm.Show;
-end;
-
-procedure TMainForm.SpeedButton26Click(Sender: TObject);
-begin
-  Memo1.Clear;
 end;
 
 procedure TMainForm.SpeedButton2Click(Sender: TObject);
@@ -3416,207 +3043,6 @@ begin
     MenuItem95.Click
   else
     MenuItem96.Click;
-end;
-
-procedure TMainForm.VirtualStringTree1Change(Sender: TBaseVirtualTree;
-  Node: PVirtualNode);
-begin
-  VirtualStringTree1.Refresh;
-end;
-
-procedure TMainForm.VirtualStringTree1Click(Sender: TObject);
-var
-  XNode: PVirtualNode;
-  Data: PTreeData;
-  PFXR: TPFXR;
-  Lat, Lon: string;
-begin
-  XNode := VirtualStringTree1.FocusedNode;
-  Data := VirtualStringTree1.GetNodeData(XNode);
-  if VirtualStringTree1.SelectedCount <> 0 then
-  begin
-    if Length(Data^.Spots) > 1 then
-    begin
-      PFXR := MainFunc.SearchPrefix(Data^.Spots, Data^.Loc);
-      Label32.Caption := PFXR.Azimuth;
-      Label37.Caption := PFXR.Distance;
-      Label40.Caption := PFXR.Latitude;
-      Label42.Caption := PFXR.Longitude;
-      Label33.Caption := PFXR.Country;
-      Label43.Caption := PFXR.Continent;
-      Label34.Caption := PFXR.ARRLPrefix;
-      Label38.Caption := PFXR.Prefix;
-      Label45.Caption := PFXR.CQZone;
-      Label47.Caption := PFXR.ITUZone;
-      timedif := PFXR.TimeDiff;
-      dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
-      Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-      Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-      if PFXR.Found and CheckBox3.Checked then
-        MainFunc.LoadMaps(Lat, Lon, MapView1);
-    end;
-  end;
-end;
-
-procedure TMainForm.VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
-  Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: integer);
-begin
-  with TVirtualStringTree(Sender) do
-    Result := AnsiCompareText(Text[Node1, Column], Text[Node2, Column]);
-end;
-
-procedure TMainForm.VirtualStringTree1DblClick(Sender: TObject);
-var
-  XNode: PVirtualNode;
-  Data: PTreeData;
-begin
-  XNode := VirtualStringTree1.FocusedNode;
-  Data := VirtualStringTree1.GetNodeData(XNode);
-  if VirtualStringTree1.SelectedCount <> 0 then
-  begin
-    if Length(Data^.Spots) > 1 then
-    begin
-      EditButton1.Text := Data^.Spots;
-      // if (CallBookLiteConnection.Connected = False) and
-      //   (Length(Data^.Spots) >= 3) then
-      //   InformationForm.GetInformation(Data^.Spots, True);
-
-      if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
-        (TRXForm.radio.GetFreqHz > 0) then
-      begin
-        TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
-        if Data^.Moda = 'DIGI' then
-          TRXForm.SetMode('USB', 0)
-        else
-          TRXForm.SetMode(Data^.Moda, 0);
-      end
-      else
-      begin
-        if ConfigForm.CheckBox2.Checked = True then
-          ComboBox1.Text := dmFunc.GetBandFromFreq(
-            FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000))
-        else
-          ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
-
-        if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
-        begin
-          ComboBox2.Text := 'SSB';
-          ComboBox2CloseUp(Sender);
-          ComboBox9.Text := Data^.Moda;
-        end;
-        if Data^.Moda = 'DIGI' then
-        begin
-          ComboBox2.Text := 'SSB';
-          ComboBox2CloseUp(Sender);
-          ComboBox9.Text := 'USB';
-        end;
-        if Data^.Moda = 'CW' then
-        begin
-          ComboBox2.Text := 'CW';
-          ComboBox2CloseUp(Sender);
-          ComboBox9.Text := '';
-        end;
-      end;
-    end;
-  end;
-end;
-
-procedure TMainForm.VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
-  Node: PVirtualNode; Column: TColumnIndex);
-begin
-  VirtualStringTree1.Refresh;
-end;
-
-procedure TMainForm.VirtualStringTree1FreeNode(Sender: TBaseVirtualTree;
-  Node: PVirtualNode);
-var
-  Data: PTreeData;
-begin
-  Data := VirtualStringTree1.GetNodeData(Node);
-  if Assigned(Data) then
-  begin
-    Data^.DX := '';
-    Data^.Spots := '';
-    Data^.Call := '';
-    Data^.Freq := '';
-    Data^.Moda := '';
-    Data^.Comment := '';
-    Data^.Time := '';
-    Data^.Loc := '';
-    Data^.Country := '';
-  end;
-end;
-
-procedure TMainForm.VirtualStringTree1GetHint(Sender: TBaseVirtualTree;
-  Node: PVirtualNode; Column: TColumnIndex;
-  var LineBreakStyle: TVTTooltipLineBreakStyle; var HintText: string);
-var
-  Data: PTreeData;
-begin
-  Data := Sender.GetNodeData(Node);
-end;
-
-procedure TMainForm.VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;
-  var NodeDataSize: integer);
-begin
-  NodeDataSize := SizeOf(TTreeData);
-end;
-
-procedure TMainForm.VirtualStringTree1GetText(Sender: TBaseVirtualTree;
-  Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
-  var CellText: string);
-var
-  Data: PTreeData;
-begin
-  Data := VirtualStringTree1.GetNodeData(Node);
-  case Column of
-    0: CellText := Data^.DX;
-    1: CellText := Data^.Spots;
-    2: CellText := Data^.Call;
-    3: CellText := Data^.Freq;
-    4: CellText := Data^.Moda;
-    5: CellText := Data^.Comment;
-    6: CellText := Data^.Time;
-    7: CellText := Data^.Loc;
-    8: CellText := Data^.Country;
-  end;
-end;
-
-procedure TMainForm.VirtualStringTree1HeaderClick(Sender: TVTHeader;
-  HitInfo: TVTHeaderHitInfo);
-begin
-  if HitInfo.Button = mbLeft then
-  begin
-    VirtualStringTree1.Header.SortColumn := HitInfo.Column;
-    if VirtualStringTree1.Header.SortDirection = sdAscending then
-      VirtualStringTree1.Header.SortDirection := sdDescending
-    else
-      VirtualStringTree1.Header.SortDirection := sdAscending;
-    VirtualStringTree1.SortTree(HitInfo.Column, VirtualStringTree1.Header.SortDirection);
-  end;
-end;
-
-procedure TMainForm.VirtualStringTree1NodeClick(Sender: TBaseVirtualTree;
-  const HitInfo: THitInfo);
-var
-  XNode: PVirtualNode;
-begin
-  XNode := VirtualStringTree1.FocusedNode;
-  VirtualStringTree1.Selected[XNode] := True;
-end;
-
-
-procedure TMainForm.SendSpot(freq, call, cname, mode, rsts, grid: string);
-var
-  comment: string;
-begin
-  comment := cname + ' ' + mode + ' ' + rsts;
-  try
-    dxClient.SendMessage(Trim(Format('dx %s %s %s', [freq, call, comment])) + #13#10);
-  except
-    on E: Exception do
-      Memo1.Append(E.Message);
-  end;
 end;
 
 

@@ -1677,6 +1677,21 @@ msgctxt "tdxclusterform.caption"
 msgid "DX Cluster"
 msgstr ""
 
+#: tdxclusterform.menuitem1.caption
+msgctxt "tdxclusterform.menuitem1.caption"
+msgid "Paste in Callsign field"
+msgstr ""
+
+#: tdxclusterform.menuitem2.caption
+msgctxt "tdxclusterform.menuitem2.caption"
+msgid "Delete spot"
+msgstr ""
+
+#: tdxclusterform.menuitem3.caption
+msgctxt "tdxclusterform.menuitem3.caption"
+msgid "Clear window"
+msgstr ""
+
 #: tdxclusterform.tabsheet1.caption
 msgctxt "tdxclusterform.tabsheet1.caption"
 msgid "Telnet"
@@ -3523,18 +3538,6 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-#: tmainform.menuitem113.caption
-msgid "Paste in Callsign field"
-msgstr ""
-
-#: tmainform.menuitem114.caption
-msgid "Delete spot"
-msgstr ""
-
-#: tmainform.menuitem115.caption
-msgid "Clear window"
-msgstr ""
-
 #: tmainform.menuitem116.caption
 msgid "Language"
 msgstr ""
@@ -3961,61 +3964,6 @@ msgstr ""
 
 #: tmainform.speedbutton9.hint
 msgid "Clear QSO"
-msgstr ""
-
-#: tmainform.tabsheet1.caption
-msgctxt "tmainform.tabsheet1.caption"
-msgid "Telnet"
-msgstr ""
-
-#: tmainform.tabsheet2.caption
-msgctxt "tmainform.tabsheet2.caption"
-msgid "Telnet DX Cluster"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[0].text
-msgctxt "tmainform.virtualstringtree1.header.columns[0].text"
-msgid "Band"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[1].text
-msgctxt "tmainform.virtualstringtree1.header.columns[1].text"
-msgid "DX"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[2].text
-msgctxt "tmainform.virtualstringtree1.header.columns[2].text"
-msgid "Spotter"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[3].text
-msgctxt "tmainform.virtualstringtree1.header.columns[3].text"
-msgid "Frequency"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[4].text
-msgctxt "tmainform.virtualstringtree1.header.columns[4].text"
-msgid "Mode"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[5].text
-msgctxt "tmainform.virtualstringtree1.header.columns[5].text"
-msgid "Comment"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[6].text
-msgctxt "tmainform.virtualstringtree1.header.columns[6].text"
-msgid "UTC"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[7].text
-msgctxt "tmainform.virtualstringtree1.header.columns[7].text"
-msgid "Grid"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[8].text
-msgctxt "tmainform.virtualstringtree1.header.columns[8].text"
-msgid "Country"
 msgstr ""
 
 #: tmanagerbaseprefixform.caption

@@ -36,7 +36,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U;
+  MainForm_U, dmFunc_U, dxclusterform_u;
 
 {$R *.lfm}
 
@@ -64,7 +64,7 @@ begin
     comment := Edit2.Text;
     Delete(freq, length(freq) - 2, 1);
     freq2 := StrToFloat(freq);
-    MainForm.SendSpot(FloatToStr(freq2 * 1000), call, comment, '', '', '');
+    dxClusterForm.SendSpot(FloatToStr(freq2 * 1000), call, comment, '', '', '');
     SendTelnetSpot.Close;
   end
   else

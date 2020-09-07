@@ -135,17 +135,6 @@
 {"hash":242551969,"name":"tmainform.dbgrid2.columns[27].title.caption","sourcebytes":[81,83,76,32,115,32,86,73,65],"value":"QSL s VIA"},
 {"hash":379330,"name":"tmainform.dbgrid2.columns[28].title.caption","sourcebytes":[85,115,101,114],"value":"User"},
 {"hash":117831155,"name":"tmainform.dbgrid2.columns[29].title.caption","sourcebytes":[78,111,32,99,97,108,99,32,68,88,67,67],"value":"No calc DXCC"},
-{"hash":95171780,"name":"tmainform.tabsheet1.caption","sourcebytes":[84,101,108,110,101,116],"value":"Telnet"},
-{"hash":100856770,"name":"tmainform.tabsheet2.caption","sourcebytes":[84,101,108,110,101,116,32,68,88,32,67,108,117,115,116,101,114],"value":"Telnet DX Cluster"},
-{"hash":297028,"name":"tmainform.virtualstringtree1.header.columns[0].text","sourcebytes":[66,97,110,100],"value":"Band"},
-{"hash":1176,"name":"tmainform.virtualstringtree1.header.columns[1].text","sourcebytes":[68,88],"value":"DX"},
-{"hash":175553170,"name":"tmainform.virtualstringtree1.header.columns[2].text","sourcebytes":[83,112,111,116,116,101,114],"value":"Spotter"},
-{"hash":210503977,"name":"tmainform.virtualstringtree1.header.columns[3].text","sourcebytes":[70,114,101,113,117,101,110,99,121],"value":"Frequency"},
-{"hash":345509,"name":"tmainform.virtualstringtree1.header.columns[4].text","sourcebytes":[77,111,100,101],"value":"Mode"},
-{"hash":174341140,"name":"tmainform.virtualstringtree1.header.columns[5].text","sourcebytes":[67,111,109,109,101,110,116],"value":"Comment"},
-{"hash":23171,"name":"tmainform.virtualstringtree1.header.columns[6].text","sourcebytes":[85,84,67],"value":"UTC"},
-{"hash":321780,"name":"tmainform.virtualstringtree1.header.columns[7].text","sourcebytes":[71,114,105,100],"value":"Grid"},
-{"hash":174873561,"name":"tmainform.virtualstringtree1.header.columns[8].text","sourcebytes":[67,111,117,110,116,114,121],"value":"Country"},
 {"hash":56333835,"name":"tmainform.menuitem1.caption","sourcebytes":[76,111,103,66,111,111,107],"value":"LogBook"},
 {"hash":163465787,"name":"tmainform.menuitem54.caption","sourcebytes":[79,112,101,114,97,116,105,111,110,115,32,119,105,116,104,32,97,32,108,111,103,98,111,111,107],"value":"Operations with a logbook"},
 {"hash":113276983,"name":"tmainform.menuitem55.caption","sourcebytes":[79,112,101,110,32,108,111,103],"value":"Open log"},
@@ -248,8 +237,5 @@
 {"hash":180586789,"name":"tmainform.menuitem78.caption","sourcebytes":[83,97,116,101,108,108,105,116,101],"value":"Satellite"},
 {"hash":189923241,"name":"tmainform.menuitem95.caption","sourcebytes":[77,105,110,105,109,105,122,101,32,116,111,32,116,114,97,121],"value":"Minimize to tray"},
 {"hash":80701508,"name":"tmainform.menuitem96.caption","sourcebytes":[69,120,112,97,110,100],"value":"Expand"},
-{"hash":315140,"name":"tmainform.menuitem98.caption","sourcebytes":[69,120,105,116],"value":"Exit"},
-{"hash":21359572,"name":"tmainform.menuitem113.caption","sourcebytes":[80,97,115,116,101,32,105,110,32,67,97,108,108,115,105,103,110,32,102,105,101,108,100],"value":"Paste in Callsign field"},
-{"hash":171795876,"name":"tmainform.menuitem114.caption","sourcebytes":[68,101,108,101,116,101,32,115,112,111,116],"value":"Delete spot"},
-{"hash":58651431,"name":"tmainform.menuitem115.caption","sourcebytes":[67,108,101,97,114,32,119,105,110,100,111,119],"value":"Clear window"}
+{"hash":315140,"name":"tmainform.menuitem98.caption","sourcebytes":[69,120,105,116],"value":"Exit"}
 ]}

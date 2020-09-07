@@ -1747,6 +1747,24 @@ msgctxt "tdxclusterform.caption"
 msgid "DX Cluster"
 msgstr ""
 
+#: tdxclusterform.menuitem1.caption
+#, fuzzy
+msgctxt "tdxclusterform.menuitem1.caption"
+msgid "Paste in Callsign field"
+msgstr "Вставить позывной в поле ввода"
+
+#: tdxclusterform.menuitem2.caption
+#, fuzzy
+msgctxt "tdxclusterform.menuitem2.caption"
+msgid "Delete spot"
+msgstr "Удалить спот"
+
+#: tdxclusterform.menuitem3.caption
+#, fuzzy
+msgctxt "tdxclusterform.menuitem3.caption"
+msgid "Clear window"
+msgstr "Очистить окно"
+
 #: tdxclusterform.tabsheet1.caption
 #, fuzzy
 msgctxt "tdxclusterform.tabsheet1.caption"
@@ -3608,18 +3626,6 @@ msgstr "Включить"
 msgid "Off"
 msgstr "Отключить"
 
-#: tmainform.menuitem113.caption
-msgid "Paste in Callsign field"
-msgstr "Вставить позывной в поле ввода"
-
-#: tmainform.menuitem114.caption
-msgid "Delete spot"
-msgstr "Удалить спот"
-
-#: tmainform.menuitem115.caption
-msgid "Clear window"
-msgstr "Очистить окно"
-
 #: tmainform.menuitem116.caption
 msgid "Language"
 msgstr "Язык"
@@ -4049,61 +4055,6 @@ msgstr "Сохранить QSO"
 #: tmainform.speedbutton9.hint
 msgid "Clear QSO"
 msgstr "Очистить QSO"
-
-#: tmainform.tabsheet1.caption
-msgctxt "tmainform.tabsheet1.caption"
-msgid "Telnet"
-msgstr "Телнет"
-
-#: tmainform.tabsheet2.caption
-msgctxt "tmainform.tabsheet2.caption"
-msgid "Telnet DX Cluster"
-msgstr "Telnet DX кластер"
-
-#: tmainform.virtualstringtree1.header.columns[0].text
-msgctxt "tmainform.virtualstringtree1.header.columns[0].text"
-msgid "Band"
-msgstr "Диапазон"
-
-#: tmainform.virtualstringtree1.header.columns[1].text
-msgctxt "tmainform.virtualstringtree1.header.columns[1].text"
-msgid "DX"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[2].text
-msgctxt "tmainform.virtualstringtree1.header.columns[2].text"
-msgid "Spotter"
-msgstr "Споттер"
-
-#: tmainform.virtualstringtree1.header.columns[3].text
-msgctxt "tmainform.virtualstringtree1.header.columns[3].text"
-msgid "Frequency"
-msgstr "Частота"
-
-#: tmainform.virtualstringtree1.header.columns[4].text
-msgctxt "tmainform.virtualstringtree1.header.columns[4].text"
-msgid "Mode"
-msgstr "Мода"
-
-#: tmainform.virtualstringtree1.header.columns[5].text
-msgctxt "tmainform.virtualstringtree1.header.columns[5].text"
-msgid "Comment"
-msgstr "Комментарий"
-
-#: tmainform.virtualstringtree1.header.columns[6].text
-msgctxt "tmainform.virtualstringtree1.header.columns[6].text"
-msgid "UTC"
-msgstr ""
-
-#: tmainform.virtualstringtree1.header.columns[7].text
-msgctxt "tmainform.virtualstringtree1.header.columns[7].text"
-msgid "Grid"
-msgstr "Локатор"
-
-#: tmainform.virtualstringtree1.header.columns[8].text
-msgctxt "tmainform.virtualstringtree1.header.columns[8].text"
-msgid "Country"
-msgstr "Страна"
 
 #: tmanagerbaseprefixform.caption
 msgctxt "tmanagerbaseprefixform.caption"

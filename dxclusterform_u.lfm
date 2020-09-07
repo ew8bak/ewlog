@@ -1,7 +1,7 @@
 object dxClusterForm: TdxClusterForm
-  Left = 267
+  Left = 271
   Height = 240
-  Top = 138
+  Top = 121
   Width = 735
   Caption = 'DX Cluster'
   ClientHeight = 240
@@ -108,11 +108,14 @@ object dxClusterForm: TdxClusterForm
         Header.Font.Height = -12
         Header.Options = [hoColumnResize, hoDrag, hoShowImages, hoShowSortGlyphs, hoVisible]
         ParentFont = False
+        PopupMenu = PopupCluster
         TabOrder = 0
         TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScroll, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes, toAutoChangeScale]
         TreeOptions.SelectionOptions = [toFullRowSelect]
         OnChange = VirtualStringTree1Change
+        OnClick = VirtualStringTree1Click
         OnCompareNodes = VirtualStringTree1CompareNodes
+        OnDblClick = VirtualStringTree1DblClick
         OnFocusChanged = VirtualStringTree1FocusChanged
         OnFreeNode = VirtualStringTree1FreeNode
         OnGetText = VirtualStringTree1GetText
@@ -321,6 +324,7 @@ object dxClusterForm: TdxClusterForm
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
+      OnClick = SpeedButton4Click
     end
     object SpeedButton5: TSpeedButton
       AnchorSideLeft.Control = SpeedButton4
@@ -436,6 +440,22 @@ object dxClusterForm: TdxClusterForm
       ParentFont = False
       Style = csDropDownList
       TabOrder = 0
+    end
+  end
+  object PopupCluster: TPopupMenu
+    Left = 108
+    Top = 114
+    object MenuItem1: TMenuItem
+      Caption = 'Paste in Callsign field'
+      OnClick = MenuItem1Click
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Delete spot'
+      OnClick = MenuItem2Click
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Clear window'
+      OnClick = MenuItem3Click
     end
   end
 end

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
-  StdCtrls, Buttons, VirtualTrees, telnetClientThread, prefix_record;
+  StdCtrls, Buttons, Menus, VirtualTrees, telnetClientThread, prefix_record, const_u;
 
 type
 
@@ -16,8 +16,12 @@ type
     ComboBox1: TComboBox;
     Edit1: TEdit;
     Memo1: TMemo;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
+    PopupCluster: TPopupMenu;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
@@ -34,15 +38,21 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
     procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
       Node: PVirtualNode);
+    procedure VirtualStringTree1Click(Sender: TObject);
     procedure VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
       Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: integer);
+    procedure VirtualStringTree1DblClick(Sender: TObject);
     procedure VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Column: TColumnIndex);
     procedure VirtualStringTree1FreeNode(Sender: TBaseVirtualTree;
@@ -69,6 +79,7 @@ type
   public
     procedure FromClusterThread(buffer: string);
     procedure LoadClusterString;
+    procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
 
   end;
 
@@ -79,7 +90,8 @@ var
 
 implementation
 
-uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U, ClusterServer_Form_U;
+uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U,
+  ClusterServer_Form_U, MainForm_U, Earth_Form_U, TRXForm_U, sendtelnetspot_form_U;
 
 type
   PTreeData = ^TTreeData;
@@ -99,6 +111,19 @@ type
 {$R *.lfm}
 
 { TdxClusterForm }
+
+procedure TdxClusterForm.SendSpot(freq, call, cname, mode, rsts, grid: string);
+var
+  comment: string;
+begin
+  comment := cname + ' ' + mode + ' ' + rsts;
+  try
+    DXTelnetClient.SendMessage(Trim(Format('dx %s %s %s', [freq, call, comment])) + #13#10);
+  except
+    on E: Exception do
+      Memo1.Append(E.Message);
+  end;
+end;
 
 procedure TdxClusterForm.ButtonSet;
 begin
@@ -335,6 +360,40 @@ begin
   VirtualStringTree1.Refresh;
 end;
 
+procedure TdxClusterForm.VirtualStringTree1Click(Sender: TObject);
+var
+  XNode: PVirtualNode;
+  Data: PTreeData;
+  PFXR: TPFXR;
+  Lat, Lon: string;
+begin
+  XNode := VirtualStringTree1.FocusedNode;
+  Data := VirtualStringTree1.GetNodeData(XNode);
+  if VirtualStringTree1.SelectedCount <> 0 then
+  begin
+    if Length(Data^.Spots) > 1 then
+    begin
+      PFXR := MainFunc.SearchPrefix(Data^.Spots, Data^.Loc);
+      MainForm.Label32.Caption := PFXR.Azimuth;
+      MainForm.Label37.Caption := PFXR.Distance;
+      MainForm.Label40.Caption := PFXR.Latitude;
+      MainForm.Label42.Caption := PFXR.Longitude;
+      MainForm.Label33.Caption := PFXR.Country;
+      MainForm.Label43.Caption := PFXR.Continent;
+      MainForm.Label34.Caption := PFXR.ARRLPrefix;
+      MainForm.Label38.Caption := PFXR.Prefix;
+      MainForm.Label45.Caption := PFXR.CQZone;
+      MainForm.Label47.Caption := PFXR.ITUZone;
+      timedif := PFXR.TimeDiff;
+      dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+      Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+      Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+      if PFXR.Found and MainForm.CheckBox3.Checked then
+        MainFunc.LoadMaps(Lat, Lon, MainForm.MapView1);
+    end;
+  end;
+end;
+
 procedure TdxClusterForm.SpeedButton1Click(Sender: TObject);
 begin
   TelnetThread := TTelnetThread.Create;
@@ -359,6 +418,11 @@ end;
 procedure TdxClusterForm.SpeedButton3Click(Sender: TObject);
 begin
   DXTelnetClient.SendMessage('bye' + #13#10);
+end;
+
+procedure TdxClusterForm.SpeedButton4Click(Sender: TObject);
+begin
+  SendTelnetSpot.Show;
 end;
 
 procedure TdxClusterForm.SpeedButton5Click(Sender: TObject);
@@ -404,6 +468,33 @@ begin
   ButtonSet;
 end;
 
+procedure TdxClusterForm.MenuItem1Click(Sender: TObject);
+var
+  XNode: PVirtualNode;
+  Data: PTreeData;
+begin
+  XNode := VirtualStringTree1.FocusedNode;
+  Data := VirtualStringTree1.GetNodeData(XNode);
+  if VirtualStringTree1.SelectedCount <> 0 then
+    if Length(Data^.Spots) > 1 then
+      MainForm.EditButton1.Text := Data^.Spots;
+end;
+
+procedure TdxClusterForm.MenuItem2Click(Sender: TObject);
+begin
+  VirtualStringTree1.DeleteSelectedNodes;
+end;
+
+procedure TdxClusterForm.MenuItem3Click(Sender: TObject);
+begin
+  if not VirtualStringTree1.IsEmpty then
+  begin
+    VirtualStringTree1.BeginUpdate;
+    VirtualStringTree1.Clear;
+    VirtualStringTree1.EndUpdate;
+  end;
+end;
+
 procedure TdxClusterForm.Edit1KeyDown(Sender: TObject; var Key: word;
   Shift: TShiftState);
 begin
@@ -432,6 +523,63 @@ procedure TdxClusterForm.VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree
 begin
   with TVirtualStringTree(Sender) do
     Result := AnsiCompareText(Text[Node1, Column], Text[Node2, Column]);
+end;
+
+procedure TdxClusterForm.VirtualStringTree1DblClick(Sender: TObject);
+var
+  XNode: PVirtualNode;
+  Data: PTreeData;
+begin
+  XNode := VirtualStringTree1.FocusedNode;
+  Data := VirtualStringTree1.GetNodeData(XNode);
+  if VirtualStringTree1.SelectedCount <> 0 then
+  begin
+    if Length(Data^.Spots) > 1 then
+    begin
+      MainForm.EditButton1.Text := Data^.Spots;
+      // if (CallBookLiteConnection.Connected = False) and
+      //   (Length(Data^.Spots) >= 3) then
+      //   InformationForm.GetInformation(Data^.Spots, True);
+
+      if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
+        (TRXForm.radio.GetFreqHz > 0) then
+      begin
+        TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
+        if Data^.Moda = 'DIGI' then
+          TRXForm.SetMode('USB', 0)
+        else
+          TRXForm.SetMode(Data^.Moda, 0);
+      end
+      else
+      begin
+        if IniSet.showBand then
+          ComboBox1.Text := dmFunc.GetBandFromFreq(
+            FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000))
+        else
+          MainForm.ComboBox1.Text := FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
+
+        if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
+        begin
+          MainForm.ComboBox2.Text := 'SSB';
+          MainForm.ComboBox2CloseUp(Sender);
+          MainForm.ComboBox9.Text := Data^.Moda;
+        end;
+        if Data^.Moda = 'DIGI' then
+        begin
+          MainForm.ComboBox2.Text := 'SSB';
+          MainForm.ComboBox2CloseUp(Sender);
+          MainForm.ComboBox9.Text := 'USB';
+        end;
+        if Data^.Moda = 'CW' then
+        begin
+          MainForm.ComboBox2.Text := 'CW';
+          MainForm.ComboBox2CloseUp(Sender);
+          MainForm.ComboBox9.Text := '';
+        end;
+      end;
+    end;
+  end;
+
 end;
 
 procedure TdxClusterForm.VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
