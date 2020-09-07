@@ -45,6 +45,8 @@ type
     CurrentForm: string;
     Cluster_Login: string;
     Cluster_Pass: string;
+    Cluster_Host: string;
+    Cluster_Port: string;
   end;
 
 implementation

@@ -27,12 +27,18 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
+    procedure ComboBox1Change(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
+    procedure SpeedButton6Click(Sender: TObject);
     procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
       Node: PVirtualNode);
     procedure VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
@@ -43,7 +49,7 @@ type
       Node: PVirtualNode);
     procedure VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
-      var Ghosted: Boolean; var ImageIndex: Integer);
+      var Ghosted: boolean; var ImageIndex: integer);
     procedure VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;
       var NodeDataSize: integer);
     procedure VirtualStringTree1GetText(Sender: TBaseVirtualTree;
@@ -58,18 +64,22 @@ type
     FlagSList: TStringList;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     procedure FindCountryFlag(Country: string);
+    procedure ButtonSet;
 
   public
     procedure FromClusterThread(buffer: string);
+    procedure LoadClusterString;
 
   end;
 
 var
   dxClusterForm: TdxClusterForm;
+  TelStr: array[1..9] of string;
+  TelServ, TelPort, TelName: string;
 
 implementation
 
-uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U;
+uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U, ClusterServer_Form_U;
 
 type
   PTreeData = ^TTreeData;
@@ -89,6 +99,52 @@ type
 {$R *.lfm}
 
 { TdxClusterForm }
+
+procedure TdxClusterForm.ButtonSet;
+begin
+  if ConnectCluster then
+  begin
+    SpeedButton1.Enabled := False;
+    SpeedButton2.Enabled := True;
+    SpeedButton3.Enabled := True;
+    SpeedButton4.Enabled := True;
+  end
+  else
+  begin
+    SpeedButton1.Enabled := True;
+    SpeedButton2.Enabled := False;
+    SpeedButton3.Enabled := False;
+    SpeedButton4.Enabled := False;
+  end;
+end;
+
+procedure TdxClusterForm.LoadClusterString;
+var
+  i, j: integer;
+begin
+  for i := 1 to 9 do
+  begin
+    TelStr[i] := INIFile.ReadString('TelnetCluster', 'Server' +
+      IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
+  end;
+  TelName := INIFile.ReadString('TelnetCluster', 'ServerDef',
+    'FREERC -> dx.freerc.ru:8000');
+  ComboBox1.Items.Clear;
+  ComboBox1.Items.AddStrings(TelStr);
+  if ComboBox1.Items.IndexOf(TelName) > -1 then
+    ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(TelName)
+  else
+    ComboBox1.ItemIndex := 0;
+
+  i := pos('>', ComboBox1.Text);
+  j := pos(':', ComboBox1.Text);
+  //Сервер
+  IniSet.Cluster_Host := copy(ComboBox1.Text, i + 1, j - i - 1);
+  Delete(IniSet.Cluster_Host, 1, 1);
+  //Порт
+  IniSet.Cluster_Port := copy(ComboBox1.Text, j + 1, Length(ComboBox1.Text) - i);
+
+end;
 
 procedure TdxClusterForm.FindCountryFlag(Country: string);
 var
@@ -166,6 +222,7 @@ begin
   Band := '';
   ShowSpotBand := False;
   ShowSpotMode := True;
+  ButtonSet;
   if Length(buffer) > 0 then
   begin
     Memo1.Lines.Add(Trim(buffer));
@@ -284,6 +341,24 @@ begin
   if Assigned(TelnetThread.FatalException) then
     raise TelnetThread.FatalException;
   TelnetThread.Start;
+  SpeedButton1.Enabled := False;
+end;
+
+procedure TdxClusterForm.SpeedButton2Click(Sender: TObject);
+begin
+  if not VirtualStringTree1.IsEmpty and (PageControl1.ActivePageIndex = 1) then
+  begin
+    VirtualStringTree1.BeginUpdate;
+    VirtualStringTree1.Clear;
+    VirtualStringTree1.EndUpdate;
+  end;
+  if PageControl1.ActivePageIndex = 0 then
+    Memo1.Clear;
+end;
+
+procedure TdxClusterForm.SpeedButton3Click(Sender: TObject);
+begin
+  DXTelnetClient.SendMessage('bye' + #13#10);
 end;
 
 procedure TdxClusterForm.SpeedButton5Click(Sender: TObject);
@@ -291,10 +366,17 @@ begin
   ClusterFilter.Show;
 end;
 
+procedure TdxClusterForm.SpeedButton6Click(Sender: TObject);
+begin
+  ClusterServer_Form.Show;
+end;
+
 procedure TdxClusterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if TelnetThread <> nil then
     TelnetThread.Terminate;
+  INIFile.WriteString('TelnetCluster', 'ServerDef', ComboBox1.Text);
+  MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
 end;
 
 procedure TdxClusterForm.FormCreate(Sender: TObject);
@@ -302,12 +384,24 @@ begin
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
   VirtualStringTree1.Images := FlagList;
+  LoadClusterString;
+  MainFunc.SetDXColumns(VirtualStringTree1, False, VirtualStringTree1);
 end;
 
 procedure TdxClusterForm.FormDestroy(Sender: TObject);
 begin
   FlagList.Free;
   FlagSList.Free;
+end;
+
+procedure TdxClusterForm.FormResize(Sender: TObject);
+begin
+  ComboBox1.Width := dxClusterForm.Width - 200;
+end;
+
+procedure TdxClusterForm.FormShow(Sender: TObject);
+begin
+  ButtonSet;
 end;
 
 procedure TdxClusterForm.Edit1KeyDown(Sender: TObject; var Key: word;
@@ -318,6 +412,19 @@ begin
     DXTelnetClient.SendMessage(Edit1.Text + #13#10, nil);
     Edit1.Clear;
   end;
+end;
+
+procedure TdxClusterForm.ComboBox1Change(Sender: TObject);
+var
+  i, j: integer;
+begin
+  i := pos('>', ComboBox1.Text);
+  j := pos(':', ComboBox1.Text);
+  //Сервер
+  IniSet.Cluster_Host := copy(ComboBox1.Text, i + 1, j - i - 1);
+  Delete(IniSet.Cluster_Host, 1, 1);
+  //Порт
+  IniSet.Cluster_Port := copy(ComboBox1.Text, j + 1, Length(ComboBox1.Text) - i);
 end;
 
 procedure TdxClusterForm.VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
@@ -353,9 +460,9 @@ begin
   end;
 end;
 
-procedure TdxClusterForm.VirtualStringTree1GetImageIndex(
-  Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
-  Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+procedure TdxClusterForm.VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
+  Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
+  var Ghosted: boolean; var ImageIndex: integer);
 var
   Data: PTreeData;
 begin
@@ -421,4 +528,3 @@ end;
 
 
 end.
-

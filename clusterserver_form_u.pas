@@ -30,7 +30,7 @@ var
 
 implementation
 
-uses MainForm_U, InitDB_dm;
+uses dxclusterform_u, InitDB_dm;
 
 {$R *.lfm}
 
@@ -84,7 +84,7 @@ begin
   PortArray[i]:=StringGrid1.Cells[2,i];
   INIFile.WriteString('TelnetCluster','Server'+IntToStr(i),NameArray[i]+HostArray[i]+PortArray[i]);
   end;
-  MainForm.InitClusterINI;
+  dxClusterForm.LoadClusterString;
   ClusterServer_Form.Close;
 end;
 

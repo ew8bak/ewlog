@@ -324,8 +324,6 @@ type
     procedure ComboBox10Change(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
     procedure ComboBox2CloseUp(Sender: TObject);
-    procedure ComboBox3Change(Sender: TObject);
-    procedure ComboBox8Change(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
     procedure DBGrid1ColumnSized(Sender: TObject);
@@ -440,11 +438,9 @@ type
       X, Y: integer);
     procedure SpeedButton19Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton20Click(Sender: TObject);
     procedure SpeedButton20MouseLeave(Sender: TObject);
     procedure SpeedButton20MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
-    procedure SpeedButton21Click(Sender: TObject);
     procedure SpeedButton21MouseLeave(Sender: TObject);
     procedure SpeedButton21MouseMove(Sender: TObject; Shift: TShiftState;
       X, Y: integer);
@@ -480,9 +476,6 @@ type
     procedure VirtualStringTree1GetHint(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Column: TColumnIndex;
       var LineBreakStyle: TVTTooltipLineBreakStyle; var HintText: string);
-    procedure VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
-      Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
-      var Ghosted: boolean; var ImageIndex: integer);
     procedure VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;
       var NodeDataSize: integer);
     procedure VirtualStringTree1GetText(Sender: TBaseVirtualTree;
@@ -499,8 +492,6 @@ type
   public
     { public declarations }
     PrintPrev: boolean;
-    FlagList: TImageList;
-    FlagSList: TStringList;
     tIMG: TImage;
     PhotoGroup: TGroupBox;
     ExportAdifSelect: boolean;
@@ -512,7 +503,6 @@ type
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     function GetModeFromFreq(MHz: string): string;
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
-    procedure InitClusterINI;
     procedure tIMGClick(Sender: TObject);
     procedure LoadComboBoxItem;
     procedure LoadFromInternetCallBook(info: TInformRecord);
@@ -524,7 +514,6 @@ var
   GetingHint: integer;
   UnUsIndex: integer;
   GridRecordIndex: integer;
-  HostCluster, PortCluster: string;
   connected: boolean;
   usefldigi: boolean = True;
   usewsjt: boolean = True;
@@ -538,8 +527,6 @@ var
   useMAPS: string;
   StayForm: boolean;
   EditFlag: boolean;
-  TelStr: array[1..9] of string;
-  TelServ, TelPort, TelName: string;
   exportSelectADIF: boolean = False;
   seleditnum: integer;
   fAllRecords: integer;
@@ -1031,7 +1018,6 @@ begin
   if MainForm.WindowState = wsMaximized then
     INIFile.WriteString('SetLog', 'FormState', 'Maximized');
 
-  INIFile.WriteString('TelnetCluster', 'ServerDef', ComboBox3.Text);
   INIFile.WriteBool('SetLog', 'TRXForm', IniSet.ShowTRXForm);
   INIFile.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
   INIFile.WriteInteger('SetLog', 'PastBand', ComboBox1.ItemIndex);
@@ -1039,8 +1025,6 @@ begin
   INIFile.WriteString('SetLog', 'PastSubMode', ComboBox9.Text);
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
   INIFile.WriteInteger('SetLog', 'StartNum', num_start);
-
-  MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
 
   if CheckBox3.Checked = True then
     INIFile.WriteString('SetLog', 'UseMAPS', 'YES')
@@ -1278,34 +1262,6 @@ begin
     EditButton1Change(ComboBox2);
 end;
 
-procedure TMainForm.ComboBox3Change(Sender: TObject);
-var
-  i, j: integer;
-begin
-  ComboBox8.ItemIndex := ComboBox3.ItemIndex;
-  i := pos('>', ComboBox3.Text);
-  j := pos(':', ComboBox3.Text);
-  //Сервер
-  HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
-  Delete(HostCluster, 1, 1);
-  //Порт
-  PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
-end;
-
-procedure TMainForm.ComboBox8Change(Sender: TObject);
-var
-  i, j: integer;
-begin
-  ComboBox3.ItemIndex := ComboBox8.ItemIndex;
-  i := pos('>', ComboBox8.Text);
-  j := pos(':', ComboBox8.Text);
-  //Сервер
-  HostCluster := copy(ComboBox8.Text, i + 1, j - i - 1);
-  Delete(HostCluster, 1, 1);
-  //Порт
-  PortCluster := copy(ComboBox8.Text, j + 1, Length(ComboBox8.Text) - i);
-end;
-
 procedure TMainForm.DBGrid1DblClick(Sender: TObject);
 begin
   if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
@@ -1513,46 +1469,6 @@ begin
     InfoDM.GetInformation(dmFunc.ExtractCallsign(EditButton1.Text), 'MainForm');
 end;
 
-procedure TMainForm.InitClusterINI;
-var
-  i, j: integer;
-begin
- // LoginCluster := INIFile.ReadString('TelnetCluster', 'Login', '');
-  //PasswordCluster := INIFile.ReadString('TelnetCluster', 'Password', '');
-
-  for i := 1 to 9 do
-  begin
-    TelStr[i] := INIFile.ReadString('TelnetCluster', 'Server' +
-      IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
-  end;
-  TelName := INIFile.ReadString('TelnetCluster', 'ServerDef',
-    'FREERC -> dx.freerc.ru:8000');
-  ComboBox3.Items.Clear;
-  ComboBox3.Items.AddStrings(TelStr);
-  if ComboBox3.Items.IndexOf(TelName) > -1 then
-    ComboBox3.ItemIndex := ComboBox3.Items.IndexOf(TelName)
-  else
-    ComboBox3.ItemIndex := 0;
-
-  ComboBox8.Items.Clear;
-  ComboBox8.Items.AddStrings(TelStr);
-  if ComboBox8.Items.IndexOf(TelName) > -1 then
-    ComboBox8.ItemIndex := ComboBox8.Items.IndexOf(TelName)
-  else
-    ComboBox8.ItemIndex := 0;
-
-  i := pos('>', ComboBox3.Text);
-  j := pos(':', ComboBox3.Text);
-  //Сервер
-  HostCluster := copy(ComboBox3.Text, i + 1, j - i - 1);
-  Delete(HostCluster, 1, 1);
-  //Порт
-  PortCluster := copy(ComboBox3.Text, j + 1, Length(ComboBox3.Text) - i);
-  //Автозапуск кластера
-  if INIFile.ReadBool('TelnetCluster', 'AutoStart', False) = True then
-    SpeedButton18.Click;
-end;
-
 procedure TMainForm.LoadComboBoxItem;
 begin
   MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1, ComboBox10);
@@ -1597,9 +1513,6 @@ begin
     IniSet.Language := FallbackLang;
   SetDefaultLang(IniSet.Language, FilePATH + DirectorySeparator + 'locale');
 
-  FlagList := TImageList.Create(Self);
-  FlagSList := TStringList.Create;
-  VirtualStringTree1.Images := FlagList;
   useMAPS := INIFile.ReadString('SetLog', 'UseMAPS', '');
   EditFlag := False;
   StayForm := True;
@@ -1614,7 +1527,6 @@ begin
     MapView1.Center;
   end;
 
-  InitClusterINI;
   LoadComboBoxItem;
 
   if usefldigi then
@@ -1628,7 +1540,6 @@ begin
   UnUsIndex := 0;
   MainFunc.SetGrid(DBGrid1);
   MainFunc.SetGrid(DBGrid2);
-  MainFunc.SetDXColumns(VirtualStringTree1, False, VirtualStringTree1);
 
   if not IniSet.ShowTRXForm then
     MenuItem88.Checked := True
@@ -1639,9 +1550,6 @@ begin
     MenuItem111.Click
   else
     MenuItem112.Click;
-
-  VirtualStringTree1.ShowHint := True;
-  VirtualStringTree1.HintMode := hmHint;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -1651,8 +1559,6 @@ begin
     tIMG.Free;
     PhotoGroup.Free;
   end;
-  FlagList.Free;
-  FlagSList.Free;
   TrayIcon1.Free;
 end;
 
@@ -3168,16 +3074,6 @@ begin
   STATE_Form.Edit1.Text := Edit4.Text;
 end;
 
-procedure TMainForm.SpeedButton20Click(Sender: TObject);
-begin
-  if not VirtualStringTree1.IsEmpty then
-  begin
-    VirtualStringTree1.BeginUpdate;
-    VirtualStringTree1.Clear;
-    VirtualStringTree1.EndUpdate;
-  end;
-end;
-
 procedure TMainForm.SpeedButton20MouseLeave(Sender: TObject);
 begin
   StatusBar1.Panels.Items[0].Text := '';
@@ -3187,17 +3083,6 @@ procedure TMainForm.SpeedButton20MouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: integer);
 begin
   StatusBar1.Panels.Items[0].Text := rDXClusterWindowClear;
-end;
-
-procedure TMainForm.SpeedButton21Click(Sender: TObject);
-begin
-  dxClient.SendMessage('bye' + #13#10);
-  SpeedButton21.Enabled := False;
-  SpeedButton27.Enabled := False;
-  SpeedButton18.Enabled := True;
-  SpeedButton24.Enabled := True;
-  SpeedButton28.Enabled := False;
-  SpeedButton22.Enabled := False;
 end;
 
 procedure TMainForm.SpeedButton21MouseLeave(Sender: TObject);
@@ -3234,17 +3119,7 @@ end;
 
 procedure TMainForm.SpeedButton24Click(Sender: TObject);
 begin
-  //DX CLUSTER
   dxClusterForm.Show;
-  {dxClient.Host := HostCluster;
-  dxClient.Port := StrToInt(PortCluster);
-  if dxClient.Connect = True then
-  begin
-    SpeedButton27.Enabled := True;
-    SpeedButton28.Enabled := True;
-    SpeedButton22.Enabled := True;
-    SpeedButton21.Enabled := True;
-  end;}
 end;
 
 procedure TMainForm.SpeedButton26Click(Sender: TObject);
@@ -3679,23 +3554,6 @@ var
   Data: PTreeData;
 begin
   Data := Sender.GetNodeData(Node);
-end;
-
-procedure TMainForm.VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
-  Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
-  var Ghosted: boolean; var ImageIndex: integer);
-var
-  Data: PTreeData;
-begin
-  if Column <> 8 then
-    Exit;
-
-  ImageIndex := -1;
-  Data := VirtualStringTree1.GetNodeData(Node);
-  if Assigned(Data) then
-  begin
-    ImageIndex := FlagSList.IndexOf(dmFunc.ReplaceCountry(Data^.Country));
-  end;
 end;
 
 procedure TMainForm.VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;

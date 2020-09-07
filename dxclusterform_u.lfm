@@ -2,19 +2,21 @@ object dxClusterForm: TdxClusterForm
   Left = 267
   Height = 240
   Top = 138
-  Width = 698
+  Width = 735
   Caption = 'DX Cluster'
   ClientHeight = 240
-  ClientWidth = 698
+  ClientWidth = 735
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnResize = FormResize
+  OnShow = FormShow
   LCLVersion = '2.0.10.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 214
     Top = 26
-    Width = 698
+    Width = 735
     ActivePage = TabSheet2
     Align = alClient
     TabIndex = 1
@@ -22,21 +24,23 @@ object dxClusterForm: TdxClusterForm
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'Telnet'
-      ClientHeight = 185
-      ClientWidth = 688
+      ClientHeight = 186
+      ClientWidth = 690
       object Memo1: TMemo
         Left = 0
-        Height = 160
+        Height = 163
         Top = 0
-        Width = 688
+        Width = 690
         Align = alClient
+        ReadOnly = True
+        ScrollBars = ssAutoVertical
         TabOrder = 0
       end
       object Edit1: TEdit
         Left = 0
-        Height = 25
-        Top = 160
-        Width = 688
+        Height = 23
+        Top = 163
+        Width = 690
         Align = alBottom
         OnKeyDown = Edit1KeyDown
         TabOrder = 1
@@ -44,14 +48,14 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet2: TTabSheet
       Caption = 'DX Cluster'
-      ClientHeight = 185
-      ClientWidth = 688
+      ClientHeight = 186
+      ClientWidth = 727
       object VirtualStringTree1: TVirtualStringTree
         Cursor = 63
         Left = 0
-        Height = 185
+        Height = 186
         Top = 0
-        Width = 688
+        Width = 727
         Align = alClient
         DefaultText = 'Node'
         Font.Height = -12
@@ -60,18 +64,22 @@ object dxClusterForm: TdxClusterForm
           item
             Position = 0
             Text = 'Band'
+            Width = 70
           end        
           item
             Position = 1
             Text = 'DX'
+            Width = 70
           end        
           item
             Position = 2
             Text = 'Spotter'
+            Width = 90
           end        
           item
             Position = 3
             Text = 'Frequency'
+            Width = 70
           end        
           item
             Position = 4
@@ -80,18 +88,22 @@ object dxClusterForm: TdxClusterForm
           item
             Position = 5
             Text = 'Comment'
+            Width = 100
           end        
           item
             Position = 6
             Text = 'UTC'
+            Width = 40
           end        
           item
             Position = 7
             Text = 'Grid'
+            Width = 70
           end        
           item
             Position = 8
             Text = 'Country'
+            Width = 150
           end>
         Header.Font.Height = -12
         Header.Options = [hoColumnResize, hoDrag, hoShowImages, hoShowSortGlyphs, hoVisible]
@@ -115,10 +127,10 @@ object dxClusterForm: TdxClusterForm
     Left = 0
     Height = 26
     Top = 0
-    Width = 698
+    Width = 735
     Align = alTop
     ClientHeight = 26
-    ClientWidth = 698
+    ClientWidth = 735
     TabOrder = 1
     object SpeedButton1: TSpeedButton
       AnchorSideLeft.Control = Panel1
@@ -213,6 +225,7 @@ object dxClusterForm: TdxClusterForm
         0003F5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C5
         96FFF5C596FF000000110000000B000000050000000100000000
       }
+      OnClick = SpeedButton2Click
     end
     object SpeedButton3: TSpeedButton
       AnchorSideLeft.Control = SpeedButton2
@@ -260,6 +273,7 @@ object dxClusterForm: TdxClusterForm
         000035356A2145458E5B45458F5F45458F5F45458F5F45458F5F45458F5F4545
         8F5F45458F5F45458F5F4040835C15152A290000000000000000
       }
+      OnClick = SpeedButton3Click
     end
     object SpeedButton4: TSpeedButton
       AnchorSideLeft.Control = SpeedButton3
@@ -361,7 +375,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = Panel1
       AnchorSideRight.Side = asrBottom
-      Left = 669
+      Left = 706
       Height = 22
       Top = 2
       Width = 23
@@ -403,6 +417,7 @@ object dxClusterForm: TdxClusterForm
         BEF9BCBCBCF4BCBCBCF4BCBCBCF4BCBCBCF4BCBCBCF4BCBCBCF4BEBEBEF7A7A7
         A7C40000001800000000000000004E4E620D4968CF8100000E12
       }
+      OnClick = SpeedButton6Click
     end
     object ComboBox1: TComboBox
       AnchorSideLeft.Control = SpeedButton5
@@ -416,7 +431,8 @@ object dxClusterForm: TdxClusterForm
       AutoSize = False
       BorderSpacing.Left = 5
       Font.Height = -12
-      ItemHeight = 0
+      ItemHeight = 15
+      OnChange = ComboBox1Change
       ParentFont = False
       Style = csDropDownList
       TabOrder = 0

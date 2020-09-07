@@ -26,6 +26,7 @@ var
   TelnetThread: TTelnetThread;
   DXTelnetClient: TLTelnetClientComponent;
   TelnetLine: string;
+  ConnectCluster: boolean;
 
 implementation
 
@@ -33,12 +34,14 @@ uses MainFuncDM, MainForm_U, dxclusterform_u;
 
 procedure TTelnetThread.OnConnectDX(aSocket: TLSocket);
 begin
-
+  ConnectCluster := True;
+  Synchronize(@ToForm);
 end;
 
 procedure TTelnetThread.OnDisconnectDX(aSocket: TLSocket);
 begin
-
+  ConnectCluster := False;
+  Synchronize(@ToForm);
 end;
 
 procedure TTelnetThread.OnReceiveDX(aSocket: TLSocket);
@@ -50,7 +53,8 @@ end;
 
 procedure TTelnetThread.OnErrorDX(const msg: string; aSocket: TLSocket);
 begin
-
+  TelnetLine := msg;
+  Synchronize(@ToForm);
 end;
 
 constructor TTelnetThread.Create;
@@ -62,11 +66,14 @@ end;
 procedure TTelnetThread.ToForm;
 begin
   dxClusterForm.FromClusterThread(TelnetLine);
+  if ConnectCluster then
+    dxClusterForm.SpeedButton1.Enabled := False;
 end;
 
 function TTelnetThread.ConnectToCluster: boolean;
 begin
   Result := True;
+  ConnectCluster := False;
   try
     DXTelnetClient := nil;
     DXTelnetClient := TLTelnetClientComponent.Create(nil);
@@ -74,13 +81,14 @@ begin
     DXTelnetClient.OnError := @OnErrorDX;
     DXTelnetClient.OnConnect := @OnConnectDX;
     DXTelnetClient.OnDisconnect := @OnDisconnectDX;
-    DXTelnetClient.Host := 'dx.feerc.ru';
-    DXTelnetClient.Port := 8000;
+    DXTelnetClient.Host := IniSet.Cluster_Host;
+    DXTelnetClient.Port := StrToInt(IniSet.Cluster_Port);
     DXTelnetClient.Connect;
     DXTelnetClient.CallAction;
   except
     on E: Exception do
     begin
+      ConnectCluster := False;
       Result := False;
     end;
   end;
