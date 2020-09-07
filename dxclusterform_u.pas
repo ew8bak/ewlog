@@ -272,7 +272,7 @@ begin
         freqMhz := freqMhz / 1000
       else
         exit;
-    if Length(Loc) < 2 then
+    if Length(Loc) < 4 then
       Loc := '';
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
