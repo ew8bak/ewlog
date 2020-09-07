@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="79">
+    <Units Count="81">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -649,6 +649,17 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
       </Unit78>
+      <Unit79>
+        <Filename Value="telnetclientthread.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="telnetClientThread"/>
+      </Unit79>
+      <Unit80>
+        <Filename Value="dxclusterform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dxClusterForm"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit80>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

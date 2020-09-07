@@ -14,7 +14,7 @@ uses
   RegExpr, mvTypes, gettext, LResources, LCLTranslator, httpsend,
   Printers, zipper, qso_record, ResourceStr, const_u,
   Types, LazFileUtils, process, prefix_record,
-  selectQSO_record, foundQSO_record, inform_record;
+  selectQSO_record, foundQSO_record, inform_record, telnetClientThread;
 
 type
 
@@ -511,7 +511,6 @@ type
     procedure Clr;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     function GetModeFromFreq(MHz: string): string;
-    procedure FindCountryFlag(Country: string);
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure InitClusterINI;
     procedure tIMGClick(Sender: TObject);
@@ -560,7 +559,7 @@ uses
   ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u,
   print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
-  flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm, infoDM_U;
+  flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm, infoDM_U, dxclusterform_u;
 
 type
   PTreeData = ^TTreeData;
@@ -605,32 +604,6 @@ begin
     if dmFunc.Extention(info.PhotoURL) = '.png' then
       tIMG.Picture.Assign(info.PhotoPNG);
   end;
-end;
-
-procedure TMainForm.FindCountryFlag(Country: string);
-var
-  pImage: TPortableNetworkGraphic;
-begin
-  try
-    pImage := TPortableNetworkGraphic.Create;
-    pImage.LoadFromLazarusResource(dmFunc.ReplaceCountry(Country));
-    if FlagSList.IndexOf(dmFunc.ReplaceCountry(Country)) = -1 then
-    begin
-      FlagList.Add(pImage, nil);
-      FlagSList.Add(dmFunc.ReplaceCountry(Country));
-    end;
-  except
-    on EResNotFound do
-    begin
-      pImage.LoadFromLazarusResource('Unknown');
-      if FlagSList.IndexOf('Unknown') = -1 then
-      begin
-        FlagList.Add(pImage, nil);
-        FlagSList.Add('Unknown');
-      end;
-    end;
-  end;
-  pImage.Free;
 end;
 
 procedure TMainForm.FindLanguageFiles(Dir: string; var LangList: TStringList);
@@ -1492,7 +1465,6 @@ begin
         PFXR := MainFunc.SearchPrefix(DX, Loc);
         Data^.Country := PFXR.Country;
         VirtualStringTree1.Expanded[XNode^.Parent] := ClusterFilter.CheckBox1.Checked;
-        FindCountryFlag(Data^.Country);
       end
       else
       begin
@@ -1508,7 +1480,6 @@ begin
         Data^.Loc := Loc;
         PFXR := MainFunc.SearchPrefix(DX, Loc);
         Data^.Country := PFXR.Country;
-        FindCountryFlag(Data^.Country);
       end;
     end;
   end;
@@ -3263,7 +3234,9 @@ end;
 
 procedure TMainForm.SpeedButton24Click(Sender: TObject);
 begin
-  dxClient.Host := HostCluster;
+  //DX CLUSTER
+  dxClusterForm.Show;
+  {dxClient.Host := HostCluster;
   dxClient.Port := StrToInt(PortCluster);
   if dxClient.Connect = True then
   begin
@@ -3271,7 +3244,7 @@ begin
     SpeedButton28.Enabled := True;
     SpeedButton22.Enabled := True;
     SpeedButton21.Enabled := True;
-  end;
+  end;}
 end;
 
 procedure TMainForm.SpeedButton26Click(Sender: TObject);
