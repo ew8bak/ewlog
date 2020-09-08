@@ -305,6 +305,10 @@ msgctxt "resourcestr.rcallsign"
 msgid "Callsign"
 msgstr ""
 
+#: resourcestr.rcallsignnotentered
+msgid "Recipient callsign not entered"
+msgstr ""
+
 #: resourcestr.rcannotdeldef
 msgctxt "resourcestr.rcannotdeldef"
 msgid "Cannot delete default or current log"
@@ -1723,6 +1727,14 @@ msgctxt "tdxclusterform.caption"
 msgid "DX Cluster"
 msgstr ""
 
+#: tdxclusterform.label1.caption
+msgid "To Callsign:"
+msgstr ""
+
+#: tdxclusterform.label2.caption
+msgid "Message:"
+msgstr ""
+
 #: tdxclusterform.menuitem1.caption
 msgctxt "tdxclusterform.menuitem1.caption"
 msgid "Paste in Callsign field"
@@ -1746,6 +1758,10 @@ msgstr ""
 #: tdxclusterform.tabsheet2.caption
 msgctxt "tdxclusterform.tabsheet2.caption"
 msgid "DX Cluster"
+msgstr ""
+
+#: tdxclusterform.tabsheet3.caption
+msgid "Private messages"
 msgstr ""
 
 #: tdxclusterform.virtualstringtree1.header.columns[0].text

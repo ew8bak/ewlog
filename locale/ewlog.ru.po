@@ -320,6 +320,10 @@ msgctxt "resourcestr.rcallsign"
 msgid "Callsign"
 msgstr "Позывной"
 
+#: resourcestr.rcallsignnotentered
+msgid "Recipient callsign not entered"
+msgstr ""
+
 #: resourcestr.rcannotdeldef
 #, fuzzy
 #| msgid "Cannot delete default log"
@@ -1747,6 +1751,14 @@ msgctxt "tdxclusterform.caption"
 msgid "DX Cluster"
 msgstr ""
 
+#: tdxclusterform.label1.caption
+msgid "To Callsign:"
+msgstr ""
+
+#: tdxclusterform.label2.caption
+msgid "Message:"
+msgstr ""
+
 #: tdxclusterform.menuitem1.caption
 #, fuzzy
 msgctxt "tdxclusterform.menuitem1.caption"
@@ -1774,6 +1786,10 @@ msgstr "Телнет"
 #: tdxclusterform.tabsheet2.caption
 msgctxt "tdxclusterform.tabsheet2.caption"
 msgid "DX Cluster"
+msgstr ""
+
+#: tdxclusterform.tabsheet3.caption
+msgid "Private messages"
 msgstr ""
 
 #: tdxclusterform.virtualstringtree1.header.columns[0].text

@@ -32,8 +32,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="151"/>
         <CursorPos X="63" Y="154"/>
         <UsageCount Value="200"/>
@@ -177,6 +176,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ManagerBasePrefixForm_U"/>
         <EditorIndex Value="1"/>
+        <TopLine Value="28"/>
         <CursorPos X="67" Y="67"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -204,10 +204,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="QSLManagerForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="84"/>
-        <CursorPos X="4" Y="111"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="15"/>
+        <CursorPos X="43" Y="117"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="settingscat_u.pas"/>
@@ -298,7 +301,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="setupForm_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="542"/>
         <CursorPos X="65" Y="347"/>
         <UsageCount Value="200"/>
@@ -346,7 +349,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="IOTA_Form_U"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="27"/>
         <CursorPos X="3" Y="66"/>
         <UsageCount Value="201"/>
@@ -542,7 +545,7 @@
       <Unit50>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="55"/>
         <CursorPos X="14" Y="79"/>
         <UsageCount Value="201"/>
@@ -577,7 +580,7 @@
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="3"/>
         <CursorPos X="26" Y="32"/>
         <UsageCount Value="200"/>
@@ -674,7 +677,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="219"/>
         <CursorPos X="40" Y="1597"/>
         <UsageCount Value="159"/>
@@ -690,7 +693,7 @@
       <Unit66>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="9"/>
         <CursorPos X="17" Y="11"/>
         <UsageCount Value="149"/>

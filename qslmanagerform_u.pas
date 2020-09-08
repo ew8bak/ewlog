@@ -108,16 +108,13 @@ end;
 
 procedure TQSLManager_Form.FormShow(Sender: TObject);
 begin
- // ManagersQuery.DataBase := MainForm.ServiceDBConnection;
   with ManagersQuery do
   begin
     Close;
     SQL.Text := 'SELECT * FROM managers';
     Active := True;
   end;
-
   Edit1.Text:=MainForm.EditButton1.Text;
-
 end;
 
 end.
