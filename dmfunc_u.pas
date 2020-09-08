@@ -633,6 +633,17 @@ end;
 function TdmFunc.ReplaceCountry(Country: string): string;
 begin
   Result := '';
+    if Pos('USA', Country) > 0 then begin
+     Result := 'United-States';
+     exit;
+  end;
+
+  if Pos(',', Country) > 0 then begin
+    Delete(Country, Pos(',', Country), Length(Country));
+    Result := Country;
+    exit;
+  end;
+
   if (Country = 'Russia (European)') or (Country = 'Russia (Asiatic)') or
     (Country = 'Kaliningrad') then
   begin

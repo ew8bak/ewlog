@@ -24,13 +24,13 @@ object dxClusterForm: TdxClusterForm
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'Telnet'
-      ClientHeight = 186
-      ClientWidth = 690
+      ClientHeight = 185
+      ClientWidth = 725
       object Memo1: TMemo
         Left = 0
-        Height = 163
+        Height = 160
         Top = 0
-        Width = 690
+        Width = 725
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoVertical
@@ -38,9 +38,9 @@ object dxClusterForm: TdxClusterForm
       end
       object Edit1: TEdit
         Left = 0
-        Height = 23
-        Top = 163
-        Width = 690
+        Height = 25
+        Top = 160
+        Width = 725
         Align = alBottom
         OnKeyDown = Edit1KeyDown
         TabOrder = 1
@@ -48,14 +48,14 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet2: TTabSheet
       Caption = 'DX Cluster'
-      ClientHeight = 186
-      ClientWidth = 727
+      ClientHeight = 185
+      ClientWidth = 725
       object VirtualStringTree1: TVirtualStringTree
         Cursor = 63
         Left = 0
-        Height = 186
+        Height = 185
         Top = 0
-        Width = 727
+        Width = 725
         Align = alClient
         DefaultText = 'Node'
         Font.Height = -12
@@ -123,6 +123,145 @@ object dxClusterForm: TdxClusterForm
         OnGetNodeDataSize = VirtualStringTree1GetNodeDataSize
         OnHeaderClick = VirtualStringTree1HeaderClick
         OnNodeClick = VirtualStringTree1NodeClick
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Private messages'
+      ClientHeight = 185
+      ClientWidth = 725
+      object Memo2: TMemo
+        Left = 0
+        Height = 125
+        Top = 30
+        Width = 725
+        Align = alClient
+        ReadOnly = True
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
+      object Panel2: TPanel
+        Left = 0
+        Height = 30
+        Top = 0
+        Width = 725
+        Align = alTop
+        ClientHeight = 30
+        ClientWidth = 725
+        TabOrder = 1
+        object Label1: TLabel
+          AnchorSideLeft.Control = Panel2
+          AnchorSideTop.Control = Panel2
+          AnchorSideTop.Side = asrCenter
+          Left = 6
+          Height = 13
+          Top = 9
+          Width = 60
+          BorderSpacing.Left = 5
+          Caption = 'To Callsign:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Edit2: TEdit
+          AnchorSideLeft.Control = Label1
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Panel2
+          Left = 71
+          Height = 25
+          Top = 1
+          Width = 129
+          BorderSpacing.Left = 5
+          CharCase = ecUppercase
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+      end
+      object Panel3: TPanel
+        Left = 0
+        Height = 30
+        Top = 155
+        Width = 725
+        Align = alBottom
+        ClientHeight = 30
+        ClientWidth = 725
+        TabOrder = 2
+        object Label2: TLabel
+          AnchorSideLeft.Control = Panel3
+          AnchorSideTop.Control = Panel3
+          AnchorSideTop.Side = asrCenter
+          Left = 6
+          Height = 13
+          Top = 9
+          Width = 50
+          BorderSpacing.Left = 5
+          Caption = 'Message:'
+          ParentColor = False
+        end
+        object Edit3: TEdit
+          AnchorSideLeft.Control = Label2
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Panel3
+          AnchorSideTop.Side = asrCenter
+          Left = 61
+          Height = 25
+          Top = 3
+          Width = 595
+          BorderSpacing.Left = 5
+          Font.Height = -12
+          OnKeyDown = Edit3KeyDown
+          ParentFont = False
+          TabOrder = 0
+        end
+        object SpeedButton7: TSpeedButton
+          AnchorSideTop.Control = Panel3
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Panel3
+          AnchorSideRight.Side = asrBottom
+          Left = 696
+          Height = 22
+          Top = 4
+          Width = 23
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF001AA25C6F069A4E09FFFFFF00FFFFFF00FFFFFF00FFFFFF00A3A8A68AB6BA
+            B8B0B6BAB8B0B5B9B8B0B5B9B8B0B5B9B8B0B5B9B8B0B5B9B8B0B5B9B8B0B5B9
+            B8B054B583EA48B27CEF98B4A7BAB5B9B8B0B5B9B8B0A2A7A686CDD1CFD7E2E6
+            E4FFE4E8E6FFDDE3E0FFDDE3E0FFDCE2DFFFDBE1DEFF79C59FFF52BD86FF50BD
+            86FF3FB97BFF14AE5FFF4FBD85FFA9D2BDFFDCE2DFFFCBCFCDD3CED1D0D7D8DE
+            DBFFE0E3E1FFE8ECEAFFD5DCD9FFD3DAD7FFD2D9D6FF6BC495FF18B665FF18B6
+            65FF18B665FF24BA6EFF2FBE75FF4FC488FF8DC9AAFFCACECDD3CFD3D1D8DDE3
+            E0FFDAE0DDFFCBD0CEFFE9ECEAFFDCE2E0FFD5DCD9FF6FC89AFF1DBF6DFF1EBF
+            6DFF23C170FF43CA85FF47CC88FF4BCD8AFF6ACA99FFC3CCC7D3D0D3D2D8E0E5
+            E3FFDDE3E0FFDCE2DFFFC4CAC7FFCACECDFFD0D3D1FF6BC296FF23C874FF28C9
+            77FF4BD28DFF59D697FF65D99DFF76D0A1FFC3D6CCFFCACECCD2D2D5D3D8E3E8
+            E5FFE1E6E3FFDFE5E2FFDDE3E0FFDADBDBFFEDF0EFFFA4DBBEFF8BD7B0FF90D8
+            B3FF7DD5A7FF74E0AAFF7ED1A7FFCED9D4FFD5DDD9FFCACECCD1D3D6D5D8E6EA
+            E8FFE4E8E6FFDFE3E1FFE1E2E2FFEDEFEEFFE5EAE7FFE5E9E7FFE4E8E6FFE3E8
+            E6FF86D7AEFF85D0A9FFD3D9D6FFD7DDDAFFD8DFDCFFCBCECCD0D4D7D5D8E9ED
+            EBFFE4E7E6FFE7E8E8FFEEF0EFFFE9EDEBFFE9ECEAFFE8ECEAFFE7EBE9FFE7EB
+            E9FFD0E3D9FFE6EBE8FFD7DBD9FFD6DCD9FFDCE2DFFFCBCFCDD0D5D7D6D8EDF0
+            EEFFE6E6E6FFF1F3F1FFEDF0EFFFECEFEEFFECEFEDFFEBEEEDFFEAEEECFFEAED
+            ECFFE9EDEBFFE9ECEAFFE8ECEAFFD2D6D4FFDFE5E2FFCCCFCED0D7D9D8D9E3E5
+            E4FFF5F7F6FFF1F3F2FFF0F3F1FFF0F2F1FFEFF2F0FFEEF1F0FFEEF1EFFFEDF0
+            EFFFECEFEEFFECEFEDFFEBEEEDFFE8ECEAFFD1D5D3FFCCCFCECFD4D6D5E9F8F9
+            F9FFF7F7F7FFF6F7F7FFF6F7F6FFF5F6F6FFF2F4F3FFF0F3F1FFEFF1F0FFEDF0
+            EFFFECEFEEFFEAEEECFFE9EDEBFFE8EBEAFFE2E6E4FFC4C8C7E0A0A4A36DA2A6
+            A492A2A6A492A1A6A492A1A5A492A1A5A392A1A5A392A1A5A392A1A4A392A1A4
+            A292A0A4A292A0A3A1929FA3A1929FA3A1929FA3A1929CA09E66FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+          }
+          OnClick = SpeedButton7Click
+        end
       end
     end
   end
@@ -435,7 +574,7 @@ object dxClusterForm: TdxClusterForm
       AutoSize = False
       BorderSpacing.Left = 5
       Font.Height = -12
-      ItemHeight = 15
+      ItemHeight = 0
       OnChange = ComboBox1Change
       ParentFont = False
       Style = csDropDownList
@@ -443,8 +582,8 @@ object dxClusterForm: TdxClusterForm
     end
   end
   object PopupCluster: TPopupMenu
-    Left = 108
-    Top = 114
+    Left = 672
+    Top = 80
     object MenuItem1: TMenuItem
       Caption = 'Paste in Callsign field'
       OnClick = MenuItem1Click

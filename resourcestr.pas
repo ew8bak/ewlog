@@ -166,6 +166,7 @@ resourcestring
   rTableLogDBError = 'Log table ERROR';
   rCheckBoxFormMain = 'Default form: MAIN';
   rCheckBoxFormMini = 'Default form: MINI';
+  rCallsignNotEntered ='Recipient callsign not entered';
 implementation
 
 end.

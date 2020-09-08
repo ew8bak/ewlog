@@ -164,7 +164,6 @@ type
     PopupMenu2: TPopupMenu;
     Shape1: TShape;
     PrintDialog1: TPrintDialog;
-    qBands: TSQLQuery;
     PrintQuery: TSQLQuery;
     TrayPopup: TPopupMenu;
     StatusBar1: TStatusBar;
@@ -424,7 +423,6 @@ type
     ExportAdifArray: array of integer;
     freqchange: boolean;
     procedure Clr;
-    function GetModeFromFreq(MHz: string): string;
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure tIMGClick(Sender: TObject);
     procedure LoadComboBoxItem;
@@ -465,8 +463,8 @@ uses
   TRXForm_U, editqso_u, InformationForm_U, LogConfigForm_U,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U,
   UpdateForm_U, Earth_Form_U,
-  IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U, ClusterFilter_Form_U,
-  ClusterServer_Form_U, STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
+  IOTA_Form_U, ConfigGridForm_U, SendTelnetSpot_Form_U,
+  STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u,
   print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
   flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm, infoDM_U, dxclusterform_u;
@@ -506,53 +504,6 @@ begin
   LangList.Text := StringReplace(LangList.Text, Dir + DirectorySeparator +
     'ewlog.', '', [rfreplaceall]);
   LangList.Text := StringReplace(LangList.Text, '.po', '', [rfreplaceall]);
-end;
-
-
-function TMainForm.GetModeFromFreq(MHz: string): string;
-var
-  Band: string;
-  tmp: extended;
-begin
-  Result := '';
-  band := dmFunc.GetBandFromFreq(MHz);
-
-  MHz := MHz.replace('.', DefaultFormatSettings.DecimalSeparator);
-  MHz := MHz.replace(',', DefaultFormatSettings.DecimalSeparator);
-
-  qBands.Close;
-  qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
-  try
-    qBands.Open;
-    tmp := StrToFloat(MHz);
-
-    if qBands.RecordCount > 0 then
-    begin
-      if ((tmp >= qBands.FieldByName('B_BEGIN').AsCurrency) and
-        (tmp <= qBands.FieldByName('CW').AsCurrency)) then
-        Result := 'CW'
-      else
-      begin
-        if ((tmp > qBands.FieldByName('DIGI').AsCurrency) and
-          (tmp <= qBands.FieldByName('SSB').AsCurrency)) then
-          Result := 'DIGI'
-        else
-        begin
-          if (tmp > 5) and (tmp < 6) then
-            Result := 'USB'
-          else
-          begin
-            if tmp > 10 then
-              Result := 'USB'
-            else
-              Result := 'LSB';
-          end;
-        end;
-      end;
-    end
-  finally
-    qBands.Close;
-  end;
 end;
 
 procedure TMainForm.Clr;
@@ -867,11 +818,10 @@ begin
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-var
-  num_start: integer;
 begin
-  num_start := INIFile.ReadInteger('SetLog', 'StartNum', 0);
-  num_start := num_start + 1;
+  IniSet.NumStart := INIFile.ReadInteger('SetLog', 'StartNum', 0);
+  inc(IniSet.NumStart);
+
   if EditButton1.Text <> '' then
   begin
     if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
@@ -880,7 +830,6 @@ begin
     else
       CloseAction := caNone;
   end;
-  //Сохранение размещения колонок
   MainFunc.SaveGrids(DBGrid1);
 
   if MainForm.WindowState <> wsMaximized then
@@ -901,13 +850,11 @@ begin
   INIFile.WriteString('SetLog', 'PastMode', ComboBox2.Text);
   INIFile.WriteString('SetLog', 'PastSubMode', ComboBox9.Text);
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
-  INIFile.WriteInteger('SetLog', 'StartNum', num_start);
+  INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
 
-  if CheckBox3.Checked = True then
-    INIFile.WriteString('SetLog', 'UseMAPS', 'YES')
-  else
-    INIFile.WriteString('SetLog', 'UseMAPS', 'NO');
+  INIFile.WriteBool('SetLog', 'UseMAPS', CheckBox3.Checked);
   TRXForm.Close;
+  dxClusterForm.Close;
 end;
 
 procedure TMainForm.DBGrid1CellClick(Column: TColumn);
@@ -993,7 +940,8 @@ end;
 
 procedure TMainForm.CheckBox3Change(Sender: TObject);
 begin
-  if CheckBox3.Checked = True then
+  IniSet.Map_Use := CheckBox3.Checked;
+  if CheckBox3.Checked then
   begin
     MapView1.UseThreads := True;
     MapView1.Center;
@@ -1332,11 +1280,7 @@ begin
   end;
   {$ENDIF}
 
-  if useMAPS = 'YES' then
-    CheckBox3.Checked := True
-  else
-    CheckBox3.Checked := False;
-
+  CheckBox3.Checked := IniSet.Map_Use;
   CheckBox3.Enabled := True;
   MapView1.Zoom := 1;
   MapView1.DoubleBuffered := True;

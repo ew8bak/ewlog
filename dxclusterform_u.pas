@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
-  StdCtrls, Buttons, Menus, VirtualTrees, telnetClientThread, prefix_record, const_u;
+  StdCtrls, Buttons, Menus, VirtualTrees, telnetClientThread,
+  prefix_record, const_u, SQLDB, ResourceStr;
 
 type
 
@@ -15,12 +16,19 @@ type
   TdxClusterForm = class(TForm)
     ComboBox1: TComboBox;
     Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
     Memo1: TMemo;
+    Memo2: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
     PopupCluster: TPopupMenu;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
@@ -28,11 +36,14 @@ type
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
     SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
     procedure ComboBox1Change(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure Edit3KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -47,6 +58,7 @@ type
     procedure SpeedButton4Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
+    procedure SpeedButton7Click(Sender: TObject);
     procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
       Node: PVirtualNode);
     procedure VirtualStringTree1Click(Sender: TObject);
@@ -75,6 +87,7 @@ type
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     procedure FindCountryFlag(Country: string);
     procedure ButtonSet;
+    function GetModeFromFreq(MHz: string): string;
 
   public
     procedure FromClusterThread(buffer: string);
@@ -87,6 +100,7 @@ var
   dxClusterForm: TdxClusterForm;
   TelStr: array[1..9] of string;
   TelServ, TelPort, TelName: string;
+  qBands: TSQLQuery;
 
 implementation
 
@@ -111,6 +125,62 @@ type
 {$R *.lfm}
 
 { TdxClusterForm }
+
+function TdxClusterForm.GetModeFromFreq(MHz: string): string;
+var
+  Band: string;
+  tmp: extended;
+begin
+  try
+    Result := '';
+    band := dmFunc.GetBandFromFreq(MHz);
+
+    //  MHz := MHz.replace('.', DefaultFormatSettings.DecimalSeparator);
+    //  MHz := MHz.replace(',', DefaultFormatSettings.DecimalSeparator);
+
+    qBands.Close;
+    qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
+    try
+      qBands.Open;
+      tmp := StrToFloat(MHz);
+
+      if qBands.RecordCount > 0 then
+      begin
+        if ((tmp >= qBands.FieldByName('B_BEGIN').AsCurrency) and
+          (tmp <= qBands.FieldByName('CW').AsCurrency)) then
+          Result := 'CW'
+        else
+        begin
+          if ((tmp > qBands.FieldByName('DIGI').AsCurrency) and
+            (tmp <= qBands.FieldByName('SSB').AsCurrency)) then
+            Result := 'DIGI'
+          else
+          begin
+            if (tmp > 5) and (tmp < 6) then
+              Result := 'USB'
+            else
+            begin
+              if tmp > 10 then
+                Result := 'USB'
+              else
+                Result := 'LSB';
+            end;
+          end;
+        end;
+      end
+    finally
+      qBands.Close;
+    end;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('GetModeFromFreq: Error: ' + E.ClassName + #13#10 + E.Message);
+      WriteLn(ExceptFile, 'GetModeFromFreq: Error: ' + E.ClassName +
+        ':' + E.Message);
+      Result := '';
+    end;
+  end;
+end;
 
 procedure TdxClusterForm.SendSpot(freq, call, cname, mode, rsts, grid: string);
 var
@@ -256,6 +326,12 @@ begin
     if (Length(IniSet.Cluster_Login) > 0) and (Pos('login', TelnetLine) > 0) then
       DXTelnetClient.SendMessage(IniSet.Cluster_Login + #13#10, nil);
 
+    if Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0 then
+    begin
+      Memo2.Lines.Add(buffer);
+      exit;
+    end;
+
     if Pos('DX de', buffer) = 1 then
     begin
       buffer := StringReplace(buffer, ':', ' ', [rfReplaceAll]);
@@ -276,7 +352,7 @@ begin
       Loc := '';
 
     Band := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
-    // Mode := GetModeFromFreq(FloatToStr(freqMhz));
+    Mode := GetModeFromFreq(FloatToStr(freqMhz));
     if Length(Band) > 0 then
     begin
       if (not ShowSpotBand) or (not ShowSpotMode) then
@@ -438,6 +514,17 @@ begin
   ClusterServer_Form.Show;
 end;
 
+procedure TdxClusterForm.SpeedButton7Click(Sender: TObject);
+begin
+  if Length(Edit2.Text) > 2 then
+  begin
+    DXTelnetClient.SendMessage('talk ' + Edit2.Text + ' ' + Edit3.Text + #13#10, nil);
+    Edit3.Clear;
+  end
+  else
+    Memo2.Text := rCallsignNotEntered;
+end;
+
 procedure TdxClusterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if TelnetThread <> nil then
@@ -451,6 +538,8 @@ begin
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
   VirtualStringTree1.Images := FlagList;
+  qBands := TSQLQuery.Create(nil);
+  qBands.DataBase := InitDB.ServiceDBConnection;
   LoadClusterString;
   MainFunc.SetDXColumns(VirtualStringTree1, False, VirtualStringTree1);
 end;
@@ -459,11 +548,13 @@ procedure TdxClusterForm.FormDestroy(Sender: TObject);
 begin
   FlagList.Free;
   FlagSList.Free;
+  FreeAndNil(qBands);
 end;
 
 procedure TdxClusterForm.FormResize(Sender: TObject);
 begin
-  ComboBox1.Width := dxClusterForm.Width - 200;
+  ComboBox1.Width := dxClusterForm.Width - 180;
+  Edit3.Width := dxClusterForm.Width - 105;
 end;
 
 procedure TdxClusterForm.FormShow(Sender: TObject);
@@ -505,6 +596,21 @@ begin
   begin
     DXTelnetClient.SendMessage(Edit1.Text + #13#10, nil);
     Edit1.Clear;
+  end;
+end;
+
+procedure TdxClusterForm.Edit3KeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  if Key = 13 then
+  begin
+    if Length(Edit2.Text) > 2 then
+    begin
+      DXTelnetClient.SendMessage('talk ' + Edit2.Text + ' ' + Edit3.Text + #13#10, nil);
+      Edit3.Clear;
+    end
+    else
+      Memo2.Text := rCallsignNotEntered;
   end;
 end;
 
@@ -556,8 +662,9 @@ begin
       else
       begin
         if IniSet.showBand then
-          ComboBox1.Text := dmFunc.GetBandFromFreq(
-            FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000))
+          MainForm.ComboBox1.Text :=
+            dmFunc.GetBandFromFreq(FormatFloat(view_freq,
+            StrToFloat(Data^.Freq) / 1000))
         else
           MainForm.ComboBox1.Text :=
             FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);

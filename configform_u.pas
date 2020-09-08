@@ -161,16 +161,11 @@ begin
   INIFile.WriteString('SetLog', 'QRZCOM_Pass', Edit9.Text);
   INIFile.WriteString('SetLog', 'HAMQTH_Login', Edit14.Text);
   INIFile.WriteString('SetLog', 'HAMQTH_Pass', Edit15.Text);
-
+  INIFile.WriteBool('SetLog', 'ShowBand', CheckBox2.Checked);
   if RadioButton1.Checked then
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
   else
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
-
-  if CheckBox2.Checked then
-    INIFile.WriteString('SetLog', 'ShowBand', 'True')
-  else
-    INIFile.WriteString('SetLog', 'ShowBand', 'False');
 
   if CheckBox5.Checked then
     INIFile.WriteBool('SetLog', 'PrintPrev', True)
@@ -219,12 +214,7 @@ begin
     RadioButton2.Checked := True;
 
   CheckBox1.Checked := INIFile.ReadBool('SetLog', 'IntCallBook', False);
-
-  if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
-    CheckBox2.Checked := True
-  else
-    CheckBox2.Checked := False;
-
+  CheckBox2.Checked := INIFile.ReadBool('SetLog', 'ShowBand', False);
   Edit6.Text := INIFile.ReadString('SetLog', 'QRZRU_Login', '');
   Edit7.Text := INIFile.ReadString('SetLog', 'QRZRU_Pass', '');
   Edit8.Text := INIFile.ReadString('SetLog', 'QRZCOM_Login', '');
@@ -236,11 +226,11 @@ begin
   CheckBox5.Checked := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 
   if IniSet.CallBookSystem = 'QRZRU' then
-    CheckBox3.Checked:=True;
+    CheckBox3.Checked := True;
   if IniSet.CallBookSystem = 'QRZCOM' then
-    CheckBox7.Checked:=True;
+    CheckBox7.Checked := True;
   if IniSet.CallBookSystem = 'HAMQTH' then
-    CheckBox11.Checked:=True;
+    CheckBox11.Checked := True;
 
   if IniSet.MainForm = 'MAIN' then
   begin
@@ -346,26 +336,14 @@ end;
 
 procedure TConfigForm.CheckBox2Change(Sender: TObject);
 begin
-  if DBRecord.InitDB = 'YES' then
-  begin
-    if CheckBox2.Checked then
-    begin
-      INIFile.WriteString('SetLog', 'ShowBand', 'True');
-      IniSet.showBand := True;
-      MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1);
-    end
-    else
-    begin
-      INIFile.WriteString('SetLog', 'ShowBand', 'False');
-      IniSet.showBand := False;
-      MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1);
-    end;
-    MainForm.DBGrid1.Invalidate;
-    MainForm.DBGrid2.Invalidate;
-    MainFunc.SetGrid(MainForm.DBGrid1);
-    MainFunc.SetGrid(MainForm.DBGrid2);
-    EditQSO_Form.DBGrid1.Invalidate;
-  end;
+  IniSet.showBand := CheckBox2.Checked;
+  INIFile.WriteBool('SetLog', 'ShowBand', CheckBox2.Checked);
+  MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1);
+  MainForm.DBGrid1.Invalidate;
+  MainForm.DBGrid2.Invalidate;
+  MainFunc.SetGrid(MainForm.DBGrid1);
+  MainFunc.SetGrid(MainForm.DBGrid2);
+  EditQSO_Form.DBGrid1.Invalidate;
 end;
 
 procedure TConfigForm.CheckBox3Change(Sender: TObject);

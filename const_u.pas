@@ -72,7 +72,7 @@ const
     'SAT_MODE', 'PROP_MODE', 'LoTWSent', 'QSL_RCVD_VIA', 'QSL_SENT_VIA',
     'DXCC', 'USERS', 'NoCalcDXCC', 'QSOSubMode', 'MY_STATE', 'MY_GRIDSQUARE');  }
 
-    CopyField: string =
+  CopyField: string =
     'CallSign,QSODate,QSOTime,QSOBand,QSOMode,QSOSubMode,QSOReportSent,QSOReportRecived,OMName,OMQTH,'
     + 'State,Grid,IOTA,QSLManager,QSLSent,QSLSentAdv,QSLSentDate,QSLRec,QSLRecDate,MainPrefix,DXCCPrefix,CQZone,'
     + 'ITUZone,QSOAddInfo,Marker,ManualSet,DigiBand,Continent,ShortNote,QSLReceQSLcc,LoTWRec,LoTWRecDate,QSLInfo,'
