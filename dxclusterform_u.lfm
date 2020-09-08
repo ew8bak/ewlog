@@ -48,14 +48,14 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet2: TTabSheet
       Caption = 'DX Cluster'
-      ClientHeight = 185
-      ClientWidth = 725
+      ClientHeight = 186
+      ClientWidth = 727
       object VirtualStringTree1: TVirtualStringTree
         Cursor = 63
         Left = 0
-        Height = 185
+        Height = 186
         Top = 0
-        Width = 725
+        Width = 727
         Align = alClient
         DefaultText = 'Node'
         Font.Height = -12
@@ -127,13 +127,13 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Private messages'
-      ClientHeight = 185
-      ClientWidth = 725
+      ClientHeight = 186
+      ClientWidth = 727
       object Memo2: TMemo
         Left = 0
-        Height = 125
+        Height = 126
         Top = 30
-        Width = 725
+        Width = 727
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoBoth
@@ -143,18 +143,18 @@ object dxClusterForm: TdxClusterForm
         Left = 0
         Height = 30
         Top = 0
-        Width = 725
+        Width = 727
         Align = alTop
         ClientHeight = 30
-        ClientWidth = 725
+        ClientWidth = 727
         TabOrder = 1
         object Label1: TLabel
           AnchorSideLeft.Control = Panel2
           AnchorSideTop.Control = Panel2
           AnchorSideTop.Side = asrCenter
           Left = 6
-          Height = 13
-          Top = 9
+          Height = 15
+          Top = 8
           Width = 60
           BorderSpacing.Left = 5
           Caption = 'To Callsign:'
@@ -167,7 +167,7 @@ object dxClusterForm: TdxClusterForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel2
           Left = 71
-          Height = 25
+          Height = 23
           Top = 1
           Width = 129
           BorderSpacing.Left = 5
@@ -180,20 +180,20 @@ object dxClusterForm: TdxClusterForm
       object Panel3: TPanel
         Left = 0
         Height = 30
-        Top = 155
-        Width = 725
+        Top = 156
+        Width = 727
         Align = alBottom
         ClientHeight = 30
-        ClientWidth = 725
+        ClientWidth = 727
         TabOrder = 2
         object Label2: TLabel
           AnchorSideLeft.Control = Panel3
           AnchorSideTop.Control = Panel3
           AnchorSideTop.Side = asrCenter
           Left = 6
-          Height = 13
-          Top = 9
-          Width = 50
+          Height = 15
+          Top = 8
+          Width = 49
           BorderSpacing.Left = 5
           Caption = 'Message:'
           ParentColor = False
@@ -203,9 +203,9 @@ object dxClusterForm: TdxClusterForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel3
           AnchorSideTop.Side = asrCenter
-          Left = 61
-          Height = 25
-          Top = 3
+          Left = 60
+          Height = 23
+          Top = 4
           Width = 595
           BorderSpacing.Left = 5
           Font.Height = -12
@@ -218,7 +218,7 @@ object dxClusterForm: TdxClusterForm
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Panel3
           AnchorSideRight.Side = asrBottom
-          Left = 696
+          Left = 698
           Height = 22
           Top = 4
           Width = 23
@@ -262,6 +262,36 @@ object dxClusterForm: TdxClusterForm
           }
           OnClick = SpeedButton7Click
         end
+      end
+    end
+    object TabSheet4: TTabSheet
+      Caption = 'Forecast'
+      ClientHeight = 186
+      ClientWidth = 727
+      object Memo3: TMemo
+        Left = 0
+        Height = 186
+        Top = 0
+        Width = 727
+        Align = alClient
+        ReadOnly = True
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
+    end
+    object TabSheet5: TTabSheet
+      Caption = 'Messages'
+      ClientHeight = 186
+      ClientWidth = 727
+      object Memo4: TMemo
+        Left = 0
+        Height = 186
+        Top = 0
+        Width = 727
+        Align = alClient
+        ReadOnly = True
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
       end
     end
   end
@@ -574,7 +604,7 @@ object dxClusterForm: TdxClusterForm
       AutoSize = False
       BorderSpacing.Left = 5
       Font.Height = -12
-      ItemHeight = 0
+      ItemHeight = 15
       OnChange = ComboBox1Change
       ParentFont = False
       Style = csDropDownList

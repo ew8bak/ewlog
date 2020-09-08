@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Релиз"/>
+    <BuildModes Active="Дебаг"/>
     <Units Count="153">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -117,7 +117,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="902"/>
         <CursorPos X="3" Y="911"/>
         <UsageCount Value="200"/>
@@ -670,12 +670,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="1495"/>
         <CursorPos X="18" Y="1551"/>
         <UsageCount Value="164"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit64>
       <Unit65>
         <Filename Value="prefix_record.pas"/>
@@ -687,7 +687,7 @@
       <Unit66>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="9"/>
         <CursorPos X="17" Y="11"/>
         <UsageCount Value="154"/>
@@ -812,10 +812,13 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="601"/>
-        <CursorPos X="84" Y="616"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="318"/>
+        <CursorPos X="38" Y="339"/>
         <UsageCount Value="38"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit80>
       <Unit81>
         <Filename Value="register_form_u.pas"/>
@@ -1157,7 +1160,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="593"/>
         <CursorPos X="14" Y="610"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit126>
       <Unit127>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
@@ -1357,123 +1360,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1480" TopLine="1459"/>
+        <Caret Line="1481" TopLine="1459"/>
       </Position1>
       <Position2>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1482" TopLine="1459"/>
+        <Caret Line="1483" TopLine="1459"/>
       </Position2>
       <Position3>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1481" TopLine="1459"/>
+        <Caret Line="1484" TopLine="1459"/>
       </Position3>
       <Position4>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1482" TopLine="1459"/>
+        <Caret Line="1485" TopLine="1459"/>
       </Position4>
       <Position5>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1481" TopLine="1459"/>
+        <Caret Line="1487" TopLine="1459"/>
       </Position5>
       <Position6>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1483" TopLine="1459"/>
+        <Caret Line="1486" TopLine="1459"/>
       </Position6>
       <Position7>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1484" TopLine="1459"/>
+        <Caret Line="1489" TopLine="1461"/>
       </Position7>
       <Position8>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1485" TopLine="1459"/>
+        <Caret Line="1492" TopLine="1464"/>
       </Position8>
       <Position9>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1487" TopLine="1459"/>
+        <Caret Line="1493" TopLine="1465"/>
       </Position9>
       <Position10>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1486" TopLine="1459"/>
+        <Caret Line="1497" TopLine="1469"/>
       </Position10>
       <Position11>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1489" TopLine="1461"/>
+        <Caret Line="1496" TopLine="1469"/>
       </Position11>
       <Position12>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1492" TopLine="1464"/>
+        <Caret Line="1499" TopLine="1471"/>
       </Position12>
       <Position13>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1493" TopLine="1465"/>
+        <Caret Line="1498" TopLine="1471"/>
       </Position13>
       <Position14>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1497" TopLine="1469"/>
+        <Caret Line="1501" TopLine="1473"/>
       </Position14>
       <Position15>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1496" TopLine="1469"/>
+        <Caret Line="1502" TopLine="1474"/>
       </Position15>
       <Position16>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1499" TopLine="1471"/>
+        <Caret Line="1501" TopLine="1474"/>
       </Position16>
       <Position17>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1498" TopLine="1471"/>
+        <Caret Line="1500" TopLine="1474"/>
       </Position17>
       <Position18>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1501" TopLine="1473"/>
+        <Caret Line="1503" TopLine="1475"/>
       </Position18>
       <Position19>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1502" TopLine="1474"/>
+        <Caret Line="1479" TopLine="1473"/>
       </Position19>
       <Position20>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1501" TopLine="1474"/>
+        <Caret Line="1480" TopLine="1473"/>
       </Position20>
       <Position21>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1500" TopLine="1474"/>
+        <Caret Line="1482" TopLine="1473"/>
       </Position21>
       <Position22>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1503" TopLine="1475"/>
+        <Caret Line="1481" TopLine="1473"/>
       </Position22>
       <Position23>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1479" TopLine="1473"/>
+        <Caret Line="1454" Column="2" TopLine="1447"/>
       </Position23>
       <Position24>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1480" TopLine="1473"/>
+        <Caret Line="79" Column="6" TopLine="64"/>
       </Position24>
       <Position25>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1482" TopLine="1473"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1545" Column="15" TopLine="1528"/>
       </Position25>
       <Position26>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1481" TopLine="1473"/>
+        <Caret Line="51" Column="15" TopLine="34"/>
       </Position26>
       <Position27>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="1454" Column="2" TopLine="1447"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="616" Column="84" TopLine="601"/>
       </Position27>
       <Position28>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="79" Column="6" TopLine="64"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="617" Column="84" TopLine="602"/>
       </Position28>
       <Position29>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1545" Column="15" TopLine="1528"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="618" Column="84" TopLine="603"/>
       </Position29>
       <Position30>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="51" Column="15" TopLine="34"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="619" Column="84" TopLine="604"/>
       </Position30>
     </JumpHistory>
     <RunParams>

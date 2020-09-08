@@ -1792,6 +1792,14 @@ msgstr ""
 msgid "Private messages"
 msgstr ""
 
+#: tdxclusterform.tabsheet4.caption
+msgid "Forecast"
+msgstr ""
+
+#: tdxclusterform.tabsheet5.caption
+msgid "Messages"
+msgstr ""
+
 #: tdxclusterform.virtualstringtree1.header.columns[0].text
 #, fuzzy
 msgctxt "tdxclusterform.virtualstringtree1.header.columns[0].text"

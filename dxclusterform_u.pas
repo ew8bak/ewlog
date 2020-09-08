@@ -22,6 +22,8 @@ type
     Label2: TLabel;
     Memo1: TMemo;
     Memo2: TMemo;
+    Memo3: TMemo;
+    Memo4: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
@@ -40,6 +42,8 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
     procedure ComboBox1Change(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -329,6 +333,18 @@ begin
     if Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0 then
     begin
       Memo2.Lines.Add(buffer);
+      exit;
+    end;
+
+    if Pos('WCY de', buffer) > 0 then
+    begin
+      Memo3.Lines.Add(buffer);
+      exit;
+    end;
+
+    if Pos('To ALL de', buffer) > 0 then
+    begin
+      Memo4.Lines.Add(buffer);
       exit;
     end;
 

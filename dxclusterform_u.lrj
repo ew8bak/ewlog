@@ -14,6 +14,8 @@
 {"hash":2518515,"name":"tdxclusterform.tabsheet3.caption","sourcebytes":[80,114,105,118,97,116,101,32,109,101,115,115,97,103,101,115],"value":"Private messages"},
 {"hash":143177114,"name":"tdxclusterform.label1.caption","sourcebytes":[84,111,32,67,97,108,108,115,105,103,110,58],"value":"To Callsign:"},
 {"hash":212433082,"name":"tdxclusterform.label2.caption","sourcebytes":[77,101,115,115,97,103,101,58],"value":"Message:"},
+{"hash":109812852,"name":"tdxclusterform.tabsheet4.caption","sourcebytes":[70,111,114,101,99,97,115,116],"value":"Forecast"},
+{"hash":212433139,"name":"tdxclusterform.tabsheet5.caption","sourcebytes":[77,101,115,115,97,103,101,115],"value":"Messages"},
 {"hash":21359572,"name":"tdxclusterform.menuitem1.caption","sourcebytes":[80,97,115,116,101,32,105,110,32,67,97,108,108,115,105,103,110,32,102,105,101,108,100],"value":"Paste in Callsign field"},
 {"hash":171795876,"name":"tdxclusterform.menuitem2.caption","sourcebytes":[68,101,108,101,116,101,32,115,112,111,116],"value":"Delete spot"},
 {"hash":58651431,"name":"tdxclusterform.menuitem3.caption","sourcebytes":[67,108,101,97,114,32,119,105,110,100,111,119],"value":"Clear window"}
