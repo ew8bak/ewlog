@@ -13,7 +13,7 @@ object IOTA_Form: TIOTA_Form
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 312
@@ -64,7 +64,7 @@ object IOTA_Form: TIOTA_Form
     TabOrder = 1
     object Edit1: TEdit
       Left = 8
-      Height = 23
+      Height = 25
       Top = 24
       Width = 96
       OnChange = Edit1Change
@@ -72,15 +72,15 @@ object IOTA_Form: TIOTA_Form
     end
     object Label1: TLabel
       Left = 8
-      Height = 15
+      Height = 13
       Top = 4
-      Width = 24
+      Width = 26
       Caption = 'IOTA'
       ParentColor = False
     end
     object Edit2: TEdit
       Left = 160
-      Height = 23
+      Height = 25
       Top = 24
       Width = 168
       OnChange = Edit2Change
@@ -88,7 +88,7 @@ object IOTA_Form: TIOTA_Form
     end
     object Label2: TLabel
       Left = 160
-      Height = 15
+      Height = 13
       Top = 4
       Width = 32
       Caption = 'Name'
@@ -106,15 +106,15 @@ object IOTA_Form: TIOTA_Form
   end
   object IOTA_Query: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.ServiceDBConnection
-    Transaction = MainForm.SQLServiceTransaction
+    Database = InitDB.ServiceDBConnection
+    Transaction = InitDB.ServiceTransaction
     Params = <>
-    left = 536
-    top = 224
+    Left = 536
+    Top = 224
   end
   object IOTA_DS: TDataSource
     DataSet = IOTA_Query
-    left = 407
-    top = 167
+    Left = 407
+    Top = 167
   end
 end
