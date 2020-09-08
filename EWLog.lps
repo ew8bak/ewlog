@@ -20,8 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <TopLine Value="1100"/>
-        <CursorPos X="3" Y="1103"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="605"/>
+        <CursorPos X="3" Y="562"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -295,10 +296,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="setupForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="447"/>
-        <CursorPos X="73" Y="460"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="542"/>
+        <CursorPos X="65" Y="347"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit27>
       <Unit28>
         <Filename Value="updateform_u.pas"/>
@@ -537,10 +539,11 @@
       <Unit50>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="26"/>
-        <CursorPos X="37" Y="32"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="55"/>
+        <CursorPos X="14" Y="79"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit50>
       <Unit51>
         <Filename Value="download_lotw.pas"/>
@@ -571,9 +574,11 @@
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="27" Y="32"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="3"/>
+        <CursorPos X="26" Y="32"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit54>
       <Unit55>
         <Filename Value="fldigimodem.pas"/>
@@ -640,7 +645,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="197"/>
         <CursorPos X="9" Y="208"/>
-        <UsageCount Value="165"/>
+        <UsageCount Value="166"/>
       </Unit61>
       <Unit62>
         <Filename Value="logbooktable_record.pas"/>
@@ -649,7 +654,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="5"/>
         <CursorPos X="25" Y="39"/>
-        <UsageCount Value="164"/>
+        <UsageCount Value="165"/>
       </Unit62>
       <Unit63>
         <Filename Value="db_record.pas"/>
@@ -657,7 +662,7 @@
         <UnitName Value="DB_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="28"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="164"/>
       </Unit63>
       <Unit64>
         <Filename Value="mainfuncdm.pas"/>
@@ -666,11 +671,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="1153"/>
-        <CursorPos X="18" Y="1155"/>
-        <UsageCount Value="158"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="219"/>
+        <CursorPos X="40" Y="1597"/>
+        <UsageCount Value="159"/>
         <Loaded Value="True"/>
       </Unit64>
       <Unit65>
@@ -678,15 +682,15 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="11"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="150"/>
       </Unit65>
       <Unit66>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="9"/>
         <CursorPos X="17" Y="11"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="149"/>
         <Loaded Value="True"/>
       </Unit66>
       <Unit67>
@@ -695,7 +699,7 @@
         <UnitName Value="selectQSO_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="20" Y="16"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="133"/>
       </Unit67>
       <Unit68>
         <Filename Value="foundqso_record.pas"/>
@@ -703,7 +707,7 @@
         <UnitName Value="foundQSO_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="28"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="133"/>
       </Unit68>
       <Unit69>
         <Filename Value="cloudlog.pas"/>
@@ -711,14 +715,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="36" Y="26"/>
-        <UsageCount Value="97"/>
+        <UsageCount Value="98"/>
       </Unit69>
       <Unit70>
         <Filename Value="init_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="17"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="91"/>
       </Unit70>
       <Unit71>
         <Filename Value="wsjtutils.pas"/>
@@ -727,21 +731,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="141"/>
         <CursorPos Y="176"/>
-        <UsageCount Value="71"/>
+        <UsageCount Value="72"/>
       </Unit71>
       <Unit72>
         <Filename Value="digi_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="20" Y="13"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
       </Unit72>
       <Unit73>
         <Filename Value="inform_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="18"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
       </Unit73>
       <Unit74>
         <Filename Value="infodm_u.pas"/>
@@ -753,7 +757,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="279"/>
         <CursorPos X="3" Y="168"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
       </Unit74>
       <Unit75>
         <Filename Value="getsession.pas"/>
@@ -762,7 +766,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="64" Y="103"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
       </Unit75>
       <Unit76>
         <Filename Value="miniform_u.pas"/>
@@ -771,7 +775,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="17" Y="26"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
       </Unit76>
       <Unit77>
         <Filename Value="imbedcallbookcheckrec.pas"/>
@@ -779,7 +783,7 @@
         <UnitName Value="ImbedCallBookCheckRec"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="14"/>
-        <UsageCount Value="46"/>
+        <UsageCount Value="47"/>
       </Unit77>
       <Unit78>
         <Filename Value="serverdm_u.pas"/>
@@ -791,7 +795,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="121"/>
         <CursorPos X="27" Y="149"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="44"/>
       </Unit78>
       <Unit79>
         <Filename Value="telnetclientthread.pas"/>
@@ -800,7 +804,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="45"/>
         <CursorPos X="21" Y="70"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="39"/>
       </Unit79>
       <Unit80>
         <Filename Value="dxclusterform_u.pas"/>
@@ -811,7 +815,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="280"/>
         <CursorPos X="41" Y="613"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="33"/>
       </Unit80>
       <Unit81>
         <Filename Value="register_form_u.pas"/>
@@ -1350,19 +1354,127 @@
         <UsageCount Value="9"/>
       </Unit152>
     </Units>
-    <JumpHistory Count="3" HistoryIndex="2">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="45" Column="15" TopLine="26"/>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="208" TopLine="186"/>
       </Position1>
       <Position2>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="692" Column="31" TopLine="680"/>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="209" TopLine="186"/>
       </Position2>
       <Position3>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1155" Column="18" TopLine="1131"/>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="210" TopLine="186"/>
       </Position3>
+      <Position4>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="228" TopLine="215"/>
+      </Position4>
+      <Position5>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="229" TopLine="215"/>
+      </Position5>
+      <Position6>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="230" TopLine="215"/>
+      </Position6>
+      <Position7>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="231" TopLine="215"/>
+      </Position7>
+      <Position8>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="232" TopLine="215"/>
+      </Position8>
+      <Position9>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="233" TopLine="215"/>
+      </Position9>
+      <Position10>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="234" TopLine="215"/>
+      </Position10>
+      <Position11>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="235" TopLine="215"/>
+      </Position11>
+      <Position12>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="236" TopLine="215"/>
+      </Position12>
+      <Position13>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="237" TopLine="215"/>
+      </Position13>
+      <Position14>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="241" TopLine="227"/>
+      </Position14>
+      <Position15>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="256" TopLine="227"/>
+      </Position15>
+      <Position16>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="312" TopLine="305"/>
+      </Position16>
+      <Position17>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="328" TopLine="317"/>
+      </Position17>
+      <Position18>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="485" TopLine="475"/>
+      </Position18>
+      <Position19>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="486" TopLine="475"/>
+      </Position19>
+      <Position20>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="487" TopLine="475"/>
+      </Position20>
+      <Position21>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="488" TopLine="475"/>
+      </Position21>
+      <Position22>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="489" TopLine="475"/>
+      </Position22>
+      <Position23>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2635" Column="3" TopLine="2633"/>
+      </Position23>
+      <Position24>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2724" Column="3" TopLine="2850"/>
+      </Position24>
+      <Position25>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="32" Column="15" TopLine="11"/>
+      </Position25>
+      <Position26>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1589" TopLine="1574"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1590" TopLine="1574"/>
+      </Position27>
+      <Position28>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1597" Column="40" TopLine="219"/>
+      </Position28>
+      <Position29>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="2724" Column="3" TopLine="2850"/>
+      </Position29>
+      <Position30>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="708" Column="3" TopLine="705"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -1370,6 +1482,15 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="setupform_u.pas"/>
+        <Line Value="160"/>
+      </Item1>
+    </BreakPoints>
     <Watches Count="4">
       <Item1>
         <Expression Value="Freq"/>

@@ -29,6 +29,27 @@ const
     + '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, '
     + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
 
+   Table_LogBookInfoMySQL = 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
+    '`id` integer UNIQUE PRIMARY KEY AUTO_INCREMENT, `LogTable` varchar(100) NOT NULL, ' +
+    '`CallName` varchar(15) NOT NULL, `Name` varchar(100) NOT NULL, ' +
+    '`QTH` varchar(100) NOT NULL, `ITU` int(11) NOT NULL, ' +
+    '`CQ` int(11) NOT NULL, `Loc` varchar(32) NOT NULL, ' +
+    '`Lat` varchar(20) NOT NULL, `Lon` varchar(20) NOT NULL, ' +
+    '`Discription` varchar(150) NOT NULL, ' +
+    '`QSLInfo` varchar(200) NOT NULL DEFAULT "TNX For QSO TU 73!", ' +
+    '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
+    '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
+    '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
+    '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
+    '`HamQTHPassword` varchar(200) DEFAULT NULL, ' +
+    '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
+    '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
+    '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
+    '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), '
+    + '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, '
+    + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
+
+
   Insert_Table_LogBookInfo = 'INSERT INTO LogBookInfo ' +
     '(LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo, Table_version) ' +
     'VALUES (:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo, :Table_version)';

@@ -76,7 +76,7 @@ const
     'CallSign,QSODate,QSOTime,QSOBand,QSOMode,QSOSubMode,QSOReportSent,QSOReportRecived,OMName,OMQTH,'
     + 'State,Grid,IOTA,QSLManager,QSLSent,QSLSentAdv,QSLSentDate,QSLRec,QSLRecDate,MainPrefix,DXCCPrefix,CQZone,'
     + 'ITUZone,QSOAddInfo,Marker,ManualSet,DigiBand,Continent,ShortNote,QSLReceQSLcc,LoTWRec,LoTWRecDate,QSLInfo,'
-    + 'Call,State1,State2,State3,State4,WPX,AwardsEx,ValidDX,SRX,SRX_STRING,STX,STX_STRING,SAT_NAME,SAT_MODE,PROP_MODE,'
+    + '`Call`,State1,State2,State3,State4,WPX,AwardsEx,ValidDX,SRX,SRX_STRING,STX,STX_STRING,SAT_NAME,SAT_MODE,PROP_MODE,'
     + 'LoTWSent,QSL_RCVD_VIA,QSL_SENT_VIA,DXCC,USERS,NoCalcDXCC,MY_STATE,MY_GRIDSQUARE,MY_LAT,MY_LON';
 
   constColumnName: array [0..29] of string =

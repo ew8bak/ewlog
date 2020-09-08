@@ -176,7 +176,7 @@ begin
           Application.ProcessMessages;
           Label24.Caption := rCreateTableLogBookInfo;
           SQL_Query.Close;
-          MySQL_Connector.ExecuteDirect(Table_LogBookInfo);
+          MySQL_Connector.ExecuteDirect(Table_LogBookInfoMySQL);
           ProgressBar1.Position := 56;
           SQL_Query.Transaction := SQL_Transaction;
           LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
@@ -344,7 +344,7 @@ begin
             SQL_Transaction.Active := True;
             Label24.Caption := rCreateTableLogBookInfo;
             SQL_Query.Close;
-            MySQL_Connector.ExecuteDirect(Table_LogBookInfo);
+            MySQL_Connector.ExecuteDirect(Table_LogBookInfoMySQL);
             ProgressBar1.Position := 56;
             SQL_Query.Transaction := SQL_Transaction;
             LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);

@@ -1587,7 +1587,7 @@ begin
         SQSO.QSL_SENT_VIA := 'NULL';
 
       if DBRecord.CurrentDB = 'MySQL' then
-        QSODates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSODate))
+        QSODates := DateToStr(SQSO.QSODate)
       else
         QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
 
@@ -1597,7 +1597,7 @@ begin
         'QSLManager, QSLSent, QSLSentAdv, QSLRec,' +
         'MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,' +
         'DigiBand, Continent, ShortNote, QSLReceQSLcc, LoTWRec,' +
-        'QSLInfo, Call, State1, State2, State3, State4, WPX, AwardsEx,' +
+        'QSLInfo, `Call`, State1, State2, State3, State4, WPX, AwardsEx,' +
         'ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,' +
         'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC,' +
         'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
