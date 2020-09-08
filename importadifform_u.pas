@@ -419,7 +419,6 @@ begin
 
         if PosEOR > 0 then
         begin
-
           if Length(Memo1.Text) > 0 then
             COMMENT := Memo1.Text;
 

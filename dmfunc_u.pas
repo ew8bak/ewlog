@@ -76,7 +76,7 @@ type
     function IsLocOK(loc: string): boolean;
     function CompleteLoc(loc: string): string;
     function ExtractCallsign(call: string): string;
-    function Vincenty(Lat1, Lon1, Lat2, Lon2: extended): extended;
+   // function Vincenty(Lat1, Lon1, Lat2, Lon2: extended): extended;
     function LatLongToGrid(Lat, Long: real): string;
     function RunProgram(progpath, args: string): boolean;
     function RusToEng(Text: string): string;
@@ -1451,7 +1451,7 @@ begin
     Letters[i5] + Letters[i6]; //MV
 end;
 
-function TdmFunc.Vincenty(Lat1, Lon1, Lat2, Lon2: extended): extended;
+{function TdmFunc.Vincenty(Lat1, Lon1, Lat2, Lon2: extended): extended;
 const // Параметры эллипсоида:
   a = 6378245.0;
   f = 1 / 298.3;
@@ -1508,7 +1508,7 @@ begin
     (CosSigma * (-1 + 2 * Cos2SigmaM * Cos2SigmaM) - BPARAM / 6 *
     Cos2SigmaM * (-3 + 4 * SinSQSigma) * (-3 + 4 * Cos2SigmaM * Cos2SigmaM)));
   Result := b * APARAM * (Sigma - DSigma);
-end;
+end;   }
 
 procedure TdmFunc.Delay(n: cardinal);
 var
