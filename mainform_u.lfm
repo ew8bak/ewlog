@@ -133,13 +133,15 @@ object MainForm: TMainForm
       ParentShowHint = False
     end
     object Label49: TLabel
+      AnchorSideLeft.Control = SpeedButton9
+      AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 241
+      Left = 60
       Height = 13
       Top = 7
       Width = 63
-      Anchors = [akTop, akRight]
+      BorderSpacing.Left = 5
       BorderSpacing.Right = 5
       Caption = 'Current log'
       Font.Height = -12
@@ -172,7 +174,7 @@ object MainForm: TMainForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 527
+      Left = 339
       Height = 24
       Top = 1
       Width = 80
@@ -182,10 +184,11 @@ object MainForm: TMainForm
       TabOrder = 0
     end
     object Label51: TLabel
+      AnchorSideLeft.Control = ComboBox10
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 481
+      Left = 293
       Height = 13
       Top = 7
       Width = 41
@@ -199,7 +202,7 @@ object MainForm: TMainForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 617
+      Left = 429
       Height = 13
       Top = 7
       Width = 47
@@ -213,7 +216,7 @@ object MainForm: TMainForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 669
+      Left = 481
       Height = 24
       Top = 1
       Width = 80
@@ -227,7 +230,7 @@ object MainForm: TMainForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 309
+      Left = 128
       Height = 22
       Top = 2
       Width = 160
@@ -243,12 +246,12 @@ object MainForm: TMainForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 292
+    Height = 269
     Top = 26
     Width = 474
     Align = alLeft
     AutoSize = True
-    ClientHeight = 292
+    ClientHeight = 269
     ClientWidth = 474
     TabOrder = 0
     object Panel12: TPanel
@@ -1775,7 +1778,7 @@ object MainForm: TMainForm
     end
     object Panel13: TPanel
       Left = 1
-      Height = 31
+      Height = 8
       Top = 260
       Width = 472
       Align = alClient
@@ -1785,16 +1788,16 @@ object MainForm: TMainForm
   end
   object Panel3: TPanel
     Left = 474
-    Height = 292
+    Height = 269
     Top = 26
     Width = 734
     Align = alClient
-    ClientHeight = 292
+    ClientHeight = 269
     ClientWidth = 734
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 1
-      Height = 290
+      Height = 267
       Top = 1
       Width = 732
       Align = alClient
@@ -2004,7 +2007,7 @@ object MainForm: TMainForm
   object Panel4: TPanel
     Left = 0
     Height = 378
-    Top = 318
+    Top = 295
     Width = 1208
     Align = alBottom
     ClientHeight = 378
@@ -2570,16 +2573,16 @@ object MainForm: TMainForm
         Left = 1
         Height = 111
         Top = 1
-        Width = 726
+        Width = 730
         Align = alTop
         ClientHeight = 111
-        ClientWidth = 726
+        ClientWidth = 730
         TabOrder = 0
         object DBGrid2: TDBGrid
           Left = 1
-          Height = 105
+          Height = 109
           Top = 1
-          Width = 720
+          Width = 728
           Align = alClient
           Color = clWindow
           Columns = <          
@@ -2782,9 +2785,9 @@ object MainForm: TMainForm
       end
       object Panel8: TPanel
         Left = 1
-        Height = 259
+        Height = 263
         Top = 112
-        Width = 726
+        Width = 730
         Align = alClient
         Font.Height = -12
         ParentFont = False
