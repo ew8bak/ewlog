@@ -634,6 +634,7 @@
         <Filename Value="miniform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MiniForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit76>
       <Unit77>

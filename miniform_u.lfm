@@ -1,9 +1,1095 @@
 object MiniForm: TMiniForm
-  Left = 248
-  Height = 240
-  Top = 128
-  Width = 320
+  Left = 382
+  Height = 405
+  Top = 158
+  Width = 476
   Caption = 'MiniForm'
+  ClientHeight = 405
+  ClientWidth = 476
   OnShow = FormShow
   LCLVersion = '2.0.10.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 476
+    Align = alTop
+    ClientHeight = 26
+    ClientWidth = 476
+    TabOrder = 0
+    object SBSave: TSpeedButton
+      AnchorSideLeft.Control = Panel1
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 2
+      Height = 24
+      Top = 1
+      Width = 25
+      BorderSpacing.Left = 1
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000040404000101
+        011B000000380404043808080838090909380909093809090938090909380909
+        09380808083806060638020202380101013800000037010101130C0C0C190C0C
+        0CDA0D0D0DFF565656FF8E8E8EFF727272FF949494FFA5A5A5FFA5A5A5FFA5A5
+        A5FFA5A5A5FF777777FF2E2E2EFF1F1F1FFF0D0D0DFF070707751010106D1111
+        11FF111111FF5C5C5CFF535353FF000000FF696969FFAFAFAFFFAFAFAFFFAFAF
+        AFFFAFAFAFFF7F7F7FFF333333FF232323FF111111FF0B0B0B78141414701414
+        14FF141414FF636363FF585858FF000000FF6F6F6FFFBABABAFFBABABAFFBABA
+        BAFFBABABAFF868686FF373737FF272727FF141414FF0D0D0D78171717711919
+        19FF191919FF6B6B6BFF5D5D5DFF000000FF757575FFC7C7C7FFC7C7C7FFC7C7
+        C7FFC7C7C7FF8E8E8EFF3B3B3BFF2A2A2AFF191919FF10101078141414771E1E
+        1EFF1E1E1EFF727272FF626262FF000000FF7C7C7CFFD2D2D2FFD2D2D2FFD2D2
+        D2FFD2D2D2FF969696FF3F3F3FFF2E2E2EFF1E1E1EFF14141478161616782323
+        23FF232323FF535353FF9A9A9AFF848484FFA0A0A0FFAAAAAAFFAAAAAAFFAAAA
+        AAFFAAAAAAFF717171FF3B3B3BFF2C2C2CFF232323FF171717781A1A1A782828
+        28FF282828FF282828FF282828FF282828FF282828FF282828FF282828FF2828
+        28FF282828FF282828FF282828FF282828FF282828FF1A1A1A781D1D1D782D2D
+        2DFF828180FFDDD9D6FFDDD9D6FFDDD9D6FFDDD9D6FFDDD9D6FFDDD9D6FFDDD9
+        D6FFDDD9D6FFDDD9D6FFDDD9D6FF898786FF2D2D2DFF1E1E1E78212121783333
+        33FF979594FFE7E3E0FFE9E4E1FFE9E4E1FFE9E4E1FFE9E4E1FFE9E4E1FFE9E4
+        E1FFE9E4E1FFE9E4E1FFE8E4E0FF9A9896FF333333FF21212178242424783838
+        38FF9B9A98FFEBE7E4FFEBE8E4FFEBE8E4FFEBE8E4FFEBE8E4FFEBE8E4FFEBE8
+        E4FFEBE8E4FFEBE8E4FFEBE8E4FF9E9D9BFF383838FF25252578272727783D3D
+        3DFF9F9E9DFFEEECE9FFEFEBE8FFEFEBE8FFEFEBE8FFEFEBE8FFEFEBE8FFEFEB
+        E8FFEFEBE8FFEFEBE8FFEEEBE9FFA2A1A0FF3D3D3DFF282828782B2B2B784D4D
+        4DFFA5A4A3FFF2F1EEFFF3F1EFFFF3F1EFFFF3F1EFFFF3F1EFFFF3F1EFFFF3F1
+        EFFFF3F1EFFFF3F1EFFFF3F1EFFFA6A5A4FF424242FF2B2B2B782E2E2E784E4E
+        4EFFA9A9A8FFF5F4F2FFF4F2F0FFF4F2F0FFF4F2F0FFF4F2F0FFF4F2F0FFF4F2
+        F0FFF4F2F0FFF4F2F0FFF5F3F1FFAAA9A9FF464646FF2E2E2E78343434733E3E
+        3EFFAAAAA9FFF9F8F7FFF8F6F5FFF8F6F5FFF8F6F5FFF8F6F5FFF8F6F5FFF8F6
+        F5FFF8F6F5FFF8F6F5FFF9F7F6FFAEADADFF4A4A4AFF353535734242420E5050
+        5038A0A0A03CF0F0EF3FF9F9F83FF9F9F83FF9F9F83FF9F9F83FF9F9F83FF9F9
+        F83FF9F9F83FF9F9F83FF5F4F33FACACAB3C575757384444440E
+      }
+    end
+    object SBNew: TSpeedButton
+      AnchorSideLeft.Control = SBSave
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 28
+      Height = 24
+      Top = 1
+      Width = 25
+      BorderSpacing.Left = 1
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        0003000000090000000F00000016000000180000001800000018000000180000
+        001800000018000000180000001800000016000000100000000B000000000000
+        00040000000D000000440000004E000000510000005100000051000000510000
+        00510000005100000051000000510000004E0000004800000010000000000000
+        0005F1A964FFF1AB67FFF1AC69FFF2AE6CFFF2AE6CFFF2AE6DFFF2AE6DFFF2AE
+        6DFFF2AE6CFFF1AC69FFF1AB67FFF1A964FF0000004E00000016000000000000
+        0006F1A861FFECECECFFECECECFFECECECFFECECECFFECECECFFECECECFFECEC
+        ECFFECECECFFECECECFFECECECFFF1A861FF0000005100000018000000000000
+        0006F0A65EFFEDEDEDFFEDEDEDFFEDEDEDFFEDEDEDFFEDEDEDFFEDEDEDFFEDED
+        EDFFEDEDEDFFEDEDEDFFEDEDEDFFF0A65EFF0000005100000018000000000000
+        0006F0A359FFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEB
+        EBFFEBEBEBFFEBEBEBFFEBEBEBFFF0A359FF0000005100000018000000000000
+        0006F0A154FFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEB
+        EBFFEBEBEBFFEBEBEBFFEAEAEAFFF0A154FF0000005100000018000000000000
+        0006F0A154FFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEBEBFFEBEB
+        EBFFEBEBEBFFEBEBEBFFEAEAEAFFF0A154FF0000005100000018000000000000
+        0006F0A359FFEEEEEEFFEEEEEEFFEEEEEEFFEEEEEEFFEEEEEEFFEEEEEEFFEEEE
+        EEFFEEEEEEFFEEEEEEFFECECECFFF0A359FF0000005100000018000000000000
+        0006F0A760FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0
+        F0FFF0F0F0FFF0F0F0FFEDEDEDFFF0A760FF0000005100000018000000000000
+        0006F0A760FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0
+        F0FFF0F0F0FFF0F0F0FFEDEDEDFFF0A760FF0000005000000017000000000000
+        0006F0AB68FFF1F1F1FFF1F1F1FFF1F1F1FFF1F1F1FFF1F1F1FFF1F1F1FFF1F1
+        F1FFF1F1F1FFF1F1F1FFF0F0F0FFF0AB68FF0000004A00000011000000000000
+        0006F1B172FFF3F3F3FFF4F4F4FFF4F4F4FFF4F4F4FFF4F4F4FFF4F4F4FFF4F4
+        F4FFF1B172FFF1B172FFF1B172FFF1B172FF000000140000000B000000000000
+        0005F2B77DFFF6F6F6FFF6F6F6FFF6F6F6FFF6F6F6FFF6F6F6FFF6F6F6FFF6F6
+        F6FFF3B77EFFF7E0CEFFF2B77DFF000000140000000B00000005000000000000
+        0004F4BD89FFF9F9F9FFFAFAFAFFFAFAFAFFFAFAFAFFFAFAFAFFFAFAFAFFFAFA
+        FAFFF4BE89FFF4BE89FF000000140000000B0000000400000001000000000000
+        0003F5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C5
+        96FFF5C596FF000000110000000B000000050000000100000000
+      }
+    end
+  end
+  object LocalTimeLabel: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Panel1
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 13
+    Top = 31
+    Width = 56
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Local time'
+    ParentColor = False
+  end
+  object TTLocalTimeLabel: TLabel
+    AnchorSideLeft.Control = LocalTimeLabel
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LocalTimeLabel
+    AnchorSideTop.Side = asrCenter
+    Left = 66
+    Height = 13
+    Top = 31
+    Width = 48
+    BorderSpacing.Left = 5
+    Caption = '00:00:00'
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object UTCLabel: TLabel
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = TTUTCLabel
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = TTUTCLabel
+    Left = 188
+    Height = 13
+    Top = 31
+    Width = 21
+    Anchors = [akTop, akRight]
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
+    Caption = 'UTC'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object TTUTCLabel: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Panel1
+    AnchorSideTop.Side = asrBottom
+    Left = 214
+    Height = 13
+    Top = 31
+    Width = 48
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = '00:00:00'
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object RemoteTimeLabel: TLabel
+    AnchorSideTop.Control = TTRemoteLabel
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = TTRemoteLabel
+    Left = 347
+    Height = 13
+    Top = 31
+    Width = 72
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 4
+    Caption = 'Remote time'
+    ParentColor = False
+  end
+  object TTRemoteLabel: TLabel
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Panel1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 423
+    Height = 13
+    Top = 31
+    Width = 48
+    Anchors = [akTop, akRight]
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
+    Caption = '00:00:00'
+    Font.Color = clNavy
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel1: TBevel
+    AnchorSideTop.Control = LocalTimeLabel
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 3
+    Top = 49
+    Width = 360
+    BorderSpacing.Top = 5
+    Shape = bsTopLine
+  end
+  object LBDate: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = DateEdit1
+    AnchorSideTop.Side = asrCenter
+    Left = 5
+    Height = 13
+    Top = 71
+    Width = 26
+    BorderSpacing.Left = 5
+    Caption = 'Date'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object DateEdit1: TDateEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Bevel1
+    AnchorSideTop.Side = asrBottom
+    Left = 37
+    Height = 21
+    Top = 67
+    Width = 102
+    CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+    DefaultToday = True
+    DateOrder = doDMY
+    ButtonWidth = 21
+    AutoSize = False
+    BorderSpacing.Left = 37
+    BorderSpacing.Top = 15
+    NumGlyphs = 1
+    Font.Height = -11
+    MaxLength = 10
+    ParentFont = False
+    TabOrder = 1
+    Text = '  .  .    '
+  end
+  object LBBand: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBBand
+    AnchorSideTop.Side = asrCenter
+    Left = 5
+    Height = 13
+    Top = 95
+    Width = 28
+    BorderSpacing.Left = 5
+    Caption = 'Band'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object CBBand: TComboBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = DateEdit1
+    AnchorSideTop.Side = asrBottom
+    Left = 37
+    Height = 22
+    Top = 90
+    Width = 102
+    AutoSize = False
+    BorderSpacing.Left = 37
+    BorderSpacing.Top = 2
+    Font.Height = -11
+    ItemHeight = 16
+    ParentFont = False
+    Style = csOwnerDrawEditableVariable
+    TabOrder = 2
+    Text = '7.000.00'
+  end
+  object LBMode: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBMode
+    AnchorSideTop.Side = asrCenter
+    Left = 5
+    Height = 13
+    Top = 119
+    Width = 31
+    BorderSpacing.Left = 5
+    Caption = 'Mode'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object CBMode: TComboBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBBand
+    AnchorSideTop.Side = asrBottom
+    Left = 37
+    Height = 22
+    Top = 114
+    Width = 65
+    AutoSize = False
+    BorderSpacing.Left = 37
+    BorderSpacing.Top = 2
+    Font.Height = -11
+    ItemHeight = 0
+    ParentFont = False
+    Style = csOwnerDrawEditableVariable
+    TabOrder = 3
+    Text = 'SSB'
+  end
+  object CBSubMode: TComboBox
+    AnchorSideLeft.Control = CBMode
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBMode
+    AnchorSideTop.Side = asrCenter
+    Left = 103
+    Height = 22
+    Top = 114
+    Width = 60
+    AutoSize = False
+    BorderSpacing.Left = 1
+    Font.Height = -11
+    ItemHeight = 0
+    ParentFont = False
+    Style = csOwnerDrawEditableVariable
+    TabOrder = 4
+    Text = 'LSB'
+  end
+  object ImDXCCBand: TImage
+    AnchorSideLeft.Control = CBBand
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBBand
+    AnchorSideTop.Side = asrCenter
+    Left = 141
+    Height = 15
+    Top = 94
+    Width = 15
+    BorderSpacing.Left = 2
+    Center = True
+    Picture.Data = {
+      07544269746D617036030000424D360300000000000036000000280000001000
+      0000100000000100180000000000000300000000000000000000000000000000
+      0000FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FF0000FF0000FF0000FF0000FF0000
+      FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FFF7FFFFF7FFFFF7FFFFF7FFFFF7FF
+      FFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFFF
+      00FF000000000000F7FFFFF7FFFF000000F7FFFF000000F7FFFFF7FFFF000000
+      000000F7FFFFF7FFFF000000000000FF00FF000000F7FFFF000000F7FFFF0000
+      00F7FFFF000000F7FFFF000000F7FFFFF7FFFFF7FFFF000000F7FFFFF7FFFFFF
+      00FF000000F7FFFF000000F7FFFFF7FFFF000000F7FFFFF7FFFF000000F7FFFF
+      F7FFFFF7FFFF000000F7FFFFF7FFFFFF00FF000000F7FFFF000000F7FFFF0000
+      00F7FFFF000000F7FFFF000000F7FFFFF7FFFFF7FFFF000000F7FFFFF7FFFFFF
+      00FF000000000000F7FFFFF7FFFF000000F7FFFF000000F7FFFFF7FFFF000000
+      000000F7FFFFF7FFFF000000000000FF00FFF7FFFFF7FFFFF7FFFFF7FFFFF7FF
+      FFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FF0000FF0000FF0000FF0000FF0000
+      FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FF
+    }
+    Transparent = True
+    Visible = False
+  end
+  object ImDXCCMode: TImage
+    AnchorSideLeft.Control = CBSubMode
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBSubMode
+    AnchorSideTop.Side = asrCenter
+    Left = 164
+    Height = 15
+    Top = 118
+    Width = 15
+    BorderSpacing.Left = 1
+    Center = True
+    Picture.Data = {
+      07544269746D617036030000424D360300000000000036000000280000001000
+      0000100000000100180000000000000300000000000000000000000000000000
+      0000FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FF0000FF0000FF0000FF0000FF0000
+      FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FFF7FFFFF7FFFFF7FFFFF7FFFFF7FF
+      FFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFFF
+      00FF000000000000F7FFFFF7FFFF000000F7FFFF000000F7FFFFF7FFFF000000
+      000000F7FFFFF7FFFF000000000000FF00FF000000F7FFFF000000F7FFFF0000
+      00F7FFFF000000F7FFFF000000F7FFFFF7FFFFF7FFFF000000F7FFFFF7FFFFFF
+      00FF000000F7FFFF000000F7FFFFF7FFFF000000F7FFFFF7FFFF000000F7FFFF
+      F7FFFFF7FFFF000000F7FFFFF7FFFFFF00FF000000F7FFFF000000F7FFFF0000
+      00F7FFFF000000F7FFFF000000F7FFFFF7FFFFF7FFFF000000F7FFFFF7FFFFFF
+      00FF000000000000F7FFFFF7FFFF000000F7FFFF000000F7FFFFF7FFFF000000
+      000000F7FFFFF7FFFF000000000000FF00FFF7FFFFF7FFFFF7FFFFF7FFFFF7FF
+      FFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FF0000FF0000FF0000FF0000FF0000
+      FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FF
+    }
+    Transparent = True
+    Visible = False
+  end
+  object DateTimePicker1: TDateTimePicker
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBMode
+    AnchorSideTop.Side = asrBottom
+    Left = 87
+    Height = 21
+    Top = 138
+    Width = 52
+    CenturyFrom = 1941
+    MaxDate = 2958465
+    MinDate = -53780
+    ReadOnly = True
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 5
+    BorderSpacing.Left = 87
+    BorderSpacing.Top = 2
+    TrailingSeparator = False
+    TextForNullDate = 'NULL'
+    LeadingZeros = True
+    Kind = dtkTime
+    TimeFormat = tf24
+    TimeDisplay = tdHMS
+    DateMode = dmUpDown
+    Date = 42270
+    Time = 0.0237069791692193
+    UseDefaultSeparators = True
+    HideDateTimeParts = [dtpDay, dtpMonth, dtpYear, dtpSecond]
+    MonthNames = 'Long'
+  end
+  object LBTime: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = DateTimePicker1
+    AnchorSideTop.Side = asrCenter
+    Left = 5
+    Height = 13
+    Top = 142
+    Width = 59
+    BorderSpacing.Left = 5
+    Caption = 'Time (UTC)'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object CBRealTime: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = LBTime
+    AnchorSideTop.Side = asrBottom
+    Left = 10
+    Height = 23
+    Top = 157
+    Width = 80
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 2
+    Caption = 'Real Time'
+    Checked = True
+    State = cbChecked
+    TabOrder = 6
+  end
+  object CBSaveUTC: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBRealTime
+    AnchorSideTop.Side = asrBottom
+    Left = 10
+    Height = 23
+    Top = 182
+    Width = 88
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 2
+    Caption = 'Save in UTC'
+    TabOrder = 7
+  end
+  object EditCallsign: TEditButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Bevel1
+    AnchorSideTop.Side = asrBottom
+    Left = 209
+    Height = 31
+    Top = 57
+    Width = 200
+    AutoSize = False
+    BorderSpacing.Left = 209
+    BorderSpacing.Top = 5
+    ButtonWidth = 32
+    CharCase = ecUppercase
+    Font.Height = -16
+    Font.Style = [fsBold]
+    Glyph.Data = {
+      36090000424D3609000000000000360000002800000018000000180000000100
+      2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF0000000000000000000000000000000000BE683B20BF693BCF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000000000000000000000000000BE683BBFC46B3AFFC069
+      3A30000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000000000000000000000BD673B60C86E3AFFD47639FFC169
+      3A80000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000BB663C10BE683BEFDC7736FFDD7B3AFFC169
+      3AEFC56C3AEFCE753DFFCD743CFFC76C38DFC86D37AFCA6E3760000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000BA663CAFD27640FFE08041FFE2823FFFE485
+      3FFFE88B44FFEB9249FFEF9A4EFFF3A154FFEE9E53FFDC8746FFCB6E36DFCC6F
+      364000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000B9653D50C26B3DFFDE7E41FFE08344FFE38848FFE68C
+      4AFFE8904BFFEB944CFFEE994EFFF2A053FFF6A859FFFAAF5EFFF4A95BFFD57D
+      3FFFCC6F3660000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00B7643E10BA663DEFD7773EFFDE7D41FFE08244FFE38747FFE68C
+      4BFFDA8347FFCF7841FFC66E3BFFC56C38BFC76C38DFD47D41FFDF8D4AFFF2A8
+      5CFFD57D40FFCB6F36500000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00B6643E50BA663DEFCA6F3EFFDB7B40FFE08143FFE28647FFE389
+      49FFC0693AEFC26A3A20000000000000000000000000C86D3710C86D3760C96E
+      37BFD0783EFFCA6E37EFCA6E372000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000B8653D10B9653D80BC683DEFCB723FFFDD8145FFE48A
+      49FFC7703DFFC0693A1000000000000000000000000000000000000000000000
+      0000C96D3750C96D37EFC96E379F00000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000000000000000000000000000BB673C60BC673CDFCC74
+      40FFCB7340FFC0693A6000000000000000000000000000000000000000000000
+      000000000000C86D3710C86D37BFC76D3820FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000000000000000000000000000000000000000000000BD67
+      3B60BE683BBFBF683B9F00000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      000000000000BE683B2000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000BE683BCFBE683B9FBE683B20000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00B8705135B2623F8F000000000000000000000000000000000000
+      0000000000000000000000000000BC673C8FCB703BFFC56D3BFFBE683BAFBE68
+      3B4000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000B16240DFB2623FBFB3633F2000000000000000000000
+      0000000000000000000000000000BB673C50C96E3AFFE17E3AFFD97A3CFFC76E
+      3BFFBE683BBFBD683B600000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000B1614040B1623FFFB7643EFFB3633F9FB4633E300000
+      0000000000000000000000000000B9663D20BE683BFFDE7836FFE07C38FFE17F
+      3AFFDB7C3CFFCB713CFFBC673CDFBC673C20FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000B161408FBE663DFFC86A3BFFBE663CFFB663
+      3CEFB5643EBFB6643EBFB7653DDFC06639FFCD6C34FFDB7332FFDD7634FFDE79
+      36FFDF7B38FFDA793AFFBB673CDF00000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000000000000000000000B161409FBE663DFFD36E3AFFD56D
+      36FFD4692FFFD4652AFFD46528FFD6682AFFD76B2CFFD96E2EFFDA7130FFDB73
+      32FFDD7534FFC0693CFFBA663D4000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000000000000000000000000000B0614070B3623FEFC669
+      3CFFD4703BFFD7723BFFD8743DFFD87238FFD87237FFD97235FFDA7437FFDB76
+      38FFCA6D3AFFB8653D8F0000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000B1614010B161
+      4070B2623FCFB7643FFFBC663EFFBD673EFFB9653FFFB9663EFFDA783FFFD476
+      3FFFB6643EDFB6643E100000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000B3633FAFD2723EFFBB67
+      3FFFB5633E40000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000B2623F60B4633FFFB362
+      3F8F00000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000B1614010B16140DFB162
+      401000000000000000000000000000000000FFFFFF00FFFFFF00
+    }
+    MaxLength = 0
+    NumGlyphs = 1
+    ParentFont = False
+    PasswordChar = #0
+    TabOrder = 8
+  end
+  object LBCallsign: TLabel
+    AnchorSideTop.Control = EditCallsign
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditCallsign
+    AnchorSideRight.Side = asrBottom
+    Left = 163
+    Height = 13
+    Top = 66
+    Width = 41
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 205
+    Caption = 'Callsign'
+    ParentColor = False
+  end
+  object ImDXCCcountry: TImage
+    AnchorSideLeft.Control = EditCallsign
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditCallsign
+    Left = 411
+    Height = 15
+    Top = 57
+    Width = 15
+    BorderSpacing.Left = 2
+    Center = True
+    Picture.Data = {
+      07544269746D617036030000424D360300000000000036000000280000001000
+      0000100000000100180000000000000300000000000000000000000000000000
+      0000FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FF0000FF0000FF0000FF0000FF0000
+      FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FFF7FFFFF7FFFFF7FFFFF7FFFFF7FF
+      FFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFFF
+      00FF000000000000F7FFFFF7FFFF000000F7FFFF000000F7FFFFF7FFFF000000
+      000000F7FFFFF7FFFF000000000000FF00FF000000F7FFFF000000F7FFFF0000
+      00F7FFFF000000F7FFFF000000F7FFFFF7FFFFF7FFFF000000F7FFFFF7FFFFFF
+      00FF000000F7FFFF000000F7FFFFF7FFFF000000F7FFFFF7FFFF000000F7FFFF
+      F7FFFFF7FFFF000000F7FFFFF7FFFFFF00FF000000F7FFFF000000F7FFFF0000
+      00F7FFFF000000F7FFFF000000F7FFFFF7FFFFF7FFFF000000F7FFFFF7FFFFFF
+      00FF000000000000F7FFFFF7FFFF000000F7FFFF000000F7FFFFF7FFFF000000
+      000000F7FFFFF7FFFF000000000000FF00FFF7FFFFF7FFFFF7FFFFF7FFFFF7FF
+      FFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFF7FFFFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FF0000FF0000FF0000FF0000FF0000
+      FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FFFF
+      00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+      0000FF0000FF0000FF0000FF0000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+      00FF
+    }
+    Transparent = True
+    Visible = False
+  end
+  object LBQSL: TLabel
+    AnchorSideLeft.Control = ImDXCCcountry
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = ImDXCCcountry
+    Left = 427
+    Height = 13
+    Top = 57
+    Width = 23
+    BorderSpacing.Left = 1
+    Caption = 'QSL'
+    Font.Color = clRed
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBWorked: TLabel
+    AnchorSideLeft.Control = EditCallsign
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBQSL
+    AnchorSideTop.Side = asrBottom
+    Left = 411
+    Height = 13
+    Top = 70
+    Width = 43
+    BorderSpacing.Left = 2
+    Caption = 'Worked'
+    Font.Color = clRed
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object EditName: TEdit
+    AnchorSideLeft.Control = Panel1
+    AnchorSideTop.Control = EditCallsign
+    AnchorSideTop.Side = asrBottom
+    Left = 209
+    Height = 21
+    Top = 90
+    Width = 135
+    AutoSize = False
+    BorderSpacing.Left = 209
+    BorderSpacing.Top = 2
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 9
+  end
+  object EditQTH: TEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditName
+    AnchorSideTop.Side = asrBottom
+    Left = 209
+    Height = 21
+    Top = 113
+    Width = 135
+    AutoSize = False
+    BorderSpacing.Left = 209
+    BorderSpacing.Top = 2
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 10
+  end
+  object LBName: TLabel
+    AnchorSideTop.Control = EditName
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditCallsign
+    AnchorSideRight.Side = asrBottom
+    Left = 172
+    Height = 13
+    Top = 94
+    Width = 32
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 205
+    Caption = 'Name'
+    ParentColor = False
+  end
+  object LBQTH: TLabel
+    AnchorSideTop.Control = EditQTH
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditCallsign
+    AnchorSideRight.Side = asrBottom
+    Left = 180
+    Height = 13
+    Top = 117
+    Width = 24
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 205
+    Caption = 'QTH'
+    ParentColor = False
+  end
+  object LBRSTs: TLabel
+    AnchorSideTop.Control = CBRSTs
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditCallsign
+    AnchorSideRight.Side = asrBottom
+    Left = 156
+    Height = 13
+    Top = 141
+    Width = 48
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 205
+    Caption = 'RST sent'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBRSTr: TLabel
+    AnchorSideTop.Control = CBRSTr
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditCallsign
+    AnchorSideRight.Side = asrBottom
+    Left = 156
+    Height = 13
+    Top = 165
+    Width = 48
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 205
+    Caption = 'RST rcvd'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object CBRSTs: TComboBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditQTH
+    AnchorSideTop.Side = asrBottom
+    Left = 209
+    Height = 22
+    Top = 136
+    Width = 136
+    AutoSize = False
+    BorderSpacing.Left = 209
+    BorderSpacing.Top = 2
+    Font.Height = -12
+    ItemHeight = 16
+    ItemIndex = 0
+    Items.Strings = (
+      '59'
+      '58'
+      '57'
+      '56'
+      '55'
+      '54'
+      '53'
+    )
+    ParentFont = False
+    Style = csOwnerDrawEditableVariable
+    TabOrder = 11
+    Text = '59'
+  end
+  object CBRSTr: TComboBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBRSTs
+    AnchorSideTop.Side = asrBottom
+    Left = 209
+    Height = 22
+    Top = 160
+    Width = 136
+    AutoSize = False
+    BorderSpacing.Left = 209
+    BorderSpacing.Top = 2
+    Font.Height = -12
+    ItemHeight = 16
+    ItemIndex = 0
+    Items.Strings = (
+      '59'
+      '58'
+      '57'
+      '56'
+      '55'
+      '54'
+      '53'
+    )
+    ParentFont = False
+    Style = csOwnerDrawEditableVariable
+    TabOrder = 12
+    Text = '59'
+  end
+  object Label10: TLabel
+    AnchorSideTop.Control = CBQSLVia
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditCallsign
+    AnchorSideRight.Side = asrBottom
+    Left = 203
+    Height = 13
+    Top = 189
+    Width = 41
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 165
+    Caption = 'QSL Via'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object CBQSLVia: TComboBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBRSTr
+    AnchorSideTop.Side = asrBottom
+    Left = 249
+    Height = 22
+    Top = 184
+    Width = 96
+    AutoSize = False
+    BorderSpacing.Left = 249
+    BorderSpacing.Top = 2
+    Font.Height = -12
+    ItemHeight = 14
+    ItemIndex = 0
+    Items.Strings = (
+      ''
+      'B - bureau'
+      'D - direct'
+      'E - electronic'
+      'M - manager'
+    )
+    ParentFont = False
+    Style = csOwnerDrawFixed
+    TabOrder = 13
+  end
+  object CBMark: TCheckBox
+    AnchorSideLeft.Control = CBSaveUTC
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBSaveUTC
+    AnchorSideTop.Side = asrCenter
+    Left = 99
+    Height = 23
+    Top = 182
+    Width = 53
+    BorderSpacing.Left = 1
+    Caption = 'Mark'
+    TabOrder = 14
+  end
+  object EditGrid: TEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBMap
+    AnchorSideTop.Side = asrBottom
+    Left = 381
+    Height = 21
+    Top = 114
+    Width = 83
+    AutoSize = False
+    BorderSpacing.Left = 381
+    BorderSpacing.Top = 2
+    CharCase = ecUppercase
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 15
+  end
+  object EditState: TEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditGrid
+    AnchorSideTop.Side = asrBottom
+    Left = 381
+    Height = 21
+    Top = 137
+    Width = 56
+    AutoSize = False
+    BorderSpacing.Left = 381
+    BorderSpacing.Top = 2
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 16
+  end
+  object EditIOTA: TEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditState
+    AnchorSideTop.Side = asrBottom
+    Left = 381
+    Height = 21
+    Top = 160
+    Width = 56
+    AutoSize = False
+    BorderSpacing.Left = 381
+    BorderSpacing.Top = 2
+    Color = clYellow
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 17
+  end
+  object EditMGR: TEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditIOTA
+    AnchorSideTop.Side = asrBottom
+    Left = 381
+    Height = 21
+    Top = 183
+    Width = 56
+    AutoSize = False
+    BorderSpacing.Left = 381
+    BorderSpacing.Top = 2
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 18
+  end
+  object SBMGR: TSpeedButton
+    AnchorSideLeft.Control = EditMGR
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditMGR
+    AnchorSideTop.Side = asrCenter
+    Left = 439
+    Height = 17
+    Top = 185
+    Width = 19
+    AutoSize = True
+    BorderSpacing.Left = 2
+    Caption = ' ... '
+    Font.Height = -12
+    ParentFont = False
+  end
+  object SBIOTA: TSpeedButton
+    AnchorSideLeft.Control = EditIOTA
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditIOTA
+    AnchorSideTop.Side = asrCenter
+    Left = 439
+    Height = 17
+    Top = 162
+    Width = 19
+    AutoSize = True
+    BorderSpacing.Left = 2
+    Caption = ' ... '
+    Font.Height = -12
+    ParentFont = False
+  end
+  object SBState: TSpeedButton
+    AnchorSideLeft.Control = EditState
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditState
+    AnchorSideTop.Side = asrCenter
+    Left = 439
+    Height = 17
+    Top = 139
+    Width = 19
+    AutoSize = True
+    BorderSpacing.Left = 2
+    Caption = ' ... '
+    Font.Height = -12
+    ParentFont = False
+  end
+  object CBMap: TCheckBox
+    AnchorSideLeft.Control = EditName
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditName
+    AnchorSideTop.Side = asrCenter
+    Left = 346
+    Height = 23
+    Top = 89
+    Width = 49
+    BorderSpacing.Left = 2
+    Caption = 'Map'
+    Checked = True
+    Font.Height = -12
+    ParentFont = False
+    State = cbChecked
+    TabOrder = 19
+  end
+  object CBFilter: TCheckBox
+    AnchorSideLeft.Control = CBMap
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBMap
+    AnchorSideTop.Side = asrCenter
+    Left = 397
+    Height = 23
+    Top = 89
+    Width = 55
+    BorderSpacing.Left = 2
+    Caption = 'Filter'
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 20
+  end
+  object LBGrid: TLabel
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditGrid
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditGrid
+    AnchorSideRight.Side = asrBottom
+    Left = 354
+    Height = 13
+    Top = 118
+    Width = 23
+    Anchors = [akTop, akRight]
+    BorderSpacing.Left = 10
+    BorderSpacing.Right = 87
+    Caption = 'Grid'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBState: TLabel
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditState
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditGrid
+    AnchorSideRight.Side = asrBottom
+    Left = 348
+    Height = 13
+    Top = 141
+    Width = 29
+    Anchors = [akTop, akRight]
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 87
+    Caption = 'State'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBIOTA: TLabel
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditIOTA
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditGrid
+    AnchorSideRight.Side = asrBottom
+    Left = 351
+    Height = 13
+    Top = 164
+    Width = 26
+    Anchors = [akTop, akRight]
+    BorderSpacing.Left = 10
+    BorderSpacing.Right = 87
+    Caption = 'IOTA'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBMGR: TLabel
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditMGR
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditGrid
+    AnchorSideRight.Side = asrBottom
+    Left = 351
+    Height = 13
+    Top = 187
+    Width = 26
+    Anchors = [akTop, akRight]
+    BorderSpacing.Left = 10
+    BorderSpacing.Right = 87
+    Caption = 'MGR'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
 end

@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 419
+  Left = 2047
   Height = 714
-  Top = 172
+  Top = 62
   Width = 1208
   ActiveControl = Panel1
   Caption = 'EWLog - HAM Journal'
@@ -519,7 +519,6 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object Label5: TLabel
-        AnchorSideLeft.Control = EditButton1
         AnchorSideTop.Control = EditButton1
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = EditButton1
@@ -529,7 +528,6 @@ object MainForm: TMainForm
         Top = 37
         Width = 41
         Anchors = [akTop, akRight]
-        BorderSpacing.Left = 148
         BorderSpacing.Right = 205
         Caption = 'Callsign'
         Font.Height = -12
