@@ -681,6 +681,9 @@ object MiniForm: TMiniForm
     }
     MaxLength = 0
     NumGlyphs = 1
+    OnButtonClick = EditCallsignButtonClick
+    OnChange = EditCallsignChange
+    OnKeyDown = EditCallsignKeyDown
     ParentFont = False
     PasswordChar = #0
     TabOrder = 8
@@ -1967,6 +1970,21 @@ object MiniForm: TMiniForm
     Width = 447
     BorderSpacing.Top = 5
     Shape = bsTopLine
+  end
+  object Shape1: TShape
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel1
+    AnchorSideRight.Control = EditCallsign
+    AnchorSideRight.Side = asrBottom
+    Left = 194
+    Height = 10
+    Top = 56
+    Width = 10
+    Anchors = [akTop, akRight]
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 205
+    ParentShowHint = False
+    ShowHint = True
   end
   object TMTime: TTimer
     OnTimer = TMTimeTimer
