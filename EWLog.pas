@@ -110,7 +110,7 @@ begin
     Application.CreateForm(TMiniForm, MiniForm);
     Application.CreateForm(TMainForm, MainForm);
   end;
-
+  Application.CreateForm(TGridsForm, GridsForm);
   Application.CreateForm(TEditQSO_Form, EditQSO_Form);
   Application.CreateForm(TInformationForm, InformationForm);
   Application.CreateForm(TLogConfigForm, LogConfigForm);
@@ -147,6 +147,5 @@ begin
   Application.CreateForm(TMM_Form, MM_Form);
   Application.CreateForm(TviewPhoto, viewPhoto);
   Application.CreateForm(TdxClusterForm, dxClusterForm);
-  Application.CreateForm(TGridsForm, GridsForm);
   Application.Run;
 end.

@@ -66,7 +66,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, InitDB_dm, serverDM_u;
+uses dmFunc_U, MainForm_U, InitDB_dm, serverDM_u, GridsForm_u;
 
 {$R *.lfm}
 
@@ -215,23 +215,23 @@ begin
         ' ORDER BY UnUsedIndex ASC';
   end;
 
-  if MainForm.ExportAdifSelect = True then
+  if GridsForm.ExportAdifSelect = True then
   begin
 
-    for i := 0 to High(MainForm.ExportAdifArray) do
+    for i := 0 to High(GridsForm.ExportAdifArray) do
     begin
       if i > 0 then
         numberToExp := numberToExp + ', ';
-      numberToExp := numberToExp + IntToStr(MainForm.ExportAdifArray[i]);
+      numberToExp := numberToExp + IntToStr(GridsForm.ExportAdifArray[i]);
     end;
-    for i := 0 to Length(MainForm.ExportAdifArray) - 1 do
+    for i := 0 to Length(GridsForm.ExportAdifArray) - 1 do
     begin
       Q1.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable + ' WHERE `UnUsedIndex` in (' +
         numberToExp + ')' + ' ORDER BY UnUsedIndex ASC';
     end;
   end;
 
-  MainForm.ExportAdifSelect := False;
+  GridsForm.ExportAdifSelect := False;
   Q1.Open();
   Q2.Open();
   try

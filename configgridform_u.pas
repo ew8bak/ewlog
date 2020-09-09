@@ -71,7 +71,7 @@ var
 
 implementation
 
-uses MainForm_U, InitDB_dm, MainFuncDM;
+uses MainForm_U, InitDB_dm, MainFuncDM, GridsForm_u;
 
 {$R *.lfm}
 
@@ -123,8 +123,8 @@ begin
     3: INIFile.WriteInteger('GridSettings', 'TextSize', 14);
   end;
 
-  MainFunc.SetGrid(MainForm.DBGrid1);
-  MainFunc.SetGrid(MainForm.DBGrid2);
+  MainFunc.SetGrid(GridsForm.DBGrid1);
+  MainFunc.SetGrid(GridsForm.DBGrid2);
 end;
 
 procedure TConfigGrid_Form.Button3Click(Sender: TObject);
@@ -166,14 +166,14 @@ end;
 
 procedure TConfigGrid_Form.ColorBox1Change(Sender: TObject);
 begin
-  MainForm.DBGrid1.Font.Color := ColorBox1.Selected;
-  MainForm.DBGrid2.Font.Color := ColorBox1.Selected;
+  GridsForm.DBGrid1.Font.Color := ColorBox1.Selected;
+  GridsForm.DBGrid2.Font.Color := ColorBox1.Selected;
 end;
 
 procedure TConfigGrid_Form.ColorBox2Change(Sender: TObject);
 begin
-  MainForm.DBGrid1.Color := ColorBox2.Selected;
-  MainForm.DBGrid2.Color := ColorBox2.Selected;
+  GridsForm.DBGrid1.Color := ColorBox2.Selected;
+  GridsForm.DBGrid2.Color := ColorBox2.Selected;
 end;
 
 procedure TConfigGrid_Form.ComboBox1Change(Sender: TObject);
@@ -181,48 +181,48 @@ var
   i: integer;
 begin
   case ComboBox1.ItemIndex of
-    0: MainForm.DBGrid1.Font.Size := 8;
-    1: MainForm.DBGrid1.Font.Size := 10;
-    2: MainForm.DBGrid1.Font.Size := 12;
-    3: MainForm.DBGrid1.Font.Size := 14;
+    0: GridsForm.DBGrid1.Font.Size := 8;
+    1: GridsForm.DBGrid1.Font.Size := 10;
+    2: GridsForm.DBGrid1.Font.Size := 12;
+    3: GridsForm.DBGrid1.Font.Size := 14;
   end;
 
   case ComboBox1.ItemIndex of
-    0: MainForm.DBGrid1.DefaultRowHeight := 15;
-    1: MainForm.DBGrid1.DefaultRowHeight := MainForm.DBGrid1.Font.Size + 12;
-    2: MainForm.DBGrid1.DefaultRowHeight := MainForm.DBGrid1.Font.Size + 12;
-    3: MainForm.DBGrid1.DefaultRowHeight := MainForm.DBGrid1.Font.Size + 12;
+    0: GridsForm.DBGrid1.DefaultRowHeight := 15;
+    1: GridsForm.DBGrid1.DefaultRowHeight := GridsForm.DBGrid1.Font.Size + 12;
+    2: GridsForm.DBGrid1.DefaultRowHeight := GridsForm.DBGrid1.Font.Size + 12;
+    3: GridsForm.DBGrid1.DefaultRowHeight := GridsForm.DBGrid1.Font.Size + 12;
   end;
   case ComboBox1.ItemIndex of
-    0: MainForm.DBGrid2.Font.Size := 8;
-    1: MainForm.DBGrid2.Font.Size := 10;
-    2: MainForm.DBGrid2.Font.Size := 12;
-    3: MainForm.DBGrid2.Font.Size := 14;
+    0: GridsForm.DBGrid2.Font.Size := 8;
+    1: GridsForm.DBGrid2.Font.Size := 10;
+    2: GridsForm.DBGrid2.Font.Size := 12;
+    3: GridsForm.DBGrid2.Font.Size := 14;
   end;
 
   case ComboBox1.ItemIndex of
-    0: MainForm.DBGrid2.DefaultRowHeight := 15;
-    1: MainForm.DBGrid2.DefaultRowHeight := MainForm.DBGrid2.Font.Size + 12;
-    2: MainForm.DBGrid2.DefaultRowHeight := MainForm.DBGrid2.Font.Size + 12;
-    3: MainForm.DBGrid2.DefaultRowHeight := MainForm.DBGrid2.Font.Size + 12;
+    0: GridsForm.DBGrid2.DefaultRowHeight := 15;
+    1: GridsForm.DBGrid2.DefaultRowHeight := GridsForm.DBGrid2.Font.Size + 12;
+    2: GridsForm.DBGrid2.DefaultRowHeight := GridsForm.DBGrid2.Font.Size + 12;
+    3: GridsForm.DBGrid2.DefaultRowHeight := GridsForm.DBGrid2.Font.Size + 12;
   end;
 
-  for i := 0 to MainForm.DBGrid1.Columns.Count - 1 do
+  for i := 0 to GridsForm.DBGrid1.Columns.Count - 1 do
   begin
     case ComboBox1.ItemIndex of
-      0: MainForm.DBGrid1.Columns.Items[i].Title.Font.Size := 8;
-      1: MainForm.DBGrid1.Columns.Items[i].Title.Font.Size := 10;
-      2: MainForm.DBGrid1.Columns.Items[i].Title.Font.Size := 12;
-      3: MainForm.DBGrid1.Columns.Items[i].Title.Font.Size := 14;
+      0: GridsForm.DBGrid1.Columns.Items[i].Title.Font.Size := 8;
+      1: GridsForm.DBGrid1.Columns.Items[i].Title.Font.Size := 10;
+      2: GridsForm.DBGrid1.Columns.Items[i].Title.Font.Size := 12;
+      3: GridsForm.DBGrid1.Columns.Items[i].Title.Font.Size := 14;
     end;
   end;
-  for i := 0 to MainForm.DBGrid2.Columns.Count - 1 do
+  for i := 0 to GridsForm.DBGrid2.Columns.Count - 1 do
   begin
     case ComboBox1.ItemIndex of
-      0: MainForm.DBGrid2.Columns.Items[i].Title.Font.Size := 8;
-      1: MainForm.DBGrid2.Columns.Items[i].Title.Font.Size := 10;
-      2: MainForm.DBGrid2.Columns.Items[i].Title.Font.Size := 12;
-      3: MainForm.DBGrid2.Columns.Items[i].Title.Font.Size := 14;
+      0: GridsForm.DBGrid2.Columns.Items[i].Title.Font.Size := 8;
+      1: GridsForm.DBGrid2.Columns.Items[i].Title.Font.Size := 10;
+      2: GridsForm.DBGrid2.Columns.Items[i].Title.Font.Size := 12;
+      3: GridsForm.DBGrid2.Columns.Items[i].Title.Font.Size := 14;
     end;
   end;
 
@@ -260,8 +260,8 @@ begin
   CheckBox27.Checked := INIFile.ReadBool('GridSettings', 'ColVisible27', True);
   CheckBox28.Checked := INIFile.ReadBool('GridSettings', 'ColVisible28', True);
   CheckBox29.Checked := INIFile.ReadBool('GridSettings', 'ColVisible29', True);
-  ColorBox1.Selected := MainForm.DBGrid1.Font.Color;
-  ColorBox2.Selected := MainForm.DBGrid1.Color;
+  ColorBox1.Selected := GridsForm.DBGrid1.Font.Color;
+  ColorBox2.Selected := GridsForm.DBGrid1.Color;
 
   case INIFile.ReadInteger('GridSettings', 'TextSize', 8) of
     8: ComboBox1.ItemIndex := 0;

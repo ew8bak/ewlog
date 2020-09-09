@@ -142,7 +142,7 @@ implementation
 
 uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U,
   dmFunc_U, IOTA_Form_U, STATE_Form_U,
-  ConfigForm_U, const_u, InitDB_dm, MainFuncDM;
+  ConfigForm_U, const_u, InitDB_dm, MainFuncDM, GridsForm_u;
 
 {$R *.lfm}
 
@@ -293,7 +293,7 @@ begin
   if ComboBox7.Text <> '' then
     UQSO.QSL_SENT_VIA := ComboBox7.Text[1];
   MainFunc.UpdateEditQSO(UnUsIndex, UQSO);
-  MainFunc.CurrPosGrid(GridRecordIndex, MainForm.DBGrid1);
+  MainFunc.CurrPosGrid(GridRecordIndex, GridsForm.DBGrid1);
 end;
 
 procedure TEditQSO_Form.Button4Click(Sender: TObject);
@@ -325,7 +325,7 @@ end;
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: integer; Column: TColumn; State: TGridDrawState);
 begin
-  MainFunc.DrawColumnGrid(MainForm.LOGBookDS.DataSet, Rect, DataCol,
+  MainFunc.DrawColumnGrid(GridsForm.LOGBookDS.DataSet, Rect, DataCol,
     Column, State, DBGrid1);
 end;
 

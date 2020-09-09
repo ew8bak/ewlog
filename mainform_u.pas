@@ -45,71 +45,19 @@ type
     Label54: TLabel;
     Label55: TLabel;
     MapView1: TMapView;
-    MenuItem10: TMenuItem;
     MenuItem100: TMenuItem;
     MenuItem102: TMenuItem;
-    MenuItem103: TMenuItem;
-    MenuItem104: TMenuItem;
-    MenuItem105: TMenuItem;
-    MenuItem106: TMenuItem;
-    MenuItem107: TMenuItem;
-    MenuItem108: TMenuItem;
-    MenuItem109: TMenuItem;
-    MenuItem11: TMenuItem;
     MenuItem110: TMenuItem;
     MenuItem111: TMenuItem;
     MenuItem112: TMenuItem;
     MenuItem116: TMenuItem;
-    MenuItem117: TMenuItem;
     MenuItem118: TMenuItem;
     MenuItem119: TMenuItem;
-    MenuItem120: TMenuItem;
-    MenuItem121: TMenuItem;
-    MenuItem122: TMenuItem;
     MenuItem123: TMenuItem;
     MenuItem124: TMenuItem;
-    N2: TMenuItem;
     N1: TMenuItem;
-    MenuItem12: TMenuItem;
-    MenuItem13: TMenuItem;
-    MenuItem14: TMenuItem;
-    MenuItem15: TMenuItem;
-    MenuItem16: TMenuItem;
-    MenuItem17: TMenuItem;
-    MenuItem18: TMenuItem;
-    MenuItem19: TMenuItem;
-    MenuItem20: TMenuItem;
-    MenuItem21: TMenuItem;
-    MenuItem22: TMenuItem;
-    MenuItem23: TMenuItem;
-    MenuItem24: TMenuItem;
-    MenuItem25: TMenuItem;
-    MenuItem26: TMenuItem;
-    MenuItem27: TMenuItem;
-    MenuItem28: TMenuItem;
-    MenuItem29: TMenuItem;
-    MenuItem30: TMenuItem;
-    MenuItem31: TMenuItem;
-    MenuItem32: TMenuItem;
-    MenuItem33: TMenuItem;
-    MenuItem34: TMenuItem;
-    MenuItem35: TMenuItem;
-    MenuItem36: TMenuItem;
-    MenuItem37: TMenuItem;
-    MenuItem38: TMenuItem;
-    MenuItem39: TMenuItem;
-    MenuItem40: TMenuItem;
-    MenuItem41: TMenuItem;
-    MenuItem42: TMenuItem;
     MenuItem43: TMenuItem;
-    MenuItem44: TMenuItem;
-    MenuItem45: TMenuItem;
-    MenuItem46: TMenuItem;
-    MenuItem47: TMenuItem;
     MenuItem48: TMenuItem;
-    MenuItem49: TMenuItem;
-    MenuItem50: TMenuItem;
-    MenuItem51: TMenuItem;
     MenuItem52: TMenuItem;
     MenuItem53: TMenuItem;
     MenuItem54: TMenuItem;
@@ -148,7 +96,6 @@ type
     MenuItem87: TMenuItem;
     MenuItem88: TMenuItem;
     MenuItem89: TMenuItem;
-    MenuItem9: TMenuItem;
     MenuItem90: TMenuItem;
     MenuItem91: TMenuItem;
     MenuItem92: TMenuItem;
@@ -161,6 +108,8 @@ type
     MenuItem99: TMenuItem;
     Panel10: TPanel;
     Panel12: TPanel;
+    Panel6: TPanel;
+    Panel8: TPanel;
     PopupMenu2: TPopupMenu;
     Shape1: TShape;
     PrintDialog1: TPrintDialog;
@@ -169,8 +118,6 @@ type
     StatusBar1: TStatusBar;
     Fl_Timer: TTimer;
     CheckUpdatesTimer: TTimer;
-    MenuItem8: TMenuItem;
-    PopupMenu1: TPopupMenu;
     SaveQSOinBase: TAction;
     ActionList1: TActionList;
     Bevel1: TBevel;
@@ -190,12 +137,8 @@ type
     ComboBox5: TComboBox;
     ComboBox6: TComboBox;
     ComboBox7: TComboBox;
-    LOGBookDS: TDataSource;
-    FindQSODS: TDataSource;
     DateEdit1: TDateEdit;
     DateTimePicker1: TDateTimePicker;
-    DBGrid1: TDBGrid;
-    DBGrid2: TDBGrid;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -270,9 +213,6 @@ type
     Panel13: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
-    Panel6: TPanel;
-    Panel7: TPanel;
-    Panel8: TPanel;
     SpeedButton1: TSpeedButton;
     SpeedButton14: TSpeedButton;
     SpeedButton15: TSpeedButton;
@@ -296,15 +236,6 @@ type
     procedure ComboBox10Change(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
     procedure ComboBox2CloseUp(Sender: TObject);
-    procedure DBGrid1CellClick(Column: TColumn);
-    procedure DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
-    procedure DBGrid1ColumnSized(Sender: TObject);
-    procedure DBGrid1DblClick(Sender: TObject);
-    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: integer; Column: TColumn; State: TGridDrawState);
-    procedure DBGrid2DblClick(Sender: TObject);
-    procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure EditButton1ButtonClick(Sender: TObject);
     procedure EditButton1Change(Sender: TObject);
     procedure EditButton1KeyDown(Sender: TObject; var Key: word;
@@ -319,50 +250,15 @@ type
     procedure Label50Click(Sender: TObject);
     procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure MenuItem102Click(Sender: TObject);
-    procedure MenuItem104Click(Sender: TObject);
-    procedure MenuItem105Click(Sender: TObject);
-    procedure MenuItem106Click(Sender: TObject);
-    procedure MenuItem107Click(Sender: TObject);
-    procedure MenuItem108Click(Sender: TObject);
-    procedure MenuItem109Click(Sender: TObject);
-    procedure MenuItem10Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
     procedure MenuItem116Click(Sender: TObject);
-    procedure MenuItem117Click(Sender: TObject);
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem119Click(Sender: TObject);
-    procedure MenuItem11Click(Sender: TObject);
-    procedure MenuItem121Click(Sender: TObject);
-    procedure MenuItem122Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
-    procedure MenuItem12Click(Sender: TObject);
-    procedure MenuItem13Click(Sender: TObject);
-    procedure MenuItem14Click(Sender: TObject);
-    procedure MenuItem16Click(Sender: TObject);
-    procedure MenuItem17Click(Sender: TObject);
-    procedure MenuItem21Click(Sender: TObject);
-    procedure MenuItem22Click(Sender: TObject);
-    procedure MenuItem23Click(Sender: TObject);
-    procedure MenuItem24Click(Sender: TObject);
-    procedure MenuItem25Click(Sender: TObject);
-    procedure MenuItem27Click(Sender: TObject);
-    procedure MenuItem28Click(Sender: TObject);
-    procedure MenuItem29Click(Sender: TObject);
-    procedure MenuItem30Click(Sender: TObject);
-    procedure MenuItem31Click(Sender: TObject);
-    procedure MenuItem35Click(Sender: TObject);
-    procedure MenuItem36Click(Sender: TObject);
-    procedure MenuItem37Click(Sender: TObject);
-    procedure MenuItem38Click(Sender: TObject);
-    procedure MenuItem40Click(Sender: TObject);
-    procedure MenuItem41Click(Sender: TObject);
-    procedure MenuItem42Click(Sender: TObject);
     procedure MenuItem43Click(Sender: TObject);
     procedure MenuItem48Click(Sender: TObject);
-    procedure MenuItem49Click(Sender: TObject);
-    procedure MenuItem51Click(Sender: TObject);
     procedure MenuItem52Click(Sender: TObject);
     procedure MenuItem53Click(Sender: TObject);
     procedure MenuItem55Click(Sender: TObject);
@@ -394,7 +290,6 @@ type
     procedure MenuItem99Click(Sender: TObject);
     procedure LangItemClick(Sender: TObject);
     procedure CopyToLogItemClick(Sender: TObject);
-    procedure PopupMenu1Popup(Sender: TObject);
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure SpeedButton16Click(Sender: TObject);
     procedure SpeedButton17Click(Sender: TObject);
@@ -419,8 +314,6 @@ type
     PrintPrev: boolean;
     tIMG: TImage;
     PhotoGroup: TGroupBox;
-    ExportAdifSelect: boolean;
-    ExportAdifArray: array of integer;
     freqchange: boolean;
     procedure Clr;
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
@@ -830,7 +723,6 @@ begin
     else
       CloseAction := caNone;
   end;
-  MainFunc.SaveGrids(DBGrid1);
 
   if MainForm.WindowState <> wsMaximized then
   begin
@@ -854,59 +746,8 @@ begin
 
   INIFile.WriteBool('SetLog', 'UseMAPS', CheckBox3.Checked);
   TRXForm.Close;
+  GridsForm.Close;
   dxClusterForm.Close;
-end;
-
-procedure TMainForm.DBGrid1CellClick(Column: TColumn);
-var
-  SelQSOR: TSelQSOR;
-  FoundQSOR: TFoundQSOR;
-  PFXR: TPFXR;
-  Lat, Lon: string;
-begin
-  if LOGBookDS.DataSet.Fields[0].AsString <> '' then
-  begin
-    SelQSOR := MainFunc.SelectQSO(LOGBookDS);
-    FoundQSOR := MainFunc.FindQSO(DBGrid1.DataSource.DataSet.FieldByName(
-      'Call').AsString);
-    PFXR := MainFunc.SearchPrefix(
-      DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString, Edit3.Text);
-    Label17.Caption := IntToStr(FoundQSOR.CountQSO);
-    Label18.Caption := SelQSOR.QSODate;
-    Label19.Caption := SelQSOR.QSOTime;
-    Label20.Caption := SelQSOR.QSOBand;
-    Label21.Caption := SelQSOR.QSOMode;
-    Label22.Caption := SelQSOR.OMName;
-    Label32.Caption := PFXR.Azimuth;
-    Label37.Caption := PFXR.Distance;
-    Label40.Caption := PFXR.Latitude;
-    Label42.Caption := PFXR.Longitude;
-    Label33.Caption := PFXR.Country;
-    Label43.Caption := PFXR.Continent;
-    Label34.Caption := PFXR.ARRLPrefix;
-    Label38.Caption := PFXR.Prefix;
-    Label45.Caption := PFXR.CQZone;
-    Label47.Caption := PFXR.ITUZone;
-    timedif := PFXR.TimeDiff;
-    dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
-    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-    UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-  end;
-end;
-
-procedure TMainForm.DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
-begin
-  MainFunc.SaveGridsColumnMoved(DBGrid1);
-  MainFunc.SetGrid(DBGrid1);
-  MainFunc.SetGrid(DBGrid2);
-end;
-
-procedure TMainForm.DBGrid1ColumnSized(Sender: TObject);
-begin
-  MainFunc.SaveGridsColumnSized(DBGrid1);
-  MainFunc.SetGrid(DBGrid1);
-  MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.CheckBox1Change(Sender: TObject);
@@ -965,8 +806,8 @@ procedure TMainForm.CheckBox6Change(Sender: TObject);
 begin
   if CheckBox6.Checked = False then
     InitDB.SelectLogbookTable(LBRecord.LogTable);
-  MainFunc.SetGrid(DBGrid1);
-  MainFunc.SetGrid(DBGrid2);
+ // MainFunc.SetGrid(DBGrid1);
+ // MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TMainForm.CheckUpdatesTimerStartTimer(Sender: TObject);
@@ -1087,38 +928,6 @@ begin
     EditButton1Change(ComboBox2);
 end;
 
-procedure TMainForm.DBGrid1DblClick(Sender: TObject);
-begin
-  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
-  begin
-    GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
-    UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-    EditQSO_Form.Show;
-  end;
-end;
-
-procedure TMainForm.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
-  DataCol: integer; Column: TColumn; State: TGridDrawState);
-begin
-  MainFunc.DrawColumnGrid(LOGBookDS.DataSet, Rect, DataCol, Column, State, DBGrid1);
-end;
-
-procedure TMainForm.DBGrid2DblClick(Sender: TObject);
-begin
-  if InitRecord.SelectLogbookTable and (DBGrid2.SelectedIndex <> 0) then
-  begin
-    GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
-    UnUsIndex := DBGrid2.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-    EditQSO_Form.Show;
-  end;
-end;
-
-procedure TMainForm.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
-  DataCol: integer; Column: TColumn; State: TGridDrawState);
-begin
-  MainFunc.DrawColumnGrid(FindQSODS.DataSet, Rect, DataCol, Column, State, DBGrid2);
-end;
-
 procedure TMainForm.EditButton1ButtonClick(Sender: TObject);
 var
   FoundQSOR: TFoundQSOR;
@@ -1186,8 +995,6 @@ begin
   EditFlag := False;
   StayForm := True;
 
-  ExportAdifSelect := False;
-
   CheckBox3.Visible := True;
   CheckBox5.Visible := True;
   if useMAPS = 'YES' then
@@ -1207,8 +1014,6 @@ begin
     TRXForm.Show;
 
   UnUsIndex := 0;
-  MainFunc.SetGrid(DBGrid1);
-  MainFunc.SetGrid(DBGrid2);
 
   if not IniSet.ShowTRXForm then
     MenuItem88.Checked := True
@@ -1289,11 +1094,15 @@ begin
   ComboBox7.ItemIndex := 3;
   IniSet.CurrentForm := 'MAIN';
 
+  GridsForm.Parent := Panel3;
+  GridsForm.BorderStyle := bsNone;
+  GridsForm.Align := alClient;
+  GridsForm.Show;
+
   dxClusterForm.Parent := Panel8;
   dxClusterForm.BorderStyle := bsNone;
   dxClusterForm.Align := alClient;
   dxClusterForm.Show;
-  GridsForm.Show;
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);
@@ -1309,36 +1118,6 @@ end;
 procedure TMainForm.MenuItem102Click(Sender: TObject);
 begin
   openURL('https://yasobe.ru/na/ewlog');
-end;
-
-procedure TMainForm.MenuItem104Click(Sender: TObject);
-begin
-  MainFunc.FilterQSO('QSLRec', '1');
-end;
-
-procedure TMainForm.MenuItem105Click(Sender: TObject);
-begin
-  MainFunc.FilterQSO('QSLSent', '1');
-end;
-
-procedure TMainForm.MenuItem106Click(Sender: TObject);
-begin
-  MainFunc.FilterQSO('QSLSent', '0');
-end;
-
-procedure TMainForm.MenuItem107Click(Sender: TObject);
-begin
-  MainFunc.FilterQSO('QSLSentAdv', 'P');
-end;
-
-procedure TMainForm.MenuItem108Click(Sender: TObject);
-begin
-  MainFunc.FilterQSO('QSLSentAdv', 'N');
-end;
-
-procedure TMainForm.MenuItem109Click(Sender: TObject);
-begin
-  InitDB.SelectLogbookTable(LBRecord.LogTable);
 end;
 
 procedure TMainForm.MenuItem111Click(Sender: TObject);
@@ -1410,36 +1189,8 @@ begin
 end;
 
 procedure TMainForm.CopyToLogItemClick(Sender: TObject);
-var
-  MenuItem: TMenuItem;
 begin
-  MenuItem := (Sender as TMenuItem);
-  MainFunc.CopyToJournal(DBGrid1, MenuItem.Caption);
-end;
 
-procedure TMainForm.PopupMenu1Popup(Sender: TObject);
-var
-  LogItem: TMenuItem;
-  i: integer;
-begin
-  if DBRecord.InitDB = 'YES' then
-  begin
-    for i := MainForm.ComponentCount - 1 downto 0 do
-      if (MainForm.Components[i] is TMenuItem) then
-        if (MainForm.Components[i] as TMenuItem).Tag = 98 then
-          (MainForm.Components[i] as TMenuItem).Free;
-    for i := 0 to High(MainFunc.GetAllCallsign) do
-    begin
-      LogItem := TMenuItem.Create(Self);
-      LogItem.Name := 'LogItem' + IntToStr(i);
-      LogItem.Caption := MainFunc.GetAllCallsign[i];
-      LogItem.OnClick := @CopyToLogItemClick;
-      LogItem.Tag := 98;
-      if LogItem.Caption = LBRecord.CallSign then
-        LogItem.Enabled := False;
-      MenuItem45.Insert(i, LogItem);
-    end;
-  end;
 end;
 
 procedure TMainForm.MenuItem116Click(Sender: TObject);
@@ -1466,11 +1217,6 @@ begin
       MenuItem116.Insert(i, LangItem);
   end;
   LangList.Free;
-end;
-
-procedure TMainForm.MenuItem117Click(Sender: TObject);
-begin
-  PrintSticker_Form.Show;
 end;
 
 procedure TMainForm.MenuItem118Click(Sender: TObject);
@@ -1533,211 +1279,6 @@ begin
   end;
 end;
 
-procedure TMainForm.MenuItem121Click(Sender: TObject);
-var
-  i: integer;
-  PrintArray: array of integer;
-  PrintOK: boolean;
-  numberToPrint: string;
-  NumberCopies: integer;
-  ind: integer;
-  resStream: TLazarusResourceStream;
-begin
-  PrintOK := False;
-  PrintQuery.Close;
-  numberToPrint := '';
-  resStream := TLazarusResourceStream.Create('report', nil);
-  try
-    if DBRecord.DefaultDB = 'MySQL' then
-      PrintQuery.DataBase := InitDB.MySQLConnection
-    else
-      PrintQuery.DataBase := InitDB.SQLiteConnection;
-
-    if (UnUsIndex <> 0) then
-    begin
-      for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-      begin
-        DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-        SetLength(PrintArray, DBGrid1.SelectedRows.Count);
-        PrintArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
-          'UnUsedIndex').AsInteger;
-      end;
-      PrintOK := True;
-    end;
-
-    if (UnUsIndex <> 0) then
-    begin
-      for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-      begin
-        DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-        UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-     {   with EditQSO_Form.UPDATE_Query do
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('UPDATE ' + LBRecord.LogTable +
-            ' SET `QSLSentAdv`=:QSLSentAdv WHERE `UnUsedIndex`=:UnUsedIndex');
-          Params.ParamByName('QSLSentAdv').AsString := 'P';
-          Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-          ExecSQL;
-        end; }
-      end;
-      InitDB.DefTransaction.Commit;
-      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-        ShowMessage(rDBError);
-      DBGrid1.DataSource.DataSet.RecNo := UnUsIndex;
-    end;
-
-    if PrintOK then
-    begin
-      for i := 0 to High(PrintArray) do
-      begin
-        if i > 0 then
-          numberToPrint := numberToPrint + ', ';
-        numberToPrint := numberToPrint + IntToStr(PrintArray[i]);
-      end;
-      for i := 0 to Length(PrintArray) - 1 do
-      begin
-        PrintQuery.SQL.Text :=
-          'SELECT * FROM ' + LBRecord.LogTable + ' WHERE `UnUsedIndex` in (' +
-          numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
-      end;
-    end;
-    PrintOK := False;
-    PrintQuery.Open;
-    resStream.SaveToFile(FilePATH + 'rep.lrf');
-    frReport1.LoadFromFile(FilePATH + 'rep.lrf');
-    if PrintPrev = True then
-      frReport1.ShowReport
-    else
-    begin
-      ind := Printer.PrinterIndex;
-      if not frReport1.PrepareReport then
-        Exit;
-
-      with PrintDialog1 do
-      begin
-        Options := [poPageNums];
-        Copies := 1;
-        Collate := True;
-        FromPage := 1;
-        ToPage := frReport1.EMFPages.Count;
-        MaxPage := frReport1.EMFPages.Count;
-        if Execute then
-        begin
-          if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
-            frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
-            frReport1.PrepareReport
-          else
-            exit;
-          if PrintDialog1.PrintRange = prPageNums then
-          begin
-            FromPage := PrintDialog1.FromPage;
-            ToPage := PrintDialog1.ToPage;
-          end;
-          NumberCopies := PrintDialog1.Copies;
-          frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
-            NumberCopies);
-        end;
-      end;
-    end;
-  finally
-    resStream.Free;
-  end;
-end;
-
-procedure TMainForm.MenuItem122Click(Sender: TObject);
-var
-  i: integer;
-  PrintArray: array of integer;
-  PrintOK: boolean;
-  numberToPrint: string;
-  NumberCopies: integer;
-  ind: integer;
-  resStream: TLazarusResourceStream;
-begin
-  PrintOK := False;
-  PrintQuery.Close;
-  numberToPrint := '';
-  resStream := TLazarusResourceStream.Create('report', nil);
-  try
-    if DBRecord.DefaultDB = 'MySQL' then
-      PrintQuery.DataBase := InitDB.MySQLConnection
-    else
-      PrintQuery.DataBase := InitDB.SQLiteConnection;
-
-    if (UnUsIndex <> 0) then
-    begin
-      for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-      begin
-        DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-        SetLength(PrintArray, DBGrid1.SelectedRows.Count);
-        PrintArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
-          'UnUsedIndex').AsInteger;
-      end;
-      PrintOK := True;
-    end;
-
-    if PrintOK then
-    begin
-      for i := 0 to High(PrintArray) do
-      begin
-        if i > 0 then
-          numberToPrint := numberToPrint + ', ';
-        numberToPrint := numberToPrint + IntToStr(PrintArray[i]);
-      end;
-      for i := 0 to Length(PrintArray) - 1 do
-      begin
-        PrintQuery.SQL.Text :=
-          'SELECT * FROM ' + LBRecord.LogTable + ' WHERE `UnUsedIndex` in (' +
-          numberToPrint + ')' + ' ORDER BY UnUsedIndex ASC';
-      end;
-    end;
-    PrintOK := False;
-    PrintQuery.Open;
-    resStream.SaveToFile(FilePATH + 'rep.lrf');
-    frReport1.LoadFromFile(FilePATH + 'rep.lrf');
-
-
-    if PrintPrev = True then
-      frReport1.ShowReport
-    else
-    begin
-      ind := Printer.PrinterIndex;
-      if not frReport1.PrepareReport then
-        Exit;
-
-      with PrintDialog1 do
-      begin
-        Options := [poPageNums];
-        Copies := 1;
-        Collate := True;
-        FromPage := 1;
-        ToPage := frReport1.EMFPages.Count;
-        MaxPage := frReport1.EMFPages.Count;
-        if Execute then
-        begin
-          if (Printer.PrinterIndex <> ind) or frReport1.CanRebuild or
-            frReport1.ChangePrinter(ind, Printer.PrinterIndex) then
-            frReport1.PrepareReport
-          else
-            exit;
-          if PrintDialog1.PrintRange = prPageNums then
-          begin
-            FromPage := PrintDialog1.FromPage;
-            ToPage := PrintDialog1.ToPage;
-          end;
-          NumberCopies := PrintDialog1.Copies;
-          frReport1.PrintPreparedReport(IntToStr(FromPage) + '-' + IntToStr(ToPage),
-            NumberCopies);
-        end;
-      end;
-    end;
-  finally
-    resStream.Free;
-  end;
-end;
-
 procedure TMainForm.MenuItem123Click(Sender: TObject);
 begin
   FM_Form.Show;
@@ -1746,247 +1287,6 @@ end;
 procedure TMainForm.MenuItem124Click(Sender: TObject);
 begin
   MM_Form.Show;
-end;
-
-//QSL получена
-procedure TMainForm.MenuItem11Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLRec', '1');
-end;
-
-//QSL получена и отправлена на печать
-procedure TMainForm.MenuItem10Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'Q');
-end;
-
-//Поставить QSO в очередь на печать
-procedure TMainForm.MenuItem12Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLPrint', 'Q');
-end;
-
-//QSL напечатана
-procedure TMainForm.MenuItem13Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'P');
-end;
-
-//QSL отправлена
-procedure TMainForm.MenuItem14Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'T');
-end;
-
-//QSL не отправлена
-procedure TMainForm.MenuItem16Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'F');
-end;
-
-//QSL не отправлять
-procedure TMainForm.MenuItem17Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'N');
-end;
-
-//QSL получена через B - бюро
-procedure TMainForm.MenuItem21Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'B');
-end;
-
-//QSL Получена через D - Direct
-procedure TMainForm.MenuItem22Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'D');
-end;
-
-//QSL получена через E - Electronic
-procedure TMainForm.MenuItem23Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'E');
-end;
-
-//QSL получена через M - менеджера
-procedure TMainForm.MenuItem24Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'M');
-end;
-
-//QSL получена через G - GlobalQSL
-procedure TMainForm.MenuItem25Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'G');
-end;
-
-//QSL Отправелена через B - Бюро
-procedure TMainForm.MenuItem27Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'B');
-end;
-
-//QSL отправлена через D - Direct
-procedure TMainForm.MenuItem28Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'D');
-end;
-
-//QSL отправлена через E - Electronic
-procedure TMainForm.MenuItem29Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'E');
-end;
-
-//QSL отправлена через M - менеджер
-procedure TMainForm.MenuItem30Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'M');
-end;
-
-//QSL отправлена через G - GlobalQSL
-procedure TMainForm.MenuItem31Click(Sender: TObject);
-begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'G');
-end;
-
-//Выбрать все записи в dbGrid1
-procedure TMainForm.MenuItem35Click(Sender: TObject);
-begin
-  MainFunc.SelectAllQSO(DBGrid1);
-end;
-
-procedure TMainForm.MenuItem36Click(Sender: TObject);
-var
-  i: integer;
-begin
-  if (UnUsIndex <> 0) then
-  begin
-    exportAdifForm.Show;
-    for i := 0 to DBGrid1.SelectedRows.Count - 1 do
-    begin
-      DBGrid1.DataSource.DataSet.GotoBookmark(Pointer(DBGrid1.SelectedRows.Items[i]));
-      SetLength(ExportAdifArray, DBGrid1.SelectedRows.Count);
-      ExportAdifArray[i] := DBGrid1.DataSource.DataSet.FieldByName(
-        'UnUsedIndex').AsInteger;
-    end;
-    ExportAdifSelect := True;
-    exportAdifForm.Button1.Click;
-  end;
-end;
-
-procedure TMainForm.MenuItem37Click(Sender: TObject);
-begin
-{  if LogBookQuery.RecordCount > 0 then
-  begin
-    SendHRDThread := TSendHRDThread.Create;
-    if Assigned(SendHRDThread.FatalException) then
-      raise SendHRDThread.FatalException;
-    with SendHRDThread do
-    begin
-      userid := HRDLogin;
-      userpwd := HRDCode;
-      call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-      startdate := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-      starttime := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
-      freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-      mode := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-      submode := DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
-      rsts := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-      rstr := DBGrid1.DataSource.DataSet.FieldByName('QSOReportRecived').AsString;
-      locat := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-      qslinf := SetQSLInfo;
-      information := 1;
-      inform := 1;
-      Start;
-    end;
-  end; }
-end;
-
-procedure TMainForm.MenuItem38Click(Sender: TObject);
-begin
-{  if LogBookQuery.RecordCount > 0 then
-  begin
-    SendEQSLThread := TSendEQSLThread.Create;
-    if Assigned(SendEQSLThread.FatalException) then
-      raise SendEQSLThread.FatalException;
-    with SendEQSLThread do
-    begin
-      userid := eQSLccLogin;
-      userpwd := eQSLccPassword;
-      call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-      startdate := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-      starttime := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
-      freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-      mode := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-      submode := DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
-      rst := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-      qslinf := SetQSLInfo;
-      information := 1;
-      Start;
-    end;
-  end; }
-end;
-
-procedure TMainForm.MenuItem40Click(Sender: TObject);
-begin
-  ///Быстрое редактирование
-  //if LogBookQuery.RecordCount > 0 then
-  //begin
-  if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
-  begin
-    EditFlag := True;
-    CheckBox1.Checked := False;
-    CheckBox2.Checked := True;
-    EditButton1.Font.Color := clBlack;
-    EditButton1.Color := clRed;
-    EditButton1.Text := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-    Edit1.Text := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-    Edit2.Text := DBGrid1.DataSource.DataSet.FieldByName('OMQTH').AsString;
-    Edit3.Text := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-    Edit4.Text := DBGrid1.DataSource.DataSet.FieldByName('State').AsString;
-    Edit5.Text := DBGrid1.DataSource.DataSet.FieldByName('IOTA').AsString;
-    Edit6.Text := DBGrid1.DataSource.DataSet.FieldByName('QSLManager').AsString;
-    ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-    ComboBox2.Items.IndexOf(DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString);
-    DateTimePicker1.Time := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
-    DateEdit1.Date := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-    Edit11.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
-    Edit10.Text := DBGrid1.DataSource.DataSet.FieldByName('State1').AsString;
-    Edit9.Text := DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
-    Edit8.Text := DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
-    Edit7.Text := DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
-    case DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString of
-      '': ComboBox6.ItemIndex := 0;
-      'B': ComboBox6.ItemIndex := 1;
-      'D': ComboBox6.ItemIndex := 2;
-      'E': ComboBox6.ItemIndex := 3;
-      'M': ComboBox6.ItemIndex := 4;
-      'G': ComboBox6.ItemIndex := 5;
-    end;
-
-    ComboBox4.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-    ComboBox5.Text := DBGrid1.DataSource.DataSet.FieldByName(
-      'QSOReportRecived').AsString;
-  end;
-end;
-
-procedure TMainForm.MenuItem41Click(Sender: TObject);
-begin
-  ManagerBasePrefixForm.Show;
-end;
-
-procedure TMainForm.MenuItem42Click(Sender: TObject);
-begin
-  if InitRecord.SelectLogbookTable then
-  begin
-    if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
-    begin
-      GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
-      UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      EditQSO_Form.Show;
-    end;
-  end;
 end;
 
 procedure TMainForm.MenuItem43Click(Sender: TObject);
@@ -2014,26 +1314,6 @@ end;
 procedure TMainForm.MenuItem48Click(Sender: TObject);
 begin
   SynDBDate.Show;
-end;
-
-procedure TMainForm.MenuItem49Click(Sender: TObject);
-var
-  freq: string;
-  freq2: double;
-begin
-  SendTelnetSpot.Show;
-  SendTelnetSpot.Edit1.Text :=
-    DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-  freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-  Delete(freq, length(freq) - 2, 1);
-  freq2 := StrToFloat(freq);
-  SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2);
-end;
-
-//Удалить выделенное QSO
-procedure TMainForm.MenuItem51Click(Sender: TObject);
-begin
-  MainFunc.DeleteQSO(DBGrid1);
 end;
 
 procedure TMainForm.MenuItem52Click(Sender: TObject);

@@ -134,7 +134,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM;
+  MainForm_U, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u;
 
 {$R *.lfm}
 
@@ -339,10 +339,10 @@ begin
   IniSet.showBand := CheckBox2.Checked;
   INIFile.WriteBool('SetLog', 'ShowBand', CheckBox2.Checked);
   MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1);
-  MainForm.DBGrid1.Invalidate;
-  MainForm.DBGrid2.Invalidate;
-  MainFunc.SetGrid(MainForm.DBGrid1);
-  MainFunc.SetGrid(MainForm.DBGrid2);
+  GridsForm.DBGrid1.Invalidate;
+  GridsForm.DBGrid2.Invalidate;
+  MainFunc.SetGrid(GridsForm.DBGrid1);
+  MainFunc.SetGrid(GridsForm.DBGrid2);
   EditQSO_Form.DBGrid1.Invalidate;
 end;
 
