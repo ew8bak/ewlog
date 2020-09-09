@@ -1,21 +1,21 @@
 object MiniForm: TMiniForm
-  Left = 382
-  Height = 405
-  Top = 158
-  Width = 476
+  Left = 420
+  Height = 369
+  Top = 154
+  Width = 477
   Caption = 'MiniForm'
-  ClientHeight = 405
-  ClientWidth = 476
+  ClientHeight = 369
+  ClientWidth = 477
   OnShow = FormShow
   LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
     Height = 26
     Top = 0
-    Width = 476
+    Width = 477
     Align = alTop
     ClientHeight = 26
-    ClientWidth = 476
+    ClientWidth = 477
     TabOrder = 0
     object SBSave: TSpeedButton
       AnchorSideLeft.Control = Panel1
@@ -110,15 +110,108 @@ object MiniForm: TMiniForm
         96FFF5C596FF000000110000000B000000050000000100000000
       }
     end
+    object LBCurrentLog: TLabel
+      AnchorSideLeft.Control = SBNew
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 58
+      Height = 15
+      Top = 6
+      Width = 60
+      BorderSpacing.Left = 5
+      BorderSpacing.Right = 5
+      Caption = 'Current log'
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object CBCurrentLog: TComboBox
+      AnchorSideLeft.Control = LBCurrentLog
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 123
+      Height = 22
+      Top = 2
+      Width = 91
+      AutoSize = False
+      BorderSpacing.Left = 5
+      Font.Height = -12
+      ItemHeight = 16
+      ParentFont = False
+      Style = csOwnerDrawFixed
+      TabOrder = 0
+    end
+    object LBMyGrid: TLabel
+      AnchorSideLeft.Control = CBCurrentLog
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 219
+      Height = 15
+      Top = 6
+      Width = 41
+      BorderSpacing.Left = 5
+      BorderSpacing.Right = 5
+      Caption = 'My grid'
+      ParentColor = False
+    end
+    object CBMyGrid: TEdit
+      AnchorSideLeft.Control = LBMyGrid
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 265
+      Height = 22
+      Top = 2
+      Width = 72
+      AutoSize = False
+      BorderSpacing.Left = 5
+      CharCase = ecUppercase
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 1
+    end
+    object LBMyState: TLabel
+      AnchorSideLeft.Control = CBMyGrid
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 342
+      Height = 15
+      Top = 6
+      Width = 45
+      BorderSpacing.Left = 5
+      BorderSpacing.Right = 5
+      Caption = 'My state'
+      ParentColor = False
+    end
+    object CBMyState: TEdit
+      AnchorSideLeft.Control = LBMyState
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 392
+      Height = 22
+      Top = 2
+      Width = 72
+      AutoSize = False
+      BorderSpacing.Left = 5
+      CharCase = ecUppercase
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 2
+    end
   end
   object LocalTimeLabel: TLabel
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Panel1
     AnchorSideTop.Side = asrBottom
     Left = 5
-    Height = 13
+    Height = 15
     Top = 31
-    Width = 56
+    Width = 55
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
     Caption = 'Local time'
@@ -129,8 +222,8 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LocalTimeLabel
     AnchorSideTop.Side = asrCenter
-    Left = 66
-    Height = 13
+    Left = 65
+    Height = 15
     Top = 31
     Width = 48
     BorderSpacing.Left = 5
@@ -147,7 +240,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = TTUTCLabel
     Left = 188
-    Height = 13
+    Height = 15
     Top = 31
     Width = 21
     Anchors = [akTop, akRight]
@@ -164,7 +257,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Panel1
     AnchorSideTop.Side = asrBottom
     Left = 214
-    Height = 13
+    Height = 15
     Top = 31
     Width = 48
     BorderSpacing.Left = 5
@@ -180,10 +273,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = TTRemoteLabel
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = TTRemoteLabel
-    Left = 347
-    Height = 13
+    Left = 352
+    Height = 15
     Top = 31
-    Width = 72
+    Width = 68
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 4
     Caption = 'Remote time'
@@ -195,8 +288,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 423
-    Height = 13
+    Left = 424
+    Height = 15
     Top = 31
     Width = 48
     Anchors = [akTop, akRight]
@@ -214,8 +307,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 16
     Height = 3
-    Top = 49
-    Width = 360
+    Top = 51
+    Width = 447
     BorderSpacing.Top = 5
     Shape = bsTopLine
   end
@@ -224,9 +317,9 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = DateEdit1
     AnchorSideTop.Side = asrCenter
     Left = 5
-    Height = 13
-    Top = 71
-    Width = 26
+    Height = 15
+    Top = 72
+    Width = 24
     BorderSpacing.Left = 5
     Caption = 'Date'
     Font.Height = -12
@@ -239,7 +332,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 37
     Height = 21
-    Top = 67
+    Top = 69
     Width = 102
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DefaultToday = True
@@ -260,9 +353,9 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBBand
     AnchorSideTop.Side = asrCenter
     Left = 5
-    Height = 13
-    Top = 95
-    Width = 28
+    Height = 15
+    Top = 96
+    Width = 27
     BorderSpacing.Left = 5
     Caption = 'Band'
     Font.Height = -12
@@ -275,7 +368,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 37
     Height = 22
-    Top = 90
+    Top = 92
     Width = 102
     AutoSize = False
     BorderSpacing.Left = 37
@@ -292,8 +385,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBMode
     AnchorSideTop.Side = asrCenter
     Left = 5
-    Height = 13
-    Top = 119
+    Height = 15
+    Top = 120
     Width = 31
     BorderSpacing.Left = 5
     Caption = 'Mode'
@@ -307,13 +400,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 37
     Height = 22
-    Top = 114
+    Top = 116
     Width = 65
     AutoSize = False
     BorderSpacing.Left = 37
     BorderSpacing.Top = 2
     Font.Height = -11
-    ItemHeight = 0
+    ItemHeight = 16
     ParentFont = False
     Style = csOwnerDrawEditableVariable
     TabOrder = 3
@@ -326,12 +419,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 103
     Height = 22
-    Top = 114
+    Top = 116
     Width = 60
     AutoSize = False
     BorderSpacing.Left = 1
     Font.Height = -11
-    ItemHeight = 0
+    ItemHeight = 16
     ParentFont = False
     Style = csOwnerDrawEditableVariable
     TabOrder = 4
@@ -344,7 +437,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 141
     Height = 15
-    Top = 94
+    Top = 96
     Width = 15
     BorderSpacing.Left = 2
     Center = True
@@ -387,7 +480,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 164
     Height = 15
-    Top = 118
+    Top = 120
     Width = 15
     BorderSpacing.Left = 1
     Center = True
@@ -428,9 +521,9 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBMode
     AnchorSideTop.Side = asrBottom
     Left = 87
-    Height = 21
-    Top = 138
-    Width = 52
+    Height = 23
+    Top = 140
+    Width = 50
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
@@ -458,9 +551,9 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = DateTimePicker1
     AnchorSideTop.Side = asrCenter
     Left = 5
-    Height = 13
-    Top = 142
-    Width = 59
+    Height = 15
+    Top = 144
+    Width = 58
     BorderSpacing.Left = 5
     Caption = 'Time (UTC)'
     Font.Height = -12
@@ -472,9 +565,9 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBTime
     AnchorSideTop.Side = asrBottom
     Left = 10
-    Height = 23
-    Top = 157
-    Width = 80
+    Height = 19
+    Top = 161
+    Width = 71
     BorderSpacing.Left = 10
     BorderSpacing.Top = 2
     Caption = 'Real Time'
@@ -487,9 +580,9 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBRealTime
     AnchorSideTop.Side = asrBottom
     Left = 10
-    Height = 23
+    Height = 19
     Top = 182
-    Width = 88
+    Width = 82
     BorderSpacing.Left = 10
     BorderSpacing.Top = 2
     Caption = 'Save in UTC'
@@ -501,7 +594,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 209
     Height = 31
-    Top = 57
+    Top = 59
     Width = 200
     AutoSize = False
     BorderSpacing.Left = 209
@@ -597,10 +690,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 163
-    Height = 13
-    Top = 66
-    Width = 41
+    Left = 162
+    Height = 15
+    Top = 67
+    Width = 42
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 205
     Caption = 'Callsign'
@@ -612,7 +705,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditCallsign
     Left = 411
     Height = 15
-    Top = 57
+    Top = 59
     Width = 15
     BorderSpacing.Left = 2
     Center = True
@@ -653,9 +746,9 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = ImDXCCcountry
     Left = 427
-    Height = 13
-    Top = 57
-    Width = 23
+    Height = 15
+    Top = 59
+    Width = 22
     BorderSpacing.Left = 1
     Caption = 'QSL'
     Font.Color = clRed
@@ -670,9 +763,9 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBQSL
     AnchorSideTop.Side = asrBottom
     Left = 411
-    Height = 13
-    Top = 70
-    Width = 43
+    Height = 15
+    Top = 74
+    Width = 41
     BorderSpacing.Left = 2
     Caption = 'Worked'
     Font.Color = clRed
@@ -686,7 +779,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 209
     Height = 21
-    Top = 90
+    Top = 92
     Width = 135
     AutoSize = False
     BorderSpacing.Left = 209
@@ -701,7 +794,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 209
     Height = 21
-    Top = 113
+    Top = 115
     Width = 135
     AutoSize = False
     BorderSpacing.Left = 209
@@ -716,8 +809,8 @@ object MiniForm: TMiniForm
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
     Left = 172
-    Height = 13
-    Top = 94
+    Height = 15
+    Top = 95
     Width = 32
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 205
@@ -729,10 +822,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 180
-    Height = 13
-    Top = 117
-    Width = 24
+    Left = 181
+    Height = 15
+    Top = 118
+    Width = 23
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 205
     Caption = 'QTH'
@@ -743,10 +836,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 156
-    Height = 13
-    Top = 141
-    Width = 48
+    Left = 160
+    Height = 15
+    Top = 142
+    Width = 44
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 205
     Caption = 'RST sent'
@@ -759,10 +852,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 156
-    Height = 13
-    Top = 165
-    Width = 48
+    Left = 159
+    Height = 15
+    Top = 166
+    Width = 45
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 205
     Caption = 'RST rcvd'
@@ -776,7 +869,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 209
     Height = 22
-    Top = 136
+    Top = 138
     Width = 136
     AutoSize = False
     BorderSpacing.Left = 209
@@ -804,7 +897,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 209
     Height = 22
-    Top = 160
+    Top = 162
     Width = 136
     AutoSize = False
     BorderSpacing.Left = 209
@@ -831,10 +924,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 203
-    Height = 13
+    Left = 204
+    Height = 15
     Top = 189
-    Width = 41
+    Width = 40
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 165
     Caption = 'QSL Via'
@@ -847,8 +940,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBRSTr
     AnchorSideTop.Side = asrBottom
     Left = 249
-    Height = 22
-    Top = 184
+    Height = 20
+    Top = 186
     Width = 96
     AutoSize = False
     BorderSpacing.Left = 249
@@ -872,10 +965,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBSaveUTC
     AnchorSideTop.Side = asrCenter
-    Left = 99
-    Height = 23
+    Left = 93
+    Height = 19
     Top = 182
-    Width = 53
+    Width = 47
     BorderSpacing.Left = 1
     Caption = 'Mark'
     TabOrder = 14
@@ -948,8 +1041,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditMGR
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 17
-    Top = 185
+    Height = 19
+    Top = 184
     Width = 19
     AutoSize = True
     BorderSpacing.Left = 2
@@ -963,8 +1056,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditIOTA
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 17
-    Top = 162
+    Height = 19
+    Top = 161
     Width = 19
     AutoSize = True
     BorderSpacing.Left = 2
@@ -978,8 +1071,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditState
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 17
-    Top = 139
+    Height = 19
+    Top = 138
     Width = 19
     AutoSize = True
     BorderSpacing.Left = 2
@@ -993,9 +1086,9 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditName
     AnchorSideTop.Side = asrCenter
     Left = 346
-    Height = 23
-    Top = 89
-    Width = 49
+    Height = 19
+    Top = 93
+    Width = 44
     BorderSpacing.Left = 2
     Caption = 'Map'
     Checked = True
@@ -1009,10 +1102,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBMap
     AnchorSideTop.Side = asrCenter
-    Left = 397
-    Height = 23
-    Top = 89
-    Width = 55
+    Left = 392
+    Height = 19
+    Top = 93
+    Width = 46
     BorderSpacing.Left = 2
     Caption = 'Filter'
     Font.Height = -12
@@ -1025,10 +1118,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
-    Left = 354
-    Height = 13
-    Top = 118
-    Width = 23
+    Left = 355
+    Height = 15
+    Top = 117
+    Width = 22
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 87
@@ -1043,10 +1136,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
-    Left = 348
-    Height = 13
-    Top = 141
-    Width = 29
+    Left = 351
+    Height = 15
+    Top = 140
+    Width = 26
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 8
@@ -1062,10 +1155,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
-    Left = 351
-    Height = 13
-    Top = 164
-    Width = 26
+    Left = 353
+    Height = 15
+    Top = 163
+    Width = 24
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 87
@@ -1081,8 +1174,8 @@ object MiniForm: TMiniForm
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
     Left = 351
-    Height = 13
-    Top = 187
+    Height = 15
+    Top = 186
     Width = 26
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
@@ -1091,5 +1184,793 @@ object MiniForm: TMiniForm
     Font.Height = -12
     ParentColor = False
     ParentFont = False
+  end
+  object LBSubState: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBSaveUTC
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 15
+    Top = 216
+    Width = 52
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 15
+    Caption = 'Sub. State'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object EditState1: TEdit
+    AnchorSideLeft.Control = LBSubState
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBSaveUTC
+    AnchorSideTop.Side = asrBottom
+    Left = 57
+    Height = 21
+    Top = 213
+    Width = 72
+    AutoSize = False
+    BorderSpacing.Top = 12
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 21
+  end
+  object SBState1: TSpeedButton
+    AnchorSideLeft.Control = EditState1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditState1
+    AnchorSideTop.Side = asrCenter
+    Left = 129
+    Height = 19
+    Top = 214
+    Width = 22
+    AutoSize = True
+    Caption = ' .1. '
+    Font.Height = -12
+    ParentFont = False
+  end
+  object EditState2: TEdit
+    AnchorSideLeft.Control = SBState1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBSaveUTC
+    AnchorSideTop.Side = asrBottom
+    Left = 151
+    Height = 21
+    Top = 213
+    Width = 72
+    AutoSize = False
+    BorderSpacing.Top = 12
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 22
+  end
+  object SBState2: TSpeedButton
+    AnchorSideLeft.Control = EditState2
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditState2
+    AnchorSideTop.Side = asrCenter
+    Left = 223
+    Height = 19
+    Top = 214
+    Width = 22
+    AutoSize = True
+    Caption = ' .2. '
+    Font.Height = -12
+    ParentFont = False
+  end
+  object EditState3: TEdit
+    AnchorSideLeft.Control = SBState2
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBSaveUTC
+    AnchorSideTop.Side = asrBottom
+    Left = 245
+    Height = 21
+    Top = 213
+    Width = 72
+    AutoSize = False
+    BorderSpacing.Top = 12
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 23
+  end
+  object SBState3: TSpeedButton
+    AnchorSideLeft.Control = EditState3
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditState3
+    AnchorSideTop.Side = asrCenter
+    Left = 317
+    Height = 19
+    Top = 214
+    Width = 22
+    AutoSize = True
+    BorderSpacing.Top = 13
+    Caption = ' .3. '
+    Font.Height = -12
+    ParentFont = False
+  end
+  object EditState4: TEdit
+    AnchorSideLeft.Control = SBState3
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CBSaveUTC
+    AnchorSideTop.Side = asrBottom
+    Left = 339
+    Height = 21
+    Top = 213
+    Width = 72
+    AutoSize = False
+    BorderSpacing.Top = 12
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 24
+  end
+  object SBState4: TSpeedButton
+    AnchorSideLeft.Control = EditState4
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditState4
+    AnchorSideTop.Side = asrCenter
+    Left = 411
+    Height = 19
+    Top = 214
+    Width = 22
+    AutoSize = True
+    Caption = ' .4. '
+    Font.Height = -12
+    ParentFont = False
+  end
+  object LBComment: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = LBSubState
+    AnchorSideTop.Side = asrBottom
+    Left = 2
+    Height = 15
+    Top = 243
+    Width = 54
+    BorderSpacing.Left = 2
+    BorderSpacing.Top = 12
+    Caption = 'Comment'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object EditComment: TEdit
+    AnchorSideLeft.Control = LBComment
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = EditState1
+    AnchorSideTop.Side = asrBottom
+    Left = 59
+    Height = 21
+    Top = 238
+    Width = 371
+    AutoSize = False
+    BorderSpacing.Left = 3
+    BorderSpacing.Top = 4
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 25
+  end
+  object LBCount: TLabel
+    AnchorSideLeft.Control = Bevel2
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 7
+    Height = 15
+    Top = 266
+    Width = 7
+    BorderSpacing.Left = 5
+    Caption = '0'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel3: TBevel
+    AnchorSideLeft.Control = LBCount
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 19
+    Height = 18
+    Top = 264
+    Width = 3
+    BorderSpacing.Left = 5
+  end
+  object LBDateQSO: TLabel
+    AnchorSideLeft.Control = Bevel3
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 27
+    Height = 15
+    Top = 266
+    Width = 27
+    BorderSpacing.Left = 5
+    Caption = 'Date'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel6: TBevel
+    AnchorSideLeft.Control = LBDateQSO
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 59
+    Height = 18
+    Top = 264
+    Width = 3
+    BorderSpacing.Left = 5
+  end
+  object LBTimeQSO: TLabel
+    AnchorSideLeft.Control = Bevel6
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 67
+    Height = 15
+    Top = 266
+    Width = 28
+    BorderSpacing.Left = 5
+    Caption = 'Time'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel7: TBevel
+    AnchorSideLeft.Control = LBTimeQSO
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 100
+    Height = 18
+    Top = 264
+    Width = 3
+    BorderSpacing.Left = 5
+  end
+  object LBBandQSO: TLabel
+    AnchorSideLeft.Control = Bevel7
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 108
+    Height = 15
+    Top = 266
+    Width = 28
+    BorderSpacing.Left = 5
+    Caption = 'Band'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel8: TBevel
+    AnchorSideLeft.Control = LBBandQSO
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 141
+    Height = 18
+    Top = 264
+    Width = 3
+    BorderSpacing.Left = 5
+  end
+  object LBModeQSO: TLabel
+    AnchorSideLeft.Control = Bevel8
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 149
+    Height = 15
+    Top = 266
+    Width = 32
+    BorderSpacing.Left = 5
+    Caption = 'Mode'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel9: TBevel
+    AnchorSideLeft.Control = LBModeQSO
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 186
+    Height = 18
+    Top = 264
+    Width = 3
+    BorderSpacing.Left = 5
+  end
+  object LBNameQSO: TLabel
+    AnchorSideLeft.Control = Bevel9
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrCenter
+    Left = 194
+    Height = 15
+    Top = 266
+    Width = 33
+    BorderSpacing.Left = 5
+    Caption = 'Name'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel2: TBevel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = EditComment
+    AnchorSideTop.Side = asrBottom
+    Left = 2
+    Height = 19
+    Top = 264
+    Width = 468
+    BorderSpacing.Left = 2
+    BorderSpacing.Top = 5
+  end
+  object LBAzimuth: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 15
+    Top = 288
+    Width = 45
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Azimuth'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBTerritory: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = LBAzimuth
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 15
+    Top = 308
+    Width = 43
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Territory'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBDXCC: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = LBTerritory
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 15
+    Top = 328
+    Width = 31
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'DXCC'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBAzimuthD: TLabel
+    AnchorSideLeft.Control = LBAzimuth
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBAzimuth
+    AnchorSideTop.Side = asrCenter
+    Left = 53
+    Height = 15
+    Top = 288
+    Width = 21
+    BorderSpacing.Left = 3
+    Caption = '.......'
+    Font.Color = clFuchsia
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBTerritoryD: TLabel
+    AnchorSideLeft.Control = LBTerritory
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBTerritory
+    AnchorSideTop.Side = asrCenter
+    Left = 51
+    Height = 15
+    Top = 308
+    Width = 21
+    BorderSpacing.Left = 3
+    BorderSpacing.Top = 5
+    Caption = '.......'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBDXCCD: TLabel
+    AnchorSideLeft.Control = LBDXCC
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBTerritoryD
+    AnchorSideTop.Side = asrBottom
+    Left = 39
+    Height = 15
+    Top = 328
+    Width = 21
+    BorderSpacing.Left = 3
+    BorderSpacing.Top = 5
+    Caption = '.......'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBDistance: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrBottom
+    Left = 100
+    Height = 15
+    Top = 288
+    Width = 45
+    BorderSpacing.Left = 100
+    BorderSpacing.Top = 5
+    Caption = 'Distance'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBPrefix: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = LBDXCC
+    AnchorSideTop.Side = asrCenter
+    Left = 100
+    Height = 15
+    Top = 328
+    Width = 30
+    BorderSpacing.Left = 100
+    BorderSpacing.Top = 5
+    Caption = 'Prefix'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBDistanceD: TLabel
+    AnchorSideLeft.Control = LBDistance
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBDistance
+    AnchorSideTop.Side = asrCenter
+    Left = 148
+    Height = 15
+    Top = 288
+    Width = 21
+    BorderSpacing.Left = 3
+    Caption = '.......'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBPrefixD: TLabel
+    AnchorSideLeft.Control = LBPrefix
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBPrefix
+    AnchorSideTop.Side = asrCenter
+    Left = 133
+    Height = 15
+    Top = 328
+    Width = 21
+    BorderSpacing.Left = 3
+    BorderSpacing.Top = 5
+    Caption = '.......'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBLatitude: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrBottom
+    Left = 235
+    Height = 15
+    Top = 288
+    Width = 43
+    BorderSpacing.Left = 235
+    BorderSpacing.Top = 5
+    Caption = 'Latitude'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBLatitudeD: TLabel
+    AnchorSideLeft.Control = LBLatitude
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBLatitude
+    AnchorSideTop.Side = asrCenter
+    Left = 281
+    Height = 15
+    Top = 288
+    Width = 21
+    BorderSpacing.Left = 3
+    Caption = '.......'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBLongitude: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Bevel2
+    AnchorSideTop.Side = asrBottom
+    Left = 352
+    Height = 15
+    Top = 288
+    Width = 54
+    BorderSpacing.Left = 352
+    BorderSpacing.Top = 5
+    Caption = 'Longitude'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBLongitudeD: TLabel
+    AnchorSideLeft.Control = LBLongitude
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBLongitude
+    AnchorSideTop.Side = asrCenter
+    Left = 409
+    Height = 15
+    Top = 288
+    Width = 21
+    BorderSpacing.Left = 3
+    Caption = '.......'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBCont: TLabel
+    AnchorSideLeft.Control = LBLatitude
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBTerritory
+    AnchorSideTop.Side = asrCenter
+    Left = 281
+    Height = 15
+    Top = 308
+    Width = 21
+    BorderSpacing.Left = 3
+    BorderSpacing.Top = 5
+    Caption = '.......'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBCQ: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = LBDXCC
+    AnchorSideTop.Side = asrCenter
+    Left = 225
+    Height = 15
+    Top = 328
+    Width = 17
+    BorderSpacing.Left = 225
+    BorderSpacing.Top = 5
+    Caption = 'CQ'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBCQD: TLabel
+    AnchorSideLeft.Control = LBCQ
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBCQ
+    AnchorSideTop.Side = asrCenter
+    Left = 247
+    Height = 15
+    Top = 328
+    Width = 6
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = '..'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBITU: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = LBDXCC
+    AnchorSideTop.Side = asrCenter
+    Left = 270
+    Height = 15
+    Top = 328
+    Width = 17
+    BorderSpacing.Left = 270
+    BorderSpacing.Top = 5
+    Caption = 'ITU'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBITUD: TLabel
+    AnchorSideLeft.Control = LBITU
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBITU
+    AnchorSideTop.Side = asrCenter
+    Left = 292
+    Height = 15
+    Top = 328
+    Width = 6
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = '..'
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object LBYourQSL: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = LBDXCC
+    Left = 321
+    Height = 15
+    Top = 338
+    Width = 48
+    BorderSpacing.Left = 321
+    BorderSpacing.Top = 10
+    Caption = 'Your QSL'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object CBYourQSL: TComboBox
+    AnchorSideLeft.Control = LBYourQSL
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBYourQSL
+    AnchorSideTop.Side = asrCenter
+    Left = 371
+    Height = 22
+    Top = 334
+    Width = 96
+    AutoSize = False
+    BorderSpacing.Left = 2
+    Font.Height = -12
+    ItemHeight = 16
+    ItemIndex = 3
+    Items.Strings = (
+      'Sent'
+      'Printed'
+      'Queued'
+      'Wasn''t sent'
+      'Do not send'
+    )
+    ParentFont = False
+    Style = csOwnerDrawFixed
+    TabOrder = 26
+    Text = 'Wasn''t sent'
+  end
+  object SBCopy: TSpeedButton
+    AnchorSideLeft.Side = asrBottom
+    Left = 432
+    Height = 20
+    Top = 306
+    Width = 20
+    BorderSpacing.Left = 2
+    Enabled = False
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000064000000640000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000330000003300000022000000000000000000000000000000300000
+      0033000000330000003300000033000000330000003300000033000000330000
+      003300894BFF00C684FF007B42BB0000002EDA964400CD964500C3913FF2C48F
+      38FFC48D34FFC48D34FFC58D34FFC98E37FFD2923CFFD89441FFDE9642FFEB95
+      41FF008748FF00E4A6FF00BE80FF2A8745EA00000021DE964300C48E38FFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5ABC98FF008645FF008747FF0087
+      47FF008342FF00D9A2FF00D8A1FF00BB81FF007B42B700000022C48D34FFFFFF
+      FFFF27A98BFF849E99FF0FA884FF0BDEADFF00813BFF3CE6C0FF00D7A0FF00D7
+      A0FF00D59FFF00D09CFF00D09CFF00D39FFF00B981FF007E43BDC58D34FFFFFF
+      FFFF00A171FF549383FF988489FF3EAC95FF00833CFF6DE7CEFF00C899FF00C8
+      99FF00C899FF00C797FF00C898FF00CA9AFF63E6CDFF008A47FFC58D34FFFFFF
+      FFFF00C08AFF00CE9BFF38A68AFFB99FA7FF00843CFF96EEE0FF4CE8D2FF4FE7
+      D2FF4DE6D1FF93E8D7FF00C397FF5EE0C7FF00B281FF008B4AACC58D35FFFFFF
+      FFFF00C08BFF07CD9AFF0EB789FF1DE6AEFF06AB6AFF008238FF008136FF0081
+      37FF008037FF80E4D5FF56DAC4FF00AD7FFF008947A1008D4E00C58D35FFFFFF
+      FFFF00A073FF07AE81FF13B28CFF2535D8FF23B0A2FF2DCAA5FFA8CFE8FFC9D8
+      F7FF008239FF71E1D5FF00A87CFF438B40FFFFFFFF00DD964300C58D35FFFFFF
+      FFFF00C18BFF08D097FF1F55C1FF2B45FBFF20E9AAFF7AC5CEFFC6EFFFFFDBF7
+      FFFF00813AFF00A37DFF56B48AFFD7913BFFFFFFFF00CB964500C58D36FFFFFF
+      FAFF00C28AFF08D197FF13A390FF18D5A9FF7BE5EAFF9CC5E9FFC9EAF4FFFFD3
+      78FFE4B058FFFFD167FFFFFFFFFFC88F39FFFFFFFF00C7964500C58E36FFFFFF
+      F5FF00A76FFF1273A7FF0EAF88FF46BCB0FF92C0EBFFAABEBCFFD6AE5BFFD6AE
+      59FFD6B05CFFD4AC55FFFFFEFAFFC28E37FFFFFFFF00C7964500C58E36FFFFFE
+      EEFF00B196FF2C0FFFFF13BB88FF99DEFFFFC1DCDDFFDAAD4FFFFCCF69FFFACF
+      6DFFD2AE5BFFF9CD66FFFFFAF4FFC18D37FFFFFFFF00C7964500C48E37FFFFFB
+      E9FF00A09EFF0563DAFF23B5A4FF93DBFFFFFCCD64FFD2AA50FFF8CC66FFF7CC
+      67FFCFAB54FFF7CB61FFFFF8EEFFC18E38FFFFFFFF00C7964500C4903AFFFFFA
+      EBFFFFF9E3FFFFFAE1FFFFF8E1FFFFF5E1FFFFF5E6FFFFF6EAFFFFF6EAFFFFF6
+      EAFFFFF6EAFFFFF6E9FFFFF9EDFFC3903BFFFFFFFF00C7964500C59441EFC490
+      3AFFC48F37FFC48E37FFC48E37FFC38E37FFC28E37FFC28E38FFC18E38FFC18E
+      38FFC18E38FFC28E38FFC3903BFFC59441ECFFFFFF00C7964500
+    }
+  end
+  object SBInfo: TSpeedButton
+    AnchorSideLeft.Control = SBCopy
+    AnchorSideLeft.Side = asrBottom
+    Left = 454
+    Height = 20
+    Top = 306
+    Width = 20
+    BorderSpacing.Left = 2
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000064000000640000000000000000000000000000000000
+      00000000000000000000170B02022110030C2211041E2311042D231104302311
+      04232110030F1A0D030300000000000000000000000000000000000000000000
+      000000000000160B0202231104283F240D8B613B19CB72461EE273471FE6673F
+      1BD6452810A22411044E22110413000000000000000000000000000000000000
+      000000000000353B1B25354C20C9694B1FFE6C3B15FF693913FF693813FF7140
+      17FF845121FF825325DF3B220D571D0E03050000000000000000000000000000
+      0000855C2E312D602EEB1D5C28FF22531EFF572E0EFF5D2D0DFF5C2C0BFF5E2B
+      0AFF5E2D0BFF6E3C14FF8D5827F3774E243F000000000000000000000000764C
+      2710895425E2276C37FF1E6A30FF0F6724FF19722AFF763813FF713511FF6C32
+      0FFF652F0CFF5D2C0AFF6B3811FF915F2AEB60602F180000000000000000A162
+      30874B7B40FF2F9150FF228D45FF1C8E41FF219D4FFF6E5B2CFF854119FF7D3C
+      15FF743612FF65300EFF602D0BFF6F4218FF437133970000000058391E01846E
+      38E834A05EFF38B16EFF36BD7AFF39C07DFF41C17FFF6E8149FF994F24FF8A44
+      1BFF7A3813FF6C3311FF612F0DFF62310EFF2D6527F23B442007764C29258377
+      41FF3AB574FF42C78BFF43D7A2FF83AC77FFB77A42FFB56D37FFA95E2CFF974D
+      20FF813F17FF6A3312FF5C2C0DFF512F0DFF196224FF405426357E502939AA75
+      3FFF40C58AFF54D3A2FFA0BC80FFD5A45FFFD8A15DFFD19653FFC27E40FFAD64
+      30FF87562AFF37A15BFF328442FF2D7536FF237232FF3959284A8559312CC885
+      43FFCAA560FFE4B770FFEBC683FFEECC8CFFEBC783FFE5BA74FFD9A361FFC383
+      47FF6EA066FF39BD78FF2EA45CFF298644FF277638FF40572B3C75553206D79C
+      52F3E6BC72FFF4DAAAFFF8E6C4FFF9E9CCFFF8E5C1FFF3D8A8FFE8C082FFD69F
+      5EFF77B57CFF36C684FF2EAC64FF2A904CFF256D33FA404B260F00000000A4B6
+      78A0F2D59DFFFAECD1FFFDF5E8FFFDF6EBFFFCF4E5FFFAEBD0FFF2D6A8FFE2B4
+      71FFB39C5FFF3FC990FF28BD77FF1B974BFF4A6E30B0000000000000000071A9
+      8322B4DCB8F4FCF3E2FFFEFAF4FFFFFCF7FFFEF9F2FFFCF2E1FFF6E2BEFFE8BF
+      7FFFCE914FFF81945FFF499F62FF5A7E3FF99462312D00000000000000000000
+      000082D9B956CAEAD8FBFCF8F2FFFFFCF9FFFEFAF4FFFCF3E4FFF7E3C0FFE9C2
+      84FFD09453FF6BAA72FF4D9B5EFD80723D640000000000000000000000000000
+      0000000000008ADFC649B7E6D4E5E1F4E9FFFDF6ECFFFBEFDBFFF5DDB5FFE4B9
+      79FFCB8D4EFFA4763FEA559B5B53000000000000000000000000000000000000
+      000000000000000000007A9F8B0BE3E3C969F7E5C9B4F4DCB6D8ECC993D9DEAB
+      6AB7C893556F7F6E430E00000000000000000000000000000000
+    }
+  end
+  object LBCfm: TLabel
+    AnchorSideLeft.Control = LBTerritoryD
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBTerritoryD
+    AnchorSideTop.Side = asrCenter
+    Left = 75
+    Height = 15
+    Top = 308
+    Width = 31
+    BorderSpacing.Left = 3
+    Caption = '(Cfm)'
+    Font.Color = clRed
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Bevel4: TBevel
+    AnchorSideTop.Control = CBYourQSL
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 3
+    Top = 361
+    Width = 447
+    BorderSpacing.Top = 5
+    Shape = bsTopLine
+  end
+  object TMTime: TTimer
+    OnTimer = TMTimeTimer
+    Left = 188
+    Top = 307
   end
 end

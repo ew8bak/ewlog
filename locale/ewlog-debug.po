@@ -3427,6 +3427,7 @@ msgid "Mark"
 msgstr ""
 
 #: tmainform.checkbox6.caption
+msgctxt "tmainform.checkbox6.caption"
 msgid "Filter"
 msgstr ""
 
@@ -3676,6 +3677,7 @@ msgid "Your QSL"
 msgstr ""
 
 #: tmainform.label49.caption
+msgctxt "tmainform.label49.caption"
 msgid "Current log"
 msgstr ""
 
@@ -3689,10 +3691,12 @@ msgid "New update available"
 msgstr ""
 
 #: tmainform.label51.caption
+msgctxt "tmainform.label51.caption"
 msgid "My grid"
 msgstr ""
 
 #: tmainform.label52.caption
+msgctxt "tmainform.label52.caption"
 msgid "My state"
 msgstr ""
 
@@ -3996,18 +4000,22 @@ msgid " ... "
 msgstr ""
 
 #: tmainform.speedbutton4.caption
+msgctxt "tmainform.speedbutton4.caption"
 msgid " .4. "
 msgstr ""
 
 #: tmainform.speedbutton5.caption
+msgctxt "tmainform.speedbutton5.caption"
 msgid " .3. "
 msgstr ""
 
 #: tmainform.speedbutton6.caption
+msgctxt "tmainform.speedbutton6.caption"
 msgid " .2. "
 msgstr ""
 
 #: tmainform.speedbutton7.caption
+msgctxt "tmainform.speedbutton7.caption"
 msgid " .1. "
 msgstr ""
 
@@ -4040,6 +4048,373 @@ msgstr ""
 
 #: tminiform.caption
 msgid "MiniForm"
+msgstr ""
+
+#: tminiform.cbband.text
+msgctxt "tminiform.cbband.text"
+msgid "7.000.00"
+msgstr ""
+
+#: tminiform.cbfilter.caption
+msgctxt "tminiform.cbfilter.caption"
+msgid "Filter"
+msgstr ""
+
+#: tminiform.cbmap.caption
+msgctxt "tminiform.cbmap.caption"
+msgid "Map"
+msgstr ""
+
+#: tminiform.cbmark.caption
+msgctxt "tminiform.cbmark.caption"
+msgid "Mark"
+msgstr ""
+
+#: tminiform.cbmode.text
+msgctxt "tminiform.cbmode.text"
+msgid "SSB"
+msgstr ""
+
+#: tminiform.cbrealtime.caption
+msgid "Real Time"
+msgstr ""
+
+#: tminiform.cbrstr.text
+msgctxt "tminiform.cbrstr.text"
+msgid "59"
+msgstr ""
+
+#: tminiform.cbrsts.text
+msgctxt "tminiform.cbrsts.text"
+msgid "59"
+msgstr ""
+
+#: tminiform.cbsaveutc.caption
+msgctxt "tminiform.cbsaveutc.caption"
+msgid "Save in UTC"
+msgstr ""
+
+#: tminiform.cbsubmode.text
+msgid "LSB"
+msgstr ""
+
+#: tminiform.cbyourqsl.text
+msgctxt "tminiform.cbyourqsl.text"
+msgid "Wasn't sent"
+msgstr ""
+
+#: tminiform.dateedit1.text
+msgctxt "tminiform.dateedit1.text"
+msgid "  .  .    "
+msgstr ""
+
+#: tminiform.datetimepicker1.textfornulldate
+msgctxt "tminiform.datetimepicker1.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: tminiform.label10.caption
+msgctxt "tminiform.label10.caption"
+msgid "QSL Via"
+msgstr ""
+
+#: tminiform.lbazimuth.caption
+msgctxt "tminiform.lbazimuth.caption"
+msgid "Azimuth"
+msgstr ""
+
+#: tminiform.lbazimuthd.caption
+msgctxt "tminiform.lbazimuthd.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbband.caption
+msgctxt "tminiform.lbband.caption"
+msgid "Band"
+msgstr ""
+
+#: tminiform.lbbandqso.caption
+msgctxt "tminiform.lbbandqso.caption"
+msgid "Band"
+msgstr ""
+
+#: tminiform.lbcallsign.caption
+msgctxt "tminiform.lbcallsign.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tminiform.lbcfm.caption
+msgctxt "tminiform.lbcfm.caption"
+msgid "(Cfm)"
+msgstr ""
+
+#: tminiform.lbcomment.caption
+msgctxt "tminiform.lbcomment.caption"
+msgid "Comment"
+msgstr ""
+
+#: tminiform.lbcont.caption
+msgctxt "tminiform.lbcont.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbcount.caption
+msgctxt "tminiform.lbcount.caption"
+msgid "0"
+msgstr ""
+
+#: tminiform.lbcq.caption
+msgctxt "tminiform.lbcq.caption"
+msgid "CQ"
+msgstr ""
+
+#: tminiform.lbcqd.caption
+msgctxt "tminiform.lbcqd.caption"
+msgid ".."
+msgstr ""
+
+#: tminiform.lbcurrentlog.caption
+msgctxt "tminiform.lbcurrentlog.caption"
+msgid "Current log"
+msgstr ""
+
+#: tminiform.lbdate.caption
+msgctxt "tminiform.lbdate.caption"
+msgid "Date"
+msgstr ""
+
+#: tminiform.lbdateqso.caption
+msgctxt "tminiform.lbdateqso.caption"
+msgid "Date"
+msgstr ""
+
+#: tminiform.lbdistance.caption
+msgctxt "tminiform.lbdistance.caption"
+msgid "Distance"
+msgstr ""
+
+#: tminiform.lbdistanced.caption
+msgctxt "tminiform.lbdistanced.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbdxcc.caption
+msgctxt "tminiform.lbdxcc.caption"
+msgid "DXCC"
+msgstr ""
+
+#: tminiform.lbdxccd.caption
+msgctxt "tminiform.lbdxccd.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbgrid.caption
+msgctxt "tminiform.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: tminiform.lbiota.caption
+msgctxt "tminiform.lbiota.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tminiform.lbitu.caption
+msgctxt "tminiform.lbitu.caption"
+msgid "ITU"
+msgstr ""
+
+#: tminiform.lbitud.caption
+msgctxt "tminiform.lbitud.caption"
+msgid ".."
+msgstr ""
+
+#: tminiform.lblatitude.caption
+msgctxt "tminiform.lblatitude.caption"
+msgid "Latitude"
+msgstr ""
+
+#: tminiform.lblatituded.caption
+msgctxt "tminiform.lblatituded.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lblongitude.caption
+msgctxt "tminiform.lblongitude.caption"
+msgid "Longitude"
+msgstr ""
+
+#: tminiform.lblongituded.caption
+msgctxt "tminiform.lblongituded.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbmgr.caption
+msgctxt "tminiform.lbmgr.caption"
+msgid "MGR"
+msgstr ""
+
+#: tminiform.lbmode.caption
+msgctxt "tminiform.lbmode.caption"
+msgid "Mode"
+msgstr ""
+
+#: tminiform.lbmodeqso.caption
+msgctxt "tminiform.lbmodeqso.caption"
+msgid "Mode"
+msgstr ""
+
+#: tminiform.lbmygrid.caption
+msgctxt "tminiform.lbmygrid.caption"
+msgid "My grid"
+msgstr ""
+
+#: tminiform.lbmystate.caption
+msgctxt "tminiform.lbmystate.caption"
+msgid "My state"
+msgstr ""
+
+#: tminiform.lbname.caption
+msgctxt "tminiform.lbname.caption"
+msgid "Name"
+msgstr ""
+
+#: tminiform.lbnameqso.caption
+msgctxt "tminiform.lbnameqso.caption"
+msgid "Name"
+msgstr ""
+
+#: tminiform.lbprefix.caption
+msgctxt "tminiform.lbprefix.caption"
+msgid "Prefix"
+msgstr ""
+
+#: tminiform.lbprefixd.caption
+msgctxt "tminiform.lbprefixd.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbqsl.caption
+msgctxt "tminiform.lbqsl.caption"
+msgid "QSL"
+msgstr ""
+
+#: tminiform.lbqth.caption
+msgctxt "tminiform.lbqth.caption"
+msgid "QTH"
+msgstr ""
+
+#: tminiform.lbrstr.caption
+msgctxt "tminiform.lbrstr.caption"
+msgid "RST rcvd"
+msgstr ""
+
+#: tminiform.lbrsts.caption
+msgctxt "tminiform.lbrsts.caption"
+msgid "RST sent"
+msgstr ""
+
+#: tminiform.lbstate.caption
+msgctxt "tminiform.lbstate.caption"
+msgid "State"
+msgstr ""
+
+#: tminiform.lbsubstate.caption
+msgctxt "tminiform.lbsubstate.caption"
+msgid "Sub. State"
+msgstr ""
+
+#: tminiform.lbterritory.caption
+msgctxt "tminiform.lbterritory.caption"
+msgid "Territory"
+msgstr ""
+
+#: tminiform.lbterritoryd.caption
+msgctxt "tminiform.lbterritoryd.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbtime.caption
+msgctxt "tminiform.lbtime.caption"
+msgid "Time (UTC)"
+msgstr ""
+
+#: tminiform.lbtimeqso.caption
+msgctxt "tminiform.lbtimeqso.caption"
+msgid "Time"
+msgstr ""
+
+#: tminiform.lbworked.caption
+msgctxt "tminiform.lbworked.caption"
+msgid "Worked"
+msgstr ""
+
+#: tminiform.lbyourqsl.caption
+msgctxt "tminiform.lbyourqsl.caption"
+msgid "Your QSL"
+msgstr ""
+
+#: tminiform.localtimelabel.caption
+msgid "Local time"
+msgstr ""
+
+#: tminiform.remotetimelabel.caption
+msgctxt "tminiform.remotetimelabel.caption"
+msgid "Remote time"
+msgstr ""
+
+#: tminiform.sbiota.caption
+msgctxt "tminiform.sbiota.caption"
+msgid " ... "
+msgstr ""
+
+#: tminiform.sbmgr.caption
+msgctxt "tminiform.sbmgr.caption"
+msgid " ... "
+msgstr ""
+
+#: tminiform.sbstate.caption
+msgctxt "tminiform.sbstate.caption"
+msgid " ... "
+msgstr ""
+
+#: tminiform.sbstate1.caption
+msgctxt "tminiform.sbstate1.caption"
+msgid " .1. "
+msgstr ""
+
+#: tminiform.sbstate2.caption
+msgctxt "tminiform.sbstate2.caption"
+msgid " .2. "
+msgstr ""
+
+#: tminiform.sbstate3.caption
+msgctxt "tminiform.sbstate3.caption"
+msgid " .3. "
+msgstr ""
+
+#: tminiform.sbstate4.caption
+msgctxt "tminiform.sbstate4.caption"
+msgid " .4. "
+msgstr ""
+
+#: tminiform.ttlocaltimelabel.caption
+msgctxt "tminiform.ttlocaltimelabel.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminiform.ttremotelabel.caption
+msgctxt "tminiform.ttremotelabel.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminiform.ttutclabel.caption
+msgctxt "tminiform.ttutclabel.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminiform.utclabel.caption
+msgctxt "tminiform.utclabel.caption"
+msgid "UTC"
 msgstr ""
 
 #: tmm_form.button1.caption
