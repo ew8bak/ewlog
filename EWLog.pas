@@ -86,7 +86,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   infoDM_U,
   getSession,
   miniform_u,
-  ImbedCallBookCheckRec, serverDM_u, telnetClientThread, dxclusterform_u;
+  ImbedCallBookCheckRec, serverDM_u, telnetClientThread, dxclusterform_u, GridsForm_u;
 
 {$R *.res}
 
@@ -147,5 +147,6 @@ begin
   Application.CreateForm(TMM_Form, MM_Form);
   Application.CreateForm(TviewPhoto, viewPhoto);
   Application.CreateForm(TdxClusterForm, dxClusterForm);
+  Application.CreateForm(TGridsForm, GridsForm);
   Application.Run;
 end.

@@ -325,9 +325,10 @@ begin
   ButtonSet;
   if Length(buffer) > 0 then
   begin
-    Memo1.Lines.Add(Trim(buffer));
+    buffer := StringReplace(buffer, #7, ' ', [rfReplaceAll]);
+    Memo1.Lines.Add(buffer);
 
-    if (Length(IniSet.Cluster_Login) > 0) and (Pos('login', TelnetLine) > 0) then
+    if (Length(IniSet.Cluster_Login) > 0) and (Pos('login', TelnetLine) = 1) then
       DXTelnetClient.SendMessage(IniSet.Cluster_Login + #13#10, nil);
 
     if Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0 then
@@ -336,7 +337,7 @@ begin
       exit;
     end;
 
-    if Pos('WCY de', buffer) > 0 then
+    if Pos('WCY de', buffer) = 1 then
     begin
       Memo3.Lines.Add(buffer);
       exit;
@@ -468,7 +469,7 @@ begin
   begin
     if Length(Data^.Spots) > 1 then
     begin
-      PFXR := MainFunc.SearchPrefix(Data^.Spots, Data^.Loc);
+      PFXR := MainFunc.SearchPrefix(Data^.Spots, '');
       MainForm.Label32.Caption := PFXR.Azimuth;
       MainForm.Label37.Caption := PFXR.Distance;
       MainForm.Label40.Caption := PFXR.Latitude;
@@ -543,8 +544,6 @@ end;
 
 procedure TdxClusterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  if TelnetThread <> nil then
-    TelnetThread.Terminate;
   INIFile.WriteString('TelnetCluster', 'ServerDef', ComboBox1.Text);
   MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
 end;
@@ -562,6 +561,8 @@ end;
 
 procedure TdxClusterForm.FormDestroy(Sender: TObject);
 begin
+  if TelnetThread <> nil then
+    TelnetThread.Terminate;
   FlagList.Free;
   FlagSList.Free;
   FreeAndNil(qBands);

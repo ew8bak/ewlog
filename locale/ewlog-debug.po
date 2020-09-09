@@ -2353,6 +2353,310 @@ msgctxt "tfm_form.listview1.columns[3].caption"
 msgid "Enabled"
 msgstr ""
 
+#: tgridsform.caption
+msgid "Logbook"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[0].title.caption
+msgctxt "tgridsform.dbgrid1.columns[0].title.caption"
+msgid "QSL"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[10].title.caption
+msgctxt "tgridsform.dbgrid1.columns[10].title.caption"
+msgid "State"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[11].title.caption
+msgctxt "tgridsform.dbgrid1.columns[11].title.caption"
+msgid "Grid"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[12].title.caption
+msgctxt "tgridsform.dbgrid1.columns[12].title.caption"
+msgid "RSTs"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[13].title.caption
+msgctxt "tgridsform.dbgrid1.columns[13].title.caption"
+msgid "RSTr"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[14].title.caption
+msgctxt "tgridsform.dbgrid1.columns[14].title.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[15].title.caption
+msgctxt "tgridsform.dbgrid1.columns[15].title.caption"
+msgid "Manager"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[16].title.caption
+msgctxt "tgridsform.dbgrid1.columns[16].title.caption"
+msgid "QSLs Date"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[17].title.caption
+msgctxt "tgridsform.dbgrid1.columns[17].title.caption"
+msgid "QSLr Date"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[18].title.caption
+msgctxt "tgridsform.dbgrid1.columns[18].title.caption"
+msgid "LOTWr Date"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[19].title.caption
+msgctxt "tgridsform.dbgrid1.columns[19].title.caption"
+msgid "Prefix"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[1].title.caption
+msgctxt "tgridsform.dbgrid1.columns[1].title.caption"
+msgid "QSLs"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[20].title.caption
+msgctxt "tgridsform.dbgrid1.columns[20].title.caption"
+msgid "DXCC"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[21].title.caption
+msgctxt "tgridsform.dbgrid1.columns[21].title.caption"
+msgid "CQ Zone"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[22].title.caption
+msgctxt "tgridsform.dbgrid1.columns[22].title.caption"
+msgid "ITU Zone"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[23].title.caption
+msgctxt "tgridsform.dbgrid1.columns[23].title.caption"
+msgid "Manual Set"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[24].title.caption
+msgctxt "tgridsform.dbgrid1.columns[24].title.caption"
+msgid "Continent"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[25].title.caption
+msgctxt "tgridsform.dbgrid1.columns[25].title.caption"
+msgid "Valid DX"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[26].title.caption
+msgctxt "tgridsform.dbgrid1.columns[26].title.caption"
+msgid "QSL r VIA"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[27].title.caption
+msgctxt "tgridsform.dbgrid1.columns[27].title.caption"
+msgid "QSL s VIA"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[28].title.caption
+msgctxt "tgridsform.dbgrid1.columns[28].title.caption"
+msgid "User"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[29].title.caption
+msgctxt "tgridsform.dbgrid1.columns[29].title.caption"
+msgid "No calc DXCC"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[2].title.caption
+msgctxt "tgridsform.dbgrid1.columns[2].title.caption"
+msgid "Date"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[3].title.caption
+msgctxt "tgridsform.dbgrid1.columns[3].title.caption"
+msgid "Time"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[4].title.caption
+msgctxt "tgridsform.dbgrid1.columns[4].title.caption"
+msgid "Frequency"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[5].title.caption
+msgctxt "tgridsform.dbgrid1.columns[5].title.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[6].title.caption
+msgctxt "tgridsform.dbgrid1.columns[6].title.caption"
+msgid "Mode"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[7].title.caption
+msgctxt "tgridsform.dbgrid1.columns[7].title.caption"
+msgid "QSOSubMode"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[8].title.caption
+msgctxt "tgridsform.dbgrid1.columns[8].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tgridsform.dbgrid1.columns[9].title.caption
+msgctxt "tgridsform.dbgrid1.columns[9].title.caption"
+msgid "QTH"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[0].title.caption
+msgctxt "tgridsform.dbgrid2.columns[0].title.caption"
+msgid "QSL"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[10].title.caption
+msgctxt "tgridsform.dbgrid2.columns[10].title.caption"
+msgid "State"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[11].title.caption
+msgctxt "tgridsform.dbgrid2.columns[11].title.caption"
+msgid "Grid"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[12].title.caption
+msgctxt "tgridsform.dbgrid2.columns[12].title.caption"
+msgid "RSTs"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[13].title.caption
+msgctxt "tgridsform.dbgrid2.columns[13].title.caption"
+msgid "RSTr"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[14].title.caption
+msgctxt "tgridsform.dbgrid2.columns[14].title.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[15].title.caption
+msgctxt "tgridsform.dbgrid2.columns[15].title.caption"
+msgid "Manager"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[16].title.caption
+msgctxt "tgridsform.dbgrid2.columns[16].title.caption"
+msgid "QSLs Date"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[17].title.caption
+msgctxt "tgridsform.dbgrid2.columns[17].title.caption"
+msgid "QSLr Date"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[18].title.caption
+msgctxt "tgridsform.dbgrid2.columns[18].title.caption"
+msgid "LOTWr Date"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[19].title.caption
+msgctxt "tgridsform.dbgrid2.columns[19].title.caption"
+msgid "Prefix"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[1].title.caption
+msgctxt "tgridsform.dbgrid2.columns[1].title.caption"
+msgid "QSLs"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[20].title.caption
+msgctxt "tgridsform.dbgrid2.columns[20].title.caption"
+msgid "DXCC"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[21].title.caption
+msgctxt "tgridsform.dbgrid2.columns[21].title.caption"
+msgid "CQ Zone"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[22].title.caption
+msgctxt "tgridsform.dbgrid2.columns[22].title.caption"
+msgid "ITU Zone"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[23].title.caption
+msgctxt "tgridsform.dbgrid2.columns[23].title.caption"
+msgid "Manual Set"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[24].title.caption
+msgctxt "tgridsform.dbgrid2.columns[24].title.caption"
+msgid "Continent"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[25].title.caption
+msgctxt "tgridsform.dbgrid2.columns[25].title.caption"
+msgid "Valid DX"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[26].title.caption
+msgctxt "tgridsform.dbgrid2.columns[26].title.caption"
+msgid "QSL r VIA"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[27].title.caption
+msgctxt "tgridsform.dbgrid2.columns[27].title.caption"
+msgid "QSL s VIA"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[28].title.caption
+msgctxt "tgridsform.dbgrid2.columns[28].title.caption"
+msgid "User"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[29].title.caption
+msgctxt "tgridsform.dbgrid2.columns[29].title.caption"
+msgid "No calc DXCC"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[2].title.caption
+msgctxt "tgridsform.dbgrid2.columns[2].title.caption"
+msgid "Date"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[3].title.caption
+msgctxt "tgridsform.dbgrid2.columns[3].title.caption"
+msgid "Time"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[4].title.caption
+msgctxt "tgridsform.dbgrid2.columns[4].title.caption"
+msgid "Frequency"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[5].title.caption
+msgctxt "tgridsform.dbgrid2.columns[5].title.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[6].title.caption
+msgctxt "tgridsform.dbgrid2.columns[6].title.caption"
+msgid "Mode"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[7].title.caption
+msgctxt "tgridsform.dbgrid2.columns[7].title.caption"
+msgid "QSOSubMode"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[8].title.caption
+msgctxt "tgridsform.dbgrid2.columns[8].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tgridsform.dbgrid2.columns[9].title.caption
+msgctxt "tgridsform.dbgrid2.columns[9].title.caption"
+msgid "QTH"
+msgstr ""
+
 #: thiddensettings.button1.caption
 msgctxt "thiddensettings.button1.caption"
 msgid "Save"

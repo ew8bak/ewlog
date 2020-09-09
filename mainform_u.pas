@@ -467,7 +467,7 @@ uses
   STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u,
   ThanksForm_u,
   print_sticker_u, hiddentsettings_u, famm_u, mmform_u,
-  flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm, infoDM_U, dxclusterform_u;
+  flDigiModem, viewPhoto_U, MainFuncDM, InitDB_dm, infoDM_U, dxclusterform_u, GridsForm_u;
 
 {$R *.lfm}
 
@@ -1293,7 +1293,7 @@ begin
   dxClusterForm.BorderStyle := bsNone;
   dxClusterForm.Align := alClient;
   dxClusterForm.Show;
-
+  GridsForm.Show;
 end;
 
 procedure TMainForm.Label50Click(Sender: TObject);

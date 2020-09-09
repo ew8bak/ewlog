@@ -42,6 +42,7 @@ procedure TTelnetThread.OnDisconnectDX(aSocket: TLSocket);
 begin
   ConnectCluster := False;
   Synchronize(@ToForm);
+  FreeAndNil(DXTelnetClient);
 end;
 
 procedure TTelnetThread.OnReceiveDX(aSocket: TLSocket);
@@ -96,11 +97,11 @@ end;
 
 procedure TTelnetThread.Execute;
 begin
-  if not ConnectToCluster then
-  begin
-    FreeAndNil(DXTelnetClient);
-    Exit;
-  end;
+    if not ConnectToCluster then
+    begin
+      FreeAndNil(DXTelnetClient);
+      Exit;
+    end;
 end;
 
 end.

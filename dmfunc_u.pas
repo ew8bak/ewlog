@@ -149,12 +149,21 @@ end;
 
 procedure TdmFunc.GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
 begin
-  if (UTF8Pos('W', Longitude) <> 0) then
+  if (UTF8Pos('W', Longitude) <> 0) then begin
     Longitude := '-' + Longitude;
-  if (UTF8Pos('S', Latitude) <> 0) then
+    Delete(Longitude, length(Longitude), 1);
+  end;
+  if (UTF8Pos('S', Latitude) <> 0) then begin
     Latitude := '-' + Latitude;
-  Delete(Latitude, length(Latitude), 1);
-  Delete(Longitude, length(Longitude), 1);
+    Delete(Latitude, length(Latitude), 1);
+  end;
+  if (UTF8Pos('E', Longitude) <> 0) then begin
+    Delete(Longitude, length(Longitude), 1);
+  end;
+  if (UTF8Pos('N', Latitude) <> 0) then begin
+    Delete(Latitude, length(Latitude), 1);
+  end;
+
   Lat := Latitude;
   Lon := Longitude;
 end;

@@ -1,7 +1,7 @@
 object dxClusterForm: TdxClusterForm
-  Left = 271
+  Left = 274
   Height = 240
-  Top = 121
+  Top = 134
   Width = 735
   Caption = 'DX Cluster'
   ClientHeight = 240
@@ -48,14 +48,14 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet2: TTabSheet
       Caption = 'DX Cluster'
-      ClientHeight = 186
-      ClientWidth = 727
+      ClientHeight = 185
+      ClientWidth = 725
       object VirtualStringTree1: TVirtualStringTree
         Cursor = 63
         Left = 0
-        Height = 186
+        Height = 185
         Top = 0
-        Width = 727
+        Width = 725
         Align = alClient
         DefaultText = 'Node'
         Font.Height = -12
@@ -127,8 +127,8 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Private messages'
-      ClientHeight = 186
-      ClientWidth = 727
+      ClientHeight = 185
+      ClientWidth = 725
       object Memo2: TMemo
         Left = 0
         Height = 126
@@ -266,8 +266,8 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet4: TTabSheet
       Caption = 'Forecast'
-      ClientHeight = 186
-      ClientWidth = 727
+      ClientHeight = 185
+      ClientWidth = 725
       object Memo3: TMemo
         Left = 0
         Height = 186
@@ -281,8 +281,8 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet5: TTabSheet
       Caption = 'Messages'
-      ClientHeight = 186
-      ClientWidth = 727
+      ClientHeight = 185
+      ClientWidth = 725
       object Memo4: TMemo
         Left = 0
         Height = 186
@@ -604,7 +604,7 @@ object dxClusterForm: TdxClusterForm
       AutoSize = False
       BorderSpacing.Left = 5
       Font.Height = -12
-      ItemHeight = 15
+      ItemHeight = 0
       OnChange = ComboBox1Change
       ParentFont = False
       Style = csDropDownList
