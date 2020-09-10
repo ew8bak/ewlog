@@ -62,10 +62,10 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  MiniForm.Close;
-  GridsForm.Close;
-  Earth.Close;
-  dxClusterForm.Close;
+  //MiniForm.Close;
+  //GridsForm.Close;
+  //Earth.Close;
+  //dxClusterForm.Close;
 end;
 
 end.

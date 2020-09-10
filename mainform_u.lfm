@@ -31,7 +31,7 @@ object MainForm: TMainForm
     end
     object MiniPanel: TPanel
       Left = 1
-      Height = 391
+      Height = 375
       Top = 1
       Width = 475
       Align = alTop
@@ -39,8 +39,8 @@ object MainForm: TMainForm
     end
     object OtherPanel: TPanel
       Left = 1
-      Height = 21
-      Top = 392
+      Height = 37
+      Top = 376
       Width = 475
       Align = alClient
       TabOrder = 2

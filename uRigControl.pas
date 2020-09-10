@@ -111,7 +111,7 @@ end;
 
 implementation
 uses
-  TRXForm_U, MainForm_U;
+  TRXForm_U, miniform_u;
 
 constructor TRigControl.Create;
 begin
@@ -193,7 +193,7 @@ begin
       fLastError := E.Message;
       Result     := False;
       TRXForm.tmrRadio.Enabled:=False;
-      MainForm.MenuItem86.Enabled:=False;
+      MiniForm.MenuItem86.Enabled:=False;
 
       RunRigCtld:=False;
       exit;

@@ -215,6 +215,8 @@ type
     procedure MenuItem66Click(Sender: TObject);
     procedure MenuItem69Click(Sender: TObject);
     procedure MenuItem70Click(Sender: TObject);
+    procedure MenuItem72Click(Sender: TObject);
+    procedure MenuItem73Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MenuItem84Click(Sender: TObject);
     procedure MenuItem87Click(Sender: TObject);
@@ -243,6 +245,7 @@ type
 
   public
     procedure LoadComboBoxItem;
+    procedure SwitchForm;
 
   end;
 
@@ -260,11 +263,57 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   InformationForm_U, UpdateForm_U, ConfigGridForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
-  QSLManagerForm_U, STATE_Form_U, TRXForm_U;
+  QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U;
 
 {$R *.lfm}
 
 { TMiniForm }
+
+procedure TMiniForm.SwitchForm;
+begin
+  if IniSet.MainForm <> 'MINI' then
+  begin
+    MiniForm.Menu := nil;
+    MainForm.Menu := MiniForm.MainMenu;
+    MiniForm.BorderStyle := bsNone;
+    MiniForm.Parent := MainForm.MiniPanel;
+    MiniForm.Align := alClient;
+    GridsForm.BorderStyle := bsNone;
+    GridsForm.Parent := MainForm.GridsPanel;
+    Earth.BorderStyle := bsNone;
+    GridsForm.Align := alClient;
+    Earth.Parent := MainForm.EarthPanel;
+    Earth.Align := alClient;
+    dxClusterForm.BorderStyle := bsNone;
+    dxClusterForm.Parent := MainForm.ClusterPanel;
+    dxClusterForm.Align := alClient;
+    MiniForm.Show;
+    GridsForm.Show;
+    Earth.Show;
+    dxClusterForm.Show;
+  end
+  else
+  begin
+    MainForm.Menu := nil;
+    MiniForm.Menu := MiniForm.MainMenu;
+    MiniForm.Parent := nil;
+    MiniForm.BorderStyle := bsSizeable;
+    MiniForm.Align := alNone;
+    GridsForm.Parent := nil;
+    GridsForm.BorderStyle := bsSizeable;
+    GridsForm.Align := alNone;
+    Earth.Parent := nil;
+    Earth.BorderStyle := bsSizeable;
+    Earth.Align := alNone;
+    dxClusterForm.Parent := nil;
+    dxClusterForm.BorderStyle := bsSizeable;
+    dxClusterForm.Align := alNone;
+    MiniForm.Show;
+    GridsForm.Show;
+    Earth.Show;
+    dxClusterForm.Show;
+  end;
+end;
 
 procedure TMiniForm.FindLanguageFiles(Dir: string; var LangList: TStringList);
 begin
@@ -485,6 +534,18 @@ end;
 procedure TMiniForm.MenuItem70Click(Sender: TObject);
 begin
   ImportADIFForm.Show;
+end;
+
+procedure TMiniForm.MenuItem72Click(Sender: TObject);
+begin
+  IniSet.MainForm := 'MINI';
+  SwitchForm;
+end;
+
+procedure TMiniForm.MenuItem73Click(Sender: TObject);
+begin
+  IniSet.MainForm := 'MAIN';
+  SwitchForm;
 end;
 
 procedure TMiniForm.MenuItem7Click(Sender: TObject);
