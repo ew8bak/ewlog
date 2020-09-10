@@ -20,7 +20,6 @@ type
     Bevel1: TBevel;
     Bevel2: TBevel;
     Bevel3: TBevel;
-    Bevel4: TBevel;
     Bevel6: TBevel;
     Bevel7: TBevel;
     Bevel8: TBevel;
