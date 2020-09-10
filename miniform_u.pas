@@ -261,7 +261,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   InformationForm_U, UpdateForm_U, ConfigGridForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
-  QSLManagerForm_U, STATE_Form_U;
+  QSLManagerForm_U, STATE_Form_U, TRXForm_U;
 
 {$R *.lfm}
 
@@ -1219,7 +1219,7 @@ begin
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
   INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
-  //  TRXForm.Close;
+  TRXForm.Close;
   //  GridsForm.Close;
   //  dxClusterForm.Close;
 
