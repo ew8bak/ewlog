@@ -134,7 +134,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u;
+  miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u;
 
 {$R *.lfm}
 
@@ -338,7 +338,7 @@ procedure TConfigForm.CheckBox2Change(Sender: TObject);
 begin
   IniSet.showBand := CheckBox2.Checked;
   INIFile.WriteBool('SetLog', 'ShowBand', CheckBox2.Checked);
-  MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1);
+  MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand);
   GridsForm.DBGrid1.Invalidate;
   GridsForm.DBGrid2.Invalidate;
   MainFunc.SetGrid(GridsForm.DBGrid1);

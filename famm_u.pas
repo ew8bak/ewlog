@@ -45,7 +45,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, InitDB_dm, MainFuncDM;
+uses dmFunc_U, miniform_u, InitDB_dm, MainFuncDM;
 
 { TFM_Form }
 
@@ -138,7 +138,7 @@ begin
     ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text,
       BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
-    MainFunc.LoadBMSL(MainForm.ComboBox2,MainForm.ComboBox9, MainForm.ComboBox1);
+    MainFunc.LoadBMSL(MiniForm.CBMode,MiniForm.CBSubMode, MiniForm.CBBand);
    // MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''), MainForm.ComboBox2.Text);
   end;
 end;

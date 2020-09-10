@@ -66,7 +66,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, InitDB_dm, serverDM_u, GridsForm_u;
+uses dmFunc_U, miniform_u, InitDB_dm, serverDM_u, GridsForm_u, MainFuncDM;
 
 {$R *.lfm}
 
@@ -76,7 +76,7 @@ begin
     exportAdifForm.Close
   else
   begin
-    SaveDialog1.FileName := MainForm.ComboBox10.Text + '_' +
+    SaveDialog1.FileName := DBRecord.CurrCall + '_' +
       FormatDateTime('yyyy-mm-dd', now);
     SaveDialog1.InitialDir := INIFile.ReadString('SetLog', 'ExportPath', '');
     if SaveDialog1.Execute then
@@ -241,7 +241,7 @@ begin
       Label1.Caption := rNumberOfQSO + ' ' + IntToStr(Nr);
 
       tmp := '<OPERATOR' + dmFunc.StringToADIF(
-        dmFunc.RemoveSpaces(MainForm.ComboBox10.Text), CheckBox2.Checked);
+        dmFunc.RemoveSpaces(DBRecord.CurrCall), CheckBox2.Checked);
       Write(f, tmp);
 
       tmp := '<CALL' + dmFunc.StringToADIF(
@@ -576,11 +576,11 @@ begin
     while not Q1.EOF do
     begin
       tmp2 := '';
-      MainForm.StatusBar1.Panels.Items[0].Text :=
-        rSentRecord + ' ' + IntToStr(nr);
+    //  MainForm.StatusBar1.Panels.Items[0].Text :=
+    //    rSentRecord + ' ' + IntToStr(nr);
 
       tmp := '<OPERATOR' + dmFunc.StringToADIF(
-        dmFunc.RemoveSpaces(MainForm.ComboBox10.Text), CheckBox2.Checked);
+        dmFunc.RemoveSpaces(DBRecord.CurrCall), CheckBox2.Checked);
       tmp2 := tmp2 + tmp;
 
       tmp := '<CALL' + dmFunc.StringToADIF(
@@ -835,7 +835,7 @@ begin
       ServerDM.AdifMobileString.Add(tmp2);
       if (nr mod 100 = 0) then
       begin
-        MainForm.StatusBar1.Repaint;
+        //MainForm.StatusBar1.Repaint;
         Application.ProcessMessages;
       end;
       Inc(nr);

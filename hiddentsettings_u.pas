@@ -45,7 +45,7 @@ function SendRadio(freq, mode, dt, key, radio, address: string): string;
 implementation
 
 uses
-  MainForm_U, dmFunc_U, InitDB_dm;
+  miniform_u, dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -120,22 +120,22 @@ procedure ThiddenSettings.CatTimerTimer(Sender: TObject);
 var
   tempfreq: string;
 begin
-  if MainForm.freqchange = True then
+  if FreqChange = True then
   begin
 
-    if Pos('M', MainForm.ComboBox1.Text) > 0 then
+    if Pos('M', MiniForm.CBBand.Text) > 0 then
       tempfreq := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-        MainForm.ComboBox1.Text, MainForm.ComboBox2.Text))
+        MiniForm.CBBand.Text, MiniForm.CBMode.Text))
     else
     begin
-      tempfreq := MainForm.ComboBox1.Text;
+      tempfreq := MiniForm.CBBand.Text;
       Delete(tempfreq, length(tempfreq) - 2, 1);
     end;
       Memo1.Lines.Add(SendRadio(StringReplace(tempfreq,
-        '.', '', [rfReplaceAll]) + '0', MainForm.ComboBox2.Text,
+        '.', '', [rfReplaceAll]) + '0', MiniForm.CBMode.Text,
         DateTimeToStr(Now), API_key, 'EWLog', address_serv + '/index.php/api/radio/'));
   end;
-  MainForm.freqchange := False;
+  FreqChange := False;
 end;
 
 procedure ThiddenSettings.CheckBox1Change(Sender: TObject);

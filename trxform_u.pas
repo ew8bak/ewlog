@@ -186,7 +186,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM;
+  dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -273,23 +273,23 @@ begin
   else
     f := 0;
 
-  if (fldigiactive = False) and (f <> 0) then
+ { if (fldigiactive = False) and (f <> 0) then
   begin
     if ConfigForm.CheckBox2.Checked = True then
       MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, f))
     else
       MainForm.ComboBox1.Text := FormatFloat(view_freq, f);
-  end;
+  end;  }
 
   if Length(m) > 1 then
     dmFunc.GetRIGMode(m, mode, submode);
 
 
-  if (fldigiactive = False) and (Length(m) > 1) then
+  {if (fldigiactive = False) and (Length(m) > 1) then
   begin
     MainForm.ComboBox2.Text := mode;
     MainForm.ComboBox9.Text := submode;
-  end;
+  end;}
   lblMode.Caption := m;
 end;
 
@@ -380,13 +380,13 @@ begin
   if INIFile.ReadString('TRX' + n, 'RigCtldPath', '') <> '' then
     InicializeRig;
 
-  if IniSet.ShowTRXForm then
-  begin
-    TRXForm.Parent := MainForm.Panel13;
-    TRXForm.BorderStyle := bsNone;
-    TRXForm.Align := alClient;
-    TRXForm.Show;
-  end;
+//  if IniSet.ShowTRXForm then
+//  begin
+//    TRXForm.Parent := MainForm.Panel13;
+//    TRXForm.BorderStyle := bsNone;
+//    TRXForm.Align := alClient;
+//    TRXForm.Show;
+//  end;
 
 end;
 

@@ -5,10 +5,10 @@ unit MainFuncDM;
 interface
 
 uses
-  Classes, SysUtils, DB, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
+  Classes, SysUtils, DB, Forms, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
-  VirtualTrees, LazFileUtils;
+  VirtualTrees, LazFileUtils, LCLType;
 
 type
   bandArray = array of string;
@@ -67,6 +67,7 @@ type
     function FormatFreq(Value, mode: string): string;
     function FindInCallBook(Callsign: string): TFoundQSOR;
     function CheckQSL(Callsign, band, mode: string): integer;
+    function EraseTable: boolean;
   end;
 
 var
@@ -84,6 +85,48 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog;
 
 {$R *.lfm}
+
+function TMainFunc.EraseTable: boolean;
+var
+  Query: TSQLQuery;
+begin
+  try
+    Result := False;
+    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+    begin
+      if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
+        MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      begin
+        try
+          Query := TSQLQuery.Create(nil);
+          if DBRecord.CurrentDB = 'MySQL' then
+            Query.DataBase := InitDB.MySQLConnection
+          else
+            Query.DataBase := InitDB.SQLiteConnection;
+          with Query do
+          begin
+            SQL.Text := 'DELETE FROM ' + LBRecord.LogTable;
+            Prepare;
+            ExecSQL;
+          end;
+        finally
+          InitDB.DefTransaction.Commit;
+          Result := True;
+          FreeAndNil(Query);
+          if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+            ShowMessage(rDBError);
+        end;
+      end;
+    end;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('EraseTable:' + E.Message);
+      WriteLn(ExceptFile, 'FindInCallBook:' + E.ClassName + ':' + E.Message);
+      Result := False;
+    end;
+  end;
+end;
 
 procedure TMainFunc.SaveGridsColumnSized(DbGrid: TDBGrid);
 var
@@ -1541,10 +1584,6 @@ begin
     la := '-' + la;
   Delete(la, length(la), 1);
   Delete(lo, length(lo), 1);
- // DefaultFormatSettings.DecimalSeparator := '.';
- // R := dmFunc.Vincenty(LBRecord.OpLat, LBRecord.OpLon, StrToFloat(la),
-  //  StrToFloat(lo)) / 1000;
-  //Distance := FormatFloat('0.00', R) + ' KM';
   dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(la),
     strtofloat(lo), qra, azim);
   Azimuth := azim;
@@ -1610,21 +1649,22 @@ begin
         dmFunc.Q(SQSO.IOTA) + dmFunc.Q(SQSO.QSLManager) + dmFunc.Q(SQSO.QSLSent) +
         dmFunc.Q(SQSO.QSLSentAdv) + dmFunc.Q(SQSO.QSLRec) +
         dmFunc.Q(SQSO.MainPrefix) + dmFunc.Q(SQSO.DXCCPrefix) +
-        dmFunc.Q(SQSO.CQZone) + dmFunc.Q(SQSO.ITUZone) + dmFunc.Q(SQSO.QSOAddInfo) +
-        dmFunc.Q(SQSO.Marker) + dmFunc.Q(IntToStr(SQSO.ManualSet)) +
-        dmFunc.Q(SQSO.DigiBand) + dmFunc.Q(SQSO.Continent) +
-        dmFunc.Q(SQSO.ShortNote) + dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) +
-        dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) +
-        dmFunc.Q(SQSO.State1) + dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) +
-        dmFunc.Q(SQSO.State4) + dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) +
-        dmFunc.Q(SQSO.ValidDX) + dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) +
-        dmFunc.Q(STXs) + dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
+        dmFunc.Q(SQSO.CQZone) + dmFunc.Q(SQSO.ITUZone) +
+        dmFunc.Q(SQSO.QSOAddInfo) + dmFunc.Q(SQSO.Marker) +
+        dmFunc.Q(IntToStr(SQSO.ManualSet)) + dmFunc.Q(SQSO.DigiBand) +
+        dmFunc.Q(SQSO.Continent) + dmFunc.Q(SQSO.ShortNote) +
+        dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) + dmFunc.Q(SQSO.LotWRec) +
+        dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) + dmFunc.Q(SQSO.State1) +
+        dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) + dmFunc.Q(SQSO.State4) +
+        dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) + dmFunc.Q(SQSO.ValidDX) +
+        dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) + dmFunc.Q(STXs) +
+        dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
         dmFunc.Q(SQSO.SAT_MODE) + dmFunc.Q(SQSO.PROP_MODE) +
         dmFunc.Q(IntToStr(SQSO.LotWSent)) + dmFunc.Q(SQSO.QSL_RCVD_VIA) +
-        dmFunc.Q(SQSO.QSL_SENT_VIA) + dmFunc.Q(SQSO.DXCC) + dmFunc.Q(SQSO.USERS) +
-        dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) + dmFunc.Q(SQSO.My_State) +
-        dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) + dmFunc.Q(SQSO.My_Lon) +
-        QuotedStr(IntToStr(SQSO.SYNC)) + ')';
+        dmFunc.Q(SQSO.QSL_SENT_VIA) + dmFunc.Q(SQSO.DXCC) +
+        dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
+        dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
+        dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
 
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)

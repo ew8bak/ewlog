@@ -140,7 +140,7 @@ var
 
 implementation
 
-uses MainForm_U, DXCCEditForm_U, QSLManagerForm_U,
+uses miniform_u, DXCCEditForm_U, QSLManagerForm_U,
   dmFunc_U, IOTA_Form_U, STATE_Form_U,
   ConfigForm_U, const_u, InitDB_dm, MainFuncDM, GridsForm_u;
 

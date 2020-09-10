@@ -54,7 +54,7 @@ var
 implementation
 
 {$R *.lfm}
-uses MainForm_U;
+uses miniform_u;
 
 { TQSLManager_Form }
 
@@ -75,7 +75,7 @@ end;
 
 procedure TQSLManager_Form.DBGrid1DblClick(Sender: TObject);
 begin
-MainForm.Edit6.Text:=ManagersQuery.FieldByName('Manager').AsString;
+MiniForm.EditMGR.Text:=ManagersQuery.FieldByName('Manager').AsString;
 end;
 
 procedure TQSLManager_Form.DBNavigator1Click(Sender: TObject;
@@ -114,7 +114,7 @@ begin
     SQL.Text := 'SELECT * FROM managers';
     Active := True;
   end;
-  Edit1.Text:=MainForm.EditButton1.Text;
+  Edit1.Text:=MiniForm.EditCallsign.Text;
 end;
 
 end.

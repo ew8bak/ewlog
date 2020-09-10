@@ -36,7 +36,7 @@ var
 implementation
 
 uses
-  MainForm_U, dmFunc_U, dxclusterform_u;
+  miniform_u, dmFunc_U, dxclusterform_u;
 
 {$R *.lfm}
 
@@ -44,12 +44,12 @@ uses
 
 procedure TSendTelnetSpot.FormShow(Sender: TObject);
 begin
-  if Pos('M', MainForm.ComboBox1.Text) > 0 then
+  if Pos('M', MiniForm.CBBand.Text) > 0 then
     ComboBox1.Text := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-      MainForm.ComboBox1.Text, MainForm.ComboBox2.Text))
+      MiniForm.CBBand.Text, MiniForm.CBMode.Text))
   else
-    ComboBox1.Text := MainForm.ComboBox1.Text;
-  Edit1.Text := MainForm.EditButton1.Text;
+    ComboBox1.Text := MiniForm.CBBand.Text;
+  Edit1.Text := MiniForm.EditCallsign.Text;
 end;
 
 procedure TSendTelnetSpot.Button1Click(Sender: TObject);

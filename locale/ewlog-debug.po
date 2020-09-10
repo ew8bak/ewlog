@@ -3406,628 +3406,6 @@ msgctxt "tmainform.caption"
 msgid "EWLog - HAM Journal"
 msgstr ""
 
-#: tmainform.checkbox1.caption
-msgctxt "tmainform.checkbox1.caption"
-msgid "Real time"
-msgstr ""
-
-#: tmainform.checkbox2.caption
-msgctxt "tmainform.checkbox2.caption"
-msgid "Save in UTC"
-msgstr ""
-
-#: tmainform.checkbox3.caption
-msgctxt "tmainform.checkbox3.caption"
-msgid "Map"
-msgstr ""
-
-#: tmainform.checkbox5.caption
-msgctxt "tmainform.checkbox5.caption"
-msgid "Mark"
-msgstr ""
-
-#: tmainform.checkbox6.caption
-msgctxt "tmainform.checkbox6.caption"
-msgid "Filter"
-msgstr ""
-
-#: tmainform.combobox1.text
-msgctxt "tmainform.combobox1.text"
-msgid "7.000.00"
-msgstr ""
-
-#: tmainform.combobox4.text
-msgctxt "tmainform.combobox4.text"
-msgid "59"
-msgstr ""
-
-#: tmainform.combobox5.text
-msgctxt "tmainform.combobox5.text"
-msgid "59"
-msgstr ""
-
-#: tmainform.combobox7.text
-msgctxt "tmainform.combobox7.text"
-msgid "Wasn't sent"
-msgstr ""
-
-#: tmainform.dateedit1.text
-msgctxt "tmainform.dateedit1.text"
-msgid "  .  .    "
-msgstr ""
-
-#: tmainform.datetimepicker1.textfornulldate
-msgctxt "tmainform.datetimepicker1.textfornulldate"
-msgid "NULL"
-msgstr ""
-
-#: tmainform.label1.caption
-msgctxt "tmainform.label1.caption"
-msgid "Date"
-msgstr ""
-
-#: tmainform.label10.caption
-msgctxt "tmainform.label10.caption"
-msgid "QSL Via"
-msgstr ""
-
-#: tmainform.label11.caption
-msgctxt "tmainform.label11.caption"
-msgid "Grid"
-msgstr ""
-
-#: tmainform.label12.caption
-msgctxt "tmainform.label12.caption"
-msgid "State"
-msgstr ""
-
-#: tmainform.label13.caption
-msgctxt "tmainform.label13.caption"
-msgid "IOTA"
-msgstr ""
-
-#: tmainform.label14.caption
-msgctxt "tmainform.label14.caption"
-msgid "MGR"
-msgstr ""
-
-#: tmainform.label15.caption
-msgctxt "tmainform.label15.caption"
-msgid "Sub. State"
-msgstr ""
-
-#: tmainform.label16.caption
-msgctxt "tmainform.label16.caption"
-msgid "Comment"
-msgstr ""
-
-#: tmainform.label17.caption
-msgctxt "tmainform.label17.caption"
-msgid "0"
-msgstr ""
-
-#: tmainform.label18.caption
-msgctxt "tmainform.label18.caption"
-msgid "Date"
-msgstr ""
-
-#: tmainform.label19.caption
-msgctxt "tmainform.label19.caption"
-msgid "Time"
-msgstr ""
-
-#: tmainform.label2.caption
-msgctxt "tmainform.label2.caption"
-msgid "Band"
-msgstr ""
-
-#: tmainform.label20.caption
-msgctxt "tmainform.label20.caption"
-msgid "Band"
-msgstr ""
-
-#: tmainform.label21.caption
-msgctxt "tmainform.label21.caption"
-msgid "Mode"
-msgstr ""
-
-#: tmainform.label22.caption
-msgctxt "tmainform.label22.caption"
-msgid "Name"
-msgstr ""
-
-#: tmainform.label23.caption
-msgctxt "tmainform.label23.caption"
-msgid "Local time "
-msgstr ""
-
-#: tmainform.label24.caption
-msgctxt "tmainform.label24.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tmainform.label25.caption
-msgctxt "tmainform.label25.caption"
-msgid "UTC"
-msgstr ""
-
-#: tmainform.label26.caption
-msgctxt "tmainform.label26.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tmainform.label27.caption
-msgctxt "tmainform.label27.caption"
-msgid "Remote time"
-msgstr ""
-
-#: tmainform.label28.caption
-msgctxt "tmainform.label28.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tmainform.label29.caption
-msgctxt "tmainform.label29.caption"
-msgid "Azimuth"
-msgstr ""
-
-#: tmainform.label3.caption
-msgctxt "tmainform.label3.caption"
-msgid "Mode"
-msgstr ""
-
-#: tmainform.label30.caption
-msgctxt "tmainform.label30.caption"
-msgid "Territory"
-msgstr ""
-
-#: tmainform.label31.caption
-msgctxt "tmainform.label31.caption"
-msgid "DXCC"
-msgstr ""
-
-#: tmainform.label32.caption
-msgctxt "tmainform.label32.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label33.caption
-msgctxt "tmainform.label33.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label34.caption
-msgctxt "tmainform.label34.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label35.caption
-msgctxt "tmainform.label35.caption"
-msgid "Distance"
-msgstr ""
-
-#: tmainform.label36.caption
-msgctxt "tmainform.label36.caption"
-msgid "Prefix"
-msgstr ""
-
-#: tmainform.label37.caption
-msgctxt "tmainform.label37.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label38.caption
-msgctxt "tmainform.label38.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label39.caption
-msgctxt "tmainform.label39.caption"
-msgid "Latitude"
-msgstr ""
-
-#: tmainform.label4.caption
-msgctxt "tmainform.label4.caption"
-msgid "Time (UTC)"
-msgstr ""
-
-#: tmainform.label40.caption
-msgctxt "tmainform.label40.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label41.caption
-msgctxt "tmainform.label41.caption"
-msgid "Longitude"
-msgstr ""
-
-#: tmainform.label42.caption
-msgctxt "tmainform.label42.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label43.caption
-msgctxt "tmainform.label43.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label44.caption
-msgctxt "tmainform.label44.caption"
-msgid "CQ"
-msgstr ""
-
-#: tmainform.label45.caption
-msgctxt "tmainform.label45.caption"
-msgid ".."
-msgstr ""
-
-#: tmainform.label46.caption
-msgctxt "tmainform.label46.caption"
-msgid "ITU"
-msgstr ""
-
-#: tmainform.label47.caption
-msgctxt "tmainform.label47.caption"
-msgid ".."
-msgstr ""
-
-#: tmainform.label48.caption
-msgctxt "tmainform.label48.caption"
-msgid "Your QSL"
-msgstr ""
-
-#: tmainform.label49.caption
-msgctxt "tmainform.label49.caption"
-msgid "Current log"
-msgstr ""
-
-#: tmainform.label5.caption
-msgctxt "tmainform.label5.caption"
-msgid "Callsign"
-msgstr ""
-
-#: tmainform.label50.caption
-msgid "New update available"
-msgstr ""
-
-#: tmainform.label51.caption
-msgctxt "tmainform.label51.caption"
-msgid "My grid"
-msgstr ""
-
-#: tmainform.label52.caption
-msgctxt "tmainform.label52.caption"
-msgid "My state"
-msgstr ""
-
-#: tmainform.label53.caption
-msgctxt "tmainform.label53.caption"
-msgid "Worked"
-msgstr ""
-
-#: tmainform.label54.caption
-msgctxt "tmainform.label54.caption"
-msgid "QSL"
-msgstr ""
-
-#: tmainform.label55.caption
-msgctxt "tmainform.label55.caption"
-msgid "(Cfm)"
-msgstr ""
-
-#: tmainform.label6.caption
-msgctxt "tmainform.label6.caption"
-msgid "Name"
-msgstr ""
-
-#: tmainform.label7.caption
-msgctxt "tmainform.label7.caption"
-msgid "QTH"
-msgstr ""
-
-#: tmainform.label8.caption
-msgctxt "tmainform.label8.caption"
-msgid "RST sent"
-msgstr ""
-
-#: tmainform.label9.caption
-msgctxt "tmainform.label9.caption"
-msgid "RST rcvd"
-msgstr ""
-
-#: tmainform.menuitem1.caption
-msgid "LogBook"
-msgstr ""
-
-#: tmainform.menuitem102.caption
-msgid "Donations"
-msgstr ""
-
-#: tmainform.menuitem110.caption
-msgid "Displaying photos with QRZ"
-msgstr ""
-
-#: tmainform.menuitem111.caption
-msgid "On"
-msgstr ""
-
-#: tmainform.menuitem112.caption
-msgid "Off"
-msgstr ""
-
-#: tmainform.menuitem116.caption
-msgid "Language"
-msgstr ""
-
-#: tmainform.menuitem118.caption
-msgid "Clear all journal"
-msgstr ""
-
-#: tmainform.menuitem119.caption
-msgid "Download Languages"
-msgstr ""
-
-#: tmainform.menuitem123.caption
-msgctxt "tmainform.menuitem123.caption"
-msgid "Frequency Manager"
-msgstr ""
-
-#: tmainform.menuitem124.caption
-msgctxt "tmainform.menuitem124.caption"
-msgid "Modulation Manager"
-msgstr ""
-
-#: tmainform.menuitem2.caption
-msgid "Settings"
-msgstr ""
-
-#: tmainform.menuitem3.caption
-msgid "View"
-msgstr ""
-
-#: tmainform.menuitem4.caption
-msgctxt "tmainform.menuitem4.caption"
-msgid "External programs"
-msgstr ""
-
-#: tmainform.menuitem43.caption
-msgctxt "tmainform.menuitem43.caption"
-msgid "WSJT-X"
-msgstr ""
-
-#: tmainform.menuitem48.caption
-msgid "Set date synchronization"
-msgstr ""
-
-#: tmainform.menuitem5.caption
-msgid "Quick start"
-msgstr ""
-
-#: tmainform.menuitem52.caption
-msgid "Configure program"
-msgstr ""
-
-#: tmainform.menuitem53.caption
-msgid "Format ADIF"
-msgstr ""
-
-#: tmainform.menuitem54.caption
-msgid "Operations with a logbook"
-msgstr ""
-
-#: tmainform.menuitem55.caption
-msgid "Open log"
-msgstr ""
-
-#: tmainform.menuitem56.caption
-msgid "Create new log"
-msgstr ""
-
-#: tmainform.menuitem58.caption
-msgid "Compact and Repair Database"
-msgstr ""
-
-#: tmainform.menuitem6.caption
-msgid "Help"
-msgstr ""
-
-#: tmainform.menuitem60.caption
-msgid "Services of eQSL and LOTW"
-msgstr ""
-
-#: tmainform.menuitem61.caption
-msgid "Export Information from a Logbook to"
-msgstr ""
-
-#: tmainform.menuitem62.caption
-msgid "Import information in logbook from"
-msgstr ""
-
-#: tmainform.menuitem63.caption
-msgctxt "tmainform.menuitem63.caption"
-msgid "Thanks"
-msgstr ""
-
-#: tmainform.menuitem65.caption
-msgid "Clear new QSO"
-msgstr ""
-
-#: tmainform.menuitem66.caption
-msgctxt "tmainform.menuitem66.caption"
-msgid "Save QSO"
-msgstr ""
-
-#: tmainform.menuitem67.caption
-msgctxt "tmainform.menuitem67.caption"
-msgid "Edit QSO"
-msgstr ""
-
-#: tmainform.menuitem69.caption
-msgctxt "tmainform.menuitem69.caption"
-msgid "Exit"
-msgstr ""
-
-#: tmainform.menuitem7.caption
-msgctxt "tmainform.menuitem7.caption"
-msgid "Logs configuration"
-msgstr ""
-
-#: tmainform.menuitem70.caption
-msgid "File .ADIF"
-msgstr ""
-
-#: tmainform.menuitem71.caption
-msgid "File .TXT"
-msgstr ""
-
-#: tmainform.menuitem72.caption
-msgid "Compact mode"
-msgstr ""
-
-#: tmainform.menuitem73.caption
-msgid "Normal mode"
-msgstr ""
-
-#: tmainform.menuitem74.caption
-msgctxt "tmainform.menuitem74.caption"
-msgid "Fldigi"
-msgstr ""
-
-#: tmainform.menuitem75.caption
-msgctxt "tmainform.menuitem75.caption"
-msgid "Change Country Information"
-msgstr ""
-
-#: tmainform.menuitem76.caption
-msgid "Filter settings"
-msgstr ""
-
-#: tmainform.menuitem78.caption
-msgid "Satellite"
-msgstr ""
-
-#: tmainform.menuitem79.caption
-msgctxt "tmainform.menuitem79.caption"
-msgid "Change Country Information"
-msgstr ""
-
-#: tmainform.menuitem80.caption
-msgid "Change Province Information"
-msgstr ""
-
-#: tmainform.menuitem81.caption
-msgid "Synchronization Databases"
-msgstr ""
-
-#: tmainform.menuitem82.caption
-msgid "From MySQL to SQLite"
-msgstr ""
-
-#: tmainform.menuitem83.caption
-msgid "From SQLite to MySQL"
-msgstr ""
-
-#: tmainform.menuitem84.caption
-msgctxt "tmainform.menuitem84.caption"
-msgid "Settings CAT"
-msgstr ""
-
-#: tmainform.menuitem85.caption
-msgid "Transceiver Control"
-msgstr ""
-
-#: tmainform.menuitem86.caption
-msgid "Display control form"
-msgstr ""
-
-#: tmainform.menuitem87.caption
-msgid "Settings external programs"
-msgstr ""
-
-#: tmainform.menuitem88.caption
-msgid "No"
-msgstr ""
-
-#: tmainform.menuitem89.caption
-msgid "Switch database"
-msgstr ""
-
-#: tmainform.menuitem91.caption
-msgctxt "tmainform.menuitem91.caption"
-msgid "Wizard"
-msgstr ""
-
-#: tmainform.menuitem92.caption
-msgctxt "tmainform.menuitem92.caption"
-msgid "Update"
-msgstr ""
-
-#: tmainform.menuitem94.caption
-msgctxt "tmainform.menuitem94.caption"
-msgid "About"
-msgstr ""
-
-#: tmainform.menuitem95.caption
-msgid "Minimize to tray"
-msgstr ""
-
-#: tmainform.menuitem96.caption
-msgid "Expand"
-msgstr ""
-
-#: tmainform.menuitem98.caption
-msgctxt "tmainform.menuitem98.caption"
-msgid "Exit"
-msgstr ""
-
-#: tmainform.menuitem99.caption
-msgid "Configure table"
-msgstr ""
-
-#: tmainform.speedbutton1.caption
-msgctxt "tmainform.speedbutton1.caption"
-msgid " ... "
-msgstr ""
-
-#: tmainform.speedbutton2.caption
-msgctxt "tmainform.speedbutton2.caption"
-msgid " ... "
-msgstr ""
-
-#: tmainform.speedbutton3.caption
-msgctxt "tmainform.speedbutton3.caption"
-msgid " ... "
-msgstr ""
-
-#: tmainform.speedbutton4.caption
-msgctxt "tmainform.speedbutton4.caption"
-msgid " .4. "
-msgstr ""
-
-#: tmainform.speedbutton5.caption
-msgctxt "tmainform.speedbutton5.caption"
-msgid " .3. "
-msgstr ""
-
-#: tmainform.speedbutton6.caption
-msgctxt "tmainform.speedbutton6.caption"
-msgid " .2. "
-msgstr ""
-
-#: tmainform.speedbutton7.caption
-msgctxt "tmainform.speedbutton7.caption"
-msgid " .1. "
-msgstr ""
-
-#: tmainform.speedbutton8.hint
-msgctxt "tmainform.speedbutton8.hint"
-msgid "Save QSO"
-msgstr ""
-
-#: tmainform.speedbutton9.hint
-msgid "Clear QSO"
-msgstr ""
-
 #: tmanagerbaseprefixform.caption
 msgctxt "tmanagerbaseprefixform.caption"
 msgid "Prefix Manager"
@@ -4101,6 +3479,10 @@ msgstr ""
 #: tminiform.cbyourqsl.text
 msgctxt "tminiform.cbyourqsl.text"
 msgid "Wasn't sent"
+msgstr ""
+
+#: tminiform.clearedit.caption
+msgid "ClearEdit"
 msgstr ""
 
 #: tminiform.dateedit1.text
@@ -4238,6 +3620,11 @@ msgctxt "tminiform.lblatituded.caption"
 msgid "......."
 msgstr ""
 
+#: tminiform.lblocaltimed.caption
+msgctxt "tminiform.lblocaltimed.caption"
+msgid "00:00:00"
+msgstr ""
+
 #: tminiform.lblongitude.caption
 msgctxt "tminiform.lblongitude.caption"
 msgid "Longitude"
@@ -4303,6 +3690,11 @@ msgctxt "tminiform.lbqth.caption"
 msgid "QTH"
 msgstr ""
 
+#: tminiform.lbremotetimed.caption
+msgctxt "tminiform.lbremotetimed.caption"
+msgid "00:00:00"
+msgstr ""
+
 #: tminiform.lbrstr.caption
 msgctxt "tminiform.lbrstr.caption"
 msgid "RST rcvd"
@@ -4343,6 +3735,11 @@ msgctxt "tminiform.lbtimeqso.caption"
 msgid "Time"
 msgstr ""
 
+#: tminiform.lbutctimed.caption
+msgctxt "tminiform.lbutctimed.caption"
+msgid "00:00:00"
+msgstr ""
+
 #: tminiform.lbworked.caption
 msgctxt "tminiform.lbworked.caption"
 msgid "Worked"
@@ -4357,9 +3754,263 @@ msgstr ""
 msgid "Local time"
 msgstr ""
 
+#: tminiform.menuitem1.caption
+msgctxt "tminiform.menuitem1.caption"
+msgid "LogBook"
+msgstr ""
+
+#: tminiform.menuitem102.caption
+msgctxt "tminiform.menuitem102.caption"
+msgid "Donations"
+msgstr ""
+
+#: tminiform.menuitem110.caption
+msgctxt "tminiform.menuitem110.caption"
+msgid "Displaying photos with QRZ"
+msgstr ""
+
+#: tminiform.menuitem111.caption
+msgctxt "tminiform.menuitem111.caption"
+msgid "On"
+msgstr ""
+
+#: tminiform.menuitem112.caption
+msgctxt "tminiform.menuitem112.caption"
+msgid "Off"
+msgstr ""
+
+#: tminiform.menuitem118.caption
+msgctxt "tminiform.menuitem118.caption"
+msgid "Clear all journal"
+msgstr ""
+
+#: tminiform.menuitem123.caption
+msgctxt "tminiform.menuitem123.caption"
+msgid "Frequency Manager"
+msgstr ""
+
+#: tminiform.menuitem124.caption
+msgctxt "tminiform.menuitem124.caption"
+msgid "Modulation Manager"
+msgstr ""
+
+#: tminiform.menuitem3.caption
+msgctxt "tminiform.menuitem3.caption"
+msgid "View"
+msgstr ""
+
+#: tminiform.menuitem4.caption
+msgctxt "tminiform.menuitem4.caption"
+msgid "External programs"
+msgstr ""
+
+#: tminiform.menuitem43.caption
+msgctxt "tminiform.menuitem43.caption"
+msgid "WSJT-X"
+msgstr ""
+
+#: tminiform.menuitem48.caption
+msgctxt "tminiform.menuitem48.caption"
+msgid "Set date synchronization"
+msgstr ""
+
+#: tminiform.menuitem5.caption
+msgctxt "tminiform.menuitem5.caption"
+msgid "Quick start"
+msgstr ""
+
+#: tminiform.menuitem52.caption
+msgctxt "tminiform.menuitem52.caption"
+msgid "Configure program"
+msgstr ""
+
+#: tminiform.menuitem53.caption
+msgctxt "tminiform.menuitem53.caption"
+msgid "Format ADIF"
+msgstr ""
+
+#: tminiform.menuitem54.caption
+msgctxt "tminiform.menuitem54.caption"
+msgid "Operations with a logbook"
+msgstr ""
+
+#: tminiform.menuitem55.caption
+msgctxt "tminiform.menuitem55.caption"
+msgid "Open log"
+msgstr ""
+
+#: tminiform.menuitem56.caption
+msgctxt "tminiform.menuitem56.caption"
+msgid "Create new log"
+msgstr ""
+
+#: tminiform.menuitem58.caption
+msgctxt "tminiform.menuitem58.caption"
+msgid "Compact and Repair Database"
+msgstr ""
+
+#: tminiform.menuitem6.caption
+msgctxt "tminiform.menuitem6.caption"
+msgid "Help"
+msgstr ""
+
+#: tminiform.menuitem60.caption
+msgctxt "tminiform.menuitem60.caption"
+msgid "Services of eQSL and LOTW"
+msgstr ""
+
+#: tminiform.menuitem61.caption
+msgctxt "tminiform.menuitem61.caption"
+msgid "Export Information from a Logbook to"
+msgstr ""
+
+#: tminiform.menuitem62.caption
+msgctxt "tminiform.menuitem62.caption"
+msgid "Import information in logbook from"
+msgstr ""
+
+#: tminiform.menuitem63.caption
+msgctxt "tminiform.menuitem63.caption"
+msgid "Thanks"
+msgstr ""
+
+#: tminiform.menuitem65.caption
+msgctxt "tminiform.menuitem65.caption"
+msgid "Clear new QSO"
+msgstr ""
+
+#: tminiform.menuitem66.caption
+msgctxt "tminiform.menuitem66.caption"
+msgid "Save QSO"
+msgstr ""
+
+#: tminiform.menuitem67.caption
+msgctxt "tminiform.menuitem67.caption"
+msgid "Edit QSO"
+msgstr ""
+
+#: tminiform.menuitem69.caption
+msgctxt "tminiform.menuitem69.caption"
+msgid "Exit"
+msgstr ""
+
+#: tminiform.menuitem7.caption
+msgctxt "tminiform.menuitem7.caption"
+msgid "Logs configuration"
+msgstr ""
+
+#: tminiform.menuitem70.caption
+msgctxt "tminiform.menuitem70.caption"
+msgid "File .ADIF"
+msgstr ""
+
+#: tminiform.menuitem71.caption
+msgctxt "tminiform.menuitem71.caption"
+msgid "File .TXT"
+msgstr ""
+
+#: tminiform.menuitem72.caption
+msgctxt "tminiform.menuitem72.caption"
+msgid "Compact mode"
+msgstr ""
+
+#: tminiform.menuitem73.caption
+msgctxt "tminiform.menuitem73.caption"
+msgid "Normal mode"
+msgstr ""
+
+#: tminiform.menuitem74.caption
+msgctxt "tminiform.menuitem74.caption"
+msgid "Fldigi"
+msgstr ""
+
+#: tminiform.menuitem81.caption
+msgctxt "tminiform.menuitem81.caption"
+msgid "Synchronization Databases"
+msgstr ""
+
+#: tminiform.menuitem82.caption
+msgctxt "tminiform.menuitem82.caption"
+msgid "From MySQL to SQLite"
+msgstr ""
+
+#: tminiform.menuitem83.caption
+msgctxt "tminiform.menuitem83.caption"
+msgid "From SQLite to MySQL"
+msgstr ""
+
+#: tminiform.menuitem84.caption
+msgctxt "tminiform.menuitem84.caption"
+msgid "Settings CAT"
+msgstr ""
+
+#: tminiform.menuitem85.caption
+msgctxt "tminiform.menuitem85.caption"
+msgid "Transceiver Control"
+msgstr ""
+
+#: tminiform.menuitem86.caption
+msgctxt "tminiform.menuitem86.caption"
+msgid "Display control form"
+msgstr ""
+
+#: tminiform.menuitem87.caption
+msgctxt "tminiform.menuitem87.caption"
+msgid "Settings external programs"
+msgstr ""
+
+#: tminiform.menuitem88.caption
+msgctxt "tminiform.menuitem88.caption"
+msgid "No"
+msgstr ""
+
+#: tminiform.menuitem89.caption
+msgctxt "tminiform.menuitem89.caption"
+msgid "Switch database"
+msgstr ""
+
+#: tminiform.menuitem91.caption
+msgctxt "tminiform.menuitem91.caption"
+msgid "Wizard"
+msgstr ""
+
+#: tminiform.menuitem92.caption
+msgctxt "tminiform.menuitem92.caption"
+msgid "Update"
+msgstr ""
+
+#: tminiform.menuitem94.caption
+msgctxt "tminiform.menuitem94.caption"
+msgid "About"
+msgstr ""
+
+#: tminiform.menuitem99.caption
+msgctxt "tminiform.menuitem99.caption"
+msgid "Configure table"
+msgstr ""
+
+#: tminiform.midownloadlang.caption
+msgctxt "tminiform.midownloadlang.caption"
+msgid "Download Languages"
+msgstr ""
+
+#: tminiform.milanguage.caption
+msgctxt "tminiform.milanguage.caption"
+msgid "Language"
+msgstr ""
+
+#: tminiform.misettings.caption
+msgctxt "tminiform.misettings.caption"
+msgid "Settings"
+msgstr ""
+
 #: tminiform.remotetimelabel.caption
 msgctxt "tminiform.remotetimelabel.caption"
 msgid "Remote time"
+msgstr ""
+
+#: tminiform.saveqsoinbase.caption
+msgid "SaveQSOinBase"
 msgstr ""
 
 #: tminiform.sbiota.caption
@@ -4395,21 +4046,6 @@ msgstr ""
 #: tminiform.sbstate4.caption
 msgctxt "tminiform.sbstate4.caption"
 msgid " .4. "
-msgstr ""
-
-#: tminiform.ttlocaltimelabel.caption
-msgctxt "tminiform.ttlocaltimelabel.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tminiform.ttremotelabel.caption
-msgctxt "tminiform.ttremotelabel.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tminiform.ttutclabel.caption
-msgctxt "tminiform.ttutclabel.caption"
-msgid "00:00:00"
 msgstr ""
 
 #: tminiform.utclabel.caption

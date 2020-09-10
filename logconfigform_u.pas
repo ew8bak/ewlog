@@ -112,7 +112,7 @@ var
 
 implementation
 
-uses MainForm_U, CreateJournalForm_U, dmFunc_U, InitDB_dm, MainFuncDM;
+uses miniform_u, CreateJournalForm_U, dmFunc_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -284,8 +284,8 @@ begin
       UpdateConfQuery.DataBase := InitDB.MySQLConnection
     else
       UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
-    if MainForm.ComboBox10.Text <> '' then
-      SelectCall(MainForm.ComboBox10.Text);
+    if MiniForm.CBCurrentLog.Text <> '' then
+      SelectCall(MiniForm.CBCurrentLog.Text);
   end;
 end;
 
@@ -323,7 +323,7 @@ begin
         SQLQuery2.Next;
       end;
       for i := 0 to ListBox1.Count - 1 do
-        if Pos(MainForm.ComboBox10.Text, ListBox1.Items[i]) > 0 then
+        if Pos(MiniForm.CBCurrentLog.Text, ListBox1.Items[i]) > 0 then
         begin
           ListBox1.Selected[i] := True;
           //exit;
@@ -414,7 +414,7 @@ begin
           if Pos(DBRecord.CurrCall, ListBox1.Items[i]) > 0 then
           begin
             ListBox1.Selected[i] := True;
-            MainFunc.LoadJournalItem(MainForm.ComboBox10);
+            MainFunc.LoadJournalItem(MiniForm.CBCurrentLog);
             exit;
           end;
       end

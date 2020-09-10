@@ -1,7 +1,7 @@
 object Earth: TEarth
-  Left = 534
-  Height = 240
-  Top = 181
+  Left = 404
+  Height = 156
+  Top = 635
   Width = 320
   Caption = 'Earth'
   OnCreate = FormCreate

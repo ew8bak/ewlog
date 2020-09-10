@@ -2437,6 +2437,629 @@ msgctxt "tfm_form.listview1.columns[3].caption"
 msgid "Enabled"
 msgstr "Включить"
 
+#: tgridsform.adduniqcallitem.caption
+#, fuzzy
+msgctxt "tgridsform.adduniqcallitem.caption"
+msgid "Add to unique Calls"
+msgstr "Добавить в базу уникальных позывных"
+
+#: tgridsform.caption
+msgid "Logbook"
+msgstr ""
+
+#: tgridsform.copytologitem0.caption
+#, fuzzy
+msgctxt "tgridsform.copytologitem0.caption"
+msgid "Copy to another log"
+msgstr "Скопировать в другой журнал"
+
+#: tgridsform.dbgrid1.columns[0].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[0].title.caption"
+msgid "QSL"
+msgstr "QSL"
+
+#: tgridsform.dbgrid1.columns[10].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[10].title.caption"
+msgid "State"
+msgstr "State"
+
+#: tgridsform.dbgrid1.columns[11].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[11].title.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: tgridsform.dbgrid1.columns[12].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[12].title.caption"
+msgid "RSTs"
+msgstr "RSTs"
+
+#: tgridsform.dbgrid1.columns[13].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[13].title.caption"
+msgid "RSTr"
+msgstr "RSTr"
+
+#: tgridsform.dbgrid1.columns[14].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[14].title.caption"
+msgid "IOTA"
+msgstr "IOTA"
+
+#: tgridsform.dbgrid1.columns[15].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[15].title.caption"
+msgid "Manager"
+msgstr "Менеджер"
+
+#: tgridsform.dbgrid1.columns[16].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[16].title.caption"
+msgid "QSLs Date"
+msgstr "QSLs Дата"
+
+#: tgridsform.dbgrid1.columns[17].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[17].title.caption"
+msgid "QSLr Date"
+msgstr "QSLr Дата"
+
+#: tgridsform.dbgrid1.columns[18].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[18].title.caption"
+msgid "LOTWr Date"
+msgstr "LOTWr Дата"
+
+#: tgridsform.dbgrid1.columns[19].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[19].title.caption"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: tgridsform.dbgrid1.columns[1].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[1].title.caption"
+msgid "QSLs"
+msgstr "QSLs"
+
+#: tgridsform.dbgrid1.columns[20].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[20].title.caption"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: tgridsform.dbgrid1.columns[21].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[21].title.caption"
+msgid "CQ Zone"
+msgstr "CQ Зона"
+
+#: tgridsform.dbgrid1.columns[22].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[22].title.caption"
+msgid "ITU Zone"
+msgstr "ITU Зона"
+
+#: tgridsform.dbgrid1.columns[23].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[23].title.caption"
+msgid "Manual Set"
+msgstr "Manual Set"
+
+#: tgridsform.dbgrid1.columns[24].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[24].title.caption"
+msgid "Continent"
+msgstr "Континент"
+
+#: tgridsform.dbgrid1.columns[25].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[25].title.caption"
+msgid "Valid DX"
+msgstr "Valid DX"
+
+#: tgridsform.dbgrid1.columns[26].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[26].title.caption"
+msgid "QSL r VIA"
+msgstr "QSL r VIA"
+
+#: tgridsform.dbgrid1.columns[27].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[27].title.caption"
+msgid "QSL s VIA"
+msgstr "QSL s VIA"
+
+#: tgridsform.dbgrid1.columns[28].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[28].title.caption"
+msgid "User"
+msgstr "User"
+
+#: tgridsform.dbgrid1.columns[29].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[29].title.caption"
+msgid "No calc DXCC"
+msgstr "No Calc DXCC"
+
+#: tgridsform.dbgrid1.columns[2].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[2].title.caption"
+msgid "Date"
+msgstr "Дата"
+
+#: tgridsform.dbgrid1.columns[3].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[3].title.caption"
+msgid "Time"
+msgstr "Время"
+
+#: tgridsform.dbgrid1.columns[4].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[4].title.caption"
+msgid "Frequency"
+msgstr "Частота"
+
+#: tgridsform.dbgrid1.columns[5].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[5].title.caption"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: tgridsform.dbgrid1.columns[6].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[6].title.caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tgridsform.dbgrid1.columns[7].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[7].title.caption"
+msgid "QSOSubMode"
+msgstr "СабМода"
+
+#: tgridsform.dbgrid1.columns[8].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[8].title.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tgridsform.dbgrid1.columns[9].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid1.columns[9].title.caption"
+msgid "QTH"
+msgstr "QTH"
+
+#: tgridsform.dbgrid2.columns[0].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[0].title.caption"
+msgid "QSL"
+msgstr "QSL"
+
+#: tgridsform.dbgrid2.columns[10].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[10].title.caption"
+msgid "State"
+msgstr "State"
+
+#: tgridsform.dbgrid2.columns[11].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[11].title.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: tgridsform.dbgrid2.columns[12].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[12].title.caption"
+msgid "RSTs"
+msgstr "RSTs"
+
+#: tgridsform.dbgrid2.columns[13].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[13].title.caption"
+msgid "RSTr"
+msgstr "RSTr"
+
+#: tgridsform.dbgrid2.columns[14].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[14].title.caption"
+msgid "IOTA"
+msgstr "IOTA"
+
+#: tgridsform.dbgrid2.columns[15].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[15].title.caption"
+msgid "Manager"
+msgstr "Менеджер"
+
+#: tgridsform.dbgrid2.columns[16].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[16].title.caption"
+msgid "QSLs Date"
+msgstr "QSLs Дата"
+
+#: tgridsform.dbgrid2.columns[17].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[17].title.caption"
+msgid "QSLr Date"
+msgstr "QSLr Дата"
+
+#: tgridsform.dbgrid2.columns[18].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[18].title.caption"
+msgid "LOTWr Date"
+msgstr "LOTWr Дата"
+
+#: tgridsform.dbgrid2.columns[19].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[19].title.caption"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: tgridsform.dbgrid2.columns[1].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[1].title.caption"
+msgid "QSLs"
+msgstr "QSLs"
+
+#: tgridsform.dbgrid2.columns[20].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[20].title.caption"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: tgridsform.dbgrid2.columns[21].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[21].title.caption"
+msgid "CQ Zone"
+msgstr "CQ Зона"
+
+#: tgridsform.dbgrid2.columns[22].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[22].title.caption"
+msgid "ITU Zone"
+msgstr "ITU Зона"
+
+#: tgridsform.dbgrid2.columns[23].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[23].title.caption"
+msgid "Manual Set"
+msgstr "Manual Set"
+
+#: tgridsform.dbgrid2.columns[24].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[24].title.caption"
+msgid "Continent"
+msgstr "Континент"
+
+#: tgridsform.dbgrid2.columns[25].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[25].title.caption"
+msgid "Valid DX"
+msgstr "Valid DX"
+
+#: tgridsform.dbgrid2.columns[26].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[26].title.caption"
+msgid "QSL r VIA"
+msgstr "QSL r VIA"
+
+#: tgridsform.dbgrid2.columns[27].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[27].title.caption"
+msgid "QSL s VIA"
+msgstr "QSL s VIA"
+
+#: tgridsform.dbgrid2.columns[28].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[28].title.caption"
+msgid "User"
+msgstr "User"
+
+#: tgridsform.dbgrid2.columns[29].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[29].title.caption"
+msgid "No calc DXCC"
+msgstr "No Calc DXCC"
+
+#: tgridsform.dbgrid2.columns[2].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[2].title.caption"
+msgid "Date"
+msgstr "Дата"
+
+#: tgridsform.dbgrid2.columns[3].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[3].title.caption"
+msgid "Time"
+msgstr "Время"
+
+#: tgridsform.dbgrid2.columns[4].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[4].title.caption"
+msgid "Frequency"
+msgstr "Частота"
+
+#: tgridsform.dbgrid2.columns[5].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[5].title.caption"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: tgridsform.dbgrid2.columns[6].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[6].title.caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tgridsform.dbgrid2.columns[7].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[7].title.caption"
+msgid "QSOSubMode"
+msgstr "СабМода"
+
+#: tgridsform.dbgrid2.columns[8].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[8].title.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tgridsform.dbgrid2.columns[9].title.caption
+#, fuzzy
+msgctxt "tgridsform.dbgrid2.columns[9].title.caption"
+msgid "QTH"
+msgstr "QTH"
+
+#: tgridsform.delrecitem.caption
+#, fuzzy
+msgctxt "tgridsform.delrecitem.caption"
+msgid "Delete Record"
+msgstr "Удалить запись"
+
+#: tgridsform.edititem.caption
+#, fuzzy
+msgctxt "tgridsform.edititem.caption"
+msgid "Edit QSO"
+msgstr "Редактировать QSO"
+
+#: tgridsform.exportadifitem.caption
+#, fuzzy
+msgctxt "tgridsform.exportadifitem.caption"
+msgid "Export selected QSO to ADIF"
+msgstr "Экспортировать выбранные QSO в ADIF"
+
+#: tgridsform.exporthrditem.caption
+#, fuzzy
+msgctxt "tgridsform.exporthrditem.caption"
+msgid "Export QSO to HRDLOG.Net"
+msgstr "Экспорт QSO в HRDLOG.Net"
+
+#: tgridsform.exportqslccitem.caption
+#, fuzzy
+msgctxt "tgridsform.exportqslccitem.caption"
+msgid "Export selected QSO to eQSL.cc"
+msgstr "Экспорт выбранных QSO в eQSL.cc"
+
+#: tgridsform.filtercancelitem.caption
+#, fuzzy
+msgctxt "tgridsform.filtercancelitem.caption"
+msgid "Cancel filter"
+msgstr "Сбросить фильтр"
+
+#: tgridsform.filterdnsentitem.caption
+#, fuzzy
+msgctxt "tgridsform.filterdnsentitem.caption"
+msgid "QSL do not send"
+msgstr "Не отправлять QSL"
+
+#: tgridsform.filteritem.caption
+#, fuzzy
+msgctxt "tgridsform.filteritem.caption"
+msgid "Record Filter"
+msgstr "Фильтр записей"
+
+#: tgridsform.filternsentqslitem.caption
+#, fuzzy
+msgctxt "tgridsform.filternsentqslitem.caption"
+msgid "Not sent QSL"
+msgstr "Не отправленные QSL"
+
+#: tgridsform.filterqslpitem.caption
+#, fuzzy
+msgctxt "tgridsform.filterqslpitem.caption"
+msgid "QSL printed"
+msgstr "Напечатанные QSL"
+
+#: tgridsform.filterrecqslitem.caption
+#, fuzzy
+msgctxt "tgridsform.filterrecqslitem.caption"
+msgid "Received QSL"
+msgstr "Полученные QSL"
+
+#: tgridsform.filtersentqslitem.caption
+#, fuzzy
+msgctxt "tgridsform.filtersentqslitem.caption"
+msgid "Sent QSL"
+msgstr "Отправленные QSL"
+
+#: tgridsform.finqqslmanitem.caption
+#, fuzzy
+msgctxt "tgridsform.finqqslmanitem.caption"
+msgid "Find QSLManager info in to Internet"
+msgstr "Поиск QSL менеджера в Интернете"
+
+#: tgridsform.markqsoitem.caption
+#, fuzzy
+msgctxt "tgridsform.markqsoitem.caption"
+msgid "Mark this QSO"
+msgstr "Пометить QSO"
+
+#: tgridsform.menuitem4.caption
+#, fuzzy
+msgctxt "tgridsform.menuitem4.caption"
+msgid "QSL Received"
+msgstr "QSL Получена"
+
+#: tgridsform.prefixitem.caption
+#, fuzzy
+msgctxt "tgridsform.prefixitem.caption"
+msgid "Prefix Manager"
+msgstr "Менеджер префиксов"
+
+#: tgridsform.printqsoitem.caption
+#, fuzzy
+msgctxt "tgridsform.printqsoitem.caption"
+msgid "Print Select QSO"
+msgstr "Печать выбранного QSO"
+
+#: tgridsform.printqsomanitem.caption
+msgctxt "tgridsform.printqsomanitem.caption"
+msgid "Manual print"
+msgstr ""
+
+#: tgridsform.printqsonomarkitem.caption
+#, fuzzy
+msgctxt "tgridsform.printqsonomarkitem.caption"
+msgid "Without mark QSL Printed"
+msgstr "Без пометки QSL напечатана"
+
+#: tgridsform.printqsowmarkitem.caption
+#, fuzzy
+msgctxt "tgridsform.printqsowmarkitem.caption"
+msgid "With mark QSL Printed"
+msgstr "С пометкой QSL Напечатана"
+
+#: tgridsform.qedititem.caption
+#, fuzzy
+msgctxt "tgridsform.qedititem.caption"
+msgid "Quick edit QSO"
+msgstr "Быстрое редактирование QSO"
+
+#: tgridsform.qslinfoitem.caption
+#, fuzzy
+msgctxt "tgridsform.qslinfoitem.caption"
+msgid "QSL Info"
+msgstr "QSL Инфо"
+
+#: tgridsform.qslnsitem.caption
+#, fuzzy
+msgctxt "tgridsform.qslnsitem.caption"
+msgid "QSL do not send"
+msgstr "Не отправлять QSL"
+
+#: tgridsform.qslprinteditem.caption
+#, fuzzy
+msgctxt "tgridsform.qslprinteditem.caption"
+msgid "QSL Printed"
+msgstr "QSL напечатана"
+
+#: tgridsform.qslqueueditem.caption
+#, fuzzy
+msgctxt "tgridsform.qslqueueditem.caption"
+msgid "QSL Queued"
+msgstr "QSL в очередь"
+
+#: tgridsform.qslreceiveditem.caption
+#, fuzzy
+msgctxt "tgridsform.qslreceiveditem.caption"
+msgid "QSL Received"
+msgstr "QSL Получена"
+
+#: tgridsform.qslsentitem.caption
+#, fuzzy
+msgctxt "tgridsform.qslsentitem.caption"
+msgid "QSL Sent"
+msgstr "QSL отправлена"
+
+#: tgridsform.qslwnsitem.caption
+#, fuzzy
+msgctxt "tgridsform.qslwnsitem.caption"
+msgid "QSL was not sent"
+msgstr "QSL не отправлена"
+
+#: tgridsform.qslwrvbitem.caption
+msgctxt "tgridsform.qslwrvbitem.caption"
+msgid "B - Bureau"
+msgstr ""
+
+#: tgridsform.qslwrvditem.caption
+msgctxt "tgridsform.qslwrvditem.caption"
+msgid "D - Direct"
+msgstr ""
+
+#: tgridsform.qslwrveitem.caption
+msgctxt "tgridsform.qslwrveitem.caption"
+msgid "E - Electronic"
+msgstr ""
+
+#: tgridsform.qslwrvgitem.caption
+msgctxt "tgridsform.qslwrvgitem.caption"
+msgid "G - GlobalQSL"
+msgstr ""
+
+#: tgridsform.qslwrvitem.caption
+#, fuzzy
+msgctxt "tgridsform.qslwrvitem.caption"
+msgid "QSL was received via"
+msgstr "QSL получена через"
+
+#: tgridsform.qslwrvmitem.caption
+msgctxt "tgridsform.qslwrvmitem.caption"
+msgid "M - Manager"
+msgstr ""
+
+#: tgridsform.qslwsvbitem.caption
+msgctxt "tgridsform.qslwsvbitem.caption"
+msgid "B - Bureau"
+msgstr ""
+
+#: tgridsform.qslwsvditem.caption
+msgctxt "tgridsform.qslwsvditem.caption"
+msgid "D - Direct"
+msgstr ""
+
+#: tgridsform.qslwsveitem.caption
+msgctxt "tgridsform.qslwsveitem.caption"
+msgid "E - Electronic"
+msgstr ""
+
+#: tgridsform.qslwsvgitem.caption
+msgctxt "tgridsform.qslwsvgitem.caption"
+msgid "G - GlobalQSL"
+msgstr ""
+
+#: tgridsform.qslwsvitem.caption
+#, fuzzy
+msgctxt "tgridsform.qslwsvitem.caption"
+msgid "QSL was sent via"
+msgstr "QSL отправлена через"
+
+#: tgridsform.qslwsvmitem.caption
+msgctxt "tgridsform.qslwsvmitem.caption"
+msgid "M - Manager"
+msgstr ""
+
+#: tgridsform.saveexcelitem.caption
+#, fuzzy
+msgctxt "tgridsform.saveexcelitem.caption"
+msgid "Save to Excel"
+msgstr "Сохранить в Excel"
+
+#: tgridsform.selectallitem.caption
+#, fuzzy
+msgctxt "tgridsform.selectallitem.caption"
+msgid "Select all records"
+msgstr "Выбрать все записи"
+
+#: tgridsform.sendclusteritem.caption
+#, fuzzy
+msgctxt "tgridsform.sendclusteritem.caption"
+msgid "Send to DX Cluster"
+msgstr "Отправить в DX кластер"
+
 #: thiddensettings.button1.caption
 msgctxt "thiddensettings.button1.caption"
 msgid "Save"
@@ -2962,1124 +3585,6 @@ msgctxt "tmainform.caption"
 msgid "EWLog - HAM Journal"
 msgstr "EWLog - Аппаратный журнал"
 
-#: tmainform.checkbox1.caption
-msgctxt "tmainform.checkbox1.caption"
-msgid "Real time"
-msgstr "Реальное время"
-
-#: tmainform.checkbox2.caption
-msgctxt "tmainform.checkbox2.caption"
-msgid "Save in UTC"
-msgstr "Сохранить в UTC"
-
-#: tmainform.checkbox3.caption
-msgctxt "tmainform.checkbox3.caption"
-msgid "Map"
-msgstr "Карта"
-
-#: tmainform.checkbox5.caption
-msgctxt "tmainform.checkbox5.caption"
-msgid "Mark"
-msgstr "Метка"
-
-#: tmainform.checkbox6.caption
-msgid "Filter"
-msgstr "Фильтр"
-
-#: tmainform.combobox1.text
-msgctxt "tmainform.combobox1.text"
-msgid "7.000.00"
-msgstr ""
-
-#: tmainform.combobox4.text
-msgctxt "tmainform.combobox4.text"
-msgid "59"
-msgstr ""
-
-#: tmainform.combobox5.text
-msgctxt "tmainform.combobox5.text"
-msgid "59"
-msgstr ""
-
-#: tmainform.combobox7.text
-msgctxt "tmainform.combobox7.text"
-msgid "Wasn't sent"
-msgstr "Не отправлена"
-
-#: tmainform.dateedit1.text
-msgctxt "tmainform.dateedit1.text"
-msgid "  .  .    "
-msgstr ""
-
-#: tmainform.datetimepicker1.textfornulldate
-msgctxt "tmainform.datetimepicker1.textfornulldate"
-msgid "NULL"
-msgstr ""
-
-#: tmainform.dbgrid1.columns[0].title.caption
-msgctxt "tmainform.dbgrid1.columns[0].title.caption"
-msgid "QSL"
-msgstr "QSL"
-
-#: tmainform.dbgrid1.columns[10].title.caption
-msgctxt "tmainform.dbgrid1.columns[10].title.caption"
-msgid "State"
-msgstr "State"
-
-#: tmainform.dbgrid1.columns[11].title.caption
-msgctxt "tmainform.dbgrid1.columns[11].title.caption"
-msgid "Grid"
-msgstr "Локатор"
-
-#: tmainform.dbgrid1.columns[12].title.caption
-msgctxt "tmainform.dbgrid1.columns[12].title.caption"
-msgid "RSTs"
-msgstr "RSTs"
-
-#: tmainform.dbgrid1.columns[13].title.caption
-msgctxt "tmainform.dbgrid1.columns[13].title.caption"
-msgid "RSTr"
-msgstr "RSTr"
-
-#: tmainform.dbgrid1.columns[14].title.caption
-msgctxt "tmainform.dbgrid1.columns[14].title.caption"
-msgid "IOTA"
-msgstr "IOTA"
-
-#: tmainform.dbgrid1.columns[15].title.caption
-msgctxt "tmainform.dbgrid1.columns[15].title.caption"
-msgid "Manager"
-msgstr "Менеджер"
-
-#: tmainform.dbgrid1.columns[16].title.caption
-msgctxt "tmainform.dbgrid1.columns[16].title.caption"
-msgid "QSLs Date"
-msgstr "QSLs Дата"
-
-#: tmainform.dbgrid1.columns[17].title.caption
-msgctxt "tmainform.dbgrid1.columns[17].title.caption"
-msgid "QSLr Date"
-msgstr "QSLr Дата"
-
-#: tmainform.dbgrid1.columns[18].title.caption
-msgctxt "tmainform.dbgrid1.columns[18].title.caption"
-msgid "LOTWr Date"
-msgstr "LOTWr Дата"
-
-#: tmainform.dbgrid1.columns[19].title.caption
-msgctxt "tmainform.dbgrid1.columns[19].title.caption"
-msgid "Prefix"
-msgstr "Префикс"
-
-#: tmainform.dbgrid1.columns[1].title.caption
-msgctxt "tmainform.dbgrid1.columns[1].title.caption"
-msgid "QSLs"
-msgstr "QSLs"
-
-#: tmainform.dbgrid1.columns[20].title.caption
-msgctxt "tmainform.dbgrid1.columns[20].title.caption"
-msgid "DXCC"
-msgstr "DXCC"
-
-#: tmainform.dbgrid1.columns[21].title.caption
-msgctxt "tmainform.dbgrid1.columns[21].title.caption"
-msgid "CQ Zone"
-msgstr "CQ Зона"
-
-#: tmainform.dbgrid1.columns[22].title.caption
-msgctxt "tmainform.dbgrid1.columns[22].title.caption"
-msgid "ITU Zone"
-msgstr "ITU Зона"
-
-#: tmainform.dbgrid1.columns[23].title.caption
-msgctxt "tmainform.dbgrid1.columns[23].title.caption"
-msgid "Manual Set"
-msgstr "Manual Set"
-
-#: tmainform.dbgrid1.columns[24].title.caption
-msgctxt "tmainform.dbgrid1.columns[24].title.caption"
-msgid "Continent"
-msgstr "Континент"
-
-#: tmainform.dbgrid1.columns[25].title.caption
-msgctxt "tmainform.dbgrid1.columns[25].title.caption"
-msgid "Valid DX"
-msgstr "Valid DX"
-
-#: tmainform.dbgrid1.columns[26].title.caption
-msgctxt "tmainform.dbgrid1.columns[26].title.caption"
-msgid "QSL r VIA"
-msgstr "QSL r VIA"
-
-#: tmainform.dbgrid1.columns[27].title.caption
-msgctxt "tmainform.dbgrid1.columns[27].title.caption"
-msgid "QSL s VIA"
-msgstr "QSL s VIA"
-
-#: tmainform.dbgrid1.columns[28].title.caption
-msgctxt "tmainform.dbgrid1.columns[28].title.caption"
-msgid "User"
-msgstr "User"
-
-#: tmainform.dbgrid1.columns[29].title.caption
-msgctxt "tmainform.dbgrid1.columns[29].title.caption"
-msgid "No calc DXCC"
-msgstr "No Calc DXCC"
-
-#: tmainform.dbgrid1.columns[2].title.caption
-msgctxt "tmainform.dbgrid1.columns[2].title.caption"
-msgid "Date"
-msgstr "Дата"
-
-#: tmainform.dbgrid1.columns[3].title.caption
-msgctxt "tmainform.dbgrid1.columns[3].title.caption"
-msgid "Time"
-msgstr "Время"
-
-#: tmainform.dbgrid1.columns[4].title.caption
-msgctxt "tmainform.dbgrid1.columns[4].title.caption"
-msgid "Frequency"
-msgstr "Частота"
-
-#: tmainform.dbgrid1.columns[5].title.caption
-msgctxt "tmainform.dbgrid1.columns[5].title.caption"
-msgid "Callsign"
-msgstr "Позывной"
-
-#: tmainform.dbgrid1.columns[6].title.caption
-msgctxt "tmainform.dbgrid1.columns[6].title.caption"
-msgid "Mode"
-msgstr "Мода"
-
-#: tmainform.dbgrid1.columns[7].title.caption
-msgctxt "tmainform.dbgrid1.columns[7].title.caption"
-msgid "QSOSubMode"
-msgstr "СабМода"
-
-#: tmainform.dbgrid1.columns[8].title.caption
-msgctxt "tmainform.dbgrid1.columns[8].title.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tmainform.dbgrid1.columns[9].title.caption
-msgctxt "tmainform.dbgrid1.columns[9].title.caption"
-msgid "QTH"
-msgstr "QTH"
-
-#: tmainform.dbgrid2.columns[0].title.caption
-msgctxt "tmainform.dbgrid2.columns[0].title.caption"
-msgid "QSL"
-msgstr "QSL"
-
-#: tmainform.dbgrid2.columns[10].title.caption
-msgctxt "tmainform.dbgrid2.columns[10].title.caption"
-msgid "State"
-msgstr "State"
-
-#: tmainform.dbgrid2.columns[11].title.caption
-msgctxt "tmainform.dbgrid2.columns[11].title.caption"
-msgid "Grid"
-msgstr "Локатор"
-
-#: tmainform.dbgrid2.columns[12].title.caption
-msgctxt "tmainform.dbgrid2.columns[12].title.caption"
-msgid "RSTs"
-msgstr "RSTs"
-
-#: tmainform.dbgrid2.columns[13].title.caption
-msgctxt "tmainform.dbgrid2.columns[13].title.caption"
-msgid "RSTr"
-msgstr "RSTr"
-
-#: tmainform.dbgrid2.columns[14].title.caption
-msgctxt "tmainform.dbgrid2.columns[14].title.caption"
-msgid "IOTA"
-msgstr "IOTA"
-
-#: tmainform.dbgrid2.columns[15].title.caption
-msgctxt "tmainform.dbgrid2.columns[15].title.caption"
-msgid "Manager"
-msgstr "Менеджер"
-
-#: tmainform.dbgrid2.columns[16].title.caption
-msgctxt "tmainform.dbgrid2.columns[16].title.caption"
-msgid "QSLs Date"
-msgstr "QSLs Дата"
-
-#: tmainform.dbgrid2.columns[17].title.caption
-msgctxt "tmainform.dbgrid2.columns[17].title.caption"
-msgid "QSLr Date"
-msgstr "QSLr Дата"
-
-#: tmainform.dbgrid2.columns[18].title.caption
-msgctxt "tmainform.dbgrid2.columns[18].title.caption"
-msgid "LOTWr Date"
-msgstr "LOTWr Дата"
-
-#: tmainform.dbgrid2.columns[19].title.caption
-msgctxt "tmainform.dbgrid2.columns[19].title.caption"
-msgid "Prefix"
-msgstr "Префикс"
-
-#: tmainform.dbgrid2.columns[1].title.caption
-msgctxt "tmainform.dbgrid2.columns[1].title.caption"
-msgid "QSLs"
-msgstr "QSLs"
-
-#: tmainform.dbgrid2.columns[20].title.caption
-msgctxt "tmainform.dbgrid2.columns[20].title.caption"
-msgid "DXCC"
-msgstr "DXCC"
-
-#: tmainform.dbgrid2.columns[21].title.caption
-msgctxt "tmainform.dbgrid2.columns[21].title.caption"
-msgid "CQ Zone"
-msgstr "CQ Зона"
-
-#: tmainform.dbgrid2.columns[22].title.caption
-msgctxt "tmainform.dbgrid2.columns[22].title.caption"
-msgid "ITU Zone"
-msgstr "ITU Зона"
-
-#: tmainform.dbgrid2.columns[23].title.caption
-msgctxt "tmainform.dbgrid2.columns[23].title.caption"
-msgid "Manual Set"
-msgstr "Manual Set"
-
-#: tmainform.dbgrid2.columns[24].title.caption
-msgctxt "tmainform.dbgrid2.columns[24].title.caption"
-msgid "Continent"
-msgstr "Континент"
-
-#: tmainform.dbgrid2.columns[25].title.caption
-msgctxt "tmainform.dbgrid2.columns[25].title.caption"
-msgid "Valid DX"
-msgstr "Valid DX"
-
-#: tmainform.dbgrid2.columns[26].title.caption
-msgctxt "tmainform.dbgrid2.columns[26].title.caption"
-msgid "QSL r VIA"
-msgstr "QSL r VIA"
-
-#: tmainform.dbgrid2.columns[27].title.caption
-msgctxt "tmainform.dbgrid2.columns[27].title.caption"
-msgid "QSL s VIA"
-msgstr "QSL s VIA"
-
-#: tmainform.dbgrid2.columns[28].title.caption
-msgctxt "tmainform.dbgrid2.columns[28].title.caption"
-msgid "User"
-msgstr "User"
-
-#: tmainform.dbgrid2.columns[29].title.caption
-msgctxt "tmainform.dbgrid2.columns[29].title.caption"
-msgid "No calc DXCC"
-msgstr "No Calc DXCC"
-
-#: tmainform.dbgrid2.columns[2].title.caption
-msgctxt "tmainform.dbgrid2.columns[2].title.caption"
-msgid "Date"
-msgstr "Дата"
-
-#: tmainform.dbgrid2.columns[3].title.caption
-msgctxt "tmainform.dbgrid2.columns[3].title.caption"
-msgid "Time"
-msgstr "Время"
-
-#: tmainform.dbgrid2.columns[4].title.caption
-msgctxt "tmainform.dbgrid2.columns[4].title.caption"
-msgid "Frequency"
-msgstr "Частота"
-
-#: tmainform.dbgrid2.columns[5].title.caption
-msgctxt "tmainform.dbgrid2.columns[5].title.caption"
-msgid "Callsign"
-msgstr "Позывной"
-
-#: tmainform.dbgrid2.columns[6].title.caption
-msgctxt "tmainform.dbgrid2.columns[6].title.caption"
-msgid "Mode"
-msgstr "Мода"
-
-#: tmainform.dbgrid2.columns[7].title.caption
-msgctxt "tmainform.dbgrid2.columns[7].title.caption"
-msgid "QSOSubMode"
-msgstr "СабМода"
-
-#: tmainform.dbgrid2.columns[8].title.caption
-msgctxt "tmainform.dbgrid2.columns[8].title.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tmainform.dbgrid2.columns[9].title.caption
-msgctxt "tmainform.dbgrid2.columns[9].title.caption"
-msgid "QTH"
-msgstr "QTH"
-
-#: tmainform.label1.caption
-msgctxt "tmainform.label1.caption"
-msgid "Date"
-msgstr "Дата"
-
-#: tmainform.label10.caption
-msgctxt "tmainform.label10.caption"
-msgid "QSL Via"
-msgstr ""
-
-#: tmainform.label11.caption
-msgctxt "tmainform.label11.caption"
-msgid "Grid"
-msgstr "ЛОК"
-
-#: tmainform.label12.caption
-msgctxt "tmainform.label12.caption"
-msgid "State"
-msgstr "State"
-
-#: tmainform.label13.caption
-msgctxt "tmainform.label13.caption"
-msgid "IOTA"
-msgstr "IOTA"
-
-#: tmainform.label14.caption
-msgctxt "tmainform.label14.caption"
-msgid "MGR"
-msgstr ""
-
-#: tmainform.label15.caption
-msgctxt "tmainform.label15.caption"
-msgid "Sub. State"
-msgstr "Поле стат."
-
-#: tmainform.label16.caption
-msgctxt "tmainform.label16.caption"
-msgid "Comment"
-msgstr "Комментарий"
-
-#: tmainform.label17.caption
-msgctxt "tmainform.label17.caption"
-msgid "0"
-msgstr ""
-
-#: tmainform.label18.caption
-msgctxt "tmainform.label18.caption"
-msgid "Date"
-msgstr "Дата"
-
-#: tmainform.label19.caption
-msgctxt "tmainform.label19.caption"
-msgid "Time"
-msgstr "Время"
-
-#: tmainform.label2.caption
-msgctxt "tmainform.label2.caption"
-msgid "Band"
-msgstr "Диап"
-
-#: tmainform.label20.caption
-#, fuzzy
-#| msgid "Frequency"
-msgctxt "tmainform.label20.caption"
-msgid "Band"
-msgstr "Частота"
-
-#: tmainform.label21.caption
-msgctxt "tmainform.label21.caption"
-msgid "Mode"
-msgstr "Мода"
-
-#: tmainform.label22.caption
-msgctxt "tmainform.label22.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tmainform.label23.caption
-msgctxt "tmainform.label23.caption"
-msgid "Local time "
-msgstr "Локальное время "
-
-#: tmainform.label24.caption
-msgctxt "tmainform.label24.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tmainform.label25.caption
-msgctxt "tmainform.label25.caption"
-msgid "UTC"
-msgstr ""
-
-#: tmainform.label26.caption
-msgctxt "tmainform.label26.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tmainform.label27.caption
-msgctxt "tmainform.label27.caption"
-msgid "Remote time"
-msgstr "Время у корреспондента"
-
-#: tmainform.label28.caption
-msgctxt "tmainform.label28.caption"
-msgid "00:00:00"
-msgstr ""
-
-#: tmainform.label29.caption
-msgctxt "tmainform.label29.caption"
-msgid "Azimuth"
-msgstr "Азимут"
-
-#: tmainform.label3.caption
-msgctxt "tmainform.label3.caption"
-msgid "Mode"
-msgstr "Мода"
-
-#: tmainform.label30.caption
-msgctxt "tmainform.label30.caption"
-msgid "Territory"
-msgstr "Тер-ия"
-
-#: tmainform.label31.caption
-msgctxt "tmainform.label31.caption"
-msgid "DXCC"
-msgstr "DXCC"
-
-#: tmainform.label32.caption
-msgctxt "tmainform.label32.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label33.caption
-msgctxt "tmainform.label33.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label34.caption
-msgctxt "tmainform.label34.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label35.caption
-msgctxt "tmainform.label35.caption"
-msgid "Distance"
-msgstr "Трасса"
-
-#: tmainform.label36.caption
-msgctxt "tmainform.label36.caption"
-msgid "Prefix"
-msgstr "Префикс"
-
-#: tmainform.label37.caption
-msgctxt "tmainform.label37.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label38.caption
-msgctxt "tmainform.label38.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label39.caption
-msgctxt "tmainform.label39.caption"
-msgid "Latitude"
-msgstr "Широта"
-
-#: tmainform.label4.caption
-msgctxt "tmainform.label4.caption"
-msgid "Time (UTC)"
-msgstr "Время (UTC)"
-
-#: tmainform.label40.caption
-msgctxt "tmainform.label40.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label41.caption
-msgctxt "tmainform.label41.caption"
-msgid "Longitude"
-msgstr "Долгота"
-
-#: tmainform.label42.caption
-msgctxt "tmainform.label42.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label43.caption
-msgctxt "tmainform.label43.caption"
-msgid "......."
-msgstr ""
-
-#: tmainform.label44.caption
-msgctxt "tmainform.label44.caption"
-msgid "CQ"
-msgstr "CQ"
-
-#: tmainform.label45.caption
-msgctxt "tmainform.label45.caption"
-msgid ".."
-msgstr ""
-
-#: tmainform.label46.caption
-msgctxt "tmainform.label46.caption"
-msgid "ITU"
-msgstr "ITU"
-
-#: tmainform.label47.caption
-msgctxt "tmainform.label47.caption"
-msgid ".."
-msgstr ""
-
-#: tmainform.label48.caption
-msgctxt "tmainform.label48.caption"
-msgid "Your QSL"
-msgstr "Моя QSL"
-
-#: tmainform.label49.caption
-msgid "Current log"
-msgstr "Текущий журнал"
-
-#: tmainform.label5.caption
-msgctxt "tmainform.label5.caption"
-msgid "Callsign"
-msgstr "Позывной"
-
-#: tmainform.label50.caption
-msgid "New update available"
-msgstr "Доступно новое обновление"
-
-#: tmainform.label51.caption
-msgid "My grid"
-msgstr "Мой локатор"
-
-#: tmainform.label52.caption
-msgid "My state"
-msgstr "Мой State"
-
-#: tmainform.label53.caption
-msgctxt "tmainform.label53.caption"
-msgid "Worked"
-msgstr "Сработано"
-
-#: tmainform.label54.caption
-msgctxt "tmainform.label54.caption"
-msgid "QSL"
-msgstr "QSL"
-
-#: tmainform.label55.caption
-msgctxt "tmainform.label55.caption"
-msgid "(Cfm)"
-msgstr ""
-
-#: tmainform.label6.caption
-msgctxt "tmainform.label6.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tmainform.label7.caption
-msgctxt "tmainform.label7.caption"
-msgid "QTH"
-msgstr "QTH"
-
-#: tmainform.label8.caption
-msgctxt "tmainform.label8.caption"
-msgid "RST sent"
-msgstr "RST отп"
-
-#: tmainform.label9.caption
-msgctxt "tmainform.label9.caption"
-msgid "RST rcvd"
-msgstr "RST пол"
-
-#: tmainform.menuitem1.caption
-msgid "LogBook"
-msgstr "Журнал"
-
-#: tmainform.menuitem10.caption
-msgctxt "tmainform.menuitem10.caption"
-msgid "QSL Received"
-msgstr "QSL Получена"
-
-#: tmainform.menuitem102.caption
-msgid "Donations"
-msgstr "Пожертвования"
-
-#: tmainform.menuitem103.caption
-msgctxt "tmainform.menuitem103.caption"
-msgid "Record Filter"
-msgstr "Фильтр записей"
-
-#: tmainform.menuitem104.caption
-msgid "Received QSL"
-msgstr "Полученные QSL"
-
-#: tmainform.menuitem105.caption
-msgid "Sent QSL"
-msgstr "Отправленные QSL"
-
-#: tmainform.menuitem106.caption
-msgid "Not sent QSL"
-msgstr "Не отправленные QSL"
-
-#: tmainform.menuitem107.caption
-msgctxt "tmainform.menuitem107.caption"
-msgid "QSL printed"
-msgstr "Напечатанные QSL"
-
-#: tmainform.menuitem108.caption
-msgctxt "tmainform.menuitem108.caption"
-msgid "QSL do not send"
-msgstr "Не отправлять QSL"
-
-#: tmainform.menuitem109.caption
-msgid "Cancel filter"
-msgstr "Сбросить фильтр"
-
-#: tmainform.menuitem11.caption
-msgctxt "tmainform.menuitem11.caption"
-msgid "QSL Received"
-msgstr "QSL Получена"
-
-#: tmainform.menuitem110.caption
-msgid "Displaying photos with QRZ"
-msgstr "Отображать фото из QRZ"
-
-#: tmainform.menuitem111.caption
-msgid "On"
-msgstr "Включить"
-
-#: tmainform.menuitem112.caption
-msgid "Off"
-msgstr "Отключить"
-
-#: tmainform.menuitem116.caption
-msgid "Language"
-msgstr "Язык"
-
-#: tmainform.menuitem117.caption
-msgid "Manual print"
-msgstr ""
-
-#: tmainform.menuitem118.caption
-msgid "Clear all journal"
-msgstr "Очистить весь журнал"
-
-#: tmainform.menuitem119.caption
-msgid "Download Languages"
-msgstr "Загрузить переводы"
-
-#: tmainform.menuitem12.caption
-msgid "QSL Queued"
-msgstr "QSL в очередь"
-
-#: tmainform.menuitem120.caption
-msgid "Print Select QSO"
-msgstr "Печать выбранного QSO"
-
-#: tmainform.menuitem121.caption
-msgid "With mark QSL Printed"
-msgstr "С пометкой QSL Напечатана"
-
-#: tmainform.menuitem122.caption
-msgid "Without mark QSL Printed"
-msgstr "Без пометки QSL напечатана"
-
-#: tmainform.menuitem123.caption
-msgctxt "tmainform.menuitem123.caption"
-msgid "Frequency Manager"
-msgstr "Частотный Менеджер"
-
-#: tmainform.menuitem124.caption
-msgctxt "tmainform.menuitem124.caption"
-msgid "Modulation Manager"
-msgstr "Менеджер Модуляций"
-
-#: tmainform.menuitem13.caption
-msgctxt "tmainform.menuitem13.caption"
-msgid "QSL Printed"
-msgstr "QSL напечатана"
-
-#: tmainform.menuitem14.caption
-msgid "QSL Sent"
-msgstr "QSL отправлена"
-
-#: tmainform.menuitem15.caption
-msgctxt "tmainform.menuitem15.caption"
-msgid "QSL Info"
-msgstr "QSL Инфо"
-
-#: tmainform.menuitem16.caption
-msgid "QSL was not sent"
-msgstr "QSL не отправлена"
-
-#: tmainform.menuitem17.caption
-msgctxt "tmainform.menuitem17.caption"
-msgid "QSL do not send"
-msgstr "QSL не отправлять"
-
-#: tmainform.menuitem18.caption
-msgid "Find QSLManager info in to Internet"
-msgstr "Поиск QSL менеджера в Интернете"
-
-#: tmainform.menuitem2.caption
-msgid "Settings"
-msgstr "Настройки"
-
-#: tmainform.menuitem20.caption
-msgctxt "tmainform.menuitem20.caption"
-msgid "QSL was received via"
-msgstr "QSL получена через"
-
-#: tmainform.menuitem21.caption
-msgctxt "tmainform.menuitem21.caption"
-msgid "B - Bureau"
-msgstr ""
-
-#: tmainform.menuitem22.caption
-msgctxt "tmainform.menuitem22.caption"
-msgid "D - Direct"
-msgstr ""
-
-#: tmainform.menuitem23.caption
-msgctxt "tmainform.menuitem23.caption"
-msgid "E - Electronic"
-msgstr ""
-
-#: tmainform.menuitem24.caption
-msgctxt "tmainform.menuitem24.caption"
-msgid "M - Manager"
-msgstr ""
-
-#: tmainform.menuitem25.caption
-msgctxt "tmainform.menuitem25.caption"
-msgid "G - GlobalQSL"
-msgstr ""
-
-#: tmainform.menuitem26.caption
-msgctxt "tmainform.menuitem26.caption"
-msgid "QSL was sent via"
-msgstr "QSL отправлена через"
-
-#: tmainform.menuitem27.caption
-msgctxt "tmainform.menuitem27.caption"
-msgid "B - Bureau"
-msgstr ""
-
-#: tmainform.menuitem28.caption
-msgctxt "tmainform.menuitem28.caption"
-msgid "D - Direct"
-msgstr ""
-
-#: tmainform.menuitem29.caption
-msgctxt "tmainform.menuitem29.caption"
-msgid "E - Electronic"
-msgstr ""
-
-#: tmainform.menuitem3.caption
-msgid "View"
-msgstr "Просмотр"
-
-#: tmainform.menuitem30.caption
-msgctxt "tmainform.menuitem30.caption"
-msgid "M - Manager"
-msgstr ""
-
-#: tmainform.menuitem31.caption
-msgctxt "tmainform.menuitem31.caption"
-msgid "G - GlobalQSL"
-msgstr ""
-
-#: tmainform.menuitem33.caption
-msgid "Add to unique Calls"
-msgstr "Добавить в базу уникальных позывных"
-
-#: tmainform.menuitem35.caption
-msgid "Select all records"
-msgstr "Выбрать все записи"
-
-#: tmainform.menuitem36.caption
-msgid "Export selected QSO to ADIF"
-msgstr "Экспортировать выбранные QSO в ADIF"
-
-#: tmainform.menuitem37.caption
-msgid "Export QSO to HRDLOG.Net"
-msgstr "Экспорт QSO в HRDLOG.Net"
-
-#: tmainform.menuitem38.caption
-msgid "Export selected QSO to eQSL.cc"
-msgstr "Экспорт выбранных QSO в eQSL.cc"
-
-#: tmainform.menuitem4.caption
-msgctxt "tmainform.menuitem4.caption"
-msgid "External programs"
-msgstr "Внешние программы"
-
-#: tmainform.menuitem40.caption
-msgid "Quick edit QSO"
-msgstr "Быстрое редактирование QSO"
-
-#: tmainform.menuitem41.caption
-msgctxt "tmainform.menuitem41.caption"
-msgid "Prefix Manager"
-msgstr "Менеджер префиксов"
-
-#: tmainform.menuitem42.caption
-msgctxt "tmainform.menuitem42.caption"
-msgid "Edit QSO"
-msgstr "Редактировать QSO"
-
-#: tmainform.menuitem43.caption
-msgctxt "tmainform.menuitem43.caption"
-msgid "WSJT-X"
-msgstr ""
-
-#: tmainform.menuitem45.caption
-msgid "Copy to another log"
-msgstr "Скопировать в другой журнал"
-
-#: tmainform.menuitem46.caption
-msgid "Save to Excel"
-msgstr "Сохранить в Excel"
-
-#: tmainform.menuitem48.caption
-msgid "Set date synchronization"
-msgstr "Установить дату синхронизации"
-
-#: tmainform.menuitem49.caption
-msgid "Send to DX Cluster"
-msgstr "Отправить в DX кластер"
-
-#: tmainform.menuitem5.caption
-msgid "Quick start"
-msgstr "Быстрый запуск"
-
-#: tmainform.menuitem51.caption
-msgid "Delete Record"
-msgstr "Удалить запись"
-
-#: tmainform.menuitem52.caption
-msgid "Configure program"
-msgstr "Настройка программы"
-
-#: tmainform.menuitem53.caption
-msgid "Format ADIF"
-msgstr "Формат ADIF"
-
-#: tmainform.menuitem54.caption
-msgid "Operations with a logbook"
-msgstr "Операции с журналом"
-
-#: tmainform.menuitem55.caption
-msgid "Open log"
-msgstr "Открыть журнал"
-
-#: tmainform.menuitem56.caption
-msgid "Create new log"
-msgstr "Создать новый журнал"
-
-#: tmainform.menuitem58.caption
-msgid "Compact and Repair Database"
-msgstr "Сжать и восстановить базу"
-
-#: tmainform.menuitem6.caption
-msgid "Help"
-msgstr "Помощь"
-
-#: tmainform.menuitem60.caption
-msgid "Services of eQSL and LOTW"
-msgstr "Сервисы eQSL и LotW"
-
-#: tmainform.menuitem61.caption
-msgid "Export Information from a Logbook to"
-msgstr "Экспорт данных журнала в"
-
-#: tmainform.menuitem62.caption
-msgid "Import information in logbook from"
-msgstr "Импорт данных журнала из"
-
-#: tmainform.menuitem63.caption
-msgctxt "tmainform.menuitem63.caption"
-msgid "Thanks"
-msgstr "Спасибо"
-
-#: tmainform.menuitem65.caption
-msgid "Clear new QSO"
-msgstr "Очистить QSO"
-
-#: tmainform.menuitem66.caption
-msgctxt "tmainform.menuitem66.caption"
-msgid "Save QSO"
-msgstr "Сохранить QSO"
-
-#: tmainform.menuitem67.caption
-msgctxt "tmainform.menuitem67.caption"
-msgid "Edit QSO"
-msgstr "Редактировать QSO"
-
-#: tmainform.menuitem69.caption
-msgctxt "tmainform.menuitem69.caption"
-msgid "Exit"
-msgstr "Выход"
-
-#: tmainform.menuitem7.caption
-msgctxt "tmainform.menuitem7.caption"
-msgid "Logs configuration"
-msgstr "Настройки журнала"
-
-#: tmainform.menuitem70.caption
-msgid "File .ADIF"
-msgstr "Файл .ADIF"
-
-#: tmainform.menuitem71.caption
-msgid "File .TXT"
-msgstr "Файл .TXT"
-
-#: tmainform.menuitem72.caption
-msgid "Compact mode"
-msgstr "Компактный режим"
-
-#: tmainform.menuitem73.caption
-msgid "Normal mode"
-msgstr ""
-
-#: tmainform.menuitem74.caption
-msgctxt "tmainform.menuitem74.caption"
-msgid "Fldigi"
-msgstr ""
-
-#: tmainform.menuitem75.caption
-msgctxt "tmainform.menuitem75.caption"
-msgid "Change Country Information"
-msgstr "Изменить информацию по стране"
-
-#: tmainform.menuitem76.caption
-msgid "Filter settings"
-msgstr "Настройки фильтров"
-
-#: tmainform.menuitem78.caption
-msgid "Satellite"
-msgstr "Спутники"
-
-#: tmainform.menuitem79.caption
-msgctxt "tmainform.menuitem79.caption"
-msgid "Change Country Information"
-msgstr "Изменить информацию по стране"
-
-#: tmainform.menuitem8.caption
-msgid "Mark this QSO"
-msgstr "Пометить QSO"
-
-#: tmainform.menuitem80.caption
-msgid "Change Province Information"
-msgstr "Изменить информацию по области"
-
-#: tmainform.menuitem81.caption
-msgid "Synchronization Databases"
-msgstr "Синхронизация баз данных"
-
-#: tmainform.menuitem82.caption
-msgid "From MySQL to SQLite"
-msgstr "Из MySQL в SQLite"
-
-#: tmainform.menuitem83.caption
-msgid "From SQLite to MySQL"
-msgstr "Из SQLite в MySQL"
-
-#: tmainform.menuitem84.caption
-msgctxt "tmainform.menuitem84.caption"
-msgid "Settings CAT"
-msgstr "Настройки CAT"
-
-#: tmainform.menuitem85.caption
-msgid "Transceiver Control"
-msgstr "Управление трансивером"
-
-#: tmainform.menuitem86.caption
-msgid "Display control form"
-msgstr "Отображать форму управления"
-
-#: tmainform.menuitem87.caption
-msgid "Settings external programs"
-msgstr "Настройки внешних программ"
-
-#: tmainform.menuitem88.caption
-msgid "No"
-msgstr "Нет"
-
-#: tmainform.menuitem89.caption
-msgid "Switch database"
-msgstr "Переключить СУБД"
-
-#: tmainform.menuitem91.caption
-msgctxt "tmainform.menuitem91.caption"
-msgid "Wizard"
-msgstr "Помощник установки"
-
-#: tmainform.menuitem92.caption
-msgctxt "tmainform.menuitem92.caption"
-msgid "Update"
-msgstr "Обновление"
-
-#: tmainform.menuitem94.caption
-msgctxt "tmainform.menuitem94.caption"
-msgid "About"
-msgstr "О программе"
-
-#: tmainform.menuitem95.caption
-msgid "Minimize to tray"
-msgstr "Свернуть в трей"
-
-#: tmainform.menuitem96.caption
-msgid "Expand"
-msgstr "Развернуть"
-
-#: tmainform.menuitem98.caption
-msgctxt "tmainform.menuitem98.caption"
-msgid "Exit"
-msgstr "Выход"
-
-#: tmainform.menuitem99.caption
-msgid "Configure table"
-msgstr "Редактировать таблицу"
-
-#: tmainform.speedbutton1.caption
-msgctxt "tmainform.speedbutton1.caption"
-msgid " ... "
-msgstr ""
-
-#: tmainform.speedbutton2.caption
-msgctxt "tmainform.speedbutton2.caption"
-msgid " ... "
-msgstr ""
-
-#: tmainform.speedbutton3.caption
-msgctxt "tmainform.speedbutton3.caption"
-msgid " ... "
-msgstr ""
-
-#: tmainform.speedbutton4.caption
-msgid " .4. "
-msgstr ""
-
-#: tmainform.speedbutton5.caption
-msgid " .3. "
-msgstr ""
-
-#: tmainform.speedbutton6.caption
-msgid " .2. "
-msgstr ""
-
-#: tmainform.speedbutton7.caption
-msgid " .1. "
-msgstr ""
-
-#: tmainform.speedbutton8.hint
-msgctxt "tmainform.speedbutton8.hint"
-msgid "Save QSO"
-msgstr "Сохранить QSO"
-
-#: tmainform.speedbutton9.hint
-msgid "Clear QSO"
-msgstr "Очистить QSO"
-
 #: tmanagerbaseprefixform.caption
 msgctxt "tmanagerbaseprefixform.caption"
 msgid "Prefix Manager"
@@ -4100,6 +3605,718 @@ msgstr "Страна"
 
 #: tminiform.caption
 msgid "MiniForm"
+msgstr ""
+
+#: tminiform.cbband.text
+msgctxt "tminiform.cbband.text"
+msgid "7.000.00"
+msgstr ""
+
+#: tminiform.cbfilter.caption
+#, fuzzy
+msgctxt "tminiform.cbfilter.caption"
+msgid "Filter"
+msgstr "Фильтр"
+
+#: tminiform.cbmap.caption
+#, fuzzy
+msgctxt "tminiform.cbmap.caption"
+msgid "Map"
+msgstr "Карта"
+
+#: tminiform.cbmark.caption
+#, fuzzy
+msgctxt "tminiform.cbmark.caption"
+msgid "Mark"
+msgstr "Метка"
+
+#: tminiform.cbmode.text
+msgctxt "tminiform.cbmode.text"
+msgid "SSB"
+msgstr ""
+
+#: tminiform.cbrealtime.caption
+msgid "Real Time"
+msgstr ""
+
+#: tminiform.cbrstr.text
+msgctxt "tminiform.cbrstr.text"
+msgid "59"
+msgstr ""
+
+#: tminiform.cbrsts.text
+msgctxt "tminiform.cbrsts.text"
+msgid "59"
+msgstr ""
+
+#: tminiform.cbsaveutc.caption
+#, fuzzy
+msgctxt "tminiform.cbsaveutc.caption"
+msgid "Save in UTC"
+msgstr "Сохранить в UTC"
+
+#: tminiform.cbsubmode.text
+msgid "LSB"
+msgstr ""
+
+#: tminiform.cbyourqsl.text
+#, fuzzy
+msgctxt "tminiform.cbyourqsl.text"
+msgid "Wasn't sent"
+msgstr "Не отправлена"
+
+#: tminiform.clearedit.caption
+msgid "ClearEdit"
+msgstr ""
+
+#: tminiform.dateedit1.text
+msgctxt "tminiform.dateedit1.text"
+msgid "  .  .    "
+msgstr ""
+
+#: tminiform.datetimepicker1.textfornulldate
+msgctxt "tminiform.datetimepicker1.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: tminiform.label10.caption
+msgctxt "tminiform.label10.caption"
+msgid "QSL Via"
+msgstr ""
+
+#: tminiform.lbazimuth.caption
+#, fuzzy
+msgctxt "tminiform.lbazimuth.caption"
+msgid "Azimuth"
+msgstr "Азимут"
+
+#: tminiform.lbazimuthd.caption
+msgctxt "tminiform.lbazimuthd.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbband.caption
+#, fuzzy
+msgctxt "tminiform.lbband.caption"
+msgid "Band"
+msgstr "Диапазон"
+
+#: tminiform.lbbandqso.caption
+#, fuzzy
+msgctxt "tminiform.lbbandqso.caption"
+msgid "Band"
+msgstr "Диапазон"
+
+#: tminiform.lbcallsign.caption
+#, fuzzy
+msgctxt "tminiform.lbcallsign.caption"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: tminiform.lbcfm.caption
+msgctxt "tminiform.lbcfm.caption"
+msgid "(Cfm)"
+msgstr ""
+
+#: tminiform.lbcomment.caption
+#, fuzzy
+msgctxt "tminiform.lbcomment.caption"
+msgid "Comment"
+msgstr "Комментарий"
+
+#: tminiform.lbcont.caption
+msgctxt "tminiform.lbcont.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbcount.caption
+msgctxt "tminiform.lbcount.caption"
+msgid "0"
+msgstr ""
+
+#: tminiform.lbcq.caption
+#, fuzzy
+msgctxt "tminiform.lbcq.caption"
+msgid "CQ"
+msgstr "CQ"
+
+#: tminiform.lbcqd.caption
+msgctxt "tminiform.lbcqd.caption"
+msgid ".."
+msgstr ""
+
+#: tminiform.lbcurrentlog.caption
+#, fuzzy
+msgctxt "tminiform.lbcurrentlog.caption"
+msgid "Current log"
+msgstr "Текущий журнал"
+
+#: tminiform.lbdate.caption
+#, fuzzy
+msgctxt "tminiform.lbdate.caption"
+msgid "Date"
+msgstr "Дата"
+
+#: tminiform.lbdateqso.caption
+#, fuzzy
+msgctxt "tminiform.lbdateqso.caption"
+msgid "Date"
+msgstr "Дата"
+
+#: tminiform.lbdistance.caption
+#, fuzzy
+msgctxt "tminiform.lbdistance.caption"
+msgid "Distance"
+msgstr "Трасса"
+
+#: tminiform.lbdistanced.caption
+msgctxt "tminiform.lbdistanced.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbdxcc.caption
+#, fuzzy
+msgctxt "tminiform.lbdxcc.caption"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: tminiform.lbdxccd.caption
+msgctxt "tminiform.lbdxccd.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbgrid.caption
+#, fuzzy
+msgctxt "tminiform.lbgrid.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: tminiform.lbiota.caption
+#, fuzzy
+msgctxt "tminiform.lbiota.caption"
+msgid "IOTA"
+msgstr "IOTA"
+
+#: tminiform.lbitu.caption
+#, fuzzy
+msgctxt "tminiform.lbitu.caption"
+msgid "ITU"
+msgstr "ITU"
+
+#: tminiform.lbitud.caption
+msgctxt "tminiform.lbitud.caption"
+msgid ".."
+msgstr ""
+
+#: tminiform.lblatitude.caption
+#, fuzzy
+msgctxt "tminiform.lblatitude.caption"
+msgid "Latitude"
+msgstr "Широта"
+
+#: tminiform.lblatituded.caption
+msgctxt "tminiform.lblatituded.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lblocaltimed.caption
+msgctxt "tminiform.lblocaltimed.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminiform.lblongitude.caption
+#, fuzzy
+msgctxt "tminiform.lblongitude.caption"
+msgid "Longitude"
+msgstr "Долгота"
+
+#: tminiform.lblongituded.caption
+msgctxt "tminiform.lblongituded.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbmgr.caption
+msgctxt "tminiform.lbmgr.caption"
+msgid "MGR"
+msgstr ""
+
+#: tminiform.lbmode.caption
+#, fuzzy
+msgctxt "tminiform.lbmode.caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tminiform.lbmodeqso.caption
+#, fuzzy
+msgctxt "tminiform.lbmodeqso.caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tminiform.lbmygrid.caption
+#, fuzzy
+msgctxt "tminiform.lbmygrid.caption"
+msgid "My grid"
+msgstr "Мой локатор"
+
+#: tminiform.lbmystate.caption
+#, fuzzy
+msgctxt "tminiform.lbmystate.caption"
+msgid "My state"
+msgstr "Мой State"
+
+#: tminiform.lbname.caption
+#, fuzzy
+msgctxt "tminiform.lbname.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tminiform.lbnameqso.caption
+#, fuzzy
+msgctxt "tminiform.lbnameqso.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tminiform.lbprefix.caption
+#, fuzzy
+msgctxt "tminiform.lbprefix.caption"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: tminiform.lbprefixd.caption
+msgctxt "tminiform.lbprefixd.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbqsl.caption
+#, fuzzy
+msgctxt "tminiform.lbqsl.caption"
+msgid "QSL"
+msgstr "QSL"
+
+#: tminiform.lbqth.caption
+#, fuzzy
+msgctxt "tminiform.lbqth.caption"
+msgid "QTH"
+msgstr "QTH"
+
+#: tminiform.lbremotetimed.caption
+msgctxt "tminiform.lbremotetimed.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminiform.lbrstr.caption
+#, fuzzy
+msgctxt "tminiform.lbrstr.caption"
+msgid "RST rcvd"
+msgstr "RST пол"
+
+#: tminiform.lbrsts.caption
+#, fuzzy
+msgctxt "tminiform.lbrsts.caption"
+msgid "RST sent"
+msgstr "RST отп"
+
+#: tminiform.lbstate.caption
+#, fuzzy
+msgctxt "tminiform.lbstate.caption"
+msgid "State"
+msgstr "State"
+
+#: tminiform.lbsubstate.caption
+#, fuzzy
+msgctxt "tminiform.lbsubstate.caption"
+msgid "Sub. State"
+msgstr "Поле стат."
+
+#: tminiform.lbterritory.caption
+#, fuzzy
+msgctxt "tminiform.lbterritory.caption"
+msgid "Territory"
+msgstr "Территория"
+
+#: tminiform.lbterritoryd.caption
+msgctxt "tminiform.lbterritoryd.caption"
+msgid "......."
+msgstr ""
+
+#: tminiform.lbtime.caption
+#, fuzzy
+msgctxt "tminiform.lbtime.caption"
+msgid "Time (UTC)"
+msgstr "Время (UTC)"
+
+#: tminiform.lbtimeqso.caption
+#, fuzzy
+msgctxt "tminiform.lbtimeqso.caption"
+msgid "Time"
+msgstr "Время"
+
+#: tminiform.lbutctimed.caption
+msgctxt "tminiform.lbutctimed.caption"
+msgid "00:00:00"
+msgstr ""
+
+#: tminiform.lbworked.caption
+#, fuzzy
+msgctxt "tminiform.lbworked.caption"
+msgid "Worked"
+msgstr "Сработано"
+
+#: tminiform.lbyourqsl.caption
+#, fuzzy
+msgctxt "tminiform.lbyourqsl.caption"
+msgid "Your QSL"
+msgstr "Моя QSL"
+
+#: tminiform.localtimelabel.caption
+msgid "Local time"
+msgstr ""
+
+#: tminiform.menuitem1.caption
+#, fuzzy
+msgctxt "tminiform.menuitem1.caption"
+msgid "LogBook"
+msgstr "Журнал"
+
+#: tminiform.menuitem102.caption
+#, fuzzy
+msgctxt "tminiform.menuitem102.caption"
+msgid "Donations"
+msgstr "Пожертвования"
+
+#: tminiform.menuitem110.caption
+#, fuzzy
+msgctxt "tminiform.menuitem110.caption"
+msgid "Displaying photos with QRZ"
+msgstr "Отображать фото из QRZ"
+
+#: tminiform.menuitem111.caption
+#, fuzzy
+msgctxt "tminiform.menuitem111.caption"
+msgid "On"
+msgstr "Включить"
+
+#: tminiform.menuitem112.caption
+#, fuzzy
+msgctxt "tminiform.menuitem112.caption"
+msgid "Off"
+msgstr "Отключить"
+
+#: tminiform.menuitem118.caption
+#, fuzzy
+msgctxt "tminiform.menuitem118.caption"
+msgid "Clear all journal"
+msgstr "Очистить весь журнал"
+
+#: tminiform.menuitem123.caption
+#, fuzzy
+msgctxt "tminiform.menuitem123.caption"
+msgid "Frequency Manager"
+msgstr "Частотный Менеджер"
+
+#: tminiform.menuitem124.caption
+#, fuzzy
+msgctxt "tminiform.menuitem124.caption"
+msgid "Modulation Manager"
+msgstr "Менеджер Модуляций"
+
+#: tminiform.menuitem3.caption
+#, fuzzy
+msgctxt "tminiform.menuitem3.caption"
+msgid "View"
+msgstr "Просмотр"
+
+#: tminiform.menuitem4.caption
+#, fuzzy
+msgctxt "tminiform.menuitem4.caption"
+msgid "External programs"
+msgstr "Внешние программы"
+
+#: tminiform.menuitem43.caption
+msgctxt "tminiform.menuitem43.caption"
+msgid "WSJT-X"
+msgstr ""
+
+#: tminiform.menuitem48.caption
+#, fuzzy
+msgctxt "tminiform.menuitem48.caption"
+msgid "Set date synchronization"
+msgstr "Установить дату синхронизации"
+
+#: tminiform.menuitem5.caption
+#, fuzzy
+msgctxt "tminiform.menuitem5.caption"
+msgid "Quick start"
+msgstr "Быстрый запуск"
+
+#: tminiform.menuitem52.caption
+#, fuzzy
+msgctxt "tminiform.menuitem52.caption"
+msgid "Configure program"
+msgstr "Настройка программы"
+
+#: tminiform.menuitem53.caption
+#, fuzzy
+msgctxt "tminiform.menuitem53.caption"
+msgid "Format ADIF"
+msgstr "Формат ADIF"
+
+#: tminiform.menuitem54.caption
+#, fuzzy
+msgctxt "tminiform.menuitem54.caption"
+msgid "Operations with a logbook"
+msgstr "Операции с журналом"
+
+#: tminiform.menuitem55.caption
+#, fuzzy
+msgctxt "tminiform.menuitem55.caption"
+msgid "Open log"
+msgstr "Открыть журнал"
+
+#: tminiform.menuitem56.caption
+#, fuzzy
+msgctxt "tminiform.menuitem56.caption"
+msgid "Create new log"
+msgstr "Создать новый журнал"
+
+#: tminiform.menuitem58.caption
+#, fuzzy
+msgctxt "tminiform.menuitem58.caption"
+msgid "Compact and Repair Database"
+msgstr "Сжать и восстановить базу"
+
+#: tminiform.menuitem6.caption
+#, fuzzy
+msgctxt "tminiform.menuitem6.caption"
+msgid "Help"
+msgstr "Помощь"
+
+#: tminiform.menuitem60.caption
+#, fuzzy
+msgctxt "tminiform.menuitem60.caption"
+msgid "Services of eQSL and LOTW"
+msgstr "Сервисы eQSL и LotW"
+
+#: tminiform.menuitem61.caption
+#, fuzzy
+msgctxt "tminiform.menuitem61.caption"
+msgid "Export Information from a Logbook to"
+msgstr "Экспорт данных журнала в"
+
+#: tminiform.menuitem62.caption
+#, fuzzy
+msgctxt "tminiform.menuitem62.caption"
+msgid "Import information in logbook from"
+msgstr "Импорт данных журнала из"
+
+#: tminiform.menuitem63.caption
+#, fuzzy
+msgctxt "tminiform.menuitem63.caption"
+msgid "Thanks"
+msgstr "Спасибо"
+
+#: tminiform.menuitem65.caption
+#, fuzzy
+msgctxt "tminiform.menuitem65.caption"
+msgid "Clear new QSO"
+msgstr "Очистить QSO"
+
+#: tminiform.menuitem66.caption
+#, fuzzy
+msgctxt "tminiform.menuitem66.caption"
+msgid "Save QSO"
+msgstr "Сохранить QSO"
+
+#: tminiform.menuitem67.caption
+#, fuzzy
+msgctxt "tminiform.menuitem67.caption"
+msgid "Edit QSO"
+msgstr "Редактировать QSO"
+
+#: tminiform.menuitem69.caption
+#, fuzzy
+msgctxt "tminiform.menuitem69.caption"
+msgid "Exit"
+msgstr "Выход"
+
+#: tminiform.menuitem7.caption
+#, fuzzy
+msgctxt "tminiform.menuitem7.caption"
+msgid "Logs configuration"
+msgstr "Конфигурация журнала"
+
+#: tminiform.menuitem70.caption
+#, fuzzy
+msgctxt "tminiform.menuitem70.caption"
+msgid "File .ADIF"
+msgstr "Файл .ADIF"
+
+#: tminiform.menuitem71.caption
+#, fuzzy
+msgctxt "tminiform.menuitem71.caption"
+msgid "File .TXT"
+msgstr "Файл .TXT"
+
+#: tminiform.menuitem72.caption
+#, fuzzy
+msgctxt "tminiform.menuitem72.caption"
+msgid "Compact mode"
+msgstr "Компактный режим"
+
+#: tminiform.menuitem73.caption
+msgctxt "tminiform.menuitem73.caption"
+msgid "Normal mode"
+msgstr ""
+
+#: tminiform.menuitem74.caption
+msgctxt "tminiform.menuitem74.caption"
+msgid "Fldigi"
+msgstr ""
+
+#: tminiform.menuitem81.caption
+#, fuzzy
+msgctxt "tminiform.menuitem81.caption"
+msgid "Synchronization Databases"
+msgstr "Синхронизация баз данных"
+
+#: tminiform.menuitem82.caption
+#, fuzzy
+msgctxt "tminiform.menuitem82.caption"
+msgid "From MySQL to SQLite"
+msgstr "Из MySQL в SQLite"
+
+#: tminiform.menuitem83.caption
+#, fuzzy
+msgctxt "tminiform.menuitem83.caption"
+msgid "From SQLite to MySQL"
+msgstr "Из SQLite в MySQL"
+
+#: tminiform.menuitem84.caption
+#, fuzzy
+msgctxt "tminiform.menuitem84.caption"
+msgid "Settings CAT"
+msgstr "Настройки CAT"
+
+#: tminiform.menuitem85.caption
+#, fuzzy
+msgctxt "tminiform.menuitem85.caption"
+msgid "Transceiver Control"
+msgstr "Управление трансивером"
+
+#: tminiform.menuitem86.caption
+#, fuzzy
+msgctxt "tminiform.menuitem86.caption"
+msgid "Display control form"
+msgstr "Отображать форму управления"
+
+#: tminiform.menuitem87.caption
+#, fuzzy
+msgctxt "tminiform.menuitem87.caption"
+msgid "Settings external programs"
+msgstr "Настройки внешних программ"
+
+#: tminiform.menuitem88.caption
+#, fuzzy
+msgctxt "tminiform.menuitem88.caption"
+msgid "No"
+msgstr "Нет"
+
+#: tminiform.menuitem89.caption
+#, fuzzy
+msgctxt "tminiform.menuitem89.caption"
+msgid "Switch database"
+msgstr "Переключить СУБД"
+
+#: tminiform.menuitem91.caption
+#, fuzzy
+msgctxt "tminiform.menuitem91.caption"
+msgid "Wizard"
+msgstr "Помощник установки"
+
+#: tminiform.menuitem92.caption
+#, fuzzy
+msgctxt "tminiform.menuitem92.caption"
+msgid "Update"
+msgstr "Обновление"
+
+#: tminiform.menuitem94.caption
+#, fuzzy
+msgctxt "tminiform.menuitem94.caption"
+msgid "About"
+msgstr "О программе"
+
+#: tminiform.menuitem99.caption
+#, fuzzy
+msgctxt "tminiform.menuitem99.caption"
+msgid "Configure table"
+msgstr "Редактировать таблицу"
+
+#: tminiform.midownloadlang.caption
+#, fuzzy
+msgctxt "tminiform.midownloadlang.caption"
+msgid "Download Languages"
+msgstr "Загрузить переводы"
+
+#: tminiform.milanguage.caption
+#, fuzzy
+msgctxt "tminiform.milanguage.caption"
+msgid "Language"
+msgstr "Язык"
+
+#: tminiform.misettings.caption
+#, fuzzy
+msgctxt "tminiform.misettings.caption"
+msgid "Settings"
+msgstr "Настройки"
+
+#: tminiform.remotetimelabel.caption
+#, fuzzy
+msgctxt "tminiform.remotetimelabel.caption"
+msgid "Remote time"
+msgstr "Время у корреспондента"
+
+#: tminiform.saveqsoinbase.caption
+msgid "SaveQSOinBase"
+msgstr ""
+
+#: tminiform.sbiota.caption
+msgctxt "tminiform.sbiota.caption"
+msgid " ... "
+msgstr ""
+
+#: tminiform.sbmgr.caption
+msgctxt "tminiform.sbmgr.caption"
+msgid " ... "
+msgstr ""
+
+#: tminiform.sbstate.caption
+msgctxt "tminiform.sbstate.caption"
+msgid " ... "
+msgstr ""
+
+#: tminiform.sbstate1.caption
+msgctxt "tminiform.sbstate1.caption"
+msgid " .1. "
+msgstr ""
+
+#: tminiform.sbstate2.caption
+msgctxt "tminiform.sbstate2.caption"
+msgid " .2. "
+msgstr ""
+
+#: tminiform.sbstate3.caption
+msgctxt "tminiform.sbstate3.caption"
+msgid " .3. "
+msgstr ""
+
+#: tminiform.sbstate4.caption
+msgctxt "tminiform.sbstate4.caption"
+msgid " .4. "
+msgstr ""
+
+#: tminiform.utclabel.caption
+msgctxt "tminiform.utclabel.caption"
+msgid "UTC"
 msgstr ""
 
 #: tmm_form.button1.caption

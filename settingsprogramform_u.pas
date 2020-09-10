@@ -38,7 +38,7 @@ var
 implementation
 
 uses
-  MainForm_U, InitDB_dm;
+  miniform_u, InitDB_dm;
 
 {$R *.lfm}
 
@@ -79,12 +79,12 @@ begin
     True:
     begin
       INIFile.WriteString('WSJT', 'USEWSJT', 'YES');
-      MainForm.MenuItem43.Enabled := True;
+      MiniForm.MenuItem43.Enabled := True;
     end;
     False:
     begin
       INIFile.WriteString('WSJT', 'USEWSJT', 'NO');
-      MainForm.MenuItem43.Enabled := False;
+      MiniForm.MenuItem43.Enabled := False;
     end
   end;
 
@@ -92,12 +92,12 @@ begin
     True:
     begin
       INIFile.WriteString('FLDIGI', 'USEFLDIGI', 'YES');
-      MainForm.MenuItem74.Enabled := True;
+      MiniForm.MenuItem74.Enabled := True;
     end;
     False:
     begin
       INIFile.WriteString('FLDIGI', 'USEFLDIGI', 'NO');
-      MainForm.MenuItem74.Enabled := False;
+      MiniForm.MenuItem74.Enabled := False;
     end;
   end;
   SettingsProgramForm.Close;

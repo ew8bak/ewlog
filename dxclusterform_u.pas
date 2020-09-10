@@ -109,7 +109,7 @@ var
 implementation
 
 uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U,
-  ClusterServer_Form_U, MainForm_U, Earth_Form_U, TRXForm_U, sendtelnetspot_form_U;
+  ClusterServer_Form_U, MainForm_U, Earth_Form_U, TRXForm_U, sendtelnetspot_form_U, miniform_u;
 
 type
   PTreeData = ^TTreeData;
@@ -470,22 +470,22 @@ begin
     if Length(Data^.Spots) > 1 then
     begin
       PFXR := MainFunc.SearchPrefix(Data^.Spots, '');
-      MainForm.Label32.Caption := PFXR.Azimuth;
-      MainForm.Label37.Caption := PFXR.Distance;
-      MainForm.Label40.Caption := PFXR.Latitude;
-      MainForm.Label42.Caption := PFXR.Longitude;
-      MainForm.Label33.Caption := PFXR.Country;
-      MainForm.Label43.Caption := PFXR.Continent;
-      MainForm.Label34.Caption := PFXR.ARRLPrefix;
-      MainForm.Label38.Caption := PFXR.Prefix;
-      MainForm.Label45.Caption := PFXR.CQZone;
-      MainForm.Label47.Caption := PFXR.ITUZone;
-      timedif := PFXR.TimeDiff;
+      MiniForm.LBAzimuthD.Caption := PFXR.Azimuth;
+      MiniForm.LBDistanceD.Caption := PFXR.Distance;
+      MiniForm.LBLatitudeD.Caption := PFXR.Latitude;
+      MiniForm.LBLongitudeD.Caption := PFXR.Longitude;
+      MiniForm.LBTerritoryD.Caption := PFXR.Country;
+      MiniForm.LBCont.Caption := PFXR.Continent;
+      MiniForm.LBDXCCD.Caption := PFXR.ARRLPrefix;
+      MiniForm.LBPrefixD.Caption := PFXR.Prefix;
+      MiniForm.LBCQD.Caption := PFXR.CQZone;
+      MiniForm.LBITUD.Caption := PFXR.ITUZone;
+      TimeDIF := PFXR.TimeDiff;
       dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
       Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
       Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-      if PFXR.Found and MainForm.CheckBox3.Checked then
-        MainFunc.LoadMaps(Lat, Lon, MainForm.MapView1);
+      //if PFXR.Found and MiniForm.CBMap.Checked then
+      //  MainFunc.LoadMaps(Lat, Lon, MainForm.MapView1);
     end;
   end;
 end;
@@ -588,7 +588,7 @@ begin
   Data := VirtualStringTree1.GetNodeData(XNode);
   if VirtualStringTree1.SelectedCount <> 0 then
     if Length(Data^.Spots) > 1 then
-      MainForm.EditButton1.Text := Data^.Spots;
+      MiniForm.EditCallsign.Text := Data^.Spots;
 end;
 
 procedure TdxClusterForm.MenuItem2Click(Sender: TObject);
@@ -662,7 +662,7 @@ begin
   begin
     if Length(Data^.Spots) > 1 then
     begin
-      MainForm.EditButton1.Text := Data^.Spots;
+      MiniForm.EditCallsign.Text := Data^.Spots;
       // if (CallBookLiteConnection.Connected = False) and
       //   (Length(Data^.Spots) >= 3) then
       //   InformationForm.GetInformation(Data^.Spots, True);
@@ -679,30 +679,30 @@ begin
       else
       begin
         if IniSet.showBand then
-          MainForm.ComboBox1.Text :=
+          MiniForm.CBBand.Text :=
             dmFunc.GetBandFromFreq(FormatFloat(view_freq,
             StrToFloat(Data^.Freq) / 1000))
         else
-          MainForm.ComboBox1.Text :=
+          MiniForm.CBBand.Text :=
             FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
 
         if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
         begin
-          MainForm.ComboBox2.Text := 'SSB';
-          MainForm.ComboBox2CloseUp(Sender);
-          MainForm.ComboBox9.Text := Data^.Moda;
+          MiniForm.CBMode.Text := 'SSB';
+          MiniForm.CBModeCloseUp(Sender);
+          MiniForm.CBSubMode.Text := Data^.Moda;
         end;
         if Data^.Moda = 'DIGI' then
         begin
-          MainForm.ComboBox2.Text := 'SSB';
-          MainForm.ComboBox2CloseUp(Sender);
-          MainForm.ComboBox9.Text := 'USB';
+          MiniForm.CBMode.Text := 'SSB';
+          MiniForm.CBModeCloseUp(Sender);
+          MiniForm.CBSubMode.Text := 'USB';
         end;
         if Data^.Moda = 'CW' then
         begin
-          MainForm.ComboBox2.Text := 'CW';
-          MainForm.ComboBox2CloseUp(Sender);
-          MainForm.ComboBox9.Text := '';
+          MiniForm.CBMode.Text := 'CW';
+          MiniForm.CBModeCloseUp(Sender);
+          MiniForm.CBSubMode.Text := '';
         end;
       end;
     end;

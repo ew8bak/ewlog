@@ -40,7 +40,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, InitDB_dm, MainFuncDM;
+uses dmFunc_U, miniform_u, InitDB_dm, MainFuncDM;
 
 { TMM_Form }
 
@@ -107,7 +107,7 @@ begin
     MMQuery.SQLTransaction.Commit;
     ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked, 'True', 'False'));
     ListView1.ItemIndex := SelectIndex;
-    MainFunc.LoadBMSL(MainForm.ComboBox2,MainForm.ComboBox9, MainForm.ComboBox1);
+    MainFunc.LoadBMSL(MiniForm.CBMode,MiniForm.CBSubMode, MiniForm.CBBand);
     // MainForm.AddModes('', False, modesString);
    // MainForm.ComboBox2.Items := modesString;
    // modesString.Free;

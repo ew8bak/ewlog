@@ -143,7 +143,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, SetupSQLquery, InitDB_dm, MainFuncDM;
+uses dmFunc_U, MainForm_U, SetupSQLquery, InitDB_dm, MainFuncDM, miniform_u;
 
 var
   MySQL_Current: boolean;
@@ -723,7 +723,7 @@ procedure TSetupForm.Button5Click(Sender: TObject);
 begin
   InitDB.AllFree;
   InitDB.DataModuleCreate(SetupForm);
-  MainForm.LoadComboBoxItem;
+  MiniForm.LoadComboBoxItem;
   Close;
 end;
 

@@ -137,7 +137,7 @@ var
 
 implementation
 
-uses MainFuncDM, dmFunc_U, InitDB_dm, Earth_Form_U, MainForm_U,
+uses MainFuncDM, dmFunc_U, InitDB_dm, Earth_Form_U, miniform_u,
   editqso_u, ExportAdifForm_u, ManagerBasePrefixForm_U, print_sticker_u,
   sendtelnetspot_form_U;
 
@@ -167,23 +167,23 @@ begin
     PFXR := MainFunc.SearchPrefix(
       DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString,
       DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString);
-    MainForm.Label17.Caption := IntToStr(FoundQSOR.CountQSO);
-    MainForm.Label18.Caption := SelQSOR.QSODate;
-    MainForm.Label19.Caption := SelQSOR.QSOTime;
-    MainForm.Label20.Caption := SelQSOR.QSOBand;
-    MainForm.Label21.Caption := SelQSOR.QSOMode;
-    MainForm.Label22.Caption := SelQSOR.OMName;
-    MainForm.Label32.Caption := PFXR.Azimuth;
-    MainForm.Label37.Caption := PFXR.Distance;
-    MainForm.Label40.Caption := PFXR.Latitude;
-    MainForm.Label42.Caption := PFXR.Longitude;
-    MainForm.Label33.Caption := PFXR.Country;
-    MainForm.Label43.Caption := PFXR.Continent;
-    MainForm.Label34.Caption := PFXR.ARRLPrefix;
-    MainForm.Label38.Caption := PFXR.Prefix;
-    MainForm.Label45.Caption := PFXR.CQZone;
-    MainForm.Label47.Caption := PFXR.ITUZone;
-    timedif := PFXR.TimeDiff;
+    MiniForm.LBCount.Caption := IntToStr(FoundQSOR.CountQSO);
+    MiniForm.LBDateQSO.Caption := SelQSOR.QSODate;
+    MiniForm.LBTimeQSO.Caption := SelQSOR.QSOTime;
+    MiniForm.LBBandQSO.Caption := SelQSOR.QSOBand;
+    MiniForm.LBModeQSO.Caption := SelQSOR.QSOMode;
+    MiniForm.LBNameQSO.Caption := SelQSOR.OMName;
+    MiniForm.LBAzimuthD.Caption := PFXR.Azimuth;
+    MiniForm.LBDistanceD.Caption := PFXR.Distance;
+    MiniForm.LBLatitudeD.Caption := PFXR.Latitude;
+    MiniForm.LBLongitudeD.Caption := PFXR.Longitude;
+    MiniForm.LBTerritoryD.Caption := PFXR.Country;
+    MiniForm.LBCont.Caption := PFXR.Continent;
+    MiniForm.LBDXCCD.Caption := PFXR.ARRLPrefix;
+    MiniForm.LBPrefixD.Caption := PFXR.Prefix;
+    MiniForm.LBCQD.Caption := PFXR.CQZone;
+    MiniForm.LBITUD.Caption := PFXR.ITUZone;
+    TimeDIF := PFXR.TimeDiff;
     dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
     Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
     Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);

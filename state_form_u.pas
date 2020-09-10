@@ -40,7 +40,7 @@ var
 implementation
 
 {$R *.lfm}
-uses MainForm_U;
+uses miniform_u;
 
 { TSTATE_Form }
 
@@ -60,7 +60,7 @@ end;
 
 procedure TSTATE_Form.DBGrid1DblClick(Sender: TObject);
 begin
-  MainForm.Edit4.Text:=STATE_Query.FieldByName('State').AsString;
+  MiniForm.EditState.Text:=STATE_Query.FieldByName('State').AsString;
 end;
 
 procedure TSTATE_Form.Edit2Change(Sender: TObject);

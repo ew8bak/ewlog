@@ -55,7 +55,7 @@ var
 
 implementation
 
-uses MainForm_U, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U,
+uses miniform_u, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U,
   InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
@@ -183,13 +183,13 @@ begin
           if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
             ShowMessage(rDBError);
 
-        MainFunc.LoadBMSL(MainForm.ComboBox2, MainForm.ComboBox9, MainForm.ComboBox1, MainForm.ComboBox10);
+        MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand, MiniForm.CBCurrentLog);
 
         if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
           MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin
-          MainForm.ComboBox10.SetFocus;
-          MainForm.ComboBox10.DroppedDown := True;
+          MiniForm.CBCurrentLog.SetFocus;
+          MiniForm.CBCurrentLog.DroppedDown := True;
         end;
       end;
     end
@@ -202,7 +202,7 @@ end;
 
 procedure TCreateJournalForm.Edit2Change(Sender: TObject);
 begin
-  if MainForm.ComboBox10.Items.IndexOf(Edit2.Text) >= 0 then
+  if MiniForm.CBCurrentLog.Items.IndexOf(Edit2.Text) >= 0 then
   begin
     Edit2.Color := clRed;
     Button2.Enabled := False;

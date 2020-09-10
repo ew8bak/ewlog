@@ -127,7 +127,7 @@ begin
       begin
         Label2.Caption := rUpdateRequired;
         Result := True;
-        MainForm.Label50.Visible:=True;
+ //       MainForm.Label50.Visible:=True;
         Label9.Caption := rUpdateStatusDownload;
         Button1.Caption := rButtonDownload;
       if dmFunc.GetSize(DownPATHssl+DownEXE) = -1 then
@@ -138,7 +138,7 @@ begin
       begin
         Label9.Caption := rUpdateStatusActual;
         Result := False;
-        MainForm.Label50.Visible:=False;
+ //       MainForm.Label50.Visible:=False;
       end;
 
   finally;

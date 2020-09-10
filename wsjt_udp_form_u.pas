@@ -53,7 +53,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, InitDB_dm, MainFuncDM;
+uses dmFunc_U, miniform_u, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
@@ -153,25 +153,25 @@ begin
             Unpack(AData, index, DEGrid);
             Unpack(AData, index, DXGrid);
 
-            MainForm.EditButton1.Text := DXCall;
-            MainForm.Edit3.Text := DXGrid;
+            MiniForm.EditCallsign.Text := DXCall;
+            MiniForm.EditGrid.Text := DXGrid;
 
             if IniSet.showBand and
               (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
-              MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
+              MiniForm.CBBand.Text := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
             else
-              MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
+              MiniForm.CBBand.Text := FormatFloat('0.000"."00', frequency / 1000000);
 
             if mode <> 'FT4' then begin
-            MainForm.ComboBox2.Text := mode;
-            MainForm.ComboBox9.Text := '';
+            MiniForm.CBMode.Text := mode;
+            MiniForm.CBSubMode.Text := '';
             end
             else begin
-            MainForm.ComboBox2.Text := 'MFSK';
-            MainForm.ComboBox9.Text := 'FT4';
+            MiniForm.CBMode.Text := 'MFSK';
+            MiniForm.CBSubMode.Text := 'FT4';
             end;
-            MainForm.ComboBox4.Text := report;
+            MiniForm.CBRSTr.Text := report;
           end;
 
           2:
@@ -247,27 +247,27 @@ begin
               ' RST получено:' + reportReceived + ' TX мощность:' +
               TXPower + ' Комментарий:' + comments + ' Имя:' + DXName);
 
-            MainForm.CheckBox1.Checked := False;
-            MainForm.DateEdit1.Date := date;
-            MainForm.DateTimePicker1.Time := date;
-            MainForm.EditButton1.Text := DXCall;
+            MiniForm.CBRealTime.Checked := False;
+            MiniForm.DateEdit1.Date := date;
+            MiniForm.DateTimePicker1.Time := date;
+            MiniForm.EditCallsign.Text := DXCall;
 
              if IniSet.showBand and
               (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
-              MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(
+              MiniForm.CBBand.Text := dmFunc.GetBandFromFreq(
                 FormatFloat('0.000"."00', frequency / 1000000))
             else
-              MainForm.ComboBox1.Text := FormatFloat('0.000"."00', frequency / 1000000);
+              MiniForm.CBBand.Text := FormatFloat('0.000"."00', frequency / 1000000);
 
-            MainForm.Edit3.Text := DXGrid;
-            MainForm.ComboBox2.Text := mode;
-            MainForm.ComboBox4.Text := report;
-            MainForm.ComboBox5.Text := reportReceived;
+            MiniForm.EditGrid.Text := DXGrid;
+            MiniForm.CBMode.Text := mode;
+            MiniForm.CBRSTs.Text := report;
+            MiniForm.CBRSTr.Text := reportReceived;
             if DXName <> '' then
-            MainForm.Edit1.Text := DXName;
-            MainForm.Edit11.Text := comments;
-            MainForm.SpeedButton8.Click;
-            MainForm.CheckBox1.Checked := True;
+            MiniForm.EditName.Text := DXName;
+            MiniForm.EditComment.Text := comments;
+            MiniForm.SBSave.Click;
+            MiniForm.CBRealTime.Checked := True;
           end;
 
           12:

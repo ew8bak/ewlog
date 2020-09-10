@@ -72,7 +72,7 @@ var
 
 implementation
 
-uses MainForm_U, editqso_u, dmFunc_U, InitDB_dm, MainFuncDM, infoDM_U;
+uses miniform_u, editqso_u, dmFunc_U, InitDB_dm, MainFuncDM, infoDM_U;
 
 {$R *.lfm}
 
@@ -148,11 +148,11 @@ procedure TInformationForm.Button1Click(Sender: TObject);
 begin
   if FromForm = 'MainForm' then
   begin
-    MainForm.EditButton1.Text := Label14.Caption;
-    MainForm.Edit1.Text := Label16.Caption;
-    MainForm.Edit2.Text := Label18.Caption;
-    MainForm.Edit3.Text := Label19.Caption;
-    MainForm.Edit4.Text := Label21.Caption;
+    MiniForm.EditCallsign.Text := Label14.Caption;
+    MiniForm.EditName.Text := Label16.Caption;
+    MiniForm.EditQTH.Text := Label18.Caption;
+    MiniForm.EditGrid.Text := Label19.Caption;
+    MiniForm.EditState.Text := Label21.Caption;
   end;
   if FromForm = 'EditForm' then
   begin
