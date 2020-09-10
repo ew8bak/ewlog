@@ -109,7 +109,8 @@ var
 implementation
 
 uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U,
-  ClusterServer_Form_U, MainForm_U, Earth_Form_U, TRXForm_U, sendtelnetspot_form_U, miniform_u;
+  ClusterServer_Form_U, MainForm_U, Earth_Form_U, TRXForm_U,
+  sendtelnetspot_form_U, miniform_u;
 
 type
   PTreeData = ^TTreeData;
@@ -326,18 +327,20 @@ begin
   if Length(buffer) > 0 then
   begin
     buffer := StringReplace(buffer, #7, ' ', [rfReplaceAll]);
+    buffer := Trim(buffer);
     Memo1.Lines.Add(buffer);
 
     if (Length(IniSet.Cluster_Login) > 0) and (Pos('login', TelnetLine) = 1) then
       DXTelnetClient.SendMessage(IniSet.Cluster_Login + #13#10, nil);
 
-    if Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0 then
+    if (Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0) and
+      (Pos('>', buffer) <> Length(buffer)) then
     begin
       Memo2.Lines.Add(buffer);
       exit;
     end;
 
-    if Pos('WCY de', buffer) = 1 then
+    if (Pos('WCY de', buffer) = 1) or (Pos('WWV de', buffer) = 1) then
     begin
       Memo3.Lines.Add(buffer);
       exit;

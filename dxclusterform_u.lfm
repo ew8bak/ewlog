@@ -48,14 +48,14 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet2: TTabSheet
       Caption = 'DX Cluster'
-      ClientHeight = 185
-      ClientWidth = 725
+      ClientHeight = 186
+      ClientWidth = 727
       object VirtualStringTree1: TVirtualStringTree
         Cursor = 63
         Left = 0
-        Height = 185
+        Height = 186
         Top = 0
-        Width = 725
+        Width = 727
         Align = alClient
         DefaultText = 'Node'
         Font.Height = -12
@@ -604,7 +604,7 @@ object dxClusterForm: TdxClusterForm
       AutoSize = False
       BorderSpacing.Left = 5
       Font.Height = -12
-      ItemHeight = 0
+      ItemHeight = 15
       OnChange = ComboBox1Change
       ParentFont = False
       Style = csDropDownList
