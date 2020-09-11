@@ -291,6 +291,7 @@ begin
     GridsForm.Show;
     Earth.Show;
     dxClusterForm.Show;
+    MainForm.Show;
   end
   else
   begin
@@ -312,6 +313,7 @@ begin
     GridsForm.Show;
     Earth.Show;
     dxClusterForm.Show;
+    MainForm.Close;
   end;
 end;
 
@@ -400,8 +402,6 @@ procedure TMiniForm.FormShow(Sender: TObject);
 var
   s, sqlite_version: string;
 begin
-  IniSet.CurrentForm := 'MINI';
-
   if (IniSet._l <> 0) and (IniSet._t <> 0) and (IniSet._w <> 0) and
     (IniSet._h <> 0) then
     MiniForm.SetBounds(IniSet._l, IniSet._t, IniSet._w, IniSet._h);
@@ -436,6 +436,8 @@ begin
       OpenURL('https://www.sqlite.org/download.html');
   end;
   {$ENDIF}
+
+  SwitchForm;
 
   CBMap.Checked := IniSet.Map_Use;
   //  MapView1.Zoom := 1;

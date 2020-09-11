@@ -99,8 +99,9 @@ begin
   Application.CreateForm(TMainFunc, MainFunc);
   Application.CreateForm(TInfoDM, InfoDM);
   Application.CreateForm(TServerDM, ServerDM);
-
-  if IniSet.MainForm = 'MAIN' then
+  Application.CreateForm(TMiniForm, MiniForm);
+  Application.CreateForm(TMainForm, MainForm);
+  {if IniSet.MainForm = 'MAIN' then
   begin
     Application.CreateForm(TMainForm, MainForm);
     Application.CreateForm(TMiniForm, MiniForm);
@@ -109,7 +110,7 @@ begin
   begin
     Application.CreateForm(TMiniForm, MiniForm);
     Application.CreateForm(TMainForm, MainForm);
-  end;
+  end;   }
   Application.CreateForm(TGridsForm, GridsForm);
   Application.CreateForm(TEditQSO_Form, EditQSO_Form);
   Application.CreateForm(TInformationForm, InformationForm);

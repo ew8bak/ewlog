@@ -3,15 +3,16 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="160">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="81"/>
-        <CursorPos X="49" Y="113"/>
+        <CursorPos X="3" Y="102"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="mainform_u.pas"/>
@@ -20,8 +21,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="37"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="31"/>
         <CursorPos X="5" Y="68"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -669,8 +670,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="16"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="8"/>
         <CursorPos X="31" Y="8"/>
         <UsageCount Value="191"/>
         <Loaded Value="True"/>
@@ -771,8 +772,9 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="286"/>
-        <CursorPos X="24" Y="314"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="420"/>
+        <CursorPos X="14" Y="440"/>
         <UsageCount Value="86"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -812,8 +814,7 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="330"/>
         <CursorPos X="9" Y="343"/>
         <UsageCount Value="65"/>
@@ -1418,123 +1419,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="1040" Column="14" TopLine="1038"/>
+        <Caret Line="355" Column="3" TopLine="342"/>
       </Position1>
       <Position2>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="422" Column="25" TopLine="408"/>
+        <Caret Line="626" Column="3" TopLine="621"/>
       </Position2>
       <Position3>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="422" Column="25" TopLine="408"/>
+        <Caret Line="611" Column="3" TopLine="608"/>
       </Position3>
       <Position4>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="1233" Column="3" TopLine="1228"/>
+        <Caret Line="241" Column="15" TopLine="222"/>
       </Position4>
       <Position5>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="355" Column="3" TopLine="342"/>
+        <Caret Line="936" Column="48" TopLine="917"/>
       </Position5>
       <Position6>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="626" Column="3" TopLine="621"/>
+        <Caret Line="35" Column="13" TopLine="15"/>
       </Position6>
       <Position7>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="611" Column="3" TopLine="608"/>
+        <Caret Line="326" Column="11" TopLine="295"/>
       </Position7>
       <Position8>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="241" Column="15" TopLine="222"/>
+        <Caret Line="1222" Column="2" TopLine="1188"/>
       </Position8>
       <Position9>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="936" Column="48" TopLine="917"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="10" Column="6"/>
       </Position9>
       <Position10>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="35" Column="13" TopLine="15"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="51" Column="28" TopLine="21"/>
       </Position10>
       <Position11>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="326" Column="11" TopLine="295"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="63" Column="18" TopLine="27"/>
       </Position11>
       <Position12>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1222" Column="2" TopLine="1188"/>
+        <Filename Value="mainform_u.pas"/>
+        <Caret Line="8" Column="36"/>
       </Position12>
       <Position13>
         <Filename Value="mainform_u.pas"/>
-        <Caret Line="10" Column="6"/>
+        <Caret Line="43" Column="39" TopLine="28"/>
       </Position13>
       <Position14>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="51" Column="28" TopLine="21"/>
-      </Position14>
-      <Position15>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="63" Column="18" TopLine="27"/>
-      </Position15>
-      <Position16>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="8" Column="36"/>
-      </Position16>
-      <Position17>
-        <Filename Value="mainform_u.pas"/>
-        <Caret Line="43" Column="39" TopLine="28"/>
-      </Position17>
-      <Position18>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="288" TopLine="268"/>
+      </Position14>
+      <Position15>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="287" TopLine="267"/>
+      </Position15>
+      <Position16>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="282" Column="41" TopLine="246"/>
+      </Position16>
+      <Position17>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="241" Column="15" TopLine="225"/>
+      </Position17>
+      <Position18>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="113" Column="17" TopLine="82"/>
       </Position18>
       <Position19>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="287" TopLine="267"/>
+        <Caret Line="290" Column="32" TopLine="290"/>
       </Position19>
       <Position20>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="282" Column="41" TopLine="246"/>
+        <Caret Line="493" Column="20" TopLine="491"/>
       </Position20>
       <Position21>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="241" Column="15" TopLine="225"/>
+        <Caret Line="499" TopLine="497"/>
       </Position21>
       <Position22>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="113" Column="17" TopLine="82"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="494" Column="25" TopLine="492"/>
       </Position22>
       <Position23>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="290" Column="32" TopLine="290"/>
+        <Caret Line="248" Column="15" TopLine="240"/>
       </Position23>
       <Position24>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="493" Column="20" TopLine="491"/>
+        <Caret Line="295" Column="5" TopLine="285"/>
       </Position24>
       <Position25>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="499" TopLine="497"/>
+        <Caret Line="287" Column="38" TopLine="267"/>
       </Position25>
       <Position26>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="494" Column="25" TopLine="492"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="335" Column="86" TopLine="318"/>
       </Position26>
       <Position27>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="248" Column="15" TopLine="240"/>
+        <Caret Line="314" Column="24" TopLine="286"/>
       </Position27>
       <Position28>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="295" Column="5" TopLine="285"/>
+        <Caret Line="547" Column="3" TopLine="544"/>
       </Position28>
       <Position29>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="287" Column="38" TopLine="267"/>
+        <Caret Line="248" Column="15" TopLine="229"/>
       </Position29>
       <Position30>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="335" Column="86" TopLine="318"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="371" Column="34" TopLine="268"/>
       </Position30>
     </JumpHistory>
     <RunParams>
