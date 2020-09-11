@@ -188,6 +188,7 @@ type
     procedure CBBandCloseUp(Sender: TObject);
     procedure CBCurrentLogChange(Sender: TObject);
     procedure CBFilterChange(Sender: TObject);
+    procedure CBMapChange(Sender: TObject);
     procedure CBModeCloseUp(Sender: TObject);
     procedure CBRealTimeChange(Sender: TObject);
     procedure CBSaveUTCChange(Sender: TObject);
@@ -280,8 +281,8 @@ begin
     MiniForm.Align := alClient;
     GridsForm.BorderStyle := bsNone;
     GridsForm.Parent := MainForm.GridsPanel;
-    Earth.BorderStyle := bsNone;
     GridsForm.Align := alClient;
+    Earth.BorderStyle := bsNone;
     Earth.Parent := MainForm.EarthPanel;
     Earth.Align := alClient;
     dxClusterForm.BorderStyle := bsNone;
@@ -289,8 +290,8 @@ begin
     dxClusterForm.Align := alClient;
     MiniForm.Show;
     GridsForm.Show;
-    Earth.Show;
     dxClusterForm.Show;
+    Earth.Show;
     MainForm.Show;
   end
   else
@@ -945,6 +946,12 @@ procedure TMiniForm.CBFilterChange(Sender: TObject);
 begin
   if not CBFilter.Checked then
     InitDB.SelectLogbookTable(LBRecord.LogTable);
+end;
+
+procedure TMiniForm.CBMapChange(Sender: TObject);
+begin
+  INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
+
 end;
 
 procedure TMiniForm.CBModeCloseUp(Sender: TObject);

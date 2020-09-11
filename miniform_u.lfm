@@ -1109,6 +1109,7 @@ object MiniForm: TMiniForm
     Caption = 'Map'
     Checked = True
     Font.Height = -12
+    OnChange = CBMapChange
     ParentFont = False
     State = cbChecked
     TabOrder = 19

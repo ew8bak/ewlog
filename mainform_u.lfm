@@ -8,8 +8,6 @@ object MainForm: TMainForm
   ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
-  OnClose = FormClose
-  OnShow = FormShow
   Position = poDefault
   LCLVersion = '2.0.10.0'
   object LeftPanel: TPanel
