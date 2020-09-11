@@ -31,7 +31,7 @@ type
       var VirtualST: TVirtualStringTree);
     procedure SaveQSO(var SQSO: TQSO);
     procedure SetGrid(var DBGRID: TDBGrid);
-    procedure GetDistAzim(la, lo: string; var Distance, Azimuth: string);
+    procedure GetDistAzim(Latitude, Longitude: string; var Distance, Azimuth: string);
     procedure CheckDXCC(Callsign, mode, band: string; var DMode, DBand, DCall: boolean);
     procedure LoadINIsettings;
     procedure ClearPFXR(var PFXR: TPFXR);
@@ -1571,21 +1571,30 @@ begin
   end;
 end;
 
-procedure TMainFunc.GetDistAzim(la, lo: string; var Distance, Azimuth: string);
+procedure TMainFunc.GetDistAzim(Latitude, Longitude: string; var Distance, Azimuth: string);
 var
   R: extended;
   azim, qra: string;
 begin
   qra := '';
   azim := '';
-  if (UTF8Pos('W', lo) <> 0) then
-    lo := '-' + lo;
-  if (UTF8Pos('S', la) <> 0) then
-    la := '-' + la;
-  Delete(la, length(la), 1);
-  Delete(lo, length(lo), 1);
-  dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(la),
-    strtofloat(lo), qra, azim);
+  if (UTF8Pos('W', Longitude) <> 0) then begin
+    Longitude := '-' + Longitude;
+    Delete(Longitude, length(Longitude), 1);
+  end;
+  if (UTF8Pos('S', Latitude) <> 0) then begin
+    Latitude := '-' + Latitude;
+    Delete(Latitude, length(Latitude), 1);
+  end;
+  if (UTF8Pos('E', Longitude) <> 0) then begin
+    Delete(Longitude, length(Longitude), 1);
+  end;
+  if (UTF8Pos('N', Latitude) <> 0) then begin
+    Delete(Latitude, length(Latitude), 1);
+  end;
+
+  dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(Latitude),
+    strtofloat(Longitude), qra, azim);
   Azimuth := azim;
   Distance := qra + ' KM';
 end;

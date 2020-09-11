@@ -2153,7 +2153,7 @@ object MiniForm: TMiniForm
         end
       end
       object MenuItem72: TMenuItem
-        Caption = 'Compact mode'
+        Caption = 'Multi-window mode'
         OnClick = MenuItem72Click
       end
       object MenuItem73: TMenuItem

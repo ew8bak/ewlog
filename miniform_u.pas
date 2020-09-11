@@ -263,7 +263,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   InformationForm_U, UpdateForm_U, ConfigGridForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
-  QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U;
+  QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u;
 
 {$R *.lfm}
 
@@ -271,7 +271,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 
 procedure TMiniForm.SwitchForm;
 begin
-  if IniSet.MainForm <> 'MINI' then
+  if IniSet.MainForm <> 'MULTI' then
   begin
     MiniForm.Menu := nil;
     MainForm.Menu := MiniForm.MainMenu;
@@ -338,8 +338,6 @@ begin
 end;
 
 procedure TMiniForm.Clr;
-//var
-//  Centre: TRealPoint;
 begin
   EditCallsign.Clear;
   EditCallsign.Color := clDefault;
@@ -364,14 +362,8 @@ begin
   LBQSL.Visible := False;
   LBWorked.Visible := False;
   LBCfm.Visible := False;
+  MapForm.WriteMap('0', '0', 1);
 
-  //  if CheckBox3.Checked then
-  //  begin
-  //    Centre.Lat := 0;
-  //    Centre.Lon := 0;
-  //    MapView1.Center := Centre;
-  //    MapView1.Zoom := 1;
-  //  end;
 
   CBQSLVia.Text := '';
   //  if MenuItem111.Checked = True then
@@ -440,23 +432,13 @@ begin
   SwitchForm;
 
   CBMap.Checked := IniSet.Map_Use;
-  //  MapView1.Zoom := 1;
-  //  MapView1.DoubleBuffered := True;
-  //  MapView1.Active := True;
+  MapForm.WriteMap('0', '0', 1);
   //  CheckUpdatesTimer.Enabled := True;
   CBYourQSL.ItemIndex := 3;
-  //  IniSet.CurrentForm := 'MAIN';
-
-  //  GridsForm.Parent := Panel3;
-  //  GridsForm.BorderStyle := bsNone;
-  //  GridsForm.Align := alClient;
   GridsForm.Show;
-
-  //  dxClusterForm.Parent := Panel8;
-  //  dxClusterForm.BorderStyle := bsNone;
-  //  dxClusterForm.Align := alClient;
   dxClusterForm.Show;
   Earth.Show;
+  MapForm.Show;
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
@@ -540,7 +522,7 @@ end;
 
 procedure TMiniForm.MenuItem72Click(Sender: TObject);
 begin
-  IniSet.MainForm := 'MINI';
+  IniSet.MainForm := 'MULTI';
   SwitchForm;
 end;
 
@@ -1189,8 +1171,8 @@ begin
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
   //MapView
-  // if PFXR.Found and CBMap.Checked then
-  //   MainFunc.LoadMaps(Lat, Lon, MapView1);
+  if PFXR.Found and CBMap.Checked then
+    MapForm.WriteMap(Lat, Lon, 9);
 
   FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(editButtonText));
   EditName.Text := FoundQSOR.OMName;

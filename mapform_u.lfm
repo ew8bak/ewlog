@@ -1,0 +1,25 @@
+object MapForm: TMapForm
+  Left = 311
+  Height = 326
+  Top = 612
+  Width = 500
+  Caption = 'Map'
+  ClientHeight = 326
+  ClientWidth = 500
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.0.10.0'
+  object MapView: TMapView
+    Left = 0
+    Height = 326
+    Top = 0
+    Width = 500
+    Align = alClient
+    DownloadEngine = MapView.BuiltInDLE
+    DrawingEngine = MapView.BuiltInDE
+    Font.Color = clBlack
+    MapProvider = 'OpenStreetMap Mapnik'
+    UseThreads = True
+    Zoom = 0
+  end
+end

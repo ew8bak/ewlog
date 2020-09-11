@@ -3603,6 +3603,11 @@ msgctxt "tmanagerbaseprefixform.tabsheet3.caption"
 msgid "Country"
 msgstr "Страна"
 
+#: tmapform.caption
+msgctxt "tmapform.caption"
+msgid "Map"
+msgstr ""
+
 #: tminiform.caption
 msgid "MiniForm"
 msgstr ""
@@ -4159,8 +4164,9 @@ msgstr "Файл .TXT"
 
 #: tminiform.menuitem72.caption
 #, fuzzy
+#| msgid "Compact mode"
 msgctxt "tminiform.menuitem72.caption"
-msgid "Compact mode"
+msgid "Multi-window mode"
 msgstr "Компактный режим"
 
 #: tminiform.menuitem73.caption
