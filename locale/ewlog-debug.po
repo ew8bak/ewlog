@@ -322,7 +322,7 @@ msgid "Default form: MAIN"
 msgstr ""
 
 #: resourcestr.rcheckboxformmini
-msgid "Default form: MINI"
+msgid "Default form: MULTI"
 msgstr ""
 
 #: resourcestr.rcheckmode
@@ -3430,7 +3430,8 @@ msgid "Map"
 msgstr ""
 
 #: tminiform.caption
-msgid "MiniForm"
+msgctxt "tminiform.caption"
+msgid "EWLog - HAM Journal"
 msgstr ""
 
 #: tminiform.cbband.text
@@ -3759,11 +3760,6 @@ msgstr ""
 msgid "Local time"
 msgstr ""
 
-#: tminiform.menuitem1.caption
-msgctxt "tminiform.menuitem1.caption"
-msgid "LogBook"
-msgstr ""
-
 #: tminiform.menuitem102.caption
 msgctxt "tminiform.menuitem102.caption"
 msgid "Donations"
@@ -3994,6 +3990,11 @@ msgctxt "tminiform.menuitem99.caption"
 msgid "Configure table"
 msgstr ""
 
+#: tminiform.miclustertop.caption
+msgctxt "tminiform.miclustertop.caption"
+msgid "On Top"
+msgstr ""
+
 #: tminiform.midownloadlang.caption
 msgctxt "tminiform.midownloadlang.caption"
 msgid "Download Languages"
@@ -4004,9 +4005,47 @@ msgctxt "tminiform.milanguage.caption"
 msgid "Language"
 msgstr ""
 
+#: tminiform.milogbook.caption
+msgctxt "tminiform.milogbook.caption"
+msgid "LogBook"
+msgstr ""
+
+#: tminiform.milogbookform.caption
+msgid "Logbook grid"
+msgstr ""
+
+#: tminiform.miloggridtop.caption
+msgctxt "tminiform.miloggridtop.caption"
+msgid "On Top"
+msgstr ""
+
+#: tminiform.mimaintop.caption
+msgctxt "tminiform.mimaintop.caption"
+msgid "On Top"
+msgstr ""
+
+#: tminiform.mimapform.caption
+msgctxt "tminiform.mimapform.caption"
+msgid "Map"
+msgstr ""
+
+#: tminiform.mimaptop.caption
+msgctxt "tminiform.mimaptop.caption"
+msgid "On Top"
+msgstr ""
+
+#: tminiform.mimwode.caption
+msgid "Mode ON"
+msgstr ""
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"
+msgstr ""
+
+#: tminiform.mitelnetform.caption
+msgctxt "tminiform.mitelnetform.caption"
+msgid "DX Cluster"
 msgstr ""
 
 #: tminiform.remotetimelabel.caption

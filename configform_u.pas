@@ -185,7 +185,7 @@ begin
   if CheckBox10.Checked then
     INIFile.WriteString('SetLog', 'MainForm', 'MAIN')
   else
-    INIFile.WriteString('SetLog', 'MainForm', 'MINI');
+    INIFile.WriteString('SetLog', 'MainForm', 'MULTI');
 
 end;
 
@@ -295,7 +295,7 @@ begin
   else
   begin
     CheckBox10.Caption := rCheckBoxFormMini;
-    IniSet.MainForm := 'MINI';
+    IniSet.MainForm := 'MULTI';
   end;
 end;
 

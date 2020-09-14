@@ -1,9 +1,9 @@
 object MiniForm: TMiniForm
-  Left = 322
+  Left = 336
   Height = 390
-  Top = 149
+  Top = 164
   Width = 477
-  Caption = 'MiniForm'
+  Caption = 'EWLog - HAM Journal'
   ClientHeight = 367
   ClientWidth = 477
   Menu = MainMenu
@@ -1997,7 +1997,7 @@ object MiniForm: TMiniForm
   object MainMenu: TMainMenu
     Left = 400
     Top = 160
-    object MenuItem1: TMenuItem
+    object MILogbook: TMenuItem
       Caption = 'LogBook'
       object MenuItem54: TMenuItem
         Caption = 'Operations with a logbook'
@@ -2155,7 +2155,39 @@ object MiniForm: TMiniForm
       end
       object MenuItem72: TMenuItem
         Caption = 'Multi-window mode'
-        OnClick = MenuItem72Click
+        object MIMWode: TMenuItem
+          Caption = 'Mode ON'
+          OnClick = MIMWodeClick
+          object MiMainTop: TMenuItem
+            AutoCheck = True
+            Caption = 'On Top'
+            OnClick = MiMainTopClick
+          end
+        end
+        object MiLogbookForm: TMenuItem
+          Caption = 'Logbook grid'
+          object MiLogGridTop: TMenuItem
+            AutoCheck = True
+            Caption = 'On Top'
+            OnClick = MiLogGridTopClick
+          end
+        end
+        object MITelnetForm: TMenuItem
+          Caption = 'DX Cluster'
+          object MIClusterTop: TMenuItem
+            AutoCheck = True
+            Caption = 'On Top'
+            OnClick = MIClusterTopClick
+          end
+        end
+        object MIMapForm: TMenuItem
+          Caption = 'Map'
+          object miMapTop: TMenuItem
+            AutoCheck = True
+            Caption = 'On Top'
+            OnClick = miMapTopClick
+          end
+        end
       end
       object MenuItem73: TMenuItem
         Caption = 'Normal mode'

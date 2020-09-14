@@ -1184,10 +1184,6 @@ begin
   IniSet.FLDIGI_USE := INIFile.ReadBool('FLDIGI', 'USEFLDIGI', False);
   IniSet.WSJT_USE := INIFile.ReadBool('WSJT', 'USEWSJT', False);
   IniSet.ShowTRXForm := INIFile.ReadBool('SetLog', 'TRXForm', False);
-  IniSet._l := INIFile.ReadInteger('SetLog', 'Left', 0);
-  IniSet._t := INIFile.ReadInteger('SetLog', 'Top', 0);
-  IniSet._w := INIFile.ReadInteger('SetLog', 'Width', 1043);
-  IniSet._h := INIFile.ReadInteger('SetLog', 'Height', 671);
   IniSet.PastMode := INIFile.ReadString('SetLog', 'PastMode', '');
   IniSet.PastSubMode := INIFile.ReadString('SetLog', 'PastSubMode', '');
   IniSet.PastBand := INIFile.ReadInteger('SetLog', 'PastBand', 0);
@@ -1210,6 +1206,29 @@ begin
   IniSet.MainForm := INIFile.ReadString('SetLog', 'MainForm', 'MAIN');
   IniSet.Cluster_Login := INIFile.ReadString('TelnetCluster', 'Login', '');
   IniSet.Cluster_Pass := INIFile.ReadString('TelnetCluster', 'Password', '');
+  IniSet._l_m := INIFile.ReadInteger('SetLog', 'Left', 0);
+  IniSet._t_m := INIFile.ReadInteger('SetLog', 'Top', 0);
+  IniSet._w_m := INIFile.ReadInteger('SetLog', 'Width', 1043);
+  IniSet._h_m := INIFile.ReadInteger('SetLog', 'Height', 671);
+  IniSet.mTop := INIFile.ReadBool('SetLog', 'mTop', False);
+  IniSet._l_g := INIFile.ReadInteger('SetLog', 'gLeft', 823);
+  IniSet._t_g := INIFile.ReadInteger('SetLog', 'gTop', 163);
+  IniSet._w_g := INIFile.ReadInteger('SetLog', 'gWidth', 835);
+  IniSet._h_g := INIFile.ReadInteger('SetLog', 'gHeight', 401);
+  IniSet.gTop := INIFile.ReadBool('SetLog', 'gTop', False);
+  IniSet.gShow := INIFile.ReadBool('SetLog', 'gShow', True);
+  IniSet._l_c := INIFile.ReadInteger('SetLog', 'cLeft', 826);
+  IniSet._t_c := INIFile.ReadInteger('SetLog', 'cTop', 591);
+  IniSet._w_c := INIFile.ReadInteger('SetLog', 'cWidth', 735);
+  IniSet._h_c := INIFile.ReadInteger('SetLog', 'cHeight', 240);
+  IniSet.cTop := INIFile.ReadBool('SetLog', 'cTop', False);
+  IniSet.cShow := INIFile.ReadBool('SetLog', 'cShow', True);
+  IniSet._l_e := INIFile.ReadInteger('SetLog', 'eLeft', 404);
+  IniSet._t_e := INIFile.ReadInteger('SetLog', 'eTop', 635);
+  IniSet._w_e := INIFile.ReadInteger('SetLog', 'eWidth', 320);
+  IniSet._h_e := INIFile.ReadInteger('SetLog', 'eHeight', 156);
+  IniSet.eTop := INIFile.ReadBool('SetLog', 'eTop', False);
+  IniSet.eShow := INIFile.ReadBool('SetLog', 'eShow', True);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -1571,25 +1590,30 @@ begin
   end;
 end;
 
-procedure TMainFunc.GetDistAzim(Latitude, Longitude: string; var Distance, Azimuth: string);
+procedure TMainFunc.GetDistAzim(Latitude, Longitude: string;
+  var Distance, Azimuth: string);
 var
   R: extended;
   azim, qra: string;
 begin
   qra := '';
   azim := '';
-  if (UTF8Pos('W', Longitude) <> 0) then begin
+  if (UTF8Pos('W', Longitude) <> 0) then
+  begin
     Longitude := '-' + Longitude;
     Delete(Longitude, length(Longitude), 1);
   end;
-  if (UTF8Pos('S', Latitude) <> 0) then begin
+  if (UTF8Pos('S', Latitude) <> 0) then
+  begin
     Latitude := '-' + Latitude;
     Delete(Latitude, length(Latitude), 1);
   end;
-  if (UTF8Pos('E', Longitude) <> 0) then begin
+  if (UTF8Pos('E', Longitude) <> 0) then
+  begin
     Delete(Longitude, length(Longitude), 1);
   end;
-  if (UTF8Pos('N', Latitude) <> 0) then begin
+  if (UTF8Pos('N', Latitude) <> 0) then
+  begin
     Delete(Latitude, length(Latitude), 1);
   end;
 

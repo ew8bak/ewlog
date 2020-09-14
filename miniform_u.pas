@@ -106,7 +106,15 @@ type
     LBBand: TLabel;
     LBMode: TLabel;
     MainMenu: TMainMenu;
-    MenuItem1: TMenuItem;
+    miMapTop: TMenuItem;
+    MIClusterTop: TMenuItem;
+    MiMainTop: TMenuItem;
+    MiLogGridTop: TMenuItem;
+    MIMWode: TMenuItem;
+    MIMapForm: TMenuItem;
+    MITelnetForm: TMenuItem;
+    MiLogbookForm: TMenuItem;
+    MILogbook: TMenuItem;
     MenuItem100: TMenuItem;
     MenuItem102: TMenuItem;
     MenuItem110: TMenuItem;
@@ -205,6 +213,11 @@ type
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
+    procedure MIClusterTopClick(Sender: TObject);
+    procedure MiLogGridTopClick(Sender: TObject);
+    procedure MiMainTopClick(Sender: TObject);
+    procedure miMapTopClick(Sender: TObject);
+    procedure MIMWodeClick(Sender: TObject);
     procedure MenuItem48Click(Sender: TObject);
     procedure MenuItem52Click(Sender: TObject);
     procedure MenuItem53Click(Sender: TObject);
@@ -216,7 +229,6 @@ type
     procedure MenuItem66Click(Sender: TObject);
     procedure MenuItem69Click(Sender: TObject);
     procedure MenuItem70Click(Sender: TObject);
-    procedure MenuItem72Click(Sender: TObject);
     procedure MenuItem73Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure MenuItem84Click(Sender: TObject);
@@ -298,13 +310,18 @@ begin
     dxClusterForm.Parent := MainForm.ClusterPanel;
     dxClusterForm.Align := alClient;
     MiniForm.Show;
-    GridsForm.Show;
-    dxClusterForm.Show;
-    if not IniSet.Map_Use then
-      Earth.Show
-    else
-      MapForm.Show;
+    if IniSet.gShow then
+      GridsForm.Show;
+    if IniSet.cShow then
+      dxClusterForm.Show;
+    if IniSet.eShow then
+      if not IniSet.Map_Use then
+        Earth.Show
+      else
+        MapForm.Show;
     MainForm.Show;
+    MIMWode.Checked := False;
+    MenuItem73.Checked := True;
   end
   else
   begin
@@ -321,12 +338,16 @@ begin
       Earth.Parent := nil;
       Earth.BorderStyle := bsSizeable;
       Earth.Align := alNone;
+      if IniSet.eTop then
+        Earth.FormStyle := fsSystemStayOnTop;
     end
     else
     begin
       MapForm.Parent := nil;
       MapForm.BorderStyle := bsSizeable;
       MapForm.Align := alNone;
+      if IniSet.eTop then
+        MapForm.FormStyle := fsSystemStayOnTop;
     end;
     dxClusterForm.Parent := nil;
     dxClusterForm.BorderStyle := bsSizeable;
@@ -339,6 +360,14 @@ begin
       MapForm.Show;
     dxClusterForm.Show;
     MainForm.Close;
+    if IniSet.mTop then
+      MiniForm.FormStyle := fsSystemStayOnTop;
+    if IniSet.gTop then
+      GridsForm.FormStyle := fsSystemStayOnTop;
+    if IniSet.cTop then
+      dxClusterForm.FormStyle := fsSystemStayOnTop;
+    MIMWode.Checked := True;
+    MenuItem73.Checked := False;
   end;
 end;
 
@@ -419,9 +448,9 @@ procedure TMiniForm.FormShow(Sender: TObject);
 var
   s, sqlite_version: string;
 begin
-  if (IniSet._l <> 0) and (IniSet._t <> 0) and (IniSet._w <> 0) and
-    (IniSet._h <> 0) then
-    MiniForm.SetBounds(IniSet._l, IniSet._t, IniSet._w, IniSet._h);
+  if (IniSet._l_m <> 0) and (IniSet._t_m <> 0) and (IniSet._w_m <> 0) and
+    (IniSet._h_m <> 0) then
+    MiniForm.SetBounds(IniSet._l_m, IniSet._t_m, IniSet._w_m, IniSet._h_m);
   if IniSet.FormState = 'Maximized' then
     MiniForm.WindowState := wsMaximized;
   if DBRecord.InitDB <> 'YES' then
@@ -489,6 +518,99 @@ begin
   MM_Form.Show;
 end;
 
+procedure TMiniForm.MIClusterTopClick(Sender: TObject);
+begin
+  if MIClusterTop.Checked then
+  begin
+    dxClusterForm.FormStyle := fsSystemStayOnTop;
+    IniSet.cTop := True;
+    INIFile.WriteBool('SetLog', 'cTop', True);
+  end
+  else
+  begin
+    dxClusterForm.FormStyle := fsNormal;
+    IniSet.cTop := False;
+    INIFile.WriteBool('SetLog', 'cTop', False);
+  end;
+end;
+
+procedure TMiniForm.MiLogGridTopClick(Sender: TObject);
+begin
+  if MiLogGridTop.Checked then
+  begin
+    GridsForm.FormStyle := fsSystemStayOnTop;
+    IniSet.gTop := True;
+    INIFile.WriteBool('SetLog', 'gTop', True);
+  end
+  else
+  begin
+    GridsForm.FormStyle := fsNormal;
+    IniSet.gTop := False;
+    INIFile.WriteBool('SetLog', 'gTop', False);
+  end;
+end;
+
+procedure TMiniForm.MiMainTopClick(Sender: TObject);
+begin
+  if MiMainTop.Checked then
+  begin
+    MiniForm.FormStyle := fsSystemStayOnTop;
+    IniSet.mTop := True;
+    INIFile.WriteBool('SetLog', 'mTop', True);
+  end
+  else
+  begin
+    MiniForm.FormStyle := fsNormal;
+    IniSet.mTop := False;
+    INIFile.WriteBool('SetLog', 'mTop', False);
+  end;
+end;
+
+procedure TMiniForm.miMapTopClick(Sender: TObject);
+begin
+  if IniSet.Map_Use then
+  begin
+    if miMapTop.Checked then
+    begin
+      MapForm.FormStyle := fsSystemStayOnTop;
+      IniSet.eTop := True;
+      INIFile.WriteBool('SetLog', 'eTop', True);
+    end
+    else
+    begin
+      MapForm.FormStyle := fsNormal;
+      IniSet.eTop := False;
+      INIFile.WriteBool('SetLog', 'eTop', False);
+    end;
+  end
+  else
+  begin
+    if miMapTop.Checked then
+    begin
+      Earth.FormStyle := fsSystemStayOnTop;
+      IniSet.eTop := True;
+      INIFile.WriteBool('SetLog', 'eTop', True);
+    end
+    else
+    begin
+      Earth.FormStyle := fsNormal;
+      IniSet.eTop := False;
+      INIFile.WriteBool('SetLog', 'eTop', False);
+    end;
+  end;
+end;
+
+procedure TMiniForm.MIMWodeClick(Sender: TObject);
+var
+  tempSet: string;
+begin
+  tempSet := IniSet.MainForm;
+  MIMWode.Checked := True;
+  IniSet.MainForm := 'MULTI';
+  if tempSet <> IniSet.MainForm then
+    SwitchForm;
+end;
+
 procedure TMiniForm.MenuItem48Click(Sender: TObject);
 begin
   SynDBDate.Show;
@@ -543,12 +665,6 @@ end;
 procedure TMiniForm.MenuItem70Click(Sender: TObject);
 begin
   ImportADIFForm.Show;
-end;
-
-procedure TMiniForm.MenuItem72Click(Sender: TObject);
-begin
-  IniSet.MainForm := 'MULTI';
-  SwitchForm;
 end;
 
 procedure TMiniForm.MenuItem73Click(Sender: TObject);
@@ -976,9 +1092,10 @@ procedure TMiniForm.CBMapChange(Sender: TObject);
 begin
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
   if IniSet.MainForm <> 'MULTI' then
+  begin
     if CBMap.Checked then
     begin
-      Earth.Parent:=nil;
+      Earth.Parent := nil;
       MapForm.BorderStyle := bsNone;
       MapForm.Parent := MainForm.EarthPanel;
       MapForm.Align := alClient;
@@ -987,13 +1104,29 @@ begin
     end
     else
     begin
-      MapForm.Parent:=nil;
+      MapForm.Parent := nil;
       Earth.BorderStyle := bsNone;
       Earth.Parent := MainForm.EarthPanel;
       Earth.Align := alClient;
       MapForm.Close;
       Earth.Show;
     end;
+  end
+  else
+  begin
+    if CBMap.Checked then
+    begin
+      MapForm.BorderStyle := bsSizeable;
+      Earth.Close;
+      MapForm.Show;
+    end
+    else
+    begin
+      Earth.BorderStyle := bsSizeable;
+      Earth.Show;
+      MapForm.Close;
+    end;
+  end;
 end;
 
 procedure TMiniForm.CBModeCloseUp(Sender: TObject);
@@ -1313,9 +1446,11 @@ begin
   INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
   TRXForm.Close;
-  //  GridsForm.Close;
-  //  dxClusterForm.Close;
 
+  GridsForm.SavePosition;
+  Earth.SavePosition;
+  dxClusterForm.SavePosition;
+  MapForm.SavePosition;
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);

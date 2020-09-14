@@ -165,7 +165,7 @@ resourcestring
   rLogEntryExist = 'Log entry already exists';
   rTableLogDBError = 'Log table ERROR';
   rCheckBoxFormMain = 'Default form: MAIN';
-  rCheckBoxFormMini = 'Default form: MINI';
+  rCheckBoxFormMini = 'Default form: MULTI';
   rCallsignNotEntered ='Recipient callsign not entered';
 implementation
 

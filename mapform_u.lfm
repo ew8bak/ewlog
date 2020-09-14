@@ -1,7 +1,7 @@
 object MapForm: TMapForm
-  Left = 311
+  Left = 500
   Height = 326
-  Top = 612
+  Top = 720
   Width = 500
   Caption = 'Map'
   ClientHeight = 326

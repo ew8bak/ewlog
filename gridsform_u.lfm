@@ -1,13 +1,14 @@
 object GridsForm: TGridsForm
-  Left = 925
+  Left = 823
   Height = 401
-  Top = 142
+  Top = 163
   Width = 835
   Caption = 'Logbook'
   ClientHeight = 401
   ClientWidth = 835
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   LCLVersion = '2.0.10.0'
   object DBGrid1: TDBGrid
     Left = 0

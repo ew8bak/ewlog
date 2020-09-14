@@ -97,6 +97,7 @@ type
     procedure FinqQSLManItemClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure GridMenuPopup(Sender: TObject);
     procedure CopyToLogItemClick(Sender: TObject);
     procedure MarkQSOItemClick(Sender: TObject);
@@ -130,6 +131,7 @@ type
   public
     ExportAdifSelect: boolean;
     ExportAdifArray: array of integer;
+    procedure SavePosition;
   end;
 
 var
@@ -144,6 +146,18 @@ uses MainFuncDM, dmFunc_U, InitDB_dm, Earth_Form_U, miniform_u,
 {$R *.lfm}
 
 { TGridsForm }
+
+procedure TGridsForm.SavePosition;
+begin
+  if IniSet.MainForm = 'MULTI' then
+    if GridsForm.WindowState <> wsMaximized then
+    begin
+      INIFile.WriteInteger('SetLog', 'gLeft', GridsForm.Left);
+      INIFile.WriteInteger('SetLog', 'gTop', GridsForm.Top);
+      INIFile.WriteInteger('SetLog', 'gWidth', GridsForm.Width);
+      INIFile.WriteInteger('SetLog', 'gHeight', GridsForm.Height);
+    end;
+end;
 
 procedure TGridsForm.DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
 begin
@@ -373,6 +387,13 @@ begin
   ExportAdifSelect := False;
 end;
 
+procedure TGridsForm.FormShow(Sender: TObject);
+begin
+  if (IniSet._l_g <> 0) and (IniSet._t_g <> 0) and (IniSet._w_g <> 0) and
+    (IniSet._h_g <> 0) then
+    GridsForm.SetBounds(IniSet._l_g, IniSet._t_g, IniSet._w_g, IniSet._h_g);
+end;
+
 procedure TGridsForm.CopyToLogItemClick(Sender: TObject);
 var
   MenuItem: TMenuItem;
@@ -409,7 +430,7 @@ var
   numberToPrint: string;
   NumberCopies: integer;
   ind: integer;
- // resStream: TLazarusResourceStream;
+  // resStream: TLazarusResourceStream;
 begin
 {  PrintOK := False;
   PrintQuery.Close;
@@ -501,7 +522,7 @@ var
   numberToPrint: string;
   NumberCopies: integer;
   ind: integer;
- // resStream: TLazarusResourceStream;
+  // resStream: TLazarusResourceStream;
 begin
  { PrintOK := False;
   PrintQuery.Close;

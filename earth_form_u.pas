@@ -16,11 +16,13 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { private declarations }
   public
     TraceLine: PTraceLine;
     procedure PaintLine(Latitude, Longitude: string; OpLat, OpLon: double);
+    procedure SavePosition;
 
     { public declarations }
   end;
@@ -30,11 +32,23 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm;
+uses dmFunc_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
 { TEarth }
+
+procedure TEarth.SavePosition;
+begin
+  if IniSet.MainForm = 'MULTI' then
+    if Earth.WindowState <> wsMaximized then
+    begin
+      INIFile.WriteInteger('SetLog', 'eLeft', Earth.Left);
+      INIFile.WriteInteger('SetLog', 'eTop', Earth.Top);
+      INIFile.WriteInteger('SetLog', 'eWidth', Earth.Width);
+      INIFile.WriteInteger('SetLog', 'eHeight', Earth.Height);
+    end;
+end;
 
 procedure TEarth.FormCreate(Sender: TObject);
 begin
@@ -50,6 +64,13 @@ procedure TEarth.FormPaint(Sender: TObject);
 begin
   Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
     LBRecord.OpLat, LBRecord.OpLon);
+end;
+
+procedure TEarth.FormShow(Sender: TObject);
+begin
+  if (IniSet._l_e <> 0) and (IniSet._t_e <> 0) and (IniSet._w_e <> 0) and
+    (IniSet._h_e <> 0) then
+    Earth.SetBounds(IniSet._l_e, IniSet._t_e, IniSet._w_e, IniSet._h_e);
 end;
 
 procedure TEarth.PaintLine(Latitude, Longitude: string; OpLat, OpLon: double);

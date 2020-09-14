@@ -19,6 +19,7 @@ type
 
   public
     procedure WriteMap(Latitude, Longitude: string; Zoom: integer);
+    procedure SavePosition;
 
   end;
 
@@ -30,6 +31,18 @@ implementation
 {$R *.lfm}
 uses MainFuncDM, InitDB_dm;
 
+procedure TMapForm.SavePosition;
+begin
+  if IniSet.MainForm = 'MULTI' then
+    if MapForm.WindowState <> wsMaximized then
+    begin
+      INIFile.WriteInteger('SetLog', 'eLeft', MapForm.Left);
+      INIFile.WriteInteger('SetLog', 'eTop', MapForm.Top);
+      INIFile.WriteInteger('SetLog', 'eWidth', MapForm.Width);
+      INIFile.WriteInteger('SetLog', 'eHeight', MapForm.Height);
+    end;
+end;
+
 procedure TMapForm.FormCreate(Sender: TObject);
 begin
   MapView.CachePath := FilePATH + 'cache' + DirectorySeparator;
@@ -38,7 +51,10 @@ end;
 
 procedure TMapForm.FormShow(Sender: TObject);
 begin
-  MapView.Active:=True;
+  if (IniSet._l_e <> 0) and (IniSet._t_e <> 0) and (IniSet._w_e <> 0) and
+    (IniSet._h_e <> 0) then
+    MapForm.SetBounds(IniSet._l_e, IniSet._t_e, IniSet._w_e, IniSet._h_e);
+  MapView.Active := True;
   WriteMap('0', '0', 1);
 end;
 
@@ -50,7 +66,7 @@ begin
     MainFunc.LoadMaps(Latitude, Longitude, MapView)
   else
   begin
-    MapView.ClearBuffer;
+  //  MapView.ClearBuffer;
     Center.Lat := 0;
     Center.Lon := 0;
     MapView.Center := Center;

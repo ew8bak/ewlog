@@ -97,6 +97,7 @@ type
     procedure FromClusterThread(buffer: string);
     procedure LoadClusterString;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
+    procedure SavePosition;
 
   end;
 
@@ -131,6 +132,18 @@ type
 
 { TdxClusterForm }
 
+procedure TdxClusterForm.SavePosition;
+begin
+  if IniSet.MainForm = 'MULTI' then
+    if dxClusterForm.WindowState <> wsMaximized then
+    begin
+      INIFile.WriteInteger('SetLog', 'cLeft', dxClusterForm.Left);
+      INIFile.WriteInteger('SetLog', 'cTop', dxClusterForm.Top);
+      INIFile.WriteInteger('SetLog', 'cWidth', dxClusterForm.Width);
+      INIFile.WriteInteger('SetLog', 'cHeight', dxClusterForm.Height);
+    end;
+end;
+
 function TdxClusterForm.GetModeFromFreq(MHz: string): string;
 var
   Band: string;
@@ -139,9 +152,6 @@ begin
   try
     Result := '';
     band := dmFunc.GetBandFromFreq(MHz);
-
-    //  MHz := MHz.replace('.', DefaultFormatSettings.DecimalSeparator);
-    //  MHz := MHz.replace(',', DefaultFormatSettings.DecimalSeparator);
 
     qBands.Close;
     qBands.SQL.Text := 'SELECT * FROM Bands WHERE band = ' + QuotedStr(band);
@@ -579,6 +589,9 @@ end;
 
 procedure TdxClusterForm.FormShow(Sender: TObject);
 begin
+  if (IniSet._l_c <> 0) and (IniSet._t_c <> 0) and (IniSet._w_c <> 0) and
+    (IniSet._h_c <> 0) then
+    dxClusterForm.SetBounds(IniSet._l_c, IniSet._t_c, IniSet._w_c, IniSet._h_c);
   ButtonSet;
 end;
 
