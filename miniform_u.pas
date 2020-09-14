@@ -455,7 +455,7 @@ begin
   if (IniSet._l_m <> 0) and (IniSet._t_m <> 0) and (IniSet._w_m <> 0) and
     (IniSet._h_m <> 0) then
     MiniForm.SetBounds(IniSet._l_m, IniSet._t_m, IniSet._w_m, IniSet._h_m);
-  if IniSet.FormState = 'Maximized' then
+  if (IniSet.FormState = 'Maximized') and (IniSet.MainForm = 'MAIN') then
     MiniForm.WindowState := wsMaximized;
   if DBRecord.InitDB <> 'YES' then
   begin
@@ -490,13 +490,8 @@ begin
   SwitchForm;
 
   CBMap.Checked := IniSet.Map_Use;
-  //MapForm.WriteMap('0', '0', 1);
   //  CheckUpdatesTimer.Enabled := True;
   CBYourQSL.ItemIndex := 3;
-  //  GridsForm.Show;
-  //  dxClusterForm.Show;
-  //  Earth.Show;
-  //  MapForm.Show;
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
