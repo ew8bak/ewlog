@@ -10,7 +10,7 @@ object EditQSO_Form: TEditQSO_Form
   DefaultMonitor = dmMainForm
   OnClose = FormClose
   OnShow = FormShow
-  Position = poMainFormCenter
+  Position = poScreenCenter
   ShowInTaskBar = stNever
   LCLVersion = '2.0.10.0'
   object GroupBox1: TGroupBox
@@ -1543,7 +1543,6 @@ object EditQSO_Form: TEditQSO_Form
             Title.Caption = 'No calc DXCC'
             FieldName = 'NoCalcDXCC'
           end>
-        DataSource = MainForm.LOGBookDS
         DefaultRowHeight = 15
         Font.Height = -11
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAnyButtonCanSelect]

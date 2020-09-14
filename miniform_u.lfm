@@ -2166,6 +2166,7 @@ object MiniForm: TMiniForm
         end
         object MiLogbookForm: TMenuItem
           Caption = 'Logbook grid'
+          OnClick = MiLogbookFormClick
           object MiLogGridTop: TMenuItem
             AutoCheck = True
             Caption = 'On Top'
@@ -2174,6 +2175,7 @@ object MiniForm: TMiniForm
         end
         object MITelnetForm: TMenuItem
           Caption = 'DX Cluster'
+          OnClick = MITelnetFormClick
           object MIClusterTop: TMenuItem
             AutoCheck = True
             Caption = 'On Top'
@@ -2182,6 +2184,7 @@ object MiniForm: TMiniForm
         end
         object MIMapForm: TMenuItem
           Caption = 'Map'
+          OnClick = MIMapFormClick
           object miMapTop: TMenuItem
             AutoCheck = True
             Caption = 'On Top'

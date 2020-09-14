@@ -214,8 +214,10 @@ type
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
     procedure MIClusterTopClick(Sender: TObject);
+    procedure MiLogbookFormClick(Sender: TObject);
     procedure MiLogGridTopClick(Sender: TObject);
     procedure MiMainTopClick(Sender: TObject);
+    procedure MIMapFormClick(Sender: TObject);
     procedure miMapTopClick(Sender: TObject);
     procedure MIMWodeClick(Sender: TObject);
     procedure MenuItem48Click(Sender: TObject);
@@ -239,6 +241,7 @@ type
     procedure MenuItem99Click(Sender: TObject);
     procedure MIDownloadLangClick(Sender: TObject);
     procedure MILanguageClick(Sender: TObject);
+    procedure MITelnetFormClick(Sender: TObject);
     procedure SaveQSOinBaseExecute(Sender: TObject);
     procedure SBInfoClick(Sender: TObject);
     procedure SBIOTAClick(Sender: TObject);
@@ -309,7 +312,6 @@ begin
     dxClusterForm.BorderStyle := bsNone;
     dxClusterForm.Parent := MainForm.ClusterPanel;
     dxClusterForm.Align := alClient;
-    MiniForm.Show;
     if IniSet.gShow then
       GridsForm.Show;
     if IniSet.cShow then
@@ -330,6 +332,7 @@ begin
     MiniForm.Parent := nil;
     MiniForm.BorderStyle := bsSizeable;
     MiniForm.Align := alNone;
+    MainForm.Close;
     GridsForm.Parent := nil;
     GridsForm.BorderStyle := bsSizeable;
     GridsForm.Align := alNone;
@@ -352,14 +355,15 @@ begin
     dxClusterForm.Parent := nil;
     dxClusterForm.BorderStyle := bsSizeable;
     dxClusterForm.Align := alNone;
-    MiniForm.Show;
-    GridsForm.Show;
-    if not IniSet.Map_Use then
-      Earth.Show
-    else
-      MapForm.Show;
-    dxClusterForm.Show;
-    MainForm.Close;
+    if IniSet.gShow then
+      GridsForm.Show;
+    if IniSet.eShow then
+      if not IniSet.Map_Use then
+        Earth.Show
+      else
+        MapForm.Show;
+    if IniSet.cShow then
+      dxClusterForm.Show;
     if IniSet.mTop then
       MiniForm.FormStyle := fsSystemStayOnTop;
     if IniSet.gTop then
@@ -534,6 +538,11 @@ begin
   end;
 end;
 
+procedure TMiniForm.MiLogbookFormClick(Sender: TObject);
+begin
+  GridsForm.Show;
+end;
+
 procedure TMiniForm.MiLogGridTopClick(Sender: TObject);
 begin
   if MiLogGridTop.Checked then
@@ -564,6 +573,14 @@ begin
     IniSet.mTop := False;
     INIFile.WriteBool('SetLog', 'mTop', False);
   end;
+end;
+
+procedure TMiniForm.MIMapFormClick(Sender: TObject);
+begin
+  if IniSet.Map_Use then
+    MapForm.Show
+  else
+    Earth.Show;
 end;
 
 procedure TMiniForm.miMapTopClick(Sender: TObject);
@@ -761,6 +778,11 @@ begin
       MILanguage.Insert(i, LangItem);
   end;
   LangList.Free;
+end;
+
+procedure TMiniForm.MITelnetFormClick(Sender: TObject);
+begin
+  dxClusterForm.Show;
 end;
 
 procedure TMiniForm.SaveQSOinBaseExecute(Sender: TObject);
