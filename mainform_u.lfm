@@ -1,10 +1,10 @@
 object MainForm: TMainForm
   Left = 481
-  Height = 677
-  Top = 174
+  Height = 667
+  Top = 184
   Width = 1208
   Caption = 'EWLog - HAM Journal'
-  ClientHeight = 677
+  ClientHeight = 667
   ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
@@ -12,17 +12,17 @@ object MainForm: TMainForm
   LCLVersion = '2.0.10.0'
   object LeftPanel: TPanel
     Left = 0
-    Height = 677
+    Height = 667
     Top = 0
     Width = 477
     Align = alLeft
-    ClientHeight = 677
+    ClientHeight = 667
     ClientWidth = 477
     TabOrder = 0
     object EarthPanel: TPanel
       Left = 1
       Height = 263
-      Top = 413
+      Top = 403
       Width = 475
       Align = alBottom
       TabOrder = 0
@@ -37,7 +37,7 @@ object MainForm: TMainForm
     end
     object OtherPanel: TPanel
       Left = 1
-      Height = 37
+      Height = 27
       Top = 376
       Width = 475
       Align = alClient
@@ -46,24 +46,24 @@ object MainForm: TMainForm
   end
   object AllClientPanel: TPanel
     Left = 477
-    Height = 677
+    Height = 667
     Top = 0
     Width = 731
     Align = alClient
-    ClientHeight = 677
+    ClientHeight = 667
     ClientWidth = 731
     TabOrder = 1
     object ClusterPanel: TPanel
       Left = 1
       Height = 263
-      Top = 413
+      Top = 403
       Width = 729
       Align = alBottom
       TabOrder = 0
     end
     object GridsPanel: TPanel
       Left = 1
-      Height = 412
+      Height = 402
       Top = 1
       Width = 729
       Align = alClient

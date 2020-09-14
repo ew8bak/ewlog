@@ -282,16 +282,28 @@ begin
     GridsForm.BorderStyle := bsNone;
     GridsForm.Parent := MainForm.GridsPanel;
     GridsForm.Align := alClient;
-    Earth.BorderStyle := bsNone;
-    Earth.Parent := MainForm.EarthPanel;
-    Earth.Align := alClient;
+    if not IniSet.Map_Use then
+    begin
+      Earth.BorderStyle := bsNone;
+      Earth.Parent := MainForm.EarthPanel;
+      Earth.Align := alClient;
+    end
+    else
+    begin
+      MapForm.BorderStyle := bsNone;
+      MapForm.Parent := MainForm.EarthPanel;
+      MapForm.Align := alClient;
+    end;
     dxClusterForm.BorderStyle := bsNone;
     dxClusterForm.Parent := MainForm.ClusterPanel;
     dxClusterForm.Align := alClient;
     MiniForm.Show;
     GridsForm.Show;
     dxClusterForm.Show;
-    Earth.Show;
+    if not IniSet.Map_Use then
+      Earth.Show
+    else
+      MapForm.Show;
     MainForm.Show;
   end
   else
@@ -304,15 +316,27 @@ begin
     GridsForm.Parent := nil;
     GridsForm.BorderStyle := bsSizeable;
     GridsForm.Align := alNone;
-    Earth.Parent := nil;
-    Earth.BorderStyle := bsSizeable;
-    Earth.Align := alNone;
+    if not IniSet.Map_Use then
+    begin
+      Earth.Parent := nil;
+      Earth.BorderStyle := bsSizeable;
+      Earth.Align := alNone;
+    end
+    else
+    begin
+      MapForm.Parent := nil;
+      MapForm.BorderStyle := bsSizeable;
+      MapForm.Align := alNone;
+    end;
     dxClusterForm.Parent := nil;
     dxClusterForm.BorderStyle := bsSizeable;
     dxClusterForm.Align := alNone;
     MiniForm.Show;
     GridsForm.Show;
-    Earth.Show;
+    if not IniSet.Map_Use then
+      Earth.Show
+    else
+      MapForm.Show;
     dxClusterForm.Show;
     MainForm.Close;
   end;
@@ -433,13 +457,13 @@ begin
   SwitchForm;
 
   CBMap.Checked := IniSet.Map_Use;
-  MapForm.WriteMap('0', '0', 1);
+  //MapForm.WriteMap('0', '0', 1);
   //  CheckUpdatesTimer.Enabled := True;
   CBYourQSL.ItemIndex := 3;
-  GridsForm.Show;
-  dxClusterForm.Show;
-  Earth.Show;
-  MapForm.Show;
+  //  GridsForm.Show;
+  //  dxClusterForm.Show;
+  //  Earth.Show;
+  //  MapForm.Show;
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
@@ -951,7 +975,25 @@ end;
 procedure TMiniForm.CBMapChange(Sender: TObject);
 begin
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
-
+  if IniSet.MainForm <> 'MULTI' then
+    if CBMap.Checked then
+    begin
+      Earth.Parent:=nil;
+      MapForm.BorderStyle := bsNone;
+      MapForm.Parent := MainForm.EarthPanel;
+      MapForm.Align := alClient;
+      Earth.Close;
+      MapForm.Show;
+    end
+    else
+    begin
+      MapForm.Parent:=nil;
+      Earth.BorderStyle := bsNone;
+      Earth.Parent := MainForm.EarthPanel;
+      Earth.Align := alClient;
+      MapForm.Close;
+      Earth.Show;
+    end;
 end;
 
 procedure TMiniForm.CBModeCloseUp(Sender: TObject);

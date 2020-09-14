@@ -39,6 +39,7 @@ end;
 procedure TMapForm.FormShow(Sender: TObject);
 begin
   MapView.Active:=True;
+  WriteMap('0', '0', 1);
 end;
 
 procedure TMapForm.WriteMap(Latitude, Longitude: string; Zoom: integer);
