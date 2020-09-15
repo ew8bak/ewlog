@@ -68,6 +68,7 @@ type
     function FindInCallBook(Callsign: string): TFoundQSOR;
     function CheckQSL(Callsign, band, mode: string): integer;
     function EraseTable: boolean;
+    function CopyTableToTable(toMySQL: boolean): boolean;
   end;
 
 var
@@ -85,6 +86,139 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog;
 
 {$R *.lfm}
+
+function TMainFunc.CopyTableToTable(toMySQL: boolean): boolean;
+var
+  QueryTo: string;
+  QueryFrom: TSQLQuery;
+  Transaction: TSQLTransaction;
+  AllNumberRecord: integer;
+  LogTableNameTo: string;
+begin
+  Result := False;
+  try
+    try
+      QueryFrom := TSQLQuery.Create(nil);
+      Transaction := TSQLTransaction.Create(nil);
+
+      if toMySQL then
+      begin
+        QueryFrom.DataBase := InitDB.MySQLConnection;
+        Transaction.DataBase := InitDB.MySQLConnection;
+        InitDB.MySQLConnection.Connected := True;
+        InitDB.MySQLConnection.ExecuteDirect('SET autocommit = 0');
+        InitDB.MySQLConnection.ExecuteDirect('BEGIN');
+      end
+      else
+      begin
+        QueryFrom.DataBase := InitDB.SQLiteConnection;
+        Transaction.DataBase := InitDB.SQLiteConnection;
+        InitDB.SQLiteConnection.Connected := True;
+      end;
+      QueryFrom.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = ' +
+        QuotedStr(LBRecord.CallSign);
+      QueryFrom.Open;
+      if QueryFrom.RecordCount > 0 then
+        LogTableNameTo := QueryFrom.Fields.Fields[0].AsString
+      else
+        ShowMessage('Не найдена таблица для копирования');
+      QueryFrom.Close;
+
+      if toMySQL then
+        QueryFrom.DataBase := InitDB.SQLiteConnection
+      else
+        QueryFrom.DataBase := InitDB.MySQLConnection;
+
+      QueryFrom.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable;
+      QueryFrom.Open;
+      AllNumberRecord := QueryFrom.Fields.Fields[0].AsInteger;
+      QueryFrom.Close;
+      QueryFrom.SQL.Text := 'SELECT ' + CopyField + ' FROM ' + LBRecord.LogTable;
+      QueryFrom.Open;
+      QueryFrom.First;
+      while not QueryFrom.EOF do
+      begin
+        QueryTo := 'INSERT INTO ' + LogTableNameTo + ' (' + CopyField +
+          ') VALUES (' + dmFunc.Q(QueryFrom.Fields.Fields[0].AsString) +
+          dmFunc.Q(DateToStr(QueryFrom.Fields.Fields[1].AsDateTime)) +
+          dmFunc.Q(QueryFrom.Fields.Fields[2].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[3].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[4].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[5].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[6].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[7].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[8].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[9].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[10].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[11].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[12].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[13].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[14].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[15].AsString) +
+          dmFunc.Q(DateToStr(QueryFrom.Fields.Fields[16].AsDateTime)) +
+          dmFunc.Q(QueryFrom.Fields.Fields[17].AsString) +
+          dmFunc.Q(DateToStr(QueryFrom.Fields.Fields[18].AsDateTime)) +
+          dmFunc.Q(QueryFrom.Fields.Fields[19].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[20].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[21].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[22].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[23].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[24].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[25].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[26].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[27].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[28].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[29].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[30].AsString) +
+          dmFunc.Q(DateToStr(QueryFrom.Fields.Fields[31].AsDateTime)) +
+          dmFunc.Q(QueryFrom.Fields.Fields[32].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[33].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[34].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[35].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[36].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[37].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[38].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[39].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[40].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[41].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[42].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[43].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[44].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[45].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[46].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[47].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[48].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[49].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[50].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[51].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[52].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[53].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[54].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[55].AsString) +
+          dmFunc.Q(QueryFrom.Fields.Fields[56].AsString) +
+          QuotedStr(QueryFrom.Fields.Fields[57].AsString) + ')';
+        if toMySQL then
+          InitDB.MySQLConnection.ExecuteDirect(QueryTo)
+        else
+          InitDB.SQLiteConnection.ExecuteDirect(QueryTo);
+        QueryFrom.Next;
+      end;
+
+    finally
+      if toMySQL then
+        InitDB.MySQLConnection.ExecuteDirect('BEGIN');
+      Result := True;
+      FreeAndNil(QueryFrom);
+    end;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('CopyTableToTable:' + E.Message);
+      WriteLn(ExceptFile, 'CopyTableToTable:' + E.ClassName + ':' + E.Message);
+      Result := False;
+    end;
+  end;
+end;
 
 function TMainFunc.EraseTable: boolean;
 var

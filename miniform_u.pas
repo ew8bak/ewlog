@@ -213,6 +213,8 @@ type
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
+    procedure MenuItem82Click(Sender: TObject);
+    procedure MenuItem83Click(Sender: TObject);
     procedure MIClusterTopClick(Sender: TObject);
     procedure MiLogbookFormClick(Sender: TObject);
     procedure MiLogGridTopClick(Sender: TObject);
@@ -322,8 +324,8 @@ begin
       else
         MapForm.Show;
     MainForm.Show;
-    MIMWode.Checked := False;
-    MenuItem73.Checked := True;
+   // MIMWode.Checked := False;
+   // MenuItem73.Checked := True;
   end
   else
   begin
@@ -370,8 +372,8 @@ begin
       GridsForm.FormStyle := fsSystemStayOnTop;
     if IniSet.cTop then
       dxClusterForm.FormStyle := fsSystemStayOnTop;
-    MIMWode.Checked := True;
-    MenuItem73.Checked := False;
+   // MIMWode.Checked := True;
+   // MenuItem73.Checked := False;
   end;
 end;
 
@@ -517,6 +519,16 @@ begin
   MM_Form.Show;
 end;
 
+procedure TMiniForm.MenuItem82Click(Sender: TObject);
+begin
+  MainFunc.CopyTableToTable(False);
+end;
+
+procedure TMiniForm.MenuItem83Click(Sender: TObject);
+begin
+  MainFunc.CopyTableToTable(True);
+end;
+
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);
 begin
   if MIClusterTop.Checked then
@@ -617,7 +629,7 @@ var
   tempSet: string;
 begin
   tempSet := IniSet.MainForm;
-  MIMWode.Checked := True;
+  //MIMWode.Checked := True;
   IniSet.MainForm := 'MULTI';
   if tempSet <> IniSet.MainForm then
     SwitchForm;

@@ -2054,9 +2054,11 @@ object MiniForm: TMiniForm
         Caption = 'Synchronization Databases'
         object MenuItem82: TMenuItem
           Caption = 'From MySQL to SQLite'
+          OnClick = MenuItem82Click
         end
         object MenuItem83: TMenuItem
           Caption = 'From SQLite to MySQL'
+          OnClick = MenuItem83Click
         end
         object MenuItem48: TMenuItem
           Caption = 'Set date synchronization'
@@ -2160,7 +2162,6 @@ object MiniForm: TMiniForm
           Caption = 'Mode ON'
           OnClick = MIMWodeClick
           object MiMainTop: TMenuItem
-            AutoCheck = True
             Caption = 'On Top'
             OnClick = MiMainTopClick
           end
@@ -2169,7 +2170,6 @@ object MiniForm: TMiniForm
           Caption = 'Logbook grid'
           OnClick = MiLogbookFormClick
           object MiLogGridTop: TMenuItem
-            AutoCheck = True
             Caption = 'On Top'
             OnClick = MiLogGridTopClick
           end
@@ -2178,7 +2178,6 @@ object MiniForm: TMiniForm
           Caption = 'DX Cluster'
           OnClick = MITelnetFormClick
           object MIClusterTop: TMenuItem
-            AutoCheck = True
             Caption = 'On Top'
             OnClick = MIClusterTopClick
           end
@@ -2187,7 +2186,6 @@ object MiniForm: TMiniForm
           Caption = 'Map'
           OnClick = MIMapFormClick
           object miMapTop: TMenuItem
-            AutoCheck = True
             Caption = 'On Top'
             OnClick = miMapTopClick
           end
