@@ -521,12 +521,16 @@ end;
 
 procedure TMiniForm.MenuItem82Click(Sender: TObject);
 begin
-  MainFunc.CopyTableToTable(False);
+  if MainFunc.CopyTableToTable(False) then
+   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
 end;
 
 procedure TMiniForm.MenuItem83Click(Sender: TObject);
 begin
-  MainFunc.CopyTableToTable(True);
+  if MainFunc.CopyTableToTable(True) then
+   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
 end;
 
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);
