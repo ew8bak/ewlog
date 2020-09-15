@@ -15,6 +15,7 @@ type
   modeArray = array of string;
   subModeArray = array of string;
   CallsignArray = array of string;
+  StringArray = array of string;
 
   { TMainFunc }
 
@@ -69,6 +70,7 @@ type
     function CheckQSL(Callsign, band, mode: string): integer;
     function EraseTable: boolean;
     function CopyTableToTable(toMySQL: boolean): boolean;
+    function GetMySQLDataBase: StringArray;
   end;
 
 var
@@ -86,6 +88,43 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
 
 {$R *.lfm}
+
+function TMainFunc.GetMySQLDataBase: StringArray;
+var
+  i: integer;
+  Query: TSQLQuery;
+  DBList: StringArray;
+begin
+  try
+    try
+      Query := TSQLQuery.Create(nil);
+      Query.PacketRecords := 50;
+      if InitDB.MySQLConnection.Connected then
+      begin
+        Query.DataBase := InitDB.MySQLConnection;
+        Query.SQL.Text := 'SHOW DATABASES;';
+        Query.Open;
+        if Query.RecordCount = 0 then
+          Exit;
+        SetLength(DBList, Query.RecordCount);
+        Query.First;
+        for i := 0 to Query.RecordCount - 1 do
+        begin
+          DBList[i] := Query.Fields.Fields[0].AsString;
+          Query.Next;
+        end;
+        Query.Close;
+      end;
+      Result := DBList;
+    finally
+      FreeAndNil(Query);
+      InitDB.MySQLConnection.Connected := False;
+    end;
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'GetMySQLDataBase:' + E.ClassName + ':' + E.Message);
+  end;
+end;
 
 function TMainFunc.CopyTableToTable(toMySQL: boolean): boolean;
 var
@@ -209,12 +248,12 @@ begin
             InitDB.SQLiteConnection.ExecuteDirect(strQuery);
 
           QueryFrom.Next;
-         Inc(RecCount);
-         if RecCount mod 100 = 0 then
-        begin
-          MiniForm.TextSB('Copy QSO:'+IntToStr(RecCount)+ ' ' + 'done');
-          Application.ProcessMessages;
-        end;
+          Inc(RecCount);
+          if RecCount mod 100 = 0 then
+          begin
+            MiniForm.TextSB('Copy QSO:' + IntToStr(RecCount) + ' ' + 'done');
+            Application.ProcessMessages;
+          end;
         except
           on E: ESQLDatabaseError do
           begin
@@ -226,14 +265,14 @@ begin
                 MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount));
                 Application.ProcessMessages;
               end;
-                MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount));
+              MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount));
             end;
             if E.ErrorCode = 1366 then
             begin
               Inc(errorCount);
               if errorCount mod 100 = 0 then
               begin
-                  MiniForm.TextSB(rImportErrors + ':' + IntToStr(ErrorCount));
+                MiniForm.TextSB(rImportErrors + ':' + IntToStr(ErrorCount));
                 Application.ProcessMessages;
               end;
               // WriteWrongADIF(s);
@@ -253,7 +292,7 @@ begin
         InitDB.SQLiteConnection.ExecuteDirect('COMMIT;');
 
       Result := True;
-      MiniForm.TextSB('Copy QSO:'+IntToStr(RecCount)+ ' ' + 'done');
+      MiniForm.TextSB('Copy QSO:' + IntToStr(RecCount) + ' ' + 'done');
       FreeAndNil(QueryFrom);
       FreeAndNil(QueryToList);
       FreeAndNil(Transaction);
