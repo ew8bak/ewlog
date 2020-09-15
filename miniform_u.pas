@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
-  const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, process, LCLIntf,
+  const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, LCLIntf,
   ActnList;
 
 type
@@ -262,6 +262,7 @@ type
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
 
   public
+    StatusBar: TStatusBar;
     procedure LoadComboBoxItem;
     procedure SwitchForm;
 
@@ -289,6 +290,11 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 
 procedure TMiniForm.SwitchForm;
 begin
+  StatusBar.Align := alBottom;
+  StatusBar.Enabled := True;
+  StatusBar.AutoSize := True;
+  StatusBar.Visible := True;
+
   if IniSet.MainForm <> 'MULTI' then
   begin
     MiniForm.Menu := nil;
@@ -296,6 +302,7 @@ begin
     MiniForm.BorderStyle := bsNone;
     MiniForm.Parent := MainForm.MiniPanel;
     MiniForm.Align := alClient;
+    StatusBar.Parent := MainForm;
     GridsForm.BorderStyle := bsNone;
     GridsForm.Parent := MainForm.GridsPanel;
     GridsForm.Align := alClient;
@@ -324,8 +331,8 @@ begin
       else
         MapForm.Show;
     MainForm.Show;
-   // MIMWode.Checked := False;
-   // MenuItem73.Checked := True;
+    // MIMWode.Checked := False;
+    // MenuItem73.Checked := True;
   end
   else
   begin
@@ -334,6 +341,7 @@ begin
     MiniForm.Parent := nil;
     MiniForm.BorderStyle := bsSizeable;
     MiniForm.Align := alNone;
+    StatusBar.Parent := MiniForm;
     MainForm.Close;
     GridsForm.Parent := nil;
     GridsForm.BorderStyle := bsSizeable;
@@ -372,8 +380,8 @@ begin
       GridsForm.FormStyle := fsSystemStayOnTop;
     if IniSet.cTop then
       dxClusterForm.FormStyle := fsSystemStayOnTop;
-   // MIMWode.Checked := True;
-   // MenuItem73.Checked := False;
+    // MIMWode.Checked := True;
+    // MenuItem73.Checked := False;
   end;
 end;
 
@@ -522,15 +530,15 @@ end;
 procedure TMiniForm.MenuItem82Click(Sender: TObject);
 begin
   if MainFunc.CopyTableToTable(False) then
-   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-        ShowMessage(rDBError);
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
 end;
 
 procedure TMiniForm.MenuItem83Click(Sender: TObject);
 begin
   if MainFunc.CopyTableToTable(True) then
-   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-        ShowMessage(rDBError);
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
 end;
 
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);
@@ -1484,6 +1492,7 @@ begin
   Earth.SavePosition;
   dxClusterForm.SavePosition;
   MapForm.SavePosition;
+  FreeAndNil(StatusBar);
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);
@@ -1491,6 +1500,7 @@ var
   Lang: string = '';
   FallbackLang: string = '';
 begin
+  StatusBar := TStatusBar.Create(self);
   Shape1.Visible := False;
   LBQSL.Visible := False;
   LBWorked.Visible := False;
