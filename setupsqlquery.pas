@@ -97,7 +97,7 @@ begin
     ' `ShortNote` varchar(200) DEFAULT NULL,' +
     ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
     ' `LoTWRec` tinyint(1) DEFAULT 0, `LoTWRecDate` datetime DEFAULT NULL,' +
-    ' `QSLInfo` varchar(100) DEFAULT NULL, `Call` varchar(20) DEFAULT NULL,' +
+    ' `QSLInfo` varchar(200) DEFAULT NULL, `Call` varchar(20) DEFAULT NULL,' +
     ' `State1` varchar(25) DEFAULT NULL, `State2` varchar(25) DEFAULT NULL,' +
     ' `State3` varchar(25) DEFAULT NULL, `State4` varchar(25) DEFAULT NULL,' +
     ' `WPX` varchar(10) DEFAULT NULL, `AwardsEx` longtext,' +

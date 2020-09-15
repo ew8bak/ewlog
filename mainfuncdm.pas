@@ -89,30 +89,48 @@ uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
 
 function TMainFunc.CopyTableToTable(toMySQL: boolean): boolean;
 var
-  QueryTo: string;
+  QueryToList: TStringList;
   QueryFrom: TSQLQuery;
   Transaction: TSQLTransaction;
   AllNumberRecord: integer;
   LogTableNameTo: string;
+  LogTableNameFrom: string;
+  i: integer;
+  strQuery: string;
+  errorCount: integer;
+  DateStr: string;
 begin
   Result := False;
   try
     try
+      QueryToList := TStringList.Create;
       QueryFrom := TSQLQuery.Create(nil);
       Transaction := TSQLTransaction.Create(nil);
 
       if toMySQL then
       begin
-        QueryFrom.DataBase := InitDB.MySQLConnection;
         Transaction.DataBase := InitDB.MySQLConnection;
+        QueryFrom.DataBase := InitDB.MySQLConnection;
+        InitDB.MySQLConnection.HostName := DBRecord.MySQLHost;
+        InitDB.MySQLConnection.Port := DBRecord.MySQLPort;
+        InitDB.MySQLConnection.UserName := DBRecord.MySQLUser;
+        InitDB.MySQLConnection.Password := DBRecord.MySQLPass;
+        InitDB.MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
         InitDB.MySQLConnection.Connected := True;
         InitDB.MySQLConnection.ExecuteDirect('SET autocommit = 0');
         InitDB.MySQLConnection.ExecuteDirect('BEGIN');
       end
       else
       begin
-        QueryFrom.DataBase := InitDB.SQLiteConnection;
+        InitDB.MySQLConnection.HostName := DBRecord.MySQLHost;
+        InitDB.MySQLConnection.Port := DBRecord.MySQLPort;
+        InitDB.MySQLConnection.UserName := DBRecord.MySQLUser;
+        InitDB.MySQLConnection.Password := DBRecord.MySQLPass;
+        InitDB.MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
+        InitDB.MySQLConnection.Connected := True;
         Transaction.DataBase := InitDB.SQLiteConnection;
+        QueryFrom.DataBase := InitDB.SQLiteConnection;
+        InitDB.SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
         InitDB.SQLiteConnection.Connected := True;
       end;
       QueryFrom.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = ' +
@@ -127,94 +145,114 @@ begin
       if toMySQL then
         QueryFrom.DataBase := InitDB.SQLiteConnection
       else
+      begin
         QueryFrom.DataBase := InitDB.MySQLConnection;
+        InitDB.MySQLConnection.Transaction := Transaction;
+      end;
 
-      QueryFrom.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable;
+      QueryFrom.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = ' +
+        QuotedStr(LBRecord.CallSign);
+      QueryFrom.Open;
+      if QueryFrom.RecordCount > 0 then
+        LogTableNameFrom := QueryFrom.Fields.Fields[0].AsString
+      else
+        ShowMessage('Не найдена таблица для копирования');
+      QueryFrom.Close;
+
+      QueryFrom.SQL.Text := 'SELECT COUNT(*) FROM ' + LogTableNameFrom;
       QueryFrom.Open;
       AllNumberRecord := QueryFrom.Fields.Fields[0].AsInteger;
       QueryFrom.Close;
-      QueryFrom.SQL.Text := 'SELECT ' + CopyField + ' FROM ' + LBRecord.LogTable;
+      QueryFrom.SQL.Text := 'SELECT ' + CopyField + ' FROM ' + LogTableNameFrom;
       QueryFrom.Open;
       QueryFrom.First;
+      errorCount := 0;
       while not QueryFrom.EOF do
       begin
-        QueryTo := 'INSERT INTO ' + LogTableNameTo + ' (' + CopyField +
-          ') VALUES (' + dmFunc.Q(QueryFrom.Fields.Fields[0].AsString) +
-          dmFunc.Q(DateToStr(QueryFrom.Fields.Fields[1].AsDateTime)) +
-          dmFunc.Q(QueryFrom.Fields.Fields[2].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[3].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[4].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[5].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[6].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[7].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[8].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[9].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[10].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[11].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[12].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[13].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[14].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[15].AsString) +
-          dmFunc.Q(DateToStr(QueryFrom.Fields.Fields[16].AsDateTime)) +
-          dmFunc.Q(QueryFrom.Fields.Fields[17].AsString) +
-          dmFunc.Q(DateToStr(QueryFrom.Fields.Fields[18].AsDateTime)) +
-          dmFunc.Q(QueryFrom.Fields.Fields[19].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[20].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[21].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[22].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[23].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[24].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[25].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[26].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[27].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[28].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[29].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[30].AsString) +
-          dmFunc.Q(DateToStr(QueryFrom.Fields.Fields[31].AsDateTime)) +
-          dmFunc.Q(QueryFrom.Fields.Fields[32].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[33].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[34].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[35].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[36].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[37].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[38].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[39].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[40].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[41].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[42].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[43].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[44].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[45].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[46].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[47].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[48].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[49].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[50].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[51].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[52].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[53].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[54].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[55].AsString) +
-          dmFunc.Q(QueryFrom.Fields.Fields[56].AsString) +
-          QuotedStr(QueryFrom.Fields.Fields[57].AsString) + ')';
-        if toMySQL then
-          InitDB.MySQLConnection.ExecuteDirect(QueryTo)
-        else
-          InitDB.SQLiteConnection.ExecuteDirect(QueryTo);
-        QueryFrom.Next;
+        try
+          QueryToList.Clear;
+          QueryToList.Add('INSERT INTO ' + LogTableNameTo + ' (' +
+            CopyField + ') VALUES (');
+          for i := 0 to 57 do
+          begin
+            if QueryFrom.Fields.Fields[i].AsString <> '' then
+            begin
+              if (QueryFrom.Fields.Fields[i].FieldNo = 2) or
+                (QueryFrom.Fields.Fields[i].FieldNo = 17) or
+                (QueryFrom.Fields.Fields[i].FieldNo = 19) or
+                (QueryFrom.Fields.Fields[i].FieldNo = 32) then
+              begin
+                if toMySQL then
+                  DateStr := FormatDateTime('YYYY-MM-DD',
+                    QueryFrom.Fields.Fields[i].AsDateTime)
+                else
+                  DateStr := FloatToStr(DateTimeToJulianDate(
+                    QueryFrom.Fields.Fields[i].AsDateTime));
+                QueryToList.Add(QuotedStr(DateStr) + ',');
+              end
+              else
+                QueryToList.Add(QuotedStr(QueryFrom.Fields.Fields[i].AsString) + ',');
+            end
+            else
+              QueryToList.Add('NULL,');
+          end;
+          QueryToList.Add(')');
+          strQuery := QueryToList.Text;
+          Delete(strQuery, length(strQuery) - 3, 1);
+          QueryToList.Text := strQuery;
+
+          if toMySQL then
+            InitDB.MySQLConnection.ExecuteDirect(QueryToList.Text)
+          else
+            InitDB.SQLiteConnection.ExecuteDirect(QueryToList.Text);
+
+          QueryFrom.Next;
+
+        except
+          on E: ESQLDatabaseError do
+          begin
+            if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
+            begin
+              Inc(errorCount);
+              if errorCount mod 100 = 0 then
+              begin
+                //  Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
+                Application.ProcessMessages;
+              end;
+              //  Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
+            end;
+            if E.ErrorCode = 1366 then
+            begin
+              Inc(errorCount);
+              if errorCount mod 100 = 0 then
+              begin
+                //  lblErrors.Caption := rImportErrors + ':' + IntToStr(ErrorCount);
+                Application.ProcessMessages;
+              end;
+              // WriteWrongADIF(s);
+            end;
+            QueryFrom.Next;
+          end;
+        end;
       end;
 
     finally
       if toMySQL then
-        InitDB.MySQLConnection.ExecuteDirect('BEGIN');
+        InitDB.MySQLConnection.ExecuteDirect('COMMIT')
+      else
+        InitDB.SQLiteConnection.ExecuteDirect('COMMIT;');
+
       Result := True;
       FreeAndNil(QueryFrom);
+      FreeAndNil(QueryToList);
+      FreeAndNil(Transaction);
     end;
   except
     on E: Exception do
     begin
       ShowMessage('CopyTableToTable:' + E.Message);
       WriteLn(ExceptFile, 'CopyTableToTable:' + E.ClassName + ':' + E.Message);
+      WriteLn(ExceptFile, 'CopyTableToTableSQL:' + strQuery);
       Result := False;
     end;
   end;
