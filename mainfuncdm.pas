@@ -92,7 +92,7 @@ var
   QueryToList: TStringList;
   QueryFrom: TSQLQuery;
   Transaction: TSQLTransaction;
-  AllNumberRecord: integer;
+  AllNumberRecord, RecCount: integer;
   LogTableNameTo: string;
   LogTableNameFrom: string;
   i: integer;
@@ -167,6 +167,7 @@ begin
       QueryFrom.Open;
       QueryFrom.First;
       errorCount := 0;
+      RecCount := 0;
       while not QueryFrom.EOF do
       begin
         try
@@ -198,16 +199,21 @@ begin
           end;
           QueryToList.Add(')');
           strQuery := QueryToList.Text;
-          Delete(strQuery, length(strQuery) - 3, 1);
-          QueryToList.Text := strQuery;
+          strQuery := StringReplace(strQuery, #10, '', [rfReplaceAll]);
+          strQuery := StringReplace(strQuery, #13, '', [rfReplaceAll]);
+          Delete(strQuery, LastDelimiter(',', strQuery), 1);
 
           if toMySQL then
-            InitDB.MySQLConnection.ExecuteDirect(QueryToList.Text)
+            InitDB.MySQLConnection.ExecuteDirect(strQuery)
           else
-            InitDB.SQLiteConnection.ExecuteDirect(QueryToList.Text);
+            InitDB.SQLiteConnection.ExecuteDirect(strQuery);
 
           QueryFrom.Next;
-
+         Inc(RecCount);
+         if RecCount mod 100 = 0 then
+        begin
+          Application.ProcessMessages;
+        end;
         except
           on E: ESQLDatabaseError do
           begin
@@ -232,6 +238,9 @@ begin
               // WriteWrongADIF(s);
             end;
             QueryFrom.Next;
+            WriteLn(ExceptFile, 'CopyTableToTable:' + E.ClassName +
+              ':' + E.Message);
+            WriteLn(ExceptFile, 'CopyTableToTableSQL:' + strQuery);
           end;
         end;
       end;
