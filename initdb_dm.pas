@@ -36,6 +36,7 @@ type
     function InitPrefix: boolean;
     procedure AllFree;
     function InitDBINI: boolean;
+    procedure CheckSQLVersion;
 
   end;
 
@@ -55,6 +56,7 @@ var
   PrefixProvinceCount: integer;
   PrefixARRLCount: integer;
   UniqueCallsCount: integer;
+  sqlite_version: string;
   SearchPrefixQuery: TSQLQuery;
   PrefixExpProvinceArray: array [0..1000] of record
     reg: TRegExpr;
@@ -123,6 +125,7 @@ begin
     else
     if (not SelectLogbookTable(LBRecord.LogTable)) and (DBRecord.InitDB = 'YES') then
       ShowMessage(rDBError);
+  CheckSQLVersion;
   MainFunc.LoadINIsettings;
   ImbeddedCallBookInit(IniSet.UseIntCallBook);
 end;
@@ -132,6 +135,31 @@ begin
   INIFile.Free;
   CloseFile(ExceptFile);
   AllFree;
+end;
+
+procedure TInitDB.CheckSQLVersion;
+var
+  Query: TSQLQuery;
+begin
+  try
+    try
+      Query := TSQLQuery.Create(nil);
+      Query.DataBase := InitDB.ServiceDBConnection;
+      Query.SQL.Text := 'SELECT sqlite_version()';
+      Query.Open;
+      sqlite_version := Query.Fields.Fields[0].AsString;
+      Query.Close;
+    finally
+      FreeAndNil(Query);
+    end;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('CheckSQLVersion: Error: ' + E.ClassName + #13#10 + E.Message);
+      WriteLn(ExceptFile, 'CheckSQLVersion: Error: ' + E.ClassName +
+        ':' + E.Message);
+    end;
+  end;
 end;
 
 function TInitDB.ServiceDBInit: boolean;

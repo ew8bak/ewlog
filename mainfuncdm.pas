@@ -82,8 +82,8 @@ var
 
 implementation
 
-uses InitDB_dm, dmFunc_U, MainForm_U, hrdlog,
-  hamqth, clublog, qrzcom, eqsl, cloudlog;
+uses InitDB_dm, dmFunc_U, hrdlog,
+  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
 
 {$R *.lfm}
 
@@ -212,6 +212,7 @@ begin
          Inc(RecCount);
          if RecCount mod 100 = 0 then
         begin
+          MiniForm.TextSB('Copy QSO:'+IntToStr(RecCount)+ ' ' + 'done');
           Application.ProcessMessages;
         end;
         except
@@ -222,17 +223,17 @@ begin
               Inc(errorCount);
               if errorCount mod 100 = 0 then
               begin
-                //  Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
+                MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount));
                 Application.ProcessMessages;
               end;
-              //  Label2.Caption := rNumberDup + ':' + IntToStr(DupeCount);
+                MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount));
             end;
             if E.ErrorCode = 1366 then
             begin
               Inc(errorCount);
               if errorCount mod 100 = 0 then
               begin
-                //  lblErrors.Caption := rImportErrors + ':' + IntToStr(ErrorCount);
+                  MiniForm.TextSB(rImportErrors + ':' + IntToStr(ErrorCount));
                 Application.ProcessMessages;
               end;
               // WriteWrongADIF(s);
@@ -252,6 +253,7 @@ begin
         InitDB.SQLiteConnection.ExecuteDirect('COMMIT;');
 
       Result := True;
+      MiniForm.TextSB('Copy QSO:'+IntToStr(RecCount)+ ' ' + 'done');
       FreeAndNil(QueryFrom);
       FreeAndNil(QueryToList);
       FreeAndNil(Transaction);

@@ -256,15 +256,16 @@ type
   private
     SelEditNumChar: integer;
     EditFlag: boolean;
-    procedure LoadFromInternetCallBook(info: TInformRecord);
     procedure Clr;
     procedure LangItemClick(Sender: TObject);
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
 
   public
     StatusBar: TStatusBar;
+    procedure LoadFromInternetCallBook(info: TInformRecord);
     procedure LoadComboBoxItem;
     procedure SwitchForm;
+    procedure TextSB(Value: String);
 
   end;
 
@@ -287,6 +288,11 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 {$R *.lfm}
 
 { TMiniForm }
+
+procedure TMiniForm.TextSB(Value: String);
+begin
+  StatusBar.SimpleText:=Value;
+end;
 
 procedure TMiniForm.SwitchForm;
 begin
@@ -331,8 +337,6 @@ begin
       else
         MapForm.Show;
     MainForm.Show;
-    // MIMWode.Checked := False;
-    // MenuItem73.Checked := True;
   end
   else
   begin
@@ -380,8 +384,6 @@ begin
       GridsForm.FormStyle := fsSystemStayOnTop;
     if IniSet.cTop then
       dxClusterForm.FormStyle := fsSystemStayOnTop;
-    // MIMWode.Checked := True;
-    // MenuItem73.Checked := False;
   end;
 end;
 
@@ -431,8 +433,6 @@ begin
   LBWorked.Visible := False;
   LBCfm.Visible := False;
   MapForm.WriteMap('0', '0', 1);
-
-
   CBQSLVia.Text := '';
   //  if MenuItem111.Checked = True then
   //  begin
@@ -452,15 +452,15 @@ begin
   EditQTH.Text := info.City;
   EditGrid.Text := info.Grid;
   EditState.Text := info.State;
-  //  if Length(info.Error) > 0 then
-  //    StatusBar1.Panels.Items[0].Text := info.Error
-  //  else
-  //    StatusBar1.Panels.Items[0].Text := '';
+    if Length(info.Error) > 0 then
+      StatusBar.SimpleText := info.Error
+    else
+      StatusBar.SimpleText := '';
 end;
 
 procedure TMiniForm.FormShow(Sender: TObject);
 var
-  s, sqlite_version: string;
+  s: string;
 begin
   if (IniSet._l_m <> 0) and (IniSet._t_m <> 0) and (IniSet._w_m <> 0) and
     (IniSet._h_m <> 0) then

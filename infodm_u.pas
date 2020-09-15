@@ -156,8 +156,8 @@ begin
     end;
 
   finally
-   // if InfoR.Sender = 'MainForm' then
-   //   MiniForm.LoadFromInternetCallBook(InfoR);
+    if InfoR.Sender = 'MainForm' then
+      MiniForm.LoadFromInternetCallBook(InfoR);
     if InfoR.Sender = 'InformationForm' then
       InformationForm.LoadFromInternetCallBook(InfoR);
   end;
