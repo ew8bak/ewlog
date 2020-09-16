@@ -280,7 +280,6 @@ begin
             QueryFrom.Next;
             WriteLn(ExceptFile, 'CopyTableToTable:' + E.ClassName +
               ':' + E.Message);
-            WriteLn(ExceptFile, 'CopyTableToTableSQL:' + strQuery);
           end;
         end;
       end;
@@ -302,7 +301,6 @@ begin
     begin
       ShowMessage('CopyTableToTable:' + E.Message);
       WriteLn(ExceptFile, 'CopyTableToTable:' + E.ClassName + ':' + E.Message);
-      WriteLn(ExceptFile, 'CopyTableToTableSQL:' + strQuery);
       Result := False;
     end;
   end;
