@@ -50,7 +50,6 @@ type
     CheckBox7: TCheckBox;
     CheckBox8: TCheckBox;
     CheckBox9: TCheckBox;
-    CBDataBase: TComboBox;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -61,6 +60,7 @@ type
     Edit2: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
+    Edit5: TEdit;
     Edit6: TEdit;
     Edit7: TEdit;
     Edit8: TEdit;
@@ -106,7 +106,6 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure CBDataBaseDropDown(Sender: TObject);
     procedure CheckBox10Change(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -147,7 +146,7 @@ begin
   INIFile.WriteString('DataBases', 'Port', Edit2.Text);
   INIFile.WriteString('DataBases', 'LoginName', Edit3.Text);
   INIFile.WriteString('DataBases', 'Password', Edit4.Text);
-  INIFile.WriteString('DataBases', 'DataBaseName', CBDataBase.Text);
+  INIFile.WriteString('DataBases', 'DataBaseName', Edit5.Text);
   INIFile.WriteString('DataBases', 'FileSQLite', FileNameEdit1.Text);
   INIFile.WriteString('TelnetCluster', 'Login', Edit11.Text);
   INIFile.WriteString('TelnetCluster', 'Password', Edit12.Text);
@@ -199,7 +198,7 @@ begin
     Edit2.Text := INIFile.ReadString('DataBases', 'Port', '');
   Edit3.Text := INIFile.ReadString('DataBases', 'LoginName', '');
   Edit4.Text := INIFile.ReadString('DataBases', 'Password', '');
-  CBDataBase.Text := INIFile.ReadString('DataBases', 'DataBaseName', '');
+  Edit5.Text := INIFile.ReadString('DataBases', 'DataBaseName', '');
   Edit11.Text := INIFile.ReadString('TelnetCluster', 'Login', '');
   Edit12.Text := INIFile.ReadString('TelnetCluster', 'Password', '');
 
@@ -254,13 +253,13 @@ procedure TConfigForm.Button3Click(Sender: TObject);
 begin
   try
     if (Edit1.Text <> '') and (Edit2.Text <> '') and (Edit3.Text <> '') and
-      (Edit4.Text <> '') and (CBDataBase.Text <> '') then
+      (Edit4.Text <> '') and (Edit5.Text <> '') then
     begin
       InitDB.MySQLConnection.HostName := Edit1.Text;
       InitDB.MySQLConnection.Port := StrToInt(Edit2.Text);
       InitDB.MySQLConnection.UserName := Edit3.Text;
       InitDB.MySQLConnection.Password := Edit4.Text;
-      InitDB.MySQLConnection.DatabaseName := CBDataBase.Text;
+      InitDB.MySQLConnection.DatabaseName := Edit5.Text;
       InitDB.MySQLConnection.Connected := False;
       InitDB.MySQLConnection.Connected := True;
       if InitDB.MySQLConnection.Connected then
@@ -284,33 +283,6 @@ begin
     InitDB.ImbeddedCallBookInit(False);
     DownloadCallBookFile;
   end;
-end;
-
-procedure TConfigForm.CBDataBaseDropDown(Sender: TObject);
-var
-  i: integer;
-begin
-  if (Edit1.Text <> '') and (Edit2.Text <> '') and (Edit3.Text <> '') and
-    (Edit4.Text <> '') and (CBDataBase.Text <> '') then
-  begin
-    InitDB.MySQLConnection.HostName := Edit1.Text;
-    InitDB.MySQLConnection.Port := StrToInt(Edit2.Text);
-    InitDB.MySQLConnection.UserName := Edit3.Text;
-    InitDB.MySQLConnection.Password := Edit4.Text;
-    InitDB.MySQLConnection.DatabaseName := CBDataBase.Text;
-    InitDB.MySQLConnection.Connected := False;
-    InitDB.MySQLConnection.Connected := True;
-    if InitDB.MySQLConnection.Connected then
-      ShowMessage(rMySQLConnectTrue);
-  end
-  else
-  begin
-    ShowMessage(rCheckNotEdit);
-    Exit;
-  end;
-  CBDataBase.Items.Clear;
-  for i := 0 to High(MainFunc.GetMySQLDataBase) do
-    CBDataBase.Items.Add(MainFunc.GetMySQLDataBase[i]);
 end;
 
 procedure TConfigForm.CheckBox10Change(Sender: TObject);

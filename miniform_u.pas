@@ -9,7 +9,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, LCLIntf,
-  ActnList;
+  ActnList, process;
 
 type
 
