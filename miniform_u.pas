@@ -343,7 +343,7 @@ begin
     MainForm.Menu := nil;
     MiniForm.Menu := MiniForm.MainMenu;
     MiniForm.Parent := nil;
-    MiniForm.BorderStyle := bsSizeable;
+    MiniForm.BorderStyle := bsSingle;
     MiniForm.Align := alNone;
     StatusBar.Parent := MiniForm;
     MainForm.Close;

@@ -30,7 +30,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="212"/>
         <CursorPos X="3" Y="212"/>
         <UsageCount Value="200"/>
@@ -43,10 +43,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="131"/>
         <CursorPos X="23" Y="155"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="logconfigform_u.pas"/>
@@ -67,11 +69,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="239"/>
         <CursorPos X="51" Y="262"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -104,7 +107,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="680"/>
         <CursorPos X="14" Y="701"/>
         <UsageCount Value="200"/>
@@ -117,7 +120,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="205"/>
         <CursorPos X="3" Y="211"/>
         <UsageCount Value="200"/>
@@ -215,10 +218,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="234"/>
-        <CursorPos X="15" Y="262"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="42"/>
+        <CursorPos X="3" Y="63"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit19>
       <Unit20>
         <Filename Value="rig.pas"/>
@@ -533,7 +537,7 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="135"/>
         <CursorPos X="23" Y="172"/>
         <UsageCount Value="201"/>
@@ -542,7 +546,7 @@
       <Unit50>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="52"/>
         <CursorPos X="21" Y="60"/>
         <UsageCount Value="201"/>
@@ -577,7 +581,7 @@
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <CursorPos X="28" Y="100"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -644,7 +648,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="39"/>
         <CursorPos X="30" Y="39"/>
         <UsageCount Value="200"/>
@@ -674,10 +678,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="121"/>
-        <CursorPos X="24" Y="138"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="151"/>
+        <CursorPos X="30" Y="133"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit64>
@@ -691,7 +694,7 @@
       <Unit66>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="12"/>
         <CursorPos X="6" Y="43"/>
         <UsageCount Value="200"/>
@@ -778,8 +781,9 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="418"/>
-        <CursorPos X="20" Y="12"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="330"/>
+        <CursorPos X="37" Y="346"/>
         <UsageCount Value="111"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1450,55 +1454,55 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="174" Column="51" TopLine="148"/>
+        <Caret Line="147" TopLine="139"/>
       </Position1>
       <Position2>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="146" TopLine="139"/>
+        <Caret Line="148" TopLine="139"/>
       </Position2>
       <Position3>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="147" TopLine="139"/>
+        <Caret Line="149" TopLine="139"/>
       </Position3>
       <Position4>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="148" TopLine="139"/>
+        <Caret Line="151" TopLine="139"/>
       </Position4>
       <Position5>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="149" TopLine="139"/>
+        <Caret Line="166" TopLine="154"/>
       </Position5>
       <Position6>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="151" TopLine="139"/>
+        <Caret Line="168" TopLine="154"/>
       </Position6>
       <Position7>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="166" TopLine="154"/>
+        <Caret Line="169" TopLine="154"/>
       </Position7>
       <Position8>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="168" TopLine="154"/>
+        <Caret Line="170" TopLine="154"/>
       </Position8>
       <Position9>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="169" TopLine="154"/>
+        <Caret Line="171" TopLine="154"/>
       </Position9>
       <Position10>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="170" TopLine="154"/>
+        <Caret Line="172" TopLine="154"/>
       </Position10>
       <Position11>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="171" TopLine="154"/>
+        <Caret Line="174" TopLine="154"/>
       </Position11>
       <Position12>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="172" TopLine="154"/>
+        <Caret Line="177" TopLine="154"/>
       </Position12>
       <Position13>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="174" TopLine="154"/>
+        <Caret Line="178" TopLine="154"/>
       </Position13>
       <Position14>
         <Filename Value="mainfuncdm.pas"/>
@@ -1506,67 +1510,67 @@
       </Position14>
       <Position15>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="178" TopLine="154"/>
+        <Caret Line="179" TopLine="154"/>
       </Position15>
       <Position16>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="177" TopLine="154"/>
+        <Caret Line="180" TopLine="154"/>
       </Position16>
       <Position17>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="179" TopLine="154"/>
+        <Caret Line="181" TopLine="154"/>
       </Position17>
       <Position18>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="180" TopLine="154"/>
+        <Caret Line="184" TopLine="157"/>
       </Position18>
       <Position19>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="181" TopLine="154"/>
+        <Caret Line="165" Column="39" TopLine="151"/>
       </Position19>
       <Position20>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="184" TopLine="157"/>
+        <Caret Line="151" Column="60" TopLine="141"/>
       </Position20>
       <Position21>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="165" Column="39" TopLine="151"/>
+        <Caret Line="317" Column="42" TopLine="285"/>
       </Position21>
       <Position22>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="151" Column="60" TopLine="141"/>
+        <Caret Line="279" Column="56" TopLine="123"/>
       </Position22>
       <Position23>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="317" Column="42" TopLine="285"/>
+        <Filename Value="resourcestr.pas"/>
+        <Caret Line="172" Column="108" TopLine="137"/>
       </Position23>
       <Position24>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="279" Column="56" TopLine="123"/>
+        <Filename Value="resourcestr.pas"/>
+        <Caret Line="171" Column="25" TopLine="136"/>
       </Position24>
       <Position25>
         <Filename Value="resourcestr.pas"/>
-        <Caret Line="172" Column="108" TopLine="137"/>
+        <Caret Line="172" Column="110" TopLine="136"/>
       </Position25>
       <Position26>
-        <Filename Value="resourcestr.pas"/>
-        <Caret Line="171" Column="25" TopLine="136"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="214" TopLine="184"/>
       </Position26>
       <Position27>
-        <Filename Value="resourcestr.pas"/>
-        <Caret Line="172" Column="110" TopLine="136"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="146" Column="54" TopLine="126"/>
       </Position27>
       <Position28>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="214" TopLine="184"/>
+        <Caret Line="151" Column="34" TopLine="132"/>
       </Position28>
       <Position29>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="146" Column="54" TopLine="126"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="12" Column="20" TopLine="418"/>
       </Position29>
       <Position30>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="151" Column="34" TopLine="132"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="719" Column="3" TopLine="717"/>
       </Position30>
     </JumpHistory>
     <RunParams>

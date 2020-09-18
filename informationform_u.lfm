@@ -11,7 +11,7 @@ object InformationForm: TInformationForm
   FormStyle = fsSystemStayOnTop
   OnClose = FormClose
   OnShow = FormShow
-  Position = poMainFormCenter
+  Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object GroupBox1: TGroupBox
     Left = 6
