@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
+    <BuildModes Active="Релиз"/>
     <Units Count="163">
       <Unit0>
         <Filename Value="EWLog.pas"/>
@@ -20,9 +20,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <CursorPos Y="32"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="editqso_u.pas"/>
@@ -30,7 +33,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="212"/>
         <CursorPos X="3" Y="212"/>
         <UsageCount Value="200"/>
@@ -43,7 +46,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="131"/>
         <CursorPos X="23" Y="155"/>
         <UsageCount Value="200"/>
@@ -69,7 +72,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="239"/>
         <CursorPos X="51" Y="262"/>
         <UsageCount Value="200"/>
@@ -107,7 +110,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="680"/>
         <CursorPos X="14" Y="701"/>
         <UsageCount Value="200"/>
@@ -120,7 +123,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="205"/>
         <CursorPos X="3" Y="211"/>
         <UsageCount Value="200"/>
@@ -218,7 +221,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="42"/>
         <CursorPos X="3" Y="63"/>
         <UsageCount Value="200"/>
@@ -537,7 +540,7 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="135"/>
         <CursorPos X="23" Y="172"/>
         <UsageCount Value="201"/>
@@ -546,7 +549,7 @@
       <Unit50>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="52"/>
         <CursorPos X="21" Y="60"/>
         <UsageCount Value="201"/>
@@ -581,7 +584,7 @@
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <CursorPos X="28" Y="100"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -648,7 +651,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="39"/>
         <CursorPos X="30" Y="39"/>
         <UsageCount Value="200"/>
@@ -678,7 +681,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="151"/>
         <CursorPos X="30" Y="133"/>
         <UsageCount Value="200"/>
@@ -694,7 +697,7 @@
       <Unit66>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="12"/>
         <CursorPos X="6" Y="43"/>
         <UsageCount Value="200"/>
@@ -781,7 +784,6 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="1329"/>
         <CursorPos X="11" Y="1335"/>
         <UsageCount Value="111"/>

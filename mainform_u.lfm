@@ -9,6 +9,7 @@ object MainForm: TMainForm
   Font.Height = -12
   KeyPreview = True
   Position = poDefault
+  ShowInTaskBar = stAlways
   LCLVersion = '2.0.10.0'
   object LeftPanel: TPanel
     Left = 0
