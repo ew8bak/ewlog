@@ -369,6 +369,10 @@ msgctxt "resourcestr.rcontinent"
 msgid "Continent"
 msgstr ""
 
+#: resourcestr.rcopyqso
+msgid "Copy QSO"
+msgstr ""
+
 #: resourcestr.rcqzone
 msgctxt "resourcestr.rcqzone"
 msgid "CQ Zone"
@@ -668,6 +672,10 @@ msgstr ""
 #: resourcestr.rnumberdup
 msgctxt "resourcestr.rnumberdup"
 msgid "Number of duplicates"
+msgstr ""
+
+#: resourcestr.rof
+msgid " of "
 msgstr ""
 
 #: resourcestr.romname
@@ -995,6 +1003,10 @@ msgstr ""
 #: resourcestr.rwelcomemessagesqlite
 msgctxt "resourcestr.rwelcomemessagesqlite"
 msgid "SQLite database selected! Welcome!"
+msgstr ""
+
+#: resourcestr.tnotfoundtabletocopy
+msgid "No table found to copy. Possible callsign mismatch in databases"
 msgstr ""
 
 #: sendtelnetspot_form_u.rnotalldata

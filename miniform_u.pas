@@ -1332,9 +1332,9 @@ begin
     LBTerritoryD.Caption := '.......';
     LBCont.Caption := '.......';
     LBDXCCD.Caption := '.......';
-    LBPrefixD.Caption := '..';
+    LBITUD.Caption := '..';
     LBCQD.Caption := '..';
-    LBITUD.Caption := '.......';
+    LBPrefixD.Caption := '.......';
     Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
       LBRecord.OpLat, LBRecord.OpLon);
     Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),

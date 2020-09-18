@@ -386,6 +386,10 @@ msgctxt "resourcestr.rcontinent"
 msgid "Continent"
 msgstr "Континент"
 
+#: resourcestr.rcopyqso
+msgid "Copy QSO"
+msgstr ""
+
 #: resourcestr.rcqzone
 msgctxt "resourcestr.rcqzone"
 msgid "CQ Zone"
@@ -686,6 +690,10 @@ msgstr "База данных не была найдена для этого п�
 msgctxt "resourcestr.rnumberdup"
 msgid "Number of duplicates"
 msgstr "Количество дубликатов"
+
+#: resourcestr.rof
+msgid " of "
+msgstr ""
 
 #: resourcestr.romname
 msgctxt "resourcestr.romname"
@@ -1017,6 +1025,10 @@ msgstr "Выбрана база данных MySQL! Добро пожалова�
 msgctxt "resourcestr.rwelcomemessagesqlite"
 msgid "SQLite database selected! Welcome!"
 msgstr "Выбрана база данных SQLite! Добро пожаловать!"
+
+#: resourcestr.tnotfoundtabletocopy
+msgid "No table found to copy. Possible callsign mismatch in databases"
+msgstr ""
 
 #: sendtelnetspot_form_u.rnotalldata
 msgid "Not all data entered"
