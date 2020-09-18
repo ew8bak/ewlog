@@ -130,6 +130,7 @@ function TMainFunc.CopyTableToTable(toMySQL: boolean): boolean;
 var
   QueryToList: TStringList;
   QueryFrom: TSQLQuery;
+  Query: TSQLQuery;
   Transaction: TSQLTransaction;
   AllNumberRecord, RecCount: integer;
   LogTableNameTo: string;
@@ -140,16 +141,28 @@ var
   DateStr: string;
 begin
   Result := False;
+  if (Length(DBRecord.MySQLDBName) = 0) then
+  begin
+    Application.MessageBox(PChar(rCheckSettingsMySQL), PChar(rWarning), MB_ICONERROR);
+    Exit;
+  end;
+  if not FileExistsUTF8(DBRecord.SQLitePATH) then
+  begin
+    Application.MessageBox(PChar(rCheckSettingsSQLite), PChar(rWarning), MB_ICONERROR);
+    Exit;
+  end;
   try
     try
       QueryToList := TStringList.Create;
       QueryFrom := TSQLQuery.Create(nil);
+      Query := TSQLQuery.Create(nil);
       Transaction := TSQLTransaction.Create(nil);
 
-      if toMySQL then
+      if toMySQL and (DBRecord.CurrentDB = 'SQLite') then
       begin
         Transaction.DataBase := InitDB.MySQLConnection;
-        QueryFrom.DataBase := InitDB.MySQLConnection;
+        Query.DataBase := InitDB.MySQLConnection;
+        QueryFrom.DataBase := InitDB.SQLiteConnection;
         InitDB.MySQLConnection.HostName := DBRecord.MySQLHost;
         InitDB.MySQLConnection.Port := DBRecord.MySQLPort;
         InitDB.MySQLConnection.UserName := DBRecord.MySQLUser;
@@ -158,36 +171,47 @@ begin
         InitDB.MySQLConnection.Connected := True;
         InitDB.MySQLConnection.ExecuteDirect('SET autocommit = 0');
         InitDB.MySQLConnection.ExecuteDirect('BEGIN');
-      end
-      else
+      end;
+
+      if not toMySQL and (DBRecord.CurrentDB = 'SQLite') then
       begin
         InitDB.MySQLConnection.HostName := DBRecord.MySQLHost;
         InitDB.MySQLConnection.Port := DBRecord.MySQLPort;
         InitDB.MySQLConnection.UserName := DBRecord.MySQLUser;
         InitDB.MySQLConnection.Password := DBRecord.MySQLPass;
         InitDB.MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
+        Transaction.DataBase := InitDB.MySQLConnection;
+        QueryFrom.DataBase := InitDB.MySQLConnection;
         InitDB.MySQLConnection.Connected := True;
+        Query.DataBase := InitDB.SQLiteConnection;
+      end;
+
+      if not toMySQL and (DBRecord.CurrentDB = 'MySQL') then
+      begin
         Transaction.DataBase := InitDB.SQLiteConnection;
-        QueryFrom.DataBase := InitDB.SQLiteConnection;
+        Query.DataBase := InitDB.SQLiteConnection;
+        QueryFrom.DataBase := InitDB.MySQLConnection;
         InitDB.SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
         InitDB.SQLiteConnection.Connected := True;
       end;
-      QueryFrom.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = ' +
-        QuotedStr(LBRecord.CallSign);
-      QueryFrom.Open;
-      if QueryFrom.RecordCount > 0 then
-        LogTableNameTo := QueryFrom.Fields.Fields[0].AsString
-      else
-        ShowMessage('Не найдена таблица для копирования');
-      QueryFrom.Close;
 
-      if toMySQL then
-        QueryFrom.DataBase := InitDB.SQLiteConnection
-      else
+      if toMySQL and (DBRecord.CurrentDB = 'MySQL') then
       begin
-        QueryFrom.DataBase := InitDB.MySQLConnection;
-        InitDB.MySQLConnection.Transaction := Transaction;
+        Transaction.DataBase := InitDB.SQLiteConnection;
+        InitDB.SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
+        QueryFrom.DataBase := InitDB.SQLiteConnection;
+        Query.DataBase := InitDB.MySQLConnection;
+        InitDB.SQLiteConnection.Connected := True;
       end;
+
+      Query.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = ' +
+        QuotedStr(LBRecord.CallSign);
+      Query.Open;
+      if Query.RecordCount > 0 then
+        LogTableNameTo := Query.Fields.Fields[0].AsString
+      else
+        Application.MessageBox(PChar(tNotFoundTableToCopy), PChar(rWarning), MB_ICONERROR);
+      Query.Close;
 
       QueryFrom.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = ' +
         QuotedStr(LBRecord.CallSign);
@@ -195,8 +219,12 @@ begin
       if QueryFrom.RecordCount > 0 then
         LogTableNameFrom := QueryFrom.Fields.Fields[0].AsString
       else
-        ShowMessage('Не найдена таблица для копирования');
+        Application.MessageBox(PChar(tNotFoundTableToCopy), PChar(rWarning),
+          MB_ICONERROR);
       QueryFrom.Close;
+
+      if (Length(LogTableNameFrom) < 2) or (Length(LogTableNameTO) < 2) then
+        Exit;
 
       QueryFrom.SQL.Text := 'SELECT COUNT(*) FROM ' + LogTableNameFrom;
       QueryFrom.Open;
@@ -251,7 +279,8 @@ begin
           Inc(RecCount);
           if RecCount mod 100 = 0 then
           begin
-            MiniForm.TextSB('Copy QSO:' + IntToStr(RecCount) + ' ' + 'done');
+            MiniForm.TextSB(rCopyQSO + ':' + IntToStr(RecCount) +
+              rOf + IntToStr(AllNumberRecord) + rDone);
             Application.ProcessMessages;
           end;
         except
@@ -262,17 +291,20 @@ begin
               Inc(errorCount);
               if errorCount mod 100 = 0 then
               begin
-                MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount));
+                MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount) +
+                  rOf + IntToStr(AllNumberRecord));
                 Application.ProcessMessages;
               end;
-              MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount));
+              MiniForm.TextSB(rNumberDup + ':' + IntToStr(errorCount) +
+                rOf + IntToStr(AllNumberRecord));
             end;
             if E.ErrorCode = 1366 then
             begin
               Inc(errorCount);
               if errorCount mod 100 = 0 then
               begin
-                MiniForm.TextSB(rImportErrors + ':' + IntToStr(ErrorCount));
+                MiniForm.TextSB(rImportErrors + ':' + IntToStr(ErrorCount) +
+                  rOf + IntToStr(AllNumberRecord));
                 Application.ProcessMessages;
               end;
               // WriteWrongADIF(s);
@@ -285,21 +317,28 @@ begin
       end;
 
     finally
-      if toMySQL then
-        InitDB.MySQLConnection.ExecuteDirect('COMMIT')
-      else
-        InitDB.SQLiteConnection.ExecuteDirect('COMMIT;');
+      if toMySQL and (DBRecord.CurrentDB = 'SQLite') then
+        InitDB.MySQLConnection.ExecuteDirect('COMMIT');
+      if not toMySQL and (DBRecord.CurrentDB = 'SQLite') then
+        InitDB.DefTransaction.Commit;
+      if not toMySQL and (DBRecord.CurrentDB = 'MySQL') then
+        Transaction.Commit;
+      if toMySQL and (DBRecord.CurrentDB = 'MySQL') then
+        InitDB.DefTransaction.Commit;
 
       Result := True;
-      MiniForm.TextSB('Copy QSO:' + IntToStr(RecCount) + ' ' + 'done');
+      MiniForm.TextSB(rCopyQSO + ':' + IntToStr(RecCount) + rOf +
+        IntToStr(AllNumberRecord) + rDone);
       FreeAndNil(QueryFrom);
       FreeAndNil(QueryToList);
+      FreeAndNil(Query);
       FreeAndNil(Transaction);
     end;
   except
     on E: Exception do
     begin
-      ShowMessage('CopyTableToTable:' + E.Message);
+      Application.MessageBox(PChar('CopyTableToTable:' + E.Message),
+        PChar(rWarning), MB_ICONERROR);
       WriteLn(ExceptFile, 'CopyTableToTable:' + E.ClassName + ':' + E.Message);
       Result := False;
     end;

@@ -167,6 +167,9 @@ resourcestring
   rCheckBoxFormMain = 'Default form: MAIN';
   rCheckBoxFormMini = 'Default form: MULTI';
   rCallsignNotEntered ='Recipient callsign not entered';
+  rOf = ' of ';
+  rCopyQSO = 'Copy QSO';
+  tNotFoundTableToCopy = 'No table found to copy. Possible callsign mismatch in databases';
 implementation
 
 end.
