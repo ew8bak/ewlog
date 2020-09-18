@@ -9,7 +9,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, LCLIntf,
-  ActnList, process;
+  ActnList, process, CopyTableThread;
 
 type
 
@@ -265,7 +265,8 @@ type
     procedure LoadFromInternetCallBook(info: TInformRecord);
     procedure LoadComboBoxItem;
     procedure SwitchForm;
-    procedure TextSB(Value: String);
+    procedure TextSB(Value: string);
+    procedure FromCopyTableThread(Data: TData);
 
   end;
 
@@ -289,9 +290,32 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 
 { TMiniForm }
 
-procedure TMiniForm.TextSB(Value: String);
+procedure TMiniForm.FromCopyTableThread(Data: TData);
 begin
-  StatusBar.SimpleText:=Value;
+  if Data.ErrorType = -1 then
+  begin
+    TextSB(rCopyQSO + ':' + IntToStr(Data.RecCount) + rOf +
+      IntToStr(Data.AllRec) + ' ' + rDone);
+    if Data.Result then
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
+    Exit;
+  end;
+  if Data.ErrorType = 1 then
+  begin
+    Application.MessageBox(PChar(Data.ErrorStr), PChar(rWarning), MB_ICONERROR);
+    Exit;
+  end;
+  if Data.ErrorType = 3 then
+  begin
+    TextSB(rNumberDup + ':' + IntToStr(Data.ErrorCount) + rOf + IntToStr(Data.AllRec));
+    Exit;
+  end;
+end;
+
+procedure TMiniForm.TextSB(Value: string);
+begin
+  StatusBar.SimpleText := Value;
 end;
 
 procedure TMiniForm.SwitchForm;
@@ -452,10 +476,10 @@ begin
   EditQTH.Text := info.City;
   EditGrid.Text := info.Grid;
   EditState.Text := info.State;
-    if Length(info.Error) > 0 then
-      StatusBar.SimpleText := info.Error
-    else
-      StatusBar.SimpleText := '';
+  if Length(info.Error) > 0 then
+    StatusBar.SimpleText := info.Error
+  else
+    StatusBar.SimpleText := '';
 end;
 
 procedure TMiniForm.FormShow(Sender: TObject);
@@ -529,16 +553,26 @@ end;
 
 procedure TMiniForm.MenuItem82Click(Sender: TObject);
 begin
-  if MainFunc.CopyTableToTable(False) then
-    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
+  //if MainFunc.CopyTableToTable(False) then
+  //  if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+  //   ShowMessage(rDBError);
+  CopyTThread := TCopyTThread.Create;
+  if Assigned(CopyTThread.FatalException) then
+    raise CopyTThread.FatalException;
+  CopyTThread.toDB := False;
+  CopyTThread.Start;
 end;
 
 procedure TMiniForm.MenuItem83Click(Sender: TObject);
 begin
-  if MainFunc.CopyTableToTable(True) then
-    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
+  // if MainFunc.CopyTableToTable(True) then
+  //   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+  //     ShowMessage(rDBError);
+  CopyTThread := TCopyTThread.Create;
+  if Assigned(CopyTThread.FatalException) then
+    raise CopyTThread.FatalException;
+  CopyTThread.toDB := True;
+  CopyTThread.Start;
 end;
 
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);
