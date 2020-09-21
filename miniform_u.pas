@@ -185,6 +185,7 @@ type
     SBCopy: TSpeedButton;
     SBInfo: TSpeedButton;
     Shape1: TShape;
+    StatusBar: TStatusBar;
     TMTime: TTimer;
     LBLocalTimeD: TLabel;
     LBUTCTimeD: TLabel;
@@ -261,11 +262,10 @@ type
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
 
   public
-    StatusBar: TStatusBar;
     procedure LoadFromInternetCallBook(info: TInformRecord);
     procedure LoadComboBoxItem;
     procedure SwitchForm;
-    procedure TextSB(Value: string);
+    procedure TextSB(Value: string; PanelNum: integer);
     procedure FromCopyTableThread(Data: TData);
 
   end;
@@ -295,7 +295,7 @@ begin
   if Data.ErrorType = -1 then
   begin
     TextSB(rCopyQSO + ':' + IntToStr(Data.RecCount) + rOf +
-      IntToStr(Data.AllRec) + ' ' + rDone);
+      IntToStr(Data.AllRec) + ' ' + rDone, 0);
     if Data.Result then
       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
         ShowMessage(rDBError);
@@ -308,23 +308,21 @@ begin
   end;
   if Data.ErrorType = 3 then
   begin
-    TextSB(rNumberDup + ':' + IntToStr(Data.ErrorCount) + rOf + IntToStr(Data.AllRec));
+    TextSB(rNumberDup + ':' + IntToStr(Data.ErrorCount) + rOf + IntToStr(Data.AllRec),0);
     Exit;
   end;
 end;
 
-procedure TMiniForm.TextSB(Value: string);
+procedure TMiniForm.TextSB(Value: string; PanelNum: integer);
 begin
-  StatusBar.SimpleText := Value;
+  if PanelNum = 0 then
+    StatusBar.Panels.Items[0].Text := Value;
+  if PanelNum = 1 then
+    StatusBar.Panels.Items[1].Text := Value;
 end;
 
 procedure TMiniForm.SwitchForm;
 begin
-  StatusBar.Align := alBottom;
-  StatusBar.Enabled := True;
-  StatusBar.AutoSize := True;
-  StatusBar.Visible := True;
-
   if IniSet.MainForm <> 'MULTI' then
   begin
     MiniForm.Menu := nil;
@@ -526,6 +524,7 @@ begin
   CBMap.Checked := IniSet.Map_Use;
   //  CheckUpdatesTimer.Enabled := True;
   CBYourQSL.ItemIndex := 3;
+  TextSB('QSO № ' + IntToStr(NumberSelectRecord) + rQSOTotal + IntToStr(CountAllRecords), 1)
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
@@ -553,9 +552,6 @@ end;
 
 procedure TMiniForm.MenuItem82Click(Sender: TObject);
 begin
-  //if MainFunc.CopyTableToTable(False) then
-  //  if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-  //   ShowMessage(rDBError);
   CopyTThread := TCopyTThread.Create;
   if Assigned(CopyTThread.FatalException) then
     raise CopyTThread.FatalException;
@@ -565,9 +561,6 @@ end;
 
 procedure TMiniForm.MenuItem83Click(Sender: TObject);
 begin
-  // if MainFunc.CopyTableToTable(True) then
-  //   if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-  //     ShowMessage(rDBError);
   CopyTThread := TCopyTThread.Create;
   if Assigned(CopyTThread.FatalException) then
     raise CopyTThread.FatalException;
@@ -1526,7 +1519,6 @@ begin
   Earth.SavePosition;
   dxClusterForm.SavePosition;
   MapForm.SavePosition;
-  FreeAndNil(StatusBar);
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);
@@ -1534,7 +1526,6 @@ var
   Lang: string = '';
   FallbackLang: string = '';
 begin
-  StatusBar := TStatusBar.Create(self);
   Shape1.Visible := False;
   LBQSL.Visible := False;
   LBWorked.Visible := False;

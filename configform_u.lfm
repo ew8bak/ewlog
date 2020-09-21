@@ -261,10 +261,8 @@ object ConfigForm: TConfigForm
       Height = 25
       Top = 152
       Width = 160
-      EchoMode = emPassword
       Font.Height = -12
       ParentFont = False
-      PasswordChar = '*'
       TabOrder = 8
     end
   end

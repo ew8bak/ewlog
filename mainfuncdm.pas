@@ -1022,6 +1022,7 @@ begin
   Result.QSOBand := DataSource.DataSet.FieldByName('QSOBand').AsString;
   Result.QSOMode := DataSource.DataSet.FieldByName('QSOMode').AsString;
   Result.OMName := DataSource.DataSet.FieldByName('OMName').AsString;
+  Result.NumSelectQSO := DataSource.DataSet.RecNo;
 end;
 
 function TMainFunc.FindQSO(Callsign: string): TFoundQSOR;

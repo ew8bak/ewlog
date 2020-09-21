@@ -14,6 +14,7 @@ type
     QSOBand: string;
     QSOMode: string;
     OMName: string;
+    NumSelectQSO: integer;
   end;
 
 implementation

@@ -50,6 +50,7 @@ var
   DBRecord: TDBRecord;
   InitRecord: TInitRecord;
   CountAllRecords: integer;
+  NumberSelectRecord: integer;
   UniqueCallsList: TStringList;
   PrefixProvinceList: TStringList;
   PrefixARRLList: TStringList;
@@ -522,6 +523,7 @@ begin
         LogTable + ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
     end;
     DefLogBookQuery.Open;
+    NumberSelectRecord:=DefLogBookQuery.RecNo;
     Result := True;
     InitRecord.SelectLogbookTable := True;
   except

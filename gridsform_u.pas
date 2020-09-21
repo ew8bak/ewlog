@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBGrids, ExtCtrls,
-  Grids, Menus, selectQSO_record, foundQSO_record, prefix_record;
+  Grids, Menus, selectQSO_record, foundQSO_record, prefix_record, ResourceStr;
 
 type
 
@@ -202,6 +202,8 @@ begin
     Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
     Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+    MiniForm.TextSB('QSO № ' + IntToStr(SelQSOR.NumSelectQSO) +
+      rQSOTotal + IntToStr(CountAllRecords), 1);
   end;
 
 end;

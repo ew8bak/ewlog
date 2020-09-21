@@ -50,7 +50,7 @@ var
   strQuery: string;
   DateStr: string;
 begin
-  Data.Result:=False;
+  Data.Result := False;
   Data.ErrorType := -1;
   Data.ErrorStr := '';
   Data.AllRec := 0;
@@ -231,23 +231,33 @@ begin
               // WriteWrongADIF(s);
             end;
             QueryFrom.Next;
-           // WriteLn(ExceptFile, 'CopyTableToTable:' + E.ClassName +
-           //   ':' + E.Message);
           end;
         end;
       end;
 
     finally
       if toMySQL and (DBRecord.CurrentDB = 'SQLite') then
+      begin
         InitDB.MySQLConnection.ExecuteDirect('COMMIT');
+        InitDB.MySQLConnection.Connected := False;
+      end;
       if not toMySQL and (DBRecord.CurrentDB = 'SQLite') then
+      begin
         InitDB.DefTransaction.Commit;
+        InitDB.MySQLConnection.Connected := False;
+      end;
       if not toMySQL and (DBRecord.CurrentDB = 'MySQL') then
+      begin
         Transaction.Commit;
+        InitDB.SQLiteConnection.Connected := False;
+      end;
       if toMySQL and (DBRecord.CurrentDB = 'MySQL') then
+      begin
         InitDB.DefTransaction.Commit;
+        InitDB.SQLiteConnection.Connected := False;
+      end;
       Data.ErrorType := -1;
-      Data.Result:=True;
+      Data.Result := True;
       Synchronize(@ToForm);
       FreeAndNil(QueryFrom);
       FreeAndNil(QueryToList);
