@@ -2140,6 +2140,7 @@ object MiniForm: TMiniForm
       end
       object MenuItem89: TMenuItem
         Caption = 'Switch database'
+        OnClick = MenuItem89Click
       end
       object MenuItem90: TMenuItem
         Caption = '-'

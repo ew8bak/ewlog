@@ -37,6 +37,7 @@ type
     procedure AllFree;
     function InitDBINI: boolean;
     procedure CheckSQLVersion;
+    function SwitchDB: boolean;
 
   end;
 
@@ -120,7 +121,7 @@ begin
     if not InitPrefix then
       ShowMessage('Init Prefix ERROR')
     else
-    if (not GetLogBookTable(DBRecord.DefCall, DBRecord.DefaultDB)) and
+    if (not GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
       (DBRecord.InitDB = 'YES') then
       ShowMessage('LogBook Table ERROR')
     else
@@ -129,6 +130,70 @@ begin
   CheckSQLVersion;
   MainFunc.LoadINIsettings;
   ImbeddedCallBookInit(IniSet.UseIntCallBook);
+end;
+
+function TInitDB.SwitchDB: boolean;
+begin
+  Result := False;
+  try
+    try
+      if DBRecord.CurrentDB = 'MySQL' then
+      begin
+        MySQLConnection.Connected := False;
+        DefTransaction.DataBase := SQLiteConnection;
+        FindQSOQuery.DataBase := SQLiteConnection;
+        SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
+        SQLiteConnection.Connected := True;
+        if SQLiteConnection.Connected then
+        begin
+          DBRecord.CurrentDB := 'SQLite';
+          DefLogBookQuery.DataBase := SQLiteConnection;
+          Result := True;
+          InitRecord.LogbookDBInit := True;
+        end;
+        Exit;
+      end;
+
+      if DBRecord.CurrentDB = 'SQLite' then
+      begin
+        SQLiteConnection.Connected := False;
+        DefTransaction.DataBase := MySQLConnection;
+        MySQLConnection.HostName := DBRecord.MySQLHost;
+        MySQLConnection.Port := DBRecord.MySQLPort;
+        MySQLConnection.UserName := DBRecord.MySQLUser;
+        MySQLConnection.Password := DBRecord.MySQLPass;
+        MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
+        MySQLConnection.Connected := True;
+        if MySQLConnection.Connected then
+        begin
+          DBRecord.CurrentDB := 'MySQL';
+          DefLogBookQuery.DataBase := MySQLConnection;
+          FindQSOQuery.DataBase := MySQLConnection;
+          Result := True;
+          InitRecord.LogbookDBInit := True;
+        end;
+        Exit;
+      end;
+
+    finally
+      if Result then
+        if (not GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
+          (DBRecord.InitDB = 'YES') then
+          ShowMessage('LogBook Table ERROR')
+        else
+        if (not SelectLogbookTable(LBRecord.LogTable)) and (DBRecord.InitDB = 'YES') then
+          ShowMessage(rDBError);
+    end;
+
+  except
+    on E: Exception do
+    begin
+      ShowMessage('SwitchDB: Error: ' + E.ClassName + #13#10 + E.Message);
+      WriteLn(ExceptFile, 'SwitchDB: Error: ' + E.ClassName + ':' + E.Message);
+      InitRecord.LogbookDBInit := False;
+      Result := False;
+    end;
+  end;
 end;
 
 procedure TInitDB.DataModuleDestroy(Sender: TObject);
@@ -491,7 +556,7 @@ begin
     CountAllRecords := DefLogBookQuery.Fields[0].AsInteger;
     DefLogBookQuery.Close;
 
-    if DBRecord.DefaultDB = 'MySQL' then
+    if DBRecord.CurrentDB = 'MySQL' then
     begin
       DefLogBookQuery.SQL.Text :=
         'SELECT `UnUsedIndex`, `CallSign`,' +
@@ -523,7 +588,7 @@ begin
         LogTable + ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
     end;
     DefLogBookQuery.Open;
-    NumberSelectRecord:=DefLogBookQuery.RecNo;
+    NumberSelectRecord := DefLogBookQuery.RecNo;
     Result := True;
     InitRecord.SelectLogbookTable := True;
   except

@@ -216,6 +216,7 @@ type
     procedure MenuItem124Click(Sender: TObject);
     procedure MenuItem82Click(Sender: TObject);
     procedure MenuItem83Click(Sender: TObject);
+    procedure MenuItem89Click(Sender: TObject);
     procedure MIClusterTopClick(Sender: TObject);
     procedure MiLogbookFormClick(Sender: TObject);
     procedure MiLogGridTopClick(Sender: TObject);
@@ -568,6 +569,12 @@ begin
     raise CopyTThread.FatalException;
   CopyTThread.toDB := True;
   CopyTThread.Start;
+end;
+
+procedure TMiniForm.MenuItem89Click(Sender: TObject);
+begin
+  if not InitDB.SwitchDB then
+  ShowMessage('Logbook database ERROR');
 end;
 
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);

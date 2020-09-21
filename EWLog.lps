@@ -30,7 +30,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="212"/>
         <CursorPos X="3" Y="212"/>
         <UsageCount Value="200"/>
@@ -55,13 +55,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="365"/>
         <CursorPos Y="371"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="configform_u.pas"/>
@@ -70,7 +67,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="239"/>
         <CursorPos X="51" Y="262"/>
         <UsageCount Value="200"/>
@@ -107,7 +104,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="680"/>
         <CursorPos X="14" Y="701"/>
         <UsageCount Value="200"/>
@@ -120,7 +117,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="205"/>
         <CursorPos X="3" Y="211"/>
         <UsageCount Value="200"/>
@@ -536,7 +533,7 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="135"/>
         <CursorPos X="23" Y="172"/>
         <UsageCount Value="201"/>
@@ -545,7 +542,7 @@
       <Unit50>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="52"/>
         <CursorPos X="21" Y="60"/>
         <UsageCount Value="201"/>
@@ -580,7 +577,7 @@
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="11"/>
         <CursorPos X="28" Y="100"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -647,9 +644,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="473"/>
-        <CursorPos X="3" Y="484"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="124"/>
+        <CursorPos X="31" Y="167"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit61>
@@ -677,9 +675,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="1016"/>
-        <CursorPos X="50" Y="1025"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="845"/>
+        <CursorPos X="22" Y="1031"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit64>
@@ -693,7 +691,7 @@
       <Unit66>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="12"/>
         <CursorPos X="6" Y="43"/>
         <UsageCount Value="200"/>
@@ -705,7 +703,7 @@
         <UnitName Value="selectQSO_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="13"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="197"/>
       </Unit67>
       <Unit68>
         <Filename Value="foundqso_record.pas"/>
@@ -713,7 +711,7 @@
         <UnitName Value="foundQSO_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="28"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="197"/>
       </Unit68>
       <Unit69>
         <Filename Value="cloudlog.pas"/>
@@ -721,14 +719,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="36" Y="26"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="162"/>
       </Unit69>
       <Unit70>
         <Filename Value="init_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="17"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="155"/>
       </Unit70>
       <Unit71>
         <Filename Value="wsjtutils.pas"/>
@@ -737,21 +735,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="107"/>
         <CursorPos X="52" Y="127"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="136"/>
       </Unit71>
       <Unit72>
         <Filename Value="digi_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="20" Y="13"/>
-        <UsageCount Value="130"/>
+        <UsageCount Value="131"/>
       </Unit72>
       <Unit73>
         <Filename Value="inform_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="18"/>
-        <UsageCount Value="130"/>
+        <UsageCount Value="131"/>
       </Unit73>
       <Unit74>
         <Filename Value="infodm_u.pas"/>
@@ -763,7 +761,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="229"/>
         <CursorPos X="40" Y="160"/>
-        <UsageCount Value="130"/>
+        <UsageCount Value="131"/>
       </Unit74>
       <Unit75>
         <Filename Value="getsession.pas"/>
@@ -772,7 +770,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="64" Y="103"/>
-        <UsageCount Value="130"/>
+        <UsageCount Value="131"/>
       </Unit75>
       <Unit76>
         <Filename Value="miniform_u.pas"/>
@@ -780,9 +778,9 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="1219"/>
-        <CursorPos Y="1237"/>
-        <UsageCount Value="117"/>
+        <TopLine Value="556"/>
+        <CursorPos X="12" Y="556"/>
+        <UsageCount Value="118"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit76>
@@ -792,7 +790,7 @@
         <UnitName Value="ImbedCallBookCheckRec"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="14"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="111"/>
       </Unit77>
       <Unit78>
         <Filename Value="serverdm_u.pas"/>
@@ -804,16 +802,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="205"/>
         <CursorPos X="36" Y="135"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="108"/>
       </Unit78>
       <Unit79>
         <Filename Value="telnetclientthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="telnetClientThread"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="68"/>
         <CursorPos X="62" Y="42"/>
-        <UsageCount Value="102"/>
+        <UsageCount Value="103"/>
         <Loaded Value="True"/>
       </Unit79>
       <Unit80>
@@ -822,10 +820,10 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="501"/>
         <CursorPos X="26" Y="511"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="97"/>
         <Loaded Value="True"/>
       </Unit80>
       <Unit81>
@@ -835,12 +833,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="628"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="215"/>
         <CursorPos X="40" Y="215"/>
-        <UsageCount Value="75"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="76"/>
       </Unit81>
       <Unit82>
         <Filename Value="mapform_u.pas"/>
@@ -852,16 +848,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos Y="57"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="52"/>
       </Unit82>
       <Unit83>
         <Filename Value="copytablethread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CopyTableThread"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="46"/>
-        <CursorPos X="31" Y="54"/>
-        <UsageCount Value="26"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="234"/>
+        <CursorPos X="3" Y="35"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit83>
       <Unit84>
@@ -1463,119 +1459,127 @@
         <UsageCount Value="9"/>
       </Unit163>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="326" Column="14" TopLine="318"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="406" TopLine="374"/>
       </Position1>
       <Position2>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="335" Column="14" TopLine="318"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="407" TopLine="375"/>
       </Position2>
       <Position3>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="372" Column="14" TopLine="340"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="409" TopLine="377"/>
       </Position3>
       <Position4>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="480" Column="14" TopLine="448"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="408" TopLine="377"/>
       </Position4>
       <Position5>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="482" Column="14" TopLine="450"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="409" TopLine="377"/>
       </Position5>
       <Position6>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1529" Column="25" TopLine="1497"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="408" TopLine="377"/>
       </Position6>
       <Position7>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1537" Column="28" TopLine="1505"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="410" TopLine="378"/>
       </Position7>
       <Position8>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="264" Column="7" TopLine="245"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="411" TopLine="379"/>
       </Position8>
       <Position9>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="265" Column="7" TopLine="246"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="412" TopLine="380"/>
       </Position9>
       <Position10>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="322" Column="45" TopLine="295"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="413" TopLine="381"/>
       </Position10>
       <Position11>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="299" Column="45" TopLine="278"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="178" TopLine="167"/>
       </Position11>
       <Position12>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="525" Column="40" TopLine="517"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="34" Column="14" TopLine="14"/>
       </Position12>
       <Position13>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="204" Column="36" TopLine="169"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="542" Column="26" TopLine="545"/>
       </Position13>
       <Position14>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="61" Column="14" TopLine="43"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="351" TopLine="331"/>
       </Position14>
       <Position15>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="278" Column="13" TopLine="250"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="137" TopLine="126"/>
       </Position15>
       <Position16>
         <Filename Value="initdb_dm.pas"/>
-        <Caret Line="34" Column="14" TopLine="14"/>
+        <Caret Line="138" TopLine="126"/>
       </Position16>
       <Position17>
         <Filename Value="initdb_dm.pas"/>
-        <Caret Line="490" Column="20" TopLine="472"/>
+        <Caret Line="140" TopLine="126"/>
       </Position17>
       <Position18>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="277" Column="22" TopLine="263"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="141" TopLine="126"/>
       </Position18>
       <Position19>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="527" Column="78" TopLine="489"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="142" TopLine="126"/>
       </Position19>
       <Position20>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="204" Column="36" TopLine="169"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="143" TopLine="126"/>
       </Position20>
       <Position21>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="205" Column="14" TopLine="169"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="144" TopLine="126"/>
       </Position21>
       <Position22>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="61" Column="14" TopLine="43"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="145" TopLine="129"/>
       </Position22>
       <Position23>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1020" Column="3" TopLine="1016"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="147" TopLine="129"/>
       </Position23>
       <Position24>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="527" Column="95" TopLine="508"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="148" TopLine="129"/>
       </Position24>
       <Position25>
         <Filename Value="initdb_dm.pas"/>
-        <Caret Line="34" Column="14" TopLine="13"/>
+        <Caret Line="149" TopLine="132"/>
       </Position25>
       <Position26>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1249" TopLine="1221"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="150" TopLine="132"/>
       </Position26>
       <Position27>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1250" Column="29" TopLine="1224"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="154" TopLine="139"/>
       </Position27>
       <Position28>
-        <Filename Value="logconfigform_u.pas"/>
-        <Caret Line="419" Column="27" TopLine="407"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="156" TopLine="139"/>
       </Position28>
+      <Position29>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="577" Column="16" TopLine="357"/>
+      </Position29>
+      <Position30>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="558" Column="3" TopLine="556"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -1583,15 +1587,6 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="logconfigform_u.pas"/>
-        <Line Value="371"/>
-      </Item1>
-    </BreakPoints>
     <Watches Count="4">
       <Item1>
         <Expression Value="Freq"/>
