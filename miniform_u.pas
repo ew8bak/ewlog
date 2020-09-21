@@ -308,7 +308,8 @@ begin
   end;
   if Data.ErrorType = 3 then
   begin
-    TextSB(rNumberDup + ':' + IntToStr(Data.ErrorCount) + rOf + IntToStr(Data.AllRec),0);
+    TextSB(rNumberDup + ':' + IntToStr(Data.ErrorCount) + rOf +
+      IntToStr(Data.AllRec), 0);
     Exit;
   end;
 end;
@@ -524,7 +525,8 @@ begin
   CBMap.Checked := IniSet.Map_Use;
   //  CheckUpdatesTimer.Enabled := True;
   CBYourQSL.ItemIndex := 3;
-  TextSB('QSO № ' + IntToStr(NumberSelectRecord) + rQSOTotal + IntToStr(CountAllRecords), 1)
+  TextSB('QSO № ' + IntToStr(NumberSelectRecord) + rQSOTotal +
+    IntToStr(CountAllRecords), 1);
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
@@ -1217,10 +1219,14 @@ begin
   else
     CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('LSB');
 
-  if (CBMode.Text <> 'SSB') or (CBMode.Text <> 'AM') or (CBMode.Text <> 'FM') or
-    (CBMode.Text <> 'LSB') or (CBMode.Text <> 'USB') or (CBMode.Text <> 'JT44') or
-    (CBMode.Text <> 'JT65') or (CBMode.Text <> 'JT6M') or
-    (CBMode.Text <> 'JT9') or (CBMode.Text <> 'FT8') or (CBMode.Text <> 'ROS') then
+  CBRSTs.Items.Clear;
+  CBRSTs.Items.AddStrings(RSssb);
+  CBRSTs.ItemIndex := 0;
+  CBRSTr.Items.Clear;
+  CBRSTr.Items.AddStrings(RSssb);
+  CBRSTr.ItemIndex := 0;
+
+  if (CBMode.Text = 'CW') or (CBMode.Text = 'PSK') or (CBMode.Text = 'RTTY') then
   begin
     CBRSTs.Items.Clear;
     CBRSTs.Items.AddStrings(RSdigi);
@@ -1230,19 +1236,8 @@ begin
     CBRSTr.ItemIndex := 0;
   end;
 
-  if (CBMode.Text = 'SSB') or (CBMode.Text = 'AM') or (CBMode.Text = 'FM') or
-    (CBMode.Text = 'LSB') or (CBMode.Text = 'USB') then
-  begin
-    CBRSTs.Items.Clear;
-    CBRSTs.Items.AddStrings(RSssb);
-    CBRSTs.ItemIndex := 0;
-    CBRSTr.Items.Clear;
-    CBRSTr.Items.AddStrings(RSssb);
-    CBRSTr.ItemIndex := 0;
-  end;
-
-  if (CBMode.Text = 'ROS') or (CBMode.Text = 'JT44') or (CBMode.Text = 'JT65') or
-    (CBMode.Text = 'JT6M') or (CBMode.Text = 'JT9') or (CBMode.Text = 'FT8') then
+  if (CBMode.Text = 'JT65') or (CBMode.Text = 'FT8') or (CBMode.Text = 'JT9') or
+    (CBSubMode.Text = 'FT4') then
   begin
     CBRSTs.Items.Clear;
     CBRSTs.Text := '-10';
