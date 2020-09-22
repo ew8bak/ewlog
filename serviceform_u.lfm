@@ -14,7 +14,7 @@ object ServiceForm: TServiceForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object Image1: TImage
     Left = 0
     Height = 193
@@ -363,9 +363,9 @@ object ServiceForm: TServiceForm
   end
   object Label1: TLabel
     Left = 192
-    Height = 17
+    Height = 14
     Top = 16
-    Width = 184
+    Width = 186
     Caption = 'Download QSL received after:'
     Font.Height = -13
     Font.Style = [fsBold]
@@ -380,9 +380,9 @@ object ServiceForm: TServiceForm
   end
   object Label2: TLabel
     Left = 136
-    Height = 17
+    Height = 14
     Top = 48
-    Width = 36
+    Width = 35
     Caption = 'LoTW'
     Font.Height = -13
     Font.Style = [fsBold, fsUnderline]
@@ -391,9 +391,9 @@ object ServiceForm: TServiceForm
   end
   object Label3: TLabel
     Left = 432
-    Height = 17
+    Height = 14
     Top = 48
-    Width = 47
+    Width = 49
     Caption = 'eQSL.cc'
     Font.Height = -13
     Font.Style = [fsBold, fsUnderline]
@@ -460,9 +460,9 @@ object ServiceForm: TServiceForm
   end
   object Label4: TLabel
     Left = 136
-    Height = 15
+    Height = 13
     Top = 152
-    Width = 82
+    Width = 86
     Caption = 'Processed data:'
     Font.Height = -12
     ParentColor = False
@@ -470,9 +470,9 @@ object ServiceForm: TServiceForm
   end
   object Label5: TLabel
     Left = 136
-    Height = 15
+    Height = 13
     Top = 168
-    Width = 33
+    Width = 37
     Caption = 'Errors:'
     Font.Height = -12
     ParentColor = False
@@ -563,9 +563,9 @@ object ServiceForm: TServiceForm
   end
   object Label6: TLabel
     Left = 312
-    Height = 15
+    Height = 13
     Top = 152
-    Width = 62
+    Width = 65
     Caption = 'Status: Wait'
     Font.Height = -12
     ParentColor = False
@@ -574,10 +574,10 @@ object ServiceForm: TServiceForm
   object Label7: TLabel
     AnchorSideLeft.Control = Label8
     AnchorSideLeft.Side = asrBottom
-    Left = 371
-    Height = 15
+    Left = 372
+    Height = 13
     Top = 168
-    Width = 6
+    Width = 7
     BorderSpacing.Left = 2
     Caption = '0'
     ParentColor = False
@@ -592,23 +592,21 @@ object ServiceForm: TServiceForm
   end
   object Label8: TLabel
     Left = 312
-    Height = 15
+    Height = 13
     Top = 168
-    Width = 57
+    Width = 58
     Caption = 'Download:'
     ParentColor = False
   end
   object OpenDialog1: TOpenDialog
     Title = 'Open existing file'
-    left = 56
-    top = 104
+    Left = 56
+    Top = 104
   end
   object UPDATEQuery: TSQLQuery
     FieldDefs = <>
-    Database = MainForm.MySQLLOGDBConnection
-    Transaction = MainForm.SQLTransaction1
     Params = <>
-    left = 56
-    top = 32
+    Left = 56
+    Top = 32
   end
 end

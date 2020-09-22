@@ -186,7 +186,12 @@ begin
     INIFile.WriteString('SetLog', 'MainForm', 'MAIN')
   else
     INIFile.WriteString('SetLog', 'MainForm', 'MULTI');
-
+  DBRecord.MySQLDBName := Edit5.Text;
+  DBRecord.MySQLHost := Edit1.Text;
+  DBRecord.MySQLPort := StrToInt(Edit2.Text);
+  DBRecord.MySQLUser := Edit3.Text;
+  DBRecord.MySQLPass := Edit4.Text;
+  DBRecord.SQLitePATH := FileNameEdit1.Text;
 end;
 
 procedure TConfigForm.ReadINI;

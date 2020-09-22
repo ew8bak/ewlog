@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
   LazUtils, LazFileUtils, ssl_openssl, dateutils, resourcestr,
-  download_lotw, download_eqslcc;
+  download_lotw, download_eqslcc, LCLType;
 
 type
 
@@ -55,7 +55,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, const_u, InitDB_dm;
+uses dmFunc_U, MainForm_U, const_u, InitDB_dm, LogConfigForm_U;
 
 procedure TServiceForm.eQSLImport(FilePATH: string);
 var
@@ -231,7 +231,7 @@ begin
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
-     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
     Label4.Caption := rProcessedData + IntToStr(RecCount);
     Label6.Caption := rStatusDone;
@@ -425,7 +425,7 @@ begin
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
-     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
     Label4.Caption := rProcessedData + IntToStr(RecCount);
     Label6.Caption := rStatusDone;
@@ -444,7 +444,7 @@ begin
   else
   begin
     UPDATEQuery.DataBase := InitDB.SQLiteConnection;
-  //  MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
+    //  MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
 end;
 
@@ -453,7 +453,12 @@ begin
   DownSize := 0;
   ProgressBar1.Position := 0;
   if (LBRecord.eQSLccLogin = '') or (LBRecord.eQSLccPassword = '') then
-    ShowMessage(rNotDataForConnect)
+  begin
+    if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      LogConfigForm.Show;
+    LogConfigForm.PageControl1.ActivePageIndex:=1;
+  end
   else
   begin
     Button2.Enabled := False;
@@ -476,7 +481,12 @@ begin
   DownSize := 0;
   ProgressBar1.Position := 0;
   if (LBRecord.LoTWLogin = '') or (LBRecord.LoTWPassword = '') then
-    ShowMessage(rNotDataForConnect)
+  begin
+    if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      LogConfigForm.Show;
+    LogConfigForm.PageControl1.ActivePageIndex:=2;
+  end
   else
   begin
     Button1.Enabled := False;
@@ -496,6 +506,8 @@ end;
 
 procedure TServiceForm.FormShow(Sender: TObject);
 begin
+  Button2.Enabled := True;
+  Button1.Enabled := True;
   if DBRecord.CurrentDB = 'MySQL' then
   begin
     UPDATEQuery.DataBase := InitDB.MySQLConnection;
@@ -504,7 +516,7 @@ begin
   else
   begin
     UPDATEQuery.DataBase := InitDB.SQLiteConnection;
-   // MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
+    // MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
   DateEdit1.Date := INIFile.ReadDate('SetLog', 'LastLoTW', Now);
   DateEdit2.Date := Now;

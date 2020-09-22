@@ -235,6 +235,7 @@ begin
         INIFile.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
         INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
         INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
+        INIFile.WriteString('DataBases', 'FileSQLite', '');
       end;
     end;
 
@@ -636,7 +637,11 @@ begin
       end
     except
       on E: Exception do
-        ShowMessage(E.Message);
+      begin
+        WriteLn(ExceptFile, 'SetupForm.Button10Click: Error: ' +
+          E.ClassName + ':' + E.Message);
+        ShowMessage(rDatabaseNotConnected);
+      end;
     end;
   end;
 end;

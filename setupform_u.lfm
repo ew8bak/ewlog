@@ -18,12 +18,12 @@ object SetupForm: TSetupForm
     Height = 346
     Top = 0
     Width = 630
-    ActivePage = TabSheet5
+    ActivePage = TabSheet1
     Align = alClient
     Font.Height = -13
     ParentFont = False
     ShowTabs = False
-    TabIndex = 4
+    TabIndex = 0
     TabOrder = 0
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
@@ -32,12 +32,12 @@ object SetupForm: TSetupForm
       ClientWidth = 620
       object Panel1: TPanel
         Left = 0
-        Height = 339
+        Height = 342
         Top = 0
-        Width = 622
+        Width = 620
         Align = alClient
-        ClientHeight = 339
-        ClientWidth = 622
+        ClientHeight = 342
+        ClientWidth = 620
         ParentColor = False
         TabOrder = 0
         object Button1: TButton
@@ -64,9 +64,9 @@ object SetupForm: TSetupForm
         end
         object Label1: TLabel
           Left = 16
-          Height = 23
+          Height = 18
           Top = 8
-          Width = 327
+          Width = 319
           Caption = 'Welcome to the HAM Log Setup Wizard.'
           Font.Height = -17
           Font.Style = [fsBold]
@@ -75,9 +75,9 @@ object SetupForm: TSetupForm
         end
         object Label2: TLabel
           Left = 16
-          Height = 17
+          Height = 14
           Top = 48
-          Width = 112
+          Width = 113
           Caption = 'License agreement:'
           Font.Height = -13
           ParentColor = False
@@ -90,7 +90,7 @@ object SetupForm: TSetupForm
           Width = 592
           Font.Height = -12
           Lines.Strings = (
-            'Copyright (c) 2019, Vladimir Karpenko'
+            'Copyright (c) 2020, Vladimir Karpenko'
             'Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or '
             'other materials provided with the distribution.'
             'Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without '

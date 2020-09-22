@@ -202,7 +202,6 @@ end;
 
 procedure TLogConfigForm.Button1Click(Sender: TObject);
 begin
-
   if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
   begin
     with UpdateConfQuery do
@@ -253,8 +252,14 @@ begin
       ExecSQL;
     end;
     InitDB.DefTransaction.Commit;
-    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+    if (not InitDB.GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
+      (DBRecord.InitDB = 'YES') then
+      ShowMessage('LogBook Table ERROR')
+    else
+    if (not InitDB.SelectLogbookTable(LBRecord.LogTable)) and
+      (DBRecord.InitDB = 'YES') then
       ShowMessage(rDBError);
+
     LogConfigForm.Close;
   end;
 end;

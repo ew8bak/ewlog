@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
-  DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec;
+  DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec,
+  Forms, LCLType;
 
 type
 
@@ -71,7 +72,7 @@ var
 
 implementation
 
-uses MainFuncDM, setupForm_U;
+uses MainFuncDM, setupForm_U, ConfigForm_U;
 
 {$R *.lfm}
 
@@ -135,65 +136,87 @@ end;
 function TInitDB.SwitchDB: boolean;
 begin
   Result := False;
-  try
+  if (Length(DBRecord.MySQLDBName) <> 0) and (Length(DBRecord.SQLitePATH) <> 0) then
+  begin
     try
-      if DBRecord.CurrentDB = 'MySQL' then
-      begin
-        MySQLConnection.Connected := False;
-        DefTransaction.DataBase := SQLiteConnection;
-        FindQSOQuery.DataBase := SQLiteConnection;
-        SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
-        SQLiteConnection.Connected := True;
-        if SQLiteConnection.Connected then
+      try
+        if DBRecord.CurrentDB = 'MySQL' then
         begin
-          DBRecord.CurrentDB := 'SQLite';
-          DefLogBookQuery.DataBase := SQLiteConnection;
-          Result := True;
-          InitRecord.LogbookDBInit := True;
+          MySQLConnection.Connected := False;
+          DefTransaction.DataBase := SQLiteConnection;
+          FindQSOQuery.DataBase := SQLiteConnection;
+          SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
+          SQLiteConnection.Connected := True;
+          if SQLiteConnection.Connected then
+          begin
+            DBRecord.CurrentDB := 'SQLite';
+            DefLogBookQuery.DataBase := SQLiteConnection;
+            Result := True;
+            InitRecord.LogbookDBInit := True;
+          end;
+          Exit;
         end;
-        Exit;
+
+        if DBRecord.CurrentDB = 'SQLite' then
+        begin
+          SQLiteConnection.Connected := False;
+          DefTransaction.DataBase := MySQLConnection;
+          MySQLConnection.HostName := DBRecord.MySQLHost;
+          MySQLConnection.Port := DBRecord.MySQLPort;
+          MySQLConnection.UserName := DBRecord.MySQLUser;
+          MySQLConnection.Password := DBRecord.MySQLPass;
+          MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
+          MySQLConnection.Connected := True;
+          if MySQLConnection.Connected then
+          begin
+            DBRecord.CurrentDB := 'MySQL';
+            DefLogBookQuery.DataBase := MySQLConnection;
+            FindQSOQuery.DataBase := MySQLConnection;
+            Result := True;
+            InitRecord.LogbookDBInit := True;
+          end;
+          Exit;
+        end;
+
+      finally
+        if Result then
+          if (not GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
+            (DBRecord.InitDB = 'YES') then
+            ShowMessage('LogBook Table ERROR')
+          else
+          if (not SelectLogbookTable(LBRecord.LogTable)) and
+            (DBRecord.InitDB = 'YES') then
+            ShowMessage(rDBError);
       end;
 
-      if DBRecord.CurrentDB = 'SQLite' then
+    except
+      on E: Exception do
       begin
-        SQLiteConnection.Connected := False;
-        DefTransaction.DataBase := MySQLConnection;
-        MySQLConnection.HostName := DBRecord.MySQLHost;
-        MySQLConnection.Port := DBRecord.MySQLPort;
-        MySQLConnection.UserName := DBRecord.MySQLUser;
-        MySQLConnection.Password := DBRecord.MySQLPass;
-        MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
-        MySQLConnection.Connected := True;
-        if MySQLConnection.Connected then
-        begin
-          DBRecord.CurrentDB := 'MySQL';
-          DefLogBookQuery.DataBase := MySQLConnection;
-          FindQSOQuery.DataBase := MySQLConnection;
-          Result := True;
-          InitRecord.LogbookDBInit := True;
-        end;
-        Exit;
-      end;
-
-    finally
-      if Result then
+        ShowMessage('SwitchDB: Error: ' + E.Message);
+        WriteLn(ExceptFile, 'SwitchDB: Error: ' + E.ClassName + ':' + E.Message);
+        InitRecord.LogbookDBInit := False;
+        Result := False;
+        if DBRecord.CurrentDB = 'MySQL' then
+          DefTransaction.DataBase := MySQLConnection
+        else
+          DefTransaction.DataBase := SQLiteConnection;
         if (not GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
           (DBRecord.InitDB = 'YES') then
           ShowMessage('LogBook Table ERROR')
         else
         if (not SelectLogbookTable(LBRecord.LogTable)) and (DBRecord.InitDB = 'YES') then
           ShowMessage(rDBError);
+        if Pos('Unknown database', E.Message) > 0 then
+          if Application.MessageBox(PChar(rDBError), PChar(rWarning),
+            MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+            SetupForm.Show;
+      end;
     end;
-
-  except
-    on E: Exception do
-    begin
-      ShowMessage('SwitchDB: Error: ' + E.ClassName + #13#10 + E.Message);
-      WriteLn(ExceptFile, 'SwitchDB: Error: ' + E.ClassName + ':' + E.Message);
-      InitRecord.LogbookDBInit := False;
-      Result := False;
-    end;
-  end;
+  end
+  else
+  if Application.MessageBox(PChar(rNotDatabaseSettings), PChar(rWarning),
+    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    ConfigForm.Show;
 end;
 
 procedure TInitDB.DataModuleDestroy(Sender: TObject);

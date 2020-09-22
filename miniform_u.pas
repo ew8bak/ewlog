@@ -573,8 +573,7 @@ end;
 
 procedure TMiniForm.MenuItem89Click(Sender: TObject);
 begin
-  if not InitDB.SwitchDB then
-  ShowMessage('Logbook database ERROR');
+  InitDB.SwitchDB;
 end;
 
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);
@@ -748,6 +747,7 @@ end;
 procedure TMiniForm.MenuItem7Click(Sender: TObject);
 begin
   LogConfigForm.Show;
+  LogConfigForm.PageControl1.ActivePageIndex:=0;
 end;
 
 procedure TMiniForm.MenuItem84Click(Sender: TObject);
