@@ -1,20 +1,20 @@
 object viewPhoto: TviewPhoto
-  Left = 606
-  Height = 240
-  Top = 125
-  Width = 320
+  Left = 874
+  Height = 301
+  Top = 143
+  Width = 302
   Caption = 'Photo'
-  ClientHeight = 240
-  ClientWidth = 320
+  ClientHeight = 301
+  ClientWidth = 302
   OnClose = FormClose
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
-  object Image1: TImage
+  LCLVersion = '2.0.10.0'
+  object ImPhoto: TImage
     Left = 0
-    Height = 240
+    Height = 301
     Top = 0
-    Width = 320
+    Width = 302
     Align = alClient
     Proportional = True
     Stretch = True

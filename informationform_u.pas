@@ -132,6 +132,7 @@ begin
   LabelClear;
   GroupBox1.Caption := rCallSign;
   DirectoryEdit1.Text := IniSet.PhotoDir;
+  Image1.Picture.LoadFromLazarusResource('no-photo');
   InfoDM.GetInformation(Callsign, 'InformationForm');
 end;
 

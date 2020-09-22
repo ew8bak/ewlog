@@ -12,7 +12,7 @@ type
   { TviewPhoto }
 
   TviewPhoto = class(TForm)
-    Image1: TImage;
+    ImPhoto: TImage;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
@@ -36,6 +36,7 @@ procedure TviewPhoto.FormShow(Sender: TObject);
 begin
   viewPhoto.Left := INIFile.ReadInteger('SetLog', 'PhotoFormLeft', 0);
   viewPhoto.Top := INIFile.ReadInteger('SetLog', 'PhotoFormTop', 0);
+  ImPhoto.Picture.LoadFromLazarusResource('no-photo');
 end;
 
 procedure TviewPhoto.FormClose(Sender: TObject; var CloseAction: TCloseAction);

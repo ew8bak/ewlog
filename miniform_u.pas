@@ -1455,10 +1455,10 @@ begin
     EditMGR.Text := FoundQSOR.QSLManager;
   end;
 
-  //    if MenuItem111.Checked = True then
-  //  begin
-  //    tIMG.Picture.Clear;
-  //    if Assigned(viewPhoto.Image1.Picture.Graphic) then
+ //     if MenuItem111.Checked = True then
+ //   begin
+ //     tIMG.Picture.Clear;
+ //     if Assigned(viewPhoto.Image1.Picture.Graphic) then
   //    begin
   //      viewPhoto.Image1.Picture.Clear;
   //      viewPhoto.Close;
