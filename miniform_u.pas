@@ -9,7 +9,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, LCLIntf,
-  ActnList, process, CopyTableThread;
+  ActnList, process, CopyTableThread, gettext;
 
 type
 
@@ -1532,19 +1532,18 @@ begin
   LBQSL.Visible := False;
   LBWorked.Visible := False;
   LBCfm.Visible := False;
+  UnUsIndex := 0;
   DateEdit1.Date := LazSysUtils.NowUTC;
   DateTimePicker1.Time := NowUTC;
   LBLocalTimeD.Caption := FormatDateTime('hh:mm:ss', Now);
   LBUTCTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC);
   EditFlag := False;
   LoadComboBoxItem;
-  //GetLanguageIDs(Lang, FallbackLang);
-  // GetingHint := 0;
-  // MapView1.CachePath := FilePATH + 'cache' + DirectorySeparator;
+  GetLanguageIDs(Lang, FallbackLang);
 
-  // if IniSet.Language = '' then
-  //   IniSet.Language := FallbackLang;
-  // SetDefaultLang(IniSet.Language, FilePATH + DirectorySeparator + 'locale');
+   if IniSet.Language = '' then
+     IniSet.Language := FallbackLang;
+   SetDefaultLang(IniSet.Language, FilePATH + DirectorySeparator + 'locale');
 
   // useMAPS := INIFile.ReadString('SetLog', 'UseMAPS', '');
   //  StayForm := True;
@@ -1563,7 +1562,7 @@ begin
   //  if MenuItem86.Checked = True then
   //    TRXForm.Show;
 
-  //  UnUsIndex := 0;
+
 
   //  if not IniSet.ShowTRXForm then
   //    MenuItem88.Checked := True
