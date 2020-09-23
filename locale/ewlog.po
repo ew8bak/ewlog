@@ -388,6 +388,10 @@ msgctxt "resourcestr.rdatabasefault"
 msgid "Something went wrong ... Check the settings"
 msgstr ""
 
+#: resourcestr.rdatabasenotconnected
+msgid "Check the correctness of the entered data. Possibly a non-existing database has been entered (it must be created first). Or Invalid username and password."
+msgstr ""
+
 #: resourcestr.rdberror
 msgctxt "resourcestr.rdberror"
 msgid "Error while working with the database. Check connection and settings"
@@ -496,6 +500,10 @@ msgstr ""
 #: resourcestr.rfillinlogtable
 msgctxt "resourcestr.rfillinlogtable"
 msgid "Fill in the Log_Table_"
+msgstr ""
+
+#: resourcestr.rgotosettings
+msgid "Go to settings?"
 msgstr ""
 
 #: resourcestr.rgrid
@@ -652,6 +660,10 @@ msgstr ""
 #: resourcestr.rnotconnected
 msgctxt "resourcestr.rnotconnected"
 msgid "No connection to the server. Go back to the connection settings step and check all the settings"
+msgstr ""
+
+#: resourcestr.rnotdatabasesettings
+msgid "You cannot switch the Database to another because one of the databases is not configured. Check your settings. Go to the settings window?"
 msgstr ""
 
 #: resourcestr.rnotdataforconnect
@@ -812,6 +824,10 @@ msgstr ""
 
 #: resourcestr.rsetasdefaultjournal
 msgid "Set as default journal?"
+msgstr ""
+
+#: resourcestr.rshownextstart
+msgid "Show this window next start? The settings can be changed in the menu item View"
 msgstr ""
 
 #: resourcestr.rsizefile
@@ -1265,10 +1281,6 @@ msgstr ""
 
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
-msgstr ""
-
-#: tconfigform.checkbox10.caption
-msgid "Default form:"
 msgstr ""
 
 #: tconfigform.checkbox11.caption
@@ -4095,6 +4107,16 @@ msgstr ""
 msgid "Mode ON"
 msgstr ""
 
+#: tminiform.miphoto.caption
+msgctxt "tminiform.miphoto.caption"
+msgid "Photo"
+msgstr ""
+
+#: tminiform.miphototop.caption
+msgctxt "tminiform.miphototop.caption"
+msgid "On Top"
+msgstr ""
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"
@@ -4103,6 +4125,16 @@ msgstr ""
 #: tminiform.mitelnetform.caption
 msgctxt "tminiform.mitelnetform.caption"
 msgid "DX Cluster"
+msgstr ""
+
+#: tminiform.mitrx.caption
+msgctxt "tminiform.mitrx.caption"
+msgid "Transceiver Control"
+msgstr ""
+
+#: tminiform.mitrxtop.caption
+msgctxt "tminiform.mitrxtop.caption"
+msgid "On Top"
 msgstr ""
 
 #: tminiform.remotetimelabel.caption

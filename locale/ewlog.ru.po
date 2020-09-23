@@ -398,6 +398,10 @@ msgctxt "resourcestr.rdatabasefault"
 msgid "Something went wrong ... Check the settings"
 msgstr "Что-то пошло не так... Проверьте настройки"
 
+#: resourcestr.rdatabasenotconnected
+msgid "Check the correctness of the entered data. Possibly a non-existing database has been entered (it must be created first). Or Invalid username and password."
+msgstr ""
+
 #: resourcestr.rdberror
 msgctxt "resourcestr.rdberror"
 msgid "Error while working with the database. Check connection and settings"
@@ -507,6 +511,10 @@ msgstr "Заполняю таблицу LogBookInfo"
 msgctxt "resourcestr.rfillinlogtable"
 msgid "Fill in the Log_Table_"
 msgstr "Заполняю таблицу Log_Table_"
+
+#: resourcestr.rgotosettings
+msgid "Go to settings?"
+msgstr ""
 
 #: resourcestr.rgrid
 msgctxt "resourcestr.rgrid"
@@ -663,6 +671,10 @@ msgstr ""
 msgctxt "resourcestr.rnotconnected"
 msgid "No connection to the server. Go back to the connection settings step and check all the settings"
 msgstr "Нет подключения к серверу. Вернитесь к этапу настроек соединения и проверьте все настройки"
+
+#: resourcestr.rnotdatabasesettings
+msgid "You cannot switch the Database to another because one of the databases is not configured. Check your settings. Go to the settings window?"
+msgstr ""
 
 #: resourcestr.rnotdataforconnect
 msgctxt "resourcestr.rnotdataforconnect"
@@ -824,6 +836,10 @@ msgstr "Отправить спот"
 msgctxt "resourcestr.rsetasdefaultjournal"
 msgid "Set as default journal?"
 msgstr "Установить журнал по умолчанию?"
+
+#: resourcestr.rshownextstart
+msgid "Show this window next start? The settings can be changed in the menu item View"
+msgstr ""
 
 #: resourcestr.rsizefile
 msgctxt "resourcestr.rsizefile"
@@ -1280,10 +1296,6 @@ msgstr "Настройки программы"
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
 msgstr "Использовать как справочник?"
-
-#: tconfigform.checkbox10.caption
-msgid "Default form:"
-msgstr "Форма по умолчанию:"
 
 #: tconfigform.checkbox11.caption
 msgctxt "tconfigform.checkbox11.caption"
@@ -3500,9 +3512,10 @@ msgid "Country"
 msgstr "Страна"
 
 #: tmapform.caption
+#, fuzzy
 msgctxt "tmapform.caption"
 msgid "Map"
-msgstr ""
+msgstr "Карта"
 
 #: tminiform.caption
 msgctxt "tminiform.caption"
@@ -4113,6 +4126,18 @@ msgstr "Всегда наверху"
 msgid "Mode ON"
 msgstr ""
 
+#: tminiform.miphoto.caption
+#, fuzzy
+msgctxt "tminiform.miphoto.caption"
+msgid "Photo"
+msgstr "Фото"
+
+#: tminiform.miphototop.caption
+#, fuzzy
+msgctxt "tminiform.miphototop.caption"
+msgid "On Top"
+msgstr "Всегда наверху"
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"
@@ -4122,6 +4147,18 @@ msgstr "Настройки"
 msgctxt "tminiform.mitelnetform.caption"
 msgid "DX Cluster"
 msgstr ""
+
+#: tminiform.mitrx.caption
+#, fuzzy
+msgctxt "tminiform.mitrx.caption"
+msgid "Transceiver Control"
+msgstr "Управление трансивером"
+
+#: tminiform.mitrxtop.caption
+#, fuzzy
+msgctxt "tminiform.mitrxtop.caption"
+msgid "On Top"
+msgstr "Всегда наверху"
 
 #: tminiform.remotetimelabel.caption
 msgctxt "tminiform.remotetimelabel.caption"
@@ -5171,3 +5208,4 @@ msgstr "Фото"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
+

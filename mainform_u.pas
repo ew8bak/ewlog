@@ -36,7 +36,7 @@ implementation
 {$R *.lfm}
 
 { TMainForm }
-uses MainFuncDM, InitDB_dm, TRXForm_U;
+uses MainFuncDM, InitDB_dm, TRXForm_U, miniform_u;
 
 procedure TMainForm.SavePosition;
 begin
@@ -66,7 +66,15 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  IniSet.NumStart := INIFile.ReadInteger('SetLog', 'StartNum', 0);
+  Inc(IniSet.NumStart);
   MainForm.SavePosition;
+  INIFile.WriteInteger('SetLog', 'PastBand', MiniForm.CBBand.ItemIndex);
+  INIFile.WriteString('SetLog', 'PastMode', MiniForm.CBMode.Text);
+  INIFile.WriteString('SetLog', 'PastSubMode', MiniForm.CBSubMode.Text);
+  INIFile.WriteString('SetLog', 'Language', IniSet.Language);
+  INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
+  INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
 end;
 
 end.
