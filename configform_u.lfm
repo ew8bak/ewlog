@@ -756,13 +756,4 @@ object ConfigForm: TConfigForm
       TabOrder = 2
     end
   end
-  object CheckBox10: TCheckBox
-    Left = 568
-    Height = 23
-    Top = 344
-    Width = 101
-    Caption = 'Default form:'
-    OnChange = CheckBox10Change
-    TabOrder = 12
-  end
 end

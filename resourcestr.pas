@@ -173,6 +173,7 @@ resourcestring
   rDatabaseNotConnected = 'Check the correctness of the entered data. Possibly a non-existing database has been entered (it must be created first). Or Invalid username and password.';
   tNotFoundTableToCopy = 'No table found to copy. Possible callsign mismatch in databases';
   rNotDatabaseSettings = 'You cannot switch the Database to another because one of the databases is not configured. Check your settings. Go to the settings window?';
+  rShowNextStart = 'Show this window next start? The settings can be changed in the menu item View';
 implementation
 
 end.

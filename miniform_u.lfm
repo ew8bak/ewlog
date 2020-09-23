@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 336
+  Left = 317
   Height = 410
-  Top = 144
+  Top = 145
   Width = 477
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -2204,6 +2204,18 @@ object MiniForm: TMiniForm
           object miMapTop: TMenuItem
             Caption = 'On Top'
             OnClick = miMapTopClick
+          end
+        end
+        object MIPhoto: TMenuItem
+          Caption = 'Photo'
+          object MIPhotoTOP: TMenuItem
+            Caption = 'On Top'
+          end
+        end
+        object MITRX: TMenuItem
+          Caption = 'Transceiver Control'
+          object MITRXTop: TMenuItem
+            Caption = 'On Top'
           end
         end
       end

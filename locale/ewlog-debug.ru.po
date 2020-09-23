@@ -837,6 +837,10 @@ msgctxt "resourcestr.rsetasdefaultjournal"
 msgid "Set as default journal?"
 msgstr "Установить журнал по умолчанию?"
 
+#: resourcestr.rshownextstart
+msgid "Show this window next start? The settings can be changed in the menu item View"
+msgstr ""
+
 #: resourcestr.rsizefile
 msgctxt "resourcestr.rsizefile"
 msgid "File size: "
@@ -1292,10 +1296,6 @@ msgstr "Настройки программы"
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
 msgstr "Использовать как справочник?"
-
-#: tconfigform.checkbox10.caption
-msgid "Default form:"
-msgstr "Форма по умолчанию:"
 
 #: tconfigform.checkbox11.caption
 msgctxt "tconfigform.checkbox11.caption"
@@ -4126,6 +4126,18 @@ msgstr "Всегда наверху"
 msgid "Mode ON"
 msgstr ""
 
+#: tminiform.miphoto.caption
+#, fuzzy
+msgctxt "tminiform.miphoto.caption"
+msgid "Photo"
+msgstr "Фото"
+
+#: tminiform.miphototop.caption
+#, fuzzy
+msgctxt "tminiform.miphototop.caption"
+msgid "On Top"
+msgstr "Всегда наверху"
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"
@@ -4135,6 +4147,18 @@ msgstr "Настройки"
 msgctxt "tminiform.mitelnetform.caption"
 msgid "DX Cluster"
 msgstr ""
+
+#: tminiform.mitrx.caption
+#, fuzzy
+msgctxt "tminiform.mitrx.caption"
+msgid "Transceiver Control"
+msgstr "Управление трансивером"
+
+#: tminiform.mitrxtop.caption
+#, fuzzy
+msgctxt "tminiform.mitrxtop.caption"
+msgid "On Top"
+msgstr "Всегда наверху"
 
 #: tminiform.remotetimelabel.caption
 msgctxt "tminiform.remotetimelabel.caption"

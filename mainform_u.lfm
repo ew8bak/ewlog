@@ -1,13 +1,15 @@
 object MainForm: TMainForm
-  Left = 481
+  Left = 429
   Height = 667
-  Top = 184
+  Top = 210
   Width = 1208
   Caption = 'EWLog - HAM Journal'
   ClientHeight = 667
   ClientWidth = 1208
   Font.Height = -12
   KeyPreview = True
+  OnClose = FormClose
+  OnShow = FormShow
   Position = poDefault
   ShowInTaskBar = stAlways
   LCLVersion = '2.0.10.0'

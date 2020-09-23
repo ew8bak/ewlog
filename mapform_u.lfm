@@ -1,11 +1,12 @@
 object MapForm: TMapForm
-  Left = 500
+  Left = 384
   Height = 326
-  Top = 720
+  Top = 702
   Width = 500
   Caption = 'Map'
   ClientHeight = 326
   ClientWidth = 500
+  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.0.10.0'

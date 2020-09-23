@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBGrids, ExtCtrls,
-  Grids, Menus, selectQSO_record, foundQSO_record, prefix_record, ResourceStr;
+  Grids, Menus, selectQSO_record, foundQSO_record, prefix_record, ResourceStr,
+  LCLType;
 
 type
 
@@ -149,7 +150,7 @@ uses MainFuncDM, dmFunc_U, InitDB_dm, Earth_Form_U, miniform_u,
 
 procedure TGridsForm.SavePosition;
 begin
-  if IniSet.MainForm = 'MULTI' then
+  if (IniSet.MainForm = 'MULTI') and IniSet.gShow then
     if GridsForm.WindowState <> wsMaximized then
     begin
       INIFile.WriteInteger('SetLog', 'gLeft', GridsForm.Left);
@@ -380,6 +381,14 @@ end;
 procedure TGridsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   MainFunc.SaveGrids(DBGrid1);
+  if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
+    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    INIFile.WriteBool('SetLog', 'gShow', True)
+  else
+    INIFile.WriteBool('SetLog', 'gShow', False);
+
+  IniSet.gShow := False;
+  CloseAction := caFree;
 end;
 
 procedure TGridsForm.FormCreate(Sender: TObject);
@@ -391,6 +400,7 @@ end;
 
 procedure TGridsForm.FormShow(Sender: TObject);
 begin
+  if IniSet.MainForm = 'MULTI' then
   if (IniSet._l_g <> 0) and (IniSet._t_g <> 0) and (IniSet._w_g <> 0) and
     (IniSet._h_g <> 0) then
     GridsForm.SetBounds(IniSet._l_g, IniSet._t_g, IniSet._w_g, IniSet._h_g);

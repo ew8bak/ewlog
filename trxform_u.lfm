@@ -12,13 +12,14 @@ object TRXForm: TTRXForm
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '2.0.10.0'
   object lblMode: TLabel
     Left = 16
-    Height = 21
+    Height = 17
     Top = 5
-    Width = 28
+    Width = 29
     Caption = 'SSB'
     Font.Color = clBlue
     Font.Height = -16
@@ -105,9 +106,9 @@ object TRXForm: TTRXForm
   end
   object rbRadio1: TRadioButton
     Left = 32
-    Height = 19
+    Height = 23
     Top = 168
-    Width = 47
+    Width = 55
     Caption = 'RIG 1'
     Checked = True
     OnClick = rbRadio1Click
@@ -116,9 +117,9 @@ object TRXForm: TTRXForm
   end
   object rbRadio2: TRadioButton
     Left = 389
-    Height = 19
+    Height = 23
     Top = 168
-    Width = 47
+    Width = 55
     Caption = 'RIG 2'
     Enabled = False
     OnClick = rbRadio2Click
@@ -311,7 +312,7 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Control = Label2
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Label2
-    Left = 91
+    Left = 90
     Height = 15
     Top = 30
     Width = 15
@@ -328,7 +329,7 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Control = Label3
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Label3
-    Left = 130
+    Left = 128
     Height = 15
     Top = 30
     Width = 15
@@ -345,7 +346,7 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Control = Label4
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Label4
-    Left = 187
+    Left = 182
     Height = 15
     Top = 30
     Width = 15
@@ -362,7 +363,7 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Control = Label5
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Label5
-    Left = 226
+    Left = 220
     Height = 15
     Top = 30
     Width = 15
@@ -379,7 +380,7 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Control = Label6
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Label6
-    Left = 265
+    Left = 258
     Height = 15
     Top = 30
     Width = 15
@@ -396,7 +397,7 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Control = Label7
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Label7
-    Left = 322
+    Left = 312
     Height = 15
     Top = 30
     Width = 15
@@ -413,7 +414,7 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Control = Label8
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Label8
-    Left = 361
+    Left = 350
     Height = 15
     Top = 30
     Width = 15
@@ -433,7 +434,7 @@ object TRXForm: TTRXForm
     AnchorSideBottom.Side = asrBottom
     Left = 52
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -449,9 +450,9 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label2
     AnchorSideBottom.Side = asrBottom
-    Left = 91
+    Left = 90
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -467,9 +468,9 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label3
     AnchorSideBottom.Side = asrBottom
-    Left = 130
+    Left = 128
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -485,9 +486,9 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label4
     AnchorSideBottom.Side = asrBottom
-    Left = 187
+    Left = 182
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -503,9 +504,9 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label5
     AnchorSideBottom.Side = asrBottom
-    Left = 226
+    Left = 220
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -521,9 +522,9 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label6
     AnchorSideBottom.Side = asrBottom
-    Left = 265
+    Left = 258
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -539,9 +540,9 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label7
     AnchorSideBottom.Side = asrBottom
-    Left = 322
+    Left = 312
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -557,9 +558,9 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label8
     AnchorSideBottom.Side = asrBottom
-    Left = 361
+    Left = 350
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -573,9 +574,9 @@ object TRXForm: TTRXForm
   object Label1: TLabel
     AnchorSideLeft.Control = Owner
     Left = 40
-    Height = 89
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     BorderSpacing.Left = 40
     Caption = '0'
     Font.Color = clBlue
@@ -590,10 +591,10 @@ object TRXForm: TTRXForm
   object Label2: TLabel
     AnchorSideLeft.Control = Label1
     AnchorSideLeft.Side = asrBottom
-    Left = 79
-    Height = 89
+    Left = 78
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -607,10 +608,10 @@ object TRXForm: TTRXForm
   object Label3: TLabel
     AnchorSideLeft.Control = Label2
     AnchorSideLeft.Side = asrBottom
-    Left = 118
-    Height = 89
+    Left = 116
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -624,10 +625,10 @@ object TRXForm: TTRXForm
   object Label4: TLabel
     AnchorSideLeft.Control = Label9
     AnchorSideLeft.Side = asrBottom
-    Left = 175
-    Height = 89
+    Left = 170
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -641,10 +642,10 @@ object TRXForm: TTRXForm
   object Label5: TLabel
     AnchorSideLeft.Control = Label4
     AnchorSideLeft.Side = asrBottom
-    Left = 214
-    Height = 89
+    Left = 208
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -658,10 +659,10 @@ object TRXForm: TTRXForm
   object Label6: TLabel
     AnchorSideLeft.Control = Label5
     AnchorSideLeft.Side = asrBottom
-    Left = 253
-    Height = 89
+    Left = 246
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -675,10 +676,10 @@ object TRXForm: TTRXForm
   object Label7: TLabel
     AnchorSideLeft.Control = Label10
     AnchorSideLeft.Side = asrBottom
-    Left = 310
-    Height = 89
+    Left = 300
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -692,10 +693,10 @@ object TRXForm: TTRXForm
   object Label8: TLabel
     AnchorSideLeft.Control = Label7
     AnchorSideLeft.Side = asrBottom
-    Left = 349
-    Height = 89
+    Left = 338
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -711,10 +712,10 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Label3
     AnchorSideTop.Side = asrCenter
-    Left = 157
-    Height = 89
+    Left = 154
+    Height = 74
     Top = 24
-    Width = 18
+    Width = 16
     Caption = '.'
     Font.Color = clBlue
     Font.Height = -67
@@ -725,10 +726,10 @@ object TRXForm: TTRXForm
   object Label10: TLabel
     AnchorSideLeft.Control = Label6
     AnchorSideLeft.Side = asrBottom
-    Left = 292
-    Height = 89
+    Left = 284
+    Height = 74
     Top = 24
-    Width = 18
+    Width = 16
     Caption = '.'
     Font.Color = clBlue
     Font.Height = -67
@@ -740,7 +741,7 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Control = Label11
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Label11
-    Left = 400
+    Left = 388
     Height = 15
     Top = 30
     Width = 15
@@ -758,9 +759,9 @@ object TRXForm: TTRXForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label11
     AnchorSideBottom.Side = asrBottom
-    Left = 400
+    Left = 388
     Height = 15
-    Top = 98
+    Top = 83
     Width = 15
     Anchors = [akLeft, akBottom]
     ArrowColor = clBlue
@@ -774,10 +775,10 @@ object TRXForm: TTRXForm
   object Label11: TLabel
     AnchorSideLeft.Control = Label8
     AnchorSideLeft.Side = asrBottom
-    Left = 388
-    Height = 89
+    Left = 376
+    Height = 74
     Top = 24
-    Width = 39
+    Width = 38
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -67
@@ -792,7 +793,7 @@ object TRXForm: TTRXForm
     Enabled = False
     Interval = 50
     OnTimer = tmrRadioTimer
-    left = 288
-    top = 152
+    Left = 288
+    Top = 152
   end
 end

@@ -106,6 +106,10 @@ type
     LBBand: TLabel;
     LBMode: TLabel;
     MainMenu: TMainMenu;
+    MITRXTop: TMenuItem;
+    MITRX: TMenuItem;
+    MIPhotoTOP: TMenuItem;
+    MIPhoto: TMenuItem;
     miMapTop: TMenuItem;
     MIClusterTop: TMenuItem;
     MiMainTop: TMenuItem;
@@ -258,11 +262,13 @@ type
   private
     SelEditNumChar: integer;
     EditFlag: boolean;
+    showForm: boolean;
     procedure Clr;
     procedure LangItemClick(Sender: TObject);
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
 
   public
+    procedure LoadPhotoFromInternetCallbook(info: TInformRecord);
     procedure LoadFromInternetCallBook(info: TInformRecord);
     procedure LoadComboBoxItem;
     procedure SwitchForm;
@@ -285,7 +291,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   InformationForm_U, UpdateForm_U, ConfigGridForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
-  QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u;
+  QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U;
 
 {$R *.lfm}
 
@@ -360,6 +366,23 @@ begin
         Earth.Show
       else
         MapForm.Show;
+    if IniSet.trx_priority then
+    begin
+      TRXForm.BorderStyle := bsNone;
+      TRXForm.Parent := MainForm.OtherPanel;
+      TRXForm.Align := alClient;
+      if IniSet.trxShow then
+        TRXForm.Show;
+    end
+    else
+    begin
+      viewPhoto.BorderStyle := bsNone;
+      viewPhoto.Parent := MainForm.OtherPanel;
+      viewPhoto.Align := alClient;
+      if IniSet.pShow then
+        viewPhoto.Show;
+    end;
+    IniSet.MainForm := 'MAIN';
     MainForm.Show;
   end
   else
@@ -400,6 +423,21 @@ begin
         Earth.Show
       else
         MapForm.Show;
+
+    if IniSet.pShow then
+    begin
+      viewPhoto.Parent := nil;
+      viewPhoto.BorderStyle := bsSizeable;
+      viewPhoto.Align := alNone;
+      viewPhoto.Show;
+    end;
+    if IniSet.trxShow then
+    begin
+      TRXForm.Parent := nil;
+      TRXForm.BorderStyle := bsSizeable;
+      TRXForm.Align := alNone;
+      TRXForm.Show;
+    end;
     if IniSet.cShow then
       dxClusterForm.Show;
     if IniSet.mTop then
@@ -408,6 +446,11 @@ begin
       GridsForm.FormStyle := fsSystemStayOnTop;
     if IniSet.cTop then
       dxClusterForm.FormStyle := fsSystemStayOnTop;
+    if IniSet.pTop then
+      viewPhoto.FormStyle := fsSystemStayOnTop;
+    if IniSet.trxTop then
+      TRXForm.FormStyle := fsSystemStayOnTop;
+    IniSet.MainForm := 'MULTI';
   end;
 end;
 
@@ -458,10 +501,8 @@ begin
   LBCfm.Visible := False;
   MapForm.WriteMap('0', '0', 1);
   CBQSLVia.Text := '';
-  //  if MenuItem111.Checked = True then
-  //  begin
-  //    tIMG.Picture.Clear;
-  //  end;
+  if IniSet.pShow then
+    viewPhoto.ImPhoto.Picture.LoadFromLazarusResource('no-photo');
 end;
 
 procedure TMiniForm.LoadComboBoxItem;
@@ -482,48 +523,64 @@ begin
     StatusBar.SimpleText := '';
 end;
 
+procedure TMiniForm.LoadPhotoFromInternetCallbook(info: TInformRecord);
+begin
+  if IniSet.pShow then
+  begin
+    if dmFunc.Extention(info.PhotoURL) = '.gif' then
+      viewPhoto.ImPhoto.Picture.Assign(info.PhotoGIF);
+    if dmFunc.Extention(info.PhotoURL) = '.jpg' then
+      viewPhoto.ImPhoto.Picture.Assign(info.PhotoJPEG);
+    if dmFunc.Extention(info.PhotoURL) = '.png' then
+      viewPhoto.ImPhoto.Picture.Assign(info.PhotoPNG);
+  end;
+end;
+
 procedure TMiniForm.FormShow(Sender: TObject);
 var
   s: string;
 begin
-  if (IniSet._l_m <> 0) and (IniSet._t_m <> 0) and (IniSet._w_m <> 0) and
-    (IniSet._h_m <> 0) then
-    MiniForm.SetBounds(IniSet._l_m, IniSet._t_m, IniSet._w_m, IniSet._h_m);
-  if (IniSet.FormState = 'Maximized') and (IniSet.MainForm = 'MAIN') then
-    MiniForm.WindowState := wsMaximized;
-  if DBRecord.InitDB <> 'YES' then
+  if not showForm then
   begin
-    if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
-      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      SetupForm.Show;
-  end;
-  {$IFDEF WINDOWS}
-  if not dmFunc.CheckSQLiteVersion(sqlite_version) then
-    if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
-      rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
-      rPath + ':' + #10#13 + ExtractFileDir(ParamStr(0)) + DirectorySeparator +
-      'sqlite3.dll'), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
-      MB_ICONWARNING) = idYes then
-      OpenURL('https://www.sqlite.org/download.html');
-  {$ELSE}
-  if not dmFunc.CheckSQLiteVersion(sqlite_version) then
-  begin
-    if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
+    showForm := True;
+    if (IniSet._l_multi <> 0) and (IniSet._t_multi <> 0) and
+      (IniSet._w_multi <> 0) and (IniSet._h_multi <> 0) then
+      MiniForm.SetBounds(IniSet._l_multi, IniSet._t_multi, IniSet._w_multi,
+        IniSet._h_multi);
+
+    if DBRecord.InitDB <> 'YES' then
     begin
-      if Length(s) < 5 then
-        s := '/lib/';
+      if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
+        MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+        SetupForm.Show;
     end;
-    if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
-      rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
-      rPath + ':' + #10#13 + s), PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 +
-      MB_ICONWARNING) = idYes then
-      OpenURL('https://www.sqlite.org/download.html');
-  end;
+  {$IFDEF WINDOWS}
+    if not dmFunc.CheckSQLiteVersion(sqlite_version) then
+      if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
+        rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
+        rPath + ':' + #10#13 + ExtractFileDir(ParamStr(0)) +
+        DirectorySeparator + 'sqlite3.dll'), PChar(rWarning), MB_YESNO +
+        MB_DEFBUTTON2 + MB_ICONWARNING) = idYes then
+        OpenURL('https://www.sqlite.org/download.html');
+  {$ELSE}
+    if not dmFunc.CheckSQLiteVersion(sqlite_version) then
+    begin
+      if RunCommand('/bin/bash', ['-c', 'locate sqlite | grep \libsqlite3.so'], s) then
+      begin
+        if Length(s) < 5 then
+          s := '/lib/';
+      end;
+      if Application.MessageBox(PChar(rUpdateSQLiteDLL + '.' + #10#13 +
+        rSQLiteCurrentVersion + ': ' + sqlite_version + '.' + #10#13 +
+        rPath + ':' + #10#13 + s), PChar(rWarning), MB_YESNO +
+        MB_DEFBUTTON2 + MB_ICONWARNING) = idYes then
+        OpenURL('https://www.sqlite.org/download.html');
+    end;
   {$ENDIF}
 
-  SwitchForm;
-
-  CBMap.Checked := IniSet.Map_Use;
+    SwitchForm;
+    CBMap.Checked := IniSet.Map_Use;
+  end;
   //  CheckUpdatesTimer.Enabled := True;
   CBYourQSL.ItemIndex := 3;
   TextSB('QSO № ' + IntToStr(NumberSelectRecord) + rQSOTotal +
@@ -747,7 +804,7 @@ end;
 procedure TMiniForm.MenuItem7Click(Sender: TObject);
 begin
   LogConfigForm.Show;
-  LogConfigForm.PageControl1.ActivePageIndex:=0;
+  LogConfigForm.PageControl1.ActivePageIndex := 0;
 end;
 
 procedure TMiniForm.MenuItem84Click(Sender: TObject);
@@ -1454,17 +1511,8 @@ begin
     EditState.Text := FoundQSOR.State;
     EditMGR.Text := FoundQSOR.QSLManager;
   end;
-
- //     if MenuItem111.Checked = True then
- //   begin
- //     tIMG.Picture.Clear;
- //     if Assigned(viewPhoto.Image1.Picture.Graphic) then
-  //    begin
-  //      viewPhoto.Image1.Picture.Clear;
-  //      viewPhoto.Close;
-  //    end;
-  //  end;
-
+  if IniSet.pShow then
+    viewPhoto.ImPhoto.Picture.LoadFromLazarusResource('no-photo');
 end;
 
 procedure TMiniForm.EditCallsignKeyDown(Sender: TObject; var Key: word;
@@ -1495,32 +1543,32 @@ begin
       CloseAction := caNone;
   end;
 
-  if MiniForm.WindowState <> wsMaximized then
+  if (MiniForm.WindowState <> wsMaximized) and (IniSet.MainForm <> 'MAIN') then
   begin
-    INIFile.WriteInteger('SetLog', 'Left', MiniForm.Left);
-    INIFile.WriteInteger('SetLog', 'Top', MiniForm.Top);
-    INIFile.WriteInteger('SetLog', 'Width', MiniForm.Width);
-    INIFile.WriteInteger('SetLog', 'Height', MiniForm.Height);
-    INIFile.WriteString('SetLog', 'FormState', 'Normal');
+    INIFile.WriteInteger('SetLog', 'multiLeft', MiniForm.Left);
+    INIFile.WriteInteger('SetLog', 'multiTop', MiniForm.Top);
+    INIFile.WriteInteger('SetLog', 'multiWidth', MiniForm.Width);
+    INIFile.WriteInteger('SetLog', 'multiHeight', MiniForm.Height);
   end;
 
-  if MiniForm.WindowState = wsMaximized then
-    INIFile.WriteString('SetLog', 'FormState', 'Maximized');
-
-  INIFile.WriteBool('SetLog', 'TRXForm', IniSet.ShowTRXForm);
-  //INIFile.WriteBool('SetLog', 'ImgForm', MenuItem111.Checked);
   INIFile.WriteInteger('SetLog', 'PastBand', CBBand.ItemIndex);
   INIFile.WriteString('SetLog', 'PastMode', CBMode.Text);
   INIFile.WriteString('SetLog', 'PastSubMode', CBSubMode.Text);
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
   INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
+  INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
   TRXForm.Close;
 
   GridsForm.SavePosition;
   Earth.SavePosition;
   dxClusterForm.SavePosition;
-  MapForm.SavePosition;
+  TRXForm.SavePosition;
+  viewPhoto.SavePosition;
+  if IniSet.Map_Use then
+    MapForm.SavePosition
+  else
+    Earth.SavePosition;
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);
@@ -1528,6 +1576,7 @@ var
   Lang: string = '';
   FallbackLang: string = '';
 begin
+  showForm := False;
   Shape1.Visible := False;
   LBQSL.Visible := False;
   LBWorked.Visible := False;
@@ -1541,9 +1590,9 @@ begin
   LoadComboBoxItem;
   GetLanguageIDs(Lang, FallbackLang);
 
-   if IniSet.Language = '' then
-     IniSet.Language := FallbackLang;
-   SetDefaultLang(IniSet.Language, FilePATH + DirectorySeparator + 'locale');
+  if IniSet.Language = '' then
+    IniSet.Language := FallbackLang;
+  SetDefaultLang(IniSet.Language, FilePATH + DirectorySeparator + 'locale');
 
   // useMAPS := INIFile.ReadString('SetLog', 'UseMAPS', '');
   //  StayForm := True;

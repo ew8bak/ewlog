@@ -18,10 +18,13 @@ type
     EarthPanel: TPanel;
     MiniPanel: TPanel;
     OtherPanel: TPanel;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormShow(Sender: TObject);
   private
     { private declarations }
 
   public
+    procedure SavePosition;
     { public declarations }
   end;
 
@@ -31,5 +34,39 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TMainForm }
+uses MainFuncDM, InitDB_dm, TRXForm_U;
+
+procedure TMainForm.SavePosition;
+begin
+  if IniSet.MainForm = 'MAIN' then
+    if MainForm.WindowState <> wsMaximized then
+    begin
+      INIFile.WriteInteger('SetLog', 'mainLeft', MainForm.Left);
+      INIFile.WriteInteger('SetLog', 'mainTop', MainForm.Top);
+      INIFile.WriteInteger('SetLog', 'mainWidth', MainForm.Width);
+      INIFile.WriteInteger('SetLog', 'mainHeight', MainForm.Height);
+      INIFile.WriteString('SetLog', 'FormState', 'Normal');
+    end;
+  if MainForm.WindowState = wsMaximized then
+    INIFile.WriteString('SetLog', 'FormState', 'Maximized');
+  INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  if (IniSet.FormState = 'Maximized') and (IniSet.MainForm = 'MAIN') then
+    MainForm.WindowState := wsMaximized
+  else
+  if (IniSet._l_main <> 0) and (IniSet._t_main <> 0) and
+    (IniSet._w_main <> 0) and (IniSet._h_main <> 0) then
+    MainForm.SetBounds(IniSet._l_main, IniSet._t_main, IniSet._w_main, IniSet._h_main);
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  MainForm.SavePosition;
+end;
 
 end.

@@ -827,6 +827,10 @@ msgctxt "resourcestr.rsetasdefaultjournal"
 msgid "Set as default journal?"
 msgstr ""
 
+#: resourcestr.rshownextstart
+msgid "Show this window next start? The settings can be changed in the menu item View"
+msgstr ""
+
 #: resourcestr.rsizefile
 msgctxt "resourcestr.rsizefile"
 msgid "File size: "
@@ -1278,10 +1282,6 @@ msgstr ""
 
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
-msgstr ""
-
-#: tconfigform.checkbox10.caption
-msgid "Default form:"
 msgstr ""
 
 #: tconfigform.checkbox11.caption
@@ -4112,6 +4112,16 @@ msgstr ""
 msgid "Mode ON"
 msgstr ""
 
+#: tminiform.miphoto.caption
+msgctxt "tminiform.miphoto.caption"
+msgid "Photo"
+msgstr ""
+
+#: tminiform.miphototop.caption
+msgctxt "tminiform.miphototop.caption"
+msgid "On Top"
+msgstr ""
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"
@@ -4120,6 +4130,16 @@ msgstr ""
 #: tminiform.mitelnetform.caption
 msgctxt "tminiform.mitelnetform.caption"
 msgid "DX Cluster"
+msgstr ""
+
+#: tminiform.mitrx.caption
+msgctxt "tminiform.mitrx.caption"
+msgid "Transceiver Control"
+msgstr ""
+
+#: tminiform.mitrxtop.caption
+msgctxt "tminiform.mitrxtop.caption"
+msgid "On Top"
 msgstr ""
 
 #: tminiform.remotetimelabel.caption

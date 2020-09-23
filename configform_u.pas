@@ -40,7 +40,6 @@ type
     Button3: TButton;
     Button4: TButton;
     CheckBox1: TCheckBox;
-    CheckBox10: TCheckBox;
     CheckBox11: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
@@ -106,7 +105,6 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure CheckBox10Change(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
@@ -181,11 +179,6 @@ begin
     INIFile.WriteBool('SetLog', 'FreqToCloudLog', True)
   else
     INIFile.WriteBool('SetLog', 'FreqToCloudLog', False);
-
-  if CheckBox10.Checked then
-    INIFile.WriteString('SetLog', 'MainForm', 'MAIN')
-  else
-    INIFile.WriteString('SetLog', 'MainForm', 'MULTI');
   DBRecord.MySQLDBName := Edit5.Text;
   DBRecord.MySQLHost := Edit1.Text;
   DBRecord.MySQLPort := StrToInt(Edit2.Text);
@@ -236,17 +229,6 @@ begin
     CheckBox7.Checked := True;
   if IniSet.CallBookSystem = 'HAMQTH' then
     CheckBox11.Checked := True;
-
-  if IniSet.MainForm = 'MAIN' then
-  begin
-    CheckBox10.Caption := rCheckBoxFormMain;
-    CheckBox10.Checked := True;
-  end
-  else
-  begin
-    CheckBox10.Caption := rCheckBoxFormMini;
-    CheckBox10.Checked := False;
-  end;
 end;
 
 procedure TConfigForm.Button2Click(Sender: TObject);
@@ -287,20 +269,6 @@ begin
   begin
     InitDB.ImbeddedCallBookInit(False);
     DownloadCallBookFile;
-  end;
-end;
-
-procedure TConfigForm.CheckBox10Change(Sender: TObject);
-begin
-  if CheckBox10.Checked then
-  begin
-    CheckBox10.Caption := rCheckBoxFormMain;
-    IniSet.MainForm := 'MAIN';
-  end
-  else
-  begin
-    CheckBox10.Caption := rCheckBoxFormMini;
-    IniSet.MainForm := 'MULTI';
   end;
 end;
 

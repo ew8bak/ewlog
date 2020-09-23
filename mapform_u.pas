@@ -5,7 +5,8 @@ unit MapForm_u;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, mvMapViewer, mvTypes;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, mvMapViewer, mvTypes,
+  LCLType, ResourceStr;
 
 type
 
@@ -13,6 +14,7 @@ type
 
   TMapForm = class(TForm)
     MapView: TMapView;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -49,11 +51,24 @@ begin
   MapView.DoubleBuffered := True;
 end;
 
+procedure TMapForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+{  if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
+    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    INIFile.WriteBool('SetLog', 'eShow', True)
+  else
+    INIFile.WriteBool('SetLog', 'eShow', False);
+
+  IniSet.eShow := False;
+  CloseAction := caFree; }
+end;
+
 procedure TMapForm.FormShow(Sender: TObject);
 begin
-  if (IniSet._l_e <> 0) and (IniSet._t_e <> 0) and (IniSet._w_e <> 0) and
-    (IniSet._h_e <> 0) then
-    MapForm.SetBounds(IniSet._l_e, IniSet._t_e, IniSet._w_e, IniSet._h_e);
+  if (IniSet.MainForm = 'MULTI') and IniSet.eShow then
+    if (IniSet._l_e <> 0) and (IniSet._t_e <> 0) and (IniSet._w_e <> 0) and
+      (IniSet._h_e <> 0) then
+      MapForm.SetBounds(IniSet._l_e, IniSet._t_e, IniSet._w_e, IniSet._h_e);
   MapView.Active := True;
   WriteMap('0', '0', 1);
 end;
@@ -66,7 +81,7 @@ begin
     MainFunc.LoadMaps(Latitude, Longitude, MapView)
   else
   begin
-  //  MapView.ClearBuffer;
+    //  MapView.ClearBuffer;
     Center.Lat := 0;
     Center.Lon := 0;
     MapView.Center := Center;

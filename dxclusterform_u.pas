@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
   StdCtrls, Buttons, Menus, VirtualTrees, telnetClientThread,
-  prefix_record, const_u, SQLDB, ResourceStr;
+  prefix_record, const_u, SQLDB, ResourceStr, LCLType;
 
 type
 
@@ -134,7 +134,7 @@ type
 
 procedure TdxClusterForm.SavePosition;
 begin
-  if IniSet.MainForm = 'MULTI' then
+  if (IniSet.MainForm = 'MULTI') and IniSet.cShow then
     if dxClusterForm.WindowState <> wsMaximized then
     begin
       INIFile.WriteInteger('SetLog', 'cLeft', dxClusterForm.Left);
@@ -559,6 +559,14 @@ procedure TdxClusterForm.FormClose(Sender: TObject; var CloseAction: TCloseActio
 begin
   INIFile.WriteString('TelnetCluster', 'ServerDef', ComboBox1.Text);
   MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
+  if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
+    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    INIFile.WriteBool('SetLog', 'cShow', True)
+  else
+    INIFile.WriteBool('SetLog', 'cShow', False);
+
+  IniSet.cShow := False;
+  CloseAction := caFree;
 end;
 
 procedure TdxClusterForm.FormCreate(Sender: TObject);
@@ -589,9 +597,10 @@ end;
 
 procedure TdxClusterForm.FormShow(Sender: TObject);
 begin
-  if (IniSet._l_c <> 0) and (IniSet._t_c <> 0) and (IniSet._w_c <> 0) and
-    (IniSet._h_c <> 0) then
-    dxClusterForm.SetBounds(IniSet._l_c, IniSet._t_c, IniSet._w_c, IniSet._h_c);
+  if IniSet.MainForm = 'MULTI' then
+    if (IniSet._l_c <> 0) and (IniSet._t_c <> 0) and (IniSet._w_c <> 0) and
+      (IniSet._h_c <> 0) then
+      dxClusterForm.SetBounds(IniSet._l_c, IniSet._t_c, IniSet._w_c, IniSet._h_c);
   ButtonSet;
 end;
 

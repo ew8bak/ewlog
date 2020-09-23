@@ -96,6 +96,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure Label11MouseLeave(Sender: TObject);
     procedure Label11MouseWheelDown(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: boolean);
@@ -159,6 +160,7 @@ type
     procedure SynTRX;
     procedure Freq(Hz: integer);
     function InicializeRig: boolean;
+    procedure SavePosition;
     { public declarations }
   end;
 
@@ -191,6 +193,18 @@ uses
 {$R *.lfm}
 
 { TTRXForm }
+
+procedure TTRXForm.SavePosition;
+begin
+  if IniSet.MainForm = 'MULTI' then
+    if TRXForm.WindowState <> wsMaximized then
+    begin
+      INIFile.WriteInteger('SetLog', 'trxLeft', TRXForm.Left);
+      INIFile.WriteInteger('SetLog', 'trxTop', TRXForm.Top);
+      INIFile.WriteInteger('SetLog', 'trxWidth', TRXForm.Width);
+      INIFile.WriteInteger('SetLog', 'trxHeight', TRXForm.Height);
+    end;
+end;
 
 procedure TTRXForm.Freq(Hz: integer);
 var
@@ -388,6 +402,14 @@ begin
 //    TRXForm.Show;
 //  end;
 
+end;
+
+procedure TTRXForm.FormShow(Sender: TObject);
+begin
+    if IniSet.MainForm = 'MULTI' then
+  if (IniSet._l_trx <> 0) and (IniSet._t_trx <> 0) and (IniSet._w_trx <> 0) and
+    (IniSet._h_trx <> 0) then
+    TRXForm.SetBounds(IniSet._l_trx, IniSet._t_trx, IniSet._w_trx, IniSet._h_trx);
 end;
 
 procedure TTRXForm.Label11MouseLeave(Sender: TObject);

@@ -65,8 +65,8 @@ begin
     end;
 
   finally
-   // if InfoR.Sender = 'MainForm' then
-   //   MiniForm.LoadPhotoFromInternetCallbook(InfoR);
+    if InfoR.Sender = 'MainForm' then
+      MiniForm.LoadPhotoFromInternetCallbook(InfoR);
     if InfoR.Sender = 'InformationForm' then
       InformationForm.LoadPhotoFromInternetCallbook(InfoR);
   end;

@@ -8,7 +8,6 @@ object viewPhoto: TviewPhoto
   ClientWidth = 302
   OnClose = FormClose
   OnShow = FormShow
-  Position = poMainFormCenter
   LCLVersion = '2.0.10.0'
   object ImPhoto: TImage
     Left = 0

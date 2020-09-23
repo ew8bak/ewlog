@@ -5,7 +5,7 @@ unit viewPhoto_U;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, LCLType, ResourceStr;
 
 type
 
@@ -18,6 +18,7 @@ type
   private
 
   public
+    procedure SavePosition;
 
   end;
 
@@ -26,23 +27,43 @@ var
 
 implementation
 
-uses MainForm_U, InitDB_dm;
+uses MainForm_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
 { TviewPhoto }
 
+procedure TviewPhoto.SavePosition;
+begin
+  if (IniSet.MainForm = 'MULTI') and IniSet.pShow then
+    if viewPhoto.WindowState <> wsMaximized then
+    begin
+      INIFile.WriteInteger('SetLog', 'pLeft', viewPhoto.Left);
+      INIFile.WriteInteger('SetLog', 'pTop', viewPhoto.Top);
+      INIFile.WriteInteger('SetLog', 'pWidth', viewPhoto.Width);
+      INIFile.WriteInteger('SetLog', 'pHeight', viewPhoto.Height);
+    end;
+end;
+
 procedure TviewPhoto.FormShow(Sender: TObject);
 begin
-  viewPhoto.Left := INIFile.ReadInteger('SetLog', 'PhotoFormLeft', 0);
-  viewPhoto.Top := INIFile.ReadInteger('SetLog', 'PhotoFormTop', 0);
+  if IniSet.MainForm = 'MULTI' then
+    if (IniSet._l_p <> 0) and (IniSet._t_p <> 0) and (IniSet._w_p <> 0) and
+      (IniSet._h_p <> 0) then
+      viewPhoto.SetBounds(IniSet._l_p, IniSet._t_p, IniSet._w_p, IniSet._h_p);
   ImPhoto.Picture.LoadFromLazarusResource('no-photo');
 end;
 
 procedure TviewPhoto.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  INIFile.WriteInteger('SetLog', 'PhotoFormLeft', viewPhoto.Left);
-  INIFile.WriteInteger('SetLog', 'PhotoFormTop', viewPhoto.Top);
+  if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
+    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+    INIFile.WriteBool('SetLog', 'pShow', True)
+  else
+    INIFile.WriteBool('SetLog', 'pShow', False);
+
+  IniSet.pShow := False;
+  CloseAction := caFree;
 end;
 
 end.
