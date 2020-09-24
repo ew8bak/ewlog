@@ -2106,7 +2106,7 @@ msgstr "ITU"
 #: teditqso_form.label14.caption
 msgctxt "teditqso_form.label14.caption"
 msgid "Grid"
-msgstr "Локатор"
+msgstr "ЛОК"
 
 #: teditqso_form.label15.caption
 msgctxt "teditqso_form.label15.caption"
@@ -3512,7 +3512,6 @@ msgid "Country"
 msgstr "Страна"
 
 #: tmapform.caption
-#, fuzzy
 msgctxt "tmapform.caption"
 msgid "Map"
 msgstr "Карта"
@@ -3521,11 +3520,6 @@ msgstr "Карта"
 msgctxt "tminiform.caption"
 msgid "EWLog - HAM Journal"
 msgstr "EWLog - Аппаратный журнал"
-
-#: tminiform.cbband.text
-msgctxt "tminiform.cbband.text"
-msgid "7.000.00"
-msgstr ""
 
 #: tminiform.cbfilter.caption
 msgctxt "tminiform.cbfilter.caption"
@@ -4127,13 +4121,11 @@ msgid "Mode ON"
 msgstr ""
 
 #: tminiform.miphoto.caption
-#, fuzzy
 msgctxt "tminiform.miphoto.caption"
 msgid "Photo"
 msgstr "Фото"
 
 #: tminiform.miphototop.caption
-#, fuzzy
 msgctxt "tminiform.miphototop.caption"
 msgid "On Top"
 msgstr "Всегда наверху"
@@ -4149,13 +4141,11 @@ msgid "DX Cluster"
 msgstr ""
 
 #: tminiform.mitrx.caption
-#, fuzzy
 msgctxt "tminiform.mitrx.caption"
 msgid "Transceiver Control"
 msgstr "Управление трансивером"
 
 #: tminiform.mitrxtop.caption
-#, fuzzy
 msgctxt "tminiform.mitrxtop.caption"
 msgid "On Top"
 msgstr "Всегда наверху"

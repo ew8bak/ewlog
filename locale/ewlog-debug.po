@@ -310,6 +310,7 @@ msgid "Recipient callsign not entered"
 msgstr ""
 
 #: resourcestr.rcannotdeldef
+msgctxt "resourcestr.rcannotdeldef"
 msgid "Cannot delete default or current log"
 msgstr ""
 
@@ -335,22 +336,27 @@ msgid "Check SQLite database path"
 msgstr ""
 
 #: resourcestr.rchecksettingsmysql
+msgctxt "resourcestr.rchecksettingsmysql"
 msgid "Check MySQL DB Settings"
 msgstr ""
 
 #: resourcestr.rchecksettingssqlite
+msgctxt "resourcestr.rchecksettingssqlite"
 msgid "Check SQLite DB Settings"
 msgstr ""
 
 #: resourcestr.rcleanupjournal
+msgctxt "resourcestr.rcleanupjournal"
 msgid "Are you sure you want to clear all entries?"
 msgstr ""
 
 #: resourcestr.rclearqso
+msgctxt "resourcestr.rclearqso"
 msgid "Clear QSO input window"
 msgstr ""
 
 #: resourcestr.rclientconnected
+msgctxt "resourcestr.rclientconnected"
 msgid "Client Connected:"
 msgstr ""
 
@@ -378,6 +384,7 @@ msgid "Create table LogBookInfo"
 msgstr ""
 
 #: resourcestr.rdatabasefault
+msgctxt "resourcestr.rdatabasefault"
 msgid "Something went wrong ... Check the settings"
 msgstr ""
 
@@ -386,22 +393,27 @@ msgid "Check the correctness of the entered data. Possibly a non-existing databa
 msgstr ""
 
 #: resourcestr.rdberror
+msgctxt "resourcestr.rdberror"
 msgid "Error while working with the database. Check connection and settings"
 msgstr ""
 
 #: resourcestr.rdbnotinit
+msgctxt "resourcestr.rdbnotinit"
 msgid "The database is not initialized, go to the settings?"
 msgstr ""
 
 #: resourcestr.rdefaultlogsel
+msgctxt "resourcestr.rdefaultlogsel"
 msgid "Default log selected"
 msgstr ""
 
 #: resourcestr.rdeletelog
+msgctxt "resourcestr.rdeletelog"
 msgid "Are you sure you want to delete the log ?!"
 msgstr ""
 
 #: resourcestr.rdeleterecord
+msgctxt "resourcestr.rdeleterecord"
 msgid "Delete Record "
 msgstr ""
 
@@ -415,6 +427,7 @@ msgid "Done"
 msgstr ""
 
 #: resourcestr.rduplicates
+msgctxt "resourcestr.rduplicates"
 msgid "Duplicates "
 msgstr ""
 
@@ -424,22 +437,27 @@ msgid "DXCC"
 msgstr ""
 
 #: resourcestr.rdxclusterconnecting
+msgctxt "resourcestr.rdxclusterconnecting"
 msgid "Connect to Telnet Cluster"
 msgstr ""
 
 #: resourcestr.rdxclusterdisconnect
+msgctxt "resourcestr.rdxclusterdisconnect"
 msgid "You are disconnected from the DX cluster"
 msgstr ""
 
 #: resourcestr.rdxclusterdisconnecting
+msgctxt "resourcestr.rdxclusterdisconnecting"
 msgid "Disconnect from Telnet Cluster"
 msgstr ""
 
 #: resourcestr.rdxclusterwindowclear
+msgctxt "resourcestr.rdxclusterwindowclear"
 msgid "Clear DX Cluster window"
 msgstr ""
 
 #: resourcestr.rencall
+msgctxt "resourcestr.rencall"
 msgid "You must enter a callsign"
 msgstr ""
 
@@ -448,6 +466,7 @@ msgid "Service database not found! Verify program installation integrity. File s
 msgstr ""
 
 #: resourcestr.rerrorxmlapi
+msgctxt "resourcestr.rerrorxmlapi"
 msgid "Error XML API:"
 msgstr ""
 
@@ -461,6 +480,7 @@ msgid "Failed to load data"
 msgstr ""
 
 #: resourcestr.rfileerror
+msgctxt "resourcestr.rfileerror"
 msgid "Error file:"
 msgstr ""
 
@@ -517,14 +537,17 @@ msgid "Imported Records"
 msgstr ""
 
 #: resourcestr.rinformationfromhamqth
+msgctxt "resourcestr.rinformationfromhamqth"
 msgid "Information from HAMQTH"
 msgstr ""
 
 #: resourcestr.rinformationfromqrzcom
+msgctxt "resourcestr.rinformationfromqrzcom"
 msgid "Information from QRZ.com"
 msgstr ""
 
 #: resourcestr.rinformationfromqrzru
+msgctxt "resourcestr.rinformationfromqrzru"
 msgid "Information from QRZ.ru"
 msgstr ""
 
@@ -543,6 +566,7 @@ msgid "KB"
 msgstr ""
 
 #: resourcestr.rlanguagecomplite
+msgctxt "resourcestr.rlanguagecomplite"
 msgid "Translation files download successfully"
 msgstr ""
 
@@ -552,6 +576,7 @@ msgid "Log added successfully"
 msgstr ""
 
 #: resourcestr.rlogconwsjt
+msgctxt "resourcestr.rlogconwsjt"
 msgid "EWLog connected to WSJT"
 msgstr ""
 
@@ -560,6 +585,7 @@ msgid "Log entry already exists"
 msgstr ""
 
 #: resourcestr.rlognconwsjt
+msgctxt "resourcestr.rlognconwsjt"
 msgid "EWLog not connected to WSJT"
 msgstr ""
 
@@ -587,10 +613,12 @@ msgid "MHz"
 msgstr ""
 
 #: resourcestr.rmysqlhasgoneaway
+msgctxt "resourcestr.rmysqlhasgoneaway"
 msgid "NO connection to MySQL database! Check the connection or connection settings. Connect to SQLite"
 msgstr ""
 
 #: resourcestr.rmysqlnotset
+msgctxt "resourcestr.rmysqlnotset"
 msgid "MySQL database settings not configured"
 msgstr ""
 
@@ -612,6 +640,7 @@ msgid "No log file found! Check settings"
 msgstr ""
 
 #: resourcestr.rnotcallsign
+msgctxt "resourcestr.rnotcallsign"
 msgid "No callsign entered to view"
 msgstr ""
 
@@ -620,6 +649,7 @@ msgid "Specify the Login and Password for accessing the XML API QRZ.COM in the s
 msgstr ""
 
 #: resourcestr.rnotconfigqrzru
+msgctxt "resourcestr.rnotconfigqrzru"
 msgid "Specify the Login and Password for accessing the XML API QRZ.RU in the settings"
 msgstr ""
 
@@ -637,10 +667,12 @@ msgid "You cannot switch the Database to another because one of the databases is
 msgstr ""
 
 #: resourcestr.rnotdataforconnect
+msgctxt "resourcestr.rnotdataforconnect"
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
 msgstr ""
 
 #: resourcestr.rnothingimport
+msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
 msgstr ""
 
@@ -746,6 +778,7 @@ msgid "Mode"
 msgstr ""
 
 #: resourcestr.rqsonotsave
+msgctxt "resourcestr.rqsonotsave"
 msgid "QSO not saved, quit anyway ?!"
 msgstr ""
 
@@ -775,6 +808,7 @@ msgid "Time"
 msgstr ""
 
 #: resourcestr.rqsototal
+msgctxt "resourcestr.rqsototal"
 msgid " Total "
 msgstr ""
 
@@ -811,6 +845,7 @@ msgid "State"
 msgstr ""
 
 #: resourcestr.rstatusconnecteqsl
+msgctxt "resourcestr.rstatusconnecteqsl"
 msgid "Status: Connceting to eQSL.cc"
 msgstr ""
 
@@ -819,10 +854,12 @@ msgid "Status: Connceting to LoTW"
 msgstr ""
 
 #: resourcestr.rstatusdone
+msgctxt "resourcestr.rstatusdone"
 msgid "Status: Done"
 msgstr ""
 
 #: resourcestr.rstatusdownloadeqsl
+msgctxt "resourcestr.rstatusdownloadeqsl"
 msgid "Status: Download eQSL.cc"
 msgstr ""
 
@@ -831,10 +868,12 @@ msgid "Status: Username/password incorrect"
 msgstr ""
 
 #: resourcestr.rstatusnotdata
+msgctxt "resourcestr.rstatusnotdata"
 msgid "Status: Not data"
 msgstr ""
 
 #: resourcestr.rstatussavefile
+msgctxt "resourcestr.rstatussavefile"
 msgid "Status: Saving file"
 msgstr ""
 
@@ -849,10 +888,12 @@ msgid "Successful! Click NEXT"
 msgstr ""
 
 #: resourcestr.rswitchdbmysql
+msgctxt "resourcestr.rswitchdbmysql"
 msgid "Switch base to MySQL"
 msgstr ""
 
 #: resourcestr.rswitchdbsqlite
+msgctxt "resourcestr.rswitchdbsqlite"
 msgid "Switch base to SQLite"
 msgstr ""
 
@@ -861,6 +902,7 @@ msgid "Switch to a new log?"
 msgstr ""
 
 #: resourcestr.rsync
+msgctxt "resourcestr.rsync"
 msgid ", in sync "
 msgstr ""
 
@@ -869,6 +911,7 @@ msgid "Sync Error: Call Not Found"
 msgstr ""
 
 #: resourcestr.rsyncok
+msgctxt "resourcestr.rsyncok"
 msgid "Done! Number of duplicates "
 msgstr ""
 
@@ -969,10 +1012,12 @@ msgid "Warning!"
 msgstr ""
 
 #: resourcestr.rwelcomemessagemysql
+msgctxt "resourcestr.rwelcomemessagemysql"
 msgid "MySQL database selected! Welcome!"
 msgstr ""
 
 #: resourcestr.rwelcomemessagesqlite
+msgctxt "resourcestr.rwelcomemessagesqlite"
 msgid "SQLite database selected! Welcome!"
 msgstr ""
 
@@ -3456,11 +3501,6 @@ msgstr ""
 #: tminiform.caption
 msgctxt "tminiform.caption"
 msgid "EWLog - HAM Journal"
-msgstr ""
-
-#: tminiform.cbband.text
-msgctxt "tminiform.cbband.text"
-msgid "7.000.00"
 msgstr ""
 
 #: tminiform.cbfilter.caption

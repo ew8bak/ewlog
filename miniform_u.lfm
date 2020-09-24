@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
   Left = 340
   Height = 410
-  Top = 144
+  Top = 143
   Width = 477
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -387,7 +387,6 @@ object MiniForm: TMiniForm
     ParentFont = False
     Style = csOwnerDrawEditableVariable
     TabOrder = 2
-    Text = '7.000.00'
   end
   object LBMode: TLabel
     AnchorSideLeft.Control = Owner

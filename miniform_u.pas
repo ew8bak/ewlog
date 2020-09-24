@@ -1592,16 +1592,10 @@ begin
 
   if IniSet.Language = '' then
     IniSet.Language := FallbackLang;
-  SetDefaultLang(IniSet.Language, FilePATH + DirectorySeparator + 'locale');
+  SetDefaultLang(IniSet.Language, FilePATH + 'locale');
 
-  // useMAPS := INIFile.ReadString('SetLog', 'UseMAPS', '');
   //  StayForm := True;
 
-  //  if useMAPS = 'YES' then
-  //  begin
-  //    MapView1.UseThreads := True;
-  //    MapView1.Center;
-  //  end;
 
   //  if usefldigi then
   //    Fl_Timer.Enabled := True;
@@ -1618,10 +1612,6 @@ begin
   //  else
   //    MenuItem86.Checked := True;
 
-  //  if INIFile.ReadBool('SetLog', 'ImgForm', False) = True then
-  //    MenuItem111.Click
-  //  else
-  //    MenuItem112.Click;
 end;
 
 procedure TMiniForm.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);

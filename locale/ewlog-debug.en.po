@@ -3508,11 +3508,6 @@ msgctxt "tminiform.caption"
 msgid "EWLog - HAM Journal"
 msgstr ""
 
-#: tminiform.cbband.text
-msgctxt "tminiform.cbband.text"
-msgid "7.000.00"
-msgstr ""
-
 #: tminiform.cbfilter.caption
 msgctxt "tminiform.cbfilter.caption"
 msgid "Filter"

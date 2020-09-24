@@ -12,7 +12,6 @@
 {"hash":305317,"name":"tminiform.lbdate.caption","sourcebytes":[68,97,116,101],"value":"Date"},
 {"hash":36831520,"name":"tminiform.dateedit1.text","sourcebytes":[32,32,46,32,32,46,32,32,32,32],"value":"  .  .    "},
 {"hash":297028,"name":"tminiform.lbband.caption","sourcebytes":[66,97,110,100],"value":"Band"},
-{"hash":20132496,"name":"tminiform.cbband.text","sourcebytes":[55,46,48,48,48,46,48,48],"value":"7.000.00"},
 {"hash":345509,"name":"tminiform.lbmode.caption","sourcebytes":[77,111,100,101],"value":"Mode"},
 {"hash":22642,"name":"tminiform.cbmode.text","sourcebytes":[83,83,66],"value":"SSB"},
 {"hash":20850,"name":"tminiform.cbsubmode.text","sourcebytes":[76,83,66],"value":"LSB"},
