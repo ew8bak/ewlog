@@ -1284,7 +1284,7 @@ begin
   IniSet._h_trx := INIFile.ReadInteger('SetLog', 'trxHeight', 156);
   IniSet.trxTop := INIFile.ReadBool('SetLog', 'trxTop', False);
   IniSet.trxShow := INIFile.ReadBool('SetLog', 'trxShow', True);
-  IniSet.trx_priority:= INIFile.ReadBool('SetLog', 'trxPriority', False);
+  IniSet.trx_priority := INIFile.ReadBool('SetLog', 'trxPriority', False);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -1896,7 +1896,7 @@ begin
   CBSubMode.Items.Clear;
   for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
     CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
-  CBSubMode.ItemIndex := CBSubMode.Items.IndexOf(IniSet.PastSubMode);
+  CBSubMode.Text := IniSet.PastSubMode;
   //загрузка диапазонов
   CBBand.Items.Clear;
   for i := 0 to High(LoadBands(CBMode.Text)) do

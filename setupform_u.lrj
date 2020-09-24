@@ -5,7 +5,7 @@
 {"hash":77089212,"name":"tsetupform.button9.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
 {"hash":149210158,"name":"tsetupform.label1.caption","sourcebytes":[87,101,108,99,111,109,101,32,116,111,32,116,104,101,32,72,65,77,32,76,111,103,32,83,101,116,117,112,32,87,105,122,97,114,100,46],"value":"Welcome to the HAM Log Setup Wizard."},
 {"hash":133851050,"name":"tsetupform.label2.caption","sourcebytes":[76,105,99,101,110,115,101,32,97,103,114,101,101,109,101,110,116,58],"value":"License agreement:"},
-{"hash":153736037,"name":"tsetupform.checkbox5.caption","sourcebytes":[69,120,112,101,114,116,32,77,111,100,101],"value":"Expert Mode"},
+{"hash":153736037,"name":"tsetupform.cbexpertmode.caption","sourcebytes":[69,120,112,101,114,116,32,77,111,100,101],"value":"Expert Mode"},
 {"hash":213655826,"name":"tsetupform.tabsheet2.caption","sourcebytes":[83,101,116,117,112,32,68,66],"value":"Setup DB"},
 {"hash":347380,"name":"tsetupform.button2.caption","sourcebytes":[78,101,120,116],"value":"Next"},
 {"hash":296859,"name":"tsetupform.button6.caption","sourcebytes":[66,97,99,107],"value":"Back"},

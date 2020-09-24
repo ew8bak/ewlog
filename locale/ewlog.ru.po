@@ -4673,6 +4673,11 @@ msgctxt "tsetupform.caption"
 msgid "Wizard"
 msgstr "Помощник установки"
 
+#: tsetupform.cbexpertmode.caption
+msgctxt "tsetupform.cbexpertmode.caption"
+msgid "Expert Mode"
+msgstr ""
+
 #: tsetupform.checkbox1.caption
 msgid "Use an existing MySQL database"
 msgstr "Использовать существующую БД MySQL"
@@ -4688,10 +4693,6 @@ msgstr "Использовать MySQL по умолчанию"
 #: tsetupform.checkbox4.caption
 msgid "Use SQLite by default"
 msgstr "Использовать SQLite по умолчанию"
-
-#: tsetupform.checkbox5.caption
-msgid "Expert Mode"
-msgstr ""
 
 #: tsetupform.edit16.text
 msgctxt "tsetupform.edit16.text"

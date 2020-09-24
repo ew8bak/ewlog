@@ -28,7 +28,7 @@ type
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
+    CBExpertMode: TCheckBox;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -617,7 +617,7 @@ end;
 
 procedure TSetupForm.Button1Click(Sender: TObject);
 begin
-  if CheckBox5.Checked then
+  if CBExpertMode.Checked then
     PageControl1.ActivePageIndex := 1
   else begin
      CheckedDB := 2;
@@ -747,7 +747,10 @@ end;
 
 procedure TSetupForm.Button7Click(Sender: TObject);
 begin
-  PageControl1.ActivePageIndex := 1;
+  if CBExpertMode.Checked then
+  PageControl1.ActivePageIndex := 1
+  else
+  PageControl1.ActivePageIndex := 0;
 end;
 
 procedure TSetupForm.Button8Click(Sender: TObject);

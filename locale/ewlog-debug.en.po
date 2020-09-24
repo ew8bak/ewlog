@@ -4660,6 +4660,11 @@ msgctxt "tsetupform.caption"
 msgid "Wizard"
 msgstr ""
 
+#: tsetupform.cbexpertmode.caption
+msgctxt "tsetupform.cbexpertmode.caption"
+msgid "Expert Mode"
+msgstr ""
+
 #: tsetupform.checkbox1.caption
 msgid "Use an existing MySQL database"
 msgstr ""
@@ -4674,10 +4679,6 @@ msgstr ""
 
 #: tsetupform.checkbox4.caption
 msgid "Use SQLite by default"
-msgstr ""
-
-#: tsetupform.checkbox5.caption
-msgid "Expert Mode"
 msgstr ""
 
 #: tsetupform.edit16.text

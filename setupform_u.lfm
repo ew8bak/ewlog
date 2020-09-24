@@ -1,7 +1,7 @@
 object SetupForm: TSetupForm
-  Left = 635
+  Left = 600
   Height = 346
-  Top = 177
+  Top = 179
   Width = 630
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -108,7 +108,7 @@ object SetupForm: TSetupForm
           ScrollBars = ssAutoVertical
           TabOrder = 2
         end
-        object CheckBox5: TCheckBox
+        object CBExpertMode: TCheckBox
           Left = 16
           Height = 23
           Top = 306

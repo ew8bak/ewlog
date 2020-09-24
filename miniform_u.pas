@@ -274,6 +274,7 @@ type
     procedure SwitchForm;
     procedure TextSB(Value: string; PanelNum: integer);
     procedure FromCopyTableThread(Data: TData);
+    procedure ShowInfoFromRIG(freq: double; mode, submode: string);
 
   end;
 
@@ -296,6 +297,24 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 {$R *.lfm}
 
 { TMiniForm }
+
+procedure TMiniForm.ShowInfoFromRIG(freq: double; mode, submode: string);
+begin
+  if Length(mode) > 1 then
+  begin
+    CBMode.Text := mode;
+    CBSubMode.Text := submode;
+  end;
+
+  if freq <> 0 then
+  begin
+    if IniSet.showBand then
+      CBBand.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, freq))
+    else
+      CBBand.Text := FormatFloat(view_freq, freq);
+  end;
+
+end;
 
 procedure TMiniForm.FromCopyTableThread(Data: TData);
 begin
@@ -1551,7 +1570,8 @@ begin
     INIFile.WriteInteger('SetLog', 'multiHeight', MiniForm.Height);
   end;
 
-  INIFile.WriteInteger('SetLog', 'PastBand', CBBand.ItemIndex);
+  if CBBand.ItemIndex <> -1 then
+    INIFile.WriteInteger('SetLog', 'PastBand', CBBand.ItemIndex);
   INIFile.WriteString('SetLog', 'PastMode', CBMode.Text);
   INIFile.WriteString('SetLog', 'PastSubMode', CBSubMode.Text);
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);

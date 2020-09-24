@@ -172,30 +172,37 @@ begin
   if (Pos('FM', rigmode) > 0) and (Pos('PKTFM', rigmode) <= 0) and (Pos('WFM', rigmode) <= 0) then begin
      mode := 'FM';
      submode:= '';
+     Exit;
   end;
    if (Pos('USB', rigmode) > 0) and (Pos('PKTUSB', rigmode) <= 0) then begin
      mode := 'SSB';
      submode := 'USB';
+     Exit;
    end;
    if (Pos('LSB', rigmode) > 0) and (Pos('PKTLSB', rigmode) <= 0) then begin
      mode := 'SSB';
      submode := 'LSB';
+     Exit;
    end;
    if (Pos('AM', rigmode) > 0) then begin
      mode := 'AM';
      submode:= '';
+     Exit;
    end;
    if (Pos('CW', rigmode) > 0) then begin
      mode := 'CW';
      submode:= '';
+     Exit;
    end;
    if (Pos('PKTFM', rigmode) > 0) then begin
      mode := 'PKT';
      submode:= 'PKTFM';
+     Exit;
    end;
    if (Pos('PKTUSB', rigmode) > 0) or (Pos('PKTLSB', rigmode) > 0) or (Pos('RTTY', rigmode) > 0) then begin
      mode := 'RTTY';
      submode:= '';
+     Exit;
    end;
 
    if (Pos('WFM', rigmode) > 0) then begin

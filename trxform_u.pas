@@ -188,7 +188,7 @@ var
 implementation
 
 uses
-  dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM;
+  dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM, miniform_u;
 
 {$R *.lfm}
 
@@ -287,23 +287,9 @@ begin
   else
     f := 0;
 
- { if (fldigiactive = False) and (f <> 0) then
-  begin
-    if ConfigForm.CheckBox2.Checked = True then
-      MainForm.ComboBox1.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, f))
-    else
-      MainForm.ComboBox1.Text := FormatFloat(view_freq, f);
-  end;  }
-
   if Length(m) > 1 then
     dmFunc.GetRIGMode(m, mode, submode);
-
-
-  {if (fldigiactive = False) and (Length(m) > 1) then
-  begin
-    MainForm.ComboBox2.Text := mode;
-    MainForm.ComboBox9.Text := submode;
-  end;}
+  MiniForm.ShowInfoFromRIG(f,mode, submode);
   lblMode.Caption := m;
 end;
 
