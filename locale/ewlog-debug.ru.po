@@ -3307,7 +3307,8 @@ msgctxt "tlogconfigform.checkbox5.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
-#: tlogconfigform.edit10.text
+#: tlogconfigform.editqslinfo.text
+msgctxt "tlogconfigform.editqslinfo.text"
 msgid "TNX For QSO TU 73!"
 msgstr ""
 
@@ -3339,10 +3340,6 @@ msgstr "Долгота"
 #: tlogconfigform.label14.caption
 msgid "QSL info (Default)"
 msgstr "QSL Инфо (По умолчанию)"
-
-#: tlogconfigform.label15.caption
-msgid "*"
-msgstr ""
 
 #: tlogconfigform.label16.caption
 msgid "eQSLcc"
@@ -3461,6 +3458,11 @@ msgstr "Информация о локации"
 msgctxt "tlogconfigform.label9.caption"
 msgid "ITU"
 msgstr "ITU"
+
+#: tlogconfigform.lbdefaultcall.caption
+msgctxt "tlogconfigform.lbdefaultcall.caption"
+msgid "*"
+msgstr ""
 
 #: tlogconfigform.menuitem1.caption
 msgid "Add new log"

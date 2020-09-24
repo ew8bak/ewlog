@@ -215,11 +215,15 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
+    procedure MenuItem111Click(Sender: TObject);
+    procedure MenuItem112Click(Sender: TObject);
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
     procedure MenuItem82Click(Sender: TObject);
     procedure MenuItem83Click(Sender: TObject);
+    procedure MenuItem86Click(Sender: TObject);
+    procedure MenuItem88Click(Sender: TObject);
     procedure MenuItem89Click(Sender: TObject);
     procedure MIClusterTopClick(Sender: TObject);
     procedure MiLogbookFormClick(Sender: TObject);
@@ -354,6 +358,8 @@ begin
   begin
     MiniForm.Menu := nil;
     MainForm.Menu := MiniForm.MainMenu;
+    MenuItem85.Enabled := True;
+    MenuItem110.Enabled := True;
     MiniForm.BorderStyle := bsNone;
     MiniForm.Parent := MainForm.MiniPanel;
     MiniForm.Align := alClient;
@@ -391,7 +397,10 @@ begin
       TRXForm.Parent := MainForm.OtherPanel;
       TRXForm.Align := alClient;
       if IniSet.trxShow then
+      begin
         TRXForm.Show;
+        viewPhoto.Hide;
+      end;
     end
     else
     begin
@@ -399,7 +408,10 @@ begin
       viewPhoto.Parent := MainForm.OtherPanel;
       viewPhoto.Align := alClient;
       if IniSet.pShow then
+      begin
         viewPhoto.Show;
+        TRXForm.Hide;
+      end;
     end;
     IniSet.MainForm := 'MAIN';
     MainForm.Show;
@@ -408,6 +420,8 @@ begin
   begin
     MainForm.Menu := nil;
     MiniForm.Menu := MiniForm.MainMenu;
+    MenuItem85.Enabled := False;
+    MenuItem110.Enabled := False;
     MiniForm.Parent := nil;
     MiniForm.BorderStyle := bsSingle;
     MiniForm.Align := alNone;
@@ -611,6 +625,41 @@ begin
   openURL('https://yasobe.ru/na/ewlog');
 end;
 
+procedure TMiniForm.MenuItem111Click(Sender: TObject);
+begin
+  if MenuItem86.Checked then
+  begin
+    TRXForm.Hide;
+    IniSet.trx_priority := False;
+    MenuItem88.Checked := True;
+    MenuItem86.Checked := False;
+  end;
+  MenuItem112.Checked := False;
+
+  if MenuItem111.Checked then
+  begin
+    viewPhoto.Parent := MainForm.OtherPanel;
+    viewPhoto.Align := alClient;
+    viewPhoto.Show;
+  end
+  else
+  begin
+    viewPhoto.Hide;
+  end;
+
+end;
+
+procedure TMiniForm.MenuItem112Click(Sender: TObject);
+begin
+  if MenuItem111.Checked then
+  begin
+    viewPhoto.hide;
+    IniSet.pShow := False;
+  end;
+  MenuItem111.Checked := False;
+  MenuItem112.Checked := True;
+end;
+
 procedure TMiniForm.MenuItem118Click(Sender: TObject);
 begin
   if MainFunc.EraseTable then
@@ -645,6 +694,36 @@ begin
     raise CopyTThread.FatalException;
   CopyTThread.toDB := True;
   CopyTThread.Start;
+end;
+
+procedure TMiniForm.MenuItem86Click(Sender: TObject);
+begin
+  if MenuItem111.Checked then
+  begin
+    viewPhoto.Hide;
+  end;
+
+  MenuItem88.Checked := False;
+  MenuItem111.Checked := False;
+  MenuItem112.Checked := True;
+  if MenuItem86.Checked then
+  begin
+    TRXForm.Parent := MainForm.OtherPanel;
+    TRXForm.BorderStyle := bsNone;
+    TRXForm.Align := alClient;
+    TRXForm.Show;
+    IniSet.trx_priority := True;
+  end
+  else
+    TRXForm.Hide;
+end;
+
+procedure TMiniForm.MenuItem88Click(Sender: TObject);
+begin
+  MenuItem86.Checked := False;
+  MenuItem88.Checked := True;
+  IniSet.trxShow := False;
+  TRXForm.Hide;
 end;
 
 procedure TMiniForm.MenuItem89Click(Sender: TObject);
@@ -1336,13 +1415,14 @@ procedure TMiniForm.CBCurrentLogChange(Sender: TObject);
 begin
   EditMyGrid.Clear;
   EditMyState.Clear;
-
-  if InitDB.GetLogBookTable(CBCurrentLog.Text, DBRecord.CurrentDB) then
-    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError)
-    else
-      DBRecord.CurrCall := CBCurrentLog.Text;
-
+  if Sender <> LogConfigForm then
+  begin
+    if InitDB.GetLogBookTable(CBCurrentLog.Text, DBRecord.CurrentDB) then
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError)
+      else
+        DBRecord.CurrCall := CBCurrentLog.Text;
+  end;
   if CBCurrentLog.ItemIndex > -1 then
   begin
     if Pos('/', CBCurrentLog.Text) > 0 then

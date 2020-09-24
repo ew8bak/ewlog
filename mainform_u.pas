@@ -52,6 +52,7 @@ begin
   if MainForm.WindowState = wsMaximized then
     INIFile.WriteString('SetLog', 'FormState', 'Maximized');
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
+  INIFile.WriteBool('SetLog', 'trxPriority', IniSet.trx_priority);
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -62,6 +63,10 @@ begin
   if (IniSet._l_main <> 0) and (IniSet._t_main <> 0) and
     (IniSet._w_main <> 0) and (IniSet._h_main <> 0) then
     MainForm.SetBounds(IniSet._l_main, IniSet._t_main, IniSet._w_main, IniSet._h_main);
+  if IniSet.trx_priority and IniSet.trxShow then
+     MiniForm.MenuItem86.Checked := True;
+  if not IniSet.trx_priority and IniSet.pShow then
+      MiniForm.MenuItem111.Checked := True;
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);

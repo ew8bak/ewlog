@@ -111,7 +111,7 @@ implementation
 
 uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U,
   ClusterServer_Form_U, MainForm_U, Earth_Form_U, TRXForm_U,
-  sendtelnetspot_form_U, miniform_u;
+  sendtelnetspot_form_U, miniform_u, infoDM_U;
 
 type
   PTreeData = ^TTreeData;
@@ -688,9 +688,8 @@ begin
     if Length(Data^.Spots) > 1 then
     begin
       MiniForm.EditCallsign.Text := Data^.Spots;
-      // if (CallBookLiteConnection.Connected = False) and
-      //   (Length(Data^.Spots) >= 3) then
-      //   InformationForm.GetInformation(Data^.Spots, True);
+      if Length(Data^.Spots) >= 3 then
+        InfoDM.GetInformation(dmFunc.ExtractCallsign(Data^.Spots), 'MainForm');
 
       if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
         (TRXForm.radio.GetFreqHz > 0) then

@@ -173,7 +173,7 @@ object MiniForm: TMiniForm
       Left = 268
       Height = 22
       Top = 2
-      Width = 72
+      Width = 60
       AutoSize = False
       BorderSpacing.Left = 5
       CharCase = ecUppercase
@@ -186,7 +186,7 @@ object MiniForm: TMiniForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 345
+      Left = 333
       Height = 13
       Top = 7
       Width = 47
@@ -200,10 +200,10 @@ object MiniForm: TMiniForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 397
+      Left = 385
       Height = 22
       Top = 2
-      Width = 72
+      Width = 60
       AutoSize = False
       BorderSpacing.Left = 5
       CharCase = ecUppercase
@@ -2153,10 +2153,12 @@ object MiniForm: TMiniForm
         Caption = 'Transceiver Control'
         object MenuItem88: TMenuItem
           Caption = 'No'
+          OnClick = MenuItem88Click
         end
         object MenuItem86: TMenuItem
           AutoCheck = True
           Caption = 'Display control form'
+          OnClick = MenuItem86Click
         end
       end
       object MenuItem110: TMenuItem
@@ -2164,9 +2166,11 @@ object MiniForm: TMiniForm
         object MenuItem111: TMenuItem
           AutoCheck = True
           Caption = 'On'
+          OnClick = MenuItem111Click
         end
         object MenuItem112: TMenuItem
           Caption = 'Off'
+          OnClick = MenuItem112Click
         end
       end
       object MenuItem72: TMenuItem

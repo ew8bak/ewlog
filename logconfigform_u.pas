@@ -20,8 +20,8 @@ type
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
     CheckBox5: TCheckBox;
-    Edit1: TEdit;
-    Edit10: TEdit;
+    EditDescription: TEdit;
+    EditQSLinfo: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
     Edit13: TEdit;
@@ -31,24 +31,24 @@ type
     Edit17: TEdit;
     Edit18: TEdit;
     Edit19: TEdit;
-    Edit2: TEdit;
+    EditCallSign: TEdit;
     Edit20: TEdit;
     Edit21: TEdit;
     Edit22: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
+    EditName: TEdit;
+    EditQTH: TEdit;
+    EditITU: TEdit;
+    EditGrid: TEdit;
+    EditCQ: TEdit;
+    EditLat: TEdit;
+    EditLon: TEdit;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
     Label14: TLabel;
-    Label15: TLabel;
+    LBDefaultCall: TLabel;
     Label16: TLabel;
     Label17: TLabel;
     Label18: TLabel;
@@ -74,7 +74,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    ListBox1: TListBox;
+    LBCallsigns: TListBox;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
@@ -92,10 +92,10 @@ type
     TabSheet2: TTabSheet;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure Edit6Change(Sender: TObject);
+    procedure EditGridChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ListBox1Click(Sender: TObject);
+    procedure LBCallsignsClick(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
@@ -120,76 +120,57 @@ uses miniform_u, CreateJournalForm_U, dmFunc_U, InitDB_dm, MainFuncDM;
 
 procedure TLogConfigForm.SelectCall(SelCall: string);
 begin
-  DefaultFormatSettings.DecimalSeparator := '.';
+  // DefaultFormatSettings.DecimalSeparator := '.';
   if DBRecord.DefaultDB = 'MySQL' then
-    LogConfigForm.SQLQuery1.DataBase := InitDB.MySQLConnection
+    SQLQuery1.DataBase := InitDB.MySQLConnection
   else
-    LogConfigForm.SQLQuery1.DataBase := InitDB.SQLiteConnection;
+    SQLQuery1.DataBase := InitDB.SQLiteConnection;
 
-  LogConfigForm.SQLQuery1.Close;
-  LogConfigForm.SQLQuery1.SQL.Clear;
+  SQLQuery1.Close;
+  SQLQuery1.SQL.Clear;
   if SelCall = '' then
-    LogConfigForm.SQLQuery1.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1'
+    SQLQuery1.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1'
   else
-    LogConfigForm.SQLQuery1.SQL.Text :=
+    SQLQuery1.SQL.Text :=
       'SELECT * FROM LogBookInfo WHERE CallName = "' + SelCall + '"';
-  LogConfigForm.SQLQuery1.Open;
-  if LogConfigForm.SQLQuery1.FieldByName('CallName').AsString <> '' then
+  SQLQuery1.Open;
+  if SQLQuery1.FieldByName('CallName').AsString <> '' then
   begin
-    LogConfigForm.Edit1.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('Discription').AsString;
-    LogConfigForm.Edit2.Text := LogConfigForm.SQLQuery1.FieldByName('CallName').AsString;
-    LogConfigForm.Edit3.Text := LogConfigForm.SQLQuery1.FieldByName('Name').AsString;
-    LogConfigForm.Edit4.Text := LogConfigForm.SQLQuery1.FieldByName('QTH').AsString;
-    LogConfigForm.Edit5.Text := LogConfigForm.SQLQuery1.FieldByName('ITU').AsString;
-    LogConfigForm.Edit6.Text := LogConfigForm.SQLQuery1.FieldByName('Loc').AsString;
-    LogConfigForm.Edit7.Text := LogConfigForm.SQLQuery1.FieldByName('CQ').AsString;
-    LogConfigForm.Edit8.Text := LogConfigForm.SQLQuery1.FieldByName('Lat').AsString;
+    EditDescription.Text := SQLQuery1.FieldByName('Discription').AsString;
+    EditCallSign.Text := SQLQuery1.FieldByName('CallName').AsString;
+    EditName.Text := SQLQuery1.FieldByName('Name').AsString;
+    EditQTH.Text := SQLQuery1.FieldByName('QTH').AsString;
+    EditITU.Text := SQLQuery1.FieldByName('ITU').AsString;
+    EditGrid.Text := SQLQuery1.FieldByName('Loc').AsString;
+    EditCQ.Text := SQLQuery1.FieldByName('CQ').AsString;
+    EditLat.Text := SQLQuery1.FieldByName('Lat').AsString;
 
-    if LogConfigForm.SQLQuery1.FieldByName('Lat').AsString <> '' then
-      LBRecord.OpLat := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lat').AsString);
+    if SQLQuery1.FieldByName('Lat').AsString <> '' then
+      LBRecord.OpLat := StrToFloat(SQLQuery1.FieldByName('Lat').AsString);
 
-    LogConfigForm.Edit9.Text := LogConfigForm.SQLQuery1.FieldByName('Lon').AsString;
-    if LogConfigForm.SQLQuery1.FieldByName('Lon').AsString <> '' then
-      LBRecord.OpLon := StrToFloat(LogConfigForm.SQLQuery1.FieldByName('Lon').AsString);
+    EditLon.Text := SQLQuery1.FieldByName('Lon').AsString;
+    if SQLQuery1.FieldByName('Lon').AsString <> '' then
+      LBRecord.OpLon := StrToFloat(SQLQuery1.FieldByName('Lon').AsString);
 
-    LogConfigForm.Edit10.Text := LogConfigForm.SQLQuery1.FieldByName('QSLInfo').AsString;
-    LogConfigForm.Edit11.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('EQSLLogin').AsString;
-    LogConfigForm.Edit12.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('EQSLPassword').AsString;
-    LogConfigForm.CheckBox1.Checked :=
-      LogConfigForm.SQLQuery1.FieldByName('AutoEQSLcc').AsBoolean;
-    LogConfigForm.Edit13.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('HRDLogLogin').AsString;
-    LogConfigForm.Edit14.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('HRDLogPassword').AsString;
-    LogConfigForm.CheckBox2.Checked :=
-      LogConfigForm.SQLQuery1.FieldByName('AutoHRDLog').AsBoolean;
-    LogConfigForm.Edit15.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('HamQTHLogin').AsString;
-    LogConfigForm.Edit16.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('HamQTHPassword').AsString;
-    LogConfigForm.CheckBox3.Checked :=
-      LogConfigForm.SQLQuery1.FieldByName('AutoHamQTH').AsBoolean;
-    LogConfigForm.Edit17.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('LoTW_User').AsString;
-    LogConfigForm.Edit18.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('LoTW_Password').AsString;
-    LogConfigForm.Edit19.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('ClubLog_User').AsString;
-    LogConfigForm.Edit20.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('ClubLog_Password').AsString;
-    LogConfigForm.CheckBox4.Checked :=
-      LogConfigForm.SQLQuery1.FieldByName('AutoClubLog').AsBoolean;
-    LogConfigForm.Edit21.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('QRZCOM_User').AsString;
-    LogConfigForm.Edit22.Text :=
-      LogConfigForm.SQLQuery1.FieldByName('QRZCOM_Password').AsString;
-    LogConfigForm.CheckBox5.Checked :=
-      LogConfigForm.SQLQuery1.FieldByName('AutoQRZCom').AsBoolean;
-
-    id := LogConfigForm.SQLQuery1.FieldByName('id').AsInteger;
+    EditQSLinfo.Text := SQLQuery1.FieldByName('QSLInfo').AsString;
+    Edit11.Text := SQLQuery1.FieldByName('EQSLLogin').AsString;
+    Edit12.Text := SQLQuery1.FieldByName('EQSLPassword').AsString;
+    CheckBox1.Checked := SQLQuery1.FieldByName('AutoEQSLcc').AsBoolean;
+    Edit13.Text := SQLQuery1.FieldByName('HRDLogLogin').AsString;
+    Edit14.Text := SQLQuery1.FieldByName('HRDLogPassword').AsString;
+    CheckBox2.Checked := SQLQuery1.FieldByName('AutoHRDLog').AsBoolean;
+    Edit15.Text := SQLQuery1.FieldByName('HamQTHLogin').AsString;
+    Edit16.Text := SQLQuery1.FieldByName('HamQTHPassword').AsString;
+    CheckBox3.Checked := SQLQuery1.FieldByName('AutoHamQTH').AsBoolean;
+    Edit17.Text := SQLQuery1.FieldByName('LoTW_User').AsString;
+    Edit18.Text := SQLQuery1.FieldByName('LoTW_Password').AsString;
+    Edit19.Text := SQLQuery1.FieldByName('ClubLog_User').AsString;
+    Edit20.Text := SQLQuery1.FieldByName('ClubLog_Password').AsString;
+    CheckBox4.Checked := SQLQuery1.FieldByName('AutoClubLog').AsBoolean;
+    Edit21.Text := SQLQuery1.FieldByName('QRZCOM_User').AsString;
+    Edit22.Text := SQLQuery1.FieldByName('QRZCOM_Password').AsString;
+    CheckBox5.Checked := SQLQuery1.FieldByName('AutoQRZCom').AsBoolean;
+    id := SQLQuery1.FieldByName('id').AsInteger;
   end
   else
     ShowMessage(rTableLogDBError);
@@ -220,16 +201,16 @@ begin
         ' `AutoHamQTH`=:AutoHamQTH, `AutoClubLog`=:AutoClubLog, `LoTW_User`=:LoTW_User,'
         +
         ' `LoTW_Password`=:LoTW_Password WHERE `id`=:id');
-      Params.ParamByName('CallName').AsString := Edit2.Text;
-      Params.ParamByName('Name').AsString := Edit3.Text;
-      Params.ParamByName('QTH').AsString := Edit4.Text;
-      Params.ParamByName('ITU').AsString := Edit5.Text;
-      Params.ParamByName('CQ').AsString := Edit7.Text;
-      Params.ParamByName('Loc').AsString := Edit6.Text;
-      Params.ParamByName('Lat').AsString := Edit8.Text;
-      Params.ParamByName('Lon').AsString := Edit9.Text;
-      Params.ParamByName('Discription').AsString := Edit1.Text;
-      Params.ParamByName('QSLInfo').AsString := Edit10.Text;
+      Params.ParamByName('CallName').AsString := EditCallSign.Text;
+      Params.ParamByName('Name').AsString := EditName.Text;
+      Params.ParamByName('QTH').AsString := EditQTH.Text;
+      Params.ParamByName('ITU').AsString := EditITU.Text;
+      Params.ParamByName('CQ').AsString := EditCQ.Text;
+      Params.ParamByName('Loc').AsString := EditGrid.Text;
+      Params.ParamByName('Lat').AsString := EditLat.Text;
+      Params.ParamByName('Lon').AsString := EditLon.Text;
+      Params.ParamByName('Discription').AsString := EditDescription.Text;
+      Params.ParamByName('QSLInfo').AsString := EditQSLinfo.Text;
       Params.ParamByName('EQSLLogin').AsString := Edit11.Text;
       Params.ParamByName('EQSLPassword').AsString := Edit12.Text;
       Params.ParamByName('AutoEQSLcc').AsBoolean := CheckBox1.Checked;
@@ -252,6 +233,11 @@ begin
       ExecSQL;
     end;
     InitDB.DefTransaction.Commit;
+    if LBDefaultCall.IsVisible then
+    begin
+      DBRecord.DefCall := EditCallSign.Text;
+      INIFile.WriteString('SetLog', 'DefaultCallLogBook', EditCallSign.Text);
+    end;
     if (not InitDB.GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
       (DBRecord.InitDB = 'YES') then
       ShowMessage('LogBook Table ERROR')
@@ -259,25 +245,27 @@ begin
     if (not InitDB.SelectLogbookTable(LBRecord.LogTable)) and
       (DBRecord.InitDB = 'YES') then
       ShowMessage(rDBError);
-
+    MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand,
+      MiniForm.CBCurrentLog);
+    MiniForm.CBCurrentLogChange(LogConfigForm);
     LogConfigForm.Close;
   end;
 end;
 
-procedure TLogConfigForm.Edit6Change(Sender: TObject);
+procedure TLogConfigForm.EditGridChange(Sender: TObject);
 var
   lat, lon: currency;
 begin
-  if dmFunc.IsLocOK(Edit6.Text) then
+  if dmFunc.IsLocOK(EditGrid.Text) then
   begin
-    dmFunc.CoordinateFromLocator(Edit6.Text, lat, lon);
-    Edit8.Text := CurrToStr(lat);
-    Edit9.Text := CurrToStr(lon);
+    dmFunc.CoordinateFromLocator(EditGrid.Text, lat, lon);
+    EditLat.Text := CurrToStr(lat);
+    EditLon.Text := CurrToStr(lon);
   end
   else
   begin
-    Edit8.Text := '';
-    Edit9.Text := '';
+    EditLat.Text := '';
+    EditLon.Text := '';
   end;
 end;
 
@@ -317,28 +305,28 @@ begin
         SelectCall(DBRecord.CurrCall);
       end;
 
-      ListBox1.Clear;
+      LBCallsigns.Clear;
       SQLQuery2.SQL.Clear;
       SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo');
       SQLQuery2.Open;
       SQLQuery2.First;
       for i := 0 to SQLQuery2.RecordCount - 1 do
       begin
-        ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').AsString);
+        LBCallsigns.Items.Add(SQLQuery2.FieldByName('CallName').AsString);
         SQLQuery2.Next;
       end;
-      for i := 0 to ListBox1.Count - 1 do
-        if Pos(MiniForm.CBCurrentLog.Text, ListBox1.Items[i]) > 0 then
+      for i := 0 to LBCallsigns.Count - 1 do
+        if Pos(MiniForm.CBCurrentLog.Text, LBCallsigns.Items[i]) > 0 then
         begin
-          ListBox1.Selected[i] := True;
+          LBCallsigns.Selected[i] := True;
           //exit;
           Break;
         end;
 
-      if ListBox1.Items[ListBox1.ItemIndex] = DBRecord.DefCall then
-        Label15.Visible := True
+      if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
+        LBDefaultCall.Visible := True
       else
-        Label15.Visible := False;
+        LBDefaultCall.Visible := False;
 
     except
       on E: Exception do
@@ -347,17 +335,17 @@ begin
   end;
 end;
 
-procedure TLogConfigForm.ListBox1Click(Sender: TObject);
+procedure TLogConfigForm.LBCallsignsClick(Sender: TObject);
 begin
-  if ListBox1.ItemIndex <> -1 then
+  if LBCallsigns.ItemIndex <> -1 then
   begin
     if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
     begin
-      SelectCall(ListBox1.Items[ListBox1.ItemIndex]);
-      if ListBox1.Items[ListBox1.ItemIndex] = DBRecord.DefCall then
-        Label15.Visible := True
+      SelectCall(LBCallsigns.Items[LBCallsigns.ItemIndex]);
+      if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
+        LBDefaultCall.Visible := True
       else
-        Label15.Visible := False;
+        LBDefaultCall.Visible := False;
     end;
   end;
 end;
@@ -373,15 +361,15 @@ var
   droptablename: string;
   i: integer;
 begin
-  if ListBox1.ItemIndex <> -1 then
+  if LBCallsigns.ItemIndex <> -1 then
   begin
     if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
     begin
       if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin
-        if (DBRecord.DefCall = ListBox1.Items[ListBox1.ItemIndex]) or
-          (DBRecord.CurrCall = ListBox1.Items[ListBox1.ItemIndex]) then
+        if (DBRecord.DefCall = LBCallsigns.Items[LBCallsigns.ItemIndex]) or
+          (DBRecord.CurrCall = LBCallsigns.Items[LBCallsigns.ItemIndex]) then
         begin
           ShowMessage(rCannotDelDef);
           exit;
@@ -390,7 +378,7 @@ begin
         SQLQuery2.Close;
         SQLQuery2.SQL.Clear;
         SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo WHERE CallName = "' +
-          ListBox1.Items[ListBox1.ItemIndex] + '"');
+          LBCallsigns.Items[LBCallsigns.ItemIndex] + '"');
         SQLQuery2.Open;
         droptablename := SQLQuery2.FieldByName('LogTable').Value;
         SQLQuery2.Close;
@@ -399,26 +387,26 @@ begin
         SQLQuery2.ExecSQL;
         SQLQuery2.SQL.Clear;
         SQLQuery2.SQL.Add('DELETE FROM LogBookInfo WHERE CallName = "' +
-          ListBox1.Items[ListBox1.ItemIndex] + '"');
+          LBCallsigns.Items[LBCallsigns.ItemIndex] + '"');
         SQLQuery2.ExecSQL;
         SQLQuery2.SQLTransaction.Commit;
         SQLQuery2.SQL.Clear;
-        ListBox1.Clear;
+        LBCallsigns.Clear;
         SQLQuery2.SQL.Clear;
         SQLQuery2.SQL.Add('SELECT * FROM LogBookInfo');
         SQLQuery2.Open;
         SQLQuery2.First;
         for i := 0 to SQLQuery2.RecordCount - 1 do
         begin
-          ListBox1.Items.Add(SQLQuery2.FieldByName('CallName').Value);
+          LBCallsigns.Items.Add(SQLQuery2.FieldByName('CallName').Value);
           SQLQuery2.Next;
         end;
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
-        for i := 0 to ListBox1.Count - 1 do
-          if Pos(DBRecord.CurrCall, ListBox1.Items[i]) > 0 then
+        for i := 0 to LBCallsigns.Count - 1 do
+          if Pos(DBRecord.CurrCall, LBCallsigns.Items[i]) > 0 then
           begin
-            ListBox1.Selected[i] := True;
+            LBCallsigns.Selected[i] := True;
             MainFunc.LoadJournalItem(MiniForm.CBCurrentLog);
             exit;
           end;
@@ -431,20 +419,20 @@ end;
 
 procedure TLogConfigForm.MenuItem4Click(Sender: TObject);
 begin
-  if ListBox1.ItemIndex <> -1 then
+  if LBCallsigns.ItemIndex <> -1 then
   begin
     if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
     begin
       INIFile.WriteString('SetLog', 'DefaultCallLogBook',
-        ListBox1.Items[ListBox1.ItemIndex]);
-      DBRecord.DefCall := ListBox1.Items[ListBox1.ItemIndex];
-      ShowMessage(rDefaultLogSel + ' ' + ListBox1.Items[ListBox1.ItemIndex]);
-      // MainForm.ComboBox10.Text := ListBox1.Items[ListBox1.ItemIndex];
+        LBCallsigns.Items[LBCallsigns.ItemIndex]);
+      DBRecord.DefCall := LBCallsigns.Items[LBCallsigns.ItemIndex];
+      ShowMessage(rDefaultLogSel + ' ' + LBCallsigns.Items[LBCallsigns.ItemIndex]);
+      // MainForm.ComboBox10.Text := LBCallsigns.Items[LBCallsigns.ItemIndex];
       //MainForm.ComboBox10CloseUp(Self);
-      if ListBox1.Items[ListBox1.ItemIndex] = DBRecord.DefCall then
-        Label15.Visible := True
+      if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
+        LBDefaultCall.Visible := True
       else
-        Label15.Visible := False;
+        LBDefaultCall.Visible := False;
     end;
   end;
 end;

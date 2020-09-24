@@ -3290,7 +3290,8 @@ msgctxt "tlogconfigform.checkbox5.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.edit10.text
+#: tlogconfigform.editqslinfo.text
+msgctxt "tlogconfigform.editqslinfo.text"
 msgid "TNX For QSO TU 73!"
 msgstr ""
 
@@ -3321,10 +3322,6 @@ msgstr ""
 
 #: tlogconfigform.label14.caption
 msgid "QSL info (Default)"
-msgstr ""
-
-#: tlogconfigform.label15.caption
-msgid "*"
 msgstr ""
 
 #: tlogconfigform.label16.caption
@@ -3442,6 +3439,11 @@ msgstr ""
 #: tlogconfigform.label9.caption
 msgctxt "tlogconfigform.label9.caption"
 msgid "ITU"
+msgstr ""
+
+#: tlogconfigform.lbdefaultcall.caption
+msgctxt "tlogconfigform.lbdefaultcall.caption"
+msgid "*"
 msgstr ""
 
 #: tlogconfigform.menuitem1.caption

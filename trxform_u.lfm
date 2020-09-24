@@ -1,19 +1,17 @@
 object TRXForm: TTRXForm
-  Left = 498
+  Left = 398
   Height = 205
-  Top = 161
+  Top = 641
   Width = 470
   BorderIcons = [biSystemMenu, biMaximize]
   BorderStyle = bsDialog
   Caption = 'RIG'
   ClientHeight = 205
   ClientWidth = 470
-  FormStyle = fsStayOnTop
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
-  Position = poMainFormCenter
   LCLVersion = '2.0.10.0'
   object lblMode: TLabel
     Left = 16
