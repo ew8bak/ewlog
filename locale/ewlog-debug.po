@@ -4630,6 +4630,10 @@ msgstr ""
 msgid "Use SQLite by default"
 msgstr ""
 
+#: tsetupform.checkbox5.caption
+msgid "Expert Mode"
+msgstr ""
+
 #: tsetupform.edit16.text
 msgctxt "tsetupform.edit16.text"
 msgid "TNX for QSO! 73!"
@@ -4868,6 +4872,10 @@ msgstr ""
 
 #: tthanks_form.label11.caption
 msgid "RX0TX - Oleg Chudaev"
+msgstr ""
+
+#: tthanks_form.label12.caption
+msgid "R9XAL - Aleksey Panyukov"
 msgstr ""
 
 #: tthanks_form.label2.caption

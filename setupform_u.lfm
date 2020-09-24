@@ -11,7 +11,7 @@ object SetupForm: TSetupForm
   Font.Height = -12
   FormStyle = fsStayOnTop
   OnShow = FormShow
-  Position = poMainFormCenter
+  Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object PageControl1: TPageControl
     Left = 0
@@ -107,6 +107,14 @@ object SetupForm: TSetupForm
           ReadOnly = True
           ScrollBars = ssAutoVertical
           TabOrder = 2
+        end
+        object CheckBox5: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 306
+          Width = 103
+          Caption = 'Expert Mode'
+          TabOrder = 3
         end
       end
     end
@@ -822,21 +830,21 @@ object SetupForm: TSetupForm
     LoginPrompt = False
     KeepConnection = False
     SkipLibraryVersionCheck = True
-    Left = 112
-    Top = 288
+    Left = 376
+    Top = 16
   end
   object SQLite_Connector: TSQLite3Connection
     Connected = False
     LoginPrompt = False
     KeepConnection = False
     AlwaysUseBigint = False
-    Left = 216
-    Top = 288
+    Left = 480
+    Top = 16
   end
   object SQL_Transaction: TSQLTransaction
     Active = False
-    Left = 312
-    Top = 288
+    Left = 568
+    Top = 16
   end
   object SQL_Query: TSQLQuery
     FieldDefs = <>

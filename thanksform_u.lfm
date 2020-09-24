@@ -9,18 +9,18 @@ object Thanks_Form: TThanks_Form
   ClientWidth = 470
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object Label1: TLabel
     Left = 8
-    Height = 15
+    Height = 13
     Top = 8
-    Width = 236
+    Width = 248
     Caption = 'Thanks to the help and testing of the EWLog '
     ParentColor = False
   end
   object Label2: TLabel
     Left = 24
-    Height = 15
+    Height = 13
     Top = 32
     Width = 125
     Caption = 'EW2MS - Mikhail Senko'
@@ -30,9 +30,9 @@ object Thanks_Form: TThanks_Form
   end
   object Label3: TLabel
     Left = 24
-    Height = 15
+    Height = 13
     Top = 48
-    Width = 138
+    Width = 144
     Caption = 'RN3DDP - Sergey Savchuk'
     Font.Color = clRed
     ParentColor = False
@@ -40,9 +40,9 @@ object Thanks_Form: TThanks_Form
   end
   object Label4: TLabel
     Left = 24
-    Height = 15
+    Height = 13
     Top = 64
-    Width = 149
+    Width = 151
     Caption = 'R9OCN - Andrey Horoshilov'
     Font.Color = clRed
     ParentColor = False
@@ -50,9 +50,9 @@ object Thanks_Form: TThanks_Form
   end
   object Label5: TLabel
     Left = 24
-    Height = 15
+    Height = 13
     Top = 80
-    Width = 139
+    Width = 143
     Caption = 'RW3DY - Nikolay Evgrafov'
     Font.Color = clRed
     ParentColor = False
@@ -60,17 +60,17 @@ object Thanks_Form: TThanks_Form
   end
   object Label6: TLabel
     Left = 8
-    Height = 15
+    Height = 13
     Top = 168
-    Width = 454
+    Width = 472
     Caption = 'And to all the people who responded to the development :). Maybe someone forgot ...'
     ParentColor = False
   end
   object Label7: TLabel
-    Left = 224
-    Height = 15
-    Top = 32
-    Width = 76
+    Left = 208
+    Height = 13
+    Top = 48
+    Width = 80
     Caption = 'Sergey Korhov'
     Font.Color = clRed
     ParentColor = False
@@ -78,9 +78,9 @@ object Thanks_Form: TThanks_Form
   end
   object Label8: TLabel
     Left = 24
-    Height = 15
+    Height = 13
     Top = 96
-    Width = 144
+    Width = 150
     Caption = 'RX3DQX - Vladimir Antipov'
     Font.Color = clRed
     ParentColor = False
@@ -369,9 +369,9 @@ object Thanks_Form: TThanks_Form
   end
   object Label9: TLabel
     Left = 24
-    Height = 15
+    Height = 13
     Top = 128
-    Width = 124
+    Width = 130
     Caption = 'R9WBZ - Sergey Nohrin'
     Font.Color = clRed
     ParentColor = False
@@ -379,9 +379,9 @@ object Thanks_Form: TThanks_Form
   end
   object Label10: TLabel
     Left = 23
-    Height = 15
+    Height = 13
     Top = 112
-    Width = 124
+    Width = 128
     Caption = 'UT5QBC - Yuri Lubenec'
     Font.Color = clRed
     ParentColor = False
@@ -389,9 +389,9 @@ object Thanks_Form: TThanks_Form
   end
   object Label11: TLabel
     Left = 24
-    Height = 15
+    Height = 13
     Top = 144
-    Width = 119
+    Width = 124
     Caption = 'RX0TX - Oleg Chudaev'
     Font.Color = clRed
     ParentColor = False
@@ -402,5 +402,15 @@ object Thanks_Form: TThanks_Form
     Height = 127
     Top = 32
     Width = 3
+  end
+  object Label12: TLabel
+    Left = 208
+    Height = 13
+    Top = 32
+    Width = 144
+    Caption = 'R9XAL - Aleksey Panyukov'
+    Font.Color = clRed
+    ParentColor = False
+    ParentFont = False
   end
 end

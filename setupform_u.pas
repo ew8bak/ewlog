@@ -28,6 +28,7 @@ type
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -616,7 +617,14 @@ end;
 
 procedure TSetupForm.Button1Click(Sender: TObject);
 begin
-  PageControl1.ActivePageIndex := 1;
+  if CheckBox5.Checked then
+    PageControl1.ActivePageIndex := 1
+  else begin
+     CheckedDB := 2;
+     SQLitePATH := FilePATH + 'logbook.db';
+     Default_DataBase := 'SQLite';
+    PageControl1.ActivePageIndex := 2;
+  end;
 end;
 
 procedure TSetupForm.Button10Click(Sender: TObject);
