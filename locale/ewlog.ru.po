@@ -3536,11 +3536,6 @@ msgctxt "tminiform.cbmark.caption"
 msgid "Mark"
 msgstr "Метка"
 
-#: tminiform.cbmode.text
-msgctxt "tminiform.cbmode.text"
-msgid "SSB"
-msgstr ""
-
 #: tminiform.cbrealtime.caption
 msgid "Real Time"
 msgstr ""
@@ -3559,10 +3554,6 @@ msgstr ""
 msgctxt "tminiform.cbsaveutc.caption"
 msgid "Save in UTC"
 msgstr "Сохранить в UTC"
-
-#: tminiform.cbsubmode.text
-msgid "LSB"
-msgstr ""
 
 #: tminiform.cbyourqsl.text
 msgctxt "tminiform.cbyourqsl.text"

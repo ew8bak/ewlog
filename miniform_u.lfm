@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 354
+  Left = 503
   Height = 410
-  Top = 168
+  Top = 172
   Width = 477
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -419,7 +419,6 @@ object MiniForm: TMiniForm
     ParentFont = False
     Style = csOwnerDrawEditableVariable
     TabOrder = 3
-    Text = 'SSB'
   end
   object CBSubMode: TComboBox
     AnchorSideLeft.Control = CBMode
@@ -437,7 +436,6 @@ object MiniForm: TMiniForm
     ParentFont = False
     Style = csOwnerDrawEditableVariable
     TabOrder = 4
-    Text = 'LSB'
   end
   object ImDXCCBand: TImage
     AnchorSideLeft.Control = CBBand

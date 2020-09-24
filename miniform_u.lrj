@@ -13,8 +13,6 @@
 {"hash":36831520,"name":"tminiform.dateedit1.text","sourcebytes":[32,32,46,32,32,46,32,32,32,32],"value":"  .  .    "},
 {"hash":297028,"name":"tminiform.lbband.caption","sourcebytes":[66,97,110,100],"value":"Band"},
 {"hash":345509,"name":"tminiform.lbmode.caption","sourcebytes":[77,111,100,101],"value":"Mode"},
-{"hash":22642,"name":"tminiform.cbmode.text","sourcebytes":[83,83,66],"value":"SSB"},
-{"hash":20850,"name":"tminiform.cbsubmode.text","sourcebytes":[76,83,66],"value":"LSB"},
 {"hash":342540,"name":"tminiform.datetimepicker1.textfornulldate","sourcebytes":[78,85,76,76],"value":"NULL"},
 {"hash":120068201,"name":"tminiform.lbtime.caption","sourcebytes":[84,105,109,101,32,40,85,84,67,41],"value":"Time (UTC)"},
 {"hash":132511877,"name":"tminiform.cbrealtime.caption","sourcebytes":[82,101,97,108,32,84,105,109,101],"value":"Real Time"},
