@@ -11,7 +11,8 @@ object CountryEditForm: TCountryEditForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.6.0'
+  Position = poScreenCenter
+  LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
     Height = 36
@@ -25,8 +26,8 @@ object CountryEditForm: TCountryEditForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 72
-      Height = 23
-      Top = 7
+      Height = 25
+      Top = 6
       Width = 104
       CharCase = ecUppercase
       OnChange = Edit1Change
@@ -36,9 +37,9 @@ object CountryEditForm: TCountryEditForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 24
-      Height = 15
-      Top = 11
-      Width = 35
+      Height = 13
+      Top = 12
+      Width = 37
       Caption = 'Search'
       ParentColor = False
     end
@@ -76,15 +77,13 @@ object CountryEditForm: TCountryEditForm
         Name = 'CountryQditQuerySQLDB2'
         DataType = ftMemo
       end>
-    Database = MainForm.ServiceDBConnection
-    Transaction = MainForm.SQLServiceTransaction
     Params = <>
-    left = 267
-    top = 96
+    Left = 267
+    Top = 96
   end
   object CountryDS: TDataSource
     DataSet = CountryQditQuery
-    left = 120
-    top = 165
+    Left = 120
+    Top = 165
   end
 end

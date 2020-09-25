@@ -1,7 +1,7 @@
 object CreateJournalForm: TCreateJournalForm
-  Left = 1521
+  Left = 388
   Height = 200
-  Top = 210
+  Top = 632
   Width = 375
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -12,7 +12,7 @@ object CreateJournalForm: TCreateJournalForm
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
-  Position = poMainFormCenter
+  Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object Edit1: TEdit
     Left = 72

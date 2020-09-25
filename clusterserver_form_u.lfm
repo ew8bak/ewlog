@@ -10,8 +10,8 @@ object ClusterServer_Form: TClusterServer_Form
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
-  Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  Position = poScreenCenter
+  LCLVersion = '2.0.10.0'
   object StringGrid1: TStringGrid
     Left = 0
     Height = 128

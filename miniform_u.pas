@@ -663,13 +663,13 @@ begin
   if MenuItem85.Checked then
   begin
     INIFile.WriteBool('SetLog', 'trxShow', True);
-    IniSet.trxShow:=True;
+    IniSet.trxShow := True;
     TRXForm.Show;
   end
   else
   begin
     INIFile.WriteBool('SetLog', 'trxShow', False);
-    IniSet.trxShow:=False;
+    IniSet.trxShow := False;
     TRXForm.Hide;
   end;
 end;

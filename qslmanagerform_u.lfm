@@ -1,7 +1,7 @@
 object QSLManager_Form: TQSLManager_Form
-  Left = 368
+  Left = 500
   Height = 453
-  Top = 135
+  Top = 272
   Width = 622
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
@@ -12,7 +12,7 @@ object QSLManager_Form: TQSLManager_Form
   FormStyle = fsStayOnTop
   OnClose = FormClose
   OnShow = FormShow
-  Position = poMainFormCenter
+  Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0

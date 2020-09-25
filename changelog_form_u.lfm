@@ -8,8 +8,8 @@ object ChangeLog_Form: TChangeLog_Form
   ClientWidth = 613
   FormStyle = fsStayOnTop
   OnClose = FormClose
-  Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  Position = poScreenCenter
+  LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
     Height = 360

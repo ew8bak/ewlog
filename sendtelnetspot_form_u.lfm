@@ -1,7 +1,7 @@
 object SendTelnetSpot: TSendTelnetSpot
-  Left = 527
+  Left = 575
   Height = 155
-  Top = 179
+  Top = 198
   Width = 297
   BorderStyle = bsDialog
   Caption = 'Send spot'
@@ -9,11 +9,11 @@ object SendTelnetSpot: TSendTelnetSpot
   ClientWidth = 297
   FormStyle = fsStayOnTop
   OnShow = FormShow
-  Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  Position = poScreenCenter
+  LCLVersion = '2.0.10.0'
   object Edit1: TEdit
     Left = 16
-    Height = 23
+    Height = 25
     Top = 32
     Width = 120
     Font.Height = -12
@@ -22,7 +22,7 @@ object SendTelnetSpot: TSendTelnetSpot
   end
   object Label1: TLabel
     Left = 16
-    Height = 15
+    Height = 13
     Top = 16
     Width = 60
     Caption = 'DX Callsign'
@@ -35,7 +35,7 @@ object SendTelnetSpot: TSendTelnetSpot
     Width = 120
     AutoSize = False
     Font.Height = -12
-    ItemHeight = 15
+    ItemHeight = 0
     ItemIndex = 2
     Items.Strings = (
       '1.800.00'
@@ -56,15 +56,15 @@ object SendTelnetSpot: TSendTelnetSpot
   end
   object Label2: TLabel
     Left = 160
-    Height = 15
+    Height = 13
     Top = 16
-    Width = 55
+    Width = 58
     Caption = 'Frequency'
     ParentColor = False
   end
   object Edit2: TEdit
     Left = 16
-    Height = 23
+    Height = 25
     Top = 80
     Width = 264
     Font.Height = -12
@@ -73,9 +73,9 @@ object SendTelnetSpot: TSendTelnetSpot
   end
   object Label3: TLabel
     Left = 16
-    Height = 15
+    Height = 13
     Top = 64
-    Width = 54
+    Width = 53
     Caption = 'Comment'
     ParentColor = False
   end

@@ -1,16 +1,16 @@
 object PrintSticker_Form: TPrintSticker_Form
-  Left = 237
+  Left = 588
   Height = 239
-  Top = 106
+  Top = 172
   Width = 408
   Caption = 'Print Sticker'
   ClientHeight = 239
   ClientWidth = 408
   OnShow = FormShow
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object Edit1: TEdit
     Left = 16
-    Height = 23
+    Height = 25
     Top = 40
     Width = 96
     TabOrder = 0
@@ -18,15 +18,15 @@ object PrintSticker_Form: TPrintSticker_Form
   end
   object Label1: TLabel
     Left = 16
-    Height = 15
+    Height = 13
     Top = 24
-    Width = 32
+    Width = 33
     Caption = 'Width'
     ParentColor = False
   end
   object Edit2: TEdit
     Left = 16
-    Height = 23
+    Height = 25
     Top = 88
     Width = 96
     TabOrder = 1
@@ -34,15 +34,15 @@ object PrintSticker_Form: TPrintSticker_Form
   end
   object Label2: TLabel
     Left = 16
-    Height = 15
+    Height = 13
     Top = 72
-    Width = 36
+    Width = 37
     Caption = 'Height'
     ParentColor = False
   end
   object Edit3: TEdit
     Left = 144
-    Height = 23
+    Height = 25
     Top = 40
     Width = 136
     TabOrder = 2
@@ -50,15 +50,15 @@ object PrintSticker_Form: TPrintSticker_Form
   end
   object Label3: TLabel
     Left = 144
-    Height = 15
+    Height = 13
     Top = 24
-    Width = 45
+    Width = 47
     Caption = 'Remarks'
     ParentColor = False
   end
   object Edit4: TEdit
     Left = 144
-    Height = 23
+    Height = 25
     Top = 88
     Width = 136
     TabOrder = 3
@@ -66,15 +66,15 @@ object PrintSticker_Form: TPrintSticker_Form
   end
   object Label4: TLabel
     Left = 144
-    Height = 15
+    Height = 13
     Top = 72
-    Width = 18
+    Width = 19
     Caption = 'RIG'
     ParentColor = False
   end
   object Edit5: TEdit
     Left = 144
-    Height = 23
+    Height = 25
     Top = 136
     Width = 136
     TabOrder = 4
@@ -82,57 +82,57 @@ object PrintSticker_Form: TPrintSticker_Form
   end
   object Label5: TLabel
     Left = 144
-    Height = 15
+    Height = 13
     Top = 120
-    Width = 45
+    Width = 47
     Caption = 'Antenna'
     ParentColor = False
   end
   object CheckBox1: TCheckBox
     Left = 296
-    Height = 19
+    Height = 23
     Top = 92
-    Width = 98
+    Width = 109
     Caption = 'Print all Sticker'
     TabOrder = 5
   end
   object CheckBox2: TCheckBox
     Left = 296
-    Height = 19
+    Height = 23
     Top = 140
-    Width = 98
+    Width = 109
     Caption = 'Print all Sticker'
     TabOrder = 6
   end
   object SpinEdit1: TSpinEdit
     Left = 16
-    Height = 23
+    Height = 25
     Top = 136
     Width = 96
     TabOrder = 7
   end
   object Label6: TLabel
     Left = 16
-    Height = 15
+    Height = 13
     Top = 120
-    Width = 85
+    Width = 88
     Caption = 'Number of lines'
     ParentColor = False
   end
   object ComboBox1: TComboBox
     Left = 16
-    Height = 23
+    Height = 27
     Top = 184
     Width = 268
-    ItemHeight = 15
+    ItemHeight = 0
     TabOrder = 8
     Text = 'ComboBox1'
   end
   object Label7: TLabel
     Left = 16
-    Height = 15
+    Height = 13
     Top = 168
-    Width = 29
+    Width = 30
     Caption = 'Fonts'
     ParentColor = False
   end

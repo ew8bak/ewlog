@@ -11,6 +11,7 @@ object hiddenSettings: ThiddenSettings
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
+  Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object GroupBox1: TGroupBox
     Left = 8

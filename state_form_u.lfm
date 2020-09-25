@@ -10,7 +10,7 @@ object STATE_Form: TSTATE_Form
   FormStyle = fsStayOnTop
   OnClose = FormClose
   OnShow = FormShow
-  Position = poMainFormCenter
+  Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object DBGrid1: TDBGrid
     Left = 0

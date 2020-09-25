@@ -8,7 +8,7 @@ object FM_Form: TFM_Form
   ClientHeight = 410
   ClientWidth = 602
   OnShow = FormShow
-  Position = poMainFormCenter
+  Position = poScreenCenter
   ShowInTaskBar = stAlways
   LCLVersion = '2.0.10.0'
   object ListView1: TListView

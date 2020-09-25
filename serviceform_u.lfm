@@ -13,7 +13,7 @@ object ServiceForm: TServiceForm
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
-  Position = poMainFormCenter
+  Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object Image1: TImage
     Left = 0

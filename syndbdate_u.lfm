@@ -10,21 +10,20 @@ object SynDBDate: TSynDBDate
   ClientWidth = 227
   FormStyle = fsStayOnTop
   OnShow = FormShow
-  Position = poMainFormCenter
-  LCLVersion = '2.0.6.0'
+  Position = poScreenCenter
+  LCLVersion = '2.0.10.0'
   object Calendar1: TCalendar
     Left = 32
     Height = 160
     Top = 32
     Width = 162
-    DateTime = 0
     TabOrder = 0
   end
   object Label1: TLabel
     Left = 8
-    Height = 14
+    Height = 12
     Top = 13
-    Width = 168
+    Width = 192
     Caption = 'Select a synchronization start date'
     Font.Height = -11
     Font.Name = 'Sans'
