@@ -4068,7 +4068,7 @@ msgstr "Редактировать таблицу"
 #: tminiform.miclustertop.caption
 msgctxt "tminiform.miclustertop.caption"
 msgid "On Top"
-msgstr "Всегда наверху"
+msgstr ""
 
 #: tminiform.midownloadlang.caption
 msgctxt "tminiform.midownloadlang.caption"
@@ -4090,14 +4090,13 @@ msgid "Logbook grid"
 msgstr ""
 
 #: tminiform.miloggridtop.caption
-msgctxt "tminiform.miloggridtop.caption"
-msgid "On Top"
-msgstr "Всегда наверху"
+msgid "OnTop"
+msgstr ""
 
 #: tminiform.mimaintop.caption
 msgctxt "tminiform.mimaintop.caption"
 msgid "On Top"
-msgstr "Всегда наверху"
+msgstr ""
 
 #: tminiform.mimapform.caption
 msgctxt "tminiform.mimapform.caption"
@@ -4107,9 +4106,10 @@ msgstr "Карта"
 #: tminiform.mimaptop.caption
 msgctxt "tminiform.mimaptop.caption"
 msgid "On Top"
-msgstr "Всегда наверху"
+msgstr ""
 
-#: tminiform.mimwode.caption
+#: tminiform.mimmode.caption
+msgctxt "tminiform.mimmode.caption"
 msgid "Mode ON"
 msgstr ""
 
@@ -4121,7 +4121,7 @@ msgstr "Фото"
 #: tminiform.miphototop.caption
 msgctxt "tminiform.miphototop.caption"
 msgid "On Top"
-msgstr "Всегда наверху"
+msgstr ""
 
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
@@ -4141,7 +4141,7 @@ msgstr "Управление трансивером"
 #: tminiform.mitrxtop.caption
 msgctxt "tminiform.mitrxtop.caption"
 msgid "On Top"
-msgstr "Всегда наверху"
+msgstr ""
 
 #: tminiform.remotetimelabel.caption
 msgctxt "tminiform.remotetimelabel.caption"

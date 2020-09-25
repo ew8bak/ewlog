@@ -106,15 +106,21 @@ type
     LBBand: TLabel;
     LBMode: TLabel;
     MainMenu: TMainMenu;
-    MITRXTop: TMenuItem;
-    MITRX: TMenuItem;
-    MIPhotoTOP: TMenuItem;
-    MIPhoto: TMenuItem;
-    miMapTop: TMenuItem;
-    MIClusterTop: TMenuItem;
     MiMainTop: TMenuItem;
+    MiPhotoTop: TMenuItem;
+    MITrxTop: TMenuItem;
+    N7: TMenuItem;
+    N6: TMenuItem;
+    N5: TMenuItem;
     MiLogGridTop: TMenuItem;
-    MIMWode: TMenuItem;
+    MIClusterTop: TMenuItem;
+    miMapTop: TMenuItem;
+    N4: TMenuItem;
+    N3: TMenuItem;
+    N2: TMenuItem;
+    MITRX: TMenuItem;
+    MIPhoto: TMenuItem;
+    MIMMode: TMenuItem;
     MIMapForm: TMenuItem;
     MITelnetForm: TMenuItem;
     MiLogbookForm: TMenuItem;
@@ -220,6 +226,9 @@ type
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
+    procedure miMapTopClick(Sender: TObject);
+    procedure MiMainTopClick(Sender: TObject);
+    procedure MiLogGridTopClick(Sender: TObject);
     procedure MenuItem82Click(Sender: TObject);
     procedure MenuItem83Click(Sender: TObject);
     procedure MenuItem86Click(Sender: TObject);
@@ -227,11 +236,8 @@ type
     procedure MenuItem89Click(Sender: TObject);
     procedure MIClusterTopClick(Sender: TObject);
     procedure MiLogbookFormClick(Sender: TObject);
-    procedure MiLogGridTopClick(Sender: TObject);
-    procedure MiMainTopClick(Sender: TObject);
     procedure MIMapFormClick(Sender: TObject);
-    procedure miMapTopClick(Sender: TObject);
-    procedure MIMWodeClick(Sender: TObject);
+    procedure MIMModeClick(Sender: TObject);
     procedure MenuItem48Click(Sender: TObject);
     procedure MenuItem52Click(Sender: TObject);
     procedure MenuItem53Click(Sender: TObject);
@@ -253,7 +259,9 @@ type
     procedure MenuItem99Click(Sender: TObject);
     procedure MIDownloadLangClick(Sender: TObject);
     procedure MILanguageClick(Sender: TObject);
+    procedure MIPhotoClick(Sender: TObject);
     procedure MITelnetFormClick(Sender: TObject);
+    procedure MITRXClick(Sender: TObject);
     procedure SaveQSOinBaseExecute(Sender: TObject);
     procedure SBInfoClick(Sender: TObject);
     procedure SBIOTAClick(Sender: TObject);
@@ -270,6 +278,7 @@ type
     procedure Clr;
     procedure LangItemClick(Sender: TObject);
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
+    procedure DisableMenuMiniMode;
 
   public
     procedure LoadPhotoFromInternetCallbook(info: TInformRecord);
@@ -382,15 +391,12 @@ begin
     dxClusterForm.BorderStyle := bsNone;
     dxClusterForm.Parent := MainForm.ClusterPanel;
     dxClusterForm.Align := alClient;
-    if IniSet.gShow then
-      GridsForm.Show;
-    if IniSet.cShow then
-      dxClusterForm.Show;
-    if IniSet.eShow then
-      if not IniSet.Map_Use then
-        Earth.Show
-      else
-        MapForm.Show;
+    GridsForm.Show;
+    dxClusterForm.Show;
+    if not IniSet.Map_Use then
+      Earth.Show
+    else
+      MapForm.Show;
     if IniSet.trx_priority then
     begin
       TRXForm.BorderStyle := bsNone;
@@ -415,6 +421,7 @@ begin
     end;
     IniSet.MainForm := 'MAIN';
     MainForm.Show;
+    DisableMenuMiniMode;
   end
   else
   begin
@@ -449,6 +456,9 @@ begin
     dxClusterForm.Parent := nil;
     dxClusterForm.BorderStyle := bsSizeable;
     dxClusterForm.Align := alNone;
+    GridsForm.hide;
+    dxClusterForm.hide;
+    viewPhoto.Hide;
     if IniSet.gShow then
       GridsForm.Show;
     if IniSet.eShow then
@@ -678,6 +688,73 @@ begin
   MM_Form.Show;
 end;
 
+procedure TMiniForm.miMapTopClick(Sender: TObject);
+begin
+  if IniSet.Map_Use then
+  begin
+    if miMapTop.Checked then
+    begin
+      MapForm.FormStyle := fsSystemStayOnTop;
+      IniSet.eTop := True;
+      INIFile.WriteBool('SetLog', 'eTop', True);
+    end
+    else
+    begin
+      MapForm.FormStyle := fsNormal;
+      IniSet.eTop := False;
+      INIFile.WriteBool('SetLog', 'eTop', False);
+    end;
+  end
+  else
+  begin
+    if miMapTop.Checked then
+    begin
+      Earth.FormStyle := fsSystemStayOnTop;
+      IniSet.eTop := True;
+      INIFile.WriteBool('SetLog', 'eTop', True);
+    end
+    else
+    begin
+      Earth.FormStyle := fsNormal;
+      IniSet.eTop := False;
+      INIFile.WriteBool('SetLog', 'eTop', False);
+    end;
+  end;
+end;
+
+procedure TMiniForm.MiMainTopClick(Sender: TObject);
+begin
+  if MiMainTop.Checked then
+  begin
+    MiniForm.FormStyle := fsSystemStayOnTop;
+    IniSet.mTop := True;
+    INIFile.WriteBool('SetLog', 'mTop', True);
+  end
+  else
+  begin
+    MiniForm.FormStyle := fsNormal;
+    IniSet.mTop := False;
+    INIFile.WriteBool('SetLog', 'mTop', False);
+  end;
+
+end;
+
+procedure TMiniForm.MiLogGridTopClick(Sender: TObject);
+begin
+  if MiLogGridTop.Checked then
+  begin
+    GridsForm.FormStyle := fsSystemStayOnTop;
+    IniSet.gTop := True;
+    INIFile.WriteBool('SetLog', 'gTop', True);
+  end
+  else
+  begin
+    GridsForm.FormStyle := fsNormal;
+    IniSet.gTop := False;
+    INIFile.WriteBool('SetLog', 'gTop', False);
+  end;
+end;
+
 procedure TMiniForm.MenuItem82Click(Sender: TObject);
 begin
   CopyTThread := TCopyTThread.Create;
@@ -749,92 +826,63 @@ end;
 
 procedure TMiniForm.MiLogbookFormClick(Sender: TObject);
 begin
-  GridsForm.Show;
-end;
-
-procedure TMiniForm.MiLogGridTopClick(Sender: TObject);
-begin
-  if MiLogGridTop.Checked then
+  if MiLogbookForm.Checked then
   begin
-    GridsForm.FormStyle := fsSystemStayOnTop;
-    IniSet.gTop := True;
-    INIFile.WriteBool('SetLog', 'gTop', True);
+    INIFile.WriteBool('SetLog', 'gShow', True);
+    GridsForm.Show;
   end
   else
   begin
-    GridsForm.FormStyle := fsNormal;
-    IniSet.gTop := False;
-    INIFile.WriteBool('SetLog', 'gTop', False);
-  end;
-end;
-
-procedure TMiniForm.MiMainTopClick(Sender: TObject);
-begin
-  if MiMainTop.Checked then
-  begin
-    MiniForm.FormStyle := fsSystemStayOnTop;
-    IniSet.mTop := True;
-    INIFile.WriteBool('SetLog', 'mTop', True);
-  end
-  else
-  begin
-    MiniForm.FormStyle := fsNormal;
-    IniSet.mTop := False;
-    INIFile.WriteBool('SetLog', 'mTop', False);
+    INIFile.WriteBool('SetLog', 'gShow', False);
+    GridsForm.Hide;
   end;
 end;
 
 procedure TMiniForm.MIMapFormClick(Sender: TObject);
 begin
-  if IniSet.Map_Use then
-    MapForm.Show
-  else
-    Earth.Show;
-end;
 
-procedure TMiniForm.miMapTopClick(Sender: TObject);
-begin
-  if IniSet.Map_Use then
+  if MIMapForm.Checked then
   begin
-    if miMapTop.Checked then
-    begin
-      MapForm.FormStyle := fsSystemStayOnTop;
-      IniSet.eTop := True;
-      INIFile.WriteBool('SetLog', 'eTop', True);
-    end
+    INIFile.WriteBool('SetLog', 'eShow', True);
+    if IniSet.Map_Use then
+      MapForm.Show
     else
-    begin
-      MapForm.FormStyle := fsNormal;
-      IniSet.eTop := False;
-      INIFile.WriteBool('SetLog', 'eTop', False);
-    end;
+      Earth.Show;
   end
   else
   begin
-    if miMapTop.Checked then
-    begin
-      Earth.FormStyle := fsSystemStayOnTop;
-      IniSet.eTop := True;
-      INIFile.WriteBool('SetLog', 'eTop', True);
-    end
+    INIFile.WriteBool('SetLog', 'eShow', False);
+    if IniSet.Map_Use then
+      MapForm.hide
     else
-    begin
-      Earth.FormStyle := fsNormal;
-      IniSet.eTop := False;
-      INIFile.WriteBool('SetLog', 'eTop', False);
-    end;
+      Earth.Hide;
   end;
 end;
 
-procedure TMiniForm.MIMWodeClick(Sender: TObject);
+procedure TMiniForm.MIMModeClick(Sender: TObject);
 var
   tempSet: string;
 begin
   tempSet := IniSet.MainForm;
-  //MIMWode.Checked := True;
   IniSet.MainForm := 'MULTI';
   if tempSet <> IniSet.MainForm then
+  begin
     SwitchForm;
+    MenuItem73.Checked := False;
+    MiLogbookForm.Enabled := True;
+    MITelnetForm.Enabled := True;
+    MIMapForm.Enabled := True;
+    MIPhoto.Enabled := True;
+    MITRX.Enabled := True;
+    MiMainTop.Enabled := True;
+    MiLogGridTop.Enabled := True;
+    MIClusterTop.Enabled := True;
+    miMapTop.Enabled := True;
+    MiPhotoTop.Enabled := True;
+    MITrxTop.Enabled := True;
+  end;
+  MIMMode.Checked := False;
+  MIMMode.Checked := True;
 end;
 
 procedure TMiniForm.MenuItem48Click(Sender: TObject);
@@ -895,8 +943,29 @@ end;
 
 procedure TMiniForm.MenuItem73Click(Sender: TObject);
 begin
-  IniSet.MainForm := 'MAIN';
-  SwitchForm;
+  MenuItem73.Checked := True;
+  if MenuItem73.Checked then
+  begin
+    IniSet.MainForm := 'MAIN';
+    MIMMode.Checked := False;
+    DisableMenuMiniMode;
+    SwitchForm;
+  end;
+end;
+
+procedure TMiniForm.DisableMenuMiniMode;
+begin
+  MiLogbookForm.Enabled := False;
+  MITelnetForm.Enabled := False;
+  MIMapForm.Enabled := False;
+  MIPhoto.Enabled := False;
+  MITRX.Enabled := False;
+  MiMainTop.Enabled := False;
+  MiLogGridTop.Enabled := False;
+  MIClusterTop.Enabled := False;
+  miMapTop.Enabled := False;
+  MiPhotoTop.Enabled := False;
+  MITrxTop.Enabled := False;
 end;
 
 procedure TMiniForm.MenuItem7Click(Sender: TObject);
@@ -990,9 +1059,46 @@ begin
   LangList.Free;
 end;
 
+procedure TMiniForm.MIPhotoClick(Sender: TObject);
+begin
+  if MIPhoto.Checked then
+  begin
+    INIFile.WriteBool('SetLog', 'pShow', True);
+    viewPhoto.Show;
+  end
+  else
+  begin
+    INIFile.WriteBool('SetLog', 'pShow', False);
+    viewPhoto.Hide;
+  end;
+end;
+
 procedure TMiniForm.MITelnetFormClick(Sender: TObject);
 begin
-  dxClusterForm.Show;
+  if MITelnetForm.Checked then
+  begin
+    INIFile.WriteBool('SetLog', 'cShow', True);
+    dxClusterForm.Show;
+  end
+  else
+  begin
+    INIFile.WriteBool('SetLog', 'cShow', False);
+    dxClusterForm.Hide;
+  end;
+end;
+
+procedure TMiniForm.MITRXClick(Sender: TObject);
+begin
+  if MITRX.Checked then
+  begin
+    INIFile.WriteBool('SetLog', 'trxShow', True);
+    TRXForm.Show;
+  end
+  else
+  begin
+    INIFile.WriteBool('SetLog', 'trxShow', False);
+    TRXForm.Hide;
+  end;
 end;
 
 procedure TMiniForm.SaveQSOinBaseExecute(Sender: TObject);
@@ -1693,25 +1799,25 @@ begin
   if IniSet.Language = '' then
     IniSet.Language := FallbackLang;
   SetDefaultLang(IniSet.Language, FilePATH + 'locale');
-
-  //  StayForm := True;
-
-
+  MITelnetForm.Checked := IniSet.cShow;
+  MiLogbookForm.Checked := IniSet.gShow;
+  MIMapForm.Checked := IniSet.eShow;
+  MIPhoto.Checked := IniSet.pShow;
+  MITRX.Checked := IniSet.trxShow;
+  MiMainTop.Checked := IniSet.mTop;
+  miMapTop.Checked := IniSet.eTop;
+  MIClusterTop.Checked := IniSet.cTop;
+  MiLogGridTop.Checked := IniSet.gTop;
+  MITrxTop.Checked := IniSet.trxTop;
+  MiPhotoTop.Checked := IniSet.pTop;
+  if IniSet.MainForm <> 'MULTI' then
+    MenuItem73.Checked := True
+  else
+    MIMMode.Checked := True;
   //  if usefldigi then
   //    Fl_Timer.Enabled := True;
 
   //  PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
-
-  //  if MenuItem86.Checked = True then
-  //    TRXForm.Show;
-
-
-
-  //  if not IniSet.ShowTRXForm then
-  //    MenuItem88.Checked := True
-  //  else
-  //    MenuItem86.Checked := True;
-
 end;
 
 procedure TMiniForm.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);

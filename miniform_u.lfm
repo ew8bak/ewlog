@@ -2175,49 +2175,80 @@ object MiniForm: TMiniForm
       end
       object MenuItem72: TMenuItem
         Caption = 'Multi-window mode'
-        object MIMWode: TMenuItem
+        object MIMMode: TMenuItem
           Caption = 'Mode ON'
-          OnClick = MIMWodeClick
-          object MiMainTop: TMenuItem
-            Caption = 'On Top'
-            OnClick = MiMainTopClick
-          end
+          OnClick = MIMModeClick
+        end
+        object MiMainTop: TMenuItem
+          AutoCheck = True
+          Caption = 'On Top'
+          OnClick = MiMainTopClick
+        end
+        object N2: TMenuItem
+          Caption = '-'
         end
         object MiLogbookForm: TMenuItem
+          AutoCheck = True
           Caption = 'Logbook grid'
           OnClick = MiLogbookFormClick
-          object MiLogGridTop: TMenuItem
-            Caption = 'On Top'
-            OnClick = MiLogGridTopClick
-          end
+        end
+        object MiLogGridTop: TMenuItem
+          AutoCheck = True
+          Caption = 'OnTop'
+          OnClick = MiLogGridTopClick
+        end
+        object N3: TMenuItem
+          Caption = '-'
         end
         object MITelnetForm: TMenuItem
+          AutoCheck = True
           Caption = 'DX Cluster'
           OnClick = MITelnetFormClick
-          object MIClusterTop: TMenuItem
-            Caption = 'On Top'
-            OnClick = MIClusterTopClick
-          end
+        end
+        object MIClusterTop: TMenuItem
+          AutoCheck = True
+          Caption = 'On Top'
+          OnClick = MIClusterTopClick
+        end
+        object N4: TMenuItem
+          Caption = '-'
         end
         object MIMapForm: TMenuItem
+          AutoCheck = True
           Caption = 'Map'
           OnClick = MIMapFormClick
-          object miMapTop: TMenuItem
-            Caption = 'On Top'
-            OnClick = miMapTopClick
-          end
+        end
+        object miMapTop: TMenuItem
+          AutoCheck = True
+          Caption = 'On Top'
+          OnClick = miMapTopClick
+        end
+        object N5: TMenuItem
+          Caption = '-'
         end
         object MIPhoto: TMenuItem
+          AutoCheck = True
           Caption = 'Photo'
-          object MIPhotoTOP: TMenuItem
-            Caption = 'On Top'
-          end
+          OnClick = MIPhotoClick
+        end
+        object MiPhotoTop: TMenuItem
+          AutoCheck = True
+          Caption = 'On Top'
+        end
+        object N6: TMenuItem
+          Caption = '-'
         end
         object MITRX: TMenuItem
+          AutoCheck = True
           Caption = 'Transceiver Control'
-          object MITRXTop: TMenuItem
-            Caption = 'On Top'
-          end
+          OnClick = MITRXClick
+        end
+        object MITrxTop: TMenuItem
+          AutoCheck = True
+          Caption = 'On Top'
+        end
+        object N7: TMenuItem
+          Caption = '-'
         end
       end
       object MenuItem73: TMenuItem

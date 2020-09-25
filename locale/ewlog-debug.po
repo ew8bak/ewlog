@@ -4072,8 +4072,7 @@ msgid "Logbook grid"
 msgstr ""
 
 #: tminiform.miloggridtop.caption
-msgctxt "tminiform.miloggridtop.caption"
-msgid "On Top"
+msgid "OnTop"
 msgstr ""
 
 #: tminiform.mimaintop.caption
@@ -4091,7 +4090,8 @@ msgctxt "tminiform.mimaptop.caption"
 msgid "On Top"
 msgstr ""
 
-#: tminiform.mimwode.caption
+#: tminiform.mimmode.caption
+msgctxt "tminiform.mimmode.caption"
 msgid "Mode ON"
 msgstr ""
 

@@ -388,7 +388,7 @@ begin
     INIFile.WriteBool('SetLog', 'gShow', False);
 
   IniSet.gShow := False;
-  CloseAction := caFree;
+  CloseAction := caHide;
 end;
 
 procedure TGridsForm.FormCreate(Sender: TObject);
