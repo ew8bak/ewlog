@@ -108,8 +108,6 @@ type
     MainMenu: TMainMenu;
     MiMainTop: TMenuItem;
     MiPhotoTop: TMenuItem;
-    MITrxTop: TMenuItem;
-    N7: TMenuItem;
     N6: TMenuItem;
     N5: TMenuItem;
     MiLogGridTop: TMenuItem;
@@ -118,7 +116,6 @@ type
     N4: TMenuItem;
     N3: TMenuItem;
     N2: TMenuItem;
-    MITRX: TMenuItem;
     MIPhoto: TMenuItem;
     MIMMode: TMenuItem;
     MIMapForm: TMenuItem;
@@ -171,9 +168,7 @@ type
     MenuItem83: TMenuItem;
     MenuItem84: TMenuItem;
     MenuItem85: TMenuItem;
-    MenuItem86: TMenuItem;
     MenuItem87: TMenuItem;
-    MenuItem88: TMenuItem;
     MenuItem89: TMenuItem;
     MenuItem90: TMenuItem;
     MenuItem91: TMenuItem;
@@ -226,13 +221,12 @@ type
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
+    procedure MenuItem85Click(Sender: TObject);
     procedure miMapTopClick(Sender: TObject);
     procedure MiMainTopClick(Sender: TObject);
     procedure MiLogGridTopClick(Sender: TObject);
     procedure MenuItem82Click(Sender: TObject);
     procedure MenuItem83Click(Sender: TObject);
-    procedure MenuItem86Click(Sender: TObject);
-    procedure MenuItem88Click(Sender: TObject);
     procedure MenuItem89Click(Sender: TObject);
     procedure MIClusterTopClick(Sender: TObject);
     procedure MiLogbookFormClick(Sender: TObject);
@@ -261,7 +255,7 @@ type
     procedure MILanguageClick(Sender: TObject);
     procedure MIPhotoClick(Sender: TObject);
     procedure MITelnetFormClick(Sender: TObject);
-    procedure MITRXClick(Sender: TObject);
+    procedure MITrxTopClick(Sender: TObject);
     procedure SaveQSOinBaseExecute(Sender: TObject);
     procedure SBInfoClick(Sender: TObject);
     procedure SBIOTAClick(Sender: TObject);
@@ -367,7 +361,6 @@ begin
   begin
     MiniForm.Menu := nil;
     MainForm.Menu := MiniForm.MainMenu;
-    MenuItem85.Enabled := True;
     MenuItem110.Enabled := True;
     MiniForm.BorderStyle := bsNone;
     MiniForm.Parent := MainForm.MiniPanel;
@@ -393,31 +386,18 @@ begin
     dxClusterForm.Align := alClient;
     GridsForm.Show;
     dxClusterForm.Show;
+    if IniSet.trxShow then
+      TRXForm.Show;
     if not IniSet.Map_Use then
       Earth.Show
     else
       MapForm.Show;
-    if IniSet.trx_priority then
-    begin
-      TRXForm.BorderStyle := bsNone;
-      TRXForm.Parent := MainForm.OtherPanel;
-      TRXForm.Align := alClient;
-      if IniSet.trxShow then
-      begin
-        TRXForm.Show;
-        viewPhoto.Hide;
-      end;
-    end
-    else
+    if IniSet.pShow then
     begin
       viewPhoto.BorderStyle := bsNone;
       viewPhoto.Parent := MainForm.OtherPanel;
       viewPhoto.Align := alClient;
-      if IniSet.pShow then
-      begin
-        viewPhoto.Show;
-        TRXForm.Hide;
-      end;
+      viewPhoto.Show;
     end;
     IniSet.MainForm := 'MAIN';
     MainForm.Show;
@@ -427,7 +407,6 @@ begin
   begin
     MainForm.Menu := nil;
     MiniForm.Menu := MiniForm.MainMenu;
-    MenuItem85.Enabled := False;
     MenuItem110.Enabled := False;
     MiniForm.Parent := nil;
     MiniForm.BorderStyle := bsSingle;
@@ -477,7 +456,7 @@ begin
     if IniSet.trxShow then
     begin
       TRXForm.Parent := nil;
-      TRXForm.BorderStyle := bsSizeable;
+      TRXForm.BorderStyle := bsSingle;
       TRXForm.Align := alNone;
       TRXForm.Show;
     end;
@@ -637,15 +616,7 @@ end;
 
 procedure TMiniForm.MenuItem111Click(Sender: TObject);
 begin
-  if MenuItem86.Checked then
-  begin
-    TRXForm.Hide;
-    IniSet.trx_priority := False;
-    MenuItem88.Checked := True;
-    MenuItem86.Checked := False;
-  end;
   MenuItem112.Checked := False;
-
   if MenuItem111.Checked then
   begin
     viewPhoto.Parent := MainForm.OtherPanel;
@@ -656,7 +627,6 @@ begin
   begin
     viewPhoto.Hide;
   end;
-
 end;
 
 procedure TMiniForm.MenuItem112Click(Sender: TObject);
@@ -686,6 +656,22 @@ end;
 procedure TMiniForm.MenuItem124Click(Sender: TObject);
 begin
   MM_Form.Show;
+end;
+
+procedure TMiniForm.MenuItem85Click(Sender: TObject);
+begin
+  if MenuItem85.Checked then
+  begin
+    INIFile.WriteBool('SetLog', 'trxShow', True);
+    IniSet.trxShow:=True;
+    TRXForm.Show;
+  end
+  else
+  begin
+    INIFile.WriteBool('SetLog', 'trxShow', False);
+    IniSet.trxShow:=False;
+    TRXForm.Hide;
+  end;
 end;
 
 procedure TMiniForm.miMapTopClick(Sender: TObject);
@@ -773,36 +759,6 @@ begin
   CopyTThread.Start;
 end;
 
-procedure TMiniForm.MenuItem86Click(Sender: TObject);
-begin
-  if MenuItem111.Checked then
-  begin
-    viewPhoto.Hide;
-  end;
-
-  MenuItem88.Checked := False;
-  MenuItem111.Checked := False;
-  MenuItem112.Checked := True;
-  if MenuItem86.Checked then
-  begin
-    TRXForm.Parent := MainForm.OtherPanel;
-    TRXForm.BorderStyle := bsNone;
-    TRXForm.Align := alClient;
-    TRXForm.Show;
-    IniSet.trx_priority := True;
-  end
-  else
-    TRXForm.Hide;
-end;
-
-procedure TMiniForm.MenuItem88Click(Sender: TObject);
-begin
-  MenuItem86.Checked := False;
-  MenuItem88.Checked := True;
-  IniSet.trxShow := False;
-  TRXForm.Hide;
-end;
-
 procedure TMiniForm.MenuItem89Click(Sender: TObject);
 begin
   InitDB.SwitchDB;
@@ -873,13 +829,11 @@ begin
     MITelnetForm.Enabled := True;
     MIMapForm.Enabled := True;
     MIPhoto.Enabled := True;
-    MITRX.Enabled := True;
     MiMainTop.Enabled := True;
     MiLogGridTop.Enabled := True;
     MIClusterTop.Enabled := True;
     miMapTop.Enabled := True;
     MiPhotoTop.Enabled := True;
-    MITrxTop.Enabled := True;
   end;
   MIMMode.Checked := False;
   MIMMode.Checked := True;
@@ -959,13 +913,11 @@ begin
   MITelnetForm.Enabled := False;
   MIMapForm.Enabled := False;
   MIPhoto.Enabled := False;
-  MITRX.Enabled := False;
   MiMainTop.Enabled := False;
   MiLogGridTop.Enabled := False;
   MIClusterTop.Enabled := False;
   miMapTop.Enabled := False;
   MiPhotoTop.Enabled := False;
-  MITrxTop.Enabled := False;
 end;
 
 procedure TMiniForm.MenuItem7Click(Sender: TObject);
@@ -1087,18 +1039,9 @@ begin
   end;
 end;
 
-procedure TMiniForm.MITRXClick(Sender: TObject);
+procedure TMiniForm.MITrxTopClick(Sender: TObject);
 begin
-  if MITRX.Checked then
-  begin
-    INIFile.WriteBool('SetLog', 'trxShow', True);
-    TRXForm.Show;
-  end
-  else
-  begin
-    INIFile.WriteBool('SetLog', 'trxShow', False);
-    TRXForm.Hide;
-  end;
+
 end;
 
 procedure TMiniForm.SaveQSOinBaseExecute(Sender: TObject);
@@ -1803,12 +1746,11 @@ begin
   MiLogbookForm.Checked := IniSet.gShow;
   MIMapForm.Checked := IniSet.eShow;
   MIPhoto.Checked := IniSet.pShow;
-  MITRX.Checked := IniSet.trxShow;
+  MenuItem85.Checked := IniSet.trxShow;
   MiMainTop.Checked := IniSet.mTop;
   miMapTop.Checked := IniSet.eTop;
   MIClusterTop.Checked := IniSet.cTop;
   MiLogGridTop.Checked := IniSet.gTop;
-  MITrxTop.Checked := IniSet.trxTop;
   MiPhotoTop.Checked := IniSet.pTop;
   if IniSet.MainForm <> 'MULTI' then
     MenuItem73.Checked := True

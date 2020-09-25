@@ -4025,20 +4025,10 @@ msgctxt "tminiform.menuitem85.caption"
 msgid "Transceiver Control"
 msgstr "Управление трансивером"
 
-#: tminiform.menuitem86.caption
-msgctxt "tminiform.menuitem86.caption"
-msgid "Display control form"
-msgstr "Отображать форму управления"
-
 #: tminiform.menuitem87.caption
 msgctxt "tminiform.menuitem87.caption"
 msgid "Settings external programs"
 msgstr "Настройки внешних программ"
-
-#: tminiform.menuitem88.caption
-msgctxt "tminiform.menuitem88.caption"
-msgid "No"
-msgstr "Нет"
 
 #: tminiform.menuitem89.caption
 msgctxt "tminiform.menuitem89.caption"
@@ -4090,8 +4080,10 @@ msgid "Logbook grid"
 msgstr ""
 
 #: tminiform.miloggridtop.caption
+#, fuzzy
+#| msgid "On Top"
 msgctxt "tminiform.miloggridtop.caption"
-msgid "On Top"
+msgid "OnTop"
 msgstr "Всегда наверху"
 
 #: tminiform.mimaintop.caption
@@ -4109,7 +4101,8 @@ msgctxt "tminiform.mimaptop.caption"
 msgid "On Top"
 msgstr "Всегда наверху"
 
-#: tminiform.mimwode.caption
+#: tminiform.mimmode.caption
+msgctxt "tminiform.mimmode.caption"
 msgid "Mode ON"
 msgstr ""
 
@@ -4132,16 +4125,6 @@ msgstr "Настройки"
 msgctxt "tminiform.mitelnetform.caption"
 msgid "DX Cluster"
 msgstr ""
-
-#: tminiform.mitrx.caption
-msgctxt "tminiform.mitrx.caption"
-msgid "Transceiver Control"
-msgstr "Управление трансивером"
-
-#: tminiform.mitrxtop.caption
-msgctxt "tminiform.mitrxtop.caption"
-msgid "On Top"
-msgstr "Всегда наверху"
 
 #: tminiform.remotetimelabel.caption
 msgctxt "tminiform.remotetimelabel.caption"

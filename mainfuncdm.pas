@@ -1284,7 +1284,6 @@ begin
   IniSet._h_trx := INIFile.ReadInteger('SetLog', 'trxHeight', 156);
   IniSet.trxTop := INIFile.ReadBool('SetLog', 'trxTop', False);
   IniSet.trxShow := INIFile.ReadBool('SetLog', 'trxShow', True);
-  IniSet.trx_priority := INIFile.ReadBool('SetLog', 'trxPriority', False);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

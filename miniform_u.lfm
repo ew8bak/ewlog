@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 503
+  Left = 505
   Height = 410
-  Top = 172
+  Top = 129
   Width = 477
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -2150,16 +2150,9 @@ object MiniForm: TMiniForm
     object MenuItem3: TMenuItem
       Caption = 'View'
       object MenuItem85: TMenuItem
+        AutoCheck = True
         Caption = 'Transceiver Control'
-        object MenuItem88: TMenuItem
-          Caption = 'No'
-          OnClick = MenuItem88Click
-        end
-        object MenuItem86: TMenuItem
-          AutoCheck = True
-          Caption = 'Display control form'
-          OnClick = MenuItem86Click
-        end
+        OnClick = MenuItem85Click
       end
       object MenuItem110: TMenuItem
         Caption = 'Displaying photos with QRZ'
@@ -2236,18 +2229,6 @@ object MiniForm: TMiniForm
           Caption = 'On Top'
         end
         object N6: TMenuItem
-          Caption = '-'
-        end
-        object MITRX: TMenuItem
-          AutoCheck = True
-          Caption = 'Transceiver Control'
-          OnClick = MITRXClick
-        end
-        object MITrxTop: TMenuItem
-          AutoCheck = True
-          Caption = 'On Top'
-        end
-        object N7: TMenuItem
           Caption = '-'
         end
       end

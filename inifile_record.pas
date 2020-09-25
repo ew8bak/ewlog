@@ -53,7 +53,6 @@ type
     _t_trx: integer;
     _w_trx: integer;
     _h_trx: integer;
-    trx_priority: boolean;
     trxShow: boolean;
     pTop: boolean;
     trxTop: boolean;

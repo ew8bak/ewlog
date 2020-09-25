@@ -4012,19 +4012,9 @@ msgctxt "tminiform.menuitem85.caption"
 msgid "Transceiver Control"
 msgstr ""
 
-#: tminiform.menuitem86.caption
-msgctxt "tminiform.menuitem86.caption"
-msgid "Display control form"
-msgstr ""
-
 #: tminiform.menuitem87.caption
 msgctxt "tminiform.menuitem87.caption"
 msgid "Settings external programs"
-msgstr ""
-
-#: tminiform.menuitem88.caption
-msgctxt "tminiform.menuitem88.caption"
-msgid "No"
 msgstr ""
 
 #: tminiform.menuitem89.caption
@@ -4078,7 +4068,7 @@ msgstr ""
 
 #: tminiform.miloggridtop.caption
 msgctxt "tminiform.miloggridtop.caption"
-msgid "On Top"
+msgid "OnTop"
 msgstr ""
 
 #: tminiform.mimaintop.caption
@@ -4096,7 +4086,8 @@ msgctxt "tminiform.mimaptop.caption"
 msgid "On Top"
 msgstr ""
 
-#: tminiform.mimwode.caption
+#: tminiform.mimmode.caption
+msgctxt "tminiform.mimmode.caption"
 msgid "Mode ON"
 msgstr ""
 
@@ -4118,16 +4109,6 @@ msgstr ""
 #: tminiform.mitelnetform.caption
 msgctxt "tminiform.mitelnetform.caption"
 msgid "DX Cluster"
-msgstr ""
-
-#: tminiform.mitrx.caption
-msgctxt "tminiform.mitrx.caption"
-msgid "Transceiver Control"
-msgstr ""
-
-#: tminiform.mitrxtop.caption
-msgctxt "tminiform.mitrxtop.caption"
-msgid "On Top"
 msgstr ""
 
 #: tminiform.remotetimelabel.caption

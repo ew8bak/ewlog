@@ -4025,20 +4025,10 @@ msgctxt "tminiform.menuitem85.caption"
 msgid "Transceiver Control"
 msgstr "Управление трансивером"
 
-#: tminiform.menuitem86.caption
-msgctxt "tminiform.menuitem86.caption"
-msgid "Display control form"
-msgstr "Отображать форму управления"
-
 #: tminiform.menuitem87.caption
 msgctxt "tminiform.menuitem87.caption"
 msgid "Settings external programs"
 msgstr "Настройки внешних программ"
-
-#: tminiform.menuitem88.caption
-msgctxt "tminiform.menuitem88.caption"
-msgid "No"
-msgstr "Нет"
 
 #: tminiform.menuitem89.caption
 msgctxt "tminiform.menuitem89.caption"
@@ -4131,16 +4121,6 @@ msgstr "Настройки"
 #: tminiform.mitelnetform.caption
 msgctxt "tminiform.mitelnetform.caption"
 msgid "DX Cluster"
-msgstr ""
-
-#: tminiform.mitrx.caption
-msgctxt "tminiform.mitrx.caption"
-msgid "Transceiver Control"
-msgstr "Управление трансивером"
-
-#: tminiform.mitrxtop.caption
-msgctxt "tminiform.mitrxtop.caption"
-msgid "On Top"
 msgstr ""
 
 #: tminiform.remotetimelabel.caption
