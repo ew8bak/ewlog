@@ -329,6 +329,7 @@ end;
 function TInitDB.ImbeddedCallBookInit(Use: boolean): boolean;
 begin
   Result := False;
+  ImbeddedCallBookConnection.Connected := False;
   if (FileExists(FilePATH + 'callbook.db')) and (Use) then
   begin
     ImbeddedCallBookConnection.DatabaseName := FilePATH + 'callbook.db';

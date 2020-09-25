@@ -535,14 +535,17 @@ end;
 
 procedure TMiniForm.LoadFromInternetCallBook(info: TInformRecord);
 begin
-  EditName.Text := info.Name;
-  EditQTH.Text := info.City;
-  EditGrid.Text := info.Grid;
-  EditState.Text := info.State;
+  if Length(info.Name) > 0 then
+  begin
+    EditName.Text := info.Name;
+    EditQTH.Text := info.City;
+    EditGrid.Text := info.Grid;
+    EditState.Text := info.State;
+  end;
   if Length(info.Error) > 0 then
-    StatusBar.SimpleText := info.Error
+    TextSB(info.Error, 0)
   else
-    StatusBar.SimpleText := '';
+    TextSB('', 0);
 end;
 
 procedure TMiniForm.LoadPhotoFromInternetCallbook(info: TInformRecord);

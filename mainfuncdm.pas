@@ -1216,7 +1216,7 @@ end;
 
 procedure TMainFunc.LoadINIsettings;
 begin
-  IniSet.UseIntCallBook := INIFile.ReadBool('SetLog', 'IntCallBook', False);
+  IniSet.UseIntCallBook := INIFile.ReadBool('SetLog', 'IntCallBook', True);
   IniSet.PhotoDir := INIFile.ReadString('SetLog', 'PhotoDir', '');
   IniSet.StateToQSLInfo := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
   IniSet.Fl_PATH := INIFile.ReadString('FLDIGI', 'FldigiPATH', '');
@@ -1284,6 +1284,7 @@ begin
   IniSet._h_trx := INIFile.ReadInteger('SetLog', 'trxHeight', 156);
   IniSet.trxTop := INIFile.ReadBool('SetLog', 'trxTop', False);
   IniSet.trxShow := INIFile.ReadBool('SetLog', 'trxShow', False);
+  IniSet.ClusterAutoStart := INIFile.ReadBool('TelnetCluster', 'AutoStart', False)
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

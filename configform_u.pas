@@ -204,7 +204,6 @@ begin
   Edit13.Text := INIFile.ReadString('SetLog', 'CloudLogApi', '');
   CheckBox8.Checked := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
   CheckBox9.Checked := INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
-  CheckBox4.Checked := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
   FileNameEdit1.Text := INIFile.ReadString('DataBases', 'FileSQLite', '');
   if INIFile.ReadString('DataBases', 'DefaultDataBase', '') = 'MySQL' then
     RadioButton1.Checked := True
@@ -222,6 +221,7 @@ begin
 
   CheckBox6.Checked := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
   CheckBox5.Checked := INIFile.ReadBool('SetLog', 'PrintPrev', False);
+  CheckBox4.Checked:=INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
 
   if IniSet.CallBookSystem = 'QRZRU' then
     CheckBox3.Checked := True;
@@ -375,7 +375,7 @@ begin
   Button4.Caption := rCheckUpdates;
 
   CheckRec := InitDB.ImbeddedCallBookCheck(FilePATH + 'callbook.db');
-
+  InitDB.ImbeddedCallBookInit(IniSet.UseIntCallBook);
   if CheckRec.Found then
   begin
     Label11.Caption := rNumberOfRecords + IntToStr(CheckRec.NumberOfRec);

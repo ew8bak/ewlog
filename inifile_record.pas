@@ -82,6 +82,7 @@ type
     Cluster_Pass: string;
     Cluster_Host: string;
     Cluster_Port: string;
+    ClusterAutoStart: boolean;
   end;
 
 implementation

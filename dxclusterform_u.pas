@@ -553,7 +553,8 @@ procedure TdxClusterForm.SpeedButton7Click(Sender: TObject);
 begin
   if Length(EditCallsign.Text) > 2 then
   begin
-    DXTelnetClient.SendMessage('talk ' + EditCallsign.Text + ' ' + EditMessage.Text + #13#10, nil);
+    DXTelnetClient.SendMessage('talk ' + EditCallsign.Text + ' ' +
+      EditMessage.Text + #13#10, nil);
     EditMessage.Clear;
   end
   else
@@ -586,6 +587,9 @@ begin
   qBands.DataBase := InitDB.ServiceDBConnection;
   LoadClusterString;
   MainFunc.SetDXColumns(VirtualStringTree1, False, VirtualStringTree1);
+  ButtonSet;
+  if IniSet.ClusterAutoStart then
+    SBConnect.Click;
 end;
 
 procedure TdxClusterForm.FormDestroy(Sender: TObject);
@@ -609,7 +613,6 @@ begin
     if (IniSet._l_c <> 0) and (IniSet._t_c <> 0) and (IniSet._w_c <> 0) and
       (IniSet._h_c <> 0) then
       dxClusterForm.SetBounds(IniSet._l_c, IniSet._t_c, IniSet._w_c, IniSet._h_c);
-  ButtonSet;
 end;
 
 procedure TdxClusterForm.MenuItem1Click(Sender: TObject);
@@ -656,7 +659,8 @@ begin
   begin
     if Length(EditCallsign.Text) > 2 then
     begin
-      DXTelnetClient.SendMessage('talk ' + EditCallsign.Text + ' ' + EditMessage.Text + #13#10, nil);
+      DXTelnetClient.SendMessage('talk ' + EditCallsign.Text + ' ' +
+        EditMessage.Text + #13#10, nil);
       EditMessage.Clear;
     end
     else
