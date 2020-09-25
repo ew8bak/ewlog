@@ -14,10 +14,10 @@ type
   { TdxClusterForm }
 
   TdxClusterForm = class(TForm)
-    ComboBox1: TComboBox;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
+    CBServers: TComboBox;
+    EditCommand: TEdit;
+    EditCallsign: TEdit;
+    EditMessage: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Memo1: TMemo;
@@ -32,12 +32,12 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     PopupCluster: TPopupMenu;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
-    SpeedButton5: TSpeedButton;
-    SpeedButton6: TSpeedButton;
+    SBConnect: TSpeedButton;
+    SBClear: TSpeedButton;
+    SBDisconnect: TSpeedButton;
+    SBSentDX: TSpeedButton;
+    SBFilter: TSpeedButton;
+    SBEditServers: TSpeedButton;
     SpeedButton7: TSpeedButton;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -45,9 +45,9 @@ type
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
     VirtualStringTree1: TVirtualStringTree;
-    procedure ComboBox1Change(Sender: TObject);
-    procedure Edit1KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
-    procedure Edit3KeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure CBServersChange(Sender: TObject);
+    procedure EditCommandKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure EditMessageKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -56,12 +56,12 @@ type
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
-    procedure SpeedButton3Click(Sender: TObject);
-    procedure SpeedButton4Click(Sender: TObject);
-    procedure SpeedButton5Click(Sender: TObject);
-    procedure SpeedButton6Click(Sender: TObject);
+    procedure SBConnectClick(Sender: TObject);
+    procedure SBClearClick(Sender: TObject);
+    procedure SBDisconnectClick(Sender: TObject);
+    procedure SBSentDXClick(Sender: TObject);
+    procedure SBFilterClick(Sender: TObject);
+    procedure SBEditServersClick(Sender: TObject);
     procedure SpeedButton7Click(Sender: TObject);
     procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
       Node: PVirtualNode);
@@ -215,17 +215,17 @@ procedure TdxClusterForm.ButtonSet;
 begin
   if ConnectCluster then
   begin
-    SpeedButton1.Enabled := False;
-    SpeedButton2.Enabled := True;
-    SpeedButton3.Enabled := True;
-    SpeedButton4.Enabled := True;
+    SBConnect.Enabled := False;
+    SBClear.Enabled := True;
+    SBDisconnect.Enabled := True;
+    SBSentDX.Enabled := True;
   end
   else
   begin
-    SpeedButton1.Enabled := True;
-    SpeedButton2.Enabled := False;
-    SpeedButton3.Enabled := False;
-    SpeedButton4.Enabled := False;
+    SBConnect.Enabled := True;
+    SBClear.Enabled := False;
+    SBDisconnect.Enabled := False;
+    SBSentDX.Enabled := False;
   end;
 end;
 
@@ -240,20 +240,20 @@ begin
   end;
   TelName := INIFile.ReadString('TelnetCluster', 'ServerDef',
     'FREERC -> dx.freerc.ru:8000');
-  ComboBox1.Items.Clear;
-  ComboBox1.Items.AddStrings(TelStr);
-  if ComboBox1.Items.IndexOf(TelName) > -1 then
-    ComboBox1.ItemIndex := ComboBox1.Items.IndexOf(TelName)
+  CBServers.Items.Clear;
+  CBServers.Items.AddStrings(TelStr);
+  if CBServers.Items.IndexOf(TelName) > -1 then
+    CBServers.ItemIndex := CBServers.Items.IndexOf(TelName)
   else
-    ComboBox1.ItemIndex := 0;
+    CBServers.ItemIndex := 0;
 
-  i := pos('>', ComboBox1.Text);
-  j := pos(':', ComboBox1.Text);
+  i := pos('>', CBServers.Text);
+  j := pos(':', CBServers.Text);
   //Сервер
-  IniSet.Cluster_Host := copy(ComboBox1.Text, i + 1, j - i - 1);
+  IniSet.Cluster_Host := copy(CBServers.Text, i + 1, j - i - 1);
   Delete(IniSet.Cluster_Host, 1, 1);
   //Порт
-  IniSet.Cluster_Port := copy(ComboBox1.Text, j + 1, Length(ComboBox1.Text) - i);
+  IniSet.Cluster_Port := copy(CBServers.Text, j + 1, Length(CBServers.Text) - i);
 
 end;
 
@@ -503,16 +503,16 @@ begin
   end;
 end;
 
-procedure TdxClusterForm.SpeedButton1Click(Sender: TObject);
+procedure TdxClusterForm.SBConnectClick(Sender: TObject);
 begin
   TelnetThread := TTelnetThread.Create;
   if Assigned(TelnetThread.FatalException) then
     raise TelnetThread.FatalException;
   TelnetThread.Start;
-  SpeedButton1.Enabled := False;
+  SBConnect.Enabled := False;
 end;
 
-procedure TdxClusterForm.SpeedButton2Click(Sender: TObject);
+procedure TdxClusterForm.SBClearClick(Sender: TObject);
 begin
   if not VirtualStringTree1.IsEmpty and (PageControl1.ActivePageIndex = 1) then
   begin
@@ -524,32 +524,37 @@ begin
     Memo1.Clear;
 end;
 
-procedure TdxClusterForm.SpeedButton3Click(Sender: TObject);
+procedure TdxClusterForm.SBDisconnectClick(Sender: TObject);
 begin
-  DXTelnetClient.SendMessage('bye' + #13#10);
+  DXTelnetClient.Disconnect(True);
+  ConnectCluster := False;
+  ButtonSet;
+  if TelnetThread <> nil then
+    TelnetThread.Terminate;
+  Memo1.Lines.Add('DX Cluster disconnected');
 end;
 
-procedure TdxClusterForm.SpeedButton4Click(Sender: TObject);
+procedure TdxClusterForm.SBSentDXClick(Sender: TObject);
 begin
   SendTelnetSpot.Show;
 end;
 
-procedure TdxClusterForm.SpeedButton5Click(Sender: TObject);
+procedure TdxClusterForm.SBFilterClick(Sender: TObject);
 begin
   ClusterFilter.Show;
 end;
 
-procedure TdxClusterForm.SpeedButton6Click(Sender: TObject);
+procedure TdxClusterForm.SBEditServersClick(Sender: TObject);
 begin
   ClusterServer_Form.Show;
 end;
 
 procedure TdxClusterForm.SpeedButton7Click(Sender: TObject);
 begin
-  if Length(Edit2.Text) > 2 then
+  if Length(EditCallsign.Text) > 2 then
   begin
-    DXTelnetClient.SendMessage('talk ' + Edit2.Text + ' ' + Edit3.Text + #13#10, nil);
-    Edit3.Clear;
+    DXTelnetClient.SendMessage('talk ' + EditCallsign.Text + ' ' + EditMessage.Text + #13#10, nil);
+    EditMessage.Clear;
   end
   else
     Memo2.Text := rCallsignNotEntered;
@@ -557,16 +562,19 @@ end;
 
 procedure TdxClusterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  INIFile.WriteString('TelnetCluster', 'ServerDef', ComboBox1.Text);
+  INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
   MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
   if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
     MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     INIFile.WriteBool('SetLog', 'cShow', True)
   else
     INIFile.WriteBool('SetLog', 'cShow', False);
-
   IniSet.cShow := False;
-  CloseAction := caFree;
+  if TelnetThread <> nil then
+    TelnetThread.Terminate;
+  ConnectCluster := False;
+  ButtonSet;
+  CloseAction := caHide;
 end;
 
 procedure TdxClusterForm.FormCreate(Sender: TObject);
@@ -591,8 +599,8 @@ end;
 
 procedure TdxClusterForm.FormResize(Sender: TObject);
 begin
-  ComboBox1.Width := dxClusterForm.Width - 180;
-  Edit3.Width := dxClusterForm.Width - 105;
+  CBServers.Width := dxClusterForm.Width - 180;
+  EditMessage.Width := dxClusterForm.Width - 120;
 end;
 
 procedure TdxClusterForm.FormShow(Sender: TObject);
@@ -631,42 +639,42 @@ begin
   end;
 end;
 
-procedure TdxClusterForm.Edit1KeyDown(Sender: TObject; var Key: word;
+procedure TdxClusterForm.EditCommandKeyDown(Sender: TObject; var Key: word;
   Shift: TShiftState);
 begin
   if Key = 13 then
   begin
-    DXTelnetClient.SendMessage(Edit1.Text + #13#10, nil);
-    Edit1.Clear;
+    DXTelnetClient.SendMessage(EditCommand.Text + #13#10, nil);
+    EditCommand.Clear;
   end;
 end;
 
-procedure TdxClusterForm.Edit3KeyDown(Sender: TObject; var Key: word;
+procedure TdxClusterForm.EditMessageKeyDown(Sender: TObject; var Key: word;
   Shift: TShiftState);
 begin
   if Key = 13 then
   begin
-    if Length(Edit2.Text) > 2 then
+    if Length(EditCallsign.Text) > 2 then
     begin
-      DXTelnetClient.SendMessage('talk ' + Edit2.Text + ' ' + Edit3.Text + #13#10, nil);
-      Edit3.Clear;
+      DXTelnetClient.SendMessage('talk ' + EditCallsign.Text + ' ' + EditMessage.Text + #13#10, nil);
+      EditMessage.Clear;
     end
     else
       Memo2.Text := rCallsignNotEntered;
   end;
 end;
 
-procedure TdxClusterForm.ComboBox1Change(Sender: TObject);
+procedure TdxClusterForm.CBServersChange(Sender: TObject);
 var
   i, j: integer;
 begin
-  i := pos('>', ComboBox1.Text);
-  j := pos(':', ComboBox1.Text);
+  i := pos('>', CBServers.Text);
+  j := pos(':', CBServers.Text);
   //Сервер
-  IniSet.Cluster_Host := copy(ComboBox1.Text, i + 1, j - i - 1);
+  IniSet.Cluster_Host := copy(CBServers.Text, i + 1, j - i - 1);
   Delete(IniSet.Cluster_Host, 1, 1);
   //Порт
-  IniSet.Cluster_Port := copy(ComboBox1.Text, j + 1, Length(ComboBox1.Text) - i);
+  IniSet.Cluster_Port := copy(CBServers.Text, j + 1, Length(CBServers.Text) - i);
 end;
 
 procedure TdxClusterForm.VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;

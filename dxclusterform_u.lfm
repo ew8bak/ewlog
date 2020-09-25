@@ -36,13 +36,13 @@ object dxClusterForm: TdxClusterForm
         ScrollBars = ssAutoVertical
         TabOrder = 0
       end
-      object Edit1: TEdit
+      object EditCommand: TEdit
         Left = 0
         Height = 25
         Top = 160
         Width = 725
         Align = alBottom
-        OnKeyDown = Edit1KeyDown
+        OnKeyDown = EditCommandKeyDown
         TabOrder = 1
       end
     end
@@ -131,9 +131,9 @@ object dxClusterForm: TdxClusterForm
       ClientWidth = 725
       object Memo2: TMemo
         Left = 0
-        Height = 126
+        Height = 125
         Top = 30
-        Width = 727
+        Width = 725
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoBoth
@@ -143,18 +143,18 @@ object dxClusterForm: TdxClusterForm
         Left = 0
         Height = 30
         Top = 0
-        Width = 727
+        Width = 725
         Align = alTop
         ClientHeight = 30
-        ClientWidth = 727
+        ClientWidth = 725
         TabOrder = 1
         object Label1: TLabel
           AnchorSideLeft.Control = Panel2
           AnchorSideTop.Control = Panel2
           AnchorSideTop.Side = asrCenter
           Left = 6
-          Height = 15
-          Top = 8
+          Height = 13
+          Top = 9
           Width = 60
           BorderSpacing.Left = 5
           Caption = 'To Callsign:'
@@ -162,12 +162,12 @@ object dxClusterForm: TdxClusterForm
           ParentColor = False
           ParentFont = False
         end
-        object Edit2: TEdit
+        object EditCallsign: TEdit
           AnchorSideLeft.Control = Label1
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel2
           Left = 71
-          Height = 23
+          Height = 25
           Top = 1
           Width = 129
           BorderSpacing.Left = 5
@@ -180,36 +180,36 @@ object dxClusterForm: TdxClusterForm
       object Panel3: TPanel
         Left = 0
         Height = 30
-        Top = 156
-        Width = 727
+        Top = 155
+        Width = 725
         Align = alBottom
         ClientHeight = 30
-        ClientWidth = 727
+        ClientWidth = 725
         TabOrder = 2
         object Label2: TLabel
           AnchorSideLeft.Control = Panel3
           AnchorSideTop.Control = Panel3
           AnchorSideTop.Side = asrCenter
           Left = 6
-          Height = 15
-          Top = 8
-          Width = 49
+          Height = 13
+          Top = 9
+          Width = 50
           BorderSpacing.Left = 5
           Caption = 'Message:'
           ParentColor = False
         end
-        object Edit3: TEdit
+        object EditMessage: TEdit
           AnchorSideLeft.Control = Label2
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel3
           AnchorSideTop.Side = asrCenter
-          Left = 60
-          Height = 23
-          Top = 4
+          Left = 61
+          Height = 25
+          Top = 3
           Width = 595
           BorderSpacing.Left = 5
           Font.Height = -12
-          OnKeyDown = Edit3KeyDown
+          OnKeyDown = EditMessageKeyDown
           ParentFont = False
           TabOrder = 0
         end
@@ -218,7 +218,7 @@ object dxClusterForm: TdxClusterForm
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Panel3
           AnchorSideRight.Side = asrBottom
-          Left = 698
+          Left = 696
           Height = 22
           Top = 4
           Width = 23
@@ -270,9 +270,9 @@ object dxClusterForm: TdxClusterForm
       ClientWidth = 725
       object Memo3: TMemo
         Left = 0
-        Height = 186
+        Height = 185
         Top = 0
-        Width = 727
+        Width = 725
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoBoth
@@ -285,9 +285,9 @@ object dxClusterForm: TdxClusterForm
       ClientWidth = 725
       object Memo4: TMemo
         Left = 0
-        Height = 186
+        Height = 185
         Top = 0
-        Width = 727
+        Width = 725
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoBoth
@@ -304,7 +304,7 @@ object dxClusterForm: TdxClusterForm
     ClientHeight = 26
     ClientWidth = 735
     TabOrder = 1
-    object SpeedButton1: TSpeedButton
+    object SBConnect: TSpeedButton
       AnchorSideLeft.Control = Panel1
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
@@ -349,10 +349,10 @@ object dxClusterForm: TdxClusterForm
         00003333312143423F5B42423F5F42423F5F43423F5F43423F5F43423F5F4342
         3F5F43423F5F43423F5F3E3D3B5C151414290000000000000000
       }
-      OnClick = SpeedButton1Click
+      OnClick = SBConnectClick
     end
-    object SpeedButton2: TSpeedButton
-      AnchorSideLeft.Control = SpeedButton1
+    object SBClear: TSpeedButton
+      AnchorSideLeft.Control = SBConnect
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
@@ -397,10 +397,10 @@ object dxClusterForm: TdxClusterForm
         0003F5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C596FFF5C5
         96FFF5C596FF000000110000000B000000050000000100000000
       }
-      OnClick = SpeedButton2Click
+      OnClick = SBClearClick
     end
-    object SpeedButton3: TSpeedButton
-      AnchorSideLeft.Control = SpeedButton2
+    object SBDisconnect: TSpeedButton
+      AnchorSideLeft.Control = SBClear
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
@@ -445,10 +445,10 @@ object dxClusterForm: TdxClusterForm
         000035356A2145458E5B45458F5F45458F5F45458F5F45458F5F45458F5F4545
         8F5F45458F5F45458F5F4040835C15152A290000000000000000
       }
-      OnClick = SpeedButton3Click
+      OnClick = SBDisconnectClick
     end
-    object SpeedButton4: TSpeedButton
-      AnchorSideLeft.Control = SpeedButton3
+    object SBSentDX: TSpeedButton
+      AnchorSideLeft.Control = SBDisconnect
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
@@ -493,10 +493,10 @@ object dxClusterForm: TdxClusterForm
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
-      OnClick = SpeedButton4Click
+      OnClick = SBSentDXClick
     end
-    object SpeedButton5: TSpeedButton
-      AnchorSideLeft.Control = SpeedButton4
+    object SBFilter: TSpeedButton
+      AnchorSideLeft.Control = SBSentDX
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
@@ -541,9 +541,9 @@ object dxClusterForm: TdxClusterForm
         4170E8B24FACEDBE5ECEEEC266F4EEC265F3EFC264F3F3CA73F3F3CB75F3EFC2
         66F3EEC265F3EEC366F4EDBD5FCEEBB552ACE7AC4470E6AE463D
       }
-      OnClick = SpeedButton5Click
+      OnClick = SBFilterClick
     end
-    object SpeedButton6: TSpeedButton
+    object SBEditServers: TSpeedButton
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = Panel1
@@ -590,10 +590,10 @@ object dxClusterForm: TdxClusterForm
         BEF9BCBCBCF4BCBCBCF4BCBCBCF4BCBCBCF4BCBCBCF4BCBCBCF4BEBEBEF7A7A7
         A7C40000001800000000000000004E4E620D4968CF8100000E12
       }
-      OnClick = SpeedButton6Click
+      OnClick = SBEditServersClick
     end
-    object ComboBox1: TComboBox
-      AnchorSideLeft.Control = SpeedButton5
+    object CBServers: TComboBox
+      AnchorSideLeft.Control = SBFilter
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
@@ -605,7 +605,7 @@ object dxClusterForm: TdxClusterForm
       BorderSpacing.Left = 5
       Font.Height = -12
       ItemHeight = 0
-      OnChange = ComboBox1Change
+      OnChange = CBServersChange
       ParentFont = False
       Style = csDropDownList
       TabOrder = 0

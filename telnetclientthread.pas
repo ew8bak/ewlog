@@ -17,8 +17,10 @@ type
     procedure OnConnectDX(aSocket: TLSocket);
     procedure OnDisconnectDX(aSocket: TLSocket);
     function ConnectToCluster: boolean;
+
   public
     constructor Create;
+    destructor Destroy; override;
     procedure ToForm;
   end;
 
@@ -30,7 +32,7 @@ var
 
 implementation
 
-uses MainFuncDM, MainForm_U, dxclusterform_u;
+uses MainFuncDM, dxclusterform_u;
 
 procedure TTelnetThread.OnConnectDX(aSocket: TLSocket);
 begin
@@ -42,7 +44,6 @@ procedure TTelnetThread.OnDisconnectDX(aSocket: TLSocket);
 begin
   ConnectCluster := False;
   Synchronize(@ToForm);
-  FreeAndNil(DXTelnetClient);
 end;
 
 procedure TTelnetThread.OnReceiveDX(aSocket: TLSocket);
@@ -62,13 +63,21 @@ constructor TTelnetThread.Create;
 begin
   FreeOnTerminate := True;
   inherited Create(True);
+  DXTelnetClient := nil;
+  DXTelnetClient := TLTelnetClientComponent.Create(nil);
+end;
+
+destructor TTelnetThread.Destroy;
+begin
+  FreeAndNil(DXTelnetClient);
+  inherited Destroy;
 end;
 
 procedure TTelnetThread.ToForm;
 begin
   dxClusterForm.FromClusterThread(TelnetLine);
   if ConnectCluster then
-    dxClusterForm.SpeedButton1.Enabled := False;
+    dxClusterForm.SBConnect.Enabled := False;
 end;
 
 function TTelnetThread.ConnectToCluster: boolean;
@@ -76,8 +85,6 @@ begin
   Result := True;
   ConnectCluster := False;
   try
-    DXTelnetClient := nil;
-    DXTelnetClient := TLTelnetClientComponent.Create(nil);
     DXTelnetClient.OnReceive := @OnReceiveDX;
     DXTelnetClient.OnError := @OnErrorDX;
     DXTelnetClient.OnConnect := @OnConnectDX;
@@ -97,11 +104,15 @@ end;
 
 procedure TTelnetThread.Execute;
 begin
-    if not ConnectToCluster then
-    begin
-      FreeAndNil(DXTelnetClient);
-      Exit;
-    end;
+  if not ConnectToCluster then
+  begin
+    FreeAndNil(DXTelnetClient);
+    Exit;
+  end;
+  while not Terminated do
+  begin
+    sleep(100);
+  end;
 end;
 
 end.
