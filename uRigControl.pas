@@ -193,8 +193,6 @@ begin
       fLastError := E.Message;
       Result     := False;
       TRXForm.tmrRadio.Enabled:=False;
-      MiniForm.MenuItem86.Enabled:=False;
-
       RunRigCtld:=False;
       exit;
     end

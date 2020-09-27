@@ -73,6 +73,7 @@ procedure TServerDM.DataModuleCreate(Sender: TObject);
 var
   i: integer;
 begin
+//  try
   lastUDPport := -1;
   AdifFromMobileSyncStart := False;
   ImportAdifMobile := False;
@@ -84,7 +85,6 @@ begin
     end;
   if lastUDPport = -1 then
     MessageToForm := 'Can not create socket';
-  lastUDPport := -1;
   lastTCPport := -1;
   LTCPComponent1.ReuseAddress := True;
   for i := 0 to 5 do
@@ -97,6 +97,11 @@ begin
     end;
   if lastTCPport = -1 then
     MessageToForm := 'Can not create socket';
+
+ // except
+//    on E: Exception do
+//     WriteLn(ExceptFile, 'TServerDM.DataModuleCreate:' + E.ClassName + ':' + E.Message);
+//  end;
 end;
 
 procedure TServerDM.LTCPComponent1Accept(aSocket: TLSocket);

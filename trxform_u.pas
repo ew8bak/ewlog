@@ -93,7 +93,6 @@ type
     procedure btnSSBClick(Sender: TObject);
     procedure btnVFOAClick(Sender: TObject);
     procedure btnVFOBClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -144,12 +143,12 @@ type
       MousePos: TPoint; var Handled: boolean);
     procedure rbRadio1Click(Sender: TObject);
     procedure rbRadio2Click(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
     procedure tmrRadioTimer(Sender: TObject);
     procedure SetMode(mode: string; bandwidth: integer);
     function GetFreqHz: double;
     function GetFreqkHz: double;
     function GetFreqMHz: double;
+    procedure FreeRadio;
   private
 
     { private declarations }
@@ -196,14 +195,13 @@ uses
 
 procedure TTRXForm.SavePosition;
 begin
-  if IniSet.MainForm = 'MULTI' then
-    if TRXForm.WindowState <> wsMaximized then
-    begin
-      INIFile.WriteInteger('SetLog', 'trxLeft', TRXForm.Left);
-      INIFile.WriteInteger('SetLog', 'trxTop', TRXForm.Top);
-      INIFile.WriteInteger('SetLog', 'trxWidth', TRXForm.Width);
-      INIFile.WriteInteger('SetLog', 'trxHeight', TRXForm.Height);
-    end;
+  if TRXForm.WindowState <> wsMaximized then
+  begin
+    INIFile.WriteInteger('SetLog', 'trxLeft', TRXForm.Left);
+    INIFile.WriteInteger('SetLog', 'trxTop', TRXForm.Top);
+    INIFile.WriteInteger('SetLog', 'trxWidth', TRXForm.Width);
+    INIFile.WriteInteger('SetLog', 'trxHeight', TRXForm.Height);
+  end;
 end;
 
 procedure TTRXForm.Freq(Hz: integer);
@@ -289,7 +287,7 @@ begin
 
   if Length(m) > 1 then
     dmFunc.GetRIGMode(m, mode, submode);
-  MiniForm.ShowInfoFromRIG(f,mode, submode);
+  MiniForm.ShowInfoFromRIG(f, mode, submode);
   lblMode.Caption := m;
 end;
 
@@ -329,8 +327,9 @@ begin
   radio.RigCtldPort := StrToInt(INIFile.ReadString('TRX' + n, 'RigCtldPort', '4532'));
   radio.RigCtldHost := INIFile.ReadString('TRX' + n, 'host', '127.0.0.1');
   if StrToInt(INIFile.ReadString('TRX' + n, 'Poll', '100')) < 3 then
-  radio.RigPoll := 3 else
-  radio.RigPoll := StrToInt(INIFile.ReadString('TRX' + n, 'Poll', '3'));
+    radio.RigPoll := 3
+  else
+    radio.RigPoll := StrToInt(INIFile.ReadString('TRX' + n, 'Poll', '3'));
   radio.RigSendCWR := INIFile.ReadBool('TRX' + n, 'CWR', False);
   rbRadio1.Caption := INIFile.ReadString('TRX' + n, 'name', '');
   TRXForm.Caption := INIFile.ReadString('TRX' + n, 'name', '');
@@ -350,24 +349,24 @@ procedure TTRXForm.FormCreate(Sender: TObject);
 var
   n: string = '';
 begin
-  Arrow1.Visible:=False;
-  Arrow2.Visible:=False;
-  Arrow3.Visible:=False;
-  Arrow4.Visible:=False;
-  Arrow5.Visible:=False;
-  Arrow6.Visible:=False;
-  Arrow7.Visible:=False;
-  Arrow8.Visible:=False;
-  Arrow9.Visible:=False;
-  Arrow10.Visible:=False;
-  Arrow11.Visible:=False;
-  Arrow12.Visible:=False;
-  Arrow13.Visible:=False;
-  Arrow14.Visible:=False;
-  Arrow15.Visible:=False;
-  Arrow16.Visible:=False;
-  Arrow17.Visible:=False;
-  Arrow18.Visible:=False;
+  Arrow1.Visible := False;
+  Arrow2.Visible := False;
+  Arrow3.Visible := False;
+  Arrow4.Visible := False;
+  Arrow5.Visible := False;
+  Arrow6.Visible := False;
+  Arrow7.Visible := False;
+  Arrow8.Visible := False;
+  Arrow9.Visible := False;
+  Arrow10.Visible := False;
+  Arrow11.Visible := False;
+  Arrow12.Visible := False;
+  Arrow13.Visible := False;
+  Arrow14.Visible := False;
+  Arrow15.Visible := False;
+  Arrow16.Visible := False;
+  Arrow17.Visible := False;
+  Arrow18.Visible := False;
 
   Radio := nil;
   thRig := nil;
@@ -380,19 +379,18 @@ begin
   if INIFile.ReadString('TRX' + n, 'RigCtldPath', '') <> '' then
     InicializeRig;
 
-//  if IniSet.ShowTRXForm then
-//  begin
-//    TRXForm.Parent := MainForm.Panel13;
-//    TRXForm.BorderStyle := bsNone;
-//    TRXForm.Align := alClient;
-//    TRXForm.Show;
-//  end;
+  //  if IniSet.ShowTRXForm then
+  //  begin
+  //    TRXForm.Parent := MainForm.Panel13;
+  //    TRXForm.BorderStyle := bsNone;
+  //    TRXForm.Align := alClient;
+  //    TRXForm.Show;
+  //  end;
 
 end;
 
 procedure TTRXForm.FormShow(Sender: TObject);
 begin
-    if IniSet.MainForm = 'MULTI' then
   if (IniSet._l_trx <> 0) and (IniSet._t_trx <> 0) and (IniSet._w_trx <> 0) and
     (IniSet._h_trx <> 0) then
     TRXForm.SetBounds(IniSet._l_trx, IniSet._t_trx, IniSet._w_trx, IniSet._h_trx);
@@ -623,12 +621,6 @@ begin
   //  Label6.Caption+Label7.Caption+Label8.Caption+Label11.Caption)+10);
 end;
 
-procedure TTRXForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-  if Assigned(thRig) then
-    thRig.Terminate;
-end;
-
 procedure TTRXForm.btnSSBClick(Sender: TObject);
 var
   tmp: currency;
@@ -764,8 +756,7 @@ end;
 
 procedure TTRXForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
-  if Assigned(radio) then
-    FreeAndNil(radio);
+  IniSet.trxShow := False;
 end;
 
 procedure TTRXForm.rbRadio1Click(Sender: TObject);
@@ -773,14 +764,17 @@ begin
   InicializeRig;
 end;
 
+procedure TTRXForm.FreeRadio;
+begin
+  if Assigned(radio) then
+    FreeAndNil(radio);
+  if Assigned(thRig) then
+    thRig.Terminate;
+end;
+
 procedure TTRXForm.rbRadio2Click(Sender: TObject);
 begin
   InicializeRig;
-end;
-
-procedure TTRXForm.Timer1Timer(Sender: TObject);
-begin
-
 end;
 
 procedure TTRXForm.tmrRadioTimer(Sender: TObject);

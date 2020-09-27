@@ -72,7 +72,7 @@ var
 
 implementation
 
-uses MainFuncDM, setupForm_U, ConfigForm_U;
+uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U;
 
 {$R *.lfm}
 
@@ -87,17 +87,32 @@ begin
    {$ELSE}
     FilePATH := GetEnvironmentVariable('SystemDrive') +
       SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    if dmFunc.CheckProcess('rigctld.exe') then
+      dmFunc.CloseProcess('rigctld.exe');
    {$ENDIF UNIX}
+
     DefaultFormatSettings.DecimalSeparator := '.';
     if not DirectoryExists(FilePATH) then
       CreateDir(FilePATH);
     INIFile := TINIFile.Create(FilePATH + 'settings.ini');
     ExceptFilePATH := FilePATH + 'except.err';
     AssignFile(ExceptFile, ExceptFilePATH);
-    if FileExists(ExceptFilePATH) then
-      Append(ExceptFile)
-    else
-      ReWrite(ExceptFile);
+    try
+      if FileExists(ExceptFilePATH) then
+        Append(ExceptFile)
+      else
+        ReWrite(ExceptFile);
+    except
+      on E: Exception do
+      begin
+        ExceptFilePATH := FilePATH + 'except.' + DateToStr(Now) + '.err';
+        AssignFile(ExceptFile, ExceptFilePATH);
+        if FileExists(ExceptFilePATH) then
+          Append(ExceptFile)
+        else
+          ReWrite(ExceptFile);
+      end;
+    end;
   end
   else
   begin

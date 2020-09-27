@@ -89,6 +89,8 @@ type
     function CheckSQLiteVersion(versionDLL: string): Boolean;
     procedure GetRIGMode(rigmode:string; var mode, submode:string);
     procedure GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
+    function CheckProcess(PName: string): Boolean;
+    function CloseProcess(PName: string): Boolean;
     {$IFDEF WINDOWS}
     function GetWindowsVersion: string;
     {$ENDIF WINDOWS}
@@ -145,6 +147,55 @@ begin
     end;
 end;
 {$ENDIF WINDOWS}
+
+function TdmFunc.CheckProcess(PName: string): Boolean;
+var
+  AProcess: TProcess;
+  AStringList: TStringList;
+begin
+  AStringList := TStringList.Create;
+  AProcess := TProcess.Create(nil);
+  AProcess.ShowWindow:=swoHIDE;
+  AProcess.Options := AProcess.Options + [poWaitOnExit, poUsePipes];
+
+  {$IFDEF WINDOWS}
+    AProcess.Executable := 'tasklist /FI "IMAGENAME eq '+PName+'"';
+  {$ELSE}
+    AProcess.Executable := 'ps -C '+PName;
+  {$ENDIF}
+    AProcess.Execute;
+  AStringList.LoadFromStream(AProcess.Output);
+
+  if AStringList.Count > 1 then
+   Result:=True
+  else
+  Result:=False;
+
+  AStringList.Free;
+  AProcess.Free;
+end;
+
+function TdmFunc.CloseProcess(PName: string): Boolean;
+var
+  AProcess: TProcess;
+begin
+  AProcess := TProcess.Create(nil);
+  AProcess.ShowWindow:=swoHIDE;
+  AProcess.Options := AProcess.Options + [poWaitOnExit, poUsePipes];
+
+  {$IFDEF WINDOWS}
+    AProcess.Executable := 'taskkill /f /im "'+PName+'"';
+  {$ELSE}
+    AProcess.Executable := 'killall '+PName;
+  {$ENDIF}
+    AProcess.Execute;
+
+  if CheckProcess(PName) then
+  Result:=False
+  else
+  Result:=True;
+  AProcess.Free;
+end;
 
 procedure TdmFunc.GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
 begin

@@ -409,7 +409,7 @@ begin
     MiniForm.Menu := MiniForm.MainMenu;
     MenuItem110.Enabled := False;
     MiniForm.Parent := nil;
-    MiniForm.BorderStyle := bsSingle;
+    MiniForm.BorderStyle := bsSizeable;
     MiniForm.Align := alNone;
     StatusBar.Parent := MiniForm;
     MainForm.Close;
@@ -622,6 +622,7 @@ begin
   MenuItem112.Checked := False;
   if MenuItem111.Checked then
   begin
+    viewPhoto.BorderStyle := bsNone;
     viewPhoto.Parent := MainForm.OtherPanel;
     viewPhoto.Align := alClient;
     viewPhoto.Show;
@@ -638,6 +639,7 @@ begin
   begin
     viewPhoto.hide;
     IniSet.pShow := False;
+    INIFile.WriteBool('SetLog', 'pShow', False);
   end;
   MenuItem111.Checked := False;
   MenuItem112.Checked := True;
@@ -1710,7 +1712,6 @@ begin
   INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
-  TRXForm.Close;
 
   GridsForm.SavePosition;
   Earth.SavePosition;
@@ -1721,6 +1722,7 @@ begin
     MapForm.SavePosition
   else
     Earth.SavePosition;
+  TRXForm.FreeRadio;
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);
@@ -1755,6 +1757,10 @@ begin
   MIClusterTop.Checked := IniSet.cTop;
   MiLogGridTop.Checked := IniSet.gTop;
   MiPhotoTop.Checked := IniSet.pTop;
+  if IniSet.pShow then
+    MenuItem111.Checked := IniSet.pShow
+  else
+    MenuItem112.Checked := True;
   if IniSet.MainForm <> 'MULTI' then
     MenuItem73.Checked := True
   else

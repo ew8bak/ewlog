@@ -75,6 +75,9 @@ begin
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
   INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
+  if IniSet.trxShow then
+  TRXForm.SavePosition;
+  TRXForm.FreeRadio;
 end;
 
 end.
