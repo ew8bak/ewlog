@@ -70,7 +70,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="291"/>
+        <TopLine Value="290"/>
         <CursorPos X="66" Y="153"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -119,7 +119,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="170"/>
+        <TopLine Value="437"/>
         <CursorPos X="15" Y="178"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -639,12 +639,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="77"/>
-        <CursorPos X="47" Y="90"/>
+        <TopLine Value="623"/>
+        <CursorPos X="42" Y="91"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit60>
       <Unit61>
         <Filename Value="logbooktable_record.pas"/>
@@ -670,9 +670,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="1201"/>
-        <CursorPos X="73" Y="1213"/>
+        <TopLine Value="1616"/>
+        <CursorPos X="25" Y="1533"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit63>
@@ -776,7 +777,6 @@
         <CursorPos X="75" Y="1712"/>
         <UsageCount Value="156"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit75>
       <Unit76>
         <Filename Value="imbedcallbookcheckrec.pas"/>
@@ -795,7 +795,7 @@
         <UnitName Value="serverDM_u"/>
         <EditorIndex Value="7"/>
         <TopLine Value="74"/>
-        <CursorPos X="9" Y="80"/>
+        <CursorPos X="32" Y="81"/>
         <UsageCount Value="146"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
