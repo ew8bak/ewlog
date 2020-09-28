@@ -6,8 +6,9 @@ interface
 
 uses
   Classes, SysUtils;
+
 type
-    TQSO = record
+  TQSO = record
     CallSing: string[20];
     QSODate: TDateTime;
     QSOTime: string[5];
@@ -68,9 +69,9 @@ type
     My_Lon: string[15];
     SYNC: integer;
     NLogDB: string;
+    Auto: boolean;
   end;
 
 implementation
 
 end.
-

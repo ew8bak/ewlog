@@ -113,7 +113,7 @@ begin
         if res.Count > 0 then
           response := Trim(StripStr('<BR>', res.Strings[0]));
         Result := Pos('records added', response) > 0;
-    //    if (not Result) or (inform = 1) then
+        if (not Result) or not SendQSOr.Auto then
           result_mes := response;
       end
       else

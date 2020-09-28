@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBGrids, ExtCtrls,
-  Grids, Menus, selectQSO_record, foundQSO_record, prefix_record, ResourceStr,
+  Grids, Menus, selectQSO_record, foundQSO_record, prefix_record,
+  ResourceStr, qso_record,
   LCLType;
 
 type
@@ -286,56 +287,27 @@ begin
 end;
 
 procedure TGridsForm.ExportHRDItemClick(Sender: TObject);
+var
+  SelQSO: TQSO;
 begin
-  {  if LogBookQuery.RecordCount > 0 then
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
   begin
-    SendHRDThread := TSendHRDThread.Create;
-    if Assigned(SendHRDThread.FatalException) then
-      raise SendHRDThread.FatalException;
-    with SendHRDThread do
-    begin
-      userid := HRDLogin;
-      userpwd := HRDCode;
-      call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-      startdate := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-      starttime := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
-      freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-      mode := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-      submode := DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
-      rsts := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-      rstr := DBGrid1.DataSource.DataSet.FieldByName('QSOReportRecived').AsString;
-      locat := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-      qslinf := SetQSLInfo;
-      information := 1;
-      inform := 1;
-      Start;
-    end;
-  end; }
+    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+    SelQSO.Auto:=False;
+    MainFunc.SendQSOto('hrdlog', SelQSO);
+  end;
 end;
 
 procedure TGridsForm.ExportQSLccItemClick(Sender: TObject);
+var
+  SelQSO: TQSO;
 begin
-  {  if LogBookQuery.RecordCount > 0 then
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
   begin
-    SendEQSLThread := TSendEQSLThread.Create;
-    if Assigned(SendEQSLThread.FatalException) then
-      raise SendEQSLThread.FatalException;
-    with SendEQSLThread do
-    begin
-      userid := eQSLccLogin;
-      userpwd := eQSLccPassword;
-      call := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-      startdate := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-      starttime := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
-      freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-      mode := DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString;
-      submode := DBGrid1.DataSource.DataSet.FieldByName('QSOSubMode').AsString;
-      rst := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-      qslinf := SetQSLInfo;
-      information := 1;
-      Start;
-    end;
-  end; }
+    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+    SelQSO.Auto:=False;
+    MainFunc.SendQSOto('eqslcc', SelQSO);
+  end;
 end;
 
 procedure TGridsForm.FilterCancelItemClick(Sender: TObject);
@@ -401,9 +373,9 @@ end;
 procedure TGridsForm.FormShow(Sender: TObject);
 begin
   if IniSet.MainForm = 'MULTI' then
-  if (IniSet._l_g <> 0) and (IniSet._t_g <> 0) and (IniSet._w_g <> 0) and
-    (IniSet._h_g <> 0) then
-    GridsForm.SetBounds(IniSet._l_g, IniSet._t_g, IniSet._w_g, IniSet._h_g);
+    if (IniSet._l_g <> 0) and (IniSet._t_g <> 0) and (IniSet._w_g <> 0) and
+      (IniSet._h_g <> 0) then
+      GridsForm.SetBounds(IniSet._l_g, IniSet._t_g, IniSet._w_g, IniSet._h_g);
 end;
 
 procedure TGridsForm.CopyToLogItemClick(Sender: TObject);
@@ -771,17 +743,18 @@ begin
 end;
 
 procedure TGridsForm.SendClusterItemClick(Sender: TObject);
-var
-  freq: string;
-  freq2: double;
+//var
+//  freq: string;
+//  freq2: double;
 begin
   SendTelnetSpot.Show;
   SendTelnetSpot.Edit1.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-  freq := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-  Delete(freq, length(freq) - 2, 1);
-  freq2 := StrToFloat(freq);
-  SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2);
+  SendTelnetSpot.ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
+ // Delete(freq, length(freq) - 2, 1);
+ // freq2 := StrToFloat(freq);
+ // SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2 * 1000);
+// SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2 * 1000);
 end;
 
 procedure TGridsForm.GridMenuPopup(Sender: TObject);

@@ -129,6 +129,7 @@ begin
         Result := AnsiContainsStr(res.Text, '<insert>1</insert>');
       //if inform = 1 then
       //begin
+      if not SendQSOr.Auto then
         if pos('<insert>1</insert>', Res.Text) > 0 then
           result_mes := rRecordAddedSuccessfully;
         if pos('<insert>0</insert>', Res.Text) > 0 then

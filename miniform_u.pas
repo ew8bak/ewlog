@@ -531,6 +531,7 @@ procedure TMiniForm.LoadComboBoxItem;
 begin
   MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand, CBCurrentLog);
   CBCurrentLogChange(nil);
+  CBModeCloseUp(nil);
 end;
 
 procedure TMiniForm.LoadFromInternetCallBook(info: TInformRecord);
@@ -1235,12 +1236,19 @@ begin
         end;
         SQSO.NLogDB := LBRecord.LogTable;
         MainFunc.SaveQSO(SQSO);
-        MainFunc.SendQSOto('clublog', SQSO);
-        MainFunc.SendQSOto('eqslcc', SQSO);
-        MainFunc.SendQSOto('hrdlog', SQSO);
-        MainFunc.SendQSOto('hamqth', SQSO);
-        MainFunc.SendQSOto('qrzcom', SQSO);
-        MainFunc.SendQSOto('cloudlog', SQSO);
+        SQSO.Auto := True;
+        if LBRecord.AutoClubLog then
+          MainFunc.SendQSOto('clublog', SQSO);
+        if LBRecord.AutoEQSLcc then
+          MainFunc.SendQSOto('eqslcc', SQSO);
+        if LBRecord.AutoHRDLog then
+          MainFunc.SendQSOto('hrdlog', SQSO);
+        if LBRecord.AutoHamQTH then
+          MainFunc.SendQSOto('hamqth', SQSO);
+        if LBRecord.AutoQRZCom then
+          MainFunc.SendQSOto('qrzcom', SQSO);
+        if IniSet.AutoCloudLog then
+          MainFunc.SendQSOto('cloudlog', SQSO);
 
         if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
           if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
@@ -1614,7 +1622,7 @@ begin
   EditIOTA.Clear;
   EditMGR.Clear;
 
-  if (editButtonLeng > 0) and (editButtonLeng < 5) then
+  if editButtonLeng > 0 then
   begin
     PFXR := MainFunc.SearchPrefix(editButtonText, EditMGR.Text);
     LBAzimuthD.Caption := PFXR.Azimuth;

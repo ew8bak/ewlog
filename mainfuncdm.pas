@@ -361,7 +361,7 @@ end;
 procedure TMainFunc.SendQSOto(via: string; SendQSO: TQSO);
 begin
   //Отправка в CloudLog
-  if IniSet.AutoCloudLog and (via = 'cloudlog') then
+  if via = 'cloudlog' then
   begin
     SendCloudLogThread := TSendCloudLogThread.Create;
     if Assigned(SendCloudLogThread.FatalException) then
@@ -370,9 +370,10 @@ begin
     SendCloudLogThread.server := IniSet.CloudLogServer;
     SendCloudLogThread.key := IniSet.CloudLogApiKey;
     SendCloudLogThread.Start;
+    Exit;
   end;
   //Отправка в eQSLcc
-  if LBRecord.AutoEQSLcc and (via = 'eqslcc') then
+  if via = 'eqslcc' then
   begin
     SendEQSLThread := TSendEQSLThread.Create;
     if Assigned(SendEQSLThread.FatalException) then
@@ -381,9 +382,10 @@ begin
     SendEQSLThread.user := LBRecord.eQSLccLogin;
     SendEQSLThread.password := LBRecord.eQSLccPassword;
     SendEQSLThread.Start;
+    Exit;
   end;
   //Отправка в HRDLOG
-  if LBRecord.AutoHRDLog and (via = 'hrdlog') then
+  if via = 'hrdlog' then
   begin
     SendHRDThread := TSendHRDThread.Create;
     if Assigned(SendHRDThread.FatalException) then
@@ -392,9 +394,10 @@ begin
     SendHRDThread.user := LBRecord.HRDLogin;
     SendHRDThread.password := LBRecord.HRDCode;
     SendHRDThread.Start;
+    Exit;
   end;
   //Отправка в HAMQTH
-  if LBRecord.AutoHamQTH and (via = 'hamqth') then
+  if via = 'hamqth' then
   begin
     SendHamQTHThread := TSendHamQTHThread.Create;
     if Assigned(SendHamQTHThread.FatalException) then
@@ -403,9 +406,10 @@ begin
     SendHamQTHThread.user := LBRecord.HamQTHLogin;
     SendHamQTHThread.password := LBRecord.HamQTHPassword;
     SendHamQTHThread.Start;
+    Exit;
   end;
   //Отправка в QRZ.COM
-  if LBRecord.AutoQRZCom and (via = 'qrzcom') then
+  if via = 'qrzcom' then
   begin
     SendQRZComThread := TSendQRZComThread.Create;
     if Assigned(SendQRZComThread.FatalException) then
@@ -414,9 +418,10 @@ begin
     SendQRZComThread.user := LBRecord.QRZComLogin;
     SendQRZComThread.password := LBRecord.QRZComPassword;
     SendQRZComThread.Start;
+    Exit;
   end;
   //Отправка в ClubLog
-  if LBRecord.AutoClubLog and (via = 'clublog') then
+  if via = 'clublog' then
   begin
     SendClubLogThread := TSendClubLogThread.Create;
     if Assigned(SendClubLogThread.FatalException) then
@@ -426,6 +431,7 @@ begin
     SendClubLogThread.password := LBRecord.ClubLogPassword;
     SendClubLogThread.callsign := LBRecord.CallSign;
     SendClubLogThread.Start;
+    Exit;
   end;
 end;
 
@@ -1284,7 +1290,7 @@ begin
   IniSet._h_trx := INIFile.ReadInteger('SetLog', 'trxHeight', 156);
   IniSet.trxTop := INIFile.ReadBool('SetLog', 'trxTop', False);
   IniSet.trxShow := INIFile.ReadBool('SetLog', 'trxShow', False);
-  IniSet.ClusterAutoStart := INIFile.ReadBool('TelnetCluster', 'AutoStart', False)
+  IniSet.ClusterAutoStart := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -1671,7 +1677,7 @@ begin
   begin
     Delete(Latitude, length(Latitude), 1);
   end;
-
+  DefaultFormatSettings.DecimalSeparator := '.';
   dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(Latitude),
     strtofloat(Longitude), qra, azim);
   Azimuth := azim;
