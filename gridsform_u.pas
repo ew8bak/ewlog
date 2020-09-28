@@ -743,18 +743,11 @@ begin
 end;
 
 procedure TGridsForm.SendClusterItemClick(Sender: TObject);
-//var
-//  freq: string;
-//  freq2: double;
 begin
   SendTelnetSpot.Show;
   SendTelnetSpot.Edit1.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
   SendTelnetSpot.ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
- // Delete(freq, length(freq) - 2, 1);
- // freq2 := StrToFloat(freq);
- // SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2 * 1000);
-// SendTelnetSpot.ComboBox1.Text := FloatToStr(freq2 * 1000);
 end;
 
 procedure TGridsForm.GridMenuPopup(Sender: TObject);
