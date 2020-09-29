@@ -1232,6 +1232,8 @@ begin
   IniSet.PastMode := INIFile.ReadString('SetLog', 'PastMode', '');
   IniSet.PastSubMode := INIFile.ReadString('SetLog', 'PastSubMode', '');
   IniSet.PastBand := INIFile.ReadInteger('SetLog', 'PastBand', 0);
+  if IniSet.PastBand = -1 then
+    IniSet.PastBand := 0;
   IniSet.Language := INIFile.ReadString('SetLog', 'Language', '');
   IniSet.Map_Use := INIFile.ReadBool('SetLog', 'UseMAPS', False);
   IniSet.PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
