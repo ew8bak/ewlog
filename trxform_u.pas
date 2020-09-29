@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Arrow, uRigControl,
+  ExtCtrls, Arrow, Buttons, uRigControl,
   lNetComponents, Types;
 
 const
@@ -71,6 +71,7 @@ type
     lblMode: TLabel;
     rbRadio1: TRadioButton;
     rbRadio2: TRadioButton;
+    SBConnect: TSpeedButton;
     tmrRadio: TTimer;
     procedure Arrow1MouseLeave(Sender: TObject);
     procedure Arrow1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
@@ -143,6 +144,7 @@ type
       MousePos: TPoint; var Handled: boolean);
     procedure rbRadio1Click(Sender: TObject);
     procedure rbRadio2Click(Sender: TObject);
+    procedure SBConnectClick(Sender: TObject);
     procedure tmrRadioTimer(Sender: TObject);
     procedure SetMode(mode: string; bandwidth: integer);
     function GetFreqHz: double;
@@ -275,6 +277,7 @@ begin
   submode := '';
   if Assigned(radio) then
   begin
+    SBConnect.Caption:='On';
     f := radio.GetFreqMHz;
     m := radio.GetModeOnly;
     Freq(radio.GetFreqHz);
@@ -282,8 +285,10 @@ begin
     bwith := radio.GetBandwich(radio.GetRawMode);
   {$ENDIF}
   end
-  else
+  else begin
     f := 0;
+    SBConnect.Caption:='Off';
+  end;
 
   if Length(m) > 1 then
     dmFunc.GetRIGMode(m, mode, submode);
@@ -338,9 +343,11 @@ begin
   tmrRadio.Enabled := True;
 
   Result := True;
+  SBConnect.Caption:='On';
   if not radio.Connected then
   begin
     tmrRadio.Enabled := False;
+    SBConnect.Caption:='Off';
     FreeAndNil(radio);
   end;
 end;
@@ -378,15 +385,6 @@ begin
 
   if INIFile.ReadString('TRX' + n, 'RigCtldPath', '') <> '' then
     InicializeRig;
-
-  //  if IniSet.ShowTRXForm then
-  //  begin
-  //    TRXForm.Parent := MainForm.Panel13;
-  //    TRXForm.BorderStyle := bsNone;
-  //    TRXForm.Align := alClient;
-  //    TRXForm.Show;
-  //  end;
-
 end;
 
 procedure TTRXForm.FormShow(Sender: TObject);
@@ -773,6 +771,11 @@ begin
 end;
 
 procedure TTRXForm.rbRadio2Click(Sender: TObject);
+begin
+  InicializeRig;
+end;
+
+procedure TTRXForm.SBConnectClick(Sender: TObject);
 begin
   InicializeRig;
 end;
