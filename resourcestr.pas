@@ -169,6 +169,8 @@ resourcestring
   rCallsignNotEntered ='Recipient callsign not entered';
   rOf = ' of ';
   rCopyQSO = 'Copy QSO';
+  rTheNameFieldCannotBeEmpty = 'The "Name" field cannot be empty';
+  rNewProgram = 'New Program';
   rGoToSettings = 'Go to settings?';
   rDatabaseNotConnected = 'Check the correctness of the entered data. Possibly a non-existing database has been entered (it must be created first). Or Invalid username and password.';
   tNotFoundTableToCopy = 'No table found to copy. Possible callsign mismatch in databases';

@@ -1,7 +1,7 @@
 object ClusterServer_Form: TClusterServer_Form
-  Left = 447
+  Left = 415
   Height = 151
-  Top = 169
+  Top = 695
   Width = 337
   BorderStyle = bsDialog
   Caption = 'Editing DX servers'

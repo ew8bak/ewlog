@@ -1,7 +1,7 @@
 object MM_Form: TMM_Form
-  Left = 460
+  Left = 1021
   Height = 419
-  Top = 147
+  Top = 108
   Width = 548
   BorderStyle = bsSingle
   Caption = 'Modulation Manager'

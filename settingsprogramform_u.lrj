@@ -1,11 +1,9 @@
 {"version":1,"strings":[
 {"hash":39164915,"name":"tsettingsprogramform.caption","sourcebytes":[69,120,116,101,114,110,97,108,32,112,114,111,103,114,97,109,115],"value":"External programs"},
-{"hash":80916441,"name":"tsettingsprogramform.groupbox1.caption","sourcebytes":[70,108,100,105,103,105],"value":"Fldigi"},
-{"hash":31297525,"name":"tsettingsprogramform.label1.caption","sourcebytes":[80,97,116,104,32,116,111,32,101,120,101,99,117,116,97,98,108,101,32,102,105,108,101],"value":"Path to executable file"},
-{"hash":81225385,"name":"tsettingsprogramform.checkbox2.caption","sourcebytes":[85,115,101,32,70,108,100,105,103,105],"value":"Use Fldigi"},
-{"hash":366789,"name":"tsettingsprogramform.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"},
-{"hash":77089212,"name":"tsettingsprogramform.button2.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
-{"hash":96991016,"name":"tsettingsprogramform.groupbox2.caption","sourcebytes":[87,83,74,84,45,88],"value":"WSJT-X"},
-{"hash":31297525,"name":"tsettingsprogramform.label2.caption","sourcebytes":[80,97,116,104,32,116,111,32,101,120,101,99,117,116,97,98,108,101,32,102,105,108,101],"value":"Path to executable file"},
-{"hash":96616536,"name":"tsettingsprogramform.checkbox4.caption","sourcebytes":[85,115,101,32,87,83,74,84,45,88],"value":"Use WSJT-X"}
+{"hash":4863637,"name":"tsettingsprogramform.btcancel.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":232649002,"name":"tsettingsprogramform.lbname.caption","sourcebytes":[78,97,109,101,32,112,114,111,103,114,97,109,58],"value":"Name program:"},
+{"hash":265560362,"name":"tsettingsprogramform.lbpath.caption","sourcebytes":[80,97,116,104,32,112,114,111,103,114,97,109,58],"value":"Path program:"},
+{"hash":131223053,"name":"tsettingsprogramform.btaddprogram.caption","sourcebytes":[65,100,100,32,112,114,111,103,114,97,109],"value":"Add program"},
+{"hash":366789,"name":"tsettingsprogramform.btsave.caption","sourcebytes":[83,97,118,101],"value":"Save"},
+{"hash":78392485,"name":"tsettingsprogramform.btdelete.caption","sourcebytes":[68,101,108,101,116,101],"value":"Delete"}
 ]}
