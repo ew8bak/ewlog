@@ -1,7 +1,7 @@
 object SendTelnetSpot: TSendTelnetSpot
-  Left = 575
+  Left = 906
   Height = 155
-  Top = 198
+  Top = 190
   Width = 297
   BorderStyle = bsDialog
   Caption = 'Send spot'
@@ -62,12 +62,14 @@ object SendTelnetSpot: TSendTelnetSpot
     Caption = 'Frequency'
     ParentColor = False
   end
-  object Edit2: TEdit
+  object EditComment: TEdit
     Left = 16
     Height = 25
     Top = 80
     Width = 264
     Font.Height = -12
+    OnChange = EditCommentChange
+    OnKeyDown = EditCommentKeyDown
     ParentFont = False
     TabOrder = 2
   end

@@ -211,6 +211,8 @@ type
     procedure EditCallsignChange(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
+    procedure EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -1688,6 +1690,12 @@ begin
     SelEditNumChar := EditCallsign.SelStart;
   if (Key = VK_RETURN) then
     InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
+end;
+
+procedure TMiniForm.EditCallsignMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  EditCallsignChange(nil);
 end;
 
 procedure TMiniForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);

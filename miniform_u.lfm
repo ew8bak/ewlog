@@ -1,11 +1,11 @@
 object MiniForm: TMiniForm
   Left = 396
-  Height = 411
+  Height = 428
   Top = 133
   Width = 477
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
-  ClientHeight = 388
+  ClientHeight = 405
   ClientWidth = 477
   Menu = MainMenu
   OnClose = FormClose
@@ -693,6 +693,7 @@ object MiniForm: TMiniForm
     OnButtonClick = EditCallsignButtonClick
     OnChange = EditCallsignChange
     OnKeyDown = EditCallsignKeyDown
+    OnMouseDown = EditCallsignMouseDown
     ParentFont = False
     PasswordChar = #0
     TabOrder = 8
@@ -1990,7 +1991,7 @@ object MiniForm: TMiniForm
   object StatusBar: TStatusBar
     Left = 0
     Height = 15
-    Top = 373
+    Top = 390
     Width = 477
     Panels = <    
       item
