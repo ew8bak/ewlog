@@ -630,6 +630,10 @@ msgstr ""
 msgid "A new country in BM"
 msgstr ""
 
+#: resourcestr.rnewprogram
+msgid "New Program"
+msgstr ""
+
 #: resourcestr.rnocalcdxcc
 msgctxt "resourcestr.rnocalcdxcc"
 msgid "No Calc DXCC"
@@ -917,6 +921,10 @@ msgstr ""
 
 #: resourcestr.rtablelogdberror
 msgid "Log table ERROR"
+msgstr ""
+
+#: resourcestr.rthenamefieldcannotbeempty
+msgid "The \"Name\" field cannot be empty"
 msgstr ""
 
 #: resourcestr.rupdatedontcopy
@@ -4531,14 +4539,22 @@ msgstr ""
 msgid "RIG1"
 msgstr ""
 
-#: tsettingsprogramform.button1.caption
-msgctxt "tsettingsprogramform.button1.caption"
-msgid "Save"
+#: tsettingsprogramform.btaddprogram.caption
+msgid "Add program"
 msgstr ""
 
-#: tsettingsprogramform.button2.caption
-msgctxt "tsettingsprogramform.button2.caption"
-msgid "Cancel"
+#: tsettingsprogramform.btcancel.caption
+msgctxt "tsettingsprogramform.btcancel.caption"
+msgid "Close"
+msgstr ""
+
+#: tsettingsprogramform.btdelete.caption
+msgid "Delete"
+msgstr ""
+
+#: tsettingsprogramform.btsave.caption
+msgctxt "tsettingsprogramform.btsave.caption"
+msgid "Save"
 msgstr ""
 
 #: tsettingsprogramform.caption
@@ -4546,32 +4562,12 @@ msgctxt "tsettingsprogramform.caption"
 msgid "External programs"
 msgstr ""
 
-#: tsettingsprogramform.checkbox2.caption
-msgid "Use Fldigi"
+#: tsettingsprogramform.lbname.caption
+msgid "Name program:"
 msgstr ""
 
-#: tsettingsprogramform.checkbox4.caption
-msgid "Use WSJT-X"
-msgstr ""
-
-#: tsettingsprogramform.groupbox1.caption
-msgctxt "tsettingsprogramform.groupbox1.caption"
-msgid "Fldigi"
-msgstr ""
-
-#: tsettingsprogramform.groupbox2.caption
-msgctxt "tsettingsprogramform.groupbox2.caption"
-msgid "WSJT-X"
-msgstr ""
-
-#: tsettingsprogramform.label1.caption
-msgctxt "tsettingsprogramform.label1.caption"
-msgid "Path to executable file"
-msgstr ""
-
-#: tsettingsprogramform.label2.caption
-msgctxt "tsettingsprogramform.label2.caption"
-msgid "Path to executable file"
+#: tsettingsprogramform.lbpath.caption
+msgid "Path program:"
 msgstr ""
 
 #: tsetupform.button1.caption

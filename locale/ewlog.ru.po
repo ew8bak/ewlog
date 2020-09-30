@@ -640,6 +640,10 @@ msgstr ""
 msgid "A new country in BM"
 msgstr ""
 
+#: resourcestr.rnewprogram
+msgid "New Program"
+msgstr ""
+
 #: resourcestr.rnocalcdxcc
 msgctxt "resourcestr.rnocalcdxcc"
 msgid "No Calc DXCC"
@@ -929,6 +933,10 @@ msgstr "Готово! Количество дубликатов "
 #: resourcestr.rtablelogdberror
 msgid "Log table ERROR"
 msgstr "Ошибка таблицы журнала"
+
+#: resourcestr.rthenamefieldcannotbeempty
+msgid "The \"Name\" field cannot be empty"
+msgstr ""
 
 #: resourcestr.rupdatedontcopy
 msgctxt "resourcestr.rupdatedontcopy"
@@ -4552,48 +4560,38 @@ msgstr ""
 msgid "RIG1"
 msgstr ""
 
-#: tsettingsprogramform.button1.caption
-msgctxt "tsettingsprogramform.button1.caption"
+#: tsettingsprogramform.btaddprogram.caption
+msgid "Add program"
+msgstr ""
+
+#: tsettingsprogramform.btcancel.caption
+#, fuzzy
+msgctxt "tsettingsprogramform.btcancel.caption"
+msgid "Close"
+msgstr "Закрыть"
+
+#: tsettingsprogramform.btdelete.caption
+msgid "Delete"
+msgstr ""
+
+#: tsettingsprogramform.btsave.caption
+#, fuzzy
+msgctxt "tsettingsprogramform.btsave.caption"
 msgid "Save"
 msgstr "Сохранить"
-
-#: tsettingsprogramform.button2.caption
-msgctxt "tsettingsprogramform.button2.caption"
-msgid "Cancel"
-msgstr "Отмена"
 
 #: tsettingsprogramform.caption
 msgctxt "tsettingsprogramform.caption"
 msgid "External programs"
 msgstr "Внешние программы"
 
-#: tsettingsprogramform.checkbox2.caption
-msgid "Use Fldigi"
-msgstr "Использовать Fldigi"
-
-#: tsettingsprogramform.checkbox4.caption
-msgid "Use WSJT-X"
-msgstr "Использовать WSJT-X"
-
-#: tsettingsprogramform.groupbox1.caption
-msgctxt "tsettingsprogramform.groupbox1.caption"
-msgid "Fldigi"
+#: tsettingsprogramform.lbname.caption
+msgid "Name program:"
 msgstr ""
 
-#: tsettingsprogramform.groupbox2.caption
-msgctxt "tsettingsprogramform.groupbox2.caption"
-msgid "WSJT-X"
+#: tsettingsprogramform.lbpath.caption
+msgid "Path program:"
 msgstr ""
-
-#: tsettingsprogramform.label1.caption
-msgctxt "tsettingsprogramform.label1.caption"
-msgid "Path to executable file"
-msgstr "Путь до исполняемого файла"
-
-#: tsettingsprogramform.label2.caption
-msgctxt "tsettingsprogramform.label2.caption"
-msgid "Path to executable file"
-msgstr "Путь до исполняемого файла"
 
 #: tsetupform.button1.caption
 msgid "I accept"

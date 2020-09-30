@@ -66,6 +66,7 @@ begin
     for i := 0 to SLProgram.Count - 1 do
       INIFile.WriteString('ExternalProgram', 'Program' + IntToStr(i),
         SLProgram.Strings[i]);
+    INIFile.DeleteKey('ExternalProgram', 'Program' + IntToStr(SLProgram.Count));
     LoadProgramList;
   end;
 end;
