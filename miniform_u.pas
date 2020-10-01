@@ -223,6 +223,8 @@ type
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
+    procedure MenuItem43Click(Sender: TObject);
+    procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
     procedure MIExtProgClick(Sender: TObject);
     procedure miMapTopClick(Sender: TObject);
@@ -665,6 +667,16 @@ end;
 procedure TMiniForm.MenuItem124Click(Sender: TObject);
 begin
   MM_Form.Show;
+end;
+
+procedure TMiniForm.MenuItem43Click(Sender: TObject);
+begin
+  dmFunc.RunProgram(IniSet.WSJT_PATH, '');
+end;
+
+procedure TMiniForm.MenuItem74Click(Sender: TObject);
+begin
+  dmFunc.RunProgram(IniSet.Fl_PATH, '');
 end;
 
 procedure TMiniForm.MenuItem85Click(Sender: TObject);

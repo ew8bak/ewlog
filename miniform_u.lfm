@@ -2247,9 +2247,11 @@ object MiniForm: TMiniForm
       end
       object MenuItem74: TMenuItem
         Caption = 'Fldigi'
+        OnClick = MenuItem74Click
       end
       object MenuItem43: TMenuItem
         Caption = 'WSJT-X'
+        OnClick = MenuItem43Click
       end
       object N7: TMenuItem
         Caption = '-'

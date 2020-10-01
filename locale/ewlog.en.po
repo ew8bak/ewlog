@@ -990,9 +990,17 @@ msgctxt "resourcestr.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr ""
 
+#: resourcestr.rusefldigi
+msgid "Use Fldigi with EWLog?"
+msgstr ""
+
 #: resourcestr.rusers
 msgctxt "resourcestr.rusers"
 msgid "User"
+msgstr ""
+
+#: resourcestr.rusewsjt
+msgid "Use WSJT-X with EWLog?"
 msgstr ""
 
 #: resourcestr.rvaliddx
@@ -3870,11 +3878,6 @@ msgctxt "tminiform.menuitem3.caption"
 msgid "View"
 msgstr ""
 
-#: tminiform.menuitem4.caption
-msgctxt "tminiform.menuitem4.caption"
-msgid "External programs"
-msgstr ""
-
 #: tminiform.menuitem43.caption
 msgctxt "tminiform.menuitem43.caption"
 msgid "WSJT-X"
@@ -3883,11 +3886,6 @@ msgstr ""
 #: tminiform.menuitem48.caption
 msgctxt "tminiform.menuitem48.caption"
 msgid "Set date synchronization"
-msgstr ""
-
-#: tminiform.menuitem5.caption
-msgctxt "tminiform.menuitem5.caption"
-msgid "Quick start"
 msgstr ""
 
 #: tminiform.menuitem52.caption
@@ -4058,6 +4056,11 @@ msgstr ""
 #: tminiform.midownloadlang.caption
 msgctxt "tminiform.midownloadlang.caption"
 msgid "Download Languages"
+msgstr ""
+
+#: tminiform.miextprog.caption
+msgctxt "tminiform.miextprog.caption"
+msgid "External programs"
 msgstr ""
 
 #: tminiform.milanguage.caption
@@ -4566,6 +4569,10 @@ msgstr ""
 #: tsettingsprogramform.caption
 msgctxt "tsettingsprogramform.caption"
 msgid "External programs"
+msgstr ""
+
+#: tsettingsprogramform.cbusedigi.caption
+msgid "Use"
 msgstr ""
 
 #: tsettingsprogramform.lbname.caption
