@@ -1737,10 +1737,19 @@ end;
 
 procedure TMiniForm.EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer);
+var
+  tempName, tempQTH, tempGrid, tempState: string;
 begin
+  tempName := EditName.Text;
+  tempQTH := EditQTH.Text;
+  tempGrid := EditGrid.Text;
+  tempState := EditState.Text;
   SelEditNumChar := EditCallsign.SelStart;
   EditCallsignChange(nil);
-  InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
+  EditName.Text := tempName;
+  EditQTH.Text := tempQTH;
+  EditGrid.Text := tempGrid;
+  EditState.Text := tempState;
 end;
 
 procedure TMiniForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
