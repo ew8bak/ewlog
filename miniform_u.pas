@@ -1733,6 +1733,7 @@ end;
 procedure TMiniForm.EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer);
 begin
+  SelEditNumChar := EditCallsign.SelStart;
   EditCallsignChange(nil);
 end;
 
