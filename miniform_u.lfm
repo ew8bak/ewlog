@@ -1027,7 +1027,6 @@ object MiniForm: TMiniForm
     AutoSize = False
     BorderSpacing.Left = 381
     BorderSpacing.Top = 2
-    Color = clYellow
     Font.Height = -12
     ParentFont = False
     TabOrder = 17

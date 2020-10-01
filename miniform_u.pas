@@ -1685,33 +1685,38 @@ begin
     MapForm.WriteMap(Lat, Lon, 9);
 
   FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(editButtonText));
-  EditName.Text := FoundQSOR.OMName;
-  EditQTH.Text := FoundQSOR.OMQTH;
-  EditGrid.Text := FoundQSOR.Grid;
-  EditState.Text := FoundQSOR.State;
-  EditIOTA.Text := FoundQSOR.IOTA;
-  EditMGR.Text := FoundQSOR.QSLManager;
-  LBCount.Caption := IntToStr(FoundQSOR.CountQSO);
-  LBDateQSO.Caption := FoundQSOR.QSODate;
-  LBTimeQSO.Caption := FoundQSOR.QSOTime;
-  LBBandQSO.Caption := FoundQSOR.QSOBand;
-  LBModeQSO.Caption := FoundQSOR.QSOMode;
-  LBNameQSO.Caption := FoundQSOR.OMName;
-
   if FoundQSOR.Found then
-    EditCallsign.Color := clMoneyGreen
+  begin
+    EditName.Text := FoundQSOR.OMName;
+    EditQTH.Text := FoundQSOR.OMQTH;
+    EditGrid.Text := FoundQSOR.Grid;
+    EditState.Text := FoundQSOR.State;
+    EditIOTA.Text := FoundQSOR.IOTA;
+    EditMGR.Text := FoundQSOR.QSLManager;
+    LBCount.Caption := IntToStr(FoundQSOR.CountQSO);
+    LBDateQSO.Caption := FoundQSOR.QSODate;
+    LBTimeQSO.Caption := FoundQSOR.QSOTime;
+    LBBandQSO.Caption := FoundQSOR.QSOBand;
+    LBModeQSO.Caption := FoundQSOR.QSOMode;
+    LBNameQSO.Caption := FoundQSOR.OMName;
+    EditCallsign.Color := clMoneyGreen;
+  end
   else
     EditCallsign.Color := clDefault;
 
   if not FoundQSOR.Found and IniSet.UseIntCallBook then
   begin
     FoundQSOR := MainFunc.FindInCallBook(dmfunc.ExtractCallsign(editButtonText));
-    EditName.Text := FoundQSOR.OMName;
-    EditQTH.Text := FoundQSOR.OMQTH;
-    EditGrid.Text := FoundQSOR.Grid;
-    EditState.Text := FoundQSOR.State;
-    EditMGR.Text := FoundQSOR.QSLManager;
+    if FoundQSOR.Found then
+    begin
+      EditName.Text := FoundQSOR.OMName;
+      EditQTH.Text := FoundQSOR.OMQTH;
+      EditGrid.Text := FoundQSOR.Grid;
+      EditState.Text := FoundQSOR.State;
+      EditMGR.Text := FoundQSOR.QSLManager;
+    end;
   end;
+
   if IniSet.pShow then
     viewPhoto.ImPhoto.Picture.LoadFromLazarusResource('no-photo');
 end;
@@ -1735,6 +1740,7 @@ procedure TMiniForm.EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
 begin
   SelEditNumChar := EditCallsign.SelStart;
   EditCallsignChange(nil);
+  InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
 end;
 
 procedure TMiniForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
