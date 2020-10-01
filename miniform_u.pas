@@ -106,6 +106,7 @@ type
     LBBand: TLabel;
     LBMode: TLabel;
     MainMenu: TMainMenu;
+    N7: TMenuItem;
     MiMainTop: TMenuItem;
     MiPhotoTop: TMenuItem;
     N6: TMenuItem;
@@ -687,7 +688,7 @@ var
   MenuItem: TMenuItem;
 begin
   MenuItem := (Sender as TMenuItem);
-  dmFunc.RunProgram(MainFunc.GetExternalProgramsPath(MenuItem.Caption),'');
+  dmFunc.RunProgram(MainFunc.GetExternalProgramsPath(MenuItem.Caption), '');
 end;
 
 procedure TMiniForm.MIExtProgClick(Sender: TObject);
@@ -708,7 +709,7 @@ begin
     ProgramItem.OnClick := @ProgramItemClick;
     ProgramItem.Tag := 75;
     if MainFunc.GetExternalProgramsName[i] <> '' then
-       MIExtProg.Insert(i, ProgramItem);
+      MIExtProg.Add(ProgramItem);
   end;
 end;
 

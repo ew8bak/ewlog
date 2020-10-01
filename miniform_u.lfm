@@ -2251,6 +2251,9 @@ object MiniForm: TMiniForm
       object MenuItem43: TMenuItem
         Caption = 'WSJT-X'
       end
+      object N7: TMenuItem
+        Caption = '-'
+      end
     end
     object MenuItem6: TMenuItem
       Caption = 'Help'
