@@ -2238,8 +2238,9 @@ object MiniForm: TMiniForm
         OnClick = MenuItem73Click
       end
     end
-    object MenuItem4: TMenuItem
+    object MIExtProg: TMenuItem
       Caption = 'External programs'
+      OnClick = MIExtProgClick
       object MenuItem87: TMenuItem
         Caption = 'Settings external programs'
         OnClick = MenuItem87Click
@@ -2250,10 +2251,6 @@ object MiniForm: TMiniForm
       object MenuItem43: TMenuItem
         Caption = 'WSJT-X'
       end
-    end
-    object MenuItem5: TMenuItem
-      Caption = 'Quick start'
-      Enabled = False
     end
     object MenuItem6: TMenuItem
       Caption = 'Help'

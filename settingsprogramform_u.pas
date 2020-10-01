@@ -17,6 +17,7 @@ type
     BtAddProgram: TButton;
     BtSave: TButton;
     BtDelete: TButton;
+    CBUseDIGI: TCheckBox;
     EditName: TEdit;
     FNEdit: TFileNameEdit;
     LBPath: TLabel;
@@ -26,13 +27,15 @@ type
     procedure BtCancelClick(Sender: TObject);
     procedure BtDeleteClick(Sender: TObject);
     procedure BtSaveClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure LBProgramClick(Sender: TObject);
   private
     SLProgram: TStringList;
     function GetCountProgram: integer;
     procedure LoadProgramList;
+    procedure EnDisControl;
     { private declarations }
   public
     { public declarations }
@@ -78,20 +81,36 @@ begin
     ShowMessage(rTheNameFieldCannotBeEmpty);
     Exit;
   end;
-
-  if LBProgram.SelCount > 0 then
+  if LBProgram.ItemIndex > 1 then
   begin
-    INIFile.WriteString('ExternalProgram', 'Program' +
-      IntToStr(LBProgram.ItemIndex - 2), EditName.Text + ',' + FNEdit.Text);
-    LoadProgramList;
-    LBProgram.ItemIndex := LBProgram.Items.IndexOf(EditName.Text);
-  end;
-end;
+    if LBProgram.SelCount > 0 then
+    begin
+      INIFile.WriteString('ExternalProgram', 'Program' +
+        IntToStr(LBProgram.ItemIndex - 2), EditName.Text + ',' + FNEdit.Text);
+      LoadProgramList;
+      LBProgram.ItemIndex := LBProgram.Items.IndexOf(EditName.Text);
+    end;
+  end
+  else
+  begin
+    if LBProgram.Items[LBProgram.ItemIndex] = 'WSJT-X' then
+    begin
+      INIFile.WriteString('WSJT', 'WSJTPATH', FNEdit.Text);
+      INIFile.WriteBool('WSJT', 'USEWSJT', CBUseDIGI.Checked);
+      IniSet.WSJT_PATH := FNEdit.Text;
+      IniSet.WSJT_USE := CBUseDIGI.Checked;
+      Exit;
+    end;
 
-procedure TSettingsProgramForm.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
-begin
-  FreeAndNil(SLProgram);
+    if LBProgram.Items[LBProgram.ItemIndex] = 'Fldigi' then
+    begin
+      INIFile.WriteString('FLDIGI', 'FldigiPATH', FNEdit.Text);
+      INIFile.WriteBool('FLDIGI', 'USEFLDIGI', CBUseDIGI.Checked);
+      IniSet.Fl_PATH := FNEdit.Text;
+      IniSet.FLDIGI_USE := CBUseDIGI.Checked;
+      Exit;
+    end;
+  end;
 end;
 
 procedure TSettingsProgramForm.LoadProgramList;
@@ -113,7 +132,7 @@ begin
         LBProgram.Items.Add(SLProgram.Names[i]);
     end;
   finally
-
+    EnDisControl;
   end;
 end;
 
@@ -139,27 +158,67 @@ begin
   LoadProgramList;
 end;
 
+procedure TSettingsProgramForm.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(SLProgram);
+end;
+
+procedure TSettingsProgramForm.FormShow(Sender: TObject);
+begin
+  CBUseDIGI.Visible := False;
+  EnDisControl;
+end;
+
+procedure TSettingsProgramForm.EnDisControl;
+begin
+  if LBProgram.SelCount = 0 then
+  begin
+    EditName.Enabled := False;
+    FNEdit.Enabled := False;
+    BtSave.Enabled := False;
+    BtDelete.Enabled := False;
+  end
+  else
+  begin
+    EditName.Enabled := True;
+    FNEdit.Enabled := True;
+    BtSave.Enabled := True;
+    BtDelete.Enabled := True;
+  end;
+end;
+
 procedure TSettingsProgramForm.LBProgramClick(Sender: TObject);
 begin
+  EnDisControl;
   if LBProgram.SelCount > 0 then
   begin
     if LBProgram.Items[LBProgram.ItemIndex] = 'WSJT-X' then
     begin
+      EditName.Enabled:=False;
       EditName.Text := 'WSJT-X';
       FNEdit.Text := IniSet.WSJT_PATH;
+      CBUseDIGI.Checked := IniSet.WSJT_USE;
+      CBUseDIGI.Caption := rUseWSJT;
+      CBUseDIGI.Visible := True;
       Exit;
     end;
 
     if LBProgram.Items[LBProgram.ItemIndex] = 'Fldigi' then
     begin
+      EditName.Enabled:=False;
       EditName.Text := 'Fldigi';
       FNEdit.Text := IniSet.Fl_PATH;
+      CBUseDIGI.Checked := IniSet.FLDIGI_USE;
+      CBUseDIGI.Caption := rUseFldigi;
+      CBUseDIGI.Visible := True;
       Exit;
     end;
+
     if LBProgram.ItemIndex > 1 then
     begin
       EditName.Text := LBProgram.Items[LBProgram.ItemIndex];
       FNEdit.Text := SLProgram.ValueFromIndex[LBProgram.ItemIndex - 2];
+      CBUseDIGI.Visible := False;
     end;
   end;
 end;

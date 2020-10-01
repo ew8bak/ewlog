@@ -1,15 +1,16 @@
 object SettingsProgramForm: TSettingsProgramForm
-  Left = 565
+  Left = 516
   Height = 326
-  Top = 292
+  Top = 304
   Width = 414
   BorderStyle = bsDialog
   Caption = 'External programs'
   ClientHeight = 326
   ClientWidth = 414
   FormStyle = fsStayOnTop
-  OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object BtCancel: TButton
@@ -17,11 +18,12 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 336
-    Height = 24
-    Top = 297
-    Width = 73
+    Left = 366
+    Height = 29
+    Top = 292
+    Width = 43
     Anchors = [akRight, akBottom]
+    AutoSize = True
     BorderSpacing.Right = 5
     BorderSpacing.Bottom = 5
     Caption = 'Close'
@@ -40,9 +42,9 @@ object SettingsProgramForm: TSettingsProgramForm
       'WSJT-X'
       'Fldigi'
     )
-    ItemHeight = 15
+    ItemHeight = 21
     OnClick = LBProgramClick
-    ScrollWidth = 166
+    ScrollWidth = 174
     TabOrder = 1
   end
   object EditName: TEdit
@@ -51,8 +53,8 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Control = LBName
     AnchorSideTop.Side = asrBottom
     Left = 181
-    Height = 23
-    Top = 28
+    Height = 25
+    Top = 26
     Width = 200
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
@@ -64,8 +66,8 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Control = LBPath
     AnchorSideTop.Side = asrBottom
     Left = 181
-    Height = 23
-    Top = 81
+    Height = 25
+    Top = 79
     Width = 224
     FilterIndex = 0
     HideDirectories = False
@@ -80,9 +82,9 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideLeft.Control = LBProgram
     AnchorSideLeft.Side = asrBottom
     Left = 181
-    Height = 15
+    Height = 13
     Top = 8
-    Width = 84
+    Width = 85
     BorderSpacing.Left = 5
     Caption = 'Name program:'
     ParentColor = False
@@ -93,9 +95,9 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Control = EditName
     AnchorSideTop.Side = asrBottom
     Left = 181
-    Height = 15
+    Height = 13
     Top = 61
-    Width = 76
+    Width = 78
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
     Caption = 'Path program:'
@@ -107,9 +109,9 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 180
-    Height = 25
-    Top = 296
-    Width = 97
+    Height = 29
+    Top = 292
+    Width = 86
     Anchors = [akLeft, akBottom]
     AutoSize = True
     BorderSpacing.Left = 4
@@ -125,10 +127,10 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Side = asrBottom
     Left = 181
     Height = 25
-    Top = 114
+    Top = 139
     Width = 75
     BorderSpacing.Left = 5
-    BorderSpacing.Top = 10
+    BorderSpacing.Top = 35
     Caption = 'Save'
     OnClick = BtSaveClick
     TabOrder = 5
@@ -140,11 +142,25 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Side = asrCenter
     Left = 266
     Height = 25
-    Top = 114
+    Top = 139
     Width = 75
     BorderSpacing.Left = 10
     Caption = 'Delete'
     OnClick = BtDeleteClick
     TabOrder = 6
+  end
+  object CBUseDIGI: TCheckBox
+    AnchorSideLeft.Control = LBProgram
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = FNEdit
+    AnchorSideTop.Side = asrBottom
+    Left = 181
+    Height = 23
+    Top = 109
+    Width = 46
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Use'
+    TabOrder = 7
   end
 end

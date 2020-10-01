@@ -169,6 +169,8 @@ resourcestring
   rCallsignNotEntered ='Recipient callsign not entered';
   rOf = ' of ';
   rCopyQSO = 'Copy QSO';
+  rUseWSJT = 'Use WSJT-X with EWLog?';
+  rUseFldigi = 'Use Fldigi with EWLog?';
   rTheNameFieldCannotBeEmpty = 'The "Name" field cannot be empty';
   rNewProgram = 'New Program';
   rGoToSettings = 'Go to settings?';

@@ -1003,10 +1003,18 @@ msgctxt "resourcestr.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
 
+#: resourcestr.rusefldigi
+msgid "Use Fldigi with EWLog?"
+msgstr ""
+
 #: resourcestr.rusers
 msgctxt "resourcestr.rusers"
 msgid "User"
 msgstr "User"
+
+#: resourcestr.rusewsjt
+msgid "Use WSJT-X with EWLog?"
+msgstr ""
 
 #: resourcestr.rvaliddx
 msgctxt "resourcestr.rvaliddx"
@@ -3883,11 +3891,6 @@ msgctxt "tminiform.menuitem3.caption"
 msgid "View"
 msgstr "Просмотр"
 
-#: tminiform.menuitem4.caption
-msgctxt "tminiform.menuitem4.caption"
-msgid "External programs"
-msgstr "Внешние программы"
-
 #: tminiform.menuitem43.caption
 msgctxt "tminiform.menuitem43.caption"
 msgid "WSJT-X"
@@ -3897,11 +3900,6 @@ msgstr ""
 msgctxt "tminiform.menuitem48.caption"
 msgid "Set date synchronization"
 msgstr "Установить дату синхронизации"
-
-#: tminiform.menuitem5.caption
-msgctxt "tminiform.menuitem5.caption"
-msgid "Quick start"
-msgstr "Быстрый запуск"
 
 #: tminiform.menuitem52.caption
 msgctxt "tminiform.menuitem52.caption"
@@ -4072,6 +4070,12 @@ msgstr ""
 msgctxt "tminiform.midownloadlang.caption"
 msgid "Download Languages"
 msgstr "Загрузить переводы"
+
+#: tminiform.miextprog.caption
+#, fuzzy
+msgctxt "tminiform.miextprog.caption"
+msgid "External programs"
+msgstr "Внешние программы"
 
 #: tminiform.milanguage.caption
 msgctxt "tminiform.milanguage.caption"
@@ -4582,6 +4586,10 @@ msgstr "Сохранить"
 msgctxt "tsettingsprogramform.caption"
 msgid "External programs"
 msgstr "Внешние программы"
+
+#: tsettingsprogramform.cbusedigi.caption
+msgid "Use"
+msgstr ""
 
 #: tsettingsprogramform.lbname.caption
 msgid "Name program:"

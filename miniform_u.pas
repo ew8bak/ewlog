@@ -134,10 +134,9 @@ type
     MenuItem124: TMenuItem;
     MISettings: TMenuItem;
     MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
+    MIExtProg: TMenuItem;
     MenuItem43: TMenuItem;
     MenuItem48: TMenuItem;
-    MenuItem5: TMenuItem;
     MenuItem52: TMenuItem;
     MenuItem53: TMenuItem;
     MenuItem54: TMenuItem;
@@ -212,7 +211,7 @@ type
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+      Shift: TShiftState; X, Y: integer);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
@@ -224,6 +223,7 @@ type
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
+    procedure MIExtProgClick(Sender: TObject);
     procedure miMapTopClick(Sender: TObject);
     procedure MiMainTopClick(Sender: TObject);
     procedure MiLogGridTopClick(Sender: TObject);
@@ -257,7 +257,6 @@ type
     procedure MILanguageClick(Sender: TObject);
     procedure MIPhotoClick(Sender: TObject);
     procedure MITelnetFormClick(Sender: TObject);
-    procedure MITrxTopClick(Sender: TObject);
     procedure SaveQSOinBaseExecute(Sender: TObject);
     procedure SBInfoClick(Sender: TObject);
     procedure SBIOTAClick(Sender: TObject);
@@ -273,6 +272,7 @@ type
     showForm: boolean;
     procedure Clr;
     procedure LangItemClick(Sender: TObject);
+    procedure ProgramItemClick(Sender: TObject);
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure DisableMenuMiniMode;
 
@@ -682,6 +682,36 @@ begin
   end;
 end;
 
+procedure TMiniForm.ProgramItemClick(Sender: TObject);
+var
+  MenuItem: TMenuItem;
+begin
+  MenuItem := (Sender as TMenuItem);
+  dmFunc.RunProgram(MainFunc.GetExternalProgramsPath(MenuItem.Caption),'');
+end;
+
+procedure TMiniForm.MIExtProgClick(Sender: TObject);
+var
+  ProgramItem: TMenuItem;
+  i: integer;
+begin
+  for i := MiniForm.ComponentCount - 1 downto 0 do
+    if (MiniForm.Components[i] is TMenuItem) then
+      if (MiniForm.Components[i] as TMenuItem).Tag = 75 then
+        (MiniForm.Components[i] as TMenuItem).Free;
+
+  for i := 0 to High(MainFunc.GetExternalProgramsName) do
+  begin
+    ProgramItem := TMenuItem.Create(Self);
+    ProgramItem.Name := 'ProgramItem' + IntToStr(i);
+    ProgramItem.Caption := MainFunc.GetExternalProgramsName[i];
+    ProgramItem.OnClick := @ProgramItemClick;
+    ProgramItem.Tag := 75;
+    if MainFunc.GetExternalProgramsName[i] <> '' then
+       MIExtProg.Insert(i, ProgramItem);
+  end;
+end;
+
 procedure TMiniForm.miMapTopClick(Sender: TObject);
 begin
   if IniSet.Map_Use then
@@ -1045,11 +1075,6 @@ begin
     INIFile.WriteBool('SetLog', 'cShow', False);
     dxClusterForm.Hide;
   end;
-end;
-
-procedure TMiniForm.MITrxTopClick(Sender: TObject);
-begin
-
 end;
 
 procedure TMiniForm.SaveQSOinBaseExecute(Sender: TObject);
@@ -1692,8 +1717,8 @@ begin
     InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
 end;
 
-procedure TMiniForm.EditCallsignMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TMiniForm.EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: integer);
 begin
   EditCallsignChange(nil);
 end;

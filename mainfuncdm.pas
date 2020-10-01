@@ -16,6 +16,7 @@ type
   subModeArray = array of string;
   CallsignArray = array of string;
   StringArray = array of string;
+  extProgramArray = array of string;
 
   { TMainFunc }
 
@@ -70,6 +71,8 @@ type
     function CheckQSL(Callsign, band, mode: string): integer;
     function EraseTable: boolean;
     function GetMySQLDataBase: StringArray;
+    function GetExternalProgramsName: extProgramArray;
+    function GetExternalProgramsPath(ProgramName: string): string;
   end;
 
 var
@@ -87,6 +90,54 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
 
 {$R *.lfm}
+
+function TMainFunc.GetExternalProgramsPath(ProgramName: string): string;
+var
+  i, Count: integer;
+  SLPrograms: TStringList;
+begin
+  Result := '';
+  try
+    SLPrograms := TStringList.Create;
+    SLPrograms.Clear;
+    SLPrograms.NameValueSeparator := ',';
+    INIFile.ReadSection('ExternalProgram', SLPrograms);
+    Count := SLPrograms.Count;
+    SLPrograms.Clear;
+    for i := 0 to Count - 1 do
+      SLPrograms.Add(INIFile.ReadString('ExternalProgram', 'Program' +
+        IntToStr(i), ''));
+    for i := 0 to SLPrograms.Count - 1 do
+      if pos(ProgramName, SLPrograms.Strings[i]) > 0 then
+        Result := SLPrograms.ValueFromIndex[i];
+  finally
+    FreeAndNil(SLPrograms);
+  end;
+end;
+
+function TMainFunc.GetExternalProgramsName: extProgramArray;
+var
+  i, CountPrograms: integer;
+  SLPrograms: TStringList;
+begin
+  try
+    CountPrograms := 0;
+    SLPrograms := TStringList.Create;
+    SLPrograms.Clear;
+    SLPrograms.NameValueSeparator := ',';
+    INIFile.ReadSection('ExternalProgram', SLPrograms);
+    CountPrograms := SLPrograms.Count;
+    SLPrograms.Clear;
+    SetLength(Result, CountPrograms);
+    for i := 0 to CountPrograms - 1 do
+      SLPrograms.Add(INIFile.ReadString('ExternalProgram', 'Program' +
+        IntToStr(i), ''));
+  finally
+    for i := 0 to SLPrograms.Count - 1 do
+      Result[i] := (SLPrograms.Names[i]);
+    FreeAndNil(SLPrograms);
+  end;
+end;
 
 function TMainFunc.GetMySQLDataBase: StringArray;
 var
