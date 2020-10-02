@@ -333,7 +333,7 @@ end;
 
 function TMainFunc.FormatFreq(Value, mode: string): string;
 begin
-  Result := '';
+  Result := '0';
   if Value <> '' then
   begin
     if Pos('M', Value) > 0 then

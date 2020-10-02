@@ -17,6 +17,9 @@ const
   cNO_ANGLE = -999;
   CATHamLib = 2;
   CATdisabled = 0;
+  {$IFDEF WINDOWS}
+  userenv = 'userenv.dll';
+  {$ENDIF}
 
 type
   TExplodeArray = array of string;
@@ -91,9 +94,11 @@ type
     procedure GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
     function CheckProcess(PName: string): Boolean;
     function CloseProcess(PName: string): Boolean;
+    function GetCurrentUserName: String;
     {$IFDEF WINDOWS}
     function GetWindowsVersion: string;
-    {$ENDIF WINDOWS}
+    function GetUserProfilesDir: string;
+   {$ENDIF WINDOWS}
     { public declarations }
   end;
 
@@ -108,6 +113,11 @@ var
 implementation
 
 uses MainForm_U, const_u, InitDB_dm, MainFuncDM;
+
+{$IFDEF WINDOWS}
+function GetProfilesDirectory(lpProfilesDir: PChar; var Size: DWORD): BOOL;
+stdcall; external userenv name 'GetProfilesDirectoryA';
+{$ENDIF}
 
 {$R *.lfm}
 {$IFDEF WINDOWS}
@@ -146,7 +156,73 @@ begin
      Result:='Major:'+IntToStr(os.dwMajorVersion)+', Minor:'+IntToStr(os.dwMinorVersion);
     end;
 end;
+
+function TdmFunc.GetUserProfilesDir: string;
+const
+  MaxLen = 256;
+var
+  Len: DWORD;
+  WS: string;
+  Res: windows.BOOL;
+begin
+  Len := MaxLen;
+     SetLength(WS, MaxLen-1);
+    Res := GetProfilesDirectory(@WS[1], Len);
+    if Res then
+    begin
+      SetLength(WS, Len - 1);
+      Result := Utf16ToUtf8(WS);
+    end
+    else SetLength(Result,0);
+end;
 {$ENDIF WINDOWS}
+function TdmFunc.GetCurrentUserName: String;
+{$IFDEF WINDOWS}
+const
+  MaxLen = 256;
+var
+  Len: DWORD;
+  WS: WideString;
+  Res: windows.BOOL;
+{$ENDIF}
+begin
+  Result := '';
+  {$IFDEF UNIX}
+  {$IF (DEFINED(LINUX)) OR (DEFINED(FREEBSD))}
+  Result := SysToUtf8(GetUserName(fpgetuid));   //GetUsername in unit Users, fpgetuid in unit BaseUnix
+  {$ELSE Linux/BSD}
+  Result := GetEnvironmentVariableUtf8('USER');
+  {$ENDIF UNIX}
+  {$ELSE}
+  {$IFDEF WINDOWS}
+  Len := MaxLen;
+  {$IFnDEF WINCE}
+  if Win32MajorVersion <= 4 then
+  begin
+    SetLength(Result,MaxLen);
+    Res := Windows.GetuserName(@Result[1], Len);
+    if Res then
+    begin
+      SetLength(Result,Len-1);
+      Result := SysToUtf8(Result);
+    end
+    else SetLength(Result,0);
+  end
+  else
+  {$ENDIF NOT WINCE}
+  begin
+    SetLength(WS, MaxLen-1);
+    Res := Windows.GetUserNameW(@WS[1], Len);
+    if Res then
+    begin
+      SetLength(WS, Len - 1);
+      Result := Utf16ToUtf8(WS);
+    end
+    else SetLength(Result,0);
+  end;
+  {$ENDIF WINDOWS}
+  {$ENDIF UNIX}
+end;
 
 function TdmFunc.CheckProcess(PName: string): Boolean;
 var

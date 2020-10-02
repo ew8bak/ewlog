@@ -79,18 +79,21 @@ uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U;
 { TInitDB }
 
 procedure TInitDB.DataModuleCreate(Sender: TObject);
+var
+  tempProfileDir, tempUserDir: string;
 begin
   if Sender <> SetupForm then
   begin
   {$IFDEF UNIX}
     FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
    {$ELSE}
-    FilePATH := GetEnvironmentVariable('SystemDrive') +
-      SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
+    tempProfileDir := dmFunc.GetUserProfilesDir;
+    tempUserDir := dmFunc.GetCurrentUserName;
+    FilePATH := tempProfileDir + DirectorySeparator + tempUserDir + DirectorySeparator +
+      'EWLog' + DirectorySeparator;
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
    {$ENDIF UNIX}
-
     DefaultFormatSettings.DecimalSeparator := '.';
     if not DirectoryExists(FilePATH) then
       CreateDir(FilePATH);
@@ -343,6 +346,7 @@ end;
 
 function TInitDB.ImbeddedCallBookInit(Use: boolean): boolean;
 begin
+  try
   Result := False;
   ImbeddedCallBookConnection.Connected := False;
   if (FileExists(FilePATH + 'callbook.db')) and (Use) then
@@ -354,6 +358,15 @@ begin
     ImbeddedCallBookConnection.Connected := False;
   if ImbeddedCallBookConnection.Connected then
     Result := True;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('ImbeddedCallBookInit: Error: ' + E.ClassName + #13#10 + E.Message);
+      WriteLn(ExceptFile, 'ImbeddedCallBookInit: Error: ' + E.ClassName +
+        ':' + E.Message);
+      Result := False;
+    end;
+  end;
 end;
 
 function TInitDB.ImbeddedCallBookCheck(PathDB: string): TImbedCallBookCheckRec;

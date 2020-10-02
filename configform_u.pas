@@ -221,7 +221,7 @@ begin
 
   CheckBox6.Checked := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
   CheckBox5.Checked := INIFile.ReadBool('SetLog', 'PrintPrev', False);
-  CheckBox4.Checked:=INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
+  CheckBox4.Checked := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
 
   if IniSet.CallBookSystem = 'QRZRU' then
     CheckBox3.Checked := True;
@@ -412,14 +412,9 @@ var
   updatePATH: string;
   serV, locV: double;
 begin
-  {$IFDEF UNIX}
-  updatePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
-  if not DirectoryExists(updatePATH + 'updates/') then
-    ForceDirectories(updatePATH + 'updates/');
-    {$ELSE}
-  updatePATH := SysUtils.GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) + '\EWLog\';
-    {$ENDIF UNIX}
+  updatePATH := FilePATH;
+  if not DirectoryExists(updatePATH + 'updates' + DirectorySeparator) then
+    ForceDirectories(updatePATH + 'updates' + DirectorySeparator);
   with THTTPSend.Create do
   begin
     Label12.Caption := rStatusUpdateCheck;
