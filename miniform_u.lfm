@@ -2295,4 +2295,12 @@ object MiniForm: TMiniForm
       ShortCut = 32835
     end
   end
+  object CheckUpdateTimer: TTimer
+    Enabled = False
+    Interval = 3600000
+    OnTimer = CheckUpdateTimerTimer
+    OnStartTimer = CheckUpdateTimerStartTimer
+    Left = 72
+    Top = 344
+  end
 end

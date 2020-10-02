@@ -191,6 +191,7 @@ type
     SBInfo: TSpeedButton;
     Shape1: TShape;
     StatusBar: TStatusBar;
+    CheckUpdateTimer: TTimer;
     TMTime: TTimer;
     LBLocalTimeD: TLabel;
     LBUTCTimeD: TLabel;
@@ -206,6 +207,8 @@ type
     procedure CBModeCloseUp(Sender: TObject);
     procedure CBRealTimeChange(Sender: TObject);
     procedure CBSaveUTCChange(Sender: TObject);
+    procedure CheckUpdateTimerStartTimer(Sender: TObject);
+    procedure CheckUpdateTimerTimer(Sender: TObject);
     procedure ClearEditExecute(Sender: TObject);
     procedure EditCallsignButtonClick(Sender: TObject);
     procedure EditCallsignChange(Sender: TObject);
@@ -611,8 +614,9 @@ begin
 
     SwitchForm;
     CBMap.Checked := IniSet.Map_Use;
+    CheckUpdateTimer.Enabled := True;
   end;
-  //  CheckUpdatesTimer.Enabled := True;
+
   CBYourQSL.ItemIndex := 3;
   TextSB('QSO № ' + IntToStr(NumberSelectRecord) + rQSOTotal +
     IntToStr(CountAllRecords), 1);
@@ -1567,6 +1571,16 @@ begin
     LBTime.Caption := rQSOTime + ' (UTC)';
 end;
 
+procedure TMiniForm.CheckUpdateTimerStartTimer(Sender: TObject);
+begin
+  Update_Form.CheckUpdate;
+end;
+
+procedure TMiniForm.CheckUpdateTimerTimer(Sender: TObject);
+begin
+  Update_Form.CheckUpdate;
+end;
+
 procedure TMiniForm.ClearEditExecute(Sender: TObject);
 begin
   SBNew.Click;
@@ -1800,7 +1814,7 @@ var
   Lang: string = '';
   FallbackLang: string = '';
 begin
-  MiniForm.Caption:=rEWLogHAMJournal;
+  MiniForm.Caption := rEWLogHAMJournal;
   showForm := False;
   Shape1.Visible := False;
   LBQSL.Visible := False;

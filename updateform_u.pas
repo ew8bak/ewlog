@@ -66,7 +66,7 @@ var
 implementation
 
 uses
-  Changelog_Form_U, DownloadUpdates, dmFunc_U, analyticThread, InitDB_dm;
+  Changelog_Form_U, DownloadUpdates, dmFunc_U, analyticThread, InitDB_dm, miniform_u;
 
 {$R *.lfm}
 
