@@ -79,8 +79,10 @@ uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U;
 { TInitDB }
 
 procedure TInitDB.DataModuleCreate(Sender: TObject);
+{$IFDEF WINDOWS}
 var
   tempProfileDir, tempUserDir: string;
+{$ENDIF WINDOWS}
 begin
   if Sender <> SetupForm then
   begin
@@ -89,8 +91,8 @@ begin
    {$ELSE}
     tempProfileDir := dmFunc.GetUserProfilesDir;
     tempUserDir := dmFunc.GetCurrentUserName;
-    FilePATH := tempProfileDir + DirectorySeparator + tempUserDir + DirectorySeparator +
-      'EWLog' + DirectorySeparator;
+    FilePATH := tempProfileDir + DirectorySeparator + tempUserDir +
+      DirectorySeparator + 'EWLog' + DirectorySeparator;
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
    {$ENDIF UNIX}
@@ -347,17 +349,17 @@ end;
 function TInitDB.ImbeddedCallBookInit(Use: boolean): boolean;
 begin
   try
-  Result := False;
-  ImbeddedCallBookConnection.Connected := False;
-  if (FileExists(FilePATH + 'callbook.db')) and (Use) then
-  begin
-    ImbeddedCallBookConnection.DatabaseName := FilePATH + 'callbook.db';
-    ImbeddedCallBookConnection.Connected := True;
-  end
-  else
+    Result := False;
     ImbeddedCallBookConnection.Connected := False;
-  if ImbeddedCallBookConnection.Connected then
-    Result := True;
+    if (FileExists(FilePATH + 'callbook.db')) and (Use) then
+    begin
+      ImbeddedCallBookConnection.DatabaseName := FilePATH + 'callbook.db';
+      ImbeddedCallBookConnection.Connected := True;
+    end
+    else
+      ImbeddedCallBookConnection.Connected := False;
+    if ImbeddedCallBookConnection.Connected then
+      Result := True;
   except
     on E: Exception do
     begin

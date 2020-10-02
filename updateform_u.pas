@@ -106,7 +106,8 @@ begin
       version_file_stream.Free;
     end;
 
-    version_curr := StrToInt(StringReplace(dmFunc.GetMyVersion, '.', '', [rfReplaceAll]));
+    version_curr := StrToInt(StringReplace(dmFunc.GetMyVersion, '.',
+      '', [rfReplaceAll]));
     AssignFile(version_file, updatePATH + 'version');
     Reset(version_file);
     while not EOF(version_file) do

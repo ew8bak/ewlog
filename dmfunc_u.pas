@@ -8,8 +8,12 @@ uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
   DateUtils, LazUTF8, strutils, Translations, LazFileUtils,
-  versiontypes, versionresource, blcksock, httpsend, UTF8Process, {$IFDEF WINDOWS}
-  Windows;{$ELSE}lclintf;{$ENDIF}
+  versiontypes, versionresource, blcksock, httpsend, UTF8Process,
+    {$IFDEF WINDOWS}
+    Windows;
+    {$ELSE}
+    BaseUnix, users, lclintf;
+    {$ENDIF}
 
 const
   ERR_FILE = 'errors.adi';
@@ -54,14 +58,14 @@ type
     procedure DistanceFromCoordinate(my_loc: string; latitude, longitude: real;
       var qra, azim: string);
     procedure Delay(n: cardinal);
-//    procedure InsertModes(cmbMode: TComboBox);
+    //    procedure InsertModes(cmbMode: TComboBox);
     property DataDir: string read fDataDir write fDataDir;
     property DebugLevel: integer read fDebugLevel write fDebugLevel;
     function ADIFDateToDate(date: string): string;
     function MyTrim(tex: string): string;
     function RemoveSpaces(S: string): string;
     procedure ModifyWAZITU(var waz, itu: string);
-    function GetFreqFromBand(band, mode: string): Double;
+    function GetFreqFromBand(band, mode: string): double;
     function LetterFromMode(mode: string): string;
     function IsAdifOK(qsodate, time_on, time_off, call, freq, mode,
       rst_s, rst_r, iota, itu, waz, loc, my_loc, band: string): boolean;
@@ -70,12 +74,12 @@ type
     function IsModeOK(mode: string): boolean;
     function IsFreqOK(freq: string): boolean;
     function IsIOTAOK(iota: string): boolean;
-//    function GetBandFromFreq(MHz: string): integer;
+    //    function GetBandFromFreq(MHz: string): integer;
     function Explode(const cSeparator, vString: string): TExplodeArray;
     function StrToDateFormat(sDate: string): TDateTime;
     function GetIDCall(callsign: string): string;
     function StringToADIF(tex: string; kp: boolean): string;
-//    function GetAdifBandFromFreq(MHz: string): string;
+    //    function GetAdifBandFromFreq(MHz: string): string;
     function IsLocOK(loc: string): boolean;
     function CompleteLoc(loc: string): string;
     function ExtractCallsign(call: string): string;
@@ -88,13 +92,14 @@ type
     procedure CoordinateFromLocator(loc: string; var latitude, longitude: currency);
     function nr(ch: char): integer;
     function par_str(s: string; n: integer): string;
-    function Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
-    function CheckSQLiteVersion(versionDLL: string): Boolean;
-    procedure GetRIGMode(rigmode:string; var mode, submode:string);
+    function Split(delimiter: string; str: string;
+      limit: integer = MaxInt): TStringArray;
+    function CheckSQLiteVersion(versionDLL: string): boolean;
+    procedure GetRIGMode(rigmode: string; var mode, submode: string);
     procedure GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
-    function CheckProcess(PName: string): Boolean;
-    function CloseProcess(PName: string): Boolean;
-    function GetCurrentUserName: String;
+    function CheckProcess(PName: string): boolean;
+    function CloseProcess(PName: string): boolean;
+    function GetCurrentUserName: string;
     {$IFDEF WINDOWS}
     function GetWindowsVersion: string;
     function GetUserProfilesDir: string;
@@ -112,49 +117,49 @@ var
 
 implementation
 
-uses MainForm_U, const_u, InitDB_dm, MainFuncDM;
+uses const_u, InitDB_dm;
 
 {$IFDEF WINDOWS}
 function GetProfilesDirectory(lpProfilesDir: PChar; var Size: DWORD): BOOL;
-stdcall; external userenv name 'GetProfilesDirectoryA';
+  stdcall; external userenv Name 'GetProfilesDirectoryA';
 {$ENDIF}
 
 {$R *.lfm}
 {$IFDEF WINDOWS}
 function TdmFunc.GetWindowsVersion: string;
 var
-Os : OSVERSIONINFO;
+  Os: OSVERSIONINFO;
 begin
   Os.dwOSVersionInfoSize := sizeof(Os);
-    GetVersionEx(Os);
-    if ((Os.dwMinorVersion = 1) and (Os.dwMajorVersion = 5)) then
-    begin
-    Result:=('Windows XP');
-    end
-    else if ((Os.dwMinorVersion = 0) and (Os.dwMajorVersion = 6)) then
-    begin
-    Result:=('Windows Vista');
-    end
-    else if ((Os.dwMinorVersion = 1) and (Os.dwMajorVersion = 6)) then
-    begin
-    Result:=('Windows 7');
-    end
-    else if ((Os.dwMinorVersion = 2) and (Os.dwMajorVersion = 6)) then
-    begin
-    Result:=('Windows 8');
-    end
-    else if ((Os.dwMinorVersion = 3) and (Os.dwMajorVersion = 6)) then
-    begin
-    Result:=('Windows 8.1');
-    end
-    else if ((Os.dwMinorVersion = 0) and (Os.dwMajorVersion = 10)) then
-    begin
-    Result:=('Windows 10');
-    end
-    else
-    begin
-     Result:='Major:'+IntToStr(os.dwMajorVersion)+', Minor:'+IntToStr(os.dwMinorVersion);
-    end;
+  GetVersionEx(Os);
+  if ((Os.dwMinorVersion = 1) and (Os.dwMajorVersion = 5)) then
+  begin
+    Result := ('Windows XP');
+  end
+  else if ((Os.dwMinorVersion = 0) and (Os.dwMajorVersion = 6)) then
+  begin
+    Result := ('Windows Vista');
+  end
+  else if ((Os.dwMinorVersion = 1) and (Os.dwMajorVersion = 6)) then
+  begin
+    Result := ('Windows 7');
+  end
+  else if ((Os.dwMinorVersion = 2) and (Os.dwMajorVersion = 6)) then
+  begin
+    Result := ('Windows 8');
+  end
+  else if ((Os.dwMinorVersion = 3) and (Os.dwMajorVersion = 6)) then
+  begin
+    Result := ('Windows 8.1');
+  end
+  else if ((Os.dwMinorVersion = 0) and (Os.dwMajorVersion = 10)) then
+  begin
+    Result := ('Windows 10');
+  end
+  else
+  begin
+    Result := 'Major:' + IntToStr(os.dwMajorVersion) + ', Minor:' + IntToStr(os.dwMinorVersion);
+  end;
 end;
 
 function TdmFunc.GetUserProfilesDir: string;
@@ -163,33 +168,35 @@ const
 var
   Len: DWORD;
   WS: string;
-  Res: windows.BOOL;
+  Res: Windows.BOOL;
 begin
   Len := MaxLen;
-     SetLength(WS, MaxLen-1);
-    Res := GetProfilesDirectory(@WS[1], Len);
-    if Res then
-    begin
-      SetLength(WS, Len - 1);
-      Result := Utf16ToUtf8(WS);
-    end
-    else SetLength(Result,0);
+  SetLength(WS, MaxLen - 1);
+  Res := GetProfilesDirectory(@WS[1], Len);
+  if Res then
+  begin
+    SetLength(WS, Len - 1);
+    Result := Utf16ToUtf8(WS);
+  end
+  else
+    SetLength(Result, 0);
 end;
+
 {$ENDIF WINDOWS}
-function TdmFunc.GetCurrentUserName: String;
+function TdmFunc.GetCurrentUserName: string;
 {$IFDEF WINDOWS}
 const
   MaxLen = 256;
 var
   Len: DWORD;
   WS: WideString;
-  Res: windows.BOOL;
+  Res: Windows.BOOL;
 {$ENDIF}
 begin
   Result := '';
   {$IFDEF UNIX}
   {$IF (DEFINED(LINUX)) OR (DEFINED(FREEBSD))}
-  Result := SysToUtf8(GetUserName(fpgetuid));   //GetUsername in unit Users, fpgetuid in unit BaseUnix
+  Result := SysToUtf8(GetUserName(fpgetuid));
   {$ELSE Linux/BSD}
   Result := GetEnvironmentVariableUtf8('USER');
   {$ENDIF UNIX}
@@ -199,94 +206,100 @@ begin
   {$IFnDEF WINCE}
   if Win32MajorVersion <= 4 then
   begin
-    SetLength(Result,MaxLen);
+    SetLength(Result, MaxLen);
     Res := Windows.GetuserName(@Result[1], Len);
     if Res then
     begin
-      SetLength(Result,Len-1);
+      SetLength(Result, Len - 1);
       Result := SysToUtf8(Result);
     end
-    else SetLength(Result,0);
+    else
+      SetLength(Result, 0);
   end
   else
   {$ENDIF NOT WINCE}
   begin
-    SetLength(WS, MaxLen-1);
+    SetLength(WS, MaxLen - 1);
     Res := Windows.GetUserNameW(@WS[1], Len);
     if Res then
     begin
       SetLength(WS, Len - 1);
       Result := Utf16ToUtf8(WS);
     end
-    else SetLength(Result,0);
+    else
+      SetLength(Result, 0);
   end;
   {$ENDIF WINDOWS}
   {$ENDIF UNIX}
 end;
 
-function TdmFunc.CheckProcess(PName: string): Boolean;
+function TdmFunc.CheckProcess(PName: string): boolean;
 var
   AProcess: TProcess;
   AStringList: TStringList;
 begin
   AStringList := TStringList.Create;
   AProcess := TProcess.Create(nil);
-  AProcess.ShowWindow:=swoHIDE;
+  AProcess.ShowWindow := swoHIDE;
   AProcess.Options := AProcess.Options + [poWaitOnExit, poUsePipes];
 
   {$IFDEF WINDOWS}
-    AProcess.Executable := 'tasklist /FI "IMAGENAME eq '+PName+'"';
+  AProcess.Executable := 'tasklist /FI "IMAGENAME eq ' + PName + '"';
   {$ELSE}
-    AProcess.Executable := 'ps -C '+PName;
+  AProcess.Executable := 'ps -C ' + PName;
   {$ENDIF}
-    AProcess.Execute;
+  AProcess.Execute;
   AStringList.LoadFromStream(AProcess.Output);
 
   if AStringList.Count > 1 then
-   Result:=True
+    Result := True
   else
-  Result:=False;
+    Result := False;
 
   AStringList.Free;
   AProcess.Free;
 end;
 
-function TdmFunc.CloseProcess(PName: string): Boolean;
+function TdmFunc.CloseProcess(PName: string): boolean;
 var
   AProcess: TProcess;
 begin
   AProcess := TProcess.Create(nil);
-  AProcess.ShowWindow:=swoHIDE;
+  AProcess.ShowWindow := swoHIDE;
   AProcess.Options := AProcess.Options + [poWaitOnExit, poUsePipes];
 
   {$IFDEF WINDOWS}
-    AProcess.Executable := 'taskkill /f /im "'+PName+'"';
+  AProcess.Executable := 'taskkill /f /im "' + PName + '"';
   {$ELSE}
-    AProcess.Executable := 'killall '+PName;
+  AProcess.Executable := 'killall ' + PName;
   {$ENDIF}
-    AProcess.Execute;
+  AProcess.Execute;
 
   if CheckProcess(PName) then
-  Result:=False
+    Result := False
   else
-  Result:=True;
+    Result := True;
   AProcess.Free;
 end;
 
 procedure TdmFunc.GetLatLon(Latitude, Longitude: string; var Lat, Lon: string);
 begin
-  if (UTF8Pos('W', Longitude) <> 0) then begin
+  if (UTF8Pos('W', Longitude) <> 0) then
+  begin
     Longitude := '-' + Longitude;
     Delete(Longitude, length(Longitude), 1);
   end;
-  if (UTF8Pos('S', Latitude) <> 0) then begin
+  if (UTF8Pos('S', Latitude) <> 0) then
+  begin
     Latitude := '-' + Latitude;
     Delete(Latitude, length(Latitude), 1);
   end;
-  if (UTF8Pos('E', Longitude) <> 0) then begin
+  if (UTF8Pos('E', Longitude) <> 0) then
+  begin
     Delete(Longitude, length(Longitude), 1);
   end;
-  if (UTF8Pos('N', Latitude) <> 0) then begin
+  if (UTF8Pos('N', Latitude) <> 0) then
+  begin
     Delete(Latitude, length(Latitude), 1);
   end;
 
@@ -294,66 +307,77 @@ begin
   Lon := Longitude;
 end;
 
-procedure TdmFunc.GetRIGMode(rigmode:string; var mode, submode:string);
+procedure TdmFunc.GetRIGMode(rigmode: string; var mode, submode: string);
 begin
-  if (Pos('FM', rigmode) > 0) and (Pos('PKTFM', rigmode) <= 0) and (Pos('WFM', rigmode) <= 0) then begin
-     mode := 'FM';
-     submode:= '';
-     Exit;
+  if (Pos('FM', rigmode) > 0) and (Pos('PKTFM', rigmode) <= 0) and
+    (Pos('WFM', rigmode) <= 0) then
+  begin
+    mode := 'FM';
+    submode := '';
+    Exit;
   end;
-   if (Pos('USB', rigmode) > 0) and (Pos('PKTUSB', rigmode) <= 0) then begin
-     mode := 'SSB';
-     submode := 'USB';
-     Exit;
-   end;
-   if (Pos('LSB', rigmode) > 0) and (Pos('PKTLSB', rigmode) <= 0) then begin
-     mode := 'SSB';
-     submode := 'LSB';
-     Exit;
-   end;
-   if (Pos('AM', rigmode) > 0) then begin
-     mode := 'AM';
-     submode:= '';
-     Exit;
-   end;
-   if (Pos('CW', rigmode) > 0) then begin
-     mode := 'CW';
-     submode:= '';
-     Exit;
-   end;
-   if (Pos('PKTFM', rigmode) > 0) then begin
-     mode := 'PKT';
-     submode:= 'PKTFM';
-     Exit;
-   end;
-   if (Pos('PKTUSB', rigmode) > 0) or (Pos('PKTLSB', rigmode) > 0) or (Pos('RTTY', rigmode) > 0) then begin
-     mode := 'RTTY';
-     submode:= '';
-     Exit;
-   end;
+  if (Pos('USB', rigmode) > 0) and (Pos('PKTUSB', rigmode) <= 0) then
+  begin
+    mode := 'SSB';
+    submode := 'USB';
+    Exit;
+  end;
+  if (Pos('LSB', rigmode) > 0) and (Pos('PKTLSB', rigmode) <= 0) then
+  begin
+    mode := 'SSB';
+    submode := 'LSB';
+    Exit;
+  end;
+  if (Pos('AM', rigmode) > 0) then
+  begin
+    mode := 'AM';
+    submode := '';
+    Exit;
+  end;
+  if (Pos('CW', rigmode) > 0) then
+  begin
+    mode := 'CW';
+    submode := '';
+    Exit;
+  end;
+  if (Pos('PKTFM', rigmode) > 0) then
+  begin
+    mode := 'PKT';
+    submode := 'PKTFM';
+    Exit;
+  end;
+  if (Pos('PKTUSB', rigmode) > 0) or (Pos('PKTLSB', rigmode) > 0) or
+    (Pos('RTTY', rigmode) > 0) then
+  begin
+    mode := 'RTTY';
+    submode := '';
+    Exit;
+  end;
 
-   if (Pos('WFM', rigmode) > 0) then begin
-     mode := 'WFM';
-     submode:= '';
-   end;
+  if (Pos('WFM', rigmode) > 0) then
+  begin
+    mode := 'WFM';
+    submode := '';
+  end;
 end;
 
-function TdmFunc.CheckSQLiteVersion(versionDLL: string): Boolean;
+function TdmFunc.CheckSQLiteVersion(versionDLL: string): boolean;
 var
-verInst, VerMin: Integer;
+  verInst, VerMin: integer;
 begin
-  Result:=True;
+  Result := True;
   try
-  if versionDLL = '' then begin
-  Result:=True;
-  Exit;
-  end;
-  verMin:=StrToInt(StringReplace(min_sqlite_version,'.','',[rfReplaceAll]));
-  verInst:=StrToInt(StringReplace(versionDLL,'.','',[rfReplaceAll]));
-  if verInst<VerMin then
-  Result := False;
+    if versionDLL = '' then
+    begin
+      Result := True;
+      Exit;
+    end;
+    verMin := StrToInt(StringReplace(min_sqlite_version, '.', '', [rfReplaceAll]));
+    verInst := StrToInt(StringReplace(versionDLL, '.', '', [rfReplaceAll]));
+    if verInst < VerMin then
+      Result := False;
   except
-    Result:=True;
+    Result := True;
   end;
 end;
 
@@ -396,8 +420,8 @@ begin
     try
       vr.SetCustomRawDataStream(Stream);
       fi := vr.FixedInfo;
-      Result := Format('%d.%d.%d', [fi.FileVersion[0],
-        fi.FileVersion[1], fi.FileVersion[2], fi.FileVersion[3]]);
+      Result := Format('%d.%d.%d', [fi.FileVersion[0], fi.FileVersion[1],
+        fi.FileVersion[2], fi.FileVersion[3]]);
     finally
       vr.Free
     end;
@@ -467,35 +491,38 @@ begin
   end;
 end;
 
-function TdmFunc.GetFreqFromBand(band, mode: string): Double;
+function TdmFunc.GetFreqFromBand(band, mode: string): double;
 var
   bandsMmList: TStringList;
-  i, index: Integer;
+  i, index: integer;
 begin
   try
-  Result := 0;
-  bandsMmList := TStringList.Create;
-  mode := UpperCase(mode);
-  band := UpperCase(band);
+    Result := 0;
+    bandsMmList := TStringList.Create;
+    mode := UpperCase(mode);
+    band := UpperCase(band);
 
-    if (mode = 'RTTY') or (Pos('PSK', mode) > 0) or (Pos('JT', mode) > 0) or (mode = 'FT8') then
-    mode := 'DIGI';
+    if (mode = 'RTTY') or (Pos('PSK', mode) > 0) or (Pos('JT', mode) > 0) or
+      (mode = 'FT8') then
+      mode := 'DIGI';
 
-    for i:=0 to Length(bandsMm) - 1 do
-    bandsMmList.Add(bandsMm[i]);
+    for i := 0 to Length(bandsMm) - 1 do
+      bandsMmList.Add(bandsMm[i]);
     index := bandsMmList.indexOf(band);
 
-    if mode = 'CW' then begin
-       Result := StrToDouble(bandsCW[index]);
-       exit;
+    if mode = 'CW' then
+    begin
+      Result := StrToDouble(bandsCW[index]);
+      exit;
     end;
-    if mode = 'DIGI' then begin
+    if mode = 'DIGI' then
+    begin
       Result := StrToDouble(bandsRTTY[index]);
       exit;
     end;
     Result := StrToDouble(bandsOther[index]);
   finally
-   bandsMmList.Free;
+    bandsMmList.Free;
   end;
 end;
 
@@ -505,17 +532,18 @@ var
   tmp: currency;
   Dec: currency;
   band: string;
-  dotcount,i:integer;
+  dotcount, i: integer;
 begin
   Result := '';
   band := '';
-  dotcount:=0;
+  dotcount := 0;
 
-  for i:=1 to length(MHz) do
-  if MHz[i] = '.' then inc(dotcount);
+  for i := 1 to length(MHz) do
+    if MHz[i] = '.' then
+      Inc(dotcount);
 
   if dotcount > 1 then
-  Delete(MHz, length(MHz) - 2, 1);
+    Delete(MHz, length(MHz) - 2, 1);
 
   if Pos('.', MHz) > 0 then
     MHz[Pos('.', MHz)] := FormatSettings.DecimalSeparator;
@@ -571,16 +599,17 @@ var
   tmp: currency;
   Dec: currency;
   band: double;
-  dotcount, i: Integer;
+  dotcount, i: integer;
 begin
   Result := 0;
   band := 0;
   dotcount := 0;
-   for i:=1 to length(MHz) do
-  if MHz[i] = '.' then inc(dotcount);
+  for i := 1 to length(MHz) do
+    if MHz[i] = '.' then
+      Inc(dotcount);
 
   if dotcount > 1 then
-  Delete(MHz, length(MHz) - 2, 1);
+    Delete(MHz, length(MHz) - 2, 1);
 
   if Pos('.', MHz) > 0 then
     MHz[Pos('.', MHz)] := DefaultFormatSettings.DecimalSeparator;
@@ -598,8 +627,8 @@ begin
       Result := 0.137;
     if ((Dec >= 472) and (Dec <= 480)) then
       Result := 0.475;
-      exit;
-    end;
+    exit;
+  end;
   x := trunc(tmp);
   case x of
     1: Band := 1.8;
@@ -643,7 +672,7 @@ end;
 
 function TdmFunc.last_char(s: string): char;
 begin
-  Result := s.Chars[s.Length-1];
+  Result := s.Chars[s.Length - 1];
 end;
 
 function TdmFunc.notHaveDigits(s: string): boolean;
@@ -691,7 +720,8 @@ var
   rv: string;
 begin
 
-  if Call.length < 3 then begin
+  if Call.length < 3 then
+  begin
     Result := '';
     exit;
   end;
@@ -726,7 +756,8 @@ begin
     end;
   end;
 
-  if (notHaveDigits(callsign)) then begin
+  if (notHaveDigits(callsign)) then
+  begin
     Result := (callsign.substring(0, 2) + '0');
     exit;
   end;
@@ -748,7 +779,8 @@ begin
   right := callsign.substring(slash_posn + 1);
   right_size := right.length;
 
-  if (left_size = right_size) then begin
+  if (left_size = right_size) then
+  begin
     Result := left;
     exit;
   end;
@@ -775,12 +807,14 @@ end;
 function TdmFunc.ReplaceCountry(Country: string): string;
 begin
   Result := '';
-    if Pos('USA', Country) > 0 then begin
-     Result := 'United-States';
-     exit;
+  if Pos('USA', Country) > 0 then
+  begin
+    Result := 'United-States';
+    exit;
   end;
 
-  if Pos(',', Country) > 0 then begin
+  if Pos(',', Country) > 0 then
+  begin
     Delete(Country, Pos(',', Country), Length(Country));
     Result := Country;
     exit;
@@ -873,7 +907,8 @@ begin
     Result := Copy(FileName, i, Length(FileName));
 end;
 
-function TdmFunc.Split(delimiter: string; str: string; limit: integer = MaxInt): TStringArray;
+function TdmFunc.Split(delimiter: string; str: string;
+  limit: integer = MaxInt): TStringArray;
 var
   p, cc, dsize: integer;
 begin
@@ -1020,12 +1055,12 @@ procedure TdmFunc.CoordinateFromLocator(loc: string; var latitude, longitude: cu
 var
   a, b, c, d, e, f: integer;
 begin
-  a:=0;
-  b:=0;
-  c:=0;
-  d:=0;
-  e:=0;
-  f:=0;
+  a := 0;
+  b := 0;
+  c := 0;
+  d := 0;
+  e := 0;
+  f := 0;
   if not dmFunc.IsLocOK(loc) then
     exit;
   a := nr(loc[1]);
@@ -1093,14 +1128,16 @@ begin
     exit;
   end;
 
-  if INIFile.ReadString(section, 'model', '') <> IntToStr(2) then begin
+  if INIFile.ReadString(section, 'model', '') <> IntToStr(2) then
+  begin
     Result := '-m ' + INIFile.ReadString(section, 'model', '') + ' ';
-    if Pos('FLRig',INIFile.ReadString(section, 'name', '')) or (Pos('TRXManager',INIFile.ReadString(section, 'name', ''))) > 0 then
-    Result:=Result + INIFile.ReadString(section, 'device', '') + ' ' + '-t ' +
-      INIFile.ReadString(section, 'RigCtldPort', '4532') + ' '
+    if Pos('FLRig', INIFile.ReadString(section, 'name', '')) or
+      (Pos('TRXManager', INIFile.ReadString(section, 'name', ''))) > 0 then
+      Result := Result + INIFile.ReadString(section, 'device', '') + ' ' +
+        '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' '
     else
-      Result:=Result +'-r ' + INIFile.ReadString(section, 'device', '') + ' ' + '-t ' +
-      INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
+      Result := Result + '-r ' + INIFile.ReadString(section, 'device', '') +
+        ' ' + '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
   end
   else
     Result := '-m ' + INIFile.ReadString(section, 'model', '') + ' ' +
@@ -1555,7 +1592,7 @@ begin
   process := TProcessUTF8.Create(nil);
   try
     try
-      process.Executable:=Trim(progpath + ' ' + args);
+      process.Executable := Trim(progpath + ' ' + args);
       process.Options := [poNoConsole
 {$IFDEF WINDOWS}
         , poNewProcessGroup
