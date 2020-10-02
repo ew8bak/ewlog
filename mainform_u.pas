@@ -5,7 +5,7 @@ unit MainForm_U;
 interface
 
 uses
-  Forms, ExtCtrls, Classes, Controls;
+  Forms, ExtCtrls, Classes, Controls, ResourceStr;
 
 type
   { TMainForm }
@@ -19,6 +19,7 @@ type
     MiniPanel: TPanel;
     OtherPanel: TPanel;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { private declarations }
@@ -76,8 +77,13 @@ begin
   INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
   if IniSet.trxShow then
-  TRXForm.SavePosition;
+    TRXForm.SavePosition;
   TRXForm.FreeRadio;
+end;
+
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  MiniForm.Caption := rEWLogHAMJournal;
 end;
 
 end.

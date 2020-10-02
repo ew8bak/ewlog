@@ -1800,6 +1800,7 @@ var
   Lang: string = '';
   FallbackLang: string = '';
 begin
+  MiniForm.Caption:=rEWLogHAMJournal;
   showForm := False;
   Shape1.Visible := False;
   LBQSL.Visible := False;
