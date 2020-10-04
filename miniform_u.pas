@@ -1753,17 +1753,26 @@ procedure TMiniForm.EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer);
 var
   tempName, tempQTH, tempGrid, tempState: string;
+  tempImage: TMemoryStream;
 begin
-  tempName := EditName.Text;
-  tempQTH := EditQTH.Text;
-  tempGrid := EditGrid.Text;
-  tempState := EditState.Text;
-  SelEditNumChar := EditCallsign.SelStart;
-  EditCallsignChange(nil);
-  EditName.Text := tempName;
-  EditQTH.Text := tempQTH;
-  EditGrid.Text := tempGrid;
-  EditState.Text := tempState;
+  try
+    tempImage := TMemoryStream.Create;
+    viewPhoto.ImPhoto.Picture.SaveToStream(tempImage);
+    tempName := EditName.Text;
+    tempQTH := EditQTH.Text;
+    tempGrid := EditGrid.Text;
+    tempState := EditState.Text;
+    SelEditNumChar := EditCallsign.SelStart;
+    EditCallsignChange(nil);
+    EditName.Text := tempName;
+    EditQTH.Text := tempQTH;
+    EditGrid.Text := tempGrid;
+    EditState.Text := tempState;
+    tempImage.Position := 0;
+    viewPhoto.ImPhoto.Picture.LoadFromStream(tempImage);
+  finally
+    FreeAndNil(tempImage);
+  end;
 end;
 
 procedure TMiniForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
