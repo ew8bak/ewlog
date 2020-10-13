@@ -181,7 +181,7 @@ begin
   end;
 
   date := FormatDateTime('yyyy-mm-dd', now);
-  Writeln(f, '<ADIF_VER:5>3.0.2');
+  Writeln(f, '<ADIF_VER:5>3.1.1');
   Writeln(f, 'ADIF export from EWLog');
   Writeln(f, 'Copyleft 2015-2020 by EW8BAK');
   Writeln(f);
@@ -261,6 +261,13 @@ begin
       if Q1.Fields.FieldByName('QSOMode').AsString <> '' then
       begin
         tmp := '<MODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
+          'QSOMode').AsString, CheckBox2.Checked);
+        Write(f, tmp);
+      end;
+
+      if Q1.Fields.FieldByName('QSOSubMode').AsString <> '' then
+      begin
+        tmp := '<SUBMODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
           'QSOMode').AsString, CheckBox2.Checked);
         Write(f, tmp);
       end;
