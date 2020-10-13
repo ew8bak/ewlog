@@ -514,7 +514,7 @@ msgstr "Заполняю таблицу Log_Table_"
 
 #: resourcestr.rgotosettings
 msgid "Go to settings?"
-msgstr ""
+msgstr "Перейти к настройкам?"
 
 #: resourcestr.rgrid
 msgctxt "resourcestr.rgrid"
@@ -592,7 +592,7 @@ msgstr "EWLog подключился к WSJT"
 
 #: resourcestr.rlogentryexist
 msgid "Log entry already exists"
-msgstr ""
+msgstr "Запись в журнале уже существует"
 
 #: resourcestr.rlognconwsjt
 msgctxt "resourcestr.rlognconwsjt"
@@ -678,7 +678,7 @@ msgstr "Нет подключения к серверу. Вернитесь к �
 
 #: resourcestr.rnotdatabasesettings
 msgid "You cannot switch the Database to another because one of the databases is not configured. Check your settings. Go to the settings window?"
-msgstr ""
+msgstr "Вы не можете переключить базу данных т.к. она не настроена. Проверьте настройки. Перейти в окно настроек?"
 
 #: resourcestr.rnotdataforconnect
 msgctxt "resourcestr.rnotdataforconnect"
@@ -1005,7 +1005,7 @@ msgstr "Статус обновления: Требует обновления"
 
 #: resourcestr.rusefldigi
 msgid "Use Fldigi with EWLog?"
-msgstr ""
+msgstr "Использовать Fldigi с EWLog?"
 
 #: resourcestr.rusers
 msgctxt "resourcestr.rusers"
@@ -1014,7 +1014,7 @@ msgstr "User"
 
 #: resourcestr.rusewsjt
 msgid "Use WSJT-X with EWLog?"
-msgstr ""
+msgstr "Использовать WSJT-X с EWLog?"
 
 #: resourcestr.rvaliddx
 msgctxt "resourcestr.rvaliddx"
@@ -3556,7 +3556,7 @@ msgstr "Метка"
 
 #: tminiform.cbrealtime.caption
 msgid "Real Time"
-msgstr ""
+msgstr "Реальное время"
 
 #: tminiform.cbrstr.text
 msgctxt "tminiform.cbrstr.text"
@@ -3750,7 +3750,7 @@ msgstr "Мода"
 #: tminiform.lbmygrid.caption
 msgctxt "tminiform.lbmygrid.caption"
 msgid "My grid"
-msgstr "Мой локатор"
+msgstr "Мой ЛОК"
 
 #: tminiform.lbmystate.caption
 msgctxt "tminiform.lbmystate.caption"
@@ -4072,7 +4072,6 @@ msgid "Download Languages"
 msgstr "Загрузить переводы"
 
 #: tminiform.miextprog.caption
-#, fuzzy
 msgctxt "tminiform.miextprog.caption"
 msgid "External programs"
 msgstr "Внешние программы"
@@ -4089,11 +4088,9 @@ msgstr "Журнал"
 
 #: tminiform.milogbookform.caption
 msgid "Logbook grid"
-msgstr ""
+msgstr "Таблица журнала"
 
 #: tminiform.miloggridtop.caption
-#, fuzzy
-#| msgid "On Top"
 msgctxt "tminiform.miloggridtop.caption"
 msgid "OnTop"
 msgstr "Всегда наверху"
@@ -4116,7 +4113,7 @@ msgstr "Всегда наверху"
 #: tminiform.mimmode.caption
 msgctxt "tminiform.mimmode.caption"
 msgid "Mode ON"
-msgstr ""
+msgstr "Включить режим"
 
 #: tminiform.miphoto.caption
 msgctxt "tminiform.miphoto.caption"
@@ -4566,20 +4563,18 @@ msgstr ""
 
 #: tsettingsprogramform.btaddprogram.caption
 msgid "Add program"
-msgstr ""
+msgstr "Добавить программу"
 
 #: tsettingsprogramform.btcancel.caption
-#, fuzzy
 msgctxt "tsettingsprogramform.btcancel.caption"
 msgid "Close"
 msgstr "Закрыть"
 
 #: tsettingsprogramform.btdelete.caption
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: tsettingsprogramform.btsave.caption
-#, fuzzy
 msgctxt "tsettingsprogramform.btsave.caption"
 msgid "Save"
 msgstr "Сохранить"
@@ -4591,15 +4586,15 @@ msgstr "Внешние программы"
 
 #: tsettingsprogramform.cbusedigi.caption
 msgid "Use"
-msgstr ""
+msgstr "Использовать"
 
 #: tsettingsprogramform.lbname.caption
 msgid "Name program:"
-msgstr ""
+msgstr "Имя программы:"
 
 #: tsettingsprogramform.lbpath.caption
 msgid "Path program:"
-msgstr ""
+msgstr "Путь программы:"
 
 #: tsetupform.button1.caption
 msgid "I accept"
@@ -4658,7 +4653,7 @@ msgstr "Помощник установки"
 #: tsetupform.cbexpertmode.caption
 msgctxt "tsetupform.cbexpertmode.caption"
 msgid "Expert Mode"
-msgstr ""
+msgstr "Экспертный режим"
 
 #: tsetupform.checkbox1.caption
 msgid "Use an existing MySQL database"
@@ -5189,4 +5184,3 @@ msgstr "Фото"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
-
