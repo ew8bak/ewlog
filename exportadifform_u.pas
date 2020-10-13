@@ -268,7 +268,7 @@ begin
       if Q1.Fields.FieldByName('QSOSubMode').AsString <> '' then
       begin
         tmp := '<SUBMODE' + dmFunc.StringToADIF(Q1.Fields.FieldByName(
-          'QSOMode').AsString, CheckBox2.Checked);
+          'QSOSubMode').AsString, CheckBox2.Checked);
         Write(f, tmp);
       end;
 
