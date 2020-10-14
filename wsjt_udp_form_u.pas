@@ -247,9 +247,9 @@ begin
               ' RST получено:' + reportReceived + ' TX мощность:' +
               TXPower + ' Комментарий:' + comments + ' Имя:' + DXName);
 
-            MiniForm.CBRealTime.Checked := False;
-            MiniForm.DateEdit1.Date := date;
-            MiniForm.DateTimePicker1.Time := date;
+        //    MiniForm.CBRealTime.Checked := False;
+        //    MiniForm.DateEdit1.Date := date;
+        //    MiniForm.DateTimePicker1.Time := date;
             MiniForm.EditCallsign.Text := DXCall;
 
              if IniSet.showBand and
@@ -260,14 +260,24 @@ begin
               MiniForm.CBBand.Text := FormatFloat('0.000"."00', frequency / 1000000);
 
             MiniForm.EditGrid.Text := DXGrid;
+
+            if mode <> 'FT4' then begin
             MiniForm.CBMode.Text := mode;
+            MiniForm.CBSubMode.Text := '';
+            end
+            else begin
+            MiniForm.CBMode.Text := 'MFSK';
+            MiniForm.CBSubMode.Text := 'FT4';
+            end;
+
+            //  MiniForm.CBMode.Text := mode;
             MiniForm.CBRSTs.Text := report;
             MiniForm.CBRSTr.Text := reportReceived;
             if DXName <> '' then
             MiniForm.EditName.Text := DXName;
             MiniForm.EditComment.Text := comments;
             MiniForm.SBSave.Click;
-            MiniForm.CBRealTime.Checked := True;
+        //    MiniForm.CBRealTime.Checked := True;
           end;
 
           12:
