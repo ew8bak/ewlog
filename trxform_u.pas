@@ -277,7 +277,7 @@ begin
   submode := '';
   if Assigned(radio) then
   begin
-    SBConnect.Caption:='On';
+   // SBConnect.Caption:='On';
     f := radio.GetFreqMHz;
     m := radio.GetModeOnly;
     Freq(radio.GetFreqHz);
@@ -287,7 +287,7 @@ begin
   end
   else begin
     f := 0;
-    SBConnect.Caption:='Off';
+    //SBConnect.Caption:='Off';
   end;
 
   if Length(m) > 1 then
@@ -343,11 +343,11 @@ begin
   tmrRadio.Enabled := True;
 
   Result := True;
-  SBConnect.Caption:='On';
+  //SBConnect.Caption:='On';
   if not radio.Connected then
   begin
     tmrRadio.Enabled := False;
-    SBConnect.Caption:='Off';
+   // SBConnect.Caption:='Off';
     FreeAndNil(radio);
   end;
 end;

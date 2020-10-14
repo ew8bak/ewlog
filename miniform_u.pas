@@ -1756,8 +1756,10 @@ var
   tempImage: TMemoryStream;
 begin
   try
+    {$IFDEF WINDOWS}
     tempImage := TMemoryStream.Create;
     viewPhoto.ImPhoto.Picture.SaveToStream(tempImage);
+    {$ENDIF}
     tempName := EditName.Text;
     tempQTH := EditQTH.Text;
     tempGrid := EditGrid.Text;
@@ -1768,10 +1770,14 @@ begin
     EditQTH.Text := tempQTH;
     EditGrid.Text := tempGrid;
     EditState.Text := tempState;
+    {$IFDEF WINDOWS}
     tempImage.Position := 0;
     viewPhoto.ImPhoto.Picture.LoadFromStream(tempImage);
+    {$ENDIF}
   finally
+    {$IFDEF WINDOWS}
     FreeAndNil(tempImage);
+    {$ENDIF}
   end;
 end;
 

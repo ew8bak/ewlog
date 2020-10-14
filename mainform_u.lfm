@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 429
+  Left = 430
   Height = 667
-  Top = 210
+  Top = 209
   Width = 1208
   Caption = 'EWLog - HAM Journal'
   ClientHeight = 667
