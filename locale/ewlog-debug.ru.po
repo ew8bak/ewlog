@@ -371,7 +371,7 @@ msgid "Client Connected:"
 msgstr "Клиент подключён:"
 
 #: resourcestr.rconnectedtofldigi
-msgid "connected to fldigi"
+msgid "Fldigi connected to EWLog"
 msgstr ""
 
 #: resourcestr.rcontinent
@@ -428,7 +428,7 @@ msgid "Delete Record "
 msgstr "Удалить запись "
 
 #: resourcestr.rdisconnectedfromfldigi
-msgid "disconnected from fldigi"
+msgid "Fldigi disconnected from EWLog"
 msgstr ""
 
 #: resourcestr.rdone

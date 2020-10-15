@@ -100,6 +100,7 @@ type
     function CheckProcess(PName: string): boolean;
     function CloseProcess(PName: string): boolean;
     function GetCurrentUserName: string;
+    function getFieldFromFldigi(str, field: string): string;
     {$IFDEF WINDOWS}
     function GetWindowsVersion: string;
     function GetUserProfilesDir: string;
@@ -231,6 +232,27 @@ begin
   end;
   {$ENDIF WINDOWS}
   {$ENDIF UNIX}
+end;
+
+function TdmFunc.getFieldFromFldigi(str, field: string): string;
+var
+  start: integer = 0;
+  stop: integer = 0;
+begin
+  try
+    Result := '';
+    start := str.IndexOf('<' + field + '>');
+    if (start >= 0) then
+    begin
+      str := str.Substring(start + field.Length);
+      start := str.IndexOf('>');
+      stop := str.IndexOf('<');
+      if (start < stop) and (start > -1) then
+        Result := TrimRight(str.Substring(start + 1, stop - start - 1));
+    end;
+  except
+    Result := '';
+  end;
 end;
 
 function TdmFunc.CheckProcess(PName: string): boolean;

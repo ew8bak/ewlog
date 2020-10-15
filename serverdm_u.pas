@@ -5,7 +5,8 @@ unit serverDM_u;
 interface
 
 uses
-  Classes, SysUtils, lNetComponents, lNet, IdIPWatch, ResourceStr, const_u, LazUTF8;
+  Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
+  const_u, LazUTF8, IdCustomTCPServer, IdContext;
 
 type
 
@@ -13,9 +14,13 @@ type
 
   TServerDM = class(TDataModule)
     IdIPWatch1: TIdIPWatch;
+    IdFldigiTCP: TIdTCPServer;
     LTCPComponent1: TLTCPComponent;
     LUDPComponent1: TLUDPComponent;
     procedure DataModuleCreate(Sender: TObject);
+    procedure IdFldigiTCPConnect(AContext: TIdContext);
+    procedure IdFldigiTCPDisconnect(AContext: TIdContext);
+    procedure IdFldigiTCPExecute(AContext: TIdContext);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
     procedure LTCPComponent1Disconnect(aSocket: TLSocket);
@@ -47,7 +52,8 @@ var
 
 implementation
 
-uses InitDB_dm, MainFuncDM, MainForm_U, dmFunc_U, ExportAdifForm_u, ImportADIFForm_U;
+uses InitDB_dm, MainFuncDM, MainForm_U, dmFunc_U, ExportAdifForm_u,
+  ImportADIFForm_U, miniform_u;
 
 {$R *.lfm}
 
@@ -74,33 +80,62 @@ var
   i: integer;
 begin
   try
-  lastUDPport := -1;
-  AdifFromMobileSyncStart := False;
-  ImportAdifMobile := False;
-  for i := 0 to 5 do
-    if LUDPComponent1.Listen(port_udp[i]) then
-    begin
-      lastUDPport := port_udp[i];
-      Break;
-    end;
-  if lastUDPport = -1 then
-    MessageToForm := 'Can not create socket';
-  lastTCPport := -1;
-  LTCPComponent1.ReuseAddress := True;
-  for i := 0 to 5 do
-    if LTCPComponent1.Listen(port_tcp[i]) then
-    begin
-      lastTCPport := port_tcp[i];
-      MessageToForm :=
-        'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport);
-      Break;
-    end;
-  if lastTCPport = -1 then
-    MessageToForm := 'Can not create socket';
+    lastUDPport := -1;
+    AdifFromMobileSyncStart := False;
+    ImportAdifMobile := False;
+    for i := 0 to 5 do
+      if LUDPComponent1.Listen(port_udp[i]) then
+      begin
+        lastUDPport := port_udp[i];
+        Break;
+      end;
+    if lastUDPport = -1 then
+      MessageToForm := 'Can not create socket';
+    lastTCPport := -1;
+    LTCPComponent1.ReuseAddress := True;
+    for i := 0 to 5 do
+      if LTCPComponent1.Listen(port_tcp[i]) then
+      begin
+        lastTCPport := port_tcp[i];
+        MessageToForm :=
+          'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport);
+        Break;
+      end;
+    if lastTCPport = -1 then
+      MessageToForm := 'Can not create socket';
+
+    if IniSet.FLDIGI_USE then
+      IdFldigiTCP.Active := True;
 
   except
     on E: Exception do
-     WriteLn(ExceptFile, 'TServerDM.DataModuleCreate:' + E.ClassName + ':' + E.Message);
+      WriteLn(ExceptFile, 'TServerDM.DataModuleCreate:' + E.ClassName + ':' + E.Message);
+  end;
+end;
+
+procedure TServerDM.IdFldigiTCPConnect(AContext: TIdContext);
+begin
+  MiniForm.TextSB(rConnectedToFldigi, 0);
+end;
+
+procedure TServerDM.IdFldigiTCPDisconnect(AContext: TIdContext);
+begin
+  MiniForm.TextSB(rDisconnectedFromFldigi, 0);
+end;
+
+procedure TServerDM.IdFldigiTCPExecute(AContext: TIdContext);
+var
+  MessageFromUDP: string;
+begin
+  MessageFromUDP := AContext.Connection.Socket.ReadLn;
+  if Length(MessageFromUDP) > 0 then
+  begin
+    if Pos('<CMD><PROGRAM></CMD>', MessageFromUDP) > 0 then
+    begin
+      AContext.Connection.Socket.Writeln('<CMD><PROGRAMRESPONSE><PGM>N3FJP''s ' +
+        'Amateur Contact Log</PGM><VER>5.5</VER><APIVER>0.6.2</APIVER></CMD>');
+    end;
+    MiniForm.ShowDataFromFldigi(MainFunc.GetFldigiUDP(MessageFromUDP));
   end;
 end;
 

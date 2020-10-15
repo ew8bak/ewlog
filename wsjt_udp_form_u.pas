@@ -118,11 +118,10 @@ var
 begin
   peerPort := ABinding.PeerPort;
 
- // Memo1.Lines.Add('Datagram received - length: ' + IntToStr(Length(AData)));
   while index < Length(AData) do
   begin
     Unpack(AData, index, magic);
-  //   Memo1.Lines.Add('index:' + IntToStr(index) + ' magic:$' + IntToHex(magic,8));
+
     if (magic = longint($ADBCCBDA)) and (index < Length(AData)) then
     begin
       Unpack(AData, index, schema);
@@ -157,19 +156,22 @@ begin
             MiniForm.EditGrid.Text := DXGrid;
 
             if IniSet.showBand and
-              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
-              MiniForm.CBBand.Text := dmFunc.GetBandFromFreq(
-                FormatFloat('0.000"."00', frequency / 1000000))
+              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <>
+              '') then
+              MiniForm.CBBand.Text :=
+                dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000))
             else
               MiniForm.CBBand.Text := FormatFloat('0.000"."00', frequency / 1000000);
 
-            if mode <> 'FT4' then begin
-            MiniForm.CBMode.Text := mode;
-            MiniForm.CBSubMode.Text := '';
+            if mode <> 'FT4' then
+            begin
+              MiniForm.CBMode.Text := mode;
+              MiniForm.CBSubMode.Text := '';
             end
-            else begin
-            MiniForm.CBMode.Text := 'MFSK';
-            MiniForm.CBSubMode.Text := 'FT4';
+            else
+            begin
+              MiniForm.CBMode.Text := 'MFSK';
+              MiniForm.CBSubMode.Text := 'FT4';
             end;
             MiniForm.CBRSTr.Text := report;
           end;
@@ -247,42 +249,40 @@ begin
               ' RST получено:' + reportReceived + ' TX мощность:' +
               TXPower + ' Комментарий:' + comments + ' Имя:' + DXName);
 
-        //    MiniForm.CBRealTime.Checked := False;
-        //    MiniForm.DateEdit1.Date := date;
-        //    MiniForm.DateTimePicker1.Time := date;
             MiniForm.EditCallsign.Text := DXCall;
 
-             if IniSet.showBand and
-              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
-              MiniForm.CBBand.Text := dmFunc.GetBandFromFreq(
-                FormatFloat('0.000"."00', frequency / 1000000))
+            if IniSet.showBand and
+              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <>
+              '') then
+              MiniForm.CBBand.Text :=
+                dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000))
             else
               MiniForm.CBBand.Text := FormatFloat('0.000"."00', frequency / 1000000);
 
             MiniForm.EditGrid.Text := DXGrid;
 
-            if mode <> 'FT4' then begin
-            MiniForm.CBMode.Text := mode;
-            MiniForm.CBSubMode.Text := '';
+            if mode <> 'FT4' then
+            begin
+              MiniForm.CBMode.Text := mode;
+              MiniForm.CBSubMode.Text := '';
             end
-            else begin
-            MiniForm.CBMode.Text := 'MFSK';
-            MiniForm.CBSubMode.Text := 'FT4';
+            else
+            begin
+              MiniForm.CBMode.Text := 'MFSK';
+              MiniForm.CBSubMode.Text := 'FT4';
             end;
 
-            //  MiniForm.CBMode.Text := mode;
             MiniForm.CBRSTs.Text := report;
             MiniForm.CBRSTr.Text := reportReceived;
             if DXName <> '' then
-            MiniForm.EditName.Text := DXName;
+              MiniForm.EditName.Text := DXName;
             MiniForm.EditComment.Text := comments;
             MiniForm.SBSave.Click;
-        //    MiniForm.CBRealTime.Checked := True;
           end;
 
           12:
           begin
-           // Unpack(AData, index, id);
+            // Unpack(AData, index, id);
             Unpack(AData, index, adif_text);
             //writeln('Index:' + id + ', ADIF:' + adif_text);
             memo1.Lines.Add('Index:' + id + ', ADIF:' + adif_text);

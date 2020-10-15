@@ -19,6 +19,9 @@ type
     RSTs: string;
     OmName: string;
     Comment: string;
+    QTH: string;
+    Save: Boolean;
+    Band: string;
   end;
 
 implementation

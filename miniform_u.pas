@@ -9,7 +9,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, LCLIntf,
-  ActnList, process, CopyTableThread, gettext;
+  ActnList, process, CopyTableThread, gettext, digi_record;
 
 type
 
@@ -290,6 +290,7 @@ type
     procedure TextSB(Value: string; PanelNum: integer);
     procedure FromCopyTableThread(Data: TData);
     procedure ShowInfoFromRIG(freq: double; mode, submode: string);
+    procedure ShowDataFromFldigi(DataDigi: TDigiR);
 
   end;
 
@@ -312,6 +313,13 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 {$R *.lfm}
 
 { TMiniForm }
+
+procedure TMiniForm.ShowDataFromFldigi(DataDigi: TDigiR);
+begin
+   EditCallsign.Text:=DataDigi.DXCall;
+   CBRSTr.Text:=DataDigi.RSTr;
+   CBRSTs.Text:=DataDigi.RSTs;
+end;
 
 procedure TMiniForm.ShowInfoFromRIG(freq: double; mode, submode: string);
 begin

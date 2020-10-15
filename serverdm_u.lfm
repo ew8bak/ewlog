@@ -32,4 +32,17 @@ object ServerDM: TServerDM
     Left = 160
     Top = 8
   end
+  object IdFldigiTCP: TIdTCPServer
+    Bindings = <    
+      item
+        IP = '127.0.0.1'
+        Port = 1100
+      end>
+    DefaultPort = 1100
+    OnConnect = IdFldigiTCPConnect
+    OnDisconnect = IdFldigiTCPDisconnect
+    OnExecute = IdFldigiTCPExecute
+    Left = 152
+    Top = 80
+  end
 end
