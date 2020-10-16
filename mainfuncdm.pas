@@ -73,7 +73,6 @@ type
     function GetMySQLDataBase: StringArray;
     function GetExternalProgramsName: extProgramArray;
     function GetExternalProgramsPath(ProgramName: string): string;
-    function GetFldigiUDP(Message: string): TDigiR;
   end;
 
 var
@@ -91,32 +90,6 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
 
 {$R *.lfm}
-
-function TMainFunc.GetFldigiUDP(Message: string): TDigiR;
-begin
-  if Pos('ACTION', Message) > 0 then
-    if dmFunc.getFieldFromFldigi(Message, 'VALUE') = 'ENTER' then
-      Result.Save := True;
-
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYCALL' then
-    Result.DXCall := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYRSTS' then
-    Result.RSTs := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYRSTR' then
-    Result.RSTr := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYGRID' then
-    Result.DXGrid := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYQTHGROUP' then
-    Result.QTH := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYMODE' then
-    Result.Mode := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYFREQUENCY' then
-    Result.Freq := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYNAMER' then
-    Result.OmName := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYBAND' then
-    Result.Band := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-end;
 
 function TMainFunc.GetExternalProgramsPath(ProgramName: string): string;
 var

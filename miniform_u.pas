@@ -316,9 +316,11 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 
 procedure TMiniForm.ShowDataFromFldigi(DataDigi: TDigiR);
 begin
-   EditCallsign.Text:=DataDigi.DXCall;
-   CBRSTr.Text:=DataDigi.RSTr;
-   CBRSTs.Text:=DataDigi.RSTs;
+  EditCallsign.Text := DataDigi.DXCall;
+  CBRSTr.Text := DataDigi.RSTr;
+  CBRSTs.Text := DataDigi.RSTs;
+  if DataDigi.Save then
+    SBSave.Click;
 end;
 
 procedure TMiniForm.ShowInfoFromRIG(freq: double; mode, submode: string);

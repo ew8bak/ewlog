@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
-  const_u, LazUTF8, IdCustomTCPServer, IdContext;
+  const_u, LazUTF8, IdCustomTCPServer, IdContext, digi_record;
 
 type
 
@@ -38,7 +38,10 @@ type
     ImportAdifMobile: boolean;
     Stream: TMemoryStream;
     AdifFromMobileSyncStart: boolean;
+    DataDigi: TDigiR;
+    procedure FldigiToForm;
     function GetNewChunk: string;
+    procedure GetFldigiUDP(Message: string);
 
   public
     AdifFromMobileString: TStringList;
@@ -124,19 +127,58 @@ begin
 end;
 
 procedure TServerDM.IdFldigiTCPExecute(AContext: TIdContext);
+const
+  ProgramStr: string = '<CMD><PROGRAM></CMD>';
 var
   MessageFromUDP: string;
 begin
   MessageFromUDP := AContext.Connection.Socket.ReadLn;
   if Length(MessageFromUDP) > 0 then
   begin
-    if Pos('<CMD><PROGRAM></CMD>', MessageFromUDP) > 0 then
+    if Pos(ProgramStr, MessageFromUDP) > 0 then
     begin
       AContext.Connection.Socket.Writeln('<CMD><PROGRAMRESPONSE><PGM>N3FJP''s ' +
         'Amateur Contact Log</PGM><VER>5.5</VER><APIVER>0.6.2</APIVER></CMD>');
     end;
-    MiniForm.ShowDataFromFldigi(MainFunc.GetFldigiUDP(MessageFromUDP));
+    if Pos(ProgramStr, MessageFromUDP) = 0 then
+    begin
+      GetFldigiUDP(MessageFromUDP);
+    end;
   end;
+end;
+
+procedure TServerDM.GetFldigiUDP(Message: string);
+begin
+  if Pos('ACTION', Message) > 0 then
+    if dmFunc.getFieldFromFldigi(Message, 'VALUE') = 'ENTER' then
+      DataDigi.Save := True;
+
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYCALL' then
+    if dmFunc.getFieldFromFldigi(Message, 'VALUE') <> '' then
+      DataDigi.DXCall := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYRSTS' then
+    DataDigi.RSTs := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYRSTR' then
+    DataDigi.RSTr := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYGRID' then
+    DataDigi.DXGrid := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYQTHGROUP' then
+    DataDigi.QTH := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYMODE' then
+    DataDigi.Mode := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYFREQUENCY' then
+    DataDigi.Freq := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYNAMER' then
+    DataDigi.OmName := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYBAND' then
+    DataDigi.Band := dmFunc.getFieldFromFldigi(Message, 'VALUE');
+  TThread.Synchronize(nil, @FldigiToForm);
+end;
+
+procedure TServerDM.FldigiToForm;
+begin
+  MiniForm.ShowDataFromFldigi(DataDigi);
+  DataDigi.Save := False;
 end;
 
 procedure TServerDM.LTCPComponent1Accept(aSocket: TLSocket);
