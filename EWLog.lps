@@ -115,7 +115,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="83"/>
         <CursorPos X="14" Y="103"/>
         <UsageCount Value="200"/>
@@ -418,7 +418,7 @@
         <UnitName Value="WSJT_UDP_Form_U"/>
         <EditorIndex Value="3"/>
         <TopLine Value="98"/>
-        <CursorPos X="8" Y="123"/>
+        <CursorPos X="47" Y="114"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit37>
@@ -584,10 +584,11 @@
         <Filename Value="fldigimodem.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="flDigiModem"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="183"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="6"/>
         <CursorPos X="85" Y="12"/>
         <UsageCount Value="202"/>
+        <Loaded Value="True"/>
       </Unit55>
       <Unit56>
         <Filename Value="analyticthread.pas"/>
@@ -768,8 +769,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="304"/>
-        <CursorPos X="18" Y="323"/>
+        <TopLine Value="307"/>
+        <CursorPos X="35" Y="315"/>
         <UsageCount Value="186"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -790,8 +791,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="128"/>
-        <CursorPos X="68" Y="165"/>
+        <TopLine Value="143"/>
+        <CursorPos X="4" Y="157"/>
         <UsageCount Value="176"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
