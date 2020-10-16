@@ -47,7 +47,7 @@ var
 implementation
 
 uses
-  InitDB_dm, MainFuncDM;
+  InitDB_dm, MainFuncDM, serverDM_u, WSJT_UDP_Form_U;
 
 {$R *.lfm}
 
@@ -99,6 +99,7 @@ begin
       INIFile.WriteBool('WSJT', 'USEWSJT', CBUseDIGI.Checked);
       IniSet.WSJT_PATH := FNEdit.Text;
       IniSet.WSJT_USE := CBUseDIGI.Checked;
+      WSJT_UDP_Form.IdUDPServer1.Active:=IniSet.WSJT_USE;
       Exit;
     end;
 
@@ -108,6 +109,7 @@ begin
       INIFile.WriteBool('FLDIGI', 'USEFLDIGI', CBUseDIGI.Checked);
       IniSet.Fl_PATH := FNEdit.Text;
       IniSet.FLDIGI_USE := CBUseDIGI.Checked;
+      ServerDM.IdFldigiTCP.Active:=IniSet.FLDIGI_USE;
       Exit;
     end;
   end;

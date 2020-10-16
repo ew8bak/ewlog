@@ -323,7 +323,9 @@ begin
     EditCallsign.Text := tempCall;
   CBRSTr.Text := DataDigi.RSTr;
   CBRSTs.Text := DataDigi.RSTs;
+  if DataDigi.DXGrid <> '' then
   EditGrid.Text := DataDigi.DXGrid;
+  if DataDigi.OmName <> '' then
   EditName.Text := DataDigi.OmName;
   if DataDigi.Save then
     SBSave.Click;

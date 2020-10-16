@@ -115,7 +115,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="83"/>
         <CursorPos X="14" Y="103"/>
         <UsageCount Value="200"/>
@@ -260,10 +260,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsProgramForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="155"/>
-        <CursorPos X="3" Y="168"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="93"/>
+        <CursorPos X="57" Y="102"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit24>
       <Unit25>
         <Filename Value="aboutform_u.pas"/>
@@ -416,9 +418,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WSJT_UDP_Form_U"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="98"/>
-        <CursorPos X="47" Y="114"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="66"/>
+        <CursorPos X="28" Y="80"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit37>
@@ -532,7 +534,7 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="131"/>
         <CursorPos X="21" Y="159"/>
         <UsageCount Value="201"/>
@@ -584,7 +586,7 @@
         <Filename Value="fldigimodem.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="flDigiModem"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="6"/>
         <CursorPos X="85" Y="12"/>
         <UsageCount Value="202"/>
@@ -636,7 +638,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="87"/>
         <CursorPos X="33" Y="87"/>
         <UsageCount Value="200"/>
@@ -729,7 +731,7 @@
       <Unit71>
         <Filename Value="digi_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="18" Y="23"/>
         <UsageCount Value="199"/>
         <Loaded Value="True"/>
@@ -769,8 +771,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="307"/>
-        <CursorPos X="35" Y="315"/>
+        <TopLine Value="1799"/>
+        <CursorPos X="3" Y="1807"/>
         <UsageCount Value="186"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -790,9 +792,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="143"/>
-        <CursorPos X="4" Y="157"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="110"/>
+        <CursorPos X="16" Y="121"/>
         <UsageCount Value="176"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1506,7 +1508,7 @@
         <UsageCount Value="10"/>
       </Unit170>
     </Units>
-    <JumpHistory Count="23" HistoryIndex="22">
+    <JumpHistory Count="25" HistoryIndex="24">
       <Position1>
         <Filename Value="resourcestr.pas"/>
         <Caret Line="73" Column="3" TopLine="56"/>
@@ -1596,9 +1598,17 @@
         <Caret Line="145" Column="7" TopLine="145"/>
       </Position22>
       <Position23>
-        <Filename Value="serverdm_u.pas"/>
-        <Caret Line="45" Column="15" TopLine="140"/>
+        <Filename Value="settingsprogramform_u.pas"/>
+        <Caret Line="168" Column="3" TopLine="155"/>
       </Position23>
+      <Position24>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="163" Column="4" TopLine="149"/>
+      </Position24>
+      <Position25>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="326" Column="21" TopLine="307"/>
+      </Position25>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

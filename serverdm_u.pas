@@ -55,7 +55,7 @@ var
 
 implementation
 
-uses InitDB_dm, MainFuncDM, MainForm_U, dmFunc_U, ExportAdifForm_u,
+uses InitDB_dm, MainFuncDM, dmFunc_U, ExportAdifForm_u,
   ImportADIFForm_U, miniform_u;
 
 {$R *.lfm}
