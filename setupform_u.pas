@@ -134,6 +134,7 @@ type
     LOG_PREFIX: string;
     Default_DataBase: string;
     Test_Connection: boolean;
+    procedure CheckEmptyDB;
     { private declarations }
   public
     { public declarations }
@@ -144,7 +145,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, SetupSQLquery, InitDB_dm, MainFuncDM, miniform_u;
+uses dmFunc_U, SetupSQLquery, InitDB_dm, MainFuncDM, miniform_u;
 
 var
   MySQL_Current: boolean;
@@ -619,11 +620,61 @@ procedure TSetupForm.Button1Click(Sender: TObject);
 begin
   if CBExpertMode.Checked then
     PageControl1.ActivePageIndex := 1
-  else begin
-     CheckedDB := 2;
-     SQLitePATH := FilePATH + 'logbook.db';
-     Default_DataBase := 'SQLite';
+  else
+  begin
+    CheckedDB := 2;
+    SQLitePATH := FilePATH + 'logbook.db';
+    Default_DataBase := 'SQLite';
+    CheckEmptyDB;
     PageControl1.ActivePageIndex := 2;
+  end;
+end;
+
+procedure TSetupForm.CheckEmptyDB;
+var
+  Query: TSQLQuery;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if not FileExists(SQLitePATH) then
+      Exit
+    else
+    begin
+      try
+        SQLite_Current := True;
+        SQLite_Connector.DatabaseName := SQLitePATH;
+        SQLite_Connector.Transaction := SQL_Transaction;
+        SQLite_Connector.Connected := True;
+        Query.DataBase := SQLite_Connector;
+        Query.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
+        Query.Open;
+        if Query.FieldByName('CallName').AsString <> '' then
+        begin
+          Edit7.Text := Query.FieldByName('Discription').AsString;
+          Edit8.Text := Query.FieldByName('CallName').AsString;
+          Edit9.Text := Query.FieldByName('QTH').AsString;
+          Edit10.Text := Query.FieldByName('Name').AsString;
+          Edit11.Text := Query.FieldByName('Loc').AsString;
+          Edit14.Text := Query.FieldByName('ITU').AsString;
+          Edit15.Text := Query.FieldByName('CQ').AsString;
+          Edit16.Text := Query.FieldByName('QSLInfo').AsString;
+        end;
+        Query.Close;
+
+      except
+        on E: Exception do
+        begin
+          SQLite_Connector.Connected := False;
+          SQLite_Current := False;
+          DeleteFile(SQLitePATH);
+        end;
+      end;
+
+    end;
+
+  finally
+    SQLite_Connector.Connected := False;
+    FreeAndNil(Query);
   end;
 end;
 
@@ -748,9 +799,9 @@ end;
 procedure TSetupForm.Button7Click(Sender: TObject);
 begin
   if CBExpertMode.Checked then
-  PageControl1.ActivePageIndex := 1
+    PageControl1.ActivePageIndex := 1
   else
-  PageControl1.ActivePageIndex := 0;
+    PageControl1.ActivePageIndex := 0;
 end;
 
 procedure TSetupForm.Button8Click(Sender: TObject);

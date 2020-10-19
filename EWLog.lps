@@ -115,7 +115,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="1122"/>
         <CursorPos X="30" Y="1135"/>
         <UsageCount Value="200"/>
@@ -296,10 +296,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="setupForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="730"/>
-        <CursorPos X="43" Y="757"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="642"/>
+        <CursorPos X="26" Y="650"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit27>
       <Unit28>
         <Filename Value="updateform_u.pas"/>
@@ -633,9 +636,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="80"/>
-        <CursorPos X="33" Y="87"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="441"/>
+        <CursorPos X="67" Y="447"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit60>
@@ -764,10 +767,9 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="321"/>
-        <CursorPos X="29" Y="334"/>
-        <UsageCount Value="194"/>
+        <TopLine Value="368"/>
+        <CursorPos X="57" Y="344"/>
+        <UsageCount Value="197"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit75>
@@ -777,7 +779,7 @@
         <UnitName Value="ImbedCallBookCheckRec"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="14"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="190"/>
       </Unit76>
       <Unit77>
         <Filename Value="serverdm_u.pas"/>
@@ -786,10 +788,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="130"/>
         <CursorPos X="18" Y="138"/>
-        <UsageCount Value="184"/>
+        <UsageCount Value="187"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit77>
@@ -800,7 +802,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="79"/>
         <CursorPos X="20" Y="101"/>
-        <UsageCount Value="179"/>
+        <UsageCount Value="182"/>
       </Unit78>
       <Unit79>
         <Filename Value="dxclusterform_u.pas"/>
@@ -811,7 +813,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="561"/>
         <CursorPos X="3" Y="566"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="176"/>
       </Unit79>
       <Unit80>
         <Filename Value="gridsform_u.pas"/>
@@ -823,7 +825,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="739"/>
         <CursorPos X="3" Y="758"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="155"/>
       </Unit80>
       <Unit81>
         <Filename Value="mapform_u.pas"/>
@@ -835,7 +837,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos X="6" Y="55"/>
-        <UsageCount Value="128"/>
+        <UsageCount Value="131"/>
       </Unit81>
       <Unit82>
         <Filename Value="copytablethread.pas"/>
@@ -844,7 +846,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="35"/>
         <CursorPos X="33" Y="48"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="106"/>
       </Unit82>
       <Unit83>
         <Filename Value="getsessionid.pas"/>
@@ -1518,22 +1520,22 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit172>
     </Units>
-    <JumpHistory Count="23" HistoryIndex="22">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="228" Column="7" TopLine="179"/>
+        <Caret Line="43" Column="24" TopLine="28"/>
       </Position1>
       <Position2>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="226" Column="43" TopLine="208"/>
+        <Caret Line="118" Column="20" TopLine="103"/>
       </Position2>
       <Position3>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="43" Column="24" TopLine="28"/>
+        <Caret Line="193" TopLine="180"/>
       </Position3>
       <Position4>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="118" Column="20" TopLine="103"/>
+        <Caret Line="194" TopLine="180"/>
       </Position4>
       <Position5>
         <Filename Value="serverdm_u.pas"/>
@@ -1549,68 +1551,96 @@
       </Position7>
       <Position8>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="194" TopLine="180"/>
+        <Caret Line="193" TopLine="174"/>
       </Position8>
       <Position9>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="193" TopLine="180"/>
+        <Caret Line="221" Column="87" TopLine="209"/>
       </Position9>
       <Position10>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="193" TopLine="174"/>
+        <Caret Line="226" Column="27" TopLine="211"/>
       </Position10>
       <Position11>
-        <Filename Value="serverdm_u.pas"/>
-        <Caret Line="221" Column="87" TopLine="209"/>
+        <Filename Value="dmfunc_u.pas"/>
+        <Caret Line="90" Column="14" TopLine="75"/>
       </Position11>
       <Position12>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="226" Column="27" TopLine="211"/>
+        <Caret Line="213" Column="40" TopLine="194"/>
       </Position12>
       <Position13>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="90" Column="14" TopLine="75"/>
-      </Position13>
-      <Position14>
-        <Filename Value="serverdm_u.pas"/>
-        <Caret Line="213" Column="40" TopLine="194"/>
-      </Position14>
-      <Position15>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="332" Column="9" TopLine="307"/>
-      </Position15>
-      <Position16>
+      </Position13>
+      <Position14>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="279" Column="15" TopLine="264"/>
+      </Position14>
+      <Position15>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="211" Column="16" TopLine="194"/>
+      </Position15>
+      <Position16>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="41" Column="5" TopLine="26"/>
       </Position16>
       <Position17>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="211" Column="16" TopLine="194"/>
+        <Caret Line="227" TopLine="217"/>
       </Position17>
       <Position18>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="41" Column="5" TopLine="26"/>
+        <Caret Line="150" Column="32" TopLine="134"/>
       </Position18>
       <Position19>
-        <Filename Value="serverdm_u.pas"/>
-        <Caret Line="227" TopLine="217"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="331" TopLine="316"/>
       </Position19>
       <Position20>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="150" Column="32" TopLine="134"/>
+        <Caret Line="236" TopLine="218"/>
       </Position20>
       <Position21>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="331" TopLine="316"/>
-      </Position21>
-      <Position22>
-        <Filename Value="serverdm_u.pas"/>
-        <Caret Line="236" TopLine="218"/>
-      </Position22>
-      <Position23>
         <Filename Value="serverdm_u.pas"/>
         <Caret Line="210" Column="34" TopLine="185"/>
+      </Position21>
+      <Position22>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="757" Column="43" TopLine="730"/>
+      </Position22>
+      <Position23>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="147" Column="16" TopLine="777"/>
       </Position23>
+      <Position24>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="673" Column="3" TopLine="690"/>
+      </Position24>
+      <Position25>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="720" Column="3" TopLine="718"/>
+      </Position25>
+      <Position26>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="744" Column="3" TopLine="718"/>
+      </Position26>
+      <Position27>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="115" Column="15" TopLine="100"/>
+      </Position27>
+      <Position28>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="509" Column="42" TopLine="499"/>
+      </Position28>
+      <Position29>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="638" Column="12" TopLine="613"/>
+      </Position29>
+      <Position30>
+        <Filename Value="setupform_u.pas"/>
+        <Caret Line="716" Column="5" TopLine="692"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
