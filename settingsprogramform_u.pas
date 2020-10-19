@@ -99,7 +99,7 @@ begin
       INIFile.WriteBool('WSJT', 'USEWSJT', CBUseDIGI.Checked);
       IniSet.WSJT_PATH := FNEdit.Text;
       IniSet.WSJT_USE := CBUseDIGI.Checked;
-      WSJT_UDP_Form.IdUDPServer1.Active:=IniSet.WSJT_USE;
+      WSJT_UDP_Form.IdWsjtUDP.Active:=IniSet.WSJT_USE;
       Exit;
     end;
 

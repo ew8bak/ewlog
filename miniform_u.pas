@@ -341,6 +341,8 @@ begin
     EditName.Text := DataDigi.OmName;
   if DataDigi.QTH <> '' then
     EditQTH.Text := DataDigi.QTH;
+  if DataDigi.State <> '' then
+    EditState.Text := DataDigi.State;
 
   if DataDigi.Save then
     SBSave.Click;
@@ -393,7 +395,7 @@ begin
   if PanelNum = 0 then
     StatusBar.Panels.Items[0].Text := Value;
   if PanelNum = 1 then
-    StatusBar.Panels.Items[1].Text := Value;
+    StatusBar.Panels.Items[1].Text := Value + '     ';
 end;
 
 procedure TMiniForm.SwitchForm;

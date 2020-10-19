@@ -23,16 +23,16 @@ type
   { TWSJT_UDP_Form }
 
   TWSJT_UDP_Form = class(TForm)
-    IdUDPServer1: TIdUDPServer;
+    IdWsjtUDP: TIdUDPServer;
     Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure IdUDPServer1Status(ASender: TObject; const AStatus: TIdStatus;
+    procedure IdWsjtUDPStatus(ASender: TObject; const AStatus: TIdStatus;
       const AStatusText: string);
-    procedure IdUDPServer1UDPException(AThread: TIdUDPListenerThread;
+    procedure IdWsjtUDPUDPException(AThread: TIdUDPListenerThread;
       ABinding: TIdSocketHandle; const AMessage: string;
       const AExceptionClass: TClass);
-    procedure IdUDPServer1UDPRead(AThread: TIdUDPListenerThread;
+    procedure IdWsjtUDPUDPRead(AThread: TIdUDPListenerThread;
       AData: TIdBytes; ABinding: TIdSocketHandle);
   private
     { private declarations }
@@ -64,7 +64,7 @@ begin
   Result := WSJT_Run;
 end;
 
-procedure TWSJT_UDP_Form.IdUDPServer1Status(ASender: TObject;
+procedure TWSJT_UDP_Form.IdWsjtUDPStatus(ASender: TObject;
   const AStatus: TIdStatus; const AStatusText: string);
 begin
   Memo1.Lines.Add('Статус UDP сервера: ' + AStatusText);
@@ -72,15 +72,15 @@ end;
 
 procedure TWSJT_UDP_Form.FormCreate(Sender: TObject);
 begin
-  IdUDPServer1.Active := True;
+  IdWsjtUDP.Active := IniSet.WSJT_USE;
 end;
 
 procedure TWSJT_UDP_Form.FormDestroy(Sender: TObject);
 begin
-  FreeAndNil(IdUDPServer1);
+  FreeAndNil(IdWsjtUDP);
 end;
 
-procedure TWSJT_UDP_Form.IdUDPServer1UDPException(AThread: TIdUDPListenerThread;
+procedure TWSJT_UDP_Form.IdWsjtUDPUDPException(AThread: TIdUDPListenerThread;
   ABinding: TIdSocketHandle; const AMessage: string; const AExceptionClass: TClass);
 begin
   Memo1.Lines.Add('Ошибка UDP сервера: ' + AMessage);
@@ -96,7 +96,7 @@ begin
     Result := 'FT8';
 end;
 
-procedure TWSJT_UDP_Form.IdUDPServer1UDPRead(AThread: TIdUDPListenerThread;
+procedure TWSJT_UDP_Form.IdWsjtUDPUDPRead(AThread: TIdUDPListenerThread;
   AData: TIdBytes; ABinding: TIdSocketHandle);
 var
   index: integer = 0;

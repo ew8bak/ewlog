@@ -21,6 +21,7 @@ function Fldigi_GetLocator: string;
 function Fldigi_GetRSTs: string;
 function Fldigi_GetRSTr: string;
 function Fldigi_GetQTH: string;
+function Fldigi_GetState: string;
 function Fldigi_GetModemId: integer;
 
 function Fldigi_GetFrequency: double;
@@ -109,6 +110,11 @@ end;
 function Fldigi_GetQTH: string;
 begin
   Result := RequestStr(fl_host,'log.get_qth');
+end;
+
+function Fldigi_GetState: string;
+begin
+  Result := RequestStr(fl_host,'log.get_state');
 end;
 
 function Fldigi_GetRSTr: string;

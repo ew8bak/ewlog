@@ -163,6 +163,7 @@ var
   currGrid: string;
   currRSTr: string;
   currRSTs: string;
+  currState: string;
 begin
   try
     if Pos(ProgramStr, Message) = 0 then
@@ -179,6 +180,7 @@ begin
           DataDigi.DXGrid := '';
           DataDigi.RSTr := '';
           DataDigi.RSTs := '';
+          DataDigi.State := '';
           Exit;
         end;
     end;
@@ -190,6 +192,7 @@ begin
     currGrid := Fldigi_GetLocator;
     currRSTr := Fldigi_GetRSTr;
     currRSTs := Fldigi_GetRSTs;
+    currState:= fldigi_getState;
     dmFlModem.GetModemName(Fldigi_GetModemId, currMode, currSubMode);
 
     DataDigi.DXCall := currCall;
@@ -203,6 +206,8 @@ begin
       DataDigi.RSTr := currRSTr;
     if Length(currRSTs) > 0 then
       DataDigi.RSTs := currRSTs;
+    if Length(currState) > 0 then
+      DataDigi.State := currState;
 
     if (FldigiMode <> currMode) or (FldigiSubMode <> currSubMode) then
     begin

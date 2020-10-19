@@ -21,8 +21,8 @@ type
     OmName: string;
     Comment: string;
     QTH: string;
+    State: string;
     Save: Boolean;
-    Band: string;
   end;
 
 implementation
