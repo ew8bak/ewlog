@@ -518,6 +518,7 @@ begin
   CheckBox1.Checked := False;
   Button2.Enabled := True;
   Button10.Enabled := False;
+  Edit6.Text:='';
 end;
 
 procedure TSetupForm.RadioButton1Change(Sender: TObject);
@@ -746,6 +747,10 @@ begin
     SQLitePATH := Edit6.Text;
     MySQL_Current := CheckBox1.Checked;
     SQLite_Current := CheckBox2.Checked;
+
+    if SQLite_Current then
+      CheckEmptyDB;
+
     if CheckBox3.Checked = True then
       Default_DataBase := 'MySQL';
     if CheckBox4.Checked = True then
