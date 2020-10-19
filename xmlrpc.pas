@@ -5,12 +5,11 @@ unit xmlrpc;
 interface
 
 uses
-  Classes, SysUtils, XMLRead, DOM, XMLUtils, synautil;
+  Classes, SysUtils;
 
 type
   bytestring = string;
 
-function RequestStrN( address, command: string): string;
 function RequestStr( address, command: string): string;
 function RequestStr( address, command, value: string; asbytestring: boolean): string;
 function RequestStr( address, command, value1, value2: string; asbytestring: boolean): string;
@@ -31,7 +30,6 @@ function RequestFloat( address, command, value1, value2: string): double;
 function RequestBool( address, command: string): boolean;
 function RequestBool( address, command, value: string): boolean;
 function RequestBool( address, command, value1, value2: string): boolean;
-
 
 function RequestError: boolean;
 function GetLastError: string;
@@ -105,6 +103,7 @@ end;
 function XMLEncodeStr(Input: string): string;
 var
   p: integer;
+  x: string;
 begin
   Result := Input;
   if Length(Result) = 0 then Exit;
@@ -229,12 +228,12 @@ var
   p, q: integer;
 begin
   Result := '';
-  p := Pos('<string>',response);
+  p := Pos('<value>',response);
   if p > 0 then
   begin
-    q := Pos('</string>',response);
-    if q > p+8 then
-      Result := XMLDecodeStr(Copy(response,p+8,q-(p+8)));
+    q := Pos('</value>',response);
+    if q > p+7 then
+      Result := XMLDecodeStr(Copy(response,p+7,q-(p+7)));
   end
   else
   begin
@@ -278,7 +277,7 @@ begin
       r := Copy(response,p+8,q-(p+8));
       // convert to correct regional format
       p := Pos('.',r);
-      if p > 0 then r[p] := DefaultFormatSettings.DecimalSeparator;
+      if p > 0 then r[p] := DecimalSeparator;
       Result := StrToFloatDef(r,0.0);
     end;
   end;
@@ -354,31 +353,6 @@ end;
 function RequestStr( address, command: string): string;
 begin
   Result := RequestStr( address, command, '', '', false);
-end;
-
-function RequestStrN( address, command: string): string;
-var
-aHTTP: THTTPSend;
-Doc: TXMLDocument;
-begin
- aHTTP := THTTPSend.Create;
- Doc := TXMLDocument.Create;
-  try
-    WriteStrToStream(aHTTP.Document, '<methodCall>'+
-    '<methodName>'+command+'</methodName>'+
-    '</methodCall>');
-    aHTTP.MimeType := 'application/xml';
-if aHTTP.HTTPMethod('POST', address) then
-begin
-aHTTP.Document.Position := 0;
-ReadXMLFile(Doc, aHTTP.Document);
-Result:=Doc.DocumentElement.TextContent;
-end
-else exit;
-finally
-aHTTP.Free;
-Doc.Free;
-end;
 end;
 
 function RequestStr( address, command, value: string; asbytestring: boolean): string;
@@ -539,4 +513,3 @@ begin
 end;
 
 end.
-

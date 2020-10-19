@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
-  const_u, LazUTF8, IdCustomTCPServer, IdContext, digi_record;
+  const_u, LazUTF8, IdCustomTCPServer, IdContext, digi_record, flDigiModem;
 
 type
 
@@ -39,6 +39,8 @@ type
     Stream: TMemoryStream;
     AdifFromMobileSyncStart: boolean;
     DataDigi: TDigiR;
+    FldigiMode, FldigiSubMode: string;
+    FldigiFreq: double;
     procedure FldigiToForm;
     function GetNewChunk: string;
     procedure GetFldigiUDP(Message: string);
@@ -56,7 +58,7 @@ var
 implementation
 
 uses InitDB_dm, MainFuncDM, dmFunc_U, ExportAdifForm_u,
-  ImportADIFForm_U, miniform_u;
+  ImportADIFForm_U, miniform_u, fldigi;
 
 {$R *.lfm}
 
@@ -110,6 +112,10 @@ begin
     if IniSet.FLDIGI_USE then
       IdFldigiTCP.Active := True;
 
+    FldigiMode := '';
+    FldigiSubMode := '';
+    FldigiFreq := 0;
+
   except
     on E: Exception do
       WriteLn(ExceptFile, 'TServerDM.DataModuleCreate:' + E.ClassName + ':' + E.Message);
@@ -140,39 +146,84 @@ begin
       AContext.Connection.Socket.Writeln('<CMD><PROGRAMRESPONSE><PGM>N3FJP''s ' +
         'Amateur Contact Log</PGM><VER>5.5</VER><APIVER>0.6.2</APIVER></CMD>');
     end;
-    if Pos(ProgramStr, MessageFromUDP) = 0 then
-    begin
-      GetFldigiUDP(MessageFromUDP);
-    end;
+    GetFldigiUDP(MessageFromUDP);
   end;
 end;
 
 procedure TServerDM.GetFldigiUDP(Message: string);
+const
+  ProgramStr: string = '<CMD><PROGRAM></CMD>';
+var
+  currFreq: double;
+  currMode: string = '';
+  currSubMode: string = '';
+  currCall: string;
+  currName: string;
+  currQTH: string;
+  currGrid: string;
+  currRSTr: string;
+  currRSTs: string;
 begin
-  if Pos('ACTION', Message) > 0 then
-    if dmFunc.getFieldFromFldigi(Message, 'VALUE') = 'ENTER' then
-      DataDigi.Save := True;
+  try
+    if Pos(ProgramStr, Message) = 0 then
+    begin
+      if Pos('ACTION', Message) > 0 then
+        if dmFunc.getFieldFromFldigi(Message, 'VALUE') = 'ENTER' then
+          DataDigi.Save := True;
+      if Pos('ACTION', Message) > 0 then
+        if dmFunc.getFieldFromFldigi(Message, 'VALUE') = 'CLEAR' then
+        begin
+          DataDigi.DXCall := '';
+          DataDigi.OmName := '';
+          DataDigi.QTH := '';
+          DataDigi.DXGrid := '';
+          DataDigi.RSTr := '';
+          DataDigi.RSTs := '';
+          Exit;
+        end;
+    end;
 
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYCALL' then
-    if dmFunc.getFieldFromFldigi(Message, 'VALUE') <> '' then
-      DataDigi.DXCall := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYRSTS' then
-    DataDigi.RSTs := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYRSTR' then
-    DataDigi.RSTr := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYGRID' then
-    DataDigi.DXGrid := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYQTHGROUP' then
-    DataDigi.QTH := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYMODE' then
-    DataDigi.Mode := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYFREQUENCY' then
-    DataDigi.Freq := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYNAMER' then
-    DataDigi.OmName := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  if dmFunc.getFieldFromFldigi(Message, 'CONTROL') = 'TXTENTRYBAND' then
-    DataDigi.Band := dmFunc.getFieldFromFldigi(Message, 'VALUE');
-  TThread.Synchronize(nil, @FldigiToForm);
+    currFreq := Fldigi_GetQSOFrequency / 1000;
+    currCall := Fldigi_GetCall;
+    currName := Fldigi_GetName;
+    currQTH := Fldigi_GetQTH;
+    currGrid := Fldigi_GetLocator;
+    currRSTr := Fldigi_GetRSTr;
+    currRSTs := Fldigi_GetRSTs;
+    dmFlModem.GetModemName(Fldigi_GetModemId, currMode, currSubMode);
+
+    DataDigi.DXCall := currCall;
+    if Length(currName) > 0 then
+      DataDigi.OmName := currName;
+    if Length(currQTH) > 0 then
+      DataDigi.QTH := currQTH;
+    if Length(currGrid) > 0 then
+      DataDigi.DXGrid := currGrid;
+    if Length(currRSTr) > 0 then
+      DataDigi.RSTr := currRSTr;
+    if Length(currRSTs) > 0 then
+      DataDigi.RSTs := currRSTs;
+
+    if (FldigiMode <> currMode) or (FldigiSubMode <> currSubMode) then
+    begin
+      FldigiMode := currMode;
+      FldigiSubMode := currSubMode;
+      DataDigi.SubMode := FldigiSubMode;
+      DataDigi.Mode := FldigiMode;
+    end;
+
+    if FldigiFreq <> currFreq then
+    begin
+      FldigiFreq := currFreq;
+      if IniSet.showBand then
+        DataDigi.Freq := dmFunc.GetBandFromFreq(FormatFloat(view_freq, FldigiFreq))
+      else
+        DataDigi.Freq := FormatFloat(view_freq, FldigiFreq);
+    end;
+
+  finally
+    TThread.Synchronize(nil, @FldigiToForm);
+  end;
 end;
 
 procedure TServerDM.FldigiToForm;

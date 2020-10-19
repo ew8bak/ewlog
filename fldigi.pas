@@ -4,100 +4,6 @@ unit fldigi;
 
 //  Copyright (c) 2008 Julian Moss, G4ILO  (www.g4ilo.com)                           //
 //  Released under the GNU GPL v2.0 (www.gnu.org/licenses/old-licenses/gpl-2.0.txt)  //
-
-(* Fldigi communication unit - uses XML-RPC protocol.
-
-   Supported methods:
-
-	methods->push_back(rpc_method(new Fldigi_list, "fldigi.list"));
-	methods->push_back(rpc_method(new Fldigi_name, "fldigi.name"));
-	methods->push_back(rpc_method(new Fldigi_version_struct, "fldigi.version_struct"));
-	methods->push_back(rpc_method(new Fldigi_version_string, "fldigi.version"));
-	methods->push_back(rpc_method(new Fldigi_name_version, "fldigi.name_version"));
-
-	methods->push_back(rpc_method(new Modem_get_name, "modem.get_name"));
-	methods->push_back(rpc_method(new Modem_get_names, "modem.get_names"));
-	methods->push_back(rpc_method(new Modem_get_id, "modem.get_id"));
-	methods->push_back(rpc_method(new Modem_get_max_id, "modem.get_max_id"));
-	methods->push_back(rpc_method(new Modem_set_by_name, "modem.set_by_name"));
-	methods->push_back(rpc_method(new Modem_set_by_id, "modem.set_by_id"));
-
-	methods->push_back(rpc_method(new Modem_set_carrier, "modem.set_carrier"));
-	methods->push_back(rpc_method(new Modem_inc_carrier, "modem.inc_carrier"));
-	methods->push_back(rpc_method(new Modem_get_carrier, "modem.get_carrier"));
-
-	methods->push_back(rpc_method(new Modem_get_afc_sr, "modem.get_afc_search_range"));
-	methods->push_back(rpc_method(new Modem_set_afc_sr, "modem.set_afc_search_range"));
-	methods->push_back(rpc_method(new Modem_inc_afc_sr, "modem.inc_afc_search_range"));
-
-	methods->push_back(rpc_method(new Modem_get_bw, "modem.get_bandwidth"));
-	methods->push_back(rpc_method(new Modem_set_bw, "modem.set_bandwidth"));
-	methods->push_back(rpc_method(new Modem_inc_bw, "modem.inc_bandwidth"));
-
-	methods->push_back(rpc_method(new Modem_get_quality, "modem.get_quality"));
-	methods->push_back(rpc_method(new Modem_search_up, "modem.search_up"));
-	methods->push_back(rpc_method(new Modem_search_down, "modem.search_down"));
-
-	methods->push_back(rpc_method(new Main_get_status1, "main.get_status1"));
-	methods->push_back(rpc_method(new Main_get_status2, "main.get_status2"));
-
-	methods->push_back(rpc_method(new Main_get_sb, "main.get_sideband"));
-	methods->push_back(rpc_method(new Main_get_freq, "main.get_frequency"));
-	methods->push_back(rpc_method(new Main_set_freq, "main.set_frequency"));
-	methods->push_back(rpc_method(new Main_inc_freq, "main.inc_frequency"));
-
-	methods->push_back(rpc_method(new Main_get_afc, "main.get_afc"));
-	methods->push_back(rpc_method(new Main_set_afc, "main.set_afc"));
-	methods->push_back(rpc_method(new Main_toggle_afc, "main.toggle_afc"));
-
-	methods->push_back(rpc_method(new Main_get_sql, "main.get_squelch"));
-	methods->push_back(rpc_method(new Main_set_sql, "main.set_squelch"));
-	methods->push_back(rpc_method(new Main_toggle_sql, "main.toggle_squelch"));
-
-	methods->push_back(rpc_method(new Main_get_sql_level, "main.get_squelch_level"));
-	methods->push_back(rpc_method(new Main_set_sql_level, "main.set_squelch_level"));
-	methods->push_back(rpc_method(new Main_inc_sql_level, "main.inc_squelch_level"));
-
-	methods->push_back(rpc_method(new Main_get_rev, "main.get_reverse"));
-	methods->push_back(rpc_method(new Main_set_rev, "main.set_reverse"));
-	methods->push_back(rpc_method(new Main_toggle_rev, "main.toggle_reverse"));
-
-	methods->push_back(rpc_method(new Main_get_lock, "main.get_lock"));
-	methods->push_back(rpc_method(new Main_set_lock, "main.set_lock"));
-	methods->push_back(rpc_method(new Main_toggle_lock, "main.toggle_lock"));
-
-	methods->push_back(rpc_method(new Main_get_trx_status, "main.get_trx_status"));
-	methods->push_back(rpc_method(new Main_tx, "main.tx"));
-	methods->push_back(rpc_method(new Main_tune, "main.tune"));
-	methods->push_back(rpc_method(new Main_rsid, "main.rsid"));
-	methods->push_back(rpc_method(new Main_rx, "main.rx"));
-	methods->push_back(rpc_method(new Main_abort, "main.abort"));
-
-	methods->push_back(rpc_method(new Main_run_macro, "main.run_macro"));
-	methods->push_back(rpc_method(new Main_get_max_macro_id, "main.get_max_macro_id"));
-
-	methods->push_back(rpc_method(new Log_get_freq, "log.get_frequency"));
-	methods->push_back(rpc_method(new Log_get_time, "log.get_time"));
-	methods->push_back(rpc_method(new Log_get_call, "log.get_call"));
-	methods->push_back(rpc_method(new Log_get_name, "log.get_name"));
-	methods->push_back(rpc_method(new Log_get_rst_in, "log.get_rst_in"));
-	methods->push_back(rpc_method(new Log_get_rst_out, "log.get_rst_out"));
-	methods->push_back(rpc_method(new Log_get_qth, "log.get_qth"));
-	methods->push_back(rpc_method(new Log_get_band, "log.get_band"));
-	methods->push_back(rpc_method(new Log_get_sb, "log.get_sideband"));
-	methods->push_back(rpc_method(new Log_get_notes, "log.get_notes"));
-	methods->push_back(rpc_method(new Log_get_locator, "log.get_locator"));
-	methods->push_back(rpc_method(new Log_get_az, "log.get_az"));
-	methods->push_back(rpc_method(new Log_clear, "log.clear"));
-
-	methods->push_back(rpc_method(new Text_get_rx_length, "text.get_rx_length"));
-	methods->push_back(rpc_method(new Text_get_rx, "text.get_rx"));
-	methods->push_back(rpc_method(new Text_clear_rx, "text.clear_rx"));
-	methods->push_back(rpc_method(new Text_add_tx, "text.add_tx"));
-	methods->push_back(rpc_method(new Text_add_tx_bytes, "text.add_tx_bytes"));
-	methods->push_back(rpc_method(new Text_clear_tx, "text.clear_tx"));
- *)
-
 interface
 
 uses
@@ -108,18 +14,18 @@ function Fldigi_GetVersion: string;
 
 function Fldigi_GetStatus1: string; // returns contents of 1st status bar panel
 function Fldigi_GetStatus2: string; // returns contents of 2nd status bar panel
-function Fldigi_GetCall_Log: string;
-function Fldigi_GetName_Log: string;
-function Fldigi_GetLocator_Log: string;
-function Fldigi_GetRSTout_Log: string;
-function Fldigi_GetRSTin_Log: string;
-function Fldigi_GetQTH_Log: string;
+
+function Fldigi_GetCall: string;
+function Fldigi_GetName: string;
+function Fldigi_GetLocator: string;
+function Fldigi_GetRSTs: string;
+function Fldigi_GetRSTr: string;
+function Fldigi_GetQTH: string;
+function Fldigi_GetModemId: integer;
 
 function Fldigi_GetFrequency: double;
-function Fldigi_GetFrequencyField: string;
 procedure Fldigi_SetFrequency( frequency: double );
 procedure Fldigi_ChangeFrequency( increment: double );
-function Fldigi_GetModemId: string;
 
 function Fldigi_GetQSOFrequency: double;
 
@@ -137,8 +43,6 @@ procedure Fldigi_SetReverse( state: boolean);
 
 function Fldigi_GetCarrier: integer;
 procedure Fldigi_SetCarrier( carrier: integer );
-procedure Fldigi_SetRSTs( RSTs: string );
-procedure Fldigi_SetRSTr( RSTr: string );
 procedure Fldigi_ChangeCarrier( increment: integer );
 
 function Fldigi_GetMode: string;
@@ -189,43 +93,47 @@ begin
   Result := fl_handle <> 0;
   {$ELSE}
   Result := Length(Fldigi_GetVersion) > 0;
- // Result := True;
   {$ENDIF}
+end;
+
+function Fldigi_GetCall: string;
+begin
+  Result := RequestStr(fl_host,'log.get_call');
+end;
+
+function Fldigi_GetName: string;
+begin
+  Result := RequestStr(fl_host,'log.get_name');
+end;
+
+function Fldigi_GetQTH: string;
+begin
+  Result := RequestStr(fl_host,'log.get_qth');
+end;
+
+function Fldigi_GetRSTr: string;
+begin
+  Result := RequestStr(fl_host,'log.get_rst_in');
+end;
+
+function Fldigi_GetRSTs: string;
+begin
+  Result := RequestStr(fl_host,'log.get_rst_out');
+end;
+
+function Fldigi_GetLocator: string;
+begin
+  Result := RequestStr(fl_host,'log.get_locator');
+end;
+
+function Fldigi_GetModemId: integer;
+begin
+  Result := RequestInt(fl_host,'modem.get_id');
 end;
 
 function Fldigi_GetVersion: string;
 begin
- Result := RequestStrN(fl_host,'fldigi.version');
-end;
-
-function Fldigi_GetCall_Log: string;
-begin
-  Result := RequestStrN(fl_host,'log.get_call');
-end;
-
-function Fldigi_GetName_Log: string;
-begin
-  Result := RequestStrN(fl_host,'log.get_name');
-end;
-
-function Fldigi_GetQTH_Log: string;
-begin
-  Result := RequestStrN(fl_host,'log.get_qth');
-end;
-
-function Fldigi_GetRSTin_Log: string;
-begin
-  Result := RequestStrN(fl_host,'log.get_rst_in');
-end;
-
-function Fldigi_GetRSTout_Log: string;
-begin
-  Result := RequestStrN(fl_host,'log.get_rst_out');
-end;
-
-function Fldigi_GetLocator_Log: string;
-begin
-  Result := RequestStrN(fl_host,'log.get_locator');
+  Result := RequestStr(fl_host,'fldigi.version');
 end;
 
 function Fldigi_GetStatus1: string;
@@ -258,14 +166,13 @@ end;
 
 function Fldigi_GetQSOFrequency: double;
 // frequency is in Hz
+var
+  Request: string;
 begin
-  Result := StrToFloatDef(RequestStr(fl_host,'log.get_frequency'),0.0);
-end;
-
-function Fldigi_GetFrequencyField: string;
-// frequency is in Hz
-begin
-  Result := RequestStrN(fl_host,'log.get_frequency');
+  Request:= RequestStr(fl_host,'log.get_frequency');
+  Request:=StringReplace(Request,',','.',[rfReplaceAll]);
+  //Result:=StrToFloat(temp);
+  Result := StrToFloatDef(Request,0.0);
 end;
 
 function Fldigi_IsAFC: boolean;
@@ -313,18 +220,6 @@ begin
   Result := RequestInt(fl_host,'modem.get_carrier');
 end;
 
-procedure Fldigi_SetRSTs( RSTs: string );
-begin
-  RequestStr(fl_host,'log.set_rst_out',RSTs,false);
- // RequestStr(fl_host,'log.set_rst_out',RSTs);
-end;
-
-procedure Fldigi_SetRSTr( RSTr: string );
-begin
-  RequestStr(fl_host,'log.set_rst_in',RSTr,false);
- //RequestStr(fl_host,'log.set_rst_in',RSTr);
-end;
-
 procedure Fldigi_SetCarrier( carrier: integer );
 begin
   RequestStr(fl_host,'modem.set_carrier',carrier);
@@ -339,7 +234,7 @@ function Fldigi_GetMode: string;
 var
   p: integer;
 begin
-  Result := RequestStrN(fl_host,'modem.get_name');
+  Result := RequestStr(fl_host,'modem.get_name');
   repeat
     p := Pos('-',Result);
     if p > 0 then Delete(Result,p,1)
@@ -349,13 +244,6 @@ begin
     if p > 0 then Delete(Result,p,1)
   until p = 0;
 end;
-
-function Fldigi_GetModemId: string;
-begin
-  Result := RequestStrN(fl_host,'modem.get_id');
-end;
-
-
 
 procedure Fldigi_SetMode( mode: string );
 var
@@ -525,4 +413,3 @@ begin
 end;
 
 end.
-

@@ -317,16 +317,31 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 procedure TMiniForm.ShowDataFromFldigi(DataDigi: TDigiR);
 var
   tempCall: string;
+  tempFreq: string;
+  tempMode: string;
+  tempSubMode: string;
 begin
   tempCall := DataDigi.DXCall;
+  tempFreq := DataDigi.Freq;
+  tempMode := DataDigi.Mode;
+  tempSubMode := DataDigi.SubMode;
   if tempCall <> EditCallsign.Text then
     EditCallsign.Text := tempCall;
+  if tempFreq <> CBBand.Text then
+    CBBand.Text := tempFreq;
+  if tempMode <> CBMode.Text then
+    CBMode.Text := tempMode;
+  if tempSubMode <> CBSubMode.Text then
+    CBSubMode.Text := tempSubMode;
   CBRSTr.Text := DataDigi.RSTr;
   CBRSTs.Text := DataDigi.RSTs;
   if DataDigi.DXGrid <> '' then
-  EditGrid.Text := DataDigi.DXGrid;
+    EditGrid.Text := DataDigi.DXGrid;
   if DataDigi.OmName <> '' then
-  EditName.Text := DataDigi.OmName;
+    EditName.Text := DataDigi.OmName;
+  if DataDigi.QTH <> '' then
+    EditQTH.Text := DataDigi.QTH;
+
   if DataDigi.Save then
     SBSave.Click;
 end;

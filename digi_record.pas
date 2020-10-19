@@ -15,6 +15,7 @@ type
     DXGrid: string;
     Freq: string;
     Mode: string;
+    SubMode: string;
     RSTr: string;
     RSTs: string;
     OmName: string;
