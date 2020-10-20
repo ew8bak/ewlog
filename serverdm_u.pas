@@ -54,7 +54,6 @@ type
 
 var
   ServerDM: TServerDM;
-  MessageToForm: string;
 
 implementation
 
@@ -75,7 +74,7 @@ begin
       DBRecord.CurrCall + #10) then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' + IntToStr(lastTCPport))
     else
-      MessageToForm := rSyncErrCall;
+      MiniForm.TextSB(rSyncErrCall,0);
     if (mess = 'Hello') or (mess = 'Hello' + #10) then
       LUDPComponent1.SendMessage('Welcome!');
   end;
@@ -95,20 +94,20 @@ begin
         lastUDPport := port_udp[i];
         Break;
       end;
-    if lastUDPport = -1 then
-      MessageToForm := 'Can not create socket';
+  //  if lastUDPport = -1 then
+  //    MiniForm.TextSB('Can not create socket',0);
     lastTCPport := -1;
     LTCPComponent1.ReuseAddress := True;
     for i := 0 to 5 do
       if LTCPComponent1.Listen(port_tcp[i]) then
       begin
         lastTCPport := port_tcp[i];
-        MessageToForm :=
-          'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport);
+    //    MiniForm.TextSB(
+    //      'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport),0);
         Break;
       end;
-    if lastTCPport = -1 then
-      MessageToForm := 'Can not create socket';
+   // if lastTCPport = -1 then
+   //   MiniForm.TextSB('Can not create socket',0);
 
     if IniSet.FLDIGI_USE then
       IdFldigiTCP.Active := True;
@@ -246,8 +245,7 @@ end;
 
 procedure TServerDM.LTCPComponent1Accept(aSocket: TLSocket);
 begin
-  MessageToForm :=
-    rClientConnected + aSocket.PeerAddress;
+  MiniForm.TextSB(rClientConnected + aSocket.PeerAddress, 0);
 end;
 
 procedure TServerDM.LTCPComponent1CanSend(aSocket: TLSocket);
@@ -288,13 +286,12 @@ end;
 
 procedure TServerDM.LTCPComponent1Disconnect(aSocket: TLSocket);
 begin
-  //MainForm.StatusBar1.Panels.Items[0].Text := rDone;
-  MessageToForm := aSocket.PeerAddress + ':' + rDone;
+  MiniForm.TextSB(aSocket.PeerAddress + ':' + rDone,0);
 end;
 
 procedure TServerDM.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
-  MessageToForm := asocket.peerAddress + ':' + SysToUTF8(msg);
+  MiniForm.TextSB(aSocket.peerAddress + ':' + SysToUTF8(msg), 0);
 end;
 
 procedure TServerDM.LTCPComponent1Receive(aSocket: TLSocket);
@@ -381,7 +378,7 @@ end;
 
 procedure TServerDM.LUDPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
-  MessageToForm := asocket.peerAddress + ':' + SysToUTF8(msg);
+  MiniForm.TextSB(aSocket.peerAddress + ':' + SysToUTF8(msg),0);
 end;
 
 end.
