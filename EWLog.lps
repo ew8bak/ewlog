@@ -663,9 +663,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="1650"/>
-        <CursorPos X="43" Y="1659"/>
+        <TopLine Value="1683"/>
+        <CursorPos X="28" Y="1704"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit63>
@@ -786,12 +787,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="158"/>
+        <TopLine Value="110"/>
         <CursorPos X="6" Y="110"/>
         <UsageCount Value="192"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit77>
       <Unit78>
         <Filename Value="telnetclientthread.pas"/>
@@ -1176,7 +1177,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="186"/>
         <CursorPos Y="203"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit127>
       <Unit128>
         <Filename Value="C:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
@@ -1213,7 +1214,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31538"/>
         <CursorPos X="3" Y="31540"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit132>
       <Unit133>
         <Filename Value="traceline.pas"/>

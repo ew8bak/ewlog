@@ -1700,7 +1700,8 @@ begin
     on E: Exception do
     begin
       ShowMessage('SearchPrefix:' + E.Message);
-      WriteLn(ExceptFile, 'SearchPrefix:' + E.ClassName + ':' + E.Message);
+      WriteLn(ExceptFile, 'SearchPrefix:' + E.ClassName + ':' + E.Message +
+        ':' + IntToStr(i));
     end;
   end;
 end;
