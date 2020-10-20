@@ -372,7 +372,7 @@ msgstr "Клиент подключён:"
 
 #: resourcestr.rconnectedtofldigi
 msgid "Fldigi connected to EWLog"
-msgstr ""
+msgstr "Fldigi подключился к EWLog"
 
 #: resourcestr.rcontinent
 msgctxt "resourcestr.rcontinent"
@@ -400,7 +400,7 @@ msgstr "Что-то пошло не так... Проверьте настрой�
 
 #: resourcestr.rdatabasenotconnected
 msgid "Check the correctness of the entered data. Possibly a non-existing database has been entered (it must be created first). Or Invalid username and password."
-msgstr ""
+msgstr "Проверьте правильность введенных данных. Возможно, была введена несуществующая база данных (ее необходимо сначала создать). Или неверное имя пользователя и пароль"
 
 #: resourcestr.rdberror
 msgctxt "resourcestr.rdberror"
@@ -417,6 +417,10 @@ msgctxt "resourcestr.rdefaultlogsel"
 msgid "Default log selected"
 msgstr "Журнал по умолчанию выбран"
 
+#: resourcestr.rdeletedbfile
+msgid "Are you sure you want to delete the existing database file?"
+msgstr "Вы действительно хотите удалить существующий файл базы данных?"
+
 #: resourcestr.rdeletelog
 msgctxt "resourcestr.rdeletelog"
 msgid "Are you sure you want to delete the log ?!"
@@ -429,7 +433,7 @@ msgstr "Удалить запись "
 
 #: resourcestr.rdisconnectedfromfldigi
 msgid "Fldigi disconnected from EWLog"
-msgstr ""
+msgstr "Fldigi отключился от EWLog"
 
 #: resourcestr.rdone
 msgctxt "resourcestr.rdone"
@@ -488,6 +492,10 @@ msgstr "EWLog - Аппаратный журнал"
 #: resourcestr.rfailedtoloaddata
 msgid "Failed to load data"
 msgstr "Ошибка загрузки данных"
+
+#: resourcestr.rfiledbexist
+msgid "Found an existing database file. Do you want to use it? If you press NO, the existing file will be deleted and a new one will be created"
+msgstr "Найден существующий файл базы дынных. Вы хотите его использовать? Если нажать НЕТ, произойдет удаление существующего файла и создание нового"
 
 #: resourcestr.rfileerror
 msgctxt "resourcestr.rfileerror"
@@ -660,7 +668,7 @@ msgstr "Не введён позывной для просмотра"
 
 #: resourcestr.rnotconfigqrzcom
 msgid "Specify the Login and Password for accessing the XML API QRZ.COM in the settings"
-msgstr ""
+msgstr "Укажите Логин и Пароль для доступа к XML API QRZ.COM в настройках"
 
 #: resourcestr.rnotconfigqrzru
 msgctxt "resourcestr.rnotconfigqrzru"
@@ -669,7 +677,7 @@ msgstr "В настройках, необходимо ввести логин и
 
 #: resourcestr.rnotconfigsprav
 msgid "Default reference book is not specified. Go to the program settings and select the QRZ.RU or QRZ.COM reference book"
-msgstr ""
+msgstr "Справочник по умолчанию не указан. Зайдите в настройки программы и выберите справочник QRZ.RU или QRZ.COM"
 
 #: resourcestr.rnotconnected
 msgctxt "resourcestr.rnotconnected"
@@ -843,7 +851,7 @@ msgstr "Установить журнал по умолчанию?"
 
 #: resourcestr.rshownextstart
 msgid "Show this window next start? The settings can be changed in the menu item View"
-msgstr ""
+msgstr "Показать это окно при следующем запуске? Настройки можно изменить в пункте меню Просмотр"
 
 #: resourcestr.rsizefile
 msgctxt "resourcestr.rsizefile"
@@ -5184,4 +5192,3 @@ msgstr "Фото"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
-

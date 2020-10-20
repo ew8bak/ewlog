@@ -178,6 +178,8 @@ resourcestring
   tNotFoundTableToCopy = 'No table found to copy. Possible callsign mismatch in databases';
   rNotDatabaseSettings = 'You cannot switch the Database to another because one of the databases is not configured. Check your settings. Go to the settings window?';
   rShowNextStart = 'Show this window next start? The settings can be changed in the menu item View';
+  rFileDBExist = 'Found an existing database file. Do you want to use it? If you press NO, the existing file will be deleted and a new one will be created';
+  rDeleteDBFile = 'Are you sure you want to delete the existing database file?';
 implementation
 
 end.

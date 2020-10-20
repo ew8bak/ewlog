@@ -495,6 +495,10 @@ end;
 
 procedure TSetupForm.FormShow(Sender: TObject);
 begin
+  if IniSet.Language = 'ru' then
+    memo1.Lines.LoadFromFile(FilePATH + 'license.ru')
+  else
+    memo1.Lines.LoadFromFile(FilePATH + 'license.en');
   Test_Connection := False;
   PageControl1.ActivePageIndex := 0;
   RadioButton2.Checked := True;
@@ -518,7 +522,7 @@ begin
   CheckBox1.Checked := False;
   Button2.Enabled := True;
   Button10.Enabled := False;
-  Edit6.Text:='';
+  Edit6.Text := '';
 end;
 
 procedure TSetupForm.RadioButton1Change(Sender: TObject);
@@ -637,31 +641,52 @@ var
 begin
   try
     Query := TSQLQuery.Create(nil);
+    Edit7.Clear;
+    Edit8.Clear;
+    Edit9.Clear;
+    Edit10.Clear;
+    Edit11.Clear;
+    Edit14.Clear;
+    Edit15.Clear;
+    Edit16.Clear;
+
     if not FileExists(SQLitePATH) then
       Exit
     else
     begin
       try
-        SQLite_Current := True;
-        SQLite_Connector.DatabaseName := SQLitePATH;
-        SQLite_Connector.Transaction := SQL_Transaction;
-        SQLite_Connector.Connected := True;
-        Query.DataBase := SQLite_Connector;
-        Query.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
-        Query.Open;
-        if Query.FieldByName('CallName').AsString <> '' then
+        if Application.MessageBox(PChar(rFileDBExist), PChar(rWarning),
+          MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin
-          Edit7.Text := Query.FieldByName('Discription').AsString;
-          Edit8.Text := Query.FieldByName('CallName').AsString;
-          Edit9.Text := Query.FieldByName('QTH').AsString;
-          Edit10.Text := Query.FieldByName('Name').AsString;
-          Edit11.Text := Query.FieldByName('Loc').AsString;
-          Edit14.Text := Query.FieldByName('ITU').AsString;
-          Edit15.Text := Query.FieldByName('CQ').AsString;
-          Edit16.Text := Query.FieldByName('QSLInfo').AsString;
+          SQLite_Current := True;
+          SQLite_Connector.DatabaseName := SQLitePATH;
+          SQLite_Connector.Transaction := SQL_Transaction;
+          SQLite_Connector.Connected := True;
+          Query.DataBase := SQLite_Connector;
+          Query.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
+          Query.Open;
+          if Query.FieldByName('CallName').AsString <> '' then
+          begin
+            Edit7.Text := Query.FieldByName('Discription').AsString;
+            Edit8.Text := Query.FieldByName('CallName').AsString;
+            Edit9.Text := Query.FieldByName('QTH').AsString;
+            Edit10.Text := Query.FieldByName('Name').AsString;
+            Edit11.Text := Query.FieldByName('Loc').AsString;
+            Edit14.Text := Query.FieldByName('ITU').AsString;
+            Edit15.Text := Query.FieldByName('CQ').AsString;
+            Edit16.Text := Query.FieldByName('QSLInfo').AsString;
+          end;
+          Query.Close;
+        end
+        else
+        begin
+          if Application.MessageBox(PChar(rDeleteDBFile), PChar(rWarning),
+            MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+          begin
+            SQLite_Current := False;
+            DeleteFile(SQLitePATH);
+          end;
         end;
-        Query.Close;
-
       except
         on E: Exception do
         begin
@@ -670,7 +695,6 @@ begin
           DeleteFile(SQLitePATH);
         end;
       end;
-
     end;
 
   finally

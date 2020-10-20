@@ -407,6 +407,10 @@ msgctxt "resourcestr.rdefaultlogsel"
 msgid "Default log selected"
 msgstr ""
 
+#: resourcestr.rdeletedbfile
+msgid "Are you sure you want to delete the existing database file?"
+msgstr ""
+
 #: resourcestr.rdeletelog
 msgctxt "resourcestr.rdeletelog"
 msgid "Are you sure you want to delete the log ?!"
@@ -477,6 +481,10 @@ msgstr ""
 
 #: resourcestr.rfailedtoloaddata
 msgid "Failed to load data"
+msgstr ""
+
+#: resourcestr.rfiledbexist
+msgid "Found an existing database file. Do you want to use it? If you press NO, the existing file will be deleted and a new one will be created"
 msgstr ""
 
 #: resourcestr.rfileerror
@@ -4078,6 +4086,7 @@ msgid "Logbook grid"
 msgstr ""
 
 #: tminiform.miloggridtop.caption
+msgctxt "tminiform.miloggridtop.caption"
 msgid "OnTop"
 msgstr ""
 
