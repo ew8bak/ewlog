@@ -1,7 +1,7 @@
 object SetupForm: TSetupForm
-  Left = 327
+  Left = 330
   Height = 346
-  Top = 168
+  Top = 169
   Width = 630
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -130,25 +130,25 @@ object SetupForm: TSetupForm
         ClientWidth = 620
         ParentColor = False
         TabOrder = 0
-        object Button2: TButton
+        object BtNext: TButton
           Left = 536
           Height = 25
           Top = 304
           Width = 75
           Caption = 'Next'
           Font.Height = -12
-          OnClick = Button2Click
+          OnClick = BtNextClick
           ParentFont = False
           TabOrder = 0
         end
-        object Button6: TButton
+        object BtBack: TButton
           Left = 456
           Height = 25
           Top = 304
           Width = 75
           Caption = 'Back'
           Font.Height = -12
-          OnClick = Button6Click
+          OnClick = BtBackClick
           ParentFont = False
           TabOrder = 1
         end
@@ -163,7 +163,7 @@ object SetupForm: TSetupForm
           ParentColor = False
           ParentFont = False
         end
-        object Label4: TLabel
+        object LBSelectDB: TLabel
           Left = 16
           Height = 13
           Top = 40
@@ -208,7 +208,7 @@ object SetupForm: TSetupForm
           ParentFont = False
           TabOrder = 4
         end
-        object Edit1: TEdit
+        object EditHost: TEdit
           Left = 296
           Height = 27
           Top = 60
@@ -224,7 +224,7 @@ object SetupForm: TSetupForm
           Top = 40
           Width = 2
         end
-        object Label5: TLabel
+        object LBHost: TLabel
           Left = 296
           Height = 13
           Top = 40
@@ -234,7 +234,7 @@ object SetupForm: TSetupForm
           ParentColor = False
           ParentFont = False
         end
-        object Edit2: TEdit
+        object EditPort: TEdit
           Left = 456
           Height = 27
           Top = 60
@@ -246,7 +246,7 @@ object SetupForm: TSetupForm
           TabOrder = 6
           Text = '3306'
         end
-        object Label6: TLabel
+        object LBPort: TLabel
           Left = 456
           Height = 13
           Top = 40
@@ -256,7 +256,7 @@ object SetupForm: TSetupForm
           ParentColor = False
           ParentFont = False
         end
-        object Label7: TLabel
+        object LBUsername: TLabel
           Left = 296
           Height = 13
           Top = 92
@@ -266,7 +266,7 @@ object SetupForm: TSetupForm
           ParentColor = False
           ParentFont = False
         end
-        object Edit3: TEdit
+        object EditUser: TEdit
           Left = 296
           Height = 27
           Top = 108
@@ -276,7 +276,7 @@ object SetupForm: TSetupForm
           ParentFont = False
           TabOrder = 7
         end
-        object Label8: TLabel
+        object LBPassword: TLabel
           Left = 456
           Height = 13
           Top = 92
@@ -286,7 +286,7 @@ object SetupForm: TSetupForm
           ParentColor = False
           ParentFont = False
         end
-        object Edit4: TEdit
+        object EditPasswd: TEdit
           Left = 456
           Height = 27
           Top = 108
@@ -298,7 +298,7 @@ object SetupForm: TSetupForm
           PasswordChar = '*'
           TabOrder = 8
         end
-        object Edit5: TEdit
+        object EditNameDB: TEdit
           Left = 296
           Height = 27
           Top = 160
@@ -308,7 +308,7 @@ object SetupForm: TSetupForm
           ParentFont = False
           TabOrder = 9
         end
-        object Label9: TLabel
+        object LBNameDB: TLabel
           Left = 296
           Height = 13
           Top = 144
@@ -318,7 +318,7 @@ object SetupForm: TSetupForm
           ParentColor = False
           ParentFont = False
         end
-        object Label10: TLabel
+        object LBSQLPath: TLabel
           Left = 456
           Height = 13
           Top = 144
@@ -328,7 +328,7 @@ object SetupForm: TSetupForm
           ParentColor = False
           ParentFont = False
         end
-        object Edit6: TEdit
+        object EditSQLPath: TEdit
           Left = 456
           Height = 27
           Top = 160
@@ -428,14 +428,14 @@ object SetupForm: TSetupForm
           ParentFont = False
           TabOrder = 14
         end
-        object Button10: TButton
+        object BtCheck: TButton
           Left = 248
           Height = 25
           Top = 304
           Width = 160
           Caption = 'Check connection'
           Font.Height = -12
-          OnClick = Button10Click
+          OnClick = BtCheckClick
           ParentFont = False
           TabOrder = 15
         end
@@ -835,8 +835,7 @@ object SetupForm: TSetupForm
     LoginPrompt = False
     KeepConnection = False
     AlwaysUseBigint = False
-    Left = 480
-    Top = 8
+    Left = 232
   end
   object SQL_Transaction: TSQLTransaction
     Active = False

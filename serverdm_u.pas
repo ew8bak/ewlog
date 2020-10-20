@@ -20,6 +20,7 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure IdFldigiTCPConnect(AContext: TIdContext);
     procedure IdFldigiTCPDisconnect(AContext: TIdContext);
+    procedure IdFldigiTCPException(AContext: TIdContext; AException: Exception);
     procedure IdFldigiTCPExecute(AContext: TIdContext);
     procedure LTCPComponent1Accept(aSocket: TLSocket);
     procedure LTCPComponent1CanSend(aSocket: TLSocket);
@@ -132,6 +133,12 @@ begin
   MiniForm.TextSB(rDisconnectedFromFldigi, 0);
 end;
 
+procedure TServerDM.IdFldigiTCPException(AContext: TIdContext; AException: Exception);
+begin
+  WriteLn(ExceptFile, 'IdFldigiTCPException:' + AException.ClassName +
+    ':' + AException.Message);
+end;
+
 procedure TServerDM.IdFldigiTCPExecute(AContext: TIdContext);
 const
   ProgramStr: string = '<CMD><PROGRAM></CMD>';
@@ -192,7 +199,7 @@ begin
     currGrid := Fldigi_GetLocator;
     currRSTr := Fldigi_GetRSTr;
     currRSTs := Fldigi_GetRSTs;
-    currState:= fldigi_getState;
+    currState := fldigi_getState;
     dmFlModem.GetModemName(Fldigi_GetModemId, currMode, currSubMode);
 
     DataDigi.DXCall := currCall;

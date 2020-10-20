@@ -4604,19 +4604,27 @@ msgstr "Имя программы:"
 msgid "Path program:"
 msgstr "Путь программы:"
 
-#: tsetupform.button1.caption
-msgid "I accept"
-msgstr "Принимаю"
+#: tsetupform.btback.caption
+#, fuzzy
+msgctxt "tsetupform.btback.caption"
+msgid "Back"
+msgstr "Назад"
 
-#: tsetupform.button10.caption
-msgctxt "tsetupform.button10.caption"
+#: tsetupform.btcheck.caption
+#, fuzzy
+msgctxt "tsetupform.btcheck.caption"
 msgid "Check connection"
 msgstr "Проверка соединения"
 
-#: tsetupform.button2.caption
-msgctxt "tsetupform.button2.caption"
+#: tsetupform.btnext.caption
+#, fuzzy
+msgctxt "tsetupform.btnext.caption"
 msgid "Next"
 msgstr "Далее"
+
+#: tsetupform.button1.caption
+msgid "I accept"
+msgstr "Принимаю"
 
 #: tsetupform.button3.caption
 msgctxt "tsetupform.button3.caption"
@@ -4632,11 +4640,6 @@ msgstr "Далее"
 msgctxt "tsetupform.button5.caption"
 msgid "OK"
 msgstr "ОК"
-
-#: tsetupform.button6.caption
-msgctxt "tsetupform.button6.caption"
-msgid "Back"
-msgstr "Назад"
 
 #: tsetupform.button7.caption
 msgctxt "tsetupform.button7.caption"
@@ -4684,17 +4687,14 @@ msgctxt "tsetupform.edit16.text"
 msgid "TNX for QSO! 73!"
 msgstr ""
 
-#: tsetupform.edit2.text
+#: tsetupform.editport.text
+msgctxt "tsetupform.editport.text"
 msgid "3306"
 msgstr ""
 
 #: tsetupform.label1.caption
 msgid "Welcome to the HAM Log Setup Wizard."
 msgstr "Добро пожаловать в помощник по установке."
-
-#: tsetupform.label10.caption
-msgid "SQLite database path"
-msgstr "Путь к базе SQLite"
 
 #: tsetupform.label11.caption
 msgid "Main HAM Log Settings"
@@ -4784,31 +4784,47 @@ msgstr "Всего наилучшего! 73!"
 msgid "Database settings"
 msgstr "Настройки базы данных"
 
-#: tsetupform.label4.caption
-msgid "Database select"
-msgstr "Выбор базы данных"
-
-#: tsetupform.label5.caption
+#: tsetupform.lbhost.caption
+#, fuzzy
+msgctxt "tsetupform.lbhost.caption"
 msgid "Host"
 msgstr "Хост"
 
-#: tsetupform.label6.caption
-msgctxt "tsetupform.label6.caption"
-msgid "Port"
-msgstr "Порт"
+#: tsetupform.lbnamedb.caption
+#, fuzzy
+msgctxt "tsetupform.lbnamedb.caption"
+msgid "Name of database"
+msgstr "Имя базы данных"
 
-#: tsetupform.label7.caption
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: tsetupform.label8.caption
-msgctxt "tsetupform.label8.caption"
+#: tsetupform.lbpassword.caption
+#, fuzzy
+msgctxt "tsetupform.lbpassword.caption"
 msgid "Password"
 msgstr "Пароль"
 
-#: tsetupform.label9.caption
-msgid "Name of database"
-msgstr "Имя базы данных"
+#: tsetupform.lbport.caption
+#, fuzzy
+msgctxt "tsetupform.lbport.caption"
+msgid "Port"
+msgstr "Порт"
+
+#: tsetupform.lbselectdb.caption
+#, fuzzy
+msgctxt "tsetupform.lbselectdb.caption"
+msgid "Database select"
+msgstr "Выбор базы данных"
+
+#: tsetupform.lbsqlpath.caption
+#, fuzzy
+msgctxt "tsetupform.lbsqlpath.caption"
+msgid "SQLite database path"
+msgstr "Путь к базе SQLite"
+
+#: tsetupform.lbusername.caption
+#, fuzzy
+msgctxt "tsetupform.lbusername.caption"
+msgid "Username"
+msgstr "Имя пользователя"
 
 #: tsetupform.opendialog1.title
 msgid "Open DataBase"
@@ -5192,3 +5208,4 @@ msgstr "Фото"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
+

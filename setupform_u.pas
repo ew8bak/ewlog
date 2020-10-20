@@ -15,12 +15,12 @@ type
   TSetupForm = class(TForm)
     Bevel1: TBevel;
     Button1: TButton;
-    Button10: TButton;
-    Button2: TButton;
+    BtCheck: TButton;
+    BtNext: TButton;
     Button3: TButton;
     Button4: TButton;
     Button5: TButton;
-    Button6: TButton;
+    BtBack: TButton;
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
@@ -29,7 +29,7 @@ type
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
     CBExpertMode: TCheckBox;
-    Edit1: TEdit;
+    EditHost: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
@@ -37,16 +37,16 @@ type
     Edit14: TEdit;
     Edit15: TEdit;
     Edit16: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
+    EditPort: TEdit;
+    EditUser: TEdit;
+    EditPasswd: TEdit;
+    EditNameDB: TEdit;
+    EditSQLPath: TEdit;
     Edit7: TEdit;
     Edit8: TEdit;
     Edit9: TEdit;
     Label1: TLabel;
-    Label10: TLabel;
+    LBSQLPath: TLabel;
     Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
@@ -65,12 +65,12 @@ type
     Label25: TLabel;
     Label28: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
+    LBSelectDB: TLabel;
+    LBHost: TLabel;
+    LBPort: TLabel;
+    LBUsername: TLabel;
+    LBPassword: TLabel;
+    LBNameDB: TLabel;
     Memo1: TMemo;
     MySQL_Connector: TMySQL56Connection;
     OpenDialog1: TOpenDialog;
@@ -94,13 +94,13 @@ type
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
-    procedure Button10Click(Sender: TObject);
+    procedure BtCheckClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure BtNextClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
+    procedure BtBackClick(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
@@ -134,7 +134,7 @@ type
     LOG_PREFIX: string;
     Default_DataBase: string;
     Test_Connection: boolean;
-    procedure CheckEmptyDB;
+    function CheckEmptyDB: boolean;
     { private declarations }
   public
     { public declarations }
@@ -506,12 +506,12 @@ begin
   MySQL_Current := False;
   SQLite_Current := False;
   Label24.Caption := rWait;
-  Edit1.Enabled := False;
-  Edit2.Enabled := False;
-  Edit3.Enabled := False;
-  Edit4.Enabled := False;
-  Edit5.Enabled := False;
-  Edit6.Enabled := True;
+  EditHost.Enabled := False;
+  EditPort.Enabled := False;
+  EditUser.Enabled := False;
+  EditPasswd.Enabled := False;
+  EditNameDB.Enabled := False;
+  EditSQLPath.Enabled := True;
   SpeedButton1.Enabled := True;
   CheckBox4.Checked := True;
   CheckBox4.Enabled := False;
@@ -520,21 +520,21 @@ begin
   CheckBox2.Enabled := True;
   CheckBox1.Enabled := False;
   CheckBox1.Checked := False;
-  Button2.Enabled := True;
-  Button10.Enabled := False;
-  Edit6.Text := '';
+  BtNext.Enabled := True;
+  BtCheck.Enabled := False;
+  EditSQLPath.Text := '';
 end;
 
 procedure TSetupForm.RadioButton1Change(Sender: TObject);
 begin
   if RadioButton1.Checked = True then
   begin
-    Edit1.Enabled := True;
-    Edit2.Enabled := True;
-    Edit3.Enabled := True;
-    Edit4.Enabled := True;
-    Edit5.Enabled := True;
-    Edit6.Enabled := False;
+    EditHost.Enabled := True;
+    EditPort.Enabled := True;
+    EditUser.Enabled := True;
+    EditPasswd.Enabled := True;
+    EditNameDB.Enabled := True;
+    EditSQLPath.Enabled := False;
     SpeedButton1.Enabled := False;
     CheckBox3.Checked := True;
     CheckBox3.Enabled := False;
@@ -543,8 +543,8 @@ begin
     CheckBox1.Enabled := True;
     CheckBox2.Enabled := False;
     CheckBox2.Checked := False;
-    Button10.Enabled := True;
-    Button2.Enabled := False;
+    BtCheck.Enabled := True;
+    BtNext.Enabled := False;
   end;
 end;
 
@@ -552,12 +552,12 @@ procedure TSetupForm.RadioButton2Change(Sender: TObject);
 begin
   if RadioButton2.Checked = True then
   begin
-    Edit1.Enabled := False;
-    Edit2.Enabled := False;
-    Edit3.Enabled := False;
-    Edit4.Enabled := False;
-    Edit5.Enabled := False;
-    Edit6.Enabled := True;
+    EditHost.Enabled := False;
+    EditPort.Enabled := False;
+    EditUser.Enabled := False;
+    EditPasswd.Enabled := False;
+    EditNameDB.Enabled := False;
+    EditSQLPath.Enabled := True;
     SpeedButton1.Enabled := True;
     CheckBox4.Checked := True;
     CheckBox4.Enabled := False;
@@ -566,8 +566,8 @@ begin
     CheckBox2.Enabled := True;
     CheckBox1.Enabled := False;
     CheckBox1.Checked := False;
-    Button2.Enabled := True;
-    Button10.Enabled := False;
+    BtNext.Enabled := True;
+    BtCheck.Enabled := False;
   end;
 end;
 
@@ -575,19 +575,19 @@ procedure TSetupForm.RadioButton3Change(Sender: TObject);
 begin
   if RadioButton3.Checked = True then
   begin
-    Edit1.Enabled := True;
-    Edit2.Enabled := True;
-    Edit3.Enabled := True;
-    Edit4.Enabled := True;
-    Edit5.Enabled := True;
-    Edit6.Enabled := True;
+    EditHost.Enabled := True;
+    EditPort.Enabled := True;
+    EditUser.Enabled := True;
+    EditPasswd.Enabled := True;
+    EditNameDB.Enabled := True;
+    EditSQLPath.Enabled := True;
     SpeedButton1.Enabled := True;
     CheckBox3.Enabled := True;
     CheckBox4.Enabled := True;
     CheckBox1.Enabled := True;
     CheckBox2.Enabled := True;
-    Button10.Enabled := True;
-    Button2.Enabled := False;
+    BtCheck.Enabled := True;
+    BtNext.Enabled := False;
   end;
 end;
 
@@ -611,13 +611,13 @@ begin
         begin
           Exit;
         end;
-      Edit6.Text := SaveDialog1.FileName;
+      EditSQLPath.Text := SaveDialog1.FileName;
     end;
   end
   else
   begin
     if OpenDialog1.Execute then
-      Edit6.Text := OpenDialog1.FileName;
+      EditSQLPath.Text := OpenDialog1.FileName;
   end;
 end;
 
@@ -630,15 +630,16 @@ begin
     CheckedDB := 2;
     SQLitePATH := FilePATH + 'logbook.db';
     Default_DataBase := 'SQLite';
-    CheckEmptyDB;
-    PageControl1.ActivePageIndex := 2;
+    if CheckEmptyDB then
+      PageControl1.ActivePageIndex := 2;
   end;
 end;
 
-procedure TSetupForm.CheckEmptyDB;
+function TSetupForm.CheckEmptyDB: boolean;
 var
   Query: TSQLQuery;
 begin
+  Result := False;
   try
     Query := TSQLQuery.Create(nil);
     Edit7.Clear;
@@ -648,10 +649,12 @@ begin
     Edit11.Clear;
     Edit14.Clear;
     Edit15.Clear;
-    Edit16.Clear;
 
     if not FileExists(SQLitePATH) then
-      Exit
+    begin
+      Result := True;
+      Exit;
+    end
     else
     begin
       try
@@ -677,6 +680,7 @@ begin
             Edit16.Text := Query.FieldByName('QSLInfo').AsString;
           end;
           Query.Close;
+          Result := True;
         end
         else
         begin
@@ -685,14 +689,20 @@ begin
           begin
             SQLite_Current := False;
             DeleteFile(SQLitePATH);
+            Result := True;
+          end
+          else
+          begin
+            Exit;
           end;
         end;
       except
         on E: Exception do
         begin
+          WriteLn(ExceptFile, 'TSetupForm.CheckEmptyDB:' + E.ClassName +
+            ':' + E.Message);
           SQLite_Connector.Connected := False;
           SQLite_Current := False;
-          DeleteFile(SQLitePATH);
         end;
       end;
     end;
@@ -703,20 +713,20 @@ begin
   end;
 end;
 
-procedure TSetupForm.Button10Click(Sender: TObject);
+procedure TSetupForm.BtCheckClick(Sender: TObject);
 begin
   if (RadioButton1.Checked = True) or (RadioButton3.Checked = True) then
   begin
     try
-      MySQL_Connector.HostName := Edit1.Text;
-      MySQL_Connector.Port := StrToInt(Edit2.Text);
-      MySQL_Connector.UserName := Edit3.Text;
-      MySQL_Connector.Password := Edit4.Text;
-      MySQL_Connector.DatabaseName := Edit5.Text;
+      MySQL_Connector.HostName := EditHost.Text;
+      MySQL_Connector.Port := StrToInt(EditPort.Text);
+      MySQL_Connector.UserName := EditUser.Text;
+      MySQL_Connector.Password := EditPasswd.Text;
+      MySQL_Connector.DatabaseName := EditNameDB.Text;
       MySQL_Connector.Connected := True;
       if MySQL_Connector.Connected = True then
       begin
-        Button2.Enabled := True;
+        BtNext.Enabled := True;
         ShowMessage(rSuccessfulNext);
       end
     except
@@ -730,26 +740,26 @@ begin
   end;
 end;
 
-procedure TSetupForm.Button2Click(Sender: TObject);
+procedure TSetupForm.BtNextClick(Sender: TObject);
 var
   State: boolean = False;
 begin
   if RadioButton1.Checked = True then
-    if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
-      (Edit4.Text = '') or (Edit5.Text = '') then
+    if (EditHost.Text = '') or (EditPort.Text = '') or (EditUser.Text = '') or
+      (EditPasswd.Text = '') or (EditNameDB.Text = '') then
       ShowMessage(rValueEmpty)
     else
       State := True;
 
   if RadioButton2.Checked = True then
-    if Edit6.Text = '' then
+    if EditSQLPath.Text = '' then
       ShowMessage(rCheckPath)
     else
       State := True;
 
   if RadioButton3.Checked = True then
-    if (Edit6.Text = '') or (Edit1.Text = '') or (Edit2.Text = '') or
-      (Edit3.Text = '') or (Edit4.Text = '') or (Edit5.Text = '') then
+    if (EditSQLPath.Text = '') or (EditHost.Text = '') or (EditPort.Text = '') or
+      (EditUser.Text = '') or (EditPasswd.Text = '') or (EditNameDB.Text = '') then
       ShowMessage(rValueEmpty)
     else
       State := True;
@@ -762,13 +772,13 @@ begin
       CheckedDB := 2;
     if RadioButton3.Checked = True then
       CheckedDB := 3;
-    MySQL_HostName := Edit1.Text;
-    if Edit2.Text <> '' then
-      MySQL_Port := StrToInt(Edit2.Text);
-    MySQL_LoginName := Edit3.Text;
-    MySQL_Password := Edit4.Text;
-    MySQL_BaseName := Edit5.Text;
-    SQLitePATH := Edit6.Text;
+    MySQL_HostName := EditHost.Text;
+    if EditPort.Text <> '' then
+      MySQL_Port := StrToInt(EditPort.Text);
+    MySQL_LoginName := EditUser.Text;
+    MySQL_Password := EditPasswd.Text;
+    MySQL_BaseName := EditNameDB.Text;
+    SQLitePATH := EditSQLPath.Text;
     MySQL_Current := CheckBox1.Checked;
     SQLite_Current := CheckBox2.Checked;
 
@@ -820,7 +830,7 @@ begin
   Close;
 end;
 
-procedure TSetupForm.Button6Click(Sender: TObject);
+procedure TSetupForm.BtBackClick(Sender: TObject);
 begin
   PageControl1.ActivePageIndex := 0;
 end;

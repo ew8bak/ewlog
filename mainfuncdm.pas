@@ -1621,7 +1621,7 @@ begin
         Exit;
       end;
 
-      for i := 0 to PrefixProvinceCount do
+      for i := 0 to PrefixProvinceCount - 1 do
       begin
         if (PrefixExpProvinceArray[i].reg.Exec(Callsign)) and
           (PrefixExpProvinceArray[i].reg.Match[0] = Callsign) then
@@ -1656,7 +1656,7 @@ begin
         end;
       end;
 
-      for i := 0 to PrefixARRLCount do
+      for i := 0 to PrefixARRLCount - 1 do
       begin
         if (PrefixExpARRLArray[i].reg.Exec(Callsign)) and
           (PrefixExpARRLArray[i].reg.Match[0] = Callsign) then

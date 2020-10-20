@@ -4585,18 +4585,23 @@ msgstr ""
 msgid "Path program:"
 msgstr ""
 
-#: tsetupform.button1.caption
-msgid "I accept"
+#: tsetupform.btback.caption
+msgctxt "tsetupform.btback.caption"
+msgid "Back"
 msgstr ""
 
-#: tsetupform.button10.caption
-msgctxt "tsetupform.button10.caption"
+#: tsetupform.btcheck.caption
+msgctxt "tsetupform.btcheck.caption"
 msgid "Check connection"
 msgstr ""
 
-#: tsetupform.button2.caption
-msgctxt "tsetupform.button2.caption"
+#: tsetupform.btnext.caption
+msgctxt "tsetupform.btnext.caption"
 msgid "Next"
+msgstr ""
+
+#: tsetupform.button1.caption
+msgid "I accept"
 msgstr ""
 
 #: tsetupform.button3.caption
@@ -4612,11 +4617,6 @@ msgstr ""
 #: tsetupform.button5.caption
 msgctxt "tsetupform.button5.caption"
 msgid "OK"
-msgstr ""
-
-#: tsetupform.button6.caption
-msgctxt "tsetupform.button6.caption"
-msgid "Back"
 msgstr ""
 
 #: tsetupform.button7.caption
@@ -4665,16 +4665,13 @@ msgctxt "tsetupform.edit16.text"
 msgid "TNX for QSO! 73!"
 msgstr ""
 
-#: tsetupform.edit2.text
+#: tsetupform.editport.text
+msgctxt "tsetupform.editport.text"
 msgid "3306"
 msgstr ""
 
 #: tsetupform.label1.caption
 msgid "Welcome to the HAM Log Setup Wizard."
-msgstr ""
-
-#: tsetupform.label10.caption
-msgid "SQLite database path"
 msgstr ""
 
 #: tsetupform.label11.caption
@@ -4763,30 +4760,39 @@ msgstr ""
 msgid "Database settings"
 msgstr ""
 
-#: tsetupform.label4.caption
-msgid "Database select"
-msgstr ""
-
-#: tsetupform.label5.caption
+#: tsetupform.lbhost.caption
+msgctxt "tsetupform.lbhost.caption"
 msgid "Host"
 msgstr ""
 
-#: tsetupform.label6.caption
-msgctxt "tsetupform.label6.caption"
-msgid "Port"
+#: tsetupform.lbnamedb.caption
+msgctxt "tsetupform.lbnamedb.caption"
+msgid "Name of database"
 msgstr ""
 
-#: tsetupform.label7.caption
-msgid "Username"
-msgstr ""
-
-#: tsetupform.label8.caption
-msgctxt "tsetupform.label8.caption"
+#: tsetupform.lbpassword.caption
+msgctxt "tsetupform.lbpassword.caption"
 msgid "Password"
 msgstr ""
 
-#: tsetupform.label9.caption
-msgid "Name of database"
+#: tsetupform.lbport.caption
+msgctxt "tsetupform.lbport.caption"
+msgid "Port"
+msgstr ""
+
+#: tsetupform.lbselectdb.caption
+msgctxt "tsetupform.lbselectdb.caption"
+msgid "Database select"
+msgstr ""
+
+#: tsetupform.lbsqlpath.caption
+msgctxt "tsetupform.lbsqlpath.caption"
+msgid "SQLite database path"
+msgstr ""
+
+#: tsetupform.lbusername.caption
+msgctxt "tsetupform.lbusername.caption"
+msgid "Username"
 msgstr ""
 
 #: tsetupform.opendialog1.title

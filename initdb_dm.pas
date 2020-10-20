@@ -61,11 +61,11 @@ var
   UniqueCallsCount: integer;
   sqlite_version: string;
   SearchPrefixQuery: TSQLQuery;
-  PrefixExpProvinceArray: array [0..1000] of record
+  PrefixExpProvinceArray: array of record
     reg: TRegExpr;
     id: integer;
   end;
-  PrefixExpARRLArray: array [0..1000] of record
+  PrefixExpARRLArray: array of record
     reg: TRegExpr;
     id: integer;
   end;
@@ -534,7 +534,9 @@ begin
       PrefixProvinceQuery.First;
       PrefixARRLQuery.First;
       UniqueCallsQuery.First;
-      for i := 0 to PrefixProvinceCount do
+      SetLength(PrefixExpProvinceArray, PrefixProvinceCount);
+      SetLength(PrefixExpARRLArray, PrefixARRLCount);
+      for i := 0 to PrefixProvinceCount - 1 do
       begin
         PrefixProvinceList.Add(PrefixProvinceQuery.FieldByName('PrefixList').AsString);
         PrefixExpProvinceArray[i].reg := TRegExpr.Create;
@@ -542,7 +544,7 @@ begin
         PrefixExpProvinceArray[i].id := PrefixProvinceQuery.FieldByName('_id').AsInteger;
         PrefixProvinceQuery.Next;
       end;
-      for i := 0 to PrefixARRLCount do
+      for i := 0 to PrefixARRLCount - 1 do
       begin
         PrefixARRLList.Add(PrefixARRLQuery.FieldByName('PrefixList').AsString);
         PrefixExpARRLArray[i].reg := TRegExpr.Create;
@@ -663,11 +665,10 @@ begin
   FreeAndNil(PrefixARRLList);
   FreeAndNil(UniqueCallsList);
   FreeAndNil(SearchPrefixQuery);
-  for i := 0 to 1000 do
-  begin
+  for i := 0 to Length(PrefixExpARRLArray) - 1 do
     FreeAndNil(PrefixExpARRLArray[i].reg);
+  for i := 0 to Length(PrefixExpProvinceArray) - 1 do
     FreeAndNil(PrefixExpProvinceArray[i].reg);
-  end;
 end;
 
 end.

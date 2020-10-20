@@ -41,6 +41,7 @@ object ServerDM: TServerDM
     DefaultPort = 1100
     OnConnect = IdFldigiTCPConnect
     OnDisconnect = IdFldigiTCPDisconnect
+    OnException = IdFldigiTCPException
     OnExecute = IdFldigiTCPExecute
     Left = 152
     Top = 80
