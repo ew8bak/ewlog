@@ -690,8 +690,11 @@ end;
 
 procedure TMiniForm.MenuItem118Click(Sender: TObject);
 begin
-  if MainFunc.EraseTable then
-    ShowMessage(rSuccessful)
+  if MainFunc.EraseTable then begin
+    ShowMessage(rSuccessful);
+    TextSB('QSO № ' + IntToStr(0) +
+      rQSOTotal + IntToStr(CountAllRecords), 1);
+  end
   else
     ShowMessage(rError);
 end;
@@ -1329,6 +1332,8 @@ begin
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
       Clr;
+       MiniForm.TextSB('QSO № ' + IntToStr(1) +
+      rQSOTotal + IntToStr(CountAllRecords), 1);
     end;
   end;
 end;
