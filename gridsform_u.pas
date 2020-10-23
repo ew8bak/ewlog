@@ -36,7 +36,6 @@ type
     GridMenu: TPopupMenu;
     MarkQSOItem: TMenuItem;
     PrefixItem: TMenuItem;
-    QEditItem: TMenuItem;
     QSLnsItem: TMenuItem;
     FinqQSLManItem: TMenuItem;
     PrintQSOItem: TMenuItem;
@@ -91,12 +90,10 @@ type
     procedure ExportQSLccItemClick(Sender: TObject);
     procedure FilterCancelItemClick(Sender: TObject);
     procedure FilterDNSentItemClick(Sender: TObject);
-    procedure FilterItemClick(Sender: TObject);
     procedure FilterNSentQSLItemClick(Sender: TObject);
     procedure FilterQSLPItemClick(Sender: TObject);
     procedure FilterRecQSLItemClick(Sender: TObject);
     procedure FilterSentQSLItemClick(Sender: TObject);
-    procedure FinqQSLManItemClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -108,7 +105,6 @@ type
     procedure PrintQSOManItemClick(Sender: TObject);
     procedure PrintQSOnoMarkItemClick(Sender: TObject);
     procedure PrintQSOwMarkItemClick(Sender: TObject);
-    procedure QEditItemClick(Sender: TObject);
     procedure QSLInfoItemClick(Sender: TObject);
     procedure QSLnsItemClick(Sender: TObject);
     procedure QSLPrintedItemClick(Sender: TObject);
@@ -320,11 +316,6 @@ begin
   MainFunc.FilterQSO('QSLSentAdv', 'N');
 end;
 
-procedure TGridsForm.FilterItemClick(Sender: TObject);
-begin
-
-end;
-
 procedure TGridsForm.FilterNSentQSLItemClick(Sender: TObject);
 begin
   MainFunc.FilterQSO('QSLSent', '0');
@@ -343,11 +334,6 @@ end;
 procedure TGridsForm.FilterSentQSLItemClick(Sender: TObject);
 begin
   MainFunc.FilterQSO('QSLSent', '1');
-end;
-
-procedure TGridsForm.FinqQSLManItemClick(Sender: TObject);
-begin
-
 end;
 
 procedure TGridsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -388,7 +374,7 @@ end;
 
 procedure TGridsForm.MarkQSOItemClick(Sender: TObject);
 begin
-
+   MainFunc.UpdateQSO(DBGrid1, 'Marker', '1');
 end;
 
 procedure TGridsForm.MenuItem4Click(Sender: TObject);
@@ -612,49 +598,12 @@ begin
 
 end;
 
-procedure TGridsForm.QEditItemClick(Sender: TObject);
-begin
-  {if (DBRecord.InitDB = 'YES') and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
-  begin
-    EditFlag := True;
-    CheckBox1.Checked := False;
-    CheckBox2.Checked := True;
-    EditButton1.Font.Color := clBlack;
-    EditButton1.Color := clRed;
-    EditButton1.Text := DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-    Edit1.Text := DBGrid1.DataSource.DataSet.FieldByName('OMName').AsString;
-    Edit2.Text := DBGrid1.DataSource.DataSet.FieldByName('OMQTH').AsString;
-    Edit3.Text := DBGrid1.DataSource.DataSet.FieldByName('Grid').AsString;
-    Edit4.Text := DBGrid1.DataSource.DataSet.FieldByName('State').AsString;
-    Edit5.Text := DBGrid1.DataSource.DataSet.FieldByName('IOTA').AsString;
-    Edit6.Text := DBGrid1.DataSource.DataSet.FieldByName('QSLManager').AsString;
-    ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
-    ComboBox2.Items.IndexOf(DBGrid1.DataSource.DataSet.FieldByName('QSOMode').AsString);
-    DateTimePicker1.Time := DBGrid1.DataSource.DataSet.FieldByName('QSOTime').AsDateTime;
-    DateEdit1.Date := DBGrid1.DataSource.DataSet.FieldByName('QSODate').AsDateTime;
-    Edit11.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOAddInfo').AsString;
-    Edit10.Text := DBGrid1.DataSource.DataSet.FieldByName('State1').AsString;
-    Edit9.Text := DBGrid1.DataSource.DataSet.FieldByName('State2').AsString;
-    Edit8.Text := DBGrid1.DataSource.DataSet.FieldByName('State3').AsString;
-    Edit7.Text := DBGrid1.DataSource.DataSet.FieldByName('State4').AsString;
-    case DBGrid1.DataSource.DataSet.FieldByName('QSL_RCVD_VIA').AsString of
-      '': ComboBox6.ItemIndex := 0;
-      'B': ComboBox6.ItemIndex := 1;
-      'D': ComboBox6.ItemIndex := 2;
-      'E': ComboBox6.ItemIndex := 3;
-      'M': ComboBox6.ItemIndex := 4;
-      'G': ComboBox6.ItemIndex := 5;
-    end;
-
-    ComboBox4.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOReportSent').AsString;
-    ComboBox5.Text := DBGrid1.DataSource.DataSet.FieldByName(
-      'QSOReportRecived').AsString;
-  end;    }
-end;
-
 procedure TGridsForm.QSLInfoItemClick(Sender: TObject);
+var
+  Str: string = '';
 begin
-
+ if InputQuery(rPleaseQSLInfo,rEnterMesQSLInf, Str) then
+  MainFunc.UpdateQSO(DBGrid1, 'QSLInfo', Str);
 end;
 
 procedure TGridsForm.QSLnsItemClick(Sender: TObject);

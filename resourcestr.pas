@@ -180,6 +180,8 @@ resourcestring
   rShowNextStart = 'Show this window next start? The settings can be changed in the menu item View';
   rFileDBExist = 'Found an existing database file. Do you want to use it? If you press NO, the existing file will be deleted and a new one will be created';
   rDeleteDBFile = 'Are you sure you want to delete the existing database file?';
+  rPleaseQSLInfo = 'Please enter a message in the QSL Info field';
+  rEnterMesQSLInf = 'Please enter your message';
 implementation
 
 end.

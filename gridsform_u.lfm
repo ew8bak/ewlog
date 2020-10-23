@@ -1151,7 +1151,6 @@ object GridsForm: TGridsForm
         090D080808050606060100000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      OnClick = FinqQSLManItemClick
     end
     object Sep2Item: TMenuItem
       Caption = '-'
@@ -1323,10 +1322,6 @@ object GridsForm: TGridsForm
     object Sep6Item: TMenuItem
       Caption = '-'
     end
-    object QEditItem: TMenuItem
-      Caption = 'Quick edit QSO'
-      OnClick = QEditItemClick
-    end
     object PrefixItem: TMenuItem
       Caption = 'Prefix Manager'
       OnClick = PrefixItemClick
@@ -1337,7 +1332,6 @@ object GridsForm: TGridsForm
     end
     object FilterItem: TMenuItem
       Caption = 'Record Filter'
-      OnClick = FilterItemClick
       object FilterRecQSLItem: TMenuItem
         Caption = 'Received QSL'
         OnClick = FilterRecQSLItemClick

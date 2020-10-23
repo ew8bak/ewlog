@@ -274,7 +274,6 @@ type
     procedure TMTimeTimer(Sender: TObject);
   private
     SelEditNumChar: integer;
-    EditFlag: boolean;
     showForm: boolean;
     procedure Clr;
     procedure LangItemClick(Sender: TObject);
@@ -556,7 +555,6 @@ begin
   EditComment.Clear;
   CBRSTs.ItemIndex := 0;
   CBRSTr.ItemIndex := 0;
-  EditFlag := False;
   ImDXCCcountry.Visible := False;
   ImDXCCBand.Visible := False;
   ImDXCCMode.Visible := False;
@@ -1194,208 +1192,142 @@ begin
       Exit;
     end;
 
-    if not EditFlag then
+    dift := FormatDateTime('hh', Now - NowUTC);
+    if CBSaveUTC.Checked then
     begin
-      dift := FormatDateTime('hh', Now - NowUTC);
-      if CBSaveUTC.Checked then
-      begin
-        timeQSO := DateTimePicker1.Time - StrToTime(dift);
-      end
-      else
-        timeQSO := DateTimePicker1.Time;
+      timeQSO := DateTimePicker1.Time - StrToTime(dift);
+    end
+    else
+      timeQSO := DateTimePicker1.Time;
 
-      if EditCallsign.Text = '' then
-        ShowMessage(rEnCall)
-      else
-      begin
-        QSL_SENT := '0';
-        case CBYourQSL.ItemIndex of
-          0:
-          begin
-            QSL_SENT_ADV := 'T';
-            QSL_SENT := '1';
-          end;
-          1: QSL_SENT_ADV := 'P';
-          2: QSL_SENT_ADV := 'Q';
-          3: QSL_SENT_ADV := 'F';
-          4: QSL_SENT_ADV := 'N';
-        end;
-
-        if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
-          NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-            CBBand.Text, CBMode.Text))
-        else
-          NameBand := CBBand.Text;
-
-        DigiBand_String := NameBand;
-        Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
-        DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
-        PFXR := MainFunc.SearchPrefix(EditCallsign.Text, EditGrid.Text);
-        SQSO.CallSing := EditCallsign.Text;
-        SQSO.QSODate := DateEdit1.Date;
-        SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
-        SQSO.QSOBand := NameBand;
-        SQSO.QSOMode := CBMode.Text;
-        SQSO.QSOSubMode := CBSubMode.Text;
-        SQSO.QSOReportSent := CBRSTs.Text;
-        SQSO.QSOReportRecived := CBRSTr.Text;
-        SQSO.OmName := EditName.Text;
-        SQSO.OmQTH := EditQTH.Text;
-        SQSO.State0 := EditState.Text;
-        SQSO.Grid := EditGrid.Text;
-        SQSO.IOTA := EditIOTA.Text;
-        SQSO.QSLManager := EditMGR.Text;
-        SQSO.QSLSent := QSL_SENT;
-        SQSO.QSLSentAdv := QSL_SENT_ADV;
-        SQSO.QSLRec := '0';
-        SQSO.MainPrefix := PFXR.Prefix;
-        SQSO.DXCCPrefix := PFXR.ARRLPrefix;
-        SQSO.CQZone := PFXR.CQZone;
-        SQSO.ITUZone := PFXR.ITUZone;
-        SQSO.QSOAddInfo := EditComment.Text;
-        SQSO.Marker := BoolToStr(CBMark.Checked);
-        SQSO.ManualSet := 0;
-        SQSO.DigiBand := FloatToStr(DigiBand);
-        SQSO.Continent := PFXR.Continent;
-        SQSO.ShortNote := EditComment.Text;
-        SQSO.QSLReceQSLcc := 0;
-        SQSO.LotWRec := '';
-
-        if not IniSet.StateToQSLInfo then
-          SQSO.QSLInfo := LBRecord.QSLInfo
-        else
+    if EditCallsign.Text = '' then
+      ShowMessage(rEnCall)
+    else
+    begin
+      QSL_SENT := '0';
+      case CBYourQSL.ItemIndex of
+        0:
         begin
-          if (EditMyGrid.Text <> '') or (EditMyState.Text <> '') then
-            SQSO.QSLInfo := EditMyState.Text + ' ' + EditMyGrid.Text
-          else
-            SQSO.QSLInfo := LBRecord.QSLInfo;
+          QSL_SENT_ADV := 'T';
+          QSL_SENT := '1';
         end;
-
-        SQSO.Call := dmFunc.ExtractCallsign(EditCallsign.Text);
-        SQSO.State1 := EditState1.Text;
-        SQSO.State2 := EditState2.Text;
-        SQSO.State3 := EditState3.Text;
-        SQSO.State4 := EditState4.Text;
-        SQSO.WPX := dmFunc.ExtractWPXPrefix(EditCallsign.Text);
-        SQSO.AwardsEx := 'NULL';
-        SQSO.ValidDX := IntToStr(1);
-        SQSO.SRX := 0;
-        SQSO.SRX_String := '';
-        SQSO.STX := 0;
-        SQSO.STX_String := '';
-        SQSO.SAT_NAME := '';
-        SQSO.SAT_MODE := '';
-        SQSO.PROP_MODE := '';
-        SQSO.LotWSent := 0;
-        SQSO.QSL_RCVD_VIA := '';
-        SQSO.QSL_SENT_VIA := CBQSLVia.Text;
-        SQSO.DXCC := IntToStr(PFXR.DXCCNum);
-        SQSO.USERS := '';
-        SQSO.NoCalcDXCC := 0;
-        SQSO.SYNC := 0;
-
-        if LBRecord.OpLoc <> '' then
-          SQSO.My_Grid := LBRecord.OpLoc;
-
-        if EditMyGrid.Text <> '' then
-          SQSO.My_Grid := EditMyGrid.Text;
-
-        SQSO.My_State := EditMyState.Text;
-
-        if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then
-        begin
-          dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
-          SQSO.My_Lat := CurrToStr(lat);
-          SQSO.My_Lon := CurrToStr(lon);
-        end
-        else
-        begin
-          SQSO.My_Lat := '';
-          SQSO.My_Lon := '';
-        end;
-        SQSO.NLogDB := LBRecord.LogTable;
-        MainFunc.SaveQSO(SQSO);
-        SQSO.Auto := True;
-        if LBRecord.AutoClubLog then
-          MainFunc.SendQSOto('clublog', SQSO);
-        if LBRecord.AutoEQSLcc then
-          MainFunc.SendQSOto('eqslcc', SQSO);
-        if LBRecord.AutoHRDLog then
-          MainFunc.SendQSOto('hrdlog', SQSO);
-        if LBRecord.AutoHamQTH then
-          MainFunc.SendQSOto('hamqth', SQSO);
-        if LBRecord.AutoQRZCom then
-          MainFunc.SendQSOto('qrzcom', SQSO);
-        if IniSet.AutoCloudLog then
-          MainFunc.SendQSOto('cloudlog', SQSO);
-
-        if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
-          if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-            ShowMessage(rDBError);
-        Clr;
+        1: QSL_SENT_ADV := 'P';
+        2: QSL_SENT_ADV := 'Q';
+        3: QSL_SENT_ADV := 'F';
+        4: QSL_SENT_ADV := 'N';
       end;
-    end;
 
-    if EditFlag then
-    begin
-    {  if Pos('M', ComboBox1.Text) > 0 then
+      if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
         NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
-          ComboBox1.Text, ComboBox2.Text))
+          CBBand.Text, CBMode.Text))
       else
-        NameBand := ComboBox1.Text;
+        NameBand := CBBand.Text;
 
       DigiBand_String := NameBand;
       Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
       DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
+      PFXR := MainFunc.SearchPrefix(EditCallsign.Text, EditGrid.Text);
+      SQSO.CallSing := EditCallsign.Text;
+      SQSO.QSODate := DateEdit1.Date;
+      SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
+      SQSO.QSOBand := NameBand;
+      SQSO.QSOMode := CBMode.Text;
+      SQSO.QSOSubMode := CBSubMode.Text;
+      SQSO.QSOReportSent := CBRSTs.Text;
+      SQSO.QSOReportRecived := CBRSTr.Text;
+      SQSO.OmName := EditName.Text;
+      SQSO.OmQTH := EditQTH.Text;
+      SQSO.State0 := EditState.Text;
+      SQSO.Grid := EditGrid.Text;
+      SQSO.IOTA := EditIOTA.Text;
+      SQSO.QSLManager := EditMGR.Text;
+      SQSO.QSLSent := QSL_SENT;
+      SQSO.QSLSentAdv := QSL_SENT_ADV;
+      SQSO.QSLRec := '0';
+      SQSO.MainPrefix := PFXR.Prefix;
+      SQSO.DXCCPrefix := PFXR.ARRLPrefix;
+      SQSO.CQZone := PFXR.CQZone;
+      SQSO.ITUZone := PFXR.ITUZone;
+      SQSO.QSOAddInfo := EditComment.Text;
+      SQSO.Marker := BoolToStr(CBMark.Checked);
+      SQSO.ManualSet := 0;
+      SQSO.DigiBand := FloatToStr(DigiBand);
+      SQSO.Continent := PFXR.Continent;
+      SQSO.ShortNote := EditComment.Text;
+      SQSO.QSLReceQSLcc := 0;
+      SQSO.LotWRec := '';
 
-      with SaveQSOQuery do
+      if not IniSet.StateToQSLInfo then
+        SQSO.QSLInfo := LBRecord.QSLInfo
+      else
       begin
-        Close;
-        SQL.Clear;
-        SQL.Add('UPDATE ' + LBRecord.LogTable +
-          ' SET `CallSign`=:CallSign, `QSODate`=:QSODate, ' +
-          '`QSOTime`=:QSOTime, `QSOBand`=:QSOBand, `QSOMode`=:QSOMode,' +
-          '`QSOReportSent`=:QSOReportSent, `QSOReportRecived`=:QSOReportRecived,' +
-          '`OMName`=:OMName, `OMQTH`=:OMQTH, `State`=:State, `Grid`=:Grid,' +
-          '`IOTA`=:IOTA, `QSLManager`=:QSLManager, `QSOAddInfo`=:QSOAddInfo,' +
-          '`DigiBand`=:DigiBand, `ShortNote`=:ShortNote,' +
-          '`Call`=:Call, `State1`=:State1, `State2`=:State2,' +
-          '`State3`=:State3, `State4`=:State4, `QSL_SENT_VIA`=:QSL_SENT_VIA' +
-          ' WHERE `UnUsedIndex`=:UnUsedIndex');
-        Params.ParamByName('UnUsedIndex').AsInteger := UnUsIndex;
-        Params.ParamByName('CallSign').AsString := EditButton1.Text;
-        Params.ParamByName('QSODate').AsDateTime := DateEdit1.Date;
-        Params.ParamByName('QSOTime').AsString :=
-          TimeToStr(DateTimePicker1.Time, FmtStngs);
-        Params.ParamByName('QSOBand').AsString := NameBand;
-        Params.ParamByName('QSOMode').AsString := ComboBox2.Text;
-        Params.ParamByName('QSOReportSent').AsString := ComboBox4.Text;
-        Params.ParamByName('QSOReportRecived').AsString := ComboBox5.Text;
-        Params.ParamByName('OMName').AsString := Edit1.Text;
-        Params.ParamByName('OMQTH').AsString := Edit2.Text;
-        Params.ParamByName('State').AsString := Edit4.Text;
-        Params.ParamByName('Grid').AsString := Edit3.Text;
-        Params.ParamByName('IOTA').AsString := Edit5.Text;
-        Params.ParamByName('QSLManager').AsString := Edit6.Text;
-        Params.ParamByName('QSOAddInfo').AsString := Edit11.Text;
-        Params.ParamByName('DigiBand').AsString := FloatToStr(DigiBand);
-        Params.ParamByName('ShortNote').AsString := Edit11.Text;
-        Params.ParamByName('Call').AsString := dmFunc.ExtractCallsign(EditButton1.Text);
-        Params.ParamByName('State1').AsString := Edit10.Text;
-        Params.ParamByName('State2').AsString := Edit9.Text;
-        Params.ParamByName('State3').AsString := Edit8.Text;
-        Params.ParamByName('State4').AsString := Edit7.Text;
-        if ComboBox6.Text <> '' then
-          Params.ParamByName('QSL_SENT_VIA').AsString := ComboBox6.Text
+        if (EditMyGrid.Text <> '') or (EditMyState.Text <> '') then
+          SQSO.QSLInfo := EditMyState.Text + ' ' + EditMyGrid.Text
         else
-          Params.ParamByName('QSL_SENT_VIA').IsNull;
-        ExecSQL;
+          SQSO.QSLInfo := LBRecord.QSLInfo;
       end;
-      InitDB.DefTransaction.Commit;  }
-      EditFlag := False;
-      CBRealTime.Checked := True;
-      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-        ShowMessage(rDBError);
+
+      SQSO.Call := dmFunc.ExtractCallsign(EditCallsign.Text);
+      SQSO.State1 := EditState1.Text;
+      SQSO.State2 := EditState2.Text;
+      SQSO.State3 := EditState3.Text;
+      SQSO.State4 := EditState4.Text;
+      SQSO.WPX := dmFunc.ExtractWPXPrefix(EditCallsign.Text);
+      SQSO.AwardsEx := 'NULL';
+      SQSO.ValidDX := IntToStr(1);
+      SQSO.SRX := 0;
+      SQSO.SRX_String := '';
+      SQSO.STX := 0;
+      SQSO.STX_String := '';
+      SQSO.SAT_NAME := '';
+      SQSO.SAT_MODE := '';
+      SQSO.PROP_MODE := '';
+      SQSO.LotWSent := 0;
+      SQSO.QSL_RCVD_VIA := '';
+      SQSO.QSL_SENT_VIA := CBQSLVia.Text;
+      SQSO.DXCC := IntToStr(PFXR.DXCCNum);
+      SQSO.USERS := '';
+      SQSO.NoCalcDXCC := 0;
+      SQSO.SYNC := 0;
+
+      if LBRecord.OpLoc <> '' then
+        SQSO.My_Grid := LBRecord.OpLoc;
+
+      if EditMyGrid.Text <> '' then
+        SQSO.My_Grid := EditMyGrid.Text;
+
+      SQSO.My_State := EditMyState.Text;
+
+      if (SQSO.My_Grid <> '') and (dmFunc.IsLocOK(SQSO.My_Grid)) then
+      begin
+        dmFunc.CoordinateFromLocator(SQSO.My_Grid, lat, lon);
+        SQSO.My_Lat := CurrToStr(lat);
+        SQSO.My_Lon := CurrToStr(lon);
+      end
+      else
+      begin
+        SQSO.My_Lat := '';
+        SQSO.My_Lon := '';
+      end;
+      SQSO.NLogDB := LBRecord.LogTable;
+      MainFunc.SaveQSO(SQSO);
+      SQSO.Auto := True;
+      if LBRecord.AutoClubLog then
+        MainFunc.SendQSOto('clublog', SQSO);
+      if LBRecord.AutoEQSLcc then
+        MainFunc.SendQSOto('eqslcc', SQSO);
+      if LBRecord.AutoHRDLog then
+        MainFunc.SendQSOto('hrdlog', SQSO);
+      if LBRecord.AutoHamQTH then
+        MainFunc.SendQSOto('hamqth', SQSO);
+      if LBRecord.AutoQRZCom then
+        MainFunc.SendQSOto('qrzcom', SQSO);
+      if IniSet.AutoCloudLog then
+        MainFunc.SendQSOto('cloudlog', SQSO);
+
+      if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
+        if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+          ShowMessage(rDBError);
       Clr;
     end;
   end;
@@ -1649,9 +1581,6 @@ begin
   end;
   editButtonText := EditCallsign.Text;
 
-  if EditFlag then
-    Exit;
-
   if CBFilter.Checked then
   begin
     MainFunc.FilterQSO('Call', editButtonText + '%');
@@ -1875,7 +1804,6 @@ begin
   DateTimePicker1.Time := NowUTC;
   LBLocalTimeD.Caption := FormatDateTime('hh:mm:ss', Now);
   LBUTCTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC);
-  EditFlag := False;
   LoadComboBoxItem;
   GetLanguageIDs(Lang, FallbackLang);
 
