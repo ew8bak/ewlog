@@ -573,7 +573,12 @@ end;
 
 procedure TMainFunc.CurrPosGrid(index: integer; var DBGrid: TDBGrid);
 begin
-  DBGrid.DataSource.DataSet.RecNo := index;
+  try
+    DBGrid.DataSource.DataSet.RecNo := index;
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'CurrPosGrid:' + E.ClassName + ':' + E.Message);
+  end;
 end;
 
 procedure TMainFunc.UpdateEditQSO(index: integer; SQSO: TQSO);
@@ -1027,6 +1032,8 @@ begin
 
         finally
           FreeAndNil(Query);
+          SetGrid(DBGrid);
+          CurrPosGrid(GridRecordIndex, DBGrid);
         end;
       end;
     end;

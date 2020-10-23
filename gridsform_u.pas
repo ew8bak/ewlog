@@ -173,6 +173,7 @@ var
 begin
   if LOGBookDS.DataSet.Fields[0].AsString <> '' then
   begin
+    GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
     SelQSOR := MainFunc.SelectQSO(LOGBookDS);
     FoundQSOR := MainFunc.FindQSO(DBGrid1.DataSource.DataSet.FieldByName(
       'Call').AsString);
@@ -215,7 +216,7 @@ end;
 
 procedure TGridsForm.DBGrid1DblClick(Sender: TObject);
 begin
-  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  if InitRecord.SelectLogbookTable and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
   begin
     GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
@@ -231,7 +232,7 @@ end;
 
 procedure TGridsForm.DBGrid2DblClick(Sender: TObject);
 begin
-  if InitRecord.SelectLogbookTable and (DBGrid2.SelectedIndex <> 0) then
+  if InitRecord.SelectLogbookTable and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
   begin
     GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
     UnUsIndex := DBGrid2.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;

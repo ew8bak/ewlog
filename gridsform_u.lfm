@@ -1157,6 +1157,7 @@ object GridsForm: TGridsForm
     end
     object PrintQSOItem: TMenuItem
       Caption = 'Print Select QSO'
+      Enabled = False
       object PrintQSOManItem: TMenuItem
         Caption = 'Manual print'
         Enabled = False
@@ -1164,10 +1165,12 @@ object GridsForm: TGridsForm
       end
       object PrintQSOwMarkItem: TMenuItem
         Caption = 'With mark QSL Printed'
+        Enabled = False
         OnClick = PrintQSOwMarkItemClick
       end
       object PrintQSOnoMarkItem: TMenuItem
         Caption = 'Without mark QSL Printed'
+        Enabled = False
         OnClick = PrintQSOnoMarkItemClick
       end
     end
