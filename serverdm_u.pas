@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
-  const_u, LazUTF8, IdCustomTCPServer, IdContext, digi_record, flDigiModem;
+  const_u, LazUTF8, IdCustomTCPServer, IdContext, digi_record, flDigiModem,
+  ImportADIThread;
 
 type
 
@@ -30,6 +31,7 @@ type
     procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
   private
+    PADIImport: TPADIImport;
     lastTCPport: integer;
     lastUDPport: integer;
     AdifDataSyncAll: boolean;
@@ -45,6 +47,7 @@ type
     procedure FldigiToForm;
     function GetNewChunk: string;
     procedure GetFldigiUDP(Message: string);
+    procedure StartImport;
 
   public
     AdifFromMobileString: TStringList;
@@ -74,7 +77,7 @@ begin
       DBRecord.CurrCall + #10) then
       LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' + IntToStr(lastTCPport))
     else
-      MiniForm.TextSB(rSyncErrCall,0);
+      MiniForm.TextSB(rSyncErrCall, 0);
     if (mess = 'Hello') or (mess = 'Hello' + #10) then
       LUDPComponent1.SendMessage('Welcome!');
   end;
@@ -94,20 +97,20 @@ begin
         lastUDPport := port_udp[i];
         Break;
       end;
-  //  if lastUDPport = -1 then
-  //    MiniForm.TextSB('Can not create socket',0);
+    //  if lastUDPport = -1 then
+    //    MiniForm.TextSB('Can not create socket',0);
     lastTCPport := -1;
     LTCPComponent1.ReuseAddress := True;
     for i := 0 to 5 do
       if LTCPComponent1.Listen(port_tcp[i]) then
       begin
         lastTCPport := port_tcp[i];
-    //    MiniForm.TextSB(
-    //      'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport),0);
+        //    MiniForm.TextSB(
+        //      'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport),0);
         Break;
       end;
-   // if lastTCPport = -1 then
-   //   MiniForm.TextSB('Can not create socket',0);
+    // if lastTCPport = -1 then
+    //   MiniForm.TextSB('Can not create socket',0);
 
     if IniSet.FLDIGI_USE then
       IdFldigiTCP.Active := True;
@@ -286,7 +289,7 @@ end;
 
 procedure TServerDM.LTCPComponent1Disconnect(aSocket: TLSocket);
 begin
-  MiniForm.TextSB(aSocket.PeerAddress + ':' + rDone,0);
+  MiniForm.TextSB(aSocket.PeerAddress + ':' + rDone, 0);
 end;
 
 procedure TServerDM.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
@@ -334,6 +337,7 @@ begin
     if Pos('DataSyncClientStart', mess) > 0 then
     begin
       rec_call := dmFunc.par_str(mess, 2);
+      PADIImport.AllRec:= StrToint(dmFunc.par_str(mess, 3));
       if Pos(LBRecord.CallSign, rec_call) > 0 then
       begin
         Stream := TMemoryStream.Create;
@@ -368,17 +372,30 @@ begin
       Rewrite(AdifFile);
       Writeln(AdifFile, s);
       CloseFile(AdifFile);
-
-      ImportADIFForm.ADIFImport(FilePATH + 'ImportMobile.adi', True);
+      StartImport;
       Stream.Free;
       ImportAdifMobile := False;
     end;
   end;
 end;
 
+procedure TServerDM.StartImport;
+begin
+  PADIImport.Path:=FilePATH+'ImportMobile.adi';
+  PADIImport.Mobile := True;
+  PADIImport.SearchPrefix := True;
+  PADIImport.Comment := '';
+  PADIImport.TimeOnOff := True;
+  ImportADIFThread := TImportADIFThread.Create;
+  if Assigned(ImportADIFThread.FatalException) then
+    raise ImportADIFThread.FatalException;
+  ImportADIFThread.PADIImport := PADIImport;
+  ImportADIFThread.Start;
+end;
+
 procedure TServerDM.LUDPComponent1Error(const msg: string; aSocket: TLSocket);
 begin
-  MiniForm.TextSB(aSocket.peerAddress + ':' + SysToUTF8(msg),0);
+  MiniForm.TextSB(aSocket.peerAddress + ':' + SysToUTF8(msg), 0);
 end;
 
 end.

@@ -432,7 +432,7 @@ msgstr ""
 
 #: resourcestr.rduplicates
 msgctxt "resourcestr.rduplicates"
-msgid "Duplicates "
+msgid "Duplicates"
 msgstr ""
 
 #: resourcestr.rdxccprefix
@@ -536,6 +536,10 @@ msgstr ""
 #: resourcestr.rimport
 msgctxt "resourcestr.rimport"
 msgid "Import"
+msgstr ""
+
+#: resourcestr.rimported
+msgid "Imported"
 msgstr ""
 
 #: resourcestr.rimporterrors

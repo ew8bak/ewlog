@@ -441,8 +441,10 @@ msgid "Done"
 msgstr "Готово"
 
 #: resourcestr.rduplicates
+#, fuzzy
+#| msgid "Duplicates "
 msgctxt "resourcestr.rduplicates"
-msgid "Duplicates "
+msgid "Duplicates"
 msgstr "Дубликаты "
 
 #: resourcestr.rdxccprefix
@@ -547,6 +549,10 @@ msgstr "Выбираю количество записей"
 msgctxt "resourcestr.rimport"
 msgid "Import"
 msgstr "Импорт"
+
+#: resourcestr.rimported
+msgid "Imported"
+msgstr ""
 
 #: resourcestr.rimporterrors
 msgctxt "resourcestr.rimporterrors"

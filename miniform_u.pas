@@ -9,7 +9,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, LCLIntf,
-  ActnList, process, CopyTableThread, gettext, digi_record;
+  ActnList, process, CopyTableThread, gettext, digi_record, ImportADIThread;
 
 type
 
@@ -290,6 +290,7 @@ type
     procedure FromCopyTableThread(Data: TData);
     procedure ShowInfoFromRIG(freq: double; mode, submode: string);
     procedure ShowDataFromFldigi(DataDigi: TDigiR);
+    procedure FromImportThread(Info: TInfo);
 
   end;
 
@@ -312,6 +313,16 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 {$R *.lfm}
 
 { TMiniForm }
+
+procedure TMiniForm.FromImportThread(Info: TInfo);
+begin
+  TextSB(rImported + ':' + IntToStr(Info.RecCount) + rOf + IntToStr(Info.AllRec) +
+    ' ' + rImportErrors + ':' + IntToStr(info.ErrorCount), 0);
+  if Info.Result then
+    TextSB(rImport + ':' + rDone, 1)
+  else
+    TextSB(rImport + ':' + rProcessing, 1);
+end;
 
 procedure TMiniForm.ShowDataFromFldigi(DataDigi: TDigiR);
 var
@@ -690,10 +701,10 @@ end;
 
 procedure TMiniForm.MenuItem118Click(Sender: TObject);
 begin
-  if MainFunc.EraseTable then begin
+  if MainFunc.EraseTable then
+  begin
     ShowMessage(rSuccessful);
-    TextSB('QSO № ' + IntToStr(0) +
-      rQSOTotal + IntToStr(CountAllRecords), 1);
+    TextSB('QSO № ' + IntToStr(0) + rQSOTotal + IntToStr(CountAllRecords), 1);
   end
   else
     ShowMessage(rError);
@@ -1332,8 +1343,8 @@ begin
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
       Clr;
-       MiniForm.TextSB('QSO № ' + IntToStr(1) +
-      rQSOTotal + IntToStr(CountAllRecords), 1);
+      MiniForm.TextSB('QSO № ' + IntToStr(1) + rQSOTotal +
+        IntToStr(CountAllRecords), 1);
     end;
   end;
 end;

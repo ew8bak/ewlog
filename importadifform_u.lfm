@@ -1,12 +1,12 @@
 object ImportADIFForm: TImportADIFForm
-  Left = 289
-  Height = 198
-  Top = 228
+  Left = 306
+  Height = 196
+  Top = 235
   Width = 606
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Import from ADIF'
-  ClientHeight = 198
+  ClientHeight = 196
   ClientWidth = 606
   FormStyle = fsStayOnTop
   OnShow = FormShow

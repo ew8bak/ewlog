@@ -56,7 +56,7 @@ resourcestring
   rClientConnected = 'Client Connected:';
   rPhotoFromQRZ = 'Photo from QRZ | HAMQTH';
   rDeleteRecord = 'Delete Record ';
-  rDuplicates = 'Duplicates ';
+  rDuplicates = 'Duplicates';
   rSyncOK = 'Done! Number of duplicates ';
   rSync = ', in sync ';
   rQSOsync = 'QSO';
@@ -99,6 +99,7 @@ resourcestring
   rProcessedData = 'Processed data:';
   rDone = 'Done';
   rImport = 'Import';
+  RImported = 'Imported';
   rImportRecord = 'Imported Records';
   rFileError = 'Error file:';
   rImportErrors = 'Import Errors';
