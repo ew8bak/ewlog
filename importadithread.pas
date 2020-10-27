@@ -25,6 +25,7 @@ type
     TimeOnOff: boolean;
     AllRec: integer;
     SearchPrefix: boolean;
+    RemoveDup: boolean;
   end;
 
 type

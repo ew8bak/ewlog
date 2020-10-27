@@ -337,7 +337,11 @@ begin
     if Pos('DataSyncClientStart', mess) > 0 then
     begin
       rec_call := dmFunc.par_str(mess, 2);
-      PADIImport.AllRec:= StrToint(dmFunc.par_str(mess, 3));
+      try
+        PADIImport.AllRec := StrToInt(dmFunc.par_str(mess, 3));
+      except
+        PADIImport.AllRec := 0;
+      end;
       if Pos(LBRecord.CallSign, rec_call) > 0 then
       begin
         Stream := TMemoryStream.Create;
@@ -381,7 +385,7 @@ end;
 
 procedure TServerDM.StartImport;
 begin
-  PADIImport.Path:=FilePATH+'ImportMobile.adi';
+  PADIImport.Path := FilePATH + 'ImportMobile.adi';
   PADIImport.Mobile := True;
   PADIImport.SearchPrefix := True;
   PADIImport.Comment := '';

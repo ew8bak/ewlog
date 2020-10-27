@@ -115,7 +115,8 @@ begin
     PADIImport.SearchPrefix := CheckBox1.Checked;
     PADIImport.Comment := Memo1.Text;
     PADIImport.TimeOnOff := RadioButton1.Checked;
-    DeleteFile(dmFunc.DataDir + ERR_FILE);
+    PADIImport.RemoveDup:=CheckBox2.Checked;
+    DeleteFile(FilePATH + ERR_FILE);
     ImportADIFThread := TImportADIFThread.Create;
     if Assigned(ImportADIFThread.FatalException) then
       raise ImportADIFThread.FatalException;

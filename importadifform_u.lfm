@@ -372,6 +372,7 @@ object ImportADIFForm: TImportADIFForm
     Width = 132
     Caption = 'Remove Duplicates'
     Checked = True
+    Enabled = False
     Font.Height = -12
     ParentFont = False
     State = cbChecked
