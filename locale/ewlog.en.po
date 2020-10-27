@@ -432,7 +432,7 @@ msgstr ""
 
 #: resourcestr.rduplicates
 msgctxt "resourcestr.rduplicates"
-msgid "Duplicates "
+msgid "Duplicates"
 msgstr ""
 
 #: resourcestr.rdxccprefix
@@ -463,6 +463,10 @@ msgstr ""
 #: resourcestr.rencall
 msgctxt "resourcestr.rencall"
 msgid "You must enter a callsign"
+msgstr ""
+
+#: resourcestr.rentermesqslinf
+msgid "Please enter your message"
 msgstr ""
 
 #: resourcestr.rerrorservicedb
@@ -532,6 +536,10 @@ msgstr ""
 #: resourcestr.rimport
 msgctxt "resourcestr.rimport"
 msgid "Import"
+msgstr ""
+
+#: resourcestr.rimported
+msgid "Imported"
 msgstr ""
 
 #: resourcestr.rimporterrors
@@ -722,6 +730,10 @@ msgstr ""
 
 #: resourcestr.rphotofromqrz
 msgid "Photo from QRZ | HAMQTH"
+msgstr ""
+
+#: resourcestr.rpleaseqslinfo
+msgid "Please enter a message in the QSL Info field"
 msgstr ""
 
 #: resourcestr.rprocesseddata
@@ -2862,11 +2874,6 @@ msgstr ""
 #: tgridsform.printqsowmarkitem.caption
 msgctxt "tgridsform.printqsowmarkitem.caption"
 msgid "With mark QSL Printed"
-msgstr ""
-
-#: tgridsform.qedititem.caption
-msgctxt "tgridsform.qedititem.caption"
-msgid "Quick edit QSO"
 msgstr ""
 
 #: tgridsform.qslinfoitem.caption

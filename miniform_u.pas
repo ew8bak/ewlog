@@ -318,8 +318,10 @@ procedure TMiniForm.FromImportThread(Info: TInfo);
 begin
   TextSB(rImported + ':' + IntToStr(Info.RecCount) + rOf + IntToStr(Info.AllRec) +
     ' ' + rImportErrors + ':' + IntToStr(info.ErrorCount), 0);
-  if Info.Result then
-    TextSB(rImport + ':' + rDone, 1)
+  if Info.Result then begin
+    TextSB(rImport + ':' + rDone, 1);
+    InitDB.SelectLogbookTable(LBRecord.LogTable)
+  end
   else
     TextSB(rImport + ':' + rProcessing, 1);
 end;

@@ -742,7 +742,6 @@ begin
     CloseFile(temp_f);
     Stream.Free;
     Synchronize(@ToForm);
-    InitDB.SelectLogbookTable(LBRecord.LogTable);
   end;
 
 end;

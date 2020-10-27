@@ -441,8 +441,10 @@ msgid "Done"
 msgstr "Готово"
 
 #: resourcestr.rduplicates
+#, fuzzy
+#| msgid "Duplicates "
 msgctxt "resourcestr.rduplicates"
-msgid "Duplicates "
+msgid "Duplicates"
 msgstr "Дубликаты "
 
 #: resourcestr.rdxccprefix
@@ -474,6 +476,10 @@ msgstr "Очистить окно DX кластера"
 msgctxt "resourcestr.rencall"
 msgid "You must enter a callsign"
 msgstr "Вы должны ввести позывной"
+
+#: resourcestr.rentermesqslinf
+msgid "Please enter your message"
+msgstr ""
 
 #: resourcestr.rerrorservicedb
 msgid "Service database not found! Verify program installation integrity. File serviceLOG.db"
@@ -543,6 +549,10 @@ msgstr "Выбираю количество записей"
 msgctxt "resourcestr.rimport"
 msgid "Import"
 msgstr "Импорт"
+
+#: resourcestr.rimported
+msgid "Imported"
+msgstr ""
 
 #: resourcestr.rimporterrors
 msgctxt "resourcestr.rimporterrors"
@@ -733,6 +743,10 @@ msgstr "Путь"
 #: resourcestr.rphotofromqrz
 msgid "Photo from QRZ | HAMQTH"
 msgstr "Фото из QRZ | HAMQTH"
+
+#: resourcestr.rpleaseqslinfo
+msgid "Please enter a message in the QSL Info field"
+msgstr ""
 
 #: resourcestr.rprocesseddata
 msgctxt "resourcestr.rprocesseddata"
@@ -2876,11 +2890,6 @@ msgstr "Без пометки QSL напечатана"
 msgctxt "tgridsform.printqsowmarkitem.caption"
 msgid "With mark QSL Printed"
 msgstr "С пометкой QSL Напечатана"
-
-#: tgridsform.qedititem.caption
-msgctxt "tgridsform.qedititem.caption"
-msgid "Quick edit QSO"
-msgstr "Быстрое редактирование QSO"
 
 #: tgridsform.qslinfoitem.caption
 msgctxt "tgridsform.qslinfoitem.caption"

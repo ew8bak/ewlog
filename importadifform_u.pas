@@ -95,8 +95,10 @@ begin
     rOf + (IntToStr(Info.AllRec));
   Label2.Caption := rNumberDup + ':' + IntToStr(info.DupeCount);
   lblErrors.Caption := rImportErrors + ':' + IntToStr(Info.ErrorCount);
-  if Info.Result then
+  if Info.Result then begin
+    InitDB.SelectLogbookTable(LBRecord.LogTable);
     Button1.Enabled := True;
+  end;
 end;
 
 procedure TImportADIFForm.Button1Click(Sender: TObject);

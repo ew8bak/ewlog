@@ -9,8 +9,8 @@
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="9"/>
-        <CursorPos X="59" Y="25"/>
+        <TopLine Value="8"/>
+        <CursorPos X="76" Y="25"/>
         <UsageCount Value="200"/>
       </Unit0>
       <Unit1>
@@ -79,10 +79,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="564"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="824"/>
         <CursorPos Y="577"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="createjournalform_u.pas"/>
@@ -104,11 +106,10 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="98"/>
-        <CursorPos X="4" Y="122"/>
+        <TopLine Value="86"/>
+        <CursorPos X="50" Y="99"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="dmfunc_u.pas"/>
@@ -766,9 +767,8 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="501"/>
-        <CursorPos X="45" Y="399"/>
+        <TopLine Value="300"/>
+        <CursorPos X="49" Y="323"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -789,7 +789,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="333"/>
+        <TopLine Value="369"/>
         <CursorPos X="52" Y="388"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -851,10 +851,11 @@
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="205"/>
-        <CursorPos X="14" Y="267"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="734"/>
+        <CursorPos X="8" Y="766"/>
         <UsageCount Value="29"/>
+        <Loaded Value="True"/>
       </Unit83>
       <Unit84>
         <Filename Value="getsessionid.pas"/>
@@ -1192,9 +1193,9 @@
         <Filename Value="C:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
         <UnitName Value="LazTracer"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="147"/>
-        <CursorPos X="33" Y="56"/>
-        <UsageCount Value="5"/>
+        <TopLine Value="34"/>
+        <CursorPos Y="50"/>
+        <UsageCount Value="7"/>
       </Unit129>
       <Unit130>
         <Filename Value="C:\usr\lib\lazarus\lcl\extctrls.pp"/>
@@ -1504,39 +1505,41 @@
         <UsageCount Value="7"/>
       </Unit170>
       <Unit171>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
-        <UnitName Value="LazTracer"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="34"/>
-        <CursorPos Y="50"/>
-        <UsageCount Value="7"/>
-      </Unit171>
-      <Unit172>
         <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\Indy10\Protocols\IdIPWatch.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="309"/>
         <CursorPos X="3" Y="312"/>
         <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit172>
-      <Unit173>
+      </Unit171>
+      <Unit172>
         <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\Indy10\System\IdStack.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="710"/>
         <CursorPos X="3" Y="715"/>
         <UsageCount Value="7"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit173>
-      <Unit174>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\components\lazutils\lconvencoding.pas"/>
+      </Unit172>
+      <Unit173>
+        <Filename Value="C:\usr\lib\lazarus\components\lazutils\lconvencoding.pas"/>
         <UnitName Value="LConvEncoding"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="10" Y="81"/>
         <UsageCount Value="9"/>
+      </Unit173>
+      <Unit174>
+        <Filename Value="exportadithread.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ExportADIThread"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="3" Y="63"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
       </Unit174>
     </Units>
-    <JumpHistory Count="7" HistoryIndex="6">
+    <JumpHistory Count="12" HistoryIndex="11">
       <Position1>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="320" Column="63" TopLine="307"/>
@@ -1565,6 +1568,26 @@
         <Filename Value="initdb_dm.pas"/>
         <Caret Line="50" Column="17" TopLine="31"/>
       </Position7>
+      <Position8>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="388" Column="52" TopLine="369"/>
+      </Position8>
+      <Position9>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="122" Column="4" TopLine="95"/>
+      </Position9>
+      <Position10>
+        <Filename Value="exportadithread.pas"/>
+        <Caret Column="21"/>
+      </Position10>
+      <Position11>
+        <Filename Value="exportadithread.pas"/>
+        <Caret Line="58" TopLine="20"/>
+      </Position11>
+      <Position12>
+        <Filename Value="exportadithread.pas"/>
+        <Caret Line="35" Column="5" TopLine="33"/>
+      </Position12>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

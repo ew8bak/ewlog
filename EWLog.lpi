@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="84">
+    <Units Count="85">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -684,6 +684,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
       </Unit83>
+      <Unit84>
+        <Filename Value="exportadithread.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ExportADIThread"/>
+      </Unit84>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
