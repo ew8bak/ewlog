@@ -147,7 +147,6 @@ begin
     tmp := TStringList.Create;
     MStream.Position := 0;
     tmp.LoadFromStream(MStream);
-    writeln(tmp.Strings[tmp.Count - 1]);
     if Pos('DATASYNCCLIENTEND', tmp.Strings[tmp.Count - 1]) > 0 then
       tmp.Delete(tmp.Count - 1);
   finally
