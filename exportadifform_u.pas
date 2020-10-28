@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ExtCtrls, sqldb, LazUTF8, LConvEncoding;
+  StdCtrls, EditBtn, ExtCtrls, sqldb, LazUTF8, LConvEncoding, ExportADIThread, ResourceStr;
 
 resourcestring
   rDone = 'Done';
@@ -54,8 +54,10 @@ type
   private
     FileName: string;
     ExportAll: boolean;
+    procedure StartExport;
     { private declarations }
   public
+    procedure FromExportThread(Info: TInfoExport);
     function ExportToAdif: word;
     function ExportToMobile(range: string; date: string): word;
     { public declarations }
@@ -70,13 +72,62 @@ uses dmFunc_U, miniform_u, InitDB_dm, serverDM_u, GridsForm_u, MainFuncDM;
 
 {$R *.lfm}
 
+procedure TexportAdifForm.FromExportThread(Info: TInfoExport);
+begin
+  Label1.Caption := rNumberOfQSO + ' ' + IntToStr(Info.RecCount) +
+    rOf + IntToStr(Info.AllRec);
+  if Info.Result then
+  Button1.Enabled:=True;
+end;
+
+procedure TexportAdifForm.StartExport;
+var
+  PADIExport: TPADIExport;
+begin
+  PADIExport.Path := SysToUTF8(FileName);
+  PADIExport.ExportAll := rbFileExportAll.Checked;
+  PADIExport.DateStart := DateEdit1.Date;
+  PADIExport.DateEnd := DateEdit2.Date;
+  PADIExport.Win1251 := CheckBox2.Checked;
+
+  ExportADIFThread := TExportADIFThread.Create;
+  if Assigned(ExportADIFThread.FatalException) then
+    raise ExportADIFThread.FatalException;
+  ExportADIFThread.PADIExport := PADIExport;
+  ExportADIFThread.Start;
+end;
+
 procedure TexportAdifForm.Button1Click(Sender: TObject);
 begin
-  if Button1.Caption = rDone then
+  SaveDialog1.InitialDir := INIFile.ReadString('SetLog', 'ExportPath', '');
+  SaveDialog1.FileName := dmFunc.ExtractCallsign(DBRecord.CurrCall) +
+    '_' + FormatDateTime('yyyy-mm-dd-hhnnss', now);
+
+  if SaveDialog1.Execute then
+  begin
+    if SaveDialog1.FileName = '' then
+    begin
+      Application.MessageBox(
+        PChar(pPleaseFile), PChar(rWarning),
+        mb_ok + mb_IconWarning);
+      exit;
+    end;
+    FileName := SysToUTF8(SaveDialog1.FileName);
+    if CheckBox1.Checked then begin
+      Button1.Enabled:=False;
+      StartExport
+    end
+    else
+      Application.MessageBox(PChar(rNoMethodExport),
+        PChar(rWarning),
+        mb_ok + mb_IconWarning);
+  end;
+
+ { if Button1.Caption = rDone then
     exportAdifForm.Close
   else
   begin
-    SaveDialog1.FileName := DBRecord.CurrCall + '_' +
+   SaveDialog1.FileName := DBRecord.CurrCall + '_' +
       FormatDateTime('yyyy-mm-dd', now);
     SaveDialog1.InitialDir := INIFile.ReadString('SetLog', 'ExportPath', '');
     if SaveDialog1.Execute then
@@ -97,7 +148,7 @@ begin
           PChar(rWarning),
           mb_ok + mb_IconWarning);
     end;
-  end;
+  end; }
 end;
 
 procedure TexportAdifForm.Button2Click(Sender: TObject);
@@ -197,14 +248,15 @@ begin
     Q1.SQL.Text := 'select * from ' + LBRecord.LogTable + ' ORDER BY UnUsedIndex ASC';
   end;
 
-  Q2.SQL.Text := 'select * from LogBookInfo WHERE LogTable = ' + QuotedStr(LBRecord.LogTable);
+  Q2.SQL.Text := 'select * from LogBookInfo WHERE LogTable = ' +
+    QuotedStr(LBRecord.LogTable);
 
   if RadioButton1.Checked = True then
   begin
     if DBRecord.DefaultDB = 'MySQL' then
-      Q1.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable + ' WHERE QSODate BETWEEN ' +
-        '''' + FormatDateTime('yyyy-mm-dd', DateEdit1.Date) + '''' +
-        ' and ' + '''' + FormatDateTime('yyyy-mm-dd', DateEdit2.Date) +
+      Q1.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
+        ' WHERE QSODate BETWEEN ' + '''' + FormatDateTime('yyyy-mm-dd', DateEdit1.Date) +
+        '''' + ' and ' + '''' + FormatDateTime('yyyy-mm-dd', DateEdit2.Date) +
         '''' + ' ORDER BY UnUsedIndex ASC'
     else
       Q1.SQL.Text :=
@@ -226,8 +278,8 @@ begin
     end;
     for i := 0 to Length(GridsForm.ExportAdifArray) - 1 do
     begin
-      Q1.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable + ' WHERE `UnUsedIndex` in (' +
-        numberToExp + ')' + ' ORDER BY UnUsedIndex ASC';
+      Q1.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
+        ' WHERE `UnUsedIndex` in (' + numberToExp + ')' + ' ORDER BY UnUsedIndex ASC';
     end;
   end;
 
@@ -567,8 +619,8 @@ begin
   if (range = 'Date') then
   begin
     if DBRecord.CurrentDB = 'MySQL' then
-      Q1.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable + ' WHERE QSODate >= ' +
-        '''' + FormatDateTime('yyyy-mm-dd', StrToDate(date)) +
+      Q1.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
+        ' WHERE QSODate >= ' + '''' + FormatDateTime('yyyy-mm-dd', StrToDate(date)) +
         '''' + ' OR SYNC = 0 ORDER BY UnUsedIndex ASC'
     else
       Q1.SQL.Text :=
@@ -583,8 +635,8 @@ begin
     while not Q1.EOF do
     begin
       tmp2 := '';
-    //  MainForm.StatusBar1.Panels.Items[0].Text :=
-    //    rSentRecord + ' ' + IntToStr(nr);
+      //  MainForm.StatusBar1.Panels.Items[0].Text :=
+      //    rSentRecord + ' ' + IntToStr(nr);
 
       tmp := '<OPERATOR' + dmFunc.StringToADIF(
         dmFunc.RemoveSpaces(DBRecord.CurrCall), CheckBox2.Checked);

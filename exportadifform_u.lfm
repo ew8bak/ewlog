@@ -8,7 +8,7 @@ object exportAdifForm: TexportAdifForm
   Caption = 'Export ADIF'
   ClientHeight = 192
   ClientWidth = 442
-  FormStyle = fsStayOnTop
+  FormStyle = fsSystemStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
@@ -121,6 +121,7 @@ object exportAdifForm: TexportAdifForm
     Top = 114
     Width = 130
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+    DefaultToday = True
     DateOrder = doNone
     ButtonWidth = 23
     NumGlyphs = 1
