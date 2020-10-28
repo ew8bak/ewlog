@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ExtCtrls, sqldb, LazUTF8, LConvEncoding, ExportADIThread, ResourceStr;
+  StdCtrls, EditBtn, ExtCtrls, ComCtrls, sqldb, LazUTF8, LConvEncoding,
+  ExportADIThread, ResourceStr;
 
 resourcestring
   rDone = 'Done';
@@ -39,6 +40,7 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    PbExport: TProgressBar;
     Q1: TSQLQuery;
     RadioButton1: TRadioButton;
     rbFileExportAll: TRadioButton;
@@ -74,10 +76,12 @@ uses dmFunc_U, miniform_u, InitDB_dm, serverDM_u, GridsForm_u, MainFuncDM;
 
 procedure TexportAdifForm.FromExportThread(Info: TInfoExport);
 begin
+  PbExport.Max := Info.AllRec;
+  PbExport.Position := Info.RecCount;
   Label1.Caption := rNumberOfQSO + ' ' + IntToStr(Info.RecCount) +
     rOf + IntToStr(Info.AllRec);
   if Info.Result then
-  Button1.Enabled:=True;
+    Button1.Enabled := True;
 end;
 
 procedure TexportAdifForm.StartExport;
@@ -113,9 +117,10 @@ begin
       exit;
     end;
     FileName := SysToUTF8(SaveDialog1.FileName);
-    if CheckBox1.Checked then begin
-      Button1.Enabled:=False;
-      StartExport
+    if CheckBox1.Checked then
+    begin
+      Button1.Enabled := False;
+      StartExport;
     end
     else
       Application.MessageBox(PChar(rNoMethodExport),
@@ -181,6 +186,7 @@ begin
   Button1.Caption := rExport;
   Label2.Caption := '';
   Label1.Caption := rNumberOfQSO0;
+  PbExport.Position := 0;
 end;
 
 procedure TexportAdifForm.RadioButton1Click(Sender: TObject);

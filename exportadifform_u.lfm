@@ -1,12 +1,12 @@
 object exportAdifForm: TexportAdifForm
   Left = 436
-  Height = 192
+  Height = 211
   Top = 170
   Width = 442
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Export ADIF'
-  ClientHeight = 192
+  ClientHeight = 211
   ClientWidth = 442
   FormStyle = fsSystemStayOnTop
   OnCreate = FormCreate
@@ -510,6 +510,15 @@ object exportAdifForm: TexportAdifForm
     Enabled = False
     TabOrder = 9
   end
+  object PbExport: TProgressBar
+    Left = 0
+    Height = 20
+    Top = 191
+    Width = 442
+    Align = alBottom
+    Smooth = True
+    TabOrder = 10
+  end
   object Q1: TSQLQuery
     FieldDefs = <>
     Params = <>
@@ -521,8 +530,8 @@ object exportAdifForm: TexportAdifForm
     Title = 'Save file as'
     DefaultExt = '.adi'
     Filter = '*.adi|*.adi'
-    Left = 216
-    Top = 152
+    Left = 48
+    Top = 80
   end
   object Q2: TSQLQuery
     FieldDefs = <>
