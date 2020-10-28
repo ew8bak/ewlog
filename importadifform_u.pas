@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, EditBtn, LCLType, LConvEncoding, LazUTF8, LCLIntf,
-  dateutils, resourcestr, LCLProc, prefix_record, ImportADIThread;
+  dateutils, resourcestr, LCLProc, ComCtrls, prefix_record, ImportADIThread;
 
 type
 
@@ -29,6 +29,7 @@ type
     lblCount: TLabel;
     lblComplete: TLabel;
     Memo1: TMemo;
+    PbImport: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     procedure Button1Click(Sender: TObject);
@@ -82,6 +83,7 @@ begin
   lblCount.Caption := rImportRecord + ' ';
   lblErrors.Caption := rImportErrors + ' ';
   lblErrorLog.Caption := rFileError;
+  PbImport.Position := 0;
 end;
 
 procedure TImportADIFForm.lblErrorLogClick(Sender: TObject);
@@ -91,11 +93,14 @@ end;
 
 procedure TImportADIFForm.FromImportThread(Info: TInfo);
 begin
+  PbImport.Max := Info.AllRec;
+  PbImport.Position := Info.RecCount;
   lblCount.Caption := RImported + ' ' + IntToStr(Info.RecCount) +
     rOf + (IntToStr(Info.AllRec));
   Label2.Caption := rNumberDup + ':' + IntToStr(info.DupeCount);
   lblErrors.Caption := rImportErrors + ':' + IntToStr(Info.ErrorCount);
-  if Info.Result then begin
+  if Info.Result then
+  begin
     InitDB.SelectLogbookTable(LBRecord.LogTable);
     Button1.Enabled := True;
   end;
@@ -117,7 +122,7 @@ begin
     PADIImport.SearchPrefix := CheckBox1.Checked;
     PADIImport.Comment := Memo1.Text;
     PADIImport.TimeOnOff := RadioButton1.Checked;
-    PADIImport.RemoveDup:=CheckBox2.Checked;
+    PADIImport.RemoveDup := CheckBox2.Checked;
     DeleteFile(FilePATH + ERR_FILE);
     ImportADIFThread := TImportADIFThread.Create;
     if Assigned(ImportADIFThread.FatalException) then

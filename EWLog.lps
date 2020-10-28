@@ -79,10 +79,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="168"/>
-        <CursorPos X="26" Y="189"/>
+        <TopLine Value="63"/>
+        <CursorPos X="38" Y="80"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -106,11 +105,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="85"/>
-        <CursorPos Y="92"/>
+        <TopLine Value="94"/>
+        <CursorPos X="47" Y="125"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="dmfunc_u.pas"/>
@@ -1542,59 +1543,59 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="282" TopLine="271"/>
+        <Caret Line="287" TopLine="271"/>
       </Position1>
       <Position2>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="284" TopLine="271"/>
+        <Caret Line="290" TopLine="271"/>
       </Position2>
       <Position3>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="287" TopLine="271"/>
+        <Caret Line="289" TopLine="271"/>
       </Position3>
       <Position4>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="290" TopLine="271"/>
+        <Caret Line="291" TopLine="271"/>
       </Position4>
       <Position5>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="289" TopLine="271"/>
+        <Caret Line="294" TopLine="271"/>
       </Position5>
       <Position6>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="291" TopLine="271"/>
+        <Caret Line="304" TopLine="304"/>
       </Position6>
       <Position7>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="294" TopLine="271"/>
+        <Caret Line="312" TopLine="304"/>
       </Position7>
       <Position8>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="304" TopLine="304"/>
+        <Caret Line="320" TopLine="304"/>
       </Position8>
       <Position9>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="312" TopLine="304"/>
+        <Caret Line="330" TopLine="305"/>
       </Position9>
       <Position10>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="320" TopLine="304"/>
+        <Caret Line="337" TopLine="337"/>
       </Position10>
       <Position11>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="330" TopLine="305"/>
+        <Caret Line="344" TopLine="337"/>
       </Position11>
       <Position12>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="337" TopLine="337"/>
+        <Caret Line="354" TopLine="337"/>
       </Position12>
       <Position13>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="344" TopLine="337"/>
+        <Caret Line="356" TopLine="337"/>
       </Position13>
       <Position14>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="354" TopLine="337"/>
+        <Caret Line="357" TopLine="337"/>
       </Position14>
       <Position15>
         <Filename Value="exportadithread.pas"/>
@@ -1602,63 +1603,63 @@
       </Position15>
       <Position16>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="357" TopLine="337"/>
+        <Caret Line="358" TopLine="337"/>
       </Position16>
       <Position17>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="356" TopLine="337"/>
+        <Caret Line="361" TopLine="337"/>
       </Position17>
       <Position18>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="358" TopLine="337"/>
+        <Caret Line="372" TopLine="363"/>
       </Position18>
       <Position19>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="361" TopLine="337"/>
+        <Caret Line="403" TopLine="388"/>
       </Position19>
       <Position20>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="372" TopLine="363"/>
+        <Caret Line="406" TopLine="388"/>
       </Position20>
       <Position21>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="403" TopLine="388"/>
+        <Caret Line="408" TopLine="391"/>
       </Position21>
       <Position22>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="406" TopLine="388"/>
+        <Caret Line="410" TopLine="391"/>
       </Position22>
       <Position23>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="408" TopLine="391"/>
+        <Caret Line="411" TopLine="391"/>
       </Position23>
       <Position24>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="410" TopLine="391"/>
+        <Caret Line="412" TopLine="391"/>
       </Position24>
       <Position25>
         <Filename Value="exportadithread.pas"/>
-        <Caret Line="411" TopLine="391"/>
+        <Caret Line="124" TopLine="109"/>
       </Position25>
       <Position26>
-        <Filename Value="exportadithread.pas"/>
-        <Caret Line="412" TopLine="391"/>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="562" Column="43" TopLine="562"/>
       </Position26>
       <Position27>
-        <Filename Value="exportadithread.pas"/>
-        <Caret Line="124" TopLine="109"/>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="275" Column="42" TopLine="262"/>
       </Position27>
       <Position28>
         <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="562" Column="43" TopLine="562"/>
+        <Caret Line="80" Column="20" TopLine="59"/>
       </Position28>
       <Position29>
-        <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="275" Column="42" TopLine="262"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="99" Column="37" TopLine="85"/>
       </Position29>
       <Position30>
-        <Filename Value="exportadifform_u.pas"/>
-        <Caret Line="80" Column="20" TopLine="59"/>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="96" Column="20" TopLine="86"/>
       </Position30>
     </JumpHistory>
     <RunParams>
