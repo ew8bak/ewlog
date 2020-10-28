@@ -588,6 +588,7 @@ object ServiceForm: TServiceForm
     Top = 192
     Width = 500
     Align = alBottom
+    Smooth = True
     TabOrder = 4
   end
   object Label8: TLabel

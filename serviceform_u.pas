@@ -44,8 +44,8 @@ type
     { private declarations }
   public
     DownSize: double;
-    procedure LotWImport(FilePATH: string);
-    procedure eQSLImport(FilePATH: string);
+    procedure LotWImport(FPath: string);
+    procedure eQSLImport(FPath: string);
     { public declarations }
   end;
 
@@ -57,7 +57,7 @@ implementation
 {$R *.lfm}
 uses dmFunc_U, MainForm_U, const_u, InitDB_dm, LogConfigForm_U;
 
-procedure TServiceForm.eQSLImport(FilePATH: string);
+procedure TServiceForm.eQSLImport(FPath: string);
 var
   f: TextFile;
   temp_f: TextFile;
@@ -87,14 +87,7 @@ var
   TempFile: string;
   SQLString: string;
 begin
-  {$IFDEF UNIX}
-  TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +
-    'EWLog' + DirectorySeparator + 'temp.adi';
-  {$ELSE}
-  TempFile := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + DirectorySeparator +
-    'EWLog' + DirectorySeparator + 'temp.adi';
-  {$ENDIF UNIX}
+  TempFile:=FilePATH + 'temp.adi';
   RecCount := 0;
   DupeCount := 0;
   ErrorCount := 0;
@@ -102,7 +95,7 @@ begin
   PosEOR := 0;
   try
     Stream := TMemoryStream.Create;
-    AssignFile(f, FilePATH);
+    AssignFile(f, FPath);
     Reset(f);
 
     while not (PosEOH > 0) do
@@ -239,7 +232,7 @@ begin
   end;
 end;
 
-procedure TServiceForm.LotWImport(FilePATH: string);
+procedure TServiceForm.LotWImport(FPath: string);
 var
   i: integer;
   f: TextFile;
@@ -272,14 +265,7 @@ var
   Stream: TMemoryStream;
   TempFile: string;
 begin
-  {$IFDEF UNIX}
-  TempFile := GetEnvironmentVariable('HOME') + DirectorySeparator +
-    'EWLog' + DirectorySeparator + 'temp.adi';
-  {$ELSE}
-  TempFile := GetEnvironmentVariable('SystemDrive') +
-    SysToUTF8(GetEnvironmentVariable('HOMEPATH')) + DirectorySeparator +
-    'EWLog' + DirectorySeparator + 'temp.adi';
-  {$ENDIF UNIX}
+  TempFile:=FilePATH + 'temp.adi';
   RecCount := 0;
   DupeCount := 0;
   ErrorCount := 0;
@@ -287,7 +273,7 @@ begin
   PosEOR := 0;
   try
     Stream := TMemoryStream.Create;
-    AssignFile(f, FilePATH);
+    AssignFile(f, FPath);
     Reset(f);
 
     while not (PosEOH > 0) do
