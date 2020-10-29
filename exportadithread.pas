@@ -46,11 +46,11 @@ var
 
 implementation
 
-uses MainFuncDM, miniform_u, InitDB_dm, dmFunc_U, ExportAdifForm_u;
+uses MainFuncDM, miniform_u, InitDB_dm, dmFunc_U, ExportAdifForm_u, GridsForm_u;
 
 function TExportADIFThread.SetSizeLoc(Loc: string): string;
 begin
-  Result:='';
+  Result := '';
   while Length(Loc) > 6 do
     Delete(Loc, Length(Loc), 1);
   Result := Loc;
@@ -66,6 +66,8 @@ var
   DefMyGrid: string;
   EQSL_QSL_RCVD, QSL_RCVD, QSL_SENT: string;
   tmpFreq: string;
+  i: integer;
+  numberToExp: string = '';
 begin
   try
     Info.ErrorCode := 0;
@@ -124,6 +126,23 @@ begin
           ' and ' + QuotedStr(FormatDateTime('yyyy-mm-dd', PADIExport.DateEnd)) +
           ' ORDER BY UnUsedIndex ASC';
     end;
+
+    if GridsForm.ExportAdifSelect = True then
+    begin
+      for i := 0 to High(GridsForm.ExportAdifArray) do
+      begin
+        if i > 0 then
+          numberToExp := numberToExp + ', ';
+        numberToExp := numberToExp + IntToStr(GridsForm.ExportAdifArray[i]);
+      end;
+      for i := 0 to Length(GridsForm.ExportAdifArray) - 1 do
+      begin
+        Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
+          ' WHERE `UnUsedIndex` in (' + numberToExp + ')' + ' ORDER BY UnUsedIndex ASC';
+      end;
+    end;
+    GridsForm.ExportAdifSelect := False;
+
     Query.Open;
     Query.Last;
     Info.AllRec := Query.RecordCount;

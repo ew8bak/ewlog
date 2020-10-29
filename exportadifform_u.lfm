@@ -9,7 +9,6 @@ object exportAdifForm: TexportAdifForm
   ClientHeight = 211
   ClientWidth = 442
   FormStyle = fsSystemStayOnTop
-  OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.10.0'
