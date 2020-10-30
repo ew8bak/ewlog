@@ -20,7 +20,6 @@ type
     BtNext: TButton;
     Button3: TButton;
     Button4: TButton;
-    Button5: TButton;
     BtBack: TButton;
     Button7: TButton;
     Button8: TButton;
@@ -63,8 +62,6 @@ type
     Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
-    Label25: TLabel;
-    Label28: TLabel;
     Label3: TLabel;
     LBSelectDB: TLabel;
     LBHost: TLabel;
@@ -80,7 +77,6 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
-    Panel5: TPanel;
     ProgressBar1: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
@@ -94,13 +90,11 @@ type
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
-    TabSheet5: TTabSheet;
     procedure BtCheckClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure BtNextClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
     procedure BtBackClick(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
@@ -834,11 +828,6 @@ begin
 end;
 
 procedure TSetupForm.Button4Click(Sender: TObject);
-begin
-  PageControl1.ActivePageIndex := 4;
-end;
-
-procedure TSetupForm.Button5Click(Sender: TObject);
 begin
   InitDB.AllFree;
   InitDB.DataModuleCreate(SetupForm);

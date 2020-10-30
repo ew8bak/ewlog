@@ -4645,14 +4645,11 @@ msgid "Next"
 msgstr "Далее"
 
 #: tsetupform.button4.caption
+#, fuzzy
+#| msgid "Next"
 msgctxt "tsetupform.button4.caption"
-msgid "Next"
-msgstr "Далее"
-
-#: tsetupform.button5.caption
-msgctxt "tsetupform.button5.caption"
 msgid "OK"
-msgstr "ОК"
+msgstr "Далее"
 
 #: tsetupform.button7.caption
 msgctxt "tsetupform.button7.caption"
@@ -4781,18 +4778,6 @@ msgctxt "tsetupform.label24.caption"
 msgid "Wait"
 msgstr "Ожидание"
 
-#: tsetupform.label25.caption
-msgid ""
-"Congratulations! Setup Wizard Completed Database Initialization \n"
-"Successfully\n"
-msgstr ""
-"Поздравляю! Мастер настройки завершил  инициализацию базы данных \n"
-"Успешно\n"
-
-#: tsetupform.label28.caption
-msgid "All the best! 73!"
-msgstr "Всего наилучшего! 73!"
-
 #: tsetupform.label3.caption
 msgid "Database settings"
 msgstr "Настройки базы данных"
@@ -4876,11 +4861,6 @@ msgstr "Настройка Журнала"
 msgctxt "tsetupform.tabsheet4.caption"
 msgid "Processing"
 msgstr "Обработка"
-
-#: tsetupform.tabsheet5.caption
-msgctxt "tsetupform.tabsheet5.caption"
-msgid "Done"
-msgstr "Готово"
 
 #: tstate_form.button1.caption
 msgctxt "tstate_form.button1.caption"

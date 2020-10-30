@@ -4628,11 +4628,6 @@ msgstr ""
 
 #: tsetupform.button4.caption
 msgctxt "tsetupform.button4.caption"
-msgid "Next"
-msgstr ""
-
-#: tsetupform.button5.caption
-msgctxt "tsetupform.button5.caption"
 msgid "OK"
 msgstr ""
 
@@ -4763,16 +4758,6 @@ msgctxt "tsetupform.label24.caption"
 msgid "Wait"
 msgstr ""
 
-#: tsetupform.label25.caption
-msgid ""
-"Congratulations! Setup Wizard Completed Database Initialization \n"
-"Successfully\n"
-msgstr ""
-
-#: tsetupform.label28.caption
-msgid "All the best! 73!"
-msgstr ""
-
 #: tsetupform.label3.caption
 msgid "Database settings"
 msgstr ""
@@ -4848,11 +4833,6 @@ msgstr ""
 #: tsetupform.tabsheet4.caption
 msgctxt "tsetupform.tabsheet4.caption"
 msgid "Processing"
-msgstr ""
-
-#: tsetupform.tabsheet5.caption
-msgctxt "tsetupform.tabsheet5.caption"
-msgid "Done"
 msgstr ""
 
 #: tstate_form.button1.caption
