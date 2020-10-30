@@ -257,7 +257,7 @@ procedure TMobileSynThread.ExportToMobile(range: string; date: string);
 var
   tmp: string = '';
   tmp2: string = '';
-  nr: integer = 1;
+  RecCount: integer = 0;
   tmpFreq: string;
   Query: TSQLQuery;
 begin
@@ -289,10 +289,6 @@ begin
       Query.First;
       while not Query.EOF do
       begin
-
-        InfoStr := rSentRecord + ':' + IntToStr(nr);
-        Synchronize(@ToForm);
-
         tmp2 := '';
 
         tmp := '<OPERATOR' + dmFunc.StringToADIF(
@@ -561,7 +557,9 @@ begin
         tmp := #13;
         tmp2 := tmp2 + tmp;
         AdifMobileString.Add(tmp2);
-        Inc(nr);
+        Inc(RecCount);
+        InfoStr := rSentRecord + ':' + IntToStr(RecCount);
+        Synchronize(@ToForm);
         Query.Next;
       end;
     finally
