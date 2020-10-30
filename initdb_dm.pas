@@ -135,12 +135,12 @@ begin
   if not ServiceDBInit then
     ShowMessage('Service database Init ERROR')
   else
+  if not InitPrefix then
+    ShowMessage('Init Prefix ERROR')
+  else
   if InitDBINI and (DBRecord.InitDB = 'YES') then
     if (not LogbookDBInit) and (DBRecord.InitDB = 'YES') then
       ShowMessage('Logbook database ERROR')
-    else
-    if not InitPrefix then
-      ShowMessage('Init Prefix ERROR')
     else
     if (not GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
       (DBRecord.InitDB = 'YES') then

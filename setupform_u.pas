@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, mysql56conn, sqlite3conn, sqldb, FileUtil, Forms, Controls,
   Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, ResourceStr, LCLType,
-  LResources;
+  LResources, prefix_record;
 
 type
 
@@ -102,6 +102,7 @@ type
     procedure CheckBox3Change(Sender: TObject);
     procedure CheckBox4Change(Sender: TObject);
     procedure Edit11Change(Sender: TObject);
+    procedure Edit8Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RadioButton1Change(Sender: TObject);
     procedure RadioButton2Change(Sender: TObject);
@@ -885,6 +886,23 @@ begin
   begin
     Edit12.Text := '';
     Edit13.Text := '';
+  end;
+end;
+
+procedure TSetupForm.Edit8Change(Sender: TObject);
+var
+  PFXR: TPFXR;
+  Lat: string = '';
+  Lon: string = '';
+begin
+  if Length(Edit8.Text) > 0 then
+  begin
+    PFXR := MainFunc.SearchPrefix(Edit8.Text, '');
+    Edit14.Text := PFXR.ITUZone;
+    Edit15.Text := PFXR.CQZone;
+    dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+    Edit12.Text := Lat;
+    Edit13.Text := Lon;
   end;
 end;
 

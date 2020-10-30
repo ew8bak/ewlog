@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, LCLType;
+  StdCtrls, Buttons, LCLType, prefix_record;
 
 type
 
@@ -124,13 +124,13 @@ begin
       try
         LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
         CreateTableQuery.Close;
-       // CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
-       // CreateTableQuery.Open;
-      //  CountStr := CreateTableQuery.Fields[0].AsInteger + 1;
-       // CreateTableQuery.Close;
+        // CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
+        // CreateTableQuery.Open;
+        //  CountStr := CreateTableQuery.Fields[0].AsInteger + 1;
+        // CreateTableQuery.Close;
 
         CreateTableQuery.SQL.Text := Insert_Table_LogBookInfo;
-       // CreateTableQuery.ParamByName('id').AsInteger := CountStr;
+        // CreateTableQuery.ParamByName('id').AsInteger := CountStr;
         CreateTableQuery.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
         CreateTableQuery.ParamByName('CallName').AsString := Edit2.Text;
         CreateTableQuery.ParamByName('Name').AsString := Edit4.Text;
@@ -176,14 +176,15 @@ begin
           PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin
           INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
-          DBRecord.DefCall:=newLogBookName;
+          DBRecord.DefCall := newLogBookName;
         end;
 
         if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
           if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
             ShowMessage(rDBError);
 
-        MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand, MiniForm.CBCurrentLog);
+        MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode,
+          MiniForm.CBBand, MiniForm.CBCurrentLog);
 
         if Application.MessageBox(PChar(rSwitchToANewLog), PChar(rWarning),
           MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
@@ -201,6 +202,10 @@ begin
 end;
 
 procedure TCreateJournalForm.Edit2Change(Sender: TObject);
+var
+  PFXR: TPFXR;
+  Lat: string = '';
+  Lon: string = '';
 begin
   if MiniForm.CBCurrentLog.Items.IndexOf(Edit2.Text) >= 0 then
   begin
@@ -211,6 +216,15 @@ begin
   begin
     Edit2.Color := clDefault;
     Button2.Enabled := True;
+    if Length(Edit2.Text) > 0 then
+    begin
+      PFXR := MainFunc.SearchPrefix(Edit2.Text, '');
+      Edit5.Text := PFXR.ITUZone;
+      Edit6.Text := PFXR.CQZone;
+      dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+      Edit8.Text := Lat;
+      Edit9.Text := Lon;
+    end;
   end;
 end;
 
