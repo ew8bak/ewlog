@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, mysql56conn, sqlite3conn, sqldb, FileUtil, Forms, Controls,
-  Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, ResourceStr, LCLType;
+  Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, ResourceStr, LCLType,
+  LResources;
 
 type
 
@@ -135,6 +136,7 @@ type
     Default_DataBase: string;
     Test_Connection: boolean;
     function CheckEmptyDB: boolean;
+    procedure LoadLicense;
     { private declarations }
   public
     { public declarations }
@@ -493,12 +495,26 @@ begin
   end;
 end;
 
+procedure TSetupForm.LoadLicense;
+var
+  Stream: TLazarusResourceStream;
+begin
+  Stream := nil;
+  try
+    if IniSet.Language = 'ru' then
+      Stream := TLazarusResourceStream.Create('license_ru', nil)
+    else
+      Stream := TLazarusResourceStream.Create('license_en', nil);
+
+    Memo1.Lines.LoadFromStream(Stream);
+  finally
+    Stream.Free;
+  end;
+end;
+
 procedure TSetupForm.FormShow(Sender: TObject);
 begin
-  if IniSet.Language = 'ru' then
-    memo1.Lines.LoadFromFile(FilePATH + 'license.ru')
-  else
-    memo1.Lines.LoadFromFile(FilePATH + 'license.en');
+  LoadLicense;
   Test_Connection := False;
   PageControl1.ActivePageIndex := 0;
   RadioButton2.Checked := True;

@@ -713,9 +713,7 @@ begin
   begin
     ShowMessage(rSuccessful);
     TextSB('QSO № ' + IntToStr(0) + rQSOTotal + IntToStr(CountAllRecords), 1);
-  end
-  else
-    ShowMessage(rError);
+  end;
 end;
 
 procedure TMiniForm.MenuItem123Click(Sender: TObject);
