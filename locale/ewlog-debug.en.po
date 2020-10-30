@@ -846,6 +846,10 @@ msgctxt "resourcestr.rsendspot"
 msgid "Send spot"
 msgstr ""
 
+#: resourcestr.rsentrecord
+msgid "Record sent"
+msgstr ""
+
 #: resourcestr.rsetasdefaultjournal
 msgctxt "resourcestr.rsetasdefaultjournal"
 msgid "Set as default journal?"

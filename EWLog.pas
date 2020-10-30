@@ -22,7 +22,8 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   inifile_record, selectQSO_record, foundQSO_record, cloudlog, init_record,
   WsjtUtils, digi_record, inform_record, infoDM_U, getSession, miniform_u,
   ImbedCallBookCheckRec, serverDM_u, telnetClientThread, dxclusterform_u,
-  GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread, ExportADIThread;
+  GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread, ExportADIThread,
+  MobileSyncThread;
 
 {$R *.res}
 

@@ -183,6 +183,7 @@ resourcestring
   rDeleteDBFile = 'Are you sure you want to delete the existing database file?';
   rPleaseQSLInfo = 'Please enter a message in the QSL Info field';
   rEnterMesQSLInf = 'Please enter your message';
+  rSentRecord = 'Record sent';
 implementation
 
 end.

@@ -291,6 +291,7 @@ type
     procedure ShowInfoFromRIG(freq: double; mode, submode: string);
     procedure ShowDataFromFldigi(DataDigi: TDigiR);
     procedure FromImportThread(Info: TInfo);
+    procedure FromMobileSyncThread(InfoStr: String);
 
   end;
 
@@ -324,6 +325,11 @@ begin
   end
   else
     TextSB(rImport + ':' + rProcessing, 1);
+end;
+
+procedure TMiniForm.FromMobileSyncThread(InfoStr: String);
+begin
+  TextSB(InfoStr, 0);
 end;
 
 procedure TMiniForm.ShowDataFromFldigi(DataDigi: TDigiR);

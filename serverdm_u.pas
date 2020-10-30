@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
-  const_u, LazUTF8, IdCustomTCPServer, IdContext, digi_record, flDigiModem,
-  ImportADIThread;
+  const_u, LazUTF8, IdContext, digi_record, flDigiModem,
+  ImportADIThread, MobileSyncThread;
 
 type
 
@@ -16,42 +16,27 @@ type
   TServerDM = class(TDataModule)
     IdIPWatch1: TIdIPWatch;
     IdFldigiTCP: TIdTCPServer;
-    LTCPComponent1: TLTCPComponent;
     LUDPComponent1: TLUDPComponent;
     procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
     procedure IdFldigiTCPConnect(AContext: TIdContext);
     procedure IdFldigiTCPDisconnect(AContext: TIdContext);
     procedure IdFldigiTCPException(AContext: TIdContext; AException: Exception);
     procedure IdFldigiTCPExecute(AContext: TIdContext);
-    procedure LTCPComponent1Accept(aSocket: TLSocket);
-    procedure LTCPComponent1CanSend(aSocket: TLSocket);
-    procedure LTCPComponent1Disconnect(aSocket: TLSocket);
-    procedure LTCPComponent1Error(const msg: string; aSocket: TLSocket);
-    procedure LTCPComponent1Receive(aSocket: TLSocket);
     procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
   private
     PADIImport: TPADIImport;
-    lastTCPport: integer;
     lastUDPport: integer;
-    AdifDataSyncAll: boolean;
-    AdifDataSyncDate: boolean;
-    AdifDataDate: string;
-    BuffToSend: string;
-    ImportAdifMobile: boolean;
-    Stream: TMemoryStream;
-    AdifFromMobileSyncStart: boolean;
     DataDigi: TDigiR;
     FldigiMode, FldigiSubMode: string;
     FldigiFreq: double;
     procedure FldigiToForm;
-    function GetNewChunk: string;
     procedure GetFldigiUDP(Message: string);
     procedure StartImport;
+    procedure StartTCPSyncThread;
 
   public
-    AdifFromMobileString: TStringList;
-    AdifMobileString: TStringList;
 
   end;
 
@@ -60,12 +45,20 @@ var
 
 implementation
 
-uses InitDB_dm, MainFuncDM, dmFunc_U, ExportAdifForm_u,
-  ImportADIFForm_U, miniform_u, fldigi;
+uses InitDB_dm, MainFuncDM, dmFunc_U,
+  miniform_u, fldigi;
 
 {$R *.lfm}
 
 { TServerDM }
+
+procedure TServerDM.StartTCPSyncThread;
+begin
+  MobileSynThread := TMobileSynThread.Create;
+  if Assigned(MobileSynThread.FatalException) then
+    raise MobileSynThread.FatalException;
+  MobileSynThread.Start;
+end;
 
 procedure TServerDM.LUDPComponent1Receive(aSocket: TLSocket);
 var
@@ -75,7 +68,8 @@ begin
   begin
     if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' +
       DBRecord.CurrCall + #10) then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' + IntToStr(lastTCPport))
+      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' +
+        IntToStr(MobileSynThread.lastTCPport))
     else
       MiniForm.TextSB(rSyncErrCall, 0);
     if (mess = 'Hello') or (mess = 'Hello' + #10) then
@@ -89,28 +83,15 @@ var
 begin
   try
     lastUDPport := -1;
-    AdifFromMobileSyncStart := False;
-    ImportAdifMobile := False;
+
     for i := 0 to 5 do
       if LUDPComponent1.Listen(port_udp[i]) then
       begin
         lastUDPport := port_udp[i];
         Break;
       end;
-    //  if lastUDPport = -1 then
-    //    MiniForm.TextSB('Can not create socket',0);
-    lastTCPport := -1;
-    LTCPComponent1.ReuseAddress := True;
-    for i := 0 to 5 do
-      if LTCPComponent1.Listen(port_tcp[i]) then
-      begin
-        lastTCPport := port_tcp[i];
-        //    MiniForm.TextSB(
-        //      'Sync port UDP:' + IntToStr(lastUDPport) + ' TCP:' + IntToStr(lastTCPport),0);
-        Break;
-      end;
-    // if lastTCPport = -1 then
-    //   MiniForm.TextSB('Can not create socket',0);
+
+    StartTCPSyncThread;
 
     if IniSet.FLDIGI_USE then
       IdFldigiTCP.Active := True;
@@ -123,6 +104,12 @@ begin
     on E: Exception do
       WriteLn(ExceptFile, 'TServerDM.DataModuleCreate:' + E.ClassName + ':' + E.Message);
   end;
+end;
+
+procedure TServerDM.DataModuleDestroy(Sender: TObject);
+begin
+    if MobileSynThread <> nil then
+    MobileSynThread.Terminate;
 end;
 
 procedure TServerDM.IdFldigiTCPConnect(AContext: TIdContext);
@@ -244,143 +231,6 @@ procedure TServerDM.FldigiToForm;
 begin
   MiniForm.ShowDataFromFldigi(DataDigi);
   DataDigi.Save := False;
-end;
-
-procedure TServerDM.LTCPComponent1Accept(aSocket: TLSocket);
-begin
-  MiniForm.TextSB(rClientConnected + aSocket.PeerAddress, 0);
-end;
-
-procedure TServerDM.LTCPComponent1CanSend(aSocket: TLSocket);
-var
-  Sent: integer;
-  TempBuffer: string = '';
-begin
-  if (AdifDataSyncAll = True) or (AdifDataSyncDate = True) then
-  begin
-    TempBuffer := BuffToSend;
-    while TempBuffer <> '' do
-    begin
-      Sent := LTCPComponent1.SendMessage(TempBuffer, aSocket);
-      Delete(BuffToSend, 1, Sent);
-      TempBuffer := BuffToSend;
-      {$IFDEF LINUX}
-      Sleep(100);
-      {$ENDIF}
-    end;
-  end;
-end;
-
-function TServerDM.GetNewChunk: string;
-var
-  res: string;
-  i: integer;
-begin
-  res := '';
-  for i := 0 to AdifMobileString.Count - 1 do
-  begin
-    res := res + AdifMobileString[0];
-    AdifMobileString.Delete(0);
-  end;
-  res := res + 'DataSyncSuccess:' + LBRecord.CallSign + #13;
-  Result := res;
-  AdifMobileString.Free;
-end;
-
-procedure TServerDM.LTCPComponent1Disconnect(aSocket: TLSocket);
-begin
-  MiniForm.TextSB(aSocket.PeerAddress + ':' + rDone, 0);
-end;
-
-procedure TServerDM.LTCPComponent1Error(const msg: string; aSocket: TLSocket);
-begin
-  MiniForm.TextSB(aSocket.peerAddress + ':' + SysToUTF8(msg), 0);
-end;
-
-procedure TServerDM.LTCPComponent1Receive(aSocket: TLSocket);
-var
-  mess, rec_call, s: string;
-  AdifFile: TextFile;
-begin
-  AdifDataSyncAll := False;
-  AdifDataSyncDate := False;
-
-  if aSocket.GetMessage(mess) > 0 then
-  begin
-    if Pos('DataSyncAll', mess) > 0 then
-    begin
-      rec_call := dmFunc.par_str(mess, 2);
-      if Pos(LBRecord.CallSign, rec_call) > 0 then
-      begin
-        AdifMobileString := TStringList.Create;
-        exportAdifForm.ExportToMobile('All', '');
-        AdifDataSyncAll := True;
-        BuffToSend := GetNewChunk;
-        LTCPComponent1.OnCanSend(LTCPComponent1.Iterator);
-      end;
-    end;
-
-    if Pos('DataSyncDate', mess) > 0 then
-    begin
-      AdifDataDate := dmFunc.par_str(mess, 2);
-      rec_call := dmFunc.par_str(mess, 3);
-      if Pos(LBRecord.CallSign, rec_call + #13) > 0 then
-      begin
-        AdifMobileString := TStringList.Create;
-        exportAdifForm.ExportToMobile('Date', AdifDataDate);
-        AdifDataSyncDate := True;
-        BuffToSend := GetNewChunk;
-        LTCPComponent1.OnCanSend(LTCPComponent1.Iterator);
-      end;
-    end;
-
-    if Pos('DataSyncClientStart', mess) > 0 then
-    begin
-      rec_call := dmFunc.par_str(mess, 2);
-      try
-        PADIImport.AllRec := StrToInt(dmFunc.par_str(mess, 3));
-      except
-        PADIImport.AllRec := 0;
-      end;
-      if Pos(LBRecord.CallSign, rec_call) > 0 then
-      begin
-        Stream := TMemoryStream.Create;
-        AdifFromMobileSyncStart := True;
-      end;
-    end;
-
-    if (AdifFromMobileSyncStart = True) then
-    begin
-      mess := StringReplace(mess, #10, '', [rfReplaceAll]);
-      mess := StringReplace(mess, #13, '', [rfReplaceAll]);
-      if Length(mess) > 0 then
-      begin
-        Stream.Write(mess[1], length(mess));
-      end;
-    end;
-
-    if Pos('DataSyncClientEnd', mess) > 0 then
-    begin
-      AdifFromMobileSyncStart := False;
-      ImportAdifMobile := True;
-      Stream.SaveToFile(FilePATH + 'ImportMobile.adi');
-      AssignFile(AdifFile, FilePATH + 'ImportMobile.adi');
-      Reset(AdifFile);
-      while not EOF(AdifFile) do
-      begin
-        Readln(AdifFile, s);
-        s := StringReplace(s, '<EOR>', '<EOR>'#10, [rfReplaceAll]);
-        s := StringReplace(s, '<EOH>', '<EOH>'#10, [rfReplaceAll]);
-      end;
-      CloseFile(AdifFile);
-      Rewrite(AdifFile);
-      Writeln(AdifFile, s);
-      CloseFile(AdifFile);
-      StartImport;
-      Stream.Free;
-      ImportAdifMobile := False;
-    end;
-  end;
 end;
 
 procedure TServerDM.StartImport;

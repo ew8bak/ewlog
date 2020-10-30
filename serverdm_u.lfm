@@ -1,22 +1,11 @@
 object ServerDM: TServerDM
   OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 150
   HorizontalOffset = 248
   VerticalOffset = 128
   Width = 221
-  object LTCPComponent1: TLTCPComponent
-    Port = 0
-    OnReceive = LTCPComponent1Receive
-    OnError = LTCPComponent1Error
-    OnDisconnect = LTCPComponent1Disconnect
-    OnAccept = LTCPComponent1Accept
-    OnCanSend = LTCPComponent1CanSend
-    Timeout = 0
-    ReuseAddress = False
-    Left = 40
-    Top = 16
-  end
   object LUDPComponent1: TLUDPComponent
     Port = 0
     OnReceive = LUDPComponent1Receive
