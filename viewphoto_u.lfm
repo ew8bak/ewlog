@@ -1,5 +1,5 @@
 object viewPhoto: TviewPhoto
-  Left = 874
+  Left = 833
   Height = 301
   Top = 143
   Width = 302

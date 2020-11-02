@@ -3042,38 +3042,9 @@ msgctxt "tgridsform.sendclusteritem.caption"
 msgid "Send to DX Cluster"
 msgstr "Отправить в DX кластер"
 
-#: thiddensettings.button1.caption
-msgctxt "thiddensettings.button1.caption"
-msgid "Save"
-msgstr "Сохранить"
-
 #: thiddensettings.caption
 msgid "Hidden Settings"
 msgstr "Скрытые настройки"
-
-#: thiddensettings.checkbox1.caption
-msgid "Use API CAT"
-msgstr "Использовать API CAT"
-
-#: thiddensettings.checkbox2.caption
-msgid "Use API send data"
-msgstr "Использовать API отправки данных"
-
-#: thiddensettings.groupbox1.caption
-msgid "Settings Cloudlog"
-msgstr "Настройки Cloudlog"
-
-#: thiddensettings.groupbox2.caption
-msgid "Send to Cloudlog"
-msgstr "Отправлять в Cloudlog"
-
-#: thiddensettings.labelededit1.editlabel.caption
-msgid "Server address"
-msgstr "Адрес сервера"
-
-#: thiddensettings.labelededit2.editlabel.caption
-msgid "API Key"
-msgstr "Ключ API"
 
 #: timportadifform.button1.caption
 msgctxt "timportadifform.button1.caption"

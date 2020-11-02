@@ -49,6 +49,7 @@ type
     _w_p: integer;
     _h_p: integer;
     pShow: boolean;
+    pSeparate: boolean;
     _l_trx: integer;
     _t_trx: integer;
     _w_trx: integer;

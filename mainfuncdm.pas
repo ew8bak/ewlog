@@ -1359,6 +1359,7 @@ begin
   IniSet._h_p := INIFile.ReadInteger('SetLog', 'pHeight', 156);
   IniSet.pTop := INIFile.ReadBool('SetLog', 'pTop', False);
   IniSet.pShow := INIFile.ReadBool('SetLog', 'pShow', True);
+  IniSet.pSeparate := INIFile.ReadBool('SetLog', 'pSeparate', False);
   IniSet._l_trx := INIFile.ReadInteger('SetLog', 'trxLeft', 0);
   IniSet._t_trx := INIFile.ReadInteger('SetLog', 'trxTop', 0);
   IniSet._w_trx := INIFile.ReadInteger('SetLog', 'trxWidth', 320);

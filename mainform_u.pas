@@ -37,7 +37,7 @@ implementation
 {$R *.lfm}
 
 { TMainForm }
-uses MainFuncDM, InitDB_dm, TRXForm_U, miniform_u;
+uses MainFuncDM, InitDB_dm, TRXForm_U, miniform_u, viewPhoto_U;
 
 procedure TMainForm.SavePosition;
 begin
@@ -78,6 +78,8 @@ begin
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
   if IniSet.trxShow then
     TRXForm.SavePosition;
+  if IniSet.pShow then
+    viewPhoto.SavePosition;
   TRXForm.FreeRadio;
 end;
 

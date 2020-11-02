@@ -35,7 +35,7 @@ uses MainForm_U, InitDB_dm, MainFuncDM;
 
 procedure TviewPhoto.SavePosition;
 begin
-  if (IniSet.MainForm = 'MULTI') and IniSet.pShow then
+  if (((IniSet.MainForm = 'MULTI') or IniSet.pSeparate)) and IniSet.pShow then
     if viewPhoto.WindowState <> wsMaximized then
     begin
       INIFile.WriteInteger('SetLog', 'pLeft', viewPhoto.Left);
@@ -47,7 +47,7 @@ end;
 
 procedure TviewPhoto.FormShow(Sender: TObject);
 begin
-  if IniSet.MainForm = 'MULTI' then
+  if (IniSet.MainForm = 'MULTI') or IniSet.pSeparate then
     if (IniSet._l_p <> 0) and (IniSet._t_p <> 0) and (IniSet._w_p <> 0) and
       (IniSet._h_p <> 0) then
       viewPhoto.SetBounds(IniSet._l_p, IniSet._t_p, IniSet._w_p, IniSet._h_p);
@@ -61,7 +61,7 @@ begin
     INIFile.WriteBool('SetLog', 'pShow', True)
   else
     INIFile.WriteBool('SetLog', 'pShow', False);
-
+  SavePosition;
   IniSet.pShow := False;
   CloseAction := caFree;
 end;

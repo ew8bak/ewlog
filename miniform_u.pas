@@ -473,13 +473,25 @@ begin
       Earth.Show
     else
       MapForm.Show;
+
     if IniSet.pShow then
     begin
-      viewPhoto.BorderStyle := bsNone;
-      viewPhoto.Parent := MainForm.OtherPanel;
-      viewPhoto.Align := alClient;
-      viewPhoto.Show;
+      if not IniSet.pSeparate then
+      begin
+        viewPhoto.BorderStyle := bsNone;
+        viewPhoto.Parent := MainForm.OtherPanel;
+        viewPhoto.Align := alClient;
+        viewPhoto.Show;
+      end
+      else
+      begin
+        viewPhoto.BorderStyle := bsSizeable;
+        viewPhoto.Parent := nil;
+        viewPhoto.Align := alNone;
+        viewPhoto.Show;
+      end;
     end;
+
     IniSet.MainForm := 'MAIN';
     MainForm.Show;
     DisableMenuMiniMode;
