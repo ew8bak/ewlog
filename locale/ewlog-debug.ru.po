@@ -877,7 +877,9 @@ msgid "File size: "
 msgstr "Размер файла: "
 
 #: resourcestr.rsqlitecurrentversion
-msgid "Installed version of sqlite3.dll"
+#, fuzzy
+#| msgid "Installed version of sqlite3.dll"
+msgid "Installed version of sqlite3.so"
 msgstr "Установленная версия sqlite3.dll"
 
 #: resourcestr.rstate
@@ -975,8 +977,13 @@ msgid "Update required"
 msgstr "Требует обновления"
 
 #: resourcestr.rupdatesqlitedll
+#, fuzzy
+#| msgid ""
+#| "Update sqlite3.dll to version 3.24.0 or higher.\n"
+#| "Current Latest Version 3.31.1\n"
+#| "Full work program can not be guaranteed\n"
 msgid ""
-"Update sqlite3.dll to version 3.24.0 or higher.\n"
+"Update sqlite3.so to version 3.24.0 or higher.\n"
 "Current Latest Version 3.31.1\n"
 "Full work program can not be guaranteed\n"
 msgstr ""

@@ -865,7 +865,7 @@ msgid "File size: "
 msgstr ""
 
 #: resourcestr.rsqlitecurrentversion
-msgid "Installed version of sqlite3.dll"
+msgid "Installed version of sqlite3.so"
 msgstr ""
 
 #: resourcestr.rstate
@@ -964,7 +964,7 @@ msgstr ""
 
 #: resourcestr.rupdatesqlitedll
 msgid ""
-"Update sqlite3.dll to version 3.24.0 or higher.\n"
+"Update sqlite3.so to version 3.24.0 or higher.\n"
 "Current Latest Version 3.31.1\n"
 "Full work program can not be guaranteed\n"
 msgstr ""

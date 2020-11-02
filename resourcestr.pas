@@ -154,8 +154,8 @@ resourcestring
   rPath = 'Path';
   rValueCorr =
     'One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically';
-  rUpdateSQLiteDLL = 'Update sqlite3.dll to version ' + min_sqlite_version + ' or higher.'+#10#13+'Current Latest Version '+curr_sqlite_version +#10#13 + 'Full work program can not be guaranteed';
-  rSQLiteCurrentVersion = 'Installed version of sqlite3.dll';
+  rUpdateSQLiteDLL = 'Update sqlite3.so to version ' + min_sqlite_version + ' or higher.'+#10#13+'Current Latest Version '+curr_sqlite_version +#10#13 + 'Full work program can not be guaranteed';
+  rSQLiteCurrentVersion = 'Installed version of sqlite3.so';
   rMHZ  = 'MHz';
   rConnectedToFldigi = 'Fldigi connected to EWLog';
   rDisconnectedFromFldigi = 'Fldigi disconnected from EWLog';
