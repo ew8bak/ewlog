@@ -871,10 +871,14 @@ end;
 procedure TMiniForm.MenuItem89Click(Sender: TObject);
 begin
   if InitDB.SwitchDB then
+  begin
     if DBRecord.CurrentDB = 'MySQL' then
       MenuItem89.Caption := rSwitchDBSQLIte
     else
       MenuItem89.Caption := rSwitchDBMySQL;
+    MainFunc.LoadBMSL(CBMode, CBSubMode,
+      CBBand, CBCurrentLog);
+  end;
 end;
 
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);
