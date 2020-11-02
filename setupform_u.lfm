@@ -18,12 +18,12 @@ object SetupForm: TSetupForm
     Height = 346
     Top = 0
     Width = 630
-    ActivePage = TabSheet3
+    ActivePage = TabSheet4
     Align = alClient
     Font.Height = -13
     ParentFont = False
     ShowTabs = False
-    TabIndex = 2
+    TabIndex = 3
     TabOrder = 0
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
@@ -747,6 +747,7 @@ object SetupForm: TSetupForm
           Height = 20
           Top = 112
           Width = 568
+          Smooth = True
           TabOrder = 2
         end
         object Label23: TLabel

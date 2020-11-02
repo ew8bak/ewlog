@@ -93,7 +93,6 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure EditGridChange(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure LBCallsignsClick(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
@@ -121,7 +120,7 @@ uses miniform_u, CreateJournalForm_U, dmFunc_U, InitDB_dm, MainFuncDM;
 procedure TLogConfigForm.SelectCall(SelCall: string);
 begin
   // DefaultFormatSettings.DecimalSeparator := '.';
-  if DBRecord.DefaultDB = 'MySQL' then
+  if DBRecord.CurrentDB = 'MySQL' then
     SQLQuery1.DataBase := InitDB.MySQLConnection
   else
     SQLQuery1.DataBase := InitDB.SQLiteConnection;
@@ -269,39 +268,28 @@ begin
   end;
 end;
 
-procedure TLogConfigForm.FormCreate(Sender: TObject);
-begin
-  if DBRecord.InitDB = 'YES' then
-  begin
-    if DBRecord.DefaultDB = 'MySQL' then
-      UpdateConfQuery.DataBase := InitDB.MySQLConnection
-    else
-      UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
-    if MiniForm.CBCurrentLog.Text <> '' then
-      SelectCall(MiniForm.CBCurrentLog.Text);
-  end;
-end;
-
 procedure TLogConfigForm.FormShow(Sender: TObject);
 var
   i: integer;
 begin
+  SQLQuery2.Close;
+  UpdateConfQuery.Close;
+
   if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
   begin
     try
       if DBRecord.InitDB = 'YES' then
       begin
-
-        if DBRecord.DefaultDB = 'MySQL' then
-          SQLQuery2.DataBase := InitDB.MySQLConnection
+        if DBRecord.CurrentDB = 'MySQL' then
+        begin
+          SQLQuery2.DataBase := InitDB.MySQLConnection;
+          UpdateConfQuery.DataBase := InitDB.MySQLConnection;
+        end
         else
+        begin
           SQLQuery2.DataBase := InitDB.SQLiteConnection;
-
-
-        if DBRecord.DefaultDB = 'MySQL' then
-          UpdateConfQuery.DataBase := InitDB.MySQLConnection
-        else
           UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
+        end;
         SelectCall(DBRecord.CurrCall);
       end;
 
@@ -383,7 +371,10 @@ begin
         droptablename := SQLQuery2.FieldByName('LogTable').Value;
         SQLQuery2.Close;
         SQLQuery2.SQL.Clear;
-        SQLQuery2.SQL.Add('DROP TABLE "' + droptablename + '"');
+        if DBRecord.CurrentDB = 'MySQL' then
+          SQLQuery2.SQL.Add('DROP TABLE ' + droptablename)
+        else
+          SQLQuery2.SQL.Add('DROP TABLE "' + droptablename + '"');
         SQLQuery2.ExecSQL;
         SQLQuery2.SQL.Clear;
         SQLQuery2.SQL.Add('DELETE FROM LogBookInfo WHERE CallName = "' +
@@ -398,7 +389,7 @@ begin
         SQLQuery2.First;
         for i := 0 to SQLQuery2.RecordCount - 1 do
         begin
-          LBCallsigns.Items.Add(SQLQuery2.FieldByName('CallName').Value);
+          LBCallsigns.Items.Add(SQLQuery2.FieldByName('CallName').AsString);
           SQLQuery2.Next;
         end;
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
@@ -427,8 +418,6 @@ begin
         LBCallsigns.Items[LBCallsigns.ItemIndex]);
       DBRecord.DefCall := LBCallsigns.Items[LBCallsigns.ItemIndex];
       ShowMessage(rDefaultLogSel + ' ' + LBCallsigns.Items[LBCallsigns.ItemIndex]);
-      // MainForm.ComboBox10.Text := LBCallsigns.Items[LBCallsigns.ItemIndex];
-      //MainForm.ComboBox10CloseUp(Self);
       if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
         LBDefaultCall.Visible := True
       else

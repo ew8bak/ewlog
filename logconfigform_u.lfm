@@ -9,7 +9,6 @@ object LogConfigForm: TLogConfigForm
   ClientWidth = 469
   DefaultMonitor = dmMainForm
   FormStyle = fsStayOnTop
-  OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.10.0'

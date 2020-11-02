@@ -291,7 +291,7 @@ type
     procedure ShowInfoFromRIG(freq: double; mode, submode: string);
     procedure ShowDataFromFldigi(DataDigi: TDigiR);
     procedure FromImportThread(Info: TInfo);
-    procedure FromMobileSyncThread(InfoStr: String);
+    procedure FromMobileSyncThread(InfoStr: string);
 
   end;
 
@@ -319,15 +319,16 @@ procedure TMiniForm.FromImportThread(Info: TInfo);
 begin
   TextSB(rImported + ':' + IntToStr(Info.RecCount) + rOf + IntToStr(Info.AllRec) +
     ' ' + rImportErrors + ':' + IntToStr(info.ErrorCount), 0);
-  if Info.Result then begin
+  if Info.Result then
+  begin
     TextSB(rImport + ':' + rDone, 1);
-    InitDB.SelectLogbookTable(LBRecord.LogTable)
+    InitDB.SelectLogbookTable(LBRecord.LogTable);
   end
   else
     TextSB(rImport + ':' + rProcessing, 1);
 end;
 
-procedure TMiniForm.FromMobileSyncThread(InfoStr: String);
+procedure TMiniForm.FromMobileSyncThread(InfoStr: string);
 begin
   TextSB(InfoStr, 0);
 end;
@@ -869,7 +870,11 @@ end;
 
 procedure TMiniForm.MenuItem89Click(Sender: TObject);
 begin
-  InitDB.SwitchDB;
+  if InitDB.SwitchDB then
+    if DBRecord.CurrentDB = 'MySQL' then
+      MenuItem89.Caption := rSwitchDBSQLIte
+    else
+      MenuItem89.Caption := rSwitchDBMySQL;
 end;
 
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);
@@ -1850,8 +1855,11 @@ begin
     MenuItem73.Checked := True
   else
     MIMMode.Checked := True;
-  //  if usefldigi then
-  //    Fl_Timer.Enabled := True;
+
+  if DBRecord.CurrentDB = 'MySQL' then
+    MenuItem89.Caption := rSwitchDBSQLIte
+  else
+    MenuItem89.Caption := rSwitchDBMySQL;
 
   //  PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 end;
