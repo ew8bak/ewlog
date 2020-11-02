@@ -26,6 +26,31 @@ msgctxt "cloudlog.runknownuser"
 msgid "Unknown user! See settings"
 msgstr ""
 
+#: cloudlogcat.ranswerserver
+msgctxt "cloudlogcat.ranswerserver"
+msgid "Server response:"
+msgstr ""
+
+#: cloudlogcat.rerrorsendingsata
+msgctxt "cloudlogcat.rerrorsendingsata"
+msgid "Error sending data"
+msgstr ""
+
+#: cloudlogcat.rnoentryadded
+msgctxt "cloudlogcat.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr ""
+
+#: cloudlogcat.rrecordaddedsuccessfully
+msgctxt "cloudlogcat.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr ""
+
+#: cloudlogcat.runknownuser
+msgctxt "cloudlogcat.runknownuser"
+msgid "Unknown user! See settings"
+msgstr ""
+
 #: clublog.ranswerserver
 msgctxt "clublog.ranswerserver"
 msgid "Server response:"

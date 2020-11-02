@@ -9,7 +9,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, LCLIntf,
-  ActnList, process, CopyTableThread, gettext, digi_record, ImportADIThread;
+  ActnList, process, CopyTableThread, gettext, digi_record, ImportADIThread, CloudLogCAT;
 
 type
 
@@ -200,10 +200,12 @@ type
     UTCLabel: TLabel;
     LocalTimeLabel: TLabel;
     Panel1: TPanel;
+    procedure CBBandChange(Sender: TObject);
     procedure CBBandCloseUp(Sender: TObject);
     procedure CBCurrentLogChange(Sender: TObject);
     procedure CBFilterChange(Sender: TObject);
     procedure CBMapChange(Sender: TObject);
+    procedure CBModeChange(Sender: TObject);
     procedure CBModeCloseUp(Sender: TObject);
     procedure CBRealTimeChange(Sender: TObject);
     procedure CBSaveUTCChange(Sender: TObject);
@@ -275,11 +277,13 @@ type
   private
     SelEditNumChar: integer;
     showForm: boolean;
+    CatCloudData: TCatData;
     procedure Clr;
     procedure LangItemClick(Sender: TObject);
     procedure ProgramItemClick(Sender: TObject);
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure DisableMenuMiniMode;
+    procedure SentCloudLogCat;
 
   public
     procedure LoadPhotoFromInternetCallbook(info: TInformRecord);
@@ -314,6 +318,21 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 {$R *.lfm}
 
 { TMiniForm }
+
+procedure TMiniForm.SentCloudLogCat;
+begin
+  if IniSet.FreqToCloudLog then
+  begin
+    CatCloudData.mode := CBMode.Text;
+    CatCloudData.freq := CBBand.Text;
+    CatCloudData.dt := DateToStr(Now);
+    CatCloudData.address := IniSet.CloudLogServer;
+    CatCloudData.key := IniSet.CloudLogApiKey;
+    CatCloudData.radio := 'EWLog';
+    if CatCloudData.address <> '' then
+      MainFunc.SentCATCloudLog(CatCloudData);
+  end;
+end;
 
 procedure TMiniForm.FromImportThread(Info: TInfo);
 begin
@@ -1442,6 +1461,11 @@ begin
   end;
 end;
 
+procedure TMiniForm.CBModeChange(Sender: TObject);
+begin
+  SentCloudLogCat;
+end;
+
 procedure TMiniForm.CBModeCloseUp(Sender: TObject);
 var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
@@ -1536,6 +1560,11 @@ begin
 
   if Length(EditCallsign.Text) >= 2 then
     EditCallsignChange(CBBand);
+end;
+
+procedure TMiniForm.CBBandChange(Sender: TObject);
+begin
+  SentCloudLogCat;
 end;
 
 procedure TMiniForm.CBSaveUTCChange(Sender: TObject);

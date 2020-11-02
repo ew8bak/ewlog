@@ -1,10 +1,3 @@
 {"version":1,"strings":[
-{"hash":102158211,"name":"thiddensettings.caption","sourcebytes":[72,105,100,100,101,110,32,83,101,116,116,105,110,103,115],"value":"Hidden Settings"},
-{"hash":58478183,"name":"thiddensettings.groupbox1.caption","sourcebytes":[83,101,116,116,105,110,103,115,32,67,108,111,117,100,108,111,103],"value":"Settings Cloudlog"},
-{"hash":188173651,"name":"thiddensettings.labelededit1.editlabel.caption","sourcebytes":[83,101,114,118,101,114,32,97,100,100,114,101,115,115],"value":"Server address"},
-{"hash":105599369,"name":"thiddensettings.labelededit2.editlabel.caption","sourcebytes":[65,80,73,32,75,101,121],"value":"API Key"},
-{"hash":99302327,"name":"thiddensettings.groupbox2.caption","sourcebytes":[83,101,110,100,32,116,111,32,67,108,111,117,100,108,111,103],"value":"Send to Cloudlog"},
-{"hash":102223908,"name":"thiddensettings.checkbox1.caption","sourcebytes":[85,115,101,32,65,80,73,32,67,65,84],"value":"Use API CAT"},
-{"hash":40978337,"name":"thiddensettings.checkbox2.caption","sourcebytes":[85,115,101,32,65,80,73,32,115,101,110,100,32,100,97,116,97],"value":"Use API send data"},
-{"hash":366789,"name":"thiddensettings.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"}
+{"hash":102158211,"name":"thiddensettings.caption","sourcebytes":[72,105,100,100,101,110,32,83,101,116,116,105,110,103,115],"value":"Hidden Settings"}
 ]}

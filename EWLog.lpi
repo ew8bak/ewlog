@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="86">
+    <Units Count="87">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -694,6 +694,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
       </Unit85>
+      <Unit86>
+        <Filename Value="cloudlogcat.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CloudLogCAT"/>
+      </Unit86>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

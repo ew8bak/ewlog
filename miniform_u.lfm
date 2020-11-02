@@ -383,6 +383,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 2
     Font.Height = -11
     ItemHeight = 16
+    OnChange = CBBandChange
     OnCloseUp = CBBandCloseUp
     ParentFont = False
     Style = csOwnerDrawEditableVariable
@@ -415,6 +416,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 2
     Font.Height = -11
     ItemHeight = 16
+    OnChange = CBModeChange
     OnCloseUp = CBModeCloseUp
     ParentFont = False
     Style = csOwnerDrawEditableVariable

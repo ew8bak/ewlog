@@ -36,6 +36,36 @@ msgctxt "cloudlog.runknownuser"
 msgid "Unknown user! See settings"
 msgstr "Неизвестный пользователь. Смотри настройки"
 
+#: cloudlogcat.ranswerserver
+#, fuzzy
+msgctxt "cloudlogcat.ranswerserver"
+msgid "Server response:"
+msgstr "Ответ сервера:"
+
+#: cloudlogcat.rerrorsendingsata
+#, fuzzy
+msgctxt "cloudlogcat.rerrorsendingsata"
+msgid "Error sending data"
+msgstr "Ошибка отправки данных"
+
+#: cloudlogcat.rnoentryadded
+#, fuzzy
+msgctxt "cloudlogcat.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr "Запись не добавлена! Похоже на дубликат!"
+
+#: cloudlogcat.rrecordaddedsuccessfully
+#, fuzzy
+msgctxt "cloudlogcat.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr "Запись успешно добавлена"
+
+#: cloudlogcat.runknownuser
+#, fuzzy
+msgctxt "cloudlogcat.runknownuser"
+msgid "Unknown user! See settings"
+msgstr "Неизвестный пользователь. Смотри настройки"
+
 #: clublog.ranswerserver
 msgctxt "clublog.ranswerserver"
 msgid "Server response:"

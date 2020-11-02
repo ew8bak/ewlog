@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, DB, Forms, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
-  VirtualTrees, LazFileUtils, LCLType, digi_record;
+  VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT;
 
 type
   bandArray = array of string;
@@ -26,6 +26,7 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
+    procedure SentCATCloudLog(CatData: TCatData);
     procedure SaveGridsColumnSized(DbGrid: TDBGrid);
     procedure SaveGridsColumnMoved(DbGrid: TDBGrid);
     procedure SaveGrids(DbGrid: TDBGrid);
@@ -90,6 +91,18 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
 
 {$R *.lfm}
+
+procedure TMainFunc.SentCATCloudLog(CatData: TCatData);
+begin
+  CatData.freq := FormatFreq(CatData.freq, CatData.mode);
+  StringReplace(CatData.freq, '.', '', [rfReplaceAll]);
+  CatData.freq := CatData.freq + '0';
+  CloudLogCATThread := TCloudLogCATThread.Create;
+  if Assigned(CloudLogCATThread.FatalException) then
+    raise CloudLogCATThread.FatalException;
+  CloudLogCATThread.CatData := CatData;
+  CloudLogCATThread.Start;
+end;
 
 function TMainFunc.GetExternalProgramsPath(ProgramName: string): string;
 var
