@@ -150,306 +150,319 @@ begin
     Query.First;
     while not Query.EOF do
     begin
-      EQSL_QSL_RCVD := '';
-      QSL_RCVD := '';
-      QSL_SENT := '';
-      tmpFreq := '';
+      try
+        EQSL_QSL_RCVD := '';
+        QSL_RCVD := '';
+        QSL_SENT := '';
+        tmpFreq := '';
 
-      tmp := '<OPERATOR' + dmFunc.StringToADIF(
-        dmFunc.RemoveSpaces(DBRecord.CurrCall), PADIExport.Win1251);
-      Write(f, tmp);
-
-      tmp := '<CALL' + dmFunc.StringToADIF(
-        dmFunc.RemoveSpaces(Query.Fields.FieldByName('CallSign').AsString),
-        PADIExport.Win1251);
-      Write(f, tmp);
-
-      tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName('QSODate').AsDateTime);
-      tmp := '<QSO_DATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
-      Write(f, tmp);
-
-      tmp := Query.Fields.FieldByName('QSOTime').AsString;
-      tmp := copy(tmp, 1, 2) + copy(tmp, 4, 2);
-      tmp := '<TIME_ON' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
-      Write(f, tmp);
-
-      if Query.Fields.FieldByName('QSOMode').AsString <> '' then
-      begin
-        tmp := '<MODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'QSOMode').AsString, PADIExport.Win1251);
+        tmp := '<OPERATOR' + dmFunc.StringToADIF(
+          dmFunc.RemoveSpaces(DBRecord.CurrCall), PADIExport.Win1251);
         Write(f, tmp);
-      end;
 
-      if Query.Fields.FieldByName('QSOSubMode').AsString <> '' then
-      begin
-        tmp := '<SUBMODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'QSOSubMode').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSOBand').AsString <> '' then
-      begin
-        tmpFreq := Query.Fields.FieldByName('QSOBand').AsString;
-        Delete(tmpFreq, Length(tmpFreq) - 2, 1);
-        tmp := '<FREQ' + dmFunc.StringToADIF(FormatFloat('0.#####', StrToFloat(tmpFreq)),
+        tmp := '<CALL' + dmFunc.StringToADIF(
+          dmFunc.RemoveSpaces(Query.Fields.FieldByName('CallSign').AsString),
           PADIExport.Win1251);
         Write(f, tmp);
-      end;
 
-      if Query.Fields.FieldByName('QSOReportSent').AsString <> '' then
-      begin
-        tmp := '<RST_SENT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'QSOReportSent').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSOReportRecived').AsString <> '' then
-      begin
-        tmp := '<RST_RCVD' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'QSOReportRecived').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if (Query.Fields.FieldByName('SRX').AsInteger <> 0) or
-        (not Query.Fields.FieldByName('SRX').IsNull) then
-      begin
-        tmp := '<SRX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'SRX').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if (Query.Fields.FieldByName('STX').AsInteger <> 0) or
-        (not Query.Fields.FieldByName('STX').IsNull) then
-      begin
-        tmp := '<STX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'STX').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if (Query.Fields.FieldByName('SRX_STRING').AsString <> '') then
-      begin
-        tmp := '<SRX_STRING' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'SRX_STRING').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if (Query.Fields.FieldByName('STX_STRING').AsString <> '') then
-      begin
-        tmp := '<STX_STRING' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'STX_STRING').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('OMName').AsString <> '' then
-      begin
-        tmp := '<NAME' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'OMName').AsString, PADIExport.Win1251);
-        if PADIExport.Win1251 then
-          Write(f, UTF8ToCP1251(tmp))
-        else
-          Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('OMQTH').AsString <> '' then
-      begin
-        tmp := '<QTH' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'OMQTH').AsString, PADIExport.Win1251);
-        if PADIExport.Win1251 then
-          Write(f, UTF8ToCP1251(tmp))
-        else
-          Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('State').AsString <> '' then
-      begin
-        tmp := '<STATE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'State').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('Grid').AsString <> '' then
-      begin
-        tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'Grid').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('WPX').AsString <> '' then
-      begin
-        tmp := '<PFX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'WPX').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('DXCCPrefix').AsString <> '' then
-      begin
-        tmp := '<DXCC_PREF' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'DXCCPrefix').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSOBand').AsString <> '' then
-      begin
-        tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
-          Query.Fields.FieldByName('QSOBand').AsString), PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('CQZone').AsString <> '' then
-      begin
-        tmp := '<CQZ' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'CQZone').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('ITUZone').AsString <> '' then
-      begin
-        tmp := '<ITUZ' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'ITUZone').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('Continent').AsString <> '' then
-      begin
-        tmp := '<CONT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'Continent').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSLInfo').AsString <> '' then
-      begin
-        tmp := '<QSLMSG' + dmFunc.StringToADIF(
-          dmFunc.MyTrim(Query.Fields.FieldByName('QSLInfo').AsString),
-          PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSLReceQSLcc').AsString = '1' then
-      begin
-        EQSL_QSL_RCVD := Query.Fields.FieldByName('QSLReceQSLcc').AsString;
-        if EQSL_QSL_RCVD = '0' then
-          tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', PADIExport.Win1251)
-        else
-          tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSLSentDate').AsString <> '' then
-      begin
         tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
-          'QSLSentDate').AsDateTime);
-        tmp := '<QSLSDATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+          'QSODate').AsDateTime);
+        tmp := '<QSO_DATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
         Write(f, tmp);
-      end;
 
-      if Query.Fields.FieldByName('QSLRecDate').AsString <> '' then
-      begin
-        tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
-          'QSLRecDate').AsDateTime);
-        tmp := '<QSLRDATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+        tmp := Query.Fields.FieldByName('QSOTime').AsString;
+        tmp := copy(tmp, 1, 2) + copy(tmp, 4, 2);
+        tmp := '<TIME_ON' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
         Write(f, tmp);
-      end;
 
-      if Query.Fields.FieldByName('QSLRec').AsString = '1' then
-      begin
-        QSL_RCVD := Query.Fields.FieldByName('QSLRec').AsString;
-        if QSL_RCVD = '0' then
-          tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', PADIExport.Win1251)
-        else
-          tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSL_RCVD_VIA').AsString <> '' then
-      begin
-        tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'QSL_RCVD_VIA').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSL_SENT_VIA').AsString <> '' then
-      begin
-        tmp := '<QSL_SENT_VIA' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'QSL_SENT_VIA').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSLSent').AsString = '1' then
-      begin
-        QSL_SENT := Query.Fields.FieldByName('QSLSent').AsString;
-        if QSL_SENT = '0' then
-          tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', PADIExport.Win1251)
-        else
-          tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('DXCC').AsString <> '' then
-      begin
-        tmp := '<DXCC' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'DXCC').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('QSOAddInfo').AsString <> '' then
-      begin
-        tmp := '<COMMENT' + dmFunc.StringToADIF(
-          dmFunc.MyTrim(Query.Fields.FieldByName('QSOAddInfo').AsString),
-          PADIExport.Win1251);
-        if PADIExport.Win1251 then
-          Write(f, UTF8ToCP1251(tmp))
-        else
+        if Query.Fields.FieldByName('QSOMode').AsString <> '' then
+        begin
+          tmp := '<MODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'QSOMode').AsString, PADIExport.Win1251);
           Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSOSubMode').AsString <> '' then
+        begin
+          tmp := '<SUBMODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'QSOSubMode').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSOBand').AsString <> '' then
+        begin
+          tmpFreq := Query.Fields.FieldByName('QSOBand').AsString;
+          Delete(tmpFreq, Length(tmpFreq) - 2, 1);
+          tmp := '<FREQ' + dmFunc.StringToADIF(FormatFloat('0.#####',
+            StrToFloat(tmpFreq)), PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSOReportSent').AsString <> '' then
+        begin
+          tmp := '<RST_SENT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'QSOReportSent').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSOReportRecived').AsString <> '' then
+        begin
+          tmp := '<RST_RCVD' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'QSOReportRecived').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if (Query.Fields.FieldByName('SRX').AsInteger <> 0) or
+          (not Query.Fields.FieldByName('SRX').IsNull) then
+        begin
+          tmp := '<SRX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'SRX').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if (Query.Fields.FieldByName('STX').AsInteger <> 0) or
+          (not Query.Fields.FieldByName('STX').IsNull) then
+        begin
+          tmp := '<STX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'STX').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if (Query.Fields.FieldByName('SRX_STRING').AsString <> '') then
+        begin
+          tmp := '<SRX_STRING' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'SRX_STRING').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if (Query.Fields.FieldByName('STX_STRING').AsString <> '') then
+        begin
+          tmp := '<STX_STRING' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'STX_STRING').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('OMName').AsString <> '' then
+        begin
+          tmp := '<NAME' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'OMName').AsString, PADIExport.Win1251);
+          if PADIExport.Win1251 then
+            Write(f, UTF8ToCP1251(tmp))
+          else
+            Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('OMQTH').AsString <> '' then
+        begin
+          tmp := '<QTH' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'OMQTH').AsString, PADIExport.Win1251);
+          if PADIExport.Win1251 then
+            Write(f, UTF8ToCP1251(tmp))
+          else
+            Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('State').AsString <> '' then
+        begin
+          tmp := '<STATE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'State').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('Grid').AsString <> '' then
+        begin
+          tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'Grid').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('WPX').AsString <> '' then
+        begin
+          tmp := '<PFX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'WPX').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('DXCCPrefix').AsString <> '' then
+        begin
+          tmp := '<DXCC_PREF' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'DXCCPrefix').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSOBand').AsString <> '' then
+        begin
+          tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
+            Query.Fields.FieldByName('QSOBand').AsString), PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('CQZone').AsString <> '' then
+        begin
+          tmp := '<CQZ' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'CQZone').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('ITUZone').AsString <> '' then
+        begin
+          tmp := '<ITUZ' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'ITUZone').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('Continent').AsString <> '' then
+        begin
+          tmp := '<CONT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'Continent').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSLInfo').AsString <> '' then
+        begin
+          tmp := '<QSLMSG' + dmFunc.StringToADIF(
+            dmFunc.MyTrim(Query.Fields.FieldByName('QSLInfo').AsString),
+            PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSLReceQSLcc').AsString = '1' then
+        begin
+          EQSL_QSL_RCVD := Query.Fields.FieldByName('QSLReceQSLcc').AsString;
+          if EQSL_QSL_RCVD = '0' then
+            tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', PADIExport.Win1251)
+          else
+            tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSLSentDate').AsString <> '' then
+        begin
+          tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
+            'QSLSentDate').AsDateTime);
+          tmp := '<QSLSDATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSLRecDate').AsString <> '' then
+        begin
+          tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
+            'QSLRecDate').AsDateTime);
+          tmp := '<QSLRDATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSLRec').AsString = '1' then
+        begin
+          QSL_RCVD := Query.Fields.FieldByName('QSLRec').AsString;
+          if QSL_RCVD = '0' then
+            tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', PADIExport.Win1251)
+          else
+            tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSL_RCVD_VIA').AsString <> '' then
+        begin
+          tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'QSL_RCVD_VIA').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSL_SENT_VIA').AsString <> '' then
+        begin
+          tmp := '<QSL_SENT_VIA' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'QSL_SENT_VIA').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSLSent').AsString = '1' then
+        begin
+          QSL_SENT := Query.Fields.FieldByName('QSLSent').AsString;
+          if QSL_SENT = '0' then
+            tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', PADIExport.Win1251)
+          else
+            tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('DXCC').AsString <> '' then
+        begin
+          tmp := '<DXCC' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'DXCC').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QSOAddInfo').AsString <> '' then
+        begin
+          tmp := '<COMMENT' + dmFunc.StringToADIF(
+            dmFunc.MyTrim(Query.Fields.FieldByName('QSOAddInfo').AsString),
+            PADIExport.Win1251);
+          if PADIExport.Win1251 then
+            Write(f, UTF8ToCP1251(tmp))
+          else
+            Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('MY_STATE').AsString <> '' then
+        begin
+          tmp := '<MY_STATE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'MY_STATE').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('MY_GRIDSQUARE').AsString <> '' then
+        begin
+          tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'MY_GRIDSQUARE').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end
+        else
+        begin
+          tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(DefMyGrid, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('MY_LAT').AsString <> '' then
+        begin
+          tmp := '<MY_LAT' + dmFunc.StringToADIF(
+            SetSizeLoc(Query.Fields.FieldByName('MY_LAT').AsString), PADIExport.Win1251);
+          Write(f, tmp);
+        end
+        else
+        begin
+          tmp := '<MY_LAT' + dmFunc.StringToADIF(DefMyLAT, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('MY_LON').AsString <> '' then
+        begin
+          tmp := '<MY_LON' + dmFunc.StringToADIF(
+            SetSizeLoc(Query.Fields.FieldByName('MY_LON').AsString), PADIExport.Win1251);
+          Write(f, tmp);
+        end
+        else
+        begin
+          tmp := '<MY_LON' + dmFunc.StringToADIF(DefMyLON, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        Write(f, '<EOR>'#13#10);
+
+        Inc(Info.RecCount);
+        Synchronize(@ToForm);
+        Query.Next;
+
+      except
+        on E: Exception do
+        begin
+          Write(f, '<EOR>'#13#10);
+          WriteLn(ExceptFile, 'ExportThread:' + E.ClassName + ':' +
+            E.Message + ' NumberString:' + IntToStr(Info.RecCount + 1));
+          Query.Next;
+          Continue;
+        end;
       end;
-
-      if Query.Fields.FieldByName('MY_STATE').AsString <> '' then
-      begin
-        tmp := '<MY_STATE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'MY_STATE').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('MY_GRIDSQUARE').AsString <> '' then
-      begin
-        tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'MY_GRIDSQUARE').AsString, PADIExport.Win1251);
-        Write(f, tmp);
-      end
-      else
-      begin
-        tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(DefMyGrid, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('MY_LAT').AsString <> '' then
-      begin
-        tmp := '<MY_LAT' + dmFunc.StringToADIF(
-          SetSizeLoc(Query.Fields.FieldByName('MY_LAT').AsString), PADIExport.Win1251);
-        Write(f, tmp);
-      end
-      else
-      begin
-        tmp := '<MY_LAT' + dmFunc.StringToADIF(DefMyLAT, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      if Query.Fields.FieldByName('MY_LON').AsString <> '' then
-      begin
-        tmp := '<MY_LON' + dmFunc.StringToADIF(
-          SetSizeLoc(Query.Fields.FieldByName('MY_LON').AsString), PADIExport.Win1251);
-        Write(f, tmp);
-      end
-      else
-      begin
-        tmp := '<MY_LON' + dmFunc.StringToADIF(DefMyLON, PADIExport.Win1251);
-        Write(f, tmp);
-      end;
-
-      Write(f, '<EOR>'#13#10);
-
-      Inc(Info.RecCount);
-      Synchronize(@ToForm);
-      Query.Next;
     end;
 
   finally

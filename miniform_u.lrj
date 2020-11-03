@@ -107,6 +107,8 @@
 {"hash":116546394,"name":"tminiform.menuitem110.caption","sourcebytes":[68,105,115,112,108,97,121,105,110,103,32,112,104,111,116,111,115,32,119,105,116,104,32,81,82,90],"value":"Displaying photos with QRZ"},
 {"hash":1374,"name":"tminiform.menuitem111.caption","sourcebytes":[79,110],"value":"On"},
 {"hash":21958,"name":"tminiform.menuitem112.caption","sourcebytes":[79,102,102],"value":"Off"},
+{"hash":90200384,"name":"tminiform.miphotoseparatetop.caption","sourcebytes":[79,110,32,84,79,80],"value":"On TOP"},
+{"hash":20299223,"name":"tminiform.miphotoseparate.caption","sourcebytes":[73,110,32,97,32,115,101,112,97,114,97,116,101,32,119,105,110,100,111,119],"value":"In a separate window"},
 {"hash":177242805,"name":"tminiform.menuitem72.caption","sourcebytes":[77,117,108,116,105,45,119,105,110,100,111,119,32,109,111,100,101],"value":"Multi-window mode"},
 {"hash":73037166,"name":"tminiform.mimmode.caption","sourcebytes":[77,111,100,101,32,79,78],"value":"Mode ON"},
 {"hash":90200928,"name":"tminiform.mimaintop.caption","sourcebytes":[79,110,32,84,111,112],"value":"On Top"},

@@ -4149,6 +4149,14 @@ msgctxt "tminiform.miphoto.caption"
 msgid "Photo"
 msgstr "Фото"
 
+#: tminiform.miphotoseparate.caption
+msgid "In a separate window"
+msgstr ""
+
+#: tminiform.miphotoseparatetop.caption
+msgid "On TOP"
+msgstr ""
+
 #: tminiform.miphototop.caption
 msgctxt "tminiform.miphototop.caption"
 msgid "On Top"

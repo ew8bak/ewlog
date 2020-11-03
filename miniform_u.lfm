@@ -2165,8 +2165,19 @@ object MiniForm: TMiniForm
           OnClick = MenuItem111Click
         end
         object MenuItem112: TMenuItem
+          AutoCheck = True
           Caption = 'Off'
           OnClick = MenuItem112Click
+        end
+        object MiPhotoSeparateTop: TMenuItem
+          AutoCheck = True
+          Caption = 'On TOP'
+          OnClick = MiPhotoSeparateTopClick
+        end
+        object MiPhotoSeparate: TMenuItem
+          AutoCheck = True
+          Caption = 'In a separate window'
+          OnClick = MiPhotoSeparateClick
         end
       end
       object MenuItem72: TMenuItem
@@ -2230,6 +2241,7 @@ object MiniForm: TMiniForm
         object MiPhotoTop: TMenuItem
           AutoCheck = True
           Caption = 'On Top'
+          OnClick = MiPhotoTopClick
         end
         object N6: TMenuItem
           Caption = '-'

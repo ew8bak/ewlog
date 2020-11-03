@@ -106,6 +106,8 @@ type
     LBBand: TLabel;
     LBMode: TLabel;
     MainMenu: TMainMenu;
+    MiPhotoSeparateTop: TMenuItem;
+    MiPhotoSeparate: TMenuItem;
     N7: TMenuItem;
     MiMainTop: TMenuItem;
     MiPhotoTop: TMenuItem;
@@ -264,6 +266,9 @@ type
     procedure MIDownloadLangClick(Sender: TObject);
     procedure MILanguageClick(Sender: TObject);
     procedure MIPhotoClick(Sender: TObject);
+    procedure MiPhotoSeparateClick(Sender: TObject);
+    procedure MiPhotoSeparateTopClick(Sender: TObject);
+    procedure MiPhotoTopClick(Sender: TObject);
     procedure MITelnetFormClick(Sender: TObject);
     procedure SaveQSOinBaseExecute(Sender: TObject);
     procedure SBInfoClick(Sender: TObject);
@@ -691,16 +696,35 @@ end;
 procedure TMiniForm.MenuItem111Click(Sender: TObject);
 begin
   MenuItem112.Checked := False;
-  if MenuItem111.Checked then
+  if MenuItem111.Checked and not IniSet.pSeparate then
   begin
     viewPhoto.BorderStyle := bsNone;
     viewPhoto.Parent := MainForm.OtherPanel;
     viewPhoto.Align := alClient;
     viewPhoto.Show;
-  end
-  else
+    IniSet.pShow := True;
+    MiPhotoSeparate.Checked := IniSet.pSeparate;
+    MiPhotoSeparateTop.Checked := IniSet.pTop;
+    INIFile.WriteBool('SetLog', 'pShow', True);
+  end;
+
+  if MenuItem111.Checked and IniSet.pSeparate then
+  begin
+    viewPhoto.BorderStyle := bsSizeable;
+    viewPhoto.Parent := nil;
+    viewPhoto.Align := alNone;
+    if IniSet.pTop then
+      viewPhoto.FormStyle := fsSystemStayOnTop;
+    viewPhoto.Show;
+    IniSet.pShow := True;
+    MiPhotoSeparate.Checked := IniSet.pSeparate;
+    MiPhotoSeparateTop.Checked := IniSet.pTop;
+    INIFile.WriteBool('SetLog', 'pShow', True);
+  end;
+  if not MenuItem111.Checked then
   begin
     viewPhoto.Hide;
+    IniSet.pShow := False;
   end;
 end;
 
@@ -711,6 +735,12 @@ begin
     viewPhoto.hide;
     IniSet.pShow := False;
     INIFile.WriteBool('SetLog', 'pShow', False);
+    INIFile.WriteBool('SetLog', 'pTop', False);
+    INIFile.WriteBool('SetLog', 'pSeparate', False);
+    MiPhotoSeparate.Checked := False;
+    MiPhotoSeparateTop.Checked := False;
+    IniSet.pSeparate := False;
+    IniSet.pTop := False;
   end;
   MenuItem111.Checked := False;
   MenuItem112.Checked := True;
@@ -1147,6 +1177,64 @@ begin
   begin
     INIFile.WriteBool('SetLog', 'pShow', False);
     viewPhoto.Hide;
+  end;
+end;
+
+procedure TMiniForm.MiPhotoSeparateClick(Sender: TObject);
+begin
+  if MiPhotoSeparate.Checked then
+  begin
+    INIFile.WriteBool('SetLog', 'pSeparate', True);
+    IniSet.pSeparate := True;
+    viewPhoto.BorderStyle := bsSizeable;
+    viewPhoto.Parent := nil;
+    viewPhoto.Align := alNone;
+    if IniSet.pTop then
+      viewPhoto.FormStyle := fsSystemStayOnTop;
+    viewPhoto.Show;
+  end
+  else
+  begin
+    INIFile.WriteBool('SetLog', 'pSeparate', False);
+    IniSet.pSeparate := False;
+    viewPhoto.Hide;
+    viewPhoto.BorderStyle := bsNone;
+    viewPhoto.Parent := MainForm.OtherPanel;
+    viewPhoto.Align := alClient;
+    if IniSet.pShow then
+      viewPhoto.Show;
+  end;
+end;
+
+procedure TMiniForm.MiPhotoSeparateTopClick(Sender: TObject);
+begin
+  if MiPhotoSeparateTop.Checked then
+  begin
+    viewPhoto.FormStyle := fsSystemStayOnTop;
+    IniSet.pTop := True;
+    INIFile.WriteBool('SetLog', 'pTop', True);
+  end
+  else
+  begin
+    viewPhoto.FormStyle := fsNormal;
+    IniSet.pTop := False;
+    INIFile.WriteBool('SetLog', 'pTop', False);
+  end;
+end;
+
+procedure TMiniForm.MiPhotoTopClick(Sender: TObject);
+begin
+  if MiPhotoTop.Checked then
+  begin
+    viewPhoto.FormStyle := fsSystemStayOnTop;
+    IniSet.pTop := True;
+    INIFile.WriteBool('SetLog', 'pTop', True);
+  end
+  else
+  begin
+    viewPhoto.FormStyle := fsNormal;
+    IniSet.pTop := False;
+    INIFile.WriteBool('SetLog', 'pTop', False);
   end;
 end;
 
@@ -1870,9 +1958,18 @@ begin
   MiLogGridTop.Checked := IniSet.gTop;
   MiPhotoTop.Checked := IniSet.pTop;
   if IniSet.pShow then
-    MenuItem111.Checked := IniSet.pShow
+  begin
+    MenuItem111.Checked := IniSet.pShow;
+    MiPhotoSeparate.Checked := IniSet.pSeparate;
+    MiPhotoSeparateTop.Checked := IniSet.pTop;
+  end
   else
+  begin
     MenuItem112.Checked := True;
+    MiPhotoSeparate.Checked := False;
+    MiPhotoSeparateTop.Checked := False;
+  end;
+
   if IniSet.MainForm <> 'MULTI' then
     MenuItem73.Checked := True
   else

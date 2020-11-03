@@ -731,6 +731,13 @@ begin
             WriteWrongADIF(s);
           end;
         end;
+        on E: Exception do
+        begin
+          Inc(Info.ErrorCount);
+          Synchronize(@ToForm);
+          WriteWrongADIF(s);
+          Continue;
+        end;
       end;
       Synchronize(@ToForm);
     end;
