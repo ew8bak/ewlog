@@ -97,6 +97,7 @@ var
   version_file: TextFile;
   version_file_stream: TFileStream;
 begin
+  Result := False;
   try
     if not FileExists(updatePATH + 'version') then
     begin
@@ -127,8 +128,8 @@ begin
     if version_curr < version_serv then
     begin
       Label2.Caption := rUpdateRequired;
+      MiniForm.TextSB(rUpdateRequired, 0);
       Result := True;
-      //       MainForm.Label50.Visible:=True;
       Label9.Caption := rUpdateStatusDownload;
       Button1.Caption := rButtonDownload;
       if dmFunc.GetSize(DownPATHssl + DownEXE) = -1 then
@@ -141,8 +142,8 @@ begin
     else
     begin
       Label9.Caption := rUpdateStatusActual;
+      MiniForm.TextSB('', 0);
       Result := False;
-      //       MainForm.Label50.Visible:=False;
     end;
 
   finally;

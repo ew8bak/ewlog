@@ -4,7 +4,7 @@
 {"hash":229074304,"name":"texportadifform.label1.caption","sourcebytes":[78,117,109,98,101,114,32,111,102,32,81,83,79,58,32,48],"value":"Number of QSO: 0"},
 {"hash":198834019,"name":"texportadifform.rbfileexportall.caption","sourcebytes":[69,120,112,111,114,116,32,97,108,108,32,115,104,111,119,101,100,32,99,111,110,116,97,99,116,115],"value":"Export all showed contacts"},
 {"hash":76136636,"name":"texportadifform.radiobutton1.caption","sourcebytes":[83,101,108,101,99,116,101,100,32,100,97,116,101,32,105,110,116,101,114,118,97,108],"value":"Selected date interval"},
-{"hash":4863637,"name":"texportadifform.button2.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":77089212,"name":"texportadifform.button2.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
 {"hash":317789,"name":"texportadifform.label3.caption","sourcebytes":[70,114,111,109],"value":"From"},
 {"hash":1455,"name":"texportadifform.label4.caption","sourcebytes":[84,111],"value":"To"},
 {"hash":107137638,"name":"texportadifform.checkbox1.caption","sourcebytes":[69,120,112,111,114,116,32,116,111,32,65,68,73,70],"value":"Export to ADIF"},

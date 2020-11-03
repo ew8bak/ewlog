@@ -1,7 +1,7 @@
 object Update_Form: TUpdate_Form
-  Left = 480
+  Left = 497
   Height = 229
-  Top = 190
+  Top = 129
   Width = 274
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -20,8 +20,8 @@ object Update_Form: TUpdate_Form
     Width = 274
     Align = alClient
     Caption = 'Update'
-    ClientHeight = 210
-    ClientWidth = 270
+    ClientHeight = 213
+    ClientWidth = 272
     Font.Height = -12
     ParentFont = False
     TabOrder = 0
@@ -29,10 +29,10 @@ object Update_Form: TUpdate_Form
       AnchorSideLeft.Control = GroupBox1
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 57
-      Height = 14
+      Left = 61
+      Height = 13
       Top = 8
-      Width = 83
+      Width = 81
       Alignment = taCenter
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
@@ -46,9 +46,9 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 145
-      Height = 14
+      Height = 13
       Top = 8
-      Width = 34
+      Width = 35
       BorderSpacing.Left = 145
       BorderSpacing.Right = 100
       Caption = 'Actual'
@@ -61,10 +61,10 @@ object Update_Form: TUpdate_Form
       AnchorSideLeft.Side = asrCenter
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 78
-      Height = 14
+      Left = 82
+      Height = 13
       Top = 32
-      Width = 62
+      Width = 60
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
       Caption = 'Last check:'
@@ -77,9 +77,9 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 145
-      Height = 14
+      Height = 13
       Top = 32
-      Width = 12
+      Width = 9
       BorderSpacing.Left = 145
       BorderSpacing.Right = 100
       Caption = '...'
@@ -93,9 +93,9 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 49
-      Height = 14
+      Height = 13
       Top = 56
-      Width = 91
+      Width = 93
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
       Caption = 'Program version:'
@@ -108,9 +108,9 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 145
-      Height = 14
+      Height = 13
       Top = 56
-      Width = 12
+      Width = 9
       BorderSpacing.Left = 145
       Caption = '...'
       Font.Height = -12
@@ -122,8 +122,8 @@ object Update_Form: TUpdate_Form
       AnchorSideLeft.Side = asrCenter
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 57
-      Height = 14
+      Left = 59
+      Height = 13
       Top = 80
       Width = 83
       Anchors = [akTop, akRight]
@@ -138,9 +138,9 @@ object Update_Form: TUpdate_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 145
-      Height = 14
+      Height = 13
       Top = 80
-      Width = 12
+      Width = 9
       BorderSpacing.Left = 145
       Caption = '...'
       Font.Height = -12
@@ -152,11 +152,12 @@ object Update_Form: TUpdate_Form
       Height = 20
       Top = 128
       Width = 240
+      Smooth = True
       TabOrder = 0
     end
     object Label9: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 112
       Width = 85
       Caption = 'Update process'
@@ -188,9 +189,9 @@ object Update_Form: TUpdate_Form
     end
     object Label10: TLabel
       Left = 16
-      Height = 14
+      Height = 13
       Top = 152
-      Width = 44
+      Width = 45
       Caption = 'File size:'
       Font.Height = -12
       ParentColor = False

@@ -1,7 +1,7 @@
 object exportAdifForm: TexportAdifForm
-  Left = 436
+  Left = 385
   Height = 211
-  Top = 170
+  Top = 174
   Width = 442
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -74,7 +74,7 @@ object exportAdifForm: TexportAdifForm
     Height = 25
     Top = 162
     Width = 75
-    Caption = 'Close'
+    Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click
     ParentFont = False
@@ -518,12 +518,6 @@ object exportAdifForm: TexportAdifForm
     Smooth = True
     TabOrder = 10
   end
-  object Q1: TSQLQuery
-    FieldDefs = <>
-    Params = <>
-    Left = 256
-    Top = 72
-  end
   object SaveDialog1: TSaveDialog
     OnClose = SaveDialog1Close
     Title = 'Save file as'
@@ -531,11 +525,5 @@ object exportAdifForm: TexportAdifForm
     Filter = '*.adi|*.adi'
     Left = 48
     Top = 80
-  end
-  object Q2: TSQLQuery
-    FieldDefs = <>
-    Params = <>
-    Left = 256
-    Top = 116
   end
 end

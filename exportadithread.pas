@@ -453,6 +453,9 @@ begin
         Synchronize(@ToForm);
         Query.Next;
 
+        if Terminated then
+          Exit;
+
       except
         on E: Exception do
         begin

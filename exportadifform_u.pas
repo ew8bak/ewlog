@@ -41,11 +41,9 @@ type
     Label3: TLabel;
     Label4: TLabel;
     PbExport: TProgressBar;
-    Q1: TSQLQuery;
     RadioButton1: TRadioButton;
     rbFileExportAll: TRadioButton;
     SaveDialog1: TSaveDialog;
-    Q2: TSQLQuery;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -127,21 +125,17 @@ end;
 
 procedure TexportAdifForm.Button2Click(Sender: TObject);
 begin
-  exportAdifForm.Close;
+  if ExportADIFThread <> nil then
+  begin
+    ExportADIFThread.Terminate;
+    ExportADIFThread := nil;
+  end
+  else
+    exportAdifForm.Close;
 end;
 
 procedure TexportAdifForm.FormShow(Sender: TObject);
 begin
-  if DBRecord.CurrentDB = 'MySQL' then
-  begin
-    Q1.DataBase := InitDB.MySQLConnection;
-    Q2.DataBase := InitDB.MySQLConnection;
-  end
-  else
-  begin
-    Q1.DataBase := InitDB.SQLiteConnection;
-    Q2.DataBase := InitDB.SQLiteConnection;
-  end;
   if rbFileExportAll.Checked = True then
   begin
     DateEdit1.Enabled := False;

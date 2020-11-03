@@ -59,7 +59,13 @@ uses dmFunc_U, MainForm_U, const_u, InitDB_dm, MainFuncDM;
 
 procedure TImportADIFForm.Button2Click(Sender: TObject);
 begin
-  ImportADIFForm.Close;
+  if ImportADIFThread <> nil then
+  begin
+    ImportADIFThread.Terminate;
+    ImportADIFThread := nil;
+  end
+  else
+    ImportADIFForm.Close;
 end;
 
 procedure TImportADIFForm.FileNameEdit1ButtonClick(Sender: TObject);
@@ -83,6 +89,9 @@ begin
   lblCount.Caption := rImportRecord + ' ';
   lblErrors.Caption := rImportErrors + ' ';
   lblErrorLog.Caption := rFileError;
+  lblErrorLog.Color := clNone;
+  lblErrorLog.Cursor := crDefault;
+  lblComplete.Caption := rWait;
   PbImport.Position := 0;
 end;
 
@@ -93,6 +102,7 @@ end;
 
 procedure TImportADIFForm.FromImportThread(Info: TInfo);
 begin
+  lblComplete.Caption := rImport;
   PbImport.Max := Info.AllRec;
   PbImport.Position := Info.RecCount;
   lblCount.Caption := RImported + ' ' + IntToStr(Info.RecCount) +
@@ -102,7 +112,14 @@ begin
   if Info.Result then
   begin
     InitDB.SelectLogbookTable(LBRecord.LogTable);
+    lblComplete.Caption := rDone;
     Button1.Enabled := True;
+  end;
+  if info.ErrorCount > 0 then
+  begin
+    lblErrorLog.Caption := rFileError + ' ' + ERR_FILE;
+    lblErrorLog.Color := clRed;
+    lblErrorLog.Cursor := crAppStart;
   end;
 end;
 

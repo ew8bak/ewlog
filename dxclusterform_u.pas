@@ -530,7 +530,10 @@ begin
   ConnectCluster := False;
   ButtonSet;
   if TelnetThread <> nil then
+  begin
     TelnetThread.Terminate;
+    TelnetThread := nil;
+  end;
   Memo1.Lines.Add('DX Cluster disconnected');
 end;
 
@@ -563,19 +566,29 @@ end;
 
 procedure TdxClusterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
-  MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
-  if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
-    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-    INIFile.WriteBool('SetLog', 'cShow', True)
+  if Sender <> MainForm then
+  begin
+    INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
+    MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
+    if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
+      MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      INIFile.WriteBool('SetLog', 'cShow', True)
+    else
+      INIFile.WriteBool('SetLog', 'cShow', False);
+    IniSet.cShow := False;
+    if TelnetThread <> nil then
+      TelnetThread.Terminate;
+    ConnectCluster := False;
+    ButtonSet;
+    CloseAction := caHide;
+  end
   else
-    INIFile.WriteBool('SetLog', 'cShow', False);
-  IniSet.cShow := False;
-  if TelnetThread <> nil then
-    TelnetThread.Terminate;
-  ConnectCluster := False;
-  ButtonSet;
-  CloseAction := caHide;
+  begin
+    INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
+    MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
+    if TelnetThread <> nil then
+      TelnetThread.Terminate;
+  end;
 end;
 
 procedure TdxClusterForm.FormCreate(Sender: TObject);

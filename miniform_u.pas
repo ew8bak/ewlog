@@ -192,7 +192,7 @@ type
     SBCopy: TSpeedButton;
     SBInfo: TSpeedButton;
     Shape1: TShape;
-    StatusBar: TStatusBar;
+    StatBar: TStatusBar;
     CheckUpdateTimer: TTimer;
     TMTime: TTimer;
     LBLocalTimeD: TLabel;
@@ -278,6 +278,9 @@ type
     procedure SBSaveClick(Sender: TObject);
     procedure SBStateClick(Sender: TObject);
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
+    procedure StatBarClick(Sender: TObject);
+    procedure StatBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
+      const Rect: TRect);
     procedure TMTimeTimer(Sender: TObject);
   private
     SelEditNumChar: integer;
@@ -436,9 +439,9 @@ end;
 procedure TMiniForm.TextSB(Value: string; PanelNum: integer);
 begin
   if PanelNum = 0 then
-    StatusBar.Panels.Items[0].Text := Value;
+    StatBar.Panels.Items[0].Text := Value;
   if PanelNum = 1 then
-    StatusBar.Panels.Items[1].Text := Value + '     ';
+    StatBar.Panels.Items[1].Text := Value + '     ';
 end;
 
 procedure TMiniForm.SwitchForm;
@@ -451,7 +454,7 @@ begin
     MiniForm.BorderStyle := bsNone;
     MiniForm.Parent := MainForm.MiniPanel;
     MiniForm.Align := alClient;
-    StatusBar.Parent := MainForm;
+    StatBar.Parent := MainForm;
     GridsForm.BorderStyle := bsNone;
     GridsForm.Parent := MainForm.GridsPanel;
     GridsForm.Align := alClient;
@@ -509,7 +512,7 @@ begin
     MiniForm.Parent := nil;
     MiniForm.BorderStyle := bsSizeable;
     MiniForm.Align := alNone;
-    StatusBar.Parent := MiniForm;
+    StatBar.Parent := MiniForm;
     MainForm.Close;
     GridsForm.Parent := nil;
     GridsForm.BorderStyle := bsSizeable;
@@ -1472,6 +1475,22 @@ begin
     Shape1.Hint := rNewDXCCInBM;
   if Shape1.Brush.Color = clFuchsia then
     Shape1.Hint := rNeedQSL;
+end;
+
+procedure TMiniForm.StatBarClick(Sender: TObject);
+begin
+  if StatBar.Panels.Items[0].Text = rUpdateRequired then
+    Update_Form.Show;
+end;
+
+procedure TMiniForm.StatBarDrawPanel(StatusBar: TStatusBar;
+  Panel: TStatusPanel; const Rect: TRect);
+begin
+  if (Panel = StatusBar.Panels[0]) and (StatusBar.Panels[0].Text = rUpdateRequired) then
+  begin
+    StatusBar.Canvas.Font.Color := clRed;
+    StatusBar.Canvas.TextOut(Rect.left, Rect.Top, StatusBar.Panels[0].Text);
+  end;
 end;
 
 procedure TMiniForm.EditCallsignButtonClick(Sender: TObject);

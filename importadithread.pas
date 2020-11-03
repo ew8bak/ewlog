@@ -715,6 +715,8 @@ begin
             InitDB.DefTransaction.Commit;
         end;
 
+        if Terminated then Exit;
+
       except
         on E: ESQLDatabaseError do
         begin

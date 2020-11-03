@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 326
+  Left = 327
   Height = 428
-  Top = 152
+  Top = 223
   Width = 477
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -1990,7 +1990,7 @@ object MiniForm: TMiniForm
     OnMouseMove = Shape1MouseMove
     ShowHint = True
   end
-  object StatusBar: TStatusBar
+  object StatBar: TStatusBar
     Left = 0
     Height = 15
     Top = 390
@@ -2004,6 +2004,8 @@ object MiniForm: TMiniForm
         Width = 200
       end>
     SimplePanel = False
+    OnClick = StatBarClick
+    OnDrawPanel = StatBarDrawPanel
   end
   object TMTime: TTimer
     OnTimer = TMTimeTimer
@@ -2315,7 +2317,7 @@ object MiniForm: TMiniForm
     Interval = 3600000
     OnTimer = CheckUpdateTimerTimer
     OnStartTimer = CheckUpdateTimerStartTimer
-    Left = 72
-    Top = 344
+    Left = 248
+    Top = 336
   end
 end

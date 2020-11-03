@@ -37,7 +37,7 @@ implementation
 {$R *.lfm}
 
 { TMainForm }
-uses MainFuncDM, InitDB_dm, TRXForm_U, miniform_u, viewPhoto_U;
+uses MainFuncDM, InitDB_dm, TRXForm_U, miniform_u, viewPhoto_U, dxclusterform_u;
 
 procedure TMainForm.SavePosition;
 begin
@@ -80,6 +80,8 @@ begin
     TRXForm.SavePosition;
   if IniSet.pShow then
     viewPhoto.SavePosition;
+  if dxClusterForm <> nil then
+    dxClusterForm.FormClose(MainForm,CloseAction);
   TRXForm.FreeRadio;
 end;
 
