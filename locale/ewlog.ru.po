@@ -400,7 +400,7 @@ msgstr "Что-то пошло не так... Проверьте настрой�
 
 #: resourcestr.rdatabasenotconnected
 msgid "Check the correctness of the entered data. Possibly a non-existing database has been entered (it must be created first). Or Invalid username and password."
-msgstr "Проверьте правильность введенных данных. Возможно, была введена несуществующая база данных (ее необходимо сначала создать). Или неверное имя пользователя и пароль"
+msgstr "Проверьте правильность введенных данных. Возможно, была введена несуществующая база данных (ее необходимо сначала создать). Или неверное имя пользователя и пароль."
 
 #: resourcestr.rdberror
 msgctxt "resourcestr.rdberror"
@@ -441,11 +441,9 @@ msgid "Done"
 msgstr "Готово"
 
 #: resourcestr.rduplicates
-#, fuzzy
-#| msgid "Duplicates "
 msgctxt "resourcestr.rduplicates"
 msgid "Duplicates"
-msgstr "Дубликаты "
+msgstr "Дубликаты"
 
 #: resourcestr.rdxccprefix
 msgctxt "resourcestr.rdxccprefix"
@@ -479,7 +477,7 @@ msgstr "Вы должны ввести позывной"
 
 #: resourcestr.rentermesqslinf
 msgid "Please enter your message"
-msgstr ""
+msgstr "Пожалуйста, введите ваше сообщение"
 
 #: resourcestr.rerrorservicedb
 msgid "Service database not found! Verify program installation integrity. File serviceLOG.db"
@@ -552,7 +550,7 @@ msgstr "Импорт"
 
 #: resourcestr.rimported
 msgid "Imported"
-msgstr ""
+msgstr "Импортировано"
 
 #: resourcestr.rimporterrors
 msgctxt "resourcestr.rimporterrors"
@@ -652,7 +650,7 @@ msgstr "База данных MySQL не настроена"
 
 #: resourcestr.rneedqsl
 msgid "QSL is needed"
-msgstr ""
+msgstr "Нужна QSL"
 
 #: resourcestr.rnewdxccinbm
 msgid "A new country in BM"
@@ -746,7 +744,7 @@ msgstr "Фото из QRZ | HAMQTH"
 
 #: resourcestr.rpleaseqslinfo
 msgid "Please enter a message in the QSL Info field"
-msgstr ""
+msgstr "Пожалуйста, введите сообщение в QSL Info"
 
 #: resourcestr.rprocesseddata
 msgctxt "resourcestr.rprocesseddata"
@@ -860,7 +858,7 @@ msgstr "Отправить спот"
 
 #: resourcestr.rsentrecord
 msgid "Record sent"
-msgstr ""
+msgstr "Записей отправлено"
 
 #: resourcestr.rsetasdefaultjournal
 msgctxt "resourcestr.rsetasdefaultjournal"
@@ -1804,7 +1802,7 @@ msgstr "Широта"
 #: tdxclusterform.caption
 msgctxt "tdxclusterform.caption"
 msgid "DX Cluster"
-msgstr ""
+msgstr "DX Кластер"
 
 #: tdxclusterform.label1.caption
 msgid "To Callsign:"
@@ -1837,7 +1835,7 @@ msgstr "Телнет"
 #: tdxclusterform.tabsheet2.caption
 msgctxt "tdxclusterform.tabsheet2.caption"
 msgid "DX Cluster"
-msgstr ""
+msgstr "DX Кластер"
 
 #: tdxclusterform.tabsheet3.caption
 msgid "Private messages"
@@ -3631,7 +3629,7 @@ msgstr ""
 #: tminiform.lbband.caption
 msgctxt "tminiform.lbband.caption"
 msgid "Band"
-msgstr "Диапазон"
+msgstr "Диап"
 
 #: tminiform.lbbandqso.caption
 msgctxt "tminiform.lbbandqso.caption"
@@ -3676,7 +3674,7 @@ msgstr ""
 #: tminiform.lbcurrentlog.caption
 msgctxt "tminiform.lbcurrentlog.caption"
 msgid "Current log"
-msgstr "Текущий журнал"
+msgstr "Текущий лог"
 
 #: tminiform.lbdate.caption
 msgctxt "tminiform.lbdate.caption"
@@ -3711,7 +3709,7 @@ msgstr ""
 #: tminiform.lbgrid.caption
 msgctxt "tminiform.lbgrid.caption"
 msgid "Grid"
-msgstr "Локатор"
+msgstr "ЛОК"
 
 #: tminiform.lbiota.caption
 msgctxt "tminiform.lbiota.caption"
@@ -4154,7 +4152,7 @@ msgstr "Настройки"
 #: tminiform.mitelnetform.caption
 msgctxt "tminiform.mitelnetform.caption"
 msgid "DX Cluster"
-msgstr ""
+msgstr "DX Кластер"
 
 #: tminiform.remotetimelabel.caption
 msgctxt "tminiform.remotetimelabel.caption"
@@ -4618,19 +4616,16 @@ msgid "Path program:"
 msgstr "Путь программы:"
 
 #: tsetupform.btback.caption
-#, fuzzy
 msgctxt "tsetupform.btback.caption"
 msgid "Back"
 msgstr "Назад"
 
 #: tsetupform.btcheck.caption
-#, fuzzy
 msgctxt "tsetupform.btcheck.caption"
 msgid "Check connection"
 msgstr "Проверка соединения"
 
 #: tsetupform.btnext.caption
-#, fuzzy
 msgctxt "tsetupform.btnext.caption"
 msgid "Next"
 msgstr "Далее"
@@ -4645,11 +4640,9 @@ msgid "Next"
 msgstr "Далее"
 
 #: tsetupform.button4.caption
-#, fuzzy
-#| msgid "Next"
 msgctxt "tsetupform.button4.caption"
 msgid "OK"
-msgstr "Далее"
+msgstr "Готово"
 
 #: tsetupform.button7.caption
 msgctxt "tsetupform.button7.caption"
@@ -4783,43 +4776,36 @@ msgid "Database settings"
 msgstr "Настройки базы данных"
 
 #: tsetupform.lbhost.caption
-#, fuzzy
 msgctxt "tsetupform.lbhost.caption"
 msgid "Host"
 msgstr "Хост"
 
 #: tsetupform.lbnamedb.caption
-#, fuzzy
 msgctxt "tsetupform.lbnamedb.caption"
 msgid "Name of database"
 msgstr "Имя базы данных"
 
 #: tsetupform.lbpassword.caption
-#, fuzzy
 msgctxt "tsetupform.lbpassword.caption"
 msgid "Password"
 msgstr "Пароль"
 
 #: tsetupform.lbport.caption
-#, fuzzy
 msgctxt "tsetupform.lbport.caption"
 msgid "Port"
 msgstr "Порт"
 
 #: tsetupform.lbselectdb.caption
-#, fuzzy
 msgctxt "tsetupform.lbselectdb.caption"
 msgid "Database select"
 msgstr "Выбор базы данных"
 
 #: tsetupform.lbsqlpath.caption
-#, fuzzy
 msgctxt "tsetupform.lbsqlpath.caption"
 msgid "SQLite database path"
 msgstr "Путь к базе SQLite"
 
 #: tsetupform.lbusername.caption
-#, fuzzy
 msgctxt "tsetupform.lbusername.caption"
 msgid "Username"
 msgstr "Имя пользователя"
@@ -4933,7 +4919,7 @@ msgstr "RX0TX - Олег Чудаев"
 
 #: tthanks_form.label12.caption
 msgid "R9XAL - Aleksey Panyukov"
-msgstr ""
+msgstr "R9XAL - Алексей Панюков"
 
 #: tthanks_form.label2.caption
 msgid "EW2MS - Mikhail Senko"
@@ -5201,4 +5187,3 @@ msgstr "Фото"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
-

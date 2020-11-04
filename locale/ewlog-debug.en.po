@@ -865,7 +865,7 @@ msgid "File size: "
 msgstr ""
 
 #: resourcestr.rsqlitecurrentversion
-msgid "Installed version of sqlite3.so"
+msgid "Installed version of sqlite3.dll"
 msgstr ""
 
 #: resourcestr.rstate
@@ -964,7 +964,7 @@ msgstr ""
 
 #: resourcestr.rupdatesqlitedll
 msgid ""
-"Update sqlite3.so to version 3.24.0 or higher.\n"
+"Update sqlite3.dll to version 3.24.0 or higher.\n"
 "Current Latest Version 3.31.1\n"
 "Full work program can not be guaranteed\n"
 msgstr ""
@@ -2345,7 +2345,7 @@ msgstr ""
 
 #: texportadifform.button2.caption
 msgctxt "texportadifform.button2.caption"
-msgid "Cancel"
+msgid "Close"
 msgstr ""
 
 #: texportadifform.caption
@@ -2990,8 +2990,37 @@ msgctxt "tgridsform.sendclusteritem.caption"
 msgid "Send to DX Cluster"
 msgstr ""
 
+#: thiddensettings.button1.caption
+msgctxt "thiddensettings.button1.caption"
+msgid "Save"
+msgstr ""
+
 #: thiddensettings.caption
 msgid "Hidden Settings"
+msgstr ""
+
+#: thiddensettings.checkbox1.caption
+msgid "Use API CAT"
+msgstr ""
+
+#: thiddensettings.checkbox2.caption
+msgid "Use API send data"
+msgstr ""
+
+#: thiddensettings.groupbox1.caption
+msgid "Settings Cloudlog"
+msgstr ""
+
+#: thiddensettings.groupbox2.caption
+msgid "Send to Cloudlog"
+msgstr ""
+
+#: thiddensettings.labelededit1.editlabel.caption
+msgid "Server address"
+msgstr ""
+
+#: thiddensettings.labelededit2.editlabel.caption
+msgid "API Key"
 msgstr ""
 
 #: timportadifform.button1.caption
@@ -3044,7 +3073,6 @@ msgid "Imported Records"
 msgstr ""
 
 #: timportadifform.lblerrorlog.caption
-msgctxt "timportadifform.lblerrorlog.caption"
 msgid "Error file"
 msgstr ""
 
@@ -4096,14 +4124,6 @@ msgstr ""
 #: tminiform.miphoto.caption
 msgctxt "tminiform.miphoto.caption"
 msgid "Photo"
-msgstr ""
-
-#: tminiform.miphotoseparate.caption
-msgid "In a separate window"
-msgstr ""
-
-#: tminiform.miphotoseparatetop.caption
-msgid "On TOP"
 msgstr ""
 
 #: tminiform.miphototop.caption
