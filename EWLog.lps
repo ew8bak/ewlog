@@ -366,7 +366,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="sendtelnetspot_form_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="64"/>
         <CursorPos X="43" Y="88"/>
@@ -633,10 +632,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="130"/>
-        <CursorPos X="3" Y="605"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="76"/>
+        <CursorPos X="14" Y="83"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit60>
       <Unit61>
         <Filename Value="logbooktable_record.pas"/>
@@ -803,7 +805,7 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="334"/>
         <CursorPos X="11" Y="352"/>
         <UsageCount Value="201"/>
@@ -1564,7 +1566,7 @@
         <UsageCount Value="9"/>
       </Unit178>
     </Units>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1958" Column="41" TopLine="1941"/>
@@ -1669,6 +1671,18 @@
         <Filename Value="dxclusterform_u.pas"/>
         <Caret Line="343" Column="82" TopLine="332"/>
       </Position26>
+      <Position27>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="88" Column="12" TopLine="73"/>
+      </Position27>
+      <Position28>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="87" Column="20" TopLine="70"/>
+      </Position28>
+      <Position29>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="88" Column="32" TopLine="70"/>
+      </Position29>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

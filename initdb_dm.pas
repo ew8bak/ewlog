@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
   DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec,
-  Forms, LCLType;
+  Forms, LCLType, SQLite3Dyn;
 
 type
 
@@ -84,6 +84,7 @@ var
   tempProfileDir, tempUserDir: string;
 {$ENDIF WINDOWS}
 begin
+  //sqlite3dyn.SQLiteDefaultLibrary:='libsqlite3.so';
   if Sender <> SetupForm then
   begin
   {$IFDEF UNIX}
