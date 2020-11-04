@@ -30,10 +30,11 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="332"/>
         <CursorPos Y="348"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="informationform_u.pas"/>
@@ -42,10 +43,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="76"/>
         <CursorPos Y="104"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="logconfigform_u.pas"/>
@@ -79,7 +83,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="103"/>
         <CursorPos X="26" Y="134"/>
         <UsageCount Value="200"/>
@@ -104,7 +108,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="115"/>
         <CursorPos X="34" Y="115"/>
         <UsageCount Value="200"/>
@@ -214,7 +218,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="198"/>
         <CursorPos X="3" Y="198"/>
         <UsageCount Value="200"/>
@@ -310,7 +314,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="122"/>
         <CursorPos X="30" Y="145"/>
         <UsageCount Value="200"/>
@@ -359,7 +363,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigGridForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="176"/>
         <CursorPos X="55" Y="207"/>
@@ -813,7 +816,6 @@
         <CursorPos X="52" Y="577"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="gridsform_u.pas"/>

@@ -1,7 +1,7 @@
 object InformationForm: TInformationForm
-  Left = 509
+  Left = 704
   Height = 367
-  Top = 199
+  Top = 121
   Width = 828
   BorderStyle = bsDialog
   Caption = 'Information'
@@ -19,9 +19,9 @@ object InformationForm: TInformationForm
     Top = 6
     Width = 396
     Caption = 'Callsign'
-    ClientHeight = 233
+    ClientHeight = 234
     ClientWidth = 394
-    Font.Height = -13
+    Font.Height = -12
     ParentFont = False
     TabOrder = 0
     object Label1: TLabel
@@ -438,7 +438,8 @@ object InformationForm: TInformationForm
     ShowHidden = False
     ButtonWidth = 23
     NumGlyphs = 1
-    Font.Height = -11
+    AutoSize = False
+    Font.Height = -12
     MaxLength = 0
     ParentFont = False
     TabOrder = 8

@@ -1,11 +1,11 @@
 object EditQSO_Form: TEditQSO_Form
   Left = 584
-  Height = 590
+  Height = 600
   Top = 108
   Width = 491
   BorderStyle = bsDialog
   Caption = 'QSO Editor'
-  ClientHeight = 590
+  ClientHeight = 600
   ClientWidth = 491
   DefaultMonitor = dmMainForm
   OnClose = FormClose
@@ -15,11 +15,11 @@ object EditQSO_Form: TEditQSO_Form
   LCLVersion = '2.0.10.0'
   object GroupBox1: TGroupBox
     Left = 7
-    Height = 336
+    Height = 340
     Top = 12
     Width = 479
     Caption = 'Territory'
-    ClientHeight = 320
+    ClientHeight = 324
     ClientWidth = 477
     Font.Height = -12
     ParentFont = False
@@ -978,7 +978,7 @@ object EditQSO_Form: TEditQSO_Form
       Width = 44
       AutoSize = False
       BorderSpacing.Top = 5
-      Font.Height = -11
+      Font.Height = -12
       ParentFont = False
       TabOrder = 26
     end
@@ -991,7 +991,7 @@ object EditQSO_Form: TEditQSO_Form
       Width = 44
       AutoSize = False
       BorderSpacing.Top = 5
-      Font.Height = -11
+      Font.Height = -12
       ParentFont = False
       TabOrder = 27
     end
@@ -1009,7 +1009,7 @@ object EditQSO_Form: TEditQSO_Form
       AutoSize = False
       BorderSpacing.Left = 3
       BorderSpacing.Right = 5
-      Font.Height = -11
+      Font.Height = -12
       ItemHeight = 16
       ParentFont = False
       Style = csOwnerDrawEditableVariable
@@ -1028,7 +1028,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Left = 37
       BorderSpacing.Top = 2
       BorderSpacing.Right = 4
-      Font.Height = -11
+      Font.Height = -12
       ItemHeight = 16
       OnChange = ComboBox2Change
       ParentFont = False
@@ -1049,7 +1049,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Left = 37
       BorderSpacing.Top = 2
       BorderSpacing.Right = 35
-      Font.Height = -11
+      Font.Height = -12
       ItemHeight = 16
       OnChange = ComboBox2Change
       ParentFont = False
@@ -1060,7 +1060,7 @@ object EditQSO_Form: TEditQSO_Form
   object PageControl1: TPageControl
     Left = 7
     Height = 204
-    Top = 352
+    Top = 360
     Width = 479
     ActivePage = TabSheet1
     Font.Height = -12
@@ -1568,7 +1568,7 @@ object EditQSO_Form: TEditQSO_Form
   object Button1: TButton
     Left = 408
     Height = 25
-    Top = 560
+    Top = 568
     Width = 75
     Caption = 'Close'
     Font.Height = -12
@@ -1579,7 +1579,7 @@ object EditQSO_Form: TEditQSO_Form
   object Button2: TButton
     Left = 324
     Height = 25
-    Top = 560
+    Top = 568
     Width = 75
     Caption = 'Cancel'
     Font.Height = -12
@@ -1590,7 +1590,7 @@ object EditQSO_Form: TEditQSO_Form
   object Button3: TButton
     Left = 240
     Height = 25
-    Top = 560
+    Top = 568
     Width = 75
     Caption = 'Apply'
     Font.Height = -12
