@@ -12,30 +12,44 @@ object SendTelnetSpot: TSendTelnetSpot
   Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object Edit1: TEdit
-    Left = 16
-    Height = 25
+    AnchorSideLeft.Control = Owner
+    Left = 20
+    Height = 23
     Top = 32
     Width = 120
+    AutoSize = False
+    BorderSpacing.Left = 20
     Font.Height = -12
     ParentFont = False
     TabOrder = 0
   end
   object Label1: TLabel
-    Left = 16
-    Height = 13
+    AnchorSideLeft.Control = Edit1
+    AnchorSideBottom.Control = Edit1
+    Left = 20
+    Height = 15
     Top = 16
     Width = 60
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 1
     Caption = 'DX Callsign'
     ParentColor = False
   end
   object ComboBox1: TComboBox
-    Left = 160
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 157
     Height = 23
     Top = 32
     Width = 120
-    AutoSize = False
+    Anchors = [akTop, akRight]
+    BorderSpacing.Left = 10
+    BorderSpacing.Right = 20
     Font.Height = -12
-    ItemHeight = 0
+    ItemHeight = 15
     ItemIndex = 2
     Items.Strings = (
       '1.800.00'
@@ -55,18 +69,25 @@ object SendTelnetSpot: TSendTelnetSpot
     Text = '7.000.00'
   end
   object Label2: TLabel
-    Left = 160
-    Height = 13
+    AnchorSideLeft.Control = ComboBox1
+    AnchorSideBottom.Control = ComboBox1
+    Left = 157
+    Height = 15
     Top = 16
-    Width = 58
+    Width = 55
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 1
     Caption = 'Frequency'
     ParentColor = False
   end
   object EditComment: TEdit
-    Left = 16
-    Height = 25
+    AnchorSideLeft.Control = Owner
+    Left = 20
+    Height = 23
     Top = 80
-    Width = 264
+    Width = 257
+    AutoSize = False
+    BorderSpacing.Left = 20
     Font.Height = -12
     OnChange = EditCommentChange
     OnKeyDown = EditCommentKeyDown
@@ -74,10 +95,14 @@ object SendTelnetSpot: TSendTelnetSpot
     TabOrder = 2
   end
   object Label3: TLabel
-    Left = 16
-    Height = 13
+    AnchorSideLeft.Control = EditComment
+    AnchorSideBottom.Control = EditComment
+    Left = 20
+    Height = 15
     Top = 64
-    Width = 53
+    Width = 54
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 1
     Caption = 'Comment'
     ParentColor = False
   end
