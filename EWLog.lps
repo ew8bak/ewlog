@@ -306,7 +306,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="122"/>
         <CursorPos X="30" Y="145"/>
         <UsageCount Value="200"/>
@@ -760,7 +760,6 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="1480"/>
         <CursorPos X="3" Y="1482"/>
         <UsageCount Value="201"/>
@@ -802,12 +801,13 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="562"/>
         <CursorPos X="52" Y="577"/>
-        <FoldState Value=" T1tT02H"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="gridsform_u.pas"/>
@@ -846,10 +846,11 @@
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="718"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="715"/>
         <CursorPos X="33" Y="718"/>
         <UsageCount Value="57"/>
+        <Loaded Value="True"/>
       </Unit83>
       <Unit84>
         <Filename Value="exportadithread.pas"/>
@@ -1097,35 +1098,35 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="400"/>
         <CursorPos Y="417"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit116>
       <Unit117>
         <Filename Value="C:\usr\lib\lazarus\lcl\interfaces\gtk2\gtk2widgetset.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2411"/>
         <CursorPos Y="2431"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit117>
       <Unit118>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3547"/>
         <CursorPos Y="3566"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit118>
       <Unit119>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos Y="22"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit119>
       <Unit120>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="150"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit120>
       <Unit121>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\wincontrol.inc"/>
@@ -1140,7 +1141,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="100"/>
         <CursorPos Y="123"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit122>
       <Unit123>
         <Filename Value="C:\usr\lib\lazarus\lcl\interfaces\gtk2\gtk2wsstdctrls.pp"/>
@@ -1148,7 +1149,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2442"/>
         <CursorPos Y="2462"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit123>
       <Unit124>
         <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\lnet\lib\lnet.pp"/>
@@ -1171,7 +1172,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1905"/>
         <CursorPos X="105" Y="1925"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit126>
       <Unit127>
@@ -1252,14 +1253,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="550"/>
         <CursorPos Y="588"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit137>
       <Unit138>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos Y="48"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit138>
       <Unit139>
         <Filename Value="C:\usr\lib\fpc\src\packages\fcl-db\src\sqldb\sqldb.pp"/>
@@ -1275,7 +1276,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="195"/>
         <CursorPos X="3" Y="215"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit140>
       <Unit141>
         <Filename Value="C:\usr\lib\fpc\src\rtl\objpas\classes\classesh.inc"/>
@@ -1290,14 +1291,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="3" Y="66"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit142>
       <Unit143>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\customcontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos Y="60"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit143>
       <Unit144>
         <Filename Value="C:\usr\lib\fpc\src\packages\fcl-base\src\gettext.pp"/>
@@ -1486,7 +1487,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="260"/>
         <CursorPos X="14" Y="279"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit168>
       <Unit169>
         <Filename Value="C:\usr\lib\fpc\src\rtl\unix\tthread.inc"/>
