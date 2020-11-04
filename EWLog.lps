@@ -30,7 +30,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="417"/>
         <CursorPos X="53" Y="439"/>
         <UsageCount Value="200"/>
@@ -55,10 +55,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="104"/>
-        <CursorPos X="45" Y="262"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="270"/>
+        <CursorPos X="60" Y="287"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="configform_u.pas"/>
@@ -67,7 +68,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="298"/>
         <CursorPos X="3" Y="312"/>
         <UsageCount Value="200"/>
@@ -80,7 +81,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="104"/>
         <CursorPos X="38" Y="118"/>
         <UsageCount Value="200"/>
@@ -93,10 +94,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CreateJournalForm_U"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="172"/>
         <CursorPos X="52" Y="187"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="importadifform_u.pas"/>
@@ -105,7 +109,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="114"/>
         <CursorPos X="23" Y="127"/>
         <UsageCount Value="200"/>
@@ -634,7 +638,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="130"/>
         <CursorPos X="3" Y="605"/>
         <UsageCount Value="200"/>
@@ -664,7 +668,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="1335"/>
         <CursorPos X="38" Y="1308"/>
         <UsageCount Value="200"/>
@@ -765,7 +769,6 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="1510"/>
         <CursorPos X="53" Y="1520"/>
         <UsageCount Value="201"/>
@@ -807,10 +810,12 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="562"/>
-        <CursorPos X="52" Y="577"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="332"/>
+        <CursorPos X="51" Y="346"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="gridsform_u.pas"/>
@@ -819,12 +824,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="627"/>
         <CursorPos X="16" Y="613"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit80>
       <Unit81>
         <Filename Value="mapform_u.pas"/>
@@ -1569,7 +1573,7 @@
         <UsageCount Value="9"/>
       </Unit178>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1958" Column="41" TopLine="1941"/>
@@ -1682,6 +1686,10 @@
         <Filename Value="editqso_u.pas"/>
         <Caret Line="424" Column="22" TopLine="397"/>
       </Position28>
+      <Position29>
+        <Filename Value="logconfigform_u.pas"/>
+        <Caret Line="263" Column="45" TopLine="229"/>
+      </Position29>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
