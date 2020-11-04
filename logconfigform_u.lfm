@@ -84,9 +84,9 @@ object LogConfigForm: TLogConfigForm
           ParentFont = False
         end
         object EditCallSign: TEdit
-          Left = 58
+          Left = 64
           Height = 23
-          Top = 92
+          Top = 96
           Width = 172
           AutoSize = False
           Font.Height = -12
@@ -94,21 +94,28 @@ object LogConfigForm: TLogConfigForm
           TabOrder = 1
         end
         object EditName: TEdit
-          Left = 58
+          AnchorSideTop.Control = EditCallSign
+          AnchorSideTop.Side = asrBottom
+          Left = 64
           Height = 23
-          Top = 122
+          Top = 121
           Width = 172
           AutoSize = False
+          BorderSpacing.Top = 2
           Font.Height = -12
           ParentFont = False
           TabOrder = 2
         end
         object EditQTH: TEdit
-          Left = 58
+          AnchorSideTop.Control = EditName
+          AnchorSideTop.Side = asrBottom
+          Left = 64
           Height = 23
-          Top = 150
+          Top = 146
           Width = 172
+          Anchors = [akTop]
           AutoSize = False
+          BorderSpacing.Top = 2
           Font.Height = -12
           ParentFont = False
           TabOrder = 3
@@ -117,9 +124,9 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditCallSign
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditCallSign
-          Left = 13
+          Left = 19
           Height = 15
-          Top = 96
+          Top = 100
           Width = 42
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
@@ -132,9 +139,9 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditName
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditName
-          Left = 23
+          Left = 29
           Height = 15
-          Top = 126
+          Top = 125
           Width = 32
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
@@ -147,9 +154,9 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditQTH
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditQTH
-          Left = 32
+          Left = 38
           Height = 15
-          Top = 154
+          Top = 150
           Width = 23
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
@@ -170,7 +177,8 @@ object LogConfigForm: TLogConfigForm
           ParentFont = False
         end
         object EditITU: TEdit
-          Left = 58
+          AnchorSideLeft.Control = EditQTH
+          Left = 64
           Height = 23
           Top = 216
           Width = 35
@@ -181,11 +189,15 @@ object LogConfigForm: TLogConfigForm
           TabOrder = 4
         end
         object EditGrid: TEdit
-          Left = 58
+          AnchorSideLeft.Control = EditITU
+          AnchorSideTop.Control = EditITU
+          AnchorSideTop.Side = asrBottom
+          Left = 64
           Height = 23
-          Top = 244
+          Top = 241
           Width = 172
           AutoSize = False
+          BorderSpacing.Top = 2
           CharCase = ecUppercase
           Font.Height = -12
           OnChange = EditGridChange
@@ -193,10 +205,13 @@ object LogConfigForm: TLogConfigForm
           TabOrder = 5
         end
         object EditCQ: TEdit
+          AnchorSideRight.Control = EditQTH
+          AnchorSideRight.Side = asrBottom
           Left = 195
           Height = 23
           Top = 216
-          Width = 35
+          Width = 41
+          Anchors = [akTop, akRight]
           AutoSize = False
           Font.Height = -12
           NumbersOnly = True
@@ -204,22 +219,32 @@ object LogConfigForm: TLogConfigForm
           TabOrder = 6
         end
         object EditLat: TEdit
-          Left = 58
+          AnchorSideLeft.Control = EditGrid
+          AnchorSideTop.Control = EditGrid
+          AnchorSideTop.Side = asrBottom
+          Left = 64
           Height = 23
-          Top = 272
+          Top = 266
           Width = 70
           AutoSize = False
+          BorderSpacing.Top = 2
           Font.Height = -12
           ParentFont = False
           ReadOnly = True
           TabOrder = 7
         end
         object EditLon: TEdit
+          AnchorSideTop.Control = EditGrid
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = EditDescription
+          AnchorSideRight.Side = asrBottom
           Left = 194
           Height = 23
-          Top = 272
+          Top = 266
           Width = 70
+          Anchors = [akTop, akRight]
           AutoSize = False
+          BorderSpacing.Top = 2
           Font.Height = -12
           ParentFont = False
           ReadOnly = True
@@ -229,7 +254,7 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditITU
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditITU
-          Left = 38
+          Left = 44
           Height = 15
           Top = 220
           Width = 17
@@ -259,9 +284,9 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditGrid
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditGrid
-          Left = 33
+          Left = 39
           Height = 15
-          Top = 248
+          Top = 245
           Width = 22
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
@@ -274,9 +299,9 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditLat
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditLat
-          Left = 12
+          Left = 18
           Height = 15
-          Top = 276
+          Top = 270
           Width = 43
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
@@ -291,7 +316,7 @@ object LogConfigForm: TLogConfigForm
           AnchorSideRight.Control = EditLon
           Left = 139
           Height = 15
-          Top = 276
+          Top = 270
           Width = 54
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 1
@@ -312,7 +337,8 @@ object LogConfigForm: TLogConfigForm
           ParentFont = False
         end
         object EditQSLinfo: TEdit
-          Left = 59
+          AnchorSideLeft.Control = EditLat
+          Left = 64
           Height = 23
           Top = 336
           Width = 192

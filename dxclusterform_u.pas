@@ -343,12 +343,13 @@ begin
     if (Length(IniSet.Cluster_Login) > 0) and (Pos('login', TelnetLine) = 1) then
       DXTelnetClient.SendMessage(IniSet.Cluster_Login + #13#10, nil);
 
-    if (Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0) and
-      (Pos('>', buffer) <> Length(buffer)) then
-    begin
-      Memo2.Lines.Add(buffer);
-      exit;
-    end;
+    if Length(IniSet.Cluster_Login) > 0 then
+      if (Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0) and
+        (Pos('>', buffer) <> Length(buffer)) then
+      begin
+        Memo2.Lines.Add(buffer);
+        exit;
+      end;
 
     if (Pos('WCY de', buffer) = 1) or (Pos('WWV de', buffer) = 1) then
     begin
