@@ -19,6 +19,8 @@ object dxClusterForm: TdxClusterForm
     Width = 735
     ActivePage = TabSheet2
     Align = alClient
+    Font.Height = -12
+    ParentFont = False
     TabIndex = 1
     TabOrder = 0
     TabPosition = tpBottom
@@ -26,6 +28,8 @@ object dxClusterForm: TdxClusterForm
       Caption = 'Telnet'
       ClientHeight = 185
       ClientWidth = 725
+      Font.Height = -12
+      ParentFont = False
       object Memo1: TMemo
         Left = 0
         Height = 162
@@ -53,6 +57,8 @@ object dxClusterForm: TdxClusterForm
       Caption = 'DX Cluster'
       ClientHeight = 185
       ClientWidth = 725
+      Font.Height = -12
+      ParentFont = False
       object VirtualStringTree1: TVirtualStringTree
         Cursor = 63
         Left = 0
@@ -132,6 +138,8 @@ object dxClusterForm: TdxClusterForm
       Caption = 'Private messages'
       ClientHeight = 185
       ClientWidth = 725
+      Font.Height = -12
+      ParentFont = False
       object Memo2: TMemo
         Left = 0
         Height = 125
@@ -274,6 +282,8 @@ object dxClusterForm: TdxClusterForm
       Caption = 'Forecast'
       ClientHeight = 185
       ClientWidth = 725
+      Font.Height = -12
+      ParentFont = False
       object Memo3: TMemo
         Left = 0
         Height = 185
@@ -289,6 +299,8 @@ object dxClusterForm: TdxClusterForm
       Caption = 'Messages'
       ClientHeight = 185
       ClientWidth = 725
+      Font.Height = -12
+      ParentFont = False
       object Memo4: TMemo
         Left = 0
         Height = 185

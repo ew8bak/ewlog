@@ -410,6 +410,8 @@ object InformationForm: TInformationForm
     Caption = 'Photo'
     ClientHeight = 338
     ClientWidth = 414
+    Font.Height = -12
+    ParentFont = False
     TabOrder = 7
     object Image1: TImage
       Left = 0

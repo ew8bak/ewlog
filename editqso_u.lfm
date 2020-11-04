@@ -711,6 +711,7 @@ object EditQSO_Form: TEditQSO_Form
       Font.Height = -12
       ItemHeight = 0
       ParentFont = False
+      Style = csOwnerDrawEditableVariable
       TabOrder = 23
     end
     object SpeedButton3: TSpeedButton
@@ -950,6 +951,7 @@ object EditQSO_Form: TEditQSO_Form
       ListFieldIndex = 0
       LookupCache = False
       ParentFont = False
+      Style = csOwnerDrawEditableVariable
       TabOrder = 24
     end
     object ComboBox1: TComboBox
@@ -967,6 +969,7 @@ object EditQSO_Form: TEditQSO_Form
       Font.Height = -12
       ItemHeight = 0
       ParentFont = False
+      Style = csOwnerDrawEditableVariable
       TabOrder = 25
     end
     object Edit15: TEdit

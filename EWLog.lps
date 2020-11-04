@@ -43,13 +43,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <TopLine Value="76"/>
         <CursorPos Y="104"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="logconfigform_u.pas"/>
@@ -218,11 +216,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
         <TopLine Value="198"/>
         <CursorPos X="3" Y="198"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit19>
       <Unit20>
         <Filename Value="rig.pas"/>
@@ -816,6 +816,7 @@
         <CursorPos X="52" Y="577"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="gridsform_u.pas"/>

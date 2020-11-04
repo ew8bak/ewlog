@@ -343,7 +343,7 @@ object SettingsCAT: TSettingsCAT
     object RIG1: TRadioButton
       Left = 168
       Height = 23
-      Top = -8
+      Top = -2
       Width = 52
       Caption = 'RIG1'
       Checked = True
@@ -381,20 +381,21 @@ object SettingsCAT: TSettingsCAT
     object SpinEdit1: TSpinEdit
       AnchorSideLeft.Control = cbManufacturer
       AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = cbManufacturer
+      AnchorSideTop.Side = asrCenter
       Left = 238
-      Height = 27
-      Top = 25
+      Height = 25
+      Top = 26
       Width = 62
-      AutoSize = False
       BorderSpacing.Left = 2
       MinValue = 3
       TabOrder = 13
       Value = 3
     end
     object RadioButton1: TRadioButton
-      Left = 240
+      Left = 238
       Height = 23
-      Top = -8
+      Top = -2
       Width = 52
       Caption = 'RIG2'
       TabOrder = 14
