@@ -396,6 +396,8 @@ object ImportADIFForm: TImportADIFForm
       Width = 104
       Caption = 'Time OFF QSO'
       Checked = True
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 1
       TabStop = True
     end
@@ -405,6 +407,8 @@ object ImportADIFForm: TImportADIFForm
       Top = 0
       Width = 101
       Caption = 'Time ON QSO'
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 0
     end
   end

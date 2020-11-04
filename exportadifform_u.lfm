@@ -3,11 +3,13 @@ object exportAdifForm: TexportAdifForm
   Height = 211
   Top = 174
   Width = 442
+  AutoSize = True
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Export ADIF'
   ClientHeight = 211
   ClientWidth = 442
+  Font.Height = -12
   FormStyle = fsSystemStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
@@ -24,10 +26,13 @@ object exportAdifForm: TexportAdifForm
     TabOrder = 0
   end
   object Label1: TLabel
+    AnchorSideTop.Control = DateEdit2
+    AnchorSideTop.Side = asrBottom
     Left = 120
     Height = 13
-    Top = 144
+    Top = 146
     Width = 100
+    BorderSpacing.Top = 5
     Caption = 'Number of QSO: 0'
     Font.Height = -12
     ParentColor = False
@@ -91,13 +96,19 @@ object exportAdifForm: TexportAdifForm
     ParentFont = False
   end
   object DateEdit1: TDateEdit
-    Left = 120
+    AnchorSideLeft.Control = Image1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrBottom
+    Left = 119
     Height = 24
     Top = 72
     Width = 130
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DateOrder = doNone
     ButtonWidth = 23
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 3
     NumGlyphs = 1
     Font.Height = -11
     MaxLength = 0
@@ -105,24 +116,33 @@ object exportAdifForm: TexportAdifForm
     TabOrder = 4
   end
   object Label4: TLabel
+    AnchorSideTop.Control = DateEdit1
+    AnchorSideTop.Side = asrBottom
     Left = 128
     Height = 13
-    Top = 96
+    Top = 101
     Width = 13
+    BorderSpacing.Top = 5
     Caption = 'To'
     Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
   object DateEdit2: TDateEdit
-    Left = 120
+    AnchorSideLeft.Control = Image1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label4
+    AnchorSideTop.Side = asrBottom
+    Left = 119
     Height = 24
-    Top = 114
+    Top = 117
     Width = 130
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DefaultToday = True
     DateOrder = doNone
     ButtonWidth = 23
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 3
     NumGlyphs = 1
     Font.Height = -11
     MaxLength = 0
@@ -498,6 +518,8 @@ object exportAdifForm: TexportAdifForm
     Top = 56
     Width = 132
     Caption = 'Export on Win1251'
+    Font.Height = -12
+    ParentFont = False
     TabOrder = 8
   end
   object CheckBox4: TCheckBox
@@ -507,6 +529,8 @@ object exportAdifForm: TexportAdifForm
     Width = 115
     Caption = 'Convert to Latin'
     Enabled = False
+    Font.Height = -12
+    ParentFont = False
     TabOrder = 9
   end
   object PbExport: TProgressBar

@@ -28,7 +28,7 @@ object dxClusterForm: TdxClusterForm
       ClientWidth = 725
       object Memo1: TMemo
         Left = 0
-        Height = 160
+        Height = 162
         Top = 0
         Width = 725
         Align = alClient
@@ -38,11 +38,14 @@ object dxClusterForm: TdxClusterForm
       end
       object EditCommand: TEdit
         Left = 0
-        Height = 25
-        Top = 160
+        Height = 23
+        Top = 162
         Width = 725
         Align = alBottom
+        AutoSize = False
+        Font.Height = -12
         OnKeyDown = EditCommandKeyDown
+        ParentFont = False
         TabOrder = 1
       end
     end
