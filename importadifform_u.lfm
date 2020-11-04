@@ -450,10 +450,15 @@ object ImportADIFForm: TImportADIFForm
     OnClick = FileNameEdit1ButtonClick
   end
   object Button1: TButton
-    Left = 432
+    AnchorSideLeft.Control = FileNameEdit1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = FileNameEdit1
+    AnchorSideTop.Side = asrCenter
+    Left = 429
     Height = 25
-    Top = 164
+    Top = 168
     Width = 75
+    BorderSpacing.Left = 5
     Caption = 'Import'
     Font.Height = -12
     OnClick = Button1Click
@@ -461,10 +466,15 @@ object ImportADIFForm: TImportADIFForm
     TabOrder = 5
   end
   object Button2: TButton
-    Left = 517
+    AnchorSideLeft.Control = Button1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Button1
+    AnchorSideTop.Side = asrCenter
+    Left = 509
     Height = 25
-    Top = 164
+    Top = 168
     Width = 75
+    BorderSpacing.Left = 5
     Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click

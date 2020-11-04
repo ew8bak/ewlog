@@ -15,10 +15,13 @@ object exportAdifForm: TexportAdifForm
   Position = poScreenCenter
   LCLVersion = '2.0.10.0'
   object Button1: TButton
+    AnchorSideBottom.Control = PbExport
     Left = 280
     Height = 25
-    Top = 162
+    Top = 161
     Width = 75
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 5
     Caption = 'Export'
     Font.Height = -12
     OnClick = Button1Click
@@ -75,10 +78,13 @@ object exportAdifForm: TexportAdifForm
     Transparent = False
   end
   object Button2: TButton
+    AnchorSideBottom.Control = PbExport
     Left = 360
     Height = 25
-    Top = 162
+    Top = 161
     Width = 75
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 5
     Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click

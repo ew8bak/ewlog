@@ -1546,6 +1546,7 @@ object EditQSO_Form: TEditQSO_Form
             Title.Caption = 'No calc DXCC'
             FieldName = 'NoCalcDXCC'
           end>
+        DataSource = GridsForm.FindQSODS
         DefaultRowHeight = 15
         Font.Height = -11
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAnyButtonCanSelect]

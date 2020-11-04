@@ -1345,7 +1345,7 @@ begin
         4: QSL_SENT_ADV := 'N';
       end;
 
-      if INIFile.ReadString('SetLog', 'ShowBand', '') = 'True' then
+      if IniSet.showBand then
         NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
           CBBand.Text, CBMode.Text))
       else

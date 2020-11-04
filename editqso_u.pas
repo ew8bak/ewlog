@@ -130,6 +130,7 @@ type
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton9Click(Sender: TObject);
   private
+    function SearchCountry(CallSign: string): string;
     { private declarations }
   public
     { public declarations }
@@ -148,10 +149,22 @@ uses miniform_u, DXCCEditForm_U, QSLManagerForm_U,
 
 { TEditQSO_Form }
 
+function TEditQSO_Form.SearchCountry(CallSign: string): string;
+var
+  PFXR: TPFXR;
+begin
+  Result := '';
+  if Length(CallSign) > 0 then
+  begin
+    PFXR := MainFunc.SearchPrefix(CallSign, '');
+    Result := PFXR.Country;
+  end;
+end;
+
 procedure TEditQSO_Form.SpeedButton11Click(Sender: TObject);
 begin
   InformationForm.FromForm := 'EditForm';
-  InformationForm.Callsign:=dmFunc.ExtractCallsign(Edit1.Text);
+  InformationForm.Callsign := dmFunc.ExtractCallsign(Edit1.Text);
   InformationForm.Show;
 end;
 
@@ -175,7 +188,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton2Click(Sender: TObject);
 begin
-   CountryEditForm.CountryQditQuery.DataBase := InitDB.ServiceDBConnection;
+  CountryEditForm.CountryQditQuery.DataBase := InitDB.ServiceDBConnection;
 
   CountryEditForm.CountryQditQuery.Close;
   CountryEditForm.CountryQditQuery.SQL.Clear;
@@ -408,9 +421,7 @@ begin
   end;
 
   if DBRecord.InitDB = 'YES' then
-
     SatPropQuery.DataBase := InitDB.ServiceDBConnection;
-
 
   if ComboBox2.Text <> '' then
     ComboBox2Change(Self);
@@ -424,8 +435,8 @@ begin
     SatPropQuery.Next;
   end;
   SatPropQuery.Close;
-  Button4.Click;
-  Edit1.SetFocus;
+
+  GroupBox1.Caption := SearchCountry(Edit1.Text);
 end;
 
 procedure TEditQSO_Form.SpeedButton10Click(Sender: TObject);

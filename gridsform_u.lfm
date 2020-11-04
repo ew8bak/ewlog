@@ -1,7 +1,7 @@
 object GridsForm: TGridsForm
-  Left = 691
+  Left = 1049
   Height = 401
-  Top = 255
+  Top = 178
   Width = 835
   Caption = 'Logbook'
   ClientHeight = 401
