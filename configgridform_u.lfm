@@ -1,7 +1,7 @@
 object ConfigGrid_Form: TConfigGrid_Form
-  Left = 354
+  Left = 546
   Height = 277
-  Top = 268
+  Top = 195
   Width = 651
   BorderStyle = bsDialog
   Caption = 'Table display settings'
@@ -35,10 +35,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object ComboBox1: TComboBox
     Left = 24
-    Height = 23
+    Height = 27
     Top = 104
     Width = 132
-    AutoSize = False
     Font.Height = -12
     ItemHeight = 0
     ItemIndex = 0
@@ -400,10 +399,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object ColorBox1: TColorBox
     Left = 24
-    Height = 22
+    Height = 28
     Top = 40
     Width = 132
-    AutoSize = False
     Font.Height = -12
     ItemHeight = 16
     OnChange = ColorBox1Change
@@ -412,10 +410,9 @@ object ConfigGrid_Form: TConfigGrid_Form
   end
   object ColorBox2: TColorBox
     Left = 24
-    Height = 22
+    Height = 28
     Top = 168
     Width = 132
-    AutoSize = False
     Font.Height = -12
     ItemHeight = 16
     OnChange = ColorBox2Change

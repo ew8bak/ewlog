@@ -27,7 +27,7 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Side = asrBottom
       Left = 10
       Height = 23
-      Top = 68
+      Top = 67
       Width = 45
       BorderSpacing.Left = 10
       BorderSpacing.Top = 10
@@ -60,7 +60,7 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Side = asrBottom
       Left = 10
       Height = 23
-      Top = 131
+      Top = 129
       Width = 46
       BorderSpacing.Left = 10
       BorderSpacing.Top = 10
@@ -76,11 +76,14 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Control = cbCW
       AnchorSideTop.Side = asrBottom
       Left = 10
-      Height = 25
+      Height = 24
       Top = 33
       Width = 296
+      AutoSize = False
       BorderSpacing.Left = 10
       BorderSpacing.Top = 5
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 3
       Text = ':CW:'
     end
@@ -89,11 +92,14 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Control = cbSSB
       AnchorSideTop.Side = asrBottom
       Left = 10
-      Height = 25
-      Top = 96
+      Height = 24
+      Top = 95
       Width = 296
+      AutoSize = False
       BorderSpacing.Left = 10
       BorderSpacing.Top = 5
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 4
       Text = ':AM:FM:SSB:'
     end
@@ -102,11 +108,14 @@ object ClusterFilter: TClusterFilter
       AnchorSideTop.Control = cbData
       AnchorSideTop.Side = asrBottom
       Left = 10
-      Height = 25
-      Top = 159
+      Height = 24
+      Top = 157
       Width = 296
+      AutoSize = False
       BorderSpacing.Left = 10
       BorderSpacing.Top = 5
+      Font.Height = -12
+      ParentFont = False
       TabOrder = 5
       Text = ':PSK31:RTTY:FT8:JT65:'
     end
@@ -133,7 +142,9 @@ object ClusterFilter: TClusterFilter
     BorderSpacing.Left = 10
     BorderSpacing.Top = 20
     Caption = 'Delete spots older then:'
+    Font.Height = -12
     ParentColor = False
+    ParentFont = False
   end
   object SpinEdit1: TSpinEdit
     AnchorSideLeft.Control = Label1
@@ -198,6 +209,8 @@ object ClusterFilter: TClusterFilter
     BorderSpacing.Left = 10
     BorderSpacing.Top = 5
     Caption = 'Expand list'
+    Font.Height = -12
+    ParentFont = False
     TabOrder = 5
   end
 end

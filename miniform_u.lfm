@@ -1846,14 +1846,13 @@ object MiniForm: TMiniForm
     ParentFont = False
   end
   object LBYourQSL: TLabel
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = SBCopy
-    AnchorSideTop.Side = asrBottom
-    Left = 321
+    AnchorSideLeft.Control = LBITU
+    AnchorSideTop.Control = LBITU
+    Left = 325
     Height = 13
-    Top = 343
+    Top = 355
     Width = 50
-    BorderSpacing.Left = 321
+    BorderSpacing.Left = 55
     BorderSpacing.Top = 5
     Caption = 'Your QSL'
     Font.Height = -12
@@ -1865,9 +1864,9 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBYourQSL
     AnchorSideTop.Side = asrCenter
-    Left = 373
+    Left = 377
     Height = 24
-    Top = 337
+    Top = 349
     Width = 96
     AutoSize = False
     BorderSpacing.Left = 2
@@ -1888,11 +1887,14 @@ object MiniForm: TMiniForm
   end
   object SBCopy: TSpeedButton
     AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBLongitudeD
+    AnchorSideTop.Side = asrBottom
     Left = 432
     Height = 20
-    Top = 318
+    Top = 328
     Width = 20
     BorderSpacing.Left = 2
+    BorderSpacing.Top = 1
     Enabled = False
     Glyph.Data = {
       36040000424D3604000000000000360000002800000010000000100000000100
@@ -1934,11 +1936,14 @@ object MiniForm: TMiniForm
   object SBInfo: TSpeedButton
     AnchorSideLeft.Control = SBCopy
     AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBLongitudeD
+    AnchorSideTop.Side = asrBottom
     Left = 454
     Height = 20
-    Top = 318
+    Top = 328
     Width = 20
     BorderSpacing.Left = 2
+    BorderSpacing.Top = 1
     Glyph.Data = {
       36040000424D3604000000000000360000002800000010000000100000000100
       2000000000000004000064000000640000000000000000000000000000000000
@@ -2033,8 +2038,8 @@ object MiniForm: TMiniForm
     Top = 307
   end
   object MainMenu: TMainMenu
-    Left = 320
-    Top = 304
+    Left = 328
+    Top = 232
     object MILogbook: TMenuItem
       Caption = 'LogBook'
       object MenuItem54: TMenuItem
@@ -2338,6 +2343,6 @@ object MiniForm: TMiniForm
     OnTimer = CheckUpdateTimerTimer
     OnStartTimer = CheckUpdateTimerStartTimer
     Left = 248
-    Top = 336
+    Top = 280
   end
 end

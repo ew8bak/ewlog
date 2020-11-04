@@ -79,7 +79,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="103"/>
         <CursorPos X="26" Y="134"/>
         <UsageCount Value="200"/>
@@ -104,13 +104,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="115"/>
         <CursorPos X="34" Y="115"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="dmfunc_u.pas"/>
@@ -216,7 +214,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="198"/>
         <CursorPos X="3" Y="198"/>
         <UsageCount Value="200"/>
@@ -312,7 +310,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="122"/>
         <CursorPos X="30" Y="145"/>
         <UsageCount Value="200"/>
@@ -361,10 +359,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigGridForm_U"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="176"/>
         <CursorPos X="55" Y="207"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit32>
       <Unit33>
         <Filename Value="sendtelnetspot_form_u.pas"/>
@@ -385,10 +385,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterFilter_Form_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="67"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="71"/>
         <CursorPos X="39" Y="102"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit34>
       <Unit35>
         <Filename Value="clusterserver_form_u.pas"/>
@@ -836,7 +837,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos X="6" Y="55"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="178"/>
       </Unit81>
       <Unit82>
         <Filename Value="copytablethread.pas"/>
@@ -845,7 +846,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="7" Y="272"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="153"/>
       </Unit82>
       <Unit83>
         <Filename Value="importadithread.pas"/>
@@ -854,7 +855,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="715"/>
         <CursorPos X="33" Y="718"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="59"/>
         <Loaded Value="True"/>
       </Unit83>
       <Unit84>
@@ -864,7 +865,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="446"/>
         <CursorPos X="9" Y="455"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
       </Unit84>
       <Unit85>
         <Filename Value="mobilesyncthread.pas"/>
@@ -873,7 +874,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="367"/>
         <CursorPos X="22" Y="22"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
       </Unit85>
       <Unit86>
         <Filename Value="cloudlogcat.pas"/>
@@ -881,7 +882,7 @@
         <UnitName Value="CloudLogCAT"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="59"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="34"/>
       </Unit86>
       <Unit87>
         <Filename Value="getsessionid.pas"/>
