@@ -439,6 +439,7 @@ object MiniForm: TMiniForm
     Height = 27
     Top = 123
     Width = 60
+    AutoSize = False
     BorderSpacing.Left = 1
     Font.Height = -11
     ItemHeight = 16

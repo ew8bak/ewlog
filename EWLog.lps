@@ -1569,7 +1569,7 @@
         <UsageCount Value="9"/>
       </Unit178>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1958" Column="41" TopLine="1941"/>
@@ -1682,14 +1682,6 @@
         <Filename Value="editqso_u.pas"/>
         <Caret Line="424" Column="22" TopLine="397"/>
       </Position28>
-      <Position29>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="154" Column="4" TopLine="407"/>
-      </Position29>
-      <Position30>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="152" Column="37" TopLine="154"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
