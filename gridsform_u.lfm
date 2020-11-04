@@ -1,7 +1,7 @@
 object GridsForm: TGridsForm
-  Left = 1049
+  Left = 1036
   Height = 401
-  Top = 178
+  Top = 174
   Width = 835
   Caption = 'Logbook'
   ClientHeight = 401
@@ -21,13 +21,13 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'QSL'
-        Width = 35
+        Width = 34
         FieldName = 'QSL'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSLs'
-        Width = 40
+        Width = 39
         FieldName = 'QSLs'
       end    
       item
@@ -45,26 +45,26 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'Frequency'
-        Width = 65
+        Width = 68
         FieldName = 'QSOBand'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'Callsign'
-        Width = 54
+        Width = 56
         FieldName = 'CallSign'
       end    
       item
         MinSize = 15
         Title.Font.Height = -11
         Title.Caption = 'Mode'
-        Width = 43
+        Width = 45
         FieldName = 'QSOMode'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSOSubMode'
-        Width = 83
+        Width = 88
         FieldName = 'QSOSubMode'
       end    
       item
@@ -88,7 +88,7 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'Grid'
-        Width = 35
+        Width = 37
         FieldName = 'Grid'
       end    
       item
@@ -106,68 +106,68 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'IOTA'
-        Width = 39
+        Width = 40
         FieldName = 'IOTA'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'Manager'
-        Width = 59
+        Width = 61
         FieldName = 'QSLManager'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSLs Date'
-        Width = 67
+        Width = 66
         FieldName = 'QSLSentDate'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSLr Date'
-        Width = 66
+        Width = 65
         FieldName = 'QSLRecDate'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'LOTWr Date'
-        Width = 75
+        Width = 77
         FieldName = 'LoTWRecDate'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'Prefix'
-        Width = 45
+        Width = 43
         FieldName = 'MainPrefix'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'DXCC'
-        Width = 44
+        Width = 43
         FieldName = 'DXCCPrefix'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'CQ Zone'
-        Width = 58
+        Width = 59
         FieldName = 'CQZone'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'ITU Zone'
-        Width = 59
+        Width = 61
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Title.Font.Height = -11
         Title.Caption = 'Manual Set'
-        Width = 71
+        Width = 73
         FieldName = 'ManualSet'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'Continent'
-        Width = 63
+        Width = 67
         FieldName = 'Continent'
       end    
       item
@@ -180,13 +180,13 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'QSL r VIA'
-        Width = 62
+        Width = 61
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSL s VIA'
-        Width = 63
+        Width = 62
         FieldName = 'QSL_SENT_VIA'
       end    
       item
@@ -225,13 +225,13 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'QSL'
-        Width = 35
+        Width = 34
         FieldName = 'QSL'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSLs'
-        Width = 40
+        Width = 39
         FieldName = 'QSLs'
       end    
       item
@@ -249,26 +249,26 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'Frequency'
-        Width = 65
+        Width = 68
         FieldName = 'QSOBand'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'Callsign'
-        Width = 54
+        Width = 56
         FieldName = 'CallSign'
       end    
       item
         MinSize = 15
         Title.Font.Height = -11
         Title.Caption = 'Mode'
-        Width = 43
+        Width = 45
         FieldName = 'QSOMode'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSOSubMode'
-        Width = 83
+        Width = 88
         FieldName = 'QSOSubMode'
       end    
       item
@@ -292,7 +292,7 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'Grid'
-        Width = 35
+        Width = 37
         FieldName = 'Grid'
       end    
       item
@@ -310,68 +310,68 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'IOTA'
-        Width = 39
+        Width = 40
         FieldName = 'IOTA'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'Manager'
-        Width = 59
+        Width = 61
         FieldName = 'QSLManager'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSLs Date'
-        Width = 67
+        Width = 66
         FieldName = 'QSLSentDate'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSLr Date'
-        Width = 66
+        Width = 65
         FieldName = 'QSLRecDate'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'LOTWr Date'
-        Width = 75
+        Width = 77
         FieldName = 'LoTWRecDate'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'Prefix'
-        Width = 45
+        Width = 43
         FieldName = 'MainPrefix'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'DXCC'
-        Width = 44
+        Width = 43
         FieldName = 'DXCCPrefix'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'CQ Zone'
-        Width = 58
+        Width = 59
         FieldName = 'CQZone'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'ITU Zone'
-        Width = 59
+        Width = 61
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Title.Font.Height = -11
         Title.Caption = 'Manual Set'
-        Width = 71
+        Width = 73
         FieldName = 'ManualSet'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'Continent'
-        Width = 63
+        Width = 67
         FieldName = 'Continent'
       end    
       item
@@ -384,13 +384,13 @@ object GridsForm: TGridsForm
       item
         Title.Font.Height = -11
         Title.Caption = 'QSL r VIA'
-        Width = 62
+        Width = 61
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
         Title.Font.Height = -11
         Title.Caption = 'QSL s VIA'
-        Width = 63
+        Width = 62
         FieldName = 'QSL_SENT_VIA'
       end    
       item

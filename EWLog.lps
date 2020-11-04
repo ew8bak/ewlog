@@ -1554,7 +1554,7 @@
         <UsageCount Value="7"/>
       </Unit176>
       <Unit177>
-        <Filename Value="..\..\..\..\usr\lib\fpc\src\rtl\inc\objpash.inc"/>
+        <Filename Value="C:\usr\lib\fpc\src\rtl\inc\objpash.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="191"/>
         <CursorPos X="23" Y="206"/>
