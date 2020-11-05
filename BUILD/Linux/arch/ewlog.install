@@ -1,0 +1,17 @@
+post_install() {
+  HOMEDIR=$(eval echo ~${SUDO_USER})
+  DIR=$HOMEDIR/EWLog
+  EWDIR=/usr/share/ewlog
+   if [ ! -d "$DIR" ]; then
+    mkdir $DIR
+   fi
+  chmod 777 $DIR
+  cp -rf $EWDIR/* $DIR
+  chmod -R a+w $DIR
+  /usr/bin/chmod 777 /usr/share/ewlog
+  update-desktop-database &> /dev/null ||:
+}
+
+post_upgrade() {
+    post_install $1
+}

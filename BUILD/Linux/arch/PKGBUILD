@@ -1,0 +1,22 @@
+# Maintainer: Vladimir Karpenko
+
+_pkgname=ewlog
+pkgname=$_pkgname
+pkgver=1.4.2
+pkgrel=1
+pkgdesc="EWLog Desktop"
+arch=("x86_64")
+url="https://www.ewlog.ru"
+license=("custom")
+install=ewlog.install
+
+source=(
+"https://debrepo.ewlog.ru/pool/non-free/e/$_pkgname/${_pkgname}_${pkgver}_amd64.deb"
+)
+
+sha256sums=('263e9e091b194cfb9d830e63f69a4bbf0dad9ddb7d7b78a414cc7716867aa9aa')
+
+package() {
+  cd "${srcdir}"
+  bsdtar -xf data.tar.xz -C "$pkgdir"
+}
