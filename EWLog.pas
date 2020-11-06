@@ -35,9 +35,9 @@ begin
   Application.CreateForm(TInitDB, InitDB);
   Application.CreateForm(TMainFunc, MainFunc);
   Application.CreateForm(TInfoDM, InfoDM);
-  Application.CreateForm(TServerDM, ServerDM);
   Application.CreateForm(TMiniForm, MiniForm);
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TServerDM, ServerDM);
   Application.CreateForm(TGridsForm, GridsForm);
   Application.CreateForm(TEditQSO_Form, EditQSO_Form);
   Application.CreateForm(TInformationForm, InformationForm);
