@@ -98,6 +98,7 @@ type
     procedure LoadClusterString;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure SavePosition;
+    procedure FreeClusterThread;
 
   end;
 
@@ -506,11 +507,14 @@ end;
 
 procedure TdxClusterForm.SBConnectClick(Sender: TObject);
 begin
-  TelnetThread := TTelnetThread.Create;
-  if Assigned(TelnetThread.FatalException) then
-    raise TelnetThread.FatalException;
-  TelnetThread.Start;
-  SBConnect.Enabled := False;
+  if TelnetThread = nil then
+  begin
+    TelnetThread := TTelnetThread.Create;
+    if Assigned(TelnetThread.FatalException) then
+      raise TelnetThread.FatalException;
+    TelnetThread.Start;
+    SBConnect.Enabled := False;
+  end;
 end;
 
 procedure TdxClusterForm.SBClearClick(Sender: TObject);
@@ -527,7 +531,8 @@ end;
 
 procedure TdxClusterForm.SBDisconnectClick(Sender: TObject);
 begin
-  DXTelnetClient.Disconnect(True);
+  if DXTelnetClient <> nil then
+    DXTelnetClient.Disconnect(True);
   ConnectCluster := False;
   ButtonSet;
   if TelnetThread <> nil then
@@ -565,6 +570,12 @@ begin
     Memo2.Text := rCallsignNotEntered;
 end;
 
+procedure TdxClusterForm.FreeClusterThread;
+begin
+   if TelnetThread <> nil then
+      TelnetThread.Terminate;
+end;
+
 procedure TdxClusterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if Sender <> MainForm then
@@ -577,18 +588,17 @@ begin
     else
       INIFile.WriteBool('SetLog', 'cShow', False);
     IniSet.cShow := False;
-    if TelnetThread <> nil then
-      TelnetThread.Terminate;
+    FreeClusterThread;
     ConnectCluster := False;
     ButtonSet;
+    MiniForm.CheckFormMenu('DXClusterForm', False);
     CloseAction := caHide;
   end
   else
   begin
     INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
     MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
-    if TelnetThread <> nil then
-      TelnetThread.Terminate;
+    FreeClusterThread;
   end;
 end;
 
@@ -608,10 +618,8 @@ end;
 
 procedure TdxClusterForm.FormDestroy(Sender: TObject);
 begin
-  if TelnetThread <> nil then
-    TelnetThread.Terminate;
-  FlagList.Free;
-  FlagSList.Free;
+  FreeAndNil(FlagList);
+  FreeAndNil(FlagSList);
   FreeAndNil(qBands);
 end;
 
@@ -661,8 +669,17 @@ procedure TdxClusterForm.EditCommandKeyDown(Sender: TObject; var Key: word;
 begin
   if Key = 13 then
   begin
-    DXTelnetClient.SendMessage(EditCommand.Text + #13#10, nil);
-    EditCommand.Clear;
+    if DXTelnetClient <> nil then
+    begin
+      DXTelnetClient.SendMessage(EditCommand.Text + #13#10, nil);
+      EditCommand.Clear;
+    end
+    else
+    begin
+      ConnectCluster := False;
+      ButtonSet;
+      Memo1.Lines.Add('DX Cluster disconnected');
+    end;
   end;
 end;
 

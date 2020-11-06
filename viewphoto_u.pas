@@ -27,7 +27,7 @@ var
 
 implementation
 
-uses MainForm_U, InitDB_dm, MainFuncDM;
+uses MainForm_U, InitDB_dm, MainFuncDM, miniform_u;
 
 {$R *.lfm}
 
@@ -63,7 +63,8 @@ begin
     INIFile.WriteBool('SetLog', 'pShow', False);
   SavePosition;
   IniSet.pShow := False;
-  CloseAction := caFree;
+  MiniForm.CheckFormMenu('viewPhoto', False);
+  CloseAction := caHide;
 end;
 
 end.

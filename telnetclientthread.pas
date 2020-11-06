@@ -71,6 +71,7 @@ destructor TTelnetThread.Destroy;
 begin
   FreeAndNil(DXTelnetClient);
   inherited Destroy;
+  TelnetThread := nil;
 end;
 
 procedure TTelnetThread.ToForm;

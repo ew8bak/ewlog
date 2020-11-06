@@ -290,7 +290,7 @@ begin
   if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
   begin
     SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
-    SelQSO.Auto:=False;
+    SelQSO.Auto := False;
     MainFunc.SendQSOto('hrdlog', SelQSO);
   end;
 end;
@@ -302,7 +302,7 @@ begin
   if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
   begin
     SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
-    SelQSO.Auto:=False;
+    SelQSO.Auto := False;
     MainFunc.SendQSOto('eqslcc', SelQSO);
   end;
 end;
@@ -345,7 +345,7 @@ begin
     INIFile.WriteBool('SetLog', 'gShow', True)
   else
     INIFile.WriteBool('SetLog', 'gShow', False);
-
+  MiniForm.CheckFormMenu('GridsForm', False);
   IniSet.gShow := False;
   CloseAction := caHide;
 end;
@@ -375,7 +375,7 @@ end;
 
 procedure TGridsForm.MarkQSOItemClick(Sender: TObject);
 begin
-   MainFunc.UpdateQSO(DBGrid1, 'Marker', '1');
+  MainFunc.UpdateQSO(DBGrid1, 'Marker', '1');
 end;
 
 procedure TGridsForm.MenuItem4Click(Sender: TObject);
@@ -603,8 +603,8 @@ procedure TGridsForm.QSLInfoItemClick(Sender: TObject);
 var
   Str: string = '';
 begin
- if InputQuery(rPleaseQSLInfo,rEnterMesQSLInf, Str) then
-  MainFunc.UpdateQSO(DBGrid1, 'QSLInfo', Str);
+  if InputQuery(rPleaseQSLInfo, rEnterMesQSLInf, Str) then
+    MainFunc.UpdateQSO(DBGrid1, 'QSLInfo', Str);
 end;
 
 procedure TGridsForm.QSLnsItemClick(Sender: TObject);
@@ -697,7 +697,8 @@ begin
   SendTelnetSpot.Show;
   SendTelnetSpot.Edit1.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-  SendTelnetSpot.ComboBox1.Text := DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
+  SendTelnetSpot.ComboBox1.Text :=
+    DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
 end;
 
 procedure TGridsForm.GridMenuPopup(Sender: TObject);

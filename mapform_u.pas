@@ -31,7 +31,7 @@ var
 implementation
 
 {$R *.lfm}
-uses MainFuncDM, InitDB_dm;
+uses MainFuncDM, InitDB_dm, miniform_u;
 
 procedure TMapForm.SavePosition;
 begin
@@ -53,6 +53,7 @@ end;
 
 procedure TMapForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  MiniForm.CheckFormMenu('MapForm', False);
 {  if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
     MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
     INIFile.WriteBool('SetLog', 'eShow', True)

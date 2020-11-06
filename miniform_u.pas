@@ -304,6 +304,7 @@ type
     procedure ShowDataFromFldigi(DataDigi: TDigiR);
     procedure FromImportThread(Info: TInfo);
     procedure FromMobileSyncThread(InfoStr: string);
+    procedure CheckFormMenu(NameForm: string; StateForm: boolean);
 
   end;
 
@@ -326,6 +327,30 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
 {$R *.lfm}
 
 { TMiniForm }
+
+procedure TMiniForm.CheckFormMenu(NameForm: string; StateForm: boolean);
+begin
+  if NameForm = 'GridsForm' then
+  begin
+    MiLogbookForm.Checked := StateForm;
+    Exit;
+  end;
+  if NameForm = 'DXClusterForm' then
+  begin
+    MITelnetForm.Checked := StateForm;
+    Exit;
+  end;
+  if NameForm = 'viewPhoto' then
+  begin
+    MIPhoto.Checked := StateForm;
+    Exit;
+  end;
+  if NameForm = 'MapForm' then
+  begin
+    MIMapForm.Checked := StateForm;
+    Exit;
+  end;
+end;
 
 procedure TMiniForm.SentCloudLogCat;
 begin
@@ -513,7 +538,7 @@ begin
     MiniForm.BorderStyle := bsSizeable;
     MiniForm.Align := alNone;
     StatBar.Parent := MiniForm;
-    MainForm.Close;
+    MainForm.Hide;
     GridsForm.Parent := nil;
     GridsForm.BorderStyle := bsSizeable;
     GridsForm.Align := alNone;
@@ -1174,11 +1199,13 @@ begin
   if MIPhoto.Checked then
   begin
     INIFile.WriteBool('SetLog', 'pShow', True);
+    IniSet.pShow := True;
     viewPhoto.Show;
   end
   else
   begin
     INIFile.WriteBool('SetLog', 'pShow', False);
+    IniSet.pShow := False;
     viewPhoto.Hide;
   end;
 end;
@@ -1892,7 +1919,8 @@ begin
     EditState.Text := tempState;
     {$IFDEF WINDOWS}
     tempImage.Position := 0;
-    viewPhoto.ImPhoto.Picture.LoadFromStream(tempImage);
+    if tempImage.Size > 0 then
+      viewPhoto.ImPhoto.Picture.LoadFromStream(tempImage);
     {$ENDIF}
   finally
     {$IFDEF WINDOWS}
@@ -1942,6 +1970,7 @@ begin
   else
     Earth.SavePosition;
   TRXForm.FreeRadio;
+  dxClusterForm.FreeClusterThread;
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);

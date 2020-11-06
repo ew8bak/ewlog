@@ -13,7 +13,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U,
   Changelog_Form_U, Earth_Form_U, IOTA_Form_U, ConfigGridForm_U,
   sendtelnetspot_form_U, ClusterFilter_Form_U, ClusterServer_Form_U,
-  STATE_Form_U, WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U,
+  WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U,
   hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom,
   qso_record, resourcestr, const_u, download_lotw, download_eqslcc,
   DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread,
@@ -23,7 +23,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   WsjtUtils, digi_record, inform_record, infoDM_U, getSession, miniform_u,
   ImbedCallBookCheckRec, serverDM_u, telnetClientThread, dxclusterform_u,
   GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread, ExportADIThread,
-  MobileSyncThread, CloudLogCAT;
+  MobileSyncThread, CloudLogCAT, STATE_Form_U;
 
 {$R *.res}
 
@@ -60,11 +60,11 @@ begin
   Application.CreateForm(TChangeLog_Form, ChangeLog_Form);
   Application.CreateForm(TEarth, Earth);
   Application.CreateForm(TIOTA_Form, IOTA_Form);
+  Application.CreateForm(TSTATE_Form, STATE_Form);
   Application.CreateForm(TConfigGrid_Form, ConfigGrid_Form);
   Application.CreateForm(TSendTelnetSpot, SendTelnetSpot);
   Application.CreateForm(TClusterFilter, ClusterFilter);
   Application.CreateForm(TClusterServer_Form, ClusterServer_Form);
-  Application.CreateForm(TSTATE_Form, STATE_Form);
   Application.CreateForm(TWSJT_UDP_Form, WSJT_UDP_Form);
   Application.CreateForm(TSynDBDate, SynDBDate);
   Application.CreateForm(TThanks_Form, Thanks_Form);
