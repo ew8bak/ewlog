@@ -3955,6 +3955,11 @@ msgstr ""
 msgid "SaveQSOinBase"
 msgstr ""
 
+#: tminiform.sbhidecomment.caption
+msgctxt "tminiform.sbhidecomment.caption"
+msgid "▲"
+msgstr ""
+
 #: tminiform.sbiota.caption
 msgctxt "tminiform.sbiota.caption"
 msgid " ... "

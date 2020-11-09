@@ -155,11 +155,12 @@ begin
       INIFile.WriteInteger('SetLog', 'gWidth', GridsForm.Width);
       INIFile.WriteInteger('SetLog', 'gHeight', GridsForm.Height);
     end;
+  MainFunc.SaveGrids(DBGrid1);
 end;
 
 procedure TGridsForm.DBGrid1ColumnMoved(Sender: TObject; FromIndex, ToIndex: integer);
 begin
-  MainFunc.SaveGridsColumnMoved(DBGrid1);
+  MainFunc.SaveGrids(DBGrid1);
   MainFunc.SetGrid(DBGrid1);
   MainFunc.SetGrid(DBGrid2);
 end;
@@ -209,7 +210,7 @@ end;
 
 procedure TGridsForm.DBGrid1ColumnSized(Sender: TObject);
 begin
-  MainFunc.SaveGridsColumnSized(DBGrid1);
+  MainFunc.SaveGrids(DBGrid1);
   MainFunc.SetGrid(DBGrid1);
   MainFunc.SetGrid(DBGrid2);
 end;

@@ -84,6 +84,7 @@ type
     Cluster_Host: string;
     Cluster_Port: string;
     ClusterAutoStart: boolean;
+    VisibleComment: boolean;
   end;
 
 implementation

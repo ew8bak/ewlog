@@ -1,10 +1,10 @@
 object GridsForm: TGridsForm
-  Left = 1036
-  Height = 401
-  Top = 174
+  Left = 1027
+  Height = 399
+  Top = 178
   Width = 835
   Caption = 'Logbook'
-  ClientHeight = 401
+  ClientHeight = 399
   ClientWidth = 835
   OnClose = FormClose
   OnCreate = FormCreate
@@ -12,7 +12,7 @@ object GridsForm: TGridsForm
   LCLVersion = '2.0.10.0'
   object DBGrid1: TDBGrid
     Left = 0
-    Height = 296
+    Height = 294
     Top = 0
     Width = 835
     Align = alClient
@@ -217,7 +217,7 @@ object GridsForm: TGridsForm
   object DBGrid2: TDBGrid
     Left = 0
     Height = 100
-    Top = 301
+    Top = 299
     Width = 835
     Align = alBottom
     Color = clWindow
@@ -418,7 +418,7 @@ object GridsForm: TGridsForm
     Cursor = crVSplit
     Left = 0
     Height = 5
-    Top = 296
+    Top = 294
     Width = 835
     Align = alBottom
     ResizeAnchor = akBottom

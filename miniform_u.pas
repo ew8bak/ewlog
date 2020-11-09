@@ -192,6 +192,7 @@ type
     SBCopy: TSpeedButton;
     SBInfo: TSpeedButton;
     Shape1: TShape;
+    SBHideComment: TSpeedButton;
     StatBar: TStatusBar;
     CheckUpdateTimer: TTimer;
     TMTime: TTimer;
@@ -278,6 +279,7 @@ type
     procedure SBSaveClick(Sender: TObject);
     procedure SBStateClick(Sender: TObject);
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
+    procedure SBHideCommentClick(Sender: TObject);
     procedure StatBarClick(Sender: TObject);
     procedure StatBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
       const Rect: TRect);
@@ -292,6 +294,8 @@ type
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure DisableMenuMiniMode;
     procedure SentCloudLogCat;
+    procedure HideCommentStat;
+    procedure ShowCommentStat;
 
   public
     procedure LoadPhotoFromInternetCallbook(info: TInformRecord);
@@ -478,6 +482,7 @@ begin
     MenuItem110.Enabled := True;
     MiniForm.BorderStyle := bsNone;
     MiniForm.Parent := MainForm.MiniPanel;
+    ShowCommentStat;
     MiniForm.Align := alClient;
     StatBar.Parent := MainForm;
     GridsForm.BorderStyle := bsNone;
@@ -524,7 +529,7 @@ begin
         viewPhoto.Show;
       end;
     end;
-
+    SBHideComment.Visible := False;
     IniSet.MainForm := 'MAIN';
     MainForm.Show;
     DisableMenuMiniMode;
@@ -537,6 +542,9 @@ begin
     MiniForm.Parent := nil;
     MiniForm.BorderStyle := bsSizeable;
     MiniForm.Align := alNone;
+    SBHideComment.Visible := True;
+    if not IniSet.VisibleComment then
+      SBHideComment.Click;
     StatBar.Parent := MiniForm;
     MainForm.Hide;
     GridsForm.Parent := nil;
@@ -1483,6 +1491,8 @@ begin
       if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
+      MainFunc.SetGrid(GridsForm.DBGrid1);
+      MainFunc.SetGrid(GridsForm.DBGrid2);
       Clr;
       MiniForm.TextSB('QSO № ' + IntToStr(1) + rQSOTotal +
         IntToStr(CountAllRecords), 1);
@@ -1502,6 +1512,55 @@ begin
     Shape1.Hint := rNewDXCCInBM;
   if Shape1.Brush.Color = clFuchsia then
     Shape1.Hint := rNeedQSL;
+end;
+
+procedure TMiniForm.ShowCommentStat;
+begin
+  LBComment.Visible := True;
+  EditComment.Visible := True;
+  LBSubState.Visible := True;
+  EditState1.Visible := True;
+  EditState2.Visible := True;
+  EditState3.Visible := True;
+  EditState4.Visible := True;
+  SBState1.Visible := True;
+  SBState2.Visible := True;
+  SBState3.Visible := True;
+  SBState4.Visible := True;
+  INIFile.WriteBool('SetLog', 'VisibleComment', True);
+  MiniForm.Height := MiniForm.Height + 50;
+  SBHideComment.Caption := '▲';
+end;
+
+procedure TMiniForm.HideCommentStat;
+begin
+  LBComment.Visible := False;
+  EditComment.Visible := False;
+  LBSubState.Visible := False;
+  EditState1.Visible := False;
+  EditState2.Visible := False;
+  EditState3.Visible := False;
+  EditState4.Visible := False;
+  SBState1.Visible := False;
+  SBState2.Visible := False;
+  SBState3.Visible := False;
+  SBState4.Visible := False;
+  INIFile.WriteBool('SetLog', 'VisibleComment', False);
+  SBHideComment.Caption := '▼';
+end;
+
+procedure TMiniForm.SBHideCommentClick(Sender: TObject);
+begin
+  if SBHideComment.Caption = '▲' then
+  begin
+    HideCommentStat;
+    Exit;
+  end;
+  if SBHideComment.Caption = '▼' then
+  begin
+    ShowCommentStat;
+    Exit;
+  end;
 end;
 
 procedure TMiniForm.StatBarClick(Sender: TObject);
@@ -1903,29 +1962,30 @@ var
   tempImage: TMemoryStream;
 begin
   try
-    {$IFDEF WINDOWS}
     tempImage := TMemoryStream.Create;
-    viewPhoto.ImPhoto.Picture.SaveToStream(tempImage);
+    if Button = mbLeft then
+    begin
+      {$IFDEF WINDOWS}
+      viewPhoto.ImPhoto.Picture.SaveToStream(tempImage);
     {$ENDIF}
-    tempName := EditName.Text;
-    tempQTH := EditQTH.Text;
-    tempGrid := EditGrid.Text;
-    tempState := EditState.Text;
-    SelEditNumChar := EditCallsign.SelStart;
-    EditCallsignChange(nil);
-    EditName.Text := tempName;
-    EditQTH.Text := tempQTH;
-    EditGrid.Text := tempGrid;
-    EditState.Text := tempState;
+      tempName := EditName.Text;
+      tempQTH := EditQTH.Text;
+      tempGrid := EditGrid.Text;
+      tempState := EditState.Text;
+      SelEditNumChar := EditCallsign.SelStart;
+      EditCallsignChange(nil);
+      EditName.Text := tempName;
+      EditQTH.Text := tempQTH;
+      EditGrid.Text := tempGrid;
+      EditState.Text := tempState;
     {$IFDEF WINDOWS}
-    tempImage.Position := 0;
-    if tempImage.Size > 0 then
-      viewPhoto.ImPhoto.Picture.LoadFromStream(tempImage);
+      tempImage.Position := 0;
+      if tempImage.Size > 0 then
+        viewPhoto.ImPhoto.Picture.LoadFromStream(tempImage);
     {$ENDIF}
+    end;
   finally
-    {$IFDEF WINDOWS}
     FreeAndNil(tempImage);
-    {$ENDIF}
   end;
 end;
 

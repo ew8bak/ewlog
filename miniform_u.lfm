@@ -2026,6 +2026,18 @@ object MiniForm: TMiniForm
     OnClick = StatBarClick
     OnDrawPanel = StatBarDrawPanel
   end
+  object SBHideComment: TSpeedButton
+    AnchorSideLeft.Control = SBMGR
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = SBMGR
+    AnchorSideTop.Side = asrCenter
+    Left = 458
+    Height = 15
+    Top = 196
+    Width = 15
+    Caption = '▲'
+    OnClick = SBHideCommentClick
+  end
   object TMTime: TTimer
     OnTimer = TMTimeTimer
     Left = 188

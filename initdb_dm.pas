@@ -100,6 +100,7 @@ begin
     DefaultFormatSettings.DecimalSeparator := '.';
     if not DirectoryExists(FilePATH) then
       CreateDir(FilePATH);
+
     INIFile := TINIFile.Create(FilePATH + 'settings.ini');
     ExceptFilePATH := FilePATH + 'except.err';
     AssignFile(ExceptFile, ExceptFilePATH);

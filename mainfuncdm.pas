@@ -27,8 +27,6 @@ type
     SearchPrefixQuery: TSQLQuery;
   public
     procedure SentCATCloudLog(CatData: TCatData);
-    procedure SaveGridsColumnSized(DbGrid: TDBGrid);
-    procedure SaveGridsColumnMoved(DbGrid: TDBGrid);
     procedure SaveGrids(DbGrid: TDBGrid);
     procedure SetDXColumns(VST: TVirtualStringTree; Save: boolean;
       var VirtualST: TVirtualStringTree);
@@ -228,31 +226,6 @@ begin
       WriteLn(ExceptFile, 'FindInCallBook:' + E.ClassName + ':' + E.Message);
       Result := False;
     end;
-  end;
-end;
-
-procedure TMainFunc.SaveGridsColumnSized(DbGrid: TDBGrid);
-var
-  i: integer;
-begin
-  for i := 0 to 29 do
-  begin
-    if DbGrid.Columns.Items[i].Width <> 0 then
-      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i),
-        DbGrid.Columns.Items[i].Width)
-    else
-      INIFile.WriteInteger('GridSettings', 'ColWidth' + IntToStr(i), columnsWidth[i]);
-  end;
-end;
-
-procedure TMainFunc.SaveGridsColumnMoved(DbGrid: TDBGrid);
-var
-  i: integer;
-begin
-  for i := 0 to 29 do
-  begin
-    INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
-      DbGrid.Columns.Items[i].FieldName);
   end;
 end;
 
@@ -1367,6 +1340,7 @@ begin
   IniSet.trxTop := INIFile.ReadBool('SetLog', 'trxTop', False);
   IniSet.trxShow := INIFile.ReadBool('SetLog', 'trxShow', False);
   IniSet.ClusterAutoStart := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
+  IniSet.VisibleComment := INIFile.ReadBool('SetLog', 'VisibleComment', True);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

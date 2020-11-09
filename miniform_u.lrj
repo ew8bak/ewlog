@@ -71,6 +71,7 @@
 {"hash":113528956,"name":"tminiform.lbyourqsl.caption","sourcebytes":[89,111,117,114,32,81,83,76],"value":"Your QSL"},
 {"hash":238686804,"name":"tminiform.cbyourqsl.text","sourcebytes":[87,97,115,110,39,116,32,115,101,110,116],"value":"Wasn't sent"},
 {"hash":2923769,"name":"tminiform.lbcfm.caption","sourcebytes":[40,67,102,109,41],"value":"(Cfm)"},
+{"hash":60434,"name":"tminiform.sbhidecomment.caption","sourcebytes":[226,150,178],"value":"\u25B2"},
 {"hash":56333835,"name":"tminiform.milogbook.caption","sourcebytes":[76,111,103,66,111,111,107],"value":"LogBook"},
 {"hash":163465787,"name":"tminiform.menuitem54.caption","sourcebytes":[79,112,101,114,97,116,105,111,110,115,32,119,105,116,104,32,97,32,108,111,103,98,111,111,107],"value":"Operations with a logbook"},
 {"hash":113276983,"name":"tminiform.menuitem55.caption","sourcebytes":[79,112,101,110,32,108,111,103],"value":"Open log"},
