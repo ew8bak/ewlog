@@ -701,6 +701,10 @@ msgctxt "resourcestr.rnotdataforconnect"
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
 msgstr "В конфигурации журнала, не указаны данные для подключения к eQSL.cc"
 
+#: resourcestr.rnotefldigi
+msgid "Please enable N3FJP logs support in Fldigi settings. (In Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)"
+msgstr "Пожалуйста, включите поддержку N3FJP лога в настройках Fldigi. (В Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)"
+
 #: resourcestr.rnothingimport
 msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
@@ -2364,11 +2368,9 @@ msgid "Export"
 msgstr "Экспорт"
 
 #: texportadifform.button2.caption
-#, fuzzy
-#| msgid "Close"
 msgctxt "texportadifform.button2.caption"
 msgid "Cancel"
-msgstr "Закрыть"
+msgstr "Отмена"
 
 #: texportadifform.caption
 msgid "Export ADIF"
@@ -4121,11 +4123,11 @@ msgstr "Фото"
 
 #: tminiform.miphotoseparate.caption
 msgid "In a separate window"
-msgstr ""
+msgstr "В отдельном оккне"
 
 #: tminiform.miphotoseparatetop.caption
 msgid "On TOP"
-msgstr ""
+msgstr "Всегда наверху"
 
 #: tminiform.miphototop.caption
 msgctxt "tminiform.miphototop.caption"
@@ -4152,7 +4154,6 @@ msgid "SaveQSOinBase"
 msgstr ""
 
 #: tminiform.sbhidecomment.caption
-msgctxt "tminiform.sbhidecomment.caption"
 msgid "▲"
 msgstr ""
 
@@ -4603,6 +4604,10 @@ msgstr "Использовать"
 #: tsettingsprogramform.lbname.caption
 msgid "Name program:"
 msgstr "Имя программы:"
+
+#: tsettingsprogramform.lbnote.caption
+msgid "Note:"
+msgstr ""
 
 #: tsettingsprogramform.lbpath.caption
 msgid "Path program:"
@@ -5180,4 +5185,3 @@ msgstr "Фото"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
-

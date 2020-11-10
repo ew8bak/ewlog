@@ -6,5 +6,6 @@
 {"hash":131223053,"name":"tsettingsprogramform.btaddprogram.caption","sourcebytes":[65,100,100,32,112,114,111,103,114,97,109],"value":"Add program"},
 {"hash":366789,"name":"tsettingsprogramform.btsave.caption","sourcebytes":[83,97,118,101],"value":"Save"},
 {"hash":78392485,"name":"tsettingsprogramform.btdelete.caption","sourcebytes":[68,101,108,101,116,101],"value":"Delete"},
-{"hash":23701,"name":"tsettingsprogramform.cbusedigi.caption","sourcebytes":[85,115,101],"value":"Use"}
+{"hash":23701,"name":"tsettingsprogramform.cbusedigi.caption","sourcebytes":[85,115,101],"value":"Use"},
+{"hash":5597834,"name":"tsettingsprogramform.lbnote.caption","sourcebytes":[78,111,116,101,58],"value":"Note:"}
 ]}

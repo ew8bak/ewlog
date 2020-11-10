@@ -37,11 +37,13 @@ type
     procedure StartTCPSyncThread;
 
   public
+    procedure DisconnectFldigi;
 
   end;
 
 var
   ServerDM: TServerDM;
+  FldigiConnect: boolean;
 
 implementation
 
@@ -51,6 +53,12 @@ uses InitDB_dm, MainFuncDM, dmFunc_U,
 {$R *.lfm}
 
 { TServerDM }
+
+procedure TServerDM.DisconnectFldigi;
+begin
+    IdFldigiTCP.Contexts.ClearAndFree;
+    IdFldigiTCP.Active := False;
+end;
 
 procedure TServerDM.StartTCPSyncThread;
 begin
@@ -93,12 +101,10 @@ begin
 
     StartTCPSyncThread;
 
-    if IniSet.FLDIGI_USE then
-      IdFldigiTCP.Active := True;
-
     FldigiMode := '';
     FldigiSubMode := '';
     FldigiFreq := 0;
+    FldigiConnect := False;
 
   except
     on E: Exception do
@@ -108,24 +114,27 @@ end;
 
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
 begin
-    if MobileSynThread <> nil then
+  DisconnectFldigi;
+  if MobileSynThread <> nil then
     MobileSynThread.Terminate;
 end;
 
 procedure TServerDM.IdFldigiTCPConnect(AContext: TIdContext);
 begin
+  FldigiConnect := True;
   MiniForm.TextSB(rConnectedToFldigi, 0);
 end;
 
 procedure TServerDM.IdFldigiTCPDisconnect(AContext: TIdContext);
 begin
+  FldigiConnect := False;
   MiniForm.TextSB(rDisconnectedFromFldigi, 0);
 end;
 
 procedure TServerDM.IdFldigiTCPException(AContext: TIdContext; AException: Exception);
 begin
-  WriteLn(ExceptFile, 'IdFldigiTCPException:' + AException.ClassName +
-    ':' + AException.Message);
+ // WriteLn(ExceptFile, 'IdFldigiTCPException:' + AException.ClassName +
+ //   ':' + AException.Message);
 end;
 
 procedure TServerDM.IdFldigiTCPExecute(AContext: TIdContext);

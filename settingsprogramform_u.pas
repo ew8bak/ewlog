@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  EditBtn, Buttons, ResourceStr;
+  EditBtn, Buttons, Menus, ResourceStr;
 
 type
 
@@ -20,9 +20,12 @@ type
     CBUseDIGI: TCheckBox;
     EditName: TEdit;
     FNEdit: TFileNameEdit;
+    LBNote: TLabel;
     LBPath: TLabel;
     LBName: TLabel;
     LBProgram: TListBox;
+    MNote: TMemo;
+    PopupMenu1: TPopupMenu;
     procedure BtAddProgramClick(Sender: TObject);
     procedure BtCancelClick(Sender: TObject);
     procedure BtDeleteClick(Sender: TObject);
@@ -99,7 +102,7 @@ begin
       INIFile.WriteBool('WSJT', 'USEWSJT', CBUseDIGI.Checked);
       IniSet.WSJT_PATH := FNEdit.Text;
       IniSet.WSJT_USE := CBUseDIGI.Checked;
-      WSJT_UDP_Form.IdWsjtUDP.Active:=IniSet.WSJT_USE;
+      WSJT_UDP_Form.IdWsjtUDP.Active := IniSet.WSJT_USE;
       Exit;
     end;
 
@@ -109,7 +112,7 @@ begin
       INIFile.WriteBool('FLDIGI', 'USEFLDIGI', CBUseDIGI.Checked);
       IniSet.Fl_PATH := FNEdit.Text;
       IniSet.FLDIGI_USE := CBUseDIGI.Checked;
-      ServerDM.IdFldigiTCP.Active:=IniSet.FLDIGI_USE;
+      ServerDM.IdFldigiTCP.Active := IniSet.FLDIGI_USE;
       Exit;
     end;
   end;
@@ -168,6 +171,9 @@ end;
 procedure TSettingsProgramForm.FormShow(Sender: TObject);
 begin
   CBUseDIGI.Visible := False;
+  LBNote.Visible := False;
+  MNote.Visible := False;
+  MNote.Text := rNotefldigi;
   EnDisControl;
 end;
 
@@ -196,23 +202,27 @@ begin
   begin
     if LBProgram.Items[LBProgram.ItemIndex] = 'WSJT-X' then
     begin
-      EditName.Enabled:=False;
+      EditName.Enabled := False;
       EditName.Text := 'WSJT-X';
       FNEdit.Text := IniSet.WSJT_PATH;
       CBUseDIGI.Checked := IniSet.WSJT_USE;
       CBUseDIGI.Caption := rUseWSJT;
       CBUseDIGI.Visible := True;
+      LBNote.Visible := False;
+      MNote.Visible := False;
       Exit;
     end;
 
     if LBProgram.Items[LBProgram.ItemIndex] = 'Fldigi' then
     begin
-      EditName.Enabled:=False;
+      EditName.Enabled := False;
       EditName.Text := 'Fldigi';
       FNEdit.Text := IniSet.Fl_PATH;
       CBUseDIGI.Checked := IniSet.FLDIGI_USE;
       CBUseDIGI.Caption := rUseFldigi;
       CBUseDIGI.Visible := True;
+      LBNote.Visible := True;
+      MNote.Visible := True;
       Exit;
     end;
 
@@ -221,6 +231,8 @@ begin
       EditName.Text := LBProgram.Items[LBProgram.ItemIndex];
       FNEdit.Text := SLProgram.ValueFromIndex[LBProgram.ItemIndex - 2];
       CBUseDIGI.Visible := False;
+      LBNote.Visible := False;
+      MNote.Visible := False;
     end;
   end;
 end;

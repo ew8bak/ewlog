@@ -38,7 +38,7 @@ implementation
 
 { TMainForm }
 uses MainFuncDM, InitDB_dm, TRXForm_U, miniform_u, viewPhoto_U, dxclusterform_u,
-  GridsForm_u;
+  GridsForm_u, serverDM_u;
 
 procedure TMainForm.SavePosition;
 begin

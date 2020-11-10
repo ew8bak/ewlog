@@ -189,7 +189,8 @@ var
 implementation
 
 uses
-  dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM, miniform_u;
+  dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM, miniform_u, WSJT_UDP_Form_U,
+  serverDM_u;
 
 {$R *.lfm}
 
@@ -277,7 +278,6 @@ begin
   submode := '';
   if Assigned(radio) then
   begin
-   // SBConnect.Caption:='On';
     f := radio.GetFreqMHz;
     m := radio.GetModeOnly;
     Freq(radio.GetFreqHz);
@@ -285,9 +285,9 @@ begin
     bwith := radio.GetBandwich(radio.GetRawMode);
   {$ENDIF}
   end
-  else begin
+  else
+  begin
     f := 0;
-    //SBConnect.Caption:='Off';
   end;
 
   if Length(m) > 1 then
@@ -347,7 +347,7 @@ begin
   if not radio.Connected then
   begin
     tmrRadio.Enabled := False;
-   // SBConnect.Caption:='Off';
+    // SBConnect.Caption:='Off';
     FreeAndNil(radio);
   end;
 end;
@@ -782,7 +782,8 @@ end;
 
 procedure TTRXForm.tmrRadioTimer(Sender: TObject);
 begin
-  SynTRX;
+  if not WSJT_Run and not FldigiConnect then
+    SynTRX;
 end;
 
 procedure TRigThread.Execute;

@@ -326,7 +326,8 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   InformationForm_U, UpdateForm_U, ConfigGridForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
-  QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U;
+  QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
+  WSJT_UDP_Form_U, serverDM_u;
 
 {$R *.lfm}
 
@@ -438,7 +439,6 @@ begin
     else
       CBBand.Text := FormatFloat(view_freq, freq);
   end;
-
 end;
 
 procedure TMiniForm.FromCopyTableThread(Data: TData);
@@ -696,8 +696,6 @@ begin
 end;
 
 procedure TMiniForm.FormShow(Sender: TObject);
-var
-  s: string;
 begin
   if not showForm then
   begin
@@ -717,6 +715,8 @@ begin
     SwitchForm;
     CBMap.Checked := IniSet.Map_Use;
     CheckUpdateTimer.Enabled := True;
+    if IniSet.FLDIGI_USE then
+      ServerDM.IdFldigiTCP.Active := True;
   end;
 
   CBYourQSL.ItemIndex := 3;

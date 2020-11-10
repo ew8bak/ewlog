@@ -184,6 +184,7 @@ resourcestring
   rPleaseQSLInfo = 'Please enter a message in the QSL Info field';
   rEnterMesQSLInf = 'Please enter your message';
   rSentRecord = 'Record sent';
+  rNotefldigi = 'Please enable N3FJP logs support in Fldigi settings. (In Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)';
 implementation
 
 end.

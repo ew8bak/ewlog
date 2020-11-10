@@ -1,11 +1,11 @@
 object SettingsProgramForm: TSettingsProgramForm
-  Left = 516
-  Height = 326
-  Top = 304
+  Left = 465
+  Height = 333
+  Top = 270
   Width = 414
   BorderStyle = bsDialog
   Caption = 'External programs'
-  ClientHeight = 326
+  ClientHeight = 333
   ClientWidth = 414
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
@@ -18,10 +18,10 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 366
-    Height = 29
-    Top = 292
-    Width = 43
+    Left = 354
+    Height = 25
+    Top = 303
+    Width = 55
     Anchors = [akRight, akBottom]
     AutoSize = True
     BorderSpacing.Right = 5
@@ -34,7 +34,7 @@ object SettingsProgramForm: TSettingsProgramForm
   end
   object LBProgram: TListBox
     Left = 0
-    Height = 326
+    Height = 333
     Top = 0
     Width = 176
     Align = alLeft
@@ -42,7 +42,7 @@ object SettingsProgramForm: TSettingsProgramForm
       'WSJT-X'
       'Fldigi'
     )
-    ItemHeight = 21
+    ItemHeight = 15
     OnClick = LBProgramClick
     ScrollWidth = 174
     TabOrder = 1
@@ -53,8 +53,8 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Control = LBName
     AnchorSideTop.Side = asrBottom
     Left = 181
-    Height = 25
-    Top = 26
+    Height = 23
+    Top = 28
     Width = 200
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
@@ -66,8 +66,8 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Control = LBPath
     AnchorSideTop.Side = asrBottom
     Left = 181
-    Height = 25
-    Top = 79
+    Height = 23
+    Top = 81
     Width = 224
     FilterIndex = 0
     HideDirectories = False
@@ -82,9 +82,9 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideLeft.Control = LBProgram
     AnchorSideLeft.Side = asrBottom
     Left = 181
-    Height = 13
+    Height = 15
     Top = 8
-    Width = 85
+    Width = 84
     BorderSpacing.Left = 5
     Caption = 'Name program:'
     ParentColor = False
@@ -95,9 +95,9 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Control = EditName
     AnchorSideTop.Side = asrBottom
     Left = 181
-    Height = 13
+    Height = 15
     Top = 61
-    Width = 78
+    Width = 76
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
     Caption = 'Path program:'
@@ -109,9 +109,9 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 180
-    Height = 29
-    Top = 292
-    Width = 86
+    Height = 25
+    Top = 303
+    Width = 97
     Anchors = [akLeft, akBottom]
     AutoSize = True
     BorderSpacing.Left = 4
@@ -155,12 +155,43 @@ object SettingsProgramForm: TSettingsProgramForm
     AnchorSideTop.Control = FNEdit
     AnchorSideTop.Side = asrBottom
     Left = 181
-    Height = 23
+    Height = 19
     Top = 109
-    Width = 46
+    Width = 39
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
     Caption = 'Use'
     TabOrder = 7
+  end
+  object LBNote: TLabel
+    AnchorSideLeft.Control = LBProgram
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = BtSave
+    AnchorSideTop.Side = asrBottom
+    Left = 181
+    Height = 15
+    Top = 169
+    Width = 29
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Note:'
+    ParentColor = False
+  end
+  object MNote: TMemo
+    AnchorSideLeft.Control = LBProgram
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBNote
+    AnchorSideTop.Side = asrBottom
+    Left = 181
+    Height = 90
+    Top = 185
+    Width = 214
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 1
+    TabOrder = 8
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 69
+    Top = 86
   end
 end

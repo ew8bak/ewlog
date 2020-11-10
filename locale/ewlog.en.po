@@ -691,6 +691,10 @@ msgctxt "resourcestr.rnotdataforconnect"
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
 msgstr ""
 
+#: resourcestr.rnotefldigi
+msgid "Please enable N3FJP logs support in Fldigi settings. (In Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)"
+msgstr ""
+
 #: resourcestr.rnothingimport
 msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
@@ -4129,6 +4133,10 @@ msgstr ""
 msgid "SaveQSOinBase"
 msgstr ""
 
+#: tminiform.sbhidecomment.caption
+msgid "▲"
+msgstr ""
+
 #: tminiform.sbiota.caption
 msgctxt "tminiform.sbiota.caption"
 msgid " ... "
@@ -4575,6 +4583,10 @@ msgstr ""
 
 #: tsettingsprogramform.lbname.caption
 msgid "Name program:"
+msgstr ""
+
+#: tsettingsprogramform.lbnote.caption
+msgid "Note:"
 msgstr ""
 
 #: tsettingsprogramform.lbpath.caption
