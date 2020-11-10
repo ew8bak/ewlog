@@ -18,14 +18,16 @@ type
   TSendTelnetSpot = class(TForm)
     Button1: TButton;
     ComboBox1: TComboBox;
-    Edit1: TEdit;
+    EditDXCall: TEdit;
     EditComment: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     procedure Button1Click(Sender: TObject);
+    procedure EditDXCallChange(Sender: TObject);
+    procedure EditDXCallKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure EditCommentChange(Sender: TObject);
-    procedure EditCommentKeyDown(Sender: TObject; var Key: Word;
+    procedure EditCommentKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure FormShow(Sender: TObject);
   private
@@ -54,7 +56,7 @@ begin
       MiniForm.CBBand.Text, MiniForm.CBMode.Text))
   else
     ComboBox1.Text := MiniForm.CBBand.Text;
-  Edit1.Text := MiniForm.EditCallsign.Text;
+  EditDXCall.Text := MiniForm.EditCallsign.Text;
 end;
 
 procedure TSendTelnetSpot.Button1Click(Sender: TObject);
@@ -62,9 +64,9 @@ var
   freq, call, comment: string;
   freq2: double;
 begin
-  if (Edit1.Text <> '') and (EditComment.Text <> '') and (ComboBox1.Text <> '') then
+  if (EditDXCall.Text <> '') and (EditComment.Text <> '') and (ComboBox1.Text <> '') then
   begin
-    call := Edit1.Text;
+    call := EditDXCall.Text;
     freq := ComboBox1.Text;
     comment := EditComment.Text;
     Delete(freq, length(freq) - 2, 1);
@@ -74,6 +76,33 @@ begin
   end
   else
     ShowMessage(rNotAllData);
+end;
+
+procedure TSendTelnetSpot.EditDXCallChange(Sender: TObject);
+var
+  editButtonLeng: integer;
+  engText: string;
+begin
+  editButtonLeng := Length(EditDXCall.Text);
+  EditDXCall.SelStart := SelEditNumChar;
+  engText := dmFunc.RusToEng(EditDXCall.Text);
+  if (engText <> EditDXCall.Text) then
+  begin
+    EditDXCall.Text := engText;
+    exit;
+  end;
+end;
+
+procedure TSendTelnetSpot.EditDXCallKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  SelEditNumChar := EditDXCall.SelStart + 1;
+  if (Key = VK_BACK) then
+    SelEditNumChar := EditDXCall.SelStart - 1;
+  if (Key = VK_DELETE) then
+    SelEditNumChar := EditDXCall.SelStart;
+  if (EditDXCall.SelLength <> 0) and (Key = VK_BACK) then
+    SelEditNumChar := EditDXCall.SelStart;
 end;
 
 procedure TSendTelnetSpot.EditCommentChange(Sender: TObject);
@@ -89,10 +118,10 @@ begin
   end;
 end;
 
-procedure TSendTelnetSpot.EditCommentKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TSendTelnetSpot.EditCommentKeyDown(Sender: TObject;
+  var Key: word; Shift: TShiftState);
 begin
-    SelEditNumChar := EditComment.SelStart + 1;
+  SelEditNumChar := EditComment.SelStart + 1;
   if (Key = VK_BACK) then
     SelEditNumChar := EditComment.SelStart - 1;
   if (Key = VK_DELETE) then

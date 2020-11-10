@@ -10,7 +10,7 @@
 {"hash":170880085,"name":"tminiform.remotetimelabel.caption","sourcebytes":[82,101,109,111,116,101,32,116,105,109,101],"value":"Remote time"},
 {"hash":64175616,"name":"tminiform.lbremotetimed.caption","sourcebytes":[48,48,58,48,48,58,48,48],"value":"00:00:00"},
 {"hash":305317,"name":"tminiform.lbdate.caption","sourcebytes":[68,97,116,101],"value":"Date"},
-{"hash":36831520,"name":"tminiform.dateedit1.text","sourcebytes":[32,32,46,32,32,46,32,32,32,32],"value":"  .  .    "},
+{"hash":36897072,"name":"tminiform.dateedit1.text","sourcebytes":[32,32,47,32,32,47,32,32,32,32],"value":"  /  /    "},
 {"hash":297028,"name":"tminiform.lbband.caption","sourcebytes":[66,97,110,100],"value":"Band"},
 {"hash":345509,"name":"tminiform.lbmode.caption","sourcebytes":[77,111,100,101],"value":"Mode"},
 {"hash":342540,"name":"tminiform.datetimepicker1.textfornulldate","sourcebytes":[78,85,76,76],"value":"NULL"},

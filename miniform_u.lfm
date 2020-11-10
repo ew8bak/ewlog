@@ -362,7 +362,7 @@ object MiniForm: TMiniForm
     MaxLength = 10
     ParentFont = False
     TabOrder = 1
-    Text = '  .  .    '
+    Text = '  /  /    '
   end
   object LBBand: TLabel
     AnchorSideLeft.Control = Owner

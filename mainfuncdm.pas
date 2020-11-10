@@ -574,22 +574,43 @@ var
   QueryTXT: string;
   QSODates, QSLSentDates, QSLRecDates, LotWRecDates: string;
   SRXs, STXs: string;
+  FormatSettings : TFormatSettings;
 begin
   try
+    FormatSettings.DateSeparator := '.';
+    FormatSettings.ShortDateFormat := 'dd.mm.yyyy';;
     try
       if DBRecord.CurrentDB = 'MySQL' then
       begin
         QSODates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSODate));
-        QSLSentDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLSentDate));
-        QSLRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLRecDate));
-        LotWRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.LotWRecDate));
+        if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
+          QSLSentDates := 'NULL'
+        else
+          QSLSentDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLSentDate));
+        if SQSO.QSLRecDate = StrToDate('30.12.1899', FormatSettings) then
+          QSLRecDates := 'NULL'
+        else
+          QSLRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLRecDate));
+        if SQSO.LotWRecDate =StrToDate('30.12.1899', FormatSettings) then
+          LotWRecDates := 'NULL'
+        else
+          LotWRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.LotWRecDate));
       end
       else
       begin
         QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
-        QSLSentDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate));
-        QSLRecDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLRecDate));
-        LotWRecDates := FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate));
+        if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
+          QSLSentDates := 'NULL'
+        else
+          QSLSentDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate));
+        if SQSO.QSLRecDate = StrToDate('30.12.1899', FormatSettings) then
+          QSLRecDates := 'NULL'
+        else
+          QSLRecDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLRecDate));
+        if SQSO.LotWRecDate = StrToDate('30.12.1899', FormatSettings) then
+          LotWRecDates := 'NULL'
+        else
+          LotWRecDates := FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate));
       end;
 
       SRXs := IntToStr(SQSO.SRX);
@@ -952,7 +973,7 @@ begin
               Close;
               SQL.Clear;
               if (Value = 'E') or (Value = 'F') or (Value = 'T') or
-                (Value = 'Q') or (Field = 'QSLRec') then
+                (Value = 'Q') or (Value = 'N') or (Field = 'QSLRec') then
               begin
                 if Value = 'E' then
                 begin
@@ -968,7 +989,7 @@ begin
                     QuotedStr(Field) + '=:' + Field +
                     ',QSLSentDate=:QSLSentDate,QSLSent=:QSLSent WHERE UnUsedIndex=:UnUsedIndex');
                   Params.ParamByName(Field).AsString := Value;
-                  Params.ParamByName('QSLSentDate').AsDate := Now;
+                  Params.ParamByName('QSLSentDate').AsDate := Date;
                   Params.ParamByName('QSLSent').Value := 1;
                 end;
                 if Value = 'F' then
@@ -987,7 +1008,16 @@ begin
                     ',QSLRec=:QSLRec, QSLRecDate=:QSLRecDate WHERE UnUsedIndex=:UnUsedIndex');
                   Params.ParamByName(Field).AsString := Value;
                   Params.ParamByName('QSLRec').Value := 1;
-                  Params.ParamByName('QSLRecDate').AsDate := Now;
+                  Params.ParamByName('QSLRecDate').AsDate := Date;
+                end;
+                if (Value = 'N') and (Field = 'QSLSentAdv') then
+                begin
+                  SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET ' +
+                    QuotedStr(Field) + '=:' + Field +
+                    ',QSLSent=:QSLSent, QSLSentDate=:QSLSentDate WHERE UnUsedIndex=:UnUsedIndex');
+                  Params.ParamByName(Field).AsString := Value;
+                  Params.ParamByName('QSLSent').Value := 0;
+                  Params.ParamByName('QSLSentDate').IsNull;
                 end;
                 if Field = 'QSLPrint' then
                 begin
@@ -1001,7 +1031,7 @@ begin
                     QuotedStr(Field) + '=:' + Field +
                     ',`QSLRecDate`=:QSLRecDate WHERE `UnUsedIndex`=:UnUsedIndex');
                   Params.ParamByName(Field).Value := Field;
-                  Params.ParamByName('QSLRecDate').AsDate := Now;
+                  Params.ParamByName('QSLRecDate').AsDate := Date;
                 end;
               end
               else

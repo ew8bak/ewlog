@@ -1,7 +1,7 @@
 object SendTelnetSpot: TSendTelnetSpot
-  Left = 906
+  Left = 736
   Height = 155
-  Top = 190
+  Top = 193
   Width = 297
   BorderStyle = bsDialog
   Caption = 'Send spot'
@@ -11,7 +11,7 @@ object SendTelnetSpot: TSendTelnetSpot
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.10.0'
-  object Edit1: TEdit
+  object EditDXCall: TEdit
     AnchorSideLeft.Control = Owner
     Left = 20
     Height = 23
@@ -19,13 +19,16 @@ object SendTelnetSpot: TSendTelnetSpot
     Width = 120
     AutoSize = False
     BorderSpacing.Left = 20
+    CharCase = ecUppercase
     Font.Height = -12
+    OnChange = EditDXCallChange
+    OnKeyDown = EditDXCallKeyDown
     ParentFont = False
     TabOrder = 0
   end
   object Label1: TLabel
-    AnchorSideLeft.Control = Edit1
-    AnchorSideBottom.Control = Edit1
+    AnchorSideLeft.Control = EditDXCall
+    AnchorSideBottom.Control = EditDXCall
     Left = 20
     Height = 15
     Top = 16
@@ -37,7 +40,7 @@ object SendTelnetSpot: TSendTelnetSpot
   end
   object ComboBox1: TComboBox
     AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Control = EditDXCall
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom

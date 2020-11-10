@@ -696,7 +696,7 @@ end;
 procedure TGridsForm.SendClusterItemClick(Sender: TObject);
 begin
   SendTelnetSpot.Show;
-  SendTelnetSpot.Edit1.Text :=
+  SendTelnetSpot.EditDXCall.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
   SendTelnetSpot.ComboBox1.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;

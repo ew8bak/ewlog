@@ -3585,7 +3585,7 @@ msgstr ""
 
 #: tminiform.dateedit1.text
 msgctxt "tminiform.dateedit1.text"
-msgid "  .  .    "
+msgid "  /  /    "
 msgstr ""
 
 #: tminiform.datetimepicker1.textfornulldate
@@ -5185,3 +5185,4 @@ msgstr "Фото"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
+

@@ -1,5 +1,5 @@
 object WSJT_UDP_Form: TWSJT_UDP_Form
-  Left = 501
+  Left = 455
   Height = 240
   Top = 226
   Width = 320
