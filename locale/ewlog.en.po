@@ -1367,8 +1367,18 @@ msgstr ""
 msgid "Send Freq to CloudLog"
 msgstr ""
 
-#: tconfigform.groupbox1.caption
-msgid "Data Base"
+#: tconfigform.gbdefaultdb.caption
+msgid "Default DB"
+msgstr ""
+
+#: tconfigform.gbmysql.caption
+msgctxt "tconfigform.gbmysql.caption"
+msgid "MySQL"
+msgstr ""
+
+#: tconfigform.gbsqlite.caption
+msgctxt "tconfigform.gbsqlite.caption"
+msgid "SQLite"
 msgstr ""
 
 #: tconfigform.groupbox2.caption
@@ -1395,10 +1405,6 @@ msgstr ""
 
 #: tconfigform.groupbox7.caption
 msgid "HAMQTH XML API"
-msgstr ""
-
-#: tconfigform.label1.caption
-msgid "MySQL"
 msgstr ""
 
 #: tconfigform.label10.caption
@@ -1502,16 +1508,8 @@ msgstr ""
 msgid "Base Name"
 msgstr ""
 
-#: tconfigform.label7.caption
-msgid "SQLite"
-msgstr ""
-
 #: tconfigform.label8.caption
 msgid "Base"
-msgstr ""
-
-#: tconfigform.label9.caption
-msgid "Default:"
 msgstr ""
 
 #: tconfigform.radiobutton1.caption
@@ -1521,6 +1519,27 @@ msgstr ""
 
 #: tconfigform.radiobutton2.caption
 msgid "Use SQLite "
+msgstr ""
+
+#: tconfigform.tsbase.caption
+msgid "DataBase"
+msgstr ""
+
+#: tconfigform.tsintref.caption
+msgid "Internal reference"
+msgstr ""
+
+#: tconfigform.tsothersettings.caption
+msgid "Other Settings"
+msgstr ""
+
+#: tconfigform.tsrefonline.caption
+msgid "Reference Online"
+msgstr ""
+
+#: tconfigform.tstelnet.caption
+msgctxt "tconfigform.tstelnet.caption"
+msgid "Telnet"
 msgstr ""
 
 #: tconfiggrid_form.button1.caption

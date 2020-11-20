@@ -1387,9 +1387,21 @@ msgstr "Отправлять ADI в CloudLog"
 msgid "Send Freq to CloudLog"
 msgstr "Отправлять частоту в Cloudlog"
 
-#: tconfigform.groupbox1.caption
-msgid "Data Base"
-msgstr "База данных"
+#: tconfigform.gbdefaultdb.caption
+msgid "Default DB"
+msgstr ""
+
+#: tconfigform.gbmysql.caption
+#, fuzzy
+msgctxt "tconfigform.gbmysql.caption"
+msgid "MySQL"
+msgstr "MySQL"
+
+#: tconfigform.gbsqlite.caption
+#, fuzzy
+msgctxt "tconfigform.gbsqlite.caption"
+msgid "SQLite"
+msgstr "SQLite"
 
 #: tconfigform.groupbox2.caption
 msgctxt "tconfigform.groupbox2.caption"
@@ -1416,10 +1428,6 @@ msgstr ""
 #: tconfigform.groupbox7.caption
 msgid "HAMQTH XML API"
 msgstr ""
-
-#: tconfigform.label1.caption
-msgid "MySQL"
-msgstr "MySQL"
 
 #: tconfigform.label10.caption
 msgid "Release date:"
@@ -1522,17 +1530,9 @@ msgstr "Пароль"
 msgid "Base Name"
 msgstr "Название базы"
 
-#: tconfigform.label7.caption
-msgid "SQLite"
-msgstr "SQLite"
-
 #: tconfigform.label8.caption
 msgid "Base"
 msgstr "База данных"
-
-#: tconfigform.label9.caption
-msgid "Default:"
-msgstr "По умолчанию:"
 
 #: tconfigform.radiobutton1.caption
 msgctxt "tconfigform.radiobutton1.caption"
@@ -1542,6 +1542,28 @@ msgstr "Использовать MySQL"
 #: tconfigform.radiobutton2.caption
 msgid "Use SQLite "
 msgstr "Использовать SQLite "
+
+#: tconfigform.tsbase.caption
+msgid "DataBase"
+msgstr ""
+
+#: tconfigform.tsintref.caption
+msgid "Internal reference"
+msgstr ""
+
+#: tconfigform.tsothersettings.caption
+msgid "Other Settings"
+msgstr ""
+
+#: tconfigform.tsrefonline.caption
+msgid "Reference Online"
+msgstr ""
+
+#: tconfigform.tstelnet.caption
+#, fuzzy
+msgctxt "tconfigform.tstelnet.caption"
+msgid "Telnet"
+msgstr "Телнет"
 
 #: tconfiggrid_form.button1.caption
 msgctxt "tconfiggrid_form.button1.caption"

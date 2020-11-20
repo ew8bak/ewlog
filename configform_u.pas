@@ -65,14 +65,15 @@ type
     Edit8: TEdit;
     Edit9: TEdit;
     FileNameEdit1: TFileNameEdit;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
-    GroupBox3: TGroupBox;
-    GroupBox4: TGroupBox;
-    GroupBox5: TGroupBox;
-    GroupBox6: TGroupBox;
-    GroupBox7: TGroupBox;
-    Label1: TLabel;
+    gbIntRef: TGroupBox;
+    gbTelnet: TGroupBox;
+    GBQRZRU: TGroupBox;
+    gbQRZCOM: TGroupBox;
+    gbCloudLog: TGroupBox;
+    gbHAMQTH: TGroupBox;
+    gbMySQL: TGroupBox;
+    gbSQLite: TGroupBox;
+    gbDefaultDB: TGroupBox;
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
@@ -95,12 +96,16 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
-    Label7: TLabel;
     Label8: TLabel;
-    Label9: TLabel;
+    PControl: TPageControl;
     ProgressBar1: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
+    TSTelnet: TTabSheet;
+    TSIntRef: TTabSheet;
+    TSOtherSettings: TTabSheet;
+    TSRefOnline: TTabSheet;
+    TSBase: TTabSheet;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -385,7 +390,7 @@ begin
   end
   else
   begin
-    GroupBox2.Caption := rNoReferenceBookFound;
+    gbIntRef.Caption := rNoReferenceBookFound;
     label11.Caption := rNumberOfRecordsNot;
     Label10.Caption := rReleaseDateNot;
     Label14.Caption := '---';
@@ -498,12 +503,12 @@ begin
       InitDB.ImbeddedCallBookInit(True);
       CheckBox1.Checked := True;
       CheckBox1.Enabled := True;
-      GroupBox2.Caption := rReferenceBook;
+      gbIntRef.Caption := rReferenceBook;
       Button4.Caption := rOK;
     end
     else
     begin
-      GroupBox2.Caption := rNoReferenceBookFound;
+      gbIntRef.Caption := rNoReferenceBookFound;
       label11.Caption := rNumberOfRecordsNot;
       Label10.Caption := rReleaseDateNot;
       Label14.Caption := '---';
