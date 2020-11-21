@@ -70,8 +70,8 @@
         <UnitName Value="ConfigForm_U"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="303"/>
-        <CursorPos X="3" Y="317"/>
+        <TopLine Value="304"/>
+        <CursorPos X="3" Y="318"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1643,123 +1643,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="598" Column="28" TopLine="577"/>
+        <Caret Line="589" TopLine="577"/>
       </Position1>
       <Position2>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="589" TopLine="577"/>
+        <Caret Line="590" TopLine="577"/>
       </Position2>
       <Position3>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="590" TopLine="577"/>
+        <Caret Line="591" TopLine="577"/>
       </Position3>
       <Position4>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="591" TopLine="577"/>
+        <Caret Line="594" TopLine="577"/>
       </Position4>
       <Position5>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="594" TopLine="577"/>
+        <Caret Line="595" TopLine="577"/>
       </Position5>
       <Position6>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="595" TopLine="577"/>
+        <Caret Line="598" TopLine="577"/>
       </Position6>
       <Position7>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="598" TopLine="577"/>
+        <Caret Line="599" TopLine="577"/>
       </Position7>
       <Position8>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="599" TopLine="577"/>
+        <Caret Line="581" Column="50" TopLine="570"/>
       </Position8>
       <Position9>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="581" Column="50" TopLine="570"/>
+        <Caret Line="591" Column="27" TopLine="578"/>
       </Position9>
       <Position10>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="591" Column="27" TopLine="578"/>
-      </Position10>
-      <Position11>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1800" Column="19" TopLine="1798"/>
-      </Position11>
-      <Position12>
+      </Position10>
+      <Position11>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="33" Column="15" TopLine="16"/>
+      </Position11>
+      <Position12>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="613" Column="3" TopLine="611"/>
       </Position12>
       <Position13>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="613" Column="3" TopLine="611"/>
+        <Caret Line="628" Column="3" TopLine="611"/>
       </Position13>
       <Position14>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="628" Column="3" TopLine="611"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="41" Column="15" TopLine="25"/>
       </Position14>
       <Position15>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="41" Column="15" TopLine="25"/>
+        <Caret Line="992" Column="66" TopLine="972"/>
       </Position15>
       <Position16>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="992" Column="66" TopLine="972"/>
-      </Position16>
-      <Position17>
         <Filename Value="C:\lazarus\fpc\3.2.0\source\rtl\objpas\sysutils\datih.inc"/>
         <Caret Line="130" Column="10" TopLine="113"/>
+      </Position16>
+      <Position17>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="312" Column="3" TopLine="298"/>
       </Position17>
       <Position18>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="312" Column="3" TopLine="298"/>
+        <Caret Line="313" Column="3" TopLine="299"/>
       </Position18>
       <Position19>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="313" Column="3" TopLine="299"/>
+        <Caret Line="314" Column="3" TopLine="300"/>
       </Position19>
       <Position20>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="314" Column="3" TopLine="300"/>
+        <Caret Line="315" Column="3" TopLine="301"/>
       </Position20>
       <Position21>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="315" Column="3" TopLine="301"/>
+        <Caret Line="316" Column="3" TopLine="302"/>
       </Position21>
       <Position22>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="316" Column="3" TopLine="302"/>
+        <Caret Line="317" Column="3" TopLine="303"/>
       </Position22>
       <Position23>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="317" Column="3" TopLine="303"/>
+        <Caret Line="318" Column="3" TopLine="304"/>
       </Position23>
       <Position24>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="318" Column="3" TopLine="304"/>
+        <Caret Line="319" Column="3" TopLine="305"/>
       </Position24>
       <Position25>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="319" Column="3" TopLine="305"/>
+        <Caret Line="318" Column="3" TopLine="304"/>
       </Position25>
       <Position26>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="318" Column="3" TopLine="304"/>
+        <Caret Line="317" Column="3" TopLine="303"/>
       </Position26>
       <Position27>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="317" Column="3" TopLine="303"/>
+        <Caret Line="316" Column="3" TopLine="302"/>
       </Position27>
       <Position28>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="316" Column="3" TopLine="302"/>
+        <Caret Line="315" Column="3" TopLine="301"/>
       </Position28>
       <Position29>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="315" Column="3" TopLine="301"/>
+        <Caret Line="316" Column="3" TopLine="302"/>
       </Position29>
       <Position30>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="316" Column="3" TopLine="302"/>
+        <Caret Line="317" Column="3" TopLine="303"/>
       </Position30>
     </JumpHistory>
     <RunParams>

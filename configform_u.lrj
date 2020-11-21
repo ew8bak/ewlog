@@ -43,6 +43,7 @@
 {"hash":5463550,"name":"tconfigform.label15.caption","sourcebytes":[76,111,103,105,110],"value":"Login"},
 {"hash":145417188,"name":"tconfigform.label16.caption","sourcebytes":[80,97,115,115,119,111,114,100],"value":"Password"},
 {"hash":262735241,"name":"tconfigform.checkbox4.caption","sourcebytes":[83,116,97,114,116,32,68,88,32,99,108,117,115,116,101,114,32,97,117,116,111,109,97,116,105,99,97,108,108,121],"value":"Start DX cluster automatically"},
+{"hash":75997888,"name":"tconfigform.tsbackup.caption","sourcebytes":[66,97,99,107,117,112],"value":"Backup"},
 {"hash":106349587,"name":"tconfigform.tsothersettings.caption","sourcebytes":[79,116,104,101,114,32,83,101,116,116,105,110,103,115],"value":"Other Settings"},
 {"hash":57382903,"name":"tconfigform.gbcloudlog.caption","sourcebytes":[67,108,111,117,100,76,111,103],"value":"CloudLog"},
 {"hash":94149826,"name":"tconfigform.label23.caption","sourcebytes":[83,101,114,118,101,114],"value":"Server"},

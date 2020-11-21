@@ -101,6 +101,7 @@ type
     ProgressBar1: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
+    TSBackup: TTabSheet;
     TSTelnet: TTabSheet;
     TSIntRef: TTabSheet;
     TSOtherSettings: TTabSheet;

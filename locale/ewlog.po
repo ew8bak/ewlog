@@ -1366,8 +1366,23 @@ msgstr ""
 msgid "Send Freq to CloudLog"
 msgstr ""
 
+#: tconfigform.gbcloudlog.caption
+msgctxt "tconfigform.gbcloudlog.caption"
+msgid "CloudLog"
+msgstr ""
+
 #: tconfigform.gbdefaultdb.caption
 msgid "Default DB"
+msgstr ""
+
+#: tconfigform.gbhamqth.caption
+msgctxt "tconfigform.gbhamqth.caption"
+msgid "HAMQTH XML API"
+msgstr ""
+
+#: tconfigform.gbintref.caption
+msgctxt "tconfigform.gbintref.caption"
+msgid "Internal reference book"
 msgstr ""
 
 #: tconfigform.gbmysql.caption
@@ -1375,35 +1390,24 @@ msgctxt "tconfigform.gbmysql.caption"
 msgid "MySQL"
 msgstr ""
 
+#: tconfigform.gbqrzcom.caption
+msgctxt "tconfigform.gbqrzcom.caption"
+msgid "QRZ.COM XML API"
+msgstr ""
+
+#: tconfigform.gbqrzru.caption
+msgctxt "tconfigform.gbqrzru.caption"
+msgid "QRZ.RU XML API"
+msgstr ""
+
 #: tconfigform.gbsqlite.caption
 msgctxt "tconfigform.gbsqlite.caption"
 msgid "SQLite"
 msgstr ""
 
-#: tconfigform.groupbox2.caption
-msgctxt "tconfigform.groupbox2.caption"
-msgid "Internal reference book"
-msgstr ""
-
-#: tconfigform.groupbox3.caption
-msgctxt "tconfigform.groupbox3.caption"
+#: tconfigform.gbtelnet.caption
+msgctxt "tconfigform.gbtelnet.caption"
 msgid "Telnet DX Cluster"
-msgstr ""
-
-#: tconfigform.groupbox4.caption
-msgid "QRZ.RU XML API"
-msgstr ""
-
-#: tconfigform.groupbox5.caption
-msgid "QRZ.COM XML API"
-msgstr ""
-
-#: tconfigform.groupbox6.caption
-msgid "CloudLog"
-msgstr ""
-
-#: tconfigform.groupbox7.caption
-msgid "HAMQTH XML API"
 msgstr ""
 
 #: tconfigform.label10.caption
@@ -1518,6 +1522,10 @@ msgstr ""
 
 #: tconfigform.radiobutton2.caption
 msgid "Use SQLite "
+msgstr ""
+
+#: tconfigform.tsbackup.caption
+msgid "Backup"
 msgstr ""
 
 #: tconfigform.tsbase.caption

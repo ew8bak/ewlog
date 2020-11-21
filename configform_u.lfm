@@ -201,29 +201,33 @@ object ConfigForm: TConfigForm
         ClientWidth = 229
         TabOrder = 1
         object FileNameEdit1: TFileNameEdit
-          Left = 48
+          AnchorSideLeft.Control = gbSQLite
+          AnchorSideTop.Control = Label8
+          AnchorSideTop.Side = asrBottom
+          Left = 10
           Height = 23
-          Top = 12
-          Width = 160
+          Top = 22
+          Width = 208
           FilterIndex = 0
           HideDirectories = False
           ButtonWidth = 23
           NumGlyphs = 1
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
           Font.Height = -12
           MaxLength = 0
           ParentFont = False
           TabOrder = 0
         end
         object Label8: TLabel
-          AnchorSideTop.Control = FileNameEdit1
-          AnchorSideTop.Side = asrCenter
-          AnchorSideRight.Control = FileNameEdit1
-          Left = 19
+          AnchorSideLeft.Control = FileNameEdit1
+          AnchorSideTop.Control = gbSQLite
+          AnchorSideBottom.Control = FileNameEdit1
+          Left = 10
           Height = 15
-          Top = 16
+          Top = 2
           Width = 24
-          Anchors = [akTop, akRight]
-          BorderSpacing.Right = 5
+          BorderSpacing.Top = 2
           Caption = 'Base'
           Font.Height = -12
           ParentColor = False
@@ -690,6 +694,9 @@ object ConfigForm: TConfigForm
           TabOrder = 2
         end
       end
+    end
+    object TSBackup: TTabSheet
+      Caption = 'Backup'
     end
     object TSOtherSettings: TTabSheet
       Caption = 'Other Settings'
