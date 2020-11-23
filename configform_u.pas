@@ -40,7 +40,11 @@ type
     Button3: TButton;
     Button4: TButton;
     CheckBox1: TCheckBox;
+    cbBackupDB: TCheckBox;
+    cbBackupCloseDB: TCheckBox;
     CheckBox11: TCheckBox;
+    cbADIfiles: TCheckBox;
+    cbBackupCloseADI: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
@@ -49,6 +53,7 @@ type
     CheckBox7: TCheckBox;
     CheckBox8: TCheckBox;
     CheckBox9: TCheckBox;
+    DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -74,6 +79,8 @@ type
     gbMySQL: TGroupBox;
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
+    lbTimeBackup: TLabel;
+    lbPathBackup: TLabel;
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
@@ -101,6 +108,7 @@ type
     ProgressBar1: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
+    timeEdit: TTimeEdit;
     TSBackup: TTabSheet;
     TSTelnet: TTabSheet;
     TSIntRef: TTabSheet;
@@ -171,30 +179,38 @@ begin
   else
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
 
-  if CheckBox5.Checked then
-    INIFile.WriteBool('SetLog', 'PrintPrev', True)
-  else
-    INIFile.WriteBool('SetLog', 'PrintPrev', False);
+  INIFile.WriteBool('SetLog', 'PrintPrev', CheckBox5.Checked);
+  INIFile.WriteBool('SetLog', 'AutoCloudLog', CheckBox8.Checked);
+  INIFile.WriteBool('SetLog', 'FreqToCloudLog', CheckBox9.Checked);
 
-  if CheckBox8.Checked then
-    INIFile.WriteBool('SetLog', 'AutoCloudLog', True)
-  else
-    INIFile.WriteBool('SetLog', 'AutoCloudLog', False);
-
-  if CheckBox9.Checked then
-    INIFile.WriteBool('SetLog', 'FreqToCloudLog', True)
-  else
-    INIFile.WriteBool('SetLog', 'FreqToCloudLog', False);
   DBRecord.MySQLDBName := Edit5.Text;
   DBRecord.MySQLHost := Edit1.Text;
   DBRecord.MySQLPort := StrToInt(Edit2.Text);
   DBRecord.MySQLUser := Edit3.Text;
   DBRecord.MySQLPass := Edit4.Text;
   DBRecord.SQLitePATH := FileNameEdit1.Text;
+
+  INIFile.WriteString('SetBackup', 'PathBackupFiles', DEBackupPath.Directory);
+  INIFile.WriteBool('SetBackup', 'BackupDB', cbBackupDB.Checked);
+  INIFile.WriteBool('SetBackup', 'BackupADI', cbADIfiles.Checked);
+  INIFile.WriteBool('SetBackup', 'BackupADIonClose', cbBackupCloseADI.Checked);
+  INIFile.WriteBool('SetBackup', 'BackupDBonClose', cbBackupCloseDB.Checked);
+  INIFile.WriteTime('SetBackup', 'BackupTime', timeEdit.Time);
+
+  IniSet.PathBackupFiles := DEBackupPath.Directory;
+  IniSet.BackupDB := cbBackupDB.Checked;
+  IniSet.BackupADI := cbADIfiles.Checked;
+  IniSet.BackupADIonClose := cbBackupCloseADI.Checked;
+  IniSet.BackupDBonClose := cbBackupCloseDB.Checked;
+  IniSet.BackupTime := timeEdit.Time;
 end;
 
 procedure TConfigForm.ReadINI;
+var
+  FormatSettings: TFormatSettings;
 begin
+  FormatSettings.TimeSeparator := ':';
+  FormatSettings.ShortTimeFormat := 'hh:mm';
   Edit1.Text := INIFile.ReadString('DataBases', 'HostAddr', '');
   if INIFile.ReadString('DataBases', 'Port', '') = '' then
     Edit2.Text := '3306'
@@ -235,6 +251,15 @@ begin
     CheckBox7.Checked := True;
   if IniSet.CallBookSystem = 'HAMQTH' then
     CheckBox11.Checked := True;
+
+  DEBackupPath.Directory := INIFile.ReadString('SetBackup', 'PathBackupFiles', '');
+  cbBackupDB.Checked := INIFile.ReadBool('SetBackup', 'BackupDB', False);
+  cbADIfiles.Checked := INIFile.ReadBool('SetBackup', 'BackupADI', False);
+  cbBackupCloseADI.Checked := INIFile.ReadBool('SetBackup', 'BackupADIonClose', False);
+  cbBackupCloseDB.Checked := INIFile.ReadBool('SetBackup', 'BackupDBonClose', False);
+  timeEdit.Time := INIFile.ReadTime('SetBackup', 'BackupTime',
+    StrToTime('12:00', FormatSettings));
+
 end;
 
 procedure TConfigForm.Button2Click(Sender: TObject);

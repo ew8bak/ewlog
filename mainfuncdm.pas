@@ -574,11 +574,12 @@ var
   QueryTXT: string;
   QSODates, QSLSentDates, QSLRecDates, LotWRecDates: string;
   SRXs, STXs: string;
-  FormatSettings : TFormatSettings;
+  FormatSettings: TFormatSettings;
 begin
   try
     FormatSettings.DateSeparator := '.';
-    FormatSettings.ShortDateFormat := 'dd.mm.yyyy';;
+    FormatSettings.ShortDateFormat := 'dd.mm.yyyy';
+
     try
       if DBRecord.CurrentDB = 'MySQL' then
       begin
@@ -591,7 +592,7 @@ begin
           QSLRecDates := 'NULL'
         else
           QSLRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLRecDate));
-        if SQSO.LotWRecDate =StrToDate('30.12.1899', FormatSettings) then
+        if SQSO.LotWRecDate = StrToDate('30.12.1899', FormatSettings) then
           LotWRecDates := 'NULL'
         else
           LotWRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.LotWRecDate));
@@ -1297,7 +1298,11 @@ begin
 end;
 
 procedure TMainFunc.LoadINIsettings;
+var
+  FormatSettings: TFormatSettings;
 begin
+  FormatSettings.TimeSeparator := ':';
+  FormatSettings.ShortTimeFormat := 'hh:mm';
   IniSet.UseIntCallBook := INIFile.ReadBool('SetLog', 'IntCallBook', True);
   IniSet.PhotoDir := INIFile.ReadString('SetLog', 'PhotoDir', '');
   IniSet.StateToQSLInfo := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
@@ -1371,6 +1376,13 @@ begin
   IniSet.trxShow := INIFile.ReadBool('SetLog', 'trxShow', False);
   IniSet.ClusterAutoStart := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
   IniSet.VisibleComment := INIFile.ReadBool('SetLog', 'VisibleComment', True);
+  IniSet.PathBackupFiles := INIFile.ReadString('SetBackup', 'PathBackupFiles', '');
+  IniSet.BackupDB := INIFile.ReadBool('SetBackup', 'BackupDB', False);
+  IniSet.BackupADI := INIFile.ReadBool('SetBackup', 'BackupADI', False);
+  IniSet.BackupADIonClose := INIFile.ReadBool('SetBackup', 'BackupADIonClose', False);
+  IniSet.BackupDBonClose := INIFile.ReadBool('SetBackup', 'BackupDBonClose', False);
+  IniSet.BackupTime := INIFile.ReadTime('SetBackup', 'BackupTime',
+    StrToTime('12:00', FormatSettings));
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

@@ -1324,6 +1324,24 @@ msgstr ""
 msgid "Program settings"
 msgstr ""
 
+#: tconfigform.cbadifiles.caption
+msgid "Backup ADI file"
+msgstr ""
+
+#: tconfigform.cbbackupcloseadi.caption
+msgctxt "tconfigform.cbbackupcloseadi.caption"
+msgid "Backup on close"
+msgstr ""
+
+#: tconfigform.cbbackupclosedb.caption
+msgctxt "tconfigform.cbbackupclosedb.caption"
+msgid "Backup on close"
+msgstr ""
+
+#: tconfigform.cbbackupdb.caption
+msgid "Backup Database"
+msgstr ""
+
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
 msgstr ""
@@ -1514,6 +1532,14 @@ msgstr ""
 
 #: tconfigform.label8.caption
 msgid "Base"
+msgstr ""
+
+#: tconfigform.lbpathbackup.caption
+msgid "Path backup files"
+msgstr ""
+
+#: tconfigform.lbtimebackup.caption
+msgid "Backup Time"
 msgstr ""
 
 #: tconfigform.radiobutton1.caption

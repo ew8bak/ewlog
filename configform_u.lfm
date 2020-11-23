@@ -1,7 +1,7 @@
 object ConfigForm: TConfigForm
-  Left = 682
+  Left = 446
   Height = 324
-  Top = 216
+  Top = 261
   Width = 510
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -697,6 +697,116 @@ object ConfigForm: TConfigForm
     end
     object TSBackup: TTabSheet
       Caption = 'Backup'
+      ClientHeight = 252
+      ClientWidth = 502
+      object DEBackupPath: TDirectoryEdit
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = lbPathBackup
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 27
+        Width = 232
+        ShowHidden = False
+        ButtonWidth = 23
+        NumGlyphs = 1
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 2
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object lbPathBackup: TLabel
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = TSBackup
+        Left = 5
+        Height = 15
+        Top = 10
+        Width = 90
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Path backup files'
+        ParentColor = False
+      end
+      object cbBackupDB: TCheckBox
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = DEBackupPath
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 19
+        Top = 55
+        Width = 110
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup Database'
+        TabOrder = 1
+      end
+      object cbADIfiles: TCheckBox
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = cbBackupDB
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 19
+        Top = 79
+        Width = 100
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup ADI file'
+        TabOrder = 2
+      end
+      object cbBackupCloseDB: TCheckBox
+        AnchorSideLeft.Control = cbBackupDB
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = cbBackupDB
+        AnchorSideTop.Side = asrCenter
+        Left = 120
+        Height = 19
+        Top = 55
+        Width = 106
+        BorderSpacing.Left = 5
+        Caption = 'Backup on close'
+        TabOrder = 3
+      end
+      object cbBackupCloseADI: TCheckBox
+        AnchorSideLeft.Control = cbADIfiles
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = cbADIfiles
+        AnchorSideTop.Side = asrCenter
+        Left = 120
+        Height = 19
+        Top = 79
+        Width = 106
+        BorderSpacing.Left = 15
+        Caption = 'Backup on close'
+        TabOrder = 4
+      end
+      object timeEdit: TTimeEdit
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = lbTimeBackup
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 123
+        Width = 110
+        ButtonWidth = 23
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 5
+      end
+      object lbTimeBackup: TLabel
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = cbADIfiles
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 15
+        Top = 103
+        Width = 68
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup Time'
+        ParentColor = False
+      end
     end
     object TSOtherSettings: TTabSheet
       Caption = 'Other Settings'

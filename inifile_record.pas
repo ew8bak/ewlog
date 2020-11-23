@@ -85,6 +85,12 @@ type
     Cluster_Port: string;
     ClusterAutoStart: boolean;
     VisibleComment: boolean;
+    PathBackupFiles: string;
+    BackupDB: Boolean;
+    BackupADI: Boolean;
+    BackupADIonClose: Boolean;
+    BackupDBonClose: Boolean;
+    BackupTime: TTime;
   end;
 
 implementation

@@ -5,7 +5,7 @@ object ServerDM: TServerDM
   Height = 150
   HorizontalOffset = 248
   VerticalOffset = 128
-  Width = 221
+  Width = 223
   object LUDPComponent1: TLUDPComponent
     Port = 0
     OnReceive = LUDPComponent1Receive
