@@ -1623,6 +1623,8 @@ procedure TMiniForm.CBFilterChange(Sender: TObject);
 begin
   if not CBFilter.Checked then
     InitDB.SelectLogbookTable(LBRecord.LogTable);
+  MainFunc.SetGrid(GridsForm.DBGrid1);
+  MainFunc.SetGrid(GridsForm.DBGrid2);
 end;
 
 procedure TMiniForm.CBMapChange(Sender: TObject);

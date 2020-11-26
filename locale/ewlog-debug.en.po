@@ -3618,7 +3618,7 @@ msgstr ""
 
 #: tminiform.dateedit1.text
 msgctxt "tminiform.dateedit1.text"
-msgid "  /  /    "
+msgid "  .  .    "
 msgstr ""
 
 #: tminiform.datetimepicker1.textfornulldate
