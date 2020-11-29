@@ -144,6 +144,8 @@ object MiniForm: TMiniForm
       Width = 91
       AutoSize = False
       BorderSpacing.Left = 5
+      Color = clWhite
+      Font.Color = clBlack
       Font.Height = -12
       ItemHeight = 16
       OnChange = CBCurrentLogChange
@@ -388,6 +390,8 @@ object MiniForm: TMiniForm
     Width = 102
     BorderSpacing.Left = 37
     BorderSpacing.Top = 2
+    Color = clWhite
+    Font.Color = clBlack
     Font.Height = -11
     ItemHeight = 16
     OnChange = CBBandChange
@@ -420,6 +424,8 @@ object MiniForm: TMiniForm
     Width = 65
     BorderSpacing.Left = 37
     BorderSpacing.Top = 2
+    Color = clWhite
+    Font.Color = clBlack
     Font.Height = -11
     ItemHeight = 16
     OnChange = CBModeChange
@@ -438,6 +444,8 @@ object MiniForm: TMiniForm
     Top = 117
     Width = 60
     BorderSpacing.Left = 1
+    Color = clWhite
+    Font.Color = clBlack
     Font.Height = -11
     ItemHeight = 16
     ParentFont = False
@@ -1864,6 +1872,8 @@ object MiniForm: TMiniForm
     Width = 96
     AutoSize = False
     BorderSpacing.Left = 2
+    Color = clWhite
+    Font.Color = clBlack
     Font.Height = -12
     ItemHeight = 16
     ItemIndex = 3
