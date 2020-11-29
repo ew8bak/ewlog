@@ -548,6 +548,10 @@ msgctxt "resourcestr.rimport"
 msgid "Import"
 msgstr "Импорт"
 
+#: resourcestr.rimportcompl
+msgid "Import completed"
+msgstr ""
+
 #: resourcestr.rimported
 msgid "Imported"
 msgstr "Импортировано"

@@ -114,6 +114,9 @@ begin
     InitDB.SelectLogbookTable(LBRecord.LogTable);
     lblComplete.Caption := rDone;
     Button1.Enabled := True;
+    ShowMessage(rImportCompl);
+    ImportADIFThread.Terminate;
+    ImportADIFThread := nil;
   end;
   if info.ErrorCount > 0 then
   begin

@@ -31,7 +31,6 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="229"/>
         <CursorPos X="47" Y="243"/>
@@ -83,8 +82,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="80"/>
-        <CursorPos X="3" Y="85"/>
+        <CursorPos X="3" Y="17"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -107,10 +105,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="114"/>
-        <CursorPos X="23" Y="127"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="122"/>
+        <CursorPos X="21" Y="71"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="dmfunc_u.pas"/>
@@ -533,10 +533,11 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="156"/>
-        <CursorPos X="15" Y="170"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="157"/>
+        <CursorPos X="15" Y="188"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit49>
       <Unit50>
         <Filename Value="const_u.pas"/>
@@ -679,7 +680,7 @@
       <Unit65>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="65"/>
         <CursorPos X="45" Y="79"/>
         <UsageCount Value="200"/>
@@ -858,9 +859,9 @@
         <Filename Value="exportadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportADIThread"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="87"/>
-        <CursorPos X="3" Y="45"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="465"/>
+        <CursorPos X="5" Y="16"/>
         <UsageCount Value="76"/>
         <Loaded Value="True"/>
       </Unit84>
@@ -1640,7 +1641,7 @@
         <UsageCount Value="10"/>
       </Unit188>
     </Units>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="992" Column="66" TopLine="972"/>
@@ -1745,6 +1746,18 @@
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1495" Column="44" TopLine="1473"/>
       </Position26>
+      <Position27>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="79" Column="29" TopLine="56"/>
+      </Position27>
+      <Position28>
+        <Filename Value="exportadifform_u.pas"/>
+        <Caret Line="78" Column="30" TopLine="62"/>
+      </Position28>
+      <Position29>
+        <Filename Value="importadifform_u.pas"/>
+        <Caret Line="117" Column="32"/>
+      </Position29>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

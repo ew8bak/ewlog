@@ -185,6 +185,7 @@ resourcestring
   rEnterMesQSLInf = 'Please enter your message';
   rSentRecord = 'Record sent';
   rNotefldigi = 'Please enable N3FJP logs support in Fldigi settings. (In Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)';
+  rImportCompl = 'Import completed';
 implementation
 
 end.

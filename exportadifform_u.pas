@@ -75,7 +75,12 @@ begin
   Label1.Caption := rNumberOfQSO + ' ' + IntToStr(Info.RecCount) +
     rOf + IntToStr(Info.AllRec);
   if Info.Result then
+  begin
     Button1.Enabled := True;
+    ShowMessage(rExportCompl);
+    ExportADIFThread.Terminate;
+    ExportADIFThread := nil;
+  end;
 end;
 
 procedure TexportAdifForm.StartExport;
