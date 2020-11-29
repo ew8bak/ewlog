@@ -86,6 +86,7 @@ type
     function LatLongToGrid(Lat, Long: real): string;
     function RunProgram(progpath, args: string): boolean;
     function RusToEng(Text: string): string;
+    function RusToLat(Text: string): string;
     function GetRadioRigCtldCommandLine(radio: word): string;
     function StrToFreq(const freqstr: string): extended;
     function GetDigiBandFromFreq(MHz: string): double;
@@ -1251,6 +1252,87 @@ begin
   begin
     set_conf := copy(set_conf, 1, Length(set_conf) - 1);
     Result := Result + ' --set-conf ' + set_conf;
+  end;
+end;
+
+function TdmFunc.RusToLat(Text: string): string;
+var
+  i: integer;
+  ch: string;
+begin
+   Result:='';
+  if UTF8Length(Text) < 1 then exit;
+  for i:= 1 to UTF8Length(Text) do
+  begin
+    ch:= UTF8Copy(Text, i, 1);
+    case ch of
+        'А': ch:= 'A';
+        'Б': ch:= 'B';
+        'В': ch:= 'V';
+        'Г': ch:= 'G';
+        'Д': ch:= 'D';
+        'Е': ch:= 'E';
+        'Ё': ch:= 'YO';
+        'Ж': ch:= 'ZH';
+        'З': ch:= 'Z';
+        'И': ch:= 'I';
+        'Й': ch:= 'I';
+        'К': ch:= 'K';
+        'Л': ch:= 'L';
+        'М': ch:= 'M';
+        'Н': ch:= 'N';
+        'О': ch:= 'O';
+        'П': ch:= 'P';
+        'Р': ch:= 'R';
+        'С': ch:= 'S';
+        'Т': ch:= 'T';
+        'У': ch:= 'U';
+        'Ф': ch:= 'F';
+        'Х': ch:= 'H';
+        'Ц': ch:= 'C';
+        'Ч': ch:= 'CH';
+        'Ш': ch:= 'SH';
+        'Щ': ch:= 'SH';
+        'Ъ', 'ъ': ch:= '';
+        'Ы': ch:= 'I';
+        'Ь', 'ь': ch:= ''''; //апостроф вместо мягкого знака.
+        'Э': ch:= 'E';
+        'Ю': ch:= 'YU';
+        'Я': ch:= 'YA';
+
+        'а': ch:= 'a';
+        'б': ch:= 'b';
+        'в': ch:= 'v';
+        'г': ch:= 'g';
+        'д': ch:= 'd';
+        'е': ch:= 'e';
+        'ё': ch:= 'yo';
+        'ж': ch:= 'zh';
+        'з': ch:= 'z';
+        'и': ch:= 'i';
+        'й': ch:= 'i';
+        'к': ch:= 'k';
+        'л': ch:= 'l';
+        'м': ch:= 'm';
+        'н': ch:= 'n';
+        'о': ch:= 'o';
+        'п': ch:= 'p';
+        'р': ch:= 'r';
+        'с': ch:= 's';
+        'т': ch:= 't';
+        'у': ch:= 'u';
+        'ф': ch:= 'f';
+        'х': ch:= 'h';
+        'ц': ch:= 'c';
+        'ч': ch:= 'ch';
+        'ш': ch:= 'sh';
+        'щ': ch:= 'sh';
+        'ы': ch:= 'i';
+        'э': ch:= 'e';
+        'ю': ch:= 'yu';
+        'я': ch:= 'ya';
+    end;
+    Result:= Result + ch;
   end;
 end;
 

@@ -92,6 +92,7 @@ begin
   PADIExport.DateStart := DateEdit1.Date;
   PADIExport.DateEnd := DateEdit2.Date;
   PADIExport.Win1251 := CheckBox2.Checked;
+  PADIExport.RusToLat := CheckBox4.Checked;
 
   ExportADIFThread := TExportADIFThread.Create;
   if Assigned(ExportADIFThread.FatalException) then

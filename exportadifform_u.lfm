@@ -534,7 +534,6 @@ object exportAdifForm: TexportAdifForm
     Top = 80
     Width = 105
     Caption = 'Convert to Latin'
-    Enabled = False
     Font.Height = -12
     ParentFont = False
     TabOrder = 9

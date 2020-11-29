@@ -23,6 +23,7 @@ type
     DateEnd: TDateTime;
     ExportAll: boolean;
     Win1251: boolean;
+    RusToLat: boolean;
     Mobile: boolean;
     AllRec: integer;
   end;
@@ -244,8 +245,13 @@ begin
 
         if Query.Fields.FieldByName('OMName').AsString <> '' then
         begin
-          tmp := '<NAME' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-            'OMName').AsString, PADIExport.Win1251);
+          if PADIExport.RusToLat then
+            tmp := '<NAME' + dmFunc.StringToADIF(
+              dmFunc.RusToLat(Query.Fields.FieldByName('OMName').AsString),
+              PADIExport.Win1251)
+          else
+            tmp := '<NAME' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+              'OMName').AsString, PADIExport.Win1251);
           if PADIExport.Win1251 then
             Write(f, UTF8ToCP1251(tmp))
           else
@@ -254,8 +260,13 @@ begin
 
         if Query.Fields.FieldByName('OMQTH').AsString <> '' then
         begin
-          tmp := '<QTH' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-            'OMQTH').AsString, PADIExport.Win1251);
+          if PADIExport.RusToLat then
+            tmp := '<QTH' + dmFunc.StringToADIF(
+              dmFunc.RusToLat(Query.Fields.FieldByName('OMQTH').AsString),
+              PADIExport.Win1251)
+          else
+            tmp := '<QTH' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+              'OMQTH').AsString, PADIExport.Win1251);
           if PADIExport.Win1251 then
             Write(f, UTF8ToCP1251(tmp))
           else
@@ -395,9 +406,14 @@ begin
 
         if Query.Fields.FieldByName('QSOAddInfo').AsString <> '' then
         begin
-          tmp := '<COMMENT' + dmFunc.StringToADIF(
-            dmFunc.MyTrim(Query.Fields.FieldByName('QSOAddInfo').AsString),
-            PADIExport.Win1251);
+          if PADIExport.RusToLat then
+            tmp := '<COMMENT' + dmFunc.StringToADIF(
+              dmFunc.MyTrim(dmFunc.RusToLat(Query.Fields.FieldByName(
+              'QSOAddInfo').AsString)), PADIExport.Win1251)
+          else
+            tmp := '<COMMENT' + dmFunc.StringToADIF(
+              dmFunc.MyTrim(Query.Fields.FieldByName('QSOAddInfo').AsString),
+              PADIExport.Win1251);
           if PADIExport.Win1251 then
             Write(f, UTF8ToCP1251(tmp))
           else
