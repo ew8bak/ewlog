@@ -704,6 +704,7 @@ object MiniForm: TMiniForm
     OnButtonClick = EditCallsignButtonClick
     OnChange = EditCallsignChange
     OnKeyDown = EditCallsignKeyDown
+    OnKeyPress = EditCallsignKeyPress
     OnMouseDown = EditCallsignMouseDown
     ParentFont = False
     PasswordChar = #0

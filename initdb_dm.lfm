@@ -73,4 +73,11 @@ object InitDB: TInitDB
     Left = 376
     Top = 136
   end
+  object UniqueInstance: TUniqueInstance
+    Enabled = True
+    Identifier = 'EWLog'
+    OnOtherInstance = UniqueInstanceOtherInstance
+    Left = 400
+    Top = 17
+  end
 end

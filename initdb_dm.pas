@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
   DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec,
-  Forms, LCLType, SQLite3Dyn;
+  Forms, LCLType, UniqueInstance, SQLite3Dyn;
 
 type
 
@@ -23,8 +23,11 @@ type
     ServiceDBConnection: TSQLite3Connection;
     ServiceTransaction: TSQLTransaction;
     ImbeddedCallBookTransaction: TSQLTransaction;
+    UniqueInstance: TUniqueInstance;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure UniqueInstanceOtherInstance(Sender: TObject; ParamCount: integer;
+      const Parameters: array of string);
   private
 
   public
@@ -246,6 +249,12 @@ begin
   INIFile.Free;
   CloseFile(ExceptFile);
   AllFree;
+end;
+
+procedure TInitDB.UniqueInstanceOtherInstance(Sender: TObject;
+  ParamCount: integer; const Parameters: array of string);
+begin
+  ShowMessage(rProgramAgain);
 end;
 
 procedure TInitDB.CheckSQLVersion;

@@ -764,6 +764,10 @@ msgctxt "resourcestr.rprocessing"
 msgid "Processing"
 msgstr "Обработка"
 
+#: resourcestr.rprogramagain
+msgid "You are trying to run the program again. You cannot do this"
+msgstr ""
+
 #: resourcestr.rqsl
 msgctxt "resourcestr.rqsl"
 msgid "QSL"
