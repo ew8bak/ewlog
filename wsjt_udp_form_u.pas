@@ -11,7 +11,7 @@ uses
   cthreads,
 {$ENDIF}{$ENDIF}
   Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils, qso_record;
+  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils, digi_record;
 
 const
   SJT65: string = '#';
@@ -35,6 +35,7 @@ type
     procedure IdWsjtUDPUDPRead(AThread: TIdUDPListenerThread;
       AData: TIdBytes; ABinding: TIdSocketHandle);
   private
+    DataDigi: TDigiR;
     { private declarations }
   public
     function decodeMode(mode: string): string;
@@ -129,6 +130,7 @@ begin
       begin
         Unpack(AData, index, messageType);
         Unpack(AData, index, id);
+        DataDigi.Save := False;
         Memo1.Lines.Add('Message type:' + IntToStr(messageType) + ' from:[' + id + ']');
         case messageType of
           0:
@@ -140,7 +142,7 @@ begin
           begin
             Unpack(AData, index, frequency);
             Unpack(AData, index, mode);
-            Unpack(AData, index, DXCall);
+            Unpack(AData, index, DataDigi.DXCall);
             Unpack(AData, index, report);
             Unpack(AData, index, TXMode);
             Unpack(AData, index, TXEnabled);
@@ -150,30 +152,28 @@ begin
             Unpack(AData, index, TXDF);
             Unpack(AData, index, DECall);
             Unpack(AData, index, DEGrid);
-            Unpack(AData, index, DXGrid);
-
-            MiniForm.EditCallsign.Text := DXCall;
-            MiniForm.EditGrid.Text := DXGrid;
+            Unpack(AData, index, DataDigi.DXGrid);
 
             if IniSet.showBand and
               (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <>
               '') then
-              MiniForm.CBBand.Text :=
+              DataDigi.Freq :=
                 dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000))
             else
-              MiniForm.CBBand.Text := FormatFloat('0.000"."00', frequency / 1000000);
+              DataDigi.Freq := FormatFloat('0.000"."00', frequency / 1000000);
 
             if mode <> 'FT4' then
             begin
-              MiniForm.CBMode.Text := mode;
-              MiniForm.CBSubMode.Text := '';
+              DataDigi.Mode := mode;
+              DataDigi.SubMode := '';
             end
             else
             begin
-              MiniForm.CBMode.Text := 'MFSK';
-              MiniForm.CBSubMode.Text := 'FT4';
+              DataDigi.Mode := 'MFSK';
+              DataDigi.SubMode := 'FT4';
             end;
-            MiniForm.CBRSTr.Text := report;
+            DataDigi.RSTr := report;
+            MiniForm.ShowDataFromDIGI(DataDigi);
           end;
 
           2:
@@ -231,53 +231,48 @@ begin
           5:
           begin
             Unpack(AData, index, date);
-            Unpack(AData, index, DXCall);
-            Unpack(AData, index, DXGrid);
+            Unpack(AData, index, DataDigi.DXCall);
+            Unpack(AData, index, DataDigi.DXGrid);
             Unpack(AData, index, frequency);
             Unpack(AData, index, mode);
-            Unpack(AData, index, report);
-            Unpack(AData, index, reportReceived);
+            Unpack(AData, index, DataDigi.RSTs);
+            Unpack(AData, index, DataDigi.RSTr);
             Unpack(AData, index, TXPower);
             Unpack(AData, index, comments);
             Unpack(AData, index, DXName);
 
             Memo1.Lines.Add('QSO сохранено: Дата:' +
               FormatDateTime('dd.mm.yyyy hh:mm:ss', date) +
-              ' DX Call:' + DXCall + ' DX Grid:' + DXGrid +
+              ' DX Call:' + DataDigi.DXCall + ' DX Grid:' + DataDigi.DXGrid +
               ' Частота:' + IntToStr(frequency) + ' Мода:' +
-              mode + ' RST отправлено: ' + report +
-              ' RST получено:' + reportReceived + ' TX мощность:' +
+              mode + ' RST отправлено: ' + DataDigi.RSTs +
+              ' RST получено:' + DataDigi.RSTr + ' TX мощность:' +
               TXPower + ' Комментарий:' + comments + ' Имя:' + DXName);
-
-            MiniForm.EditCallsign.Text := DXCall;
 
             if IniSet.showBand and
               (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <>
               '') then
-              MiniForm.CBBand.Text :=
+              DataDigi.Freq :=
                 dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000))
             else
-              MiniForm.CBBand.Text := FormatFloat('0.000"."00', frequency / 1000000);
-
-            MiniForm.EditGrid.Text := DXGrid;
+              DataDigi.Freq := FormatFloat('0.000"."00', frequency / 1000000);
 
             if mode <> 'FT4' then
             begin
-              MiniForm.CBMode.Text := mode;
-              MiniForm.CBSubMode.Text := '';
+              DataDigi.Mode := mode;
+              DataDigi.SubMode := '';
             end
             else
             begin
-              MiniForm.CBMode.Text := 'MFSK';
-              MiniForm.CBSubMode.Text := 'FT4';
+              DataDigi.Mode := 'MFSK';
+              DataDigi.SubMode := 'FT4';
             end;
 
-            MiniForm.CBRSTs.Text := report;
-            MiniForm.CBRSTr.Text := reportReceived;
             if DXName <> '' then
-              MiniForm.EditName.Text := DXName;
-            MiniForm.EditComment.Text := comments;
-            MiniForm.SBSave.Click;
+              DataDigi.OmName := DXName;
+            DataDigi.Comment := comments;
+            DataDigi.Save := True;
+            MiniForm.ShowDataFromDIGI(DataDigi);
           end;
 
           12:

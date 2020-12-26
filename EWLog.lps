@@ -79,7 +79,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="85"/>
         <CursorPos X="35" Y="95"/>
         <UsageCount Value="200"/>
@@ -116,7 +116,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="1253"/>
         <CursorPos X="23" Y="1264"/>
         <UsageCount Value="200"/>
@@ -415,10 +415,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WSJT_UDP_Form_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="248"/>
-        <CursorPos X="44" Y="254"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="249"/>
+        <CursorPos X="37" Y="228"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit37>
       <Unit38>
         <Filename Value="syndbdate_u.pas"/>
@@ -529,7 +531,7 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="157"/>
         <CursorPos X="16" Y="189"/>
         <UsageCount Value="201"/>
@@ -630,8 +632,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="247"/>
         <CursorPos X="25" Y="257"/>
         <UsageCount Value="200"/>
@@ -663,8 +664,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="79"/>
-        <CursorPos Y="1301"/>
+        <TopLine Value="398"/>
+        <CursorPos X="3" Y="402"/>
         <UsageCount Value="200"/>
       </Unit63>
       <Unit64>
@@ -700,9 +701,11 @@
       <Unit68>
         <Filename Value="cloudlog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos Y="2"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="94"/>
+        <CursorPos X="5" Y="35"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit68>
       <Unit69>
         <Filename Value="init_record.pas"/>
@@ -723,9 +726,10 @@
       <Unit71>
         <Filename Value="digi_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="19" Y="24"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="3" Y="11"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit71>
       <Unit72>
         <Filename Value="inform_record.pas"/>
@@ -742,8 +746,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="infoDM_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="51"/>
-        <CursorPos Y="68"/>
+        <TopLine Value="209"/>
+        <CursorPos X="21" Y="213"/>
         <UsageCount Value="200"/>
       </Unit73>
       <Unit74>
@@ -761,8 +765,9 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="1946"/>
-        <CursorPos X="17" Y="1963"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="393"/>
+        <CursorPos X="45" Y="407"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -782,10 +787,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="36"/>
-        <CursorPos X="20" Y="117"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="185"/>
+        <CursorPos X="22" Y="31"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit77>
       <Unit78>
         <Filename Value="telnetclientthread.pas"/>
@@ -802,10 +808,12 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="576"/>
-        <CursorPos X="11" Y="602"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="722"/>
+        <CursorPos X="80" Y="735"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="gridsform_u.pas"/>
@@ -838,7 +846,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="197"/>
         <CursorPos X="29" Y="35"/>
-        <UsageCount Value="182"/>
+        <UsageCount Value="183"/>
       </Unit82>
       <Unit83>
         <Filename Value="importadithread.pas"/>
@@ -847,16 +855,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="715"/>
         <CursorPos X="33" Y="718"/>
-        <UsageCount Value="88"/>
+        <UsageCount Value="89"/>
       </Unit83>
       <Unit84>
         <Filename Value="exportadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportADIThread"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="385"/>
         <CursorPos X="35" Y="416"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="80"/>
         <Loaded Value="True"/>
       </Unit84>
       <Unit85>
@@ -866,7 +874,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="367"/>
         <CursorPos X="22" Y="22"/>
-        <UsageCount Value="70"/>
+        <UsageCount Value="71"/>
       </Unit85>
       <Unit86>
         <Filename Value="cloudlogcat.pas"/>
@@ -874,7 +882,7 @@
         <UnitName Value="CloudLogCAT"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="59"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="64"/>
       </Unit86>
       <Unit87>
         <Filename Value="getsessionid.pas"/>
@@ -1643,7 +1651,7 @@
         <UsageCount Value="10"/>
       </Unit189>
     </Units>
-    <JumpHistory Count="14" HistoryIndex="13">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1383" Column="46" TopLine="1375"/>
@@ -1694,12 +1702,40 @@
       </Position12>
       <Position13>
         <Filename Value="initdb_dm.pas"/>
-        <Caret Line="109" TopLine="353"/>
+        <Caret Line="112" TopLine="112"/>
       </Position13>
       <Position14>
-        <Filename Value="initdb_dm.pas"/>
-        <Caret Line="112" TopLine="112"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1963" Column="17" TopLine="1946"/>
       </Position14>
+      <Position15>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="309" Column="31" TopLine="299"/>
+      </Position15>
+      <Position16>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="241" Column="28" TopLine="224"/>
+      </Position16>
+      <Position17>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="31" Column="5" TopLine="14"/>
+      </Position17>
+      <Position18>
+        <Filename Value="wsjt_udp_form_u.pas"/>
+        <Caret Line="49" Column="4" TopLine="49"/>
+      </Position18>
+      <Position19>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="309" Column="28" TopLine="299"/>
+      </Position19>
+      <Position20>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="602" Column="11" TopLine="576"/>
+      </Position20>
+      <Position21>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="407" Column="58" TopLine="393"/>
+      </Position21>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

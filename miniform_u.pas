@@ -306,7 +306,7 @@ type
     procedure TextSB(Value: string; PanelNum: integer);
     procedure FromCopyTableThread(Data: TData);
     procedure ShowInfoFromRIG(freq: double; mode, submode: string);
-    procedure ShowDataFromFldigi(DataDigi: TDigiR);
+    procedure ShowDataFromDIGI(DataDigi: TDigiR);
     procedure FromImportThread(Info: TInfo);
     procedure FromMobileSyncThread(InfoStr: string);
     procedure CheckFormMenu(NameForm: string; StateForm: boolean);
@@ -391,7 +391,7 @@ begin
   TextSB(InfoStr, 0);
 end;
 
-procedure TMiniForm.ShowDataFromFldigi(DataDigi: TDigiR);
+procedure TMiniForm.ShowDataFromDIGI(DataDigi: TDigiR);
 var
   tempCall: string;
   tempFreq: string;
@@ -402,8 +402,10 @@ begin
   tempFreq := DataDigi.Freq;
   tempMode := DataDigi.Mode;
   tempSubMode := DataDigi.SubMode;
-  if tempCall <> EditCallsign.Text then
+  if tempCall <> EditCallsign.Text then begin
     EditCallsign.Text := tempCall;
+    InfoDM.GetInformation(dmFunc.ExtractCallsign(tempCall), 'MainForm');
+  end;
   if tempFreq <> CBBand.Text then
     CBBand.Text := tempFreq;
   if tempMode <> CBMode.Text then

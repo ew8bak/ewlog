@@ -238,7 +238,7 @@ end;
 
 procedure TServerDM.FldigiToForm;
 begin
-  MiniForm.ShowDataFromFldigi(DataDigi);
+  MiniForm.ShowDataFromDIGI(DataDigi);
   DataDigi.Save := False;
 end;
 
