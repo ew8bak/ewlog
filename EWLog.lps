@@ -416,8 +416,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WSJT_UDP_Form_U"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="249"/>
-        <CursorPos X="37" Y="228"/>
+        <TopLine Value="180"/>
+        <CursorPos X="17" Y="174"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -766,8 +766,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="393"/>
-        <CursorPos X="45" Y="407"/>
+        <TopLine Value="391"/>
+        <CursorPos X="24" Y="408"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1651,7 +1651,7 @@
         <UsageCount Value="10"/>
       </Unit189>
     </Units>
-    <JumpHistory Count="21" HistoryIndex="20">
+    <JumpHistory Count="22" HistoryIndex="21">
       <Position1>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1383" Column="46" TopLine="1375"/>
@@ -1736,6 +1736,10 @@
         <Filename Value="miniform_u.pas"/>
         <Caret Line="407" Column="58" TopLine="393"/>
       </Position21>
+      <Position22>
+        <Filename Value="wsjt_udp_form_u.pas"/>
+        <Caret Line="174" Column="17" TopLine="180"/>
+      </Position22>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

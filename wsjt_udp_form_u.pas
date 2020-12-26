@@ -143,7 +143,7 @@ begin
             Unpack(AData, index, frequency);
             Unpack(AData, index, mode);
             Unpack(AData, index, DataDigi.DXCall);
-            Unpack(AData, index, report);
+            Unpack(AData, index, DataDigi.RSTs);
             Unpack(AData, index, TXMode);
             Unpack(AData, index, TXEnabled);
             Unpack(AData, index, transmitting);
@@ -172,7 +172,6 @@ begin
               DataDigi.Mode := 'MFSK';
               DataDigi.SubMode := 'FT4';
             end;
-            DataDigi.RSTr := report;
             MiniForm.ShowDataFromDIGI(DataDigi);
           end;
 

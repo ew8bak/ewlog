@@ -402,9 +402,11 @@ begin
   tempFreq := DataDigi.Freq;
   tempMode := DataDigi.Mode;
   tempSubMode := DataDigi.SubMode;
-  if tempCall <> EditCallsign.Text then begin
+  if tempCall <> EditCallsign.Text then
+  begin
     EditCallsign.Text := tempCall;
-    InfoDM.GetInformation(dmFunc.ExtractCallsign(tempCall), 'MainForm');
+    if Length(tempCall) > 2 then
+      InfoDM.GetInformation(dmFunc.ExtractCallsign(tempCall), 'MainForm');
   end;
   if tempFreq <> CBBand.Text then
     CBBand.Text := tempFreq;
