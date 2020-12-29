@@ -706,6 +706,7 @@
         <Filename Value="progressform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ProgressBackupForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="progressForm_u"/>
       </Unit87>

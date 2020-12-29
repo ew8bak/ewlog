@@ -51,10 +51,12 @@ end;
 
 procedure TProgressBackupForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  CloseApp := True;
   if SenderForm = 'MainForm' then
     MainForm.FormClose(ProgressBackupForm, CloseAction);
   if SenderForm = 'MiniForm' then
-    MiniForm.FormClose(ProgressBackupForm, CloseAction);
+    MiniForm.Close;
+  //MiniForm.FormClose(ProgressBackupForm, CloseAction);
 end;
 
 procedure TProgressBackupForm.FormShow(Sender: TObject);

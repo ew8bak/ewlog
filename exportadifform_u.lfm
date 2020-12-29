@@ -1,7 +1,7 @@
 object exportAdifForm: TexportAdifForm
-  Left = 385
+  Left = 417
   Height = 211
-  Top = 174
+  Top = 175
   Width = 442
   AutoSize = True
   BorderIcons = [biSystemMenu]

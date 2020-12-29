@@ -320,6 +320,7 @@ var
   FreqChange: boolean;
   UnUsIndex: integer;
   GridRecordIndex: integer;
+  CloseApp: boolean;
 
 implementation
 
@@ -2011,27 +2012,27 @@ begin
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       CloseAction := caFree
     else
-      CloseAction := caNone;
-  end;
-  if IniSet.BackupADIonClose then
-  begin
-    if Sender = ProgressBackupForm then
     begin
-      CloseForm;
-    end
-    else
+      CloseAction := caNone;
+      Exit;
+    end;
+  end;
+  if not CloseApp then
+  begin
+    if IniSet.BackupADIonClose then
     begin
       if MainFunc.BackupData('MiniForm') then
         CloseAction := caNone;
     end;
   end
   else
+  begin
     CloseForm;
+    CloseAction := caFree;
+  end;
 end;
 
 procedure TMiniForm.CloseForm;
-var
-  CloseAction: TCloseAction;
 begin
   IniSet.NumStart := INIFile.ReadInteger('SetLog', 'StartNum', 0);
   Inc(IniSet.NumStart);
@@ -2064,7 +2065,6 @@ begin
     Earth.SavePosition;
   TRXForm.FreeRadio;
   dxClusterForm.FreeClusterThread;
-  MiniForm.FormClose(MiniForm, CloseAction);
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);
@@ -2078,6 +2078,7 @@ begin
   LBQSL.Visible := False;
   LBWorked.Visible := False;
   LBCfm.Visible := False;
+  CloseApp := False;
   UnUsIndex := 0;
   DateEdit1.Date := LazSysUtils.NowUTC;
   DateTimePicker1.Time := NowUTC;
