@@ -153,6 +153,7 @@ msgid "Error sending data"
 msgstr "Ошибка отправки данных"
 
 #: exportadifform_u.ppleasefile
+msgctxt "exportadifform_u.ppleasefile"
 msgid "Please specify a file for export!"
 msgstr "Пожалуйста укажите файл для экспорта!"
 
@@ -162,10 +163,12 @@ msgid "Done"
 msgstr "Готово"
 
 #: exportadifform_u.rerror
+msgctxt "exportadifform_u.rerror"
 msgid "Error"
 msgstr "Ошибка"
 
 #: exportadifform_u.rerroropenfile
+msgctxt "exportadifform_u.rerroropenfile"
 msgid "Error opening file"
 msgstr "Ошибка открытия файла"
 
@@ -175,14 +178,17 @@ msgid "Export"
 msgstr "Экспорт"
 
 #: exportadifform_u.rexportcompl
+msgctxt "exportadifform_u.rexportcompl"
 msgid "Export completed"
 msgstr "Экспорт завершён"
 
 #: exportadifform_u.rnomethodexport
+msgctxt "exportadifform_u.rnomethodexport"
 msgid "No export method selected!"
 msgstr "Не выбран режим экспорта!"
 
 #: exportadifform_u.rnumberofqso
+msgctxt "exportadifform_u.rnumberofqso"
 msgid "Number of QSO"
 msgstr "Количество QSO"
 
@@ -274,6 +280,12 @@ msgstr "Запись успешно добавлена"
 msgctxt "qrzcom.runknownuser"
 msgid "Unknown user! See settings"
 msgstr "Неизвестный пользователь. Смотри настройки"
+
+#: resourcestr.ppleasefile
+#, fuzzy
+msgctxt "resourcestr.ppleasefile"
+msgid "Please specify a file for export!"
+msgstr "Пожалуйста укажите файл для экспорта!"
 
 #: resourcestr.raddindexinlogtable
 msgctxt "resourcestr.raddindexinlogtable"
@@ -479,6 +491,18 @@ msgstr "Вы должны ввести позывной"
 msgid "Please enter your message"
 msgstr "Пожалуйста, введите ваше сообщение"
 
+#: resourcestr.rerror
+#, fuzzy
+msgctxt "resourcestr.rerror"
+msgid "Error"
+msgstr "Ошибка"
+
+#: resourcestr.rerroropenfile
+#, fuzzy
+msgctxt "resourcestr.rerroropenfile"
+msgid "Error opening file"
+msgstr "Ошибка открытия файла"
+
 #: resourcestr.rerrorservicedb
 msgid "Service database not found! Verify program installation integrity. File serviceLOG.db"
 msgstr "Сервисная база данных не найдена! Проверьте установку. Файл serviceLOG.db"
@@ -492,6 +516,18 @@ msgstr "Ошибка XML API:"
 msgctxt "resourcestr.rewloghamjournal"
 msgid "EWLog - HAM Journal"
 msgstr "EWLog - Аппаратный журнал"
+
+#: resourcestr.rexport
+#, fuzzy
+msgctxt "resourcestr.rexport"
+msgid "Export"
+msgstr "Экспорт"
+
+#: resourcestr.rexportcompl
+#, fuzzy
+msgctxt "resourcestr.rexportcompl"
+msgid "Export completed"
+msgstr "Экспорт завершён"
 
 #: resourcestr.rfailedtoloaddata
 msgid "Failed to load data"
@@ -673,6 +709,12 @@ msgstr "No Calc DXCC"
 msgid "No log file found! Check settings"
 msgstr "Не найден файл журнала. Проверь настройки"
 
+#: resourcestr.rnomethodexport
+#, fuzzy
+msgctxt "resourcestr.rnomethodexport"
+msgid "No export method selected!"
+msgstr "Не выбран режим экспорта!"
+
 #: resourcestr.rnotcallsign
 msgctxt "resourcestr.rnotcallsign"
 msgid "No callsign entered to view"
@@ -723,6 +765,18 @@ msgstr "База данных не была найдена для этого п�
 msgctxt "resourcestr.rnumberdup"
 msgid "Number of duplicates"
 msgstr "Количество дубликатов"
+
+#: resourcestr.rnumberofqso
+#, fuzzy
+msgctxt "resourcestr.rnumberofqso"
+msgid "Number of QSO"
+msgstr "Количество QSO"
+
+#: resourcestr.rnumberofqso0
+#, fuzzy
+msgctxt "resourcestr.rnumberofqso0"
+msgid "Number of QSO: 0"
+msgstr "Количество записей: 0"
 
 #: resourcestr.rof
 msgid " of "
@@ -4373,6 +4427,16 @@ msgstr ""
 #: tprintsticker_form.label7.caption
 msgid "Fonts"
 msgstr ""
+
+#: tprogressbackupform.caption
+msgid "Backup progress"
+msgstr ""
+
+#: tprogressbackupform.label1.caption
+#, fuzzy
+msgctxt "tprogressbackupform.label1.caption"
+msgid "Number of QSO: 0"
+msgstr "Количество записей: 0"
 
 #: tqslmanager_form.button1.caption
 msgctxt "tqslmanager_form.button1.caption"

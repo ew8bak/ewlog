@@ -9,19 +9,6 @@ uses
   StdCtrls, EditBtn, ExtCtrls, ComCtrls, sqldb, LazUTF8, LConvEncoding,
   ExportADIThread, ResourceStr;
 
-resourcestring
-  rDone = 'Done';
-  rWarning = 'Warning!';
-  rExport = 'Export';
-  rError = 'Error';
-  rExportCompl = 'Export completed';
-  pPleaseFile = 'Please specify a file for export!';
-  rNoMethodExport = 'No export method selected!';
-  rNumberOfQSO0 = 'Number of QSO: 0';
-  rNumberOfQSO = 'Number of QSO';
-  rErrorOpenFile = 'Error opening file';
-  rSentRecord = 'Sent Record';
-
 type
 
   { TexportAdifForm }
@@ -93,6 +80,7 @@ begin
   PADIExport.DateEnd := DateEdit2.Date;
   PADIExport.Win1251 := CheckBox2.Checked;
   PADIExport.RusToLat := CheckBox4.Checked;
+  PADIExport.FromForm := 'ExportAdifForm';
 
   ExportADIFThread := TExportADIFThread.Create;
   if Assigned(ExportADIFThread.FatalException) then

@@ -738,6 +738,7 @@ object ConfigForm: TConfigForm
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Backup Database'
+        Enabled = False
         TabOrder = 1
       end
       object cbADIfiles: TCheckBox
@@ -751,6 +752,7 @@ object ConfigForm: TConfigForm
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Backup ADI file'
+        Enabled = False
         TabOrder = 2
       end
       object cbBackupCloseDB: TCheckBox
@@ -791,6 +793,7 @@ object ConfigForm: TConfigForm
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         NumGlyphs = 1
+        Enabled = False
         MaxLength = 0
         TabOrder = 5
       end

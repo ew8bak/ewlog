@@ -143,6 +143,7 @@ msgid "Error sending data"
 msgstr ""
 
 #: exportadifform_u.ppleasefile
+msgctxt "exportadifform_u.ppleasefile"
 msgid "Please specify a file for export!"
 msgstr ""
 
@@ -152,10 +153,12 @@ msgid "Done"
 msgstr ""
 
 #: exportadifform_u.rerror
+msgctxt "exportadifform_u.rerror"
 msgid "Error"
 msgstr ""
 
 #: exportadifform_u.rerroropenfile
+msgctxt "exportadifform_u.rerroropenfile"
 msgid "Error opening file"
 msgstr ""
 
@@ -165,14 +168,17 @@ msgid "Export"
 msgstr ""
 
 #: exportadifform_u.rexportcompl
+msgctxt "exportadifform_u.rexportcompl"
 msgid "Export completed"
 msgstr ""
 
 #: exportadifform_u.rnomethodexport
+msgctxt "exportadifform_u.rnomethodexport"
 msgid "No export method selected!"
 msgstr ""
 
 #: exportadifform_u.rnumberofqso
+msgctxt "exportadifform_u.rnumberofqso"
 msgid "Number of QSO"
 msgstr ""
 
@@ -263,6 +269,11 @@ msgstr ""
 #: qrzcom.runknownuser
 msgctxt "qrzcom.runknownuser"
 msgid "Unknown user! See settings"
+msgstr ""
+
+#: resourcestr.ppleasefile
+msgctxt "resourcestr.ppleasefile"
+msgid "Please specify a file for export!"
 msgstr ""
 
 #: resourcestr.raddindexinlogtable
@@ -469,6 +480,16 @@ msgstr ""
 msgid "Please enter your message"
 msgstr ""
 
+#: resourcestr.rerror
+msgctxt "resourcestr.rerror"
+msgid "Error"
+msgstr ""
+
+#: resourcestr.rerroropenfile
+msgctxt "resourcestr.rerroropenfile"
+msgid "Error opening file"
+msgstr ""
+
 #: resourcestr.rerrorservicedb
 msgid "Service database not found! Verify program installation integrity. File serviceLOG.db"
 msgstr ""
@@ -481,6 +502,16 @@ msgstr ""
 #: resourcestr.rewloghamjournal
 msgctxt "resourcestr.rewloghamjournal"
 msgid "EWLog - HAM Journal"
+msgstr ""
+
+#: resourcestr.rexport
+msgctxt "resourcestr.rexport"
+msgid "Export"
+msgstr ""
+
+#: resourcestr.rexportcompl
+msgctxt "resourcestr.rexportcompl"
+msgid "Export completed"
 msgstr ""
 
 #: resourcestr.rfailedtoloaddata
@@ -663,6 +694,11 @@ msgstr ""
 msgid "No log file found! Check settings"
 msgstr ""
 
+#: resourcestr.rnomethodexport
+msgctxt "resourcestr.rnomethodexport"
+msgid "No export method selected!"
+msgstr ""
+
 #: resourcestr.rnotcallsign
 msgctxt "resourcestr.rnotcallsign"
 msgid "No callsign entered to view"
@@ -712,6 +748,16 @@ msgstr ""
 #: resourcestr.rnumberdup
 msgctxt "resourcestr.rnumberdup"
 msgid "Number of duplicates"
+msgstr ""
+
+#: resourcestr.rnumberofqso
+msgctxt "resourcestr.rnumberofqso"
+msgid "Number of QSO"
+msgstr ""
+
+#: resourcestr.rnumberofqso0
+msgctxt "resourcestr.rnumberofqso0"
+msgid "Number of QSO: 0"
 msgstr ""
 
 #: resourcestr.rof
@@ -4340,6 +4386,16 @@ msgstr ""
 
 #: tprintsticker_form.label7.caption
 msgid "Fonts"
+msgstr ""
+
+#: tprogressbackupform.caption
+msgctxt "tprogressbackupform.caption"
+msgid "Backup progress"
+msgstr ""
+
+#: tprogressbackupform.label1.caption
+msgctxt "tprogressbackupform.label1.caption"
+msgid "Number of QSO: 0"
 msgstr ""
 
 #: tqslmanager_form.button1.caption

@@ -80,7 +80,8 @@ resourcestring
     'Specify the Login and Password for accessing the XML API QRZ.RU in the settings';
   rNotConfigQRZCOM =
     'Specify the Login and Password for accessing the XML API QRZ.COM in the settings';
-  rNotConfigSprav = 'Default reference book is not specified. Go to the program settings and select the QRZ.RU or QRZ.COM reference book';
+  rNotConfigSprav =
+    'Default reference book is not specified. Go to the program settings and select the QRZ.RU or QRZ.COM reference book';
   rInformationFromQRZRU = 'Information from QRZ.ru';
   rInformationFromQRZCOM = 'Information from QRZ.com';
   rInformationFromHamQTH = 'Information from HAMQTH';
@@ -132,7 +133,8 @@ resourcestring
   rMBytes = 'MB';
   rFileExist = 'File exists! Overwrite? All data from this file is destroyed';
   rFileUsed = 'File is used. Removal is not possible';
-  rErrorServiceDB = 'Service database not found! Verify program installation integrity. File serviceLOG.db';
+  rErrorServiceDB =
+    'Service database not found! Verify program installation integrity. File serviceLOG.db';
   rSyncErrCall = 'Sync Error: Call Not Found';
   rNoLogFileFound = 'No log file found! Check settings';
   rOnlyWindows = 'The function is available only in the Windows system';
@@ -154,9 +156,11 @@ resourcestring
   rPath = 'Path';
   rValueCorr =
     'One or more fields are not filled or are filled incorrectly! All fields and the correct locator must be filled. Longitude and latitude are set automatically';
-  rUpdateSQLiteDLL = 'Update sqlite3.so to version ' + min_sqlite_version + ' or higher.'+#10#13+'Current Latest Version '+curr_sqlite_version +#10#13 + 'Full work program can not be guaranteed';
+  rUpdateSQLiteDLL = 'Update sqlite3.so to version ' + min_sqlite_version +
+    ' or higher.' + #10#13 + 'Current Latest Version ' + curr_sqlite_version + #10#13 +
+    'Full work program can not be guaranteed';
   rSQLiteCurrentVersion = 'Installed version of sqlite3.so';
-  rMHZ  = 'MHz';
+  rMHZ = 'MHz';
   rConnectedToFldigi = 'Fldigi connected to EWLog';
   rDisconnectedFromFldigi = 'Fldigi disconnected from EWLog';
   rNewDXCCInBM = 'A new country in BM';
@@ -167,7 +171,7 @@ resourcestring
   rTableLogDBError = 'Log table ERROR';
   rCheckBoxFormMain = 'Default form: MAIN';
   rCheckBoxFormMini = 'Default form: MULTI';
-  rCallsignNotEntered ='Recipient callsign not entered';
+  rCallsignNotEntered = 'Recipient callsign not entered';
   rOf = ' of ';
   rCopyQSO = 'Copy QSO';
   rUseWSJT = 'Use WSJT-X with EWLog?';
@@ -175,18 +179,33 @@ resourcestring
   rTheNameFieldCannotBeEmpty = 'The "Name" field cannot be empty';
   rNewProgram = 'New Program';
   rGoToSettings = 'Go to settings?';
-  rDatabaseNotConnected = 'Check the correctness of the entered data. Possibly a non-existing database has been entered (it must be created first). Or Invalid username and password.';
-  tNotFoundTableToCopy = 'No table found to copy. Possible callsign mismatch in databases';
-  rNotDatabaseSettings = 'You cannot switch the Database to another because one of the databases is not configured. Check your settings. Go to the settings window?';
-  rShowNextStart = 'Show this window next start? The settings can be changed in the menu item View';
-  rFileDBExist = 'Found an existing database file. Do you want to use it? If you press NO, the existing file will be deleted and a new one will be created';
+  rDatabaseNotConnected =
+    'Check the correctness of the entered data. Possibly a non-existing database has been entered (it must be created first). Or Invalid username and password.';
+  tNotFoundTableToCopy =
+    'No table found to copy. Possible callsign mismatch in databases';
+  rNotDatabaseSettings =
+    'You cannot switch the Database to another because one of the databases is not configured. Check your settings. Go to the settings window?';
+  rShowNextStart =
+    'Show this window next start? The settings can be changed in the menu item View';
+  rFileDBExist =
+    'Found an existing database file. Do you want to use it? If you press NO, the existing file will be deleted and a new one will be created';
   rDeleteDBFile = 'Are you sure you want to delete the existing database file?';
   rPleaseQSLInfo = 'Please enter a message in the QSL Info field';
   rEnterMesQSLInf = 'Please enter your message';
   rSentRecord = 'Record sent';
-  rNotefldigi = 'Please enable N3FJP logs support in Fldigi settings. (In Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)';
+  rNotefldigi =
+    'Please enable N3FJP logs support in Fldigi settings. (In Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)';
   rImportCompl = 'Import completed';
   rProgramAgain = 'You are trying to run the program again. You cannot do this';
+  rExport = 'Export';
+  rError = 'Error';
+  rExportCompl = 'Export completed';
+  pPleaseFile = 'Please specify a file for export!';
+  rNoMethodExport = 'No export method selected!';
+  rNumberOfQSO0 = 'Number of QSO: 0';
+  rNumberOfQSO = 'Number of QSO';
+  rErrorOpenFile = 'Error opening file';
+
 implementation
 
 end.

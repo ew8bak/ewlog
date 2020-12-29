@@ -5,7 +5,7 @@ unit ExportADIThread;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, Forms, LCLType, LConvEncoding, const_u;
+  Classes, SysUtils, SQLDB, Forms, LCLType, LConvEncoding, const_u, ResourceStr;
 
 type
   TInfoExport = record
@@ -26,6 +26,7 @@ type
     RusToLat: boolean;
     Mobile: boolean;
     AllRec: integer;
+    FromForm: string;
   end;
 
 type
@@ -33,6 +34,7 @@ type
   protected
     procedure Execute; override;
   private
+    FromForm: string;
     procedure ADIFExport(PADIExport: TPADIExport);
     function SetSizeLoc(Loc: string): string;
   public
@@ -47,7 +49,8 @@ var
 
 implementation
 
-uses MainFuncDM, miniform_u, InitDB_dm, dmFunc_U, ExportAdifForm_u, GridsForm_u;
+uses MainFuncDM, miniform_u, InitDB_dm, dmFunc_U, ExportAdifForm_u,
+  GridsForm_u, progressForm_u;
 
 function TExportADIFThread.SetSizeLoc(Loc: string): string;
 begin
@@ -75,6 +78,7 @@ begin
     Info.Result := False;
     Info.RecCount := 0;
     Info.AllRec := 0;
+    FromForm := PADIExport.FromForm;
     Query := TSQLQuery.Create(nil);
     if DBRecord.CurrentDB = 'MySQL' then
       Query.DataBase := InitDB.MySQLConnection
@@ -504,7 +508,10 @@ begin
   if Info.ErrorCode <> 0 then
     Application.MessageBox(PChar(rErrorOpenFile + ' ' + IntToStr(IOResult)),
       PChar(rError), mb_ok + mb_IconError);
-  exportAdifForm.FromExportThread(Info);
+  if FromForm = 'ExportAdifForm' then
+    exportAdifForm.FromExportThread(Info);
+  if FromForm = 'BackupAdifForm' then
+    ProgressBackupForm.FromExportThread(Info);
 end;
 
 procedure TExportADIFThread.Execute;

@@ -297,6 +297,7 @@ type
     procedure SentCloudLogCat;
     procedure HideCommentStat;
     procedure ShowCommentStat;
+    procedure CloseForm;
 
   public
     procedure LoadPhotoFromInternetCallbook(info: TInformRecord);
@@ -328,7 +329,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
-  WSJT_UDP_Form_U, serverDM_u;
+  WSJT_UDP_Form_U, serverDM_u, progressForm_u;
 
 {$R *.lfm}
 
@@ -2004,9 +2005,6 @@ end;
 
 procedure TMiniForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  IniSet.NumStart := INIFile.ReadInteger('SetLog', 'StartNum', 0);
-  Inc(IniSet.NumStart);
-
   if EditCallsign.Text <> '' then
   begin
     if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
@@ -2015,6 +2013,28 @@ begin
     else
       CloseAction := caNone;
   end;
+  if IniSet.BackupADIonClose then
+  begin
+    if Sender = ProgressBackupForm then
+    begin
+      CloseForm;
+    end
+    else
+    begin
+      if MainFunc.BackupData('MiniForm') then
+        CloseAction := caNone;
+    end;
+  end
+  else
+    CloseForm;
+end;
+
+procedure TMiniForm.CloseForm;
+var
+  CloseAction: TCloseAction;
+begin
+  IniSet.NumStart := INIFile.ReadInteger('SetLog', 'StartNum', 0);
+  Inc(IniSet.NumStart);
 
   if (MiniForm.WindowState <> wsMaximized) and (IniSet.MainForm <> 'MAIN') then
   begin
@@ -2044,6 +2064,7 @@ begin
     Earth.SavePosition;
   TRXForm.FreeRadio;
   dxClusterForm.FreeClusterThread;
+  MiniForm.FormClose(MiniForm, CloseAction);
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);

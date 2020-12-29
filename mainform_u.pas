@@ -23,6 +23,7 @@ type
     procedure FormShow(Sender: TObject);
   private
     { private declarations }
+    procedure CloseForm;
 
   public
     procedure SavePosition;
@@ -38,7 +39,7 @@ implementation
 
 { TMainForm }
 uses MainFuncDM, InitDB_dm, TRXForm_U, miniform_u, viewPhoto_U, dxclusterform_u,
-  GridsForm_u, serverDM_u;
+  GridsForm_u, serverDM_u, progressForm_u;
 
 procedure TMainForm.SavePosition;
 begin
@@ -68,6 +69,26 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  if IniSet.BackupADIonClose then
+  begin
+    if Sender = ProgressBackupForm then
+    begin
+      CloseForm;
+    end
+    else
+    begin
+      if MainFunc.BackupData('MainForm') then
+        CloseAction := caNone;
+    end;
+  end
+  else
+    CloseForm;
+end;
+
+procedure TMainForm.CloseForm;
+var
+  CloseAction: TCloseAction;
+begin
   IniSet.NumStart := INIFile.ReadInteger('SetLog', 'StartNum', 0);
   Inc(IniSet.NumStart);
   MainForm.SavePosition;
@@ -82,9 +103,10 @@ begin
   if IniSet.pShow then
     viewPhoto.SavePosition;
   if dxClusterForm <> nil then
-    dxClusterForm.FormClose(MainForm,CloseAction);
+    dxClusterForm.FormClose(MainForm, CloseAction);
   GridsForm.SavePosition;
   TRXForm.FreeRadio;
+  MiniForm.Close;
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);

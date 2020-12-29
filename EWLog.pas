@@ -23,7 +23,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   WsjtUtils, digi_record, inform_record, infoDM_U, getSession, miniform_u,
   ImbedCallBookCheckRec, serverDM_u, telnetClientThread, dxclusterform_u,
   GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread, ExportADIThread,
-  MobileSyncThread, CloudLogCAT, STATE_Form_U;
+  MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u;
 
 {$R *.res}
 
@@ -76,5 +76,6 @@ begin
   Application.CreateForm(TviewPhoto, viewPhoto);
   Application.CreateForm(TdxClusterForm, dxClusterForm);
   Application.CreateForm(TMapForm, MapForm);
+  Application.CreateForm(TProgressBackupForm, ProgressBackupForm);
   Application.Run;
 end.

@@ -1,0 +1,41 @@
+object ProgressBackupForm: TProgressBackupForm
+  Left = 316
+  Height = 44
+  Top = 134
+  Width = 433
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Backup progress'
+  ClientHeight = 44
+  ClientWidth = 433
+  FormStyle = fsStayOnTop
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.0.10.0'
+  object pbExport: TProgressBar
+    Left = 0
+    Height = 20
+    Top = 0
+    Width = 433
+    Align = alTop
+    Smooth = True
+    TabOrder = 0
+    BarShowText = True
+  end
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = pbExport
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 15
+    Top = 25
+    Width = 97
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Number of QSO: 0'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+end

@@ -62,8 +62,6 @@ var
 begin
   dataStream := TMemoryStream.Create;
   Result := False;
-  // Создание данных для отправки
-  // Запись
   AddData('CALL', SendQSOr.CallSing);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
   SendQSOr.QSOTime := StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
@@ -80,13 +78,10 @@ begin
   AddData('QSLMSG', SendQSOr.QSLInfo);
   AddData('GRIDSQUARE', SendQSOr.Grid);
   Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);
-  //Удаляем последнюю точку
   AddData('FREQ', SendQSOr.QSOBand);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
-  // Генерация http запроса
   url := '{"key":"' + key + '", "type":"adif", "string":"' + logdata + '"}';
-  // Отправка запроса
   res := TStringList.Create;
   try
     try
