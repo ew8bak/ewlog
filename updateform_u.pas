@@ -164,26 +164,6 @@ begin
     urlssl_file := DownPATHssl + 'version';
     Start;
   end;
-
-  analytThread := TanalyticThread.Create;
-  if Assigned(analytThread.FatalException) then
-    raise analytThread.FatalException;
-  with analytThread do
-  begin
-    if LBRecord.CallSign <> '' then
-      user_call := LBRecord.CallSign
-    else
-      user_call := 'nil';
-    user_os := type_os;
-      {$IFDEF WINDOWS}
-    user_version_os := dmFunc.GetWindowsVersion;
-      {$ELSE}
-    user_version_os := 'Linux NoNaMe';
-      {$ENDIF WINDOWS}
-    user_version := dmFunc.GetMyVersion;
-    num_start := INIFile.ReadInteger('SetLog', 'StartNum', 0);
-    Start;
-  end;
 end;
 
 procedure TUpdate_Form.Button2Click(Sender: TObject);

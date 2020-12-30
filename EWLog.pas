@@ -16,7 +16,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U,
   hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom,
   qso_record, resourcestr, const_u, download_lotw, download_eqslcc,
-  DownloadUpdates, SetupSQLquery, flDigiModem, analyticThread,
+  DownloadUpdates, SetupSQLquery, flDigiModem,
   GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U,
   LogBookTable_record, DB_record, MainFuncDM, InitDB_dm, prefix_record,
   inifile_record, selectQSO_record, foundQSO_record, cloudlog, init_record,
