@@ -4,7 +4,6 @@ object Earth: TEarth
   Top = 644
   Width = 320
   Caption = 'Earth'
-  OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnPaint = FormPaint

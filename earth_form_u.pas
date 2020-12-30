@@ -13,7 +13,6 @@ type
   { TEarth }
 
   TEarth = class(TForm)
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
@@ -49,18 +48,6 @@ begin
       INIFile.WriteInteger('SetLog', 'eWidth', Earth.Width);
       INIFile.WriteInteger('SetLog', 'eHeight', Earth.Height);
     end;
-end;
-
-procedure TEarth.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
- { if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
-    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-    INIFile.WriteBool('SetLog', 'eShow', True)
-  else
-    INIFile.WriteBool('SetLog', 'eShow', False);
-
-  IniSet.eShow := False;
-  CloseAction := caFree; }
 end;
 
 procedure TEarth.FormCreate(Sender: TObject);
