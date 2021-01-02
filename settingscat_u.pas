@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit SettingsCAT_U;
 
 {$mode objfpc}{$H+}
@@ -6,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, Process,
-  EditBtn, Spin, SimpleXML, LazFileUtils, synaser {$IFDEF UNIX}, baseunix {$ENDIF};
+  EditBtn, Spin, LazFileUtils, synaser {$IFDEF UNIX}, baseunix {$ENDIF};
 
 resourcestring
   rLibHamLibNotFound = 'HamLib library not found';

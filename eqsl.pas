@@ -1,3 +1,13 @@
+(*
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *                                                                         *
+ ***************************************************************************
+*)
+
 unit eqsl;
 
 {$mode objfpc}{$H+}
@@ -77,7 +87,6 @@ var
 
 begin
   Result := False;
-  // Создание данных для отправки
   logdata := 'EWLog <ADIF_VER:4>1.00';
   AddData('EQSL_USER', user);
   AddData('EQSL_PSWD', password);
@@ -94,10 +103,9 @@ begin
   AddData('QSLMSG', SendQSOr.QSLInfo);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
-  // ShowMessage(logdata);
-  // Генерация http запроса
+
   url := 'http://www.eqsl.cc/qslcard/importADIF.cfm?ADIFData=' + URLEncode(logdata);
-  // Отправка запроса
+
   res := TStringList.Create;
   try
     try

@@ -3,14 +3,13 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="11"/>
-    <BuildModes Active="Дебаг"/>
-    <Units Count="194">
+    <BuildModes Active="Релиз"/>
+    <Units Count="195">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="47"/>
-        <CursorPos X="62" Y="26"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit0>
       <Unit1>
@@ -20,11 +19,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="80"/>
-        <CursorPos X="36" Y="79"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="editqso_u.pas"/>
@@ -33,8 +30,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="229"/>
-        <CursorPos X="47" Y="243"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit2>
       <Unit3>
@@ -45,8 +41,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="76"/>
-        <CursorPos Y="104"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit3>
       <Unit4>
@@ -57,8 +52,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="270"/>
-        <CursorPos X="53" Y="278"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit4>
       <Unit5>
@@ -69,8 +63,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="429"/>
-        <CursorPos X="3" Y="431"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit5>
       <Unit6>
@@ -80,11 +73,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="16"/>
-        <CursorPos Y="12"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="createjournalform_u.pas"/>
@@ -94,8 +85,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CreateJournalForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="172"/>
-        <CursorPos X="52" Y="187"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit7>
       <Unit8>
@@ -106,8 +96,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ImportADIFForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="109"/>
-        <CursorPos X="57" Y="93"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit8>
       <Unit9>
@@ -118,16 +107,14 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1616"/>
-        <CursorPos X="23" Y="1264"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit9>
       <Unit10>
         <Filename Value="simplexml.pas"/>
-        <IsPartOfProject Value="True"/>
         <UnitName Value="SimpleXML"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="4527"/>
+        <TopLine Value="79"/>
         <CursorPos X="3" Y="4545"/>
         <UsageCount Value="200"/>
       </Unit10>
@@ -135,23 +122,21 @@
         <Filename Value="eqsl.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="96"/>
-        <CursorPos X="45" Y="116"/>
+        <TopLine Value="19"/>
+        <CursorPos Y="10"/>
         <UsageCount Value="200"/>
       </Unit11>
       <Unit12>
         <Filename Value="xmlrpc.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="222"/>
-        <CursorPos Y="231"/>
+        <CursorPos X="39" Y="3"/>
         <UsageCount Value="200"/>
       </Unit12>
       <Unit13>
         <Filename Value="fldigi.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="253"/>
         <UsageCount Value="200"/>
       </Unit13>
       <Unit14>
@@ -162,8 +147,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DXCCEditForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="18"/>
-        <CursorPos X="3" Y="57"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit14>
       <Unit15>
@@ -174,24 +158,21 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ManagerBasePrefixForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="28"/>
-        <CursorPos X="67" Y="67"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit15>
       <Unit16>
         <Filename Value="azidis3.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="73"/>
-        <CursorPos X="39" Y="81"/>
+        <CursorPos X="22" Y="7"/>
         <UsageCount Value="200"/>
       </Unit16>
       <Unit17>
         <Filename Value="aziloc.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="53"/>
-        <CursorPos X="12" Y="71"/>
+        <CursorPos X="14" Y="6"/>
         <UsageCount Value="200"/>
       </Unit17>
       <Unit18>
@@ -202,8 +183,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="QSLManagerForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="80"/>
-        <CursorPos X="36" Y="117"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit18>
       <Unit19>
@@ -214,23 +194,19 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsCAT_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="297"/>
-        <CursorPos X="38" Y="303"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit19>
       <Unit20>
         <Filename Value="rig.pas"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="19"/>
         <UsageCount Value="200"/>
       </Unit20>
       <Unit21>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="301"/>
-        <CursorPos Y="312"/>
+        <CursorPos X="6" Y="9"/>
         <UsageCount Value="200"/>
       </Unit21>
       <Unit22>
@@ -241,16 +217,13 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="308"/>
-        <CursorPos X="18" Y="308"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit22>
       <Unit23>
         <Filename Value="hrdlog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="107"/>
-        <CursorPos Y="130"/>
         <UsageCount Value="200"/>
       </Unit23>
       <Unit24>
@@ -261,8 +234,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsProgramForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="42"/>
-        <CursorPos X="22" Y="51"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit24>
       <Unit25>
@@ -273,8 +245,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="15"/>
-        <CursorPos X="21" Y="43"/>
+        <CursorPos X="63" Y="10"/>
         <UsageCount Value="200"/>
       </Unit25>
       <Unit26>
@@ -285,8 +256,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="276"/>
-        <CursorPos X="24" Y="276"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit26>
       <Unit27>
@@ -297,8 +267,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="setupForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="672"/>
-        <CursorPos X="24" Y="685"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit27>
       <Unit28>
@@ -309,8 +278,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="253"/>
-        <CursorPos X="7" Y="166"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit28>
       <Unit29>
@@ -321,8 +289,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Changelog_Form_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="3"/>
-        <CursorPos X="46" Y="21"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit29>
       <Unit30>
@@ -332,12 +299,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Earth_Form_U"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="28"/>
-        <CursorPos X="15" Y="55"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="79" Y="8"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="iota_form_u.pas"/>
@@ -347,8 +311,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="IOTA_Form_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="27"/>
-        <CursorPos X="3" Y="66"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit31>
       <Unit32>
@@ -359,8 +322,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigGridForm_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="176"/>
-        <CursorPos X="55" Y="207"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit32>
       <Unit33>
@@ -371,8 +333,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="sendtelnetspot_form_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="85"/>
-        <CursorPos X="5" Y="34"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit33>
       <Unit34>
@@ -383,8 +344,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterFilter_Form_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="71"/>
-        <CursorPos X="39" Y="102"/>
+        <CursorPos X="44" Y="5"/>
         <UsageCount Value="200"/>
       </Unit34>
       <Unit35>
@@ -395,8 +355,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterServer_Form_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="51"/>
-        <CursorPos X="100" Y="85"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit35>
       <Unit36>
@@ -407,7 +366,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="STATE_Form_U"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="51" Y="47"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit36>
       <Unit37>
@@ -418,8 +377,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WSJT_UDP_Form_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="24"/>
-        <CursorPos X="12" Y="187"/>
+        <CursorPos X="48" Y="4"/>
         <UsageCount Value="200"/>
       </Unit37>
       <Unit38>
@@ -430,7 +388,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="synDBDate_u"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="10" Y="509"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit38>
       <Unit39>
@@ -441,7 +399,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ThanksForm_u"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="30" Y="20"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit39>
       <Unit40>
@@ -452,6 +410,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
         <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit40>
       <Unit41>
@@ -461,7 +420,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos Y="19"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit41>
       <Unit42>
@@ -471,7 +430,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="50" Y="11"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit42>
       <Unit43>
@@ -481,8 +440,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="121"/>
-        <CursorPos X="74" Y="141"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit43>
       <Unit44>
@@ -492,39 +450,35 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="18" Y="145"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit44>
       <Unit45>
         <Filename Value="hamqth.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="111"/>
-        <CursorPos X="3" Y="45"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit45>
       <Unit46>
         <Filename Value="clublog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="112"/>
-        <CursorPos X="3" Y="45"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit46>
       <Unit47>
         <Filename Value="qrzcom.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="113"/>
-        <CursorPos X="3" Y="45"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit47>
       <Unit48>
         <Filename Value="qso_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="7"/>
-        <CursorPos X="5" Y="28"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit48>
       <Unit49>
@@ -532,32 +486,28 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="177"/>
-        <CursorPos X="41" Y="207"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit49>
       <Unit50>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="52"/>
-        <CursorPos X="12" Y="75"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit50>
       <Unit51>
         <Filename Value="download_lotw.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="53"/>
-        <CursorPos X="29" Y="78"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit51>
       <Unit52>
         <Filename Value="download_eqslcc.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="90"/>
-        <CursorPos X="3" Y="44"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit52>
       <Unit53>
@@ -565,8 +515,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadUpdates"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="31"/>
-        <CursorPos X="68" Y="44"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit53>
       <Unit54>
@@ -574,8 +523,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="61"/>
-        <CursorPos X="28" Y="100"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit54>
       <Unit55>
@@ -583,34 +531,26 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="flDigiModem"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="17"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="202"/>
       </Unit55>
       <Unit56>
-        <Filename Value="analyticthread.pas"/>
-        <UnitName Value="analyticThread"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="39" Y="19"/>
-        <UsageCount Value="200"/>
-      </Unit56>
-      <Unit57>
         <Filename Value="getphotofrominternet.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetPhotoFromInternet"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="36"/>
-        <CursorPos Y="62"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit57>
-      <Unit58>
+      </Unit56>
+      <Unit57>
         <Filename Value="getinfofrominternetthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetInfoFromInternetThread"/>
         <EditorIndex Value="-1"/>
-        <CursorPos Y="35"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit58>
-      <Unit59>
+      </Unit57>
+      <Unit58>
         <Filename Value="viewphoto_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="viewPhoto"/>
@@ -618,123 +558,114 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="viewPhoto_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="36"/>
-        <CursorPos X="5" Y="68"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit59>
-      <Unit60>
+      </Unit58>
+      <Unit59>
         <Filename Value="initdb_dm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="InitDB"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="244"/>
-        <CursorPos X="25" Y="257"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit60>
-      <Unit61>
+      </Unit59>
+      <Unit60>
         <Filename Value="logbooktable_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LogBookTable_record"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="5"/>
-        <CursorPos X="25" Y="39"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit61>
-      <Unit62>
+      </Unit60>
+      <Unit61>
         <Filename Value="db_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DB_record"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="27" Y="10"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit62>
-      <Unit63>
+      </Unit61>
+      <Unit62>
         <Filename Value="mainfuncdm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MainFunc"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="88"/>
-        <CursorPos X="22" Y="98"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="49" Y="5"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-      </Unit63>
-      <Unit64>
+      </Unit62>
+      <Unit63>
         <Filename Value="prefix_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="3" Y="11"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit64>
-      <Unit65>
+      </Unit63>
+      <Unit64>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="45" Y="79"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit65>
-      <Unit66>
+      </Unit64>
+      <Unit65>
         <Filename Value="selectqso_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="selectQSO_record"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="32" Y="13"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit66>
-      <Unit67>
+      </Unit65>
+      <Unit66>
         <Filename Value="foundqso_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="foundQSO_record"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="5" Y="28"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit67>
-      <Unit68>
+      </Unit66>
+      <Unit67>
         <Filename Value="cloudlog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2"/>
-        <CursorPos X="19" Y="64"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit68>
-      <Unit69>
+      </Unit67>
+      <Unit68>
         <Filename Value="init_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="5" Y="17"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit69>
-      <Unit70>
+      </Unit68>
+      <Unit69>
         <Filename Value="wsjtutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="WsjtUtils"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="107"/>
-        <CursorPos X="52" Y="127"/>
+        <CursorPos X="43" Y="2"/>
         <UsageCount Value="200"/>
-      </Unit70>
-      <Unit71>
+      </Unit69>
+      <Unit70>
         <Filename Value="digi_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="3" Y="11"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit71>
-      <Unit72>
+      </Unit70>
+      <Unit71>
         <Filename Value="inform_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="32" Y="18"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit72>
-      <Unit73>
+      </Unit71>
+      <Unit72>
         <Filename Value="infodm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="InfoDM"/>
@@ -742,41 +673,38 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="infoDM_U"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="209"/>
-        <CursorPos X="21" Y="213"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit73>
-      <Unit74>
+      </Unit72>
+      <Unit73>
         <Filename Value="getsession.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSession"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="66"/>
-        <CursorPos X="64" Y="103"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit74>
-      <Unit75>
+      </Unit73>
+      <Unit74>
         <Filename Value="miniform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="1927"/>
-        <CursorPos X="7" Y="1992"/>
+        <CursorPos X="35" Y="4"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit75>
-      <Unit76>
+      </Unit74>
+      <Unit75>
         <Filename Value="imbedcallbookcheckrec.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImbedCallBookCheckRec"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="25" Y="14"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit76>
-      <Unit77>
+      </Unit75>
+      <Unit76>
         <Filename Value="serverdm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServerDM"/>
@@ -784,31 +712,27 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="22" Y="31"/>
+        <CursorPos X="67" Y="3"/>
         <UsageCount Value="200"/>
-      </Unit77>
-      <Unit78>
+      </Unit76>
+      <Unit77>
         <Filename Value="telnetclientthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="telnetClientThread"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="59"/>
-        <CursorPos X="9" Y="79"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit78>
-      <Unit79>
+      </Unit77>
+      <Unit78>
         <Filename Value="dxclusterform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="557"/>
-        <CursorPos Y="574"/>
         <UsageCount Value="201"/>
-      </Unit79>
-      <Unit80>
+      </Unit78>
+      <Unit79>
         <Filename Value="gridsform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="GridsForm"/>
@@ -816,11 +740,10 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="611"/>
-        <CursorPos X="3" Y="628"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit80>
-      <Unit81>
+      </Unit79>
+      <Unit80>
         <Filename Value="mapform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MapForm"/>
@@ -828,66 +751,66 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MapForm_u"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="9"/>
-        <CursorPos X="21" Y="30"/>
+        <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit81>
-      <Unit82>
+      </Unit80>
+      <Unit81>
         <Filename Value="copytablethread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CopyTableThread"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="197"/>
-        <CursorPos X="29" Y="35"/>
-        <UsageCount Value="189"/>
-      </Unit82>
-      <Unit83>
+        <CursorPos X="46" Y="3"/>
+        <UsageCount Value="191"/>
+      </Unit81>
+      <Unit82>
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="715"/>
-        <CursorPos X="33" Y="718"/>
-        <UsageCount Value="95"/>
-      </Unit83>
-      <Unit84>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="97"/>
+      </Unit82>
+      <Unit83>
         <Filename Value="exportadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportADIThread"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="410"/>
-        <CursorPos X="12" Y="492"/>
-        <UsageCount Value="86"/>
-      </Unit84>
-      <Unit85>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="88"/>
+      </Unit83>
+      <Unit84>
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="367"/>
-        <CursorPos X="22" Y="22"/>
-        <UsageCount Value="77"/>
-      </Unit85>
-      <Unit86>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="79"/>
+      </Unit84>
+      <Unit85>
         <Filename Value="cloudlogcat.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CloudLogCAT"/>
         <EditorIndex Value="-1"/>
-        <CursorPos Y="59"/>
-        <UsageCount Value="70"/>
-      </Unit86>
-      <Unit87>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="72"/>
+      </Unit85>
+      <Unit86>
         <Filename Value="progressform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ProgressBackupForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="progressForm_u"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="16"/>
-        <CursorPos X="20" Y="58"/>
-        <UsageCount Value="25"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="27"/>
+      </Unit86>
+      <Unit87>
+        <Filename Value="analyticthread.pas"/>
+        <UnitName Value="analyticThread"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="39" Y="19"/>
+        <UsageCount Value="200"/>
       </Unit87>
       <Unit88>
         <Filename Value="getsessionid.pas"/>
@@ -1262,9 +1185,8 @@
         <Filename Value="traceline.pas"/>
         <UnitName Value="TraceLine"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="550"/>
-        <CursorPos Y="588"/>
-        <UsageCount Value="9"/>
+        <CursorPos X="31" Y="6"/>
+        <UsageCount Value="10"/>
       </Unit138>
       <Unit139>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\lnet\lazaruspackage\lclwineventer.inc"/>
@@ -1677,105 +1599,15 @@
         <CursorPos X="15" Y="629"/>
         <UsageCount Value="11"/>
       </Unit193>
+      <Unit194>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\rtl\inc\typshrdh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="122"/>
+        <CursorPos X="29" Y="150"/>
+        <UsageCount Value="10"/>
+      </Unit194>
     </Units>
-    <JumpHistory Count="24" HistoryIndex="23">
-      <Position1>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2024" TopLine="1996"/>
-      </Position1>
-      <Position2>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2008" TopLine="1996"/>
-      </Position2>
-      <Position3>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2040" TopLine="2024"/>
-      </Position3>
-      <Position4>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2008" TopLine="1990"/>
-      </Position4>
-      <Position5>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2040" TopLine="2024"/>
-      </Position5>
-      <Position6>
-        <Filename Value="progressform_u.pas"/>
-        <Caret Line="58" TopLine="34"/>
-      </Position6>
-      <Position7>
-        <Filename Value="progressform_u.pas"/>
-        <Caret Line="59" TopLine="34"/>
-      </Position7>
-      <Position8>
-        <Filename Value="progressform_u.pas"/>
-        <Caret Line="39" TopLine="32"/>
-      </Position8>
-      <Position9>
-        <Filename Value="progressform_u.pas"/>
-        <Caret Line="50" TopLine="32"/>
-      </Position9>
-      <Position10>
-        <Filename Value="progressform_u.pas"/>
-        <Caret Line="54" Column="20" TopLine="32"/>
-      </Position10>
-      <Position11>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2040" TopLine="2013"/>
-      </Position11>
-      <Position12>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2041" TopLine="2013"/>
-      </Position12>
-      <Position13>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2042" Column="11" TopLine="2012"/>
-      </Position13>
-      <Position14>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2019" TopLine="2009"/>
-      </Position14>
-      <Position15>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2034" TopLine="2009"/>
-      </Position15>
-      <Position16>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2035" TopLine="2009"/>
-      </Position16>
-      <Position17>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2008" TopLine="1990"/>
-      </Position17>
-      <Position18>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2043" TopLine="2027"/>
-      </Position18>
-      <Position19>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2025" TopLine="2018"/>
-      </Position19>
-      <Position20>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="84" TopLine="64"/>
-      </Position20>
-      <Position21>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="88" TopLine="64"/>
-      </Position21>
-      <Position22>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="84" TopLine="64"/>
-      </Position22>
-      <Position23>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2058" TopLine="2042"/>
-      </Position23>
-      <Position24>
-        <Filename Value="earth_form_u.pas"/>
-        <Caret Line="47" TopLine="30"/>
-      </Position24>
-    </JumpHistory>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode="default"/>

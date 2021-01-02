@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit qrzcom;
 
 {$mode objfpc}{$H+}
@@ -87,8 +96,7 @@ var
 begin
   dataStream := TMemoryStream.Create;
   Result := False;
-  // Создание данных для отправки
-  // Запись
+
   AddData('CALL', SendQSOr.CallSing);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
   SendQSOr.QSOTime := StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
@@ -108,9 +116,9 @@ begin
   AddData('FREQ', SendQSOr.QSOBand);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
-  // Генерация http запроса
+
   url := 'KEY=' + password + '&ACTION=INSERT' + '&ADIF=' + UrlEncode(logdata);
-  // Отправка запроса
+
   res := TStringList.Create;
   try
     try

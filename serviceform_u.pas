@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit ServiceForm_U;
 
 {$mode objfpc}{$H+}
@@ -425,12 +434,10 @@ begin
   if DBRecord.CurrentDB = 'MySQL' then
   begin
     UPDATEQuery.DataBase := InitDB.MySQLConnection;
-    //MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
   end
   else
   begin
     UPDATEQuery.DataBase := InitDB.SQLiteConnection;
-    //  MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
 end;
 
@@ -497,12 +504,10 @@ begin
   if DBRecord.CurrentDB = 'MySQL' then
   begin
     UPDATEQuery.DataBase := InitDB.MySQLConnection;
-    //MainForm.SQLTransaction1.DataBase := MainForm.MySQLLOGDBConnection;
   end
   else
   begin
     UPDATEQuery.DataBase := InitDB.SQLiteConnection;
-    // MainForm.SQLTransaction1.DataBase := MainForm.SQLiteDBConnection;
   end;
   DateEdit1.Date := INIFile.ReadDate('SetLog', 'LastLoTW', Now);
   DateEdit2.Date := Now;

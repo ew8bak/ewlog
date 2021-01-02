@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit hamqth;
 
 {$mode objfpc}{$H+}
@@ -86,9 +95,7 @@ var
 begin
   dataStream := TMemoryStream.Create;
   Result := False;
-  // Создание данных для отправки
   appname := 'EWLog';
-  // Запись
   AddData('CALL', SendQSOr.CallSing);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
   SendQSOr.QSOTime := StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
@@ -105,14 +112,12 @@ begin
   AddData('QSLMSG', SendQSOr.QSLInfo);
   AddData('GRIDSQUARE', SendQSOr.Grid);
   Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);
-  //Удаляем последнюю точку
   AddData('FREQ', SendQSOr.QSOBand);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
-  // Генерация http запроса
   url := 'u=' + user + '&p=' + password + '&c=' + '&prg=' + appname +
     '&cmd=INSERT' + '&adif=' + UrlEncode(logdata);
-  // Отправка запроса
+
   res := TStringList.Create;
   try
     try

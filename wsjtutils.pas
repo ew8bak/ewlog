@@ -1,3 +1,32 @@
+{********************************************************************************
+***                               AlarmeJT                                    ***
+***    AlarmeJT is designed to work with exellent WSJT -X Joe Taylor, K1JT    ***
+***    running on JT65A modes and JT9.                                        ***
+***    -------------------------------------------------------------------    ***
+***    version : 0.5 UDP beta                                                 ***
+***    -------------------------------------------------------------------    ***
+***    Copyright 2015 Alain Thébault (F5JMH)                                  ***
+***                                                                           ***
+***    UDP and NetworkMessageUtils modules Copyright G4WJS (thank's)          ***
+***                                                                           ***
+***    This file is part of AlarmeJT.                                         ***
+***                                                                           ***
+***    AlarmeJT is free software: you can redistribute it and/or modify       ***
+***    it under the terms of the GNU General Public License as published by   ***
+***    the Free Software Foundation, either version 2.0 of the License, or    ***
+***    any later version.                                                     ***
+***                                                                           ***
+***    AlarmeJT is distributed in the hope that it will be useful,            ***
+***    but WITHOUT ANY WARRANTY; without even the implied warranty of         ***
+***    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          ***
+***    GNU General Public License for more details.                           ***
+***                                                                           ***
+***    You should have received a copy of the GNU General Public License      ***
+***    along with AlarmeJT.  If not, see <http://www.gnu.org/licenses/>.      ***
+***                                                                           ***
+***    -------------------------------------------------------------------    ***
+********************************************************************************}
+
 unit WsjtUtils;
 
 //{$mode objfpc}

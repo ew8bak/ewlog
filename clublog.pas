@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit clublog;
 
 {$mode objfpc}{$H+}
@@ -87,8 +96,6 @@ var
 begin
   dataStream := TMemoryStream.Create;
   Result := False;
-  // Создание данных для отправки
-  // Запись
   AddData('CALL', SendQSOr.CallSing);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
   SendQSOr.QSOTime:= StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
@@ -104,11 +111,10 @@ begin
   AddData('FREQ', SendQSOr.QSOBand);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
-  // Генерация http запроса
+
   url := 'email=' + user + '&password=' + password +
     '&callsign=' + callsign + '&api=68679acdccd815f0545873ca81eed96d9806f8f0' +
     '&adif=' + UrlEncode(logdata);
-  // Отправка запроса
   res := TStringList.Create;
   try
     try

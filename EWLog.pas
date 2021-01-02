@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 program EWLog;
 
 {$mode objfpc}{$H+}
@@ -7,7 +16,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   Interfaces, // this includes the LCL widgetset
   Forms, sdflaz, memdslaz, datetimectrls, dbflaz, printer4lazarus, MainForm_U,
   editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
-  CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, SimpleXML, eqsl, xmlrpc,
+  CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc,
   fldigi, DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc,
   QSLManagerForm_U, SettingsCAT_U, uRigControl, TRXForm_U, lnetvisual, hrdlog,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U,
