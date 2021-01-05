@@ -1,0 +1,181 @@
+object FM_Form: TFM_Form
+  Left = 310
+  Height = 410
+  Top = 260
+  Width = 602
+  BorderStyle = bsSingle
+  Caption = 'Frequency Manager'
+  ClientHeight = 410
+  ClientWidth = 602
+  OnShow = FormShow
+  Position = poScreenCenter
+  ShowInTaskBar = stAlways
+  LCLVersion = '2.0.10.0'
+  object ListView1: TListView
+    Left = 0
+    Height = 410
+    Top = 0
+    Width = 312
+    Align = alLeft
+    Columns = <    
+      item
+        AutoSize = True
+        Caption = 'Band'
+        Width = 43
+      end    
+      item
+        AutoSize = True
+        Caption = 'Begin (MHz)'
+        Width = 83
+      end    
+      item
+        AutoSize = True
+        Caption = 'End (MHz)'
+        Width = 72
+      end    
+      item
+        AutoSize = True
+        Caption = 'Enabled'
+        Width = 112
+      end>
+    ReadOnly = True
+    RowSelect = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+    ViewStyle = vsReport
+    OnSelectItem = ListView1SelectItem
+  end
+  object GroupBox1: TGroupBox
+    Left = 320
+    Height = 160
+    Top = 8
+    Width = 273
+    Caption = 'Options'
+    ClientHeight = 144
+    ClientWidth = 271
+    TabOrder = 1
+    object LabeledEdit1: TLabeledEdit
+      Left = 8
+      Height = 25
+      Top = 24
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'Band'
+      EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 0
+    end
+    object LabeledEdit2: TLabeledEdit
+      Left = 96
+      Height = 25
+      Top = 24
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'MHz Begin'
+      EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 1
+    end
+    object LabeledEdit3: TLabeledEdit
+      Left = 184
+      Height = 25
+      Top = 24
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'MHz End'
+      EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 2
+    end
+    object CheckBox1: TCheckBox
+      Left = 8
+      Height = 23
+      Top = 112
+      Width = 101
+      Caption = 'Enabled Band'
+      Font.Height = -12
+      OnClick = CheckBox1Click
+      ParentFont = False
+      TabOrder = 3
+    end
+    object LabeledEdit4: TLabeledEdit
+      Left = 8
+      Height = 25
+      Top = 72
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'CW Begin'
+      EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 4
+    end
+    object LabeledEdit5: TLabeledEdit
+      Left = 96
+      Height = 25
+      Top = 72
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'Digi Begin'
+      EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 5
+    end
+    object LabeledEdit6: TLabeledEdit
+      Left = 184
+      Height = 25
+      Top = 72
+      Width = 80
+      EditLabel.Height = 13
+      EditLabel.Width = 80
+      EditLabel.Caption = 'SSB Begin'
+      EditLabel.ParentColor = False
+      Font.Height = -12
+      ParentFont = False
+      TabOrder = 6
+    end
+    object Button2: TButton
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 194
+      Height = 29
+      Top = 106
+      Width = 70
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      BorderSpacing.Right = 7
+      Caption = 'Save Band'
+      Font.Height = -12
+      OnClick = Button2Click
+      ParentFont = False
+      TabOrder = 7
+    end
+  end
+  object Button1: TButton
+    Left = 518
+    Height = 25
+    Top = 376
+    Width = 75
+    Caption = 'Close'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 2
+  end
+  object FMQuery: TSQLQuery
+    PacketRecords = 100
+    FieldDefs = <>
+    Params = <>
+    Left = 368
+    Top = 248
+  end
+end

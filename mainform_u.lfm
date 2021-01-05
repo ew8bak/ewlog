@@ -1,0 +1,77 @@
+object MainForm: TMainForm
+  Left = 430
+  Height = 667
+  Top = 209
+  Width = 1208
+  Caption = 'EWLog - HAM Journal'
+  ClientHeight = 667
+  ClientWidth = 1208
+  Font.Height = -12
+  KeyPreview = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poDefault
+  ShowInTaskBar = stAlways
+  LCLVersion = '2.0.10.0'
+  object LeftPanel: TPanel
+    Left = 0
+    Height = 667
+    Top = 0
+    Width = 477
+    Align = alLeft
+    ClientHeight = 667
+    ClientWidth = 477
+    TabOrder = 0
+    object EarthPanel: TPanel
+      Left = 1
+      Height = 263
+      Top = 403
+      Width = 475
+      Align = alBottom
+      TabOrder = 0
+    end
+    object MiniPanel: TPanel
+      Left = 1
+      Height = 375
+      Top = 1
+      Width = 475
+      Align = alTop
+      TabOrder = 1
+    end
+    object OtherPanel: TPanel
+      Left = 1
+      Height = 27
+      Top = 376
+      Width = 475
+      Align = alClient
+      TabOrder = 2
+    end
+  end
+  object AllClientPanel: TPanel
+    Left = 477
+    Height = 667
+    Top = 0
+    Width = 731
+    Align = alClient
+    ClientHeight = 667
+    ClientWidth = 731
+    TabOrder = 1
+    object ClusterPanel: TPanel
+      Left = 1
+      Height = 263
+      Top = 403
+      Width = 729
+      Align = alBottom
+      TabOrder = 0
+    end
+    object GridsPanel: TPanel
+      Left = 1
+      Height = 402
+      Top = 1
+      Width = 729
+      Align = alClient
+      TabOrder = 1
+    end
+  end
+end

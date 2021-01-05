@@ -1,0 +1,38 @@
+object ServerDM: TServerDM
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 248
+  VerticalOffset = 128
+  Width = 223
+  object LUDPComponent1: TLUDPComponent
+    Port = 0
+    OnReceive = LUDPComponent1Receive
+    OnError = LUDPComponent1Error
+    Timeout = 0
+    Left = 40
+    Top = 72
+  end
+  object IdIPWatch1: TIdIPWatch
+    Active = True
+    HistoryEnabled = False
+    HistoryFilename = 'iphist.dat'
+    Left = 160
+    Top = 8
+  end
+  object IdFldigiTCP: TIdTCPServer
+    Bindings = <    
+      item
+        IP = '127.0.0.1'
+        Port = 1100
+      end>
+    DefaultPort = 1100
+    OnConnect = IdFldigiTCPConnect
+    OnDisconnect = IdFldigiTCPDisconnect
+    OnException = IdFldigiTCPException
+    OnExecute = IdFldigiTCPExecute
+    Left = 152
+    Top = 80
+  end
+end

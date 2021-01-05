@@ -1,0 +1,15 @@
+{"version":1,"strings":[
+{"hash":95323427,"name":"tthanks_form.caption","sourcebytes":[84,104,97,110,107,115],"value":"Thanks"},
+{"hash":247010448,"name":"tthanks_form.label1.caption","sourcebytes":[84,104,97,110,107,115,32,116,111,32,116,104,101,32,104,101,108,112,32,97,110,100,32,116,101,115,116,105,110,103,32,111,102,32,116,104,101,32,69,87,76,111,103,32],"value":"Thanks to the help and testing of the EWLog "},
+{"hash":180176671,"name":"tthanks_form.label2.caption","sourcebytes":[69,87,50,77,83,32,45,32,77,105,107,104,97,105,108,32,83,101,110,107,111],"value":"EW2MS - Mikhail Senko"},
+{"hash":208975611,"name":"tthanks_form.label3.caption","sourcebytes":[82,78,51,68,68,80,32,45,32,83,101,114,103,101,121,32,83,97,118,99,104,117,107],"value":"RN3DDP - Sergey Savchuk"},
+{"hash":9429222,"name":"tthanks_form.label4.caption","sourcebytes":[82,57,79,67,78,32,45,32,65,110,100,114,101,121,32,72,111,114,111,115,104,105,108,111,118],"value":"R9OCN - Andrey Horoshilov"},
+{"hash":256901142,"name":"tthanks_form.label5.caption","sourcebytes":[82,87,51,68,89,32,45,32,78,105,107,111,108,97,121,32,69,118,103,114,97,102,111,118],"value":"RW3DY - Nikolay Evgrafov"},
+{"hash":73400750,"name":"tthanks_form.label6.caption","sourcebytes":[65,110,100,32,116,111,32,97,108,108,32,116,104,101,32,112,101,111,112,108,101,32,119,104,111,32,114,101,115,112,111,110,100,101,100,32,116,111,32,116,104,101,32,100,101,118,101,108,111,112,109,101,110,116,32,58,41,46,32,77,97,121,98,101,32,115,111,109,101,111,110,101,32,102,111,114,103,111,116,32,46,46,46],"value":"And to all the people who responded to the development :). Maybe someone forgot ..."},
+{"hash":250499974,"name":"tthanks_form.label7.caption","sourcebytes":[83,101,114,103,101,121,32,75,111,114,104,111,118],"value":"Sergey Korhov"},
+{"hash":161048486,"name":"tthanks_form.label8.caption","sourcebytes":[82,88,51,68,81,88,32,45,32,86,108,97,100,105,109,105,114,32,65,110,116,105,112,111,118],"value":"RX3DQX - Vladimir Antipov"},
+{"hash":134307582,"name":"tthanks_form.label9.caption","sourcebytes":[82,57,87,66,90,32,45,32,83,101,114,103,101,121,32,78,111,104,114,105,110],"value":"R9WBZ - Sergey Nohrin"},
+{"hash":65161043,"name":"tthanks_form.label10.caption","sourcebytes":[85,84,53,81,66,67,32,45,32,89,117,114,105,32,76,117,98,101,110,101,99],"value":"UT5QBC - Yuri Lubenec"},
+{"hash":165722390,"name":"tthanks_form.label11.caption","sourcebytes":[82,88,48,84,88,32,45,32,79,108,101,103,32,67,104,117,100,97,101,118],"value":"RX0TX - Oleg Chudaev"},
+{"hash":58119270,"name":"tthanks_form.label12.caption","sourcebytes":[82,57,88,65,76,32,45,32,65,108,101,107,115,101,121,32,80,97,110,121,117,107,111,118],"value":"R9XAL - Aleksey Panyukov"}
+]}

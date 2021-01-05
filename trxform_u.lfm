@@ -1,0 +1,890 @@
+object TRXForm: TTRXForm
+  Left = 251
+  Height = 156
+  Top = 125
+  Width = 242
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'RIG'
+  ClientHeight = 156
+  ClientWidth = 242
+  FormStyle = fsStayOnTop
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.0.10.0'
+  object lblMode: TLabel
+    Left = 8
+    Height = 15
+    Top = 5
+    Width = 22
+    Caption = 'SSB'
+    Font.Color = clBlue
+    Font.Height = -12
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object btnCW: TButton
+    Left = 8
+    Height = 18
+    Top = 104
+    Width = 28
+    Caption = 'CW'
+    Font.Height = -11
+    OnClick = btnCWClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object btnSSB: TButton
+    Left = 36
+    Height = 18
+    Top = 104
+    Width = 28
+    Caption = 'SSB'
+    Font.Height = -11
+    OnClick = btnSSBClick
+    ParentFont = False
+    TabOrder = 1
+  end
+  object btnRTTY: TButton
+    Left = 64
+    Height = 18
+    Top = 104
+    Width = 28
+    Caption = 'DIG'
+    Font.Height = -11
+    OnClick = btnRTTYClick
+    ParentFont = False
+    TabOrder = 2
+  end
+  object btnAM: TButton
+    Left = 92
+    Height = 18
+    Top = 104
+    Width = 28
+    Caption = 'AM'
+    Font.Height = -11
+    OnClick = btnAMClick
+    ParentFont = False
+    TabOrder = 3
+  end
+  object btnFM: TButton
+    Left = 120
+    Height = 18
+    Top = 104
+    Width = 28
+    Caption = 'FM'
+    Font.Height = -11
+    OnClick = btnFMClick
+    ParentFont = False
+    TabOrder = 4
+  end
+  object btnVFOA: TButton
+    Left = 176
+    Height = 18
+    Top = 104
+    Width = 28
+    Caption = 'A'
+    Font.Height = -11
+    OnClick = btnVFOAClick
+    ParentFont = False
+    TabOrder = 5
+  end
+  object btnVFOB: TButton
+    Left = 205
+    Height = 18
+    Top = 104
+    Width = 28
+    Caption = 'B'
+    Font.Height = -11
+    OnClick = btnVFOBClick
+    ParentFont = False
+    TabOrder = 6
+  end
+  object rbRadio1: TRadioButton
+    AnchorSideLeft.Control = Owner
+    Left = 5
+    Height = 19
+    Top = 128
+    Width = 47
+    BorderSpacing.Left = 5
+    Caption = 'RIG 1'
+    Checked = True
+    OnClick = rbRadio1Click
+    TabOrder = 7
+    TabStop = True
+  end
+  object rbRadio2: TRadioButton
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 190
+    Height = 19
+    Top = 128
+    Width = 47
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 5
+    Caption = 'RIG 2'
+    Enabled = False
+    OnClick = rbRadio2Click
+    TabOrder = 8
+  end
+  object btn160m: TButton
+    Left = 8
+    Height = 18
+    Top = 56
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '1.8'
+    Font.Height = -11
+    OnClick = btn160mClick
+    ParentFont = False
+    TabOrder = 9
+  end
+  object btn80m: TButton
+    Left = 36
+    Height = 18
+    Top = 56
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '3.5'
+    Font.Height = -11
+    OnClick = btn80mClick
+    ParentFont = False
+    TabOrder = 10
+  end
+  object btn40m: TButton
+    Left = 64
+    Height = 18
+    Top = 56
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '7'
+    Font.Height = -11
+    OnClick = btn40mClick
+    ParentFont = False
+    TabOrder = 11
+  end
+  object btn30m: TButton
+    Left = 92
+    Height = 18
+    Top = 56
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '10'
+    Font.Height = -11
+    OnClick = btn30mClick
+    ParentFont = False
+    TabOrder = 12
+  end
+  object btn12m: TButton
+    Left = 204
+    Height = 18
+    Top = 56
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '24'
+    Font.Height = -11
+    OnClick = btn12mClick
+    ParentFont = False
+    TabOrder = 13
+  end
+  object btn15m: TButton
+    Left = 176
+    Height = 18
+    Top = 56
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '21'
+    Font.Height = -11
+    OnClick = btn15mClick
+    ParentFont = False
+    TabOrder = 14
+  end
+  object btn17m: TButton
+    Left = 148
+    Height = 18
+    Top = 56
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '18'
+    Font.Height = -11
+    OnClick = btn17mClick
+    ParentFont = False
+    TabOrder = 15
+  end
+  object btn20m: TButton
+    Left = 120
+    Height = 18
+    Top = 56
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '14'
+    Font.Height = -11
+    OnClick = btn20mClick
+    ParentFont = False
+    TabOrder = 16
+  end
+  object btn10m: TButton
+    Left = 8
+    Height = 18
+    Top = 80
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '28'
+    Font.Height = -11
+    OnClick = btn10mClick
+    ParentFont = False
+    TabOrder = 17
+  end
+  object btn6m: TButton
+    Left = 36
+    Height = 18
+    Top = 80
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '50'
+    Font.Height = -11
+    OnClick = btn6mClick
+    ParentFont = False
+    TabOrder = 18
+  end
+  object btn70cm: TButton
+    Left = 92
+    Height = 18
+    Top = 80
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '144'
+    Font.Height = -11
+    OnClick = btn70cmClick
+    ParentFont = False
+    TabOrder = 19
+  end
+  object btn2m: TButton
+    Left = 64
+    Height = 18
+    Top = 80
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '70'
+    Font.Height = -11
+    ParentFont = False
+    TabOrder = 20
+  end
+  object btn70cm1: TButton
+    Left = 120
+    Height = 18
+    Top = 80
+    Width = 28
+    BorderSpacing.InnerBorder = 4
+    Caption = '430'
+    Font.Height = -11
+    OnClick = btn70cm1Click
+    ParentFont = False
+    TabOrder = 21
+  end
+  object btn70cm2: TButton
+    Left = 148
+    Height = 18
+    Top = 80
+    Width = 36
+    BorderSpacing.InnerBorder = 4
+    Caption = '1200'
+    Font.Height = -11
+    ParentFont = False
+    TabOrder = 22
+  end
+  object Arrow1: TArrow
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label1
+    Left = 43
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow2: TArrow
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label2
+    Left = 59
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow3: TArrow
+    AnchorSideLeft.Control = Label3
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label3
+    Left = 75
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow4: TArrow
+    AnchorSideLeft.Control = Label4
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label4
+    Left = 98
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow5: TArrow
+    AnchorSideLeft.Control = Label5
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label5
+    Left = 114
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow6: TArrow
+    AnchorSideLeft.Control = Label6
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label6
+    Left = 130
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow7: TArrow
+    AnchorSideLeft.Control = Label7
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label7
+    Left = 153
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow8: TArrow
+    AnchorSideLeft.Control = Label8
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label8
+    Left = 169
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow9: TArrow
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label1
+    AnchorSideBottom.Side = asrBottom
+    Left = 43
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow10: TArrow
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label2
+    AnchorSideBottom.Side = asrBottom
+    Left = 59
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow11: TArrow
+    AnchorSideLeft.Control = Label3
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label3
+    AnchorSideBottom.Side = asrBottom
+    Left = 75
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow12: TArrow
+    AnchorSideLeft.Control = Label4
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label4
+    AnchorSideBottom.Side = asrBottom
+    Left = 98
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow13: TArrow
+    AnchorSideLeft.Control = Label5
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label5
+    AnchorSideBottom.Side = asrBottom
+    Left = 114
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow14: TArrow
+    AnchorSideLeft.Control = Label6
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label6
+    AnchorSideBottom.Side = asrBottom
+    Left = 130
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow15: TArrow
+    AnchorSideLeft.Control = Label7
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label7
+    AnchorSideBottom.Side = asrBottom
+    Left = 153
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow16: TArrow
+    AnchorSideLeft.Control = Label8
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label8
+    AnchorSideBottom.Side = asrBottom
+    Left = 169
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    Left = 40
+    Height = 37
+    Top = 16
+    Width = 16
+    BorderSpacing.Left = 40
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label1MouseLeave
+    OnMouseWheelDown = Label1MouseWheelDown
+    OnMouseWheelUp = Label1MouseWheelUp
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrBottom
+    Left = 56
+    Height = 37
+    Top = 16
+    Width = 16
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label2MouseLeave
+    OnMouseWheelDown = Label2MouseWheelDown
+    OnMouseWheelUp = Label2MouseWheelUp
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrBottom
+    Left = 72
+    Height = 37
+    Top = 16
+    Width = 16
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label3MouseLeave
+    OnMouseWheelDown = Label3MouseWheelDown
+    OnMouseWheelUp = Label3MouseWheelUp
+  end
+  object Label4: TLabel
+    AnchorSideLeft.Control = Label9
+    AnchorSideLeft.Side = asrBottom
+    Left = 95
+    Height = 37
+    Top = 16
+    Width = 16
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label4MouseLeave
+    OnMouseWheelDown = Label4MouseWheelDown
+    OnMouseWheelUp = Label4MouseWheelUp
+  end
+  object Label5: TLabel
+    AnchorSideLeft.Control = Label4
+    AnchorSideLeft.Side = asrBottom
+    Left = 111
+    Height = 37
+    Top = 16
+    Width = 16
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label5MouseLeave
+    OnMouseWheelDown = Label5MouseWheelDown
+    OnMouseWheelUp = Label5MouseWheelUp
+  end
+  object Label6: TLabel
+    AnchorSideLeft.Control = Label5
+    AnchorSideLeft.Side = asrBottom
+    Left = 127
+    Height = 37
+    Top = 16
+    Width = 16
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label6MouseLeave
+    OnMouseWheelDown = Label6MouseWheelDown
+    OnMouseWheelUp = Label6MouseWheelUp
+  end
+  object Label7: TLabel
+    AnchorSideLeft.Control = Label10
+    AnchorSideLeft.Side = asrBottom
+    Left = 150
+    Height = 37
+    Top = 16
+    Width = 16
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label7MouseLeave
+    OnMouseWheelDown = Label7MouseWheelDown
+    OnMouseWheelUp = Label7MouseWheelUp
+  end
+  object Label8: TLabel
+    AnchorSideLeft.Control = Label7
+    AnchorSideLeft.Side = asrBottom
+    Left = 166
+    Height = 37
+    Top = 16
+    Width = 16
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label8MouseLeave
+    OnMouseWheelDown = Label8MouseWheelDown
+    OnMouseWheelUp = Label8MouseWheelUp
+  end
+  object Label9: TLabel
+    AnchorSideLeft.Control = Label3
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrCenter
+    Left = 88
+    Height = 37
+    Top = 16
+    Width = 7
+    Caption = '.'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label10: TLabel
+    AnchorSideLeft.Control = Label6
+    AnchorSideLeft.Side = asrBottom
+    Left = 143
+    Height = 37
+    Top = 16
+    Width = 7
+    Caption = '.'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Arrow17: TArrow
+    AnchorSideLeft.Control = Label11
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label11
+    Left = 185
+    Height = 10
+    Top = 22
+    Width = 10
+    ArrowColor = clBlue
+    ArrowType = atUp
+    BorderSpacing.Top = 6
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Arrow18: TArrow
+    AnchorSideLeft.Control = Label11
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Label11
+    AnchorSideBottom.Side = asrBottom
+    Left = 185
+    Height = 10
+    Top = 43
+    Width = 10
+    Anchors = [akLeft, akBottom]
+    ArrowColor = clBlue
+    ArrowType = atDown
+    Constraints.MinHeight = 8
+    Constraints.MinWidth = 8
+    OnMouseLeave = Arrow1MouseLeave
+    OnMouseMove = Arrow1MouseMove
+    ShadowType = stNone
+  end
+  object Label11: TLabel
+    AnchorSideLeft.Control = Label8
+    AnchorSideLeft.Side = asrBottom
+    Left = 182
+    Height = 37
+    Top = 16
+    Width = 16
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OnMouseLeave = Label11MouseLeave
+    OnMouseWheelDown = Label11MouseWheelDown
+    OnMouseWheelUp = Label11MouseWheelUp
+  end
+  object SBConnect: TSpeedButton
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Side = asrCenter
+    Left = 209
+    Height = 28
+    Top = 1
+    Width = 28
+    AutoSize = True
+    BorderSpacing.Left = 1
+    Flat = True
+    Glyph.Data = {
+      36090000424D3609000000000000360000002800000018000000180000000100
+      2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
+      FF00FFFFFF0000000000000000000000000000000000BE683B20BF693BCF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000000000000000000000000000BE683BBFC46B3AFFC069
+      3A30000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000000000000000000000BD673B60C86E3AFFD47639FFC169
+      3A80000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000BB663C10BE683BEFDC7736FFDD7B3AFFC169
+      3AEFC56C3AEFCE753DFFCD743CFFC76C38DFC86D37AFCA6E3760000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000BA663CAFD27640FFE08041FFE2823FFFE485
+      3FFFE88B44FFEB9249FFEF9A4EFFF3A154FFEE9E53FFDC8746FFCB6E36DFCC6F
+      364000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000B9653D50C26B3DFFDE7E41FFE08344FFE38848FFE68C
+      4AFFE8904BFFEB944CFFEE994EFFF2A053FFF6A859FFFAAF5EFFF4A95BFFD57D
+      3FFFCC6F3660000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00B7643E10BA663DEFD7773EFFDE7D41FFE08244FFE38747FFE68C
+      4BFFDA8347FFCF7841FFC66E3BFFC56C38BFC76C38DFD47D41FFDF8D4AFFF2A8
+      5CFFD57D40FFCB6F36500000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00B6643E50BA663DEFCA6F3EFFDB7B40FFE08143FFE28647FFE389
+      49FFC0693AEFC26A3A20000000000000000000000000C86D3710C86D3760C96E
+      37BFD0783EFFCA6E37EFCA6E372000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000B8653D10B9653D80BC683DEFCB723FFFDD8145FFE48A
+      49FFC7703DFFC0693A1000000000000000000000000000000000000000000000
+      0000C96D3750C96D37EFC96E379F00000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000000000000000000000000000BB673C60BC673CDFCC74
+      40FFCB7340FFC0693A6000000000000000000000000000000000000000000000
+      000000000000C86D3710C86D37BFC76D3820FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000000000000000000000000000000000000000000000BD67
+      3B60BE683BBFBF683B9F00000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      000000000000BE683B2000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000BE683BCFBE683B9FBE683B20000000000000
+      000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00B8705135B2623F8F000000000000000000000000000000000000
+      0000000000000000000000000000BC673C8FCB703BFFC56D3BFFBE683BAFBE68
+      3B4000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000B16240DFB2623FBFB3633F2000000000000000000000
+      0000000000000000000000000000BB673C50C96E3AFFE17E3AFFD97A3CFFC76E
+      3BFFBE683BBFBD683B600000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000B1614040B1623FFFB7643EFFB3633F9FB4633E300000
+      0000000000000000000000000000B9663D20BE683BFFDE7836FFE07C38FFE17F
+      3AFFDB7C3CFFCB713CFFBC673CDFBC673C20FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000B161408FBE663DFFC86A3BFFBE663CFFB663
+      3CEFB5643EBFB6643EBFB7653DDFC06639FFCD6C34FFDB7332FFDD7634FFDE79
+      36FFDF7B38FFDA793AFFBB673CDF00000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00000000000000000000000000B161409FBE663DFFD36E3AFFD56D
+      36FFD4692FFFD4652AFFD46528FFD6682AFFD76B2CFFD96E2EFFDA7130FFDB73
+      32FFDD7534FFC0693CFFBA663D4000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000000000000000000000000000B0614070B3623FEFC669
+      3CFFD4703BFFD7723BFFD8743DFFD87238FFD87237FFD97235FFDA7437FFDB76
+      38FFCA6D3AFFB8653D8F0000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000B1614010B161
+      4070B2623FCFB7643FFFBC663EFFBD673EFFB9653FFFB9663EFFDA783FFFD476
+      3FFFB6643EDFB6643E100000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000B3633FAFD2723EFFBB67
+      3FFFB5633E40000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000B2623F60B4633FFFB362
+      3F8F00000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000B1614010B16140DFB162
+      401000000000000000000000000000000000FFFFFF00FFFFFF00
+    }
+  end
+  object tmrRadio: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = tmrRadioTimer
+    Left = 136
+    Top = 112
+  end
+end

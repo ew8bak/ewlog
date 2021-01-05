@@ -1,0 +1,947 @@
+object ConfigForm: TConfigForm
+  Left = 446
+  Height = 324
+  Top = 261
+  Width = 510
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Program settings'
+  ClientHeight = 324
+  ClientWidth = 510
+  FormStyle = fsStayOnTop
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.0.10.0'
+  object Button1: TButton
+    Left = 432
+    Height = 25
+    Top = 288
+    Width = 75
+    Caption = 'Save'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 352
+    Height = 25
+    Top = 288
+    Width = 75
+    Caption = 'Cancel'
+    Font.Height = -12
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 1
+  end
+  object PControl: TPageControl
+    Left = 0
+    Height = 280
+    Top = 0
+    Width = 510
+    ActivePage = TSBase
+    Align = alTop
+    TabIndex = 0
+    TabOrder = 2
+    object TSBase: TTabSheet
+      Caption = 'DataBase'
+      ClientHeight = 252
+      ClientWidth = 502
+      object gbMySQL: TGroupBox
+        Left = 8
+        Height = 240
+        Top = 8
+        Width = 233
+        Caption = 'MySQL'
+        ClientHeight = 220
+        ClientWidth = 229
+        TabOrder = 0
+        object Label2: TLabel
+          AnchorSideTop.Control = Edit1
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit1
+          Left = 27
+          Height = 15
+          Top = 12
+          Width = 32
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Server'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label3: TLabel
+          AnchorSideTop.Control = Edit2
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit2
+          Left = 37
+          Height = 15
+          Top = 44
+          Width = 22
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Port'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label4: TLabel
+          AnchorSideTop.Control = Edit3
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit3
+          Left = 29
+          Height = 15
+          Top = 76
+          Width = 30
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label5: TLabel
+          AnchorSideTop.Control = Edit4
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit4
+          Left = 14
+          Height = 15
+          Top = 108
+          Width = 45
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Pasword'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label6: TLabel
+          AnchorSideTop.Control = Edit5
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit5
+          Left = 0
+          Height = 15
+          Top = 140
+          Width = 59
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Base Name'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Edit1: TEdit
+          Left = 64
+          Height = 23
+          Top = 8
+          Width = 152
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit2: TEdit
+          Left = 64
+          Height = 23
+          Top = 40
+          Width = 152
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Edit3: TEdit
+          Left = 64
+          Height = 23
+          Top = 72
+          Width = 152
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 2
+        end
+        object Edit4: TEdit
+          Left = 64
+          Height = 23
+          Top = 104
+          Width = 152
+          EchoMode = emPassword
+          Font.Height = -12
+          ParentFont = False
+          PasswordChar = '*'
+          TabOrder = 3
+        end
+        object Button3: TButton
+          Left = 16
+          Height = 25
+          Top = 184
+          Width = 192
+          Caption = 'Check connection'
+          Font.Height = -12
+          OnClick = Button3Click
+          ParentFont = False
+          TabOrder = 4
+        end
+        object Edit5: TEdit
+          Left = 64
+          Height = 23
+          Top = 136
+          Width = 152
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 5
+        end
+      end
+      object gbSQLite: TGroupBox
+        Left = 256
+        Height = 80
+        Top = 8
+        Width = 233
+        Caption = 'SQLite'
+        ClientHeight = 60
+        ClientWidth = 229
+        TabOrder = 1
+        object FileNameEdit1: TFileNameEdit
+          AnchorSideLeft.Control = gbSQLite
+          AnchorSideTop.Control = Label8
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 23
+          Top = 22
+          Width = 208
+          FilterIndex = 0
+          HideDirectories = False
+          ButtonWidth = 23
+          NumGlyphs = 1
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
+          Font.Height = -12
+          MaxLength = 0
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Label8: TLabel
+          AnchorSideLeft.Control = FileNameEdit1
+          AnchorSideTop.Control = gbSQLite
+          AnchorSideBottom.Control = FileNameEdit1
+          Left = 10
+          Height = 15
+          Top = 2
+          Width = 24
+          BorderSpacing.Top = 2
+          Caption = 'Base'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+      end
+      object gbDefaultDB: TGroupBox
+        Left = 256
+        Height = 88
+        Top = 96
+        Width = 233
+        Caption = 'Default DB'
+        ClientHeight = 68
+        ClientWidth = 229
+        TabOrder = 2
+        object RadioButton1: TRadioButton
+          Left = 19
+          Height = 19
+          Top = 8
+          Width = 80
+          Alignment = taLeftJustify
+          Caption = 'Use MySQL'
+          Checked = True
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+          TabStop = True
+        end
+        object RadioButton2: TRadioButton
+          Left = 19
+          Height = 19
+          Top = 32
+          Width = 79
+          Alignment = taLeftJustify
+          Caption = 'Use SQLite '
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+      end
+    end
+    object TSRefOnline: TTabSheet
+      Caption = 'Reference Online'
+      ClientHeight = 252
+      ClientWidth = 502
+      object GBQRZRU: TGroupBox
+        Left = 8
+        Height = 112
+        Top = 8
+        Width = 233
+        Caption = 'QRZ.RU XML API'
+        ClientHeight = 92
+        ClientWidth = 229
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 0
+        object Edit6: TEdit
+          Left = 72
+          Height = 23
+          Top = 8
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit7: TEdit
+          Left = 72
+          Height = 23
+          Top = 40
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label18: TLabel
+          AnchorSideTop.Control = Edit6
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit6
+          Left = 37
+          Height = 15
+          Top = 12
+          Width = 30
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label19: TLabel
+          AnchorSideTop.Control = Edit7
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit7
+          Left = 17
+          Height = 15
+          Top = 44
+          Width = 50
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox3: TCheckBox
+          Left = 8
+          Height = 19
+          Top = 70
+          Width = 119
+          Caption = 'Use as a reference?'
+          DoubleBuffered = False
+          Font.Height = -12
+          OnChange = CheckBox3Change
+          ParentDoubleBuffered = False
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
+      object gbQRZCOM: TGroupBox
+        Left = 8
+        Height = 112
+        Top = 128
+        Width = 233
+        Caption = 'QRZ.COM XML API'
+        ClientHeight = 92
+        ClientWidth = 229
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 1
+        object Edit8: TEdit
+          Left = 72
+          Height = 23
+          Top = 8
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit9: TEdit
+          Left = 72
+          Height = 23
+          Top = 40
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label21: TLabel
+          AnchorSideTop.Control = Edit8
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit8
+          Left = 37
+          Height = 15
+          Top = 12
+          Width = 30
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label22: TLabel
+          AnchorSideTop.Control = Edit9
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit9
+          Left = 17
+          Height = 15
+          Top = 44
+          Width = 50
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox7: TCheckBox
+          Left = 8
+          Height = 19
+          Top = 72
+          Width = 119
+          Caption = 'Use as a reference?'
+          DoubleBuffered = False
+          OnChange = CheckBox7Change
+          ParentDoubleBuffered = False
+          TabOrder = 2
+        end
+      end
+      object gbHAMQTH: TGroupBox
+        Left = 256
+        Height = 112
+        Top = 8
+        Width = 233
+        Caption = 'HAMQTH XML API'
+        ClientHeight = 92
+        ClientWidth = 229
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 2
+        object Edit14: TEdit
+          Left = 64
+          Height = 23
+          Top = 8
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit15: TEdit
+          Left = 64
+          Height = 23
+          Top = 40
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label25: TLabel
+          AnchorSideTop.Control = Edit14
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit14
+          Left = 29
+          Height = 15
+          Top = 12
+          Width = 30
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label26: TLabel
+          AnchorSideTop.Control = Edit15
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit15
+          Left = 9
+          Height = 15
+          Top = 44
+          Width = 50
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox11: TCheckBox
+          Left = 8
+          Height = 19
+          Top = 72
+          Width = 119
+          Caption = 'Use as a reference?'
+          Font.Height = -12
+          OnChange = CheckBox11Change
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
+    end
+    object TSIntRef: TTabSheet
+      Caption = 'Internal reference'
+      ClientHeight = 252
+      ClientWidth = 502
+      object gbIntRef: TGroupBox
+        Left = 8
+        Height = 240
+        Top = 8
+        Width = 233
+        Caption = 'Internal reference book'
+        ClientHeight = 220
+        ClientWidth = 229
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 0
+        object CheckBox1: TCheckBox
+          Left = 8
+          Height = 19
+          Top = 136
+          Width = 96
+          Caption = 'Use reference?'
+          Font.Height = -12
+          OnChange = CheckBox1Change
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Label10: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 15
+          Top = 8
+          Width = 68
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Release date:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label11: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 15
+          Top = 56
+          Width = 103
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Number of records:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label12: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 15
+          Top = 80
+          Width = 75
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Update status:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Button4: TButton
+          Left = 10
+          Height = 25
+          Top = 184
+          Width = 208
+          Caption = 'Check for Updates'
+          Font.Height = -12
+          OnClick = Button4Click
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label13: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 15
+          Top = 32
+          Width = 41
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Version:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label14: TLabel
+          AnchorSideLeft.Control = Label13
+          Left = 55
+          Height = 15
+          Top = 32
+          Width = 15
+          BorderSpacing.Left = 45
+          Caption = '---'
+          ParentColor = False
+        end
+        object ProgressBar1: TProgressBar
+          Left = 10
+          Height = 20
+          Top = 160
+          Width = 206
+          TabOrder = 2
+        end
+        object Label17: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 15
+          Top = 104
+          Width = 76
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Download file:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+      end
+    end
+    object TSTelnet: TTabSheet
+      Caption = 'Telnet'
+      ClientHeight = 252
+      ClientWidth = 502
+      object gbTelnet: TGroupBox
+        Left = 8
+        Height = 144
+        Top = 8
+        Width = 233
+        Caption = 'Telnet DX Cluster'
+        ClientHeight = 124
+        ClientWidth = 229
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 0
+        object Edit11: TEdit
+          Left = 56
+          Height = 23
+          Top = 8
+          Width = 160
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit12: TEdit
+          Left = 56
+          Height = 23
+          Top = 48
+          Width = 160
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label15: TLabel
+          AnchorSideTop.Control = Edit11
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit11
+          Left = 21
+          Height = 15
+          Top = 12
+          Width = 30
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label16: TLabel
+          AnchorSideTop.Control = Edit12
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit12
+          Left = 1
+          Height = 15
+          Top = 52
+          Width = 50
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox4: TCheckBox
+          Left = 16
+          Height = 19
+          Top = 88
+          Width = 175
+          Caption = 'Start DX cluster automatically'
+          DoubleBuffered = False
+          ParentDoubleBuffered = False
+          TabOrder = 2
+        end
+      end
+    end
+    object TSBackup: TTabSheet
+      Caption = 'Backup'
+      ClientHeight = 252
+      ClientWidth = 502
+      object DEBackupPath: TDirectoryEdit
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = lbPathBackup
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 27
+        Width = 232
+        ShowHidden = False
+        ButtonWidth = 23
+        NumGlyphs = 1
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 2
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object lbPathBackup: TLabel
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = TSBackup
+        Left = 5
+        Height = 15
+        Top = 10
+        Width = 90
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Path backup files'
+        ParentColor = False
+      end
+      object cbBackupDB: TCheckBox
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = DEBackupPath
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 19
+        Top = 55
+        Width = 110
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup Database'
+        Enabled = False
+        TabOrder = 1
+      end
+      object cbADIfiles: TCheckBox
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = cbBackupDB
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 19
+        Top = 79
+        Width = 100
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup ADI file'
+        Enabled = False
+        TabOrder = 2
+      end
+      object cbBackupCloseDB: TCheckBox
+        AnchorSideLeft.Control = cbBackupDB
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = cbBackupDB
+        AnchorSideTop.Side = asrCenter
+        Left = 120
+        Height = 19
+        Top = 55
+        Width = 106
+        BorderSpacing.Left = 5
+        Caption = 'Backup on close'
+        TabOrder = 3
+      end
+      object cbBackupCloseADI: TCheckBox
+        AnchorSideLeft.Control = cbADIfiles
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = cbADIfiles
+        AnchorSideTop.Side = asrCenter
+        Left = 120
+        Height = 19
+        Top = 79
+        Width = 106
+        BorderSpacing.Left = 15
+        Caption = 'Backup on close'
+        TabOrder = 4
+      end
+      object timeEdit: TTimeEdit
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = lbTimeBackup
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 123
+        Width = 110
+        ButtonWidth = 23
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        NumGlyphs = 1
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 5
+      end
+      object lbTimeBackup: TLabel
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = cbADIfiles
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 15
+        Top = 103
+        Width = 68
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup Time'
+        ParentColor = False
+      end
+    end
+    object TSOtherSettings: TTabSheet
+      Caption = 'Other Settings'
+      ClientHeight = 252
+      ClientWidth = 502
+      object gbCloudLog: TGroupBox
+        Left = 8
+        Height = 145
+        Top = 8
+        Width = 216
+        Caption = 'CloudLog'
+        ClientHeight = 125
+        ClientWidth = 212
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 0
+        object Edit10: TEdit
+          Left = 64
+          Height = 23
+          Top = 8
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Label23: TLabel
+          AnchorSideTop.Control = Edit10
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit10
+          Left = 27
+          Height = 15
+          Top = 12
+          Width = 32
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Server'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox8: TCheckBox
+          Left = 8
+          Height = 19
+          Top = 72
+          Width = 137
+          Caption = 'Send ADI to CloudLog'
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object CheckBox9: TCheckBox
+          Left = 8
+          Height = 19
+          Top = 96
+          Width = 141
+          Caption = 'Send Freq to CloudLog'
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 2
+        end
+        object Edit13: TEdit
+          Left = 64
+          Height = 23
+          Top = 40
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 3
+        end
+        object Label24: TLabel
+          AnchorSideTop.Control = Edit13
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit13
+          Left = 20
+          Height = 15
+          Top = 44
+          Width = 39
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'API key'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+      end
+      object CheckBox2: TCheckBox
+        Left = 240
+        Height = 19
+        Top = 16
+        Width = 126
+        Caption = 'Use bands in meters'
+        Font.Height = -12
+        OnChange = CheckBox2Change
+        ParentFont = False
+        TabOrder = 1
+      end
+      object CheckBox5: TCheckBox
+        Left = 240
+        Height = 19
+        Top = 40
+        Width = 132
+        Caption = 'Printing with preview'
+        Font.Height = -12
+        OnChange = CheckBox2Change
+        ParentFont = False
+        TabOrder = 2
+      end
+      object CheckBox6: TCheckBox
+        Left = 240
+        Height = 19
+        Top = 64
+        Width = 223
+        Caption = 'Send MY_STATE and MY_GRIDSQUARE'
+        Font.Height = -12
+        OnChange = CheckBox6Change
+        ParentFont = False
+        TabOrder = 3
+      end
+      object Label20: TLabel
+        AnchorSideLeft.Control = CheckBox6
+        AnchorSideTop.Control = CheckBox6
+        AnchorSideTop.Side = asrBottom
+        Left = 265
+        Height = 15
+        Top = 83
+        Width = 59
+        BorderSpacing.Left = 25
+        Caption = 'to QSL Info'
+        Font.Height = -12
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+  end
+end

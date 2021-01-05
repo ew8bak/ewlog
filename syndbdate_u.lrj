@@ -1,0 +1,5 @@
+{"version":1,"strings":[
+{"hash":175498947,"name":"tsyndbdate.caption","sourcebytes":[68,97,116,101,32,83,121,110,99],"value":"Date Sync"},
+{"hash":250054293,"name":"tsyndbdate.label1.caption","sourcebytes":[83,101,108,101,99,116,32,97,32,115,121,110,99,104,114,111,110,105,122,97,116,105,111,110,32,115,116,97,114,116,32,100,97,116,101],"value":"Select a synchronization start date"},
+{"hash":267343253,"name":"tsyndbdate.button1.caption","sourcebytes":[83,121,110,99,104,114,111,110,105,122,101],"value":"Synchronize"}
+]}
