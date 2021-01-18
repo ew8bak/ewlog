@@ -27,12 +27,12 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="6"/>
-      <BuildNr Value="786"/>
+      <BuildNr Value="787"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>
-      <Item2 Name="Релиз">
+      <Item2 Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
@@ -68,7 +68,7 @@
           </Other>
         </CompilerOptions>
       </Item2>
-      <Item3 Name="Дебаг">
+      <Item3 Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>

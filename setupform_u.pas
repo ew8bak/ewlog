@@ -140,7 +140,6 @@ type
     Default_DataBase: string;
     Test_Connection: boolean;
     function CheckEmptyDB: boolean;
-    procedure LoadLicense;
     { private declarations }
   public
     { public declarations }
@@ -499,26 +498,8 @@ begin
   end;
 end;
 
-procedure TSetupForm.LoadLicense;
-var
-  Stream: TLazarusResourceStream;
-begin
-  Stream := nil;
-  try
-    if IniSet.Language = 'ru' then
-      Stream := TLazarusResourceStream.Create('license_ru', nil)
-    else
-      Stream := TLazarusResourceStream.Create('license_en', nil);
-
-    Memo1.Lines.LoadFromStream(Stream);
-  finally
-    Stream.Free;
-  end;
-end;
-
 procedure TSetupForm.FormShow(Sender: TObject);
 begin
-  LoadLicense;
   Test_Connection := False;
   PageControl1.ActivePageIndex := 0;
   RadioButton2.Checked := True;
