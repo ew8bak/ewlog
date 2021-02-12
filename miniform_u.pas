@@ -742,7 +742,7 @@ end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
 begin
-  openURL('https://yasobe.ru/na/ewlog');
+  openURL('https://www.patreon.com/ewlog');
 end;
 
 procedure TMiniForm.MenuItem111Click(Sender: TObject);
@@ -2030,7 +2030,12 @@ begin
   begin
     if IniSet.BackupADIonClose then
     begin
-      if MainFunc.BackupData('MiniForm') then
+      if MainFunc.BackupDataADI('MiniForm') then
+        CloseAction := caNone;
+    end;
+        if IniSet.BackupDBonClose then
+    begin
+      if MainFunc.BackupDataDB('MiniForm') then
         CloseAction := caNone;
     end;
   end

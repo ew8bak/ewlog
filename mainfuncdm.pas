@@ -17,7 +17,8 @@ uses
   Classes, SysUtils, DB, Forms, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
-  VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u;
+  VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u,
+  FileUtil;
 
 type
   bandArray = array of string;
@@ -81,7 +82,8 @@ type
     function GetMySQLDataBase: StringArray;
     function GetExternalProgramsName: extProgramArray;
     function GetExternalProgramsPath(ProgramName: string): string;
-    function BackupData(Sender: string): boolean;
+    function BackupDataADI(Sender: string): boolean;
+    function BackupDataDB(Sender: string): boolean;
   end;
 
 var
@@ -100,13 +102,25 @@ uses InitDB_dm, dmFunc_U, hrdlog,
 
 {$R *.lfm}
 
-function TMainFunc.BackupData(Sender: string): boolean;
+function TMainFunc.BackupDataADI(Sender: string): boolean;
 begin
   Result := True;
   if IniSet.BackupADIonClose then
   begin
-    ProgressBackupForm.SenderForm:=Sender;
+    ProgressBackupForm.SenderForm := Sender;
     ProgressBackupForm.Show;
+  end
+  else
+    Result := False;
+end;
+
+function TMainFunc.BackupDataDB(Sender: string): boolean;
+begin
+  if IniSet.BackupDBonClose then
+  begin
+    Result := CopyFile(DBRecord.SQLitePATH, SysToUTF8(IniSet.PathBackupFiles +
+      DirectorySeparator + 'auto_backup_' + dmFunc.ExtractCallsign(DBRecord.CurrCall) +
+      '_' + FormatDateTime('yyyy-mm-dd-hhnnss', now) + '.db'));
   end
   else
     Result := False;
