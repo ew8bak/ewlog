@@ -23,5 +23,7 @@
 {"hash":355745,"name":"tsettingscat.rig1.caption","sourcebytes":[82,73,71,49],"value":"RIG1"},
 {"hash":171938100,"name":"tsettingscat.label1.caption","sourcebytes":[80,97,116,104,32,102,111,114,32,72,97,109,76,105,98,32,82,105,103,99,116,108,100],"value":"Path for HamLib Rigctld"},
 {"hash":355746,"name":"tsettingscat.radiobutton1.caption","sourcebytes":[82,73,71,50],"value":"RIG2"},
-{"hash":4863637,"name":"tsettingscat.button2.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
+{"hash":4863637,"name":"tsettingscat.button2.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":101627157,"name":"tsettingscat.lbextracmd.caption","sourcebytes":[69,120,116,114,97,32,99,111,109,109,97,110,100,32,108,105,110,101],"value":"Extra command line"},
+{"hash":248022687,"name":"tsettingscat.checkbox1.caption","sourcebytes":[83,116,97,114,116,32,114,105,103,99,116,108,100,32,111,110,32,115,116,97,114,116,117,112,63],"value":"Start rigctld on startup?"}
 ]}

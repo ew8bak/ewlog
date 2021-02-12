@@ -15,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, Process,
-  EditBtn, Spin, LazFileUtils, synaser {$IFDEF UNIX}, baseunix {$ENDIF};
+  EditBtn, Spin, LazFileUtils, MainFuncDM, synaser {$IFDEF UNIX}, baseunix {$ENDIF};
 
 resourcestring
   rLibHamLibNotFound = 'HamLib library not found';
@@ -36,6 +36,8 @@ type
     cbParity: TComboBox;
     cbRTSstate: TComboBox;
     cbStopBits: TComboBox;
+    CheckBox1: TCheckBox;
+    EditCMD: TEdit;
     EditCIVaddress: TEdit;
     FileNameEdit1: TFileNameEdit;
     GroupBox1: TGroupBox;
@@ -43,6 +45,7 @@ type
     Label11: TLabel;
     Label12: TLabel;
     Label16: TLabel;
+    LBExtraCMD: TLabel;
     Label61: TLabel;
     Label62: TLabel;
     Label63: TLabel;
@@ -166,7 +169,7 @@ begin
     nTRX := 1
   else
     nTRX := 2;
-  FileNameEdit1.Text := INIFile.ReadString('TRX' + IntToStr(nTRX), 'RigCtldPath', '');
+  FileNameEdit1.Text := IniSet.rigctldPath;
    {$IFDEF WINDOWS}
   FileNameEdit1.Filter := 'rigctld.exe|rigctld.exe';
    {$ELSE}
@@ -180,6 +183,7 @@ begin
         FileNameEdit1.Text := s;
     end;
    {$ENDIF}
+  CheckBox1.Checked := IniSet.rigctldStartUp;
   LoadRIG;
   LoadINI;
 end;
@@ -211,7 +215,13 @@ begin
   model := cbManufacturer.Text;
   Delete(model, 1, pos(' ', model));
 
-  INIFile.WriteString('TRX' + IntToStr(nTRX), 'RigCtldPath', FileNameEdit1.Text);
+  INIFile.WriteString('SetCAT', 'rigctldPath', FileNameEdit1.Text);
+  IniSet.rigctldPath := FileNameEdit1.Text;
+  INIFile.WriteString('SetCAT', 'rigctldExtra', EditCMD.Text);
+  IniSet.rigctldExtra := EditCMD.Text;
+  INIFile.WriteBool('SetCAT', 'rigctldStartUp', CheckBox1.Checked);
+  IniSet.rigctldStartUp := CheckBox1.Checked;
+
   INIFile.WriteString('TRX' + IntToStr(nTRX), 'model',
     dmFunc.GetRigIdFromComboBoxItem(cbManufacturer.Text));
   INIFile.WriteString('TRX' + IntToStr(nTRX), 'name', model);
@@ -286,6 +296,7 @@ end;
 
 function TSettingsCAT.GetSerialPortNames: string;
 begin
+  Result := '';
   {$IFDEF WINDOWS}
   Result := synaser.GetSerialPortNames;
   {$ELSE}

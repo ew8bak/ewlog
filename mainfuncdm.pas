@@ -1419,6 +1419,9 @@ begin
   IniSet.BackupDBonClose := INIFile.ReadBool('SetBackup', 'BackupDBonClose', False);
   IniSet.BackupTime := INIFile.ReadTime('SetBackup', 'BackupTime',
     StrToTime('12:00', FormatSettings));
+  IniSet.rigctldStartUp:=INIFile.ReadBool('SetCAT', 'rigctldStartUp', True);
+  IniSet.rigctldExtra:=INIFile.ReadString('SetCAT', 'rigctldExtra', '');
+  IniSet.rigctldPath:=INIFile.ReadString('SetCAT', 'rigctldPath', '');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

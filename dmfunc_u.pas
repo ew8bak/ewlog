@@ -834,8 +834,6 @@ begin
   Result := rv;
 end;
 
-
-
 function TdmFunc.ReplaceCountry(Country: string): string;
 begin
   Result := '';
@@ -1175,7 +1173,7 @@ begin
     Result := '-m ' + INIFile.ReadString(section, 'model', '') + ' ' +
       '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
 
-  Result := Result + INIFile.ReadString(section, 'ExtraRigCtldArgs', '') + ' ';
+  Result := Result + INIFile.ReadString('SetCAT', 'rigctldExtra', '') + ' ';
 
   case INIFile.ReadInteger(section, 'SerialSpeed', 0) of
     0: arg := '';

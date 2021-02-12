@@ -4449,6 +4449,10 @@ msgctxt "tsettingscat.cbstopbits.text"
 msgid "Default"
 msgstr ""
 
+#: tsettingscat.checkbox1.caption
+msgid "Start rigctld on startup?"
+msgstr ""
+
 #: tsettingscat.editcivaddress.hint
 msgid "ICOM Radios"
 msgstr ""
@@ -4499,6 +4503,10 @@ msgstr ""
 
 #: tsettingscat.label67.caption
 msgid "Handshake"
+msgstr ""
+
+#: tsettingscat.lbextracmd.caption
+msgid "Extra command line"
 msgstr ""
 
 #: tsettingscat.radiobutton1.caption
