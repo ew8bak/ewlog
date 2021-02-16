@@ -425,6 +425,7 @@ object GridsForm: TGridsForm
   end
   object LOGBookDS: TDataSource
     DataSet = InitDB.DefLogBookQuery
+    OnDataChange = LOGBookDSDataChange
     Left = 65
     Top = 44
   end

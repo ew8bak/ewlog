@@ -269,6 +269,7 @@ procedure TMainFunc.SaveGrids(DbGrid: TDBGrid);
 var
   i: integer;
 begin
+  //ShowMessage();
   for i := 0 to 29 do
   begin
     INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),

@@ -1768,6 +1768,8 @@ begin
       EditMyState.Visible := False;
     end;
   end;
+  //MainFunc.SetGrid(GridsForm.DBGrid1);
+  //MainFunc.SetGrid(GridsForm.DBGrid2);
 end;
 
 procedure TMiniForm.CBBandCloseUp(Sender: TObject);
@@ -2033,7 +2035,7 @@ begin
       if MainFunc.BackupDataADI('MiniForm') then
         CloseAction := caNone;
     end;
-        if IniSet.BackupDBonClose then
+    if IniSet.BackupDBonClose then
     begin
       if MainFunc.BackupDataDB('MiniForm') then
         CloseAction := caNone;

@@ -108,6 +108,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure GridMenuPopup(Sender: TObject);
     procedure CopyToLogItemClick(Sender: TObject);
+    procedure LOGBookDSDataChange(Sender: TObject; Field: TField);
     procedure MarkQSOItemClick(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure PrefixItemClick(Sender: TObject);
@@ -219,6 +220,7 @@ end;
 
 procedure TGridsForm.DBGrid1ColumnSized(Sender: TObject);
 begin
+  MainFunc.SaveGrids(DBGrid1);
   MainFunc.SaveGrids(DBGrid1);
   MainFunc.SetGrid(DBGrid1);
   MainFunc.SetGrid(DBGrid2);
@@ -381,6 +383,12 @@ var
 begin
   MenuItem := (Sender as TMenuItem);
   MainFunc.CopyToJournal(DBGrid1, MenuItem.Caption);
+end;
+
+procedure TGridsForm.LOGBookDSDataChange(Sender: TObject; Field: TField);
+begin
+  MainFunc.SetGrid(DBGrid1);
+  MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TGridsForm.MarkQSOItemClick(Sender: TObject);
