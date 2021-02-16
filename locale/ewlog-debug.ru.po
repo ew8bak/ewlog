@@ -243,6 +243,10 @@ msgctxt "resourcestr.raddkeyinlogtable"
 msgid "Add key in Log_TABLE_"
 msgstr "Добавляю ключ в Log_TABLE_"
 
+#: resourcestr.raddress
+msgid "Address"
+msgstr ""
+
 #: resourcestr.rallfieldsmustbefilled
 msgctxt "resourcestr.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
@@ -327,6 +331,12 @@ msgstr "Очистить поле ввода QSO"
 msgctxt "resourcestr.rclientconnected"
 msgid "Client Connected:"
 msgstr "Клиент подключён:"
+
+#: resourcestr.rcomport
+#, fuzzy
+msgctxt "resourcestr.rcomport"
+msgid "COM Port"
+msgstr "COM порт"
 
 #: resourcestr.rconnectedtofldigi
 msgid "Fldigi connected to EWLog"
@@ -4487,6 +4497,10 @@ msgstr "По умолчанию"
 msgid "Start rigctld on startup?"
 msgstr ""
 
+#: tsettingscat.editaddress.text
+msgid "localhost"
+msgstr ""
+
 #: tsettingscat.editcivaddress.hint
 msgid "ICOM Radios"
 msgstr "ICOM радио"
@@ -4500,6 +4514,7 @@ msgid "Path for HamLib Rigctld"
 msgstr "Пусть к Rigctld"
 
 #: tsettingscat.label11.caption
+msgctxt "tsettingscat.label11.caption"
 msgid "COM Port"
 msgstr "COM порт"
 

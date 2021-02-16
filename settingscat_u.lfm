@@ -1,11 +1,11 @@
 object SettingsCAT: TSettingsCAT
-  Left = 657
-  Height = 415
-  Top = 256
+  Left = 639
+  Height = 386
+  Top = 257
   Width = 323
   BorderStyle = bsDialog
   Caption = 'Settings CAT'
-  ClientHeight = 415
+  ClientHeight = 386
   ClientWidth = 323
   FormStyle = fsStayOnTop
   OnShow = FormShow
@@ -13,19 +13,19 @@ object SettingsCAT: TSettingsCAT
   LCLVersion = '2.0.10.0'
   object GroupBox1: TGroupBox
     Left = 8
-    Height = 408
+    Height = 376
     Top = 0
     Width = 307
     Caption = 'Config HamLib'
-    ClientHeight = 392
+    ClientHeight = 360
     ClientWidth = 305
     Font.Height = -12
     ParentFont = False
     TabOrder = 0
     object Label11: TLabel
-      Left = 12
+      Left = 14
       Height = 22
-      Top = 200
+      Top = 168
       Width = 59
       AutoSize = False
       Caption = 'COM Port'
@@ -35,10 +35,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object cbCatPort: TComboBox
-      Left = 8
+      Left = 10
       Height = 23
-      Top = 222
-      Width = 85
+      Top = 190
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ItemHeight = 0
@@ -59,13 +59,14 @@ object SettingsCAT: TSettingsCAT
       BorderSpacing.Top = 1
       Font.Height = -12
       ItemHeight = 0
+      OnChange = cbManufacturerChange
       ParentFont = False
       TabOrder = 1
     end
     object Label61: TLabel
-      Left = 111
+      Left = 112
       Height = 22
-      Top = 200
+      Top = 168
       Width = 61
       AutoSize = False
       Caption = 'Speed'
@@ -75,10 +76,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object cbBaudRate: TComboBox
-      Left = 107
+      Left = 108
       Height = 23
-      Top = 222
-      Width = 85
+      Top = 190
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ItemHeight = 0
@@ -101,9 +102,9 @@ object SettingsCAT: TSettingsCAT
       Text = 'Default'
     end
     object Label62: TLabel
-      Left = 12
+      Left = 14
       Height = 22
-      Top = 252
+      Top = 220
       Width = 63
       AutoSize = False
       Caption = 'Data bit'
@@ -113,10 +114,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object cbDataBits: TComboBox
-      Left = 8
+      Left = 10
       Height = 23
-      Top = 273
-      Width = 85
+      Top = 241
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ItemHeight = 0
@@ -135,9 +136,9 @@ object SettingsCAT: TSettingsCAT
       Text = 'Default'
     end
     object Label63: TLabel
-      Left = 111
+      Left = 112
       Height = 22
-      Top = 252
+      Top = 220
       Width = 63
       AutoSize = False
       Caption = 'Parity'
@@ -147,10 +148,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object cbStopBits: TComboBox
-      Left = 207
+      Left = 208
       Height = 23
-      Top = 221
-      Width = 85
+      Top = 189
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ItemHeight = 0
@@ -168,9 +169,9 @@ object SettingsCAT: TSettingsCAT
       Text = 'Default'
     end
     object Label64: TLabel
-      Left = 210
+      Left = 211
       Height = 22
-      Top = 200
+      Top = 168
       Width = 63
       AutoSize = False
       Caption = 'Stop bit'
@@ -180,10 +181,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object cbParity: TComboBox
-      Left = 107
+      Left = 108
       Height = 23
-      Top = 273
-      Width = 85
+      Top = 241
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ItemHeight = 0
@@ -202,9 +203,9 @@ object SettingsCAT: TSettingsCAT
       Text = 'Default'
     end
     object Label65: TLabel
-      Left = 12
+      Left = 14
       Height = 22
-      Top = 304
+      Top = 272
       Width = 63
       AutoSize = False
       Caption = 'RTS state'
@@ -214,10 +215,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object cbRTSstate: TComboBox
-      Left = 8
+      Left = 10
       Height = 23
-      Top = 325
-      Width = 85
+      Top = 293
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ItemHeight = 0
@@ -234,9 +235,9 @@ object SettingsCAT: TSettingsCAT
       Text = 'Default'
     end
     object Label66: TLabel
-      Left = 111
+      Left = 112
       Height = 22
-      Top = 304
+      Top = 272
       Width = 63
       AutoSize = False
       Caption = 'DTR state'
@@ -246,10 +247,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object cbDTRstate: TComboBox
-      Left = 107
+      Left = 108
       Height = 23
-      Top = 325
-      Width = 85
+      Top = 293
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ItemHeight = 0
@@ -266,10 +267,10 @@ object SettingsCAT: TSettingsCAT
       Text = 'Default'
     end
     object Label67: TLabel
-      Left = 210
+      Left = 211
       Height = 22
-      Top = 252
-      Width = 74
+      Top = 220
+      Width = 73
       AutoSize = False
       Caption = 'Handshake'
       Font.Height = -12
@@ -278,10 +279,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object cbHandshake: TComboBox
-      Left = 207
+      Left = 208
       Height = 23
-      Top = 273
-      Width = 85
+      Top = 241
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ItemHeight = 0
@@ -310,10 +311,10 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object Label16: TLabel
-      Left = 210
+      Left = 211
       Height = 17
-      Top = 309
-      Width = 83
+      Top = 277
+      Width = 82
       AutoSize = False
       Caption = 'CI-V address'
       Font.Height = -12
@@ -321,11 +322,11 @@ object SettingsCAT: TSettingsCAT
       ParentFont = False
     end
     object EditCIVaddress: TEdit
-      Left = 207
+      Left = 208
       Height = 25
       Hint = 'ICOM Radios'
-      Top = 326
-      Width = 85
+      Top = 294
+      Width = 84
       AutoSize = False
       Font.Height = -12
       ParentFont = False
@@ -335,10 +336,10 @@ object SettingsCAT: TSettingsCAT
     end
     object Button1: TButton
       AnchorSideRight.Control = Button2
-      Left = 140
+      Left = 142
       Height = 25
-      Top = 357
-      Width = 75
+      Top = 325
+      Width = 74
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
       Caption = 'Save'
@@ -420,10 +421,10 @@ object SettingsCAT: TSettingsCAT
     object Button2: TButton
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 220
+      Left = 221
       Height = 25
-      Top = 357
-      Width = 75
+      Top = 325
+      Width = 74
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 10
       Caption = 'Close'
@@ -470,6 +471,20 @@ object SettingsCAT: TSettingsCAT
       Checked = True
       State = cbChecked
       TabOrder = 17
+    end
+    object EditAddress: TEdit
+      AnchorSideLeft.Control = cbCatPort
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideTop.Control = cbCatPort
+      AnchorSideTop.Side = asrCenter
+      Left = 12
+      Height = 25
+      Top = 189
+      Width = 80
+      AutoSize = False
+      TabOrder = 18
+      Text = 'localhost'
+      Visible = False
     end
   end
 end

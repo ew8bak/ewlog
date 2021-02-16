@@ -15,7 +15,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, Process,
-  EditBtn, Spin, LazFileUtils, MainFuncDM, synaser {$IFDEF UNIX}, baseunix {$ENDIF};
+  EditBtn, Spin, LazFileUtils, MainFuncDM, ResourceStr, synaser {$IFDEF UNIX},
+  baseunix {$ENDIF};
 
 resourcestring
   rLibHamLibNotFound = 'HamLib library not found';
@@ -37,6 +38,7 @@ type
     cbRTSstate: TComboBox;
     cbStopBits: TComboBox;
     CheckBox1: TCheckBox;
+    EditAddress: TEdit;
     EditCMD: TEdit;
     EditCIVaddress: TEdit;
     FileNameEdit1: TFileNameEdit;
@@ -58,12 +60,14 @@ type
     SpinEdit1: TSpinEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure cbManufacturerChange(Sender: TObject);
     procedure FileNameEdit1Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RadioButton1Change(Sender: TObject);
     procedure RIG1Change(Sender: TObject);
     procedure LoadINI;
     procedure LoadRIG;
+    procedure ChangePortAddress;
     function GetSerialPortNames: string;
   private
     { private declarations }
@@ -286,6 +290,28 @@ end;
 procedure TSettingsCAT.Button2Click(Sender: TObject);
 begin
   SettingsCAT.Close;
+end;
+
+procedure TSettingsCAT.ChangePortAddress;
+begin
+  if (Pos('Hamlib NET rigctl', cbManufacturer.Text) > 0) or
+    (Pos('FLRig', cbManufacturer.Text) > 0) then
+  begin
+    Label11.Caption := rAddress;
+    EditAddress.Visible := True;
+    cbCatPort.Visible := False;
+  end
+  else
+  begin
+    Label11.Caption := rCOMPort;
+    EditAddress.Visible := False;
+    cbCatPort.Visible := True;
+  end;
+end;
+
+procedure TSettingsCAT.cbManufacturerChange(Sender: TObject);
+begin
+  ChangePortAddress;
 end;
 
 procedure TSettingsCAT.FileNameEdit1Change(Sender: TObject);

@@ -232,6 +232,10 @@ msgctxt "resourcestr.raddkeyinlogtable"
 msgid "Add key in Log_TABLE_"
 msgstr ""
 
+#: resourcestr.raddress
+msgid "Address"
+msgstr ""
+
 #: resourcestr.rallfieldsmustbefilled
 msgctxt "resourcestr.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
@@ -315,6 +319,11 @@ msgstr ""
 #: resourcestr.rclientconnected
 msgctxt "resourcestr.rclientconnected"
 msgid "Client Connected:"
+msgstr ""
+
+#: resourcestr.rcomport
+msgctxt "resourcestr.rcomport"
+msgid "COM Port"
 msgstr ""
 
 #: resourcestr.rconnectedtofldigi
@@ -4452,6 +4461,10 @@ msgstr ""
 msgid "Start rigctld on startup?"
 msgstr ""
 
+#: tsettingscat.editaddress.text
+msgid "localhost"
+msgstr ""
+
 #: tsettingscat.editcivaddress.hint
 msgid "ICOM Radios"
 msgstr ""
@@ -4465,6 +4478,7 @@ msgid "Path for HamLib Rigctld"
 msgstr ""
 
 #: tsettingscat.label11.caption
+msgctxt "tsettingscat.label11.caption"
 msgid "COM Port"
 msgstr ""
 
