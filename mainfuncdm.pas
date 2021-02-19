@@ -409,7 +409,6 @@ begin
     FreeAndNil(Query);
     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
-    SetGrid(DBGrid);
     CurrPosGrid(GridRecordIndex, DBGrid);
   end;
 end;
@@ -1088,7 +1087,6 @@ begin
 
         finally
           FreeAndNil(Query);
-          SetGrid(DBGrid);
           CurrPosGrid(GridRecordIndex, DBGrid);
         end;
       end;

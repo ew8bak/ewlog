@@ -103,6 +103,7 @@ type
     procedure FilterQSLPItemClick(Sender: TObject);
     procedure FilterRecQSLItemClick(Sender: TObject);
     procedure FilterSentQSLItemClick(Sender: TObject);
+    procedure FindQSODSDataChange(Sender: TObject; Field: TField);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -347,6 +348,11 @@ end;
 procedure TGridsForm.FilterSentQSLItemClick(Sender: TObject);
 begin
   MainFunc.FilterQSO('QSLSent', '1');
+end;
+
+procedure TGridsForm.FindQSODSDataChange(Sender: TObject; Field: TField);
+begin
+   MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TGridsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);

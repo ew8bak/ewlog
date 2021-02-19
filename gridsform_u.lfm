@@ -1,7 +1,7 @@
 object GridsForm: TGridsForm
-  Left = 629
+  Left = 570
   Height = 399
-  Top = 278
+  Top = 211
   Width = 835
   Caption = 'Logbook'
   ClientHeight = 399
@@ -431,6 +431,7 @@ object GridsForm: TGridsForm
   end
   object FindQSODS: TDataSource
     DataSet = InitDB.FindQSOQuery
+    OnDataChange = FindQSODSDataChange
     Left = 56
     Top = 123
   end
