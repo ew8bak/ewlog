@@ -1285,6 +1285,18 @@ msgstr ""
 msgid "Send Freq to CloudLog"
 msgstr ""
 
+#: tconfigform.editclearkey.text
+msgid "Ctrl+C"
+msgstr ""
+
+#: tconfigform.editreferencekey.text
+msgid "Enter"
+msgstr ""
+
+#: tconfigform.editsavekey.text
+msgid "Ctrl+S"
+msgstr ""
+
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
 msgid "CloudLog"
@@ -1434,8 +1446,20 @@ msgstr ""
 msgid "Base"
 msgstr ""
 
+#: tconfigform.lbclearqso.caption
+msgid "Key Clear QSO"
+msgstr ""
+
+#: tconfigform.lbgetreference.caption
+msgid "Key get data from Online Reference"
+msgstr ""
+
 #: tconfigform.lbpathbackup.caption
 msgid "Path backup files"
+msgstr ""
+
+#: tconfigform.lbsaveqso.caption
+msgid "Key Save QSO"
 msgstr ""
 
 #: tconfigform.lbtimebackup.caption
@@ -1449,6 +1473,10 @@ msgstr ""
 
 #: tconfigform.radiobutton2.caption
 msgid "Use SQLite "
+msgstr ""
+
+#: tconfigform.thotkey.caption
+msgid "Hot key"
 msgstr ""
 
 #: tconfigform.tsbackup.caption

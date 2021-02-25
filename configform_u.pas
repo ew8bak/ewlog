@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
-  synautil, const_u, ImbedCallBookCheckRec;
+  synautil, const_u, ImbedCallBookCheckRec, LCLProc;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -70,6 +70,9 @@ type
     Edit13: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
+    EditReferenceKey: TEdit;
+    EditClearKey: TEdit;
+    EditSaveKey: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
@@ -88,6 +91,9 @@ type
     gbMySQL: TGroupBox;
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
+    LBGetReference: TLabel;
+    lbClearQSO: TLabel;
+    lbSaveQSO: TLabel;
     lbTimeBackup: TLabel;
     lbPathBackup: TLabel;
     Label10: TLabel;
@@ -117,6 +123,7 @@ type
     ProgressBar1: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
+    THotKey: TTabSheet;
     timeEdit: TTimeEdit;
     TSBackup: TTabSheet;
     TSTelnet: TTabSheet;
@@ -134,6 +141,12 @@ type
     procedure CheckBox3Change(Sender: TObject);
     procedure CheckBox6Change(Sender: TObject);
     procedure CheckBox7Change(Sender: TObject);
+    procedure EditClearKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
+    procedure EditReferenceKeyKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EditSaveKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SaveINI;
@@ -400,6 +413,30 @@ begin
     INIFile.WriteString('SetLog', 'CallBookSystem', '');
     IniSet.CallBookSystem := '';
   end;
+end;
+
+procedure TConfigForm.EditClearKeyKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  EditClearKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditClearKey.SelStart := EditClearKey.GetTextLen;
+end;
+
+procedure TConfigForm.EditReferenceKeyKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  EditReferenceKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditReferenceKey.SelStart := EditReferenceKey.GetTextLen;
+end;
+
+procedure TConfigForm.EditSaveKeyKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  EditSaveKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditSaveKey.SelStart := EditSaveKey.GetTextLen;
 end;
 
 procedure TConfigForm.FormCreate(Sender: TObject);

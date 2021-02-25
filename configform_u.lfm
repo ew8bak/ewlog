@@ -1,7 +1,7 @@
 object ConfigForm: TConfigForm
-  Left = 446
+  Left = 877
   Height = 324
-  Top = 261
+  Top = 147
   Width = 510
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -40,31 +40,31 @@ object ConfigForm: TConfigForm
     Height = 280
     Top = 0
     Width = 510
-    ActivePage = TSBase
+    ActivePage = THotKey
     Align = alTop
-    TabIndex = 0
+    TabIndex = 5
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
-      ClientHeight = 252
-      ClientWidth = 502
+      ClientHeight = 251
+      ClientWidth = 500
       object gbMySQL: TGroupBox
         Left = 8
         Height = 240
         Top = 8
         Width = 233
         Caption = 'MySQL'
-        ClientHeight = 220
-        ClientWidth = 229
+        ClientHeight = 224
+        ClientWidth = 231
         TabOrder = 0
         object Label2: TLabel
           AnchorSideTop.Control = Edit1
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit1
-          Left = 27
-          Height = 15
-          Top = 12
-          Width = 32
+          Left = 20
+          Height = 13
+          Top = 15
+          Width = 39
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Server'
@@ -76,10 +76,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit2
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit2
-          Left = 37
-          Height = 15
-          Top = 44
-          Width = 22
+          Left = 35
+          Height = 13
+          Top = 47
+          Width = 24
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Port'
@@ -91,10 +91,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit3
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit3
-          Left = 29
-          Height = 15
-          Top = 76
-          Width = 30
+          Left = 27
+          Height = 13
+          Top = 79
+          Width = 32
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Login'
@@ -106,10 +106,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit4
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit4
-          Left = 14
-          Height = 15
-          Top = 108
-          Width = 45
+          Left = 9
+          Height = 13
+          Top = 111
+          Width = 50
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Pasword'
@@ -121,10 +121,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit5
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit5
-          Left = 0
-          Height = 15
-          Top = 140
-          Width = 59
+          Left = -8
+          Height = 13
+          Top = 143
+          Width = 67
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Base Name'
@@ -134,7 +134,7 @@ object ConfigForm: TConfigForm
         end
         object Edit1: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 8
           Width = 152
           Font.Height = -12
@@ -143,7 +143,7 @@ object ConfigForm: TConfigForm
         end
         object Edit2: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 40
           Width = 152
           Font.Height = -12
@@ -152,7 +152,7 @@ object ConfigForm: TConfigForm
         end
         object Edit3: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 72
           Width = 152
           Font.Height = -12
@@ -161,7 +161,7 @@ object ConfigForm: TConfigForm
         end
         object Edit4: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 104
           Width = 152
           EchoMode = emPassword
@@ -183,7 +183,7 @@ object ConfigForm: TConfigForm
         end
         object Edit5: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 136
           Width = 152
           Font.Height = -12
@@ -197,16 +197,16 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 233
         Caption = 'SQLite'
-        ClientHeight = 60
-        ClientWidth = 229
+        ClientHeight = 64
+        ClientWidth = 231
         TabOrder = 1
         object FileNameEdit1: TFileNameEdit
           AnchorSideLeft.Control = gbSQLite
           AnchorSideTop.Control = Label8
           AnchorSideTop.Side = asrBottom
           Left = 10
-          Height = 23
-          Top = 22
+          Height = 26
+          Top = 20
           Width = 208
           FilterIndex = 0
           HideDirectories = False
@@ -224,9 +224,9 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = gbSQLite
           AnchorSideBottom.Control = FileNameEdit1
           Left = 10
-          Height = 15
+          Height = 13
           Top = 2
-          Width = 24
+          Width = 28
           BorderSpacing.Top = 2
           Caption = 'Base'
           Font.Height = -12
@@ -240,14 +240,14 @@ object ConfigForm: TConfigForm
         Top = 96
         Width = 233
         Caption = 'Default DB'
-        ClientHeight = 68
-        ClientWidth = 229
+        ClientHeight = 72
+        ClientWidth = 231
         TabOrder = 2
         object RadioButton1: TRadioButton
           Left = 19
-          Height = 19
+          Height = 23
           Top = 8
-          Width = 80
+          Width = 93
           Alignment = taLeftJustify
           Caption = 'Use MySQL'
           Checked = True
@@ -258,9 +258,9 @@ object ConfigForm: TConfigForm
         end
         object RadioButton2: TRadioButton
           Left = 19
-          Height = 19
+          Height = 23
           Top = 32
-          Width = 79
+          Width = 95
           Alignment = taLeftJustify
           Caption = 'Use SQLite '
           Font.Height = -12
@@ -271,22 +271,22 @@ object ConfigForm: TConfigForm
     end
     object TSRefOnline: TTabSheet
       Caption = 'Reference Online'
-      ClientHeight = 252
-      ClientWidth = 502
+      ClientHeight = 251
+      ClientWidth = 500
       object GBQRZRU: TGroupBox
         Left = 8
         Height = 112
         Top = 8
         Width = 233
         Caption = 'QRZ.RU XML API'
-        ClientHeight = 92
-        ClientWidth = 229
+        ClientHeight = 96
+        ClientWidth = 231
         Font.Height = -12
         ParentFont = False
         TabOrder = 0
         object Edit6: TEdit
           Left = 72
-          Height = 23
+          Height = 26
           Top = 8
           Width = 136
           Font.Height = -12
@@ -295,7 +295,7 @@ object ConfigForm: TConfigForm
         end
         object Edit7: TEdit
           Left = 72
-          Height = 23
+          Height = 26
           Top = 40
           Width = 136
           Font.Height = -12
@@ -306,10 +306,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit6
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit6
-          Left = 37
-          Height = 15
-          Top = 12
-          Width = 30
+          Left = 35
+          Height = 13
+          Top = 15
+          Width = 32
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Login'
@@ -321,10 +321,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit7
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit7
-          Left = 17
-          Height = 15
-          Top = 44
-          Width = 50
+          Left = 11
+          Height = 13
+          Top = 47
+          Width = 56
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Password'
@@ -334,9 +334,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox3: TCheckBox
           Left = 8
-          Height = 19
+          Height = 23
           Top = 70
-          Width = 119
+          Width = 143
           Caption = 'Use as a reference?'
           DoubleBuffered = False
           Font.Height = -12
@@ -352,14 +352,14 @@ object ConfigForm: TConfigForm
         Top = 128
         Width = 233
         Caption = 'QRZ.COM XML API'
-        ClientHeight = 92
-        ClientWidth = 229
+        ClientHeight = 96
+        ClientWidth = 231
         Font.Height = -12
         ParentFont = False
         TabOrder = 1
         object Edit8: TEdit
           Left = 72
-          Height = 23
+          Height = 26
           Top = 8
           Width = 136
           Font.Height = -12
@@ -368,7 +368,7 @@ object ConfigForm: TConfigForm
         end
         object Edit9: TEdit
           Left = 72
-          Height = 23
+          Height = 26
           Top = 40
           Width = 136
           Font.Height = -12
@@ -379,10 +379,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit8
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit8
-          Left = 37
-          Height = 15
-          Top = 12
-          Width = 30
+          Left = 35
+          Height = 13
+          Top = 15
+          Width = 32
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Login'
@@ -394,10 +394,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit9
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit9
-          Left = 17
-          Height = 15
-          Top = 44
-          Width = 50
+          Left = 11
+          Height = 13
+          Top = 47
+          Width = 56
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Password'
@@ -407,9 +407,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox7: TCheckBox
           Left = 8
-          Height = 19
+          Height = 23
           Top = 72
-          Width = 119
+          Width = 143
           Caption = 'Use as a reference?'
           DoubleBuffered = False
           OnChange = CheckBox7Change
@@ -423,14 +423,14 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 233
         Caption = 'HAMQTH XML API'
-        ClientHeight = 92
-        ClientWidth = 229
+        ClientHeight = 96
+        ClientWidth = 231
         Font.Height = -12
         ParentFont = False
         TabOrder = 2
         object Edit14: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 8
           Width = 136
           Font.Height = -12
@@ -439,7 +439,7 @@ object ConfigForm: TConfigForm
         end
         object Edit15: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 40
           Width = 136
           Font.Height = -12
@@ -450,10 +450,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit14
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit14
-          Left = 29
-          Height = 15
-          Top = 12
-          Width = 30
+          Left = 27
+          Height = 13
+          Top = 15
+          Width = 32
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Login'
@@ -465,10 +465,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit15
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit15
-          Left = 9
-          Height = 15
-          Top = 44
-          Width = 50
+          Left = 3
+          Height = 13
+          Top = 47
+          Width = 56
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Password'
@@ -478,9 +478,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox11: TCheckBox
           Left = 8
-          Height = 19
+          Height = 23
           Top = 72
-          Width = 119
+          Width = 143
           Caption = 'Use as a reference?'
           Font.Height = -12
           OnChange = CheckBox11Change
@@ -491,24 +491,24 @@ object ConfigForm: TConfigForm
     end
     object TSIntRef: TTabSheet
       Caption = 'Internal reference'
-      ClientHeight = 252
-      ClientWidth = 502
+      ClientHeight = 251
+      ClientWidth = 500
       object gbIntRef: TGroupBox
         Left = 8
         Height = 240
         Top = 8
         Width = 233
         Caption = 'Internal reference book'
-        ClientHeight = 220
-        ClientWidth = 229
+        ClientHeight = 224
+        ClientWidth = 231
         Font.Height = -12
         ParentFont = False
         TabOrder = 0
         object CheckBox1: TCheckBox
           Left = 8
-          Height = 19
+          Height = 23
           Top = 136
-          Width = 96
+          Width = 115
           Caption = 'Use reference?'
           Font.Height = -12
           OnChange = CheckBox1Change
@@ -520,9 +520,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 15
+          Height = 13
           Top = 8
-          Width = 68
+          Width = 80
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Release date:'
@@ -535,9 +535,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 15
+          Height = 13
           Top = 56
-          Width = 103
+          Width = 117
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Number of records:'
@@ -550,9 +550,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 15
+          Height = 13
           Top = 80
-          Width = 75
+          Width = 89
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Update status:'
@@ -576,9 +576,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 15
+          Height = 13
           Top = 32
-          Width = 41
+          Width = 47
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Version:'
@@ -589,9 +589,9 @@ object ConfigForm: TConfigForm
         object Label14: TLabel
           AnchorSideLeft.Control = Label13
           Left = 55
-          Height = 15
+          Height = 13
           Top = 32
-          Width = 15
+          Width = 12
           BorderSpacing.Left = 45
           Caption = '---'
           ParentColor = False
@@ -608,9 +608,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 15
+          Height = 13
           Top = 104
-          Width = 76
+          Width = 85
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Download file:'
@@ -622,22 +622,22 @@ object ConfigForm: TConfigForm
     end
     object TSTelnet: TTabSheet
       Caption = 'Telnet'
-      ClientHeight = 252
-      ClientWidth = 502
+      ClientHeight = 251
+      ClientWidth = 500
       object gbTelnet: TGroupBox
         Left = 8
         Height = 144
         Top = 8
         Width = 233
         Caption = 'Telnet DX Cluster'
-        ClientHeight = 124
-        ClientWidth = 229
+        ClientHeight = 128
+        ClientWidth = 231
         Font.Height = -12
         ParentFont = False
         TabOrder = 0
         object Edit11: TEdit
           Left = 56
-          Height = 23
+          Height = 26
           Top = 8
           Width = 160
           Font.Height = -12
@@ -646,7 +646,7 @@ object ConfigForm: TConfigForm
         end
         object Edit12: TEdit
           Left = 56
-          Height = 23
+          Height = 26
           Top = 48
           Width = 160
           Font.Height = -12
@@ -657,10 +657,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit11
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit11
-          Left = 21
-          Height = 15
-          Top = 12
-          Width = 30
+          Left = 19
+          Height = 13
+          Top = 15
+          Width = 32
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Login'
@@ -672,10 +672,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit12
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit12
-          Left = 1
-          Height = 15
-          Top = 52
-          Width = 50
+          Left = -5
+          Height = 13
+          Top = 55
+          Width = 56
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Password'
@@ -685,9 +685,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox4: TCheckBox
           Left = 16
-          Height = 19
+          Height = 23
           Top = 88
-          Width = 175
+          Width = 207
           Caption = 'Start DX cluster automatically'
           DoubleBuffered = False
           ParentDoubleBuffered = False
@@ -697,15 +697,15 @@ object ConfigForm: TConfigForm
     end
     object TSBackup: TTabSheet
       Caption = 'Backup'
-      ClientHeight = 252
-      ClientWidth = 502
+      ClientHeight = 251
+      ClientWidth = 500
       object DEBackupPath: TDirectoryEdit
         AnchorSideLeft.Control = TSBackup
         AnchorSideTop.Control = lbPathBackup
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 23
-        Top = 27
+        Height = 26
+        Top = 25
         Width = 232
         ShowHidden = False
         ButtonWidth = 23
@@ -719,9 +719,9 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Control = TSBackup
         AnchorSideTop.Control = TSBackup
         Left = 5
-        Height = 15
+        Height = 13
         Top = 10
-        Width = 90
+        Width = 104
         BorderSpacing.Left = 5
         BorderSpacing.Top = 10
         Caption = 'Path backup files'
@@ -732,9 +732,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = DEBackupPath
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 19
-        Top = 55
-        Width = 110
+        Height = 23
+        Top = 56
+        Width = 131
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Backup Database'
@@ -746,9 +746,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = cbBackupDB
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 19
-        Top = 79
-        Width = 100
+        Height = 23
+        Top = 84
+        Width = 118
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Backup ADI file'
@@ -760,10 +760,10 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = cbBackupDB
         AnchorSideTop.Side = asrCenter
-        Left = 120
-        Height = 19
-        Top = 55
-        Width = 106
+        Left = 141
+        Height = 23
+        Top = 56
+        Width = 124
         BorderSpacing.Left = 5
         Caption = 'Backup on close'
         TabOrder = 3
@@ -773,10 +773,10 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = cbADIfiles
         AnchorSideTop.Side = asrCenter
-        Left = 120
-        Height = 19
-        Top = 79
-        Width = 106
+        Left = 138
+        Height = 23
+        Top = 84
+        Width = 124
         BorderSpacing.Left = 15
         Caption = 'Backup on close'
         TabOrder = 4
@@ -786,8 +786,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = lbTimeBackup
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 23
-        Top = 123
+        Height = 26
+        Top = 130
         Width = 110
         ButtonWidth = 23
         BorderSpacing.Left = 5
@@ -802,33 +802,127 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = cbADIfiles
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 15
-        Top = 103
-        Width = 68
+        Height = 13
+        Top = 112
+        Width = 78
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Backup Time'
         ParentColor = False
       end
     end
+    object THotKey: TTabSheet
+      Caption = 'Hot key'
+      ClientHeight = 251
+      ClientWidth = 500
+      object lbSaveQSO: TLabel
+        AnchorSideLeft.Control = THotKey
+        AnchorSideTop.Control = THotKey
+        Left = 5
+        Height = 13
+        Top = 5
+        Width = 84
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Key Save QSO'
+        Font.Height = -12
+        ParentColor = False
+        ParentFont = False
+      end
+      object lbClearQSO: TLabel
+        AnchorSideLeft.Control = THotKey
+        AnchorSideTop.Control = EditSaveKey
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 59
+        Width = 85
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Key Clear QSO'
+        Font.Height = -12
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditSaveKey: TEdit
+        AnchorSideLeft.Control = lbSaveQSO
+        AnchorSideTop.Control = lbSaveQSO
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 23
+        Width = 147
+        BorderSpacing.Top = 5
+        Font.Height = -12
+        OnKeyDown = EditSaveKeyKeyDown
+        ParentFont = False
+        TabOrder = 0
+        Text = 'Ctrl+S'
+      end
+      object EditClearKey: TEdit
+        AnchorSideLeft.Control = lbClearQSO
+        AnchorSideTop.Control = lbClearQSO
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 77
+        Width = 147
+        BorderSpacing.Top = 5
+        Font.Height = -12
+        OnKeyDown = EditClearKeyKeyDown
+        ParentFont = False
+        TabOrder = 1
+        Text = 'Ctrl+C'
+      end
+      object LBGetReference: TLabel
+        AnchorSideLeft.Control = THotKey
+        AnchorSideTop.Control = EditClearKey
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 113
+        Width = 214
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Key get data from Online Reference'
+        Font.Height = -12
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditReferenceKey: TEdit
+        AnchorSideLeft.Control = LBGetReference
+        AnchorSideTop.Control = LBGetReference
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 131
+        Width = 147
+        BorderSpacing.Top = 5
+        Font.Height = -12
+        OnKeyDown = EditReferenceKeyKeyDown
+        ParentFont = False
+        TabOrder = 2
+        Text = 'Enter'
+      end
+    end
     object TSOtherSettings: TTabSheet
       Caption = 'Other Settings'
-      ClientHeight = 252
-      ClientWidth = 502
+      ClientHeight = 251
+      ClientWidth = 500
       object gbCloudLog: TGroupBox
         Left = 8
         Height = 145
         Top = 8
         Width = 216
         Caption = 'CloudLog'
-        ClientHeight = 125
-        ClientWidth = 212
+        ClientHeight = 129
+        ClientWidth = 214
         Font.Height = -12
         ParentFont = False
         TabOrder = 0
         object Edit10: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 8
           Width = 136
           Font.Height = -12
@@ -839,10 +933,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit10
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit10
-          Left = 27
-          Height = 15
-          Top = 12
-          Width = 32
+          Left = 20
+          Height = 13
+          Top = 15
+          Width = 39
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Server'
@@ -852,9 +946,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox8: TCheckBox
           Left = 8
-          Height = 19
+          Height = 23
           Top = 72
-          Width = 137
+          Width = 157
           Caption = 'Send ADI to CloudLog'
           Font.Height = -12
           ParentFont = False
@@ -862,9 +956,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox9: TCheckBox
           Left = 8
-          Height = 19
+          Height = 23
           Top = 96
-          Width = 141
+          Width = 162
           Caption = 'Send Freq to CloudLog'
           Font.Height = -12
           ParentFont = False
@@ -872,7 +966,7 @@ object ConfigForm: TConfigForm
         end
         object Edit13: TEdit
           Left = 64
-          Height = 23
+          Height = 26
           Top = 40
           Width = 136
           Font.Height = -12
@@ -883,10 +977,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit13
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit13
-          Left = 20
-          Height = 15
-          Top = 44
-          Width = 39
+          Left = 15
+          Height = 13
+          Top = 47
+          Width = 44
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'API key'
@@ -897,9 +991,9 @@ object ConfigForm: TConfigForm
       end
       object CheckBox2: TCheckBox
         Left = 240
-        Height = 19
+        Height = 23
         Top = 16
-        Width = 126
+        Width = 150
         Caption = 'Use bands in meters'
         Font.Height = -12
         OnChange = CheckBox2Change
@@ -908,9 +1002,9 @@ object ConfigForm: TConfigForm
       end
       object CheckBox5: TCheckBox
         Left = 240
-        Height = 19
+        Height = 23
         Top = 40
-        Width = 132
+        Width = 154
         Caption = 'Printing with preview'
         Font.Height = -12
         OnChange = CheckBox2Change
@@ -919,9 +1013,9 @@ object ConfigForm: TConfigForm
       end
       object CheckBox6: TCheckBox
         Left = 240
-        Height = 19
+        Height = 23
         Top = 64
-        Width = 223
+        Width = 242
         Caption = 'Send MY_STATE and MY_GRIDSQUARE'
         Font.Height = -12
         OnChange = CheckBox6Change
@@ -933,9 +1027,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = CheckBox6
         AnchorSideTop.Side = asrBottom
         Left = 265
-        Height = 15
-        Top = 83
-        Width = 59
+        Height = 13
+        Top = 87
+        Width = 67
         BorderSpacing.Left = 25
         Caption = 'to QSL Info'
         Font.Height = -12
