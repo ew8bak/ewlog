@@ -1286,18 +1286,6 @@ msgstr ""
 msgid "Send Freq to CloudLog"
 msgstr ""
 
-#: tconfigform.editclearkey.text
-msgid "Ctrl+C"
-msgstr ""
-
-#: tconfigform.editreferencekey.text
-msgid "Enter"
-msgstr ""
-
-#: tconfigform.editsavekey.text
-msgid "Ctrl+S"
-msgstr ""
-
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
 msgid "CloudLog"
@@ -1474,6 +1462,10 @@ msgstr ""
 
 #: tconfigform.radiobutton2.caption
 msgid "Use SQLite "
+msgstr ""
+
+#: tconfigform.tcolor.caption
+msgid "Colors"
 msgstr ""
 
 #: tconfigform.thotkey.caption
@@ -3553,6 +3545,10 @@ msgstr ""
 #: tminiform.datetimepicker1.textfornulldate
 msgctxt "tminiform.datetimepicker1.textfornulldate"
 msgid "NULL"
+msgstr ""
+
+#: tminiform.getreference.caption
+msgid "GetReference"
 msgstr ""
 
 #: tminiform.label10.caption

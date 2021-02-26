@@ -1421,6 +1421,9 @@ begin
   IniSet.rigctldStartUp:=INIFile.ReadBool('SetCAT', 'rigctldStartUp', True);
   IniSet.rigctldExtra:=INIFile.ReadString('SetCAT', 'rigctldExtra', '');
   IniSet.rigctldPath:=INIFile.ReadString('SetCAT', 'rigctldPath', '');
+  IniSet.KeySave:=INIFile.ReadString('Key', 'Save', 'Alt+S');
+  IniSet.KeyClear:=INIFile.ReadString('Key', 'Clear', 'Alt+C');
+  IniSet.KeyReference:=INIFile.ReadString('Key', 'Reference', 'Enter');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

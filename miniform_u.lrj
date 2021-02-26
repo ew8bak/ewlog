@@ -132,5 +132,6 @@
 {"hash":76205875,"name":"tminiform.menuitem102.caption","sourcebytes":[68,111,110,97,116,105,111,110,115],"value":"Donations"},
 {"hash":4691652,"name":"tminiform.menuitem94.caption","sourcebytes":[65,98,111,117,116],"value":"About"},
 {"hash":210644645,"name":"tminiform.saveqsoinbase.caption","sourcebytes":[83,97,118,101,81,83,79,105,110,66,97,115,101],"value":"SaveQSOinBase"},
-{"hash":193392932,"name":"tminiform.clearedit.caption","sourcebytes":[67,108,101,97,114,69,100,105,116],"value":"ClearEdit"}
+{"hash":193392932,"name":"tminiform.clearedit.caption","sourcebytes":[67,108,101,97,114,69,100,105,116],"value":"ClearEdit"},
+{"hash":135543845,"name":"tminiform.getreference.caption","sourcebytes":[71,101,116,82,101,102,101,114,101,110,99,101],"value":"GetReference"}
 ]}

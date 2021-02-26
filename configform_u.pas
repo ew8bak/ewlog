@@ -123,6 +123,7 @@ type
     ProgressBar1: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
+    TColor: TTabSheet;
     THotKey: TTabSheet;
     timeEdit: TTimeEdit;
     TSBackup: TTabSheet;
@@ -143,12 +144,13 @@ type
     procedure CheckBox7Change(Sender: TObject);
     procedure EditClearKeyKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
-    procedure EditReferenceKeyKeyDown(Sender: TObject; var Key: Word;
+    procedure EditReferenceKeyKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure EditSaveKeyKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure PControlChange(Sender: TObject);
     procedure SaveINI;
     procedure ReadINI;
     function CheckUpdate: boolean;
@@ -219,12 +221,19 @@ begin
   INIFile.WriteBool('SetBackup', 'BackupDBonClose', cbBackupCloseDB.Checked);
   INIFile.WriteTime('SetBackup', 'BackupTime', timeEdit.Time);
 
-  IniSet.PathBackupFiles := DEBackupPath.Directory;
-  IniSet.BackupDB := cbBackupDB.Checked;
-  IniSet.BackupADI := cbADIfiles.Checked;
-  IniSet.BackupADIonClose := cbBackupCloseADI.Checked;
-  IniSet.BackupDBonClose := cbBackupCloseDB.Checked;
-  IniSet.BackupTime := timeEdit.Time;
+  //IniSet.PathBackupFiles := DEBackupPath.Directory;
+  //IniSet.BackupDB := cbBackupDB.Checked;
+  //IniSet.BackupADI := cbADIfiles.Checked;
+  //IniSet.BackupADIonClose := cbBackupCloseADI.Checked;
+  //IniSet.BackupDBonClose := cbBackupCloseDB.Checked;
+  //IniSet.BackupTime := timeEdit.Time;
+
+  INIFile.WriteString('Key', 'Save', EditSaveKey.Text);
+  INIFile.WriteString('Key', 'Clear', EditClearKey.Text);
+  INIFile.WriteString('Key', 'Reference', EditReferenceKey.Text);
+  //IniSet.KeySave := EditSaveKey.Text;
+  //IniSet.KeyClear := EditClearKey.Text;
+  //IniSet.KeyReference := EditReferenceKey.Text;
 end;
 
 procedure TConfigForm.ReadINI;
@@ -281,6 +290,10 @@ begin
   cbBackupCloseDB.Checked := INIFile.ReadBool('SetBackup', 'BackupDBonClose', False);
   timeEdit.Time := INIFile.ReadTime('SetBackup', 'BackupTime',
     StrToTime('12:00', FormatSettings));
+
+  EditSaveKey.Text := INIFile.ReadString('Key', 'Save', 'Alt+S');
+  EditClearKey.Text := INIFile.ReadString('Key', 'Clear', 'Alt+C');
+  EditReferenceKey.Text := INIFile.ReadString('Key', 'Reference', 'Enter');
 
 end;
 
@@ -423,8 +436,8 @@ begin
   EditClearKey.SelStart := EditClearKey.GetTextLen;
 end;
 
-procedure TConfigForm.EditReferenceKeyKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TConfigForm.EditReferenceKeyKeyDown(Sender: TObject;
+  var Key: word; Shift: TShiftState);
 begin
   EditReferenceKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
   Key := 0;
@@ -472,12 +485,18 @@ begin
   end;
 end;
 
+procedure TConfigForm.PControlChange(Sender: TObject);
+begin
+
+end;
+
 procedure TConfigForm.Button1Click(Sender: TObject);
 begin
   SaveINI;
   IniSet.Cluster_Login := Edit11.Text;
   IniSet.Cluster_Pass := Edit12.Text;
   MainFunc.LoadINIsettings;
+  MiniForm.SetHotKey;
   ConfigForm.Close;
 end;
 

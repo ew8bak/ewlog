@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 335
+  Left = 384
   Height = 428
-  Top = 200
+  Top = 147
   Width = 477
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -21,7 +21,7 @@ object MiniForm: TMiniForm
     Align = alTop
     ClientHeight = 26
     ClientWidth = 477
-    TabOrder = 0
+    TabOrder = 10
     object SBSave: TSpeedButton
       AnchorSideLeft.Control = Panel1
       AnchorSideTop.Control = Panel1
@@ -361,7 +361,7 @@ object MiniForm: TMiniForm
     Font.Height = -12
     MaxLength = 10
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 11
     Text = '  .  .    '
   end
   object LBBand: TLabel
@@ -394,7 +394,7 @@ object MiniForm: TMiniForm
     OnCloseUp = CBBandCloseUp
     ParentFont = False
     Style = csOwnerDrawEditableVariable
-    TabOrder = 2
+    TabOrder = 12
   end
   object LBMode: TLabel
     AnchorSideLeft.Control = Owner
@@ -426,7 +426,7 @@ object MiniForm: TMiniForm
     OnCloseUp = CBModeCloseUp
     ParentFont = False
     Style = csOwnerDrawEditableVariable
-    TabOrder = 3
+    TabOrder = 13
   end
   object CBSubMode: TComboBox
     AnchorSideLeft.Control = CBMode
@@ -442,7 +442,7 @@ object MiniForm: TMiniForm
     ItemHeight = 16
     ParentFont = False
     Style = csOwnerDrawEditableVariable
-    TabOrder = 4
+    TabOrder = 14
   end
   object ImDXCCBand: TImage
     AnchorSideLeft.Control = CBBand
@@ -544,7 +544,7 @@ object MiniForm: TMiniForm
     ReadOnly = True
     Font.Height = -12
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 15
     BorderSpacing.Left = 87
     BorderSpacing.Top = 2
     TrailingSeparator = False
@@ -590,7 +590,7 @@ object MiniForm: TMiniForm
     OnChange = CBRealTimeChange
     ParentFont = False
     State = cbChecked
-    TabOrder = 6
+    TabOrder = 16
   end
   object CBSaveUTC: TCheckBox
     AnchorSideLeft.Control = Owner
@@ -606,7 +606,7 @@ object MiniForm: TMiniForm
     Font.Height = -12
     OnChange = CBSaveUTCChange
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 17
   end
   object EditCallsign: TEditButton
     AnchorSideLeft.Control = Owner
@@ -708,7 +708,7 @@ object MiniForm: TMiniForm
     OnMouseDown = EditCallsignMouseDown
     ParentFont = False
     PasswordChar = #0
-    TabOrder = 8
+    TabOrder = 0
   end
   object LBCallsign: TLabel
     AnchorSideTop.Control = EditCallsign
@@ -813,7 +813,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 2
     Font.Height = -12
     ParentFont = False
-    TabOrder = 9
+    TabOrder = 1
   end
   object EditQTH: TEdit
     AnchorSideLeft.Control = Owner
@@ -828,7 +828,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 2
     Font.Height = -12
     ParentFont = False
-    TabOrder = 10
+    TabOrder = 2
   end
   object LBName: TLabel
     AnchorSideTop.Control = EditName
@@ -918,7 +918,7 @@ object MiniForm: TMiniForm
     )
     ParentFont = False
     Style = csOwnerDrawEditableVariable
-    TabOrder = 11
+    TabOrder = 3
     Text = '59'
   end
   object CBRSTr: TComboBox
@@ -945,7 +945,7 @@ object MiniForm: TMiniForm
     )
     ParentFont = False
     Style = csOwnerDrawEditableVariable
-    TabOrder = 12
+    TabOrder = 4
     Text = '59'
   end
   object Label10: TLabel
@@ -987,7 +987,7 @@ object MiniForm: TMiniForm
     )
     ParentFont = False
     Style = csOwnerDrawFixed
-    TabOrder = 13
+    TabOrder = 18
   end
   object CBMark: TCheckBox
     AnchorSideLeft.Control = CBSaveUTC
@@ -1002,7 +1002,7 @@ object MiniForm: TMiniForm
     Caption = 'Mark'
     Font.Height = -12
     ParentFont = False
-    TabOrder = 14
+    TabOrder = 19
   end
   object EditGrid: TEdit
     AnchorSideLeft.Control = Owner
@@ -1018,7 +1018,7 @@ object MiniForm: TMiniForm
     CharCase = ecUppercase
     Font.Height = -12
     ParentFont = False
-    TabOrder = 15
+    TabOrder = 5
   end
   object EditState: TEdit
     AnchorSideLeft.Control = Owner
@@ -1033,7 +1033,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 2
     Font.Height = -12
     ParentFont = False
-    TabOrder = 16
+    TabOrder = 6
   end
   object EditIOTA: TEdit
     AnchorSideLeft.Control = Owner
@@ -1048,7 +1048,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 2
     Font.Height = -12
     ParentFont = False
-    TabOrder = 17
+    TabOrder = 7
   end
   object EditMGR: TEdit
     AnchorSideLeft.Control = Owner
@@ -1063,7 +1063,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 2
     Font.Height = -12
     ParentFont = False
-    TabOrder = 18
+    TabOrder = 8
   end
   object SBMGR: TSpeedButton
     AnchorSideLeft.Control = EditMGR
@@ -1129,7 +1129,7 @@ object MiniForm: TMiniForm
     OnChange = CBMapChange
     ParentFont = False
     State = cbChecked
-    TabOrder = 19
+    TabOrder = 20
   end
   object CBFilter: TCheckBox
     AnchorSideLeft.Control = CBMap
@@ -1145,7 +1145,7 @@ object MiniForm: TMiniForm
     Font.Height = -12
     OnChange = CBFilterChange
     ParentFont = False
-    TabOrder = 20
+    TabOrder = 21
   end
   object LBGrid: TLabel
     AnchorSideLeft.Side = asrBottom
@@ -1247,7 +1247,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 4
     Font.Height = -12
     ParentFont = False
-    TabOrder = 21
+    TabOrder = 22
   end
   object SBState1: TSpeedButton
     AnchorSideLeft.Control = EditState1
@@ -1275,7 +1275,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 4
     Font.Height = -12
     ParentFont = False
-    TabOrder = 22
+    TabOrder = 23
   end
   object SBState2: TSpeedButton
     AnchorSideLeft.Control = EditState2
@@ -1303,7 +1303,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 4
     Font.Height = -12
     ParentFont = False
-    TabOrder = 23
+    TabOrder = 24
   end
   object SBState3: TSpeedButton
     AnchorSideLeft.Control = EditState3
@@ -1332,7 +1332,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 4
     Font.Height = -12
     ParentFont = False
-    TabOrder = 24
+    TabOrder = 25
   end
   object SBState4: TSpeedButton
     AnchorSideLeft.Control = EditState4
@@ -1375,7 +1375,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 4
     Font.Height = -12
     ParentFont = False
-    TabOrder = 25
+    TabOrder = 9
   end
   object LBCount: TLabel
     AnchorSideLeft.Control = Bevel2
@@ -2342,6 +2342,11 @@ object MiniForm: TMiniForm
       DisableIfNoHandler = False
       OnExecute = ClearEditExecute
       ShortCut = 32835
+    end
+    object GetReference: TAction
+      Caption = 'GetReference'
+      OnExecute = GetReferenceExecute
+      ShortCut = 13
     end
   end
   object CheckUpdateTimer: TTimer

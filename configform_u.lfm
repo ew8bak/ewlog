@@ -40,10 +40,11 @@ object ConfigForm: TConfigForm
     Height = 280
     Top = 0
     Width = 510
-    ActivePage = THotKey
+    ActivePage = TSBase
     Align = alTop
-    TabIndex = 5
+    TabIndex = 0
     TabOrder = 2
+    OnChange = PControlChange
     object TSBase: TTabSheet
       Caption = 'DataBase'
       ClientHeight = 251
@@ -628,15 +629,15 @@ object ConfigForm: TConfigForm
         Left = 8
         Height = 144
         Top = 8
-        Width = 233
+        Width = 240
         Caption = 'Telnet DX Cluster'
         ClientHeight = 128
-        ClientWidth = 231
+        ClientWidth = 238
         Font.Height = -12
         ParentFont = False
         TabOrder = 0
         object Edit11: TEdit
-          Left = 56
+          Left = 63
           Height = 26
           Top = 8
           Width = 160
@@ -645,7 +646,7 @@ object ConfigForm: TConfigForm
           TabOrder = 0
         end
         object Edit12: TEdit
-          Left = 56
+          Left = 63
           Height = 26
           Top = 48
           Width = 160
@@ -657,7 +658,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit11
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit11
-          Left = 19
+          Left = 26
           Height = 13
           Top = 15
           Width = 32
@@ -672,7 +673,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit12
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit12
-          Left = -5
+          Left = 2
           Height = 13
           Top = 55
           Width = 56
@@ -684,7 +685,7 @@ object ConfigForm: TConfigForm
           ParentFont = False
         end
         object CheckBox4: TCheckBox
-          Left = 16
+          Left = 2
           Height = 23
           Top = 88
           Width = 207
@@ -857,7 +858,6 @@ object ConfigForm: TConfigForm
         OnKeyDown = EditSaveKeyKeyDown
         ParentFont = False
         TabOrder = 0
-        Text = 'Ctrl+S'
       end
       object EditClearKey: TEdit
         AnchorSideLeft.Control = lbClearQSO
@@ -872,7 +872,6 @@ object ConfigForm: TConfigForm
         OnKeyDown = EditClearKeyKeyDown
         ParentFont = False
         TabOrder = 1
-        Text = 'Ctrl+C'
       end
       object LBGetReference: TLabel
         AnchorSideLeft.Control = THotKey
@@ -902,8 +901,10 @@ object ConfigForm: TConfigForm
         OnKeyDown = EditReferenceKeyKeyDown
         ParentFont = False
         TabOrder = 2
-        Text = 'Enter'
       end
+    end
+    object TColor: TTabSheet
+      Caption = 'Colors'
     end
     object TSOtherSettings: TTabSheet
       Caption = 'Other Settings'

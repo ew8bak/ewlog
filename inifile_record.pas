@@ -103,6 +103,9 @@ type
     rigctldStartUp: boolean;
     rigctldExtra: string;
     rigctldPath: string;
+    KeySave: string;
+    KeyClear: string;
+    KeyReference: string;
   end;
 
 implementation

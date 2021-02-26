@@ -25,6 +25,7 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
+    GetReference: TAction;
     ActionList: TActionList;
     Bevel1: TBevel;
     Bevel2: TBevel;
@@ -235,6 +236,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
+    procedure GetReferenceExecute(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
@@ -320,6 +322,7 @@ type
     procedure FromImportThread(Info: TInfo);
     procedure FromMobileSyncThread(InfoStr: string);
     procedure CheckFormMenu(NameForm: string; StateForm: boolean);
+    procedure SetHotKey;
 
   end;
 
@@ -738,6 +741,12 @@ begin
   CBYourQSL.ItemIndex := 3;
   TextSB('QSO № ' + IntToStr(NumberSelectRecord) + rQSOTotal +
     IntToStr(CountAllRecords), 1);
+end;
+
+procedure TMiniForm.GetReferenceExecute(Sender: TObject);
+begin
+  // if (Key = VK_RETURN) then
+    InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
@@ -1507,8 +1516,8 @@ begin
       if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
-   //   MainFunc.SetGrid(GridsForm.DBGrid1);
-   //   MainFunc.SetGrid(GridsForm.DBGrid2);
+      //   MainFunc.SetGrid(GridsForm.DBGrid1);
+      //   MainFunc.SetGrid(GridsForm.DBGrid2);
       Clr;
       MiniForm.TextSB('QSO № ' + IntToStr(1) + rQSOTotal +
         IntToStr(CountAllRecords), 1);
@@ -1969,8 +1978,8 @@ begin
     SelEditNumChar := EditCallsign.SelStart;
   if (EditCallsign.SelLength <> 0) and (Key = VK_BACK) then
     SelEditNumChar := EditCallsign.SelStart;
-  if (Key = VK_RETURN) then
-    InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
+  //if (Key = VK_RETURN) then
+  //  InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
 end;
 
 procedure TMiniForm.EditCallsignKeyPress(Sender: TObject; var Key: char);
@@ -2081,6 +2090,13 @@ begin
   dxClusterForm.FreeClusterThread;
 end;
 
+procedure TMiniForm.SetHotKey;
+begin
+  SaveQSOinBase.ShortCut := TextToShortCut(IniSet.KeySave);
+  ClearEdit.ShortCut := TextToShortCut(IniSet.KeyClear);
+  GetReference.ShortCut:=TextToShortCut(IniSet.KeyReference);
+end;
+
 procedure TMiniForm.FormCreate(Sender: TObject);
 var
   Lang: string = '';
@@ -2136,6 +2152,8 @@ begin
     MenuItem89.Caption := rSwitchDBSQLIte
   else
     MenuItem89.Caption := rSwitchDBMySQL;
+
+  SetHotKey;
 
   //  PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 end;
