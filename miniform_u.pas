@@ -187,7 +187,6 @@ type
     MenuItem92: TMenuItem;
     MenuItem93: TMenuItem;
     MenuItem94: TMenuItem;
-    MenuItem99: TMenuItem;
     N1: TMenuItem;
     SaveQSOinBase: TAction;
     SBSave: TSpeedButton;
@@ -275,7 +274,6 @@ type
     procedure MenuItem91Click(Sender: TObject);
     procedure MenuItem92Click(Sender: TObject);
     procedure MenuItem94Click(Sender: TObject);
-    procedure MenuItem99Click(Sender: TObject);
     procedure MIDownloadLangClick(Sender: TObject);
     procedure MILanguageClick(Sender: TObject);
     procedure MIPhotoClick(Sender: TObject);
@@ -338,7 +336,7 @@ implementation
 
 uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   setupForm_U, GridsForm_u, dxclusterform_u, AboutForm_U, ConfigForm_U,
-  InformationForm_U, UpdateForm_U, ConfigGridForm_U, famm_u, mmform_u, synDBDate_u,
+  InformationForm_U, UpdateForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
@@ -1165,11 +1163,6 @@ end;
 procedure TMiniForm.MenuItem94Click(Sender: TObject);
 begin
   About_Form.Show;
-end;
-
-procedure TMiniForm.MenuItem99Click(Sender: TObject);
-begin
-  ConfigGrid_Form.Show;
 end;
 
 procedure TMiniForm.MIDownloadLangClick(Sender: TObject);

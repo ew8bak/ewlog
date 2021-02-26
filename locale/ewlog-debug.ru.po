@@ -1230,6 +1230,18 @@ msgctxt "tclusterserver_form.stringgrid1.columns[2].title.caption"
 msgid "Port"
 msgstr "Порт"
 
+#: tconfigform.btapplycolor.caption
+#, fuzzy
+msgctxt "tconfigform.btapplycolor.caption"
+msgid "Apply"
+msgstr "Принять"
+
+#: tconfigform.btdefaultcolor.caption
+#, fuzzy
+msgctxt "tconfigform.btdefaultcolor.caption"
+msgid "Default"
+msgstr "По умолчанию"
+
 #: tconfigform.button1.caption
 msgctxt "tconfigform.button1.caption"
 msgid "Save"
@@ -1271,6 +1283,191 @@ msgstr ""
 #: tconfigform.cbbackupdb.caption
 msgid "Backup Database"
 msgstr ""
+
+#: tconfigform.cbband.caption
+#, fuzzy
+msgctxt "tconfigform.cbband.caption"
+msgid "Band"
+msgstr "Диапазон"
+
+#: tconfigform.cbcall.caption
+#, fuzzy
+msgctxt "tconfigform.cbcall.caption"
+msgid "Call"
+msgstr "Позывной"
+
+#: tconfigform.cbcontinent.caption
+#, fuzzy
+msgctxt "tconfigform.cbcontinent.caption"
+msgid "Continent"
+msgstr "Континент"
+
+#: tconfigform.cbcqzone.caption
+#, fuzzy
+msgctxt "tconfigform.cbcqzone.caption"
+msgid "CQ Zone"
+msgstr "CQ Зона"
+
+#: tconfigform.cbdate.caption
+#, fuzzy
+msgctxt "tconfigform.cbdate.caption"
+msgid "Date"
+msgstr "Дата"
+
+#: tconfigform.cbdxcc.caption
+#, fuzzy
+msgctxt "tconfigform.cbdxcc.caption"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: tconfigform.cbgrid.caption
+#, fuzzy
+msgctxt "tconfigform.cbgrid.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: tconfigform.cbiota.caption
+#, fuzzy
+msgctxt "tconfigform.cbiota.caption"
+msgid "IOTA"
+msgstr "IOTA"
+
+#: tconfigform.cbituzone.caption
+#, fuzzy
+msgctxt "tconfigform.cbituzone.caption"
+msgid "ITU Zone"
+msgstr "ITU Зона"
+
+#: tconfigform.cblotwrdate.caption
+#, fuzzy
+msgctxt "tconfigform.cblotwrdate.caption"
+msgid "LOTWr Date"
+msgstr "LOTWr Дата"
+
+#: tconfigform.cbmanager.caption
+#, fuzzy
+msgctxt "tconfigform.cbmanager.caption"
+msgid "Manager"
+msgstr "Менеджер"
+
+#: tconfigform.cbmanualset.caption
+#, fuzzy
+msgctxt "tconfigform.cbmanualset.caption"
+msgid "Manual Set"
+msgstr "Manual Set"
+
+#: tconfigform.cbmode.caption
+#, fuzzy
+msgctxt "tconfigform.cbmode.caption"
+msgid "Mode"
+msgstr "Мода"
+
+#: tconfigform.cbname.caption
+#, fuzzy
+msgctxt "tconfigform.cbname.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tconfigform.cbnocalcdxcc.caption
+#, fuzzy
+msgctxt "tconfigform.cbnocalcdxcc.caption"
+msgid "No Calc DXCC"
+msgstr "No Calc DXCC"
+
+#: tconfigform.cbprefix.caption
+#, fuzzy
+msgctxt "tconfigform.cbprefix.caption"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: tconfigform.cbqsl.caption
+#, fuzzy
+msgctxt "tconfigform.cbqsl.caption"
+msgid "QSL"
+msgstr "QSL"
+
+#: tconfigform.cbqslrdate.caption
+#, fuzzy
+msgctxt "tconfigform.cbqslrdate.caption"
+msgid "QSLr Date"
+msgstr "QSLr Дата"
+
+#: tconfigform.cbqslrvia.caption
+#, fuzzy
+msgctxt "tconfigform.cbqslrvia.caption"
+msgid "QSLr VIA"
+msgstr "QSLr VIA"
+
+#: tconfigform.cbqsls.caption
+#, fuzzy
+msgctxt "tconfigform.cbqsls.caption"
+msgid "QSLs"
+msgstr "QSLs"
+
+#: tconfigform.cbqslsdate.caption
+#, fuzzy
+msgctxt "tconfigform.cbqslsdate.caption"
+msgid "QSLs Date"
+msgstr "QSLs Дата"
+
+#: tconfigform.cbqslsvia.caption
+#, fuzzy
+msgctxt "tconfigform.cbqslsvia.caption"
+msgid "QSLs VIA"
+msgstr "QSLs VIA"
+
+#: tconfigform.cbqth.caption
+#, fuzzy
+msgctxt "tconfigform.cbqth.caption"
+msgid "QTH"
+msgstr "QTH"
+
+#: tconfigform.cbrstr.caption
+#, fuzzy
+msgctxt "tconfigform.cbrstr.caption"
+msgid "RSTr"
+msgstr "RSTr"
+
+#: tconfigform.cbrsts.caption
+#, fuzzy
+msgctxt "tconfigform.cbrsts.caption"
+msgid "RSTs"
+msgstr "RSTs"
+
+#: tconfigform.cbstate.caption
+#, fuzzy
+msgctxt "tconfigform.cbstate.caption"
+msgid "State"
+msgstr "State"
+
+#: tconfigform.cbsubmode.caption
+#, fuzzy
+msgctxt "tconfigform.cbsubmode.caption"
+msgid "SubMode"
+msgstr "СабМода"
+
+#: tconfigform.cbtextsizegrid.text
+msgctxt "tconfigform.cbtextsizegrid.text"
+msgid "8 пт"
+msgstr ""
+
+#: tconfigform.cbtime.caption
+#, fuzzy
+msgctxt "tconfigform.cbtime.caption"
+msgid "Time"
+msgstr "Время"
+
+#: tconfigform.cbuser.caption
+#, fuzzy
+msgctxt "tconfigform.cbuser.caption"
+msgid "User"
+msgstr "User"
+
+#: tconfigform.cbvaliddx.caption
+#, fuzzy
+msgctxt "tconfigform.cbvaliddx.caption"
+msgid "ValidDX"
+msgstr "ValidDX"
 
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
@@ -1322,6 +1519,10 @@ msgstr ""
 
 #: tconfigform.gbdefaultdb.caption
 msgid "Default DB"
+msgstr ""
+
+#: tconfigform.gbgridscolor.caption
+msgid "Grids Color"
 msgstr ""
 
 #: tconfigform.gbhamqth.caption
@@ -1465,9 +1666,21 @@ msgstr "Пароль"
 msgid "Base Name"
 msgstr "Название базы"
 
+#: tconfigform.label7.caption
+#, fuzzy
+msgctxt "tconfigform.label7.caption"
+msgid "Displays columns"
+msgstr "Отображение колонок"
+
 #: tconfigform.label8.caption
 msgid "Base"
 msgstr "База данных"
+
+#: tconfigform.lbbackcolor.caption
+#, fuzzy
+msgctxt "tconfigform.lbbackcolor.caption"
+msgid "Background color"
+msgstr "Цвет фона"
 
 #: tconfigform.lbclearqso.caption
 msgid "Key Clear QSO"
@@ -1485,8 +1698,29 @@ msgstr ""
 msgid "Key Save QSO"
 msgstr ""
 
+#: tconfigform.lbtextcolor.caption
+#, fuzzy
+msgctxt "tconfigform.lbtextcolor.caption"
+msgid "Text color"
+msgstr "Цвет текста"
+
+#: tconfigform.lbtextsize.caption
+#, fuzzy
+msgctxt "tconfigform.lbtextsize.caption"
+msgid "Text size"
+msgstr "Размер текста"
+
 #: tconfigform.lbtimebackup.caption
 msgid "Backup Time"
+msgstr ""
+
+#: tconfigform.pcolors.caption
+msgctxt "tconfigform.pcolors.caption"
+msgid "Colors"
+msgstr ""
+
+#: tconfigform.pgrids.caption
+msgid "Grids"
 msgstr ""
 
 #: tconfigform.radiobutton1.caption
@@ -1498,8 +1732,8 @@ msgstr "Использовать MySQL"
 msgid "Use SQLite "
 msgstr "Использовать SQLite "
 
-#: tconfigform.tcolor.caption
-msgid "Colors"
+#: tconfigform.tcolorandgrids.caption
+msgid "Colors and Grids"
 msgstr ""
 
 #: tconfigform.thotkey.caption
@@ -1531,191 +1765,6 @@ msgstr ""
 msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr "Телнет"
-
-#: tconfiggrid_form.button1.caption
-msgctxt "tconfiggrid_form.button1.caption"
-msgid "Save"
-msgstr "Сохранить"
-
-#: tconfiggrid_form.button2.caption
-msgctxt "tconfiggrid_form.button2.caption"
-msgid "Cancel"
-msgstr "Отмена"
-
-#: tconfiggrid_form.button3.caption
-msgctxt "tconfiggrid_form.button3.caption"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: tconfiggrid_form.caption
-msgid "Table display settings"
-msgstr "Настройка отображения таблиц"
-
-#: tconfiggrid_form.checkbox1.caption
-msgctxt "tconfiggrid_form.checkbox1.caption"
-msgid "QSL"
-msgstr "QSL"
-
-#: tconfiggrid_form.checkbox10.caption
-msgctxt "tconfiggrid_form.checkbox10.caption"
-msgid "State"
-msgstr "State"
-
-#: tconfiggrid_form.checkbox11.caption
-msgctxt "tconfiggrid_form.checkbox11.caption"
-msgid "Grid"
-msgstr "Grid"
-
-#: tconfiggrid_form.checkbox12.caption
-msgctxt "tconfiggrid_form.checkbox12.caption"
-msgid "RSTs"
-msgstr "RSTs"
-
-#: tconfiggrid_form.checkbox13.caption
-msgctxt "tconfiggrid_form.checkbox13.caption"
-msgid "RSTr"
-msgstr "RSTr"
-
-#: tconfiggrid_form.checkbox14.caption
-msgctxt "tconfiggrid_form.checkbox14.caption"
-msgid "IOTA"
-msgstr "IOTA"
-
-#: tconfiggrid_form.checkbox15.caption
-msgctxt "tconfiggrid_form.checkbox15.caption"
-msgid "Manager"
-msgstr "Менеджер"
-
-#: tconfiggrid_form.checkbox16.caption
-msgctxt "tconfiggrid_form.checkbox16.caption"
-msgid "QSLs Date"
-msgstr "QSLs Дата"
-
-#: tconfiggrid_form.checkbox17.caption
-msgctxt "tconfiggrid_form.checkbox17.caption"
-msgid "QSLr Date"
-msgstr "QSLr Дата"
-
-#: tconfiggrid_form.checkbox18.caption
-msgctxt "tconfiggrid_form.checkbox18.caption"
-msgid "LOTWr Date"
-msgstr "LOTWr Дата"
-
-#: tconfiggrid_form.checkbox19.caption
-msgctxt "tconfiggrid_form.checkbox19.caption"
-msgid "Prefix"
-msgstr "Префикс"
-
-#: tconfiggrid_form.checkbox2.caption
-msgctxt "tconfiggrid_form.checkbox2.caption"
-msgid "QSLs"
-msgstr "QSLs"
-
-#: tconfiggrid_form.checkbox20.caption
-msgctxt "tconfiggrid_form.checkbox20.caption"
-msgid "DXCC"
-msgstr "DXCC"
-
-#: tconfiggrid_form.checkbox21.caption
-msgctxt "tconfiggrid_form.checkbox21.caption"
-msgid "CQ Zone"
-msgstr "CQ Zone"
-
-#: tconfiggrid_form.checkbox22.caption
-msgctxt "tconfiggrid_form.checkbox22.caption"
-msgid "ITU Zone"
-msgstr "ITU Zone"
-
-#: tconfiggrid_form.checkbox23.caption
-msgctxt "tconfiggrid_form.checkbox23.caption"
-msgid "Manual Set"
-msgstr "Manual Set"
-
-#: tconfiggrid_form.checkbox24.caption
-msgctxt "tconfiggrid_form.checkbox24.caption"
-msgid "Continent"
-msgstr "Континент"
-
-#: tconfiggrid_form.checkbox25.caption
-msgid "ValidDX"
-msgstr "ValidDX"
-
-#: tconfiggrid_form.checkbox26.caption
-msgid "QSLr VIA"
-msgstr "QSLr VIA"
-
-#: tconfiggrid_form.checkbox27.caption
-msgid "QSLs VIA"
-msgstr "QSLs VIA"
-
-#: tconfiggrid_form.checkbox28.caption
-msgctxt "tconfiggrid_form.checkbox28.caption"
-msgid "User"
-msgstr "User"
-
-#: tconfiggrid_form.checkbox29.caption
-msgctxt "tconfiggrid_form.checkbox29.caption"
-msgid "No Calc DXCC"
-msgstr "No Calc DXCC"
-
-#: tconfiggrid_form.checkbox3.caption
-msgctxt "tconfiggrid_form.checkbox3.caption"
-msgid "Date"
-msgstr "Дата"
-
-#: tconfiggrid_form.checkbox30.caption
-msgctxt "tconfiggrid_form.checkbox30.caption"
-msgid "SubMode"
-msgstr "СабМода"
-
-#: tconfiggrid_form.checkbox4.caption
-msgctxt "tconfiggrid_form.checkbox4.caption"
-msgid "Time"
-msgstr "Время"
-
-#: tconfiggrid_form.checkbox5.caption
-msgctxt "tconfiggrid_form.checkbox5.caption"
-msgid "Band"
-msgstr "Диапазон"
-
-#: tconfiggrid_form.checkbox6.caption
-msgid "Call"
-msgstr "Позывной"
-
-#: tconfiggrid_form.checkbox7.caption
-msgctxt "tconfiggrid_form.checkbox7.caption"
-msgid "Mode"
-msgstr "Мода"
-
-#: tconfiggrid_form.checkbox8.caption
-msgctxt "tconfiggrid_form.checkbox8.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tconfiggrid_form.checkbox9.caption
-msgctxt "tconfiggrid_form.checkbox9.caption"
-msgid "QTH"
-msgstr "QTH"
-
-#: tconfiggrid_form.combobox1.text
-msgid "8 пт"
-msgstr ""
-
-#: tconfiggrid_form.label1.caption
-msgid "Text color"
-msgstr "Цвет текста"
-
-#: tconfiggrid_form.label2.caption
-msgid "Text size"
-msgstr "Размер текста"
-
-#: tconfiggrid_form.label3.caption
-msgid "Background color"
-msgstr "Цвет фона"
-
-#: tconfiggrid_form.label4.caption
-msgid "Displays columns"
-msgstr "Отображение колонок"
 
 #: tcountryeditform.caption
 msgid "Editing Country Information"
@@ -1909,6 +1958,7 @@ msgid "Cancel"
 msgstr "Отмена"
 
 #: teditqso_form.button3.caption
+msgctxt "teditqso_form.button3.caption"
 msgid "Apply"
 msgstr "Принять"
 
@@ -4049,11 +4099,6 @@ msgstr "Обновление"
 msgctxt "tminiform.menuitem94.caption"
 msgid "About"
 msgstr "О программе"
-
-#: tminiform.menuitem99.caption
-msgctxt "tminiform.menuitem99.caption"
-msgid "Configure table"
-msgstr "Редактировать таблицу"
 
 #: tminiform.miclustertop.caption
 msgctxt "tminiform.miclustertop.caption"

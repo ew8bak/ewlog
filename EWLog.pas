@@ -20,7 +20,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   fldigi, DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc,
   QSLManagerForm_U, SettingsCAT_U, uRigControl, TRXForm_U, lnetvisual, hrdlog,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U,
-  Changelog_Form_U, Earth_Form_U, IOTA_Form_U, ConfigGridForm_U,
+  Changelog_Form_U, Earth_Form_U, IOTA_Form_U,
   sendtelnetspot_form_U, ClusterFilter_Form_U, ClusterServer_Form_U,
   WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U,
   hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom,
@@ -70,7 +70,6 @@ begin
   Application.CreateForm(TEarth, Earth);
   Application.CreateForm(TIOTA_Form, IOTA_Form);
   Application.CreateForm(TSTATE_Form, STATE_Form);
-  Application.CreateForm(TConfigGrid_Form, ConfigGrid_Form);
   Application.CreateForm(TSendTelnetSpot, SendTelnetSpot);
   Application.CreateForm(TClusterFilter, ClusterFilter);
   Application.CreateForm(TClusterServer_Form, ClusterServer_Form);

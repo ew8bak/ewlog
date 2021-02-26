@@ -2146,10 +2146,6 @@ object MiniForm: TMiniForm
         Caption = 'Configure program'
         OnClick = MenuItem52Click
       end
-      object MenuItem99: TMenuItem
-        Caption = 'Configure table'
-        OnClick = MenuItem99Click
-      end
       object MenuItem123: TMenuItem
         Caption = 'Frequency Manager'
         OnClick = MenuItem123Click

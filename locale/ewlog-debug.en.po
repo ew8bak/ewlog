@@ -1201,6 +1201,16 @@ msgctxt "tclusterserver_form.stringgrid1.columns[2].title.caption"
 msgid "Port"
 msgstr ""
 
+#: tconfigform.btapplycolor.caption
+msgctxt "tconfigform.btapplycolor.caption"
+msgid "Apply"
+msgstr ""
+
+#: tconfigform.btdefaultcolor.caption
+msgctxt "tconfigform.btdefaultcolor.caption"
+msgid "Default"
+msgstr ""
+
 #: tconfigform.button1.caption
 msgctxt "tconfigform.button1.caption"
 msgid "Save"
@@ -1241,6 +1251,161 @@ msgstr ""
 
 #: tconfigform.cbbackupdb.caption
 msgid "Backup Database"
+msgstr ""
+
+#: tconfigform.cbband.caption
+msgctxt "tconfigform.cbband.caption"
+msgid "Band"
+msgstr ""
+
+#: tconfigform.cbcall.caption
+msgctxt "tconfigform.cbcall.caption"
+msgid "Call"
+msgstr ""
+
+#: tconfigform.cbcontinent.caption
+msgctxt "tconfigform.cbcontinent.caption"
+msgid "Continent"
+msgstr ""
+
+#: tconfigform.cbcqzone.caption
+msgctxt "tconfigform.cbcqzone.caption"
+msgid "CQ Zone"
+msgstr ""
+
+#: tconfigform.cbdate.caption
+msgctxt "tconfigform.cbdate.caption"
+msgid "Date"
+msgstr ""
+
+#: tconfigform.cbdxcc.caption
+msgctxt "tconfigform.cbdxcc.caption"
+msgid "DXCC"
+msgstr ""
+
+#: tconfigform.cbgrid.caption
+msgctxt "tconfigform.cbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: tconfigform.cbiota.caption
+msgctxt "tconfigform.cbiota.caption"
+msgid "IOTA"
+msgstr ""
+
+#: tconfigform.cbituzone.caption
+msgctxt "tconfigform.cbituzone.caption"
+msgid "ITU Zone"
+msgstr ""
+
+#: tconfigform.cblotwrdate.caption
+msgctxt "tconfigform.cblotwrdate.caption"
+msgid "LOTWr Date"
+msgstr ""
+
+#: tconfigform.cbmanager.caption
+msgctxt "tconfigform.cbmanager.caption"
+msgid "Manager"
+msgstr ""
+
+#: tconfigform.cbmanualset.caption
+msgctxt "tconfigform.cbmanualset.caption"
+msgid "Manual Set"
+msgstr ""
+
+#: tconfigform.cbmode.caption
+msgctxt "tconfigform.cbmode.caption"
+msgid "Mode"
+msgstr ""
+
+#: tconfigform.cbname.caption
+msgctxt "tconfigform.cbname.caption"
+msgid "Name"
+msgstr ""
+
+#: tconfigform.cbnocalcdxcc.caption
+msgctxt "tconfigform.cbnocalcdxcc.caption"
+msgid "No Calc DXCC"
+msgstr ""
+
+#: tconfigform.cbprefix.caption
+msgctxt "tconfigform.cbprefix.caption"
+msgid "Prefix"
+msgstr ""
+
+#: tconfigform.cbqsl.caption
+msgctxt "tconfigform.cbqsl.caption"
+msgid "QSL"
+msgstr ""
+
+#: tconfigform.cbqslrdate.caption
+msgctxt "tconfigform.cbqslrdate.caption"
+msgid "QSLr Date"
+msgstr ""
+
+#: tconfigform.cbqslrvia.caption
+msgctxt "tconfigform.cbqslrvia.caption"
+msgid "QSLr VIA"
+msgstr ""
+
+#: tconfigform.cbqsls.caption
+msgctxt "tconfigform.cbqsls.caption"
+msgid "QSLs"
+msgstr ""
+
+#: tconfigform.cbqslsdate.caption
+msgctxt "tconfigform.cbqslsdate.caption"
+msgid "QSLs Date"
+msgstr ""
+
+#: tconfigform.cbqslsvia.caption
+msgctxt "tconfigform.cbqslsvia.caption"
+msgid "QSLs VIA"
+msgstr ""
+
+#: tconfigform.cbqth.caption
+msgctxt "tconfigform.cbqth.caption"
+msgid "QTH"
+msgstr ""
+
+#: tconfigform.cbrstr.caption
+msgctxt "tconfigform.cbrstr.caption"
+msgid "RSTr"
+msgstr ""
+
+#: tconfigform.cbrsts.caption
+msgctxt "tconfigform.cbrsts.caption"
+msgid "RSTs"
+msgstr ""
+
+#: tconfigform.cbstate.caption
+msgctxt "tconfigform.cbstate.caption"
+msgid "State"
+msgstr ""
+
+#: tconfigform.cbsubmode.caption
+msgctxt "tconfigform.cbsubmode.caption"
+msgid "SubMode"
+msgstr ""
+
+#: tconfigform.cbtextsizegrid.text
+msgctxt "tconfigform.cbtextsizegrid.text"
+msgid "8 пт"
+msgstr ""
+
+#: tconfigform.cbtime.caption
+msgctxt "tconfigform.cbtime.caption"
+msgid "Time"
+msgstr ""
+
+#: tconfigform.cbuser.caption
+msgctxt "tconfigform.cbuser.caption"
+msgid "User"
+msgstr ""
+
+#: tconfigform.cbvaliddx.caption
+msgctxt "tconfigform.cbvaliddx.caption"
+msgid "ValidDX"
 msgstr ""
 
 #: tconfigform.checkbox1.caption
@@ -1293,6 +1458,10 @@ msgstr ""
 
 #: tconfigform.gbdefaultdb.caption
 msgid "Default DB"
+msgstr ""
+
+#: tconfigform.gbgridscolor.caption
+msgid "Grids Color"
 msgstr ""
 
 #: tconfigform.gbhamqth.caption
@@ -1431,8 +1600,18 @@ msgstr ""
 msgid "Base Name"
 msgstr ""
 
+#: tconfigform.label7.caption
+msgctxt "tconfigform.label7.caption"
+msgid "Displays columns"
+msgstr ""
+
 #: tconfigform.label8.caption
 msgid "Base"
+msgstr ""
+
+#: tconfigform.lbbackcolor.caption
+msgctxt "tconfigform.lbbackcolor.caption"
+msgid "Background color"
 msgstr ""
 
 #: tconfigform.lbclearqso.caption
@@ -1451,8 +1630,27 @@ msgstr ""
 msgid "Key Save QSO"
 msgstr ""
 
+#: tconfigform.lbtextcolor.caption
+msgctxt "tconfigform.lbtextcolor.caption"
+msgid "Text color"
+msgstr ""
+
+#: tconfigform.lbtextsize.caption
+msgctxt "tconfigform.lbtextsize.caption"
+msgid "Text size"
+msgstr ""
+
 #: tconfigform.lbtimebackup.caption
 msgid "Backup Time"
+msgstr ""
+
+#: tconfigform.pcolors.caption
+msgctxt "tconfigform.pcolors.caption"
+msgid "Colors"
+msgstr ""
+
+#: tconfigform.pgrids.caption
+msgid "Grids"
 msgstr ""
 
 #: tconfigform.radiobutton1.caption
@@ -1464,8 +1662,8 @@ msgstr ""
 msgid "Use SQLite "
 msgstr ""
 
-#: tconfigform.tcolor.caption
-msgid "Colors"
+#: tconfigform.tcolorandgrids.caption
+msgid "Colors and Grids"
 msgstr ""
 
 #: tconfigform.thotkey.caption
@@ -1495,191 +1693,6 @@ msgstr ""
 #: tconfigform.tstelnet.caption
 msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
-msgstr ""
-
-#: tconfiggrid_form.button1.caption
-msgctxt "tconfiggrid_form.button1.caption"
-msgid "Save"
-msgstr ""
-
-#: tconfiggrid_form.button2.caption
-msgctxt "tconfiggrid_form.button2.caption"
-msgid "Cancel"
-msgstr ""
-
-#: tconfiggrid_form.button3.caption
-msgctxt "tconfiggrid_form.button3.caption"
-msgid "Default"
-msgstr ""
-
-#: tconfiggrid_form.caption
-msgid "Table display settings"
-msgstr ""
-
-#: tconfiggrid_form.checkbox1.caption
-msgctxt "tconfiggrid_form.checkbox1.caption"
-msgid "QSL"
-msgstr ""
-
-#: tconfiggrid_form.checkbox10.caption
-msgctxt "tconfiggrid_form.checkbox10.caption"
-msgid "State"
-msgstr ""
-
-#: tconfiggrid_form.checkbox11.caption
-msgctxt "tconfiggrid_form.checkbox11.caption"
-msgid "Grid"
-msgstr ""
-
-#: tconfiggrid_form.checkbox12.caption
-msgctxt "tconfiggrid_form.checkbox12.caption"
-msgid "RSTs"
-msgstr ""
-
-#: tconfiggrid_form.checkbox13.caption
-msgctxt "tconfiggrid_form.checkbox13.caption"
-msgid "RSTr"
-msgstr ""
-
-#: tconfiggrid_form.checkbox14.caption
-msgctxt "tconfiggrid_form.checkbox14.caption"
-msgid "IOTA"
-msgstr ""
-
-#: tconfiggrid_form.checkbox15.caption
-msgctxt "tconfiggrid_form.checkbox15.caption"
-msgid "Manager"
-msgstr ""
-
-#: tconfiggrid_form.checkbox16.caption
-msgctxt "tconfiggrid_form.checkbox16.caption"
-msgid "QSLs Date"
-msgstr ""
-
-#: tconfiggrid_form.checkbox17.caption
-msgctxt "tconfiggrid_form.checkbox17.caption"
-msgid "QSLr Date"
-msgstr ""
-
-#: tconfiggrid_form.checkbox18.caption
-msgctxt "tconfiggrid_form.checkbox18.caption"
-msgid "LOTWr Date"
-msgstr ""
-
-#: tconfiggrid_form.checkbox19.caption
-msgctxt "tconfiggrid_form.checkbox19.caption"
-msgid "Prefix"
-msgstr ""
-
-#: tconfiggrid_form.checkbox2.caption
-msgctxt "tconfiggrid_form.checkbox2.caption"
-msgid "QSLs"
-msgstr ""
-
-#: tconfiggrid_form.checkbox20.caption
-msgctxt "tconfiggrid_form.checkbox20.caption"
-msgid "DXCC"
-msgstr ""
-
-#: tconfiggrid_form.checkbox21.caption
-msgctxt "tconfiggrid_form.checkbox21.caption"
-msgid "CQ Zone"
-msgstr ""
-
-#: tconfiggrid_form.checkbox22.caption
-msgctxt "tconfiggrid_form.checkbox22.caption"
-msgid "ITU Zone"
-msgstr ""
-
-#: tconfiggrid_form.checkbox23.caption
-msgctxt "tconfiggrid_form.checkbox23.caption"
-msgid "Manual Set"
-msgstr ""
-
-#: tconfiggrid_form.checkbox24.caption
-msgctxt "tconfiggrid_form.checkbox24.caption"
-msgid "Continent"
-msgstr ""
-
-#: tconfiggrid_form.checkbox25.caption
-msgid "ValidDX"
-msgstr ""
-
-#: tconfiggrid_form.checkbox26.caption
-msgid "QSLr VIA"
-msgstr ""
-
-#: tconfiggrid_form.checkbox27.caption
-msgid "QSLs VIA"
-msgstr ""
-
-#: tconfiggrid_form.checkbox28.caption
-msgctxt "tconfiggrid_form.checkbox28.caption"
-msgid "User"
-msgstr ""
-
-#: tconfiggrid_form.checkbox29.caption
-msgctxt "tconfiggrid_form.checkbox29.caption"
-msgid "No Calc DXCC"
-msgstr ""
-
-#: tconfiggrid_form.checkbox3.caption
-msgctxt "tconfiggrid_form.checkbox3.caption"
-msgid "Date"
-msgstr ""
-
-#: tconfiggrid_form.checkbox30.caption
-msgctxt "tconfiggrid_form.checkbox30.caption"
-msgid "SubMode"
-msgstr ""
-
-#: tconfiggrid_form.checkbox4.caption
-msgctxt "tconfiggrid_form.checkbox4.caption"
-msgid "Time"
-msgstr ""
-
-#: tconfiggrid_form.checkbox5.caption
-msgctxt "tconfiggrid_form.checkbox5.caption"
-msgid "Band"
-msgstr ""
-
-#: tconfiggrid_form.checkbox6.caption
-msgid "Call"
-msgstr ""
-
-#: tconfiggrid_form.checkbox7.caption
-msgctxt "tconfiggrid_form.checkbox7.caption"
-msgid "Mode"
-msgstr ""
-
-#: tconfiggrid_form.checkbox8.caption
-msgctxt "tconfiggrid_form.checkbox8.caption"
-msgid "Name"
-msgstr ""
-
-#: tconfiggrid_form.checkbox9.caption
-msgctxt "tconfiggrid_form.checkbox9.caption"
-msgid "QTH"
-msgstr ""
-
-#: tconfiggrid_form.combobox1.text
-msgid "8 пт"
-msgstr ""
-
-#: tconfiggrid_form.label1.caption
-msgid "Text color"
-msgstr ""
-
-#: tconfiggrid_form.label2.caption
-msgid "Text size"
-msgstr ""
-
-#: tconfiggrid_form.label3.caption
-msgid "Background color"
-msgstr ""
-
-#: tconfiggrid_form.label4.caption
-msgid "Displays columns"
 msgstr ""
 
 #: tcountryeditform.caption
@@ -1874,6 +1887,7 @@ msgid "Cancel"
 msgstr ""
 
 #: teditqso_form.button3.caption
+msgctxt "teditqso_form.button3.caption"
 msgid "Apply"
 msgstr ""
 
@@ -4013,11 +4027,6 @@ msgstr ""
 #: tminiform.menuitem94.caption
 msgctxt "tminiform.menuitem94.caption"
 msgid "About"
-msgstr ""
-
-#: tminiform.menuitem99.caption
-msgctxt "tminiform.menuitem99.caption"
-msgid "Configure table"
 msgstr ""
 
 #: tminiform.miclustertop.caption
