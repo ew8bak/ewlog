@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Debug"/>
-    <Units Count="204">
+    <Units Count="202">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -63,7 +63,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="526"/>
         <CursorPos X="9" Y="530"/>
@@ -111,7 +110,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="1149"/>
         <CursorPos X="18" Y="1164"/>
         <UsageCount Value="200"/>
@@ -313,16 +312,6 @@
         <UsageCount Value="201"/>
       </Unit29>
       <Unit30>
-        <Filename Value="configgridform_u.pas"/>
-        <ComponentName Value="ConfigGrid_Form"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="ConfigGridForm_U"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="37" Y="26"/>
-        <UsageCount Value="201"/>
-      </Unit30>
-      <Unit31>
         <Filename Value="sendtelnetspot_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SendTelnetSpot"/>
@@ -332,8 +321,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit31>
-      <Unit32>
+      </Unit30>
+      <Unit31>
         <Filename Value="clusterfilter_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ClusterFilter"/>
@@ -343,8 +332,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="44" Y="5"/>
         <UsageCount Value="200"/>
-      </Unit32>
-      <Unit33>
+      </Unit31>
+      <Unit32>
         <Filename Value="clusterserver_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ClusterServer_Form"/>
@@ -354,8 +343,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit33>
-      <Unit34>
+      </Unit32>
+      <Unit33>
         <Filename Value="state_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="STATE_Form"/>
@@ -365,8 +354,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit34>
-      <Unit35>
+      </Unit33>
+      <Unit34>
         <Filename Value="wsjt_udp_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="WSJT_UDP_Form"/>
@@ -376,8 +365,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="48" Y="4"/>
         <UsageCount Value="200"/>
-      </Unit35>
-      <Unit36>
+      </Unit34>
+      <Unit35>
         <Filename Value="syndbdate_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SynDBDate"/>
@@ -387,8 +376,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit36>
-      <Unit37>
+      </Unit35>
+      <Unit36>
         <Filename Value="thanksform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Thanks_Form"/>
@@ -398,8 +387,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
-      </Unit37>
-      <Unit38>
+      </Unit36>
+      <Unit37>
         <Filename Value="filterform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="filterForm"/>
@@ -409,8 +398,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit38>
-      <Unit39>
+      </Unit37>
+      <Unit38>
         <Filename Value="hiddentsettings_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="hiddenSettings"/>
@@ -419,8 +408,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
-      </Unit39>
-      <Unit40>
+      </Unit38>
+      <Unit39>
         <Filename Value="print_sticker_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PrintSticker_Form"/>
@@ -429,8 +418,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit40>
-      <Unit41>
+      </Unit39>
+      <Unit40>
         <Filename Value="famm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FM_Form"/>
@@ -439,8 +428,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit41>
-      <Unit42>
+      </Unit40>
+      <Unit41>
         <Filename Value="mmform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MM_Form"/>
@@ -449,36 +438,36 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="hamqth.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="200"/>
       </Unit42>
       <Unit43>
-        <Filename Value="hamqth.pas"/>
+        <Filename Value="clublog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit43>
       <Unit44>
-        <Filename Value="clublog.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="78" Y="8"/>
-        <UsageCount Value="200"/>
-      </Unit44>
-      <Unit45>
         <Filename Value="qrzcom.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
-      </Unit45>
-      <Unit46>
+      </Unit44>
+      <Unit45>
         <Filename Value="qso_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit46>
-      <Unit47>
+      </Unit45>
+      <Unit46>
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
@@ -486,69 +475,69 @@
         <TopLine Value="191"/>
         <CursorPos X="25" Y="218"/>
         <UsageCount Value="201"/>
-      </Unit47>
-      <Unit48>
+      </Unit46>
+      <Unit47>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
+      </Unit47>
+      <Unit48>
+        <Filename Value="download_lotw.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="200"/>
       </Unit48>
       <Unit49>
-        <Filename Value="download_lotw.pas"/>
+        <Filename Value="download_eqslcc.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit49>
       <Unit50>
-        <Filename Value="download_eqslcc.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="78" Y="8"/>
-        <UsageCount Value="200"/>
-      </Unit50>
-      <Unit51>
         <Filename Value="downloadupdates.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadUpdates"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
-      </Unit51>
-      <Unit52>
+      </Unit50>
+      <Unit51>
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit52>
-      <Unit53>
+      </Unit51>
+      <Unit52>
         <Filename Value="fldigimodem.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="flDigiModem"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="202"/>
-      </Unit53>
-      <Unit54>
+      </Unit52>
+      <Unit53>
         <Filename Value="getphotofrominternet.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetPhotoFromInternet"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit54>
-      <Unit55>
+      </Unit53>
+      <Unit54>
         <Filename Value="getinfofrominternetthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetInfoFromInternetThread"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit55>
-      <Unit56>
+      </Unit54>
+      <Unit55>
         <Filename Value="viewphoto_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="viewPhoto"/>
@@ -558,8 +547,8 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit56>
-      <Unit57>
+      </Unit55>
+      <Unit56>
         <Filename Value="initdb_dm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="InitDB"/>
@@ -570,105 +559,105 @@
         <TopLine Value="617"/>
         <CursorPos X="3" Y="625"/>
         <UsageCount Value="200"/>
-      </Unit57>
-      <Unit58>
+      </Unit56>
+      <Unit57>
         <Filename Value="logbooktable_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LogBookTable_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit58>
-      <Unit59>
+      </Unit57>
+      <Unit58>
         <Filename Value="db_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DB_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit59>
-      <Unit60>
+      </Unit58>
+      <Unit59>
         <Filename Value="mainfuncdm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MainFunc"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="2002"/>
         <CursorPos X="69" Y="1933"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-      </Unit60>
-      <Unit61>
+      </Unit59>
+      <Unit60>
         <Filename Value="prefix_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit61>
-      <Unit62>
+      </Unit60>
+      <Unit61>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="83"/>
         <CursorPos X="26" Y="108"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-      </Unit62>
-      <Unit63>
+      </Unit61>
+      <Unit62>
         <Filename Value="selectqso_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="selectQSO_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit63>
-      <Unit64>
+      </Unit62>
+      <Unit63>
         <Filename Value="foundqso_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="foundQSO_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
+      </Unit63>
+      <Unit64>
+        <Filename Value="cloudlog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="200"/>
       </Unit64>
       <Unit65>
-        <Filename Value="cloudlog.pas"/>
+        <Filename Value="init_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit65>
       <Unit66>
-        <Filename Value="init_record.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="78" Y="8"/>
-        <UsageCount Value="200"/>
-      </Unit66>
-      <Unit67>
         <Filename Value="wsjtutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="WsjtUtils"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="43" Y="2"/>
         <UsageCount Value="200"/>
+      </Unit66>
+      <Unit67>
+        <Filename Value="digi_record.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="78" Y="8"/>
+        <UsageCount Value="200"/>
       </Unit67>
       <Unit68>
-        <Filename Value="digi_record.pas"/>
+        <Filename Value="inform_record.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
       </Unit68>
       <Unit69>
-        <Filename Value="inform_record.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="78" Y="8"/>
-        <UsageCount Value="200"/>
-      </Unit69>
-      <Unit70>
         <Filename Value="infodm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="InfoDM"/>
@@ -678,16 +667,16 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit70>
-      <Unit71>
+      </Unit69>
+      <Unit70>
         <Filename Value="getsession.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSession"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit71>
-      <Unit72>
+      </Unit70>
+      <Unit71>
         <Filename Value="miniform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MiniForm"/>
@@ -698,16 +687,16 @@
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit72>
-      <Unit73>
+      </Unit71>
+      <Unit72>
         <Filename Value="imbedcallbookcheckrec.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImbedCallBookCheckRec"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit73>
-      <Unit74>
+      </Unit72>
+      <Unit73>
         <Filename Value="serverdm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServerDM"/>
@@ -717,16 +706,16 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="67" Y="3"/>
         <UsageCount Value="200"/>
-      </Unit74>
-      <Unit75>
+      </Unit73>
+      <Unit74>
         <Filename Value="telnetclientthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="telnetClientThread"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit75>
-      <Unit76>
+      </Unit74>
+      <Unit75>
         <Filename Value="dxclusterform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dxClusterForm"/>
@@ -734,8 +723,8 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="201"/>
-      </Unit76>
-      <Unit77>
+      </Unit75>
+      <Unit76>
         <Filename Value="gridsform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="GridsForm"/>
@@ -746,8 +735,8 @@
         <TopLine Value="385"/>
         <CursorPos X="3" Y="390"/>
         <UsageCount Value="200"/>
-      </Unit77>
-      <Unit78>
+      </Unit76>
+      <Unit77>
         <Filename Value="mapform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MapForm"/>
@@ -757,48 +746,51 @@
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
-      </Unit78>
-      <Unit79>
+      </Unit77>
+      <Unit78>
         <Filename Value="copytablethread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CopyTableThread"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="46" Y="3"/>
         <UsageCount Value="200"/>
-      </Unit79>
-      <Unit80>
+      </Unit78>
+      <Unit79>
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="78" Y="8"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="270"/>
+        <CursorPos X="40" Y="282"/>
         <UsageCount Value="115"/>
-      </Unit80>
-      <Unit81>
+        <Loaded Value="True"/>
+      </Unit79>
+      <Unit80>
         <Filename Value="exportadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportADIThread"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="106"/>
-      </Unit81>
-      <Unit82>
+      </Unit80>
+      <Unit81>
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="97"/>
-      </Unit82>
-      <Unit83>
+      </Unit81>
+      <Unit82>
         <Filename Value="cloudlogcat.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CloudLogCAT"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="90"/>
-      </Unit83>
-      <Unit84>
+      </Unit82>
+      <Unit83>
         <Filename Value="progressform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ProgressBackupForm"/>
@@ -809,6 +801,16 @@
         <TopLine Value="56"/>
         <CursorPos X="45" Y="76"/>
         <UsageCount Value="45"/>
+      </Unit83>
+      <Unit84>
+        <Filename Value="configgridform_u.pas"/>
+        <ComponentName Value="ConfigGrid_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ConfigGridForm_U"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="37" Y="26"/>
+        <UsageCount Value="201"/>
       </Unit84>
       <Unit85>
         <Filename Value="simplexml.pas"/>
@@ -931,7 +933,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2222"/>
         <CursorPos Y="2242"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit101>
       <Unit102>
         <Filename Value="D:\usr\lib\lazarus\lcl\dbgrids.pas"/>
@@ -939,7 +941,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3284"/>
         <CursorPos Y="3311"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit102>
       <Unit103>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\lconvencoding.pas"/>
@@ -947,28 +949,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7237"/>
         <CursorPos Y="7264"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit103>
       <Unit104>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos Y="22"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit104>
       <Unit105>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="150"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit105>
       <Unit106>
         <Filename Value="D:\usr\lib\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5393"/>
         <CursorPos Y="5412"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit106>
       <Unit107>
         <Filename Value="D:\usr\lib\lazarus\lcl\lclmessageglue.pas"/>
@@ -976,7 +978,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="100"/>
         <CursorPos Y="123"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit107>
       <Unit108>
         <Filename Value="D:\usr\lib\lazarus\lcl\interfaces\gtk2\gtk2wsstdctrls.pp"/>
@@ -984,7 +986,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2442"/>
         <CursorPos Y="2462"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit108>
       <Unit109>
         <Filename Value="D:\usr\lib\lazarus\lcl\forms.pp"/>
@@ -1041,9 +1043,9 @@
       <Unit116>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1794"/>
-        <CursorPos Y="1815"/>
-        <UsageCount Value="0"/>
+        <TopLine Value="2310"/>
+        <CursorPos Y="2326"/>
+        <UsageCount Value="10"/>
       </Unit116>
       <Unit117>
         <Filename Value="C:\lazarus\lcl\include\rasterimage.inc"/>
@@ -1131,14 +1133,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="113"/>
         <CursorPos Y="133"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit128>
       <Unit129>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\System\IdStack.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="955"/>
         <CursorPos Y="971"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit129>
       <Unit130>
@@ -1232,8 +1234,8 @@
       <Unit142>
         <Filename Value="C:\usr\lib\fpc\src\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1811"/>
-        <CursorPos X="15" Y="1829"/>
+        <TopLine Value="356"/>
+        <CursorPos X="71" Y="305"/>
         <UsageCount Value="9"/>
       </Unit142>
       <Unit143>
@@ -1272,7 +1274,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4274"/>
         <CursorPos Y="4294"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit147>
       <Unit148>
         <Filename Value="sendqso_record.pas"/>
@@ -1286,7 +1288,7 @@
         <UnitName Value="mvTypes"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16" Y="14"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit149>
       <Unit150>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\application.inc"/>
@@ -1337,7 +1339,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="3" Y="70"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit156>
       <Unit157>
         <Filename Value="C:\usr\lib\lazarus\components\lazutils\fileutil.inc"/>
@@ -1625,7 +1627,7 @@
         <UsageCount Value="9"/>
       </Unit194>
       <Unit195>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\actnlist.pas"/>
+        <Filename Value="C:\usr\lib\lazarus\lcl\actnlist.pas"/>
         <UnitName Value="ActnList"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="274"/>
@@ -1633,12 +1635,12 @@
         <UsageCount Value="9"/>
       </Unit195>
       <Unit196>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\include\shortcutlist.inc"/>
+        <Filename Value="C:\usr\lib\lazarus\lcl\include\shortcutlist.inc"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
       </Unit196>
       <Unit197>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\include\customaction.inc"/>
+        <Filename Value="C:\usr\lib\lazarus\lcl\include\customaction.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="136"/>
         <CursorPos X="28" Y="9"/>
@@ -1653,43 +1655,29 @@
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit198>
       <Unit199>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\include\customactionlist.inc"/>
+        <Filename Value="C:\usr\lib\lazarus\lcl\include\customactionlist.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="3" Y="134"/>
         <UsageCount Value="9"/>
       </Unit199>
       <Unit200>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\lclstrconsts.pas"/>
+        <Filename Value="C:\usr\lib\lazarus\lcl\lclstrconsts.pas"/>
         <UnitName Value="LCLStrConsts"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="447"/>
         <UsageCount Value="9"/>
       </Unit200>
       <Unit201>
-        <Filename Value="..\..\..\..\usr\lib\fpc\src\rtl\objpas\classes\classesh.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="356"/>
-        <CursorPos X="71" Y="305"/>
-        <UsageCount Value="9"/>
-      </Unit201>
-      <Unit202>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\lclproc.pas"/>
+        <Filename Value="C:\usr\lib\lazarus\lcl\lclproc.pas"/>
         <UnitName Value="LCLProc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <CursorPos X="28" Y="89"/>
         <UsageCount Value="9"/>
-      </Unit202>
-      <Unit203>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\include\customform.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="2310"/>
-        <CursorPos Y="2326"/>
-        <UsageCount Value="10"/>
-      </Unit203>
+      </Unit201>
     </Units>
-    <JumpHistory Count="19" HistoryIndex="18">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="configform_u.pas"/>
         <Caret Line="321" Column="51" TopLine="311"/>
@@ -1766,6 +1754,10 @@
         <Filename Value="configform_u.pas"/>
         <Caret Line="681" Column="60" TopLine="669"/>
       </Position19>
+      <Position20>
+        <Filename Value="importadithread.pas"/>
+        <Caret Line="279" Column="30" TopLine="269"/>
+      </Position20>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
