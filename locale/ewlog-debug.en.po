@@ -577,6 +577,11 @@ msgctxt "resourcestr.rlanguagecomplite"
 msgid "Translation files download successfully"
 msgstr ""
 
+#: resourcestr.rlibhamlibnotfound
+msgctxt "resourcestr.rlibhamlibnotfound"
+msgid "HamLib library not found"
+msgstr ""
+
 #: resourcestr.rlogaddedsuccessfully
 msgctxt "resourcestr.rlogaddedsuccessfully"
 msgid "Log added successfully"
@@ -1085,6 +1090,7 @@ msgid "Not all data entered"
 msgstr ""
 
 #: settingscat_u.rlibhamlibnotfound
+msgctxt "settingscat_u.rlibhamlibnotfound"
 msgid "HamLib library not found"
 msgstr ""
 
@@ -1404,6 +1410,11 @@ msgctxt "tconfigform.cbqth.caption"
 msgid "QTH"
 msgstr ""
 
+#: tconfigform.cbrigctldstart.caption
+msgctxt "tconfigform.cbrigctldstart.caption"
+msgid "Start rigctld on startup?"
+msgstr ""
+
 #: tconfigform.cbrstr.caption
 msgctxt "tconfigform.cbrstr.caption"
 msgid "RSTr"
@@ -1487,11 +1498,13 @@ msgstr ""
 msgid "Send Freq to CloudLog"
 msgstr ""
 
-#: tconfigform.edit16.text
+#: tconfigform.editcataddress.text
+msgctxt "tconfigform.editcataddress.text"
 msgid "127.0.0.1"
 msgstr ""
 
-#: tconfigform.edit17.text
+#: tconfigform.editcatport.text
+msgctxt "tconfigform.editcatport.text"
 msgid "4532"
 msgstr ""
 
@@ -1731,6 +1744,10 @@ msgstr ""
 #: tconfigform.lbpathrigctld.caption
 msgctxt "tconfigform.lbpathrigctld.caption"
 msgid "Path for HamLib Rigctld"
+msgstr ""
+
+#: tconfigform.lbpoll.caption
+msgid "Poll"
 msgstr ""
 
 #: tconfigform.lbsaveqso.caption
@@ -4614,6 +4631,7 @@ msgid "Default"
 msgstr ""
 
 #: tsettingscat.checkbox1.caption
+msgctxt "tsettingscat.checkbox1.caption"
 msgid "Start rigctld on startup?"
 msgstr ""
 

@@ -15,8 +15,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, Process,
-  EditBtn, Spin, LazFileUtils, MainFuncDM, ResourceStr, synaser {$IFDEF UNIX},
-  baseunix {$ENDIF};
+  EditBtn, Spin, LazFileUtils, MainFuncDM, ResourceStr;
 
 resourcestring
   rLibHamLibNotFound = 'HamLib library not found';
@@ -61,14 +60,11 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cbManufacturerChange(Sender: TObject);
-    procedure FileNameEdit1Change(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RadioButton1Change(Sender: TObject);
     procedure RIG1Change(Sender: TObject);
     procedure LoadINI;
-    procedure LoadRIG;
     procedure ChangePortAddress;
-    function GetSerialPortNames: string;
   private
     { private declarations }
   public
@@ -89,21 +85,6 @@ uses
 {$R *.lfm}
 
 { TSettingsCAT }
-
-procedure TSettingsCAT.LoadRIG;
-var
-  dev: string;
-begin
-  cbManufacturer.Items.Clear;
-  if (FileExistsUTF8(FileNameEdit1.Text)) then
-  begin
-    dev := INIFile.ReadString('TRX' + IntToStr(nTRX), 'model', '');
-    dmFunc.LoadRigsToComboBox(dev, StringReplace(FileNameEdit1.Text,
-      'rigctld', 'rigctl', [rfReplaceAll, rfIgnoreCase]), cbManufacturer);
-  end
-  else
-    ShowMessage(rLibHamLibNotFound);
-end;
 
 procedure TSettingsCAT.LoadINI;
 begin
@@ -165,30 +146,7 @@ begin
 end;
 
 procedure TSettingsCAT.FormShow(Sender: TObject);
-var
-  s: string;
 begin
-  cbCatPort.Items.CommaText := GetSerialPortNames;
-  if RIG1.Checked then
-    nTRX := 1
-  else
-    nTRX := 2;
-  FileNameEdit1.Text := IniSet.rigctldPath;
-   {$IFDEF WINDOWS}
-  FileNameEdit1.Filter := 'rigctld.exe|rigctld.exe';
-   {$ELSE}
-  FileNameEdit1.Filter := 'rigctld|rigctld';
-  if Length(FileNameEdit1.Text) = 0 then
-    if RunCommand('/bin/bash', ['-c', 'which rigctld'], s) then
-    begin
-      s := StringReplace(s, #10, '', [rfReplaceAll]);
-      s := StringReplace(s, #13, '', [rfReplaceAll]);
-      if Length(s) <> 0 then
-        FileNameEdit1.Text := s;
-    end;
-   {$ENDIF}
-  CheckBox1.Checked := IniSet.rigctldStartUp;
-  LoadRIG;
   LoadINI;
 end;
 
@@ -312,65 +270,6 @@ end;
 procedure TSettingsCAT.cbManufacturerChange(Sender: TObject);
 begin
   ChangePortAddress;
-end;
-
-procedure TSettingsCAT.FileNameEdit1Change(Sender: TObject);
-begin
-  if Length(FileNameEdit1.Text) > 0 then
-    LoadRIG;
-end;
-
-function TSettingsCAT.GetSerialPortNames: string;
-begin
-  Result := '';
-  {$IFDEF WINDOWS}
-  Result := synaser.GetSerialPortNames;
-  {$ELSE}
-  if fpAccess('/dev/ttyS0', W_OK) = 0 then
-    Result := Result + ',/dev/ttyS0';
-  if fpAccess('/dev/ttyS1', W_OK) = 0 then
-    Result := Result + ',/dev/ttyS1';
-  if fpAccess('/dev/ttyS2', W_OK) = 0 then
-    Result := Result + ',/dev/ttyS2';
-  if fpAccess('/dev/ttyS3', W_OK) = 0 then
-    Result := Result + ',/dev/ttyS3';
-  if fpAccess('/dev/tnt0', W_OK) = 0 then
-    Result := Result + ',/dev/tnt0';
-  if fpAccess('/dev/tnt1', W_OK) = 0 then
-    Result := Result + ',/dev/tnt1';
-  if fpAccess('/dev/tnt2', W_OK) = 0 then
-    Result := Result + ',/dev/tnt2';
-  if fpAccess('/dev/tnt3', W_OK) = 0 then
-    Result := Result + ',/dev/tnt3';
-  if fpAccess('/dev/tnt4', W_OK) = 0 then
-    Result := Result + ',/dev/tnt4';
-  if fpAccess('/dev/tnt5', W_OK) = 0 then
-    Result := Result + ',/dev/tnt5';
-  if fpAccess('/dev/tnt6', W_OK) = 0 then
-    Result := Result + ',/dev/tnt6';
-  if fpAccess('/dev/tnt7', W_OK) = 0 then
-    Result := Result + ',/dev/tnt7';
-  if fpAccess('/dev/ttyUSB0', W_OK) = 0 then
-    Result := Result + ',/dev/ttyUSB0';
-  if fpAccess('/dev/ttyUSB1', W_OK) = 0 then
-    Result := Result + ',/dev/ttyUSB1';
-  if fpAccess('/dev/ttyUSB2', W_OK) = 0 then
-    Result := Result + ',/dev/ttyUSB2';
-  if fpAccess('/dev/ttyUSB3', W_OK) = 0 then
-    Result := Result + ',/dev/ttyUSB3';
-  if fpAccess('/dev/ttyd0', W_OK) = 0 then
-    Result := Result + ',/dev/ttyd0';
-  if fpAccess('/dev/ttyd1', W_OK) = 0 then
-    Result := Result + ',/dev/ttyd1';
-  if fpAccess('/dev/ttyd2', W_OK) = 0 then
-    Result := Result + ',/dev/ttyd2';
-  if fpAccess('/dev/ttyd3', W_OK) = 0 then
-    Result := Result + ',/dev/ttyd3';
-  if fpAccess('/dev/cu.usbserial', W_OK) = 0 then
-    Result := Result + ',/dev/cu.usbserial';
-  if fpAccess('/dev/tty.usbserial', W_OK) = 0 then
-    Result := Result + ',/dev/tty.usbserial';
-  {$ENDIF}
 end;
 
 end.

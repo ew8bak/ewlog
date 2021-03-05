@@ -1,12 +1,12 @@
 object ConfigForm: TConfigForm
   Left = 774
-  Height = 324
+  Height = 335
   Top = 133
   Width = 510
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Program settings'
-  ClientHeight = 324
+  ClientHeight = 335
   ClientWidth = 510
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
@@ -16,7 +16,7 @@ object ConfigForm: TConfigForm
   object Button1: TButton
     Left = 432
     Height = 25
-    Top = 288
+    Top = 296
     Width = 75
     Caption = 'Save'
     Font.Height = -12
@@ -27,7 +27,7 @@ object ConfigForm: TConfigForm
   object Button2: TButton
     Left = 352
     Height = 25
-    Top = 288
+    Top = 296
     Width = 75
     Caption = 'Cancel'
     Font.Height = -12
@@ -37,7 +37,7 @@ object ConfigForm: TConfigForm
   end
   object PControl: TPageControl
     Left = 0
-    Height = 280
+    Height = 288
     Top = 0
     Width = 510
     ActivePage = TSCAT
@@ -46,7 +46,7 @@ object ConfigForm: TConfigForm
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object gbMySQL: TGroupBox
         Left = 8
@@ -271,7 +271,7 @@ object ConfigForm: TConfigForm
     end
     object TSRefOnline: TTabSheet
       Caption = 'Reference Online'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object GBQRZRU: TGroupBox
         Left = 8
@@ -491,11 +491,11 @@ object ConfigForm: TConfigForm
     end
     object TSCAT: TTabSheet
       Caption = 'CAT'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object PCCat: TPageControl
         Left = 0
-        Height = 251
+        Height = 259
         Top = 0
         Width = 500
         ActivePage = TSHamlib
@@ -504,7 +504,7 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 222
+          ClientHeight = 230
           ClientWidth = 490
           object LBTransceiverModel: TLabel
             AnchorSideLeft.Control = TSHamlib
@@ -553,7 +553,7 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBPathRigctld
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 25
+            Height = 26
             Top = 73
             Width = 192
             DialogTitle = 'Path for rigctld'
@@ -562,11 +562,11 @@ object ConfigForm: TConfigForm
             ButtonWidth = 23
             NumGlyphs = 1
             BorderSpacing.Top = 5
-            AutoSize = False
             Font.Height = -12
             MaxLength = 0
             ParentFont = False
             TabOrder = 1
+            OnChange = FNPathRigctldChange
           end
           object LBExtraCmd: TLabel
             AnchorSideLeft.Control = FNPathRigctld
@@ -574,7 +574,7 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Side = asrBottom
             Left = 10
             Height = 13
-            Top = 103
+            Top = 104
             Width = 122
             BorderSpacing.Top = 5
             Caption = 'Extra command line'
@@ -587,10 +587,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBExtraCmd
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 25
-            Top = 121
+            Height = 26
+            Top = 122
             Width = 192
-            AutoSize = False
             BorderSpacing.Top = 5
             Font.Height = -12
             ParentFont = False
@@ -602,7 +601,7 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Side = asrBottom
             Left = 10
             Height = 13
-            Top = 151
+            Top = 153
             Width = 48
             BorderSpacing.Top = 5
             Caption = 'Address'
@@ -610,46 +609,45 @@ object ConfigForm: TConfigForm
             ParentColor = False
             ParentFont = False
           end
-          object Edit16: TEdit
+          object EditCATAddress: TEdit
             AnchorSideLeft.Control = LBCATAddress
             AnchorSideTop.Control = LBCATAddress
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 25
-            Top = 169
+            Height = 26
+            Top = 171
             Width = 95
-            AutoSize = False
             BorderSpacing.Top = 5
             Font.Height = -12
             ParentFont = False
             TabOrder = 3
             Text = '127.0.0.1'
           end
-          object Edit17: TEdit
-            AnchorSideLeft.Control = Edit16
+          object EditCATport: TEdit
+            AnchorSideLeft.Control = EditCATAddress
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = LBCATAddress
             AnchorSideTop.Side = asrBottom
             Left = 107
-            Height = 25
-            Top = 169
+            Height = 26
+            Top = 171
             Width = 95
-            AutoSize = False
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
             Font.Height = -12
+            NumbersOnly = True
             ParentFont = False
             TabOrder = 4
             Text = '4532'
           end
           object LBCATPort: TLabel
-            AnchorSideLeft.Control = Edit16
+            AnchorSideLeft.Control = EditCATAddress
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = EditExtraCmd
             AnchorSideTop.Side = asrBottom
             Left = 107
             Height = 13
-            Top = 151
+            Top = 153
             Width = 24
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
@@ -984,6 +982,51 @@ object ConfigForm: TConfigForm
             ParentFont = False
             TabOrder = 13
           end
+          object CBrigctldStart: TCheckBox
+            AnchorSideLeft.Control = LBCATAddress
+            AnchorSideTop.Control = EditCATAddress
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 23
+            Top = 202
+            Width = 172
+            BorderSpacing.Top = 5
+            Caption = 'Start rigctld on startup?'
+            Checked = True
+            Font.Height = -12
+            ParentFont = False
+            State = cbChecked
+            TabOrder = 14
+          end
+          object SpinEdit1: TSpinEdit
+            AnchorSideLeft.Control = LBPoll
+            AnchorSideTop.Control = LBPoll
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 26
+            Top = 171
+            Width = 62
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            MinValue = 3
+            ParentFont = False
+            TabOrder = 15
+            Value = 3
+          end
+          object LBPoll: TLabel
+            AnchorSideLeft.Control = CBCatRTSState
+            AnchorSideTop.Control = CBCatRTSState
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 13
+            Top = 153
+            Width = 20
+            BorderSpacing.Top = 3
+            Caption = 'Poll'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
         end
         object TSTCI: TTabSheet
           Caption = 'TCI'
@@ -992,7 +1035,7 @@ object ConfigForm: TConfigForm
     end
     object TSIntRef: TTabSheet
       Caption = 'Internal reference'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object gbIntRef: TGroupBox
         Left = 8
@@ -1123,7 +1166,7 @@ object ConfigForm: TConfigForm
     end
     object TSTelnet: TTabSheet
       Caption = 'Telnet'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object gbTelnet: TGroupBox
         Left = 8
@@ -1198,7 +1241,7 @@ object ConfigForm: TConfigForm
     end
     object TSBackup: TTabSheet
       Caption = 'Backup'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object DEBackupPath: TDirectoryEdit
         AnchorSideLeft.Control = TSBackup
@@ -1314,7 +1357,7 @@ object ConfigForm: TConfigForm
     end
     object THotKey: TTabSheet
       Caption = 'Hot key'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object lbSaveQSO: TLabel
         AnchorSideLeft.Control = THotKey
@@ -1405,7 +1448,7 @@ object ConfigForm: TConfigForm
     end
     object TColorandGrids: TTabSheet
       Caption = 'Colors and Grids'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object PControl2: TPageControl
         Left = 0
@@ -1879,7 +1922,7 @@ object ConfigForm: TConfigForm
     end
     object TSOtherSettings: TTabSheet
       Caption = 'Other Settings'
-      ClientHeight = 251
+      ClientHeight = 259
       ClientWidth = 500
       object gbCloudLog: TGroupBox
         Left = 8

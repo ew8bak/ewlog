@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
-  synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox, dmCat;
+  synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox, Spin, dmCat;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -59,6 +59,7 @@ type
     cbBackupDB: TCheckBox;
     cbBackupCloseDB: TCheckBox;
     cbQSL: TCheckBox;
+    CBrigctldStart: TCheckBox;
     CheckBox11: TCheckBox;
     cbADIfiles: TCheckBox;
     cbBackupCloseADI: TCheckBox;
@@ -114,8 +115,8 @@ type
     Edit13: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
-    Edit16: TEdit;
-    Edit17: TEdit;
+    EditCATAddress: TEdit;
+    EditCATport: TEdit;
     EditCATCIaddress: TEdit;
     EditExtraCmd: TEdit;
     EditReferenceKey: TEdit;
@@ -141,6 +142,7 @@ type
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
+    LBPoll: TLabel;
     LBCatRTSState: TLabel;
     LBCatCIVaddress: TLabel;
     LBCatParity: TLabel;
@@ -195,6 +197,7 @@ type
     RadioButton2: TRadioButton;
     PColors: TTabSheet;
     PGrids: TTabSheet;
+    SpinEdit1: TSpinEdit;
     TSHamlib: TTabSheet;
     TSTCI: TTabSheet;
     TSCAT: TTabSheet;
@@ -225,6 +228,7 @@ type
       Shift: TShiftState);
     procedure EditSaveKeyKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
+    procedure FNPathRigctldChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SaveINI;
@@ -239,6 +243,7 @@ type
     procedure SaveGridColors;
     procedure ReadGridColumns;
     procedure ReadGridColors;
+    procedure LoadRIGSettings;
     { private declarations }
   public
     { public declarations }
@@ -523,9 +528,40 @@ begin
   EditSaveKey.SelStart := EditSaveKey.GetTextLen;
 end;
 
+procedure TConfigForm.FNPathRigctldChange(Sender: TObject);
+begin
+  if Length(FNPathRigctld.Text) > 0 then
+    CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
+end;
+
 procedure TConfigForm.FormCreate(Sender: TObject);
 begin
   ReadINI;
+end;
+
+procedure TConfigForm.LoadRIGSettings;
+begin
+  CBCatComPort.Items.CommaText := CATdm.GetSerialPortNames;
+  FNPathRigctld.Text := IniSet.rigctldPath;
+  {$IFDEF WINDOWS}
+  FNPathRigctld.Filter := 'rigctld.exe|rigctld.exe';
+  {$ELSE}
+  FNPathRigctld.Filter := 'rigctld|rigctld';
+  if Length(FNPathRigctld.Text) = 0 then
+    FNPathRigctld.Text := CATdm.SearchRigctld;
+  {$ENDIF}
+  CBrigctldStart.Checked := IniSet.rigctldStartUp;
+  CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
+  CATdm.LoadCATini(1);
+  CBCatComPort.Text := CATdm.CatSettings.COMPort;
+  CBCatSpeed.ItemIndex := CATdm.CatSettings.Speed;
+  CBCatStopBit.ItemIndex := CATdm.CatSettings.StopBit;
+  CBCatDataBit.ItemIndex := CATdm.CatSettings.DataBit;
+  CBCatParity.ItemIndex := CATdm.CatSettings.Parity;
+  CBCatHandshake.ItemIndex := CATdm.CatSettings.Handshake;
+  CBCatRTSState.ItemIndex := CATdm.CatSettings.RTSstate;
+  CBCatDTRState.ItemIndex := CATdm.CatSettings.DTRstate;
+  EditCATCIaddress.Text := CATdm.CatSettings.CIVaddress;
 end;
 
 procedure TConfigForm.FormShow(Sender: TObject);
@@ -554,9 +590,7 @@ begin
     CheckBox1.Checked := False;
     CheckBox1.Enabled := False;
   end;
-
-  CBCatComPort.Items.CommaText := CATdm.GetSerialPortNames;
-
+  LoadRIGSettings;
 end;
 
 procedure TConfigForm.ReadGridColumns;

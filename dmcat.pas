@@ -5,15 +5,41 @@ unit dmCat;
 interface
 
 uses
-  Classes, SysUtils, MainFuncDM, ResourceStr, synaser {$IFDEF UNIX},
+  Classes, SysUtils, MainFuncDM, ResourceStr, StdCtrls, LazFileUtils,
+  Dialogs, process, synaser {$IFDEF UNIX},
   BaseUnix {$ENDIF};
+
+type
+  TCatSettingsRecord = record
+    COMPort: string;
+    Speed: integer;
+    StopBit: integer;
+    DataBit: integer;
+    Parity: integer;
+    Handshake: integer;
+    RTSstate: integer;
+    DTRstate: integer;
+    CIVaddress: string;
+    Poll: integer;
+    Address: string;
+    Port: integer;
+    Extracmd: string;
+    Transceiver: string;
+    numTRX: integer;
+    RigctldPath: string;
+    StartRigctld: boolean;
+  end;
 
 type
   TCATdm = class(TDataModule)
   private
 
   public
+    CatSettings: TCatSettingsRecord;
     function GetSerialPortNames: string;
+    function LoadRIGs(PathRigctl: string; nTRX: integer): string;
+    function SearchRigctld: string;
+    procedure LoadCATini(nTRX: integer);
 
   end;
 
@@ -22,7 +48,62 @@ var
 
 implementation
 
+uses dmFunc_U, InitDB_dm;
+
 {$R *.lfm}
+
+procedure TCATdm.LoadCATini(nTRX: integer);
+begin
+  CatSettings.COMPort := INIFile.ReadString('TRX' + IntToStr(nTRX), 'device', '');
+  CatSettings.CIVaddress := INIFile.ReadString('TRX' + IntToStr(nTRX), 'CiV', '');
+  CatSettings.Poll := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'Poll', 3);
+  CatSettings.Speed := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'SerialSpeed', 0);
+  CatSettings.StopBit := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'StopBits', 0);
+  CatSettings.DataBit := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'DataBits', 0);
+  CatSettings.Parity := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'Parity', 0);
+  CatSettings.Handshake := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'HandShake', 0);
+  CatSettings.RTSstate := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'RTS', 0);
+  CatSettings.DTRstate := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'DTR', 0);
+end;
+
+function TCATdm.SearchRigctld: string;
+var
+  s: string;
+begin
+   {$IFDEF LINUX}
+  if RunCommand('/bin/bash', ['-c', 'which rigctld'], s) then
+  begin
+    s := StringReplace(s, #10, '', [rfReplaceAll]);
+    s := StringReplace(s, #13, '', [rfReplaceAll]);
+    if Length(s) <> 0 then
+      Result := s;
+  end;
+   {$ENDIF}
+end;
+
+function TCATdm.LoadRIGs(PathRigctl: string; nTRX: integer): string;
+var
+  dev: string;
+  CBRigs: TComboBox;
+begin
+  Result := '';
+  try
+    CBRigs := TComboBox.Create(nil);
+    CBRigs.Items.Clear;
+    if FileExistsUTF8(PathRigctl) then
+    begin
+      dev := INIFile.ReadString('TRX' + IntToStr(nTRX), 'model', '');
+      dmFunc.LoadRigsToComboBox(dev, StringReplace(PathRigctl, 'rigctld',
+        'rigctl', [rfReplaceAll, rfIgnoreCase]), CBRigs);
+    end
+    else
+      ShowMessage(rLibHamLibNotFound);
+
+  finally
+    Result := CBRigs.Items.CommaText;
+    FreeAndNil(CBRigs);
+  end;
+end;
 
 function TCATdm.GetSerialPortNames: string;
 begin
@@ -78,4 +159,3 @@ begin
 end;
 
 end.
-

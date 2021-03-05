@@ -216,6 +216,7 @@ resourcestring
   rErrorOpenFile = 'Error opening file';
   rAddress = 'Address';
   rCOMPort = 'COM Port';
+  rLibHamLibNotFound = 'HamLib library not found';
 
 implementation
 
