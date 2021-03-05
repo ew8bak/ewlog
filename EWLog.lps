@@ -63,9 +63,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="526"/>
-        <CursorPos X="9" Y="530"/>
+        <CursorPos X="27" Y="533"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -759,10 +760,9 @@
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="270"/>
-        <CursorPos X="40" Y="282"/>
+        <CursorPos X="63" Y="287"/>
         <UsageCount Value="115"/>
         <Loaded Value="True"/>
       </Unit79>
@@ -1127,6 +1127,7 @@
         <TopLine Value="1905"/>
         <CursorPos X="105" Y="1925"/>
         <UsageCount Value="8"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit127>
       <Unit128>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\customcheckbox.inc"/>
@@ -1141,7 +1142,6 @@
         <TopLine Value="955"/>
         <CursorPos Y="971"/>
         <UsageCount Value="10"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit129>
       <Unit130>
         <Filename Value="C:\usr\lib\fpc\src\rtl\objpas\sysutils\sysstrh.inc"/>
@@ -1310,6 +1310,7 @@
         <TopLine Value="475"/>
         <CursorPos Y="499"/>
         <UsageCount Value="3"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit152>
       <Unit153>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdThread.pas"/>
@@ -1317,7 +1318,6 @@
         <TopLine Value="294"/>
         <CursorPos X="43" Y="311"/>
         <UsageCount Value="9"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit153>
       <Unit154>
         <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\Indy10\Core\IdThread.pas"/>
@@ -1325,6 +1325,7 @@
         <TopLine Value="296"/>
         <CursorPos X="116" Y="311"/>
         <UsageCount Value="3"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit154>
       <Unit155>
         <Filename Value="C:\usr\lib\fpc\src\rtl\linux\system.pp"/>
@@ -1483,6 +1484,7 @@
         <TopLine Value="309"/>
         <CursorPos X="3" Y="312"/>
         <UsageCount Value="3"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit175>
       <Unit176>
         <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\Indy10\System\IdStack.pas"/>
@@ -1490,6 +1492,7 @@
         <TopLine Value="710"/>
         <CursorPos X="3" Y="715"/>
         <UsageCount Value="3"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit176>
       <Unit177>
         <Filename Value="C:\usr\lib\lazarus\components\lazutils\lconvencoding.pas"/>
@@ -1572,7 +1575,6 @@
         <TopLine Value="1090"/>
         <CursorPos Y="1106"/>
         <UsageCount Value="9"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit187>
       <Unit188>
         <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
@@ -1677,7 +1679,7 @@
         <UsageCount Value="9"/>
       </Unit201>
     </Units>
-    <JumpHistory Count="20" HistoryIndex="19">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="configform_u.pas"/>
         <Caret Line="321" Column="51" TopLine="311"/>
@@ -1758,6 +1760,10 @@
         <Filename Value="importadithread.pas"/>
         <Caret Line="279" Column="30" TopLine="269"/>
       </Position20>
+      <Position21>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="536" Column="9" TopLine="527"/>
+      </Position21>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
