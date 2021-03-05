@@ -1,7 +1,7 @@
 object ConfigForm: TConfigForm
-  Left = 769
+  Left = 774
   Height = 324
-  Top = 150
+  Top = 133
   Width = 510
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 280
     Top = 0
     Width = 510
-    ActivePage = TSBase
+    ActivePage = TSCAT
     Align = alTop
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
@@ -489,6 +489,507 @@ object ConfigForm: TConfigForm
         end
       end
     end
+    object TSCAT: TTabSheet
+      Caption = 'CAT'
+      ClientHeight = 251
+      ClientWidth = 500
+      object PCCat: TPageControl
+        Left = 0
+        Height = 251
+        Top = 0
+        Width = 500
+        ActivePage = TSHamlib
+        Align = alClient
+        TabIndex = 0
+        TabOrder = 0
+        object TSHamlib: TTabSheet
+          Caption = 'Hamlib'
+          ClientHeight = 222
+          ClientWidth = 490
+          object LBTransceiverModel: TLabel
+            AnchorSideLeft.Control = TSHamlib
+            AnchorSideTop.Control = TSHamlib
+            Left = 10
+            Height = 13
+            Top = 5
+            Width = 107
+            BorderSpacing.Left = 10
+            BorderSpacing.Top = 5
+            Caption = 'Transceiver Model'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBTransceiverModel: TComboBox
+            AnchorSideLeft.Control = LBTransceiverModel
+            AnchorSideTop.Control = LBTransceiverModel
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 27
+            Top = 23
+            Width = 192
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ParentFont = False
+            TabOrder = 0
+          end
+          object LBPathRigctld: TLabel
+            AnchorSideLeft.Control = CBTransceiverModel
+            AnchorSideTop.Control = CBTransceiverModel
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 13
+            Top = 55
+            Width = 143
+            BorderSpacing.Top = 5
+            Caption = 'Path for HamLib Rigctld'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object FNPathRigctld: TFileNameEdit
+            AnchorSideLeft.Control = LBPathRigctld
+            AnchorSideTop.Control = LBPathRigctld
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 25
+            Top = 73
+            Width = 192
+            DialogTitle = 'Path for rigctld'
+            FilterIndex = 0
+            HideDirectories = False
+            ButtonWidth = 23
+            NumGlyphs = 1
+            BorderSpacing.Top = 5
+            AutoSize = False
+            Font.Height = -12
+            MaxLength = 0
+            ParentFont = False
+            TabOrder = 1
+          end
+          object LBExtraCmd: TLabel
+            AnchorSideLeft.Control = FNPathRigctld
+            AnchorSideTop.Control = FNPathRigctld
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 13
+            Top = 103
+            Width = 122
+            BorderSpacing.Top = 5
+            Caption = 'Extra command line'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object EditExtraCmd: TEdit
+            AnchorSideLeft.Control = LBExtraCmd
+            AnchorSideTop.Control = LBExtraCmd
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 25
+            Top = 121
+            Width = 192
+            AutoSize = False
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 2
+          end
+          object LBCATAddress: TLabel
+            AnchorSideLeft.Control = EditExtraCmd
+            AnchorSideTop.Control = EditExtraCmd
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 13
+            Top = 151
+            Width = 48
+            BorderSpacing.Top = 5
+            Caption = 'Address'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object Edit16: TEdit
+            AnchorSideLeft.Control = LBCATAddress
+            AnchorSideTop.Control = LBCATAddress
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 25
+            Top = 169
+            Width = 95
+            AutoSize = False
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 3
+            Text = '127.0.0.1'
+          end
+          object Edit17: TEdit
+            AnchorSideLeft.Control = Edit16
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = LBCATAddress
+            AnchorSideTop.Side = asrBottom
+            Left = 107
+            Height = 25
+            Top = 169
+            Width = 95
+            AutoSize = False
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 4
+            Text = '4532'
+          end
+          object LBCATPort: TLabel
+            AnchorSideLeft.Control = Edit16
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = EditExtraCmd
+            AnchorSideTop.Side = asrBottom
+            Left = 107
+            Height = 13
+            Top = 151
+            Width = 24
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Port'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object LBComCATPort: TLabel
+            AnchorSideLeft.Control = CBTransceiverModel
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = TSHamlib
+            Left = 217
+            Height = 13
+            Top = 5
+            Width = 55
+            BorderSpacing.Left = 15
+            BorderSpacing.Top = 5
+            Caption = 'COM Port'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatComPort: TComboBox
+            AnchorSideLeft.Control = LBComCATPort
+            AnchorSideTop.Control = LBComCATPort
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 27
+            Top = 23
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ParentFont = False
+            TabOrder = 5
+          end
+          object CBCatSpeed: TComboBox
+            AnchorSideLeft.Control = LBCatSpeed
+            AnchorSideTop.Control = LBCatSpeed
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 27
+            Top = 23
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              '1200'
+              '2400'
+              '4800'
+              '9600'
+              '14400'
+              '19200'
+              '38400'
+              '57600'
+              '115200'
+            )
+            ParentFont = False
+            TabOrder = 6
+            Text = 'Default'
+          end
+          object LBCatSpeed: TLabel
+            AnchorSideLeft.Control = CBCatComPort
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = TSHamlib
+            Left = 306
+            Height = 13
+            Top = 5
+            Width = 38
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Speed'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object LBCatStopBit: TLabel
+            AnchorSideLeft.Control = CBCatSpeed
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = TSHamlib
+            Left = 395
+            Height = 13
+            Top = 5
+            Width = 48
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Stop bit'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatStopBit: TComboBox
+            AnchorSideLeft.Control = LBCatStopBit
+            AnchorSideTop.Control = LBCatStopBit
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 27
+            Top = 23
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              '0'
+              '1'
+              '2'
+              '3'
+            )
+            ParentFont = False
+            TabOrder = 7
+            Text = 'Default'
+          end
+          object LBCatDataBit: TLabel
+            AnchorSideLeft.Control = CBCatComPort
+            AnchorSideTop.Control = CBCatComPort
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 13
+            Top = 55
+            Width = 48
+            BorderSpacing.Top = 5
+            Caption = 'Data bit'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatDataBit: TComboBox
+            AnchorSideLeft.Control = LBCatDataBit
+            AnchorSideTop.Control = LBCatDataBit
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 27
+            Top = 73
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              '5'
+              '6'
+              '7'
+              '8'
+              '9'
+            )
+            ParentFont = False
+            TabOrder = 8
+            Text = 'Default'
+          end
+          object LBCatParity: TLabel
+            AnchorSideLeft.Control = CBCatDataBit
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = CBCatSpeed
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 13
+            Top = 55
+            Width = 34
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Parity'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatParity: TComboBox
+            AnchorSideLeft.Control = LBCatParity
+            AnchorSideTop.Control = LBCatParity
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 27
+            Top = 73
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              'None'
+              'Odd'
+              'Even'
+              'Mark'
+              'Space'
+            )
+            ParentFont = False
+            TabOrder = 9
+            Text = 'Default'
+          end
+          object LBCatHandshake: TLabel
+            AnchorSideLeft.Control = CBCatParity
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = CBCatStopBit
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 13
+            Top = 55
+            Width = 67
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Handshake'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatHandshake: TComboBox
+            AnchorSideLeft.Control = LBCatHandshake
+            AnchorSideTop.Control = LBCatHandshake
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 27
+            Top = 73
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            Items.Strings = (
+              'Default'
+              'None'
+              'XON/XOFF'
+              'Hardware'
+            )
+            ParentFont = False
+            TabOrder = 10
+            Text = 'Default'
+          end
+          object LBCatRTSState: TLabel
+            AnchorSideLeft.Control = CBCatComPort
+            AnchorSideTop.Control = CBCatDataBit
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 13
+            Top = 105
+            Width = 58
+            BorderSpacing.Top = 5
+            Caption = 'RTS State'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatRTSState: TComboBox
+            AnchorSideLeft.Control = LBCatRTSState
+            AnchorSideTop.Control = LBCatRTSState
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 27
+            Top = 123
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            Items.Strings = (
+              'Default'
+              'Unset'
+              'ON'
+              'OFF'
+            )
+            ParentFont = False
+            TabOrder = 11
+            Text = 'Default'
+          end
+          object LBCatDTRState: TLabel
+            AnchorSideLeft.Control = CBCatRTSState
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = CBCatParity
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 13
+            Top = 105
+            Width = 60
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'DTR State'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatDTRState: TComboBox
+            AnchorSideLeft.Control = LBCatDTRState
+            AnchorSideTop.Control = LBCatDTRState
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 27
+            Top = 123
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            Items.Strings = (
+              'Default'
+              'Unset'
+              'ON'
+              'OFF'
+            )
+            ParentFont = False
+            TabOrder = 12
+            Text = 'Default'
+          end
+          object LBCatCIVaddress: TLabel
+            AnchorSideLeft.Control = CBCatDTRState
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = CBCatHandshake
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 13
+            Top = 105
+            Width = 75
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'CI-V address'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object EditCATCIaddress: TEdit
+            AnchorSideLeft.Control = LBCatCIVaddress
+            AnchorSideTop.Control = LBCatCIVaddress
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 26
+            Top = 123
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 13
+          end
+        end
+        object TSTCI: TTabSheet
+          Caption = 'TCI'
+        end
+      end
+    end
     object TSIntRef: TTabSheet
       Caption = 'Internal reference'
       ClientHeight = 251
@@ -917,8 +1418,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object PColors: TTabSheet
           Caption = 'Colors'
-          ClientHeight = 222
-          ClientWidth = 490
+          ClientHeight = 247
+          ClientWidth = 496
           object gbGridsColor: TGroupBox
             Left = 8
             Height = 192
@@ -1060,8 +1561,8 @@ object ConfigForm: TConfigForm
         end
         object PGrids: TTabSheet
           Caption = 'Grids'
-          ClientHeight = 222
-          ClientWidth = 490
+          ClientHeight = 247
+          ClientWidth = 496
           object Label7: TLabel
             Left = 1
             Height = 13

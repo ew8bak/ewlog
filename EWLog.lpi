@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="791"/>
+      <BuildNr Value="792"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -163,7 +163,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="84">
+    <Units Count="86">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -688,6 +688,17 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="progressForm_u"/>
       </Unit83>
+      <Unit84>
+        <Filename Value="catsettings_u.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit84>
+      <Unit85>
+        <Filename Value="dmcat.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CATdm"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmCat"/>
+      </Unit85>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -233,6 +233,7 @@ msgid "Add key in Log_TABLE_"
 msgstr ""
 
 #: resourcestr.raddress
+msgctxt "resourcestr.raddress"
 msgid "Address"
 msgstr ""
 
@@ -1262,6 +1263,41 @@ msgctxt "tconfigform.cbcall.caption"
 msgid "Call"
 msgstr ""
 
+#: tconfigform.cbcatdatabit.text
+msgctxt "tconfigform.cbcatdatabit.text"
+msgid "Default"
+msgstr ""
+
+#: tconfigform.cbcatdtrstate.text
+msgctxt "tconfigform.cbcatdtrstate.text"
+msgid "Default"
+msgstr ""
+
+#: tconfigform.cbcathandshake.text
+msgctxt "tconfigform.cbcathandshake.text"
+msgid "Default"
+msgstr ""
+
+#: tconfigform.cbcatparity.text
+msgctxt "tconfigform.cbcatparity.text"
+msgid "Default"
+msgstr ""
+
+#: tconfigform.cbcatrtsstate.text
+msgctxt "tconfigform.cbcatrtsstate.text"
+msgid "Default"
+msgstr ""
+
+#: tconfigform.cbcatspeed.text
+msgctxt "tconfigform.cbcatspeed.text"
+msgid "Default"
+msgstr ""
+
+#: tconfigform.cbcatstopbit.text
+msgctxt "tconfigform.cbcatstopbit.text"
+msgid "Default"
+msgstr ""
+
 #: tconfigform.cbcontinent.caption
 msgctxt "tconfigform.cbcontinent.caption"
 msgid "Continent"
@@ -1450,6 +1486,14 @@ msgstr ""
 msgid "Send Freq to CloudLog"
 msgstr ""
 
+#: tconfigform.edit16.text
+msgid "127.0.0.1"
+msgstr ""
+
+#: tconfigform.edit17.text
+msgid "4532"
+msgstr ""
+
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
 msgid "CloudLog"
@@ -1613,8 +1657,66 @@ msgctxt "tconfigform.lbbackcolor.caption"
 msgid "Background color"
 msgstr ""
 
+#: tconfigform.lbcataddress.caption
+msgctxt "tconfigform.lbcataddress.caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lbcatcivaddress.caption
+msgctxt "tconfigform.lbcatcivaddress.caption"
+msgid "CI-V address"
+msgstr ""
+
+#: tconfigform.lbcatdatabit.caption
+msgctxt "tconfigform.lbcatdatabit.caption"
+msgid "Data bit"
+msgstr ""
+
+#: tconfigform.lbcatdtrstate.caption
+msgid "DTR State"
+msgstr ""
+
+#: tconfigform.lbcathandshake.caption
+msgctxt "tconfigform.lbcathandshake.caption"
+msgid "Handshake"
+msgstr ""
+
+#: tconfigform.lbcatparity.caption
+msgctxt "tconfigform.lbcatparity.caption"
+msgid "Parity"
+msgstr ""
+
+#: tconfigform.lbcatport.caption
+msgctxt "tconfigform.lbcatport.caption"
+msgid "Port"
+msgstr ""
+
+#: tconfigform.lbcatrtsstate.caption
+msgid "RTS State"
+msgstr ""
+
+#: tconfigform.lbcatspeed.caption
+msgctxt "tconfigform.lbcatspeed.caption"
+msgid "Speed"
+msgstr ""
+
+#: tconfigform.lbcatstopbit.caption
+msgctxt "tconfigform.lbcatstopbit.caption"
+msgid "Stop bit"
+msgstr ""
+
 #: tconfigform.lbclearqso.caption
 msgid "Key Clear QSO"
+msgstr ""
+
+#: tconfigform.lbcomcatport.caption
+msgctxt "tconfigform.lbcomcatport.caption"
+msgid "COM Port"
+msgstr ""
+
+#: tconfigform.lbextracmd.caption
+msgctxt "tconfigform.lbextracmd.caption"
+msgid "Extra command line"
 msgstr ""
 
 #: tconfigform.lbgetreference.caption
@@ -1623,6 +1725,11 @@ msgstr ""
 
 #: tconfigform.lbpathbackup.caption
 msgid "Path backup files"
+msgstr ""
+
+#: tconfigform.lbpathrigctld.caption
+msgctxt "tconfigform.lbpathrigctld.caption"
+msgid "Path for HamLib Rigctld"
 msgstr ""
 
 #: tconfigform.lbsaveqso.caption
@@ -1641,6 +1748,10 @@ msgstr ""
 
 #: tconfigform.lbtimebackup.caption
 msgid "Backup Time"
+msgstr ""
+
+#: tconfigform.lbtransceivermodel.caption
+msgid "Transceiver Model"
 msgstr ""
 
 #: tconfigform.pcolors.caption
@@ -1677,6 +1788,14 @@ msgstr ""
 msgid "DataBase"
 msgstr ""
 
+#: tconfigform.tscat.caption
+msgid "CAT"
+msgstr ""
+
+#: tconfigform.tshamlib.caption
+msgid "Hamlib"
+msgstr ""
+
 #: tconfigform.tsintref.caption
 msgid "Internal reference"
 msgstr ""
@@ -1687,6 +1806,10 @@ msgstr ""
 
 #: tconfigform.tsrefonline.caption
 msgid "Reference Online"
+msgstr ""
+
+#: tconfigform.tstci.caption
+msgid "TCI"
 msgstr ""
 
 #: tconfigform.tstelnet.caption
@@ -4501,6 +4624,7 @@ msgid "Config HamLib"
 msgstr ""
 
 #: tsettingscat.label1.caption
+msgctxt "tsettingscat.label1.caption"
 msgid "Path for HamLib Rigctld"
 msgstr ""
 
@@ -4514,22 +4638,27 @@ msgid "Transceiver model"
 msgstr ""
 
 #: tsettingscat.label16.caption
+msgctxt "tsettingscat.label16.caption"
 msgid "CI-V address"
 msgstr ""
 
 #: tsettingscat.label61.caption
+msgctxt "tsettingscat.label61.caption"
 msgid "Speed"
 msgstr ""
 
 #: tsettingscat.label62.caption
+msgctxt "tsettingscat.label62.caption"
 msgid "Data bit"
 msgstr ""
 
 #: tsettingscat.label63.caption
+msgctxt "tsettingscat.label63.caption"
 msgid "Parity"
 msgstr ""
 
 #: tsettingscat.label64.caption
+msgctxt "tsettingscat.label64.caption"
 msgid "Stop bit"
 msgstr ""
 
@@ -4542,10 +4671,12 @@ msgid "DTR state"
 msgstr ""
 
 #: tsettingscat.label67.caption
+msgctxt "tsettingscat.label67.caption"
 msgid "Handshake"
 msgstr ""
 
 #: tsettingscat.lbextracmd.caption
+msgctxt "tsettingscat.lbextracmd.caption"
 msgid "Extra command line"
 msgstr ""
 

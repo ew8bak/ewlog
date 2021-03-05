@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
-  synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox;
+  synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox, dmCat;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -50,6 +50,11 @@ type
     Button4: TButton;
     btApplyColor: TButton;
     btDefaultColor: TButton;
+    CBCatDataBit: TComboBox;
+    CBCatRTSState: TComboBox;
+    CBCatParity: TComboBox;
+    CBCatHandshake: TComboBox;
+    CBCatDTRState: TComboBox;
     CheckBox1: TCheckBox;
     cbBackupDB: TCheckBox;
     cbBackupCloseDB: TCheckBox;
@@ -97,6 +102,10 @@ type
     cbTextColorGrid: TColorBox;
     cbBackColorGrid: TColorBox;
     cbTextSizeGrid: TComboBox;
+    CBTransceiverModel: TComboBox;
+    CBCatComPort: TComboBox;
+    CBCatSpeed: TComboBox;
+    CBCatStopBit: TComboBox;
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
@@ -105,6 +114,10 @@ type
     Edit13: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
+    Edit16: TEdit;
+    Edit17: TEdit;
+    EditCATCIaddress: TEdit;
+    EditExtraCmd: TEdit;
     EditReferenceKey: TEdit;
     EditClearKey: TEdit;
     EditSaveKey: TEdit;
@@ -117,6 +130,7 @@ type
     Edit8: TEdit;
     Edit9: TEdit;
     FileNameEdit1: TFileNameEdit;
+    FNPathRigctld: TFileNameEdit;
     gbIntRef: TGroupBox;
     gbTelnet: TGroupBox;
     GBQRZRU: TGroupBox;
@@ -127,6 +141,20 @@ type
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
+    LBCatRTSState: TLabel;
+    LBCatCIVaddress: TLabel;
+    LBCatParity: TLabel;
+    LBCatDTRState: TLabel;
+    LBCatStopBit: TLabel;
+    LBCatSpeed: TLabel;
+    LBCatHandshake: TLabel;
+    LBComCATPort: TLabel;
+    LBCATPort: TLabel;
+    LBCATAddress: TLabel;
+    LBCatDataBit: TLabel;
+    LBExtraCmd: TLabel;
+    LBPathRigctld: TLabel;
+    LBTransceiverModel: TLabel;
     lbTextColor: TLabel;
     lbBackColor: TLabel;
     Label7: TLabel;
@@ -159,6 +187,7 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label8: TLabel;
+    PCCat: TPageControl;
     PControl2: TPageControl;
     PControl: TPageControl;
     ProgressBar1: TProgressBar;
@@ -166,6 +195,9 @@ type
     RadioButton2: TRadioButton;
     PColors: TTabSheet;
     PGrids: TTabSheet;
+    TSHamlib: TTabSheet;
+    TSTCI: TTabSheet;
+    TSCAT: TTabSheet;
     TColorandGrids: TTabSheet;
     THotKey: TTabSheet;
     timeEdit: TTimeEdit;
@@ -522,6 +554,9 @@ begin
     CheckBox1.Checked := False;
     CheckBox1.Enabled := False;
   end;
+
+  CBCatComPort.Items.CommaText := CATdm.GetSerialPortNames;
+
 end;
 
 procedure TConfigForm.ReadGridColumns;
