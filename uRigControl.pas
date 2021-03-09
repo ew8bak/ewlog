@@ -164,6 +164,7 @@ begin
       Writeln(cmd);
 
     rigProcess.CommandLine := cmd;
+
     try
       rigProcess.Execute;
       sleep(1500);

@@ -1119,11 +1119,6 @@ msgstr "Не найдена таблица для копирования. Воз
 msgid "Not all data entered"
 msgstr "Не все данные заполнены"
 
-#: settingscat_u.rlibhamlibnotfound
-msgctxt "settingscat_u.rlibhamlibnotfound"
-msgid "HamLib library not found"
-msgstr "Не найдена библиотека HamLib"
-
 #: tabout_form.caption
 msgctxt "tabout_form.caption"
 msgid "About"
@@ -1566,16 +1561,6 @@ msgstr "Отправлять ADI в CloudLog"
 #: tconfigform.checkbox9.caption
 msgid "Send Freq to CloudLog"
 msgstr "Отправлять частоту в Cloudlog"
-
-#: tconfigform.editcataddress.text
-msgctxt "tconfigform.editcataddress.text"
-msgid "127.0.0.1"
-msgstr ""
-
-#: tconfigform.editcatport.text
-msgctxt "tconfigform.editcatport.text"
-msgid "4532"
-msgstr ""
 
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
@@ -4217,11 +4202,6 @@ msgctxt "tminiform.menuitem83.caption"
 msgid "From SQLite to MySQL"
 msgstr "Из SQLite в MySQL"
 
-#: tminiform.menuitem84.caption
-msgctxt "tminiform.menuitem84.caption"
-msgid "Settings CAT"
-msgstr "Настройки CAT"
-
 #: tminiform.menuitem85.caption
 msgctxt "tminiform.menuitem85.caption"
 msgid "Transceiver Control"
@@ -4663,138 +4643,6 @@ msgstr "Загрузка:"
 #: tserviceform.opendialog1.title
 msgid "Open existing file"
 msgstr "Открыть существующий файл"
-
-#: tsettingscat.button1.caption
-msgctxt "tsettingscat.button1.caption"
-msgid "Save"
-msgstr "Сохранить"
-
-#: tsettingscat.button2.caption
-msgctxt "tsettingscat.button2.caption"
-msgid "Close"
-msgstr "Закрыть"
-
-#: tsettingscat.caption
-msgctxt "tsettingscat.caption"
-msgid "Settings CAT"
-msgstr "Настройки CAT"
-
-#: tsettingscat.cbbaudrate.text
-msgctxt "tsettingscat.cbbaudrate.text"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: tsettingscat.cbdatabits.text
-msgctxt "tsettingscat.cbdatabits.text"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: tsettingscat.cbdtrstate.text
-msgctxt "tsettingscat.cbdtrstate.text"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: tsettingscat.cbhandshake.text
-msgctxt "tsettingscat.cbhandshake.text"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: tsettingscat.cbparity.text
-msgctxt "tsettingscat.cbparity.text"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: tsettingscat.cbrtsstate.text
-msgctxt "tsettingscat.cbrtsstate.text"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: tsettingscat.cbstopbits.text
-msgctxt "tsettingscat.cbstopbits.text"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: tsettingscat.checkbox1.caption
-msgctxt "tsettingscat.checkbox1.caption"
-msgid "Start rigctld on startup?"
-msgstr ""
-
-#: tsettingscat.editaddress.text
-msgid "localhost"
-msgstr ""
-
-#: tsettingscat.editcivaddress.hint
-msgid "ICOM Radios"
-msgstr "ICOM радио"
-
-#: tsettingscat.groupbox1.caption
-msgid "Config HamLib"
-msgstr "Конфигурация HamLib"
-
-#: tsettingscat.label1.caption
-msgctxt "tsettingscat.label1.caption"
-msgid "Path for HamLib Rigctld"
-msgstr "Пусть к Rigctld"
-
-#: tsettingscat.label11.caption
-msgctxt "tsettingscat.label11.caption"
-msgid "COM Port"
-msgstr "COM порт"
-
-#: tsettingscat.label12.caption
-msgid "Transceiver model"
-msgstr "Модель трансивера"
-
-#: tsettingscat.label16.caption
-msgctxt "tsettingscat.label16.caption"
-msgid "CI-V address"
-msgstr ""
-
-#: tsettingscat.label61.caption
-msgctxt "tsettingscat.label61.caption"
-msgid "Speed"
-msgstr "Скорость"
-
-#: tsettingscat.label62.caption
-msgctxt "tsettingscat.label62.caption"
-msgid "Data bit"
-msgstr ""
-
-#: tsettingscat.label63.caption
-msgctxt "tsettingscat.label63.caption"
-msgid "Parity"
-msgstr ""
-
-#: tsettingscat.label64.caption
-msgctxt "tsettingscat.label64.caption"
-msgid "Stop bit"
-msgstr ""
-
-#: tsettingscat.label65.caption
-msgid "RTS state"
-msgstr ""
-
-#: tsettingscat.label66.caption
-msgid "DTR state"
-msgstr ""
-
-#: tsettingscat.label67.caption
-msgctxt "tsettingscat.label67.caption"
-msgid "Handshake"
-msgstr ""
-
-#: tsettingscat.lbextracmd.caption
-msgctxt "tsettingscat.lbextracmd.caption"
-msgid "Extra command line"
-msgstr ""
-
-#: tsettingscat.radiobutton1.caption
-msgid "RIG2"
-msgstr ""
-
-#: tsettingscat.rig1.caption
-msgid "RIG1"
-msgstr ""
 
 #: tsettingsprogramform.btaddprogram.caption
 msgid "Add program"

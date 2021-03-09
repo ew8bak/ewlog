@@ -1,7 +1,7 @@
 object ConfigForm: TConfigForm
-  Left = 774
+  Left = 823
   Height = 335
-  Top = 133
+  Top = 131
   Width = 510
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -12,7 +12,7 @@ object ConfigForm: TConfigForm
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object Button1: TButton
     Left = 432
     Height = 25
@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 288
     Top = 0
     Width = 510
-    ActivePage = TSCAT
+    ActivePage = TSBase
     Align = alTop
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
@@ -621,7 +621,6 @@ object ConfigForm: TConfigForm
             Font.Height = -12
             ParentFont = False
             TabOrder = 3
-            Text = '127.0.0.1'
           end
           object EditCATport: TEdit
             AnchorSideLeft.Control = EditCATAddress
@@ -638,7 +637,6 @@ object ConfigForm: TConfigForm
             NumbersOnly = True
             ParentFont = False
             TabOrder = 4
-            Text = '4532'
           end
           object LBCATPort: TLabel
             AnchorSideLeft.Control = EditCATAddress
@@ -871,6 +869,7 @@ object ConfigForm: TConfigForm
             BorderSpacing.Top = 5
             Font.Height = -12
             ItemHeight = 0
+            ItemIndex = 0
             Items.Strings = (
               'Default'
               'None'
@@ -906,6 +905,7 @@ object ConfigForm: TConfigForm
             BorderSpacing.Top = 5
             Font.Height = -12
             ItemHeight = 0
+            ItemIndex = 0
             Items.Strings = (
               'Default'
               'Unset'
@@ -943,6 +943,7 @@ object ConfigForm: TConfigForm
             BorderSpacing.Top = 5
             Font.Height = -12
             ItemHeight = 0
+            ItemIndex = 0
             Items.Strings = (
               'Default'
               'Unset'
@@ -992,10 +993,8 @@ object ConfigForm: TConfigForm
             Width = 172
             BorderSpacing.Top = 5
             Caption = 'Start rigctld on startup?'
-            Checked = True
             Font.Height = -12
             ParentFont = False
-            State = cbChecked
             TabOrder = 14
           end
           object SpinEdit1: TSpinEdit

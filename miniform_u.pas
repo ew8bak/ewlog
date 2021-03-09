@@ -178,7 +178,6 @@ type
     MenuItem81: TMenuItem;
     MenuItem82: TMenuItem;
     MenuItem83: TMenuItem;
-    MenuItem84: TMenuItem;
     MenuItem85: TMenuItem;
     MenuItem87: TMenuItem;
     MenuItem89: TMenuItem;
@@ -269,7 +268,6 @@ type
     procedure MenuItem70Click(Sender: TObject);
     procedure MenuItem73Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
-    procedure MenuItem84Click(Sender: TObject);
     procedure MenuItem87Click(Sender: TObject);
     procedure MenuItem91Click(Sender: TObject);
     procedure MenuItem92Click(Sender: TObject);
@@ -338,7 +336,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   setupForm_U, GridsForm_u, dxclusterform_u, AboutForm_U, ConfigForm_U,
   InformationForm_U, UpdateForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
-  ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
+  ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   WSJT_UDP_Form_U, serverDM_u, progressForm_u;
 
@@ -1138,11 +1136,6 @@ procedure TMiniForm.MenuItem7Click(Sender: TObject);
 begin
   LogConfigForm.Show;
   LogConfigForm.PageControl1.ActivePageIndex := 0;
-end;
-
-procedure TMiniForm.MenuItem84Click(Sender: TObject);
-begin
-  SettingsCAT.Show;
 end;
 
 procedure TMiniForm.MenuItem87Click(Sender: TObject);

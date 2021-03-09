@@ -244,6 +244,7 @@ type
     procedure ReadGridColumns;
     procedure ReadGridColors;
     procedure LoadRIGSettings;
+    procedure SaveRIGSettings;
     { private declarations }
   public
     { public declarations }
@@ -255,7 +256,7 @@ var
 implementation
 
 uses
-  miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u;
+  miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u, TRXForm_U;
 
 {$R *.lfm}
 
@@ -553,15 +554,50 @@ begin
   CBrigctldStart.Checked := IniSet.rigctldStartUp;
   CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
   CATdm.LoadCATini(1);
-  CBCatComPort.Text := CATdm.CatSettings.COMPort;
-  CBCatSpeed.ItemIndex := CATdm.CatSettings.Speed;
-  CBCatStopBit.ItemIndex := CATdm.CatSettings.StopBit;
-  CBCatDataBit.ItemIndex := CATdm.CatSettings.DataBit;
-  CBCatParity.ItemIndex := CATdm.CatSettings.Parity;
-  CBCatHandshake.ItemIndex := CATdm.CatSettings.Handshake;
-  CBCatRTSState.ItemIndex := CATdm.CatSettings.RTSstate;
-  CBCatDTRState.ItemIndex := CATdm.CatSettings.DTRstate;
-  EditCATCIaddress.Text := CATdm.CatSettings.CIVaddress;
+  CBCatComPort.Text := CatSettings.COMPort;
+  CBCatSpeed.ItemIndex := CatSettings.Speed;
+  CBCatStopBit.ItemIndex := CatSettings.StopBit;
+  CBCatDataBit.ItemIndex := CatSettings.DataBit;
+  CBCatParity.ItemIndex := CatSettings.Parity;
+  CBCatHandshake.ItemIndex := CatSettings.Handshake;
+  CBCatRTSState.ItemIndex := CatSettings.RTSstate;
+  CBCatDTRState.ItemIndex := CatSettings.DTRstate;
+  EditCATCIaddress.Text := CatSettings.CIVaddress;
+  EditCATAddress.Text := CatSettings.Address;
+  EditCATport.Text := IntToStr(CatSettings.Port);
+  EditExtraCmd.Text := CatSettings.Extracmd;
+  CBrigctldStart.Checked:=CatSettings.StartRigctld;
+  CBTransceiverModel.Text := IntToStr(CatSettings.TransceiverNum) +
+    ' ' + CatSettings.TransceiverName;
+end;
+
+procedure TConfigForm.SaveRIGSettings;
+var
+  TrscvName: string;
+begin
+  if Length(CBTransceiverModel.Text) > 1 then
+  begin
+    TrscvName := CBTransceiverModel.Text;
+    Delete(TrscvName, 1, pos(' ', TrscvName));
+    CatSettings.COMPort := CBCatComPort.Text;
+    CatSettings.Speed := CBCatSpeed.ItemIndex;
+    CatSettings.StopBit := CBCatStopBit.ItemIndex;
+    CatSettings.DataBit := CBCatDataBit.ItemIndex;
+    CatSettings.Parity := CBCatParity.ItemIndex;
+    CatSettings.Handshake := CBCatHandshake.ItemIndex;
+    CatSettings.RTSstate := CBCatRTSState.ItemIndex;
+    CatSettings.DTRstate := CBCatDTRState.ItemIndex;
+    CatSettings.CIVaddress := EditCATCIaddress.Text;
+    CatSettings.TransceiverNum :=
+      dmFunc.GetRigIdFromComboBoxItem(CBTransceiverModel.Text);
+    CatSettings.TransceiverName := TrscvName;
+    CatSettings.Address := EditCATAddress.Text;
+    CatSettings.Port := StrToInt(EditCATport.Text);
+    CatSettings.Extracmd := EditExtraCmd.Text;
+    CatSettings.StartRigctld:=CBrigctldStart.Checked;
+    CATdm.SaveCATini(1);
+    TRXForm.InicializeRig;
+  end;
 end;
 
 procedure TConfigForm.FormShow(Sender: TObject);
@@ -694,6 +730,7 @@ begin
   IniSet.Cluster_Pass := Edit12.Text;
   SaveGridColumns;
   SaveGridColors;
+  SaveRIGSettings;
   MainFunc.LoadINIsettings;
   MiniForm.SetHotKey;
   MainFunc.SetGrid(GridsForm.DBGrid1);

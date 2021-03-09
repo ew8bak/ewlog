@@ -34,8 +34,6 @@
 {"hash":171938100,"name":"tconfigform.lbpathrigctld.caption","sourcebytes":[80,97,116,104,32,102,111,114,32,72,97,109,76,105,98,32,82,105,103,99,116,108,100],"value":"Path for HamLib Rigctld"},
 {"hash":101627157,"name":"tconfigform.lbextracmd.caption","sourcebytes":[69,120,116,114,97,32,99,111,109,109,97,110,100,32,108,105,110,101],"value":"Extra command line"},
 {"hash":128683235,"name":"tconfigform.lbcataddress.caption","sourcebytes":[65,100,100,114,101,115,115],"value":"Address"},
-{"hash":169027393,"name":"tconfigform.editcataddress.text","sourcebytes":[49,50,55,46,48,46,48,46,49],"value":"127.0.0.1"},
-{"hash":227426,"name":"tconfigform.editcatport.text","sourcebytes":[52,53,51,50],"value":"4532"},
 {"hash":358036,"name":"tconfigform.lbcatport.caption","sourcebytes":[80,111,114,116],"value":"Port"},
 {"hash":66417172,"name":"tconfigform.lbcomcatport.caption","sourcebytes":[67,79,77,32,80,111,114,116],"value":"COM Port"},
 {"hash":180128884,"name":"tconfigform.cbcatspeed.text","sourcebytes":[68,101,102,97,117,108,116],"value":"Default"},

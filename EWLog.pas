@@ -18,7 +18,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
   CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc,
   fldigi, DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc,
-  QSLManagerForm_U, SettingsCAT_U, uRigControl, TRXForm_U, lnetvisual, hrdlog,
+  QSLManagerForm_U, uRigControl, TRXForm_U, lnetvisual, hrdlog,
   SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U,
   Changelog_Form_U, Earth_Form_U, IOTA_Form_U,
   sendtelnetspot_form_U, ClusterFilter_Form_U, ClusterServer_Form_U,
@@ -59,7 +59,6 @@ begin
   Application.CreateForm(TCountryEditForm, CountryEditForm);
   Application.CreateForm(TManagerBasePrefixForm, ManagerBasePrefixForm);
   Application.CreateForm(TQSLManager_Form, QSLManager_Form);
-  Application.CreateForm(TSettingsCAT, SettingsCAT);
   Application.CreateForm(TTRXForm, TRXForm);
   Application.CreateForm(TSettingsProgramForm, SettingsProgramForm);
   Application.CreateForm(TAbout_Form, About_Form);

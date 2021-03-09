@@ -1089,11 +1089,6 @@ msgstr ""
 msgid "Not all data entered"
 msgstr ""
 
-#: settingscat_u.rlibhamlibnotfound
-msgctxt "settingscat_u.rlibhamlibnotfound"
-msgid "HamLib library not found"
-msgstr ""
-
 #: tabout_form.caption
 msgctxt "tabout_form.caption"
 msgid "About"
@@ -1496,16 +1491,6 @@ msgstr ""
 
 #: tconfigform.checkbox9.caption
 msgid "Send Freq to CloudLog"
-msgstr ""
-
-#: tconfigform.editcataddress.text
-msgctxt "tconfigform.editcataddress.text"
-msgid "127.0.0.1"
-msgstr ""
-
-#: tconfigform.editcatport.text
-msgctxt "tconfigform.editcatport.text"
-msgid "4532"
 msgstr ""
 
 #: tconfigform.gbcloudlog.caption
@@ -4134,11 +4119,6 @@ msgctxt "tminiform.menuitem83.caption"
 msgid "From SQLite to MySQL"
 msgstr ""
 
-#: tminiform.menuitem84.caption
-msgctxt "tminiform.menuitem84.caption"
-msgid "Settings CAT"
-msgstr ""
-
 #: tminiform.menuitem85.caption
 msgctxt "tminiform.menuitem85.caption"
 msgid "Transceiver Control"
@@ -4578,138 +4558,6 @@ msgstr ""
 
 #: tserviceform.opendialog1.title
 msgid "Open existing file"
-msgstr ""
-
-#: tsettingscat.button1.caption
-msgctxt "tsettingscat.button1.caption"
-msgid "Save"
-msgstr ""
-
-#: tsettingscat.button2.caption
-msgctxt "tsettingscat.button2.caption"
-msgid "Close"
-msgstr ""
-
-#: tsettingscat.caption
-msgctxt "tsettingscat.caption"
-msgid "Settings CAT"
-msgstr ""
-
-#: tsettingscat.cbbaudrate.text
-msgctxt "tsettingscat.cbbaudrate.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbdatabits.text
-msgctxt "tsettingscat.cbdatabits.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbdtrstate.text
-msgctxt "tsettingscat.cbdtrstate.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbhandshake.text
-msgctxt "tsettingscat.cbhandshake.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbparity.text
-msgctxt "tsettingscat.cbparity.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbrtsstate.text
-msgctxt "tsettingscat.cbrtsstate.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbstopbits.text
-msgctxt "tsettingscat.cbstopbits.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.checkbox1.caption
-msgctxt "tsettingscat.checkbox1.caption"
-msgid "Start rigctld on startup?"
-msgstr ""
-
-#: tsettingscat.editaddress.text
-msgid "localhost"
-msgstr ""
-
-#: tsettingscat.editcivaddress.hint
-msgid "ICOM Radios"
-msgstr ""
-
-#: tsettingscat.groupbox1.caption
-msgid "Config HamLib"
-msgstr ""
-
-#: tsettingscat.label1.caption
-msgctxt "tsettingscat.label1.caption"
-msgid "Path for HamLib Rigctld"
-msgstr ""
-
-#: tsettingscat.label11.caption
-msgctxt "tsettingscat.label11.caption"
-msgid "COM Port"
-msgstr ""
-
-#: tsettingscat.label12.caption
-msgid "Transceiver model"
-msgstr ""
-
-#: tsettingscat.label16.caption
-msgctxt "tsettingscat.label16.caption"
-msgid "CI-V address"
-msgstr ""
-
-#: tsettingscat.label61.caption
-msgctxt "tsettingscat.label61.caption"
-msgid "Speed"
-msgstr ""
-
-#: tsettingscat.label62.caption
-msgctxt "tsettingscat.label62.caption"
-msgid "Data bit"
-msgstr ""
-
-#: tsettingscat.label63.caption
-msgctxt "tsettingscat.label63.caption"
-msgid "Parity"
-msgstr ""
-
-#: tsettingscat.label64.caption
-msgctxt "tsettingscat.label64.caption"
-msgid "Stop bit"
-msgstr ""
-
-#: tsettingscat.label65.caption
-msgid "RTS state"
-msgstr ""
-
-#: tsettingscat.label66.caption
-msgid "DTR state"
-msgstr ""
-
-#: tsettingscat.label67.caption
-msgctxt "tsettingscat.label67.caption"
-msgid "Handshake"
-msgstr ""
-
-#: tsettingscat.lbextracmd.caption
-msgctxt "tsettingscat.lbextracmd.caption"
-msgid "Extra command line"
-msgstr ""
-
-#: tsettingscat.radiobutton1.caption
-msgid "RIG2"
-msgstr ""
-
-#: tsettingscat.rig1.caption
-msgid "RIG1"
 msgstr ""
 
 #: tsettingsprogramform.btaddprogram.caption

@@ -63,7 +63,7 @@ type
       RigComboBox: TComboBox);
     procedure LoadRigsToComboBox(CurrentRigId: string; RigCtlBinaryPath: string;
       RigComboBox: TComboBox);
-    function GetRigIdFromComboBoxItem(ItemText: string): string;
+    function GetRigIdFromComboBoxItem(ItemText: string): integer;
     procedure DistanceFromCoordinate(my_loc: string; latitude, longitude: real;
       var qra, azim: string);
     procedure Delay(n: cardinal);
@@ -96,7 +96,6 @@ type
     function RunProgram(progpath, args: string): boolean;
     function RusToEng(Text: string): string;
     function RusToLat(Text: string): string;
-    function GetRadioRigCtldCommandLine(radio: word): string;
     function StrToFreq(const freqstr: string): extended;
     function GetDigiBandFromFreq(MHz: string): double;
     procedure CoordinateFromLocator(loc: string; var latitude, longitude: currency);
@@ -1068,9 +1067,9 @@ begin
   end;
 end;
 
-function TdmFunc.GetRigIdFromComboBoxItem(ItemText: string): string;
+function TdmFunc.GetRigIdFromComboBoxItem(ItemText: string): integer;
 begin
-  Result := Copy(ItemText, 1, Pos(' ', ItemText) - 1);
+  Result := StrToInt(Copy(ItemText, 1, Pos(' ', ItemText) - 1));
 end;
 
 function TdmFunc.nr(ch: char): integer;
@@ -1141,125 +1140,6 @@ begin
     Inc(i);
   end;
   Result := Result / 10000000;
-end;
-
-
-function TdmFunc.GetRadioRigCtldCommandLine(radio: word): string;
-var
-  section: ShortString = '';
-  arg: string = '';
-  set_conf: string = '';
-begin
-  section := 'TRX' + IntToStr(radio);
-
-  if INIFile.ReadString(section, 'model', '') = '' then
-  begin
-    Result := '';
-    exit;
-  end;
-
-  if INIFile.ReadString(section, 'model', '') <> IntToStr(2) then
-  begin
-    Result := '-m ' + INIFile.ReadString(section, 'model', '') + ' ';
-    if Pos('FLRig', INIFile.ReadString(section, 'name', '')) or
-      (Pos('TRXManager', INIFile.ReadString(section, 'name', ''))) > 0 then
-      Result := Result + INIFile.ReadString(section, 'device', '') + ' ' +
-        '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' '
-    else
-      Result := Result + '-r ' + INIFile.ReadString(section, 'device', '') +
-        ' ' + '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
-  end
-  else
-    Result := '-m ' + INIFile.ReadString(section, 'model', '') + ' ' +
-      '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
-
-  Result := Result + INIFile.ReadString('SetCAT', 'rigctldExtra', '') + ' ';
-
-  case INIFile.ReadInteger(section, 'SerialSpeed', 0) of
-    0: arg := '';
-    1: arg := '-s 1200 ';
-    2: arg := '-s 2400 ';
-    3: arg := '-s 4800 ';
-    4: arg := '-s 9600 ';
-    5: arg := '-s 14400 ';
-    6: arg := '-s 19200 ';
-    7: arg := '-s 38400 ';
-    8: arg := '-s 57600 ';
-    9: arg := '-s 115200 '
-
-    else
-      arg := ''
-  end; //case
-  Result := Result + arg;
-
-  case INIFile.ReadInteger(section, 'DataBits', 0) of
-    0: arg := '';
-    1: arg := 'data_bits=5';
-    2: arg := 'data_bits=6';
-    3: arg := 'data_bits=7';
-    4: arg := 'data_bits=8';
-    5: arg := 'data_bits=9'
-    else
-      arg := ''
-  end; //case
-  if arg <> '' then
-    set_conf := set_conf + arg + ',';
-
-  if INIFile.ReadInteger(section, 'StopBits', 0) > 0 then
-    set_conf := set_conf + 'stop_bits=' + IntToStr(INIFile.ReadInteger(
-      section, 'StopBits', 0) - 1) + ',';
-
-  case INIFile.ReadInteger(section, 'Parity', 0) of
-    0: arg := '';
-    1: arg := 'parity=None';
-    2: arg := 'parity=Odd';
-    3: arg := 'parity=Even';
-    4: arg := 'parity=Mark';
-    5: arg := 'parity=Space'
-    else
-      arg := ''
-  end; //case
-  if arg <> '' then
-    set_conf := set_conf + arg + ',';
-
-  case INIFile.ReadInteger(section, 'HandShake', 0) of
-    0: arg := '';
-    1: arg := 'serial_handshake=None';
-    2: arg := 'serial_handshake=XONXOFF';
-    3: arg := 'serial_handshake=Hardware';
-    else
-      arg := ''
-  end; //case
-  if arg <> '' then
-    set_conf := set_conf + arg + ',';
-
-  case INIFile.ReadInteger(section, 'DTR', 0) of
-    0: arg := '';
-    1: arg := 'dtr_state=Unset';
-    2: arg := 'dtr_state=ON';
-    3: arg := 'dtr_state=OFF';
-    else
-      arg := ''
-  end; //case
-  if arg <> '' then
-    set_conf := set_conf + arg + ',';
-
-  case INIFile.ReadInteger(section, 'RTS', 0) of
-    0: arg := '';
-    1: arg := 'rts_state=Unset';
-    2: arg := 'rts_state=ON';
-    3: arg := 'rts_state=OFF';
-    else
-      arg := ''
-  end; //case
-  if arg <> '' then
-    set_conf := set_conf + arg + ',';
-
-  if (set_conf <> '') then
-  begin
-    set_conf := copy(set_conf, 1, Length(set_conf) - 1);
-    Result := Result + ' --set-conf ' + set_conf;
-  end;
 end;
 
 function TdmFunc.RusToLat(Text: string): string;
