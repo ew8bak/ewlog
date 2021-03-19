@@ -721,7 +721,7 @@ begin
   SendTelnetSpot.Show;
   SendTelnetSpot.EditDXCall.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-  SendTelnetSpot.ComboBox1.Text :=
+  SendTelnetSpot.CBFreq.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
 end;
 

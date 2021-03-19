@@ -10,14 +10,13 @@ object SendTelnetSpot: TSendTelnetSpot
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object EditDXCall: TEdit
     AnchorSideLeft.Control = Owner
     Left = 20
-    Height = 23
+    Height = 26
     Top = 32
     Width = 120
-    AutoSize = False
     BorderSpacing.Left = 20
     CharCase = ecUppercase
     Font.Height = -12
@@ -26,33 +25,33 @@ object SendTelnetSpot: TSendTelnetSpot
     ParentFont = False
     TabOrder = 0
   end
-  object Label1: TLabel
+  object LBCallsign: TLabel
     AnchorSideLeft.Control = EditDXCall
     AnchorSideBottom.Control = EditDXCall
     Left = 20
-    Height = 15
-    Top = 16
-    Width = 60
+    Height = 13
+    Top = 18
+    Width = 67
     Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 1
     Caption = 'DX Callsign'
     ParentColor = False
   end
-  object ComboBox1: TComboBox
+  object CBFreq: TComboBox
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = EditDXCall
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 157
-    Height = 23
+    Height = 27
     Top = 32
     Width = 120
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 20
     Font.Height = -12
-    ItemHeight = 15
+    ItemHeight = 0
     ItemIndex = 2
     Items.Strings = (
       '1.800.00'
@@ -71,51 +70,48 @@ object SendTelnetSpot: TSendTelnetSpot
     TabOrder = 1
     Text = '7.000.00'
   end
-  object Label2: TLabel
-    AnchorSideLeft.Control = ComboBox1
-    AnchorSideBottom.Control = ComboBox1
+  object LBFreq: TLabel
+    AnchorSideLeft.Control = CBFreq
+    AnchorSideBottom.Control = CBFreq
     Left = 157
-    Height = 15
-    Top = 16
-    Width = 55
+    Height = 13
+    Top = 18
+    Width = 63
     Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 1
     Caption = 'Frequency'
     ParentColor = False
   end
-  object EditComment: TEdit
-    AnchorSideLeft.Control = Owner
+  object LBComment: TLabel
     Left = 20
-    Height = 23
-    Top = 80
-    Width = 257
-    AutoSize = False
-    BorderSpacing.Left = 20
-    Font.Height = -12
-    OnChange = EditCommentChange
-    OnKeyDown = EditCommentKeyDown
-    ParentFont = False
-    TabOrder = 2
-  end
-  object Label3: TLabel
-    AnchorSideLeft.Control = EditComment
-    AnchorSideBottom.Control = EditComment
-    Left = 20
-    Height = 15
-    Top = 64
-    Width = 54
+    Height = 13
+    Top = 66
+    Width = 59
     Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 1
     Caption = 'Comment'
     ParentColor = False
   end
-  object Button1: TButton
+  object BtSend: TButton
     Left = 205
     Height = 25
     Top = 120
     Width = 75
     Caption = 'Send'
-    OnClick = Button1Click
+    OnClick = BtSendClick
+    TabOrder = 2
+  end
+  object CBComment: TComboBox
+    AnchorSideLeft.Control = LBComment
+    AnchorSideTop.Control = LBComment
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 27
+    Top = 80
+    Width = 252
+    ItemHeight = 0
+    OnChange = CBCommentChange
+    OnKeyDown = CBCommentKeyDown
     TabOrder = 3
   end
 end

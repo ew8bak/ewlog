@@ -4565,7 +4565,9 @@ msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
 msgstr "Заметки"
 
-#: tsendtelnetspot.button1.caption
+#: tsendtelnetspot.btsend.caption
+#, fuzzy
+msgctxt "tsendtelnetspot.btsend.caption"
 msgid "Send"
 msgstr "Отправить"
 
@@ -4574,24 +4576,28 @@ msgctxt "tsendtelnetspot.caption"
 msgid "Send spot"
 msgstr "Отправить спот"
 
-#: tsendtelnetspot.combobox1.text
-msgctxt "tsendtelnetspot.combobox1.text"
+#: tsendtelnetspot.cbfreq.text
+msgctxt "tsendtelnetspot.cbfreq.text"
 msgid "7.000.00"
 msgstr ""
 
-#: tsendtelnetspot.label1.caption
+#: tsendtelnetspot.lbcallsign.caption
+#, fuzzy
+msgctxt "tsendtelnetspot.lbcallsign.caption"
 msgid "DX Callsign"
 msgstr "DX Позывной"
 
-#: tsendtelnetspot.label2.caption
-msgctxt "tsendtelnetspot.label2.caption"
-msgid "Frequency"
-msgstr "Частота"
-
-#: tsendtelnetspot.label3.caption
-msgctxt "tsendtelnetspot.label3.caption"
+#: tsendtelnetspot.lbcomment.caption
+#, fuzzy
+msgctxt "tsendtelnetspot.lbcomment.caption"
 msgid "Comment"
 msgstr "Комментарий"
+
+#: tsendtelnetspot.lbfreq.caption
+#, fuzzy
+msgctxt "tsendtelnetspot.lbfreq.caption"
+msgid "Frequency"
+msgstr "Частота"
 
 #: tserviceform.button1.caption
 msgid "Connect with LoTW"

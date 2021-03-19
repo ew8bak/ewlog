@@ -4475,7 +4475,8 @@ msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
 msgstr ""
 
-#: tsendtelnetspot.button1.caption
+#: tsendtelnetspot.btsend.caption
+msgctxt "tsendtelnetspot.btsend.caption"
 msgid "Send"
 msgstr ""
 
@@ -4484,23 +4485,24 @@ msgctxt "tsendtelnetspot.caption"
 msgid "Send spot"
 msgstr ""
 
-#: tsendtelnetspot.combobox1.text
-msgctxt "tsendtelnetspot.combobox1.text"
+#: tsendtelnetspot.cbfreq.text
+msgctxt "tsendtelnetspot.cbfreq.text"
 msgid "7.000.00"
 msgstr ""
 
-#: tsendtelnetspot.label1.caption
+#: tsendtelnetspot.lbcallsign.caption
+msgctxt "tsendtelnetspot.lbcallsign.caption"
 msgid "DX Callsign"
 msgstr ""
 
-#: tsendtelnetspot.label2.caption
-msgctxt "tsendtelnetspot.label2.caption"
-msgid "Frequency"
+#: tsendtelnetspot.lbcomment.caption
+msgctxt "tsendtelnetspot.lbcomment.caption"
+msgid "Comment"
 msgstr ""
 
-#: tsendtelnetspot.label3.caption
-msgctxt "tsendtelnetspot.label3.caption"
-msgid "Comment"
+#: tsendtelnetspot.lbfreq.caption
+msgctxt "tsendtelnetspot.lbfreq.caption"
+msgid "Frequency"
 msgstr ""
 
 #: tserviceform.button1.caption

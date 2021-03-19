@@ -1502,8 +1502,6 @@ begin
       if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
-      //   MainFunc.SetGrid(GridsForm.DBGrid1);
-      //   MainFunc.SetGrid(GridsForm.DBGrid2);
       Clr;
       MiniForm.TextSB('QSO № ' + IntToStr(1) + rQSOTotal +
         IntToStr(CountAllRecords), 1);
