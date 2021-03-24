@@ -1145,6 +1145,10 @@ msgstr ""
 msgid "Digi"
 msgstr ""
 
+#: tclusterfilter.cbdeletenode.caption
+msgid "Delete Node from cluster"
+msgstr ""
+
 #: tclusterfilter.cbssb.caption
 msgctxt "tclusterfilter.cbssb.caption"
 msgid "SSB"

@@ -37,11 +37,14 @@ type
     procedure CBCommentKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure EditDXCallChange(Sender: TObject);
     procedure EditDXCallKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     SelEditNumChar: integer;
-    oldComments: array of string;
-    procedure LoadOldComments;
+    SLComments: TStringList;
+    procedure LoadComments;
+    procedure SaveComments;
     { private declarations }
   public
     { public declarations }
@@ -59,24 +62,38 @@ uses
 
 { TSendTelnetSpot }
 
-procedure TSendTelnetSpot.LoadOldComments;
+procedure TSendTelnetSpot.LoadComments;
 var
   i: integer;
-  StringList: TStringList;
+  LastComment: string;
 begin
-  try
-    StringList := TStringList.Create;
-    for i := 0 to 9 do
-      StringList.Add(INIFile.ReadString('Cluster', 'Comment' + IntToStr(i), ''));
-  finally
-    for i := 0 to 9 do
-    begin
-      if StringList.Strings[i] <> '' then
-        CBComment.Items.Add(StringList.Strings[i]);
+  CBComment.Items.Clear;
+  SLComments.Clear;
+  for i := 0 to 9 do
+    if INIFile.ReadString('Cluster', 'Comment' + IntToStr(i), '') <> '' then
+      SLComments.Add(INIFile.ReadString('Cluster', 'Comment' + IntToStr(i), ''));
+  LastComment := INIFile.ReadString('Cluster', 'CommentLast', 'TNX for QSO! 73!');
+  SLComments.Insert(0, LastComment);
+  for i := 0 to SLComments.Count - 1 do
+    CBComment.Items.Add(SLComments.Strings[i]);
+  CBComment.ItemIndex := CBComment.Items.IndexOf(LastComment);
+end;
+
+procedure TSendTelnetSpot.SaveComments;
+var
+  i: integer;
+begin
+  INIFile.WriteString('Cluster', 'CommentLast', CBComment.Text);
+  if CBComment.Items.IndexOf(CBComment.Text) = -1 then
+  begin
+    SLComments.Insert(0, CBComment.Text);
+    if SLComments.Count > 10 then
+      SLComments.Delete(SLComments.Count - 1);
+    CBComment.Items.Clear;
+    for i := 0 to SLComments.Count - 1 do begin
+      INIFile.WriteString('Cluster', 'Comment' + IntToStr(i), SLComments.Strings[i]);
+      CBComment.Items.Add(SLComments.Strings[i]);
     end;
-    if CBComment.Items.Count > 0 then
-      CBComment.ItemIndex := 0;
-    FreeAndNil(StringList);
   end;
 end;
 
@@ -88,7 +105,7 @@ begin
   else
     CBFreq.Text := MiniForm.CBBand.Text;
   EditDXCall.Text := MiniForm.EditCallsign.Text;
-  LoadOldComments;
+  LoadComments;
 end;
 
 procedure TSendTelnetSpot.BtSendClick(Sender: TObject);
@@ -96,6 +113,7 @@ var
   freq, call, comment: string;
   freq2: double;
 begin
+  SaveComments;
   if (EditDXCall.Text <> '') and (CBComment.Text <> '') and (CBFreq.Text <> '') then
   begin
     call := EditDXCall.Text;
@@ -160,6 +178,16 @@ begin
     SelEditNumChar := EditDXCall.SelStart;
   if (EditDXCall.SelLength <> 0) and (Key = VK_BACK) then
     SelEditNumChar := EditDXCall.SelStart;
+end;
+
+procedure TSendTelnetSpot.FormCreate(Sender: TObject);
+begin
+  SLComments := TStringList.Create;
+end;
+
+procedure TSendTelnetSpot.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(SLComments);
 end;
 
 end.

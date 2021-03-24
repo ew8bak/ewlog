@@ -11,7 +11,7 @@ object ClusterFilter: TClusterFilter
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object GroupBox2: TGroupBox
     Left = 160
     Height = 225
@@ -28,7 +28,7 @@ object ClusterFilter: TClusterFilter
       Left = 10
       Height = 23
       Top = 67
-      Width = 45
+      Width = 48
       BorderSpacing.Left = 10
       BorderSpacing.Top = 10
       Caption = 'SSB'
@@ -44,7 +44,7 @@ object ClusterFilter: TClusterFilter
       Left = 10
       Height = 23
       Top = 5
-      Width = 43
+      Width = 45
       BorderSpacing.Left = 10
       BorderSpacing.Top = 5
       Caption = 'CW'
@@ -61,7 +61,7 @@ object ClusterFilter: TClusterFilter
       Left = 10
       Height = 23
       Top = 129
-      Width = 46
+      Width = 47
       BorderSpacing.Left = 10
       BorderSpacing.Top = 10
       Caption = 'Digi'
@@ -138,7 +138,7 @@ object ClusterFilter: TClusterFilter
     Left = 170
     Height = 13
     Top = 245
-    Width = 134
+    Width = 144
     BorderSpacing.Left = 10
     BorderSpacing.Top = 20
     Caption = 'Delete spots older then:'
@@ -151,9 +151,9 @@ object ClusterFilter: TClusterFilter
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Label1
     AnchorSideTop.Side = asrCenter
-    Left = 309
-    Height = 25
-    Top = 239
+    Left = 319
+    Height = 26
+    Top = 238
     Width = 72
     BorderSpacing.Left = 5
     MinValue = 1
@@ -165,21 +165,23 @@ object ClusterFilter: TClusterFilter
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = GroupBox2
     AnchorSideTop.Side = asrBottom
-    Left = 386
+    Left = 396
     Height = 13
     Top = 245
-    Width = 44
+    Width = 49
     BorderSpacing.Left = 5
     BorderSpacing.Top = 20
     Caption = 'minutes'
     ParentColor = False
   end
   object Button1: TButton
+    AnchorSideTop.Control = CBDeleteNode
+    AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = GroupBox2
     AnchorSideRight.Side = asrBottom
     Left = 408
     Height = 29
-    Top = 304
+    Top = 309
     Width = 88
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Close'
@@ -187,10 +189,12 @@ object ClusterFilter: TClusterFilter
     TabOrder = 3
   end
   object Button2: TButton
+    AnchorSideTop.Control = CBDeleteNode
+    AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Button1
     Left = 310
     Height = 29
-    Top = 304
+    Top = 309
     Width = 88
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 10
@@ -205,12 +209,24 @@ object ClusterFilter: TClusterFilter
     Left = 170
     Height = 23
     Top = 263
-    Width = 85
+    Width = 93
     BorderSpacing.Left = 10
     BorderSpacing.Top = 5
     Caption = 'Expand list'
     Font.Height = -12
     ParentFont = False
     TabOrder = 5
+  end
+  object CBDeleteNode: TCheckBox
+    AnchorSideLeft.Control = GroupBox2
+    AnchorSideTop.Control = CheckBox1
+    AnchorSideTop.Side = asrBottom
+    Left = 170
+    Height = 23
+    Top = 286
+    Width = 176
+    BorderSpacing.Left = 10
+    Caption = 'Delete Node from cluster'
+    TabOrder = 6
   end
 end

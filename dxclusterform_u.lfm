@@ -11,7 +11,7 @@ object dxClusterForm: TdxClusterForm
   OnDestroy = FormDestroy
   OnResize = FormResize
   OnShow = FormShow
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 214
@@ -26,15 +26,15 @@ object dxClusterForm: TdxClusterForm
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'Telnet'
-      ClientHeight = 186
-      ClientWidth = 727
+      ClientHeight = 185
+      ClientWidth = 725
       Font.Height = -12
       ParentFont = False
       object Memo1: TMemo
         Left = 0
-        Height = 163
+        Height = 162
         Top = 0
-        Width = 727
+        Width = 725
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoVertical
@@ -43,8 +43,8 @@ object dxClusterForm: TdxClusterForm
       object EditCommand: TEdit
         Left = 0
         Height = 23
-        Top = 163
-        Width = 727
+        Top = 162
+        Width = 725
         Align = alBottom
         AutoSize = False
         Font.Height = -12
@@ -55,16 +55,16 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet2: TTabSheet
       Caption = 'DX Cluster'
-      ClientHeight = 186
-      ClientWidth = 727
+      ClientHeight = 185
+      ClientWidth = 725
       Font.Height = -12
       ParentFont = False
       object VirtualStringTree1: TVirtualStringTree
         Cursor = 63
         Left = 0
-        Height = 186
+        Height = 185
         Top = 0
-        Width = 727
+        Width = 725
         Align = alClient
         DefaultText = 'Node'
         Font.Height = -12
@@ -140,6 +140,7 @@ object dxClusterForm: TdxClusterForm
       ClientWidth = 725
       Font.Height = -12
       ParentFont = False
+      TabVisible = False
       object Memo2: TMemo
         Left = 0
         Height = 125
@@ -166,7 +167,7 @@ object dxClusterForm: TdxClusterForm
           Left = 6
           Height = 13
           Top = 9
-          Width = 60
+          Width = 66
           BorderSpacing.Left = 5
           Caption = 'To Callsign:'
           Font.Height = -12
@@ -178,7 +179,7 @@ object dxClusterForm: TdxClusterForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel2
           AnchorSideTop.Side = asrCenter
-          Left = 71
+          Left = 77
           Height = 23
           Top = 4
           Width = 129
@@ -206,7 +207,7 @@ object dxClusterForm: TdxClusterForm
           Left = 6
           Height = 13
           Top = 9
-          Width = 50
+          Width = 55
           BorderSpacing.Left = 5
           Caption = 'Message:'
           ParentColor = False
@@ -216,7 +217,7 @@ object dxClusterForm: TdxClusterForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel3
           AnchorSideTop.Side = asrCenter
-          Left = 61
+          Left = 66
           Height = 23
           Top = 4
           Width = 595
@@ -622,7 +623,7 @@ object dxClusterForm: TdxClusterForm
       AutoSize = False
       BorderSpacing.Left = 5
       Font.Height = -12
-      ItemHeight = 15
+      ItemHeight = 0
       OnChange = CBServersChange
       ParentFont = False
       Style = csDropDownList
