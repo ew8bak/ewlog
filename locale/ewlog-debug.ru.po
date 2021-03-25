@@ -1963,6 +1963,12 @@ msgctxt "tcontestform.lbcallsign.caption"
 msgid "Callsign"
 msgstr "Позывной"
 
+#: tcontestform.lbcomment.caption
+#, fuzzy
+msgctxt "tcontestform.lbcomment.caption"
+msgid "Comment"
+msgstr "Комментарий"
+
 #: tcontestform.lbcontestname.caption
 msgid "Contest Name"
 msgstr ""
@@ -1996,6 +2002,12 @@ msgstr "Частота"
 msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"
 msgstr "Мода"
+
+#: tcontestform.lbname.caption
+#, fuzzy
+msgctxt "tcontestform.lbname.caption"
+msgid "Name"
+msgstr "Имя"
 
 #: tcontestform.lbrstr.caption
 msgid "RST(r)"

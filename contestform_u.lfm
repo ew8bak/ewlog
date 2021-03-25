@@ -36,6 +36,7 @@ object ContestForm: TContestForm
     Caption = 'Serial'
     Checked = True
     TabOrder = 0
+    TabStop = True
   end
   object RBOther: TRadioButton
     AnchorSideLeft.Control = RBSerial
@@ -399,5 +400,10 @@ object ContestForm: TContestForm
     Width = 200
     BorderSpacing.Top = 5
     TabOrder = 14
+  end
+  object TTime: TTimer
+    OnTimer = TTimeTimer
+    Left = 467
+    Top = 183
   end
 end

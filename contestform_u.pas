@@ -5,7 +5,8 @@ unit contestForm_u;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn, LCLType;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
+  LCLType, ExtCtrls;
 
 type
 
@@ -41,10 +42,12 @@ type
     RBOther: TRadioButton;
     RBSerial: TRadioButton;
     TETime: TTimeEdit;
+    TTime: TTimer;
     procedure EditCallsignChange(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure EditCallsignKeyPress(Sender: TObject; var Key: char);
+    procedure TTimeTimer(Sender: TObject);
   private
     SelEditNumChar: integer;
 
@@ -92,6 +95,12 @@ procedure TContestForm.EditCallsignKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = ' ' then
     Key := Chr(0);
+end;
+
+procedure TContestForm.TTimeTimer(Sender: TObject);
+begin
+  TETime.Time := Now;
+  DEDate.Date := Now;
 end;
 
 end.

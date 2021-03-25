@@ -1877,6 +1877,11 @@ msgctxt "tcontestform.lbcallsign.caption"
 msgid "Callsign"
 msgstr ""
 
+#: tcontestform.lbcomment.caption
+msgctxt "tcontestform.lbcomment.caption"
+msgid "Comment"
+msgstr ""
+
 #: tcontestform.lbcontestname.caption
 msgid "Contest Name"
 msgstr ""
@@ -1906,6 +1911,11 @@ msgstr ""
 #: tcontestform.lbmode.caption
 msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"
+msgstr ""
+
+#: tcontestform.lbname.caption
+msgctxt "tcontestform.lbname.caption"
+msgid "Name"
 msgstr ""
 
 #: tcontestform.lbrstr.caption
