@@ -23,5 +23,6 @@
 {"hash":49,"name":"tcontestform.editexchs.text","sourcebytes":[49],"value":"1"},
 {"hash":905,"name":"tcontestform.editrstr.text","sourcebytes":[53,57],"value":"59"},
 {"hash":346165,"name":"tcontestform.lbname.caption","sourcebytes":[78,97,109,101],"value":"Name"},
-{"hash":174341140,"name":"tcontestform.lbcomment.caption","sourcebytes":[67,111,109,109,101,110,116],"value":"Comment"}
+{"hash":174341140,"name":"tcontestform.lbcomment.caption","sourcebytes":[67,111,109,109,101,110,116],"value":"Comment"},
+{"hash":366789,"name":"tcontestform.btsave.caption","sourcebytes":[83,97,118,101],"value":"Save"}
 ]}

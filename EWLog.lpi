@@ -692,6 +692,7 @@
         <Filename Value="contestform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ContestForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="contestForm_u"/>
       </Unit84>

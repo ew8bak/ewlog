@@ -1,12 +1,13 @@
 object ContestForm: TContestForm
-  Left = 498
-  Height = 247
-  Top = 251
+  Left = 403
+  Height = 242
+  Top = 252
   Width = 691
   Caption = 'Contest Logging'
-  ClientHeight = 247
+  ClientHeight = 242
   ClientWidth = 691
   FormStyle = fsStayOnTop
+  OnShow = FormShow
   Position = poScreenCenter
   UseDockManager = True
   LCLVersion = '2.0.12.0'
@@ -350,6 +351,7 @@ object ContestForm: TContestForm
     Width = 80
     BorderSpacing.Top = 5
     Font.Height = -27
+    OnKeyDown = EditExchrKeyDown
     ParentFont = False
     TabOrder = 12
   end
@@ -400,6 +402,33 @@ object ContestForm: TContestForm
     Width = 200
     BorderSpacing.Top = 5
     TabOrder = 14
+  end
+  object BtSave: TButton
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = SBContest
+    Left = 606
+    Height = 25
+    Top = 196
+    Width = 80
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 5
+    BorderSpacing.Bottom = 5
+    Caption = 'Save'
+    OnClick = BtSaveClick
+    OnKeyDown = BtSaveKeyDown
+    TabOrder = 15
+  end
+  object SBContest: TStatusBar
+    Left = 0
+    Height = 16
+    Top = 226
+    Width = 691
+    Panels = <    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
   end
   object TTime: TTimer
     OnTimer = TTimeTimer

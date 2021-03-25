@@ -1915,6 +1915,12 @@ msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr "Телнет"
 
+#: tcontestform.btsave.caption
+#, fuzzy
+msgctxt "tcontestform.btsave.caption"
+msgid "Save"
+msgstr "Сохранить"
+
 #: tcontestform.caption
 msgctxt "tcontestform.caption"
 msgid "Contest Logging"
