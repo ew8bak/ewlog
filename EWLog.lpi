@@ -163,7 +163,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="84">
+    <Units Count="85">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -688,6 +688,13 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmCat"/>
       </Unit83>
+      <Unit84>
+        <Filename Value="contestform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ContestForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="contestForm_u"/>
+      </Unit84>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

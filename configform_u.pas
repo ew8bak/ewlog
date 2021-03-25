@@ -115,6 +115,8 @@ type
     Edit13: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
+    EditExportKey: TEdit;
+    EditImportKey: TEdit;
     EditCATAddress: TEdit;
     EditCATport: TEdit;
     EditCATCIaddress: TEdit;
@@ -142,6 +144,8 @@ type
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
+    LBKeyExport: TLabel;
+    LBKeyImport: TLabel;
     LBPoll: TLabel;
     LBCatRTSState: TLabel;
     LBCatCIVaddress: TLabel;
@@ -223,6 +227,10 @@ type
     procedure CheckBox6Change(Sender: TObject);
     procedure CheckBox7Change(Sender: TObject);
     procedure EditClearKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
+    procedure EditExportKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
+    procedure EditImportKeyKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure EditReferenceKeyKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
@@ -310,6 +318,8 @@ begin
   INIFile.WriteString('Key', 'Save', EditSaveKey.Text);
   INIFile.WriteString('Key', 'Clear', EditClearKey.Text);
   INIFile.WriteString('Key', 'Reference', EditReferenceKey.Text);
+  INIFile.WriteString('Key', 'ImportADI', EditImportKey.Text);
+  INIFile.WriteString('Key', 'ExportADI', EditExportKey.Text);
 end;
 
 procedure TConfigForm.ReadINI;
@@ -370,6 +380,8 @@ begin
   EditSaveKey.Text := INIFile.ReadString('Key', 'Save', 'Alt+S');
   EditClearKey.Text := INIFile.ReadString('Key', 'Clear', 'Alt+C');
   EditReferenceKey.Text := INIFile.ReadString('Key', 'Reference', 'Enter');
+  EditImportKey.Text := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
+  EditExportKey.Text := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
   ReadGridColumns;
   ReadGridColors;
 end;
@@ -513,6 +525,22 @@ begin
   EditClearKey.SelStart := EditClearKey.GetTextLen;
 end;
 
+procedure TConfigForm.EditExportKeyKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  EditExportKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditExportKey.SelStart := EditExportKey.GetTextLen;
+end;
+
+procedure TConfigForm.EditImportKeyKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  EditImportKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditImportKey.SelStart := EditImportKey.GetTextLen;
+end;
+
 procedure TConfigForm.EditReferenceKeyKeyDown(Sender: TObject;
   var Key: word; Shift: TShiftState);
 begin
@@ -566,7 +594,7 @@ begin
   EditCATAddress.Text := CatSettings.Address;
   EditCATport.Text := IntToStr(CatSettings.Port);
   EditExtraCmd.Text := CatSettings.Extracmd;
-  CBrigctldStart.Checked:=CatSettings.StartRigctld;
+  CBrigctldStart.Checked := CatSettings.StartRigctld;
   CBTransceiverModel.Text := IntToStr(CatSettings.TransceiverNum) +
     ' ' + CatSettings.TransceiverName;
 end;
@@ -594,7 +622,7 @@ begin
     CatSettings.Address := EditCATAddress.Text;
     CatSettings.Port := StrToInt(EditCATport.Text);
     CatSettings.Extracmd := EditExtraCmd.Text;
-    CatSettings.StartRigctld:=CBrigctldStart.Checked;
+    CatSettings.StartRigctld := CBrigctldStart.Checked;
     CATdm.SaveCATini(1);
     TRXForm.InicializeRig;
   end;

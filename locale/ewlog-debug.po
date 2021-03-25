@@ -1725,6 +1725,14 @@ msgstr ""
 msgid "Key get data from Online Reference"
 msgstr ""
 
+#: tconfigform.lbkeyexport.caption
+msgid "Key Export ADI file"
+msgstr ""
+
+#: tconfigform.lbkeyimport.caption
+msgid "Key Import ADI file"
+msgstr ""
+
 #: tconfigform.lbpathbackup.caption
 msgid "Path backup files"
 msgstr ""
@@ -1821,6 +1829,108 @@ msgstr ""
 #: tconfigform.tstelnet.caption
 msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
+msgstr ""
+
+#: tcontestform.caption
+msgctxt "tcontestform.caption"
+msgid "Contest Logging"
+msgstr ""
+
+#: tcontestform.cbband.text
+msgid "160M"
+msgstr ""
+
+#: tcontestform.cbmode.text
+msgctxt "tcontestform.cbmode.text"
+msgid "SSB"
+msgstr ""
+
+#: tcontestform.dedate.text
+msgid "25.03.21"
+msgstr ""
+
+#: tcontestform.editexchs.text
+msgid "1"
+msgstr ""
+
+#: tcontestform.editfreq.text
+msgid "1840000"
+msgstr ""
+
+#: tcontestform.editrstr.text
+msgctxt "tcontestform.editrstr.text"
+msgid "59"
+msgstr ""
+
+#: tcontestform.editrsts.text
+msgctxt "tcontestform.editrsts.text"
+msgid "59"
+msgstr ""
+
+#: tcontestform.lbband.caption
+msgctxt "tcontestform.lbband.caption"
+msgid "Band"
+msgstr ""
+
+#: tcontestform.lbcallsign.caption
+msgctxt "tcontestform.lbcallsign.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tcontestform.lbcontestname.caption
+msgid "Contest Name"
+msgstr ""
+
+#: tcontestform.lbdate.caption
+msgctxt "tcontestform.lbdate.caption"
+msgid "Date"
+msgstr ""
+
+#: tcontestform.lbexchangetype.caption
+msgid "Exchange Type:"
+msgstr ""
+
+#: tcontestform.lbexchr.caption
+msgid "Exch(r)"
+msgstr ""
+
+#: tcontestform.lbexchs.caption
+msgid "Exch(s)"
+msgstr ""
+
+#: tcontestform.lbfreq.caption
+msgctxt "tcontestform.lbfreq.caption"
+msgid "Frequency"
+msgstr ""
+
+#: tcontestform.lbmode.caption
+msgctxt "tcontestform.lbmode.caption"
+msgid "Mode"
+msgstr ""
+
+#: tcontestform.lbrstr.caption
+msgid "RST(r)"
+msgstr ""
+
+#: tcontestform.lbrsts.caption
+msgid "RST(s)"
+msgstr ""
+
+#: tcontestform.lbtime.caption
+msgctxt "tcontestform.lbtime.caption"
+msgid "Time"
+msgstr ""
+
+#: tcontestform.rbother.caption
+msgid "Other"
+msgstr ""
+
+#: tcontestform.rbserial.caption
+msgid "Serial"
+msgstr ""
+
+#: tcontestform.tetime.text
+msgid "12:00:00"
 msgstr ""
 
 #: tcountryeditform.caption
@@ -3685,8 +3795,16 @@ msgctxt "tminiform.datetimepicker1.textfornulldate"
 msgid "NULL"
 msgstr ""
 
+#: tminiform.exportadi.caption
+msgid "ExportADI"
+msgstr ""
+
 #: tminiform.getreference.caption
 msgid "GetReference"
+msgstr ""
+
+#: tminiform.importadi.caption
+msgid "ImportADI"
 msgstr ""
 
 #: tminiform.label10.caption
@@ -4151,6 +4269,11 @@ msgstr ""
 #: tminiform.miclustertop.caption
 msgctxt "tminiform.miclustertop.caption"
 msgid "On Top"
+msgstr ""
+
+#: tminiform.micontestlogging.caption
+msgctxt "tminiform.micontestlogging.caption"
+msgid "Contest Logging"
 msgstr ""
 
 #: tminiform.midownloadlang.caption

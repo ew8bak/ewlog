@@ -358,7 +358,7 @@ object MiniForm: TMiniForm
     BorderSpacing.Left = 37
     BorderSpacing.Top = 15
     NumGlyphs = 1
-    Font.Height = -12
+    Font.Height = -11
     MaxLength = 10
     ParentFont = False
     TabOrder = 11
@@ -2178,6 +2178,13 @@ object MiniForm: TMiniForm
     end
     object MenuItem3: TMenuItem
       Caption = 'View'
+      object MIContestLogging: TMenuItem
+        Caption = 'Contest Logging'
+        OnClick = MIContestLoggingClick
+      end
+      object N8: TMenuItem
+        Caption = '-'
+      end
       object MenuItem85: TMenuItem
         AutoCheck = True
         Caption = 'Transceiver Control'
@@ -2339,6 +2346,16 @@ object MiniForm: TMiniForm
       Caption = 'GetReference'
       OnExecute = GetReferenceExecute
       ShortCut = 13
+    end
+    object ImportADI: TAction
+      Caption = 'ImportADI'
+      OnExecute = ImportADIExecute
+      ShortCut = 32841
+    end
+    object ExportADI: TAction
+      Caption = 'ExportADI'
+      OnExecute = ExportADIExecute
+      ShortCut = 32837
     end
   end
   object CheckUpdateTimer: TTimer

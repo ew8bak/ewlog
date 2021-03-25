@@ -25,6 +25,8 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
+    ExportADI: TAction;
+    ImportADI: TAction;
     GetReference: TAction;
     ActionList: TActionList;
     Bevel1: TBevel;
@@ -116,6 +118,8 @@ type
     LBBand: TLabel;
     LBMode: TLabel;
     MainMenu: TMainMenu;
+    MIContestLogging: TMenuItem;
+    N8: TMenuItem;
     MiPhotoSeparateTop: TMenuItem;
     MiPhotoSeparate: TMenuItem;
     N7: TMenuItem;
@@ -230,11 +234,13 @@ type
     procedure EditCallsignKeyPress(Sender: TObject; var Key: char);
     procedure EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
+    procedure ExportADIExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure GetReferenceExecute(Sender: TObject);
+    procedure ImportADIExecute(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
@@ -244,6 +250,7 @@ type
     procedure MenuItem43Click(Sender: TObject);
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
+    procedure MIContestLoggingClick(Sender: TObject);
     procedure MIExtProgClick(Sender: TObject);
     procedure miMapTopClick(Sender: TObject);
     procedure MiMainTopClick(Sender: TObject);
@@ -338,7 +345,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
-  WSJT_UDP_Form_U, serverDM_u, progressForm_u;
+  WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u;
 
 {$R *.lfm}
 
@@ -742,7 +749,12 @@ end;
 procedure TMiniForm.GetReferenceExecute(Sender: TObject);
 begin
   // if (Key = VK_RETURN) then
-    InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
+  InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
+end;
+
+procedure TMiniForm.ImportADIExecute(Sender: TObject);
+begin
+  ImportADIFForm.Show;
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
@@ -846,6 +858,11 @@ begin
     IniSet.trxShow := False;
     TRXForm.Hide;
   end;
+end;
+
+procedure TMiniForm.MIContestLoggingClick(Sender: TObject);
+begin
+  ContestForm.Show;
 end;
 
 procedure TMiniForm.ProgramItemClick(Sender: TObject);
@@ -2006,6 +2023,11 @@ begin
   end;
 end;
 
+procedure TMiniForm.ExportADIExecute(Sender: TObject);
+begin
+  exportAdifForm.Show;
+end;
+
 procedure TMiniForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if EditCallsign.Text <> '' then
@@ -2078,7 +2100,9 @@ procedure TMiniForm.SetHotKey;
 begin
   SaveQSOinBase.ShortCut := TextToShortCut(IniSet.KeySave);
   ClearEdit.ShortCut := TextToShortCut(IniSet.KeyClear);
-  GetReference.ShortCut:=TextToShortCut(IniSet.KeyReference);
+  GetReference.ShortCut := TextToShortCut(IniSet.KeyReference);
+  ImportADI.ShortCut := TextToShortCut(IniSet.KeyImportADI);
+  ExportADI.ShortCut := TextToShortCut(IniSet.KeyExportADI);
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);

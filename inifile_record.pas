@@ -106,6 +106,8 @@ type
     KeySave: string;
     KeyClear: string;
     KeyReference: string;
+    KeyImportADI: string;
+    KeyExportADI: string;
   end;
 
 implementation

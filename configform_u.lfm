@@ -1444,6 +1444,55 @@ object ConfigForm: TConfigForm
         ParentFont = False
         TabOrder = 2
       end
+      object LBKeyImport: TLabel
+        AnchorSideLeft.Control = EditExportKey
+        AnchorSideTop.Control = EditExportKey
+        AnchorSideTop.Side = asrBottom
+        Left = 242
+        Height = 13
+        Top = 59
+        Width = 113
+        BorderSpacing.Top = 10
+        Caption = 'Key Import ADI file'
+        ParentColor = False
+      end
+      object EditImportKey: TEdit
+        AnchorSideLeft.Control = LBKeyImport
+        AnchorSideTop.Control = LBKeyImport
+        AnchorSideTop.Side = asrBottom
+        Left = 242
+        Height = 26
+        Top = 77
+        Width = 147
+        BorderSpacing.Top = 5
+        OnKeyDown = EditImportKeyKeyDown
+        TabOrder = 3
+      end
+      object LBKeyExport: TLabel
+        AnchorSideLeft.Control = EditSaveKey
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = THotKey
+        Left = 242
+        Height = 13
+        Top = 5
+        Width = 112
+        BorderSpacing.Left = 90
+        BorderSpacing.Top = 5
+        Caption = 'Key Export ADI file'
+        ParentColor = False
+      end
+      object EditExportKey: TEdit
+        AnchorSideLeft.Control = LBKeyExport
+        AnchorSideTop.Control = LBKeyExport
+        AnchorSideTop.Side = asrBottom
+        Left = 242
+        Height = 26
+        Top = 23
+        Width = 147
+        BorderSpacing.Top = 5
+        OnKeyDown = EditExportKeyKeyDown
+        TabOrder = 4
+      end
     end
     object TColorandGrids: TTabSheet
       Caption = 'Colors and Grids'

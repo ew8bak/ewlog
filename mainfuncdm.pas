@@ -1424,6 +1424,8 @@ begin
   IniSet.KeySave:=INIFile.ReadString('Key', 'Save', 'Alt+S');
   IniSet.KeyClear:=INIFile.ReadString('Key', 'Clear', 'Alt+C');
   IniSet.KeyReference:=INIFile.ReadString('Key', 'Reference', 'Enter');
+  IniSet.KeyImportADI:=INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
+  IniSet.KeyExportADI:=INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
