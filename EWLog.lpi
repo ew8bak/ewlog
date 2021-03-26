@@ -700,6 +700,7 @@
         <Filename Value="dmcontest_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmContest"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmContest_u"/>
       </Unit85>

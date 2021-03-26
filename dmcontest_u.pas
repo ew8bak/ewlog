@@ -73,7 +73,7 @@ begin
   SQSO.My_Lon := '';
   SQSO.My_Grid := LBRecord.OpLoc;
   SQSO.NLogDB := LBRecord.LogTable;
-  MainFunc.SaveQSO(SQSO);
+ // MainFunc.SaveQSO(SQSO);
 end;
 
 function TdmContest.ContestNameToADIf(contestName: string): string;
@@ -82,14 +82,21 @@ var
 begin
   Result := '';
   try
-    Query := TSQLQuery.Create(nil);
-    Query.DataBase := InitDB.ServiceDBConnection;
-    Query.SQL.Text := 'SELECT * FROM contest WHERE name = ' + QuotedStr(contestName);
-    Query.Open;
-    Result := Query.Fields[2].AsString;
-    Query.Clear;
-  finally
-    FreeAndNil(Query);
+    try
+      Query := TSQLQuery.Create(nil);
+      Query.DataBase := InitDB.ServiceDBConnection;
+      Query.SQL.Text := 'SELECT * FROM contest WHERE name = ' + QuotedStr(contestName);
+      Query.Open;
+      Result := Query.Fields[2].AsString;
+      Query.Clear;
+    finally
+      FreeAndNil(Query);
+    end;
+  except
+    on E: Exception do
+    begin
+      WriteLn(ExceptFile, 'ContestNameToADIf:' + E.ClassName + ':' + E.Message);
+    end;
   end;
 
 end;

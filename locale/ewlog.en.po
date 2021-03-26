@@ -1089,11 +1089,6 @@ msgstr ""
 msgid "Not all data entered"
 msgstr ""
 
-#: settingscat_u.rlibhamlibnotfound
-msgctxt "settingscat_u.rlibhamlibnotfound"
-msgid "HamLib library not found"
-msgstr ""
-
 #: tabout_form.caption
 msgctxt "tabout_form.caption"
 msgid "About"
@@ -1149,6 +1144,10 @@ msgstr ""
 
 #: tclusterfilter.cbdata.caption
 msgid "Digi"
+msgstr ""
+
+#: tclusterfilter.cbdeletenode.caption
+msgid "Delete Node from cluster"
 msgstr ""
 
 #: tclusterfilter.cbssb.caption
@@ -1498,14 +1497,6 @@ msgstr ""
 msgid "Send Freq to CloudLog"
 msgstr ""
 
-#: tconfigform.edit16.text
-msgid "127.0.0.1"
-msgstr ""
-
-#: tconfigform.edit17.text
-msgid "4532"
-msgstr ""
-
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
 msgid "CloudLog"
@@ -1735,6 +1726,14 @@ msgstr ""
 msgid "Key get data from Online Reference"
 msgstr ""
 
+#: tconfigform.lbkeyexport.caption
+msgid "Key Export ADI file"
+msgstr ""
+
+#: tconfigform.lbkeyimport.caption
+msgid "Key Import ADI file"
+msgstr ""
+
 #: tconfigform.lbpathbackup.caption
 msgid "Path backup files"
 msgstr ""
@@ -1742,6 +1741,10 @@ msgstr ""
 #: tconfigform.lbpathrigctld.caption
 msgctxt "tconfigform.lbpathrigctld.caption"
 msgid "Path for HamLib Rigctld"
+msgstr ""
+
+#: tconfigform.lbpoll.caption
+msgid "Poll"
 msgstr ""
 
 #: tconfigform.lbsaveqso.caption
@@ -1826,6 +1829,127 @@ msgstr ""
 #: tconfigform.tstelnet.caption
 msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
+msgstr ""
+
+#: tcontestform.btsave.caption
+msgctxt "tcontestform.btsave.caption"
+msgid "Save"
+msgstr ""
+
+#: tcontestform.caption
+msgctxt "tcontestform.caption"
+msgid "Contest Logging"
+msgstr ""
+
+#: tcontestform.cbband.text
+msgid "160M"
+msgstr ""
+
+#: tcontestform.cbmode.text
+msgctxt "tcontestform.cbmode.text"
+msgid "SSB"
+msgstr ""
+
+#: tcontestform.dedate.text
+msgid "25.03.21"
+msgstr ""
+
+#: tcontestform.editexchs.text
+msgid "1"
+msgstr ""
+
+#: tcontestform.editfreq.text
+msgid "1840000"
+msgstr ""
+
+#: tcontestform.editrstr.text
+msgctxt "tcontestform.editrstr.text"
+msgid "59"
+msgstr ""
+
+#: tcontestform.editrsts.text
+msgctxt "tcontestform.editrsts.text"
+msgid "59"
+msgstr ""
+
+#: tcontestform.lbband.caption
+msgctxt "tcontestform.lbband.caption"
+msgid "Band"
+msgstr ""
+
+#: tcontestform.lbcallsign.caption
+msgctxt "tcontestform.lbcallsign.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tcontestform.lbcomment.caption
+msgctxt "tcontestform.lbcomment.caption"
+msgid "Comment"
+msgstr ""
+
+#: tcontestform.lbcontestname.caption
+msgid "Contest Name"
+msgstr ""
+
+#: tcontestform.lbdate.caption
+msgctxt "tcontestform.lbdate.caption"
+msgid "Date"
+msgstr ""
+
+#: tcontestform.lbexchangetype.caption
+msgid "Exchange Type:"
+msgstr ""
+
+#: tcontestform.lbexchr.caption
+msgid "Exch(r)"
+msgstr ""
+
+#: tcontestform.lbexchs.caption
+msgid "Exch(s)"
+msgstr ""
+
+#: tcontestform.lbfreq.caption
+msgctxt "tcontestform.lbfreq.caption"
+msgid "Frequency"
+msgstr ""
+
+#: tcontestform.lbmode.caption
+msgctxt "tcontestform.lbmode.caption"
+msgid "Mode"
+msgstr ""
+
+#: tcontestform.lbname.caption
+msgctxt "tcontestform.lbname.caption"
+msgid "Name"
+msgstr ""
+
+#: tcontestform.lbrstr.caption
+msgid "RST(r)"
+msgstr ""
+
+#: tcontestform.lbrsts.caption
+msgid "RST(s)"
+msgstr ""
+
+#: tcontestform.lbsubmode.caption
+msgid "Sub mode"
+msgstr ""
+
+#: tcontestform.lbtime.caption
+msgctxt "tcontestform.lbtime.caption"
+msgid "Time"
+msgstr ""
+
+#: tcontestform.rbother.caption
+msgid "Other"
+msgstr ""
+
+#: tcontestform.rbserial.caption
+msgid "Serial"
+msgstr ""
+
+#: tcontestform.tetime.text
+msgid "12:00:00"
 msgstr ""
 
 #: tcountryeditform.caption
@@ -3694,8 +3818,16 @@ msgctxt "tminiform.datetimepicker1.textfornulldate"
 msgid "NULL"
 msgstr ""
 
+#: tminiform.exportadi.caption
+msgid "ExportADI"
+msgstr ""
+
 #: tminiform.getreference.caption
 msgid "GetReference"
+msgstr ""
+
+#: tminiform.importadi.caption
+msgid "ImportADI"
 msgstr ""
 
 #: tminiform.label10.caption
@@ -4127,11 +4259,6 @@ msgctxt "tminiform.menuitem83.caption"
 msgid "From SQLite to MySQL"
 msgstr ""
 
-#: tminiform.menuitem84.caption
-msgctxt "tminiform.menuitem84.caption"
-msgid "Settings CAT"
-msgstr ""
-
 #: tminiform.menuitem85.caption
 msgctxt "tminiform.menuitem85.caption"
 msgid "Transceiver Control"
@@ -4165,6 +4292,11 @@ msgstr ""
 #: tminiform.miclustertop.caption
 msgctxt "tminiform.miclustertop.caption"
 msgid "On Top"
+msgstr ""
+
+#: tminiform.micontestlogging.caption
+msgctxt "tminiform.micontestlogging.caption"
+msgid "Contest Logging"
 msgstr ""
 
 #: tminiform.midownloadlang.caption
@@ -4495,7 +4627,8 @@ msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
 msgstr ""
 
-#: tsendtelnetspot.button1.caption
+#: tsendtelnetspot.btsend.caption
+msgctxt "tsendtelnetspot.btsend.caption"
 msgid "Send"
 msgstr ""
 
@@ -4504,23 +4637,24 @@ msgctxt "tsendtelnetspot.caption"
 msgid "Send spot"
 msgstr ""
 
-#: tsendtelnetspot.combobox1.text
-msgctxt "tsendtelnetspot.combobox1.text"
+#: tsendtelnetspot.cbfreq.text
+msgctxt "tsendtelnetspot.cbfreq.text"
 msgid "7.000.00"
 msgstr ""
 
-#: tsendtelnetspot.label1.caption
+#: tsendtelnetspot.lbcallsign.caption
+msgctxt "tsendtelnetspot.lbcallsign.caption"
 msgid "DX Callsign"
 msgstr ""
 
-#: tsendtelnetspot.label2.caption
-msgctxt "tsendtelnetspot.label2.caption"
-msgid "Frequency"
+#: tsendtelnetspot.lbcomment.caption
+msgctxt "tsendtelnetspot.lbcomment.caption"
+msgid "Comment"
 msgstr ""
 
-#: tsendtelnetspot.label3.caption
-msgctxt "tsendtelnetspot.label3.caption"
-msgid "Comment"
+#: tsendtelnetspot.lbfreq.caption
+msgctxt "tsendtelnetspot.lbfreq.caption"
+msgid "Frequency"
 msgstr ""
 
 #: tserviceform.button1.caption
@@ -4572,138 +4706,6 @@ msgstr ""
 
 #: tserviceform.opendialog1.title
 msgid "Open existing file"
-msgstr ""
-
-#: tsettingscat.button1.caption
-msgctxt "tsettingscat.button1.caption"
-msgid "Save"
-msgstr ""
-
-#: tsettingscat.button2.caption
-msgctxt "tsettingscat.button2.caption"
-msgid "Close"
-msgstr ""
-
-#: tsettingscat.caption
-msgctxt "tsettingscat.caption"
-msgid "Settings CAT"
-msgstr ""
-
-#: tsettingscat.cbbaudrate.text
-msgctxt "tsettingscat.cbbaudrate.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbdatabits.text
-msgctxt "tsettingscat.cbdatabits.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbdtrstate.text
-msgctxt "tsettingscat.cbdtrstate.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbhandshake.text
-msgctxt "tsettingscat.cbhandshake.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbparity.text
-msgctxt "tsettingscat.cbparity.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbrtsstate.text
-msgctxt "tsettingscat.cbrtsstate.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.cbstopbits.text
-msgctxt "tsettingscat.cbstopbits.text"
-msgid "Default"
-msgstr ""
-
-#: tsettingscat.checkbox1.caption
-msgctxt "tsettingscat.checkbox1.caption"
-msgid "Start rigctld on startup?"
-msgstr ""
-
-#: tsettingscat.editaddress.text
-msgid "localhost"
-msgstr ""
-
-#: tsettingscat.editcivaddress.hint
-msgid "ICOM Radios"
-msgstr ""
-
-#: tsettingscat.groupbox1.caption
-msgid "Config HamLib"
-msgstr ""
-
-#: tsettingscat.label1.caption
-msgctxt "tsettingscat.label1.caption"
-msgid "Path for HamLib Rigctld"
-msgstr ""
-
-#: tsettingscat.label11.caption
-msgctxt "tsettingscat.label11.caption"
-msgid "COM Port"
-msgstr ""
-
-#: tsettingscat.label12.caption
-msgid "Transceiver model"
-msgstr ""
-
-#: tsettingscat.label16.caption
-msgctxt "tsettingscat.label16.caption"
-msgid "CI-V address"
-msgstr ""
-
-#: tsettingscat.label61.caption
-msgctxt "tsettingscat.label61.caption"
-msgid "Speed"
-msgstr ""
-
-#: tsettingscat.label62.caption
-msgctxt "tsettingscat.label62.caption"
-msgid "Data bit"
-msgstr ""
-
-#: tsettingscat.label63.caption
-msgctxt "tsettingscat.label63.caption"
-msgid "Parity"
-msgstr ""
-
-#: tsettingscat.label64.caption
-msgctxt "tsettingscat.label64.caption"
-msgid "Stop bit"
-msgstr ""
-
-#: tsettingscat.label65.caption
-msgid "RTS state"
-msgstr ""
-
-#: tsettingscat.label66.caption
-msgid "DTR state"
-msgstr ""
-
-#: tsettingscat.label67.caption
-msgctxt "tsettingscat.label67.caption"
-msgid "Handshake"
-msgstr ""
-
-#: tsettingscat.lbextracmd.caption
-msgctxt "tsettingscat.lbextracmd.caption"
-msgid "Extra command line"
-msgstr ""
-
-#: tsettingscat.radiobutton1.caption
-msgid "RIG2"
-msgstr ""
-
-#: tsettingscat.rig1.caption
-msgid "RIG1"
 msgstr ""
 
 #: tsettingsprogramform.btaddprogram.caption
