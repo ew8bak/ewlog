@@ -1912,7 +1912,7 @@ begin
 
   if editButtonLeng > 0 then
   begin
-    PFXR := MainFunc.SearchPrefix(editButtonText, EditMGR.Text);
+    PFXR := MainFunc.SearchPrefix(editButtonText, EditGrid.Text);
     LBAzimuthD.Caption := PFXR.Azimuth;
     LBDistanceD.Caption := PFXR.Distance;
     LBLatitudeD.Caption := PFXR.Latitude;

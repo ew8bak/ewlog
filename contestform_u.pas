@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
-  LCLType, ExtCtrls, ComCtrls, dmContest_u, MainFuncDM, LCLProc;
+  LCLType, ExtCtrls, ComCtrls, dmContest_u, MainFuncDM, LCLProc, qso_record,
+  LazSysUtils;
 
 type
 
@@ -56,6 +57,8 @@ type
     procedure EditCallsignKeyPress(Sender: TObject; var Key: char);
     procedure EditExchrKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
+    procedure RBOtherClick(Sender: TObject);
+    procedure RBSerialClick(Sender: TObject);
     procedure TTimeTimer(Sender: TObject);
   private
     SelEditNumChar: integer;
@@ -108,11 +111,47 @@ begin
 end;
 
 procedure TContestForm.BtSaveClick(Sender: TObject);
+var
+  SaveQSOrec: TQSO;
 begin
   if Length(EditCallsign.Text) > 1 then
   begin
+    SaveQSOrec.AwardsEx := dmContest.ContestNameToADIf(CBContestName.Text);
+    SaveQSOrec.QSODate := DEDate.Date;
+    SaveQSOrec.QSOTime := TimeToStr(TETime.Time);
+    SaveQSOrec.QSOMode := CBMode.Text;
+    SaveQSOrec.QSOSubMode := CBSubMode.Text;
+    SaveQSOrec.QSOBand := CBBand.Text;
+    SaveQSOrec.CallSing := EditCallsign.Text;
+    SaveQSOrec.QSOReportSent := EditRSTs.Text;
+    SaveQSOrec.QSOReportRecived := EditRSTr.Text;
+    SaveQSOrec.OmName := EditName.Text;
+    SaveQSOrec.ShortNote := EditComment.Text;
+    if RBSerial.Checked then
+    begin
+      try
+        SaveQSOrec.SRX := StrToInt(EditExchr.Text);
+        SaveQSOrec.STX := StrToInt(EditExchs.Text);
+      except
+        SBContest.Panels[0].Text := 'ERROR Field not entered';
+        EditExchr.SetFocus;
+        Exit;
+      end;
+      SaveQSOrec.SRX_String := '';
+      SaveQSOrec.STX_String := '';
+
+    end
+    else
+    begin
+      SaveQSOrec.SRX := 0;
+      SaveQSOrec.STX := 0;
+      SaveQSOrec.SRX_String := EditExchr.Text;
+      SaveQSOrec.STX_String := EditExchs.Text;
+    end;
+    dmContest.SaveQSOContest(SaveQSOrec);
     SBContest.Panels[0].Text := 'Save ' + EditCallsign.Text + ' OK';
     EditCallsign.Clear;
+    EditExchr.Clear;
   end
   else
     SBContest.Panels[0].Text := 'Nothing to save';
@@ -158,16 +197,39 @@ end;
 
 procedure TContestForm.FormShow(Sender: TObject);
 begin
+  if RBSerial.Checked then
+  begin
+    EditExchr.NumbersOnly := True;
+    EditExchs.NumbersOnly := True;
+  end;
   dmContest.LoadContestName(CBContestName);
   MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
   CBModeCloseUp(nil);
   EditCallsign.SetFocus;
 end;
 
+procedure TContestForm.RBOtherClick(Sender: TObject);
+begin
+  if RBOther.Checked then
+  begin
+    EditExchr.NumbersOnly := False;
+    EditExchs.NumbersOnly := False;
+  end;
+end;
+
+procedure TContestForm.RBSerialClick(Sender: TObject);
+begin
+  if RBSerial.Checked then
+  begin
+    EditExchr.NumbersOnly := True;
+    EditExchs.NumbersOnly := True;
+  end;
+end;
+
 procedure TContestForm.TTimeTimer(Sender: TObject);
 begin
-  TETime.Time := Now;
-  DEDate.Date := Now;
+  TETime.Time := NowUTC;
+  DEDate.Date := NowUTC;
 end;
 
 end.

@@ -1863,7 +1863,7 @@ begin
 
       QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
         'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode,' +
-        'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA,' +
+        'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, ' +
         'QSLManager, QSLSent, QSLSentAdv, QSLRec,' +
         'MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,' +
         'DigiBand, Continent, ShortNote, QSLReceQSLcc, LoTWRec,' +
@@ -1895,7 +1895,7 @@ begin
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
         dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
-
+        WriteLn(ExceptFile, 'SaveQSO:'+QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else
