@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
-  LCLType, ExtCtrls, ComCtrls;
+  LCLType, ExtCtrls, ComCtrls, dmContest_u, MainFuncDM, LCLProc;
 
 type
 
@@ -17,6 +17,7 @@ type
     CBContestName: TComboBox;
     CBMode: TComboBox;
     CBBand: TComboBox;
+    CBSubMode: TComboBox;
     DEDate: TDateEdit;
     EditComment: TEdit;
     EditName: TEdit;
@@ -26,6 +27,7 @@ type
     EditCallsign: TEdit;
     EditRSTs: TEdit;
     EditFreq: TEdit;
+    LBSubMode: TLabel;
     LBName: TLabel;
     LBComment: TLabel;
     LBExchs: TLabel;
@@ -47,6 +49,7 @@ type
     TTime: TTimer;
     procedure BtSaveClick(Sender: TObject);
     procedure BtSaveKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure CBModeCloseUp(Sender: TObject);
     procedure EditCallsignChange(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
@@ -123,6 +126,23 @@ begin
     BtSaveClick(Self);
 end;
 
+procedure TContestForm.CBModeCloseUp(Sender: TObject);
+var
+  i: integer;
+begin
+  CBSubMode.Items.Clear;
+  for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
+    CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
+
+  if CBMode.Text <> 'SSB' then
+    CBSubMode.Text := '';
+
+  if StrToDouble(MainFunc.FormatFreq(CBBand.Text, CBMode.Text)) >= 10 then
+    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
+  else
+    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('LSB');
+end;
+
 procedure TContestForm.EditCallsignKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = ' ' then
@@ -138,6 +158,9 @@ end;
 
 procedure TContestForm.FormShow(Sender: TObject);
 begin
+  dmContest.LoadContestName(CBContestName);
+  MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
+  CBModeCloseUp(nil);
   EditCallsign.SetFocus;
 end;
 

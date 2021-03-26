@@ -1,7 +1,7 @@
 object ContestForm: TContestForm
-  Left = 403
+  Left = 467
   Height = 242
-  Top = 252
+  Top = 254
   Width = 691
   Caption = 'Contest Logging'
   ClientHeight = 242
@@ -121,11 +121,11 @@ object ContestForm: TContestForm
     ParentColor = False
   end
   object LBBand: TLabel
-    AnchorSideLeft.Control = CBMode
+    AnchorSideLeft.Control = CBSubMode
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBMode
     AnchorSideTop.Side = asrCenter
-    Left = 395
+    Left = 480
     Height = 13
     Top = 42
     Width = 31
@@ -138,7 +138,7 @@ object ContestForm: TContestForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBBand
     AnchorSideTop.Side = asrCenter
-    Left = 520
+    Left = 580
     Height = 13
     Top = 42
     Width = 63
@@ -250,9 +250,10 @@ object ContestForm: TContestForm
     Left = 270
     Height = 27
     Top = 60
-    Width = 115
+    Width = 90
     BorderSpacing.Top = 5
     ItemHeight = 0
+    OnCloseUp = CBModeCloseUp
     TabOrder = 5
     Text = 'SSB'
   end
@@ -260,25 +261,25 @@ object ContestForm: TContestForm
     AnchorSideLeft.Control = LBBand
     AnchorSideTop.Control = LBBand
     AnchorSideTop.Side = asrBottom
-    Left = 395
+    Left = 480
     Height = 27
     Top = 60
-    Width = 115
+    Width = 90
     BorderSpacing.Top = 5
     ItemHeight = 0
-    TabOrder = 6
+    TabOrder = 7
     Text = '160M'
   end
   object EditFreq: TEdit
     AnchorSideLeft.Control = LBFreq
     AnchorSideTop.Control = LBFreq
     AnchorSideTop.Side = asrBottom
-    Left = 520
+    Left = 580
     Height = 26
     Top = 60
-    Width = 115
+    Width = 90
     BorderSpacing.Top = 5
-    TabOrder = 7
+    TabOrder = 8
     Text = '1840000'
   end
   object EditCallsign: TEdit
@@ -297,7 +298,7 @@ object ContestForm: TContestForm
     OnKeyDown = EditCallsignKeyDown
     OnKeyPress = EditCallsignKeyPress
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 9
   end
   object EditRSTs: TEdit
     AnchorSideLeft.Control = LBRSTs
@@ -310,7 +311,7 @@ object ContestForm: TContestForm
     BorderSpacing.Top = 5
     Font.Height = -27
     ParentFont = False
-    TabOrder = 9
+    TabOrder = 10
     Text = '59'
   end
   object EditExchs: TEdit
@@ -324,7 +325,7 @@ object ContestForm: TContestForm
     BorderSpacing.Top = 5
     Font.Height = -27
     ParentFont = False
-    TabOrder = 10
+    TabOrder = 11
     Text = '1'
   end
   object EditRSTr: TEdit
@@ -338,7 +339,7 @@ object ContestForm: TContestForm
     BorderSpacing.Top = 5
     Font.Height = -27
     ParentFont = False
-    TabOrder = 11
+    TabOrder = 12
     Text = '59'
   end
   object EditExchr: TEdit
@@ -353,7 +354,7 @@ object ContestForm: TContestForm
     Font.Height = -27
     OnKeyDown = EditExchrKeyDown
     ParentFont = False
-    TabOrder = 12
+    TabOrder = 13
   end
   object LBName: TLabel
     AnchorSideLeft.Control = Owner
@@ -390,7 +391,7 @@ object ContestForm: TContestForm
     Top = 185
     Width = 150
     BorderSpacing.Top = 5
-    TabOrder = 13
+    TabOrder = 14
   end
   object EditComment: TEdit
     AnchorSideLeft.Control = LBComment
@@ -401,7 +402,7 @@ object ContestForm: TContestForm
     Top = 185
     Width = 200
     BorderSpacing.Top = 5
-    TabOrder = 14
+    TabOrder = 15
   end
   object BtSave: TButton
     AnchorSideRight.Control = Owner
@@ -417,7 +418,7 @@ object ContestForm: TContestForm
     Caption = 'Save'
     OnClick = BtSaveClick
     OnKeyDown = BtSaveKeyDown
-    TabOrder = 15
+    TabOrder = 16
   end
   object SBContest: TStatusBar
     Left = 0
@@ -429,6 +430,30 @@ object ContestForm: TContestForm
         Width = 50
       end>
     SimplePanel = False
+  end
+  object CBSubMode: TComboBox
+    AnchorSideLeft.Control = LBSubMode
+    AnchorSideTop.Control = LBSubMode
+    AnchorSideTop.Side = asrBottom
+    Left = 370
+    Height = 27
+    Top = 60
+    Width = 100
+    BorderSpacing.Top = 5
+    ItemHeight = 0
+    TabOrder = 6
+  end
+  object LBSubMode: TLabel
+    AnchorSideLeft.Control = CBMode
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBMode
+    Left = 370
+    Height = 13
+    Top = 42
+    Width = 62
+    BorderSpacing.Left = 10
+    Caption = 'Sub mode'
+    ParentColor = False
   end
   object TTime: TTimer
     OnTimer = TTimeTimer

@@ -1,0 +1,7 @@
+object dmContest: TdmContest
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 385
+  VerticalOffset = 123
+  Width = 150
+end

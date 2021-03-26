@@ -1932,6 +1932,10 @@ msgstr ""
 msgid "RST(s)"
 msgstr ""
 
+#: tcontestform.lbsubmode.caption
+msgid "Sub mode"
+msgstr ""
+
 #: tcontestform.lbtime.caption
 msgctxt "tcontestform.lbtime.caption"
 msgid "Time"

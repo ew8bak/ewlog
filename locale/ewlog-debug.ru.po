@@ -2023,6 +2023,10 @@ msgstr ""
 msgid "RST(s)"
 msgstr ""
 
+#: tcontestform.lbsubmode.caption
+msgid "Sub mode"
+msgstr ""
+
 #: tcontestform.lbtime.caption
 #, fuzzy
 msgctxt "tcontestform.lbtime.caption"

@@ -16,23 +16,23 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   Interfaces, // this includes the LCL widgetset
   Forms, sdflaz, memdslaz, datetimectrls, dbflaz, printer4lazarus, MainForm_U,
   editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
-  CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc,
-  fldigi, DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc,
-  QSLManagerForm_U, uRigControl, TRXForm_U, lnetvisual, hrdlog,
-  SettingsProgramForm_U, AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U,
-  Changelog_Form_U, Earth_Form_U, IOTA_Form_U,
-  sendtelnetspot_form_U, ClusterFilter_Form_U, ClusterServer_Form_U,
-  WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U,
-  hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom,
-  qso_record, resourcestr, const_u, download_lotw, download_eqslcc,
-  DownloadUpdates, SetupSQLquery, flDigiModem,
+  CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi,
+  DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc, QSLManagerForm_U,
+  uRigControl, TRXForm_U, lnetvisual, hrdlog, SettingsProgramForm_U,
+  AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U, Changelog_Form_U,
+  Earth_Form_U, IOTA_Form_U, sendtelnetspot_form_U, ClusterFilter_Form_U,
+  ClusterServer_Form_U, WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u,
+  filterForm_U, hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth,
+  clublog, qrzcom, qso_record, resourcestr, const_u, download_lotw,
+  download_eqslcc, DownloadUpdates, SetupSQLquery, flDigiModem,
   GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U,
   LogBookTable_record, DB_record, MainFuncDM, InitDB_dm, prefix_record,
   inifile_record, selectQSO_record, foundQSO_record, cloudlog, init_record,
   WsjtUtils, digi_record, inform_record, infoDM_U, getSession, miniform_u,
   ImbedCallBookCheckRec, serverDM_u, telnetClientThread, dxclusterform_u,
   GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread, ExportADIThread,
-  MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u, dmCat, contestForm_u;
+  MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u, dmCat,
+  contestForm_u, dmContest_u;
 
 {$R *.res}
 
