@@ -21,6 +21,7 @@ Main features of EWLog:
 To build the program you will need:
   1. Lazarus 2.0.10
   2. FPC 3.2.0
+  
 Additional components:
   1. Indy10
   2. LazMapViewer
@@ -28,4 +29,5 @@ Additional components:
   4. Synapse 40.1
   5. UniqueInstance
   6. VirtualTreeView V5
+  
 All of these components are available in the Lazarus Network Component Repository.
