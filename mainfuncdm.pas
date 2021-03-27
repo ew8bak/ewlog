@@ -17,7 +17,8 @@ uses
   Classes, SysUtils, DB, Forms, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
-  VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u;
+  VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u,
+  FileUtil;
 
 type
   bandArray = array of string;
@@ -81,7 +82,8 @@ type
     function GetMySQLDataBase: StringArray;
     function GetExternalProgramsName: extProgramArray;
     function GetExternalProgramsPath(ProgramName: string): string;
-    function BackupData(Sender: string): boolean;
+    function BackupDataADI(Sender: string): boolean;
+    function BackupDataDB(Sender: string): boolean;
   end;
 
 var
@@ -100,13 +102,25 @@ uses InitDB_dm, dmFunc_U, hrdlog,
 
 {$R *.lfm}
 
-function TMainFunc.BackupData(Sender: string): boolean;
+function TMainFunc.BackupDataADI(Sender: string): boolean;
 begin
   Result := True;
   if IniSet.BackupADIonClose then
   begin
-    ProgressBackupForm.SenderForm:=Sender;
+    ProgressBackupForm.SenderForm := Sender;
     ProgressBackupForm.Show;
+  end
+  else
+    Result := False;
+end;
+
+function TMainFunc.BackupDataDB(Sender: string): boolean;
+begin
+  if IniSet.BackupDBonClose then
+  begin
+    Result := CopyFile(DBRecord.SQLitePATH, SysToUTF8(IniSet.PathBackupFiles +
+      DirectorySeparator + 'auto_backup_' + dmFunc.ExtractCallsign(DBRecord.CurrCall) +
+      '_' + FormatDateTime('yyyy-mm-dd-hhnnss', now) + '.db'));
   end
   else
     Result := False;
@@ -255,6 +269,7 @@ procedure TMainFunc.SaveGrids(DbGrid: TDBGrid);
 var
   i: integer;
 begin
+  //ShowMessage();
   for i := 0 to 29 do
   begin
     INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
@@ -394,7 +409,6 @@ begin
     FreeAndNil(Query);
     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
-    SetGrid(DBGrid);
     CurrPosGrid(GridRecordIndex, DBGrid);
   end;
 end;
@@ -1073,7 +1087,6 @@ begin
 
         finally
           FreeAndNil(Query);
-          SetGrid(DBGrid);
           CurrPosGrid(GridRecordIndex, DBGrid);
         end;
       end;
@@ -1405,6 +1418,14 @@ begin
   IniSet.BackupDBonClose := INIFile.ReadBool('SetBackup', 'BackupDBonClose', False);
   IniSet.BackupTime := INIFile.ReadTime('SetBackup', 'BackupTime',
     StrToTime('12:00', FormatSettings));
+  IniSet.rigctldStartUp:=INIFile.ReadBool('SetCAT', 'rigctldStartUp', True);
+  IniSet.rigctldExtra:=INIFile.ReadString('SetCAT', 'rigctldExtra', '');
+  IniSet.rigctldPath:=INIFile.ReadString('SetCAT', 'rigctldPath', '');
+  IniSet.KeySave:=INIFile.ReadString('Key', 'Save', 'Alt+S');
+  IniSet.KeyClear:=INIFile.ReadString('Key', 'Clear', 'Alt+C');
+  IniSet.KeyReference:=INIFile.ReadString('Key', 'Reference', 'Enter');
+  IniSet.KeyImportADI:=INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
+  IniSet.KeyExportADI:=INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -1842,7 +1863,7 @@ begin
 
       QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
         'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode,' +
-        'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA,' +
+        'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, ' +
         'QSLManager, QSLSent, QSLSentAdv, QSLRec,' +
         'MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,' +
         'DigiBand, Continent, ShortNote, QSLReceQSLcc, LoTWRec,' +
@@ -1874,7 +1895,7 @@ begin
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
         dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
-
+        WriteLn(ExceptFile, 'SaveQSO:'+QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else

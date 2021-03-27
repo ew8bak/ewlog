@@ -199,7 +199,7 @@ implementation
 
 uses
   dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM, miniform_u, WSJT_UDP_Form_U,
-  serverDM_u;
+  serverDM_u, dmCat;
 
 {$R *.lfm}
 
@@ -316,8 +316,6 @@ begin
   end;
 
   Application.ProcessMessages;
-  //Sleep(500);
-
   tmrRadio.Enabled := False;
 
   if rbRadio1.Checked then
@@ -334,8 +332,8 @@ begin
 
   radio.RigCtldPath := INIFile.ReadString('TRX' + n, 'RigCtldPath', '') +
     ' -T 127.0.0.1 -vvvvv';
-  radio.RigCtldArgs := dmFunc.GetRadioRigCtldCommandLine(StrToInt(n));
-  //  radio.RunRigCtld  := IniF.ReadBool('TRX'+n,'RunRigCtld',True);
+  radio.RigCtldArgs := CATdm.GetRadioRigCtldCommandLine(StrToInt(n));
+  radio.RunRigCtld  := INIFile.ReadBool('TRX'+n,'RunRigCtld',True);
   if INIFile.ReadString('TRX' + n, 'model', '') <> IntToStr(2) then
     radio.RigDevice := INIFile.ReadString('TRX' + n, 'device', '');
   radio.RigCtldPort := StrToInt(INIFile.ReadString('TRX' + n, 'RigCtldPort', '4532'));

@@ -276,6 +276,7 @@ begin
     while not (PosEOH > 0) do
     begin
       Readln(f, s);
+      s := StringReplace(UpperCase(s), '<EH>', '<EOH>', [rfReplaceAll]);
       PosEOH := Pos('<EOH>', UpperCase(s));
     end;
 

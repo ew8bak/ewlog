@@ -95,11 +95,19 @@ type
     ClusterAutoStart: boolean;
     VisibleComment: boolean;
     PathBackupFiles: string;
-    BackupDB: Boolean;
-    BackupADI: Boolean;
-    BackupADIonClose: Boolean;
-    BackupDBonClose: Boolean;
+    BackupDB: boolean;
+    BackupADI: boolean;
+    BackupADIonClose: boolean;
+    BackupDBonClose: boolean;
     BackupTime: TTime;
+    rigctldStartUp: boolean;
+    rigctldExtra: string;
+    rigctldPath: string;
+    KeySave: string;
+    KeyClear: string;
+    KeyReference: string;
+    KeyImportADI: string;
+    KeyExportADI: string;
   end;
 
 implementation

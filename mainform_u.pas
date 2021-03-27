@@ -78,6 +78,8 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  if IniSet.BackupDBonClose then
+    MainFunc.BackupDataDB('MainForm');
   if IniSet.BackupADIonClose then
   begin
     if Sender = ProgressBackupForm then
@@ -86,7 +88,7 @@ begin
     end
     else
     begin
-      if MainFunc.BackupData('MainForm') then
+      if MainFunc.BackupDataADI('MainForm') then
         CloseAction := caNone;
     end;
   end

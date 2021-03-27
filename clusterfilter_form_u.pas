@@ -15,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, CheckLst, Spin;
+  ComCtrls, CheckLst, Spin, const_u;
 
 type
 
@@ -28,6 +28,7 @@ type
     cbCW: TCheckBox;
     cbData: TCheckBox;
     CheckBox1: TCheckBox;
+    CBDeleteNode: TCheckBox;
     CheckListBox1: TCheckListBox;
     Edit1: TEdit;
     Edit2: TEdit;
@@ -44,6 +45,7 @@ type
   private
     procedure ReadBandsModes;
     procedure WriteBandsModes;
+    procedure DeleteFilteredNodes;
     { private declarations }
   public
     { public declarations }
@@ -55,7 +57,7 @@ var
 implementation
 
 uses
-  MainForm_U, const_u, ResourceStr, InitDB_dm;
+  MainForm_U, ResourceStr, InitDB_dm, dxclusterform_u;
 
 {$R *.lfm}
 
@@ -80,6 +82,7 @@ begin
   cbSSB.Checked := INIFile.ReadBool('TelnetCluster', 'DX_Phone', True);
   cbData.Checked := INIFile.ReadBool('TelnetCluster', 'DX_DIGI', True);
   CheckBox1.Checked := INIFile.ReadBool('TelnetCluster', 'Expand', True);
+  CBDeleteNode.Checked := INIFile.ReadBool('TelnetCluster', 'DeleteNodeOnFilter', False);
   SpinEdit1.Value := INIFile.ReadInteger('TelnetCluster', 'spotDelTime', 15);
 end;
 
@@ -96,6 +99,7 @@ begin
   INIFile.WriteBool('TelnetCluster', 'DX_Phone', cbSSB.Checked);
   INIFile.WriteBool('TelnetCluster', 'DX_DIGI', cbData.Checked);
   INIFile.WriteBool('TelnetCluster', 'Expand', CheckBox1.Checked);
+  INIFile.WriteBool('TelnetCluster', 'DeleteNodeOnFilter', CBDeleteNode.Checked);
   INIFile.WriteString('TelnetCluster', 'CWMode', Edit1.Text);
   INIFile.WriteString('TelnetCluster', 'PhoneMode', Edit2.Text);
   INIFile.WriteString('TelnetCluster', 'DIGIMode', Edit3.Text);
@@ -116,6 +120,27 @@ end;
 procedure TClusterFilter.CheckListBox1ClickCheck(Sender: TObject);
 begin
   WriteBandsModes;
+  if CBDeleteNode.Checked then
+    DeleteFilteredNodes;
+end;
+
+procedure TClusterFilter.DeleteFilteredNodes;
+var
+  i, j: integer;
+  arrayBands: array [0..23] of string;
+begin
+  j := 0;
+  for i := High(bandsMm) downto 0 do
+  begin
+    arrayBands[i] := bandsMm[j];
+    Inc(j);
+  end;
+
+  for i := 0 to High(arrayBands) do
+  begin
+    if not ClusterFilter.CheckListBox1.Checked[i] then
+      DXClusterForm.FindAndDeleteBand(arrayBands[i]);
+  end;
 end;
 
 procedure TClusterFilter.Button1Click(Sender: TObject);

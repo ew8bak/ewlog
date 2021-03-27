@@ -108,6 +108,7 @@ type
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure SavePosition;
     procedure FreeClusterThread;
+    procedure FindAndDeleteBand(band: string);
 
   end;
 
@@ -323,6 +324,12 @@ begin
   end;
 end;
 
+procedure TdxClusterForm.FindAndDeleteBand(band: string);
+begin
+  if FindNode(band, False) <> nil then
+    VirtualStringTree1.DeleteNode(FindNode(band, False));
+end;
+
 procedure TdxClusterForm.FromClusterThread(buffer: string);
 var
   DX, Call, Freq, Comment, Time, Loc, Band, Mode: string;
@@ -353,13 +360,13 @@ begin
     if (Length(IniSet.Cluster_Login) > 0) and (Pos('login', TelnetLine) = 1) then
       DXTelnetClient.SendMessage(IniSet.Cluster_Login + #13#10, nil);
 
-    if Length(IniSet.Cluster_Login) > 0 then
+    {if Length(IniSet.Cluster_Login) > 0 then
       if (Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0) and
         (Pos('>', buffer) <> Length(buffer)) then
       begin
         Memo2.Lines.Add(buffer);
         exit;
-      end;
+      end; }
 
     if (Pos('WCY de', buffer) = 1) or (Pos('WWV de', buffer) = 1) then
     begin
@@ -581,8 +588,8 @@ end;
 
 procedure TdxClusterForm.FreeClusterThread;
 begin
-   if TelnetThread <> nil then
-      TelnetThread.Terminate;
+  if TelnetThread <> nil then
+    TelnetThread.Terminate;
 end;
 
 procedure TdxClusterForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);

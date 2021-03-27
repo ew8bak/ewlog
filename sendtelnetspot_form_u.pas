@@ -15,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, const_u,
-  LCLType;
+  LCLType, InitDB_dm;
 
 resourcestring
   rNotAllData = 'Not all data entered';
@@ -25,22 +25,26 @@ type
   { TSendTelnetSpot }
 
   TSendTelnetSpot = class(TForm)
-    Button1: TButton;
-    ComboBox1: TComboBox;
+    BtSend: TButton;
+    CBFreq: TComboBox;
+    CBComment: TComboBox;
     EditDXCall: TEdit;
-    EditComment: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    procedure Button1Click(Sender: TObject);
+    LBCallsign: TLabel;
+    LBFreq: TLabel;
+    LBComment: TLabel;
+    procedure BtSendClick(Sender: TObject);
+    procedure CBCommentChange(Sender: TObject);
+    procedure CBCommentKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure EditDXCallChange(Sender: TObject);
     procedure EditDXCallKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
-    procedure EditCommentChange(Sender: TObject);
-    procedure EditCommentKeyDown(Sender: TObject; var Key: word;
-      Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     SelEditNumChar: integer;
+    SLComments: TStringList;
+    procedure LoadComments;
+    procedure SaveComments;
     { private declarations }
   public
     { public declarations }
@@ -58,26 +62,63 @@ uses
 
 { TSendTelnetSpot }
 
+procedure TSendTelnetSpot.LoadComments;
+var
+  i: integer;
+  LastComment: string;
+begin
+  CBComment.Items.Clear;
+  SLComments.Clear;
+  for i := 0 to 9 do
+    if INIFile.ReadString('Cluster', 'Comment' + IntToStr(i), '') <> '' then
+      SLComments.Add(INIFile.ReadString('Cluster', 'Comment' + IntToStr(i), ''));
+  LastComment := INIFile.ReadString('Cluster', 'CommentLast', 'TNX for QSO! 73!');
+  SLComments.Insert(0, LastComment);
+  for i := 0 to SLComments.Count - 1 do
+    CBComment.Items.Add(SLComments.Strings[i]);
+  CBComment.ItemIndex := CBComment.Items.IndexOf(LastComment);
+end;
+
+procedure TSendTelnetSpot.SaveComments;
+var
+  i: integer;
+begin
+  INIFile.WriteString('Cluster', 'CommentLast', CBComment.Text);
+  if CBComment.Items.IndexOf(CBComment.Text) = -1 then
+  begin
+    SLComments.Insert(0, CBComment.Text);
+    if SLComments.Count > 10 then
+      SLComments.Delete(SLComments.Count - 1);
+    CBComment.Items.Clear;
+    for i := 0 to SLComments.Count - 1 do begin
+      INIFile.WriteString('Cluster', 'Comment' + IntToStr(i), SLComments.Strings[i]);
+      CBComment.Items.Add(SLComments.Strings[i]);
+    end;
+  end;
+end;
+
 procedure TSendTelnetSpot.FormShow(Sender: TObject);
 begin
   if Pos('M', MiniForm.CBBand.Text) > 0 then
-    ComboBox1.Text := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+    CBFreq.Text := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
       MiniForm.CBBand.Text, MiniForm.CBMode.Text))
   else
-    ComboBox1.Text := MiniForm.CBBand.Text;
+    CBFreq.Text := MiniForm.CBBand.Text;
   EditDXCall.Text := MiniForm.EditCallsign.Text;
+  LoadComments;
 end;
 
-procedure TSendTelnetSpot.Button1Click(Sender: TObject);
+procedure TSendTelnetSpot.BtSendClick(Sender: TObject);
 var
   freq, call, comment: string;
   freq2: double;
 begin
-  if (EditDXCall.Text <> '') and (EditComment.Text <> '') and (ComboBox1.Text <> '') then
+  SaveComments;
+  if (EditDXCall.Text <> '') and (CBComment.Text <> '') and (CBFreq.Text <> '') then
   begin
     call := EditDXCall.Text;
-    freq := ComboBox1.Text;
-    comment := EditComment.Text;
+    freq := CBFreq.Text;
+    comment := CBComment.Text;
     Delete(freq, length(freq) - 2, 1);
     freq2 := StrToFloat(freq);
     dxClusterForm.SendSpot(FloatToStr(freq2 * 1000), call, comment, '', '', '');
@@ -85,6 +126,31 @@ begin
   end
   else
     ShowMessage(rNotAllData);
+end;
+
+procedure TSendTelnetSpot.CBCommentChange(Sender: TObject);
+var
+  engText: string;
+begin
+  CBComment.SelStart := SelEditNumChar;
+  engText := dmFunc.RusToEng(CBComment.Text);
+  if (engText <> CBComment.Text) then
+  begin
+    CBComment.Text := engText;
+    exit;
+  end;
+end;
+
+procedure TSendTelnetSpot.CBCommentKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  SelEditNumChar := CBComment.SelStart + 1;
+  if (Key = VK_BACK) then
+    SelEditNumChar := CBComment.SelStart - 1;
+  if (Key = VK_DELETE) then
+    SelEditNumChar := CBComment.SelStart;
+  if (CBComment.SelLength <> 0) and (Key = VK_BACK) then
+    SelEditNumChar := CBComment.SelStart;
 end;
 
 procedure TSendTelnetSpot.EditDXCallChange(Sender: TObject);
@@ -114,29 +180,14 @@ begin
     SelEditNumChar := EditDXCall.SelStart;
 end;
 
-procedure TSendTelnetSpot.EditCommentChange(Sender: TObject);
-var
-  engText: string;
+procedure TSendTelnetSpot.FormCreate(Sender: TObject);
 begin
-  EditComment.SelStart := SelEditNumChar;
-  engText := dmFunc.RusToEng(EditComment.Text);
-  if (engText <> EditComment.Text) then
-  begin
-    EditComment.Text := engText;
-    exit;
-  end;
+  SLComments := TStringList.Create;
 end;
 
-procedure TSendTelnetSpot.EditCommentKeyDown(Sender: TObject;
-  var Key: word; Shift: TShiftState);
+procedure TSendTelnetSpot.FormDestroy(Sender: TObject);
 begin
-  SelEditNumChar := EditComment.SelStart + 1;
-  if (Key = VK_BACK) then
-    SelEditNumChar := EditComment.SelStart - 1;
-  if (Key = VK_DELETE) then
-    SelEditNumChar := EditComment.SelStart;
-  if (EditComment.SelLength <> 0) and (Key = VK_BACK) then
-    SelEditNumChar := EditComment.SelStart;
+  FreeAndNil(SLComments);
 end;
 
 end.

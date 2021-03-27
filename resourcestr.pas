@@ -214,6 +214,9 @@ resourcestring
   rNumberOfQSO0 = 'Number of QSO: 0';
   rNumberOfQSO = 'Number of QSO';
   rErrorOpenFile = 'Error opening file';
+  rAddress = 'Address';
+  rCOMPort = 'COM Port';
+  rLibHamLibNotFound = 'HamLib library not found';
 
 implementation
 

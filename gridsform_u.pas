@@ -103,11 +103,13 @@ type
     procedure FilterQSLPItemClick(Sender: TObject);
     procedure FilterRecQSLItemClick(Sender: TObject);
     procedure FilterSentQSLItemClick(Sender: TObject);
+    procedure FindQSODSDataChange(Sender: TObject; Field: TField);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure GridMenuPopup(Sender: TObject);
     procedure CopyToLogItemClick(Sender: TObject);
+    procedure LOGBookDSDataChange(Sender: TObject; Field: TField);
     procedure MarkQSOItemClick(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure PrefixItemClick(Sender: TObject);
@@ -219,6 +221,7 @@ end;
 
 procedure TGridsForm.DBGrid1ColumnSized(Sender: TObject);
 begin
+  MainFunc.SaveGrids(DBGrid1);
   MainFunc.SaveGrids(DBGrid1);
   MainFunc.SetGrid(DBGrid1);
   MainFunc.SetGrid(DBGrid2);
@@ -347,6 +350,11 @@ begin
   MainFunc.FilterQSO('QSLSent', '1');
 end;
 
+procedure TGridsForm.FindQSODSDataChange(Sender: TObject; Field: TField);
+begin
+   MainFunc.SetGrid(DBGrid2);
+end;
+
 procedure TGridsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   MainFunc.SaveGrids(DBGrid1);
@@ -381,6 +389,12 @@ var
 begin
   MenuItem := (Sender as TMenuItem);
   MainFunc.CopyToJournal(DBGrid1, MenuItem.Caption);
+end;
+
+procedure TGridsForm.LOGBookDSDataChange(Sender: TObject; Field: TField);
+begin
+  MainFunc.SetGrid(DBGrid1);
+  MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TGridsForm.MarkQSOItemClick(Sender: TObject);
@@ -707,7 +721,7 @@ begin
   SendTelnetSpot.Show;
   SendTelnetSpot.EditDXCall.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('CallSign').AsString;
-  SendTelnetSpot.ComboBox1.Text :=
+  SendTelnetSpot.CBFreq.Text :=
     DBGrid1.DataSource.DataSet.FieldByName('QSOBand').AsString;
 end;
 

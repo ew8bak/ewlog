@@ -25,6 +25,9 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
+    ExportADI: TAction;
+    ImportADI: TAction;
+    GetReference: TAction;
     ActionList: TActionList;
     Bevel1: TBevel;
     Bevel2: TBevel;
@@ -115,6 +118,8 @@ type
     LBBand: TLabel;
     LBMode: TLabel;
     MainMenu: TMainMenu;
+    MIContestLogging: TMenuItem;
+    N8: TMenuItem;
     MiPhotoSeparateTop: TMenuItem;
     MiPhotoSeparate: TMenuItem;
     N7: TMenuItem;
@@ -177,7 +182,6 @@ type
     MenuItem81: TMenuItem;
     MenuItem82: TMenuItem;
     MenuItem83: TMenuItem;
-    MenuItem84: TMenuItem;
     MenuItem85: TMenuItem;
     MenuItem87: TMenuItem;
     MenuItem89: TMenuItem;
@@ -186,7 +190,6 @@ type
     MenuItem92: TMenuItem;
     MenuItem93: TMenuItem;
     MenuItem94: TMenuItem;
-    MenuItem99: TMenuItem;
     N1: TMenuItem;
     SaveQSOinBase: TAction;
     SBSave: TSpeedButton;
@@ -231,10 +234,13 @@ type
     procedure EditCallsignKeyPress(Sender: TObject; var Key: char);
     procedure EditCallsignMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
+    procedure ExportADIExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
+    procedure GetReferenceExecute(Sender: TObject);
+    procedure ImportADIExecute(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
@@ -244,6 +250,7 @@ type
     procedure MenuItem43Click(Sender: TObject);
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
+    procedure MIContestLoggingClick(Sender: TObject);
     procedure MIExtProgClick(Sender: TObject);
     procedure miMapTopClick(Sender: TObject);
     procedure MiMainTopClick(Sender: TObject);
@@ -268,12 +275,10 @@ type
     procedure MenuItem70Click(Sender: TObject);
     procedure MenuItem73Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
-    procedure MenuItem84Click(Sender: TObject);
     procedure MenuItem87Click(Sender: TObject);
     procedure MenuItem91Click(Sender: TObject);
     procedure MenuItem92Click(Sender: TObject);
     procedure MenuItem94Click(Sender: TObject);
-    procedure MenuItem99Click(Sender: TObject);
     procedure MIDownloadLangClick(Sender: TObject);
     procedure MILanguageClick(Sender: TObject);
     procedure MIPhotoClick(Sender: TObject);
@@ -320,6 +325,7 @@ type
     procedure FromImportThread(Info: TInfo);
     procedure FromMobileSyncThread(InfoStr: string);
     procedure CheckFormMenu(NameForm: string; StateForm: boolean);
+    procedure SetHotKey;
 
   end;
 
@@ -335,11 +341,11 @@ implementation
 
 uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   setupForm_U, GridsForm_u, dxclusterform_u, AboutForm_U, ConfigForm_U,
-  InformationForm_U, UpdateForm_U, ConfigGridForm_U, famm_u, mmform_u, synDBDate_u,
+  InformationForm_U, UpdateForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
-  ThanksForm_u, LogConfigForm_U, SettingsCAT_U, SettingsProgramForm_U, IOTA_Form_U,
+  ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
-  WSJT_UDP_Form_U, serverDM_u, progressForm_u;
+  WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u;
 
 {$R *.lfm}
 
@@ -740,9 +746,20 @@ begin
     IntToStr(CountAllRecords), 1);
 end;
 
+procedure TMiniForm.GetReferenceExecute(Sender: TObject);
+begin
+  // if (Key = VK_RETURN) then
+  InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
+end;
+
+procedure TMiniForm.ImportADIExecute(Sender: TObject);
+begin
+  ImportADIFForm.Show;
+end;
+
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
 begin
-  openURL('https://yasobe.ru/na/ewlog');
+  openURL('https://www.patreon.com/ewlog');
 end;
 
 procedure TMiniForm.MenuItem111Click(Sender: TObject);
@@ -841,6 +858,11 @@ begin
     IniSet.trxShow := False;
     TRXForm.Hide;
   end;
+end;
+
+procedure TMiniForm.MIContestLoggingClick(Sender: TObject);
+begin
+  ContestForm.Show;
 end;
 
 procedure TMiniForm.ProgramItemClick(Sender: TObject);
@@ -1133,11 +1155,6 @@ begin
   LogConfigForm.PageControl1.ActivePageIndex := 0;
 end;
 
-procedure TMiniForm.MenuItem84Click(Sender: TObject);
-begin
-  SettingsCAT.Show;
-end;
-
 procedure TMiniForm.MenuItem87Click(Sender: TObject);
 begin
   SettingsProgramForm.Show;
@@ -1156,11 +1173,6 @@ end;
 procedure TMiniForm.MenuItem94Click(Sender: TObject);
 begin
   About_Form.Show;
-end;
-
-procedure TMiniForm.MenuItem99Click(Sender: TObject);
-begin
-  ConfigGrid_Form.Show;
 end;
 
 procedure TMiniForm.MIDownloadLangClick(Sender: TObject);
@@ -1507,8 +1519,6 @@ begin
       if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
-      MainFunc.SetGrid(GridsForm.DBGrid1);
-      MainFunc.SetGrid(GridsForm.DBGrid2);
       Clr;
       MiniForm.TextSB('QSO № ' + IntToStr(1) + rQSOTotal +
         IntToStr(CountAllRecords), 1);
@@ -1902,7 +1912,7 @@ begin
 
   if editButtonLeng > 0 then
   begin
-    PFXR := MainFunc.SearchPrefix(editButtonText, EditMGR.Text);
+    PFXR := MainFunc.SearchPrefix(editButtonText, EditGrid.Text);
     LBAzimuthD.Caption := PFXR.Azimuth;
     LBDistanceD.Caption := PFXR.Distance;
     LBLatitudeD.Caption := PFXR.Latitude;
@@ -1969,8 +1979,8 @@ begin
     SelEditNumChar := EditCallsign.SelStart;
   if (EditCallsign.SelLength <> 0) and (Key = VK_BACK) then
     SelEditNumChar := EditCallsign.SelStart;
-  if (Key = VK_RETURN) then
-    InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
+  //if (Key = VK_RETURN) then
+  //  InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'MainForm');
 end;
 
 procedure TMiniForm.EditCallsignKeyPress(Sender: TObject; var Key: char);
@@ -2013,6 +2023,11 @@ begin
   end;
 end;
 
+procedure TMiniForm.ExportADIExecute(Sender: TObject);
+begin
+  exportAdifForm.Show;
+end;
+
 procedure TMiniForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   if EditCallsign.Text <> '' then
@@ -2030,7 +2045,12 @@ begin
   begin
     if IniSet.BackupADIonClose then
     begin
-      if MainFunc.BackupData('MiniForm') then
+      if MainFunc.BackupDataADI('MiniForm') then
+        CloseAction := caNone;
+    end;
+    if IniSet.BackupDBonClose then
+    begin
+      if MainFunc.BackupDataDB('MiniForm') then
         CloseAction := caNone;
     end;
   end
@@ -2074,6 +2094,15 @@ begin
     Earth.SavePosition;
   TRXForm.FreeRadio;
   dxClusterForm.FreeClusterThread;
+end;
+
+procedure TMiniForm.SetHotKey;
+begin
+  SaveQSOinBase.ShortCut := TextToShortCut(IniSet.KeySave);
+  ClearEdit.ShortCut := TextToShortCut(IniSet.KeyClear);
+  GetReference.ShortCut := TextToShortCut(IniSet.KeyReference);
+  ImportADI.ShortCut := TextToShortCut(IniSet.KeyImportADI);
+  ExportADI.ShortCut := TextToShortCut(IniSet.KeyExportADI);
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);
@@ -2131,6 +2160,8 @@ begin
     MenuItem89.Caption := rSwitchDBSQLIte
   else
     MenuItem89.Caption := rSwitchDBMySQL;
+
+  SetHotKey;
 
   //  PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 end;

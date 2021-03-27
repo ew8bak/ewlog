@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
-  synautil, const_u, ImbedCallBookCheckRec;
+  synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox, Spin, dmCat;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -48,20 +48,65 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
+    btApplyColor: TButton;
+    btDefaultColor: TButton;
+    CBCatDataBit: TComboBox;
+    CBCatRTSState: TComboBox;
+    CBCatParity: TComboBox;
+    CBCatHandshake: TComboBox;
+    CBCatDTRState: TComboBox;
     CheckBox1: TCheckBox;
     cbBackupDB: TCheckBox;
     cbBackupCloseDB: TCheckBox;
+    cbQSL: TCheckBox;
+    CBrigctldStart: TCheckBox;
     CheckBox11: TCheckBox;
     cbADIfiles: TCheckBox;
     cbBackupCloseADI: TCheckBox;
+    cbQSLs: TCheckBox;
+    cbDate: TCheckBox;
+    cbTime: TCheckBox;
+    cbBand: TCheckBox;
+    cbCall: TCheckBox;
+    cbMode: TCheckBox;
+    cbName: TCheckBox;
+    cbQTH: TCheckBox;
     CheckBox2: TCheckBox;
+    cbState: TCheckBox;
+    cbGrid: TCheckBox;
+    cbRSTs: TCheckBox;
+    cbRSTr: TCheckBox;
+    cbIOTA: TCheckBox;
+    cbManager: TCheckBox;
+    cbQSLsDate: TCheckBox;
+    cbQSLrDate: TCheckBox;
+    cbLOTWrDate: TCheckBox;
+    cbPrefix: TCheckBox;
     CheckBox3: TCheckBox;
+    cbSubMode: TCheckBox;
+    cbDXCC: TCheckBox;
+    cbCQZone: TCheckBox;
+    cbITUZone: TCheckBox;
+    cbManualSet: TCheckBox;
+    cbContinent: TCheckBox;
+    cbValidDX: TCheckBox;
+    cbQSLrVIA: TCheckBox;
+    cbQSLsVIA: TCheckBox;
+    cbUser: TCheckBox;
     CheckBox4: TCheckBox;
+    cbNoCalcDXCC: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
     CheckBox8: TCheckBox;
     CheckBox9: TCheckBox;
+    cbTextColorGrid: TColorBox;
+    cbBackColorGrid: TColorBox;
+    cbTextSizeGrid: TComboBox;
+    CBTransceiverModel: TComboBox;
+    CBCatComPort: TComboBox;
+    CBCatSpeed: TComboBox;
+    CBCatStopBit: TComboBox;
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
@@ -70,6 +115,15 @@ type
     Edit13: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
+    EditExportKey: TEdit;
+    EditImportKey: TEdit;
+    EditCATAddress: TEdit;
+    EditCATport: TEdit;
+    EditCATCIaddress: TEdit;
+    EditExtraCmd: TEdit;
+    EditReferenceKey: TEdit;
+    EditClearKey: TEdit;
+    EditSaveKey: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
     Edit4: TEdit;
@@ -79,6 +133,7 @@ type
     Edit8: TEdit;
     Edit9: TEdit;
     FileNameEdit1: TFileNameEdit;
+    FNPathRigctld: TFileNameEdit;
     gbIntRef: TGroupBox;
     gbTelnet: TGroupBox;
     GBQRZRU: TGroupBox;
@@ -88,6 +143,31 @@ type
     gbMySQL: TGroupBox;
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
+    gbGridsColor: TGroupBox;
+    LBKeyExport: TLabel;
+    LBKeyImport: TLabel;
+    LBPoll: TLabel;
+    LBCatRTSState: TLabel;
+    LBCatCIVaddress: TLabel;
+    LBCatParity: TLabel;
+    LBCatDTRState: TLabel;
+    LBCatStopBit: TLabel;
+    LBCatSpeed: TLabel;
+    LBCatHandshake: TLabel;
+    LBComCATPort: TLabel;
+    LBCATPort: TLabel;
+    LBCATAddress: TLabel;
+    LBCatDataBit: TLabel;
+    LBExtraCmd: TLabel;
+    LBPathRigctld: TLabel;
+    LBTransceiverModel: TLabel;
+    lbTextColor: TLabel;
+    lbBackColor: TLabel;
+    Label7: TLabel;
+    lbTextSize: TLabel;
+    LBGetReference: TLabel;
+    lbClearQSO: TLabel;
+    lbSaveQSO: TLabel;
     lbTimeBackup: TLabel;
     lbPathBackup: TLabel;
     Label10: TLabel;
@@ -113,10 +193,20 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label8: TLabel;
+    PCCat: TPageControl;
+    PControl2: TPageControl;
     PControl: TPageControl;
     ProgressBar1: TProgressBar;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
+    PColors: TTabSheet;
+    PGrids: TTabSheet;
+    SpinEdit1: TSpinEdit;
+    TSHamlib: TTabSheet;
+    TSTCI: TTabSheet;
+    TSCAT: TTabSheet;
+    TColorandGrids: TTabSheet;
+    THotKey: TTabSheet;
     timeEdit: TTimeEdit;
     TSBackup: TTabSheet;
     TSTelnet: TTabSheet;
@@ -124,6 +214,8 @@ type
     TSOtherSettings: TTabSheet;
     TSRefOnline: TTabSheet;
     TSBase: TTabSheet;
+    procedure btApplyColorClick(Sender: TObject);
+    procedure btDefaultColorClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -134,6 +226,17 @@ type
     procedure CheckBox3Change(Sender: TObject);
     procedure CheckBox6Change(Sender: TObject);
     procedure CheckBox7Change(Sender: TObject);
+    procedure EditClearKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
+    procedure EditExportKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
+    procedure EditImportKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
+    procedure EditReferenceKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
+    procedure EditSaveKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
+    procedure FNPathRigctldChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SaveINI;
@@ -144,6 +247,12 @@ type
     procedure DownloadCallBookFile;
   private
     Download: int64;
+    procedure SaveGridColumns;
+    procedure SaveGridColors;
+    procedure ReadGridColumns;
+    procedure ReadGridColors;
+    procedure LoadRIGSettings;
+    procedure SaveRIGSettings;
     { private declarations }
   public
     { public declarations }
@@ -155,7 +264,7 @@ var
 implementation
 
 uses
-  miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u;
+  miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u, TRXForm_U;
 
 {$R *.lfm}
 
@@ -206,12 +315,11 @@ begin
   INIFile.WriteBool('SetBackup', 'BackupDBonClose', cbBackupCloseDB.Checked);
   INIFile.WriteTime('SetBackup', 'BackupTime', timeEdit.Time);
 
-  IniSet.PathBackupFiles := DEBackupPath.Directory;
-  IniSet.BackupDB := cbBackupDB.Checked;
-  IniSet.BackupADI := cbADIfiles.Checked;
-  IniSet.BackupADIonClose := cbBackupCloseADI.Checked;
-  IniSet.BackupDBonClose := cbBackupCloseDB.Checked;
-  IniSet.BackupTime := timeEdit.Time;
+  INIFile.WriteString('Key', 'Save', EditSaveKey.Text);
+  INIFile.WriteString('Key', 'Clear', EditClearKey.Text);
+  INIFile.WriteString('Key', 'Reference', EditReferenceKey.Text);
+  INIFile.WriteString('Key', 'ImportADI', EditImportKey.Text);
+  INIFile.WriteString('Key', 'ExportADI', EditExportKey.Text);
 end;
 
 procedure TConfigForm.ReadINI;
@@ -269,6 +377,13 @@ begin
   timeEdit.Time := INIFile.ReadTime('SetBackup', 'BackupTime',
     StrToTime('12:00', FormatSettings));
 
+  EditSaveKey.Text := INIFile.ReadString('Key', 'Save', 'Alt+S');
+  EditClearKey.Text := INIFile.ReadString('Key', 'Clear', 'Alt+C');
+  EditReferenceKey.Text := INIFile.ReadString('Key', 'Reference', 'Enter');
+  EditImportKey.Text := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
+  EditExportKey.Text := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
+  ReadGridColumns;
+  ReadGridColors;
 end;
 
 procedure TConfigForm.Button2Click(Sender: TObject);
@@ -402,9 +517,115 @@ begin
   end;
 end;
 
+procedure TConfigForm.EditClearKeyKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  EditClearKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditClearKey.SelStart := EditClearKey.GetTextLen;
+end;
+
+procedure TConfigForm.EditExportKeyKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  EditExportKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditExportKey.SelStart := EditExportKey.GetTextLen;
+end;
+
+procedure TConfigForm.EditImportKeyKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  EditImportKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditImportKey.SelStart := EditImportKey.GetTextLen;
+end;
+
+procedure TConfigForm.EditReferenceKeyKeyDown(Sender: TObject;
+  var Key: word; Shift: TShiftState);
+begin
+  EditReferenceKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditReferenceKey.SelStart := EditReferenceKey.GetTextLen;
+end;
+
+procedure TConfigForm.EditSaveKeyKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  EditSaveKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditSaveKey.SelStart := EditSaveKey.GetTextLen;
+end;
+
+procedure TConfigForm.FNPathRigctldChange(Sender: TObject);
+begin
+  if Length(FNPathRigctld.Text) > 0 then
+    CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
+end;
+
 procedure TConfigForm.FormCreate(Sender: TObject);
 begin
   ReadINI;
+end;
+
+procedure TConfigForm.LoadRIGSettings;
+begin
+  CBCatComPort.Items.CommaText := CATdm.GetSerialPortNames;
+  FNPathRigctld.Text := IniSet.rigctldPath;
+  {$IFDEF WINDOWS}
+  FNPathRigctld.Filter := 'rigctld.exe|rigctld.exe';
+  {$ELSE}
+  FNPathRigctld.Filter := 'rigctld|rigctld';
+  if Length(FNPathRigctld.Text) = 0 then
+    FNPathRigctld.Text := CATdm.SearchRigctld;
+  {$ENDIF}
+  CBrigctldStart.Checked := IniSet.rigctldStartUp;
+  CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
+  CATdm.LoadCATini(1);
+  CBCatComPort.Text := CatSettings.COMPort;
+  CBCatSpeed.ItemIndex := CatSettings.Speed;
+  CBCatStopBit.ItemIndex := CatSettings.StopBit;
+  CBCatDataBit.ItemIndex := CatSettings.DataBit;
+  CBCatParity.ItemIndex := CatSettings.Parity;
+  CBCatHandshake.ItemIndex := CatSettings.Handshake;
+  CBCatRTSState.ItemIndex := CatSettings.RTSstate;
+  CBCatDTRState.ItemIndex := CatSettings.DTRstate;
+  EditCATCIaddress.Text := CatSettings.CIVaddress;
+  EditCATAddress.Text := CatSettings.Address;
+  EditCATport.Text := IntToStr(CatSettings.Port);
+  EditExtraCmd.Text := CatSettings.Extracmd;
+  CBrigctldStart.Checked := CatSettings.StartRigctld;
+  CBTransceiverModel.Text := IntToStr(CatSettings.TransceiverNum) +
+    ' ' + CatSettings.TransceiverName;
+end;
+
+procedure TConfigForm.SaveRIGSettings;
+var
+  TrscvName: string;
+begin
+  if Length(CBTransceiverModel.Text) > 1 then
+  begin
+    TrscvName := CBTransceiverModel.Text;
+    Delete(TrscvName, 1, pos(' ', TrscvName));
+    CatSettings.COMPort := CBCatComPort.Text;
+    CatSettings.Speed := CBCatSpeed.ItemIndex;
+    CatSettings.StopBit := CBCatStopBit.ItemIndex;
+    CatSettings.DataBit := CBCatDataBit.ItemIndex;
+    CatSettings.Parity := CBCatParity.ItemIndex;
+    CatSettings.Handshake := CBCatHandshake.ItemIndex;
+    CatSettings.RTSstate := CBCatRTSState.ItemIndex;
+    CatSettings.DTRstate := CBCatDTRState.ItemIndex;
+    CatSettings.CIVaddress := EditCATCIaddress.Text;
+    CatSettings.TransceiverNum :=
+      dmFunc.GetRigIdFromComboBoxItem(CBTransceiverModel.Text);
+    CatSettings.TransceiverName := TrscvName;
+    CatSettings.Address := EditCATAddress.Text;
+    CatSettings.Port := StrToInt(EditCATport.Text);
+    CatSettings.Extracmd := EditExtraCmd.Text;
+    CatSettings.StartRigctld := CBrigctldStart.Checked;
+    CATdm.SaveCATini(1);
+    TRXForm.InicializeRig;
+  end;
 end;
 
 procedure TConfigForm.FormShow(Sender: TObject);
@@ -433,6 +654,101 @@ begin
     CheckBox1.Checked := False;
     CheckBox1.Enabled := False;
   end;
+  LoadRIGSettings;
+end;
+
+procedure TConfigForm.ReadGridColumns;
+begin
+  cbQSL.Checked := INIFile.ReadBool('GridSettings', 'ColVisible0', True);
+  cbQSLs.Checked := INIFile.ReadBool('GridSettings', 'ColVisible1', True);
+  cbDate.Checked := INIFile.ReadBool('GridSettings', 'ColVisible2', True);
+  cbTime.Checked := INIFile.ReadBool('GridSettings', 'ColVisible3', True);
+  cbBand.Checked := INIFile.ReadBool('GridSettings', 'ColVisible4', True);
+  cbCall.Checked := INIFile.ReadBool('GridSettings', 'ColVisible5', True);
+  cbMode.Checked := INIFile.ReadBool('GridSettings', 'ColVisible6', True);
+  cbSubMode.Checked := INIFile.ReadBool('GridSettings', 'ColVisible7', True);
+  cbName.Checked := INIFile.ReadBool('GridSettings', 'ColVisible8', True);
+  cbQTH.Checked := INIFile.ReadBool('GridSettings', 'ColVisible9', True);
+  cbState.Checked := INIFile.ReadBool('GridSettings', 'ColVisible10', True);
+  cbGrid.Checked := INIFile.ReadBool('GridSettings', 'ColVisible11', True);
+  cbRSTs.Checked := INIFile.ReadBool('GridSettings', 'ColVisible12', True);
+  cbRSTr.Checked := INIFile.ReadBool('GridSettings', 'ColVisible13', True);
+  cbIOTA.Checked := INIFile.ReadBool('GridSettings', 'ColVisible14', True);
+  cbManager.Checked := INIFile.ReadBool('GridSettings', 'ColVisible15', True);
+  cbQSLsDate.Checked := INIFile.ReadBool('GridSettings', 'ColVisible16', True);
+  cbQSLrDate.Checked := INIFile.ReadBool('GridSettings', 'ColVisible17', True);
+  cbLOTWrDate.Checked := INIFile.ReadBool('GridSettings', 'ColVisible18', True);
+  cbPrefix.Checked := INIFile.ReadBool('GridSettings', 'ColVisible19', True);
+  cbDXCC.Checked := INIFile.ReadBool('GridSettings', 'ColVisible20', True);
+  cbCQZone.Checked := INIFile.ReadBool('GridSettings', 'ColVisible21', True);
+  cbITUZone.Checked := INIFile.ReadBool('GridSettings', 'ColVisible22', True);
+  cbManualSet.Checked := INIFile.ReadBool('GridSettings', 'ColVisible23', True);
+  cbContinent.Checked := INIFile.ReadBool('GridSettings', 'ColVisible24', True);
+  cbValidDX.Checked := INIFile.ReadBool('GridSettings', 'ColVisible25', True);
+  cbQSLrVIA.Checked := INIFile.ReadBool('GridSettings', 'ColVisible26', True);
+  cbQSLsVIA.Checked := INIFile.ReadBool('GridSettings', 'ColVisible27', True);
+  cbUser.Checked := INIFile.ReadBool('GridSettings', 'ColVisible28', True);
+  cbNoCalcDXCC.Checked := INIFile.ReadBool('GridSettings', 'ColVisible29', True);
+end;
+
+procedure TConfigForm.SaveGridColors;
+begin
+  INIFile.WriteInteger('GridSettings', 'TextColor', cbTextColorGrid.Selected);
+  INIFile.WriteInteger('GridSettings', 'BackColor', cbBackColorGrid.Selected);
+  case cbTextSizeGrid.ItemIndex of
+    0: INIFile.WriteInteger('GridSettings', 'TextSize', 8);
+    1: INIFile.WriteInteger('GridSettings', 'TextSize', 10);
+    2: INIFile.WriteInteger('GridSettings', 'TextSize', 12);
+    3: INIFile.WriteInteger('GridSettings', 'TextSize', 14);
+  end;
+end;
+
+procedure TConfigForm.ReadGridColors;
+begin
+  cbTextColorGrid.Selected := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
+  cbBackColorGrid.Selected :=
+    INIFile.ReadInteger('GridSettings', 'BackColor', -2147483617);
+
+  case INIFile.ReadInteger('GridSettings', 'TextSize', 8) of
+    8: cbTextSizeGrid.ItemIndex := 0;
+    10: cbTextSizeGrid.ItemIndex := 1;
+    12: cbTextSizeGrid.ItemIndex := 2;
+    14: cbTextSizeGrid.ItemIndex := 3;
+  end;
+end;
+
+procedure TConfigForm.SaveGridColumns;
+begin
+  INIFile.WriteBool('GridSettings', 'ColVisible0', cbQSL.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible1', cbQSLs.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible2', cbDate.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible3', cbTime.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible4', cbBand.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible5', cbCall.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible6', cbMode.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible7', cbSubMode.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible8', cbName.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible9', cbQTH.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible10', cbState.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible11', cbGrid.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible12', cbRSTs.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible13', cbRSTr.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible14', cbIOTA.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible15', cbManager.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible16', cbQSLsDate.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible17', cbQSLrDate.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible18', cbLOTWrDate.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible19', cbPrefix.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible20', cbDXCC.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible21', cbCQZone.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible22', cbITUZone.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible23', cbManualSet.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible24', cbContinent.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible25', cbValidDX.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible26', cbQSLrVIA.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible27', cbQSLsVIA.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible28', cbUser.Checked);
+  INIFile.WriteBool('GridSettings', 'ColVisible29', cbNoCalcDXCC.Checked);
 end;
 
 procedure TConfigForm.Button1Click(Sender: TObject);
@@ -440,8 +756,28 @@ begin
   SaveINI;
   IniSet.Cluster_Login := Edit11.Text;
   IniSet.Cluster_Pass := Edit12.Text;
+  SaveGridColumns;
+  SaveGridColors;
+  SaveRIGSettings;
   MainFunc.LoadINIsettings;
+  MiniForm.SetHotKey;
+  MainFunc.SetGrid(GridsForm.DBGrid1);
+  MainFunc.SetGrid(GridsForm.DBGrid2);
   ConfigForm.Close;
+end;
+
+procedure TConfigForm.btApplyColorClick(Sender: TObject);
+begin
+  SaveGridColors;
+  MainFunc.SetGrid(GridsForm.DBGrid1);
+  MainFunc.SetGrid(GridsForm.DBGrid2);
+end;
+
+procedure TConfigForm.btDefaultColorClick(Sender: TObject);
+begin
+  cbTextSizeGrid.ItemIndex := 0;
+  cbTextColorGrid.ItemIndex := cbTextColorGrid.Items.IndexOf('clBlack');
+  cbBackColorGrid.ItemIndex := cbBackColorGrid.Items.IndexOf('clForm');
 end;
 
 function TConfigForm.CheckUpdate: boolean;
