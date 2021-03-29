@@ -1426,6 +1426,7 @@ begin
   IniSet.KeyImportADI := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
   IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
   IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
+  IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

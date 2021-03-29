@@ -76,7 +76,7 @@ begin
   SQSO.My_Grid := LBRecord.OpLoc;
   SQSO.NLogDB := LBRecord.LogTable;
 
-   MainFunc.SaveQSO(SQSO);
+  MainFunc.SaveQSO(SQSO);
 end;
 
 function TdmContest.ContestNameToADIf(contestName: string): string;
@@ -122,7 +122,10 @@ begin
       end;
       Query.Close;
     finally
-      CBContest.ItemIndex := 0;
+      if CBContest.Items.IndexOf(IniSet.ContestName) <> -1 then
+        CBContest.ItemIndex := CBContest.Items.IndexOf(IniSet.ContestName)
+      else
+        CBContest.ItemIndex := 0;
       FreeAndNil(Query);
     end;
   except

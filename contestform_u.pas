@@ -52,6 +52,7 @@ type
     procedure BtResetSessionClick(Sender: TObject);
     procedure BtSaveClick(Sender: TObject);
     procedure BtSaveKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure CBContestNameChange(Sender: TObject);
     procedure CBModeCloseUp(Sender: TObject);
     procedure EditCallsignChange(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
@@ -154,8 +155,10 @@ begin
     dmContest.SaveQSOContest(SaveQSOrec);
     SBContest.Panels[0].Text := 'Save ' + EditCallsign.Text + ' OK';
     Inc(IniSet.ContestLastNumber);
-    EditExchs.Text:=IntToStr(IniSet.ContestLastNumber);
+    EditExchs.Text := IntToStr(IniSet.ContestLastNumber);
     INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
+    INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
+
     EditCallsign.Clear;
     EditExchr.Clear;
     EditName.Clear;
@@ -171,6 +174,9 @@ begin
   IniSet.ContestLastNumber := 1;
   INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
   EditExchs.Text := IntToStr(IniSet.ContestLastNumber);
+  CBContestName.ItemIndex := 0;
+  IniSet.ContestName := CBContestName.Text;
+  INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
 end;
 
 procedure TContestForm.BtSaveKeyDown(Sender: TObject; var Key: word;
@@ -178,6 +184,11 @@ procedure TContestForm.BtSaveKeyDown(Sender: TObject; var Key: word;
 begin
   if (Key = VK_RETURN) then
     BtSaveClick(Self);
+end;
+
+procedure TContestForm.CBContestNameChange(Sender: TObject);
+begin
+  IniSet.ContestName := CBContestName.Text;
 end;
 
 procedure TContestForm.CBModeCloseUp(Sender: TObject);
@@ -220,7 +231,7 @@ begin
   dmContest.LoadContestName(CBContestName);
   MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
   CBModeCloseUp(nil);
-  EditExchs.Text:=IntToStr(IniSet.ContestLastNumber);
+  EditExchs.Text := IntToStr(IniSet.ContestLastNumber);
   EditCallsign.SetFocus;
 end;
 

@@ -80,6 +80,7 @@ object ContestForm: TContestForm
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
     ItemHeight = 0
+    OnChange = CBContestNameChange
     TabOrder = 2
   end
   object LBDate: TLabel

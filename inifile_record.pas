@@ -109,6 +109,7 @@ type
     KeyImportADI: string;
     KeyExportADI: string;
     ContestLastNumber: integer;
+    ContestName: string;
   end;
 
 implementation

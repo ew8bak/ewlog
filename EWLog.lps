@@ -549,8 +549,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="293"/>
-        <CursorPos X="11" Y="656"/>
+        <TopLine Value="85"/>
+        <CursorPos X="9" Y="655"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit55>
@@ -579,7 +579,7 @@
         <UnitName Value="MainFuncDM"/>
         <EditorIndex Value="3"/>
         <TopLine Value="1408"/>
-        <CursorPos X="84" Y="1428"/>
+        <CursorPos X="74" Y="1429"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit58>
@@ -595,7 +595,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="82"/>
-        <CursorPos X="32" Y="111"/>
+        <CursorPos X="25" Y="112"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit60>
@@ -819,8 +819,8 @@
         <UnitName Value="contestForm_u"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="213"/>
-        <CursorPos X="82" Y="216"/>
+        <TopLine Value="150"/>
+        <CursorPos X="69" Y="160"/>
         <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -833,8 +833,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmContest_u"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="53"/>
-        <CursorPos X="47" Y="63"/>
+        <TopLine Value="105"/>
+        <CursorPos X="27" Y="123"/>
         <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit85>
@@ -1739,124 +1739,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="dmcontest_u.pas"/>
-        <Caret Line="79" Column="3" TopLine="61"/>
-      </Position1>
-      <Position2>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="43" Column="15" TopLine="27"/>
-      </Position2>
-      <Position3>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="724" Column="24" TopLine="708"/>
-      </Position3>
-      <Position4>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="373" Column="3" TopLine="305"/>
-      </Position4>
-      <Position5>
-        <Filename Value="initdb_dm.pas"/>
-        <Caret Line="47" Column="14" TopLine="32"/>
-      </Position5>
-      <Position6>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1521" Column="4" TopLine="1513"/>
-      </Position6>
-      <Position7>
+      </Position1>
+      <Position2>
         <Filename Value="initdb_dm.pas"/>
         <Caret Line="656" Column="41" TopLine="647"/>
-      </Position7>
-      <Position8>
+      </Position2>
+      <Position3>
         <Filename Value="initdb_dm.pas"/>
         <Caret Line="655" Column="36" TopLine="640"/>
-      </Position8>
-      <Position9>
+      </Position3>
+      <Position4>
         <Filename Value="initdb_dm.pas"/>
         <Caret Line="658" Column="39" TopLine="641"/>
+      </Position4>
+      <Position5>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="131" Column="39" TopLine="131"/>
+      </Position5>
+      <Position6>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="123" Column="31" TopLine="112"/>
+      </Position6>
+      <Position7>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1428" Column="27" TopLine="1415"/>
+      </Position7>
+      <Position8>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="91" Column="3" TopLine="75"/>
+      </Position8>
+      <Position9>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="130" Column="5" TopLine="87"/>
       </Position9>
       <Position10>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="131" Column="39" TopLine="131"/>
+        <Caret Line="131" Column="5" TopLine="100"/>
       </Position10>
       <Position11>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="123" Column="31" TopLine="112"/>
+        <Caret Line="130" Column="5" TopLine="99"/>
       </Position11>
       <Position12>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1428" Column="27" TopLine="1415"/>
+        <Caret Line="91" Column="9" TopLine="75"/>
       </Position12>
       <Position13>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="91" Column="3" TopLine="75"/>
+        <Caret Line="108" Column="12" TopLine="82"/>
       </Position13>
       <Position14>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="130" Column="5" TopLine="87"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="119" Column="12" TopLine="93"/>
       </Position14>
       <Position15>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="131" Column="5" TopLine="100"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="121" Column="61" TopLine="95"/>
       </Position15>
       <Position16>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="130" Column="5" TopLine="99"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="444" Column="40" TopLine="418"/>
       </Position16>
       <Position17>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="91" Column="9" TopLine="75"/>
+        <Caret Line="445" Column="37" TopLine="419"/>
       </Position17>
       <Position18>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="108" Column="12" TopLine="82"/>
+        <Caret Line="958" Column="34" TopLine="941"/>
       </Position18>
       <Position19>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="119" Column="12" TopLine="93"/>
+        <Caret Line="1308" Column="20" TopLine="1282"/>
       </Position19>
       <Position20>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="121" Column="61" TopLine="95"/>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="132" Column="5" TopLine="101"/>
       </Position20>
       <Position21>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="444" Column="40" TopLine="418"/>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="168" Column="27" TopLine="166"/>
       </Position21>
       <Position22>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="445" Column="37" TopLine="419"/>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="157" Column="56" TopLine="137"/>
       </Position22>
       <Position23>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="958" Column="34" TopLine="941"/>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="222" Column="54" TopLine="211"/>
       </Position23>
       <Position24>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1308" Column="20" TopLine="1282"/>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="172" Column="82" TopLine="151"/>
       </Position24>
       <Position25>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="132" Column="5" TopLine="101"/>
+        <Caret Line="220" Column="44" TopLine="207"/>
       </Position25>
       <Position26>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="168" Column="27" TopLine="166"/>
+        <Filename Value="dmcontest_u.pas"/>
+        <Caret Line="16" Column="15"/>
       </Position26>
       <Position27>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="157" Column="56" TopLine="137"/>
+        <Caret Line="220" Column="44" TopLine="207"/>
       </Position27>
       <Position28>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="222" Column="54" TopLine="211"/>
+        <Caret Line="175" Column="46" TopLine="169"/>
       </Position28>
       <Position29>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="63" Column="62" TopLine="208"/>
+        <Caret Line="160" Column="5" TopLine="138"/>
       </Position29>
       <Position30>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="172" Column="82" TopLine="151"/>
+        <Caret Line="190" Column="43" TopLine="187"/>
       </Position30>
     </JumpHistory>
     <RunParams>
