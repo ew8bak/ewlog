@@ -1831,6 +1831,10 @@ msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr ""
 
+#: tcontestform.btresetsession.caption
+msgid "New"
+msgstr ""
+
 #: tcontestform.btsave.caption
 msgctxt "tcontestform.btsave.caption"
 msgid "Save"
@@ -1855,7 +1859,7 @@ msgid "25.03.21"
 msgstr ""
 
 #: tcontestform.editexchs.text
-msgid "1"
+msgid "001"
 msgstr ""
 
 #: tcontestform.editfreq.text

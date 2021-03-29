@@ -269,7 +269,6 @@ procedure TMainFunc.SaveGrids(DbGrid: TDBGrid);
 var
   i: integer;
 begin
-  //ShowMessage();
   for i := 0 to 29 do
   begin
     INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
@@ -1426,6 +1425,7 @@ begin
   IniSet.KeyReference := INIFile.ReadString('Key', 'Reference', 'Enter');
   IniSet.KeyImportADI := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
   IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
+  IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

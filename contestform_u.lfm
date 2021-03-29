@@ -59,7 +59,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Control = CBContestName
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = CBContestName
-    Left = 260
+    Left = 246
     Height = 13
     Top = 12
     Width = 85
@@ -71,12 +71,11 @@ object ContestForm: TContestForm
   end
   object CBContestName: TComboBox
     AnchorSideTop.Control = Owner
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
-    Left = 350
+    AnchorSideRight.Control = BtResetSession
+    Left = 336
     Height = 27
     Top = 5
-    Width = 336
+    Width = 302
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
@@ -330,7 +329,7 @@ object ContestForm: TContestForm
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 11
-    Text = '1'
+    Text = '001'
   end
   object EditRSTr: TEdit
     AnchorSideLeft.Control = LBRSTr
@@ -460,6 +459,22 @@ object ContestForm: TContestForm
     BorderSpacing.Left = 10
     Caption = 'Sub mode'
     ParentColor = False
+  end
+  object BtResetSession: TButton
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 643
+    Height = 25
+    Top = 5
+    Width = 43
+    Anchors = [akTop, akRight]
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
+    Caption = 'New'
+    Color = clRed
+    OnClick = BtResetSessionClick
+    TabOrder = 18
   end
   object TTime: TTimer
     OnTimer = TTimeTimer

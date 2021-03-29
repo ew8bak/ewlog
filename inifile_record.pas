@@ -108,6 +108,7 @@ type
     KeyReference: string;
     KeyImportADI: string;
     KeyExportADI: string;
+    ContestLastNumber: integer;
   end;
 
 implementation

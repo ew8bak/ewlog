@@ -15,6 +15,7 @@ type
 
   TContestForm = class(TForm)
     BtSave: TButton;
+    BtResetSession: TButton;
     CBContestName: TComboBox;
     CBMode: TComboBox;
     CBBand: TComboBox;
@@ -48,6 +49,7 @@ type
     SBContest: TStatusBar;
     TETime: TTimeEdit;
     TTime: TTimer;
+    procedure BtResetSessionClick(Sender: TObject);
     procedure BtSaveClick(Sender: TObject);
     procedure BtSaveKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure CBModeCloseUp(Sender: TObject);
@@ -72,7 +74,7 @@ var
 
 implementation
 
-uses dmFunc_U;
+uses dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -127,6 +129,7 @@ begin
     SaveQSOrec.QSOReportRecived := EditRSTr.Text;
     SaveQSOrec.OmName := EditName.Text;
     SaveQSOrec.ShortNote := EditComment.Text;
+
     if RBSerial.Checked then
     begin
       try
@@ -150,6 +153,9 @@ begin
     end;
     dmContest.SaveQSOContest(SaveQSOrec);
     SBContest.Panels[0].Text := 'Save ' + EditCallsign.Text + ' OK';
+    Inc(IniSet.ContestLastNumber);
+    EditExchs.Text:=IntToStr(IniSet.ContestLastNumber);
+    INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
     EditCallsign.Clear;
     EditExchr.Clear;
     EditName.Clear;
@@ -158,6 +164,13 @@ begin
   else
     SBContest.Panels[0].Text := 'Nothing to save';
   EditCallsign.SetFocus;
+end;
+
+procedure TContestForm.BtResetSessionClick(Sender: TObject);
+begin
+  IniSet.ContestLastNumber := 1;
+  INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
+  EditExchs.Text := IntToStr(IniSet.ContestLastNumber);
 end;
 
 procedure TContestForm.BtSaveKeyDown(Sender: TObject; var Key: word;
@@ -207,6 +220,7 @@ begin
   dmContest.LoadContestName(CBContestName);
   MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
   CBModeCloseUp(nil);
+  EditExchs.Text:=IntToStr(IniSet.ContestLastNumber);
   EditCallsign.SetFocus;
 end;
 

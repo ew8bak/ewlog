@@ -1915,6 +1915,10 @@ msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr "Телнет"
 
+#: tcontestform.btresetsession.caption
+msgid "New"
+msgstr ""
+
 #: tcontestform.btsave.caption
 #, fuzzy
 msgctxt "tcontestform.btsave.caption"
@@ -1940,7 +1944,7 @@ msgid "25.03.21"
 msgstr ""
 
 #: tcontestform.editexchs.text
-msgid "1"
+msgid "001"
 msgstr ""
 
 #: tcontestform.editfreq.text

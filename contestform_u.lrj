@@ -20,10 +20,11 @@
 {"hash":215373,"name":"tcontestform.cbband.text","sourcebytes":[49,54,48,77],"value":"160M"},
 {"hash":79115008,"name":"tcontestform.editfreq.text","sourcebytes":[49,56,52,48,48,48,48],"value":"1840000"},
 {"hash":905,"name":"tcontestform.editrsts.text","sourcebytes":[53,57],"value":"59"},
-{"hash":49,"name":"tcontestform.editexchs.text","sourcebytes":[49],"value":"1"},
+{"hash":13105,"name":"tcontestform.editexchs.text","sourcebytes":[48,48,49],"value":"001"},
 {"hash":905,"name":"tcontestform.editrstr.text","sourcebytes":[53,57],"value":"59"},
 {"hash":346165,"name":"tcontestform.lbname.caption","sourcebytes":[78,97,109,101],"value":"Name"},
 {"hash":174341140,"name":"tcontestform.lbcomment.caption","sourcebytes":[67,111,109,109,101,110,116],"value":"Comment"},
 {"hash":366789,"name":"tcontestform.btsave.caption","sourcebytes":[83,97,118,101],"value":"Save"},
-{"hash":189218821,"name":"tcontestform.lbsubmode.caption","sourcebytes":[83,117,98,32,109,111,100,101],"value":"Sub mode"}
+{"hash":189218821,"name":"tcontestform.lbsubmode.caption","sourcebytes":[83,117,98,32,109,111,100,101],"value":"Sub mode"},
+{"hash":21703,"name":"tcontestform.btresetsession.caption","sourcebytes":[78,101,119],"value":"New"}
 ]}
