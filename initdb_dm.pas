@@ -651,7 +651,9 @@ begin
     begin
       DefLogBookQuery.SQL.Text :=
         'SELECT `UnUsedIndex`, `CallSign`,' +
-        'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+        'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
+        + '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
+        + '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
         + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
         + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
         + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -660,7 +662,7 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
         + LogTable +
-        ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from ' +
+        ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 FROM ' +
         LogTable + ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
     end;
     DefLogBookQuery.Open;

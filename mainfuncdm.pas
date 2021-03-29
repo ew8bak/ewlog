@@ -1418,14 +1418,14 @@ begin
   IniSet.BackupDBonClose := INIFile.ReadBool('SetBackup', 'BackupDBonClose', False);
   IniSet.BackupTime := INIFile.ReadTime('SetBackup', 'BackupTime',
     StrToTime('12:00', FormatSettings));
-  IniSet.rigctldStartUp:=INIFile.ReadBool('SetCAT', 'rigctldStartUp', True);
-  IniSet.rigctldExtra:=INIFile.ReadString('SetCAT', 'rigctldExtra', '');
-  IniSet.rigctldPath:=INIFile.ReadString('SetCAT', 'rigctldPath', '');
-  IniSet.KeySave:=INIFile.ReadString('Key', 'Save', 'Alt+S');
-  IniSet.KeyClear:=INIFile.ReadString('Key', 'Clear', 'Alt+C');
-  IniSet.KeyReference:=INIFile.ReadString('Key', 'Reference', 'Enter');
-  IniSet.KeyImportADI:=INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
-  IniSet.KeyExportADI:=INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
+  IniSet.rigctldStartUp := INIFile.ReadBool('SetCAT', 'rigctldStartUp', True);
+  IniSet.rigctldExtra := INIFile.ReadString('SetCAT', 'rigctldExtra', '');
+  IniSet.rigctldPath := INIFile.ReadString('SetCAT', 'rigctldPath', '');
+  IniSet.KeySave := INIFile.ReadString('Key', 'Save', 'Alt+S');
+  IniSet.KeyClear := INIFile.ReadString('Key', 'Clear', 'Alt+C');
+  IniSet.KeyReference := INIFile.ReadString('Key', 'Reference', 'Enter');
+  IniSet.KeyImportADI := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
+  IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -1895,7 +1895,6 @@ begin
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
         dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
-        WriteLn(ExceptFile, 'SaveQSO:'+QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else
@@ -1910,6 +1909,9 @@ begin
       WriteLn(ExceptFile, 'SaveQSO:' + E.ClassName + ':' + E.Message);
     end;
   end;
+  if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
 end;
 
 procedure TMainFunc.SetGrid(var DBGRID: TDBGrid);

@@ -152,6 +152,8 @@ begin
     SBContest.Panels[0].Text := 'Save ' + EditCallsign.Text + ' OK';
     EditCallsign.Clear;
     EditExchr.Clear;
+    EditName.Clear;
+    EditComment.Clear;
   end
   else
     SBContest.Panels[0].Text := 'Nothing to save';

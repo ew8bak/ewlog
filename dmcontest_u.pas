@@ -29,6 +29,7 @@ implementation
 procedure TdmContest.SaveQSOContest(SQSO: TQSO);
 var
   PFXR: TPFXR;
+  H: integer;
 begin
   PFXR := MainFunc.SearchPrefix(SQSO.CallSing, SQSO.Grid);
   SQSO.MainPrefix := PFXR.Prefix;
@@ -50,6 +51,7 @@ begin
   SQSO.State2 := '';
   SQSO.State3 := '';
   SQSO.State4 := '';
+  SQSO.QSLInfo := '';
   SQSO.SAT_NAME := '';
   SQSO.SAT_MODE := '';
   SQSO.PROP_MODE := '';
@@ -73,7 +75,8 @@ begin
   SQSO.My_Lon := '';
   SQSO.My_Grid := LBRecord.OpLoc;
   SQSO.NLogDB := LBRecord.LogTable;
- // MainFunc.SaveQSO(SQSO);
+
+   MainFunc.SaveQSO(SQSO);
 end;
 
 function TdmContest.ContestNameToADIf(contestName: string): string;
