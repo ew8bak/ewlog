@@ -1357,6 +1357,10 @@ object GridsForm: TGridsForm
         Caption = 'QSL do not send'
         OnClick = FilterDNSentItemClick
       end
+      object FilterMarkedQSO: TMenuItem
+        Caption = 'Marked QSO'
+        OnClick = FilterMarkedQSOClick
+      end
       object FilterCancelItem: TMenuItem
         Caption = 'Cancel filter'
         OnClick = FilterCancelItemClick

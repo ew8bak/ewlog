@@ -3074,6 +3074,10 @@ msgctxt "tgridsform.filteritem.caption"
 msgid "Record Filter"
 msgstr ""
 
+#: tgridsform.filtermarkedqso.caption
+msgid "Marked QSO"
+msgstr ""
+
 #: tgridsform.filternsentqslitem.caption
 msgctxt "tgridsform.filternsentqslitem.caption"
 msgid "Not sent QSL"

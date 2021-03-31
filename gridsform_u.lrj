@@ -99,6 +99,7 @@
 {"hash":251671020,"name":"tgridsform.filternsentqslitem.caption","sourcebytes":[78,111,116,32,115,101,110,116,32,81,83,76],"value":"Not sent QSL"},
 {"hash":131736772,"name":"tgridsform.filterqslpitem.caption","sourcebytes":[81,83,76,32,112,114,105,110,116,101,100],"value":"QSL printed"},
 {"hash":135060228,"name":"tgridsform.filterdnsentitem.caption","sourcebytes":[81,83,76,32,100,111,32,110,111,116,32,115,101,110,100],"value":"QSL do not send"},
+{"hash":28536559,"name":"tgridsform.filtermarkedqso.caption","sourcebytes":[77,97,114,107,101,100,32,81,83,79],"value":"Marked QSO"},
 {"hash":256680290,"name":"tgridsform.filtercancelitem.caption","sourcebytes":[67,97,110,99,101,108,32,102,105,108,116,101,114],"value":"Cancel filter"},
 {"hash":96891911,"name":"tgridsform.copytologitem0.caption","sourcebytes":[67,111,112,121,32,116,111,32,97,110,111,116,104,101,114,32,108,111,103],"value":"Copy to another log"},
 {"hash":146837948,"name":"tgridsform.saveexcelitem.caption","sourcebytes":[83,97,118,101,32,116,111,32,69,120,99,101,108],"value":"Save to Excel"},

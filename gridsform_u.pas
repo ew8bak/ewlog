@@ -44,6 +44,7 @@ type
     DBGrid2: TDBGrid;
     GridMenu: TPopupMenu;
     MarkQSOItem: TMenuItem;
+    FilterMarkedQSO: TMenuItem;
     PrefixItem: TMenuItem;
     QSLnsItem: TMenuItem;
     FinqQSLManItem: TMenuItem;
@@ -99,6 +100,7 @@ type
     procedure ExportQSLccItemClick(Sender: TObject);
     procedure FilterCancelItemClick(Sender: TObject);
     procedure FilterDNSentItemClick(Sender: TObject);
+    procedure FilterMarkedQSOClick(Sender: TObject);
     procedure FilterNSentQSLItemClick(Sender: TObject);
     procedure FilterQSLPItemClick(Sender: TObject);
     procedure FilterRecQSLItemClick(Sender: TObject);
@@ -328,6 +330,11 @@ end;
 procedure TGridsForm.FilterDNSentItemClick(Sender: TObject);
 begin
   MainFunc.FilterQSO('QSLSentAdv', 'N');
+end;
+
+procedure TGridsForm.FilterMarkedQSOClick(Sender: TObject);
+begin
+  MainFunc.FilterQSO('Marker', '1');
 end;
 
 procedure TGridsForm.FilterNSentQSLItemClick(Sender: TObject);
