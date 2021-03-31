@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit contestForm_u;
 
 {$mode objfpc}{$H+}
@@ -53,7 +62,6 @@ type
     procedure BtSaveClick(Sender: TObject);
     procedure BtSaveKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure CBContestNameChange(Sender: TObject);
-    procedure CBModeCloseUp(Sender: TObject);
     procedure EditCallsignChange(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
@@ -75,7 +83,7 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm;
+uses dmFunc_U, InitDB_dm, miniform_u;
 
 {$R *.lfm}
 
@@ -191,23 +199,6 @@ begin
   IniSet.ContestName := CBContestName.Text;
 end;
 
-procedure TContestForm.CBModeCloseUp(Sender: TObject);
-var
-  i: integer;
-begin
-  CBSubMode.Items.Clear;
-  for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
-    CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
-
-  if CBMode.Text <> 'SSB' then
-    CBSubMode.Text := '';
-
-  if StrToDouble(MainFunc.FormatFreq(CBBand.Text, CBMode.Text)) >= 10 then
-    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
-  else
-    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('LSB');
-end;
-
 procedure TContestForm.EditCallsignKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = ' ' then
@@ -229,8 +220,6 @@ begin
     EditExchs.NumbersOnly := True;
   end;
   dmContest.LoadContestName(CBContestName);
-  MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
-  CBModeCloseUp(nil);
   EditExchs.Text := IntToStr(IniSet.ContestLastNumber);
   EditCallsign.SetFocus;
 end;
@@ -257,6 +246,10 @@ procedure TContestForm.TTimeTimer(Sender: TObject);
 begin
   TETime.Time := NowUTC;
   DEDate.Date := NowUTC;
+  CBMode.Text := FMS.Mode;
+  CBSubMode.Text := FMS.SubMode;
+  CBBand.Text := dmFunc.GetBandFromFreq(IntToStr(FMS.Freq));
+  EditFreq.Text := IntToStr(FMS.Freq);
 end;
 
 end.

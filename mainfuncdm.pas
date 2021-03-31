@@ -18,7 +18,7 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u,
-  FileUtil;
+  FileUtil, FMS_record;
 
 type
   bandArray = array of string;
@@ -94,6 +94,7 @@ var
   columnsVisible: array[0..29] of boolean;
   columnsDX: array[0..8] of string;
   columnsDXWidth: array[0..8] of integer;
+  FMS: TFMSRecord;
 
 implementation
 

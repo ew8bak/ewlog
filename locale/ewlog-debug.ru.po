@@ -1930,10 +1930,6 @@ msgctxt "tcontestform.caption"
 msgid "Contest Logging"
 msgstr ""
 
-#: tcontestform.cbband.text
-msgid "160M"
-msgstr ""
-
 #: tcontestform.cbmode.text
 msgctxt "tcontestform.cbmode.text"
 msgid "SSB"
@@ -1945,10 +1941,6 @@ msgstr ""
 
 #: tcontestform.editexchs.text
 msgid "001"
-msgstr ""
-
-#: tcontestform.editfreq.text
-msgid "1840000"
 msgstr ""
 
 #: tcontestform.editrstr.text

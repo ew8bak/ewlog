@@ -1,7 +1,7 @@
 object ContestForm: TContestForm
-  Left = 404
+  Left = 551
   Height = 242
-  Top = 132
+  Top = 119
   Width = 691
   Caption = 'Contest Logging'
   ClientHeight = 242
@@ -255,7 +255,6 @@ object ContestForm: TContestForm
     Width = 90
     BorderSpacing.Top = 5
     ItemHeight = 0
-    OnCloseUp = CBModeCloseUp
     TabOrder = 5
     Text = 'SSB'
   end
@@ -270,7 +269,6 @@ object ContestForm: TContestForm
     BorderSpacing.Top = 5
     ItemHeight = 0
     TabOrder = 7
-    Text = '160M'
   end
   object EditFreq: TEdit
     AnchorSideLeft.Control = LBFreq
@@ -282,7 +280,6 @@ object ContestForm: TContestForm
     Width = 90
     BorderSpacing.Top = 5
     TabOrder = 8
-    Text = '1840000'
   end
   object EditCallsign: TEdit
     AnchorSideLeft.Control = LBCallsign

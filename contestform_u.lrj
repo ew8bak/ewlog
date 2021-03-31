@@ -17,8 +17,6 @@
 {"hash":135488001,"name":"tcontestform.dedate.text","sourcebytes":[50,53,46,48,51,46,50,49],"value":"25.03.21"},
 {"hash":97730160,"name":"tcontestform.tetime.text","sourcebytes":[49,50,58,48,48,58,48,48],"value":"12:00:00"},
 {"hash":22642,"name":"tcontestform.cbmode.text","sourcebytes":[83,83,66],"value":"SSB"},
-{"hash":215373,"name":"tcontestform.cbband.text","sourcebytes":[49,54,48,77],"value":"160M"},
-{"hash":79115008,"name":"tcontestform.editfreq.text","sourcebytes":[49,56,52,48,48,48,48],"value":"1840000"},
 {"hash":905,"name":"tcontestform.editrsts.text","sourcebytes":[53,57],"value":"59"},
 {"hash":13105,"name":"tcontestform.editexchs.text","sourcebytes":[48,48,49],"value":"001"},
 {"hash":905,"name":"tcontestform.editrstr.text","sourcebytes":[53,57],"value":"59"},
