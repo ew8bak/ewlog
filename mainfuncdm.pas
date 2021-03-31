@@ -1428,6 +1428,9 @@ begin
   IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
   IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
   IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
+  IniSet.WorkOnLAN:=INIFile.ReadBool('WorkOnLAN', 'Enable', False);
+  IniSet.WOLAddress:=INIFile.ReadString('WorkOnLAN', 'Address', '127.0.0.1');
+  IniSet.WOLPort:=INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

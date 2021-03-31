@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 288
     Top = 0
     Width = 510
-    ActivePage = TSOtherSettings
+    ActivePage = TSWorkLAN
     Align = alTop
-    TabIndex = 8
+    TabIndex = 9
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
@@ -1131,11 +1131,11 @@ object ConfigForm: TConfigForm
         end
         object Label14: TLabel
           AnchorSideLeft.Control = Label13
-          Left = 55
+          Left = 60
           Height = 13
           Top = 32
           Width = 12
-          BorderSpacing.Left = 45
+          BorderSpacing.Left = 50
           Caption = '---'
           ParentColor = False
         end
@@ -2099,6 +2099,9 @@ object ConfigForm: TConfigForm
         ParentColor = False
         ParentFont = False
       end
+    end
+    object TSWorkLAN: TTabSheet
+      Caption = 'Work on LAN'
     end
   end
 end

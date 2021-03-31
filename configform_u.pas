@@ -202,6 +202,7 @@ type
     PColors: TTabSheet;
     PGrids: TTabSheet;
     SpinEdit1: TSpinEdit;
+    TSWorkLAN: TTabSheet;
     TSHamlib: TTabSheet;
     TSTCI: TTabSheet;
     TSCAT: TTabSheet;

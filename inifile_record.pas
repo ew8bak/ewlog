@@ -110,6 +110,9 @@ type
     KeyExportADI: string;
     ContestLastNumber: integer;
     ContestName: string;
+    WorkOnLAN: boolean;
+    WOLAddress: string;
+    WOLPort: integer;
   end;
 
 implementation
