@@ -112,7 +112,7 @@ var
   s: integer;
 begin
   Randomize;
-  Result:='';
+  Result := '';
   for s := 1 to 5 do
   begin
     for a := 1 to 5 do
@@ -134,14 +134,14 @@ var
   end;
 
 begin
-  logdata:='<EOH>';
+  logdata := '<EOH>';
   AddData('LOG_PGM', programName);
   AddData('LOG_ID', IniSet.UniqueID);
   AddData('CALL', QSO.CallSing);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', QSO.QSODate));
   QSO.QSOTime := StringReplace(QSO.QSOTime, ':', '', [rfReplaceAll]);
   AddData('TIME_ON', QSO.QSOTime);
-  AddData('NAME',QSO.OmName);
+  AddData('NAME', QSO.OmName);
   AddData('QTH', QSO.OmQTH);
   AddData('GRIDSQUARE', QSO.Grid);
   AddData('FREQ', QSO.QSOBand);
@@ -150,6 +150,11 @@ begin
   AddData('SUBMODE', QSO.QSOSubMode);
   AddData('RST_SENT', QSO.QSOReportSent);
   AddData('RST_RCVD', QSO.QSOReportRecived);
+  AddData('STX', IntToStr(QSO.STX));
+  AddData('STX_STRING', QSO.STX_String);
+  AddData('SRX', IntToStr(QSO.SRX));
+  AddData('SRX_STRING', QSO.SRX_String);
+  AddData('COMMENT', QSO.ShortNote);
   AddData('QSLMSG', QSO.QSLInfo);
   logdata := logdata + '<EOR>';
   Result := logdata;
@@ -1390,7 +1395,7 @@ var
 begin
   FormatSettings.TimeSeparator := ':';
   FormatSettings.ShortTimeFormat := 'hh:mm';
-  IniSet.UniqueID:=GenerateRandomID;
+  IniSet.UniqueID := GenerateRandomID;
   IniSet.UseIntCallBook := INIFile.ReadBool('SetLog', 'IntCallBook', True);
   IniSet.PhotoDir := INIFile.ReadString('SetLog', 'PhotoDir', '');
   IniSet.StateToQSLInfo := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);

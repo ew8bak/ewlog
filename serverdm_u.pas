@@ -228,6 +228,22 @@ begin
       mm := StrToInt(QSODate[5] + QSODate[6]);
       dd := StrToInt(QSODate[7] + QSODate[8]);
       SQSO.QSODate:=EncodeDate(yyyy,mm,dd);
+      SQSO.Grid:=dmFunc.getField(ADILine, 'GRIDSQUARE');
+      SQSO.ShortNote:=dmFunc.getField(ADILine, 'COMMENT');
+      SQSO.SRX:=StrToInt(dmFunc.getField(ADILine, 'SRX'));
+      SQSO.STX:=StrToInt(dmFunc.getField(ADILine, 'STX'));
+      SQSO.SRX_String:=dmFunc.getField(ADILine, 'SRX_STRING');
+      SQSO.STX_String:=dmFunc.getField(ADILine, 'STX_STRING');
+      SQSO.WPX := dmFunc.ExtractWPXPrefix(SQSO.CallSing);
+      PFXR := MainFunc.SearchPrefix(SQSO.CallSing, SQSO.Grid);
+      SQSO.MainPrefix := PFXR.Prefix;
+      SQSO.DXCCPrefix := PFXR.ARRLPrefix;
+      SQSO.CQZone := PFXR.CQZone;
+      SQSO.ITUZone := PFXR.ITUZone;
+      SQSO.Continent := PFXR.Continent;
+      SQSO.DXCC := IntToStr(PFXR.DXCCNum);
+      SQSO.NLogDB := LBRecord.LogTable;
+      MainFunc.SaveQSO(SQSO);
     end;
 
   except
