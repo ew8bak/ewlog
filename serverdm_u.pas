@@ -207,17 +207,23 @@ var
   PFXR: TPFXR;
   yyyy, mm, dd: integer;
   QSODate: string;
+  DigiBand_String: string;
 begin
   try
     ADILine := BytesToString(AData);
-    if (dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
-      (dmFunc.getField(ADILine, 'LOG_ID') <> IniSet.UniqueID) then
+    if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
+      (dmFunc.getField(ADILine, 'LOG_ID') <> IniSet.UniqueID) and
+      ((dmFunc.getField(ADILine, 'TO_CALL') = 'ANY') or
+      (dmFunc.getField(ADILine, 'TO_CALL') = DBRecord.CurrCall))) then
     begin
       SQSO.CallSing := dmFunc.getField(ADILine, 'CALL');
       SQSO.Call := dmFunc.ExtractCallsign(SQSO.CallSing);
       QSODate := dmFunc.getField(ADILine, 'QSO_DATE');
       SQSO.QSOTime := dmFunc.getField(ADILine, 'TIME_ON');
-      SQSO.QSOBand := dmFunc.getField(ADILine, 'BAND');
+      SQSO.QSOBand := dmFunc.getField(ADILine, 'FREQ');
+      DigiBand_String := SQSO.QSOBand;
+      Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
+      SQSO.DigiBand := FloatToStr(dmFunc.GetDigiBandFromFreq(DigiBand_String));
       SQSO.QSOMode := dmFunc.getField(ADILine, 'MODE');
       SQSO.QSOSubMode := dmFunc.getField(ADILine, 'SUBMODE');
       SQSO.QSOReportRecived := dmFunc.getField(ADILine, 'RST_RCVD');

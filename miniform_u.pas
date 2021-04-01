@@ -1516,7 +1516,7 @@ begin
       if IniSet.AutoCloudLog then
         MainFunc.SendQSOto('cloudlog', SQSO);
       if IniSet.WorkOnLAN then
-        ServerDM.SendBroadcastADI(MainFunc.CreateADIString(SQSO));
+        ServerDM.SendBroadcastADI(MainFunc.CreateADIBroadcast(SQSO, 'ANY'));
 
       Clr;
       MiniForm.TextSB('QSO № ' + IntToStr(1) + rQSOTotal +

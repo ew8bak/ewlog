@@ -36,7 +36,7 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
-    function CreateADIString(QSO: TQSO): string;
+    function CreateADIBroadcast(QSO: TQSO; ToCall:string): string;
     procedure SentCATCloudLog(CatData: TCatData);
     procedure SaveGrids(DbGrid: TDBGrid);
     procedure SetDXColumns(VST: TVirtualStringTree; Save: boolean;
@@ -123,7 +123,7 @@ begin
   end;
 end;
 
-function TMainFunc.CreateADIString(QSO: TQSO): string;
+function TMainFunc.CreateADIBroadcast(QSO: TQSO; ToCall:string): string;
 var
   logdata: string;
 
@@ -135,6 +135,7 @@ var
 
 begin
   logdata := '<EOH>';
+  AddData('TO_CALL', ToCall);
   AddData('LOG_PGM', programName);
   AddData('LOG_ID', IniSet.UniqueID);
   AddData('CALL', QSO.CallSing);
