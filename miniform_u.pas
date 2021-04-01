@@ -1515,10 +1515,9 @@ begin
         MainFunc.SendQSOto('qrzcom', SQSO);
       if IniSet.AutoCloudLog then
         MainFunc.SendQSOto('cloudlog', SQSO);
+      if IniSet.WorkOnLAN then
+        ServerDM.SendBroadcastADI(MainFunc.CreateADIString(SQSO));
 
-      //     if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
-      //       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      //         ShowMessage(rDBError);
       Clr;
       MiniForm.TextSB('QSO № ' + IntToStr(1) + rQSOTotal +
         IntToStr(CountAllRecords), 1);

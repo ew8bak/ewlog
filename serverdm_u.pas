@@ -15,8 +15,8 @@ interface
 
 uses
   Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
-  const_u, LazUTF8, IdContext, digi_record, flDigiModem,
-  ImportADIThread, MobileSyncThread;
+  const_u, LazUTF8, IdContext, IdUDPClient, IdUDPServer, digi_record,
+  flDigiModem, ImportADIThread, MobileSyncThread;
 
 type
 
@@ -25,6 +25,8 @@ type
   TServerDM = class(TDataModule)
     IdIPWatch1: TIdIPWatch;
     IdFldigiTCP: TIdTCPServer;
+    IdWOLServer: TIdUDPServer;
+    IdWOLClient: TIdUDPClient;
     LUDPComponent1: TLUDPComponent;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
@@ -47,6 +49,7 @@ type
 
   public
     procedure DisconnectFldigi;
+    procedure SendBroadcastADI(adi: string);
 
   end;
 
@@ -65,8 +68,8 @@ uses InitDB_dm, MainFuncDM, dmFunc_U,
 
 procedure TServerDM.DisconnectFldigi;
 begin
-    IdFldigiTCP.Contexts.ClearAndFree;
-    IdFldigiTCP.Active := False;
+  IdFldigiTCP.Contexts.ClearAndFree;
+  IdFldigiTCP.Active := False;
 end;
 
 procedure TServerDM.StartTCPSyncThread;
@@ -114,11 +117,26 @@ begin
     FldigiSubMode := '';
     FldigiFreq := 0;
     FldigiConnect := False;
+    if IniSet.WorkOnLAN then
+    begin
+      IdWOLClient.BroadcastEnabled := True;
+      IdWOLServer.BroadcastEnabled := True;
+      IdWOLClient.Port := IniSet.WOLPort;
+      IdWOLServer.DefaultPort := IniSet.WOLPort + 1;
+      IdWOLClient.Active := True;
+      IdWOLServer.Active := True;
+    end;
+
 
   except
     on E: Exception do
       WriteLn(ExceptFile, 'TServerDM.DataModuleCreate:' + E.ClassName + ':' + E.Message);
   end;
+end;
+
+procedure TServerDM.SendBroadcastADI(adi: string);
+begin
+  IdWOLClient.Broadcast(adi, IniSet.WOLPort);
 end;
 
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
@@ -142,8 +160,8 @@ end;
 
 procedure TServerDM.IdFldigiTCPException(AContext: TIdContext; AException: Exception);
 begin
- // WriteLn(ExceptFile, 'IdFldigiTCPException:' + AException.ClassName +
- //   ':' + AException.Message);
+  // WriteLn(ExceptFile, 'IdFldigiTCPException:' + AException.ClassName +
+  //   ':' + AException.Message);
 end;
 
 procedure TServerDM.IdFldigiTCPExecute(AContext: TIdContext);

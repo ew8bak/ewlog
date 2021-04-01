@@ -1832,6 +1832,10 @@ msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr ""
 
+#: tconfigform.tsworklan.caption
+msgid "Work on LAN"
+msgstr ""
+
 #: tcontestform.btresetsession.caption
 msgid "New"
 msgstr ""

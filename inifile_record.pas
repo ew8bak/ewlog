@@ -18,6 +18,7 @@ uses
 
 type
   TINIR = record
+    UniqueID: string;
     UseIntCallBook: boolean;
     PhotoDir: string;
     StateToQSLInfo: boolean;

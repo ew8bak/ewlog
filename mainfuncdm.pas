@@ -36,6 +36,7 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
+    function CreateADIString(QSO: TQSO): string;
     procedure SentCATCloudLog(CatData: TCatData);
     procedure SaveGrids(DbGrid: TDBGrid);
     procedure SetDXColumns(VST: TVirtualStringTree; Save: boolean;
@@ -84,6 +85,7 @@ type
     function GetExternalProgramsPath(ProgramName: string): string;
     function BackupDataADI(Sender: string): boolean;
     function BackupDataDB(Sender: string): boolean;
+    function GenerateRandomID: string;
   end;
 
 var
@@ -102,6 +104,51 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
 
 {$R *.lfm}
+
+function TMainFunc.GenerateRandomID: string;
+var
+  a: integer;
+  b: integer;
+  s: integer;
+begin
+  Randomize;
+  Result:='';
+  for s := 1 to 5 do
+  begin
+    for a := 1 to 5 do
+      Result := Result + Chr(65 + Random(25));
+    for b := 1 to 3 do
+      Result := Result + Chr(48 + Random(10));
+    Result := Result;
+  end;
+end;
+
+function TMainFunc.CreateADIString(QSO: TQSO): string;
+var
+  logdata: string;
+
+  procedure AddData(const datatype, Data: string);
+  begin
+    if Data <> '' then
+      logdata := logdata + Format('<%s:%d>%s', [datatype, Length(Data), Data]);
+  end;
+
+begin
+  AddData('LOG_ID', IniSet.UniqueID);
+  AddData('CALL', QSO.CallSing);
+  AddData('QSO_DATE', FormatDateTime('yyyymmdd', QSO.QSODate));
+  QSO.QSOTime := StringReplace(QSO.QSOTime, ':', '', [rfReplaceAll]);
+  AddData('TIME_ON', QSO.QSOTime);
+  AddData('BAND', dmFunc.GetBandFromFreq(QSO.QSOBand));
+  AddData('MODE', QSO.QSOMode);
+  AddData('SUBMODE', QSO.QSOSubMode);
+  AddData('RST_SENT', QSO.QSOReportSent);
+  AddData('RST_RCVD', QSO.QSOReportRecived);
+  AddData('QSLMSG', QSO.QSLInfo);
+  AddData('LOG_PGM', 'EWLog');
+  logdata := logdata + '<EOR>';
+  Result := logdata;
+end;
 
 function TMainFunc.BackupDataADI(Sender: string): boolean;
 begin
@@ -1338,6 +1385,7 @@ var
 begin
   FormatSettings.TimeSeparator := ':';
   FormatSettings.ShortTimeFormat := 'hh:mm';
+  IniSet.UniqueID:=GenerateRandomID;
   IniSet.UseIntCallBook := INIFile.ReadBool('SetLog', 'IntCallBook', True);
   IniSet.PhotoDir := INIFile.ReadString('SetLog', 'PhotoDir', '');
   IniSet.StateToQSLInfo := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
@@ -1428,9 +1476,9 @@ begin
   IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
   IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
   IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
-  IniSet.WorkOnLAN:=INIFile.ReadBool('WorkOnLAN', 'Enable', False);
-  IniSet.WOLAddress:=INIFile.ReadString('WorkOnLAN', 'Address', '127.0.0.1');
-  IniSet.WOLPort:=INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
+  IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', True);
+  IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '127.0.0.1');
+  IniSet.WOLPort := INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
