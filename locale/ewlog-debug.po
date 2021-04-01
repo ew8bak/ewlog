@@ -3105,6 +3105,14 @@ msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"
 msgstr ""
 
+#: tgridsform.misendonlan.caption
+msgid "Send on LAN"
+msgstr ""
+
+#: tgridsform.misendonlanany.caption
+msgid "ANY"
+msgstr ""
+
 #: tgridsform.prefixitem.caption
 msgctxt "tgridsform.prefixitem.caption"
 msgid "Prefix Manager"

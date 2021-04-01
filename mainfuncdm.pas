@@ -36,7 +36,7 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
-    function CreateADIBroadcast(QSO: TQSO; ToCall:string): string;
+    function CreateADIBroadcast(QSO: TQSO; ToCall: string): string;
     procedure SentCATCloudLog(CatData: TCatData);
     procedure SaveGrids(DbGrid: TDBGrid);
     procedure SetDXColumns(VST: TVirtualStringTree; Save: boolean;
@@ -123,7 +123,7 @@ begin
   end;
 end;
 
-function TMainFunc.CreateADIBroadcast(QSO: TQSO; ToCall:string): string;
+function TMainFunc.CreateADIBroadcast(QSO: TQSO; ToCall: string): string;
 var
   logdata: string;
 
@@ -607,6 +607,10 @@ begin
       Result.OMName := Query.FieldByName('OMName').AsString;
       Result.OMQTH := Query.FieldByName('OMQTH').AsString;
       Result.State0 := Query.FieldByName('State').AsString;
+      Result.STX := Query.FieldByName('STX').AsInteger;
+      Result.SRX := Query.FieldByName('SRX').AsInteger;
+      Result.STX_String := Query.FieldByName('STX_String').AsString;
+      Result.SRX_String := Query.FieldByName('SRX_String').AsString;
       Result.Grid := Query.FieldByName('Grid').AsString;
       Result.QSOReportSent := Query.FieldByName('QSOReportSent').AsString;
       Result.QSOReportRecived := Query.FieldByName('QSOReportRecived').AsString;
@@ -1960,7 +1964,7 @@ begin
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
         dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
-     // WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
+      // WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else

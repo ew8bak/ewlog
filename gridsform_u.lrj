@@ -103,6 +103,8 @@
 {"hash":256680290,"name":"tgridsform.filtercancelitem.caption","sourcebytes":[67,97,110,99,101,108,32,102,105,108,116,101,114],"value":"Cancel filter"},
 {"hash":96891911,"name":"tgridsform.copytologitem0.caption","sourcebytes":[67,111,112,121,32,116,111,32,97,110,111,116,104,101,114,32,108,111,103],"value":"Copy to another log"},
 {"hash":146837948,"name":"tgridsform.saveexcelitem.caption","sourcebytes":[83,97,118,101,32,116,111,32,69,120,99,101,108],"value":"Save to Excel"},
+{"hash":119116862,"name":"tgridsform.misendonlan.caption","sourcebytes":[83,101,110,100,32,111,110,32,76,65,78],"value":"Send on LAN"},
+{"hash":17977,"name":"tgridsform.misendonlanany.caption","sourcebytes":[65,78,89],"value":"ANY"},
 {"hash":179598850,"name":"tgridsform.sendclusteritem.caption","sourcebytes":[83,101,110,100,32,116,111,32,68,88,32,67,108,117,115,116,101,114],"value":"Send to DX Cluster"},
 {"hash":256470196,"name":"tgridsform.delrecitem.caption","sourcebytes":[68,101,108,101,116,101,32,82,101,99,111,114,100],"value":"Delete Record"}
 ]}

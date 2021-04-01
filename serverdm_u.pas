@@ -52,7 +52,7 @@ type
 
   public
     procedure DisconnectFldigi;
-    procedure SendBroadcastADI(adi: string);
+    procedure SendBroadcastADI(adiLine: string);
     procedure StartWOL;
 
   end;
@@ -151,9 +151,10 @@ begin
   end;
 end;
 
-procedure TServerDM.SendBroadcastADI(adi: string);
+procedure TServerDM.SendBroadcastADI(adiLine: string);
 begin
-  IdWOLClient.Broadcast(adi, IniSet.WOLPort);
+  IndyTextEncoding_UTF8;
+  IdWOLClient.Broadcast(adiLine, IniSet.WOLPort);
 end;
 
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
@@ -210,6 +211,7 @@ var
   DigiBand_String: string;
 begin
   try
+    IndyTextEncoding_UTF8;
     ADILine := BytesToString(AData);
     if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
       (dmFunc.getField(ADILine, 'LOG_ID') <> IniSet.UniqueID) and

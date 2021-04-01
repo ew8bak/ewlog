@@ -1412,6 +1412,16 @@ object GridsForm: TGridsForm
       Caption = 'Save to Excel'
       Enabled = False
     end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object MISendOnLAN: TMenuItem
+      Caption = 'Send on LAN'
+      object MISendOnLANANY: TMenuItem
+        Caption = 'ANY'
+        OnClick = MISendOnLANANYClick
+      end
+    end
     object Sep8Item: TMenuItem
       Caption = '-'
     end
