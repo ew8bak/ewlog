@@ -41,12 +41,9 @@ object ServerDM: TServerDM
     Top = 8
   end
   object IdWOLServer: TIdUDPServer
-    Bindings = <    
-      item
-        IP = '0.0.0.0'
-        Port = 0
-      end>
+    Bindings = <>
     DefaultPort = 0
+    OnUDPRead = IdWOLServerUDPRead
     Left = 120
     Top = 8
   end

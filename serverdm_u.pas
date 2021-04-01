@@ -16,7 +16,8 @@ interface
 uses
   Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
   const_u, LazUTF8, IdContext, IdUDPClient, IdUDPServer, digi_record,
-  flDigiModem, ImportADIThread, MobileSyncThread;
+  flDigiModem, ImportADIThread, MobileSyncThread, IdSocketHandle, IdGlobal,
+  DateUtils;
 
 type
 
@@ -34,6 +35,8 @@ type
     procedure IdFldigiTCPDisconnect(AContext: TIdContext);
     procedure IdFldigiTCPException(AContext: TIdContext; AException: Exception);
     procedure IdFldigiTCPExecute(AContext: TIdContext);
+    procedure IdWOLServerUDPRead(AThread: TIdUDPListenerThread;
+      const AData: TIdBytes; ABinding: TIdSocketHandle);
     procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
   private
@@ -50,6 +53,7 @@ type
   public
     procedure DisconnectFldigi;
     procedure SendBroadcastADI(adi: string);
+    procedure StartWOL;
 
   end;
 
@@ -60,7 +64,7 @@ var
 implementation
 
 uses InitDB_dm, MainFuncDM, dmFunc_U,
-  miniform_u, fldigi;
+  miniform_u, fldigi, qso_record, prefix_record;
 
 {$R *.lfm}
 
@@ -97,6 +101,26 @@ begin
   end;
 end;
 
+procedure TServerDM.StartWOL;
+begin
+  try
+    if IniSet.WorkOnLAN then
+    begin
+      IdWOLClient.BroadcastEnabled := True;
+      IdWOLClient.Port := IniSet.WOLPort;
+      IdWOLClient.Active := True;
+      IdWOLServer.Bindings.Clear;
+      IdWOLServer.Bindings.Add.IP := IniSet.WOLAddress;
+      IdWOLServer.Bindings.Add.Port := IniSet.WOLPort;
+      IdWOLServer.BroadcastEnabled := True;
+      IdWOLServer.Active := True;
+    end;
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'TServerDM.StartWOL:' + E.ClassName + ':' + E.Message);
+  end;
+end;
+
 procedure TServerDM.DataModuleCreate(Sender: TObject);
 var
   i: integer;
@@ -117,16 +141,9 @@ begin
     FldigiSubMode := '';
     FldigiFreq := 0;
     FldigiConnect := False;
-    if IniSet.WorkOnLAN then
-    begin
-      IdWOLClient.BroadcastEnabled := True;
-      IdWOLServer.BroadcastEnabled := True;
-      IdWOLClient.Port := IniSet.WOLPort;
-      IdWOLServer.DefaultPort := IniSet.WOLPort + 1;
-      IdWOLClient.Active := True;
-      IdWOLServer.Active := True;
-    end;
 
+    if IniSet.WorkOnLAN then
+      StartWOL;
 
   except
     on E: Exception do
@@ -179,6 +196,44 @@ begin
         'Amateur Contact Log</PGM><VER>5.5</VER><APIVER>0.6.2</APIVER></CMD>');
     end;
     GetFldigiUDP(MessageFromUDP);
+  end;
+end;
+
+procedure TServerDM.IdWOLServerUDPRead(AThread: TIdUDPListenerThread;
+  const AData: TIdBytes; ABinding: TIdSocketHandle);
+var
+  ADILine: string;
+  SQSO: TQSO;
+  PFXR: TPFXR;
+  yyyy, mm, dd: integer;
+  QSODate: string;
+begin
+  try
+    ADILine := BytesToString(AData);
+    if (dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
+      (dmFunc.getField(ADILine, 'LOG_ID') <> IniSet.UniqueID) then
+    begin
+      SQSO.CallSing := dmFunc.getField(ADILine, 'CALL');
+      SQSO.Call := dmFunc.ExtractCallsign(SQSO.CallSing);
+      QSODate := dmFunc.getField(ADILine, 'QSO_DATE');
+      SQSO.QSOTime := dmFunc.getField(ADILine, 'TIME_ON');
+      SQSO.QSOBand := dmFunc.getField(ADILine, 'BAND');
+      SQSO.QSOMode := dmFunc.getField(ADILine, 'MODE');
+      SQSO.QSOSubMode := dmFunc.getField(ADILine, 'SUBMODE');
+      SQSO.QSOReportRecived := dmFunc.getField(ADILine, 'RST_RCVD');
+      SQSO.QSOReportSent := dmFunc.getField(ADILine, 'RST_SENT');
+      SQSO.QSOTime := SQSO.QSOTime[1] + SQSO.QSOTime[2] + ':' +
+        SQSO.QSOTime[3] + SQSO.QSOTime[4];
+      yyyy := StrToInt(QSODate[1] + QSODate[2] + QSODate[3] + QSODate[4]);
+      mm := StrToInt(QSODate[5] + QSODate[6]);
+      dd := StrToInt(QSODate[7] + QSODate[8]);
+      SQSO.QSODate:=EncodeDate(yyyy,mm,dd);
+    end;
+
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'TServerDM.IdWOLServerUDPRead:' + E.ClassName +
+        ':' + E.Message);
   end;
 end;
 

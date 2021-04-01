@@ -17,6 +17,7 @@ uses
   Classes, SysUtils;
 
 const
+  programName = 'EWLog';
   view_freq = '0.000"."00';
 
   {$IFDEF WIN64}

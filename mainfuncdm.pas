@@ -134,18 +134,23 @@ var
   end;
 
 begin
+  logdata:='<EOH>';
+  AddData('LOG_PGM', programName);
   AddData('LOG_ID', IniSet.UniqueID);
   AddData('CALL', QSO.CallSing);
   AddData('QSO_DATE', FormatDateTime('yyyymmdd', QSO.QSODate));
   QSO.QSOTime := StringReplace(QSO.QSOTime, ':', '', [rfReplaceAll]);
   AddData('TIME_ON', QSO.QSOTime);
+  AddData('NAME',QSO.OmName);
+  AddData('QTH', QSO.OmQTH);
+  AddData('GRIDSQUARE', QSO.Grid);
+  AddData('FREQ', QSO.QSOBand);
   AddData('BAND', dmFunc.GetBandFromFreq(QSO.QSOBand));
   AddData('MODE', QSO.QSOMode);
   AddData('SUBMODE', QSO.QSOSubMode);
   AddData('RST_SENT', QSO.QSOReportSent);
   AddData('RST_RCVD', QSO.QSOReportRecived);
   AddData('QSLMSG', QSO.QSLInfo);
-  AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';
   Result := logdata;
 end;
@@ -1477,7 +1482,7 @@ begin
   IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
   IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
   IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', True);
-  IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '127.0.0.1');
+  IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
   IniSet.WOLPort := INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
 end;
 
