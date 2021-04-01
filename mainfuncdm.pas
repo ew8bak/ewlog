@@ -156,6 +156,7 @@ begin
   AddData('SRX_STRING', QSO.SRX_String);
   AddData('COMMENT', QSO.ShortNote);
   AddData('QSLMSG', QSO.QSLInfo);
+  AddData('STATE', QSO.State0);
   logdata := logdata + '<EOR>';
   Result := logdata;
 end;
@@ -1958,6 +1959,7 @@ begin
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
         dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
+     // WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else
