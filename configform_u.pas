@@ -16,7 +16,8 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
-  synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox, Spin, dmCat;
+  synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox, Spin, dmCat,
+  serverDM_u;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -60,6 +61,7 @@ type
     cbBackupCloseDB: TCheckBox;
     cbQSL: TCheckBox;
     CBrigctldStart: TCheckBox;
+    CBWOLEnable: TCheckBox;
     CheckBox11: TCheckBox;
     cbADIfiles: TCheckBox;
     cbBackupCloseADI: TCheckBox;
@@ -115,6 +117,8 @@ type
     Edit13: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
+    EditWOLPort: TEdit;
+    EditWOLAddress: TEdit;
     EditExportKey: TEdit;
     EditImportKey: TEdit;
     EditCATAddress: TEdit;
@@ -144,6 +148,8 @@ type
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
+    LBWOLPort: TLabel;
+    LBWOLAddress: TLabel;
     LBKeyExport: TLabel;
     LBKeyImport: TLabel;
     LBPoll: TLabel;
@@ -321,6 +327,11 @@ begin
   INIFile.WriteString('Key', 'Reference', EditReferenceKey.Text);
   INIFile.WriteString('Key', 'ImportADI', EditImportKey.Text);
   INIFile.WriteString('Key', 'ExportADI', EditExportKey.Text);
+
+  INIFile.WriteString('WorkOnLAN', 'Address', EditWOLAddress.Text);
+  INIFile.WriteString('WorkOnLAN', 'Port', EditWOLPort.Text);
+  INIFile.WriteBool('WorkOnLAN', 'Enable', CBWOLEnable.Checked);
+
 end;
 
 procedure TConfigForm.ReadINI;
@@ -383,6 +394,11 @@ begin
   EditReferenceKey.Text := INIFile.ReadString('Key', 'Reference', 'Enter');
   EditImportKey.Text := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
   EditExportKey.Text := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
+
+  EditWOLAddress.Text:=INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
+  EditWOLPort.Text:=INIFile.ReadString('WorkOnLAN', 'Port', '2238');
+  CBWOLEnable.Checked:=INIFile.ReadBool('WorkOnLAN', 'Enable', False);
+
   ReadGridColumns;
   ReadGridColors;
 end;
@@ -762,6 +778,7 @@ begin
   SaveRIGSettings;
   MainFunc.LoadINIsettings;
   MiniForm.SetHotKey;
+  ServerDM.StartWOL;
   MainFunc.SetGrid(GridsForm.DBGrid1);
   MainFunc.SetGrid(GridsForm.DBGrid2);
   ConfigForm.Close;

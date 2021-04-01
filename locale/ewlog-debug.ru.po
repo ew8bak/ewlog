@@ -1523,6 +1523,10 @@ msgctxt "tconfigform.cbvaliddx.caption"
 msgid "ValidDX"
 msgstr "ValidDX"
 
+#: tconfigform.cbwolenable.caption
+msgid "Enable Work On LAN"
+msgstr ""
+
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
 msgstr "Использовать как справочник?"
@@ -1849,6 +1853,16 @@ msgstr ""
 
 #: tconfigform.lbtransceivermodel.caption
 msgid "Transceiver Model"
+msgstr ""
+
+#: tconfigform.lbwoladdress.caption
+#, fuzzy
+msgctxt "tconfigform.lbwoladdress.caption"
+msgid "Address:"
+msgstr "Адрес:"
+
+#: tconfigform.lbwolport.caption
+msgid "Port:"
 msgstr ""
 
 #: tconfigform.pcolors.caption

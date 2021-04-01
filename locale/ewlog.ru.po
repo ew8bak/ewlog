@@ -1523,6 +1523,10 @@ msgctxt "tconfigform.cbvaliddx.caption"
 msgid "ValidDX"
 msgstr "ValidDX"
 
+#: tconfigform.cbwolenable.caption
+msgid "Enable Work On LAN"
+msgstr ""
+
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
 msgstr "Использовать как справочник?"
@@ -1851,6 +1855,16 @@ msgstr ""
 msgid "Transceiver Model"
 msgstr ""
 
+#: tconfigform.lbwoladdress.caption
+#, fuzzy
+msgctxt "tconfigform.lbwoladdress.caption"
+msgid "Address:"
+msgstr "Адрес:"
+
+#: tconfigform.lbwolport.caption
+msgid "Port:"
+msgstr ""
+
 #: tconfigform.pcolors.caption
 msgid "Colors"
 msgstr ""
@@ -1914,6 +1928,14 @@ msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr "Телнет"
 
+#: tconfigform.tsworklan.caption
+msgid "Work on LAN"
+msgstr ""
+
+#: tcontestform.btresetsession.caption
+msgid "New"
+msgstr ""
+
 #: tcontestform.btsave.caption
 #, fuzzy
 msgctxt "tcontestform.btsave.caption"
@@ -1923,10 +1945,6 @@ msgstr "Сохранить"
 #: tcontestform.caption
 msgctxt "tcontestform.caption"
 msgid "Contest Logging"
-msgstr ""
-
-#: tcontestform.cbband.text
-msgid "160M"
 msgstr ""
 
 #: tcontestform.cbmode.text
@@ -1939,11 +1957,7 @@ msgid "25.03.21"
 msgstr ""
 
 #: tcontestform.editexchs.text
-msgid "1"
-msgstr ""
-
-#: tcontestform.editfreq.text
-msgid "1840000"
+msgid "001"
 msgstr ""
 
 #: tcontestform.editrstr.text
@@ -3161,6 +3175,10 @@ msgctxt "tgridsform.filteritem.caption"
 msgid "Record Filter"
 msgstr "Фильтр записей"
 
+#: tgridsform.filtermarkedqso.caption
+msgid "Marked QSO"
+msgstr ""
+
 #: tgridsform.filternsentqslitem.caption
 msgctxt "tgridsform.filternsentqslitem.caption"
 msgid "Not sent QSL"
@@ -3195,6 +3213,14 @@ msgstr "Пометить QSO"
 msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"
 msgstr "QSL Получена"
+
+#: tgridsform.misendonlan.caption
+msgid "Send on LAN"
+msgstr ""
+
+#: tgridsform.misendonlanany.caption
+msgid "ANY"
+msgstr ""
 
 #: tgridsform.prefixitem.caption
 msgctxt "tgridsform.prefixitem.caption"

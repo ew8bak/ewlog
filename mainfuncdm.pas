@@ -1492,7 +1492,7 @@ begin
   IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
   IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
   IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
-  IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', True);
+  IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
   IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
   IniSet.WOLPort := INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
 end;

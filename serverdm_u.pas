@@ -104,15 +104,18 @@ end;
 procedure TServerDM.StartWOL;
 begin
   try
+    IdWOLClient.Active := False;
+    IdWOLServer.Active := False;
+    IdWOLServer.Bindings.Clear;
+    IdWOLClient.BroadcastEnabled := False;
+    IdWOLServer.BroadcastEnabled := False;
     if IniSet.WorkOnLAN then
     begin
       IdWOLClient.BroadcastEnabled := True;
       IdWOLClient.Port := IniSet.WOLPort;
       IdWOLClient.Active := True;
-      IdWOLServer.Bindings.Clear;
       IdWOLServer.Bindings.Add.IP := IniSet.WOLAddress;
       IdWOLServer.Bindings.Add.Port := IniSet.WOLPort;
-      IdWOLServer.BroadcastEnabled := True;
       IdWOLServer.Active := True;
     end;
   except

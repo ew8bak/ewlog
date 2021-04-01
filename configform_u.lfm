@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 288
     Top = 0
     Width = 510
-    ActivePage = TSWorkLAN
+    ActivePage = TSBase
     Align = alTop
-    TabIndex = 9
+    TabIndex = 0
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
@@ -2102,6 +2102,67 @@ object ConfigForm: TConfigForm
     end
     object TSWorkLAN: TTabSheet
       Caption = 'Work on LAN'
+      ClientHeight = 259
+      ClientWidth = 500
+      object LBWOLAddress: TLabel
+        AnchorSideLeft.Control = TSWorkLAN
+        AnchorSideTop.Control = TSWorkLAN
+        Left = 5
+        Height = 13
+        Top = 10
+        Width = 52
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Address:'
+        ParentColor = False
+      end
+      object EditWOLAddress: TEdit
+        AnchorSideLeft.Control = LBWOLAddress
+        AnchorSideTop.Control = LBWOLAddress
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 28
+        Width = 123
+        BorderSpacing.Top = 5
+        TabOrder = 0
+      end
+      object LBWOLPort: TLabel
+        AnchorSideLeft.Control = EditWOLAddress
+        AnchorSideTop.Control = EditWOLAddress
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 64
+        Width = 28
+        BorderSpacing.Top = 10
+        Caption = 'Port:'
+        ParentColor = False
+      end
+      object EditWOLPort: TEdit
+        AnchorSideLeft.Control = LBWOLPort
+        AnchorSideTop.Control = LBWOLPort
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 82
+        Width = 123
+        BorderSpacing.Top = 5
+        NumbersOnly = True
+        TabOrder = 1
+      end
+      object CBWOLEnable: TCheckBox
+        AnchorSideLeft.Control = EditWOLPort
+        AnchorSideTop.Control = EditWOLPort
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 118
+        Width = 150
+        BorderSpacing.Top = 10
+        Caption = 'Enable Work On LAN'
+        TabOrder = 2
+      end
     end
   end
 end
