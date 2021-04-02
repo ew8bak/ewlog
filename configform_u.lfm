@@ -2101,7 +2101,7 @@ object ConfigForm: TConfigForm
       end
     end
     object TSWorkLAN: TTabSheet
-      Caption = 'Work on LAN'
+      Caption = 'Work on LAN (UDP)'
       ClientHeight = 259
       ClientWidth = 500
       object LBWOLAddress: TLabel
@@ -2210,10 +2210,10 @@ object ConfigForm: TConfigForm
         Left = 5
         Height = 80
         Top = 169
-        Width = 120
+        Width = 163
         BorderSpacing.Top = 5
         ItemHeight = 0
-        ScrollWidth = 118
+        ScrollWidth = 161
         TabOrder = 4
         TopIndex = -1
       end

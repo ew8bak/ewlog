@@ -17,7 +17,7 @@ uses
   Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
   const_u, LazUTF8, ExtCtrls, IdContext, IdUDPClient, IdUDPServer, digi_record,
   flDigiModem, ImportADIThread, MobileSyncThread, IdSocketHandle, IdGlobal,
-  DateUtils, qso_record, prefix_record;
+  DateUtils, qso_record, prefix_record, Dialogs;
 
 type
 
@@ -52,7 +52,8 @@ type
     procedure StartImport;
     procedure StartTCPSyncThread;
     procedure BroadcastSaveQSO(ADILine: string);
-    procedure AddCallsignList(Call: string);
+    procedure AddToCallsignList(Call: string; LastPong: TTime);
+    procedure DelFromCallsignList;
 
   public
     procedure DisconnectFldigi;
@@ -78,11 +79,24 @@ uses InitDB_dm, MainFuncDM, dmFunc_U,
 
 { TServerDM }
 
-procedure TServerDM.AddCallsignList(Call: string);
+procedure TServerDM.AddToCallsignList(Call: string; LastPong: TTime);
+var
+  i: integer;
 begin
   if FoundBroadcastLog.IndexOf(Call) = -1 then
-    FoundBroadcastLog.Add(Call);
-  ConfigForm.LBWOLCall.Items.CommaText:=FoundBroadcastLog.CommaText;
+    FoundBroadcastLog.Values[Call] := TimeToStr(LastPong)
+  else
+  begin
+    i := FoundBroadcastLog.IndexOfName(Call);
+    FoundBroadcastLog[i] := FoundBroadcastLog.ValueFromIndex[i] +
+      FoundBroadcastLog.NameValueSeparator + TimeToStr(Now);
+  end;
+  ConfigForm.LBWOLCall.Items.CommaText := FoundBroadcastLog.CommaText;
+end;
+
+procedure TServerDM.DelFromCallsignList;
+begin
+
 end;
 
 procedure TServerDM.SendBroadcastPingPong(s: string);
@@ -214,6 +228,8 @@ var
 begin
   try
     FoundBroadcastLog := TStringList.Create;
+    FoundBroadcastLog.NameValueSeparator := '>';
+
     lastUDPport := -1;
 
     for i := 0 to 5 do
@@ -385,7 +401,7 @@ begin
       if dmFunc.getField(ADILine, 'SAVE_QSO') = 'TRUE' then
         BroadcastSaveQSO(ADILine);
       if dmFunc.getField(ADILine, 'MESSAGE') = 'PONG' then
-        AddCallsignList(dmFunc.getField(ADILine, 'CALL'));
+        AddToCallsignList(dmFunc.getField(ADILine, 'CALL'), Now);
     end;
 
   except

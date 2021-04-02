@@ -1938,7 +1938,7 @@ msgid "Telnet"
 msgstr "Телнет"
 
 #: tconfigform.tsworklan.caption
-msgid "Work on LAN"
+msgid "Work on LAN (UDP)"
 msgstr ""
 
 #: tcontestform.btresetsession.caption
