@@ -94,8 +94,8 @@ begin
   AddData('TO_CALL', 'ANY');
   AddData('CALL', DBRecord.CurrCall);
   AddData('MESSAGE', s);
+  logdata := logdata + '<EOR>';
   IdWOLClient.Broadcast(logdata, IniSet.WOLPort);
-  WriteLn(ExceptFile, 'SEND:'+logdata);
 end;
 
 function TServerDM.CreateADIBroadcast(QSO: TQSO; ToCall, SaveQSO: string): string;
@@ -234,7 +234,6 @@ end;
 procedure TServerDM.SendBroadcastADI(adiLine: string);
 begin
   IdWOLClient.Broadcast(adiLine, IniSet.WOLPort);
-  WriteLn(ExceptFile, 'SEND:'+adiLine);
 end;
 
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
@@ -366,17 +365,17 @@ var
 begin
   try
     ADILine := BytesToString(AData);
-    ConfigForm.MWOLLog.Lines.Add('READ:'+ADILine);
+    ConfigForm.MWOLLog.Lines.Add('READ:' + ADILine);
 
     if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
       (dmFunc.getField(ADILine, 'LOG_ID') <> IniSet.UniqueID) and
       ((dmFunc.getField(ADILine, 'TO_CALL') = 'ANY') or
       (dmFunc.getField(ADILine, 'TO_CALL') = DBRecord.CurrCall))) then
     begin
-      if dmFunc.getField(ADILine, 'SAVE_QSO') = 'TRUE' then
-        BroadcastSaveQSO(ADILine);
       if dmFunc.getField(ADILine, 'MESSAGE') = 'PING' then
         SendBroadcastPingPong('PONG');
+      if dmFunc.getField(ADILine, 'SAVE_QSO') = 'TRUE' then
+        BroadcastSaveQSO(ADILine);
     end;
 
   except
