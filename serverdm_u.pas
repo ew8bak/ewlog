@@ -234,7 +234,7 @@ end;
 procedure TServerDM.SendBroadcastADI(adiLine: string);
 begin
   IdWOLClient.Broadcast(adiLine, IniSet.WOLPort);
-  WriteLn(ExceptFile, 'SEND:'+logdata);
+  WriteLn(ExceptFile, 'SEND:'+adiLine);
 end;
 
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
