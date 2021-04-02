@@ -93,7 +93,7 @@ begin
   AddData('LOG_ID', IniSet.UniqueID);
   AddData('TO_CALL', 'ANY');
   AddData('CALL', DBRecord.CurrCall);
-  AddData(s, s);
+  AddData('MESSAGE', s);
   IdWOLClient.Broadcast(logdata, IniSet.WOLPort);
   WriteLn(ExceptFile, 'SEND:'+logdata);
 end;
@@ -375,7 +375,7 @@ begin
     begin
       if dmFunc.getField(ADILine, 'SAVE_QSO') = 'TRUE' then
         BroadcastSaveQSO(ADILine);
-      if dmFunc.getField(ADILine, 'PING') = 'PING' then
+      if dmFunc.getField(ADILine, 'MESSAGE') = 'PING' then
         SendBroadcastPingPong('PONG');
     end;
 
