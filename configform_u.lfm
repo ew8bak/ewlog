@@ -2172,6 +2172,8 @@ object ConfigForm: TConfigForm
         Top = 28
         Width = 315
         BorderSpacing.Top = 5
+        Font.Height = -9
+        ParentFont = False
         ReadOnly = True
         ScrollBars = ssAutoVertical
         TabOrder = 3
@@ -2188,6 +2190,32 @@ object ConfigForm: TConfigForm
         BorderSpacing.Top = 10
         Caption = 'Log:'
         ParentColor = False
+      end
+      object LBCallWOL: TLabel
+        AnchorSideLeft.Control = CBWOLEnable
+        AnchorSideTop.Control = CBWOLEnable
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 151
+        Width = 66
+        BorderSpacing.Top = 10
+        Caption = 'Found Call:'
+        ParentColor = False
+      end
+      object LBWOLCall: TListBox
+        AnchorSideLeft.Control = LBCallWOL
+        AnchorSideTop.Control = LBCallWOL
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 80
+        Top = 169
+        Width = 120
+        BorderSpacing.Top = 5
+        ItemHeight = 0
+        ScrollWidth = 118
+        TabOrder = 4
+        TopIndex = -1
       end
     end
   end

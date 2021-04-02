@@ -1740,6 +1740,10 @@ msgctxt "tconfigform.lbbackcolor.caption"
 msgid "Background color"
 msgstr "Цвет фона"
 
+#: tconfigform.lbcallwol.caption
+msgid "Found Call:"
+msgstr ""
+
 #: tconfigform.lbcataddress.caption
 msgctxt "tconfigform.lbcataddress.caption"
 msgid "Address"

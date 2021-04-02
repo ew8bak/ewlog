@@ -148,6 +148,7 @@ type
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
+    LBCallWOL: TLabel;
     LBWOLLog: TLabel;
     LBWOLPort: TLabel;
     LBWOLAddress: TLabel;
@@ -200,6 +201,7 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label8: TLabel;
+    LBWOLCall: TListBox;
     MWOLLog: TMemo;
     PCCat: TPageControl;
     PControl2: TPageControl;

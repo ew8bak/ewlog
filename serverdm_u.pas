@@ -52,6 +52,7 @@ type
     procedure StartImport;
     procedure StartTCPSyncThread;
     procedure BroadcastSaveQSO(ADILine: string);
+    procedure AddCallsignList(Call: string);
 
   public
     procedure DisconnectFldigi;
@@ -76,6 +77,13 @@ uses InitDB_dm, MainFuncDM, dmFunc_U,
 {$R *.lfm}
 
 { TServerDM }
+
+procedure TServerDM.AddCallsignList(Call: string);
+begin
+  if FoundBroadcastLog.IndexOf(Call) = -1 then
+    FoundBroadcastLog.Add(Call);
+  ConfigForm.LBWOLCall.Items.CommaText:=FoundBroadcastLog.CommaText;
+end;
 
 procedure TServerDM.SendBroadcastPingPong(s: string);
 var
@@ -365,7 +373,7 @@ var
 begin
   try
     ADILine := BytesToString(AData);
-    ConfigForm.MWOLLog.Lines.Add('READ:' + ADILine);
+    ConfigForm.MWOLLog.Lines.Add('READ:>' + ADILine);
 
     if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
       (dmFunc.getField(ADILine, 'LOG_ID') <> IniSet.UniqueID) and
@@ -376,6 +384,8 @@ begin
         SendBroadcastPingPong('PONG');
       if dmFunc.getField(ADILine, 'SAVE_QSO') = 'TRUE' then
         BroadcastSaveQSO(ADILine);
+      if dmFunc.getField(ADILine, 'MESSAGE') = 'PONG' then
+        AddCallsignList(dmFunc.getField(ADILine, 'CALL'));
     end;
 
   except
