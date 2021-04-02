@@ -136,5 +136,6 @@
 {"hash":119421070,"name":"tconfigform.tsworklan.caption","sourcebytes":[87,111,114,107,32,111,110,32,76,65,78],"value":"Work on LAN"},
 {"hash":179883546,"name":"tconfigform.lbwoladdress.caption","sourcebytes":[65,100,100,114,101,115,115,58],"value":"Address:"},
 {"hash":5728634,"name":"tconfigform.lbwolport.caption","sourcebytes":[80,111,114,116,58],"value":"Port:"},
-{"hash":148529582,"name":"tconfigform.cbwolenable.caption","sourcebytes":[69,110,97,98,108,101,32,87,111,114,107,32,79,110,32,76,65,78],"value":"Enable Work On LAN"}
+{"hash":148529582,"name":"tconfigform.cbwolenable.caption","sourcebytes":[69,110,97,98,108,101,32,87,111,114,107,32,79,110,32,76,65,78],"value":"Enable Work On LAN"},
+{"hash":341418,"name":"tconfigform.lbwollog.caption","sourcebytes":[76,111,103,58],"value":"Log:"}
 ]}

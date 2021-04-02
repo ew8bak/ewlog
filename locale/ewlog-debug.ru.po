@@ -1861,6 +1861,10 @@ msgctxt "tconfigform.lbwoladdress.caption"
 msgid "Address:"
 msgstr "Адрес:"
 
+#: tconfigform.lbwollog.caption
+msgid "Log:"
+msgstr ""
+
 #: tconfigform.lbwolport.caption
 msgid "Port:"
 msgstr ""

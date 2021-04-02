@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 288
     Top = 0
     Width = 510
-    ActivePage = TSBase
+    ActivePage = TSWorkLAN
     Align = alTop
-    TabIndex = 0
+    TabIndex = 9
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
@@ -2162,6 +2162,32 @@ object ConfigForm: TConfigForm
         BorderSpacing.Top = 10
         Caption = 'Enable Work On LAN'
         TabOrder = 2
+      end
+      object MWOLLog: TMemo
+        AnchorSideLeft.Control = LBWOLLog
+        AnchorSideTop.Control = LBWOLLog
+        AnchorSideTop.Side = asrBottom
+        Left = 165
+        Height = 109
+        Top = 28
+        Width = 315
+        BorderSpacing.Top = 5
+        ReadOnly = True
+        ScrollBars = ssAutoVertical
+        TabOrder = 3
+      end
+      object LBWOLLog: TLabel
+        AnchorSideLeft.Control = CBWOLEnable
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = TSWorkLAN
+        Left = 165
+        Height = 13
+        Top = 10
+        Width = 25
+        BorderSpacing.Left = 10
+        BorderSpacing.Top = 10
+        Caption = 'Log:'
+        ParentColor = False
       end
     end
   end

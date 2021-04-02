@@ -423,8 +423,8 @@ begin
   if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
   begin
   if IniSet.WorkOnLAN then
-    ServerDM.SendBroadcastADI(MainFunc.CreateADIBroadcast(
-      MainFunc.SelectEditQSO(UnUsIndex), 'ANY'));
+    ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(
+      MainFunc.SelectEditQSO(UnUsIndex), 'ANY', 'TRUE'));
   end;
 end;
 

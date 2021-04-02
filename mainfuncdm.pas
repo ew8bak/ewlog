@@ -36,7 +36,6 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
-    function CreateADIBroadcast(QSO: TQSO; ToCall: string): string;
     procedure SentCATCloudLog(CatData: TCatData);
     procedure SaveGrids(DbGrid: TDBGrid);
     procedure SetDXColumns(VST: TVirtualStringTree; Save: boolean;
@@ -121,45 +120,6 @@ begin
       Result := Result + Chr(48 + Random(10));
     Result := Result;
   end;
-end;
-
-function TMainFunc.CreateADIBroadcast(QSO: TQSO; ToCall: string): string;
-var
-  logdata: string;
-
-  procedure AddData(const datatype, Data: string);
-  begin
-    if Data <> '' then
-      logdata := logdata + Format('<%s:%d>%s', [datatype, Length(Data), Data]);
-  end;
-
-begin
-  logdata := '<EOH>';
-  AddData('TO_CALL', ToCall);
-  AddData('LOG_PGM', programName);
-  AddData('LOG_ID', IniSet.UniqueID);
-  AddData('CALL', QSO.CallSing);
-  AddData('QSO_DATE', FormatDateTime('yyyymmdd', QSO.QSODate));
-  QSO.QSOTime := StringReplace(QSO.QSOTime, ':', '', [rfReplaceAll]);
-  AddData('TIME_ON', QSO.QSOTime);
-  AddData('NAME', QSO.OmName);
-  AddData('QTH', QSO.OmQTH);
-  AddData('GRIDSQUARE', QSO.Grid);
-  AddData('FREQ', QSO.QSOBand);
-  AddData('BAND', dmFunc.GetBandFromFreq(QSO.QSOBand));
-  AddData('MODE', QSO.QSOMode);
-  AddData('SUBMODE', QSO.QSOSubMode);
-  AddData('RST_SENT', QSO.QSOReportSent);
-  AddData('RST_RCVD', QSO.QSOReportRecived);
-  AddData('STX', IntToStr(QSO.STX));
-  AddData('STX_STRING', QSO.STX_String);
-  AddData('SRX', IntToStr(QSO.SRX));
-  AddData('SRX_STRING', QSO.SRX_String);
-  AddData('COMMENT', QSO.ShortNote);
-  AddData('QSLMSG', QSO.QSLInfo);
-  AddData('STATE', QSO.State0);
-  logdata := logdata + '<EOR>';
-  Result := logdata;
 end;
 
 function TMainFunc.BackupDataADI(Sender: string): boolean;

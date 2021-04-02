@@ -1777,6 +1777,10 @@ msgctxt "tconfigform.lbwoladdress.caption"
 msgid "Address:"
 msgstr ""
 
+#: tconfigform.lbwollog.caption
+msgid "Log:"
+msgstr ""
+
 #: tconfigform.lbwolport.caption
 msgid "Port:"
 msgstr ""

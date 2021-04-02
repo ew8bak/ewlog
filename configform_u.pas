@@ -17,7 +17,7 @@ uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
   synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox, Spin, dmCat,
-  serverDM_u;
+  serverDM_u, Types;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -148,6 +148,7 @@ type
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
+    LBWOLLog: TLabel;
     LBWOLPort: TLabel;
     LBWOLAddress: TLabel;
     LBKeyExport: TLabel;
@@ -199,6 +200,7 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label8: TLabel;
+    MWOLLog: TMemo;
     PCCat: TPageControl;
     PControl2: TPageControl;
     PControl: TPageControl;

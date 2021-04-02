@@ -47,4 +47,11 @@ object ServerDM: TServerDM
     Left = 120
     Top = 8
   end
+  object TimerWOL: TTimer
+    Enabled = False
+    Interval = 30000
+    OnTimer = TimerWOLTimer
+    Left = 139
+    Top = 143
+  end
 end
