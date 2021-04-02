@@ -95,8 +95,14 @@ begin
 end;
 
 procedure TServerDM.DelFromCallsignList;
+var
+  i: integer;
 begin
-
+  for i := 0 to FoundBroadcastLog.Count-1 do
+  begin
+   // if StrToTime(FoundBroadcastLog.ValueFromIndex[i]) < (Now - TTime(2)/MinsPerDay) then
+   //   ShowMessage(FoundBroadcastLog.Strings[i]);
+  end;
 end;
 
 procedure TServerDM.SendBroadcastPingPong(s: string);
@@ -194,6 +200,7 @@ end;
 procedure TServerDM.TimerWOLTimer(Sender: TObject);
 begin
   SendBroadcastPingPong('PING');
+  DelFromCallsignList;
 end;
 
 procedure TServerDM.StartWOL;
