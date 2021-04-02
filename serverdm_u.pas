@@ -95,7 +95,7 @@ begin
   AddData('CALL', DBRecord.CurrCall);
   AddData(s, s);
   IdWOLClient.Broadcast(logdata, IniSet.WOLPort);
-  ConfigForm.MWOLLog.Lines.Add('SEND:'+logdata);
+  WriteLn(ExceptFile, 'SEND:'+logdata);
 end;
 
 function TServerDM.CreateADIBroadcast(QSO: TQSO; ToCall, SaveQSO: string): string;
@@ -234,7 +234,7 @@ end;
 procedure TServerDM.SendBroadcastADI(adiLine: string);
 begin
   IdWOLClient.Broadcast(adiLine, IniSet.WOLPort);
-  ConfigForm.MWOLLog.Lines.Add('SEND:'+adiLine);
+  WriteLn(ExceptFile, 'SEND:'+logdata);
 end;
 
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
