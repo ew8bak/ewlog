@@ -114,6 +114,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure GridMenuPopup(Sender: TObject);
     procedure CopyToLogItemClick(Sender: TObject);
+    procedure SendToLogBroadcastItemClick(Sender: TObject);
     procedure LOGBookDSDataChange(Sender: TObject; Field: TField);
     procedure MarkQSOItemClick(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
@@ -402,6 +403,19 @@ begin
   MainFunc.CopyToJournal(DBGrid1, MenuItem.Caption);
 end;
 
+procedure TGridsForm.SendToLogBroadcastItemClick(Sender: TObject);
+var
+  MenuItem: TMenuItem;
+begin
+  MenuItem := (Sender as TMenuItem);
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    if IniSet.WorkOnLAN then
+      ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(
+        MainFunc.SelectEditQSO(UnUsIndex), MenuItem.Caption, 'TRUE'));
+  end;
+end;
+
 procedure TGridsForm.LOGBookDSDataChange(Sender: TObject; Field: TField);
 begin
   MainFunc.SetGrid(DBGrid1);
@@ -422,9 +436,9 @@ procedure TGridsForm.MISendOnLANANYClick(Sender: TObject);
 begin
   if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
   begin
-  if IniSet.WorkOnLAN then
-    ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(
-      MainFunc.SelectEditQSO(UnUsIndex), 'ANY', 'TRUE'));
+    if IniSet.WorkOnLAN then
+      ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(
+        MainFunc.SelectEditQSO(UnUsIndex), 'ANY', 'TRUE'));
   end;
 end;
 
@@ -768,6 +782,17 @@ begin
         LogItem.Enabled := False;
       CopyToLogItem0.Insert(i, LogItem);
     end;
+
+    for i := 0 to FoundBroadcastLog.Count - 1 do
+    begin
+      LogItem := TMenuItem.Create(Self);
+      LogItem.Name := 'LogItemBroadcast' + IntToStr(i);
+      LogItem.Caption := FoundBroadcastLog.Names[i];
+      LogItem.OnClick := @SendToLogBroadcastItemClick;
+      LogItem.Tag := 98;
+      MISendOnLAN.Insert(i, LogItem);
+    end;
+
   end;
 end;
 

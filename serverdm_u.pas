@@ -52,8 +52,8 @@ type
     procedure StartImport;
     procedure StartTCPSyncThread;
     procedure BroadcastSaveQSO(ADILine: string);
-    procedure AddToCallsignList(Call: string; LastPong: TTime);
-    procedure DelFromCallsignList;
+    function AddToCallsignList(Call: string; LastPong: TTime): string;
+    function DelFromCallsignList: string;
 
   public
     procedure DisconnectFldigi;
@@ -79,7 +79,7 @@ uses InitDB_dm, MainFuncDM, dmFunc_U,
 
 { TServerDM }
 
-procedure TServerDM.AddToCallsignList(Call: string; LastPong: TTime);
+function TServerDM.AddToCallsignList(Call: string; LastPong: TTime): string;
 var
   i: integer;
 begin
@@ -91,17 +91,21 @@ begin
     FoundBroadcastLog[i] := FoundBroadcastLog.ValueFromIndex[i] +
       FoundBroadcastLog.NameValueSeparator + TimeToStr(Now);
   end;
-  ConfigForm.LBWOLCall.Items.CommaText := FoundBroadcastLog.CommaText;
+  Result := FoundBroadcastLog.CommaText;
 end;
 
-procedure TServerDM.DelFromCallsignList;
+function TServerDM.DelFromCallsignList: string;
 var
   i: integer;
 begin
-  for i := 0 to FoundBroadcastLog.Count-1 do
+  if FoundBroadcastLog.Count > 0 then
   begin
-   // if StrToTime(FoundBroadcastLog.ValueFromIndex[i]) < (Now - TTime(2)/MinsPerDay) then
-   //   ShowMessage(FoundBroadcastLog.Strings[i]);
+    for i := 0 to FoundBroadcastLog.Count - 1 do
+    begin
+      if SecondsBetween(Time, StrToTime(FoundBroadcastLog.ValueFromIndex[i])) > 60 then
+        FoundBroadcastLog.Delete(i);
+    end;
+    Result := FoundBroadcastLog.CommaText;
   end;
 end;
 
@@ -200,7 +204,7 @@ end;
 procedure TServerDM.TimerWOLTimer(Sender: TObject);
 begin
   SendBroadcastPingPong('PING');
-  DelFromCallsignList;
+  ConfigForm.LBWOLCall.Items.CommaText := DelFromCallsignList;
 end;
 
 procedure TServerDM.StartWOL;
@@ -408,7 +412,8 @@ begin
       if dmFunc.getField(ADILine, 'SAVE_QSO') = 'TRUE' then
         BroadcastSaveQSO(ADILine);
       if dmFunc.getField(ADILine, 'MESSAGE') = 'PONG' then
-        AddToCallsignList(dmFunc.getField(ADILine, 'CALL'), Now);
+        ConfigForm.LBWOLCall.Items.CommaText :=
+          AddToCallsignList(dmFunc.getField(ADILine, 'CALL'), Now);
     end;
 
   except
