@@ -605,6 +605,7 @@ begin
       Result.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
       Result.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
       Result.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
+      Result.ShortNote:=Query.FieldByName('ShortNote').AsString;
       Query.Close;
     finally
       FreeAndNil(Query);
