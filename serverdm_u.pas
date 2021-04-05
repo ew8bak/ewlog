@@ -215,7 +215,7 @@ begin
     IdWOLServer.BroadcastEnabled := False;
     if IniSet.WorkOnLAN then
     begin
-      GIdDefaultTextEncoding:=encUTF8;
+      GIdDefaultTextEncoding := encUTF8;
       IdWOLServer.Bindings.Add.IP := IniSet.WOLAddress;
       IdWOLServer.Bindings.Add.Port := IniSet.WOLPort;
       IdWOLServer.Active := True;
@@ -263,7 +263,7 @@ end;
 
 procedure TServerDM.SendBroadcastADI(adiLine: string);
 begin
-  IdWOLServer.Broadcast(adiLine, IniSet.WOLPort,'',IndyTextEncoding_UTF8);
+  IdWOLServer.Broadcast(adiLine, IniSet.WOLPort);
 end;
 
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
@@ -392,13 +392,11 @@ end;
 procedure TServerDM.IdWOLServerUDPRead(AThread: TIdUDPListenerThread;
   const AData: TIdBytes; ABinding: TIdSocketHandle);
 var
-  ADILine: string;
+  ADILine: UTF8String;
 begin
   try
-   // ADILine := BytesToString(AData);
-    ADILine:=BytesToString(AData, IndyTextEncoding_UTF8);
-// ADILine:=   TEncoding.UTF8.GetString(AData);
-
+    //ADILine := BytesToString(AData, IndyTextEncoding_UTF8);
+    ADILine := BytesToString(AData);
     ConfigForm.MWOLLog.Lines.Add('READ:>' + ADILine);
 
     if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
