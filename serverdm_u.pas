@@ -215,6 +215,7 @@ begin
     IdWOLServer.BroadcastEnabled := False;
     if IniSet.WorkOnLAN then
     begin
+      GIdDefaultTextEncoding:=encUTF8;
       IdWOLServer.Bindings.Add.IP := IniSet.WOLAddress;
       IdWOLServer.Bindings.Add.Port := IniSet.WOLPort;
       IdWOLServer.Active := True;
