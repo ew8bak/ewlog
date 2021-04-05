@@ -35,11 +35,6 @@ object ServerDM: TServerDM
     Left = 224
     Top = 80
   end
-  object IdWOLClient: TIdUDPClient
-    Port = 0
-    Left = 32
-    Top = 8
-  end
   object IdWOLServer: TIdUDPServer
     Bindings = <>
     DefaultPort = 0

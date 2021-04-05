@@ -27,7 +27,6 @@ type
     IdIPWatch1: TIdIPWatch;
     IdFldigiTCP: TIdTCPServer;
     IdWOLServer: TIdUDPServer;
-    IdWOLClient: TIdUDPClient;
     LUDPComponent1: TLUDPComponent;
     TimerWOL: TTimer;
     procedure DataModuleCreate(Sender: TObject);
@@ -127,7 +126,7 @@ begin
   AddData('CALL', DBRecord.CurrCall);
   AddData('MESSAGE', s);
   logdata := logdata + '<EOR>';
-  IdWOLClient.Broadcast(logdata, IniSet.WOLPort);
+  IdWOLServer.Broadcast(logdata, IniSet.WOLPort);
 end;
 
 function TServerDM.CreateADIBroadcast(QSO: TQSO; ToCall, SaveQSO: string): string;
@@ -211,16 +210,11 @@ procedure TServerDM.StartWOL;
 begin
   try
     TimerWOL.Enabled := False;
-    IdWOLClient.Active := False;
     IdWOLServer.Active := False;
     IdWOLServer.Bindings.Clear;
-    IdWOLClient.BroadcastEnabled := False;
     IdWOLServer.BroadcastEnabled := False;
     if IniSet.WorkOnLAN then
     begin
-      IdWOLClient.BroadcastEnabled := True;
-      IdWOLClient.Port := IniSet.WOLPort;
-      IdWOLClient.Active := True;
       IdWOLServer.Bindings.Add.IP := IniSet.WOLAddress;
       IdWOLServer.Bindings.Add.Port := IniSet.WOLPort;
       IdWOLServer.Active := True;
@@ -268,7 +262,7 @@ end;
 
 procedure TServerDM.SendBroadcastADI(adiLine: string);
 begin
-  IdWOLClient.Broadcast(adiLine, IniSet.WOLPort);
+  IdWOLServer.Broadcast(adiLine, IniSet.WOLPort,'',IndyTextEncoding_UTF8);
 end;
 
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
@@ -342,8 +336,10 @@ begin
   dd := StrToInt(QSODate[7] + QSODate[8]);
   SQSO.QSODate := EncodeDate(yyyy, mm, dd);
   SQSO.OmQTH := dmFunc.getField(ADILine, 'QTH');
+  SQSO.OmName := dmFunc.getField(ADILine, 'NAME');
   SQSO.Grid := dmFunc.getField(ADILine, 'GRIDSQUARE');
   SQSO.ShortNote := dmFunc.getField(ADILine, 'COMMENT');
+  SQSO.QSOAddInfo := dmFunc.getField(ADILine, 'COMMENT');
   SQSO.SRX := StrToInt(dmFunc.getField(ADILine, 'SRX'));
   SQSO.STX := StrToInt(dmFunc.getField(ADILine, 'STX'));
   SQSO.SRX_String := dmFunc.getField(ADILine, 'SRX_STRING');
@@ -361,7 +357,6 @@ begin
   SQSO.NLogDB := LBRecord.LogTable;
   SQSO.IOTA := '';
   SQSO.QSLManager := '';
-  SQSO.QSOAddInfo := '';
   SQSO.Marker := '';
   SQSO.State1 := '';
   SQSO.State2 := '';
@@ -399,7 +394,10 @@ var
   ADILine: string;
 begin
   try
-    ADILine := BytesToString(AData);
+   // ADILine := BytesToString(AData);
+    ADILine:=BytesToString(AData, IndyTextEncoding_UTF8);
+// ADILine:=   TEncoding.UTF8.GetString(AData);
+
     ConfigForm.MWOLLog.Lines.Add('READ:>' + ADILine);
 
     if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
