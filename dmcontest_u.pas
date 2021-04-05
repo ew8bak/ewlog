@@ -15,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, DB, SQLDB, StdCtrls, InitDB_dm, qso_record, prefix_record,
-  MainFuncDM, dmFunc_U;
+  MainFuncDM, dmFunc_U, serverDM_u;
 
 type
   TdmContest = class(TDataModule)
@@ -85,6 +85,8 @@ begin
   SQSO.NLogDB := LBRecord.LogTable;
 
   MainFunc.SaveQSO(SQSO);
+  if IniSet.WorkOnLAN then
+    ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(SQSO, 'ANY', 'TRUE'));
 end;
 
 function TdmContest.ContestNameToADIf(contestName: string): string;

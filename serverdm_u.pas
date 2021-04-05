@@ -392,11 +392,11 @@ end;
 procedure TServerDM.IdWOLServerUDPRead(AThread: TIdUDPListenerThread;
   const AData: TIdBytes; ABinding: TIdSocketHandle);
 var
-  ADILine: UTF8String;
+  ADILine: string;
 begin
   try
-    //ADILine := BytesToString(AData, IndyTextEncoding_UTF8);
-    ADILine := BytesToString(AData);
+    ADILine := BytesToString(AData, IndyTextEncoding_UTF8);
+
     ConfigForm.MWOLLog.Lines.Add('READ:>' + ADILine);
 
     if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
