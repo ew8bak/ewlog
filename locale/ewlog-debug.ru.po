@@ -2199,48 +2199,55 @@ msgstr "Прогноз"
 msgid "Messages"
 msgstr "Сообщения"
 
-#: tdxclusterform.virtualstringtree1.header.columns[0].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[0].text"
+#: tdxclusterform.vstcluster.header.columns[0].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[0].text"
 msgid "Band"
 msgstr "Диапазон"
 
-#: tdxclusterform.virtualstringtree1.header.columns[1].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[1].text"
+#: tdxclusterform.vstcluster.header.columns[1].text
+msgctxt "tdxclusterform.vstcluster.header.columns[1].text"
 msgid "DX"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[2].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[2].text"
+#: tdxclusterform.vstcluster.header.columns[2].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[2].text"
 msgid "Spotter"
 msgstr "Споттер"
 
-#: tdxclusterform.virtualstringtree1.header.columns[3].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[3].text"
+#: tdxclusterform.vstcluster.header.columns[3].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[3].text"
 msgid "Frequency"
 msgstr "Частота"
 
-#: tdxclusterform.virtualstringtree1.header.columns[4].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[4].text"
+#: tdxclusterform.vstcluster.header.columns[4].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[4].text"
 msgid "Mode"
 msgstr "Мода"
 
-#: tdxclusterform.virtualstringtree1.header.columns[5].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[5].text"
+#: tdxclusterform.vstcluster.header.columns[5].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[5].text"
 msgid "Comment"
 msgstr "Комментарий"
 
-#: tdxclusterform.virtualstringtree1.header.columns[6].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[6].text"
+#: tdxclusterform.vstcluster.header.columns[6].text
+msgctxt "tdxclusterform.vstcluster.header.columns[6].text"
 msgid "UTC"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[7].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[7].text"
+#: tdxclusterform.vstcluster.header.columns[7].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[7].text"
 msgid "Grid"
 msgstr "Локатор"
 
-#: tdxclusterform.virtualstringtree1.header.columns[8].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[8].text"
+#: tdxclusterform.vstcluster.header.columns[8].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[8].text"
 msgid "Country"
 msgstr "Страна"
 

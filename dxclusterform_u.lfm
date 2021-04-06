@@ -1,7 +1,7 @@
 object dxClusterForm: TdxClusterForm
-  Left = 732
+  Left = 327
   Height = 240
-  Top = 471
+  Top = 514
   Width = 735
   Caption = 'DX Cluster'
   ClientHeight = 240
@@ -59,7 +59,7 @@ object dxClusterForm: TdxClusterForm
       ClientWidth = 725
       Font.Height = -12
       ParentFont = False
-      object VirtualStringTree1: TVirtualStringTree
+      object VSTCluster: TVirtualStringTree
         Cursor = 63
         Left = 0
         Height = 185
@@ -121,17 +121,17 @@ object dxClusterForm: TdxClusterForm
         TabOrder = 0
         TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScroll, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes, toAutoChangeScale]
         TreeOptions.SelectionOptions = [toFullRowSelect]
-        OnChange = VirtualStringTree1Change
-        OnClick = VirtualStringTree1Click
-        OnCompareNodes = VirtualStringTree1CompareNodes
-        OnDblClick = VirtualStringTree1DblClick
-        OnFocusChanged = VirtualStringTree1FocusChanged
-        OnFreeNode = VirtualStringTree1FreeNode
-        OnGetText = VirtualStringTree1GetText
-        OnGetImageIndex = VirtualStringTree1GetImageIndex
-        OnGetNodeDataSize = VirtualStringTree1GetNodeDataSize
-        OnHeaderClick = VirtualStringTree1HeaderClick
-        OnNodeClick = VirtualStringTree1NodeClick
+        OnChange = VSTClusterChange
+        OnClick = VSTClusterClick
+        OnCompareNodes = VSTClusterCompareNodes
+        OnDblClick = VSTClusterDblClick
+        OnFocusChanged = VSTClusterFocusChanged
+        OnFreeNode = VSTClusterFreeNode
+        OnGetText = VSTClusterGetText
+        OnGetImageIndex = VSTClusterGetImageIndex
+        OnGetNodeDataSize = VSTClusterGetNodeDataSize
+        OnHeaderClick = VSTClusterHeaderClick
+        OnNodeClick = VSTClusterNodeClick
       end
     end
     object TabSheet3: TTabSheet

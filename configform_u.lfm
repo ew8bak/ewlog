@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 288
     Top = 0
     Width = 510
-    ActivePage = TSWorkLAN
+    ActivePage = TSBase
     Align = alTop
-    TabIndex = 9
+    TabIndex = 0
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
@@ -2179,14 +2179,14 @@ object ConfigForm: TConfigForm
         TabOrder = 3
       end
       object LBWOLLog: TLabel
-        AnchorSideLeft.Control = CBWOLEnable
+        AnchorSideLeft.Control = LBWOLCall
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = TSWorkLAN
         Left = 165
         Height = 13
         Top = 10
         Width = 25
-        BorderSpacing.Left = 10
+        BorderSpacing.Left = 5
         BorderSpacing.Top = 10
         Caption = 'Log:'
         ParentColor = False
@@ -2210,10 +2210,10 @@ object ConfigForm: TConfigForm
         Left = 5
         Height = 80
         Top = 169
-        Width = 163
+        Width = 155
         BorderSpacing.Top = 5
         ItemHeight = 0
-        ScrollWidth = 161
+        ScrollWidth = 153
         TabOrder = 4
         TopIndex = -1
       end
