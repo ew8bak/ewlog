@@ -120,14 +120,14 @@ object ClusterFilter: TClusterFilter
       Text = ':PSK31:RTTY:FT8:JT65:'
     end
   end
-  object CheckListBox1: TCheckListBox
+  object CLBFilterBands: TCheckListBox
     Left = 0
     Height = 349
     Top = 0
     Width = 160
     Align = alLeft
     ItemHeight = 0
-    OnClickCheck = CheckListBox1ClickCheck
+    OnClickCheck = CLBFilterBandsClickCheck
     TabOrder = 1
     TopIndex = -1
   end
@@ -146,7 +146,7 @@ object ClusterFilter: TClusterFilter
     ParentColor = False
     ParentFont = False
   end
-  object SpinEdit1: TSpinEdit
+  object SEDelSpot: TSpinEdit
     AnchorSideLeft.Control = Label1
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Label1
@@ -161,7 +161,7 @@ object ClusterFilter: TClusterFilter
     Value = 15
   end
   object Label2: TLabel
-    AnchorSideLeft.Control = SpinEdit1
+    AnchorSideLeft.Control = SEDelSpot
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = GroupBox2
     AnchorSideTop.Side = asrBottom

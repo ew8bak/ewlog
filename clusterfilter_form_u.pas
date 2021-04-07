@@ -29,17 +29,17 @@ type
     cbData: TCheckBox;
     CheckBox1: TCheckBox;
     CBDeleteNode: TCheckBox;
-    CheckListBox1: TCheckListBox;
+    CLBFilterBands: TCheckListBox;
     Edit1: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
     GroupBox2: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
-    SpinEdit1: TSpinEdit;
+    SEDelSpot: TSpinEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure CheckListBox1ClickCheck(Sender: TObject);
+    procedure CLBFilterBandsClickCheck(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -67,9 +67,9 @@ procedure TClusterFilter.ReadBandsModes;
 var
   i: integer;
 begin
-  for i := 0 to CheckListBox1.Items.Count - 1 do
+  for i := 0 to CLBFilterBands.Items.Count - 1 do
   begin
-    CheckListBox1.Checked[i] :=
+    CLBFilterBands.Checked[i] :=
       INIFile.ReadBool('TelnetCluster', 'Bands' + IntToStr(i), True);
   end;
   if Length(INIFile.ReadString('TelnetCluster', 'CWMode', '')) > 0 then
@@ -83,17 +83,17 @@ begin
   cbData.Checked := INIFile.ReadBool('TelnetCluster', 'DX_DIGI', True);
   CheckBox1.Checked := INIFile.ReadBool('TelnetCluster', 'Expand', True);
   CBDeleteNode.Checked := INIFile.ReadBool('TelnetCluster', 'DeleteNodeOnFilter', False);
-  SpinEdit1.Value := INIFile.ReadInteger('TelnetCluster', 'spotDelTime', 15);
+  SEDelSpot.Value := INIFile.ReadInteger('TelnetCluster', 'spotDelTime', 15);
 end;
 
 procedure TClusterFilter.WriteBandsModes;
 var
   i: integer;
 begin
-  for i := 0 to CheckListBox1.Items.Count - 1 do
+  for i := 0 to CLBFilterBands.Items.Count - 1 do
   begin
     INIFile.WriteBool('TelnetCluster', 'Bands' + IntToStr(i),
-      CheckListBox1.Checked[i]);
+      CLBFilterBands.Checked[i]);
   end;
   INIFile.WriteBool('TelnetCluster', 'DX_CW', cbCW.Checked);
   INIFile.WriteBool('TelnetCluster', 'DX_Phone', cbSSB.Checked);
@@ -103,7 +103,7 @@ begin
   INIFile.WriteString('TelnetCluster', 'CWMode', Edit1.Text);
   INIFile.WriteString('TelnetCluster', 'PhoneMode', Edit2.Text);
   INIFile.WriteString('TelnetCluster', 'DIGIMode', Edit3.Text);
-  INIFile.WriteInteger('TelnetCluster', 'spotDelTime', SpinEdit1.Value);
+  INIFile.WriteInteger('TelnetCluster', 'spotDelTime', SEDelSpot.Value);
 end;
 
 procedure TClusterFilter.FormCreate(Sender: TObject);
@@ -112,12 +112,12 @@ var
 begin
   for i := Length(bandsMm) - 1 downto 0 do
   begin
-    CheckListBox1.Items.Add(bandsMm[i] + ' / ' + bandsHz[i] + ' ' + rMHZ);
+    CLBFilterBands.Items.Add(bandsMm[i] + ' / ' + bandsHz[i] + ' ' + rMHZ);
   end;
   ReadBandsModes;
 end;
 
-procedure TClusterFilter.CheckListBox1ClickCheck(Sender: TObject);
+procedure TClusterFilter.CLBFilterBandsClickCheck(Sender: TObject);
 begin
   WriteBandsModes;
   if CBDeleteNode.Checked then
@@ -138,7 +138,7 @@ begin
 
   for i := 0 to High(arrayBands) do
   begin
-    if not ClusterFilter.CheckListBox1.Checked[i] then
+    if not ClusterFilter.CLBFilterBands.Checked[i] then
       DXClusterForm.FindAndDeleteBand(arrayBands[i]);
   end;
 end;

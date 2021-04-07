@@ -343,11 +343,11 @@ begin
     if (SubNode = Nil) then
     begin
       if DataNode^.Time <> '' then
-      begin // дитё
+      begin
         if MinutesBetween(NowUTCTime, StrToTime(DataNode^.Time, ':')) > min then
           VSTCluster.DeleteNode(ANode);
       end
-      else // не дитё
+      else
         VSTCluster.DeleteNode(ANode);
     end;
     ANode := TmpNode;
@@ -430,30 +430,30 @@ begin
       if (not ShowSpotBand) or (not ShowSpotMode) then
       begin
         case Band of
-          '2190M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[0];
-          '630M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[1];
-          '160M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[2];
-          '80M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[3];
-          '60M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[4];
-          '40M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[5];
-          '30M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[6];
-          '20M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[7];
-          '17M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[8];
-          '15M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[9];
-          '12M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[10];
-          '10M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[11];
-          '6M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[12];
-          '4M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[13];
-          '2M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[14];
-          '70CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[15];
-          '23CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[16];
-          '13CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[17];
-          '9CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[18];
-          '6CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[19];
-          '3CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[20];
-          '1.25CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[21];
-          '6MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[22];
-          '4MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[23];
+          '2190M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[0];
+          '630M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[1];
+          '160M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[2];
+          '80M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[3];
+          '60M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[4];
+          '40M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[5];
+          '30M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[6];
+          '20M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[7];
+          '17M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[8];
+          '15M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[9];
+          '12M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[10];
+          '10M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[11];
+          '6M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[12];
+          '4M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[13];
+          '2M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[14];
+          '70CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[15];
+          '23CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[16];
+          '13CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[17];
+          '9CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[18];
+          '6CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[19];
+          '3CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[20];
+          '1.25CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[21];
+          '6MM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[22];
+          '4MM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[23];
         end;
         case Mode of
           'LSB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
@@ -503,8 +503,8 @@ begin
       end;
     end;
   end;
-  FindAndDeleteSpot(ClusterFilter.SpinEdit1.Value);
-  FindAndDeleteSpot(ClusterFilter.SpinEdit1.Value);
+  FindAndDeleteSpot(ClusterFilter.SEDelSpot.Value);
+  FindAndDeleteSpot(ClusterFilter.SEDelSpot.Value);
 end;
 
 procedure TdxClusterForm.VSTClusterChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
