@@ -35,8 +35,11 @@ type
     Edit3: TEdit;
     GroupBox2: TGroupBox;
     Label1: TLabel;
-    Label2: TLabel;
+    LBMinutesDel: TLabel;
+    LBMinutesReconnect: TLabel;
+    LBReconnect: TLabel;
     SEDelSpot: TSpinEdit;
+    SEReconnect: TSpinEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure CLBFilterBandsClickCheck(Sender: TObject);
@@ -84,6 +87,7 @@ begin
   CheckBox1.Checked := INIFile.ReadBool('TelnetCluster', 'Expand', True);
   CBDeleteNode.Checked := INIFile.ReadBool('TelnetCluster', 'DeleteNodeOnFilter', False);
   SEDelSpot.Value := INIFile.ReadInteger('TelnetCluster', 'spotDelTime', 15);
+  SEReconnect.Value := INIFile.ReadInteger('TelnetCluster', 'ReconnectTime', 10);
 end;
 
 procedure TClusterFilter.WriteBandsModes;
@@ -104,6 +108,7 @@ begin
   INIFile.WriteString('TelnetCluster', 'PhoneMode', Edit2.Text);
   INIFile.WriteString('TelnetCluster', 'DIGIMode', Edit3.Text);
   INIFile.WriteInteger('TelnetCluster', 'spotDelTime', SEDelSpot.Value);
+  INIFile.WriteInteger('TelnetCluster', 'ReconnectTime', SEReconnect.Value);
 end;
 
 procedure TClusterFilter.FormCreate(Sender: TObject);

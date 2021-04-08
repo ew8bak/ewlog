@@ -320,8 +320,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterFilter_Form_U"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="119"/>
-        <CursorPos X="46" Y="132"/>
+        <TopLine Value="124"/>
+        <CursorPos X="21" Y="147"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -703,12 +703,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="487"/>
         <CursorPos X="35" Y="500"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit72>
       <Unit73>
         <Filename Value="telnetclientthread.pas"/>
@@ -724,9 +724,10 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="267"/>
-        <CursorPos X="10" Y="282"/>
+        <TopLine Value="93"/>
+        <CursorPos X="47" Y="111"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -778,7 +779,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="479"/>
         <CursorPos X="78" Y="8"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="199"/>
       </Unit79>
       <Unit80>
         <Filename Value="mobilesyncthread.pas"/>
@@ -786,7 +787,7 @@
         <UnitName Value="MobileSyncThread"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
-        <UsageCount Value="189"/>
+        <UsageCount Value="190"/>
       </Unit80>
       <Unit81>
         <Filename Value="cloudlogcat.pas"/>
@@ -794,7 +795,7 @@
         <UnitName Value="CloudLogCAT"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="78" Y="8"/>
-        <UsageCount Value="182"/>
+        <UsageCount Value="183"/>
       </Unit81>
       <Unit82>
         <Filename Value="progressform_u.pas"/>
@@ -806,7 +807,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos X="45" Y="76"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="138"/>
       </Unit82>
       <Unit83>
         <Filename Value="dmcat.pas"/>
@@ -818,7 +819,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="266"/>
         <CursorPos X="16" Y="96"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="110"/>
       </Unit83>
       <Unit84>
         <Filename Value="contestform_u.pas"/>
@@ -830,7 +831,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="128"/>
         <CursorPos X="3" Y="128"/>
-        <UsageCount Value="82"/>
+        <UsageCount Value="83"/>
       </Unit84>
       <Unit85>
         <Filename Value="dmcontest_u.pas"/>
@@ -842,7 +843,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="35" Y="18"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="79"/>
       </Unit85>
       <Unit86>
         <Filename Value="fms_record.pas"/>
@@ -850,7 +851,7 @@
         <UnitName Value="FMS_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="41" Y="19"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="62"/>
       </Unit86>
       <Unit87>
         <Filename Value="settingscat_u.pas"/>
@@ -1792,123 +1793,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="356" TopLine="337"/>
+        <Caret Line="361" Column="39" TopLine="340"/>
       </Position1>
       <Position2>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="357" TopLine="337"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="80" Column="81" TopLine="38"/>
       </Position2>
       <Position3>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="358" TopLine="337"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="141" Column="40" TopLine="119"/>
       </Position3>
       <Position4>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="354" TopLine="337"/>
+        <Caret Line="507" Column="44" TopLine="485"/>
       </Position4>
       <Position5>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="356" TopLine="337"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="132" Column="46" TopLine="119"/>
       </Position5>
       <Position6>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="357" TopLine="337"/>
+        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\lresources.pp"/>
+        <Caret Line="5350" Column="33" TopLine="5338"/>
       </Position6>
       <Position7>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="358" TopLine="337"/>
+        <Caret Line="486" TopLine="478"/>
       </Position7>
       <Position8>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="354" TopLine="337"/>
+        <Caret Line="97" Column="15" TopLine="76"/>
       </Position8>
       <Position9>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="356" TopLine="337"/>
+        <Caret Line="281" TopLine="267"/>
       </Position9>
       <Position10>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="357" TopLine="337"/>
+        <Caret Line="283" TopLine="267"/>
       </Position10>
       <Position11>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="358" TopLine="337"/>
+        <Caret Line="284" TopLine="267"/>
       </Position11>
       <Position12>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="354" TopLine="337"/>
+        <Caret Line="286" TopLine="267"/>
       </Position12>
       <Position13>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="377" Column="9" TopLine="346"/>
+        <Caret Line="287" TopLine="267"/>
       </Position13>
       <Position14>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="378" Column="7" TopLine="342"/>
+        <Caret Line="291" TopLine="267"/>
       </Position14>
       <Position15>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="361" Column="39" TopLine="340"/>
+        <Caret Line="283" TopLine="267"/>
       </Position15>
       <Position16>
-        <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="80" Column="81" TopLine="38"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="284" TopLine="267"/>
       </Position16>
       <Position17>
-        <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="141" Column="40" TopLine="119"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="282" Column="10" TopLine="267"/>
       </Position17>
       <Position18>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="507" Column="44" TopLine="485"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="132" Column="46" TopLine="119"/>
       </Position18>
       <Position19>
         <Filename Value="clusterfilter_form_u.pas"/>
-        <Caret Line="132" Column="46" TopLine="119"/>
+        <Caret Line="133" Column="46" TopLine="120"/>
       </Position19>
       <Position20>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\lresources.pp"/>
-        <Caret Line="5350" Column="33" TopLine="5338"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="134" Column="46" TopLine="121"/>
       </Position20>
       <Position21>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="486" TopLine="478"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="135" Column="46" TopLine="122"/>
       </Position21>
       <Position22>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="97" Column="15" TopLine="76"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="156" Column="3" TopLine="122"/>
       </Position22>
       <Position23>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="281" TopLine="267"/>
+        <Filename Value="clusterfilter_form_u.pas"/>
+        <Caret Line="50" Column="15" TopLine="30"/>
       </Position23>
       <Position24>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="283" TopLine="267"/>
+        <Caret Line="283" Column="10" TopLine="268"/>
       </Position24>
       <Position25>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="284" TopLine="267"/>
+        <Caret Line="101" Column="17" TopLine="85"/>
       </Position25>
       <Position26>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="286" TopLine="267"/>
+        <Caret Line="362" Column="65" TopLine="346"/>
       </Position26>
       <Position27>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="287" TopLine="267"/>
+        <Caret Line="568" TopLine="559"/>
       </Position27>
       <Position28>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="291" TopLine="267"/>
+        <Caret Line="595" TopLine="442"/>
       </Position28>
       <Position29>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="283" TopLine="267"/>
+        <Caret Line="668" Column="5" TopLine="657"/>
       </Position29>
       <Position30>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="284" TopLine="267"/>
+        <Caret Line="769" Column="21" TopLine="331"/>
       </Position30>
     </JumpHistory>
     <RunParams>

@@ -646,4 +646,10 @@ object dxClusterForm: TdxClusterForm
       OnClick = MenuItem3Click
     end
   end
+  object CheckClusterTimer: TTimer
+    Enabled = False
+    OnTimer = CheckClusterTimerTimer
+    Left = 56
+    Top = 88
+  end
 end

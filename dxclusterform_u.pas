@@ -53,8 +53,10 @@ type
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
+    CheckClusterTimer: TTimer;
     VSTCluster: TVirtualStringTree;
     procedure CBServersChange(Sender: TObject);
+    procedure CheckClusterTimerTimer(Sender: TObject);
     procedure EditCommandKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure EditMessageKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -97,6 +99,8 @@ type
     procedure FindCountryFlag(Country: string);
     procedure ButtonSet;
     function GetModeFromFreq(MHz: string): string;
+    procedure CheckClusterRestartTimer;
+    procedure FindAndDeleteSpot(min: integer);
 
   public
     procedure FromClusterThread(buffer: string);
@@ -105,7 +109,6 @@ type
     procedure SavePosition;
     procedure FreeClusterThread;
     procedure FindAndDeleteBand(band: string);
-    procedure FindAndDeleteSpot(min: integer);
 
   end;
 
@@ -340,7 +343,7 @@ begin
     TmpNode := VSTCluster.GetNext(ANode);
     DataNode := VSTCluster.GetNodeData(ANode);
     SubNode := VSTCluster.GetFirstChild(ANode);
-    if (SubNode = Nil) then
+    if (SubNode = nil) then
     begin
       if DataNode^.Time <> '' then
       begin
@@ -352,6 +355,13 @@ begin
     end;
     ANode := TmpNode;
   end;
+end;
+
+procedure TdxClusterForm.CheckClusterRestartTimer;
+begin
+  CheckClusterTimer.Enabled := False;
+  CheckClusterTimer.Interval := ClusterFilter.SEReconnect.Value;
+  CheckClusterTimer.Enabled := True;
 end;
 
 procedure TdxClusterForm.FromClusterThread(buffer: string);
@@ -505,6 +515,7 @@ begin
   end;
   FindAndDeleteSpot(ClusterFilter.SEDelSpot.Value);
   FindAndDeleteSpot(ClusterFilter.SEDelSpot.Value);
+  CheckClusterRestartTimer;
 end;
 
 procedure TdxClusterForm.VSTClusterChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
@@ -751,6 +762,12 @@ begin
   Delete(IniSet.Cluster_Host, 1, 1);
   //Порт
   IniSet.Cluster_Port := copy(CBServers.Text, j + 1, Length(CBServers.Text) - i);
+end;
+
+procedure TdxClusterForm.CheckClusterTimerTimer(Sender: TObject);
+begin
+  SBDisconnect.Click;
+  SBConnect.Click;
 end;
 
 procedure TdxClusterForm.VSTClusterCompareNodes(Sender: TBaseVirtualTree;

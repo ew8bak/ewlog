@@ -1209,9 +1209,21 @@ msgstr "Моды"
 msgid "Delete spots older then:"
 msgstr "Удалять споты старше:"
 
-#: tclusterfilter.label2.caption
+#: tclusterfilter.lbminutesdel.caption
+#, fuzzy
+msgctxt "tclusterfilter.lbminutesdel.caption"
 msgid "minutes"
 msgstr "минут(ы)"
+
+#: tclusterfilter.lbminutesreconnect.caption
+#, fuzzy
+msgctxt "tclusterfilter.lbminutesreconnect.caption"
+msgid "minutes"
+msgstr "минут(ы)"
+
+#: tclusterfilter.lbreconnect.caption
+msgid "Reconnect when inactive for"
+msgstr ""
 
 #: tclusterserver_form.button1.caption
 msgctxt "tclusterserver_form.button1.caption"

@@ -14,11 +14,11 @@ object ClusterFilter: TClusterFilter
   LCLVersion = '2.0.12.0'
   object GroupBox2: TGroupBox
     Left = 160
-    Height = 225
+    Height = 209
     Top = 0
     Width = 336
     Caption = 'Modes'
-    ClientHeight = 209
+    ClientHeight = 193
     ClientWidth = 334
     TabOrder = 0
     object cbSSB: TCheckBox
@@ -137,10 +137,10 @@ object ClusterFilter: TClusterFilter
     AnchorSideTop.Side = asrBottom
     Left = 170
     Height = 13
-    Top = 245
+    Top = 219
     Width = 144
     BorderSpacing.Left = 10
-    BorderSpacing.Top = 20
+    BorderSpacing.Top = 10
     Caption = 'Delete spots older then:'
     Font.Height = -12
     ParentColor = False
@@ -153,62 +153,67 @@ object ClusterFilter: TClusterFilter
     AnchorSideTop.Side = asrCenter
     Left = 319
     Height = 26
-    Top = 238
-    Width = 72
+    Top = 212
+    Width = 60
     BorderSpacing.Left = 5
+    Font.Height = -12
     MinValue = 1
+    ParentFont = False
     TabOrder = 2
     Value = 15
   end
-  object Label2: TLabel
+  object LBMinutesDel: TLabel
     AnchorSideLeft.Control = SEDelSpot
     AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = GroupBox2
-    AnchorSideTop.Side = asrBottom
-    Left = 396
+    AnchorSideTop.Control = SEDelSpot
+    AnchorSideTop.Side = asrCenter
+    Left = 384
     Height = 13
-    Top = 245
+    Top = 219
     Width = 49
     BorderSpacing.Left = 5
-    BorderSpacing.Top = 20
     Caption = 'minutes'
     ParentColor = False
   end
   object Button1: TButton
-    AnchorSideTop.Control = CBDeleteNode
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = GroupBox2
     AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
     Left = 408
     Height = 29
-    Top = 309
+    Top = 315
     Width = 88
-    Anchors = [akTop, akLeft, akRight]
+    Anchors = [akLeft, akRight, akBottom]
+    BorderSpacing.Bottom = 5
     Caption = 'Close'
     OnClick = Button1Click
     TabOrder = 3
   end
   object Button2: TButton
-    AnchorSideTop.Control = CBDeleteNode
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Button1
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
     Left = 310
     Height = 29
-    Top = 309
+    Top = 315
     Width = 88
-    Anchors = [akTop, akRight]
+    Anchors = [akRight, akBottom]
     BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 5
     Caption = 'Save'
     OnClick = Button2Click
     TabOrder = 4
   end
   object CheckBox1: TCheckBox
     AnchorSideLeft.Control = GroupBox2
-    AnchorSideTop.Control = Label1
+    AnchorSideTop.Control = LBReconnect
     AnchorSideTop.Side = asrBottom
     Left = 170
     Height = 23
-    Top = 263
+    Top = 266
     Width = 93
     BorderSpacing.Left = 10
     BorderSpacing.Top = 5
@@ -223,10 +228,52 @@ object ClusterFilter: TClusterFilter
     AnchorSideTop.Side = asrBottom
     Left = 170
     Height = 23
-    Top = 286
+    Top = 289
     Width = 176
     BorderSpacing.Left = 10
     Caption = 'Delete Node from cluster'
     TabOrder = 6
+  end
+  object SEReconnect: TSpinEdit
+    AnchorSideLeft.Control = LBReconnect
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBReconnect
+    AnchorSideTop.Side = asrCenter
+    Left = 347
+    Height = 26
+    Top = 241
+    Width = 60
+    BorderSpacing.Left = 5
+    Font.Height = -12
+    MinValue = 1
+    ParentFont = False
+    TabOrder = 7
+    Value = 10
+  end
+  object LBReconnect: TLabel
+    AnchorSideLeft.Control = GroupBox2
+    AnchorSideTop.Control = SEDelSpot
+    AnchorSideTop.Side = asrBottom
+    Left = 170
+    Height = 13
+    Top = 248
+    Width = 172
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 10
+    Caption = 'Reconnect when inactive for'
+    ParentColor = False
+  end
+  object LBMinutesReconnect: TLabel
+    AnchorSideLeft.Control = SEReconnect
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = SEReconnect
+    AnchorSideTop.Side = asrCenter
+    Left = 412
+    Height = 13
+    Top = 248
+    Width = 49
+    BorderSpacing.Left = 5
+    Caption = 'minutes'
+    ParentColor = False
   end
 end
