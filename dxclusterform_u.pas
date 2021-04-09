@@ -360,7 +360,7 @@ end;
 procedure TdxClusterForm.CheckClusterRestartTimer;
 begin
   CheckClusterTimer.Enabled := False;
-  CheckClusterTimer.Interval := ClusterFilter.SEReconnect.Value;
+  CheckClusterTimer.Interval := ClusterFilter.SEReconnect.Value * 60000;
   CheckClusterTimer.Enabled := True;
 end;
 
@@ -593,6 +593,7 @@ begin
     TelnetThread := nil;
   end;
   Memo1.Lines.Add('DX Cluster disconnected');
+  CheckClusterTimer.Enabled := False;
 end;
 
 procedure TdxClusterForm.SBSentDXClick(Sender: TObject);
