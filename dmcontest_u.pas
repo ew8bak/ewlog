@@ -24,6 +24,7 @@ type
   public
     procedure LoadContestName(var CBContest: TComboBox);
     procedure SaveQSOContest(SQSO: TQSO);
+    procedure LoadBands(Mode: string; var CBBand: TComboBox);
     function ContestNameToADIf(contestName: string): string;
 
   end;
@@ -34,6 +35,19 @@ var
 implementation
 
 {$R *.lfm}
+
+procedure TdmContest.LoadBands(Mode: string; var CBBand: TComboBox);
+var
+  i: integer;
+begin
+  CBBand.Items.Clear;
+  for i := 0 to High(MainFunc.LoadBands(Mode)) do
+    if IniSet.showBand then
+      CBBand.Items.Add(MainFunc.LoadBands(Mode)[i])
+    else
+      CBBand.Items.Add(dmFunc.GetBandFromFreq(MainFunc.LoadBands(Mode)[i]));
+  //CBBand.ItemIndex := IniSet.PastBand;
+end;
 
 procedure TdmContest.SaveQSOContest(SQSO: TQSO);
 var

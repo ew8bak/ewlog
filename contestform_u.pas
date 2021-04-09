@@ -67,12 +67,14 @@ type
       Shift: TShiftState);
     procedure EditCallsignKeyPress(Sender: TObject; var Key: char);
     procedure EditExchrKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RBOtherClick(Sender: TObject);
     procedure RBSerialClick(Sender: TObject);
     procedure TTimeTimer(Sender: TObject);
   private
     SelEditNumChar: integer;
+    function AddZero(number: integer): string;
 
   public
 
@@ -88,6 +90,27 @@ uses dmFunc_U, InitDB_dm, miniform_u;
 {$R *.lfm}
 
 { TContestForm }
+
+function TContestForm.AddZero(number: integer): string;
+begin
+  if (Length(IntToStr(number)) > 0) and (Length(IntToStr(number)) <= 1) then
+  begin
+    Result := '00' + IntToStr(number);
+    Exit;
+  end;
+
+  if (Length(IntToStr(number)) > 1) and (Length(IntToStr(number)) <= 2) then
+  begin
+    Result := '0' + IntToStr(number);
+    Exit;
+  end;
+
+  if Length(IntToStr(number)) > 2 then
+  begin
+    Result := IntToStr(number);
+    Exit;
+  end;
+end;
 
 procedure TContestForm.EditCallsignKeyDown(Sender: TObject; var Key: word;
   Shift: TShiftState);
@@ -163,7 +186,8 @@ begin
     dmContest.SaveQSOContest(SaveQSOrec);
     SBContest.Panels[0].Text := 'Save ' + EditCallsign.Text + ' OK';
     Inc(IniSet.ContestLastNumber);
-    EditExchs.Text := IntToStr(IniSet.ContestLastNumber);
+    EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+    //IntToStr(IniSet.ContestLastNumber);
     INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
     INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
 
@@ -181,7 +205,8 @@ procedure TContestForm.BtResetSessionClick(Sender: TObject);
 begin
   IniSet.ContestLastNumber := 1;
   INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
-  EditExchs.Text := IntToStr(IniSet.ContestLastNumber);
+  EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+  // IntToStr(IniSet.ContestLastNumber);
   CBContestName.ItemIndex := 0;
   IniSet.ContestName := CBContestName.Text;
   INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
@@ -212,6 +237,11 @@ begin
     BtSave.SetFocus;
 end;
 
+procedure TContestForm.FormCreate(Sender: TObject);
+begin
+  dmContest.LoadBands(CBMode.Text, CBBand);
+end;
+
 procedure TContestForm.FormShow(Sender: TObject);
 begin
   if RBSerial.Checked then
@@ -220,7 +250,8 @@ begin
     EditExchs.NumbersOnly := True;
   end;
   dmContest.LoadContestName(CBContestName);
-  EditExchs.Text := IntToStr(IniSet.ContestLastNumber);
+  EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+  // IntToStr(IniSet.ContestLastNumber);
   EditCallsign.SetFocus;
 end;
 
