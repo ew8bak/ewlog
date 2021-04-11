@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBGrids, ExtCtrls,
   Grids, Menus, selectQSO_record, foundQSO_record, prefix_record,
-  ResourceStr, qso_record,
+  ResourceStr, qso_record, serverDM_u,
   LCLType;
 
 type
@@ -44,6 +44,10 @@ type
     DBGrid2: TDBGrid;
     GridMenu: TPopupMenu;
     MarkQSOItem: TMenuItem;
+    FilterMarkedQSO: TMenuItem;
+    MISendOnLAN: TMenuItem;
+    MISendOnLANANY: TMenuItem;
+    N1: TMenuItem;
     PrefixItem: TMenuItem;
     QSLnsItem: TMenuItem;
     FinqQSLManItem: TMenuItem;
@@ -99,6 +103,7 @@ type
     procedure ExportQSLccItemClick(Sender: TObject);
     procedure FilterCancelItemClick(Sender: TObject);
     procedure FilterDNSentItemClick(Sender: TObject);
+    procedure FilterMarkedQSOClick(Sender: TObject);
     procedure FilterNSentQSLItemClick(Sender: TObject);
     procedure FilterQSLPItemClick(Sender: TObject);
     procedure FilterRecQSLItemClick(Sender: TObject);
@@ -109,9 +114,11 @@ type
     procedure FormShow(Sender: TObject);
     procedure GridMenuPopup(Sender: TObject);
     procedure CopyToLogItemClick(Sender: TObject);
+    procedure SendToLogBroadcastItemClick(Sender: TObject);
     procedure LOGBookDSDataChange(Sender: TObject; Field: TField);
     procedure MarkQSOItemClick(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure MISendOnLANANYClick(Sender: TObject);
     procedure PrefixItemClick(Sender: TObject);
     procedure PrintQSOManItemClick(Sender: TObject);
     procedure PrintQSOnoMarkItemClick(Sender: TObject);
@@ -330,6 +337,11 @@ begin
   MainFunc.FilterQSO('QSLSentAdv', 'N');
 end;
 
+procedure TGridsForm.FilterMarkedQSOClick(Sender: TObject);
+begin
+  MainFunc.FilterQSO('Marker', '1');
+end;
+
 procedure TGridsForm.FilterNSentQSLItemClick(Sender: TObject);
 begin
   MainFunc.FilterQSO('QSLSent', '0');
@@ -352,7 +364,7 @@ end;
 
 procedure TGridsForm.FindQSODSDataChange(Sender: TObject; Field: TField);
 begin
-   MainFunc.SetGrid(DBGrid2);
+  MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TGridsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -391,6 +403,19 @@ begin
   MainFunc.CopyToJournal(DBGrid1, MenuItem.Caption);
 end;
 
+procedure TGridsForm.SendToLogBroadcastItemClick(Sender: TObject);
+var
+  MenuItem: TMenuItem;
+begin
+  MenuItem := (Sender as TMenuItem);
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    if IniSet.WorkOnLAN then
+      ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(
+        MainFunc.SelectEditQSO(UnUsIndex), MenuItem.Caption, 'TRUE'));
+  end;
+end;
+
 procedure TGridsForm.LOGBookDSDataChange(Sender: TObject; Field: TField);
 begin
   MainFunc.SetGrid(DBGrid1);
@@ -405,6 +430,16 @@ end;
 procedure TGridsForm.MenuItem4Click(Sender: TObject);
 begin
   MainFunc.UpdateQSO(DBGrid1, 'QSLRec', '1');
+end;
+
+procedure TGridsForm.MISendOnLANANYClick(Sender: TObject);
+begin
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    if IniSet.WorkOnLAN then
+      ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(
+        MainFunc.SelectEditQSO(UnUsIndex), 'ANY', 'TRUE'));
+  end;
 end;
 
 procedure TGridsForm.PrefixItemClick(Sender: TObject);
@@ -747,6 +782,17 @@ begin
         LogItem.Enabled := False;
       CopyToLogItem0.Insert(i, LogItem);
     end;
+
+    for i := 0 to FoundBroadcastLog.Count - 1 do
+    begin
+      LogItem := TMenuItem.Create(Self);
+      LogItem.Name := 'LogItemBroadcast' + IntToStr(i);
+      LogItem.Caption := FoundBroadcastLog.Names[i];
+      LogItem.OnClick := @SendToLogBroadcastItemClick;
+      LogItem.Tag := 98;
+      MISendOnLAN.Insert(i, LogItem);
+    end;
+
   end;
 end;
 

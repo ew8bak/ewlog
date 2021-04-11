@@ -18,6 +18,7 @@ uses
 
 type
   TINIR = record
+    UniqueID: string;
     UseIntCallBook: boolean;
     PhotoDir: string;
     StateToQSLInfo: boolean;
@@ -108,6 +109,11 @@ type
     KeyReference: string;
     KeyImportADI: string;
     KeyExportADI: string;
+    ContestLastNumber: integer;
+    ContestName: string;
+    WorkOnLAN: boolean;
+    WOLAddress: string;
+    WOLPort: integer;
   end;
 
 implementation

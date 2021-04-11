@@ -1515,10 +1515,9 @@ begin
         MainFunc.SendQSOto('qrzcom', SQSO);
       if IniSet.AutoCloudLog then
         MainFunc.SendQSOto('cloudlog', SQSO);
+      if IniSet.WorkOnLAN then
+        ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(SQSO, 'ANY', 'TRUE'));
 
-      if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
-        if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-          ShowMessage(rDBError);
       Clr;
       MiniForm.TextSB('QSO № ' + IntToStr(1) + rQSOTotal +
         IntToStr(CountAllRecords), 1);
@@ -2162,7 +2161,6 @@ begin
     MenuItem89.Caption := rSwitchDBMySQL;
 
   SetHotKey;
-
   //  PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 end;
 
@@ -2182,6 +2180,8 @@ begin
     DateTimePicker1.Time := NowUTC;
     DateEdit1.Date := NowUTC;
   end;
+  FMS.Mode := CBMode.Text;
+  FMS.SubMode := CBSubMode.Text;
 end;
 
 end.

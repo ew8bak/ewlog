@@ -1,14 +1,14 @@
 object WSJT_UDP_Form: TWSJT_UDP_Form
-  Left = 455
+  Left = 1383
   Height = 240
-  Top = 226
+  Top = 151
   Width = 320
   Caption = 'WSJT_UDP_Form'
   ClientHeight = 240
   ClientWidth = 320
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object Memo1: TMemo
     Left = 0
     Height = 240

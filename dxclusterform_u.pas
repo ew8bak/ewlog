@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
   StdCtrls, Buttons, Menus, VirtualTrees, telnetClientThread,
-  prefix_record, const_u, SQLDB, ResourceStr, LCLType;
+  prefix_record, const_u, SQLDB, ResourceStr, LCLType, DateUtils, LazSysUtils;
 
 type
 
@@ -53,8 +53,10 @@ type
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
-    VirtualStringTree1: TVirtualStringTree;
+    CheckClusterTimer: TTimer;
+    VSTCluster: TVirtualStringTree;
     procedure CBServersChange(Sender: TObject);
+    procedure CheckClusterTimerTimer(Sender: TObject);
     procedure EditCommandKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure EditMessageKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -72,27 +74,23 @@ type
     procedure SBFilterClick(Sender: TObject);
     procedure SBEditServersClick(Sender: TObject);
     procedure SpeedButton7Click(Sender: TObject);
-    procedure VirtualStringTree1Change(Sender: TBaseVirtualTree;
-      Node: PVirtualNode);
-    procedure VirtualStringTree1Click(Sender: TObject);
-    procedure VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
+    procedure VSTClusterChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
+    procedure VSTClusterClick(Sender: TObject);
+    procedure VSTClusterCompareNodes(Sender: TBaseVirtualTree;
       Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: integer);
-    procedure VirtualStringTree1DblClick(Sender: TObject);
-    procedure VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
+    procedure VSTClusterDblClick(Sender: TObject);
+    procedure VSTClusterFocusChanged(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Column: TColumnIndex);
-    procedure VirtualStringTree1FreeNode(Sender: TBaseVirtualTree;
-      Node: PVirtualNode);
-    procedure VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
+    procedure VSTClusterFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
+    procedure VSTClusterGetImageIndex(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
       var Ghosted: boolean; var ImageIndex: integer);
-    procedure VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;
+    procedure VSTClusterGetNodeDataSize(Sender: TBaseVirtualTree;
       var NodeDataSize: integer);
-    procedure VirtualStringTree1GetText(Sender: TBaseVirtualTree;
-      Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
-      var CellText: string);
-    procedure VirtualStringTree1HeaderClick(Sender: TVTHeader;
-      HitInfo: TVTHeaderHitInfo);
-    procedure VirtualStringTree1NodeClick(Sender: TBaseVirtualTree;
+    procedure VSTClusterGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
+      Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
+    procedure VSTClusterHeaderClick(Sender: TVTHeader; HitInfo: TVTHeaderHitInfo);
+    procedure VSTClusterNodeClick(Sender: TBaseVirtualTree;
       const HitInfo: THitInfo);
   private
     FlagList: TImageList;
@@ -101,6 +99,8 @@ type
     procedure FindCountryFlag(Country: string);
     procedure ButtonSet;
     function GetModeFromFreq(MHz: string): string;
+    procedure CheckClusterRestartTimer;
+    procedure FindAndDeleteSpot(min: integer);
 
   public
     procedure FromClusterThread(buffer: string);
@@ -300,10 +300,10 @@ var
   DataNode: PTreeData;
 begin
   Result := nil;
-  ANode := VirtualStringTree1.GetFirst();
+  ANode := VSTCluster.GetFirst();
   while ANode <> nil do
   begin
-    DataNode := VirtualStringTree1.GetNodeData(ANode);
+    DataNode := VSTCluster.GetNodeData(ANode);
     if Country = False then
     begin
       if DataNode^.DX = APattern then
@@ -320,14 +320,48 @@ begin
         exit;
       end;
     end;
-    ANode := VirtualStringTree1.GetNext(ANode);
+    ANode := VSTCluster.GetNext(ANode);
   end;
 end;
 
 procedure TdxClusterForm.FindAndDeleteBand(band: string);
 begin
   if FindNode(band, False) <> nil then
-    VirtualStringTree1.DeleteNode(FindNode(band, False));
+    VSTCluster.DeleteNode(FindNode(band, False));
+end;
+
+procedure TdxClusterForm.FindAndDeleteSpot(min: integer);
+var
+  ANode, SubNode, TmpNode: PVirtualNode;
+  DataNode: PTreeData;
+  NowUTCTime: TTime;
+begin
+  NowUTCTime := StrToTime(FormatDateTime('h:m', NowUTC));
+  ANode := VSTCluster.GetFirst;
+  while Assigned(ANode) do
+  begin
+    TmpNode := VSTCluster.GetNext(ANode);
+    DataNode := VSTCluster.GetNodeData(ANode);
+    SubNode := VSTCluster.GetFirstChild(ANode);
+    if (SubNode = nil) then
+    begin
+      if DataNode^.Time <> '' then
+      begin
+        if MinutesBetween(NowUTCTime, StrToTime(DataNode^.Time, ':')) > min then
+          VSTCluster.DeleteNode(ANode);
+      end
+      else
+        VSTCluster.DeleteNode(ANode);
+    end;
+    ANode := TmpNode;
+  end;
+end;
+
+procedure TdxClusterForm.CheckClusterRestartTimer;
+begin
+  CheckClusterTimer.Enabled := False;
+  CheckClusterTimer.Interval := ClusterFilter.SEReconnect.Value * 60000;
+  CheckClusterTimer.Enabled := True;
 end;
 
 procedure TdxClusterForm.FromClusterThread(buffer: string);
@@ -406,30 +440,30 @@ begin
       if (not ShowSpotBand) or (not ShowSpotMode) then
       begin
         case Band of
-          '2190M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[0];
-          '630M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[1];
-          '160M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[2];
-          '80M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[3];
-          '60M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[4];
-          '40M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[5];
-          '30M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[6];
-          '20M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[7];
-          '17M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[8];
-          '15M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[9];
-          '12M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[10];
-          '10M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[11];
-          '6M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[12];
-          '4M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[13];
-          '2M': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[14];
-          '70CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[15];
-          '23CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[16];
-          '13CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[17];
-          '9CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[18];
-          '6CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[19];
-          '3CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[20];
-          '1.25CM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[21];
-          '6MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[22];
-          '4MM': ShowSpotBand := ClusterFilter.CheckListBox1.Checked[23];
+          '2190M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[0];
+          '630M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[1];
+          '160M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[2];
+          '80M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[3];
+          '60M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[4];
+          '40M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[5];
+          '30M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[6];
+          '20M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[7];
+          '17M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[8];
+          '15M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[9];
+          '12M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[10];
+          '10M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[11];
+          '6M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[12];
+          '4M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[13];
+          '2M': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[14];
+          '70CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[15];
+          '23CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[16];
+          '13CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[17];
+          '9CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[18];
+          '6CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[19];
+          '3CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[20];
+          '1.25CM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[21];
+          '6MM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[22];
+          '4MM': ShowSpotBand := ClusterFilter.CLBFilterBands.Checked[23];
         end;
         case Mode of
           'LSB': ShowSpotMode := ClusterFilter.cbSSB.Checked;
@@ -443,12 +477,12 @@ begin
     begin
       if FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False) = nil then
       begin
-        XNode := VirtualStringTree1.AddChild(nil);
-        Data := VirtualStringTree1.GetNodeData(Xnode);
+        XNode := VSTCluster.AddChild(nil);
+        Data := VSTCluster.GetNodeData(Xnode);
         Data^.DX := dmFunc.GetBandFromFreq(FloatToStr(freqMhz));
-        XNode := VirtualStringTree1.AddChild(
+        XNode := VSTCluster.AddChild(
           FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False));
-        Data := VirtualStringTree1.GetNodeData(Xnode);
+        Data := VSTCluster.GetNodeData(Xnode);
         Data^.Spots := DX;
         Data^.Call := Call;
         Data^.Freq := Freq;
@@ -458,14 +492,14 @@ begin
         Data^.Loc := Loc;
         PFXR := MainFunc.SearchPrefix(DX, Loc);
         Data^.Country := PFXR.Country;
-        VirtualStringTree1.Expanded[XNode^.Parent] := ClusterFilter.CheckBox1.Checked;
+        VSTCluster.Expanded[XNode^.Parent] := ClusterFilter.CheckBox1.Checked;
         FindCountryFlag(Data^.Country);
       end
       else
       begin
-        XNode := VirtualStringTree1.InsertNode(
+        XNode := VSTCluster.InsertNode(
           FindNode(dmFunc.GetBandFromFreq(FloatToStr(freqMhz)), False), amAddChildFirst);
-        Data := VirtualStringTree1.GetNodeData(Xnode);
+        Data := VSTCluster.GetNodeData(Xnode);
         Data^.Spots := DX;
         Data^.Call := Call;
         Data^.Freq := Freq;
@@ -479,24 +513,26 @@ begin
       end;
     end;
   end;
+  FindAndDeleteSpot(ClusterFilter.SEDelSpot.Value);
+  FindAndDeleteSpot(ClusterFilter.SEDelSpot.Value);
+  CheckClusterRestartTimer;
 end;
 
-procedure TdxClusterForm.VirtualStringTree1Change(Sender: TBaseVirtualTree;
-  Node: PVirtualNode);
+procedure TdxClusterForm.VSTClusterChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
 begin
-  VirtualStringTree1.Refresh;
+  VSTCluster.Refresh;
 end;
 
-procedure TdxClusterForm.VirtualStringTree1Click(Sender: TObject);
+procedure TdxClusterForm.VSTClusterClick(Sender: TObject);
 var
   XNode: PVirtualNode;
   Data: PTreeData;
   PFXR: TPFXR;
   Lat, Lon: string;
 begin
-  XNode := VirtualStringTree1.FocusedNode;
-  Data := VirtualStringTree1.GetNodeData(XNode);
-  if VirtualStringTree1.SelectedCount <> 0 then
+  XNode := VSTCluster.FocusedNode;
+  Data := VSTCluster.GetNodeData(XNode);
+  if VSTCluster.SelectedCount <> 0 then
   begin
     if Length(Data^.Spots) > 1 then
     begin
@@ -535,11 +571,11 @@ end;
 
 procedure TdxClusterForm.SBClearClick(Sender: TObject);
 begin
-  if not VirtualStringTree1.IsEmpty and (PageControl1.ActivePageIndex = 1) then
+  if not VSTCluster.IsEmpty and (PageControl1.ActivePageIndex = 1) then
   begin
-    VirtualStringTree1.BeginUpdate;
-    VirtualStringTree1.Clear;
-    VirtualStringTree1.EndUpdate;
+    VSTCluster.BeginUpdate;
+    VSTCluster.Clear;
+    VSTCluster.EndUpdate;
   end;
   if PageControl1.ActivePageIndex = 0 then
     Memo1.Clear;
@@ -557,6 +593,7 @@ begin
     TelnetThread := nil;
   end;
   Memo1.Lines.Add('DX Cluster disconnected');
+  CheckClusterTimer.Enabled := False;
 end;
 
 procedure TdxClusterForm.SBSentDXClick(Sender: TObject);
@@ -597,7 +634,7 @@ begin
   if Sender <> MainForm then
   begin
     INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
-    MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
+    MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
     if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       INIFile.WriteBool('SetLog', 'cShow', True)
@@ -613,7 +650,7 @@ begin
   else
   begin
     INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
-    MainFunc.SetDXColumns(VirtualStringTree1, True, VirtualStringTree1);
+    MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
     FreeClusterThread;
   end;
 end;
@@ -622,11 +659,11 @@ procedure TdxClusterForm.FormCreate(Sender: TObject);
 begin
   FlagList := TImageList.Create(Self);
   FlagSList := TStringList.Create;
-  VirtualStringTree1.Images := FlagList;
+  VSTCluster.Images := FlagList;
   qBands := TSQLQuery.Create(nil);
   qBands.DataBase := InitDB.ServiceDBConnection;
   LoadClusterString;
-  MainFunc.SetDXColumns(VirtualStringTree1, False, VirtualStringTree1);
+  MainFunc.SetDXColumns(VSTCluster, False, VSTCluster);
   ButtonSet;
   if IniSet.ClusterAutoStart then
     SBConnect.Click;
@@ -658,25 +695,25 @@ var
   XNode: PVirtualNode;
   Data: PTreeData;
 begin
-  XNode := VirtualStringTree1.FocusedNode;
-  Data := VirtualStringTree1.GetNodeData(XNode);
-  if VirtualStringTree1.SelectedCount <> 0 then
+  XNode := VSTCluster.FocusedNode;
+  Data := VSTCluster.GetNodeData(XNode);
+  if VSTCluster.SelectedCount <> 0 then
     if Length(Data^.Spots) > 1 then
       MiniForm.EditCallsign.Text := Data^.Spots;
 end;
 
 procedure TdxClusterForm.MenuItem2Click(Sender: TObject);
 begin
-  VirtualStringTree1.DeleteSelectedNodes;
+  VSTCluster.DeleteSelectedNodes;
 end;
 
 procedure TdxClusterForm.MenuItem3Click(Sender: TObject);
 begin
-  if not VirtualStringTree1.IsEmpty then
+  if not VSTCluster.IsEmpty then
   begin
-    VirtualStringTree1.BeginUpdate;
-    VirtualStringTree1.Clear;
-    VirtualStringTree1.EndUpdate;
+    VSTCluster.BeginUpdate;
+    VSTCluster.Clear;
+    VSTCluster.EndUpdate;
   end;
 end;
 
@@ -728,21 +765,27 @@ begin
   IniSet.Cluster_Port := copy(CBServers.Text, j + 1, Length(CBServers.Text) - i);
 end;
 
-procedure TdxClusterForm.VirtualStringTree1CompareNodes(Sender: TBaseVirtualTree;
+procedure TdxClusterForm.CheckClusterTimerTimer(Sender: TObject);
+begin
+  SBDisconnect.Click;
+  SBConnect.Click;
+end;
+
+procedure TdxClusterForm.VSTClusterCompareNodes(Sender: TBaseVirtualTree;
   Node1, Node2: PVirtualNode; Column: TColumnIndex; var Result: integer);
 begin
   with TVirtualStringTree(Sender) do
     Result := AnsiCompareText(Text[Node1, Column], Text[Node2, Column]);
 end;
 
-procedure TdxClusterForm.VirtualStringTree1DblClick(Sender: TObject);
+procedure TdxClusterForm.VSTClusterDblClick(Sender: TObject);
 var
   XNode: PVirtualNode;
   Data: PTreeData;
 begin
-  XNode := VirtualStringTree1.FocusedNode;
-  Data := VirtualStringTree1.GetNodeData(XNode);
-  if VirtualStringTree1.SelectedCount <> 0 then
+  XNode := VSTCluster.FocusedNode;
+  Data := VSTCluster.GetNodeData(XNode);
+  if VSTCluster.SelectedCount <> 0 then
   begin
     if Length(Data^.Spots) > 1 then
     begin
@@ -793,18 +836,18 @@ begin
 
 end;
 
-procedure TdxClusterForm.VirtualStringTree1FocusChanged(Sender: TBaseVirtualTree;
+procedure TdxClusterForm.VSTClusterFocusChanged(Sender: TBaseVirtualTree;
   Node: PVirtualNode; Column: TColumnIndex);
 begin
-  VirtualStringTree1.Refresh;
+  VSTCluster.Refresh;
 end;
 
-procedure TdxClusterForm.VirtualStringTree1FreeNode(Sender: TBaseVirtualTree;
+procedure TdxClusterForm.VSTClusterFreeNode(Sender: TBaseVirtualTree;
   Node: PVirtualNode);
 var
   Data: PTreeData;
 begin
-  Data := VirtualStringTree1.GetNodeData(Node);
+  Data := VSTCluster.GetNodeData(Node);
   if Assigned(Data) then
   begin
     Data^.DX := '';
@@ -819,7 +862,7 @@ begin
   end;
 end;
 
-procedure TdxClusterForm.VirtualStringTree1GetImageIndex(Sender: TBaseVirtualTree;
+procedure TdxClusterForm.VSTClusterGetImageIndex(Sender: TBaseVirtualTree;
   Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
   var Ghosted: boolean; var ImageIndex: integer);
 var
@@ -829,26 +872,26 @@ begin
     Exit;
 
   ImageIndex := -1;
-  Data := VirtualStringTree1.GetNodeData(Node);
+  Data := VSTCluster.GetNodeData(Node);
   if Assigned(Data) then
   begin
     ImageIndex := FlagSList.IndexOf(dmFunc.ReplaceCountry(Data^.Country));
   end;
 end;
 
-procedure TdxClusterForm.VirtualStringTree1GetNodeDataSize(Sender: TBaseVirtualTree;
+procedure TdxClusterForm.VSTClusterGetNodeDataSize(Sender: TBaseVirtualTree;
   var NodeDataSize: integer);
 begin
   NodeDataSize := SizeOf(TTreeData);
 end;
 
-procedure TdxClusterForm.VirtualStringTree1GetText(Sender: TBaseVirtualTree;
+procedure TdxClusterForm.VSTClusterGetText(Sender: TBaseVirtualTree;
   Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType;
   var CellText: string);
 var
   Data: PTreeData;
 begin
-  Data := VirtualStringTree1.GetNodeData(Node);
+  Data := VSTCluster.GetNodeData(Node);
   case Column of
     0: CellText := Data^.DX;
     1: CellText := Data^.Spots;
@@ -862,27 +905,27 @@ begin
   end;
 end;
 
-procedure TdxClusterForm.VirtualStringTree1HeaderClick(Sender: TVTHeader;
+procedure TdxClusterForm.VSTClusterHeaderClick(Sender: TVTHeader;
   HitInfo: TVTHeaderHitInfo);
 begin
   if HitInfo.Button = mbLeft then
   begin
-    VirtualStringTree1.Header.SortColumn := HitInfo.Column;
-    if VirtualStringTree1.Header.SortDirection = sdAscending then
-      VirtualStringTree1.Header.SortDirection := sdDescending
+    VSTCluster.Header.SortColumn := HitInfo.Column;
+    if VSTCluster.Header.SortDirection = sdAscending then
+      VSTCluster.Header.SortDirection := sdDescending
     else
-      VirtualStringTree1.Header.SortDirection := sdAscending;
-    VirtualStringTree1.SortTree(HitInfo.Column, VirtualStringTree1.Header.SortDirection);
+      VSTCluster.Header.SortDirection := sdAscending;
+    VSTCluster.SortTree(HitInfo.Column, VSTCluster.Header.SortDirection);
   end;
 end;
 
-procedure TdxClusterForm.VirtualStringTree1NodeClick(Sender: TBaseVirtualTree;
+procedure TdxClusterForm.VSTClusterNodeClick(Sender: TBaseVirtualTree;
   const HitInfo: THitInfo);
 var
   XNode: PVirtualNode;
 begin
-  XNode := VirtualStringTree1.FocusedNode;
-  VirtualStringTree1.Selected[XNode] := True;
+  XNode := VSTCluster.FocusedNode;
+  VSTCluster.Selected[XNode] := True;
 end;
 
 

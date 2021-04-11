@@ -9,7 +9,7 @@ object GridsForm: TGridsForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 294
@@ -1357,6 +1357,10 @@ object GridsForm: TGridsForm
         Caption = 'QSL do not send'
         OnClick = FilterDNSentItemClick
       end
+      object FilterMarkedQSO: TMenuItem
+        Caption = 'Marked QSO'
+        OnClick = FilterMarkedQSOClick
+      end
       object FilterCancelItem: TMenuItem
         Caption = 'Cancel filter'
         OnClick = FilterCancelItemClick
@@ -1407,6 +1411,16 @@ object GridsForm: TGridsForm
     object SaveExcelItem: TMenuItem
       Caption = 'Save to Excel'
       Enabled = False
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object MISendOnLAN: TMenuItem
+      Caption = 'Send on LAN'
+      object MISendOnLANANY: TMenuItem
+        Caption = 'ANY'
+        OnClick = MISendOnLANANYClick
+      end
     end
     object Sep8Item: TMenuItem
       Caption = '-'

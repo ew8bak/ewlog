@@ -18,7 +18,7 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u,
-  FileUtil;
+  FileUtil, FMS_record;
 
 type
   bandArray = array of string;
@@ -84,6 +84,7 @@ type
     function GetExternalProgramsPath(ProgramName: string): string;
     function BackupDataADI(Sender: string): boolean;
     function BackupDataDB(Sender: string): boolean;
+    function GenerateRandomID: string;
   end;
 
 var
@@ -94,6 +95,7 @@ var
   columnsVisible: array[0..29] of boolean;
   columnsDX: array[0..8] of string;
   columnsDXWidth: array[0..8] of integer;
+  FMS: TFMSRecord;
 
 implementation
 
@@ -101,6 +103,24 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
 
 {$R *.lfm}
+
+function TMainFunc.GenerateRandomID: string;
+var
+  a: integer;
+  b: integer;
+  s: integer;
+begin
+  Randomize;
+  Result := '';
+  for s := 1 to 5 do
+  begin
+    for a := 1 to 5 do
+      Result := Result + Chr(65 + Random(25));
+    for b := 1 to 3 do
+      Result := Result + Chr(48 + Random(10));
+    Result := Result;
+  end;
+end;
 
 function TMainFunc.BackupDataADI(Sender: string): boolean;
 begin
@@ -269,7 +289,6 @@ procedure TMainFunc.SaveGrids(DbGrid: TDBGrid);
 var
   i: integer;
 begin
-  //ShowMessage();
   for i := 0 to 29 do
   begin
     INIFile.WriteString('GridSettings', 'Columns' + IntToStr(i),
@@ -548,6 +567,10 @@ begin
       Result.OMName := Query.FieldByName('OMName').AsString;
       Result.OMQTH := Query.FieldByName('OMQTH').AsString;
       Result.State0 := Query.FieldByName('State').AsString;
+      Result.STX := Query.FieldByName('STX').AsInteger;
+      Result.SRX := Query.FieldByName('SRX').AsInteger;
+      Result.STX_String := Query.FieldByName('STX_String').AsString;
+      Result.SRX_String := Query.FieldByName('SRX_String').AsString;
       Result.Grid := Query.FieldByName('Grid').AsString;
       Result.QSOReportSent := Query.FieldByName('QSOReportSent').AsString;
       Result.QSOReportRecived := Query.FieldByName('QSOReportRecived').AsString;
@@ -582,6 +605,7 @@ begin
       Result.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
       Result.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
       Result.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
+      Result.ShortNote:=Query.FieldByName('ShortNote').AsString;
       Query.Close;
     finally
       FreeAndNil(Query);
@@ -1338,6 +1362,7 @@ var
 begin
   FormatSettings.TimeSeparator := ':';
   FormatSettings.ShortTimeFormat := 'hh:mm';
+  IniSet.UniqueID := GenerateRandomID;
   IniSet.UseIntCallBook := INIFile.ReadBool('SetLog', 'IntCallBook', True);
   IniSet.PhotoDir := INIFile.ReadString('SetLog', 'PhotoDir', '');
   IniSet.StateToQSLInfo := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
@@ -1418,14 +1443,19 @@ begin
   IniSet.BackupDBonClose := INIFile.ReadBool('SetBackup', 'BackupDBonClose', False);
   IniSet.BackupTime := INIFile.ReadTime('SetBackup', 'BackupTime',
     StrToTime('12:00', FormatSettings));
-  IniSet.rigctldStartUp:=INIFile.ReadBool('SetCAT', 'rigctldStartUp', True);
-  IniSet.rigctldExtra:=INIFile.ReadString('SetCAT', 'rigctldExtra', '');
-  IniSet.rigctldPath:=INIFile.ReadString('SetCAT', 'rigctldPath', '');
-  IniSet.KeySave:=INIFile.ReadString('Key', 'Save', 'Alt+S');
-  IniSet.KeyClear:=INIFile.ReadString('Key', 'Clear', 'Alt+C');
-  IniSet.KeyReference:=INIFile.ReadString('Key', 'Reference', 'Enter');
-  IniSet.KeyImportADI:=INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
-  IniSet.KeyExportADI:=INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
+  IniSet.rigctldStartUp := INIFile.ReadBool('SetCAT', 'rigctldStartUp', True);
+  IniSet.rigctldExtra := INIFile.ReadString('SetCAT', 'rigctldExtra', '');
+  IniSet.rigctldPath := INIFile.ReadString('SetCAT', 'rigctldPath', '');
+  IniSet.KeySave := INIFile.ReadString('Key', 'Save', 'Alt+S');
+  IniSet.KeyClear := INIFile.ReadString('Key', 'Clear', 'Alt+C');
+  IniSet.KeyReference := INIFile.ReadString('Key', 'Reference', 'Enter');
+  IniSet.KeyImportADI := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
+  IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
+  IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
+  IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
+  IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
+  IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
+  IniSet.WOLPort := INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -1895,7 +1925,7 @@ begin
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
         dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
-        WriteLn(ExceptFile, 'SaveQSO:'+QueryTXT);
+       WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else
@@ -1910,6 +1940,9 @@ begin
       WriteLn(ExceptFile, 'SaveQSO:' + E.ClassName + ':' + E.Message);
     end;
   end;
+  if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
+    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+      ShowMessage(rDBError);
 end;
 
 procedure TMainFunc.SetGrid(var DBGRID: TDBGrid);

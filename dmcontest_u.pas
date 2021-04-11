@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit dmContest_u;
 
 {$mode objfpc}{$H+}
@@ -6,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, DB, SQLDB, StdCtrls, InitDB_dm, qso_record, prefix_record,
-  MainFuncDM, dmFunc_U;
+  MainFuncDM, dmFunc_U, serverDM_u;
 
 type
   TdmContest = class(TDataModule)
@@ -15,6 +24,7 @@ type
   public
     procedure LoadContestName(var CBContest: TComboBox);
     procedure SaveQSOContest(SQSO: TQSO);
+    procedure LoadBands(Mode: string; var CBBand: TComboBox);
     function ContestNameToADIf(contestName: string): string;
 
   end;
@@ -25,6 +35,19 @@ var
 implementation
 
 {$R *.lfm}
+
+procedure TdmContest.LoadBands(Mode: string; var CBBand: TComboBox);
+var
+  i: integer;
+begin
+  CBBand.Items.Clear;
+  for i := 0 to High(MainFunc.LoadBands(Mode)) do
+    if IniSet.showBand then
+      CBBand.Items.Add(MainFunc.LoadBands(Mode)[i])
+    else
+      CBBand.Items.Add(dmFunc.GetBandFromFreq(MainFunc.LoadBands(Mode)[i]));
+  //CBBand.ItemIndex := IniSet.PastBand;
+end;
 
 procedure TdmContest.SaveQSOContest(SQSO: TQSO);
 var
@@ -50,6 +73,7 @@ begin
   SQSO.State2 := '';
   SQSO.State3 := '';
   SQSO.State4 := '';
+  SQSO.QSLInfo := '';
   SQSO.SAT_NAME := '';
   SQSO.SAT_MODE := '';
   SQSO.PROP_MODE := '';
@@ -73,7 +97,10 @@ begin
   SQSO.My_Lon := '';
   SQSO.My_Grid := LBRecord.OpLoc;
   SQSO.NLogDB := LBRecord.LogTable;
- // MainFunc.SaveQSO(SQSO);
+
+  MainFunc.SaveQSO(SQSO);
+  if IniSet.WorkOnLAN then
+    ServerDM.SendBroadcastADI(ServerDM.CreateADIBroadcast(SQSO, 'ANY', 'TRUE'));
 end;
 
 function TdmContest.ContestNameToADIf(contestName: string): string;
@@ -119,7 +146,10 @@ begin
       end;
       Query.Close;
     finally
-      CBContest.ItemIndex := 0;
+      if CBContest.Items.IndexOf(IniSet.ContestName) <> -1 then
+        CBContest.ItemIndex := CBContest.Items.IndexOf(IniSet.ContestName)
+      else
+        CBContest.ItemIndex := 0;
       FreeAndNil(Query);
     end;
   except

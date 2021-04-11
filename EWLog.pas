@@ -32,7 +32,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   ImbedCallBookCheckRec, serverDM_u, telnetClientThread, dxclusterform_u,
   GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread, ExportADIThread,
   MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u, dmCat,
-  contestForm_u, dmContest_u;
+  contestForm_u, dmContest_u, FMS_record;
 
 {$R *.res}
 

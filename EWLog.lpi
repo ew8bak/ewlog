@@ -27,7 +27,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="796"/>
+      <BuildNr Value="797"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -163,7 +163,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="86">
+    <Units Count="87">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -704,6 +704,11 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmContest_u"/>
       </Unit85>
+      <Unit86>
+        <Filename Value="fms_record.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FMS_record"/>
+      </Unit86>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

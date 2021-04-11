@@ -15,8 +15,9 @@ interface
 
 uses
   Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
-  const_u, LazUTF8, IdContext, digi_record, flDigiModem,
-  ImportADIThread, MobileSyncThread;
+  const_u, LazUTF8, ExtCtrls, IdContext, IdUDPClient, IdUDPServer, digi_record,
+  flDigiModem, ImportADIThread, MobileSyncThread, IdSocketHandle, IdGlobal,
+  DateUtils, qso_record, prefix_record, Dialogs;
 
 type
 
@@ -25,15 +26,20 @@ type
   TServerDM = class(TDataModule)
     IdIPWatch1: TIdIPWatch;
     IdFldigiTCP: TIdTCPServer;
+    IdWOLServer: TIdUDPServer;
     LUDPComponent1: TLUDPComponent;
+    TimerWOL: TTimer;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure IdFldigiTCPConnect(AContext: TIdContext);
     procedure IdFldigiTCPDisconnect(AContext: TIdContext);
     procedure IdFldigiTCPException(AContext: TIdContext; AException: Exception);
     procedure IdFldigiTCPExecute(AContext: TIdContext);
+    procedure IdWOLServerUDPRead(AThread: TIdUDPListenerThread;
+      const AData: TIdBytes; ABinding: TIdSocketHandle);
     procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
     procedure LUDPComponent1Receive(aSocket: TLSocket);
+    procedure TimerWOLTimer(Sender: TObject);
   private
     PADIImport: TPADIImport;
     lastUDPport: integer;
@@ -44,29 +50,129 @@ type
     procedure GetFldigiUDP(Message: string);
     procedure StartImport;
     procedure StartTCPSyncThread;
+    procedure BroadcastSaveQSO(ADILine: string);
+    function AddToCallsignList(Call: string; LastPong: TTime): string;
+    function DelFromCallsignList: string;
 
   public
     procedure DisconnectFldigi;
+    procedure SendBroadcastADI(adiLine: string);
+    procedure StartWOL;
+    procedure SendBroadcastPingPong(s: string);
+    function CreateADIBroadcast(QSO: TQSO; ToCall, SaveQSO: string): string;
+
 
   end;
 
 var
   ServerDM: TServerDM;
   FldigiConnect: boolean;
+  FoundBroadcastLog: TStringList;
 
 implementation
 
 uses InitDB_dm, MainFuncDM, dmFunc_U,
-  miniform_u, fldigi;
+  miniform_u, fldigi, ConfigForm_U;
 
 {$R *.lfm}
 
 { TServerDM }
 
+function TServerDM.AddToCallsignList(Call: string; LastPong: TTime): string;
+var
+  i: integer;
+begin
+  if FoundBroadcastLog.IndexOf(Call) = -1 then
+    FoundBroadcastLog.Values[Call] := TimeToStr(LastPong)
+  else
+  begin
+    i := FoundBroadcastLog.IndexOfName(Call);
+    FoundBroadcastLog[i] := FoundBroadcastLog.ValueFromIndex[i] +
+      FoundBroadcastLog.NameValueSeparator + TimeToStr(Now);
+  end;
+  Result := FoundBroadcastLog.CommaText;
+end;
+
+function TServerDM.DelFromCallsignList: string;
+var
+  i: integer;
+begin
+  if FoundBroadcastLog.Count > 0 then
+  begin
+    for i := 0 to FoundBroadcastLog.Count - 1 do
+    begin
+      if SecondsBetween(Time, StrToTime(FoundBroadcastLog.ValueFromIndex[i])) > 60 then
+        FoundBroadcastLog.Delete(i);
+    end;
+    Result := FoundBroadcastLog.CommaText;
+  end;
+end;
+
+procedure TServerDM.SendBroadcastPingPong(s: string);
+var
+  logdata: string;
+
+  procedure AddData(const datatype, Data: string);
+  begin
+    if Data <> '' then
+      logdata := logdata + Format('<%s:%d>%s', [datatype, Length(Data), Data]);
+  end;
+
+begin
+  logdata := '';
+  AddData('LOG_PGM', programName);
+  AddData('LOG_ID', IniSet.UniqueID);
+  AddData('TO_CALL', 'ANY');
+  AddData('CALL', DBRecord.CurrCall);
+  AddData('MESSAGE', s);
+  logdata := logdata + '<EOR>';
+  IdWOLServer.Broadcast(logdata, IniSet.WOLPort);
+end;
+
+function TServerDM.CreateADIBroadcast(QSO: TQSO; ToCall, SaveQSO: string): string;
+var
+  logdata: string;
+
+  procedure AddData(const datatype, Data: string);
+  begin
+    if Data <> '' then
+      logdata := logdata + Format('<%s:%d>%s', [datatype, Length(Data), Data]);
+  end;
+
+begin
+  logdata := '<EOH>';
+  AddData('TO_CALL', ToCall);
+  AddData('LOG_PGM', programName);
+  AddData('LOG_ID', IniSet.UniqueID);
+  AddData('CALL', QSO.CallSing);
+  AddData('QSO_DATE', FormatDateTime('yyyymmdd', QSO.QSODate));
+  QSO.QSOTime := StringReplace(QSO.QSOTime, ':', '', [rfReplaceAll]);
+  AddData('TIME_ON', QSO.QSOTime);
+  AddData('NAME', QSO.OmName);
+  AddData('QTH', QSO.OmQTH);
+  AddData('GRIDSQUARE', QSO.Grid);
+  AddData('FREQ', QSO.QSOBand);
+  AddData('BAND', dmFunc.GetBandFromFreq(QSO.QSOBand));
+  AddData('MODE', QSO.QSOMode);
+  AddData('SUBMODE', QSO.QSOSubMode);
+  AddData('RST_SENT', QSO.QSOReportSent);
+  AddData('RST_RCVD', QSO.QSOReportRecived);
+  AddData('STX', IntToStr(QSO.STX));
+  AddData('STX_STRING', QSO.STX_String);
+  AddData('SRX', IntToStr(QSO.SRX));
+  AddData('SRX_STRING', QSO.SRX_String);
+  AddData('COMMENT', QSO.ShortNote);
+  AddData('QSLMSG', QSO.QSLInfo);
+  AddData('STATE', QSO.State0);
+  AddData('SAVE_QSO', SaveQSO);
+  logdata := logdata + '<EOR>';
+  Result := logdata;
+end;
+
 procedure TServerDM.DisconnectFldigi;
 begin
-    IdFldigiTCP.Contexts.ClearAndFree;
-    IdFldigiTCP.Active := False;
+  IdFldigiTCP.Contexts.ClearAndFree;
+  IdFldigiTCP.Active := False;
 end;
 
 procedure TServerDM.StartTCPSyncThread;
@@ -94,11 +200,42 @@ begin
   end;
 end;
 
+procedure TServerDM.TimerWOLTimer(Sender: TObject);
+begin
+  SendBroadcastPingPong('PING');
+  ConfigForm.LBWOLCall.Items.CommaText := DelFromCallsignList;
+end;
+
+procedure TServerDM.StartWOL;
+begin
+  try
+    TimerWOL.Enabled := False;
+    IdWOLServer.Active := False;
+    IdWOLServer.Bindings.Clear;
+    IdWOLServer.BroadcastEnabled := False;
+    if IniSet.WorkOnLAN then
+    begin
+      GIdDefaultTextEncoding := encUTF8;
+      IdWOLServer.Bindings.Add.IP := IniSet.WOLAddress;
+      IdWOLServer.Bindings.Add.Port := IniSet.WOLPort;
+      IdWOLServer.Active := True;
+      TimerWOL.Enabled := True;
+      SendBroadcastPingPong('PING');
+    end;
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'TServerDM.StartWOL:' + E.ClassName + ':' + E.Message);
+  end;
+end;
+
 procedure TServerDM.DataModuleCreate(Sender: TObject);
 var
   i: integer;
 begin
   try
+    FoundBroadcastLog := TStringList.Create;
+    FoundBroadcastLog.NameValueSeparator := '>';
+
     lastUDPport := -1;
 
     for i := 0 to 5 do
@@ -115,15 +252,24 @@ begin
     FldigiFreq := 0;
     FldigiConnect := False;
 
+    if IniSet.WorkOnLAN then
+      StartWOL;
+
   except
     on E: Exception do
       WriteLn(ExceptFile, 'TServerDM.DataModuleCreate:' + E.ClassName + ':' + E.Message);
   end;
 end;
 
+procedure TServerDM.SendBroadcastADI(adiLine: string);
+begin
+  IdWOLServer.Broadcast(adiLine, IniSet.WOLPort);
+end;
+
 procedure TServerDM.DataModuleDestroy(Sender: TObject);
 begin
   DisconnectFldigi;
+  FreeAndNil(FoundBroadcastLog);
   if MobileSynThread <> nil then
     MobileSynThread.Terminate;
 end;
@@ -142,8 +288,8 @@ end;
 
 procedure TServerDM.IdFldigiTCPException(AContext: TIdContext; AException: Exception);
 begin
- // WriteLn(ExceptFile, 'IdFldigiTCPException:' + AException.ClassName +
- //   ':' + AException.Message);
+  // WriteLn(ExceptFile, 'IdFldigiTCPException:' + AException.ClassName +
+  //   ':' + AException.Message);
 end;
 
 procedure TServerDM.IdFldigiTCPExecute(AContext: TIdContext);
@@ -161,6 +307,116 @@ begin
         'Amateur Contact Log</PGM><VER>5.5</VER><APIVER>0.6.2</APIVER></CMD>');
     end;
     GetFldigiUDP(MessageFromUDP);
+  end;
+end;
+
+procedure TServerDM.BroadcastSaveQSO(ADILine: string);
+var
+  SQSO: TQSO;
+  PFXR: TPFXR;
+  yyyy, mm, dd: integer;
+  QSODate: string;
+  DigiBand_String: string;
+begin
+  SQSO.CallSing := dmFunc.getField(ADILine, 'CALL');
+  SQSO.Call := dmFunc.ExtractCallsign(SQSO.CallSing);
+  QSODate := dmFunc.getField(ADILine, 'QSO_DATE');
+  SQSO.QSOTime := dmFunc.getField(ADILine, 'TIME_ON');
+  SQSO.QSOBand := dmFunc.getField(ADILine, 'FREQ');
+  DigiBand_String := SQSO.QSOBand;
+  Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
+  SQSO.DigiBand := FloatToStr(dmFunc.GetDigiBandFromFreq(DigiBand_String));
+  SQSO.QSOMode := dmFunc.getField(ADILine, 'MODE');
+  SQSO.QSOSubMode := dmFunc.getField(ADILine, 'SUBMODE');
+  SQSO.QSOReportRecived := dmFunc.getField(ADILine, 'RST_RCVD');
+  SQSO.QSOReportSent := dmFunc.getField(ADILine, 'RST_SENT');
+  SQSO.QSOTime := SQSO.QSOTime[1] + SQSO.QSOTime[2] + ':' + SQSO.QSOTime[3] +
+    SQSO.QSOTime[4];
+  yyyy := StrToInt(QSODate[1] + QSODate[2] + QSODate[3] + QSODate[4]);
+  mm := StrToInt(QSODate[5] + QSODate[6]);
+  dd := StrToInt(QSODate[7] + QSODate[8]);
+  SQSO.QSODate := EncodeDate(yyyy, mm, dd);
+  SQSO.OmQTH := dmFunc.getField(ADILine, 'QTH');
+  SQSO.OmName := dmFunc.getField(ADILine, 'NAME');
+  SQSO.Grid := dmFunc.getField(ADILine, 'GRIDSQUARE');
+  SQSO.ShortNote := dmFunc.getField(ADILine, 'COMMENT');
+  SQSO.QSOAddInfo := dmFunc.getField(ADILine, 'COMMENT');
+  SQSO.SRX := StrToInt(dmFunc.getField(ADILine, 'SRX'));
+  SQSO.STX := StrToInt(dmFunc.getField(ADILine, 'STX'));
+  SQSO.SRX_String := dmFunc.getField(ADILine, 'SRX_STRING');
+  SQSO.STX_String := dmFunc.getField(ADILine, 'STX_STRING');
+  SQSO.State0 := dmFunc.getField(ADILine, 'STATE');
+  SQSO.QSLInfo := dmFunc.getField(ADILine, 'QSLMSG');
+  SQSO.WPX := dmFunc.ExtractWPXPrefix(SQSO.CallSing);
+  PFXR := MainFunc.SearchPrefix(SQSO.CallSing, SQSO.Grid);
+  SQSO.MainPrefix := PFXR.Prefix;
+  SQSO.DXCCPrefix := PFXR.ARRLPrefix;
+  SQSO.CQZone := PFXR.CQZone;
+  SQSO.ITUZone := PFXR.ITUZone;
+  SQSO.Continent := PFXR.Continent;
+  SQSO.DXCC := IntToStr(PFXR.DXCCNum);
+  SQSO.NLogDB := LBRecord.LogTable;
+  SQSO.IOTA := '';
+  SQSO.QSLManager := '';
+  SQSO.Marker := '';
+  SQSO.State1 := '';
+  SQSO.State2 := '';
+  SQSO.State3 := '';
+  SQSO.State4 := '';
+  SQSO.SAT_NAME := '';
+  SQSO.SAT_MODE := '';
+  SQSO.PROP_MODE := '';
+  SQSO.QSLRec := '0';
+  SQSO.ManualSet := 0;
+  SQSO.QSLReceQSLcc := 0;
+  SQSO.LotWRec := '';
+  SQSO.QSLSent := '0';
+  SQSO.QSLSentAdv := 'F';
+  SQSO.ManualSet := 0;
+  SQSO.ValidDX := '1';
+  SQSO.LotWSent := 0;
+  SQSO.QSL_RCVD_VIA := '';
+  SQSO.QSL_SENT_VIA := '';
+  SQSO.USERS := '';
+  SQSO.NoCalcDXCC := 0;
+  SQSO.SYNC := 0;
+  SQSO.My_State := '';
+  SQSO.My_Grid := '';
+  SQSO.My_Lat := '';
+  SQSO.My_Lon := '';
+  SQSO.AwardsEx := '';
+  SQSO.My_Grid := '';
+  MainFunc.SaveQSO(SQSO);
+end;
+
+procedure TServerDM.IdWOLServerUDPRead(AThread: TIdUDPListenerThread;
+  const AData: TIdBytes; ABinding: TIdSocketHandle);
+var
+  ADILine: string;
+begin
+  try
+    ADILine := BytesToString(AData, IndyTextEncoding_UTF8);
+
+    ConfigForm.MWOLLog.Lines.Add('READ:>' + ADILine);
+
+    if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
+      (dmFunc.getField(ADILine, 'LOG_ID') <> IniSet.UniqueID) and
+      ((dmFunc.getField(ADILine, 'TO_CALL') = 'ANY') or
+      (dmFunc.getField(ADILine, 'TO_CALL') = DBRecord.CurrCall))) then
+    begin
+      if dmFunc.getField(ADILine, 'MESSAGE') = 'PING' then
+        SendBroadcastPingPong('PONG');
+      if dmFunc.getField(ADILine, 'SAVE_QSO') = 'TRUE' then
+        BroadcastSaveQSO(ADILine);
+      if dmFunc.getField(ADILine, 'MESSAGE') = 'PONG' then
+        ConfigForm.LBWOLCall.Items.CommaText :=
+          AddToCallsignList(dmFunc.getField(ADILine, 'CALL'), Now);
+    end;
+
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'TServerDM.IdWOLServerUDPRead:' + E.ClassName +
+        ':' + E.Message);
   end;
 end;
 

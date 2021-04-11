@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit contestForm_u;
 
 {$mode objfpc}{$H+}
@@ -15,6 +24,7 @@ type
 
   TContestForm = class(TForm)
     BtSave: TButton;
+    BtResetSession: TButton;
     CBContestName: TComboBox;
     CBMode: TComboBox;
     CBBand: TComboBox;
@@ -48,20 +58,23 @@ type
     SBContest: TStatusBar;
     TETime: TTimeEdit;
     TTime: TTimer;
+    procedure BtResetSessionClick(Sender: TObject);
     procedure BtSaveClick(Sender: TObject);
     procedure BtSaveKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
-    procedure CBModeCloseUp(Sender: TObject);
+    procedure CBContestNameChange(Sender: TObject);
     procedure EditCallsignChange(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure EditCallsignKeyPress(Sender: TObject; var Key: char);
     procedure EditExchrKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RBOtherClick(Sender: TObject);
     procedure RBSerialClick(Sender: TObject);
     procedure TTimeTimer(Sender: TObject);
   private
     SelEditNumChar: integer;
+    function AddZero(number: integer): string;
 
   public
 
@@ -72,11 +85,32 @@ var
 
 implementation
 
-uses dmFunc_U;
+uses dmFunc_U, InitDB_dm, miniform_u;
 
 {$R *.lfm}
 
 { TContestForm }
+
+function TContestForm.AddZero(number: integer): string;
+begin
+  if (Length(IntToStr(number)) > 0) and (Length(IntToStr(number)) <= 1) then
+  begin
+    Result := '00' + IntToStr(number);
+    Exit;
+  end;
+
+  if (Length(IntToStr(number)) > 1) and (Length(IntToStr(number)) <= 2) then
+  begin
+    Result := '0' + IntToStr(number);
+    Exit;
+  end;
+
+  if Length(IntToStr(number)) > 2 then
+  begin
+    Result := IntToStr(number);
+    Exit;
+  end;
+end;
 
 procedure TContestForm.EditCallsignKeyDown(Sender: TObject; var Key: word;
   Shift: TShiftState);
@@ -127,6 +161,7 @@ begin
     SaveQSOrec.QSOReportRecived := EditRSTr.Text;
     SaveQSOrec.OmName := EditName.Text;
     SaveQSOrec.ShortNote := EditComment.Text;
+
     if RBSerial.Checked then
     begin
       try
@@ -150,12 +185,31 @@ begin
     end;
     dmContest.SaveQSOContest(SaveQSOrec);
     SBContest.Panels[0].Text := 'Save ' + EditCallsign.Text + ' OK';
+    Inc(IniSet.ContestLastNumber);
+    EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+    //IntToStr(IniSet.ContestLastNumber);
+    INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
+    INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
+
     EditCallsign.Clear;
     EditExchr.Clear;
+    EditName.Clear;
+    EditComment.Clear;
   end
   else
     SBContest.Panels[0].Text := 'Nothing to save';
   EditCallsign.SetFocus;
+end;
+
+procedure TContestForm.BtResetSessionClick(Sender: TObject);
+begin
+  IniSet.ContestLastNumber := 1;
+  INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
+  EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+  // IntToStr(IniSet.ContestLastNumber);
+  CBContestName.ItemIndex := 0;
+  IniSet.ContestName := CBContestName.Text;
+  INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
 end;
 
 procedure TContestForm.BtSaveKeyDown(Sender: TObject; var Key: word;
@@ -165,21 +219,9 @@ begin
     BtSaveClick(Self);
 end;
 
-procedure TContestForm.CBModeCloseUp(Sender: TObject);
-var
-  i: integer;
+procedure TContestForm.CBContestNameChange(Sender: TObject);
 begin
-  CBSubMode.Items.Clear;
-  for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
-    CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
-
-  if CBMode.Text <> 'SSB' then
-    CBSubMode.Text := '';
-
-  if StrToDouble(MainFunc.FormatFreq(CBBand.Text, CBMode.Text)) >= 10 then
-    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
-  else
-    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('LSB');
+  IniSet.ContestName := CBContestName.Text;
 end;
 
 procedure TContestForm.EditCallsignKeyPress(Sender: TObject; var Key: char);
@@ -195,6 +237,11 @@ begin
     BtSave.SetFocus;
 end;
 
+procedure TContestForm.FormCreate(Sender: TObject);
+begin
+  dmContest.LoadBands(CBMode.Text, CBBand);
+end;
+
 procedure TContestForm.FormShow(Sender: TObject);
 begin
   if RBSerial.Checked then
@@ -203,8 +250,8 @@ begin
     EditExchs.NumbersOnly := True;
   end;
   dmContest.LoadContestName(CBContestName);
-  MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
-  CBModeCloseUp(nil);
+  EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+  // IntToStr(IniSet.ContestLastNumber);
   EditCallsign.SetFocus;
 end;
 
@@ -230,6 +277,10 @@ procedure TContestForm.TTimeTimer(Sender: TObject);
 begin
   TETime.Time := NowUTC;
   DEDate.Date := NowUTC;
+  CBMode.Text := FMS.Mode;
+  CBSubMode.Text := FMS.SubMode;
+  CBBand.Text := dmFunc.GetBandFromFreq(IntToStr(FMS.Freq));
+  EditFreq.Text := IntToStr(FMS.Freq);
 end;
 
 end.

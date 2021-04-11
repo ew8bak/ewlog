@@ -1131,11 +1131,11 @@ object ConfigForm: TConfigForm
         end
         object Label14: TLabel
           AnchorSideLeft.Control = Label13
-          Left = 55
+          Left = 60
           Height = 13
           Top = 32
           Width = 12
-          BorderSpacing.Left = 45
+          BorderSpacing.Left = 50
           Caption = '---'
           ParentColor = False
         end
@@ -2098,6 +2098,124 @@ object ConfigForm: TConfigForm
         Font.Height = -12
         ParentColor = False
         ParentFont = False
+      end
+    end
+    object TSWorkLAN: TTabSheet
+      Caption = 'Work on LAN (UDP)'
+      ClientHeight = 259
+      ClientWidth = 500
+      object LBWOLAddress: TLabel
+        AnchorSideLeft.Control = TSWorkLAN
+        AnchorSideTop.Control = TSWorkLAN
+        Left = 5
+        Height = 13
+        Top = 10
+        Width = 52
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Address:'
+        ParentColor = False
+      end
+      object EditWOLAddress: TEdit
+        AnchorSideLeft.Control = LBWOLAddress
+        AnchorSideTop.Control = LBWOLAddress
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 28
+        Width = 123
+        BorderSpacing.Top = 5
+        TabOrder = 0
+      end
+      object LBWOLPort: TLabel
+        AnchorSideLeft.Control = EditWOLAddress
+        AnchorSideTop.Control = EditWOLAddress
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 64
+        Width = 28
+        BorderSpacing.Top = 10
+        Caption = 'Port:'
+        ParentColor = False
+      end
+      object EditWOLPort: TEdit
+        AnchorSideLeft.Control = LBWOLPort
+        AnchorSideTop.Control = LBWOLPort
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 82
+        Width = 123
+        BorderSpacing.Top = 5
+        NumbersOnly = True
+        TabOrder = 1
+      end
+      object CBWOLEnable: TCheckBox
+        AnchorSideLeft.Control = EditWOLPort
+        AnchorSideTop.Control = EditWOLPort
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 118
+        Width = 150
+        BorderSpacing.Top = 10
+        Caption = 'Enable Work On LAN'
+        TabOrder = 2
+      end
+      object MWOLLog: TMemo
+        AnchorSideLeft.Control = LBWOLLog
+        AnchorSideTop.Control = LBWOLLog
+        AnchorSideTop.Side = asrBottom
+        Left = 165
+        Height = 109
+        Top = 28
+        Width = 315
+        BorderSpacing.Top = 5
+        Font.Height = -9
+        ParentFont = False
+        ReadOnly = True
+        ScrollBars = ssAutoVertical
+        TabOrder = 3
+      end
+      object LBWOLLog: TLabel
+        AnchorSideLeft.Control = LBWOLCall
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = TSWorkLAN
+        Left = 165
+        Height = 13
+        Top = 10
+        Width = 25
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Log:'
+        ParentColor = False
+      end
+      object LBCallWOL: TLabel
+        AnchorSideLeft.Control = CBWOLEnable
+        AnchorSideTop.Control = CBWOLEnable
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 151
+        Width = 66
+        BorderSpacing.Top = 10
+        Caption = 'Found Call:'
+        ParentColor = False
+      end
+      object LBWOLCall: TListBox
+        AnchorSideLeft.Control = LBCallWOL
+        AnchorSideTop.Control = LBCallWOL
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 80
+        Top = 169
+        Width = 155
+        BorderSpacing.Top = 5
+        ItemHeight = 0
+        ScrollWidth = 153
+        TabOrder = 4
+        TopIndex = -1
       end
     end
   end
