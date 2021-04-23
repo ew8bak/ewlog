@@ -73,7 +73,9 @@ begin
     'RigCtldHost', '127.0.0.1');
   CatSettings.Port := INIFile.ReadInteger('TRX' + IntToStr(nTRX), 'RigCtldPort', 4532);
   CatSettings.Extracmd := INIFile.ReadString('TRX' + IntToStr(nTRX), 'rigctldExtra', '');
-  CatSettings.StartRigctld := INIFile.ReadBool('TRX' + IntToStr(nTRX), 'RunRigCtld', True);
+  CatSettings.StartRigctld := INIFile.ReadBool('TRX' + IntToStr(nTRX),
+    'RunRigCtld', True);
+  CatSettings.RigctldPath := INIFile.ReadString('SetCAT', 'rigctldPath', '');
 end;
 
 procedure TCATdm.SaveCATini(nTRX: integer);
@@ -94,6 +96,7 @@ begin
   INIFile.WriteInteger('TRX' + IntToStr(nTRX), 'RigCtldPort', CatSettings.Port);
   INIFile.WriteString('TRX' + IntToStr(nTRX), 'rigctldExtra', CatSettings.Extracmd);
   INIFile.WriteBool('TRX' + IntToStr(nTRX), 'RunRigCtld', CatSettings.StartRigctld);
+  INIFile.WriteString('SetCAT', 'rigctldPath', CatSettings.RigctldPath);
 end;
 
 function TCATdm.SearchRigctld: string;

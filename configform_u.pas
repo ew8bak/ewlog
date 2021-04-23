@@ -399,9 +399,9 @@ begin
   EditImportKey.Text := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
   EditExportKey.Text := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
 
-  EditWOLAddress.Text:=INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
-  EditWOLPort.Text:=INIFile.ReadString('WorkOnLAN', 'Port', '2238');
-  CBWOLEnable.Checked:=INIFile.ReadBool('WorkOnLAN', 'Enable', False);
+  EditWOLAddress.Text := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
+  EditWOLPort.Text := INIFile.ReadString('WorkOnLAN', 'Port', '2238');
+  CBWOLEnable.Checked := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
 
   ReadGridColumns;
   ReadGridColors;
@@ -618,6 +618,7 @@ begin
   CBrigctldStart.Checked := CatSettings.StartRigctld;
   CBTransceiverModel.Text := IntToStr(CatSettings.TransceiverNum) +
     ' ' + CatSettings.TransceiverName;
+  FNPathRigctld.Text := CatSettings.RigctldPath;
 end;
 
 procedure TConfigForm.SaveRIGSettings;
@@ -644,6 +645,7 @@ begin
     CatSettings.Port := StrToInt(EditCATport.Text);
     CatSettings.Extracmd := EditExtraCmd.Text;
     CatSettings.StartRigctld := CBrigctldStart.Checked;
+    CatSettings.RigctldPath := FNPathRigctld.Text;
     CATdm.SaveCATini(1);
     TRXForm.InicializeRig;
   end;
