@@ -96,6 +96,7 @@ begin
   INIFile.WriteInteger('TRX' + IntToStr(nTRX), 'RigCtldPort', CatSettings.Port);
   INIFile.WriteString('TRX' + IntToStr(nTRX), 'rigctldExtra', CatSettings.Extracmd);
   INIFile.WriteBool('TRX' + IntToStr(nTRX), 'RunRigCtld', CatSettings.StartRigctld);
+  INIFile.WriteString('TRX' + IntToStr(nTRX), 'RigCtldPath', CatSettings.RigctldPath);
   INIFile.WriteString('SetCAT', 'rigctldPath', CatSettings.RigctldPath);
 end;
 
