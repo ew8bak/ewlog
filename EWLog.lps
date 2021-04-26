@@ -65,9 +65,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="623"/>
-        <CursorPos X="3" Y="628"/>
+        <TopLine Value="583"/>
+        <CursorPos X="52" Y="622"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -193,8 +194,8 @@
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="113"/>
-        <CursorPos X="4" Y="143"/>
+        <TopLine Value="114"/>
+        <CursorPos X="61" Y="123"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit18>
@@ -206,8 +207,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="782"/>
-        <CursorPos Y="803"/>
+        <TopLine Value="774"/>
+        <CursorPos X="50" Y="782"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit19>
@@ -814,12 +815,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmCat"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="78"/>
-        <CursorPos X="59" Y="99"/>
+        <TopLine Value="93"/>
+        <CursorPos X="30" Y="103"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit83>
       <Unit84>
         <Filename Value="contestform_u.pas"/>
@@ -1791,7 +1792,7 @@
         <UsageCount Value="9"/>
       </Unit212>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="trxform_u.pas"/>
         <Caret Line="336" Column="15" TopLine="328"/>
@@ -1908,6 +1909,10 @@
         <Filename Value="dmcat.pas"/>
         <Caret Line="44" Column="15" TopLine="27"/>
       </Position29>
+      <Position30>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="629" Column="49" TopLine="623"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

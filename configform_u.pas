@@ -597,8 +597,9 @@ begin
   FNPathRigctld.Filter := 'rigctld.exe|rigctld.exe';
   {$ELSE}
   FNPathRigctld.Filter := 'rigctld|rigctld';
-  if Length(FNPathRigctld.Text) = 0 then
+  if Length(CatSettings.RigctldPath) = 0 then
     FNPathRigctld.Text := CATdm.SearchRigctld;
+  CatSettings.RigctldPath := CATdm.SearchRigctld;
   {$ENDIF}
   CBrigctldStart.Checked := IniSet.rigctldStartUp;
   CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
@@ -618,7 +619,6 @@ begin
   CBrigctldStart.Checked := CatSettings.StartRigctld;
   CBTransceiverModel.Text := IntToStr(CatSettings.TransceiverNum) +
     ' ' + CatSettings.TransceiverName;
-  FNPathRigctld.Text := CatSettings.RigctldPath;
 end;
 
 procedure TConfigForm.SaveRIGSettings;
