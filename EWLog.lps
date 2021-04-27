@@ -65,10 +65,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="583"/>
-        <CursorPos X="52" Y="622"/>
+        <TopLine Value="598"/>
+        <CursorPos X="30" Y="598"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -193,9 +192,10 @@
       <Unit18>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="114"/>
-        <CursorPos X="61" Y="123"/>
+        <TopLine Value="113"/>
+        <CursorPos X="2" Y="143"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit18>

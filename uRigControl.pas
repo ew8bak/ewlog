@@ -140,7 +140,7 @@ begin
   fRunRigCtld := True;
   rcvdFreqMode := TLTCPComponent.Create(nil);
   rigProcess := TProcess.Create(nil);
- // rigProcess.ShowWindow := swoHIDE;
+  rigProcess.ShowWindow := swoHIDE;
   tmrRigPoll := TTimer.Create(nil);
   tmrRigPoll.Enabled := False;
   if DebugMode then
