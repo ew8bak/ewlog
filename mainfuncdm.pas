@@ -1813,7 +1813,7 @@ begin
     begin
       ShowMessage('SearchPrefix:' + E.Message);
       WriteLn(ExceptFile, 'SearchPrefix:' + E.ClassName + ':' + E.Message +
-        ':' + IntToStr(i));
+        ':' + IntToStr(i) + ':' + PrefixExpProvinceArray[i].reg.Expression);
     end;
   end;
 end;
