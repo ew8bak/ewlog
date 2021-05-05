@@ -1167,6 +1167,7 @@ object ConfigForm: TConfigForm
       Caption = 'Telnet'
       ClientHeight = 259
       ClientWidth = 500
+      OnShow = TSTelnetShow
       object gbTelnet: TGroupBox
         Left = 8
         Height = 128

@@ -271,8 +271,10 @@ type
     procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
       const Value: string);
     procedure DownloadCallBookFile;
+    procedure TSTelnetShow(Sender: TObject);
   private
     Download: int64;
+    LVSelectedItem: boolean;
     procedure SaveGridColumns;
     procedure SaveGridColors;
     procedure ReadGridColumns;
@@ -281,6 +283,7 @@ type
     procedure SaveRIGSettings;
     procedure EnableTelnetBTDone;
     procedure SaveTelnetAddress;
+    procedure LoadTelnetAddress;
     { private declarations }
   public
     { public declarations }
@@ -719,7 +722,6 @@ begin
     CheckBox1.Enabled := False;
   end;
   LoadRIGSettings;
-  SBTelnetDone.Enabled := False;
 end;
 
 procedure TConfigForm.LVTelnetSelectItem(Sender: TObject; Item: TListItem;
@@ -730,20 +732,43 @@ begin
     EditTelnetName.Text := LVTelnet.Selected.Caption;
     EditTelnetAdress.Text := LVTelnet.Selected.SubItems[0];
     EditTelnetPort.Text := LVTelnet.Selected.SubItems[1];
+    LVSelectedItem := True;
   end
   else
   begin
     EditTelnetName.Clear;
     EditTelnetAdress.Clear;
     EditTelnetPort.Clear;
+    LVSelectedItem := False;
+  end;
+end;
+
+procedure TConfigForm.LoadTelnetAddress;
+var
+  SLAddress: TStringList;
+  i: integer;
+begin
+  try
+    SLAddress := TStringList.Create;
+    for i:=0 to 9 do
+    if INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '') <> '' then
+    SLAddress.Add(INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), ''));
+
+  finally
+    FreeAndNil(SLAddress);
   end;
 end;
 
 procedure TConfigForm.SaveTelnetAddress;
 begin
-  LVTelnet.Selected.Caption := EditTelnetName.Text;
-  LVTelnet.Selected.SubItems[0] := EditTelnetAdress.Text;
-  LVTelnet.Selected.SubItems[1] := EditTelnetPort.Text;
+  if LVSelectedItem then
+  begin
+    LVTelnet.Selected.Caption := EditTelnetName.Text;
+    LVTelnet.Selected.SubItems[0] := EditTelnetAdress.Text;
+    LVTelnet.Selected.SubItems[1] := EditTelnetPort.Text;
+    INIFile.WriteString('TelnetCluster', 'Server' + IntToStr(LVTelnet.Selected.Index),
+      EditTelnetName.Text + ',' + EditTelnetAdress.Text + ',' + EditTelnetPort.Text);
+  end;
 end;
 
 procedure TConfigForm.ReadGridColumns;
@@ -932,7 +957,8 @@ end;
 procedure TConfigForm.SBTelnetDoneClick(Sender: TObject);
 begin
   SaveTelnetAddress;
-  LVTelnet.Selected.Selected := False;
+  if LVSelectedItem then
+    LVTelnet.Selected.Selected := False;
 end;
 
 procedure TConfigForm.DownloadCallBookFile;
@@ -984,6 +1010,13 @@ begin
       CheckBox1.Enabled := False;
     end;
   end;
+end;
+
+procedure TConfigForm.TSTelnetShow(Sender: TObject);
+begin
+  LVSelectedItem := False;
+  SBTelnetDone.Enabled := False;
+  LoadTelnetAddress;
 end;
 
 procedure TConfigForm.SynaProgress(Sender: TObject; Reason: THookSocketReason;
