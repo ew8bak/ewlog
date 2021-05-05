@@ -247,10 +247,10 @@ begin
   for i := 1 to 9 do
   begin
     TelStr[i] := INIFile.ReadString('TelnetCluster', 'Server' +
-      IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
+      IntToStr(i), 'FEERC -> dx.feerc.ru:8000');
   end;
   TelName := INIFile.ReadString('TelnetCluster', 'ServerDef',
-    'FREERC -> dx.freerc.ru:8000');
+    'FEERC -> dx.feerc.ru:8000');
   CBServers.Items.Clear;
   CBServers.Items.AddStrings(TelStr);
   if CBServers.Items.IndexOf(TelName) > -1 then
