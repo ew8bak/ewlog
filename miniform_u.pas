@@ -2122,6 +2122,7 @@ begin
   LBLocalTimeD.Caption := FormatDateTime('hh:mm:ss', Now);
   LBUTCTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC);
   LoadComboBoxItem;
+
   GetLanguageIDs(Lang, FallbackLang);
 
   if IniSet.Language = '' then

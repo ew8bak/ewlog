@@ -114,15 +114,15 @@ type
 
 var
   dxClusterForm: TdxClusterForm;
-  TelStr: array[1..9] of string;
+  //TelStr: array[1..9] of string;
   TelServ, TelPort, TelName: string;
   qBands: TSQLQuery;
 
 implementation
 
 uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U,
-  ClusterServer_Form_U, MainForm_U, Earth_Form_U, TRXForm_U,
-  sendtelnetspot_form_U, miniform_u, infoDM_U;
+  MainForm_U, Earth_Form_U, TRXForm_U,
+  sendtelnetspot_form_U, miniform_u, infoDM_U, ConfigForm_U;
 
 type
   PTreeData = ^TTreeData;
@@ -244,7 +244,7 @@ procedure TdxClusterForm.LoadClusterString;
 var
   i, j: integer;
 begin
-  for i := 1 to 9 do
+  {for i := 1 to 9 do
   begin
     TelStr[i] := INIFile.ReadString('TelnetCluster', 'Server' +
       IntToStr(i), 'FEERC -> dx.feerc.ru:8000');
@@ -265,7 +265,7 @@ begin
   Delete(IniSet.Cluster_Host, 1, 1);
   //Порт
   IniSet.Cluster_Port := copy(CBServers.Text, j + 1, Length(CBServers.Text) - i);
-
+ }
 end;
 
 procedure TdxClusterForm.FindCountryFlag(Country: string);
@@ -608,7 +608,8 @@ end;
 
 procedure TdxClusterForm.SBEditServersClick(Sender: TObject);
 begin
-  ClusterServer_Form.Show;
+  ConfigForm.Show;
+  ConfigForm.PControl.ActivePageIndex:=4;
 end;
 
 procedure TdxClusterForm.SpeedButton7Click(Sender: TObject);
@@ -662,6 +663,7 @@ begin
   VSTCluster.Images := FlagList;
   qBands := TSQLQuery.Create(nil);
   qBands.DataBase := InitDB.ServiceDBConnection;
+  MainFunc.LoadTelnetAddress;
   LoadClusterString;
   MainFunc.SetDXColumns(VSTCluster, False, VSTCluster);
   ButtonSet;

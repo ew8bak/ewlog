@@ -283,7 +283,7 @@ type
     procedure SaveRIGSettings;
     procedure EnableTelnetBTDone;
     procedure SaveTelnetAddress;
-    procedure LoadTelnetAddress;
+    function SearchLVTelnet(SearchText: string): boolean;
     { private declarations }
   public
     { public declarations }
@@ -743,23 +743,19 @@ begin
   end;
 end;
 
-procedure TConfigForm.LoadTelnetAddress;
+function TConfigForm.SearchLVTelnet(SearchText: string): boolean;
 var
-  SLAddress: TStringList;
   i: integer;
 begin
-  try
-    SLAddress := TStringList.Create;
-    for i:=0 to 9 do
-    if INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '') <> '' then
-    SLAddress.Add(INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), ''));
-
-  finally
-    FreeAndNil(SLAddress);
-  end;
+  Result := False;
+  for i := 0 to LVTelnet.Items.Count - 1 do
+    if Pos(LowerCase(SearchText), LowerCase(LVTelnet.Items.Item[i].Caption)) > 0 then
+      Result := True;
 end;
 
 procedure TConfigForm.SaveTelnetAddress;
+var
+  ListItem: TListItem;
 begin
   if LVSelectedItem then
   begin
@@ -768,6 +764,18 @@ begin
     LVTelnet.Selected.SubItems[1] := EditTelnetPort.Text;
     INIFile.WriteString('TelnetCluster', 'Server' + IntToStr(LVTelnet.Selected.Index),
       EditTelnetName.Text + ',' + EditTelnetAdress.Text + ',' + EditTelnetPort.Text);
+  end
+  else
+  begin
+    if not SearchLVTelnet(EditTelnetName.Text) then
+    begin
+      ListItem := LVTelnet.Items.Add;
+      ListItem.Caption := EditTelnetName.Text;
+      ListItem.SubItems.Add(EditTelnetAdress.Text);
+      ListItem.SubItems.Add(EditTelnetPort.Text);
+    end
+    else
+      ShowMessage(rThisNameAlreadyExists);
   end;
 end;
 
@@ -1016,7 +1024,7 @@ procedure TConfigForm.TSTelnetShow(Sender: TObject);
 begin
   LVSelectedItem := False;
   SBTelnetDone.Enabled := False;
-  LoadTelnetAddress;
+  MainFunc.LoadTelnetAddress;
 end;
 
 procedure TConfigForm.SynaProgress(Sender: TObject; Reason: THookSocketReason;

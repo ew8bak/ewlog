@@ -18,7 +18,7 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u,
-  FileUtil, FMS_record;
+  FileUtil, FMS_record, telnetaddresrecord_u;
 
 type
   bandArray = array of string;
@@ -36,6 +36,7 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
+    procedure LoadTelnetAddress;
     procedure SentCATCloudLog(CatData: TCatData);
     procedure SaveGrids(DbGrid: TDBGrid);
     procedure SetDXColumns(VST: TVirtualStringTree; Save: boolean;
@@ -96,6 +97,7 @@ var
   columnsDX: array[0..8] of string;
   columnsDXWidth: array[0..8] of integer;
   FMS: TFMSRecord;
+  TARecord: array[0..8] of TTelnetAddressRecord;
 
 implementation
 
@@ -103,6 +105,33 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
 
 {$R *.lfm}
+
+procedure TMainFunc.LoadTelnetAddress;
+var
+  SLAddress: TStringList;
+  i: integer;
+  addressString: string;
+begin
+  try
+    SLAddress := TStringList.Create;
+    for i := 0 to 9 do
+      if INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '') <> '' then
+        SLAddress.Add(INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), ''));
+
+    for i := 0 to SLAddress.Count - 1 do
+    begin
+      addressString := SLAddress[i];
+      TARecord[i].Name := copy(addressString, 1, pos(',', addressString) - 1);
+      Delete(addressString, 1, pos(',', addressString));
+      TARecord[i].Address := copy(addressString, 1, pos(',', addressString) - 1);
+      Delete(addressString, 1, pos(',', addressString));
+      TARecord[i].Port := StrToInt(addressString);
+    end;
+
+  finally
+    FreeAndNil(SLAddress);
+  end;
+end;
 
 function TMainFunc.GenerateRandomID: string;
 var

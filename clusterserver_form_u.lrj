@@ -1,7 +1,0 @@
-{"version":1,"strings":[
-{"hash":166092259,"name":"tclusterserver_form.caption","sourcebytes":[69,100,105,116,105,110,103,32,68,88,32,115,101,114,118,101,114,115],"value":"Editing DX servers"},
-{"hash":346165,"name":"tclusterserver_form.stringgrid1.columns[0].title.caption","sourcebytes":[78,97,109,101],"value":"Name"},
-{"hash":94149826,"name":"tclusterserver_form.stringgrid1.columns[1].title.caption","sourcebytes":[83,101,114,118,101,114],"value":"Server"},
-{"hash":358036,"name":"tclusterserver_form.stringgrid1.columns[2].title.caption","sourcebytes":[80,111,114,116],"value":"Port"},
-{"hash":366789,"name":"tclusterserver_form.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"}
-]}

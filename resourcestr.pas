@@ -217,6 +217,7 @@ resourcestring
   rAddress = 'Address';
   rCOMPort = 'COM Port';
   rLibHamLibNotFound = 'HamLib library not found';
+  rThisNameAlreadyExists = 'This name already exists';
 
 implementation
 

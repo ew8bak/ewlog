@@ -1,7 +1,7 @@
 object dxClusterForm: TdxClusterForm
   Left = 327
   Height = 240
-  Top = 514
+  Top = 626
   Width = 735
   Caption = 'DX Cluster'
   ClientHeight = 240

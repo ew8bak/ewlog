@@ -970,6 +970,10 @@ msgstr ""
 msgid "The \"Name\" field cannot be empty"
 msgstr ""
 
+#: resourcestr.rthisnamealreadyexists
+msgid "This name already exists"
+msgstr ""
+
 #: resourcestr.rupdatedontcopy
 msgctxt "resourcestr.rupdatedontcopy"
 msgid "Do not copy"
@@ -1190,30 +1194,6 @@ msgstr ""
 
 #: tclusterfilter.lbreconnect.caption
 msgid "Reconnect when inactive for"
-msgstr ""
-
-#: tclusterserver_form.button1.caption
-msgctxt "tclusterserver_form.button1.caption"
-msgid "Save"
-msgstr ""
-
-#: tclusterserver_form.caption
-msgid "Editing DX servers"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[0].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[0].title.caption"
-msgid "Name"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[1].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[1].title.caption"
-msgid "Server"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[2].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[2].title.caption"
-msgid "Port"
 msgstr ""
 
 #: tconfigform.btapplycolor.caption
