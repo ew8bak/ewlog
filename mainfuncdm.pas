@@ -102,7 +102,7 @@ var
 implementation
 
 uses InitDB_dm, dmFunc_U, hrdlog,
-  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
+  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u;
 
 {$R *.lfm}
 
@@ -113,10 +113,13 @@ var
   addressString: string;
 begin
   try
+   Finalize(TARecord);
     SLAddress := TStringList.Create;
     for i := 0 to 9 do
       if INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '') <> '' then
         SLAddress.Add(INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), ''));
+    if SLAddress.Count = 0 then
+      SLAddress.Add('FEERC,dx.feerc.ru,8000');
 
     for i := 0 to SLAddress.Count - 1 do
     begin
@@ -130,6 +133,7 @@ begin
 
   finally
     FreeAndNil(SLAddress);
+    DXClusterForm.LoadClusterString;
   end;
 end;
 
@@ -634,7 +638,7 @@ begin
       Result.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
       Result.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
       Result.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
-      Result.ShortNote:=Query.FieldByName('ShortNote').AsString;
+      Result.ShortNote := Query.FieldByName('ShortNote').AsString;
       Query.Close;
     finally
       FreeAndNil(Query);
@@ -1954,7 +1958,7 @@ begin
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
         dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
-       WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
+      WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else

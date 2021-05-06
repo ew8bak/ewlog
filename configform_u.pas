@@ -220,6 +220,7 @@ type
     PColors: TTabSheet;
     PGrids: TTabSheet;
     SBTelnetDone: TSpeedButton;
+    SBTelnetDelete: TSpeedButton;
     SpinEdit1: TSpinEdit;
     TSWorkLAN: TTabSheet;
     TSHamlib: TTabSheet;
@@ -267,6 +268,7 @@ type
     procedure SaveINI;
     procedure ReadINI;
     function CheckUpdate: boolean;
+    procedure SBTelnetDeleteClick(Sender: TObject);
     procedure SBTelnetDoneClick(Sender: TObject);
     procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
       const Value: string);
@@ -283,6 +285,7 @@ type
     procedure SaveRIGSettings;
     procedure EnableTelnetBTDone;
     procedure SaveTelnetAddress;
+    procedure LoadTelnetAddressToVLTelnet;
     function SearchLVTelnet(SearchText: string): boolean;
     { private declarations }
   public
@@ -733,13 +736,7 @@ begin
     EditTelnetAdress.Text := LVTelnet.Selected.SubItems[0];
     EditTelnetPort.Text := LVTelnet.Selected.SubItems[1];
     LVSelectedItem := True;
-  end
-  else
-  begin
-    EditTelnetName.Clear;
-    EditTelnetAdress.Clear;
-    EditTelnetPort.Clear;
-    LVSelectedItem := False;
+    SBTelnetDelete.Enabled := True;
   end;
 end;
 
@@ -753,9 +750,27 @@ begin
       Result := True;
 end;
 
+procedure TConfigForm.LoadTelnetAddressToVLTelnet;
+var
+  i: integer;
+  ListItem: TListItem;
+begin
+  for i := 0 to High(TARecord) do
+  begin
+    if Length(TARecord[i].Name) <> 0 then
+    begin
+      ListItem := LVTelnet.Items.Add;
+      ListItem.Caption := TARecord[i].Name;
+      ListItem.SubItems.Add(TARecord[i].Address);
+      ListItem.SubItems.Add(IntToStr(TARecord[i].Port));
+    end;
+  end;
+end;
+
 procedure TConfigForm.SaveTelnetAddress;
 var
   ListItem: TListItem;
+  i: integer;
 begin
   if LVSelectedItem then
   begin
@@ -773,10 +788,19 @@ begin
       ListItem.Caption := EditTelnetName.Text;
       ListItem.SubItems.Add(EditTelnetAdress.Text);
       ListItem.SubItems.Add(EditTelnetPort.Text);
+      for i := 0 to LVTelnet.Items.Count - 1 do
+        INIFile.WriteString('TelnetCluster', 'Server' + IntToStr(i),
+          LVTelnet.Items.Item[i].Caption + ',' + LVTelnet.Items.Item[i].SubItems[0] +
+          ',' + LVTelnet.Items.Item[i].SubItems[1]);
     end
     else
       ShowMessage(rThisNameAlreadyExists);
   end;
+  EditTelnetName.Clear;
+  EditTelnetAdress.Clear;
+  EditTelnetPort.Clear;
+  LVSelectedItem := False;
+  MainFunc.LoadTelnetAddress;
 end;
 
 procedure TConfigForm.ReadGridColumns;
@@ -962,6 +986,28 @@ begin
   end;
 end;
 
+procedure TConfigForm.SBTelnetDeleteClick(Sender: TObject);
+var
+  i: integer;
+begin
+  if LVSelectedItem then
+  begin
+    LVTelnet.Items.Delete(LVTelnet.Selected.Index);
+    for i := 0 to 9 do
+      INIFile.DeleteKey('TelnetCluster', 'Server' + IntToStr(i));
+    for i := 0 to LVTelnet.Items.Count - 1 do
+      INIFile.WriteString('TelnetCluster', 'Server' + IntToStr(i),
+        LVTelnet.Items.Item[i].Caption + ',' + LVTelnet.Items.Item[i].SubItems[0] +
+        ',' + LVTelnet.Items.Item[i].SubItems[1]);
+    EditTelnetName.Clear;
+    EditTelnetAdress.Clear;
+    EditTelnetPort.Clear;
+    LVSelectedItem := False;
+    MainFunc.LoadTelnetAddress;
+    SBTelnetDelete.Enabled := False;
+  end;
+end;
+
 procedure TConfigForm.SBTelnetDoneClick(Sender: TObject);
 begin
   SaveTelnetAddress;
@@ -1024,7 +1070,8 @@ procedure TConfigForm.TSTelnetShow(Sender: TObject);
 begin
   LVSelectedItem := False;
   SBTelnetDone.Enabled := False;
-  MainFunc.LoadTelnetAddress;
+  SBTelnetDelete.Enabled := False;
+  LoadTelnetAddressToVLTelnet;
 end;
 
 procedure TConfigForm.SynaProgress(Sender: TObject; Reason: THookSocketReason;
