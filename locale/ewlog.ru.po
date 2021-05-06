@@ -993,6 +993,10 @@ msgstr "Ошибка таблицы журнала"
 msgid "The \"Name\" field cannot be empty"
 msgstr ""
 
+#: resourcestr.rthisnamealreadyexists
+msgid "This name already exists"
+msgstr ""
+
 #: resourcestr.rupdatedontcopy
 msgctxt "resourcestr.rupdatedontcopy"
 msgid "Do not copy"
@@ -1224,30 +1228,6 @@ msgstr "минут(ы)"
 #: tclusterfilter.lbreconnect.caption
 msgid "Reconnect when inactive for"
 msgstr ""
-
-#: tclusterserver_form.button1.caption
-msgctxt "tclusterserver_form.button1.caption"
-msgid "Save"
-msgstr "Сохранить"
-
-#: tclusterserver_form.caption
-msgid "Editing DX servers"
-msgstr "Редактирование DX кластера"
-
-#: tclusterserver_form.stringgrid1.columns[0].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[0].title.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tclusterserver_form.stringgrid1.columns[1].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[1].title.caption"
-msgid "Server"
-msgstr "Сервер"
-
-#: tclusterserver_form.stringgrid1.columns[2].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[2].title.caption"
-msgid "Port"
-msgstr "Порт"
 
 #: tconfigform.btapplycolor.caption
 #, fuzzy
@@ -1512,6 +1492,12 @@ msgctxt "tconfigform.cbsubmode.caption"
 msgid "SubMode"
 msgstr "СабМода"
 
+#: tconfigform.cbtelnetstartup.caption
+#, fuzzy
+msgctxt "tconfigform.cbtelnetstartup.caption"
+msgid "Start DX cluster automatically"
+msgstr "Запускать DX кластер автоматически"
+
 #: tconfigform.cbtextsizegrid.text
 msgctxt "tconfigform.cbtextsizegrid.text"
 msgid "8 пт"
@@ -1556,10 +1542,6 @@ msgstr "Показывать диапазоны в метрах"
 msgctxt "tconfigform.checkbox3.caption"
 msgid "Use as a reference?"
 msgstr "Использовать как справочник?"
-
-#: tconfigform.checkbox4.caption
-msgid "Start DX cluster automatically"
-msgstr "Запускать DX кластер автоматически"
 
 #: tconfigform.checkbox5.caption
 msgid "Printing with preview"
@@ -1635,6 +1617,10 @@ msgctxt "tconfigform.gbtelnet.caption"
 msgid "Telnet DX Cluster"
 msgstr "Telnet DX кластер"
 
+#: tconfigform.gbtelnetedit.caption
+msgid "Edit"
+msgstr ""
+
 #: tconfigform.label10.caption
 msgid "Release date:"
 msgstr "Дата выпуска:"
@@ -1654,16 +1640,6 @@ msgstr "Версия:"
 #: tconfigform.label14.caption
 msgid "---"
 msgstr "---"
-
-#: tconfigform.label15.caption
-msgctxt "tconfigform.label15.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tconfigform.label16.caption
-msgctxt "tconfigform.label16.caption"
-msgid "Password"
-msgstr "Пароль"
 
 #: tconfigform.label17.caption
 msgid "Download file:"
@@ -1851,6 +1827,35 @@ msgstr ""
 msgid "Key Save QSO"
 msgstr ""
 
+#: tconfigform.lbtelnetaddress.caption
+msgctxt "tconfigform.lbtelnetaddress.caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lbtelnetlogin.caption
+#, fuzzy
+msgctxt "tconfigform.lbtelnetlogin.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tconfigform.lbtelnetname.caption
+#, fuzzy
+msgctxt "tconfigform.lbtelnetname.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tconfigform.lbtelnetpassword.caption
+#, fuzzy
+msgctxt "tconfigform.lbtelnetpassword.caption"
+msgid "Password"
+msgstr "Пароль"
+
+#: tconfigform.lbtelnetport.caption
+#, fuzzy
+msgctxt "tconfigform.lbtelnetport.caption"
+msgid "Port"
+msgstr "Порт"
+
 #: tconfigform.lbtextcolor.caption
 #, fuzzy
 msgctxt "tconfigform.lbtextcolor.caption"
@@ -1884,6 +1889,23 @@ msgstr ""
 #: tconfigform.lbwolport.caption
 msgid "Port:"
 msgstr ""
+
+#: tconfigform.lvtelnet.columns[0].caption
+#, fuzzy
+msgctxt "tconfigform.lvtelnet.columns[0].caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tconfigform.lvtelnet.columns[1].caption
+msgctxt "tconfigform.lvtelnet.columns[1].caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[2].caption
+#, fuzzy
+msgctxt "tconfigform.lvtelnet.columns[2].caption"
+msgid "Port"
+msgstr "Порт"
 
 #: tconfigform.pcolors.caption
 msgid "Colors"

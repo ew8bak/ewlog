@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 288
     Top = 0
     Width = 510
-    ActivePage = TSTelnet
+    ActivePage = TSBase
     Align = alTop
-    TabIndex = 4
+    TabIndex = 0
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
@@ -1274,11 +1274,11 @@ object ConfigForm: TConfigForm
           end        
           item
             Caption = 'Address'
-            Width = 120
+            Width = 110
           end        
           item
             Caption = 'Port'
-            Width = 57
+            Width = 67
           end>
         ReadOnly = True
         RowSelect = True
@@ -1348,7 +1348,7 @@ object ConfigForm: TConfigForm
           Left = 66
           Height = 26
           Top = 0
-          Width = 160
+          Width = 152
           Font.Height = -12
           OnChange = EditTelnetNameChange
           ParentFont = False
@@ -1360,7 +1360,7 @@ object ConfigForm: TConfigForm
           Left = 66
           Height = 26
           Top = 29
-          Width = 160
+          Width = 152
           BorderSpacing.Top = 3
           Font.Height = -12
           OnChange = EditTelnetAdressChange
@@ -1373,7 +1373,7 @@ object ConfigForm: TConfigForm
           Left = 66
           Height = 26
           Top = 58
-          Width = 160
+          Width = 152
           BorderSpacing.Top = 3
           Font.Height = -12
           NumbersOnly = True
@@ -1386,11 +1386,13 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Side = asrBottom
           AnchorSideBottom.Control = GBTelnetEdit
           AnchorSideBottom.Side = asrBottom
-          Left = 223
+          Left = 222
           Height = 22
-          Top = 83
+          Top = 82
           Width = 23
           Anchors = [akRight, akBottom]
+          BorderSpacing.Right = 1
+          BorderSpacing.Bottom = 1
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
             2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
@@ -1433,11 +1435,13 @@ object ConfigForm: TConfigForm
           AnchorSideLeft.Control = GBTelnetEdit
           AnchorSideBottom.Control = GBTelnetEdit
           AnchorSideBottom.Side = asrBottom
-          Left = 0
+          Left = 1
           Height = 22
-          Top = 83
+          Top = 82
           Width = 23
           Anchors = [akLeft, akBottom]
+          BorderSpacing.Left = 1
+          BorderSpacing.Bottom = 1
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
             2000000000000004000064000000640000000000000000000000000000000000

@@ -971,6 +971,10 @@ msgstr ""
 msgid "The \"Name\" field cannot be empty"
 msgstr ""
 
+#: resourcestr.rthisnamealreadyexists
+msgid "This name already exists"
+msgstr ""
+
 #: resourcestr.rupdatedontcopy
 msgctxt "resourcestr.rupdatedontcopy"
 msgid "Do not copy"
@@ -1191,30 +1195,6 @@ msgstr ""
 
 #: tclusterfilter.lbreconnect.caption
 msgid "Reconnect when inactive for"
-msgstr ""
-
-#: tclusterserver_form.button1.caption
-msgctxt "tclusterserver_form.button1.caption"
-msgid "Save"
-msgstr ""
-
-#: tclusterserver_form.caption
-msgid "Editing DX servers"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[0].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[0].title.caption"
-msgid "Name"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[1].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[1].title.caption"
-msgid "Server"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[2].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[2].title.caption"
-msgid "Port"
 msgstr ""
 
 #: tconfigform.btapplycolor.caption
@@ -1444,6 +1424,11 @@ msgctxt "tconfigform.cbsubmode.caption"
 msgid "SubMode"
 msgstr ""
 
+#: tconfigform.cbtelnetstartup.caption
+msgctxt "tconfigform.cbtelnetstartup.caption"
+msgid "Start DX cluster automatically"
+msgstr ""
+
 #: tconfigform.cbtextsizegrid.text
 msgctxt "tconfigform.cbtextsizegrid.text"
 msgid "8 пт"
@@ -1484,10 +1469,6 @@ msgstr ""
 #: tconfigform.checkbox3.caption
 msgctxt "tconfigform.checkbox3.caption"
 msgid "Use as a reference?"
-msgstr ""
-
-#: tconfigform.checkbox4.caption
-msgid "Start DX cluster automatically"
 msgstr ""
 
 #: tconfigform.checkbox5.caption
@@ -1559,6 +1540,10 @@ msgctxt "tconfigform.gbtelnet.caption"
 msgid "Telnet DX Cluster"
 msgstr ""
 
+#: tconfigform.gbtelnetedit.caption
+msgid "Edit"
+msgstr ""
+
 #: tconfigform.label10.caption
 msgid "Release date:"
 msgstr ""
@@ -1577,16 +1562,6 @@ msgstr ""
 
 #: tconfigform.label14.caption
 msgid "---"
-msgstr ""
-
-#: tconfigform.label15.caption
-msgctxt "tconfigform.label15.caption"
-msgid "Login"
-msgstr ""
-
-#: tconfigform.label16.caption
-msgctxt "tconfigform.label16.caption"
-msgid "Password"
 msgstr ""
 
 #: tconfigform.label17.caption
@@ -1769,6 +1744,31 @@ msgstr ""
 msgid "Key Save QSO"
 msgstr ""
 
+#: tconfigform.lbtelnetaddress.caption
+msgctxt "tconfigform.lbtelnetaddress.caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lbtelnetlogin.caption
+msgctxt "tconfigform.lbtelnetlogin.caption"
+msgid "Login"
+msgstr ""
+
+#: tconfigform.lbtelnetname.caption
+msgctxt "tconfigform.lbtelnetname.caption"
+msgid "Name"
+msgstr ""
+
+#: tconfigform.lbtelnetpassword.caption
+msgctxt "tconfigform.lbtelnetpassword.caption"
+msgid "Password"
+msgstr ""
+
+#: tconfigform.lbtelnetport.caption
+msgctxt "tconfigform.lbtelnetport.caption"
+msgid "Port"
+msgstr ""
+
 #: tconfigform.lbtextcolor.caption
 msgctxt "tconfigform.lbtextcolor.caption"
 msgid "Text color"
@@ -1798,6 +1798,21 @@ msgstr ""
 
 #: tconfigform.lbwolport.caption
 msgid "Port:"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[0].caption
+msgctxt "tconfigform.lvtelnet.columns[0].caption"
+msgid "Name"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[1].caption
+msgctxt "tconfigform.lvtelnet.columns[1].caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[2].caption
+msgctxt "tconfigform.lvtelnet.columns[2].caption"
+msgid "Port"
 msgstr ""
 
 #: tconfigform.pcolors.caption
