@@ -269,6 +269,7 @@ object ContestForm: TContestForm
     Width = 90
     BorderSpacing.Top = 5
     ItemHeight = 0
+    OnChange = CBBandChange
     TabOrder = 7
   end
   object EditFreq: TEdit

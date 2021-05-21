@@ -61,6 +61,7 @@ type
     procedure BtResetSessionClick(Sender: TObject);
     procedure BtSaveClick(Sender: TObject);
     procedure BtSaveKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure CBBandChange(Sender: TObject);
     procedure CBContestNameChange(Sender: TObject);
     procedure EditCallsignChange(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
@@ -219,6 +220,14 @@ begin
     BtSaveClick(Self);
 end;
 
+procedure TContestForm.CBBandChange(Sender: TObject);
+begin
+  if FMS.Freq = 0 then
+  begin
+    EditFreq.Text := FloatToStr(dmFunc.GetFreqFromBand(CBBand.Text, CBMode.Text));
+  end;
+end;
+
 procedure TContestForm.CBContestNameChange(Sender: TObject);
 begin
   IniSet.ContestName := CBContestName.Text;
@@ -279,8 +288,11 @@ begin
   DEDate.Date := NowUTC;
   CBMode.Text := FMS.Mode;
   CBSubMode.Text := FMS.SubMode;
-  CBBand.Text := dmFunc.GetBandFromFreq(IntToStr(FMS.Freq));
-  EditFreq.Text := IntToStr(FMS.Freq);
+  if FMS.Freq <> 0 then
+  begin
+    CBBand.Text := dmFunc.GetBandFromFreq(IntToStr(FMS.Freq));
+    EditFreq.Text := IntToStr(FMS.Freq);
+  end;
 end;
 
 end.

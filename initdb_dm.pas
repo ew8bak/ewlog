@@ -19,6 +19,12 @@ uses
   Forms, LCLType, UniqueInstance, SQLite3Dyn;
 
 type
+  TParamData = record
+    version: string;
+    portable: boolean;
+  end;
+
+type
 
   { TInitDB }
 
@@ -38,6 +44,7 @@ type
     procedure UniqueInstanceOtherInstance(Sender: TObject; ParamCount: integer;
       const Parameters: array of string);
   private
+    ParamData: TParamData;
 
   public
     function ImbeddedCallBookCheck(PathDB: string): TImbedCallBookCheckRec;
@@ -51,6 +58,7 @@ type
     function InitDBINI: boolean;
     procedure CheckSQLVersion;
     function SwitchDB: boolean;
+    function GetParam: TParamData;
 
   end;
 
@@ -90,6 +98,19 @@ uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U;
 
 { TInitDB }
 
+function TInitDB.GetParam: TParamData;
+begin
+  Result.portable := False;
+  Result.version := dmFunc.GetMyVersion;
+  if ParamStr(1) = '-p' then
+    Result.portable := True;
+  if ParamStr(1) = '-v' then
+  begin
+    WriteLn(Result.version);
+    Halt;
+  end;
+end;
+
 procedure TInitDB.DataModuleCreate(Sender: TObject);
 {$IFDEF WINDOWS}
 var
@@ -97,15 +118,22 @@ var
 {$ENDIF WINDOWS}
 begin
   //sqlite3dyn.SQLiteDefaultLibrary:='libsqlite3.so';
+  ParamData := GetParam;
   if Sender <> SetupForm then
   begin
   {$IFDEF UNIX}
-    FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+    if not ParamData.portable then
+      FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/'
+    else
+      FilePATH := ExtractFilePath(ParamStr(0));
    {$ELSE}
     tempProfileDir := dmFunc.GetUserProfilesDir;
     tempUserDir := dmFunc.GetCurrentUserName;
-    FilePATH := tempProfileDir + DirectorySeparator + tempUserDir +
-      DirectorySeparator + 'EWLog' + DirectorySeparator;
+    if not ParamData.portable then
+      FilePATH := tempProfileDir + DirectorySeparator + tempUserDir +
+        DirectorySeparator + 'EWLog' + DirectorySeparator
+    else
+      FilePATH := ExtractFilePath(ParamStr(0));
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
    {$ENDIF UNIX}
@@ -608,7 +636,9 @@ begin
     DBRecord.MySQLHost := INIFile.ReadString('DataBases', 'HostAddr', '');
     DBRecord.MySQLPort := INIFile.ReadInteger('DataBases', 'Port', 3306);
     DBRecord.MySQLDBName := INIFile.ReadString('DataBases', 'DataBaseName', '');
-    DBRecord.SQLitePATH := INIFile.ReadString('DataBases', 'FileSQLite', '');
+    if not ParamData.portable then
+    DBRecord.SQLitePATH := INIFile.ReadString('DataBases', 'FileSQLite', '') else
+    DBRecord.SQLitePATH := FilePATH + 'logbook.db';
 
     if not FileExists(DBRecord.SQLitePATH) and (DBRecord.SQLitePATH <> '') then
     begin
