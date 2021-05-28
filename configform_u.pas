@@ -755,6 +755,7 @@ var
   i: integer;
   ListItem: TListItem;
 begin
+  LVTelnet.Items.Clear;
   for i := 0 to High(TARecord) do
   begin
     if Length(TARecord[i].Name) <> 0 then

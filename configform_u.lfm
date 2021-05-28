@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 288
     Top = 0
     Width = 510
-    ActivePage = TSBase
+    ActivePage = TSTelnet
     Align = alTop
-    TabIndex = 0
+    TabIndex = 4
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
@@ -1753,8 +1753,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object PColors: TTabSheet
           Caption = 'Colors'
-          ClientHeight = 255
-          ClientWidth = 496
+          ClientHeight = 230
+          ClientWidth = 490
           object gbGridsColor: TGroupBox
             Left = 8
             Height = 192
@@ -1784,7 +1784,7 @@ object ConfigForm: TConfigForm
               AnchorSideTop.Control = lbTextColor
               AnchorSideTop.Side = asrBottom
               Left = 5
-              Height = 22
+              Height = 28
               Top = 22
               Width = 132
               BorderSpacing.Top = 7
@@ -1814,7 +1814,7 @@ object ConfigForm: TConfigForm
               AnchorSideTop.Control = lbTextSize
               AnchorSideTop.Side = asrBottom
               Left = 5
-              Height = 23
+              Height = 27
               Top = 80
               Width = 132
               BorderSpacing.Top = 7
@@ -1852,7 +1852,7 @@ object ConfigForm: TConfigForm
               AnchorSideTop.Control = lbBackColor
               AnchorSideTop.Side = asrBottom
               Left = 5
-              Height = 22
+              Height = 28
               Top = 137
               Width = 132
               BorderSpacing.Top = 7
@@ -1896,8 +1896,8 @@ object ConfigForm: TConfigForm
         end
         object PGrids: TTabSheet
           Caption = 'Grids'
-          ClientHeight = 255
-          ClientWidth = 496
+          ClientHeight = 230
+          ClientWidth = 490
           object Label7: TLabel
             Left = 1
             Height = 13

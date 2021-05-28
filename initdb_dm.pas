@@ -106,8 +106,13 @@ begin
     Result.portable := True;
   if ParamStr(1) = '-v' then
   begin
+    {$IFDEF UNIX}
     WriteLn(Result.version);
     Halt;
+    {$ELSE}
+    MessageDlg('Version:' + Result.version, mtInformation, mbOKCancel, 0);
+    Halt;
+    {$ENDIF UNIX}
   end;
 end;
 
@@ -637,8 +642,9 @@ begin
     DBRecord.MySQLPort := INIFile.ReadInteger('DataBases', 'Port', 3306);
     DBRecord.MySQLDBName := INIFile.ReadString('DataBases', 'DataBaseName', '');
     if not ParamData.portable then
-    DBRecord.SQLitePATH := INIFile.ReadString('DataBases', 'FileSQLite', '') else
-    DBRecord.SQLitePATH := FilePATH + 'logbook.db';
+      DBRecord.SQLitePATH := INIFile.ReadString('DataBases', 'FileSQLite', '')
+    else
+      DBRecord.SQLitePATH := FilePATH + 'logbook.db';
 
     if not FileExists(DBRecord.SQLitePATH) and (DBRecord.SQLitePATH <> '') then
     begin
