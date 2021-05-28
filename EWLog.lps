@@ -65,10 +65,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="752"/>
-        <CursorPos X="5" Y="758"/>
+        <TopLine Value="797"/>
+        <CursorPos X="54" Y="770"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -223,6 +222,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsProgramForm_U"/>
         <EditorIndex Value="3"/>
+        <TopLine Value="136"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -259,8 +259,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="setupForm_U"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="651"/>
-        <CursorPos X="15" Y="127"/>
+        <TopLine Value="129"/>
+        <CursorPos X="37" Y="140"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit24>
@@ -549,9 +549,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="87"/>
-        <CursorPos X="12" Y="112"/>
+        <TopLine Value="354"/>
+        <CursorPos X="19" Y="335"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>

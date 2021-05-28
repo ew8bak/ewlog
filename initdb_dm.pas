@@ -132,11 +132,13 @@ begin
     else
       FilePATH := ExtractFilePath(ParamStr(0));
    {$ELSE}
-    tempProfileDir := dmFunc.GetUserProfilesDir;
-    tempUserDir := dmFunc.GetCurrentUserName;
     if not ParamData.portable then
+    begin
+      tempProfileDir := dmFunc.GetUserProfilesDir;
+      tempUserDir := dmFunc.GetCurrentUserName;
       FilePATH := tempProfileDir + DirectorySeparator + tempUserDir +
-        DirectorySeparator + 'EWLog' + DirectorySeparator
+        DirectorySeparator + 'EWLog' + DirectorySeparator;
+    end
     else
       FilePATH := ExtractFilePath(ParamStr(0));
     if dmFunc.CheckProcess('rigctld.exe') then
