@@ -2060,6 +2060,12 @@ msgctxt "tcontestform.lbfreq.caption"
 msgid "Frequency"
 msgstr "Частота"
 
+#: tcontestform.lbgrid.caption
+#, fuzzy
+msgctxt "tcontestform.lbgrid.caption"
+msgid "Grid"
+msgstr "Локатор"
+
 #: tcontestform.lbmode.caption
 #, fuzzy
 msgctxt "tcontestform.lbmode.caption"
@@ -2072,6 +2078,12 @@ msgctxt "tcontestform.lbname.caption"
 msgid "Name"
 msgstr "Имя"
 
+#: tcontestform.lbqth.caption
+#, fuzzy
+msgctxt "tcontestform.lbqth.caption"
+msgid "QTH"
+msgstr "QTH"
+
 #: tcontestform.lbrstr.caption
 msgid "RST(r)"
 msgstr ""
@@ -2079,6 +2091,12 @@ msgstr ""
 #: tcontestform.lbrsts.caption
 msgid "RST(s)"
 msgstr ""
+
+#: tcontestform.lbstate.caption
+#, fuzzy
+msgctxt "tcontestform.lbstate.caption"
+msgid "State"
+msgstr "State"
 
 #: tcontestform.lbsubmode.caption
 msgid "Sub mode"

@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
   LCLType, ExtCtrls, ComCtrls, dmContest_u, MainFuncDM, LCLProc, qso_record,
-  LazSysUtils;
+  LazSysUtils, const_u, infoDM_U, inform_record;
 
 type
 
@@ -30,6 +30,9 @@ type
     CBBand: TComboBox;
     CBSubMode: TComboBox;
     DEDate: TDateEdit;
+    EditQTH: TEdit;
+    EditGrid: TEdit;
+    EditState: TEdit;
     EditComment: TEdit;
     EditName: TEdit;
     EditExchr: TEdit;
@@ -38,6 +41,9 @@ type
     EditCallsign: TEdit;
     EditRSTs: TEdit;
     EditFreq: TEdit;
+    LBQTH: TLabel;
+    LBGrid: TLabel;
+    LBState: TLabel;
     LBSubMode: TLabel;
     LBName: TLabel;
     LBComment: TLabel;
@@ -64,6 +70,7 @@ type
     procedure CBBandChange(Sender: TObject);
     procedure CBContestNameChange(Sender: TObject);
     procedure EditCallsignChange(Sender: TObject);
+    procedure EditCallsignEditingDone(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
     procedure EditCallsignKeyPress(Sender: TObject; var Key: char);
@@ -78,6 +85,7 @@ type
     function AddZero(number: integer): string;
 
   public
+    procedure LoadFromInternetCallBook(info: TInformRecord);
 
   end;
 
@@ -91,6 +99,21 @@ uses dmFunc_U, InitDB_dm, miniform_u;
 {$R *.lfm}
 
 { TContestForm }
+
+procedure TContestForm.LoadFromInternetCallBook(info: TInformRecord);
+begin
+  if Length(info.Name) > 0 then
+  begin
+    EditName.Text := info.Name;
+    EditQTH.Text := info.City;
+    EditGrid.Text := info.Grid;
+    EditState.Text := info.State;
+  end;
+  if Length(info.Error) > 0 then
+    SBContest.Panels[0].Text := info.Error
+  else
+    SBContest.Panels[0].Text := '';
+end;
 
 function TContestForm.AddZero(number: integer): string;
 begin
@@ -145,6 +168,11 @@ begin
   end;
 end;
 
+procedure TContestForm.EditCallsignEditingDone(Sender: TObject);
+begin
+  InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'ContestForm');
+end;
+
 procedure TContestForm.BtSaveClick(Sender: TObject);
 var
   SaveQSOrec: TQSO;
@@ -156,7 +184,7 @@ begin
     SaveQSOrec.QSOTime := TimeToStr(TETime.Time);
     SaveQSOrec.QSOMode := CBMode.Text;
     SaveQSOrec.QSOSubMode := CBSubMode.Text;
-    SaveQSOrec.QSOBand := CBBand.Text;
+    SaveQSOrec.QSOBand := FormatFloat(view_freq, StrToFloat(EditFreq.Text));
     SaveQSOrec.CallSing := EditCallsign.Text;
     SaveQSOrec.QSOReportSent := EditRSTs.Text;
     SaveQSOrec.QSOReportRecived := EditRSTr.Text;
@@ -195,6 +223,9 @@ begin
     EditCallsign.Clear;
     EditExchr.Clear;
     EditName.Clear;
+    EditQTH.Clear;
+    EditGrid.Clear;
+    EditState.Clear;
     EditComment.Clear;
   end
   else

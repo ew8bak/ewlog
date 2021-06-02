@@ -1961,6 +1961,11 @@ msgctxt "tcontestform.lbfreq.caption"
 msgid "Frequency"
 msgstr ""
 
+#: tcontestform.lbgrid.caption
+msgctxt "tcontestform.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
 #: tcontestform.lbmode.caption
 msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"
@@ -1971,12 +1976,22 @@ msgctxt "tcontestform.lbname.caption"
 msgid "Name"
 msgstr ""
 
+#: tcontestform.lbqth.caption
+msgctxt "tcontestform.lbqth.caption"
+msgid "QTH"
+msgstr ""
+
 #: tcontestform.lbrstr.caption
 msgid "RST(r)"
 msgstr ""
 
 #: tcontestform.lbrsts.caption
 msgid "RST(s)"
+msgstr ""
+
+#: tcontestform.lbstate.caption
+msgctxt "tcontestform.lbstate.caption"
+msgid "State"
 msgstr ""
 
 #: tcontestform.lbsubmode.caption

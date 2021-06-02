@@ -1,7 +1,7 @@
 object ContestForm: TContestForm
-  Left = 551
+  Left = 369
   Height = 242
-  Top = 119
+  Top = 539
   Width = 691
   Caption = 'Contest Logging'
   ClientHeight = 242
@@ -296,6 +296,7 @@ object ContestForm: TContestForm
     Font.Height = -27
     Font.Style = [fsBold]
     OnChange = EditCallsignChange
+    OnEditingDone = EditCallsignEditingDone
     OnKeyDown = EditCallsignKeyDown
     OnKeyPress = EditCallsignKeyPress
     ParentFont = False
@@ -375,11 +376,11 @@ object ContestForm: TContestForm
     ParentColor = False
   end
   object LBComment: TLabel
-    AnchorSideLeft.Control = EditName
+    AnchorSideLeft.Control = EditState
     AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = LBName
+    AnchorSideTop.Control = LBState
     AnchorSideTop.Side = asrCenter
-    Left = 180
+    Left = 450
     Height = 13
     Top = 167
     Width = 59
@@ -394,19 +395,23 @@ object ContestForm: TContestForm
     Left = 20
     Height = 26
     Top = 185
-    Width = 150
+    Width = 135
     BorderSpacing.Top = 5
+    Font.Height = -12
+    ParentFont = False
     TabOrder = 14
   end
   object EditComment: TEdit
     AnchorSideLeft.Control = LBComment
     AnchorSideTop.Control = LBComment
     AnchorSideTop.Side = asrBottom
-    Left = 180
+    Left = 450
     Height = 26
     Top = 185
-    Width = 200
+    Width = 135
     BorderSpacing.Top = 5
+    Font.Height = -12
+    ParentFont = False
     TabOrder = 15
   end
   object BtSave: TButton
@@ -476,9 +481,88 @@ object ContestForm: TContestForm
     OnClick = BtResetSessionClick
     TabOrder = 18
   end
+  object EditQTH: TEdit
+    AnchorSideLeft.Control = LBQTH
+    AnchorSideTop.Control = LBQTH
+    AnchorSideTop.Side = asrBottom
+    Left = 165
+    Height = 26
+    Top = 185
+    Width = 135
+    BorderSpacing.Top = 5
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 19
+  end
+  object EditGrid: TEdit
+    AnchorSideLeft.Control = LBGrid
+    AnchorSideTop.Control = LBGrid
+    AnchorSideTop.Side = asrBottom
+    Left = 310
+    Height = 26
+    Top = 185
+    Width = 65
+    BorderSpacing.Top = 5
+    CharCase = ecUppercase
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 20
+  end
+  object EditState: TEdit
+    AnchorSideLeft.Control = LBState
+    AnchorSideTop.Control = LBState
+    AnchorSideTop.Side = asrBottom
+    Left = 385
+    Height = 26
+    Top = 185
+    Width = 55
+    BorderSpacing.Top = 5
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 21
+  end
+  object LBQTH: TLabel
+    AnchorSideLeft.Control = EditName
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBName
+    AnchorSideTop.Side = asrCenter
+    Left = 165
+    Height = 13
+    Top = 167
+    Width = 25
+    BorderSpacing.Left = 10
+    Caption = 'QTH'
+    ParentColor = False
+  end
+  object LBGrid: TLabel
+    AnchorSideLeft.Control = EditQTH
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBQTH
+    AnchorSideTop.Side = asrCenter
+    Left = 310
+    Height = 13
+    Top = 167
+    Width = 25
+    BorderSpacing.Left = 10
+    Caption = 'Grid'
+    ParentColor = False
+  end
+  object LBState: TLabel
+    AnchorSideLeft.Control = EditGrid
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBGrid
+    AnchorSideTop.Side = asrCenter
+    Left = 385
+    Height = 13
+    Top = 167
+    Width = 32
+    BorderSpacing.Left = 10
+    Caption = 'State'
+    ParentColor = False
+  end
   object TTime: TTimer
     OnTimer = TTimeTimer
-    Left = 467
-    Top = 183
+    Left = 616
+    Top = 96
   end
 end

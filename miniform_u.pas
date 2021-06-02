@@ -862,7 +862,7 @@ end;
 
 procedure TMiniForm.MIContestLoggingClick(Sender: TObject);
 begin
-  ContestForm.Show;
+  ContestForm.ShowModal;
 end;
 
 procedure TMiniForm.ProgramItemClick(Sender: TObject);
