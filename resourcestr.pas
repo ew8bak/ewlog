@@ -78,6 +78,7 @@ resourcestring
   rSendSpot = 'Send spot';
   rEnCall = 'You must enter a callsign';
   rSaveQSO = 'Save QSO';
+  rSave = 'Save';
   rClearQSO = 'Clear QSO input window';
   rLogConWSJT = 'EWLog connected to WSJT';
   rLogNConWSJT = 'EWLog not connected to WSJT';
@@ -218,6 +219,7 @@ resourcestring
   rCOMPort = 'COM Port';
   rLibHamLibNotFound = 'HamLib library not found';
   rThisNameAlreadyExists = 'This name already exists';
+  rDBNeedUpdate = 'The database structure needs to be updated';
 
 implementation
 

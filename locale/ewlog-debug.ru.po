@@ -376,6 +376,10 @@ msgctxt "resourcestr.rdberror"
 msgid "Error while working with the database. Check connection and settings"
 msgstr "Ошибка работы с базой данных. проверьте подключение и настройки"
 
+#: resourcestr.rdbneedupdate
+msgid "The database structure needs to be updated"
+msgstr ""
+
 #: resourcestr.rdbnotinit
 msgctxt "resourcestr.rdbnotinit"
 msgid "The database is not initialized, go to the settings?"
@@ -874,6 +878,12 @@ msgstr "Время"
 msgctxt "resourcestr.rqsototal"
 msgid " Total "
 msgstr " из "
+
+#: resourcestr.rsave
+#, fuzzy
+msgctxt "resourcestr.rsave"
+msgid "Save"
+msgstr "Сохранить"
 
 #: resourcestr.rsaveqso
 msgctxt "resourcestr.rsaveqso"
@@ -2107,6 +2117,10 @@ msgstr ""
 msgctxt "tcontestform.lbtime.caption"
 msgid "Time"
 msgstr "Время"
+
+#: tcontestform.lbtourtime.caption
+msgid "Tour time"
+msgstr ""
 
 #: tcontestform.rbother.caption
 msgid "Other"

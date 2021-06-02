@@ -15,8 +15,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
-  LCLType, ExtCtrls, ComCtrls, dmContest_u, MainFuncDM, LCLProc, qso_record,
-  LazSysUtils, const_u, infoDM_U, inform_record;
+  LCLType, ExtCtrls, ComCtrls, dmContest_u, MainFuncDM, LCLProc, Spin,
+  qso_record, LazSysUtils, const_u, infoDM_U, inform_record, ResourceStr, SQLDB;
 
 type
 
@@ -41,6 +41,7 @@ type
     EditCallsign: TEdit;
     EditRSTs: TEdit;
     EditFreq: TEdit;
+    LBTourTime: TLabel;
     LBQTH: TLabel;
     LBGrid: TLabel;
     LBState: TLabel;
@@ -62,6 +63,7 @@ type
     RBOther: TRadioButton;
     RBSerial: TRadioButton;
     SBContest: TStatusBar;
+    SETime: TSpinEdit;
     TETime: TTimeEdit;
     TTime: TTimer;
     procedure BtResetSessionClick(Sender: TObject);
@@ -79,10 +81,14 @@ type
     procedure FormShow(Sender: TObject);
     procedure RBOtherClick(Sender: TObject);
     procedure RBSerialClick(Sender: TObject);
+    procedure SETimeChange(Sender: TObject);
     procedure TTimeTimer(Sender: TObject);
   private
     SelEditNumChar: integer;
     function AddZero(number: integer): string;
+    function CheckTourTime(Callsign, Time: string): boolean;
+    function ValidateQSO: boolean;
+    procedure SaveIni;
 
   public
     procedure LoadFromInternetCallBook(info: TInformRecord);
@@ -94,11 +100,30 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm, miniform_u;
+uses dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 
 { TContestForm }
+
+function TContestForm.CheckTourTime(Callsign, Time: string): boolean;
+var
+  Query: TSQLQuery;
+begin
+  try
+    Result := False;
+    Query := TSQLQuery.Create(nil);
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
+procedure TContestForm.SaveIni;
+begin
+  INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
+  INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
+  INIFile.WriteInteger('Contest', 'TourTime', IniSet.ContestTourTime);
+end;
 
 procedure TContestForm.LoadFromInternetCallBook(info: TInformRecord);
 begin
@@ -170,13 +195,28 @@ end;
 
 procedure TContestForm.EditCallsignEditingDone(Sender: TObject);
 begin
-  InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'ContestForm');
+  if Length(EditCallsign.Text) > 0 then
+    InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'ContestForm');
+end;
+
+function TContestForm.ValidateQSO: boolean;
+begin
+  Result := False;
+  if (Length(CBMode.Text) > 0) and (Length(CBBand.Text) > 0) and
+    (Length(EditFreq.Text) > 0) then
+    Result := True;
 end;
 
 procedure TContestForm.BtSaveClick(Sender: TObject);
 var
   SaveQSOrec: TQSO;
 begin
+  if not ValidateQSO then
+  begin
+    SBContest.Panels[0].Text := 'ERROR Field not entered';
+    Exit;
+  end;
+
   if Length(EditCallsign.Text) > 1 then
   begin
     SaveQSOrec.AwardsEx := dmContest.ContestNameToADIf(CBContestName.Text);
@@ -203,7 +243,6 @@ begin
       end;
       SaveQSOrec.SRX_String := '';
       SaveQSOrec.STX_String := '';
-
     end
     else
     begin
@@ -213,13 +252,11 @@ begin
       SaveQSOrec.STX_String := EditExchs.Text;
     end;
     dmContest.SaveQSOContest(SaveQSOrec);
-    SBContest.Panels[0].Text := 'Save ' + EditCallsign.Text + ' OK';
+    SBContest.Panels[0].Text := rSave + ' ' + EditCallsign.Text + ' OK';
     Inc(IniSet.ContestLastNumber);
     EditExchs.Text := AddZero(IniSet.ContestLastNumber);
-    //IntToStr(IniSet.ContestLastNumber);
-    INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
-    INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
 
+    SaveIni;
     EditCallsign.Clear;
     EditExchr.Clear;
     EditName.Clear;
@@ -236,12 +273,12 @@ end;
 procedure TContestForm.BtResetSessionClick(Sender: TObject);
 begin
   IniSet.ContestLastNumber := 1;
-  INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
+  SETime.Value := 0;
   EditExchs.Text := AddZero(IniSet.ContestLastNumber);
-  // IntToStr(IniSet.ContestLastNumber);
   CBContestName.ItemIndex := 0;
   IniSet.ContestName := CBContestName.Text;
-  INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
+  IniSet.ContestTourTime := SETime.Value;
+  SaveIni;
 end;
 
 procedure TContestForm.BtSaveKeyDown(Sender: TObject; var Key: word;
@@ -291,7 +328,7 @@ begin
   end;
   dmContest.LoadContestName(CBContestName);
   EditExchs.Text := AddZero(IniSet.ContestLastNumber);
-  // IntToStr(IniSet.ContestLastNumber);
+  SETime.Value := IniSet.ContestTourTime;
   EditCallsign.SetFocus;
 end;
 
@@ -311,6 +348,11 @@ begin
     EditExchr.NumbersOnly := True;
     EditExchs.NumbersOnly := True;
   end;
+end;
+
+procedure TContestForm.SETimeChange(Sender: TObject);
+begin
+  IniSet.ContestTourTime := SETime.Value;
 end;
 
 procedure TContestForm.TTimeTimer(Sender: TObject);

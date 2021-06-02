@@ -111,6 +111,7 @@ type
     KeyExportADI: string;
     ContestLastNumber: integer;
     ContestName: string;
+    ContestTourTime: integer;
     WorkOnLAN: boolean;
     WOLAddress: string;
     WOLPort: integer;

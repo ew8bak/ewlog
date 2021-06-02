@@ -23,7 +23,9 @@ object ContestForm: TContestForm
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
     Caption = 'Exchange Type:'
+    Font.Height = -12
     ParentColor = False
+    ParentFont = False
   end
   object RBSerial: TRadioButton
     AnchorSideLeft.Control = LbExchangeType
@@ -37,7 +39,9 @@ object ContestForm: TContestForm
     BorderSpacing.Left = 5
     Caption = 'Serial'
     Checked = True
+    Font.Height = -12
     OnClick = RBSerialClick
+    ParentFont = False
     TabOrder = 0
     TabStop = True
   end
@@ -52,7 +56,9 @@ object ContestForm: TContestForm
     Width = 60
     BorderSpacing.Left = 5
     Caption = 'Other'
+    Font.Height = -12
     OnClick = RBOtherClick
+    ParentFont = False
     TabOrder = 1
   end
   object LBContestName: TLabel
@@ -60,7 +66,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Control = CBContestName
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = CBContestName
-    Left = 246
+    Left = 368
     Height = 13
     Top = 12
     Width = 85
@@ -68,15 +74,17 @@ object ContestForm: TContestForm
     BorderSpacing.Left = 40
     BorderSpacing.Right = 5
     Caption = 'Contest Name'
+    Font.Height = -12
     ParentColor = False
+    ParentFont = False
   end
   object CBContestName: TComboBox
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = BtResetSession
-    Left = 336
+    Left = 458
     Height = 27
     Top = 5
-    Width = 302
+    Width = 180
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
@@ -426,8 +434,10 @@ object ContestForm: TContestForm
     BorderSpacing.Right = 5
     BorderSpacing.Bottom = 5
     Caption = 'Save'
+    Font.Height = -12
     OnClick = BtSaveClick
     OnKeyDown = BtSaveKeyDown
+    ParentFont = False
     TabOrder = 16
   end
   object SBContest: TStatusBar
@@ -478,7 +488,9 @@ object ContestForm: TContestForm
     BorderSpacing.Right = 5
     Caption = 'New'
     Color = clRed
+    Font.Height = -12
     OnClick = BtResetSessionClick
+    ParentFont = False
     TabOrder = 18
   end
   object EditQTH: TEdit
@@ -559,6 +571,37 @@ object ContestForm: TContestForm
     BorderSpacing.Left = 10
     Caption = 'State'
     ParentColor = False
+  end
+  object LBTourTime: TLabel
+    AnchorSideLeft.Control = RBOther
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = RBOther
+    AnchorSideTop.Side = asrCenter
+    Left = 234
+    Height = 13
+    Top = 12
+    Width = 56
+    BorderSpacing.Left = 5
+    Caption = 'Tour time'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object SETime: TSpinEdit
+    AnchorSideLeft.Control = LBTourTime
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = LBTourTime
+    AnchorSideTop.Side = asrCenter
+    Left = 295
+    Height = 26
+    Top = 5
+    Width = 60
+    BorderSpacing.Left = 5
+    Font.Height = -12
+    MaxValue = 60
+    OnChange = SETimeChange
+    ParentFont = False
+    TabOrder = 22
   end
   object TTime: TTimer
     OnTimer = TTimeTimer
