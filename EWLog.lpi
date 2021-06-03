@@ -163,7 +163,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="87">
+    <Units Count="88">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -705,6 +705,13 @@
         <Filename Value="ico\telnetaddresrecord_u.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit86>
+      <Unit87>
+        <Filename Value="dmmigrate_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmMigrate"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit87>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

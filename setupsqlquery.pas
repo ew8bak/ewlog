@@ -63,8 +63,6 @@ const
     '(LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo, Table_version) ' +
     'VALUES (:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo, :Table_version)';
 
-  Table_version = '1.1.9';
-
 type
   TdmSQL = class(TDataModule)
   private

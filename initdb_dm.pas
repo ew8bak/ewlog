@@ -45,8 +45,6 @@ type
       const Parameters: array of string);
   private
     ParamData: TParamData;
-    function CheckTableVersion(Callsign: string): boolean;
-    function UpdateTableToCurrent(Callsign: string): boolean;
 
   public
     function ImbeddedCallBookCheck(PathDB: string): TImbedCallBookCheckRec;
@@ -94,79 +92,11 @@ var
 
 implementation
 
-uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U;
+uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U, dmmigrate_u;
 
 {$R *.lfm}
 
 { TInitDB }
-
-function TInitDB.CheckTableVersion(Callsign: string): boolean;
-var
-  Query: TSQLQuery;
-  CurrentTableVersion: string;
-  CurrentTableVersionNumber: integer;
-  TableVersion: integer;
-begin
-  Result := True;
-  try
-    try
-      Query := TSQLQuery.Create(nil);
-      Query.DataBase := SQLiteConnection;
-      Query.SQL.Text :=
-        'SELECT Table_version FROM LogBookInfo WHERE CallName = "' + Callsign + '"';
-      Query.Open;
-      CurrentTableVersion := Query.Fields.Fields[0].AsString;
-      CurrentTableVersionNumber :=
-        StrToInt(StringReplace(CurrentTableVersion, '.', '', [rfReplaceAll]));
-      TableVersion := StrToInt(StringReplace(Table_version, '.', '', [rfReplaceAll]));
-      Query.Close;
-      if CurrentTableVersionNumber < TableVersion then
-        Result := False;
-    finally
-      FreeAndNil(Query);
-    end;
-  except
-    on E: Exception do
-    begin
-      ShowMessage('CheckTableVersion: Error: ' + E.ClassName + #13#10 + E.Message);
-      WriteLn(ExceptFile, 'CheckTableVersion: Error: ' + E.ClassName +
-        ':' + E.Message);
-    end;
-  end;
-end;
-
-function TInitDB.UpdateTableToCurrent(Callsign: string): boolean;
-var
-  Query: TSQLQuery;
-begin
-  try
-    Result := False;
-    try
-      Query := TSQLQuery.Create(nil);
-      Query.DataBase := SQLiteConnection;
-      Query.SQL.Text := 'ALTER TABLE ' + LBRecord.LogTable +
-        ' ADD COLUMN ContestSession int(15);';
-      Query.ExecSQL;
-      DefTransaction.Commit;
-      Query.SQL.Text :=
-        'UPDATE LogBookInfo SET Table_version = ' + QuotedStr(Table_version) +
-        ' WHERE CallName = "' + Callsign + '"';
-      Query.ExecSQL;
-      DefTransaction.Commit;
-      Result := True;
-
-    except
-      on E: Exception do
-      begin
-        ShowMessage('UpdateTableToCurrent: Error: ' + E.ClassName + #13#10 + E.Message);
-        WriteLn(ExceptFile, 'UpdateTableToCurrent: Error: ' + E.ClassName +
-          ':' + E.Message);
-      end;
-    end;
-  finally
-    FreeAndNil(Query);
-  end;
-end;
 
 function TInitDB.GetParam: TParamData;
 begin
@@ -607,12 +537,7 @@ begin
           LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
           LogBookInfoQuery.Close;
 
-          if not CheckTableVersion(LBRecord.CallSign) then
-          begin
-            ShowMessage(rDBNeedUpdate);
-            if not UpdateTableToCurrent(LBRecord.CallSign) then
-              Exit;
-          end;
+          dmMigrate.Migrate(LBRecord.CallSign);
 
           Result := True;
           InitRecord.GetLogBookTable := True;
