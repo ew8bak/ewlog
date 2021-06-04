@@ -5,7 +5,7 @@ unit dmmigrate_u;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, Dialogs, InitDB_dm;
+  Classes, SysUtils, SQLDB, Dialogs, InitDB_dm, ResourceStr;
 
 const
   Current_Table = '1.4.6';
@@ -13,7 +13,7 @@ const
 type
   TdmMigrate = class(TDataModule)
   private
-    function MigrationEnd(ToTableVersion: integer; Callsign: string): boolean;
+    function MigrationEnd(ToTableVersion, Callsign: string): boolean;
     function Migrate146(Callsign: string): boolean;
     function CheckTableVersion(Callsign: string): boolean;
 
@@ -39,7 +39,11 @@ begin
     try
       Result := False;
       Query := TSQLQuery.Create(nil);
-      Query.DataBase := InitDB.SQLiteConnection;
+      if DBRecord.CurrentDB = 'SQLite' then
+        Query.DataBase := InitDB.SQLiteConnection
+      else
+        Query.DataBase := InitDB.MySQLConnection;
+
       Query.SQL.Text :=
         'SELECT Table_version FROM LogBookInfo WHERE CallName = "' + Callsign + '"';
       Query.Open;
@@ -68,7 +72,7 @@ begin
   Migrate146(Callsign);
 end;
 
-function TdmMigrate.MigrationEnd(ToTableVersion: integer; Callsign: string): boolean;
+function TdmMigrate.MigrationEnd(ToTableVersion, Callsign: string): boolean;
 var
   Query: TSQLQuery;
 begin
@@ -76,11 +80,14 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.DataBase := InitDB.SQLiteConnection;
+      if DBRecord.CurrentDB = 'SQLite' then
+        Query.DataBase := InitDB.SQLiteConnection
+      else
+        Query.DataBase := InitDB.MySQLConnection;
+
       Query.SQL.Text :=
-        'UPDATE LogBookInfo SET Table_version = ' +
-        QuotedStr(FormatFloat('0.0"."0', ToTableVersion)) + ' WHERE CallName = "' +
-        Callsign + '"';
+        'UPDATE LogBookInfo SET Table_version = ' + QuotedStr(ToTableVersion) +
+        ' WHERE CallName = "' + Callsign + '"';
       Query.ExecSQL;
       InitDB.DefTransaction.Commit;
       Result := True;
@@ -97,6 +104,8 @@ begin
 end;
 
 function TdmMigrate.Migrate146(Callsign: string): boolean;
+const
+  Version = '1.4.6';
 var
   Query: TSQLQuery;
 begin
@@ -105,13 +114,58 @@ begin
     Exit;
   try
     try
+      ShowMessage(rDBNeedUpdate + Version);
       Query := TSQLQuery.Create(nil);
-      Query.DataBase := InitDB.SQLiteConnection;
-      Query.SQL.Text := 'ALTER TABLE ' + LBRecord.LogTable +
-        ' ADD COLUMN ContestSession int(15);';
+      if DBRecord.CurrentDB = 'SQLite' then
+        Query.DataBase := InitDB.SQLiteConnection
+      else
+        Query.DataBase := InitDB.MySQLConnection;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('ContestSession integer DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('EQSL_QSL_SENT varchar(2) DEFAULT N;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('HAMLOGRec tinyint(1) DEFAULT 0;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('CLUBLOG_QSO_UPLOAD_DATE datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('CLUBLOG_QSO_UPLOAD_STATUS tinyint(1) DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('HRDLOG_QSO_UPLOAD_DATE datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('HRDLOG_QSO_UPLOAD_STATUS tinyint(1) DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QRZCOM_QSO_UPLOAD_DATE datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QRZCOM_QSO_UPLOAD_STATUS tinyint(1) DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('HAMLOG_QSO_UPLOAD_DATE datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('HAMLOG_QSO_UPLOAD_STATUS tinyint(1) DEFAULT NULL;');
       Query.ExecSQL;
       InitDB.DefTransaction.Commit;
-      if MigrationEnd(146, Callsign) then
+      if MigrationEnd(Version, Callsign) then
         Result := True;
 
     except

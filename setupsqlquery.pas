@@ -38,8 +38,9 @@ const
     + '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, '
     + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
 
-   Table_LogBookInfoMySQL = 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
-    '`id` integer UNIQUE PRIMARY KEY AUTO_INCREMENT, `LogTable` varchar(100) NOT NULL, ' +
+  Table_LogBookInfoMySQL = 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
+    '`id` integer UNIQUE PRIMARY KEY AUTO_INCREMENT, `LogTable` varchar(100) NOT NULL, '
+    +
     '`CallName` varchar(15) NOT NULL, `Name` varchar(100) NOT NULL, ' +
     '`QTH` varchar(100) NOT NULL, `ITU` int(11) NOT NULL, ' +
     '`CQ` int(11) NOT NULL, `Loc` varchar(32) NOT NULL, ' +
@@ -60,7 +61,8 @@ const
 
 
   Insert_Table_LogBookInfo = 'INSERT INTO LogBookInfo ' +
-    '(LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo, Table_version) ' +
+    '(LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo, Table_version) '
+    +
     'VALUES (:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo, :Table_version)';
 
 type
@@ -82,7 +84,7 @@ var
   TempResult: string;
 begin
   Result := '';
-  TempResult:='CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX +
+  TempResult := 'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX +
     '` ( `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
     ' `CallSign` varchar(20) DEFAULT NULL, `QSODate` datetime DEFAULT NULL,' +
     ' `QSOTime` varchar(5) DEFAULT NULL, `QSOBand` varchar(20) DEFAULT NULL,' +
@@ -118,32 +120,40 @@ begin
     ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
     ' `DXCC` varchar(5) DEFAULT NULL, `USERS` varchar(5) DEFAULT NULL,' +
     ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), ' +
-    ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15), `SYNC` tinyint(1) DEFAULT 0';
+    ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15), `SYNC` tinyint(1) DEFAULT 0,'+
+    ' `ContestSession` integer DEFAULT NULL, `EQSL_QSL_SENT` varchar(2) DEFAULT N, `HAMLOGRec` tinyint(1) DEFAULT 0, '+
+    ' `CLUBLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `CLUBLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
+    ' `HRDLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HRDLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
+    ' `QRZCOM_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `QRZCOM_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
+    ' `HAMLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL';
   if Database = 'MySQL' then
-  Result := TempResult + ')';
+    Result := TempResult + ')';
   if Database = 'SQLite' then
-  Result := TempResult + ', CONSTRAINT `Dupe_index` UNIQUE (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`))';
+    Result := TempResult +
+      ', CONSTRAINT `Dupe_index` UNIQUE (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`))';
 end;
 
 function TdmSQL.CreateIndex(LOG_PREFIX, Database: string): string;
 begin
   Result := '';
   if Database = 'MySQL' then
-    Result := 'ALTER TABLE `Log_TABLE_'+LOG_PREFIX+'`'+
-       'ADD KEY `CallSign` (`CallSign`),'+
-       'ADD KEY `QSODate` (`QSODate`,`QSOTime`),'+
-       'ADD KEY `DigiBand` (`DigiBand`), ADD KEY `DXCC` (`DXCC`),'+
-       'ADD KEY `DXCCPrefix` (`DXCCPrefix`), ADD KEY `IOTA` (`IOTA`),'+
-       'ADD KEY `MainPrefix` (`MainPrefix`), ADD KEY `QSOMode` (`QSOMode`),'+
-       'ADD KEY `State` (`State`), ADD KEY `State1` (`State1`),'+
-       'ADD KEY `State2` (`State2`), ADD KEY `State3` (`State3`),'+
-       'ADD KEY `State4` (`State4`), ADD KEY `WPX` (`WPX`),'+
-       'MODIFY `UnUsedIndex` integer NOT NULL AUTO_INCREMENT,'+
-       'ADD INDEX `Call` (`Call`),'+
-       'ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
+    Result := 'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '`' +
+      'ADD KEY `CallSign` (`CallSign`),' +
+      'ADD KEY `QSODate` (`QSODate`,`QSOTime`),' +
+      'ADD KEY `DigiBand` (`DigiBand`), ADD KEY `DXCC` (`DXCC`),' +
+      'ADD KEY `DXCCPrefix` (`DXCCPrefix`), ADD KEY `IOTA` (`IOTA`),' +
+      'ADD KEY `MainPrefix` (`MainPrefix`), ADD KEY `QSOMode` (`QSOMode`),' +
+      'ADD KEY `State` (`State`), ADD KEY `State1` (`State1`),' +
+      'ADD KEY `State2` (`State2`), ADD KEY `State3` (`State3`),' +
+      'ADD KEY `State4` (`State4`), ADD KEY `WPX` (`WPX`),' +
+      'MODIFY `UnUsedIndex` integer NOT NULL AUTO_INCREMENT,' +
+      'ADD INDEX `Call` (`Call`),' +
+      'ADD INDEX `ContestSession` (`ContestSession`),' +
+      'ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
 
   if Database = 'SQLite' then
-    Result := 'CREATE INDEX `Call_index'+LOG_PREFIX+'` ON `Log_TABLE_'+LOG_PREFIX+'` (`Call`);';
+    Result := 'CREATE INDEX `Call_index' + LOG_PREFIX + '` ON `Log_TABLE_' +
+      LOG_PREFIX + '` (`Call`);';
 
 end;
 

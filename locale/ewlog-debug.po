@@ -365,7 +365,7 @@ msgid "Error while working with the database. Check connection and settings"
 msgstr ""
 
 #: resourcestr.rdbneedupdate
-msgid "The database structure needs to be updated"
+msgid "The database structure needs to be updated to version:"
 msgstr ""
 
 #: resourcestr.rdbnotinit
