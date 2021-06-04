@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, mysql56conn, sqlite3conn, sqldb, FileUtil, Forms, Controls,
   Graphics, Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, ResourceStr, LCLType,
-  LResources, prefix_record;
+  LResources, prefix_record, dmmigrate_u;
 
 type
 
@@ -201,7 +201,7 @@ begin
           SQL_Query.ParamByName('Lon').AsString := New_Longitude;
           SQL_Query.ParamByName('Discription').AsString := Journal_Description;
           SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-          SQL_Query.ParamByName('Table_version').AsString := Table_version;
+          SQL_Query.ParamByName('Table_version').AsString := Current_Table;
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 70;
           SQL_Transaction.Commit;
@@ -292,7 +292,7 @@ begin
         SQL_Query.ParamByName('Lon').AsString := New_Longitude;
         SQL_Query.ParamByName('Discription').AsString := Journal_Description;
         SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-        SQL_Query.ParamByName('Table_version').AsString := Table_version;
+        SQL_Query.ParamByName('Table_version').AsString := Current_Table;
         SQL_Query.ExecSQL;
         ProgressBar1.Position := 70;
         SQL_Transaction.Commit;
@@ -371,7 +371,7 @@ begin
             SQL_Query.ParamByName('Lon').AsString := New_Longitude;
             SQL_Query.ParamByName('Discription').AsString := Journal_Description;
             SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-            SQL_Query.ParamByName('Table_version').AsString := Table_version;
+            SQL_Query.ParamByName('Table_version').AsString := Current_Table;
             SQL_Query.ExecSQL;
             ProgressBar1.Position := 70;
             SQL_Transaction.Commit;
@@ -460,7 +460,7 @@ begin
           SQL_Query.ParamByName('Lon').AsString := New_Longitude;
           SQL_Query.ParamByName('Discription').AsString := Journal_Description;
           SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-          SQL_Query.ParamByName('Table_version').AsString := Table_version;
+          SQL_Query.ParamByName('Table_version').AsString := Current_Table;
           SQL_Query.ExecSQL;
           ProgressBar1.Position := 70;
           // SQL_Transaction.Commit;

@@ -1167,74 +1167,318 @@ object ConfigForm: TConfigForm
       Caption = 'Telnet'
       ClientHeight = 259
       ClientWidth = 500
+      OnShow = TSTelnetShow
       object gbTelnet: TGroupBox
         Left = 8
-        Height = 144
+        Height = 128
         Top = 8
-        Width = 240
+        Width = 248
         Caption = 'Telnet DX Cluster'
-        ClientHeight = 128
-        ClientWidth = 238
+        ClientHeight = 112
+        ClientWidth = 246
         Font.Height = -12
         ParentFont = False
         TabOrder = 0
-        object Edit11: TEdit
-          Left = 63
+        object EditTelnetLogin: TEdit
+          AnchorSideLeft.Control = LBTelnetLogin
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = gbTelnet
+          Left = 66
           Height = 26
-          Top = 8
+          Top = 5
           Width = 160
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 5
           Font.Height = -12
           ParentFont = False
           TabOrder = 0
         end
-        object Edit12: TEdit
-          Left = 63
+        object EditTelnetPassword: TEdit
+          AnchorSideLeft.Control = LBTelnetPassword
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = EditTelnetLogin
+          AnchorSideTop.Side = asrBottom
+          Left = 66
           Height = 26
-          Top = 48
+          Top = 41
           Width = 160
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 10
           Font.Height = -12
           ParentFont = False
           TabOrder = 1
         end
-        object Label15: TLabel
-          AnchorSideTop.Control = Edit11
+        object LBTelnetLogin: TLabel
+          AnchorSideTop.Control = EditTelnetLogin
           AnchorSideTop.Side = asrCenter
-          AnchorSideRight.Control = Edit11
-          Left = 26
+          AnchorSideRight.Control = LBTelnetPassword
+          AnchorSideRight.Side = asrBottom
+          Left = 29
           Height = 13
-          Top = 15
+          Top = 12
           Width = 32
           Anchors = [akTop, akRight]
-          BorderSpacing.Right = 5
           Caption = 'Login'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
-        object Label16: TLabel
-          AnchorSideTop.Control = Edit12
+        object LBTelnetPassword: TLabel
+          AnchorSideLeft.Control = gbTelnet
+          AnchorSideTop.Control = EditTelnetPassword
           AnchorSideTop.Side = asrCenter
-          AnchorSideRight.Control = Edit12
-          Left = 2
+          Left = 5
           Height = 13
-          Top = 55
+          Top = 48
           Width = 56
-          Anchors = [akTop, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 5
           Caption = 'Password'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
-        object CheckBox4: TCheckBox
-          Left = 2
+        object CBTelnetStartUp: TCheckBox
+          AnchorSideLeft.Control = gbTelnet
+          AnchorSideBottom.Control = gbTelnet
+          AnchorSideBottom.Side = asrBottom
+          Left = 5
           Height = 23
-          Top = 88
+          Top = 84
           Width = 207
+          Anchors = [akLeft, akBottom]
+          BorderSpacing.Left = 5
+          BorderSpacing.Bottom = 5
           Caption = 'Start DX cluster automatically'
           DoubleBuffered = False
+          Font.Height = -12
           ParentDoubleBuffered = False
+          ParentFont = False
           TabOrder = 2
+        end
+      end
+      object LVTelnet: TListView
+        AnchorSideLeft.Control = gbTelnet
+        AnchorSideLeft.Side = asrBottom
+        Left = 261
+        Height = 259
+        Top = 0
+        Width = 239
+        Align = alRight
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 5
+        Columns = <        
+          item
+            Caption = 'Name'
+            Width = 60
+          end        
+          item
+            Caption = 'Address'
+            Width = 110
+          end        
+          item
+            Caption = 'Port'
+            Width = 67
+          end>
+        ReadOnly = True
+        RowSelect = True
+        ScrollBars = ssAutoBoth
+        TabOrder = 1
+        ViewStyle = vsReport
+        OnSelectItem = LVTelnetSelectItem
+      end
+      object GBTelnetEdit: TGroupBox
+        Left = 8
+        Height = 121
+        Top = 136
+        Width = 248
+        Caption = 'Edit'
+        ClientHeight = 105
+        ClientWidth = 246
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 2
+        object LBTelnetName: TLabel
+          AnchorSideTop.Control = EditTelnetName
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = EditTelnetName
+          Left = 26
+          Height = 13
+          Top = 7
+          Width = 35
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Name'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object LBTelnetAddress: TLabel
+          AnchorSideTop.Control = EditTelnetAdress
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = EditTelnetAdress
+          Left = 13
+          Height = 13
+          Top = 36
+          Width = 48
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Address'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object LBTelnetPort: TLabel
+          AnchorSideTop.Control = EditTelnetPort
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = EditTelnetPort
+          Left = 37
+          Height = 13
+          Top = 65
+          Width = 24
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Port'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object EditTelnetName: TEdit
+          AnchorSideTop.Control = GBTelnetEdit
+          Left = 66
+          Height = 26
+          Top = 0
+          Width = 152
+          Font.Height = -12
+          OnChange = EditTelnetNameChange
+          ParentFont = False
+          TabOrder = 0
+        end
+        object EditTelnetAdress: TEdit
+          AnchorSideTop.Control = EditTelnetName
+          AnchorSideTop.Side = asrBottom
+          Left = 66
+          Height = 26
+          Top = 29
+          Width = 152
+          BorderSpacing.Top = 3
+          Font.Height = -12
+          OnChange = EditTelnetAdressChange
+          ParentFont = False
+          TabOrder = 1
+        end
+        object EditTelnetPort: TEdit
+          AnchorSideTop.Control = EditTelnetAdress
+          AnchorSideTop.Side = asrBottom
+          Left = 66
+          Height = 26
+          Top = 58
+          Width = 152
+          BorderSpacing.Top = 3
+          Font.Height = -12
+          NumbersOnly = True
+          OnChange = EditTelnetPortChange
+          ParentFont = False
+          TabOrder = 2
+        end
+        object SBTelnetDone: TSpeedButton
+          AnchorSideRight.Control = GBTelnetEdit
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GBTelnetEdit
+          AnchorSideBottom.Side = asrBottom
+          Left = 222
+          Height = 22
+          Top = 82
+          Width = 23
+          Anchors = [akRight, akBottom]
+          BorderSpacing.Right = 1
+          BorderSpacing.Bottom = 1
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000E8D
+            00000D8700000B8200000772000003610048025F00CC03610038077200000877
+            00000877000008770000087700000877000008770000FFFFFF00FFFFFF000E8D
+            00000D8700000B82000008750048077200CC16A60AE8087601C4087500290877
+            00000877000008770000087700000877000008770000FFFFFF00FFFFFF000E8D
+            00000D8700000B8300480B8200CC2AC01BF424CD13FF1DB60EEF0C8301BB0C85
+            001B0D8A00000F8F0000109400001095000010950000FFFFFF00FFFFFF000E8D
+            00000D8800480D8700CC43CA33F629C318FF39CC28FF28C217FF1EAA0FEA0D87
+            00AE0D8A00100F8F0000109400001095000010950000FFFFFF00FFFFFF000E8E
+            00480E8D00CC5FD94FF933BC22FF50D040F80E8D00CC2AB21AF32CB81BFF1EA2
+            0FE40E8D009E0F8F0008109400001095000010950000FFFFFF00FFFFFF000F92
+            00CC6DE55CFA59D048FF69E158FC0F9200CC0F92006D139504CB34B423F832B2
+            21FF1F9F0FDF0F92008C109400021095000010950000FFFFFF00FFFFFF001196
+            0048119700CC73EA62FD119700CC119600480F9300001196004C189D08D33DB6
+            2CFB37AF26FE1FA00EDA1197007B11980000129B0000FFFFFF00FFFFFF001197
+            0000129B0048129B00CC129B0048119700000F93000011970000129B006924AA
+            13D857CF46FE55CD44FD21A710D6129C006313A00000FFFFFF00FFFFFF001197
+            0000129B0000129C0000129B00001197000011990000129F0000129F000113A0
+            008533B820DE61D850FF5CD54BFA1EA80CD213A1004CFFFFFF00FFFFFF001197
+            0000129B0000129C0000129B00001197000011990000129F0000129F000013A2
+            000614A3009E43C631E56BE25AFF70E95FFB14A300CCFFFFFF00FFFFFF001197
+            0000129B0000129C0000129B00001197000011990000129F0000129F000013A2
+            000014A5001014A700B077EE66FF14A700CC14A70048FFFFFF00FFFFFF001197
+            0000129B0000129C0000129B00001197000013A2000014A5000014A5000014A6
+            000015A8000015A9001F15AA00CC15AA004814A70000FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+          }
+          OnClick = SBTelnetDoneClick
+        end
+        object SBTelnetDelete: TSpeedButton
+          AnchorSideLeft.Control = GBTelnetEdit
+          AnchorSideBottom.Control = GBTelnetEdit
+          AnchorSideBottom.Side = asrBottom
+          Left = 1
+          Height = 22
+          Top = 82
+          Width = 23
+          Anchors = [akLeft, akBottom]
+          BorderSpacing.Left = 1
+          BorderSpacing.Bottom = 1
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            00000000A113110FB0DA00009C3E000000000000000000000000000000000000
+            0000000000000400993F110FB0D700009F100000000000000000000000000000
+            A1131713BAEB2821D2FF1F1AC6FB00009C3E0000000000000000000000000000
+            00000400993F201AC6FC2821D2FF1712B9E800009F100000000000009B121612
+            BCEA2720D6FF2720D6FF2720D6FF1F19C9FB00009C3E00000000000000000000
+            993F1F19C9FC2720D6FF2720D6FF2720D6FF1511BBE800009F10110DB7DB261F
+            DAFF261FDAFF261FDAFF261FDAFF261FDAFF1E19CDFB00009C3E00009D3F1E19
+            CDFC261FDAFF261FDAFF261FDAFF261FDAFF261FDAFF100EB5D703039D441F18
+            D0FC261EDDFF261EDDFF261EDDFF261EDDFF261EDDFF1E18CFFC1E18CFFC261E
+            DDFF261EDDFF261EDDFF261EDDFF261EDDFF1E18CFFC00009D3F000000000303
+            9B451E18D4FC251DE1FF251DE1FF251DE1FF251DE1FF251DE1FF251DE1FF251D
+            E1FF251DE1FF251DE1FF251DE1FF1D17D2FC00009D3F00000000000000000000
+            000003039C461D18D6FC241DE5FF241DE5FF241DE5FF241DE5FF241DE5FF241D
+            E5FF241DE5FF241DE5FF1D17D4FC00009D3F0000000000000000000000000000
+            0000000000000303A1471D17D9FC241CE9FF241CE9FF241CE9FF241CE9FF241C
+            E9FF241CE9FF1D16D7FC00009D3F000000000000000000000000000000000000
+            0000000000000707A041231FD9FC2722EBFF2722EBFF2722EBFF2722EBFF2722
+            EBFF2722EBFF1F1BD9FC00009D3F000000000000000000000000000000000000
+            00000B0BA0413535DCFC4343EEFF3E3EEDFF3636EDFF3030ECFF2F2FECFF2F2F
+            ECFF2F2FECFF2F2FECFF2424DBFB04049A3D0000000000000000000000000B0B
+            A0413A3DDDFC4A4EEFFF4A4EEFFF4A4EEFFF4A4EEFFF494DEFFF4348EEFF3F43
+            EEFF3C40EDFF393EEDFF383DEDFF2B2FDBFB08089C3E000000000B0BA0413F47
+            DDFC515AF0FF515AF0FF515AF0FF515AF0FF515AF0FF3F47DDFC4148DFFC515A
+            F0FF515AF0FF515AF0FF515AF0FF515AF0FF4149DEFB08089E3D2B32C4DE5766
+            F1FF5766F1FF5766F1FF5766F1FF5766F1FF4551DEFC0B0BA0410A0EA6484652
+            E0FC5766F1FF5766F1FF5766F1FF5766F1FF5766F1FF2A32C3DA0000A1133B48
+            CFED5E70F1FF5E70F1FF5E70F1FF4A5BDEFC0B0BA04100000000000000000E0E
+            A5474C5DE0FC5E70F1FF5E70F1FF5E70F1FF3945CFEB00009B12000000000000
+            A1133F4DD0ED657CF1FF5065DFFC0B0FA0410000000000000000000000000000
+            00000E0EA2455166E0FC657CF1FF3C4DCFEB00009B1200000000000000000000
+            00000000A1133442C4DE0B0FA041000000000000000000000000000000000000
+            0000000000000E0EA2453644C5DD00009B120000000000000000
+          }
+          OnClick = SBTelnetDeleteClick
         end
       end
     end
@@ -1509,8 +1753,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object PColors: TTabSheet
           Caption = 'Colors'
-          ClientHeight = 230
-          ClientWidth = 490
+          ClientHeight = 255
+          ClientWidth = 496
           object gbGridsColor: TGroupBox
             Left = 8
             Height = 192
@@ -1652,8 +1896,8 @@ object ConfigForm: TConfigForm
         end
         object PGrids: TTabSheet
           Caption = 'Grids'
-          ClientHeight = 230
-          ClientWidth = 490
+          ClientHeight = 255
+          ClientWidth = 496
           object Label7: TLabel
             Left = 1
             Height = 13

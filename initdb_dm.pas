@@ -16,7 +16,13 @@ interface
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
   DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec,
-  Forms, LCLType, UniqueInstance, SQLite3Dyn;
+  Forms, LCLType, UniqueInstance, SQLite3Dyn, SetupSQLquery;
+
+type
+  TParamData = record
+    version: string;
+    portable: boolean;
+  end;
 
 type
 
@@ -38,6 +44,7 @@ type
     procedure UniqueInstanceOtherInstance(Sender: TObject; ParamCount: integer;
       const Parameters: array of string);
   private
+    ParamData: TParamData;
 
   public
     function ImbeddedCallBookCheck(PathDB: string): TImbedCallBookCheckRec;
@@ -51,6 +58,7 @@ type
     function InitDBINI: boolean;
     procedure CheckSQLVersion;
     function SwitchDB: boolean;
+    function GetParam: TParamData;
 
   end;
 
@@ -84,11 +92,29 @@ var
 
 implementation
 
-uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U;
+uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U, dmmigrate_u;
 
 {$R *.lfm}
 
 { TInitDB }
+
+function TInitDB.GetParam: TParamData;
+begin
+  Result.portable := False;
+  Result.version := dmFunc.GetMyVersion;
+  if ParamStr(1) = '-p' then
+    Result.portable := True;
+  if ParamStr(1) = '-v' then
+  begin
+    {$IFDEF UNIX}
+    WriteLn(Result.version);
+    Halt;
+    {$ELSE}
+    MessageDlg('Version:' + Result.version, mtInformation, mbOKCancel, 0);
+    Halt;
+    {$ENDIF UNIX}
+  end;
+end;
 
 procedure TInitDB.DataModuleCreate(Sender: TObject);
 {$IFDEF WINDOWS}
@@ -97,15 +123,24 @@ var
 {$ENDIF WINDOWS}
 begin
   //sqlite3dyn.SQLiteDefaultLibrary:='libsqlite3.so';
+  ParamData := GetParam;
   if Sender <> SetupForm then
   begin
   {$IFDEF UNIX}
-    FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/';
+    if not ParamData.portable then
+      FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/'
+    else
+      FilePATH := ExtractFilePath(ParamStr(0));
    {$ELSE}
-    tempProfileDir := dmFunc.GetUserProfilesDir;
-    tempUserDir := dmFunc.GetCurrentUserName;
-    FilePATH := tempProfileDir + DirectorySeparator + tempUserDir +
-      DirectorySeparator + 'EWLog' + DirectorySeparator;
+    if not ParamData.portable then
+    begin
+      tempProfileDir := dmFunc.GetUserProfilesDir;
+      tempUserDir := dmFunc.GetCurrentUserName;
+      FilePATH := tempProfileDir + DirectorySeparator + tempUserDir +
+        DirectorySeparator + 'EWLog' + DirectorySeparator;
+    end
+    else
+      FilePATH := ExtractFilePath(ParamStr(0));
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
    {$ENDIF UNIX}
@@ -450,6 +485,7 @@ begin
         else
           LogBookInfoQuery.DataBase := SQLiteConnection;
         LogBookInfoQuery.Close;
+
         if Callsign = '' then
           LogBookInfoQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1'
         else
@@ -500,6 +536,9 @@ begin
             LogBookInfoQuery.FieldByName('QRZCOM_Password').AsString;
           LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
           LogBookInfoQuery.Close;
+
+          dmMigrate.Migrate(LBRecord.CallSign);
+
           Result := True;
           InitRecord.GetLogBookTable := True;
           DBRecord.CurrCall := LBRecord.CallSign;
@@ -608,7 +647,10 @@ begin
     DBRecord.MySQLHost := INIFile.ReadString('DataBases', 'HostAddr', '');
     DBRecord.MySQLPort := INIFile.ReadInteger('DataBases', 'Port', 3306);
     DBRecord.MySQLDBName := INIFile.ReadString('DataBases', 'DataBaseName', '');
-    DBRecord.SQLitePATH := INIFile.ReadString('DataBases', 'FileSQLite', '');
+    if not ParamData.portable then
+      DBRecord.SQLitePATH := INIFile.ReadString('DataBases', 'FileSQLite', '')
+    else
+      DBRecord.SQLitePATH := FilePATH + 'logbook.db';
 
     if not FileExists(DBRecord.SQLitePATH) and (DBRecord.SQLitePATH <> '') then
     begin

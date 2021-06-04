@@ -364,6 +364,10 @@ msgctxt "resourcestr.rdberror"
 msgid "Error while working with the database. Check connection and settings"
 msgstr ""
 
+#: resourcestr.rdbneedupdate
+msgid "The database structure needs to be updated to version:"
+msgstr ""
+
 #: resourcestr.rdbnotinit
 msgctxt "resourcestr.rdbnotinit"
 msgid "The database is not initialized, go to the settings?"
@@ -855,6 +859,11 @@ msgctxt "resourcestr.rqsototal"
 msgid " Total "
 msgstr ""
 
+#: resourcestr.rsave
+msgctxt "resourcestr.rsave"
+msgid "Save"
+msgstr ""
+
 #: resourcestr.rsaveqso
 msgctxt "resourcestr.rsaveqso"
 msgid "Save QSO"
@@ -968,6 +977,10 @@ msgstr ""
 
 #: resourcestr.rthenamefieldcannotbeempty
 msgid "The \"Name\" field cannot be empty"
+msgstr ""
+
+#: resourcestr.rthisnamealreadyexists
+msgid "This name already exists"
 msgstr ""
 
 #: resourcestr.rupdatedontcopy
@@ -1178,32 +1191,18 @@ msgstr ""
 msgid "Delete spots older then:"
 msgstr ""
 
-#: tclusterfilter.label2.caption
+#: tclusterfilter.lbminutesdel.caption
+msgctxt "tclusterfilter.lbminutesdel.caption"
 msgid "minutes"
 msgstr ""
 
-#: tclusterserver_form.button1.caption
-msgctxt "tclusterserver_form.button1.caption"
-msgid "Save"
+#: tclusterfilter.lbminutesreconnect.caption
+msgctxt "tclusterfilter.lbminutesreconnect.caption"
+msgid "minutes"
 msgstr ""
 
-#: tclusterserver_form.caption
-msgid "Editing DX servers"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[0].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[0].title.caption"
-msgid "Name"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[1].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[1].title.caption"
-msgid "Server"
-msgstr ""
-
-#: tclusterserver_form.stringgrid1.columns[2].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[2].title.caption"
-msgid "Port"
+#: tclusterfilter.lbreconnect.caption
+msgid "Reconnect when inactive for"
 msgstr ""
 
 #: tconfigform.btapplycolor.caption
@@ -1433,6 +1432,11 @@ msgctxt "tconfigform.cbsubmode.caption"
 msgid "SubMode"
 msgstr ""
 
+#: tconfigform.cbtelnetstartup.caption
+msgctxt "tconfigform.cbtelnetstartup.caption"
+msgid "Start DX cluster automatically"
+msgstr ""
+
 #: tconfigform.cbtextsizegrid.text
 msgctxt "tconfigform.cbtextsizegrid.text"
 msgid "8 пт"
@@ -1453,6 +1457,10 @@ msgctxt "tconfigform.cbvaliddx.caption"
 msgid "ValidDX"
 msgstr ""
 
+#: tconfigform.cbwolenable.caption
+msgid "Enable Work On LAN"
+msgstr ""
+
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
 msgstr ""
@@ -1469,10 +1477,6 @@ msgstr ""
 #: tconfigform.checkbox3.caption
 msgctxt "tconfigform.checkbox3.caption"
 msgid "Use as a reference?"
-msgstr ""
-
-#: tconfigform.checkbox4.caption
-msgid "Start DX cluster automatically"
 msgstr ""
 
 #: tconfigform.checkbox5.caption
@@ -1544,6 +1548,11 @@ msgctxt "tconfigform.gbtelnet.caption"
 msgid "Telnet DX Cluster"
 msgstr ""
 
+#: tconfigform.gbtelnetedit.caption
+msgctxt "tconfigform.gbtelnetedit.caption"
+msgid "Edit"
+msgstr ""
+
 #: tconfigform.label10.caption
 msgid "Release date:"
 msgstr ""
@@ -1562,16 +1571,6 @@ msgstr ""
 
 #: tconfigform.label14.caption
 msgid "---"
-msgstr ""
-
-#: tconfigform.label15.caption
-msgctxt "tconfigform.label15.caption"
-msgid "Login"
-msgstr ""
-
-#: tconfigform.label16.caption
-msgctxt "tconfigform.label16.caption"
-msgid "Password"
 msgstr ""
 
 #: tconfigform.label17.caption
@@ -1657,6 +1656,10 @@ msgstr ""
 #: tconfigform.lbbackcolor.caption
 msgctxt "tconfigform.lbbackcolor.caption"
 msgid "Background color"
+msgstr ""
+
+#: tconfigform.lbcallwol.caption
+msgid "Found Call:"
 msgstr ""
 
 #: tconfigform.lbcataddress.caption
@@ -1750,6 +1753,31 @@ msgstr ""
 msgid "Key Save QSO"
 msgstr ""
 
+#: tconfigform.lbtelnetaddress.caption
+msgctxt "tconfigform.lbtelnetaddress.caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lbtelnetlogin.caption
+msgctxt "tconfigform.lbtelnetlogin.caption"
+msgid "Login"
+msgstr ""
+
+#: tconfigform.lbtelnetname.caption
+msgctxt "tconfigform.lbtelnetname.caption"
+msgid "Name"
+msgstr ""
+
+#: tconfigform.lbtelnetpassword.caption
+msgctxt "tconfigform.lbtelnetpassword.caption"
+msgid "Password"
+msgstr ""
+
+#: tconfigform.lbtelnetport.caption
+msgctxt "tconfigform.lbtelnetport.caption"
+msgid "Port"
+msgstr ""
+
 #: tconfigform.lbtextcolor.caption
 msgctxt "tconfigform.lbtextcolor.caption"
 msgid "Text color"
@@ -1766,6 +1794,34 @@ msgstr ""
 
 #: tconfigform.lbtransceivermodel.caption
 msgid "Transceiver Model"
+msgstr ""
+
+#: tconfigform.lbwoladdress.caption
+msgctxt "tconfigform.lbwoladdress.caption"
+msgid "Address:"
+msgstr ""
+
+#: tconfigform.lbwollog.caption
+msgid "Log:"
+msgstr ""
+
+#: tconfigform.lbwolport.caption
+msgid "Port:"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[0].caption
+msgctxt "tconfigform.lvtelnet.columns[0].caption"
+msgid "Name"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[1].caption
+msgctxt "tconfigform.lvtelnet.columns[1].caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[2].caption
+msgctxt "tconfigform.lvtelnet.columns[2].caption"
+msgid "Port"
 msgstr ""
 
 #: tconfigform.pcolors.caption
@@ -1831,6 +1887,14 @@ msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr ""
 
+#: tconfigform.tsworklan.caption
+msgid "Work on LAN (UDP)"
+msgstr ""
+
+#: tcontestform.btresetsession.caption
+msgid "New session"
+msgstr ""
+
 #: tcontestform.btsave.caption
 msgctxt "tcontestform.btsave.caption"
 msgid "Save"
@@ -1839,10 +1903,6 @@ msgstr ""
 #: tcontestform.caption
 msgctxt "tcontestform.caption"
 msgid "Contest Logging"
-msgstr ""
-
-#: tcontestform.cbband.text
-msgid "160M"
 msgstr ""
 
 #: tcontestform.cbmode.text
@@ -1855,11 +1915,7 @@ msgid "25.03.21"
 msgstr ""
 
 #: tcontestform.editexchs.text
-msgid "1"
-msgstr ""
-
-#: tcontestform.editfreq.text
-msgid "1840000"
+msgid "001"
 msgstr ""
 
 #: tcontestform.editrstr.text
@@ -1913,6 +1969,16 @@ msgctxt "tcontestform.lbfreq.caption"
 msgid "Frequency"
 msgstr ""
 
+#: tcontestform.lbgrid.caption
+msgctxt "tcontestform.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: tcontestform.lbminutetour.caption
+msgctxt "tcontestform.lbminutetour.caption"
+msgid "minutes"
+msgstr ""
+
 #: tcontestform.lbmode.caption
 msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"
@@ -1923,12 +1989,22 @@ msgctxt "tcontestform.lbname.caption"
 msgid "Name"
 msgstr ""
 
+#: tcontestform.lbqth.caption
+msgctxt "tcontestform.lbqth.caption"
+msgid "QTH"
+msgstr ""
+
 #: tcontestform.lbrstr.caption
 msgid "RST(r)"
 msgstr ""
 
 #: tcontestform.lbrsts.caption
 msgid "RST(s)"
+msgstr ""
+
+#: tcontestform.lbstate.caption
+msgctxt "tcontestform.lbstate.caption"
+msgid "State"
 msgstr ""
 
 #: tcontestform.lbsubmode.caption
@@ -1938,6 +2014,10 @@ msgstr ""
 #: tcontestform.lbtime.caption
 msgctxt "tcontestform.lbtime.caption"
 msgid "Time"
+msgstr ""
+
+#: tcontestform.lbtourtime.caption
+msgid "Tour time"
 msgstr ""
 
 #: tcontestform.rbother.caption
@@ -2084,48 +2164,48 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[0].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[0].text"
+#: tdxclusterform.vstcluster.header.columns[0].text
+msgctxt "tdxclusterform.vstcluster.header.columns[0].text"
 msgid "Band"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[1].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[1].text"
+#: tdxclusterform.vstcluster.header.columns[1].text
+msgctxt "tdxclusterform.vstcluster.header.columns[1].text"
 msgid "DX"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[2].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[2].text"
+#: tdxclusterform.vstcluster.header.columns[2].text
+msgctxt "tdxclusterform.vstcluster.header.columns[2].text"
 msgid "Spotter"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[3].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[3].text"
+#: tdxclusterform.vstcluster.header.columns[3].text
+msgctxt "tdxclusterform.vstcluster.header.columns[3].text"
 msgid "Frequency"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[4].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[4].text"
+#: tdxclusterform.vstcluster.header.columns[4].text
+msgctxt "tdxclusterform.vstcluster.header.columns[4].text"
 msgid "Mode"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[5].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[5].text"
+#: tdxclusterform.vstcluster.header.columns[5].text
+msgctxt "tdxclusterform.vstcluster.header.columns[5].text"
 msgid "Comment"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[6].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[6].text"
+#: tdxclusterform.vstcluster.header.columns[6].text
+msgctxt "tdxclusterform.vstcluster.header.columns[6].text"
 msgid "UTC"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[7].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[7].text"
+#: tdxclusterform.vstcluster.header.columns[7].text
+msgctxt "tdxclusterform.vstcluster.header.columns[7].text"
 msgid "Grid"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[8].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[8].text"
+#: tdxclusterform.vstcluster.header.columns[8].text
+msgctxt "tdxclusterform.vstcluster.header.columns[8].text"
 msgid "Country"
 msgstr ""
 
@@ -3066,6 +3146,10 @@ msgctxt "tgridsform.filteritem.caption"
 msgid "Record Filter"
 msgstr ""
 
+#: tgridsform.filtermarkedqso.caption
+msgid "Marked QSO"
+msgstr ""
+
 #: tgridsform.filternsentqslitem.caption
 msgctxt "tgridsform.filternsentqslitem.caption"
 msgid "Not sent QSL"
@@ -3099,6 +3183,14 @@ msgstr ""
 #: tgridsform.menuitem4.caption
 msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"
+msgstr ""
+
+#: tgridsform.misendonlan.caption
+msgid "Send on LAN"
+msgstr ""
+
+#: tgridsform.misendonlanany.caption
+msgid "ANY"
 msgstr ""
 
 #: tgridsform.prefixitem.caption

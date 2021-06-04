@@ -240,7 +240,7 @@ begin
   begin
     GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-    EditQSO_Form.Show;
+    EditQSO_Form.ShowModal;
   end;
 end;
 
@@ -279,7 +279,7 @@ begin
     begin
       GridRecordIndex := DBGrid1.DataSource.DataSet.RecNo;
       UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-      EditQSO_Form.Show;
+      EditQSO_Form.ShowModal;
     end;
   end;
 end;

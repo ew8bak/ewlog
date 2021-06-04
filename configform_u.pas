@@ -15,9 +15,9 @@ interface
 
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock, ResourceStr,
-  synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox, Spin, dmCat,
-  serverDM_u, Types;
+  StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock,
+  ResourceStr, synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
+  Spin, Buttons, dmCat, serverDM_u, Types;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -95,7 +95,7 @@ type
     cbQSLrVIA: TCheckBox;
     cbQSLsVIA: TCheckBox;
     cbUser: TCheckBox;
-    CheckBox4: TCheckBox;
+    CBTelnetStartUp: TCheckBox;
     cbNoCalcDXCC: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
@@ -112,8 +112,11 @@ type
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
+    EditTelnetName: TEdit;
+    EditTelnetAdress: TEdit;
+    EditTelnetPort: TEdit;
+    EditTelnetLogin: TEdit;
+    EditTelnetPassword: TEdit;
     Edit13: TEdit;
     Edit14: TEdit;
     Edit15: TEdit;
@@ -148,6 +151,10 @@ type
     gbSQLite: TGroupBox;
     gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
+    GBTelnetEdit: TGroupBox;
+    LBTelnetName: TLabel;
+    LBTelnetPort: TLabel;
+    LBTelnetAddress: TLabel;
     LBCallWOL: TLabel;
     LBWOLLog: TLabel;
     LBWOLPort: TLabel;
@@ -183,8 +190,8 @@ type
     Label12: TLabel;
     Label13: TLabel;
     Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
+    LBTelnetLogin: TLabel;
+    LBTelnetPassword: TLabel;
     Label17: TLabel;
     Label18: TLabel;
     Label19: TLabel;
@@ -202,6 +209,7 @@ type
     Label6: TLabel;
     Label8: TLabel;
     LBWOLCall: TListBox;
+    LVTelnet: TListView;
     MWOLLog: TMemo;
     PCCat: TPageControl;
     PControl2: TPageControl;
@@ -211,6 +219,8 @@ type
     RadioButton2: TRadioButton;
     PColors: TTabSheet;
     PGrids: TTabSheet;
+    SBTelnetDone: TSpeedButton;
+    SBTelnetDelete: TSpeedButton;
     SpinEdit1: TSpinEdit;
     TSWorkLAN: TTabSheet;
     TSHamlib: TTabSheet;
@@ -247,23 +257,36 @@ type
       Shift: TShiftState);
     procedure EditSaveKeyKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
+    procedure EditTelnetAdressChange(Sender: TObject);
+    procedure EditTelnetNameChange(Sender: TObject);
+    procedure EditTelnetPortChange(Sender: TObject);
     procedure FNPathRigctldChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure LVTelnetSelectItem(Sender: TObject; Item: TListItem;
+      Selected: boolean);
     procedure SaveINI;
     procedure ReadINI;
     function CheckUpdate: boolean;
+    procedure SBTelnetDeleteClick(Sender: TObject);
+    procedure SBTelnetDoneClick(Sender: TObject);
     procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
       const Value: string);
     procedure DownloadCallBookFile;
+    procedure TSTelnetShow(Sender: TObject);
   private
     Download: int64;
+    LVSelectedItem: boolean;
     procedure SaveGridColumns;
     procedure SaveGridColors;
     procedure ReadGridColumns;
     procedure ReadGridColors;
     procedure LoadRIGSettings;
     procedure SaveRIGSettings;
+    procedure EnableTelnetBTDone;
+    procedure SaveTelnetAddress;
+    procedure LoadTelnetAddressToVLTelnet;
+    function SearchLVTelnet(SearchText: string): boolean;
     { private declarations }
   public
     { public declarations }
@@ -289,9 +312,9 @@ begin
   INIFile.WriteString('DataBases', 'Password', Edit4.Text);
   INIFile.WriteString('DataBases', 'DataBaseName', Edit5.Text);
   INIFile.WriteString('DataBases', 'FileSQLite', FileNameEdit1.Text);
-  INIFile.WriteString('TelnetCluster', 'Login', Edit11.Text);
-  INIFile.WriteString('TelnetCluster', 'Password', Edit12.Text);
-  INIFile.WriteBool('TelnetCluster', 'AutoStart', CheckBox4.Checked);
+  INIFile.WriteString('TelnetCluster', 'Login', EditTelnetLogin.Text);
+  INIFile.WriteString('TelnetCluster', 'Password', EditTelnetPassword.Text);
+  INIFile.WriteBool('TelnetCluster', 'AutoStart', CBTelnetStartUp.Checked);
   INIFile.WriteString('SetLog', 'CloudLogServer', Edit10.Text);
   INIFile.WriteString('SetLog', 'CloudLogApi', Edit13.Text);
   INIFile.WriteBool('SetLog', 'IntCallBook', CheckBox1.Checked);
@@ -352,8 +375,8 @@ begin
   Edit3.Text := INIFile.ReadString('DataBases', 'LoginName', '');
   Edit4.Text := INIFile.ReadString('DataBases', 'Password', '');
   Edit5.Text := INIFile.ReadString('DataBases', 'DataBaseName', '');
-  Edit11.Text := INIFile.ReadString('TelnetCluster', 'Login', '');
-  Edit12.Text := INIFile.ReadString('TelnetCluster', 'Password', '');
+  EditTelnetLogin.Text := INIFile.ReadString('TelnetCluster', 'Login', '');
+  EditTelnetPassword.Text := INIFile.ReadString('TelnetCluster', 'Password', '');
 
   Edit10.Text := INIFile.ReadString('SetLog', 'CloudLogServer', '');
   Edit13.Text := INIFile.ReadString('SetLog', 'CloudLogApi', '');
@@ -376,7 +399,7 @@ begin
 
   CheckBox6.Checked := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
   CheckBox5.Checked := INIFile.ReadBool('SetLog', 'PrintPrev', False);
-  CheckBox4.Checked := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
+  CBTelnetStartUp.Checked := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
 
   if IniSet.CallBookSystem = 'QRZRU' then
     CheckBox3.Checked := True;
@@ -399,9 +422,9 @@ begin
   EditImportKey.Text := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
   EditExportKey.Text := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
 
-  EditWOLAddress.Text:=INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
-  EditWOLPort.Text:=INIFile.ReadString('WorkOnLAN', 'Port', '2238');
-  CBWOLEnable.Checked:=INIFile.ReadBool('WorkOnLAN', 'Enable', False);
+  EditWOLAddress.Text := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
+  EditWOLPort.Text := INIFile.ReadString('WorkOnLAN', 'Port', '2238');
+  CBWOLEnable.Checked := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
 
   ReadGridColumns;
   ReadGridColors;
@@ -578,6 +601,30 @@ begin
   EditSaveKey.SelStart := EditSaveKey.GetTextLen;
 end;
 
+procedure TConfigForm.EnableTelnetBTDone;
+begin
+  if (Length(EditTelnetName.Text) > 0) and (Length(EditTelnetAdress.Text) > 0) and
+    (Length(EditTelnetPort.Text) > 0) then
+    SBTelnetDone.Enabled := True
+  else
+    SBTelnetDone.Enabled := False;
+end;
+
+procedure TConfigForm.EditTelnetAdressChange(Sender: TObject);
+begin
+  EnableTelnetBTDone;
+end;
+
+procedure TConfigForm.EditTelnetNameChange(Sender: TObject);
+begin
+  EnableTelnetBTDone;
+end;
+
+procedure TConfigForm.EditTelnetPortChange(Sender: TObject);
+begin
+  EnableTelnetBTDone;
+end;
+
 procedure TConfigForm.FNPathRigctldChange(Sender: TObject);
 begin
   if Length(FNPathRigctld.Text) > 0 then
@@ -597,8 +644,9 @@ begin
   FNPathRigctld.Filter := 'rigctld.exe|rigctld.exe';
   {$ELSE}
   FNPathRigctld.Filter := 'rigctld|rigctld';
-  if Length(FNPathRigctld.Text) = 0 then
+  if Length(CatSettings.RigctldPath) = 0 then
     FNPathRigctld.Text := CATdm.SearchRigctld;
+  CatSettings.RigctldPath := CATdm.SearchRigctld;
   {$ENDIF}
   CBrigctldStart.Checked := IniSet.rigctldStartUp;
   CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
@@ -644,6 +692,7 @@ begin
     CatSettings.Port := StrToInt(EditCATport.Text);
     CatSettings.Extracmd := EditExtraCmd.Text;
     CatSettings.StartRigctld := CBrigctldStart.Checked;
+    CatSettings.RigctldPath := FNPathRigctld.Text;
     CATdm.SaveCATini(1);
     TRXForm.InicializeRig;
   end;
@@ -676,6 +725,83 @@ begin
     CheckBox1.Enabled := False;
   end;
   LoadRIGSettings;
+end;
+
+procedure TConfigForm.LVTelnetSelectItem(Sender: TObject; Item: TListItem;
+  Selected: boolean);
+begin
+  if Selected then
+  begin
+    EditTelnetName.Text := LVTelnet.Selected.Caption;
+    EditTelnetAdress.Text := LVTelnet.Selected.SubItems[0];
+    EditTelnetPort.Text := LVTelnet.Selected.SubItems[1];
+    LVSelectedItem := True;
+    SBTelnetDelete.Enabled := True;
+  end;
+end;
+
+function TConfigForm.SearchLVTelnet(SearchText: string): boolean;
+var
+  i: integer;
+begin
+  Result := False;
+  for i := 0 to LVTelnet.Items.Count - 1 do
+    if Pos(LowerCase(SearchText), LowerCase(LVTelnet.Items.Item[i].Caption)) > 0 then
+      Result := True;
+end;
+
+procedure TConfigForm.LoadTelnetAddressToVLTelnet;
+var
+  i: integer;
+  ListItem: TListItem;
+begin
+  LVTelnet.Items.Clear;
+  for i := 0 to High(TARecord) do
+  begin
+    if Length(TARecord[i].Name) <> 0 then
+    begin
+      ListItem := LVTelnet.Items.Add;
+      ListItem.Caption := TARecord[i].Name;
+      ListItem.SubItems.Add(TARecord[i].Address);
+      ListItem.SubItems.Add(IntToStr(TARecord[i].Port));
+    end;
+  end;
+end;
+
+procedure TConfigForm.SaveTelnetAddress;
+var
+  ListItem: TListItem;
+  i: integer;
+begin
+  if LVSelectedItem then
+  begin
+    LVTelnet.Selected.Caption := EditTelnetName.Text;
+    LVTelnet.Selected.SubItems[0] := EditTelnetAdress.Text;
+    LVTelnet.Selected.SubItems[1] := EditTelnetPort.Text;
+    INIFile.WriteString('TelnetCluster', 'Server' + IntToStr(LVTelnet.Selected.Index),
+      EditTelnetName.Text + ',' + EditTelnetAdress.Text + ',' + EditTelnetPort.Text);
+  end
+  else
+  begin
+    if not SearchLVTelnet(EditTelnetName.Text) then
+    begin
+      ListItem := LVTelnet.Items.Add;
+      ListItem.Caption := EditTelnetName.Text;
+      ListItem.SubItems.Add(EditTelnetAdress.Text);
+      ListItem.SubItems.Add(EditTelnetPort.Text);
+      for i := 0 to LVTelnet.Items.Count - 1 do
+        INIFile.WriteString('TelnetCluster', 'Server' + IntToStr(i),
+          LVTelnet.Items.Item[i].Caption + ',' + LVTelnet.Items.Item[i].SubItems[0] +
+          ',' + LVTelnet.Items.Item[i].SubItems[1]);
+    end
+    else
+      ShowMessage(rThisNameAlreadyExists);
+  end;
+  EditTelnetName.Clear;
+  EditTelnetAdress.Clear;
+  EditTelnetPort.Clear;
+  LVSelectedItem := False;
+  MainFunc.LoadTelnetAddress;
 end;
 
 procedure TConfigForm.ReadGridColumns;
@@ -775,8 +901,8 @@ end;
 procedure TConfigForm.Button1Click(Sender: TObject);
 begin
   SaveINI;
-  IniSet.Cluster_Login := Edit11.Text;
-  IniSet.Cluster_Pass := Edit12.Text;
+  IniSet.Cluster_Login := EditTelnetLogin.Text;
+  IniSet.Cluster_Pass := EditTelnetPassword.Text;
   SaveGridColumns;
   SaveGridColors;
   SaveRIGSettings;
@@ -861,6 +987,35 @@ begin
   end;
 end;
 
+procedure TConfigForm.SBTelnetDeleteClick(Sender: TObject);
+var
+  i: integer;
+begin
+  if LVSelectedItem then
+  begin
+    LVTelnet.Items.Delete(LVTelnet.Selected.Index);
+    for i := 0 to 9 do
+      INIFile.DeleteKey('TelnetCluster', 'Server' + IntToStr(i));
+    for i := 0 to LVTelnet.Items.Count - 1 do
+      INIFile.WriteString('TelnetCluster', 'Server' + IntToStr(i),
+        LVTelnet.Items.Item[i].Caption + ',' + LVTelnet.Items.Item[i].SubItems[0] +
+        ',' + LVTelnet.Items.Item[i].SubItems[1]);
+    EditTelnetName.Clear;
+    EditTelnetAdress.Clear;
+    EditTelnetPort.Clear;
+    LVSelectedItem := False;
+    MainFunc.LoadTelnetAddress;
+    SBTelnetDelete.Enabled := False;
+  end;
+end;
+
+procedure TConfigForm.SBTelnetDoneClick(Sender: TObject);
+begin
+  SaveTelnetAddress;
+  if LVSelectedItem then
+    LVTelnet.Selected.Selected := False;
+end;
+
 procedure TConfigForm.DownloadCallBookFile;
 var
   HTTP: THTTPSend;
@@ -910,6 +1065,14 @@ begin
       CheckBox1.Enabled := False;
     end;
   end;
+end;
+
+procedure TConfigForm.TSTelnetShow(Sender: TObject);
+begin
+  LVSelectedItem := False;
+  SBTelnetDone.Enabled := False;
+  SBTelnetDelete.Enabled := False;
+  LoadTelnetAddressToVLTelnet;
 end;
 
 procedure TConfigForm.SynaProgress(Sender: TObject; Reason: THookSocketReason;

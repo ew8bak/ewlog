@@ -18,7 +18,7 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u,
-  FileUtil, FMS_record;
+  FileUtil, FMS_record, telnetaddresrecord_u;
 
 type
   bandArray = array of string;
@@ -36,6 +36,7 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
+    procedure LoadTelnetAddress;
     procedure SentCATCloudLog(CatData: TCatData);
     procedure SaveGrids(DbGrid: TDBGrid);
     procedure SetDXColumns(VST: TVirtualStringTree; Save: boolean;
@@ -96,13 +97,45 @@ var
   columnsDX: array[0..8] of string;
   columnsDXWidth: array[0..8] of integer;
   FMS: TFMSRecord;
+  TARecord: array[0..8] of TTelnetAddressRecord;
 
 implementation
 
 uses InitDB_dm, dmFunc_U, hrdlog,
-  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u;
+  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u;
 
 {$R *.lfm}
+
+procedure TMainFunc.LoadTelnetAddress;
+var
+  SLAddress: TStringList;
+  i: integer;
+  addressString: string;
+begin
+  try
+   Finalize(TARecord);
+    SLAddress := TStringList.Create;
+    for i := 0 to 9 do
+      if INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '') <> '' then
+        SLAddress.Add(INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), ''));
+    if SLAddress.Count = 0 then
+      SLAddress.Add('FEERC,dx.feerc.ru,8000');
+
+    for i := 0 to SLAddress.Count - 1 do
+    begin
+      addressString := SLAddress[i];
+      TARecord[i].Name := copy(addressString, 1, pos(',', addressString) - 1);
+      Delete(addressString, 1, pos(',', addressString));
+      TARecord[i].Address := copy(addressString, 1, pos(',', addressString) - 1);
+      Delete(addressString, 1, pos(',', addressString));
+      TARecord[i].Port := StrToInt(addressString);
+    end;
+
+  finally
+    FreeAndNil(SLAddress);
+    DXClusterForm.LoadClusterString;
+  end;
+end;
 
 function TMainFunc.GenerateRandomID: string;
 var
@@ -605,7 +638,7 @@ begin
       Result.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
       Result.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
       Result.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
-      Result.ShortNote:=Query.FieldByName('ShortNote').AsString;
+      Result.ShortNote := Query.FieldByName('ShortNote').AsString;
       Query.Close;
     finally
       FreeAndNil(Query);
@@ -1453,6 +1486,8 @@ begin
   IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
   IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
   IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
+  IniSet.ContestTourTime := INIFile.ReadInteger('Contest', 'TourTime', 0);
+  IniSet.ContestSession := INIFile.ReadString('Contest', 'ContestSession', 'none');
   IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
   IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
   IniSet.WOLPort := INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
@@ -1813,7 +1848,7 @@ begin
     begin
       ShowMessage('SearchPrefix:' + E.Message);
       WriteLn(ExceptFile, 'SearchPrefix:' + E.ClassName + ':' + E.Message +
-        ':' + IntToStr(i));
+        ':' + IntToStr(i) + ':' + PrefixExpProvinceArray[i].reg.Expression);
     end;
   end;
 end;
@@ -1900,7 +1935,7 @@ begin
         'QSLInfo, `Call`, State1, State2, State3, State4, WPX, AwardsEx,' +
         'ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,' +
         'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC,' +
-        'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
+        'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC, ContestSession, ContestName) VALUES (' +
         dmFunc.Q(SQSO.CallSing) + dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) +
         dmFunc.Q(SQSO.QSOBand) + dmFunc.Q(SQSO.QSOMode) +
         dmFunc.Q(SQSO.QSOSubMode) + dmFunc.Q(SQSO.QSOReportSent) +
@@ -1924,8 +1959,11 @@ begin
         dmFunc.Q(SQSO.QSL_SENT_VIA) + dmFunc.Q(SQSO.DXCC) +
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
-        dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
-       WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
+        dmFunc.Q(SQSO.My_Lon) +
+        dmFunc.Q(IntToStr(SQSO.SYNC)) +
+        dmFunc.Q(SQSO.ContestSession) +
+        QuotedStr(SQSO.ContestName) + ')';
+      WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else

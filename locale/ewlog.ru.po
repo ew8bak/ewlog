@@ -993,6 +993,10 @@ msgstr "Ошибка таблицы журнала"
 msgid "The \"Name\" field cannot be empty"
 msgstr ""
 
+#: resourcestr.rthisnamealreadyexists
+msgid "This name already exists"
+msgstr ""
+
 #: resourcestr.rupdatedontcopy
 msgctxt "resourcestr.rupdatedontcopy"
 msgid "Do not copy"
@@ -1209,33 +1213,21 @@ msgstr "Моды"
 msgid "Delete spots older then:"
 msgstr "Удалять споты старше:"
 
-#: tclusterfilter.label2.caption
+#: tclusterfilter.lbminutesdel.caption
+#, fuzzy
+msgctxt "tclusterfilter.lbminutesdel.caption"
 msgid "minutes"
 msgstr "минут(ы)"
 
-#: tclusterserver_form.button1.caption
-msgctxt "tclusterserver_form.button1.caption"
-msgid "Save"
-msgstr "Сохранить"
+#: tclusterfilter.lbminutesreconnect.caption
+#, fuzzy
+msgctxt "tclusterfilter.lbminutesreconnect.caption"
+msgid "minutes"
+msgstr "минут(ы)"
 
-#: tclusterserver_form.caption
-msgid "Editing DX servers"
-msgstr "Редактирование DX кластера"
-
-#: tclusterserver_form.stringgrid1.columns[0].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[0].title.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tclusterserver_form.stringgrid1.columns[1].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[1].title.caption"
-msgid "Server"
-msgstr "Сервер"
-
-#: tclusterserver_form.stringgrid1.columns[2].title.caption
-msgctxt "tclusterserver_form.stringgrid1.columns[2].title.caption"
-msgid "Port"
-msgstr "Порт"
+#: tclusterfilter.lbreconnect.caption
+msgid "Reconnect when inactive for"
+msgstr ""
 
 #: tconfigform.btapplycolor.caption
 #, fuzzy
@@ -1500,6 +1492,12 @@ msgctxt "tconfigform.cbsubmode.caption"
 msgid "SubMode"
 msgstr "СабМода"
 
+#: tconfigform.cbtelnetstartup.caption
+#, fuzzy
+msgctxt "tconfigform.cbtelnetstartup.caption"
+msgid "Start DX cluster automatically"
+msgstr "Запускать DX кластер автоматически"
+
 #: tconfigform.cbtextsizegrid.text
 msgctxt "tconfigform.cbtextsizegrid.text"
 msgid "8 пт"
@@ -1523,6 +1521,10 @@ msgctxt "tconfigform.cbvaliddx.caption"
 msgid "ValidDX"
 msgstr "ValidDX"
 
+#: tconfigform.cbwolenable.caption
+msgid "Enable Work On LAN"
+msgstr ""
+
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
 msgstr "Использовать как справочник?"
@@ -1540,10 +1542,6 @@ msgstr "Показывать диапазоны в метрах"
 msgctxt "tconfigform.checkbox3.caption"
 msgid "Use as a reference?"
 msgstr "Использовать как справочник?"
-
-#: tconfigform.checkbox4.caption
-msgid "Start DX cluster automatically"
-msgstr "Запускать DX кластер автоматически"
 
 #: tconfigform.checkbox5.caption
 msgid "Printing with preview"
@@ -1619,6 +1617,10 @@ msgctxt "tconfigform.gbtelnet.caption"
 msgid "Telnet DX Cluster"
 msgstr "Telnet DX кластер"
 
+#: tconfigform.gbtelnetedit.caption
+msgid "Edit"
+msgstr ""
+
 #: tconfigform.label10.caption
 msgid "Release date:"
 msgstr "Дата выпуска:"
@@ -1638,16 +1640,6 @@ msgstr "Версия:"
 #: tconfigform.label14.caption
 msgid "---"
 msgstr "---"
-
-#: tconfigform.label15.caption
-msgctxt "tconfigform.label15.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tconfigform.label16.caption
-msgctxt "tconfigform.label16.caption"
-msgid "Password"
-msgstr "Пароль"
 
 #: tconfigform.label17.caption
 msgid "Download file:"
@@ -1735,6 +1727,10 @@ msgstr "База данных"
 msgctxt "tconfigform.lbbackcolor.caption"
 msgid "Background color"
 msgstr "Цвет фона"
+
+#: tconfigform.lbcallwol.caption
+msgid "Found Call:"
+msgstr ""
 
 #: tconfigform.lbcataddress.caption
 msgctxt "tconfigform.lbcataddress.caption"
@@ -1831,6 +1827,35 @@ msgstr ""
 msgid "Key Save QSO"
 msgstr ""
 
+#: tconfigform.lbtelnetaddress.caption
+msgctxt "tconfigform.lbtelnetaddress.caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lbtelnetlogin.caption
+#, fuzzy
+msgctxt "tconfigform.lbtelnetlogin.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tconfigform.lbtelnetname.caption
+#, fuzzy
+msgctxt "tconfigform.lbtelnetname.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tconfigform.lbtelnetpassword.caption
+#, fuzzy
+msgctxt "tconfigform.lbtelnetpassword.caption"
+msgid "Password"
+msgstr "Пароль"
+
+#: tconfigform.lbtelnetport.caption
+#, fuzzy
+msgctxt "tconfigform.lbtelnetport.caption"
+msgid "Port"
+msgstr "Порт"
+
 #: tconfigform.lbtextcolor.caption
 #, fuzzy
 msgctxt "tconfigform.lbtextcolor.caption"
@@ -1850,6 +1875,37 @@ msgstr ""
 #: tconfigform.lbtransceivermodel.caption
 msgid "Transceiver Model"
 msgstr ""
+
+#: tconfigform.lbwoladdress.caption
+#, fuzzy
+msgctxt "tconfigform.lbwoladdress.caption"
+msgid "Address:"
+msgstr "Адрес:"
+
+#: tconfigform.lbwollog.caption
+msgid "Log:"
+msgstr ""
+
+#: tconfigform.lbwolport.caption
+msgid "Port:"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[0].caption
+#, fuzzy
+msgctxt "tconfigform.lvtelnet.columns[0].caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tconfigform.lvtelnet.columns[1].caption
+msgctxt "tconfigform.lvtelnet.columns[1].caption"
+msgid "Address"
+msgstr ""
+
+#: tconfigform.lvtelnet.columns[2].caption
+#, fuzzy
+msgctxt "tconfigform.lvtelnet.columns[2].caption"
+msgid "Port"
+msgstr "Порт"
 
 #: tconfigform.pcolors.caption
 msgid "Colors"
@@ -1914,6 +1970,14 @@ msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr "Телнет"
 
+#: tconfigform.tsworklan.caption
+msgid "Work on LAN (UDP)"
+msgstr ""
+
+#: tcontestform.btresetsession.caption
+msgid "New"
+msgstr ""
+
 #: tcontestform.btsave.caption
 #, fuzzy
 msgctxt "tcontestform.btsave.caption"
@@ -1923,10 +1987,6 @@ msgstr "Сохранить"
 #: tcontestform.caption
 msgctxt "tcontestform.caption"
 msgid "Contest Logging"
-msgstr ""
-
-#: tcontestform.cbband.text
-msgid "160M"
 msgstr ""
 
 #: tcontestform.cbmode.text
@@ -1939,11 +1999,7 @@ msgid "25.03.21"
 msgstr ""
 
 #: tcontestform.editexchs.text
-msgid "1"
-msgstr ""
-
-#: tcontestform.editfreq.text
-msgid "1840000"
+msgid "001"
 msgstr ""
 
 #: tcontestform.editrstr.text
@@ -2176,48 +2232,55 @@ msgstr "Прогноз"
 msgid "Messages"
 msgstr "Сообщения"
 
-#: tdxclusterform.virtualstringtree1.header.columns[0].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[0].text"
+#: tdxclusterform.vstcluster.header.columns[0].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[0].text"
 msgid "Band"
 msgstr "Диапазон"
 
-#: tdxclusterform.virtualstringtree1.header.columns[1].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[1].text"
+#: tdxclusterform.vstcluster.header.columns[1].text
+msgctxt "tdxclusterform.vstcluster.header.columns[1].text"
 msgid "DX"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[2].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[2].text"
+#: tdxclusterform.vstcluster.header.columns[2].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[2].text"
 msgid "Spotter"
 msgstr "Споттер"
 
-#: tdxclusterform.virtualstringtree1.header.columns[3].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[3].text"
+#: tdxclusterform.vstcluster.header.columns[3].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[3].text"
 msgid "Frequency"
 msgstr "Частота"
 
-#: tdxclusterform.virtualstringtree1.header.columns[4].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[4].text"
+#: tdxclusterform.vstcluster.header.columns[4].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[4].text"
 msgid "Mode"
 msgstr "Мода"
 
-#: tdxclusterform.virtualstringtree1.header.columns[5].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[5].text"
+#: tdxclusterform.vstcluster.header.columns[5].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[5].text"
 msgid "Comment"
 msgstr "Комментарий"
 
-#: tdxclusterform.virtualstringtree1.header.columns[6].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[6].text"
+#: tdxclusterform.vstcluster.header.columns[6].text
+msgctxt "tdxclusterform.vstcluster.header.columns[6].text"
 msgid "UTC"
 msgstr ""
 
-#: tdxclusterform.virtualstringtree1.header.columns[7].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[7].text"
+#: tdxclusterform.vstcluster.header.columns[7].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[7].text"
 msgid "Grid"
 msgstr "Локатор"
 
-#: tdxclusterform.virtualstringtree1.header.columns[8].text
-msgctxt "tdxclusterform.virtualstringtree1.header.columns[8].text"
+#: tdxclusterform.vstcluster.header.columns[8].text
+#, fuzzy
+msgctxt "tdxclusterform.vstcluster.header.columns[8].text"
 msgid "Country"
 msgstr "Страна"
 
@@ -3161,6 +3224,10 @@ msgctxt "tgridsform.filteritem.caption"
 msgid "Record Filter"
 msgstr "Фильтр записей"
 
+#: tgridsform.filtermarkedqso.caption
+msgid "Marked QSO"
+msgstr ""
+
 #: tgridsform.filternsentqslitem.caption
 msgctxt "tgridsform.filternsentqslitem.caption"
 msgid "Not sent QSL"
@@ -3195,6 +3262,14 @@ msgstr "Пометить QSO"
 msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"
 msgstr "QSL Получена"
+
+#: tgridsform.misendonlan.caption
+msgid "Send on LAN"
+msgstr ""
+
+#: tgridsform.misendonlanany.caption
+msgid "ANY"
+msgstr ""
 
 #: tgridsform.prefixitem.caption
 msgctxt "tgridsform.prefixitem.caption"

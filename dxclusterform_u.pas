@@ -114,15 +114,13 @@ type
 
 var
   dxClusterForm: TdxClusterForm;
-  TelStr: array[1..9] of string;
-  TelServ, TelPort, TelName: string;
   qBands: TSQLQuery;
 
 implementation
 
 uses ClusterFilter_Form_U, MainFuncDM, InitDB_dm, dmFunc_U,
-  ClusterServer_Form_U, MainForm_U, Earth_Form_U, TRXForm_U,
-  sendtelnetspot_form_U, miniform_u, infoDM_U;
+  MainForm_U, Earth_Form_U, TRXForm_U,
+  sendtelnetspot_form_U, miniform_u, infoDM_U, ConfigForm_U;
 
 type
   PTreeData = ^TTreeData;
@@ -242,30 +240,22 @@ end;
 
 procedure TdxClusterForm.LoadClusterString;
 var
-  i, j: integer;
+  i: integer;
+  DefaultDXCluster: string;
 begin
-  for i := 1 to 9 do
-  begin
-    TelStr[i] := INIFile.ReadString('TelnetCluster', 'Server' +
-      IntToStr(i), 'FREERC -> dx.feerc.ru:8000');
-  end;
-  TelName := INIFile.ReadString('TelnetCluster', 'ServerDef',
-    'FREERC -> dx.freerc.ru:8000');
+  DefaultDXCluster := INIFile.ReadString('TelnetCluster', 'ServerDef',
+    'FEERC -> dx.feerc.ru:8000');
   CBServers.Items.Clear;
-  CBServers.Items.AddStrings(TelStr);
-  if CBServers.Items.IndexOf(TelName) > -1 then
-    CBServers.ItemIndex := CBServers.Items.IndexOf(TelName)
+  for i := 0 to High(TARecord) do
+    if Length(TARecord[i].Name) <> 0 then
+      CBServers.Items.Add(TARecord[i].Name + ' -> ' + TARecord[i].Address +
+        ':' + IntToStr(TARecord[i].Port));
+  if CBServers.Items.IndexOf(DefaultDXCluster) > -1 then
+    CBServers.ItemIndex := CBServers.Items.IndexOf(DefaultDXCluster)
   else
     CBServers.ItemIndex := 0;
-
-  i := pos('>', CBServers.Text);
-  j := pos(':', CBServers.Text);
-  //Сервер
-  IniSet.Cluster_Host := copy(CBServers.Text, i + 1, j - i - 1);
-  Delete(IniSet.Cluster_Host, 1, 1);
-  //Порт
-  IniSet.Cluster_Port := copy(CBServers.Text, j + 1, Length(CBServers.Text) - i);
-
+  IniSet.Cluster_Host := TARecord[CBServers.ItemIndex].Address;
+  IniSet.Cluster_Port := IntToStr(TARecord[CBServers.ItemIndex].Port);
 end;
 
 procedure TdxClusterForm.FindCountryFlag(Country: string);
@@ -608,7 +598,8 @@ end;
 
 procedure TdxClusterForm.SBEditServersClick(Sender: TObject);
 begin
-  ClusterServer_Form.Show;
+  ConfigForm.Show;
+  ConfigForm.PControl.ActivePageIndex := 4;
 end;
 
 procedure TdxClusterForm.SpeedButton7Click(Sender: TObject);
@@ -662,6 +653,7 @@ begin
   VSTCluster.Images := FlagList;
   qBands := TSQLQuery.Create(nil);
   qBands.DataBase := InitDB.ServiceDBConnection;
+  MainFunc.LoadTelnetAddress;
   LoadClusterString;
   MainFunc.SetDXColumns(VSTCluster, False, VSTCluster);
   ButtonSet;
@@ -753,16 +745,9 @@ begin
 end;
 
 procedure TdxClusterForm.CBServersChange(Sender: TObject);
-var
-  i, j: integer;
 begin
-  i := pos('>', CBServers.Text);
-  j := pos(':', CBServers.Text);
-  //Сервер
-  IniSet.Cluster_Host := copy(CBServers.Text, i + 1, j - i - 1);
-  Delete(IniSet.Cluster_Host, 1, 1);
-  //Порт
-  IniSet.Cluster_Port := copy(CBServers.Text, j + 1, Length(CBServers.Text) - i);
+  IniSet.Cluster_Host := TARecord[CBServers.ItemIndex].Address;
+  IniSet.Cluster_Port := IntToStr(TARecord[CBServers.ItemIndex].Port);
 end;
 
 procedure TdxClusterForm.CheckClusterTimerTimer(Sender: TObject);

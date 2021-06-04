@@ -862,7 +862,7 @@ end;
 
 procedure TMiniForm.MIContestLoggingClick(Sender: TObject);
 begin
-  ContestForm.Show;
+  ContestForm.ShowModal;
 end;
 
 procedure TMiniForm.ProgramItemClick(Sender: TObject);
@@ -2122,6 +2122,7 @@ begin
   LBLocalTimeD.Caption := FormatDateTime('hh:mm:ss', Now);
   LBUTCTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC);
   LoadComboBoxItem;
+
   GetLanguageIDs(Lang, FallbackLang);
 
   if IniSet.Language = '' then

@@ -53,7 +53,7 @@ implementation
 
 uses
   MainFuncDM, getSession, GetInfoFromInternetThread, MainForm_U,
-  dmFunc_U, GetPhotoFromInternet, InformationForm_U, miniform_u;
+  dmFunc_U, GetPhotoFromInternet, InformationForm_U, miniform_u, contestForm_u;
 
 {$R *.lfm}
 
@@ -167,6 +167,8 @@ begin
   finally
     if InfoR.Sender = 'MainForm' then
       MiniForm.LoadFromInternetCallBook(InfoR);
+    if InfoR.Sender = 'ContestForm' then
+      ContestForm.LoadFromInternetCallBook(InfoR);
     if InfoR.Sender = 'InformationForm' then
       InformationForm.LoadFromInternetCallBook(InfoR);
   end;
