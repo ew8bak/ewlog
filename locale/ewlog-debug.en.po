@@ -1975,6 +1975,11 @@ msgctxt "tcontestform.lbgrid.caption"
 msgid "Grid"
 msgstr ""
 
+#: tcontestform.lbminutetour.caption
+msgctxt "tcontestform.lbminutetour.caption"
+msgid "minutes"
+msgstr ""
+
 #: tcontestform.lbmode.caption
 msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"

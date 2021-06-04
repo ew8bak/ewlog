@@ -2076,6 +2076,11 @@ msgctxt "tcontestform.lbgrid.caption"
 msgid "Grid"
 msgstr "Локатор"
 
+#: tcontestform.lbminutetour.caption
+msgctxt "tcontestform.lbminutetour.caption"
+msgid "minutes"
+msgstr ""
+
 #: tcontestform.lbmode.caption
 #, fuzzy
 msgctxt "tcontestform.lbmode.caption"

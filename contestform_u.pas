@@ -87,6 +87,7 @@ type
     procedure TTimeTimer(Sender: TObject);
   private
     SelEditNumChar: integer;
+    CheckCallsignTourTime: boolean;
     function AddZero(number: integer): string;
     function CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
     function ValidateQSO: boolean;
@@ -115,6 +116,7 @@ begin
     ImDup.Picture.LoadFromLazarusResource('icon_yes')
   else
     ImDup.Picture.LoadFromLazarusResource('icon_no');
+  CheckCallsignTourTime := Status;
 end;
 
 function TContestForm.CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
@@ -195,12 +197,12 @@ begin
     SelEditNumChar := EditCallsign.SelStart;
   if (EditCallsign.SelLength <> 0) and (Key = VK_BACK) then
     SelEditNumChar := EditCallsign.SelStart;
-  if (Key = VK_RETURN) then
+  if (Key = VK_RETURN) and (CheckCallsignTourTime) then
   begin
     if Length(EditCallsign.Text) > 1 then
       EditExchr.SetFocus
     else
-      SBContest.Panels[0].Text := 'Callsign not entered';
+      SBContest.Panels[0].Text := 'Callsign not entered or Duplicate on Tour Time';
   end;
 end;
 
@@ -215,13 +217,14 @@ begin
     EditCallsign.Text := engText;
     exit;
   end;
-  ShowImage(CheckTourTime(EditCallsign.Text, IntToStr(SETime.Value),
-    IniSet.ContestSession));
+  if Length(EditCallsign.Text) > 2 then
+    ShowImage(CheckTourTime(EditCallsign.Text, IntToStr(SETime.Value),
+      IniSet.ContestSession));
 end;
 
 procedure TContestForm.EditCallsignEditingDone(Sender: TObject);
 begin
-  if Length(EditCallsign.Text) > 0 then
+  if Length(EditCallsign.Text) > 2 then
     InfoDM.GetInformation(dmFunc.ExtractCallsign(EditCallsign.Text), 'ContestForm');
 end;
 
