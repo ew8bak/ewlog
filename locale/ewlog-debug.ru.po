@@ -1987,7 +1987,7 @@ msgid "Work on LAN (UDP)"
 msgstr ""
 
 #: tcontestform.btresetsession.caption
-msgid "New"
+msgid "New session"
 msgstr ""
 
 #: tcontestform.btsave.caption

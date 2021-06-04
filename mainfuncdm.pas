@@ -1487,6 +1487,7 @@ begin
   IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
   IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
   IniSet.ContestTourTime := INIFile.ReadInteger('Contest', 'TourTime', 0);
+  IniSet.ContestSession := INIFile.ReadString('Contest', 'ContestSession', 'none');
   IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
   IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
   IniSet.WOLPort := INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
@@ -1934,7 +1935,7 @@ begin
         'QSLInfo, `Call`, State1, State2, State3, State4, WPX, AwardsEx,' +
         'ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,' +
         'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC,' +
-        'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
+        'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC, ContestSession, ContestName) VALUES (' +
         dmFunc.Q(SQSO.CallSing) + dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) +
         dmFunc.Q(SQSO.QSOBand) + dmFunc.Q(SQSO.QSOMode) +
         dmFunc.Q(SQSO.QSOSubMode) + dmFunc.Q(SQSO.QSOReportSent) +
@@ -1958,7 +1959,10 @@ begin
         dmFunc.Q(SQSO.QSL_SENT_VIA) + dmFunc.Q(SQSO.DXCC) +
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
-        dmFunc.Q(SQSO.My_Lon) + QuotedStr(IntToStr(SQSO.SYNC)) + ')';
+        dmFunc.Q(SQSO.My_Lon) +
+        dmFunc.Q(IntToStr(SQSO.SYNC)) +
+        dmFunc.Q(SQSO.ContestSession) +
+        QuotedStr(SQSO.ContestName) + ')';
       WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)

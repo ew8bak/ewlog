@@ -1,10 +1,10 @@
 object ContestForm: TContestForm
-  Left = 369
-  Height = 242
-  Top = 539
+  Left = 332
+  Height = 264
+  Top = 577
   Width = 691
   Caption = 'Contest Logging'
-  ClientHeight = 242
+  ClientHeight = 264
   ClientWidth = 691
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
@@ -66,7 +66,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Control = CBContestName
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = CBContestName
-    Left = 368
+    Left = 254
     Height = 13
     Top = 12
     Width = 85
@@ -81,10 +81,10 @@ object ContestForm: TContestForm
   object CBContestName: TComboBox
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = BtResetSession
-    Left = 458
+    Left = 344
     Height = 27
     Top = 5
-    Width = 180
+    Width = 250
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
@@ -94,14 +94,14 @@ object ContestForm: TContestForm
   end
   object LBDate: TLabel
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = CBContestName
+    AnchorSideTop.Control = SETime
     AnchorSideTop.Side = asrBottom
     Left = 20
     Height = 13
-    Top = 42
+    Top = 68
     Width = 28
     BorderSpacing.Left = 20
-    BorderSpacing.Top = 10
+    BorderSpacing.Top = 5
     Caption = 'Date'
     ParentColor = False
   end
@@ -112,7 +112,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 145
     Height = 13
-    Top = 42
+    Top = 68
     Width = 29
     BorderSpacing.Left = 10
     Caption = 'Time'
@@ -125,7 +125,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 270
     Height = 13
-    Top = 42
+    Top = 68
     Width = 32
     BorderSpacing.Left = 10
     Caption = 'Mode'
@@ -138,7 +138,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 480
     Height = 13
-    Top = 42
+    Top = 68
     Width = 31
     BorderSpacing.Left = 10
     Caption = 'Band'
@@ -151,7 +151,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 580
     Height = 13
-    Top = 42
+    Top = 68
     Width = 63
     BorderSpacing.Left = 10
     Caption = 'Frequency'
@@ -163,7 +163,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 70
     Height = 13
-    Top = 96
+    Top = 122
     Width = 46
     BorderSpacing.Left = 70
     BorderSpacing.Top = 10
@@ -177,7 +177,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 250
     Height = 13
-    Top = 96
+    Top = 122
     Width = 39
     BorderSpacing.Left = 10
     Caption = 'RST(s)'
@@ -190,7 +190,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 340
     Height = 13
-    Top = 96
+    Top = 122
     Width = 46
     BorderSpacing.Left = 10
     Caption = 'Exch(s)'
@@ -203,7 +203,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 430
     Height = 13
-    Top = 96
+    Top = 122
     Width = 38
     BorderSpacing.Left = 10
     Caption = 'RST(r)'
@@ -216,7 +216,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 520
     Height = 13
-    Top = 96
+    Top = 122
     Width = 45
     BorderSpacing.Left = 10
     Caption = 'Exch(r)'
@@ -228,7 +228,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 20
     Height = 26
-    Top = 60
+    Top = 86
     Width = 115
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DateOrder = doNone
@@ -245,7 +245,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 145
     Height = 26
-    Top = 60
+    Top = 86
     Width = 115
     ButtonWidth = 23
     BorderSpacing.Top = 5
@@ -260,7 +260,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 270
     Height = 27
-    Top = 60
+    Top = 86
     Width = 90
     BorderSpacing.Top = 5
     ItemHeight = 0
@@ -273,7 +273,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 480
     Height = 27
-    Top = 60
+    Top = 86
     Width = 90
     BorderSpacing.Top = 5
     ItemHeight = 0
@@ -286,7 +286,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 580
     Height = 26
-    Top = 60
+    Top = 86
     Width = 90
     BorderSpacing.Top = 5
     TabOrder = 8
@@ -297,7 +297,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 70
     Height = 43
-    Top = 114
+    Top = 140
     Width = 170
     BorderSpacing.Top = 5
     CharCase = ecUppercase
@@ -316,7 +316,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 250
     Height = 43
-    Top = 114
+    Top = 140
     Width = 80
     BorderSpacing.Top = 5
     Font.Height = -27
@@ -331,7 +331,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 340
     Height = 43
-    Top = 114
+    Top = 140
     Width = 80
     BorderSpacing.Top = 5
     Font.Height = -27
@@ -346,7 +346,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 430
     Height = 43
-    Top = 114
+    Top = 140
     Width = 80
     BorderSpacing.Top = 5
     Font.Height = -27
@@ -361,7 +361,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 520
     Height = 43
-    Top = 114
+    Top = 140
     Width = 80
     BorderSpacing.Top = 5
     Font.Height = -27
@@ -376,7 +376,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 20
     Height = 13
-    Top = 167
+    Top = 193
     Width = 35
     BorderSpacing.Left = 20
     BorderSpacing.Top = 10
@@ -390,7 +390,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 450
     Height = 13
-    Top = 167
+    Top = 193
     Width = 59
     BorderSpacing.Left = 10
     Caption = 'Comment'
@@ -402,7 +402,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 20
     Height = 26
-    Top = 185
+    Top = 211
     Width = 135
     BorderSpacing.Top = 5
     Font.Height = -12
@@ -415,7 +415,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 450
     Height = 26
-    Top = 185
+    Top = 211
     Width = 135
     BorderSpacing.Top = 5
     Font.Height = -12
@@ -428,7 +428,7 @@ object ContestForm: TContestForm
     AnchorSideBottom.Control = SBContest
     Left = 606
     Height = 25
-    Top = 196
+    Top = 218
     Width = 80
     Anchors = [akRight, akBottom]
     BorderSpacing.Right = 5
@@ -443,7 +443,7 @@ object ContestForm: TContestForm
   object SBContest: TStatusBar
     Left = 0
     Height = 16
-    Top = 226
+    Top = 248
     Width = 691
     Panels = <    
       item
@@ -457,7 +457,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 370
     Height = 27
-    Top = 60
+    Top = 86
     Width = 100
     BorderSpacing.Top = 5
     ItemHeight = 0
@@ -469,7 +469,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Control = LBMode
     Left = 370
     Height = 13
-    Top = 42
+    Top = 68
     Width = 62
     BorderSpacing.Left = 10
     Caption = 'Sub mode'
@@ -479,14 +479,15 @@ object ContestForm: TContestForm
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 643
-    Height = 25
+    Left = 599
+    Height = 29
     Top = 5
-    Width = 43
+    Width = 87
     Anchors = [akTop, akRight]
+    AutoSize = True
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
-    Caption = 'New'
+    Caption = 'New session'
     Color = clRed
     Font.Height = -12
     OnClick = BtResetSessionClick
@@ -499,7 +500,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 165
     Height = 26
-    Top = 185
+    Top = 211
     Width = 135
     BorderSpacing.Top = 5
     Font.Height = -12
@@ -512,7 +513,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 310
     Height = 26
-    Top = 185
+    Top = 211
     Width = 65
     BorderSpacing.Top = 5
     CharCase = ecUppercase
@@ -526,7 +527,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrBottom
     Left = 385
     Height = 26
-    Top = 185
+    Top = 211
     Width = 55
     BorderSpacing.Top = 5
     Font.Height = -12
@@ -540,7 +541,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 165
     Height = 13
-    Top = 167
+    Top = 193
     Width = 25
     BorderSpacing.Left = 10
     Caption = 'QTH'
@@ -553,7 +554,7 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 310
     Height = 13
-    Top = 167
+    Top = 193
     Width = 25
     BorderSpacing.Left = 10
     Caption = 'Grid'
@@ -566,20 +567,19 @@ object ContestForm: TContestForm
     AnchorSideTop.Side = asrCenter
     Left = 385
     Height = 13
-    Top = 167
+    Top = 193
     Width = 32
     BorderSpacing.Left = 10
     Caption = 'State'
     ParentColor = False
   end
   object LBTourTime: TLabel
-    AnchorSideLeft.Control = RBOther
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = RBOther
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = SETime
     AnchorSideTop.Side = asrCenter
-    Left = 234
+    Left = 5
     Height = 13
-    Top = 12
+    Top = 44
     Width = 56
     BorderSpacing.Left = 5
     Caption = 'Tour time'
@@ -590,18 +590,45 @@ object ContestForm: TContestForm
   object SETime: TSpinEdit
     AnchorSideLeft.Control = LBTourTime
     AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = LBTourTime
-    AnchorSideTop.Side = asrCenter
-    Left = 295
+    AnchorSideTop.Control = CBContestName
+    AnchorSideTop.Side = asrBottom
+    Left = 66
     Height = 26
-    Top = 5
+    Top = 37
     Width = 60
     BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
     Font.Height = -12
     MaxValue = 60
     OnChange = SETimeChange
     ParentFont = False
     TabOrder = 22
+  end
+  object ImDup: TImage
+    AnchorSideTop.Control = EditCallsign
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = EditCallsign
+    Left = 22
+    Height = 43
+    Top = 140
+    Width = 43
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 5
+    Proportional = True
+    Stretch = True
+  end
+  object LBMinuteTour: TLabel
+    AnchorSideLeft.Control = SETime
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = SETime
+    AnchorSideTop.Side = asrCenter
+    Left = 131
+    Height = 13
+    Top = 44
+    Width = 49
+    BorderSpacing.Left = 5
+    Caption = 'minutes'
+    ParentColor = False
   end
   object TTime: TTimer
     OnTimer = TTimeTimer

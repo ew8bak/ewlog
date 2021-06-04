@@ -62,13 +62,10 @@ begin
   SQSO.Call := dmFunc.ExtractCallsign(SQSO.CallSing);
   SQSO.WPX := dmFunc.ExtractWPXPrefix(SQSO.CallSing);
   SQSO.DXCC := IntToStr(PFXR.DXCCNum);
-  SQSO.OmQTH := '';
-  SQSO.State0 := '';
-  SQSO.Grid := '';
   SQSO.IOTA := '';
   SQSO.QSLManager := '';
   SQSO.QSOAddInfo := '';
-  SQSO.Marker := '';
+  SQSO.Marker := '0';
   SQSO.State1 := '';
   SQSO.State2 := '';
   SQSO.State3 := '';
@@ -114,7 +111,10 @@ begin
       Query.DataBase := InitDB.ServiceDBConnection;
       Query.SQL.Text := 'SELECT * FROM contest WHERE name = ' + QuotedStr(contestName);
       Query.Open;
-      Result := Query.Fields[2].AsString;
+      if Result <> '' then
+        Result := Query.Fields[2].AsString
+      else
+        Result := contestName;
       Query.Clear;
     finally
       FreeAndNil(Query);
@@ -148,6 +148,8 @@ begin
     finally
       if CBContest.Items.IndexOf(IniSet.ContestName) <> -1 then
         CBContest.ItemIndex := CBContest.Items.IndexOf(IniSet.ContestName)
+      else if IniSet.ContestName <> '' then
+        CBContest.Text := IniSet.ContestName
       else
         CBContest.ItemIndex := 0;
       FreeAndNil(Query);

@@ -122,7 +122,11 @@ begin
         Query.DataBase := InitDB.MySQLConnection;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
-      Query.SQL.Add('ContestSession integer DEFAULT NULL;');
+      Query.SQL.Add('ContestSession TEXT DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('ContestName TEXT DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');

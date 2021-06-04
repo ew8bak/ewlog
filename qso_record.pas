@@ -79,6 +79,8 @@ type
     SYNC: integer;
     NLogDB: string;
     Auto: boolean;
+    ContestSession: string;
+    ContestName: string;
   end;
 
 implementation

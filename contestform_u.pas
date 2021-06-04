@@ -41,6 +41,8 @@ type
     EditCallsign: TEdit;
     EditRSTs: TEdit;
     EditFreq: TEdit;
+    ImDup: TImage;
+    LBMinuteTour: TLabel;
     LBTourTime: TLabel;
     LBQTH: TLabel;
     LBGrid: TLabel;
@@ -86,9 +88,10 @@ type
   private
     SelEditNumChar: integer;
     function AddZero(number: integer): string;
-    function CheckTourTime(Callsign, Time: string): boolean;
+    function CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
     function ValidateQSO: boolean;
     procedure SaveIni;
+    procedure ShowImage(Status: boolean);
 
   public
     procedure LoadFromInternetCallBook(info: TInformRecord);
@@ -106,13 +109,33 @@ uses dmFunc_U, InitDB_dm;
 
 { TContestForm }
 
-function TContestForm.CheckTourTime(Callsign, Time: string): boolean;
+procedure TContestForm.ShowImage(Status: boolean);
+begin
+  if Status then
+    ImDup.Picture.LoadFromLazarusResource('icon_yes')
+  else
+    ImDup.Picture.LoadFromLazarusResource('icon_no');
+end;
+
+function TContestForm.CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
 var
   Query: TSQLQuery;
 begin
   try
-    Result := False;
     Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'SQLite' then
+      Query.DataBase := InitDB.SQLiteConnection
+    else
+      Query.DataBase := InitDB.MySQLConnection;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE ContestSession = ' + QuotedStr(ContestSession) + ' AND ' +
+      ' CallSign = ' + QuotedStr(Callsign) + ' AND ' +
+      ' QSOTime > time(''now'', ''-' + TourTime + ' minutes'')';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := False
+    else
+      Result := True;
   finally
     FreeAndNil(Query);
   end;
@@ -123,6 +146,7 @@ begin
   INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
   INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
   INIFile.WriteInteger('Contest', 'TourTime', IniSet.ContestTourTime);
+  INIFile.WriteString('Contest', 'ContestSession', IniSet.ContestSession);
 end;
 
 procedure TContestForm.LoadFromInternetCallBook(info: TInformRecord);
@@ -191,6 +215,8 @@ begin
     EditCallsign.Text := engText;
     exit;
   end;
+  ShowImage(CheckTourTime(EditCallsign.Text, IntToStr(SETime.Value),
+    IniSet.ContestSession));
 end;
 
 procedure TContestForm.EditCallsignEditingDone(Sender: TObject);
@@ -219,7 +245,7 @@ begin
 
   if Length(EditCallsign.Text) > 1 then
   begin
-    SaveQSOrec.AwardsEx := dmContest.ContestNameToADIf(CBContestName.Text);
+    SaveQSOrec.ContestName := dmContest.ContestNameToADIf(CBContestName.Text);
     SaveQSOrec.QSODate := DEDate.Date;
     SaveQSOrec.QSOTime := TimeToStr(TETime.Time);
     SaveQSOrec.QSOMode := CBMode.Text;
@@ -229,7 +255,12 @@ begin
     SaveQSOrec.QSOReportSent := EditRSTs.Text;
     SaveQSOrec.QSOReportRecived := EditRSTr.Text;
     SaveQSOrec.OmName := EditName.Text;
+    SaveQSOrec.OmQTH := EditQTH.Text;
+    SaveQSOrec.Grid := EditGrid.Text;
+    SaveQSOrec.State0 := EditState.Text;
+    SaveQSOrec.DigiBand := FloatToStr(dmFunc.GetDigiBandFromFreq(EditFreq.Text));
     SaveQSOrec.ShortNote := EditComment.Text;
+    SaveQSOrec.ContestSession := IniSet.ContestSession;
 
     if RBSerial.Checked then
     begin
@@ -278,6 +309,7 @@ begin
   CBContestName.ItemIndex := 0;
   IniSet.ContestName := CBContestName.Text;
   IniSet.ContestTourTime := SETime.Value;
+  IniSet.ContestSession := MainFunc.GenerateRandomID;
   SaveIni;
 end;
 
@@ -317,6 +349,7 @@ end;
 procedure TContestForm.FormCreate(Sender: TObject);
 begin
   dmContest.LoadBands(CBMode.Text, CBBand);
+  ShowImage(True);
 end;
 
 procedure TContestForm.FormShow(Sender: TObject);
@@ -329,6 +362,8 @@ begin
   dmContest.LoadContestName(CBContestName);
   EditExchs.Text := AddZero(IniSet.ContestLastNumber);
   SETime.Value := IniSet.ContestTourTime;
+  if IniSet.ContestSession = 'none' then
+    IniSet.ContestSession := MainFunc.GenerateRandomID;
   EditCallsign.SetFocus;
 end;
 
