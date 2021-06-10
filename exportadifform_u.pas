@@ -16,42 +16,49 @@ interface
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ExtCtrls, ComCtrls, sqldb, LazUTF8, LConvEncoding,
-  ExportADIThread, ResourceStr;
+  ExportADIThread, ExportSOTAThread, ResourceStr;
 
 type
 
   { TexportAdifForm }
 
   TexportAdifForm = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
+    BTExport: TButton;
+    BTCancel: TButton;
+    CBADIExport: TCheckBox;
+    CBExportOnWin: TCheckBox;
+    CBEqslExport: TCheckBox;
+    CBConvertLatin: TCheckBox;
+    CBSotaExport: TCheckBox;
     DateEdit1: TDateEdit;
     DateEdit2: TDateEdit;
     Image1: TImage;
-    Label1: TLabel;
+    LBNumberQSO: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     PbExport: TProgressBar;
     RadioButton1: TRadioButton;
     rbFileExportAll: TRadioButton;
-    SaveDialog1: TSaveDialog;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    SDExport: TSaveDialog;
+    procedure BTExportClick(Sender: TObject);
+    procedure BTCancelClick(Sender: TObject);
+    procedure CBSotaExportChange(Sender: TObject);
+    procedure CBADIExportChange(Sender: TObject);
+    procedure CBEqslExportChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
     procedure rbFileExportAllClick(Sender: TObject);
-    procedure SaveDialog1Close(Sender: TObject);
+    procedure SDExportClose(Sender: TObject);
   private
     FileName: string;
-    procedure StartExport;
+    procedure StartExportADI;
+    procedure StartExportSOTA;
+    function ShowSaveDialog(ADI: boolean): boolean;
     { private declarations }
   public
     procedure FromExportThread(Info: TInfoExport);
+    procedure ExportADIArray;
     { public declarations }
   end;
 
@@ -64,60 +71,45 @@ uses dmFunc_U, InitDB_dm, MainFuncDM;
 
 {$R *.lfm}
 
-procedure TexportAdifForm.FromExportThread(Info: TInfoExport);
+procedure TexportAdifForm.ExportADIArray;
 begin
-  PbExport.Max := Info.AllRec;
-  PbExport.Position := Info.RecCount;
-  Label1.Caption := rNumberOfQSO + ' ' + IntToStr(Info.RecCount) +
-    rOf + IntToStr(Info.AllRec);
-  if Info.Result then
+  if exportAdifForm.ShowSaveDialog(True) then
+    exportAdifForm.StartExportADI;
+end;
+
+function TexportAdifForm.ShowSaveDialog(ADI: boolean): boolean;
+begin
+  Result := False;
+
+  if ADI then
   begin
-    Button1.Enabled := True;
-    ShowMessage(rExportCompl);
-    ExportADIFThread.Terminate;
-    ExportADIFThread := nil;
+    SDExport.DefaultExt := '.adi';
+    SDExport.Filter := '*.adi|*.adi';
+  end
+  else
+  begin
+    SDExport.DefaultExt := '.csv';
+    SDExport.Filter := '*.csv|*.csv';
   end;
-end;
 
-procedure TexportAdifForm.StartExport;
-var
-  PADIExport: TPADIExport;
-begin
-  PADIExport.Path := SysToUTF8(FileName);
-  PADIExport.ExportAll := rbFileExportAll.Checked;
-  PADIExport.DateStart := DateEdit1.Date;
-  PADIExport.DateEnd := DateEdit2.Date;
-  PADIExport.Win1251 := CheckBox2.Checked;
-  PADIExport.RusToLat := CheckBox4.Checked;
-  PADIExport.FromForm := 'ExportAdifForm';
-
-  ExportADIFThread := TExportADIFThread.Create;
-  if Assigned(ExportADIFThread.FatalException) then
-    raise ExportADIFThread.FatalException;
-  ExportADIFThread.PADIExport := PADIExport;
-  ExportADIFThread.Start;
-end;
-
-procedure TexportAdifForm.Button1Click(Sender: TObject);
-begin
-  SaveDialog1.InitialDir := INIFile.ReadString('SetLog', 'ExportPath', '');
-  SaveDialog1.FileName := dmFunc.ExtractCallsign(DBRecord.CurrCall) +
+  SDExport.InitialDir := INIFile.ReadString('SetLog', 'ExportPath', '');
+  SDExport.FileName := dmFunc.ExtractCallsign(DBRecord.CurrCall) +
     '_' + FormatDateTime('yyyy-mm-dd-hhnnss', now);
 
-  if SaveDialog1.Execute then
+  if SDExport.Execute then
   begin
-    if SaveDialog1.FileName = '' then
+    if SDExport.FileName = '' then
     begin
       Application.MessageBox(
         PChar(pPleaseFile), PChar(rWarning),
         mb_ok + mb_IconWarning);
-      exit;
+      Exit;
     end;
-    FileName := SysToUTF8(SaveDialog1.FileName);
-    if CheckBox1.Checked then
+    FileName := SysToUTF8(SDExport.FileName);
+    if CBADIExport.Checked or CBSotaExport.Checked then
     begin
-      Button1.Enabled := False;
-      StartExport;
+      BTExport.Enabled := False;
+      Result := True;
     end
     else
       Application.MessageBox(PChar(rNoMethodExport),
@@ -126,7 +118,87 @@ begin
   end;
 end;
 
-procedure TexportAdifForm.Button2Click(Sender: TObject);
+procedure TexportAdifForm.FromExportThread(Info: TInfoExport);
+begin
+  PbExport.Max := Info.AllRec;
+  PbExport.Position := Info.RecCount;
+  LBNumberQSO.Caption := rNumberOfQSO + ' ' + IntToStr(Info.RecCount) +
+    rOf + IntToStr(Info.AllRec);
+  if Info.Result then
+  begin
+    BTExport.Enabled := True;
+    ShowMessage(rExportCompl);
+    if Info.From = 'ADIF' then
+    begin
+      ExportADIFThread.Terminate;
+      ExportADIFThread := nil;
+    end;
+    if Info.From = 'SOTA' then
+    begin
+      ExportSOTAFThread.Terminate;
+      ExportSOTAFThread := nil;
+    end;
+  end;
+end;
+
+procedure TexportAdifForm.StartExportSOTA;
+var
+  PSOTAExport: TPSOTAExport;
+begin
+  PSOTAExport.MySOTAreference := '';
+  if InputQuery('My SOTA summit Reference', rInputMySotaRef, True,
+    PSOTAExport.MySOTAreference) then
+  begin
+    PSOTAExport.Path := SysToUTF8(FileName);
+    PSOTAExport.ExportAll := rbFileExportAll.Checked;
+    PSOTAExport.DateStart := DateEdit1.Date;
+    PSOTAExport.DateEnd := DateEdit2.Date;
+    PSOTAExport.Win1251 := CBExportOnWin.Checked;
+    PSOTAExport.RusToLat := CBConvertLatin.Checked;
+    PSOTAExport.FromForm := 'ExportAdifForm';
+    ExportSOTAFThread := TExportSOTAFThread.Create;
+    if Assigned(ExportSOTAFThread.FatalException) then
+      raise ExportSOTAFThread.FatalException;
+    ExportSOTAFThread.PSOTAExport := PSOTAExport;
+    ExportSOTAFThread.Start;
+  end
+  else
+    BTExport.Enabled := True;
+end;
+
+procedure TexportAdifForm.StartExportADI;
+var
+  PADIExport: TPADIExport;
+begin
+  PADIExport.Path := SysToUTF8(FileName);
+  PADIExport.ExportAll := rbFileExportAll.Checked;
+  PADIExport.DateStart := DateEdit1.Date;
+  PADIExport.DateEnd := DateEdit2.Date;
+  PADIExport.Win1251 := CBExportOnWin.Checked;
+  PADIExport.RusToLat := CBConvertLatin.Checked;
+  PADIExport.FromForm := 'ExportAdifForm';
+  ExportADIFThread := TExportADIFThread.Create;
+  if Assigned(ExportADIFThread.FatalException) then
+    raise ExportADIFThread.FatalException;
+  ExportADIFThread.PADIExport := PADIExport;
+  ExportADIFThread.Start;
+end;
+
+procedure TexportAdifForm.BTExportClick(Sender: TObject);
+begin
+  if CBADIExport.Checked then
+    if ShowSaveDialog(CBADIExport.Checked) then
+      StartExportADI;
+  if CBSotaExport.Checked then
+    if ShowSaveDialog(CBADIExport.Checked) then
+      StartExportSOTA;
+  if not CBADIExport.Checked and not CBSotaExport.Checked then
+    Application.MessageBox(PChar(rNoMethodExport),
+      PChar(rWarning),
+      mb_ok + mb_IconWarning);
+end;
+
+procedure TexportAdifForm.BTCancelClick(Sender: TObject);
 begin
   if ExportADIFThread <> nil then
   begin
@@ -137,6 +209,33 @@ begin
     exportAdifForm.Close;
 end;
 
+procedure TexportAdifForm.CBSotaExportChange(Sender: TObject);
+begin
+  if CBSotaExport.Checked then
+  begin
+    CBEqslExport.Checked := False;
+    CBADIExport.Checked := False;
+  end;
+end;
+
+procedure TexportAdifForm.CBADIExportChange(Sender: TObject);
+begin
+  if CBADIExport.Checked then
+  begin
+    CBEqslExport.Checked := False;
+    CBSotaExport.Checked := False;
+  end;
+end;
+
+procedure TexportAdifForm.CBEqslExportChange(Sender: TObject);
+begin
+  if CBEqslExport.Checked then
+  begin
+    CBADIExport.Checked := False;
+    CBSotaExport.Checked := False;
+  end;
+end;
+
 procedure TexportAdifForm.FormShow(Sender: TObject);
 begin
   if rbFileExportAll.Checked = True then
@@ -144,9 +243,9 @@ begin
     DateEdit1.Enabled := False;
     DateEdit2.Enabled := False;
   end;
-  Button1.Caption := rExport;
+  BTExport.Caption := rExport;
   Label2.Caption := '';
-  Label1.Caption := rNumberOfQSO0;
+  LBNumberQSO.Caption := rNumberOfQSO0;
   PbExport.Position := 0;
 end;
 
@@ -168,9 +267,9 @@ begin
   end;
 end;
 
-procedure TexportAdifForm.SaveDialog1Close(Sender: TObject);
+procedure TexportAdifForm.SDExportClose(Sender: TObject);
 begin
-  INIFile.WriteString('SetLog', 'ExportPath', ExtractFilePath(SaveDialog1.FileName));
+  INIFile.WriteString('SetLog', 'ExportPath', ExtractFilePath(SDExport.FileName));
 end;
 
 end.

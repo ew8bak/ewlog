@@ -18,6 +18,7 @@ uses
 
 type
   TInfoExport = record
+    From: string;
     AllRec: integer;
     RecCount: integer;
     ErrorStr: string;
@@ -514,6 +515,7 @@ end;
 
 procedure TExportADIFThread.ToForm;
 begin
+  Info.From:='ADIF';
   if Info.ErrorCode <> 0 then
     Application.MessageBox(PChar(rErrorOpenFile + ' ' + IntToStr(IOResult)),
       PChar(rError), mb_ok + mb_IconError);

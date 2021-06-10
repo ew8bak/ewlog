@@ -299,7 +299,7 @@ begin
         'UnUsedIndex').AsInteger;
     end;
     ExportAdifSelect := True;
-    exportAdifForm.Button1.Click;
+    exportAdifForm.ExportADIArray;
   end;
 end;
 

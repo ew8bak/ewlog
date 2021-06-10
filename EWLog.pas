@@ -21,18 +21,18 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   uRigControl, TRXForm_U, lnetvisual, hrdlog, SettingsProgramForm_U,
   AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U, Changelog_Form_U,
   Earth_Form_U, IOTA_Form_U, sendtelnetspot_form_U, ClusterFilter_Form_U,
-  WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u,
-  filterForm_U, hiddentsettings_u, print_sticker_u, famm_u, mmform_u, hamqth,
-  clublog, qrzcom, qso_record, resourcestr, const_u, download_lotw,
-  download_eqslcc, DownloadUpdates, SetupSQLquery, flDigiModem,
-  GetPhotoFromInternet, GetInfoFromInternetThread, viewPhoto_U,
-  LogBookTable_record, DB_record, MainFuncDM, InitDB_dm, prefix_record,
-  inifile_record, selectQSO_record, foundQSO_record, cloudlog, init_record,
-  WsjtUtils, digi_record, inform_record, infoDM_U, getSession, miniform_u,
-  ImbedCallBookCheckRec, serverDM_u, telnetClientThread, dxclusterform_u,
-  GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread, ExportADIThread,
-  MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u, dmCat,
-  contestForm_u, dmContest_u, FMS_record, telnetaddresrecord_u, dmmigrate_u;
+  WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U, hiddentsettings_u,
+  print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom, qso_record,
+  resourcestr, const_u, download_lotw, download_eqslcc, DownloadUpdates,
+  SetupSQLquery, flDigiModem, GetPhotoFromInternet, GetInfoFromInternetThread,
+  viewPhoto_U, LogBookTable_record, DB_record, MainFuncDM, InitDB_dm,
+  prefix_record, inifile_record, selectQSO_record, foundQSO_record, cloudlog,
+  init_record, WsjtUtils, digi_record, inform_record, infoDM_U, getSession,
+  miniform_u, ImbedCallBookCheckRec, serverDM_u, telnetClientThread,
+  dxclusterform_u, GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread,
+  ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
+  dmCat, contestForm_u, dmContest_u, FMS_record, telnetaddresrecord_u,
+  dmmigrate_u, ExportSOTAThread;
 
 {$R *.res}
 

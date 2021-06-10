@@ -578,6 +578,10 @@ msgctxt "resourcestr.rinformationfromqrzru"
 msgid "Information from QRZ.ru"
 msgstr "Информация из QRZ.RU"
 
+#: resourcestr.rinputmysotaref
+msgid "Please input My SOTA summit Reference"
+msgstr ""
+
 #: resourcestr.riota
 msgctxt "resourcestr.riota"
 msgid "IOTA"
@@ -2781,40 +2785,49 @@ msgstr ""
 msgid "Auto credit for the award"
 msgstr ""
 
-#: texportadifform.button1.caption
-msgctxt "texportadifform.button1.caption"
-msgid "Export"
-msgstr "Экспорт"
-
-#: texportadifform.button2.caption
-msgctxt "texportadifform.button2.caption"
+#: texportadifform.btcancel.caption
+#, fuzzy
+msgctxt "texportadifform.btcancel.caption"
 msgid "Cancel"
 msgstr "Отмена"
+
+#: texportadifform.btexport.caption
+#, fuzzy
+msgctxt "texportadifform.btexport.caption"
+msgid "Export"
+msgstr "Экспорт"
 
 #: texportadifform.caption
 msgid "Export ADIF"
 msgstr "Экспорт ADIF"
 
-#: texportadifform.checkbox1.caption
+#: texportadifform.cbadiexport.caption
+#, fuzzy
+msgctxt "texportadifform.cbadiexport.caption"
 msgid "Export to ADIF"
 msgstr "Экспорт в ADIF"
 
-#: texportadifform.checkbox2.caption
-msgid "Export on Win1251"
-msgstr "Экспорт в Win1251"
-
-#: texportadifform.checkbox3.caption
-msgid "Export to eQSL"
-msgstr "Экспорт в eQSL"
-
-#: texportadifform.checkbox4.caption
+#: texportadifform.cbconvertlatin.caption
+#, fuzzy
+msgctxt "texportadifform.cbconvertlatin.caption"
 msgid "Convert to Latin"
 msgstr "Перевести в латиницу"
 
-#: texportadifform.label1.caption
-msgctxt "texportadifform.label1.caption"
-msgid "Number of QSO: 0"
-msgstr "Количество записей: 0"
+#: texportadifform.cbeqslexport.caption
+#, fuzzy
+msgctxt "texportadifform.cbeqslexport.caption"
+msgid "Export to eQSL"
+msgstr "Экспорт в eQSL"
+
+#: texportadifform.cbexportonwin.caption
+#, fuzzy
+msgctxt "texportadifform.cbexportonwin.caption"
+msgid "Export on Win1251"
+msgstr "Экспорт в Win1251"
+
+#: texportadifform.cbsotaexport.caption
+msgid "Export to SOTA"
+msgstr ""
 
 #: texportadifform.label3.caption
 msgid "From"
@@ -2824,6 +2837,12 @@ msgstr "Из"
 msgid "To"
 msgstr "в"
 
+#: texportadifform.lbnumberqso.caption
+#, fuzzy
+msgctxt "texportadifform.lbnumberqso.caption"
+msgid "Number of QSO: 0"
+msgstr "Количество записей: 0"
+
 #: texportadifform.radiobutton1.caption
 msgid "Selected date interval"
 msgstr "Выбрать интервал дат"
@@ -2832,7 +2851,9 @@ msgstr "Выбрать интервал дат"
 msgid "Export all showed contacts"
 msgstr "Экспортировать всё"
 
-#: texportadifform.savedialog1.title
+#: texportadifform.sdexport.title
+#, fuzzy
+msgctxt "texportadifform.sdexport.title"
 msgid "Save file as"
 msgstr "Сохранить файл как"
 

@@ -562,6 +562,10 @@ msgctxt "resourcestr.rinformationfromqrzru"
 msgid "Information from QRZ.ru"
 msgstr ""
 
+#: resourcestr.rinputmysotaref
+msgid "Please input My SOTA summit Reference"
+msgstr ""
+
 #: resourcestr.riota
 msgctxt "resourcestr.riota"
 msgid "IOTA"
@@ -2666,39 +2670,42 @@ msgstr ""
 msgid "Auto credit for the award"
 msgstr ""
 
-#: texportadifform.button1.caption
-msgctxt "texportadifform.button1.caption"
-msgid "Export"
+#: texportadifform.btcancel.caption
+msgctxt "texportadifform.btcancel.caption"
+msgid "Cancel"
 msgstr ""
 
-#: texportadifform.button2.caption
-msgctxt "texportadifform.button2.caption"
-msgid "Cancel"
+#: texportadifform.btexport.caption
+msgctxt "texportadifform.btexport.caption"
+msgid "Export"
 msgstr ""
 
 #: texportadifform.caption
 msgid "Export ADIF"
 msgstr ""
 
-#: texportadifform.checkbox1.caption
+#: texportadifform.cbadiexport.caption
+msgctxt "texportadifform.cbadiexport.caption"
 msgid "Export to ADIF"
 msgstr ""
 
-#: texportadifform.checkbox2.caption
-msgid "Export on Win1251"
-msgstr ""
-
-#: texportadifform.checkbox3.caption
-msgid "Export to eQSL"
-msgstr ""
-
-#: texportadifform.checkbox4.caption
+#: texportadifform.cbconvertlatin.caption
+msgctxt "texportadifform.cbconvertlatin.caption"
 msgid "Convert to Latin"
 msgstr ""
 
-#: texportadifform.label1.caption
-msgctxt "texportadifform.label1.caption"
-msgid "Number of QSO: 0"
+#: texportadifform.cbeqslexport.caption
+msgctxt "texportadifform.cbeqslexport.caption"
+msgid "Export to eQSL"
+msgstr ""
+
+#: texportadifform.cbexportonwin.caption
+msgctxt "texportadifform.cbexportonwin.caption"
+msgid "Export on Win1251"
+msgstr ""
+
+#: texportadifform.cbsotaexport.caption
+msgid "Export to SOTA"
 msgstr ""
 
 #: texportadifform.label3.caption
@@ -2709,6 +2716,11 @@ msgstr ""
 msgid "To"
 msgstr ""
 
+#: texportadifform.lbnumberqso.caption
+msgctxt "texportadifform.lbnumberqso.caption"
+msgid "Number of QSO: 0"
+msgstr ""
+
 #: texportadifform.radiobutton1.caption
 msgid "Selected date interval"
 msgstr ""
@@ -2717,7 +2729,8 @@ msgstr ""
 msgid "Export all showed contacts"
 msgstr ""
 
-#: texportadifform.savedialog1.title
+#: texportadifform.sdexport.title
+msgctxt "texportadifform.sdexport.title"
 msgid "Save file as"
 msgstr ""
 

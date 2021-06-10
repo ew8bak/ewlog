@@ -88,10 +88,7 @@ type
   private
     SelEditNumChar: integer;
     CheckCallsignTourTime: boolean;
-    function AddZero(number: integer): string;
-    function CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
     function ValidateQSO: boolean;
-    procedure SaveIni;
     procedure ShowImage(Status: boolean);
 
   public
@@ -119,38 +116,6 @@ begin
   CheckCallsignTourTime := Status;
 end;
 
-function TContestForm.CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
-var
-  Query: TSQLQuery;
-begin
-  try
-    Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'SQLite' then
-      Query.DataBase := InitDB.SQLiteConnection
-    else
-      Query.DataBase := InitDB.MySQLConnection;
-    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE ContestSession = ' + QuotedStr(ContestSession) + ' AND ' +
-      ' CallSign = ' + QuotedStr(Callsign) + ' AND ' +
-      ' QSOTime > time(''now'', ''-' + TourTime + ' minutes'')';
-    Query.Open;
-    if Query.RecordCount > 0 then
-      Result := False
-    else
-      Result := True;
-  finally
-    FreeAndNil(Query);
-  end;
-end;
-
-procedure TContestForm.SaveIni;
-begin
-  INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
-  INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
-  INIFile.WriteInteger('Contest', 'TourTime', IniSet.ContestTourTime);
-  INIFile.WriteString('Contest', 'ContestSession', IniSet.ContestSession);
-end;
-
 procedure TContestForm.LoadFromInternetCallBook(info: TInformRecord);
 begin
   if Length(info.Name) > 0 then
@@ -164,27 +129,6 @@ begin
     SBContest.Panels[0].Text := info.Error
   else
     SBContest.Panels[0].Text := '';
-end;
-
-function TContestForm.AddZero(number: integer): string;
-begin
-  if (Length(IntToStr(number)) > 0) and (Length(IntToStr(number)) <= 1) then
-  begin
-    Result := '00' + IntToStr(number);
-    Exit;
-  end;
-
-  if (Length(IntToStr(number)) > 1) and (Length(IntToStr(number)) <= 2) then
-  begin
-    Result := '0' + IntToStr(number);
-    Exit;
-  end;
-
-  if Length(IntToStr(number)) > 2 then
-  begin
-    Result := IntToStr(number);
-    Exit;
-  end;
 end;
 
 procedure TContestForm.EditCallsignKeyDown(Sender: TObject; var Key: word;
@@ -218,7 +162,7 @@ begin
     exit;
   end;
   if Length(EditCallsign.Text) > 2 then
-    ShowImage(CheckTourTime(EditCallsign.Text, IntToStr(SETime.Value),
+    ShowImage(dmContest.CheckTourTime(EditCallsign.Text, IntToStr(SETime.Value),
       IniSet.ContestSession));
 end;
 
@@ -288,9 +232,9 @@ begin
     dmContest.SaveQSOContest(SaveQSOrec);
     SBContest.Panels[0].Text := rSave + ' ' + EditCallsign.Text + ' OK';
     Inc(IniSet.ContestLastNumber);
-    EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+    EditExchs.Text := dmContest.AddZero(IniSet.ContestLastNumber);
 
-    SaveIni;
+    dmContest.SaveIni;
     EditCallsign.Clear;
     EditExchr.Clear;
     EditName.Clear;
@@ -308,12 +252,12 @@ procedure TContestForm.BtResetSessionClick(Sender: TObject);
 begin
   IniSet.ContestLastNumber := 1;
   SETime.Value := 0;
-  EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+  EditExchs.Text := dmContest.AddZero(IniSet.ContestLastNumber);
   CBContestName.ItemIndex := 0;
   IniSet.ContestName := CBContestName.Text;
   IniSet.ContestTourTime := SETime.Value;
   IniSet.ContestSession := MainFunc.GenerateRandomID;
-  SaveIni;
+  dmContest.SaveIni;
 end;
 
 procedure TContestForm.BtSaveKeyDown(Sender: TObject; var Key: word;
@@ -363,7 +307,7 @@ begin
     EditExchs.NumbersOnly := True;
   end;
   dmContest.LoadContestName(CBContestName);
-  EditExchs.Text := AddZero(IniSet.ContestLastNumber);
+  EditExchs.Text := dmContest.AddZero(IniSet.ContestLastNumber);
   SETime.Value := IniSet.ContestTourTime;
   if IniSet.ContestSession = 'none' then
     IniSet.ContestSession := MainFunc.GenerateRandomID;

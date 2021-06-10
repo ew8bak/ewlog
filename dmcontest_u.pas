@@ -25,7 +25,10 @@ type
     procedure LoadContestName(var CBContest: TComboBox);
     procedure SaveQSOContest(SQSO: TQSO);
     procedure LoadBands(Mode: string; var CBBand: TComboBox);
+    procedure SaveIni;
     function ContestNameToADIf(contestName: string): string;
+    function CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
+    function AddZero(number: integer): string;
 
   end;
 
@@ -35,6 +38,59 @@ var
 implementation
 
 {$R *.lfm}
+
+function TdmContest.AddZero(number: integer): string;
+begin
+  if (Length(IntToStr(number)) > 0) and (Length(IntToStr(number)) <= 1) then
+  begin
+    Result := '00' + IntToStr(number);
+    Exit;
+  end;
+
+  if (Length(IntToStr(number)) > 1) and (Length(IntToStr(number)) <= 2) then
+  begin
+    Result := '0' + IntToStr(number);
+    Exit;
+  end;
+
+  if Length(IntToStr(number)) > 2 then
+  begin
+    Result := IntToStr(number);
+    Exit;
+  end;
+end;
+
+procedure TdmContest.SaveIni;
+begin
+  INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
+  INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
+  INIFile.WriteInteger('Contest', 'TourTime', IniSet.ContestTourTime);
+  INIFile.WriteString('Contest', 'ContestSession', IniSet.ContestSession);
+end;
+
+function TdmContest.CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
+var
+  Query: TSQLQuery;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'SQLite' then
+      Query.DataBase := InitDB.SQLiteConnection
+    else
+      Query.DataBase := InitDB.MySQLConnection;
+    Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+      ' WHERE ContestSession = ' + QuotedStr(ContestSession) + ' AND ' +
+      ' CallSign = ' + QuotedStr(Callsign) + ' AND ' +
+      ' QSOTime > time(''now'', ''-' + TourTime + ' minutes'')';
+    Query.Open;
+    if Query.RecordCount > 0 then
+      Result := False
+    else
+      Result := True;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
 
 procedure TdmContest.LoadBands(Mode: string; var CBBand: TComboBox);
 var
@@ -46,7 +102,6 @@ begin
       CBBand.Items.Add(MainFunc.LoadBands(Mode)[i])
     else
       CBBand.Items.Add(dmFunc.GetBandFromFreq(MainFunc.LoadBands(Mode)[i]));
-  //CBBand.ItemIndex := IniSet.PastBand;
 end;
 
 procedure TdmContest.SaveQSOContest(SQSO: TQSO);
