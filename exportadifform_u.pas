@@ -146,7 +146,7 @@ var
   PSOTAExport: TPSOTAExport;
 begin
   PSOTAExport.MySOTAreference := '';
-  if InputQuery('My SOTA summit Reference', rInputMySotaRef, True,
+  if InputQuery('My SOTA summit Reference', rInputMySotaRef, False,
     PSOTAExport.MySOTAreference) then
   begin
     PSOTAExport.Path := SysToUTF8(FileName);

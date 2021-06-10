@@ -78,8 +78,8 @@
         <UnitName Value="ExportAdifForm_u"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="43"/>
-        <CursorPos X="37" Y="148"/>
+        <TopLine Value="131"/>
+        <CursorPos X="67" Y="149"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -680,8 +680,8 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="1409"/>
-        <CursorPos X="34" Y="1445"/>
+        <TopLine Value="897"/>
+        <CursorPos X="19" Y="900"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -799,7 +799,7 @@
         <UnitName Value="progressForm_u"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="188"/>
       </Unit81>
       <Unit82>
         <Filename Value="dmcat.pas"/>
@@ -811,7 +811,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="60"/>
         <CursorPos X="30" Y="103"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="160"/>
       </Unit82>
       <Unit83>
         <Filename Value="contestform_u.pas"/>
@@ -823,7 +823,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="233"/>
         <CursorPos X="54" Y="20"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="133"/>
         <Loaded Value="True"/>
       </Unit83>
       <Unit84>
@@ -836,7 +836,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="14" Y="31"/>
-        <UsageCount Value="128"/>
+        <UsageCount Value="129"/>
       </Unit84>
       <Unit85>
         <Filename Value="fms_record.pas"/>
@@ -844,14 +844,14 @@
         <UnitName Value="FMS_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="8" Y="24"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="112"/>
       </Unit85>
       <Unit86>
         <Filename Value="ico\telnetaddresrecord_u.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="62"/>
       </Unit86>
       <Unit87>
         <Filename Value="dmmigrate_u.pas"/>
@@ -862,7 +862,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="200"/>
         <CursorPos X="67" Y="214"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit87>
@@ -871,8 +871,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportSOTAThread"/>
         <EditorIndex Value="4"/>
+        <TopLine Value="68"/>
         <CursorPos X="77" Y="109"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit88>
       <Unit89>
@@ -1836,7 +1837,7 @@
         <UsageCount Value="8"/>
       </Unit217>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="dmmigrate_u.pas"/>
         <Caret Line="19" Column="14"/>
@@ -1953,6 +1954,10 @@
         <Filename Value="dmmigrate_u.pas"/>
         <Caret Line="58" TopLine="45"/>
       </Position29>
+      <Position30>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1451" Column="34" TopLine="1415"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

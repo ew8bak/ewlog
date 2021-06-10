@@ -4372,8 +4372,10 @@ msgid "Configure program"
 msgstr "Настройка программы"
 
 #: tminiform.menuitem53.caption
+#, fuzzy
+#| msgid "Format ADIF"
 msgctxt "tminiform.menuitem53.caption"
-msgid "Format ADIF"
+msgid "Format ADIF or SOTA"
 msgstr "Формат ADIF"
 
 #: tminiform.menuitem54.caption

@@ -4252,7 +4252,7 @@ msgstr ""
 
 #: tminiform.menuitem53.caption
 msgctxt "tminiform.menuitem53.caption"
-msgid "Format ADIF"
+msgid "Format ADIF or SOTA"
 msgstr ""
 
 #: tminiform.menuitem54.caption
