@@ -76,9 +76,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="131"/>
+        <TopLine Value="86"/>
         <CursorPos X="67" Y="149"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -502,6 +501,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
         <EditorIndex Value="5"/>
+        <TopLine Value="110"/>
         <CursorPos X="49" Y="124"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -859,9 +859,10 @@
         <ComponentName Value="dmMigrate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="200"/>
-        <CursorPos X="67" Y="214"/>
+        <TopLine Value="117"/>
+        <CursorPos X="23" Y="127"/>
         <UsageCount Value="42"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1823,14 +1824,14 @@
         <UsageCount Value="6"/>
       </Unit215>
       <Unit216>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\include\listitem.inc"/>
+        <Filename Value="C:\usr\lib\lazarus\lcl\include\listitem.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="711"/>
         <CursorPos Y="732"/>
         <UsageCount Value="8"/>
       </Unit216>
       <Unit217>
-        <Filename Value="..\..\..\..\usr\lib\lazarus\lcl\include\customlistview.inc"/>
+        <Filename Value="C:\usr\lib\lazarus\lcl\include\customlistview.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="603"/>
         <CursorPos Y="624"/>
