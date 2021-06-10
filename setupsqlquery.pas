@@ -121,6 +121,7 @@ begin
     ' `DXCC` varchar(5) DEFAULT NULL, `USERS` varchar(5) DEFAULT NULL,' +
     ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), ' +
     ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15), `SYNC` tinyint(1) DEFAULT 0,'+
+    ' `SOTA_REF` TEXT DEFAULT NULL, `MY_SOTA_REF` TEXT DEFAULT NULL,'+
     ' `ContestSession` TEXT DEFAULT NULL, `ContestName` TEXT DEFAULT NULL, `EQSL_QSL_SENT` varchar(2) DEFAULT N, `HAMLOGRec` tinyint(1) DEFAULT 0, '+
     ' `CLUBLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `CLUBLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
     ' `HRDLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HRDLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+

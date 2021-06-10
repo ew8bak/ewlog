@@ -220,6 +220,7 @@ resourcestring
   rLibHamLibNotFound = 'HamLib library not found';
   rThisNameAlreadyExists = 'This name already exists';
   rDBNeedUpdate = 'The database structure needs to be updated to version:';
+  rInputMySotaRef = 'Please input My SOTA summit Reference';
 
 implementation
 

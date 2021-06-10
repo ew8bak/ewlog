@@ -163,7 +163,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="88">
+    <Units Count="89">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -712,6 +712,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit87>
+      <Unit88>
+        <Filename Value="exportsotathread.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ExportSOTAThread"/>
+      </Unit88>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

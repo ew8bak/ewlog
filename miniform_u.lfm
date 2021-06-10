@@ -2084,7 +2084,7 @@ object MiniForm: TMiniForm
       object MenuItem61: TMenuItem
         Caption = 'Export Information from a Logbook to'
         object MenuItem53: TMenuItem
-          Caption = 'Format ADIF'
+          Caption = 'Format ADIF or SOTA'
           OnClick = MenuItem53Click
         end
       end
