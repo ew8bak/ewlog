@@ -179,7 +179,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton12Click(Sender: TObject);
 begin
-  QSLManager_Form.Show;
+  QSLManager_Form.ShowModal;
 end;
 
 procedure TEditQSO_Form.SpeedButton1Click(Sender: TObject);
@@ -192,7 +192,7 @@ begin
   //MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'ARRLList';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('ARRLPrefix', Edit7.Text, []);
-  CountryEditForm.Show;
+  CountryEditForm.ShowModal;
 end;
 
 procedure TEditQSO_Form.SpeedButton2Click(Sender: TObject);
@@ -206,12 +206,12 @@ begin
   //MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'Province';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('Prefix', Edit8.Text, []);
-  CountryEditForm.Show;
+  CountryEditForm.ShowModal;
 end;
 
 procedure TEditQSO_Form.SpeedButton9Click(Sender: TObject);
 begin
-  IOTA_Form.Show;
+  IOTA_Form.ShowModal;
 end;
 
 procedure TEditQSO_Form.Button1Click(Sender: TObject);
@@ -450,7 +450,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton10Click(Sender: TObject);
 begin
-  STATE_Form.Show;
+  STATE_Form.ShowModal;
 end;
 
 end.
