@@ -146,7 +146,7 @@ begin
     if Length(EditCallsign.Text) > 1 then
       EditExchr.SetFocus
     else
-      SBContest.Panels[0].Text := 'Callsign not entered or Duplicate on Tour Time';
+      SBContest.Panels[0].Text := rCallsignNotRnteredOrDuplicateOnTourTime;
   end;
 end;
 
@@ -186,7 +186,7 @@ var
 begin
   if not ValidateQSO then
   begin
-    SBContest.Panels[0].Text := 'ERROR Field not entered';
+    SBContest.Panels[0].Text := rERRORFieldnotentered;
     Exit;
   end;
 
@@ -215,7 +215,7 @@ begin
         SaveQSOrec.SRX := StrToInt(EditExchr.Text);
         SaveQSOrec.STX := StrToInt(EditExchs.Text);
       except
-        SBContest.Panels[0].Text := 'ERROR Field not entered';
+        SBContest.Panels[0].Text := rERRORFieldnotentered;
         EditExchr.SetFocus;
         Exit;
       end;
@@ -244,7 +244,7 @@ begin
     EditComment.Clear;
   end
   else
-    SBContest.Panels[0].Text := 'Nothing to save';
+    SBContest.Panels[0].Text := rNothingtosave;
   EditCallsign.SetFocus;
 end;
 

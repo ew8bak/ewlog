@@ -221,6 +221,9 @@ resourcestring
   rThisNameAlreadyExists = 'This name already exists';
   rDBNeedUpdate = 'The database structure needs to be updated to version:';
   rInputMySotaRef = 'Please input My SOTA summit Reference';
+  rNothingtosave = 'Nothing to save';
+  rERRORFieldnotentered = 'ERROR Field not entered';
+  rCallsignNotRnteredOrDuplicateOnTourTime = 'Callsign not entered or Duplicate on Tour Time';
 
 implementation
 
