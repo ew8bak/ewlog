@@ -271,6 +271,10 @@ msgstr ""
 msgid "Recipient callsign not entered"
 msgstr ""
 
+#: resourcestr.rcallsignnotrnteredorduplicateontourtime
+msgid "Callsign not entered or Duplicate on Tour Time"
+msgstr ""
+
 #: resourcestr.rcannotdeldef
 msgctxt "resourcestr.rcannotdeldef"
 msgid "Cannot delete default or current log"
@@ -443,6 +447,10 @@ msgstr ""
 #: resourcestr.rerror
 msgctxt "resourcestr.rerror"
 msgid "Error"
+msgstr ""
+
+#: resourcestr.rerrorfieldnotentered
+msgid "ERROR Field not entered"
 msgstr ""
 
 #: resourcestr.rerroropenfile
@@ -707,6 +715,10 @@ msgstr ""
 #: resourcestr.rnothingimport
 msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
+msgstr ""
+
+#: resourcestr.rnothingtosave
+msgid "Nothing to save"
 msgstr ""
 
 #: resourcestr.rnotuser

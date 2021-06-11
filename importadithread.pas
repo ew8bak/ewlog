@@ -230,6 +230,17 @@ var
   ValidDX: string;
   MY_LAT: string;
   MY_LON: string;
+  MY_SOTA_REF: string;
+  SOTA_REF: string;
+  HAMLOGRec: string;
+  CLUBLOG_QSO_UPLOAD_DATE: string;
+  CLUBLOG_QSO_UPLOAD_STATUS: string;
+  HRDLOG_QSO_UPLOAD_DATE: string;
+  HRDLOG_QSO_UPLOAD_STATUS: string;
+  QRZCOM_QSO_UPLOAD_DATE: string;
+  QRZCOM_QSO_UPLOAD_STATUS: string;
+  HAMLOG_QSO_UPLOAD_DATE: string;
+  HAMLOG_QSO_UPLOAD_STATUS: string;
   PosEOH: word;
   PosEOR: word;
   QSOTIME: string;
@@ -377,6 +388,17 @@ begin
         ValidDX := '';
         MY_LAT := '';
         MY_LON := '';
+        MY_SOTA_REF := '';
+        SOTA_REF := '';
+        HAMLOGRec:= '';
+        CLUBLOG_QSO_UPLOAD_DATE:= '';
+        CLUBLOG_QSO_UPLOAD_STATUS:= '';
+        HRDLOG_QSO_UPLOAD_DATE:= '';
+        HRDLOG_QSO_UPLOAD_STATUS:= '';
+        QRZCOM_QSO_UPLOAD_DATE:= '';
+        QRZCOM_QSO_UPLOAD_STATUS:= '';
+        HAMLOG_QSO_UPLOAD_DATE:= '';
+        HAMLOG_QSO_UPLOAD_STATUS:= '';
         TempQuery := '';
 
         Readln(temp_f, s);
@@ -448,6 +470,17 @@ begin
         ValidDX := dmFunc.getField(s, 'ValidDX');
         MY_LAT := dmFunc.getField(s, 'MY_LAT');
         MY_LON := dmFunc.getField(s, 'MY_LON');
+        SOTA_REF := dmFunc.getField(s, 'SOTA_REF');
+        MY_SOTA_REF := dmFunc.getField(s, 'MY_SOTA_REF');
+        HAMLOGRec:= dmFunc.getField(s, 'HAMLOGRec');
+        CLUBLOG_QSO_UPLOAD_DATE:= dmFunc.getField(s, 'CLUBLOG_QSO_UPLOAD_DATE');
+        CLUBLOG_QSO_UPLOAD_STATUS:= dmFunc.getField(s, 'CLUBLOG_QSO_UPLOAD_STATUS');
+        HRDLOG_QSO_UPLOAD_DATE:= dmFunc.getField(s, 'HRDLOG_QSO_UPLOAD_DATE');
+        HRDLOG_QSO_UPLOAD_STATUS:= dmFunc.getField(s, 'HRDLOG_QSO_UPLOAD_STATUS');
+        QRZCOM_QSO_UPLOAD_DATE:= dmFunc.getField(s, 'QRZCOM_QSO_UPLOAD_DATE');
+        QRZCOM_QSO_UPLOAD_STATUS:= dmFunc.getField(s, 'QRZCOM_QSO_UPLOAD_STATUS');
+        HAMLOG_QSO_UPLOAD_DATE:= dmFunc.getField(s, 'HAMLOG_QSO_UPLOAD_DATE');
+        HAMLOG_QSO_UPLOAD_STATUS:= dmFunc.getField(s, 'HAMLOG_QSO_UPLOAD_STATUS');
 
         if PosEOR > 0 then
         begin
@@ -613,9 +646,9 @@ begin
           else
             paramNoCalcDXCC := '0';
 
-          if SRX = '' then
+          if (SRX = '') or (SRX = '0') then
             SRX := 'NULL';
-          if STX = '' then
+          if (STX = '') or (STX = '0') then
             STX := 'NULL';
 
           if PADIImport.SearchPrefix then
@@ -646,7 +679,8 @@ begin
               'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
               + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
+              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, EQSL_QSL_SENT, SOTA_REF, MY_SOTA_REF, SYNC)' +
+              ' VALUES (' +
               dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
               dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
               dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
@@ -668,7 +702,9 @@ begin
               dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
               dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
               dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
-              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + QuotedStr('0') + ')';
+              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + dmFunc.Q(EQSL_QSL_SENT) +
+              dmFunc.Q(SOTA_REF) + dmFunc.Q(MY_SOTA_REF) +
+              QuotedStr('0') + ')';
           end
           else
           begin
@@ -725,7 +761,8 @@ begin
             InitDB.DefTransaction.Commit;
         end;
 
-        if Terminated then Exit;
+        if Terminated then
+          Exit;
 
       except
         on E: ESQLDatabaseError do

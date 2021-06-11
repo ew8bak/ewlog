@@ -227,16 +227,17 @@ begin
           Write(f, tmp);
         end;
 
-        if (Query.Fields.FieldByName('SRX').AsInteger <> 0) or
-          (not Query.Fields.FieldByName('SRX').IsNull) then
+
+        if ((Query.Fields.FieldByName('SRX').AsInteger <> 0) and
+          (not Query.Fields.FieldByName('SRX').IsNull)) then
         begin
           tmp := '<SRX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
             'SRX').AsString, PADIExport.Win1251);
           Write(f, tmp);
         end;
 
-        if (Query.Fields.FieldByName('STX').AsInteger <> 0) or
-          (not Query.Fields.FieldByName('STX').IsNull) then
+        if ((Query.Fields.FieldByName('STX').AsInteger <> 0) and
+          (not Query.Fields.FieldByName('STX').IsNull)) then
         begin
           tmp := '<STX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
             'STX').AsString, PADIExport.Win1251);
@@ -441,6 +442,97 @@ begin
           Write(f, tmp);
         end;
 
+        if Query.Fields.FieldByName('SOTA_REF').AsString <> '' then
+        begin
+          tmp := '<SOTA_REF' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'SOTA_REF').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('MY_SOTA_REF').AsString <> '' then
+        begin
+          tmp := '<MY_SOTA_REF' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'MY_SOTA_REF').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('EQSL_QSL_SENT').AsString <> '' then
+        begin
+          tmp := '<EQSL_QSL_SENT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'EQSL_QSL_SENT').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('HAMLOGRec').AsString <> '' then
+        begin
+          tmp := '<HAMLOG_QSL_RCVD' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'HAMLOGRec').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_DATE').AsString <> '' then
+        begin
+          tmp := '<CLUBLOG_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
+            Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_DATE').AsString,
+            PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_STATUS').AsString <> '' then
+        begin
+          tmp := '<CLUBLOG_QSO_UPLOAD_STATUS' +
+            dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'CLUBLOG_QSO_UPLOAD_STATUS').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+        if Query.Fields.FieldByName('HRDLOG_QSO_UPLOAD_DATE').AsString <> '' then
+        begin
+          tmp := '<HRDLOG_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
+            Query.Fields.FieldByName('HRDLOG_QSO_UPLOAD_DATE').AsString,
+            PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+        if Query.Fields.FieldByName('HRDLOG_QSO_UPLOAD_STATUS').AsString
+          <> '' then
+        begin
+          tmp := '<HRDLOG_QSO_UPLOAD_STATUS' +
+            dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'HRDLOG_QSO_UPLOAD_STATUS').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName(
+          'QRZCOM_QSO_UPLOAD_DATE').AsString <> '' then
+        begin
+          tmp := '<QRZCOM_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
+            Query.Fields.FieldByName('QRZCOM_QSO_UPLOAD_DATE').AsString,
+            PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('QRZCOM_QSO_UPLOAD_STATUS').AsString <> '' then
+        begin
+          tmp := '<QRZCOM_QSO_UPLOAD_STATUS' +
+            dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'QRZCOM_QSO_UPLOAD_STATUS').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+        if Query.Fields.FieldByName('HAMLOG_QSO_UPLOAD_DATE').AsString <> '' then
+        begin
+          tmp := '<HAMLOG_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
+            Query.Fields.FieldByName('HAMLOG_QSO_UPLOAD_DATE').AsString,
+            PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+        if Query.Fields.FieldByName('HAMLOG_QSO_UPLOAD_STATUS').AsString
+          <> '' then
+        begin
+          tmp := '<HAMLOG_QSO_UPLOAD_STATUS' +
+            dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'HAMLOG_QSO_UPLOAD_STATUS').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
         if Query.Fields.FieldByName('MY_GRIDSQUARE').AsString <> '' then
         begin
           tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
@@ -515,7 +607,7 @@ end;
 
 procedure TExportADIFThread.ToForm;
 begin
-  Info.From:='ADIF';
+  Info.From := 'ADIF';
   if Info.ErrorCode <> 0 then
     Application.MessageBox(PChar(rErrorOpenFile + ' ' + IntToStr(IOResult)),
       PChar(rError), mb_ok + mb_IconError);

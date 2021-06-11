@@ -282,6 +282,10 @@ msgstr "Позывной"
 msgid "Recipient callsign not entered"
 msgstr ""
 
+#: resourcestr.rcallsignnotrnteredorduplicateontourtime
+msgid "Callsign not entered or Duplicate on Tour Time"
+msgstr ""
+
 #: resourcestr.rcannotdeldef
 msgctxt "resourcestr.rcannotdeldef"
 msgid "Cannot delete default or current log"
@@ -457,6 +461,10 @@ msgstr "Пожалуйста, введите ваше сообщение"
 msgctxt "resourcestr.rerror"
 msgid "Error"
 msgstr "Ошибка"
+
+#: resourcestr.rerrorfieldnotentered
+msgid "ERROR Field not entered"
+msgstr ""
 
 #: resourcestr.rerroropenfile
 #, fuzzy
@@ -726,6 +734,10 @@ msgstr "Пожалуйста, включите поддержку N3FJP лога
 msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
 msgstr "Нечего импортировать"
+
+#: resourcestr.rnothingtosave
+msgid "Nothing to save"
+msgstr ""
 
 #: resourcestr.rnotuser
 msgctxt "resourcestr.rnotuser"
