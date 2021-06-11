@@ -174,7 +174,7 @@ procedure TEditQSO_Form.SpeedButton11Click(Sender: TObject);
 begin
   InformationForm.FromForm := 'EditForm';
   InformationForm.Callsign := dmFunc.ExtractCallsign(Edit1.Text);
-  InformationForm.Show;
+  InformationForm.ShowModal;
 end;
 
 procedure TEditQSO_Form.SpeedButton12Click(Sender: TObject);
