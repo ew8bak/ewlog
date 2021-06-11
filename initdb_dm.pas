@@ -678,7 +678,9 @@ begin
     begin
       DefLogBookQuery.SQL.Text :=
         'SELECT `UnUsedIndex`, `CallSign`,' +
-        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
+        + '(CONCAT(COALESCE(`QSOReportSent`, ''''), '' '', COALESCE(`STX`, ''''), '' '', COALESCE(`STX_STRING`, ''''))) AS QSOReportSent,'
+        + '(CONCAT(COALESCE(`QSOReportRecived`, ''''),'' '', COALESCE(`SRX`, ''''), '' '', COALESCE(`SRX_STRING`, ''''))) AS QSOReportRecived,'
         + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
         + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
         + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -694,8 +696,8 @@ begin
       DefLogBookQuery.SQL.Text :=
         'SELECT `UnUsedIndex`, `CallSign`,' +
         'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
-        + '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
-        + '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
+        + '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
+        + '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || '' '' || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
         + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
         + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
         + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'

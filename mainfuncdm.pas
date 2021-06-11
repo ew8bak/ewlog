@@ -1922,7 +1922,7 @@ begin
         SQSO.QSL_SENT_VIA := 'NULL';
 
       if DBRecord.CurrentDB = 'MySQL' then
-        QSODates := DateToStr(SQSO.QSODate)
+        QSODates := FormatDateTime('yyyy-mm-dd', SQSO.QSODate)
       else
         QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
 
@@ -1963,7 +1963,7 @@ begin
         dmFunc.Q(IntToStr(SQSO.SYNC)) +
         dmFunc.Q(SQSO.ContestSession) +
         QuotedStr(SQSO.ContestName) + ')';
-      WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
+  //    WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else

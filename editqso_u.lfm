@@ -1,5 +1,5 @@
 object EditQSO_Form: TEditQSO_Form
-  Left = 574
+  Left = 576
   Height = 600
   Top = 126
   Width = 491
@@ -12,7 +12,7 @@ object EditQSO_Form: TEditQSO_Form
   OnShow = FormShow
   Position = poScreenCenter
   ShowInTaskBar = stNever
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object GroupBox1: TGroupBox
     Left = 7
     Height = 340
@@ -668,7 +668,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Side = asrBottom
       Left = 330
       Height = 21
-      Top = 51
+      Top = 49
       Width = 110
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
@@ -685,7 +685,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Side = asrBottom
       Left = 330
       Height = 21
-      Top = 74
+      Top = 72
       Width = 110
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
@@ -701,8 +701,8 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 330
-      Height = 24
-      Top = 123
+      Height = 22
+      Top = 121
       Width = 110
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
@@ -721,7 +721,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Side = asrBottom
       Left = 447
       Height = 22
-      Top = 124
+      Top = 121
       Width = 23
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -736,7 +736,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Side = asrBottom
       Left = 447
       Height = 22
-      Top = 98
+      Top = 96
       Width = 23
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -751,7 +751,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Side = asrBottom
       Left = 447
       Height = 22
-      Top = 73
+      Top = 71
       Width = 23
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -797,7 +797,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = ComboBox1
       Left = 301
       Height = 15
-      Top = 30
+      Top = 29
       Width = 27
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -812,7 +812,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit17
       Left = 302
       Height = 15
-      Top = 54
+      Top = 52
       Width = 26
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -827,7 +827,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit18
       Left = 304
       Height = 15
-      Top = 77
+      Top = 75
       Width = 24
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -842,7 +842,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = DBLookupComboBox2
       Left = 290
       Height = 15
-      Top = 102
+      Top = 100
       Width = 38
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -857,7 +857,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = ComboBox4
       Left = 256
       Height = 15
-      Top = 128
+      Top = 125
       Width = 72
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -939,7 +939,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Side = asrBottom
       Left = 330
       Height = 24
-      Top = 97
+      Top = 95
       Width = 110
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
@@ -959,7 +959,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
       Left = 330
-      Height = 24
+      Height = 22
       Top = 25
       Width = 120
       Anchors = [akTop, akLeft, akRight]
@@ -1045,7 +1045,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Side = asrBottom
       Left = 330
       Height = 22
-      Top = 149
+      Top = 145
       Width = 110
       Anchors = [akTop, akRight]
       AutoSize = False

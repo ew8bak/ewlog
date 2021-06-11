@@ -134,7 +134,7 @@ begin
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
-      Query.SQL.Add('EQSL_QSL_SENT varchar(2) DEFAULT N;');
+      Query.SQL.Add('EQSL_QSL_SENT varchar(2) DEFAULT ''N'';');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
