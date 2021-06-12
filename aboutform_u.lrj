@@ -3,6 +3,6 @@
 {"hash":85324839,"name":"tabout_form.label1.caption","sourcebytes":[72,65,77,32,76,79,71,32,69,87,76,111,103],"value":"HAM LOG EWLog"},
 {"hash":214540302,"name":"tabout_form.label2.caption","sourcebytes":[86,101,114,115,105,111,110],"value":"Version"},
 {"hash":78655499,"name":"tabout_form.label3.caption","sourcebytes":[68,101,115,105,103,110,101,100,32,98,121,32,69,87,56,66,65,75],"value":"Designed by EW8BAK"},
-{"hash":170201375,"name":"tabout_form.label4.caption","sourcebytes":[67,111,112,121,114,105,103,104,116,32,50,48,49,53,32,45,32,50,48,50,48,32,86,108,97,100,105,109,105,114,32,75,97,114,112,101,110,107,111],"value":"Copyright 2015 - 2020 Vladimir Karpenko"},
+{"hash":268014577,"name":"tabout_form.label4.caption","sourcebytes":[67,111,112,121,114,105,103,104,116,32,50,48,49,53,32,45,32,50,48,50,49,32,85,108,97,100,122,105,109,105,114,32,75,97,114,112,101,110,107,97],"value":"Copyright 2015 - 2021 Uladzimir Karpenka"},
 {"hash":86477813,"name":"tabout_form.label5.caption","sourcebytes":[76,97,98,101,108,53],"value":"Label5"}
 ]}
