@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Debug"/>
-    <Units Count="221">
+    <Units Count="222">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -114,11 +114,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="1720"/>
         <CursorPos X="60" Y="1733"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="eqsl.pas"/>
@@ -233,7 +235,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="12"/>
         <CursorPos X="40" Y="52"/>
@@ -1234,7 +1235,6 @@
         <TopLine Value="1924"/>
         <CursorPos X="89" Y="1965"/>
         <UsageCount Value="6"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit135>
       <Unit136>
         <Filename Value="C:\usr\lib\lazarus\lcl\include\customcheckbox.inc"/>
@@ -1409,7 +1409,6 @@
         <TopLine Value="475"/>
         <CursorPos Y="499"/>
         <UsageCount Value="2"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit159>
       <Unit160>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdThread.pas"/>
@@ -1424,7 +1423,6 @@
         <TopLine Value="298"/>
         <CursorPos X="44" Y="313"/>
         <UsageCount Value="4"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit161>
       <Unit162>
         <Filename Value="C:\usr\lib\fpc\src\rtl\linux\system.pp"/>
@@ -1583,7 +1581,6 @@
         <TopLine Value="309"/>
         <CursorPos X="3" Y="312"/>
         <UsageCount Value="2"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit182>
       <Unit183>
         <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\Indy10\System\IdStack.pas"/>
@@ -1591,7 +1588,6 @@
         <TopLine Value="710"/>
         <CursorPos X="3" Y="715"/>
         <UsageCount Value="2"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit183>
       <Unit184>
         <Filename Value="C:\usr\lib\lazarus\components\lazutils\lconvencoding.pas"/>
@@ -1789,7 +1785,6 @@
         <TopLine Value="117"/>
         <CursorPos X="15" Y="132"/>
         <UsageCount Value="4"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit210>
       <Unit211>
         <Filename Value="C:\usr\lib\fpc\src\packages\rtl-objpas\src\inc\dateutil.inc"/>
@@ -1863,6 +1858,12 @@
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit220>
+      <Unit221>
+        <Filename Value="aboutform_u.lfm"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit221>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>

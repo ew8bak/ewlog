@@ -271,6 +271,10 @@ msgstr ""
 msgid "Recipient callsign not entered"
 msgstr ""
 
+#: resourcestr.rcallsignnotrnteredorduplicateontourtime
+msgid "Callsign not entered or Duplicate on Tour Time"
+msgstr ""
+
 #: resourcestr.rcannotdeldef
 msgctxt "resourcestr.rcannotdeldef"
 msgid "Cannot delete default or current log"
@@ -364,6 +368,10 @@ msgctxt "resourcestr.rdberror"
 msgid "Error while working with the database. Check connection and settings"
 msgstr ""
 
+#: resourcestr.rdbneedupdate
+msgid "The database structure needs to be updated to version:"
+msgstr ""
+
 #: resourcestr.rdbnotinit
 msgctxt "resourcestr.rdbnotinit"
 msgid "The database is not initialized, go to the settings?"
@@ -439,6 +447,10 @@ msgstr ""
 #: resourcestr.rerror
 msgctxt "resourcestr.rerror"
 msgid "Error"
+msgstr ""
+
+#: resourcestr.rerrorfieldnotentered
+msgid "ERROR Field not entered"
 msgstr ""
 
 #: resourcestr.rerroropenfile
@@ -556,6 +568,10 @@ msgstr ""
 #: resourcestr.rinformationfromqrzru
 msgctxt "resourcestr.rinformationfromqrzru"
 msgid "Information from QRZ.ru"
+msgstr ""
+
+#: resourcestr.rinputmysotaref
+msgid "Please input My SOTA summit Reference"
 msgstr ""
 
 #: resourcestr.riota
@@ -699,6 +715,10 @@ msgstr ""
 #: resourcestr.rnothingimport
 msgctxt "resourcestr.rnothingimport"
 msgid "Nothing to import"
+msgstr ""
+
+#: resourcestr.rnothingtosave
+msgid "Nothing to save"
 msgstr ""
 
 #: resourcestr.rnotuser
@@ -853,6 +873,11 @@ msgstr ""
 #: resourcestr.rqsototal
 msgctxt "resourcestr.rqsototal"
 msgid " Total "
+msgstr ""
+
+#: resourcestr.rsave
+msgctxt "resourcestr.rsave"
+msgid "Save"
 msgstr ""
 
 #: resourcestr.rsaveqso
@@ -1111,7 +1136,7 @@ msgid "Designed by EW8BAK"
 msgstr ""
 
 #: tabout_form.label4.caption
-msgid "Copyright 2015 - 2020 Vladimir Karpenko"
+msgid "Copyright 2015 - 2021 Uladzimir Karpenka"
 msgstr ""
 
 #: tabout_form.label5.caption
@@ -1882,7 +1907,7 @@ msgid "Work on LAN (UDP)"
 msgstr ""
 
 #: tcontestform.btresetsession.caption
-msgid "New"
+msgid "New session"
 msgstr ""
 
 #: tcontestform.btsave.caption
@@ -1959,6 +1984,16 @@ msgctxt "tcontestform.lbfreq.caption"
 msgid "Frequency"
 msgstr ""
 
+#: tcontestform.lbgrid.caption
+msgctxt "tcontestform.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: tcontestform.lbminutetour.caption
+msgctxt "tcontestform.lbminutetour.caption"
+msgid "minutes"
+msgstr ""
+
 #: tcontestform.lbmode.caption
 msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"
@@ -1969,12 +2004,22 @@ msgctxt "tcontestform.lbname.caption"
 msgid "Name"
 msgstr ""
 
+#: tcontestform.lbqth.caption
+msgctxt "tcontestform.lbqth.caption"
+msgid "QTH"
+msgstr ""
+
 #: tcontestform.lbrstr.caption
 msgid "RST(r)"
 msgstr ""
 
 #: tcontestform.lbrsts.caption
 msgid "RST(s)"
+msgstr ""
+
+#: tcontestform.lbstate.caption
+msgctxt "tcontestform.lbstate.caption"
+msgid "State"
 msgstr ""
 
 #: tcontestform.lbsubmode.caption
@@ -1984,6 +2029,10 @@ msgstr ""
 #: tcontestform.lbtime.caption
 msgctxt "tcontestform.lbtime.caption"
 msgid "Time"
+msgstr ""
+
+#: tcontestform.lbtourtime.caption
+msgid "Tour time"
 msgstr ""
 
 #: tcontestform.rbother.caption
@@ -2633,39 +2682,42 @@ msgstr ""
 msgid "Auto credit for the award"
 msgstr ""
 
-#: texportadifform.button1.caption
-msgctxt "texportadifform.button1.caption"
-msgid "Export"
+#: texportadifform.btcancel.caption
+msgctxt "texportadifform.btcancel.caption"
+msgid "Cancel"
 msgstr ""
 
-#: texportadifform.button2.caption
-msgctxt "texportadifform.button2.caption"
-msgid "Cancel"
+#: texportadifform.btexport.caption
+msgctxt "texportadifform.btexport.caption"
+msgid "Export"
 msgstr ""
 
 #: texportadifform.caption
 msgid "Export ADIF"
 msgstr ""
 
-#: texportadifform.checkbox1.caption
+#: texportadifform.cbadiexport.caption
+msgctxt "texportadifform.cbadiexport.caption"
 msgid "Export to ADIF"
 msgstr ""
 
-#: texportadifform.checkbox2.caption
-msgid "Export on Win1251"
-msgstr ""
-
-#: texportadifform.checkbox3.caption
-msgid "Export to eQSL"
-msgstr ""
-
-#: texportadifform.checkbox4.caption
+#: texportadifform.cbconvertlatin.caption
+msgctxt "texportadifform.cbconvertlatin.caption"
 msgid "Convert to Latin"
 msgstr ""
 
-#: texportadifform.label1.caption
-msgctxt "texportadifform.label1.caption"
-msgid "Number of QSO: 0"
+#: texportadifform.cbeqslexport.caption
+msgctxt "texportadifform.cbeqslexport.caption"
+msgid "Export to eQSL"
+msgstr ""
+
+#: texportadifform.cbexportonwin.caption
+msgctxt "texportadifform.cbexportonwin.caption"
+msgid "Export on Win1251"
+msgstr ""
+
+#: texportadifform.cbsotaexport.caption
+msgid "Export to SOTA"
 msgstr ""
 
 #: texportadifform.label3.caption
@@ -2676,6 +2728,11 @@ msgstr ""
 msgid "To"
 msgstr ""
 
+#: texportadifform.lbnumberqso.caption
+msgctxt "texportadifform.lbnumberqso.caption"
+msgid "Number of QSO: 0"
+msgstr ""
+
 #: texportadifform.radiobutton1.caption
 msgid "Selected date interval"
 msgstr ""
@@ -2684,7 +2741,8 @@ msgstr ""
 msgid "Export all showed contacts"
 msgstr ""
 
-#: texportadifform.savedialog1.title
+#: texportadifform.sdexport.title
+msgctxt "texportadifform.sdexport.title"
 msgid "Save file as"
 msgstr ""
 
@@ -4204,7 +4262,7 @@ msgstr ""
 
 #: tminiform.menuitem53.caption
 msgctxt "tminiform.menuitem53.caption"
-msgid "Format ADIF"
+msgid "Format ADIF or SOTA"
 msgstr ""
 
 #: tminiform.menuitem54.caption

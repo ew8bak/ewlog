@@ -62,6 +62,7 @@
 EWLog
 .deploy/
 backup/
+source/backup/
 lib/
 BIN/
 night_build/

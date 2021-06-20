@@ -2,7 +2,6 @@
 <CONFIG>
   <ProjectOptions>
     <Version Value="11"/>
-    <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
@@ -19,7 +18,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="locale"/>
+      <OutDir Value="../locale"/>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
@@ -27,7 +26,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="806"/>
+      <BuildNr Value="807"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -37,12 +36,11 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="BIN\$(TargetCPU)-$(TargetOS)\ewlog"/>
+            <Filename Value="..\BIN\$(TargetCPU)-$(TargetOS)\ewlog"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\..\.lazarus\components\indy-10.2.0.3\fpc;..\..\.lazarus\components\indy;..\..\.lazarus\components\indy\lib\x86_64-linux;Компоненты для LAZARUS\mapviewer;ico"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+            <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
             <Optimizations>
@@ -73,12 +71,11 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="BIN\$(TargetCPU)-$(TargetOS)\ewlog-debug"/>
+            <Filename Value="..\BIN\$(TargetCPU)-$(TargetOS)\ewlog-debug"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="Компоненты для LAZARUS\mapviewer;ico"/>
-            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+            <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
             <SyntaxOptions>
@@ -702,7 +699,7 @@
         <UnitName Value="FMS_record"/>
       </Unit85>
       <Unit86>
-        <Filename Value="ico\telnetaddresrecord_u.pas"/>
+        <Filename Value="ico/telnetaddresrecord_u.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit86>
       <Unit87>
