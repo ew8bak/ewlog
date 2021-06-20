@@ -1,0 +1,115 @@
+object STATE_Form: TSTATE_Form
+  Left = 535
+  Height = 435
+  Top = 197
+  Width = 558
+  BorderStyle = bsDialog
+  Caption = 'STATE'
+  ClientHeight = 435
+  ClientWidth = 558
+  FormStyle = fsStayOnTop
+  OnClose = FormClose
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.0.10.0'
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 374
+    Top = 0
+    Width = 558
+    Align = alClient
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'id'
+        Width = 50
+        FieldName = '_id'
+      end    
+      item
+        Title.Caption = 'State'
+        Width = 50
+        FieldName = 'State'
+      end    
+      item
+        Title.Caption = 'Name State/City'
+        Width = 350
+        FieldName = 'Name'
+      end    
+      item
+        Title.Caption = 'Country'
+        Width = 80
+        FieldName = 'Country'
+      end>
+    DataSource = STATE_DS
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    ReadOnly = True
+    Scrollbars = ssAutoBoth
+    TabOrder = 0
+    OnDblClick = DBGrid1DblClick
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 61
+    Top = 374
+    Width = 558
+    Align = alBottom
+    ClientHeight = 61
+    ClientWidth = 558
+    TabOrder = 1
+    object Edit1: TEdit
+      Left = 8
+      Height = 25
+      Top = 24
+      Width = 96
+      OnChange = Edit1Change
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 13
+      Top = 4
+      Width = 33
+      Caption = 'STATE'
+      ParentColor = False
+    end
+    object Edit2: TEdit
+      Left = 160
+      Height = 25
+      Top = 24
+      Width = 168
+      CharCase = ecUppercase
+      OnChange = Edit2Change
+      TabOrder = 1
+    end
+    object Label2: TLabel
+      Left = 160
+      Height = 13
+      Top = 4
+      Width = 32
+      Caption = 'Name'
+      ParentColor = False
+    end
+    object Button1: TButton
+      Left = 384
+      Height = 25
+      Top = 22
+      Width = 75
+      Caption = 'Close'
+      OnClick = Button1Click
+      TabOrder = 2
+    end
+  end
+  object STATE_Query: TSQLQuery
+    FieldDefs = <>
+    Database = InitDB.ServiceDBConnection
+    Transaction = InitDB.ServiceTransaction
+    Params = <>
+    Left = 328
+    Top = 200
+  end
+  object STATE_DS: TDataSource
+    DataSet = STATE_Query
+    Left = 240
+    Top = 128
+  end
+end

@@ -1,0 +1,2466 @@
+object ConfigForm: TConfigForm
+  Left = 823
+  Height = 335
+  Top = 131
+  Width = 510
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Program settings'
+  ClientHeight = 335
+  ClientWidth = 510
+  FormStyle = fsStayOnTop
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.0.12.0'
+  object Button1: TButton
+    Left = 432
+    Height = 25
+    Top = 296
+    Width = 75
+    Caption = 'Save'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 352
+    Height = 25
+    Top = 296
+    Width = 75
+    Caption = 'Cancel'
+    Font.Height = -12
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 1
+  end
+  object PControl: TPageControl
+    Left = 0
+    Height = 288
+    Top = 0
+    Width = 510
+    ActivePage = TSBase
+    Align = alTop
+    TabIndex = 0
+    TabOrder = 2
+    object TSBase: TTabSheet
+      Caption = 'DataBase'
+      ClientHeight = 259
+      ClientWidth = 500
+      object gbMySQL: TGroupBox
+        Left = 8
+        Height = 240
+        Top = 8
+        Width = 233
+        Caption = 'MySQL'
+        ClientHeight = 224
+        ClientWidth = 231
+        TabOrder = 0
+        object Label2: TLabel
+          AnchorSideTop.Control = Edit1
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit1
+          Left = 20
+          Height = 13
+          Top = 15
+          Width = 39
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Server'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label3: TLabel
+          AnchorSideTop.Control = Edit2
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit2
+          Left = 35
+          Height = 13
+          Top = 47
+          Width = 24
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Port'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label4: TLabel
+          AnchorSideTop.Control = Edit3
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit3
+          Left = 27
+          Height = 13
+          Top = 79
+          Width = 32
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label5: TLabel
+          AnchorSideTop.Control = Edit4
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit4
+          Left = 9
+          Height = 13
+          Top = 111
+          Width = 50
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Pasword'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label6: TLabel
+          AnchorSideTop.Control = Edit5
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit5
+          Left = -8
+          Height = 13
+          Top = 143
+          Width = 67
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Base Name'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Edit1: TEdit
+          Left = 64
+          Height = 26
+          Top = 8
+          Width = 152
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit2: TEdit
+          Left = 64
+          Height = 26
+          Top = 40
+          Width = 152
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Edit3: TEdit
+          Left = 64
+          Height = 26
+          Top = 72
+          Width = 152
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 2
+        end
+        object Edit4: TEdit
+          Left = 64
+          Height = 26
+          Top = 104
+          Width = 152
+          EchoMode = emPassword
+          Font.Height = -12
+          ParentFont = False
+          PasswordChar = '*'
+          TabOrder = 3
+        end
+        object Button3: TButton
+          Left = 16
+          Height = 25
+          Top = 184
+          Width = 192
+          Caption = 'Check connection'
+          Font.Height = -12
+          OnClick = Button3Click
+          ParentFont = False
+          TabOrder = 4
+        end
+        object Edit5: TEdit
+          Left = 64
+          Height = 26
+          Top = 136
+          Width = 152
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 5
+        end
+      end
+      object gbSQLite: TGroupBox
+        Left = 256
+        Height = 80
+        Top = 8
+        Width = 233
+        Caption = 'SQLite'
+        ClientHeight = 64
+        ClientWidth = 231
+        TabOrder = 1
+        object FileNameEdit1: TFileNameEdit
+          AnchorSideLeft.Control = gbSQLite
+          AnchorSideTop.Control = Label8
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 26
+          Top = 20
+          Width = 208
+          FilterIndex = 0
+          HideDirectories = False
+          ButtonWidth = 23
+          NumGlyphs = 1
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
+          Font.Height = -12
+          MaxLength = 0
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Label8: TLabel
+          AnchorSideLeft.Control = FileNameEdit1
+          AnchorSideTop.Control = gbSQLite
+          AnchorSideBottom.Control = FileNameEdit1
+          Left = 10
+          Height = 13
+          Top = 2
+          Width = 28
+          BorderSpacing.Top = 2
+          Caption = 'Base'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+      end
+      object gbDefaultDB: TGroupBox
+        Left = 256
+        Height = 88
+        Top = 96
+        Width = 233
+        Caption = 'Default DB'
+        ClientHeight = 72
+        ClientWidth = 231
+        TabOrder = 2
+        object RadioButton1: TRadioButton
+          Left = 19
+          Height = 23
+          Top = 8
+          Width = 93
+          Alignment = taLeftJustify
+          Caption = 'Use MySQL'
+          Checked = True
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+          TabStop = True
+        end
+        object RadioButton2: TRadioButton
+          Left = 19
+          Height = 23
+          Top = 32
+          Width = 95
+          Alignment = taLeftJustify
+          Caption = 'Use SQLite '
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+      end
+    end
+    object TSRefOnline: TTabSheet
+      Caption = 'Reference Online'
+      ClientHeight = 259
+      ClientWidth = 500
+      object GBQRZRU: TGroupBox
+        Left = 8
+        Height = 112
+        Top = 8
+        Width = 233
+        Caption = 'QRZ.RU XML API'
+        ClientHeight = 96
+        ClientWidth = 231
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 0
+        object Edit6: TEdit
+          Left = 72
+          Height = 26
+          Top = 8
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit7: TEdit
+          Left = 72
+          Height = 26
+          Top = 40
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label18: TLabel
+          AnchorSideTop.Control = Edit6
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit6
+          Left = 35
+          Height = 13
+          Top = 15
+          Width = 32
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label19: TLabel
+          AnchorSideTop.Control = Edit7
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit7
+          Left = 11
+          Height = 13
+          Top = 47
+          Width = 56
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox3: TCheckBox
+          Left = 8
+          Height = 23
+          Top = 70
+          Width = 143
+          Caption = 'Use as a reference?'
+          DoubleBuffered = False
+          Font.Height = -12
+          OnChange = CheckBox3Change
+          ParentDoubleBuffered = False
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
+      object gbQRZCOM: TGroupBox
+        Left = 8
+        Height = 112
+        Top = 128
+        Width = 233
+        Caption = 'QRZ.COM XML API'
+        ClientHeight = 96
+        ClientWidth = 231
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 1
+        object Edit8: TEdit
+          Left = 72
+          Height = 26
+          Top = 8
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit9: TEdit
+          Left = 72
+          Height = 26
+          Top = 40
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label21: TLabel
+          AnchorSideTop.Control = Edit8
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit8
+          Left = 35
+          Height = 13
+          Top = 15
+          Width = 32
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label22: TLabel
+          AnchorSideTop.Control = Edit9
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit9
+          Left = 11
+          Height = 13
+          Top = 47
+          Width = 56
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox7: TCheckBox
+          Left = 8
+          Height = 23
+          Top = 72
+          Width = 143
+          Caption = 'Use as a reference?'
+          DoubleBuffered = False
+          OnChange = CheckBox7Change
+          ParentDoubleBuffered = False
+          TabOrder = 2
+        end
+      end
+      object gbHAMQTH: TGroupBox
+        Left = 256
+        Height = 112
+        Top = 8
+        Width = 233
+        Caption = 'HAMQTH XML API'
+        ClientHeight = 96
+        ClientWidth = 231
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 2
+        object Edit14: TEdit
+          Left = 64
+          Height = 26
+          Top = 8
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit15: TEdit
+          Left = 64
+          Height = 26
+          Top = 40
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label25: TLabel
+          AnchorSideTop.Control = Edit14
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit14
+          Left = 27
+          Height = 13
+          Top = 15
+          Width = 32
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label26: TLabel
+          AnchorSideTop.Control = Edit15
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit15
+          Left = 3
+          Height = 13
+          Top = 47
+          Width = 56
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox11: TCheckBox
+          Left = 8
+          Height = 23
+          Top = 72
+          Width = 143
+          Caption = 'Use as a reference?'
+          Font.Height = -12
+          OnChange = CheckBox11Change
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
+    end
+    object TSCAT: TTabSheet
+      Caption = 'CAT'
+      ClientHeight = 259
+      ClientWidth = 500
+      object PCCat: TPageControl
+        Left = 0
+        Height = 259
+        Top = 0
+        Width = 500
+        ActivePage = TSHamlib
+        Align = alClient
+        TabIndex = 0
+        TabOrder = 0
+        object TSHamlib: TTabSheet
+          Caption = 'Hamlib'
+          ClientHeight = 230
+          ClientWidth = 490
+          object LBTransceiverModel: TLabel
+            AnchorSideLeft.Control = TSHamlib
+            AnchorSideTop.Control = TSHamlib
+            Left = 10
+            Height = 13
+            Top = 5
+            Width = 107
+            BorderSpacing.Left = 10
+            BorderSpacing.Top = 5
+            Caption = 'Transceiver Model'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBTransceiverModel: TComboBox
+            AnchorSideLeft.Control = LBTransceiverModel
+            AnchorSideTop.Control = LBTransceiverModel
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 27
+            Top = 23
+            Width = 192
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ParentFont = False
+            TabOrder = 0
+          end
+          object LBPathRigctld: TLabel
+            AnchorSideLeft.Control = CBTransceiverModel
+            AnchorSideTop.Control = CBTransceiverModel
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 13
+            Top = 55
+            Width = 143
+            BorderSpacing.Top = 5
+            Caption = 'Path for HamLib Rigctld'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object FNPathRigctld: TFileNameEdit
+            AnchorSideLeft.Control = LBPathRigctld
+            AnchorSideTop.Control = LBPathRigctld
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 26
+            Top = 73
+            Width = 192
+            DialogTitle = 'Path for rigctld'
+            FilterIndex = 0
+            HideDirectories = False
+            ButtonWidth = 23
+            NumGlyphs = 1
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            MaxLength = 0
+            ParentFont = False
+            TabOrder = 1
+            OnChange = FNPathRigctldChange
+          end
+          object LBExtraCmd: TLabel
+            AnchorSideLeft.Control = FNPathRigctld
+            AnchorSideTop.Control = FNPathRigctld
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 13
+            Top = 104
+            Width = 122
+            BorderSpacing.Top = 5
+            Caption = 'Extra command line'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object EditExtraCmd: TEdit
+            AnchorSideLeft.Control = LBExtraCmd
+            AnchorSideTop.Control = LBExtraCmd
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 26
+            Top = 122
+            Width = 192
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 2
+          end
+          object LBCATAddress: TLabel
+            AnchorSideLeft.Control = EditExtraCmd
+            AnchorSideTop.Control = EditExtraCmd
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 13
+            Top = 153
+            Width = 48
+            BorderSpacing.Top = 5
+            Caption = 'Address'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object EditCATAddress: TEdit
+            AnchorSideLeft.Control = LBCATAddress
+            AnchorSideTop.Control = LBCATAddress
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 26
+            Top = 171
+            Width = 95
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 3
+          end
+          object EditCATport: TEdit
+            AnchorSideLeft.Control = EditCATAddress
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = LBCATAddress
+            AnchorSideTop.Side = asrBottom
+            Left = 107
+            Height = 26
+            Top = 171
+            Width = 95
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            NumbersOnly = True
+            ParentFont = False
+            TabOrder = 4
+          end
+          object LBCATPort: TLabel
+            AnchorSideLeft.Control = EditCATAddress
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = EditExtraCmd
+            AnchorSideTop.Side = asrBottom
+            Left = 107
+            Height = 13
+            Top = 153
+            Width = 24
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Port'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object LBComCATPort: TLabel
+            AnchorSideLeft.Control = CBTransceiverModel
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = TSHamlib
+            Left = 217
+            Height = 13
+            Top = 5
+            Width = 55
+            BorderSpacing.Left = 15
+            BorderSpacing.Top = 5
+            Caption = 'COM Port'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatComPort: TComboBox
+            AnchorSideLeft.Control = LBComCATPort
+            AnchorSideTop.Control = LBComCATPort
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 27
+            Top = 23
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ParentFont = False
+            TabOrder = 5
+          end
+          object CBCatSpeed: TComboBox
+            AnchorSideLeft.Control = LBCatSpeed
+            AnchorSideTop.Control = LBCatSpeed
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 27
+            Top = 23
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              '1200'
+              '2400'
+              '4800'
+              '9600'
+              '14400'
+              '19200'
+              '38400'
+              '57600'
+              '115200'
+            )
+            ParentFont = False
+            TabOrder = 6
+            Text = 'Default'
+          end
+          object LBCatSpeed: TLabel
+            AnchorSideLeft.Control = CBCatComPort
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = TSHamlib
+            Left = 306
+            Height = 13
+            Top = 5
+            Width = 38
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Speed'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object LBCatStopBit: TLabel
+            AnchorSideLeft.Control = CBCatSpeed
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = TSHamlib
+            Left = 395
+            Height = 13
+            Top = 5
+            Width = 48
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Stop bit'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatStopBit: TComboBox
+            AnchorSideLeft.Control = LBCatStopBit
+            AnchorSideTop.Control = LBCatStopBit
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 27
+            Top = 23
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              '0'
+              '1'
+              '2'
+              '3'
+            )
+            ParentFont = False
+            TabOrder = 7
+            Text = 'Default'
+          end
+          object LBCatDataBit: TLabel
+            AnchorSideLeft.Control = CBCatComPort
+            AnchorSideTop.Control = CBCatComPort
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 13
+            Top = 55
+            Width = 48
+            BorderSpacing.Top = 5
+            Caption = 'Data bit'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatDataBit: TComboBox
+            AnchorSideLeft.Control = LBCatDataBit
+            AnchorSideTop.Control = LBCatDataBit
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 27
+            Top = 73
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              '5'
+              '6'
+              '7'
+              '8'
+              '9'
+            )
+            ParentFont = False
+            TabOrder = 8
+            Text = 'Default'
+          end
+          object LBCatParity: TLabel
+            AnchorSideLeft.Control = CBCatDataBit
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = CBCatSpeed
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 13
+            Top = 55
+            Width = 34
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Parity'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatParity: TComboBox
+            AnchorSideLeft.Control = LBCatParity
+            AnchorSideTop.Control = LBCatParity
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 27
+            Top = 73
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              'None'
+              'Odd'
+              'Even'
+              'Mark'
+              'Space'
+            )
+            ParentFont = False
+            TabOrder = 9
+            Text = 'Default'
+          end
+          object LBCatHandshake: TLabel
+            AnchorSideLeft.Control = CBCatParity
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = CBCatStopBit
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 13
+            Top = 55
+            Width = 67
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'Handshake'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatHandshake: TComboBox
+            AnchorSideLeft.Control = LBCatHandshake
+            AnchorSideTop.Control = LBCatHandshake
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 27
+            Top = 73
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              'None'
+              'XON/XOFF'
+              'Hardware'
+            )
+            ParentFont = False
+            TabOrder = 10
+            Text = 'Default'
+          end
+          object LBCatRTSState: TLabel
+            AnchorSideLeft.Control = CBCatComPort
+            AnchorSideTop.Control = CBCatDataBit
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 13
+            Top = 105
+            Width = 58
+            BorderSpacing.Top = 5
+            Caption = 'RTS State'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatRTSState: TComboBox
+            AnchorSideLeft.Control = LBCatRTSState
+            AnchorSideTop.Control = LBCatRTSState
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 27
+            Top = 123
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              'Unset'
+              'ON'
+              'OFF'
+            )
+            ParentFont = False
+            TabOrder = 11
+            Text = 'Default'
+          end
+          object LBCatDTRState: TLabel
+            AnchorSideLeft.Control = CBCatRTSState
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = CBCatParity
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 13
+            Top = 105
+            Width = 60
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'DTR State'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object CBCatDTRState: TComboBox
+            AnchorSideLeft.Control = LBCatDTRState
+            AnchorSideTop.Control = LBCatDTRState
+            AnchorSideTop.Side = asrBottom
+            Left = 306
+            Height = 27
+            Top = 123
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ItemHeight = 0
+            ItemIndex = 0
+            Items.Strings = (
+              'Default'
+              'Unset'
+              'ON'
+              'OFF'
+            )
+            ParentFont = False
+            TabOrder = 12
+            Text = 'Default'
+          end
+          object LBCatCIVaddress: TLabel
+            AnchorSideLeft.Control = CBCatDTRState
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = CBCatHandshake
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 13
+            Top = 105
+            Width = 75
+            BorderSpacing.Left = 2
+            BorderSpacing.Top = 5
+            Caption = 'CI-V address'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+          object EditCATCIaddress: TEdit
+            AnchorSideLeft.Control = LBCatCIVaddress
+            AnchorSideTop.Control = LBCatCIVaddress
+            AnchorSideTop.Side = asrBottom
+            Left = 395
+            Height = 26
+            Top = 123
+            Width = 87
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 13
+          end
+          object CBrigctldStart: TCheckBox
+            AnchorSideLeft.Control = LBCATAddress
+            AnchorSideTop.Control = EditCATAddress
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 23
+            Top = 202
+            Width = 172
+            BorderSpacing.Top = 5
+            Caption = 'Start rigctld on startup?'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 14
+          end
+          object SpinEdit1: TSpinEdit
+            AnchorSideLeft.Control = LBPoll
+            AnchorSideTop.Control = LBPoll
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 26
+            Top = 171
+            Width = 62
+            BorderSpacing.Top = 5
+            Font.Height = -12
+            MinValue = 3
+            ParentFont = False
+            TabOrder = 15
+            Value = 3
+          end
+          object LBPoll: TLabel
+            AnchorSideLeft.Control = CBCatRTSState
+            AnchorSideTop.Control = CBCatRTSState
+            AnchorSideTop.Side = asrBottom
+            Left = 217
+            Height = 13
+            Top = 153
+            Width = 20
+            BorderSpacing.Top = 3
+            Caption = 'Poll'
+            Font.Height = -12
+            ParentColor = False
+            ParentFont = False
+          end
+        end
+        object TSTCI: TTabSheet
+          Caption = 'TCI'
+        end
+      end
+    end
+    object TSIntRef: TTabSheet
+      Caption = 'Internal reference'
+      ClientHeight = 259
+      ClientWidth = 500
+      object gbIntRef: TGroupBox
+        Left = 8
+        Height = 240
+        Top = 8
+        Width = 233
+        Caption = 'Internal reference book'
+        ClientHeight = 224
+        ClientWidth = 231
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 0
+        object CheckBox1: TCheckBox
+          Left = 8
+          Height = 23
+          Top = 136
+          Width = 115
+          Caption = 'Use reference?'
+          Font.Height = -12
+          OnChange = CheckBox1Change
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Label10: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 13
+          Top = 8
+          Width = 80
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Release date:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label11: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 13
+          Top = 56
+          Width = 117
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Number of records:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label12: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 13
+          Top = 80
+          Width = 89
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Update status:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Button4: TButton
+          Left = 10
+          Height = 25
+          Top = 184
+          Width = 208
+          Caption = 'Check for Updates'
+          Font.Height = -12
+          OnClick = Button4Click
+          ParentFont = False
+          TabOrder = 1
+        end
+        object Label13: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 13
+          Top = 32
+          Width = 47
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Version:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label14: TLabel
+          AnchorSideLeft.Control = Label13
+          Left = 60
+          Height = 13
+          Top = 32
+          Width = 12
+          BorderSpacing.Left = 50
+          Caption = '---'
+          ParentColor = False
+        end
+        object ProgressBar1: TProgressBar
+          Left = 10
+          Height = 20
+          Top = 160
+          Width = 206
+          TabOrder = 2
+        end
+        object Label17: TLabel
+          AnchorSideLeft.Control = gbIntRef
+          AnchorSideRight.Control = gbIntRef
+          AnchorSideRight.Side = asrBottom
+          Left = 10
+          Height = 13
+          Top = 104
+          Width = 85
+          BorderSpacing.Left = 10
+          BorderSpacing.Right = 140
+          Caption = 'Download file:'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+      end
+    end
+    object TSTelnet: TTabSheet
+      Caption = 'Telnet'
+      ClientHeight = 259
+      ClientWidth = 500
+      OnShow = TSTelnetShow
+      object gbTelnet: TGroupBox
+        Left = 8
+        Height = 128
+        Top = 8
+        Width = 248
+        Caption = 'Telnet DX Cluster'
+        ClientHeight = 112
+        ClientWidth = 246
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 0
+        object EditTelnetLogin: TEdit
+          AnchorSideLeft.Control = LBTelnetLogin
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = gbTelnet
+          Left = 66
+          Height = 26
+          Top = 5
+          Width = 160
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 5
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object EditTelnetPassword: TEdit
+          AnchorSideLeft.Control = LBTelnetPassword
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = EditTelnetLogin
+          AnchorSideTop.Side = asrBottom
+          Left = 66
+          Height = 26
+          Top = 41
+          Width = 160
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 10
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object LBTelnetLogin: TLabel
+          AnchorSideTop.Control = EditTelnetLogin
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = LBTelnetPassword
+          AnchorSideRight.Side = asrBottom
+          Left = 29
+          Height = 13
+          Top = 12
+          Width = 32
+          Anchors = [akTop, akRight]
+          Caption = 'Login'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object LBTelnetPassword: TLabel
+          AnchorSideLeft.Control = gbTelnet
+          AnchorSideTop.Control = EditTelnetPassword
+          AnchorSideTop.Side = asrCenter
+          Left = 5
+          Height = 13
+          Top = 48
+          Width = 56
+          BorderSpacing.Left = 5
+          BorderSpacing.Right = 5
+          Caption = 'Password'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CBTelnetStartUp: TCheckBox
+          AnchorSideLeft.Control = gbTelnet
+          AnchorSideBottom.Control = gbTelnet
+          AnchorSideBottom.Side = asrBottom
+          Left = 5
+          Height = 23
+          Top = 84
+          Width = 207
+          Anchors = [akLeft, akBottom]
+          BorderSpacing.Left = 5
+          BorderSpacing.Bottom = 5
+          Caption = 'Start DX cluster automatically'
+          DoubleBuffered = False
+          Font.Height = -12
+          ParentDoubleBuffered = False
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
+      object LVTelnet: TListView
+        AnchorSideLeft.Control = gbTelnet
+        AnchorSideLeft.Side = asrBottom
+        Left = 261
+        Height = 259
+        Top = 0
+        Width = 239
+        Align = alRight
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 5
+        Columns = <        
+          item
+            Caption = 'Name'
+            Width = 60
+          end        
+          item
+            Caption = 'Address'
+            Width = 110
+          end        
+          item
+            Caption = 'Port'
+            Width = 67
+          end>
+        ReadOnly = True
+        RowSelect = True
+        ScrollBars = ssAutoBoth
+        TabOrder = 1
+        ViewStyle = vsReport
+        OnSelectItem = LVTelnetSelectItem
+      end
+      object GBTelnetEdit: TGroupBox
+        Left = 8
+        Height = 121
+        Top = 136
+        Width = 248
+        Caption = 'Edit'
+        ClientHeight = 105
+        ClientWidth = 246
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 2
+        object LBTelnetName: TLabel
+          AnchorSideTop.Control = EditTelnetName
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = EditTelnetName
+          Left = 26
+          Height = 13
+          Top = 7
+          Width = 35
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Name'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object LBTelnetAddress: TLabel
+          AnchorSideTop.Control = EditTelnetAdress
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = EditTelnetAdress
+          Left = 13
+          Height = 13
+          Top = 36
+          Width = 48
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Address'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object LBTelnetPort: TLabel
+          AnchorSideTop.Control = EditTelnetPort
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = EditTelnetPort
+          Left = 37
+          Height = 13
+          Top = 65
+          Width = 24
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Port'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object EditTelnetName: TEdit
+          AnchorSideTop.Control = GBTelnetEdit
+          Left = 66
+          Height = 26
+          Top = 0
+          Width = 152
+          Font.Height = -12
+          OnChange = EditTelnetNameChange
+          ParentFont = False
+          TabOrder = 0
+        end
+        object EditTelnetAdress: TEdit
+          AnchorSideTop.Control = EditTelnetName
+          AnchorSideTop.Side = asrBottom
+          Left = 66
+          Height = 26
+          Top = 29
+          Width = 152
+          BorderSpacing.Top = 3
+          Font.Height = -12
+          OnChange = EditTelnetAdressChange
+          ParentFont = False
+          TabOrder = 1
+        end
+        object EditTelnetPort: TEdit
+          AnchorSideTop.Control = EditTelnetAdress
+          AnchorSideTop.Side = asrBottom
+          Left = 66
+          Height = 26
+          Top = 58
+          Width = 152
+          BorderSpacing.Top = 3
+          Font.Height = -12
+          NumbersOnly = True
+          OnChange = EditTelnetPortChange
+          ParentFont = False
+          TabOrder = 2
+        end
+        object SBTelnetDone: TSpeedButton
+          AnchorSideRight.Control = GBTelnetEdit
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GBTelnetEdit
+          AnchorSideBottom.Side = asrBottom
+          Left = 222
+          Height = 22
+          Top = 82
+          Width = 23
+          Anchors = [akRight, akBottom]
+          BorderSpacing.Right = 1
+          BorderSpacing.Bottom = 1
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000E8D
+            00000D8700000B8200000772000003610048025F00CC03610038077200000877
+            00000877000008770000087700000877000008770000FFFFFF00FFFFFF000E8D
+            00000D8700000B82000008750048077200CC16A60AE8087601C4087500290877
+            00000877000008770000087700000877000008770000FFFFFF00FFFFFF000E8D
+            00000D8700000B8300480B8200CC2AC01BF424CD13FF1DB60EEF0C8301BB0C85
+            001B0D8A00000F8F0000109400001095000010950000FFFFFF00FFFFFF000E8D
+            00000D8800480D8700CC43CA33F629C318FF39CC28FF28C217FF1EAA0FEA0D87
+            00AE0D8A00100F8F0000109400001095000010950000FFFFFF00FFFFFF000E8E
+            00480E8D00CC5FD94FF933BC22FF50D040F80E8D00CC2AB21AF32CB81BFF1EA2
+            0FE40E8D009E0F8F0008109400001095000010950000FFFFFF00FFFFFF000F92
+            00CC6DE55CFA59D048FF69E158FC0F9200CC0F92006D139504CB34B423F832B2
+            21FF1F9F0FDF0F92008C109400021095000010950000FFFFFF00FFFFFF001196
+            0048119700CC73EA62FD119700CC119600480F9300001196004C189D08D33DB6
+            2CFB37AF26FE1FA00EDA1197007B11980000129B0000FFFFFF00FFFFFF001197
+            0000129B0048129B00CC129B0048119700000F93000011970000129B006924AA
+            13D857CF46FE55CD44FD21A710D6129C006313A00000FFFFFF00FFFFFF001197
+            0000129B0000129C0000129B00001197000011990000129F0000129F000113A0
+            008533B820DE61D850FF5CD54BFA1EA80CD213A1004CFFFFFF00FFFFFF001197
+            0000129B0000129C0000129B00001197000011990000129F0000129F000013A2
+            000614A3009E43C631E56BE25AFF70E95FFB14A300CCFFFFFF00FFFFFF001197
+            0000129B0000129C0000129B00001197000011990000129F0000129F000013A2
+            000014A5001014A700B077EE66FF14A700CC14A70048FFFFFF00FFFFFF001197
+            0000129B0000129C0000129B00001197000013A2000014A5000014A5000014A6
+            000015A8000015A9001F15AA00CC15AA004814A70000FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+          }
+          OnClick = SBTelnetDoneClick
+        end
+        object SBTelnetDelete: TSpeedButton
+          AnchorSideLeft.Control = GBTelnetEdit
+          AnchorSideBottom.Control = GBTelnetEdit
+          AnchorSideBottom.Side = asrBottom
+          Left = 1
+          Height = 22
+          Top = 82
+          Width = 23
+          Anchors = [akLeft, akBottom]
+          BorderSpacing.Left = 1
+          BorderSpacing.Bottom = 1
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            00000000A113110FB0DA00009C3E000000000000000000000000000000000000
+            0000000000000400993F110FB0D700009F100000000000000000000000000000
+            A1131713BAEB2821D2FF1F1AC6FB00009C3E0000000000000000000000000000
+            00000400993F201AC6FC2821D2FF1712B9E800009F100000000000009B121612
+            BCEA2720D6FF2720D6FF2720D6FF1F19C9FB00009C3E00000000000000000000
+            993F1F19C9FC2720D6FF2720D6FF2720D6FF1511BBE800009F10110DB7DB261F
+            DAFF261FDAFF261FDAFF261FDAFF261FDAFF1E19CDFB00009C3E00009D3F1E19
+            CDFC261FDAFF261FDAFF261FDAFF261FDAFF261FDAFF100EB5D703039D441F18
+            D0FC261EDDFF261EDDFF261EDDFF261EDDFF261EDDFF1E18CFFC1E18CFFC261E
+            DDFF261EDDFF261EDDFF261EDDFF261EDDFF1E18CFFC00009D3F000000000303
+            9B451E18D4FC251DE1FF251DE1FF251DE1FF251DE1FF251DE1FF251DE1FF251D
+            E1FF251DE1FF251DE1FF251DE1FF1D17D2FC00009D3F00000000000000000000
+            000003039C461D18D6FC241DE5FF241DE5FF241DE5FF241DE5FF241DE5FF241D
+            E5FF241DE5FF241DE5FF1D17D4FC00009D3F0000000000000000000000000000
+            0000000000000303A1471D17D9FC241CE9FF241CE9FF241CE9FF241CE9FF241C
+            E9FF241CE9FF1D16D7FC00009D3F000000000000000000000000000000000000
+            0000000000000707A041231FD9FC2722EBFF2722EBFF2722EBFF2722EBFF2722
+            EBFF2722EBFF1F1BD9FC00009D3F000000000000000000000000000000000000
+            00000B0BA0413535DCFC4343EEFF3E3EEDFF3636EDFF3030ECFF2F2FECFF2F2F
+            ECFF2F2FECFF2F2FECFF2424DBFB04049A3D0000000000000000000000000B0B
+            A0413A3DDDFC4A4EEFFF4A4EEFFF4A4EEFFF4A4EEFFF494DEFFF4348EEFF3F43
+            EEFF3C40EDFF393EEDFF383DEDFF2B2FDBFB08089C3E000000000B0BA0413F47
+            DDFC515AF0FF515AF0FF515AF0FF515AF0FF515AF0FF3F47DDFC4148DFFC515A
+            F0FF515AF0FF515AF0FF515AF0FF515AF0FF4149DEFB08089E3D2B32C4DE5766
+            F1FF5766F1FF5766F1FF5766F1FF5766F1FF4551DEFC0B0BA0410A0EA6484652
+            E0FC5766F1FF5766F1FF5766F1FF5766F1FF5766F1FF2A32C3DA0000A1133B48
+            CFED5E70F1FF5E70F1FF5E70F1FF4A5BDEFC0B0BA04100000000000000000E0E
+            A5474C5DE0FC5E70F1FF5E70F1FF5E70F1FF3945CFEB00009B12000000000000
+            A1133F4DD0ED657CF1FF5065DFFC0B0FA0410000000000000000000000000000
+            00000E0EA2455166E0FC657CF1FF3C4DCFEB00009B1200000000000000000000
+            00000000A1133442C4DE0B0FA041000000000000000000000000000000000000
+            0000000000000E0EA2453644C5DD00009B120000000000000000
+          }
+          OnClick = SBTelnetDeleteClick
+        end
+      end
+    end
+    object TSBackup: TTabSheet
+      Caption = 'Backup'
+      ClientHeight = 259
+      ClientWidth = 500
+      object DEBackupPath: TDirectoryEdit
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = lbPathBackup
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 25
+        Width = 232
+        ShowHidden = False
+        ButtonWidth = 23
+        NumGlyphs = 1
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 2
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object lbPathBackup: TLabel
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = TSBackup
+        Left = 5
+        Height = 13
+        Top = 10
+        Width = 104
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Path backup files'
+        ParentColor = False
+      end
+      object cbBackupDB: TCheckBox
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = DEBackupPath
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 56
+        Width = 131
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup Database'
+        Enabled = False
+        TabOrder = 1
+      end
+      object cbADIfiles: TCheckBox
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = cbBackupDB
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 84
+        Width = 118
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup ADI file'
+        Enabled = False
+        TabOrder = 2
+      end
+      object cbBackupCloseDB: TCheckBox
+        AnchorSideLeft.Control = cbBackupDB
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = cbBackupDB
+        AnchorSideTop.Side = asrCenter
+        Left = 141
+        Height = 23
+        Top = 56
+        Width = 124
+        BorderSpacing.Left = 5
+        Caption = 'Backup on close'
+        TabOrder = 3
+      end
+      object cbBackupCloseADI: TCheckBox
+        AnchorSideLeft.Control = cbADIfiles
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = cbADIfiles
+        AnchorSideTop.Side = asrCenter
+        Left = 138
+        Height = 23
+        Top = 84
+        Width = 124
+        BorderSpacing.Left = 15
+        Caption = 'Backup on close'
+        TabOrder = 4
+      end
+      object timeEdit: TTimeEdit
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = lbTimeBackup
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 130
+        Width = 110
+        ButtonWidth = 23
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        NumGlyphs = 1
+        Enabled = False
+        MaxLength = 0
+        TabOrder = 5
+      end
+      object lbTimeBackup: TLabel
+        AnchorSideLeft.Control = TSBackup
+        AnchorSideTop.Control = cbADIfiles
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 112
+        Width = 78
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Backup Time'
+        ParentColor = False
+      end
+    end
+    object THotKey: TTabSheet
+      Caption = 'Hot key'
+      ClientHeight = 259
+      ClientWidth = 500
+      object lbSaveQSO: TLabel
+        AnchorSideLeft.Control = THotKey
+        AnchorSideTop.Control = THotKey
+        Left = 5
+        Height = 13
+        Top = 5
+        Width = 84
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Key Save QSO'
+        Font.Height = -12
+        ParentColor = False
+        ParentFont = False
+      end
+      object lbClearQSO: TLabel
+        AnchorSideLeft.Control = THotKey
+        AnchorSideTop.Control = EditSaveKey
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 59
+        Width = 85
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Key Clear QSO'
+        Font.Height = -12
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditSaveKey: TEdit
+        AnchorSideLeft.Control = lbSaveQSO
+        AnchorSideTop.Control = lbSaveQSO
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 23
+        Width = 147
+        BorderSpacing.Top = 5
+        Font.Height = -12
+        OnKeyDown = EditSaveKeyKeyDown
+        ParentFont = False
+        TabOrder = 0
+      end
+      object EditClearKey: TEdit
+        AnchorSideLeft.Control = lbClearQSO
+        AnchorSideTop.Control = lbClearQSO
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 77
+        Width = 147
+        BorderSpacing.Top = 5
+        Font.Height = -12
+        OnKeyDown = EditClearKeyKeyDown
+        ParentFont = False
+        TabOrder = 1
+      end
+      object LBGetReference: TLabel
+        AnchorSideLeft.Control = THotKey
+        AnchorSideTop.Control = EditClearKey
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 113
+        Width = 214
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Key get data from Online Reference'
+        Font.Height = -12
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditReferenceKey: TEdit
+        AnchorSideLeft.Control = LBGetReference
+        AnchorSideTop.Control = LBGetReference
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 131
+        Width = 147
+        BorderSpacing.Top = 5
+        Font.Height = -12
+        OnKeyDown = EditReferenceKeyKeyDown
+        ParentFont = False
+        TabOrder = 2
+      end
+      object LBKeyImport: TLabel
+        AnchorSideLeft.Control = EditExportKey
+        AnchorSideTop.Control = EditExportKey
+        AnchorSideTop.Side = asrBottom
+        Left = 242
+        Height = 13
+        Top = 59
+        Width = 113
+        BorderSpacing.Top = 10
+        Caption = 'Key Import ADI file'
+        ParentColor = False
+      end
+      object EditImportKey: TEdit
+        AnchorSideLeft.Control = LBKeyImport
+        AnchorSideTop.Control = LBKeyImport
+        AnchorSideTop.Side = asrBottom
+        Left = 242
+        Height = 26
+        Top = 77
+        Width = 147
+        BorderSpacing.Top = 5
+        OnKeyDown = EditImportKeyKeyDown
+        TabOrder = 3
+      end
+      object LBKeyExport: TLabel
+        AnchorSideLeft.Control = EditSaveKey
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = THotKey
+        Left = 242
+        Height = 13
+        Top = 5
+        Width = 112
+        BorderSpacing.Left = 90
+        BorderSpacing.Top = 5
+        Caption = 'Key Export ADI file'
+        ParentColor = False
+      end
+      object EditExportKey: TEdit
+        AnchorSideLeft.Control = LBKeyExport
+        AnchorSideTop.Control = LBKeyExport
+        AnchorSideTop.Side = asrBottom
+        Left = 242
+        Height = 26
+        Top = 23
+        Width = 147
+        BorderSpacing.Top = 5
+        OnKeyDown = EditExportKeyKeyDown
+        TabOrder = 4
+      end
+    end
+    object TColorandGrids: TTabSheet
+      Caption = 'Colors and Grids'
+      ClientHeight = 259
+      ClientWidth = 500
+      object PControl2: TPageControl
+        Left = 0
+        Height = 259
+        Top = 0
+        Width = 500
+        ActivePage = PColors
+        Align = alClient
+        TabIndex = 0
+        TabOrder = 0
+        object PColors: TTabSheet
+          Caption = 'Colors'
+          ClientHeight = 255
+          ClientWidth = 496
+          object gbGridsColor: TGroupBox
+            Left = 8
+            Height = 192
+            Top = 8
+            Width = 145
+            Caption = 'Grids Color'
+            ClientHeight = 176
+            ClientWidth = 143
+            TabOrder = 0
+            object lbTextColor: TLabel
+              AnchorSideLeft.Control = gbGridsColor
+              AnchorSideTop.Control = gbGridsColor
+              Left = 5
+              Height = 13
+              Top = 2
+              Width = 66
+              BorderSpacing.Left = 5
+              BorderSpacing.Top = 2
+              Caption = 'Text color'
+              Font.Height = -12
+              Font.Style = [fsBold, fsUnderline]
+              ParentColor = False
+              ParentFont = False
+            end
+            object cbTextColorGrid: TColorBox
+              AnchorSideLeft.Control = lbTextColor
+              AnchorSideTop.Control = lbTextColor
+              AnchorSideTop.Side = asrBottom
+              Left = 5
+              Height = 28
+              Top = 22
+              Width = 132
+              BorderSpacing.Top = 7
+              Font.Height = -12
+              ItemHeight = 16
+              ParentFont = False
+              TabOrder = 0
+            end
+            object lbTextSize: TLabel
+              AnchorSideLeft.Control = gbGridsColor
+              AnchorSideTop.Control = cbTextColorGrid
+              AnchorSideTop.Side = asrBottom
+              Left = 5
+              Height = 13
+              Top = 60
+              Width = 59
+              BorderSpacing.Left = 5
+              BorderSpacing.Top = 10
+              Caption = 'Text size'
+              Font.Height = -12
+              Font.Style = [fsBold, fsUnderline]
+              ParentColor = False
+              ParentFont = False
+            end
+            object cbTextSizeGrid: TComboBox
+              AnchorSideLeft.Control = lbTextSize
+              AnchorSideTop.Control = lbTextSize
+              AnchorSideTop.Side = asrBottom
+              Left = 5
+              Height = 27
+              Top = 80
+              Width = 132
+              BorderSpacing.Top = 7
+              Font.Height = -12
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                '8 пт'
+                '10 пт'
+                '12 пт'
+                '14 пт'
+              )
+              ParentFont = False
+              TabOrder = 1
+              Text = '8 пт'
+            end
+            object lbBackColor: TLabel
+              AnchorSideLeft.Control = gbGridsColor
+              AnchorSideTop.Control = cbTextSizeGrid
+              AnchorSideTop.Side = asrBottom
+              Left = 5
+              Height = 13
+              Top = 117
+              Width = 119
+              BorderSpacing.Left = 5
+              BorderSpacing.Top = 10
+              Caption = 'Background color'
+              Font.Height = -12
+              Font.Style = [fsBold, fsUnderline]
+              ParentColor = False
+              ParentFont = False
+            end
+            object cbBackColorGrid: TColorBox
+              AnchorSideLeft.Control = lbBackColor
+              AnchorSideTop.Control = lbBackColor
+              AnchorSideTop.Side = asrBottom
+              Left = 5
+              Height = 28
+              Top = 137
+              Width = 132
+              BorderSpacing.Top = 7
+              Font.Height = -12
+              ItemHeight = 16
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object btApplyColor: TButton
+            AnchorSideRight.Control = PColors
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = PColors
+            AnchorSideBottom.Side = asrBottom
+            Left = 413
+            Height = 25
+            Top = 203
+            Width = 75
+            Anchors = [akRight, akBottom]
+            BorderSpacing.Right = 2
+            BorderSpacing.Bottom = 2
+            Caption = 'Apply'
+            OnClick = btApplyColorClick
+            TabOrder = 1
+          end
+          object btDefaultColor: TButton
+            AnchorSideRight.Control = btApplyColor
+            AnchorSideBottom.Control = PColors
+            AnchorSideBottom.Side = asrBottom
+            Left = 334
+            Height = 25
+            Top = 203
+            Width = 77
+            Anchors = [akRight, akBottom]
+            BorderSpacing.Right = 2
+            BorderSpacing.Bottom = 2
+            Caption = 'Default'
+            OnClick = btDefaultColorClick
+            TabOrder = 2
+          end
+        end
+        object PGrids: TTabSheet
+          Caption = 'Grids'
+          ClientHeight = 255
+          ClientWidth = 496
+          object Label7: TLabel
+            Left = 1
+            Height = 13
+            Top = 8
+            Width = 118
+            Caption = 'Displays columns'
+            Font.Height = -12
+            Font.Style = [fsBold, fsUnderline]
+            ParentColor = False
+            ParentFont = False
+          end
+          object cbQSL: TCheckBox
+            Left = 1
+            Height = 23
+            Top = 24
+            Width = 50
+            Caption = 'QSL'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 0
+          end
+          object cbQSLs: TCheckBox
+            Left = 1
+            Height = 23
+            Top = 48
+            Width = 56
+            Caption = 'QSLs'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 1
+          end
+          object cbDate: TCheckBox
+            Left = 1
+            Height = 23
+            Top = 72
+            Width = 54
+            Caption = 'Date'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 2
+          end
+          object cbTime: TCheckBox
+            Left = 1
+            Height = 23
+            Top = 96
+            Width = 55
+            Caption = 'Time'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 3
+          end
+          object cbBand: TCheckBox
+            Left = 1
+            Height = 23
+            Top = 120
+            Width = 57
+            Caption = 'Band'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 4
+          end
+          object cbCall: TCheckBox
+            Left = 1
+            Height = 23
+            Top = 144
+            Width = 47
+            Caption = 'Call'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 5
+          end
+          object cbMode: TCheckBox
+            Left = 1
+            Height = 23
+            Top = 168
+            Width = 58
+            Caption = 'Mode'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 6
+          end
+          object cbSubMode: TCheckBox
+            Left = 1
+            Height = 23
+            Top = 192
+            Width = 82
+            Caption = 'SubMode'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 7
+          end
+          object cbName: TCheckBox
+            Left = 105
+            Height = 23
+            Top = 24
+            Width = 61
+            Caption = 'Name'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 8
+          end
+          object cbQTH: TCheckBox
+            Left = 105
+            Height = 23
+            Top = 48
+            Width = 51
+            Caption = 'QTH'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 9
+          end
+          object cbState: TCheckBox
+            Left = 104
+            Height = 23
+            Top = 72
+            Width = 58
+            Caption = 'State'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 10
+          end
+          object cbGrid: TCheckBox
+            Left = 105
+            Height = 23
+            Top = 96
+            Width = 51
+            Caption = 'Grid'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 11
+          end
+          object cbRSTs: TCheckBox
+            Left = 105
+            Height = 23
+            Top = 120
+            Width = 53
+            Caption = 'RSTs'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 12
+          end
+          object cbRSTr: TCheckBox
+            Left = 104
+            Height = 23
+            Top = 144
+            Width = 53
+            Caption = 'RSTr'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 13
+          end
+          object cbIOTA: TCheckBox
+            Left = 105
+            Height = 23
+            Top = 168
+            Width = 53
+            Caption = 'IOTA'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 14
+          end
+          object cbManager: TCheckBox
+            Left = 105
+            Height = 23
+            Top = 192
+            Width = 78
+            Caption = 'Manager'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 15
+          end
+          object cbQSLsDate: TCheckBox
+            Left = 200
+            Height = 23
+            Top = 24
+            Width = 88
+            Caption = 'QSLs Date'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 16
+          end
+          object cbQSLrDate: TCheckBox
+            Left = 200
+            Height = 23
+            Top = 48
+            Width = 87
+            Caption = 'QSLr Date'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 17
+          end
+          object cbLOTWrDate: TCheckBox
+            Left = 200
+            Height = 23
+            Top = 72
+            Width = 96
+            Caption = 'LOTWr Date'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 18
+          end
+          object cbPrefix: TCheckBox
+            Left = 200
+            Height = 23
+            Top = 96
+            Width = 60
+            Caption = 'Prefix'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 19
+          end
+          object cbDXCC: TCheckBox
+            Left = 200
+            Height = 23
+            Top = 120
+            Width = 58
+            Caption = 'DXCC'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 20
+          end
+          object cbCQZone: TCheckBox
+            Left = 200
+            Height = 23
+            Top = 144
+            Width = 77
+            Caption = 'CQ Zone'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 21
+          end
+          object cbITUZone: TCheckBox
+            Left = 200
+            Height = 23
+            Top = 168
+            Width = 80
+            Caption = 'ITU Zone'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 22
+          end
+          object cbManualSet: TCheckBox
+            Left = 200
+            Height = 23
+            Top = 192
+            Width = 93
+            Caption = 'Manual Set'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 23
+          end
+          object cbContinent: TCheckBox
+            Left = 320
+            Height = 23
+            Top = 24
+            Width = 85
+            Caption = 'Continent'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 24
+          end
+          object cbValidDX: TCheckBox
+            Left = 320
+            Height = 23
+            Top = 48
+            Width = 71
+            Caption = 'ValidDX'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 25
+          end
+          object cbQSLrVIA: TCheckBox
+            Left = 320
+            Height = 23
+            Top = 72
+            Width = 79
+            Caption = 'QSLr VIA'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 26
+          end
+          object cbQSLsVIA: TCheckBox
+            Left = 320
+            Height = 23
+            Top = 96
+            Width = 80
+            Caption = 'QSLs VIA'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 27
+          end
+          object cbUser: TCheckBox
+            Left = 320
+            Height = 23
+            Top = 120
+            Width = 53
+            Caption = 'User'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 28
+          end
+          object cbNoCalcDXCC: TCheckBox
+            Left = 320
+            Height = 23
+            Top = 144
+            Width = 107
+            Caption = 'No Calc DXCC'
+            Font.Height = -12
+            ParentFont = False
+            TabOrder = 29
+          end
+        end
+      end
+    end
+    object TSOtherSettings: TTabSheet
+      Caption = 'Other Settings'
+      ClientHeight = 259
+      ClientWidth = 500
+      object gbCloudLog: TGroupBox
+        Left = 8
+        Height = 145
+        Top = 8
+        Width = 216
+        Caption = 'CloudLog'
+        ClientHeight = 129
+        ClientWidth = 214
+        Font.Height = -12
+        ParentFont = False
+        TabOrder = 0
+        object Edit10: TEdit
+          Left = 64
+          Height = 26
+          Top = 8
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Label23: TLabel
+          AnchorSideTop.Control = Edit10
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit10
+          Left = 20
+          Height = 13
+          Top = 15
+          Width = 39
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'Server'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox8: TCheckBox
+          Left = 8
+          Height = 23
+          Top = 72
+          Width = 157
+          Caption = 'Send ADI to CloudLog'
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 1
+        end
+        object CheckBox9: TCheckBox
+          Left = 8
+          Height = 23
+          Top = 96
+          Width = 162
+          Caption = 'Send Freq to CloudLog'
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 2
+        end
+        object Edit13: TEdit
+          Left = 64
+          Height = 26
+          Top = 40
+          Width = 136
+          Font.Height = -12
+          ParentFont = False
+          TabOrder = 3
+        end
+        object Label24: TLabel
+          AnchorSideTop.Control = Edit13
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Edit13
+          Left = 15
+          Height = 13
+          Top = 47
+          Width = 44
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 5
+          Caption = 'API key'
+          Font.Height = -12
+          ParentColor = False
+          ParentFont = False
+        end
+      end
+      object CheckBox2: TCheckBox
+        Left = 240
+        Height = 23
+        Top = 16
+        Width = 150
+        Caption = 'Use bands in meters'
+        Font.Height = -12
+        OnChange = CheckBox2Change
+        ParentFont = False
+        TabOrder = 1
+      end
+      object CheckBox5: TCheckBox
+        Left = 240
+        Height = 23
+        Top = 40
+        Width = 154
+        Caption = 'Printing with preview'
+        Font.Height = -12
+        OnChange = CheckBox2Change
+        ParentFont = False
+        TabOrder = 2
+      end
+      object CheckBox6: TCheckBox
+        Left = 240
+        Height = 23
+        Top = 64
+        Width = 242
+        Caption = 'Send MY_STATE and MY_GRIDSQUARE'
+        Font.Height = -12
+        OnChange = CheckBox6Change
+        ParentFont = False
+        TabOrder = 3
+      end
+      object Label20: TLabel
+        AnchorSideLeft.Control = CheckBox6
+        AnchorSideTop.Control = CheckBox6
+        AnchorSideTop.Side = asrBottom
+        Left = 265
+        Height = 13
+        Top = 87
+        Width = 67
+        BorderSpacing.Left = 25
+        Caption = 'to QSL Info'
+        Font.Height = -12
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object TSWorkLAN: TTabSheet
+      Caption = 'Work on LAN (UDP)'
+      ClientHeight = 259
+      ClientWidth = 500
+      object LBWOLAddress: TLabel
+        AnchorSideLeft.Control = TSWorkLAN
+        AnchorSideTop.Control = TSWorkLAN
+        Left = 5
+        Height = 13
+        Top = 10
+        Width = 52
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Address:'
+        ParentColor = False
+      end
+      object EditWOLAddress: TEdit
+        AnchorSideLeft.Control = LBWOLAddress
+        AnchorSideTop.Control = LBWOLAddress
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 28
+        Width = 123
+        BorderSpacing.Top = 5
+        TabOrder = 0
+      end
+      object LBWOLPort: TLabel
+        AnchorSideLeft.Control = EditWOLAddress
+        AnchorSideTop.Control = EditWOLAddress
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 64
+        Width = 28
+        BorderSpacing.Top = 10
+        Caption = 'Port:'
+        ParentColor = False
+      end
+      object EditWOLPort: TEdit
+        AnchorSideLeft.Control = LBWOLPort
+        AnchorSideTop.Control = LBWOLPort
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 82
+        Width = 123
+        BorderSpacing.Top = 5
+        NumbersOnly = True
+        TabOrder = 1
+      end
+      object CBWOLEnable: TCheckBox
+        AnchorSideLeft.Control = EditWOLPort
+        AnchorSideTop.Control = EditWOLPort
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 23
+        Top = 118
+        Width = 150
+        BorderSpacing.Top = 10
+        Caption = 'Enable Work On LAN'
+        TabOrder = 2
+      end
+      object MWOLLog: TMemo
+        AnchorSideLeft.Control = LBWOLLog
+        AnchorSideTop.Control = LBWOLLog
+        AnchorSideTop.Side = asrBottom
+        Left = 165
+        Height = 109
+        Top = 28
+        Width = 315
+        BorderSpacing.Top = 5
+        Font.Height = -9
+        ParentFont = False
+        ReadOnly = True
+        ScrollBars = ssAutoVertical
+        TabOrder = 3
+      end
+      object LBWOLLog: TLabel
+        AnchorSideLeft.Control = LBWOLCall
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = TSWorkLAN
+        Left = 165
+        Height = 13
+        Top = 10
+        Width = 25
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 10
+        Caption = 'Log:'
+        ParentColor = False
+      end
+      object LBCallWOL: TLabel
+        AnchorSideLeft.Control = CBWOLEnable
+        AnchorSideTop.Control = CBWOLEnable
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 151
+        Width = 66
+        BorderSpacing.Top = 10
+        Caption = 'Found Call:'
+        ParentColor = False
+      end
+      object LBWOLCall: TListBox
+        AnchorSideLeft.Control = LBCallWOL
+        AnchorSideTop.Control = LBCallWOL
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 80
+        Top = 169
+        Width = 155
+        BorderSpacing.Top = 5
+        ItemHeight = 0
+        ScrollWidth = 153
+        TabOrder = 4
+        TopIndex = -1
+      end
+    end
+  end
+end
