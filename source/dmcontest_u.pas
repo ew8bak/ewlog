@@ -63,9 +63,11 @@ end;
 procedure TdmContest.SaveIni;
 begin
   INIFile.WriteInteger('Contest', 'ContestLastNumber', IniSet.ContestLastNumber);
+  INIFile.WriteString('Contest', 'ContestLastMSG', IniSet.ContestLastMSG);
   INIFile.WriteString('Contest', 'ContestName', IniSet.ContestName);
   INIFile.WriteInteger('Contest', 'TourTime', IniSet.ContestTourTime);
   INIFile.WriteString('Contest', 'ContestSession', IniSet.ContestSession);
+  INIFile.WriteString('Contest', 'ExchangeType', IniSet.ContestExchangeType);
 end;
 
 function TdmContest.CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;

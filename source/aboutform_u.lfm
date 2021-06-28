@@ -2,21 +2,21 @@ object About_Form: TAbout_Form
   Left = 560
   Height = 126
   Top = 212
-  Width = 316
+  Width = 367
   AutoSize = True
   BorderIcons = [biSystemMenu]
   Caption = 'About'
   ClientHeight = 126
-  ClientWidth = 316
+  ClientWidth = 367
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.12.0'
   object Label1: TLabel
     Left = 16
-    Height = 28
+    Height = 22
     Top = 8
-    Width = 164
+    Width = 188
     Caption = 'HAM LOG EWLog'
     Font.Height = -20
     Font.Style = [fsBold]
@@ -25,9 +25,9 @@ object About_Form: TAbout_Form
   end
   object Label2: TLabel
     Left = 16
-    Height = 25
+    Height = 21
     Top = 40
-    Width = 67
+    Width = 81
     Caption = 'Version'
     Font.Height = -19
     Font.Style = [fsBold]
@@ -36,9 +36,9 @@ object About_Form: TAbout_Form
   end
   object Label3: TLabel
     Left = 16
-    Height = 25
+    Height = 21
     Top = 72
-    Width = 192
+    Width = 233
     Caption = 'Designed by EW8BAK'
     Font.Height = -19
     Font.Style = [fsBold]
@@ -47,9 +47,9 @@ object About_Form: TAbout_Form
   end
   object Label4: TLabel
     Left = 16
-    Height = 17
+    Height = 15
     Top = 104
-    Width = 258
+    Width = 311
     Caption = 'Copyright 2015 - 2021 Uladzimir Karpenka'
     Font.Height = -13
     Font.Style = [fsBold]
@@ -61,10 +61,10 @@ object About_Form: TAbout_Form
     AnchorSideLeft.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 279
+    Left = 332
     Height = 34
     Top = 92
-    Width = 37
+    Width = 35
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Left = 5
     Picture.Data = {
@@ -114,10 +114,10 @@ object About_Form: TAbout_Form
   object Label5: TLabel
     AnchorSideLeft.Control = Label2
     AnchorSideLeft.Side = asrBottom
-    Left = 88
-    Height = 25
+    Left = 102
+    Height = 21
     Top = 40
-    Width = 58
+    Width = 72
     BorderSpacing.Left = 5
     Caption = 'Label5'
     Font.Height = -19

@@ -2105,6 +2105,14 @@ msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"
 msgstr "Мода"
 
+#: tcontestform.lbmsgr.caption
+msgid "MSG(r)"
+msgstr ""
+
+#: tcontestform.lbmsgs.caption
+msgid "MSG(s)"
+msgstr ""
+
 #: tcontestform.lbname.caption
 #, fuzzy
 msgctxt "tcontestform.lbname.caption"

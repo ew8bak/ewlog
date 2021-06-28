@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 335
+  Left = 264
   Height = 428
-  Top = 161
+  Top = 128
   Width = 477
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'

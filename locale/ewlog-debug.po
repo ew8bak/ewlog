@@ -2000,6 +2000,14 @@ msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"
 msgstr ""
 
+#: tcontestform.lbmsgr.caption
+msgid "MSG(r)"
+msgstr ""
+
+#: tcontestform.lbmsgs.caption
+msgid "MSG(s)"
+msgstr ""
+
 #: tcontestform.lbname.caption
 msgctxt "tcontestform.lbname.caption"
 msgid "Name"

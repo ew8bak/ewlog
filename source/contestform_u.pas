@@ -30,6 +30,8 @@ type
     CBBand: TComboBox;
     CBSubMode: TComboBox;
     DEDate: TDateEdit;
+    EditMSGr: TEdit;
+    EditMSGs: TEdit;
     EditQTH: TEdit;
     EditGrid: TEdit;
     EditState: TEdit;
@@ -42,6 +44,8 @@ type
     EditRSTs: TEdit;
     EditFreq: TEdit;
     ImDup: TImage;
+    LBMSGr: TLabel;
+    LBMSGs: TLabel;
     LBMinuteTour: TLabel;
     LBTourTime: TLabel;
     LBQTH: TLabel;
@@ -79,6 +83,7 @@ type
       Shift: TShiftState);
     procedure EditCallsignKeyPress(Sender: TObject; var Key: char);
     procedure EditExchrKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure EditMSGrKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RBOtherClick(Sender: TObject);
@@ -224,19 +229,21 @@ begin
     end
     else
     begin
-      SaveQSOrec.SRX := 0;
-      SaveQSOrec.STX := 0;
-      SaveQSOrec.SRX_String := EditExchr.Text;
-      SaveQSOrec.STX_String := EditExchs.Text;
+      SaveQSOrec.SRX := StrToInt(EditExchr.Text);
+      SaveQSOrec.STX := StrToInt(EditExchs.Text);
+      SaveQSOrec.SRX_String := EditMSGr.Text;
+      SaveQSOrec.STX_String := EditMSGs.Text;
     end;
     dmContest.SaveQSOContest(SaveQSOrec);
     SBContest.Panels[0].Text := rSave + ' ' + EditCallsign.Text + ' OK';
     Inc(IniSet.ContestLastNumber);
+    IniSet.ContestLastMSG := EditMSGs.Text;
     EditExchs.Text := dmContest.AddZero(IniSet.ContestLastNumber);
 
     dmContest.SaveIni;
     EditCallsign.Clear;
     EditExchr.Clear;
+    EditMSGr.Clear;
     EditName.Clear;
     EditQTH.Clear;
     EditGrid.Clear;
@@ -253,10 +260,14 @@ begin
   IniSet.ContestLastNumber := 1;
   SETime.Value := 0;
   EditExchs.Text := dmContest.AddZero(IniSet.ContestLastNumber);
+  EditMSGs.Clear;
   CBContestName.ItemIndex := 0;
   IniSet.ContestName := CBContestName.Text;
   IniSet.ContestTourTime := SETime.Value;
   IniSet.ContestSession := MainFunc.GenerateRandomID;
+  IniSet.ContestLastMSG := '';
+  RBSerial.Checked := True;
+  IniSet.ContestExchangeType := 'Serial';
   dmContest.SaveIni;
 end;
 
@@ -290,6 +301,16 @@ procedure TContestForm.EditExchrKeyDown(Sender: TObject; var Key: word;
   Shift: TShiftState);
 begin
   if (Key = VK_RETURN) then
+    if RBSerial.Checked then
+      BtSave.SetFocus
+    else
+      EditMSGr.SetFocus;
+end;
+
+procedure TContestForm.EditMSGrKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
+begin
+  if (Key = VK_RETURN) then
     BtSave.SetFocus;
 end;
 
@@ -297,14 +318,23 @@ procedure TContestForm.FormCreate(Sender: TObject);
 begin
   dmContest.LoadBands(CBMode.Text, CBBand);
   ShowImage(True);
+  EditExchr.NumbersOnly := True;
+  EditExchs.NumbersOnly := True;
 end;
 
 procedure TContestForm.FormShow(Sender: TObject);
 begin
+  if IniSet.ContestExchangeType = 'Serial' then
+    RBSerial.Checked := True;
+  if IniSet.ContestExchangeType = 'Other' then
+  begin
+    RBOther.Checked := True;
+    EditMSGs.Text := IniSet.ContestLastMSG;
+  end;
   if RBSerial.Checked then
   begin
-    EditExchr.NumbersOnly := True;
-    EditExchs.NumbersOnly := True;
+    EditMSGs.Enabled := False;
+    EditMSGr.Enabled := False;
   end;
   dmContest.LoadContestName(CBContestName);
   EditExchs.Text := dmContest.AddZero(IniSet.ContestLastNumber);
@@ -318,8 +348,10 @@ procedure TContestForm.RBOtherClick(Sender: TObject);
 begin
   if RBOther.Checked then
   begin
-    EditExchr.NumbersOnly := False;
-    EditExchs.NumbersOnly := False;
+    IniSet.ContestExchangeType := 'Other';
+    EditMSGs.Text := IniSet.ContestLastMSG;
+    EditMSGs.Enabled := True;
+    EditMSGr.Enabled := True;
   end;
 end;
 
@@ -327,8 +359,11 @@ procedure TContestForm.RBSerialClick(Sender: TObject);
 begin
   if RBSerial.Checked then
   begin
-    EditExchr.NumbersOnly := True;
-    EditExchs.NumbersOnly := True;
+    IniSet.ContestExchangeType := 'Serial';
+    EditMSGs.Clear;
+    EditMSGr.Clear;
+    EditMSGs.Enabled := False;
+    EditMSGr.Enabled := False;
   end;
 end;
 
