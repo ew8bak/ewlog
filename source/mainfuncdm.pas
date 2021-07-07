@@ -115,9 +115,11 @@ begin
   try
    Finalize(TARecord);
     SLAddress := TStringList.Create;
-    for i := 0 to 9 do
-      if INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '') <> '' then
+    for i := 0 to 9 do begin
+    addressString := INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '');
+      if (addressString <> '') and (pos('->', addressString) < 1) then
         SLAddress.Add(INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), ''));
+      end;
     if SLAddress.Count = 0 then
       SLAddress.Add('FEERC,dx.feerc.ru,8000');
 
@@ -128,7 +130,7 @@ begin
       Delete(addressString, 1, pos(',', addressString));
       TARecord[i].Address := copy(addressString, 1, pos(',', addressString) - 1);
       Delete(addressString, 1, pos(',', addressString));
-      TARecord[i].Port := StrToInt(addressString);
+      TARecord[i].Port := StrToIntDef(addressString, 8000); //StrToInt(addressString);
     end;
 
   finally

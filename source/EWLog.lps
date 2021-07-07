@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Debug"/>
-    <Units Count="222">
+    <Units Count="223">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -30,7 +30,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="185"/>
         <CursorPos X="28" Y="209"/>
         <UsageCount Value="200"/>
@@ -575,11 +575,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1474"/>
-        <CursorPos X="76" Y="1492"/>
+        <TopLine Value="103"/>
+        <CursorPos X="42" Y="118"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit57>
       <Unit58>
         <Filename Value="prefix_record.pas"/>
@@ -592,7 +594,7 @@
       <Unit59>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="84"/>
         <CursorPos X="33" Y="117"/>
         <UsageCount Value="200"/>
@@ -677,7 +679,7 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="1326"/>
+        <TopLine Value="1335"/>
         <CursorPos X="3" Y="1328"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -698,10 +700,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="487"/>
-        <CursorPos X="33" Y="166"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="194"/>
+        <CursorPos Y="212"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit71>
       <Unit72>
         <Filename Value="telnetclientthread.pas"/>
@@ -717,10 +721,11 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="260"/>
-        <CursorPos X="68" Y="267"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="225"/>
+        <CursorPos X="48" Y="249"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit73>
       <Unit74>
         <Filename Value="gridsform_u.pas"/>
@@ -757,7 +762,7 @@
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="628"/>
         <CursorPos X="37" Y="651"/>
         <UsageCount Value="200"/>
@@ -767,7 +772,7 @@
         <Filename Value="exportadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportADIThread"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="220"/>
         <CursorPos Y="231"/>
         <UsageCount Value="200"/>
@@ -798,7 +803,7 @@
         <UnitName Value="progressForm_u"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="200"/>
       </Unit81>
       <Unit82>
         <Filename Value="dmcat.pas"/>
@@ -810,7 +815,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="60"/>
         <CursorPos X="30" Y="103"/>
-        <UsageCount Value="171"/>
+        <UsageCount Value="172"/>
       </Unit82>
       <Unit83>
         <Filename Value="contestform_u.pas"/>
@@ -819,11 +824,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="contestForm_u"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="307"/>
-        <CursorPos X="31" Y="316"/>
-        <UsageCount Value="144"/>
+        <CursorPos X="33" Y="321"/>
+        <UsageCount Value="145"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit83>
@@ -834,10 +838,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmContest_u"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="167"/>
         <CursorPos X="31" Y="181"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="141"/>
         <Loaded Value="True"/>
       </Unit84>
       <Unit85>
@@ -846,14 +850,14 @@
         <UnitName Value="FMS_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="8" Y="24"/>
-        <UsageCount Value="123"/>
+        <UsageCount Value="124"/>
       </Unit85>
       <Unit86>
         <Filename Value="ico\telnetaddresrecord_u.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="74"/>
       </Unit86>
       <Unit87>
         <Filename Value="dmmigrate_u.pas"/>
@@ -861,10 +865,10 @@
         <ComponentName Value="dmMigrate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="192"/>
         <CursorPos X="46" Y="173"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
       </Unit87>
       <Unit88>
@@ -874,7 +878,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="77" Y="109"/>
-        <UsageCount Value="36"/>
+        <UsageCount Value="37"/>
       </Unit88>
       <Unit89>
         <Filename Value="clusterserver_form_u.pas"/>
@@ -1857,127 +1861,135 @@
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit221>
+      <Unit222>
+        <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\System\IdStack.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1055"/>
+        <CursorPos Y="976"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit222>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="274" Column="2" TopLine="274"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position1>
       <Position2>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="275" Column="2" TopLine="275"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="252" TopLine="225"/>
       </Position2>
       <Position3>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="276" Column="2" TopLine="276"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="251" TopLine="225"/>
       </Position3>
       <Position4>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="337" Column="30" TopLine="315"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="252" TopLine="225"/>
       </Position4>
       <Position5>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="327" Column="30" TopLine="315"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="251" TopLine="225"/>
       </Position5>
       <Position6>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="312" Column="5" TopLine="306"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="252" TopLine="225"/>
       </Position6>
       <Position7>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="302" Column="25" TopLine="295"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="251" TopLine="225"/>
       </Position7>
       <Position8>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="342" Column="104" TopLine="332"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="252" TopLine="225"/>
       </Position8>
       <Position9>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="142" Column="3" TopLine="139"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="251" TopLine="225"/>
       </Position9>
       <Position10>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1491" Column="29" TopLine="1379"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position10>
       <Position11>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="93" Column="9" TopLine="72"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position11>
       <Position12>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="48" Column="23" TopLine="27"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position12>
       <Position13>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="322" Column="29" TopLine="302"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position13>
       <Position14>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="218" Column="8" TopLine="210"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position14>
       <Position15>
-        <Filename Value="dmcontest_u.pas"/>
-        <Caret Line="28" Column="15" TopLine="7"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position15>
       <Position16>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="267" Column="42" TopLine="217"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position16>
       <Position17>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="358" Column="44" TopLine="340"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position17>
       <Position18>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="332" Column="7" TopLine="320"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position18>
       <Position19>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="237" Column="51" TopLine="219"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position19>
       <Position20>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="270" Column="60" TopLine="257"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position20>
       <Position21>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="192" Column="34" TopLine="104"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position21>
       <Position22>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="322" Column="33" TopLine="302"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position22>
       <Position23>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="262" Column="23" TopLine="249"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position23>
       <Position24>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="359" Column="18" TopLine="340"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position24>
       <Position25>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="361" Column="19" TopLine="220"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="250" TopLine="225"/>
       </Position25>
       <Position26>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="319" Column="3" TopLine="317"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="249" TopLine="225"/>
       </Position26>
       <Position27>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="332" Column="44" TopLine="317"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="253" TopLine="225"/>
       </Position27>
       <Position28>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="339" Column="48" TopLine="317"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="256" TopLine="225"/>
       </Position28>
       <Position29>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="192" Column="3" TopLine="188"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="257" TopLine="225"/>
       </Position29>
       <Position30>
-        <Filename Value="dmcontest_u.pas"/>
-        <Caret Line="29" Column="14" TopLine="8"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="258" TopLine="225"/>
       </Position30>
     </JumpHistory>
     <RunParams>
