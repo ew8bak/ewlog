@@ -420,7 +420,7 @@ begin
     end
     else
       Delete(Value, length(Value) - 2, 1);
-    Result := Value;
+    Result := StringReplace(Value,',','.',[rfReplaceAll]);
   end;
 end;
 
@@ -694,7 +694,7 @@ begin
       end
       else
       begin
-        QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
+        QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),',','.',[rfReplaceAll]);
         if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
           QSLSentDates := 'NULL'
         else
@@ -1370,12 +1370,14 @@ begin
           else
           begin
             if mode = 'SSB' then
-              BandList[i] := FormatFloat(view_freq, Query.FieldByName('ssb').AsFloat);
+              BandList[i] := StringReplace(FormatFloat(view_freq,
+              Query.FieldByName('ssb').AsFloat),',','.',[rfReplaceAll]);
             if mode = 'CW' then
-              BandList[i] := FormatFloat(view_freq, Query.FieldByName('cw').AsFloat);
+              BandList[i] := StringReplace(FormatFloat(view_freq,
+              Query.FieldByName('cw').AsFloat),',','.',[rfReplaceAll]);
             if (mode <> 'CW') and (mode <> 'SSB') then
-              BandList[i] := FormatFloat(view_freq,
-                Query.FieldByName('b_begin').AsFloat);
+              BandList[i] := StringReplace(FormatFloat(view_freq,
+                Query.FieldByName('b_begin').AsFloat),',','.',[rfReplaceAll]);
           end;
           Query.Next;
         end;
@@ -1502,6 +1504,7 @@ procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
 var
   Query: TSQLQuery;
   PFXR: TPFXR;
+  DigiBandStr: string;
 begin
   try
     if InitRecord.SelectLogbookTable then
@@ -1532,9 +1535,11 @@ begin
         else
           DMode := True;
         Query.Close;
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) + ' LIMIT 1';
+          DigiBandStr + ' LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
           DBand := False
@@ -1557,6 +1562,7 @@ function TMainFunc.CheckQSL(Callsign, band, mode: string): integer;
 var
   Query: TSQLQuery;
   PFXR: TPFXR;
+  DigiBandStr: string;
 begin
   try
     if InitRecord.SelectLogbookTable then
@@ -1570,9 +1576,11 @@ begin
         else
           Query.DataBase := InitDB.SQLiteConnection;
 
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          DigiBandStr +
           ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
@@ -1594,7 +1602,7 @@ begin
 
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          DigiBandStr +
           ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
         Query.Open;
         if Query.RecordCount = 0 then
@@ -1626,6 +1634,7 @@ end;
 function TMainFunc.FindWorkedCall(Callsign, band, mode: string): boolean;
 var
   Query: TSQLQuery;
+  DigiBandStr: string;
 begin
   try
     Result := False;
@@ -1638,9 +1647,11 @@ begin
           Query.DataBase := InitDB.MySQLConnection
         else
           Query.DataBase := InitDB.SQLiteConnection;
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
-          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          DigiBandStr +
           ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
@@ -1662,6 +1673,7 @@ end;
 function TMainFunc.WorkedQSL(Callsign, band, mode: string): boolean;
 var
   Query: TSQLQuery;
+  DigiBandStr: string;
 begin
   try
     Result := False;
@@ -1674,9 +1686,11 @@ begin
           Query.DataBase := InitDB.MySQLConnection
         else
           Query.DataBase := InitDB.SQLiteConnection;
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
-          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          DigiBandStr +
           ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
@@ -1699,6 +1713,7 @@ function TMainFunc.WorkedLoTW(Callsign, band, mode: string): boolean;
 var
   Query: TSQLQuery;
   PFXR: TPFXR;
+  DigiBandStr: string;
 begin
   try
     Result := False;
@@ -1712,10 +1727,11 @@ begin
           Query.DataBase := InitDB.MySQLConnection
         else
           Query.DataBase := InitDB.SQLiteConnection;
-
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode))) +
+          DigiBandStr +
           ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
@@ -1764,8 +1780,8 @@ begin
         if (Grid <> '') and dmFunc.IsLocOK(Grid) then
         begin
           dmFunc.CoordinateFromLocator(Grid, La, Lo);
-          Result.Latitude := CurrToStr(La);
-          Result.Longitude := CurrToStr(Lo);
+          Result.Latitude := StringReplace(CurrToStr(La),',','.',[rfReplaceAll]);
+          Result.Longitude := StringReplace(CurrToStr(Lo),',','.',[rfReplaceAll])
         end;
         GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance, Result.Azimuth);
         Result.Found := True;
@@ -1797,8 +1813,8 @@ begin
           if (Grid <> '') and dmFunc.IsLocOK(Grid) then
           begin
             dmFunc.CoordinateFromLocator(Grid, La, Lo);
-            Result.Latitude := CurrToStr(La);
-            Result.Longitude := CurrToStr(Lo);
+            Result.Latitude := StringReplace(CurrToStr(La),',','.',[rfReplaceAll]);
+            Result.Longitude := StringReplace(CurrToStr(Lo),',','.',[rfReplaceAll])
           end;
           GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance,
             Result.Azimuth);
@@ -1837,8 +1853,8 @@ begin
           if (Grid <> '') and dmFunc.IsLocOK(Grid) then
           begin
             dmFunc.CoordinateFromLocator(Grid, La, Lo);
-            Result.Latitude := CurrToStr(La);
-            Result.Longitude := CurrToStr(Lo);
+            Result.Latitude := StringReplace(CurrToStr(La),',','.',[rfReplaceAll]);
+            Result.Longitude := StringReplace(CurrToStr(Lo),',','.',[rfReplaceAll])
           end;
           GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance,
             Result.Azimuth);
@@ -1861,6 +1877,7 @@ procedure TMainFunc.GetDistAzim(Latitude, Longitude: string;
   var Distance, Azimuth: string);
 var
   azim, qra: string;
+  Lat, Lon: Double;
 begin
   qra := '';
   azim := '';
@@ -1882,9 +1899,9 @@ begin
   begin
     Delete(Latitude, length(Latitude), 1);
   end;
-  DefaultFormatSettings.DecimalSeparator := '.';
-  dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, StrToFloat(Latitude),
-    strtofloat(Longitude), qra, azim);
+  TryStrToFloatSafe(Latitude, Lat);
+  TryStrToFloatSafe(Longitude, Lon);
+  dmFunc.DistanceFromCoordinate(LBRecord.OpLoc, Lat, lon, qra, azim);
   Azimuth := azim;
   Distance := qra + ' KM';
 end;
@@ -1925,10 +1942,13 @@ begin
       if SQSO.QSL_SENT_VIA = '' then
         SQSO.QSL_SENT_VIA := 'NULL';
 
+      SQSO.My_Lat:=StringReplace(SQSO.My_Lat, ',','.',[rfReplaceAll]);
+      SQSO.My_Lon:=StringReplace(SQSO.My_Lon, ',','.',[rfReplaceAll]);
+
       if DBRecord.CurrentDB = 'MySQL' then
         QSODates := FormatDateTime('yyyy-mm-dd', SQSO.QSODate)
       else
-        QSODates := FloatToStr(DateTimeToJulianDate(SQSO.QSODate));
+        QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),',','.',[rfReplaceAll]);
 
       QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
         'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode,' +

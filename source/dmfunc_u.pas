@@ -543,15 +543,15 @@ begin
 
     if mode = 'CW' then
     begin
-      Result := StrToDouble(bandsCW[index]);
+       TryStrToFloatSafe(bandsCW[index],Result);
       exit;
     end;
     if mode = 'DIGI' then
     begin
-      Result := StrToDouble(bandsRTTY[index]);
+       TryStrToFloatSafe(bandsRTTY[index], Result);
       exit;
     end;
-    Result := StrToDouble(bandsOther[index]);
+     TryStrToFloatSafe(bandsOther[index], Result);
   finally
     bandsMmList.Free;
   end;

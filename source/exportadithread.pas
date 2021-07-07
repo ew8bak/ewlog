@@ -82,6 +82,7 @@ var
   tmpFreq: string;
   i: integer;
   numberToExp: string = '';
+  SafeFreq: Double;
 begin
   try
     Info.ErrorCode := 0;
@@ -208,8 +209,9 @@ begin
         begin
           tmpFreq := Query.Fields.FieldByName('QSOBand').AsString;
           Delete(tmpFreq, Length(tmpFreq) - 2, 1);
-          tmp := '<FREQ' + dmFunc.StringToADIF(FormatFloat('0.#####',
-            StrToFloat(tmpFreq)), PADIExport.Win1251);
+          TryStrToFloatSafe(tmpFreq, SafeFreq);
+          tmp := '<FREQ' + dmFunc.StringToADIF(StringReplace(FormatFloat('0.#####',
+            SafeFreq),',','.',[rfReplaceAll]), PADIExport.Win1251);
           Write(f, tmp);
         end;
 

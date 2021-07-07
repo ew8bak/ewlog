@@ -416,7 +416,7 @@ begin
       Loc := StringReplace(buffer.Substring(76, 4), ' ', '', [rfReplaceAll]);
     end;
     if Freq <> '' then
-      if TryStrToFloat(Freq, freqMhz) then
+      if TryStrToFloatSafe(Freq, freqMhz) then
         freqMhz := freqMhz / 1000
       else
         exit;
@@ -767,6 +767,7 @@ procedure TdxClusterForm.VSTClusterDblClick(Sender: TObject);
 var
   XNode: PVirtualNode;
   Data: PTreeData;
+  FreqFloat: double;
 begin
   XNode := VSTCluster.FocusedNode;
   Data := VSTCluster.GetNodeData(XNode);
@@ -775,13 +776,15 @@ begin
     if Length(Data^.Spots) > 1 then
     begin
       MiniForm.EditCallsign.Text := Data^.Spots;
+      TryStrToFloatSafe(Data^.Freq, FreqFloat);
+
       if Length(Data^.Spots) >= 3 then
         InfoDM.GetInformation(dmFunc.ExtractCallsign(Data^.Spots), 'MainForm');
 
       if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
         (TRXForm.radio.GetFreqHz > 0) then
       begin
-        TRXForm.radio.SetFreqKHz(StrToFloat(Data^.Freq));
+        TRXForm.radio.SetFreqKHz(FreqFloat);
         if Data^.Moda = 'DIGI' then
           TRXForm.SetMode('USB', 0)
         else
@@ -789,13 +792,13 @@ begin
       end
       else
       begin
+        FreqFloat := FreqFloat / 1000;
         if IniSet.showBand then
           MiniForm.CBBand.Text :=
-            dmFunc.GetBandFromFreq(FormatFloat(view_freq,
-            StrToFloat(Data^.Freq) / 1000))
+            dmFunc.GetBandFromFreq(StringReplace(FormatFloat(view_freq, FreqFloat), ',', '.', [rfReplaceAll]))
         else
           MiniForm.CBBand.Text :=
-            FormatFloat(view_freq, StrToFloat(Data^.Freq) / 1000);
+            StringReplace(FormatFloat(view_freq, FreqFloat), ',', '.', [rfReplaceAll]);
 
         if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
         begin

@@ -278,7 +278,7 @@ begin
   UQSO.QSOAddInfo := Memo1.Text;
   UQSO.Marker := BoolToStr(CheckBox3.Checked, '1', '0');
   UQSO.ManualSet := 0;
-  UQSO.DigiBand := FloatToStr(DigiBand);
+  UQSO.DigiBand := StringReplace(FloatToStr(DigiBand),',','.',[rfReplaceAll]);
   UQSO.Continent := Edit13.Text;
   UQSO.ShortNote := Memo1.Text;
   UQSO.QSLReceQSLcc := 0;

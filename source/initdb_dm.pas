@@ -89,6 +89,7 @@ var
     reg: TRegExpr;
     id: integer;
   end;
+  function TryStrToFloatSafe(const aStr : String; out aValue : Double) : Boolean;
 
 implementation
 
@@ -144,7 +145,7 @@ begin
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
    {$ENDIF UNIX}
-    DefaultFormatSettings.DecimalSeparator := '.';
+  //  DefaultFormatSettings.DecimalSeparator := '.';
     if not DirectoryExists(FilePATH) then
       CreateDir(FilePATH);
 
@@ -475,6 +476,7 @@ var
   LogBookInfoQuery: TSQLQuery;
 begin
   Result := False;
+
   if DBRecord.InitDB = 'YES' then
   begin
     try
@@ -509,8 +511,8 @@ begin
           LBRecord.OpITU := LogBookInfoQuery.FieldByName('ITU').AsString;
           LBRecord.OpLoc := LogBookInfoQuery.FieldByName('Loc').AsString;
           LBRecord.OpCQ := LogBookInfoQuery.FieldByName('CQ').AsString;
-          LBRecord.OpLat := LogBookInfoQuery.FieldByName('Lat').AsFloat;
-          LBRecord.OpLon := LogBookInfoQuery.FieldByName('Lon').AsFloat;
+          TryStrToFloatSafe(LogBookInfoQuery.FieldByName('Lat').AsString, LBRecord.OpLat);
+          TryStrToFloatSafe(LogBookInfoQuery.FieldByName('Lon').AsString, LBRecord.OpLon);
           LBRecord.QSLInfo := LogBookInfoQuery.FieldByName('QSLInfo').AsString;
           LBRecord.LogTable := LogBookInfoQuery.FieldByName('LogTable').AsString;
           LBRecord.eQSLccLogin := LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
@@ -721,6 +723,22 @@ begin
       Result := False;
     end;
   end;
+end;
+
+function TryStrToFloatSafe(const aStr : String; out aValue : Double) : Boolean;
+const
+  D = ['.', ','];
+var
+  S : String;
+  i : Integer;
+begin
+  S := aStr;
+  for i := 1 to Length(S) do
+    if S[i] in D then begin
+      S[i] := DefaultFormatSettings.DecimalSeparator;
+      Break;
+    end;
+  Result := TryStrToFloat(S, aValue);
 end;
 
 procedure TInitDB.AllFree;

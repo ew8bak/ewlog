@@ -58,6 +58,8 @@ implementation
 uses MainFuncDM, miniform_u, InitDB_dm, dmFunc_U, ImportADIFForm_U;
 
 procedure CheckMode(modulation, Freq: string; var ResSubMode, ResMode: string);
+var
+  FreqSafeDouble: Double;
 begin
   Delete(Freq, length(Freq) - 2, 1);
   case modulation of
@@ -114,7 +116,8 @@ begin
     'SSB':
     begin
       ResMode := 'SSB';
-      if StrToDouble(Freq) >= 10 then
+      TryStrToFloatSafe(Freq, FreqSafeDouble);
+      if FreqSafeDouble >= 10 then
         ResSubMode := 'USB'
       else
         ResSubMode := 'LSB';
@@ -501,8 +504,9 @@ begin
             FREQ := FormatFloat(view_freq, dmFunc.GetFreqFromBand(BAND, MODE))
           else
           begin
-            FREQ_Float := StrToFloat(FREQ);
+            TryStrToFloatSafe(FREQ, FREQ_Float);
             FREQ := FormatFloat(view_freq, FREQ_Float);
+            FREQ:=StringReplace(FREQ,',','.',[rfReplaceAll]);
           end;
 
           CheckMode(MODE, FREQ, SUBMODE, MODE);
@@ -531,7 +535,8 @@ begin
           if DBRecord.CurrentDB = 'MySQL' then
             paramQSODate := dmFunc.ADIFDateToDate(QSO_DATE)
           else
-            paramQSODate := FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
+            paramQSODate := StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+            ',','.',[rfReplaceAll]);
 
           if QSL_SENT = 'Y' then
           begin
@@ -570,7 +575,8 @@ begin
               paramQSLSDATE := dmFunc.ADIFDateToDate(QSLSDATE)
             else
               paramQSLSDATE :=
-                FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
+                StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+                ',','.',[rfReplaceAll]);
             paramQSLSent := '1';
             paramQSLSentAdv := 'T';
           end
@@ -592,7 +598,8 @@ begin
               paramQSLRDATE := dmFunc.ADIFDateToDate(QSLRDATE)
             else
               paramQSLRDATE :=
-                FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
+               StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+               ',','.',[rfReplaceAll]);;
             paramQSL_RCVD := '1';
           end
           else
@@ -624,7 +631,8 @@ begin
               paramLOTW_QSLRDATE := dmFunc.ADIFDateToDate(LOTW_QSLRDATE)
             else
               paramLOTW_QSLRDATE :=
-                FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
+               StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+               ',','.',[rfReplaceAll]);
             paramLOTW_QSL_RCVD := '1';
           end
           else

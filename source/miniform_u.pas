@@ -1413,7 +1413,7 @@ begin
           CBBand.Text, CBMode.Text))
       else
         NameBand := CBBand.Text;
-
+      NameBand := StringReplace(NameBand,',','.',[rfReplaceAll]);
       DigiBand_String := NameBand;
       Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
       DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
@@ -1442,7 +1442,7 @@ begin
       SQSO.QSOAddInfo := EditComment.Text;
       SQSO.Marker := BoolToStr(CBMark.Checked);
       SQSO.ManualSet := 0;
-      SQSO.DigiBand := FloatToStr(DigiBand);
+      SQSO.DigiBand := StringReplace(FloatToStr(DigiBand),',','.',[rfReplaceAll]);
       SQSO.Continent := PFXR.Continent;
       SQSO.ShortNote := EditComment.Text;
       SQSO.QSLReceQSLcc := 0;
@@ -1703,6 +1703,7 @@ var
   RSdigi: array[0..4] of string = ('599', '589', '579', '569', '559');
   RSssb: array[0..6] of string = ('59', '58', '57', '56', '55', '54', '53');
   i: integer;
+  FormatFreqFloat: double;
 begin
   FreqChange := True;
   //Загрузка сабмодуляций
@@ -1712,8 +1713,8 @@ begin
 
   if CBMode.Text <> 'SSB' then
     CBSubMode.Text := '';
-
-  if StrToDouble(MainFunc.FormatFreq(CBBand.Text, CBMode.Text)) >= 10 then
+     TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text),FormatFreqFloat);
+  if FormatFreqFloat >= 10 then
     CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
   else
     CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('LSB');
@@ -1780,11 +1781,14 @@ begin
 end;
 
 procedure TMiniForm.CBBandCloseUp(Sender: TObject);
+var
+  FormatFreqFloat: double;
 begin
   FreqChange := True;
   if CBMode.Text = 'SSB' then
   begin
-    if StrToDouble(MainFunc.FormatFreq(CBBand.Text, CBMode.Text)) >= 10 then
+    TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text),FormatFreqFloat);
+    if FormatFreqFloat >= 10 then
       CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
     else
       CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('LSB');
