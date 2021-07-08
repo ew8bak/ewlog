@@ -1127,7 +1127,6 @@ object SetupForm: TSetupForm
   object SQL_Query: TSQLQuery
     FieldDefs = <>
     Params = <>
-    Macros = <>
     Left = 280
     Top = 224
   end
