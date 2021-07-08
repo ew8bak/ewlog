@@ -18,7 +18,7 @@ uses
 
 type
   TFMSRecord = record
-    Freq: integer;
+    Freq: Double;
     Mode: string;
     SubMode: string;
   end;

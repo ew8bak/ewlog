@@ -188,6 +188,7 @@ end;
 procedure TContestForm.BtSaveClick(Sender: TObject);
 var
   SaveQSOrec: TQSO;
+  FreqSafeFloat: double;
 begin
   if not ValidateQSO then
   begin
@@ -202,7 +203,9 @@ begin
     SaveQSOrec.QSOTime := TimeToStr(TETime.Time);
     SaveQSOrec.QSOMode := CBMode.Text;
     SaveQSOrec.QSOSubMode := CBSubMode.Text;
-    SaveQSOrec.QSOBand := FormatFloat(view_freq, StrToFloat(EditFreq.Text));
+    TryStrToFloatSafe(EditFreq.Text, FreqSafeFloat);
+    SaveQSOrec.QSOBand := StringReplace(FormatFloat(view_freq, FreqSafeFloat),
+      ',', '.', [rfReplaceAll]);
     SaveQSOrec.CallSing := EditCallsign.Text;
     SaveQSOrec.QSOReportSent := EditRSTs.Text;
     SaveQSOrec.QSOReportRecived := EditRSTr.Text;
@@ -210,7 +213,8 @@ begin
     SaveQSOrec.OmQTH := EditQTH.Text;
     SaveQSOrec.Grid := EditGrid.Text;
     SaveQSOrec.State0 := EditState.Text;
-    SaveQSOrec.DigiBand := FloatToStr(dmFunc.GetDigiBandFromFreq(EditFreq.Text));
+    SaveQSOrec.DigiBand := StringReplace(
+      FloatToStr(dmFunc.GetDigiBandFromFreq(EditFreq.Text)), ',', '.', [rfReplaceAll]);
     SaveQSOrec.ShortNote := EditComment.Text;
     SaveQSOrec.ContestSession := IniSet.ContestSession;
 
@@ -380,8 +384,8 @@ begin
   CBSubMode.Text := FMS.SubMode;
   if FMS.Freq <> 0 then
   begin
-    CBBand.Text := dmFunc.GetBandFromFreq(IntToStr(FMS.Freq));
-    EditFreq.Text := IntToStr(FMS.Freq);
+    CBBand.Text := dmFunc.GetBandFromFreq(FloatToStr(FMS.Freq));
+    EditFreq.Text := FloatToStr(FMS.Freq);
   end;
 end;
 

@@ -12,7 +12,7 @@ object SetupForm: TSetupForm
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object PageControl1: TPageControl
     Left = 0
     Height = 346
@@ -28,16 +28,16 @@ object SetupForm: TSetupForm
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'Greeting'
-      ClientHeight = 338
-      ClientWidth = 622
+      ClientHeight = 342
+      ClientWidth = 620
       object Panel1: TPanel
         Left = 0
-        Height = 338
+        Height = 342
         Top = 0
-        Width = 622
+        Width = 620
         Align = alClient
-        ClientHeight = 338
-        ClientWidth = 622
+        ClientHeight = 342
+        ClientWidth = 620
         ParentColor = False
         TabOrder = 0
         object Button1: TButton
@@ -64,9 +64,9 @@ object SetupForm: TSetupForm
         end
         object Label1: TLabel
           Left = 16
-          Height = 23
+          Height = 19
           Top = 8
-          Width = 327
+          Width = 383
           Caption = 'Welcome to the HAM Log Setup Wizard.'
           Font.Height = -17
           Font.Style = [fsBold]
@@ -75,9 +75,9 @@ object SetupForm: TSetupForm
         end
         object Label2: TLabel
           Left = 16
-          Height = 17
+          Height = 15
           Top = 48
-          Width = 112
+          Width = 128
           Caption = 'License agreement:'
           Font.Height = -13
           ParentColor = False
@@ -437,9 +437,9 @@ object SetupForm: TSetupForm
         end
         object CBExpertMode: TCheckBox
           Left = 16
-          Height = 21
+          Height = 23
           Top = 306
-          Width = 96
+          Width = 107
           Caption = 'Expert Mode'
           TabOrder = 3
         end
@@ -1026,8 +1026,8 @@ object SetupForm: TSetupForm
     end
     object TabSheet4: TTabSheet
       Caption = 'Processing'
-      ClientHeight = 338
-      ClientWidth = 622
+      ClientHeight = 342
+      ClientWidth = 620
       object Panel4: TPanel
         Left = 0
         Height = 338
@@ -1127,6 +1127,7 @@ object SetupForm: TSetupForm
   object SQL_Query: TSQLQuery
     FieldDefs = <>
     Params = <>
+    Macros = <>
     Left = 280
     Top = 224
   end

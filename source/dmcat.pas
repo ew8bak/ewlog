@@ -209,6 +209,7 @@ begin
   Result := '-m ' + INIFile.ReadString(section, 'model', '') + ' ' +
     '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
 
+  if INIFile.ReadString(section, 'device', '') <> '' then
   Result := Result + '-r ' + INIFile.ReadString(section, 'device', '') + ' ';
 
   Result := Result + INIFile.ReadString('SetCAT', 'rigctldExtra', '') + ' ';

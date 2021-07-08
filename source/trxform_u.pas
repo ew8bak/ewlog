@@ -302,6 +302,9 @@ begin
   if Length(m) > 1 then
     dmFunc.GetRIGMode(m, mode, submode);
   MiniForm.ShowInfoFromRIG(f, mode, submode);
+  FMS.Freq := f;
+  FMS.Mode := mode;
+  FMS.SubMode := submode;
   lblMode.Caption := m;
 end;
 
@@ -333,7 +336,7 @@ begin
   radio.RigCtldPath := INIFile.ReadString('TRX' + n, 'RigCtldPath', '') +
     ' -T 127.0.0.1 -vvvvv';
   radio.RigCtldArgs := CATdm.GetRadioRigCtldCommandLine(StrToInt(n));
-  radio.RunRigCtld  := INIFile.ReadBool('TRX'+n,'RunRigCtld',True);
+  radio.RunRigCtld := INIFile.ReadBool('TRX' + n, 'RunRigCtld', True);
   if INIFile.ReadString('TRX' + n, 'model', '') <> IntToStr(2) then
     radio.RigDevice := INIFile.ReadString('TRX' + n, 'device', '');
   radio.RigCtldPort := StrToInt(INIFile.ReadString('TRX' + n, 'RigCtldPort', '4532'));

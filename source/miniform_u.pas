@@ -457,9 +457,9 @@ begin
   if freq <> 0 then
   begin
     if IniSet.showBand then
-      CBBand.Text := dmFunc.GetBandFromFreq(FormatFloat(view_freq, freq))
+      CBBand.Text := dmFunc.GetBandFromFreq(StringReplace(FormatFloat(view_freq, freq),',','.',[rfReplaceAll]))
     else
-      CBBand.Text := FormatFloat(view_freq, freq);
+      CBBand.Text := StringReplace(FormatFloat(view_freq, freq),',','.',[rfReplaceAll]);
   end;
 end;
 

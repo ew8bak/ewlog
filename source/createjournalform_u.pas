@@ -76,8 +76,8 @@ begin
   if dmFunc.IsLocOK(Edit7.Text) then
   begin
     dmFunc.CoordinateFromLocator(Edit7.Text, lat, lon);
-    Edit8.Text := CurrToStr(lat);
-    Edit9.Text := CurrToStr(lon);
+    Edit8.Text := StringReplace(CurrToStr(lat), ',', '.', [rfReplaceAll]);
+    Edit9.Text := StringReplace(CurrToStr(lon), ',', '.', [rfReplaceAll]);
   end
   else
   begin

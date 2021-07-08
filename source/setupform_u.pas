@@ -865,12 +865,12 @@ procedure TSetupForm.Edit11Change(Sender: TObject);
 var
   lat, lon: currency;
 begin
-  FormatSettings.DecimalSeparator := '.';
+ // FormatSettings.DecimalSeparator := '.';
   if dmFunc.IsLocOK(Edit11.Text) then
   begin
     dmFunc.CoordinateFromLocator(Edit11.Text, lat, lon);
-    Edit12.Text := CurrToStr(lat);
-    Edit13.Text := CurrToStr(lon);
+    Edit12.Text := StringReplace(CurrToStr(lat), ',', '.', [rfReplaceAll]);
+    Edit13.Text := StringReplace(CurrToStr(lon), ',', '.', [rfReplaceAll]);
   end
   else
   begin
