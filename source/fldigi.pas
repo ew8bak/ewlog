@@ -172,13 +172,14 @@ end;
 
 function Fldigi_GetQSOFrequency: double;
 // frequency is in Hz
-var
-  Request: string;
+//var
+//  Request: string;
 begin
-  Request:= RequestStr(fl_host,'log.get_frequency');
+  {Request:= RequestStr(fl_host,'log.get_frequency');
   Request:=StringReplace(Request,',','.',[rfReplaceAll]);
   //Result:=StrToFloat(temp);
-  Result := StrToFloatDef(Request,0.0);
+  Result := StrToFloatDef(Request,0.0); }
+  Result := RequestFloat(fl_host,'main.get_frequency');
 end;
 
 function Fldigi_IsAFC: boolean;

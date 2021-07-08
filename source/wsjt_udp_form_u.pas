@@ -275,12 +275,9 @@ begin
               ' RST получено:' + DataDigi.RSTr + ' TX мощность:' +
               TXPower + ' Комментарий:' + comments + ' Имя:' + DXName);
 
-            if IniSet.showBand and
-              (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <>
-              '') then
-              DataDigi.Freq :=
-                dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000))
-            else
+          //  if IniSet.showBand and (dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000)) <> '') then
+          //    DataDigi.Freq := dmFunc.GetBandFromFreq(FormatFloat('0.000"."00', frequency / 1000000))
+          //  else
               DataDigi.Freq := FormatFloat('0.000"."00', frequency / 1000000);
 
             if mode <> 'FT4' then

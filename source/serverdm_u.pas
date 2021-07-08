@@ -455,7 +455,7 @@ begin
         end;
     end;
 
-    currFreq := Fldigi_GetQSOFrequency / 1000;
+    currFreq := Fldigi_GetQSOFrequency / 1000000;
     currCall := Fldigi_GetCall;
     currName := Fldigi_GetName;
     currQTH := Fldigi_GetQTH;
@@ -490,10 +490,7 @@ begin
     if FldigiFreq <> currFreq then
     begin
       FldigiFreq := currFreq;
-      if IniSet.showBand then
-        DataDigi.Freq := dmFunc.GetBandFromFreq(FormatFloat(view_freq, FldigiFreq))
-      else
-        DataDigi.Freq := FormatFloat(view_freq, FldigiFreq);
+      DataDigi.Freq := FormatFloat(view_freq, FldigiFreq);
     end;
 
   finally

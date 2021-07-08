@@ -417,6 +417,11 @@ var
 begin
   tempCall := DataDigi.DXCall;
   tempFreq := DataDigi.Freq;
+  tempFreq := StringReplace(tempFreq,',','.',[rfReplaceAll]);
+
+  if IniSet.showBand then
+  tempFreq := dmFunc.GetBandFromFreq(tempFreq);
+
   tempMode := DataDigi.Mode;
   tempSubMode := DataDigi.SubMode;
   if tempCall <> EditCallsign.Text then
