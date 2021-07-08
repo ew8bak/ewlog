@@ -207,7 +207,6 @@
         <CursorPos Y="305"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit19>
       <Unit20>
         <Filename Value="hrdlog.pas"/>
@@ -550,11 +549,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
         <TopLine Value="150"/>
         <CursorPos X="56" Y="164"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit54>
       <Unit55>
         <Filename Value="logbooktable_record.pas"/>
@@ -580,7 +581,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <TopLine Value="184"/>
         <CursorPos X="60" Y="188"/>

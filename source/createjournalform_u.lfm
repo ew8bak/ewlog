@@ -307,7 +307,6 @@ object CreateJournalForm: TCreateJournalForm
   object CreateTableQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
-    Macros = <>
     Left = 136
     Top = 8
   end
