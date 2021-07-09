@@ -128,7 +128,6 @@ uses miniform_u, CreateJournalForm_U, dmFunc_U, InitDB_dm, MainFuncDM;
 
 procedure TLogConfigForm.SelectCall(SelCall: string);
 begin
-  // DefaultFormatSettings.DecimalSeparator := '.';
   if DBRecord.CurrentDB = 'MySQL' then
     SQLQuery1.DataBase := InitDB.MySQLConnection
   else
@@ -154,11 +153,11 @@ begin
     EditLat.Text := SQLQuery1.FieldByName('Lat').AsString;
 
     if SQLQuery1.FieldByName('Lat').AsString <> '' then
-      LBRecord.OpLat := StrToFloat(SQLQuery1.FieldByName('Lat').AsString);
+      TryStrToFloatSafe(SQLQuery1.FieldByName('Lat').AsString, LBRecord.OpLat);
 
     EditLon.Text := SQLQuery1.FieldByName('Lon').AsString;
     if SQLQuery1.FieldByName('Lon').AsString <> '' then
-      LBRecord.OpLon := StrToFloat(SQLQuery1.FieldByName('Lon').AsString);
+      TryStrToFloatSafe(SQLQuery1.FieldByName('Lon').AsString, LBRecord.OpLon);
 
     EditQSLinfo.Text := SQLQuery1.FieldByName('QSLInfo').AsString;
     Edit11.Text := SQLQuery1.FieldByName('EQSLLogin').AsString;
@@ -267,8 +266,8 @@ begin
   if dmFunc.IsLocOK(EditGrid.Text) then
   begin
     dmFunc.CoordinateFromLocator(EditGrid.Text, lat, lon);
-    EditLat.Text := CurrToStr(lat);
-    EditLon.Text := CurrToStr(lon);
+    EditLat.Text := StringReplace(CurrToStr(lat), ',', '.', [rfReplaceAll]);
+    EditLon.Text := StringReplace(CurrToStr(lon), ',', '.', [rfReplaceAll]);
   end
   else
   begin
