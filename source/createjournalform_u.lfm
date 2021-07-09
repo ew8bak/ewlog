@@ -10,11 +10,9 @@ object CreateJournalForm: TCreateJournalForm
   ClientWidth = 375
   Font.Height = -12
   FormStyle = fsStayOnTop
-  OnCreate = FormCreate
-  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.12.0'
-  object Edit1: TEdit
+  object EditDescription: TEdit
     Left = 72
     Height = 23
     Top = 6
@@ -24,10 +22,10 @@ object CreateJournalForm: TCreateJournalForm
     ParentFont = False
     TabOrder = 0
   end
-  object Label1: TLabel
-    AnchorSideTop.Control = Edit1
+  object LBDescription: TLabel
+    AnchorSideTop.Control = EditDescription
     AnchorSideTop.Side = asrCenter
-    AnchorSideRight.Control = Edit1
+    AnchorSideRight.Control = EditDescription
     Left = 1
     Height = 13
     Top = 11
@@ -39,7 +37,7 @@ object CreateJournalForm: TCreateJournalForm
     ParentColor = False
     ParentFont = False
   end
-  object GroupBox1: TGroupBox
+  object GBInformation: TGroupBox
     Left = 8
     Height = 96
     Top = 40
@@ -50,10 +48,10 @@ object CreateJournalForm: TCreateJournalForm
     Font.Height = -12
     ParentFont = False
     TabOrder = 1
-    object Label3: TLabel
-      AnchorSideTop.Control = Edit2
+    object LBCallName: TLabel
+      AnchorSideTop.Control = EditCallName
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit2
+      AnchorSideRight.Control = EditCallName
       Left = 10
       Height = 13
       Top = 5
@@ -63,7 +61,7 @@ object CreateJournalForm: TCreateJournalForm
       Caption = 'Call name'
       ParentColor = False
     end
-    object Edit2: TEdit
+    object EditCallName: TEdit
       Left = 72
       Height = 23
       Top = 0
@@ -71,11 +69,11 @@ object CreateJournalForm: TCreateJournalForm
       AutoSize = False
       CharCase = ecUppercase
       Font.Height = -12
-      OnChange = Edit2Change
+      OnChange = EditCallNameChange
       ParentFont = False
       TabOrder = 0
     end
-    object Edit3: TEdit
+    object EditQTH: TEdit
       Left = 40
       Height = 23
       Top = 24
@@ -85,7 +83,7 @@ object CreateJournalForm: TCreateJournalForm
       ParentFont = False
       TabOrder = 1
     end
-    object Edit4: TEdit
+    object EditName: TEdit
       Left = 40
       Height = 23
       Top = 48
@@ -95,10 +93,10 @@ object CreateJournalForm: TCreateJournalForm
       ParentFont = False
       TabOrder = 2
     end
-    object Label4: TLabel
-      AnchorSideTop.Control = Edit3
+    object LBQTH: TLabel
+      AnchorSideTop.Control = EditQTH
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit3
+      AnchorSideRight.Control = EditQTH
       Left = 12
       Height = 13
       Top = 29
@@ -108,10 +106,10 @@ object CreateJournalForm: TCreateJournalForm
       Caption = 'QTH'
       ParentColor = False
     end
-    object Label5: TLabel
-      AnchorSideTop.Control = Edit4
+    object LBName: TLabel
+      AnchorSideTop.Control = EditName
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit4
+      AnchorSideRight.Control = EditName
       Left = 2
       Height = 13
       Top = 53
@@ -122,7 +120,7 @@ object CreateJournalForm: TCreateJournalForm
       ParentColor = False
     end
   end
-  object GroupBox2: TGroupBox
+  object GBLocation: TGroupBox
     Left = 176
     Height = 97
     Top = 40
@@ -133,10 +131,10 @@ object CreateJournalForm: TCreateJournalForm
     Font.Height = -12
     ParentFont = False
     TabOrder = 2
-    object Label6: TLabel
-      AnchorSideTop.Control = Edit5
+    object LBITU: TLabel
+      AnchorSideTop.Control = EditITU
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit5
+      AnchorSideRight.Control = EditITU
       Left = 33
       Height = 13
       Top = 5
@@ -148,7 +146,7 @@ object CreateJournalForm: TCreateJournalForm
       ParentColor = False
       ParentFont = False
     end
-    object Edit5: TEdit
+    object EditITU: TEdit
       Left = 56
       Height = 23
       Top = 0
@@ -159,7 +157,7 @@ object CreateJournalForm: TCreateJournalForm
       ParentFont = False
       TabOrder = 0
     end
-    object Edit6: TEdit
+    object EditCQ: TEdit
       Left = 145
       Height = 23
       Top = 0
@@ -170,10 +168,10 @@ object CreateJournalForm: TCreateJournalForm
       ParentFont = False
       TabOrder = 1
     end
-    object Label7: TLabel
-      AnchorSideTop.Control = Edit6
+    object LBCQ: TLabel
+      AnchorSideTop.Control = EditCQ
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit6
+      AnchorSideRight.Control = EditCQ
       Left = 125
       Height = 13
       Top = 5
@@ -185,7 +183,7 @@ object CreateJournalForm: TCreateJournalForm
       ParentColor = False
       ParentFont = False
     end
-    object Edit7: TEdit
+    object EditGrid: TEdit
       Left = 56
       Height = 23
       Top = 24
@@ -193,14 +191,14 @@ object CreateJournalForm: TCreateJournalForm
       AutoSize = False
       CharCase = ecUppercase
       Font.Height = -12
-      OnChange = Edit7Change
+      OnChange = EditGridChange
       ParentFont = False
       TabOrder = 2
     end
-    object Label8: TLabel
-      AnchorSideTop.Control = Edit7
+    object LBGrid: TLabel
+      AnchorSideTop.Control = EditGrid
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit7
+      AnchorSideRight.Control = EditGrid
       Left = 28
       Height = 13
       Top = 29
@@ -210,10 +208,10 @@ object CreateJournalForm: TCreateJournalForm
       Caption = 'Grid'
       ParentColor = False
     end
-    object Label9: TLabel
-      AnchorSideTop.Control = Edit8
+    object LBLat: TLabel
+      AnchorSideTop.Control = EditLat
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit8
+      AnchorSideRight.Control = EditLat
       Left = 34
       Height = 13
       Top = 54
@@ -223,7 +221,7 @@ object CreateJournalForm: TCreateJournalForm
       Caption = 'Lat'
       ParentColor = False
     end
-    object Edit8: TEdit
+    object EditLat: TEdit
       Left = 56
       Height = 23
       Top = 49
@@ -234,7 +232,7 @@ object CreateJournalForm: TCreateJournalForm
       ParentFont = False
       TabOrder = 3
     end
-    object Edit9: TEdit
+    object EditLon: TEdit
       Left = 145
       Height = 23
       Top = 48
@@ -245,10 +243,10 @@ object CreateJournalForm: TCreateJournalForm
       ParentFont = False
       TabOrder = 4
     end
-    object Label11: TLabel
-      AnchorSideTop.Control = Label9
+    object LBLon: TLabel
+      AnchorSideTop.Control = LBLat
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit9
+      AnchorSideRight.Control = EditLon
       Left = 113
       Height = 13
       Top = 54
@@ -259,7 +257,7 @@ object CreateJournalForm: TCreateJournalForm
       ParentColor = False
     end
   end
-  object GroupBox3: TGroupBox
+  object GBQSLInfo: TGroupBox
     Left = 8
     Height = 45
     Top = 144
@@ -270,7 +268,7 @@ object CreateJournalForm: TCreateJournalForm
     Font.Height = -12
     ParentFont = False
     TabOrder = 3
-    object Edit10: TEdit
+    object EditQSLInfo: TEdit
       Left = 8
       Height = 23
       Top = 0
@@ -282,32 +280,26 @@ object CreateJournalForm: TCreateJournalForm
       Text = 'TNX for QSO! 73!'
     end
   end
-  object Button1: TButton
+  object BtClose: TButton
     Left = 288
     Height = 25
     Top = 164
     Width = 75
     Caption = 'Close'
     Font.Height = -12
-    OnClick = Button1Click
+    OnClick = BtCloseClick
     ParentFont = False
     TabOrder = 4
   end
-  object Button2: TButton
+  object BtCreate: TButton
     Left = 208
     Height = 25
     Top = 164
     Width = 75
     Caption = 'Create'
     Font.Height = -12
-    OnClick = Button2Click
+    OnClick = BtCreateClick
     ParentFont = False
     TabOrder = 5
-  end
-  object CreateTableQuery: TSQLQuery
-    FieldDefs = <>
-    Params = <>
-    Left = 136
-    Top = 8
   end
 end

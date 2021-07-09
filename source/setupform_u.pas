@@ -93,7 +93,6 @@ type
     SaveDialog1: TSaveDialog;
     SpeedButton1: TSpeedButton;
     SQLite_Connector: TSQLite3Connection;
-    SQL_Query: TSQLQuery;
     SQL_Transaction: TSQLTransaction;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -163,8 +162,10 @@ var
 procedure TSetupForm.InitializedDB;
 var
   CountStr: integer;
+  SQL_Query: TSQLQuery;
 begin
   try
+    SQL_Query := TSQLQuery.Create(nil);
     if (CheckedDB = 1) and (MySQL_Current = False) then
     begin
       try
@@ -495,6 +496,7 @@ begin
     MySQL_Connector.Connected := False;
     SQLite_Connector.Connected := False;
     SQL_Transaction.Active := False;
+    FreeAndNil(SQL_Query);
   end;
 end;
 
@@ -865,7 +867,6 @@ procedure TSetupForm.Edit11Change(Sender: TObject);
 var
   lat, lon: currency;
 begin
- // FormatSettings.DecimalSeparator := '.';
   if dmFunc.IsLocOK(Edit11.Text) then
   begin
     dmFunc.CoordinateFromLocator(Edit11.Text, lat, lon);

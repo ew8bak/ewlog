@@ -2064,12 +2064,13 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: tcreatejournalform.button1.caption
-msgctxt "tcreatejournalform.button1.caption"
+#: tcreatejournalform.btclose.caption
+msgctxt "tcreatejournalform.btclose.caption"
 msgid "Close"
 msgstr ""
 
-#: tcreatejournalform.button2.caption
+#: tcreatejournalform.btcreate.caption
+msgctxt "tcreatejournalform.btcreate.caption"
 msgid "Create"
 msgstr ""
 
@@ -2077,65 +2078,69 @@ msgstr ""
 msgid "Create new journal"
 msgstr ""
 
-#: tcreatejournalform.edit10.text
-msgctxt "tcreatejournalform.edit10.text"
+#: tcreatejournalform.editqslinfo.text
+msgctxt "tcreatejournalform.editqslinfo.text"
 msgid "TNX for QSO! 73!"
 msgstr ""
 
-#: tcreatejournalform.groupbox1.caption
-msgctxt "tcreatejournalform.groupbox1.caption"
+#: tcreatejournalform.gbinformation.caption
+msgctxt "tcreatejournalform.gbinformation.caption"
 msgid "Information"
 msgstr ""
 
-#: tcreatejournalform.groupbox2.caption
+#: tcreatejournalform.gblocation.caption
+msgctxt "tcreatejournalform.gblocation.caption"
 msgid "Location Information"
 msgstr ""
 
-#: tcreatejournalform.groupbox3.caption
-msgctxt "tcreatejournalform.groupbox3.caption"
+#: tcreatejournalform.gbqslinfo.caption
+msgctxt "tcreatejournalform.gbqslinfo.caption"
 msgid "QSL Info"
 msgstr ""
 
-#: tcreatejournalform.label1.caption
-msgctxt "tcreatejournalform.label1.caption"
-msgid "Description"
-msgstr ""
-
-#: tcreatejournalform.label11.caption
-msgid "Long"
-msgstr ""
-
-#: tcreatejournalform.label3.caption
+#: tcreatejournalform.lbcallname.caption
+msgctxt "tcreatejournalform.lbcallname.caption"
 msgid "Call name"
 msgstr ""
 
-#: tcreatejournalform.label4.caption
-msgctxt "tcreatejournalform.label4.caption"
-msgid "QTH"
-msgstr ""
-
-#: tcreatejournalform.label5.caption
-msgctxt "tcreatejournalform.label5.caption"
-msgid "Name"
-msgstr ""
-
-#: tcreatejournalform.label6.caption
-msgctxt "tcreatejournalform.label6.caption"
-msgid "ITU"
-msgstr ""
-
-#: tcreatejournalform.label7.caption
-msgctxt "tcreatejournalform.label7.caption"
+#: tcreatejournalform.lbcq.caption
+msgctxt "tcreatejournalform.lbcq.caption"
 msgid "CQ"
 msgstr ""
 
-#: tcreatejournalform.label8.caption
-msgctxt "tcreatejournalform.label8.caption"
+#: tcreatejournalform.lbdescription.caption
+msgctxt "tcreatejournalform.lbdescription.caption"
+msgid "Description"
+msgstr ""
+
+#: tcreatejournalform.lbgrid.caption
+msgctxt "tcreatejournalform.lbgrid.caption"
 msgid "Grid"
 msgstr ""
 
-#: tcreatejournalform.label9.caption
+#: tcreatejournalform.lbitu.caption
+msgctxt "tcreatejournalform.lbitu.caption"
+msgid "ITU"
+msgstr ""
+
+#: tcreatejournalform.lblat.caption
+msgctxt "tcreatejournalform.lblat.caption"
 msgid "Lat"
+msgstr ""
+
+#: tcreatejournalform.lblon.caption
+msgctxt "tcreatejournalform.lblon.caption"
+msgid "Long"
+msgstr ""
+
+#: tcreatejournalform.lbname.caption
+msgctxt "tcreatejournalform.lbname.caption"
+msgid "Name"
+msgstr ""
+
+#: tcreatejournalform.lbqth.caption
+msgctxt "tcreatejournalform.lbqth.caption"
+msgid "QTH"
 msgstr ""
 
 #: tdxclusterform.caption

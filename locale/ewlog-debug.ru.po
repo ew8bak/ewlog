@@ -2173,12 +2173,15 @@ msgstr "Правка по стране"
 msgid "Search"
 msgstr "Поиск"
 
-#: tcreatejournalform.button1.caption
-msgctxt "tcreatejournalform.button1.caption"
+#: tcreatejournalform.btclose.caption
+#, fuzzy
+msgctxt "tcreatejournalform.btclose.caption"
 msgid "Close"
 msgstr "Закрыть"
 
-#: tcreatejournalform.button2.caption
+#: tcreatejournalform.btcreate.caption
+#, fuzzy
+msgctxt "tcreatejournalform.btcreate.caption"
 msgid "Create"
 msgstr "Создать"
 
@@ -2186,66 +2189,82 @@ msgstr "Создать"
 msgid "Create new journal"
 msgstr "Создать новый журнал"
 
-#: tcreatejournalform.edit10.text
-msgctxt "tcreatejournalform.edit10.text"
+#: tcreatejournalform.editqslinfo.text
+msgctxt "tcreatejournalform.editqslinfo.text"
 msgid "TNX for QSO! 73!"
 msgstr ""
 
-#: tcreatejournalform.groupbox1.caption
-msgctxt "tcreatejournalform.groupbox1.caption"
+#: tcreatejournalform.gbinformation.caption
+#, fuzzy
+msgctxt "tcreatejournalform.gbinformation.caption"
 msgid "Information"
 msgstr "Информация"
 
-#: tcreatejournalform.groupbox2.caption
+#: tcreatejournalform.gblocation.caption
+#, fuzzy
+msgctxt "tcreatejournalform.gblocation.caption"
 msgid "Location Information"
 msgstr "Информация о локации"
 
-#: tcreatejournalform.groupbox3.caption
-msgctxt "tcreatejournalform.groupbox3.caption"
+#: tcreatejournalform.gbqslinfo.caption
+#, fuzzy
+msgctxt "tcreatejournalform.gbqslinfo.caption"
 msgid "QSL Info"
 msgstr "QSL Инфо"
 
-#: tcreatejournalform.label1.caption
-msgctxt "tcreatejournalform.label1.caption"
-msgid "Description"
-msgstr "Описание"
-
-#: tcreatejournalform.label11.caption
-msgid "Long"
-msgstr "Долгота"
-
-#: tcreatejournalform.label3.caption
+#: tcreatejournalform.lbcallname.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lbcallname.caption"
 msgid "Call name"
 msgstr "Позывной"
 
-#: tcreatejournalform.label4.caption
-msgctxt "tcreatejournalform.label4.caption"
-msgid "QTH"
-msgstr "QTH"
-
-#: tcreatejournalform.label5.caption
-msgctxt "tcreatejournalform.label5.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tcreatejournalform.label6.caption
-msgctxt "tcreatejournalform.label6.caption"
-msgid "ITU"
-msgstr "ITU"
-
-#: tcreatejournalform.label7.caption
-msgctxt "tcreatejournalform.label7.caption"
+#: tcreatejournalform.lbcq.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lbcq.caption"
 msgid "CQ"
 msgstr "CQ"
 
-#: tcreatejournalform.label8.caption
-msgctxt "tcreatejournalform.label8.caption"
+#: tcreatejournalform.lbdescription.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lbdescription.caption"
+msgid "Description"
+msgstr "Описание"
+
+#: tcreatejournalform.lbgrid.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lbgrid.caption"
 msgid "Grid"
 msgstr "Локатор"
 
-#: tcreatejournalform.label9.caption
+#: tcreatejournalform.lbitu.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lbitu.caption"
+msgid "ITU"
+msgstr "ITU"
+
+#: tcreatejournalform.lblat.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lblat.caption"
 msgid "Lat"
 msgstr "Широта"
+
+#: tcreatejournalform.lblon.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lblon.caption"
+msgid "Long"
+msgstr "Долгота"
+
+#: tcreatejournalform.lbname.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lbname.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tcreatejournalform.lbqth.caption
+#, fuzzy
+msgctxt "tcreatejournalform.lbqth.caption"
+msgid "QTH"
+msgstr "QTH"
 
 #: tdxclusterform.caption
 msgctxt "tdxclusterform.caption"

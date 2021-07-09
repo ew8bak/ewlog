@@ -22,37 +22,34 @@ type
   { TCreateJournalForm }
 
   TCreateJournalForm = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Edit1: TEdit;
-    Edit10: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
-    GroupBox3: TGroupBox;
-    Label1: TLabel;
-    Label11: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    CreateTableQuery: TSQLQuery;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Edit2Change(Sender: TObject);
-    procedure Edit7Change(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    BtClose: TButton;
+    BtCreate: TButton;
+    EditDescription: TEdit;
+    EditQSLInfo: TEdit;
+    EditCallName: TEdit;
+    EditQTH: TEdit;
+    EditName: TEdit;
+    EditITU: TEdit;
+    EditCQ: TEdit;
+    EditGrid: TEdit;
+    EditLat: TEdit;
+    EditLon: TEdit;
+    GBInformation: TGroupBox;
+    GBLocation: TGroupBox;
+    GBQSLInfo: TGroupBox;
+    LBDescription: TLabel;
+    LBLon: TLabel;
+    LBCallName: TLabel;
+    LBQTH: TLabel;
+    LBName: TLabel;
+    LBITU: TLabel;
+    LBCQ: TLabel;
+    LBGrid: TLabel;
+    LBLat: TLabel;
+    procedure BtCloseClick(Sender: TObject);
+    procedure BtCreateClick(Sender: TObject);
+    procedure EditCallNameChange(Sender: TObject);
+    procedure EditGridChange(Sender: TObject);
   private
     { private declarations }
   public
@@ -69,88 +66,64 @@ uses miniform_u, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U,
 
 {$R *.lfm}
 
-procedure TCreateJournalForm.Edit7Change(Sender: TObject);
+procedure TCreateJournalForm.EditGridChange(Sender: TObject);
 var
   lat, lon: currency;
 begin
-  if dmFunc.IsLocOK(Edit7.Text) then
+  if dmFunc.IsLocOK(EditGrid.Text) then
   begin
-    dmFunc.CoordinateFromLocator(Edit7.Text, lat, lon);
-    Edit8.Text := StringReplace(CurrToStr(lat), ',', '.', [rfReplaceAll]);
-    Edit9.Text := StringReplace(CurrToStr(lon), ',', '.', [rfReplaceAll]);
+    dmFunc.CoordinateFromLocator(EditGrid.Text, lat, lon);
+    EditLat.Text := StringReplace(CurrToStr(lat), ',', '.', [rfReplaceAll]);
+    EditLon.Text := StringReplace(CurrToStr(lon), ',', '.', [rfReplaceAll]);
   end
   else
   begin
-    Edit8.Text := '';
-    Edit9.Text := '';
+    EditLat.Text := '';
+    EditLon.Text := '';
   end;
 
 end;
 
-procedure TCreateJournalForm.FormCreate(Sender: TObject);
-begin
-  if DBRecord.CurrentDB = 'MySQL' then
-  begin
-    CreateTableQuery.DataBase := InitDB.MySQLConnection;
-    //MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
-  end
-  else
-  begin
-    CreateTableQuery.DataBase := InitDB.SQLiteConnection;
-    // MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
-  end;
-end;
-
-procedure TCreateJournalForm.FormShow(Sender: TObject);
-begin
-  if DBRecord.CurrentDB = 'MySQL' then
-  begin
-    CreateTableQuery.DataBase := InitDB.MySQLConnection;
-    // MainForm.MySQLLOGDBConnection.Transaction := MainForm.SQLTransaction1;
-    CreateTableQuery.Transaction := InitDB.DefTransaction;
-  end
-  else
-  begin
-    CreateTableQuery.DataBase := InitDB.SQLiteConnection;
-    // MainForm.SQLiteDBConnection.Transaction := MainForm.SQLTransaction1;
-    CreateTableQuery.Transaction := InitDB.DefTransaction;
-  end;
-end;
-
-procedure TCreateJournalForm.Button2Click(Sender: TObject);
+procedure TCreateJournalForm.BtCreateClick(Sender: TObject);
 var
   LOG_PREFIX: string;
-  CountStr: integer;
   newLogBookname: string;
+  CreateTableQuery: TSQLQuery;
 begin
-  if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or
-    (Edit4.Text = '') or (Edit5.Text = '') or (Edit6.Text = '') or (Edit7.Text = '') then
+  if (EditDescription.Text = '') or (EditCallName.Text = '') or (EditQTH.Text = '') or
+    (EditName.Text = '') or (EditITU.Text = '') or (EditCQ.Text = '') or (EditGrid.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
   else
   begin
     if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
     begin
       try
+        CreateTableQuery := TSQLQuery.Create(nil);
+        if DBRecord.CurrentDB = 'MySQL' then
+        begin
+          CreateTableQuery.DataBase := InitDB.MySQLConnection;
+          CreateTableQuery.Transaction := InitDB.DefTransaction;
+        end
+        else
+        begin
+          CreateTableQuery.DataBase := InitDB.SQLiteConnection;
+          CreateTableQuery.Transaction := InitDB.DefTransaction;
+        end;
         LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
         CreateTableQuery.Close;
-        // CreateTableQuery.SQL.Text := 'SELECT COUNT(*) FROM LogBookInfo';
-        // CreateTableQuery.Open;
-        //  CountStr := CreateTableQuery.Fields[0].AsInteger + 1;
-        // CreateTableQuery.Close;
 
         CreateTableQuery.SQL.Text := Insert_Table_LogBookInfo;
-        // CreateTableQuery.ParamByName('id').AsInteger := CountStr;
         CreateTableQuery.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
-        CreateTableQuery.ParamByName('CallName').AsString := Edit2.Text;
-        CreateTableQuery.ParamByName('Name').AsString := Edit4.Text;
-        CreateTableQuery.ParamByName('QTH').AsString := Edit3.Text;
-        CreateTableQuery.ParamByName('ITU').AsString := Edit5.Text;
-        CreateTableQuery.ParamByName('CQ').AsString := Edit6.Text;
-        CreateTableQuery.ParamByName('Loc').AsString := Edit7.Text;
-        CreateTableQuery.ParamByName('Lat').AsString := Edit8.Text;
-        CreateTableQuery.ParamByName('Lon').AsString := Edit9.Text;
-        CreateTableQuery.ParamByName('Discription').AsString := Edit1.Text;
-        CreateTableQuery.ParamByName('QSLInfo').AsString := Edit10.Text;
+        CreateTableQuery.ParamByName('CallName').AsString := EditCallName.Text;
+        CreateTableQuery.ParamByName('Name').AsString := EditName.Text;
+        CreateTableQuery.ParamByName('QTH').AsString := EditQTH.Text;
+        CreateTableQuery.ParamByName('ITU').AsString := EditITU.Text;
+        CreateTableQuery.ParamByName('CQ').AsString := EditCQ.Text;
+        CreateTableQuery.ParamByName('Loc').AsString := EditGrid.Text;
+        CreateTableQuery.ParamByName('Lat').AsString := EditLat.Text;
+        CreateTableQuery.ParamByName('Lon').AsString := EditLon.Text;
+        CreateTableQuery.ParamByName('Discription').AsString := EditDescription.Text;
+        CreateTableQuery.ParamByName('QSLInfo').AsString := EditQSLInfo.Text;
         CreateTableQuery.ParamByName('Table_version').AsString := Current_Table;
         CreateTableQuery.ExecSQL;
         InitDB.DefTransaction.Commit;
@@ -171,16 +144,16 @@ begin
         end;
         InitDB.DefTransaction.Commit;
       finally
-        newLogBookName := Edit2.Text;
-        Edit1.Clear;
-        Edit2.Clear;
-        Edit3.Clear;
-        Edit4.Clear;
-        Edit5.Clear;
-        Edit6.Clear;
-        Edit7.Clear;
-        Edit8.Clear;
-        Edit9.Clear;
+        newLogBookName := EditCallName.Text;
+        EditDescription.Clear;
+        EditCallName.Clear;
+        EditQTH.Clear;
+        EditName.Clear;
+        EditITU.Clear;
+        EditCQ.Clear;
+        EditGrid.Clear;
+        EditLat.Clear;
+        EditLon.Clear;
         if Application.MessageBox(PChar(rSetAsDefaultJournal),
           PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin
@@ -201,6 +174,7 @@ begin
           MiniForm.CBCurrentLog.SetFocus;
           MiniForm.CBCurrentLog.DroppedDown := True;
         end;
+        FreeAndNil(CreateTableQuery);
       end;
     end
     else
@@ -210,34 +184,34 @@ begin
   end;
 end;
 
-procedure TCreateJournalForm.Edit2Change(Sender: TObject);
+procedure TCreateJournalForm.EditCallNameChange(Sender: TObject);
 var
   PFXR: TPFXR;
   Lat: string = '';
   Lon: string = '';
 begin
-  if MiniForm.CBCurrentLog.Items.IndexOf(Edit2.Text) >= 0 then
+  if MiniForm.CBCurrentLog.Items.IndexOf(EditCallName.Text) >= 0 then
   begin
-    Edit2.Color := clRed;
-    Button2.Enabled := False;
+    EditCallName.Color := clRed;
+    BtCreate.Enabled := False;
   end
   else
   begin
-    Edit2.Color := clDefault;
-    Button2.Enabled := True;
-    if Length(Edit2.Text) > 0 then
+    EditCallName.Color := clDefault;
+    BtCreate.Enabled := True;
+    if Length(EditCallName.Text) > 0 then
     begin
-      PFXR := MainFunc.SearchPrefix(Edit2.Text, '');
-      Edit5.Text := PFXR.ITUZone;
-      Edit6.Text := PFXR.CQZone;
+      PFXR := MainFunc.SearchPrefix(EditCallName.Text, '');
+      EditITU.Text := PFXR.ITUZone;
+      EditCQ.Text := PFXR.CQZone;
       dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
-      Edit8.Text := Lat;
-      Edit9.Text := Lon;
+      EditLat.Text := Lat;
+      EditLon.Text := Lon;
     end;
   end;
 end;
 
-procedure TCreateJournalForm.Button1Click(Sender: TObject);
+procedure TCreateJournalForm.BtCloseClick(Sender: TObject);
 begin
   CreateJournalForm.Close;
 end;

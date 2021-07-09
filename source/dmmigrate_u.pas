@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, SQLDB, Dialogs, InitDB_dm, ResourceStr;
 
 const
-  Current_Table = '1.4.7';
+  Current_Table = '1.4.8';
 
 type
   TdmMigrate = class(TDataModule)
@@ -16,6 +16,7 @@ type
     function MigrationEnd(ToTableVersion, Callsign: string): boolean;
     function Migrate146(Callsign: string): boolean;
     function Migrate147(Callsign: string): boolean;
+    function Migrate148(Callsign: string): boolean;
     function CheckTableVersion(Callsign, MigrationVer: string): boolean;
 
   public
@@ -74,6 +75,7 @@ procedure TdmMigrate.Migrate(Callsign: string);
 begin
   Migrate146(Callsign);
   Migrate147(Callsign);
+  Migrate148(Callsign);
 end;
 
 function TdmMigrate.MigrationEnd(ToTableVersion, Callsign: string): boolean;
@@ -126,11 +128,11 @@ begin
         Query.DataBase := InitDB.MySQLConnection;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
-      Query.SQL.Add('ContestSession TEXT DEFAULT NULL;');
+      Query.SQL.Add('ContestSession varchar(255) DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
-      Query.SQL.Add('ContestName TEXT DEFAULT NULL;');
+      Query.SQL.Add('ContestName varchar(255) DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
@@ -208,11 +210,11 @@ begin
         Query.DataBase := InitDB.MySQLConnection;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
-      Query.SQL.Add('SOTA_REF TEXT DEFAULT NULL;');
+      Query.SQL.Add('SOTA_REF varchar(15) DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
-      Query.SQL.Add('MY_SOTA_REF TEXT DEFAULT NULL;');
+      Query.SQL.Add('MY_SOTA_REF varchar(15) DEFAULT NULL;');
       Query.ExecSQL;
       InitDB.DefTransaction.Commit;
       if MigrationEnd(Version, Callsign) then
@@ -223,6 +225,44 @@ begin
       begin
         ShowMessage('Migrate147: Error: ' + E.ClassName + #13#10 + E.Message);
         WriteLn(ExceptFile, 'Migrate147: Error: ' + E.ClassName + ':' + E.Message);
+      end;
+    end;
+
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
+function TdmMigrate.Migrate148(Callsign: string): boolean;
+const
+  Version = '1.4.8';
+var
+  Query: TSQLQuery;
+begin
+  Result := False;
+  if not CheckTableVersion(Callsign, Version) then
+    Exit;
+  try
+    try
+      ShowMessage(rDBNeedUpdate + Version);
+      Query := TSQLQuery.Create(nil);
+      if DBRecord.CurrentDB = 'SQLite' then
+        Query.DataBase := InitDB.SQLiteConnection
+      else
+        Query.DataBase := InitDB.MySQLConnection;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QSODateTime datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      InitDB.DefTransaction.Commit;
+      if MigrationEnd(Version, Callsign) then
+        Result := True;
+
+    except
+      on E: Exception do
+      begin
+        ShowMessage('Migrate148: Error: ' + E.ClassName + #13#10 + E.Message);
+        WriteLn(ExceptFile, 'Migrate148: Error: ' + E.ClassName + ':' + E.Message);
       end;
     end;
 

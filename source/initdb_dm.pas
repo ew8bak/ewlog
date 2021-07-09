@@ -145,7 +145,6 @@ begin
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
    {$ENDIF UNIX}
-  //  DefaultFormatSettings.DecimalSeparator := '.';
     if not DirectoryExists(FilePATH) then
       CreateDir(FilePATH);
 
@@ -550,6 +549,7 @@ begin
         begin
           ShowMessage('Error: ' + E.ClassName + #13#10 + E.Message);
           WriteLn(ExceptFile, 'GetLogBookTable:' + E.ClassName + ':' + E.Message);
+          MySQLConnection.Connected := False;
           Result := False;
         end;
       end;

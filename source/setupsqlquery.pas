@@ -39,8 +39,7 @@ const
     + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
 
   Table_LogBookInfoMySQL = 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
-    '`id` integer UNIQUE PRIMARY KEY AUTO_INCREMENT, `LogTable` varchar(100) NOT NULL, '
-    +
+    '`id` integer UNIQUE PRIMARY KEY AUTO_INCREMENT, `LogTable` varchar(100) NOT NULL, ' +
     '`CallName` varchar(15) NOT NULL, `Name` varchar(100) NOT NULL, ' +
     '`QTH` varchar(100) NOT NULL, `ITU` int(11) NOT NULL, ' +
     '`CQ` int(11) NOT NULL, `Loc` varchar(32) NOT NULL, ' +
@@ -55,9 +54,9 @@ const
     '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
     '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
     '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-    '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), '
-    + '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, '
-    + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
+    '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
+    '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, ' +
+    '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
 
 
   Insert_Table_LogBookInfo = 'INSERT INTO LogBookInfo ' +
@@ -86,8 +85,9 @@ begin
   Result := '';
   TempResult := 'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX +
     '` ( `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
-    ' `CallSign` varchar(20) DEFAULT NULL, `QSODate` datetime DEFAULT NULL,' +
-    ' `QSOTime` varchar(5) DEFAULT NULL, `QSOBand` varchar(20) DEFAULT NULL,' +
+    ' `CallSign` varchar(20) DEFAULT NULL, `QSODateTime` datetime DEFAULT NULL,' +
+    ' `QSODate` datetime DEFAULT NULL, `QSOTime` varchar(5) DEFAULT NULL,' +
+    ' `QSOBand` varchar(20) DEFAULT NULL,' +
     ' `QSOMode` varchar(15) DEFAULT NULL,' +
     ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
     ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
@@ -95,10 +95,9 @@ begin
     ' `OMName` varchar(30) DEFAULT NULL, `OMQTH` varchar(50) DEFAULT NULL,' +
     ' `State` varchar(25) DEFAULT NULL, `Grid` varchar(8) DEFAULT NULL,' +
     ' `IOTA` varchar(6) DEFAULT NULL, `QSLManager` varchar(9) DEFAULT NULL,' +
-    ' `QSLSent` tinyint(1) DEFAULT NULL,' + ' `QSLSentAdv` varchar(1) DEFAULT NULL,' +
+    ' `QSLSent` tinyint(1) DEFAULT NULL, `QSLSentAdv` varchar(1) DEFAULT NULL,' +
     ' `QSLSentDate` datetime DEFAULT NULL, `QSLRec` tinyint(1) DEFAULT NULL,' +
-    ' `QSLRecDate` datetime DEFAULT NULL,' +
-    ' `MainPrefix` varchar(5) DEFAULT NULL,' +
+    ' `QSLRecDate` datetime DEFAULT NULL, `MainPrefix` varchar(5) DEFAULT NULL,' +
     ' `DXCCPrefix` varchar(5) DEFAULT NULL, `CQZone` varchar(2) DEFAULT NULL,' +
     ' `ITUZone` varchar(2) DEFAULT NULL, `QSOAddInfo` longtext,' +
     ' `Marker` int(11) DEFAULT NULL, `ManualSet` tinyint(1) DEFAULT NULL,' +
@@ -121,8 +120,9 @@ begin
     ' `DXCC` varchar(5) DEFAULT NULL, `USERS` varchar(5) DEFAULT NULL,' +
     ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), ' +
     ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15), `SYNC` tinyint(1) DEFAULT 0,'+
-    ' `SOTA_REF` TEXT DEFAULT NULL, `MY_SOTA_REF` TEXT DEFAULT NULL,'+
-    ' `ContestSession` TEXT DEFAULT NULL, `ContestName` TEXT DEFAULT NULL, `EQSL_QSL_SENT` varchar(2) DEFAULT N, `HAMLOGRec` tinyint(1) DEFAULT 0, '+
+    ' `SOTA_REF` varchar(15) DEFAULT NULL, `MY_SOTA_REF` varchar(15) DEFAULT NULL,'+
+    ' `ContestSession` varchar(255) DEFAULT NULL, `ContestName` varchar(255) DEFAULT NULL,'+
+    ' `EQSL_QSL_SENT` varchar(2) DEFAULT ''N'', `HAMLOGRec` tinyint(1) DEFAULT 0, '+
     ' `CLUBLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `CLUBLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
     ' `HRDLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HRDLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
     ' `QRZCOM_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `QRZCOM_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
