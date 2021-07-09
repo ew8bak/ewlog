@@ -174,21 +174,27 @@ begin
           QueryToList.Clear;
           QueryToList.Add('INSERT INTO ' + LogTableNameTo + ' (' +
             CopyField + ') VALUES (');
-          for i := 0 to 57 do
+          for i := 0 to 71 do
           begin
             if QueryFrom.Fields.Fields[i].AsString <> '' then
             begin
-              if (QueryFrom.Fields.Fields[i].FieldNo = 2) or
-                (QueryFrom.Fields.Fields[i].FieldNo = 17) or
-                (QueryFrom.Fields.Fields[i].FieldNo = 19) or
-                (QueryFrom.Fields.Fields[i].FieldNo = 32) then
+              if (QueryFrom.Fields.Fields[i].FieldName = 'QSODate') or
+                (QueryFrom.Fields.Fields[i].FieldName = 'QSLSentDate') or
+                (QueryFrom.Fields.Fields[i].FieldName = 'QSLRecDate') or
+                (QueryFrom.Fields.Fields[i].FieldName = 'LoTWRecDate') or
+                (QueryFrom.Fields.Fields[i].FieldName = 'CLUBLOG_QSO_UPLOAD_DATE') or
+                (QueryFrom.Fields.Fields[i].FieldName = 'HRDLOG_QSO_UPLOAD_DATE') or
+                (QueryFrom.Fields.Fields[i].FieldName = 'QRZCOM_QSO_UPLOAD_DATE') or
+                (QueryFrom.Fields.Fields[i].FieldName = 'HAMLOG_QSO_UPLOAD_DATE') then
               begin
                 if toMySQL then
                   DateStr := FormatDateTime('YYYY-MM-DD',
                     QueryFrom.Fields.Fields[i].AsDateTime)
-                else
+                else begin
                   DateStr := FloatToStr(DateTimeToJulianDate(
                     QueryFrom.Fields.Fields[i].AsDateTime));
+                  DateStr := StringReplace(DateStr,',','.',[rfReplaceAll]);
+                 end;
                 QueryToList.Add(QuotedStr(DateStr) + ',');
               end
               else

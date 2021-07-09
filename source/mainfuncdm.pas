@@ -971,7 +971,9 @@ begin
         if DBRecord.CurrentDB = 'MySQL' then
           InitDB.DefLogBookQuery.SQL.Text :=
             'SELECT `UnUsedIndex`, `CallSign`,' +
-            ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+            ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
+            + '(CONCAT(COALESCE(`QSOReportSent`, ''''), '' '', COALESCE(`STX`, ''''), '' '', COALESCE(`STX_STRING`, ''''))) AS QSOReportSent,'
+            + '(CONCAT(COALESCE(`QSOReportRecived`, ''''),'' '', COALESCE(`SRX`, ''''), '' '', COALESCE(`SRX_STRING`, ''''))) AS QSOReportRecived,'
             + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
             + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
             + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -979,12 +981,15 @@ begin
             + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
             + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
             + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-            + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
-            Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`'
+            + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE `' +
+            Field + '` LIKE ' + QuotedStr(Value) +
+            ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC'
         else
           InitDB.DefLogBookQuery.SQL.Text :=
             'SELECT `UnUsedIndex`, `CallSign`,' +
-            ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+            ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
+            + '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
+            + '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || '' '' || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
             + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
             + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
             + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -1921,6 +1926,7 @@ procedure TMainFunc.SaveQSO(var SQSO: TQSO);
 var
   QueryTXT: string;
   SRXs, STXs, QSODates: string;
+  QSODateTime: string;
 begin
   try
     try
@@ -1945,13 +1951,17 @@ begin
       SQSO.My_Lat:=StringReplace(SQSO.My_Lat, ',','.',[rfReplaceAll]);
       SQSO.My_Lon:=StringReplace(SQSO.My_Lon, ',','.',[rfReplaceAll]);
 
-      if DBRecord.CurrentDB = 'MySQL' then
-        QSODates := FormatDateTime('yyyy-mm-dd', SQSO.QSODate)
-      else
+      if DBRecord.CurrentDB = 'MySQL' then begin
+        QSODates := FormatDateTime('yyyy-mm-dd', SQSO.QSODate);
+        QSODateTime := FormatDateTime('yyyy-mm-dd hh:nn:ss', SQSO.QSODateTime);
+      end
+      else begin
         QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),',','.',[rfReplaceAll]);
+        QSODateTime := IntToStr(DateTimeToUnix(SQSO.QSODateTime));
+      end;
 
       QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-        'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode,' +
+        'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode,' +
         'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, ' +
         'QSLManager, QSLSent, QSLSentAdv, QSLRec,' +
         'MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,' +
@@ -1960,7 +1970,8 @@ begin
         'ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,' +
         'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC,' +
         'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC, ContestSession, ContestName) VALUES (' +
-        dmFunc.Q(SQSO.CallSing) + dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) +
+        dmFunc.Q(SQSO.CallSing) + dmFunc.Q(QSODateTime) +
+        dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) +
         dmFunc.Q(SQSO.QSOBand) + dmFunc.Q(SQSO.QSOMode) +
         dmFunc.Q(SQSO.QSOSubMode) + dmFunc.Q(SQSO.QSOReportSent) +
         dmFunc.Q(SQSO.QSOReportRecived) + dmFunc.Q(SQSO.OmName) +

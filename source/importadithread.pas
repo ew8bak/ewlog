@@ -251,6 +251,7 @@ var
   paramQSLSent: string;
   paramQSLSentAdv: string;
   paramQSODate: string;
+  paramQSODateTime: string;
   ParamQSL_RCVD: string;
   paramMARKER: string;
   paramEQSL_QSL_RCVD: string;
@@ -318,6 +319,7 @@ begin
         paramQSLSent := '';
         paramQSLSentAdv := '';
         paramQSODate := '';
+        paramQSODateTime:= '';
         ParamQSL_RCVD := '';
         paramMARKER := '';
         paramEQSL_QSL_RCVD := '';
@@ -532,11 +534,17 @@ begin
           if (QSOTIME = '') and (TIME_ON = '') then
             QSOTIME := TIME_OFF;
 
-          if DBRecord.CurrentDB = 'MySQL' then
-            paramQSODate := dmFunc.ADIFDateToDate(QSO_DATE)
-          else
+          if DBRecord.CurrentDB = 'MySQL' then begin
+            paramQSODate := dmFunc.ADIFDateToDate(QSO_DATE);
+            paramQSODateTime:= paramQSODate + ' ' + QSOTIME;
+          end
+          else begin
+            paramQSODateTime:= IntToStr(DateTimeToUnix(EncodeDateTime(yyyy, mm, dd, StrToInt(QSOTIME[1] + QSOTIME[2]), StrToInt(QSOTIME[4] + QSOTIME[5]), 0, 0)));
             paramQSODate := StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
             ',','.',[rfReplaceAll]);
+          end;
+
+
 
           if QSL_SENT = 'Y' then
           begin
@@ -680,7 +688,7 @@ begin
           if not PADIImport.Mobile then
           begin
             Query := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-              'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,'
+              'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,'
               + 'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
               + 'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,'
               + 'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
@@ -689,7 +697,8 @@ begin
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
               'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, EQSL_QSL_SENT, SOTA_REF, MY_SOTA_REF, SYNC)' +
               ' VALUES (' +
-              dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
+              dmFunc.Q(CALL) + dmFunc.Q(paramQSODateTime) +
+              dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
               dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
               dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
               dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
@@ -717,7 +726,7 @@ begin
           else
           begin
             TempQuery := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-              'CallSign, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,'
+              'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,'
               + 'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
               + 'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,'
               + 'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
@@ -725,7 +734,8 @@ begin
               + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
               'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
-              dmFunc.Q(CALL) + dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
+              dmFunc.Q(CALL) + dmFunc.Q(paramQSODateTime) +
+              dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
               dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
               dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
               dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +

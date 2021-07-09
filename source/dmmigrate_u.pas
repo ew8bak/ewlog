@@ -56,7 +56,8 @@ begin
       TableVersion := StrToInt(StringReplace(Current_Table, '.', '', [rfReplaceAll]));
       MigrationVersion := StrToInt(StringReplace(MigrationVer, '.', '', [rfReplaceAll]));
       Query.Close;
-      if (CurrentTableVersionNumber < TableVersion) and (MigrationVersion > CurrentTableVersionNumber) then
+      if (CurrentTableVersionNumber < TableVersion) and
+        (MigrationVersion > CurrentTableVersionNumber) then
         Result := True;
     finally
       FreeAndNil(Query);
@@ -253,6 +254,13 @@ begin
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
       Query.SQL.Add('QSODateTime datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET QSODateTime = ');
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.SQL.Add('CONCAT(DATE_FORMAT(QSODate, ''%Y-%m-%d''),'' '', TIME(QSOTime));')
+      else
+        Query.SQL.Add('CAST(strftime(''%s'', Date(QSODate) || time(QSOTime)) AS QSODT)');
       Query.ExecSQL;
       InitDB.DefTransaction.Commit;
       if MigrationEnd(Version, Callsign) then

@@ -19,6 +19,7 @@ uses
 type
   TQSO = record
     CallSing: string[20];
+    QSODateTime: TDateTime;
     QSODate: TDateTime;
     QSOTime: string[5];
     QSOBand: string[20];

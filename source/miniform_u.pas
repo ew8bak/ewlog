@@ -1424,6 +1424,7 @@ begin
       DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
       PFXR := MainFunc.SearchPrefix(EditCallsign.Text, EditGrid.Text);
       SQSO.CallSing := EditCallsign.Text;
+      SQSO.QSODateTime:=DateTimePicker1.DateTime;
       SQSO.QSODate := DateEdit1.Date;
       SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
       SQSO.QSOBand := NameBand;
@@ -1485,6 +1486,8 @@ begin
       SQSO.USERS := '';
       SQSO.NoCalcDXCC := 0;
       SQSO.SYNC := 0;
+      SQSO.ContestName := 'NULL';
+      SQSO.ContestSession := 'NULL';
 
       if LBRecord.OpLoc <> '' then
         SQSO.My_Grid := LBRecord.OpLoc;
@@ -2187,7 +2190,7 @@ begin
   LBRemoteTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC + TimeDIF / 24);
   if CBRealTime.Checked then
   begin
-    DateTimePicker1.Time := NowUTC;
+    DateTimePicker1.DateTime := NowUTC;
     DateEdit1.Date := NowUTC;
   end;
   FMS.Mode := CBMode.Text;

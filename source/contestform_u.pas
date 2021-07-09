@@ -199,6 +199,7 @@ begin
   if Length(EditCallsign.Text) > 1 then
   begin
     SaveQSOrec.ContestName := dmContest.ContestNameToADIf(CBContestName.Text);
+    SaveQSOrec.QSODateTime := DEDate.Date + TETime.Time;
     SaveQSOrec.QSODate := DEDate.Date;
     SaveQSOrec.QSOTime := TimeToStr(TETime.Time);
     SaveQSOrec.QSOMode := CBMode.Text;
