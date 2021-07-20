@@ -1,10 +1,10 @@
 {"version":1,"strings":[
 {"hash":246383026,"name":"tmm_form.caption","sourcebytes":[77,111,100,117,108,97,116,105,111,110,32,77,97,110,97,103,101,114],"value":"Modulation Manager"},
-{"hash":345509,"name":"tmm_form.listview1.columns[0].caption","sourcebytes":[77,111,100,101],"value":"Mode"},
-{"hash":206017268,"name":"tmm_form.listview1.columns[1].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"},
-{"hash":108725763,"name":"tmm_form.groupbox1.caption","sourcebytes":[79,112,116,105,111,110,115],"value":"Options"},
-{"hash":179783157,"name":"tmm_form.labelededit1.editlabel.caption","sourcebytes":[83,117,98,77,111,100,101],"value":"SubMode"},
-{"hash":92927182,"name":"tmm_form.checkbox1.caption","sourcebytes":[69,110,97,98,108,101,100,32,77,111,100,117,108,97,116,105,111,110],"value":"Enabled Modulation"},
-{"hash":254804725,"name":"tmm_form.button2.caption","sourcebytes":[83,97,118,101,32,83,117,98,77,111,100,101],"value":"Save SubMode"},
-{"hash":4863637,"name":"tmm_form.button1.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
+{"hash":345509,"name":"tmm_form.lvmodelist.columns[0].caption","sourcebytes":[77,111,100,101],"value":"Mode"},
+{"hash":206017268,"name":"tmm_form.lvmodelist.columns[1].caption","sourcebytes":[69,110,97,98,108,101,100],"value":"Enabled"},
+{"hash":108725763,"name":"tmm_form.gboptions.caption","sourcebytes":[79,112,116,105,111,110,115],"value":"Options"},
+{"hash":179783157,"name":"tmm_form.lesubmode.editlabel.caption","sourcebytes":[83,117,98,77,111,100,101],"value":"SubMode"},
+{"hash":92927182,"name":"tmm_form.cbenablemod.caption","sourcebytes":[69,110,97,98,108,101,100,32,77,111,100,117,108,97,116,105,111,110],"value":"Enabled Modulation"},
+{"hash":254804725,"name":"tmm_form.btsavesubmode.caption","sourcebytes":[83,97,118,101,32,83,117,98,77,111,100,101],"value":"Save SubMode"},
+{"hash":4863637,"name":"tmm_form.btclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
 ]}

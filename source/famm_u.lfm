@@ -11,7 +11,7 @@ object FM_Form: TFM_Form
   Position = poScreenCenter
   ShowInTaskBar = stAlways
   LCLVersion = '2.0.12.0'
-  object ListView1: TListView
+  object LVBandList: TListView
     Left = 0
     Height = 410
     Top = 0
@@ -43,9 +43,9 @@ object FM_Form: TFM_Form
     ScrollBars = ssAutoBoth
     TabOrder = 0
     ViewStyle = vsReport
-    OnSelectItem = ListView1SelectItem
+    OnSelectItem = LVBandListSelectItem
   end
-  object GroupBox1: TGroupBox
+  object GBOptions: TGroupBox
     Left = 320
     Height = 160
     Top = 8
@@ -54,7 +54,7 @@ object FM_Form: TFM_Form
     ClientHeight = 144
     ClientWidth = 271
     TabOrder = 1
-    object LabeledEdit1: TLabeledEdit
+    object LEBand: TLabeledEdit
       Left = 8
       Height = 26
       Top = 24
@@ -67,7 +67,7 @@ object FM_Form: TFM_Form
       ParentFont = False
       TabOrder = 0
     end
-    object LabeledEdit2: TLabeledEdit
+    object LEBegin: TLabeledEdit
       Left = 96
       Height = 26
       Top = 24
@@ -80,7 +80,7 @@ object FM_Form: TFM_Form
       ParentFont = False
       TabOrder = 1
     end
-    object LabeledEdit3: TLabeledEdit
+    object LEEnd: TLabeledEdit
       Left = 184
       Height = 26
       Top = 24
@@ -93,18 +93,18 @@ object FM_Form: TFM_Form
       ParentFont = False
       TabOrder = 2
     end
-    object CheckBox1: TCheckBox
+    object CBEnableBand: TCheckBox
       Left = 8
       Height = 23
       Top = 112
       Width = 110
       Caption = 'Enabled Band'
       Font.Height = -12
-      OnClick = CheckBox1Click
+      OnClick = CBEnableBandClick
       ParentFont = False
       TabOrder = 3
     end
-    object LabeledEdit4: TLabeledEdit
+    object LECW: TLabeledEdit
       Left = 8
       Height = 26
       Top = 72
@@ -117,7 +117,7 @@ object FM_Form: TFM_Form
       ParentFont = False
       TabOrder = 4
     end
-    object LabeledEdit5: TLabeledEdit
+    object LEDigi: TLabeledEdit
       Left = 96
       Height = 26
       Top = 72
@@ -130,7 +130,7 @@ object FM_Form: TFM_Form
       ParentFont = False
       TabOrder = 5
     end
-    object LabeledEdit6: TLabeledEdit
+    object LESSB: TLabeledEdit
       Left = 184
       Height = 26
       Top = 72
@@ -143,8 +143,8 @@ object FM_Form: TFM_Form
       ParentFont = False
       TabOrder = 6
     end
-    object Button2: TButton
-      AnchorSideRight.Control = GroupBox1
+    object BtSaveBand: TButton
+      AnchorSideRight.Control = GBOptions
       AnchorSideRight.Side = asrBottom
       Left = 186
       Height = 29
@@ -155,19 +155,19 @@ object FM_Form: TFM_Form
       BorderSpacing.Right = 7
       Caption = 'Save Band'
       Font.Height = -12
-      OnClick = Button2Click
+      OnClick = BtSaveBandClick
       ParentFont = False
       TabOrder = 7
     end
   end
-  object Button1: TButton
+  object BtClose: TButton
     Left = 518
     Height = 25
     Top = 376
     Width = 75
     Caption = 'Close'
     Font.Height = -12
-    OnClick = Button1Click
+    OnClick = BtCloseClick
     ParentFont = False
     TabOrder = 2
   end

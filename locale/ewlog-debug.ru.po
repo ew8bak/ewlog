@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0\n"
 
 #: cloudlog.ranswerserver
 msgctxt "cloudlog.ranswerserver"
@@ -228,7 +228,6 @@ msgid "Unknown user! See settings"
 msgstr "Неизвестный пользователь. Смотри настройки"
 
 #: resourcestr.ppleasefile
-#, fuzzy
 msgctxt "resourcestr.ppleasefile"
 msgid "Please specify a file for export!"
 msgstr "Пожалуйста укажите файл для экспорта!"
@@ -246,7 +245,7 @@ msgstr "Добавляю ключ в Log_TABLE_"
 #: resourcestr.raddress
 msgctxt "resourcestr.raddress"
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: resourcestr.rallfieldsmustbefilled
 msgctxt "resourcestr.rallfieldsmustbefilled"
@@ -280,11 +279,11 @@ msgstr "Позывной"
 
 #: resourcestr.rcallsignnotentered
 msgid "Recipient callsign not entered"
-msgstr ""
+msgstr "Позывной не введён"
 
 #: resourcestr.rcallsignnotrnteredorduplicateontourtime
 msgid "Callsign not entered or Duplicate on Tour Time"
-msgstr ""
+msgstr "Позывной не введён или дубликат в туре"
 
 #: resourcestr.rcannotdeldef
 msgctxt "resourcestr.rcannotdeldef"
@@ -338,7 +337,6 @@ msgid "Client Connected:"
 msgstr "Клиент подключён:"
 
 #: resourcestr.rcomport
-#, fuzzy
 msgctxt "resourcestr.rcomport"
 msgid "COM Port"
 msgstr "COM порт"
@@ -382,7 +380,7 @@ msgstr "Ошибка работы с базой данных. проверьте
 
 #: resourcestr.rdbneedupdate
 msgid "The database structure needs to be updated to version:"
-msgstr ""
+msgstr "Структура базы данных требует обновления до версии:"
 
 #: resourcestr.rdbnotinit
 msgctxt "resourcestr.rdbnotinit"
@@ -457,17 +455,15 @@ msgid "Please enter your message"
 msgstr "Пожалуйста, введите ваше сообщение"
 
 #: resourcestr.rerror
-#, fuzzy
 msgctxt "resourcestr.rerror"
 msgid "Error"
 msgstr "Ошибка"
 
 #: resourcestr.rerrorfieldnotentered
 msgid "ERROR Field not entered"
-msgstr ""
+msgstr "Ошибка, поле не ведено"
 
 #: resourcestr.rerroropenfile
-#, fuzzy
 msgctxt "resourcestr.rerroropenfile"
 msgid "Error opening file"
 msgstr "Ошибка открытия файла"
@@ -487,13 +483,11 @@ msgid "EWLog - HAM Journal"
 msgstr "EWLog - Аппаратный журнал"
 
 #: resourcestr.rexport
-#, fuzzy
 msgctxt "resourcestr.rexport"
 msgid "Export"
 msgstr "Экспорт"
 
 #: resourcestr.rexportcompl
-#, fuzzy
 msgctxt "resourcestr.rexportcompl"
 msgid "Export completed"
 msgstr "Экспорт завершён"
@@ -555,7 +549,7 @@ msgstr "Импорт"
 
 #: resourcestr.rimportcompl
 msgid "Import completed"
-msgstr ""
+msgstr "Успешно"
 
 #: resourcestr.rimported
 msgid "Imported"
@@ -610,7 +604,6 @@ msgid "Translation files download successfully"
 msgstr "Файлы переводов успешно загружены"
 
 #: resourcestr.rlibhamlibnotfound
-#, fuzzy
 msgctxt "resourcestr.rlibhamlibnotfound"
 msgid "HamLib library not found"
 msgstr "Не найдена библиотека HamLib"
@@ -689,7 +682,6 @@ msgid "No log file found! Check settings"
 msgstr "Не найден файл журнала. Проверь настройки"
 
 #: resourcestr.rnomethodexport
-#, fuzzy
 msgctxt "resourcestr.rnomethodexport"
 msgid "No export method selected!"
 msgstr "Не выбран режим экспорта!"
@@ -737,7 +729,7 @@ msgstr "Нечего импортировать"
 
 #: resourcestr.rnothingtosave
 msgid "Nothing to save"
-msgstr ""
+msgstr "Нечего сохранять"
 
 #: resourcestr.rnotuser
 msgctxt "resourcestr.rnotuser"
@@ -750,13 +742,11 @@ msgid "Number of duplicates"
 msgstr "Количество дубликатов"
 
 #: resourcestr.rnumberofqso
-#, fuzzy
 msgctxt "resourcestr.rnumberofqso"
 msgid "Number of QSO"
 msgstr "Количество QSO"
 
 #: resourcestr.rnumberofqso0
-#, fuzzy
 msgctxt "resourcestr.rnumberofqso0"
 msgid "Number of QSO: 0"
 msgstr "Количество записей: 0"
@@ -803,7 +793,7 @@ msgstr "Обработка"
 
 #: resourcestr.rprogramagain
 msgid "You are trying to run the program again. You cannot do this"
-msgstr ""
+msgstr "Программа уже запущена"
 
 #: resourcestr.rqsl
 msgctxt "resourcestr.rqsl"
@@ -896,7 +886,6 @@ msgid " Total "
 msgstr " из "
 
 #: resourcestr.rsave
-#, fuzzy
 msgctxt "resourcestr.rsave"
 msgid "Save"
 msgstr "Сохранить"
@@ -930,8 +919,6 @@ msgid "File size: "
 msgstr "Размер файла: "
 
 #: resourcestr.rsqlitecurrentversion
-#, fuzzy
-#| msgid "Installed version of sqlite3.dll"
 msgid "Installed version of sqlite3.so"
 msgstr "Установленная версия sqlite3.dll"
 
@@ -1034,11 +1021,6 @@ msgid "Update required"
 msgstr "Требует обновления"
 
 #: resourcestr.rupdatesqlitedll
-#, fuzzy
-#| msgid ""
-#| "Update sqlite3.dll to version 3.24.0 or higher.\n"
-#| "Current Latest Version 3.31.1\n"
-#| "Full work program can not be guaranteed\n"
 msgid ""
 "Update sqlite3.so to version 3.24.0 or higher.\n"
 "Current Latest Version 3.31.1\n"
@@ -1167,10 +1149,8 @@ msgid "Designed by EW8BAK"
 msgstr "Разработан EW8BAK"
 
 #: tabout_form.label4.caption
-#, fuzzy
-#| msgid "Copyright 2015 - 2020 Vladimir Karpenko"
 msgid "Copyright 2015 - 2021 Uladzimir Karpenka"
-msgstr "Copyright 2015 - 2020 Владимир Карпенко"
+msgstr "Copyright 2015 - 2021 Владимир Карпенко"
 
 #: tabout_form.label5.caption
 msgid "Label5"
@@ -1242,29 +1222,25 @@ msgid "Delete spots older then:"
 msgstr "Удалять споты старше:"
 
 #: tclusterfilter.lbminutesdel.caption
-#, fuzzy
 msgctxt "tclusterfilter.lbminutesdel.caption"
 msgid "minutes"
 msgstr "минут(ы)"
 
 #: tclusterfilter.lbminutesreconnect.caption
-#, fuzzy
 msgctxt "tclusterfilter.lbminutesreconnect.caption"
 msgid "minutes"
 msgstr "минут(ы)"
 
 #: tclusterfilter.lbreconnect.caption
 msgid "Reconnect when inactive for"
-msgstr ""
+msgstr "Переподключаться при не активности"
 
 #: tconfigform.btapplycolor.caption
-#, fuzzy
 msgctxt "tconfigform.btapplycolor.caption"
 msgid "Apply"
 msgstr "Принять"
 
 #: tconfigform.btdefaultcolor.caption
-#, fuzzy
 msgctxt "tconfigform.btdefaultcolor.caption"
 msgid "Default"
 msgstr "По умолчанию"
@@ -1312,13 +1288,11 @@ msgid "Backup Database"
 msgstr ""
 
 #: tconfigform.cbband.caption
-#, fuzzy
 msgctxt "tconfigform.cbband.caption"
 msgid "Band"
 msgstr "Диапазон"
 
 #: tconfigform.cbcall.caption
-#, fuzzy
 msgctxt "tconfigform.cbcall.caption"
 msgid "Call"
 msgstr "Позывной"
@@ -1366,127 +1340,106 @@ msgid "Default"
 msgstr "По умолчанию"
 
 #: tconfigform.cbcontinent.caption
-#, fuzzy
 msgctxt "tconfigform.cbcontinent.caption"
 msgid "Continent"
 msgstr "Континент"
 
 #: tconfigform.cbcqzone.caption
-#, fuzzy
 msgctxt "tconfigform.cbcqzone.caption"
 msgid "CQ Zone"
 msgstr "CQ Зона"
 
 #: tconfigform.cbdate.caption
-#, fuzzy
 msgctxt "tconfigform.cbdate.caption"
 msgid "Date"
 msgstr "Дата"
 
 #: tconfigform.cbdxcc.caption
-#, fuzzy
 msgctxt "tconfigform.cbdxcc.caption"
 msgid "DXCC"
 msgstr "DXCC"
 
 #: tconfigform.cbgrid.caption
-#, fuzzy
 msgctxt "tconfigform.cbgrid.caption"
 msgid "Grid"
 msgstr "Локатор"
 
 #: tconfigform.cbiota.caption
-#, fuzzy
 msgctxt "tconfigform.cbiota.caption"
 msgid "IOTA"
 msgstr "IOTA"
 
 #: tconfigform.cbituzone.caption
-#, fuzzy
 msgctxt "tconfigform.cbituzone.caption"
 msgid "ITU Zone"
 msgstr "ITU Зона"
 
 #: tconfigform.cblotwrdate.caption
-#, fuzzy
 msgctxt "tconfigform.cblotwrdate.caption"
 msgid "LOTWr Date"
 msgstr "LOTWr Дата"
 
 #: tconfigform.cbmanager.caption
-#, fuzzy
 msgctxt "tconfigform.cbmanager.caption"
 msgid "Manager"
 msgstr "Менеджер"
 
 #: tconfigform.cbmanualset.caption
-#, fuzzy
 msgctxt "tconfigform.cbmanualset.caption"
 msgid "Manual Set"
 msgstr "Manual Set"
 
 #: tconfigform.cbmode.caption
-#, fuzzy
 msgctxt "tconfigform.cbmode.caption"
 msgid "Mode"
 msgstr "Мода"
 
 #: tconfigform.cbname.caption
-#, fuzzy
 msgctxt "tconfigform.cbname.caption"
 msgid "Name"
 msgstr "Имя"
 
 #: tconfigform.cbnocalcdxcc.caption
-#, fuzzy
 msgctxt "tconfigform.cbnocalcdxcc.caption"
 msgid "No Calc DXCC"
 msgstr "No Calc DXCC"
 
 #: tconfigform.cbprefix.caption
-#, fuzzy
 msgctxt "tconfigform.cbprefix.caption"
 msgid "Prefix"
 msgstr "Префикс"
 
 #: tconfigform.cbqsl.caption
-#, fuzzy
 msgctxt "tconfigform.cbqsl.caption"
 msgid "QSL"
 msgstr "QSL"
 
 #: tconfigform.cbqslrdate.caption
-#, fuzzy
 msgctxt "tconfigform.cbqslrdate.caption"
 msgid "QSLr Date"
 msgstr "QSLr Дата"
 
 #: tconfigform.cbqslrvia.caption
-#, fuzzy
 msgctxt "tconfigform.cbqslrvia.caption"
 msgid "QSLr VIA"
 msgstr "QSLr VIA"
 
 #: tconfigform.cbqsls.caption
-#, fuzzy
 msgctxt "tconfigform.cbqsls.caption"
 msgid "QSLs"
 msgstr "QSLs"
 
 #: tconfigform.cbqslsdate.caption
-#, fuzzy
 msgctxt "tconfigform.cbqslsdate.caption"
 msgid "QSLs Date"
 msgstr "QSLs Дата"
 
 #: tconfigform.cbqslsvia.caption
-#, fuzzy
 msgctxt "tconfigform.cbqslsvia.caption"
 msgid "QSLs VIA"
 msgstr "QSLs VIA"
 
 #: tconfigform.cbqth.caption
-#, fuzzy
 msgctxt "tconfigform.cbqth.caption"
 msgid "QTH"
 msgstr "QTH"
@@ -1494,34 +1447,29 @@ msgstr "QTH"
 #: tconfigform.cbrigctldstart.caption
 msgctxt "tconfigform.cbrigctldstart.caption"
 msgid "Start rigctld on startup?"
-msgstr ""
+msgstr "Запускать rigctld при старте?"
 
 #: tconfigform.cbrstr.caption
-#, fuzzy
 msgctxt "tconfigform.cbrstr.caption"
 msgid "RSTr"
 msgstr "RSTr"
 
 #: tconfigform.cbrsts.caption
-#, fuzzy
 msgctxt "tconfigform.cbrsts.caption"
 msgid "RSTs"
 msgstr "RSTs"
 
 #: tconfigform.cbstate.caption
-#, fuzzy
 msgctxt "tconfigform.cbstate.caption"
 msgid "State"
 msgstr "State"
 
 #: tconfigform.cbsubmode.caption
-#, fuzzy
 msgctxt "tconfigform.cbsubmode.caption"
 msgid "SubMode"
 msgstr "СабМода"
 
 #: tconfigform.cbtelnetstartup.caption
-#, fuzzy
 msgctxt "tconfigform.cbtelnetstartup.caption"
 msgid "Start DX cluster automatically"
 msgstr "Запускать DX кластер автоматически"
@@ -1532,26 +1480,23 @@ msgid "8 пт"
 msgstr ""
 
 #: tconfigform.cbtime.caption
-#, fuzzy
 msgctxt "tconfigform.cbtime.caption"
 msgid "Time"
 msgstr "Время"
 
 #: tconfigform.cbuser.caption
-#, fuzzy
 msgctxt "tconfigform.cbuser.caption"
 msgid "User"
 msgstr "User"
 
 #: tconfigform.cbvaliddx.caption
-#, fuzzy
 msgctxt "tconfigform.cbvaliddx.caption"
 msgid "ValidDX"
 msgstr "ValidDX"
 
 #: tconfigform.cbwolenable.caption
 msgid "Enable Work On LAN"
-msgstr ""
+msgstr "Включить работу по сети"
 
 #: tconfigform.checkbox1.caption
 msgid "Use reference?"
@@ -1611,13 +1556,11 @@ msgid "HAMQTH XML API"
 msgstr ""
 
 #: tconfigform.gbintref.caption
-#, fuzzy
 msgctxt "tconfigform.gbintref.caption"
 msgid "Internal reference book"
 msgstr "Встроенный справочник позывных"
 
 #: tconfigform.gbmysql.caption
-#, fuzzy
 msgctxt "tconfigform.gbmysql.caption"
 msgid "MySQL"
 msgstr "MySQL"
@@ -1628,25 +1571,21 @@ msgid "QRZ.COM XML API"
 msgstr ""
 
 #: tconfigform.gbqrzru.caption
-#, fuzzy
 msgctxt "tconfigform.gbqrzru.caption"
 msgid "QRZ.RU XML API"
 msgstr "QRZ.RU XML API"
 
 #: tconfigform.gbsqlite.caption
-#, fuzzy
 msgctxt "tconfigform.gbsqlite.caption"
 msgid "SQLite"
 msgstr "SQLite"
 
 #: tconfigform.gbtelnet.caption
-#, fuzzy
 msgctxt "tconfigform.gbtelnet.caption"
 msgid "Telnet DX Cluster"
 msgstr "Telnet DX кластер"
 
 #: tconfigform.gbtelnetedit.caption
-msgctxt "tconfigform.gbtelnetedit.caption"
 msgid "Edit"
 msgstr ""
 
@@ -1742,7 +1681,6 @@ msgid "Base Name"
 msgstr "Название базы"
 
 #: tconfigform.label7.caption
-#, fuzzy
 msgctxt "tconfigform.label7.caption"
 msgid "Displays columns"
 msgstr "Отображение колонок"
@@ -1752,7 +1690,6 @@ msgid "Base"
 msgstr "База данных"
 
 #: tconfigform.lbbackcolor.caption
-#, fuzzy
 msgctxt "tconfigform.lbbackcolor.caption"
 msgid "Background color"
 msgstr "Цвет фона"
@@ -1762,9 +1699,10 @@ msgid "Found Call:"
 msgstr ""
 
 #: tconfigform.lbcataddress.caption
+#, fuzzy
 msgctxt "tconfigform.lbcataddress.caption"
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: tconfigform.lbcatcivaddress.caption
 msgctxt "tconfigform.lbcatcivaddress.caption"
@@ -1791,7 +1729,6 @@ msgid "Parity"
 msgstr ""
 
 #: tconfigform.lbcatport.caption
-#, fuzzy
 msgctxt "tconfigform.lbcatport.caption"
 msgid "Port"
 msgstr "Порт"
@@ -1801,7 +1738,6 @@ msgid "RTS State"
 msgstr ""
 
 #: tconfigform.lbcatspeed.caption
-#, fuzzy
 msgctxt "tconfigform.lbcatspeed.caption"
 msgid "Speed"
 msgstr "Скорость"
@@ -1813,10 +1749,9 @@ msgstr ""
 
 #: tconfigform.lbclearqso.caption
 msgid "Key Clear QSO"
-msgstr ""
+msgstr "Сочетание очистки QSO"
 
 #: tconfigform.lbcomcatport.caption
-#, fuzzy
 msgctxt "tconfigform.lbcomcatport.caption"
 msgid "COM Port"
 msgstr "COM порт"
@@ -1828,22 +1763,21 @@ msgstr ""
 
 #: tconfigform.lbgetreference.caption
 msgid "Key get data from Online Reference"
-msgstr ""
+msgstr "Сочетание получения данных с Online справочника"
 
 #: tconfigform.lbkeyexport.caption
 msgid "Key Export ADI file"
-msgstr ""
+msgstr "Сочетание экспорта ADI"
 
 #: tconfigform.lbkeyimport.caption
 msgid "Key Import ADI file"
-msgstr ""
+msgstr "Сочетание импорта ADI"
 
 #: tconfigform.lbpathbackup.caption
 msgid "Path backup files"
-msgstr ""
+msgstr "Путь к файлам бэкапа"
 
 #: tconfigform.lbpathrigctld.caption
-#, fuzzy
 msgctxt "tconfigform.lbpathrigctld.caption"
 msgid "Path for HamLib Rigctld"
 msgstr "Пусть к Rigctld"
@@ -1854,45 +1788,40 @@ msgstr ""
 
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
-msgstr ""
+msgstr "Сочетание сохранения QSO"
 
 #: tconfigform.lbtelnetaddress.caption
+#, fuzzy
 msgctxt "tconfigform.lbtelnetaddress.caption"
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: tconfigform.lbtelnetlogin.caption
-#, fuzzy
 msgctxt "tconfigform.lbtelnetlogin.caption"
 msgid "Login"
 msgstr "Логин"
 
 #: tconfigform.lbtelnetname.caption
-#, fuzzy
 msgctxt "tconfigform.lbtelnetname.caption"
 msgid "Name"
 msgstr "Имя"
 
 #: tconfigform.lbtelnetpassword.caption
-#, fuzzy
 msgctxt "tconfigform.lbtelnetpassword.caption"
 msgid "Password"
 msgstr "Пароль"
 
 #: tconfigform.lbtelnetport.caption
-#, fuzzy
 msgctxt "tconfigform.lbtelnetport.caption"
 msgid "Port"
 msgstr "Порт"
 
 #: tconfigform.lbtextcolor.caption
-#, fuzzy
 msgctxt "tconfigform.lbtextcolor.caption"
 msgid "Text color"
 msgstr "Цвет текста"
 
 #: tconfigform.lbtextsize.caption
-#, fuzzy
 msgctxt "tconfigform.lbtextsize.caption"
 msgid "Text size"
 msgstr "Размер текста"
@@ -1906,7 +1835,6 @@ msgid "Transceiver Model"
 msgstr ""
 
 #: tconfigform.lbwoladdress.caption
-#, fuzzy
 msgctxt "tconfigform.lbwoladdress.caption"
 msgid "Address:"
 msgstr "Адрес:"
@@ -1920,24 +1848,22 @@ msgid "Port:"
 msgstr ""
 
 #: tconfigform.lvtelnet.columns[0].caption
-#, fuzzy
 msgctxt "tconfigform.lvtelnet.columns[0].caption"
 msgid "Name"
 msgstr "Имя"
 
 #: tconfigform.lvtelnet.columns[1].caption
+#, fuzzy
 msgctxt "tconfigform.lvtelnet.columns[1].caption"
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: tconfigform.lvtelnet.columns[2].caption
-#, fuzzy
 msgctxt "tconfigform.lvtelnet.columns[2].caption"
 msgid "Port"
 msgstr "Порт"
 
 #: tconfigform.pcolors.caption
-msgctxt "tconfigform.pcolors.caption"
 msgid "Colors"
 msgstr ""
 
@@ -1960,15 +1886,15 @@ msgstr ""
 
 #: tconfigform.thotkey.caption
 msgid "Hot key"
-msgstr ""
+msgstr "Горячие клавиши"
 
 #: tconfigform.tsbackup.caption
 msgid "Backup"
-msgstr ""
+msgstr "Резервное копирование"
 
 #: tconfigform.tsbase.caption
 msgid "DataBase"
-msgstr ""
+msgstr "Базы данных"
 
 #: tconfigform.tscat.caption
 msgid "CAT"
@@ -1980,36 +1906,34 @@ msgstr ""
 
 #: tconfigform.tsintref.caption
 msgid "Internal reference"
-msgstr ""
+msgstr "Встроенный справочник"
 
 #: tconfigform.tsothersettings.caption
 msgid "Other Settings"
-msgstr ""
+msgstr "Другие настройки"
 
 #: tconfigform.tsrefonline.caption
 msgid "Reference Online"
-msgstr ""
+msgstr "Online справочники"
 
 #: tconfigform.tstci.caption
 msgid "TCI"
 msgstr ""
 
 #: tconfigform.tstelnet.caption
-#, fuzzy
 msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
 msgstr "Телнет"
 
 #: tconfigform.tsworklan.caption
 msgid "Work on LAN (UDP)"
-msgstr ""
+msgstr "Работа по сети (UDP)"
 
 #: tcontestform.btresetsession.caption
 msgid "New session"
-msgstr ""
+msgstr "Новая сессия"
 
 #: tcontestform.btsave.caption
-#, fuzzy
 msgctxt "tcontestform.btsave.caption"
 msgid "Save"
 msgstr "Сохранить"
@@ -2017,7 +1941,7 @@ msgstr "Сохранить"
 #: tcontestform.caption
 msgctxt "tcontestform.caption"
 msgid "Contest Logging"
-msgstr ""
+msgstr "Контест лог"
 
 #: tcontestform.cbmode.text
 msgctxt "tcontestform.cbmode.text"
@@ -2043,29 +1967,25 @@ msgid "59"
 msgstr ""
 
 #: tcontestform.lbband.caption
-#, fuzzy
 msgctxt "tcontestform.lbband.caption"
 msgid "Band"
 msgstr "Диапазон"
 
 #: tcontestform.lbcallsign.caption
-#, fuzzy
 msgctxt "tcontestform.lbcallsign.caption"
 msgid "Callsign"
 msgstr "Позывной"
 
 #: tcontestform.lbcomment.caption
-#, fuzzy
 msgctxt "tcontestform.lbcomment.caption"
 msgid "Comment"
 msgstr "Комментарий"
 
 #: tcontestform.lbcontestname.caption
 msgid "Contest Name"
-msgstr ""
+msgstr "Имя контеста"
 
 #: tcontestform.lbdate.caption
-#, fuzzy
 msgctxt "tcontestform.lbdate.caption"
 msgid "Date"
 msgstr "Дата"
@@ -2083,13 +2003,11 @@ msgid "Exch(s)"
 msgstr ""
 
 #: tcontestform.lbfreq.caption
-#, fuzzy
 msgctxt "tcontestform.lbfreq.caption"
 msgid "Frequency"
 msgstr "Частота"
 
 #: tcontestform.lbgrid.caption
-#, fuzzy
 msgctxt "tcontestform.lbgrid.caption"
 msgid "Grid"
 msgstr "Локатор"
@@ -2097,10 +2015,9 @@ msgstr "Локатор"
 #: tcontestform.lbminutetour.caption
 msgctxt "tcontestform.lbminutetour.caption"
 msgid "minutes"
-msgstr ""
+msgstr "минут(ы)"
 
 #: tcontestform.lbmode.caption
-#, fuzzy
 msgctxt "tcontestform.lbmode.caption"
 msgid "Mode"
 msgstr "Мода"
@@ -2114,13 +2031,11 @@ msgid "MSG(s)"
 msgstr ""
 
 #: tcontestform.lbname.caption
-#, fuzzy
 msgctxt "tcontestform.lbname.caption"
 msgid "Name"
 msgstr "Имя"
 
 #: tcontestform.lbqth.caption
-#, fuzzy
 msgctxt "tcontestform.lbqth.caption"
 msgid "QTH"
 msgstr "QTH"
@@ -2134,7 +2049,6 @@ msgid "RST(s)"
 msgstr ""
 
 #: tcontestform.lbstate.caption
-#, fuzzy
 msgctxt "tcontestform.lbstate.caption"
 msgid "State"
 msgstr "State"
@@ -2144,14 +2058,13 @@ msgid "Sub mode"
 msgstr ""
 
 #: tcontestform.lbtime.caption
-#, fuzzy
 msgctxt "tcontestform.lbtime.caption"
 msgid "Time"
 msgstr "Время"
 
 #: tcontestform.lbtourtime.caption
 msgid "Tour time"
-msgstr ""
+msgstr "Время тура"
 
 #: tcontestform.rbother.caption
 msgid "Other"
@@ -2174,13 +2087,11 @@ msgid "Search"
 msgstr "Поиск"
 
 #: tcreatejournalform.btclose.caption
-#, fuzzy
 msgctxt "tcreatejournalform.btclose.caption"
 msgid "Close"
 msgstr "Закрыть"
 
 #: tcreatejournalform.btcreate.caption
-#, fuzzy
 msgctxt "tcreatejournalform.btcreate.caption"
 msgid "Create"
 msgstr "Создать"
@@ -2195,73 +2106,61 @@ msgid "TNX for QSO! 73!"
 msgstr ""
 
 #: tcreatejournalform.gbinformation.caption
-#, fuzzy
 msgctxt "tcreatejournalform.gbinformation.caption"
 msgid "Information"
 msgstr "Информация"
 
 #: tcreatejournalform.gblocation.caption
-#, fuzzy
 msgctxt "tcreatejournalform.gblocation.caption"
 msgid "Location Information"
 msgstr "Информация о локации"
 
 #: tcreatejournalform.gbqslinfo.caption
-#, fuzzy
 msgctxt "tcreatejournalform.gbqslinfo.caption"
 msgid "QSL Info"
 msgstr "QSL Инфо"
 
 #: tcreatejournalform.lbcallname.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lbcallname.caption"
 msgid "Call name"
 msgstr "Позывной"
 
 #: tcreatejournalform.lbcq.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lbcq.caption"
 msgid "CQ"
 msgstr "CQ"
 
 #: tcreatejournalform.lbdescription.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lbdescription.caption"
 msgid "Description"
 msgstr "Описание"
 
 #: tcreatejournalform.lbgrid.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lbgrid.caption"
 msgid "Grid"
 msgstr "Локатор"
 
 #: tcreatejournalform.lbitu.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lbitu.caption"
 msgid "ITU"
 msgstr "ITU"
 
 #: tcreatejournalform.lblat.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lblat.caption"
 msgid "Lat"
 msgstr "Широта"
 
 #: tcreatejournalform.lblon.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lblon.caption"
 msgid "Long"
 msgstr "Долгота"
 
 #: tcreatejournalform.lbname.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lbname.caption"
 msgid "Name"
 msgstr "Имя"
 
 #: tcreatejournalform.lbqth.caption
-#, fuzzy
 msgctxt "tcreatejournalform.lbqth.caption"
 msgid "QTH"
 msgstr "QTH"
@@ -2317,7 +2216,6 @@ msgid "Messages"
 msgstr "Сообщения"
 
 #: tdxclusterform.vstcluster.header.columns[0].text
-#, fuzzy
 msgctxt "tdxclusterform.vstcluster.header.columns[0].text"
 msgid "Band"
 msgstr "Диапазон"
@@ -2328,25 +2226,21 @@ msgid "DX"
 msgstr ""
 
 #: tdxclusterform.vstcluster.header.columns[2].text
-#, fuzzy
 msgctxt "tdxclusterform.vstcluster.header.columns[2].text"
 msgid "Spotter"
 msgstr "Споттер"
 
 #: tdxclusterform.vstcluster.header.columns[3].text
-#, fuzzy
 msgctxt "tdxclusterform.vstcluster.header.columns[3].text"
 msgid "Frequency"
 msgstr "Частота"
 
 #: tdxclusterform.vstcluster.header.columns[4].text
-#, fuzzy
 msgctxt "tdxclusterform.vstcluster.header.columns[4].text"
 msgid "Mode"
 msgstr "Мода"
 
 #: tdxclusterform.vstcluster.header.columns[5].text
-#, fuzzy
 msgctxt "tdxclusterform.vstcluster.header.columns[5].text"
 msgid "Comment"
 msgstr "Комментарий"
@@ -2357,13 +2251,11 @@ msgid "UTC"
 msgstr ""
 
 #: tdxclusterform.vstcluster.header.columns[7].text
-#, fuzzy
 msgctxt "tdxclusterform.vstcluster.header.columns[7].text"
 msgid "Grid"
 msgstr "Локатор"
 
 #: tdxclusterform.vstcluster.header.columns[8].text
-#, fuzzy
 msgctxt "tdxclusterform.vstcluster.header.columns[8].text"
 msgid "Country"
 msgstr "Страна"
@@ -2827,13 +2719,11 @@ msgid "Auto credit for the award"
 msgstr ""
 
 #: texportadifform.btcancel.caption
-#, fuzzy
 msgctxt "texportadifform.btcancel.caption"
 msgid "Cancel"
 msgstr "Отмена"
 
 #: texportadifform.btexport.caption
-#, fuzzy
 msgctxt "texportadifform.btexport.caption"
 msgid "Export"
 msgstr "Экспорт"
@@ -2843,32 +2733,28 @@ msgid "Export ADIF"
 msgstr "Экспорт ADIF"
 
 #: texportadifform.cbadiexport.caption
-#, fuzzy
 msgctxt "texportadifform.cbadiexport.caption"
 msgid "Export to ADIF"
 msgstr "Экспорт в ADIF"
 
 #: texportadifform.cbconvertlatin.caption
-#, fuzzy
 msgctxt "texportadifform.cbconvertlatin.caption"
 msgid "Convert to Latin"
 msgstr "Перевести в латиницу"
 
 #: texportadifform.cbeqslexport.caption
-#, fuzzy
 msgctxt "texportadifform.cbeqslexport.caption"
 msgid "Export to eQSL"
 msgstr "Экспорт в eQSL"
 
 #: texportadifform.cbexportonwin.caption
-#, fuzzy
 msgctxt "texportadifform.cbexportonwin.caption"
 msgid "Export on Win1251"
 msgstr "Экспорт в Win1251"
 
 #: texportadifform.cbsotaexport.caption
 msgid "Export to SOTA"
-msgstr ""
+msgstr "Экспорт в SOTA"
 
 #: texportadifform.label3.caption
 msgid "From"
@@ -2879,7 +2765,6 @@ msgid "To"
 msgstr "в"
 
 #: texportadifform.lbnumberqso.caption
-#, fuzzy
 msgctxt "texportadifform.lbnumberqso.caption"
 msgid "Number of QSO: 0"
 msgstr "Количество записей: 0"
@@ -2893,7 +2778,6 @@ msgid "Export all showed contacts"
 msgstr "Экспортировать всё"
 
 #: texportadifform.sdexport.title
-#, fuzzy
 msgctxt "texportadifform.sdexport.title"
 msgid "Save file as"
 msgstr "Сохранить файл как"
@@ -2903,12 +2787,15 @@ msgctxt "tfilterform.caption"
 msgid "Record Filter"
 msgstr "Фильтр записей"
 
-#: tfm_form.button1.caption
-msgctxt "tfm_form.button1.caption"
+#: tfm_form.btclose.caption
+#, fuzzy
+msgctxt "tfm_form.btclose.caption"
 msgid "Close"
 msgstr "Закрыть"
 
-#: tfm_form.button2.caption
+#: tfm_form.btsaveband.caption
+#, fuzzy
+msgctxt "tfm_form.btsaveband.caption"
 msgid "Save Band"
 msgstr "Сохранить диапазон"
 
@@ -2917,57 +2804,75 @@ msgctxt "tfm_form.caption"
 msgid "Frequency Manager"
 msgstr "Частотный Менеджер"
 
-#: tfm_form.checkbox1.caption
+#: tfm_form.cbenableband.caption
+#, fuzzy
+msgctxt "tfm_form.cbenableband.caption"
 msgid "Enabled Band"
 msgstr "Включить диапазон"
 
-#: tfm_form.groupbox1.caption
-msgctxt "tfm_form.groupbox1.caption"
+#: tfm_form.gboptions.caption
+#, fuzzy
+msgctxt "tfm_form.gboptions.caption"
 msgid "Options"
 msgstr "Опции"
 
-#: tfm_form.labelededit1.editlabel.caption
-msgctxt "tfm_form.labelededit1.editlabel.caption"
+#: tfm_form.leband.editlabel.caption
+#, fuzzy
+msgctxt "tfm_form.leband.editlabel.caption"
 msgid "Band"
 msgstr "Диапазон"
 
-#: tfm_form.labelededit2.editlabel.caption
+#: tfm_form.lebegin.editlabel.caption
+#, fuzzy
+msgctxt "tfm_form.lebegin.editlabel.caption"
 msgid "MHz Begin"
 msgstr "МГц Начало"
 
-#: tfm_form.labelededit3.editlabel.caption
-msgid "MHz End"
-msgstr "МГц Конец"
-
-#: tfm_form.labelededit4.editlabel.caption
+#: tfm_form.lecw.editlabel.caption
+#, fuzzy
+msgctxt "tfm_form.lecw.editlabel.caption"
 msgid "CW Begin"
 msgstr "CW Начало"
 
-#: tfm_form.labelededit5.editlabel.caption
+#: tfm_form.ledigi.editlabel.caption
+#, fuzzy
+msgctxt "tfm_form.ledigi.editlabel.caption"
 msgid "Digi Begin"
 msgstr "Digi Начало"
 
-#: tfm_form.labelededit6.editlabel.caption
+#: tfm_form.leend.editlabel.caption
+#, fuzzy
+msgctxt "tfm_form.leend.editlabel.caption"
+msgid "MHz End"
+msgstr "МГц Конец"
+
+#: tfm_form.lessb.editlabel.caption
+#, fuzzy
+msgctxt "tfm_form.lessb.editlabel.caption"
 msgid "SSB Begin"
 msgstr "SSB Начало"
 
-#: tfm_form.listview1.columns[0].caption
-msgctxt "tfm_form.listview1.columns[0].caption"
+#: tfm_form.lvbandlist.columns[0].caption
+#, fuzzy
+msgctxt "tfm_form.lvbandlist.columns[0].caption"
 msgid "Band"
 msgstr "Диапазон"
 
-#: tfm_form.listview1.columns[1].caption
-msgctxt "tfm_form.listview1.columns[1].caption"
+#: tfm_form.lvbandlist.columns[1].caption
+#, fuzzy
+msgctxt "tfm_form.lvbandlist.columns[1].caption"
 msgid "Begin (MHz)"
 msgstr "Начало (МГц)"
 
-#: tfm_form.listview1.columns[2].caption
-msgctxt "tfm_form.listview1.columns[2].caption"
+#: tfm_form.lvbandlist.columns[2].caption
+#, fuzzy
+msgctxt "tfm_form.lvbandlist.columns[2].caption"
 msgid "End (MHz)"
 msgstr "Конец (МГц)"
 
-#: tfm_form.listview1.columns[3].caption
-msgctxt "tfm_form.listview1.columns[3].caption"
+#: tfm_form.lvbandlist.columns[3].caption
+#, fuzzy
+msgctxt "tfm_form.lvbandlist.columns[3].caption"
 msgid "Enabled"
 msgstr "Включить"
 
@@ -3366,11 +3271,11 @@ msgstr "QSL Получена"
 
 #: tgridsform.misendonlan.caption
 msgid "Send on LAN"
-msgstr ""
+msgstr "Отправить по сети"
 
 #: tgridsform.misendonlanany.caption
 msgid "ANY"
-msgstr ""
+msgstr "Всем"
 
 #: tgridsform.prefixitem.caption
 msgctxt "tgridsform.prefixitem.caption"
@@ -4413,11 +4318,9 @@ msgid "Configure program"
 msgstr "Настройка программы"
 
 #: tminiform.menuitem53.caption
-#, fuzzy
-#| msgid "Format ADIF"
 msgctxt "tminiform.menuitem53.caption"
 msgid "Format ADIF or SOTA"
-msgstr "Формат ADIF"
+msgstr "Формат ADIF или SOTA csv"
 
 #: tminiform.menuitem54.caption
 msgctxt "tminiform.menuitem54.caption"
@@ -4567,7 +4470,7 @@ msgstr "Всегда наверху"
 #: tminiform.micontestlogging.caption
 msgctxt "tminiform.micontestlogging.caption"
 msgid "Contest Logging"
-msgstr ""
+msgstr "Контест лог"
 
 #: tminiform.midownloadlang.caption
 msgctxt "tminiform.midownloadlang.caption"
@@ -4699,13 +4602,15 @@ msgctxt "tminiform.utclabel.caption"
 msgid "UTC"
 msgstr ""
 
-#: tmm_form.button1.caption
-msgctxt "tmm_form.button1.caption"
+#: tmm_form.btclose.caption
+#, fuzzy
+msgctxt "tmm_form.btclose.caption"
 msgid "Close"
 msgstr "Закрыть"
 
-#: tmm_form.button2.caption
-msgctxt "tmm_form.button2.caption"
+#: tmm_form.btsavesubmode.caption
+#, fuzzy
+msgctxt "tmm_form.btsavesubmode.caption"
 msgid "Save SubMode"
 msgstr "Сохранить СабМоду"
 
@@ -4714,27 +4619,33 @@ msgctxt "tmm_form.caption"
 msgid "Modulation Manager"
 msgstr "Менеджер Модуляций"
 
-#: tmm_form.checkbox1.caption
+#: tmm_form.cbenablemod.caption
+#, fuzzy
+msgctxt "tmm_form.cbenablemod.caption"
 msgid "Enabled Modulation"
 msgstr "Включить модуляцию"
 
-#: tmm_form.groupbox1.caption
-msgctxt "tmm_form.groupbox1.caption"
+#: tmm_form.gboptions.caption
+#, fuzzy
+msgctxt "tmm_form.gboptions.caption"
 msgid "Options"
 msgstr "Опции"
 
-#: tmm_form.labelededit1.editlabel.caption
-msgctxt "tmm_form.labelededit1.editlabel.caption"
+#: tmm_form.lesubmode.editlabel.caption
+#, fuzzy
+msgctxt "tmm_form.lesubmode.editlabel.caption"
 msgid "SubMode"
-msgstr "Сохранить СабМода"
+msgstr "СабМода"
 
-#: tmm_form.listview1.columns[0].caption
-msgctxt "tmm_form.listview1.columns[0].caption"
+#: tmm_form.lvmodelist.columns[0].caption
+#, fuzzy
+msgctxt "tmm_form.lvmodelist.columns[0].caption"
 msgid "Mode"
 msgstr "Мода"
 
-#: tmm_form.listview1.columns[1].caption
-msgctxt "tmm_form.listview1.columns[1].caption"
+#: tmm_form.lvmodelist.columns[1].caption
+#, fuzzy
+msgctxt "tmm_form.lvmodelist.columns[1].caption"
 msgid "Enabled"
 msgstr "Включить"
 
@@ -4810,11 +4721,11 @@ msgid "Fonts"
 msgstr ""
 
 #: tprogressbackupform.caption
+msgctxt "tprogressbackupform.caption"
 msgid "Backup progress"
 msgstr ""
 
 #: tprogressbackupform.label1.caption
-#, fuzzy
 msgctxt "tprogressbackupform.label1.caption"
 msgid "Number of QSO: 0"
 msgstr "Количество записей: 0"
@@ -4898,7 +4809,6 @@ msgid "Notes"
 msgstr "Заметки"
 
 #: tsendtelnetspot.btsend.caption
-#, fuzzy
 msgctxt "tsendtelnetspot.btsend.caption"
 msgid "Send"
 msgstr "Отправить"
@@ -4914,19 +4824,16 @@ msgid "7.000.00"
 msgstr ""
 
 #: tsendtelnetspot.lbcallsign.caption
-#, fuzzy
 msgctxt "tsendtelnetspot.lbcallsign.caption"
 msgid "DX Callsign"
 msgstr "DX Позывной"
 
 #: tsendtelnetspot.lbcomment.caption
-#, fuzzy
 msgctxt "tsendtelnetspot.lbcomment.caption"
 msgid "Comment"
 msgstr "Комментарий"
 
 #: tsendtelnetspot.lbfreq.caption
-#, fuzzy
 msgctxt "tsendtelnetspot.lbfreq.caption"
 msgid "Frequency"
 msgstr "Частота"

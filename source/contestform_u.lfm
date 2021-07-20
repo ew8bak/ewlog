@@ -1,7 +1,7 @@
 object ContestForm: TContestForm
-  Left = 239
+  Left = 251
   Height = 269
-  Top = 581
+  Top = 586
   Width = 753
   Caption = 'Contest Logging'
   ClientHeight = 269

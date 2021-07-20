@@ -2764,12 +2764,13 @@ msgctxt "tfilterform.caption"
 msgid "Record Filter"
 msgstr ""
 
-#: tfm_form.button1.caption
-msgctxt "tfm_form.button1.caption"
+#: tfm_form.btclose.caption
+msgctxt "tfm_form.btclose.caption"
 msgid "Close"
 msgstr ""
 
-#: tfm_form.button2.caption
+#: tfm_form.btsaveband.caption
+msgctxt "tfm_form.btsaveband.caption"
 msgid "Save Band"
 msgstr ""
 
@@ -2778,55 +2779,63 @@ msgctxt "tfm_form.caption"
 msgid "Frequency Manager"
 msgstr ""
 
-#: tfm_form.checkbox1.caption
+#: tfm_form.cbenableband.caption
+msgctxt "tfm_form.cbenableband.caption"
 msgid "Enabled Band"
 msgstr ""
 
-#: tfm_form.groupbox1.caption
-msgctxt "tfm_form.groupbox1.caption"
+#: tfm_form.gboptions.caption
+msgctxt "tfm_form.gboptions.caption"
 msgid "Options"
 msgstr ""
 
-#: tfm_form.labelededit1.editlabel.caption
-msgctxt "tfm_form.labelededit1.editlabel.caption"
+#: tfm_form.leband.editlabel.caption
+msgctxt "tfm_form.leband.editlabel.caption"
 msgid "Band"
 msgstr ""
 
-#: tfm_form.labelededit2.editlabel.caption
+#: tfm_form.lebegin.editlabel.caption
+msgctxt "tfm_form.lebegin.editlabel.caption"
 msgid "MHz Begin"
 msgstr ""
 
-#: tfm_form.labelededit3.editlabel.caption
-msgid "MHz End"
-msgstr ""
-
-#: tfm_form.labelededit4.editlabel.caption
+#: tfm_form.lecw.editlabel.caption
+msgctxt "tfm_form.lecw.editlabel.caption"
 msgid "CW Begin"
 msgstr ""
 
-#: tfm_form.labelededit5.editlabel.caption
+#: tfm_form.ledigi.editlabel.caption
+msgctxt "tfm_form.ledigi.editlabel.caption"
 msgid "Digi Begin"
 msgstr ""
 
-#: tfm_form.labelededit6.editlabel.caption
+#: tfm_form.leend.editlabel.caption
+msgctxt "tfm_form.leend.editlabel.caption"
+msgid "MHz End"
+msgstr ""
+
+#: tfm_form.lessb.editlabel.caption
+msgctxt "tfm_form.lessb.editlabel.caption"
 msgid "SSB Begin"
 msgstr ""
 
-#: tfm_form.listview1.columns[0].caption
-msgctxt "tfm_form.listview1.columns[0].caption"
+#: tfm_form.lvbandlist.columns[0].caption
+msgctxt "tfm_form.lvbandlist.columns[0].caption"
 msgid "Band"
 msgstr ""
 
-#: tfm_form.listview1.columns[1].caption
+#: tfm_form.lvbandlist.columns[1].caption
+msgctxt "tfm_form.lvbandlist.columns[1].caption"
 msgid "Begin (MHz)"
 msgstr ""
 
-#: tfm_form.listview1.columns[2].caption
+#: tfm_form.lvbandlist.columns[2].caption
+msgctxt "tfm_form.lvbandlist.columns[2].caption"
 msgid "End (MHz)"
 msgstr ""
 
-#: tfm_form.listview1.columns[3].caption
-msgctxt "tfm_form.listview1.columns[3].caption"
+#: tfm_form.lvbandlist.columns[3].caption
+msgctxt "tfm_form.lvbandlist.columns[3].caption"
 msgid "Enabled"
 msgstr ""
 
@@ -4555,12 +4564,13 @@ msgctxt "tminiform.utclabel.caption"
 msgid "UTC"
 msgstr ""
 
-#: tmm_form.button1.caption
-msgctxt "tmm_form.button1.caption"
+#: tmm_form.btclose.caption
+msgctxt "tmm_form.btclose.caption"
 msgid "Close"
 msgstr ""
 
-#: tmm_form.button2.caption
+#: tmm_form.btsavesubmode.caption
+msgctxt "tmm_form.btsavesubmode.caption"
 msgid "Save SubMode"
 msgstr ""
 
@@ -4569,27 +4579,28 @@ msgctxt "tmm_form.caption"
 msgid "Modulation Manager"
 msgstr ""
 
-#: tmm_form.checkbox1.caption
+#: tmm_form.cbenablemod.caption
+msgctxt "tmm_form.cbenablemod.caption"
 msgid "Enabled Modulation"
 msgstr ""
 
-#: tmm_form.groupbox1.caption
-msgctxt "tmm_form.groupbox1.caption"
+#: tmm_form.gboptions.caption
+msgctxt "tmm_form.gboptions.caption"
 msgid "Options"
 msgstr ""
 
-#: tmm_form.labelededit1.editlabel.caption
-msgctxt "tmm_form.labelededit1.editlabel.caption"
+#: tmm_form.lesubmode.editlabel.caption
+msgctxt "tmm_form.lesubmode.editlabel.caption"
 msgid "SubMode"
 msgstr ""
 
-#: tmm_form.listview1.columns[0].caption
-msgctxt "tmm_form.listview1.columns[0].caption"
+#: tmm_form.lvmodelist.columns[0].caption
+msgctxt "tmm_form.lvmodelist.columns[0].caption"
 msgid "Mode"
 msgstr ""
 
-#: tmm_form.listview1.columns[1].caption
-msgctxt "tmm_form.listview1.columns[1].caption"
+#: tmm_form.lvmodelist.columns[1].caption
+msgctxt "tmm_form.lvmodelist.columns[1].caption"
 msgid "Enabled"
 msgstr ""
 

@@ -1,5 +1,5 @@
 object LogConfigForm: TLogConfigForm
-  Left = 535
+  Left = 551
   Height = 462
   Top = 145
   Width = 469
@@ -34,13 +34,13 @@ object LogConfigForm: TLogConfigForm
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Operator'
-        ClientHeight = 397
-        ClientWidth = 273
+        ClientHeight = 396
+        ClientWidth = 271
         object Label1: TLabel
           Left = 12
-          Height = 15
+          Height = 13
           Top = 12
-          Width = 20
+          Width = 25
           Caption = 'Log'
           Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
@@ -61,10 +61,10 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditDescription
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditDescription
-          Left = 9
-          Height = 15
-          Top = 33
-          Width = 60
+          Left = 1
+          Height = 13
+          Top = 34
+          Width = 68
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'Description'
@@ -74,9 +74,9 @@ object LogConfigForm: TLogConfigForm
         end
         object Label4: TLabel
           Left = 8
-          Height = 15
+          Height = 13
           Top = 72
-          Width = 79
+          Width = 100
           Caption = 'Station detalis'
           Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
@@ -109,7 +109,7 @@ object LogConfigForm: TLogConfigForm
         object EditQTH: TEdit
           AnchorSideTop.Control = EditName
           AnchorSideTop.Side = asrBottom
-          Left = 64
+          Left = 63
           Height = 23
           Top = 146
           Width = 172
@@ -124,10 +124,10 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditCallSign
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditCallSign
-          Left = 19
-          Height = 15
-          Top = 100
-          Width = 42
+          Left = 15
+          Height = 13
+          Top = 101
+          Width = 46
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'Callsign'
@@ -139,10 +139,10 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditName
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditName
-          Left = 29
-          Height = 15
-          Top = 125
-          Width = 32
+          Left = 26
+          Height = 13
+          Top = 126
+          Width = 35
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'Name'
@@ -154,10 +154,10 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditQTH
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditQTH
-          Left = 38
-          Height = 15
-          Top = 150
-          Width = 23
+          Left = 35
+          Height = 13
+          Top = 151
+          Width = 25
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'QTH'
@@ -167,9 +167,9 @@ object LogConfigForm: TLogConfigForm
         end
         object Label8: TLabel
           Left = 8
-          Height = 15
+          Height = 13
           Top = 192
-          Width = 116
+          Width = 142
           Caption = 'Location information'
           Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
@@ -178,7 +178,7 @@ object LogConfigForm: TLogConfigForm
         end
         object EditITU: TEdit
           AnchorSideLeft.Control = EditQTH
-          Left = 64
+          Left = 63
           Height = 23
           Top = 216
           Width = 35
@@ -192,7 +192,7 @@ object LogConfigForm: TLogConfigForm
           AnchorSideLeft.Control = EditITU
           AnchorSideTop.Control = EditITU
           AnchorSideTop.Side = asrBottom
-          Left = 64
+          Left = 63
           Height = 23
           Top = 241
           Width = 172
@@ -207,7 +207,7 @@ object LogConfigForm: TLogConfigForm
         object EditCQ: TEdit
           AnchorSideRight.Control = EditQTH
           AnchorSideRight.Side = asrBottom
-          Left = 195
+          Left = 194
           Height = 23
           Top = 216
           Width = 41
@@ -222,7 +222,7 @@ object LogConfigForm: TLogConfigForm
           AnchorSideLeft.Control = EditGrid
           AnchorSideTop.Control = EditGrid
           AnchorSideTop.Side = asrBottom
-          Left = 64
+          Left = 63
           Height = 23
           Top = 266
           Width = 70
@@ -254,10 +254,10 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditITU
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditITU
-          Left = 44
-          Height = 15
-          Top = 220
-          Width = 17
+          Left = 40
+          Height = 13
+          Top = 221
+          Width = 20
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'ITU'
@@ -269,9 +269,9 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditCQ
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditCQ
-          Left = 175
-          Height = 15
-          Top = 220
+          Left = 174
+          Height = 13
+          Top = 221
           Width = 17
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
@@ -284,10 +284,10 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditGrid
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditGrid
-          Left = 39
-          Height = 15
-          Top = 245
-          Width = 22
+          Left = 35
+          Height = 13
+          Top = 246
+          Width = 25
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'Grid'
@@ -299,10 +299,10 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditLat
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditLat
-          Left = 18
-          Height = 15
-          Top = 270
-          Width = 43
+          Left = 10
+          Height = 13
+          Top = 271
+          Width = 50
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'Latitude'
@@ -314,10 +314,10 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditLon
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditLon
-          Left = 139
-          Height = 15
-          Top = 270
-          Width = 54
+          Left = 133
+          Height = 13
+          Top = 271
+          Width = 60
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 1
           Caption = 'Longitude'
@@ -327,9 +327,9 @@ object LogConfigForm: TLogConfigForm
         end
         object Label14: TLabel
           Left = 8
-          Height = 15
+          Height = 13
           Top = 312
-          Width = 100
+          Width = 121
           Caption = 'QSL info (Default)'
           Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
@@ -338,7 +338,7 @@ object LogConfigForm: TLogConfigForm
         end
         object EditQSLinfo: TEdit
           AnchorSideLeft.Control = EditLat
-          Left = 64
+          Left = 63
           Height = 23
           Top = 336
           Width = 192
@@ -350,17 +350,17 @@ object LogConfigForm: TLogConfigForm
         end
         object LBDefaultCall: TLabel
           Left = 256
-          Height = 15
+          Height = 13
           Top = 8
-          Width = 5
+          Width = 6
           Caption = '*'
           ParentColor = False
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Services'
-        ClientHeight = 397
-        ClientWidth = 273
+        ClientHeight = 396
+        ClientWidth = 271
         object Label16: TLabel
           AnchorSideLeft.Control = TabSheet2
           Left = 15
@@ -595,8 +595,8 @@ object LogConfigForm: TLogConfigForm
       end
       object TabSheet3: TTabSheet
         Caption = 'Services'
-        ClientHeight = 397
-        ClientWidth = 273
+        ClientHeight = 396
+        ClientWidth = 271
         object Label25: TLabel
           AnchorSideTop.Control = Edit17
           AnchorSideTop.Side = asrCenter
@@ -862,6 +862,7 @@ object LogConfigForm: TLogConfigForm
     PopupMenu = PopupMenu1
     ScrollWidth = 184
     TabOrder = 2
+    TopIndex = -1
   end
   object SQLQuery1: TSQLQuery
     FieldDefs = <>

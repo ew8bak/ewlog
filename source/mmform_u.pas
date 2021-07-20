@@ -22,20 +22,21 @@ type
   { TMM_Form }
 
   TMM_Form = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    CheckBox1: TCheckBox;
-    GroupBox1: TGroupBox;
-    LabeledEdit1: TLabeledEdit;
-    ListView1: TListView;
+    BtClose: TButton;
+    BtSaveSubMode: TButton;
+    CBEnableMod: TCheckBox;
+    GBOptions: TGroupBox;
+    LESubMode: TLabeledEdit;
+    LVModeList: TListView;
     MMQuery: TSQLQuery;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
+    procedure BtCloseClick(Sender: TObject);
+    procedure BtSaveSubModeClick(Sender: TObject);
+    procedure CBEnableModClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ListView1SelectItem(Sender: TObject; Item: TListItem;
+    procedure LVModeListSelectItem(Sender: TObject; Item: TListItem;
       Selected: boolean);
   private
+    CBState: boolean;
     procedure ReloadList(mode, enable: string);
     procedure LoadList;
 
@@ -58,7 +59,7 @@ var
   Item: TListItem;
 begin
   try
-    Item := ListView1.Selected;
+    Item := LVModeList.Selected;
     if Item <> nil then
     begin
       Item.Caption := mode;
@@ -76,10 +77,10 @@ begin
     MMQuery.DataBase := InitDB.ServiceDBConnection;
     MMQuery.SQL.Text := ('SELECT * FROM Modes');
     MMQuery.Open;
-    ListView1.Clear;
+    LVModeList.Clear;
     while (not MMQuery.EOF) do
     begin
-      ListItem := ListView1.Items.Add;
+      ListItem := LVModeList.Items.Add;
       ListItem.Caption := VarToStr(MMQuery['mode']);
       with ListItem.SubItems do
       begin
@@ -94,71 +95,75 @@ end;
 
 procedure TMM_Form.FormShow(Sender: TObject);
 begin
-  if Length(LabeledEdit1.Text) = 0 then
-    LabeledEdit1.Text := 'none';
+  if Length(LESubMode.Text) = 0 then
+    LESubMode.Text := 'none';
   LoadList;
 end;
 
-procedure TMM_Form.CheckBox1Click(Sender: TObject);
+procedure TMM_Form.CBEnableModClick(Sender: TObject);
 var
   SelectIndex: integer;
 begin
-  if Assigned(ListView1.Selected) then
+  if CBEnableMod.Checked = CBState then
+    Exit;
+  if Assigned(LVModeList.Selected) then
   begin
     MMQuery.SQL.Text := ('UPDATE Modes SET Enable = ' +
-      BoolToStr(CheckBox1.Checked, '1', '0') + ' WHERE mode = ' +
-      QuotedStr(ListView1.Selected.Caption));
-    SelectIndex := ListView1.ItemIndex;
+      BoolToStr(CBEnableMod.Checked, '1', '0') + ' WHERE mode = ' +
+      QuotedStr(LVModeList.Selected.Caption));
+    SelectIndex := LVModeList.ItemIndex;
     MMQuery.ExecSQL;
     MMQuery.SQLTransaction.Commit;
-    ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked,
+    ReloadList(LVModeList.Selected.Caption, BoolToStr(CBEnableMod.Checked,
       'True', 'False'));
-    ListView1.ItemIndex := SelectIndex;
+    LVModeList.ItemIndex := SelectIndex;
     MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand);
+    CBState := CBEnableMod.Checked;
   end;
 end;
 
-procedure TMM_Form.Button1Click(Sender: TObject);
+procedure TMM_Form.BtCloseClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TMM_Form.Button2Click(Sender: TObject);
+procedure TMM_Form.BtSaveSubModeClick(Sender: TObject);
 var
   SelectIndex: integer;
 begin
-  if Assigned(ListView1.Selected) then
+  if Assigned(LVModeList.Selected) then
   begin
-    if LabeledEdit1.Text <> 'none' then
+    if LESubMode.Text <> 'none' then
       MMQuery.SQL.Text := ('UPDATE Modes SET submode = ' +
-        QuotedStr(LabeledEdit1.Text) + ' WHERE mode = ' +
-        QuotedStr(ListView1.Selected.Caption))
+        QuotedStr(LESubMode.Text) + ' WHERE mode = ' +
+        QuotedStr(LVModeList.Selected.Caption))
     else
       MMQuery.SQL.Text := ('UPDATE Modes SET submode = ' + QuotedStr('') +
-        ' WHERE mode = ' + QuotedStr(ListView1.Selected.Caption));
+        ' WHERE mode = ' + QuotedStr(LVModeList.Selected.Caption));
 
-    SelectIndex := ListView1.ItemIndex;
+    SelectIndex := LVModeList.ItemIndex;
     MMQuery.ExecSQL;
     MMQuery.SQLTransaction.Commit;
-    ReloadList(ListView1.Selected.Caption, BoolToStr(CheckBox1.Checked,
+    ReloadList(LVModeList.Selected.Caption, BoolToStr(CBEnableMod.Checked,
       'True', 'False'));
-    ListView1.ItemIndex := SelectIndex;
+    LVModeList.ItemIndex := SelectIndex;
   end;
 end;
 
-procedure TMM_Form.ListView1SelectItem(Sender: TObject; Item: TListItem;
+procedure TMM_Form.LVModeListSelectItem(Sender: TObject; Item: TListItem;
   Selected: boolean);
 begin
   if Selected then
   begin
     MMQuery.SQL.Text := ('SELECT * FROM Modes WHERE mode = ' + QuotedStr(
-      ListView1.Selected.Caption));
+      LVModeList.Selected.Caption));
     MMQuery.Open;
     if Length(MMQuery['submode']) = 0 then
-      LabeledEdit1.Text := 'none'
+      LESubMode.Text := 'none'
     else
-      LabeledEdit1.Text := MMQuery['submode'];
-    CheckBox1.Checked := MMQuery['enable'];
+      LESubMode.Text := MMQuery['submode'];
+    CBState := MMQuery['enable'];
+    CBEnableMod.Checked := CBState;
     MMQuery.Close;
   end;
 end;

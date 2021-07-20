@@ -22,25 +22,26 @@ type
   { TFM_Form }
 
   TFM_Form = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    CheckBox1: TCheckBox;
+    BtClose: TButton;
+    BtSaveBand: TButton;
+    CBEnableBand: TCheckBox;
     FMQuery: TSQLQuery;
-    GroupBox1: TGroupBox;
-    LabeledEdit1: TLabeledEdit;
-    LabeledEdit2: TLabeledEdit;
-    LabeledEdit3: TLabeledEdit;
-    LabeledEdit4: TLabeledEdit;
-    LabeledEdit5: TLabeledEdit;
-    LabeledEdit6: TLabeledEdit;
-    ListView1: TListView;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
+    GBOptions: TGroupBox;
+    LEBand: TLabeledEdit;
+    LEBegin: TLabeledEdit;
+    LEEnd: TLabeledEdit;
+    LECW: TLabeledEdit;
+    LEDigi: TLabeledEdit;
+    LESSB: TLabeledEdit;
+    LVBandList: TListView;
+    procedure BtCloseClick(Sender: TObject);
+    procedure BtSaveBandClick(Sender: TObject);
+    procedure CBEnableBandClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ListView1SelectItem(Sender: TObject; Item: TListItem;
+    procedure LVBandListSelectItem(Sender: TObject; Item: TListItem;
       Selected: boolean);
   private
+    CBState: boolean;
     procedure ReloadList(band, b_begin, b_end, enable: string);
     procedure LoadList;
 
@@ -63,7 +64,7 @@ var
   Item: TListItem;
 begin
   try
-    Item := ListView1.Selected;
+    Item := LVBandList.Selected;
     if Item <> nil then
     begin
       Item.Caption := band;
@@ -83,10 +84,10 @@ begin
     FMQuery.DataBase := InitDB.ServiceDBConnection;
     FMQuery.SQL.Text := ('SELECT * FROM Bands');
     FMQuery.Open;
-    ListView1.Clear;
+    LVBandList.Clear;
     while (not FMQuery.EOF) do
     begin
-      ListItem := ListView1.Items.Add;
+      ListItem := LVBandList.Items.Add;
       ListItem.Caption := VarToStr(FMQuery['band']);
       with ListItem.SubItems do
       begin
@@ -106,67 +107,70 @@ begin
   LoadList;
 end;
 
-procedure TFM_Form.Button1Click(Sender: TObject);
+procedure TFM_Form.BtCloseClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TFM_Form.Button2Click(Sender: TObject);
+procedure TFM_Form.BtSaveBandClick(Sender: TObject);
 var
   SelectIndex: integer;
 begin
-  if Assigned(ListView1.Selected) then
+  if Assigned(LVBandList.Selected) then
   begin
     FMQuery.SQL.Text := ('UPDATE Bands SET band = ' +
-      QuotedStr(LabeledEdit1.Text) + ', b_begin = ' + QuotedStr(LabeledEdit2.Text) +
-      ', b_end = ' + QuotedStr(LabeledEdit3.Text) + ', cw = ' +
-      QuotedStr(LabeledEdit4.Text) + ', digi = ' + QuotedStr(LabeledEdit5.Text) +
-      ', ssb = ' + QuotedStr(LabeledEdit6.Text) + ' WHERE band = ' +
-      QuotedStr(ListView1.Selected.Caption));
-    SelectIndex := ListView1.ItemIndex;
+      QuotedStr(LEBand.Text) + ', b_begin = ' + QuotedStr(LEBegin.Text) +
+      ', b_end = ' + QuotedStr(LEEnd.Text) + ', cw = ' +
+      QuotedStr(LECW.Text) + ', digi = ' + QuotedStr(LEDigi.Text) +
+      ', ssb = ' + QuotedStr(LESSB.Text) + ' WHERE band = ' +
+      QuotedStr(LVBandList.Selected.Caption));
+    SelectIndex := LVBandList.ItemIndex;
     FMQuery.ExecSQL;
     FMQuery.SQLTransaction.Commit;
-    ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text,
-      BoolToStr(CheckBox1.Checked, 'True', 'False'));
-    ListView1.ItemIndex := SelectIndex;
+    ReloadList(LEBand.Text, LEBegin.Text, LEEnd.Text,
+      BoolToStr(CBEnableBand.Checked, 'True', 'False'));
+    LVBandList.ItemIndex := SelectIndex;
   end;
 end;
 
-procedure TFM_Form.CheckBox1Click(Sender: TObject);
+procedure TFM_Form.CBEnableBandClick(Sender: TObject);
 var
   SelectIndex: integer;
 begin
-  if Assigned(ListView1.Selected) then
+  if CBEnableBand.Checked = CBState then
+    Exit;
+  if Assigned(LVBandList.Selected) then
   begin
     FMQuery.SQL.Text := ('UPDATE Bands SET Enable = ' +
-      BoolToStr(CheckBox1.Checked, '1', '0') + ' WHERE band = ' +
-      QuotedStr(ListView1.Selected.Caption));
-    SelectIndex := ListView1.ItemIndex;
+      BoolToStr(CBEnableBand.Checked, '1', '0') + ' WHERE band = ' +
+      QuotedStr(LVBandList.Selected.Caption));
+    SelectIndex := LVBandList.ItemIndex;
     FMQuery.ExecSQL;
     FMQuery.SQLTransaction.Commit;
-    ReloadList(LabeledEdit1.Text, LabeledEdit2.Text, LabeledEdit3.Text,
-      BoolToStr(CheckBox1.Checked, 'True', 'False'));
-    ListView1.ItemIndex := SelectIndex;
-    MainFunc.LoadBMSL(MiniForm.CBMode,MiniForm.CBSubMode, MiniForm.CBBand);
-   // MainForm.addBands(INIFile.ReadString('SetLog', 'ShowBand', ''), MainForm.ComboBox2.Text);
+    ReloadList(LEBand.Text, LEBegin.Text, LEEnd.Text,
+      BoolToStr(CBEnableBand.Checked, 'True', 'False'));
+    LVBandList.ItemIndex := SelectIndex;
+    MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand);
+    CBState := CBEnableBand.Checked;
   end;
 end;
 
-procedure TFM_Form.ListView1SelectItem(Sender: TObject; Item: TListItem;
+procedure TFM_Form.LVBandListSelectItem(Sender: TObject; Item: TListItem;
   Selected: boolean);
 begin
   if Selected then
   begin
     FMQuery.SQL.Text := ('SELECT * FROM Bands WHERE band = ' + QuotedStr(
-      ListView1.Selected.Caption));
+      LVBandList.Selected.Caption));
     FMQuery.Open;
-    LabeledEdit1.Text := FMQuery['band'];
-    LabeledEdit2.Text := FMQuery['b_begin'];
-    LabeledEdit3.Text := FMQuery['b_end'];
-    LabeledEdit4.Text := FMQuery['cw'];
-    LabeledEdit5.Text := FMQuery['digi'];
-    LabeledEdit6.Text := FMQuery['ssb'];
-    CheckBox1.Checked := FMQuery['enable'];
+    LEBand.Text := FMQuery['band'];
+    LEBegin.Text := FMQuery['b_begin'];
+    LEEnd.Text := FMQuery['b_end'];
+    LECW.Text := FMQuery['cw'];
+    LEDigi.Text := FMQuery['digi'];
+    LESSB.Text := FMQuery['ssb'];
+    CBState := FMQuery['enable'];
+    CBEnableBand.Checked := CBState;
     FMQuery.Close;
   end;
 end;
