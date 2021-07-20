@@ -40,9 +40,9 @@ object ConfigForm: TConfigForm
     Height = 288
     Top = 0
     Width = 510
-    ActivePage = TSWorkLAN
+    ActivePage = TSBase
     Align = alTop
-    TabIndex = 9
+    TabIndex = 0
     TabOrder = 2
     object TSBase: TTabSheet
       Caption = 'DataBase'
