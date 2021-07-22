@@ -120,7 +120,8 @@ begin
     freq := CBFreq.Text;
     comment := CBComment.Text;
     Delete(freq, length(freq) - 2, 1);
-    freq2 := StrToFloat(freq);
+    //freq2 := StrToFloat(freq);
+    TryStrToFloatSafe(freq, freq2);
     dxClusterForm.SendSpot(FloatToStr(freq2 * 1000), call, comment, '', '', '');
     SendTelnetSpot.Close;
   end
