@@ -417,10 +417,10 @@ var
 begin
   tempCall := DataDigi.DXCall;
   tempFreq := DataDigi.Freq;
-  tempFreq := StringReplace(tempFreq,',','.',[rfReplaceAll]);
+  tempFreq := StringReplace(tempFreq, ',', '.', [rfReplaceAll]);
 
   if IniSet.showBand then
-  tempFreq := dmFunc.GetBandFromFreq(tempFreq);
+    tempFreq := dmFunc.GetBandFromFreq(tempFreq);
 
   tempMode := DataDigi.Mode;
   tempSubMode := DataDigi.SubMode;
@@ -462,9 +462,10 @@ begin
   if freq <> 0 then
   begin
     if IniSet.showBand then
-      CBBand.Text := dmFunc.GetBandFromFreq(StringReplace(FormatFloat(view_freq, freq),',','.',[rfReplaceAll]))
+      CBBand.Text := dmFunc.GetBandFromFreq(
+        StringReplace(FormatFloat(view_freq, freq), ',', '.', [rfReplaceAll]))
     else
-      CBBand.Text := StringReplace(FormatFloat(view_freq, freq),',','.',[rfReplaceAll]);
+      CBBand.Text := StringReplace(FormatFloat(view_freq, freq), ',', '.', [rfReplaceAll]);
   end;
 end;
 
@@ -1418,13 +1419,13 @@ begin
           CBBand.Text, CBMode.Text))
       else
         NameBand := CBBand.Text;
-      NameBand := StringReplace(NameBand,',','.',[rfReplaceAll]);
+      NameBand := StringReplace(NameBand, ',', '.', [rfReplaceAll]);
       DigiBand_String := NameBand;
       Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
       DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
       PFXR := MainFunc.SearchPrefix(EditCallsign.Text, EditGrid.Text);
       SQSO.CallSing := EditCallsign.Text;
-      SQSO.QSODateTime:=DateTimePicker1.DateTime;
+      SQSO.QSODateTime := DateTimePicker1.DateTime;
       SQSO.QSODate := DateEdit1.Date;
       SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
       SQSO.QSOBand := NameBand;
@@ -1448,7 +1449,7 @@ begin
       SQSO.QSOAddInfo := EditComment.Text;
       SQSO.Marker := BoolToStr(CBMark.Checked);
       SQSO.ManualSet := 0;
-      SQSO.DigiBand := StringReplace(FloatToStr(DigiBand),',','.',[rfReplaceAll]);
+      SQSO.DigiBand := StringReplace(FloatToStr(DigiBand), ',', '.', [rfReplaceAll]);
       SQSO.Continent := PFXR.Continent;
       SQSO.ShortNote := EditComment.Text;
       SQSO.QSLReceQSLcc := 0;
@@ -1721,7 +1722,7 @@ begin
 
   if CBMode.Text <> 'SSB' then
     CBSubMode.Text := '';
-     TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text),FormatFreqFloat);
+  TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text), FormatFreqFloat);
   if FormatFreqFloat >= 10 then
     CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
   else
@@ -1795,7 +1796,7 @@ begin
   FreqChange := True;
   if CBMode.Text = 'SSB' then
   begin
-    TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text),FormatFreqFloat);
+    TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text), FormatFreqFloat);
     if FormatFreqFloat >= 10 then
       CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
     else
@@ -2041,6 +2042,9 @@ end;
 
 procedure TMiniForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  if not IniSet.BackupADIonClose and not IniSet.BackupDBonClose then
+    CloseApp := True;
+
   if EditCallsign.Text <> '' then
   begin
     if Application.MessageBox(PChar(rQSONotSave), PChar(rWarning),
