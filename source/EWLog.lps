@@ -66,7 +66,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="9"/>
         <TopLine Value="944"/>
         <CursorPos Y="968"/>
@@ -93,7 +92,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CreateJournalForm_U"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="69"/>
         <CursorPos X="76" Y="77"/>
         <UsageCount Value="200"/>
@@ -118,7 +117,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="16"/>
         <TopLine Value="2019"/>
         <CursorPos X="3" Y="2050"/>
         <UsageCount Value="200"/>
@@ -142,7 +141,7 @@
       <Unit12>
         <Filename Value="fldigi.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="15"/>
         <TopLine Value="146"/>
         <CursorPos X="37" Y="176"/>
         <UsageCount Value="200"/>
@@ -218,8 +217,10 @@
       <Unit20>
         <Filename Value="hrdlog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="135"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit20>
       <Unit21>
         <Filename Value="settingsprogramform_u.pas"/>
@@ -439,9 +440,12 @@
       <Unit40>
         <Filename Value="hamqth.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="132"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit40>
       <Unit41>
         <Filename Value="clublog.pas"/>
@@ -453,9 +457,11 @@
       <Unit42>
         <Filename Value="qrzcom.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="78" Y="8"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="133"/>
+        <CursorPos X="28" Y="160"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit42>
       <Unit43>
         <Filename Value="qso_record.pas"/>
@@ -477,7 +483,7 @@
       <Unit45>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="16"/>
         <CursorPos X="3" Y="37"/>
         <UsageCount Value="201"/>
@@ -837,7 +843,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="contestForm_u"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="17"/>
         <TopLine Value="188"/>
         <CursorPos X="15" Y="202"/>
         <UsageCount Value="169"/>
@@ -850,7 +856,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmContest_u"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="18"/>
         <TopLine Value="116"/>
         <CursorPos X="32" Y="131"/>
         <UsageCount Value="165"/>
@@ -1907,7 +1913,7 @@
         <UsageCount Value="10"/>
       </Unit225>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="2057" TopLine="2036"/>
@@ -2009,25 +2015,21 @@
         <Caret Line="969" Column="56" TopLine="955"/>
       </Position25>
       <Position26>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="949" Column="41" TopLine="1018"/>
-      </Position26>
-      <Position27>
         <Filename Value="const_u.pas"/>
         <Caret Line="37" Column="3" TopLine="16"/>
+      </Position26>
+      <Position27>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="967" Column="32" TopLine="942"/>
       </Position27>
       <Position28>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="967" Column="32" TopLine="942"/>
+        <Caret Line="969" TopLine="942"/>
       </Position28>
       <Position29>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="969" TopLine="942"/>
-      </Position29>
-      <Position30>
-        <Filename Value="configform_u.pas"/>
         <Caret Line="970" TopLine="942"/>
-      </Position30>
+      </Position29>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

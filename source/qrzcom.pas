@@ -161,7 +161,7 @@ procedure TSendQRZComThread.ShowResult;
 begin
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
-      'HamQTH', MB_ICONEXCLAMATION);
+      'QRZ.COM', MB_ICONEXCLAMATION);
 end;
 
 procedure TSendQRZComThread.Execute;
