@@ -944,9 +944,9 @@ begin
     Label12.Caption := rStatusUpdateCheck;
     LoadFile := TFileStream.Create(updatePATH + 'updates' +
       DirectorySeparator + 'versioncallbook.info', fmCreate);
-    if HTTPMethod('GET', 'http://update.ew8bak.ru/versioncallbook.info') then
+    if HTTPMethod('GET', 'http://update.ewlog.ru/versioncallbook.info') then
     begin
-      HttpGetBinary('http://update.ew8bak.ru/versioncallbook.info', LoadFile);
+      HttpGetBinary('http://update.ewlog.ru/versioncallbook.info', LoadFile);
       LoadFile.Free;
     end
     else
@@ -965,8 +965,8 @@ begin
   CloseFile(VerFile);
   if Label14.Caption <> '---' then
   begin
-    serV := StrToFloat(a);
-    locV := StrToFloat(Label14.Caption);
+    TryStrToFloatSafe(a, serV);// serV := StrToFloat(a);
+    TryStrToFloatSafe(Label14.Caption, locV);// locV := StrToFloat(Label14.Caption);
     if locV < serV then
     begin
       Label12.Caption := rStatusUpdateRequires;
