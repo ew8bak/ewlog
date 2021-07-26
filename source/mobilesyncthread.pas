@@ -268,6 +268,7 @@ var
   tmp2: string = '';
   RecCount: integer = 0;
   tmpFreq: string;
+  Freq_float: double;
   Query: TSQLQuery;
 begin
   try
@@ -342,8 +343,8 @@ begin
         begin
           tmpFreq := Query.Fields.FieldByName('QSOBand').AsString;
           Delete(tmpFreq, Length(tmpFreq) - 2, 1);
-          tmp := '<FREQ' + dmFunc.StringToADIF(FormatFloat('0.#####', StrToFloat(tmpFreq)),
-            True);
+          TryStrToFloatSafe(tmpFreq, Freq_float);
+          tmp := '<FREQ' + dmFunc.StringToADIF(StringReplace(FormatFloat('0.#####', Freq_float),',','.',[rfReplaceAll]) , True);
           tmp2 := tmp2 + tmp;
         end;
 

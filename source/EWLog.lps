@@ -71,7 +71,6 @@
         <CursorPos Y="968"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -92,7 +91,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CreateJournalForm_U"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="17"/>
         <TopLine Value="69"/>
         <CursorPos X="76" Y="77"/>
         <UsageCount Value="200"/>
@@ -117,7 +116,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="17"/>
+        <EditorIndex Value="19"/>
         <TopLine Value="2019"/>
         <CursorPos X="3" Y="2050"/>
         <UsageCount Value="200"/>
@@ -141,7 +140,7 @@
       <Unit12>
         <Filename Value="fldigi.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="18"/>
         <TopLine Value="146"/>
         <CursorPos X="37" Y="176"/>
         <UsageCount Value="200"/>
@@ -322,13 +321,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="sendtelnetspot_form_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="13"/>
         <TopLine Value="111"/>
-        <CursorPos Y="124"/>
+        <CursorPos X="55" Y="126"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit29>
       <Unit30>
         <Filename Value="clusterfilter_form_u.pas"/>
@@ -485,7 +482,7 @@
       <Unit45>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="16"/>
         <TopLine Value="16"/>
         <CursorPos X="3" Y="37"/>
         <UsageCount Value="201"/>
@@ -783,10 +780,11 @@
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="680"/>
-        <CursorPos X="96" Y="680"/>
+        <EditorIndex Value="14"/>
+        <TopLine Value="491"/>
+        <CursorPos X="62" Y="511"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit77>
       <Unit78>
         <Filename Value="exportadithread.pas"/>
@@ -801,9 +799,12 @@
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="78" Y="8"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="15"/>
+        <TopLine Value="322"/>
+        <CursorPos X="52" Y="346"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="cloudlogcat.pas"/>
@@ -845,7 +846,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="contestForm_u"/>
-        <EditorIndex Value="18"/>
+        <EditorIndex Value="20"/>
         <TopLine Value="188"/>
         <CursorPos X="15" Y="202"/>
         <UsageCount Value="169"/>
@@ -858,7 +859,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmContest_u"/>
-        <EditorIndex Value="19"/>
+        <EditorIndex Value="21"/>
         <TopLine Value="116"/>
         <CursorPos X="32" Y="131"/>
         <UsageCount Value="165"/>
@@ -1926,123 +1927,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="338" Column="11" TopLine="317"/>
+        <Caret Line="2048" TopLine="2043"/>
       </Position1>
       <Position2>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="2055" Column="18" TopLine="2020"/>
+        <Caret Line="2046" Column="33" TopLine="2037"/>
       </Position2>
       <Position3>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="2130" Column="11" TopLine="2095"/>
+        <Caret Line="2048" TopLine="2043"/>
       </Position3>
       <Position4>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="339" Column="11" TopLine="312"/>
+        <Caret Line="2059" TopLine="2053"/>
       </Position4>
       <Position5>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="2083" TopLine="2076"/>
+        <Caret Line="2074" TopLine="2062"/>
       </Position5>
       <Position6>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="2045" TopLine="2024"/>
+        <Caret Line="2075" TopLine="2062"/>
       </Position6>
       <Position7>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2061" Column="31" TopLine="2043"/>
-      </Position7>
-      <Position8>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="86" Column="14" TopLine="67"/>
-      </Position8>
-      <Position9>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="162" Column="3" TopLine="158"/>
-      </Position9>
-      <Position10>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2045" Column="51" TopLine="2037"/>
-      </Position10>
-      <Position11>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2048" TopLine="2043"/>
-      </Position11>
-      <Position12>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2046" Column="33" TopLine="2037"/>
-      </Position12>
-      <Position13>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2048" TopLine="2043"/>
-      </Position13>
-      <Position14>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2059" TopLine="2053"/>
-      </Position14>
-      <Position15>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2074" TopLine="2062"/>
-      </Position15>
-      <Position16>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2075" TopLine="2062"/>
-      </Position16>
-      <Position17>
         <Filename Value="configform_u.pas"/>
         <Caret Line="762" Column="11" TopLine="743"/>
-      </Position17>
-      <Position18>
+      </Position7>
+      <Position8>
         <Filename Value="configform_u.pas"/>
         <Caret Line="464" Column="3" TopLine="462"/>
-      </Position18>
-      <Position19>
+      </Position8>
+      <Position9>
         <Filename Value="initdb_dm.pas"/>
         <Caret Line="53" Column="14" TopLine="33"/>
-      </Position19>
-      <Position20>
+      </Position9>
+      <Position10>
         <Filename Value="configform_u.pas"/>
         <Caret Line="464" Column="3" TopLine="462"/>
-      </Position20>
-      <Position21>
+      </Position10>
+      <Position11>
         <Filename Value="configform_u.pas"/>
         <Caret Line="270" Column="26" TopLine="250"/>
-      </Position21>
-      <Position22>
+      </Position11>
+      <Position12>
         <Filename Value="configform_u.pas"/>
         <Caret Line="969" Column="56" TopLine="955"/>
-      </Position22>
-      <Position23>
+      </Position12>
+      <Position13>
         <Filename Value="const_u.pas"/>
         <Caret Line="37" Column="3" TopLine="16"/>
-      </Position23>
-      <Position24>
+      </Position13>
+      <Position14>
         <Filename Value="configform_u.pas"/>
         <Caret Line="967" Column="32" TopLine="942"/>
-      </Position24>
-      <Position25>
+      </Position14>
+      <Position15>
         <Filename Value="configform_u.pas"/>
         <Caret Line="969" TopLine="942"/>
-      </Position25>
-      <Position26>
+      </Position15>
+      <Position16>
         <Filename Value="configform_u.pas"/>
         <Caret Line="970" TopLine="942"/>
-      </Position26>
-      <Position27>
-        <Filename Value="sendtelnetspot_form_u.pas"/>
-        <Caret Line="79" Column="64" TopLine="82"/>
-      </Position27>
-      <Position28>
+      </Position16>
+      <Position17>
         <Filename Value="sendtelnetspot_form_u.pas"/>
         <Caret Line="123" TopLine="111"/>
-      </Position28>
-      <Position29>
+      </Position17>
+      <Position18>
         <Filename Value="sendtelnetspot_form_u.pas"/>
         <Caret Line="124" TopLine="111"/>
-      </Position29>
-      <Position30>
+      </Position18>
+      <Position19>
         <Filename Value="sendtelnetspot_form_u.pas"/>
         <Caret Line="125" TopLine="111"/>
+      </Position19>
+      <Position20>
+        <Filename Value="importadithread.pas"/>
+        <Caret Line="680" Column="96" TopLine="251"/>
+      </Position20>
+      <Position21>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="347" Column="3" TopLine="322"/>
+      </Position21>
+      <Position22>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="348" TopLine="322"/>
+      </Position22>
+      <Position23>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="349" TopLine="322"/>
+      </Position23>
+      <Position24>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="348" TopLine="322"/>
+      </Position24>
+      <Position25>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="349" TopLine="322"/>
+      </Position25>
+      <Position26>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="348" TopLine="322"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="349" TopLine="322"/>
+      </Position27>
+      <Position28>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="348" TopLine="322"/>
+      </Position28>
+      <Position29>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="349" TopLine="322"/>
+      </Position29>
+      <Position30>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="348" TopLine="322"/>
       </Position30>
     </JumpHistory>
     <RunParams>
