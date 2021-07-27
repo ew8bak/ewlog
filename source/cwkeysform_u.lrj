@@ -1,0 +1,13 @@
+{"version":1,"strings":[
+{"hash":143990083,"name":"tcwkeysform.caption","sourcebytes":[67,87,32,75,101,121,115],"value":"CW Keys"},
+{"hash":1169,"name":"tcwkeysform.btf1.caption","sourcebytes":[70,49],"value":"F1"},
+{"hash":1170,"name":"tcwkeysform.btf2.caption","sourcebytes":[70,50],"value":"F2"},
+{"hash":1171,"name":"tcwkeysform.btf3.caption","sourcebytes":[70,51],"value":"F3"},
+{"hash":1172,"name":"tcwkeysform.btf4.caption","sourcebytes":[70,52],"value":"F4"},
+{"hash":1173,"name":"tcwkeysform.btf5.caption","sourcebytes":[70,53],"value":"F5"},
+{"hash":1174,"name":"tcwkeysform.btf6.caption","sourcebytes":[70,54],"value":"F6"},
+{"hash":1175,"name":"tcwkeysform.btf7.caption","sourcebytes":[70,55],"value":"F7"},
+{"hash":1176,"name":"tcwkeysform.btf8.caption","sourcebytes":[70,56],"value":"F8"},
+{"hash":1177,"name":"tcwkeysform.btf9.caption","sourcebytes":[70,57],"value":"F9"},
+{"hash":18752,"name":"tcwkeysform.btf10.caption","sourcebytes":[70,49,48],"value":"F10"}
+]}

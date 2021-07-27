@@ -965,8 +965,8 @@ begin
   CloseFile(VerFile);
   if Label14.Caption <> '---' then
   begin
-    TryStrToFloatSafe(a, serV);// serV := StrToFloat(a);
-    TryStrToFloatSafe(Label14.Caption, locV);// locV := StrToFloat(Label14.Caption);
+    TryStrToFloatSafe(a, serV);
+    TryStrToFloatSafe(Label14.Caption, locV);
     if locV < serV then
     begin
       Label12.Caption := rStatusUpdateRequires;

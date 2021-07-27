@@ -1,0 +1,13 @@
+object CWDaemonDM: TCWDaemonDM
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 248
+  VerticalOffset = 138
+  Width = 150
+  object IdCWDaemonClient: TIdUDPClient
+    Port = 0
+    Left = 48
+    Top = 8
+  end
+end

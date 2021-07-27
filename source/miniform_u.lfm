@@ -2178,6 +2178,10 @@ object MiniForm: TMiniForm
     end
     object MenuItem3: TMenuItem
       Caption = 'View'
+      object MiCWKeys: TMenuItem
+        Caption = 'CW Keys'
+        OnClick = MiCWKeysClick
+      end
       object MIContestLogging: TMenuItem
         Caption = 'Contest Logging'
         OnClick = MIContestLoggingClick

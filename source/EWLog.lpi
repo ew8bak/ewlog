@@ -26,7 +26,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="9"/>
-      <BuildNr Value="829"/>
+      <BuildNr Value="830"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="89">
+    <Units Count="91">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -714,6 +714,20 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportSOTAThread"/>
       </Unit88>
+      <Unit89>
+        <Filename Value="cwdaemondm_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CWDaemonDM"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="CWDaemonDM_u"/>
+      </Unit89>
+      <Unit90>
+        <Filename Value="cwkeysform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CWKeysForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="CWKeysForm_u"/>
+      </Unit90>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

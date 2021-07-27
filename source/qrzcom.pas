@@ -112,7 +112,7 @@ begin
   AddData('CONT', SendQSOr.Continent);
   AddData('QSLMSG', SendQSOr.QSLInfo);
   AddData('GRIDSQUARE', SendQSOr.Grid);
-  Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1); //Удаляем последнюю точку
+  Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);
   AddData('FREQ', SendQSOr.QSOBand);
   AddData('LOG_PGM', 'EWLog');
   logdata := logdata + '<EOR>';

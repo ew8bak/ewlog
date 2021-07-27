@@ -118,6 +118,10 @@ type
     WorkOnLAN: boolean;
     WOLAddress: string;
     WOLPort: integer;
+    CWDaemonAddr: string;
+    CWDaemonPort: integer;
+    CWDaemonWPM: integer;
+    CWDaemonEnable: boolean;
   end;
 
 implementation

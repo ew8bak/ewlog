@@ -24,6 +24,7 @@ type
   { TServerDM }
 
   TServerDM = class(TDataModule)
+    IdCWDaemonClient: TIdUDPClient;
     IdIPWatch1: TIdIPWatch;
     IdFldigiTCP: TIdTCPServer;
     IdWOLServer: TIdUDPServer;
@@ -46,6 +47,7 @@ type
     DataDigi: TDigiR;
     FldigiMode, FldigiSubMode: string;
     FldigiFreq: double;
+    CWDaemonActive: boolean;
     procedure FldigiToForm;
     procedure GetFldigiUDP(Message: string);
     procedure StartImport;

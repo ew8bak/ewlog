@@ -3,8 +3,8 @@ object ServerDM: TServerDM
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 231
-  HorizontalOffset = 248
-  VerticalOffset = 128
+  HorizontalOffset = 386
+  VerticalOffset = 134
   Width = 320
   object LUDPComponent1: TLUDPComponent
     Port = 0
@@ -46,7 +46,12 @@ object ServerDM: TServerDM
     Enabled = False
     Interval = 30000
     OnTimer = TimerWOLTimer
-    Left = 139
+    Left = 32
     Top = 143
+  end
+  object IdCWDaemonClient: TIdUDPClient
+    Port = 0
+    Left = 144
+    Top = 128
   end
 end

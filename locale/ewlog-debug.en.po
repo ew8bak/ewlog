@@ -2144,6 +2144,51 @@ msgctxt "tcreatejournalform.lbqth.caption"
 msgid "QTH"
 msgstr ""
 
+#: tcwkeysform.btf1.caption
+msgid "F1"
+msgstr ""
+
+#: tcwkeysform.btf10.caption
+msgid "F10"
+msgstr ""
+
+#: tcwkeysform.btf2.caption
+msgid "F2"
+msgstr ""
+
+#: tcwkeysform.btf3.caption
+msgid "F3"
+msgstr ""
+
+#: tcwkeysform.btf4.caption
+msgid "F4"
+msgstr ""
+
+#: tcwkeysform.btf5.caption
+msgid "F5"
+msgstr ""
+
+#: tcwkeysform.btf6.caption
+msgid "F6"
+msgstr ""
+
+#: tcwkeysform.btf7.caption
+msgid "F7"
+msgstr ""
+
+#: tcwkeysform.btf8.caption
+msgid "F8"
+msgstr ""
+
+#: tcwkeysform.btf9.caption
+msgid "F9"
+msgstr ""
+
+#: tcwkeysform.caption
+msgctxt "tcwkeysform.caption"
+msgid "CW Keys"
+msgstr ""
+
 #: tdxclusterform.caption
 msgctxt "tdxclusterform.caption"
 msgid "DX Cluster"
@@ -4435,6 +4480,11 @@ msgstr ""
 #: tminiform.micontestlogging.caption
 msgctxt "tminiform.micontestlogging.caption"
 msgid "Contest Logging"
+msgstr ""
+
+#: tminiform.micwkeys.caption
+msgctxt "tminiform.micwkeys.caption"
+msgid "CW Keys"
 msgstr ""
 
 #: tminiform.midownloadlang.caption
