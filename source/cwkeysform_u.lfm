@@ -1,11 +1,13 @@
 object CWKeysForm: TCWKeysForm
-  Left = 474
+  Left = 467
   Height = 68
-  Top = 210
+  Top = 213
   Width = 407
   Caption = 'CW Keys'
   ClientHeight = 68
   ClientWidth = 407
+  OnClose = FormClose
+  OnShow = FormShow
   LCLVersion = '2.0.12.0'
   object BtF1: TButton
     AnchorSideLeft.Control = Owner
@@ -18,6 +20,7 @@ object CWKeysForm: TCWKeysForm
     BorderSpacing.Top = 5
     Caption = 'F1'
     OnClick = BtF1Click
+    OnMouseDown = BtF1MouseDown
     TabOrder = 0
   end
   object BtF2: TButton
@@ -31,6 +34,8 @@ object CWKeysForm: TCWKeysForm
     Width = 75
     BorderSpacing.Left = 5
     Caption = 'F2'
+    OnClick = BtF2Click
+    OnMouseDown = BtF2MouseDown
     TabOrder = 1
   end
   object BtF3: TButton
@@ -44,6 +49,8 @@ object CWKeysForm: TCWKeysForm
     Width = 75
     BorderSpacing.Left = 5
     Caption = 'F3'
+    OnClick = BtF3Click
+    OnMouseDown = BtF3MouseDown
     TabOrder = 2
   end
   object BtF4: TButton
@@ -57,6 +64,8 @@ object CWKeysForm: TCWKeysForm
     Width = 75
     BorderSpacing.Left = 5
     Caption = 'F4'
+    OnClick = BtF4Click
+    OnMouseDown = BtF4MouseDown
     TabOrder = 3
   end
   object BtF5: TButton
@@ -70,6 +79,8 @@ object CWKeysForm: TCWKeysForm
     Width = 75
     BorderSpacing.Left = 5
     Caption = 'F5'
+    OnClick = BtF5Click
+    OnMouseDown = BtF5MouseDown
     TabOrder = 4
   end
   object BtF6: TButton
@@ -83,6 +94,8 @@ object CWKeysForm: TCWKeysForm
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
     Caption = 'F6'
+    OnClick = BtF6Click
+    OnMouseDown = BtF6MouseDown
     TabOrder = 5
   end
   object BtF7: TButton
@@ -96,6 +109,8 @@ object CWKeysForm: TCWKeysForm
     Width = 75
     BorderSpacing.Left = 5
     Caption = 'F7'
+    OnClick = BtF7Click
+    OnMouseDown = BtF7MouseDown
     TabOrder = 6
   end
   object BtF8: TButton
@@ -109,6 +124,8 @@ object CWKeysForm: TCWKeysForm
     Width = 75
     BorderSpacing.Left = 5
     Caption = 'F8'
+    OnClick = BtF8Click
+    OnMouseDown = BtF8MouseDown
     TabOrder = 7
   end
   object BtF9: TButton
@@ -122,6 +139,8 @@ object CWKeysForm: TCWKeysForm
     Width = 75
     BorderSpacing.Left = 5
     Caption = 'F9'
+    OnClick = BtF9Click
+    OnMouseDown = BtF9MouseDown
     TabOrder = 8
   end
   object BtF10: TButton
@@ -135,6 +154,8 @@ object CWKeysForm: TCWKeysForm
     Width = 75
     BorderSpacing.Left = 5
     Caption = 'F10'
+    OnClick = BtF10Click
+    OnMouseDown = BtF10MouseDown
     TabOrder = 9
   end
 end

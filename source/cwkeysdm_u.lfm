@@ -1,0 +1,8 @@
+object CWKeysDM: TCWKeysDM
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 300
+  VerticalOffset = 360
+  Width = 150
+end

@@ -1,0 +1,9 @@
+{"version":1,"strings":[
+{"hash":59679858,"name":"tmacroeditorform.caption","sourcebytes":[77,97,99,114,111,32,101,100,105,116,111,114],"value":"Macro editor"},
+{"hash":152214356,"name":"tmacroeditorform.lbmacrotext.caption","sourcebytes":[77,97,99,114,111,32,116,101,120,116],"value":"Macro text"},
+{"hash":4749113,"name":"tmacroeditorform.btapply.caption","sourcebytes":[65,112,112,108,121],"value":"Apply"},
+{"hash":4863637,"name":"tmacroeditorform.btclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":64580844,"name":"tmacroeditorform.lbmacrobuttonlabel.caption","sourcebytes":[77,97,99,114,111,32,98,117,116,116,111,110,32,108,97,98,101,108],"value":"Macro button label"},
+{"hash":5470863,"name":"tmacroeditorform.lvmacro.columns[0].caption","sourcebytes":[77,97,99,114,111],"value":"Macro"},
+{"hash":156067838,"name":"tmacroeditorform.lvmacro.columns[1].caption","sourcebytes":[68,101,115,99,114,105,112,116,105,111,110],"value":"Description"}
+]}

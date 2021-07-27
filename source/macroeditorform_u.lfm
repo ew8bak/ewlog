@@ -1,0 +1,164 @@
+object MacroEditorForm: TMacroEditorForm
+  Left = 258
+  Height = 222
+  Top = 566
+  Width = 798
+  Caption = 'Macro editor'
+  ClientHeight = 222
+  ClientWidth = 798
+  LCLVersion = '2.0.12.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 30
+    Top = 0
+    Width = 798
+    Align = alTop
+    ClientHeight = 30
+    ClientWidth = 798
+    TabOrder = 0
+    object LBMacroText: TLabel
+      AnchorSideLeft.Control = Panel1
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 6
+      Height = 13
+      Top = 9
+      Width = 64
+      BorderSpacing.Left = 5
+      Caption = 'Macro text'
+      ParentColor = False
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 30
+    Top = 192
+    Width = 798
+    Align = alBottom
+    ClientHeight = 30
+    ClientWidth = 798
+    TabOrder = 1
+    object BtApply: TButton
+      AnchorSideTop.Control = BtClose
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = BtClose
+      Left = 637
+      Height = 25
+      Top = 3
+      Width = 75
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Apply'
+      OnClick = BtApplyClick
+      TabOrder = 0
+    end
+    object BtClose: TButton
+      AnchorSideTop.Control = Panel2
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Panel2
+      AnchorSideRight.Side = asrBottom
+      Left = 717
+      Height = 25
+      Top = 3
+      Width = 75
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Close'
+      OnClick = BtCloseClick
+      TabOrder = 1
+    end
+    object LBMacroButtonLabel: TLabel
+      AnchorSideLeft.Control = Panel2
+      AnchorSideTop.Control = Panel2
+      AnchorSideTop.Side = asrCenter
+      Left = 6
+      Height = 13
+      Top = 9
+      Width = 113
+      BorderSpacing.Left = 5
+      Caption = 'Macro button label'
+      ParentColor = False
+    end
+    object EditMacroButtonLabel: TEdit
+      AnchorSideLeft.Control = LBMacroButtonLabel
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = LBMacroButtonLabel
+      AnchorSideTop.Side = asrCenter
+      Left = 124
+      Height = 26
+      Top = 2
+      Width = 80
+      BorderSpacing.Left = 5
+      TabOrder = 2
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Height = 162
+    Top = 30
+    Width = 448
+    Align = alLeft
+    ClientHeight = 162
+    ClientWidth = 448
+    TabOrder = 2
+    object MemoMacroText: TMemo
+      Left = 1
+      Height = 160
+      Top = 1
+      Width = 446
+      Align = alClient
+      TabOrder = 0
+    end
+  end
+  object Panel4: TPanel
+    Left = 448
+    Height = 162
+    Top = 30
+    Width = 350
+    Align = alClient
+    ClientHeight = 162
+    ClientWidth = 350
+    TabOrder = 3
+    object Splitter1: TSplitter
+      Left = 1
+      Height = 160
+      Top = 1
+      Width = 1
+    end
+    object LVMacro: TListView
+      Left = 2
+      Height = 160
+      Top = 1
+      Width = 347
+      Align = alClient
+      Columns = <      
+        item
+          AutoSize = True
+          Caption = 'Macro'
+          MinWidth = 150
+          Width = 150
+        end      
+        item
+          AutoSize = True
+          Caption = 'Description'
+          Width = 182
+        end>
+      Items.LazData = {
+        1701000006000000FFFFFFFFFFFFFFFFFFFFFFFF01000000060000003C465245
+        513E0C0000004D79206672657175656E6379FFFFFFFFFFFFFFFFFFFFFFFF0100
+        0000080000003C4D5943414C4C3E0B0000004D792043616C6C7369676EFFFFFF
+        FFFFFFFFFFFFFFFFFF01000000070000003C4D594C4F433E0A0000004D79204C
+        6F6361746F72FFFFFFFFFFFFFFFFFFFFFFFF01000000080000003C4D594E414D
+        453E070000004D79204E616D65FFFFFFFFFFFFFFFFFFFFFFFF01000000070000
+        003C4D595154483E060000004D7920515448FFFFFFFFFFFFFFFFFFFFFFFF0100
+        0000070000003C4D595253543E0E0000004D792073656E74207265706F7274FF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      }
+      ReadOnly = True
+      ScrollBars = ssAutoBoth
+      TabOrder = 1
+      ViewStyle = vsReport
+      OnSelectItem = LVMacroSelectItem
+    end
+  end
+end

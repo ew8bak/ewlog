@@ -3912,6 +3912,38 @@ msgctxt "tlogconfigform.tabsheet3.caption"
 msgid "Services"
 msgstr ""
 
+#: tmacroeditorform.btapply.caption
+msgctxt "tmacroeditorform.btapply.caption"
+msgid "Apply"
+msgstr ""
+
+#: tmacroeditorform.btclose.caption
+msgctxt "tmacroeditorform.btclose.caption"
+msgid "Close"
+msgstr ""
+
+#: tmacroeditorform.caption
+msgid "Macro editor"
+msgstr ""
+
+#: tmacroeditorform.lbmacrobuttonlabel.caption
+msgid "Macro button label"
+msgstr ""
+
+#: tmacroeditorform.lbmacrotext.caption
+msgid "Macro text"
+msgstr ""
+
+#: tmacroeditorform.lvmacro.columns[0].caption
+msgctxt "tmacroeditorform.lvmacro.columns[0].caption"
+msgid "Macro"
+msgstr ""
+
+#: tmacroeditorform.lvmacro.columns[1].caption
+msgctxt "tmacroeditorform.lvmacro.columns[1].caption"
+msgid "Description"
+msgstr ""
+
 #: tmainform.caption
 msgctxt "tmainform.caption"
 msgid "EWLog - HAM Journal"

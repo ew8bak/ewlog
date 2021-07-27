@@ -32,7 +32,8 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   dxclusterform_u, GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread,
   ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
   dmCat, contestForm_u, dmContest_u, FMS_record, telnetaddresrecord_u,
-  dmmigrate_u, ExportSOTAThread, CWDaemonDM_u, CWKeysForm_u;
+  dmmigrate_u, ExportSOTAThread, CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u,
+  CWKeysDM_u;
 
 {$R *.res}
 
@@ -86,5 +87,6 @@ begin
   Application.CreateForm(TProgressBackupForm, ProgressBackupForm);
   Application.CreateForm(TContestForm, ContestForm);
   Application.CreateForm(TCWKeysForm, CWKeysForm);
+  Application.CreateForm(TMacroEditorForm, MacroEditorForm);
   Application.Run;
 end.

@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="91">
+    <Units Count="93">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -718,6 +718,7 @@
         <Filename Value="cwdaemondm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWDaemonDM"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWDaemonDM_u"/>
       </Unit89>
@@ -725,9 +726,24 @@
         <Filename Value="cwkeysform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWKeysForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWKeysForm_u"/>
       </Unit90>
+      <Unit91>
+        <Filename Value="macroeditorform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MacroEditorForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MacroEditorForm_u"/>
+      </Unit91>
+      <Unit92>
+        <Filename Value="cwkeysdm_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CWKeysDM"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="CWKeysDM_u"/>
+      </Unit92>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
