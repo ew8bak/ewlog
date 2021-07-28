@@ -1,67 +1,46 @@
 object ConfigForm: TConfigForm
-  Left = 823
-  Height = 335
-  Top = 131
-  Width = 510
+  Left = 598
+  Height = 508
+  Top = 205
+  Width = 717
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Program settings'
-  ClientHeight = 335
-  ClientWidth = 510
+  ClientHeight = 508
+  ClientWidth = 717
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.12.0'
-  object Button1: TButton
-    Left = 432
-    Height = 25
-    Top = 296
-    Width = 75
-    Caption = 'Save'
-    Font.Height = -12
-    OnClick = Button1Click
-    ParentFont = False
-    TabOrder = 0
-  end
-  object Button2: TButton
-    Left = 352
-    Height = 25
-    Top = 296
-    Width = 75
-    Caption = 'Cancel'
-    Font.Height = -12
-    OnClick = Button2Click
-    ParentFont = False
-    TabOrder = 1
-  end
   object PControl: TPageControl
-    Left = 0
-    Height = 288
+    Left = 186
+    Height = 472
     Top = 0
-    Width = 510
+    Width = 531
     ActivePage = TSBase
-    Align = alTop
+    Align = alClient
     TabIndex = 0
-    TabOrder = 2
+    TabOrder = 0
+    OnChange = PControlChange
     object TSBase: TTabSheet
       Caption = 'DataBase'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       object gbMySQL: TGroupBox
         Left = 8
         Height = 240
         Top = 8
-        Width = 233
+        Width = 241
         Caption = 'MySQL'
         ClientHeight = 224
-        ClientWidth = 231
+        ClientWidth = 239
         TabOrder = 0
         object Label2: TLabel
           AnchorSideTop.Control = Edit1
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit1
-          Left = 47
+          Left = 55
           Height = 13
           Top = 15
           Width = 39
@@ -76,7 +55,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit2
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit2
-          Left = 62
+          Left = 70
           Height = 13
           Top = 47
           Width = 24
@@ -91,7 +70,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit3
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit3
-          Left = 54
+          Left = 62
           Height = 13
           Top = 79
           Width = 32
@@ -106,7 +85,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit4
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit4
-          Left = 36
+          Left = 44
           Height = 13
           Top = 111
           Width = 50
@@ -121,7 +100,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit5
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit5
-          Left = 19
+          Left = 27
           Height = 13
           Top = 143
           Width = 67
@@ -135,7 +114,7 @@ object ConfigForm: TConfigForm
         object Edit1: TEdit
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 91
+          Left = 99
           Height = 26
           Top = 8
           Width = 130
@@ -148,7 +127,7 @@ object ConfigForm: TConfigForm
         object Edit2: TEdit
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 91
+          Left = 99
           Height = 26
           Top = 40
           Width = 130
@@ -161,7 +140,7 @@ object ConfigForm: TConfigForm
         object Edit3: TEdit
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 91
+          Left = 99
           Height = 26
           Top = 72
           Width = 130
@@ -174,7 +153,7 @@ object ConfigForm: TConfigForm
         object Edit4: TEdit
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 91
+          Left = 99
           Height = 26
           Top = 104
           Width = 130
@@ -187,10 +166,17 @@ object ConfigForm: TConfigForm
           TabOrder = 3
         end
         object Button3: TButton
-          Left = 16
-          Height = 25
-          Top = 184
-          Width = 192
+          AnchorSideLeft.Control = gbMySQL
+          AnchorSideLeft.Side = asrCenter
+          AnchorSideBottom.Control = gbMySQL
+          AnchorSideBottom.Side = asrBottom
+          Left = 58
+          Height = 29
+          Top = 190
+          Width = 122
+          Anchors = [akLeft, akBottom]
+          AutoSize = True
+          BorderSpacing.Bottom = 5
           Caption = 'Check connection'
           Font.Height = -12
           OnClick = Button3Click
@@ -200,7 +186,7 @@ object ConfigForm: TConfigForm
         object Edit5: TEdit
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 91
+          Left = 99
           Height = 26
           Top = 136
           Width = 130
@@ -212,7 +198,7 @@ object ConfigForm: TConfigForm
         end
       end
       object gbSQLite: TGroupBox
-        Left = 256
+        Left = 272
         Height = 80
         Top = 8
         Width = 233
@@ -255,7 +241,7 @@ object ConfigForm: TConfigForm
         end
       end
       object gbDefaultDB: TGroupBox
-        Left = 256
+        Left = 272
         Height = 88
         Top = 96
         Width = 233
@@ -291,8 +277,8 @@ object ConfigForm: TConfigForm
     end
     object TSRefOnline: TTabSheet
       Caption = 'Reference Online'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       object GBQRZRU: TGroupBox
         Left = 8
         Height = 112
@@ -535,22 +521,22 @@ object ConfigForm: TConfigForm
     end
     object TSCAT: TTabSheet
       Caption = 'CAT'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       OnShow = TSCATShow
       object PCCat: TPageControl
         Left = 0
-        Height = 259
+        Height = 443
         Top = 0
-        Width = 500
+        Width = 521
         ActivePage = TSHamlib
         Align = alClient
         TabIndex = 0
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 230
-          ClientWidth = 490
+          ClientHeight = 414
+          ClientWidth = 511
           object LBTransceiverModel: TLabel
             AnchorSideLeft.Control = TSHamlib
             AnchorSideTop.Control = TSHamlib
@@ -1077,10 +1063,116 @@ object ConfigForm: TConfigForm
         end
       end
     end
+    object TSCW: TTabSheet
+      Caption = 'CW'
+      ClientHeight = 443
+      ClientWidth = 521
+      object GBCWDaemon: TGroupBox
+        AnchorSideLeft.Control = TSCW
+        AnchorSideTop.Control = TSCW
+        Left = 5
+        Height = 211
+        Top = 5
+        Width = 219
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'CW Daemon (Linux only)'
+        ClientHeight = 195
+        ClientWidth = 217
+        TabOrder = 0
+        object LBCwDaemonAddress: TLabel
+          AnchorSideLeft.Control = GBCWDaemon
+          AnchorSideTop.Control = GBCWDaemon
+          Left = 10
+          Height = 13
+          Top = 5
+          Width = 44
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
+          Caption = 'Adress:'
+          ParentColor = False
+        end
+        object LBCwDaemonPort: TLabel
+          AnchorSideLeft.Control = GBCWDaemon
+          AnchorSideTop.Control = EditCwDaemonAddress
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 13
+          Top = 56
+          Width = 24
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
+          Caption = 'Port'
+          ParentColor = False
+        end
+        object LBCwDaemonWPM: TLabel
+          AnchorSideLeft.Control = GBCWDaemon
+          AnchorSideTop.Control = EditCwDaemonPort
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 13
+          Top = 107
+          Width = 29
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
+          Caption = 'WPM'
+          ParentColor = False
+        end
+        object EditCwDaemonAddress: TEdit
+          AnchorSideLeft.Control = LBCwDaemonAddress
+          AnchorSideTop.Control = LBCwDaemonAddress
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 26
+          Top = 20
+          Width = 190
+          BorderSpacing.Top = 2
+          TabOrder = 0
+        end
+        object EditCwDaemonPort: TEdit
+          AnchorSideLeft.Control = LBCwDaemonPort
+          AnchorSideTop.Control = LBCwDaemonPort
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 26
+          Top = 71
+          Width = 94
+          BorderSpacing.Top = 2
+          TabOrder = 1
+        end
+        object SECWDaemonWPM: TSpinEdit
+          AnchorSideLeft.Control = LBCwDaemonPort
+          AnchorSideTop.Control = LBCwDaemonWPM
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 26
+          Top = 122
+          Width = 98
+          BorderSpacing.Top = 2
+          MaxValue = 60
+          MinValue = 4
+          TabOrder = 2
+          Value = 24
+        end
+        object CBCWDaemon: TCheckBox
+          AnchorSideLeft.Control = GBCWDaemon
+          AnchorSideTop.Control = SECWDaemonWPM
+          AnchorSideTop.Side = asrBottom
+          Left = 5
+          Height = 23
+          Top = 158
+          Width = 132
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 10
+          Caption = 'Use CW Daemon?'
+          TabOrder = 3
+        end
+      end
+    end
     object TSIntRef: TTabSheet
       Caption = 'Internal reference'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       object gbIntRef: TGroupBox
         Left = 8
         Height = 240
@@ -1210,8 +1302,8 @@ object ConfigForm: TConfigForm
     end
     object TSTelnet: TTabSheet
       Caption = 'Telnet'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       OnShow = TSTelnetShow
       object gbTelnet: TGroupBox
         Left = 8
@@ -1306,9 +1398,9 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Control = gbTelnet
         AnchorSideLeft.Side = asrBottom
         Left = 261
-        Height = 259
+        Height = 443
         Top = 0
-        Width = 239
+        Width = 247
         Align = alRight
         Anchors = [akLeft, akRight, akBottom]
         BorderSpacing.Left = 5
@@ -1323,7 +1415,7 @@ object ConfigForm: TConfigForm
           end        
           item
             Caption = 'Port'
-            Width = 67
+            Width = 75
           end>
         ReadOnly = True
         RowSelect = True
@@ -1529,8 +1621,8 @@ object ConfigForm: TConfigForm
     end
     object TSBackup: TTabSheet
       Caption = 'Backup'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       object DEBackupPath: TDirectoryEdit
         AnchorSideLeft.Control = TSBackup
         AnchorSideTop.Control = lbPathBackup
@@ -1645,8 +1737,8 @@ object ConfigForm: TConfigForm
     end
     object THotKey: TTabSheet
       Caption = 'Hot key'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       object lbSaveQSO: TLabel
         AnchorSideLeft.Control = THotKey
         AnchorSideTop.Control = THotKey
@@ -1785,21 +1877,21 @@ object ConfigForm: TConfigForm
     end
     object TColorandGrids: TTabSheet
       Caption = 'Colors and Grids'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       object PControl2: TPageControl
         Left = 0
-        Height = 259
+        Height = 443
         Top = 0
-        Width = 500
+        Width = 521
         ActivePage = PColors
         Align = alClient
         TabIndex = 0
         TabOrder = 0
         object PColors: TTabSheet
           Caption = 'Colors'
-          ClientHeight = 230
-          ClientWidth = 490
+          ClientHeight = 414
+          ClientWidth = 511
           object gbGridsColor: TGroupBox
             Left = 8
             Height = 192
@@ -1912,11 +2004,12 @@ object ConfigForm: TConfigForm
             AnchorSideRight.Side = asrBottom
             AnchorSideBottom.Control = PColors
             AnchorSideBottom.Side = asrBottom
-            Left = 413
-            Height = 25
-            Top = 203
-            Width = 75
+            Left = 461
+            Height = 29
+            Top = 383
+            Width = 48
             Anchors = [akRight, akBottom]
+            AutoSize = True
             BorderSpacing.Right = 2
             BorderSpacing.Bottom = 2
             Caption = 'Apply'
@@ -1927,11 +2020,12 @@ object ConfigForm: TConfigForm
             AnchorSideRight.Control = btApplyColor
             AnchorSideBottom.Control = PColors
             AnchorSideBottom.Side = asrBottom
-            Left = 334
-            Height = 25
-            Top = 203
-            Width = 77
+            Left = 402
+            Height = 29
+            Top = 383
+            Width = 57
             Anchors = [akRight, akBottom]
+            AutoSize = True
             BorderSpacing.Right = 2
             BorderSpacing.Bottom = 2
             Caption = 'Default'
@@ -1941,8 +2035,8 @@ object ConfigForm: TConfigForm
         end
         object PGrids: TTabSheet
           Caption = 'Grids'
-          ClientHeight = 230
-          ClientWidth = 490
+          ClientHeight = 414
+          ClientWidth = 511
           object Label7: TLabel
             Left = 1
             Height = 13
@@ -2259,8 +2353,8 @@ object ConfigForm: TConfigForm
     end
     object TSOtherSettings: TTabSheet
       Caption = 'Other Settings'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       object gbCloudLog: TGroupBox
         Left = 8
         Height = 145
@@ -2391,8 +2485,8 @@ object ConfigForm: TConfigForm
     end
     object TSWorkLAN: TTabSheet
       Caption = 'Work on LAN (UDP)'
-      ClientHeight = 259
-      ClientWidth = 500
+      ClientHeight = 443
+      ClientWidth = 521
       object LBWOLAddress: TLabel
         AnchorSideLeft.Control = TSWorkLAN
         AnchorSideTop.Control = TSWorkLAN
@@ -2508,6 +2602,61 @@ object ConfigForm: TConfigForm
         TabOrder = 4
         TopIndex = -1
       end
+    end
+  end
+  object LVSettings: TListView
+    Left = 0
+    Height = 472
+    Top = 0
+    Width = 186
+    Align = alLeft
+    Columns = <>
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 1
+    OnClick = LVSettingsClick
+  end
+  object PanelBottom: TPanel
+    Left = 0
+    Height = 36
+    Top = 472
+    Width = 717
+    Align = alBottom
+    ClientHeight = 36
+    ClientWidth = 717
+    TabOrder = 2
+    object BtSave: TButton
+      AnchorSideTop.Control = PanelBottom
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = PanelBottom
+      AnchorSideRight.Side = asrBottom
+      Left = 626
+      Height = 25
+      Top = 6
+      Width = 75
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 15
+      Caption = 'Save'
+      Font.Height = -12
+      OnClick = BtSaveClick
+      ParentFont = False
+      TabOrder = 0
+    end
+    object BtCancel: TButton
+      AnchorSideTop.Control = PanelBottom
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = BtSave
+      Left = 541
+      Height = 25
+      Top = 6
+      Width = 75
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 10
+      Caption = 'Cancel'
+      Font.Height = -12
+      OnClick = BtCancelClick
+      ParentFont = False
+      TabOrder = 1
     end
   end
 end

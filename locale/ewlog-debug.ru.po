@@ -1240,20 +1240,22 @@ msgctxt "tconfigform.btapplycolor.caption"
 msgid "Apply"
 msgstr "Принять"
 
+#: tconfigform.btcancel.caption
+#, fuzzy
+msgctxt "tconfigform.btcancel.caption"
+msgid "Cancel"
+msgstr "Отмена"
+
 #: tconfigform.btdefaultcolor.caption
 msgctxt "tconfigform.btdefaultcolor.caption"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: tconfigform.button1.caption
-msgctxt "tconfigform.button1.caption"
+#: tconfigform.btsave.caption
+#, fuzzy
+msgctxt "tconfigform.btsave.caption"
 msgid "Save"
 msgstr "Сохранить"
-
-#: tconfigform.button2.caption
-msgctxt "tconfigform.button2.caption"
-msgid "Cancel"
-msgstr "Отмена"
 
 #: tconfigform.button3.caption
 msgctxt "tconfigform.button3.caption"
@@ -1348,6 +1350,10 @@ msgstr "Континент"
 msgctxt "tconfigform.cbcqzone.caption"
 msgid "CQ Zone"
 msgstr "CQ Зона"
+
+#: tconfigform.cbcwdaemon.caption
+msgid "Use CW Daemon?"
+msgstr ""
 
 #: tconfigform.cbdate.caption
 msgctxt "tconfigform.cbdate.caption"
@@ -1540,6 +1546,10 @@ msgstr "Отправлять частоту в Cloudlog"
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
 msgid "CloudLog"
+msgstr ""
+
+#: tconfigform.gbcwdaemon.caption
+msgid "CW Daemon (Linux only)"
 msgstr ""
 
 #: tconfigform.gbdefaultdb.caption
@@ -1756,6 +1766,20 @@ msgctxt "tconfigform.lbcomcatport.caption"
 msgid "COM Port"
 msgstr "COM порт"
 
+#: tconfigform.lbcwdaemonaddress.caption
+msgid "Adress:"
+msgstr ""
+
+#: tconfigform.lbcwdaemonport.caption
+#, fuzzy
+msgctxt "tconfigform.lbcwdaemonport.caption"
+msgid "Port"
+msgstr "Порт"
+
+#: tconfigform.lbcwdaemonwpm.caption
+msgid "WPM"
+msgstr ""
+
 #: tconfigform.lbextracmd.caption
 msgctxt "tconfigform.lbextracmd.caption"
 msgid "Extra command line"
@@ -1898,6 +1922,11 @@ msgstr "Базы данных"
 
 #: tconfigform.tscat.caption
 msgid "CAT"
+msgstr ""
+
+#: tconfigform.tscw.caption
+msgctxt "tconfigform.tscw.caption"
+msgid "CW"
 msgstr ""
 
 #: tconfigform.tshamlib.caption

@@ -17,7 +17,7 @@ uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock,
   ResourceStr, synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
-  Spin, Buttons, dmCat, serverDM_u, Types;
+  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, Types;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -45,8 +45,8 @@ type
   { TConfigForm }
 
   TConfigForm = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
+    BtSave: TButton;
+    BtCancel: TButton;
     Button3: TButton;
     Button4: TButton;
     btApplyColor: TButton;
@@ -97,6 +97,7 @@ type
     cbUser: TCheckBox;
     CBTelnetStartUp: TCheckBox;
     cbNoCalcDXCC: TCheckBox;
+    CBCWDaemon: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
@@ -112,6 +113,8 @@ type
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
+    EditCwDaemonPort: TEdit;
+    EditCwDaemonAddress: TEdit;
     EditTelnetName: TEdit;
     EditTelnetAdress: TEdit;
     EditTelnetPort: TEdit;
@@ -152,6 +155,10 @@ type
     gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
     GBTelnetEdit: TGroupBox;
+    GBCWDaemon: TGroupBox;
+    LBCwDaemonAddress: TLabel;
+    LBCwDaemonWPM: TLabel;
+    LBCwDaemonPort: TLabel;
     LBTelnetName: TLabel;
     LBTelnetPort: TLabel;
     LBTelnetAddress: TLabel;
@@ -209,8 +216,10 @@ type
     Label6: TLabel;
     Label8: TLabel;
     LBWOLCall: TListBox;
+    LVSettings: TListView;
     LVTelnet: TListView;
     MWOLLog: TMemo;
+    PanelBottom: TPanel;
     PCCat: TPageControl;
     PControl2: TPageControl;
     PControl: TPageControl;
@@ -222,6 +231,8 @@ type
     SBTelnetDone: TSpeedButton;
     SBTelnetDelete: TSpeedButton;
     SpinEdit1: TSpinEdit;
+    SECWDaemonWPM: TSpinEdit;
+    TSCW: TTabSheet;
     TSWorkLAN: TTabSheet;
     TSHamlib: TTabSheet;
     TSTCI: TTabSheet;
@@ -237,8 +248,8 @@ type
     TSBase: TTabSheet;
     procedure btApplyColorClick(Sender: TObject);
     procedure btDefaultColorClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure BtSaveClick(Sender: TObject);
+    procedure BtCancelClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
@@ -263,8 +274,10 @@ type
     procedure FNPathRigctldChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure LVSettingsClick(Sender: TObject);
     procedure LVTelnetSelectItem(Sender: TObject; Item: TListItem;
       Selected: boolean);
+    procedure PControlChange(Sender: TObject);
     procedure SaveINI;
     procedure ReadINI;
     function CheckUpdate: boolean;
@@ -288,6 +301,7 @@ type
     procedure SaveTelnetAddress;
     procedure LoadTelnetAddressToVLTelnet;
     function SearchLVTelnet(SearchText: string): boolean;
+    procedure LoadLVSettingName;
     { private declarations }
   public
     { public declarations }
@@ -304,6 +318,20 @@ uses
 {$R *.lfm}
 
 { TConfigForm }
+
+procedure TConfigForm.LoadLVSettingName;
+var
+  ListItem: TListItem;
+  i: integer;
+begin
+  LVSettings.Clear;
+  PControl.PageCount;
+  for i := 0 to PControl.PageCount - 1 do
+  begin
+    ListItem := LVSettings.Items.Add;
+    ListItem.Caption := PControl.Pages[i].Caption;
+  end;
+end;
 
 procedure TConfigForm.SaveINI;
 begin
@@ -360,7 +388,14 @@ begin
   INIFile.WriteString('WorkOnLAN', 'Port', EditWOLPort.Text);
   INIFile.WriteBool('WorkOnLAN', 'Enable', CBWOLEnable.Checked);
 
-  IniSet.Cluster_Login:=EditTelnetLogin.Text;
+   INIFile.ReadString('CWDaemon', 'Address', EditCwDaemonAddress.Text);
+   INIFile.ReadInteger('CWDaemon', 'Port', StrToInt(EditCwDaemonPort.Text));
+   INIFile.ReadInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
+   INIFile.ReadBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
+
+
+
+  IniSet.Cluster_Login := EditTelnetLogin.Text;
 
 end;
 
@@ -429,11 +464,16 @@ begin
   EditWOLPort.Text := INIFile.ReadString('WorkOnLAN', 'Port', '2238');
   CBWOLEnable.Checked := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
 
+  EditCwDaemonAddress.Text := INIFile.ReadString('CWDaemon', 'Address', '127.0.0.1');
+  EditCwDaemonPort.Text :=IntToStr(INIFile.ReadInteger('CWDaemon', 'Port', 6789));
+  SECWDaemonWPM.Value := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
+  CBCWDaemon.Checked := INIFile.ReadBool('CWDaemon', 'Enable', False);
+
   ReadGridColumns;
   ReadGridColors;
 end;
 
-procedure TConfigForm.Button2Click(Sender: TObject);
+procedure TConfigForm.BtCancelClick(Sender: TObject);
 begin
   ConfigForm.Close;
 end;
@@ -727,6 +767,13 @@ begin
     CheckBox1.Checked := False;
     CheckBox1.Enabled := False;
   end;
+  LoadLVSettingName;
+end;
+
+procedure TConfigForm.LVSettingsClick(Sender: TObject);
+begin
+  if LVSettings.Selected.Selected then
+  PControl.PageIndex := LVSettings.Selected.Index;
 end;
 
 procedure TConfigForm.LVTelnetSelectItem(Sender: TObject; Item: TListItem;
@@ -740,6 +787,11 @@ begin
     LVSelectedItem := True;
     SBTelnetDelete.Enabled := True;
   end;
+end;
+
+procedure TConfigForm.PControlChange(Sender: TObject);
+begin
+  LVSettings.ItemIndex := PControl.PageIndex;
 end;
 
 function TConfigForm.SearchLVTelnet(SearchText: string): boolean;
@@ -900,7 +952,7 @@ begin
   INIFile.WriteBool('GridSettings', 'ColVisible29', cbNoCalcDXCC.Checked);
 end;
 
-procedure TConfigForm.Button1Click(Sender: TObject);
+procedure TConfigForm.BtSaveClick(Sender: TObject);
 begin
   SaveINI;
   IniSet.Cluster_Login := EditTelnetLogin.Text;

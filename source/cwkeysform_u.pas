@@ -100,7 +100,9 @@ var
   Macros: TMacros;
 begin
   Macros := CWKeysDM.ReadRec(number - 1);
+  {$IFDEF LINUX}
   CWDaemonDM.SendTextCWDaemon(CWKeysDM.ReplaceMacro(Macros.Macro));
+  {$ENDIF LINUX}
 end;
 
 procedure TCWKeysForm.BtF1Click(Sender: TObject);

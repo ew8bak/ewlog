@@ -1,7 +1,7 @@
 object CWKeysForm: TCWKeysForm
-  Left = 467
+  Left = 311
   Height = 68
-  Top = 213
+  Top = 699
   Width = 407
   Caption = 'CW Keys'
   ClientHeight = 68

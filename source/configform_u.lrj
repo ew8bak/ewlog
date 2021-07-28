@@ -1,7 +1,5 @@
 {"version":1,"strings":[
 {"hash":37259811,"name":"tconfigform.caption","sourcebytes":[80,114,111,103,114,97,109,32,115,101,116,116,105,110,103,115],"value":"Program settings"},
-{"hash":366789,"name":"tconfigform.button1.caption","sourcebytes":[83,97,118,101],"value":"Save"},
-{"hash":77089212,"name":"tconfigform.button2.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
 {"hash":145067061,"name":"tconfigform.tsbase.caption","sourcebytes":[68,97,116,97,66,97,115,101],"value":"DataBase"},
 {"hash":5564508,"name":"tconfigform.gbmysql.caption","sourcebytes":[77,121,83,81,76],"value":"MySQL"},
 {"hash":94149826,"name":"tconfigform.label2.caption","sourcebytes":[83,101,114,118,101,114],"value":"Server"},
@@ -54,6 +52,12 @@
 {"hash":248022687,"name":"tconfigform.cbrigctldstart.caption","sourcebytes":[83,116,97,114,116,32,114,105,103,99,116,108,100,32,111,110,32,115,116,97,114,116,117,112,63],"value":"Start rigctld on startup?"},
 {"hash":357932,"name":"tconfigform.lbpoll.caption","sourcebytes":[80,111,108,108],"value":"Poll"},
 {"hash":22649,"name":"tconfigform.tstci.caption","sourcebytes":[84,67,73],"value":"TCI"},
+{"hash":1159,"name":"tconfigform.tscw.caption","sourcebytes":[67,87],"value":"CW"},
+{"hash":38279993,"name":"tconfigform.gbcwdaemon.caption","sourcebytes":[67,87,32,68,97,101,109,111,110,32,40,76,105,110,117,120,32,111,110,108,121,41],"value":"CW Daemon (Linux only)"},
+{"hash":129550890,"name":"tconfigform.lbcwdaemonaddress.caption","sourcebytes":[65,100,114,101,115,115,58],"value":"Adress:"},
+{"hash":358036,"name":"tconfigform.lbcwdaemonport.caption","sourcebytes":[80,111,114,116],"value":"Port"},
+{"hash":23629,"name":"tconfigform.lbcwdaemonwpm.caption","sourcebytes":[87,80,77],"value":"WPM"},
+{"hash":51432095,"name":"tconfigform.cbcwdaemon.caption","sourcebytes":[85,115,101,32,67,87,32,68,97,101,109,111,110,63],"value":"Use CW Daemon?"},
 {"hash":229863605,"name":"tconfigform.tsintref.caption","sourcebytes":[73,110,116,101,114,110,97,108,32,114,101,102,101,114,101,110,99,101],"value":"Internal reference"},
 {"hash":195937115,"name":"tconfigform.gbintref.caption","sourcebytes":[73,110,116,101,114,110,97,108,32,114,101,102,101,114,101,110,99,101,32,98,111,111,107],"value":"Internal reference book"},
 {"hash":100517775,"name":"tconfigform.checkbox1.caption","sourcebytes":[85,115,101,32,114,101,102,101,114,101,110,99,101,63],"value":"Use reference?"},
@@ -145,5 +149,7 @@
 {"hash":5728634,"name":"tconfigform.lbwolport.caption","sourcebytes":[80,111,114,116,58],"value":"Port:"},
 {"hash":148529582,"name":"tconfigform.cbwolenable.caption","sourcebytes":[69,110,97,98,108,101,32,87,111,114,107,32,79,110,32,76,65,78],"value":"Enable Work On LAN"},
 {"hash":341418,"name":"tconfigform.lbwollog.caption","sourcebytes":[76,111,103,58],"value":"Log:"},
-{"hash":100937402,"name":"tconfigform.lbcallwol.caption","sourcebytes":[70,111,117,110,100,32,67,97,108,108,58],"value":"Found Call:"}
+{"hash":100937402,"name":"tconfigform.lbcallwol.caption","sourcebytes":[70,111,117,110,100,32,67,97,108,108,58],"value":"Found Call:"},
+{"hash":366789,"name":"tconfigform.btsave.caption","sourcebytes":[83,97,118,101],"value":"Save"},
+{"hash":77089212,"name":"tconfigform.btcancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"}
 ]}

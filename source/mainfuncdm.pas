@@ -1517,7 +1517,7 @@ begin
   IniSet.CWDaemonAddr := INIFile.ReadString('CWDaemon', 'Address', '127.0.0.1');
   IniSet.CWDaemonPort := INIFile.ReadInteger('CWDaemon', 'Port', 6789);
   IniSet.CWDaemonWPM := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
-  IniSet.CWDaemonEnable := INIFile.ReadBool('CWDaemon', 'Enable', True);
+  IniSet.CWDaemonEnable := INIFile.ReadBool('CWDaemon', 'Enable', False);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

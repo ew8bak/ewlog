@@ -43,6 +43,7 @@ end;
 
 procedure TCWDaemonDM.StartCWDaemon;
 begin
+  {$IFDEF LINUX}
   try
     IdCWDaemonClient.Active := False;
     if IniSet.CWDaemonEnable then
@@ -56,6 +57,7 @@ begin
     on E: Exception do
       WriteLn(ExceptFile, 'TCWDaemonDM.StartCWDaemon:' + E.ClassName + ':' + E.Message);
   end;
+  {$ENDIF LINUX}
 end;
 
 procedure TCWDaemonDM.SendCWDaemonWPM(wpm: integer);

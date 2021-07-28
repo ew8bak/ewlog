@@ -1226,19 +1226,19 @@ msgctxt "tconfigform.btapplycolor.caption"
 msgid "Apply"
 msgstr ""
 
+#: tconfigform.btcancel.caption
+msgctxt "tconfigform.btcancel.caption"
+msgid "Cancel"
+msgstr ""
+
 #: tconfigform.btdefaultcolor.caption
 msgctxt "tconfigform.btdefaultcolor.caption"
 msgid "Default"
 msgstr ""
 
-#: tconfigform.button1.caption
-msgctxt "tconfigform.button1.caption"
+#: tconfigform.btsave.caption
+msgctxt "tconfigform.btsave.caption"
 msgid "Save"
-msgstr ""
-
-#: tconfigform.button2.caption
-msgctxt "tconfigform.button2.caption"
-msgid "Cancel"
 msgstr ""
 
 #: tconfigform.button3.caption
@@ -1326,6 +1326,10 @@ msgstr ""
 #: tconfigform.cbcqzone.caption
 msgctxt "tconfigform.cbcqzone.caption"
 msgid "CQ Zone"
+msgstr ""
+
+#: tconfigform.cbcwdaemon.caption
+msgid "Use CW Daemon?"
 msgstr ""
 
 #: tconfigform.cbdate.caption
@@ -1519,6 +1523,10 @@ msgstr ""
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
 msgid "CloudLog"
+msgstr ""
+
+#: tconfigform.gbcwdaemon.caption
+msgid "CW Daemon (Linux only)"
 msgstr ""
 
 #: tconfigform.gbdefaultdb.caption
@@ -1735,6 +1743,19 @@ msgctxt "tconfigform.lbcomcatport.caption"
 msgid "COM Port"
 msgstr ""
 
+#: tconfigform.lbcwdaemonaddress.caption
+msgid "Adress:"
+msgstr ""
+
+#: tconfigform.lbcwdaemonport.caption
+msgctxt "tconfigform.lbcwdaemonport.caption"
+msgid "Port"
+msgstr ""
+
+#: tconfigform.lbcwdaemonwpm.caption
+msgid "WPM"
+msgstr ""
+
 #: tconfigform.lbextracmd.caption
 msgctxt "tconfigform.lbextracmd.caption"
 msgid "Extra command line"
@@ -1876,6 +1897,11 @@ msgstr ""
 
 #: tconfigform.tscat.caption
 msgid "CAT"
+msgstr ""
+
+#: tconfigform.tscw.caption
+msgctxt "tconfigform.tscw.caption"
+msgid "CW"
 msgstr ""
 
 #: tconfigform.tshamlib.caption
