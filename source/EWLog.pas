@@ -43,6 +43,7 @@ begin
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TInitDB, InitDB);
+  Application.CreateForm(TdmFunc, dmFunc);
   Application.CreateForm(TMainFunc, MainFunc);
   Application.CreateForm(TInfoDM, InfoDM);
   Application.CreateForm(TMiniForm, MiniForm);
@@ -57,7 +58,6 @@ begin
   Application.CreateForm(TexportAdifForm, exportAdifForm);
   Application.CreateForm(TCreateJournalForm, CreateJournalForm);
   Application.CreateForm(TImportADIFForm, ImportADIFForm);
-  Application.CreateForm(TdmFunc, dmFunc);
   Application.CreateForm(TCountryEditForm, CountryEditForm);
   Application.CreateForm(TManagerBasePrefixForm, ManagerBasePrefixForm);
   Application.CreateForm(TQSLManager_Form, QSLManager_Form);

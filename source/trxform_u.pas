@@ -207,13 +207,7 @@ uses
 
 procedure TTRXForm.SavePosition;
 begin
-  if TRXForm.WindowState <> wsMaximized then
-  begin
-    INIFile.WriteInteger('SetLog', 'trxLeft', TRXForm.Left);
-    INIFile.WriteInteger('SetLog', 'trxTop', TRXForm.Top);
-    INIFile.WriteInteger('SetLog', 'trxWidth', TRXForm.Width);
-    INIFile.WriteInteger('SetLog', 'trxHeight', TRXForm.Height);
-  end;
+  MainFunc.SaveWindowPosition(TRXForm);
 end;
 
 procedure TTRXForm.Freq(Hz: integer);
@@ -399,9 +393,10 @@ end;
 
 procedure TTRXForm.FormShow(Sender: TObject);
 begin
-  if (IniSet._l_trx <> 0) and (IniSet._t_trx <> 0) and (IniSet._w_trx <> 0) and
+  {if (IniSet._l_trx <> 0) and (IniSet._t_trx <> 0) and (IniSet._w_trx <> 0) and
     (IniSet._h_trx <> 0) then
-    TRXForm.SetBounds(IniSet._l_trx, IniSet._t_trx, IniSet._w_trx, IniSet._h_trx);
+    TRXForm.SetBounds(IniSet._l_trx, IniSet._t_trx, IniSet._w_trx, IniSet._h_trx);}
+  MainFunc.LoadWindowPosition(TRXForm);
 end;
 
 procedure TTRXForm.Label11MouseLeave(Sender: TObject);
@@ -765,6 +760,7 @@ end;
 procedure TTRXForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
   IniSet.trxShow := False;
+  MainFunc.SaveWindowPosition(TRXForm);
 end;
 
 procedure TTRXForm.rbRadio1Click(Sender: TObject);

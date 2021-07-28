@@ -734,6 +734,7 @@
         <Filename Value="macroeditorform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MacroEditorForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MacroEditorForm_u"/>
       </Unit91>
@@ -741,6 +742,7 @@
         <Filename Value="cwkeysdm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWKeysDM"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWKeysDM_u"/>
       </Unit92>

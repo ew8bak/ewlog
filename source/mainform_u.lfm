@@ -13,7 +13,7 @@ object MainForm: TMainForm
   OnShow = FormShow
   Position = poDefault
   ShowInTaskBar = stAlways
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object LeftPanel: TPanel
     Left = 0
     Height = 667

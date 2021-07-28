@@ -143,14 +143,8 @@ type
 
 procedure TdxClusterForm.SavePosition;
 begin
-  if (IniSet.MainForm = 'MULTI') and IniSet.cShow then
-    if dxClusterForm.WindowState <> wsMaximized then
-    begin
-      INIFile.WriteInteger('SetLog', 'cLeft', dxClusterForm.Left);
-      INIFile.WriteInteger('SetLog', 'cTop', dxClusterForm.Top);
-      INIFile.WriteInteger('SetLog', 'cWidth', dxClusterForm.Width);
-      INIFile.WriteInteger('SetLog', 'cHeight', dxClusterForm.Height);
-    end;
+    MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
+    MainFunc.SaveWindowPosition(dxClusterForm);
 end;
 
 function TdxClusterForm.GetModeFromFreq(MHz: string): string;
@@ -676,10 +670,7 @@ end;
 
 procedure TdxClusterForm.FormShow(Sender: TObject);
 begin
-  if IniSet.MainForm = 'MULTI' then
-    if (IniSet._l_c <> 0) and (IniSet._t_c <> 0) and (IniSet._w_c <> 0) and
-      (IniSet._h_c <> 0) then
-      dxClusterForm.SetBounds(IniSet._l_c, IniSet._t_c, IniSet._w_c, IniSet._h_c);
+  MainFunc.LoadWindowPosition(dxClusterForm);
 end;
 
 procedure TdxClusterForm.MenuItem1Click(Sender: TObject);

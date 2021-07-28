@@ -67,7 +67,7 @@ var
 
 implementation
 
-uses InitDB_dm, CWDaemonDM_u, MacroEditorForm_u;
+uses InitDB_dm, CWDaemonDM_u, MacroEditorForm_u, MainFuncDM;
 
 {$R *.lfm}
 
@@ -226,10 +226,12 @@ end;
 procedure TCWKeysForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   CWKeysDM.CloseMacroFile;
+  MainFunc.SaveWindowPosition(CWKeysForm);
 end;
 
 procedure TCWKeysForm.FormShow(Sender: TObject);
 begin
+  MainFunc.LoadWindowPosition(CWKeysForm);
   LoadButtonLabel;
 end;
 

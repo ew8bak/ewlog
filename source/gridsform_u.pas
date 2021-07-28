@@ -165,14 +165,7 @@ uses MainFuncDM, dmFunc_U, InitDB_dm, Earth_Form_U, miniform_u,
 
 procedure TGridsForm.SavePosition;
 begin
-  if (IniSet.MainForm = 'MULTI') and IniSet.gShow then
-    if GridsForm.WindowState <> wsMaximized then
-    begin
-      INIFile.WriteInteger('SetLog', 'gLeft', GridsForm.Left);
-      INIFile.WriteInteger('SetLog', 'gTop', GridsForm.Top);
-      INIFile.WriteInteger('SetLog', 'gWidth', GridsForm.Width);
-      INIFile.WriteInteger('SetLog', 'gHeight', GridsForm.Height);
-    end;
+  MainFunc.SaveWindowPosition(GridsForm);
   MainFunc.SaveGrids(DBGrid1);
 end;
 
@@ -389,10 +382,7 @@ end;
 
 procedure TGridsForm.FormShow(Sender: TObject);
 begin
-  if IniSet.MainForm = 'MULTI' then
-    if (IniSet._l_g <> 0) and (IniSet._t_g <> 0) and (IniSet._w_g <> 0) and
-      (IniSet._h_g <> 0) then
-      GridsForm.SetBounds(IniSet._l_g, IniSet._t_g, IniSet._w_g, IniSet._h_g);
+  MainFunc.LoadWindowPosition(GridsForm);
 end;
 
 procedure TGridsForm.CopyToLogItemClick(Sender: TObject);

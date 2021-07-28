@@ -44,22 +44,12 @@ uses MainForm_U, InitDB_dm, MainFuncDM, miniform_u;
 
 procedure TviewPhoto.SavePosition;
 begin
-  if (((IniSet.MainForm = 'MULTI') or IniSet.pSeparate)) and IniSet.pShow then
-    if viewPhoto.WindowState <> wsMaximized then
-    begin
-      INIFile.WriteInteger('SetLog', 'pLeft', viewPhoto.Left);
-      INIFile.WriteInteger('SetLog', 'pTop', viewPhoto.Top);
-      INIFile.WriteInteger('SetLog', 'pWidth', viewPhoto.Width);
-      INIFile.WriteInteger('SetLog', 'pHeight', viewPhoto.Height);
-    end;
+  MainFunc.SaveWindowPosition(viewPhoto);
 end;
 
 procedure TviewPhoto.FormShow(Sender: TObject);
 begin
-  if (IniSet.MainForm = 'MULTI') or IniSet.pSeparate then
-    if (IniSet._l_p <> 0) and (IniSet._t_p <> 0) and (IniSet._w_p <> 0) and
-      (IniSet._h_p <> 0) then
-      viewPhoto.SetBounds(IniSet._l_p, IniSet._t_p, IniSet._w_p, IniSet._h_p);
+  MainFunc.LoadWindowPosition(viewPhoto);
   ImPhoto.Picture.LoadFromLazarusResource('no-photo');
 end;
 

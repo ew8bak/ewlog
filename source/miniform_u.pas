@@ -730,10 +730,7 @@ begin
   if not showForm then
   begin
     showForm := True;
-    if (IniSet._l_multi <> 0) and (IniSet._t_multi <> 0) and
-      (IniSet._w_multi <> 0) and (IniSet._h_multi <> 0) then
-      MiniForm.SetBounds(IniSet._l_multi, IniSet._t_multi, IniSet._w_multi,
-        IniSet._h_multi);
+    MainFunc.LoadWindowPosition(MiniForm);
 
     if DBRecord.InitDB <> 'YES' then
     begin
@@ -1889,7 +1886,7 @@ begin
     LBITUD.Caption := '..';
     LBCQD.Caption := '..';
     LBPrefixD.Caption := '.......';
-    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
+    Earth.PaintLine(FloatToStr (LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
       LBRecord.OpLat, LBRecord.OpLon);
     Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
       LBRecord.OpLat, LBRecord.OpLon);
@@ -2085,23 +2082,13 @@ end;
 
 procedure TMiniForm.CloseForm;
 begin
-  IniSet.NumStart := INIFile.ReadInteger('SetLog', 'StartNum', 0);
-  Inc(IniSet.NumStart);
-
-  if (MiniForm.WindowState <> wsMaximized) and (IniSet.MainForm <> 'MAIN') then
-  begin
-    INIFile.WriteInteger('SetLog', 'multiLeft', MiniForm.Left);
-    INIFile.WriteInteger('SetLog', 'multiTop', MiniForm.Top);
-    INIFile.WriteInteger('SetLog', 'multiWidth', MiniForm.Width);
-    INIFile.WriteInteger('SetLog', 'multiHeight', MiniForm.Height);
-  end;
+  MainFunc.SaveWindowPosition(MiniForm);
 
   if CBBand.ItemIndex <> -1 then
     INIFile.WriteInteger('SetLog', 'PastBand', CBBand.ItemIndex);
   INIFile.WriteString('SetLog', 'PastMode', CBMode.Text);
   INIFile.WriteString('SetLog', 'PastSubMode', CBSubMode.Text);
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
-  INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
 
@@ -2185,7 +2172,6 @@ begin
     MenuItem89.Caption := rSwitchDBMySQL;
 
   SetHotKey;
-  //  PrintPrev := INIFile.ReadBool('SetLog', 'PrintPrev', False);
 end;
 
 procedure TMiniForm.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);

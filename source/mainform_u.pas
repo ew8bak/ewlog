@@ -68,12 +68,13 @@ end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
-  if (IniSet.FormState = 'Maximized') and (IniSet.MainForm = 'MAIN') then
+ { if (IniSet.FormState = 'Maximized') and (IniSet.MainForm = 'MAIN') then
     MainForm.WindowState := wsMaximized
   else
   if (IniSet._l_main <> 0) and (IniSet._t_main <> 0) and
     (IniSet._w_main <> 0) and (IniSet._h_main <> 0) then
-    MainForm.SetBounds(IniSet._l_main, IniSet._t_main, IniSet._w_main, IniSet._h_main);
+    MainForm.SetBounds(IniSet._l_main, IniSet._t_main, IniSet._w_main, IniSet._h_main); }
+  MainFunc.LoadWindowPosition(MainForm);
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -100,19 +101,16 @@ procedure TMainForm.CloseForm;
 var
   CloseAction: TCloseAction;
 begin
-  IniSet.NumStart := INIFile.ReadInteger('SetLog', 'StartNum', 0);
-  Inc(IniSet.NumStart);
-  MainForm.SavePosition;
+  MainFunc.SaveWindowPosition(MainForm);
   INIFile.WriteInteger('SetLog', 'PastBand', MiniForm.CBBand.ItemIndex);
   INIFile.WriteString('SetLog', 'PastMode', MiniForm.CBMode.Text);
   INIFile.WriteString('SetLog', 'PastSubMode', MiniForm.CBSubMode.Text);
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
-  INIFile.WriteInteger('SetLog', 'StartNum', IniSet.NumStart);
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
   if IniSet.trxShow then
-    TRXForm.SavePosition;
+    MainFunc.SaveWindowPosition(TRXForm);
   if IniSet.pShow then
-    viewPhoto.SavePosition;
+    MainFunc.SaveWindowPosition(viewPhoto);
   if dxClusterForm <> nil then
     dxClusterForm.FormClose(MainForm, CloseAction);
   GridsForm.SavePosition;

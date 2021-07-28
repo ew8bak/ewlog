@@ -273,6 +273,7 @@ type
     procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
       const Value: string);
     procedure DownloadCallBookFile;
+    procedure TSCATShow(Sender: TObject);
     procedure TSTelnetShow(Sender: TObject);
   private
     Download: int64;
@@ -359,6 +360,8 @@ begin
   INIFile.WriteString('WorkOnLAN', 'Port', EditWOLPort.Text);
   INIFile.WriteBool('WorkOnLAN', 'Enable', CBWOLEnable.Checked);
 
+  IniSet.Cluster_Login:=EditTelnetLogin.Text;
+
 end;
 
 procedure TConfigForm.ReadINI;
@@ -375,8 +378,8 @@ begin
   Edit3.Text := INIFile.ReadString('DataBases', 'LoginName', '');
   Edit4.Text := INIFile.ReadString('DataBases', 'Password', '');
   Edit5.Text := INIFile.ReadString('DataBases', 'DataBaseName', '');
-  EditTelnetLogin.Text := INIFile.ReadString('TelnetCluster', 'Login', '');
-  EditTelnetPassword.Text := INIFile.ReadString('TelnetCluster', 'Password', '');
+  EditTelnetLogin.Text := IniSet.Cluster_Login;
+  EditTelnetPassword.Text := IniSet.Cluster_Pass;
 
   Edit10.Text := INIFile.ReadString('SetLog', 'CloudLogServer', '');
   Edit13.Text := INIFile.ReadString('SetLog', 'CloudLogApi', '');
@@ -724,7 +727,6 @@ begin
     CheckBox1.Checked := False;
     CheckBox1.Enabled := False;
   end;
-  LoadRIGSettings;
 end;
 
 procedure TConfigForm.LVTelnetSelectItem(Sender: TObject; Item: TListItem;
@@ -1065,6 +1067,11 @@ begin
       CheckBox1.Enabled := False;
     end;
   end;
+end;
+
+procedure TConfigForm.TSCATShow(Sender: TObject);
+begin
+  LoadRIGSettings;
 end;
 
 procedure TConfigForm.TSTelnetShow(Sender: TObject);

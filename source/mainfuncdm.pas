@@ -36,6 +36,8 @@ type
   private
     SearchPrefixQuery: TSQLQuery;
   public
+    procedure SaveWindowPosition(nameForm: TForm);
+    procedure LoadWindowPosition(nameForm: TForm);
     procedure LoadTelnetAddress;
     procedure SentCATCloudLog(CatData: TCatData);
     procedure SaveGrids(DbGrid: TDBGrid);
@@ -106,6 +108,36 @@ uses InitDB_dm, dmFunc_U, hrdlog,
 
 {$R *.lfm}
 
+procedure TMainFunc.SaveWindowPosition(nameForm: TForm);
+begin
+  if nameForm.WindowState <> wsMaximized then
+  begin
+    INIFile.WriteInteger(nameForm.Name, 'Left', nameForm.Left);
+    INIFile.WriteInteger(nameForm.Name, 'Top', nameForm.Top);
+    INIFile.WriteInteger(nameForm.Name, 'Width', nameForm.Width);
+    INIFile.WriteInteger(nameForm.Name, 'Height', nameForm.Height);
+    INIFile.WriteBool(nameForm.Name, 'Maximized', False);
+  end
+  else
+    INIFile.WriteBool(nameForm.Name, 'Maximized', True);
+end;
+
+procedure TMainFunc.LoadWindowPosition(nameForm: TForm);
+var
+  Left, Top, Width, Height: integer;
+  Maximized: boolean;
+begin
+  Left := INIFile.ReadInteger(nameForm.Name, 'Left', nameForm.Left);
+  Top := INIFile.ReadInteger(nameForm.Name, 'Top', nameForm.Top);
+  Width := INIFile.ReadInteger(nameForm.Name, 'Width', nameForm.Width);
+  Height := INIFile.ReadInteger(nameForm.Name, 'Height', nameForm.Height);
+  Maximized := INIFile.ReadBool(nameForm.Name, 'Maximized', False);
+  if not Maximized then
+    nameForm.SetBounds(Left, Top, Width, Height)
+  else
+    nameForm.WindowState := wsMaximized;
+end;
+
 procedure TMainFunc.LoadTelnetAddress;
 var
   SLAddress: TStringList;
@@ -113,13 +145,14 @@ var
   addressString: string;
 begin
   try
-   Finalize(TARecord);
+    Finalize(TARecord);
     SLAddress := TStringList.Create;
-    for i := 0 to 9 do begin
-    addressString := INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '');
+    for i := 0 to 9 do
+    begin
+      addressString := INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), '');
       if (addressString <> '') and (pos('->', addressString) < 1) then
         SLAddress.Add(INIFile.ReadString('TelnetCluster', 'Server' + IntToStr(i), ''));
-      end;
+    end;
     if SLAddress.Count = 0 then
       SLAddress.Add('FEERC,dx.feerc.ru,8000');
 
@@ -130,7 +163,7 @@ begin
       Delete(addressString, 1, pos(',', addressString));
       TARecord[i].Address := copy(addressString, 1, pos(',', addressString) - 1);
       Delete(addressString, 1, pos(',', addressString));
-      TARecord[i].Port := StrToIntDef(addressString, 8000); //StrToInt(addressString);
+      TARecord[i].Port := StrToIntDef(addressString, 8000);
     end;
 
   finally
@@ -420,7 +453,7 @@ begin
     end
     else
       Delete(Value, length(Value) - 2, 1);
-    Result := StringReplace(Value,',','.',[rfReplaceAll]);
+    Result := StringReplace(Value, ',', '.', [rfReplaceAll]);
   end;
 end;
 
@@ -694,7 +727,8 @@ begin
       end
       else
       begin
-        QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),',','.',[rfReplaceAll]);
+        QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),
+          ',', '.', [rfReplaceAll]);
         if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
           QSLSentDates := 'NULL'
         else
@@ -972,8 +1006,10 @@ begin
           InitDB.DefLogBookQuery.SQL.Text :=
             'SELECT `UnUsedIndex`, `CallSign`,' +
             ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
-            + '(CONCAT(COALESCE(`QSOReportSent`, ''''), '' '', COALESCE(`STX`, ''''), '' '', COALESCE(`STX_STRING`, ''''))) AS QSOReportSent,'
-            + '(CONCAT(COALESCE(`QSOReportRecived`, ''''),'' '', COALESCE(`SRX`, ''''), '' '', COALESCE(`SRX_STRING`, ''''))) AS QSOReportRecived,'
+            +
+            '(CONCAT(COALESCE(`QSOReportSent`, ''''), '' '', COALESCE(`STX`, ''''), '' '', COALESCE(`STX_STRING`, ''''))) AS QSOReportSent,'
+            +
+            '(CONCAT(COALESCE(`QSOReportRecived`, ''''),'' '', COALESCE(`SRX`, ''''), '' '', COALESCE(`SRX_STRING`, ''''))) AS QSOReportRecived,'
             + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
             + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
             + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -981,15 +1017,17 @@ begin
             + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
             + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
             + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-            + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE `' +
-            Field + '` LIKE ' + QuotedStr(Value) +
+            + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
+            ' WHERE `' + Field + '` LIKE ' + QuotedStr(Value) +
             ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC'
         else
           InitDB.DefLogBookQuery.SQL.Text :=
             'SELECT `UnUsedIndex`, `CallSign`,' +
             ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
-            + '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
-            + '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || '' '' || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
+            +
+            '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
+            +
+            '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || '' '' || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
             + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
             + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
             + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
@@ -1376,13 +1414,13 @@ begin
           begin
             if mode = 'SSB' then
               BandList[i] := StringReplace(FormatFloat(view_freq,
-              Query.FieldByName('ssb').AsFloat),',','.',[rfReplaceAll]);
+                Query.FieldByName('ssb').AsFloat), ',', '.', [rfReplaceAll]);
             if mode = 'CW' then
               BandList[i] := StringReplace(FormatFloat(view_freq,
-              Query.FieldByName('cw').AsFloat),',','.',[rfReplaceAll]);
+                Query.FieldByName('cw').AsFloat), ',', '.', [rfReplaceAll]);
             if (mode <> 'CW') and (mode <> 'SSB') then
               BandList[i] := StringReplace(FormatFloat(view_freq,
-                Query.FieldByName('b_begin').AsFloat),',','.',[rfReplaceAll]);
+                Query.FieldByName('b_begin').AsFloat), ',', '.', [rfReplaceAll]);
           end;
           Query.Next;
         end;
@@ -1436,44 +1474,18 @@ begin
   IniSet.MainForm := INIFile.ReadString('SetLog', 'MainForm', 'MAIN');
   IniSet.Cluster_Login := INIFile.ReadString('TelnetCluster', 'Login', '');
   IniSet.Cluster_Pass := INIFile.ReadString('TelnetCluster', 'Password', '');
-  IniSet._l_multi := INIFile.ReadInteger('SetLog', 'multiLeft', 0);
-  IniSet._t_multi := INIFile.ReadInteger('SetLog', 'multiTop', 0);
-  IniSet._w_multi := INIFile.ReadInteger('SetLog', 'multiWidth', 1043);
-  IniSet._h_multi := INIFile.ReadInteger('SetLog', 'multiHeight', 671);
-  IniSet._l_main := INIFile.ReadInteger('SetLog', 'mainLeft', 0);
-  IniSet._t_main := INIFile.ReadInteger('SetLog', 'mainTop', 0);
-  IniSet._w_main := INIFile.ReadInteger('SetLog', 'mainWidth', 1043);
-  IniSet._h_main := INIFile.ReadInteger('SetLog', 'mainHeight', 671);
+  if IniSet.Cluster_Login = '' then
+    IniSet.Cluster_Login := dmFunc.ExtractCallsign(LBRecord.CallSign);
   IniSet.mTop := INIFile.ReadBool('SetLog', 'mTop', False);
-  IniSet._l_g := INIFile.ReadInteger('SetLog', 'gLeft', 0);
-  IniSet._t_g := INIFile.ReadInteger('SetLog', 'gTop', 0);
-  IniSet._w_g := INIFile.ReadInteger('SetLog', 'gWidth', 835);
-  IniSet._h_g := INIFile.ReadInteger('SetLog', 'gHeight', 401);
   IniSet.gTop := INIFile.ReadBool('SetLog', 'gTop', False);
   IniSet.gShow := INIFile.ReadBool('SetLog', 'gShow', True);
-  IniSet._l_c := INIFile.ReadInteger('SetLog', 'cLeft', 0);
-  IniSet._t_c := INIFile.ReadInteger('SetLog', 'cTop', 0);
-  IniSet._w_c := INIFile.ReadInteger('SetLog', 'cWidth', 735);
-  IniSet._h_c := INIFile.ReadInteger('SetLog', 'cHeight', 240);
   IniSet.cTop := INIFile.ReadBool('SetLog', 'cTop', False);
   IniSet.cShow := INIFile.ReadBool('SetLog', 'cShow', True);
-  IniSet._l_e := INIFile.ReadInteger('SetLog', 'eLeft', 0);
-  IniSet._t_e := INIFile.ReadInteger('SetLog', 'eTop', 0);
-  IniSet._w_e := INIFile.ReadInteger('SetLog', 'eWidth', 320);
-  IniSet._h_e := INIFile.ReadInteger('SetLog', 'eHeight', 156);
   IniSet.eTop := INIFile.ReadBool('SetLog', 'eTop', False);
   IniSet.eShow := INIFile.ReadBool('SetLog', 'eShow', True);
-  IniSet._l_p := INIFile.ReadInteger('SetLog', 'pLeft', 0);
-  IniSet._t_p := INIFile.ReadInteger('SetLog', 'pTop', 0);
-  IniSet._w_p := INIFile.ReadInteger('SetLog', 'pWidth', 320);
-  IniSet._h_p := INIFile.ReadInteger('SetLog', 'pHeight', 156);
   IniSet.pTop := INIFile.ReadBool('SetLog', 'pTop', False);
   IniSet.pShow := INIFile.ReadBool('SetLog', 'pShow', True);
   IniSet.pSeparate := INIFile.ReadBool('SetLog', 'pSeparate', False);
-  IniSet._l_trx := INIFile.ReadInteger('SetLog', 'trxLeft', 0);
-  IniSet._t_trx := INIFile.ReadInteger('SetLog', 'trxTop', 0);
-  IniSet._w_trx := INIFile.ReadInteger('SetLog', 'trxWidth', 320);
-  IniSet._h_trx := INIFile.ReadInteger('SetLog', 'trxHeight', 156);
   IniSet.trxTop := INIFile.ReadBool('SetLog', 'trxTop', False);
   IniSet.trxShow := INIFile.ReadBool('SetLog', 'trxShow', False);
   IniSet.ClusterAutoStart := INIFile.ReadBool('TelnetCluster', 'AutoStart', False);
@@ -1502,9 +1514,9 @@ begin
   IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
   IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
   IniSet.WOLPort := INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
-  IniSet.CWDaemonAddr:= INIFile.ReadString('CWDaemon', 'Address', '127.0.0.1');
-  IniSet.CWDaemonPort:= INIFile.ReadInteger('CWDaemon', 'Port', 6789);
-  IniSet.CWDaemonWPM:= INIFile.ReadInteger('CWDaemon', 'WPM', 24);
+  IniSet.CWDaemonAddr := INIFile.ReadString('CWDaemon', 'Address', '127.0.0.1');
+  IniSet.CWDaemonPort := INIFile.ReadInteger('CWDaemon', 'Port', 6789);
+  IniSet.CWDaemonWPM := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
   IniSet.CWDaemonEnable := INIFile.ReadBool('CWDaemon', 'Enable', True);
 end;
 
@@ -1545,7 +1557,7 @@ begin
           DMode := True;
         Query.Close;
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
-        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
+        DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
           DigiBandStr + ' LIMIT 1';
@@ -1586,11 +1598,10 @@ begin
           Query.DataBase := InitDB.SQLiteConnection;
 
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
-        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
+        DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          DigiBandStr +
-          ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
+          DigiBandStr + ' AND (QSLRec = 1 OR LoTWRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
         begin
@@ -1611,8 +1622,7 @@ begin
 
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          DigiBandStr +
-          ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
+          DigiBandStr + ' AND (QSLRec = 0 AND LoTWRec = 0) LIMIT 1';
         Query.Open;
         if Query.RecordCount = 0 then
         begin
@@ -1657,11 +1667,10 @@ begin
         else
           Query.DataBase := InitDB.SQLiteConnection;
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
-        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
+        DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
-          DigiBandStr +
-          ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
+          DigiBandStr + ' AND QSOMode = ' + QuotedStr(mode) + ' LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
           Result := True;
@@ -1696,11 +1705,10 @@ begin
         else
           Query.DataBase := InitDB.SQLiteConnection;
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
-        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
+        DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
-          DigiBandStr +
-          ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+          DigiBandStr + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
           Result := True;
@@ -1737,11 +1745,10 @@ begin
         else
           Query.DataBase := InitDB.SQLiteConnection;
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
-        DigiBandStr := StringReplace(DigiBandStr,',','.',[rfReplaceAll]);
+        DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
-          DigiBandStr +
-          ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
+          DigiBandStr + ' AND (LoTWRec = 1 OR QSLRec = 1) LIMIT 1';
         Query.Open;
         if Query.RecordCount > 0 then
           Result := True;
@@ -1789,8 +1796,8 @@ begin
         if (Grid <> '') and dmFunc.IsLocOK(Grid) then
         begin
           dmFunc.CoordinateFromLocator(Grid, La, Lo);
-          Result.Latitude := StringReplace(CurrToStr(La),',','.',[rfReplaceAll]);
-          Result.Longitude := StringReplace(CurrToStr(Lo),',','.',[rfReplaceAll])
+          Result.Latitude := StringReplace(CurrToStr(La), ',', '.', [rfReplaceAll]);
+          Result.Longitude := StringReplace(CurrToStr(Lo), ',', '.', [rfReplaceAll]);
         end;
         GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance, Result.Azimuth);
         Result.Found := True;
@@ -1822,8 +1829,8 @@ begin
           if (Grid <> '') and dmFunc.IsLocOK(Grid) then
           begin
             dmFunc.CoordinateFromLocator(Grid, La, Lo);
-            Result.Latitude := StringReplace(CurrToStr(La),',','.',[rfReplaceAll]);
-            Result.Longitude := StringReplace(CurrToStr(Lo),',','.',[rfReplaceAll])
+            Result.Latitude := StringReplace(CurrToStr(La), ',', '.', [rfReplaceAll]);
+            Result.Longitude := StringReplace(CurrToStr(Lo), ',', '.', [rfReplaceAll]);
           end;
           GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance,
             Result.Azimuth);
@@ -1862,8 +1869,8 @@ begin
           if (Grid <> '') and dmFunc.IsLocOK(Grid) then
           begin
             dmFunc.CoordinateFromLocator(Grid, La, Lo);
-            Result.Latitude := StringReplace(CurrToStr(La),',','.',[rfReplaceAll]);
-            Result.Longitude := StringReplace(CurrToStr(Lo),',','.',[rfReplaceAll])
+            Result.Latitude := StringReplace(CurrToStr(La), ',', '.', [rfReplaceAll]);
+            Result.Longitude := StringReplace(CurrToStr(Lo), ',', '.', [rfReplaceAll]);
           end;
           GetDistAzim(Result.Latitude, Result.Longitude, Result.Distance,
             Result.Azimuth);
@@ -1886,7 +1893,7 @@ procedure TMainFunc.GetDistAzim(Latitude, Longitude: string;
   var Distance, Azimuth: string);
 var
   azim, qra: string;
-  Lat, Lon: Double;
+  Lat, Lon: double;
 begin
   qra := '';
   azim := '';
@@ -1952,15 +1959,18 @@ begin
       if SQSO.QSL_SENT_VIA = '' then
         SQSO.QSL_SENT_VIA := 'NULL';
 
-      SQSO.My_Lat:=StringReplace(SQSO.My_Lat, ',','.',[rfReplaceAll]);
-      SQSO.My_Lon:=StringReplace(SQSO.My_Lon, ',','.',[rfReplaceAll]);
+      SQSO.My_Lat := StringReplace(SQSO.My_Lat, ',', '.', [rfReplaceAll]);
+      SQSO.My_Lon := StringReplace(SQSO.My_Lon, ',', '.', [rfReplaceAll]);
 
-      if DBRecord.CurrentDB = 'MySQL' then begin
+      if DBRecord.CurrentDB = 'MySQL' then
+      begin
         QSODates := FormatDateTime('yyyy-mm-dd', SQSO.QSODate);
         QSODateTime := FormatDateTime('yyyy-mm-dd hh:nn:ss', SQSO.QSODateTime);
       end
-      else begin
-        QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),',','.',[rfReplaceAll]);
+      else
+      begin
+        QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),
+          ',', '.', [rfReplaceAll]);
         QSODateTime := IntToStr(DateTimeToUnix(SQSO.QSODateTime));
       end;
 
@@ -1973,36 +1983,33 @@ begin
         'QSLInfo, `Call`, State1, State2, State3, State4, WPX, AwardsEx,' +
         'ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,' +
         'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC,' +
-        'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC, ContestSession, ContestName) VALUES (' +
-        dmFunc.Q(SQSO.CallSing) + dmFunc.Q(QSODateTime) +
-        dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) +
-        dmFunc.Q(SQSO.QSOBand) + dmFunc.Q(SQSO.QSOMode) +
-        dmFunc.Q(SQSO.QSOSubMode) + dmFunc.Q(SQSO.QSOReportSent) +
-        dmFunc.Q(SQSO.QSOReportRecived) + dmFunc.Q(SQSO.OmName) +
-        dmFunc.Q(SQSO.OmQTH) + dmFunc.Q(SQSO.State0) + dmFunc.Q(SQSO.Grid) +
-        dmFunc.Q(SQSO.IOTA) + dmFunc.Q(SQSO.QSLManager) + dmFunc.Q(SQSO.QSLSent) +
-        dmFunc.Q(SQSO.QSLSentAdv) + dmFunc.Q(SQSO.QSLRec) +
-        dmFunc.Q(SQSO.MainPrefix) + dmFunc.Q(SQSO.DXCCPrefix) +
-        dmFunc.Q(SQSO.CQZone) + dmFunc.Q(SQSO.ITUZone) +
-        dmFunc.Q(SQSO.QSOAddInfo) + dmFunc.Q(SQSO.Marker) +
-        dmFunc.Q(IntToStr(SQSO.ManualSet)) + dmFunc.Q(SQSO.DigiBand) +
-        dmFunc.Q(SQSO.Continent) + dmFunc.Q(SQSO.ShortNote) +
-        dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) + dmFunc.Q(SQSO.LotWRec) +
-        dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) + dmFunc.Q(SQSO.State1) +
-        dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) + dmFunc.Q(SQSO.State4) +
-        dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) + dmFunc.Q(SQSO.ValidDX) +
-        dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) + dmFunc.Q(STXs) +
-        dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
+        'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC, ContestSession, ContestName) VALUES ('
+        + dmFunc.Q(SQSO.CallSing) + dmFunc.Q(QSODateTime) +
+        dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) + dmFunc.Q(SQSO.QSOBand) +
+        dmFunc.Q(SQSO.QSOMode) + dmFunc.Q(SQSO.QSOSubMode) +
+        dmFunc.Q(SQSO.QSOReportSent) + dmFunc.Q(SQSO.QSOReportRecived) +
+        dmFunc.Q(SQSO.OmName) + dmFunc.Q(SQSO.OmQTH) + dmFunc.Q(SQSO.State0) +
+        dmFunc.Q(SQSO.Grid) + dmFunc.Q(SQSO.IOTA) + dmFunc.Q(SQSO.QSLManager) +
+        dmFunc.Q(SQSO.QSLSent) + dmFunc.Q(SQSO.QSLSentAdv) +
+        dmFunc.Q(SQSO.QSLRec) + dmFunc.Q(SQSO.MainPrefix) +
+        dmFunc.Q(SQSO.DXCCPrefix) + dmFunc.Q(SQSO.CQZone) +
+        dmFunc.Q(SQSO.ITUZone) + dmFunc.Q(SQSO.QSOAddInfo) +
+        dmFunc.Q(SQSO.Marker) + dmFunc.Q(IntToStr(SQSO.ManualSet)) +
+        dmFunc.Q(SQSO.DigiBand) + dmFunc.Q(SQSO.Continent) +
+        dmFunc.Q(SQSO.ShortNote) + dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) +
+        dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) +
+        dmFunc.Q(SQSO.State1) + dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) +
+        dmFunc.Q(SQSO.State4) + dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) +
+        dmFunc.Q(SQSO.ValidDX) + dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) +
+        dmFunc.Q(STXs) + dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
         dmFunc.Q(SQSO.SAT_MODE) + dmFunc.Q(SQSO.PROP_MODE) +
         dmFunc.Q(IntToStr(SQSO.LotWSent)) + dmFunc.Q(SQSO.QSL_RCVD_VIA) +
         dmFunc.Q(SQSO.QSL_SENT_VIA) + dmFunc.Q(SQSO.DXCC) +
         dmFunc.Q(SQSO.USERS) + dmFunc.Q(IntToStr(SQSO.NoCalcDXCC)) +
         dmFunc.Q(SQSO.My_State) + dmFunc.Q(SQSO.My_Grid) + dmFunc.Q(SQSO.My_Lat) +
-        dmFunc.Q(SQSO.My_Lon) +
-        dmFunc.Q(IntToStr(SQSO.SYNC)) +
-        dmFunc.Q(SQSO.ContestSession) +
-        QuotedStr(SQSO.ContestName) + ')';
-  //    WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
+        dmFunc.Q(SQSO.My_Lon) + dmFunc.Q(IntToStr(SQSO.SYNC)) +
+        dmFunc.Q(SQSO.ContestSession) + QuotedStr(SQSO.ContestName) + ')';
+      //    WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else

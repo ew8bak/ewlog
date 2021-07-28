@@ -44,14 +44,7 @@ uses MainFuncDM, InitDB_dm, miniform_u;
 
 procedure TMapForm.SavePosition;
 begin
-  if IniSet.MainForm = 'MULTI' then
-    if MapForm.WindowState <> wsMaximized then
-    begin
-      INIFile.WriteInteger('SetLog', 'eLeft', MapForm.Left);
-      INIFile.WriteInteger('SetLog', 'eTop', MapForm.Top);
-      INIFile.WriteInteger('SetLog', 'eWidth', MapForm.Width);
-      INIFile.WriteInteger('SetLog', 'eHeight', MapForm.Height);
-    end;
+ MainFunc.SaveWindowPosition(MapForm);
 end;
 
 procedure TMapForm.FormCreate(Sender: TObject);
@@ -75,10 +68,7 @@ end;
 
 procedure TMapForm.FormShow(Sender: TObject);
 begin
-  if (IniSet.MainForm = 'MULTI') and IniSet.eShow then
-    if (IniSet._l_e <> 0) and (IniSet._t_e <> 0) and (IniSet._w_e <> 0) and
-      (IniSet._h_e <> 0) then
-      MapForm.SetBounds(IniSet._l_e, IniSet._t_e, IniSet._w_e, IniSet._h_e);
+  MainFunc.LoadWindowPosition(MapForm);
   MapView.Active := True;
   WriteMap('0', '0', 1);
 end;
