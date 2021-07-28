@@ -1240,20 +1240,22 @@ msgctxt "tconfigform.btapplycolor.caption"
 msgid "Apply"
 msgstr "Принять"
 
+#: tconfigform.btcancel.caption
+#, fuzzy
+msgctxt "tconfigform.btcancel.caption"
+msgid "Cancel"
+msgstr "Отмена"
+
 #: tconfigform.btdefaultcolor.caption
 msgctxt "tconfigform.btdefaultcolor.caption"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: tconfigform.button1.caption
-msgctxt "tconfigform.button1.caption"
+#: tconfigform.btsave.caption
+#, fuzzy
+msgctxt "tconfigform.btsave.caption"
 msgid "Save"
 msgstr "Сохранить"
-
-#: tconfigform.button2.caption
-msgctxt "tconfigform.button2.caption"
-msgid "Cancel"
-msgstr "Отмена"
 
 #: tconfigform.button3.caption
 msgctxt "tconfigform.button3.caption"
@@ -1348,6 +1350,10 @@ msgstr "Континент"
 msgctxt "tconfigform.cbcqzone.caption"
 msgid "CQ Zone"
 msgstr "CQ Зона"
+
+#: tconfigform.cbcwdaemon.caption
+msgid "Use CW Daemon?"
+msgstr ""
 
 #: tconfigform.cbdate.caption
 msgctxt "tconfigform.cbdate.caption"
@@ -1540,6 +1546,10 @@ msgstr "Отправлять частоту в Cloudlog"
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
 msgid "CloudLog"
+msgstr ""
+
+#: tconfigform.gbcwdaemon.caption
+msgid "CW Daemon (Linux only)"
 msgstr ""
 
 #: tconfigform.gbdefaultdb.caption
@@ -1756,6 +1766,20 @@ msgctxt "tconfigform.lbcomcatport.caption"
 msgid "COM Port"
 msgstr "COM порт"
 
+#: tconfigform.lbcwdaemonaddress.caption
+msgid "Adress:"
+msgstr ""
+
+#: tconfigform.lbcwdaemonport.caption
+#, fuzzy
+msgctxt "tconfigform.lbcwdaemonport.caption"
+msgid "Port"
+msgstr "Порт"
+
+#: tconfigform.lbcwdaemonwpm.caption
+msgid "WPM"
+msgstr ""
+
 #: tconfigform.lbextracmd.caption
 msgctxt "tconfigform.lbextracmd.caption"
 msgid "Extra command line"
@@ -1898,6 +1922,11 @@ msgstr "Базы данных"
 
 #: tconfigform.tscat.caption
 msgid "CAT"
+msgstr ""
+
+#: tconfigform.tscw.caption
+msgctxt "tconfigform.tscw.caption"
+msgid "CW"
 msgstr ""
 
 #: tconfigform.tshamlib.caption
@@ -2164,6 +2193,51 @@ msgstr "Имя"
 msgctxt "tcreatejournalform.lbqth.caption"
 msgid "QTH"
 msgstr "QTH"
+
+#: tcwkeysform.btf1.caption
+msgid "F1"
+msgstr ""
+
+#: tcwkeysform.btf10.caption
+msgid "F10"
+msgstr ""
+
+#: tcwkeysform.btf2.caption
+msgid "F2"
+msgstr ""
+
+#: tcwkeysform.btf3.caption
+msgid "F3"
+msgstr ""
+
+#: tcwkeysform.btf4.caption
+msgid "F4"
+msgstr ""
+
+#: tcwkeysform.btf5.caption
+msgid "F5"
+msgstr ""
+
+#: tcwkeysform.btf6.caption
+msgid "F6"
+msgstr ""
+
+#: tcwkeysform.btf7.caption
+msgid "F7"
+msgstr ""
+
+#: tcwkeysform.btf8.caption
+msgid "F8"
+msgstr ""
+
+#: tcwkeysform.btf9.caption
+msgid "F9"
+msgstr ""
+
+#: tcwkeysform.caption
+msgctxt "tcwkeysform.caption"
+msgid "CW Keys"
+msgstr ""
 
 #: tdxclusterform.caption
 msgctxt "tdxclusterform.caption"
@@ -3905,6 +3979,40 @@ msgctxt "tlogconfigform.tabsheet3.caption"
 msgid "Services"
 msgstr "Сервисы"
 
+#: tmacroeditorform.btapply.caption
+#, fuzzy
+msgctxt "tmacroeditorform.btapply.caption"
+msgid "Apply"
+msgstr "Принять"
+
+#: tmacroeditorform.btclose.caption
+#, fuzzy
+msgctxt "tmacroeditorform.btclose.caption"
+msgid "Close"
+msgstr "Закрыть"
+
+#: tmacroeditorform.caption
+msgid "Macro editor"
+msgstr ""
+
+#: tmacroeditorform.lbmacrobuttonlabel.caption
+msgid "Macro button label"
+msgstr ""
+
+#: tmacroeditorform.lbmacrotext.caption
+msgid "Macro text"
+msgstr ""
+
+#: tmacroeditorform.lvmacro.columns[0].caption
+msgid "Macro"
+msgstr ""
+
+#: tmacroeditorform.lvmacro.columns[1].caption
+#, fuzzy
+msgctxt "tmacroeditorform.lvmacro.columns[1].caption"
+msgid "Description"
+msgstr "Описание"
+
 #: tmainform.caption
 msgctxt "tmainform.caption"
 msgid "EWLog - HAM Journal"
@@ -4471,6 +4579,11 @@ msgstr "Всегда наверху"
 msgctxt "tminiform.micontestlogging.caption"
 msgid "Contest Logging"
 msgstr "Контест лог"
+
+#: tminiform.micwkeys.caption
+msgctxt "tminiform.micwkeys.caption"
+msgid "CW Keys"
+msgstr ""
 
 #: tminiform.midownloadlang.caption
 msgctxt "tminiform.midownloadlang.caption"

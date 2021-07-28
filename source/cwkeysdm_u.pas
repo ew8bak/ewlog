@@ -78,6 +78,7 @@ end;
 
 function TCWKeysDM.OpenMacroFile(const MacroFilePath: string): boolean;
 begin
+  CloseMacroFile;
   AssignFile(MacroFile, MacroFilePath);
   try
     Reset(MacroFile);

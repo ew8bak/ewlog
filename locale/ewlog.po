@@ -1226,19 +1226,19 @@ msgctxt "tconfigform.btapplycolor.caption"
 msgid "Apply"
 msgstr ""
 
+#: tconfigform.btcancel.caption
+msgctxt "tconfigform.btcancel.caption"
+msgid "Cancel"
+msgstr ""
+
 #: tconfigform.btdefaultcolor.caption
 msgctxt "tconfigform.btdefaultcolor.caption"
 msgid "Default"
 msgstr ""
 
-#: tconfigform.button1.caption
-msgctxt "tconfigform.button1.caption"
+#: tconfigform.btsave.caption
+msgctxt "tconfigform.btsave.caption"
 msgid "Save"
-msgstr ""
-
-#: tconfigform.button2.caption
-msgctxt "tconfigform.button2.caption"
-msgid "Cancel"
 msgstr ""
 
 #: tconfigform.button3.caption
@@ -1326,6 +1326,10 @@ msgstr ""
 #: tconfigform.cbcqzone.caption
 msgctxt "tconfigform.cbcqzone.caption"
 msgid "CQ Zone"
+msgstr ""
+
+#: tconfigform.cbcwdaemon.caption
+msgid "Use CW Daemon?"
 msgstr ""
 
 #: tconfigform.cbdate.caption
@@ -1519,6 +1523,10 @@ msgstr ""
 #: tconfigform.gbcloudlog.caption
 msgctxt "tconfigform.gbcloudlog.caption"
 msgid "CloudLog"
+msgstr ""
+
+#: tconfigform.gbcwdaemon.caption
+msgid "CW Daemon (Linux only)"
 msgstr ""
 
 #: tconfigform.gbdefaultdb.caption
@@ -1734,6 +1742,19 @@ msgctxt "tconfigform.lbcomcatport.caption"
 msgid "COM Port"
 msgstr ""
 
+#: tconfigform.lbcwdaemonaddress.caption
+msgid "Adress:"
+msgstr ""
+
+#: tconfigform.lbcwdaemonport.caption
+msgctxt "tconfigform.lbcwdaemonport.caption"
+msgid "Port"
+msgstr ""
+
+#: tconfigform.lbcwdaemonwpm.caption
+msgid "WPM"
+msgstr ""
+
 #: tconfigform.lbextracmd.caption
 msgctxt "tconfigform.lbextracmd.caption"
 msgid "Extra command line"
@@ -1874,6 +1895,11 @@ msgstr ""
 
 #: tconfigform.tscat.caption
 msgid "CAT"
+msgstr ""
+
+#: tconfigform.tscw.caption
+msgctxt "tconfigform.tscw.caption"
+msgid "CW"
 msgstr ""
 
 #: tconfigform.tshamlib.caption
@@ -2139,6 +2165,51 @@ msgstr ""
 #: tcreatejournalform.lbqth.caption
 msgctxt "tcreatejournalform.lbqth.caption"
 msgid "QTH"
+msgstr ""
+
+#: tcwkeysform.btf1.caption
+msgid "F1"
+msgstr ""
+
+#: tcwkeysform.btf10.caption
+msgid "F10"
+msgstr ""
+
+#: tcwkeysform.btf2.caption
+msgid "F2"
+msgstr ""
+
+#: tcwkeysform.btf3.caption
+msgid "F3"
+msgstr ""
+
+#: tcwkeysform.btf4.caption
+msgid "F4"
+msgstr ""
+
+#: tcwkeysform.btf5.caption
+msgid "F5"
+msgstr ""
+
+#: tcwkeysform.btf6.caption
+msgid "F6"
+msgstr ""
+
+#: tcwkeysform.btf7.caption
+msgid "F7"
+msgstr ""
+
+#: tcwkeysform.btf8.caption
+msgid "F8"
+msgstr ""
+
+#: tcwkeysform.btf9.caption
+msgid "F9"
+msgstr ""
+
+#: tcwkeysform.caption
+msgctxt "tcwkeysform.caption"
+msgid "CW Keys"
 msgstr ""
 
 #: tdxclusterform.caption
@@ -3865,6 +3936,37 @@ msgctxt "tlogconfigform.tabsheet3.caption"
 msgid "Services"
 msgstr ""
 
+#: tmacroeditorform.btapply.caption
+msgctxt "tmacroeditorform.btapply.caption"
+msgid "Apply"
+msgstr ""
+
+#: tmacroeditorform.btclose.caption
+msgctxt "tmacroeditorform.btclose.caption"
+msgid "Close"
+msgstr ""
+
+#: tmacroeditorform.caption
+msgid "Macro editor"
+msgstr ""
+
+#: tmacroeditorform.lbmacrobuttonlabel.caption
+msgid "Macro button label"
+msgstr ""
+
+#: tmacroeditorform.lbmacrotext.caption
+msgid "Macro text"
+msgstr ""
+
+#: tmacroeditorform.lvmacro.columns[0].caption
+msgid "Macro"
+msgstr ""
+
+#: tmacroeditorform.lvmacro.columns[1].caption
+msgctxt "tmacroeditorform.lvmacro.columns[1].caption"
+msgid "Description"
+msgstr ""
+
 #: tmainform.caption
 msgctxt "tmainform.caption"
 msgid "EWLog - HAM Journal"
@@ -4430,6 +4532,11 @@ msgstr ""
 #: tminiform.micontestlogging.caption
 msgctxt "tminiform.micontestlogging.caption"
 msgid "Contest Logging"
+msgstr ""
+
+#: tminiform.micwkeys.caption
+msgctxt "tminiform.micwkeys.caption"
+msgid "CW Keys"
 msgstr ""
 
 #: tminiform.midownloadlang.caption
