@@ -205,11 +205,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="188"/>
         <CursorPos X="33" Y="208"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit19>
       <Unit20>
         <Filename Value="hrdlog.pas"/>
@@ -544,11 +543,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="viewPhoto_U"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="27"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="46"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit53>
       <Unit54>
         <Filename Value="initdb_dm.pas"/>
@@ -557,10 +554,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="292"/>
-        <CursorPos X="31" Y="336"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="309"/>
+        <CursorPos X="7" Y="341"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit54>
       <Unit55>
         <Filename Value="logbooktable_record.pas"/>
@@ -586,9 +584,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="1465"/>
-        <CursorPos X="61" Y="1485"/>
+        <CursorPos X="58" Y="1471"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit57>
@@ -603,8 +601,8 @@
       <Unit59>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="45"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="39"/>
         <CursorPos X="5" Y="39"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -688,8 +686,9 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="2162"/>
-        <CursorPos X="36" Y="2172"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="506"/>
+        <CursorPos X="15" Y="516"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -740,11 +739,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="153"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="498"/>
         <CursorPos X="3" Y="168"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit74>
       <Unit75>
         <Filename Value="mapform_u.pas"/>
@@ -753,9 +751,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MapForm_u"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="50"/>
+        <TopLine Value="47"/>
         <CursorPos X="2" Y="47"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -904,9 +901,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWKeysForm_u"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="206"/>
-        <CursorPos X="44" Y="79"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="79"/>
+        <CursorPos X="3" Y="110"/>
         <UsageCount Value="42"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -918,7 +915,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MacroEditorForm_u"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="48"/>
         <CursorPos X="47" Y="67"/>
         <UsageCount Value="41"/>
@@ -931,11 +928,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWKeysDM_u"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="59"/>
         <CursorPos X="45" Y="64"/>
         <UsageCount Value="39"/>
-        <Loaded Value="True"/>
       </Unit92>
       <Unit93>
         <Filename Value="clusterserver_form_u.pas"/>
@@ -1998,7 +1994,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit235>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="375" TopLine="353"/>
@@ -2115,6 +2111,10 @@
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1686" Column="39" TopLine="1672"/>
       </Position29>
+      <Position30>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="336" Column="31" TopLine="294"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

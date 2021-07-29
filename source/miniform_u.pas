@@ -2190,8 +2190,14 @@ end;
 procedure TMiniForm.TMTimeTimer(Sender: TObject);
 begin
   LBLocalTimeD.Caption := FormatDateTime('hh:mm:ss', Now);
+  {$IFDEF LINUX}
   LBUTCTimeD.Caption := FormatDateTime('hh:mm', NowUTC);
   LBRemoteTimeD.Caption := FormatDateTime('hh:mm', NowUTC + TimeDIF / 24);
+  {$ENDIF LINUX}
+  {$IFDEF WINDOWS}
+  LBUTCTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC);
+  LBRemoteTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC + TimeDIF / 24);
+  {$ENDIF WINDOWS}
   if CBRealTime.Checked then
   begin
     DateTimePicker1.DateTime := NowUTC;
