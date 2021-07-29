@@ -773,8 +773,11 @@ end;
 
 procedure TConfigForm.LVSettingsClick(Sender: TObject);
 begin
+  try
   if LVSettings.Selected.Selected then
   PControl.PageIndex := LVSettings.Selected.Index;
+  except
+  end;
 end;
 
 procedure TConfigForm.LVTelnetSelectItem(Sender: TObject; Item: TListItem;
