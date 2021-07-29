@@ -66,7 +66,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="302"/>
         <CursorPos X="5" Y="333"/>
@@ -416,10 +415,12 @@
         <ComponentName Value="FM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="65"/>
         <CursorPos X="55" Y="65"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit38>
       <Unit39>
         <Filename Value="mmform_u.pas"/>
@@ -427,10 +428,13 @@
         <ComponentName Value="MM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="129"/>
         <CursorPos X="9" Y="168"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit39>
       <Unit40>
         <Filename Value="hamqth.pas"/>
@@ -555,7 +559,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="309"/>
         <CursorPos X="7" Y="341"/>
         <UsageCount Value="200"/>
@@ -585,7 +589,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="1491"/>
         <CursorPos Y="1520"/>
         <UsageCount Value="200"/>
@@ -887,7 +891,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWDaemonDM_u"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="5"/>
         <CursorPos X="60" Y="96"/>
         <UsageCount Value="44"/>
@@ -901,7 +905,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWKeysForm_u"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="91"/>
         <CursorPos Y="111"/>
         <UsageCount Value="43"/>

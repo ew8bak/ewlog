@@ -17,6 +17,7 @@ object FM_Form: TFM_Form
     Top = 0
     Width = 312
     Align = alLeft
+    AutoWidthLastColumn = True
     Columns = <    
       item
         AutoSize = True
@@ -34,7 +35,6 @@ object FM_Form: TFM_Form
         Width = 83
       end    
       item
-        AutoSize = True
         Caption = 'Enabled'
         Width = 82
       end>
