@@ -593,7 +593,7 @@ end;
 procedure TdxClusterForm.SBEditServersClick(Sender: TObject);
 begin
   ConfigForm.Show;
-  ConfigForm.PControl.ActivePageIndex := 4;
+  ConfigForm.PControl.ActivePageIndex := 5;
 end;
 
 procedure TdxClusterForm.SpeedButton7Click(Sender: TObject);
