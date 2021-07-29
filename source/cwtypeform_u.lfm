@@ -1,0 +1,117 @@
+object CWTypeForm: TCWTypeForm
+  Left = 306
+  Height = 313
+  Top = 492
+  Width = 411
+  Caption = 'CW Type'
+  ClientHeight = 313
+  ClientWidth = 411
+  OnClose = FormClose
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object PanelTop: TPanel
+    Left = 0
+    Height = 120
+    Top = 0
+    Width = 411
+    Align = alTop
+    ClientHeight = 120
+    ClientWidth = 411
+    TabOrder = 0
+    object PanelCWKey: TPanel
+      Left = 1
+      Height = 76
+      Top = 43
+      Width = 409
+      Align = alClient
+      AutoSize = True
+      TabOrder = 0
+    end
+    object PanelSetting: TPanel
+      Left = 1
+      Height = 42
+      Top = 1
+      Width = 409
+      Align = alTop
+      ClientHeight = 42
+      ClientWidth = 409
+      TabOrder = 1
+      object LBSpeed: TLabel
+        AnchorSideLeft.Control = PanelSetting
+        AnchorSideTop.Control = PanelSetting
+        AnchorSideTop.Side = asrCenter
+        Left = 6
+        Height = 13
+        Top = 15
+        Width = 62
+        BorderSpacing.Left = 5
+        Caption = 'CW Speed'
+        ParentColor = False
+      end
+      object SESpeed: TSpinEdit
+        AnchorSideLeft.Control = LBSpeed
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = LBSpeed
+        AnchorSideTop.Side = asrCenter
+        Left = 70
+        Height = 26
+        Top = 8
+        Width = 50
+        BorderSpacing.Left = 2
+        MaxValue = 60
+        MinValue = 4
+        OnChange = SESpeedChange
+        TabOrder = 0
+        Value = 4
+      end
+    end
+  end
+  object PanelBottom: TPanel
+    Left = 0
+    Height = 32
+    Top = 281
+    Width = 411
+    Align = alBottom
+    AutoSize = True
+    ClientHeight = 32
+    ClientWidth = 411
+    TabOrder = 1
+    object BtClear: TButton
+      AnchorSideTop.Control = PanelBottom
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = BtClose
+      Left = 311
+      Height = 29
+      Top = 2
+      Width = 44
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      BorderSpacing.Right = 5
+      Caption = 'Clear'
+      TabOrder = 0
+    end
+    object BtClose: TButton
+      AnchorSideTop.Control = PanelBottom
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = PanelBottom
+      AnchorSideRight.Side = asrBottom
+      Left = 360
+      Height = 29
+      Top = 2
+      Width = 45
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      BorderSpacing.Right = 5
+      Caption = 'Close'
+      TabOrder = 1
+    end
+  end
+  object MemoCWText: TMemo
+    Left = 0
+    Height = 161
+    Top = 120
+    Width = 411
+    Align = alClient
+    TabOrder = 2
+  end
+end

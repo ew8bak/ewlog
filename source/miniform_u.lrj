@@ -103,6 +103,7 @@
 {"hash":98633860,"name":"tminiform.menuitem91.caption","sourcebytes":[87,105,122,97,114,100],"value":"Wizard"},
 {"hash":380871,"name":"tminiform.menuitem3.caption","sourcebytes":[86,105,101,119],"value":"View"},
 {"hash":143990083,"name":"tminiform.micwkeys.caption","sourcebytes":[67,87,32,75,101,121,115],"value":"CW Keys"},
+{"hash":144031781,"name":"tminiform.micwtype.caption","sourcebytes":[67,87,32,84,121,112,101],"value":"CW Type"},
 {"hash":150025335,"name":"tminiform.micontestlogging.caption","sourcebytes":[67,111,110,116,101,115,116,32,76,111,103,103,105,110,103],"value":"Contest Logging"},
 {"hash":165750492,"name":"tminiform.menuitem85.caption","sourcebytes":[84,114,97,110,115,99,101,105,118,101,114,32,67,111,110,116,114,111,108],"value":"Transceiver Control"},
 {"hash":116546394,"name":"tminiform.menuitem110.caption","sourcebytes":[68,105,115,112,108,97,121,105,110,103,32,112,104,111,116,111,115,32,119,105,116,104,32,81,82,90],"value":"Displaying photos with QRZ"},

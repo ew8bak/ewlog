@@ -2183,6 +2183,10 @@ object MiniForm: TMiniForm
         Caption = 'CW Keys'
         OnClick = MiCWKeysClick
       end
+      object MICWType: TMenuItem
+        Caption = 'CW Type'
+        OnClick = MICWTypeClick
+      end
       object MIContestLogging: TMenuItem
         Caption = 'Contest Logging'
         OnClick = MIContestLoggingClick

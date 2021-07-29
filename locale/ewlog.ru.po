@@ -2239,6 +2239,27 @@ msgctxt "tcwkeysform.caption"
 msgid "CW Keys"
 msgstr ""
 
+#: tcwtypeform.btclear.caption
+#, fuzzy
+msgctxt "tcwtypeform.btclear.caption"
+msgid "Clear"
+msgstr "Очистить"
+
+#: tcwtypeform.btclose.caption
+#, fuzzy
+msgctxt "tcwtypeform.btclose.caption"
+msgid "Close"
+msgstr "Закрыть"
+
+#: tcwtypeform.caption
+msgctxt "tcwtypeform.caption"
+msgid "CW Type"
+msgstr ""
+
+#: tcwtypeform.lbspeed.caption
+msgid "CW Speed"
+msgstr ""
+
 #: tdxclusterform.caption
 msgctxt "tdxclusterform.caption"
 msgid "DX Cluster"
@@ -4370,6 +4391,46 @@ msgstr "Моя QSL"
 msgid "Local time"
 msgstr "Локальное время"
 
+#: tminiform.macrokeyf1.caption
+msgid "MacroKeyF1"
+msgstr ""
+
+#: tminiform.macrokeyf10.caption
+msgid "MacroKeyF10"
+msgstr ""
+
+#: tminiform.macrokeyf2.caption
+msgid "MacroKeyF2"
+msgstr ""
+
+#: tminiform.macrokeyf3.caption
+msgid "MacroKeyF3"
+msgstr ""
+
+#: tminiform.macrokeyf4.caption
+msgid "MacroKeyF4"
+msgstr ""
+
+#: tminiform.macrokeyf5.caption
+msgid "MacroKeyF5"
+msgstr ""
+
+#: tminiform.macrokeyf6.caption
+msgid "MacroKeyF6"
+msgstr ""
+
+#: tminiform.macrokeyf7.caption
+msgid "MacroKeyF7"
+msgstr ""
+
+#: tminiform.macrokeyf8.caption
+msgid "MacroKeyF8"
+msgstr ""
+
+#: tminiform.macrokeyf9.caption
+msgid "MacroKeyF9"
+msgstr ""
+
 #: tminiform.menuitem102.caption
 msgctxt "tminiform.menuitem102.caption"
 msgid "Donations"
@@ -4583,6 +4644,11 @@ msgstr "Контест лог"
 #: tminiform.micwkeys.caption
 msgctxt "tminiform.micwkeys.caption"
 msgid "CW Keys"
+msgstr ""
+
+#: tminiform.micwtype.caption
+msgctxt "tminiform.micwtype.caption"
+msgid "CW Type"
 msgstr ""
 
 #: tminiform.midownloadlang.caption
@@ -4854,6 +4920,7 @@ msgid "Cancel"
 msgstr "Отмена"
 
 #: tqslmanager_form.button3.caption
+msgctxt "tqslmanager_form.button3.caption"
 msgid "Clear"
 msgstr "Очистить"
 

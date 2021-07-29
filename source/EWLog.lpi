@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="93">
+    <Units Count="94">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -746,6 +746,13 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWKeysDM_u"/>
       </Unit92>
+      <Unit93>
+        <Filename Value="cwtypeform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CWTypeForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="CWTypeForm_u"/>
+      </Unit93>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

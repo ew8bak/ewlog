@@ -2215,6 +2215,25 @@ msgctxt "tcwkeysform.caption"
 msgid "CW Keys"
 msgstr ""
 
+#: tcwtypeform.btclear.caption
+msgctxt "tcwtypeform.btclear.caption"
+msgid "Clear"
+msgstr ""
+
+#: tcwtypeform.btclose.caption
+msgctxt "tcwtypeform.btclose.caption"
+msgid "Close"
+msgstr ""
+
+#: tcwtypeform.caption
+msgctxt "tcwtypeform.caption"
+msgid "CW Type"
+msgstr ""
+
+#: tcwtypeform.lbspeed.caption
+msgid "CW Speed"
+msgstr ""
+
 #: tdxclusterform.caption
 msgctxt "tdxclusterform.caption"
 msgid "DX Cluster"
@@ -4585,6 +4604,11 @@ msgctxt "tminiform.micwkeys.caption"
 msgid "CW Keys"
 msgstr ""
 
+#: tminiform.micwtype.caption
+msgctxt "tminiform.micwtype.caption"
+msgid "CW Type"
+msgstr ""
+
 #: tminiform.midownloadlang.caption
 msgctxt "tminiform.midownloadlang.caption"
 msgid "Download Languages"
@@ -4846,6 +4870,7 @@ msgid "Cancel"
 msgstr ""
 
 #: tqslmanager_form.button3.caption
+msgctxt "tqslmanager_form.button3.caption"
 msgid "Clear"
 msgstr ""
 

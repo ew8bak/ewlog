@@ -1,0 +1,6 @@
+{"version":1,"strings":[
+{"hash":144031781,"name":"tcwtypeform.caption","sourcebytes":[67,87,32,84,121,112,101],"value":"CW Type"},
+{"hash":156921652,"name":"tcwtypeform.lbspeed.caption","sourcebytes":[67,87,32,83,112,101,101,100],"value":"CW Speed"},
+{"hash":4860802,"name":"tcwtypeform.btclear.caption","sourcebytes":[67,108,101,97,114],"value":"Clear"},
+{"hash":4863637,"name":"tcwtypeform.btclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"}
+]}

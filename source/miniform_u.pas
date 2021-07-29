@@ -128,6 +128,7 @@ type
     LBBand: TLabel;
     LBMode: TLabel;
     MainMenu: TMainMenu;
+    MICWType: TMenuItem;
     MiCWKeys: TMenuItem;
     MIContestLogging: TMenuItem;
     N8: TMenuItem;
@@ -273,6 +274,7 @@ type
     procedure MenuItem85Click(Sender: TObject);
     procedure MIContestLoggingClick(Sender: TObject);
     procedure MiCWKeysClick(Sender: TObject);
+    procedure MICWTypeClick(Sender: TObject);
     procedure MIExtProgClick(Sender: TObject);
     procedure miMapTopClick(Sender: TObject);
     procedure MiMainTopClick(Sender: TObject);
@@ -367,7 +369,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
-  WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u, CWKeysForm_u;
+  WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u, CWKeysForm_u, CWTypeForm_u;
 
 {$R *.lfm}
 
@@ -946,6 +948,12 @@ end;
 procedure TMiniForm.MiCWKeysClick(Sender: TObject);
 begin
   CWKeysForm.Show;
+end;
+
+procedure TMiniForm.MICWTypeClick(Sender: TObject);
+begin
+  CWTypeForm.Show;
+  MiCWKeys.Enabled := False;
 end;
 
 procedure TMiniForm.ProgramItemClick(Sender: TObject);
