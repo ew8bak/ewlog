@@ -258,10 +258,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="setupForm_U"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="213"/>
         <CursorPos X="57" Y="214"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit24>
       <Unit25>
         <Filename Value="updateform_u.pas"/>
@@ -414,7 +417,7 @@
         <ComponentName Value="FM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="65"/>
         <CursorPos X="55" Y="65"/>
         <UsageCount Value="200"/>
@@ -426,7 +429,7 @@
         <ComponentName Value="MM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="129"/>
         <CursorPos X="45" Y="151"/>
         <UsageCount Value="200"/>
@@ -555,7 +558,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="309"/>
         <CursorPos X="7" Y="341"/>
         <UsageCount Value="200"/>
@@ -585,7 +588,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="1491"/>
         <CursorPos Y="1520"/>
         <UsageCount Value="200"/>
@@ -726,13 +729,11 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="593"/>
         <CursorPos X="43" Y="596"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit73>
       <Unit74>
         <Filename Value="gridsform_u.pas"/>
@@ -835,7 +836,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos X="42" Y="382"/>
-        <UsageCount Value="195"/>
+        <UsageCount Value="196"/>
       </Unit83>
       <Unit84>
         <Filename Value="dmcontest_u.pas"/>
@@ -846,7 +847,7 @@
         <UnitName Value="dmContest_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="131"/>
-        <UsageCount Value="191"/>
+        <UsageCount Value="192"/>
       </Unit84>
       <Unit85>
         <Filename Value="fms_record.pas"/>
@@ -854,14 +855,14 @@
         <UnitName Value="FMS_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="104" Y="12"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="175"/>
       </Unit85>
       <Unit86>
         <Filename Value="ico\telnetaddresrecord_u.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="125"/>
       </Unit86>
       <Unit87>
         <Filename Value="dmmigrate_u.pas"/>
@@ -872,7 +873,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="108"/>
         <CursorPos X="52" Y="11"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="105"/>
       </Unit87>
       <Unit88>
         <Filename Value="exportsotathread.pas"/>
@@ -881,7 +882,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="77" Y="109"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="88"/>
       </Unit88>
       <Unit89>
         <Filename Value="cwdaemondm_u.pas"/>
@@ -890,12 +891,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWDaemonDM_u"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="5"/>
         <CursorPos X="60" Y="96"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit89>
       <Unit90>
         <Filename Value="cwkeysform_u.pas"/>
@@ -904,12 +904,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWKeysForm_u"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="91"/>
         <CursorPos Y="111"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="44"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit90>
       <Unit91>
         <Filename Value="macroeditorform_u.pas"/>
@@ -920,7 +919,7 @@
         <UnitName Value="MacroEditorForm_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="47" Y="67"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
       </Unit91>
       <Unit92>
         <Filename Value="cwkeysdm_u.pas"/>
@@ -932,7 +931,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="59"/>
         <CursorPos X="45" Y="64"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
       </Unit92>
       <Unit93>
         <Filename Value="clusterserver_form_u.pas"/>
