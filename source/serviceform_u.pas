@@ -41,6 +41,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     OpenDialog1: TOpenDialog;
+    Panel1: TPanel;
     ProgressBar1: TProgressBar;
     SpeedButton1: TSpeedButton;
     UPDATEQuery: TSQLQuery;

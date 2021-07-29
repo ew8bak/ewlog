@@ -9,7 +9,7 @@ object MapForm: TMapForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object MapView: TMapView
     Left = 0
     Height = 326

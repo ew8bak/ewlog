@@ -68,12 +68,6 @@ end;
 
 procedure TMainForm.FormShow(Sender: TObject);
 begin
- { if (IniSet.FormState = 'Maximized') and (IniSet.MainForm = 'MAIN') then
-    MainForm.WindowState := wsMaximized
-  else
-  if (IniSet._l_main <> 0) and (IniSet._t_main <> 0) and
-    (IniSet._w_main <> 0) and (IniSet._h_main <> 0) then
-    MainForm.SetBounds(IniSet._l_main, IniSet._t_main, IniSet._w_main, IniSet._h_main); }
   MainFunc.LoadWindowPosition(MainForm);
 end;
 
@@ -107,8 +101,7 @@ begin
   INIFile.WriteString('SetLog', 'PastSubMode', MiniForm.CBSubMode.Text);
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
-  if IniSet.trxShow then
-    MainFunc.SaveWindowPosition(TRXForm);
+  TRXForm.SavePosition;
   if IniSet.pShow then
     MainFunc.SaveWindowPosition(viewPhoto);
   if dxClusterForm <> nil then

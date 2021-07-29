@@ -375,6 +375,11 @@ begin
     MIMapForm.Checked := StateForm;
     Exit;
   end;
+   if NameForm = 'EarthForm' then
+  begin
+    MIMapForm.Checked := StateForm;
+    Exit;
+  end;
 end;
 
 procedure TMiniForm.SentCloudLogCat;
@@ -1035,7 +1040,6 @@ end;
 
 procedure TMiniForm.MIMapFormClick(Sender: TObject);
 begin
-
   if MIMapForm.Checked then
   begin
     INIFile.WriteBool('SetLog', 'eShow', True);
@@ -1668,6 +1672,7 @@ end;
 procedure TMiniForm.CBMapChange(Sender: TObject);
 begin
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
+  IniSet.Map_Use := CBMap.Checked;
   if IniSet.MainForm <> 'MULTI' then
   begin
     if CBMap.Checked then
@@ -1701,6 +1706,7 @@ begin
     begin
       Earth.BorderStyle := bsSizeable;
       Earth.Show;
+      if MapForm.Showing then
       MapForm.Close;
     end;
   end;
@@ -2096,6 +2102,7 @@ begin
   Earth.SavePosition;
   dxClusterForm.SavePosition;
   TRXForm.SavePosition;
+  CWKeysForm.SavePosition;
   viewPhoto.SavePosition;
   if IniSet.Map_Use then
     MapForm.SavePosition
@@ -2183,8 +2190,8 @@ end;
 procedure TMiniForm.TMTimeTimer(Sender: TObject);
 begin
   LBLocalTimeD.Caption := FormatDateTime('hh:mm:ss', Now);
-  LBUTCTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC);
-  LBRemoteTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC + TimeDIF / 24);
+  LBUTCTimeD.Caption := FormatDateTime('hh:mm', NowUTC);
+  LBRemoteTimeD.Caption := FormatDateTime('hh:mm', NowUTC + TimeDIF / 24);
   if CBRealTime.Checked then
   begin
     DateTimePicker1.DateTime := NowUTC;

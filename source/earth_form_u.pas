@@ -22,6 +22,7 @@ type
   { TEarth }
 
   TEarth = class(TForm)
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
@@ -41,7 +42,7 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm, MainFuncDM;
+uses dmFunc_U, InitDB_dm, MainFuncDM, miniform_u;
 
 {$R *.lfm}
 
@@ -50,6 +51,11 @@ uses dmFunc_U, InitDB_dm, MainFuncDM;
 procedure TEarth.SavePosition;
 begin
   MainFunc.SaveWindowPosition(Earth);
+end;
+
+procedure TEarth.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  MiniForm.CheckFormMenu('EarthForm', False);
 end;
 
 procedure TEarth.FormCreate(Sender: TObject);

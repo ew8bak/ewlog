@@ -59,6 +59,7 @@ type
 
   public
     procedure LoadButtonLabel;
+    procedure SavePosition;
 
   end;
 
@@ -72,6 +73,12 @@ uses InitDB_dm, CWDaemonDM_u, MacroEditorForm_u, MainFuncDM;
 {$R *.lfm}
 
 { TCWKeysForm }
+
+procedure TCWKeysForm.SavePosition;
+begin
+  if CWKeysForm.Showing then
+    MainFunc.SaveWindowPosition(CWKeysForm);
+end;
 
 procedure TCWKeysForm.LoadButtonLabel;
 var
@@ -101,7 +108,8 @@ var
 begin
   Macros := CWKeysDM.ReadRec(number - 1);
   {$IFDEF LINUX}
-  CWDaemonDM.SendTextCWDaemon(CWKeysDM.ReplaceMacro(Macros.Macro));
+  if CWDaemonDM.IdCWDaemonClient.Connected then
+    CWDaemonDM.SendTextCWDaemon(CWKeysDM.ReplaceMacro(Macros.Macro));
   {$ENDIF LINUX}
 end;
 
@@ -228,7 +236,7 @@ end;
 procedure TCWKeysForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   CWKeysDM.CloseMacroFile;
-  MainFunc.SaveWindowPosition(CWKeysForm);
+  SavePosition;
 end;
 
 procedure TCWKeysForm.FormShow(Sender: TObject);

@@ -207,6 +207,7 @@ uses
 
 procedure TTRXForm.SavePosition;
 begin
+  if TRXForm.Showing then
   MainFunc.SaveWindowPosition(TRXForm);
 end;
 
