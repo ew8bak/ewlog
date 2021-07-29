@@ -2362,6 +2362,56 @@ object MiniForm: TMiniForm
       OnExecute = ExportADIExecute
       ShortCut = 32837
     end
+    object MacroKeyF1: TAction
+      Caption = 'MacroKeyF1'
+      OnExecute = MacroKeyF1Execute
+      ShortCut = 112
+    end
+    object MacroKeyF2: TAction
+      Caption = 'MacroKeyF2'
+      OnExecute = MacroKeyF2Execute
+      ShortCut = 113
+    end
+    object MacroKeyF3: TAction
+      Caption = 'MacroKeyF3'
+      OnExecute = MacroKeyF3Execute
+      ShortCut = 114
+    end
+    object MacroKeyF4: TAction
+      Caption = 'MacroKeyF4'
+      OnExecute = MacroKeyF4Execute
+      ShortCut = 115
+    end
+    object MacroKeyF5: TAction
+      Caption = 'MacroKeyF5'
+      OnExecute = MacroKeyF5Execute
+      ShortCut = 116
+    end
+    object MacroKeyF6: TAction
+      Caption = 'MacroKeyF6'
+      OnExecute = MacroKeyF6Execute
+      ShortCut = 117
+    end
+    object MacroKeyF7: TAction
+      Caption = 'MacroKeyF7'
+      OnExecute = MacroKeyF7Execute
+      ShortCut = 118
+    end
+    object MacroKeyF8: TAction
+      Caption = 'MacroKeyF8'
+      OnExecute = MacroKeyF8Execute
+      ShortCut = 119
+    end
+    object MacroKeyF9: TAction
+      Caption = 'MacroKeyF9'
+      OnExecute = MacroKeyF9Execute
+      ShortCut = 120
+    end
+    object MacroKeyF10: TAction
+      Caption = 'MacroKeyF10'
+      OnExecute = MacroKeyF10Execute
+      ShortCut = 121
+    end
   end
   object CheckUpdateTimer: TTimer
     Enabled = False

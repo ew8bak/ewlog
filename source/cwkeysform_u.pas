@@ -108,7 +108,7 @@ var
 begin
   Macros := CWKeysDM.ReadRec(number - 1);
   {$IFDEF LINUX}
-  if CWDaemonDM.IdCWDaemonClient.Connected then
+  if CWDaemonDM.IdCWDaemonClient.Active then
     CWDaemonDM.SendTextCWDaemon(CWKeysDM.ReplaceMacro(Macros.Macro));
   {$ENDIF LINUX}
 end;

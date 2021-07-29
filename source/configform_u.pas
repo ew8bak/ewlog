@@ -17,7 +17,7 @@ uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock,
   ResourceStr, synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
-  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, Types;
+  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, Types, CWDaemonDM_u;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -330,6 +330,7 @@ begin
   begin
     ListItem := LVSettings.Items.Add;
     ListItem.Caption := PControl.Pages[i].Caption;
+
   end;
 end;
 
@@ -388,10 +389,10 @@ begin
   INIFile.WriteString('WorkOnLAN', 'Port', EditWOLPort.Text);
   INIFile.WriteBool('WorkOnLAN', 'Enable', CBWOLEnable.Checked);
 
-   INIFile.ReadString('CWDaemon', 'Address', EditCwDaemonAddress.Text);
-   INIFile.ReadInteger('CWDaemon', 'Port', StrToInt(EditCwDaemonPort.Text));
-   INIFile.ReadInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
-   INIFile.ReadBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
+   INIFile.WriteString('CWDaemon', 'Address', EditCwDaemonAddress.Text);
+   INIFile.WriteInteger('CWDaemon', 'Port', StrToInt(EditCwDaemonPort.Text));
+   INIFile.WriteInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
+   INIFile.WriteBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
 
 
 
@@ -963,6 +964,7 @@ begin
   MainFunc.LoadINIsettings;
   MiniForm.SetHotKey;
   ServerDM.StartWOL;
+  CWDaemonDM.StartCWDaemon;
   MainFunc.SetGrid(GridsForm.DBGrid1);
   MainFunc.SetGrid(GridsForm.DBGrid2);
   ConfigForm.Close;

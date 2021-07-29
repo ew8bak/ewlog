@@ -535,8 +535,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 414
-          ClientWidth = 511
+          ClientHeight = 439
+          ClientWidth = 517
           object LBTransceiverModel: TLabel
             AnchorSideLeft.Control = TSHamlib
             AnchorSideTop.Control = TSHamlib
@@ -1890,8 +1890,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object PColors: TTabSheet
           Caption = 'Colors'
-          ClientHeight = 414
-          ClientWidth = 511
+          ClientHeight = 439
+          ClientWidth = 517
           object gbGridsColor: TGroupBox
             Left = 8
             Height = 192
@@ -2035,8 +2035,8 @@ object ConfigForm: TConfigForm
         end
         object PGrids: TTabSheet
           Caption = 'Grids'
-          ClientHeight = 414
-          ClientWidth = 511
+          ClientHeight = 439
+          ClientWidth = 517
           object Label7: TLabel
             Left = 1
             Height = 13
@@ -2610,6 +2610,7 @@ object ConfigForm: TConfigForm
     Top = 0
     Width = 186
     Align = alLeft
+    AutoWidthLastColumn = True
     Columns = <>
     ReadOnly = True
     ScrollBars = ssAutoBoth

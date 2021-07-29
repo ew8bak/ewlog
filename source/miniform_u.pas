@@ -25,6 +25,16 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
+    MacroKeyF2: TAction;
+    MacroKeyF3: TAction;
+    MacroKeyF4: TAction;
+    MacroKeyF5: TAction;
+    MacroKeyF6: TAction;
+    MacroKeyF7: TAction;
+    MacroKeyF8: TAction;
+    MacroKeyF9: TAction;
+    MacroKeyF10: TAction;
+    MacroKeyF1: TAction;
     ExportADI: TAction;
     ImportADI: TAction;
     GetReference: TAction;
@@ -216,6 +226,8 @@ type
     UTCLabel: TLabel;
     LocalTimeLabel: TLabel;
     Panel1: TPanel;
+    procedure MacroKeyF10Execute(Sender: TObject);
+    procedure MacroKeyF1Execute(Sender: TObject);
     procedure CBBandChange(Sender: TObject);
     procedure CBBandCloseUp(Sender: TObject);
     procedure CBCurrentLogChange(Sender: TObject);
@@ -242,6 +254,14 @@ type
     procedure FormShow(Sender: TObject);
     procedure GetReferenceExecute(Sender: TObject);
     procedure ImportADIExecute(Sender: TObject);
+    procedure MacroKeyF2Execute(Sender: TObject);
+    procedure MacroKeyF3Execute(Sender: TObject);
+    procedure MacroKeyF4Execute(Sender: TObject);
+    procedure MacroKeyF5Execute(Sender: TObject);
+    procedure MacroKeyF6Execute(Sender: TObject);
+    procedure MacroKeyF7Execute(Sender: TObject);
+    procedure MacroKeyF8Execute(Sender: TObject);
+    procedure MacroKeyF9Execute(Sender: TObject);
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
@@ -765,6 +785,54 @@ end;
 procedure TMiniForm.ImportADIExecute(Sender: TObject);
 begin
   ImportADIFForm.Show;
+end;
+
+procedure TMiniForm.MacroKeyF2Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF2.Click;
+end;
+
+procedure TMiniForm.MacroKeyF3Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF3.Click;
+end;
+
+procedure TMiniForm.MacroKeyF4Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF4.Click;
+end;
+
+procedure TMiniForm.MacroKeyF5Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF5.Click;
+end;
+
+procedure TMiniForm.MacroKeyF6Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF6.Click;
+end;
+
+procedure TMiniForm.MacroKeyF7Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF7.Click;
+end;
+
+procedure TMiniForm.MacroKeyF8Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF8.Click;
+end;
+
+procedure TMiniForm.MacroKeyF9Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF9.Click;
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
@@ -1820,6 +1888,18 @@ end;
 procedure TMiniForm.CBBandChange(Sender: TObject);
 begin
   SentCloudLogCat;
+end;
+
+procedure TMiniForm.MacroKeyF1Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF1.Click;
+end;
+
+procedure TMiniForm.MacroKeyF10Execute(Sender: TObject);
+begin
+  if CWKeysForm.Showing then
+  CWKeysForm.BtF10.Click;
 end;
 
 procedure TMiniForm.CBSaveUTCChange(Sender: TObject);

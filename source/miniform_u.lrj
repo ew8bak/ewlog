@@ -135,5 +135,15 @@
 {"hash":193392932,"name":"tminiform.clearedit.caption","sourcebytes":[67,108,101,97,114,69,100,105,116],"value":"ClearEdit"},
 {"hash":135543845,"name":"tminiform.getreference.caption","sourcebytes":[71,101,116,82,101,102,101,114,101,110,99,101],"value":"GetReference"},
 {"hash":124376521,"name":"tminiform.importadi.caption","sourcebytes":[73,109,112,111,114,116,65,68,73],"value":"ImportADI"},
-{"hash":124373369,"name":"tminiform.exportadi.caption","sourcebytes":[69,120,112,111,114,116,65,68,73],"value":"ExportADI"}
+{"hash":124373369,"name":"tminiform.exportadi.caption","sourcebytes":[69,120,112,111,114,116,65,68,73],"value":"ExportADI"},
+{"hash":155515441,"name":"tminiform.macrokeyf1.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,49],"value":"MacroKeyF1"},
+{"hash":155515442,"name":"tminiform.macrokeyf2.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,50],"value":"MacroKeyF2"},
+{"hash":155515443,"name":"tminiform.macrokeyf3.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,51],"value":"MacroKeyF3"},
+{"hash":155515444,"name":"tminiform.macrokeyf4.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,52],"value":"MacroKeyF4"},
+{"hash":155515445,"name":"tminiform.macrokeyf5.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,53],"value":"MacroKeyF5"},
+{"hash":155515446,"name":"tminiform.macrokeyf6.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,54],"value":"MacroKeyF6"},
+{"hash":155515447,"name":"tminiform.macrokeyf7.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,55],"value":"MacroKeyF7"},
+{"hash":155515448,"name":"tminiform.macrokeyf8.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,56],"value":"MacroKeyF8"},
+{"hash":155515449,"name":"tminiform.macrokeyf9.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,57],"value":"MacroKeyF9"},
+{"hash":72328144,"name":"tminiform.macrokeyf10.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,49,48],"value":"MacroKeyF10"}
 ]}
