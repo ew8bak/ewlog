@@ -49,6 +49,7 @@ begin
   Application.CreateForm(TMiniForm, MiniForm);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TServerDM, ServerDM);
+  Application.CreateForm(TCWKeysDM, CWKeysDM);
   Application.CreateForm(TCWDaemonDM, CWDaemonDM);
   Application.CreateForm(TGridsForm, GridsForm);
   Application.CreateForm(TEditQSO_Form, EditQSO_Form);

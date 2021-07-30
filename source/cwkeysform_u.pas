@@ -84,29 +84,27 @@ procedure TCWKeysForm.LoadButtonLabel;
 var
   i: integer;
   comp: TComponent;
-  Macros: array [0..9] of TMacros;
+  //Macros: MacrosArray;
 begin
-  if not CWKeysDM.OpenMacroFile(FilePATH + 'macros.dat') then
-    CWKeysDM.CreateMacroFile(FilePATH + 'macros.dat');
-  for i := 0 to 9 do
+{  if CWKeysDM.OpenMacroTable then
   begin
-    Macros[i] := CWKeysDM.ReadNextRec;
-  end;
+      Macros := CWKeysDM.LoadAllMacro;
 
-  for i := 0 to 9 do
-  begin
-    comp := FindComponent('BtF' + IntToStr(i + 1));
-    if comp is TButton then
-      if Macros[i].Name <> TButton(comp).Caption then
-        TButton(comp).Caption := 'F' + IntToStr(i + 1) + ' ' + Macros[i].Name;
-  end;
+    for i := 1 to High(Macros) do
+    begin
+      comp := FindComponent('BtF' + IntToStr(i));
+      if comp is TButton then
+        if Macros[i].Name <> TButton(comp).Caption then
+          TButton(comp).Caption := 'F' + IntToStr(i) + ' ' + Macros[i].Name;
+    end;
+  end; }
 end;
 
 procedure TCWKeysForm.SendMacros(number: integer);
 var
   Macros: TMacros;
 begin
-  Macros := CWKeysDM.ReadRec(number - 1);
+  //Macros := CWKeysDM.ReadRec(number - 1);
   {$IFDEF LINUX}
   if CWDaemonDM.IdCWDaemonClient.Active then
     CWDaemonDM.SendTextCWDaemon(CWKeysDM.ReplaceMacro(Macros.Macro));
@@ -235,7 +233,6 @@ end;
 
 procedure TCWKeysForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  CWKeysDM.CloseMacroFile;
   SavePosition;
 end;
 

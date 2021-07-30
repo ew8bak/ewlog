@@ -53,10 +53,10 @@ begin
   Rec.Name := EditMacroButtonLabel.Text;
   Rec.Button := 'F' + IntToStr(ButtonNumber);
   Rec.Macro := MemoMacroText.Text;
-  if CWKeysDM.ReadRec(ButtonNumber - 1).Button <> '' then
-    CWKeysDM.ModifyRec(ButtonNumber - 1, Rec)
+ { if CWKeysDM.ReadRec(ButtonNumber).Button <> '' then
+    CWKeysDM.ModifyRec(ButtonNumber, Rec)
   else
-    CWKeysDM.AddRec(Rec);
+    CWKeysDM.AddRec(Rec); }
 end;
 
 procedure TMacroEditorForm.BtCloseClick(Sender: TObject);
@@ -78,7 +78,7 @@ var
 begin
   EditMacroButtonLabel.Text := ButtonName;
   ButtonNumber := Number;
-  MacroRec := CWKeysDM.ReadRec(Number - 1);
+//  MacroRec := CWKeysDM.ReadRec(Number);
   MemoMacroText.Text := MacroRec.Macro;
   if MacroRec.Name <> '' then
     EditMacroButtonLabel.Text := MacroRec.Name

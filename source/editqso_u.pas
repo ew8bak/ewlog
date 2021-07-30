@@ -238,8 +238,8 @@ begin
       ComboBox1.Text, ComboBox2.Text))
   else
     NameBand := ComboBox1.Text;
-
-  FREQ_string := ComboBox1.Text;
+  NameBand := StringReplace(NameBand, ',', '.', [rfReplaceAll]);
+  FREQ_string := NameBand;
   Delete(FREQ_string, length(FREQ_string) - 2, 1);
   DigiBand := dmFunc.GetDigiBandFromFreq(FREQ_string);
 

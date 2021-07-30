@@ -1,7 +1,7 @@
 object SetupForm: TSetupForm
-  Left = 561
+  Left = 529
   Height = 346
-  Top = 257
+  Top = 258
   Width = 630
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog

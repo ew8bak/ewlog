@@ -1,7 +1,7 @@
 object CWTypeForm: TCWTypeForm
-  Left = 306
+  Left = 302
   Height = 313
-  Top = 492
+  Top = 633
   Width = 411
   Caption = 'CW Type'
   ClientHeight = 313
