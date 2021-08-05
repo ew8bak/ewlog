@@ -143,8 +143,8 @@ type
 
 procedure TdxClusterForm.SavePosition;
 begin
-    MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
-    MainFunc.SaveWindowPosition(dxClusterForm);
+  MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
+  MainFunc.SaveWindowPosition(dxClusterForm);
 end;
 
 function TdxClusterForm.GetModeFromFreq(MHz: string): string;
@@ -206,6 +206,9 @@ var
 begin
   comment := cname + ' ' + mode + ' ' + rsts;
   try
+    freq := StringReplace(freq, ',', '.', [rfReplaceAll]);
+    Memo1.Lines.Add(Trim(Format('SENT dx BY ' + IniSet.Cluster_Login + ' %s %s %s',
+      [freq, call, comment])) + #13#10);
     DXTelnetClient.SendMessage(Trim(Format('dx %s %s %s', [freq, call, comment])) +
       #13#10);
   except
@@ -786,7 +789,8 @@ begin
         FreqFloat := FreqFloat / 1000;
         if IniSet.showBand then
           MiniForm.CBBand.Text :=
-            dmFunc.GetBandFromFreq(StringReplace(FormatFloat(view_freq, FreqFloat), ',', '.', [rfReplaceAll]))
+            dmFunc.GetBandFromFreq(StringReplace(FormatFloat(view_freq, FreqFloat),
+            ',', '.', [rfReplaceAll]))
         else
           MiniForm.CBBand.Text :=
             StringReplace(FormatFloat(view_freq, FreqFloat), ',', '.', [rfReplaceAll]);
