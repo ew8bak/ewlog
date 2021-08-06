@@ -36,6 +36,8 @@ type
   public
     function ReplaceMacro(str: string): string;
     function SearchMacro(ButtonID: integer): TMacros;
+    procedure AddMacro(Macro: TMacros);
+    procedure UpdateMacro(Macro: TMacros);
 
   end;
 
@@ -147,6 +149,32 @@ begin
       Result.Macro := MacrosArray[i].Macro;
       Break;
     end;
+end;
+
+procedure TCWKeysDM.AddMacro(Macro: TMacros);
+begin
+  try
+    MacroQuery.SQL.Text := 'INSERT INTO MacroTable (ButtonID, ButtonName, Macro) ' +
+      'VALUES (' + IntToStr(Macro.ButtonID) + ',' + QuotedStr(Macro.ButtonName) +
+      ',' + QuotedStr(Macro.Macro) + ')';
+    MacroQuery.ExecSQL;
+    MacroTransaction.Commit;
+    LoadMacroArray;
+  except
+    on E: ESQLDatabaseError do
+      if E.ErrorCode = 1555 then
+        UpdateMacro(Macro);
+  end;
+end;
+
+procedure TCWKeysDM.UpdateMacro(Macro: TMacros);
+begin
+  MacroQuery.SQL.Text := 'UPDATE MacroTable SET ButtonName = ' +
+    QuotedStr(Macro.ButtonName) + ', Macro = ' + QuotedStr(Macro.Macro) +
+    ' WHERE ButtonID = ' + IntToStr(Macro.ButtonID);
+  MacroQuery.ExecSQL;
+  MacroTransaction.Commit;
+  LoadMacroArray;
 end;
 
 function TCWKeysDM.ReplaceMacro(str: string): string;

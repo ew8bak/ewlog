@@ -30,6 +30,8 @@ type
     procedure LVMacroSelectItem(Sender: TObject; Item: TListItem;
       Selected: boolean);
   private
+    ButSearchNumber: integer;
+    ButRealNumber: integer;
 
   public
     procedure ShowWithButton(ButtonName: string; Number: integer);
@@ -50,13 +52,13 @@ procedure TMacroEditorForm.BtApplyClick(Sender: TObject);
 var
   Rec: TMacros;
 begin
-  //Rec.ButtonName := EditMacroButtonLabel.Text;
-  // Rec.ButtonID := ButtonNumber;
-  // Rec.Macro := MemoMacroText.Text;
- { if CWKeysDM.ReadRec(ButtonNumber).Button <> '' then
-    CWKeysDM.ModifyRec(ButtonNumber, Rec)
+  Rec.ButtonID := ButRealNumber;
+  Rec.ButtonName := EditMacroButtonLabel.Text;
+  Rec.Macro := MemoMacroText.Text;
+  if ButSearchNumber > -1 then
+    CWKeysDM.UpdateMacro(Rec)
   else
-    CWKeysDM.AddRec(Rec); }
+    CWKeysDM.AddMacro(Rec);
 end;
 
 procedure TMacroEditorForm.BtCloseClick(Sender: TObject);
@@ -77,6 +79,8 @@ var
   Macro: TMacros;
 begin
   Macro := CWKeysDM.SearchMacro(Number);
+  ButSearchNumber := Macro.ButtonID;
+  ButRealNumber := Number;
   if Macro.ButtonID > -1 then
   begin
     EditMacroButtonLabel.Text := Macro.ButtonName;

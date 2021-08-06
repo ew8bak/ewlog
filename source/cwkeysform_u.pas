@@ -90,7 +90,8 @@ begin
     comp := FindComponent('BtF' + IntToStr(MacrosArray[i].ButtonID));
     if comp is TButton then
       if 'BtF' + IntToStr(MacrosArray[i].ButtonID) = TButton(comp).Name then
-        TButton(comp).Caption := 'F' + IntToStr(MacrosArray[i].ButtonID) + ' ' + MacrosArray[i].ButtonName;
+        TButton(comp).Caption :=
+          'F' + IntToStr(MacrosArray[i].ButtonID) + ' ' + MacrosArray[i].ButtonName;
   end;
 end;
 
@@ -98,7 +99,7 @@ procedure TCWKeysForm.SendMacros(number: integer);
 var
   Macros: TMacros;
 begin
-  //Macros := CWKeysDM.ReadRec(number - 1);
+  Macros := CWKeysDM.SearchMacro(number);
   {$IFDEF LINUX}
   if CWDaemonDM.IdCWDaemonClient.Active then
     CWDaemonDM.SendTextCWDaemon(CWKeysDM.ReplaceMacro(Macros.Macro));
