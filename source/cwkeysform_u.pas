@@ -84,20 +84,14 @@ procedure TCWKeysForm.LoadButtonLabel;
 var
   i: integer;
   comp: TComponent;
-  //Macros: MacrosArray;
 begin
-{  if CWKeysDM.OpenMacroTable then
+  for i := 0 to High(MacrosArray) do
   begin
-      Macros := CWKeysDM.LoadAllMacro;
-
-    for i := 1 to High(Macros) do
-    begin
-      comp := FindComponent('BtF' + IntToStr(i));
-      if comp is TButton then
-        if Macros[i].Name <> TButton(comp).Caption then
-          TButton(comp).Caption := 'F' + IntToStr(i) + ' ' + Macros[i].Name;
-    end;
-  end; }
+    comp := FindComponent('BtF' + IntToStr(MacrosArray[i].ButtonID));
+    if comp is TButton then
+      if 'BtF' + IntToStr(MacrosArray[i].ButtonID) = TButton(comp).Name then
+        TButton(comp).Caption := 'F' + IntToStr(MacrosArray[i].ButtonID) + ' ' + MacrosArray[i].ButtonName;
+  end;
 end;
 
 procedure TCWKeysForm.SendMacros(number: integer);

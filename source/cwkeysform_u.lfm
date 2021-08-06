@@ -1,7 +1,7 @@
 object CWKeysForm: TCWKeysForm
-  Left = 864
+  Left = 377
   Height = 68
-  Top = 242
+  Top = 183
   Width = 407
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle

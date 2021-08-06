@@ -5,14 +5,17 @@ unit CWKeysDM_u;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, Variants, Dialogs;
+  Classes, SysUtils, SQLDB, Variants, Dialogs, SQLite3Conn;
 
 type
   TMacros = record
-    Button: string[2];
-    Name: string[20];
+    ButtonID: integer;
+    ButtonName: string[20];
     Macro: string[255];
   end;
+
+type
+  TMacroArray = array of TMacros;
 
 type
 
@@ -20,15 +23,25 @@ type
 
   TCWKeysDM = class(TDataModule)
     procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
+    MacroDB: TSQLite3Connection;
+    MacroQuery: TSQLQuery;
+    MacroTransaction: TSQLTransaction;
+    function OpenOrCreateMacroDB: boolean;
+    function CreateMacroDBTable: boolean;
+    procedure CloseMacroDB;
+    procedure LoadMacroArray;
 
   public
     function ReplaceMacro(str: string): string;
+    function SearchMacro(ButtonID: integer): TMacros;
 
   end;
 
 var
   CWKeysDM: TCWKeysDM;
+  MacrosArray: TMacroArray;
 
 implementation
 
@@ -36,6 +49,105 @@ uses
   InitDB_dm, miniform_u, MainFuncDM, SetupSQLquery, ResourceStr;
 
 {$R *.lfm}
+
+function TCWKeysDM.OpenOrCreateMacroDB: boolean;
+begin
+  try
+    Result := False;
+    MacroDB := TSQLite3Connection.Create(nil);
+    MacroQuery := TSQLQuery.Create(nil);
+    MacroTransaction := TSQLTransaction.Create(nil);
+    if (FileExists(FilePATH + 'macro.db')) then
+    begin
+      MacroDB.DatabaseName := FilePATH + 'macro.db';
+      MacroDB.Transaction := MacroTransaction;
+      MacroQuery.DataBase := MacroDB;
+      MacroDB.Connected := True;
+      MacroQuery.SQL.Text :=
+        'SELECT name FROM sqlite_master WHERE type=''table'' AND name=' +
+        QuotedStr('MacroTable');
+      MacroQuery.Open;
+      if MacroQuery.RecordCount > 0 then
+        Result := True
+      else
+        Result := CreateMacroDBTable;
+    end
+    else
+    begin
+      MacroDB.DatabaseName := FilePATH + 'macro.db';
+      MacroDB.Transaction := MacroTransaction;
+      MacroQuery.DataBase := MacroDB;
+      MacroDB.Connected := True;
+      Result := CreateMacroDBTable;
+    end;
+    MacroQuery.Close;
+  except
+    Result := False;
+  end;
+end;
+
+function TCWKeysDM.CreateMacroDBTable: boolean;
+begin
+  Result := False;
+  try
+    MacroQuery.Close;
+    MacroQuery.SQL.Text := Table_MacroTable;
+    MacroQuery.ExecSQL;
+    MacroTransaction.Commit;
+    Result := True;
+  except
+    Result := False;
+  end;
+end;
+
+procedure TCWKeysDM.CloseMacroDB;
+begin
+  MacroDB.Connected := False;
+  FreeAndNil(MacroQuery);
+  FreeAndNil(MacroTransaction);
+  FreeAndNil(MacroDB);
+end;
+
+procedure TCWKeysDM.LoadMacroArray;
+var
+  i: integer;
+begin
+  try
+    MacroQuery.SQL.Text := 'SELECT * FROM MacroTable';
+    MacroQuery.Open;
+    if MacroQuery.RecordCount > 0 then
+    begin
+      SetLength(MacrosArray, MacroQuery.RecordCount);
+      for i := 0 to MacroQuery.RecordCount - 1 do
+      begin
+        MacrosArray[i].ButtonID := MacroQuery.Fields.Fields[0].AsInteger;
+        MacrosArray[i].ButtonName := MacroQuery.Fields.Fields[1].AsString;
+        MacrosArray[i].Macro := MacroQuery.Fields.Fields[2].AsString;
+        MacroQuery.Next;
+      end;
+    end;
+    MacroQuery.Close;
+
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'AddMacroArray:' + E.ClassName + ':' + E.Message);
+  end;
+end;
+
+function TCWKeysDM.SearchMacro(ButtonID: integer): TMacros;
+var
+  i: integer;
+begin
+  Result.ButtonID := -1;
+  for i := 0 to High(MacrosArray) do
+    if MacrosArray[i].ButtonID = ButtonID then
+    begin
+      Result.ButtonID := MacrosArray[i].ButtonID;
+      Result.ButtonName := MacrosArray[i].ButtonName;
+      Result.Macro := MacrosArray[i].Macro;
+      Break;
+    end;
+end;
 
 function TCWKeysDM.ReplaceMacro(str: string): string;
 var
@@ -63,7 +175,13 @@ end;
 
 procedure TCWKeysDM.DataModuleCreate(Sender: TObject);
 begin
+  if OpenOrCreateMacroDB then
+    LoadMacroArray;
+end;
 
+procedure TCWKeysDM.DataModuleDestroy(Sender: TObject);
+begin
+  CloseMacroDB;
 end;
 
 end.

@@ -64,6 +64,10 @@ const
     +
     'VALUES (:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo, :Table_version)';
 
+  Table_MacroTable = 'CREATE TABLE IF NOT EXISTS ' +
+      '`MacroTable` (`ButtonID` integer UNIQUE PRIMARY KEY NOT NULL,' +
+      '`ButtonName` varchar(20) DEFAULT NULL, `Macro` TEXT DEFAULT NULL)';
+
 type
   TdmSQL = class(TDataModule)
   private

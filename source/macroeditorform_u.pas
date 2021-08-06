@@ -28,9 +28,8 @@ type
     procedure BtApplyClick(Sender: TObject);
     procedure BtCloseClick(Sender: TObject);
     procedure LVMacroSelectItem(Sender: TObject; Item: TListItem;
-      Selected: Boolean);
+      Selected: boolean);
   private
-    ButtonNumber: integer;
 
   public
     procedure ShowWithButton(ButtonName: string; Number: integer);
@@ -41,6 +40,7 @@ var
   MacroEditorForm: TMacroEditorForm;
 
 implementation
+
 uses
   CWKeysForm_u;
 
@@ -50,9 +50,9 @@ procedure TMacroEditorForm.BtApplyClick(Sender: TObject);
 var
   Rec: TMacros;
 begin
-  Rec.Name := EditMacroButtonLabel.Text;
-  Rec.Button := 'F' + IntToStr(ButtonNumber);
-  Rec.Macro := MemoMacroText.Text;
+  //Rec.ButtonName := EditMacroButtonLabel.Text;
+  // Rec.ButtonID := ButtonNumber;
+  // Rec.Macro := MemoMacroText.Text;
  { if CWKeysDM.ReadRec(ButtonNumber).Button <> '' then
     CWKeysDM.ModifyRec(ButtonNumber, Rec)
   else
@@ -65,25 +65,28 @@ begin
   Close;
 end;
 
-procedure TMacroEditorForm.LVMacroSelectItem(Sender: TObject; Item: TListItem;
-  Selected: Boolean);
+procedure TMacroEditorForm.LVMacroSelectItem(Sender: TObject;
+  Item: TListItem; Selected: boolean);
 begin
   if Selected then
-  MemoMacroText.Text:=MemoMacroText.Text + ' ' + LVMacro.Selected.Caption;
+    MemoMacroText.Text := MemoMacroText.Text + ' ' + LVMacro.Selected.Caption;
 end;
 
 procedure TMacroEditorForm.ShowWithButton(ButtonName: string; Number: integer);
 var
-  MacroRec: TMacros;
+  Macro: TMacros;
 begin
-  EditMacroButtonLabel.Text := ButtonName;
-  ButtonNumber := Number;
-//  MacroRec := CWKeysDM.ReadRec(Number);
-  MemoMacroText.Text := MacroRec.Macro;
-  if MacroRec.Name <> '' then
-    EditMacroButtonLabel.Text := MacroRec.Name
+  Macro := CWKeysDM.SearchMacro(Number);
+  if Macro.ButtonID > -1 then
+  begin
+    EditMacroButtonLabel.Text := Macro.ButtonName;
+    MemoMacroText.Text := Macro.Macro;
+  end
   else
-    EditMacroButtonLabel.Text := 'F' + IntToStr(Number);
+  begin
+    EditMacroButtonLabel.Text := ButtonName;
+    MemoMacroText.Text := '';
+  end;
   MacroEditorForm.Show;
 end;
 

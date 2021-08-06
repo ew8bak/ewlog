@@ -1,7 +1,7 @@
 object MacroEditorForm: TMacroEditorForm
-  Left = 272
+  Left = 261
   Height = 222
-  Top = 662
+  Top = 305
   Width = 798
   Caption = 'Macro editor'
   ClientHeight = 222
