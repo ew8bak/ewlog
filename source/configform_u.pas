@@ -113,6 +113,7 @@ type
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
+    EditSentSpotKey: TEdit;
     EditCwDaemonPort: TEdit;
     EditCwDaemonAddress: TEdit;
     EditTelnetName: TEdit;
@@ -156,6 +157,7 @@ type
     gbGridsColor: TGroupBox;
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
+    LBKeySendSpot: TLabel;
     LBCwDaemonAddress: TLabel;
     LBCwDaemonWPM: TLabel;
     LBCwDaemonPort: TLabel;
@@ -268,6 +270,8 @@ type
       Shift: TShiftState);
     procedure EditSaveKeyKeyDown(Sender: TObject; var Key: word;
       Shift: TShiftState);
+    procedure EditSentSpotKeyKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
     procedure EditTelnetAdressChange(Sender: TObject);
     procedure EditTelnetNameChange(Sender: TObject);
     procedure EditTelnetPortChange(Sender: TObject);
@@ -330,8 +334,8 @@ begin
   begin
     ListItem := LVSettings.Items.Add;
     ListItem.Caption := PControl.Pages[i].Caption;
-
   end;
+  LVSettings.AutoSize := True;
 end;
 
 procedure TConfigForm.SaveINI;
@@ -384,15 +388,16 @@ begin
   INIFile.WriteString('Key', 'Reference', EditReferenceKey.Text);
   INIFile.WriteString('Key', 'ImportADI', EditImportKey.Text);
   INIFile.WriteString('Key', 'ExportADI', EditExportKey.Text);
+  INIFile.WriteString('Key', 'SentSpot', EditSentSpotKey.Text);
 
   INIFile.WriteString('WorkOnLAN', 'Address', EditWOLAddress.Text);
   INIFile.WriteString('WorkOnLAN', 'Port', EditWOLPort.Text);
   INIFile.WriteBool('WorkOnLAN', 'Enable', CBWOLEnable.Checked);
 
-   INIFile.WriteString('CWDaemon', 'Address', EditCwDaemonAddress.Text);
-   INIFile.WriteInteger('CWDaemon', 'Port', StrToInt(EditCwDaemonPort.Text));
-   INIFile.WriteInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
-   INIFile.WriteBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
+  INIFile.WriteString('CWDaemon', 'Address', EditCwDaemonAddress.Text);
+  INIFile.WriteInteger('CWDaemon', 'Port', StrToInt(EditCwDaemonPort.Text));
+  INIFile.WriteInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
+  INIFile.WriteBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
 
 
 
@@ -460,13 +465,14 @@ begin
   EditReferenceKey.Text := INIFile.ReadString('Key', 'Reference', 'Enter');
   EditImportKey.Text := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
   EditExportKey.Text := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
+  EditSentSpotKey.Text := INIFile.ReadString('Key', 'SentSpot', 'Alt+D');
 
   EditWOLAddress.Text := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
   EditWOLPort.Text := INIFile.ReadString('WorkOnLAN', 'Port', '2238');
   CBWOLEnable.Checked := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
 
   EditCwDaemonAddress.Text := INIFile.ReadString('CWDaemon', 'Address', '127.0.0.1');
-  EditCwDaemonPort.Text :=IntToStr(INIFile.ReadInteger('CWDaemon', 'Port', 6789));
+  EditCwDaemonPort.Text := IntToStr(INIFile.ReadInteger('CWDaemon', 'Port', 6789));
   SECWDaemonWPM.Value := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
   CBCWDaemon.Checked := INIFile.ReadBool('CWDaemon', 'Enable', False);
 
@@ -645,6 +651,14 @@ begin
   EditSaveKey.SelStart := EditSaveKey.GetTextLen;
 end;
 
+procedure TConfigForm.EditSentSpotKeyKeyDown(Sender: TObject;
+  var Key: word; Shift: TShiftState);
+begin
+  EditSentSpotKey.Text := KeyAndShiftStateToKeyString(Key, Shift);
+  Key := 0;
+  EditSentSpotKey.SelStart := EditSentSpotKey.GetTextLen;
+end;
+
 procedure TConfigForm.EnableTelnetBTDone;
 begin
   if (Length(EditTelnetName.Text) > 0) and (Length(EditTelnetAdress.Text) > 0) and
@@ -774,8 +788,8 @@ end;
 procedure TConfigForm.LVSettingsClick(Sender: TObject);
 begin
   try
-  if LVSettings.Selected.Selected then
-  PControl.PageIndex := LVSettings.Selected.Index;
+    if LVSettings.Selected.Selected then
+      PControl.PageIndex := LVSettings.Selected.Index;
   except
   end;
 end;

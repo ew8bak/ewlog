@@ -25,6 +25,7 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
+    SentSpot: TAction;
     MacroKeyF2: TAction;
     MacroKeyF3: TAction;
     MacroKeyF4: TAction;
@@ -317,6 +318,7 @@ type
     procedure SBNewClick(Sender: TObject);
     procedure SBSaveClick(Sender: TObject);
     procedure SBStateClick(Sender: TObject);
+    procedure SentSpotExecute(Sender: TObject);
     procedure Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
     procedure SBHideCommentClick(Sender: TObject);
     procedure StatBarClick(Sender: TObject);
@@ -369,7 +371,8 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
-  WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u, CWKeysForm_u, CWTypeForm_u;
+  WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
+  sendtelnetspot_form_U;
 
 {$R *.lfm}
 
@@ -397,7 +400,7 @@ begin
     MIMapForm.Checked := StateForm;
     Exit;
   end;
-   if NameForm = 'EarthForm' then
+  if NameForm = 'EarthForm' then
   begin
     MIMapForm.Checked := StateForm;
     Exit;
@@ -494,7 +497,8 @@ begin
       CBBand.Text := dmFunc.GetBandFromFreq(
         StringReplace(FormatFloat(view_freq, freq), ',', '.', [rfReplaceAll]))
     else
-      CBBand.Text := StringReplace(FormatFloat(view_freq, freq), ',', '.', [rfReplaceAll]);
+      CBBand.Text := StringReplace(FormatFloat(view_freq, freq), ',',
+        '.', [rfReplaceAll]);
   end;
 end;
 
@@ -792,49 +796,49 @@ end;
 procedure TMiniForm.MacroKeyF2Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF2.Click;
+    CWKeysForm.BtF2.Click;
 end;
 
 procedure TMiniForm.MacroKeyF3Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF3.Click;
+    CWKeysForm.BtF3.Click;
 end;
 
 procedure TMiniForm.MacroKeyF4Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF4.Click;
+    CWKeysForm.BtF4.Click;
 end;
 
 procedure TMiniForm.MacroKeyF5Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF5.Click;
+    CWKeysForm.BtF5.Click;
 end;
 
 procedure TMiniForm.MacroKeyF6Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF6.Click;
+    CWKeysForm.BtF6.Click;
 end;
 
 procedure TMiniForm.MacroKeyF7Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF7.Click;
+    CWKeysForm.BtF7.Click;
 end;
 
 procedure TMiniForm.MacroKeyF8Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF8.Click;
+    CWKeysForm.BtF8.Click;
 end;
 
 procedure TMiniForm.MacroKeyF9Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF9.Click;
+    CWKeysForm.BtF9.Click;
 end;
 
 procedure TMiniForm.MenuItem102Click(Sender: TObject);
@@ -1624,6 +1628,13 @@ begin
   STATE_Form.Edit1.Text := EditState.Text;
 end;
 
+procedure TMiniForm.SentSpotExecute(Sender: TObject);
+begin
+  if Length(EditCallsign.Text) > 0 then
+    SendTelnetSpot.EditDXCall.Text := EditCallsign.Text;
+  SendTelnetSpot.Show;
+end;
+
 procedure TMiniForm.Shape1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
 begin
   if Shape1.Brush.Color = clLime then
@@ -1783,7 +1794,7 @@ begin
       Earth.BorderStyle := bsSizeable;
       Earth.Show;
       if MapForm.Showing then
-      MapForm.Close;
+        MapForm.Close;
     end;
   end;
 end;
@@ -1901,13 +1912,13 @@ end;
 procedure TMiniForm.MacroKeyF1Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF1.Click;
+    CWKeysForm.BtF1.Click;
 end;
 
 procedure TMiniForm.MacroKeyF10Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
-  CWKeysForm.BtF10.Click;
+    CWKeysForm.BtF10.Click;
 end;
 
 procedure TMiniForm.CBSaveUTCChange(Sender: TObject);
@@ -1980,7 +1991,7 @@ begin
     LBITUD.Caption := '..';
     LBCQD.Caption := '..';
     LBPrefixD.Caption := '.......';
-    Earth.PaintLine(FloatToStr (LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
+    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
       LBRecord.OpLat, LBRecord.OpLon);
     Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
       LBRecord.OpLat, LBRecord.OpLon);
@@ -2207,6 +2218,7 @@ begin
   GetReference.ShortCut := TextToShortCut(IniSet.KeyReference);
   ImportADI.ShortCut := TextToShortCut(IniSet.KeyImportADI);
   ExportADI.ShortCut := TextToShortCut(IniSet.KeyExportADI);
+  SentSpot.ShortCut := TextToShortCut(IniSet.KeySentSpot);
 end;
 
 procedure TMiniForm.FormCreate(Sender: TObject);

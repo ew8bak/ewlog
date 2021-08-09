@@ -1505,6 +1505,7 @@ begin
   IniSet.KeyReference := INIFile.ReadString('Key', 'Reference', 'Enter');
   IniSet.KeyImportADI := INIFile.ReadString('Key', 'ImportADI', 'Alt+I');
   IniSet.KeyExportADI := INIFile.ReadString('Key', 'ExportADI', 'Alt+E');
+  IniSet.KeySentSpot := INIFile.ReadString('Key', 'SentSpot', 'Alt+D');
   IniSet.ContestLastNumber := INIFile.ReadInteger('Contest', 'ContestLastNumber', 1);
   IniSet.ContestLastMSG := INIFile.ReadString('Contest', 'ContestLastMSG', '');
   IniSet.ContestName := INIFile.ReadString('Contest', 'ContestName', '');
@@ -1984,7 +1985,7 @@ begin
         'ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,' +
         'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC,' +
         'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC, ContestSession, ContestName) VALUES ('
-        + dmFunc.Q(SQSO.CallSing) + dmFunc.Q(QSODateTime) +
+        + dmFunc.Q(Trim(SQSO.CallSing)) + dmFunc.Q(QSODateTime) +
         dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) + dmFunc.Q(SQSO.QSOBand) +
         dmFunc.Q(SQSO.QSOMode) + dmFunc.Q(SQSO.QSOSubMode) +
         dmFunc.Q(SQSO.QSOReportSent) + dmFunc.Q(SQSO.QSOReportRecived) +
@@ -1997,7 +1998,7 @@ begin
         dmFunc.Q(SQSO.Marker) + dmFunc.Q(IntToStr(SQSO.ManualSet)) +
         dmFunc.Q(SQSO.DigiBand) + dmFunc.Q(SQSO.Continent) +
         dmFunc.Q(SQSO.ShortNote) + dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) +
-        dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(SQSO.Call) +
+        dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(Trim(SQSO.Call)) +
         dmFunc.Q(SQSO.State1) + dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) +
         dmFunc.Q(SQSO.State4) + dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) +
         dmFunc.Q(SQSO.ValidDX) + dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) +

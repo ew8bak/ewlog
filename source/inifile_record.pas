@@ -80,6 +80,7 @@ type
     KeyReference: string;
     KeyImportADI: string;
     KeyExportADI: string;
+    KeySentSpot: string;
     ContestLastNumber: integer;
     ContestLastMSG: string;
     ContestName: string;

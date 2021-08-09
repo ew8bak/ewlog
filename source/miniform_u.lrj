@@ -146,5 +146,6 @@
 {"hash":155515447,"name":"tminiform.macrokeyf7.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,55],"value":"MacroKeyF7"},
 {"hash":155515448,"name":"tminiform.macrokeyf8.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,56],"value":"MacroKeyF8"},
 {"hash":155515449,"name":"tminiform.macrokeyf9.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,57],"value":"MacroKeyF9"},
-{"hash":72328144,"name":"tminiform.macrokeyf10.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,49,48],"value":"MacroKeyF10"}
+{"hash":72328144,"name":"tminiform.macrokeyf10.caption","sourcebytes":[77,97,99,114,111,75,101,121,70,49,48],"value":"MacroKeyF10"},
+{"hash":207201524,"name":"tminiform.sentspot.caption","sourcebytes":[83,101,110,116,83,112,111,116],"value":"SentSpot"}
 ]}

@@ -89,7 +89,7 @@ begin
   begin
     comp := FindComponent('BtF' + IntToStr(MacrosArray[i].ButtonID));
     if comp is TButton then
-      if 'BtF' + IntToStr(MacrosArray[i].ButtonID) = TButton(comp).Name then
+      if TButton(comp).Name = 'BtF' + IntToStr(MacrosArray[i].ButtonID) then
         TButton(comp).Caption :=
           'F' + IntToStr(MacrosArray[i].ButtonID) + ' ' + MacrosArray[i].ButtonName;
   end;

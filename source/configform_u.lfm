@@ -1400,7 +1400,7 @@ object ConfigForm: TConfigForm
         Left = 261
         Height = 443
         Top = 0
-        Width = 247
+        Width = 260
         Align = alRight
         Anchors = [akLeft, akRight, akBottom]
         BorderSpacing.Left = 5
@@ -1415,7 +1415,7 @@ object ConfigForm: TConfigForm
           end        
           item
             Caption = 'Port'
-            Width = 75
+            Width = 88
           end>
         ReadOnly = True
         RowSelect = True
@@ -1873,6 +1873,30 @@ object ConfigForm: TConfigForm
         BorderSpacing.Top = 5
         OnKeyDown = EditExportKeyKeyDown
         TabOrder = 4
+      end
+      object LBKeySendSpot: TLabel
+        AnchorSideLeft.Control = EditReferenceKey
+        AnchorSideTop.Control = EditReferenceKey
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 13
+        Top = 167
+        Width = 85
+        BorderSpacing.Top = 10
+        Caption = 'Key Sent Spot'
+        ParentColor = False
+      end
+      object EditSentSpotKey: TEdit
+        AnchorSideLeft.Control = LBKeySendSpot
+        AnchorSideTop.Control = LBKeySendSpot
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 26
+        Top = 185
+        Width = 147
+        BorderSpacing.Top = 5
+        OnKeyDown = EditSentSpotKeyKeyDown
+        TabOrder = 5
       end
     end
     object TColorandGrids: TTabSheet

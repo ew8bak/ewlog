@@ -1772,6 +1772,10 @@ msgstr ""
 msgid "Key Import ADI file"
 msgstr ""
 
+#: tconfigform.lbkeysendspot.caption
+msgid "Key Sent Spot"
+msgstr ""
+
 #: tconfigform.lbpathbackup.caption
 msgid "Path backup files"
 msgstr ""
@@ -4726,6 +4730,10 @@ msgstr ""
 #: tminiform.sbstate4.caption
 msgctxt "tminiform.sbstate4.caption"
 msgid " .4. "
+msgstr ""
+
+#: tminiform.sentspot.caption
+msgid "SentSpot"
 msgstr ""
 
 #: tminiform.utclabel.caption

@@ -93,6 +93,7 @@
 {"hash":151046309,"name":"tconfigform.lbgetreference.caption","sourcebytes":[75,101,121,32,103,101,116,32,100,97,116,97,32,102,114,111,109,32,79,110,108,105,110,101,32,82,101,102,101,114,101,110,99,101],"value":"Key get data from Online Reference"},
 {"hash":1375333,"name":"tconfigform.lbkeyimport.caption","sourcebytes":[75,101,121,32,73,109,112,111,114,116,32,65,68,73,32,102,105,108,101],"value":"Key Import ADI file"},
 {"hash":1370325,"name":"tconfigform.lbkeyexport.caption","sourcebytes":[75,101,121,32,69,120,112,111,114,116,32,65,68,73,32,102,105,108,101],"value":"Key Export ADI file"},
+{"hash":78577812,"name":"tconfigform.lbkeysendspot.caption","sourcebytes":[75,101,121,32,83,101,110,116,32,83,112,111,116],"value":"Key Sent Spot"},
 {"hash":14634435,"name":"tconfigform.tcolorandgrids.caption","sourcebytes":[67,111,108,111,114,115,32,97,110,100,32,71,114,105,100,115],"value":"Colors and Grids"},
 {"hash":78001811,"name":"tconfigform.pcolors.caption","sourcebytes":[67,111,108,111,114,115],"value":"Colors"},
 {"hash":84471506,"name":"tconfigform.gbgridscolor.caption","sourcebytes":[71,114,105,100,115,32,67,111,108,111,114],"value":"Grids Color"},

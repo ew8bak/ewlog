@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 309
+  Left = 354
   Height = 410
-  Top = 187
+  Top = 276
   Width = 479
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -2415,6 +2415,10 @@ object MiniForm: TMiniForm
       Caption = 'MacroKeyF10'
       OnExecute = MacroKeyF10Execute
       ShortCut = 121
+    end
+    object SentSpot: TAction
+      Caption = 'SentSpot'
+      OnExecute = SentSpotExecute
     end
   end
   object CheckUpdateTimer: TTimer
