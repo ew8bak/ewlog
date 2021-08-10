@@ -535,8 +535,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 439
-          ClientWidth = 517
+          ClientHeight = 414
+          ClientWidth = 511
           object LBTransceiverModel: TLabel
             AnchorSideLeft.Control = TSHamlib
             AnchorSideTop.Control = TSHamlib
@@ -1060,6 +1060,67 @@ object ConfigForm: TConfigForm
         end
         object TSTCI: TTabSheet
           Caption = 'TCI'
+          ClientHeight = 414
+          ClientWidth = 511
+          object LBTCIAddress: TLabel
+            AnchorSideLeft.Control = TSTCI
+            AnchorSideTop.Control = TSTCI
+            Left = 10
+            Height = 13
+            Top = 10
+            Width = 114
+            BorderSpacing.Left = 10
+            BorderSpacing.Top = 10
+            Caption = 'TCI Server Address'
+            ParentColor = False
+          end
+          object EditTCIAddress: TEdit
+            AnchorSideLeft.Control = LBTCIAddress
+            AnchorSideTop.Control = LBTCIAddress
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 26
+            Top = 28
+            Width = 120
+            BorderSpacing.Top = 5
+            TabOrder = 0
+          end
+          object LBTCIPort: TLabel
+            AnchorSideLeft.Control = EditTCIAddress
+            AnchorSideTop.Control = EditTCIAddress
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 13
+            Top = 64
+            Width = 90
+            BorderSpacing.Top = 10
+            Caption = 'TCI Server Port'
+            ParentColor = False
+          end
+          object EditTCIPort: TEdit
+            AnchorSideLeft.Control = LBTCIPort
+            AnchorSideTop.Control = LBTCIPort
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 26
+            Top = 82
+            Width = 120
+            BorderSpacing.Top = 5
+            NumbersOnly = True
+            TabOrder = 1
+          end
+          object CBTCIEnable: TCheckBox
+            AnchorSideLeft.Control = EditTCIPort
+            AnchorSideTop.Control = EditTCIPort
+            AnchorSideTop.Side = asrBottom
+            Left = 10
+            Height = 23
+            Top = 113
+            Width = 128
+            BorderSpacing.Top = 5
+            Caption = 'TCI Client Enable'
+            TabOrder = 2
+          end
         end
       end
     end

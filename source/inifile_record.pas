@@ -94,6 +94,9 @@ type
     CWDaemonPort: integer;
     CWDaemonWPM: integer;
     CWDaemonEnable: boolean;
+    TCIAddress: string;
+    TCIPort: integer;
+    TCIEnable: boolean;
   end;
 
 implementation

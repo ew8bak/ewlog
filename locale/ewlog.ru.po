@@ -1475,6 +1475,10 @@ msgctxt "tconfigform.cbsubmode.caption"
 msgid "SubMode"
 msgstr "СабМода"
 
+#: tconfigform.cbtcienable.caption
+msgid "TCI Client Enable"
+msgstr ""
+
 #: tconfigform.cbtelnetstartup.caption
 msgctxt "tconfigform.cbtelnetstartup.caption"
 msgid "Start DX cluster automatically"
@@ -1817,6 +1821,14 @@ msgstr ""
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
 msgstr "Сочетание сохранения QSO"
+
+#: tconfigform.lbtciaddress.caption
+msgid "TCI Server Address"
+msgstr ""
+
+#: tconfigform.lbtciport.caption
+msgid "TCI Server Port"
+msgstr ""
 
 #: tconfigform.lbtelnetaddress.caption
 #, fuzzy
@@ -2712,6 +2724,7 @@ msgid "QSO"
 msgstr "рий"
 
 #: teditqso_form.radiobutton1.caption
+msgctxt "teditqso_form.radiobutton1.caption"
 msgid "Sent"
 msgstr "Отправлена"
 
@@ -4435,6 +4448,10 @@ msgstr ""
 msgid "MacroKeyF9"
 msgstr ""
 
+#: tminiform.menuitem1.caption
+msgid "TCI Client"
+msgstr ""
+
 #: tminiform.menuitem102.caption
 msgctxt "tminiform.menuitem102.caption"
 msgid "Donations"
@@ -4859,14 +4876,17 @@ msgid "ComboBox1"
 msgstr ""
 
 #: tprintsticker_form.edit1.text
+msgctxt "tprintsticker_form.edit1.text"
 msgid "Edit1"
 msgstr ""
 
 #: tprintsticker_form.edit2.text
+msgctxt "tprintsticker_form.edit2.text"
 msgid "Edit2"
 msgstr ""
 
 #: tprintsticker_form.edit3.text
+msgctxt "tprintsticker_form.edit3.text"
 msgid "Edit3"
 msgstr ""
 
@@ -5400,6 +5420,39 @@ msgstr "Дата синхронизации"
 #: tsyndbdate.label1.caption
 msgid "Select a synchronization start date"
 msgstr "Выбор даты начала синхронизации"
+
+#: ttciform.btnclientstart.caption
+msgid "Connect"
+msgstr ""
+
+#: ttciform.btnclientstop.caption
+msgid "Stop"
+msgstr ""
+
+#: ttciform.button1.caption
+#, fuzzy
+msgctxt "ttciform.button1.caption"
+msgid "Sent"
+msgstr "Отправлена"
+
+#: ttciform.caption
+msgid "TCI Form"
+msgstr ""
+
+#: ttciform.edit1.text
+msgctxt "ttciform.edit1.text"
+msgid "127.0.0.1"
+msgstr ""
+
+#: ttciform.edit2.text
+msgctxt "ttciform.edit2.text"
+msgid "8089"
+msgstr ""
+
+#: ttciform.edit3.text
+msgctxt "ttciform.edit3.text"
+msgid "Test Message"
+msgstr ""
 
 #: tthanks_form.caption
 msgctxt "tthanks_form.caption"

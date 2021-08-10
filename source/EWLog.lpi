@@ -113,54 +113,57 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="15">
+    <RequiredPackages Count="16">
       <Item1>
-        <PackageName Value="uniqueinstance_package"/>
+        <PackageName Value="syWebSocket"/>
       </Item1>
       <Item2>
-        <PackageName Value="Printer4Lazarus"/>
+        <PackageName Value="uniqueinstance_package"/>
       </Item2>
       <Item3>
-        <PackageName Value="lazreport"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item3>
       <Item4>
-        <PackageName Value="lazMapViewerPkg"/>
+        <PackageName Value="lazreport"/>
       </Item4>
       <Item5>
-        <PackageName Value="virtualtreeview_package"/>
+        <PackageName Value="lazMapViewerPkg"/>
       </Item5>
       <Item6>
-        <PackageName Value="indylaz"/>
+        <PackageName Value="virtualtreeview_package"/>
       </Item6>
       <Item7>
-        <PackageName Value="laz_synapse"/>
+        <PackageName Value="indylaz"/>
       </Item7>
       <Item8>
-        <PackageName Value="lnetvisual"/>
+        <PackageName Value="laz_synapse"/>
       </Item8>
       <Item9>
-        <PackageName Value="DBFLaz"/>
+        <PackageName Value="lnetvisual"/>
       </Item9>
       <Item10>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="DBFLaz"/>
       </Item10>
       <Item11>
-        <PackageName Value="MemDSLaz"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item11>
       <Item12>
-        <PackageName Value="SDFLaz"/>
+        <PackageName Value="MemDSLaz"/>
       </Item12>
       <Item13>
-        <PackageName Value="FCL"/>
+        <PackageName Value="SDFLaz"/>
       </Item13>
       <Item14>
-        <PackageName Value="SQLDBLaz"/>
+        <PackageName Value="FCL"/>
       </Item14>
       <Item15>
-        <PackageName Value="LCL"/>
+        <PackageName Value="SQLDBLaz"/>
       </Item15>
+      <Item16>
+        <PackageName Value="LCL"/>
+      </Item16>
     </RequiredPackages>
-    <Units Count="94">
+    <Units Count="95">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -754,6 +757,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWTypeForm_u"/>
       </Unit93>
+      <Unit94>
+        <Filename Value="tciform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="TCIForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="TCIForm_u"/>
+      </Unit94>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

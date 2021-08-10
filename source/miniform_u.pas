@@ -25,6 +25,7 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
+    MenuItem1: TMenuItem;
     SentSpot: TAction;
     MacroKeyF2: TAction;
     MacroKeyF3: TAction;
@@ -270,6 +271,7 @@ type
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem43Click(Sender: TObject);
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
@@ -372,7 +374,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
-  sendtelnetspot_form_U;
+  sendtelnetspot_form_U, TCIForm_u;
 
 {$R *.lfm}
 
@@ -916,6 +918,11 @@ end;
 procedure TMiniForm.MenuItem124Click(Sender: TObject);
 begin
   MM_Form.Show;
+end;
+
+procedure TMiniForm.MenuItem1Click(Sender: TObject);
+begin
+  TCIForm.show;
 end;
 
 procedure TMiniForm.MenuItem43Click(Sender: TObject);

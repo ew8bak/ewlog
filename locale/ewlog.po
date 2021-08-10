@@ -1452,6 +1452,10 @@ msgctxt "tconfigform.cbsubmode.caption"
 msgid "SubMode"
 msgstr ""
 
+#: tconfigform.cbtcienable.caption
+msgid "TCI Client Enable"
+msgstr ""
+
 #: tconfigform.cbtelnetstartup.caption
 msgctxt "tconfigform.cbtelnetstartup.caption"
 msgid "Start DX cluster automatically"
@@ -1791,6 +1795,14 @@ msgstr ""
 
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
+msgstr ""
+
+#: tconfigform.lbtciaddress.caption
+msgid "TCI Server Address"
+msgstr ""
+
+#: tconfigform.lbtciport.caption
+msgid "TCI Server Port"
 msgstr ""
 
 #: tconfigform.lbtelnetaddress.caption
@@ -2682,6 +2694,7 @@ msgid "QSO"
 msgstr ""
 
 #: teditqso_form.radiobutton1.caption
+msgctxt "teditqso_form.radiobutton1.caption"
 msgid "Sent"
 msgstr ""
 
@@ -4387,6 +4400,10 @@ msgstr ""
 msgid "MacroKeyF9"
 msgstr ""
 
+#: tminiform.menuitem1.caption
+msgid "TCI Client"
+msgstr ""
+
 #: tminiform.menuitem102.caption
 msgctxt "tminiform.menuitem102.caption"
 msgid "Donations"
@@ -4804,14 +4821,17 @@ msgid "ComboBox1"
 msgstr ""
 
 #: tprintsticker_form.edit1.text
+msgctxt "tprintsticker_form.edit1.text"
 msgid "Edit1"
 msgstr ""
 
 #: tprintsticker_form.edit2.text
+msgctxt "tprintsticker_form.edit2.text"
 msgid "Edit2"
 msgstr ""
 
 #: tprintsticker_form.edit3.text
+msgctxt "tprintsticker_form.edit3.text"
 msgid "Edit3"
 msgstr ""
 
@@ -5343,6 +5363,38 @@ msgstr ""
 
 #: tsyndbdate.label1.caption
 msgid "Select a synchronization start date"
+msgstr ""
+
+#: ttciform.btnclientstart.caption
+msgid "Connect"
+msgstr ""
+
+#: ttciform.btnclientstop.caption
+msgid "Stop"
+msgstr ""
+
+#: ttciform.button1.caption
+msgctxt "ttciform.button1.caption"
+msgid "Sent"
+msgstr ""
+
+#: ttciform.caption
+msgid "TCI Form"
+msgstr ""
+
+#: ttciform.edit1.text
+msgctxt "ttciform.edit1.text"
+msgid "127.0.0.1"
+msgstr ""
+
+#: ttciform.edit2.text
+msgctxt "ttciform.edit2.text"
+msgid "8089"
+msgstr ""
+
+#: ttciform.edit3.text
+msgctxt "ttciform.edit3.text"
+msgid "Test Message"
 msgstr ""
 
 #: tthanks_form.caption

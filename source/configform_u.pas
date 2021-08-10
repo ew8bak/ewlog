@@ -98,6 +98,7 @@ type
     CBTelnetStartUp: TCheckBox;
     cbNoCalcDXCC: TCheckBox;
     CBCWDaemon: TCheckBox;
+    CBTCIEnable: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
@@ -113,6 +114,8 @@ type
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
+    EditTCIAddress: TEdit;
+    EditTCIPort: TEdit;
     EditSentSpotKey: TEdit;
     EditCwDaemonPort: TEdit;
     EditCwDaemonAddress: TEdit;
@@ -157,6 +160,8 @@ type
     gbGridsColor: TGroupBox;
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
+    LBTCIAddress: TLabel;
+    LBTCIPort: TLabel;
     LBKeySendSpot: TLabel;
     LBCwDaemonAddress: TLabel;
     LBCwDaemonWPM: TLabel;
@@ -399,7 +404,9 @@ begin
   INIFile.WriteInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
   INIFile.WriteBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
 
-
+  INIFile.WriteString('TCI', 'Address', EditTCIAddress.Text);
+  INIFile.WriteInteger('TCI', 'Port', StrToInt(EditTCIPort.Text));
+  INIFile.WriteBool('TCI', 'Enable', CBTCIEnable.Checked);
 
   IniSet.Cluster_Login := EditTelnetLogin.Text;
 
@@ -475,6 +482,10 @@ begin
   EditCwDaemonPort.Text := IntToStr(INIFile.ReadInteger('CWDaemon', 'Port', 6789));
   SECWDaemonWPM.Value := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
   CBCWDaemon.Checked := INIFile.ReadBool('CWDaemon', 'Enable', False);
+
+  EditTCIAddress.Text := INIFile.ReadString('TCI', 'Address', '127.0.0.1');
+  EditTCIPort.Text := IntToStr(INIFile.ReadInteger('TCI', 'Port', 40001));
+  CBTCIEnable.Checked := INIFile.ReadBool('TCI', 'Enable', False);
 
   ReadGridColumns;
   ReadGridColors;

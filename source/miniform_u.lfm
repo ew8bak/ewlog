@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 354
+  Left = 329
   Height = 410
-  Top = 276
+  Top = 311
   Width = 479
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -2179,6 +2179,10 @@ object MiniForm: TMiniForm
     end
     object MenuItem3: TMenuItem
       Caption = 'View'
+      object MenuItem1: TMenuItem
+        Caption = 'TCI Client'
+        OnClick = MenuItem1Click
+      end
       object MiCWKeys: TMenuItem
         Caption = 'CW Keys'
         OnClick = MiCWKeysClick

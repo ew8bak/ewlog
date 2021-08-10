@@ -1,0 +1,69 @@
+object TCIForm: TTCIForm
+  Left = 240
+  Height = 142
+  Top = 138
+  Width = 478
+  Caption = 'TCI Form'
+  ClientHeight = 142
+  ClientWidth = 478
+  LCLVersion = '2.0.12.0'
+  object btnClientStart: TButton
+    Left = 256
+    Height = 25
+    Top = 72
+    Width = 75
+    Caption = 'Connect'
+    OnClick = btnClientStartClick
+    TabOrder = 0
+  end
+  object btnClientStop: TButton
+    Left = 384
+    Height = 25
+    Top = 9
+    Width = 75
+    Caption = 'Stop'
+    OnClick = btnClientStopClick
+    TabOrder = 1
+  end
+  object Edit1: TEdit
+    Left = 256
+    Height = 26
+    Top = 8
+    Width = 112
+    TabOrder = 2
+    Text = '127.0.0.1'
+  end
+  object Edit2: TEdit
+    Left = 256
+    Height = 26
+    Top = 40
+    Width = 112
+    TabOrder = 3
+    Text = '8089'
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 90
+    Top = 8
+    Width = 240
+    ScrollBars = ssAutoBoth
+    TabOrder = 4
+  end
+  object Edit3: TEdit
+    Left = 8
+    Height = 26
+    Top = 104
+    Width = 141
+    TabOrder = 5
+    Text = 'Test Message'
+  end
+  object Button1: TButton
+    Left = 160
+    Height = 25
+    Top = 105
+    Width = 75
+    Caption = 'Sent'
+    OnClick = Button1Click
+    TabOrder = 6
+  end
+end

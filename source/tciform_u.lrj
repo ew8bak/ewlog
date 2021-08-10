@@ -1,0 +1,9 @@
+{"version":1,"strings":[
+{"hash":129291021,"name":"ttciform.caption","sourcebytes":[84,67,73,32,70,111,114,109],"value":"TCI Form"},
+{"hash":174410724,"name":"ttciform.btnclientstart.caption","sourcebytes":[67,111,110,110,101,99,116],"value":"Connect"},
+{"hash":371552,"name":"ttciform.btnclientstop.caption","sourcebytes":[83,116,111,112],"value":"Stop"},
+{"hash":169027393,"name":"ttciform.edit1.text","sourcebytes":[49,50,55,46,48,46,48,46,49],"value":"127.0.0.1"},
+{"hash":242617,"name":"ttciform.edit2.text","sourcebytes":[56,48,56,57],"value":"8089"},
+{"hash":107360645,"name":"ttciform.edit3.text","sourcebytes":[84,101,115,116,32,77,101,115,115,97,103,101],"value":"Test Message"},
+{"hash":367700,"name":"ttciform.button1.caption","sourcebytes":[83,101,110,116],"value":"Sent"}
+]}
