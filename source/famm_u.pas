@@ -15,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, sqldb, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, ComCtrls, Variants;
+  StdCtrls, ComCtrls, ResourceStr;
 
 type
 
@@ -88,12 +88,12 @@ begin
     while (not FMQuery.EOF) do
     begin
       ListItem := LVBandList.Items.Add;
-      ListItem.Caption := VarToStr(FMQuery['band']);
+      ListItem.Caption := FMQuery.FieldByName('band').AsString;
       with ListItem.SubItems do
       begin
-        Add(VarToStr(FMQuery['b_begin']));
-        Add(VarToStr(FMQuery['b_end']));
-        Add(VarToStr(FMQuery['enable']));
+        Add(FMQuery.FieldByName('b_begin').AsString);
+        Add(FMQuery.FieldByName('b_end').AsString);
+        Add(BoolToStr(FMQuery.FieldByName('enable').AsBoolean, rEnabled, rDisabled));
       end;
       FMQuery.Next;
     end;
@@ -128,7 +128,7 @@ begin
     FMQuery.ExecSQL;
     FMQuery.SQLTransaction.Commit;
     ReloadList(LEBand.Text, LEBegin.Text, LEEnd.Text,
-      BoolToStr(CBEnableBand.Checked, 'True', 'False'));
+      BoolToStr(CBEnableBand.Checked, rEnabled, rDisabled));
     LVBandList.ItemIndex := SelectIndex;
   end;
 end;
@@ -148,7 +148,7 @@ begin
     FMQuery.ExecSQL;
     FMQuery.SQLTransaction.Commit;
     ReloadList(LEBand.Text, LEBegin.Text, LEEnd.Text,
-      BoolToStr(CBEnableBand.Checked, 'True', 'False'));
+      BoolToStr(CBEnableBand.Checked, rEnabled, rDisabled));
     LVBandList.ItemIndex := SelectIndex;
     MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand);
     CBState := CBEnableBand.Checked;

@@ -396,6 +396,10 @@ msgctxt "resourcestr.rdeleterecord"
 msgid "Delete Record "
 msgstr ""
 
+#: resourcestr.rdisabled
+msgid "Disabled"
+msgstr ""
+
 #: resourcestr.rdisconnectedfromfldigi
 msgid "Fldigi disconnected from EWLog"
 msgstr ""
@@ -433,6 +437,11 @@ msgstr ""
 #: resourcestr.rdxclusterwindowclear
 msgctxt "resourcestr.rdxclusterwindowclear"
 msgid "Clear DX Cluster window"
+msgstr ""
+
+#: resourcestr.renabled
+msgctxt "resourcestr.renabled"
+msgid "Enabled"
 msgstr ""
 
 #: resourcestr.rencall
@@ -1796,6 +1805,10 @@ msgstr ""
 
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
+msgstr ""
+
+#: tconfigform.lbsyncmobile.caption
+msgid "Interface for mobile sync"
 msgstr ""
 
 #: tconfigform.lbtciaddress.caption

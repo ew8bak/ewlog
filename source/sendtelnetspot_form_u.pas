@@ -137,6 +137,7 @@ begin
   if (engText <> CBComment.Text) then
   begin
     CBComment.Text := engText;
+    CBComment.SelStart := SelEditNumChar;
     exit;
   end;
 end;
@@ -155,10 +156,8 @@ end;
 
 procedure TSendTelnetSpot.EditDXCallChange(Sender: TObject);
 var
-  editButtonLeng: integer;
   engText: string;
 begin
-  editButtonLeng := Length(EditDXCall.Text);
   EditDXCall.SelStart := SelEditNumChar;
   engText := dmFunc.RusToEng(EditDXCall.Text);
   if (engText <> EditDXCall.Text) then

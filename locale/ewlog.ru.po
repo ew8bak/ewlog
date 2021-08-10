@@ -406,6 +406,10 @@ msgctxt "resourcestr.rdeleterecord"
 msgid "Delete Record "
 msgstr "Удалить запись "
 
+#: resourcestr.rdisabled
+msgid "Disabled"
+msgstr ""
+
 #: resourcestr.rdisconnectedfromfldigi
 msgid "Fldigi disconnected from EWLog"
 msgstr "Fldigi отключился от EWLog"
@@ -444,6 +448,11 @@ msgstr "Отключиться от DX кластера"
 msgctxt "resourcestr.rdxclusterwindowclear"
 msgid "Clear DX Cluster window"
 msgstr "Очистить окно DX кластера"
+
+#: resourcestr.renabled
+msgctxt "resourcestr.renabled"
+msgid "Enabled"
+msgstr ""
 
 #: resourcestr.rencall
 msgctxt "resourcestr.rencall"
@@ -1821,6 +1830,10 @@ msgstr ""
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
 msgstr "Сочетание сохранения QSO"
+
+#: tconfigform.lbsyncmobile.caption
+msgid "Interface for mobile sync"
+msgstr ""
 
 #: tconfigform.lbtciaddress.caption
 msgid "TCI Server Address"

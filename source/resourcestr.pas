@@ -224,6 +224,8 @@ resourcestring
   rNothingtosave = 'Nothing to save';
   rERRORFieldnotentered = 'ERROR Field not entered';
   rCallsignNotRnteredOrDuplicateOnTourTime = 'Callsign not entered or Duplicate on Tour Time';
+  rEnabled = 'Enabled';
+  rDisabled = 'Disabled';
 
 implementation
 

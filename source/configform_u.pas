@@ -335,6 +335,7 @@ procedure TConfigForm.LoadLVSettingName;
 var
   ListItem: TListItem;
   i: integer;
+  s: integer;
 begin
   LVSettings.Clear;
   PControl.PageCount;
@@ -343,7 +344,6 @@ begin
     ListItem := LVSettings.Items.Add;
     ListItem.Caption := PControl.Pages[i].Caption;
   end;
-  LVSettings.AutoSize := True;
 end;
 
 procedure TConfigForm.SaveINI;

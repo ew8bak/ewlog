@@ -15,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, sqldb, DB, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  StdCtrls, ExtCtrls, DBCtrls, variants;
+  StdCtrls, ExtCtrls, DBCtrls, ResourceStr;
 
 type
 
@@ -81,11 +81,9 @@ begin
     while (not MMQuery.EOF) do
     begin
       ListItem := LVModeList.Items.Add;
-      ListItem.Caption := VarToStr(MMQuery['mode']);
-      with ListItem.SubItems do
-      begin
-        Add(VarToStr(MMQuery['enable']));
-      end;
+      ListItem.Caption := MMQuery.FieldByName('mode').AsString;
+      ListItem.SubItems.Add(BoolToStr(MMQuery.FieldByName('enable').AsBoolean,
+        rEnabled, rDisabled));
       MMQuery.Next;
     end;
     MMQuery.Close;
@@ -115,7 +113,7 @@ begin
     MMQuery.ExecSQL;
     MMQuery.SQLTransaction.Commit;
     ReloadList(LVModeList.Selected.Caption, BoolToStr(CBEnableMod.Checked,
-      'True', 'False'));
+      rEnabled, rDisabled));
     LVModeList.ItemIndex := SelectIndex;
     MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand);
     CBState := CBEnableMod.Checked;
@@ -145,7 +143,7 @@ begin
     MMQuery.ExecSQL;
     MMQuery.SQLTransaction.Commit;
     ReloadList(LVModeList.Selected.Caption, BoolToStr(CBEnableMod.Checked,
-      'True', 'False'));
+      rEnabled, rDisabled));
     LVModeList.ItemIndex := SelectIndex;
   end;
 end;
