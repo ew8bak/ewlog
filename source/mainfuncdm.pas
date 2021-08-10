@@ -1522,6 +1522,7 @@ begin
   IniSet.TCIAddress := INIFile.ReadString('TCI', 'Address', '127.0.0.1');
   IniSet.TCIPort := INIFile.ReadInteger('TCI', 'Port', 40001);
   IniSet.TCIEnable := INIFile.ReadBool('TCI', 'Enable', False);
+  IniSet.InterfaceMobileSync := INIFile.ReadString('SetLog', 'InterfaceMobileSync', '0.0.0.0');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

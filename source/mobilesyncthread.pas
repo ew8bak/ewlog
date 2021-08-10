@@ -55,7 +55,7 @@ var
 
 implementation
 
-uses InitDB_dm, dmFunc_U, miniform_u;
+uses InitDB_dm, dmFunc_U, miniform_u, MainFuncDM;
 
 function TMobileSynThread.GetNewChunk: string;
 var
@@ -234,7 +234,7 @@ begin
   lastTCPport := -1;
   SyncTCP.ReuseAddress := True;
   for i := 0 to 5 do
-    if SyncTCP.Listen(port_tcp[i]) then
+    if SyncTCP.Listen(port_tcp[i], IniSet.InterfaceMobileSync) then
     begin
       lastTCPport := port_tcp[i];
       Break;

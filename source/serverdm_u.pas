@@ -14,7 +14,7 @@ unit serverDM_u;
 interface
 
 uses
-  Classes, SysUtils, lNetComponents, lNet, IdIPWatch, IdTCPServer, ResourceStr,
+  Classes, SysUtils, lNetComponents, lNet, IdTCPServer, ResourceStr,
   const_u, LazUTF8, ExtCtrls, IdContext, IdUDPClient, IdUDPServer, digi_record,
   flDigiModem, ImportADIThread, MobileSyncThread, IdSocketHandle, IdGlobal,
   DateUtils, qso_record, prefix_record, Dialogs;
@@ -25,7 +25,6 @@ type
 
   TServerDM = class(TDataModule)
     IdCWDaemonClient: TIdUDPClient;
-    IdIPWatch1: TIdIPWatch;
     IdFldigiTCP: TIdTCPServer;
     IdWOLServer: TIdUDPServer;
     LUDPComponent1: TLUDPComponent;
@@ -193,7 +192,7 @@ begin
   begin
     if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' +
       DBRecord.CurrCall + #10) then
-      LUDPComponent1.SendMessage(IdIPWatch1.LocalIP + ':' +
+      LUDPComponent1.SendMessage(IniSet.InterfaceMobileSync + ':' +
         IntToStr(MobileSynThread.lastTCPport))
     else
       MiniForm.TextSB(rSyncErrCall, 0);
@@ -241,7 +240,7 @@ begin
     lastUDPport := -1;
 
     for i := 0 to 5 do
-      if LUDPComponent1.Listen(port_udp[i]) then
+      if LUDPComponent1.Listen(port_udp[i], IniSet.InterfaceMobileSync) then
       begin
         lastUDPport := port_udp[i];
         Break;

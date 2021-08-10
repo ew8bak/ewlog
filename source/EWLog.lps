@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Debug"/>
-    <Units Count="241">
+    <Units Count="242">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -66,9 +66,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="467"/>
-        <CursorPos X="54" Y="478"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="397"/>
+        <CursorPos X="76" Y="414"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -553,8 +553,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="513"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="534"/>
         <CursorPos X="15" Y="554"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -583,8 +583,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <TopLine Value="1507"/>
-        <CursorPos X="69" Y="1523"/>
+        <TopLine Value="1501"/>
+        <CursorPos X="93" Y="1525"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit57>
@@ -599,9 +599,9 @@
       <Unit59>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="60"/>
-        <CursorPos X="24" Y="99"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="63"/>
+        <CursorPos X="24" Y="100"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit59>
@@ -684,8 +684,8 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="383"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="377"/>
         <CursorPos X="35" Y="377"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -706,10 +706,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="38"/>
-        <CursorPos X="16" Y="241"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="217"/>
+        <CursorPos X="29" Y="243"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit71>
       <Unit72>
         <Filename Value="telnetclientthread.pas"/>
@@ -785,10 +788,11 @@
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="542"/>
-        <CursorPos X="3" Y="53"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="220"/>
+        <CursorPos X="10" Y="239"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="cloudlogcat.pas"/>
@@ -850,14 +854,14 @@
         <UnitName Value="FMS_record"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="104" Y="12"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="197"/>
       </Unit85>
       <Unit86>
         <Filename Value="ico\telnetaddresrecord_u.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26"/>
-        <UsageCount Value="146"/>
+        <UsageCount Value="147"/>
       </Unit86>
       <Unit87>
         <Filename Value="dmmigrate_u.pas"/>
@@ -867,7 +871,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="280"/>
-        <UsageCount Value="126"/>
+        <UsageCount Value="127"/>
       </Unit87>
       <Unit88>
         <Filename Value="exportsotathread.pas"/>
@@ -876,7 +880,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="77" Y="109"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="110"/>
       </Unit88>
       <Unit89>
         <Filename Value="cwdaemondm_u.pas"/>
@@ -887,7 +891,7 @@
         <UnitName Value="CWDaemonDM_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="54" Y="63"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
       </Unit89>
       <Unit90>
         <Filename Value="cwkeysform_u.pas"/>
@@ -899,7 +903,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="76"/>
         <CursorPos X="3" Y="111"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="66"/>
       </Unit90>
       <Unit91>
         <Filename Value="macroeditorform_u.pas"/>
@@ -911,7 +915,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos X="28" Y="61"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
       </Unit91>
       <Unit92>
         <Filename Value="cwkeysdm_u.pas"/>
@@ -923,7 +927,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="143"/>
         <CursorPos X="3" Y="143"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit92>
       <Unit93>
         <Filename Value="cwtypeform_u.pas"/>
@@ -935,7 +939,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="50" Y="53"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
       </Unit93>
       <Unit94>
         <Filename Value="tciform_u.pas"/>
@@ -944,10 +948,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TCIForm_u"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="62" Y="22"/>
-        <UsageCount Value="23"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="37"/>
+        <CursorPos X="22" Y="16"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit94>
@@ -2033,8 +2037,108 @@
         <CursorPos X="42" Y="41"/>
         <UsageCount Value="10"/>
       </Unit240>
+      <Unit241>
+        <Filename Value="..\..\..\..\..\usr\lib\fpc\src\rtl\inc\objpash.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="185"/>
+        <CursorPos X="23" Y="206"/>
+        <UsageCount Value="10"/>
+      </Unit241>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="23" HistoryIndex="22">
+      <Position1>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="478" Column="54" TopLine="467"/>
+      </Position1>
+      <Position2>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="823" Column="3" TopLine="820"/>
+      </Position2>
+      <Position3>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="824" Column="3" TopLine="821"/>
+      </Position3>
+      <Position4>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="241" Column="16" TopLine="232"/>
+      </Position4>
+      <Position5>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="54" Column="15" TopLine="34"/>
+      </Position5>
+      <Position6>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="182" Column="3" TopLine="179"/>
+      </Position6>
+      <Position7>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="826" Column="3" TopLine="817"/>
+      </Position7>
+      <Position8>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="20" Column="75" TopLine="692"/>
+      </Position8>
+      <Position9>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1165" Column="90" TopLine="1144"/>
+      </Position9>
+      <Position10>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="989" Column="3" TopLine="987"/>
+      </Position10>
+      <Position11>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="292" Column="15" TopLine="272"/>
+      </Position11>
+      <Position12>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="182" Column="3" TopLine="179"/>
+      </Position12>
+      <Position13>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="181" Column="3" TopLine="178"/>
+      </Position13>
+      <Position14>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="249" Column="19" TopLine="220"/>
+      </Position14>
+      <Position15>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="53" Column="15" TopLine="33"/>
+      </Position15>
+      <Position16>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="181" Column="3" TopLine="178"/>
+      </Position16>
+      <Position17>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="21" Column="3" TopLine="10"/>
+      </Position17>
+      <Position18>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="237" TopLine="220"/>
+      </Position18>
+      <Position19>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="239" TopLine="220"/>
+      </Position19>
+      <Position20>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="240" TopLine="220"/>
+      </Position20>
+      <Position21>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="243" TopLine="217"/>
+      </Position21>
+      <Position22>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="245" TopLine="217"/>
+      </Position22>
+      <Position23>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="246" TopLine="217"/>
+      </Position23>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode="default"/>

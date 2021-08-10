@@ -17,7 +17,7 @@ uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock,
   ResourceStr, synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
-  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, Types, CWDaemonDM_u;
+  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, Types, CWDaemonDM_u, IdStack;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -111,6 +111,7 @@ type
     CBCatComPort: TComboBox;
     CBCatSpeed: TComboBox;
     CBCatStopBit: TComboBox;
+    CBIntMobileSync: TComboBox;
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
@@ -160,6 +161,7 @@ type
     gbGridsColor: TGroupBox;
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
+    LBSyncMobile: TLabel;
     LBTCIAddress: TLabel;
     LBTCIPort: TLabel;
     LBKeySendSpot: TLabel;
@@ -296,6 +298,7 @@ type
       const Value: string);
     procedure DownloadCallBookFile;
     procedure TSCATShow(Sender: TObject);
+    procedure TSOtherSettingsShow(Sender: TObject);
     procedure TSTelnetShow(Sender: TObject);
   private
     Download: int64;
@@ -407,6 +410,8 @@ begin
   INIFile.WriteString('TCI', 'Address', EditTCIAddress.Text);
   INIFile.WriteInteger('TCI', 'Port', StrToInt(EditTCIPort.Text));
   INIFile.WriteBool('TCI', 'Enable', CBTCIEnable.Checked);
+
+  INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
 
   IniSet.Cluster_Login := EditTelnetLogin.Text;
 
@@ -1154,6 +1159,12 @@ end;
 procedure TConfigForm.TSCATShow(Sender: TObject);
 begin
   LoadRIGSettings;
+end;
+
+procedure TConfigForm.TSOtherSettingsShow(Sender: TObject);
+begin
+  CBIntMobileSync.Items.AddStrings(GStack.LocalAddresses);
+  CBIntMobileSync.ItemIndex := CBIntMobileSync.Items.IndexOf(IniSet.InterfaceMobileSync);
 end;
 
 procedure TConfigForm.TSTelnetShow(Sender: TObject);

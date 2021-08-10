@@ -97,6 +97,7 @@ type
     TCIAddress: string;
     TCIPort: integer;
     TCIEnable: boolean;
+    InterfaceMobileSync: string;
   end;
 
 implementation

@@ -1822,6 +1822,10 @@ msgstr ""
 msgid "Key Save QSO"
 msgstr "Сочетание сохранения QSO"
 
+#: tconfigform.lbsyncmobile.caption
+msgid "Interface for mobile sync"
+msgstr ""
+
 #: tconfigform.lbtciaddress.caption
 msgid "TCI Server Address"
 msgstr ""

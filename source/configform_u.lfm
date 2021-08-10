@@ -2440,6 +2440,7 @@ object ConfigForm: TConfigForm
       Caption = 'Other Settings'
       ClientHeight = 443
       ClientWidth = 521
+      OnShow = TSOtherSettingsShow
       object gbCloudLog: TGroupBox
         Left = 8
         Height = 145
@@ -2566,6 +2567,31 @@ object ConfigForm: TConfigForm
         Font.Height = -12
         ParentColor = False
         ParentFont = False
+      end
+      object LBSyncMobile: TLabel
+        AnchorSideLeft.Control = TSOtherSettings
+        AnchorSideTop.Control = gbCloudLog
+        AnchorSideTop.Side = asrBottom
+        Left = 10
+        Height = 13
+        Top = 163
+        Width = 150
+        BorderSpacing.Left = 10
+        BorderSpacing.Top = 10
+        Caption = 'Interface for mobile sync'
+        ParentColor = False
+      end
+      object CBIntMobileSync: TComboBox
+        AnchorSideLeft.Control = LBSyncMobile
+        AnchorSideTop.Control = LBSyncMobile
+        AnchorSideTop.Side = asrBottom
+        Left = 10
+        Height = 27
+        Top = 181
+        Width = 140
+        BorderSpacing.Top = 5
+        ItemHeight = 0
+        TabOrder = 4
       end
     end
     object TSWorkLAN: TTabSheet
