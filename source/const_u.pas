@@ -18,7 +18,6 @@ uses
 
 const
   programName = 'EWLog';
-  view_freq = '0.000"."00';
 
   {$IFDEF WIN64}
 const
@@ -38,6 +37,7 @@ const
 
   port_udp: array [0..5] of integer = (49153, 49155, 49157, 49159, 49161, 52300);
   port_tcp: array [0..5] of integer = (49154, 49156, 49158, 49160, 49162, 52301);
+  view_freq: array [0..3] of string = ('0.000"."00', '0.00000', '0.000', '0.#');
 
   bandsCW: array [0..23] of string =
     ('77500', '47000', '24000', '10000', '5650', '3400', '2300',

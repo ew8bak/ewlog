@@ -149,6 +149,8 @@
 {"hash":77198709,"name":"tconfigform.checkbox6.caption","sourcebytes":[83,101,110,100,32,77,89,95,83,84,65,84,69,32,97,110,100,32,77,89,95,71,82,73,68,83,81,85,65,82,69],"value":"Send MY_STATE and MY_GRIDSQUARE"},
 {"hash":127922607,"name":"tconfigform.label20.caption","sourcebytes":[116,111,32,81,83,76,32,73,110,102,111],"value":"to QSL Info"},
 {"hash":29905747,"name":"tconfigform.lbsyncmobile.caption","sourcebytes":[73,110,116,101,114,102,97,99,101,32,102,111,114,32,109,111,98,105,108,101,32,115,121,110,99],"value":"Interface for mobile sync"},
+{"hash":54717673,"name":"tconfigform.lbviewfreq.caption","sourcebytes":[86,105,101,119,32,102,114,101,113,117,101,110,99,121],"value":"View frequency"},
+{"hash":21329353,"name":"tconfigform.cbviewfreq.text","sourcebytes":[49,52,46,49,50,51,46,56,57],"value":"14.123.89"},
 {"hash":120824249,"name":"tconfigform.tsworklan.caption","sourcebytes":[87,111,114,107,32,111,110,32,76,65,78,32,40,85,68,80,41],"value":"Work on LAN (UDP)"},
 {"hash":179883546,"name":"tconfigform.lbwoladdress.caption","sourcebytes":[65,100,100,114,101,115,115,58],"value":"Address:"},
 {"hash":5728634,"name":"tconfigform.lbwolport.caption","sourcebytes":[80,111,114,116,58],"value":"Port:"},

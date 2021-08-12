@@ -234,7 +234,7 @@ begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
   if Pos('M', ComboBox1.Text) > 0 then
-    NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+    NameBand := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(
       ComboBox1.Text, ComboBox2.Text))
   else
     NameBand := ComboBox1.Text;

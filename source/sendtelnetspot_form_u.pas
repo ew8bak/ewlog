@@ -56,7 +56,7 @@ var
 implementation
 
 uses
-  miniform_u, dmFunc_U, dxclusterform_u;
+  miniform_u, dmFunc_U, dxclusterform_u, MainFuncDM;
 
 {$R *.lfm}
 
@@ -100,7 +100,7 @@ end;
 procedure TSendTelnetSpot.FormShow(Sender: TObject);
 begin
   if Pos('M', MiniForm.CBBand.Text) > 0 then
-    CBFreq.Text := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+    CBFreq.Text := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(
       MiniForm.CBBand.Text, MiniForm.CBMode.Text))
   else
     CBFreq.Text := MiniForm.CBBand.Text;

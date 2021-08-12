@@ -789,11 +789,11 @@ begin
         FreqFloat := FreqFloat / 1000;
         if IniSet.showBand then
           MiniForm.CBBand.Text :=
-            dmFunc.GetBandFromFreq(StringReplace(FormatFloat(view_freq, FreqFloat),
+            dmFunc.GetBandFromFreq(StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqFloat),
             ',', '.', [rfReplaceAll]))
         else
           MiniForm.CBBand.Text :=
-            StringReplace(FormatFloat(view_freq, FreqFloat), ',', '.', [rfReplaceAll]);
+            StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqFloat), ',', '.', [rfReplaceAll]);
 
         if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
         begin

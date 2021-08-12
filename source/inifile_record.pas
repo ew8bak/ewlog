@@ -98,6 +98,7 @@ type
     TCIPort: integer;
     TCIEnable: boolean;
     InterfaceMobileSync: string;
+    ViewFreq: integer;
   end;
 
 implementation

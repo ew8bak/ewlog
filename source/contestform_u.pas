@@ -205,7 +205,7 @@ begin
     SaveQSOrec.QSOMode := CBMode.Text;
     SaveQSOrec.QSOSubMode := CBSubMode.Text;
     TryStrToFloatSafe(EditFreq.Text, FreqSafeFloat);
-    SaveQSOrec.QSOBand := StringReplace(FormatFloat(view_freq, FreqSafeFloat),
+    SaveQSOrec.QSOBand := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqSafeFloat),
       ',', '.', [rfReplaceAll]);
     SaveQSOrec.CallSing := EditCallsign.Text;
     SaveQSOrec.QSOReportSent := EditRSTs.Text;

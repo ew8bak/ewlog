@@ -503,12 +503,12 @@ begin
             RST_RCVD := '599';
 
           if FREQ = '' then
-            FREQ := FormatFloat(view_freq, dmFunc.GetFreqFromBand(BAND, MODE))
+            FREQ := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(BAND, MODE))
           else
           begin
             TryStrToFloatSafe(FREQ, FREQ_Float);
-            FREQ := FormatFloat(view_freq, FREQ_Float);
-            FREQ:=StringReplace(FREQ,',','.',[rfReplaceAll]);
+            FREQ := FormatFloat(view_freq[IniSet.ViewFreq], FREQ_Float);
+            FREQ := StringReplace(FREQ,',','.',[rfReplaceAll]);
           end;
 
           CheckMode(MODE, FREQ, SUBMODE, MODE);

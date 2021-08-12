@@ -65,7 +65,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, const_u, InitDB_dm, LogConfigForm_U;
+uses dmFunc_U, MainForm_U, const_u, InitDB_dm, LogConfigForm_U, MainFuncDM;
 
 procedure TServiceForm.eQSLImport(FPath: string);
 var
@@ -178,7 +178,7 @@ begin
             paramQSL_SENT := '0';
 
           if Pos('M', BAND) > 0 then
-            NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(BAND, MODE))
+            NameBand := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(BAND, MODE))
           else
             nameBand := BAND;
 
@@ -372,7 +372,7 @@ begin
           end;
 
           if Pos('M', BAND) > 0 then
-            NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(BAND, MODE))
+            NameBand := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(BAND, MODE))
           else
             nameBand := BAND;
 

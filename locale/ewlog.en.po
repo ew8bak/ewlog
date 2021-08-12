@@ -1491,6 +1491,10 @@ msgctxt "tconfigform.cbvaliddx.caption"
 msgid "ValidDX"
 msgstr ""
 
+#: tconfigform.cbviewfreq.text
+msgid "14.123.89"
+msgstr ""
+
 #: tconfigform.cbwolenable.caption
 msgid "Enable Work On LAN"
 msgstr ""
@@ -1860,6 +1864,10 @@ msgstr ""
 
 #: tconfigform.lbtransceivermodel.caption
 msgid "Transceiver Model"
+msgstr ""
+
+#: tconfigform.lbviewfreq.caption
+msgid "View frequency"
 msgstr ""
 
 #: tconfigform.lbwoladdress.caption

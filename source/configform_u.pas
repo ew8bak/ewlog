@@ -112,6 +112,7 @@ type
     CBCatSpeed: TComboBox;
     CBCatStopBit: TComboBox;
     CBIntMobileSync: TComboBox;
+    CBViewFreq: TComboBox;
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
@@ -161,6 +162,7 @@ type
     gbGridsColor: TGroupBox;
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
+    LBViewFreq: TLabel;
     LBSyncMobile: TLabel;
     LBTCIAddress: TLabel;
     LBTCIPort: TLabel;
@@ -261,6 +263,7 @@ type
     procedure BtCancelClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure CBViewFreqChange(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
@@ -412,6 +415,7 @@ begin
   INIFile.WriteBool('TCI', 'Enable', CBTCIEnable.Checked);
 
   INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
+  INIFile.WriteInteger('SetLog', 'ViewFreq', CBViewFreq.ItemIndex);
 
   IniSet.Cluster_Login := EditTelnetLogin.Text;
 
@@ -491,6 +495,7 @@ begin
   EditTCIAddress.Text := INIFile.ReadString('TCI', 'Address', '127.0.0.1');
   EditTCIPort.Text := IntToStr(INIFile.ReadInteger('TCI', 'Port', 40001));
   CBTCIEnable.Checked := INIFile.ReadBool('TCI', 'Enable', False);
+  CBViewFreq.ItemIndex := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
 
   ReadGridColumns;
   ReadGridColors;
@@ -535,6 +540,17 @@ begin
     InitDB.ImbeddedCallBookInit(False);
     DownloadCallBookFile;
   end;
+end;
+
+procedure TConfigForm.CBViewFreqChange(Sender: TObject);
+begin
+  IniSet.ViewFreq := CBViewFreq.ItemIndex;
+  MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand);
+  GridsForm.DBGrid1.Invalidate;
+  GridsForm.DBGrid2.Invalidate;
+  MainFunc.SetGrid(GridsForm.DBGrid1);
+  MainFunc.SetGrid(GridsForm.DBGrid2);
+  EditQSO_Form.DBGrid1.Invalidate;
 end;
 
 procedure TConfigForm.CheckBox11Change(Sender: TObject);

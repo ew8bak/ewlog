@@ -497,9 +497,9 @@ begin
   begin
     if IniSet.showBand then
       CBBand.Text := dmFunc.GetBandFromFreq(
-        StringReplace(FormatFloat(view_freq, freq), ',', '.', [rfReplaceAll]))
+        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], freq), ',', '.', [rfReplaceAll]))
     else
-      CBBand.Text := StringReplace(FormatFloat(view_freq, freq), ',',
+      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], freq), ',',
         '.', [rfReplaceAll]);
   end;
 end;
@@ -1510,7 +1510,7 @@ begin
       end;
 
       if IniSet.showBand then
-        NameBand := FormatFloat(view_freq, dmFunc.GetFreqFromBand(
+        NameBand := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(
           CBBand.Text, CBMode.Text))
       else
         NameBand := CBBand.Text;

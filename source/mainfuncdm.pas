@@ -448,7 +448,8 @@ begin
   begin
     if Pos('M', Value) > 0 then
     begin
-      Value := FormatFloat(view_freq, dmFunc.GetFreqFromBand(Value, mode));
+      Value := FormatFloat(view_freq[IniSet.ViewFreq],
+        dmFunc.GetFreqFromBand(Value, mode));
       Delete(Value, length(Value) - 2, 1);
     end
     else
@@ -1413,13 +1414,16 @@ begin
           else
           begin
             if mode = 'SSB' then
-              BandList[i] := StringReplace(FormatFloat(view_freq,
+              BandList[i] :=
+                StringReplace(FormatFloat(view_freq[IniSet.ViewFreq],
                 Query.FieldByName('ssb').AsFloat), ',', '.', [rfReplaceAll]);
             if mode = 'CW' then
-              BandList[i] := StringReplace(FormatFloat(view_freq,
+              BandList[i] :=
+                StringReplace(FormatFloat(view_freq[IniSet.ViewFreq],
                 Query.FieldByName('cw').AsFloat), ',', '.', [rfReplaceAll]);
             if (mode <> 'CW') and (mode <> 'SSB') then
-              BandList[i] := StringReplace(FormatFloat(view_freq,
+              BandList[i] :=
+                StringReplace(FormatFloat(view_freq[IniSet.ViewFreq],
                 Query.FieldByName('b_begin').AsFloat), ',', '.', [rfReplaceAll]);
           end;
           Query.Next;
@@ -1522,7 +1526,11 @@ begin
   IniSet.TCIAddress := INIFile.ReadString('TCI', 'Address', '127.0.0.1');
   IniSet.TCIPort := INIFile.ReadInteger('TCI', 'Port', 40001);
   IniSet.TCIEnable := INIFile.ReadBool('TCI', 'Enable', False);
-  IniSet.InterfaceMobileSync := INIFile.ReadString('SetLog', 'InterfaceMobileSync', '0.0.0.0');
+  IniSet.InterfaceMobileSync :=
+    INIFile.ReadString('SetLog', 'InterfaceMobileSync', '0.0.0.0');
+  IniSet.ViewFreq := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
+  if IniSet.ViewFreq > 3 then
+    IniSet.ViewFreq := 0;
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -2002,11 +2010,12 @@ begin
         dmFunc.Q(SQSO.Marker) + dmFunc.Q(IntToStr(SQSO.ManualSet)) +
         dmFunc.Q(SQSO.DigiBand) + dmFunc.Q(SQSO.Continent) +
         dmFunc.Q(SQSO.ShortNote) + dmFunc.Q(IntToStr(SQSO.QSLReceQSLcc)) +
-        dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.QSLInfo) + dmFunc.Q(Trim(SQSO.Call)) +
-        dmFunc.Q(SQSO.State1) + dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) +
-        dmFunc.Q(SQSO.State4) + dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) +
-        dmFunc.Q(SQSO.ValidDX) + dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) +
-        dmFunc.Q(STXs) + dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
+        dmFunc.Q(SQSO.LotWRec) + dmFunc.Q(SQSO.QSLInfo) +
+        dmFunc.Q(Trim(SQSO.Call)) + dmFunc.Q(SQSO.State1) +
+        dmFunc.Q(SQSO.State2) + dmFunc.Q(SQSO.State3) + dmFunc.Q(SQSO.State4) +
+        dmFunc.Q(SQSO.WPX) + dmFunc.Q(SQSO.AwardsEx) + dmFunc.Q(SQSO.ValidDX) +
+        dmFunc.Q(SRXs) + dmFunc.Q(SQSO.SRX_String) + dmFunc.Q(STXs) +
+        dmFunc.Q(SQSO.STX_String) + dmFunc.Q(SQSO.SAT_NAME) +
         dmFunc.Q(SQSO.SAT_MODE) + dmFunc.Q(SQSO.PROP_MODE) +
         dmFunc.Q(IntToStr(SQSO.LotWSent)) + dmFunc.Q(SQSO.QSL_RCVD_VIA) +
         dmFunc.Q(SQSO.QSL_SENT_VIA) + dmFunc.Q(SQSO.DXCC) +
@@ -2178,8 +2187,9 @@ end;
 
 procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode, CBBand: TComboBox); overload;
 var
-  i: integer;
+  i, bandIndex: integer;
 begin
+  bandIndex := CBBand.ItemIndex;
   //Загрузка модуляций
   CBMode.Items.Clear;
   for i := 0 to High(LoadModes) do
@@ -2192,6 +2202,7 @@ begin
   CBBand.Items.Clear;
   for i := 0 to High(LoadBands(CBMode.Text)) do
     CBBand.Items.Add(LoadBands(CBMode.Text)[i]);
+  CBBand.ItemIndex := bandIndex;
 end;
 
 procedure TMainFunc.LoadJournalItem(var CBJournal: TComboBox);
