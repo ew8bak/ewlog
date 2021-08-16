@@ -1,7 +1,6 @@
 {"version":1,"strings":[
 {"hash":73924772,"name":"tsendtelnetspot.caption","sourcebytes":[83,101,110,100,32,115,112,111,116],"value":"Send spot"},
 {"hash":142228302,"name":"tsendtelnetspot.lbcallsign.caption","sourcebytes":[68,88,32,67,97,108,108,115,105,103,110],"value":"DX Callsign"},
-{"hash":20132496,"name":"tsendtelnetspot.cbfreq.text","sourcebytes":[55,46,48,48,48,46,48,48],"value":"7.000.00"},
 {"hash":210503977,"name":"tsendtelnetspot.lbfreq.caption","sourcebytes":[70,114,101,113,117,101,110,99,121],"value":"Frequency"},
 {"hash":174341140,"name":"tsendtelnetspot.lbcomment.caption","sourcebytes":[67,111,109,109,101,110,116],"value":"Comment"},
 {"hash":367684,"name":"tsendtelnetspot.btsend.caption","sourcebytes":[83,101,110,100],"value":"Send"}

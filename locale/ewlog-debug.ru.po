@@ -5045,11 +5045,6 @@ msgctxt "tsendtelnetspot.caption"
 msgid "Send spot"
 msgstr "Отправить спот"
 
-#: tsendtelnetspot.cbfreq.text
-msgctxt "tsendtelnetspot.cbfreq.text"
-msgid "7.000.00"
-msgstr ""
-
 #: tsendtelnetspot.lbcallsign.caption
 msgctxt "tsendtelnetspot.lbcallsign.caption"
 msgid "DX Callsign"

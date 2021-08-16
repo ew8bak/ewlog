@@ -127,6 +127,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure ComboBox1Select(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
@@ -228,20 +229,14 @@ procedure TEditQSO_Form.Button3Click(Sender: TObject);
 var
   UQSO: TQSO;
   FmtStngs: TFormatSettings;
-  NameBand, FREQ_string: string;
+  NameBand: string;
   DigiBand: double;
 begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
-  if Pos('M', ComboBox1.Text) > 0 then
-    NameBand := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(
-      ComboBox1.Text, ComboBox2.Text))
-  else
-    NameBand := ComboBox1.Text;
-  NameBand := StringReplace(NameBand, ',', '.', [rfReplaceAll]);
-  FREQ_string := NameBand;
-  Delete(FREQ_string, length(FREQ_string) - 2, 1);
-  DigiBand := dmFunc.GetDigiBandFromFreq(FREQ_string);
+
+  NameBand := MainFunc.ConvertFreqToSave(ComboBox1.Text);
+  DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
 
   UQSO.CallSing := Edit1.Text;
   UQSO.QSODate := DateEdit1.Date;
@@ -333,6 +328,11 @@ begin
     Edit13.Text := PFXR.Continent;
     Edit6.Text := IntToStr(PFXR.DXCCNum);
   end;
+end;
+
+procedure TEditQSO_Form.ComboBox1Select(Sender: TObject);
+begin
+  ComboBox1.Text := MainFunc.ConvertFreqToShow(ComboBox1.Items.Strings[ComboBox1.ItemIndex]);
 end;
 
 procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);

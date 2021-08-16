@@ -78,7 +78,6 @@ type
     function SelectEditQSO(index: integer): TQSO;
     function IntToBool(Value: integer): boolean;
     function StringToBool(Value: string): boolean;
-    function FormatFreq(Value, mode: string): string;
     function FindInCallBook(Callsign: string): TFoundQSOR;
     function CheckQSL(Callsign, band, mode: string): integer;
     function EraseTable: boolean;
@@ -88,6 +87,10 @@ type
     function BackupDataADI(Sender: string): boolean;
     function BackupDataDB(Sender: string): boolean;
     function GenerateRandomID: string;
+    function FormatFreq(Value: string): string;
+    function ConvertFreqToSave(Freq: string): string;
+    function ConvertFreqToShow(Freq: string): string;
+    function ConvertFreqToSelectView(Freq: string): string;
   end;
 
 var
@@ -107,6 +110,66 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u;
 
 {$R *.lfm}
+
+function TMainFunc.ConvertFreqToSave(Freq: string): string;
+var
+  tempFreq: double;
+  tempFreqStr: string;
+  dotcount, i: integer;
+begin
+  dotcount := 0;
+  if Pos('M', Freq) > 0 then
+  begin
+    tempFreqStr := FormatFloat('0.000"."00', dmFunc.GetFreqFromBand(Freq, 'MHZ'));
+    Result := StringReplace(tempFreqStr, ',', '.', [rfReplaceAll]);
+  end
+  else
+  begin
+    Freq := StringReplace(Freq, ',', '.', [rfReplaceAll]);
+    for i := 1 to length(Freq) do
+      if Freq[i] = '.' then
+        Inc(dotcount);
+    if dotcount > 1 then
+      Delete(Freq, length(Freq) - 2, 1);
+    TryStrToFloatSafe(Freq, tempFreq);
+    tempFreqStr := FormatFloat('0.000"."00', tempFreq);
+    Result := StringReplace(tempFreqStr, ',', '.', [rfReplaceAll]);
+  end;
+end;
+
+function TMainFunc.ConvertFreqToShow(Freq: string): string;
+begin
+  if Pos('M', Freq) > 0 then
+    Result := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(
+      Freq, 'MHZ'))
+  else
+    Result := Freq;
+  Result := StringReplace(Result, ',', '.', [rfReplaceAll]);
+end;
+
+function TMainFunc.ConvertFreqToSelectView(Freq: string): string;
+var
+  tmpFreq: double;
+begin
+  Result := 'err';
+  Delete(Freq, length(Freq) - 2, 1);
+  if TryStrToFloatSafe(Freq, tmpFreq) then
+    Result := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], tmpFreq),
+      ',', '.', [rfReplaceAll]);
+end;
+
+function TMainFunc.FormatFreq(Value: string): string;
+var
+  tmpFreq: string;
+begin
+  Result := '0';
+  if Value <> '' then
+  begin
+    tmpFreq := ConvertFreqToSave(Value);
+    Delete(tmpFreq, length(tmpFreq) - 2, 1);
+    Result := tmpFreq;
+  end;
+end;
 
 procedure TMainFunc.SaveWindowPosition(nameForm: TForm);
 begin
@@ -216,7 +279,7 @@ end;
 
 procedure TMainFunc.SentCATCloudLog(CatData: TCatData);
 begin
-  CatData.freq := FormatFreq(CatData.freq, CatData.mode);
+  CatData.freq := FormatFreq(CatData.freq);
   StringReplace(CatData.freq, '.', '', [rfReplaceAll]);
   CatData.freq := CatData.freq + '0';
   CloudLogCATThread := TCloudLogCATThread.Create;
@@ -441,23 +504,6 @@ begin
   end;
 end;
 
-function TMainFunc.FormatFreq(Value, mode: string): string;
-begin
-  Result := '0';
-  if Value <> '' then
-  begin
-    if Pos('M', Value) > 0 then
-    begin
-      Value := FormatFloat(view_freq[IniSet.ViewFreq],
-        dmFunc.GetFreqFromBand(Value, mode));
-      Delete(Value, length(Value) - 2, 1);
-    end
-    else
-      Delete(Value, length(Value) - 2, 1);
-    Result := StringReplace(Value, ',', '.', [rfReplaceAll]);
-  end;
-end;
-
 procedure TMainFunc.CopyToJournal(DBGrid: TDBGrid; toCallsign: string);
 var
   Query: TSQLQuery;
@@ -655,7 +701,7 @@ begin
       Result.Marker := Query.FieldByName('Marker').AsString;
       Result.QSOMode := Query.FieldByName('QSOMode').AsString;
       Result.QSOSubMode := Query.FieldByName('QSOSubMode').AsString;
-      Result.QSOBand := Query.FieldByName('QSOBand').AsString;
+      Result.QSOBand := ConvertFreqToSelectView(Query.FieldByName('QSOBand').AsString);
       Result.Continent := Query.FieldByName('Continent').AsString;
       Result.QSLInfo := Query.FieldByName('QSLInfo').AsString;
       Result.ValidDX := Query.FieldByName('ValidDX').AsString;
@@ -974,8 +1020,17 @@ begin
     if (Column.FieldName = 'QSOBand') then
     begin
       DBGrid.Canvas.FillRect(Rect);
-      DBGrid.Canvas.TextOut(Rect.Left + 2, Rect.Top + 0,
+      DBGrid.Canvas.TextOut(Rect.Left + 3, Rect.Top + 1,
         dmFunc.GetBandFromFreq(DS.FieldByName('QSOBand').AsString));
+    end;
+  end;
+  if (IniSet.ViewFreq > 0) and not IniSet.showBand then
+  begin
+    if (Column.FieldName = 'QSOBand') then
+    begin
+      DBGrid.Canvas.FillRect(Rect);
+      DBGrid.Canvas.TextOut(Rect.Left + 3, Rect.Top + 1,
+        ConvertFreqToSelectView(DS.FieldByName('QSOBand').AsString));
     end;
   end;
 end;
@@ -1569,7 +1624,7 @@ begin
         else
           DMode := True;
         Query.Close;
-        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
@@ -1610,7 +1665,7 @@ begin
         else
           Query.DataBase := InitDB.SQLiteConnection;
 
-        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +
@@ -1679,7 +1734,7 @@ begin
           Query.DataBase := InitDB.MySQLConnection
         else
           Query.DataBase := InitDB.SQLiteConnection;
-        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
@@ -1717,7 +1772,7 @@ begin
           Query.DataBase := InitDB.MySQLConnection
         else
           Query.DataBase := InitDB.SQLiteConnection;
-        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE `Call` = ' + QuotedStr(Callsign) + ' AND DigiBand = ' +
@@ -1757,7 +1812,7 @@ begin
           Query.DataBase := InitDB.MySQLConnection
         else
           Query.DataBase := InitDB.SQLiteConnection;
-        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band, mode)));
+        DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' AND DigiBand = ' +

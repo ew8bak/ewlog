@@ -1457,7 +1457,6 @@ var
   QSL_SENT_ADV, QSL_SENT, dift: string;
   DigiBand: double;
   NameBand: string;
-  DigiBand_String: string;
   timeQSO: TTime;
   FmtStngs: TFormatSettings;
   lat, lon: currency;
@@ -1509,15 +1508,8 @@ begin
         4: QSL_SENT_ADV := 'N';
       end;
 
-      if IniSet.showBand then
-        NameBand := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(
-          CBBand.Text, CBMode.Text))
-      else
-        NameBand := CBBand.Text;
-      NameBand := StringReplace(NameBand, ',', '.', [rfReplaceAll]);
-      DigiBand_String := NameBand;
-      Delete(DigiBand_String, length(DigiBand_String) - 2, 1);
-      DigiBand := dmFunc.GetDigiBandFromFreq(DigiBand_String);
+      NameBand := MainFunc.ConvertFreqToSave(CBBand.Text);
+      DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
       PFXR := MainFunc.SearchPrefix(EditCallsign.Text, EditGrid.Text);
       SQSO.CallSing := EditCallsign.Text;
       SQSO.QSODateTime := DateTimePicker1.DateTime;
@@ -1826,7 +1818,8 @@ begin
 
   if CBMode.Text <> 'SSB' then
     CBSubMode.Text := '';
-  TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text), FormatFreqFloat);
+ // TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text), FormatFreqFloat);
+ TryStrToFloatSafe(MainFunc.ConvertFreqToSave(CBBand.Text), FormatFreqFloat);
   if FormatFreqFloat >= 10 then
     CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
   else
@@ -1900,7 +1893,7 @@ begin
   FreqChange := True;
   if CBMode.Text = 'SSB' then
   begin
-    TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text), FormatFreqFloat);
+    TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text), FormatFreqFloat);
     if FormatFreqFloat >= 10 then
       CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
     else

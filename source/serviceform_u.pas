@@ -91,13 +91,13 @@ var
   PosEOH: word;
   PosEOR: word;
   yyyy, mm, dd: word;
-  digiBand: double;
+  digiBand: string;
   nameBand: string;
   Stream: TMemoryStream;
   TempFile: string;
   SQLString: string;
 begin
-  TempFile:=FilePATH + 'temp.adi';
+  TempFile := FilePATH + 'temp.adi';
   RecCount := 0;
   DupeCount := 0;
   ErrorCount := 0;
@@ -148,7 +148,7 @@ begin
         paramQSL_SENT := '';
         nameBand := '';
         SQLString := '';
-        digiBand := -1;
+        digiBand := '';
         Readln(temp_f, s);
         s := Trim(s);
 
@@ -178,12 +178,13 @@ begin
             paramQSL_SENT := '0';
 
           if Pos('M', BAND) > 0 then
-            NameBand := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(BAND, MODE))
+            NameBand := MainFunc.ConvertFreqToSave(
+              FloatToStr(dmFunc.GetFreqFromBand(BAND, MODE)))
           else
-            nameBand := BAND;
+            NameBand := MainFunc.ConvertFreqToSave(BAND);
 
-          Delete(nameBand, length(nameBand) - 2, 1);
-          digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+          digiBand := StringReplace(FloatToStr(dmFunc.GetDigiBandFromFreq(NameBand)),
+            ',', '.', [rfReplaceAll]);
 
           if Length(SUBMODE) > 0 then
             SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET QSOMode = ' +
@@ -199,7 +200,7 @@ begin
               dmFunc.Q(RST_SENT) + 'PROP_MODE = ' + dmFunc.Q(PROP_MODE) +
               'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
               ' WHERE CallSign = ' + QuotedStr(CALL) + ' AND QSODate = ' +
-              QuotedStr(QSO_DATE) + ' AND DigiBand = ' + FloatToStr(digiBand) +
+              QuotedStr(QSO_DATE) + ' AND DigiBand = ' + digiBand +
               ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
               QuotedStr(SUBMODE) + ')'
           else
@@ -210,7 +211,7 @@ begin
               'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
               ' WHERE CallSign = ' + QuotedStr(CALL) +
               ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) +
-              ' AND DigiBand = ' + FloatToStr(digiBand) + ' AND (QSOMode = ' +
+              ' AND DigiBand = ' + digiBand + ' AND (QSOMode = ' +
               QuotedStr(MODE) + ' OR QSOSubMode = ' + QuotedStr(SUBMODE) + ')';
 
           UPDATEQuery.SQL.Text := Query;
@@ -270,12 +271,12 @@ var
   PosEOH: word;
   PosEOR: word;
   yyyy, mm, dd: word;
-  digiBand: double;
+  digiBand: string;
   nameBand: string;
   Stream: TMemoryStream;
   TempFile: string;
 begin
-  TempFile:=FilePATH + 'temp.adi';
+  TempFile := FilePATH + 'temp.adi';
   RecCount := 0;
   DupeCount := 0;
   ErrorCount := 0;
@@ -327,7 +328,7 @@ begin
         APP_LOTW_2XQSL := '';
         paramQSLRDATE := '';
         nameBand := '';
-        digiBand := -1;
+        digiBand := '';
 
         Readln(temp_f, s);
         s := Trim(s);
@@ -372,12 +373,13 @@ begin
           end;
 
           if Pos('M', BAND) > 0 then
-            NameBand := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(BAND, MODE))
+            NameBand := MainFunc.ConvertFreqToSave(
+              FloatToStr(dmFunc.GetFreqFromBand(BAND, MODE)))
           else
-            nameBand := BAND;
+            NameBand := MainFunc.ConvertFreqToSave(BAND);
 
-          Delete(nameBand, length(nameBand) - 2, 1);
-          digiBand := dmFunc.GetDigiBandFromFreq(nameBand);
+          digiBand := StringReplace(FloatToStr(dmFunc.GetDigiBandFromFreq(NameBand)),
+            ',', '.', [rfReplaceAll]);
 
           if DBRecord.CurrentDB = 'MySQL' then
             Query := 'UPDATE ' + LBRecord.LogTable + ' SET GRID = ' +
@@ -386,7 +388,7 @@ begin
               'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
               dmFunc.Q(paramAPP_LOTW_2XQSL) + 'LoTWRec = ''1'', LoTWRecDate = ' +
               QuotedStr(paramQSLRDATE) + ' WHERE CallSign = ' +
-              QuotedStr(CALL) + ' AND DigiBand = ' + FloatToStr(digiBand) +
+              QuotedStr(CALL) + ' AND DigiBand = ' + digiBand +
               ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
               QuotedStr(MODE) + ')'
           else
@@ -397,7 +399,7 @@ begin
               dmFunc.Q(paramAPP_LOTW_2XQSL) + 'LoTWRec = ''1'', LoTWRecDate = ' +
               QuotedStr(paramQSLRDATE) + ' WHERE CallSign = ' +
               QuotedStr(CALL) + ' AND strftime(''%Y%m%d'',QSODate) = ' +
-              QuotedStr(QSO_DATE) + ' AND DigiBand = ' + FloatToStr(digiBand) +
+              QuotedStr(QSO_DATE) + ' AND DigiBand = ' + digiBand +
               ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
               QuotedStr(MODE) + ')';
           UPDATEQuery.SQL.Text := Query;
@@ -451,7 +453,7 @@ begin
     if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
       PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       LogConfigForm.Show;
-    LogConfigForm.PageControl1.ActivePageIndex:=1;
+    LogConfigForm.PageControl1.ActivePageIndex := 1;
   end
   else
   begin
@@ -479,7 +481,7 @@ begin
     if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
       PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       LogConfigForm.Show;
-    LogConfigForm.PageControl1.ActivePageIndex:=2;
+    LogConfigForm.PageControl1.ActivePageIndex := 2;
   end
   else
   begin

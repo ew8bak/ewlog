@@ -35,6 +35,7 @@ type
     procedure BtSendClick(Sender: TObject);
     procedure CBCommentChange(Sender: TObject);
     procedure CBCommentKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure CBFreqSelect(Sender: TObject);
     procedure EditDXCallChange(Sender: TObject);
     procedure EditDXCallKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
@@ -98,12 +99,13 @@ begin
 end;
 
 procedure TSendTelnetSpot.FormShow(Sender: TObject);
+var
+  i : integer;
 begin
-  if Pos('M', MiniForm.CBBand.Text) > 0 then
-    CBFreq.Text := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(
-      MiniForm.CBBand.Text, MiniForm.CBMode.Text))
-  else
-    CBFreq.Text := MiniForm.CBBand.Text;
+  CBFreq.Items.Clear;
+  for i := 0 to High(MainFunc.LoadBands('')) do
+    CBFreq.Items.Add(MainFunc.LoadBands('')[i]);
+  CBFreq.Text := MainFunc.ConvertFreqToShow(MiniForm.CBBand.Text);
   EditDXCall.Text := MiniForm.EditCallsign.Text;
   LoadComments;
 end;
@@ -119,6 +121,7 @@ begin
     call := EditDXCall.Text;
     freq := CBFreq.Text;
     comment := CBComment.Text;
+    freq := MainFunc.ConvertFreqToSave(freq);
     Delete(freq, length(freq) - 2, 1);
     TryStrToFloatSafe(freq, freq2);
     dxClusterForm.SendSpot(FloatToStr(freq2 * 1000), call, comment, '', '', '');
@@ -152,6 +155,11 @@ begin
     SelEditNumChar := CBComment.SelStart;
   if (CBComment.SelLength <> 0) and (Key = VK_BACK) then
     SelEditNumChar := CBComment.SelStart;
+end;
+
+procedure TSendTelnetSpot.CBFreqSelect(Sender: TObject);
+begin
+  CBFreq.Text := MainFunc.ConvertFreqToShow(CBFreq.Items.Strings[CBFreq.ItemIndex]);
 end;
 
 procedure TSendTelnetSpot.EditDXCallChange(Sender: TObject);

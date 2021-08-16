@@ -544,13 +544,18 @@ begin
     if mode = 'CW' then
     begin
        TryStrToFloatSafe(bandsCW[index],Result);
-      exit;
+       exit;
     end;
     if mode = 'DIGI' then
     begin
        TryStrToFloatSafe(bandsRTTY[index], Result);
+       exit;
+    end;
+    if mode = 'MHZ' then begin
+      TryStrToFloatSafe(bandsHz[index], Result);
       exit;
     end;
+
      TryStrToFloatSafe(bandsOther[index], Result);
   finally
     bandsMmList.Free;

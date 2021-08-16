@@ -1,7 +1,7 @@
 object EditQSO_Form: TEditQSO_Form
-  Left = 576
+  Left = 500
   Height = 600
-  Top = 126
+  Top = 304
   Width = 491
   BorderStyle = bsDialog
   Caption = 'QSO Editor'
@@ -968,6 +968,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Right = 25
       Font.Height = -12
       ItemHeight = 16
+      OnSelect = ComboBox1Select
       ParentFont = False
       Style = csOwnerDrawEditableVariable
       TabOrder = 25

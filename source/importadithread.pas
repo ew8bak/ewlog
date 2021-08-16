@@ -503,20 +503,13 @@ begin
             RST_RCVD := '599';
 
           if FREQ = '' then
-            FREQ := FormatFloat(view_freq[IniSet.ViewFreq], dmFunc.GetFreqFromBand(BAND, MODE))
+            FREQ := MainFunc.ConvertFreqToSave(FloatToStr(dmFunc.GetFreqFromBand(BAND, MODE)))
           else
-          begin
-            TryStrToFloatSafe(FREQ, FREQ_Float);
-            FREQ := FormatFloat(view_freq[IniSet.ViewFreq], FREQ_Float);
-            FREQ := StringReplace(FREQ,',','.',[rfReplaceAll]);
-          end;
+            FREQ := MainFunc.ConvertFreqToSave(FREQ);
 
           CheckMode(MODE, FREQ, SUBMODE, MODE);
 
-          if FREQ_Float = 0 then
-            BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ))
-          else
-            BAND := FloatToStr(dmFunc.GetDigiBandFromFreq(FloatToStr(FREQ_Float)));
+          BAND := StringReplace(FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ)), ',', '.', [rfReplaceAll]);
 
           yyyy := StrToInt(QSO_DATE[1] + QSO_DATE[2] + QSO_DATE[3] +
             QSO_DATE[4]);
@@ -543,8 +536,6 @@ begin
             paramQSODate := StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
             ',','.',[rfReplaceAll]);
           end;
-
-
 
           if QSL_SENT = 'Y' then
           begin
