@@ -497,10 +497,11 @@ begin
   begin
     if IniSet.showBand then
       CBBand.Text := dmFunc.GetBandFromFreq(
-        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], freq), ',', '.', [rfReplaceAll]))
+        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], freq),
+        ',', '.', [rfReplaceAll]))
     else
-      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], freq), ',',
-        '.', [rfReplaceAll]);
+      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], freq),
+        ',', '.', [rfReplaceAll]);
   end;
 end;
 
@@ -922,7 +923,7 @@ end;
 
 procedure TMiniForm.MenuItem1Click(Sender: TObject);
 begin
-  TCIForm.show;
+  TCIForm.Show;
 end;
 
 procedure TMiniForm.MenuItem43Click(Sender: TObject);
@@ -1508,7 +1509,10 @@ begin
         4: QSL_SENT_ADV := 'N';
       end;
 
-      NameBand := MainFunc.ConvertFreqToSave(CBBand.Text);
+      if FMS.Freq > 0 then
+        NameBand := MainFunc.ConvertFreqToSave(FloatToStr(FMS.Freq))
+      else
+        NameBand := MainFunc.ConvertFreqToSave(CBBand.Text);
       DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
       PFXR := MainFunc.SearchPrefix(EditCallsign.Text, EditGrid.Text);
       SQSO.CallSing := EditCallsign.Text;
@@ -1818,8 +1822,8 @@ begin
 
   if CBMode.Text <> 'SSB' then
     CBSubMode.Text := '';
- // TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text), FormatFreqFloat);
- TryStrToFloatSafe(MainFunc.ConvertFreqToSave(CBBand.Text), FormatFreqFloat);
+  // TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text), FormatFreqFloat);
+  TryStrToFloatSafe(MainFunc.ConvertFreqToSave(CBBand.Text), FormatFreqFloat);
   if FormatFreqFloat >= 10 then
     CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
   else

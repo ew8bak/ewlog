@@ -16,7 +16,7 @@ object SendTelnetSpot: TSendTelnetSpot
   object EditDXCall: TEdit
     AnchorSideLeft.Control = Owner
     Left = 20
-    Height = 26
+    Height = 23
     Top = 32
     Width = 120
     BorderSpacing.Left = 20
@@ -31,9 +31,9 @@ object SendTelnetSpot: TSendTelnetSpot
     AnchorSideLeft.Control = EditDXCall
     AnchorSideBottom.Control = EditDXCall
     Left = 20
-    Height = 13
-    Top = 18
-    Width = 67
+    Height = 15
+    Top = 16
+    Width = 60
     Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 1
     Caption = 'DX Callsign'
@@ -46,14 +46,14 @@ object SendTelnetSpot: TSendTelnetSpot
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 157
-    Height = 27
+    Height = 23
     Top = 32
     Width = 120
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 20
     Font.Height = -12
-    ItemHeight = 0
+    ItemHeight = 15
     ItemIndex = 0
     Items.Strings = (
       ''
@@ -66,9 +66,9 @@ object SendTelnetSpot: TSendTelnetSpot
     AnchorSideLeft.Control = CBFreq
     AnchorSideBottom.Control = CBFreq
     Left = 157
-    Height = 13
-    Top = 18
-    Width = 63
+    Height = 15
+    Top = 16
+    Width = 55
     Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 1
     Caption = 'Frequency'
@@ -76,9 +76,9 @@ object SendTelnetSpot: TSendTelnetSpot
   end
   object LBComment: TLabel
     Left = 20
-    Height = 13
-    Top = 66
-    Width = 59
+    Height = 15
+    Top = 64
+    Width = 54
     Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 1
     Caption = 'Comment'
@@ -91,6 +91,7 @@ object SendTelnetSpot: TSendTelnetSpot
     Width = 75
     Caption = 'Send'
     OnClick = BtSendClick
+    OnKeyDown = BtSendKeyDown
     TabOrder = 2
   end
   object CBComment: TComboBox
@@ -98,10 +99,10 @@ object SendTelnetSpot: TSendTelnetSpot
     AnchorSideTop.Control = LBComment
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 27
+    Height = 23
     Top = 80
     Width = 252
-    ItemHeight = 0
+    ItemHeight = 15
     OnChange = CBCommentChange
     OnKeyDown = CBCommentKeyDown
     TabOrder = 3

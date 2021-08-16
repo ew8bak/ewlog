@@ -33,6 +33,7 @@ type
     LBFreq: TLabel;
     LBComment: TLabel;
     procedure BtSendClick(Sender: TObject);
+    procedure BtSendKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure CBCommentChange(Sender: TObject);
     procedure CBCommentKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure CBFreqSelect(Sender: TObject);
@@ -131,6 +132,13 @@ begin
     ShowMessage(rNotAllData);
 end;
 
+procedure TSendTelnetSpot.BtSendKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+   if (Key = VK_RETURN) then
+    BtSendClick(Self);
+end;
+
 procedure TSendTelnetSpot.CBCommentChange(Sender: TObject);
 var
   engText: string;
@@ -185,6 +193,9 @@ begin
     SelEditNumChar := EditDXCall.SelStart;
   if (EditDXCall.SelLength <> 0) and (Key = VK_BACK) then
     SelEditNumChar := EditDXCall.SelStart;
+
+    if (Key = VK_RETURN) and (Length(EditDXCall.Text) > 1) then
+      BtSend.SetFocus
 end;
 
 procedure TSendTelnetSpot.FormCreate(Sender: TObject);

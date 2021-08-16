@@ -151,6 +151,8 @@ function TMainFunc.ConvertFreqToSelectView(Freq: string): string;
 var
   tmpFreq: double;
 begin
+  if Freq = '' then
+    exit;
   Result := 'err';
   Delete(Freq, length(Freq) - 2, 1);
   if TryStrToFloatSafe(Freq, tmpFreq) then

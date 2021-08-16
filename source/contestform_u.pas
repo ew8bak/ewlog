@@ -204,9 +204,6 @@ begin
     SaveQSOrec.QSOTime := TimeToStr(TETime.Time);
     SaveQSOrec.QSOMode := CBMode.Text;
     SaveQSOrec.QSOSubMode := CBSubMode.Text;
-    TryStrToFloatSafe(EditFreq.Text, FreqSafeFloat);
-    SaveQSOrec.QSOBand := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqSafeFloat),
-      ',', '.', [rfReplaceAll]);
     SaveQSOrec.CallSing := EditCallsign.Text;
     SaveQSOrec.QSOReportSent := EditRSTs.Text;
     SaveQSOrec.QSOReportRecived := EditRSTr.Text;
@@ -214,8 +211,9 @@ begin
     SaveQSOrec.OmQTH := EditQTH.Text;
     SaveQSOrec.Grid := EditGrid.Text;
     SaveQSOrec.State0 := EditState.Text;
+    SaveQSOrec.QSOBand := MainFunc.ConvertFreqToSave(EditFreq.Text);
     SaveQSOrec.DigiBand := StringReplace(
-      FloatToStr(dmFunc.GetDigiBandFromFreq(EditFreq.Text)), ',', '.', [rfReplaceAll]);
+      FloatToStr(dmFunc.GetDigiBandFromFreq(SaveQSOrec.QSOBand)), ',', '.', [rfReplaceAll]);
     SaveQSOrec.ShortNote := EditComment.Text;
     SaveQSOrec.ContestSession := IniSet.ContestSession;
 
