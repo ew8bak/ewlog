@@ -199,7 +199,7 @@ implementation
 
 uses
   dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM, miniform_u, WSJT_UDP_Form_U,
-  serverDM_u, dmCat;
+  serverDM_u, dmCat, dmTCI_u;
 
 {$R *.lfm}
 
@@ -208,7 +208,7 @@ uses
 procedure TTRXForm.SavePosition;
 begin
   if TRXForm.Showing then
-  MainFunc.SaveWindowPosition(TRXForm);
+    MainFunc.SaveWindowPosition(TRXForm);
 end;
 
 procedure TTRXForm.Freq(Hz: integer);
@@ -387,16 +387,17 @@ begin
     n := '1'
   else
     n := '2';
-
-  if INIFile.ReadString('TRX' + n, 'RigCtldPath', '') <> '' then
-    InicializeRig;
+  if IniSet.CurrentRIG = 'CAT' then
+  begin
+    if INIFile.ReadString('TRX' + n, 'RigCtldPath', '') <> '' then
+      InicializeRig;
+  end;
+  if IniSet.CurrentRIG = 'TCI' then
+    dmTCI.InicializeTCI(StrToInt(n));
 end;
 
 procedure TTRXForm.FormShow(Sender: TObject);
 begin
-  {if (IniSet._l_trx <> 0) and (IniSet._t_trx <> 0) and (IniSet._w_trx <> 0) and
-    (IniSet._h_trx <> 0) then
-    TRXForm.SetBounds(IniSet._l_trx, IniSet._t_trx, IniSet._w_trx, IniSet._h_trx);}
   MainFunc.LoadWindowPosition(TRXForm);
 end;
 

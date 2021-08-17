@@ -62,6 +62,7 @@ begin
   Application.CreateForm(TCountryEditForm, CountryEditForm);
   Application.CreateForm(TManagerBasePrefixForm, ManagerBasePrefixForm);
   Application.CreateForm(TQSLManager_Form, QSLManager_Form);
+  Application.CreateForm(TdmTCI, dmTCI);
   Application.CreateForm(TTRXForm, TRXForm);
   Application.CreateForm(TSettingsProgramForm, SettingsProgramForm);
   Application.CreateForm(TAbout_Form, About_Form);
@@ -90,6 +91,5 @@ begin
   Application.CreateForm(TCWKeysForm, CWKeysForm);
   Application.CreateForm(TMacroEditorForm, MacroEditorForm);
   Application.CreateForm(TCWTypeForm, CWTypeForm);
-  Application.CreateForm(TdmTCI, dmTCI);
   Application.Run;
 end.
