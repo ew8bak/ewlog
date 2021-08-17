@@ -25,6 +25,7 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
+    MIRadio: TMenuItem;
     SentSpot: TAction;
     MacroKeyF2: TAction;
     MacroKeyF3: TAction;

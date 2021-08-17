@@ -757,6 +757,7 @@
         <Filename Value="dmtci_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmTCI"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmTCI_u"/>
       </Unit93>

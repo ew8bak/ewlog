@@ -4734,6 +4734,10 @@ msgctxt "tminiform.miphototop.caption"
 msgid "On Top"
 msgstr ""
 
+#: tminiform.miradio.caption
+msgid "Radio"
+msgstr ""
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"

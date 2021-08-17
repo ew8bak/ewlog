@@ -4777,6 +4777,10 @@ msgctxt "tminiform.miphototop.caption"
 msgid "On Top"
 msgstr "Всегда наверху"
 
+#: tminiform.miradio.caption
+msgid "Radio"
+msgstr ""
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"

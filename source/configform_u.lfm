@@ -535,8 +535,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 414
-          ClientWidth = 511
+          ClientHeight = 439
+          ClientWidth = 517
           object LBTransceiverModel: TLabel
             AnchorSideLeft.Control = TSHamlib
             AnchorSideTop.Control = TSHamlib
@@ -1120,8 +1120,8 @@ object ConfigForm: TConfigForm
         end
         object TSTCI: TTabSheet
           Caption = 'TCI'
-          ClientHeight = 414
-          ClientWidth = 511
+          ClientHeight = 439
+          ClientWidth = 517
           object LBTCIAddress: TLabel
             AnchorSideLeft.Control = TSTCI
             AnchorSideTop.Control = TSTCI

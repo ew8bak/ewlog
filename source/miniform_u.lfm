@@ -2137,46 +2137,6 @@ object MiniForm: TMiniForm
         OnClick = MenuItem69Click
       end
     end
-    object MISettings: TMenuItem
-      Caption = 'Settings'
-      object MenuItem52: TMenuItem
-        Caption = 'Configure program'
-        OnClick = MenuItem52Click
-      end
-      object MenuItem123: TMenuItem
-        Caption = 'Frequency Manager'
-        OnClick = MenuItem123Click
-      end
-      object MenuItem124: TMenuItem
-        Caption = 'Modulation Manager'
-        OnClick = MenuItem124Click
-      end
-      object MILanguage: TMenuItem
-        Caption = 'Language'
-        OnClick = MILanguageClick
-        object N1: TMenuItem
-          Caption = '-'
-        end
-        object MIDownloadLang: TMenuItem
-          Caption = 'Download Languages'
-          OnClick = MIDownloadLangClick
-        end
-      end
-      object MenuItem100: TMenuItem
-        Caption = '-'
-      end
-      object MenuItem89: TMenuItem
-        Caption = 'Switch database'
-        OnClick = MenuItem89Click
-      end
-      object MenuItem90: TMenuItem
-        Caption = '-'
-      end
-      object MenuItem91: TMenuItem
-        Caption = 'Wizard'
-        OnClick = MenuItem91Click
-      end
-    end
     object MenuItem3: TMenuItem
       Caption = 'View'
       object MiCWKeys: TMenuItem
@@ -2294,6 +2254,9 @@ object MiniForm: TMiniForm
         OnClick = MenuItem73Click
       end
     end
+    object MIRadio: TMenuItem
+      Caption = 'Radio'
+    end
     object MIExtProg: TMenuItem
       Caption = 'External programs'
       OnClick = MIExtProgClick
@@ -2311,6 +2274,46 @@ object MiniForm: TMiniForm
       end
       object N7: TMenuItem
         Caption = '-'
+      end
+    end
+    object MISettings: TMenuItem
+      Caption = 'Settings'
+      object MenuItem52: TMenuItem
+        Caption = 'Configure program'
+        OnClick = MenuItem52Click
+      end
+      object MenuItem123: TMenuItem
+        Caption = 'Frequency Manager'
+        OnClick = MenuItem123Click
+      end
+      object MenuItem124: TMenuItem
+        Caption = 'Modulation Manager'
+        OnClick = MenuItem124Click
+      end
+      object MILanguage: TMenuItem
+        Caption = 'Language'
+        OnClick = MILanguageClick
+        object N1: TMenuItem
+          Caption = '-'
+        end
+        object MIDownloadLang: TMenuItem
+          Caption = 'Download Languages'
+          OnClick = MIDownloadLangClick
+        end
+      end
+      object MenuItem100: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem89: TMenuItem
+        Caption = 'Switch database'
+        OnClick = MenuItem89Click
+      end
+      object MenuItem90: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem91: TMenuItem
+        Caption = 'Wizard'
+        OnClick = MenuItem91Click
       end
     end
     object MenuItem6: TMenuItem
