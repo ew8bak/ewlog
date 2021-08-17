@@ -26,7 +26,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="9"/>
-      <BuildNr Value="834"/>
+      <BuildNr Value="836"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -163,7 +163,7 @@
         <PackageName Value="LCL"/>
       </Item16>
     </RequiredPackages>
-    <Units Count="95">
+    <Units Count="94">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -702,69 +702,64 @@
         <UnitName Value="FMS_record"/>
       </Unit85>
       <Unit86>
-        <Filename Value="ico/telnetaddresrecord_u.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit86>
-      <Unit87>
         <Filename Value="dmmigrate_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmMigrate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-      </Unit87>
-      <Unit88>
+      </Unit86>
+      <Unit87>
         <Filename Value="exportsotathread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportSOTAThread"/>
-      </Unit88>
-      <Unit89>
+      </Unit87>
+      <Unit88>
         <Filename Value="cwdaemondm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWDaemonDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWDaemonDM_u"/>
-      </Unit89>
-      <Unit90>
+      </Unit88>
+      <Unit89>
         <Filename Value="cwkeysform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWKeysForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWKeysForm_u"/>
-      </Unit90>
-      <Unit91>
+      </Unit89>
+      <Unit90>
         <Filename Value="macroeditorform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MacroEditorForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MacroEditorForm_u"/>
-      </Unit91>
-      <Unit92>
+      </Unit90>
+      <Unit91>
         <Filename Value="cwkeysdm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWKeysDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWKeysDM_u"/>
-      </Unit92>
-      <Unit93>
+      </Unit91>
+      <Unit92>
         <Filename Value="cwtypeform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWTypeForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWTypeForm_u"/>
-      </Unit93>
-      <Unit94>
-        <Filename Value="tciform_u.pas"/>
+      </Unit92>
+      <Unit93>
+        <Filename Value="dmtci_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="TCIForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="TCIForm_u"/>
-      </Unit94>
+        <ComponentName Value="dmTCI"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmTCI_u"/>
+      </Unit93>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -775,7 +770,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="Компоненты для LAZARUS\mapviewer;ico"/>
+      <OtherUnitFiles Value="Компоненты для LAZARUS\mapviewer"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

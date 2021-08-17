@@ -94,11 +94,11 @@ type
     CWDaemonPort: integer;
     CWDaemonWPM: integer;
     CWDaemonEnable: boolean;
-    TCIAddress: string;
-    TCIPort: integer;
-    TCIEnable: boolean;
     InterfaceMobileSync: string;
     ViewFreq: integer;
+    CurrentNumberRIG: integer;
+    CurrentNumberTCI: integer;
+    CurrentRIG: string;
   end;
 
 implementation

@@ -56,6 +56,7 @@ type
     CBCatParity: TComboBox;
     CBCatHandshake: TComboBox;
     CBCatDTRState: TComboBox;
+    CBRigNumberTCI: TComboBox;
     CheckBox1: TCheckBox;
     cbBackupDB: TCheckBox;
     cbBackupCloseDB: TCheckBox;
@@ -113,9 +114,12 @@ type
     CBCatStopBit: TComboBox;
     CBIntMobileSync: TComboBox;
     CBViewFreq: TComboBox;
+    CBRigNumberHL: TComboBox;
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
+    EditRIGNameHL: TEdit;
+    EditRIGNameTCI: TEdit;
     EditTCIAddress: TEdit;
     EditTCIPort: TEdit;
     EditSentSpotKey: TEdit;
@@ -162,6 +166,10 @@ type
     gbGridsColor: TGroupBox;
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
+    LBRigNameHL: TLabel;
+    LBRigNameHL1: TLabel;
+    LBRigNumberHL: TLabel;
+    LBRigNumberHL1: TLabel;
     LBViewFreq: TLabel;
     LBSyncMobile: TLabel;
     LBTCIAddress: TLabel;
@@ -263,6 +271,9 @@ type
     procedure BtCancelClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure CBRigNumberHLSelect(Sender: TObject);
+    procedure CBRigNumberTCISelect(Sender: TObject);
+    procedure CBTransceiverModelSelect(Sender: TObject);
     procedure CBViewFreqChange(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -312,6 +323,8 @@ type
     procedure ReadGridColors;
     procedure LoadRIGSettings;
     procedure SaveRIGSettings;
+    procedure LoadTCISettings;
+    procedure SaveTCISettings;
     procedure EnableTelnetBTDone;
     procedure SaveTelnetAddress;
     procedure LoadTelnetAddressToVLTelnet;
@@ -328,7 +341,8 @@ var
 implementation
 
 uses
-  miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u, TRXForm_U;
+  miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u,
+  TRXForm_U, dmTCI_u;
 
 {$R *.lfm}
 
@@ -410,10 +424,6 @@ begin
   INIFile.WriteInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
   INIFile.WriteBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
 
-  INIFile.WriteString('TCI', 'Address', EditTCIAddress.Text);
-  INIFile.WriteInteger('TCI', 'Port', StrToInt(EditTCIPort.Text));
-  INIFile.WriteBool('TCI', 'Enable', CBTCIEnable.Checked);
-
   INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
   INIFile.WriteInteger('SetLog', 'ViewFreq', CBViewFreq.ItemIndex);
 
@@ -492,9 +502,6 @@ begin
   SECWDaemonWPM.Value := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
   CBCWDaemon.Checked := INIFile.ReadBool('CWDaemon', 'Enable', False);
 
-  EditTCIAddress.Text := INIFile.ReadString('TCI', 'Address', '127.0.0.1');
-  EditTCIPort.Text := IntToStr(INIFile.ReadInteger('TCI', 'Port', 40001));
-  CBTCIEnable.Checked := INIFile.ReadBool('TCI', 'Enable', False);
   CBViewFreq.ItemIndex := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
 
   ReadGridColumns;
@@ -540,6 +547,27 @@ begin
     InitDB.ImbeddedCallBookInit(False);
     DownloadCallBookFile;
   end;
+end;
+
+procedure TConfigForm.CBRigNumberHLSelect(Sender: TObject);
+begin
+  IniSet.CurrentNumberRIG := CBRigNumberHL.ItemIndex + 1;
+  LoadRIGSettings;
+end;
+
+procedure TConfigForm.CBRigNumberTCISelect(Sender: TObject);
+begin
+  IniSet.CurrentNumberTCI := CBRigNumberTCI.ItemIndex + 1;
+  LoadTCISettings;
+end;
+
+procedure TConfigForm.CBTransceiverModelSelect(Sender: TObject);
+var
+  TrscvName: string;
+begin
+  TrscvName := CBTransceiverModel.Text;
+  Delete(TrscvName, 1, pos(' ', TrscvName));
+  EditRIGNameHL.Text := TrimRight(TrscvName);
 end;
 
 procedure TConfigForm.CBViewFreqChange(Sender: TObject);
@@ -740,7 +768,8 @@ begin
   {$ENDIF}
   CBrigctldStart.Checked := IniSet.rigctldStartUp;
   CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
-  CATdm.LoadCATini(1);
+  CATdm.LoadCATini(IniSet.CurrentNumberRIG);
+  CBRigNumberHL.ItemIndex := IniSet.CurrentNumberRIG - 1;
   CBCatComPort.Text := CatSettings.COMPort;
   CBCatSpeed.ItemIndex := CatSettings.Speed;
   CBCatStopBit.ItemIndex := CatSettings.StopBit;
@@ -756,6 +785,7 @@ begin
   CBrigctldStart.Checked := CatSettings.StartRigctld;
   CBTransceiverModel.Text := IntToStr(CatSettings.TransceiverNum) +
     ' ' + CatSettings.TransceiverName;
+  EditRIGNameHL.Text := CatSettings.TransceiverName;
 end;
 
 procedure TConfigForm.SaveRIGSettings;
@@ -764,8 +794,15 @@ var
 begin
   if Length(CBTransceiverModel.Text) > 1 then
   begin
-    TrscvName := CBTransceiverModel.Text;
-    Delete(TrscvName, 1, pos(' ', TrscvName));
+    if Length(EditRIGNameHL.Text) > 0 then
+      CatSettings.TransceiverName := EditRIGNameHL.Text
+    else
+    begin
+      TrscvName := CBTransceiverModel.Text;
+      Delete(TrscvName, 1, pos(' ', TrscvName));
+      CatSettings.TransceiverName := TrscvName;
+    end;
+
     CatSettings.COMPort := CBCatComPort.Text;
     CatSettings.Speed := CBCatSpeed.ItemIndex;
     CatSettings.StopBit := CBCatStopBit.ItemIndex;
@@ -777,14 +814,36 @@ begin
     CatSettings.CIVaddress := EditCATCIaddress.Text;
     CatSettings.TransceiverNum :=
       dmFunc.GetRigIdFromComboBoxItem(CBTransceiverModel.Text);
-    CatSettings.TransceiverName := TrscvName;
     CatSettings.Address := EditCATAddress.Text;
     CatSettings.Port := StrToInt(EditCATport.Text);
     CatSettings.Extracmd := EditExtraCmd.Text;
     CatSettings.StartRigctld := CBrigctldStart.Checked;
     CatSettings.RigctldPath := FNPathRigctld.Text;
-    CATdm.SaveCATini(1);
+    CATdm.SaveCATini(CBRigNumberHL.ItemIndex + 1);
     TRXForm.InicializeRig;
+  end;
+end;
+
+procedure TConfigForm.LoadTCISettings;
+begin
+  dmTCI.LoadTCIini(IniSet.CurrentNumberTCI);
+  CBRigNumberTCI.ItemIndex := IniSet.CurrentNumberTCI - 1;
+  EditTCIAddress.Text := TCISettings.Address;
+  EditTCIPort.Text := IntToStr(TCISettings.Port);
+  EditRIGNameTCI.Text := TCISettings.Name;
+  CBTCIEnable.Checked := TCISettings.Enable;
+end;
+
+procedure TConfigForm.SaveTCISettings;
+begin
+  if Length(EditRIGNameTCI.Text) > 1 then
+  begin
+    TCISettings.Address := EditTCIAddress.Text;
+    TCISettings.Port := StrToInt(EditTCIPort.Text);
+    TCISettings.Name := EditRIGNameTCI.Text;
+    TCISettings.Enable := CBTCIEnable.Checked;
+    dmTCI.SaveTCIini(CBRigNumberTCI.ItemIndex + 1);
+    dmTCI.InicializeTCI(CBRigNumberTCI.ItemIndex + 1);
   end;
 end;
 
@@ -1010,6 +1069,7 @@ begin
   SaveGridColumns;
   SaveGridColors;
   SaveRIGSettings;
+  SaveTCISettings;
   MainFunc.LoadINIsettings;
   MiniForm.SetHotKey;
   ServerDM.StartWOL;
@@ -1175,6 +1235,7 @@ end;
 procedure TConfigForm.TSCATShow(Sender: TObject);
 begin
   LoadRIGSettings;
+  LoadTCISettings;
 end;
 
 procedure TConfigForm.TSOtherSettingsShow(Sender: TObject);

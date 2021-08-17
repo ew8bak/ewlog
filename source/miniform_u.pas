@@ -25,7 +25,6 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
-    MenuItem1: TMenuItem;
     SentSpot: TAction;
     MacroKeyF2: TAction;
     MacroKeyF3: TAction;
@@ -1822,7 +1821,6 @@ begin
 
   if CBMode.Text <> 'SSB' then
     CBSubMode.Text := '';
-  // TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text, CBMode.Text), FormatFreqFloat);
   TryStrToFloatSafe(MainFunc.ConvertFreqToSave(CBBand.Text), FormatFreqFloat);
   if FormatFreqFloat >= 10 then
     CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')

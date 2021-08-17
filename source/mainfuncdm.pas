@@ -1580,14 +1580,14 @@ begin
   IniSet.CWDaemonPort := INIFile.ReadInteger('CWDaemon', 'Port', 6789);
   IniSet.CWDaemonWPM := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
   IniSet.CWDaemonEnable := INIFile.ReadBool('CWDaemon', 'Enable', False);
-  IniSet.TCIAddress := INIFile.ReadString('TCI', 'Address', '127.0.0.1');
-  IniSet.TCIPort := INIFile.ReadInteger('TCI', 'Port', 40001);
-  IniSet.TCIEnable := INIFile.ReadBool('TCI', 'Enable', False);
   IniSet.InterfaceMobileSync :=
     INIFile.ReadString('SetLog', 'InterfaceMobileSync', '0.0.0.0');
   IniSet.ViewFreq := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
   if IniSet.ViewFreq > 3 then
     IniSet.ViewFreq := 0;
+  IniSet.CurrentNumberRIG := INIFile.ReadInteger('SetCAT', 'CurrentNumberRIG', 1);
+  IniSet.CurrentNumberTCI := INIFile.ReadInteger('SetCAT', 'CurrentNumberTCI', 1);
+  IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', '');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

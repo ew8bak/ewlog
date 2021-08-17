@@ -1831,6 +1831,26 @@ msgstr "Пусть к Rigctld"
 msgid "Poll"
 msgstr ""
 
+#: tconfigform.lbrignamehl.caption
+msgctxt "tconfigform.lbrignamehl.caption"
+msgid "RIG Name"
+msgstr ""
+
+#: tconfigform.lbrignamehl1.caption
+msgctxt "tconfigform.lbrignamehl1.caption"
+msgid "RIG Name"
+msgstr ""
+
+#: tconfigform.lbrignumberhl.caption
+msgctxt "tconfigform.lbrignumberhl.caption"
+msgid "Rig Number"
+msgstr ""
+
+#: tconfigform.lbrignumberhl1.caption
+msgctxt "tconfigform.lbrignumberhl1.caption"
+msgid "Rig Number"
+msgstr ""
+
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
 msgstr "Сочетание сохранения QSO"
@@ -4470,10 +4490,6 @@ msgstr ""
 msgid "MacroKeyF9"
 msgstr ""
 
-#: tminiform.menuitem1.caption
-msgid "TCI Client"
-msgstr ""
-
 #: tminiform.menuitem102.caption
 msgctxt "tminiform.menuitem102.caption"
 msgid "Donations"
@@ -4910,6 +4926,7 @@ msgid "Edit3"
 msgstr ""
 
 #: tprintsticker_form.edit4.text
+msgctxt "tprintsticker_form.edit4.text"
 msgid "Edit4"
 msgstr ""
 
@@ -5434,36 +5451,6 @@ msgstr "Дата синхронизации"
 #: tsyndbdate.label1.caption
 msgid "Select a synchronization start date"
 msgstr "Выбор даты начала синхронизации"
-
-#: ttciform.btnclientstart.caption
-msgid "Connect"
-msgstr ""
-
-#: ttciform.btnclientstop.caption
-msgid "Stop"
-msgstr ""
-
-#: ttciform.button1.caption
-#, fuzzy
-msgctxt "ttciform.button1.caption"
-msgid "Sent"
-msgstr "Отправлена"
-
-#: ttciform.caption
-msgid "TCI Form"
-msgstr ""
-
-#: ttciform.edit1.text
-msgid "127.0.0.1"
-msgstr ""
-
-#: ttciform.edit2.text
-msgid "8089"
-msgstr ""
-
-#: ttciform.edit3.text
-msgid "Test Message"
-msgstr ""
 
 #: tthanks_form.caption
 msgctxt "tthanks_form.caption"

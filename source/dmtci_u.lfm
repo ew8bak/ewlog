@@ -1,0 +1,7 @@
+object dmTCI: TdmTCI
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 248
+  VerticalOffset = 138
+  Width = 150
+end
