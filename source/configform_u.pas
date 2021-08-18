@@ -1076,6 +1076,11 @@ begin
   CWDaemonDM.StartCWDaemon;
   MainFunc.SetGrid(GridsForm.DBGrid1);
   MainFunc.SetGrid(GridsForm.DBGrid2);
+  if IniSet.InterfaceMobileSync <> CBIntMobileSync.Text then
+  begin
+    IniSet.InterfaceMobileSync := CBIntMobileSync.Text;
+    ServerDM.RestartMobileSync;
+  end;
   ConfigForm.Close;
 end;
 
@@ -1241,7 +1246,12 @@ end;
 procedure TConfigForm.TSOtherSettingsShow(Sender: TObject);
 begin
   CBIntMobileSync.Items.AddStrings(GStack.LocalAddresses);
-  CBIntMobileSync.ItemIndex := CBIntMobileSync.Items.IndexOf(IniSet.InterfaceMobileSync);
+  if CBIntMobileSync.Items.IndexOf(IniSet.InterfaceMobileSync) <> -1 then
+    CBIntMobileSync.ItemIndex :=
+      CBIntMobileSync.Items.IndexOf(IniSet.InterfaceMobileSync)
+  else
+  if CBIntMobileSync.Items.Count > 0 then
+    CBIntMobileSync.ItemIndex := 0;
 end;
 
 procedure TConfigForm.TSTelnetShow(Sender: TObject);

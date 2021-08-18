@@ -2705,11 +2705,14 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = LBSyncMobile
         AnchorSideTop.Side = asrBottom
         Left = 10
-        Height = 27
+        Height = 28
         Top = 181
         Width = 140
         BorderSpacing.Top = 5
+        Font.Height = -12
         ItemHeight = 0
+        ParentFont = False
+        Style = csOwnerDrawFixed
         TabOrder = 4
       end
       object LBViewFreq: TLabel
@@ -2718,7 +2721,7 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Side = asrBottom
         Left = 10
         Height = 13
-        Top = 218
+        Top = 219
         Width = 93
         BorderSpacing.Left = 10
         BorderSpacing.Top = 10
@@ -2731,9 +2734,10 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Side = asrBottom
         Left = 10
         Height = 28
-        Top = 236
+        Top = 237
         Width = 140
         BorderSpacing.Top = 5
+        Font.Height = -12
         ItemHeight = 16
         ItemIndex = 0
         Items.Strings = (

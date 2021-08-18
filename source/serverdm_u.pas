@@ -36,7 +36,7 @@ type
     procedure IdFldigiTCPException(AContext: TIdContext; AException: Exception);
     procedure IdFldigiTCPExecute(AContext: TIdContext);
     procedure IdSyncMobileUDPUDPException(AThread: TIdUDPListenerThread;
-      ABinding: TIdSocketHandle; const AMessage: String;
+      ABinding: TIdSocketHandle; const AMessage: string;
       const AExceptionClass: TClass);
     procedure IdSyncMobileUDPUDPRead(AThread: TIdUDPListenerThread;
       const AData: TIdBytes; ABinding: TIdSocketHandle);
@@ -64,6 +64,7 @@ type
     procedure StartWOL;
     procedure SendBroadcastPingPong(s: string);
     function CreateADIBroadcast(QSO: TQSO; ToCall, SaveQSO: string): string;
+    procedure RestartMobileSync;
 
 
   end;
@@ -81,6 +82,31 @@ uses InitDB_dm, MainFuncDM, dmFunc_U,
 {$R *.lfm}
 
 { TServerDM }
+
+procedure TServerDM.RestartMobileSync;
+var
+  i: integer;
+begin
+  lastUDPport := -1;
+  IdSyncMobileUDP.Active := False;
+  if MobileSynThread <> nil then
+    MobileSynThread.Terminate;
+
+  for i := 0 to 5 do
+  begin
+    IdSyncMobileUDP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
+    IdSyncMobileUDP.Bindings.Add.Port := port_udp[i];
+    IdSyncMobileUDP.Active := True;
+    if IdSyncMobileUDP.Active then
+    begin
+      lastUDPport := port_udp[i];
+      Break;
+    end;
+  end;
+
+  StartTCPSyncThread;
+
+end;
 
 function TServerDM.AddToCallsignList(Call: string; LastPong: TTime): string;
 var
@@ -223,24 +249,12 @@ begin
     FoundBroadcastLog := TStringList.Create;
     FoundBroadcastLog.NameValueSeparator := '>';
 
-    lastUDPport := -1;
-
     if IniSet.InterfaceMobileSync = '' then
       IniSet.InterfaceMobileSync := '0.0.0.0';
 
-    for i := 0 to 5 do
-    begin
-      IdSyncMobileUDP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
-      IdSyncMobileUDP.Bindings.Add.Port := port_udp[i];
-      IdSyncMobileUDP.Active := True;
-      if IdSyncMobileUDP.Active then
-      begin
-        lastUDPport := port_udp[i];
-        Break;
-      end;
-    end;
+    MobileSynThread := nil;
 
-    StartTCPSyncThread;
+    RestartMobileSync;
 
     FldigiMode := '';
     FldigiSubMode := '';
@@ -306,8 +320,8 @@ begin
 end;
 
 procedure TServerDM.IdSyncMobileUDPUDPException(AThread: TIdUDPListenerThread;
-  ABinding: TIdSocketHandle; const AMessage: String;
-  const AExceptionClass: TClass);
+  ABinding: TIdSocketHandle; const AMessage: string; const AExceptionClass: TClass);
+
 begin
   MiniForm.TextSB(ABinding.PeerIP + ':' + SysToUTF8(AMessage), 0);
 end;
