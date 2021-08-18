@@ -1246,6 +1246,7 @@ end;
 
 procedure TConfigForm.TSOtherSettingsShow(Sender: TObject);
 begin
+  CBIntMobileSync.Items.Clear;
   CBIntMobileSync.Items.AddStrings(GStack.LocalAddresses);
   if CBIntMobileSync.Items.IndexOf(IniSet.InterfaceMobileSync) <> -1 then
     CBIntMobileSync.ItemIndex :=
