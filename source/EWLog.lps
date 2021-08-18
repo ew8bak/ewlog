@@ -68,8 +68,8 @@
         <UnitName Value="ConfigForm_U"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="1242"/>
-        <CursorPos X="30" Y="1249"/>
+        <TopLine Value="901"/>
+        <CursorPos X="3" Y="903"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1960,123 +1960,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="telnetclientthread.pas"/>
-        <Caret Line="89" TopLine="55"/>
+        <Caret Line="54" TopLine="33"/>
       </Position1>
       <Position2>
         <Filename Value="telnetclientthread.pas"/>
-        <Caret Line="54" TopLine="33"/>
+        <Caret Line="89" TopLine="68"/>
       </Position2>
       <Position3>
-        <Filename Value="telnetclientthread.pas"/>
-        <Caret Line="89" TopLine="68"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="106" Column="15" TopLine="86"/>
       </Position3>
       <Position4>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="106" Column="15" TopLine="86"/>
+        <Caret Line="364" Column="3" TopLine="353"/>
       </Position4>
       <Position5>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="364" Column="3" TopLine="353"/>
+        <Caret Line="100" Column="15" TopLine="80"/>
       </Position5>
       <Position6>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="100" Column="15" TopLine="80"/>
-      </Position6>
-      <Position7>
         <Filename Value="telnetclientthread.pas"/>
         <Caret Line="91" Column="3" TopLine="68"/>
+      </Position6>
+      <Position7>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="222" Column="3" TopLine="219"/>
       </Position7>
       <Position8>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="222" Column="3" TopLine="219"/>
+        <Caret Line="549" TopLine="541"/>
       </Position8>
       <Position9>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="549" TopLine="541"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1081" Column="37" TopLine="1064"/>
       </Position9>
       <Position10>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1081" Column="37" TopLine="1064"/>
+        <Caret Line="1079" TopLine="1064"/>
       </Position10>
       <Position11>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1079" TopLine="1064"/>
+        <Caret Line="1081" TopLine="1064"/>
       </Position11>
       <Position12>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1081" TopLine="1064"/>
+        <Caret Line="1082" TopLine="1058"/>
       </Position12>
       <Position13>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1082" TopLine="1058"/>
+        <Caret Line="306" Column="15" TopLine="286"/>
       </Position13>
       <Position14>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="306" Column="15" TopLine="286"/>
+        <Caret Line="426" TopLine="399"/>
       </Position14>
       <Position15>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="426" TopLine="399"/>
+        <Caret Line="1079" TopLine="1058"/>
       </Position15>
       <Position16>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1079" TopLine="1058"/>
-      </Position16>
-      <Position17>
         <Filename Value="mobilesyncthread.pas"/>
         <Caret Line="224" TopLine="205"/>
+      </Position16>
+      <Position17>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="426" TopLine="406"/>
       </Position17>
       <Position18>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="426" TopLine="406"/>
+        <Caret Line="428" TopLine="406"/>
       </Position18>
       <Position19>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="428" TopLine="406"/>
+        <Caret Line="1079" TopLine="1057"/>
       </Position19>
       <Position20>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1079" TopLine="1057"/>
-      </Position20>
-      <Position21>
         <Filename Value="telnetclientthread.pas"/>
         <Caret Line="69" Column="27" TopLine="54"/>
-      </Position21>
-      <Position22>
+      </Position20>
+      <Position21>
         <Filename Value="mobilesyncthread.pas"/>
         <Caret Line="224" TopLine="205"/>
-      </Position22>
-      <Position23>
+      </Position21>
+      <Position22>
         <Filename Value="configform_u.pas"/>
         <Caret Line="426" TopLine="406"/>
-      </Position23>
-      <Position24>
+      </Position22>
+      <Position23>
         <Filename Value="dxclusterform_u.pas"/>
         <Caret Line="595" Column="36" TopLine="562"/>
-      </Position24>
-      <Position25>
+      </Position23>
+      <Position24>
         <Filename Value="dmfunc_u.pas"/>
         <Caret Line="489" Column="3" TopLine="484"/>
+      </Position24>
+      <Position25>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="2332" Column="49" TopLine="2291"/>
       </Position25>
       <Position26>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="2332" Column="49" TopLine="2291"/>
+        <Caret Line="1341" Column="13" TopLine="1331"/>
       </Position26>
       <Position27>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="1341" Column="13" TopLine="1331"/>
+        <Caret Line="338" Column="15" TopLine="318"/>
       </Position27>
       <Position28>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="338" Column="15" TopLine="318"/>
+        <Caret Line="710" Column="3" TopLine="707"/>
       </Position28>
       <Position29>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="710" Column="3" TopLine="707"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="426" Column="71" TopLine="397"/>
       </Position29>
       <Position30>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="426" Column="71" TopLine="397"/>
+        <Caret Line="1249" Column="30" TopLine="1242"/>
       </Position30>
     </JumpHistory>
     <RunParams>
