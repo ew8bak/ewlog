@@ -52,7 +52,9 @@ end;
 procedure TTelnetThread.OnDisconnectDX(aSocket: TLSocket);
 begin
   ConnectCluster := False;
+  TelnetLine := 'DX Cluster disconnected';
   Synchronize(@ToForm);
+  TelnetThread.Destroy;
 end;
 
 procedure TTelnetThread.OnReceiveDX(aSocket: TLSocket);
@@ -65,7 +67,11 @@ end;
 procedure TTelnetThread.OnErrorDX(const msg: string; aSocket: TLSocket);
 begin
   TelnetLine := msg;
+  ConnectCluster := False;
   Synchronize(@ToForm);
+  TelnetLine := 'DX Cluster disconnected';
+  Synchronize(@ToForm);
+  TelnetThread.Destroy;
 end;
 
 constructor TTelnetThread.Create;
@@ -86,8 +92,6 @@ end;
 procedure TTelnetThread.ToForm;
 begin
   dxClusterForm.FromClusterThread(TelnetLine);
-  if ConnectCluster then
-    dxClusterForm.SBConnect.Enabled := False;
 end;
 
 function TTelnetThread.ConnectToCluster: boolean;

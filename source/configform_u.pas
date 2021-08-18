@@ -1076,11 +1076,12 @@ begin
   CWDaemonDM.StartCWDaemon;
   MainFunc.SetGrid(GridsForm.DBGrid1);
   MainFunc.SetGrid(GridsForm.DBGrid2);
-  if IniSet.InterfaceMobileSync <> CBIntMobileSync.Text then
-  begin
-    IniSet.InterfaceMobileSync := CBIntMobileSync.Text;
-    ServerDM.RestartMobileSync;
-  end;
+  if CBIntMobileSync.Text <> '' then
+    if IniSet.InterfaceMobileSync <> CBIntMobileSync.Text then
+    begin
+      IniSet.InterfaceMobileSync := CBIntMobileSync.Text;
+      ServerDM.RestartMobileSync;
+    end;
   ConfigForm.Close;
 end;
 
