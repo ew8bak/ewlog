@@ -91,6 +91,7 @@ type
     function ConvertFreqToSave(Freq: string): string;
     function ConvertFreqToShow(Freq: string): string;
     function ConvertFreqToSelectView(Freq: string): string;
+    procedure LoadRadioItems(var SL: TStringList);
   end;
 
 var
@@ -110,6 +111,18 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u;
 
 {$R *.lfm}
+
+procedure TMainFunc.LoadRadioItems(var SL: TStringList);
+var
+  i: integer;
+begin
+  for i := 1 to 4 do
+    if INIFile.ReadString('TRX' + IntToStr(i), 'name', '') <> '' then
+      SL.Add(INIFile.ReadString('TRX' + IntToStr(i), 'name', '') + ' | CAT');
+  for i := 1 to 4 do
+    if INIFile.ReadString('TCI' + IntToStr(i), 'name', '') <> '' then
+      SL.Add(INIFile.ReadString('TCI' + IntToStr(i), 'name', '') + ' | TCI');
+end;
 
 function TMainFunc.ConvertFreqToSave(Freq: string): string;
 var

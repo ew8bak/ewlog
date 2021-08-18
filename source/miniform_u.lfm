@@ -2256,6 +2256,7 @@ object MiniForm: TMiniForm
     end
     object MIRadio: TMenuItem
       Caption = 'Radio'
+      OnClick = MIRadioClick
     end
     object MIExtProg: TMenuItem
       Caption = 'External programs'

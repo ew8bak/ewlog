@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Debug"/>
-    <Units Count="227">
+    <Units Count="229">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -66,12 +66,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="493"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="438"/>
         <CursorPos X="3" Y="438"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -116,7 +115,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="484"/>
         <CursorPos X="3" Y="489"/>
         <UsageCount Value="200"/>
@@ -207,7 +206,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="364"/>
         <CursorPos Y="390"/>
         <UsageCount Value="200"/>
@@ -588,8 +587,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <TopLine Value="1552"/>
-        <CursorPos X="81" Y="1589"/>
+        <TopLine Value="1584"/>
+        <CursorPos X="71" Y="1603"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit57>
@@ -606,7 +605,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="65"/>
-        <CursorPos X="38" Y="72"/>
+        <CursorPos X="15" Y="101"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit59>
@@ -689,9 +688,10 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="386"/>
-        <CursorPos X="20" Y="407"/>
+        <TopLine Value="2245"/>
+        <CursorPos Y="2258"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -711,10 +711,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="473"/>
-        <CursorPos X="62" Y="494"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="9"/>
+        <CursorPos X="3" Y="440"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit71>
       <Unit72>
         <Filename Value="telnetclientthread.pas"/>
@@ -790,10 +792,11 @@
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="482"/>
-        <CursorPos X="49" Y="237"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="280"/>
+        <CursorPos Y="249"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="cloudlogcat.pas"/>
@@ -821,12 +824,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmCat"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="102"/>
-        <CursorPos X="48" Y="81"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="81"/>
+        <CursorPos X="27" Y="86"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit82>
       <Unit83>
         <Filename Value="contestform_u.pas"/>
@@ -868,7 +871,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="280"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
       </Unit86>
       <Unit87>
         <Filename Value="exportsotathread.pas"/>
@@ -877,7 +880,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="77" Y="109"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="139"/>
       </Unit87>
       <Unit88>
         <Filename Value="cwdaemondm_u.pas"/>
@@ -888,7 +891,7 @@
         <UnitName Value="CWDaemonDM_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="54" Y="63"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="96"/>
       </Unit88>
       <Unit89>
         <Filename Value="cwkeysform_u.pas"/>
@@ -900,7 +903,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="76"/>
         <CursorPos X="3" Y="111"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="95"/>
       </Unit89>
       <Unit90>
         <Filename Value="macroeditorform_u.pas"/>
@@ -912,7 +915,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos X="28" Y="61"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="94"/>
       </Unit90>
       <Unit91>
         <Filename Value="cwkeysdm_u.pas"/>
@@ -924,7 +927,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="143"/>
         <CursorPos X="3" Y="143"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="92"/>
       </Unit91>
       <Unit92>
         <Filename Value="cwtypeform_u.pas"/>
@@ -936,7 +939,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="50" Y="53"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
       </Unit92>
       <Unit93>
         <Filename Value="dmtci_u.pas"/>
@@ -945,10 +948,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmTCI_u"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="48"/>
         <CursorPos X="65" Y="55"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit93>
@@ -1933,127 +1936,141 @@
         <CursorPos Y="551"/>
         <UsageCount Value="8"/>
       </Unit226>
+      <Unit227>
+        <Filename Value="..\..\..\..\..\usr\lib\fpc\src\rtl\objpas\sysutils\sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="309"/>
+        <CursorPos X="13" Y="330"/>
+        <UsageCount Value="10"/>
+      </Unit227>
+      <Unit228>
+        <Filename Value="..\..\..\..\..\usr\lib\fpc\src\rtl\objpas\sysutils\sysutils.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="154"/>
+        <CursorPos X="9" Y="158"/>
+        <UsageCount Value="10"/>
+      </Unit228>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="757" Column="38" TopLine="746"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="396" Column="52" TopLine="366"/>
       </Position1>
       <Position2>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1237" Column="18" TopLine="1202"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="998" Column="51" TopLine="963"/>
       </Position2>
       <Position3>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="324" Column="30" TopLine="304"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1007" Column="20" TopLine="972"/>
       </Position3>
       <Position4>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="555" Column="18" TopLine="535"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1329" Column="51" TopLine="1294"/>
       </Position4>
       <Position5>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="757" Column="38" TopLine="722"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1340" Column="17" TopLine="1305"/>
       </Position5>
       <Position6>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1237" Column="18" TopLine="1202"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="385" Column="33" TopLine="363"/>
       </Position6>
       <Position7>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="406" Column="20" TopLine="385"/>
+        <Caret Line="2222" Column="6" TopLine="2205"/>
       </Position7>
       <Position8>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="407" Column="20" TopLine="386"/>
+        <Caret Line="343" Column="15" TopLine="323"/>
       </Position8>
       <Position9>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="829" TopLine="808"/>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="250" Column="19" TopLine="224"/>
       </Position9>
       <Position10>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="830" TopLine="808"/>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="53" Column="15" TopLine="33"/>
       </Position10>
       <Position11>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="831" TopLine="808"/>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="181" Column="3" TopLine="178"/>
       </Position11>
       <Position12>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="832" TopLine="808"/>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="238" Column="4" TopLine="220"/>
       </Position12>
       <Position13>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="329" Column="26" TopLine="752"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="2265" Column="16" TopLine="2240"/>
       </Position13>
       <Position14>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="172" Column="14" TopLine="152"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="404" Column="40" TopLine="374"/>
       </Position14>
       <Position15>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="829" TopLine="790"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="410" Column="51" TopLine="375"/>
       </Position15>
       <Position16>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="754" Column="3" TopLine="752"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1010" TopLine="983"/>
       </Position16>
       <Position17>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="307" Column="15" TopLine="287"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1018" Column="20" TopLine="983"/>
       </Position17>
       <Position18>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="397" TopLine="175"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1340" Column="3" TopLine="1311"/>
       </Position18>
       <Position19>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="390" TopLine="364"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1348" Column="17" TopLine="1313"/>
       </Position19>
       <Position20>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="395" TopLine="364"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1435" Column="20" TopLine="1411"/>
       </Position20>
       <Position21>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="390" TopLine="364"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1447" Column="19" TopLine="1412"/>
       </Position21>
       <Position22>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="66" TopLine="48"/>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="249" TopLine="220"/>
       </Position22>
       <Position23>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="67" TopLine="48"/>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="228" Column="40" TopLine="216"/>
       </Position23>
       <Position24>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="68" TopLine="48"/>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="250" Column="11" TopLine="219"/>
       </Position24>
       <Position25>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="69" TopLine="48"/>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="249" TopLine="219"/>
       </Position25>
       <Position26>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="77" TopLine="48"/>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="274" Column="27" TopLine="286"/>
       </Position26>
       <Position27>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="66" Column="8" TopLine="48"/>
+        <Filename Value="serverdm_u.pas"/>
+        <Caret Line="51" Column="15" TopLine="31"/>
       </Position27>
       <Position28>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="67" TopLine="48"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1460" Column="41" TopLine="1427"/>
       </Position28>
       <Position29>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="68" TopLine="48"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="2212" Column="3" TopLine="2210"/>
       </Position29>
       <Position30>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="69" TopLine="48"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="343" Column="15" TopLine="323"/>
       </Position30>
     </JumpHistory>
     <RunParams>

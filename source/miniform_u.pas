@@ -271,7 +271,6 @@ type
     procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
-    procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem43Click(Sender: TObject);
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
@@ -312,6 +311,7 @@ type
     procedure MiPhotoSeparateClick(Sender: TObject);
     procedure MiPhotoSeparateTopClick(Sender: TObject);
     procedure MiPhotoTopClick(Sender: TObject);
+    procedure MIRadioClick(Sender: TObject);
     procedure MITelnetFormClick(Sender: TObject);
     procedure SaveQSOinBaseExecute(Sender: TObject);
     procedure SBInfoClick(Sender: TObject);
@@ -333,6 +333,7 @@ type
     CatCloudData: TCatData;
     procedure Clr;
     procedure LangItemClick(Sender: TObject);
+    procedure RadioItemClick(Sender: TObject);
     procedure ProgramItemClick(Sender: TObject);
     procedure FindLanguageFiles(Dir: string; var LangList: TStringList);
     procedure DisableMenuMiniMode;
@@ -340,6 +341,8 @@ type
     procedure HideCommentStat;
     procedure ShowCommentStat;
     procedure CloseForm;
+    procedure FreeMenuItem;
+    procedure FreeMenuItem(TagNum: integer); overload;
 
   public
     procedure LoadPhotoFromInternetCallbook(info: TInformRecord);
@@ -374,11 +377,39 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
-  sendtelnetspot_form_U, TCIForm_u;
+  sendtelnetspot_form_U;
 
 {$R *.lfm}
 
 { TMiniForm }
+
+procedure TMiniForm.FreeMenuItem;
+var
+  i: integer;
+begin
+  for i := MiniForm.ComponentCount - 1 downto 0 do
+    if (MiniForm.Components[i] is TMenuItem) then
+      if (MiniForm.Components[i] as TMenuItem).Tag = 75 then
+        (MiniForm.Components[i] as TMenuItem).Free;
+  for i := MiniForm.ComponentCount - 1 downto 0 do
+    if (MiniForm.Components[i] is TMenuItem) then
+      if (MiniForm.Components[i] as TMenuItem).Tag = 99 then
+        (MiniForm.Components[i] as TMenuItem).Free;
+  for i := MiniForm.ComponentCount - 1 downto 0 do
+    if (MiniForm.Components[i] is TMenuItem) then
+      if (MiniForm.Components[i] as TMenuItem).Tag = 76 then
+        (MiniForm.Components[i] as TMenuItem).Free;
+end;
+
+procedure TMiniForm.FreeMenuItem(TagNum: integer);
+var
+  i: integer;
+begin
+  for i := MiniForm.ComponentCount - 1 downto 0 do
+    if (MiniForm.Components[i] is TMenuItem) then
+      if (MiniForm.Components[i] as TMenuItem).Tag = TagNum then
+        (MiniForm.Components[i] as TMenuItem).Free;
+end;
 
 procedure TMiniForm.CheckFormMenu(NameForm: string; StateForm: boolean);
 begin
@@ -921,11 +952,6 @@ begin
   MM_Form.Show;
 end;
 
-procedure TMiniForm.MenuItem1Click(Sender: TObject);
-begin
-  TCIForm.Show;
-end;
-
 procedure TMiniForm.MenuItem43Click(Sender: TObject);
 begin
   dmFunc.RunProgram(IniSet.WSJT_PATH, '');
@@ -981,10 +1007,7 @@ var
   ProgramItem: TMenuItem;
   i: integer;
 begin
-  for i := MiniForm.ComponentCount - 1 downto 0 do
-    if (MiniForm.Components[i] is TMenuItem) then
-      if (MiniForm.Components[i] as TMenuItem).Tag = 75 then
-        (MiniForm.Components[i] as TMenuItem).Free;
+  FreeMenuItem(75);
 
   for i := 0 to High(MainFunc.GetExternalProgramsName) do
   begin
@@ -1312,10 +1335,7 @@ var
   LangList: TStringList;
   i: integer;
 begin
-  for i := MiniForm.ComponentCount - 1 downto 0 do
-    if (MiniForm.Components[i] is TMenuItem) then
-      if (MiniForm.Components[i] as TMenuItem).Tag = 99 then
-        (MiniForm.Components[i] as TMenuItem).Free;
+  FreeMenuItem(99);
 
   LangList := TStringList.Create;
   FindLanguageFiles(FilePATH + 'locale', LangList);
@@ -1404,6 +1424,41 @@ begin
     IniSet.pTop := False;
     INIFile.WriteBool('SetLog', 'pTop', False);
   end;
+end;
+
+procedure TMiniForm.MIRadioClick(Sender: TObject);
+var
+  RadioItems: TMenuItem;
+  RadioList: TStringList;
+  i: integer;
+begin
+  FreeMenuItem(76);
+
+  RadioList := TStringList.Create;
+  MainFunc.LoadRadioItems(RadioList);
+
+  for i := 0 to RadioList.Count - 1 do
+  begin
+    RadioItems := TMenuItem.Create(Self);
+    RadioItems.Name := 'RadioItems' + IntToStr(i);
+    RadioItems.Caption := RadioList.Strings[i];
+    RadioItems.OnClick := @RadioItemClick;
+    RadioItems.Tag := 76;
+    if RadioItems.Caption = IniSet.CurrentRIG then
+      RadioItems.Checked := True;
+    MIRadio.Insert(i, RadioItems);
+  end;
+
+  FreeAndNil(RadioList);
+end;
+
+procedure TMiniForm.RadioItemClick(Sender: TObject);
+var
+  MenuItem: TMenuItem;
+begin
+  MenuItem := (Sender as TMenuItem);
+  IniSet.CurrentRIG := MenuItem.Caption;
+  ShowMessage(IniSet.CurrentRIG);
 end;
 
 procedure TMiniForm.MITelnetFormClick(Sender: TObject);
@@ -2199,6 +2254,7 @@ begin
   INIFile.WriteString('SetLog', 'Language', IniSet.Language);
   INIFile.WriteBool('SetLog', 'UseMAPS', CBMap.Checked);
   INIFile.WriteString('SetLog', 'MainForm', IniSet.MainForm);
+  INIFile.WriteString('SetCAT', 'CurrentRIG', IniSet.CurrentRIG);
 
   GridsForm.SavePosition;
   Earth.SavePosition;
@@ -2212,6 +2268,7 @@ begin
     Earth.SavePosition;
   TRXForm.FreeRadio;
   dxClusterForm.FreeClusterThread;
+  FreeMenuItem;
 end;
 
 procedure TMiniForm.SetHotKey;

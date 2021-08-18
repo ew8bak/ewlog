@@ -240,7 +240,8 @@ begin
     lastUDPport := -1;
 
     for i := 0 to 5 do
-      if LUDPComponent1.Listen(port_udp[i], IniSet.InterfaceMobileSync) then
+     // if LUDPComponent1.Listen(port_udp[i], IniSet.InterfaceMobileSync) then
+    if LUDPComponent1.Listen(port_udp[i]) then
       begin
         lastUDPport := port_udp[i];
         Break;

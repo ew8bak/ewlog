@@ -234,7 +234,8 @@ begin
   lastTCPport := -1;
   SyncTCP.ReuseAddress := True;
   for i := 0 to 5 do
-    if SyncTCP.Listen(port_tcp[i], IniSet.InterfaceMobileSync) then
+    //if SyncTCP.Listen(port_tcp[i], IniSet.InterfaceMobileSync) then
+    if SyncTCP.Listen(port_tcp[i]) then
     begin
       lastTCPport := port_tcp[i];
       Break;
@@ -245,6 +246,7 @@ end;
 
 destructor TMobileSynThread.Destroy;
 begin
+  if SyncTCP <> nil then
   FreeAndNil(SyncTCP);
   inherited Destroy;
 end;
