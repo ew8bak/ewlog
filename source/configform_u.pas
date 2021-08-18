@@ -423,8 +423,8 @@ begin
   INIFile.WriteInteger('CWDaemon', 'Port', StrToInt(EditCwDaemonPort.Text));
   INIFile.WriteInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
   INIFile.WriteBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
-
-  INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
+  if CBIntMobileSync.Text <> '' then
+    INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
   INIFile.WriteInteger('SetLog', 'ViewFreq', CBViewFreq.ItemIndex);
 
   IniSet.Cluster_Login := EditTelnetLogin.Text;

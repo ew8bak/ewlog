@@ -6,14 +6,6 @@ object ServerDM: TServerDM
   HorizontalOffset = 552
   VerticalOffset = 250
   Width = 320
-  object LUDPComponent1: TLUDPComponent
-    Port = 0
-    OnReceive = LUDPComponent1Receive
-    OnError = LUDPComponent1Error
-    Timeout = 0
-    Left = 40
-    Top = 72
-  end
   object IdFldigiTCP: TIdTCPServer
     Bindings = <    
       item
@@ -25,8 +17,8 @@ object ServerDM: TServerDM
     OnDisconnect = IdFldigiTCPDisconnect
     OnException = IdFldigiTCPException
     OnExecute = IdFldigiTCPExecute
-    Left = 224
-    Top = 80
+    Left = 240
+    Top = 96
   end
   object IdWOLServer: TIdUDPServer
     Bindings = <>
@@ -46,5 +38,13 @@ object ServerDM: TServerDM
     Port = 0
     Left = 144
     Top = 128
+  end
+  object IdSyncMobileUDP: TIdUDPServer
+    Bindings = <>
+    DefaultPort = 0
+    OnUDPRead = IdSyncMobileUDPUDPRead
+    OnUDPException = IdSyncMobileUDPUDPException
+    Left = 232
+    Top = 24
   end
 end

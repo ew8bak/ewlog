@@ -14,7 +14,7 @@ unit serverDM_u;
 interface
 
 uses
-  Classes, SysUtils, lNetComponents, lNet, IdTCPServer, ResourceStr,
+  Classes, SysUtils, IdTCPServer, ResourceStr,
   const_u, LazUTF8, ExtCtrls, IdContext, IdUDPClient, IdUDPServer, digi_record,
   flDigiModem, ImportADIThread, MobileSyncThread, IdSocketHandle, IdGlobal,
   DateUtils, qso_record, prefix_record, Dialogs;
@@ -26,8 +26,8 @@ type
   TServerDM = class(TDataModule)
     IdCWDaemonClient: TIdUDPClient;
     IdFldigiTCP: TIdTCPServer;
+    IdSyncMobileUDP: TIdUDPServer;
     IdWOLServer: TIdUDPServer;
-    LUDPComponent1: TLUDPComponent;
     TimerWOL: TTimer;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
@@ -35,10 +35,13 @@ type
     procedure IdFldigiTCPDisconnect(AContext: TIdContext);
     procedure IdFldigiTCPException(AContext: TIdContext; AException: Exception);
     procedure IdFldigiTCPExecute(AContext: TIdContext);
+    procedure IdSyncMobileUDPUDPException(AThread: TIdUDPListenerThread;
+      ABinding: TIdSocketHandle; const AMessage: String;
+      const AExceptionClass: TClass);
+    procedure IdSyncMobileUDPUDPRead(AThread: TIdUDPListenerThread;
+      const AData: TIdBytes; ABinding: TIdSocketHandle);
     procedure IdWOLServerUDPRead(AThread: TIdUDPListenerThread;
       const AData: TIdBytes; ABinding: TIdSocketHandle);
-    procedure LUDPComponent1Error(const msg: string; aSocket: TLSocket);
-    procedure LUDPComponent1Receive(aSocket: TLSocket);
     procedure TimerWOLTimer(Sender: TObject);
   private
     PADIImport: TPADIImport;
@@ -184,23 +187,6 @@ begin
   MobileSynThread.Start;
 end;
 
-procedure TServerDM.LUDPComponent1Receive(aSocket: TLSocket);
-var
-  mess: string;
-begin
-  if aSocket.GetMessage(mess) > 0 then
-  begin
-    if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' +
-      DBRecord.CurrCall + #10) then
-      LUDPComponent1.SendMessage(IniSet.InterfaceMobileSync + ':' +
-        IntToStr(MobileSynThread.lastTCPport))
-    else
-      MiniForm.TextSB(rSyncErrCall, 0);
-    if (mess = 'Hello') or (mess = 'Hello' + #10) then
-      LUDPComponent1.SendMessage('Welcome!');
-  end;
-end;
-
 procedure TServerDM.TimerWOLTimer(Sender: TObject);
 begin
   SendBroadcastPingPong('PING');
@@ -239,13 +225,20 @@ begin
 
     lastUDPport := -1;
 
+    if IniSet.InterfaceMobileSync = '' then
+      IniSet.InterfaceMobileSync := '0.0.0.0';
+
     for i := 0 to 5 do
-     // if LUDPComponent1.Listen(port_udp[i], IniSet.InterfaceMobileSync) then
-    if LUDPComponent1.Listen(port_udp[i]) then
+    begin
+      IdSyncMobileUDP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
+      IdSyncMobileUDP.Bindings.Add.Port := port_udp[i];
+      IdSyncMobileUDP.Active := True;
+      if IdSyncMobileUDP.Active then
       begin
         lastUDPport := port_udp[i];
         Break;
       end;
+    end;
 
     StartTCPSyncThread;
 
@@ -309,6 +302,34 @@ begin
         'Amateur Contact Log</PGM><VER>5.5</VER><APIVER>0.6.2</APIVER></CMD>');
     end;
     GetFldigiUDP(MessageFromUDP);
+  end;
+end;
+
+procedure TServerDM.IdSyncMobileUDPUDPException(AThread: TIdUDPListenerThread;
+  ABinding: TIdSocketHandle; const AMessage: String;
+  const AExceptionClass: TClass);
+begin
+  MiniForm.TextSB(ABinding.PeerIP + ':' + SysToUTF8(AMessage), 0);
+end;
+
+procedure TServerDM.IdSyncMobileUDPUDPRead(AThread: TIdUDPListenerThread;
+  const AData: TIdBytes; ABinding: TIdSocketHandle);
+var
+  mess: string;
+begin
+  try
+    mess := BytesToString(AData, IndyTextEncoding_UTF8);
+    if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' +
+      DBRecord.CurrCall + #10) then
+      ABinding.SendTo(ABinding.PeerIP, ABinding.PeerPort,
+        IniSet.InterfaceMobileSync + ':' + IntToStr(MobileSynThread.lastTCPport))
+    else
+      MiniForm.TextSB(rSyncErrCall, 0);
+
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'TServerDM.IdSyncMobileUDPUDPRead:' +
+        E.ClassName + ':' + E.Message);
   end;
 end;
 
@@ -518,11 +539,6 @@ begin
     raise ImportADIFThread.FatalException;
   ImportADIFThread.PADIImport := PADIImport;
   ImportADIFThread.Start;
-end;
-
-procedure TServerDM.LUDPComponent1Error(const msg: string; aSocket: TLSocket);
-begin
-  MiniForm.TextSB(aSocket.peerAddress + ':' + SysToUTF8(msg), 0);
 end;
 
 end.
