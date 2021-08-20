@@ -14,10 +14,10 @@ unit serverDM_u;
 interface
 
 uses
-  Classes, SysUtils, IdTCPServer, ResourceStr,
-  const_u, LazUTF8, ExtCtrls, IdContext, IdUDPClient, IdUDPServer, digi_record,
-  flDigiModem, ImportADIThread, MobileSyncThread, IdSocketHandle, IdGlobal,
-  DateUtils, qso_record, prefix_record, Dialogs;
+  Classes, SysUtils, IdTCPServer, ResourceStr, const_u, LazUTF8, ExtCtrls,
+  IdContext, IdUDPClient, IdUDPServer, digi_record, flDigiModem,
+  ImportADIThread, MobileSyncThread, IdSocketHandle, IdGlobal,
+  DateUtils, qso_record, prefix_record;
 
 type
 

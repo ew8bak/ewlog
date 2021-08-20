@@ -14,18 +14,27 @@ unit telnetClientThread;
 interface
 
 uses
-  Classes, SysUtils, ssl_openssl, lNetComponents, lNet;
+  Classes, SysUtils, ssl_openssl, IdGlobal, IdTelnet, IdComponent;
+
+type
+  TdxClientRecord = record
+    Message: string;
+    Connected: boolean;
+  end;
 
 type
   TTelnetThread = class(TThread)
   protected
     procedure Execute; override;
   private
-    procedure OnReceiveDX(aSocket: TLSocket);
-    procedure OnErrorDX(const msg: string; aSocket: TLSocket);
-    procedure OnConnectDX(aSocket: TLSocket);
-    procedure OnDisconnectDX(aSocket: TLSocket);
+    DXTelnetClient: TIdTelnet;
+    dxClientRecord: TdxClientRecord;
+    procedure OnDataAvailable(Sender: TIdTelnet; const Buffer: TIdBytes);
+    procedure OnStatus(ASender: TObject; const AStatus: TIdStatus;
+      const AStatusText: string);
     function ConnectToCluster: boolean;
+    procedure SendMessage(Message: string);
+    procedure ClearSendMessage;
 
   public
     constructor Create;
@@ -35,43 +44,42 @@ type
 
 var
   TelnetThread: TTelnetThread;
-  DXTelnetClient: TLTelnetClientComponent;
-  TelnetLine: string;
-  ConnectCluster: boolean;
 
 implementation
 
-uses MainFuncDM, dxclusterform_u;
+uses MainFuncDM, dxclusterform_u, InitDB_dm;
 
-procedure TTelnetThread.OnConnectDX(aSocket: TLSocket);
+procedure TTelnetThread.SendMessage(Message: string);
 begin
-  ConnectCluster := True;
-  Synchronize(@ToForm);
+  if Length(Message) > 0 then
+  begin
+    DXTelnetClient.SendString(Message);
+    Synchronize(@ClearSendMessage);
+  end;
 end;
 
-procedure TTelnetThread.OnDisconnectDX(aSocket: TLSocket);
+procedure TTelnetThread.OnDataAvailable(Sender: TIdTelnet; const Buffer: TIdBytes);
 begin
-  ConnectCluster := False;
-  TelnetLine := 'DX Cluster disconnected';
-  Synchronize(@ToForm);
-  TelnetThread.Destroy;
+  dxClientRecord.Message := BytesToString(Buffer, IndyTextEncoding_UTF8);
+  if Length(dxClientRecord.Message) > 0 then
+    Synchronize(@ToForm);
 end;
 
-procedure TTelnetThread.OnReceiveDX(aSocket: TLSocket);
+procedure TTelnetThread.OnStatus(ASender: TObject; const AStatus: TIdStatus;
+  const AStatusText: string);
 begin
-  if DXTelnetClient.GetMessage(TelnetLine) = 0 then
+  if AStatus = hsConnected then
+  begin
+    dxClientRecord.Connected := True;
+    Synchronize(@ToForm);
     exit;
-  Synchronize(@ToForm);
-end;
-
-procedure TTelnetThread.OnErrorDX(const msg: string; aSocket: TLSocket);
-begin
-  TelnetLine := msg;
-  ConnectCluster := False;
-  Synchronize(@ToForm);
-  TelnetLine := 'DX Cluster disconnected';
-  Synchronize(@ToForm);
-  TelnetThread.Destroy;
+  end;
+  if AStatus = hsDisconnected then
+  begin
+    dxClientRecord.Connected := False;
+    Synchronize(@ToForm);
+    exit;
+  end;
 end;
 
 constructor TTelnetThread.Create;
@@ -79,7 +87,9 @@ begin
   FreeOnTerminate := True;
   inherited Create(True);
   DXTelnetClient := nil;
-  DXTelnetClient := TLTelnetClientComponent.Create(nil);
+  DXTelnetClient := TIdTelnet.Create;
+  dxClientRecord.Connected := False;
+  dxClientRecord.Message := '';
 end;
 
 destructor TTelnetThread.Destroy;
@@ -91,27 +101,30 @@ end;
 
 procedure TTelnetThread.ToForm;
 begin
-  dxClusterForm.FromClusterThread(TelnetLine);
+  dxClusterForm.FromClusterThread(dxClientRecord);
+  dxClientRecord.Message := '';
+end;
+
+procedure TTelnetThread.ClearSendMessage;
+begin
+  dxClusterForm.SendMessageString := '';
 end;
 
 function TTelnetThread.ConnectToCluster: boolean;
 begin
-  Result := True;
-  ConnectCluster := False;
   try
-    DXTelnetClient.OnReceive := @OnReceiveDX;
-    DXTelnetClient.OnError := @OnErrorDX;
-    DXTelnetClient.OnConnect := @OnConnectDX;
-    DXTelnetClient.OnDisconnect := @OnDisconnectDX;
+    Result := True;
+    DXTelnetClient.OnDataAvailable := @OnDataAvailable;
+    DXTelnetClient.OnStatus := @OnStatus;
     DXTelnetClient.Host := IniSet.Cluster_Host;
     DXTelnetClient.Port := StrToInt(IniSet.Cluster_Port);
     DXTelnetClient.Connect;
-    DXTelnetClient.CallAction;
   except
     on E: Exception do
     begin
-      ConnectCluster := False;
       Result := False;
+      WriteLn(ExceptFile, 'TTelnetThread.ConnectToCluster:' + E.ClassName +
+        ':' + E.Message);
     end;
   end;
 end;
@@ -125,6 +138,7 @@ begin
   end;
   while not Terminated do
   begin
+    SendMessage(dxClusterForm.SendMessageString);
     sleep(100);
   end;
 end;

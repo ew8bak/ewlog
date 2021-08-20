@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Debug"/>
-    <Units Count="230">
+    <Units Count="232">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -66,13 +66,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="901"/>
         <CursorPos X="3" Y="903"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -117,11 +114,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="484"/>
         <CursorPos X="3" Y="489"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="eqsl.pas"/>
@@ -587,8 +583,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <TopLine Value="1646"/>
-        <CursorPos X="57" Y="1615"/>
+        <TopLine Value="1640"/>
+        <CursorPos X="73" Y="1660"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -688,12 +684,10 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="707"/>
         <CursorPos X="3" Y="710"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit69>
       <Unit70>
         <Filename Value="imbedcallbookcheckrec.pas"/>
@@ -710,9 +704,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="202"/>
-        <CursorPos X="53" Y="244"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="326"/>
+        <CursorPos X="57" Y="335"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -721,9 +715,9 @@
         <Filename Value="telnetclientthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="telnetClientThread"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="42"/>
-        <CursorPos X="11" Y="80"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="64"/>
+        <CursorPos X="73" Y="71"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit72>
@@ -733,9 +727,10 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="568"/>
-        <CursorPos X="58" Y="580"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="134"/>
+        <CursorPos X="48" Y="149"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -795,11 +790,10 @@
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="23"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="543"/>
         <CursorPos X="28" Y="30"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit79>
       <Unit80>
         <Filename Value="cloudlogcat.pas"/>
@@ -872,7 +866,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="5" Y="280"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="166"/>
       </Unit86>
       <Unit87>
         <Filename Value="exportsotathread.pas"/>
@@ -881,7 +875,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="77" Y="109"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="149"/>
       </Unit87>
       <Unit88>
         <Filename Value="cwdaemondm_u.pas"/>
@@ -892,7 +886,7 @@
         <UnitName Value="CWDaemonDM_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="54" Y="63"/>
-        <UsageCount Value="101"/>
+        <UsageCount Value="106"/>
       </Unit88>
       <Unit89>
         <Filename Value="cwkeysform_u.pas"/>
@@ -904,7 +898,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="76"/>
         <CursorPos X="3" Y="111"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="105"/>
       </Unit89>
       <Unit90>
         <Filename Value="macroeditorform_u.pas"/>
@@ -916,7 +910,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos X="28" Y="61"/>
-        <UsageCount Value="99"/>
+        <UsageCount Value="104"/>
       </Unit90>
       <Unit91>
         <Filename Value="cwkeysdm_u.pas"/>
@@ -928,7 +922,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="143"/>
         <CursorPos X="3" Y="143"/>
-        <UsageCount Value="97"/>
+        <UsageCount Value="102"/>
       </Unit91>
       <Unit92>
         <Filename Value="cwtypeform_u.pas"/>
@@ -940,7 +934,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="50" Y="53"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="81"/>
       </Unit92>
       <Unit93>
         <Filename Value="dmtci_u.pas"/>
@@ -951,7 +945,7 @@
         <UnitName Value="dmTCI_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="65" Y="55"/>
-        <UsageCount Value="36"/>
+        <UsageCount Value="41"/>
       </Unit93>
       <Unit94>
         <Filename Value="ico\telnetaddresrecord_u.pas"/>
@@ -1842,7 +1836,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2183"/>
         <CursorPos Y="2203"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit214>
       <Unit215>
@@ -1956,127 +1950,142 @@
         <CursorPos X="11" Y="83"/>
         <UsageCount Value="10"/>
       </Unit229>
+      <Unit230>
+        <Filename Value="..\..\..\..\..\usr\lib\lazarus\lcl\lresources.pp"/>
+        <UnitName Value="LResources"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5338"/>
+        <CursorPos Y="5359"/>
+        <UsageCount Value="10"/>
+      </Unit230>
+      <Unit231>
+        <Filename Value="..\..\..\..\..\usr\lib\fpc\src\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1805"/>
+        <CursorPos X="15" Y="1824"/>
+        <UsageCount Value="10"/>
+      </Unit231>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="telnetclientthread.pas"/>
-        <Caret Line="54" TopLine="33"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="620" Column="20" TopLine="599"/>
       </Position1>
       <Position2>
-        <Filename Value="telnetclientthread.pas"/>
-        <Caret Line="89" TopLine="68"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="747" Column="22" TopLine="726"/>
       </Position2>
       <Position3>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="106" Column="15" TopLine="86"/>
+        <Filename Value="telnetclientthread.pas"/>
+        <Caret Line="53" TopLine="28"/>
       </Position3>
       <Position4>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="364" Column="3" TopLine="353"/>
+        <Filename Value="telnetclientthread.pas"/>
+        <Caret Line="58" TopLine="28"/>
       </Position4>
       <Position5>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="100" Column="15" TopLine="80"/>
+        <Filename Value="telnetclientthread.pas"/>
+        <Caret Line="45" Column="17" TopLine="28"/>
       </Position5>
       <Position6>
         <Filename Value="telnetclientthread.pas"/>
-        <Caret Line="91" Column="3" TopLine="68"/>
+        <Caret Line="57" Column="5" TopLine="53"/>
       </Position6>
       <Position7>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="222" Column="3" TopLine="219"/>
+        <Caret Line="106" Column="22" TopLine="79"/>
       </Position7>
       <Position8>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="549" TopLine="541"/>
+        <Caret Line="223" Column="24" TopLine="202"/>
       </Position8>
       <Position9>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1081" Column="37" TopLine="1064"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="396" Column="24" TopLine="376"/>
       </Position9>
       <Position10>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1079" TopLine="1064"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="620" Column="22" TopLine="599"/>
       </Position10>
       <Position11>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1081" TopLine="1064"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="747" Column="24" TopLine="726"/>
       </Position11>
       <Position12>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1082" TopLine="1058"/>
+        <Filename Value="telnetclientthread.pas"/>
+        <Caret Line="109" Column="35" TopLine="88"/>
       </Position12>
       <Position13>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="306" Column="15" TopLine="286"/>
+        <Filename Value="telnetclientthread.pas"/>
+        <Caret Line="37" Column="24" TopLine="19"/>
       </Position13>
       <Position14>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="426" TopLine="399"/>
+        <Filename Value="telnetclientthread.pas"/>
+        <Caret Line="57" Column="34" TopLine="36"/>
       </Position14>
       <Position15>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1079" TopLine="1058"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="646" Column="23" TopLine="570"/>
       </Position15>
       <Position16>
-        <Filename Value="mobilesyncthread.pas"/>
-        <Caret Line="224" TopLine="205"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="393" TopLine="373"/>
       </Position16>
       <Position17>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="426" TopLine="406"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="636" Column="3" TopLine="633"/>
       </Position17>
       <Position18>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="428" TopLine="406"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="676" Column="3" TopLine="674"/>
       </Position18>
       <Position19>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1079" TopLine="1057"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="636" Column="3" TopLine="634"/>
       </Position19>
       <Position20>
-        <Filename Value="telnetclientthread.pas"/>
-        <Caret Line="69" Column="27" TopLine="54"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="112" Column="15" TopLine="92"/>
       </Position20>
       <Position21>
-        <Filename Value="mobilesyncthread.pas"/>
-        <Caret Line="224" TopLine="205"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="630" Column="3" TopLine="627"/>
       </Position21>
       <Position22>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="426" TopLine="406"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="594" Column="32" TopLine="585"/>
       </Position22>
       <Position23>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="595" Column="36" TopLine="562"/>
+        <Caret Line="110" Column="19" TopLine="88"/>
       </Position23>
       <Position24>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="489" Column="3" TopLine="484"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="217" Column="9" TopLine="268"/>
       </Position24>
       <Position25>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="2332" Column="49" TopLine="2291"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="726" Column="53" TopLine="703"/>
       </Position25>
       <Position26>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1341" Column="13" TopLine="1331"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="148" Column="32" TopLine="127"/>
       </Position26>
       <Position27>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="338" Column="15" TopLine="318"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="107" Column="15" TopLine="87"/>
       </Position27>
       <Position28>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="710" Column="3" TopLine="707"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="515" Column="9" TopLine="506"/>
       </Position28>
       <Position29>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="426" Column="71" TopLine="397"/>
+        <Filename Value="telnetclientthread.pas"/>
+        <Caret Line="79" TopLine="64"/>
       </Position29>
       <Position30>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1249" Column="30" TopLine="1242"/>
+        <Filename Value="telnetclientthread.pas"/>
+        <Caret Line="80" TopLine="64"/>
       </Position30>
     </JumpHistory>
     <RunParams>

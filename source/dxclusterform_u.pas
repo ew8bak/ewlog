@@ -97,13 +97,15 @@ type
     FlagSList: TStringList;
     function FindNode(const APattern: string; Country: boolean): PVirtualNode;
     procedure FindCountryFlag(Country: string);
-    procedure ButtonSet;
+    procedure ButtonSet(isConnected: boolean);
     function GetModeFromFreq(MHz: string): string;
     procedure CheckClusterRestartTimer;
     procedure FindAndDeleteSpot(min: integer);
 
   public
-    procedure FromClusterThread(buffer: string);
+    SendMessageString: string;
+    procedure ProcessingRequest(buffer: string);
+    procedure FromClusterThread(dxClientRecord: TdxClientRecord);
     procedure LoadClusterString;
     procedure SendSpot(freq, call, cname, mode, rsts, grid: string);
     procedure SavePosition;
@@ -140,6 +142,13 @@ type
 {$R *.lfm}
 
 { TdxClusterForm }
+
+procedure TdxClusterForm.FromClusterThread(dxClientRecord: TdxClientRecord);
+begin
+  if Length(dxClientRecord.Message) > 0 then
+    ProcessingRequest(dxClientRecord.Message);
+  ButtonSet(dxClientRecord.Connected);
+end;
 
 procedure TdxClusterForm.SavePosition;
 begin
@@ -204,22 +213,27 @@ procedure TdxClusterForm.SendSpot(freq, call, cname, mode, rsts, grid: string);
 var
   comment: string;
 begin
-  comment := cname + ' ' + mode + ' ' + rsts;
-  try
-    freq := StringReplace(freq, ',', '.', [rfReplaceAll]);
-    Memo1.Lines.Add(Trim(Format('SENT dx BY ' + IniSet.Cluster_Login + ' %s %s %s',
-      [freq, call, comment])) + #13#10);
-    DXTelnetClient.SendMessage(Trim(Format('dx %s %s %s', [freq, call, comment])) +
-      #13#10);
-  except
-    on E: Exception do
-      Memo1.Append(E.Message);
-  end;
+  if TelnetThread <> nil then
+  begin
+    comment := cname + ' ' + mode + ' ' + rsts;
+    try
+      freq := StringReplace(freq, ',', '.', [rfReplaceAll]);
+      Memo1.Lines.Add(Trim(Format('SENT dx BY ' + IniSet.Cluster_Login +
+        ' %s %s %s', [freq, call, comment])) + #13#10);
+      SendMessageString := (Trim(Format('dx %s %s %s', [freq, call, comment])) + #13#10);
+
+    except
+      on E: Exception do
+        Memo1.Append(E.Message);
+    end;
+  end
+  else
+    Memo1.Lines.Add('DX Cluster disconnected');
 end;
 
-procedure TdxClusterForm.ButtonSet;
+procedure TdxClusterForm.ButtonSet(isConnected: boolean);
 begin
-  if ConnectCluster then
+  if isConnected then
   begin
     SBConnect.Enabled := False;
     SBClear.Enabled := True;
@@ -351,7 +365,7 @@ begin
   CheckClusterTimer.Enabled := True;
 end;
 
-procedure TdxClusterForm.FromClusterThread(buffer: string);
+procedure TdxClusterForm.ProcessingRequest(buffer: string);
 var
   DX, Call, Freq, Comment, Time, Loc, Band, Mode: string;
   Data: PTreeData;
@@ -371,15 +385,15 @@ begin
   Band := '';
   ShowSpotBand := False;
   ShowSpotMode := True;
-  ButtonSet;
+
   if Length(buffer) > 0 then
   begin
     buffer := StringReplace(buffer, #7, ' ', [rfReplaceAll]);
     buffer := Trim(buffer);
     Memo1.Lines.Add(buffer);
 
-    if (Length(IniSet.Cluster_Login) > 0) and (Pos('login', TelnetLine) = 1) then
-      DXTelnetClient.SendMessage(IniSet.Cluster_Login + #13#10, nil);
+    if (Length(IniSet.Cluster_Login) > 0) and (Pos('login', buffer) = 1) then
+      SendMessageString := (IniSet.Cluster_Login + #13#10);
 
     {if Length(IniSet.Cluster_Login) > 0 then
       if (Pos(UpperCase(IniSet.Cluster_Login) + ' de', buffer) > 0) and
@@ -570,10 +584,10 @@ end;
 
 procedure TdxClusterForm.SBDisconnectClick(Sender: TObject);
 begin
-  if DXTelnetClient <> nil then
+{  if DXTelnetClient <> nil then
     DXTelnetClient.Disconnect(True);
   ConnectCluster := False;
-  ButtonSet;
+  ButtonSet;  }
   if TelnetThread <> nil then
   begin
     TelnetThread.Terminate;
@@ -603,8 +617,8 @@ procedure TdxClusterForm.SpeedButton7Click(Sender: TObject);
 begin
   if Length(EditCallsign.Text) > 2 then
   begin
-    DXTelnetClient.SendMessage('talk ' + EditCallsign.Text + ' ' +
-      EditMessage.Text + #13#10, nil);
+    SendMessageString := ('talk ' + EditCallsign.Text + ' ' +
+      EditMessage.Text + #13#10);
     EditMessage.Clear;
   end
   else
@@ -630,8 +644,7 @@ begin
       INIFile.WriteBool('SetLog', 'cShow', False);
     IniSet.cShow := False;
     FreeClusterThread;
-    ConnectCluster := False;
-    ButtonSet;
+    ButtonSet(False);
     MiniForm.CheckFormMenu('DXClusterForm', False);
     CloseAction := caHide;
   end
@@ -653,7 +666,7 @@ begin
   MainFunc.LoadTelnetAddress;
   LoadClusterString;
   MainFunc.SetDXColumns(VSTCluster, False, VSTCluster);
-  ButtonSet;
+  ButtonSet(False);
   if IniSet.ClusterAutoStart then
     SBConnect.Click;
 end;
@@ -708,17 +721,13 @@ procedure TdxClusterForm.EditCommandKeyDown(Sender: TObject; var Key: word;
 begin
   if Key = 13 then
   begin
-    if DXTelnetClient <> nil then
+    if TelnetThread <> nil then
     begin
-      DXTelnetClient.SendMessage(EditCommand.Text + #13#10, nil);
+      SendMessageString := EditCommand.Text + #13#10;
       EditCommand.Clear;
     end
     else
-    begin
-      ConnectCluster := False;
-      ButtonSet;
       Memo1.Lines.Add('DX Cluster disconnected');
-    end;
   end;
 end;
 
@@ -729,8 +738,8 @@ begin
   begin
     if Length(EditCallsign.Text) > 2 then
     begin
-      DXTelnetClient.SendMessage('talk ' + EditCallsign.Text + ' ' +
-        EditMessage.Text + #13#10, nil);
+      SendMessageString := ('talk ' + EditCallsign.Text + ' ' +
+        EditMessage.Text + #13#10);
       EditMessage.Clear;
     end
     else
@@ -789,11 +798,13 @@ begin
         FreqFloat := FreqFloat / 1000;
         if IniSet.showBand then
           MiniForm.CBBand.Text :=
-            dmFunc.GetBandFromFreq(StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqFloat),
+            dmFunc.GetBandFromFreq(
+            StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqFloat),
             ',', '.', [rfReplaceAll]))
         else
           MiniForm.CBBand.Text :=
-            StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqFloat), ',', '.', [rfReplaceAll]);
+            StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqFloat),
+            ',', '.', [rfReplaceAll]);
 
         if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
         begin
