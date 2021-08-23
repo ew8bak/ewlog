@@ -14,8 +14,8 @@ unit MobileSyncThread;
 interface
 
 uses
-  Classes, SysUtils, lNetComponents, lNet, const_u, ResourceStr,
-  LazUTF8, ImportADIThread, SQLDB;
+  Classes, SysUtils, const_u, ResourceStr,
+  LazUTF8, ImportADIThread, SQLDB, IdTCPServer, IdContext, IdGlobal;
 
 type
   TMobileSynThread = class(TThread)
@@ -34,12 +34,9 @@ type
     AdifDataDate: string;
     function GetNewChunk: string;
     procedure ExportToMobile(range: string; date: string);
-    procedure OnAccept(aSocket: TLSocket);
-    procedure OnCanSend(aSocket: TLSocket);
-    procedure OnDisconnect(aSocket: TLSocket);
-    procedure OnError(const msg: string; aSocket: TLSocket);
-    procedure OnReceive(aSocket: TLSocket);
-    procedure OnConnect(aSocket: TLSocket);
+    procedure OnExecute(AContext: TIdContext);
+    procedure OnDisconnect(AContext: TIdContext);
+    procedure OnConnect(AContext: TIdContext);
     procedure StartImport;
 
   public
@@ -51,7 +48,7 @@ type
 
 var
   MobileSynThread: TMobileSynThread;
-  SyncTCP: TLTCPComponent;
+  SyncTCP: TIdTCPServer;
 
 implementation
 
@@ -73,48 +70,65 @@ begin
   AdifMobileString.Free;
 end;
 
-procedure TMobileSynThread.OnReceive(aSocket: TLSocket);
+procedure TMobileSynThread.OnConnect(AContext: TIdContext);
+begin
+  InfoStr := rClientConnected + AContext.Connection.Socket.Binding.PeerIP;
+  Synchronize(@ToForm);
+end;
+
+procedure TMobileSynThread.OnDisconnect(AContext: TIdContext);
+begin
+  InfoStr := AContext.Connection.Socket.Binding.PeerIP + ':' + rDone;
+  Synchronize(@ToForm);
+end;
+
+procedure TMobileSynThread.OnExecute(AContext: TIdContext);
 var
-  mess, rec_call, s: string;
+  MessageFromTCP, rec_call, s: string;
   AdifFile: TextFile;
 begin
+  MessageFromTCP := AContext.Connection.Socket.ReadLn(
+    IndyTextEncoding_UTF8, IndyTextEncoding_UTF8);
+
   AdifDataSyncAll := False;
   AdifDataSyncDate := False;
 
-  if aSocket.GetMessage(mess) > 0 then
+  if Length(MessageFromTCP) > 0 then
   begin
-    if Pos('DataSyncAll', mess) > 0 then
+    if Pos('DataSyncAll', MessageFromTCP) > 0 then
     begin
-      rec_call := dmFunc.par_str(mess, 2);
+      rec_call := dmFunc.par_str(MessageFromTCP, 2);
       if Pos(LBRecord.CallSign, rec_call) > 0 then
       begin
         AdifMobileString := TStringList.Create;
         ExportToMobile('All', '');
         AdifDataSyncAll := True;
         BuffToSend := GetNewChunk;
-        SyncTCP.OnCanSend(SyncTCP.Iterator);
+        AContext.Connection.Socket.Write(BuffToSend, IndyTextEncoding_UTF8,
+          IndyTextEncoding_UTF8);
       end;
     end;
 
-    if Pos('DataSyncDate', mess) > 0 then
+    if Pos('DataSyncDate', MessageFromTCP) > 0 then
     begin
-      AdifDataDate := dmFunc.par_str(mess, 2);
-      rec_call := dmFunc.par_str(mess, 3);
+      AdifDataDate := dmFunc.par_str(MessageFromTCP, 2);
+      rec_call := dmFunc.par_str(MessageFromTCP, 3);
       if Pos(LBRecord.CallSign, rec_call + #13) > 0 then
       begin
         AdifMobileString := TStringList.Create;
         ExportToMobile('Date', AdifDataDate);
         AdifDataSyncDate := True;
         BuffToSend := GetNewChunk;
-        SyncTCP.OnCanSend(SyncTCP.Iterator);
+        AContext.Connection.Socket.Write(BuffToSend, IndyTextEncoding_UTF8,
+          IndyTextEncoding_UTF8);
       end;
     end;
 
-    if Pos('DataSyncClientStart', mess) > 0 then
+    if Pos('DataSyncClientStart', MessageFromTCP) > 0 then
     begin
-      rec_call := dmFunc.par_str(mess, 2);
+      rec_call := dmFunc.par_str(MessageFromTCP, 2);
       try
-        PADIImport.AllRec := StrToInt(dmFunc.par_str(mess, 3));
+        PADIImport.AllRec := StrToInt(dmFunc.par_str(MessageFromTCP, 3));
       except
         PADIImport.AllRec := 0;
       end;
@@ -127,15 +141,15 @@ begin
 
     if (AdifFromMobileSyncStart = True) then
     begin
-      mess := StringReplace(mess, #10, '', [rfReplaceAll]);
-      mess := StringReplace(mess, #13, '', [rfReplaceAll]);
-      if Length(mess) > 0 then
+      MessageFromTCP := StringReplace(MessageFromTCP, #10, '', [rfReplaceAll]);
+      MessageFromTCP := StringReplace(MessageFromTCP, #13, '', [rfReplaceAll]);
+      if Length(MessageFromTCP) > 0 then
       begin
-        Stream.Write(mess[1], length(mess));
+        Stream.Write(MessageFromTCP[1], length(MessageFromTCP));
       end;
     end;
 
-    if Pos('DataSyncClientEnd', mess) > 0 then
+    if Pos('DataSyncClientEnd', MessageFromTCP) > 0 then
     begin
       AdifFromMobileSyncStart := False;
       ImportAdifMobile := True;
@@ -155,50 +169,6 @@ begin
       StartImport;
       Stream.Free;
       ImportAdifMobile := False;
-    end;
-  end;
-end;
-
-procedure TMobileSynThread.OnConnect(aSocket: TLSocket);
-begin
-  InfoStr := rClientConnected + aSocket.PeerAddress;
-  Synchronize(@ToForm);
-end;
-
-procedure TMobileSynThread.OnAccept(aSocket: TLSocket);
-begin
-  InfoStr := rClientConnected + aSocket.PeerAddress;
-  Synchronize(@ToForm);
-end;
-
-procedure TMobileSynThread.OnDisconnect(aSocket: TLSocket);
-begin
-  InfoStr := aSocket.PeerAddress + ':' + rDone;
-  Synchronize(@ToForm);
-end;
-
-procedure TMobileSynThread.OnError(const msg: string; aSocket: TLSocket);
-begin
-  InfoStr := aSocket.peerAddress + ':' + SysToUTF8(msg);
-  Synchronize(@ToForm);
-end;
-
-procedure TMobileSynThread.OnCanSend(aSocket: TLSocket);
-var
-  Sent: integer;
-  TempBuffer: string = '';
-begin
-  if AdifDataSyncAll or AdifDataSyncDate then
-  begin
-    TempBuffer := BuffToSend;
-    while TempBuffer <> '' do
-    begin
-      Sent := SyncTCP.SendMessage(TempBuffer, aSocket);
-      Delete(BuffToSend, 1, Sent);
-      TempBuffer := BuffToSend;
-      {$IFDEF LINUX}
-      Sleep(100);
-      {$ENDIF}
     end;
   end;
 end;
@@ -224,21 +194,24 @@ begin
   FreeOnTerminate := True;
   inherited Create(True);
   SyncTCP := nil;
-  SyncTCP := TLTCPComponent.Create(nil);
+  SyncTCP := TIdTCPServer.Create;
   SyncTCP.OnConnect := @OnConnect;
-  SyncTCP.OnAccept := @OnAccept;
-  SyncTCP.OnCanSend := @OnCanSend;
   SyncTCP.OnDisconnect := @OnDisconnect;
-  SyncTCP.OnError := @OnError;
-  SyncTCP.OnReceive := @OnReceive;
+  SyncTCP.OnExecute := @OnExecute;
   lastTCPport := -1;
-  SyncTCP.ReuseAddress := True;
+
   for i := 0 to 5 do
-    if SyncTCP.Listen(port_tcp[i], IniSet.InterfaceMobileSync) then
+  begin
+    SyncTCP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
+    SyncTCP.Bindings.Add.Port := port_tcp[i];
+    SyncTCP.Active := True;
+    if SyncTCP.Active then
     begin
       lastTCPport := port_tcp[i];
       Break;
     end;
+  end;
+
   AdifFromMobileSyncStart := False;
   ImportAdifMobile := False;
 end;
@@ -246,7 +219,7 @@ end;
 destructor TMobileSynThread.Destroy;
 begin
   if SyncTCP <> nil then
-  FreeAndNil(SyncTCP);
+    FreeAndNil(SyncTCP);
   inherited Destroy;
 end;
 
@@ -345,7 +318,9 @@ begin
           tmpFreq := Query.Fields.FieldByName('QSOBand').AsString;
           Delete(tmpFreq, Length(tmpFreq) - 2, 1);
           TryStrToFloatSafe(tmpFreq, Freq_float);
-          tmp := '<FREQ' + dmFunc.StringToADIF(StringReplace(FormatFloat('0.#####', Freq_float),',','.',[rfReplaceAll]) , True);
+          tmp := '<FREQ' + dmFunc.StringToADIF(
+            StringReplace(FormatFloat('0.#####', Freq_float), ',',
+            '.', [rfReplaceAll]), True);
           tmp2 := tmp2 + tmp;
         end;
 

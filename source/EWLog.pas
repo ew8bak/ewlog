@@ -18,7 +18,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
   CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi,
   DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc, QSLManagerForm_U,
-  uRigControl, TRXForm_U, lnetvisual, hrdlog, SettingsProgramForm_U,
+  uRigControl, TRXForm_U, hrdlog, SettingsProgramForm_U,
   AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U, Changelog_Form_U,
   Earth_Form_U, IOTA_Form_U, sendtelnetspot_form_U, ClusterFilter_Form_U,
   WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U, hiddentsettings_u,

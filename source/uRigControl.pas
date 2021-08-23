@@ -15,7 +15,7 @@ unit uRigControl;
 interface
 
 uses
-  Classes, SysUtils, Process, ExtCtrls, lNetComponents, lNet, Dialogs, MainFuncDM;
+  Classes, SysUtils, Process, ExtCtrls, IdTCPClient, Dialogs, MainFuncDM;
 
 type
   TRigMode = record
@@ -33,9 +33,10 @@ type
 
 type
   TRigControl = class
-    rcvdFreqMode: TLTCPComponent;
+    rcvdFreqMode: TIdTCPClient;
     rigProcess: TProcess;
     tmrRigPoll: TTimer;
+    tmrRigRead: TTimer;
   private
     fRigCtldPath: string;
     fRigCtldArgs: string;
@@ -61,8 +62,9 @@ type
     function StartRigctld: boolean;
     function Explode(const cSeparator, vString: string): TExplodeArray;
 
-    procedure OnReceivedRcvdFreqMode(aSocket: TLSocket);
+    procedure OnReceivedRcvdFreqMode(message: string);
     procedure OnRigPollTimer(Sender: TObject);
+    procedure OnRigReadTimer(Sender: TObject);
   public
 
 
@@ -124,29 +126,22 @@ type
 
 implementation
 
-uses
-  TRXForm_U, miniform_u;
-
 constructor TRigControl.Create;
 begin
   RigCommand := TStringList.Create;
-  DebugMode := False;
-  fDebugMode := DebugMode;
-  if DebugMode then
-    ShowMessage('In create');
   fRigCtldHost := '127.0.0.1';
   fRigCtldPort := 4532;
   fRigPoll := 500;
   fRunRigCtld := True;
-  rcvdFreqMode := TLTCPComponent.Create(nil);
+  rcvdFreqMode := TIdTCPClient.Create;
   rigProcess := TProcess.Create(nil);
   rigProcess.ShowWindow := swoHIDE;
   tmrRigPoll := TTimer.Create(nil);
+  tmrRigRead := TTimer.Create(nil);
   tmrRigPoll.Enabled := False;
-  if DebugMode then
-    ShowMessage('All objects created');
+  tmrRigRead.Enabled := False;
   tmrRigPoll.OnTimer := @OnRigPollTimer;
-  rcvdFreqMode.OnReceive := @OnReceivedRcvdFreqMode;
+  tmrRigRead.OnTimer := @OnRigReadTimer;
 end;
 
 {$IFDEF UNIX}
@@ -157,14 +152,7 @@ begin
   if IniSet.rigctldStartUp then
   begin
     cmd := fRigCtldPath + ' ' + RigCtldArgs;
-
-    if fDebugMode then
-      Writeln('Starting RigCtld ...');
-    if fDebugMode then
-      Writeln(cmd);
-
     rigProcess.CommandLine := cmd;
-
     try
       rigProcess.Execute;
       sleep(1500);
@@ -176,15 +164,12 @@ begin
     except
       on E: Exception do
       begin
-        if fDebugMode then
-          Writeln('Starting rigctld E: ', E.Message);
         fLastError := E.Message;
         Result := False;
         exit;
       end
     end;
   end;
-
   Result := True;
 end;
 
@@ -199,10 +184,6 @@ begin
   cmd := StringReplace(cmd,'%r',fRigDevice,[rfReplaceAll, rfIgnoreCase]);
   cmd := StringReplace(cmd,'%t',IntToStr(fRigCtldPort),[rfReplaceAll, rfIgnoreCase]);
   }
-  if DebugMode then
-    ShowMessage('Starting RigCtld ...');
-  if fDebugMode then
-    ShowMessage(cmd);
   rigProcess.CommandLine := cmd;
 
   try
@@ -211,9 +192,6 @@ begin
   except
     on E: Exception do
     begin
-
-      if fDebugMode then
-        ShowMessage('Starting rigctld E: ' + E.Message);
       fLastError := E.Message;
       Result := False;
       TRXForm.tmrRadio.Enabled := False;
@@ -223,7 +201,6 @@ begin
   end;
   tmrRigPoll.Interval := fRigPoll * 100;
   tmrRigPoll.Enabled := True;
-
   Result := True;
 end;
 
@@ -233,22 +210,6 @@ function TRigControl.RigConnected: boolean;
 const
   ERR_MSG = 'Could not connect to rigctld';
 begin
-  if fDebugMode then
-  begin
-    Writeln('');
-    Writeln('Settings:');
-    Writeln('-----------------------------------------------------');
-    Writeln('RigCtldPath:', RigCtldPath);
-    Writeln('RigCtldArgs:', RigCtldArgs);
-    Writeln('RunRigCtld: ', RunRigCtld);
-    Writeln('RigDevice:  ', RigDevice);
-    Writeln('RigCtldPort:', RigCtldPort);
-    Writeln('RigCtldHost:', RigCtldHost);
-    Writeln('RigPoll:    ', RigPoll);
-    Writeln('RigSendCWR: ', RigSendCWR);
-    Writeln('RigId:      ', RigId);
-    Writeln('');
-  end;
 
   // if (RigId = 1) then
   // begin
@@ -260,31 +221,25 @@ begin
   begin
     if (not StartRigctld) and (RigId <> 2) then
     begin
-      if fDebugMode then
-        Writeln('rigctld failed to start!');
       Result := False;
       exit;
     end;
   end;
 
-  if fDebugMode then
-    Writeln('rigctld started!');
-
   rcvdFreqMode.Host := fRigCtldHost;
   rcvdFreqMode.Port := fRigCtldPort;
+  rcvdFreqMode.Connect(fRigCtldHost, fRigCtldPort);
 
-  if rcvdFreqMode.Connect(fRigCtldHost, fRigCtldPort) then
+  if rcvdFreqMode.Connected then
   begin
-    if fDebugMode then
-      Writeln('Connected to ', fRigCtldHost, ':', fRigCtldPort);
     Result := True;
     tmrRigPoll.Interval := fRigPoll * 100;
     tmrRigPoll.Enabled := True;
+    tmrRigRead.Interval := 1;
+    tmrRigRead.Enabled := True;
   end
   else
   begin
-    if fDebugMode then
-      Writeln('NOT connected to ', fRigCtldHost, ':', fRigCtldPort);
     fLastError := ERR_MSG;
     Result := False;
   end;
@@ -443,18 +398,16 @@ begin
   Result := bw;
 end;
 
-procedure TRigControl.OnReceivedRcvdFreqMode(aSocket: TLSocket);
+procedure TRigControl.OnReceivedRcvdFreqMode(message: string);
 var
   msg: string;
   a: TExplodeArray;
   i: integer;
   f: double;
 begin
-  if aSocket.GetMessage(msg) > 0 then
+  if Length(message) > 0 then
   begin
-    msg := trim(msg);
-    if DebugMode then
-      Writeln('Msg from rig: ', msg);
+    msg := trim(message);
     a := Explode(LineEnding, msg);
     for i := 0 to Length(a) - 1 do
     begin
@@ -469,7 +422,6 @@ begin
           fMode.pass := round(f);
         Continue;
       end;
-
 
       //if (a[i][1] in ['A'..'Z']) and (a[i][1] <> 'V' ) then //receiving mode info
       //FT-920 returned VFO as MEM
@@ -509,6 +461,18 @@ begin
   end;
 end;
 
+procedure TRigControl.OnRigReadTimer(Sender: TObject);
+var
+  s: string;
+begin
+  if not rcvdFreqMode.Connected then
+    Exit;
+  if rcvdFreqMode.IOHandler.InputBufferIsEmpty then
+    Exit;
+  s := rcvdFreqMode.IOHandler.InputBufferAsString;
+  OnReceivedRcvdFreqMode(s);
+end;
+
 procedure TRigControl.OnRigPollTimer(Sender: TObject);
 var
   cmd: string;
@@ -520,18 +484,14 @@ begin
     begin
       sleep(100);
       cmd := RigCommand.Strings[i] + LineEnding;
-      rcvdFreqMode.SendMessage(cmd);
-      if DebugMode then
-        Writeln('Sending: ' + cmd);
+      rcvdFreqMode.SendCmd(cmd);
     end;
     RigCommand.Clear;
   end
   else
   begin
     cmd := 'fmv' + LineEnding;
-    if DebugMode then
-      Writeln('Sending: ' + cmd);
-    rcvdFreqMode.SendMessage(cmd);
+    rcvdFreqMode.SendCmd(cmd);
   end;
 end;
 
@@ -541,6 +501,7 @@ var
 begin
   rigProcess.Terminate(excode);
   tmrRigPoll.Enabled := False;
+  tmrRigRead.Enabled := False;
   rcvdFreqMode.Disconnect();
   RigConnected;
 end;
@@ -574,33 +535,19 @@ var
   excode: integer = 0;
 begin
   inherited;
-  if DebugMode then
-    Writeln(1);
   if fRunRigCtld then
   begin
     if rigProcess.Running then
-    begin
-      if DebugMode then
-        Writeln('1a');
       rigProcess.Terminate(excode);
-    end;
   end;
-  if DebugMode then
-    Writeln(2);
   tmrRigPoll.Enabled := False;
-  if DebugMode then
-    Writeln(3);
+  tmrRigRead.Enabled := False;
   rcvdFreqMode.Disconnect();
-  if DebugMode then
-    Writeln(4);
   FreeAndNil(rcvdFreqMode);
-  if DebugMode then
-    Writeln(5);
   FreeAndNil(rigProcess);
   FreeAndNil(RigCommand);
-  if DebugMode then
-    Writeln(6);
   tmrRigPoll.Free;
+  tmrRigRead.Free;
 end;
 
 end.

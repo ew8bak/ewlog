@@ -16,11 +16,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Arrow, Buttons, uRigControl,
-  lNetComponents, Types;
-
-const
-  empty_freq = '0.000"."00';
-  khz_freq = '0.00000';
+  Types;
 
 type
 
@@ -198,7 +194,7 @@ var
 implementation
 
 uses
-  dmFunc_U, const_u, ConfigForm_U, InitDB_dm, MainFuncDM, miniform_u, WSJT_UDP_Form_U,
+  dmFunc_U, const_u, InitDB_dm, MainFuncDM, miniform_u, WSJT_UDP_Form_U,
   serverDM_u, dmCat, dmTCI_u;
 
 {$R *.lfm}
