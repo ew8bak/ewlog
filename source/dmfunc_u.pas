@@ -16,12 +16,15 @@ interface
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
-  DateUtils, LazUTF8, strutils, Translations, LazFileUtils,
+  DateUtils, LazUTF8, strutils, LazFileUtils,
   versiontypes, versionresource, blcksock, httpsend, UTF8Process,
+    {$IFDEF LINUX}
+    users,
+    {$ENDIF LINUX}
     {$IFDEF WINDOWS}
     Windows;
     {$ELSE}
-    BaseUnix, users, lclintf;
+    BaseUnix, lclintf;
     {$ENDIF}
 
 const

@@ -28,6 +28,9 @@ const
   {$IFDEF LINUX}
   type_os = 'Linux';
   {$ENDIF LINUX}
+  {$IFDEF DARWIN}
+  type_os = 'MacOS';
+  {$ENDIF DARWIN}
 
 
 type
