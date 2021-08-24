@@ -14,8 +14,8 @@ unit LogConfigForm_U;
 interface
 
 uses
-  Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, ComCtrls, Buttons, DBCtrls, Menus, DB, LCLType, resourcestr;
+  SysUtils, sqldb, Forms, Controls, Dialogs,
+  ExtCtrls, StdCtrls, ComCtrls, Menus, DB, LCLType, resourcestr;
 
 type
 

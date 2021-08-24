@@ -5,9 +5,10 @@ unit dmCat;
 interface
 
 uses
-  Classes, SysUtils, MainFuncDM, ResourceStr, StdCtrls, LazFileUtils,
-  Dialogs, process, synaser {$IFDEF UNIX},
-  BaseUnix {$ENDIF};
+  Classes, SysUtils, ResourceStr, StdCtrls, LazFileUtils,
+  Dialogs
+  {$IFDEF MSWINDOWS}
+  , Registry {$ENDIF};
 
 type
   TCatSettingsRecord = record
@@ -139,12 +140,40 @@ begin
   end;
 end;
 
+{$IFDEF MSWINDOWS}
+function TCATdm.GetSerialPortNames: string;
+var
+  reg: TRegistry;
+  l, v: TStringList;
+  n: integer;
+begin
+  l := TStringList.Create;
+  v := TStringList.Create;
+  reg := TRegistry.Create;
+  try
+{$IFNDEF VER100}
+{$IFNDEF VER120}
+    reg.Access := KEY_READ;
+{$ENDIF}
+{$ENDIF}
+    reg.RootKey := HKEY_LOCAL_MACHINE;
+    reg.OpenKey('\HARDWARE\DEVICEMAP\SERIALCOMM', False);
+    reg.GetValueNames(l);
+    for n := 0 to l.Count - 1 do
+      v.Add(PChar(reg.ReadString(l[n])));
+    Result := v.CommaText;
+  finally
+    reg.Free;
+    l.Free;
+    v.Free;
+  end;
+end;
+
+{$ENDIF}
+{$IFNDEF MSWINDOWS}
 function TCATdm.GetSerialPortNames: string;
 begin
   Result := '';
-  {$IFDEF WINDOWS}
-  Result := synaser.GetSerialPortNames;
-  {$ELSE}
   if fpAccess('/dev/ttyS0', W_OK) = 0 then
     Result := Result + ',/dev/ttyS0';
   if fpAccess('/dev/ttyS1', W_OK) = 0 then
@@ -189,8 +218,9 @@ begin
     Result := Result + ',/dev/cu.usbserial';
   if fpAccess('/dev/tty.usbserial', W_OK) = 0 then
     Result := Result + ',/dev/tty.usbserial';
-  {$ENDIF}
 end;
+
+{$ENDIF}
 
 function TCATdm.GetRadioRigCtldCommandLine(radio: word): string;
 var
@@ -210,7 +240,7 @@ begin
     '-t ' + INIFile.ReadString(section, 'RigCtldPort', '4532') + ' ';
 
   if INIFile.ReadString(section, 'device', '') <> '' then
-  Result := Result + '-r ' + INIFile.ReadString(section, 'device', '') + ' ';
+    Result := Result + '-r ' + INIFile.ReadString(section, 'device', '') + ' ';
 
   Result := Result + INIFile.ReadString('SetCAT', 'rigctldExtra', '') + ' ';
 

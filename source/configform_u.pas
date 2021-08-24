@@ -14,10 +14,10 @@ unit ConfigForm_U;
 interface
 
 uses
-  Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, fphttpclient,
   ResourceStr, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
-  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, Types, CWDaemonDM_u, IdStack,
+  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, CWDaemonDM_u, IdStack,
   StreamAdapter_u;
 
 resourcestring

@@ -14,7 +14,7 @@ unit ExportADIThread;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, Forms, LCLType, LConvEncoding, const_u, ResourceStr;
+  Classes, SysUtils, SQLDB, Forms, LCLType, LConvEncoding, ResourceStr;
 
 type
   TInfoExport = record
@@ -59,7 +59,7 @@ var
 
 implementation
 
-uses MainFuncDM, miniform_u, InitDB_dm, dmFunc_U, ExportAdifForm_u,
+uses InitDB_dm, dmFunc_U, ExportAdifForm_u,
   GridsForm_u, progressForm_u;
 
 function TExportADIFThread.SetSizeLoc(Loc: string): string;

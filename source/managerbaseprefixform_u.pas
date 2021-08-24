@@ -14,7 +14,7 @@ unit ManagerBasePrefixForm_U;
 interface
 
 uses
-  Classes, SysUtils, sqldb, DB, FileUtil, Forms, Controls, Graphics, Dialogs,
+  SysUtils, sqldb, DB, Forms, Graphics,
   ComCtrls, ExtCtrls, DBGrids;
 
 type

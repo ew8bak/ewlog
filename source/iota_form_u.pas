@@ -14,8 +14,8 @@ unit IOTA_Form_U;
 interface
 
 uses
-  Classes, SysUtils, sqldb, db, FileUtil, Forms, Controls, Graphics, Dialogs,
-  Grids, StdCtrls, DBGrids, ExtCtrls;
+  SysUtils, sqldb, db, Forms, Controls, Dialogs,
+  StdCtrls, DBGrids, ExtCtrls;
 
 type
 

@@ -14,7 +14,7 @@ unit GridsForm_u;
 interface
 
 uses
-  Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, DBGrids, ExtCtrls,
+  Classes, SysUtils, DB, Forms, Controls, Dialogs, DBGrids, ExtCtrls,
   Grids, Menus, selectQSO_record, foundQSO_record, prefix_record,
   ResourceStr, qso_record, serverDM_u,
   LCLType;

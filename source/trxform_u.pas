@@ -14,7 +14,7 @@ unit TRXForm_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Arrow, Buttons, uRigControl,
   Types;
 
@@ -194,7 +194,7 @@ var
 implementation
 
 uses
-  dmFunc_U, const_u, InitDB_dm, MainFuncDM, miniform_u, WSJT_UDP_Form_U,
+  dmFunc_U, InitDB_dm, MainFuncDM, miniform_u, WSJT_UDP_Form_U,
   serverDM_u, dmCat, dmTCI_u;
 
 {$R *.lfm}

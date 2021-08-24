@@ -14,8 +14,8 @@ unit ImportADIThread;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, LazUtils, ResourceStr, Forms, LazFileUtils, LCLType,
-  const_u, DateUtils, prefix_record, LConvEncoding, LCLProc;
+  Classes, SysUtils, SQLDB, Forms, LazFileUtils, LCLType,
+  DateUtils, prefix_record, LConvEncoding, LCLProc;
 
 type
   TInfo = record

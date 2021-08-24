@@ -14,8 +14,8 @@ unit DXCCEditForm_U;
 interface
 
 uses
-  Classes, SysUtils, sqldb, db, FileUtil, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, DBGrids, DbCtrls, StdCtrls;
+  SysUtils, sqldb, db, Forms, Graphics, Dialogs,
+  ExtCtrls, DBGrids, StdCtrls;
 
 type
 
@@ -43,8 +43,6 @@ var
   CountryEditForm: TCountryEditForm;
 
 implementation
-uses
-  editqso_u, mainform_u;
 
 {$R *.lfm}
 

@@ -18,7 +18,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, fphttpclient, LCLIntf,
-  ActnList, process, CopyTableThread, gettext, digi_record, ImportADIThread, CloudLogCAT;
+  ActnList, CopyTableThread, gettext, digi_record, ImportADIThread, CloudLogCAT;
 
 type
 
@@ -376,7 +376,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
-  WSJT_UDP_Form_U, serverDM_u, progressForm_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
+  serverDM_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
   sendtelnetspot_form_U;
 
 {$R *.lfm}

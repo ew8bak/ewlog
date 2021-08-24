@@ -14,7 +14,7 @@ unit CopyTableThread;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, LazUtils, ResourceStr, Forms, LazFileUtils, LCLType,
+  Classes, SysUtils, SQLDB, ResourceStr, LazFileUtils, LCLType,
   const_u, DateUtils;
 
 type
@@ -45,7 +45,7 @@ var
 
 implementation
 
-uses MainFuncDM, miniform_u, InitDB_dm;
+uses miniform_u, InitDB_dm;
 
 procedure TCopyTThread.CopyTableToTable(toMySQL: boolean);
 var

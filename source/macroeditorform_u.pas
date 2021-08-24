@@ -5,7 +5,7 @@ unit MacroEditorForm_u;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
+  Forms, Controls, Dialogs, ExtCtrls, StdCtrls,
   ComCtrls, CWKeysDM_u;
 
 type

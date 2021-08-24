@@ -14,8 +14,7 @@ unit MapForm_u;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, mvMapViewer, mvTypes,
-  LCLType, ResourceStr;
+  SysUtils, Forms, mvMapViewer, mvTypes;
 
 type
 

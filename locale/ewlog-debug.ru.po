@@ -5138,10 +5138,6 @@ msgstr ""
 msgid "Download:"
 msgstr "Загрузка:"
 
-#: tserviceform.opendialog1.title
-msgid "Open existing file"
-msgstr "Открыть существующий файл"
-
 #: tsettingsprogramform.btaddprogram.caption
 msgid "Add program"
 msgstr "Добавить программу"

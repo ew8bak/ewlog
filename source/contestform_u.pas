@@ -14,9 +14,9 @@ unit contestForm_u;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
+  Classes, SysUtils, Forms, Controls, Dialogs, StdCtrls, EditBtn,
   LCLType, ExtCtrls, ComCtrls, dmContest_u, MainFuncDM, LCLProc, Spin,
-  qso_record, LazSysUtils, const_u, infoDM_U, inform_record, ResourceStr, SQLDB;
+  qso_record, LazSysUtils, infoDM_U, inform_record, ResourceStr;
 
 type
 
@@ -106,7 +106,7 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm;
+uses dmFunc_U;
 
 {$R *.lfm}
 

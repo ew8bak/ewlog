@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
   DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec,
-  Forms, LCLType, UniqueInstance, SQLite3Dyn, SetupSQLquery;
+  Forms, LCLType, UniqueInstance;
 
 type
   TParamData = record

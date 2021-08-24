@@ -17,7 +17,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, LazFileUtils, LazUTF8, fphttpclient;
+  Classes, SysUtils, LazFileUtils, fphttpclient;
 
 type
   TGetInfoThread = class(TThread)

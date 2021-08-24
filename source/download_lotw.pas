@@ -17,7 +17,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ResourceStr, LazUTF8, fphttpclient;
+  Classes, SysUtils, ResourceStr, fphttpclient;
 
 const
   LotW_URL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
@@ -50,7 +50,7 @@ var
 
 implementation
 
-uses Forms, LCLType, InitDB_dm, dmFunc_U, ServiceForm_U;
+uses InitDB_dm, ServiceForm_U;
 
 function TLoTWThread.DownLoTW(lotw_user, lotw_password, lotw_date: string): boolean;
 var

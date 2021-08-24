@@ -15,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  httpsend, ssl_openssl, const_u;
+  const_u;
 
 type
 

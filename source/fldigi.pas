@@ -7,7 +7,7 @@ unit fldigi;
 interface
 
 uses
-  {$IFDEF WINDOWS}Windows,{$ENDIF} Classes, SysUtils;
+  {$IFDEF WINDOWS}Windows, {$ENDIF WINDOWS} SysUtils;
 
 function Fldigi_IsRunning: boolean;
 function Fldigi_GetVersion: string;

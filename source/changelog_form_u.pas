@@ -14,7 +14,7 @@ unit Changelog_Form_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  Forms, Controls, ExtCtrls,
   StdCtrls;
 
 type

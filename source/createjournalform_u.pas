@@ -14,8 +14,8 @@ unit CreateJournalForm_U;
 interface
 
 uses
-  Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, LCLType, prefix_record, dmmigrate_u;
+  SysUtils, sqldb, Forms, Controls, Graphics, Dialogs,
+  StdCtrls, LCLType, prefix_record, dmmigrate_u;
 
 type
 
@@ -90,8 +90,9 @@ var
   newLogBookname: string;
   CreateTableQuery: TSQLQuery;
 begin
-  if (EditDescription.Text = '') or (EditCallName.Text = '') or (EditQTH.Text = '') or
-    (EditName.Text = '') or (EditITU.Text = '') or (EditCQ.Text = '') or (EditGrid.Text = '') then
+  if (EditDescription.Text = '') or (EditCallName.Text = '') or
+    (EditQTH.Text = '') or (EditName.Text = '') or (EditITU.Text = '') or
+    (EditCQ.Text = '') or (EditGrid.Text = '') then
     ShowMessage(rAllfieldsmustbefilled)
   else
   begin

@@ -15,7 +15,7 @@ unit uRigControl;
 interface
 
 uses
-  Classes, SysUtils, Process, ExtCtrls, IdTelnet, IdGlobal, IdComponent,
+  Classes, SysUtils, Process, ExtCtrls, IdTelnet, IdGlobal,
   Dialogs, MainFuncDM;
 
 type

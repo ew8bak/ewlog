@@ -54,7 +54,7 @@ var
 
 implementation
 
-uses Forms, LCLType, dmFunc_U, ServiceForm_U, InitDB_dm;
+uses LCLType, dmFunc_U, ServiceForm_U, InitDB_dm;
 
 function TeQSLccThread.DowneQSLcc(eqslcc_user, eqslcc_password, eqslcc_date: string;
   OnProgress: TOnProgress): boolean;

@@ -14,8 +14,8 @@ unit ClusterFilter_Form_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, CheckLst, Spin, const_u;
+  SysUtils, Forms, Dialogs, StdCtrls,
+  CheckLst, Spin, const_u;
 
 type
 
@@ -60,7 +60,7 @@ var
 implementation
 
 uses
-  MainForm_U, ResourceStr, InitDB_dm, dxclusterform_u;
+  ResourceStr, InitDB_dm, dxclusterform_u;
 
 {$R *.lfm}
 

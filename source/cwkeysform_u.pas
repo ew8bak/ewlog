@@ -5,7 +5,7 @@ unit CWKeysForm_u;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, CWKeysDM_u;
+  Classes, SysUtils, Forms, Controls, Dialogs, StdCtrls, CWKeysDM_u;
 
 type
 
@@ -68,7 +68,7 @@ var
 
 implementation
 
-uses InitDB_dm, CWDaemonDM_u, MacroEditorForm_u, MainFuncDM;
+uses MacroEditorForm_u, MainFuncDM;
 
 {$R *.lfm}
 

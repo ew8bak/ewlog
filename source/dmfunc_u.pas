@@ -15,7 +15,7 @@ interface
 
 uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
-  StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
+  StdCtrls, process, Math, LCLProc, azidis3, aziloc,
   DateUtils, LazUTF8, strutils, LazFileUtils,
   versiontypes, versionresource, UTF8Process, fphttpclient,
     {$IFDEF LINUX}

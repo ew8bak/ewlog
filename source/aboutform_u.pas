@@ -14,7 +14,7 @@ unit AboutForm_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Forms, Dialogs, StdCtrls,
   ExtCtrls;
 
 type

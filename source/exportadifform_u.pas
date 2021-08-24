@@ -14,8 +14,8 @@ unit ExportAdifForm_u;
 interface
 
 uses
-  Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ExtCtrls, ComCtrls, sqldb, LazUTF8, LConvEncoding,
+  Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Dialogs,
+  StdCtrls, EditBtn, ExtCtrls, ComCtrls, LazUTF8,
   ExportADIThread, ExportSOTAThread, ResourceStr;
 
 type
@@ -67,7 +67,7 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm, MainFuncDM;
+uses dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 

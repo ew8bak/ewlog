@@ -14,7 +14,7 @@ unit telnetClientThread;
 interface
 
 uses
-  Classes, SysUtils, ssl_openssl, IdGlobal, IdTelnet, IdComponent;
+  Classes, SysUtils, IdGlobal, IdTelnet, IdComponent;
 
 type
   TdxClientRecord = record

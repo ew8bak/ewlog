@@ -37,7 +37,7 @@ uses
 {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
 {$ENDIF}{$ENDIF}
-  Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics,
   StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils, digi_record;
 
 const
@@ -81,7 +81,7 @@ var
 
 implementation
 
-uses dmFunc_U, miniform_u, InitDB_dm, MainFuncDM;
+uses miniform_u, MainFuncDM;
 
 {$R *.lfm}
 

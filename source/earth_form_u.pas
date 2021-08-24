@@ -14,8 +14,8 @@ unit Earth_Form_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  TraceLine, LCLType, ResourceStr;
+  Classes, SysUtils, Forms, Controls, Graphics,
+  TraceLine;
 
 type
 
@@ -42,7 +42,7 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm, MainFuncDM, miniform_u;
+uses InitDB_dm, MainFuncDM, miniform_u;
 
 {$R *.lfm}
 

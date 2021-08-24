@@ -14,9 +14,9 @@ unit ImportADIFForm_U;
 interface
 
 uses
-  Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, EditBtn, LCLType, LConvEncoding, LazUTF8, LCLIntf,
-  dateutils, resourcestr, LCLProc, ComCtrls, prefix_record, ImportADIThread;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
+  ExtCtrls, StdCtrls, EditBtn, LazUTF8, LCLIntf,
+  resourcestr, LCLProc, ComCtrls, ImportADIThread;
 
 type
 
@@ -60,7 +60,7 @@ var
 
 implementation
 
-uses dmFunc_U, MainForm_U, const_u, InitDB_dm, MainFuncDM;
+uses dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 

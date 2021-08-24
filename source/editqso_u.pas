@@ -14,9 +14,9 @@ unit editqso_u;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, DateTimePicker, Forms, Controls, Graphics,
-  Dialogs, StdCtrls, ComCtrls, EditBtn, Buttons, ExtCtrls, DBGrids, DBCtrls,
-  InformationForm_U, sqldb, DB, RegExpr, Grids, resourcestr, prefix_record, qso_record;
+  Classes, SysUtils, DateTimePicker, Forms, Controls,
+  Dialogs, StdCtrls, ComCtrls, EditBtn, Buttons, DBGrids, DBCtrls,
+  InformationForm_U, sqldb, Grids, prefix_record, qso_record;
 
 type
 
@@ -153,7 +153,7 @@ implementation
 
 uses miniform_u, DXCCEditForm_U, QSLManagerForm_U,
   dmFunc_U, IOTA_Form_U, STATE_Form_U,
-  ConfigForm_U, const_u, InitDB_dm, MainFuncDM, GridsForm_u;
+  InitDB_dm, MainFuncDM, GridsForm_u;
 
 {$R *.lfm}
 

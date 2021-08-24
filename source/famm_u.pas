@@ -14,7 +14,7 @@ unit famm_u;
 interface
 
 uses
-  Classes, SysUtils, sqldb, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  SysUtils, sqldb, Forms, Controls, Dialogs, ExtCtrls,
   StdCtrls, ComCtrls, ResourceStr;
 
 type
@@ -55,7 +55,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, miniform_u, InitDB_dm, MainFuncDM;
+uses miniform_u, InitDB_dm, MainFuncDM;
 
 { TFM_Form }
 

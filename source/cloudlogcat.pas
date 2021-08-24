@@ -17,7 +17,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, qso_record, fphttpclient;
+  Classes, SysUtils, strutils, fphttpclient;
 
 const
   UploadURL = '/index.php/api/radio/';
@@ -50,7 +50,7 @@ var
 
 implementation
 
-uses Forms, LCLType, dmFunc_U;
+uses Forms, LCLType;
 
 procedure TCloudLogCATThread.SendRadio(CatData: TCatData);
 var

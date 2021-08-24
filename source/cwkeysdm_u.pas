@@ -5,7 +5,7 @@ unit CWKeysDM_u;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, Variants, Dialogs, SQLite3Conn;
+  Classes, SysUtils, SQLDB, Dialogs, SQLite3Conn;
 
 type
   TMacros = record
@@ -48,7 +48,7 @@ var
 implementation
 
 uses
-  InitDB_dm, miniform_u, MainFuncDM, SetupSQLquery, ResourceStr;
+  InitDB_dm, miniform_u, MainFuncDM, SetupSQLquery;
 
 {$R *.lfm}
 

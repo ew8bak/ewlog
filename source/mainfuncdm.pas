@@ -17,7 +17,7 @@ uses
   Classes, SysUtils, DB, Forms, SQLDB, RegExpr, qso_record, Dialogs, ResourceStr,
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
-  VirtualTrees, LazFileUtils, LCLType, digi_record, CloudLogCAT, progressForm_u,
+  VirtualTrees, LazFileUtils, LCLType, CloudLogCAT, progressForm_u,
   FileUtil, FMS_record, telnetaddresrecord_u;
 
 type

@@ -14,8 +14,8 @@ unit UpdateForm_U;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, LazUTF8, StdCtrls,
-  ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} fphttpclient,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  ComCtrls,{$IFDEF WINDOWS} Windows,{$ENDIF WINDOWS} fphttpclient,
   synautil, ResourceStr, const_u, StreamAdapter_u;
 
 const

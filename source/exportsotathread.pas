@@ -5,7 +5,7 @@ unit ExportSOTAThread;
 interface
 
 uses
-  Classes, SysUtils, SQLDB, Forms, LCLType, LConvEncoding, const_u,
+  Classes, SysUtils, SQLDB, Forms, LCLType,
   ResourceStr, ExportADIThread;
 
 type

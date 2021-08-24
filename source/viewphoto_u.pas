@@ -14,7 +14,7 @@ unit viewPhoto_U;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, LCLType, ResourceStr;
+  SysUtils, Forms, ExtCtrls, LCLType, ResourceStr;
 
 type
 
@@ -36,7 +36,7 @@ var
 
 implementation
 
-uses MainForm_U, InitDB_dm, MainFuncDM, miniform_u;
+uses InitDB_dm, MainFuncDM, miniform_u;
 
 {$R *.lfm}
 

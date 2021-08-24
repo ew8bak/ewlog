@@ -17,7 +17,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, LazFileUtils, LazUTF8, fphttpclient;
+  Classes, SysUtils, LazFileUtils, fphttpclient;
 
 type
   TGetPhotoThread = class(TThread)
@@ -39,7 +39,7 @@ var
 
 implementation
 
-uses Forms, LCLType, infoDM_U;
+uses infoDM_U;
 
 procedure TGetPhotoThread.GetPhoto(url: string);
 var

@@ -17,7 +17,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, LazFileUtils, LazUTF8, fphttpclient;
+  Classes, SysUtils, LazFileUtils, fphttpclient;
 
 type
   TDownUpdThread = class(TThread)
@@ -42,7 +42,7 @@ var
 
 implementation
 
-uses Forms, LCLType, dmFunc_U, UpdateForm_U, ResourceStr;
+uses UpdateForm_U;
 
 function TDownUpdThread.DownUpdates(file_name, directory, file_url,
   file_urlssl: string): boolean;

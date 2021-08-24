@@ -5,7 +5,7 @@ unit CWTypeForm_u;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
+  SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls,
   Spin;
 
 type
@@ -37,7 +37,7 @@ var
 implementation
 
 uses
-  InitDB_dm, MainFuncDM, CWKeysForm_u, miniform_u, CWDaemonDM_u;
+  MainFuncDM, CWKeysForm_u, miniform_u, CWDaemonDM_u;
 
 {$R *.lfm}
 

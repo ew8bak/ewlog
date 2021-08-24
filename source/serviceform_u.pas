@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
-  LazUtils, LazFileUtils, ssl_openssl, dateutils, resourcestr,
+  LazFileUtils, dateutils, resourcestr,
   download_lotw, download_eqslcc, LCLType;
 
 type
@@ -65,7 +65,7 @@ var
 implementation
 
 {$R *.lfm}
-uses dmFunc_U, MainForm_U, const_u, InitDB_dm, LogConfigForm_U, MainFuncDM;
+uses dmFunc_U, InitDB_dm, LogConfigForm_U, MainFuncDM;
 
 procedure TServiceForm.eQSLImport(FPath: string);
 var
