@@ -15,9 +15,10 @@ interface
 
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, httpsend, blcksock,
-  ResourceStr, synautil, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
-  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, Types, CWDaemonDM_u, IdStack;
+  StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, fphttpclient,
+  ResourceStr, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
+  Spin, Buttons, ExtCtrls, dmCat, serverDM_u, Types, CWDaemonDM_u, IdStack,
+  StreamAdapter_u;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -312,14 +313,11 @@ type
     function CheckUpdate: boolean;
     procedure SBTelnetDeleteClick(Sender: TObject);
     procedure SBTelnetDoneClick(Sender: TObject);
-    procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
-      const Value: string);
-    procedure DownloadCallBookFile;
+    procedure DownloadCallBookFile(OnProgress: TOnProgress);
     procedure TSCATShow(Sender: TObject);
     procedure TSOtherSettingsShow(Sender: TObject);
     procedure TSTelnetShow(Sender: TObject);
   private
-    Download: int64;
     LVSelectedItem: boolean;
     procedure SaveGridColumns;
     procedure SaveGridColors;
@@ -335,6 +333,7 @@ type
     function SearchLVTelnet(SearchText: string): boolean;
     procedure LoadLVSettingName;
     procedure SetDefaultRadio(radio: string);
+    procedure Progress(Sender: TObject; Percent: integer);
     { private declarations }
   public
     { public declarations }
@@ -363,7 +362,6 @@ procedure TConfigForm.LoadLVSettingName;
 var
   ListItem: TListItem;
   i: integer;
-  s: integer;
 begin
   LVSettings.Clear;
   PControl.PageCount;
@@ -561,7 +559,7 @@ begin
   if Button4.Caption = rDownload then
   begin
     InitDB.ImbeddedCallBookInit(False);
-    DownloadCallBookFile;
+    DownloadCallBookFile(@Progress);
   end;
 end;
 
@@ -1127,28 +1125,33 @@ var
   LoadFile: TFileStream;
   updatePATH: string;
   serV, locV: double;
+  HTTP: TFPHttpClient;
 begin
   updatePATH := FilePATH;
   if not DirectoryExists(updatePATH + 'updates' + DirectorySeparator) then
     ForceDirectories(updatePATH + 'updates' + DirectorySeparator);
-  with THTTPSend.Create do
-  begin
+
+  try
+    HTTP := TFPHttpClient.Create(nil);
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; ewlog)');
+    HTTP.AllowRedirect := True;
     Label12.Caption := rStatusUpdateCheck;
     LoadFile := TFileStream.Create(updatePATH + 'updates' +
       DirectorySeparator + 'versioncallbook.info', fmCreate);
-    if HTTPMethod('GET', 'http://update.ewlog.ru/versioncallbook.info') then
-    begin
-      HttpGetBinary('http://update.ewlog.ru/versioncallbook.info', LoadFile);
-      LoadFile.Free;
-    end
-    else
-    begin
+    try
+      HTTP.Get('http://update.ewlog.ru/versioncallbook.info', LoadFile);
+    except
       LoadFile.Seek(0, soFromEnd);
       LoadFile.WriteBuffer('5.5', Length('5.5'));
       LoadFile.Free;
     end;
-    Free;
+    if HTTP.ResponseStatusCode = 200 then
+      LoadFile.Free
+
+  finally
+    FreeAndNil(HTTP);
   end;
+
   AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator +
     'versioncallbook.info');
 
@@ -1208,28 +1211,31 @@ begin
     LVTelnet.Selected.Selected := False;
 end;
 
-procedure TConfigForm.DownloadCallBookFile;
+procedure TConfigForm.DownloadCallBookFile(OnProgress: TOnProgress);
 var
-  HTTP: THTTPSend;
+  HTTP: TFPHttpClient;
+  Stream: TStreamAdapter;
   MaxSize: int64;
   CheckRec: TImbedCallBookCheckRec;
 begin
-  Download := 0;
   MaxSize := 0;
   MaxSize := dmFunc.GetSize(DownIntCallbookURL);
-  if MaxSize > 0 then
-    ProgressBar1.Max := MaxSize
-  else
-    ProgressBar1.Max := 0;
-  HTTP := THTTPSend.Create;
-  HTTP.Sock.OnStatus := @SynaProgress;
+
+  if MaxSize = -1 then
+    exit;
+
   Label12.Caption := rStatusUpdateDownload;
   try
-    if HTTP.HTTPMethod('GET', DownIntCallbookURL) then
-      HTTP.Document.SaveToFile(FilePATH + 'updates' + DirectorySeparator +
-        'callbook.db');
+    HTTP := TFPHttpClient.Create(nil);
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; ewlog)');
+    Stream := TStreamAdapter.Create(TFileStream.Create(FilePATH +
+      'updates' + DirectorySeparator + 'callbook.db', fmCreate), MaxSize);
+    Stream.OnProgress := OnProgress;
+    HTTP.HTTPMethod('GET', DownIntCallbookURL, Stream, [200]);
   finally
-    HTTP.Free;
+    FreeAndNil(HTTP);
+    FreeAndNil(Stream);
 
     if FileUtil.CopyFile(FilePATH + 'updates' + DirectorySeparator +
       'callbook.db', FilePATH + 'callbook.db', True, True) then
@@ -1285,22 +1291,12 @@ begin
   LoadTelnetAddressToVLTelnet;
 end;
 
-procedure TConfigForm.SynaProgress(Sender: TObject; Reason: THookSocketReason;
-  const Value: string);
+procedure TConfigForm.Progress(Sender: TObject; Percent: integer);
 begin
-  if Reason = HR_ReadCount then
-  begin
-    Download := Download + StrToInt(Value);
-    if ProgressBar1.Max > 0 then
-    begin
-      ProgressBar1.Position := Download;
-      label17.Caption := rDownloadFile + IntToStr(Trunc(
-        (Download / ProgressBar1.Max) * 100)) + '%';
-    end
-    else
-      label17.Caption := rDownloadFile + IntToStr(Download) + rByte;
-    Application.ProcessMessages;
-  end;
+  Progressbar1.Position := Percent;
+  Progressbar1.Update;
+  label17.Caption := IntToStr(Percent) + '%';
+  Application.ProcessMessages;
 end;
 
 end.

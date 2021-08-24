@@ -17,7 +17,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, LazFileUtils, LazUTF8, ssl_openssl;
+  Classes, SysUtils, LazFileUtils, LazUTF8, fphttpclient;
 
 type
   TDownUpdThread = class(TThread)
@@ -42,33 +42,32 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, dmFunc_U, UpdateForm_U, ResourceStr;
+uses Forms, LCLType, dmFunc_U, UpdateForm_U, ResourceStr;
 
 function TDownUpdThread.DownUpdates(file_name, directory, file_url,
   file_urlssl: string): boolean;
 var
-  HTTP: THTTPSend;
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
 begin
   Result := False;
   try
-    HTTP := THTTPSend.Create;
-    if HTTP.HTTPMethod('GET', file_urlssl) then
+    HTTP := TFPHttpClient.Create(nil);
+    Document := TMemoryStream.Create;
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; ewlog)');
+    HTTP.Get(file_urlssl, Document);
+    if HTTP.ResponseStatusCode = 200 then
     begin
       if FileExists(directory + file_name) then
         DeleteFileUTF8(directory + file_name);
-      HTTP.Document.SaveToFile(directory + file_name);
-      Result := True;
-    end
-    else
-    if HTTP.HTTPMethod('GET', file_url) then
-    begin
-      if FileExists(directory + file_name) then
-        DeleteFileUTF8(directory + file_name);
-      HTTP.Document.SaveToFile(directory + file_name);
+      Document.SaveToFile(directory + file_name);
       Result := True;
     end;
+
   finally
-    HTTP.Free;
+    FreeAndNil(Document);
+    FreeAndNil(HTTP);
   end;
 end;
 

@@ -15,8 +15,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, LazUTF8, StdCtrls,
-  ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} httpsend,
-  blcksock, synautil, ResourceStr, const_u;
+  ComCtrls,{$IFDEF WINDOWS} Windows, ShellApi,{$ENDIF WINDOWS} fphttpclient,
+  synautil, ResourceStr, const_u, StreamAdapter_u;
 
 const
   {$IFDEF WIN64}
@@ -59,13 +59,10 @@ type
     procedure CheckUpdate;
     function CheckVersion: boolean;
   private
-    Download: int64;//счётчик закачанных данных
     updatePATH: string;
-
-    procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
-      const Value: string);
-    procedure DownloadFile;
-    procedure DownloadChangeLOGFile;
+    procedure DownloadFile(OnProgress: TOnProgress);
+    procedure DownloadChangeLOGFile(OnProgress: TOnProgress);
+    procedure Progress(Sender: TObject; Percent: integer);
 
     { private declarations }
   public
@@ -183,13 +180,13 @@ begin
   Update_Form.Close;
 end;
 
-procedure TUpdate_Form.DownloadFile;
+procedure TUpdate_Form.DownloadFile(OnProgress: TOnProgress);
 var
-  HTTP: THTTPSend;
+  Stream: TStreamAdapter;
+  HTTP: TFPHTTPClient;
   MaxSize: int64;
   DownFile: string;
 begin
-  Download := 0;
   Button1.Enabled := False;
   {$IFDEF WINDOWS}
   if dmFunc.GetWindowsVersion = 'Windows XP' then
@@ -198,56 +195,59 @@ begin
   {$ENDIF WINDOWS}
     DownFile := DownEXE;
 
-  if dmFunc.GetSize(DownPATHssl + DownFile) = -1 then
-    MaxSize := dmFunc.GetSize(DownPATH + DownFile)
-  else
-    MaxSize := dmFunc.GetSize(DownPATHssl + DownFile);
-
-  if MaxSize > 0 then
-    ProgressBar1.Max := MaxSize
-  else
-    ProgressBar1.Max := 0;
-  HTTP := THTTPSend.Create;
-  HTTP.Sock.OnStatus := @SynaProgress;
-  Label9.Caption := rUpdateStatusDownloads;
   try
-    if HTTP.HTTPMethod('GET', DownPATHssl + DownFile) then
-      HTTP.Document.SaveToFile(updatePATH + DownFile)
+    HTTP := TFPHTTPClient.Create(nil);
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; ewlog)');
+
+    if dmFunc.GetSize(DownPATHssl + DownFile) = -1 then
+      MaxSize := dmFunc.GetSize(DownPATH + DownFile)
     else
-    if HTTP.HTTPMethod('GET', DownPATH + DownFile) then
-      HTTP.Document.SaveToFile(updatePATH + DownFile)
+      MaxSize := dmFunc.GetSize(DownPATHssl + DownFile);
+
+    if MaxSize = -1 then
+      exit;
+
+    Label9.Caption := rUpdateStatusDownloads;
+    Stream := TStreamAdapter.Create(TFileStream.Create(updatePATH +
+      DownFile, fmCreate), MaxSize);
+    Stream.OnProgress := OnProgress;
+    HTTP.HTTPMethod('GET', DownPATHssl + DownFile, Stream, [200]);
+
   finally
-    HTTP.Free;
-    DownloadChangeLOGFile;
+    FreeAndNil(HTTP);
+    FreeAndNil(Stream);
+    DownloadChangeLOGFile(@Progress);
   end;
 end;
 
-procedure TUpdate_Form.DownloadChangeLOGFile;
+procedure TUpdate_Form.DownloadChangeLOGFile(OnProgress: TOnProgress);
 var
-  HTTP: THTTPSend;
+  HTTP: TFPHttpClient;
+  Stream: TStreamAdapter;
   MaxSize: int64;
 begin
-  Download := 0;
   if dmFunc.GetSize(DownPATHssl + 'changelog.txt') = -1 then
     MaxSize := dmFunc.GetSize(DownPATH + 'changelog.txt')
   else
     MaxSize := dmFunc.GetSize(DownPATHssl + 'changelog.txt');
 
-  if MaxSize > 0 then
-    ProgressBar1.Max := MaxSize
-  else
-    ProgressBar1.Max := 0;
-  HTTP := THTTPSend.Create;
-  HTTP.Sock.OnStatus := @SynaProgress;
+  if MaxSize = -1 then
+    exit;
+
   Label9.Caption := rUpdateStatusDownloadChanges;
   try
-    if HTTP.HTTPMethod('GET', DownPATHssl + 'changelog.txt') then
-      HTTP.Document.SaveToFile(updatePATH + 'changelog.txt')
-    else
-    if HTTP.HTTPMethod('GET', DownPATH + 'changelog.txt') then
-      HTTP.Document.SaveToFile(updatePATH + 'changelog.txt');
+    HTTP := TFPHttpClient.Create(nil);
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; ewlog)');
+    Stream := TStreamAdapter.Create(TFileStream.Create(updatePATH +
+      'changelog.txt', fmCreate), MaxSize);
+    Stream.OnProgress := OnProgress;
+    HTTP.HTTPMethod('GET', DownPATHssl + 'changelog.txt', Stream, [200]);
+
   finally
-    HTTP.Free;
+    FreeAndNil(HTTP);
+    FreeAndNil(Stream);
     Changelog_Form.Memo1.Lines.LoadFromFile(updatePATH + 'changelog.txt');
     Changelog_Form.Show;
     Label9.Caption := rUpdateStatusRequiredInstall;
@@ -276,24 +276,15 @@ begin
     {$ENDIF WINDOWS}
   end
   else
-    DownloadFile;
+    DownloadFile(@Progress);
 end;
 
-procedure TUpdate_Form.SynaProgress(Sender: TObject; Reason: THookSocketReason;
-  const Value: string);
+procedure TUpdate_Form.Progress(Sender: TObject; Percent: integer);
 begin
-  if Reason = HR_ReadCount then
-  begin
-    Download := Download + StrToInt(Value);
-    if ProgressBar1.Max > 0 then
-    begin
-      ProgressBar1.Position := Download;
-      label10.Caption := IntToStr(Trunc((Download / ProgressBar1.Max) * 100)) + '%';
-    end
-    else
-      label10.Caption := rSizeFile + IntToStr(Download) + rBytes;
-    Application.ProcessMessages;
-  end;
+  Progressbar1.Position := Percent;
+  Progressbar1.Update;
+  label10.Caption := IntToStr(Percent) + '%';
+  Application.ProcessMessages;
 end;
 
 end.
