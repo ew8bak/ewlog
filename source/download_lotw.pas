@@ -17,7 +17,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ssl_openssl, ResourceStr, LazUTF8, blcksock;
+  Classes, SysUtils, ResourceStr, LazUTF8, fphttpclient;
 
 const
   LotW_URL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
@@ -27,10 +27,10 @@ type
   protected
     procedure Execute; override;
     function DownLoTW(lotw_user, lotw_password, lotw_date: string): boolean;
-    procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
-      const Value: string);
-    procedure updSize;
-    procedure updAllSize;
+    //  procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
+    //    const Value: string);
+    //  procedure updSize;
+    //  procedure updAllSize;
   private
     downSize: integer;
     AllDownSize: int64;
@@ -50,33 +50,46 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, dmFunc_U, ServiceForm_U;
+uses Forms, LCLType, InitDB_dm, dmFunc_U, ServiceForm_U;
 
 function TLoTWThread.DownLoTW(lotw_user, lotw_password, lotw_date: string): boolean;
 var
   fullURL: string;
-  HTTP: THTTPSend;
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
   response: string;
 begin
   Result := False;
   importFlag := False;
   response := '';
   try
-    {$IFDEF UNIX}
-    SaveFile := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/LotW_' +
-      lotw_date + '.adi';
-    {$ELSE}
-    SaveFile := SysUtils.GetEnvironmentVariable('SystemDrive') +
-      SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) +
-      '/EWLog/LotW_' + lotw_date + '.adi';
-    {$ENDIF UNIX}
+    HTTP := TFPHttpClient.Create(nil);
+    Document := TMemoryStream.Create;
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+    SaveFile := FilePATH + 'LotW_' + lotw_date + '.adi';
     fullURL := LotW_URL + 'login=' + lotw_user + '&password=' +
       lotw_password + '&qso_query=1&qso_qsldetail="yes"' + '&qso_qslsince=' + lotw_date;
-    HTTP := THTTPSend.Create;
-    HTTP.Sock.OnStatus := @SynaProgress;
-    AllDownSize := dmFunc.GetSize(fullURL);
-    Synchronize(@updAllSize);
-    if HTTP.HTTPMethod('GET', fullURL) then
+    // HTTP := THTTPSend.Create;
+    // HTTP.Sock.OnStatus := @SynaProgress;
+    //  AllDownSize := dmFunc.GetSize(fullURL);
+    //  Synchronize(@updAllSize);
+
+    HTTP.Get(fullURL, Document);
+    if HTTP.ResponseStatusCode = 200 then
+    begin
+      SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
+      if Pos('Username/password incorrect', response) > 0 then
+        result_mes := rStatusIncorrect
+      else
+      begin
+        Document.SaveToFile(SaveFile);
+        result_mes := rStatusSaveFile;
+        importFlag := True;
+      end;
+    end;
+
+  { if HTTP.HTTPMethod('GET', fullURL) then
     begin
       SetString(response, PChar(HTTP.Document.Memory), HTTP.Document.Size div
         SizeOf(char));
@@ -88,31 +101,32 @@ begin
         result_mes := rStatusSaveFile;
         importFlag := True;
       end;
-    end;
+    end; }
   finally
-    HTTP.Free;
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
     Result := True;
   end;
 end;
 
-procedure TLoTWThread.updAllSize;
+{procedure TLoTWThread.updAllSize;
 begin
   ServiceForm.ProgressBar1.Position := 0;
   if AllDownSize > 0 then
     ServiceForm.ProgressBar1.Max := AllDownSize
   else
     ServiceForm.ProgressBar1.Max := 0;
-end;
+end; }
 
-procedure TLoTWThread.updSize;
+{procedure TLoTWThread.updSize;
 begin
   ServiceForm.DownSize := ServiceForm.DownSize + downSize;
   ServiceForm.Label7.Caption :=
     FormatFloat('0.###', ServiceForm.DownSize / 1048576) + ' ' + rMBytes;
   ServiceForm.ProgressBar1.Position := round(ServiceForm.DownSize);
-end;
+end;}
 
-procedure TLoTWThread.SynaProgress(Sender: TObject; Reason: THookSocketReason;
+{procedure TLoTWThread.SynaProgress(Sender: TObject; Reason: THookSocketReason;
   const Value: string);
 begin
   if Reason = HR_ReadCount then
@@ -121,7 +135,7 @@ begin
     Synchronize(@updSize);
   end;
 end;
-
+}
 constructor TLoTWThread.Create;
 begin
   FreeOnTerminate := True;

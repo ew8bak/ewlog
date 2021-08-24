@@ -17,7 +17,8 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ssl_openssl, ResourceStr, LazFileUtils, LazUTF8, blcksock;
+  Classes, SysUtils, ResourceStr, LazFileUtils, LazUTF8, fphttpclient,
+  StreamAdapter_u;
 
 const
   DowneQSLcc_URL = 'http://www.eqsl.cc/qslcard/DownloadInBox.cfm?';
@@ -30,11 +31,10 @@ type
   TeQSLccThread = class(TThread)
   protected
     procedure Execute; override;
-    function DowneQSLcc(eqslcc_user, eqslcc_password, eqslcc_date: string): boolean;
-    procedure SynaProgress(Sender: TObject; Reason: THookSocketReason;
-      const Value: string);
+    function DowneQSLcc(eqslcc_user, eqslcc_password, eqslcc_date: string;
+      OnProgress: TOnProgress): boolean;
+    procedure Progress(Sender: TObject; Percent: integer);
     procedure updSize;
-    procedure updAllSize;
   private
     downSize: integer;
     AllDownSize: int64;
@@ -54,13 +54,15 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, dmFunc_U, ServiceForm_U;
+uses Forms, LCLType, dmFunc_U, ServiceForm_U, InitDB_dm;
 
-function TeQSLccThread.DowneQSLcc(eqslcc_user, eqslcc_password,
-  eqslcc_date: string): boolean;
+function TeQSLccThread.DowneQSLcc(eqslcc_user, eqslcc_password, eqslcc_date: string;
+  OnProgress: TOnProgress): boolean;
 var
   fullURL, tmp: string;
-  HTTP: THTTPSend;
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
+  Stream: TStreamAdapter;
   eQSLPage: TStringList;
   i: integer;
   errFlag: boolean;
@@ -69,23 +71,22 @@ begin
   errFlag := False;
   importFlag := False;
   try
-    HTTP := THTTPSend.Create;
-    HTTP.Sock.OnStatus := @SynaProgress;
+    HTTP := TFPHttpClient.Create(nil);
+    Document := TMemoryStream.Create;
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
     eQSLPage := TStringList.Create;
-    {$IFDEF UNIX}
-    SaveFile := SysUtils.GetEnvironmentVariable('HOME') + '/EWLog/eQSLcc_' +
-      eqslcc_date + '.adi';
-    {$ELSE}
-    SaveFile := SysUtils.GetEnvironmentVariable('SystemDrive') +
-      SysToUTF8(SysUtils.GetEnvironmentVariable('HOMEPATH')) +
-      '/EWLog/eQSLcc_' + eqslcc_date + '.adi';
-    {$ENDIF UNIX}
+
+    SaveFile := FilePATH + 'eQSLcc_' + eqslcc_date + '.adi';
+
     fullURL := DowneQSLcc_URL + 'UserName=' + eqslcc_user + '&Password=' +
       eqslcc_password + '&RcvdSince=' + eqslcc_date;
-    if HTTP.HTTPMethod('GET', fullURL) then
+
+    HTTP.Get(fullURL, Document);
+    if HTTP.ResponseStatusCode = 200 then
     begin
-      HTTP.Document.Seek(0, soBeginning);
-      eQSLPage.LoadFromStream(HTTP.Document);
+      Document.Seek(0, soBeginning);
+      eQSLPage.LoadFromStream(Document);
       if Pos(errorMess, UpperCase(eQSLPage.Text)) > 0 then
       begin
         errFlag := True;
@@ -114,31 +115,25 @@ begin
         end;
       end;
     end;
-    HTTP.Clear;
+
     if not errFlag then
     begin
       fullURL := eQSLcc_URL + tmp;
       AllDownSize := dmFunc.GetSize(fullURL);
-      Synchronize(@updAllSize);
-      if HTTP.HTTPMethod('GET', fullURL) then
-        HTTP.Document.SaveToFile(SaveFile);
+      Stream := TStreamAdapter.Create(TFileStream.Create(SaveFile, fmCreate),
+        AllDownSize);
+      Stream.OnProgress := OnProgress;
+      HTTP.HTTPMethod('GET', fullURL, Stream, [200]);
       result_mes := rStatusSaveFile;
       importFlag := True;
     end;
   finally
-    HTTP.Free;
+    FreeAndNil(HTTP);
+    FreeAndNil(Stream);
+    FreeAndNil(Document);
     eQSLPage.Free;
     Result := True;
   end;
-end;
-
-procedure TeQSLccThread.updAllSize;
-begin
-  ServiceForm.ProgressBar1.Position := 0;
-  if AllDownSize > 0 then
-    ServiceForm.ProgressBar1.Max := AllDownSize
-  else
-    ServiceForm.ProgressBar1.Max := 0;
 end;
 
 procedure TeQSLccThread.updSize;
@@ -146,18 +141,13 @@ begin
   ServiceForm.DownSize := ServiceForm.DownSize + downSize;
   ServiceForm.Label7.Caption :=
     FormatFloat('0.###', ServiceForm.DownSize / 1048576) + ' ' + rMBytes;
-  ServiceForm.ProgressBar1.Position := round(ServiceForm.DownSize);
+  ServiceForm.ProgressBar1.Position := downSize;
 end;
 
-
-procedure TeQSLccThread.SynaProgress(Sender: TObject; Reason: THookSocketReason;
-  const Value: string);
+procedure TeQSLccThread.Progress(Sender: TObject; Percent: integer);
 begin
-  if Reason = HR_ReadCount then
-  begin
-    downSize := StrToInt(Value);
-    Synchronize(@updSize);
-  end;
+  downSize := Percent;
+  Synchronize(@updSize);
 end;
 
 constructor TeQSLccThread.Create;
@@ -176,7 +166,7 @@ end;
 
 procedure TeQSLccThread.Execute;
 begin
-  if DowneQSLcc(user_eqslcc, password_eqslcc, date_eqslcc) then
+  if DowneQSLcc(user_eqslcc, password_eqslcc, date_eqslcc, @Progress) then
     Synchronize(@ShowResult);
 end;
 
