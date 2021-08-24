@@ -17,7 +17,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
-  const_u, LCLProc, LCLTranslator, FileUtil, Zipper, httpsend, LCLIntf,
+  const_u, LCLProc, LCLTranslator, FileUtil, Zipper, fphttpclient, LCLIntf,
   ActnList, process, CopyTableThread, gettext, digi_record, ImportADIThread, CloudLogCAT;
 
 type
@@ -1302,28 +1302,30 @@ end;
 
 procedure TMiniForm.MIDownloadLangClick(Sender: TObject);
 var
-  HTTP: THTTPSend;
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
   UnZipper: TUnZipper;
 begin
   if DirectoryExists(FilePATH + 'locale') then
     DeleteDirectory(FilePATH + 'locale', False);
-
   ForceDirectories(FilePATH + 'locale');
-  HTTP := THTTPSend.Create;
-  UnZipper := TUnZipper.Create;
   try
-    if HTTP.HTTPMethod('GET', DownLocaleURL) then
-      HTTP.Document.SaveToFile(FilePATH + 'updates' + DirectorySeparator +
-        'locale.zip');
+    HTTP := TFPHttpClient.Create(nil);
+    Document := TMemoryStream.Create;
+    HTTP.Get(DownLocaleURL, Document);
+    if HTTP.ResponseStatusCode = 200 then
+      Document.SaveToFile(FilePATH + 'updates' + DirectorySeparator + 'locale.zip');
   finally
-    HTTP.Free;
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
     try
+      UnZipper := TUnZipper.Create;
       UnZipper.FileName := FilePATH + 'updates' + DirectorySeparator + 'locale.zip';
       UnZipper.OutputPath := FilePATH + 'locale' + DirectorySeparator;
       UnZipper.Examine;
       UnZipper.UnZipAllFiles;
     finally
-      UnZipper.Free;
+      FreeAndNil(UnZipper);
       ShowMessage(rLanguageComplite);
     end;
   end;
@@ -1458,9 +1460,9 @@ var
 begin
   MenuItem := (Sender as TMenuItem);
   if Pos('CAT', MenuItem.Caption) > 0 then
-  IniSet.CurrentRIG :=   'CAT';
+    IniSet.CurrentRIG := 'CAT';
   if Pos('TCI', MenuItem.Caption) > 0 then
-  IniSet.CurrentRIG :=   'TCI';
+    IniSet.CurrentRIG := 'TCI';
   //ShowMessage(IniSet.CurrentRIG);
 end;
 
