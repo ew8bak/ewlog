@@ -26,7 +26,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="9"/>
-      <BuildNr Value="840"/>
+      <BuildNr Value="841"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -113,7 +113,7 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="15">
+    <RequiredPackages Count="14">
       <Item1>
         <PackageName Value="syWebSocket"/>
       </Item1>
@@ -136,29 +136,26 @@
         <PackageName Value="indylaz"/>
       </Item7>
       <Item8>
-        <PackageName Value="laz_synapse"/>
+        <PackageName Value="DBFLaz"/>
       </Item8>
       <Item9>
-        <PackageName Value="DBFLaz"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item9>
       <Item10>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="MemDSLaz"/>
       </Item10>
       <Item11>
-        <PackageName Value="MemDSLaz"/>
+        <PackageName Value="SDFLaz"/>
       </Item11>
       <Item12>
-        <PackageName Value="SDFLaz"/>
+        <PackageName Value="FCL"/>
       </Item12>
       <Item13>
-        <PackageName Value="FCL"/>
+        <PackageName Value="SQLDBLaz"/>
       </Item13>
       <Item14>
-        <PackageName Value="SQLDBLaz"/>
-      </Item14>
-      <Item15>
         <PackageName Value="LCL"/>
-      </Item15>
+      </Item14>
     </RequiredPackages>
     <Units Count="95">
       <Unit0>
