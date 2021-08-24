@@ -17,7 +17,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, ssl_openssl, qso_record;
+  Classes, SysUtils, strutils, qso_record, fphttpclient;
 
 const
   UploadURL = '/index.php/api/radio/';
@@ -50,32 +50,28 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, dmFunc_U;
+uses Forms, LCLType, dmFunc_U;
 
 procedure TCloudLogCATThread.SendRadio(CatData: TCatData);
 var
-  HTTP: THTTPSend;
-  temp: TStringStream;
-  Response: TStringList;
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
+  str: string;
 begin
   try
-    HTTP := THTTPSend.Create;
-    temp := TStringStream.Create('');
-    Response := TStringList.Create;
-    HTTP.MimeType := 'application/json';
-    temp.Size := 0;
-    temp.WriteString('{"key":"' + CatData.key + '", "radio":"' +
-      CatData.radio + '","frequency":' + CatData.freq + ',"mode":"' +
-      CatData.mode + '","timestamp":"' + CatData.dt + '"}');
-    HTTP.Document.LoadFromStream(temp);
-    if HTTP.HTTPMethod('POST', CatData.address + UploadURL) then
-    begin
-      Response.LoadFromStream(HTTP.Document);
-    end;
+    HTTP := TFPHttpClient.Create(nil);
+    HTTP.AddHeader('Content-Type', 'application/json; charset=UTF-8');
+    HTTP.AddHeader('Accept', 'application/json');
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+    HTTP.AllowRedirect := True;
+    Document := TMemoryStream.Create;
+    str := '{"key":"' + CatData.key + '", "radio":"' + CatData.radio +
+      '","frequency":' + CatData.freq + ',"mode":"' + CatData.mode +
+      '","timestamp":"' + CatData.dt + '"}';
+    HTTP.FormPost(CatData.address + UploadURL, str, Document);
   finally
-    temp.Free;
-    HTTP.Free;
-    Response.Free;
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
   end;
 end;
 

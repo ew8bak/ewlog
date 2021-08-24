@@ -17,7 +17,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, ssl_openssl, HTTPSend, infoDM_U;
+  Classes, SysUtils, infoDM_U, fphttpclient;
 
 const
   QRZRU_URL: string = 'https://api.qrz.ru/login?';
@@ -50,87 +50,83 @@ implementation
 function TGetSessionThread.GetSession(user, key, fromSYS: string): boolean;
 var
   response: string;
+  AURL: string;
   beginSTR, endSTR: integer;
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
 begin
   try
-    Result := False;
-    errorCode := '';
-    error := '';
-    if fromSYS = 'QRZRU' then
-    begin
-      with THTTPSend.Create do
+    try
+      Document := TMemoryStream.Create;
+      HTTP := TFPHttpClient.Create(nil);
+      HTTP.AllowRedirect := True;
+      HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+      Result := False;
+      errorCode := '';
+      error := '';
+      if fromSYS = 'QRZRU' then
       begin
-        if HTTPMethod('GET', QRZRU_URL + 'u=' + user + '&p=' + key + '') then
-        begin
-          SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
-        end;
-        Free;
+        AURL := QRZRU_URL + 'u=' + user + '&p=' + key + '';
+        HTTP.HTTPMethod('GET', AURL, Document, []);
+        SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
+        beginSTR := response.IndexOf('<session_id>');
+        endSTR := response.IndexOf('</session_id>');
+        if (beginSTR <> endSTR) then
+          session_key := response.Substring(beginSTR + 12, endSTR - beginSTR - 12);
+        beginSTR := response.IndexOf('<errorcode>');
+        endSTR := response.IndexOf('</errorcode>');
+        if (beginSTR <> endSTR) then
+          errorCode := response.Substring(beginSTR + 11, endSTR - beginSTR - 11);
+        beginSTR := response.IndexOf('<error>');
+        endSTR := response.IndexOf('</error>');
+        if (beginSTR <> endSTR) then
+          error := response.Substring(beginSTR + 7, endSTR - beginSTR - 7);
       end;
-      beginSTR := response.IndexOf('<session_id>');
-      endSTR := response.IndexOf('</session_id>');
-      if (beginSTR <> endSTR) then
-        session_key := response.Substring(beginSTR + 12, endSTR - beginSTR - 12);
-      beginSTR := response.IndexOf('<errorcode>');
-      endSTR := response.IndexOf('</errorcode>');
-      if (beginSTR <> endSTR) then
-        errorCode := response.Substring(beginSTR + 11, endSTR - beginSTR - 11);
-      beginSTR := response.IndexOf('<error>');
-      endSTR := response.IndexOf('</error>');
-      if (beginSTR <> endSTR) then
-        error := response.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-    end;
 
-    if fromSYS = 'QRZCOM' then
-    begin
-      with THTTPSend.Create do
+      if fromSYS = 'QRZCOM' then
       begin
-        if HTTPMethod('GET', QRZCOM_URL + 'username=' + user +
-          ';password=' + key + ';agent=EWLog') then
-        begin
-          SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
-        end;
-        Free;
+        AURL := QRZCOM_URL + 'username=' + user + ';password=' + key + ';agent=EWLog';
+        HTTP.HTTPMethod('GET', AURL, Document, []);
+        SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
+        beginSTR := response.IndexOf('<Key>');
+        endSTR := response.IndexOf('</Key>');
+        if (beginSTR <> endSTR) then
+          session_key := response.Substring(beginSTR + 5, endSTR - beginSTR - 5);
+        beginSTR := response.IndexOf('<errorcode>');
+        endSTR := response.IndexOf('</errorcode>');
+        if (beginSTR <> endSTR) then
+          errorCode := response.Substring(beginSTR + 11, endSTR - beginSTR - 11);
+        beginSTR := response.IndexOf('<Error>');
+        endSTR := response.IndexOf('</Error>');
+        if (beginSTR <> endSTR) then
+          error := response.Substring(beginSTR + 7, endSTR - beginSTR - 7);
       end;
-      beginSTR := response.IndexOf('<Key>');
-      endSTR := response.IndexOf('</Key>');
-      if (beginSTR <> endSTR) then
-        session_key := response.Substring(beginSTR + 5, endSTR - beginSTR - 5);
-      beginSTR := response.IndexOf('<errorcode>');
-      endSTR := response.IndexOf('</errorcode>');
-      if (beginSTR <> endSTR) then
-        errorCode := response.Substring(beginSTR + 11, endSTR - beginSTR - 11);
-      beginSTR := response.IndexOf('<Error>');
-      endSTR := response.IndexOf('</Error>');
-      if (beginSTR <> endSTR) then
-        error := response.Substring(beginSTR + 7, endSTR - beginSTR - 7);
-    end;
 
-    if (fromSYS = 'HAMQTH') or (fromSYS = '') then
-    begin
-      with THTTPSend.Create do
+      if (fromSYS = 'HAMQTH') or (fromSYS = '') then
       begin
-        if HTTPMethod('GET', HAMQTH_URL + 'u='+user+'&p='+key+'') then
-        begin
-          SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
-        end;
-        Free;
+        AURL := HAMQTH_URL + 'u=' + user + '&p=' + key + '';
+        HTTP.HTTPMethod('GET', AURL, Document, []);
+        SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
+        beginSTR := response.IndexOf('<session_id>');
+        endSTR := response.IndexOf('</session_id>');
+        if (beginSTR <> endSTR) then
+          session_key := response.Substring(beginSTR + 12, endSTR - beginSTR - 12);
+        beginSTR := response.IndexOf('<error>');
+        endSTR := response.IndexOf('</error>');
+        if (beginSTR <> endSTR) then
+          error := response.Substring(beginSTR + 7, endSTR - beginSTR - 7);
       end;
-      beginSTR := response.IndexOf('<session_id>');
-      endSTR := response.IndexOf('</session_id>');
-      if (beginSTR <> endSTR) then
-        session_key := response.Substring(beginSTR + 12, endSTR - beginSTR - 12);
-      beginSTR := response.IndexOf('<error>');
-      endSTR := response.IndexOf('</error>');
-      if (beginSTR <> endSTR) then
-        error := response.Substring(beginSTR + 7, endSTR - beginSTR - 7);
+
+      if (Length(session_key) > 0) or (Length(error) > 0) or (Length(errorCode) > 0) then
+        Result := True;
+
+    except
+      on E: Exception do
+        error := 'GetSessionThread:' + E.Message;
     end;
-
-    if (Length(session_key) > 0) or (Length(error) > 0) or (Length(errorCode) > 0) then
-      Result := True;
-
-  except
-    on E: Exception do
-      error := 'GetSessionThread:' + E.Message;
+  finally
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
   end;
 end;
 

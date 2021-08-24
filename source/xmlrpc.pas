@@ -19,26 +19,27 @@ uses
 type
   bytestring = string;
 
-function RequestStr( address, command: string): string;
-function RequestStr( address, command, value: string; asbytestring: boolean): string;
-function RequestStr( address, command, value1, value2: string; asbytestring: boolean): string;
-function RequestStr( address, command: string; value: integer): string;
-function RequestStr( address, command: string; value1, value2: integer): string;
-function RequestStr( address, command: string; value: double): string;
-function RequestStr( address, command: string; value: boolean): string;
+function RequestStr(address, command: string): string;
+function RequestStr(address, command, Value: string; asbytestring: boolean): string;
+function RequestStr(address, command, value1, value2: string;
+  asbytestring: boolean): string;
+function RequestStr(address, command: string; Value: integer): string;
+function RequestStr(address, command: string; value1, value2: integer): string;
+function RequestStr(address, command: string; Value: double): string;
+function RequestStr(address, command: string; Value: boolean): string;
 
-function RequestInt( address, command: string): integer;
-function RequestInt( address, command, value: string): integer;
-function RequestInt( address, command, value1, value2: string): integer;
-function RequestInt( address, command: string; value: integer): integer;
+function RequestInt(address, command: string): integer;
+function RequestInt(address, command, Value: string): integer;
+function RequestInt(address, command, value1, value2: string): integer;
+function RequestInt(address, command: string; Value: integer): integer;
 
-function RequestFloat( address, command: string): double;
-function RequestFloat( address, command, value: string): double;
-function RequestFloat( address, command, value1, value2: string): double;
+function RequestFloat(address, command: string): double;
+function RequestFloat(address, command, Value: string): double;
+function RequestFloat(address, command, value1, value2: string): double;
 
-function RequestBool( address, command: string): boolean;
-function RequestBool( address, command, value: string): boolean;
-function RequestBool( address, command, value1, value2: string): boolean;
+function RequestBool(address, command: string): boolean;
+function RequestBool(address, command, Value: string): boolean;
+function RequestBool(address, command, value1, value2: string): boolean;
 
 function RequestError: boolean;
 function GetLastError: string;
@@ -47,16 +48,12 @@ function GetLastResponse: string;
 implementation
 
 uses
-  HTTPSend, Base64;
+  Base64, fphttpclient;
 
 const
-  sRequest = '<?xml version="1.0"?><methodCall>'+
-    '<methodName>%m</methodName>'+
-    '%p'+
-    '</methodCall>';
-  sParams = '<params>'+
-    '%q'+
-    '</params>';
+  sRequest = '<?xml version="1.0"?><methodCall>' + '<methodName>%m</methodName>' +
+    '%p' + '</methodCall>';
+  sParams = '<params>' + '%q' + '</params>';
   sValue = '<param><value>%v</value></param>';
   sType = '<%t>%v</%t>';
 
@@ -74,9 +71,9 @@ begin
     str.Position := 0;
     res := TStringStream.Create('');
     try
-      with TBase64EncodingStream.Create(res)do
+      with TBase64EncodingStream.Create(res) do
         try
-          CopyFrom(str,str.Size);
+          CopyFrom(str, str.Size);
         finally
           Free;
         end;
@@ -85,7 +82,7 @@ begin
       res.Free;
     end;
   finally
-   str.Free;
+    str.Free;
   end;
 end;
 
@@ -99,13 +96,13 @@ begin
     res := TBase64DecodingStream.Create(str);
     str.Position := 0;
     try
-      SetLength(Result,res.Size);
-      res.Read(Result[1],res.Size);
+      SetLength(Result, res.Size);
+      res.Read(Result[1], res.Size);
     finally
       res.Free;
     end;
   finally
-   str.Free;
+    str.Free;
   end;
 end;
 
@@ -115,35 +112,41 @@ var
   x: string;
 begin
   Result := Input;
-  if Length(Result) = 0 then Exit;
+  if Length(Result) = 0 then
+    Exit;
   p := 1;
   repeat
     case Result[p] of
-    '&':  begin
-            Delete(Result,p,1);
-            Insert('&amp;',Result,p);
-            Inc(p,4);
-          end;
-    '<':  begin
-            Delete(Result,p,1);
-            Insert('&lt;',Result,p);
-            Inc(p,3);
-          end;
-    '>':  begin
-            Delete(Result,p,1);
-            Insert('&gt;',Result,p);
-            Inc(p,3);
-          end;
-    '''': begin
-            Delete(Result,p,1);
-            Insert('&apos;',Result,p);
-            Inc(p,5);
-          end;
-    '"':  begin
-            Delete(Result,p,1);
-            Insert('&quot;',Result,p);
-            Inc(p,5);
-          end;
+      '&':
+      begin
+        Delete(Result, p, 1);
+        Insert('&amp;', Result, p);
+        Inc(p, 4);
+      end;
+      '<':
+      begin
+        Delete(Result, p, 1);
+        Insert('&lt;', Result, p);
+        Inc(p, 3);
+      end;
+      '>':
+      begin
+        Delete(Result, p, 1);
+        Insert('&gt;', Result, p);
+        Inc(p, 3);
+      end;
+      '''':
+      begin
+        Delete(Result, p, 1);
+        Insert('&apos;', Result, p);
+        Inc(p, 5);
+      end;
+      '"':
+      begin
+        Delete(Result, p, 1);
+        Insert('&quot;', Result, p);
+        Inc(p, 5);
+      end;
     end;
     Inc(p);
   until p > Length(Result);
@@ -151,162 +154,168 @@ end;
 
 function XMLDecodeStr(Input: string): string;
 
-  procedure Replace( find, repl: string; var s: string);
+  procedure Replace(find, repl: string; var s: string);
   var
     p: integer;
   begin
     repeat
-      p := Pos(find,s);
+      p := Pos(find, s);
       if p > 0 then
       begin
-        Delete(s,p,Length(find));
-        Insert(repl,s,p);
+        Delete(s, p, Length(find));
+        Insert(repl, s, p);
       end;
     until p = 0;
   end;
 
 begin
   Result := Input;
-  if Length(Result) = 0 then Exit;
-  Replace('&amp;','&',Result);
-  Replace('&lt;','<',Result);
-  Replace('&gt;','>',Result);
-  Replace('&apos;','''',Result);
-  Replace('&quot;','"',Result);
+  if Length(Result) = 0 then
+    Exit;
+  Replace('&amp;', '&', Result);
+  Replace('&lt;', '<', Result);
+  Replace('&gt;', '>', Result);
+  Replace('&apos;', '''', Result);
+  Replace('&quot;', '"', Result);
 end;
 
-function HttpPostXML(const URL: string; const Data: TStream): Boolean;
+function HttpPostXML(const URL: string; const Data: TStream): boolean;
 var
-  HTTP: THTTPSend;
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
 begin
-  HTTP := THTTPSend.Create;
+  HTTP := TFPHttpClient.Create(nil);
+  Document := TMemoryStream.Create;
+  HTTP.AddHeader('Content-Type', 'text/xml; charset=UTF-8');
   try
-    HTTP.Document.CopyFrom(Data, 0);
-    HTTP.MimeType := 'text/xml';
-    Result := HTTP.HTTPMethod('POST', URL);
+    HTTP.StreamFormPost(URL, '', '', Data, Document);
+    if HTTP.ResponseStatusCode = 200 then
+      Result := True;
     Data.Size := 0;
     if Result then
     begin
       Data.Seek(0, soFromBeginning);
-      Data.CopyFrom(HTTP.Document, 0);
+      Data.CopyFrom(Document, 0);
     end;
   finally
-    HTTP.Free;
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
   end;
 end;
 
-function PrepareValue( value, vtype: string ): string;
+function PrepareValue(Value, vtype: string): string;
 var
   p: integer;
-  s,t: string;
+  s, t: string;
 begin
   s := sValue;
   if vtype = '' then
-    t := value
+    t := Value
   else
   begin
     t := sType;
     repeat
-      p := Pos('%t',t);
+      p := Pos('%t', t);
       if p > 0 then
       begin
-        Delete(t,p,2);
-        Insert(vtype,t,p);
+        Delete(t, p, 2);
+        Insert(vtype, t, p);
       end;
     until p = 0;
-    p := Pos('%v',t);
-    Delete(t,p,2);
-    Insert(value,t,p);
+    p := Pos('%v', t);
+    Delete(t, p, 2);
+    Insert(Value, t, p);
   end;
-  p := Pos('%v',s);
-  Delete(s,p,2);
-  Insert(t,s,p);
+  p := Pos('%v', s);
+  Delete(s, p, 2);
+  Insert(t, s, p);
   Result := s;
 end;
 
-function PrepareStringValue( value: string; bytestring: boolean ): string;
+function PrepareStringValue(Value: string; bytestring: boolean): string;
 begin
   if bytestring then
-    Result := PrepareValue(Base64EncodeStr(value),'base64')
+    Result := PrepareValue(Base64EncodeStr(Value), 'base64')
   else
-    Result := PrepareValue(XMLEncodeStr(value),'string');
+    Result := PrepareValue(XMLEncodeStr(Value), 'string');
 end;
 
-function GetStringResult( response: string ): string;
+function GetStringResult(response: string): string;
 var
   p, q: integer;
 begin
   Result := '';
-  p := Pos('<value>',response);
+  p := Pos('<value>', response);
   if p > 0 then
   begin
-    q := Pos('</value>',response);
-    if q > p+7 then
-      Result := XMLDecodeStr(Copy(response,p+7,q-(p+7)));
+    q := Pos('</value>', response);
+    if q > p + 7 then
+      Result := XMLDecodeStr(Copy(response, p + 7, q - (p + 7)));
   end
   else
   begin
-    p := Pos('<base64>',response);
+    p := Pos('<base64>', response);
     if p > 0 then
     begin
-      q := Pos('</base64>',response);
-      if q > p+8 then
-        Result := Base64DecodeStr(Copy(response,p+8,q-(p+8)));
+      q := Pos('</base64>', response);
+      if q > p + 8 then
+        Result := Base64DecodeStr(Copy(response, p + 8, q - (p + 8)));
     end;
   end;
 end;
 
-function GetIntegerResult( response: string ): integer;
+function GetIntegerResult(response: string): integer;
 var
   p, q: integer;
 begin
   Result := MAXINT;
-  p := Pos('<i4>',response);
+  p := Pos('<i4>', response);
   if p > 0 then
   begin
-    q := Pos('</i4>',response);
-    if q > p+4 then
-      Result := StrToIntDef(Copy(response,p+4,q-(p+4)),0);
+    q := Pos('</i4>', response);
+    if q > p + 4 then
+      Result := StrToIntDef(Copy(response, p + 4, q - (p + 4)), 0);
   end;
 end;
 
-function GetFloatResult( response: string ): double;
+function GetFloatResult(response: string): double;
 var
   p, q: integer;
   r: string;
 begin
   Result := 0.0;
-  p := Pos('<double>',response);
+  p := Pos('<double>', response);
   if p > 0 then
   begin
-    q := Pos('</double>',response);
-    if q > p+8 then
+    q := Pos('</double>', response);
+    if q > p + 8 then
     begin
       // get floating point value
-      r := Copy(response,p+8,q-(p+8));
+      r := Copy(response, p + 8, q - (p + 8));
       // convert to correct regional format
-      p := Pos('.',r);
-      if p > 0 then r[p] := DecimalSeparator;
-      Result := StrToFloatDef(r,0.0);
+      p := Pos('.', r);
+      if p > 0 then
+        r[p] := DecimalSeparator;
+      Result := StrToFloatDef(r, 0.0);
     end;
   end;
 end;
 
-function GetBooleanResult( response: string ): boolean;
+function GetBooleanResult(response: string): boolean;
 var
   p, q: integer;
 begin
-  Result := false;
-  p := Pos('<boolean>',response);
+  Result := False;
+  p := Pos('<boolean>', response);
   if p > 0 then
   begin
-    q := Pos('</boolean>',response);
-    if q > p+9 then
-      Result := Copy(response,p+9,q-(p+9)) = '1';
+    q := Pos('</boolean>', response);
+    if q > p + 9 then
+      Result := Copy(response, p + 9, q - (p + 9)) = '1';
   end;
 end;
 
-function RawRequest( address, command, value1, value2: string): string;
+function RawRequest(address, command, value1, value2: string): string;
 var
   p: integer;
   s: string;
@@ -316,34 +325,34 @@ begin
   errstr := '';
   s := sRequest;
   // insert command
-  p := Pos('%m',s);
-  Delete(s,p,2);
-  Insert(command,s,p);
+  p := Pos('%m', s);
+  Delete(s, p, 2);
+  Insert(command, s, p);
   // insert params
-  p := Pos('%p',s);
-  Delete(s,p,2);
+  p := Pos('%p', s);
+  Delete(s, p, 2);
   if Length(value1) > 0 then
   begin
     // insert params
-    Insert(sParams,s,p);
+    Insert(sParams, s, p);
     // insert value1 (created using PrepareValue)
-    p := Pos('%q',s);
-    Insert(value1,s,p);
-    Inc(p,Length(value1));
+    p := Pos('%q', s);
+    Insert(value1, s, p);
+    Inc(p, Length(value1));
     if Length(value2) > 0 then
-    // insert value2
+      // insert value2
     begin
-      Insert(value2,s,p);
-      Inc(p,Length(value2));
+      Insert(value2, s, p);
+      Inc(p, Length(value2));
     end;
   end;
   // send request
   ss := TStringStream.Create(s);
-  if HTTPPostXML(address,ss) then
+  if HTTPPostXML(address, ss) then
   begin
     // get result
     Result := ss.DataString;
-    error := Pos('<fault>',Result) > 0;
+    error := Pos('<fault>', Result) > 0;
     if error then
     begin
       errcode := GetIntegerResult(Result);
@@ -352,110 +361,115 @@ begin
   end
   else
   begin
-    error := true;
+    error := True;
     errcode := 999;
     errstr := 'Post request failed';
   end;
   ss.Destroy;
 end;
 
-function RequestStr( address, command: string): string;
+function RequestStr(address, command: string): string;
 begin
-  Result := RequestStr( address, command, '', '', false);
+  Result := RequestStr(address, command, '', '', False);
 end;
 
-function RequestStr( address, command, value: string; asbytestring: boolean): string;
+function RequestStr(address, command, Value: string; asbytestring: boolean): string;
 begin
-  Result := RequestStr( address, command, value, '', asbytestring);
+  Result := RequestStr(address, command, Value, '', asbytestring);
 end;
 
-function RequestStr( address, command, value1, value2: string; asbytestring: boolean): string;
+function RequestStr(address, command, value1, value2: string;
+  asbytestring: boolean): string;
 var
   v1, v2: string;
 begin
-  Result := ''; v1 := ''; v2 := '';
+  Result := '';
+  v1 := '';
+  v2 := '';
   if Length(value1) > 0 then
-    v1 := PrepareStringValue(value1,asbytestring);
+    v1 := PrepareStringValue(value1, asbytestring);
   if Length(value2) > 0 then
-    v2 := PrepareStringValue(value2,asbytestring);
-  response := RawRequest( address, command, v1, v2 );
+    v2 := PrepareStringValue(value2, asbytestring);
+  response := RawRequest(address, command, v1, v2);
   if not error then
-    Result := GetStringResult( response );
+    Result := GetStringResult(response);
 end;
 
-function RequestStr( address, command: string; value: integer): string;
+function RequestStr(address, command: string; Value: integer): string;
 var
   v: string;
 begin
-  v := PrepareValue(IntToStr(value),'i4');
-  response := RawRequest( address, command, v, '' );
+  v := PrepareValue(IntToStr(Value), 'i4');
+  response := RawRequest(address, command, v, '');
   if not error then
-    Result := GetStringResult( response );
+    Result := GetStringResult(response);
 end;
 
-function RequestStr( address, command: string; value1, value2: integer): string;
+function RequestStr(address, command: string; value1, value2: integer): string;
 var
   v1, v2: string;
 begin
-  v1 := PrepareValue(IntToStr(value1),'i4');
-  v2 := PrepareValue(IntToStr(value2),'i4');
-  response := RawRequest( address, command, v1, v2 );
+  v1 := PrepareValue(IntToStr(value1), 'i4');
+  v2 := PrepareValue(IntToStr(value2), 'i4');
+  response := RawRequest(address, command, v1, v2);
   if not error then
-    Result := GetStringResult( response );
+    Result := GetStringResult(response);
 end;
 
-function RequestStr( address, command: string; value: double): string;
+function RequestStr(address, command: string; Value: double): string;
 var
   v: string;
 begin
-  v := PrepareValue(FloatToStr(value),'double');
-  response := RawRequest( address, command, v, '' );
+  v := PrepareValue(FloatToStr(Value), 'double');
+  response := RawRequest(address, command, v, '');
   if not error then
-    Result := GetStringResult( response );
+    Result := GetStringResult(response);
 end;
 
-function RequestStr( address, command: string; value: boolean): string;
+function RequestStr(address, command: string; Value: boolean): string;
 var
   v: string;
 begin
-  v := PrepareValue(IntToStr(Ord(value)),'boolean');
-  response := RawRequest( address, command, v, '' );
+  v := PrepareValue(IntToStr(Ord(Value)), 'boolean');
+  response := RawRequest(address, command, v, '');
   if not error then
-    Result := GetStringResult( response );
+    Result := GetStringResult(response);
 end;
 
-function RequestInt( address, command: string): integer;
+function RequestInt(address, command: string): integer;
 begin
-  Result := RequestInt( address, command, '', '');
+  Result := RequestInt(address, command, '', '');
 end;
 
-function RequestInt( address, command, value: string): integer;
+function RequestInt(address, command, Value: string): integer;
 begin
-  Result := RequestInt( address, command, value, '');
+  Result := RequestInt(address, command, Value, '');
 end;
 
-function RequestInt( address, command, value1, value2: string): integer;
+function RequestInt(address, command, value1, value2: string): integer;
 var
   v1, v2: string;
 begin
-  Result := -1; v1 := ''; v2 := '';
+  Result := -1;
+  v1 := '';
+  v2 := '';
   if Length(value1) > 0 then
-    v1 := PrepareStringValue(value1,false);
+    v1 := PrepareStringValue(value1, False);
   if Length(value2) > 0 then
-    v2 := PrepareStringValue(value2,false);
-  response := RawRequest( address, command, v1, v2);
+    v2 := PrepareStringValue(value2, False);
+  response := RawRequest(address, command, v1, v2);
   if not error then
-    Result := GetIntegerResult( response );
+    Result := GetIntegerResult(response);
 end;
 
-function RequestInt( address, command: string; value: integer): integer;
+function RequestInt(address, command: string; Value: integer): integer;
 var
   v: string;
 begin
-  v := PrepareValue(IntToStr(value),'i4');
-  response := RawRequest( address, command, v, '' );
+  v := PrepareValue(IntToStr(Value), 'i4');
+  response := RawRequest(address, command, v, '');
   if not error then
-    Result := GetIntegerResult( response );
+    Result := GetIntegerResult(response);
 end;
 
 function RequestError: boolean;
@@ -463,52 +477,56 @@ begin
   Result := error;
 end;
 
-function RequestFloat( address, command: string): double;
+function RequestFloat(address, command: string): double;
 begin
-  Result := RequestFloat( address, command, '', '');
+  Result := RequestFloat(address, command, '', '');
 end;
 
-function RequestFloat( address, command, value: string): double;
+function RequestFloat(address, command, Value: string): double;
 begin
-  Result := RequestFloat( address, command, value, '');
+  Result := RequestFloat(address, command, Value, '');
 end;
 
-function RequestFloat( address, command, value1, value2: string): double;
+function RequestFloat(address, command, value1, value2: string): double;
 var
   v1, v2: string;
 begin
-  Result := -1; v1 := ''; v2 := '';
+  Result := -1;
+  v1 := '';
+  v2 := '';
   if Length(value1) > 0 then
-    v1 := PrepareStringValue(value1,false);
+    v1 := PrepareStringValue(value1, False);
   if Length(value2) > 0 then
-    v2 := PrepareStringValue(value2,false);
-  response := RawRequest( address, command, v1, v2);
+    v2 := PrepareStringValue(value2, False);
+  response := RawRequest(address, command, v1, v2);
   if not error then
-    Result := GetFloatResult( response );
+    Result := GetFloatResult(response);
 end;
 
-function RequestBool( address, command: string): boolean;
+function RequestBool(address, command: string): boolean;
 begin
-  Result := RequestBool( address, command, '', '');
+  Result := RequestBool(address, command, '', '');
 end;
 
-function RequestBool( address, command, value: string): boolean;
+function RequestBool(address, command, Value: string): boolean;
 begin
-  Result := RequestBool( address, command, value, '');
+  Result := RequestBool(address, command, Value, '');
 end;
 
-function RequestBool( address, command, value1, value2: string): boolean;
+function RequestBool(address, command, value1, value2: string): boolean;
 var
   v1, v2: string;
 begin
-  Result := false; v1 := ''; v2 := '';
+  Result := False;
+  v1 := '';
+  v2 := '';
   if Length(value1) > 0 then
-    v1 := PrepareStringValue(value1,false);
+    v1 := PrepareStringValue(value1, False);
   if Length(value2) > 0 then
-    v2 := PrepareStringValue(value2,false);
-  response := RawRequest( address, command, v1, v2);
+    v2 := PrepareStringValue(value2, False);
+  response := RawRequest(address, command, v1, v2);
   if not error then
-    Result := GetBooleanResult( response );
+    Result := GetBooleanResult(response);
 end;
 
 function GetLastError: string;

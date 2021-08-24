@@ -26,7 +26,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="4"/>
       <RevisionNr Value="9"/>
-      <BuildNr Value="837"/>
+      <BuildNr Value="838"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="94">
+    <Units Count="95">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -758,6 +758,11 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmTCI_u"/>
       </Unit93>
+      <Unit94>
+        <Filename Value="streamadapter_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="StreamAdapter_u"/>
+      </Unit94>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

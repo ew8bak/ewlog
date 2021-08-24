@@ -12,7 +12,7 @@ program EWLog;
 {$mode objfpc}{$H+}
 
 uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
-  cthreads, {$ENDIF} {$ENDIF}
+  cthreads, cmem, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, sdflaz, memdslaz, datetimectrls, dbflaz, printer4lazarus, MainForm_U,
   editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
@@ -33,7 +33,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
   dmCat, contestForm_u, dmContest_u, FMS_record,
   dmmigrate_u, ExportSOTAThread, CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u,
-  CWKeysDM_u, CWTypeForm_u, dmTCI_u;
+  CWKeysDM_u, CWTypeForm_u, dmTCI_u, StreamAdapter_u;
 
 {$R *.res}
 

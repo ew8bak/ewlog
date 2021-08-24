@@ -17,7 +17,7 @@ uses
   Classes, SysUtils, LCLType, FileUtil, Forms, Controls, Graphics, Dialogs, character,
   StdCtrls, EditBtn, ExtCtrls, process, sqldb, Math, LCLProc, azidis3, aziloc,
   DateUtils, LazUTF8, strutils, LazFileUtils,
-  versiontypes, versionresource, blcksock, httpsend, UTF8Process,
+  versiontypes, versionresource, UTF8Process, fphttpclient,
     {$IFDEF LINUX}
     users,
     {$ENDIF LINUX}
@@ -48,7 +48,7 @@ type
 
     { private declarations }
   public
-    function GetSize(URL: string): int64;
+    function GetSize(cURL: string): int64;
     function GetMyVersion: string;
     function Q(s: string): string;
     function getField(str, field: string): string;
@@ -415,30 +415,29 @@ begin
   end;
 end;
 
-function TdmFunc.GetSize(URL: string): int64;
+function TdmFunc.GetSize(cURL: string): int64;
 var
+  vHTTP: TFPHTTPClient;
   i: integer;
-  size: string;
-  ch: char;
+  s: string;
 begin
   Result := -1;
-  with THTTPSend.Create do
-    if HTTPMethod('HEAD', URL) then
+  try
+  vHTTP := TFPHTTPClient.Create(nil);
+  vHTTP.AllowRedirect := True;
+  vHTTP.HTTPMethod('HEAD', cUrl, nil, []);
+    for i := 0 to pred(vHTTP.ResponseHeaders.Count) do
     begin
-      for I := 0 to Headers.Count - 1 do
+      s := UpperCase(vHTTP.ResponseHeaders[i]);
+      if Pos('CONTENT-LENGTH:', s) > 0 then
       begin
-        if pos('content-length', lowercase(Headers[i])) > 0 then
-        begin
-          size := '';
-          for ch in Headers[i] do
-            if ch in ['0'..'9'] then
-              size := size + ch;
-          Result := StrToInt(size) + Length(Headers.Text);
-          break;
-        end;
+        Result := StrToIntDef(Copy(s, Pos(':', s) + 1, Length(s)), 0);
+        Break;
       end;
-      Free;
     end;
+  finally
+  vHTTP.Free;
+  end;
 end;
 
 function TdmFunc.GetMyVersion: string;

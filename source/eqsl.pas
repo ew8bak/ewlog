@@ -18,7 +18,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, Dialogs, LazUTF8, ssl_openssl, qso_record;
+  Classes, SysUtils, Dialogs, LazUTF8, qso_record, fphttpclient;
 
 resourcestring
   rAnswerServer = 'Server response:';
@@ -51,17 +51,19 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, dmFunc_U;
+uses Forms, LCLType, dmFunc_U;
 
 function StripStr(t, s: string): string;
 begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
-function TSendEQSLThread.SendEQSL(SendQSOr:TQSO): boolean;
+function TSendEQSLThread.SendEQSL(SendQSOr: TQSO): boolean;
 var
   logdata, url, response: string;
   res: TStringList;
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
 
   procedure AddData(const datatype, Data: string);
   begin
@@ -86,31 +88,38 @@ var
   end;
 
 begin
-  Result := False;
-  logdata := 'EWLog <ADIF_VER:4>1.00';
-  AddData('EQSL_USER', user);
-  AddData('EQSL_PSWD', password);
-  logdata := logdata + '<EOH>';
-  // Запись
-  AddData('CALL', SendQSOr.CallSing);
-  AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
-  SendQSOr.QSOTime:= StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
-  AddData('TIME_ON', SendQSOr.QSOTime);
-  AddData('BAND', dmFunc.GetBandFromFreq(SendQSOr.QSOBand));
-  AddData('MODE', SendQSOr.QSOMode);
-  AddData('SUBMODE', SendQSOr.QSOSubMode);
-  AddData('RST_SENT', SendQSOr.QSOReportSent);
-  AddData('QSLMSG', SendQSOr.QSLInfo);
-  AddData('LOG_PGM', 'EWLog');
-  logdata := logdata + '<EOR>';
-
-  url := 'http://www.eqsl.cc/qslcard/importADIF.cfm?ADIFData=' + URLEncode(logdata);
-
-  res := TStringList.Create;
   try
+    HTTP := TFPHttpClient.Create(nil);
+    res := TStringList.Create;
+    Document := TMemoryStream.Create;
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+    Result := False;
+    logdata := 'EWLog <ADIF_VER:4>1.00';
+    AddData('EQSL_USER', user);
+    AddData('EQSL_PSWD', password);
+    logdata := logdata + '<EOH>';
+    // Запись
+    AddData('CALL', SendQSOr.CallSing);
+    AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
+    SendQSOr.QSOTime := StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
+    AddData('TIME_ON', SendQSOr.QSOTime);
+    AddData('BAND', dmFunc.GetBandFromFreq(SendQSOr.QSOBand));
+    AddData('MODE', SendQSOr.QSOMode);
+    AddData('SUBMODE', SendQSOr.QSOSubMode);
+    AddData('RST_SENT', SendQSOr.QSOReportSent);
+    AddData('QSLMSG', SendQSOr.QSLInfo);
+    AddData('LOG_PGM', 'EWLog');
+    logdata := logdata + '<EOR>';
+
+    url := 'http://www.eqsl.cc/qslcard/importADIF.cfm?ADIFData=' + URLEncode(logdata);
+
     try
-      if HTTPGetText(url, res) then
+      HTTP.Get(url, Document);
+      if HTTP.ResponseStatusCode = 200 then
       begin
+        Document.Position := 0;
+        res.LoadFromStream(Document);
         response := res.Text;
         while (res.Count > 0) and (UpperCase(Trim(res.Strings[0])) <> '<BODY>') do
           res.Delete(0);
@@ -132,6 +141,8 @@ begin
     end;
   finally
     res.Destroy;
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
   end;
 end;
 

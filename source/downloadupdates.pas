@@ -24,7 +24,6 @@ type
   protected
     procedure Execute; override;
     function DownUpdates(file_name, directory, file_url, file_urlssl: string): boolean;
-    function GetSize(URL: string): int64;
   private
   public
     name_file: string;
@@ -71,32 +70,6 @@ begin
   finally
     HTTP.Free;
   end;
-end;
-
-function TDownUpdThread.GetSize(URL: string): int64;
-var
-  i: integer;
-  size: string;
-  ch: char;
-begin
-  Result := -1;
-  with THTTPSend.Create do
-    if HTTPMethod('HEAD', URL) then
-    begin
-      for I := 0 to Headers.Count - 1 do
-      begin
-        if pos('content-length', lowercase(Headers[i])) > 0 then
-        begin
-          size := '';
-          for ch in Headers[i] do
-            if ch in ['0'..'9'] then
-              size := size + ch;
-          Result := StrToInt(size) + Length(Headers.Text);
-          break;
-        end;
-      end;
-      Free;
-    end;
 end;
 
 constructor TDownUpdThread.Create;

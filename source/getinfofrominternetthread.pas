@@ -17,15 +17,15 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, LazFileUtils, LazUTF8, ssl_openssl, httpsend;
+  Classes, SysUtils, LazFileUtils, LazUTF8, fphttpclient;
 
 type
   TGetInfoThread = class(TThread)
   protected
     procedure Execute; override;
-    function GetInfo(url: string): Boolean;
+    function GetInfo(url: string): boolean;
   private
-    resp: String;
+    resp: string;
   public
     url: string;
     constructor Create;
@@ -36,24 +36,27 @@ var
   GetInfoThread: TGetInfoThread;
 
 implementation
+
 uses
-infoDM_U;
+  infoDM_U;
 
-function TGetInfoThread.GetInfo(url: string): Boolean;
+function TGetInfoThread.GetInfo(url: string): boolean;
+var
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
 begin
-  Result:=False;
+  Result := False;
   try
-   with THTTPSend.Create do
-    begin
-      if HTTPMethod('GET', url) then
-      begin
-        SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
-      end;
-      Free;
-    end;
-
+    Document := TMemoryStream.Create;
+    HTTP := TFPHttpClient.Create(nil);
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+    HTTP.HTTPMethod('GET', url, Document, []);
+    SetString(resp, PChar(Document.Memory), Document.Size div SizeOf(char));
   finally
-   Result:=True;
+    Result := True;
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
   end;
 end;
 
@@ -70,7 +73,8 @@ end;
 
 procedure TGetInfoThread.Execute;
 begin
-  if GetInfo(url) then Synchronize(@ResultProc);
+  if GetInfo(url) then
+    Synchronize(@ResultProc);
 end;
 
 end.

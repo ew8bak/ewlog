@@ -14,7 +14,7 @@ unit infoDM_U;
 interface
 
 uses
-  Classes, SysUtils, openssl, httpsend, Graphics, inform_record, Dialogs;
+  Classes, SysUtils, openssl, Graphics, inform_record, Dialogs;
 
 const
   URL_QRZRU = 'https://api.qrz.ru/callsign?id=';
@@ -52,7 +52,7 @@ var
 implementation
 
 uses
-  MainFuncDM, getSession, GetInfoFromInternetThread, MainForm_U,
+  MainFuncDM, getSession, GetInfoFromInternetThread,
   dmFunc_U, GetPhotoFromInternet, InformationForm_U, miniform_u, contestForm_u;
 
 {$R *.lfm}

@@ -17,7 +17,7 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, LazFileUtils, LazUTF8, ssl_openssl;
+  Classes, SysUtils, LazFileUtils, LazUTF8, fphttpclient;
 
 type
   TGetPhotoThread = class(TThread)
@@ -25,11 +25,11 @@ type
     procedure Execute; override;
     procedure GetPhoto(url: string);
   private
-     PhotoStream: TMemoryStream;
+    PhotoStream: TMemoryStream;
   public
     url: string;
     Call: string;
-    Main: Boolean;
+    Main: boolean;
     constructor Create;
     procedure ResultProc;
   end;
@@ -39,23 +39,26 @@ var
 
 implementation
 
-uses Forms, LCLType, HTTPSend, infoDM_U;
+uses Forms, LCLType, infoDM_U;
 
 procedure TGetPhotoThread.GetPhoto(url: string);
+var
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
 begin
   try
-     PhotoStream:=TMemoryStream.Create;
-     with THTTPSend.Create do
-    begin
-      if HTTPMethod('GET', url) then
-      begin
-        PhotoStream.LoadFromStream(Document);
-      end;
-      Free;
-    end;
-
+    PhotoStream := TMemoryStream.Create;
+    Document := TMemoryStream.Create;
+    HTTP := TFPHttpClient.Create(nil);
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+    HTTP.HTTPMethod('GET', url, Document, []);
+    if HTTP.ResponseStatusCode = 200 then
+      PhotoStream.LoadFromStream(Document);
   finally
-  Synchronize(@ResultProc);
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
+    Synchronize(@ResultProc);
   end;
 end;
 
@@ -67,7 +70,7 @@ end;
 
 procedure TGetPhotoThread.ResultProc;
 begin
-  InfoDM.ViewPhoto(PhotoStream,url);
+  InfoDM.ViewPhoto(PhotoStream, url);
   PhotoStream.Free;
 end;
 
