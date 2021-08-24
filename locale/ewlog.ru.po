@@ -1255,6 +1255,11 @@ msgctxt "tconfigform.btcancel.caption"
 msgid "Cancel"
 msgstr "Отмена"
 
+#: tconfigform.btcatdeafult.caption
+msgctxt "tconfigform.btcatdeafult.caption"
+msgid "Set Radio Default"
+msgstr ""
+
 #: tconfigform.btdefaultcolor.caption
 msgctxt "tconfigform.btdefaultcolor.caption"
 msgid "Default"
@@ -1265,6 +1270,11 @@ msgstr "По умолчанию"
 msgctxt "tconfigform.btsave.caption"
 msgid "Save"
 msgstr "Сохранить"
+
+#: tconfigform.bttcidefault.caption
+msgctxt "tconfigform.bttcidefault.caption"
+msgid "Set Radio Default"
+msgstr ""
 
 #: tconfigform.button3.caption
 msgctxt "tconfigform.button3.caption"
@@ -4775,6 +4785,10 @@ msgstr "Всегда наверху"
 msgctxt "tminiform.miphototop.caption"
 msgid "On Top"
 msgstr "Всегда наверху"
+
+#: tminiform.miradio.caption
+msgid "Radio"
+msgstr ""
 
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"

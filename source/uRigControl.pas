@@ -15,7 +15,8 @@ unit uRigControl;
 interface
 
 uses
-  Classes, SysUtils, Process, ExtCtrls, IdTCPClient, Dialogs, MainFuncDM;
+  Classes, SysUtils, Process, ExtCtrls, IdTelnet, IdGlobal, IdComponent,
+  Dialogs, MainFuncDM;
 
 type
   TRigMode = record
@@ -33,10 +34,9 @@ type
 
 type
   TRigControl = class
-    rcvdFreqMode: TIdTCPClient;
+    rcvdFreqMode: TIdTelnet;
     rigProcess: TProcess;
     tmrRigPoll: TTimer;
-    tmrRigRead: TTimer;
   private
     fRigCtldPath: string;
     fRigCtldArgs: string;
@@ -61,10 +61,10 @@ type
     function RigConnected: boolean;
     function StartRigctld: boolean;
     function Explode(const cSeparator, vString: string): TExplodeArray;
-
-    procedure OnReceivedRcvdFreqMode(message: string);
     procedure OnRigPollTimer(Sender: TObject);
-    procedure OnRigReadTimer(Sender: TObject);
+    procedure OnDataAvailable(Sender: TIdTelnet; const Buffer: TIdBytes);
+    //   procedure OnStatus(ASender: TObject; const AStatus: TIdStatus;
+    //     const AStatusText: string);
   public
 
 
@@ -126,6 +126,9 @@ type
 
 implementation
 
+uses
+  TRXForm_U;
+
 constructor TRigControl.Create;
 begin
   RigCommand := TStringList.Create;
@@ -133,18 +136,16 @@ begin
   fRigCtldPort := 4532;
   fRigPoll := 500;
   fRunRigCtld := True;
-  rcvdFreqMode := TIdTCPClient.Create;
+  rcvdFreqMode := TIdTelnet.Create;
   rigProcess := TProcess.Create(nil);
   rigProcess.ShowWindow := swoHIDE;
   tmrRigPoll := TTimer.Create(nil);
-  tmrRigRead := TTimer.Create(nil);
   tmrRigPoll.Enabled := False;
-  tmrRigRead.Enabled := False;
   tmrRigPoll.OnTimer := @OnRigPollTimer;
-  tmrRigRead.OnTimer := @OnRigReadTimer;
+  rcvdFreqMode.OnDataAvailable := @OnDataAvailable;
+
 end;
 
-{$IFDEF UNIX}
 function TRigControl.StartRigctld: boolean;
 var
   cmd: string;
@@ -166,45 +167,13 @@ begin
       begin
         fLastError := E.Message;
         Result := False;
+        TRXForm.tmrRadio.Enabled := False;
         exit;
       end
     end;
   end;
   Result := True;
 end;
-
-{$ELSE}
-function TRigControl.StartRigctld: boolean;
-var
-  cmd: string;
-begin
-  cmd := fRigCtldPath + ' ' + RigCtldArgs;
-  {
-  cmd := StringReplace(cmd,'%m',IntToStr(fRigId),[rfReplaceAll, rfIgnoreCase]);
-  cmd := StringReplace(cmd,'%r',fRigDevice,[rfReplaceAll, rfIgnoreCase]);
-  cmd := StringReplace(cmd,'%t',IntToStr(fRigCtldPort),[rfReplaceAll, rfIgnoreCase]);
-  }
-  rigProcess.CommandLine := cmd;
-
-  try
-    rigProcess.Execute;
-    sleep(1000)
-  except
-    on E: Exception do
-    begin
-      fLastError := E.Message;
-      Result := False;
-      TRXForm.tmrRadio.Enabled := False;
-      RunRigCtld := False;
-      exit;
-    end
-  end;
-  tmrRigPoll.Interval := fRigPoll * 100;
-  tmrRigPoll.Enabled := True;
-  Result := True;
-end;
-
-{$ENDIF UNIX}
 
 function TRigControl.RigConnected: boolean;
 const
@@ -228,15 +197,13 @@ begin
 
   rcvdFreqMode.Host := fRigCtldHost;
   rcvdFreqMode.Port := fRigCtldPort;
-  rcvdFreqMode.Connect(fRigCtldHost, fRigCtldPort);
+  rcvdFreqMode.Connect;
 
   if rcvdFreqMode.Connected then
   begin
     Result := True;
     tmrRigPoll.Interval := fRigPoll * 100;
     tmrRigPoll.Enabled := True;
-    tmrRigRead.Interval := 1;
-    tmrRigRead.Enabled := True;
   end
   else
   begin
@@ -398,16 +365,17 @@ begin
   Result := bw;
 end;
 
-procedure TRigControl.OnReceivedRcvdFreqMode(message: string);
+procedure TRigControl.OnDataAvailable(Sender: TIdTelnet; const Buffer: TIdBytes);
 var
   msg: string;
   a: TExplodeArray;
   i: integer;
   f: double;
 begin
-  if Length(message) > 0 then
+  msg := BytesToString(Buffer);
+  if Length(msg) > 0 then
   begin
-    msg := trim(message);
+    msg := trim(msg);
     a := Explode(LineEnding, msg);
     for i := 0 to Length(a) - 1 do
     begin
@@ -461,18 +429,6 @@ begin
   end;
 end;
 
-procedure TRigControl.OnRigReadTimer(Sender: TObject);
-var
-  s: string;
-begin
-  if not rcvdFreqMode.Connected then
-    Exit;
-  if rcvdFreqMode.IOHandler.InputBufferIsEmpty then
-    Exit;
-  s := rcvdFreqMode.IOHandler.InputBufferAsString;
-  OnReceivedRcvdFreqMode(s);
-end;
-
 procedure TRigControl.OnRigPollTimer(Sender: TObject);
 var
   cmd: string;
@@ -484,14 +440,14 @@ begin
     begin
       sleep(100);
       cmd := RigCommand.Strings[i] + LineEnding;
-      rcvdFreqMode.SendCmd(cmd);
+      rcvdFreqMode.SendString(cmd);
     end;
     RigCommand.Clear;
   end
   else
   begin
     cmd := 'fmv' + LineEnding;
-    rcvdFreqMode.SendCmd(cmd);
+    rcvdFreqMode.SendString(cmd);
   end;
 end;
 
@@ -501,8 +457,7 @@ var
 begin
   rigProcess.Terminate(excode);
   tmrRigPoll.Enabled := False;
-  tmrRigRead.Enabled := False;
-  rcvdFreqMode.Disconnect();
+  rcvdFreqMode.Disconnect(False);
   RigConnected;
 end;
 
@@ -541,13 +496,11 @@ begin
       rigProcess.Terminate(excode);
   end;
   tmrRigPoll.Enabled := False;
-  tmrRigRead.Enabled := False;
   rcvdFreqMode.Disconnect();
   FreeAndNil(rcvdFreqMode);
   FreeAndNil(rigProcess);
   FreeAndNil(RigCommand);
   tmrRigPoll.Free;
-  tmrRigRead.Free;
 end;
 
 end.

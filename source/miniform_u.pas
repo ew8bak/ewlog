@@ -1457,8 +1457,11 @@ var
   MenuItem: TMenuItem;
 begin
   MenuItem := (Sender as TMenuItem);
-  IniSet.CurrentRIG := MenuItem.Caption;
-  ShowMessage(IniSet.CurrentRIG);
+  if Pos('CAT', MenuItem.Caption) > 0 then
+  IniSet.CurrentRIG :=   'CAT';
+  if Pos('TCI', MenuItem.Caption) > 0 then
+  IniSet.CurrentRIG :=   'TCI';
+  //ShowMessage(IniSet.CurrentRIG);
 end;
 
 procedure TMiniForm.MITelnetFormClick(Sender: TObject);

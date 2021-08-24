@@ -324,8 +324,7 @@ begin
   else
     radio.RigId := id;
 
-  radio.RigCtldPath := INIFile.ReadString('TRX' + n, 'RigCtldPath', '') +
-    ' -T 127.0.0.1 -vvvvv';
+  radio.RigCtldPath := INIFile.ReadString('TRX' + n, 'RigCtldPath', '');
   radio.RigCtldArgs := CATdm.GetRadioRigCtldCommandLine(StrToInt(n));
   radio.RunRigCtld := INIFile.ReadBool('TRX' + n, 'RunRigCtld', True);
   if INIFile.ReadString('TRX' + n, 'model', '') <> IntToStr(2) then

@@ -1240,6 +1240,11 @@ msgctxt "tconfigform.btcancel.caption"
 msgid "Cancel"
 msgstr ""
 
+#: tconfigform.btcatdeafult.caption
+msgctxt "tconfigform.btcatdeafult.caption"
+msgid "Set Radio Default"
+msgstr ""
+
 #: tconfigform.btdefaultcolor.caption
 msgctxt "tconfigform.btdefaultcolor.caption"
 msgid "Default"
@@ -1248,6 +1253,11 @@ msgstr ""
 #: tconfigform.btsave.caption
 msgctxt "tconfigform.btsave.caption"
 msgid "Save"
+msgstr ""
+
+#: tconfigform.bttcidefault.caption
+msgctxt "tconfigform.bttcidefault.caption"
+msgid "Set Radio Default"
 msgstr ""
 
 #: tconfigform.button3.caption

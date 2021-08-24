@@ -47,6 +47,8 @@ type
   TConfigForm = class(TForm)
     BtSave: TButton;
     BtCancel: TButton;
+    BtCATDeafult: TButton;
+    BtTCIDefault: TButton;
     Button3: TButton;
     Button4: TButton;
     btApplyColor: TButton;
@@ -266,9 +268,11 @@ type
     TSRefOnline: TTabSheet;
     TSBase: TTabSheet;
     procedure btApplyColorClick(Sender: TObject);
+    procedure BtCATDeafultClick(Sender: TObject);
     procedure btDefaultColorClick(Sender: TObject);
     procedure BtSaveClick(Sender: TObject);
     procedure BtCancelClick(Sender: TObject);
+    procedure BtTCIDefaultClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure CBRigNumberHLSelect(Sender: TObject);
@@ -330,6 +334,7 @@ type
     procedure LoadTelnetAddressToVLTelnet;
     function SearchLVTelnet(SearchText: string): boolean;
     procedure LoadLVSettingName;
+    procedure SetDefaultRadio(radio: string);
     { private declarations }
   public
     { public declarations }
@@ -347,6 +352,12 @@ uses
 {$R *.lfm}
 
 { TConfigForm }
+
+procedure TConfigForm.SetDefaultRadio(radio: string);
+begin
+  INIFile.WriteString('SetCAT', 'CurrentRIG', radio);
+  IniSet.CurrentRIG := radio;
+end;
 
 procedure TConfigForm.LoadLVSettingName;
 var
@@ -511,6 +522,11 @@ end;
 procedure TConfigForm.BtCancelClick(Sender: TObject);
 begin
   ConfigForm.Close;
+end;
+
+procedure TConfigForm.BtTCIDefaultClick(Sender: TObject);
+begin
+  SetDefaultRadio('TCI');
 end;
 
 procedure TConfigForm.Button3Click(Sender: TObject);
@@ -1090,6 +1106,11 @@ begin
   SaveGridColors;
   MainFunc.SetGrid(GridsForm.DBGrid1);
   MainFunc.SetGrid(GridsForm.DBGrid2);
+end;
+
+procedure TConfigForm.BtCATDeafultClick(Sender: TObject);
+begin
+  SetDefaultRadio('CAT');
 end;
 
 procedure TConfigForm.btDefaultColorClick(Sender: TObject);

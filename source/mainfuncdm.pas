@@ -1600,7 +1600,7 @@ begin
     IniSet.ViewFreq := 0;
   IniSet.CurrentNumberRIG := INIFile.ReadInteger('SetCAT', 'CurrentNumberRIG', 1);
   IniSet.CurrentNumberTCI := INIFile.ReadInteger('SetCAT', 'CurrentNumberTCI', 1);
-  IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', '');
+  IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', 'CAT');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
