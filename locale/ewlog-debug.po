@@ -409,6 +409,10 @@ msgctxt "resourcestr.rdone"
 msgid "Done"
 msgstr ""
 
+#: resourcestr.rdownloadingfile
+msgid "Downloading file"
+msgstr ""
+
 #: resourcestr.rduplicates
 msgctxt "resourcestr.rduplicates"
 msgid "Duplicates"
@@ -685,6 +689,11 @@ msgctxt "resourcestr.rnomethodexport"
 msgid "No export method selected!"
 msgstr ""
 
+#: resourcestr.rnone
+msgctxt "resourcestr.rnone"
+msgid "None"
+msgstr ""
+
 #: resourcestr.rnotcallsign
 msgctxt "resourcestr.rnotcallsign"
 msgid "No callsign entered to view"
@@ -927,35 +936,30 @@ msgstr ""
 
 #: resourcestr.rstatusconnecteqsl
 msgctxt "resourcestr.rstatusconnecteqsl"
-msgid "Status: Connceting to eQSL.cc"
+msgid "Connceting to eQSL.cc"
 msgstr ""
 
 #: resourcestr.rstatusconnectlotw
-msgid "Status: Connceting to LoTW"
-msgstr ""
-
-#: resourcestr.rstatusdone
-msgctxt "resourcestr.rstatusdone"
-msgid "Status: Done"
+msgid "Connceting to LoTW"
 msgstr ""
 
 #: resourcestr.rstatusdownloadeqsl
 msgctxt "resourcestr.rstatusdownloadeqsl"
-msgid "Status: Download eQSL.cc"
+msgid "Download eQSL.cc"
 msgstr ""
 
 #: resourcestr.rstatusincorrect
-msgid "Status: Username/password incorrect"
+msgid "Username/password incorrect"
 msgstr ""
 
 #: resourcestr.rstatusnotdata
 msgctxt "resourcestr.rstatusnotdata"
-msgid "Status: Not data"
+msgid "Not data"
 msgstr ""
 
 #: resourcestr.rstatussavefile
 msgctxt "resourcestr.rstatussavefile"
-msgid "Status: Saving file"
+msgid "Saving file"
 msgstr ""
 
 #: resourcestr.rsuccessful
@@ -5037,51 +5041,68 @@ msgctxt "tsendtelnetspot.lbfreq.caption"
 msgid "Frequency"
 msgstr ""
 
-#: tserviceform.button1.caption
-msgid "Connect with LoTW"
+#: tserviceform.btconnecteqsl.caption
+msgctxt "tserviceform.btconnecteqsl.caption"
+msgid "Connect with eQSL"
 msgstr ""
 
-#: tserviceform.button2.caption
-msgid "Connect with eQSL"
+#: tserviceform.btconnectlotw.caption
+msgctxt "tserviceform.btconnectlotw.caption"
+msgid "Connect with LoTW"
 msgstr ""
 
 #: tserviceform.caption
 msgid "Service eQSL and LoTW"
 msgstr ""
 
-#: tserviceform.label1.caption
+#: tserviceform.lbcurrerror.caption
+msgctxt "tserviceform.lbcurrerror.caption"
+msgid "None"
+msgstr ""
+
+#: tserviceform.lbcurrstatus.caption
+msgctxt "tserviceform.lbcurrstatus.caption"
+msgid "Wait"
+msgstr ""
+
+#: tserviceform.lbdownload.caption
+msgctxt "tserviceform.lbdownload.caption"
+msgid "Download:"
+msgstr ""
+
+#: tserviceform.lbdownloadqsl.caption
+msgctxt "tserviceform.lbdownloadqsl.caption"
 msgid "Download QSL received after:"
 msgstr ""
 
-#: tserviceform.label2.caption
-msgctxt "tserviceform.label2.caption"
-msgid "LoTW"
-msgstr ""
-
-#: tserviceform.label3.caption
-msgid "eQSL.cc"
-msgstr ""
-
-#: tserviceform.label4.caption
-msgctxt "tserviceform.label4.caption"
-msgid "Processed data:"
-msgstr ""
-
-#: tserviceform.label5.caption
-msgid "Errors:"
-msgstr ""
-
-#: tserviceform.label6.caption
-msgid "Status: Wait"
-msgstr ""
-
-#: tserviceform.label7.caption
-msgctxt "tserviceform.label7.caption"
+#: tserviceform.lbdownloadsize.caption
+msgctxt "tserviceform.lbdownloadsize.caption"
 msgid "0"
 msgstr ""
 
-#: tserviceform.label8.caption
-msgid "Download:"
+#: tserviceform.lbeqslcc.caption
+msgctxt "tserviceform.lbeqslcc.caption"
+msgid "eQSL.cc"
+msgstr ""
+
+#: tserviceform.lberrors.caption
+msgctxt "tserviceform.lberrors.caption"
+msgid "Errors:"
+msgstr ""
+
+#: tserviceform.lblotw.caption
+msgctxt "tserviceform.lblotw.caption"
+msgid "LoTW"
+msgstr ""
+
+#: tserviceform.lbprocessed.caption
+msgctxt "tserviceform.lbprocessed.caption"
+msgid "Processed data:"
+msgstr ""
+
+#: tserviceform.lbstatus.caption
+msgctxt "tserviceform.lbstatus.caption"
+msgid "Status:"
 msgstr ""
 
 #: tsettingsprogramform.btaddprogram.caption

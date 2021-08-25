@@ -68,7 +68,7 @@ var
 
 implementation
 
-uses MacroEditorForm_u, MainFuncDM;
+uses MacroEditorForm_u, MainFuncDM, CWDaemonDM_u;
 
 {$R *.lfm}
 

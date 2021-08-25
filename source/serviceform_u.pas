@@ -16,8 +16,7 @@ interface
 uses
   Classes, SysUtils, sqldb, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, LazUTF8, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
-  LazFileUtils, dateutils, resourcestr,
-  download_lotw, download_eqslcc, LCLType;
+  LazFileUtils, dateutils, resourcestr, LCLType, downloadQSLthread;
 
 type
 
@@ -27,35 +26,35 @@ type
     Bevel1: TBevel;
     Bevel2: TBevel;
     Bevel3: TBevel;
-    Button1: TButton;
-    Button2: TButton;
-    DateEdit1: TDateEdit;
-    DateEdit2: TDateEdit;
+    BtConnectLoTW: TButton;
+    BtConnecteQSL: TButton;
+    DELoTW: TDateEdit;
+    DEeQSLcc: TDateEdit;
     Image1: TImage;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
+    LBCurrError: TLabel;
+    LBCurrStatus: TLabel;
+    LBDownloadQSL: TLabel;
+    LBLoTW: TLabel;
+    LBeQSLcc: TLabel;
+    LBProcessed: TLabel;
+    LBErrors: TLabel;
+    LBStatus: TLabel;
+    LBDownloadSize: TLabel;
+    LBDownload: TLabel;
     OpenDialog1: TOpenDialog;
     Panel1: TPanel;
-    ProgressBar1: TProgressBar;
-    SpeedButton1: TSpeedButton;
-    UPDATEQuery: TSQLQuery;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+    PBDownload: TProgressBar;
+    SBeQSLFile: TSpeedButton;
+    procedure BtConnectLoTWClick(Sender: TObject);
+    procedure BtConnecteQSLClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
+    procedure SBeQSLFileClick(Sender: TObject);
   private
     { private declarations }
   public
-    DownSize: double;
     procedure LotWImport(FPath: string);
     procedure eQSLImport(FPath: string);
+    procedure DataFromThread(status: TdataThread);
     { public declarations }
   end;
 
@@ -67,8 +66,27 @@ implementation
 {$R *.lfm}
 uses dmFunc_U, InitDB_dm, LogConfigForm_U, MainFuncDM;
 
+procedure TServiceForm.DataFromThread(status: TdataThread);
+begin
+  PBDownload.Position := status.DownloadedPercent;
+  LBCurrStatus.Caption := status.Message;
+  if status.Error then
+    LBCurrError.Caption := status.ErrorString;
+  LBDownloadSize.Caption := FormatFloat('0.###', status.DownloadedFileSize / 1048576) +
+    ' ' + rMBytes;
+
+  if status.StatusDownload then
+  begin
+    if status.Service = 'eQSLcc' then
+      eQSLImport(status.DownloadedFilePATH);
+    if status.Service = 'LoTW' then
+      LotWImport(status.DownloadedFilePATH);
+  end;
+end;
+
 procedure TServiceForm.eQSLImport(FPath: string);
 var
+  Query: TSQLQuery;
   f: TextFile;
   temp_f: TextFile;
   s: string;
@@ -85,7 +103,7 @@ var
   QSLMSG: string;
   GRIDSQUARE: string;
   paramQSL_SENT: string;
-  Query: string;
+  QueryTXT: string;
   DupeCount: integer;
   ErrorCount, RecCount: integer;
   PosEOH: word;
@@ -105,6 +123,11 @@ begin
   PosEOR := 0;
   try
     Stream := TMemoryStream.Create;
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
     AssignFile(f, FPath);
     Reset(f);
 
@@ -194,7 +217,7 @@ begin
               dmFunc.Q(MODE);
 
           if DBRecord.CurrentDB = 'MySQL' then
-            Query := SQLString + 'QSL_RCVD_VIA = ' +
+            QueryTXT := SQLString + 'QSL_RCVD_VIA = ' +
               dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
               'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +
               dmFunc.Q(RST_SENT) + 'PROP_MODE = ' + dmFunc.Q(PROP_MODE) +
@@ -204,7 +227,7 @@ begin
               ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
               QuotedStr(SUBMODE) + ')'
           else
-            Query := SQLString + 'QSL_RCVD_VIA = ' +
+            QueryTXT := SQLString + 'QSL_RCVD_VIA = ' +
               dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
               'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +
               dmFunc.Q(RST_SENT) + 'PROP_MODE = ' + dmFunc.Q(PROP_MODE) +
@@ -214,13 +237,13 @@ begin
               ' AND DigiBand = ' + digiBand + ' AND (QSOMode = ' +
               QuotedStr(MODE) + ' OR QSOSubMode = ' + QuotedStr(SUBMODE) + ')';
 
-          UPDATEQuery.SQL.Text := Query;
-          UPDATEQuery.ExecSQL;
+          Query.SQL.Text := QueryTXT;
+          Query.ExecSQL;
 
           Inc(RecCount);
           if RecCount mod 10 = 0 then
           begin
-            Label4.Caption := rProcessedData + IntToStr(RecCount);
+            LBProcessed.Caption := rProcessedData + IntToStr(RecCount);
             InitDB.DefTransaction.Commit;
             Application.ProcessMessages;
           end;
@@ -235,16 +258,19 @@ begin
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
+    FreeAndNil(Query);
     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
-    Label4.Caption := rProcessedData + IntToStr(RecCount);
-    Label6.Caption := rStatusDone;
-    Button2.Enabled := True;
+    LBProcessed.Caption := rProcessedData + IntToStr(RecCount);
+    LBCurrStatus.Caption := rDone;
+    BtConnecteQSL.Enabled := True;
+    INIFile.WriteDate('SetLog', 'LasteQSLcc', Now);
   end;
 end;
 
 procedure TServiceForm.LotWImport(FPath: string);
 var
+  Query: TSQLQuery;
   i: integer;
   f: TextFile;
   temp_f: TextFile;
@@ -264,7 +290,7 @@ var
   ITUZ: string;
   APP_LOTW_2XQSL: string;
   paramAPP_LOTW_2XQSL: string;
-  Query: string;
+  QueryTXT: string;
   paramQSLRDATE: string;
   DupeCount: integer;
   ErrorCount, RecCount: integer;
@@ -284,6 +310,11 @@ begin
   PosEOR := 0;
   try
     Stream := TMemoryStream.Create;
+    Query := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+      Query.DataBase := InitDB.MySQLConnection
+    else
+      Query.DataBase := InitDB.SQLiteConnection;
     AssignFile(f, FPath);
     Reset(f);
 
@@ -382,7 +413,7 @@ begin
             ',', '.', [rfReplaceAll]);
 
           if DBRecord.CurrentDB = 'MySQL' then
-            Query := 'UPDATE ' + LBRecord.LogTable + ' SET GRID = ' +
+            QueryTXT := 'UPDATE ' + LBRecord.LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
               'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
               'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
@@ -392,7 +423,7 @@ begin
               ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
               QuotedStr(MODE) + ')'
           else
-            Query := 'UPDATE ' + LBRecord.LogTable + ' SET GRID = ' +
+            QueryTXT := 'UPDATE ' + LBRecord.LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
               'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
               'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
@@ -402,13 +433,13 @@ begin
               QuotedStr(QSO_DATE) + ' AND DigiBand = ' + digiBand +
               ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
               QuotedStr(MODE) + ')';
-          UPDATEQuery.SQL.Text := Query;
-          UPDATEQuery.ExecSQL;
+          Query.SQL.Text := QueryTXT;
+          Query.ExecSQL;
 
           Inc(RecCount);
           if RecCount mod 10 = 0 then
           begin
-            Label4.Caption := rProcessedData + IntToStr(RecCount);
+            LBProcessed.Caption := rProcessedData + IntToStr(RecCount);
             InitDB.DefTransaction.Commit;
             Application.ProcessMessages;
           end;
@@ -423,31 +454,19 @@ begin
     CloseFile(f);
     CloseFile(temp_f);
     Stream.Free;
+    FreeAndNil(Query);
     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
-    Label4.Caption := rProcessedData + IntToStr(RecCount);
-    Label6.Caption := rStatusDone;
-    Button1.Enabled := True;
+    LBProcessed.Caption := rProcessedData + IntToStr(RecCount);
+    LBCurrStatus.Caption := rDone;
+    BtConnectLoTW.Enabled := True;
     INIFile.WriteDate('SetLog', 'LastLoTW', Now);
   end;
 end;
 
-procedure TServiceForm.FormCreate(Sender: TObject);
+procedure TServiceForm.BtConnecteQSLClick(Sender: TObject);
 begin
-  if DBRecord.CurrentDB = 'MySQL' then
-  begin
-    UPDATEQuery.DataBase := InitDB.MySQLConnection;
-  end
-  else
-  begin
-    UPDATEQuery.DataBase := InitDB.SQLiteConnection;
-  end;
-end;
-
-procedure TServiceForm.Button2Click(Sender: TObject);
-begin
-  DownSize := 0;
-  ProgressBar1.Position := 0;
+  PBDownload.Position := 0;
   if (LBRecord.eQSLccLogin = '') or (LBRecord.eQSLccPassword = '') then
   begin
     if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
@@ -457,25 +476,25 @@ begin
   end
   else
   begin
-    Button2.Enabled := False;
-    eQSLccThread := TeQSLccThread.Create;
-    if Assigned(eQSLccThread.FatalException) then
-      raise eQSLccThread.FatalException;
-    with eQSLccThread do
+    BtConnecteQSL.Enabled := False;
+    downloadQSLTThread := TdownloadQSLTThread.Create;
+    if Assigned(downloadQSLTThread.FatalException) then
+      raise downloadQSLTThread.FatalException;
+    with downloadQSLTThread do
     begin
-      user_eqslcc := LBRecord.eQSLccLogin;
-      password_eqslcc := LBRecord.eQSLccPassword;
-      date_eqslcc := FormatDateTime('yyyymmdd', DateEdit2.Date);
+      DataFromServiceForm.Service := 'eQSLcc';
+      DataFromServiceForm.User := LBRecord.eQSLccLogin;
+      DataFromServiceForm.Password := LBRecord.eQSLccPassword;
+      DataFromServiceForm.Date := FormatDateTime('yyyymmdd', DEeQSLcc.Date);
       Start;
     end;
-    Label6.Caption := rStatusConnecteQSL;
+    LBCurrStatus.Caption := rStatusConnecteQSL;
   end;
 end;
 
-procedure TServiceForm.Button1Click(Sender: TObject);
+procedure TServiceForm.BtConnectLoTWClick(Sender: TObject);
 begin
-  DownSize := 0;
-  ProgressBar1.Position := 0;
+  PBDownload.Position := 0;
   if (LBRecord.LoTWLogin = '') or (LBRecord.LoTWPassword = '') then
   begin
     if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
@@ -485,41 +504,36 @@ begin
   end
   else
   begin
-    Button1.Enabled := False;
-    LoTWThread := TLoTWThread.Create;
-    if Assigned(LoTWThread.FatalException) then
-      raise LoTWThread.FatalException;
-    with LoTWThread do
+    BtConnectLoTW.Enabled := False;
+
+    downloadQSLTThread := TdownloadQSLTThread.Create;
+    if Assigned(downloadQSLTThread.FatalException) then
+      raise downloadQSLTThread.FatalException;
+    with downloadQSLTThread do
     begin
-      user_lotw := LBRecord.LoTWLogin;
-      password_lotw := LBRecord.LoTWPassword;
-      date_lotw := FormatDateTime('yyyy-mm-dd', DateEdit1.Date);
+      DataFromServiceForm.Service := 'LoTW';
+      DataFromServiceForm.User := LBRecord.LoTWLogin;
+      DataFromServiceForm.Password := LBRecord.LoTWPassword;
+      DataFromServiceForm.Date := FormatDateTime('yyyy-mm-dd', DELoTW.Date);
       Start;
-      Label6.Caption := rStatusConnectLotW;
     end;
+    LBCurrStatus.Caption := rStatusConnectLotW;
   end;
 end;
 
 procedure TServiceForm.FormShow(Sender: TObject);
 begin
-  Button2.Enabled := True;
-  Button1.Enabled := True;
-  if DBRecord.CurrentDB = 'MySQL' then
-  begin
-    UPDATEQuery.DataBase := InitDB.MySQLConnection;
-  end
-  else
-  begin
-    UPDATEQuery.DataBase := InitDB.SQLiteConnection;
-  end;
-  DateEdit1.Date := INIFile.ReadDate('SetLog', 'LastLoTW', Now);
-  DateEdit2.Date := Now;
-  DownSize := 0;
-  Label7.Caption := FloatToStr(DownSize) + ' ' + rMBytes;
-  ProgressBar1.Position := 0;
+  BtConnecteQSL.Enabled := True;
+  BtConnectLoTW.Enabled := True;
+  LBCurrError.Caption := rNone;
+  LBCurrStatus.Caption := rWait;
+  PBDownload.Position := 0;
+  LBDownloadSize.Caption := '0 ' + rMBytes;
+  DELoTW.Date := INIFile.ReadDate('SetLog', 'LastLoTW', Now);
+  DEeQSLcc.Date := INIFile.ReadDate('SetLog', 'LasteQSLcc', Now);
 end;
 
-procedure TServiceForm.SpeedButton1Click(Sender: TObject);
+procedure TServiceForm.SBeQSLFileClick(Sender: TObject);
 begin
   OpenDialog1.Execute;
   if OpenDialog1.FileName <> '' then

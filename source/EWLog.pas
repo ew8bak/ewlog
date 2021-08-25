@@ -23,7 +23,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   Earth_Form_U, IOTA_Form_U, sendtelnetspot_form_U, ClusterFilter_Form_U,
   WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U, hiddentsettings_u,
   print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom, qso_record,
-  resourcestr, const_u, download_lotw, download_eqslcc, DownloadUpdates,
+  resourcestr, const_u, DownloadUpdates,
   SetupSQLquery, flDigiModem, GetPhotoFromInternet, GetInfoFromInternetThread,
   viewPhoto_U, LogBookTable_record, DB_record, MainFuncDM, InitDB_dm,
   prefix_record, inifile_record, selectQSO_record, foundQSO_record, cloudlog,
@@ -33,7 +33,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
   dmCat, contestForm_u, dmContest_u, FMS_record,
   dmmigrate_u, ExportSOTAThread, CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u,
-  CWKeysDM_u, CWTypeForm_u, dmTCI_u, StreamAdapter_u;
+  CWKeysDM_u, CWTypeForm_u, dmTCI_u, StreamAdapter_u, downloadQSLthread;
 
 {$R *.res}
 

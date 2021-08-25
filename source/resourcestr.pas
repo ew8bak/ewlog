@@ -100,13 +100,12 @@ resourcestring
   rDefaultLogSel = 'Default log selected';
   rNotDataForConnect =
     'The log configuration, do not specify the data to connect to eQSL.cc';
-  rStatusConnecteQSL = 'Status: Connceting to eQSL.cc';
-  rStatusConnectLotW = 'Status: Connceting to LoTW';
-  rStatusDownloadeQSL = 'Status: Download eQSL.cc';
-  rStatusSaveFile = 'Status: Saving file';
-  rStatusNotData = 'Status: Not data';
-  rStatusDone = 'Status: Done';
-  rStatusIncorrect = 'Status: Username/password incorrect';
+  rStatusConnecteQSL = 'Connceting to eQSL.cc';
+  rStatusConnectLotW = 'Connceting to LoTW';
+  rStatusDownloadeQSL = 'Download eQSL.cc';
+  rStatusSaveFile = 'Saving file';
+  rStatusNotData = 'Not data';
+  rStatusIncorrect = 'Username/password incorrect';
   rProcessedData = 'Processed data:';
   rDone = 'Done';
   rImport = 'Import';
@@ -226,6 +225,8 @@ resourcestring
   rCallsignNotRnteredOrDuplicateOnTourTime = 'Callsign not entered or Duplicate on Tour Time';
   rEnabled = 'Enabled';
   rDisabled = 'Disabled';
+  rNone = 'None';
+  rDownloadingFile = 'Downloading file';
 
 implementation
 

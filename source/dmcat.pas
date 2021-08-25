@@ -6,9 +6,10 @@ interface
 
 uses
   Classes, SysUtils, ResourceStr, StdCtrls, LazFileUtils,
-  Dialogs
+  Dialogs, process,
   {$IFDEF MSWINDOWS}
-  , Registry {$ENDIF};
+  , Registry {$ENDIF}
+  {$IFNDEF MSWINDOWS} BaseUnix {$ENDIF};
 
 type
   TCatSettingsRecord = record
