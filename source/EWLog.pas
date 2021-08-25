@@ -12,7 +12,7 @@ program EWLog;
 {$mode objfpc}{$H+}
 
 uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
-  cthreads, cmem, {$ENDIF} {$ENDIF}
+  cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, sdflaz, datetimectrls, dbflaz, printer4lazarus, MainForm_U,
   editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
@@ -23,7 +23,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   Earth_Form_U, IOTA_Form_U, sendtelnetspot_form_U, ClusterFilter_Form_U,
   WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U, hiddentsettings_u,
   print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom, qso_record,
-  resourcestr, const_u, DownloadUpdates,
+  resourcestr, const_u,
   SetupSQLquery, flDigiModem, GetPhotoFromInternet, GetInfoFromInternetThread,
   viewPhoto_U, LogBookTable_record, DB_record, MainFuncDM, InitDB_dm,
   prefix_record, inifile_record, selectQSO_record, foundQSO_record, cloudlog,
@@ -33,7 +33,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
   dmCat, contestForm_u, dmContest_u, FMS_record,
   dmmigrate_u, ExportSOTAThread, CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u,
-  CWKeysDM_u, CWTypeForm_u, dmTCI_u, StreamAdapter_u, downloadQSLthread;
+  CWKeysDM_u, CWTypeForm_u, dmTCI_u, StreamAdapter_u, downloadQSLthread, DownloadFilesThread;
 
 {$R *.res}
 

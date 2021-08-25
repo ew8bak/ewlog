@@ -5720,68 +5720,85 @@ msgstr ""
 msgid "RIG 2"
 msgstr ""
 
-#: tupdate_form.button1.caption
-msgctxt "tupdate_form.button1.caption"
-msgid "Check"
-msgstr "Проверить"
-
-#: tupdate_form.button2.caption
-msgctxt "tupdate_form.button2.caption"
+#: tupdate_form.btcancel.caption
+#, fuzzy
+msgctxt "tupdate_form.btcancel.caption"
 msgid "Cancel"
 msgstr "Отмена"
+
+#: tupdate_form.btcheck.caption
+#, fuzzy
+msgctxt "tupdate_form.btcheck.caption"
+msgid "Check"
+msgstr "Проверить"
 
 #: tupdate_form.caption
 msgctxt "tupdate_form.caption"
 msgid "Update"
 msgstr "Обновление"
 
-#: tupdate_form.groupbox1.caption
-msgctxt "tupdate_form.groupbox1.caption"
+#: tupdate_form.gbupdate.caption
+#, fuzzy
+msgctxt "tupdate_form.gbupdate.caption"
 msgid "Update"
 msgstr "Обновление"
 
-#: tupdate_form.label1.caption
-msgid "Version Status:"
-msgstr "Состояние версии:"
+#: tupdate_form.lbcurrlastcheck.caption
+msgctxt "tupdate_form.lbcurrlastcheck.caption"
+msgid "..."
+msgstr ""
 
-#: tupdate_form.label10.caption
-msgid "File size:"
-msgstr "Размер файла:"
+#: tupdate_form.lbcurrprogramversion.caption
+msgctxt "tupdate_form.lbcurrprogramversion.caption"
+msgid "..."
+msgstr ""
 
-#: tupdate_form.label2.caption
+#: tupdate_form.lbcurrserverversion.caption
+msgctxt "tupdate_form.lbcurrserverversion.caption"
+msgid "..."
+msgstr ""
+
+#: tupdate_form.lbcurrversionstatus.caption
+#, fuzzy
+msgctxt "tupdate_form.lbcurrversionstatus.caption"
 msgid "Actual"
 msgstr "Актуально"
 
-#: tupdate_form.label3.caption
+#: tupdate_form.lbfilesize.caption
+#, fuzzy
+msgctxt "tupdate_form.lbfilesize.caption"
+msgid "File size:"
+msgstr "Размер файла:"
+
+#: tupdate_form.lblastcheck.caption
+#, fuzzy
+msgctxt "tupdate_form.lblastcheck.caption"
 msgid "Last check:"
 msgstr "Последняя проверка:"
 
-#: tupdate_form.label4.caption
-msgctxt "tupdate_form.label4.caption"
-msgid "..."
-msgstr ""
-
-#: tupdate_form.label5.caption
+#: tupdate_form.lbprogramversion.caption
+#, fuzzy
+msgctxt "tupdate_form.lbprogramversion.caption"
 msgid "Program version:"
 msgstr "Версия программы:"
 
-#: tupdate_form.label6.caption
-msgctxt "tupdate_form.label6.caption"
-msgid "..."
-msgstr ""
-
-#: tupdate_form.label7.caption
+#: tupdate_form.lbserverversion.caption
+#, fuzzy
+msgctxt "tupdate_form.lbserverversion.caption"
 msgid "Server Version:"
 msgstr "Версия на сервере:"
 
-#: tupdate_form.label8.caption
-msgctxt "tupdate_form.label8.caption"
-msgid "..."
-msgstr ""
-
-#: tupdate_form.label9.caption
+#: tupdate_form.lbupdateprocess.caption
+#, fuzzy
+msgctxt "tupdate_form.lbupdateprocess.caption"
 msgid "Update process"
 msgstr "Процесс обновления"
+
+#: tupdate_form.lbversionstatus.caption
+#, fuzzy
+msgctxt "tupdate_form.lbversionstatus.caption"
+msgid "Version Status:"
+msgstr "Состояние версии:"
 
 #: tviewphoto.caption
 msgctxt "tviewphoto.caption"

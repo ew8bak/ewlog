@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ComCtrls,{$IFDEF WINDOWS} Windows,{$ENDIF WINDOWS} fphttpclient,
-  synautil, ResourceStr, const_u, StreamAdapter_u;
+  synautil, ResourceStr, const_u, StreamAdapter_u, DownloadFilesThread;
 
 const
   {$IFDEF WIN64}
@@ -38,24 +38,24 @@ type
   { TUpdate_Form }
 
   TUpdate_Form = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    GroupBox1: TGroupBox;
-    Label1: TLabel;
-    Label10: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    ProgressBar1: TProgressBar;
+    BtCheck: TButton;
+    BtCancel: TButton;
+    GBUpdate: TGroupBox;
+    LBVersionStatus: TLabel;
+    LBFileSize: TLabel;
+    LBCurrVersionStatus: TLabel;
+    LBLastCheck: TLabel;
+    LBCurrLastCheck: TLabel;
+    LBProgramVersion: TLabel;
+    LBCurrProgramVersion: TLabel;
+    LBServerVersion: TLabel;
+    LBCurrServerVersion: TLabel;
+    LBUpdateProcess: TLabel;
+    PBDownload: TProgressBar;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure BtCheckClick(Sender: TObject);
+    procedure BtCancelClick(Sender: TObject);
     procedure CheckUpdate;
     function CheckVersion: boolean;
   private
@@ -66,6 +66,7 @@ type
 
     { private declarations }
   public
+    procedure DataFromDownloadThread(status: TdataThread);
     { public declarations }
   end;
 
@@ -76,11 +77,16 @@ var
 implementation
 
 uses
-  Changelog_Form_U, DownloadUpdates, dmFunc_U, InitDB_dm, miniform_u;
+  Changelog_Form_U, dmFunc_U, InitDB_dm, miniform_u;
 
 {$R *.lfm}
 
 { TUpdate_Form }
+
+procedure TUpdate_Form.DataFromDownloadThread(status: TdataThread);
+begin
+
+end;
 
 procedure TUpdate_Form.FormCreate(Sender: TObject);
 begin
@@ -91,11 +97,11 @@ end;
 
 procedure TUpdate_Form.FormShow(Sender: TObject);
 begin
-  Button1.Caption := rButtonCheck;
-  Label10.Caption := rSizeFile;
-  Label9.Caption := rUpdateStatus;
-  Label6.Caption := dmFunc.GetMyVersion;
-  ProgressBar1.Position := 0;
+  BtCheck.Caption := rButtonCheck;
+  LBFileSize.Caption := rSizeFile;
+  LBUpdateProcess.Caption := rUpdateStatus;
+  LBCurrProgramVersion.Caption := dmFunc.GetMyVersion;
+  PBDownload.Position := 0;
 end;
 
 function TUpdate_Form.CheckVersion: boolean;
@@ -125,32 +131,32 @@ begin
     if (version_servStr = '1.1.1') or (Pos('</html>', version_servStr) > 0) or
       (Pos('not found', version_servStr) > 0) then
     begin
-      Label8.Caption := rFailedToLoadData;
+      LBCurrServerVersion.Caption := rFailedToLoadData;
       Exit;
     end
     else
     begin
-      Label8.Caption := version_servStr;
+      LBCurrServerVersion.Caption := version_servStr;
       version_serv := StrToInt(StringReplace(version_servStr, '.', '', [rfReplaceAll]));
     end;
 
     if version_curr < version_serv then
     begin
-      Label2.Caption := rUpdateRequired;
+      LBCurrVersionStatus.Caption := rUpdateRequired;
       MiniForm.TextSB(rUpdateRequired, 0);
       Result := True;
-      Label9.Caption := rUpdateStatusDownload;
-      Button1.Caption := rButtonDownload;
+      LBUpdateProcess.Caption := rUpdateStatusDownload;
+      BtCheck.Caption := rButtonDownload;
       if dmFunc.GetSize(DownPATHssl + DownEXE) = -1 then
-        label10.Caption := rSizeFile + FormatFloat('0.##',
+        LBFileSize.Caption := rSizeFile + FormatFloat('0.##',
           dmFunc.GetSize(DownPATH + DownEXE) / 1048576) + ' ' + rMBytes
       else
-        label10.Caption := rSizeFile + FormatFloat('0.##',
+        LBFileSize.Caption := rSizeFile + FormatFloat('0.##',
           dmFunc.GetSize(DownPATHssl + DownEXE) / 1048576) + ' ' + rMBytes;
     end
     else
     begin
-      Label9.Caption := rUpdateStatusActual;
+      LBUpdateProcess.Caption := rUpdateStatusActual;
       MiniForm.TextSB('', 0);
       Result := False;
     end;
@@ -162,20 +168,21 @@ end;
 
 procedure TUpdate_Form.CheckUpdate;
 begin
-  DownUpdThread := TDownUpdThread.Create;
-  if Assigned(DownUpdThread.FatalException) then
-    raise DownUpdThread.FatalException;
-  with DownUpdThread do
+  DownloadFilesTThread := TDownloadFilesThread.Create;
+  if Assigned(DownloadFilesTThread.FatalException) then
+    raise DownloadFilesTThread.FatalException;
+  with DownloadFilesTThread do
   begin
-    name_file := 'version';
-    name_directory := updatePATH;
-    url_file := DownPATH + 'version';
-    urlssl_file := DownPATHssl + 'version';
+    DataFromForm.FromForm := 'UpdateForm';
+    DataFromForm.Other := 'CheckVersion';
+    DataFromForm.ShowStatus := False;
+    DataFromForm.URLDownload := DownPATHssl + 'version';
+    DataFromForm.PathSaveFile := updatePATH + 'version';
     Start;
   end;
 end;
 
-procedure TUpdate_Form.Button2Click(Sender: TObject);
+procedure TUpdate_Form.BtCancelClick(Sender: TObject);
 begin
   Update_Form.Close;
 end;
@@ -187,7 +194,7 @@ var
   MaxSize: int64;
   DownFile: string;
 begin
-  Button1.Enabled := False;
+  BtCheck.Enabled := False;
   {$IFDEF WINDOWS}
   if dmFunc.GetWindowsVersion = 'Windows XP' then
     DownFile := DownEXEXP
@@ -208,7 +215,7 @@ begin
     if MaxSize = -1 then
       exit;
 
-    Label9.Caption := rUpdateStatusDownloads;
+    LBUpdateProcess.Caption := rUpdateStatusDownloads;
     Stream := TStreamAdapter.Create(TFileStream.Create(updatePATH +
       DownFile, fmCreate), MaxSize);
     Stream.OnProgress := OnProgress;
@@ -235,7 +242,7 @@ begin
   if MaxSize = -1 then
     exit;
 
-  Label9.Caption := rUpdateStatusDownloadChanges;
+  LBUpdateProcess.Caption := rUpdateStatusDownloadChanges;
   try
     HTTP := TFPHttpClient.Create(nil);
     HTTP.AllowRedirect := True;
@@ -250,20 +257,20 @@ begin
     FreeAndNil(Stream);
     Changelog_Form.Memo1.Lines.LoadFromFile(updatePATH + 'changelog.txt');
     Changelog_Form.Show;
-    Label9.Caption := rUpdateStatusRequiredInstall;
-    Button1.Enabled := True;
-    Button1.Caption := rButtonInstall;
+    LBUpdateProcess.Caption := rUpdateStatusRequiredInstall;
+    BtCheck.Enabled := True;
+    BtCheck.Caption := rButtonInstall;
   end;
 end;
 
-procedure TUpdate_Form.Button1Click(Sender: TObject);
+procedure TUpdate_Form.BtCheckClick(Sender: TObject);
 var
   DownFile: string;
 begin
-  if Button1.Caption = rButtonCheck then
+  if BtCheck.Caption = rButtonCheck then
     CheckUpdate
   else
-  if Button1.Caption = rButtonInstall then
+  if BtCheck.Caption = rButtonInstall then
   begin
     {$IFDEF WINDOWS}
     if dmFunc.GetWindowsVersion = 'Windows XP' then
@@ -281,9 +288,9 @@ end;
 
 procedure TUpdate_Form.Progress(Sender: TObject; Percent: integer);
 begin
-  Progressbar1.Position := Percent;
-  Progressbar1.Update;
-  label10.Caption := IntToStr(Percent) + '%';
+  PBDownload.Position := Percent;
+  PBDownload.Update;
+  LBFileSize.Caption := IntToStr(Percent) + '%';
   Application.ProcessMessages;
 end;
 

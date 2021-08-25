@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit downloadQSLthread;
 
 {$mode objfpc}{$H+}
@@ -5,9 +14,6 @@ unit downloadQSLthread;
 interface
 
 uses
-{$IFDEF UNIX}
-  CThreads, cmem,
-{$ENDIF}
   Classes, SysUtils, ResourceStr, LazFileUtils, LazUTF8, fphttpclient;
 
 type
@@ -27,7 +33,7 @@ type
   end;
 
 type
-  TdownloadQSLTThread = class(TThread)
+  TdownloadQSLThread = class(TThread)
   protected
     procedure Execute; override;
   private
@@ -43,29 +49,29 @@ type
   end;
 
 var
-  downloadQSLTThread: TdownloadQSLTThread;
+  downloadQSLTThread: TdownloadQSLThread;
 
 implementation
 
 uses InitDB_dm, ServiceForm_U;
 
-constructor TdownloadQSLTThread.Create;
+constructor TdownloadQSLThread.Create;
 begin
   FreeOnTerminate := True;
   inherited Create(True);
 end;
 
-procedure TdownloadQSLTThread.Execute;
+procedure TdownloadQSLThread.Execute;
 begin
   DownloadQSL(DataFromServiceForm);
 end;
 
-procedure TdownloadQSLTThread.ToForm;
+procedure TdownloadQSLThread.ToForm;
 begin
   ServiceForm.DataFromThread(Status);
 end;
 
-procedure TdownloadQSLTThread.OnDataReceived(Sender: TObject;
+procedure TdownloadQSLThread.OnDataReceived(Sender: TObject;
   const ContentLength, CurrentPos: int64);
 begin
   Status.DownloadAllFileSize := ContentLength;
@@ -74,7 +80,7 @@ begin
   Synchronize(@ToForm);
 end;
 
-procedure TdownloadQSLTThread.DownloadQSL(ServiceData: TdataThread);
+procedure TdownloadQSLThread.DownloadQSL(ServiceData: TdataThread);
 const
   eQSLcc_URL = 'http://www.eqsl.cc/qslcard/DownloadInBox.cfm?';
   LoTW_URL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
@@ -174,7 +180,7 @@ begin
 
 end;
 
-function TdownloadQSLTThread.ParseDownloadURLeQSLcc(Document: TMemoryStream): string;
+function TdownloadQSLThread.ParseDownloadURLeQSLcc(Document: TMemoryStream): string;
 const
   CDWNLD = '.adi">';
   errorMess = '<H3>ERROR:';
@@ -227,7 +233,7 @@ begin
   end;
 end;
 
-procedure TdownloadQSLTThread.ClearStatus;
+procedure TdownloadQSLThread.ClearStatus;
 begin
   Status.DownloadAllFileSize := 0;
   Status.DownloadedFileSize := 0;

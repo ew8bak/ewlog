@@ -12,27 +12,27 @@ object Update_Form: TUpdate_Form
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.10.0'
-  object GroupBox1: TGroupBox
+  LCLVersion = '2.0.12.0'
+  object GBUpdate: TGroupBox
     Left = 0
     Height = 229
     Top = 0
     Width = 274
     Align = alClient
     Caption = 'Update'
-    ClientHeight = 209
-    ClientWidth = 270
+    ClientHeight = 213
+    ClientWidth = 272
     Font.Height = -12
     ParentFont = False
     TabOrder = 0
-    object Label1: TLabel
-      AnchorSideLeft.Control = GroupBox1
-      AnchorSideRight.Control = GroupBox1
+    object LBVersionStatus: TLabel
+      AnchorSideLeft.Control = GBUpdate
+      AnchorSideRight.Control = GBUpdate
       AnchorSideRight.Side = asrBottom
-      Left = 64
-      Height = 15
+      Left = 52
+      Height = 13
       Top = 8
-      Width = 76
+      Width = 90
       Alignment = taCenter
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
@@ -41,14 +41,14 @@ object Update_Form: TUpdate_Form
       ParentColor = False
       ParentFont = False
     end
-    object Label2: TLabel
-      AnchorSideLeft.Control = GroupBox1
-      AnchorSideRight.Control = GroupBox1
+    object LBCurrVersionStatus: TLabel
+      AnchorSideLeft.Control = GBUpdate
+      AnchorSideRight.Control = GBUpdate
       AnchorSideRight.Side = asrBottom
       Left = 145
-      Height = 15
+      Height = 13
       Top = 8
-      Width = 34
+      Width = 38
       BorderSpacing.Left = 145
       BorderSpacing.Right = 100
       Caption = 'Actual'
@@ -56,15 +56,15 @@ object Update_Form: TUpdate_Form
       ParentColor = False
       ParentFont = False
     end
-    object Label3: TLabel
-      AnchorSideLeft.Control = GroupBox1
+    object LBLastCheck: TLabel
+      AnchorSideLeft.Control = GBUpdate
       AnchorSideLeft.Side = asrCenter
-      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Control = GBUpdate
       AnchorSideRight.Side = asrBottom
-      Left = 82
-      Height = 15
+      Left = 73
+      Height = 13
       Top = 32
-      Width = 58
+      Width = 69
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
       Caption = 'Last check:'
@@ -72,14 +72,14 @@ object Update_Form: TUpdate_Form
       ParentColor = False
       ParentFont = False
     end
-    object Label4: TLabel
-      AnchorSideLeft.Control = GroupBox1
-      AnchorSideRight.Control = GroupBox1
+    object LBCurrLastCheck: TLabel
+      AnchorSideLeft.Control = GBUpdate
+      AnchorSideRight.Control = GBUpdate
       AnchorSideRight.Side = asrBottom
       Left = 145
-      Height = 15
+      Height = 13
       Top = 32
-      Width = 9
+      Width = 12
       BorderSpacing.Left = 145
       BorderSpacing.Right = 100
       Caption = '...'
@@ -87,15 +87,15 @@ object Update_Form: TUpdate_Form
       ParentColor = False
       ParentFont = False
     end
-    object Label5: TLabel
-      AnchorSideLeft.Control = GroupBox1
+    object LBProgramVersion: TLabel
+      AnchorSideLeft.Control = GBUpdate
       AnchorSideLeft.Side = asrCenter
-      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Control = GBUpdate
       AnchorSideRight.Side = asrBottom
-      Left = 50
-      Height = 15
+      Left = 40
+      Height = 13
       Top = 56
-      Width = 90
+      Width = 102
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
       Caption = 'Program version:'
@@ -103,29 +103,29 @@ object Update_Form: TUpdate_Form
       ParentColor = False
       ParentFont = False
     end
-    object Label6: TLabel
-      AnchorSideLeft.Control = GroupBox1
-      AnchorSideRight.Control = GroupBox1
+    object LBCurrProgramVersion: TLabel
+      AnchorSideLeft.Control = GBUpdate
+      AnchorSideRight.Control = GBUpdate
       AnchorSideRight.Side = asrBottom
       Left = 145
-      Height = 15
+      Height = 13
       Top = 56
-      Width = 9
+      Width = 12
       BorderSpacing.Left = 145
       Caption = '...'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
-    object Label7: TLabel
-      AnchorSideLeft.Control = GroupBox1
+    object LBServerVersion: TLabel
+      AnchorSideLeft.Control = GBUpdate
       AnchorSideLeft.Side = asrCenter
-      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Control = GBUpdate
       AnchorSideRight.Side = asrBottom
-      Left = 64
-      Height = 15
+      Left = 52
+      Height = 13
       Top = 80
-      Width = 76
+      Width = 90
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 130
       Caption = 'Server Version:'
@@ -133,21 +133,21 @@ object Update_Form: TUpdate_Form
       ParentColor = False
       ParentFont = False
     end
-    object Label8: TLabel
-      AnchorSideLeft.Control = GroupBox1
-      AnchorSideRight.Control = GroupBox1
+    object LBCurrServerVersion: TLabel
+      AnchorSideLeft.Control = GBUpdate
+      AnchorSideRight.Control = GBUpdate
       AnchorSideRight.Side = asrBottom
       Left = 145
-      Height = 15
+      Height = 13
       Top = 80
-      Width = 9
+      Width = 12
       BorderSpacing.Left = 145
       Caption = '...'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
-    object ProgressBar1: TProgressBar
+    object PBDownload: TProgressBar
       Left = 16
       Height = 20
       Top = 128
@@ -155,43 +155,43 @@ object Update_Form: TUpdate_Form
       Smooth = True
       TabOrder = 0
     end
-    object Label9: TLabel
+    object LBUpdateProcess: TLabel
       Left = 16
-      Height = 15
+      Height = 13
       Top = 112
-      Width = 81
+      Width = 94
       Caption = 'Update process'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
-    object Button1: TButton
+    object BtCheck: TButton
       Left = 181
       Height = 25
       Top = 176
       Width = 75
       Caption = 'Check'
       Font.Height = -12
-      OnClick = Button1Click
+      OnClick = BtCheckClick
       ParentFont = False
       TabOrder = 1
     end
-    object Button2: TButton
+    object BtCancel: TButton
       Left = 88
       Height = 25
       Top = 176
       Width = 75
       Caption = 'Cancel'
       Font.Height = -12
-      OnClick = Button2Click
+      OnClick = BtCancelClick
       ParentFont = False
       TabOrder = 2
     end
-    object Label10: TLabel
+    object LBFileSize: TLabel
       Left = 16
-      Height = 15
+      Height = 13
       Top = 152
-      Width = 43
+      Width = 49
       Caption = 'File size:'
       Font.Height = -12
       ParentColor = False

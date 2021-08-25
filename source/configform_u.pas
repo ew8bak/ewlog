@@ -18,7 +18,7 @@ uses
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, fphttpclient,
   ResourceStr, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
   Spin, Buttons, ExtCtrls, dmCat, serverDM_u, CWDaemonDM_u, IdStack,
-  StreamAdapter_u;
+  StreamAdapter_u, DownloadFilesThread;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -336,6 +336,7 @@ type
     procedure Progress(Sender: TObject; Percent: integer);
     { private declarations }
   public
+    procedure DataFromDownloadThread(status: TdataThread);
     { public declarations }
   end;
 
@@ -351,6 +352,11 @@ uses
 {$R *.lfm}
 
 { TConfigForm }
+
+procedure TConfigForm.DataFromDownloadThread(status: TdataThread);
+begin
+
+end;
 
 procedure TConfigForm.SetDefaultRadio(radio: string);
 begin

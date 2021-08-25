@@ -5643,14 +5643,14 @@ msgstr ""
 msgid "RIG 2"
 msgstr ""
 
-#: tupdate_form.button1.caption
-msgctxt "tupdate_form.button1.caption"
-msgid "Check"
+#: tupdate_form.btcancel.caption
+msgctxt "tupdate_form.btcancel.caption"
+msgid "Cancel"
 msgstr ""
 
-#: tupdate_form.button2.caption
-msgctxt "tupdate_form.button2.caption"
-msgid "Cancel"
+#: tupdate_form.btcheck.caption
+msgctxt "tupdate_form.btcheck.caption"
+msgid "Check"
 msgstr ""
 
 #: tupdate_form.caption
@@ -5658,52 +5658,59 @@ msgctxt "tupdate_form.caption"
 msgid "Update"
 msgstr ""
 
-#: tupdate_form.groupbox1.caption
-msgctxt "tupdate_form.groupbox1.caption"
+#: tupdate_form.gbupdate.caption
+msgctxt "tupdate_form.gbupdate.caption"
 msgid "Update"
 msgstr ""
 
-#: tupdate_form.label1.caption
-msgid "Version Status:"
+#: tupdate_form.lbcurrlastcheck.caption
+msgctxt "tupdate_form.lbcurrlastcheck.caption"
+msgid "..."
 msgstr ""
 
-#: tupdate_form.label10.caption
-msgid "File size:"
+#: tupdate_form.lbcurrprogramversion.caption
+msgctxt "tupdate_form.lbcurrprogramversion.caption"
+msgid "..."
 msgstr ""
 
-#: tupdate_form.label2.caption
+#: tupdate_form.lbcurrserverversion.caption
+msgctxt "tupdate_form.lbcurrserverversion.caption"
+msgid "..."
+msgstr ""
+
+#: tupdate_form.lbcurrversionstatus.caption
+msgctxt "tupdate_form.lbcurrversionstatus.caption"
 msgid "Actual"
 msgstr ""
 
-#: tupdate_form.label3.caption
+#: tupdate_form.lbfilesize.caption
+msgctxt "tupdate_form.lbfilesize.caption"
+msgid "File size:"
+msgstr ""
+
+#: tupdate_form.lblastcheck.caption
+msgctxt "tupdate_form.lblastcheck.caption"
 msgid "Last check:"
 msgstr ""
 
-#: tupdate_form.label4.caption
-msgctxt "tupdate_form.label4.caption"
-msgid "..."
-msgstr ""
-
-#: tupdate_form.label5.caption
+#: tupdate_form.lbprogramversion.caption
+msgctxt "tupdate_form.lbprogramversion.caption"
 msgid "Program version:"
 msgstr ""
 
-#: tupdate_form.label6.caption
-msgctxt "tupdate_form.label6.caption"
-msgid "..."
-msgstr ""
-
-#: tupdate_form.label7.caption
+#: tupdate_form.lbserverversion.caption
+msgctxt "tupdate_form.lbserverversion.caption"
 msgid "Server Version:"
 msgstr ""
 
-#: tupdate_form.label8.caption
-msgctxt "tupdate_form.label8.caption"
-msgid "..."
+#: tupdate_form.lbupdateprocess.caption
+msgctxt "tupdate_form.lbupdateprocess.caption"
+msgid "Update process"
 msgstr ""
 
-#: tupdate_form.label9.caption
-msgid "Update process"
+#: tupdate_form.lbversionstatus.caption
+msgctxt "tupdate_form.lbversionstatus.caption"
+msgid "Version Status:"
 msgstr ""
 
 #: tviewphoto.caption

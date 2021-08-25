@@ -477,7 +477,7 @@ begin
   else
   begin
     BtConnecteQSL.Enabled := False;
-    downloadQSLTThread := TdownloadQSLTThread.Create;
+    downloadQSLTThread := TdownloadQSLThread.Create;
     if Assigned(downloadQSLTThread.FatalException) then
       raise downloadQSLTThread.FatalException;
     with downloadQSLTThread do
@@ -506,7 +506,7 @@ begin
   begin
     BtConnectLoTW.Enabled := False;
 
-    downloadQSLTThread := TdownloadQSLTThread.Create;
+    downloadQSLTThread := TdownloadQSLThread.Create;
     if Assigned(downloadQSLTThread.FatalException) then
       raise downloadQSLTThread.FatalException;
     with downloadQSLTThread do
