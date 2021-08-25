@@ -56,7 +56,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure BtCheckClick(Sender: TObject);
     procedure BtCancelClick(Sender: TObject);
-    procedure CheckUpdate;
+    procedure DownloadVersionFile;
     function CheckVersion: boolean;
   private
     updatePATH: string;
@@ -166,7 +166,9 @@ begin
   end;
 end;
 
-procedure TUpdate_Form.CheckUpdate;
+procedure TUpdate_Form.DownloadVersionFile;
+const
+  fileName = 'version';
 begin
   DownloadFilesTThread := TDownloadFilesThread.Create;
   if Assigned(DownloadFilesTThread.FatalException) then
@@ -176,8 +178,8 @@ begin
     DataFromForm.FromForm := 'UpdateForm';
     DataFromForm.Other := 'CheckVersion';
     DataFromForm.ShowStatus := False;
-    DataFromForm.URLDownload := DownPATHssl + 'version';
-    DataFromForm.PathSaveFile := updatePATH + 'version';
+    DataFromForm.URLDownload := DownPATHssl + fileName;
+    DataFromForm.PathSaveFile := updatePATH + fileName;
     Start;
   end;
 end;
@@ -268,7 +270,7 @@ var
   DownFile: string;
 begin
   if BtCheck.Caption = rButtonCheck then
-    CheckUpdate
+    DownloadVersionFile
   else
   if BtCheck.Caption = rButtonInstall then
   begin

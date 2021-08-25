@@ -15,10 +15,10 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils, fphttpclient,
+  StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils,
   ResourceStr, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
   Spin, Buttons, ExtCtrls, dmCat, serverDM_u, CWDaemonDM_u, IdStack,
-  StreamAdapter_u, DownloadFilesThread;
+  DownloadFilesThread;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -308,12 +308,8 @@ type
     procedure LVTelnetSelectItem(Sender: TObject; Item: TListItem;
       Selected: boolean);
     procedure PControlChange(Sender: TObject);
-    procedure SaveINI;
-    procedure ReadINI;
-    function CheckUpdate: boolean;
     procedure SBTelnetDeleteClick(Sender: TObject);
     procedure SBTelnetDoneClick(Sender: TObject);
-    procedure DownloadCallBookFile(OnProgress: TOnProgress);
     procedure TSCATShow(Sender: TObject);
     procedure TSOtherSettingsShow(Sender: TObject);
     procedure TSTelnetShow(Sender: TObject);
@@ -333,10 +329,14 @@ type
     function SearchLVTelnet(SearchText: string): boolean;
     procedure LoadLVSettingName;
     procedure SetDefaultRadio(radio: string);
-    procedure Progress(Sender: TObject; Percent: integer);
+    procedure DownloadVersionFile;
+    procedure SaveINI;
+    procedure ReadINI;
+    procedure DownloadCallBookFile;
     { private declarations }
   public
     procedure DataFromDownloadThread(status: TdataThread);
+    function CheckVersion: boolean;
     { public declarations }
   end;
 
@@ -354,8 +354,124 @@ uses
 { TConfigForm }
 
 procedure TConfigForm.DataFromDownloadThread(status: TdataThread);
+var
+  CheckRec: TImbedCallBookCheckRec;
 begin
+  ProgressBar1.Position := status.DownloadedPercent;
+  if status.StatusDownload then
+  begin
+    if FileUtil.CopyFile(FilePATH + 'updates' + DirectorySeparator +
+      'callbook.db', FilePATH + 'callbook.db', True, True) then
+      CheckRec := InitDB.ImbeddedCallBookCheck(FilePATH + 'callbook.db');
 
+    if CheckRec.Found then
+    begin
+      Label11.Caption := rNumberOfRecords + IntToStr(CheckRec.NumberOfRec);
+      Label14.Caption := CheckRec.Version;
+      Label10.Caption := rReleaseDate + CheckRec.ReleaseDate;
+      InitDB.ImbeddedCallBookInit(True);
+      CheckBox1.Checked := True;
+      CheckBox1.Enabled := True;
+      gbIntRef.Caption := rReferenceBook;
+      Button4.Caption := rOK;
+    end
+    else
+    begin
+      gbIntRef.Caption := rNoReferenceBookFound;
+      label11.Caption := rNumberOfRecordsNot;
+      Label10.Caption := rReleaseDateNot;
+      Label14.Caption := '---';
+      InitDB.ImbeddedCallBookInit(False);
+      CheckBox1.Checked := False;
+      CheckBox1.Enabled := False;
+    end;
+  end;
+end;
+
+procedure TConfigForm.DownloadCallBookFile;
+const
+  DownPATHssl = 'http://update.ewlog.ru/';
+  fileName = 'callbook.db';
+var
+  updatePATH: string;
+begin
+  updatePATH := FilePATH + 'updates' + DirectorySeparator;
+  DownloadFilesTThread := TDownloadFilesThread.Create;
+  if Assigned(DownloadFilesTThread.FatalException) then
+    raise DownloadFilesTThread.FatalException;
+  with DownloadFilesTThread do
+  begin
+    DataFromForm.FromForm := 'ConfigForm';
+    DataFromForm.ShowStatus := True;
+    DataFromForm.URLDownload := DownPATHssl + fileName;
+    DataFromForm.PathSaveFile := updatePATH + fileName;
+    Start;
+  end;
+end;
+
+procedure TConfigForm.DownloadVersionFile;
+const
+  DownPATHssl = 'http://update.ewlog.ru/';
+  fileName = 'versioncallbook';
+var
+  updatePATH: string;
+begin
+  updatePATH := FilePATH + 'updates' + DirectorySeparator;
+  if not DirectoryExists(updatePATH) then
+    ForceDirectories(updatePATH);
+
+  DownloadFilesTThread := TDownloadFilesThread.Create;
+  if Assigned(DownloadFilesTThread.FatalException) then
+    raise DownloadFilesTThread.FatalException;
+  with DownloadFilesTThread do
+  begin
+    DataFromForm.FromForm := 'ConfigForm';
+    DataFromForm.ShowStatus := False;
+    DataFromForm.Other := 'CheckVersion';
+    DataFromForm.URLDownload := DownPATHssl + fileName;
+    DataFromForm.PathSaveFile := updatePATH + fileName;
+    Start;
+  end;
+end;
+
+function TConfigForm.CheckVersion: boolean;
+const
+  fileName = 'versioncallbook';
+var
+  VerFile: TextFile;
+  a: string;
+  updateFilePATH: string;
+  serV, locV: double;
+begin
+  Result := False;
+  updateFilePATH := FilePATH + 'updates' + DirectorySeparator + fileName;
+  AssignFile(VerFile, updateFilePATH);
+
+  Reset(VerFile);
+  Read(VerFile, a);
+  CloseFile(VerFile);
+  if Label14.Caption <> '---' then
+  begin
+    TryStrToFloatSafe(a, serV);
+    TryStrToFloatSafe(Label14.Caption, locV);
+    if locV < serV then
+    begin
+      Label12.Caption := rStatusUpdateRequires;
+      Result := True;
+      Button4.Caption := rDownload;
+    end
+    else
+    begin
+      Label12.Caption := rStatusUpdateactual;
+      Result := False;
+    end;
+  end
+  else
+  begin
+    Label12.Caption := rStatusUpdateRequires;
+    Result := True;
+    Button4.Caption := rDownload;
+  end;
 end;
 
 procedure TConfigForm.SetDefaultRadio(radio: string);
@@ -560,12 +676,13 @@ end;
 procedure TConfigForm.Button4Click(Sender: TObject);
 begin
   if Button4.Caption = rCheckUpdates then
-    CheckUpdate
+    DownloadVersionFile
   else
   if Button4.Caption = rDownload then
   begin
     InitDB.ImbeddedCallBookInit(False);
-    DownloadCallBookFile(@Progress);
+    //DownloadCallBookFile(@Progress);
+    DownloadCallBookFile;
   end;
 end;
 
@@ -1124,70 +1241,6 @@ begin
   cbBackColorGrid.ItemIndex := cbBackColorGrid.Items.IndexOf('clForm');
 end;
 
-function TConfigForm.CheckUpdate: boolean;
-var
-  VerFile: TextFile;
-  a: string;
-  LoadFile: TFileStream;
-  updatePATH: string;
-  serV, locV: double;
-  HTTP: TFPHttpClient;
-begin
-  updatePATH := FilePATH;
-  if not DirectoryExists(updatePATH + 'updates' + DirectorySeparator) then
-    ForceDirectories(updatePATH + 'updates' + DirectorySeparator);
-
-  try
-    HTTP := TFPHttpClient.Create(nil);
-    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; ewlog)');
-    HTTP.AllowRedirect := True;
-    Label12.Caption := rStatusUpdateCheck;
-    LoadFile := TFileStream.Create(updatePATH + 'updates' +
-      DirectorySeparator + 'versioncallbook.info', fmCreate);
-    try
-      HTTP.Get('http://update.ewlog.ru/versioncallbook.info', LoadFile);
-    except
-      LoadFile.Seek(0, soFromEnd);
-      LoadFile.WriteBuffer('5.5', Length('5.5'));
-      LoadFile.Free;
-    end;
-    if HTTP.ResponseStatusCode = 200 then
-      LoadFile.Free
-
-  finally
-    FreeAndNil(HTTP);
-  end;
-
-  AssignFile(VerFile, updatePATH + 'updates' + DirectorySeparator +
-    'versioncallbook.info');
-
-  Reset(VerFile);
-  Read(VerFile, a);
-  CloseFile(VerFile);
-  if Label14.Caption <> '---' then
-  begin
-    TryStrToFloatSafe(a, serV);
-    TryStrToFloatSafe(Label14.Caption, locV);
-    if locV < serV then
-    begin
-      Label12.Caption := rStatusUpdateRequires;
-      Result := True;
-      Button4.Caption := rDownload;
-    end
-    else
-    begin
-      Label12.Caption := rStatusUpdateactual;
-      Result := False;
-    end;
-  end
-  else
-  begin
-    Label12.Caption := rStatusUpdateRequires;
-    Result := True;
-    Button4.Caption := rDownload;
-  end;
-end;
-
 procedure TConfigForm.SBTelnetDeleteClick(Sender: TObject);
 var
   i: integer;
@@ -1217,60 +1270,6 @@ begin
     LVTelnet.Selected.Selected := False;
 end;
 
-procedure TConfigForm.DownloadCallBookFile(OnProgress: TOnProgress);
-var
-  HTTP: TFPHttpClient;
-  Stream: TStreamAdapter;
-  MaxSize: int64;
-  CheckRec: TImbedCallBookCheckRec;
-begin
-  MaxSize := 0;
-  MaxSize := dmFunc.GetSize(DownIntCallbookURL);
-
-  if MaxSize = -1 then
-    exit;
-
-  Label12.Caption := rStatusUpdateDownload;
-  try
-    HTTP := TFPHttpClient.Create(nil);
-    HTTP.AllowRedirect := True;
-    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; ewlog)');
-    Stream := TStreamAdapter.Create(TFileStream.Create(FilePATH +
-      'updates' + DirectorySeparator + 'callbook.db', fmCreate), MaxSize);
-    Stream.OnProgress := OnProgress;
-    HTTP.HTTPMethod('GET', DownIntCallbookURL, Stream, [200]);
-  finally
-    FreeAndNil(HTTP);
-    FreeAndNil(Stream);
-
-    if FileUtil.CopyFile(FilePATH + 'updates' + DirectorySeparator +
-      'callbook.db', FilePATH + 'callbook.db', True, True) then
-      CheckRec := InitDB.ImbeddedCallBookCheck(FilePATH + 'callbook.db');
-
-    if CheckRec.Found then
-    begin
-      Label11.Caption := rNumberOfRecords + IntToStr(CheckRec.NumberOfRec);
-      Label14.Caption := CheckRec.Version;
-      Label10.Caption := rReleaseDate + CheckRec.ReleaseDate;
-      InitDB.ImbeddedCallBookInit(True);
-      CheckBox1.Checked := True;
-      CheckBox1.Enabled := True;
-      gbIntRef.Caption := rReferenceBook;
-      Button4.Caption := rOK;
-    end
-    else
-    begin
-      gbIntRef.Caption := rNoReferenceBookFound;
-      label11.Caption := rNumberOfRecordsNot;
-      Label10.Caption := rReleaseDateNot;
-      Label14.Caption := '---';
-      InitDB.ImbeddedCallBookInit(False);
-      CheckBox1.Checked := False;
-      CheckBox1.Enabled := False;
-    end;
-  end;
-end;
-
 procedure TConfigForm.TSCATShow(Sender: TObject);
 begin
   LoadRIGSettings;
@@ -1295,14 +1294,6 @@ begin
   SBTelnetDone.Enabled := False;
   SBTelnetDelete.Enabled := False;
   LoadTelnetAddressToVLTelnet;
-end;
-
-procedure TConfigForm.Progress(Sender: TObject; Percent: integer);
-begin
-  Progressbar1.Position := Percent;
-  Progressbar1.Update;
-  label17.Caption := IntToStr(Percent) + '%';
-  Application.ProcessMessages;
 end;
 
 end.

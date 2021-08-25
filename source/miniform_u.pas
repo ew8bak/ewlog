@@ -1994,12 +1994,12 @@ end;
 
 procedure TMiniForm.CheckUpdateTimerStartTimer(Sender: TObject);
 begin
-  Update_Form.CheckUpdate;
+  Update_Form.DownloadVersionFile;
 end;
 
 procedure TMiniForm.CheckUpdateTimerTimer(Sender: TObject);
 begin
-  Update_Form.CheckUpdate;
+  Update_Form.DownloadVersionFile;
 end;
 
 procedure TMiniForm.ClearEditExecute(Sender: TObject);

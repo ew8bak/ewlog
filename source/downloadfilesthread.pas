@@ -129,6 +129,10 @@ begin
     begin
       ConfigForm.DataFromDownloadThread(Status);
     end;
+    if (Status.Other = 'CheckVersion') and (Status.StatusDownload) then
+    begin
+      ConfigForm.CheckVersion;
+    end;
   end;
 end;
 
