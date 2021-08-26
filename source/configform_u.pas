@@ -311,10 +311,12 @@ type
     procedure SBTelnetDeleteClick(Sender: TObject);
     procedure SBTelnetDoneClick(Sender: TObject);
     procedure TSCATShow(Sender: TObject);
+    procedure TSIntRefShow(Sender: TObject);
     procedure TSOtherSettingsShow(Sender: TObject);
     procedure TSTelnetShow(Sender: TObject);
   private
     LVSelectedItem: boolean;
+    updatePATH: string;
     procedure SaveGridColumns;
     procedure SaveGridColors;
     procedure ReadGridColumns;
@@ -329,14 +331,15 @@ type
     function SearchLVTelnet(SearchText: string): boolean;
     procedure LoadLVSettingName;
     procedure SetDefaultRadio(radio: string);
-    procedure DownloadVersionFile;
     procedure SaveINI;
     procedure ReadINI;
     procedure DownloadCallBookFile;
+    procedure CheckServerVersionFile;
+    function CheckVersion(ServerVersion: string): boolean;
     { private declarations }
   public
     procedure DataFromDownloadThread(status: TdataThread);
-    function CheckVersion: boolean;
+
     { public declarations }
   end;
 
@@ -357,11 +360,18 @@ procedure TConfigForm.DataFromDownloadThread(status: TdataThread);
 var
   CheckRec: TImbedCallBookCheckRec;
 begin
-  ProgressBar1.Position := status.DownloadedPercent;
-  if status.StatusDownload then
+  if status.ShowStatus then
   begin
-    if FileUtil.CopyFile(FilePATH + 'updates' + DirectorySeparator +
-      'callbook.db', FilePATH + 'callbook.db', True, True) then
+    ProgressBar1.Position := status.DownloadedPercent;
+  end;
+
+  if (status.Version) and (status.Message <> '') then
+    CheckVersion(status.Message);
+
+  if (status.StatusDownload) and (status.Other = 'DownloadCallBookFile') then
+  begin
+    if FileUtil.CopyFile(updatePATH + 'callbook.db', FilePATH +
+      'callbook.db', True, True) then
       CheckRec := InitDB.ImbeddedCallBookCheck(FilePATH + 'callbook.db');
 
     if CheckRec.Found then
@@ -388,14 +398,27 @@ begin
   end;
 end;
 
+procedure TConfigForm.CheckServerVersionFile;
+const
+  fileName = 'versioncallbook';
+begin
+  DownloadFilesTThread := TDownloadFilesThread.Create;
+  if Assigned(DownloadFilesTThread.FatalException) then
+    raise DownloadFilesTThread.FatalException;
+  with DownloadFilesTThread do
+  begin
+    DataFromForm.FromForm := 'ConfigForm';
+    DataFromForm.Version := True;
+    DataFromForm.URLDownload := DownPATHssl + fileName;
+    DataFromForm.PathSaveFile := updatePATH + fileName;
+    Start;
+  end;
+end;
+
 procedure TConfigForm.DownloadCallBookFile;
 const
-  DownPATHssl = 'http://update.ewlog.ru/';
   fileName = 'callbook.db';
-var
-  updatePATH: string;
 begin
-  updatePATH := FilePATH + 'updates' + DirectorySeparator;
   DownloadFilesTThread := TDownloadFilesThread.Create;
   if Assigned(DownloadFilesTThread.FatalException) then
     raise DownloadFilesTThread.FatalException;
@@ -403,67 +426,28 @@ begin
   begin
     DataFromForm.FromForm := 'ConfigForm';
     DataFromForm.ShowStatus := True;
+    DataFromForm.Other := 'DownloadCallBookFile';
     DataFromForm.URLDownload := DownPATHssl + fileName;
     DataFromForm.PathSaveFile := updatePATH + fileName;
     Start;
   end;
 end;
 
-procedure TConfigForm.DownloadVersionFile;
-const
-  DownPATHssl = 'http://update.ewlog.ru/';
-  fileName = 'versioncallbook';
+function TConfigForm.CheckVersion(ServerVersion: string): boolean;
 var
-  updatePATH: string;
-begin
-  updatePATH := FilePATH + 'updates' + DirectorySeparator;
-  if not DirectoryExists(updatePATH) then
-    ForceDirectories(updatePATH);
-
-  DownloadFilesTThread := TDownloadFilesThread.Create;
-  if Assigned(DownloadFilesTThread.FatalException) then
-    raise DownloadFilesTThread.FatalException;
-  with DownloadFilesTThread do
-  begin
-    DataFromForm.FromForm := 'ConfigForm';
-    DataFromForm.ShowStatus := False;
-    DataFromForm.Other := 'CheckVersion';
-    DataFromForm.URLDownload := DownPATHssl + fileName;
-    DataFromForm.PathSaveFile := updatePATH + fileName;
-    Start;
-  end;
-end;
-
-function TConfigForm.CheckVersion: boolean;
-const
-  fileName = 'versioncallbook';
-var
-  VerFile: TextFile;
-  a: string;
-  updateFilePATH: string;
-  serV, locV: double;
+  LocalVersion: string;
 begin
   Result := False;
-  updateFilePATH := FilePATH + 'updates' + DirectorySeparator + fileName;
-  AssignFile(VerFile, updateFilePATH);
+  Label12.Caption := rStatusUpdateactual;
 
-  Reset(VerFile);
-  Read(VerFile, a);
-  CloseFile(VerFile);
   if Label14.Caption <> '---' then
   begin
-    TryStrToFloatSafe(a, serV);
-    TryStrToFloatSafe(Label14.Caption, locV);
-    if locV < serV then
+    LocalVersion := StringReplace(Label14.Caption, ',', '.', [rfReplaceAll]);
+    if MainFunc.CompareVersion(LocalVersion, ServerVersion) then
     begin
       Label12.Caption := rStatusUpdateRequires;
       Result := True;
       Button4.Caption := rDownload;
-    end
-    else
-    begin
-      Label12.Caption := rStatusUpdateactual;
-      Result := False;
     end;
   end
   else
@@ -471,6 +455,18 @@ begin
     Label12.Caption := rStatusUpdateRequires;
     Result := True;
     Button4.Caption := rDownload;
+  end;
+end;
+
+procedure TConfigForm.Button4Click(Sender: TObject);
+begin
+  if Button4.Caption = rCheckUpdates then
+    CheckServerVersionFile
+  else
+  if Button4.Caption = rDownload then
+  begin
+    InitDB.ImbeddedCallBookInit(False);
+    DownloadCallBookFile;
   end;
 end;
 
@@ -670,19 +666,6 @@ begin
   except
     on E: Exception do
       ShowMessage(E.Message);
-  end;
-end;
-
-procedure TConfigForm.Button4Click(Sender: TObject);
-begin
-  if Button4.Caption = rCheckUpdates then
-    DownloadVersionFile
-  else
-  if Button4.Caption = rDownload then
-  begin
-    InitDB.ImbeddedCallBookInit(False);
-    //DownloadCallBookFile(@Progress);
-    DownloadCallBookFile;
   end;
 end;
 
@@ -1274,6 +1257,13 @@ procedure TConfigForm.TSCATShow(Sender: TObject);
 begin
   LoadRIGSettings;
   LoadTCISettings;
+end;
+
+procedure TConfigForm.TSIntRefShow(Sender: TObject);
+begin
+  updatePATH := FilePATH + 'updates' + DirectorySeparator;
+  if not DirectoryExists(updatePATH) then
+    ForceDirectories(updatePATH);
 end;
 
 procedure TConfigForm.TSOtherSettingsShow(Sender: TObject);

@@ -92,6 +92,7 @@ type
     function ConvertFreqToShow(Freq: string): string;
     function ConvertFreqToSelectView(Freq: string): string;
     procedure LoadRadioItems(var SL: TStringList);
+    function CompareVersion(Local, Server: string): boolean;
   end;
 
 var
@@ -111,6 +112,19 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u;
 
 {$R *.lfm}
+
+function TMainFunc.CompareVersion(Local, Server: string): boolean;
+var
+  LocalVersion, ServerVersion: integer;
+begin
+  Result := False;
+  if (TryStrToInt(StringReplace(Local, '.', '', [rfReplaceAll]), LocalVersion)) and
+    (TryStrToInt(StringReplace(Server, '.', '', [rfReplaceAll]), ServerVersion)) then
+  begin
+    if LocalVersion < ServerVersion then
+      Result := True;
+  end;
+end;
 
 procedure TMainFunc.LoadRadioItems(var SL: TStringList);
 var

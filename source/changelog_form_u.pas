@@ -22,11 +22,11 @@ type
   { TChangeLog_Form }
 
   TChangeLog_Form = class(TForm)
-    Button1: TButton;
-    Memo1: TMemo;
+    BtOK: TButton;
+    MChangeLog: TMemo;
     Panel1: TPanel;
     Panel2: TPanel;
-    procedure Button1Click(Sender: TObject);
+    procedure BtOKClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
     { private declarations }
@@ -43,16 +43,16 @@ implementation
 
 { TChangeLog_Form }
 
-procedure TChangeLog_Form.Button1Click(Sender: TObject);
+procedure TChangeLog_Form.BtOKClick(Sender: TObject);
 begin
-  Memo1.Lines.Clear;
+  MChangeLog.Lines.Clear;
   ChangeLog_Form.Close;
 end;
 
 procedure TChangeLog_Form.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  Memo1.Lines.Clear;
+  MChangeLog.Lines.Clear;
 end;
 
 end.

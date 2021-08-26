@@ -1181,8 +1181,9 @@ msgstr "Copyright 2015 - 2021 Владимир Карпенко"
 msgid "Label5"
 msgstr ""
 
-#: tchangelog_form.button1.caption
-msgctxt "tchangelog_form.button1.caption"
+#: tchangelog_form.btok.caption
+#, fuzzy
+msgctxt "tchangelog_form.btok.caption"
 msgid "OK"
 msgstr "ОК"
 

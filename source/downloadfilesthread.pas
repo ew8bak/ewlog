@@ -30,6 +30,7 @@ type
     ErrorString: string;
     ShowStatus: boolean;
     Other: string;
+    Version: boolean;
   end;
 
 type
@@ -81,6 +82,27 @@ begin
     Status.FromForm := Data.FromForm;
     Status.ShowStatus := Data.ShowStatus;
     Status.Other := Data.Other;
+    Status.Version := Data.Version;
+    if Data.Version then
+    begin
+      try
+        Status.Message := HTTP.Get(Data.URLDownload);
+        if HTTP.ResponseStatusCode = 200 then
+        begin
+          Status.StatusDownload := True;
+          Synchronize(@ToForm);
+        end;
+      except
+        on E: Exception do
+        begin
+          Status.ErrorString := E.Message;
+          Status.Error := True;
+          Synchronize(@ToForm);
+          Exit;
+        end;
+      end;
+      Exit;
+    end;
     try
       HTTP.Get(Data.URLDownload, Document);
       if HTTP.ResponseStatusCode = 200 then
@@ -117,9 +139,9 @@ begin
       Update_Form.DataFromDownloadThread(Status);
     end;
 
-    if (Status.Other = 'CheckVersion') and (Status.StatusDownload) then
+    if Status.Version then
     begin
-      Update_Form.CheckVersion;
+      Update_Form.DataFromDownloadThread(Status);
     end;
   end;
 
@@ -129,11 +151,13 @@ begin
     begin
       ConfigForm.DataFromDownloadThread(Status);
     end;
-    if (Status.Other = 'CheckVersion') and (Status.StatusDownload) then
+
+    if Status.Version then
     begin
-      ConfigForm.CheckVersion;
+      ConfigForm.DataFromDownloadThread(Status);
     end;
   end;
+
 end;
 
 procedure TDownloadFilesThread.OnDataReceived(Sender: TObject;
@@ -159,6 +183,7 @@ begin
   Status.FromForm := '';
   Status.ShowStatus := False;
   Status.Other := '';
+  Status.Version := False;
 end;
 
 end.

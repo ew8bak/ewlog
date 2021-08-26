@@ -1,4 +1,4 @@
 {"version":1,"strings":[
 {"hash":26117481,"name":"tchangelog_form.caption","sourcebytes":[67,104,97,110,103,101,32,104,105,115,116,111,114,121],"value":"Change history"},
-{"hash":1339,"name":"tchangelog_form.button1.caption","sourcebytes":[79,75],"value":"OK"}
+{"hash":1339,"name":"tchangelog_form.btok.caption","sourcebytes":[79,75],"value":"OK"}
 ]}
