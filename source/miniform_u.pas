@@ -2363,6 +2363,10 @@ begin
   LBUTCTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC);
   LBRemoteTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC + TimeDIF / 24);
   {$ENDIF WINDOWS}
+  {$IFDEF DARWIN}
+  LBUTCTimeD.Caption := FormatDateTime('hh:mm', NowUTC);
+  LBRemoteTimeD.Caption := FormatDateTime('hh:mm', NowUTC + TimeDIF / 24);
+  {$ENDIF DARWIN}
   if CBRealTime.Checked then
   begin
     DateTimePicker1.DateTime := NowUTC;

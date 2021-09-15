@@ -1155,8 +1155,8 @@ msgstr ""
 msgid "Label5"
 msgstr ""
 
-#: tchangelog_form.button1.caption
-msgctxt "tchangelog_form.button1.caption"
+#: tchangelog_form.btok.caption
+msgctxt "tchangelog_form.btok.caption"
 msgid "OK"
 msgstr ""
 
@@ -4091,6 +4091,11 @@ msgctxt "tminiform.caption"
 msgid "EWLog - HAM Journal"
 msgstr ""
 
+#: tminiform.cbcurrentlog.text
+msgctxt "tminiform.cbcurrentlog.text"
+msgid "0"
+msgstr ""
+
 #: tminiform.cbfilter.caption
 msgctxt "tminiform.cbfilter.caption"
 msgid "Filter"
@@ -4136,7 +4141,7 @@ msgstr ""
 
 #: tminiform.dateedit1.text
 msgctxt "tminiform.dateedit1.text"
-msgid "  .  .    "
+msgid "  /  /    "
 msgstr ""
 
 #: tminiform.datetimepicker1.textfornulldate

@@ -244,8 +244,11 @@ var
   tmpFreq: string;
   Freq_float: double;
   Query: TSQLQuery;
+  FormatSettings: TFormatSettings;
 begin
   try
+    FormatSettings.DateSeparator := '.';
+    FormatSettings.ShortDateFormat := 'dd.mm.yyyy';
     Query := TSQLQuery.Create(nil);
     if DBRecord.CurrentDB = 'MySQL' then
       Query.DataBase := InitDB.MySQLConnection
@@ -259,13 +262,13 @@ begin
     begin
       if DBRecord.CurrentDB = 'MySQL' then
         Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
-          ' WHERE QSODate >= ' + '''' + FormatDateTime('yyyy-mm-dd', StrToDate(date)) +
+          ' WHERE QSODate >= ' + '''' + FormatDateTime('yyyy-mm-dd', StrToDate(date, FormatSettings)) +
           '''' + ' OR SYNC = 0 ORDER BY UnUsedIndex ASC'
       else
         Query.SQL.Text :=
           'SELECT * FROM ' + LBRecord.LogTable + ' WHERE ' + 'strftime(' +
           QuotedStr('%Y-%m-%d') + ',QSODate) >= ' +
-          QuotedStr(FormatDateTime('yyyy-mm-dd', StrToDate(date))) +
+          QuotedStr(FormatDateTime('yyyy-mm-dd', StrToDate(date, FormatSettings))) +
           ' OR SYNC = 0 ORDER BY UnUsedIndex ASC';
     end;
     Query.Open;
