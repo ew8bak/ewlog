@@ -17,7 +17,11 @@ uses
 {$IFDEF UNIX}
   CThreads,
 {$ENDIF}
-  Classes, SysUtils, LazFileUtils, fphttpclient;
+  Classes, SysUtils, LazFileUtils,
+  {$IFDEF DARWIN}
+  ns_url_request,
+  {$ENDIF DARWIN}
+  fphttpclient;
 
 type
   TGetInfoThread = class(TThread)
@@ -42,10 +46,24 @@ uses
 
 function TGetInfoThread.GetInfo(url: string): boolean;
 var
+{$IFDEF DARWIN}
+  HTTP: TNSHTTPSendAndReceive;
+{$ELSE}
   HTTP: TFPHttpClient;
   Document: TMemoryStream;
+{$ENDIF}
 begin
   Result := False;
+{$IFDEF DARWIN}
+  try
+    HTTP := TNSHTTPSendAndReceive.Create;
+    HTTP.Method := 'GET';
+    HTTP.Address := url;
+    HTTP.SendAndReceive(resp);
+  finally
+    FreeAndNil(HTTP);
+  end;
+{$ELSE}
   try
     Document := TMemoryStream.Create;
     HTTP := TFPHttpClient.Create(nil);
@@ -58,6 +76,7 @@ begin
     FreeAndNil(HTTP);
     FreeAndNil(Document);
   end;
+{$ENDIF}
 end;
 
 constructor TGetInfoThread.Create;

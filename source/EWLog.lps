@@ -19,7 +19,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="33"/>
         <CursorPos X="16" Y="51"/>
         <UsageCount Value="200"/>
@@ -31,7 +31,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="288"/>
         <CursorPos X="3" Y="235"/>
         <UsageCount Value="200"/>
@@ -67,7 +67,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="387"/>
         <CursorPos X="30" Y="403"/>
         <UsageCount Value="200"/>
@@ -251,7 +251,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="54"/>
         <CursorPos X="51" Y="71"/>
         <UsageCount Value="200"/>
@@ -276,7 +276,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="190"/>
         <CursorPos X="22" Y="146"/>
         <UsageCount Value="200"/>
@@ -484,7 +484,7 @@
       <Unit45>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="11"/>
         <CursorPos X="14" Y="24"/>
         <UsageCount Value="201"/>
@@ -512,18 +512,20 @@
         <Filename Value="getphotofrominternet.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetPhotoFromInternet"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="29"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="21"/>
         <CursorPos X="73" Y="34"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit48>
       <Unit49>
         <Filename Value="getinfofrominternetthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetInfoFromInternetThread"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="11"/>
-        <CursorPos X="48" Y="20"/>
+        <TopLine Value="44"/>
+        <CursorPos X="24" Y="61"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit49>
@@ -667,7 +669,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSession"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="44" Y="20"/>
+        <TopLine Value="59"/>
+        <CursorPos X="7" Y="72"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit65>
@@ -677,8 +680,7 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="2113"/>
         <CursorPos X="5" Y="2119"/>
         <UsageCount Value="201"/>
@@ -700,7 +702,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="319"/>
         <CursorPos X="41" Y="341"/>
         <UsageCount Value="200"/>
@@ -781,7 +783,7 @@
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="248"/>
         <CursorPos X="8" Y="248"/>
         <UsageCount Value="200"/>
@@ -953,7 +955,7 @@
         <Filename Value="downloadqslthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="downloadQSLthread"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="93"/>
         <CursorPos X="32" Y="24"/>
         <UsageCount Value="44"/>
@@ -963,7 +965,7 @@
         <Filename Value="downloadfilesthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadFilesThread"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="102"/>
         <CursorPos X="6" Y="136"/>
         <UsageCount Value="37"/>
@@ -2005,11 +2007,11 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="335" TopLine="318"/>
+        <Caret Line="335" TopLine="317"/>
       </Position1>
       <Position2>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="90" TopLine="72"/>
+        <Caret Line="338" Column="21" TopLine="317"/>
       </Position2>
       <Position3>
         <Filename Value="serverdm_u.pas"/>
@@ -2017,27 +2019,27 @@
       </Position3>
       <Position4>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="338" Column="21" TopLine="317"/>
+        <Caret Line="336" TopLine="317"/>
       </Position4>
       <Position5>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="335" TopLine="317"/>
+        <Caret Line="339" TopLine="317"/>
       </Position5>
       <Position6>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="336" TopLine="317"/>
+        <Caret Line="338" TopLine="317"/>
       </Position6>
       <Position7>
         <Filename Value="serverdm_u.pas"/>
-        <Caret Line="339" TopLine="317"/>
+        <Caret Line="341" Column="41" TopLine="319"/>
       </Position7>
       <Position8>
-        <Filename Value="serverdm_u.pas"/>
-        <Caret Line="338" TopLine="317"/>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="90" TopLine="69"/>
       </Position8>
       <Position9>
-        <Filename Value="serverdm_u.pas"/>
-        <Caret Line="341" Column="41" TopLine="319"/>
+        <Filename Value="mobilesyncthread.pas"/>
+        <Caret Line="91" TopLine="69"/>
       </Position9>
       <Position10>
         <Filename Value="mobilesyncthread.pas"/>
@@ -2049,79 +2051,79 @@
       </Position11>
       <Position12>
         <Filename Value="mobilesyncthread.pas"/>
-        <Caret Line="90" TopLine="69"/>
+        <Caret Line="90" Column="10" TopLine="69"/>
       </Position12>
       <Position13>
-        <Filename Value="mobilesyncthread.pas"/>
-        <Caret Line="91" TopLine="69"/>
-      </Position13>
-      <Position14>
-        <Filename Value="mobilesyncthread.pas"/>
-        <Caret Line="90" Column="10" TopLine="69"/>
-      </Position14>
-      <Position15>
         <Filename Value="editqso_u.pas"/>
         <Caret Line="291" Column="41" TopLine="224"/>
-      </Position15>
-      <Position16>
+      </Position13>
+      <Position14>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="56" Column="15" TopLine="40"/>
-      </Position16>
-      <Position17>
+      </Position14>
+      <Position15>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="2002" Column="37" TopLine="1976"/>
+      </Position15>
+      <Position16>
+        <Filename Value="getsession.pas"/>
+        <Caret Line="63" Column="30" TopLine="43"/>
+      </Position16>
+      <Position17>
+        <Filename Value="getsession.pas"/>
+        <Caret Line="55" Column="12" TopLine="37"/>
       </Position17>
       <Position18>
         <Filename Value="getsession.pas"/>
-        <Caret Line="63" Column="30" TopLine="43"/>
+        <Caret Line="56" Column="51" TopLine="41"/>
       </Position18>
       <Position19>
         <Filename Value="getsession.pas"/>
-        <Caret Line="55" Column="12" TopLine="37"/>
+        <Caret Line="20" Column="66" TopLine="7"/>
       </Position19>
       <Position20>
         <Filename Value="getsession.pas"/>
-        <Caret Line="56" Column="51" TopLine="41"/>
+        <Caret Line="56" Column="49" TopLine="38"/>
       </Position20>
       <Position21>
-        <Filename Value="getsession.pas"/>
-        <Caret Line="20" Column="66" TopLine="7"/>
-      </Position21>
-      <Position22>
-        <Filename Value="getsession.pas"/>
-        <Caret Line="56" Column="49" TopLine="38"/>
-      </Position22>
-      <Position23>
         <Filename Value="getinfofrominternetthread.pas"/>
         <Caret Line="65" Column="60" TopLine="37"/>
-      </Position23>
-      <Position24>
+      </Position21>
+      <Position22>
         <Filename Value="getinfofrominternetthread.pas"/>
         <Caret Line="20" Column="70" TopLine="13"/>
+      </Position22>
+      <Position23>
+        <Filename Value="getsession.pas"/>
+        <Caret Line="75" Column="34" TopLine="52"/>
+      </Position23>
+      <Position24>
+        <Filename Value="getsession.pas"/>
+        <Caret Line="57" Column="26" TopLine="36"/>
       </Position24>
       <Position25>
         <Filename Value="getsession.pas"/>
-        <Caret Line="75" Column="34" TopLine="52"/>
+        <Caret Line="20" Column="91"/>
       </Position25>
       <Position26>
         <Filename Value="getsession.pas"/>
-        <Caret Line="57" Column="26" TopLine="36"/>
+        <Caret Line="75" Column="35" TopLine="57"/>
       </Position26>
       <Position27>
-        <Filename Value="getsession.pas"/>
-        <Caret Line="20" Column="91"/>
-      </Position27>
-      <Position28>
-        <Filename Value="getsession.pas"/>
-        <Caret Line="75" Column="35" TopLine="57"/>
-      </Position28>
-      <Position29>
         <Filename Value="getinfofrominternetthread.pas"/>
         <Caret Line="65" Column="33" TopLine="47"/>
-      </Position29>
-      <Position30>
+      </Position27>
+      <Position28>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="2356" Column="15" TopLine="2320"/>
+      </Position28>
+      <Position29>
+        <Filename Value="getsession.pas"/>
+        <Caret Line="70" Column="10" TopLine="55"/>
+      </Position29>
+      <Position30>
+        <Filename Value="getsession.pas"/>
+        <Caret Line="79" Column="28" TopLine="52"/>
       </Position30>
     </JumpHistory>
     <RunParams>
