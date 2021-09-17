@@ -2115,7 +2115,7 @@ begin
   //MapView
   if PFXR.Found and CBMap.Checked then
     MapForm.WriteMap(Lat, Lon, 9);
-  FoundQSOR.Found := False;
+
   FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(editButtonText));
   if FoundQSOR.Found then
   begin
