@@ -30,11 +30,10 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="287"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="235"/>
         <CursorPos X="3" Y="235"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="informationform_u.pas"/>
@@ -249,11 +248,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="54"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="348"/>
         <CursorPos X="51" Y="71"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit23>
       <Unit24>
         <Filename Value="setupform_u.pas"/>
@@ -274,12 +272,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="193"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="149"/>
         <CursorPos X="30" Y="149"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit25>
       <Unit26>
         <Filename Value="changelog_form_u.pas"/>
@@ -673,10 +669,13 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="1995"/>
         <CursorPos X="3" Y="1997"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit66>
       <Unit67>
         <Filename Value="imbedcallbookcheckrec.pas"/>
@@ -694,8 +693,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="319"/>
-        <CursorPos X="41" Y="341"/>
+        <TopLine Value="406"/>
+        <CursorPos X="5" Y="436"/>
         <UsageCount Value="200"/>
       </Unit68>
       <Unit69>
@@ -943,20 +942,18 @@
         <Filename Value="downloadqslthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="downloadQSLthread"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="134"/>
-        <CursorPos X="9" Y="145"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="105"/>
+        <CursorPos X="42" Y="20"/>
         <UsageCount Value="44"/>
-        <Loaded Value="True"/>
       </Unit92>
       <Unit93>
         <Filename Value="downloadfilesthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadFilesThread"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="16"/>
-        <CursorPos X="56" Y="82"/>
+        <TopLine Value="147"/>
+        <CursorPos X="37" Y="23"/>
         <UsageCount Value="37"/>
       </Unit93>
       <Unit94>
@@ -1993,23 +1990,12 @@
       </Unit233>
       <Unit234>
         <Filename Value="ns_url_request.pas"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="128"/>
-        <CursorPos X="50" Y="71"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="50" Y="27"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit234>
     </Units>
-    <JumpHistory Count="2" HistoryIndex="1">
-      <Position1>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="66" Column="15" TopLine="49"/>
-      </Position1>
-      <Position2>
-        <Filename Value="updateform_u.pas"/>
-        <Caret Line="149" Column="30" TopLine="143"/>
-      </Position2>
-    </JumpHistory>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode="default"/>

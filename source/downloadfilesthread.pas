@@ -14,7 +14,7 @@ unit DownloadFilesThread;
 interface
 
 uses
-  Classes, SysUtils, LazFileUtils, fphttpclient, ResourceStr, ns_url_request;
+  Classes, SysUtils, LazFileUtils, fphttpclient, ResourceStr;
 
 type
   TdataThread = record

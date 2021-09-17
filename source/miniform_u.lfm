@@ -1229,7 +1229,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 5
     Height = 13
-    Top = 228
+    Top = 229
     Width = 64
     BorderSpacing.Left = 5
     Caption = 'Sub. State'
@@ -1244,10 +1244,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 69
     Height = 21
-    Top = 224
+    Top = 225
     Width = 72
     AutoSize = False
-    BorderSpacing.Top = 4
+    BorderSpacing.Top = 5
     Font.Height = -12
     ParentFont = False
     TabOrder = 22
@@ -1259,7 +1259,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 141
     Height = 20
-    Top = 224
+    Top = 225
     Width = 23
     Caption = ' .1. '
     Font.Height = -12
@@ -1272,10 +1272,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 164
     Height = 21
-    Top = 224
+    Top = 225
     Width = 72
     AutoSize = False
-    BorderSpacing.Top = 4
+    BorderSpacing.Top = 5
     Font.Height = -12
     ParentFont = False
     TabOrder = 23
@@ -1287,7 +1287,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 236
     Height = 20
-    Top = 224
+    Top = 225
     Width = 23
     Caption = ' .2. '
     Font.Height = -12
@@ -1300,10 +1300,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 259
     Height = 21
-    Top = 224
+    Top = 225
     Width = 72
     AutoSize = False
-    BorderSpacing.Top = 4
+    BorderSpacing.Top = 5
     Font.Height = -12
     ParentFont = False
     TabOrder = 24
@@ -1315,7 +1315,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 331
     Height = 20
-    Top = 224
+    Top = 225
     Width = 23
     BorderSpacing.Top = 13
     Caption = ' .3. '
@@ -1329,10 +1329,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 354
     Height = 21
-    Top = 224
+    Top = 225
     Width = 72
     AutoSize = False
-    BorderSpacing.Top = 4
+    BorderSpacing.Top = 5
     Font.Height = -12
     ParentFont = False
     TabOrder = 25
@@ -1344,7 +1344,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 426
     Height = 20
-    Top = 224
+    Top = 225
     Width = 23
     Caption = ' .4. '
     Font.Height = -12
@@ -1356,7 +1356,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 2
     Height = 13
-    Top = 253
+    Top = 254
     Width = 59
     BorderSpacing.Left = 2
     Caption = 'Comment'
@@ -1371,7 +1371,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 64
     Height = 21
-    Top = 249
+    Top = 250
     Width = 371
     AutoSize = False
     BorderSpacing.Left = 3
@@ -1386,7 +1386,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 7
     Height = 13
-    Top = 278
+    Top = 279
     Width = 8
     BorderSpacing.Left = 5
     Caption = '0'
@@ -1402,7 +1402,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 20
     Height = 18
-    Top = 275
+    Top = 276
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1413,7 +1413,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 28
     Height = 13
-    Top = 278
+    Top = 279
     Width = 32
     BorderSpacing.Left = 5
     Caption = 'Date'
@@ -1429,7 +1429,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 65
     Height = 18
-    Top = 275
+    Top = 276
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1440,7 +1440,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 73
     Height = 13
-    Top = 278
+    Top = 279
     Width = 33
     BorderSpacing.Left = 5
     Caption = 'Time'
@@ -1456,7 +1456,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 111
     Height = 18
-    Top = 275
+    Top = 276
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1467,7 +1467,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 119
     Height = 13
-    Top = 278
+    Top = 279
     Width = 35
     BorderSpacing.Left = 5
     Caption = 'Band'
@@ -1483,7 +1483,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 159
     Height = 18
-    Top = 275
+    Top = 276
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1494,7 +1494,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 167
     Height = 13
-    Top = 278
+    Top = 279
     Width = 37
     BorderSpacing.Left = 5
     Caption = 'Mode'
@@ -1510,7 +1510,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 209
     Height = 18
-    Top = 275
+    Top = 276
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1521,7 +1521,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 217
     Height = 13
-    Top = 278
+    Top = 279
     Width = 39
     BorderSpacing.Left = 5
     Caption = 'Name'
@@ -1536,7 +1536,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 2
     Height = 19
-    Top = 275
+    Top = 276
     Width = 420
     BorderSpacing.Left = 2
     BorderSpacing.Top = 5
@@ -1547,7 +1547,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 5
     Height = 13
-    Top = 304
+    Top = 305
     Width = 50
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
@@ -1562,7 +1562,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 5
     Height = 13
-    Top = 327
+    Top = 328
     Width = 49
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
@@ -1577,7 +1577,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 5
     Height = 13
-    Top = 350
+    Top = 351
     Width = 32
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
@@ -1593,7 +1593,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 58
     Height = 13
-    Top = 304
+    Top = 305
     Width = 35
     BorderSpacing.Left = 3
     Caption = '.......'
@@ -1610,7 +1610,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 57
     Height = 13
-    Top = 327
+    Top = 328
     Width = 35
     BorderSpacing.Left = 3
     Caption = '.......'
@@ -1626,7 +1626,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 40
     Height = 13
-    Top = 350
+    Top = 351
     Width = 35
     BorderSpacing.Left = 3
     Caption = '.......'
@@ -1641,7 +1641,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 100
     Height = 13
-    Top = 304
+    Top = 305
     Width = 52
     BorderSpacing.Left = 100
     BorderSpacing.Top = 10
@@ -1656,7 +1656,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 100
     Height = 13
-    Top = 350
+    Top = 351
     Width = 34
     BorderSpacing.Left = 100
     Caption = 'Prefix'
@@ -1671,7 +1671,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 155
     Height = 13
-    Top = 304
+    Top = 305
     Width = 35
     BorderSpacing.Left = 3
     Caption = '.......'
@@ -1687,7 +1687,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 137
     Height = 13
-    Top = 350
+    Top = 351
     Width = 35
     BorderSpacing.Left = 3
     Caption = '.......'
@@ -1702,7 +1702,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 235
     Height = 13
-    Top = 304
+    Top = 305
     Width = 50
     BorderSpacing.Left = 235
     BorderSpacing.Top = 10
@@ -1718,7 +1718,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 288
     Height = 13
-    Top = 304
+    Top = 305
     Width = 35
     BorderSpacing.Left = 3
     Caption = '.......'
@@ -1733,7 +1733,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 352
     Height = 13
-    Top = 304
+    Top = 305
     Width = 60
     BorderSpacing.Left = 352
     BorderSpacing.Top = 10
@@ -1749,7 +1749,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 415
     Height = 13
-    Top = 304
+    Top = 305
     Width = 35
     BorderSpacing.Left = 3
     Caption = '.......'
@@ -1765,7 +1765,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 288
     Height = 13
-    Top = 327
+    Top = 328
     Width = 35
     BorderSpacing.Left = 3
     Caption = '.......'
@@ -1780,7 +1780,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 225
     Height = 13
-    Top = 350
+    Top = 351
     Width = 17
     BorderSpacing.Left = 225
     Caption = 'CQ'
@@ -1795,7 +1795,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 247
     Height = 13
-    Top = 350
+    Top = 351
     Width = 10
     BorderSpacing.Left = 5
     Caption = '..'
@@ -1810,7 +1810,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 270
     Height = 13
-    Top = 350
+    Top = 351
     Width = 20
     BorderSpacing.Left = 270
     Caption = 'ITU'
@@ -1825,7 +1825,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 295
     Height = 13
-    Top = 350
+    Top = 351
     Width = 10
     BorderSpacing.Left = 5
     Caption = '..'
@@ -1839,7 +1839,7 @@ object MiniForm: TMiniForm
     AnchorSideRight.Control = CBYourQSL
     Left = 322
     Height = 13
-    Top = 350
+    Top = 351
     Width = 54
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 55
@@ -1858,7 +1858,7 @@ object MiniForm: TMiniForm
     AnchorSideRight.Side = asrBottom
     Left = 378
     Height = 27
-    Top = 343
+    Top = 344
     Width = 96
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 2
@@ -1885,7 +1885,7 @@ object MiniForm: TMiniForm
     AnchorSideRight.Control = SBInfo
     Left = 432
     Height = 20
-    Top = 274
+    Top = 275
     Width = 20
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 2
@@ -1936,7 +1936,7 @@ object MiniForm: TMiniForm
     AnchorSideRight.Side = asrBottom
     Left = 454
     Height = 20
-    Top = 274
+    Top = 275
     Width = 20
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 5
@@ -1985,7 +1985,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 95
     Height = 13
-    Top = 327
+    Top = 328
     Width = 37
     BorderSpacing.Left = 3
     Caption = '(Cfm)'
@@ -2033,10 +2033,11 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = SBMGR
     AnchorSideTop.Side = asrCenter
-    Left = 463
+    Left = 464
     Height = 15
     Top = 196
     Width = 15
+    BorderSpacing.Left = 1
     Caption = '▲'
     OnClick = SBHideCommentClick
   end
