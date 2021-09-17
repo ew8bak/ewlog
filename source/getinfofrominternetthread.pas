@@ -61,6 +61,7 @@ begin
     HTTP.Address := url;
     HTTP.SendAndReceive(resp);
   finally
+    Result := True;
     FreeAndNil(HTTP);
   end;
 {$ELSE}
