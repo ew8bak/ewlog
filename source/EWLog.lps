@@ -666,7 +666,6 @@
         <Filename Value="getsession.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSession"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="44" Y="20"/>
         <UsageCount Value="200"/>
@@ -678,9 +677,10 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="2320"/>
-        <CursorPos X="15" Y="2356"/>
+        <TopLine Value="2119"/>
+        <CursorPos X="26" Y="2120"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1982,27 +1982,27 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit230>
       <Unit231>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.0\packages\fcl-web\src\base\fphttpclient.pp"/>
+        <Filename Value="..\..\..\..\..\usr\local\share\fpcsrc\3.2.0\packages\fcl-web\src\base\fphttpclient.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="342"/>
         <CursorPos X="14" Y="358"/>
         <UsageCount Value="10"/>
       </Unit231>
       <Unit232>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.0\packages\fcl-net\src\sslsockets.pp"/>
+        <Filename Value="..\..\..\..\..\usr\local\share\fpcsrc\3.2.0\packages\fcl-net\src\sslsockets.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="51"/>
         <CursorPos X="14" Y="68"/>
         <UsageCount Value="10"/>
       </Unit232>
       <Unit233>
-        <Filename Value="..\..\..\..\..\..\usr\local\share\fpcsrc\3.2.0\packages\fcl-net\src\sslbase.pp"/>
+        <Filename Value="..\..\..\..\..\usr\local\share\fpcsrc\3.2.0\packages\fcl-net\src\sslbase.pp"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="64" Y="11"/>
         <UsageCount Value="10"/>
       </Unit233>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="serverdm_u.pas"/>
         <Caret Line="335" TopLine="318"/>
@@ -2119,6 +2119,10 @@
         <Filename Value="getinfofrominternetthread.pas"/>
         <Caret Line="65" Column="33" TopLine="47"/>
       </Position29>
+      <Position30>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="2356" Column="15" TopLine="2320"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

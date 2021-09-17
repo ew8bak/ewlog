@@ -2056,8 +2056,7 @@ begin
     LBPrefixD.Caption := '.......';
     Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
       LBRecord.OpLat, LBRecord.OpLon);
-    Earth.PaintLine(FloatToStr(LBRecord.OpLat), FloatToStr(LBRecord.OpLon),
-      LBRecord.OpLat, LBRecord.OpLon);
+    Earth.Invalidate;
     Exit;
   end;
 
@@ -2111,11 +2110,12 @@ begin
   end;
   dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
   Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-  Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+  Earth.Invalidate;
+
   //MapView
   if PFXR.Found and CBMap.Checked then
     MapForm.WriteMap(Lat, Lon, 9);
-
+  FoundQSOR.Found := False;
   FoundQSOR := MainFunc.FindQSO(dmfunc.ExtractCallsign(editButtonText));
   if FoundQSOR.Found then
   begin
