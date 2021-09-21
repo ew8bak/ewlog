@@ -551,7 +551,7 @@ begin
       TimeDIF := PFXR.TimeDiff;
       dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
       Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-      Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+      Earth.Invalidate;
       //if PFXR.Found and MiniForm.CBMap.Checked then
       //  MainFunc.LoadMaps(Lat, Lon, MainForm.MapView1);
     end;

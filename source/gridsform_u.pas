@@ -211,7 +211,7 @@ begin
     TimeDIF := PFXR.TimeDiff;
     dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
     Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
-    Earth.PaintLine(Lat, Lon, LBRecord.OpLat, LBRecord.OpLon);
+    Earth.Invalidate;
     UnUsIndex := DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     MiniForm.TextSB('QSO № ' + IntToStr(SelQSOR.NumSelectQSO) +
       rQSOTotal + IntToStr(CountAllRecords), 1);
