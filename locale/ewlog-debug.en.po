@@ -2695,7 +2695,7 @@ msgid "Satelite"
 msgstr ""
 
 #: teditqso_form.label22.caption
-msgid "Satelite mode"
+msgid "SAT mode"
 msgstr ""
 
 #: teditqso_form.label23.caption
@@ -2740,16 +2740,7 @@ msgid "QTH"
 msgstr ""
 
 #: teditqso_form.label7.caption
-msgid "Note for"
-msgstr ""
-
-#: teditqso_form.label8.caption
-msgid "this"
-msgstr ""
-
-#: teditqso_form.label9.caption
-msgctxt "teditqso_form.label9.caption"
-msgid "QSO"
+msgid "Note for QSO"
 msgstr ""
 
 #: teditqso_form.radiobutton1.caption

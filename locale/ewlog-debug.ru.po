@@ -2734,7 +2734,9 @@ msgid "Satelite"
 msgstr "Спутник"
 
 #: teditqso_form.label22.caption
-msgid "Satelite mode"
+#, fuzzy
+#| msgid "Satelite mode"
+msgid "SAT mode"
 msgstr "Режим"
 
 #: teditqso_form.label23.caption
@@ -2779,17 +2781,10 @@ msgid "QTH"
 msgstr "QTH"
 
 #: teditqso_form.label7.caption
-msgid "Note for"
+#, fuzzy
+#| msgid "Note for"
+msgid "Note for QSO"
 msgstr "Комм"
-
-#: teditqso_form.label8.caption
-msgid "this"
-msgstr "ента"
-
-#: teditqso_form.label9.caption
-msgctxt "teditqso_form.label9.caption"
-msgid "QSO"
-msgstr "рий"
 
 #: teditqso_form.radiobutton1.caption
 msgctxt "teditqso_form.radiobutton1.caption"

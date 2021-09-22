@@ -30,10 +30,13 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="235"/>
-        <CursorPos X="3" Y="235"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="412"/>
+        <CursorPos X="3" Y="451"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="informationform_u.pas"/>
@@ -669,7 +672,6 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="1995"/>
         <CursorPos X="3" Y="1997"/>
@@ -870,7 +872,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="57" Y="8"/>
-        <UsageCount Value="157"/>
+        <UsageCount Value="158"/>
       </Unit85>
       <Unit86>
         <Filename Value="cwkeysform_u.pas"/>
@@ -881,7 +883,7 @@
         <UnitName Value="CWKeysForm_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="10"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="157"/>
       </Unit86>
       <Unit87>
         <Filename Value="macroeditorform_u.pas"/>
@@ -893,7 +895,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos X="28" Y="61"/>
-        <UsageCount Value="155"/>
+        <UsageCount Value="156"/>
       </Unit87>
       <Unit88>
         <Filename Value="cwkeysdm_u.pas"/>
@@ -905,7 +907,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="143"/>
         <CursorPos X="73" Y="145"/>
-        <UsageCount Value="153"/>
+        <UsageCount Value="154"/>
       </Unit88>
       <Unit89>
         <Filename Value="cwtypeform_u.pas"/>
@@ -916,7 +918,7 @@
         <UnitName Value="CWTypeForm_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="53"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="133"/>
       </Unit89>
       <Unit90>
         <Filename Value="dmtci_u.pas"/>
@@ -927,7 +929,7 @@
         <UnitName Value="dmTCI_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="65" Y="55"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="93"/>
       </Unit90>
       <Unit91>
         <Filename Value="streamadapter_u.pas"/>
@@ -936,7 +938,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="44" Y="35"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="63"/>
       </Unit91>
       <Unit92>
         <Filename Value="downloadqslthread.pas"/>
@@ -945,7 +947,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="105"/>
         <CursorPos X="42" Y="20"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
       </Unit92>
       <Unit93>
         <Filename Value="downloadfilesthread.pas"/>
@@ -954,7 +956,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="147"/>
         <CursorPos X="37" Y="23"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="38"/>
       </Unit93>
       <Unit94>
         <Filename Value="download_lotw.pas"/>
@@ -1995,7 +1997,24 @@
         <UsageCount Value="10"/>
       </Unit234>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="4" HistoryIndex="3">
+      <Position1>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="235" Column="3" TopLine="235"/>
+      </Position1>
+      <Position2>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="453" Column="3" TopLine="414"/>
+      </Position2>
+      <Position3>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="452" Column="3" TopLine="413"/>
+      </Position3>
+      <Position4>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="451" Column="3" TopLine="412"/>
+      </Position4>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode="default"/>

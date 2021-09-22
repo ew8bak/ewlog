@@ -1,12 +1,12 @@
 object EditQSO_Form: TEditQSO_Form
-  Left = 500
-  Height = 600
-  Top = 304
-  Width = 491
+  Left = 284
+  Height = 632
+  Top = 282
+  Width = 490
   BorderStyle = bsDialog
   Caption = 'QSO Editor'
-  ClientHeight = 600
-  ClientWidth = 491
+  ClientHeight = 632
+  ClientWidth = 490
   DefaultMonitor = dmMainForm
   OnClose = FormClose
   OnShow = FormShow
@@ -14,12 +14,16 @@ object EditQSO_Form: TEditQSO_Form
   ShowInTaskBar = stNever
   LCLVersion = '2.0.12.0'
   object GroupBox1: TGroupBox
-    Left = 7
-    Height = 340
-    Top = 12
+    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Owner
+    Left = 6
+    Height = 364
+    Top = 5
     Width = 479
+    BorderSpacing.Top = 5
     Caption = 'Territory'
-    ClientHeight = 324
+    ClientHeight = 348
     ClientWidth = 477
     Font.Height = -12
     ParentFont = False
@@ -71,9 +75,11 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 1
     end
     object DateTimePicker1: TDateTimePicker
-      AnchorSideTop.Control = Edit1
-      AnchorSideTop.Side = asrBottom
-      Left = 175
+      AnchorSideLeft.Control = DateEdit1
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = DateEdit1
+      AnchorSideTop.Side = asrCenter
+      Left = 178
       Height = 21
       Top = 44
       Width = 57
@@ -83,6 +89,7 @@ object EditQSO_Form: TEditQSO_Form
       Font.Height = -12
       ParentFont = False
       TabOrder = 2
+      BorderSpacing.Left = 5
       BorderSpacing.Top = 5
       TrailingSeparator = False
       TextForNullDate = 'NULL'
@@ -150,12 +157,13 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 6
     end
     object Memo1: TMemo
-      AnchorSideTop.Control = Edit5
+      AnchorSideTop.Control = ComboBox3
       AnchorSideTop.Side = asrBottom
-      Left = 70
+      Left = 4
       Height = 44
-      Top = 174
-      Width = 403
+      Top = 194
+      Width = 469
+      Anchors = [akTop]
       BorderSpacing.Top = 5
       Font.Height = -12
       ParentFont = False
@@ -166,7 +174,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 70
       Height = 21
-      Top = 223
+      Top = 243
       Width = 80
       AutoSize = False
       BorderSpacing.Top = 5
@@ -181,7 +189,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 155
       Height = 21
-      Top = 223
+      Top = 243
       Width = 80
       AutoSize = False
       BorderSpacing.Left = 5
@@ -195,7 +203,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 70
       Height = 21
-      Top = 249
+      Top = 269
       Width = 80
       AutoSize = False
       BorderSpacing.Top = 5
@@ -208,7 +216,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 70
       Height = 21
-      Top = 275
+      Top = 295
       Width = 72
       AutoSize = False
       BorderSpacing.Top = 5
@@ -222,7 +230,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit10
       Left = 1
       Height = 13
-      Top = 279
+      Top = 299
       Width = 64
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -238,7 +246,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 143
       Height = 22
-      Top = 274
+      Top = 294
       Width = 23
       BorderSpacing.Left = 1
       Caption = '.1.'
@@ -250,7 +258,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 167
       Height = 21
-      Top = 275
+      Top = 295
       Width = 72
       AutoSize = False
       BorderSpacing.Top = 5
@@ -265,7 +273,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 240
       Height = 22
-      Top = 274
+      Top = 294
       Width = 23
       BorderSpacing.Left = 1
       Caption = '.2.'
@@ -277,7 +285,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 264
       Height = 21
-      Top = 275
+      Top = 295
       Width = 72
       AutoSize = False
       BorderSpacing.Top = 5
@@ -292,7 +300,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 337
       Height = 22
-      Top = 274
+      Top = 294
       Width = 23
       BorderSpacing.Left = 1
       Caption = '.3.'
@@ -304,7 +312,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 363
       Height = 21
-      Top = 275
+      Top = 295
       Width = 72
       AutoSize = False
       BorderSpacing.Top = 5
@@ -319,7 +327,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 436
       Height = 22
-      Top = 274
+      Top = 294
       Width = 23
       BorderSpacing.Left = 1
       Caption = '.4.'
@@ -332,7 +340,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 70
       Height = 23
-      Top = 298
+      Top = 318
       Width = 107
       BorderSpacing.Top = 2
       Caption = 'No Calc DXCC'
@@ -347,7 +355,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 182
       Height = 23
-      Top = 298
+      Top = 318
       Width = 110
       BorderSpacing.Left = 5
       BorderSpacing.Top = 2
@@ -363,7 +371,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 297
       Height = 23
-      Top = 298
+      Top = 318
       Width = 85
       BorderSpacing.Left = 5
       BorderSpacing.Top = 2
@@ -448,46 +456,14 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object Label7: TLabel
-      AnchorSideTop.Control = Memo1
-      AnchorSideRight.Control = Memo1
-      Left = 17
+      AnchorSideLeft.Control = Memo1
+      AnchorSideBottom.Control = Memo1
+      Left = 4
       Height = 13
-      Top = 174
-      Width = 48
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'Note for'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object Label8: TLabel
-      AnchorSideTop.Control = Memo1
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Memo1
-      Left = 43
-      Height = 13
-      Top = 190
-      Width = 22
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'this'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object Label9: TLabel
-      AnchorSideTop.Control = Label8
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = Memo1
-      Left = 39
-      Height = 13
-      Top = 205
-      Width = 26
-      Anchors = [akTop, akRight]
-      BorderSpacing.Top = 2
-      BorderSpacing.Right = 5
-      Caption = 'QSO'
+      Top = 176
+      Width = 78
+      Anchors = [akLeft, akBottom]
+      Caption = 'Note for QSO'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
@@ -498,7 +474,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit6
       Left = 33
       Height = 13
-      Top = 227
+      Top = 247
       Width = 32
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -513,7 +489,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit8
       Left = 31
       Height = 13
-      Top = 253
+      Top = 273
       Width = 34
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -530,7 +506,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 236
       Height = 22
       Hint = 'Change country information'
-      Top = 222
+      Top = 242
       Width = 23
       BorderSpacing.Left = 1
       Caption = '...'
@@ -548,7 +524,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 151
       Height = 22
       Hint = 'Change country information'
-      Top = 248
+      Top = 268
       Width = 23
       BorderSpacing.Left = 1
       Caption = '...'
@@ -565,7 +541,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 175
       Height = 21
-      Top = 249
+      Top = 269
       Width = 145
       BorderSpacing.Left = 1
       Caption = 'To define territory'
@@ -579,7 +555,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 354
       Height = 21
-      Top = 223
+      Top = 243
       Width = 50
       AutoSize = False
       BorderSpacing.Top = 5
@@ -592,7 +568,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 354
       Height = 21
-      Top = 249
+      Top = 269
       Width = 50
       AutoSize = False
       BorderSpacing.Top = 5
@@ -607,7 +583,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit15
       Left = 409
       Height = 13
-      Top = 227
+      Top = 247
       Width = 17
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 3
@@ -622,7 +598,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit16
       Left = 406
       Height = 13
-      Top = 253
+      Top = 273
       Width = 20
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 3
@@ -637,7 +613,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit14
       Left = 326
       Height = 13
-      Top = 253
+      Top = 273
       Width = 25
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 3
@@ -652,7 +628,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideRight.Control = Edit13
       Left = 292
       Height = 13
-      Top = 227
+      Top = 247
       Width = 59
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 3
@@ -662,52 +638,45 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object Edit17: TEdit
+      AnchorSideLeft.Control = ComboBox1
       AnchorSideTop.Control = ComboBox1
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 330
+      Left = 327
       Height = 21
-      Top = 49
+      Top = 58
       Width = 112
-      Anchors = [akTop, akLeft, akRight]
       AutoSize = False
       BorderSpacing.Top = 2
-      BorderSpacing.Right = 35
       Font.Height = -12
       ParentFont = False
       TabOrder = 21
     end
     object Edit18: TEdit
+      AnchorSideLeft.Control = Edit17
       AnchorSideTop.Control = Edit17
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 330
+      Left = 327
       Height = 21
-      Top = 72
+      Top = 81
       Width = 112
-      Anchors = [akTop, akLeft, akRight]
       AutoSize = False
       BorderSpacing.Top = 2
-      BorderSpacing.Right = 35
       Font.Height = -12
       ParentFont = False
       TabOrder = 22
     end
     object ComboBox4: TComboBox
+      AnchorSideLeft.Control = DBLookupComboBox2
       AnchorSideTop.Control = DBLookupComboBox2
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 330
-      Height = 22
-      Top = 121
+      Left = 327
+      Height = 27
+      Top = 133
       Width = 112
-      Anchors = [akTop, akLeft, akRight]
-      AutoSize = False
       BorderSpacing.Top = 2
-      BorderSpacing.Right = 35
       Font.Height = -12
       ItemHeight = 16
       ParentFont = False
@@ -715,74 +684,74 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 23
     end
     object SpeedButton3: TSpeedButton
+      AnchorSideLeft.Control = ComboBox4
+      AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = ComboBox4
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 449
-      Height = 22
-      Top = 121
-      Width = 23
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
+      Left = 441
+      Height = 20
+      Top = 136
+      Width = 20
+      BorderSpacing.Left = 2
       Caption = '...'
       Font.Height = -12
       ParentFont = False
     end
     object SpeedButton8: TSpeedButton
+      AnchorSideLeft.Control = DBLookupComboBox2
+      AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = DBLookupComboBox2
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 449
-      Height = 22
-      Top = 96
-      Width = 23
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
+      Left = 441
+      Height = 20
+      Top = 107
+      Width = 20
+      BorderSpacing.Left = 2
       Caption = '...'
       Font.Height = -12
       ParentFont = False
     end
     object SpeedButton9: TSpeedButton
+      AnchorSideLeft.Control = Edit18
+      AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Edit18
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 449
-      Height = 22
-      Top = 71
-      Width = 23
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
+      Left = 441
+      Height = 20
+      Top = 81
+      Width = 20
+      BorderSpacing.Left = 2
       Caption = '...'
       Font.Height = -12
       OnClick = SpeedButton9Click
       ParentFont = False
     end
     object SpeedButton10: TSpeedButton
-      AnchorSideLeft.Control = ComboBox1
+      AnchorSideLeft.Control = Edit17
       AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Edit17
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 449
-      Height = 22
-      Top = 49
-      Width = 23
-      Anchors = [akTop, akRight]
-      BorderSpacing.Left = 1
-      BorderSpacing.Right = 5
+      Left = 441
+      Height = 20
+      Top = 58
+      Width = 20
+      BorderSpacing.Left = 2
       Caption = '...'
       Font.Height = -12
       OnClick = SpeedButton10Click
       ParentFont = False
     end
     object Label17: TLabel
+      AnchorSideTop.Control = ComboBox2
       AnchorSideTop.Side = asrCenter
-      Left = 298
+      AnchorSideRight.Control = ComboBox2
+      Left = 293
       Height = 13
-      Top = 4
+      Top = 7
       Width = 32
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -795,9 +764,9 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = ComboBox1
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = ComboBox1
-      Left = 297
+      Left = 294
       Height = 13
-      Top = 30
+      Top = 36
       Width = 31
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -810,9 +779,9 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = Edit17
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = Edit17
-      Left = 296
+      Left = 293
       Height = 13
-      Top = 53
+      Top = 62
       Width = 32
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -825,9 +794,9 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = Edit18
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = Edit18
-      Left = 301
+      Left = 298
       Height = 13
-      Top = 76
+      Top = 85
       Width = 27
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -840,9 +809,9 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = DBLookupComboBox2
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = DBLookupComboBox2
-      Left = 283
+      Left = 280
       Height = 13
-      Top = 101
+      Top = 111
       Width = 45
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -855,22 +824,24 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = ComboBox4
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = ComboBox4
-      Left = 245
+      Left = 265
       Height = 13
-      Top = 126
-      Width = 83
+      Top = 140
+      Width = 60
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
-      Caption = 'Satelite mode'
+      Caption = 'SAT mode'
       Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
     object Label23: TLabel
+      AnchorSideTop.Control = ComboBox3
       AnchorSideTop.Side = asrCenter
-      Left = 256
+      AnchorSideRight.Control = ComboBox3
+      Left = 253
       Height = 13
-      Top = 151
+      Top = 169
       Width = 72
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 2
@@ -880,18 +851,18 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object SpeedButton11: TSpeedButton
-      AnchorSideLeft.Control = Edit1
+      AnchorSideLeft.Control = DateTimePicker1
       AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit1
-      AnchorSideTop.Side = asrBottom
+      AnchorSideTop.Control = DateTimePicker1
+      AnchorSideTop.Side = asrCenter
       AnchorSideBottom.Control = Edit1
       AnchorSideBottom.Side = asrBottom
-      Left = 272
-      Height = 24
-      Top = 15
-      Width = 23
-      Anchors = [akLeft, akBottom]
-      BorderSpacing.Left = 1
+      Left = 240
+      Height = 20
+      Top = 44
+      Width = 20
+      AutoSize = True
+      BorderSpacing.Left = 5
       Font.Height = -12
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -933,18 +904,15 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object DBLookupComboBox2: TDBLookupComboBox
+      AnchorSideLeft.Control = Edit18
       AnchorSideTop.Control = Edit18
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 330
-      Height = 24
-      Top = 95
+      Left = 327
+      Height = 27
+      Top = 104
       Width = 112
-      Anchors = [akTop, akLeft, akRight]
-      AutoSize = False
       BorderSpacing.Top = 2
-      BorderSpacing.Right = 35
       Font.Height = -12
       KeyField = 'Name'
       ListField = 'Name'
@@ -955,17 +923,15 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 24
     end
     object ComboBox1: TComboBox
+      AnchorSideLeft.Control = ComboBox2
+      AnchorSideTop.Control = ComboBox2
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 330
-      Height = 22
-      Top = 25
-      Width = 122
-      Anchors = [akTop, akLeft, akRight]
-      AutoSize = False
+      Left = 327
+      Height = 27
+      Top = 29
+      Width = 145
       BorderSpacing.Top = 2
-      BorderSpacing.Right = 25
       Font.Height = -12
       ItemHeight = 16
       OnSelect = ComboBox1Select
@@ -978,7 +944,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 429
       Height = 21
-      Top = 223
+      Top = 243
       Width = 44
       AutoSize = False
       BorderSpacing.Top = 5
@@ -991,7 +957,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrBottom
       Left = 429
       Height = 21
-      Top = 249
+      Top = 269
       Width = 44
       AutoSize = False
       BorderSpacing.Top = 5
@@ -1000,18 +966,15 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 27
     end
     object ComboBox9: TComboBox
-      AnchorSideLeft.Control = ComboBox2
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = GroupBox1
       AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 403
-      Height = 22
+      Left = 402
+      Height = 27
       Top = 0
-      Width = 69
+      Width = 70
       Anchors = [akTop, akRight]
-      AutoSize = False
-      BorderSpacing.Left = 3
       BorderSpacing.Right = 5
       Font.Height = -12
       ItemHeight = 16
@@ -1020,18 +983,16 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 28
     end
     object ComboBox2: TComboBox
-      AnchorSideTop.Control = ComboBox1
-      AnchorSideTop.Side = asrBottom
+      AnchorSideTop.Control = ComboBox9
+      AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = ComboBox9
-      Left = 330
-      Height = 22
+      Left = 327
+      Height = 27
       Top = 0
-      Width = 69
-      Anchors = [akRight]
-      AutoSize = False
-      BorderSpacing.Left = 37
+      Width = 70
+      Anchors = [akTop, akRight]
       BorderSpacing.Top = 2
-      BorderSpacing.Right = 4
+      BorderSpacing.Right = 5
       Font.Height = -12
       ItemHeight = 16
       OnChange = ComboBox2Change
@@ -1040,19 +1001,15 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 29
     end
     object ComboBox3: TComboBox
+      AnchorSideLeft.Control = ComboBox4
       AnchorSideTop.Control = ComboBox4
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = GroupBox1
       AnchorSideRight.Side = asrBottom
-      Left = 332
-      Height = 22
-      Top = 145
-      Width = 110
-      Anchors = [akTop, akRight]
-      AutoSize = False
-      BorderSpacing.Left = 37
+      Left = 327
+      Height = 27
+      Top = 162
+      Width = 112
       BorderSpacing.Top = 2
-      BorderSpacing.Right = 35
       Font.Height = -12
       ItemHeight = 16
       OnChange = ComboBox2Change
@@ -1062,11 +1019,16 @@ object EditQSO_Form: TEditQSO_Form
     end
   end
   object PageControl1: TPageControl
-    Left = 7
+    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = GroupBox1
+    AnchorSideTop.Side = asrBottom
+    Left = 6
     Height = 204
-    Top = 360
+    Top = 374
     Width = 479
     ActivePage = TabSheet1
+    BorderSpacing.Top = 5
     Font.Height = -12
     ParentFont = False
     ParentShowHint = False
@@ -1571,10 +1533,17 @@ object EditQSO_Form: TEditQSO_Form
     end
   end
   object Button1: TButton
-    Left = 408
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 410
     Height = 25
-    Top = 568
+    Top = 602
     Width = 75
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 5
+    BorderSpacing.Bottom = 5
     Caption = 'Close'
     Font.Height = -12
     OnClick = Button1Click
@@ -1582,10 +1551,15 @@ object EditQSO_Form: TEditQSO_Form
     TabOrder = 2
   end
   object Button2: TButton
-    Left = 324
+    AnchorSideTop.Control = Button1
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = Button1
+    Left = 330
     Height = 25
-    Top = 568
+    Top = 602
     Width = 75
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 5
     Caption = 'Cancel'
     Font.Height = -12
     OnClick = Button2Click
@@ -1593,10 +1567,15 @@ object EditQSO_Form: TEditQSO_Form
     TabOrder = 3
   end
   object Button3: TButton
-    Left = 240
+    AnchorSideTop.Control = Button2
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = Button2
+    Left = 250
     Height = 25
-    Top = 568
+    Top = 602
     Width = 75
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 5
     Caption = 'Apply'
     Font.Height = -12
     OnClick = Button3Click
@@ -1606,7 +1585,8 @@ object EditQSO_Form: TEditQSO_Form
   object SatPropQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
-    Left = 32
-    Top = 544
+    Macros = <>
+    Left = 48
+    Top = 584
   end
 end

@@ -96,8 +96,6 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
     RadioButton1: TRadioButton;
