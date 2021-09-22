@@ -271,7 +271,7 @@ begin
   UQSO.QSOAddInfo := Memo1.Text;
   UQSO.Marker := BoolToStr(CheckBox3.Checked, '1', '0');
   UQSO.ManualSet := 0;
-  UQSO.DigiBand := StringReplace(FloatToStr(DigiBand),',','.',[rfReplaceAll]);
+  UQSO.DigiBand := StringReplace(FloatToStr(DigiBand), ',', '.', [rfReplaceAll]);
   UQSO.Continent := Edit13.Text;
   UQSO.ShortNote := Memo1.Text;
   UQSO.QSLReceQSLcc := 0;
@@ -330,7 +330,8 @@ end;
 
 procedure TEditQSO_Form.ComboBox1Select(Sender: TObject);
 begin
-  ComboBox1.Text := MainFunc.ConvertFreqToShow(ComboBox1.Items.Strings[ComboBox1.ItemIndex]);
+  ComboBox1.Text := MainFunc.ConvertFreqToShow(
+    ComboBox1.Items.Strings[ComboBox1.ItemIndex]);
 end;
 
 procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);
@@ -359,6 +360,7 @@ var
   i: integer;
   SelQSO: TQSO;
 begin
+  GroupBox1.Height := CheckBox1.Top + 40;
   MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1);
   MainFunc.SetGrid(DBGrid1);
 

@@ -18,12 +18,12 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Owner
     Left = 6
-    Height = 387
+    Height = 380
     Top = 5
     Width = 479
     BorderSpacing.Top = 5
     Caption = 'Territory'
-    ClientHeight = 371
+    ClientHeight = 364
     ClientWidth = 477
     Font.Height = -12
     ParentFont = False
@@ -1026,7 +1026,7 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Side = asrBottom
     Left = 6
     Height = 204
-    Top = 397
+    Top = 390
     Width = 479
     ActivePage = TabSheet1
     BorderSpacing.Top = 5

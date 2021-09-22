@@ -32,8 +32,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="412"/>
-        <CursorPos X="3" Y="451"/>
+        <TopLine Value="357"/>
+        <CursorPos X="39" Y="362"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1997,7 +1997,7 @@
         <UsageCount Value="10"/>
       </Unit234>
     </Units>
-    <JumpHistory Count="4" HistoryIndex="3">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
         <Filename Value="editqso_u.pas"/>
         <Caret Line="235" Column="3" TopLine="235"/>
@@ -2014,6 +2014,10 @@
         <Filename Value="editqso_u.pas"/>
         <Caret Line="451" Column="3" TopLine="412"/>
       </Position4>
+      <Position5>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="441" Column="53" TopLine="169"/>
+      </Position5>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
