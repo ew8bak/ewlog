@@ -2722,11 +2722,13 @@ msgid "QSL Info"
 msgstr ""
 
 #: teditqso_form.label3.caption
-msgid "Report sent"
+msgctxt "teditqso_form.label3.caption"
+msgid "RST sent"
 msgstr ""
 
 #: teditqso_form.label4.caption
-msgid "Report rcvd"
+msgctxt "teditqso_form.label4.caption"
+msgid "RST rcvd"
 msgstr ""
 
 #: teditqso_form.label5.caption

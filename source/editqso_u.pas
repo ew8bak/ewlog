@@ -360,7 +360,13 @@ var
   i: integer;
   SelQSO: TQSO;
 begin
-  GroupBox1.Height := CheckBox1.Top + 40;
+  GroupBox1.Height := CheckBox1.Height + CheckBox1.Top + 20;
+  PageControl1.Height:= Edit20.Top + Edit20.Height + 30;
+  EditQSO_Form.Height := PageControl1.Height + PageControl1.Top + Button1.Height + 10;
+
+  GroupBox2.Height:= DateEdit4.Top + DateEdit4.Height + 20;
+  GroupBox3.Height := GroupBox2.Height;
+
   MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1);
   MainFunc.SetGrid(DBGrid1);
 

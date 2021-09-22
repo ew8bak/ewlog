@@ -2763,11 +2763,17 @@ msgid "QSL Info"
 msgstr "QSL Инфо"
 
 #: teditqso_form.label3.caption
-msgid "Report sent"
+#, fuzzy
+#| msgid "Report sent"
+msgctxt "teditqso_form.label3.caption"
+msgid "RST sent"
 msgstr "RST отп"
 
 #: teditqso_form.label4.caption
-msgid "Report rcvd"
+#, fuzzy
+#| msgid "Report rcvd"
+msgctxt "teditqso_form.label4.caption"
+msgid "RST rcvd"
 msgstr "RST получ"
 
 #: teditqso_form.label5.caption
