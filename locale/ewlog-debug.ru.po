@@ -2443,20 +2443,23 @@ msgstr "Страна"
 msgid "Earth"
 msgstr "Земля"
 
-#: teditqso_form.button1.caption
-msgctxt "teditqso_form.button1.caption"
-msgid "Close"
-msgstr "Закрыть"
+#: teditqso_form.btapply.caption
+#, fuzzy
+msgctxt "teditqso_form.btapply.caption"
+msgid "Apply"
+msgstr "Принять"
 
-#: teditqso_form.button2.caption
-msgctxt "teditqso_form.button2.caption"
+#: teditqso_form.btcancel.caption
+#, fuzzy
+msgctxt "teditqso_form.btcancel.caption"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: teditqso_form.button3.caption
-msgctxt "teditqso_form.button3.caption"
-msgid "Apply"
-msgstr "Принять"
+#: teditqso_form.btclose.caption
+#, fuzzy
+msgctxt "teditqso_form.btclose.caption"
+msgid "Close"
+msgstr "Закрыть"
 
 #: teditqso_form.button4.caption
 msgid "To define territory"
@@ -2466,39 +2469,47 @@ msgstr "Определить территорию"
 msgid "QSO Editor"
 msgstr "Редактировать QSO"
 
-#: teditqso_form.checkbox1.caption
-msgctxt "teditqso_form.checkbox1.caption"
-msgid "No Calc DXCC"
-msgstr "No Calc DXCC"
-
-#: teditqso_form.checkbox2.caption
-msgid "Valid for DXCC"
-msgstr "Valid for DXCC"
-
-#: teditqso_form.checkbox3.caption
+#: teditqso_form.cbmarkqso.caption
+#, fuzzy
+msgctxt "teditqso_form.cbmarkqso.caption"
 msgid "Mark QSO"
 msgstr "Пометить QSO"
 
-#: teditqso_form.checkbox4.caption
+#: teditqso_form.cbnocalcdxcc.caption
+#, fuzzy
+msgctxt "teditqso_form.cbnocalcdxcc.caption"
+msgid "No Calc DXCC"
+msgstr "No Calc DXCC"
+
+#: teditqso_form.cbreceived.caption
+#, fuzzy
+msgctxt "teditqso_form.cbreceived.caption"
 msgid "Received"
 msgstr "Получена"
 
-#: teditqso_form.checkbox5.caption
+#: teditqso_form.cbreceivedeqsl.caption
+#, fuzzy
+msgctxt "teditqso_form.cbreceivedeqsl.caption"
 msgid "Received eQSL"
 msgstr "Получена eQSL"
 
-#: teditqso_form.checkbox6.caption
+#: teditqso_form.cbreceivedlotw.caption
+#, fuzzy
+msgctxt "teditqso_form.cbreceivedlotw.caption"
 msgid "Received LotW"
 msgstr "Получена LotW"
 
-#: teditqso_form.checkbox7.caption
+#: teditqso_form.cbsentlotw.caption
+#, fuzzy
+msgctxt "teditqso_form.cbsentlotw.caption"
 msgid "Sent LoTW"
 msgstr "Отправлена LoTW"
 
-#: teditqso_form.datetimepicker1.textfornulldate
-msgctxt "teditqso_form.datetimepicker1.textfornulldate"
-msgid "NULL"
-msgstr ""
+#: teditqso_form.cbvaliddxcc.caption
+#, fuzzy
+msgctxt "teditqso_form.cbvaliddxcc.caption"
+msgid "Valid for DXCC"
+msgstr "Valid for DXCC"
 
 #: teditqso_form.dbgrid1.columns[0].title.caption
 msgctxt "teditqso_form.dbgrid1.columns[0].title.caption"
@@ -2650,169 +2661,206 @@ msgctxt "teditqso_form.dbgrid1.columns[9].title.caption"
 msgid "QTH"
 msgstr "QTH"
 
-#: teditqso_form.groupbox1.caption
-msgctxt "teditqso_form.groupbox1.caption"
+#: teditqso_form.dttime.textfornulldate
+msgctxt "teditqso_form.dttime.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: teditqso_form.gbcallinfo.caption
+#, fuzzy
+msgctxt "teditqso_form.gbcallinfo.caption"
 msgid "Territory"
 msgstr "Территория"
 
-#: teditqso_form.groupbox2.caption
-msgctxt "teditqso_form.groupbox2.caption"
-msgid "QSL"
-msgstr "QSL"
+#: teditqso_form.gbqslreceived.caption
+#, fuzzy
+msgctxt "teditqso_form.gbqslreceived.caption"
+msgid "QSL Received"
+msgstr "QSL Получена"
 
-#: teditqso_form.groupbox3.caption
-msgctxt "teditqso_form.groupbox3.caption"
-msgid "QSL"
-msgstr "QSL"
+#: teditqso_form.gbqslsent.caption
+#, fuzzy
+msgctxt "teditqso_form.gbqslsent.caption"
+msgid "QSL Sent"
+msgstr "QSL отправлена"
 
-#: teditqso_form.label1.caption
+#: teditqso_form.lbband.caption
+#, fuzzy
+msgctxt "teditqso_form.lbband.caption"
+msgid "Band"
+msgstr "Диапазон"
+
+#: teditqso_form.lbcallsign.caption
+#, fuzzy
+msgctxt "teditqso_form.lbcallsign.caption"
 msgid "CallSign"
 msgstr "Позывной"
 
-#: teditqso_form.label10.caption
-msgctxt "teditqso_form.label10.caption"
-msgid "DXCC"
-msgstr "DXCC"
-
-#: teditqso_form.label11.caption
-msgctxt "teditqso_form.label11.caption"
-msgid "Prefix"
-msgstr "Префикс"
-
-#: teditqso_form.label12.caption
-msgctxt "teditqso_form.label12.caption"
-msgid "CQ"
-msgstr "CQ"
-
-#: teditqso_form.label13.caption
-msgctxt "teditqso_form.label13.caption"
-msgid "ITU"
-msgstr "ITU"
-
-#: teditqso_form.label14.caption
-msgctxt "teditqso_form.label14.caption"
-msgid "Grid"
-msgstr "ЛОК"
-
-#: teditqso_form.label15.caption
-msgctxt "teditqso_form.label15.caption"
-msgid "Sub. State"
-msgstr "Поле стат."
-
-#: teditqso_form.label16.caption
-msgctxt "teditqso_form.label16.caption"
+#: teditqso_form.lbcontinent.caption
+#, fuzzy
+msgctxt "teditqso_form.lbcontinent.caption"
 msgid "Continent"
 msgstr "Континент"
 
-#: teditqso_form.label17.caption
-msgctxt "teditqso_form.label17.caption"
-msgid "Mode"
-msgstr "Мода"
+#: teditqso_form.lbcq.caption
+#, fuzzy
+msgctxt "teditqso_form.lbcq.caption"
+msgid "CQ"
+msgstr "CQ"
 
-#: teditqso_form.label18.caption
-msgctxt "teditqso_form.label18.caption"
-msgid "Band"
-msgstr "Диап"
-
-#: teditqso_form.label19.caption
-msgctxt "teditqso_form.label19.caption"
-msgid "State"
-msgstr "State"
-
-#: teditqso_form.label2.caption
-msgctxt "teditqso_form.label2.caption"
+#: teditqso_form.lbdate.caption
+#, fuzzy
+msgctxt "teditqso_form.lbdate.caption"
 msgid "Date"
 msgstr "Дата"
 
-#: teditqso_form.label20.caption
-msgctxt "teditqso_form.label20.caption"
+#: teditqso_form.lbdxcc.caption
+#, fuzzy
+msgctxt "teditqso_form.lbdxcc.caption"
+msgid "DXCC"
+msgstr "DXCC"
+
+#: teditqso_form.lbgrid.caption
+#, fuzzy
+msgctxt "teditqso_form.lbgrid.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: teditqso_form.lbiota.caption
+#, fuzzy
+msgctxt "teditqso_form.lbiota.caption"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: teditqso_form.label21.caption
-msgid "Satelite"
-msgstr "Спутник"
-
-#: teditqso_form.label22.caption
+#: teditqso_form.lbitu.caption
 #, fuzzy
-#| msgid "Satelite mode"
-msgid "SAT mode"
-msgstr "Режим"
+msgctxt "teditqso_form.lbitu.caption"
+msgid "ITU"
+msgstr "ITU"
 
-#: teditqso_form.label23.caption
-msgid "Propagation"
-msgstr "Вид связи"
-
-#: teditqso_form.label24.caption
-msgctxt "teditqso_form.label24.caption"
-msgid "QSL received via"
-msgstr "QSL получена через"
-
-#: teditqso_form.label25.caption
-msgid "QSL manager"
-msgstr "QSL менеджер"
-
-#: teditqso_form.label26.caption
-msgctxt "teditqso_form.label26.caption"
-msgid "QSL was sent via"
-msgstr "QSL отправлена через"
-
-#: teditqso_form.label27.caption
-msgctxt "teditqso_form.label27.caption"
-msgid "QSL Info"
-msgstr "QSL Инфо"
-
-#: teditqso_form.label3.caption
+#: teditqso_form.lbmode.caption
 #, fuzzy
-#| msgid "Report sent"
-msgctxt "teditqso_form.label3.caption"
-msgid "RST sent"
-msgstr "RST отп"
+msgctxt "teditqso_form.lbmode.caption"
+msgid "Mode"
+msgstr "Мода"
 
-#: teditqso_form.label4.caption
+#: teditqso_form.lbname.caption
 #, fuzzy
-#| msgid "Report rcvd"
-msgctxt "teditqso_form.label4.caption"
-msgid "RST rcvd"
-msgstr "RST получ"
-
-#: teditqso_form.label5.caption
-msgctxt "teditqso_form.label5.caption"
+msgctxt "teditqso_form.lbname.caption"
 msgid "Name"
 msgstr "Имя"
 
-#: teditqso_form.label6.caption
-msgctxt "teditqso_form.label6.caption"
+#: teditqso_form.lbnote.caption
+msgctxt "teditqso_form.lbnote.caption"
+msgid "Note for QSO"
+msgstr ""
+
+#: teditqso_form.lbprefix.caption
+#, fuzzy
+msgctxt "teditqso_form.lbprefix.caption"
+msgid "Prefix"
+msgstr "Префикс"
+
+#: teditqso_form.lbpropagation.caption
+#, fuzzy
+msgctxt "teditqso_form.lbpropagation.caption"
+msgid "Propagation"
+msgstr "Вид связи"
+
+#: teditqso_form.lbqslinfo.caption
+#, fuzzy
+msgctxt "teditqso_form.lbqslinfo.caption"
+msgid "QSL Info"
+msgstr "QSL Инфо"
+
+#: teditqso_form.lbqslmanager.caption
+#, fuzzy
+msgctxt "teditqso_form.lbqslmanager.caption"
+msgid "QSL manager"
+msgstr "QSL менеджер"
+
+#: teditqso_form.lbqslsentvia.caption
+#, fuzzy
+msgctxt "teditqso_form.lbqslsentvia.caption"
+msgid "QSL was sent via"
+msgstr "QSL отправлена через"
+
+#: teditqso_form.lbqth.caption
+#, fuzzy
+msgctxt "teditqso_form.lbqth.caption"
 msgid "QTH"
 msgstr "QTH"
 
-#: teditqso_form.label7.caption
+#: teditqso_form.lbrecvia.caption
 #, fuzzy
-#| msgid "Note for"
-msgid "Note for QSO"
-msgstr "Комм"
+msgctxt "teditqso_form.lbrecvia.caption"
+msgid "QSL received via"
+msgstr "QSL получена через"
 
-#: teditqso_form.radiobutton1.caption
-msgctxt "teditqso_form.radiobutton1.caption"
-msgid "Sent"
-msgstr "Отправлена"
+#: teditqso_form.lbrstr.caption
+#, fuzzy
+msgctxt "teditqso_form.lbrstr.caption"
+msgid "RST rcvd"
+msgstr "RST пол"
 
-#: teditqso_form.radiobutton2.caption
+#: teditqso_form.lbrsts.caption
+#, fuzzy
+msgctxt "teditqso_form.lbrsts.caption"
+msgid "RST sent"
+msgstr "RST отп"
+
+#: teditqso_form.lbsatelite.caption
+#, fuzzy
+msgctxt "teditqso_form.lbsatelite.caption"
+msgid "Satelite"
+msgstr "Спутник"
+
+#: teditqso_form.lbsatmode.caption
+msgctxt "teditqso_form.lbsatmode.caption"
+msgid "SAT mode"
+msgstr ""
+
+#: teditqso_form.lbstate.caption
+#, fuzzy
+msgctxt "teditqso_form.lbstate.caption"
+msgid "State"
+msgstr "State"
+
+#: teditqso_form.lbsubstate.caption
+#, fuzzy
+msgctxt "teditqso_form.lbsubstate.caption"
+msgid "Sub. State"
+msgstr "Поле стат."
+
+#: teditqso_form.rbdsent.caption
+#, fuzzy
+msgctxt "teditqso_form.rbdsent.caption"
+msgid "Do not send"
+msgstr "Не отправлять"
+
+#: teditqso_form.rbprinted.caption
+#, fuzzy
+msgctxt "teditqso_form.rbprinted.caption"
 msgid "Printed"
 msgstr "Напечатана"
 
-#: teditqso_form.radiobutton3.caption
+#: teditqso_form.rbqueued.caption
+#, fuzzy
+msgctxt "teditqso_form.rbqueued.caption"
 msgid "Queued"
 msgstr "В очередь"
 
-#: teditqso_form.radiobutton4.caption
-msgctxt "teditqso_form.radiobutton4.caption"
+#: teditqso_form.rbsent.caption
+#, fuzzy
+msgctxt "teditqso_form.rbsent.caption"
+msgid "Sent"
+msgstr "Отправлена"
+
+#: teditqso_form.rbwsent.caption
+#, fuzzy
+msgctxt "teditqso_form.rbwsent.caption"
 msgid "Wasn't sent"
 msgstr "Не отправлена"
-
-#: teditqso_form.radiobutton5.caption
-msgid "Do not send"
-msgstr "Не отправлять"
 
 #: teditqso_form.speedbutton1.caption
 msgctxt "teditqso_form.speedbutton1.caption"

@@ -166,12 +166,12 @@ begin
   end;
   if FromForm = 'EditForm' then
   begin
-    EditQSO_Form.Edit4.Text := Label16.Caption;
-    EditQSO_Form.Edit5.Text := Label18.Caption;
+    EditQSO_Form.EditName.Text := Label16.Caption;
+    EditQSO_Form.EditQTH.Text := Label18.Caption;
     if Label19.Caption <> '' then
-      EditQSO_Form.Edit14.Text := Label19.Caption;
+      EditQSO_Form.EditGrid.Text := Label19.Caption;
     if Label21.Caption <> '' then
-      EditQSO_Form.Edit17.Text := Label21.Caption;
+      EditQSO_Form.EditState.Text := Label21.Caption;
   end;
 end;
 

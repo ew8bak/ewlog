@@ -23,86 +23,86 @@ type
   { TEditQSO_Form }
 
   TEditQSO_Form = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    BtClose: TButton;
+    BtCancel: TButton;
+    BtApply: TButton;
     Button4: TButton;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
-    CheckBox7: TCheckBox;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
-    ComboBox3: TComboBox;
-    ComboBox4: TComboBox;
+    CBNoCalcDXCC: TCheckBox;
+    CBValidDXCC: TCheckBox;
+    CBMarkQSO: TCheckBox;
+    CBReceived: TCheckBox;
+    CBReceivedEQSL: TCheckBox;
+    CBReceivedLoTW: TCheckBox;
+    CBSentLoTW: TCheckBox;
+    CBBand: TComboBox;
+    CBMode: TComboBox;
+    CBPropagation: TComboBox;
+    CBSATMode: TComboBox;
     ComboBox6: TComboBox;
     ComboBox7: TComboBox;
-    ComboBox9: TComboBox;
-    DateEdit1: TDateEdit;
+    CBSubMode: TComboBox;
+    DEDate: TDateEdit;
     DateEdit2: TDateEdit;
     DateEdit3: TDateEdit;
     DateEdit4: TDateEdit;
-    DateTimePicker1: TDateTimePicker;
+    DTTime: TDateTimePicker;
     DBGrid1: TDBGrid;
     DBLookupComboBox2: TDBLookupComboBox;
-    Edit1: TEdit;
+    EditCallSign: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
-    Edit13: TEdit;
-    Edit14: TEdit;
-    Edit15: TEdit;
-    Edit16: TEdit;
-    Edit17: TEdit;
-    Edit18: TEdit;
+    EditContinent: TEdit;
+    EditGrid: TEdit;
+    EditCQ: TEdit;
+    EditITU: TEdit;
+    EditState: TEdit;
+    EditIOTA: TEdit;
     Edit19: TEdit;
-    Edit2: TEdit;
+    EditRSTs: TEdit;
     Edit20: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
+    EditRSTr: TEdit;
+    EditName: TEdit;
+    EditQTH: TEdit;
+    EditDXCC: TEdit;
     Edit7: TEdit;
-    Edit8: TEdit;
+    EditPrefix: TEdit;
     Edit9: TEdit;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
-    GroupBox3: TGroupBox;
-    Label1: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label2: TLabel;
-    Label20: TLabel;
-    Label21: TLabel;
-    Label22: TLabel;
-    Label23: TLabel;
-    Label24: TLabel;
-    Label25: TLabel;
-    Label26: TLabel;
-    Label27: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Memo1: TMemo;
+    GBCallInfo: TGroupBox;
+    GBQSLReceived: TGroupBox;
+    GBQSLSent: TGroupBox;
+    LBCallsign: TLabel;
+    LBDXCC: TLabel;
+    LBPrefix: TLabel;
+    LBCQ: TLabel;
+    LBITU: TLabel;
+    LBGrid: TLabel;
+    LbSubState: TLabel;
+    LBContinent: TLabel;
+    LBMode: TLabel;
+    LBBand: TLabel;
+    LBState: TLabel;
+    LBDate: TLabel;
+    LBIOTA: TLabel;
+    LBSatelite: TLabel;
+    LBSATMode: TLabel;
+    LBPropagation: TLabel;
+    LBRecVia: TLabel;
+    LBQSLManager: TLabel;
+    LBQSLSentVia: TLabel;
+    LBQSLInfo: TLabel;
+    LBRSTs: TLabel;
+    LBRSTr: TLabel;
+    LBName: TLabel;
+    LBQTH: TLabel;
+    LBNote: TLabel;
+    MemoNote: TMemo;
     PageControl1: TPageControl;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    RadioButton5: TRadioButton;
+    RBSent: TRadioButton;
+    RBPrinted: TRadioButton;
+    RBQueued: TRadioButton;
+    RBWSent: TRadioButton;
+    RBDSent: TRadioButton;
     SpeedButton1: TSpeedButton;
     SpeedButton10: TSpeedButton;
     SpeedButton11: TSpeedButton;
@@ -121,12 +121,12 @@ type
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure BtCloseClick(Sender: TObject);
+    procedure BtCancelClick(Sender: TObject);
+    procedure BtApplyClick(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure ComboBox1Select(Sender: TObject);
-    procedure ComboBox2Change(Sender: TObject);
+    procedure CBBandSelect(Sender: TObject);
+    procedure CBModeChange(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -172,7 +172,7 @@ end;
 procedure TEditQSO_Form.SpeedButton11Click(Sender: TObject);
 begin
   InformationForm.FromForm := 'EditForm';
-  InformationForm.Callsign := dmFunc.ExtractCallsign(Edit1.Text);
+  InformationForm.Callsign := dmFunc.ExtractCallsign(EditCallSign.Text);
   InformationForm.ShowModal;
 end;
 
@@ -188,7 +188,6 @@ begin
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM CountryDataEx';
   CountryEditForm.CountryQditQuery.Open;
-  //MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'ARRLList';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('ARRLPrefix', Edit7.Text, []);
   CountryEditForm.ShowModal;
@@ -202,9 +201,8 @@ begin
   CountryEditForm.CountryQditQuery.SQL.Clear;
   CountryEditForm.CountryQditQuery.SQL.Text := 'SELECT * FROM Province';
   CountryEditForm.CountryQditQuery.Open;
-  //MainForm.SQLServiceTransaction.Active := True;
   CountryEditForm.Caption := 'Province';
-  CountryEditForm.DBGrid1.DataSource.DataSet.Locate('Prefix', Edit8.Text, []);
+  CountryEditForm.DBGrid1.DataSource.DataSet.Locate('Prefix', EditPrefix.Text, []);
   CountryEditForm.ShowModal;
 end;
 
@@ -213,17 +211,17 @@ begin
   IOTA_Form.ShowModal;
 end;
 
-procedure TEditQSO_Form.Button1Click(Sender: TObject);
+procedure TEditQSO_Form.BtCloseClick(Sender: TObject);
 begin
   EditQSO_Form.Close;
 end;
 
-procedure TEditQSO_Form.Button2Click(Sender: TObject);
+procedure TEditQSO_Form.BtCancelClick(Sender: TObject);
 begin
   EditQSO_Form.Close;
 end;
 
-procedure TEditQSO_Form.Button3Click(Sender: TObject);
+procedure TEditQSO_Form.BtApplyClick(Sender: TObject);
 var
   UQSO: TQSO;
   FmtStngs: TFormatSettings;
@@ -233,74 +231,74 @@ begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
 
-  NameBand := MainFunc.ConvertFreqToSave(ComboBox1.Text);
+  NameBand := MainFunc.ConvertFreqToSave(CBBand.Text);
   DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
 
-  UQSO.CallSing := Edit1.Text;
-  UQSO.QSODate := DateEdit1.Date;
-  UQSO.QSOTime := TimeToStr(DateTimePicker1.Time, FmtStngs);
+  UQSO.CallSing := EditCallSign.Text;
+  UQSO.QSODate := DEDate.Date;
+  UQSO.QSOTime := TimeToStr(DTTime.Time, FmtStngs);
   UQSO.QSOBand := NameBand;
-  UQSO.QSOMode := ComboBox2.Text;
-  UQSO.QSOSubMode := ComboBox9.Text;
-  UQSO.QSOReportSent := Edit2.Text;
-  UQSO.QSOReportRecived := Edit3.Text;
-  UQSO.OMName := Edit4.Text;
-  UQSO.OMQTH := Edit5.Text;
-  UQSO.State0 := Edit17.Text;
-  UQSO.Grid := Edit14.Text;
-  UQSO.IOTA := Edit18.Text;
+  UQSO.QSOMode := CBMode.Text;
+  UQSO.QSOSubMode := CBSubMode.Text;
+  UQSO.QSOReportSent := EditRSTs.Text;
+  UQSO.QSOReportRecived := EditRSTr.Text;
+  UQSO.OMName := EditName.Text;
+  UQSO.OMQTH := EditQTH.Text;
+  UQSO.State0 := EditState.Text;
+  UQSO.Grid := EditGrid.Text;
+  UQSO.IOTA := EditIOTA.Text;
   UQSO.QSLManager := Edit19.Text;
-  UQSO.QSLSent := BoolToStr(RadioButton1.Checked, '1', '0');
-  if RadioButton1.Checked = True then
+  UQSO.QSLSent := BoolToStr(RBSent.Checked, '1', '0');
+  if RBSent.Checked = True then
     UQSO.QSLSentAdv := 'T';
-  if RadioButton2.Checked = True then
+  if RBPrinted.Checked = True then
     UQSO.QSLSentAdv := 'P';
-  if RadioButton3.Checked = True then
+  if RBQueued.Checked = True then
     UQSO.QSLSentAdv := 'Q';
-  if RadioButton4.Checked = True then
+  if RBWSent.Checked = True then
     UQSO.QSLSentAdv := 'F';
-  if RadioButton5.Checked = True then
+  if RBDSent.Checked = True then
     UQSO.QSLSentAdv := 'N';
   UQSO.QSLSentDate := DateEdit3.Date;
-  UQSO.QSLRec := BoolToStr(CheckBox4.Checked, '1', '0');
+  UQSO.QSLRec := BoolToStr(CBReceived.Checked, '1', '0');
   UQSO.QSLRecDate := DateEdit2.Date;
-  UQSO.DXCC := Edit6.Text;
+  UQSO.DXCC := EditDXCC.Text;
   UQSO.DXCCPrefix := Edit7.Text;
-  UQSO.CQZone := Edit15.Text;
-  UQSO.ITUZone := Edit16.Text;
-  UQSO.QSOAddInfo := Memo1.Text;
-  UQSO.Marker := BoolToStr(CheckBox3.Checked, '1', '0');
+  UQSO.CQZone := EditCQ.Text;
+  UQSO.ITUZone := EditITU.Text;
+  UQSO.QSOAddInfo := MemoNote.Text;
+  UQSO.Marker := BoolToStr(CBMarkQSO.Checked, '1', '0');
   UQSO.ManualSet := 0;
   UQSO.DigiBand := StringReplace(FloatToStr(DigiBand), ',', '.', [rfReplaceAll]);
-  UQSO.Continent := Edit13.Text;
-  UQSO.ShortNote := Memo1.Text;
+  UQSO.Continent := EditContinent.Text;
+  UQSO.ShortNote := MemoNote.Text;
   UQSO.QSLReceQSLcc := 0;
-  if CheckBox5.Checked then
+  if CBReceivedEQSL.Checked then
     UQSO.QSLReceQSLcc := 1;
-  UQSO.LoTWRec := BoolToStr(CheckBox6.Checked, '1', '0');
+  UQSO.LoTWRec := BoolToStr(CBReceivedLoTW.Checked, '1', '0');
   UQSO.LoTWRecDate := DateEdit4.Date;
   UQSO.QSLInfo := Edit20.Text;
-  UQSO.Call := Edit1.Text;
+  UQSO.Call := EditCallSign.Text;
   UQSO.State1 := Edit10.Text;
   UQSO.State2 := Edit9.Text;
   UQSO.State3 := Edit11.Text;
   UQSO.State4 := Edit12.Text;
-  UQSO.WPX := Edit8.Text;
-  UQSO.ValidDX := BoolToStr(CheckBox2.Checked, '1', '0');
+  UQSO.WPX := EditPrefix.Text;
+  UQSO.ValidDX := BoolToStr(CBValidDXCC.Checked, '1', '0');
   UQSO.SRX := 0;
   UQSO.SRX_STRING := '';
   UQSO.STX := 0;
   UQSO.STX_STRING := '';
   UQSO.SAT_NAME := DBLookupComboBox2.Text;
-  UQSO.SAT_MODE := ComboBox4.Text;
-  UQSO.PROP_MODE := ComboBox3.Text;
+  UQSO.SAT_MODE := CBSATMode.Text;
+  UQSO.PROP_MODE := CBPropagation.Text;
   UQSO.LoTWSent := 0;
-  if CheckBox7.Checked then
+  if CBSentLoTW.Checked then
     UQSO.LoTWSent := 1;
   UQSO.NoCalcDXCC := 0;
-  if CheckBox1.Checked then
+  if CBNoCalcDXCC.Checked then
     UQSO.NoCalcDXCC := 1;
-  UQSO.MainPrefix := Edit8.Text;
+  UQSO.MainPrefix := EditPrefix.Text;
   UQSO.QSL_RCVD_VIA := 'NULL';
   UQSO.QSL_SENT_VIA := 'NULL';
   if ComboBox6.Text <> '' then
@@ -315,32 +313,32 @@ procedure TEditQSO_Form.Button4Click(Sender: TObject);
 var
   PFXR: TPFXR;
 begin
-  if Length(Edit1.Text) > 0 then
+  if Length(EditCallSign.Text) > 0 then
   begin
-    PFXR := MainFunc.SearchPrefix(Edit1.Text, Edit14.Text);
-    GroupBox1.Caption := PFXR.Country;
+    PFXR := MainFunc.SearchPrefix(EditCallSign.Text, EditGrid.Text);
+    GBCallInfo.Caption := PFXR.Country;
     Edit7.Text := PFXR.ARRLPrefix;
-    Edit8.Text := PFXR.Prefix;
-    Edit15.Text := PFXR.CQZone;
-    Edit16.Text := PFXR.ITUZone;
-    Edit13.Text := PFXR.Continent;
-    Edit6.Text := IntToStr(PFXR.DXCCNum);
+    EditPrefix.Text := PFXR.Prefix;
+    EditCQ.Text := PFXR.CQZone;
+    EditITU.Text := PFXR.ITUZone;
+    EditContinent.Text := PFXR.Continent;
+    EditDXCC.Text := IntToStr(PFXR.DXCCNum);
   end;
 end;
 
-procedure TEditQSO_Form.ComboBox1Select(Sender: TObject);
+procedure TEditQSO_Form.CBBandSelect(Sender: TObject);
 begin
-  ComboBox1.Text := MainFunc.ConvertFreqToShow(
-    ComboBox1.Items.Strings[ComboBox1.ItemIndex]);
+  CBBand.Text := MainFunc.ConvertFreqToShow(
+    CBBand.Items.Strings[CBBand.ItemIndex]);
 end;
 
-procedure TEditQSO_Form.ComboBox2Change(Sender: TObject);
+procedure TEditQSO_Form.CBModeChange(Sender: TObject);
 var
   i: integer;
 begin
-  ComboBox9.Items.Clear;
-  for i := 0 to High(MainFunc.LoadSubModes(ComboBox2.Text)) do
-    ComboBox9.Items.Add(MainFunc.LoadSubModes(ComboBox2.Text)[i]);
+  CBSubMode.Items.Clear;
+  for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
+    CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
 end;
 
 procedure TEditQSO_Form.DBGrid1DrawColumnCell(Sender: TObject;
@@ -352,7 +350,7 @@ end;
 
 procedure TEditQSO_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  Edit1.Text := '';
+  EditCallSign.Text := '';
 end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);
@@ -360,54 +358,54 @@ var
   i: integer;
   SelQSO: TQSO;
 begin
-  GroupBox1.Height := CheckBox1.Height + CheckBox1.Top + 20;
+  GBCallInfo.Height := CBNoCalcDXCC.Height + CBNoCalcDXCC.Top + 20;
   PageControl1.Height:= Edit20.Top + Edit20.Height + 30;
-  EditQSO_Form.Height := PageControl1.Height + PageControl1.Top + Button1.Height + 10;
+  EditQSO_Form.Height := PageControl1.Height + PageControl1.Top + BtClose.Height + 10;
 
-  GroupBox2.Height:= DateEdit4.Top + DateEdit4.Height + 20;
-  GroupBox3.Height := GroupBox2.Height;
+  GBQSLReceived.Height:= DateEdit4.Top + DateEdit4.Height + 20;
+  GBQSLSent.Height := GBQSLReceived.Height;
 
-  MainFunc.LoadBMSL(ComboBox2, ComboBox9, ComboBox1);
+  MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
   MainFunc.SetGrid(DBGrid1);
 
   SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
-  Edit1.Text := SelQSO.CallSing;
-  DateEdit1.Date := SelQSO.QSODate;
-  DateTimePicker1.Time := StrToTime(SelQSO.QSOTime);
-  Edit4.Text := SelQSO.OMName;
-  Edit5.Text := SelQSO.OMQTH;
-  Edit17.Text := SelQSO.State0;
-  Edit14.Text := SelQSO.Grid;
-  Edit2.Text := SelQSO.QSOReportSent;
-  Edit3.Text := SelQSO.QSOReportRecived;
-  Edit18.Text := SelQSO.IOTA;
+  EditCallSign.Text := SelQSO.CallSing;
+  DEDate.Date := SelQSO.QSODate;
+  DTTime.Time := StrToTime(SelQSO.QSOTime);
+  EditName.Text := SelQSO.OMName;
+  EditQTH.Text := SelQSO.OMQTH;
+  EditState.Text := SelQSO.State0;
+  EditGrid.Text := SelQSO.Grid;
+  EditRSTs.Text := SelQSO.QSOReportSent;
+  EditRSTr.Text := SelQSO.QSOReportRecived;
+  EditIOTA.Text := SelQSO.IOTA;
   DateEdit3.Date := SelQSO.QSLSentDate;
   DateEdit2.Date := SelQSO.QSLRecDate;
   DateEdit4.Date := SelQSO.LoTWRecDate;
-  Edit8.Text := SelQSO.MainPrefix;
+  EditPrefix.Text := SelQSO.MainPrefix;
   Edit7.Text := SelQSO.DXCCPrefix;
-  Edit6.Text := SelQSO.DXCC;
-  Edit15.Text := SelQSO.CQZone;
-  Edit16.Text := SelQSO.ITUZone;
-  CheckBox3.Checked := MainFunc.StringToBool(SelQSO.Marker);
-  ComboBox2.Text := SelQSO.QSOMode;
-  ComboBox9.Text := SelQSO.QSOSubMode;
-  ComboBox1.Text := SelQSO.QSOBand;
-  Edit13.Text := SelQSO.Continent;
+  EditDXCC.Text := SelQSO.DXCC;
+  EditCQ.Text := SelQSO.CQZone;
+  EditITU.Text := SelQSO.ITUZone;
+  CBMarkQSO.Checked := MainFunc.StringToBool(SelQSO.Marker);
+  CBMode.Text := SelQSO.QSOMode;
+  CBSubMode.Text := SelQSO.QSOSubMode;
+  CBBand.Text := SelQSO.QSOBand;
+  EditContinent.Text := SelQSO.Continent;
   Edit20.Text := SelQSO.QSLInfo;
-  CheckBox2.Checked := MainFunc.StringToBool(SelQSO.ValidDX);
+  CBValidDXCC.Checked := MainFunc.StringToBool(SelQSO.ValidDX);
   Edit19.Text := SelQSO.QSLManager;
   Edit10.Text := SelQSO.State1;
   Edit9.Text := SelQSO.State2;
   Edit11.Text := SelQSO.State3;
   Edit12.Text := SelQSO.State4;
-  Memo1.Text := SelQSO.QSOAddInfo;
-  CheckBox1.Checked := MainFunc.IntToBool(SelQSO.NoCalcDXCC);
-  CheckBox5.Checked := MainFunc.IntToBool(SelQSO.QSLReceQSLcc);
-  CheckBox4.Checked := MainFunc.StringToBool(SelQSO.QSLRec);
-  CheckBox6.Checked := MainFunc.StringToBool(SelQSO.LoTWRec);
-  CheckBox7.Checked := MainFunc.IntToBool(SelQSO.LoTWSent);
-  ComboBox3.Text := SelQSO.PROP_MODE;
+  MemoNote.Text := SelQSO.QSOAddInfo;
+  CBNoCalcDXCC.Checked := MainFunc.IntToBool(SelQSO.NoCalcDXCC);
+  CBReceivedEQSL.Checked := MainFunc.IntToBool(SelQSO.QSLReceQSLcc);
+  CBReceived.Checked := MainFunc.StringToBool(SelQSO.QSLRec);
+  CBReceivedLoTW.Checked := MainFunc.StringToBool(SelQSO.LoTWRec);
+  CBSentLoTW.Checked := MainFunc.IntToBool(SelQSO.LoTWSent);
+  CBPropagation.Text := SelQSO.PROP_MODE;
 
   case SelQSO.QSL_RCVD_VIA of
     '': ComboBox6.ItemIndex := 0;
@@ -428,30 +426,30 @@ begin
   end;
 
   case SelQSO.QSLSentAdv of
-    'P': RadioButton2.Checked := True;
-    'T': RadioButton1.Checked := True;
-    'Q': RadioButton3.Checked := True;
-    'F': RadioButton4.Checked := True;
-    'N': RadioButton5.Checked := True;
+    'P': RBPrinted.Checked := True;
+    'T': RBSent.Checked := True;
+    'Q': RBQueued.Checked := True;
+    'F': RBWSent.Checked := True;
+    'N': RBDSent.Checked := True;
   end;
 
   if DBRecord.InitDB = 'YES' then
     SatPropQuery.DataBase := InitDB.ServiceDBConnection;
 
-  if ComboBox2.Text <> '' then
-    ComboBox2Change(Self);
-  ComboBox3.Items.Clear;
+  if CBMode.Text <> '' then
+    CBModeChange(Self);
+  CBPropagation.Items.Clear;
   SatPropQuery.SQL.Text := 'SELECT * FROM PropMode';
   SatPropQuery.Open;
   SatPropQuery.First;
   for i := 0 to SatPropQuery.RecordCount - 1 do
   begin
-    ComboBox3.Items.Add(SatPropQuery.FieldByName('Type').AsString);
+    CBPropagation.Items.Add(SatPropQuery.FieldByName('Type').AsString);
     SatPropQuery.Next;
   end;
   SatPropQuery.Close;
 
-  GroupBox1.Caption := SearchCountry(Edit1.Text);
+  GBCallInfo.Caption := SearchCountry(EditCallSign.Text);
 end;
 
 procedure TEditQSO_Form.SpeedButton10Click(Sender: TObject);

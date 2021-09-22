@@ -32,8 +32,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="346"/>
-        <CursorPos X="56" Y="364"/>
+        <TopLine Value="419"/>
+        <CursorPos X="11" Y="440"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -45,9 +45,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="78" Y="8"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="151"/>
+        <CursorPos X="28" Y="172"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="logconfigform_u.pas"/>
@@ -872,7 +874,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="57" Y="8"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="162"/>
       </Unit85>
       <Unit86>
         <Filename Value="cwkeysform_u.pas"/>
@@ -883,7 +885,7 @@
         <UnitName Value="CWKeysForm_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="10"/>
-        <UsageCount Value="160"/>
+        <UsageCount Value="161"/>
       </Unit86>
       <Unit87>
         <Filename Value="macroeditorform_u.pas"/>
@@ -895,7 +897,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos X="28" Y="61"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="160"/>
       </Unit87>
       <Unit88>
         <Filename Value="cwkeysdm_u.pas"/>
@@ -907,7 +909,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="143"/>
         <CursorPos X="73" Y="145"/>
-        <UsageCount Value="157"/>
+        <UsageCount Value="158"/>
       </Unit88>
       <Unit89>
         <Filename Value="cwtypeform_u.pas"/>
@@ -918,7 +920,7 @@
         <UnitName Value="CWTypeForm_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="53"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="137"/>
       </Unit89>
       <Unit90>
         <Filename Value="dmtci_u.pas"/>
@@ -929,7 +931,7 @@
         <UnitName Value="dmTCI_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="65" Y="55"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="97"/>
       </Unit90>
       <Unit91>
         <Filename Value="streamadapter_u.pas"/>
@@ -938,7 +940,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="44" Y="35"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
       </Unit91>
       <Unit92>
         <Filename Value="downloadqslthread.pas"/>
@@ -947,7 +949,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="105"/>
         <CursorPos X="42" Y="20"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="49"/>
       </Unit92>
       <Unit93>
         <Filename Value="downloadfilesthread.pas"/>
@@ -956,7 +958,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="147"/>
         <CursorPos X="37" Y="23"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="42"/>
       </Unit93>
       <Unit94>
         <Filename Value="download_lotw.pas"/>
@@ -1997,7 +1999,7 @@
         <UsageCount Value="10"/>
       </Unit234>
     </Units>
-    <JumpHistory Count="8" HistoryIndex="7">
+    <JumpHistory Count="10" HistoryIndex="9">
       <Position1>
         <Filename Value="editqso_u.pas"/>
         <Caret Line="235" Column="3" TopLine="235"/>
@@ -2030,6 +2032,14 @@
         <Filename Value="editqso_u.pas"/>
         <Caret Line="364" TopLine="346"/>
       </Position8>
+      <Position9>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="203" Column="41" TopLine="418"/>
+      </Position9>
+      <Position10>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="440" Column="11" TopLine="419"/>
+      </Position10>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
