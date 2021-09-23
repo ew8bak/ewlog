@@ -157,13 +157,16 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 6
     end
     object MemoNote: TMemo
+      AnchorSideLeft.Control = EditCallSign
       AnchorSideTop.Control = CBPropagation
       AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = CBBand
+      AnchorSideRight.Side = asrBottom
       Left = 70
       Height = 44
       Top = 209
-      Width = 403
-      Anchors = [akTop]
+      Width = 402
+      Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Top = 5
       Font.Height = -12
       ParentFont = False
@@ -591,7 +594,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditCQ
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditCQ
-      Left = 419
+      Left = 418
       Height = 13
       Top = 259
       Width = 17
@@ -606,7 +609,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditITU
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditITU
-      Left = 416
+      Left = 415
       Height = 13
       Top = 282
       Width = 20
@@ -952,7 +955,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = MemoNote
       AnchorSideRight.Side = asrBottom
-      Left = 438
+      Left = 437
       Height = 21
       Top = 255
       Width = 35
@@ -967,7 +970,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = MemoNote
       AnchorSideRight.Side = asrBottom
-      Left = 438
+      Left = 437
       Height = 21
       Top = 278
       Width = 35
@@ -1052,11 +1055,11 @@ object EditQSO_Form: TEditQSO_Form
       ClientWidth = 469
       object GBQSLReceived: TGroupBox
         Left = 0
-        Height = 96
+        Height = 100
         Top = 0
         Width = 240
         Caption = 'QSL Received'
-        ClientHeight = 80
+        ClientHeight = 84
         ClientWidth = 238
         TabOrder = 0
         object CBReceived: TCheckBox
@@ -1064,10 +1067,10 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = GBQSLReceived
           Left = 2
           Height = 23
-          Top = 2
+          Top = 4
           Width = 80
           BorderSpacing.Left = 2
-          BorderSpacing.Top = 2
+          BorderSpacing.Top = 4
           Caption = 'Received'
           TabOrder = 0
         end
@@ -1077,7 +1080,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrBottom
           Left = 2
           Height = 23
-          Top = 27
+          Top = 29
           Width = 115
           BorderSpacing.Top = 2
           Caption = 'Received eQSL'
@@ -1089,7 +1092,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrBottom
           Left = 2
           Height = 23
-          Top = 52
+          Top = 54
           Width = 114
           BorderSpacing.Top = 2
           Caption = 'Received LotW'
@@ -1102,7 +1105,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideRight.Side = asrBottom
           Left = 131
           Height = 26
-          Top = 0
+          Top = 2
           Width = 105
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
           DateOrder = doNone
@@ -1123,7 +1126,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideBottom.Side = asrCenter
           Left = 131
           Height = 26
-          Top = 50
+          Top = 52
           Width = 105
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
           DateOrder = doNone
@@ -1139,11 +1142,11 @@ object EditQSO_Form: TEditQSO_Form
       end
       object GBQSLSent: TGroupBox
         Left = 246
-        Height = 96
+        Height = 100
         Top = 0
         Width = 221
         Caption = 'QSL Sent'
-        ClientHeight = 80
+        ClientHeight = 84
         ClientWidth = 219
         TabOrder = 1
         object RBSent: TRadioButton
@@ -1151,10 +1154,10 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = GBQSLSent
           Left = 2
           Height = 23
-          Top = 1
+          Top = 5
           Width = 51
           BorderSpacing.Left = 2
-          BorderSpacing.Top = 1
+          BorderSpacing.Top = 5
           Caption = 'Sent'
           Checked = True
           Font.Height = -11
@@ -1168,7 +1171,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrBottom
           Left = 2
           Height = 23
-          Top = 25
+          Top = 29
           Width = 65
           BorderSpacing.Top = 1
           Caption = 'Printed'
@@ -1183,7 +1186,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrCenter
           Left = 69
           Height = 23
-          Top = 25
+          Top = 29
           Width = 70
           BorderSpacing.Left = 2
           Caption = 'Queued'
@@ -1197,7 +1200,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrBottom
           Left = 2
           Height = 23
-          Top = 49
+          Top = 53
           Width = 90
           BorderSpacing.Top = 1
           Caption = 'Wasn''t sent'
@@ -1212,7 +1215,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrCenter
           Left = 94
           Height = 23
-          Top = 49
+          Top = 53
           Width = 92
           BorderSpacing.Left = 2
           Caption = 'Do not send'
@@ -1227,7 +1230,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideRight.Side = asrBottom
           Left = 112
           Height = 26
-          Top = -1
+          Top = 3
           Width = 105
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
           DateOrder = doNone
@@ -1248,7 +1251,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Side = asrBottom
         Left = 136
         Height = 28
-        Top = 101
+        Top = 105
         Width = 104
         Anchors = [akTop, akRight]
         BorderSpacing.Top = 5
@@ -1273,7 +1276,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrCenter
         Left = 5
         Height = 13
-        Top = 109
+        Top = 113
         Width = 100
         BorderSpacing.Left = 5
         Caption = 'QSL received via'
@@ -1286,7 +1289,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = SpeedButton12
         Left = 136
         Height = 26
-        Top = 134
+        Top = 138
         Width = 80
         BorderSpacing.Top = 5
         BorderSpacing.Right = 2
@@ -1302,7 +1305,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Side = asrBottom
         Left = 218
         Height = 20
-        Top = 137
+        Top = 141
         Width = 20
         BorderSpacing.Left = 2
         Caption = '...'
@@ -1314,7 +1317,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrCenter
         Left = 5
         Height = 13
-        Top = 141
+        Top = 145
         Width = 82
         BorderSpacing.Left = 5
         Caption = 'QSL manager'
@@ -1327,7 +1330,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Side = asrBottom
         Left = 246
         Height = 28
-        Top = 138
+        Top = 142
         Width = 116
         BorderSpacing.Top = 2
         Font.Height = -12
@@ -1351,7 +1354,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrBottom
         Left = 246
         Height = 13
-        Top = 123
+        Top = 127
         Width = 102
         BorderSpacing.Top = 2
         Caption = 'QSL was sent via'
@@ -1365,7 +1368,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Side = asrBottom
         Left = 58
         Height = 26
-        Top = 171
+        Top = 175
         Width = 390
         BorderSpacing.Left = 2
         BorderSpacing.Top = 5
@@ -1379,7 +1382,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrCenter
         Left = 5
         Height = 13
-        Top = 178
+        Top = 182
         Width = 51
         BorderSpacing.Left = 5
         Caption = 'QSL Info'
@@ -1391,7 +1394,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrBottom
         Left = 246
         Height = 23
-        Top = 98
+        Top = 102
         Width = 85
         BorderSpacing.Top = 2
         Caption = 'Sent LoTW'
