@@ -16,7 +16,7 @@
 {"hash":141004724,"name":"teditqso_form.lbrstr.caption","sourcebytes":[82,83,84,32,114,99,118,100],"value":"RST rcvd"},
 {"hash":346165,"name":"teditqso_form.lbname.caption","sourcebytes":[78,97,109,101],"value":"Name"},
 {"hash":22152,"name":"teditqso_form.lbqth.caption","sourcebytes":[81,84,72],"value":"QTH"},
-{"hash":171110687,"name":"teditqso_form.lbnote.caption","sourcebytes":[78,111,116,101,32,102,111,114,32,81,83,79],"value":"Note for QSO"},
+{"hash":349861,"name":"teditqso_form.lbnote.caption","sourcebytes":[78,111,116,101],"value":"Note"},
 {"hash":302195,"name":"teditqso_form.lbdxcc.caption","sourcebytes":[68,88,67,67],"value":"DXCC"},
 {"hash":91798792,"name":"teditqso_form.lbprefix.caption","sourcebytes":[80,114,101,102,105,120],"value":"Prefix"},
 {"hash":211315550,"name":"teditqso_form.speedbutton1.hint","sourcebytes":[67,104,97,110,103,101,32,99,111,117,110,116,114,121,32,105,110,102,111,114,109,97,116,105,111,110],"value":"Change country information"},

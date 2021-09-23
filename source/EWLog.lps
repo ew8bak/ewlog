@@ -1999,7 +1999,7 @@
         <UsageCount Value="10"/>
       </Unit234>
     </Units>
-    <JumpHistory Count="10" HistoryIndex="9">
+    <JumpHistory Count="9" HistoryIndex="8">
       <Position1>
         <Filename Value="editqso_u.pas"/>
         <Caret Line="235" Column="3" TopLine="235"/>
@@ -2034,12 +2034,8 @@
       </Position8>
       <Position9>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="203" Column="41" TopLine="418"/>
-      </Position9>
-      <Position10>
-        <Filename Value="editqso_u.pas"/>
         <Caret Line="440" Column="11" TopLine="419"/>
-      </Position10>
+      </Position9>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

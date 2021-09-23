@@ -2688,7 +2688,7 @@ msgstr ""
 
 #: teditqso_form.lbnote.caption
 msgctxt "teditqso_form.lbnote.caption"
-msgid "Note for QSO"
+msgid "Note"
 msgstr ""
 
 #: teditqso_form.lbprefix.caption
