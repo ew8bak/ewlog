@@ -14,20 +14,19 @@ Main features of EWLog:
   7. Working with external programs (WSJT-X / JTDX / Fldigi)
   8. Working with the transceiver via hamlib
   9. Filling in data from QRZ.COM / QRZ.RU / HAMQTH XML API
-  10. Work in Windows and Linux
+  10. Work in Windows and Linux and MacOS
 
 # Build
 ---------------
 To build the program you will need:
-  1. Lazarus 2.0.10
-  2. FPC 3.2.0
+  1. Lazarus 2.0.12
+  2. FPC 3.2.2
   
 Additional components:
   1. Indy10
   2. LazMapViewer
-  3. LNet
-  4. Synapse 40.1
-  5. UniqueInstance
-  6. VirtualTreeView V5
+  3. Synapse 40.1
+  4. UniqueInstance
+  5. VirtualTreeView V5
   
 All of these components are available in the Lazarus Network Component Repository.

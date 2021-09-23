@@ -1180,15 +1180,13 @@ object EditQSO_Form: TEditQSO_Form
           TabOrder = 1
         end
         object RBQueued: TRadioButton
-          AnchorSideLeft.Control = RBPrinted
-          AnchorSideLeft.Side = asrBottom
+          AnchorSideLeft.Control = RBDSent
           AnchorSideTop.Control = RBPrinted
           AnchorSideTop.Side = asrCenter
-          Left = 69
+          Left = 94
           Height = 23
           Top = 29
           Width = 70
-          BorderSpacing.Left = 2
           Caption = 'Queued'
           Font.Height = -11
           ParentFont = False

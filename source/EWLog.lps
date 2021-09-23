@@ -33,7 +33,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="419"/>
-        <CursorPos X="50" Y="431"/>
+        <CursorPos X="70" Y="427"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -874,7 +874,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="57" Y="8"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="163"/>
       </Unit85>
       <Unit86>
         <Filename Value="cwkeysform_u.pas"/>
@@ -885,7 +885,7 @@
         <UnitName Value="CWKeysForm_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="25" Y="10"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="162"/>
       </Unit86>
       <Unit87>
         <Filename Value="macroeditorform_u.pas"/>
@@ -897,7 +897,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos X="28" Y="61"/>
-        <UsageCount Value="160"/>
+        <UsageCount Value="161"/>
       </Unit87>
       <Unit88>
         <Filename Value="cwkeysdm_u.pas"/>
@@ -909,7 +909,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="143"/>
         <CursorPos X="73" Y="145"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="159"/>
       </Unit88>
       <Unit89>
         <Filename Value="cwtypeform_u.pas"/>
@@ -920,7 +920,7 @@
         <UnitName Value="CWTypeForm_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="53"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="138"/>
       </Unit89>
       <Unit90>
         <Filename Value="dmtci_u.pas"/>
@@ -931,7 +931,7 @@
         <UnitName Value="dmTCI_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="65" Y="55"/>
-        <UsageCount Value="97"/>
+        <UsageCount Value="98"/>
       </Unit90>
       <Unit91>
         <Filename Value="streamadapter_u.pas"/>
@@ -940,7 +940,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="44" Y="35"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="68"/>
       </Unit91>
       <Unit92>
         <Filename Value="downloadqslthread.pas"/>
@@ -949,7 +949,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="105"/>
         <CursorPos X="42" Y="20"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
       </Unit92>
       <Unit93>
         <Filename Value="downloadfilesthread.pas"/>
@@ -958,7 +958,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="147"/>
         <CursorPos X="37" Y="23"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="43"/>
       </Unit93>
       <Unit94>
         <Filename Value="download_lotw.pas"/>
