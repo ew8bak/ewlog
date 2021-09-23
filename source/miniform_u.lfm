@@ -576,14 +576,13 @@ object MiniForm: TMiniForm
   end
   object CBRealTime: TCheckBox
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = LBTime
-    AnchorSideTop.Side = asrBottom
+    AnchorSideTop.Control = LBRSTr
+    AnchorSideTop.Side = asrCenter
     Left = 5
     Height = 23
-    Top = 168
+    Top = 173
     Width = 84
     BorderSpacing.Left = 5
-    BorderSpacing.Top = 2
     Caption = 'Real Time'
     Checked = True
     Font.Height = -12
@@ -594,14 +593,13 @@ object MiniForm: TMiniForm
   end
   object CBSaveUTC: TCheckBox
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = CBRealTime
-    AnchorSideTop.Side = asrBottom
+    AnchorSideTop.Control = CBQSLVia
+    AnchorSideTop.Side = asrCenter
     Left = 5
     Height = 23
-    Top = 193
+    Top = 199
     Width = 98
     BorderSpacing.Left = 5
-    BorderSpacing.Top = 2
     Caption = 'Save in UTC'
     Font.Height = -12
     OnChange = CBSaveUTCChange
@@ -999,7 +997,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 104
     Height = 23
-    Top = 193
+    Top = 199
     Width = 55
     BorderSpacing.Left = 1
     Caption = 'Mark'
@@ -2431,7 +2429,7 @@ object MiniForm: TMiniForm
     Interval = 3600000
     OnTimer = CheckUpdateTimerTimer
     OnStartTimer = CheckUpdateTimerStartTimer
-    Left = 160
-    Top = 160
+    Left = 272
+    Top = 56
   end
 end
