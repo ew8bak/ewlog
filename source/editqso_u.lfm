@@ -33,7 +33,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 70
       Height = 39
       Top = 5
-      Width = 190
+      Width = 175
       BorderSpacing.Top = 5
       CharCase = ecUppercase
       Color = clMoneyGreen
@@ -64,7 +64,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 70
       Height = 26
       Top = 46
-      Width = 103
+      Width = 115
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       DateOrder = doNone
       ButtonWidth = 23
@@ -80,7 +80,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = DEDate
       AnchorSideTop.Side = asrCenter
-      Left = 178
+      Left = 190
       Height = 21
       Top = 49
       Width = 57
@@ -176,7 +176,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 70
       Height = 21
       Top = 255
-      Width = 80
+      Width = 60
       AutoSize = False
       BorderSpacing.Top = 2
       Font.Height = -12
@@ -188,10 +188,10 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = EditDXCC
       AnchorSideTop.Side = asrCenter
-      Left = 155
+      Left = 135
       Height = 21
       Top = 255
-      Width = 80
+      Width = 60
       AutoSize = False
       BorderSpacing.Left = 5
       Font.Height = -12
@@ -205,7 +205,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 70
       Height = 21
       Top = 278
-      Width = 80
+      Width = 50
       AutoSize = False
       BorderSpacing.Top = 2
       Font.Height = -12
@@ -512,7 +512,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Edit7
       AnchorSideTop.Side = asrCenter
-      Left = 237
+      Left = 197
       Height = 20
       Hint = 'Change country information'
       Top = 255
@@ -530,11 +530,11 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = EditPrefix
       AnchorSideTop.Side = asrCenter
-      Left = 152
-      Height = 22
+      Left = 122
+      Height = 20
       Hint = 'Change country information'
-      Top = 277
-      Width = 23
+      Top = 278
+      Width = 20
       BorderSpacing.Left = 2
       Caption = '...'
       Font.Height = -12
@@ -548,7 +548,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = SpeedButton2
       AnchorSideTop.Side = asrCenter
-      Left = 177
+      Left = 144
       Height = 21
       Top = 278
       Width = 145
@@ -562,10 +562,11 @@ object EditQSO_Form: TEditQSO_Form
     object EditContinent: TEdit
       AnchorSideTop.Control = EditDXCC
       AnchorSideTop.Side = asrCenter
-      Left = 354
+      Left = 375
       Height = 21
       Top = 255
-      Width = 50
+      Width = 35
+      Anchors = [akTop]
       AutoSize = False
       Font.Height = -12
       ParentFont = False
@@ -574,11 +575,13 @@ object EditQSO_Form: TEditQSO_Form
     object EditGrid: TEdit
       AnchorSideTop.Control = EditPrefix
       AnchorSideTop.Side = asrCenter
-      Left = 354
+      Left = 345
       Height = 21
       Top = 278
-      Width = 50
+      Width = 65
+      Anchors = [akTop]
       AutoSize = False
+      BorderSpacing.Right = 1
       CharCase = ecUppercase
       Font.Height = -12
       ParentFont = False
@@ -588,7 +591,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditCQ
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditCQ
-      Left = 410
+      Left = 419
       Height = 13
       Top = 259
       Width = 17
@@ -603,7 +606,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditITU
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditITU
-      Left = 407
+      Left = 416
       Height = 13
       Top = 282
       Width = 20
@@ -618,7 +621,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditGrid
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditGrid
-      Left = 327
+      Left = 318
       Height = 13
       Top = 282
       Width = 25
@@ -633,7 +636,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditContinent
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditContinent
-      Left = 293
+      Left = 314
       Height = 13
       Top = 259
       Width = 59
@@ -856,15 +859,15 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object SpeedButton11: TSpeedButton
-      AnchorSideLeft.Control = DTTime
+      AnchorSideLeft.Control = EditCallSign
       AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = DTTime
+      AnchorSideTop.Control = EditCallSign
       AnchorSideTop.Side = asrCenter
       AnchorSideBottom.Control = EditCallSign
       AnchorSideBottom.Side = asrBottom
-      Left = 240
+      Left = 250
       Height = 20
-      Top = 49
+      Top = 14
       Width = 20
       AutoSize = True
       BorderSpacing.Left = 5
@@ -947,10 +950,13 @@ object EditQSO_Form: TEditQSO_Form
     object EditCQ: TEdit
       AnchorSideTop.Control = EditContinent
       AnchorSideTop.Side = asrCenter
-      Left = 429
+      AnchorSideRight.Control = MemoNote
+      AnchorSideRight.Side = asrBottom
+      Left = 438
       Height = 21
       Top = 255
-      Width = 44
+      Width = 35
+      Anchors = [akTop, akRight]
       AutoSize = False
       Font.Height = -12
       ParentFont = False
@@ -959,10 +965,13 @@ object EditQSO_Form: TEditQSO_Form
     object EditITU: TEdit
       AnchorSideTop.Control = EditGrid
       AnchorSideTop.Side = asrCenter
-      Left = 429
+      AnchorSideRight.Control = MemoNote
+      AnchorSideRight.Side = asrBottom
+      Left = 438
       Height = 21
       Top = 278
-      Width = 44
+      Width = 35
+      Anchors = [akTop, akRight]
       AutoSize = False
       Font.Height = -12
       ParentFont = False
@@ -1623,7 +1632,7 @@ object EditQSO_Form: TEditQSO_Form
     FieldDefs = <>
     Params = <>
     Macros = <>
-    Left = 272
-    Top = 16
+    Left = 264
+    Top = 128
   end
 end
