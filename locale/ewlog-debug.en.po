@@ -5648,14 +5648,6 @@ msgctxt "ttrxform.lblmode.caption"
 msgid "SSB"
 msgstr ""
 
-#: ttrxform.rbradio1.caption
-msgid "RIG 1"
-msgstr ""
-
-#: ttrxform.rbradio2.caption
-msgid "RIG 2"
-msgstr ""
-
 #: tupdate_form.btcancel.caption
 msgctxt "tupdate_form.btcancel.caption"
 msgid "Cancel"

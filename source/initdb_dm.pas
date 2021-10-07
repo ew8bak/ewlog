@@ -81,6 +81,7 @@ var
   UniqueCallsCount: integer;
   sqlite_version: string;
   SearchPrefixQuery: TSQLQuery;
+  RadioList: TStringList;
   PrefixExpProvinceArray: array of record
     reg: TRegExpr;
     id: integer;

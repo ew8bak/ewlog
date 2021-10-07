@@ -14,16 +14,15 @@ program EWLog;
 uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, sdflaz, datetimectrls, dbflaz, printer4lazarus, MainForm_U,
-  editqso_u, InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
+  Forms, sdflaz, datetimectrls, dbflaz, printer4lazarus, MainForm_U, editqso_u,
+  InformationForm_U, LogConfigForm_U, ConfigForm_U, ExportAdifForm_u,
   CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi,
   DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc, QSLManagerForm_U,
-  uRigControl, TRXForm_U, hrdlog, SettingsProgramForm_U,
-  AboutForm_U, ServiceForm_U, setupForm_U, UpdateForm_U, Changelog_Form_U,
-  Earth_Form_U, IOTA_Form_U, sendtelnetspot_form_U, ClusterFilter_Form_U,
-  WSJT_UDP_Form_U, synDBDate_u, ThanksForm_u, filterForm_U, hiddentsettings_u,
-  print_sticker_u, famm_u, mmform_u, hamqth, clublog, qrzcom, qso_record,
-  resourcestr, const_u,
+  uRigControl, TRXForm_U, hrdlog, SettingsProgramForm_U, AboutForm_U,
+  ServiceForm_U, setupForm_U, UpdateForm_U, Changelog_Form_U, Earth_Form_U,
+  IOTA_Form_U, sendtelnetspot_form_U, ClusterFilter_Form_U, WSJT_UDP_Form_U,
+  synDBDate_u, ThanksForm_u, filterForm_U, hiddentsettings_u, print_sticker_u,
+  famm_u, mmform_u, hamqth, clublog, qrzcom, qso_record, resourcestr, const_u,
   SetupSQLquery, flDigiModem, GetPhotoFromInternet, GetInfoFromInternetThread,
   viewPhoto_U, LogBookTable_record, DB_record, MainFuncDM, InitDB_dm,
   prefix_record, inifile_record, selectQSO_record, foundQSO_record, cloudlog,
@@ -31,9 +30,9 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   miniform_u, ImbedCallBookCheckRec, serverDM_u, telnetClientThread,
   dxclusterform_u, GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread,
   ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
-  dmCat, contestForm_u, dmContest_u, FMS_record,
-  dmmigrate_u, ExportSOTAThread, CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u,
-  CWKeysDM_u, CWTypeForm_u, dmTCI_u, StreamAdapter_u, downloadQSLthread, DownloadFilesThread;
+  dmCat, contestForm_u, dmContest_u, FMS_record, dmmigrate_u, ExportSOTAThread,
+  CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u, CWKeysDM_u, CWTypeForm_u,
+  dmTCI_u, StreamAdapter_u, downloadQSLthread, DownloadFilesThread, dmHamLib_u;
 
 {$R *.res}
 
@@ -46,6 +45,8 @@ begin
   Application.CreateForm(TdmFunc, dmFunc);
   Application.CreateForm(TMainFunc, MainFunc);
   Application.CreateForm(TInfoDM, InfoDM);
+  Application.CreateForm(TdmHamLib, dmHamLib);
+  Application.CreateForm(TdmTCI, dmTCI);
   Application.CreateForm(TMiniForm, MiniForm);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TServerDM, ServerDM);
@@ -62,7 +63,6 @@ begin
   Application.CreateForm(TCountryEditForm, CountryEditForm);
   Application.CreateForm(TManagerBasePrefixForm, ManagerBasePrefixForm);
   Application.CreateForm(TQSLManager_Form, QSLManager_Form);
-  Application.CreateForm(TdmTCI, dmTCI);
   Application.CreateForm(TTRXForm, TRXForm);
   Application.CreateForm(TSettingsProgramForm, SettingsProgramForm);
   Application.CreateForm(TAbout_Form, About_Form);

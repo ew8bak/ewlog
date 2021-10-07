@@ -107,7 +107,6 @@ begin
   if dxClusterForm <> nil then
     dxClusterForm.FormClose(MainForm, CloseAction);
   GridsForm.SavePosition;
-  TRXForm.FreeRadio;
   MiniForm.Close;
 end;
 

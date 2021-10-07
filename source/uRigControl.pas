@@ -167,7 +167,7 @@ begin
       begin
         fLastError := E.Message;
         Result := False;
-        TRXForm.tmrRadio.Enabled := False;
+       // TRXForm.tmrRadio.Enabled := False;
         exit;
       end
     end;

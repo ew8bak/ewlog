@@ -310,9 +310,10 @@ type
     procedure PControlChange(Sender: TObject);
     procedure SBTelnetDeleteClick(Sender: TObject);
     procedure SBTelnetDoneClick(Sender: TObject);
-    procedure TSCATShow(Sender: TObject);
+    procedure TSHamlibShow(Sender: TObject);
     procedure TSIntRefShow(Sender: TObject);
     procedure TSOtherSettingsShow(Sender: TObject);
+    procedure TSTCIShow(Sender: TObject);
     procedure TSTelnetShow(Sender: TObject);
   private
     LVSelectedItem: boolean;
@@ -321,9 +322,9 @@ type
     procedure SaveGridColors;
     procedure ReadGridColumns;
     procedure ReadGridColors;
-    procedure LoadRIGSettings;
+    procedure LoadRIGSettings(RIGid:integer);
     procedure SaveRIGSettings;
-    procedure LoadTCISettings;
+    procedure LoadTCISettings(RIGid: integer);
     procedure SaveTCISettings;
     procedure EnableTelnetBTDone;
     procedure SaveTelnetAddress;
@@ -642,7 +643,8 @@ end;
 
 procedure TConfigForm.BtTCIDefaultClick(Sender: TObject);
 begin
-  SetDefaultRadio('TCI');
+  if CBRigNumberTCI.ItemIndex <> -1 then
+    SetDefaultRadio('TCI' + CBRigNumberTCI.Text);
 end;
 
 procedure TConfigForm.Button3Click(Sender: TObject);
@@ -671,14 +673,12 @@ end;
 
 procedure TConfigForm.CBRigNumberHLSelect(Sender: TObject);
 begin
-  IniSet.CurrentNumberRIG := CBRigNumberHL.ItemIndex + 1;
-  LoadRIGSettings;
+  LoadRIGSettings(StrToInt(CBRigNumberHL.Text));
 end;
 
 procedure TConfigForm.CBRigNumberTCISelect(Sender: TObject);
 begin
-  IniSet.CurrentNumberTCI := CBRigNumberTCI.ItemIndex + 1;
-  LoadTCISettings;
+  LoadTCISettings(StrToInt(CBRigNumberTCI.Text));
 end;
 
 procedure TConfigForm.CBTransceiverModelSelect(Sender: TObject);
@@ -874,7 +874,7 @@ begin
   ReadINI;
 end;
 
-procedure TConfigForm.LoadRIGSettings;
+procedure TConfigForm.LoadRIGSettings(RIGid: integer);
 begin
   CBCatComPort.Items.CommaText := CATdm.GetSerialPortNames;
   FNPathRigctld.Text := IniSet.rigctldPath;
@@ -888,8 +888,8 @@ begin
   {$ENDIF}
   CBrigctldStart.Checked := IniSet.rigctldStartUp;
   CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
-  CATdm.LoadCATini(IniSet.CurrentNumberRIG);
-  CBRigNumberHL.ItemIndex := IniSet.CurrentNumberRIG - 1;
+  CATdm.LoadCATini(RIGid);
+  CBRigNumberHL.ItemIndex := RIGid - 1;
   CBCatComPort.Text := CatSettings.COMPort;
   CBCatSpeed.ItemIndex := CatSettings.Speed;
   CBCatStopBit.ItemIndex := CatSettings.StopBit;
@@ -940,14 +940,13 @@ begin
     CatSettings.StartRigctld := CBrigctldStart.Checked;
     CatSettings.RigctldPath := FNPathRigctld.Text;
     CATdm.SaveCATini(CBRigNumberHL.ItemIndex + 1);
-    TRXForm.InicializeRig;
   end;
 end;
 
-procedure TConfigForm.LoadTCISettings;
+procedure TConfigForm.LoadTCISettings(RIGid: integer);
 begin
-  dmTCI.LoadTCIini(IniSet.CurrentNumberTCI);
-  CBRigNumberTCI.ItemIndex := IniSet.CurrentNumberTCI - 1;
+  dmTCI.LoadTCIini(RIGid);
+  CBRigNumberTCI.ItemIndex := RIGid - 1;
   EditTCIAddress.Text := TCISettings.Address;
   EditTCIPort.Text := IntToStr(TCISettings.Port);
   EditRIGNameTCI.Text := TCISettings.Name;
@@ -963,7 +962,7 @@ begin
     TCISettings.Name := EditRIGNameTCI.Text;
     TCISettings.Enable := CBTCIEnable.Checked;
     dmTCI.SaveTCIini(CBRigNumberTCI.ItemIndex + 1);
-    dmTCI.InicializeTCI(CBRigNumberTCI.ItemIndex + 1);
+   // dmTCI.InicializeTCI(CBRigNumberTCI.ItemIndex + 1);
   end;
 end;
 
@@ -1214,7 +1213,8 @@ end;
 
 procedure TConfigForm.BtCATDeafultClick(Sender: TObject);
 begin
-  SetDefaultRadio('CAT');
+    if CBRigNumberHL.ItemIndex <> -1 then
+    SetDefaultRadio('TRX' + CBRigNumberHL.Text);
 end;
 
 procedure TConfigForm.btDefaultColorClick(Sender: TObject);
@@ -1253,10 +1253,9 @@ begin
     LVTelnet.Selected.Selected := False;
 end;
 
-procedure TConfigForm.TSCATShow(Sender: TObject);
+procedure TConfigForm.TSHamlibShow(Sender: TObject);
 begin
-  LoadRIGSettings;
-  LoadTCISettings;
+  LoadRIGSettings(StrToInt(IniSet.CurrentRIG[4]));
 end;
 
 procedure TConfigForm.TSIntRefShow(Sender: TObject);
@@ -1276,6 +1275,11 @@ begin
   else
   if CBIntMobileSync.Items.Count > 0 then
     CBIntMobileSync.ItemIndex := 0;
+end;
+
+procedure TConfigForm.TSTCIShow(Sender: TObject);
+begin
+   LoadTCISettings(StrToInt(IniSet.CurrentRIG[4]));
 end;
 
 procedure TConfigForm.TSTelnetShow(Sender: TObject);

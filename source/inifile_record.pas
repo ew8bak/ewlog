@@ -96,8 +96,6 @@ type
     CWDaemonEnable: boolean;
     InterfaceMobileSync: string;
     ViewFreq: integer;
-    CurrentNumberRIG: integer;
-    CurrentNumberTCI: integer;
     CurrentRIG: string;
   end;
 

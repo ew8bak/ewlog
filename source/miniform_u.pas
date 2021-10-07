@@ -351,7 +351,7 @@ type
     procedure SwitchForm;
     procedure TextSB(Value: string; PanelNum: integer);
     procedure FromCopyTableThread(Data: TData);
-    procedure ShowInfoFromRIG(freq: double; mode, submode: string);
+    procedure ShowInfoFromRIG;
     procedure ShowDataFromDIGI(DataDigi: TDigiR);
     procedure FromImportThread(Info: TInfo);
     procedure FromMobileSyncThread(InfoStr: string);
@@ -516,22 +516,22 @@ begin
     SBSave.Click;
 end;
 
-procedure TMiniForm.ShowInfoFromRIG(freq: double; mode, submode: string);
+procedure TMiniForm.ShowInfoFromRIG;
 begin
-  if Length(mode) > 1 then
+  if Length(FMS.Mode) > 1 then
   begin
-    CBMode.Text := mode;
-    CBSubMode.Text := submode;
+    CBMode.Text := FMS.Mode;
+    CBSubMode.Text := FMS.SubMode;
   end;
 
-  if freq <> 0 then
+  if FMS.Freq <> 0 then
   begin
     if IniSet.showBand then
       CBBand.Text := dmFunc.GetBandFromFreq(
-        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], freq),
+        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq),
         ',', '.', [rfReplaceAll]))
     else
-      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], freq),
+      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq),
         ',', '.', [rfReplaceAll]);
   end;
 end;
@@ -1431,27 +1431,20 @@ end;
 procedure TMiniForm.MIRadioClick(Sender: TObject);
 var
   RadioItems: TMenuItem;
-  RadioList: TStringList;
   i: integer;
 begin
   FreeMenuItem(76);
-
-  RadioList := TStringList.Create;
-  MainFunc.LoadRadioItems(RadioList);
-
   for i := 0 to RadioList.Count - 1 do
   begin
     RadioItems := TMenuItem.Create(Self);
     RadioItems.Name := 'RadioItems' + IntToStr(i);
-    RadioItems.Caption := RadioList.Strings[i];
+    RadioItems.Caption := RadioList.Names[i];
     RadioItems.OnClick := @RadioItemClick;
     RadioItems.Tag := 76;
-    if RadioItems.Caption = IniSet.CurrentRIG then
+    if RadioList.Values[RadioItems.Caption] = IniSet.CurrentRIG then
       RadioItems.Checked := True;
     MIRadio.Insert(i, RadioItems);
   end;
-
-  FreeAndNil(RadioList);
 end;
 
 procedure TMiniForm.RadioItemClick(Sender: TObject);
@@ -1459,11 +1452,10 @@ var
   MenuItem: TMenuItem;
 begin
   MenuItem := (Sender as TMenuItem);
-  if Pos('CAT', MenuItem.Caption) > 0 then
-    IniSet.CurrentRIG := 'CAT';
-  if Pos('TCI', MenuItem.Caption) > 0 then
-    IniSet.CurrentRIG := 'TCI';
-  //ShowMessage(IniSet.CurrentRIG);
+  IniSet.CurrentRIG := RadioList.Values[MenuItem.Caption];
+  MenuItem.Checked := True;
+  INIFile.WriteString('SetCAT', 'CurrentRIG', IniSet.CurrentRIG);
+  MainFunc.StartRadio(IniSet.CurrentRIG);
 end;
 
 procedure TMiniForm.MITelnetFormClick(Sender: TObject);
@@ -2271,7 +2263,6 @@ begin
     MapForm.SavePosition
   else
     Earth.SavePosition;
-  TRXForm.FreeRadio;
   dxClusterForm.FreeClusterThread;
   FreeMenuItem;
 end;
@@ -2344,6 +2335,8 @@ begin
     MenuItem89.Caption := rSwitchDBMySQL;
 
   SetHotKey;
+
+  MainFunc.StartRadio(IniSet.CurrentRIG);
 end;
 
 procedure TMiniForm.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);

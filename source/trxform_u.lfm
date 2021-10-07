@@ -1,23 +1,26 @@
 object TRXForm: TTRXForm
-  Left = 432
-  Height = 152
-  Top = 122
+  Left = 303
+  Height = 130
+  Top = 120
   Width = 245
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'RIG'
-  ClientHeight = 152
+  ClientHeight = 130
   ClientWidth = 245
   FormStyle = fsStayOnTop
   OnCloseQuery = FormCloseQuery
-  OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.0.12.0'
   object lblMode: TLabel
-    Left = 8
-    Height = 15
-    Top = 5
-    Width = 22
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 2
+    Height = 13
+    Top = 2
+    Width = 26
+    BorderSpacing.Left = 2
+    BorderSpacing.Top = 2
     Caption = 'SSB'
     Font.Color = clBlue
     Font.Height = -12
@@ -32,7 +35,6 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'CW'
     Font.Height = -11
-    OnClick = btnCWClick
     ParentFont = False
     TabOrder = 0
   end
@@ -43,7 +45,6 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'SSB'
     Font.Height = -11
-    OnClick = btnSSBClick
     ParentFont = False
     TabOrder = 1
   end
@@ -54,7 +55,6 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'DIG'
     Font.Height = -11
-    OnClick = btnRTTYClick
     ParentFont = False
     TabOrder = 2
   end
@@ -65,7 +65,6 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'AM'
     Font.Height = -11
-    OnClick = btnAMClick
     ParentFont = False
     TabOrder = 3
   end
@@ -76,7 +75,6 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'FM'
     Font.Height = -11
-    OnClick = btnFMClick
     ParentFont = False
     TabOrder = 4
   end
@@ -87,7 +85,6 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'A'
     Font.Height = -11
-    OnClick = btnVFOAClick
     ParentFont = False
     TabOrder = 5
   end
@@ -98,710 +95,250 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'B'
     Font.Height = -11
-    OnClick = btnVFOBClick
     ParentFont = False
     TabOrder = 6
   end
-  object rbRadio1: TRadioButton
-    AnchorSideLeft.Control = Owner
-    Left = 5
-    Height = 19
-    Top = 128
-    Width = 47
-    BorderSpacing.Left = 5
-    Caption = 'RIG 1'
-    Checked = True
-    OnClick = rbRadio1Click
-    TabOrder = 7
-    TabStop = True
-  end
-  object rbRadio2: TRadioButton
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
-    Left = 193
-    Height = 19
-    Top = 128
-    Width = 47
-    Anchors = [akTop, akRight]
-    BorderSpacing.Right = 5
-    Caption = 'RIG 2'
-    Enabled = False
-    OnClick = rbRadio2Click
-    TabOrder = 8
-  end
   object btn160m: TButton
-    Left = 8
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    Left = 5
     Height = 18
-    Top = 56
+    Top = 66
     Width = 28
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
     BorderSpacing.InnerBorder = 4
     Caption = '1.8'
     Font.Height = -11
-    OnClick = btn160mClick
     ParentFont = False
-    TabOrder = 9
+    TabOrder = 7
   end
   object btn80m: TButton
-    Left = 36
+    AnchorSideLeft.Control = btn160m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn160m
+    AnchorSideTop.Side = asrCenter
+    Left = 33
     Height = 18
-    Top = 56
+    Top = 66
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '3.5'
     Font.Height = -11
-    OnClick = btn80mClick
     ParentFont = False
-    TabOrder = 10
+    TabOrder = 8
   end
   object btn40m: TButton
-    Left = 64
+    AnchorSideLeft.Control = btn80m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn80m
+    AnchorSideTop.Side = asrCenter
+    Left = 61
     Height = 18
-    Top = 56
+    Top = 66
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '7'
     Font.Height = -11
-    OnClick = btn40mClick
     ParentFont = False
-    TabOrder = 11
+    TabOrder = 9
   end
   object btn30m: TButton
-    Left = 92
+    AnchorSideLeft.Control = btn40m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn40m
+    AnchorSideTop.Side = asrCenter
+    Left = 89
     Height = 18
-    Top = 56
+    Top = 66
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '10'
     Font.Height = -11
-    OnClick = btn30mClick
     ParentFont = False
-    TabOrder = 12
+    TabOrder = 10
   end
   object btn12m: TButton
-    Left = 204
+    AnchorSideLeft.Control = btn15m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn15m
+    AnchorSideTop.Side = asrCenter
+    Left = 201
     Height = 18
-    Top = 56
+    Top = 66
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '24'
     Font.Height = -11
-    OnClick = btn12mClick
     ParentFont = False
-    TabOrder = 13
+    TabOrder = 11
   end
   object btn15m: TButton
-    Left = 176
+    AnchorSideLeft.Control = btn17m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn17m
+    AnchorSideTop.Side = asrCenter
+    Left = 173
     Height = 18
-    Top = 56
+    Top = 66
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '21'
     Font.Height = -11
-    OnClick = btn15mClick
     ParentFont = False
-    TabOrder = 14
+    TabOrder = 12
   end
   object btn17m: TButton
-    Left = 148
+    AnchorSideLeft.Control = btn20m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn20m
+    AnchorSideTop.Side = asrCenter
+    Left = 145
     Height = 18
-    Top = 56
+    Top = 66
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '18'
     Font.Height = -11
-    OnClick = btn17mClick
     ParentFont = False
-    TabOrder = 15
+    TabOrder = 13
   end
   object btn20m: TButton
-    Left = 120
+    AnchorSideLeft.Control = btn30m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn30m
+    AnchorSideTop.Side = asrCenter
+    Left = 117
     Height = 18
-    Top = 56
+    Top = 66
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '14'
     Font.Height = -11
-    OnClick = btn20mClick
     ParentFont = False
-    TabOrder = 16
+    TabOrder = 14
   end
   object btn10m: TButton
-    Left = 8
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = btn160m
+    AnchorSideTop.Side = asrBottom
+    Left = 5
     Height = 18
-    Top = 80
+    Top = 85
     Width = 28
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 1
     BorderSpacing.InnerBorder = 4
     Caption = '28'
     Font.Height = -11
-    OnClick = btn10mClick
     ParentFont = False
-    TabOrder = 17
+    TabOrder = 15
   end
   object btn6m: TButton
-    Left = 36
+    AnchorSideLeft.Control = btn10m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn10m
+    AnchorSideTop.Side = asrCenter
+    Left = 33
     Height = 18
-    Top = 80
+    Top = 85
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '50'
     Font.Height = -11
-    OnClick = btn6mClick
     ParentFont = False
-    TabOrder = 18
+    TabOrder = 16
   end
   object btn70cm: TButton
-    Left = 92
+    AnchorSideLeft.Control = btn2m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn2m
+    AnchorSideTop.Side = asrCenter
+    Left = 89
     Height = 18
-    Top = 80
+    Top = 85
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '144'
     Font.Height = -11
-    OnClick = btn70cmClick
     ParentFont = False
-    TabOrder = 19
+    TabOrder = 17
   end
   object btn2m: TButton
-    Left = 64
+    AnchorSideLeft.Control = btn6m
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn6m
+    AnchorSideTop.Side = asrCenter
+    Left = 61
     Height = 18
-    Top = 80
+    Top = 85
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '70'
     Font.Height = -11
     ParentFont = False
-    TabOrder = 20
+    TabOrder = 18
   end
   object btn70cm1: TButton
-    Left = 120
+    AnchorSideLeft.Control = btn70cm
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn70cm
+    AnchorSideTop.Side = asrCenter
+    Left = 117
     Height = 18
-    Top = 80
+    Top = 85
     Width = 28
     BorderSpacing.InnerBorder = 4
     Caption = '430'
     Font.Height = -11
-    OnClick = btn70cm1Click
     ParentFont = False
-    TabOrder = 21
+    TabOrder = 19
   end
   object btn70cm2: TButton
-    Left = 148
+    AnchorSideLeft.Control = btn70cm1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = btn70cm1
+    AnchorSideTop.Side = asrCenter
+    Left = 145
     Height = 18
-    Top = 80
+    Top = 85
     Width = 36
     BorderSpacing.InnerBorder = 4
     Caption = '1200'
     Font.Height = -11
     ParentFont = False
-    TabOrder = 22
-  end
-  object Arrow1: TArrow
-    AnchorSideLeft.Control = Label1
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label1
-    Left = 43
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow2: TArrow
-    AnchorSideLeft.Control = Label2
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label2
-    Left = 59
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow3: TArrow
-    AnchorSideLeft.Control = Label3
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label3
-    Left = 75
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow4: TArrow
-    AnchorSideLeft.Control = Label4
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label4
-    Left = 98
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow5: TArrow
-    AnchorSideLeft.Control = Label5
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label5
-    Left = 114
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow6: TArrow
-    AnchorSideLeft.Control = Label6
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label6
-    Left = 130
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow7: TArrow
-    AnchorSideLeft.Control = Label7
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label7
-    Left = 153
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow8: TArrow
-    AnchorSideLeft.Control = Label8
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label8
-    Left = 169
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow9: TArrow
-    AnchorSideLeft.Control = Label1
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label1
-    AnchorSideBottom.Side = asrBottom
-    Left = 43
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow10: TArrow
-    AnchorSideLeft.Control = Label2
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label2
-    AnchorSideBottom.Side = asrBottom
-    Left = 59
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow11: TArrow
-    AnchorSideLeft.Control = Label3
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label3
-    AnchorSideBottom.Side = asrBottom
-    Left = 75
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow12: TArrow
-    AnchorSideLeft.Control = Label4
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label4
-    AnchorSideBottom.Side = asrBottom
-    Left = 98
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow13: TArrow
-    AnchorSideLeft.Control = Label5
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label5
-    AnchorSideBottom.Side = asrBottom
-    Left = 114
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow14: TArrow
-    AnchorSideLeft.Control = Label6
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label6
-    AnchorSideBottom.Side = asrBottom
-    Left = 130
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow15: TArrow
-    AnchorSideLeft.Control = Label7
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label7
-    AnchorSideBottom.Side = asrBottom
-    Left = 153
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow16: TArrow
-    AnchorSideLeft.Control = Label8
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label8
-    AnchorSideBottom.Side = asrBottom
-    Left = 169
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Label1: TLabel
-    AnchorSideLeft.Control = Owner
-    Left = 40
-    Height = 37
-    Top = 16
-    Width = 16
-    BorderSpacing.Left = 40
-    Caption = '0'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OnMouseLeave = Label1MouseLeave
-    OnMouseWheelDown = Label1MouseWheelDown
-    OnMouseWheelUp = Label1MouseWheelUp
-  end
-  object Label2: TLabel
-    AnchorSideLeft.Control = Label1
-    AnchorSideLeft.Side = asrBottom
-    Left = 56
-    Height = 37
-    Top = 16
-    Width = 16
-    Caption = '0'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OnMouseLeave = Label2MouseLeave
-    OnMouseWheelDown = Label2MouseWheelDown
-    OnMouseWheelUp = Label2MouseWheelUp
-  end
-  object Label3: TLabel
-    AnchorSideLeft.Control = Label2
-    AnchorSideLeft.Side = asrBottom
-    Left = 72
-    Height = 37
-    Top = 16
-    Width = 16
-    Caption = '0'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OnMouseLeave = Label3MouseLeave
-    OnMouseWheelDown = Label3MouseWheelDown
-    OnMouseWheelUp = Label3MouseWheelUp
-  end
-  object Label4: TLabel
-    AnchorSideLeft.Control = Label9
-    AnchorSideLeft.Side = asrBottom
-    Left = 95
-    Height = 37
-    Top = 16
-    Width = 16
-    Caption = '0'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OnMouseLeave = Label4MouseLeave
-    OnMouseWheelDown = Label4MouseWheelDown
-    OnMouseWheelUp = Label4MouseWheelUp
-  end
-  object Label5: TLabel
-    AnchorSideLeft.Control = Label4
-    AnchorSideLeft.Side = asrBottom
-    Left = 111
-    Height = 37
-    Top = 16
-    Width = 16
-    Caption = '0'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OnMouseLeave = Label5MouseLeave
-    OnMouseWheelDown = Label5MouseWheelDown
-    OnMouseWheelUp = Label5MouseWheelUp
-  end
-  object Label6: TLabel
-    AnchorSideLeft.Control = Label5
-    AnchorSideLeft.Side = asrBottom
-    Left = 127
-    Height = 37
-    Top = 16
-    Width = 16
-    Caption = '0'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OnMouseLeave = Label6MouseLeave
-    OnMouseWheelDown = Label6MouseWheelDown
-    OnMouseWheelUp = Label6MouseWheelUp
-  end
-  object Label7: TLabel
-    AnchorSideLeft.Control = Label10
-    AnchorSideLeft.Side = asrBottom
-    Left = 150
-    Height = 37
-    Top = 16
-    Width = 16
-    Caption = '0'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OnMouseLeave = Label7MouseLeave
-    OnMouseWheelDown = Label7MouseWheelDown
-    OnMouseWheelUp = Label7MouseWheelUp
-  end
-  object Label8: TLabel
-    AnchorSideLeft.Control = Label7
-    AnchorSideLeft.Side = asrBottom
-    Left = 166
-    Height = 37
-    Top = 16
-    Width = 16
-    Caption = '0'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OnMouseLeave = Label8MouseLeave
-    OnMouseWheelDown = Label8MouseWheelDown
-    OnMouseWheelUp = Label8MouseWheelUp
-  end
-  object Label9: TLabel
-    AnchorSideLeft.Control = Label3
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = Label3
-    AnchorSideTop.Side = asrCenter
-    Left = 88
-    Height = 37
-    Top = 16
-    Width = 7
-    Caption = '.'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-  end
-  object Label10: TLabel
-    AnchorSideLeft.Control = Label6
-    AnchorSideLeft.Side = asrBottom
-    Left = 143
-    Height = 37
-    Top = 16
-    Width = 7
-    Caption = '.'
-    Font.Color = clBlue
-    Font.Height = -27
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-  end
-  object Arrow17: TArrow
-    AnchorSideLeft.Control = Label11
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label11
-    Left = 185
-    Height = 10
-    Top = 22
-    Width = 10
-    ArrowColor = clBlue
-    ArrowType = atUp
-    BorderSpacing.Top = 6
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
-  end
-  object Arrow18: TArrow
-    AnchorSideLeft.Control = Label11
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label11
-    AnchorSideBottom.Side = asrBottom
-    Left = 185
-    Height = 10
-    Top = 43
-    Width = 10
-    Anchors = [akLeft, akBottom]
-    ArrowColor = clBlue
-    ArrowType = atDown
-    Constraints.MinHeight = 8
-    Constraints.MinWidth = 8
-    OnMouseLeave = Arrow1MouseLeave
-    OnMouseMove = Arrow1MouseMove
-    ShadowType = stNone
+    TabOrder = 20
   end
   object Label11: TLabel
-    AnchorSideLeft.Control = Label8
+    AnchorSideLeft.Control = Label7
     AnchorSideLeft.Side = asrBottom
-    Left = 182
-    Height = 37
-    Top = 16
-    Width = 16
+    AnchorSideTop.Control = Label7
+    AnchorSideTop.Side = asrCenter
+    Left = 178
+    Height = 31
+    Top = 30
+    Width = 19
     Caption = '0'
     Font.Color = clBlue
     Font.Height = -27
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
-    OnMouseLeave = Label11MouseLeave
-    OnMouseWheelDown = Label11MouseWheelDown
-    OnMouseWheelUp = Label11MouseWheelUp
   end
   object SBConnect: TSpeedButton
     AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Side = asrCenter
-    Left = 209
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 215
     Height = 28
-    Top = 1
+    Top = 2
     Width = 28
+    Anchors = [akTop, akRight]
     AutoSize = True
-    BorderSpacing.Left = 1
+    BorderSpacing.Top = 2
+    BorderSpacing.Right = 2
     Flat = True
     Glyph.Data = {
       36090000424D3609000000000000360000002800000018000000180000000100
@@ -879,13 +416,165 @@ object TRXForm: TTRXForm
       00000000000000000000000000000000000000000000B1614010B16140DFB162
       401000000000000000000000000000000000FFFFFF00FFFFFF00
     }
-    OnClick = SBConnectClick
   end
-  object tmrRadio: TTimer
-    Enabled = False
-    Interval = 50
-    OnTimer = tmrRadioTimer
-    Left = 136
-    Top = 112
+  object Label10: TLabel
+    AnchorSideLeft.Control = Label6
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label6
+    AnchorSideTop.Side = asrCenter
+    Left = 149
+    Height = 31
+    Top = 30
+    Width = 10
+    Caption = '.'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label9: TLabel
+    AnchorSideLeft.Control = Label3
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrCenter
+    Left = 82
+    Height = 31
+    Top = 30
+    Width = 10
+    Caption = '.'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label8: TLabel
+    AnchorSideLeft.Control = Label11
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label11
+    AnchorSideTop.Side = asrCenter
+    Left = 197
+    Height = 31
+    Top = 30
+    Width = 19
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label7: TLabel
+    AnchorSideLeft.Control = Label10
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label10
+    AnchorSideTop.Side = asrCenter
+    Left = 159
+    Height = 31
+    Top = 30
+    Width = 19
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label6: TLabel
+    AnchorSideLeft.Control = Label5
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label5
+    AnchorSideTop.Side = asrCenter
+    Left = 130
+    Height = 31
+    Top = 30
+    Width = 19
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    AnchorSideLeft.Control = Label4
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label4
+    AnchorSideTop.Side = asrCenter
+    Left = 111
+    Height = 31
+    Top = 30
+    Width = 19
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    AnchorSideLeft.Control = Label9
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label9
+    AnchorSideTop.Side = asrCenter
+    Left = 92
+    Height = 31
+    Top = 30
+    Width = 19
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label2
+    AnchorSideTop.Side = asrCenter
+    Left = 63
+    Height = 31
+    Top = 30
+    Width = 19
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrCenter
+    Left = 44
+    Height = 31
+    Top = 30
+    Width = 19
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = SBConnect
+    AnchorSideTop.Side = asrBottom
+    Left = 25
+    Height = 31
+    Top = 30
+    Width = 19
+    BorderSpacing.Left = 25
+    Caption = '0'
+    Font.Color = clBlue
+    Font.Height = -27
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
   end
 end

@@ -158,7 +158,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="94">
+    <Units Count="95">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -758,6 +758,13 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadFilesThread"/>
       </Unit93>
+      <Unit94>
+        <Filename Value="dmhamlib_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmHamLib"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmHamLib_u"/>
+      </Unit94>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

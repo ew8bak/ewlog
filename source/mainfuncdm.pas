@@ -91,8 +91,9 @@ type
     function ConvertFreqToSave(Freq: string): string;
     function ConvertFreqToShow(Freq: string): string;
     function ConvertFreqToSelectView(Freq: string): string;
-    procedure LoadRadioItems(var SL: TStringList);
+    procedure LoadRadioItems;
     function CompareVersion(Local, Server: string): boolean;
+    procedure StartRadio(RIGid: string);
   end;
 
 var
@@ -109,9 +110,25 @@ var
 implementation
 
 uses InitDB_dm, dmFunc_U, hrdlog,
-  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u;
+  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u, dmHamLib_u;
 
 {$R *.lfm}
+
+procedure TMainFunc.StartRadio(RIGid: string);
+var
+  id: integer;
+begin
+  if Pos('TRX', RIGid) > 0 then
+  begin
+    id := StrToInt(RIGid[4]);
+    dmHamLib.InicializeHLRig(id);
+    Exit;
+  end;
+  if Pos('TCI', RIGid) > 0 then
+  begin
+    Exit;
+  end;
+end;
 
 function TMainFunc.CompareVersion(Local, Server: string): boolean;
 var
@@ -126,16 +143,22 @@ begin
   end;
 end;
 
-procedure TMainFunc.LoadRadioItems(var SL: TStringList);
+procedure TMainFunc.LoadRadioItems;
 var
   i: integer;
 begin
+  RadioList.Clear;
   for i := 1 to 4 do
+  begin
     if INIFile.ReadString('TRX' + IntToStr(i), 'name', '') <> '' then
-      SL.Add(INIFile.ReadString('TRX' + IntToStr(i), 'name', '') + ' | CAT');
-  for i := 1 to 4 do
+      RadioList.AddPair(INIFile.ReadString('TRX' + IntToStr(i), 'name', ''),
+        'TRX' + IntToStr(i));
     if INIFile.ReadString('TCI' + IntToStr(i), 'name', '') <> '' then
-      SL.Add(INIFile.ReadString('TCI' + IntToStr(i), 'name', '') + ' | TCI');
+      RadioList.AddPair(INIFile.ReadString('TCI' + IntToStr(i), 'name', ''),
+        'TCI' + IntToStr(i));
+  end;
+  RadioList.Sort;
+  RadioList.Sorted := True;
 end;
 
 function TMainFunc.ConvertFreqToSave(Freq: string): string;
@@ -1612,9 +1635,7 @@ begin
   IniSet.ViewFreq := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
   if IniSet.ViewFreq > 3 then
     IniSet.ViewFreq := 0;
-  IniSet.CurrentNumberRIG := INIFile.ReadInteger('SetCAT', 'CurrentNumberRIG', 1);
-  IniSet.CurrentNumberTCI := INIFile.ReadInteger('SetCAT', 'CurrentNumberTCI', 1);
-  IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', 'CAT');
+  IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', '');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -2023,10 +2044,13 @@ procedure TMainFunc.DataModuleCreate(Sender: TObject);
 begin
   SearchPrefixQuery := TSQLQuery.Create(nil);
   SearchPrefixQuery.DataBase := InitDB.ServiceDBConnection;
+  RadioList := TStringList.Create;
+  LoadRadioItems;
 end;
 
 procedure TMainFunc.DataModuleDestroy(Sender: TObject);
 begin
+  FreeAndNil(RadioList);
   FreeAndNil(SearchPrefixQuery);
 end;
 

@@ -783,8 +783,8 @@ begin
 
       if Length(Data^.Spots) >= 3 then
         InfoDM.GetInformation(dmFunc.ExtractCallsign(Data^.Spots), 'MainForm');
-
-      if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
+      //Установка частоты
+    {  if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
         (TRXForm.radio.GetFreqHz > 0) then
       begin
         TRXForm.radio.SetFreqKHz(FreqFloat);
@@ -824,7 +824,7 @@ begin
           MiniForm.CBModeCloseUp(Sender);
           MiniForm.CBSubMode.Text := '';
         end;
-      end;
+      end;  }
     end;
   end;
 
