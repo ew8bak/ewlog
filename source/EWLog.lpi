@@ -762,6 +762,7 @@
         <Filename Value="dmhamlib_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmHamLib"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmHamLib_u"/>
       </Unit94>

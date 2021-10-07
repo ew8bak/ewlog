@@ -106,9 +106,9 @@ begin
   begin
     f := radio.GetFreqMHz;
     m := radio.GetModeOnly;
-   {$IFDEF WIN64}
-    bwith := radio.GetBandwich(radio.GetRawMode);
-  {$ENDIF}
+   //{$IFDEF WIN64}
+   // bwith := radio.GetBandwich(radio.GetRawMode);
+  //{$ENDIF}
   end
   else
   begin
