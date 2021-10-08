@@ -114,52 +114,49 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="15">
+    <RequiredPackages Count="14">
       <Item1>
-        <PackageName Value="industrial"/>
+        <PackageName Value="syWebSocket"/>
       </Item1>
       <Item2>
-        <PackageName Value="syWebSocket"/>
+        <PackageName Value="uniqueinstance_package"/>
       </Item2>
       <Item3>
-        <PackageName Value="uniqueinstance_package"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item3>
       <Item4>
-        <PackageName Value="Printer4Lazarus"/>
+        <PackageName Value="lazreport"/>
       </Item4>
       <Item5>
-        <PackageName Value="lazreport"/>
+        <PackageName Value="lazMapViewerPkg"/>
       </Item5>
       <Item6>
-        <PackageName Value="lazMapViewerPkg"/>
+        <PackageName Value="virtualtreeview_package"/>
       </Item6>
       <Item7>
-        <PackageName Value="virtualtreeview_package"/>
+        <PackageName Value="indylaz"/>
       </Item7>
       <Item8>
-        <PackageName Value="indylaz"/>
+        <PackageName Value="DBFLaz"/>
       </Item8>
       <Item9>
-        <PackageName Value="DBFLaz"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item9>
       <Item10>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="MemDSLaz"/>
       </Item10>
       <Item11>
-        <PackageName Value="MemDSLaz"/>
+        <PackageName Value="SDFLaz"/>
       </Item11>
       <Item12>
-        <PackageName Value="SDFLaz"/>
+        <PackageName Value="FCL"/>
       </Item12>
       <Item13>
-        <PackageName Value="FCL"/>
+        <PackageName Value="SQLDBLaz"/>
       </Item13>
       <Item14>
-        <PackageName Value="SQLDBLaz"/>
-      </Item14>
-      <Item15>
         <PackageName Value="LCL"/>
-      </Item15>
+      </Item14>
     </RequiredPackages>
     <Units Count="95">
       <Unit0>
