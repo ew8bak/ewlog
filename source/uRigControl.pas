@@ -167,7 +167,7 @@ begin
       begin
         fLastError := E.Message;
         Result := False;
-       // TRXForm.tmrRadio.Enabled := False;
+        // TRXForm.tmrRadio.Enabled := False;
         exit;
       end
     end;
@@ -254,15 +254,11 @@ end;
 
 function TRigControl.GetFreqHz: integer;
 begin
-  {$IFDEF WIN64}
   try
     Result := Trunc(fFreq) + Trunc(fRXOffset) * 1000000;
   except
+    Result := 0;
   end;
-  {$ENDIF}
-  {$IFDEF UNIX}
-  Result := Trunc(fFreq) + Trunc(fRXOffset) * 1000000;
-  {$ENDIF}
 end;
 
 function TRigControl.GetFreqKHz: double;

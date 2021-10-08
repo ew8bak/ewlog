@@ -518,7 +518,7 @@ end;
 
 procedure TMiniForm.ShowInfoFromRIG;
 begin
-  if Length(FMS.Mode) > 1 then
+  if FMS.Mode <> '' then
   begin
     CBMode.Text := FMS.Mode;
     CBSubMode.Text := FMS.SubMode;
@@ -2365,8 +2365,6 @@ begin
     DateTimePicker1.DateTime := NowUTC;
     DateEdit1.Date := NowUTC;
   end;
-  FMS.Mode := CBMode.Text;
-  FMS.SubMode := CBSubMode.Text;
 end;
 
 end.

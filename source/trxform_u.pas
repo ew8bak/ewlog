@@ -14,7 +14,7 @@ unit TRXForm_U;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  SysUtils, Forms, Dialogs, StdCtrls,
   ExtCtrls, Buttons;
 
 type
@@ -22,6 +22,7 @@ type
   { TTRXForm }
 
   TTRXForm = class(TForm)
+    Bevel1: TBevel;
     btn10m: TButton;
     btn12m: TButton;
     btn15m: TButton;
@@ -62,7 +63,7 @@ type
 
     { private declarations }
   public
-    procedure ShowInfoFromRIG;
+    procedure ShowInfoFromRIG(Hz: integer);
     procedure Freq(Hz: integer);
     procedure SavePosition;
     { public declarations }
@@ -74,16 +75,19 @@ var
 implementation
 
 uses
-  dmFunc_U, InitDB_dm, MainFuncDM, WSJT_UDP_Form_U,
-  dmCat, dmTCI_u;
+  MainFuncDM;
 
 {$R *.lfm}
 
 { TTRXForm }
 
-procedure TTRXForm.ShowInfoFromRIG;
+procedure TTRXForm.ShowInfoFromRIG(Hz: integer);
 begin
-
+  if Hz > 0 then
+  begin
+    Freq(Hz);
+    lblMode.Caption := FMS.Mode;
+  end;
 end;
 
 procedure TTRXForm.SavePosition;
@@ -94,26 +98,27 @@ end;
 
 procedure TTRXForm.Freq(Hz: integer);
 var
-  fr: array[1..9] of string;
+  fr: array[0..9] of string;
 begin
-  fr[1] := IntToStr(hz mod 10);
-  fr[2] := IntToStr(Trunc((hz mod 100) / 10));
-  fr[3] := IntToStr(Trunc((hz mod 1000) / 100));
-  fr[4] := IntToStr(Trunc((hz mod 10000) / 1000));
-  fr[5] := IntToStr(Trunc((hz mod 100000) / 10000));
-  fr[6] := IntToStr(Trunc((hz mod 1000000) / 100000));
-  fr[7] := IntToStr(Trunc((hz mod 10000000) / 1000000));
-  fr[8] := IntToStr(Trunc((hz mod 100000000) / 10000000));
-  fr[9] := IntToStr(Trunc((hz mod 1000000000) / 100000000));
-  label1.Caption := fr[9];
-  label2.Caption := fr[8];
-  label3.Caption := fr[7];
-  label4.Caption := fr[6];
-  label5.Caption := fr[5];
-  label6.Caption := fr[4];
-  label7.Caption := fr[3];
-  label8.Caption := fr[2];
-  label11.Caption := fr[1];
+  fr[0] := IntToStr(hz mod 10);
+  fr[1] := IntToStr(Trunc((hz mod 100) / 10));
+  fr[2] := IntToStr(Trunc((hz mod 1000) / 100));
+  fr[3] := IntToStr(Trunc((hz mod 10000) / 1000));
+  fr[4] := IntToStr(Trunc((hz mod 100000) / 10000));
+  fr[5] := IntToStr(Trunc((hz mod 1000000) / 100000));
+  fr[6] := IntToStr(Trunc((hz mod 10000000) / 1000000));
+  fr[7] := IntToStr(Trunc((hz mod 100000000) / 10000000));
+  fr[8] := IntToStr(Trunc((hz mod 1000000000) / 100000000));
+  fr[9] := IntToStr(Trunc((hz mod 10000000000) / 1000000000));
+  label1.Caption := fr[8];
+  label2.Caption := fr[7];
+  label3.Caption := fr[6];
+  label4.Caption := fr[5];
+  label5.Caption := fr[4];
+  label6.Caption := fr[3];
+  label7.Caption := fr[2];
+  label8.Caption := fr[1];
+  label11.Caption := fr[0];
 end;
 
 procedure TTRXForm.FormShow(Sender: TObject);

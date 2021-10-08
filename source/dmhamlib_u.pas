@@ -50,7 +50,7 @@ var
 implementation
 
 uses
-  InitDB_dm, dmCat, dmFunc_U, MainFuncDM, miniform_u;
+  InitDB_dm, dmCat, dmFunc_U, MainFuncDM, miniform_u, TRXForm_U;
 
 {$R *.lfm}
 
@@ -96,6 +96,7 @@ end;
 procedure TdmHamLib.SynTRX;
 var
   f: double;
+  f_hz: integer;
   m: string;
   mode, submode: string;
 begin
@@ -106,13 +107,15 @@ begin
   begin
     f := radio.GetFreqMHz;
     m := radio.GetModeOnly;
-   //{$IFDEF WIN64}
-   // bwith := radio.GetBandwich(radio.GetRawMode);
-  //{$ENDIF}
+    f_hz := radio.GetFreqHz;
+    //{$IFDEF WIN64}
+    // bwith := radio.GetBandwich(radio.GetRawMode);
+    //{$ENDIF}
   end
   else
   begin
     f := 0;
+    f_hz := 0;
   end;
 
   if Length(m) > 1 then
@@ -121,12 +124,13 @@ begin
   FMS.Mode := mode;
   FMS.SubMode := submode;
   MiniForm.ShowInfoFromRIG;
+  TRXForm.ShowInfoFromRIG(f_hz);
 end;
 
 procedure TdmHamLib.tmrRadioTimer(Sender: TObject);
 begin
- // if not WSJT_Run and not FldigiConnect then
-    SynTRX;
+  // if not WSJT_Run and not FldigiConnect then
+  SynTRX;
 end;
 
 procedure TdmHamLib.DataModuleCreate(Sender: TObject);
