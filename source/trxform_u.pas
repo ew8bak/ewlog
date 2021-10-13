@@ -15,7 +15,7 @@ interface
 
 uses
   SysUtils, Forms, Dialogs, StdCtrls,
-  ExtCtrls, Buttons;
+  ExtCtrls, Buttons, Classes;
 
 type
 
@@ -44,6 +44,7 @@ type
     btnSSB: TButton;
     btnVFOA: TButton;
     btnVFOB: TButton;
+    ImConnect: TImage;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -59,7 +60,9 @@ type
     SBConnect: TSpeedButton;
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormShow(Sender: TObject);
+    procedure SBConnectClick(Sender: TObject);
   private
+    statusConnect: boolean;
 
     { private declarations }
   public
@@ -87,6 +90,14 @@ begin
   begin
     Freq(Hz);
     lblMode.Caption := FMS.Mode;
+  end;
+  if statusConnect <> IniSet.RIGConnected then
+  begin
+    if IniSet.RIGConnected then
+      ImConnect.Picture.LoadFromLazarusResource('bullet_green')
+    else
+      ImConnect.Picture.LoadFromLazarusResource('bullet_red');
+    statusConnect := IniSet.RIGConnected;
   end;
 end;
 
@@ -124,6 +135,13 @@ end;
 procedure TTRXForm.FormShow(Sender: TObject);
 begin
   MainFunc.LoadWindowPosition(TRXForm);
+  statusConnect := False;
+  ImConnect.Picture.LoadFromLazarusResource('bullet_red');
+end;
+
+procedure TTRXForm.SBConnectClick(Sender: TObject);
+begin
+  MainFunc.StartRadio(IniSet.CurrentRIG);
 end;
 
 procedure TTRXForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);

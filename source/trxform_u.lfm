@@ -404,6 +404,7 @@ object TRXForm: TTRXForm
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000
     }
+    OnClick = SBConnectClick
   end
   object Label10: TLabel
     AnchorSideLeft.Control = Label6
@@ -577,5 +578,17 @@ object TRXForm: TTRXForm
     BorderSpacing.Left = 5
     BorderSpacing.Top = 2
     BorderSpacing.Right = 5
+  end
+  object ImConnect: TImage
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 227
+    Height = 16
+    Top = 99
+    Width = 16
+    Anchors = [akRight, akBottom]
   end
 end

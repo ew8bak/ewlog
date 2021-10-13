@@ -19,10 +19,10 @@ type
     radio: TRigControl;
     procedure tmrRadioTimer(Sender: TObject);
     procedure SynTRX;
-    procedure FreeRadio;
 
   public
     function InicializeHLRig(RIGid: integer): boolean;
+    procedure FreeRadio;
 
   end;
 
@@ -50,7 +50,8 @@ var
 implementation
 
 uses
-  InitDB_dm, dmCat, dmFunc_U, MainFuncDM, miniform_u, TRXForm_U;
+  InitDB_dm, dmCat, dmFunc_U, MainFuncDM, miniform_u, TRXForm_U,
+  WSJT_UDP_Form_U, serverDM_u;
 
 {$R *.lfm}
 
@@ -129,8 +130,8 @@ end;
 
 procedure TdmHamLib.tmrRadioTimer(Sender: TObject);
 begin
-  // if not WSJT_Run and not FldigiConnect then
-  SynTRX;
+  if not WSJT_Run and not FldigiConnect then
+    SynTRX;
 end;
 
 procedure TdmHamLib.DataModuleCreate(Sender: TObject);

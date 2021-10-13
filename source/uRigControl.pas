@@ -126,9 +126,6 @@ type
 
 implementation
 
-uses
-  TRXForm_U;
-
 constructor TRigControl.Create;
 begin
   RigCommand := TStringList.Create;
@@ -179,13 +176,6 @@ function TRigControl.RigConnected: boolean;
 const
   ERR_MSG = 'Could not connect to rigctld';
 begin
-
-  // if (RigId = 1) then
-  // begin
-  //   Result := False;
-  //   exit
-  //  end;
-
   if fRunRigCtld then
   begin
     if (not StartRigctld) and (RigId <> 2) then
@@ -197,8 +187,13 @@ begin
 
   rcvdFreqMode.Host := fRigCtldHost;
   rcvdFreqMode.Port := fRigCtldPort;
+  try
   rcvdFreqMode.Connect;
-
+  except
+    fLastError := ERR_MSG;
+    Result := False;
+    Exit;
+  end;
   if rcvdFreqMode.Connected then
   begin
     Result := True;

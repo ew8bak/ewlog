@@ -37,14 +37,14 @@ type
     procedure OnMessage(Sender: TObject);
     procedure OnTerminate(Sender: TObject);
     procedure OnConnected(Sender: TObject);
-    procedure StopTCI;
     function ParseValue(reciever, Command: string): string;
 
   public
     procedure SendValue(Command, Value: string);
     procedure SaveTCIini(nTRX: integer);
     procedure LoadTCIini(nTRX: integer);
-    procedure InicializeTCI(nTRX: integer);
+    function InicializeTCI(nTRX: integer): boolean;
+    procedure StopTCI;
 
   end;
 
@@ -55,14 +55,15 @@ var
 
 implementation
 
-uses MainFuncDM, InitDB_dm;
+uses MainFuncDM, InitDB_dm, dmFunc_U, miniform_u;
 
 {$R *.lfm}
 
 { TdmTCI }
 
-procedure TdmTCI.InicializeTCI(nTRX: integer);
+function TdmTCI.InicializeTCI(nTRX: integer): boolean;
 begin
+  Result := False;
   old_reciever := '';
   StopTCI;
   LoadTCIini(nTRX);
@@ -73,13 +74,15 @@ begin
     TCIClient.OnTerminate := @OnTerminate;
     TCIClient.OnConnected := @OnConnected;
     TCIClient.Start;
+    Result := True;
   end;
 end;
 
 procedure TdmTCI.LoadTCIini(nTRX: integer);
 begin
   TCISettings.Name := INIFile.ReadString('TCI' + IntToStr(nTRX), 'Name', '');
-  TCISettings.Address := INIFile.ReadString('TCI' + IntToStr(nTRX), 'Address', '127.0.0.1');
+  TCISettings.Address := INIFile.ReadString('TCI' + IntToStr(nTRX),
+    'Address', '127.0.0.1');
   TCISettings.Port := INIFile.ReadInteger('TCI' + IntToStr(nTRX), 'Port', 40001);
   TCISettings.Enable := INIFile.ReadBool('TCI' + IntToStr(nTRX), 'Enable', False);
 end;
@@ -162,17 +165,24 @@ begin
     TCIRec.VFO := ParseValue(UpperCase(val.Message), 'VFO');
     TCIRec.MODULATION := ParseValue(UpperCase(val.Message), 'MODULATION');
   end;
+  if Length(TCIRec.MODULATION) > 1 then
+    dmFunc.GetRIGMode(TCIRec.MODULATION, FMS.Mode, FMS.SubMode);
+  TryStrToFloatSafe(TCIRec.VFO, FMS.Freq);
+  MiniForm.ShowInfoFromRIG;
+  //TRXForm.ShowInfoFromRIG(f_hz);
 end;
 
 procedure TdmTCI.OnTerminate(Sender: TObject);
 begin
   TCIRec.STATUS := False;
+  IniSet.RIGConnected := TCIRec.STATUS;
   StopTCI;
 end;
 
 procedure TdmTCI.OnConnected(Sender: TObject);
 begin
   TCIRec.STATUS := True;
+  IniSet.RIGConnected := TCIRec.STATUS;
 end;
 
 procedure TdmTCI.StopTCI;

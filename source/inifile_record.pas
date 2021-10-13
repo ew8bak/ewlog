@@ -97,6 +97,7 @@ type
     InterfaceMobileSync: string;
     ViewFreq: integer;
     CurrentRIG: string;
+    RIGConnected: Boolean;
   end;
 
 implementation

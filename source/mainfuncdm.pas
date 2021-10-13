@@ -94,6 +94,7 @@ type
     procedure LoadRadioItems;
     function CompareVersion(Local, Server: string): boolean;
     procedure StartRadio(RIGid: string);
+    procedure StopRadio;
   end;
 
 var
@@ -110,22 +111,32 @@ var
 implementation
 
 uses InitDB_dm, dmFunc_U, hrdlog,
-  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u, dmHamLib_u;
+  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u, dmHamLib_u,
+  dmTCI_u;
 
 {$R *.lfm}
+
+procedure TMainFunc.StopRadio;
+begin
+  dmHamLib.FreeRadio;
+  dmTCI.StopTCI;
+end;
 
 procedure TMainFunc.StartRadio(RIGid: string);
 var
   id: integer;
 begin
+  StopRadio;
   if Pos('TRX', RIGid) > 0 then
   begin
     id := StrToInt(RIGid[4]);
-    dmHamLib.InicializeHLRig(id);
+    IniSet.RIGConnected := dmHamLib.InicializeHLRig(id);
     Exit;
   end;
   if Pos('TCI', RIGid) > 0 then
   begin
+    id := StrToInt(RIGid[4]);
+    IniSet.RIGConnected := dmTCI.InicializeTCI(id);
     Exit;
   end;
 end;
