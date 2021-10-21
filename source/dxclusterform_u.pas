@@ -348,8 +348,16 @@ begin
     begin
       if DataNode^.Time <> '' then
       begin
-        if MinutesBetween(NowUTCTime, StrToTime(DataNode^.Time, ':')) > min then
-          VSTCluster.DeleteNode(ANode);
+        try
+          if MinutesBetween(NowUTCTime, StrToTime(DataNode^.Time, ':')) > min then
+            VSTCluster.DeleteNode(ANode);
+        except
+          on E: Exception do
+          begin
+            WriteLn(ExceptFile, 'FindAndDeleteSpot:' + E.ClassName + ':' + E.Message);
+            VSTCluster.DeleteNode(ANode);
+          end;
+        end;
       end
       else
         VSTCluster.DeleteNode(ANode);

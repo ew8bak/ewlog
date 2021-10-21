@@ -2402,19 +2402,19 @@ msgstr ""
 msgid "Earth"
 msgstr ""
 
-#: teditqso_form.button1.caption
-msgctxt "teditqso_form.button1.caption"
-msgid "Close"
+#: teditqso_form.btapply.caption
+msgctxt "teditqso_form.btapply.caption"
+msgid "Apply"
 msgstr ""
 
-#: teditqso_form.button2.caption
-msgctxt "teditqso_form.button2.caption"
+#: teditqso_form.btcancel.caption
+msgctxt "teditqso_form.btcancel.caption"
 msgid "Cancel"
 msgstr ""
 
-#: teditqso_form.button3.caption
-msgctxt "teditqso_form.button3.caption"
-msgid "Apply"
+#: teditqso_form.btclose.caption
+msgctxt "teditqso_form.btclose.caption"
+msgid "Close"
 msgstr ""
 
 #: teditqso_form.button4.caption
@@ -2425,38 +2425,39 @@ msgstr ""
 msgid "QSO Editor"
 msgstr ""
 
-#: teditqso_form.checkbox1.caption
-msgctxt "teditqso_form.checkbox1.caption"
-msgid "No Calc DXCC"
-msgstr ""
-
-#: teditqso_form.checkbox2.caption
-msgid "Valid for DXCC"
-msgstr ""
-
-#: teditqso_form.checkbox3.caption
+#: teditqso_form.cbmarkqso.caption
+msgctxt "teditqso_form.cbmarkqso.caption"
 msgid "Mark QSO"
 msgstr ""
 
-#: teditqso_form.checkbox4.caption
+#: teditqso_form.cbnocalcdxcc.caption
+msgctxt "teditqso_form.cbnocalcdxcc.caption"
+msgid "No Calc DXCC"
+msgstr ""
+
+#: teditqso_form.cbreceived.caption
+msgctxt "teditqso_form.cbreceived.caption"
 msgid "Received"
 msgstr ""
 
-#: teditqso_form.checkbox5.caption
+#: teditqso_form.cbreceivedeqsl.caption
+msgctxt "teditqso_form.cbreceivedeqsl.caption"
 msgid "Received eQSL"
 msgstr ""
 
-#: teditqso_form.checkbox6.caption
+#: teditqso_form.cbreceivedlotw.caption
+msgctxt "teditqso_form.cbreceivedlotw.caption"
 msgid "Received LotW"
 msgstr ""
 
-#: teditqso_form.checkbox7.caption
+#: teditqso_form.cbsentlotw.caption
+msgctxt "teditqso_form.cbsentlotw.caption"
 msgid "Sent LoTW"
 msgstr ""
 
-#: teditqso_form.datetimepicker1.textfornulldate
-msgctxt "teditqso_form.datetimepicker1.textfornulldate"
-msgid "NULL"
+#: teditqso_form.cbvaliddxcc.caption
+msgctxt "teditqso_form.cbvaliddxcc.caption"
+msgid "Valid for DXCC"
 msgstr ""
 
 #: teditqso_form.dbgrid1.columns[0].title.caption
@@ -2609,167 +2610,172 @@ msgctxt "teditqso_form.dbgrid1.columns[9].title.caption"
 msgid "QTH"
 msgstr ""
 
-#: teditqso_form.groupbox1.caption
-msgctxt "teditqso_form.groupbox1.caption"
+#: teditqso_form.dttime.textfornulldate
+msgctxt "teditqso_form.dttime.textfornulldate"
+msgid "NULL"
+msgstr ""
+
+#: teditqso_form.gbcallinfo.caption
+msgctxt "teditqso_form.gbcallinfo.caption"
 msgid "Territory"
 msgstr ""
 
-#: teditqso_form.groupbox2.caption
-msgctxt "teditqso_form.groupbox2.caption"
-msgid "QSL"
+#: teditqso_form.gbqslreceived.caption
+msgctxt "teditqso_form.gbqslreceived.caption"
+msgid "QSL Received"
 msgstr ""
 
-#: teditqso_form.groupbox3.caption
-msgctxt "teditqso_form.groupbox3.caption"
-msgid "QSL"
+#: teditqso_form.gbqslsent.caption
+msgctxt "teditqso_form.gbqslsent.caption"
+msgid "QSL Sent"
 msgstr ""
 
-#: teditqso_form.label1.caption
-msgid "CallSign"
-msgstr ""
-
-#: teditqso_form.label10.caption
-msgctxt "teditqso_form.label10.caption"
-msgid "DXCC"
-msgstr ""
-
-#: teditqso_form.label11.caption
-msgctxt "teditqso_form.label11.caption"
-msgid "Prefix"
-msgstr ""
-
-#: teditqso_form.label12.caption
-msgctxt "teditqso_form.label12.caption"
-msgid "CQ"
-msgstr ""
-
-#: teditqso_form.label13.caption
-msgctxt "teditqso_form.label13.caption"
-msgid "ITU"
-msgstr ""
-
-#: teditqso_form.label14.caption
-msgctxt "teditqso_form.label14.caption"
-msgid "Grid"
-msgstr ""
-
-#: teditqso_form.label15.caption
-msgctxt "teditqso_form.label15.caption"
-msgid "Sub. State"
-msgstr ""
-
-#: teditqso_form.label16.caption
-msgctxt "teditqso_form.label16.caption"
-msgid "Continent"
-msgstr ""
-
-#: teditqso_form.label17.caption
-msgctxt "teditqso_form.label17.caption"
-msgid "Mode"
-msgstr ""
-
-#: teditqso_form.label18.caption
-msgctxt "teditqso_form.label18.caption"
+#: teditqso_form.lbband.caption
+msgctxt "teditqso_form.lbband.caption"
 msgid "Band"
 msgstr ""
 
-#: teditqso_form.label19.caption
-msgctxt "teditqso_form.label19.caption"
-msgid "State"
+#: teditqso_form.lbcallsign.caption
+msgctxt "teditqso_form.lbcallsign.caption"
+msgid "CallSign"
 msgstr ""
 
-#: teditqso_form.label2.caption
-msgctxt "teditqso_form.label2.caption"
+#: teditqso_form.lbcontinent.caption
+msgctxt "teditqso_form.lbcontinent.caption"
+msgid "Continent"
+msgstr ""
+
+#: teditqso_form.lbcq.caption
+msgctxt "teditqso_form.lbcq.caption"
+msgid "CQ"
+msgstr ""
+
+#: teditqso_form.lbdate.caption
+msgctxt "teditqso_form.lbdate.caption"
 msgid "Date"
 msgstr ""
 
-#: teditqso_form.label20.caption
-msgctxt "teditqso_form.label20.caption"
+#: teditqso_form.lbdxcc.caption
+msgctxt "teditqso_form.lbdxcc.caption"
+msgid "DXCC"
+msgstr ""
+
+#: teditqso_form.lbgrid.caption
+msgctxt "teditqso_form.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: teditqso_form.lbiota.caption
+msgctxt "teditqso_form.lbiota.caption"
 msgid "IOTA"
 msgstr ""
 
-#: teditqso_form.label21.caption
-msgid "Satelite"
+#: teditqso_form.lbitu.caption
+msgctxt "teditqso_form.lbitu.caption"
+msgid "ITU"
 msgstr ""
 
-#: teditqso_form.label22.caption
-msgid "Satelite mode"
+#: teditqso_form.lbmode.caption
+msgctxt "teditqso_form.lbmode.caption"
+msgid "Mode"
 msgstr ""
 
-#: teditqso_form.label23.caption
-msgid "Propagation"
-msgstr ""
-
-#: teditqso_form.label24.caption
-msgctxt "teditqso_form.label24.caption"
-msgid "QSL received via"
-msgstr ""
-
-#: teditqso_form.label25.caption
-msgid "QSL manager"
-msgstr ""
-
-#: teditqso_form.label26.caption
-msgctxt "teditqso_form.label26.caption"
-msgid "QSL was sent via"
-msgstr ""
-
-#: teditqso_form.label27.caption
-msgctxt "teditqso_form.label27.caption"
-msgid "QSL Info"
-msgstr ""
-
-#: teditqso_form.label3.caption
-msgid "Report sent"
-msgstr ""
-
-#: teditqso_form.label4.caption
-msgid "Report rcvd"
-msgstr ""
-
-#: teditqso_form.label5.caption
-msgctxt "teditqso_form.label5.caption"
+#: teditqso_form.lbname.caption
+msgctxt "teditqso_form.lbname.caption"
 msgid "Name"
 msgstr ""
 
-#: teditqso_form.label6.caption
-msgctxt "teditqso_form.label6.caption"
+#: teditqso_form.lbnote.caption
+msgid "Note"
+msgstr ""
+
+#: teditqso_form.lbprefix.caption
+msgctxt "teditqso_form.lbprefix.caption"
+msgid "Prefix"
+msgstr ""
+
+#: teditqso_form.lbpropagation.caption
+msgctxt "teditqso_form.lbpropagation.caption"
+msgid "Propagation"
+msgstr ""
+
+#: teditqso_form.lbqslinfo.caption
+msgctxt "teditqso_form.lbqslinfo.caption"
+msgid "QSL Info"
+msgstr ""
+
+#: teditqso_form.lbqslmanager.caption
+msgctxt "teditqso_form.lbqslmanager.caption"
+msgid "QSL manager"
+msgstr ""
+
+#: teditqso_form.lbqslsentvia.caption
+msgctxt "teditqso_form.lbqslsentvia.caption"
+msgid "QSL was sent via"
+msgstr ""
+
+#: teditqso_form.lbqth.caption
+msgctxt "teditqso_form.lbqth.caption"
 msgid "QTH"
 msgstr ""
 
-#: teditqso_form.label7.caption
-msgid "Note for"
+#: teditqso_form.lbrecvia.caption
+msgctxt "teditqso_form.lbrecvia.caption"
+msgid "QSL received via"
 msgstr ""
 
-#: teditqso_form.label8.caption
-msgid "this"
+#: teditqso_form.lbrstr.caption
+msgctxt "teditqso_form.lbrstr.caption"
+msgid "RST rcvd"
 msgstr ""
 
-#: teditqso_form.label9.caption
-msgctxt "teditqso_form.label9.caption"
-msgid "QSO"
+#: teditqso_form.lbrsts.caption
+msgctxt "teditqso_form.lbrsts.caption"
+msgid "RST sent"
 msgstr ""
 
-#: teditqso_form.radiobutton1.caption
-msgctxt "teditqso_form.radiobutton1.caption"
-msgid "Sent"
+#: teditqso_form.lbsatelite.caption
+msgctxt "teditqso_form.lbsatelite.caption"
+msgid "Satelite"
 msgstr ""
 
-#: teditqso_form.radiobutton2.caption
+#: teditqso_form.lbsatmode.caption
+msgid "SAT mode"
+msgstr ""
+
+#: teditqso_form.lbstate.caption
+msgctxt "teditqso_form.lbstate.caption"
+msgid "State"
+msgstr ""
+
+#: teditqso_form.lbsubstate.caption
+msgctxt "teditqso_form.lbsubstate.caption"
+msgid "Sub. State"
+msgstr ""
+
+#: teditqso_form.rbdsent.caption
+msgctxt "teditqso_form.rbdsent.caption"
+msgid "Do not send"
+msgstr ""
+
+#: teditqso_form.rbprinted.caption
+msgctxt "teditqso_form.rbprinted.caption"
 msgid "Printed"
 msgstr ""
 
-#: teditqso_form.radiobutton3.caption
+#: teditqso_form.rbqueued.caption
+msgctxt "teditqso_form.rbqueued.caption"
 msgid "Queued"
 msgstr ""
 
-#: teditqso_form.radiobutton4.caption
-msgctxt "teditqso_form.radiobutton4.caption"
-msgid "Wasn't sent"
+#: teditqso_form.rbsent.caption
+msgctxt "teditqso_form.rbsent.caption"
+msgid "Sent"
 msgstr ""
 
-#: teditqso_form.radiobutton5.caption
-msgid "Do not send"
+#: teditqso_form.rbwsent.caption
+msgctxt "teditqso_form.rbwsent.caption"
+msgid "Wasn't sent"
 msgstr ""
 
 #: teditqso_form.speedbutton1.caption
@@ -4094,11 +4100,6 @@ msgctxt "tminiform.caption"
 msgid "EWLog - HAM Journal"
 msgstr ""
 
-#: tminiform.cbcurrentlog.text
-msgctxt "tminiform.cbcurrentlog.text"
-msgid "0"
-msgstr ""
-
 #: tminiform.cbfilter.caption
 msgctxt "tminiform.cbfilter.caption"
 msgid "Filter"
@@ -4144,7 +4145,7 @@ msgstr ""
 
 #: tminiform.dateedit1.text
 msgctxt "tminiform.dateedit1.text"
-msgid "  /  /    "
+msgid "  .  .    "
 msgstr ""
 
 #: tminiform.datetimepicker1.textfornulldate
@@ -5643,14 +5644,6 @@ msgstr ""
 #: ttrxform.lblmode.caption
 msgctxt "ttrxform.lblmode.caption"
 msgid "SSB"
-msgstr ""
-
-#: ttrxform.rbradio1.caption
-msgid "RIG 1"
-msgstr ""
-
-#: ttrxform.rbradio2.caption
-msgid "RIG 2"
 msgstr ""
 
 #: tupdate_form.btcancel.caption

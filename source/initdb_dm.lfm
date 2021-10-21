@@ -3,8 +3,8 @@ object InitDB: TInitDB
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 230
-  HorizontalOffset = 315
-  VerticalOffset = 600
+  HorizontalOffset = 314
+  VerticalOffset = 478
   Width = 473
   object ServiceDBConnection: TSQLite3Connection
     Connected = False
@@ -58,14 +58,12 @@ object InitDB: TInitDB
   object DefLogBookQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
-    Macros = <>
     Left = 304
     Top = 88
   end
   object FindQSOQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
-    Macros = <>
     Left = 56
     Top = 136
   end
