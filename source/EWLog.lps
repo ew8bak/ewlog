@@ -719,9 +719,10 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="333"/>
-        <CursorPos X="51" Y="357"/>
+        <TopLine Value="784"/>
+        <CursorPos X="9" Y="816"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit70>
@@ -813,7 +814,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmCat"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="191"/>
+        <TopLine Value="145"/>
         <CursorPos X="81" Y="75"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -937,12 +938,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmTCI_u"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="10"/>
-        <TopLine Value="162"/>
-        <CursorPos X="36" Y="188"/>
+        <TopLine Value="146"/>
+        <CursorPos X="21" Y="171"/>
         <UsageCount Value="119"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit90>
       <Unit91>
         <Filename Value="streamadapter_u.pas"/>
@@ -979,8 +980,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmHamLib_u"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="25"/>
-        <CursorPos X="25" Y="25"/>
+        <TopLine Value="107"/>
+        <CursorPos X="34" Y="122"/>
         <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit94>
@@ -2046,124 +2047,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="304" Column="8" TopLine="302"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1882" Column="72" TopLine="1860"/>
       </Position1>
       <Position2>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="1946" TopLine="1945"/>
+        <Caret Line="987" Column="25" TopLine="978"/>
       </Position2>
       <Position3>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1882" Column="72" TopLine="1860"/>
-      </Position3>
-      <Position4>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="987" Column="25" TopLine="978"/>
-      </Position4>
-      <Position5>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="215" Column="44" TopLine="199"/>
-      </Position5>
-      <Position6>
+      </Position3>
+      <Position4>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="454" Column="30" TopLine="426"/>
-      </Position6>
-      <Position7>
+      </Position4>
+      <Position5>
         <Filename Value="configform_u.pas"/>
         <Caret Line="1257" Column="6" TopLine="1241"/>
-      </Position7>
-      <Position8>
+      </Position5>
+      <Position6>
         <Filename Value="configform_u.pas"/>
         <Caret Line="1258" Column="34" TopLine="1241"/>
+      </Position6>
+      <Position7>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="301" Column="33" TopLine="294"/>
+      </Position7>
+      <Position8>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="382" Column="3" TopLine="377"/>
       </Position8>
       <Position9>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="301" Column="33" TopLine="294"/>
+        <Caret Line="299" Column="4" TopLine="295"/>
       </Position9>
       <Position10>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="382" Column="3" TopLine="377"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="987" Column="32" TopLine="978"/>
       </Position10>
       <Position11>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="299" Column="4" TopLine="295"/>
+        <Caret Line="289" Column="3" TopLine="287"/>
       </Position11>
       <Position12>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="987" Column="32" TopLine="978"/>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="339" Column="8" TopLine="320"/>
       </Position12>
       <Position13>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="289" Column="3" TopLine="287"/>
+        <Caret Line="354" Column="28" TopLine="320"/>
       </Position13>
       <Position14>
         <Filename Value="contestform_u.pas"/>
-        <Caret Line="339" Column="8" TopLine="320"/>
+        <Caret Line="321" Column="31" TopLine="304"/>
       </Position14>
       <Position15>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="354" Column="28" TopLine="320"/>
-      </Position15>
-      <Position16>
-        <Filename Value="contestform_u.pas"/>
-        <Caret Line="321" Column="31" TopLine="304"/>
-      </Position16>
-      <Position17>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="988" Column="25" TopLine="967"/>
-      </Position17>
-      <Position18>
+      </Position15>
+      <Position16>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="795" Column="3" TopLine="793"/>
-      </Position18>
-      <Position19>
+      </Position16>
+      <Position17>
         <Filename Value="contestform_u.pas"/>
         <Caret Line="327" Column="54" TopLine="311"/>
+      </Position17>
+      <Position18>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="169" Column="9" TopLine="146"/>
+      </Position18>
+      <Position19>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="170" TopLine="146"/>
       </Position19>
       <Position20>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="169" Column="9" TopLine="146"/>
+        <Caret Line="171" TopLine="146"/>
       </Position20>
       <Position21>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="170" TopLine="146"/>
+        <Caret Line="170" Column="30" TopLine="146"/>
       </Position21>
       <Position22>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="171" TopLine="146"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="354" Column="15" TopLine="338"/>
       </Position22>
       <Position23>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="170" Column="30" TopLine="146"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="521" TopLine="514"/>
       </Position23>
       <Position24>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="354" Column="15" TopLine="338"/>
+        <Caret Line="527" TopLine="514"/>
       </Position24>
       <Position25>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="521" TopLine="514"/>
+        <Caret Line="529" TopLine="514"/>
       </Position25>
       <Position26>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="527" TopLine="514"/>
+        <Caret Line="535" TopLine="514"/>
       </Position26>
       <Position27>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="529" TopLine="514"/>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="170" Column="44" TopLine="146"/>
       </Position27>
       <Position28>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="535" TopLine="514"/>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="171" Column="37" TopLine="163"/>
       </Position28>
       <Position29>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="170" Column="44" TopLine="146"/>
+        <Caret Line="172" Column="23" TopLine="150"/>
       </Position29>
       <Position30>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="171" Column="29" TopLine="153"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="835" Column="13" TopLine="805"/>
       </Position30>
     </JumpHistory>
     <RunParams>

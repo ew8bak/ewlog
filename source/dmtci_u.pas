@@ -55,7 +55,7 @@ var
 
 implementation
 
-uses MainFuncDM, InitDB_dm, dmFunc_U, miniform_u;
+uses MainFuncDM, InitDB_dm, dmFunc_U, miniform_u, TRXForm_U;
 
 {$R *.lfm}
 
@@ -153,6 +153,7 @@ end;
 procedure TdmTCI.OnMessage(Sender: TObject);
 var
   val: TMessageRecord;
+  hz_freq: longint;
 begin
   if not Assigned(TCIClient) then
     exit;
@@ -168,9 +169,11 @@ begin
   if Length(TCIRec.MODULATION) > 1 then
     dmFunc.GetRIGMode(TCIRec.MODULATION, FMS.Mode, FMS.SubMode);
   TryStrToFloatSafe(TCIRec.VFO, FMS.Freq);
+  hz_freq := trunc(FMS.Freq);
   FMS.Freq := FMS.Freq / 1000000;
   MiniForm.ShowInfoFromRIG;
-  //TRXForm.ShowInfoFromRIG(f_hz);
+  TRXForm.ShowInfoFromRIG(hz_freq);
+
 end;
 
 procedure TdmTCI.OnTerminate(Sender: TObject);
@@ -185,7 +188,7 @@ begin
   TCIRec.STATUS := True;
   IniSet.RIGConnected := TCIRec.STATUS;
   TCIClient.SendMessage('VFO:0,0;');
-  TCIClient.SendMessage('MODULATION:0,0;');
+  TCIClient.SendMessage('MODULATION:0;');
 end;
 
 procedure TdmTCI.StopTCI;
