@@ -1,7 +1,7 @@
 object ContestForm: TContestForm
-  Left = 251
+  Left = 246
   Height = 269
-  Top = 586
+  Top = 556
   Width = 753
   Caption = 'Contest Logging'
   ClientHeight = 269
@@ -23,7 +23,6 @@ object ContestForm: TContestForm
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
     Caption = 'Exchange Type:'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -39,7 +38,6 @@ object ContestForm: TContestForm
     BorderSpacing.Left = 5
     Caption = 'Serial'
     Checked = True
-    Font.Height = -12
     OnClick = RBSerialClick
     ParentFont = False
     TabOrder = 0
@@ -56,7 +54,6 @@ object ContestForm: TContestForm
     Width = 50
     BorderSpacing.Left = 5
     Caption = 'Other'
-    Font.Height = -12
     OnClick = RBOtherClick
     ParentFont = False
     TabOrder = 1
@@ -74,7 +71,6 @@ object ContestForm: TContestForm
     BorderSpacing.Left = 40
     BorderSpacing.Right = 5
     Caption = 'Contest Name'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -264,6 +260,7 @@ object ContestForm: TContestForm
     Width = 90
     BorderSpacing.Top = 5
     ItemHeight = 15
+    OnCloseUp = CBModeCloseUp
     TabOrder = 5
     Text = 'SSB'
   end
@@ -278,6 +275,7 @@ object ContestForm: TContestForm
     BorderSpacing.Top = 5
     ItemHeight = 15
     OnChange = CBBandChange
+    OnCloseUp = CBBandCloseUp
     TabOrder = 7
   end
   object EditFreq: TEdit
@@ -405,7 +403,6 @@ object ContestForm: TContestForm
     Top = 209
     Width = 135
     BorderSpacing.Top = 5
-    Font.Height = -12
     ParentFont = False
     TabOrder = 14
   end
@@ -418,7 +415,6 @@ object ContestForm: TContestForm
     Top = 209
     Width = 135
     BorderSpacing.Top = 5
-    Font.Height = -12
     ParentFont = False
     TabOrder = 15
   end
@@ -434,7 +430,6 @@ object ContestForm: TContestForm
     BorderSpacing.Right = 5
     BorderSpacing.Bottom = 5
     Caption = 'Save'
-    Font.Height = -12
     OnClick = BtSaveClick
     OnKeyDown = BtSaveKeyDown
     ParentFont = False
@@ -489,7 +484,6 @@ object ContestForm: TContestForm
     BorderSpacing.Right = 5
     Caption = 'New session'
     Color = clRed
-    Font.Height = -12
     OnClick = BtResetSessionClick
     ParentFont = False
     TabOrder = 18
@@ -503,7 +497,6 @@ object ContestForm: TContestForm
     Top = 209
     Width = 135
     BorderSpacing.Top = 5
-    Font.Height = -12
     ParentFont = False
     TabOrder = 19
   end
@@ -517,7 +510,6 @@ object ContestForm: TContestForm
     Width = 65
     BorderSpacing.Top = 5
     CharCase = ecUppercase
-    Font.Height = -12
     ParentFont = False
     TabOrder = 20
   end
@@ -530,7 +522,6 @@ object ContestForm: TContestForm
     Top = 209
     Width = 55
     BorderSpacing.Top = 5
-    Font.Height = -12
     ParentFont = False
     TabOrder = 21
   end
@@ -583,7 +574,6 @@ object ContestForm: TContestForm
     Width = 50
     BorderSpacing.Left = 5
     Caption = 'Tour time'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -598,7 +588,6 @@ object ContestForm: TContestForm
     Width = 60
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
-    Font.Height = -12
     MaxValue = 60
     OnChange = SETimeChange
     ParentFont = False

@@ -980,6 +980,11 @@ end;
 
 procedure TMiniForm.MIContestLoggingClick(Sender: TObject);
 begin
+  if IniSet.showBand then
+    ContestForm.CBBand.Text := CBBand.Text
+  else
+    ContestForm.CBBand.Text := dmFunc.GetBandFromFreq(CBBand.Text);
+  ContestForm.CBBandChange(self);
   ContestForm.ShowModal;
 end;
 
@@ -1874,7 +1879,8 @@ begin
 
   if CBMode.Text <> 'SSB' then
     CBSubMode.Text := '';
-  TryStrToFloatSafe(MainFunc.ConvertFreqToSave(CBBand.Text), FormatFreqFloat);
+  //  TryStrToFloatSafe(MainFunc.ConvertFreqToSave(CBBand.Text), FormatFreqFloat);
+  TryStrToFloatSafe(MainFunc.FormatFreq(CBBand.Text), FormatFreqFloat);
   if FormatFreqFloat >= 10 then
     CBSubMode.ItemIndex := CBSubMode.Items.IndexOf('USB')
   else

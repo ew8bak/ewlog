@@ -322,7 +322,7 @@ type
     procedure SaveGridColors;
     procedure ReadGridColumns;
     procedure ReadGridColors;
-    procedure LoadRIGSettings(RIGid:integer);
+    procedure LoadRIGSettings(RIGid: integer);
     procedure SaveRIGSettings;
     procedure LoadTCISettings(RIGid: integer);
     procedure SaveTCISettings;
@@ -962,7 +962,7 @@ begin
     TCISettings.Name := EditRIGNameTCI.Text;
     TCISettings.Enable := CBTCIEnable.Checked;
     dmTCI.SaveTCIini(CBRigNumberTCI.ItemIndex + 1);
-   // dmTCI.InicializeTCI(CBRigNumberTCI.ItemIndex + 1);
+    // dmTCI.InicializeTCI(CBRigNumberTCI.ItemIndex + 1);
   end;
 end;
 
@@ -1213,7 +1213,7 @@ end;
 
 procedure TConfigForm.BtCATDeafultClick(Sender: TObject);
 begin
-    if CBRigNumberHL.ItemIndex <> -1 then
+  if CBRigNumberHL.ItemIndex <> -1 then
     SetDefaultRadio('TRX' + CBRigNumberHL.Text);
 end;
 
@@ -1255,7 +1255,8 @@ end;
 
 procedure TConfigForm.TSHamlibShow(Sender: TObject);
 begin
-  LoadRIGSettings(StrToInt(IniSet.CurrentRIG[4]));
+  if IniSet.CurrentRIG <> '' then
+    LoadRIGSettings(StrToInt(IniSet.CurrentRIG[4]));
 end;
 
 procedure TConfigForm.TSIntRefShow(Sender: TObject);
@@ -1279,7 +1280,8 @@ end;
 
 procedure TConfigForm.TSTCIShow(Sender: TObject);
 begin
-   LoadTCISettings(StrToInt(IniSet.CurrentRIG[4]));
+  if IniSet.CurrentRIG <> '' then
+    LoadTCISettings(StrToInt(IniSet.CurrentRIG[4]));
 end;
 
 procedure TConfigForm.TSTelnetShow(Sender: TObject);

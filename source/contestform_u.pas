@@ -76,7 +76,9 @@ type
     procedure BtSaveClick(Sender: TObject);
     procedure BtSaveKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure CBBandChange(Sender: TObject);
+    procedure CBBandCloseUp(Sender: TObject);
     procedure CBContestNameChange(Sender: TObject);
+    procedure CBModeCloseUp(Sender: TObject);
     procedure EditCallsignChange(Sender: TObject);
     procedure EditCallsignEditingDone(Sender: TObject);
     procedure EditCallsignKeyDown(Sender: TObject; var Key: word;
@@ -106,7 +108,7 @@ var
 
 implementation
 
-uses dmFunc_U;
+uses dmFunc_U, InitDB_dm;
 
 {$R *.lfm}
 
@@ -213,7 +215,8 @@ begin
     SaveQSOrec.State0 := EditState.Text;
     SaveQSOrec.QSOBand := MainFunc.ConvertFreqToSave(EditFreq.Text);
     SaveQSOrec.DigiBand := StringReplace(
-      FloatToStr(dmFunc.GetDigiBandFromFreq(SaveQSOrec.QSOBand)), ',', '.', [rfReplaceAll]);
+      FloatToStr(dmFunc.GetDigiBandFromFreq(SaveQSOrec.QSOBand)), ',',
+      '.', [rfReplaceAll]);
     SaveQSOrec.ShortNote := EditComment.Text;
     SaveQSOrec.ContestSession := IniSet.ContestSession;
 
@@ -289,9 +292,41 @@ begin
   end;
 end;
 
+procedure TContestForm.CBBandCloseUp(Sender: TObject);
+begin
+  if CBMode.Text = 'SSB' then
+    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf(dmContest.SSBChange(CBBand.Text));
+end;
+
 procedure TContestForm.CBContestNameChange(Sender: TObject);
 begin
   IniSet.ContestName := CBContestName.Text;
+end;
+
+procedure TContestForm.CBModeCloseUp(Sender: TObject);
+var
+  i: integer;
+begin
+  CBSubMode.Items.Clear;
+  for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
+    CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
+
+  if CBMode.Text <> 'SSB' then
+    CBSubMode.Text := '';
+
+  if CBMode.Text = 'SSB' then
+    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf(dmContest.SSBChange(CBBand.Text));
+
+
+  EditRSTs.Text := '59';
+  EditRSTr.Text := '59';
+
+  if (CBMode.Text = 'CW') or (CBMode.Text = 'PSK') or (CBMode.Text = 'RTTY') then
+  begin
+    EditRSTs.Text := '599';
+    EditRSTr.Text := '599';
+  end;
+
 end;
 
 procedure TContestForm.EditCallsignKeyPress(Sender: TObject; var Key: char);
@@ -327,6 +362,10 @@ end;
 
 procedure TContestForm.FormShow(Sender: TObject);
 begin
+
+  ContestForm.Height := EditName.Height + EditName.Top + SBContest.Height + 10;
+
+  MainFunc.LoadBMSL(CBMode, CBSubMode);
   if IniSet.ContestExchangeType = 'Serial' then
     RBSerial.Checked := True;
   if IniSet.ContestExchangeType = 'Other' then
@@ -342,6 +381,10 @@ begin
   dmContest.LoadContestName(CBContestName);
   EditExchs.Text := dmContest.AddZero(IniSet.ContestLastNumber);
   SETime.Value := IniSet.ContestTourTime;
+
+  if CBMode.Text = 'SSB' then
+    CBSubMode.ItemIndex := CBSubMode.Items.IndexOf(dmContest.SSBChange(CBBand.Text));
+
   if IniSet.ContestSession = 'none' then
     IniSet.ContestSession := MainFunc.GenerateRandomID;
   EditCallsign.SetFocus;
@@ -379,10 +422,10 @@ procedure TContestForm.TTimeTimer(Sender: TObject);
 begin
   TETime.Time := NowUTC;
   DEDate.Date := NowUTC;
-  CBMode.Text := FMS.Mode;
-  CBSubMode.Text := FMS.SubMode;
   if FMS.Freq <> 0 then
   begin
+    CBMode.Text := FMS.Mode;
+    CBSubMode.Text := FMS.SubMode;
     CBBand.Text := dmFunc.GetBandFromFreq(FloatToStr(FMS.Freq));
     EditFreq.Text := FloatToStr(FMS.Freq);
   end;

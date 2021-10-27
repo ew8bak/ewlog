@@ -51,6 +51,7 @@ type
     procedure ClearPFXR(var PFXR: TPFXR);
     procedure LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
     procedure LoadBMSL(var CBMode, CBSubMode, CBBand: TComboBox); overload;
+    procedure LoadBMSL(var CBMode, CBSubMode: TComboBox); overload;
     procedure UpdateQSO(DBGrid: TDBGrid; Field, Value: string);
     procedure DeleteQSO(DBGrid: TDBGrid);
     procedure UpdateEditQSO(index: integer; SQSO: TQSO);
@@ -1646,7 +1647,7 @@ begin
   IniSet.ViewFreq := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
   if IniSet.ViewFreq > 3 then
     IniSet.ViewFreq := 0;
-  IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', '');
+  IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', 'TRX1');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
@@ -2322,6 +2323,20 @@ begin
   for i := 0 to High(LoadBands(CBMode.Text)) do
     CBBand.Items.Add(LoadBands(CBMode.Text)[i]);
   CBBand.ItemIndex := bandIndex;
+end;
+
+procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode: TComboBox); overload;
+var
+  i: integer;
+begin
+  //Загрузка модуляций
+  CBMode.Items.Clear;
+  for i := 0 to High(LoadModes) do
+    CBMode.Items.Add(LoadModes[i]);
+  //Загрузка Sub модуляций
+  CBSubMode.Items.Clear;
+  for i := 0 to High(MainFunc.LoadSubModes(CBMode.Text)) do
+    CBSubMode.Items.Add(MainFunc.LoadSubModes(CBMode.Text)[i]);
 end;
 
 procedure TMainFunc.LoadJournalItem(var CBJournal: TComboBox);

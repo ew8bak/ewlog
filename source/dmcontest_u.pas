@@ -29,6 +29,7 @@ type
     function ContestNameToADIf(contestName: string): string;
     function CheckTourTime(Callsign, TourTime, ContestSession: string): boolean;
     function AddZero(number: integer): string;
+    function SSBChange(Freq: string): string;
 
   end;
 
@@ -38,6 +39,17 @@ var
 implementation
 
 {$R *.lfm}
+
+function TdmContest.SSBChange(Freq: string): string;
+var
+  FormatFreqFloat: double;
+begin
+  TryStrToFloatSafe(MainFunc.FormatFreq(Freq), FormatFreqFloat);
+  if FormatFreqFloat >= 10 then
+    Result := 'USB'
+  else
+    Result := 'LSB';
+end;
 
 function TdmContest.AddZero(number: integer): string;
 begin
