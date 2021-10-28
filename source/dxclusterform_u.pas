@@ -791,15 +791,14 @@ begin
 
       if Length(Data^.Spots) >= 3 then
         InfoDM.GetInformation(dmFunc.ExtractCallsign(Data^.Spots), 'MainForm');
-      //Установка частоты
-    {  if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
-        (TRXForm.radio.GetFreqHz > 0) then
+
+      //Set freq
+      if (Length(Data^.Freq) > 1) and IniSet.RIGConnected then
       begin
-        TRXForm.radio.SetFreqKHz(FreqFloat);
         if Data^.Moda = 'DIGI' then
-          TRXForm.SetMode('USB', 0)
+          TRXForm.SetFreqMode(Trunc(FreqFloat * 1000), 'USB')
         else
-          TRXForm.SetMode(Data^.Moda, 0);
+          TRXForm.SetFreqMode(Trunc(FreqFloat * 1000), Data^.Moda);
       end
       else
       begin
@@ -813,7 +812,6 @@ begin
           MiniForm.CBBand.Text :=
             StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FreqFloat),
             ',', '.', [rfReplaceAll]);
-
         if (Data^.Moda = 'LSB') or (Data^.Moda = 'USB') then
         begin
           MiniForm.CBMode.Text := 'SSB';
@@ -832,6 +830,23 @@ begin
           MiniForm.CBModeCloseUp(Sender);
           MiniForm.CBSubMode.Text := '';
         end;
+      end;
+
+
+    {  if Assigned(TRXForm.radio) and (Length(Data^.Freq) > 1) and
+        (TRXForm.radio.GetFreqHz > 0) then
+      begin
+        TRXForm.radio.SetFreqKHz(FreqFloat);
+        if Data^.Moda = 'DIGI' then
+          TRXForm.SetMode('USB', 0)
+        else
+          TRXForm.SetMode(Data^.Moda, 0);
+      end
+      else
+      begin
+
+
+
       end;  }
     end;
   end;

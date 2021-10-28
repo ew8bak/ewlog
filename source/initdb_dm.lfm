@@ -58,12 +58,14 @@ object InitDB: TInitDB
   object DefLogBookQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
+    Macros = <>
     Left = 304
     Top = 88
   end
   object FindQSOQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
+    Macros = <>
     Left = 56
     Top = 136
   end

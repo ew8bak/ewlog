@@ -169,17 +169,19 @@ begin
   if Length(TCIRec.MODULATION) > 1 then
     dmFunc.GetRIGMode(TCIRec.MODULATION, FMS.Mode, FMS.SubMode);
   TryStrToFloatSafe(TCIRec.VFO, FMS.Freq);
+  if FMS.Freq > 0 then begin
   hz_freq := trunc(FMS.Freq);
   FMS.Freq := FMS.Freq / 1000000;
   MiniForm.ShowInfoFromRIG;
   TRXForm.ShowInfoFromRIG(hz_freq);
-
+  end;
 end;
 
 procedure TdmTCI.OnTerminate(Sender: TObject);
 begin
   TCIRec.STATUS := False;
   IniSet.RIGConnected := TCIRec.STATUS;
+  TRXForm.ShowInfoFromRIG(0);
   StopTCI;
 end;
 

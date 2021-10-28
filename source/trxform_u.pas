@@ -58,6 +58,24 @@ type
     Label9: TLabel;
     lblMode: TLabel;
     SBConnect: TSpeedButton;
+    procedure btn10mClick(Sender: TObject);
+    procedure btn12mClick(Sender: TObject);
+    procedure btn15mClick(Sender: TObject);
+    procedure btn160mClick(Sender: TObject);
+    procedure btn17mClick(Sender: TObject);
+    procedure btn20mClick(Sender: TObject);
+    procedure btn2mClick(Sender: TObject);
+    procedure btn30mClick(Sender: TObject);
+    procedure btn40mClick(Sender: TObject);
+    procedure btn6mClick(Sender: TObject);
+    procedure btn70cm1Click(Sender: TObject);
+    procedure btn70cmClick(Sender: TObject);
+    procedure btn80mClick(Sender: TObject);
+    procedure btnAMClick(Sender: TObject);
+    procedure btnCWClick(Sender: TObject);
+    procedure btnFMClick(Sender: TObject);
+    procedure btnRTTYClick(Sender: TObject);
+    procedure btnSSBClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormShow(Sender: TObject);
     procedure SBConnectClick(Sender: TObject);
@@ -67,8 +85,9 @@ type
     { private declarations }
   public
     procedure ShowInfoFromRIG(Hz: integer);
-    procedure Freq(Hz: integer);
+    procedure FreqHz(Hz: integer);
     procedure SavePosition;
+    procedure SetFreqMode(Freq: integer; Mode: string);
     { public declarations }
   end;
 
@@ -78,17 +97,31 @@ var
 implementation
 
 uses
-  MainFuncDM;
+  MainFuncDM, dmTCI_u, dmHamLib_u;
 
 {$R *.lfm}
 
 { TTRXForm }
 
+procedure TTRXForm.SetFreqMode(Freq: integer; Mode: string);
+begin
+  if IniSet.RIGConnected then
+  begin
+    if TCIRec.STATUS then
+    begin
+      if Freq > 0 then
+      dmTCI.SendValue('VFO', IntToStr(Freq));
+      dmTCI.SendValue('MODULATION', Mode);
+      Exit;
+    end;
+  end;
+end;
+
 procedure TTRXForm.ShowInfoFromRIG(Hz: integer);
 begin
   if Hz > 0 then
   begin
-    Freq(Hz);
+    FreqHz(Hz);
     lblMode.Caption := FMS.Mode;
   end;
   if statusConnect <> IniSet.RIGConnected then
@@ -107,7 +140,7 @@ begin
     MainFunc.SaveWindowPosition(TRXForm);
 end;
 
-procedure TTRXForm.Freq(Hz: integer);
+procedure TTRXForm.FreqHz(Hz: integer);
 var
   fr: array[0..9] of string;
 begin
@@ -148,6 +181,96 @@ procedure TTRXForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
   IniSet.trxShow := False;
   MainFunc.SaveWindowPosition(TRXForm);
+end;
+
+procedure TTRXForm.btn160mClick(Sender: TObject);
+begin
+  SetFreqMode(1850000,'LSB');
+end;
+
+procedure TTRXForm.btn15mClick(Sender: TObject);
+begin
+  SetFreqMode(21150000,'USB');
+end;
+
+procedure TTRXForm.btn12mClick(Sender: TObject);
+begin
+  SetFreqMode(24915000,'USB');
+end;
+
+procedure TTRXForm.btn10mClick(Sender: TObject);
+begin
+  SetFreqMode(28500000,'USB');
+end;
+
+procedure TTRXForm.btn17mClick(Sender: TObject);
+begin
+  SetFreqMode(18100000,'USB');
+end;
+
+procedure TTRXForm.btn20mClick(Sender: TObject);
+begin
+  SetFreqMode(14080000,'USB');
+end;
+
+procedure TTRXForm.btn2mClick(Sender: TObject);
+begin
+  SetFreqMode(70000000,'USB');
+end;
+
+procedure TTRXForm.btn30mClick(Sender: TObject);
+begin
+  SetFreqMode(10120000,'USB');
+end;
+
+procedure TTRXForm.btn40mClick(Sender: TObject);
+begin
+  SetFreqMode(7100000,'LSB');
+end;
+
+procedure TTRXForm.btn6mClick(Sender: TObject);
+begin
+  SetFreqMode(52000000,'USB');
+end;
+
+procedure TTRXForm.btn70cm1Click(Sender: TObject);
+begin
+  SetFreqMode(433500000,'NFM');
+end;
+
+procedure TTRXForm.btn70cmClick(Sender: TObject);
+begin
+  SetFreqMode(145500000,'NFM');
+end;
+
+procedure TTRXForm.btn80mClick(Sender: TObject);
+begin
+  SetFreqMode(3600000,'LSB');
+end;
+
+procedure TTRXForm.btnAMClick(Sender: TObject);
+begin
+  SetFreqMode(0,'AM');
+end;
+
+procedure TTRXForm.btnCWClick(Sender: TObject);
+begin
+  SetFreqMode(0,'CW');
+end;
+
+procedure TTRXForm.btnFMClick(Sender: TObject);
+begin
+  SetFreqMode(0,'NFM');
+end;
+
+procedure TTRXForm.btnRTTYClick(Sender: TObject);
+begin
+  SetFreqMode(0,'CW');
+end;
+
+procedure TTRXForm.btnSSBClick(Sender: TObject);
+begin
+  ShowMessage(Floattostr( fms.Freq));
 end;
 
 end.

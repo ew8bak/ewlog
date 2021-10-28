@@ -39,6 +39,7 @@ object TRXForm: TTRXForm
     BorderSpacing.Top = 1
     Caption = 'CW'
     Font.Height = -11
+    OnClick = btnCWClick
     ParentFont = False
     TabOrder = 0
   end
@@ -53,6 +54,7 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'SSB'
     Font.Height = -11
+    OnClick = btnSSBClick
     ParentFont = False
     TabOrder = 1
   end
@@ -67,6 +69,7 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'DIG'
     Font.Height = -11
+    OnClick = btnRTTYClick
     ParentFont = False
     TabOrder = 2
   end
@@ -81,6 +84,7 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'AM'
     Font.Height = -11
+    OnClick = btnAMClick
     ParentFont = False
     TabOrder = 3
   end
@@ -95,6 +99,7 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'FM'
     Font.Height = -11
+    OnClick = btnFMClick
     ParentFont = False
     TabOrder = 4
   end
@@ -139,6 +144,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '1.8'
     Font.Height = -11
+    OnClick = btn160mClick
     ParentFont = False
     TabOrder = 7
   end
@@ -154,6 +160,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '3.5'
     Font.Height = -11
+    OnClick = btn80mClick
     ParentFont = False
     TabOrder = 8
   end
@@ -169,6 +176,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '7'
     Font.Height = -11
+    OnClick = btn40mClick
     ParentFont = False
     TabOrder = 9
   end
@@ -184,6 +192,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '10'
     Font.Height = -11
+    OnClick = btn30mClick
     ParentFont = False
     TabOrder = 10
   end
@@ -199,6 +208,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '24'
     Font.Height = -11
+    OnClick = btn12mClick
     ParentFont = False
     TabOrder = 11
   end
@@ -214,6 +224,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '21'
     Font.Height = -11
+    OnClick = btn15mClick
     ParentFont = False
     TabOrder = 12
   end
@@ -229,6 +240,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '18'
     Font.Height = -11
+    OnClick = btn17mClick
     ParentFont = False
     TabOrder = 13
   end
@@ -244,6 +256,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '14'
     Font.Height = -11
+    OnClick = btn20mClick
     ParentFont = False
     TabOrder = 14
   end
@@ -260,6 +273,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '28'
     Font.Height = -11
+    OnClick = btn10mClick
     ParentFont = False
     TabOrder = 15
   end
@@ -275,6 +289,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '50'
     Font.Height = -11
+    OnClick = btn6mClick
     ParentFont = False
     TabOrder = 16
   end
@@ -290,6 +305,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '144'
     Font.Height = -11
+    OnClick = btn70cmClick
     ParentFont = False
     TabOrder = 17
   end
@@ -305,6 +321,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '70'
     Font.Height = -11
+    OnClick = btn2mClick
     ParentFont = False
     TabOrder = 18
   end
@@ -320,6 +337,7 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '430'
     Font.Height = -11
+    OnClick = btn70cm1Click
     ParentFont = False
     TabOrder = 19
   end
