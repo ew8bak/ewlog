@@ -426,8 +426,8 @@ begin
   begin
     CBMode.Text := FMS.Mode;
     CBSubMode.Text := FMS.SubMode;
-    CBBand.Text := dmFunc.GetBandFromFreq(FloatToStr(FMS.Freq));
-    EditFreq.Text := FloatToStr(FMS.Freq);
+    CBBand.Text := dmFunc.GetBandFromFreq(FloatToStr(FMS.Freq / 1000000));
+    EditFreq.Text := FloatToStr(FMS.Freq / 1000000);
   end;
 end;
 

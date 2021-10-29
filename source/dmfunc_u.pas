@@ -392,6 +392,21 @@ begin
   begin
     mode := 'WFM';
     submode := '';
+    Exit;
+  end;
+
+  if (Pos('DIGU', rigmode) > 0) then
+  begin
+    mode := 'SSB';
+    submode := 'USB';
+    Exit;
+  end;
+
+  if (Pos('DIGL', rigmode) > 0) then
+  begin
+    mode := 'SSB';
+    submode := 'LSB';
+    Exit;
   end;
 end;
 

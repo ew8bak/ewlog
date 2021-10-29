@@ -125,7 +125,7 @@ begin
   FMS.Mode := mode;
   FMS.SubMode := submode;
   MiniForm.ShowInfoFromRIG;
-  TRXForm.ShowInfoFromRIG(f_hz);
+  TRXForm.ShowInfoFromRIG;
 end;
 
 procedure TdmHamLib.tmrRadioTimer(Sender: TObject);

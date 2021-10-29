@@ -84,7 +84,7 @@ type
 
     { private declarations }
   public
-    procedure ShowInfoFromRIG(Hz: integer);
+    procedure ShowInfoFromRIG;
     procedure FreqHz(Hz: integer);
     procedure SavePosition;
     procedure SetFreqMode(Freq: integer; Mode: string);
@@ -110,20 +110,25 @@ begin
     if TCIRec.STATUS then
     begin
       if Freq > 0 then
-      dmTCI.SendValue('VFO', IntToStr(Freq));
+        dmTCI.SendValue('VFO', IntToStr(Freq));
       dmTCI.SendValue('MODULATION', Mode);
       Exit;
     end;
   end;
 end;
 
-procedure TTRXForm.ShowInfoFromRIG(Hz: integer);
+procedure TTRXForm.ShowInfoFromRIG;
+var
+  hz_freq: longint;
 begin
-  if Hz > 0 then
+  if FMS.Freq > 0 then
   begin
-    FreqHz(Hz);
-    lblMode.Caption := FMS.Mode;
+    //hz_freq := trunc(FMS.Freq * 1000000);
+    hz_freq := trunc(FMS.Freq);
+    FreqHz(hz_freq);
   end;
+  lblMode.Caption := FMS.Mode;
+
   if statusConnect <> IniSet.RIGConnected then
   begin
     if IniSet.RIGConnected then
@@ -161,8 +166,9 @@ begin
   label5.Caption := fr[4];
   label6.Caption := fr[3];
   label7.Caption := fr[2];
-  label8.Caption := fr[1];
-  label11.Caption := fr[0];
+  label11.Caption := fr[1];
+  label8.Caption := fr[0];
+
 end;
 
 procedure TTRXForm.FormShow(Sender: TObject);
@@ -185,92 +191,95 @@ end;
 
 procedure TTRXForm.btn160mClick(Sender: TObject);
 begin
-  SetFreqMode(1850000,'LSB');
+  SetFreqMode(1850000, 'LSB');
 end;
 
 procedure TTRXForm.btn15mClick(Sender: TObject);
 begin
-  SetFreqMode(21150000,'USB');
+  SetFreqMode(21150000, 'USB');
 end;
 
 procedure TTRXForm.btn12mClick(Sender: TObject);
 begin
-  SetFreqMode(24915000,'USB');
+  SetFreqMode(24915000, 'USB');
 end;
 
 procedure TTRXForm.btn10mClick(Sender: TObject);
 begin
-  SetFreqMode(28500000,'USB');
+  SetFreqMode(28500000, 'USB');
 end;
 
 procedure TTRXForm.btn17mClick(Sender: TObject);
 begin
-  SetFreqMode(18100000,'USB');
+  SetFreqMode(18100000, 'USB');
 end;
 
 procedure TTRXForm.btn20mClick(Sender: TObject);
 begin
-  SetFreqMode(14080000,'USB');
+  SetFreqMode(14080000, 'USB');
 end;
 
 procedure TTRXForm.btn2mClick(Sender: TObject);
 begin
-  SetFreqMode(70000000,'USB');
+  SetFreqMode(70000000, 'USB');
 end;
 
 procedure TTRXForm.btn30mClick(Sender: TObject);
 begin
-  SetFreqMode(10120000,'USB');
+  SetFreqMode(10120000, 'USB');
 end;
 
 procedure TTRXForm.btn40mClick(Sender: TObject);
 begin
-  SetFreqMode(7100000,'LSB');
+  SetFreqMode(7100000, 'LSB');
 end;
 
 procedure TTRXForm.btn6mClick(Sender: TObject);
 begin
-  SetFreqMode(52000000,'USB');
+  SetFreqMode(52000000, 'USB');
 end;
 
 procedure TTRXForm.btn70cm1Click(Sender: TObject);
 begin
-  SetFreqMode(433500000,'NFM');
+  SetFreqMode(433500000, 'NFM');
 end;
 
 procedure TTRXForm.btn70cmClick(Sender: TObject);
 begin
-  SetFreqMode(145500000,'NFM');
+  SetFreqMode(145500000, 'NFM');
 end;
 
 procedure TTRXForm.btn80mClick(Sender: TObject);
 begin
-  SetFreqMode(3600000,'LSB');
+  SetFreqMode(3600000, 'LSB');
 end;
 
 procedure TTRXForm.btnAMClick(Sender: TObject);
 begin
-  SetFreqMode(0,'AM');
+  SetFreqMode(0, 'AM');
 end;
 
 procedure TTRXForm.btnCWClick(Sender: TObject);
 begin
-  SetFreqMode(0,'CW');
+  SetFreqMode(0, 'CW');
 end;
 
 procedure TTRXForm.btnFMClick(Sender: TObject);
 begin
-  SetFreqMode(0,'NFM');
+  SetFreqMode(0, 'NFM');
 end;
 
 procedure TTRXForm.btnRTTYClick(Sender: TObject);
 begin
-  SetFreqMode(0,'CW');
+  SetFreqMode(0, 'DIGU');
 end;
 
 procedure TTRXForm.btnSSBClick(Sender: TObject);
 begin
-  ShowMessage(Floattostr( fms.Freq));
+  if FMS.Freq >= 10 then
+    SetFreqMode(0, 'USB')
+  else
+    SetFreqMode(0, 'LSB');
 end;
 
 end.

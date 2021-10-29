@@ -115,7 +115,6 @@ var
   tci_string: StringArray;
   values: StringArray;
 begin
-  Result := '';
   if reciever <> old_reciever then
   begin
     SetLength(tci_string, 4);
@@ -146,14 +145,16 @@ begin
         Result := StringReplace(values[0], ';', '', [rfReplaceAll]);
         Exit;
       end;
-    end;
+    end
+    else
+      Result := '';
   end;
 end;
 
 procedure TdmTCI.OnMessage(Sender: TObject);
 var
   val: TMessageRecord;
-  hz_freq: longint;
+  //hz_freq: longint;
 begin
   if not Assigned(TCIClient) then
     exit;
@@ -161,19 +162,25 @@ begin
     TCIClient.MessageQueue.TotalItemsPopped do
   begin
     TCIClient.MessageQueue.PopItem(val);
+    writeln(val.Message);
     TCIRec.PROTOCOL := ParseValue(UpperCase(val.Message), 'PROTOCOL');
     TCIRec.DEVICE := ParseValue(UpperCase(val.Message), 'DEVICE');
     TCIRec.VFO := ParseValue(UpperCase(val.Message), 'VFO');
     TCIRec.MODULATION := ParseValue(UpperCase(val.Message), 'MODULATION');
   end;
-  if Length(TCIRec.MODULATION) > 1 then
+
+  if (TCIRec.VFO <> '') or (TCIRec.MODULATION <> '') then
+  begin
     dmFunc.GetRIGMode(TCIRec.MODULATION, FMS.Mode, FMS.SubMode);
-  TryStrToFloatSafe(TCIRec.VFO, FMS.Freq);
-  if FMS.Freq > 0 then begin
-  hz_freq := trunc(FMS.Freq);
-  FMS.Freq := FMS.Freq / 1000000;
-  MiniForm.ShowInfoFromRIG;
-  TRXForm.ShowInfoFromRIG(hz_freq);
+    if TCIRec.VFO <> '' then
+    begin
+      TryStrToFloatSafe(TCIRec.VFO, FMS.Freq);
+
+      //FMS.Freq := FMS.Freq / 1000000;
+    end;
+    TThread.Synchronize(nil, @MiniForm.ShowInfoFromRIG);
+    TThread.Synchronize(nil, @TRXForm.ShowInfoFromRIG);
+    //TRXForm.ShowInfoFromRIG(hz_freq);
   end;
 end;
 
@@ -181,7 +188,8 @@ procedure TdmTCI.OnTerminate(Sender: TObject);
 begin
   TCIRec.STATUS := False;
   IniSet.RIGConnected := TCIRec.STATUS;
-  TRXForm.ShowInfoFromRIG(0);
+  FMS.Freq := 0;
+  TThread.Synchronize(nil, @TRXForm.ShowInfoFromRIG);
   StopTCI;
 end;
 

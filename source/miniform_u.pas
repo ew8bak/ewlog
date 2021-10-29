@@ -528,10 +528,10 @@ begin
   begin
     if IniSet.showBand then
       CBBand.Text := dmFunc.GetBandFromFreq(
-        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq),
+        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq / 1000000),
         ',', '.', [rfReplaceAll]))
     else
-      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq),
+      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq / 1000000),
         ',', '.', [rfReplaceAll]);
   end;
 end;

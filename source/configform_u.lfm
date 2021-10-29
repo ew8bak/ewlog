@@ -29,20 +29,21 @@ object ConfigForm: TConfigForm
       ClientWidth = 521
       object gbMySQL: TGroupBox
         Left = 8
-        Height = 240
+        Height = 220
         Top = 8
-        Width = 241
+        Width = 214
+        AutoSize = True
         Caption = 'MySQL'
-        ClientHeight = 224
-        ClientWidth = 239
+        ClientHeight = 204
+        ClientWidth = 212
         TabOrder = 0
         object Label2: TLabel
           AnchorSideTop.Control = Edit1
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit1
-          Left = 55
+          Left = 28
           Height = 13
-          Top = 15
+          Top = 12
           Width = 39
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
@@ -55,9 +56,9 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit2
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit2
-          Left = 70
+          Left = 43
           Height = 13
-          Top = 47
+          Top = 43
           Width = 24
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
@@ -70,9 +71,9 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit3
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit3
-          Left = 62
+          Left = 35
           Height = 13
-          Top = 79
+          Top = 74
           Width = 32
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
@@ -85,9 +86,9 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit4
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit4
-          Left = 44
+          Left = 17
           Height = 13
-          Top = 111
+          Top = 105
           Width = 50
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
@@ -100,9 +101,9 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit5
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit5
-          Left = 27
+          Left = 0
           Height = 13
-          Top = 143
+          Top = 136
           Width = 67
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
@@ -112,52 +113,63 @@ object ConfigForm: TConfigForm
           ParentFont = False
         end
         object Edit1: TEdit
+          AnchorSideTop.Control = gbMySQL
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 99
+          Left = 72
           Height = 26
-          Top = 8
+          Top = 5
           Width = 130
           Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
           BorderSpacing.Right = 10
           Font.Height = -12
           ParentFont = False
           TabOrder = 0
         end
         object Edit2: TEdit
+          AnchorSideTop.Control = Edit1
+          AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 99
+          Left = 72
           Height = 26
-          Top = 40
+          Top = 36
           Width = 130
           Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
           BorderSpacing.Right = 10
           Font.Height = -12
           ParentFont = False
           TabOrder = 1
         end
         object Edit3: TEdit
+          AnchorSideTop.Control = Edit2
+          AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 99
+          Left = 72
           Height = 26
-          Top = 72
+          Top = 67
           Width = 130
           Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
           BorderSpacing.Right = 10
           Font.Height = -12
           ParentFont = False
           TabOrder = 2
         end
         object Edit4: TEdit
+          AnchorSideTop.Control = Edit3
+          AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 99
+          Left = 72
           Height = 26
-          Top = 104
+          Top = 98
           Width = 130
           Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
           BorderSpacing.Right = 10
           EchoMode = emPassword
           Font.Height = -12
@@ -168,14 +180,17 @@ object ConfigForm: TConfigForm
         object Button3: TButton
           AnchorSideLeft.Control = gbMySQL
           AnchorSideLeft.Side = asrCenter
+          AnchorSideTop.Control = Edit5
+          AnchorSideTop.Side = asrBottom
           AnchorSideBottom.Control = gbMySQL
           AnchorSideBottom.Side = asrBottom
-          Left = 58
+          Left = 45
           Height = 29
-          Top = 190
+          Top = 170
           Width = 122
-          Anchors = [akLeft, akBottom]
+          Anchors = [akTop, akLeft, akBottom]
           AutoSize = True
+          BorderSpacing.Top = 15
           BorderSpacing.Bottom = 5
           Caption = 'Check connection'
           Font.Height = -12
@@ -184,13 +199,16 @@ object ConfigForm: TConfigForm
           TabOrder = 4
         end
         object Edit5: TEdit
+          AnchorSideTop.Control = Edit4
+          AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbMySQL
           AnchorSideRight.Side = asrBottom
-          Left = 99
+          Left = 72
           Height = 26
-          Top = 136
+          Top = 129
           Width = 130
           Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
           BorderSpacing.Right = 10
           Font.Height = -12
           ParentFont = False
@@ -534,8 +552,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 414
-          ClientWidth = 511
+          ClientHeight = 439
+          ClientWidth = 517
           OnShow = TSHamlibShow
           object LBTransceiverModel: TLabel
             AnchorSideLeft.Control = TSHamlib
@@ -1135,8 +1153,8 @@ object ConfigForm: TConfigForm
         end
         object TSTCI: TTabSheet
           Caption = 'TCI'
-          ClientHeight = 414
-          ClientWidth = 511
+          ClientHeight = 439
+          ClientWidth = 517
           OnShow = TSTCIShow
           object LBTCIAddress: TLabel
             AnchorSideLeft.Control = TSTCI
@@ -1282,14 +1300,15 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Control = TSCW
         AnchorSideTop.Control = TSCW
         Left = 5
-        Height = 211
+        Height = 197
         Top = 5
-        Width = 219
+        Width = 158
+        AutoSize = True
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'CW Daemon (Linux only)'
-        ClientHeight = 195
-        ClientWidth = 217
+        ClientHeight = 181
+        ClientWidth = 156
         TabOrder = 0
         object LBCwDaemonAddress: TLabel
           AnchorSideLeft.Control = GBCWDaemon
@@ -1333,11 +1352,15 @@ object ConfigForm: TConfigForm
           AnchorSideLeft.Control = LBCwDaemonAddress
           AnchorSideTop.Control = LBCwDaemonAddress
           AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = GBCWDaemon
+          AnchorSideRight.Side = asrBottom
           Left = 10
           Height = 26
           Top = 20
-          Width = 190
+          Width = 136
+          Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Top = 2
+          BorderSpacing.Right = 10
           TabOrder = 0
         end
         object EditCwDaemonPort: TEdit
