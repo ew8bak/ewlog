@@ -678,8 +678,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="512"/>
-        <CursorPos X="94" Y="534"/>
+        <TopLine Value="1585"/>
+        <CursorPos X="77" Y="1570"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -828,10 +828,11 @@
         <UnitName Value="contestForm_u"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="392"/>
-        <CursorPos X="51" Y="430"/>
+        <TopLine Value="244"/>
+        <CursorPos X="3" Y="195"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit80>
       <Unit81>
         <Filename Value="dmcontest_u.pas"/>
@@ -2054,123 +2055,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="371" TopLine="351"/>
+        <Caret Line="383" TopLine="357"/>
       </Position1>
       <Position2>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="377" TopLine="351"/>
+        <Caret Line="384" TopLine="357"/>
       </Position2>
       <Position3>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="383" TopLine="357"/>
+        <Caret Line="391" TopLine="357"/>
       </Position3>
       <Position4>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="384" TopLine="357"/>
+        <Caret Line="396" TopLine="362"/>
       </Position4>
       <Position5>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="391" TopLine="357"/>
+        <Caret Line="353" TopLine="332"/>
       </Position5>
       <Position6>
         <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="396" TopLine="362"/>
+        <Caret Line="359" TopLine="332"/>
       </Position6>
       <Position7>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="353" TopLine="332"/>
-      </Position7>
-      <Position8>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="359" TopLine="332"/>
-      </Position8>
-      <Position9>
         <Filename Value="trxform_u.pas"/>
         <Caret Line="124" Column="13" TopLine="102"/>
-      </Position9>
-      <Position10>
+      </Position7>
+      <Position8>
         <Filename Value="trxform_u.pas"/>
         <Caret Line="176" Column="3" TopLine="174"/>
-      </Position10>
-      <Position11>
+      </Position8>
+      <Position9>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="97" Column="15" TopLine="78"/>
-      </Position11>
-      <Position12>
+      </Position9>
+      <Position10>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="130" Column="3" TopLine="124"/>
+      </Position10>
+      <Position11>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="46" Column="14" TopLine="24"/>
+      </Position11>
+      <Position12>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="66" TopLine="58"/>
       </Position12>
       <Position13>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="46" Column="14" TopLine="24"/>
+        <Caret Line="67" TopLine="58"/>
       </Position13>
       <Position14>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="66" TopLine="58"/>
+        <Caret Line="68" TopLine="58"/>
       </Position14>
       <Position15>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="67" TopLine="58"/>
+        <Caret Line="69" TopLine="58"/>
       </Position15>
       <Position16>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="68" TopLine="58"/>
+        <Caret Line="70" TopLine="58"/>
       </Position16>
       <Position17>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="69" TopLine="58"/>
+        <Caret Line="72" TopLine="58"/>
       </Position17>
       <Position18>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="70" TopLine="58"/>
+        <Caret Line="73" TopLine="58"/>
       </Position18>
       <Position19>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="72" TopLine="58"/>
+        <Caret Line="74" TopLine="58"/>
       </Position19>
       <Position20>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="73" TopLine="58"/>
+        <Caret Line="75" TopLine="58"/>
       </Position20>
       <Position21>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="74" TopLine="58"/>
+        <Caret Line="76" TopLine="58"/>
       </Position21>
       <Position22>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="75" TopLine="58"/>
+        <Caret Line="77" TopLine="58"/>
       </Position22>
       <Position23>
         <Filename Value="dmtci_u.pas"/>
-        <Caret Line="76" TopLine="58"/>
+        <Caret Line="183" Column="58" TopLine="162"/>
       </Position23>
       <Position24>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="77" TopLine="58"/>
-      </Position24>
-      <Position25>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="88" Column="21" TopLine="108"/>
-      </Position25>
-      <Position26>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="183" Column="58" TopLine="162"/>
-      </Position26>
-      <Position27>
         <Filename Value="trxform_u.pas"/>
         <Caret Line="127" Column="19" TopLine="94"/>
-      </Position27>
-      <Position28>
+      </Position24>
+      <Position25>
         <Filename Value="dmtci_u.pas"/>
         <Caret Line="192" Column="54" TopLine="168"/>
+      </Position25>
+      <Position26>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="531" Column="78" TopLine="500"/>
+      </Position26>
+      <Position27>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="983" Column="3" TopLine="981"/>
+      </Position27>
+      <Position28>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="534" Column="94" TopLine="512"/>
       </Position28>
       <Position29>
         <Filename Value="miniform_u.pas"/>
-        <Caret Line="531" Column="78" TopLine="500"/>
+        <Caret Line="531" Column="81" TopLine="511"/>
       </Position29>
       <Position30>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="983" Column="3" TopLine="981"/>
+        <Filename Value="contestform_u.pas"/>
+        <Caret Line="430" Column="51" TopLine="392"/>
       </Position30>
     </JumpHistory>
     <RunParams>

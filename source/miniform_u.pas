@@ -1567,7 +1567,7 @@ begin
       end;
 
       if FMS.Freq > 0 then
-        NameBand := MainFunc.ConvertFreqToSave(FloatToStr(FMS.Freq))
+        NameBand := MainFunc.ConvertFreqToSave(FloatToStr(FMS.Freq / 1000000))
       else
         NameBand := MainFunc.ConvertFreqToSave(CBBand.Text);
       DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
