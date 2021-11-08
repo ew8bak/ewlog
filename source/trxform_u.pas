@@ -114,6 +114,7 @@ begin
       dmTCI.SendValue('MODULATION', Mode);
       Exit;
     end;
+
   end;
 end;
 

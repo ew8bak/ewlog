@@ -97,7 +97,7 @@ end;
 procedure TdmHamLib.SynTRX;
 var
   f: double;
-  f_hz: integer;
+ // f_hz: integer;
   m: string;
   mode, submode: string;
 begin
@@ -106,18 +106,18 @@ begin
   submode := '';
   if Assigned(radio) then
   begin
-    f := radio.GetFreqMHz;
+    f := radio.GetFreqHz;
     m := radio.GetModeOnly;
-    f_hz := radio.GetFreqHz;
+   // f_hz := radio.GetFreqHz;
     //{$IFDEF WIN64}
     // bwith := radio.GetBandwich(radio.GetRawMode);
     //{$ENDIF}
   end
   else
-  begin
+ // begin
     f := 0;
-    f_hz := 0;
-  end;
+  //  f_hz := 0;
+  //end;
 
   if Length(m) > 1 then
     dmFunc.GetRIGMode(m, mode, submode);

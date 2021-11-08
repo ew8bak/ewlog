@@ -128,6 +128,13 @@ begin
   ParamData := GetParam;
   if Sender <> SetupForm then
   begin
+    if not ParamData.portable then begin
+      if FileExists(ExtractFilePath(ParamStr(0))+'portable') then
+      ParamData.portable:=True
+      else
+      ParamData.portable:=False;
+    end;
+
   {$IFDEF UNIX}
     if not ParamData.portable then
       FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/'

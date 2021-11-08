@@ -67,7 +67,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="1253"/>
         <CursorPos X="43" Y="1265"/>
         <UsageCount Value="200"/>
@@ -116,7 +116,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="282"/>
         <CursorPos X="7" Y="289"/>
         <UsageCount Value="200"/>
@@ -197,10 +197,11 @@
       <Unit18>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="137"/>
-        <CursorPos X="42" Y="155"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="248"/>
+        <CursorPos X="28" Y="254"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="trxform_u.pas"/>
@@ -209,9 +210,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="115"/>
-        <CursorPos X="30" Y="127"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="102"/>
+        <CursorPos X="5" Y="117"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -545,10 +546,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="694"/>
-        <CursorPos X="3" Y="736"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="125"/>
+        <CursorPos Y="129"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit51>
       <Unit52>
         <Filename Value="logbooktable_record.pas"/>
@@ -590,7 +593,7 @@
       <Unit56>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="63"/>
         <CursorPos X="27" Y="100"/>
         <UsageCount Value="200"/>
@@ -677,7 +680,7 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="1585"/>
         <CursorPos X="77" Y="1570"/>
         <UsageCount Value="201"/>
@@ -719,7 +722,7 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="799"/>
         <CursorPos X="36" Y="810"/>
         <UsageCount Value="201"/>
@@ -813,8 +816,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmCat"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="60"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="31"/>
         <CursorPos X="68" Y="43"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -826,10 +829,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="contestForm_u"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="244"/>
-        <CursorPos X="3" Y="195"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="206"/>
+        <CursorPos X="42" Y="210"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -938,7 +940,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmTCI_u"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="169"/>
         <CursorPos X="9" Y="179"/>
         <UsageCount Value="127"/>
@@ -979,9 +981,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmHamLib_u"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="95"/>
-        <CursorPos X="26" Y="128"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="92"/>
+        <CursorPos X="24" Y="19"/>
         <UsageCount Value="42"/>
         <Loaded Value="True"/>
       </Unit94>
@@ -1786,9 +1788,9 @@
       <Unit203>
         <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\System\IdGlobal.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="4443"/>
-        <CursorPos X="3" Y="4449"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="1954"/>
+        <CursorPos X="105" Y="1970"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit203>
       <Unit204>
@@ -2054,124 +2056,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="383" TopLine="357"/>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="73" TopLine="58"/>
       </Position1>
       <Position2>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="384" TopLine="357"/>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="74" TopLine="58"/>
       </Position2>
       <Position3>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="391" TopLine="357"/>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="75" TopLine="58"/>
       </Position3>
       <Position4>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="396" TopLine="362"/>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="76" TopLine="58"/>
       </Position4>
       <Position5>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="353" TopLine="332"/>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="77" TopLine="58"/>
       </Position5>
       <Position6>
-        <Filename Value="dmfunc_u.pas"/>
-        <Caret Line="359" TopLine="332"/>
+        <Filename Value="dmtci_u.pas"/>
+        <Caret Line="183" Column="58" TopLine="162"/>
       </Position6>
       <Position7>
         <Filename Value="trxform_u.pas"/>
-        <Caret Line="124" Column="13" TopLine="102"/>
+        <Caret Line="127" Column="19" TopLine="94"/>
       </Position7>
       <Position8>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="176" Column="3" TopLine="174"/>
-      </Position8>
-      <Position9>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="97" Column="15" TopLine="78"/>
-      </Position9>
-      <Position10>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="130" Column="3" TopLine="124"/>
-      </Position10>
-      <Position11>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="46" Column="14" TopLine="24"/>
-      </Position11>
-      <Position12>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="66" TopLine="58"/>
-      </Position12>
-      <Position13>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="67" TopLine="58"/>
-      </Position13>
-      <Position14>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="68" TopLine="58"/>
-      </Position14>
-      <Position15>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="69" TopLine="58"/>
-      </Position15>
-      <Position16>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="70" TopLine="58"/>
-      </Position16>
-      <Position17>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="72" TopLine="58"/>
-      </Position17>
-      <Position18>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="73" TopLine="58"/>
-      </Position18>
-      <Position19>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="74" TopLine="58"/>
-      </Position19>
-      <Position20>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="75" TopLine="58"/>
-      </Position20>
-      <Position21>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="76" TopLine="58"/>
-      </Position21>
-      <Position22>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="77" TopLine="58"/>
-      </Position22>
-      <Position23>
-        <Filename Value="dmtci_u.pas"/>
-        <Caret Line="183" Column="58" TopLine="162"/>
-      </Position23>
-      <Position24>
-        <Filename Value="trxform_u.pas"/>
-        <Caret Line="127" Column="19" TopLine="94"/>
-      </Position24>
-      <Position25>
         <Filename Value="dmtci_u.pas"/>
         <Caret Line="192" Column="54" TopLine="168"/>
-      </Position25>
-      <Position26>
+      </Position8>
+      <Position9>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="531" Column="78" TopLine="500"/>
-      </Position26>
-      <Position27>
+      </Position9>
+      <Position10>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="983" Column="3" TopLine="981"/>
-      </Position27>
-      <Position28>
+      </Position10>
+      <Position11>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="534" Column="94" TopLine="512"/>
-      </Position28>
-      <Position29>
+      </Position11>
+      <Position12>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="531" Column="81" TopLine="511"/>
-      </Position29>
-      <Position30>
+      </Position12>
+      <Position13>
         <Filename Value="contestform_u.pas"/>
         <Caret Line="430" Column="51" TopLine="392"/>
+      </Position13>
+      <Position14>
+        <Filename Value="dmhamlib_u.pas"/>
+        <Caret Line="109" Column="26" TopLine="102"/>
+      </Position14>
+      <Position15>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="109" Column="14" TopLine="95"/>
+      </Position15>
+      <Position16>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="127" Column="30" TopLine="115"/>
+      </Position16>
+      <Position17>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="264" Column="3" TopLine="251"/>
+      </Position17>
+      <Position18>
+        <Filename Value="trxform_u.pas"/>
+        <Caret Line="90" Column="15" TopLine="74"/>
+      </Position18>
+      <Position19>
+        <Filename Value="dmhamlib_u.pas"/>
+        <Caret Line="100" Column="4" TopLine="35"/>
+      </Position19>
+      <Position20>
+        <Filename Value="uRigControl.pas"/>
+        <Caret Line="108" Column="14" TopLine="93"/>
+      </Position20>
+      <Position21>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="42" Column="20" TopLine="27"/>
+      </Position21>
+      <Position22>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="128" Column="25" TopLine="125"/>
+      </Position22>
+      <Position23>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="47" Column="5" TopLine="30"/>
+      </Position23>
+      <Position24>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="131" TopLine="121"/>
+      </Position24>
+      <Position25>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="132" TopLine="121"/>
+      </Position25>
+      <Position26>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="129" TopLine="121"/>
+      </Position26>
+      <Position27>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="131" TopLine="121"/>
+      </Position27>
+      <Position28>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="132" TopLine="121"/>
+      </Position28>
+      <Position29>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="133" TopLine="121"/>
+      </Position29>
+      <Position30>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="139" TopLine="121"/>
       </Position30>
     </JumpHistory>
     <RunParams>
