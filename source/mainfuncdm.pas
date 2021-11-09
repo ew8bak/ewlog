@@ -344,7 +344,7 @@ end;
 procedure TMainFunc.SentCATCloudLog(CatData: TCatData);
 begin
   CatData.freq := FormatFreq(CatData.freq);
-  StringReplace(CatData.freq, '.', '', [rfReplaceAll]);
+  CatData.freq:=StringReplace(CatData.freq, '.', '', [rfReplaceAll]);
   CatData.freq := CatData.freq + '0';
   CloudLogCATThread := TCloudLogCATThread.Create;
   if Assigned(CloudLogCATThread.FatalException) then

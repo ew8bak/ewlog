@@ -446,7 +446,7 @@ begin
   begin
     CatCloudData.mode := CBMode.Text;
     CatCloudData.freq := CBBand.Text;
-    CatCloudData.dt := DateToStr(Now);
+    CatCloudData.dt := FormatDateTime('yyyy/mm/dd hh:mm', Now);
     CatCloudData.address := IniSet.CloudLogServer;
     CatCloudData.key := IniSet.CloudLogApiKey;
     CatCloudData.radio := 'EWLog';
