@@ -22,7 +22,7 @@ type
     date: TDateTime;
     time: string;
     DXGrid: string;
-    Freq: string;
+    Freq: Double;
     Mode: string;
     SubMode: string;
     RSTr: string;

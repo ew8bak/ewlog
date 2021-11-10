@@ -377,7 +377,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   serverDM_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
-  sendtelnetspot_form_U;
+  sendtelnetspot_form_U, WSJT_UDP_Form_U;
 
 {$R *.lfm}
 
@@ -476,17 +476,10 @@ end;
 procedure TMiniForm.ShowDataFromDIGI(DataDigi: TDigiR);
 var
   tempCall: string;
-  tempFreq: string;
   tempMode: string;
   tempSubMode: string;
 begin
   tempCall := DataDigi.DXCall;
-  tempFreq := DataDigi.Freq;
-  tempFreq := StringReplace(tempFreq, ',', '.', [rfReplaceAll]);
-
-  if IniSet.showBand then
-    tempFreq := dmFunc.GetBandFromFreq(tempFreq);
-
   tempMode := DataDigi.Mode;
   tempSubMode := DataDigi.SubMode;
   if tempCall <> EditCallsign.Text then
@@ -495,8 +488,18 @@ begin
     if Length(tempCall) > 2 then
       InfoDM.GetInformation(dmFunc.ExtractCallsign(tempCall), 'MainForm');
   end;
-  if tempFreq <> CBBand.Text then
-    CBBand.Text := tempFreq;
+
+  if DataDigi.Freq <> 0 then
+  begin
+    if IniSet.showBand then
+      CBBand.Text := dmFunc.GetBandFromFreq(
+        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], DataDigi.Freq / 1000000),
+        ',', '.', [rfReplaceAll]))
+    else
+      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], DataDigi.Freq / 1000000),
+        ',', '.', [rfReplaceAll]);
+  end;
+
   if tempMode <> CBMode.Text then
     CBMode.Text := tempMode;
   if tempSubMode <> CBSubMode.Text then
@@ -518,6 +521,7 @@ end;
 
 procedure TMiniForm.ShowInfoFromRIG;
 begin
+  if not WSJT_Run then begin
   if FMS.Mode <> '' then
   begin
     CBMode.Text := FMS.Mode;
@@ -533,6 +537,7 @@ begin
     else
       CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq / 1000000),
         ',', '.', [rfReplaceAll]);
+  end;
   end;
 end;
 

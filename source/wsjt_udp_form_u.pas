@@ -181,7 +181,7 @@ begin
             Unpack(AData, index, DEGrid);
             Unpack(AData, index, DataDigi.DXGrid);
 
-            DataDigi.Freq := FormatFloat('0.000"."00', frequency / 1000000);
+            DataDigi.Freq := frequency;
 
             if mode <> 'FT4' then
             begin
@@ -269,7 +269,7 @@ begin
               ' RST получено:' + DataDigi.RSTr + ' TX мощность:' +
               TXPower + ' Комментарий:' + comments + ' Имя:' + DXName);
 
-              DataDigi.Freq := FormatFloat('0.000"."00', frequency / 1000000);
+              DataDigi.Freq := frequency;
 
             if mode <> 'FT4' then
             begin
@@ -282,8 +282,8 @@ begin
               DataDigi.SubMode := 'FT4';
             end;
 
-            if DXName <> '' then
-              DataDigi.OmName := DXName;
+            //if (DXName <> '') and (DXCall <> '') then
+            //  DataDigi.OmName := DXName;
             DataDigi.Comment := comments;
             DataDigi.Save := True;
             MiniForm.ShowDataFromDIGI(DataDigi);

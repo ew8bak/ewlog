@@ -25,15 +25,15 @@ object MainForm: TMainForm
     TabOrder = 0
     object EarthPanel: TPanel
       Left = 1
-      Height = 263
-      Top = 403
+      Height = 250
+      Top = 416
       Width = 475
       Align = alBottom
       TabOrder = 0
     end
     object MiniPanel: TPanel
       Left = 1
-      Height = 375
+      Height = 407
       Top = 1
       Width = 475
       Align = alTop
@@ -41,8 +41,8 @@ object MainForm: TMainForm
     end
     object OtherPanel: TPanel
       Left = 1
-      Height = 27
-      Top = 376
+      Height = 8
+      Top = 408
       Width = 475
       Align = alClient
       TabOrder = 2
@@ -59,15 +59,15 @@ object MainForm: TMainForm
     TabOrder = 1
     object ClusterPanel: TPanel
       Left = 1
-      Height = 263
-      Top = 403
+      Height = 250
+      Top = 416
       Width = 729
       Align = alBottom
       TabOrder = 0
     end
     object GridsPanel: TPanel
       Left = 1
-      Height = 402
+      Height = 415
       Top = 1
       Width = 729
       Align = alClient

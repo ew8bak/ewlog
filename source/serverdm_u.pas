@@ -527,7 +527,7 @@ begin
     if FldigiFreq <> currFreq then
     begin
       FldigiFreq := currFreq;
-      DataDigi.Freq := FormatFloat(view_freq[IniSet.ViewFreq], FldigiFreq);
+      DataDigi.Freq := FldigiFreq;//FormatFloat(view_freq[IniSet.ViewFreq], FldigiFreq);
     end;
 
   finally
