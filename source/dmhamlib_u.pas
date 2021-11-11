@@ -23,6 +23,8 @@ type
   public
     function InicializeHLRig(RIGid: integer): boolean;
     procedure FreeRadio;
+    procedure SetFreq(freq: integer);
+    procedure SetMode(mode: string);
 
   end;
 
@@ -54,6 +56,24 @@ uses
   WSJT_UDP_Form_U, serverDM_u;
 
 {$R *.lfm}
+
+procedure TdmHamLib.SetFreq(freq: integer);
+begin
+  if Assigned(radio) then
+    radio.SetFreqHz(freq);
+end;
+
+procedure TdmHamLib.SetMode(mode: string);
+var
+  rmode: TRigMode;
+begin
+  if Assigned(radio) then
+  begin
+    rmode.mode := mode;
+    rmode.pass := 0;
+    radio.SetModePass(rmode);
+  end;
+end;
 
 function TdmHamLib.InicializeHLRig(RIGid: integer): boolean;
 var
@@ -97,7 +117,7 @@ end;
 procedure TdmHamLib.SynTRX;
 var
   f: double;
- // f_hz: integer;
+  // f_hz: integer;
   m: string;
   mode, submode: string;
 begin
@@ -108,13 +128,13 @@ begin
   begin
     f := radio.GetFreqHz;
     m := radio.GetModeOnly;
-   // f_hz := radio.GetFreqHz;
+    // f_hz := radio.GetFreqHz;
     //{$IFDEF WIN64}
     // bwith := radio.GetBandwich(radio.GetRawMode);
     //{$ENDIF}
   end
   else
- // begin
+    // begin
     f := 0;
   //  f_hz := 0;
   //end;

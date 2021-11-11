@@ -113,8 +113,14 @@ begin
         dmTCI.SendValue('VFO', IntToStr(Freq));
       dmTCI.SendValue('MODULATION', Mode);
       Exit;
+    end
+    else
+    begin
+      if Freq > 0 then
+        dmHamLib.SetFreq(Freq);
+      dmHamLib.SetMode(Mode);
+      Exit;
     end;
-
   end;
 end;
 
