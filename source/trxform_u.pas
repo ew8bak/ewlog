@@ -130,7 +130,6 @@ var
 begin
   if FMS.Freq > 0 then
   begin
-    //hz_freq := trunc(FMS.Freq * 1000000);
     hz_freq := trunc(FMS.Freq);
     FreqHz(hz_freq);
   end;

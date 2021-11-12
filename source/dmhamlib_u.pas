@@ -117,7 +117,6 @@ end;
 procedure TdmHamLib.SynTRX;
 var
   f: double;
-  // f_hz: integer;
   m: string;
   mode, submode: string;
 begin
@@ -128,16 +127,10 @@ begin
   begin
     f := radio.GetFreqHz;
     m := radio.GetModeOnly;
-    // f_hz := radio.GetFreqHz;
-    //{$IFDEF WIN64}
-    // bwith := radio.GetBandwich(radio.GetRawMode);
-    //{$ENDIF}
+    IniSet.RIGConnected := radio.Connect;
   end
   else
-    // begin
     f := 0;
-  //  f_hz := 0;
-  //end;
 
   if Length(m) > 1 then
     dmFunc.GetRIGMode(m, mode, submode);
@@ -146,6 +139,11 @@ begin
   FMS.SubMode := submode;
   MiniForm.ShowInfoFromRIG;
   TRXForm.ShowInfoFromRIG;
+  if not IniSet.RIGConnected then
+  begin
+    tmrRadio.Enabled := False;
+    FreeAndNil(radio);
+  end;
 end;
 
 procedure TdmHamLib.tmrRadioTimer(Sender: TObject);

@@ -16,7 +16,7 @@ interface
 
 uses
   Classes, SysUtils, Process, ExtCtrls, IdTelnet, IdGlobal,
-  Dialogs, MainFuncDM;
+  Dialogs, MainFuncDM, IdComponent;
 
 type
   TRigMode = record
@@ -57,14 +57,16 @@ type
     BadRcvd: integer;
     fRXOffset: double;
     fTXOffset: double;
+    fConnect: boolean;
 
     function RigConnected: boolean;
+    function RigConnectStatus: boolean;
     function StartRigctld: boolean;
     function Explode(const cSeparator, vString: string): TExplodeArray;
     procedure OnRigPollTimer(Sender: TObject);
     procedure OnDataAvailable(Sender: TIdTelnet; const Buffer: TIdBytes);
-    //   procedure OnStatus(ASender: TObject; const AStatus: TIdStatus;
-    //     const AStatusText: string);
+    procedure OnStatus(ASender: TObject; const AStatus: TIdStatus;
+      const AStatusText: string);
   public
 
 
@@ -88,6 +90,7 @@ type
     property RigCtldHost: string read fRigCtldHost write fRigCtldHost;
     //host where is rigctld running
     property Connected: boolean read RigConnected;
+    property Connect: boolean read RigConnectStatus;
     //connect rigctld
     property RigPoll: word read fRigPoll write fRigPoll;
     //poll rate in miliseconds
@@ -133,6 +136,7 @@ begin
   fRigCtldPort := 4532;
   fRigPoll := 500;
   fRunRigCtld := True;
+  fConnect := False;
   rcvdFreqMode := TIdTelnet.Create;
   rigProcess := TProcess.Create(nil);
   rigProcess.ShowWindow := swoHIDE;
@@ -140,7 +144,7 @@ begin
   tmrRigPoll.Enabled := False;
   tmrRigPoll.OnTimer := @OnRigPollTimer;
   rcvdFreqMode.OnDataAvailable := @OnDataAvailable;
-
+  rcvdFreqMode.OnStatus := @OnStatus;
 end;
 
 function TRigControl.StartRigctld: boolean;
@@ -164,7 +168,6 @@ begin
       begin
         fLastError := E.Message;
         Result := False;
-        // TRXForm.tmrRadio.Enabled := False;
         exit;
       end
     end;
@@ -188,7 +191,7 @@ begin
   rcvdFreqMode.Host := fRigCtldHost;
   rcvdFreqMode.Port := fRigCtldPort;
   try
-  rcvdFreqMode.Connect;
+    rcvdFreqMode.Connect;
   except
     fLastError := ERR_MSG;
     Result := False;
@@ -356,6 +359,27 @@ begin
   Result := bw;
 end;
 
+function TRigControl.RigConnectStatus: boolean;
+begin
+  Result := fConnect;
+end;
+
+procedure TRigControl.OnStatus(ASender: TObject; const AStatus: TIdStatus;
+  const AStatusText: string);
+begin
+  if AStatus = hsConnected then
+  begin
+    fConnect := True;
+    exit;
+  end;
+  if AStatus = hsDisconnected then
+  begin
+    fConnect := False;
+    tmrRigPoll.Enabled := False;
+    exit;
+  end;
+end;
+
 procedure TRigControl.OnDataAvailable(Sender: TIdTelnet; const Buffer: TIdBytes);
 var
   msg: string;
@@ -487,7 +511,7 @@ begin
       rigProcess.Terminate(excode);
   end;
   tmrRigPoll.Enabled := False;
-  rcvdFreqMode.Disconnect();
+  rcvdFreqMode.Disconnect(True);
   FreeAndNil(rcvdFreqMode);
   FreeAndNil(rigProcess);
   FreeAndNil(RigCommand);
