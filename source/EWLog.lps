@@ -8,10 +8,12 @@
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="11"/>
-        <CursorPos X="41" Y="49"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="31"/>
+        <CursorPos X="45" Y="48"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="mainform_u.pas"/>
@@ -115,7 +117,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="282"/>
         <CursorPos X="7" Y="289"/>
         <UsageCount Value="200"/>
@@ -196,7 +198,7 @@
       <Unit18>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="471"/>
         <CursorPos X="36" Y="424"/>
         <UsageCount Value="200"/>
@@ -209,7 +211,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="121"/>
         <CursorPos Y="131"/>
         <UsageCount Value="200"/>
@@ -592,7 +594,7 @@
       <Unit56>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="63"/>
         <CursorPos X="27" Y="100"/>
         <UsageCount Value="200"/>
@@ -702,12 +704,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="526"/>
+        <TopLine Value="525"/>
         <CursorPos X="43" Y="533"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit68>
       <Unit69>
         <Filename Value="telnetclientthread.pas"/>
@@ -816,7 +818,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmCat"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="73"/>
         <CursorPos X="30" Y="239"/>
         <UsageCount Value="200"/>
@@ -938,7 +940,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmTCI_u"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="149"/>
         <CursorPos X="23" Y="156"/>
         <UsageCount Value="133"/>
@@ -980,8 +982,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmHamLib_u"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="48"/>
-        <CursorPos X="31" Y="133"/>
+        <TopLine Value="115"/>
+        <CursorPos X="7" Y="141"/>
         <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit94>
