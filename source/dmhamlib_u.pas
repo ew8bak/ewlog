@@ -138,7 +138,8 @@ begin
   FMS.Mode := mode;
   FMS.SubMode := submode;
   MiniForm.ShowInfoFromRIG;
-  TRXForm.ShowInfoFromRIG;
+  if Assigned(TRXForm) then
+    TRXForm.ShowInfoFromRIG;
   if not IniSet.RIGConnected then
   begin
     tmrRadio.Enabled := False;

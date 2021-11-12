@@ -8,10 +8,9 @@
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="31"/>
-        <CursorPos X="45" Y="48"/>
+        <CursorPos X="48" Y="48"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -981,9 +980,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmHamLib_u"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="115"/>
-        <CursorPos X="7" Y="141"/>
+        <CursorPos X="29" Y="142"/>
         <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit94>

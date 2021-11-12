@@ -45,11 +45,11 @@ begin
   Application.CreateForm(TdmFunc, dmFunc);
   Application.CreateForm(TMainFunc, MainFunc);
   Application.CreateForm(TInfoDM, InfoDM);
-  Application.CreateForm(TTRXForm, TRXForm);
   Application.CreateForm(TdmHamLib, dmHamLib);
   Application.CreateForm(TdmTCI, dmTCI);
   Application.CreateForm(TMiniForm, MiniForm);
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TTRXForm, TRXForm);
   Application.CreateForm(TServerDM, ServerDM);
   Application.CreateForm(TCWKeysDM, CWKeysDM);
   Application.CreateForm(TCWDaemonDM, CWDaemonDM);
