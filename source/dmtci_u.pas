@@ -154,7 +154,6 @@ end;
 procedure TdmTCI.OnMessage(Sender: TObject);
 var
   val: TMessageRecord;
-  //hz_freq: longint;
 begin
   if not Assigned(TCIClient) then
     exit;
@@ -173,14 +172,10 @@ begin
   begin
     dmFunc.GetRIGMode(TCIRec.MODULATION, FMS.Mode, FMS.SubMode);
     if TCIRec.VFO <> '' then
-    begin
       TryStrToFloatSafe(TCIRec.VFO, FMS.Freq);
 
-      //FMS.Freq := FMS.Freq / 1000000;
-    end;
     TThread.Synchronize(nil, @MiniForm.ShowInfoFromRIG);
     TThread.Synchronize(nil, @TRXForm.ShowInfoFromRIG);
-    //TRXForm.ShowInfoFromRIG(hz_freq);
   end;
 end;
 

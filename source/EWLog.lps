@@ -115,7 +115,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="282"/>
         <CursorPos X="7" Y="289"/>
         <UsageCount Value="200"/>
@@ -196,10 +196,9 @@
       <Unit18>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="489"/>
-        <CursorPos X="31" Y="514"/>
+        <TopLine Value="471"/>
+        <CursorPos X="36" Y="424"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit18>
@@ -210,7 +209,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TRXForm_U"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="121"/>
         <CursorPos Y="131"/>
         <UsageCount Value="200"/>
@@ -593,7 +592,7 @@
       <Unit56>
         <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="63"/>
         <CursorPos X="27" Y="100"/>
         <UsageCount Value="200"/>
@@ -682,8 +681,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="492"/>
-        <CursorPos X="2" Y="515"/>
+        <TopLine Value="518"/>
+        <CursorPos X="22" Y="511"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -703,9 +702,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="514"/>
-        <CursorPos X="39" Y="530"/>
+        <TopLine Value="526"/>
+        <CursorPos X="43" Y="533"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit68>
@@ -816,7 +816,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmCat"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="73"/>
         <CursorPos X="30" Y="239"/>
         <UsageCount Value="200"/>
@@ -938,9 +938,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmTCI_u"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="169"/>
-        <CursorPos X="9" Y="179"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="149"/>
+        <CursorPos X="23" Y="156"/>
         <UsageCount Value="133"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -980,7 +980,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmHamLib_u"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="119"/>
+        <TopLine Value="48"/>
         <CursorPos X="31" Y="133"/>
         <UsageCount Value="48"/>
         <Loaded Value="True"/>
@@ -2053,11 +2053,10 @@
       </Unit239>
       <Unit240>
         <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Protocols\IdTelnet.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="343"/>
         <CursorPos X="15" Y="359"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit240>
       <Unit241>
@@ -2069,7 +2068,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit241>
     </Units>
-    <JumpHistory Count="14" HistoryIndex="13">
+    <JumpHistory Count="12" HistoryIndex="11">
       <Position1>
         <Filename Value="dmhamlib_u.pas"/>
         <Caret Line="27" Column="21" TopLine="27"/>
@@ -2118,13 +2117,6 @@
         <Filename Value="dmhamlib_u.pas"/>
         <Caret Line="133" Column="12" TopLine="115"/>
       </Position12>
-      <Position13>
-        <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Protocols\IdTelnet.pas"/>
-      </Position13>
-      <Position14>
-        <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Protocols\IdTelnet.pas"/>
-        <Caret Line="359" Column="15" TopLine="343"/>
-      </Position14>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
