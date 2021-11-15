@@ -986,6 +986,7 @@
         <CursorPos X="29" Y="142"/>
         <UsageCount Value="48"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit94>
       <Unit95>
         <Filename Value="download_lotw.pas"/>
@@ -1938,7 +1939,6 @@
         <TopLine Value="1043"/>
         <CursorPos Y="1060"/>
         <UsageCount Value="6"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit223>
       <Unit224>
         <Filename Value="..\..\..\..\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\System\IdStack.pas"/>
@@ -1946,7 +1946,6 @@
         <TopLine Value="960"/>
         <CursorPos Y="976"/>
         <UsageCount Value="6"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit224>
       <Unit225>
         <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\fcl-process\src\processbody.inc"/>
@@ -1997,7 +1996,6 @@
         <TopLine Value="1952"/>
         <CursorPos X="35" Y="1970"/>
         <UsageCount Value="9"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit231>
       <Unit232>
         <Filename Value="..\..\..\..\..\usr\local\share\fpcsrc\3.2.0\packages\fcl-web\src\base\fphttpclient.pp"/>
