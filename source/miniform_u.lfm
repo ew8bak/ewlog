@@ -599,6 +599,7 @@ object MiniForm: TMiniForm
     Width = 90
     BorderSpacing.Left = 5
     Caption = 'Save in UTC'
+    Enabled = False
     Font.Height = -12
     OnChange = CBSaveUTCChange
     ParentFont = False
