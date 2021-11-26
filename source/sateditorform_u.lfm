@@ -1,0 +1,174 @@
+object SATEditorForm: TSATEditorForm
+  Left = 248
+  Height = 378
+  Top = 133
+  Width = 645
+  Caption = 'SAT Editor'
+  ClientHeight = 378
+  ClientWidth = 645
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object LVSatList: TListView
+    Left = 0
+    Height = 378
+    Top = 0
+    Width = 344
+    Align = alLeft
+    AutoWidthLastColumn = True
+    Columns = <    
+      item
+        Caption = 'SAT Name'
+        Width = 80
+      end    
+      item
+        Caption = 'Description'
+        Width = 150
+      end    
+      item
+        AutoSize = True
+        Caption = 'Enabled'
+        Width = 112
+      end>
+    ReadOnly = True
+    RowSelect = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+    ViewStyle = vsReport
+    OnSelectItem = LVSatListSelectItem
+  end
+  object GBOptions: TGroupBox
+    AnchorSideLeft.Control = LVSatList
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 349
+    Height = 147
+    Top = 5
+    Width = 291
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
+    Caption = 'Options'
+    ClientHeight = 127
+    ClientWidth = 289
+    TabOrder = 1
+    object LbSATname: TLabel
+      AnchorSideTop.Control = EditSATname
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = EditSATname
+      Left = 52
+      Height = 17
+      Top = 12
+      Width = 63
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'SAT Name'
+      ParentColor = False
+    end
+    object LbDescription: TLabel
+      AnchorSideTop.Control = EditDescription
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = EditDescription
+      Left = 44
+      Height = 17
+      Top = 47
+      Width = 71
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Description'
+      ParentColor = False
+    end
+    object CBEnable: TCheckBox
+      AnchorSideLeft.Control = EditDescription
+      AnchorSideTop.Control = EditDescription
+      AnchorSideTop.Side = asrBottom
+      Left = 120
+      Height = 21
+      Top = 75
+      Width = 66
+      BorderSpacing.Top = 5
+      Caption = 'Enable'
+      OnClick = CBEnableClick
+      TabOrder = 0
+    end
+    object EditSATname: TEdit
+      AnchorSideTop.Control = GBOptions
+      AnchorSideRight.Control = GBOptions
+      AnchorSideRight.Side = asrBottom
+      Left = 120
+      Height = 30
+      Top = 5
+      Width = 164
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      TabOrder = 1
+    end
+    object EditDescription: TEdit
+      AnchorSideTop.Control = EditSATname
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = GBOptions
+      AnchorSideRight.Side = asrBottom
+      Left = 120
+      Height = 30
+      Top = 40
+      Width = 164
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      TabOrder = 2
+    end
+    object SBSatDone: TSpeedButton
+      AnchorSideRight.Control = GBOptions
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = GBOptions
+      AnchorSideBottom.Side = asrBottom
+      Left = 261
+      Height = 22
+      Top = 100
+      Width = 23
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 5
+      BorderSpacing.Bottom = 5
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000E8D
+        00000D8700000B8200000772000003610048025F00CC03610038077200000877
+        00000877000008770000087700000877000008770000FFFFFF00FFFFFF000E8D
+        00000D8700000B82000008750048077200CC16A60AE8087601C4087500290877
+        00000877000008770000087700000877000008770000FFFFFF00FFFFFF000E8D
+        00000D8700000B8300480B8200CC2AC01BF424CD13FF1DB60EEF0C8301BB0C85
+        001B0D8A00000F8F0000109400001095000010950000FFFFFF00FFFFFF000E8D
+        00000D8800480D8700CC43CA33F629C318FF39CC28FF28C217FF1EAA0FEA0D87
+        00AE0D8A00100F8F0000109400001095000010950000FFFFFF00FFFFFF000E8E
+        00480E8D00CC5FD94FF933BC22FF50D040F80E8D00CC2AB21AF32CB81BFF1EA2
+        0FE40E8D009E0F8F0008109400001095000010950000FFFFFF00FFFFFF000F92
+        00CC6DE55CFA59D048FF69E158FC0F9200CC0F92006D139504CB34B423F832B2
+        21FF1F9F0FDF0F92008C109400021095000010950000FFFFFF00FFFFFF001196
+        0048119700CC73EA62FD119700CC119600480F9300001196004C189D08D33DB6
+        2CFB37AF26FE1FA00EDA1197007B11980000129B0000FFFFFF00FFFFFF001197
+        0000129B0048129B00CC129B0048119700000F93000011970000129B006924AA
+        13D857CF46FE55CD44FD21A710D6129C006313A00000FFFFFF00FFFFFF001197
+        0000129B0000129C0000129B00001197000011990000129F0000129F000113A0
+        008533B820DE61D850FF5CD54BFA1EA80CD213A1004CFFFFFF00FFFFFF001197
+        0000129B0000129C0000129B00001197000011990000129F0000129F000013A2
+        000614A3009E43C631E56BE25AFF70E95FFB14A300CCFFFFFF00FFFFFF001197
+        0000129B0000129C0000129B00001197000011990000129F0000129F000013A2
+        000014A5001014A700B077EE66FF14A700CC14A70048FFFFFF00FFFFFF001197
+        0000129B0000129C0000129B00001197000013A2000014A5000014A5000014A6
+        000015A8000015A9001F15AA00CC15AA004814A70000FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+      }
+      OnClick = SBSatDoneClick
+    end
+  end
+end

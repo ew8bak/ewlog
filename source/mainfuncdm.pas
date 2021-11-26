@@ -27,6 +27,8 @@ type
   CallsignArray = array of string;
   StringArray = array of string;
   extProgramArray = array of string;
+  PropArray = array of string;
+  SATArray = array of string;
 
   { TMainFunc }
 
@@ -94,6 +96,10 @@ type
     function ConvertFreqToSelectView(Freq: string): string;
     procedure LoadRadioItems;
     function CompareVersion(Local, Server: string): boolean;
+    function LoadPropItems: PropArray;
+    function LoadSATItems: SATArray;
+    function GetPropDescription(i: integer): string;
+    function GetSatDescription(SATname: string): string;
     procedure StartRadio(RIGid: string);
     procedure StopRadio;
   end;
@@ -116,6 +122,96 @@ uses InitDB_dm, dmFunc_U, hrdlog,
   dmTCI_u;
 
 {$R *.lfm}
+
+function TMainFunc.GetPropDescription(i: integer): string;
+var
+  Query: TSQLQuery;
+begin
+  Result := '';
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.DataBase := InitDB.ServiceDBConnection;
+    Query.SQL.Text := 'SELECT Description FROM PropMode WHERE _id = ' + IntToStr(i);
+    Query.Open;
+    Result := Query.FieldByName('Description').AsString;
+    Query.Close;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
+function TMainFunc.GetSatDescription(SATname: string): string;
+var
+  Query: TSQLQuery;
+begin
+  Result := '';
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.DataBase := InitDB.ServiceDBConnection;
+    Query.SQL.Text := 'SELECT Description FROM Satellite WHERE Name = ' + QuotedStr(SATname);
+    Query.Open;
+    Result := Query.FieldByName('Description').AsString;
+    Query.Close;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
+function TMainFunc.LoadPropItems: PropArray;
+var
+  i: integer;
+  Query: TSQLQuery;
+  PropList: PropArray;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.DataBase := InitDB.ServiceDBConnection;
+    Query.PacketRecords := 50;
+    Query.SQL.Text := 'SELECT Type FROM PropMode';
+    Query.Open;
+    if Query.RecordCount = 0 then
+      Exit;
+    SetLength(PropList, Query.RecordCount);
+    Query.First;
+    for i := 0 to Query.RecordCount - 1 do
+    begin
+      PropList[i] := Query.FieldByName('Type').AsString;
+      Query.Next;
+    end;
+    Query.Close;
+    Result := PropList;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
+function TMainFunc.LoadSATItems: SATArray;
+var
+  i: integer;
+  Query: TSQLQuery;
+  SATList: SATArray;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    Query.DataBase := InitDB.ServiceDBConnection;
+    Query.PacketRecords := 100;
+    Query.SQL.Text := 'SELECT Name FROM Satellite WHERE enable = 1';
+    Query.Open;
+    if Query.RecordCount = 0 then
+      Exit;
+    SetLength(SATList, Query.RecordCount);
+    Query.First;
+    for i := 0 to Query.RecordCount - 1 do
+    begin
+      SATList[i] := Query.FieldByName('Name').AsString;
+      Query.Next;
+    end;
+    Query.Close;
+    Result := SATList;
+  finally
+    FreeAndNil(Query);
+  end;
+end;
 
 procedure TMainFunc.StopRadio;
 begin
@@ -344,7 +440,7 @@ end;
 procedure TMainFunc.SentCATCloudLog(CatData: TCatData);
 begin
   CatData.freq := FormatFreq(CatData.freq);
-  CatData.freq:=StringReplace(CatData.freq, '.', '', [rfReplaceAll]);
+  CatData.freq := StringReplace(CatData.freq, '.', '', [rfReplaceAll]);
   CatData.freq := CatData.freq + '0';
   CloudLogCATThread := TCloudLogCATThread.Create;
   if Assigned(CloudLogCATThread.FatalException) then
@@ -2108,7 +2204,7 @@ begin
       end;
 
       QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-        'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode,' +
+        'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX, QSOMode, QSOSubMode,' +
         'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, ' +
         'QSLManager, QSLSent, QSLSentAdv, QSLRec,' +
         'MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,' +
@@ -2119,6 +2215,7 @@ begin
         'MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC, ContestSession, ContestName) VALUES ('
         + dmFunc.Q(Trim(SQSO.CallSing)) + dmFunc.Q(QSODateTime) +
         dmFunc.Q(QSODates) + dmFunc.Q(SQSO.QSOTime) + dmFunc.Q(SQSO.QSOBand) +
+        dmFunc.Q(SQSO.FreqRX) + dmFunc.Q(SQSO.BandRX) +
         dmFunc.Q(SQSO.QSOMode) + dmFunc.Q(SQSO.QSOSubMode) +
         dmFunc.Q(SQSO.QSOReportSent) + dmFunc.Q(SQSO.QSOReportRecived) +
         dmFunc.Q(SQSO.OmName) + dmFunc.Q(SQSO.OmQTH) + dmFunc.Q(SQSO.State0) +

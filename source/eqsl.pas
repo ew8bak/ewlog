@@ -108,6 +108,9 @@ begin
     AddData('MODE', SendQSOr.QSOMode);
     AddData('SUBMODE', SendQSOr.QSOSubMode);
     AddData('RST_SENT', SendQSOr.QSOReportSent);
+    AddData('SAT_NAME', SendQSOr.SAT_NAME);
+    AddData('SAT_MODE', SendQSOr.SAT_MODE);
+    AddData('PROP_MODE', SendQSOr.PROP_MODE);
     AddData('QSLMSG', SendQSOr.QSLInfo);
     AddData('LOG_PGM', 'EWLog');
     logdata := logdata + '<EOR>';

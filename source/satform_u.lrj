@@ -1,0 +1,16 @@
+{"version":1,"strings":[
+{"hash":180586789,"name":"tsatform.caption","sourcebytes":[83,97,116,101,108,108,105,116,101],"value":"Satellite"},
+{"hash":210093509,"name":"tsatform.gbvhf.caption","sourcebytes":[86,72,70,32,84,121,112,101],"value":"VHF Type"},
+{"hash":126827070,"name":"tsatform.lbpropagation.caption","sourcebytes":[80,114,111,112,97,103,97,116,105,111,110],"value":"Propagation"},
+{"hash":152176937,"name":"tsatform.lbtxfrequency.caption","sourcebytes":[84,88,32,70,114,101,113,117,101,110,99,121],"value":"TX Frequency"},
+{"hash":156067838,"name":"tsatform.lbdescription.caption","sourcebytes":[68,101,115,99,114,105,112,116,105,111,110],"value":"Description"},
+{"hash":189276318,"name":"tsatform.lbpropdescription.caption","sourcebytes":[80,114,111,112,32,68,101,115,99,114,105,112,116,105,111,110],"value":"Prop Description"},
+{"hash":180586789,"name":"tsatform.gbsat.caption","sourcebytes":[83,97,116,101,108,108,105,116,101],"value":"Satellite"},
+{"hash":145503541,"name":"tsatform.lbsatelite.caption","sourcebytes":[83,97,116,101,108,105,116,101],"value":"Satelite"},
+{"hash":107299029,"name":"tsatform.lbsatmode.caption","sourcebytes":[83,65,84,32,77,111,100,101],"value":"SAT Mode"},
+{"hash":12558,"name":"tsatform.speedbutton10.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":12558,"name":"tsatform.speedbutton11.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":156067838,"name":"tsatform.lbsatdescription.caption","sourcebytes":[68,101,115,99,114,105,112,116,105,111,110],"value":"Description"},
+{"hash":256717470,"name":"tsatform.lbsatdescription1.caption","sourcebytes":[83,65,84,32,68,101,115,99,114,105,112,116,105,111,110],"value":"SAT Description"},
+{"hash":108941863,"name":"tsatform.label1.caption","sourcebytes":[81,83,76,32,77,83,71],"value":"QSL MSG"}
+]}

@@ -114,6 +114,9 @@ begin
     AddData('QTH', SendQSOr.OmQTH);
     AddData('MY_GRIDSQUARE', SendQSOr.My_Grid);
     AddData('CONT', SendQSOr.Continent);
+    AddData('SAT_NAME', SendQSOr.SAT_NAME);
+    AddData('SAT_MODE', SendQSOr.SAT_MODE);
+    AddData('PROP_MODE', SendQSOr.PROP_MODE);
     AddData('QSLMSG', SendQSOr.QSLInfo);
     AddData('GRIDSQUARE', SendQSOr.Grid);
     Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);

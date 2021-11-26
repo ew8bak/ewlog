@@ -92,6 +92,9 @@ begin
     AddData('NAME', SendQSOr.OmName);
     AddData('STATE', SendQSOr.State0);
     AddData('QSLMSG', SendQSOr.QSLInfo);
+    AddData('SAT_NAME', SendQSOr.SAT_NAME);
+    AddData('SAT_MODE', SendQSOr.SAT_MODE);
+    AddData('PROP_MODE', SendQSOr.PROP_MODE);
     AddData('GRIDSQUARE', SendQSOr.Grid);
     Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);
     AddData('FREQ', SendQSOr.QSOBand);

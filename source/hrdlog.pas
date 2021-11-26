@@ -112,6 +112,9 @@ begin
     AddData('SUBMODE', SendQSOr.QSOSubMode);
     AddData('RST_SENT', SendQSOr.QSOReportSent);
     AddData('RST_RCVD', SendQSOr.QSOReportRecived);
+    AddData('SAT_NAME', SendQSOr.SAT_NAME);
+    AddData('SAT_MODE', SendQSOr.SAT_MODE);
+    AddData('PROP_MODE', SendQSOr.PROP_MODE);
     AddData('QSLMSG', SendQSOr.QSLInfo);
     AddData('GRIDSQUARE', SendQSOr.Grid);
     Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);

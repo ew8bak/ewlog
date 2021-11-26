@@ -92,6 +92,8 @@ begin
     ' `CallSign` varchar(20) DEFAULT NULL, `QSODateTime` datetime DEFAULT NULL,' +
     ' `QSODate` datetime DEFAULT NULL, `QSOTime` varchar(5) DEFAULT NULL,' +
     ' `QSOBand` varchar(20) DEFAULT NULL,' +
+    ' `FREQ_RX` varchar(20) DEFAULT NULL,' +
+    ' `BAND_RX` varchar(20) DEFAULT NULL,' +
     ' `QSOMode` varchar(15) DEFAULT NULL,' +
     ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
     ' `QSOReportSent` varchar(15) DEFAULT NULL,' +

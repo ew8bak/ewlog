@@ -111,6 +111,9 @@ begin
     AddData('RST_SENT', SendQSOr.QSOReportSent);
     AddData('RST_RCVD', SendQSOr.QSOReportRecived);
     AddData('QSLMSG', SendQSOr.QSLInfo);
+    AddData('SAT_NAME', SendQSOr.SAT_NAME);
+    AddData('SAT_MODE', SendQSOr.SAT_MODE);
+    AddData('PROP_MODE', SendQSOr.PROP_MODE);
     AddData('GRIDSQUARE', SendQSOr.Grid);
     Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);
     //Удаляем последнюю точку

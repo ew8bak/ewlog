@@ -115,7 +115,6 @@ type
     SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
-    SatPropQuery: TSQLQuery;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -433,21 +432,11 @@ begin
     'N': RBDSent.Checked := True;
   end;
 
-  if DBRecord.InitDB = 'YES' then
-    SatPropQuery.DataBase := InitDB.ServiceDBConnection;
-
   if CBMode.Text <> '' then
     CBModeChange(Self);
+
   CBPropagation.Items.Clear;
-  SatPropQuery.SQL.Text := 'SELECT * FROM PropMode';
-  SatPropQuery.Open;
-  SatPropQuery.First;
-  for i := 0 to SatPropQuery.RecordCount - 1 do
-  begin
-    CBPropagation.Items.Add(SatPropQuery.FieldByName('Type').AsString);
-    SatPropQuery.Next;
-  end;
-  SatPropQuery.Close;
+  CBPropagation.Items.AddStrings(MainFunc.LoadPropItems);
 
   GBCallInfo.Caption := SearchCountry(EditCallSign.Text);
 end;

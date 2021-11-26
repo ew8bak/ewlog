@@ -507,6 +507,11 @@ begin
           else
             FREQ := MainFunc.ConvertFreqToSave(FREQ);
 
+          if FREQ_RX = '' then
+            FREQ_RX := 'NULL'
+          else
+            FREQ_RX := MainFunc.ConvertFreqToSave(FREQ_RX);
+
           CheckMode(MODE, FREQ, SUBMODE, MODE);
 
           BAND := StringReplace(FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ)), ',', '.', [rfReplaceAll]);
@@ -679,7 +684,8 @@ begin
           if not PADIImport.Mobile then
           begin
             Query := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-              'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,'
+              'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX,'
+              + 'QSOMode, QSOSubMode, QSOReportSent,'
               + 'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
               + 'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,'
               + 'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
@@ -690,7 +696,8 @@ begin
               ' VALUES (' +
               dmFunc.Q(CALL) + dmFunc.Q(paramQSODateTime) +
               dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
-              dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
+              dmFunc.Q(FREQ) + dmFunc.Q(FREQ_RX) + dmFunc.Q(BAND_RX) +
+              dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
               dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
               dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
               dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
@@ -717,7 +724,8 @@ begin
           else
           begin
             TempQuery := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-              'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, QSOMode, QSOSubMode, QSOReportSent,'
+              'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX,'
+              + 'QSOMode, QSOSubMode, QSOReportSent,'
               + 'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
               + 'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,'
               + 'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
@@ -727,7 +735,8 @@ begin
               'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
               dmFunc.Q(CALL) + dmFunc.Q(paramQSODateTime) +
               dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
-              dmFunc.Q(FREQ) + dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
+              dmFunc.Q(FREQ) + dmFunc.Q(FREQ_RX) + dmFunc.Q(BAND_RX) +
+              dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
               dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
               dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
               dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +

@@ -25,7 +25,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
-      <BuildNr Value="847"/>
+      <BuildNr Value="849"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -157,7 +157,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="95">
+    <Units Count="97">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -765,6 +765,21 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmHamLib_u"/>
       </Unit94>
+      <Unit95>
+        <Filename Value="satform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SATForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="satForm_u"/>
+      </Unit95>
+      <Unit96>
+        <Filename Value="sateditorform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SATEditorForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SatEditorForm_u"/>
+      </Unit96>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

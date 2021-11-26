@@ -23,6 +23,8 @@ type
     QSODate: TDateTime;
     QSOTime: string[5];
     QSOBand: string[20];
+    FreqRX: string[20];
+    BandRX: string[20];
     QSOMode: string[15];
     QSOSubMode: string[15];
     QSOReportSent: string[8];

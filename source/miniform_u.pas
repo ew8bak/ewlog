@@ -25,6 +25,7 @@ type
   { TMiniForm }
 
   TMiniForm = class(TForm)
+    MISatellite: TMenuItem;
     MIRadio: TMenuItem;
     SentSpot: TAction;
     MacroKeyF2: TAction;
@@ -312,6 +313,7 @@ type
     procedure MiPhotoSeparateTopClick(Sender: TObject);
     procedure MiPhotoTopClick(Sender: TObject);
     procedure MIRadioClick(Sender: TObject);
+    procedure MISatelliteClick(Sender: TObject);
     procedure MITelnetFormClick(Sender: TObject);
     procedure SaveQSOinBaseExecute(Sender: TObject);
     procedure SBInfoClick(Sender: TObject);
@@ -377,7 +379,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   serverDM_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
-  sendtelnetspot_form_U, WSJT_UDP_Form_U;
+  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u;
 
 {$R *.lfm}
 
@@ -496,8 +498,8 @@ begin
         StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], DataDigi.Freq / 1000000),
         ',', '.', [rfReplaceAll]))
     else
-      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], DataDigi.Freq / 1000000),
-        ',', '.', [rfReplaceAll]);
+      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq],
+        DataDigi.Freq / 1000000), ',', '.', [rfReplaceAll]);
   end;
 
   if tempMode <> CBMode.Text then
@@ -521,23 +523,24 @@ end;
 
 procedure TMiniForm.ShowInfoFromRIG;
 begin
-  if not WSJT_Run then begin
-  if FMS.Mode <> '' then
+  if not WSJT_Run then
   begin
-    CBMode.Text := FMS.Mode;
-    CBSubMode.Text := FMS.SubMode;
-  end;
+    if FMS.Mode <> '' then
+    begin
+      CBMode.Text := FMS.Mode;
+      CBSubMode.Text := FMS.SubMode;
+    end;
 
-  if FMS.Freq <> 0 then
-  begin
-    if IniSet.showBand then
-      CBBand.Text := dmFunc.GetBandFromFreq(
-        StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq / 1000000),
-        ',', '.', [rfReplaceAll]))
-    else
-      CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq / 1000000),
-        ',', '.', [rfReplaceAll]);
-  end;
+    if FMS.Freq <> 0 then
+    begin
+      if IniSet.showBand then
+        CBBand.Text := dmFunc.GetBandFromFreq(
+          StringReplace(FormatFloat(view_freq[IniSet.ViewFreq], FMS.Freq / 1000000),
+          ',', '.', [rfReplaceAll]))
+      else
+        CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq],
+          FMS.Freq / 1000000), ',', '.', [rfReplaceAll]);
+    end;
   end;
 end;
 
@@ -1457,6 +1460,11 @@ begin
   end;
 end;
 
+procedure TMiniForm.MISatelliteClick(Sender: TObject);
+begin
+  SATForm.Show;
+end;
+
 procedure TMiniForm.RadioItemClick(Sender: TObject);
 var
   MenuItem: TMenuItem;
@@ -1642,6 +1650,30 @@ begin
       SQSO.SYNC := 0;
       SQSO.ContestName := 'NULL';
       SQSO.ContestSession := 'NULL';
+      SQSO.FreqRX := 'NULL';
+      SQSO.BandRX := 'NULL';
+
+      if SATFormActive then
+      begin
+        SQSO.SAT_NAME := SATForm.CBSat.Text;
+        SQSO.SAT_MODE := SATForm.CBSatMode.Text;
+        SQSO.PROP_MODE := SATForm.CBProp.Text;
+        if Length(SATForm.CbTXFrequency.Text) > 1 then
+        begin
+          NameBand := MainFunc.ConvertFreqToSave(SATForm.CbTXFrequency.Text);
+          SQSO.QSOBand := NameBand;
+          if FMS.Freq > 0 then
+            NameBand := MainFunc.ConvertFreqToSave(FloatToStr(FMS.Freq / 1000000))
+          else
+            NameBand := MainFunc.ConvertFreqToSave(CBBand.Text);
+          SQSO.FreqRX := NameBand;
+          DigiBand := dmFunc.GetDigiBandFromFreq(SQSO.QSOBand);
+          SQSO.DigiBand := StringReplace(FloatToStr(DigiBand), ',', '.', [rfReplaceAll]);
+          SQSO.BandRX := dmFunc.GetBandFromFreq(SQSO.FreqRX);
+        end;
+        if Length(SATForm.CBqslMsg.Text) > 2 then
+          SQSO.QSLInfo := SATForm.CBqslMsg.Text;
+      end;
 
       if LBRecord.OpLoc <> '' then
         SQSO.My_Grid := LBRecord.OpLoc;

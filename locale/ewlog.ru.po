@@ -4854,6 +4854,11 @@ msgstr "Всегда наверху"
 msgid "Radio"
 msgstr ""
 
+#: tminiform.misatellite.caption
+msgctxt "tminiform.misatellite.caption"
+msgid "Satellite"
+msgstr ""
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"
@@ -5130,6 +5135,58 @@ msgstr "Автор"
 msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
 msgstr "Заметки"
+
+#: tsatform.caption
+msgctxt "tsatform.caption"
+msgid "Satellite"
+msgstr ""
+
+#: tsatform.gbsat.caption
+msgctxt "tsatform.gbsat.caption"
+msgid "Satellite"
+msgstr ""
+
+#: tsatform.gbvhf.caption
+msgid "VHF Type"
+msgstr ""
+
+#: tsatform.lbdescription.caption
+#, fuzzy
+msgctxt "tsatform.lbdescription.caption"
+msgid "Description"
+msgstr "Описание"
+
+#: tsatform.lbpropagation.caption
+msgctxt "tsatform.lbpropagation.caption"
+msgid "Propagation"
+msgstr ""
+
+#: tsatform.lbpropdescription.caption
+msgid "Prop Description"
+msgstr ""
+
+#: tsatform.lbsatelite.caption
+msgctxt "tsatform.lbsatelite.caption"
+msgid "Satelite"
+msgstr ""
+
+#: tsatform.lbsatmode.caption
+msgid "SAT Mode"
+msgstr ""
+
+#: tsatform.lbtxfrequency.caption
+msgid "TX Frequency"
+msgstr ""
+
+#: tsatform.speedbutton10.caption
+msgctxt "tsatform.speedbutton10.caption"
+msgid "..."
+msgstr ""
+
+#: tsatform.speedbutton11.caption
+msgctxt "tsatform.speedbutton11.caption"
+msgid "..."
+msgstr ""
 
 #: tsendtelnetspot.btsend.caption
 msgctxt "tsendtelnetspot.btsend.caption"

@@ -1,0 +1,287 @@
+object SATForm: TSATForm
+  Left = 662
+  Height = 289
+  Top = 146
+  Width = 300
+  Caption = 'Satellite'
+  ClientHeight = 289
+  ClientWidth = 300
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object GbVHF: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 5
+    Height = 118
+    Top = 2
+    Width = 290
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 2
+    BorderSpacing.Right = 5
+    Caption = 'VHF Type'
+    ClientHeight = 98
+    ClientWidth = 288
+    TabOrder = 0
+    object LBPropagation: TLabel
+      AnchorSideTop.Control = CBProp
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = CBProp
+      Left = 28
+      Height = 17
+      Top = 12
+      Width = 77
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Propagation'
+      ParentColor = False
+    end
+    object CBProp: TComboBox
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = GbVHF
+      AnchorSideRight.Control = GbVHF
+      AnchorSideRight.Side = asrBottom
+      Left = 110
+      Height = 30
+      Top = 5
+      Width = 173
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      ItemHeight = 0
+      OnChange = CBPropChange
+      TabOrder = 0
+    end
+    object LbTXFrequency: TLabel
+      AnchorSideTop.Control = CbTXFrequency
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = CbTXFrequency
+      Left = 22
+      Height = 17
+      Top = 69
+      Width = 83
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'TX Frequency'
+      ParentColor = False
+    end
+    object CbTXFrequency: TComboBox
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = LbDescription
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = GbVHF
+      AnchorSideRight.Side = asrBottom
+      Left = 110
+      Height = 30
+      Top = 62
+      Width = 173
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      ItemHeight = 0
+      TabOrder = 1
+    end
+    object LbDescription: TLabel
+      AnchorSideTop.Control = CBProp
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = CBProp
+      Left = 34
+      Height = 17
+      Top = 40
+      Width = 71
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      Caption = 'Description'
+      ParentColor = False
+    end
+    object LbPropDescription: TLabel
+      AnchorSideLeft.Control = CBProp
+      AnchorSideTop.Control = LbDescription
+      AnchorSideTop.Side = asrCenter
+      Left = 110
+      Height = 17
+      Top = 40
+      Width = 103
+      Caption = 'Prop Description'
+      ParentColor = False
+    end
+  end
+  object GbSat: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = GbVHF
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 5
+    Height = 158
+    Top = 122
+    Width = 290
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 2
+    BorderSpacing.Right = 5
+    Caption = 'Satellite'
+    ClientHeight = 138
+    ClientWidth = 288
+    TabOrder = 1
+    object LBSatelite: TLabel
+      AnchorSideTop.Control = CBSat
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = CBSat
+      Left = 31
+      Height = 17
+      Top = 12
+      Width = 47
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'Satelite'
+      ParentColor = False
+    end
+    object LBSATMode: TLabel
+      AnchorSideTop.Control = CBSatMode
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = CBSatMode
+      Left = 17
+      Height = 17
+      Top = 69
+      Width = 61
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'SAT Mode'
+      ParentColor = False
+    end
+    object CBSat: TComboBox
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = GbSat
+      AnchorSideRight.Control = SpeedButton11
+      Left = 83
+      Height = 30
+      Top = 5
+      Width = 175
+      Anchors = [akTop, akRight]
+      BorderSpacing.Left = 5
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      ItemHeight = 0
+      OnChange = CBSatChange
+      TabOrder = 0
+    end
+    object CBSatMode: TComboBox
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = LbSatDescription
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = SpeedButton10
+      Left = 83
+      Height = 30
+      Top = 62
+      Width = 175
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      ItemHeight = 0
+      Items.Strings = (
+        'A'
+        'B'
+        'J'
+        'K'
+        'L'
+        'S'
+        'T'
+      )
+      TabOrder = 1
+    end
+    object SpeedButton10: TSpeedButton
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = CBSatMode
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = GbSat
+      AnchorSideRight.Side = asrBottom
+      Left = 263
+      Height = 20
+      Top = 67
+      Width = 20
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = '...'
+      Font.Height = -12
+      ParentFont = False
+    end
+    object SpeedButton11: TSpeedButton
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = CBSat
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = GbSat
+      AnchorSideRight.Side = asrBottom
+      Left = 263
+      Height = 20
+      Top = 10
+      Width = 20
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = '...'
+      Font.Height = -12
+      OnClick = SpeedButton11Click
+      ParentFont = False
+    end
+    object LbSatDescription: TLabel
+      AnchorSideTop.Control = CBSat
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = CBSat
+      Left = 7
+      Height = 17
+      Top = 40
+      Width = 71
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      Caption = 'Description'
+      ParentColor = False
+    end
+    object LbSatDescription1: TLabel
+      AnchorSideLeft.Control = CBSat
+      AnchorSideTop.Control = LbSatDescription
+      AnchorSideTop.Side = asrCenter
+      Left = 83
+      Height = 17
+      Top = 40
+      Width = 96
+      Caption = 'SAT Description'
+      ParentColor = False
+    end
+    object Label1: TLabel
+      AnchorSideTop.Control = CBqslMsg
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = CBqslMsg
+      Left = 22
+      Height = 17
+      Top = 104
+      Width = 56
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 5
+      Caption = 'QSL MSG'
+      ParentColor = False
+    end
+    object CBqslMsg: TComboBox
+      AnchorSideLeft.Control = CBSatMode
+      AnchorSideTop.Control = CBSatMode
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = GbSat
+      AnchorSideRight.Side = asrBottom
+      Left = 83
+      Height = 30
+      Top = 97
+      Width = 200
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      ItemHeight = 0
+      TabOrder = 2
+    end
+  end
+end

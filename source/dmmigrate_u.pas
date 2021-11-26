@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, SQLDB, Dialogs, InitDB_dm, ResourceStr;
 
 const
-  Current_Table = '1.4.8';
+  Current_Table = '1.5.0';
 
 type
   TdmMigrate = class(TDataModule)
@@ -17,6 +17,7 @@ type
     function Migrate146(Callsign: string): boolean;
     function Migrate147(Callsign: string): boolean;
     function Migrate148(Callsign: string): boolean;
+    function Migrate150(Callsign: string): boolean;
     function CheckTableVersion(Callsign, MigrationVer: string): boolean;
 
   public
@@ -77,6 +78,7 @@ begin
   Migrate146(Callsign);
   Migrate147(Callsign);
   Migrate148(Callsign);
+  Migrate150(Callsign);
 end;
 
 function TdmMigrate.MigrationEnd(ToTableVersion, Callsign: string): boolean;
@@ -271,6 +273,48 @@ begin
       begin
         ShowMessage('Migrate148: Error: ' + E.ClassName + #13#10 + E.Message);
         WriteLn(ExceptFile, 'Migrate148: Error: ' + E.ClassName + ':' + E.Message);
+      end;
+    end;
+
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
+function TdmMigrate.Migrate150(Callsign: string): boolean;
+const
+  Version = '1.5.0';
+var
+  Query: TSQLQuery;
+begin
+  Result := False;
+  if not CheckTableVersion(Callsign, Version) then
+    Exit;
+  try
+    try
+      ShowMessage(rDBNeedUpdate + Version);
+      Query := TSQLQuery.Create(nil);
+      if DBRecord.CurrentDB = 'SQLite' then
+        Query.DataBase := InitDB.SQLiteConnection
+      else
+        Query.DataBase := InitDB.MySQLConnection;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('FREQ_RX varchar(20) DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('BAND_RX varchar(20) DEFAULT NULL;');
+      Query.ExecSQL;
+      InitDB.DefTransaction.Commit;
+      if MigrationEnd(Version, Callsign) then
+        Result := True;
+
+    except
+      on E: Exception do
+      begin
+        ShowMessage('Migrate150: Error: ' + E.ClassName + #13#10 + E.Message);
+        WriteLn(ExceptFile, 'Migrate150: Error: ' + E.ClassName + ':' + E.Message);
       end;
     end;
 

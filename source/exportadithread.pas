@@ -215,6 +215,16 @@ begin
           Write(f, tmp);
         end;
 
+        if Query.Fields.FieldByName('FREQ_RX').AsString <> '' then
+        begin
+          tmpFreq := Query.Fields.FieldByName('FREQ_RX').AsString;
+          Delete(tmpFreq, Length(tmpFreq) - 2, 1);
+          TryStrToFloatSafe(tmpFreq, SafeFreq);
+          tmp := '<FREQ_RX' + dmFunc.StringToADIF(StringReplace(FormatFloat('0.#####',
+            SafeFreq),',','.',[rfReplaceAll]), PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
         if Query.Fields.FieldByName('QSOReportSent').AsString <> '' then
         begin
           tmp := '<RST_SENT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
@@ -322,6 +332,34 @@ begin
         begin
           tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
             Query.Fields.FieldByName('QSOBand').AsString), PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('BAND_RX').AsString <> '' then
+        begin
+          tmp := '<BAND_RX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+          'BAND_RX').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('PROP_MODE').AsString <> '' then
+        begin
+          tmp := '<PROP_MODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'PROP_MODE').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('SAT_MODE').AsString <> '' then
+        begin
+          tmp := '<SAT_MODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'SAT_MODE').AsString, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('SAT_NAME').AsString <> '' then
+        begin
+          tmp := '<SAT_NAME' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'SAT_NAME').AsString, PADIExport.Win1251);
           Write(f, tmp);
         end;
 

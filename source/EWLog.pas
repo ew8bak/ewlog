@@ -32,7 +32,8 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
   dmCat, contestForm_u, dmContest_u, FMS_record, dmmigrate_u, ExportSOTAThread,
   CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u, CWKeysDM_u, CWTypeForm_u,
-  dmTCI_u, StreamAdapter_u, downloadQSLthread, DownloadFilesThread, dmHamLib_u;
+  dmTCI_u, StreamAdapter_u, downloadQSLthread, DownloadFilesThread, dmHamLib_u,
+  satForm_u, SatEditorForm_u;
 
 {$R *.res}
 
@@ -91,5 +92,7 @@ begin
   Application.CreateForm(TCWKeysForm, CWKeysForm);
   Application.CreateForm(TMacroEditorForm, MacroEditorForm);
   Application.CreateForm(TCWTypeForm, CWTypeForm);
+  Application.CreateForm(TSATForm, SATForm);
+  Application.CreateForm(TSATEditorForm, SATEditorForm);
   Application.Run;
 end.

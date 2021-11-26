@@ -2152,6 +2152,10 @@ object MiniForm: TMiniForm
       object N8: TMenuItem
         Caption = '-'
       end
+      object MISatellite: TMenuItem
+        Caption = 'Satellite'
+        OnClick = MISatelliteClick
+      end
       object MenuItem85: TMenuItem
         AutoCheck = True
         Caption = 'Transceiver Control'

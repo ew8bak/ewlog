@@ -4758,6 +4758,11 @@ msgstr ""
 msgid "Radio"
 msgstr ""
 
+#: tminiform.misatellite.caption
+msgctxt "tminiform.misatellite.caption"
+msgid "Satellite"
+msgstr ""
+
 #: tminiform.misettings.caption
 msgctxt "tminiform.misettings.caption"
 msgid "Settings"
@@ -5023,6 +5028,108 @@ msgstr ""
 #: tqslmanager_form.label6.caption
 msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
+msgstr ""
+
+#: tsateditorform.caption
+msgid "SAT Editor"
+msgstr ""
+
+#: tsateditorform.cbenable.caption
+msgid "Enable"
+msgstr ""
+
+#: tsateditorform.gboptions.caption
+msgctxt "tsateditorform.gboptions.caption"
+msgid "Options"
+msgstr ""
+
+#: tsateditorform.lbdescription.caption
+msgctxt "tsateditorform.lbdescription.caption"
+msgid "Description"
+msgstr ""
+
+#: tsateditorform.lbsatname.caption
+msgctxt "tsateditorform.lbsatname.caption"
+msgid "SAT Name"
+msgstr ""
+
+#: tsateditorform.lvsatlist.columns[0].caption
+msgctxt "tsateditorform.lvsatlist.columns[0].caption"
+msgid "SAT Name"
+msgstr ""
+
+#: tsateditorform.lvsatlist.columns[1].caption
+msgctxt "tsateditorform.lvsatlist.columns[1].caption"
+msgid "Description"
+msgstr ""
+
+#: tsateditorform.lvsatlist.columns[2].caption
+msgctxt "tsateditorform.lvsatlist.columns[2].caption"
+msgid "Enabled"
+msgstr ""
+
+#: tsatform.caption
+msgctxt "tsatform.caption"
+msgid "Satellite"
+msgstr ""
+
+#: tsatform.gbsat.caption
+msgctxt "tsatform.gbsat.caption"
+msgid "Satellite"
+msgstr ""
+
+#: tsatform.gbvhf.caption
+msgid "VHF Type"
+msgstr ""
+
+#: tsatform.label1.caption
+msgid "QSL MSG"
+msgstr ""
+
+#: tsatform.lbdescription.caption
+msgctxt "tsatform.lbdescription.caption"
+msgid "Description"
+msgstr ""
+
+#: tsatform.lbpropagation.caption
+msgctxt "tsatform.lbpropagation.caption"
+msgid "Propagation"
+msgstr ""
+
+#: tsatform.lbpropdescription.caption
+msgid "Prop Description"
+msgstr ""
+
+#: tsatform.lbsatdescription.caption
+msgctxt "tsatform.lbsatdescription.caption"
+msgid "Description"
+msgstr ""
+
+#: tsatform.lbsatdescription1.caption
+msgid "SAT Description"
+msgstr ""
+
+#: tsatform.lbsatelite.caption
+msgctxt "tsatform.lbsatelite.caption"
+msgid "Satelite"
+msgstr ""
+
+#: tsatform.lbsatmode.caption
+msgid "SAT Mode"
+msgstr ""
+
+#: tsatform.lbtxfrequency.caption
+msgid "TX Frequency"
+msgstr ""
+
+#: tsatform.speedbutton10.caption
+msgctxt "tsatform.speedbutton10.caption"
+msgid "..."
+msgstr ""
+
+#: tsatform.speedbutton11.caption
+msgctxt "tsatform.speedbutton11.caption"
+msgid "..."
 msgstr ""
 
 #: tsendtelnetspot.btsend.caption
