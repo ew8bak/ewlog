@@ -113,6 +113,10 @@ begin
   CbTXFrequency.Text := IniSet.TXFreq;
   CBSat.Text := IniSet.SATName;
   CBSatMode.Text := IniSet.SATMode;
+  if Length(CBSat.Text) > 1 then
+    CBSatChange(self);
+  if Length(CBProp.Text) > 1 then
+    CBPropChange(self);
 end;
 
 procedure TSATForm.SpeedButton11Click(Sender: TObject);
@@ -137,7 +141,7 @@ end;
 
 procedure TSATForm.CBPropChange(Sender: TObject);
 begin
-  LbPropDescription.Caption := MainFunc.GetPropDescription(CBProp.ItemIndex + 1);
+  LbPropDescription.Caption := MainFunc.GetPropDescription(CBProp.Items.IndexOf(CBProp.Text) + 1);
   LbPropDescription.Visible := True;
   IniSet.VHFProp := CBProp.Text;
 end;
