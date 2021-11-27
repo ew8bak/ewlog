@@ -678,6 +678,8 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 22
     end
     object CBSATMode: TComboBox
+      AnchorSideLeft.Control = CBSat
+      AnchorSideTop.Control = CBSat
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Side = asrBottom
       Left = 327
