@@ -1,7 +1,7 @@
 object SATEditorForm: TSATEditorForm
   Left = 248
   Height = 378
-  Top = 133
+  Top = 209
   Width = 645
   Caption = 'SAT Editor'
   ClientHeight = 378
@@ -9,11 +9,14 @@ object SATEditorForm: TSATEditorForm
   OnShow = FormShow
   LCLVersion = '2.0.12.0'
   object LVSatList: TListView
+    AnchorSideLeft.Control = Owner
+    AnchorSideRight.Control = GBOptions
     Left = 0
     Height = 378
     Top = 0
     Width = 344
     Align = alLeft
+    Anchors = [akTop, akLeft, akRight, akBottom]
     AutoWidthLastColumn = True
     Columns = <    
       item
@@ -42,25 +45,27 @@ object SATEditorForm: TSATEditorForm
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrCenter
     Left = 349
-    Height = 147
+    Height = 367
     Top = 5
     Width = 291
-    Anchors = [akTop, akLeft, akRight]
+    Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
     Caption = 'Options'
-    ClientHeight = 127
+    ClientHeight = 347
     ClientWidth = 289
     TabOrder = 1
     object LbSATname: TLabel
       AnchorSideTop.Control = EditSATname
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditSATname
-      Left = 52
+      Left = 31
       Height = 17
-      Top = 12
+      Top = 17
       Width = 63
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -71,9 +76,9 @@ object SATEditorForm: TSATEditorForm
       AnchorSideTop.Control = EditDescription
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditDescription
-      Left = 44
+      Left = 23
       Height = 17
-      Top = 47
+      Top = 57
       Width = 71
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -84,26 +89,28 @@ object SATEditorForm: TSATEditorForm
       AnchorSideLeft.Control = EditDescription
       AnchorSideTop.Control = EditDescription
       AnchorSideTop.Side = asrBottom
-      Left = 120
+      Left = 99
       Height = 21
-      Top = 75
+      Top = 90
       Width = 66
-      BorderSpacing.Top = 5
+      BorderSpacing.Top = 10
       Caption = 'Enable'
       OnClick = CBEnableClick
       TabOrder = 0
     end
     object EditSATname: TEdit
+      AnchorSideLeft.Control = GBOptions
+      AnchorSideLeft.Side = asrCenter
       AnchorSideTop.Control = GBOptions
       AnchorSideRight.Control = GBOptions
       AnchorSideRight.Side = asrBottom
-      Left = 120
+      Left = 99
       Height = 30
-      Top = 5
-      Width = 164
+      Top = 10
+      Width = 180
       Anchors = [akTop, akRight]
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 5
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 10
       TabOrder = 1
     end
     object EditDescription: TEdit
@@ -111,13 +118,13 @@ object SATEditorForm: TSATEditorForm
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = GBOptions
       AnchorSideRight.Side = asrBottom
-      Left = 120
+      Left = 99
       Height = 30
-      Top = 40
-      Width = 164
+      Top = 50
+      Width = 180
       Anchors = [akTop, akRight]
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 5
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 10
       TabOrder = 2
     end
     object SBSatDone: TSpeedButton
@@ -127,7 +134,7 @@ object SATEditorForm: TSATEditorForm
       AnchorSideBottom.Side = asrBottom
       Left = 261
       Height = 22
-      Top = 100
+      Top = 320
       Width = 23
       Anchors = [akRight, akBottom]
       BorderSpacing.Right = 5

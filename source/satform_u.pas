@@ -34,6 +34,7 @@ type
     procedure CBPropChange(Sender: TObject);
     procedure CBSatChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -96,6 +97,7 @@ end;
 
 procedure TSATForm.FormShow(Sender: TObject);
 begin
+  MainFunc.LoadWindowPosition(SATForm);
   SATFormActive := True;
   CBProp.Items.Clear;
   CBProp.Items.AddStrings(MainFunc.LoadPropItems);
@@ -115,6 +117,11 @@ procedure TSATForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   SaveQslMsg;
   SATFormActive := False;
+end;
+
+procedure TSATForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+begin
+  MainFunc.SaveWindowPosition(SATForm);
 end;
 
 procedure TSATForm.CBPropChange(Sender: TObject);

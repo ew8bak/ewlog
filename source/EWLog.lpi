@@ -777,6 +777,7 @@
         <Filename Value="sateditorform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SATEditorForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SatEditorForm_u"/>
       </Unit96>
