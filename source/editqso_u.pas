@@ -38,6 +38,7 @@ type
     CBMode: TComboBox;
     CBPropagation: TComboBox;
     CBSATMode: TComboBox;
+    CBSat: TComboBox;
     ComboBox6: TComboBox;
     ComboBox7: TComboBox;
     CBSubMode: TComboBox;
@@ -47,7 +48,6 @@ type
     DateEdit4: TDateEdit;
     DTTime: TDateTimePicker;
     DBGrid1: TDBGrid;
-    DBLookupComboBox2: TDBLookupComboBox;
     EditCallSign: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
@@ -135,6 +135,7 @@ type
     procedure SpeedButton12Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton8Click(Sender: TObject);
     procedure SpeedButton9Click(Sender: TObject);
   private
     function SearchCountry(CallSign: string): string;
@@ -150,7 +151,7 @@ implementation
 
 uses miniform_u, DXCCEditForm_U, QSLManagerForm_U,
   dmFunc_U, IOTA_Form_U, STATE_Form_U,
-  InitDB_dm, MainFuncDM, GridsForm_u;
+  InitDB_dm, MainFuncDM, GridsForm_u, SatEditorForm_u;
 
 {$R *.lfm}
 
@@ -203,6 +204,12 @@ begin
   CountryEditForm.Caption := 'Province';
   CountryEditForm.DBGrid1.DataSource.DataSet.Locate('Prefix', EditPrefix.Text, []);
   CountryEditForm.ShowModal;
+end;
+
+procedure TEditQSO_Form.SpeedButton8Click(Sender: TObject);
+begin
+  SATEditorForm.FromForm:='EditForm';
+  SATEditorForm.Show;
 end;
 
 procedure TEditQSO_Form.SpeedButton9Click(Sender: TObject);
@@ -288,7 +295,7 @@ begin
   UQSO.SRX_STRING := '';
   UQSO.STX := 0;
   UQSO.STX_STRING := '';
-  UQSO.SAT_NAME := DBLookupComboBox2.Text;
+  UQSO.SAT_NAME := CBSat.Text;
   UQSO.SAT_MODE := CBSATMode.Text;
   UQSO.PROP_MODE := CBPropagation.Text;
   UQSO.LoTWSent := 0;
@@ -354,7 +361,6 @@ end;
 
 procedure TEditQSO_Form.FormShow(Sender: TObject);
 var
-  i: integer;
   SelQSO: TQSO;
 begin
   GBCallInfo.Height := CBNoCalcDXCC.Height + CBNoCalcDXCC.Top + 20;
@@ -366,6 +372,11 @@ begin
 
   MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
   MainFunc.SetGrid(DBGrid1);
+
+  CBSat.Items.Clear;
+  CBSat.Items.AddStrings(MainFunc.LoadSATItems);
+  CBPropagation.Items.Clear;
+  CBPropagation.Items.AddStrings(MainFunc.LoadPropItems);
 
   SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
   EditCallSign.Text := SelQSO.CallSing;
@@ -404,6 +415,8 @@ begin
   CBReceived.Checked := MainFunc.StringToBool(SelQSO.QSLRec);
   CBReceivedLoTW.Checked := MainFunc.StringToBool(SelQSO.LoTWRec);
   CBSentLoTW.Checked := MainFunc.IntToBool(SelQSO.LoTWSent);
+  CBSat.Text:=SelQSO.SAT_NAME;
+  CBSATMode.Text:=SelQSO.SAT_MODE;
   CBPropagation.Text := SelQSO.PROP_MODE;
 
   case SelQSO.QSL_RCVD_VIA of
@@ -434,9 +447,6 @@ begin
 
   if CBMode.Text <> '' then
     CBModeChange(Self);
-
-  CBPropagation.Items.Clear;
-  CBPropagation.Items.AddStrings(MainFunc.LoadPropItems);
 
   GBCallInfo.Caption := SearchCountry(EditCallSign.Text);
 end;

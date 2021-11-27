@@ -32,6 +32,7 @@ type
     procedure ReloadList(satname, description, enable: string);
 
   public
+    FromForm: string;
 
   end;
 
@@ -40,7 +41,7 @@ var
 
 implementation
 
-uses InitDB_dm, satForm_u, MainFuncDM;
+uses InitDB_dm, satForm_u, MainFuncDM, editqso_u;
 
 {$R *.lfm}
 
@@ -84,8 +85,27 @@ begin
       ReloadList(EditSATName.Text, EditDescription.Text,
         BoolToStr(CBEnable.Checked, rEnabled, rDisabled));
       LVSatList.ItemIndex := SelectIndex;
-      SATForm.CBSat.Items.Clear;
-      SATForm.CBSat.Items.AddStrings(MainFunc.LoadSATItems);
+
+      if FromForm = 'SATForm' then
+      begin
+        SATForm.CBSat.Items.Clear;
+        SATForm.CBSat.Items.AddStrings(MainFunc.LoadSATItems);
+      end;
+
+      if FromForm = 'EditForm' then
+      begin
+        EditQSO_Form.CBSat.Items.Clear;
+        EditQSO_Form.CBSat.Items.AddStrings(MainFunc.LoadSATItems);
+      end;
+
+      if (FromForm = 'EditForm') and (SATFormActive) then
+      begin
+        SATForm.CBSat.Items.Clear;
+        SATForm.CBSat.Items.AddStrings(MainFunc.LoadSATItems);
+        EditQSO_Form.CBSat.Items.Clear;
+        EditQSO_Form.CBSat.Items.AddStrings(MainFunc.LoadSATItems);
+      end;
+
       CBState := CBEnable.Checked;
     finally
       FreeAndNil(Query);
@@ -134,10 +154,9 @@ begin
       Query.DataBase := InitDB.ServiceDBConnection;
 
       Query.SQL.Text := ('UPDATE Satellite SET enable = ' +
-        BoolToStr(CBEnable.Checked, '1', '0') +
-        ', Name = ' + QuotedStr(EditSATname.Text) +
-        ', Description = ' + QuotedStr(EditDescription.Text) +
-        ' WHERE name = ' +
+        BoolToStr(CBEnable.Checked, '1', '0') + ', Name = ' +
+        QuotedStr(EditSATname.Text) + ', Description = ' +
+        QuotedStr(EditDescription.Text) + ' WHERE name = ' +
         QuotedStr(LVSatList.Selected.Caption));
 
       SelectIndex := LVSatList.ItemIndex;

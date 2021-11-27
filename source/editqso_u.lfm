@@ -1,7 +1,7 @@
 object EditQSO_Form: TEditQSO_Form
-  Left = 283
+  Left = 275
   Height = 658
-  Top = 231
+  Top = 160
   Width = 490
   BorderStyle = bsDialog
   Caption = 'QSO Editor'
@@ -11,7 +11,6 @@ object EditQSO_Form: TEditQSO_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poScreenCenter
-  ShowInTaskBar = stNever
   LCLVersion = '2.0.12.0'
   object GBCallInfo: TGroupBox
     AnchorSideLeft.Control = Owner
@@ -679,8 +678,6 @@ object EditQSO_Form: TEditQSO_Form
       TabOrder = 22
     end
     object CBSATMode: TComboBox
-      AnchorSideLeft.Control = DBLookupComboBox2
-      AnchorSideTop.Control = DBLookupComboBox2
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Side = asrBottom
       Left = 327
@@ -690,6 +687,15 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Top = 2
       Font.Height = -12
       ItemHeight = 16
+      Items.Strings = (
+        'A'
+        'B'
+        'J'
+        'K'
+        'L'
+        'S'
+        'T'
+      )
       ParentFont = False
       Style = csOwnerDrawEditableVariable
       TabOrder = 23
@@ -710,9 +716,9 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object SpeedButton8: TSpeedButton
-      AnchorSideLeft.Control = DBLookupComboBox2
+      AnchorSideLeft.Control = CBSat
       AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = DBLookupComboBox2
+      AnchorSideTop.Control = CBSat
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Side = asrBottom
       Left = 441
@@ -722,6 +728,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Left = 2
       Caption = '...'
       Font.Height = -12
+      OnClick = SpeedButton8Click
       ParentFont = False
     end
     object SpeedButton9: TSpeedButton
@@ -817,9 +824,9 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
     end
     object LBSatelite: TLabel
-      AnchorSideTop.Control = DBLookupComboBox2
+      AnchorSideTop.Control = CBSat
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = DBLookupComboBox2
+      AnchorSideRight.Control = CBSat
       Left = 283
       Height = 15
       Top = 132
@@ -914,25 +921,6 @@ object EditQSO_Form: TEditQSO_Form
       OnClick = SpeedButton11Click
       ParentFont = False
     end
-    object DBLookupComboBox2: TDBLookupComboBox
-      AnchorSideLeft.Control = EditIOTA
-      AnchorSideTop.Control = EditIOTA
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Side = asrBottom
-      Left = 327
-      Height = 28
-      Top = 125
-      Width = 112
-      BorderSpacing.Top = 2
-      Font.Height = -12
-      KeyField = 'Name'
-      ListField = 'Name'
-      ListFieldIndex = 0
-      LookupCache = False
-      ParentFont = False
-      Style = csOwnerDrawEditableVariable
-      TabOrder = 24
-    end
     object CBBand: TComboBox
       AnchorSideLeft.Control = CBMode
       AnchorSideTop.Control = CBMode
@@ -948,7 +936,7 @@ object EditQSO_Form: TEditQSO_Form
       OnSelect = CBBandSelect
       ParentFont = False
       Style = csOwnerDrawEditableVariable
-      TabOrder = 25
+      TabOrder = 24
     end
     object EditCQ: TEdit
       AnchorSideTop.Control = EditContinent
@@ -963,7 +951,7 @@ object EditQSO_Form: TEditQSO_Form
       AutoSize = False
       Font.Height = -12
       ParentFont = False
-      TabOrder = 26
+      TabOrder = 25
     end
     object EditITU: TEdit
       AnchorSideTop.Control = EditGrid
@@ -978,7 +966,7 @@ object EditQSO_Form: TEditQSO_Form
       AutoSize = False
       Font.Height = -12
       ParentFont = False
-      TabOrder = 27
+      TabOrder = 26
     end
     object CBSubMode: TComboBox
       AnchorSideLeft.Side = asrBottom
@@ -996,7 +984,7 @@ object EditQSO_Form: TEditQSO_Form
       ItemHeight = 16
       ParentFont = False
       Style = csOwnerDrawEditableVariable
-      TabOrder = 28
+      TabOrder = 27
     end
     object CBMode: TComboBox
       AnchorSideTop.Control = CBSubMode
@@ -1013,7 +1001,7 @@ object EditQSO_Form: TEditQSO_Form
       OnChange = CBModeChange
       ParentFont = False
       Style = csOwnerDrawEditableVariable
-      TabOrder = 29
+      TabOrder = 28
     end
     object CBPropagation: TComboBox
       AnchorSideLeft.Control = CBSATMode
@@ -1030,6 +1018,18 @@ object EditQSO_Form: TEditQSO_Form
       OnChange = CBModeChange
       ParentFont = False
       Style = csOwnerDrawEditableVariable
+      TabOrder = 29
+    end
+    object CBSat: TComboBox
+      AnchorSideLeft.Control = EditIOTA
+      AnchorSideTop.Control = EditIOTA
+      AnchorSideTop.Side = asrBottom
+      Left = 327
+      Height = 28
+      Top = 125
+      Width = 112
+      BorderSpacing.Top = 2
+      ItemHeight = 0
       TabOrder = 30
     end
   end

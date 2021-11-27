@@ -121,6 +121,7 @@ end;
 
 procedure TSATForm.SpeedButton11Click(Sender: TObject);
 begin
+  SATEditorForm.FromForm:='SATForm';
   SATEditorForm.Show;
 end;
 

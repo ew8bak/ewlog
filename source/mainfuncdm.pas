@@ -879,6 +879,8 @@ begin
       Result.QSL_RCVD_VIA := Query.FieldByName('QSL_RCVD_VIA').AsString;
       Result.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
       Result.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
+      Result.SAT_NAME:= Query.FieldByName('SAT_NAME').AsString;
+      Result.SAT_MODE:= Query.FieldByName('SAT_MODE').AsString;
       Result.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
       Result.ShortNote := Query.FieldByName('ShortNote').AsString;
       Query.Close;
