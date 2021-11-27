@@ -1744,6 +1744,11 @@ begin
   if IniSet.ViewFreq > 3 then
     IniSet.ViewFreq := 0;
   IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', 'TRX1');
+  IniSet.VHFProp:= INIFile.ReadString('VHF', 'VHFProp', '');
+  IniSet.TXFreq:= INIFile.ReadString('VHF', 'TXFreq', '');
+  IniSet.SATName:= INIFile.ReadString('VHF', 'SATName', '');
+  IniSet.SATMode:= INIFile.ReadString('VHF', 'SATMode', '');
+
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

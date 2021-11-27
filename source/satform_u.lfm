@@ -92,6 +92,7 @@ object SATForm: TSATForm
       BorderSpacing.Right = 5
       BorderSpacing.Bottom = 10
       ItemHeight = 0
+      OnChange = CbTXFrequencyChange
       TabOrder = 1
     end
     object LbDescription: TLabel
@@ -207,6 +208,7 @@ object SATForm: TSATForm
         'S'
         'T'
       )
+      OnChange = CBSatModeChange
       TabOrder = 1
     end
     object SpeedButton10: TSpeedButton

@@ -33,6 +33,8 @@ type
     SpeedButton11: TSpeedButton;
     procedure CBPropChange(Sender: TObject);
     procedure CBSatChange(Sender: TObject);
+    procedure CBSatModeChange(Sender: TObject);
+    procedure CbTXFrequencyChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
@@ -88,7 +90,8 @@ begin
     if SLQslMsg.Count > 10 then
       SLQslMsg.Delete(SLQslMsg.Count - 1);
     CBqslMsg.Items.Clear;
-    for i := 0 to SLQslMsg.Count - 1 do begin
+    for i := 0 to SLQslMsg.Count - 1 do
+    begin
       INIFile.WriteString('SAT', 'QSLMSG' + IntToStr(i), SLQslMsg.Strings[i]);
       CBqslMsg.Items.Add(SLQslMsg.Strings[i]);
     end;
@@ -106,6 +109,10 @@ begin
   CBSat.Items.Clear;
   CBSat.Items.AddStrings(MainFunc.LoadSATItems);
   LoadQslMsg;
+  CBProp.Text := IniSet.VHFProp;
+  CbTXFrequency.Text := IniSet.TXFreq;
+  CBSat.Text := IniSet.SATName;
+  CBSatMode.Text := IniSet.SATMode;
 end;
 
 procedure TSATForm.SpeedButton11Click(Sender: TObject);
@@ -122,18 +129,34 @@ end;
 procedure TSATForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
   MainFunc.SaveWindowPosition(SATForm);
+  INIFile.WriteString('VHF', 'VHFProp', IniSet.VHFProp);
+  INIFile.WriteString('VHF', 'SATName', IniSet.SATName);
+  INIFile.WriteString('VHF', 'SATMode', IniSet.SATMode);
+  INIFile.WriteString('VHF', 'TXFreq', IniSet.TXFreq);
 end;
 
 procedure TSATForm.CBPropChange(Sender: TObject);
 begin
   LbPropDescription.Caption := MainFunc.GetPropDescription(CBProp.ItemIndex + 1);
   LbPropDescription.Visible := True;
+  IniSet.VHFProp := CBProp.Text;
 end;
 
 procedure TSATForm.CBSatChange(Sender: TObject);
 begin
   LbSatDescription1.Caption := MainFunc.GetSatDescription(CBSat.Text);
   LbSatDescription1.Visible := True;
+  IniSet.SATName := CBSat.Text;
+end;
+
+procedure TSATForm.CBSatModeChange(Sender: TObject);
+begin
+  IniSet.SATMode := CBSatMode.Text;
+end;
+
+procedure TSATForm.CbTXFrequencyChange(Sender: TObject);
+begin
+  IniSet.TXFreq := CbTXFrequency.Text;
 end;
 
 procedure TSATForm.FormCreate(Sender: TObject);

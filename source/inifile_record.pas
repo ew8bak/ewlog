@@ -98,6 +98,10 @@ type
     ViewFreq: integer;
     CurrentRIG: string;
     RIGConnected: Boolean;
+    VHFProp: string;
+    TXFreq: string;
+    SATName: string;
+    SATMode: string;
   end;
 
 implementation
