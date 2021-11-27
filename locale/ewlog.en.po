@@ -1027,7 +1027,7 @@ msgstr ""
 msgid ""
 "Update sqlite3.so to version 3.24.0 or higher.\n"
 "Current Latest Version 3.31.1\n"
-"Full work program can not be guaranteed\n"
+"Full work program can not be guaranteed"
 msgstr ""
 
 #: resourcestr.rupdatestatus
@@ -5030,6 +5030,44 @@ msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
 msgstr ""
 
+#: tsateditorform.caption
+msgid "SAT Editor"
+msgstr ""
+
+#: tsateditorform.cbenable.caption
+msgid "Enable"
+msgstr ""
+
+#: tsateditorform.gboptions.caption
+msgctxt "tsateditorform.gboptions.caption"
+msgid "Options"
+msgstr ""
+
+#: tsateditorform.lbdescription.caption
+msgctxt "tsateditorform.lbdescription.caption"
+msgid "Description"
+msgstr ""
+
+#: tsateditorform.lbsatname.caption
+msgctxt "tsateditorform.lbsatname.caption"
+msgid "SAT Name"
+msgstr ""
+
+#: tsateditorform.lvsatlist.columns[0].caption
+msgctxt "tsateditorform.lvsatlist.columns[0].caption"
+msgid "SAT Name"
+msgstr ""
+
+#: tsateditorform.lvsatlist.columns[1].caption
+msgctxt "tsateditorform.lvsatlist.columns[1].caption"
+msgid "Description"
+msgstr ""
+
+#: tsateditorform.lvsatlist.columns[2].caption
+msgctxt "tsateditorform.lvsatlist.columns[2].caption"
+msgid "Enabled"
+msgstr ""
+
 #: tsatform.caption
 msgctxt "tsatform.caption"
 msgid "Satellite"
@@ -5044,6 +5082,10 @@ msgstr ""
 msgid "VHF Type"
 msgstr ""
 
+#: tsatform.label1.caption
+msgid "QSL MSG"
+msgstr ""
+
 #: tsatform.lbdescription.caption
 msgctxt "tsatform.lbdescription.caption"
 msgid "Description"
@@ -5056,6 +5098,15 @@ msgstr ""
 
 #: tsatform.lbpropdescription.caption
 msgid "Prop Description"
+msgstr ""
+
+#: tsatform.lbsatdescription.caption
+msgctxt "tsatform.lbsatdescription.caption"
+msgid "Description"
+msgstr ""
+
+#: tsatform.lbsatdescription1.caption
+msgid "SAT Description"
 msgstr ""
 
 #: tsatform.lbsatelite.caption

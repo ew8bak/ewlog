@@ -35,6 +35,7 @@ type
     Win1251: boolean;
     RusToLat: boolean;
     Mobile: boolean;
+    eQSLcc: boolean;
     AllRec: integer;
     FromForm: string;
   end;
@@ -82,7 +83,7 @@ var
   tmpFreq: string;
   i: integer;
   numberToExp: string = '';
-  SafeFreq: Double;
+  SafeFreq: double;
 begin
   try
     Info.ErrorCode := 0;
@@ -121,6 +122,13 @@ begin
       FormatDateTime('yyyymmdd hhnnss', Now), False));
     WriteLn(f, '<PROGRAMID' + dmFunc.StringToADIF('EWLog', False));
     WriteLn(f, '<PROGRAMVERSION' + dmFunc.StringToADIF(dmFunc.GetMyVersion, False));
+
+    if PADIExport.eQSLcc then
+    begin
+      Writeln(f, '<EQSL_USER' + dmFunc.StringToADIF(LBRecord.eQSLccLogin, PADIExport.Win1251));
+      Writeln(f, '<EQSL_PSWD' + dmFunc.StringToADIF(LBRecord.eQSLccPassword, PADIExport.Win1251));
+    end;
+
     Writeln(f, '<EOH>');
 
     if PADIExport.ExportAll then
@@ -210,8 +218,9 @@ begin
           tmpFreq := Query.Fields.FieldByName('QSOBand').AsString;
           Delete(tmpFreq, Length(tmpFreq) - 2, 1);
           TryStrToFloatSafe(tmpFreq, SafeFreq);
-          tmp := '<FREQ' + dmFunc.StringToADIF(StringReplace(FormatFloat('0.#####',
-            SafeFreq),',','.',[rfReplaceAll]), PADIExport.Win1251);
+          tmp := '<FREQ' + dmFunc.StringToADIF(
+            StringReplace(FormatFloat('0.#####', SafeFreq), ',', '.', [rfReplaceAll]),
+            PADIExport.Win1251);
           Write(f, tmp);
         end;
 
@@ -220,8 +229,9 @@ begin
           tmpFreq := Query.Fields.FieldByName('FREQ_RX').AsString;
           Delete(tmpFreq, Length(tmpFreq) - 2, 1);
           TryStrToFloatSafe(tmpFreq, SafeFreq);
-          tmp := '<FREQ_RX' + dmFunc.StringToADIF(StringReplace(FormatFloat('0.#####',
-            SafeFreq),',','.',[rfReplaceAll]), PADIExport.Win1251);
+          tmp := '<FREQ_RX' + dmFunc.StringToADIF(
+            StringReplace(FormatFloat('0.#####', SafeFreq), ',', '.', [rfReplaceAll]),
+            PADIExport.Win1251);
           Write(f, tmp);
         end;
 
@@ -338,7 +348,7 @@ begin
         if Query.Fields.FieldByName('BAND_RX').AsString <> '' then
         begin
           tmp := '<BAND_RX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-          'BAND_RX').AsString, PADIExport.Win1251);
+            'BAND_RX').AsString, PADIExport.Win1251);
           Write(f, tmp);
         end;
 
@@ -541,8 +551,8 @@ begin
           Write(f, tmp);
         end;
 
-        if Query.Fields.FieldByName(
-          'QRZCOM_QSO_UPLOAD_DATE').AsString <> '' then
+        if Query.Fields.FieldByName('QRZCOM_QSO_UPLOAD_DATE').AsString
+          <> '' then
         begin
           tmp := '<QRZCOM_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
             Query.Fields.FieldByName('QRZCOM_QSO_UPLOAD_DATE').AsString,
@@ -648,6 +658,8 @@ end;
 procedure TExportADIFThread.ToForm;
 begin
   Info.From := 'ADIF';
+  if PADIExport.eQSLcc then
+    Info.From := 'ADIFeqsl';
   if Info.ErrorCode <> 0 then
     Application.MessageBox(PChar(rErrorOpenFile + ' ' + IntToStr(IOResult)),
       PChar(rError), mb_ok + mb_IconError);

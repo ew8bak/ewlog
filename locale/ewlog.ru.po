@@ -1046,10 +1046,15 @@ msgid "Update required"
 msgstr "Требует обновления"
 
 #: resourcestr.rupdatesqlitedll
+#, fuzzy
+#| msgid ""
+#| "Update sqlite3.so to version 3.24.0 or higher.\n"
+#| "Current Latest Version 3.31.1\n"
+#| "Full work program can not be guaranteed\n"
 msgid ""
 "Update sqlite3.so to version 3.24.0 or higher.\n"
 "Current Latest Version 3.31.1\n"
-"Full work program can not be guaranteed\n"
+"Full work program can not be guaranteed"
 msgstr ""
 "Обновите sqlite3.dll до версии 3.24.0 или выше\n"
 "Текущая последняя версия 3.31.1\n"
@@ -5136,6 +5141,46 @@ msgctxt "tqslmanager_form.label6.caption"
 msgid "Notes"
 msgstr "Заметки"
 
+#: tsateditorform.caption
+msgid "SAT Editor"
+msgstr ""
+
+#: tsateditorform.cbenable.caption
+msgid "Enable"
+msgstr ""
+
+#: tsateditorform.gboptions.caption
+msgctxt "tsateditorform.gboptions.caption"
+msgid "Options"
+msgstr ""
+
+#: tsateditorform.lbdescription.caption
+#, fuzzy
+msgctxt "tsateditorform.lbdescription.caption"
+msgid "Description"
+msgstr "Описание"
+
+#: tsateditorform.lbsatname.caption
+msgctxt "tsateditorform.lbsatname.caption"
+msgid "SAT Name"
+msgstr ""
+
+#: tsateditorform.lvsatlist.columns[0].caption
+msgctxt "tsateditorform.lvsatlist.columns[0].caption"
+msgid "SAT Name"
+msgstr ""
+
+#: tsateditorform.lvsatlist.columns[1].caption
+#, fuzzy
+msgctxt "tsateditorform.lvsatlist.columns[1].caption"
+msgid "Description"
+msgstr "Описание"
+
+#: tsateditorform.lvsatlist.columns[2].caption
+msgctxt "tsateditorform.lvsatlist.columns[2].caption"
+msgid "Enabled"
+msgstr ""
+
 #: tsatform.caption
 msgctxt "tsatform.caption"
 msgid "Satellite"
@@ -5148,6 +5193,10 @@ msgstr ""
 
 #: tsatform.gbvhf.caption
 msgid "VHF Type"
+msgstr ""
+
+#: tsatform.label1.caption
+msgid "QSL MSG"
 msgstr ""
 
 #: tsatform.lbdescription.caption
@@ -5163,6 +5212,16 @@ msgstr ""
 
 #: tsatform.lbpropdescription.caption
 msgid "Prop Description"
+msgstr ""
+
+#: tsatform.lbsatdescription.caption
+#, fuzzy
+msgctxt "tsatform.lbsatdescription.caption"
+msgid "Description"
+msgstr "Описание"
+
+#: tsatform.lbsatdescription1.caption
+msgid "SAT Description"
 msgstr ""
 
 #: tsatform.lbsatelite.caption

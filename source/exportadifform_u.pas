@@ -54,6 +54,7 @@ type
     FileName: string;
     procedure StartExportADI;
     procedure StartExportSOTA;
+    procedure StartExportADItoEqsl;
     function ShowSaveDialog(ADI: boolean): boolean;
     { private declarations }
   public
@@ -67,7 +68,7 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm;
+uses dmFunc_U, InitDB_dm, eqsl_file_upload;
 
 {$R *.lfm}
 
@@ -138,6 +139,20 @@ begin
       ExportSOTAFThread.Terminate;
       ExportSOTAFThread := nil;
     end;
+
+    if Info.From = 'ADIFeqsl' then
+    begin
+      ExportADIFThread.Terminate;
+      ExportADIFThread := nil;
+    eqslFileUploadThread := TeqslFileUploadThread.Create;
+    if Assigned(eqslFileUploadThread.FatalException) then
+      raise eqslFileUploadThread.FatalException;
+    eqslFileUploadThread.FileName := FilePATH + 'adiToeqsl.adi';
+    eqslFileUploadThread.Start;
+
+
+    end;
+
   end;
 end;
 
@@ -174,6 +189,7 @@ begin
   PADIExport.ExportAll := rbFileExportAll.Checked;
   PADIExport.DateStart := DateEdit1.Date;
   PADIExport.DateEnd := DateEdit2.Date;
+  PADIExport.eQSLcc := False;
   PADIExport.Win1251 := CBExportOnWin.Checked;
   PADIExport.RusToLat := CBConvertLatin.Checked;
   PADIExport.FromForm := 'ExportAdifForm';
@@ -184,8 +200,30 @@ begin
   ExportADIFThread.Start;
 end;
 
+procedure TexportAdifForm.StartExportADItoEqsl;
+var
+  PADIExport: TPADIExport;
+begin
+  PADIExport.Path := SysToUTF8(FilePATH + 'adiToeqsl.adi');
+  PADIExport.eQSLcc := True;
+  PADIExport.ExportAll := True;
+  PADIExport.FromForm := 'ExportAdifForm';
+  ExportADIFThread := TExportADIFThread.Create;
+  if Assigned(ExportADIFThread.FatalException) then
+    raise ExportADIFThread.FatalException;
+  ExportADIFThread.PADIExport := PADIExport;
+  ExportADIFThread.Start;
+end;
+
 procedure TexportAdifForm.BTExportClick(Sender: TObject);
 begin
+
+  if CBEqslExport.Checked then
+  begin
+    StartExportADItoEqsl;
+    Exit;
+  end;
+
   if CBADIExport.Checked then
     if ShowSaveDialog(CBADIExport.Checked) then
       StartExportADI;
