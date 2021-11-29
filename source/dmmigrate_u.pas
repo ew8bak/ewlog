@@ -60,7 +60,7 @@ begin
       if (CurrentTableVersionNumber < TableVersion) and
         (MigrationVersion > CurrentTableVersionNumber) then
         Result := True;
-      ShowMessage('Your table version is: ' + IntToStr(CurrentTableVersionNumber) + '. Need: ' + IntToStr(MigrationVersion));
+
     finally
       FreeAndNil(Query);
     end;
