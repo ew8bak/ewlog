@@ -207,6 +207,7 @@ object SATForm: TSATForm
         'L'
         'S'
         'T'
+        'SX'
       )
       OnChange = CBSatModeChange
       TabOrder = 1

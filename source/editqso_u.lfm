@@ -697,6 +697,7 @@ object EditQSO_Form: TEditQSO_Form
         'L'
         'S'
         'T'
+        'SX'
       )
       ParentFont = False
       Style = csOwnerDrawEditableVariable
