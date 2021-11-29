@@ -202,6 +202,8 @@ begin
 
   for i := 0 to 5 do
   begin
+    if IniSet.InterfaceMobileSync = '' then
+      IniSet.InterfaceMobileSync := '0.0.0.0';
     SyncTCP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
     SyncTCP.Bindings.Add.Port := port_tcp[i];
     try

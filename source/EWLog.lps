@@ -698,9 +698,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="93"/>
-        <CursorPos X="40" Y="106"/>
+        <TopLine Value="90"/>
+        <CursorPos X="49" Y="99"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -777,10 +778,9 @@
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="197"/>
-        <CursorPos X="32" Y="204"/>
+        <TopLine Value="190"/>
+        <CursorPos X="48" Y="206"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit76>

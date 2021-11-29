@@ -95,6 +95,8 @@ begin
   try
     for i := 0 to 5 do
     begin
+      if IniSet.InterfaceMobileSync = '' then
+        IniSet.InterfaceMobileSync := '0.0.0.0';
 
       IdSyncMobileUDP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
       IdSyncMobileUDP.Bindings.Add.Port := port_udp[i];
