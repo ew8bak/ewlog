@@ -92,20 +92,29 @@ begin
   if MobileSynThread <> nil then
     MobileSynThread.Terminate;
 
-  for i := 0 to 5 do
-  begin
-    IdSyncMobileUDP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
-    IdSyncMobileUDP.Bindings.Add.Port := port_udp[i];
-    IdSyncMobileUDP.Active := True;
-    if IdSyncMobileUDP.Active then
+  try
+    for i := 0 to 5 do
     begin
-      lastUDPport := port_udp[i];
-      Break;
+
+      IdSyncMobileUDP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
+      IdSyncMobileUDP.Bindings.Add.Port := port_udp[i];
+
+      try
+        IdSyncMobileUDP.Active := True;
+      except
+        Continue;
+      end;
+
+      if IdSyncMobileUDP.Active then
+      begin
+        lastUDPport := port_udp[i];
+        Break;
+      end;
     end;
+
+  finally
+    StartTCPSyncThread;
   end;
-
-  StartTCPSyncThread;
-
 end;
 
 function TServerDM.AddToCallsignList(Call: string; LastPong: TTime): string;

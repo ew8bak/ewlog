@@ -1,0 +1,18 @@
+{"version":1,"strings":[
+{"hash":216677004,"name":"tserviceeqslform.caption","sourcebytes":[83,101,114,118,105,99,101,32,101,81,83,76],"value":"Service eQSL"},
+{"hash":202061171,"name":"tserviceeqslform.tabsheet1.caption","sourcebytes":[68,111,119,110,108,111,97,100,32,81,83,79,115],"value":"Download QSOs"},
+{"hash":21675836,"name":"tserviceeqslform.btconnecteqsl.caption","sourcebytes":[67,111,110,110,101,99,116,32,119,105,116,104,32,101,81,83,76],"value":"Connect with eQSL"},
+{"hash":66483306,"name":"tserviceeqslform.lbprocessed.caption","sourcebytes":[80,114,111,99,101,115,115,101,100,32,100,97,116,97,58],"value":"Processed data:"},
+{"hash":211380522,"name":"tserviceeqslform.lberrors.caption","sourcebytes":[69,114,114,111,114,115,58],"value":"Errors:"},
+{"hash":349765,"name":"tserviceeqslform.lbcurrerror.caption","sourcebytes":[78,111,110,101],"value":"None"},
+{"hash":178830394,"name":"tserviceeqslform.lbstatus.caption","sourcebytes":[83,116,97,116,117,115,58],"value":"Status:"},
+{"hash":382980,"name":"tserviceeqslform.lbcurrstatus.caption","sourcebytes":[87,97,105,116],"value":"Wait"},
+{"hash":240327706,"name":"tserviceeqslform.lbdownload.caption","sourcebytes":[68,111,119,110,108,111,97,100,58],"value":"Download:"},
+{"hash":48,"name":"tserviceeqslform.lbdownloadsize.caption","sourcebytes":[48],"value":"0"},
+{"hash":56993317,"name":"tserviceeqslform.label1.caption","sourcebytes":[73,109,112,111,114,116,32,102,114,111,109,32,102,105,108,101],"value":"Import from file"},
+{"hash":155138629,"name":"tserviceeqslform.button1.caption","sourcebytes":[67,104,111,111,115,101,32,102,105,108,101],"value":"Choose file"},
+{"hash":221302612,"name":"tserviceeqslform.label2.caption","sourcebytes":[70,105,108,101,32,110,111,116,32,115,101,108,101,99,116,101,100],"value":"File not selected"},
+{"hash":138029404,"name":"tserviceeqslform.label3.caption","sourcebytes":[73,109,112,111,114,116,32,100,105,114,101,99,116,108,121,32,102,114,111,109,32,101,81,83,76],"value":"Import directly from eQSL"},
+{"hash":121181491,"name":"tserviceeqslform.tabsheet2.caption","sourcebytes":[85,112,108,111,97,100,32,81,83,79,115],"value":"Upload QSOs"},
+{"hash":5989939,"name":"tserviceeqslform.tabsheet3.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"}
+]}

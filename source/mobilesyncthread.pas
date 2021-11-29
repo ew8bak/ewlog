@@ -204,7 +204,12 @@ begin
   begin
     SyncTCP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
     SyncTCP.Bindings.Add.Port := port_tcp[i];
+    try
     SyncTCP.Active := True;
+    except
+      Continue;
+    end;
+
     if SyncTCP.Active then
     begin
       lastTCPport := port_tcp[i];

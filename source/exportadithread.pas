@@ -35,7 +35,6 @@ type
     Win1251: boolean;
     RusToLat: boolean;
     Mobile: boolean;
-    eQSLcc: boolean;
     AllRec: integer;
     FromForm: string;
   end;
@@ -122,12 +121,6 @@ begin
       FormatDateTime('yyyymmdd hhnnss', Now), False));
     WriteLn(f, '<PROGRAMID' + dmFunc.StringToADIF('EWLog', False));
     WriteLn(f, '<PROGRAMVERSION' + dmFunc.StringToADIF(dmFunc.GetMyVersion, False));
-
-    if PADIExport.eQSLcc then
-    begin
-      Writeln(f, '<EQSL_USER' + dmFunc.StringToADIF(LBRecord.eQSLccLogin, PADIExport.Win1251));
-      Writeln(f, '<EQSL_PSWD' + dmFunc.StringToADIF(LBRecord.eQSLccPassword, PADIExport.Win1251));
-    end;
 
     Writeln(f, '<EOH>');
 
@@ -658,8 +651,6 @@ end;
 procedure TExportADIFThread.ToForm;
 begin
   Info.From := 'ADIF';
-  if PADIExport.eQSLcc then
-    Info.From := 'ADIFeqsl';
   if Info.ErrorCode <> 0 then
     Application.MessageBox(PChar(rErrorOpenFile + ' ' + IntToStr(IOResult)),
       PChar(rError), mb_ok + mb_IconError);

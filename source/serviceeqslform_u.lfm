@@ -1,22 +1,24 @@
-object ServiceForm: TServiceForm
-  Left = 369
-  Height = 208
-  Top = 200
-  Width = 500
-  HorzScrollBar.Visible = False
-  BorderIcons = [biSystemMenu]
-  BorderStyle = bsDialog
-  Caption = 'Service eQSL and LoTW'
-  ClientHeight = 208
-  ClientWidth = 500
-  Font.Height = -12
-  FormStyle = fsStayOnTop
-  OnShow = FormShow
-  Position = poScreenCenter
+object ServiceEqslForm: TServiceEqslForm
+  Left = 420
+  Height = 213
+  Top = 334
+  Width = 498
+  Caption = 'Service eQSL'
+  ClientHeight = 213
+  ClientWidth = 498
   LCLVersion = '2.0.12.0'
+  object PBDownload: TProgressBar
+    Left = 0
+    Height = 16
+    Top = 197
+    Width = 498
+    Align = alBottom
+    Smooth = True
+    TabOrder = 0
+  end
   object Image1: TImage
     Left = 0
-    Height = 192
+    Height = 197
     Top = 0
     Width = 114
     Align = alLeft
@@ -355,326 +357,237 @@ object ServiceForm: TServiceForm
       5C179AF179DCFBEBE5FF01DC04ADCAEBB142180000000049454E44AE426082
     }
   end
-  object PBDownload: TProgressBar
-    Left = 0
-    Height = 16
-    Top = 192
-    Width = 500
-    Align = alBottom
-    Smooth = True
-    TabOrder = 0
-  end
-  object Panel1: TPanel
+  object PageControl1: TPageControl
     Left = 114
-    Height = 192
+    Height = 197
     Top = 0
-    Width = 386
+    Width = 384
+    ActivePage = TabSheet1
     Align = alClient
-    ClientHeight = 192
-    ClientWidth = 386
+    TabIndex = 0
     TabOrder = 1
-    object Bevel1: TBevel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrCenter
-      Left = 21
-      Height = 2
-      Top = 32
-      Width = 344
+    object TabSheet1: TTabSheet
+      Caption = 'Download QSOs'
+      ClientHeight = 166
+      ClientWidth = 374
+      object DEeQSLcc: TDateEdit
+        AnchorSideTop.Control = BtConnecteQSL
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 228
+        Height = 30
+        Top = 92
+        Width = 136
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        DateOrder = doNone
+        ButtonWidth = 23
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 10
+        NumGlyphs = 1
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 0
+      end
+      object BtConnecteQSL: TButton
+        AnchorSideLeft.Control = Label3
+        AnchorSideTop.Control = Label3
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 33
+        Top = 91
+        Width = 128
+        AutoSize = True
+        BorderSpacing.Top = 5
+        Caption = 'Connect with eQSL'
+        ParentFont = False
+        TabOrder = 1
+      end
+      object Bevel3: TBevel
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = BtConnecteQSL
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 2
+        Top = 129
+        Width = 364
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
+      end
+      object LBProcessed: TLabel
+        AnchorSideLeft.Control = Bevel3
+        AnchorSideTop.Control = Bevel3
+        Left = 5
+        Height = 17
+        Top = 131
+        Width = 99
+        BorderSpacing.Top = 2
+        Caption = 'Processed data:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBErrors: TLabel
+        AnchorSideLeft.Control = LBProcessed
+        AnchorSideTop.Control = LBProcessed
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 17
+        Top = 150
+        Width = 42
+        BorderSpacing.Top = 2
+        Caption = 'Errors:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBCurrError: TLabel
+        AnchorSideLeft.Control = LBErrors
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = LBErrors
+        AnchorSideTop.Side = asrCenter
+        Left = 49
+        Height = 17
+        Top = 150
+        Width = 34
+        BorderSpacing.Left = 2
+        Caption = 'None'
+        ParentColor = False
+      end
+      object LBStatus: TLabel
+        AnchorSideTop.Control = LBProcessed
+        AnchorSideTop.Side = asrCenter
+        Left = 189
+        Height = 17
+        Top = 131
+        Width = 43
+        Caption = 'Status:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBCurrStatus: TLabel
+        AnchorSideLeft.Control = LBStatus
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = LBStatus
+        AnchorSideTop.Side = asrCenter
+        Left = 233
+        Height = 17
+        Top = 131
+        Width = 28
+        BorderSpacing.Left = 1
+        Caption = 'Wait'
+        ParentColor = False
+      end
+      object LBDownload: TLabel
+        AnchorSideTop.Control = LBErrors
+        AnchorSideTop.Side = asrCenter
+        Left = 188
+        Height = 17
+        Top = 150
+        Width = 68
+        Caption = 'Download:'
+        ParentColor = False
+      end
+      object LBDownloadSize: TLabel
+        AnchorSideLeft.Control = LBDownload
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = LBDownload
+        AnchorSideTop.Side = asrCenter
+        Left = 258
+        Height = 17
+        Top = 150
+        Width = 8
+        BorderSpacing.Left = 2
+        Caption = '0'
+        ParentColor = False
+      end
+      object Label1: TLabel
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = TabSheet1
+        Left = 5
+        Height = 17
+        Top = 5
+        Width = 99
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Import from file'
+        ParentColor = False
+      end
+      object Button1: TButton
+        AnchorSideLeft.Control = Label1
+        AnchorSideTop.Control = Label1
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 33
+        Top = 24
+        Width = 80
+        AutoSize = True
+        BorderSpacing.Top = 2
+        Caption = 'Choose file'
+        OnClick = Button1Click
+        TabOrder = 2
+      end
+      object Label2: TLabel
+        AnchorSideLeft.Control = Button1
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Button1
+        AnchorSideTop.Side = asrCenter
+        Left = 90
+        Height = 17
+        Top = 32
+        Width = 100
+        BorderSpacing.Left = 5
+        Caption = 'File not selected'
+        ParentColor = False
+      end
+      object Bevel4: TBevel
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = Button1
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 2
+        Top = 62
+        Width = 364
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
+      end
+      object Label3: TLabel
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = Bevel4
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 17
+        Top = 69
+        Width = 160
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Import directly from eQSL'
+        ParentColor = False
+      end
     end
-    object LBDownloadQSL: TLabel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrCenter
-      AnchorSideTop.Control = Panel1
-      Left = 97
-      Height = 16
-      Top = 6
-      Width = 192
-      BorderSpacing.Top = 5
-      Caption = 'Download QSL received after:'
-      Font.Height = -13
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
+    object TabSheet2: TTabSheet
+      Caption = 'Upload QSOs'
+      ClientHeight = 166
+      ClientWidth = 374
+      object DBGrid1: TDBGrid
+        Left = 8
+        Height = 104
+        Top = 8
+        Width = 312
+        Color = clWindow
+        Columns = <>
+        TabOrder = 0
+      end
     end
-    object Bevel2: TBevel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrCenter
-      Left = 192
-      Height = 88
-      Top = 40
-      Width = 2
+    object TabSheet3: TTabSheet
+      Caption = 'Tools'
     end
-    object LBLoTW: TLabel
-      AnchorSideLeft.Control = Panel1
-      Left = 11
-      Height = 16
-      Top = 40
-      Width = 36
-      BorderSpacing.Left = 10
-      Caption = 'LoTW'
-      Font.Height = -13
-      Font.Style = [fsBold, fsUnderline]
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBeQSLcc: TLabel
-      AnchorSideRight.Control = Panel1
-      AnchorSideRight.Side = asrBottom
-      Left = 325
-      Height = 16
-      Top = 40
-      Width = 50
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 10
-      Caption = 'eQSL.cc'
-      Font.Height = -13
-      Font.Style = [fsBold, fsUnderline]
-      ParentColor = False
-      ParentFont = False
-    end
-    object DELoTW: TDateEdit
-      AnchorSideLeft.Control = Panel1
-      Left = 11
-      Height = 21
-      Top = 64
-      Width = 136
-      CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-      DateOrder = doNone
-      ButtonWidth = 23
-      AutoSize = False
-      BorderSpacing.Left = 10
-      NumGlyphs = 1
-      Font.Height = -12
-      MaxLength = 0
-      ParentFont = False
-      TabOrder = 0
-    end
-    object DEeQSLcc: TDateEdit
-      AnchorSideRight.Control = Panel1
-      AnchorSideRight.Side = asrBottom
-      Left = 239
-      Height = 21
-      Top = 64
-      Width = 136
-      CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-      DateOrder = doNone
-      ButtonWidth = 23
-      Anchors = [akTop, akRight]
-      AutoSize = False
-      BorderSpacing.Right = 10
-      NumGlyphs = 1
-      Font.Height = -12
-      MaxLength = 0
-      ParentFont = False
-      TabOrder = 1
-    end
-    object BtConnectLoTW: TButton
-      AnchorSideLeft.Control = DELoTW
-      AnchorSideTop.Control = DELoTW
-      AnchorSideTop.Side = asrBottom
-      Left = 11
-      Height = 31
-      Top = 90
-      Width = 118
-      AutoSize = True
-      BorderSpacing.Top = 5
-      Caption = 'Connect with LoTW'
-      Font.Height = -12
-      OnClick = BtConnectLoTWClick
-      ParentFont = False
-      TabOrder = 2
-    end
-    object BtConnecteQSL: TButton
-      AnchorSideTop.Control = DEeQSLcc
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = DEeQSLcc
-      AnchorSideRight.Side = asrBottom
-      Left = 259
-      Height = 31
-      Top = 90
-      Width = 116
-      Anchors = [akTop, akRight]
-      AutoSize = True
-      BorderSpacing.Top = 5
-      Caption = 'Connect with eQSL'
-      Font.Height = -12
-      OnClick = BtConnecteQSLClick
-      ParentFont = False
-      TabOrder = 3
-    end
-    object Bevel3: TBevel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrCenter
-      Left = 21
-      Height = 2
-      Top = 136
-      Width = 344
-    end
-    object LBProcessed: TLabel
-      Left = 16
-      Height = 15
-      Top = 144
-      Width = 89
-      Caption = 'Processed data:'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBErrors: TLabel
-      Left = 16
-      Height = 15
-      Top = 160
-      Width = 38
-      Caption = 'Errors:'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object SBeQSLFile: TSpeedButton
-      AnchorSideTop.Control = BtConnecteQSL
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = BtConnecteQSL
-      Left = 228
-      Height = 25
-      Top = 93
-      Width = 31
-      Anchors = [akTop, akRight]
-      Glyph.Data = {
-        36090000424D3609000000000000360000002800000018000000180000000100
-        2000000000000009000064000000640000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        000000000000000000010000000E000000170000000500000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        000000000001000000161413129B272626DC0C0C0B4300000004000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0001000000161615159F323130FE646262FE3D3C3BDA0000000E000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000010000
-        0016181716A0353433FE6A6867FE4E4D4CFE0F0F0F8E01010005000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000001000000161817
-        169F393737FE71706FFF535251FE111010910101010900000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000000000000000000000000000001000000161615159F3A39
-        38FE7A7978FE5A5958FE12111192010101090000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000000000000000000000100000016151414A03B3A39FE8180
-        7FFE615F5FFE1313129101010109000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000100000003000000040000
-        0002000000000000000000000000000000161413139F3D3C3BFE878685FF6564
-        63FE151414910101010900000000000000000000000000000000000000000000
-        00000000000000000000000000070000001A0C0C0C421B1B1B681E1E1E6E1212
-        1252010101230000000C000000090F0F0E8F3F3E3DFE8A8989FE676665FE1514
-        1492010101090000000000000000000000000000000000000000000000000000
-        000000000001000000162B2B2B72858585D8BABAB9F2CDCDCBDED0CFCDDAC1C1
-        C0EA9E9E9DEB4C4C4C9A0505053D454444D2727171FE626161FE151414910101
-        0109000000000000000000000000000000000000000000000000000000000000
-        00010202021C636363B1C5C5C3E5D1D0C189D7D5BA4CD9D7B73BDAD7B639D7D4
-        B742CCCBB76BC3C2BCC6A2A2A2F1BABABAFE4C4B4BCB13131281010101090000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0010616161A7C7C7C1D2D2D0B658E1DEBB3FE3E0BC3DE4E1BD3DE3E0BC3DE4E0
-        BD3DE2DFBB3DD5D2B245BCBBAE9FABABABF10808083301010104000000000000
-        0000000000000000000000000000000000000000000000000000000000032626
-        2657BEBEBBEACFCDB466E4E2C14EE4E1BF4AE3E0BC49E3E0BC49E3E0BC49E3E0
-        BC49E3E0BC49E3E0BC49D5D2B24FBAB9AFBE616161A10000000A000000000000
-        00000000000000000000000000000000000000000000000000000000000C7B7B
-        7BBAC1BFB0A8E3E0C160E7E4C55EE5E2BF59E4E1BD56E4E1BD56E3E0BC56E4E1
-        BD56E4E1BD56E4E1BD56E2DFBC57C5C3A772B1B1B0EE05050523000000000000
-        000000000000000000000000000000000000000000000000000001010119ADAD
-        ACEDCECCB384E7E5C76FE8E5C76FE6E3C26AE3E0BC65E3E0BC65E3E0BC65E3E0
-        BC65E3E0BC65E3E0BC65E3E0BC65D7D4B26BBFBEB7DB2828285A000000010000
-        000000000000000000000000000000000000000000000000000008080828BABA
-        B7F2D7D5B988E8E6C980E8E6C980E8E5C77EE4E1BD74E4E1BD74E3E0BC74E4E1
-        BD74E4E1BD74E4E1BD74E3E0BC74DDDAB777BFBEB2CD40404076000000020000
-        000000000000000000000000000000000000000000000000000007070723BBBA
-        B8F4D8D6BA99E9E6CA91E9E7CB92E9E7CB92E6E4C48BE4E1BE85E4E1BE85E4E1
-        BE85E4E1BE84E4E1BD84E4E1BD84DEDBB887C1C0B4D53E3E3E71000000020000
-        000000000000000000000000000000000000000000000000000000000011A9A9
-        A9E5CECCB3B2EAE7CDA3EBE8CFA5ECE9D1A7ECEAD3A9EAE7CDA3E8E6C99FE8E6
-        C89EE7E5C69BE6E3C399E5E2C096DAD7B59BBDBDB6EB24242449000000000000
-        0000000000000000000000000000000000000000000000000000010101066E6E
-        6EA0BDBBACD9E7E5CCB6EDECD5B9EFEEDABFF1EFDEC4F2F1E0C8F1F0DFC5EFED
-        D9BFEDEBD3B7EAE8CDB0E7E4C7ACC8C6ACBEA8A8A7E505050512000000000000
-        0000000000000000000000000000000000000000000000000000000000001616
-        1632B5B5B3F2C8C6AFCDEEEDD9CCF2F1E2D3F5F4E8DBF7F6ECE1F7F7EDE2F6F5
-        EADEF4F3E5D7F0EFDDCFDEDDC7CAB0B0A8EF5353537906060603000000000000
-        0000000000000000000000000000000000000000000000000000000000000404
-        040446464670B2B1ADF7C2C0AEDBF2F1E4E1F8F7EEE9FAF9F3EFFAFAF4F1F9F8
-        F1EDF5F4EAE5DBDACADEA4A39AEE8C8C8CB90C0C0C0D00000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000060606064545456DAAAAA9F39E9D94F0BFBEB4EFDDDDD6F3E2E2DCF4CCCC
-        C4F1A3A39AF1A1A19DF9818181A9111111140000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        000000000000060606031919192C6E6E6E9A9B9B9AE19F9F9EFA9E9E9CFB9F9F
-        9EEE878787B63B3B3B500C0C0C07000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000070707030606060A0D0D0D180E0E0E1C0909
-        090D080808050606060100000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000
-      }
-      OnClick = SBeQSLFileClick
-    end
-    object LBStatus: TLabel
-      Left = 192
-      Height = 15
-      Top = 144
-      Width = 38
-      Caption = 'Status:'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBDownloadSize: TLabel
-      AnchorSideLeft.Control = LBDownload
-      AnchorSideLeft.Side = asrBottom
-      Left = 253
-      Height = 15
-      Top = 160
-      Width = 7
-      BorderSpacing.Left = 2
-      Caption = '0'
-      ParentColor = False
-    end
-    object LBDownload: TLabel
-      Left = 192
-      Height = 15
-      Top = 160
-      Width = 59
-      Caption = 'Download:'
-      ParentColor = False
-    end
-    object LBCurrStatus: TLabel
-      AnchorSideLeft.Control = LBStatus
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = LBStatus
-      AnchorSideTop.Side = asrCenter
-      Left = 231
-      Height = 15
-      Top = 144
-      Width = 25
-      BorderSpacing.Left = 1
-      Caption = 'Wait'
-      ParentColor = False
-    end
-    object LBCurrError: TLabel
-      AnchorSideLeft.Control = LBErrors
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = LBErrors
-      AnchorSideTop.Side = asrCenter
-      Left = 55
-      Height = 15
-      Top = 160
-      Width = 30
-      BorderSpacing.Left = 1
-      Caption = 'None'
-      ParentColor = False
-    end
-  end
-  object OpenDialog1: TOpenDialog
-    Left = 56
-    Top = 104
   end
 end

@@ -33,7 +33,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   dmCat, contestForm_u, dmContest_u, FMS_record, dmmigrate_u, ExportSOTAThread,
   CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u, CWKeysDM_u, CWTypeForm_u,
   dmTCI_u, StreamAdapter_u, downloadQSLthread, DownloadFilesThread, dmHamLib_u,
-  satForm_u, SatEditorForm_u, eqsl_file_upload;
+  satForm_u, SatEditorForm_u, eqsl_file_upload, ServiceEqslForm_u;
 
 {$R *.res}
 
@@ -94,5 +94,6 @@ begin
   Application.CreateForm(TCWTypeForm, CWTypeForm);
   Application.CreateForm(TSATForm, SATForm);
   Application.CreateForm(TSATEditorForm, SATEditorForm);
+  Application.CreateForm(TServiceEqslForm, ServiceEqslForm);
   Application.Run;
 end.

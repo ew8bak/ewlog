@@ -8,7 +8,6 @@
 {"hash":317789,"name":"texportadifform.label3.caption","sourcebytes":[70,114,111,109],"value":"From"},
 {"hash":1455,"name":"texportadifform.label4.caption","sourcebytes":[84,111],"value":"To"},
 {"hash":107137638,"name":"texportadifform.cbadiexport.caption","sourcebytes":[69,120,112,111,114,116,32,116,111,32,65,68,73,70],"value":"Export to ADIF"},
-{"hash":106968268,"name":"texportadifform.cbeqslexport.caption","sourcebytes":[69,120,112,111,114,116,32,116,111,32,101,81,83,76],"value":"Export to eQSL"},
 {"hash":82506417,"name":"texportadifform.cbexportonwin.caption","sourcebytes":[69,120,112,111,114,116,32,111,110,32,87,105,110,49,50,53,49],"value":"Export on Win1251"},
 {"hash":228542718,"name":"texportadifform.cbconvertlatin.caption","sourcebytes":[67,111,110,118,101,114,116,32,116,111,32,76,97,116,105,110],"value":"Convert to Latin"},
 {"hash":107214385,"name":"texportadifform.cbsotaexport.caption","sourcebytes":[69,120,112,111,114,116,32,116,111,32,83,79,84,65],"value":"Export to SOTA"},
