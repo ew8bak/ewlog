@@ -782,16 +782,17 @@
         <UnitName Value="SatEditorForm_u"/>
       </Unit96>
       <Unit97>
-        <Filename Value="eqsl_file_upload.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit97>
-      <Unit98>
         <Filename Value="serviceeqslform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServiceEqslForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceEqslForm_u"/>
+      </Unit97>
+      <Unit98>
+        <Filename Value="eqslservice_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="eQSLservice_u"/>
       </Unit98>
     </Units>
   </ProjectOptions>

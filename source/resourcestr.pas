@@ -227,6 +227,8 @@ resourcestring
   rDisabled = 'Disabled';
   rNone = 'None';
   rDownloadingFile = 'Downloading file';
+  rNeedUpload = 'Need to upload';
+  rAllQSOsuploadedtoeQSLcc = 'All QSOs uploaded to eQSLcc';
 
 implementation
 

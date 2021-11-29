@@ -6,8 +6,7 @@
  *   Author Vladimir Karpenko (EW8BAK)                                     *
  *                                                                         *
  ***************************************************************************)
-
-unit eqsl_file_upload;
+unit eQSLservice_u;
 
 {$mode objfpc}{$H+}
 
@@ -17,53 +16,230 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, fphttpclient, SQLDB;
+  Classes, SysUtils, strutils, fphttpclient, SQLDB, LazFileUtils, LazUTF8, ResourceStr;
 
 const
   UploadURL = 'https://www.eqsl.cc/qslcard/ImportADIF.cfm';
+  DownloadURL = 'http://www.eqsl.cc/qslcard/DownloadInBox.cfm?';
 
-  type
-  TInfoExport = record
-    From: string;
-    AllRec: integer;
+type
+  TdataEQSL = record
+    User: string;
+    Password: string;
+    Date: string;
+    TaskType: string;
+    DownloadAllFileSize: int64;
+    DownloadedFileSize: int64;
+    DownloadedPercent: integer;
+    DownloadedFilePATH: string;
+    UploadFilePATH: string;
+    StatusDownload: boolean;
+    StatusUpload: boolean;
     RecCount: integer;
-    ErrorStr: string;
+    AllRecCount: integer;
+    Message: string;
+    Error: boolean;
     ErrorCode: integer;
+    ErrorString: string;
     Result: boolean;
   end;
 
 type
-  TeqslFileUploadThread = class(TThread)
+  TeQSLThread = class(TThread)
   protected
     procedure Execute; override;
   private
-    response: string;
-    procedure SendFile(FileName: string);
-    procedure ADIcreateFile;
-    procedure ShowResult;
+    Status: TdataEQSL;
+    procedure DownloadQSL(ServiceData: TdataEQSL);
+    procedure UploadQSLFile(FileName: string);
+    function CreateADIFile(FileName: string): boolean;
     function SetSizeLoc(Loc: string): string;
-    procedure ToForm;
+    function ParseDownloadURLeQSLcc(Document: TMemoryStream): string;
+    procedure OnDataReceived(Sender: TObject; const ContentLength, CurrentPos: int64);
+    procedure ClearStatus;
 
   public
-    FileName: string;
-    Info: TInfoExport;
+    DataFromServiceEqslForm: TdataEQSL;
+
     constructor Create;
+    procedure ToForm;
   end;
 
 var
-  eqslFileUploadThread: TeqslFileUploadThread;
-
+  eQSLThread: TeQSLThread;
 
 implementation
 
-uses Forms, LCLType, InitDB_dm, dmFunc_U;
+uses InitDB_dm, dmFunc_U, ServiceEqslForm_u;
 
-procedure TeqslFileUploadThread.ToForm;
+constructor TeQSLThread.Create;
 begin
+  FreeOnTerminate := True;
+  inherited Create(True);
+end;
+
+procedure TeQSLThread.Execute;
+begin
+  if DataFromServiceEqslForm.TaskType = 'Download' then
+    DownloadQSL(DataFromServiceEqslForm);
+  if DataFromServiceEqslForm.TaskType = 'Upload' then
+    if CreateADIFile('upload_eQSLcc.adi') then
+      UploadQSLFile(FilePATH + 'upload_eQSLcc.adi');
+end;
+
+procedure TeQSLThread.ToForm;
+begin
+  ServiceEqslForm.DataFromThread(Status);
+end;
+
+procedure TeQSLThread.DownloadQSL(ServiceData: TdataEQSL);
+var
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
+  SaveFilePATH: string;
+  FullURL: string;
+begin
+  try
+    ClearStatus;
+    HTTP := TFPHttpClient.Create(nil);
+    Document := TMemoryStream.Create;
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; EWLog)');
+    HTTP.OnDataReceived := @OnDataReceived;
+
+    SaveFilePATH := FilePATH + 'eQSLcc_' + ServiceData.Date + '.adi';
+    FullURL := DownloadURL + 'UserName=' + ServiceData.User +
+      '&Password=' + ServiceData.Password + '&RcvdSince=' + ServiceData.Date;
+    try
+      HTTP.Get(FullURL, Document);
+      if HTTP.ResponseStatusCode = 200 then
+      begin
+        FullURL := ParseDownloadURLeQSLcc(Document);
+        if FullURL <> '' then
+        begin
+          Document.Clear;
+          HTTP.Get(FullURL, Document);
+          if HTTP.ResponseStatusCode = 200 then
+          begin
+            Document.SaveToFile(SaveFilePATH);
+            Status.DownloadedFilePATH := SaveFilePATH;
+            Status.Message := rStatusSaveFile;
+            Status.StatusDownload := True;
+            Status.TaskType := 'Download';
+            Synchronize(@ToForm);
+          end;
+        end;
+      end;
+    except
+      on E: Exception do
+      begin
+        Status.ErrorString := E.Message;
+        Status.Error := True;
+        Synchronize(@ToForm);
+        Exit;
+      end;
+    end;
+
+  finally
+    FreeAndNil(HTTP);
+    FreeAndNil(Document);
+  end;
 
 end;
 
-function TeqslFileUploadThread.SetSizeLoc(Loc: string): string;
+procedure TeQSLThread.OnDataReceived(Sender: TObject;
+  const ContentLength, CurrentPos: int64);
+begin
+  Status.TaskType := 'Download';
+  Status.DownloadAllFileSize := ContentLength;
+  Status.DownloadedFileSize := CurrentPos;
+  Status.DownloadedPercent := integer((Trunc((CurrentPos / ContentLength) * 100)));
+  Synchronize(@ToForm);
+end;
+
+function TeQSLThread.ParseDownloadURLeQSLcc(Document: TMemoryStream): string;
+const
+  CDWNLD = '.adi">';
+  errorMess = '<H3>ERROR:';
+  dateErr = '<H3>YOU HAVE NO LOG ENTRIES';
+  eQSLcc_URL = 'http://www.eqsl.cc/downloadedfiles/';
+var
+  eQSLPage: TStringList;
+  tmp: string;
+  i: integer;
+begin
+  try
+    Result := '';
+    eQSLPage := TStringList.Create;
+    Document.Seek(0, soBeginning);
+    eQSLPage.LoadFromStream(Document);
+    if Pos(errorMess, UpperCase(eQSLPage.Text)) > 0 then
+    begin
+      Status.Error := True;
+      Status.ErrorString := rStatusIncorrect;
+      Synchronize(@ToForm);
+      Exit;
+    end
+    else
+    if Pos(dateErr, UpperCase(eQSLPage.Text)) > 0 then
+    begin
+      Status.Error := True;
+      Status.ErrorString := rStatusNotData;
+      Synchronize(@ToForm);
+      Exit;
+    end
+    else
+    begin
+      if Pos(CDWNLD, eQSLPage.Text) > 0 then
+      begin
+        for i := 0 to Pred(eQSLPage.Count) do
+        begin
+          if Pos(CDWNLD, eQSLPage[i]) > 0 then
+          begin
+            tmp := copy(eQSLPage[i], pos('HREF="', eQSLPage[i]) +
+              6, length(eQSLPage[i]));
+            tmp := copy(eQSLPage[i], 1, pos('.adi"', eQSLPage[i]) + 3);
+            tmp := ExtractFileNameOnly(tmp) + ExtractFileExt(tmp);
+          end;
+        end;
+      end;
+    end;
+    Result := eQSLcc_URL + tmp;
+  finally
+    FreeAndNil(eQSLPage);
+  end;
+end;
+
+procedure TeQSLThread.UploadQSLFile(FileName: string);
+var
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
+  res: TStringList;
+begin
+  try
+    Status.StatusUpload := False;
+    res := TStringList.Create;
+    Document := TMemoryStream.Create;
+    HTTP := TFPHttpClient.Create(nil);
+    HTTP.AddHeader('Content-Type', 'application/json; charset=UTF-8');
+    HTTP.AddHeader('Accept', 'application/json');
+    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+    HTTP.AllowRedirect := True;
+    HTTP.FileFormPost(UploadURL, 'Filename', FileName, Document);
+    Document.Position := 0;
+    res.LoadFromStream(Document);
+    Status.Message := res.Text;
+  finally
+    Status.StatusUpload := True;
+    Status.TaskType := 'Upload';
+    Synchronize(@ToForm);
+    FreeAndNil(Document);
+    FreeAndNil(HTTP);
+    FreeAndNil(res);
+  end;
+end;
+
+function TeQSLThread.SetSizeLoc(Loc: string): string;
 begin
   Result := '';
   while Length(Loc) > 6 do
@@ -71,7 +247,7 @@ begin
   Result := Loc;
 end;
 
-procedure TeqslFileUploadThread.ADIcreateFile;
+function TeQSLThread.CreateADIFile(FileName: string): boolean;
 var
   Query: TSQLQuery;
   f: TextFile;
@@ -79,19 +255,18 @@ var
   DefMyLAT: string;
   DefMyLON: string;
   DefMyGrid: string;
-  EQSL_QSL_RCVD, QSL_RCVD, QSL_SENT: string;
   tmpFreq: string;
-  i: integer;
-  numberToExp: string = '';
   SafeFreq: double;
   path: string;
 begin
   try
-    path := FilePATH + 'adiToeqsl.adi';
-    Info.ErrorCode := 0;
-    Info.Result := False;
-    Info.RecCount := 0;
-    Info.AllRec := 0;
+    Result := False;
+    ClearStatus;
+    path := FilePATH + FileName;
+    Status.ErrorCode := 0;
+    Status.Result := False;
+    Status.RecCount := 0;
+    Status.AllRecCount := 0;
 
     Query := TSQLQuery.Create(nil);
     if DBRecord.CurrentDB = 'MySQL' then
@@ -113,7 +288,7 @@ begin
   {$i-}
     Rewrite(f);
   {$i+}
-    Info.ErrorCode := IOResult;
+    Status.ErrorCode := IOResult;
     if IOresult <> 0 then
     begin
       Synchronize(@ToForm);
@@ -130,19 +305,16 @@ begin
     Writeln(f, '<EOH>');
 
     Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
-      ' ORDER BY UnUsedIndex ASC WHERE EQSL_QSL_SENT = ''N''';
+      ' WHERE EQSL_QSL_SENT = ''N'' ORDER BY UnUsedIndex ASC';
 
     Query.Open;
     Query.Last;
-    Info.AllRec := Query.RecordCount;
+    Status.AllRecCount := Query.RecordCount;
     Synchronize(@ToForm);
     Query.First;
     while not Query.EOF do
     begin
       try
-        EQSL_QSL_RCVD := '';
-        QSL_RCVD := '';
-        QSL_SENT := '';
         tmpFreq := '';
 
         tmp := '<OPERATOR' + dmFunc.StringToADIF(
@@ -278,7 +450,7 @@ begin
 
         Write(f, '<EOR>'#13#10);
 
-        Inc(Info.RecCount);
+        Inc(Status.RecCount);
         Synchronize(@ToForm);
         Query.Next;
 
@@ -290,7 +462,7 @@ begin
         begin
           Write(f, '<EOR>'#13#10);
           WriteLn(ExceptFile, 'ExportThread:' + E.ClassName + ':' +
-            E.Message + ' NumberString:' + IntToStr(Info.RecCount + 1));
+            E.Message + ' NumberString:' + IntToStr(Status.RecCount + 1));
           Query.Next;
           Continue;
         end;
@@ -299,55 +471,30 @@ begin
 
   finally
     CloseFile(f);
-    Info.Result := True;
+    Status.Result := True;
     Synchronize(@ToForm);
     FreeAndNil(Query);
+    Result := True;
   end;
 end;
 
-
-procedure TeqslFileUploadThread.SendFile(FileName: string);
-var
-  HTTP: TFPHttpClient;
-  Document: TMemoryStream;
-  res: TStringList;
+procedure TeQSLThread.ClearStatus;
 begin
-  try
-    res := TStringList.Create;
-    Document := TMemoryStream.Create;
-    HTTP := TFPHttpClient.Create(nil);
-    HTTP.AddHeader('Content-Type', 'application/json; charset=UTF-8');
-    HTTP.AddHeader('Accept', 'application/json');
-    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
-    HTTP.AllowRedirect := True;
-    HTTP.FileFormPost(UploadURL, 'Filename', FileName, Document);
-    Document.Position := 0;
-    res.LoadFromStream(Document);
-    response := res.Text;
-  finally
-    Synchronize(@ShowResult);
-    FreeAndNil(Document);
-    FreeAndNil(HTTP);
-    FreeAndNil(res);
-  end;
-end;
-
-procedure TeqslFileUploadThread.ShowResult;
-begin
-  if Length(response) > 0 then
-    Application.MessageBox(PChar(response),
-      'eQSL', MB_ICONEXCLAMATION);
-end;
-
-constructor TeqslFileUploadThread.Create;
-begin
-  FreeOnTerminate := True;
-  inherited Create(True);
-end;
-
-procedure TeqslFileUploadThread.Execute;
-begin
-  SendFile(FileName);
+  Status.DownloadAllFileSize := 0;
+  Status.DownloadedFileSize := 0;
+  Status.DownloadedPercent := 0;
+  Status.DownloadedFilePATH := '';
+  Status.Error := False;
+  Status.ErrorString := '';
+  Status.StatusDownload := False;
+  Status.Date := '';
+  Status.Message := '';
+  Status.Password := '';
+  Status.TaskType := '';
+  Status.User := '';
+  Status.AllRecCount := 0;
+  Status.RecCount := 0;
+  Status.Result := False;
 end;
 
 end.

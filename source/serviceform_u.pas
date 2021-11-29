@@ -53,7 +53,6 @@ type
     { private declarations }
   public
     procedure LotWImport(FPath: string);
-    procedure eQSLImport(FPath: string);
     procedure DataFromThread(status: TdataThread);
     { public declarations }
   end;
@@ -77,194 +76,8 @@ begin
 
   if status.StatusDownload then
   begin
-    if status.Service = 'eQSLcc' then
-      eQSLImport(status.DownloadedFilePATH);
     if status.Service = 'LoTW' then
       LotWImport(status.DownloadedFilePATH);
-  end;
-end;
-
-procedure TServiceForm.eQSLImport(FPath: string);
-var
-  Query: TSQLQuery;
-  f: TextFile;
-  temp_f: TextFile;
-  s: string;
-  CALL: string;
-  BAND: string;
-  MODE: string;
-  SUBMODE: string;
-  RST_SENT: string;
-  QSO_DATE: string;
-  TIME_ON: string;
-  QSL_SENT: string;
-  QSL_SENT_VIA: string;
-  PROP_MODE: string;
-  QSLMSG: string;
-  GRIDSQUARE: string;
-  paramQSL_SENT: string;
-  QueryTXT: string;
-  DupeCount: integer;
-  ErrorCount, RecCount: integer;
-  PosEOH: word;
-  PosEOR: word;
-  yyyy, mm, dd: word;
-  digiBand: string;
-  nameBand: string;
-  Stream: TMemoryStream;
-  TempFile: string;
-  SQLString: string;
-begin
-  TempFile := FilePATH + 'temp.adi';
-  RecCount := 0;
-  DupeCount := 0;
-  ErrorCount := 0;
-  PosEOH := 0;
-  PosEOR := 0;
-  try
-    Stream := TMemoryStream.Create;
-    Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
-    AssignFile(f, FPath);
-    Reset(f);
-
-    while not (PosEOH > 0) do
-    begin
-      Readln(f, s);
-      PosEOH := Pos('<EOH>', UpperCase(s));
-    end;
-
-    while not EOF(f) do
-    begin
-      Readln(f, s);
-      s := StringReplace(s, #10, '', [rfReplaceAll]);
-      s := StringReplace(s, #13, '', [rfReplaceAll]);
-      s := StringReplace(UpperCase(s), '<EOR>', '<EOR>'#13#10, [rfReplaceAll]);
-      if Length(s) > 0 then
-      begin
-        Stream.Write(s[1], length(s));
-      end;
-    end;
-    Stream.SaveToFile(TempFile);
-
-    AssignFile(temp_f, TempFile);
-    Reset(temp_f);
-
-    while not (EOF(temp_f)) do
-    begin
-      try
-        CALL := '';
-        BAND := '';
-        MODE := '';
-        SUBMODE := '';
-        RST_SENT := '';
-        QSO_DATE := '';
-        TIME_ON := '';
-        GRIDSQUARE := '';
-        QSL_SENT_VIA := '';
-        QSLMSG := '';
-        QSL_SENT := '';
-        PROP_MODE := '';
-        paramQSL_SENT := '';
-        nameBand := '';
-        SQLString := '';
-        digiBand := '';
-        Readln(temp_f, s);
-        s := Trim(s);
-
-        PosEOR := Pos('<EOR>', UpperCase(s));
-        if not (PosEOR > 0) then
-          Continue;
-
-        CALL := dmFunc.getField(s, 'CALL');
-        BAND := dmFunc.getField(s, 'BAND');
-        MODE := dmFunc.getField(s, 'MODE');
-        SUBMODE := dmFunc.getField(s, 'SUBMODE');
-        QSO_DATE := dmFunc.getField(s, 'QSO_DATE');
-        TIME_ON := dmFunc.getField(s, 'TIME_ON');
-        GRIDSQUARE := dmFunc.getField(s, 'GRIDSQUARE');
-        QSL_SENT_VIA := dmFunc.getField(s, 'QSL_SENT_VIA');
-        QSLMSG := dmFunc.getField(s, 'QSLMSG');
-        RST_SENT := dmFunc.getField(s, 'RST_SENT');
-        QSL_SENT := dmFunc.getField(s, 'QSL_SENT');
-        PROP_MODE := dmFunc.getField(s, 'PROP_MODE');
-
-        if PosEOR > 0 then
-        begin
-
-          if QSL_SENT = 'Y' then
-            paramQSL_SENT := '1'
-          else
-            paramQSL_SENT := '0';
-
-          if Pos('M', BAND) > 0 then
-            NameBand := MainFunc.ConvertFreqToSave(
-              FloatToStr(dmFunc.GetFreqFromBand(BAND, MODE)))
-          else
-            NameBand := MainFunc.ConvertFreqToSave(BAND);
-
-          digiBand := StringReplace(FloatToStr(dmFunc.GetDigiBandFromFreq(NameBand)),
-            ',', '.', [rfReplaceAll]);
-
-          if Length(SUBMODE) > 0 then
-            SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET QSOMode = ' +
-              dmFunc.Q(MODE) + 'QSOSubMode = ' + dmFunc.Q(SUBMODE)
-          else
-            SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET QSOMode = ' +
-              dmFunc.Q(MODE);
-
-          if DBRecord.CurrentDB = 'MySQL' then
-            QueryTXT := SQLString + 'QSL_RCVD_VIA = ' +
-              dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
-              'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +
-              dmFunc.Q(RST_SENT) + 'PROP_MODE = ' + dmFunc.Q(PROP_MODE) +
-              'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
-              ' WHERE CallSign = ' + QuotedStr(CALL) + ' AND QSODate = ' +
-              QuotedStr(QSO_DATE) + ' AND DigiBand = ' + digiBand +
-              ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
-              QuotedStr(SUBMODE) + ')'
-          else
-            QueryTXT := SQLString + 'QSL_RCVD_VIA = ' +
-              dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
-              'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +
-              dmFunc.Q(RST_SENT) + 'PROP_MODE = ' + dmFunc.Q(PROP_MODE) +
-              'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
-              ' WHERE CallSign = ' + QuotedStr(CALL) +
-              ' AND strftime(''%Y%m%d'',QSODate) = ' + QuotedStr(QSO_DATE) +
-              ' AND DigiBand = ' + digiBand + ' AND (QSOMode = ' +
-              QuotedStr(MODE) + ' OR QSOSubMode = ' + QuotedStr(SUBMODE) + ')';
-
-          Query.SQL.Text := QueryTXT;
-          Query.ExecSQL;
-
-          Inc(RecCount);
-          if RecCount mod 10 = 0 then
-          begin
-            LBProcessed.Caption := rProcessedData + IntToStr(RecCount);
-            InitDB.DefTransaction.Commit;
-            Application.ProcessMessages;
-          end;
-
-        end;
-      except
-        InitDB.DefTransaction.Rollback;
-      end;
-    end;
-  finally
-    InitDB.DefTransaction.Commit;
-    CloseFile(f);
-    CloseFile(temp_f);
-    Stream.Free;
-    FreeAndNil(Query);
-    if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-      ShowMessage(rDBError);
-    LBProcessed.Caption := rProcessedData + IntToStr(RecCount);
-    LBCurrStatus.Caption := rDone;
-    BtConnecteQSL.Enabled := True;
-    INIFile.WriteDate('SetLog', 'LasteQSLcc', Now);
   end;
 end;
 
@@ -535,9 +348,7 @@ end;
 
 procedure TServiceForm.SBeQSLFileClick(Sender: TObject);
 begin
-  OpenDialog1.Execute;
-  if OpenDialog1.FileName <> '' then
-    eQSLImport(OpenDialog1.FileName);
+
 end;
 
 end.

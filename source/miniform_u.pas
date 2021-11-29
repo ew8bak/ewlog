@@ -275,6 +275,7 @@ type
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem43Click(Sender: TObject);
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
@@ -966,6 +967,11 @@ end;
 procedure TMiniForm.MenuItem1Click(Sender: TObject);
 begin
   ServiceEqslForm.Show;
+end;
+
+procedure TMiniForm.MenuItem2Click(Sender: TObject);
+begin
+  ServiceForm.Show;
 end;
 
 procedure TMiniForm.MenuItem43Click(Sender: TObject);

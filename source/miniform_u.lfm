@@ -2085,6 +2085,7 @@ object MiniForm: TMiniForm
         end
         object MenuItem2: TMenuItem
           Caption = 'LoTW Service'
+          OnClick = MenuItem2Click
         end
       end
       object MenuItem61: TMenuItem
