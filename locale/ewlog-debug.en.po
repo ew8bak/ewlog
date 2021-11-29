@@ -5258,11 +5258,6 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: tserviceform.btconnecteqsl.caption
-msgctxt "tserviceform.btconnecteqsl.caption"
-msgid "Connect with eQSL"
-msgstr ""
-
 #: tserviceform.btconnectlotw.caption
 msgctxt "tserviceform.btconnectlotw.caption"
 msgid "Connect with LoTW"
@@ -5295,11 +5290,6 @@ msgstr ""
 #: tserviceform.lbdownloadsize.caption
 msgctxt "tserviceform.lbdownloadsize.caption"
 msgid "0"
-msgstr ""
-
-#: tserviceform.lbeqslcc.caption
-msgctxt "tserviceform.lbeqslcc.caption"
-msgid "eQSL.cc"
 msgstr ""
 
 #: tserviceform.lberrors.caption

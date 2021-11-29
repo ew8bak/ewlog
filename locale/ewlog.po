@@ -242,6 +242,10 @@ msgctxt "resourcestr.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
 msgstr ""
 
+#: resourcestr.rallqsosuploadedtoeqslcc
+msgid "All QSOs uploaded to eQSLcc"
+msgstr ""
+
 #: resourcestr.rbuttoncheck
 msgctxt "resourcestr.rbuttoncheck"
 msgid "Check"
@@ -665,6 +669,10 @@ msgstr ""
 
 #: resourcestr.rneedqsl
 msgid "QSL is needed"
+msgstr ""
+
+#: resourcestr.rneedupload
+msgid "Need to upload"
 msgstr ""
 
 #: resourcestr.rnewdxccinbm
@@ -5167,6 +5175,14 @@ msgstr ""
 msgid "Choose file"
 msgstr ""
 
+#: tserviceeqslform.button2.caption
+msgid "Upload"
+msgstr ""
+
+#: tserviceeqslform.button3.caption
+msgid "Mark ALL QSOs as Sent to eQSL"
+msgstr ""
+
 #: tserviceeqslform.caption
 msgid "Service eQSL"
 msgstr ""
@@ -5181,6 +5197,14 @@ msgstr ""
 
 #: tserviceeqslform.label3.caption
 msgid "Import directly from eQSL"
+msgstr ""
+
+#: tserviceeqslform.label4.caption
+msgid "Upload Status:"
+msgstr ""
+
+#: tserviceeqslform.label5.caption
+msgid "Status"
 msgstr ""
 
 #: tserviceeqslform.lbcurrerror.caption
@@ -5230,11 +5254,6 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: tserviceform.btconnecteqsl.caption
-msgctxt "tserviceform.btconnecteqsl.caption"
-msgid "Connect with eQSL"
-msgstr ""
-
 #: tserviceform.btconnectlotw.caption
 msgctxt "tserviceform.btconnectlotw.caption"
 msgid "Connect with LoTW"
@@ -5267,11 +5286,6 @@ msgstr ""
 #: tserviceform.lbdownloadsize.caption
 msgctxt "tserviceform.lbdownloadsize.caption"
 msgid "0"
-msgstr ""
-
-#: tserviceform.lbeqslcc.caption
-msgctxt "tserviceform.lbeqslcc.caption"
-msgid "eQSL.cc"
 msgstr ""
 
 #: tserviceform.lberrors.caption

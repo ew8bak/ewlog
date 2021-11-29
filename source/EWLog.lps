@@ -251,10 +251,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="110"/>
-        <CursorPos X="26" Y="122"/>
+        <TopLine Value="292"/>
+        <CursorPos X="62" Y="317"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -855,11 +854,13 @@
         <ComponentName Value="dmMigrate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="245"/>
-        <CursorPos X="86" Y="265"/>
+        <TopLine Value="47"/>
+        <CursorPos X="125" Y="63"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit83>
       <Unit84>
         <Filename Value="exportsotathread.pas"/>
@@ -938,7 +939,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="149"/>
         <CursorPos X="23" Y="156"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="169"/>
       </Unit90>
       <Unit91>
         <Filename Value="streamadapter_u.pas"/>
@@ -947,7 +948,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="44" Y="35"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="139"/>
       </Unit91>
       <Unit92>
         <Filename Value="downloadqslthread.pas"/>
@@ -956,7 +957,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="31"/>
         <CursorPos X="38" Y="71"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="121"/>
         <Loaded Value="True"/>
       </Unit92>
       <Unit93>
@@ -966,7 +967,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="147"/>
         <CursorPos X="37" Y="23"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="114"/>
       </Unit93>
       <Unit94>
         <Filename Value="dmhamlib_u.pas"/>
@@ -978,7 +979,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="115"/>
         <CursorPos X="26" Y="120"/>
-        <UsageCount Value="83"/>
+        <UsageCount Value="84"/>
       </Unit94>
       <Unit95>
         <Filename Value="satform_u.pas"/>
@@ -990,7 +991,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="16" Y="55"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="56"/>
       </Unit95>
       <Unit96>
         <Filename Value="sateditorform_u.pas"/>
@@ -1002,16 +1003,9 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos X="30" Y="100"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="46"/>
       </Unit96>
       <Unit97>
-        <Filename Value="eqsl_file_upload.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="14"/>
-        <CursorPos X="16" Y="23"/>
-        <UsageCount Value="29"/>
-      </Unit97>
-      <Unit98>
         <Filename Value="serviceeqslform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServiceEqslForm"/>
@@ -1021,19 +1015,26 @@
         <EditorIndex Value="5"/>
         <TopLine Value="75"/>
         <CursorPos X="65" Y="94"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit98>
-      <Unit99>
+      </Unit97>
+      <Unit98>
         <Filename Value="eqslservice_u.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="eQSLservice_u"/>
         <EditorIndex Value="4"/>
         <TopLine Value="205"/>
         <CursorPos X="41" Y="461"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
+      </Unit98>
+      <Unit99>
+        <Filename Value="eqsl_file_upload.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="14"/>
+        <CursorPos X="16" Y="23"/>
+        <UsageCount Value="29"/>
       </Unit99>
       <Unit100>
         <Filename Value="download_lotw.pas"/>
@@ -1209,7 +1210,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1505"/>
         <CursorPos X="21" Y="1405"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit122>
       <Unit123>
         <Filename Value="D:\usr\lib\lazarus\components\lazutils\lazfileutils.pas"/>
@@ -1333,21 +1334,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos Y="50"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit139>
       <Unit140>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1687"/>
         <CursorPos X="15" Y="1702"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit140>
       <Unit141>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classes.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="241"/>
         <CursorPos X="3" Y="243"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit141>
       <Unit142>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\virtualtreeview-5.5.3-R1\VirtualTrees.pas"/>
@@ -1435,7 +1436,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2897"/>
         <CursorPos Y="2913"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit153>
       <Unit154>
         <Filename Value="..\..\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdThread.pas"/>
@@ -1642,7 +1643,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="764"/>
         <CursorPos Y="785"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit181>
       <Unit182>
         <Filename Value="..\..\.lazarus\onlinepackagemanager\packages\Indy10\Core\IdUDPBase.pas"/>
@@ -2023,124 +2024,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="263" Column="57" TopLine="231"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="91" TopLine="82"/>
       </Position1>
       <Position2>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="96" Column="29" TopLine="73"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="121" TopLine="104"/>
       </Position2>
       <Position3>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="107" Column="40" TopLine="86"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="122" TopLine="104"/>
       </Position3>
       <Position4>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="98" Column="3" TopLine="87"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="124" TopLine="113"/>
       </Position4>
       <Position5>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="119" Column="3" TopLine="96"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="125" TopLine="113"/>
       </Position5>
       <Position6>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="48" Column="20" TopLine="32"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="126" Column="46" TopLine="113"/>
       </Position6>
       <Position7>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="123" Column="61" TopLine="99"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="127" Column="39" TopLine="113"/>
       </Position7>
       <Position8>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1596" Column="57" TopLine="1585"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="128" TopLine="113"/>
       </Position8>
       <Position9>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="138" Column="52" TopLine="108"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="130" TopLine="113"/>
       </Position9>
       <Position10>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="133" Column="73" TopLine="120"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="129" TopLine="113"/>
       </Position10>
       <Position11>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="147" Column="27" TopLine="119"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="132" TopLine="113"/>
       </Position11>
       <Position12>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="137" Column="32" TopLine="115"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="133" TopLine="113"/>
       </Position12>
       <Position13>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="146" Column="58" TopLine="141"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="134" TopLine="113"/>
       </Position13>
       <Position14>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="163" Column="41" TopLine="148"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="187" TopLine="168"/>
       </Position14>
       <Position15>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="164" Column="41" TopLine="149"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="189" TopLine="168"/>
       </Position15>
       <Position16>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="163" Column="49" TopLine="143"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="91" TopLine="77"/>
       </Position16>
       <Position17>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="164" Column="49" TopLine="144"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="92" TopLine="77"/>
       </Position17>
       <Position18>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="163" Column="49" TopLine="143"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="94" TopLine="77"/>
       </Position18>
       <Position19>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="169" Column="49" TopLine="149"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="91" TopLine="77"/>
       </Position19>
       <Position20>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="138" Column="6" TopLine="116"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="97" TopLine="77"/>
       </Position20>
       <Position21>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="123" Column="3" TopLine="95"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="99" TopLine="77"/>
       </Position21>
       <Position22>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="175" Column="10" TopLine="165"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="98" TopLine="77"/>
       </Position22>
       <Position23>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="131" Column="17" TopLine="109"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="99" TopLine="77"/>
       </Position23>
       <Position24>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="160" Column="23" TopLine="147"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="98" TopLine="77"/>
       </Position24>
       <Position25>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="107" Column="3" TopLine="105"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="99" TopLine="77"/>
       </Position25>
       <Position26>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="242" Column="8" TopLine="217"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="97" TopLine="77"/>
       </Position26>
       <Position27>
-        <Filename Value="eqslservice_u.pas"/>
-        <Caret Line="231" Column="22" TopLine="211"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="100" TopLine="77"/>
       </Position27>
       <Position28>
-        <Filename Value="eqslservice_u.pas"/>
-        <Caret Line="55" Column="19" TopLine="53"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="101" TopLine="80"/>
       </Position28>
       <Position29>
-        <Filename Value="serviceeqslform_u.pas"/>
-        <Caret Line="93" TopLine="75"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="63" Column="80" TopLine="43"/>
       </Position29>
       <Position30>
-        <Filename Value="eqslservice_u.pas"/>
-        <Caret Line="233" Column="32" TopLine="218"/>
+        <Filename Value="dmmigrate_u.pas"/>
+        <Caret Line="67" Column="28" TopLine="50"/>
       </Position30>
     </JumpHistory>
     <RunParams>

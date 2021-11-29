@@ -5375,12 +5375,6 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: tserviceform.btconnecteqsl.caption
-#, fuzzy
-msgctxt "tserviceform.btconnecteqsl.caption"
-msgid "Connect with eQSL"
-msgstr "Соединиться с eQSL"
-
 #: tserviceform.btconnectlotw.caption
 #, fuzzy
 msgctxt "tserviceform.btconnectlotw.caption"
@@ -5417,11 +5411,6 @@ msgstr "Загрузить QSL полученные после:"
 #: tserviceform.lbdownloadsize.caption
 msgctxt "tserviceform.lbdownloadsize.caption"
 msgid "0"
-msgstr ""
-
-#: tserviceform.lbeqslcc.caption
-msgctxt "tserviceform.lbeqslcc.caption"
-msgid "eQSL.cc"
 msgstr ""
 
 #: tserviceform.lberrors.caption

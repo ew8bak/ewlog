@@ -27,15 +27,12 @@ type
     Bevel2: TBevel;
     Bevel3: TBevel;
     BtConnectLoTW: TButton;
-    BtConnecteQSL: TButton;
     DELoTW: TDateEdit;
-    DEeQSLcc: TDateEdit;
     Image1: TImage;
     LBCurrError: TLabel;
     LBCurrStatus: TLabel;
     LBDownloadQSL: TLabel;
     LBLoTW: TLabel;
-    LBeQSLcc: TLabel;
     LBProcessed: TLabel;
     LBErrors: TLabel;
     LBStatus: TLabel;
@@ -44,7 +41,6 @@ type
     OpenDialog1: TOpenDialog;
     Panel1: TPanel;
     PBDownload: TProgressBar;
-    SBeQSLFile: TSpeedButton;
     procedure BtConnectLoTWClick(Sender: TObject);
     procedure BtConnecteQSLClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -279,30 +275,7 @@ end;
 
 procedure TServiceForm.BtConnecteQSLClick(Sender: TObject);
 begin
-  PBDownload.Position := 0;
-  if (LBRecord.eQSLccLogin = '') or (LBRecord.eQSLccPassword = '') then
-  begin
-    if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
-      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      LogConfigForm.Show;
-    LogConfigForm.PageControl1.ActivePageIndex := 1;
-  end
-  else
-  begin
-    BtConnecteQSL.Enabled := False;
-    downloadQSLTThread := TdownloadQSLThread.Create;
-    if Assigned(downloadQSLTThread.FatalException) then
-      raise downloadQSLTThread.FatalException;
-    with downloadQSLTThread do
-    begin
-      DataFromServiceForm.Service := 'eQSLcc';
-      DataFromServiceForm.User := LBRecord.eQSLccLogin;
-      DataFromServiceForm.Password := LBRecord.eQSLccPassword;
-      DataFromServiceForm.Date := FormatDateTime('yyyymmdd', DEeQSLcc.Date);
-      Start;
-    end;
-    LBCurrStatus.Caption := rStatusConnecteQSL;
-  end;
+
 end;
 
 procedure TServiceForm.BtConnectLoTWClick(Sender: TObject);
@@ -336,14 +309,12 @@ end;
 
 procedure TServiceForm.FormShow(Sender: TObject);
 begin
-  BtConnecteQSL.Enabled := True;
   BtConnectLoTW.Enabled := True;
   LBCurrError.Caption := rNone;
   LBCurrStatus.Caption := rWait;
   PBDownload.Position := 0;
   LBDownloadSize.Caption := '0 ' + rMBytes;
   DELoTW.Date := INIFile.ReadDate('SetLog', 'LastLoTW', Now);
-  DEeQSLcc.Date := INIFile.ReadDate('SetLog', 'LasteQSLcc', Now);
 end;
 
 procedure TServiceForm.SBeQSLFileClick(Sender: TObject);

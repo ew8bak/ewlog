@@ -60,6 +60,7 @@ begin
       if (CurrentTableVersionNumber < TableVersion) and
         (MigrationVersion > CurrentTableVersionNumber) then
         Result := True;
+      ShowMessage('Your table version is: ' + IntToStr(CurrentTableVersionNumber) + '. Need: ' + IntToStr(MigrationVersion));
     finally
       FreeAndNil(Query);
     end;
@@ -184,6 +185,11 @@ begin
     except
       on E: Exception do
       begin
+        if Pos('duplicate', E.Message) > 0 then
+        begin
+          MigrationEnd(Version, Callsign);
+          Exit;
+        end;
         ShowMessage('Migrate146: Error: ' + E.ClassName + #13#10 + E.Message);
         WriteLn(ExceptFile, 'Migrate146: Error: ' + E.ClassName + ':' + E.Message);
       end;
@@ -226,6 +232,11 @@ begin
     except
       on E: Exception do
       begin
+        if Pos('duplicate', E.Message)  > 0 then
+        begin
+          MigrationEnd(Version, Callsign);
+          Exit;
+        end;
         ShowMessage('Migrate147: Error: ' + E.ClassName + #13#10 + E.Message);
         WriteLn(ExceptFile, 'Migrate147: Error: ' + E.ClassName + ':' + E.Message);
       end;
@@ -271,6 +282,11 @@ begin
     except
       on E: Exception do
       begin
+        if Pos('duplicate', E.Message)  > 0 then
+        begin
+          MigrationEnd(Version, Callsign);
+          Exit;
+        end;
         ShowMessage('Migrate148: Error: ' + E.ClassName + #13#10 + E.Message);
         WriteLn(ExceptFile, 'Migrate148: Error: ' + E.ClassName + ':' + E.Message);
       end;
@@ -313,6 +329,11 @@ begin
     except
       on E: Exception do
       begin
+        if Pos('duplicate', E.Message)  > 0 then
+        begin
+          MigrationEnd(Version, Callsign);
+          Exit;
+        end;
         ShowMessage('Migrate150: Error: ' + E.ClassName + #13#10 + E.Message);
         WriteLn(ExceptFile, 'Migrate150: Error: ' + E.ClassName + ':' + E.Message);
       end;

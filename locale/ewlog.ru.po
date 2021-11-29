@@ -252,6 +252,10 @@ msgctxt "resourcestr.rallfieldsmustbefilled"
 msgid "All fields must be filled!"
 msgstr "Всё поля должны быть заполнены!"
 
+#: resourcestr.rallqsosuploadedtoeqslcc
+msgid "All QSOs uploaded to eQSLcc"
+msgstr ""
+
 #: resourcestr.rbuttoncheck
 msgctxt "resourcestr.rbuttoncheck"
 msgid "Check"
@@ -676,6 +680,10 @@ msgstr "База данных MySQL не настроена"
 #: resourcestr.rneedqsl
 msgid "QSL is needed"
 msgstr "Нужна QSL"
+
+#: resourcestr.rneedupload
+msgid "Need to upload"
+msgstr ""
 
 #: resourcestr.rnewdxccinbm
 msgid "A new country in BM"
@@ -5284,6 +5292,14 @@ msgstr ""
 msgid "Choose file"
 msgstr ""
 
+#: tserviceeqslform.button2.caption
+msgid "Upload"
+msgstr ""
+
+#: tserviceeqslform.button3.caption
+msgid "Mark ALL QSOs as Sent to eQSL"
+msgstr ""
+
 #: tserviceeqslform.caption
 msgid "Service eQSL"
 msgstr ""
@@ -5298,6 +5314,14 @@ msgstr ""
 
 #: tserviceeqslform.label3.caption
 msgid "Import directly from eQSL"
+msgstr ""
+
+#: tserviceeqslform.label4.caption
+msgid "Upload Status:"
+msgstr ""
+
+#: tserviceeqslform.label5.caption
+msgid "Status"
 msgstr ""
 
 #: tserviceeqslform.lbcurrerror.caption
@@ -5350,12 +5374,6 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: tserviceform.btconnecteqsl.caption
-#, fuzzy
-msgctxt "tserviceform.btconnecteqsl.caption"
-msgid "Connect with eQSL"
-msgstr "Соединиться с eQSL"
-
 #: tserviceform.btconnectlotw.caption
 #, fuzzy
 msgctxt "tserviceform.btconnectlotw.caption"
@@ -5392,11 +5410,6 @@ msgstr "Загрузить QSL полученные после:"
 #: tserviceform.lbdownloadsize.caption
 msgctxt "tserviceform.lbdownloadsize.caption"
 msgid "0"
-msgstr ""
-
-#: tserviceform.lbeqslcc.caption
-msgctxt "tserviceform.lbeqslcc.caption"
-msgid "eQSL.cc"
 msgstr ""
 
 #: tserviceform.lberrors.caption
