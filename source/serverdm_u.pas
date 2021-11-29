@@ -102,6 +102,8 @@ begin
       try
         IdSyncMobileUDP.Active := True;
       except
+        IdSyncMobileUDP.Active := False;
+        IdSyncMobileUDP.Bindings.Clear;
         Continue;
       end;
 

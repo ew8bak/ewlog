@@ -205,8 +205,10 @@ begin
     SyncTCP.Bindings.Add.IP := IniSet.InterfaceMobileSync;
     SyncTCP.Bindings.Add.Port := port_tcp[i];
     try
-    SyncTCP.Active := True;
+      SyncTCP.Active := True;
     except
+      SyncTCP.Active := False;
+      SyncTCP.Bindings.Clear;
       Continue;
     end;
 
@@ -267,8 +269,9 @@ begin
     begin
       if DBRecord.CurrentDB = 'MySQL' then
         Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
-          ' WHERE QSODate >= ' + '''' + FormatDateTime('yyyy-mm-dd', StrToDate(date, FormatSettings)) +
-          '''' + ' OR SYNC = 0 ORDER BY UnUsedIndex ASC'
+          ' WHERE QSODate >= ' + '''' + FormatDateTime('yyyy-mm-dd',
+          StrToDate(date, FormatSettings)) + '''' +
+          ' OR SYNC = 0 ORDER BY UnUsedIndex ASC'
       else
         Query.SQL.Text :=
           'SELECT * FROM ' + LBRecord.LogTable + ' WHERE ' + 'strftime(' +

@@ -2890,11 +2890,6 @@ msgctxt "texportadifform.cbconvertlatin.caption"
 msgid "Convert to Latin"
 msgstr ""
 
-#: texportadifform.cbeqslexport.caption
-msgctxt "texportadifform.cbeqslexport.caption"
-msgid "Export to eQSL"
-msgstr ""
-
 #: texportadifform.cbexportonwin.caption
 msgctxt "texportadifform.cbexportonwin.caption"
 msgid "Export on Win1251"
@@ -4467,6 +4462,10 @@ msgstr ""
 msgid "MacroKeyF9"
 msgstr ""
 
+#: tminiform.menuitem1.caption
+msgid "eQSL Service"
+msgstr ""
+
 #: tminiform.menuitem102.caption
 msgctxt "tminiform.menuitem102.caption"
 msgid "Donations"
@@ -4500,6 +4499,10 @@ msgstr ""
 #: tminiform.menuitem124.caption
 msgctxt "tminiform.menuitem124.caption"
 msgid "Modulation Manager"
+msgstr ""
+
+#: tminiform.menuitem2.caption
+msgid "LoTW Service"
 msgstr ""
 
 #: tminiform.menuitem3.caption
@@ -5155,6 +5158,78 @@ msgstr ""
 #: tsendtelnetspot.lbfreq.caption
 msgctxt "tsendtelnetspot.lbfreq.caption"
 msgid "Frequency"
+msgstr ""
+
+#: tserviceeqslform.btconnecteqsl.caption
+msgctxt "tserviceeqslform.btconnecteqsl.caption"
+msgid "Connect with eQSL"
+msgstr ""
+
+#: tserviceeqslform.button1.caption
+msgid "Choose file"
+msgstr ""
+
+#: tserviceeqslform.caption
+msgid "Service eQSL"
+msgstr ""
+
+#: tserviceeqslform.label1.caption
+msgid "Import from file"
+msgstr ""
+
+#: tserviceeqslform.label2.caption
+msgid "File not selected"
+msgstr ""
+
+#: tserviceeqslform.label3.caption
+msgid "Import directly from eQSL"
+msgstr ""
+
+#: tserviceeqslform.lbcurrerror.caption
+msgctxt "tserviceeqslform.lbcurrerror.caption"
+msgid "None"
+msgstr ""
+
+#: tserviceeqslform.lbcurrstatus.caption
+msgctxt "tserviceeqslform.lbcurrstatus.caption"
+msgid "Wait"
+msgstr ""
+
+#: tserviceeqslform.lbdownload.caption
+msgctxt "tserviceeqslform.lbdownload.caption"
+msgid "Download:"
+msgstr ""
+
+#: tserviceeqslform.lbdownloadsize.caption
+msgctxt "tserviceeqslform.lbdownloadsize.caption"
+msgid "0"
+msgstr ""
+
+#: tserviceeqslform.lberrors.caption
+msgctxt "tserviceeqslform.lberrors.caption"
+msgid "Errors:"
+msgstr ""
+
+#: tserviceeqslform.lbprocessed.caption
+msgctxt "tserviceeqslform.lbprocessed.caption"
+msgid "Processed data:"
+msgstr ""
+
+#: tserviceeqslform.lbstatus.caption
+msgctxt "tserviceeqslform.lbstatus.caption"
+msgid "Status:"
+msgstr ""
+
+#: tserviceeqslform.tabsheet1.caption
+msgid "Download QSOs"
+msgstr ""
+
+#: tserviceeqslform.tabsheet2.caption
+msgid "Upload QSOs"
+msgstr ""
+
+#: tserviceeqslform.tabsheet3.caption
+msgid "Tools"
 msgstr ""
 
 #: tserviceform.btconnecteqsl.caption
