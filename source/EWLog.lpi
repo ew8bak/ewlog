@@ -785,6 +785,7 @@
         <Filename Value="servicelotwform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServiceLoTWForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceLoTWForm_u"/>
       </Unit97>

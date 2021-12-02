@@ -14,8 +14,8 @@ object dxClusterForm: TdxClusterForm
   LCLVersion = '2.0.12.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 214
-    Top = 26
+    Height = 205
+    Top = 35
     Width = 735
     ActivePage = TabSheet2
     Align = alClient
@@ -26,7 +26,7 @@ object dxClusterForm: TdxClusterForm
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'Telnet'
-      ClientHeight = 185
+      ClientHeight = 176
       ClientWidth = 725
       Font.Height = -12
       ParentFont = False
@@ -55,14 +55,14 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet2: TTabSheet
       Caption = 'DX Cluster'
-      ClientHeight = 185
+      ClientHeight = 176
       ClientWidth = 725
       Font.Height = -12
       ParentFont = False
       object VSTCluster: TVirtualStringTree
         Cursor = 63
         Left = 0
-        Height = 185
+        Height = 176
         Top = 0
         Width = 725
         Align = alClient
@@ -115,6 +115,7 @@ object dxClusterForm: TdxClusterForm
             Width = 150
           end>
         Header.Font.Height = -12
+        Header.Height = 21
         Header.Options = [hoColumnResize, hoDrag, hoShowImages, hoShowSortGlyphs, hoVisible]
         ParentFont = False
         PopupMenu = PopupCluster
@@ -136,7 +137,7 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Private messages'
-      ClientHeight = 185
+      ClientHeight = 176
       ClientWidth = 725
       Font.Height = -12
       ParentFont = False
@@ -281,7 +282,7 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet4: TTabSheet
       Caption = 'Forecast'
-      ClientHeight = 185
+      ClientHeight = 176
       ClientWidth = 725
       Font.Height = -12
       ParentFont = False
@@ -298,7 +299,7 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet5: TTabSheet
       Caption = 'Messages'
-      ClientHeight = 185
+      ClientHeight = 176
       ClientWidth = 725
       Font.Height = -12
       ParentFont = False
@@ -316,11 +317,12 @@ object dxClusterForm: TdxClusterForm
   end
   object Panel1: TPanel
     Left = 0
-    Height = 26
+    Height = 35
     Top = 0
     Width = 735
     Align = alTop
-    ClientHeight = 26
+    AutoSize = True
+    ClientHeight = 35
     ClientWidth = 735
     TabOrder = 1
     object SBConnect: TSpeedButton
@@ -329,7 +331,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 6
       Height = 22
-      Top = 2
+      Top = 6
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -377,7 +379,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 34
       Height = 22
-      Top = 2
+      Top = 6
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -425,7 +427,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 62
       Height = 22
-      Top = 2
+      Top = 6
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -473,7 +475,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 90
       Height = 22
-      Top = 2
+      Top = 6
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -521,7 +523,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 118
       Height = 22
-      Top = 2
+      Top = 6
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -569,7 +571,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideRight.Side = asrBottom
       Left = 706
       Height = 22
-      Top = 2
+      Top = 6
       Width = 23
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -617,10 +619,9 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 146
-      Height = 23
-      Top = 2
+      Height = 33
+      Top = 1
       Width = 326
-      AutoSize = False
       BorderSpacing.Left = 5
       Font.Height = -12
       ItemHeight = 0
