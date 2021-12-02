@@ -19,7 +19,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   CreateJournalForm_U, ImportADIFForm_U, dmFunc_U, eqsl, xmlrpc, fldigi,
   DXCCEditForm_U, ManagerBasePrefixForm_U, azidis3, aziloc, QSLManagerForm_U,
   uRigControl, TRXForm_U, hrdlog, SettingsProgramForm_U, AboutForm_U,
-  ServiceForm_U, setupForm_U, UpdateForm_U, Changelog_Form_U, Earth_Form_U,
+  setupForm_U, UpdateForm_U, Changelog_Form_U, Earth_Form_U,
   IOTA_Form_U, sendtelnetspot_form_U, ClusterFilter_Form_U, WSJT_UDP_Form_U,
   synDBDate_u, ThanksForm_u, filterForm_U, hiddentsettings_u, print_sticker_u,
   famm_u, mmform_u, hamqth, clublog, qrzcom, qso_record, resourcestr, const_u,
@@ -32,8 +32,9 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
   dmCat, contestForm_u, dmContest_u, FMS_record, dmmigrate_u, ExportSOTAThread,
   CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u, CWKeysDM_u, CWTypeForm_u,
-  dmTCI_u, StreamAdapter_u, downloadQSLthread, DownloadFilesThread, dmHamLib_u,
-  satForm_u, SatEditorForm_u, ServiceEqslForm_u, eQSLservice_u;
+  dmTCI_u, StreamAdapter_u, DownloadFilesThread, dmHamLib_u,
+  satForm_u, SatEditorForm_u, ServiceEqslForm_u, eQSLservice_u,
+  ServiceLoTWForm_u, LoTWservice_u;
 
 {$R *.res}
 
@@ -67,7 +68,6 @@ begin
   Application.CreateForm(TQSLManager_Form, QSLManager_Form);
   Application.CreateForm(TSettingsProgramForm, SettingsProgramForm);
   Application.CreateForm(TAbout_Form, About_Form);
-  Application.CreateForm(TServiceForm, ServiceForm);
   Application.CreateForm(TSetupForm, SetupForm);
   Application.CreateForm(TUpdate_Form, Update_Form);
   Application.CreateForm(TChangeLog_Form, ChangeLog_Form);
@@ -95,5 +95,6 @@ begin
   Application.CreateForm(TSATForm, SATForm);
   Application.CreateForm(TSATEditorForm, SATEditorForm);
   Application.CreateForm(TServiceEqslForm, ServiceEqslForm);
+  Application.CreateForm(TServiceLoTWForm, ServiceLoTWForm);
   Application.Run;
 end.

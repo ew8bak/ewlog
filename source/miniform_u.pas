@@ -379,11 +379,11 @@ implementation
 uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   setupForm_U, GridsForm_u, dxclusterform_u, AboutForm_U, ConfigForm_U,
   InformationForm_U, UpdateForm_U, famm_u, mmform_u, synDBDate_u,
-  ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U, ServiceForm_U,
+  ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   serverDM_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
-  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u, ServiceEqslForm_u;
+  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u, ServiceEqslForm_u, ServiceLoTWForm_u;
 
 {$R *.lfm}
 
@@ -971,7 +971,7 @@ end;
 
 procedure TMiniForm.MenuItem2Click(Sender: TObject);
 begin
-  ServiceForm.Show;
+  ServiceLoTWForm.Show;
 end;
 
 procedure TMiniForm.MenuItem43Click(Sender: TObject);

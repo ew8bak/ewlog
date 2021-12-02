@@ -1,7 +1,7 @@
 object ServiceEqslForm: TServiceEqslForm
-  Left = 331
+  Left = 312
   Height = 213
-  Top = 437
+  Top = 404
   Width = 538
   Caption = 'Service eQSL'
   ClientHeight = 213

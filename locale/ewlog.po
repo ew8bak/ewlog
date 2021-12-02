@@ -246,6 +246,10 @@ msgstr ""
 msgid "All QSOs uploaded to eQSLcc"
 msgstr ""
 
+#: resourcestr.rallqsosuploadedtolotw
+msgid "All QSOs uploaded to LoTW"
+msgstr ""
+
 #: resourcestr.rbuttoncheck
 msgctxt "resourcestr.rbuttoncheck"
 msgid "Check"
@@ -5176,6 +5180,7 @@ msgid "Choose file"
 msgstr ""
 
 #: tserviceeqslform.button2.caption
+msgctxt "tserviceeqslform.button2.caption"
 msgid "Upload"
 msgstr ""
 
@@ -5200,10 +5205,12 @@ msgid "Import directly from eQSL"
 msgstr ""
 
 #: tserviceeqslform.label4.caption
+msgctxt "tserviceeqslform.label4.caption"
 msgid "Upload Status:"
 msgstr ""
 
 #: tserviceeqslform.label5.caption
+msgctxt "tserviceeqslform.label5.caption"
 msgid "Status"
 msgstr ""
 
@@ -5243,69 +5250,100 @@ msgid "Status:"
 msgstr ""
 
 #: tserviceeqslform.tabsheet1.caption
+msgctxt "tserviceeqslform.tabsheet1.caption"
 msgid "Download QSOs"
 msgstr ""
 
 #: tserviceeqslform.tabsheet2.caption
+msgctxt "tserviceeqslform.tabsheet2.caption"
 msgid "Upload QSOs"
 msgstr ""
 
 #: tserviceeqslform.tabsheet3.caption
+msgctxt "tserviceeqslform.tabsheet3.caption"
 msgid "Tools"
 msgstr ""
 
-#: tserviceform.btconnectlotw.caption
-msgctxt "tserviceform.btconnectlotw.caption"
+#: tservicelotwform.btconnectlotw.caption
+msgctxt "tservicelotwform.btconnectlotw.caption"
 msgid "Connect with LoTW"
 msgstr ""
 
-#: tserviceform.caption
-msgid "Service eQSL and LoTW"
+#: tservicelotwform.button2.caption
+msgctxt "tservicelotwform.button2.caption"
+msgid "Upload"
 msgstr ""
 
-#: tserviceform.lbcurrerror.caption
-msgctxt "tserviceform.lbcurrerror.caption"
+#: tservicelotwform.button3.caption
+msgid "Mark ALL QSOs as Sent to LoTW"
+msgstr ""
+
+#: tservicelotwform.caption
+msgid "Service LoTW"
+msgstr ""
+
+#: tservicelotwform.label3.caption
+msgid "Import directly from LoTW"
+msgstr ""
+
+#: tservicelotwform.label4.caption
+msgctxt "tservicelotwform.label4.caption"
+msgid "Upload Status:"
+msgstr ""
+
+#: tservicelotwform.label5.caption
+msgctxt "tservicelotwform.label5.caption"
+msgid "Status"
+msgstr ""
+
+#: tservicelotwform.lbcurrerror.caption
+msgctxt "tservicelotwform.lbcurrerror.caption"
 msgid "None"
 msgstr ""
 
-#: tserviceform.lbcurrstatus.caption
-msgctxt "tserviceform.lbcurrstatus.caption"
+#: tservicelotwform.lbcurrstatus.caption
+msgctxt "tservicelotwform.lbcurrstatus.caption"
 msgid "Wait"
 msgstr ""
 
-#: tserviceform.lbdownload.caption
-msgctxt "tserviceform.lbdownload.caption"
+#: tservicelotwform.lbdownload.caption
+msgctxt "tservicelotwform.lbdownload.caption"
 msgid "Download:"
 msgstr ""
 
-#: tserviceform.lbdownloadqsl.caption
-msgctxt "tserviceform.lbdownloadqsl.caption"
-msgid "Download QSL received after:"
-msgstr ""
-
-#: tserviceform.lbdownloadsize.caption
-msgctxt "tserviceform.lbdownloadsize.caption"
+#: tservicelotwform.lbdownloadsize.caption
+msgctxt "tservicelotwform.lbdownloadsize.caption"
 msgid "0"
 msgstr ""
 
-#: tserviceform.lberrors.caption
-msgctxt "tserviceform.lberrors.caption"
+#: tservicelotwform.lberrors.caption
+msgctxt "tservicelotwform.lberrors.caption"
 msgid "Errors:"
 msgstr ""
 
-#: tserviceform.lblotw.caption
-msgctxt "tserviceform.lblotw.caption"
-msgid "LoTW"
-msgstr ""
-
-#: tserviceform.lbprocessed.caption
-msgctxt "tserviceform.lbprocessed.caption"
+#: tservicelotwform.lbprocessed.caption
+msgctxt "tservicelotwform.lbprocessed.caption"
 msgid "Processed data:"
 msgstr ""
 
-#: tserviceform.lbstatus.caption
-msgctxt "tserviceform.lbstatus.caption"
+#: tservicelotwform.lbstatus.caption
+msgctxt "tservicelotwform.lbstatus.caption"
 msgid "Status:"
+msgstr ""
+
+#: tservicelotwform.tabsheet1.caption
+msgctxt "tservicelotwform.tabsheet1.caption"
+msgid "Download QSOs"
+msgstr ""
+
+#: tservicelotwform.tabsheet2.caption
+msgctxt "tservicelotwform.tabsheet2.caption"
+msgid "Upload QSOs"
+msgstr ""
+
+#: tservicelotwform.tabsheet3.caption
+msgctxt "tservicelotwform.tabsheet3.caption"
+msgid "Tools"
 msgstr ""
 
 #: tsettingsprogramform.btaddprogram.caption

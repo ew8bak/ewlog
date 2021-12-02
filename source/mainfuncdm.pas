@@ -998,6 +998,7 @@ begin
         'DXCC=' + dmFunc.Q(SQSO.DXCC) + 'NoCalcDXCC=' +
         QuotedStr(IntToStr(SQSO.NoCalcDXCC)) + ' WHERE UnUsedIndex=' +
         QuotedStr(IntToStr(index));
+
       if DBRecord.CurrentDB = 'MySQL' then
         InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
       else

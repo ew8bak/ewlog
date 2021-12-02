@@ -55,7 +55,9 @@ type
   private
     UploadDS: TDataSource;
     needUploadQuery: TSQLQuery;
+    ListQSONumberToUpload: TStringList;
     procedure eQSLImport(FPath: string);
+    procedure RefreshData;
 
   public
     procedure DataFromThread(Status: TdataEQSL);
@@ -73,7 +75,83 @@ uses InitDB_dm, LogConfigForm_U, dmFunc_U, MainFuncDM;
 
 { TServiceEqslForm }
 
+procedure TServiceEqslForm.RefreshData;
+var
+  RecordCount: integer;
+  CountQuery: TSQLQuery;
+  i: integer;
+begin
+  Button2.Visible := False;
+  if not Assigned(needUploadQuery) then
+    needUploadQuery := TSQLQuery.Create(nil);
+  if not Assigned(UploadDS) then
+    UploadDS := TDataSource.Create(nil);
+  if not Assigned(ListQSONumberToUpload) then
+    ListQSONumberToUpload := TStringList.Create;
+
+  try
+    needUploadQuery.Close;
+    CountQuery := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
+    begin
+      needUploadQuery.DataBase := InitDB.MySQLConnection;
+      CountQuery.DataBase := InitDB.MySQLConnection;
+    end
+    else
+    begin
+      needUploadQuery.DataBase := InitDB.SQLiteConnection;
+      CountQuery.DataBase := InitDB.SQLiteConnection;
+    end;
+    CountQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable +
+      ' WHERE EQSL_QSL_SENT = ''N''';
+    CountQuery.Open;
+    RecordCount := CountQuery.Fields[0].AsInteger;
+  finally
+    FreeAndNil(CountQuery);
+  end;
+
+  needUploadQuery.SQL.Text :=
+    'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+    ' WHERE EQSL_QSL_SENT = ''N'' ORDER BY UnUsedIndex DESC';
+  needUploadQuery.Open;
+  needUploadQuery.First;
+  for i := 0 to RecordCount - 1 do
+  begin
+    ListQSONumberToUpload.Add(needUploadQuery.Fields[0].AsString);
+    needUploadQuery.Next;
+  end;
+  needUploadQuery.Close;
+
+  needUploadQuery.SQL.Text :=
+    'SELECT CallSign, datetime(QSODateTime, ''unixepoch'', ''localtime'') AS QSODateTime, QSOBand, QSOMode FROM '
+    + LBRecord.LogTable + ' WHERE EQSL_QSL_SENT = ''N'' ORDER BY UnUsedIndex DESC';
+
+  needUploadQuery.Open;
+
+  UploadDS.DataSet := needUploadQuery;
+  DBGrid1.DataSource := UploadDS;
+  DBGrid1.Columns.Items[0].Width := 80;
+  DBGrid1.Columns.Items[1].Width := 150;
+  DBGrid1.Columns.Items[2].Width := 80;
+  DBGrid1.Columns.Items[3].Width := 50;
+  DBGrid1.Columns.Items[0].Title.Caption := rCallSign;
+  DBGrid1.Columns.Items[1].Title.Caption := rQSODate;
+  DBGrid1.Columns.Items[2].Title.Caption := rQSOBand;
+  DBGrid1.Columns.Items[3].Title.Caption := rQSOMode;
+
+  if RecordCount > 0 then
+  begin
+    Label5.Caption := rNeedUpload + ' ' + IntToStr(RecordCount) + ' QSOs';
+    Button2.Visible := True;
+  end
+  else
+    Label5.Caption := rAllQSOsuploadedtoeQSLcc;
+end;
+
 procedure TServiceEqslForm.DataFromThread(Status: TdataEQSL);
+var
+  Query: TSQLQuery;
+  i: integer;
 begin
   PBDownload.Position := Status.DownloadedPercent;
   if Status.TaskType = 'Download' then
@@ -93,7 +171,31 @@ begin
 
   if (Status.StatusUpload) and (Status.TaskType = 'Upload') then
   begin
-    ShowMessage(status.Message);
+    try
+      Query := TSQLQuery.Create(nil);
+
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
+
+      for i := 0 to ListQSONumberToUpload.Count - 1 do
+      begin
+        Query.SQL.Text := 'UPDATE ' + LBRecord.LogTable +
+          ' SET EQSL_QSL_SENT = ''Y'' WHERE UnUsedIndex = ' +
+          ListQSONumberToUpload.Strings[i];
+        Query.ExecSQL;
+      end;
+      ShowMessage(status.Message);
+
+    finally
+      InitDB.DefTransaction.Commit;
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
+      ListQSONumberToUpload.Clear;
+      FreeAndNil(Query);
+      RefreshData;
+    end;
   end;
 
 end;
@@ -163,10 +265,12 @@ procedure TServiceEqslForm.FormCreate(Sender: TObject);
 begin
   UploadDS := nil;
   needUploadQuery := nil;
+  ListQSONumberToUpload := nil;
 end;
 
 procedure TServiceEqslForm.FormDestroy(Sender: TObject);
 begin
+  FreeAndNil(ListQSONumberToUpload);
   FreeAndNil(UploadDS);
   FreeAndNil(needUploadQuery);
 end;
@@ -183,62 +287,8 @@ begin
 end;
 
 procedure TServiceEqslForm.TabSheet2Show(Sender: TObject);
-var
-  RecordCount: integer;
-  CountQuery: TSQLQuery;
 begin
-  Button2.Visible := False;
-  if not Assigned(needUploadQuery) then
-    needUploadQuery := TSQLQuery.Create(nil);
-  if not Assigned(UploadDS) then
-    UploadDS := TDataSource.Create(nil);
-
-  try
-    needUploadQuery.Close;
-    CountQuery := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-    begin
-      needUploadQuery.DataBase := InitDB.MySQLConnection;
-      CountQuery.DataBase := InitDB.MySQLConnection;
-    end
-    else
-    begin
-      needUploadQuery.DataBase := InitDB.SQLiteConnection;
-      CountQuery.DataBase := InitDB.SQLiteConnection;
-    end;
-    CountQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable +
-      ' WHERE EQSL_QSL_SENT = ''N''';
-    CountQuery.Open;
-    RecordCount := CountQuery.Fields[0].AsInteger;
-  finally
-    FreeAndNil(CountQuery);
-  end;
-
-  needUploadQuery.SQL.Text :=
-    'SELECT CallSign, datetime(QSODateTime, ''unixepoch'', ''localtime'') AS QSODateTime, QSOBand, QSOMode FROM '
-    + LBRecord.LogTable + ' WHERE EQSL_QSL_SENT = ''N'' ORDER BY UnUsedIndex DESC';
-
-  needUploadQuery.Open;
-
-  UploadDS.DataSet := needUploadQuery;
-  DBGrid1.DataSource := UploadDS;
-  DBGrid1.Columns.Items[0].Width := 80;
-  DBGrid1.Columns.Items[1].Width := 150;
-  DBGrid1.Columns.Items[2].Width := 80;
-  DBGrid1.Columns.Items[3].Width := 50;
-  DBGrid1.Columns.Items[0].Title.Caption := rCallSign;
-  DBGrid1.Columns.Items[1].Title.Caption := rQSODate;
-  DBGrid1.Columns.Items[2].Title.Caption := rQSOBand;
-  DBGrid1.Columns.Items[3].Title.Caption := rQSOMode;
-
-  if RecordCount > 0 then
-  begin
-    Label5.Caption := rNeedUpload + ' ' + IntToStr(RecordCount) + ' QSOs';
-    Button2.Visible := True;
-  end
-  else
-    Label5.Caption := rAllQSOsuploadedtoeQSLcc;
-
+  RefreshData;
 end;
 
 procedure TServiceEqslForm.BtConnecteQSLClick(Sender: TObject);

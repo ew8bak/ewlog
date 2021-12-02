@@ -1,22 +1,28 @@
-object ServiceForm: TServiceForm
-  Left = 369
-  Height = 208
-  Top = 200
-  Width = 500
-  HorzScrollBar.Visible = False
-  BorderIcons = [biSystemMenu]
-  BorderStyle = bsDialog
-  Caption = 'Service eQSL and LoTW'
-  ClientHeight = 208
-  ClientWidth = 500
-  Font.Height = -12
-  FormStyle = fsStayOnTop
+object ServiceLoTWForm: TServiceLoTWForm
+  Left = 360
+  Height = 213
+  Top = 174
+  Width = 536
+  Caption = 'Service LoTW'
+  ClientHeight = 213
+  ClientWidth = 536
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
-  Position = poScreenCenter
+  Position = poWorkAreaCenter
   LCLVersion = '2.0.12.0'
+  object PBDownload: TProgressBar
+    Left = 0
+    Height = 16
+    Top = 197
+    Width = 536
+    Align = alBottom
+    Smooth = True
+    TabOrder = 0
+  end
   object Image1: TImage
     Left = 0
-    Height = 192
+    Height = 197
     Top = 0
     Width = 114
     Align = alLeft
@@ -355,187 +361,256 @@ object ServiceForm: TServiceForm
       5C179AF179DCFBEBE5FF01DC04ADCAEBB142180000000049454E44AE426082
     }
   end
-  object PBDownload: TProgressBar
-    Left = 0
-    Height = 16
-    Top = 192
-    Width = 500
-    Align = alBottom
-    Smooth = True
-    TabOrder = 0
-  end
-  object Panel1: TPanel
+  object PageControl1: TPageControl
     Left = 114
-    Height = 192
+    Height = 197
     Top = 0
-    Width = 386
+    Width = 422
+    ActivePage = TabSheet1
     Align = alClient
-    ClientHeight = 192
-    ClientWidth = 386
+    TabIndex = 0
     TabOrder = 1
-    object Bevel1: TBevel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrCenter
-      Left = 21
-      Height = 2
-      Top = 32
-      Width = 344
+    object TabSheet1: TTabSheet
+      Caption = 'Download QSOs'
+      ClientHeight = 166
+      ClientWidth = 412
+      object DELoTW: TDateEdit
+        AnchorSideTop.Control = BtConnectLoTW
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 266
+        Height = 30
+        Top = 28
+        Width = 136
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        DateOrder = doNone
+        ButtonWidth = 23
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 10
+        NumGlyphs = 1
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 0
+      end
+      object BtConnectLoTW: TButton
+        AnchorSideLeft.Control = Label3
+        AnchorSideTop.Control = Label3
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 33
+        Top = 27
+        Width = 130
+        AutoSize = True
+        BorderSpacing.Top = 5
+        Caption = 'Connect with LoTW'
+        OnClick = BtConnectLoTWClick
+        ParentFont = False
+        TabOrder = 1
+      end
+      object Bevel3: TBevel
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = BtConnectLoTW
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 2
+        Top = 65
+        Width = 402
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
+      end
+      object LBProcessed: TLabel
+        AnchorSideLeft.Control = Bevel3
+        AnchorSideTop.Control = Bevel3
+        Left = 5
+        Height = 17
+        Top = 67
+        Width = 99
+        BorderSpacing.Top = 2
+        Caption = 'Processed data:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBErrors: TLabel
+        AnchorSideLeft.Control = LBProcessed
+        AnchorSideTop.Control = LBProcessed
+        AnchorSideTop.Side = asrBottom
+        Left = 5
+        Height = 17
+        Top = 86
+        Width = 42
+        BorderSpacing.Top = 2
+        Caption = 'Errors:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBCurrError: TLabel
+        AnchorSideLeft.Control = LBErrors
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = LBErrors
+        AnchorSideTop.Side = asrCenter
+        Left = 49
+        Height = 17
+        Top = 86
+        Width = 34
+        BorderSpacing.Left = 2
+        Caption = 'None'
+        ParentColor = False
+      end
+      object LBStatus: TLabel
+        AnchorSideTop.Control = LBProcessed
+        AnchorSideTop.Side = asrCenter
+        Left = 189
+        Height = 17
+        Top = 67
+        Width = 43
+        Caption = 'Status:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBCurrStatus: TLabel
+        AnchorSideLeft.Control = LBStatus
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = LBStatus
+        AnchorSideTop.Side = asrCenter
+        Left = 233
+        Height = 17
+        Top = 67
+        Width = 28
+        BorderSpacing.Left = 1
+        Caption = 'Wait'
+        ParentColor = False
+      end
+      object LBDownload: TLabel
+        AnchorSideTop.Control = LBErrors
+        AnchorSideTop.Side = asrCenter
+        Left = 188
+        Height = 17
+        Top = 86
+        Width = 68
+        Caption = 'Download:'
+        ParentColor = False
+      end
+      object LBDownloadSize: TLabel
+        AnchorSideLeft.Control = LBDownload
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = LBDownload
+        AnchorSideTop.Side = asrCenter
+        Left = 258
+        Height = 17
+        Top = 86
+        Width = 8
+        BorderSpacing.Left = 2
+        Caption = '0'
+        ParentColor = False
+      end
+      object Label3: TLabel
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = TabSheet1
+        Left = 5
+        Height = 17
+        Top = 5
+        Width = 162
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Import directly from LoTW'
+        ParentColor = False
+      end
     end
-    object LBDownloadQSL: TLabel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrCenter
-      AnchorSideTop.Control = Panel1
-      Left = 97
-      Height = 16
-      Top = 6
-      Width = 192
-      BorderSpacing.Top = 5
-      Caption = 'Download QSL received after:'
-      Font.Height = -13
-      Font.Style = [fsBold]
-      ParentColor = False
-      ParentFont = False
+    object TabSheet2: TTabSheet
+      Caption = 'Upload QSOs'
+      ClientHeight = 166
+      ClientWidth = 412
+      OnHide = TabSheet2Hide
+      OnShow = TabSheet2Show
+      object DBGrid1: TDBGrid
+        Left = 0
+        Height = 120
+        Top = 0
+        Width = 412
+        Align = alClient
+        Color = clWindow
+        Columns = <>
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        ReadOnly = True
+        Scrollbars = ssAutoBoth
+        TabOrder = 0
+      end
+      object Panel1: TPanel
+        Left = 0
+        Height = 46
+        Top = 120
+        Width = 412
+        Align = alBottom
+        ClientHeight = 46
+        ClientWidth = 412
+        TabOrder = 1
+        object Label4: TLabel
+          AnchorSideLeft.Control = Panel1
+          AnchorSideTop.Control = Panel1
+          Left = 6
+          Height = 17
+          Top = 6
+          Width = 91
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 5
+          Caption = 'Upload Status:'
+          ParentColor = False
+        end
+        object Label5: TLabel
+          AnchorSideLeft.Control = Label4
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Label4
+          AnchorSideTop.Side = asrCenter
+          Left = 99
+          Height = 17
+          Top = 6
+          Width = 39
+          BorderSpacing.Left = 2
+          Caption = 'Status'
+          ParentColor = False
+        end
+        object Button2: TButton
+          AnchorSideTop.Control = Panel1
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = Panel1
+          AnchorSideRight.Side = asrBottom
+          Left = 326
+          Height = 33
+          Top = 7
+          Width = 80
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = True
+          BorderSpacing.Right = 5
+          Caption = 'Upload'
+          OnClick = Button2Click
+          TabOrder = 0
+        end
+      end
     end
-    object Bevel2: TBevel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrCenter
-      Left = 192
-      Height = 88
-      Top = 40
-      Width = 2
+    object TabSheet3: TTabSheet
+      Caption = 'Tools'
+      ClientHeight = 166
+      ClientWidth = 412
+      object Button3: TButton
+        AnchorSideLeft.Control = TabSheet3
+        AnchorSideTop.Control = TabSheet3
+        Left = 5
+        Height = 33
+        Top = 5
+        Width = 208
+        AutoSize = True
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Mark ALL QSOs as Sent to LoTW'
+        OnClick = Button3Click
+        TabOrder = 0
+      end
     end
-    object LBLoTW: TLabel
-      AnchorSideLeft.Control = Panel1
-      Left = 11
-      Height = 16
-      Top = 40
-      Width = 36
-      BorderSpacing.Left = 10
-      Caption = 'LoTW'
-      Font.Height = -13
-      Font.Style = [fsBold, fsUnderline]
-      ParentColor = False
-      ParentFont = False
-    end
-    object DELoTW: TDateEdit
-      AnchorSideLeft.Control = Panel1
-      Left = 11
-      Height = 21
-      Top = 64
-      Width = 136
-      CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-      DateOrder = doNone
-      ButtonWidth = 23
-      AutoSize = False
-      BorderSpacing.Left = 10
-      NumGlyphs = 1
-      Font.Height = -12
-      MaxLength = 0
-      ParentFont = False
-      TabOrder = 0
-    end
-    object BtConnectLoTW: TButton
-      AnchorSideLeft.Control = DELoTW
-      AnchorSideTop.Control = DELoTW
-      AnchorSideTop.Side = asrBottom
-      Left = 11
-      Height = 31
-      Top = 90
-      Width = 118
-      AutoSize = True
-      BorderSpacing.Top = 5
-      Caption = 'Connect with LoTW'
-      Font.Height = -12
-      OnClick = BtConnectLoTWClick
-      ParentFont = False
-      TabOrder = 1
-    end
-    object Bevel3: TBevel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrCenter
-      Left = 21
-      Height = 2
-      Top = 136
-      Width = 344
-    end
-    object LBProcessed: TLabel
-      Left = 16
-      Height = 15
-      Top = 144
-      Width = 89
-      Caption = 'Processed data:'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBErrors: TLabel
-      Left = 16
-      Height = 15
-      Top = 160
-      Width = 38
-      Caption = 'Errors:'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBStatus: TLabel
-      Left = 192
-      Height = 15
-      Top = 144
-      Width = 38
-      Caption = 'Status:'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBDownloadSize: TLabel
-      AnchorSideLeft.Control = LBDownload
-      AnchorSideLeft.Side = asrBottom
-      Left = 253
-      Height = 15
-      Top = 160
-      Width = 7
-      BorderSpacing.Left = 2
-      Caption = '0'
-      ParentColor = False
-    end
-    object LBDownload: TLabel
-      Left = 192
-      Height = 15
-      Top = 160
-      Width = 59
-      Caption = 'Download:'
-      ParentColor = False
-    end
-    object LBCurrStatus: TLabel
-      AnchorSideLeft.Control = LBStatus
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = LBStatus
-      AnchorSideTop.Side = asrCenter
-      Left = 231
-      Height = 15
-      Top = 144
-      Width = 25
-      BorderSpacing.Left = 1
-      Caption = 'Wait'
-      ParentColor = False
-    end
-    object LBCurrError: TLabel
-      AnchorSideLeft.Control = LBErrors
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = LBErrors
-      AnchorSideTop.Side = asrCenter
-      Left = 55
-      Height = 15
-      Top = 160
-      Width = 30
-      BorderSpacing.Left = 1
-      Caption = 'None'
-      ParentColor = False
-    end
-  end
-  object OpenDialog1: TOpenDialog
-    Left = 56
-    Top = 104
   end
 end

@@ -229,6 +229,7 @@ resourcestring
   rDownloadingFile = 'Downloading file';
   rNeedUpload = 'Need to upload';
   rAllQSOsuploadedtoeQSLcc = 'All QSOs uploaded to eQSLcc';
+  rAllQSOsuploadedtoLoTW = 'All QSOs uploaded to LoTW';
 
 implementation
 

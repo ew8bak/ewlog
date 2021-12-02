@@ -1,0 +1,19 @@
+{"version":1,"strings":[
+{"hash":216647783,"name":"tservicelotwform.caption","sourcebytes":[83,101,114,118,105,99,101,32,76,111,84,87],"value":"Service LoTW"},
+{"hash":202061171,"name":"tservicelotwform.tabsheet1.caption","sourcebytes":[68,111,119,110,108,111,97,100,32,81,83,79,115],"value":"Download QSOs"},
+{"hash":21581271,"name":"tservicelotwform.btconnectlotw.caption","sourcebytes":[67,111,110,110,101,99,116,32,119,105,116,104,32,76,111,84,87],"value":"Connect with LoTW"},
+{"hash":66483306,"name":"tservicelotwform.lbprocessed.caption","sourcebytes":[80,114,111,99,101,115,115,101,100,32,100,97,116,97,58],"value":"Processed data:"},
+{"hash":211380522,"name":"tservicelotwform.lberrors.caption","sourcebytes":[69,114,114,111,114,115,58],"value":"Errors:"},
+{"hash":349765,"name":"tservicelotwform.lbcurrerror.caption","sourcebytes":[78,111,110,101],"value":"None"},
+{"hash":178830394,"name":"tservicelotwform.lbstatus.caption","sourcebytes":[83,116,97,116,117,115,58],"value":"Status:"},
+{"hash":382980,"name":"tservicelotwform.lbcurrstatus.caption","sourcebytes":[87,97,105,116],"value":"Wait"},
+{"hash":240327706,"name":"tservicelotwform.lbdownload.caption","sourcebytes":[68,111,119,110,108,111,97,100,58],"value":"Download:"},
+{"hash":48,"name":"tservicelotwform.lbdownloadsize.caption","sourcebytes":[48],"value":"0"},
+{"hash":138001335,"name":"tservicelotwform.label3.caption","sourcebytes":[73,109,112,111,114,116,32,100,105,114,101,99,116,108,121,32,102,114,111,109,32,76,111,84,87],"value":"Import directly from LoTW"},
+{"hash":121181491,"name":"tservicelotwform.tabsheet2.caption","sourcebytes":[85,112,108,111,97,100,32,81,83,79,115],"value":"Upload QSOs"},
+{"hash":228446202,"name":"tservicelotwform.label4.caption","sourcebytes":[85,112,108,111,97,100,32,83,116,97,116,117,115,58],"value":"Upload Status:"},
+{"hash":95062979,"name":"tservicelotwform.label5.caption","sourcebytes":[83,116,97,116,117,115],"value":"Status"},
+{"hash":96941428,"name":"tservicelotwform.button2.caption","sourcebytes":[85,112,108,111,97,100],"value":"Upload"},
+{"hash":5989939,"name":"tservicelotwform.tabsheet3.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"},
+{"hash":217810695,"name":"tservicelotwform.button3.caption","sourcebytes":[77,97,114,107,32,65,76,76,32,81,83,79,115,32,97,115,32,83,101,110,116,32,116,111,32,76,111,84,87],"value":"Mark ALL QSOs as Sent to LoTW"}
+]}

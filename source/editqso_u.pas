@@ -429,12 +429,12 @@ begin
   end;
 
   case SelQSO.QSL_SENT_VIA of
-    '': ComboBox6.ItemIndex := 0;
-    'B': ComboBox6.ItemIndex := 1;
-    'D': ComboBox6.ItemIndex := 2;
-    'E': ComboBox6.ItemIndex := 3;
-    'M': ComboBox6.ItemIndex := 4;
-    'G': ComboBox6.ItemIndex := 5;
+    '': ComboBox7.ItemIndex := 0;
+    'B': ComboBox7.ItemIndex := 1;
+    'D': ComboBox7.ItemIndex := 2;
+    'E': ComboBox7.ItemIndex := 3;
+    'M': ComboBox7.ItemIndex := 4;
+    'G': ComboBox7.ItemIndex := 5;
   end;
 
   case SelQSO.QSLSentAdv of
