@@ -39,6 +39,8 @@ type
     function SendClubLog(SendQSOr: TQSO): boolean;
   private
     result_mes: string;
+    uploadok: boolean;
+    Done: boolean;
   public
     SendQSO: TQSO;
     user: string;
@@ -52,12 +54,10 @@ function StripStr(t, s: string): string;
 
 var
   SendClubLogThread: TSendClubLogThread;
-  uploadok: boolean;
-
 
 implementation
 
-uses Forms, LCLType, dmFunc_U;
+uses Forms, LCLType, dmFunc_U, MainFuncDM;
 
 function StripStr(t, s: string): string;
 begin
@@ -144,6 +144,7 @@ begin
         Result := False;
         result_mes := res.Text;
       end;
+      Done := Result;
     end;
   finally
     res.Destroy;
@@ -161,6 +162,8 @@ end;
 
 procedure TSendClubLogThread.ShowResult;
 begin
+  if Done then
+    MainFunc.UpdateQSL('CLUBLOG_QSO_UPLOAD_STATUS', '1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
       'ClubLog', MB_ICONEXCLAMATION);

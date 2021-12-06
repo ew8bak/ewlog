@@ -38,7 +38,9 @@ type
     procedure ShowResult;
     function SendQRZCom(SendQSOr: TQSO): boolean;
   private
+    uploadok: boolean;
     result_mes: string;
+    Done: boolean;
   public
     SendQSO: TQSO;
     user: string;
@@ -52,12 +54,10 @@ function StripStr(t, s: string): string;
 
 var
   SendQRZComThread: TSendQRZComThread;
-  uploadok: boolean;
-
 
 implementation
 
-uses Forms, LCLType, dmFunc_U;
+uses Forms, LCLType, dmFunc_U, MainFuncDM;
 
 function StripStr(t, s: string): string;
 begin
@@ -147,6 +147,7 @@ begin
         Result := False;
         result_mes := res.Text;
       end;
+      Done := Result;
     end;
 
   finally
@@ -165,6 +166,8 @@ end;
 
 procedure TSendQRZComThread.ShowResult;
 begin
+  if Done then
+  MainFunc.UpdateQSL('QRZCOM_QSO_UPLOAD_STATUS','1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
       'QRZ.COM', MB_ICONEXCLAMATION);

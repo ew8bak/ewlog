@@ -34,6 +34,7 @@ type
     function SendEQSL(SendQSOr: TQSO): boolean;
   private
     result_mes: string;
+    Done: boolean;
   public
     SendQSO: TQSO;
     user: string;
@@ -51,7 +52,7 @@ var
 
 implementation
 
-uses Forms, LCLType, dmFunc_U;
+uses Forms, LCLType, dmFunc_U, MainFuncDM;
 
 function StripStr(t, s: string): string;
 begin
@@ -133,6 +134,7 @@ begin
         if res.Count > 0 then
           response := Trim(StripStr('<BR>', res.Strings[0]));
         Result := Pos('records added', response) > 0;
+        Done := Result;
         if (not Result) or not SendQSOr.Auto then
           result_mes := response;
       end
@@ -158,6 +160,8 @@ end;
 
 procedure TSendEQSLThread.ShowResult;
 begin
+  if Done then
+    MainFunc.UpdateQSL('EQSL_QSL_SENT', 'Y', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
       'eQSL', MB_ICONEXCLAMATION);

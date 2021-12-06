@@ -39,6 +39,8 @@ type
     function SendHRD(SendQSOr: TQSO): boolean;
   private
     result_mes: string;
+    uploadok: boolean;
+    Done: boolean;
   public
     SendQSO: TQSO;
     user: string;
@@ -52,12 +54,10 @@ function StripStr(t, s: string): string;
 
 var
   SendHRDThread: TSendHRDThread;
-  uploadok: boolean;
-
 
 implementation
 
-uses Forms, LCLType, dmFunc_U;
+uses Forms, LCLType, dmFunc_U, MainFuncDM;
 
 function StripStr(t, s: string): string;
 begin
@@ -140,6 +140,7 @@ begin
       res.LoadFromStream(Document);
       if res.Text <> '' then
         Result := AnsiContainsStr(res.Text, '<insert>1</insert>');
+      Done := Result;
       //if inform = 1 then
       //begin
       if not SendQSOr.Auto then
@@ -166,6 +167,8 @@ end;
 
 procedure TSendHRDThread.ShowResult;
 begin
+  if Done then
+  MainFunc.UpdateQSL('HRDLOG_QSO_UPLOAD_STATUS','1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
       'HRDLog', MB_ICONEXCLAMATION);

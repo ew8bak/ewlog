@@ -123,7 +123,7 @@ begin
   needUploadQuery.Close;
 
   needUploadQuery.SQL.Text :=
-    'SELECT CallSign, datetime(QSODateTime, ''unixepoch'', ''localtime'') AS QSODateTime, QSOBand, QSOMode FROM '
+    'SELECT CallSign, datetime(QSODateTime, ''unixepoch'') AS QSODateTime, QSOBand, QSOMode FROM '
     + LBRecord.LogTable + ' WHERE EQSL_QSL_SENT = ''N'' ORDER BY UnUsedIndex DESC';
 
   needUploadQuery.Open;

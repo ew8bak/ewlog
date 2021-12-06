@@ -39,6 +39,7 @@ type
     function SendCloudLog(SendQSOr: TQSO): boolean;
   private
     result_mes: string;
+    uploadok: boolean;
   public
     SendQSO: TQSO;
     server: string;
@@ -49,7 +50,6 @@ type
 
 var
   SendCloudLogThread: TSendCloudLogThread;
-  uploadok: boolean;
 
 implementation
 
@@ -120,6 +120,7 @@ begin
         Result := False;
         result_mes := res.Text;
       end;
+
     end;
   finally
     res.Destroy;

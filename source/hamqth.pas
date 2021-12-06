@@ -39,6 +39,7 @@ type
     function SendHamQTH(SendQSOr: TQSO): boolean;
   private
     result_mes: string;
+    uploadok: boolean;
   public
     SendQSO: TQSO;
     user: string;
@@ -52,7 +53,6 @@ function StripStr(t, s: string): string;
 
 var
   SendHamQTHThread: TSendHamQTHThread;
-  uploadok: boolean;
 
 implementation
 

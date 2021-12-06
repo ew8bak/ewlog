@@ -224,9 +224,6 @@ begin
       FormatDateTime('yyyymmdd hhnnss', Now), False));
     WriteLn(f, '<PROGRAMID' + dmFunc.StringToADIF('EWLog', False));
     WriteLn(f, '<PROGRAMVERSION' + dmFunc.StringToADIF(dmFunc.GetMyVersion, False));
-
-  //  Writeln(f, '<EQSL_USER' + dmFunc.StringToADIF(LBRecord.eQSLccLogin, False));
-  //  Writeln(f, '<EQSL_PSWD' + dmFunc.StringToADIF(LBRecord.eQSLccPassword, False));
     Writeln(f, '<EOH>');
 
     Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +

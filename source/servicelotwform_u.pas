@@ -175,7 +175,7 @@ procedure TServiceLoTWForm.RefreshData;
     needUploadQuery.Close;
 
     needUploadQuery.SQL.Text :=
-      'SELECT CallSign, datetime(QSODateTime, ''unixepoch'', ''localtime'') AS QSODateTime, QSOBand, QSOMode FROM '
+      'SELECT CallSign, datetime(QSODateTime, ''unixepoch'') AS QSODateTime, QSOBand, QSOMode FROM '
       + LBRecord.LogTable + ' WHERE LoTWSent = 0 ORDER BY UnUsedIndex DESC';
 
     needUploadQuery.Open;

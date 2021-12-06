@@ -18,7 +18,7 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, CloudLogCAT, progressForm_u,
-  FileUtil, FMS_record, telnetaddresrecord_u;
+  FileUtil, FMS_record, telnetaddresrecord_u, LazSysUtils;
 
 type
   bandArray = array of string;
@@ -102,6 +102,7 @@ type
     function GetSatDescription(SATname: string): string;
     procedure StartRadio(RIGid: string);
     procedure StopRadio;
+    procedure UpdateQSL(Field, Value: string; UQSO: TQSO);
   end;
 
 var
@@ -148,7 +149,8 @@ begin
   try
     Query := TSQLQuery.Create(nil);
     Query.DataBase := InitDB.ServiceDBConnection;
-    Query.SQL.Text := 'SELECT Description FROM Satellite WHERE Name = ' + QuotedStr(SATname);
+    Query.SQL.Text := 'SELECT Description FROM Satellite WHERE Name = ' +
+      QuotedStr(SATname);
     Query.Open;
     Result := Query.FieldByName('Description').AsString;
     Query.Close;
@@ -823,6 +825,7 @@ end;
 function TMainFunc.SelectEditQSO(index: integer): TQSO;
 var
   Query: TSQLQuery;
+  Fmt: TFormatSettings;
 begin
   try
     try
@@ -830,7 +833,20 @@ begin
       if DBRecord.CurrentDB = 'MySQL' then
         Query.DataBase := InitDB.MySQLConnection
       else
+      begin
+        fmt.ShortDateFormat := 'yyyy-mm-dd';
+        fmt.DateSeparator := '-';
+        fmt.LongTimeFormat := 'hh:nn';
+        fmt.TimeSeparator := ':';
         Query.DataBase := InitDB.SQLiteConnection;
+        Query.SQL.Text :=
+          'SELECT datetime(QSODateTime, ''unixepoch'') AS QSODateTime FROM ' +
+          LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(index);
+        Query.Open;
+        Result.QSODateTime :=
+          StrToDateTime(Query.FieldByName('QSODateTime').AsString, Fmt);
+        Query.Close;
+      end;
 
       Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
         ' WHERE UnUsedIndex = ' + IntToStr(index);
@@ -862,6 +878,7 @@ begin
       Result.QSOMode := Query.FieldByName('QSOMode').AsString;
       Result.QSOSubMode := Query.FieldByName('QSOSubMode').AsString;
       Result.QSOBand := ConvertFreqToSelectView(Query.FieldByName('QSOBand').AsString);
+      Result.DigiBand := Query.FieldByName('DigiBand').AsString;
       Result.Continent := Query.FieldByName('Continent').AsString;
       Result.QSLInfo := Query.FieldByName('QSLInfo').AsString;
       Result.ValidDX := Query.FieldByName('ValidDX').AsString;
@@ -879,8 +896,8 @@ begin
       Result.QSL_RCVD_VIA := Query.FieldByName('QSL_RCVD_VIA').AsString;
       Result.QSL_SENT_VIA := Query.FieldByName('QSL_SENT_VIA').AsString;
       Result.QSLSentAdv := Query.FieldByName('QSLSentAdv').AsString;
-      Result.SAT_NAME:= Query.FieldByName('SAT_NAME').AsString;
-      Result.SAT_MODE:= Query.FieldByName('SAT_MODE').AsString;
+      Result.SAT_NAME := Query.FieldByName('SAT_NAME').AsString;
+      Result.SAT_MODE := Query.FieldByName('SAT_MODE').AsString;
       Result.PROP_MODE := Query.FieldByName('PROP_MODE').AsString;
       Result.ShortNote := Query.FieldByName('ShortNote').AsString;
       Query.Close;
@@ -1300,6 +1317,63 @@ begin
     finally
       FreeAndNil(Query);
     end;
+  end;
+end;
+
+procedure TMainFunc.UpdateQSL(Field, Value: string; UQSO: TQSO);
+var
+  Query: TSQLQuery;
+  SQLString: string;
+  QSODateTime: string;
+begin
+  try
+    try
+      Query := TSQLQuery.Create(nil);
+      if DBRecord.CurrentDB = 'MySQL' then
+      begin
+        Query.DataBase := InitDB.MySQLConnection;
+        QSODateTime := FormatDateTime('yyyy-mm-dd hh:nn:ss', NowUTC);
+      end
+      else
+      begin
+        Query.DataBase := InitDB.SQLiteConnection;
+        QSODateTime := IntToStr(DateTimeToUnix(NowUTC));
+      end;
+
+      SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET ' +
+        Field + ' = ' + QuotedStr(Value);
+
+      case Field of
+        'HRDLOG_QSO_UPLOAD_STATUS': SQLString :=
+            SQLString + ', HRDLOG_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
+        'QRZCOM_QSO_UPLOAD_STATUS': SQLString :=
+            SQLString + ', QRZCOM_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
+        'CLUBLOG_QSO_UPLOAD_STATUS': SQLString :=
+            SQLString + ', CLUBLOG_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
+      end;
+
+      SQLString := SQLString + ' WHERE CallSign = ' + QuotedStr(UQSO.CallSing);
+
+      SQLString := SQLString + ' AND QSODateTime = ' +
+        QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)));
+
+      SQLString := SQLString + ' AND DigiBand = ' + UQSO.DigiBand +
+        ' AND (QSOMode = ' + QuotedStr(UQSO.QSOMode) + ' OR QSOSubMode = ' +
+        QuotedStr(UQSO.QSOSubMode) + ')';
+
+      Query.SQL.Text := SQLString;
+      Query.ExecSQL;
+
+    finally
+      InitDB.DefTransaction.Commit;
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
+      FreeAndNil(Query);
+    end;
+
+  except
+    on E: Exception do
+      WriteLn(ExceptFile, 'UpdateQSL:' + E.ClassName + ':' + E.Message);
   end;
 end;
 
@@ -1747,10 +1821,10 @@ begin
   if IniSet.ViewFreq > 3 then
     IniSet.ViewFreq := 0;
   IniSet.CurrentRIG := INIFile.ReadString('SetCAT', 'CurrentRIG', 'TRX1');
-  IniSet.VHFProp:= INIFile.ReadString('VHF', 'VHFProp', '');
-  IniSet.TXFreq:= INIFile.ReadString('VHF', 'TXFreq', '');
-  IniSet.SATName:= INIFile.ReadString('VHF', 'SATName', '');
-  IniSet.SATMode:= INIFile.ReadString('VHF', 'SATMode', '');
+  IniSet.VHFProp := INIFile.ReadString('VHF', 'VHFProp', '');
+  IniSet.TXFreq := INIFile.ReadString('VHF', 'TXFreq', '');
+  IniSet.SATName := INIFile.ReadString('VHF', 'SATName', '');
+  IniSet.SATMode := INIFile.ReadString('VHF', 'SATMode', '');
 
 end;
 
@@ -2212,8 +2286,8 @@ begin
       end;
 
       QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
-        'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX, QSOMode, QSOSubMode,' +
-        'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, ' +
+        'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX, QSOMode, QSOSubMode,'
+        + 'QSOReportSent, QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, ' +
         'QSLManager, QSLSent, QSLSentAdv, QSLRec,' +
         'MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,' +
         'DigiBand, Continent, ShortNote, QSLReceQSLcc, LoTWRec,' +
