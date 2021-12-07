@@ -383,16 +383,33 @@ begin
     end
     else
     begin
-      Button2.Enabled := False;
-      LoTWThread := TLoTWThread.Create;
-      if Assigned(LoTWThread.FatalException) then
-        raise LoTWThread.FatalException;
-      with LoTWThread do
+      if Button2.Caption = 'Generate' then
       begin
-        DataFromServiceLoTWForm.User := LBRecord.LoTWLogin;
-        DataFromServiceLoTWForm.Password := LBRecord.LoTWPassword;
-        DataFromServiceLoTWForm.TaskType := 'Upload';
-        Start;
+        Button2.Enabled := False;
+        LoTWThread := TLoTWThread.Create;
+        if Assigned(LoTWThread.FatalException) then
+          raise LoTWThread.FatalException;
+        with LoTWThread do
+        begin
+          DataFromServiceLoTWForm.User := LBRecord.LoTWLogin;
+          DataFromServiceLoTWForm.Password := LBRecord.LoTWPassword;
+          DataFromServiceLoTWForm.TaskType := 'Generate';
+          Start;
+        end;
+      end
+      else
+      begin
+        Button2.Enabled := False;
+        LoTWThread := TLoTWThread.Create;
+        if Assigned(LoTWThread.FatalException) then
+          raise LoTWThread.FatalException;
+        with LoTWThread do
+        begin
+          DataFromServiceLoTWForm.User := LBRecord.LoTWLogin;
+          DataFromServiceLoTWForm.Password := LBRecord.LoTWPassword;
+          DataFromServiceLoTWForm.TaskType := 'Upload';
+          Start;
+        end;
       end;
     end;
   end;

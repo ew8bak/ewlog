@@ -122,7 +122,6 @@ type
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
-    EditLoTWPath: TEdit;
     EditLoTWQTH: TEdit;
     EditLoTWKey: TEdit;
     EditRIGNameHL: TEdit;
@@ -160,6 +159,7 @@ type
     Edit8: TEdit;
     Edit9: TEdit;
     FileNameEdit1: TFileNameEdit;
+    FNLoTWEdit: TFileNameEdit;
     FNPathRigctld: TFileNameEdit;
     gbIntRef: TGroupBox;
     gbTelnet: TGroupBox;
@@ -566,7 +566,7 @@ begin
     INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
   INIFile.WriteInteger('SetLog', 'ViewFreq', CBViewFreq.ItemIndex);
 
-  INIFile.WriteString('LoTW', 'Path', EditLoTWPath.Text);
+  INIFile.WriteString('LoTW', 'Path', FNLoTWEdit.Text);
   INIFile.WriteString('LoTW', 'QTH', EditLoTWQTH.Text);
   INIFile.WriteString('LoTW', 'Key', EditLoTWKey.Text);
 
@@ -647,7 +647,7 @@ begin
 
   CBViewFreq.ItemIndex := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
 
-  EditLoTWPath.Text := INIFile.ReadString('LoTW', 'Path', '');
+  FNLoTWEdit.Text := INIFile.ReadString('LoTW', 'Path', '');
   EditLoTWQTH.Text := INIFile.ReadString('LoTW', 'QTH', '');
   EditLoTWKey.Text := INIFile.ReadString('LoTW', 'Key', '');
 
@@ -891,6 +891,11 @@ end;
 procedure TConfigForm.FormCreate(Sender: TObject);
 begin
   ReadINI;
+  {$IFDEF WINDOWS}
+  FNLoTWEdit.Filter := 'tqsl.exe|tqsl.exe';
+  {$ELSE}
+  FNLoTWEdit.Filter := 'tqsl|tqsl';
+  {$ENDIF}
 end;
 
 procedure TConfigForm.LoadRIGSettings(RIGid: integer);
@@ -1293,7 +1298,7 @@ var
   {$ENDIF}
 begin
   LBLoTWWarning.Visible := False;
-  if Length(EditLoTWPath.Text) < 3 then
+  if Length(FNLoTWEdit.Text) < 3 then
   begin
    {$IFDEF LINUX}
     if RunCommand('/bin/bash', ['-c', 'which tqsl'], s) then
@@ -1301,7 +1306,7 @@ begin
       s := StringReplace(s, #10, '', [rfReplaceAll]);
       s := StringReplace(s, #13, '', [rfReplaceAll]);
       if Length(s) <> 0 then
-        EditLoTWPath.Text := s
+        FNLoTWEdit.Text := s
       else
         LBLoTWWarning.Visible := True;
     end;
@@ -1316,7 +1321,7 @@ begin
       Reg.CloseKey;
       Reg.Free;
       if Length(s) <> 0 then
-        EditLoTWPath.Text := s
+        FNLoTWEdit.Text := s
       else
         LBLoTWWarning.Visible := True;
     end;

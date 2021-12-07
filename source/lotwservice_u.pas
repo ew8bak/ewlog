@@ -81,7 +81,7 @@ procedure TLoTWThread.Execute;
 begin
   if DataFromServiceLoTWForm.TaskType = 'Download' then
     DownloadQSL(DataFromServiceLoTWForm);
-  if DataFromServiceLoTWForm.TaskType = 'Upload' then
+  if DataFromServiceLoTWForm.TaskType = 'Generate' then
     CreateADIFile('upload_LoTW.adi');
    // if CreateADIFile('upload_LoTW.adi') then
    //   if SignAdi(FilePATH + 'upload_LoTW.adi') then
