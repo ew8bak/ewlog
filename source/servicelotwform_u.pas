@@ -86,22 +86,21 @@ uses InitDB_dm, LogConfigForm_U, dmFunc_U, MainFuncDM, ConfigForm_U;
 procedure TServiceLoTWForm.SignAdi(FileName: string);
 var
   paramList: TStringList;
-  index: integer;
+  i: integer;
 begin
-  index := 0;
+  i := 0;
   paramList := TStringList.Create;
   paramList.Delimiter := ' ';
-  paramList.DelimitedText :=
-    StringReplace(IniSet.LoTW_Path + ' -d -l "' + IniSet.LoTW_QTH +
-    '" %f -q -p ' + IniSet.LoTW_Key + '', '%f', FileName, []);
+  paramList.DelimitedText := IniSet.LoTW_Path + ' -d -l "' + IniSet.LoTW_QTH +
+    '" ' + FileName + ' -q -p ' + IniSet.LoTW_Key;
   AProcess.Parameters.Clear;
-  while index < paramList.Count do
+  while i < paramList.Count do
   begin
-    if (index = 0) then
-      AProcess.Executable := paramList[index]
+    if (i = 0) then
+      AProcess.Executable := paramList[i]
     else
-      AProcess.Parameters.Add(paramList[index]);
-    Inc(index);
+      AProcess.Parameters.Add(paramList[i]);
+    Inc(i);
   end;
   paramList.Free;
   //AProcess.Options := [poUsePipes];
@@ -116,7 +115,7 @@ var
 begin
   if not AProcess.Running then
   begin
-    OutputLines := TStringList.Create;
+   { OutputLines := TStringList.Create;
     try
       OutputLines.LoadFromStream(Aprocess.Output);
       writeln(OutputLines.Text);
@@ -125,14 +124,21 @@ begin
     finally
       OutputLines.Free;
     end;
-
+    }
     if Aprocess.ExitCode = 0 then
     begin
-      writeln('Signed ...');
-      writeln('If you did not see any errors, you can send signed file to LoTW website by'
-        + ' pressing Upload button');
+      Label7.Caption := 'Signed';
+      //  writeln('If you did not see any errors, you can send signed file to LoTW website by'
+      //    + ' pressing Upload button');
       Button2.Caption := 'Upload';
       Button2.Enabled := True;
+    end
+    else
+    begin
+      ShowMessage('Что то пошло не так, попробуйте ещё раз');
+      Button2.Caption := 'Generate';
+      Button2.Enabled := True;
+      tmrLoTW.Enabled := False;
     end;
     tmrLoTW.Enabled := False;
   end;

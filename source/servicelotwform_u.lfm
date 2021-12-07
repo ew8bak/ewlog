@@ -367,9 +367,9 @@ object ServiceLoTWForm: TServiceLoTWForm
     Height = 197
     Top = 0
     Width = 422
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Download QSOs'
