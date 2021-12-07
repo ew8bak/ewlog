@@ -13,7 +13,7 @@
 {"hash":121181491,"name":"tservicelotwform.tabsheet2.caption","sourcebytes":[85,112,108,111,97,100,32,81,83,79,115],"value":"Upload QSOs"},
 {"hash":228446202,"name":"tservicelotwform.label4.caption","sourcebytes":[85,112,108,111,97,100,32,83,116,97,116,117,115,58],"value":"Upload Status:"},
 {"hash":95062979,"name":"tservicelotwform.label5.caption","sourcebytes":[83,116,97,116,117,115],"value":"Status"},
-{"hash":96941428,"name":"tservicelotwform.button2.caption","sourcebytes":[85,112,108,111,97,100],"value":"Upload"},
+{"hash":206343285,"name":"tservicelotwform.button2.caption","sourcebytes":[71,101,110,101,114,97,116,101],"value":"Generate"},
 {"hash":178830394,"name":"tservicelotwform.label6.caption","sourcebytes":[83,116,97,116,117,115,58],"value":"Status:"},
 {"hash":95062979,"name":"tservicelotwform.label7.caption","sourcebytes":[83,116,97,116,117,115],"value":"Status"},
 {"hash":5989939,"name":"tservicelotwform.tabsheet3.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"},

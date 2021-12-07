@@ -1825,7 +1825,9 @@ begin
   IniSet.TXFreq := INIFile.ReadString('VHF', 'TXFreq', '');
   IniSet.SATName := INIFile.ReadString('VHF', 'SATName', '');
   IniSet.SATMode := INIFile.ReadString('VHF', 'SATMode', '');
-
+  IniSet.LoTW_Path:= INIFile.ReadString('LoTW', 'Path', '');
+  IniSet.LoTW_QTH:= INIFile.ReadString('LoTW', 'QTH', '');
+  IniSet.LoTW_Key:= INIFile.ReadString('LoTW', 'Key', '');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

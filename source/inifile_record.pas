@@ -102,6 +102,9 @@ type
     TXFreq: string;
     SATName: string;
     SATMode: string;
+    LoTW_Path: string;
+    LoTW_QTH: string;
+    LoTW_Key: string;
   end;
 
 implementation

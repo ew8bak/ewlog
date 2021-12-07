@@ -14,11 +14,12 @@ unit ConfigForm_U;
 interface
 
 uses
+  {$IFDEF WINDOWS}registry,{$ENDIF}
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils,
   ResourceStr, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
   Spin, Buttons, ExtCtrls, dmCat, serverDM_u, CWDaemonDM_u, IdStack,
-  DownloadFilesThread;
+  DownloadFilesThread, process;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -121,6 +122,9 @@ type
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
+    EditLoTWPath: TEdit;
+    EditLoTWQTH: TEdit;
+    EditLoTWKey: TEdit;
     EditRIGNameHL: TEdit;
     EditRIGNameTCI: TEdit;
     EditTCIAddress: TEdit;
@@ -169,6 +173,11 @@ type
     gbGridsColor: TGroupBox;
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
+    GBLoTW: TGroupBox;
+    LBLoTWWarning: TLabel;
+    LBLoTWKey: TLabel;
+    LBLoTWQTH: TLabel;
+    LBLoTWPath: TLabel;
     LBRigNameHL: TLabel;
     LBRigNameHL1: TLabel;
     LBRigNumberHL: TLabel;
@@ -254,6 +263,7 @@ type
     SBTelnetDelete: TSpeedButton;
     SpinEdit1: TSpinEdit;
     SECWDaemonWPM: TSpinEdit;
+    TSLoTW: TTabSheet;
     TSCW: TTabSheet;
     TSWorkLAN: TTabSheet;
     TSHamlib: TTabSheet;
@@ -312,6 +322,7 @@ type
     procedure SBTelnetDoneClick(Sender: TObject);
     procedure TSHamlibShow(Sender: TObject);
     procedure TSIntRefShow(Sender: TObject);
+    procedure TSLoTWShow(Sender: TObject);
     procedure TSOtherSettingsShow(Sender: TObject);
     procedure TSTCIShow(Sender: TObject);
     procedure TSTelnetShow(Sender: TObject);
@@ -555,6 +566,10 @@ begin
     INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
   INIFile.WriteInteger('SetLog', 'ViewFreq', CBViewFreq.ItemIndex);
 
+  INIFile.WriteString('LoTW', 'Path', EditLoTWPath.Text);
+  INIFile.WriteString('LoTW', 'QTH', EditLoTWQTH.Text);
+  INIFile.WriteString('LoTW', 'Key', EditLoTWKey.Text);
+
   IniSet.Cluster_Login := EditTelnetLogin.Text;
 
 end;
@@ -631,6 +646,10 @@ begin
   CBCWDaemon.Checked := INIFile.ReadBool('CWDaemon', 'Enable', False);
 
   CBViewFreq.ItemIndex := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
+
+  EditLoTWPath.Text := INIFile.ReadString('LoTW', 'Path', '');
+  EditLoTWQTH.Text := INIFile.ReadString('LoTW', 'QTH', '');
+  EditLoTWKey.Text := INIFile.ReadString('LoTW', 'Key', '');
 
   ReadGridColumns;
   ReadGridColors;
@@ -1264,6 +1283,45 @@ begin
   updatePATH := FilePATH + 'updates' + DirectorySeparator;
   if not DirectoryExists(updatePATH) then
     ForceDirectories(updatePATH);
+end;
+
+procedure TConfigForm.TSLoTWShow(Sender: TObject);
+var
+  s: string;
+  {$IFDEF WINDOWS}
+  Reg: TRegistry;
+  {$ENDIF}
+begin
+  LBLoTWWarning.Visible := False;
+  if Length(EditLoTWPath.Text) < 3 then
+  begin
+   {$IFDEF LINUX}
+    if RunCommand('/bin/bash', ['-c', 'which tqsl'], s) then
+    begin
+      s := StringReplace(s, #10, '', [rfReplaceAll]);
+      s := StringReplace(s, #13, '', [rfReplaceAll]);
+      if Length(s) <> 0 then
+        EditLoTWPath.Text := s
+      else
+        LBLoTWWarning.Visible := True;
+    end;
+   {$ENDIF}
+   {$IFDEF WINDOWS}
+    Reg := TRegistry.Create;
+    try
+      Reg.RootKey := HKEY_LOCAL_MACHINE;
+      if Reg.OpenKey('\Software\TrustedQSL', True) then
+        s := Reg.ReadString('InstallPath');
+    finally
+      Reg.CloseKey;
+      Reg.Free;
+      if Length(s) <> 0 then
+        EditLoTWPath.Text := s
+      else
+        LBLoTWWarning.Visible := True;
+    end;
+   {$ENDIF}
+  end;
 end;
 
 procedure TConfigForm.TSOtherSettingsShow(Sender: TObject);

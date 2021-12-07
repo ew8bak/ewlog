@@ -303,7 +303,7 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 233
         Caption = 'QRZ.RU XML API'
-        ClientHeight = 92
+        ClientHeight = 94
         ClientWidth = 231
         Font.Height = -12
         ParentFont = False
@@ -312,7 +312,7 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = GBQRZRU
           AnchorSideRight.Side = asrBottom
           Left = 85
-          Height = 26
+          Height = 28
           Top = 8
           Width = 136
           Anchors = [akTop, akRight]
@@ -325,7 +325,7 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = GBQRZRU
           AnchorSideRight.Side = asrBottom
           Left = 85
-          Height = 26
+          Height = 28
           Top = 40
           Width = 136
           Anchors = [akTop, akRight]
@@ -338,10 +338,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit6
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit6
-          Left = 48
-          Height = 13
+          Left = 50
+          Height = 15
           Top = 15
-          Width = 32
+          Width = 30
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Login'
@@ -353,10 +353,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit7
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit7
-          Left = 24
-          Height = 13
+          Left = 26
+          Height = 15
           Top = 47
-          Width = 56
+          Width = 54
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Password'
@@ -366,9 +366,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox3: TCheckBox
           Left = 8
-          Height = 23
+          Height = 21
           Top = 70
-          Width = 143
+          Width = 135
           Caption = 'Use as a reference?'
           DoubleBuffered = False
           Font.Height = -12
@@ -384,7 +384,7 @@ object ConfigForm: TConfigForm
         Top = 128
         Width = 233
         Caption = 'QRZ.COM XML API'
-        ClientHeight = 92
+        ClientHeight = 94
         ClientWidth = 231
         Font.Height = -12
         ParentFont = False
@@ -393,7 +393,7 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbQRZCOM
           AnchorSideRight.Side = asrBottom
           Left = 85
-          Height = 26
+          Height = 28
           Top = 8
           Width = 136
           Anchors = [akTop, akRight]
@@ -406,7 +406,7 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbQRZCOM
           AnchorSideRight.Side = asrBottom
           Left = 85
-          Height = 26
+          Height = 28
           Top = 40
           Width = 136
           Anchors = [akTop, akRight]
@@ -419,10 +419,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit8
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit8
-          Left = 48
-          Height = 13
+          Left = 50
+          Height = 15
           Top = 15
-          Width = 32
+          Width = 30
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Login'
@@ -434,10 +434,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit9
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit9
-          Left = 24
-          Height = 13
+          Left = 26
+          Height = 15
           Top = 47
-          Width = 56
+          Width = 54
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Password'
@@ -447,9 +447,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox7: TCheckBox
           Left = 8
-          Height = 23
+          Height = 21
           Top = 72
-          Width = 143
+          Width = 135
           Caption = 'Use as a reference?'
           DoubleBuffered = False
           OnChange = CheckBox7Change
@@ -463,7 +463,7 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 233
         Caption = 'HAMQTH XML API'
-        ClientHeight = 92
+        ClientHeight = 94
         ClientWidth = 231
         Font.Height = -12
         ParentFont = False
@@ -472,7 +472,7 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbHAMQTH
           AnchorSideRight.Side = asrBottom
           Left = 85
-          Height = 26
+          Height = 28
           Top = 8
           Width = 136
           Anchors = [akTop, akRight]
@@ -485,7 +485,7 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbHAMQTH
           AnchorSideRight.Side = asrBottom
           Left = 85
-          Height = 26
+          Height = 28
           Top = 40
           Width = 136
           Anchors = [akTop, akRight]
@@ -498,10 +498,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit14
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit14
-          Left = 48
-          Height = 13
+          Left = 50
+          Height = 15
           Top = 15
-          Width = 32
+          Width = 30
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Login'
@@ -513,10 +513,10 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit15
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit15
-          Left = 24
-          Height = 13
+          Left = 26
+          Height = 15
           Top = 47
-          Width = 56
+          Width = 54
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 5
           Caption = 'Password'
@@ -526,9 +526,9 @@ object ConfigForm: TConfigForm
         end
         object CheckBox11: TCheckBox
           Left = 8
-          Height = 23
+          Height = 21
           Top = 72
-          Width = 143
+          Width = 135
           Caption = 'Use as a reference?'
           Font.Height = -12
           OnChange = CheckBox11Change
@@ -543,7 +543,7 @@ object ConfigForm: TConfigForm
       ClientWidth = 521
       object PCCat: TPageControl
         Left = 0
-        Height = 443
+        Height = 441
         Top = 0
         Width = 521
         ActivePage = TSHamlib
@@ -552,16 +552,16 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 439
-          ClientWidth = 517
+          ClientHeight = 410
+          ClientWidth = 511
           OnShow = TSHamlibShow
           object LBTransceiverModel: TLabel
             AnchorSideLeft.Control = TSHamlib
             AnchorSideTop.Control = TSHamlib
             Left = 10
-            Height = 13
+            Height = 15
             Top = 5
-            Width = 107
+            Width = 103
             BorderSpacing.Left = 10
             BorderSpacing.Top = 5
             Caption = 'Transceiver Model'
@@ -574,8 +574,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBTransceiverModel
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 27
-            Top = 23
+            Height = 28
+            Top = 25
             Width = 192
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -589,9 +589,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBTransceiverModel
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 13
-            Top = 55
-            Width = 143
+            Height = 15
+            Top = 58
+            Width = 130
             BorderSpacing.Top = 5
             Caption = 'Path for HamLib Rigctld'
             Font.Height = -12
@@ -603,8 +603,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBPathRigctld
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 26
-            Top = 73
+            Height = 28
+            Top = 78
             Width = 192
             DialogTitle = 'Path for rigctld'
             FilterIndex = 0
@@ -623,9 +623,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = FNPathRigctld
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 13
-            Top = 104
-            Width = 122
+            Height = 15
+            Top = 111
+            Width = 111
             BorderSpacing.Top = 5
             Caption = 'Extra command line'
             Font.Height = -12
@@ -637,8 +637,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBExtraCmd
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 26
-            Top = 122
+            Height = 28
+            Top = 131
             Width = 192
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -650,9 +650,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = EditExtraCmd
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 13
-            Top = 153
-            Width = 48
+            Height = 15
+            Top = 164
+            Width = 46
             BorderSpacing.Top = 5
             Caption = 'Address'
             Font.Height = -12
@@ -664,8 +664,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCATAddress
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 26
-            Top = 171
+            Height = 28
+            Top = 184
             Width = 95
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -678,8 +678,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCATAddress
             AnchorSideTop.Side = asrBottom
             Left = 107
-            Height = 26
-            Top = 171
+            Height = 28
+            Top = 184
             Width = 95
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
@@ -694,9 +694,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = EditExtraCmd
             AnchorSideTop.Side = asrBottom
             Left = 107
-            Height = 13
-            Top = 153
-            Width = 24
+            Height = 15
+            Top = 164
+            Width = 23
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
             Caption = 'Port'
@@ -709,9 +709,9 @@ object ConfigForm: TConfigForm
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = TSHamlib
             Left = 217
-            Height = 13
+            Height = 15
             Top = 5
-            Width = 55
+            Width = 53
             BorderSpacing.Left = 15
             BorderSpacing.Top = 5
             Caption = 'COM Port'
@@ -724,8 +724,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBComCATPort
             AnchorSideTop.Side = asrBottom
             Left = 217
-            Height = 27
-            Top = 23
+            Height = 28
+            Top = 25
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -738,8 +738,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCatSpeed
             AnchorSideTop.Side = asrBottom
             Left = 306
-            Height = 27
-            Top = 23
+            Height = 28
+            Top = 25
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -766,9 +766,9 @@ object ConfigForm: TConfigForm
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = TSHamlib
             Left = 306
-            Height = 13
+            Height = 15
             Top = 5
-            Width = 38
+            Width = 35
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
             Caption = 'Speed'
@@ -781,9 +781,9 @@ object ConfigForm: TConfigForm
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = TSHamlib
             Left = 395
-            Height = 13
+            Height = 15
             Top = 5
-            Width = 48
+            Width = 42
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
             Caption = 'Stop bit'
@@ -796,8 +796,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCatStopBit
             AnchorSideTop.Side = asrBottom
             Left = 395
-            Height = 27
-            Top = 23
+            Height = 28
+            Top = 25
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -819,9 +819,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBCatComPort
             AnchorSideTop.Side = asrBottom
             Left = 217
-            Height = 13
-            Top = 55
-            Width = 48
+            Height = 15
+            Top = 58
+            Width = 44
             BorderSpacing.Top = 5
             Caption = 'Data bit'
             Font.Height = -12
@@ -833,8 +833,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCatDataBit
             AnchorSideTop.Side = asrBottom
             Left = 217
-            Height = 27
-            Top = 73
+            Height = 28
+            Top = 78
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -858,9 +858,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBCatSpeed
             AnchorSideTop.Side = asrBottom
             Left = 306
-            Height = 13
-            Top = 55
-            Width = 34
+            Height = 15
+            Top = 58
+            Width = 32
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
             Caption = 'Parity'
@@ -873,8 +873,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCatParity
             AnchorSideTop.Side = asrBottom
             Left = 306
-            Height = 27
-            Top = 73
+            Height = 28
+            Top = 78
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -898,9 +898,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBCatStopBit
             AnchorSideTop.Side = asrBottom
             Left = 395
-            Height = 13
-            Top = 55
-            Width = 67
+            Height = 15
+            Top = 58
+            Width = 63
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
             Caption = 'Handshake'
@@ -913,8 +913,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCatHandshake
             AnchorSideTop.Side = asrBottom
             Left = 395
-            Height = 27
-            Top = 73
+            Height = 28
+            Top = 78
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -935,9 +935,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBCatDataBit
             AnchorSideTop.Side = asrBottom
             Left = 217
-            Height = 13
-            Top = 105
-            Width = 58
+            Height = 15
+            Top = 111
+            Width = 53
             BorderSpacing.Top = 5
             Caption = 'RTS State'
             Font.Height = -12
@@ -949,8 +949,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCatRTSState
             AnchorSideTop.Side = asrBottom
             Left = 217
-            Height = 27
-            Top = 123
+            Height = 28
+            Top = 131
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -972,9 +972,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBCatParity
             AnchorSideTop.Side = asrBottom
             Left = 306
-            Height = 13
-            Top = 105
-            Width = 60
+            Height = 15
+            Top = 111
+            Width = 54
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
             Caption = 'DTR State'
@@ -987,8 +987,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCatDTRState
             AnchorSideTop.Side = asrBottom
             Left = 306
-            Height = 27
-            Top = 123
+            Height = 28
+            Top = 131
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -1010,9 +1010,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBCatHandshake
             AnchorSideTop.Side = asrBottom
             Left = 395
-            Height = 13
-            Top = 105
-            Width = 75
+            Height = 15
+            Top = 111
+            Width = 71
             BorderSpacing.Left = 2
             BorderSpacing.Top = 5
             Caption = 'CI-V address'
@@ -1025,8 +1025,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBCatCIVaddress
             AnchorSideTop.Side = asrBottom
             Left = 395
-            Height = 26
-            Top = 123
+            Height = 28
+            Top = 131
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -1038,9 +1038,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = EditCATAddress
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 23
-            Top = 202
-            Width = 172
+            Height = 21
+            Top = 217
+            Width = 154
             BorderSpacing.Top = 5
             Caption = 'Start rigctld on startup?'
             Font.Height = -12
@@ -1053,7 +1053,7 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Side = asrBottom
             Left = 217
             Height = 26
-            Top = 171
+            Top = 182
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -1067,8 +1067,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBCatRTSState
             AnchorSideTop.Side = asrBottom
             Left = 217
-            Height = 13
-            Top = 153
+            Height = 15
+            Top = 162
             Width = 20
             BorderSpacing.Top = 3
             Caption = 'Poll'
@@ -1082,9 +1082,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBPoll
             AnchorSideTop.Side = asrCenter
             Left = 306
-            Height = 13
-            Top = 153
-            Width = 72
+            Height = 17
+            Top = 161
+            Width = 74
             BorderSpacing.Left = 2
             Caption = 'Rig Number'
             ParentColor = False
@@ -1094,8 +1094,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBRigNumberHL
             AnchorSideTop.Side = asrBottom
             Left = 306
-            Height = 28
-            Top = 171
+            Height = 33
+            Top = 183
             Width = 87
             BorderSpacing.Top = 5
             Font.Height = -12
@@ -1117,9 +1117,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBPoll
             AnchorSideTop.Side = asrCenter
             Left = 395
-            Height = 13
-            Top = 153
-            Width = 60
+            Height = 17
+            Top = 161
+            Width = 64
             BorderSpacing.Left = 2
             Caption = 'RIG Name'
             ParentColor = False
@@ -1129,8 +1129,8 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = LBRigNameHL
             AnchorSideTop.Side = asrBottom
             Left = 395
-            Height = 26
-            Top = 171
+            Height = 30
+            Top = 183
             Width = 87
             BorderSpacing.Top = 5
             TabOrder = 17
@@ -1140,9 +1140,9 @@ object ConfigForm: TConfigForm
             AnchorSideTop.Control = CBrigctldStart
             AnchorSideTop.Side = asrBottom
             Left = 10
-            Height = 29
-            Top = 230
-            Width = 118
+            Height = 33
+            Top = 243
+            Width = 120
             AutoSize = True
             BorderSpacing.Left = 10
             BorderSpacing.Top = 5
@@ -1153,8 +1153,8 @@ object ConfigForm: TConfigForm
         end
         object TSTCI: TTabSheet
           Caption = 'TCI'
-          ClientHeight = 439
-          ClientWidth = 517
+          ClientHeight = 410
+          ClientWidth = 511
           OnShow = TSTCIShow
           object LBTCIAddress: TLabel
             AnchorSideLeft.Control = TSTCI
@@ -1300,23 +1300,23 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Control = TSCW
         AnchorSideTop.Control = TSCW
         Left = 5
-        Height = 197
+        Height = 221
         Top = 5
         Width = 158
         AutoSize = True
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'CW Daemon (Linux only)'
-        ClientHeight = 177
+        ClientHeight = 201
         ClientWidth = 156
         TabOrder = 0
         object LBCwDaemonAddress: TLabel
           AnchorSideLeft.Control = GBCWDaemon
           AnchorSideTop.Control = GBCWDaemon
           Left = 10
-          Height = 13
+          Height = 17
           Top = 5
-          Width = 44
+          Width = 46
           BorderSpacing.Left = 10
           BorderSpacing.Top = 5
           Caption = 'Adress:'
@@ -1327,9 +1327,9 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = EditCwDaemonAddress
           AnchorSideTop.Side = asrBottom
           Left = 10
-          Height = 13
-          Top = 56
-          Width = 24
+          Height = 17
+          Top = 64
+          Width = 27
           BorderSpacing.Left = 10
           BorderSpacing.Top = 10
           Caption = 'Port'
@@ -1340,9 +1340,9 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = EditCwDaemonPort
           AnchorSideTop.Side = asrBottom
           Left = 10
-          Height = 13
-          Top = 107
-          Width = 29
+          Height = 17
+          Top = 123
+          Width = 32
           BorderSpacing.Left = 10
           BorderSpacing.Top = 10
           Caption = 'WPM'
@@ -1355,8 +1355,8 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = GBCWDaemon
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 26
-          Top = 20
+          Height = 30
+          Top = 24
           Width = 136
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Top = 2
@@ -1368,8 +1368,8 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = LBCwDaemonPort
           AnchorSideTop.Side = asrBottom
           Left = 10
-          Height = 26
-          Top = 71
+          Height = 30
+          Top = 83
           Width = 94
           BorderSpacing.Top = 2
           TabOrder = 1
@@ -1379,8 +1379,8 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = LBCwDaemonWPM
           AnchorSideTop.Side = asrBottom
           Left = 10
-          Height = 26
-          Top = 122
+          Height = 28
+          Top = 142
           Width = 98
           BorderSpacing.Top = 2
           MaxValue = 60
@@ -1393,13 +1393,123 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = SECWDaemonWPM
           AnchorSideTop.Side = asrBottom
           Left = 5
-          Height = 23
-          Top = 158
-          Width = 132
+          Height = 21
+          Top = 180
+          Width = 134
           BorderSpacing.Left = 5
           BorderSpacing.Top = 10
           Caption = 'Use CW Daemon?'
           TabOrder = 3
+        end
+      end
+    end
+    object TSLoTW: TTabSheet
+      Caption = 'LoTW'
+      ClientHeight = 441
+      ClientWidth = 521
+      OnShow = TSLoTWShow
+      object GBLoTW: TGroupBox
+        AnchorSideLeft.Control = TSLoTW
+        AnchorSideTop.Control = TSLoTW
+        AnchorSideRight.Control = TSLoTW
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 283
+        Top = 5
+        Width = 511
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
+        Caption = 'LoTW Settings'
+        ClientHeight = 263
+        ClientWidth = 509
+        TabOrder = 0
+        object LBLoTWPath: TLabel
+          AnchorSideLeft.Control = GBLoTW
+          AnchorSideTop.Control = GBLoTW
+          Left = 10
+          Height = 17
+          Top = 5
+          Width = 63
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
+          Caption = 'Path TQSL'
+          ParentColor = False
+        end
+        object LBLoTWQTH: TLabel
+          AnchorSideLeft.Control = EditLoTWPath
+          AnchorSideTop.Control = EditLoTWPath
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 17
+          Top = 64
+          Width = 68
+          BorderSpacing.Top = 10
+          Caption = 'QTH Name'
+          ParentColor = False
+        end
+        object LBLoTWKey: TLabel
+          AnchorSideLeft.Control = EditLoTWQTH
+          AnchorSideTop.Control = EditLoTWQTH
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 17
+          Top = 123
+          Width = 128
+          BorderSpacing.Top = 10
+          Caption = 'Digital Signature Key'
+          ParentColor = False
+        end
+        object EditLoTWPath: TEdit
+          AnchorSideLeft.Control = LBLoTWPath
+          AnchorSideTop.Control = LBLoTWPath
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 30
+          Top = 24
+          Width = 160
+          BorderSpacing.Top = 2
+          TabOrder = 0
+        end
+        object EditLoTWQTH: TEdit
+          AnchorSideLeft.Control = LBLoTWQTH
+          AnchorSideTop.Control = LBLoTWQTH
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 30
+          Top = 83
+          Width = 160
+          BorderSpacing.Top = 2
+          TabOrder = 1
+        end
+        object EditLoTWKey: TEdit
+          AnchorSideLeft.Control = LBLoTWKey
+          AnchorSideTop.Control = LBLoTWKey
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 30
+          Top = 142
+          Width = 160
+          BorderSpacing.Top = 2
+          EchoMode = emPassword
+          PasswordChar = '*'
+          TabOrder = 2
+        end
+        object LBLoTWWarning: TLabel
+          AnchorSideLeft.Control = EditLoTWPath
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = EditLoTWPath
+          AnchorSideTop.Side = asrCenter
+          Left = 170
+          Height = 17
+          Top = 31
+          Width = 208
+          Caption = 'I couldn''t find TQSL. Is it installed?'
+          Font.Color = clRed
+          ParentColor = False
+          ParentFont = False
+          Visible = False
         end
       end
     end
@@ -1414,16 +1524,16 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 233
         Caption = 'Internal reference book'
-        ClientHeight = 220
+        ClientHeight = 222
         ClientWidth = 231
         Font.Height = -12
         ParentFont = False
         TabOrder = 0
         object CheckBox1: TCheckBox
           Left = 8
-          Height = 23
+          Height = 21
           Top = 136
-          Width = 115
+          Width = 109
           Caption = 'Use reference?'
           Font.Height = -12
           OnChange = CheckBox1Change
@@ -1435,9 +1545,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 13
+          Height = 15
           Top = 8
-          Width = 80
+          Width = 75
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Release date:'
@@ -1450,9 +1560,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 13
+          Height = 15
           Top = 56
-          Width = 117
+          Width = 109
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Number of records:'
@@ -1465,9 +1575,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 13
+          Height = 15
           Top = 80
-          Width = 89
+          Width = 81
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Update status:'
@@ -1491,9 +1601,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 13
+          Height = 15
           Top = 32
-          Width = 47
+          Width = 45
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Version:'
@@ -1504,7 +1614,7 @@ object ConfigForm: TConfigForm
         object Label14: TLabel
           AnchorSideLeft.Control = Label13
           Left = 60
-          Height = 13
+          Height = 15
           Top = 32
           Width = 12
           BorderSpacing.Left = 50
@@ -1524,9 +1634,9 @@ object ConfigForm: TConfigForm
           AnchorSideRight.Control = gbIntRef
           AnchorSideRight.Side = asrBottom
           Left = 10
-          Height = 13
+          Height = 15
           Top = 104
-          Width = 85
+          Width = 79
           BorderSpacing.Left = 10
           BorderSpacing.Right = 140
           Caption = 'Download file:'
@@ -1864,8 +1974,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = lbPathBackup
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 26
-        Top = 25
+        Height = 30
+        Top = 29
         Width = 232
         ShowHidden = False
         ButtonWidth = 23
@@ -1879,9 +1989,9 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Control = TSBackup
         AnchorSideTop.Control = TSBackup
         Left = 5
-        Height = 13
+        Height = 17
         Top = 10
-        Width = 104
+        Width = 105
         BorderSpacing.Left = 5
         BorderSpacing.Top = 10
         Caption = 'Path backup files'
@@ -1892,9 +2002,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = DEBackupPath
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 23
-        Top = 56
-        Width = 131
+        Height = 21
+        Top = 64
+        Width = 134
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Backup Database'
@@ -1906,9 +2016,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = cbBackupDB
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 23
-        Top = 84
-        Width = 118
+        Height = 21
+        Top = 90
+        Width = 119
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Backup ADI file'
@@ -1920,10 +2030,10 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = cbBackupDB
         AnchorSideTop.Side = asrCenter
-        Left = 141
-        Height = 23
-        Top = 56
-        Width = 124
+        Left = 144
+        Height = 21
+        Top = 64
+        Width = 123
         BorderSpacing.Left = 5
         Caption = 'Backup on close'
         TabOrder = 3
@@ -1933,10 +2043,10 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = cbADIfiles
         AnchorSideTop.Side = asrCenter
-        Left = 138
-        Height = 23
-        Top = 84
-        Width = 124
+        Left = 139
+        Height = 21
+        Top = 90
+        Width = 123
         BorderSpacing.Left = 15
         Caption = 'Backup on close'
         TabOrder = 4
@@ -1946,8 +2056,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = lbTimeBackup
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 26
-        Top = 130
+        Height = 30
+        Top = 138
         Width = 110
         ButtonWidth = 23
         BorderSpacing.Left = 5
@@ -1962,9 +2072,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = cbADIfiles
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 13
-        Top = 112
-        Width = 78
+        Height = 17
+        Top = 116
+        Width = 79
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Backup Time'
@@ -1979,9 +2089,9 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Control = THotKey
         AnchorSideTop.Control = THotKey
         Left = 5
-        Height = 13
+        Height = 15
         Top = 5
-        Width = 84
+        Width = 78
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Key Save QSO'
@@ -1994,9 +2104,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = EditSaveKey
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 13
-        Top = 59
-        Width = 85
+        Height = 15
+        Top = 63
+        Width = 81
         BorderSpacing.Left = 5
         BorderSpacing.Top = 10
         Caption = 'Key Clear QSO'
@@ -2009,8 +2119,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = lbSaveQSO
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 26
-        Top = 23
+        Height = 28
+        Top = 25
         Width = 147
         BorderSpacing.Top = 5
         Font.Height = -12
@@ -2023,8 +2133,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = lbClearQSO
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 26
-        Top = 77
+        Height = 28
+        Top = 83
         Width = 147
         BorderSpacing.Top = 5
         Font.Height = -12
@@ -2037,9 +2147,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = EditClearKey
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 13
-        Top = 113
-        Width = 214
+        Height = 15
+        Top = 121
+        Width = 198
         BorderSpacing.Left = 5
         BorderSpacing.Top = 10
         Caption = 'Key get data from Online Reference'
@@ -2052,8 +2162,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = LBGetReference
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 26
-        Top = 131
+        Height = 28
+        Top = 141
         Width = 147
         BorderSpacing.Top = 5
         Font.Height = -12
@@ -2066,9 +2176,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = EditExportKey
         AnchorSideTop.Side = asrBottom
         Left = 242
-        Height = 13
-        Top = 59
-        Width = 113
+        Height = 17
+        Top = 67
+        Width = 118
         BorderSpacing.Top = 10
         Caption = 'Key Import ADI file'
         ParentColor = False
@@ -2078,8 +2188,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = LBKeyImport
         AnchorSideTop.Side = asrBottom
         Left = 242
-        Height = 26
-        Top = 77
+        Height = 30
+        Top = 89
         Width = 147
         BorderSpacing.Top = 5
         OnKeyDown = EditImportKeyKeyDown
@@ -2090,9 +2200,9 @@ object ConfigForm: TConfigForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = THotKey
         Left = 242
-        Height = 13
+        Height = 17
         Top = 5
-        Width = 112
+        Width = 115
         BorderSpacing.Left = 90
         BorderSpacing.Top = 5
         Caption = 'Key Export ADI file'
@@ -2103,8 +2213,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = LBKeyExport
         AnchorSideTop.Side = asrBottom
         Left = 242
-        Height = 26
-        Top = 23
+        Height = 30
+        Top = 27
         Width = 147
         BorderSpacing.Top = 5
         OnKeyDown = EditExportKeyKeyDown
@@ -2115,9 +2225,9 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = EditReferenceKey
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 13
-        Top = 167
-        Width = 85
+        Height = 17
+        Top = 179
+        Width = 84
         BorderSpacing.Top = 10
         Caption = 'Key Sent Spot'
         ParentColor = False
@@ -2127,8 +2237,8 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Control = LBKeySendSpot
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 26
-        Top = 185
+        Height = 30
+        Top = 201
         Width = 147
         BorderSpacing.Top = 5
         OnKeyDown = EditSentSpotKeyKeyDown
@@ -2141,7 +2251,7 @@ object ConfigForm: TConfigForm
       ClientWidth = 521
       object PControl2: TPageControl
         Left = 0
-        Height = 443
+        Height = 441
         Top = 0
         Width = 521
         ActivePage = PColors
@@ -2150,8 +2260,8 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object PColors: TTabSheet
           Caption = 'Colors'
-          ClientHeight = 439
-          ClientWidth = 517
+          ClientHeight = 410
+          ClientWidth = 511
           object gbGridsColor: TGroupBox
             Left = 8
             Height = 192
@@ -2165,9 +2275,9 @@ object ConfigForm: TConfigForm
               AnchorSideLeft.Control = gbGridsColor
               AnchorSideTop.Control = gbGridsColor
               Left = 5
-              Height = 13
+              Height = 15
               Top = 2
-              Width = 66
+              Width = 57
               BorderSpacing.Left = 5
               BorderSpacing.Top = 2
               Caption = 'Text color'
@@ -2181,8 +2291,8 @@ object ConfigForm: TConfigForm
               AnchorSideTop.Control = lbTextColor
               AnchorSideTop.Side = asrBottom
               Left = 5
-              Height = 22
-              Top = 22
+              Height = 33
+              Top = 24
               Width = 132
               BorderSpacing.Top = 7
               Font.Height = -12
@@ -2195,9 +2305,9 @@ object ConfigForm: TConfigForm
               AnchorSideTop.Control = cbTextColorGrid
               AnchorSideTop.Side = asrBottom
               Left = 5
-              Height = 13
-              Top = 60
-              Width = 59
+              Height = 15
+              Top = 67
+              Width = 51
               BorderSpacing.Left = 5
               BorderSpacing.Top = 10
               Caption = 'Text size'
@@ -2211,8 +2321,8 @@ object ConfigForm: TConfigForm
               AnchorSideTop.Control = lbTextSize
               AnchorSideTop.Side = asrBottom
               Left = 5
-              Height = 23
-              Top = 80
+              Height = 28
+              Top = 89
               Width = 132
               BorderSpacing.Top = 7
               Font.Height = -12
@@ -2233,9 +2343,9 @@ object ConfigForm: TConfigForm
               AnchorSideTop.Control = cbTextSizeGrid
               AnchorSideTop.Side = asrBottom
               Left = 5
-              Height = 13
-              Top = 117
-              Width = 119
+              Height = 15
+              Top = 127
+              Width = 104
               BorderSpacing.Left = 5
               BorderSpacing.Top = 10
               Caption = 'Background color'
@@ -2249,8 +2359,8 @@ object ConfigForm: TConfigForm
               AnchorSideTop.Control = lbBackColor
               AnchorSideTop.Side = asrBottom
               Left = 5
-              Height = 22
-              Top = 137
+              Height = 33
+              Top = 149
               Width = 132
               BorderSpacing.Top = 7
               Font.Height = -12
@@ -2264,10 +2374,10 @@ object ConfigForm: TConfigForm
             AnchorSideRight.Side = asrBottom
             AnchorSideBottom.Control = PColors
             AnchorSideBottom.Side = asrBottom
-            Left = 461
-            Height = 29
-            Top = 383
-            Width = 48
+            Left = 462
+            Height = 33
+            Top = 375
+            Width = 47
             Anchors = [akRight, akBottom]
             AutoSize = True
             BorderSpacing.Right = 2
@@ -2280,10 +2390,10 @@ object ConfigForm: TConfigForm
             AnchorSideRight.Control = btApplyColor
             AnchorSideBottom.Control = PColors
             AnchorSideBottom.Side = asrBottom
-            Left = 402
-            Height = 29
-            Top = 383
-            Width = 57
+            Left = 401
+            Height = 33
+            Top = 375
+            Width = 59
             Anchors = [akRight, akBottom]
             AutoSize = True
             BorderSpacing.Right = 2
@@ -2295,8 +2405,8 @@ object ConfigForm: TConfigForm
         end
         object PGrids: TTabSheet
           Caption = 'Grids'
-          ClientHeight = 439
-          ClientWidth = 517
+          ClientHeight = 410
+          ClientWidth = 511
           object Label7: TLabel
             Left = 1
             Height = 13

@@ -588,7 +588,7 @@ object ServiceLoTWForm: TServiceLoTWForm
           Anchors = [akTop, akLeft, akRight]
           AutoSize = True
           BorderSpacing.Right = 5
-          Caption = 'Upload'
+          Caption = 'Generate'
           OnClick = Button2Click
           TabOrder = 0
         end

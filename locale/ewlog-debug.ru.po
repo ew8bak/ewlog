@@ -748,6 +748,10 @@ msgctxt "resourcestr.rnotdataforconnect"
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
 msgstr "В конфигурации журнала, не указаны данные для подключения к eQSL.cc"
 
+#: resourcestr.rnotdataforconnectlotw
+msgid "The log configuration, do not specify the data to connect to LoTW"
+msgstr ""
+
 #: resourcestr.rnotefldigi
 msgid "Please enable N3FJP logs support in Fldigi settings. (In Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)"
 msgstr "Пожалуйста, включите поддержку N3FJP лога в настройках Fldigi. (В Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)"
@@ -1631,6 +1635,10 @@ msgctxt "tconfigform.gbintref.caption"
 msgid "Internal reference book"
 msgstr "Встроенный справочник позывных"
 
+#: tconfigform.gblotw.caption
+msgid "LoTW Settings"
+msgstr ""
+
 #: tconfigform.gbmysql.caption
 msgctxt "tconfigform.gbmysql.caption"
 msgid "MySQL"
@@ -1862,6 +1870,22 @@ msgstr "Сочетание импорта ADI"
 msgid "Key Sent Spot"
 msgstr ""
 
+#: tconfigform.lblotwkey.caption
+msgid "Digital Signature Key"
+msgstr ""
+
+#: tconfigform.lblotwpath.caption
+msgid "Path TQSL"
+msgstr ""
+
+#: tconfigform.lblotwqth.caption
+msgid "QTH Name"
+msgstr ""
+
+#: tconfigform.lblotwwarning.caption
+msgid "I couldn't find TQSL. Is it installed?"
+msgstr ""
+
 #: tconfigform.lbpathbackup.caption
 msgid "Path backup files"
 msgstr "Путь к файлам бэкапа"
@@ -2037,6 +2061,11 @@ msgstr ""
 #: tconfigform.tsintref.caption
 msgid "Internal reference"
 msgstr "Встроенный справочник"
+
+#: tconfigform.tslotw.caption
+msgctxt "tconfigform.tslotw.caption"
+msgid "LoTW"
+msgstr ""
 
 #: tconfigform.tsothersettings.caption
 msgid "Other Settings"
@@ -5403,7 +5432,7 @@ msgstr ""
 
 #: tservicelotwform.button2.caption
 msgctxt "tservicelotwform.button2.caption"
-msgid "Upload"
+msgid "Generate"
 msgstr ""
 
 #: tservicelotwform.button3.caption

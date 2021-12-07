@@ -100,6 +100,8 @@ resourcestring
   rDefaultLogSel = 'Default log selected';
   rNotDataForConnect =
     'The log configuration, do not specify the data to connect to eQSL.cc';
+  rNotDataForConnectLoTW =
+    'The log configuration, do not specify the data to connect to LoTW';
   rStatusConnecteQSL = 'Connceting to eQSL.cc';
   rStatusConnectLotW = 'Connceting to LoTW';
   rStatusDownloadeQSL = 'Download eQSL.cc';

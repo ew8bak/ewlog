@@ -77,7 +77,7 @@ var
 
 implementation
 
-uses InitDB_dm, LogConfigForm_U, dmFunc_U, MainFuncDM;
+uses InitDB_dm, LogConfigForm_U, dmFunc_U, MainFuncDM, ConfigForm_U;
 
 {$R *.lfm}
 
@@ -92,7 +92,8 @@ begin
   paramList := TStringList.Create;
   paramList.Delimiter := ' ';
   paramList.DelimitedText :=
-    StringReplace('/usr/bin/tqsl -d -l "Gomel" %f -q -p G0m3l8622', '%f', FileName, []);
+    StringReplace(IniSet.LoTW_Path + ' -d -l "' + IniSet.LoTW_QTH +
+    '" %f -q -p ' + IniSet.LoTW_Key + '', '%f', FileName, []);
   AProcess.Parameters.Clear;
   while index < paramList.Count do
   begin
@@ -130,13 +131,9 @@ begin
       writeln('Signed ...');
       writeln('If you did not see any errors, you can send signed file to LoTW website by'
         + ' pressing Upload button');
-      // btnUpload.Enabled := True;
-
+      Button2.Caption := 'Upload';
+      Button2.Enabled := True;
     end;
-    //grbWebExport.Enabled := True;
-    //grbTqsl.Enabled      := True;
-    //pnlUpload.Enabled    := True;
-    //pnlClose.Enabled     := True;
     tmrLoTW.Enabled := False;
   end;
 end;
@@ -151,7 +148,7 @@ begin
     Label5.Caption := Status.Message;
     Label7.Caption := IntToStr(Status.RecCount) + ' of ' + IntToStr(Status.AllRecCount);
     if Status.Result then
-    SignAdi(FilePATH + 'upload_LoTW.adi');
+      SignAdi(FilePATH + 'upload_LoTW.adi');
   end;
   if Status.TaskType = 'SignADI' then
   begin
@@ -339,7 +336,7 @@ begin
   PBDownload.Position := 0;
   if (LBRecord.LoTWLogin = '') or (LBRecord.LoTWPassword = '') then
   begin
-    if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
+    if Application.MessageBox(PChar(rNotDataForConnectLoTW + #10#13 + rGoToSettings),
       PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       LogConfigForm.Show;
     LogConfigForm.PageControl1.ActivePageIndex := 2;
@@ -369,23 +366,34 @@ begin
   PBDownload.Position := 0;
   if (LBRecord.LoTWLogin = '') or (LBRecord.LoTWPassword = '') then
   begin
-    if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
+    if Application.MessageBox(PChar(rNotDataForConnectLoTW + #10#13 + rGoToSettings),
       PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       LogConfigForm.Show;
     LogConfigForm.PageControl1.ActivePageIndex := 2;
   end
   else
   begin
-    Button2.Enabled := False;
-    LoTWThread := TLoTWThread.Create;
-    if Assigned(LoTWThread.FatalException) then
-      raise LoTWThread.FatalException;
-    with LoTWThread do
+    if (IniSet.LoTW_Path = '') or (IniSet.LoTW_QTH = '') or (IniSet.LoTW_Key = '') then
     begin
-      DataFromServiceLoTWForm.User := LBRecord.LoTWLogin;
-      DataFromServiceLoTWForm.Password := LBRecord.LoTWPassword;
-      DataFromServiceLoTWForm.TaskType := 'Upload';
-      Start;
+      if Application.MessageBox(PChar(rNotDataForConnectLoTW + #10#13 + rGoToSettings),
+        PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+        ConfigForm.Show;
+      ConfigForm.PControl.ActivePageIndex := 4;
+      ConfigForm.TSLoTWShow(self);
+    end
+    else
+    begin
+      Button2.Enabled := False;
+      LoTWThread := TLoTWThread.Create;
+      if Assigned(LoTWThread.FatalException) then
+        raise LoTWThread.FatalException;
+      with LoTWThread do
+      begin
+        DataFromServiceLoTWForm.User := LBRecord.LoTWLogin;
+        DataFromServiceLoTWForm.Password := LBRecord.LoTWPassword;
+        DataFromServiceLoTWForm.TaskType := 'Upload';
+        Start;
+      end;
     end;
   end;
 end;
