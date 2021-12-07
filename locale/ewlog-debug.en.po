@@ -5218,6 +5218,16 @@ msgctxt "tserviceeqslform.label5.caption"
 msgid "Status"
 msgstr ""
 
+#: tserviceeqslform.label6.caption
+msgctxt "tserviceeqslform.label6.caption"
+msgid "Status:"
+msgstr ""
+
+#: tserviceeqslform.label7.caption
+msgctxt "tserviceeqslform.label7.caption"
+msgid "Status"
+msgstr ""
+
 #: tserviceeqslform.lbcurrerror.caption
 msgctxt "tserviceeqslform.lbcurrerror.caption"
 msgid "None"
@@ -5297,6 +5307,16 @@ msgstr ""
 
 #: tservicelotwform.label5.caption
 msgctxt "tservicelotwform.label5.caption"
+msgid "Status"
+msgstr ""
+
+#: tservicelotwform.label6.caption
+msgctxt "tservicelotwform.label6.caption"
+msgid "Status:"
+msgstr ""
+
+#: tservicelotwform.label7.caption
+msgctxt "tservicelotwform.label7.caption"
 msgid "Status"
 msgstr ""
 

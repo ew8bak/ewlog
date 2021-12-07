@@ -6,6 +6,7 @@ object ServiceLoTWForm: TServiceLoTWForm
   Caption = 'Service LoTW'
   ClientHeight = 213
   ClientWidth = 536
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
@@ -366,9 +367,9 @@ object ServiceLoTWForm: TServiceLoTWForm
     Height = 197
     Top = 0
     Width = 422
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Download QSOs'
@@ -590,6 +591,31 @@ object ServiceLoTWForm: TServiceLoTWForm
           Caption = 'Upload'
           OnClick = Button2Click
           TabOrder = 0
+        end
+        object Label6: TLabel
+          AnchorSideLeft.Control = Label4
+          AnchorSideTop.Control = Label4
+          AnchorSideTop.Side = asrBottom
+          Left = 6
+          Height = 17
+          Top = 25
+          Width = 43
+          BorderSpacing.Top = 2
+          Caption = 'Status:'
+          ParentColor = False
+        end
+        object Label7: TLabel
+          AnchorSideLeft.Control = Label6
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Label6
+          AnchorSideTop.Side = asrCenter
+          Left = 51
+          Height = 17
+          Top = 25
+          Width = 39
+          BorderSpacing.Left = 2
+          Caption = 'Status'
+          ParentColor = False
         end
       end
     end

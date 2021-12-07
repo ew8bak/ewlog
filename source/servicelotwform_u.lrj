@@ -14,6 +14,8 @@
 {"hash":228446202,"name":"tservicelotwform.label4.caption","sourcebytes":[85,112,108,111,97,100,32,83,116,97,116,117,115,58],"value":"Upload Status:"},
 {"hash":95062979,"name":"tservicelotwform.label5.caption","sourcebytes":[83,116,97,116,117,115],"value":"Status"},
 {"hash":96941428,"name":"tservicelotwform.button2.caption","sourcebytes":[85,112,108,111,97,100],"value":"Upload"},
+{"hash":178830394,"name":"tservicelotwform.label6.caption","sourcebytes":[83,116,97,116,117,115,58],"value":"Status:"},
+{"hash":95062979,"name":"tservicelotwform.label7.caption","sourcebytes":[83,116,97,116,117,115],"value":"Status"},
 {"hash":5989939,"name":"tservicelotwform.tabsheet3.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"},
 {"hash":217810695,"name":"tservicelotwform.button3.caption","sourcebytes":[77,97,114,107,32,65,76,76,32,81,83,79,115,32,97,115,32,83,101,110,116,32,116,111,32,76,111,84,87],"value":"Mark ALL QSOs as Sent to LoTW"}
 ]}

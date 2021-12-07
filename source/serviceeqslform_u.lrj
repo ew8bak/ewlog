@@ -17,6 +17,8 @@
 {"hash":228446202,"name":"tserviceeqslform.label4.caption","sourcebytes":[85,112,108,111,97,100,32,83,116,97,116,117,115,58],"value":"Upload Status:"},
 {"hash":95062979,"name":"tserviceeqslform.label5.caption","sourcebytes":[83,116,97,116,117,115],"value":"Status"},
 {"hash":96941428,"name":"tserviceeqslform.button2.caption","sourcebytes":[85,112,108,111,97,100],"value":"Upload"},
+{"hash":178830394,"name":"tserviceeqslform.label6.caption","sourcebytes":[83,116,97,116,117,115,58],"value":"Status:"},
+{"hash":95062979,"name":"tserviceeqslform.label7.caption","sourcebytes":[83,116,97,116,117,115],"value":"Status"},
 {"hash":5989939,"name":"tserviceeqslform.tabsheet3.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"},
 {"hash":217642476,"name":"tserviceeqslform.button3.caption","sourcebytes":[77,97,114,107,32,65,76,76,32,81,83,79,115,32,97,115,32,83,101,110,116,32,116,111,32,101,81,83,76],"value":"Mark ALL QSOs as Sent to eQSL"}
 ]}

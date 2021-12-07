@@ -19,7 +19,7 @@ uses
   Classes, SysUtils, strutils, fphttpclient, SQLDB, LazFileUtils, LazUTF8, ResourceStr;
 
 const
-  //UploadURL = 'https://www.eqsl.cc/qslcard/ImportADIF.cfm';
+  UploadURL = 'https://LoTW.arrl.org/lotwuser/upload?login=%s&password=%s';
   DownloadURL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
 
 type
@@ -82,8 +82,10 @@ begin
   if DataFromServiceLoTWForm.TaskType = 'Download' then
     DownloadQSL(DataFromServiceLoTWForm);
   if DataFromServiceLoTWForm.TaskType = 'Upload' then
-    if CreateADIFile('upload_LoTW.adi') then
-      UploadQSLFile(FilePATH + 'upload_LoTW.adi');
+    CreateADIFile('upload_LoTW.adi');
+   // if CreateADIFile('upload_LoTW.adi') then
+   //   if SignAdi(FilePATH + 'upload_LoTW.adi') then
+    //    UploadQSLFile(FilePATH + 'upload_LoTW.adi');
 end;
 
 procedure TLoTWThread.ToForm;
@@ -107,40 +109,40 @@ begin
     HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; EWLog)');
     HTTP.OnDataReceived := @OnDataReceived;
 
-     SaveFilePATH := FilePATH + 'LotW_' + ServiceData.Date + '.adi';
-      FullURL := DownloadURL + 'login=' + ServiceData.User + '&password=' +
-        ServiceData.Password + '&qso_query=1&qso_qsldetail="yes"' +
-        '&qso_qslsince=' + ServiceData.Date;
-      try
-        HTTP.Get(FullURL, Document);
-        if HTTP.ResponseStatusCode = 200 then
+    SaveFilePATH := FilePATH + 'LotW_' + ServiceData.Date + '.adi';
+    FullURL := DownloadURL + 'login=' + ServiceData.User + '&password=' +
+      ServiceData.Password + '&qso_query=1&qso_qsldetail="yes"' +
+      '&qso_qslsince=' + ServiceData.Date;
+    try
+      HTTP.Get(FullURL, Document);
+      if HTTP.ResponseStatusCode = 200 then
+      begin
+        SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
+        if Pos('Username/password incorrect', response) > 0 then
         begin
-          SetString(response, PChar(Document.Memory), Document.Size div SizeOf(char));
-          if Pos('Username/password incorrect', response) > 0 then
-          begin
-            Status.Error := True;
-            Status.ErrorString := rStatusIncorrect;
-            Synchronize(@ToForm);
-          end
-          else
-          begin
-            Document.SaveToFile(SaveFilePATH);
-            Status.DownloadedFilePATH := SaveFilePATH;
-            Status.Message := rStatusSaveFile;
-            Status.StatusDownload := True;
-            Synchronize(@ToForm);
-          end;
-        end;
-      except
-        on E: Exception do
-        begin
-          Status.ErrorString := E.Message;
           Status.Error := True;
+          Status.ErrorString := rStatusIncorrect;
           Synchronize(@ToForm);
-          Exit;
+        end
+        else
+        begin
+          Document.SaveToFile(SaveFilePATH);
+          Status.DownloadedFilePATH := SaveFilePATH;
+          Status.Message := rStatusSaveFile;
+          Status.StatusDownload := True;
+          Synchronize(@ToForm);
         end;
       end;
-      Exit;
+    except
+      on E: Exception do
+      begin
+        Status.ErrorString := E.Message;
+        Status.Error := True;
+        Synchronize(@ToForm);
+        Exit;
+      end;
+    end;
+    Exit;
 
   finally
     FreeAndNil(HTTP);
@@ -177,8 +179,6 @@ var
   Query: TSQLQuery;
   f: TextFile;
   tmp: string;
-  DefMyLAT: string;
-  DefMyLON: string;
   DefMyGrid: string;
   tmpFreq: string;
   SafeFreq: double;
@@ -192,18 +192,18 @@ begin
     Status.Result := False;
     Status.RecCount := 0;
     Status.AllRecCount := 0;
-
+    Status.TaskType := 'GenerateADI';
+    Status.Message := 'Create ADI file';
     Query := TSQLQuery.Create(nil);
     if DBRecord.CurrentDB = 'MySQL' then
       Query.DataBase := InitDB.MySQLConnection
     else
       Query.DataBase := InitDB.SQLiteConnection;
-    Query.SQL.Text := 'SELECT * FROM LogBookInfo WHERE LogTable = ' +
+
+    Query.SQL.Text := 'SELECT Loc FROM LogBookInfo WHERE LogTable = ' +
       QuotedStr(LBRecord.LogTable);
     Query.Open;
     DefMyGrid := Query.Fields.FieldByName('Loc').AsString;
-    DefMyLat := SetSizeLoc(Query.Fields.FieldByName('Lat').AsString);
-    DefMyLon := SetSizeLoc(Query.Fields.FieldByName('Lon').AsString);
     Query.Close;
 
     if FileExists(Path) then
@@ -227,7 +227,7 @@ begin
     Writeln(f, '<EOH>');
 
     Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
-      ' WHERE LoTWSent = 0 ORDER BY UnUsedIndex ASC';
+      ' WHERE LoTWSent = 0 AND PROP_MODE <> ''RPT'' ORDER BY UnUsedIndex ASC';
 
     Query.Open;
     Query.Last;
@@ -238,10 +238,6 @@ begin
     begin
       try
         tmpFreq := '';
-
-        tmp := '<OPERATOR' + dmFunc.StringToADIF(
-          dmFunc.RemoveSpaces(DBRecord.CurrCall), False);
-        Write(f, tmp);
 
         tmp := '<CALL' + dmFunc.StringToADIF(
           dmFunc.RemoveSpaces(Query.Fields.FieldByName('CallSign').AsString),
@@ -283,6 +279,17 @@ begin
           Write(f, tmp);
         end;
 
+        if Query.Fields.FieldByName('FREQ_RX').AsString <> '' then
+        begin
+          tmpFreq := Query.Fields.FieldByName('FREQ_RX').AsString;
+          Delete(tmpFreq, Length(tmpFreq) - 2, 1);
+          TryStrToFloatSafe(tmpFreq, SafeFreq);
+          tmp := '<FREQ_RX' + dmFunc.StringToADIF(
+            StringReplace(FormatFloat('0.#####', SafeFreq), ',', '.', [rfReplaceAll]),
+            False);
+          Write(f, tmp);
+        end;
+
         if Query.Fields.FieldByName('QSOReportSent').AsString <> '' then
         begin
           tmp := '<RST_SENT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
@@ -301,6 +308,13 @@ begin
         begin
           tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
             Query.Fields.FieldByName('QSOBand').AsString), False);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('BAND_RX').AsString <> '' then
+        begin
+          tmp := '<BAND_RX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+            'BAND_RX').AsString, False);
           Write(f, tmp);
         end;
 
@@ -325,15 +339,6 @@ begin
           Write(f, tmp);
         end;
 
-        if Query.Fields.FieldByName('QSLInfo').AsString <> '' then
-        begin
-          tmp := '<QSLMSG' + dmFunc.StringToADIF(
-            dmFunc.MyTrim(Query.Fields.FieldByName('QSLInfo').AsString),
-            False);
-          Write(f, tmp);
-        end;
-
-
         if Query.Fields.FieldByName('MY_GRIDSQUARE').AsString <> '' then
         begin
           tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
@@ -343,30 +348,6 @@ begin
         else
         begin
           tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(DefMyGrid, False);
-          Write(f, tmp);
-        end;
-
-        if Query.Fields.FieldByName('MY_LAT').AsString <> '' then
-        begin
-          tmp := '<MY_LAT' + dmFunc.StringToADIF(
-            SetSizeLoc(Query.Fields.FieldByName('MY_LAT').AsString), False);
-          Write(f, tmp);
-        end
-        else
-        begin
-          tmp := '<MY_LAT' + dmFunc.StringToADIF(DefMyLAT, False);
-          Write(f, tmp);
-        end;
-
-        if Query.Fields.FieldByName('MY_LON').AsString <> '' then
-        begin
-          tmp := '<MY_LON' + dmFunc.StringToADIF(
-            SetSizeLoc(Query.Fields.FieldByName('MY_LON').AsString), False);
-          Write(f, tmp);
-        end
-        else
-        begin
-          tmp := '<MY_LON' + dmFunc.StringToADIF(DefMyLON, False);
           Write(f, tmp);
         end;
 
@@ -394,6 +375,7 @@ begin
   finally
     CloseFile(f);
     Status.Result := True;
+    Status.Message := 'Create ADI file DONE';
     Synchronize(@ToForm);
     FreeAndNil(Query);
     Result := True;

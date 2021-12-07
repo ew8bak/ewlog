@@ -15,7 +15,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
   EditBtn, StdCtrls, DBGrids, SQLDB, DB, ResourceStr, DateUtils, LoTWservice_u,
-  LCLType;
+  LCLType, process;
 
 type
 
@@ -32,6 +32,8 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
     LBCurrError: TLabel;
     LBCurrStatus: TLabel;
     LBDownload: TLabel;
@@ -48,17 +50,22 @@ type
     procedure BtConnectLoTWClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure TabSheet2Hide(Sender: TObject);
     procedure TabSheet2Show(Sender: TObject);
   private
+    AProcess: TProcess;
+    tmrLoTW: TTimer;
     UploadDS: TDataSource;
     needUploadQuery: TSQLQuery;
     ListQSONumberToUpload: TStringList;
     procedure RefreshData;
     procedure LotWImport(FPath: string);
+    procedure tmrLoTWTimer(Sender: TObject);
+    procedure SignAdi(FileName: string);
 
   public
     procedure DataFromThread(Status: TdataLoTW);
@@ -69,136 +76,220 @@ var
   ServiceLoTWForm: TServiceLoTWForm;
 
 implementation
-  uses InitDB_dm, LogConfigForm_U, dmFunc_U, MainFuncDM;
+
+uses InitDB_dm, LogConfigForm_U, dmFunc_U, MainFuncDM;
 
 {$R *.lfm}
 
 { TServiceLoTWForm }
 
-  procedure TServiceLoTWForm.DataFromThread(Status: TdataLoTW);
-  var
-    Query: TSQLQuery;
-    i: integer;
+procedure TServiceLoTWForm.SignAdi(FileName: string);
+var
+  paramList: TStringList;
+  index: integer;
+begin
+  index := 0;
+  paramList := TStringList.Create;
+  paramList.Delimiter := ' ';
+  paramList.DelimitedText :=
+    StringReplace('/usr/bin/tqsl -d -l "Gomel" %f -q -p G0m3l8622', '%f', FileName, []);
+  AProcess.Parameters.Clear;
+  while index < paramList.Count do
   begin
-    PBDownload.Position := Status.DownloadedPercent;
-    if Status.TaskType = 'Download' then
-      LBCurrStatus.Caption := Status.Message;
-    if Status.Error then
-    begin
-      LBCurrError.Caption := Status.ErrorString;
-      BtConnectLoTW.Enabled := True;
+    if (index = 0) then
+      AProcess.Executable := paramList[index]
+    else
+      AProcess.Parameters.Add(paramList[index]);
+    Inc(index);
+  end;
+  paramList.Free;
+  //AProcess.Options := [poUsePipes];
+
+  AProcess.Execute;
+  tmrLoTW.Enabled := True;
+end;
+
+procedure TServiceLoTWForm.tmrLoTWTimer(Sender: TObject);
+var
+  OutputLines: TStringList;
+begin
+  if not AProcess.Running then
+  begin
+    OutputLines := TStringList.Create;
+    try
+      OutputLines.LoadFromStream(Aprocess.Output);
+      writeln(OutputLines.Text);
+      OutputLines.LoadFromStream(Aprocess.Stderr);
+      writeln(OutputLines.Text);
+    finally
+      OutputLines.Free;
     end;
-    LBDownloadSize.Caption := FormatFloat('0.###', Status.DownloadedFileSize / 1048576) +
-      ' ' + rMBytes;
 
-    if (Status.StatusDownload) and (Status.TaskType = 'Download') then
+    if Aprocess.ExitCode = 0 then
     begin
-      LotWImport(status.DownloadedFilePATH);
+      writeln('Signed ...');
+      writeln('If you did not see any errors, you can send signed file to LoTW website by'
+        + ' pressing Upload button');
+      // btnUpload.Enabled := True;
+
     end;
+    //grbWebExport.Enabled := True;
+    //grbTqsl.Enabled      := True;
+    //pnlUpload.Enabled    := True;
+    //pnlClose.Enabled     := True;
+    tmrLoTW.Enabled := False;
+  end;
+end;
 
-    if (Status.StatusUpload) and (Status.TaskType = 'Upload') then
-    begin
-      try
-        Query := TSQLQuery.Create(nil);
-
-        if DBRecord.CurrentDB = 'MySQL' then
-          Query.DataBase := InitDB.MySQLConnection
-        else
-          Query.DataBase := InitDB.SQLiteConnection;
-
-        for i := 0 to ListQSONumberToUpload.Count - 1 do
-        begin
-          Query.SQL.Text := 'UPDATE ' + LBRecord.LogTable +
-            ' SET LoTWSent = 1 WHERE UnUsedIndex = ' +
-            ListQSONumberToUpload.Strings[i];
-          Query.ExecSQL;
-        end;
-        ShowMessage(status.Message);
-
-      finally
-        InitDB.DefTransaction.Commit;
-        if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-          ShowMessage(rDBError);
-        ListQSONumberToUpload.Clear;
-        FreeAndNil(Query);
-        RefreshData;
-      end;
-    end;
+procedure TServiceLoTWForm.DataFromThread(Status: TdataLoTW);
+var
+  Query: TSQLQuery;
+  i: integer;
+begin
+  if Status.TaskType = 'GenerateADI' then
+  begin
+    Label5.Caption := Status.Message;
+    Label7.Caption := IntToStr(Status.RecCount) + ' of ' + IntToStr(Status.AllRecCount);
+    if Status.Result then
+    SignAdi(FilePATH + 'upload_LoTW.adi');
+  end;
+  if Status.TaskType = 'SignADI' then
+  begin
+    Label5.Caption := Status.Message;
+    Label7.Caption := '';
 
   end;
+
+  PBDownload.Position := Status.DownloadedPercent;
+  if Status.TaskType = 'Download' then
+    LBCurrStatus.Caption := Status.Message;
+  if Status.Error then
+  begin
+    LBCurrError.Caption := Status.ErrorString;
+    BtConnectLoTW.Enabled := True;
+  end;
+  LBDownloadSize.Caption := FormatFloat('0.###', Status.DownloadedFileSize / 1048576) +
+    ' ' + rMBytes;
+
+  if (Status.StatusDownload) and (Status.TaskType = 'Download') then
+  begin
+    LotWImport(status.DownloadedFilePATH);
+  end;
+
+  if (Status.StatusUpload) and (Status.TaskType = 'Upload') then
+  begin
+    try
+      Query := TSQLQuery.Create(nil);
+
+      if DBRecord.CurrentDB = 'MySQL' then
+        Query.DataBase := InitDB.MySQLConnection
+      else
+        Query.DataBase := InitDB.SQLiteConnection;
+
+      for i := 0 to ListQSONumberToUpload.Count - 1 do
+      begin
+        Query.SQL.Text := 'UPDATE ' + LBRecord.LogTable +
+          ' SET LoTWSent = 1 WHERE UnUsedIndex = ' +
+          ListQSONumberToUpload.Strings[i];
+        Query.ExecSQL;
+      end;
+      ShowMessage(status.Message);
+
+    finally
+      InitDB.DefTransaction.Commit;
+      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
+        ShowMessage(rDBError);
+      ListQSONumberToUpload.Clear;
+      FreeAndNil(Query);
+      RefreshData;
+    end;
+  end;
+
+end;
 
 procedure TServiceLoTWForm.RefreshData;
-  var
-    RecordCount: integer;
-    CountQuery: TSQLQuery;
-    i: integer;
+var
+  RecordCount: integer;
+  CountQuery: TSQLQuery;
+  i: integer;
+begin
+  Button2.Visible := False;
+  if not Assigned(needUploadQuery) then
+    needUploadQuery := TSQLQuery.Create(nil);
+  if not Assigned(UploadDS) then
+    UploadDS := TDataSource.Create(nil);
+  if not Assigned(ListQSONumberToUpload) then
+    ListQSONumberToUpload := TStringList.Create;
+
+  if not Assigned(AProcess) then
+    AProcess := TProcess.Create(nil);
+
+  if not Assigned(tmrLoTW) then
   begin
-    Button2.Visible := False;
-    if not Assigned(needUploadQuery) then
-      needUploadQuery := TSQLQuery.Create(nil);
-    if not Assigned(UploadDS) then
-      UploadDS := TDataSource.Create(nil);
-    if not Assigned(ListQSONumberToUpload) then
-      ListQSONumberToUpload := TStringList.Create;
+    tmrLoTW := TTimer.Create(nil);
+    tmrLoTW.Enabled := False;
+    tmrLoTW.Interval := 1000;
+    tmrLoTW.OnTimer := @tmrLoTWTimer;
+  end;
 
-    try
-      needUploadQuery.Close;
-      CountQuery := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'MySQL' then
-      begin
-        needUploadQuery.DataBase := InitDB.MySQLConnection;
-        CountQuery.DataBase := InitDB.MySQLConnection;
-      end
-      else
-      begin
-        needUploadQuery.DataBase := InitDB.SQLiteConnection;
-        CountQuery.DataBase := InitDB.SQLiteConnection;
-      end;
-      CountQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable +
-        ' WHERE LoTWSent = 0';
-      CountQuery.Open;
-      RecordCount := CountQuery.Fields[0].AsInteger;
-    finally
-      FreeAndNil(CountQuery);
-    end;
-
-    needUploadQuery.SQL.Text :=
-      'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-      ' WHERE LoTWSent = 0 ORDER BY UnUsedIndex DESC';
-    needUploadQuery.Open;
-    needUploadQuery.First;
-    for i := 0 to RecordCount - 1 do
-    begin
-      ListQSONumberToUpload.Add(needUploadQuery.Fields[0].AsString);
-      needUploadQuery.Next;
-    end;
+  try
     needUploadQuery.Close;
-
-    needUploadQuery.SQL.Text :=
-      'SELECT CallSign, datetime(QSODateTime, ''unixepoch'') AS QSODateTime, QSOBand, QSOMode FROM '
-      + LBRecord.LogTable + ' WHERE LoTWSent = 0 ORDER BY UnUsedIndex DESC';
-
-    needUploadQuery.Open;
-
-    UploadDS.DataSet := needUploadQuery;
-    DBGrid1.DataSource := UploadDS;
-    DBGrid1.Columns.Items[0].Width := 80;
-    DBGrid1.Columns.Items[1].Width := 150;
-    DBGrid1.Columns.Items[2].Width := 80;
-    DBGrid1.Columns.Items[3].Width := 50;
-    DBGrid1.Columns.Items[0].Title.Caption := rCallSign;
-    DBGrid1.Columns.Items[1].Title.Caption := rQSODate;
-    DBGrid1.Columns.Items[2].Title.Caption := rQSOBand;
-    DBGrid1.Columns.Items[3].Title.Caption := rQSOMode;
-
-    if RecordCount > 0 then
+    CountQuery := TSQLQuery.Create(nil);
+    if DBRecord.CurrentDB = 'MySQL' then
     begin
-      Label5.Caption := rNeedUpload + ' ' + IntToStr(RecordCount) + ' QSOs';
-      Button2.Visible := True;
+      needUploadQuery.DataBase := InitDB.MySQLConnection;
+      CountQuery.DataBase := InitDB.MySQLConnection;
     end
     else
-      Label5.Caption := rAllQSOsuploadedtoLoTW;
+    begin
+      needUploadQuery.DataBase := InitDB.SQLiteConnection;
+      CountQuery.DataBase := InitDB.SQLiteConnection;
+    end;
+    CountQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable +
+      ' WHERE LoTWSent = 0';
+    CountQuery.Open;
+    RecordCount := CountQuery.Fields[0].AsInteger;
+  finally
+    FreeAndNil(CountQuery);
   end;
+
+  needUploadQuery.SQL.Text :=
+    'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+    ' WHERE LoTWSent = 0 ORDER BY UnUsedIndex DESC';
+  needUploadQuery.Open;
+  needUploadQuery.First;
+  for i := 0 to RecordCount - 1 do
+  begin
+    ListQSONumberToUpload.Add(needUploadQuery.Fields[0].AsString);
+    needUploadQuery.Next;
+  end;
+  needUploadQuery.Close;
+
+  needUploadQuery.SQL.Text :=
+    'SELECT CallSign, datetime(QSODateTime, ''unixepoch'') AS QSODateTime, QSOBand, QSOMode FROM '
+    + LBRecord.LogTable + ' WHERE LoTWSent = 0 ORDER BY UnUsedIndex DESC';
+
+  needUploadQuery.Open;
+
+  UploadDS.DataSet := needUploadQuery;
+  DBGrid1.DataSource := UploadDS;
+  DBGrid1.Columns.Items[0].Width := 80;
+  DBGrid1.Columns.Items[1].Width := 150;
+  DBGrid1.Columns.Items[2].Width := 80;
+  DBGrid1.Columns.Items[3].Width := 50;
+  DBGrid1.Columns.Items[0].Title.Caption := rCallSign;
+  DBGrid1.Columns.Items[1].Title.Caption := rQSODate;
+  DBGrid1.Columns.Items[2].Title.Caption := rQSOBand;
+  DBGrid1.Columns.Items[3].Title.Caption := rQSOMode;
+
+  if RecordCount > 0 then
+  begin
+    Label5.Caption := rNeedUpload + ' ' + IntToStr(RecordCount) + ' QSOs';
+    Button2.Visible := True;
+  end
+  else
+    Label5.Caption := rAllQSOsuploadedtoLoTW;
+end;
 
 procedure TServiceLoTWForm.FormShow(Sender: TObject);
 begin
@@ -237,39 +328,66 @@ begin
 
 end;
 
+procedure TServiceLoTWForm.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+begin
+  FreeAndNil(tmrLoTW);
+  FreeAndNil(AProcess);
+end;
+
 procedure TServiceLoTWForm.BtConnectLoTWClick(Sender: TObject);
 begin
-PBDownload.Position := 0;
- if (LBRecord.LoTWLogin = '') or (LBRecord.LoTWPassword = '') then
- begin
-   if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
-     PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-     LogConfigForm.Show;
-   LogConfigForm.PageControl1.ActivePageIndex := 2;
- end
- else
- begin
-   BtConnectLoTW.Enabled := False;
+  PBDownload.Position := 0;
+  if (LBRecord.LoTWLogin = '') or (LBRecord.LoTWPassword = '') then
+  begin
+    if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      LogConfigForm.Show;
+    LogConfigForm.PageControl1.ActivePageIndex := 2;
+  end
+  else
+  begin
+    BtConnectLoTW.Enabled := False;
 
-   LoTWThread := TLoTWThread.Create;
-   if Assigned(LoTWThread.FatalException) then
-     raise LoTWThread.FatalException;
-   with LoTWThread do
-   begin
-     DataFromServiceLoTWForm.TaskType := 'Download';
-     DataFromServiceLoTWForm.User := LBRecord.LoTWLogin;
-     DataFromServiceLoTWForm.Password := LBRecord.LoTWPassword;
-     DataFromServiceLoTWForm.Date := FormatDateTime('yyyy-mm-dd', DELoTW.Date);
-     Start;
-   end;
-   LBCurrStatus.Caption := rStatusConnectLotW;
- end;
+    LoTWThread := TLoTWThread.Create;
+    if Assigned(LoTWThread.FatalException) then
+      raise LoTWThread.FatalException;
+    with LoTWThread do
+    begin
+      DataFromServiceLoTWForm.TaskType := 'Download';
+      DataFromServiceLoTWForm.User := LBRecord.LoTWLogin;
+      DataFromServiceLoTWForm.Password := LBRecord.LoTWPassword;
+      DataFromServiceLoTWForm.Date := FormatDateTime('yyyy-mm-dd', DELoTW.Date);
+      Start;
+    end;
+    LBCurrStatus.Caption := rStatusConnectLotW;
+  end;
 
 end;
 
 procedure TServiceLoTWForm.Button2Click(Sender: TObject);
 begin
-
+  PBDownload.Position := 0;
+  if (LBRecord.LoTWLogin = '') or (LBRecord.LoTWPassword = '') then
+  begin
+    if Application.MessageBox(PChar(rNotDataForConnect + #10#13 + rGoToSettings),
+      PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+      LogConfigForm.Show;
+    LogConfigForm.PageControl1.ActivePageIndex := 2;
+  end
+  else
+  begin
+    Button2.Enabled := False;
+    LoTWThread := TLoTWThread.Create;
+    if Assigned(LoTWThread.FatalException) then
+      raise LoTWThread.FatalException;
+    with LoTWThread do
+    begin
+      DataFromServiceLoTWForm.User := LBRecord.LoTWLogin;
+      DataFromServiceLoTWForm.Password := LBRecord.LoTWPassword;
+      DataFromServiceLoTWForm.TaskType := 'Upload';
+      Start;
+    end;
+  end;
 end;
 
 procedure TServiceLoTWForm.FormCreate(Sender: TObject);
@@ -277,6 +395,8 @@ begin
   UploadDS := nil;
   needUploadQuery := nil;
   ListQSONumberToUpload := nil;
+  AProcess := nil;
+  tmrLoTW := nil;
 end;
 
 procedure TServiceLoTWForm.FormDestroy(Sender: TObject);
@@ -483,4 +603,3 @@ begin
 end;
 
 end.
-

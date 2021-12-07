@@ -647,6 +647,31 @@ object ServiceEqslForm: TServiceEqslForm
           OnClick = Button2Click
           TabOrder = 0
         end
+        object Label6: TLabel
+          AnchorSideLeft.Control = Label4
+          AnchorSideTop.Control = Label4
+          AnchorSideTop.Side = asrBottom
+          Left = 6
+          Height = 17
+          Top = 25
+          Width = 43
+          BorderSpacing.Top = 2
+          Caption = 'Status:'
+          ParentColor = False
+        end
+        object Label7: TLabel
+          AnchorSideLeft.Control = Label6
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Label6
+          AnchorSideTop.Side = asrCenter
+          Left = 51
+          Height = 17
+          Top = 25
+          Width = 39
+          BorderSpacing.Left = 2
+          Caption = 'Status'
+          ParentColor = False
+        end
       end
     end
     object TabSheet3: TTabSheet
