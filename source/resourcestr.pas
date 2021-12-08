@@ -232,6 +232,8 @@ resourcestring
   rNeedUpload = 'Need to upload';
   rAllQSOsuploadedtoeQSLcc = 'All QSOs uploaded to eQSLcc';
   rAllQSOsuploadedtoLoTW = 'All QSOs uploaded to LoTW';
+  rGenerate = 'Generate';
+  rUpload = 'Upload';
 
 implementation
 

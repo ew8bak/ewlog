@@ -116,13 +116,13 @@ begin
     if Aprocess.ExitCode = 0 then
     begin
       Label7.Caption := 'Signed. Push UPLOAD';
-      Button2.Caption := 'Upload';
+      Button2.Caption := rUpload;
       Button2.Enabled := True;
     end
     else
     begin
       ShowMessage('Что то пошло не так, попробуйте ещё раз');
-      Button2.Caption := 'Generate';
+      Button2.Caption := rGenerate;
       Button2.Enabled := True;
       tmrLoTW.Enabled := False;
     end;
@@ -177,6 +177,7 @@ begin
   begin
     try
       Label5.Caption := Status.Message;
+      ShowMessage(Status.Message);
       Query := TSQLQuery.Create(nil);
 
       if DBRecord.CurrentDB = 'MySQL' then
@@ -292,6 +293,7 @@ procedure TServiceLoTWForm.FormShow(Sender: TObject);
 begin
   PageControl1.ActivePageIndex := 0;
   DELoTW.Date := INIFile.ReadDate('SetLog', 'LastLoTW', Now);
+  Button2.Caption := rGenerate;
 end;
 
 procedure TServiceLoTWForm.TabSheet2Hide(Sender: TObject);
@@ -383,7 +385,7 @@ begin
     end
     else
     begin
-      if Button2.Caption = 'Generate' then
+      if Button2.Caption = rGenerate then
       begin
         Button2.Enabled := False;
         LoTWThread := TLoTWThread.Create;

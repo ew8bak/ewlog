@@ -20,7 +20,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="81"/>
         <CursorPos X="49" Y="81"/>
         <UsageCount Value="200"/>
@@ -115,7 +115,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="7"/>
         <CursorPos X="13" Y="28"/>
         <UsageCount Value="200"/>
@@ -463,10 +463,11 @@
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="205"/>
-        <CursorPos X="14" Y="64"/>
+        <CursorPos X="20" Y="236"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit43>
       <Unit44>
         <Filename Value="const_u.pas"/>
@@ -664,7 +665,7 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="2286"/>
         <CursorPos X="24" Y="2287"/>
         <UsageCount Value="201"/>
@@ -984,7 +985,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceEqslForm_u"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="254"/>
         <CursorPos X="31" Y="277"/>
         <UsageCount Value="68"/>
@@ -994,7 +995,7 @@
         <Filename Value="eqslservice_u.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="eQSLservice_u"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="94"/>
         <CursorPos Y="136"/>
         <UsageCount Value="65"/>
@@ -1009,8 +1010,8 @@
         <UnitName Value="ServiceLoTWForm_u"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="80"/>
-        <CursorPos X="31" Y="120"/>
+        <TopLine Value="263"/>
+        <CursorPos X="5" Y="163"/>
         <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1019,7 +1020,7 @@
         <Filename Value="lotwservice_u.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LoTWservice_u"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="201"/>
         <CursorPos X="39" Y="194"/>
         <UsageCount Value="49"/>
@@ -2021,7 +2022,7 @@
         <UsageCount Value="10"/>
       </Unit233>
     </Units>
-    <JumpHistory Count="22" HistoryIndex="21">
+    <JumpHistory Count="24" HistoryIndex="23">
       <Position1>
         <Filename Value="servicelotwform_u.pas"/>
         <Caret Line="377" Column="4" TopLine="368"/>
@@ -2110,6 +2111,14 @@
         <Filename Value="lotwservice_u.pas"/>
         <Caret Line="204" TopLine="177"/>
       </Position22>
+      <Position23>
+        <Filename Value="servicelotwform_u.pas"/>
+        <Caret Line="95" Column="38" TopLine="597"/>
+      </Position23>
+      <Position24>
+        <Filename Value="servicelotwform_u.pas"/>
+        <Caret Line="387" Column="37" TopLine="588"/>
+      </Position24>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

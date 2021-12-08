@@ -1,7 +1,7 @@
 object ServiceLoTWForm: TServiceLoTWForm
-  Left = 360
+  Left = 416
   Height = 213
-  Top = 174
+  Top = 180
   Width = 536
   Caption = 'Service LoTW'
   ClientHeight = 213

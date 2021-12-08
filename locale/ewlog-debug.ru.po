@@ -544,6 +544,11 @@ msgctxt "resourcestr.rfillinlogtable"
 msgid "Fill in the Log_Table_"
 msgstr "Заполняю таблицу Log_Table_"
 
+#: resourcestr.rgenerate
+msgctxt "resourcestr.rgenerate"
+msgid "Generate"
+msgstr ""
+
 #: resourcestr.rgotosettings
 msgid "Go to settings?"
 msgstr "Перейти к настройкам?"
@@ -1120,6 +1125,11 @@ msgstr "Статус обновления: Загрузка"
 msgctxt "resourcestr.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
+
+#: resourcestr.rupload
+msgctxt "resourcestr.rupload"
+msgid "Upload"
+msgstr ""
 
 #: resourcestr.rusefldigi
 msgid "Use Fldigi with EWLog?"

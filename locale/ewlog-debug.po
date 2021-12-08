@@ -534,6 +534,11 @@ msgctxt "resourcestr.rfillinlogtable"
 msgid "Fill in the Log_Table_"
 msgstr ""
 
+#: resourcestr.rgenerate
+msgctxt "resourcestr.rgenerate"
+msgid "Generate"
+msgstr ""
+
 #: resourcestr.rgotosettings
 msgid "Go to settings?"
 msgstr ""
@@ -1088,6 +1093,11 @@ msgstr ""
 #: resourcestr.rupdatestatusrequiredinstall
 msgctxt "resourcestr.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
+msgstr ""
+
+#: resourcestr.rupload
+msgctxt "resourcestr.rupload"
+msgid "Upload"
 msgstr ""
 
 #: resourcestr.rusefldigi
