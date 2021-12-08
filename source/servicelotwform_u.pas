@@ -110,8 +110,6 @@ begin
 end;
 
 procedure TServiceLoTWForm.tmrLoTWTimer(Sender: TObject);
-var
-  OutputLines: TStringList;
 begin
   if not AProcess.Running then
   begin

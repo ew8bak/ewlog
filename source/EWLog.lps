@@ -1009,8 +1009,8 @@
         <UnitName Value="ServiceLoTWForm_u"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="174"/>
-        <CursorPos X="53" Y="189"/>
+        <TopLine Value="80"/>
+        <CursorPos X="31" Y="120"/>
         <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1020,7 +1020,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="LoTWservice_u"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="178"/>
+        <TopLine Value="201"/>
         <CursorPos X="39" Y="194"/>
         <UsageCount Value="49"/>
         <Loaded Value="True"/>
