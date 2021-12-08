@@ -2015,7 +2015,7 @@ object MiniForm: TMiniForm
     Width = 479
     Panels = <    
       item
-        Width = 300
+        Width = 400
       end    
       item
         Alignment = taRightJustify

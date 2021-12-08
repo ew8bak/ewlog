@@ -19,7 +19,7 @@ uses
   Classes, SysUtils, strutils, fphttpclient, SQLDB, LazFileUtils, LazUTF8, ResourceStr;
 
 const
-  UploadURL = 'https://LoTW.arrl.org/lotwuser/upload?login=%s&password=%s';
+  UploadURL = 'https://LoTW.arrl.org/lotwuser/upload?';
   DownloadURL = 'https://lotw.arrl.org/lotwuser/lotwreport.adi?';
 
 type
@@ -83,9 +83,8 @@ begin
     DownloadQSL(DataFromServiceLoTWForm);
   if DataFromServiceLoTWForm.TaskType = 'Generate' then
     CreateADIFile('upload_LoTW.adi');
-   // if CreateADIFile('upload_LoTW.adi') then
-   //   if SignAdi(FilePATH + 'upload_LoTW.adi') then
-    //    UploadQSLFile(FilePATH + 'upload_LoTW.adi');
+  if DataFromServiceLoTWForm.TaskType = 'Upload' then
+    UploadQSLFile(FilePATH + 'upload_LoTW.tq8');
 end;
 
 procedure TLoTWThread.ToForm;
@@ -162,8 +161,57 @@ begin
 end;
 
 procedure TLoTWThread.UploadQSLFile(FileName: string);
+var
+  HTTP: TFPHttpClient;
+  Document: TMemoryStream;
+  res: TStringList;
+  URL: string;
 begin
+  try
+    try
+      URL := UploadURL + 'login=' + LBRecord.LoTWLogin + '&password=' +
+        LBRecord.LoTWPassword;
+      Status.StatusUpload := False;
+      Status.Error := False;
+      res := TStringList.Create;
+      Document := TMemoryStream.Create;
+      HTTP := TFPHttpClient.Create(nil);
+      HTTP.AddHeader('Content-Type', 'Application/octet-string');
+      HTTP.AddHeader('Accept', 'Application/octet-string');
+      HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+      HTTP.AllowRedirect := True;
+      HTTP.FileFormPost(URL, 'upfile', FileName, Document);
+      Document.Position := 0;
+      res.LoadFromStream(Document);
+      if Pos('<!-- .UPL.  accepted -->', res.Text) > 0 then
+      begin
+        Status.Message := 'Uploading was successful';
+        Status.StatusUpload := True;
+      end
+      else
+      begin
+        Status.Error := True;
+        Status.ErrorString := 'File was rejected with this error:' + res.Text;
+        Status.StatusUpload := False;
+      end;
+      Status.TaskType := 'Upload';
+      Synchronize(@ToForm);
 
+    except
+      on E: Exception do
+      begin
+        Status.TaskType := 'Upload';
+        Status.ErrorString := E.Message;
+        Status.Error := True;
+        Synchronize(@ToForm);
+        Exit;
+      end;
+    end;
+  finally
+    FreeAndNil(Document);
+    FreeAndNil(HTTP);
+    FreeAndNil(res);
+  end;
 end;
 
 function TLoTWThread.SetSizeLoc(Loc: string): string;
@@ -227,7 +275,7 @@ begin
     Writeln(f, '<EOH>');
 
     Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
-      ' WHERE LoTWSent = 0 AND PROP_MODE <> ''RPT'' ORDER BY UnUsedIndex ASC';
+      ' WHERE LoTWSent <> 1 AND PROP_MODE <> ''RPT'' ORDER BY UnUsedIndex ASC';
 
     Query.Open;
     Query.Last;

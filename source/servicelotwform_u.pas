@@ -115,21 +115,9 @@ var
 begin
   if not AProcess.Running then
   begin
-   { OutputLines := TStringList.Create;
-    try
-      OutputLines.LoadFromStream(Aprocess.Output);
-      writeln(OutputLines.Text);
-      OutputLines.LoadFromStream(Aprocess.Stderr);
-      writeln(OutputLines.Text);
-    finally
-      OutputLines.Free;
-    end;
-    }
     if Aprocess.ExitCode = 0 then
     begin
-      Label7.Caption := 'Signed';
-      //  writeln('If you did not see any errors, you can send signed file to LoTW website by'
-      //    + ' pressing Upload button');
+      Label7.Caption := 'Signed. Push UPLOAD';
       Button2.Caption := 'Upload';
       Button2.Enabled := True;
     end
@@ -160,10 +148,10 @@ begin
   begin
     Label5.Caption := Status.Message;
     Label7.Caption := '';
-
   end;
 
   PBDownload.Position := Status.DownloadedPercent;
+
   if Status.TaskType = 'Download' then
     LBCurrStatus.Caption := Status.Message;
   if Status.Error then
@@ -179,9 +167,18 @@ begin
     LotWImport(status.DownloadedFilePATH);
   end;
 
+  if (Status.TaskType = 'Upload') and (Status.Error) then
+  begin
+    Label5.Caption := rError;
+    Label7.Caption := '';
+    ShowMessage(Status.ErrorString);
+    Button2.Enabled := True;
+  end;
+
   if (Status.StatusUpload) and (Status.TaskType = 'Upload') then
   begin
     try
+      Label5.Caption := Status.Message;
       Query := TSQLQuery.Create(nil);
 
       if DBRecord.CurrentDB = 'MySQL' then
@@ -196,7 +193,6 @@ begin
           ListQSONumberToUpload.Strings[i];
         Query.ExecSQL;
       end;
-      ShowMessage(status.Message);
 
     finally
       InitDB.DefTransaction.Commit;
@@ -249,7 +245,7 @@ begin
       CountQuery.DataBase := InitDB.SQLiteConnection;
     end;
     CountQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable +
-      ' WHERE LoTWSent = 0';
+      ' WHERE LoTWSent <> 1';
     CountQuery.Open;
     RecordCount := CountQuery.Fields[0].AsInteger;
   finally
@@ -258,7 +254,7 @@ begin
 
   needUploadQuery.SQL.Text :=
     'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-    ' WHERE LoTWSent = 0 ORDER BY UnUsedIndex DESC';
+    ' WHERE LoTWSent <> 1 ORDER BY UnUsedIndex DESC';
   needUploadQuery.Open;
   needUploadQuery.First;
   for i := 0 to RecordCount - 1 do
@@ -270,7 +266,7 @@ begin
 
   needUploadQuery.SQL.Text :=
     'SELECT CallSign, datetime(QSODateTime, ''unixepoch'') AS QSODateTime, QSOBand, QSOMode FROM '
-    + LBRecord.LogTable + ' WHERE LoTWSent = 0 ORDER BY UnUsedIndex DESC';
+    + LBRecord.LogTable + ' WHERE LoTWSent <> 1 ORDER BY UnUsedIndex DESC';
 
   needUploadQuery.Open;
 
