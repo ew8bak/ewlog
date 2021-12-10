@@ -1279,8 +1279,12 @@ end;
 
 procedure TConfigForm.TSHamlibShow(Sender: TObject);
 begin
-  if IniSet.CurrentRIG <> '' then
-    LoadRIGSettings(StrToInt(IniSet.CurrentRIG[4]));
+  try
+    if IniSet.CurrentRIG <> '' then
+      LoadRIGSettings(StrToInt(IniSet.CurrentRIG[4]));
+  except
+    LoadRIGSettings(1);
+  end;
 end;
 
 procedure TConfigForm.TSIntRefShow(Sender: TObject);

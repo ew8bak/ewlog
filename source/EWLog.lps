@@ -31,7 +31,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="362"/>
         <CursorPos Y="366"/>
         <UsageCount Value="200"/>
@@ -68,10 +68,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="873"/>
-        <CursorPos X="14" Y="893"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="1255"/>
+        <CursorPos X="35" Y="1280"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -469,7 +471,7 @@
       <Unit44>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="78"/>
         <CursorPos X="72" Y="91"/>
         <UsageCount Value="201"/>
@@ -559,7 +561,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="1338"/>
         <CursorPos X="35" Y="1353"/>
         <UsageCount Value="200"/>
@@ -714,7 +715,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="230"/>
         <CursorPos X="3" Y="232"/>
         <UsageCount Value="200"/>
@@ -735,7 +736,7 @@
         <Filename Value="copytablethread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CopyTableThread"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="181"/>
         <CursorPos X="76" Y="192"/>
         <UsageCount Value="200"/>
@@ -1932,55 +1933,55 @@
       </Position17>
       <Position18>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1347" Column="54" TopLine="1349"/>
+        <Caret Line="1368" Column="28" TopLine="1350"/>
       </Position18>
       <Position19>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1368" Column="28" TopLine="1350"/>
+        <Caret Line="1369" TopLine="1350"/>
       </Position19>
       <Position20>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1369" TopLine="1350"/>
+        <Caret Line="1368" TopLine="1350"/>
       </Position20>
       <Position21>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1368" TopLine="1350"/>
+        <Caret Line="1373" TopLine="1350"/>
       </Position21>
       <Position22>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1373" TopLine="1350"/>
+        <Caret Line="1371" TopLine="1350"/>
       </Position22>
       <Position23>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1371" TopLine="1350"/>
+        <Caret Line="1373" TopLine="1350"/>
       </Position23>
       <Position24>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1373" TopLine="1350"/>
+        <Caret Line="1372" TopLine="1350"/>
       </Position24>
       <Position25>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1372" TopLine="1350"/>
+        <Caret Line="1373" TopLine="1350"/>
       </Position25>
       <Position26>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1373" TopLine="1350"/>
+        <Caret Line="1372" TopLine="1350"/>
       </Position26>
       <Position27>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1372" TopLine="1350"/>
+        <Caret Line="1373" TopLine="1350"/>
       </Position27>
       <Position28>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1373" TopLine="1350"/>
+        <Caret Line="1372" TopLine="1350"/>
       </Position28>
       <Position29>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1372" TopLine="1350"/>
+        <Caret Line="1373" TopLine="1350"/>
       </Position29>
       <Position30>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1373" TopLine="1350"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="886" Column="46" TopLine="873"/>
       </Position30>
     </JumpHistory>
     <RunParams>
