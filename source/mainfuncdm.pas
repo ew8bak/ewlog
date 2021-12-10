@@ -688,8 +688,8 @@ begin
       begin
         DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
         RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-        Query.SQL.Text := 'INSERT INTO ' + toTable + ' (' + CopyField +
-          ')' + ' SELECT ' + CopyField + ' FROM ' + LBRecord.LogTable +
+        Query.SQL.Text := 'INSERT INTO ' + toTable + ' (' + CopyFieldJournalToJournal +
+          ')' + ' SELECT ' + CopyFieldJournalToJournal + ' FROM ' + LBRecord.LogTable +
           ' WHERE UnUsedIndex = ' + IntToStr(RecIndex);
         Query.ExecSQL;
       end;
@@ -830,8 +830,15 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.DataBase := InitDB.MySQLConnection
+      if DBRecord.CurrentDB = 'MySQL' then begin
+        Query.DataBase := InitDB.MySQLConnection;
+        Query.SQL.Text :=
+          'SELECT QSODateTime FROM ' +
+          LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(index);
+        Query.Open;
+        Result.QSODateTime := Query.FieldByName('QSODateTime').AsDateTime;
+        Query.Close;
+      end
       else
       begin
         fmt.ShortDateFormat := 'yyyy-mm-dd';
@@ -1354,8 +1361,12 @@ begin
 
       SQLString := SQLString + ' WHERE CallSign = ' + QuotedStr(UQSO.CallSing);
 
+      if DBRecord.CurrentDB = 'SQLite' then
       SQLString := SQLString + ' AND QSODateTime = ' +
-        QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)));
+        QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)))
+        else
+       SQLString := SQLString + ' AND QSODateTime = ' +
+        QuotedStr(FormatDateTime('yyyy-mm-dd hh:nn:ss',UQSO.QSODateTime));
 
       SQLString := SQLString + ' AND DigiBand = ' + UQSO.DigiBand +
         ' AND (QSOMode = ' + QuotedStr(UQSO.QSOMode) + ' OR QSOSubMode = ' +

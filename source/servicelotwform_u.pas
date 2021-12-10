@@ -267,6 +267,11 @@ begin
     'SELECT CallSign, datetime(QSODateTime, ''unixepoch'') AS QSODateTime, QSOBand, QSOMode FROM '
     + LBRecord.LogTable + ' WHERE LoTWSent <> 1 ORDER BY UnUsedIndex DESC';
 
+  if DBRecord.CurrentDB = 'MySQL' then
+  needUploadQuery.SQL.Text :=
+    'SELECT CallSign, QSODateTime, QSOBand, QSOMode FROM '
+    + LBRecord.LogTable + ' WHERE LoTWSent <> 1 ORDER BY UnUsedIndex DESC';
+
   needUploadQuery.Open;
 
   UploadDS.DataSet := needUploadQuery;

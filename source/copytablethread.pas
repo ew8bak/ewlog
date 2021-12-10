@@ -58,6 +58,7 @@ var
   i: integer;
   strQuery: string;
   DateStr: string;
+  DigiBandStr: string;
 begin
   Data.Result := False;
   Data.ErrorType := -1;
@@ -165,45 +166,63 @@ begin
       QueryFrom.Open;
       Data.AllRec := QueryFrom.Fields.Fields[0].AsInteger;
       QueryFrom.Close;
-      QueryFrom.SQL.Text := 'SELECT ' + CopyField + ' FROM ' + LogTableNameFrom;
+
+      QueryFrom.SQL.Text := 'SELECT ' + CopyFieldToMySQL + ' FROM ' + LogTableNameFrom;
+
+      if QueryFrom.DataBase = InitDB.MySQLConnection then
+        QueryFrom.SQL.Text := 'SELECT ' + CopyFieldToSQLite + ' FROM ' + LogTableNameFrom;
+
       QueryFrom.Open;
       QueryFrom.First;
       while not QueryFrom.EOF do
       begin
         try
           QueryToList.Clear;
+
           QueryToList.Add('INSERT INTO ' + LogTableNameTo + ' (' +
-            CopyField + ') VALUES (');
-          for i := 0 to 71 do
+            CopyFieldJournalToJournal + ') VALUES (');
+          for i := 0 to 74 do
           begin
             if QueryFrom.Fields.Fields[i].AsString <> '' then
             begin
+
               if (QueryFrom.Fields.Fields[i].FieldName = 'QSODate') or
                 (QueryFrom.Fields.Fields[i].FieldName = 'QSLSentDate') or
                 (QueryFrom.Fields.Fields[i].FieldName = 'QSLRecDate') or
-                (QueryFrom.Fields.Fields[i].FieldName = 'LoTWRecDate') or
-                (QueryFrom.Fields.Fields[i].FieldName = 'CLUBLOG_QSO_UPLOAD_DATE') or
-                (QueryFrom.Fields.Fields[i].FieldName = 'HRDLOG_QSO_UPLOAD_DATE') or
-                (QueryFrom.Fields.Fields[i].FieldName = 'QRZCOM_QSO_UPLOAD_DATE') or
-                (QueryFrom.Fields.Fields[i].FieldName = 'HAMLOG_QSO_UPLOAD_DATE') then
+                (QueryFrom.Fields.Fields[i].FieldName = 'LoTWRecDate') then
+               // (QueryFrom.Fields.Fields[i].FieldName = 'CLUBLOG_QSO_UPLOAD_DATE') or
+               // (QueryFrom.Fields.Fields[i].FieldName = 'HRDLOG_QSO_UPLOAD_DATE') or
+               // (QueryFrom.Fields.Fields[i].FieldName = 'QRZCOM_QSO_UPLOAD_DATE') or
+               // (QueryFrom.Fields.Fields[i].FieldName = 'HAMLOG_QSO_UPLOAD_DATE') then
               begin
                 if toMySQL then
                   DateStr := FormatDateTime('YYYY-MM-DD',
                     QueryFrom.Fields.Fields[i].AsDateTime)
-                else begin
+                else
+                begin
                   DateStr := FloatToStr(DateTimeToJulianDate(
                     QueryFrom.Fields.Fields[i].AsDateTime));
-                  DateStr := StringReplace(DateStr,',','.',[rfReplaceAll]);
-                 end;
+                  DateStr := StringReplace(DateStr, ',', '.', [rfReplaceAll]);
+                end;
                 QueryToList.Add(QuotedStr(DateStr) + ',');
               end
               else
-                QueryToList.Add(QuotedStr(QueryFrom.Fields.Fields[i].AsString) + ',');
+              begin
+                if QueryFrom.Fields.Fields[i].FieldName = 'DigiBand' then
+                begin
+                  DigiBandStr := FloatToStr(QueryFrom.Fields.Fields[i].AsFloat);
+                  DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
+                  QueryToList.Add(QuotedStr(DigiBandStr) + ',');
+                end
+                else
+                  QueryToList.Add(QuotedStr(QueryFrom.Fields.Fields[i].AsString) + ',');
+              end;
             end
             else
               QueryToList.Add('NULL,');
           end;
           QueryToList.Add(')');
+
           strQuery := QueryToList.Text;
           strQuery := StringReplace(strQuery, #10, '', [rfReplaceAll]);
           strQuery := StringReplace(strQuery, #13, '', [rfReplaceAll]);
@@ -224,6 +243,7 @@ begin
         except
           on E: ESQLDatabaseError do
           begin
+            writeln(strQuery);
             if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
             begin
               Inc(Data.ErrorCount);
