@@ -30,3 +30,5 @@ Additional components:
   5. VirtualTreeView V5
   
 All of these components are available in the Lazarus Network Component Repository.
+
+  6. sywebsocket https://github.com/seryal/sywebsocket
