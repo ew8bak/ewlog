@@ -313,6 +313,7 @@ begin
     UQSO.QSL_SENT_VIA := ComboBox7.Text[1];
   MainFunc.UpdateEditQSO(UnUsIndex, UQSO);
   MainFunc.CurrPosGrid(GridRecordIndex, GridsForm.DBGrid1);
+  GridsForm.DBGrid1CellClick(nil);
 end;
 
 procedure TEditQSO_Form.Button4Click(Sender: TObject);
