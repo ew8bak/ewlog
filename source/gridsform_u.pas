@@ -247,7 +247,7 @@ procedure TGridsForm.DBGrid2DblClick(Sender: TObject);
 begin
   if InitRecord.SelectLogbookTable and (LOGBookDS.DataSet.Fields[0].AsString <> '') then
   begin
-    GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
+    //GridRecordIndex := DBGrid2.DataSource.DataSet.RecNo;
     UnUsIndex := DBGrid2.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
     EditQSO_Form.Show;
   end;
