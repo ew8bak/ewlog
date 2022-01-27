@@ -1048,7 +1048,7 @@ msgstr ""
 msgid ""
 "Update sqlite3.so to version 3.24.0 or higher.\n"
 "Current Latest Version 3.31.1\n"
-"Full work program can not be guaranteed\n"
+"Full work program can not be guaranteed"
 msgstr ""
 
 #: resourcestr.rupdatestatus
