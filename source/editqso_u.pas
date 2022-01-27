@@ -313,6 +313,8 @@ begin
     UQSO.QSL_SENT_VIA := ComboBox7.Text[1];
   MainFunc.UpdateEditQSO(UnUsIndex, UQSO);
   MainFunc.CurrPosGrid(GridRecordIndex, GridsForm.DBGrid1);
+  UnUsIndex := GridsForm.DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+  GridsForm.DBGrid1.DataSource.DataSet.Locate('UnUsedIndex',UnUsIndex,[]);
   GridsForm.DBGrid1CellClick(nil);
 end;
 

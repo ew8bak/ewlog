@@ -9,8 +9,8 @@
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="70"/>
-        <CursorPos Y="100"/>
+        <TopLine Value="37"/>
+        <CursorPos X="10" Y="41"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -32,9 +32,10 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="139"/>
-        <CursorPos X="37" Y="154"/>
+        <TopLine Value="136"/>
+        <CursorPos X="38" Y="153"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -561,9 +562,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
-        <TopLine Value="1460"/>
-        <CursorPos Y="1485"/>
-        <FoldState Value=" T0%1G611112m"/>
+        <TopLine Value="1456"/>
+        <CursorPos X="84" Y="1497"/>
+        <FoldState Value=" T0%1G6114y"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -716,10 +717,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="139"/>
-        <CursorPos X="41" Y="583"/>
+        <TopLine Value="136"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -934,7 +933,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="44" Y="35"/>
-        <UsageCount Value="193"/>
+        <UsageCount Value="195"/>
       </Unit90>
       <Unit91>
         <Filename Value="downloadfilesthread.pas"/>
@@ -943,7 +942,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="147"/>
         <CursorPos X="37" Y="23"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="170"/>
       </Unit91>
       <Unit92>
         <Filename Value="dmhamlib_u.pas"/>
@@ -955,7 +954,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="5" Y="19"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="140"/>
       </Unit92>
       <Unit93>
         <Filename Value="satform_u.pas"/>
@@ -967,7 +966,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="16" Y="55"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="112"/>
       </Unit93>
       <Unit94>
         <Filename Value="sateditorform_u.pas"/>
@@ -979,7 +978,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos X="30" Y="100"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="102"/>
       </Unit94>
       <Unit95>
         <Filename Value="serviceeqslform_u.pas"/>
@@ -991,7 +990,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="253"/>
         <CursorPos X="39" Y="116"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="89"/>
       </Unit95>
       <Unit96>
         <Filename Value="eqslservice_u.pas"/>
@@ -999,7 +998,7 @@
         <UnitName Value="eQSLservice_u"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="299"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="86"/>
       </Unit96>
       <Unit97>
         <Filename Value="servicelotwform_u.pas"/>
@@ -1011,7 +1010,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="224"/>
         <CursorPos X="41" Y="261"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
       </Unit97>
       <Unit98>
         <Filename Value="lotwservice_u.pas"/>
@@ -1020,7 +1019,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="201"/>
         <CursorPos X="39" Y="194"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="70"/>
       </Unit98>
       <Unit99>
         <Filename Value="serviceform_u.pas"/>
@@ -1508,7 +1507,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="4440"/>
         <CursorPos X="32" Y="4590"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit163>
       <Unit164>
@@ -1883,124 +1882,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="61" Column="27" TopLine="46"/>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="441" Column="41" TopLine="416"/>
       </Position1>
       <Position2>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="791" Column="33" TopLine="774"/>
+        <Caret Line="475" Column="18" TopLine="450"/>
       </Position2>
       <Position3>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="809" Column="3" TopLine="804"/>
+        <Caret Line="567" Column="18" TopLine="542"/>
       </Position3>
       <Position4>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="368" Column="3" TopLine="366"/>
+        <Caret Line="579" Column="18" TopLine="555"/>
       </Position4>
       <Position5>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="785" Column="58" TopLine="785"/>
+        <Caret Line="584" Column="18" TopLine="560"/>
       </Position5>
       <Position6>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="293" Column="36" TopLine="281"/>
+        <Caret Line="592" Column="67" TopLine="568"/>
       </Position6>
       <Position7>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="287" Column="25" TopLine="273"/>
+        <Caret Line="599" Column="52" TopLine="575"/>
       </Position7>
       <Position8>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="806" TopLine="792"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="313" Column="43" TopLine="301"/>
       </Position8>
       <Position9>
-        <Filename Value="EWLog.pas"/>
-        <Caret Line="100" TopLine="70"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="314" Column="35" TopLine="301"/>
       </Position9>
       <Position10>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="804" TopLine="792"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="316" Column="60" TopLine="301"/>
       </Position10>
       <Position11>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="808" Column="5" TopLine="792"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="383" Column="45" TopLine="358"/>
       </Position11>
       <Position12>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="803" TopLine="792"/>
+        <Caret Line="208" Column="17" TopLine="202"/>
       </Position12>
       <Position13>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="805" TopLine="792"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="305" Column="37" TopLine="300"/>
       </Position13>
       <Position14>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="809" Column="45" TopLine="802"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="316" Column="67" TopLine="300"/>
       </Position14>
       <Position15>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="3" Column="64"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="317" Column="49" TopLine="300"/>
       </Position15>
       <Position16>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="199" Column="50" TopLine="174"/>
+        <Caret Line="252" Column="69" TopLine="246"/>
       </Position16>
       <Position17>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="233" Column="39" TopLine="208"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="316" Column="67" TopLine="300"/>
       </Position17>
       <Position18>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="249" Column="39" TopLine="224"/>
+        <Caret Line="216" Column="81" TopLine="202"/>
       </Position18>
       <Position19>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="272" Column="37" TopLine="247"/>
+        <Caret Line="236" Column="69" TopLine="211"/>
       </Position19>
       <Position20>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="304" Column="39" TopLine="279"/>
+        <Caret Line="252" Column="69" TopLine="227"/>
       </Position20>
       <Position21>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="316" Column="39" TopLine="291"/>
+        <Caret Line="275" Column="71" TopLine="250"/>
       </Position21>
       <Position22>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="407" Column="39" TopLine="382"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="317" Column="75" TopLine="300"/>
       </Position22>
       <Position23>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="437" Column="39" TopLine="412"/>
+        <Caret Line="293" Column="21" TopLine="268"/>
       </Position23>
       <Position24>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="809" Column="116" TopLine="788"/>
+        <Caret Line="674" Column="3" TopLine="671"/>
       </Position24>
       <Position25>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1439" TopLine="1412"/>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="216" Column="14" TopLine="193"/>
       </Position25>
       <Position26>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1485" TopLine="1460"/>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="695" Column="3" TopLine="691"/>
       </Position26>
       <Position27>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="809" Column="116" TopLine="788"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="57" Column="24" TopLine="43"/>
       </Position27>
       <Position28>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="716" Column="3" TopLine="713"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1497" Column="84" TopLine="1456"/>
       </Position28>
       <Position29>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="785" Column="3" TopLine="783"/>
+        <Caret Line="642" Column="43" TopLine="632"/>
       </Position29>
       <Position30>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="285" Column="35" TopLine="281"/>
+        <Filename Value="editqso_u.pas"/>
+        <Caret Line="312" Column="46" TopLine="302"/>
       </Position30>
     </JumpHistory>
     <RunParams>

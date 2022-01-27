@@ -1494,6 +1494,7 @@ begin
           FreeAndNil(Query);
           if (DBGrid.Name = 'DBGrid1') then
              CurrPosGrid(GridRecordIndex, DBGrid);
+          GridsForm.DBGrid1.DataSource.DataSet.Locate('UnUsedIndex',UnUsIndex,[]);
           GridsForm.DBGrid1CellClick(nil);
         end;
       end;
