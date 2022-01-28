@@ -34,7 +34,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u, CWKeysDM_u, CWTypeForm_u,
   dmTCI_u, StreamAdapter_u, DownloadFilesThread, dmHamLib_u,
   satForm_u, SatEditorForm_u, ServiceEqslForm_u, eQSLservice_u,
-  ServiceLoTWForm_u, LoTWservice_u;
+  ServiceLoTWForm_u, LoTWservice_u, dmTHT_u;
 
 {$R *.res}
 
@@ -96,5 +96,6 @@ begin
   Application.CreateForm(TSATEditorForm, SATEditorForm);
   Application.CreateForm(TServiceEqslForm, ServiceEqslForm);
   Application.CreateForm(TServiceLoTWForm, ServiceLoTWForm);
+  Application.CreateForm(TdmTHT, dmTHT);
   Application.Run;
 end.

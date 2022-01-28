@@ -238,6 +238,12 @@ begin
     IniSet.RIGConnected := dmTCI.InicializeTCI(id);
     Exit;
   end;
+  if Pos('THT', RIGid) > 0 then
+  begin
+    id := StrToInt(RIGid[4]);
+    //IniSet.RIGConnected := dmTCI.InicializeTCI(id);
+    Exit;
+  end;
 end;
 
 function TMainFunc.CompareVersion(Local, Server: string): boolean;
@@ -266,6 +272,9 @@ begin
     if INIFile.ReadString('TCI' + IntToStr(i), 'name', '') <> '' then
       RadioList.AddPair(INIFile.ReadString('TCI' + IntToStr(i), 'name', ''),
         'TCI' + IntToStr(i));
+    if INIFile.ReadString('THT' + IntToStr(i), 'name', '') <> '' then
+      RadioList.AddPair(INIFile.ReadString('THT' + IntToStr(i), 'name', ''),
+        'THT' + IntToStr(i));
   end;
   RadioList.Sort;
   RadioList.Sorted := True;
@@ -688,8 +697,9 @@ begin
       begin
         DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
         RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-        Query.SQL.Text := 'INSERT INTO ' + toTable + ' (' + CopyFieldJournalToJournal +
-          ')' + ' SELECT ' + CopyFieldJournalToJournal + ' FROM ' + LBRecord.LogTable +
+        Query.SQL.Text := 'INSERT INTO ' + toTable + ' (' +
+          CopyFieldJournalToJournal + ')' + ' SELECT ' +
+          CopyFieldJournalToJournal + ' FROM ' + LBRecord.LogTable +
           ' WHERE UnUsedIndex = ' + IntToStr(RecIndex);
         Query.ExecSQL;
       end;
@@ -830,11 +840,12 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'MySQL' then begin
+      if DBRecord.CurrentDB = 'MySQL' then
+      begin
         Query.DataBase := InitDB.MySQLConnection;
         Query.SQL.Text :=
-          'SELECT QSODateTime FROM ' +
-          LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(index);
+          'SELECT QSODateTime FROM ' + LBRecord.LogTable +
+          ' WHERE UnUsedIndex = ' + IntToStr(index);
         Query.Open;
         Result.QSODateTime := Query.FieldByName('QSODateTime').AsDateTime;
         Query.Close;
@@ -1347,8 +1358,8 @@ begin
         QSODateTime := IntToStr(DateTimeToUnix(NowUTC));
       end;
 
-      SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET ' +
-        Field + ' = ' + QuotedStr(Value);
+      SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET ' + Field +
+        ' = ' + QuotedStr(Value);
 
       case Field of
         'HRDLOG_QSO_UPLOAD_STATUS': SQLString :=
@@ -1362,11 +1373,11 @@ begin
       SQLString := SQLString + ' WHERE CallSign = ' + QuotedStr(UQSO.CallSing);
 
       if DBRecord.CurrentDB = 'SQLite' then
-      SQLString := SQLString + ' AND QSODateTime = ' +
-        QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)))
-        else
-       SQLString := SQLString + ' AND QSODateTime = ' +
-        QuotedStr(FormatDateTime('yyyy-mm-dd hh:nn:ss',UQSO.QSODateTime));
+        SQLString := SQLString + ' AND QSODateTime = ' +
+          QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)))
+      else
+        SQLString := SQLString + ' AND QSODateTime = ' +
+          QuotedStr(FormatDateTime('yyyy-mm-dd hh:nn:ss', UQSO.QSODateTime));
 
       SQLString := SQLString + ' AND DigiBand = ' + UQSO.DigiBand +
         ' AND (QSOMode = ' + QuotedStr(UQSO.QSOMode) + ' OR QSOSubMode = ' +
@@ -1836,9 +1847,9 @@ begin
   IniSet.TXFreq := INIFile.ReadString('VHF', 'TXFreq', '');
   IniSet.SATName := INIFile.ReadString('VHF', 'SATName', '');
   IniSet.SATMode := INIFile.ReadString('VHF', 'SATMode', '');
-  IniSet.LoTW_Path:= INIFile.ReadString('LoTW', 'Path', '');
-  IniSet.LoTW_QTH:= INIFile.ReadString('LoTW', 'QTH', '');
-  IniSet.LoTW_Key:= INIFile.ReadString('LoTW', 'Key', '');
+  IniSet.LoTW_Path := INIFile.ReadString('LoTW', 'Path', '');
+  IniSet.LoTW_QTH := INIFile.ReadString('LoTW', 'QTH', '');
+  IniSet.LoTW_Key := INIFile.ReadString('LoTW', 'Key', '');
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;
