@@ -118,7 +118,7 @@ var
 
 implementation
 
-uses InitDB_dm, dmFunc_U, hrdlog,
+uses InitDB_dm, dmFunc_U, GridsForm_u,hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u, dmHamLib_u,
   dmTCI_u;
 
@@ -1416,7 +1416,6 @@ begin
             Query.DataBase := InitDB.MySQLConnection
           else
             Query.DataBase := InitDB.SQLiteConnection;
-
           for i := 0 to DBGrid.SelectedRows.Count - 1 do
           begin
             DBGrid.DataSource.DataSet.GotoBookmark(
@@ -1504,7 +1503,10 @@ begin
 
         finally
           FreeAndNil(Query);
-          CurrPosGrid(GridRecordIndex, DBGrid);
+          if (DBGrid.Name = 'DBGrid1') then
+             CurrPosGrid(GridRecordIndex, DBGrid);
+          GridsForm.DBGrid1.DataSource.DataSet.Locate('UnUsedIndex',UnUsIndex,[]);
+          GridsForm.DBGrid1CellClick(nil);
         end;
       end;
     end;
