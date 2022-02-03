@@ -569,8 +569,11 @@ begin
             if DBRecord.CurrentDB = 'MySQL' then
               paramQSLRDATE := dmFunc.ADIFDateToDate(QSLRDATE)
             else
-              paramQSLRDATE :=
-                FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
+             // paramQSLRDATE :=
+             //   FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
+              paramQSLRDATE:= StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+            ',', '.', [rfReplaceAll]);
+
           end;
 
           if Pos('M', BAND) > 0 then

@@ -49,6 +49,7 @@ begin
   Application.CreateForm(TInfoDM, InfoDM);
   Application.CreateForm(TdmHamLib, dmHamLib);
   Application.CreateForm(TdmTCI, dmTCI);
+  Application.CreateForm(TdmTHT, dmTHT);
   Application.CreateForm(TMiniForm, MiniForm);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TTRXForm, TRXForm);
@@ -96,6 +97,5 @@ begin
   Application.CreateForm(TSATEditorForm, SATEditorForm);
   Application.CreateForm(TServiceEqslForm, ServiceEqslForm);
   Application.CreateForm(TServiceLoTWForm, ServiceLoTWForm);
-  Application.CreateForm(TdmTHT, dmTHT);
   Application.Run;
 end.

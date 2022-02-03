@@ -1,269 +1,239 @@
 object GridsForm: TGridsForm
-  Left = 835
-  Height = 499
-  Top = 178
-  Width = 1044
+  Left = 780
+  Height = 391
+  Top = 233
+  Width = 818
   Caption = 'Logbook'
-  ClientHeight = 499
-  ClientWidth = 1044
-  DesignTimePPI = 120
+  ClientHeight = 391
+  ClientWidth = 818
+  DesignTimePPI = 94
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.2.0.4'
   object DBGrid1: TDBGrid
     Left = 0
-    Height = 368
+    Height = 288
     Top = 0
-    Width = 1044
+    Width = 818
     Align = alClient
     Color = clWindow
     Columns = <    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSL'
-        Width = 40
+        Width = 39
         FieldName = 'QSL'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSLs'
-        Width = 46
+        Width = 45
         FieldName = 'QSLs'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Date'
         Width = 44
         FieldName = 'QSODate'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Time'
         Width = 44
         FieldName = 'QSOTime'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Frequency'
         Width = 78
         FieldName = 'QSOBand'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Callsign'
-        Width = 62
+        Width = 61
         FieldName = 'CallSign'
       end    
       item
-        MinSize = 19
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 15
+        MaxSize = 196
         Title.Caption = 'Mode'
-        Width = 51
+        Width = 50
         FieldName = 'QSOMode'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSOSubMode'
-        Width = 103
+        Width = 100
         FieldName = 'QSOSubMode'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Name'
         Width = 51
         FieldName = 'OMName'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QTH'
-        Width = 43
+        Width = 42
         FieldName = 'OMQTH'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'State'
         Width = 46
         FieldName = 'State'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Grid'
-        Width = 41
+        Width = 40
         FieldName = 'Grid'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'RSTs'
         Width = 43
         FieldName = 'QSOReportSent'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'RSTr'
         Width = 42
         FieldName = 'QSOReportRecived'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'IOTA'
-        Width = 46
+        Width = 44
         FieldName = 'IOTA'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Manager'
-        Width = 70
+        Width = 69
         FieldName = 'QSLManager'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSLs Date'
-        Width = 79
+        Width = 77
         FieldName = 'QSLSentDate'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSLr Date'
-        Width = 78
+        Width = 76
         FieldName = 'QSLRecDate'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'LOTWr Date'
-        Width = 91
+        Width = 88
         FieldName = 'LoTWRecDate'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Prefix'
-        Width = 48
+        Width = 50
         FieldName = 'MainPrefix'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'DXCC'
-        Width = 51
+        Width = 48
         FieldName = 'DXCCPrefix'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'CQ Zone'
-        Width = 70
+        Width = 66
         FieldName = 'CQZone'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'ITU Zone'
-        Width = 71
+        Width = 69
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Manual Set'
-        Width = 84
+        Width = 82
         FieldName = 'ManualSet'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Continent'
-        Width = 76
+        Width = 75
         FieldName = 'Continent'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Valid DX'
-        Width = 67
+        Width = 64
         FieldName = 'ValidDX'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSL r VIA'
-        Width = 75
+        Width = 70
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSL s VIA'
-        Width = 76
+        Width = 71
         FieldName = 'QSL_SENT_VIA'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'User'
         Width = 43
         FieldName = 'USERS'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'No calc DXCC'
-        Width = 99
+        Width = 94
         FieldName = 'NoCalcDXCC'
       end>
     DataSource = LOGBookDS
-    DefaultRowHeight = 19
+    DefaultRowHeight = 15
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAutoSizeColumns, dgAnyButtonCanSelect]
     ParentFont = False
     PopupMenu = GridMenu
@@ -276,257 +246,227 @@ object GridsForm: TGridsForm
   end
   object DBGrid2: TDBGrid
     Left = 0
-    Height = 125
-    Top = 374
-    Width = 1044
+    Height = 98
+    Top = 293
+    Width = 818
     Align = alBottom
     Color = clWindow
     Columns = <    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSL'
-        Width = 40
+        Width = 39
         FieldName = 'QSL'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSLs'
-        Width = 46
+        Width = 45
         FieldName = 'QSLs'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Date'
         Width = 44
         FieldName = 'QSODate'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Time'
         Width = 44
         FieldName = 'QSOTime'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Frequency'
         Width = 78
         FieldName = 'QSOBand'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Callsign'
-        Width = 62
+        Width = 61
         FieldName = 'CallSign'
       end    
       item
-        MinSize = 19
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 15
+        MaxSize = 196
         Title.Caption = 'Mode'
-        Width = 51
+        Width = 50
         FieldName = 'QSOMode'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSOSubMode'
-        Width = 103
+        Width = 100
         FieldName = 'QSOSubMode'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Name'
         Width = 51
         FieldName = 'OMName'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QTH'
-        Width = 43
+        Width = 42
         FieldName = 'OMQTH'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'State'
         Width = 46
         FieldName = 'State'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Grid'
-        Width = 41
+        Width = 40
         FieldName = 'Grid'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'RSTs'
         Width = 43
         FieldName = 'QSOReportSent'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'RSTr'
         Width = 42
         FieldName = 'QSOReportRecived'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'IOTA'
-        Width = 46
+        Width = 44
         FieldName = 'IOTA'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Manager'
-        Width = 70
+        Width = 69
         FieldName = 'QSLManager'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSLs Date'
-        Width = 79
+        Width = 77
         FieldName = 'QSLSentDate'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSLr Date'
-        Width = 78
+        Width = 76
         FieldName = 'QSLRecDate'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'LOTWr Date'
-        Width = 91
+        Width = 88
         FieldName = 'LoTWRecDate'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Prefix'
-        Width = 48
+        Width = 50
         FieldName = 'MainPrefix'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'DXCC'
-        Width = 51
+        Width = 48
         FieldName = 'DXCCPrefix'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'CQ Zone'
-        Width = 70
+        Width = 66
         FieldName = 'CQZone'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'ITU Zone'
-        Width = 71
+        Width = 69
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Manual Set'
-        Width = 84
+        Width = 82
         FieldName = 'ManualSet'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Continent'
-        Width = 76
+        Width = 75
         FieldName = 'Continent'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'Valid DX'
-        Width = 67
+        Width = 64
         FieldName = 'ValidDX'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSL r VIA'
-        Width = 75
+        Width = 70
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'QSL s VIA'
-        Width = 76
+        Width = 71
         FieldName = 'QSL_SENT_VIA'
       end    
       item
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'User'
         Width = 43
         FieldName = 'USERS'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
-        MinSize = 12
-        MaxSize = 250
-        Title.Font.Height = -14
+        MinSize = 9
+        MaxSize = 196
         Title.Caption = 'No calc DXCC'
-        Width = 99
+        Width = 94
         FieldName = 'NoCalcDXCC'
       end>
     DataSource = FindQSODS
-    DefaultRowHeight = 19
+    DefaultRowHeight = 15
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAutoSizeColumns]
     ParentFont = False
     PopupMenu = GridMenu
@@ -537,28 +477,28 @@ object GridsForm: TGridsForm
   object Splitter1: TSplitter
     Cursor = crVSplit
     Left = 0
-    Height = 6
-    Top = 368
-    Width = 1044
+    Height = 5
+    Top = 288
+    Width = 818
     Align = alBottom
     ResizeAnchor = akBottom
   end
   object LOGBookDS: TDataSource
     DataSet = InitDB.DefLogBookQuery
     OnDataChange = LOGBookDSDataChange
-    Left = 81
-    Top = 55
+    Left = 63
+    Top = 43
   end
   object FindQSODS: TDataSource
     DataSet = InitDB.FindQSOQuery
     OnDataChange = FindQSODSDataChange
-    Left = 70
-    Top = 154
+    Left = 55
+    Top = 121
   end
   object GridMenu: TPopupMenu
     OnPopup = GridMenuPopup
-    Left = 453
-    Top = 236
+    Left = 355
+    Top = 185
     object MarkQSOItem: TMenuItem
       Tag = 1
       Caption = 'Mark this QSO'
@@ -1282,7 +1222,6 @@ object GridsForm: TGridsForm
         090D080808050606060100000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      OnClick = FinqQSLManItemClick
     end
     object Sep2Item: TMenuItem
       Caption = '-'
