@@ -109,6 +109,7 @@ type
     procedure FilterRecQSLItemClick(Sender: TObject);
     procedure FilterSentQSLItemClick(Sender: TObject);
     procedure FindQSODSDataChange(Sender: TObject; Field: TField);
+    procedure FinqQSLManItemClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -360,6 +361,11 @@ begin
   MainFunc.SetGrid(DBGrid2);
 end;
 
+procedure TGridsForm.FinqQSLManItemClick(Sender: TObject);
+begin
+
+end;
+
 procedure TGridsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   MainFunc.SaveGrids(DBGrid1);
@@ -413,13 +419,17 @@ begin
 end;
 
 procedure TGridsForm.MarkQSOItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'Marker', '1');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'Marker', '1');
 end;
 
 procedure TGridsForm.MenuItem4Click(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLRec', '1');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSLRec', '1');
 end;
 
 procedure TGridsForm.MISendOnLANANYClick(Sender: TObject);
@@ -651,89 +661,123 @@ end;
 procedure TGridsForm.QSLInfoItemClick(Sender: TObject);
 var
   Str: string = '';
+  Caller: TObject;
 begin
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
   if InputQuery(rPleaseQSLInfo, rEnterMesQSLInf, Str) then
-    MainFunc.UpdateQSO(DBGrid1, 'QSLInfo', Str);
+    MainFunc.UpdateQSO((Caller as TDBGrid), 'QSLInfo', Str);
 end;
 
 procedure TGridsForm.QSLnsItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'N');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSLSentAdv', 'N');
 end;
 
 procedure TGridsForm.QSLPrintedItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'P');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSLSentAdv', 'P');
 end;
 
 procedure TGridsForm.QSLQueuedItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLPrint', 'Q');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSLPrint', 'Q');
 end;
 
 procedure TGridsForm.QSLReceivedItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'Q');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSLSentAdv', 'Q');
 end;
 
 procedure TGridsForm.QSLSentItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'T');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSLSentAdv', 'T');
 end;
 
 procedure TGridsForm.QSLwnsItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSLSentAdv', 'F');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSLSentAdv', 'F');
 end;
 
 procedure TGridsForm.QSLwrvBItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'B');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_RCVD_VIA', 'B');
 end;
 
 procedure TGridsForm.QSLwrvDItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'D');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_RCVD_VIA', 'D');
 end;
 
 procedure TGridsForm.QSLwrvEItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'E');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_RCVD_VIA', 'E');
 end;
 
 procedure TGridsForm.QSLwrvGItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'G');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_RCVD_VIA', 'G');
 end;
 
 procedure TGridsForm.QSLwrvMItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_RCVD_VIA', 'M');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_RCVD_VIA', 'M');
 end;
 
 procedure TGridsForm.QSLwsvBItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'B');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_SENT_VIA', 'B');
 end;
 
 procedure TGridsForm.QSLwsvDItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'D');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_SENT_VIA', 'D');
 end;
 
 procedure TGridsForm.QSLwsvEItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'E');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_SENT_VIA', 'E');
 end;
 
 procedure TGridsForm.QSLwsvGItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'G');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_SENT_VIA', 'G');
 end;
 
 procedure TGridsForm.QSLwsvMItemClick(Sender: TObject);
+var Caller: TObject;
 begin
-  MainFunc.UpdateQSO(DBGrid1, 'QSL_SENT_VIA', 'M');
+  Caller := ((Sender as TMenuItem).GetParentMenu as TPopupMenu).PopupComponent;
+  MainFunc.UpdateQSO((Caller as TDBGrid), 'QSL_SENT_VIA', 'M');
 end;
 
 procedure TGridsForm.SelectAllItemClick(Sender: TObject);
@@ -754,7 +798,18 @@ procedure TGridsForm.GridMenuPopup(Sender: TObject);
 var
   LogItem: TMenuItem;
   i: integer;
+  Caller: TObject;
 begin
+   Caller :=(Sender as TPopupMenu).PopupComponent;
+
+  for i:=0 to GridMenu.Items.Count - 1 do
+  begin
+    if (Caller as TDBGrid).Name = 'DBGrid1' then GridMenu.Items[i].Visible:=true;
+
+    if ((Caller as TDBGrid).Name = 'DBGrid2') and (GridMenu.Items[i].Tag = 0) then GridMenu.Items[i].Visible:=false;
+
+  end;
+
   if DBRecord.InitDB = 'YES' then
   begin
     for i := GridsForm.ComponentCount - 1 downto 0 do
