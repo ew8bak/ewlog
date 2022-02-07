@@ -1,0 +1,7 @@
+object dmTHT: TdmTHT
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 287
+  VerticalOffset = 145
+  Width = 150
+end
