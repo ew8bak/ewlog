@@ -2838,6 +2838,10 @@ msgstr ""
 msgid "Export on Win1251"
 msgstr ""
 
+#: texportadifform.cbremoveslash.caption
+msgid "Remove slash"
+msgstr ""
+
 #: texportadifform.cbsotaexport.caption
 msgid "Export to SOTA"
 msgstr ""

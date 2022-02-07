@@ -29,6 +29,7 @@ type
     CBExportOnWin: TCheckBox;
     CBConvertLatin: TCheckBox;
     CBSotaExport: TCheckBox;
+    CBRemoveSlash: TCheckBox;
     DateEdit1: TDateEdit;
     DateEdit2: TDateEdit;
     Image1: TImage;
@@ -175,6 +176,7 @@ begin
   PADIExport.Win1251 := CBExportOnWin.Checked;
   PADIExport.RusToLat := CBConvertLatin.Checked;
   PADIExport.FromForm := 'ExportAdifForm';
+  PADIExport.RemoveSlash:= CBRemoveSlash.Checked;
   ExportADIFThread := TExportADIFThread.Create;
   if Assigned(ExportADIFThread.FatalException) then
     raise ExportADIFThread.FatalException;
@@ -230,6 +232,15 @@ begin
   Label2.Caption := '';
   LBNumberQSO.Caption := rNumberOfQSO0;
   PbExport.Position := 0;
+  if DBRecord.CurrCall[Length(DBRecord.CurrCall)] = '/' then
+  begin
+    CBRemoveSlash.Enabled := true;
+  end
+  else
+  begin
+    CBRemoveSlash.Enabled := false;
+    CBRemoveSlash.Checked := false;
+  end;
 end;
 
 procedure TexportAdifForm.RadioButton1Click(Sender: TObject);

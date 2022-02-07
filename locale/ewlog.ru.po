@@ -6090,3 +6090,7 @@ msgstr "Фото"
 msgid "WSJT_UDP_Form"
 msgstr ""
 
+#: texportadifform.cbremoveslash.caption
+msgid "Remove slash"
+msgstr "Удалить дробь"
+
