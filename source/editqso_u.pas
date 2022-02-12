@@ -34,11 +34,11 @@ type
     CBReceivedEQSL: TCheckBox;
     CBReceivedLoTW: TCheckBox;
     CBSentLoTW: TCheckBox;
-    CBBand: TComboBox;
     CBMode: TComboBox;
     CBPropagation: TComboBox;
     CBSATMode: TComboBox;
     CBSat: TComboBox;
+    CBBand: TComboBox;
     ComboBox6: TComboBox;
     ComboBox7: TComboBox;
     CBSubMode: TComboBox;
@@ -124,7 +124,6 @@ type
     procedure BtCancelClick(Sender: TObject);
     procedure BtApplyClick(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure CBBandSelect(Sender: TObject);
     procedure CBModeChange(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: integer; Column: TColumn; State: TGridDrawState);
@@ -237,7 +236,8 @@ begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
 
-  NameBand := MainFunc.ConvertFreqToSave(CBBand.Text);
+  NameBand:= MainFunc.ConvertFreqToShow(CBBand.Text);
+  NameBand := MainFunc.ConvertFreqToSave(NameBand);
   DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
 
   UQSO.CallSing := EditCallSign.Text;
@@ -333,12 +333,6 @@ begin
     EditContinent.Text := PFXR.Continent;
     EditDXCC.Text := IntToStr(PFXR.DXCCNum);
   end;
-end;
-
-procedure TEditQSO_Form.CBBandSelect(Sender: TObject);
-begin
-  CBBand.Text := MainFunc.ConvertFreqToShow(
-    CBBand.Items.Strings[CBBand.ItemIndex]);
 end;
 
 procedure TEditQSO_Form.CBModeChange(Sender: TObject);
