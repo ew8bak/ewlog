@@ -34,6 +34,7 @@ type
     ExportAll: boolean;
     Win1251: boolean;
     RusToLat: boolean;
+    RemoveSlash: boolean;
     Mobile: boolean;
     AllRec: integer;
     FromForm: string;
@@ -79,7 +80,7 @@ var
   DefMyLON: string;
   DefMyGrid: string;
   EQSL_QSL_RCVD, QSL_RCVD, QSL_SENT: string;
-  tmpFreq: string;
+  tmpFreq, MyCurrCall: string;
   i: integer;
   numberToExp: string = '';
   SafeFreq: double;
@@ -165,6 +166,14 @@ begin
     Info.AllRec := Query.RecordCount;
     Synchronize(@ToForm);
     Query.First;
+    MyCurrCall := DBRecord.CurrCall;
+    if (PADIExport.RemoveSlash) then
+    begin
+      if MyCurrCall[length(MyCurrCall)] =  '/' then
+      begin
+        delete(MyCurrCall,length(MyCurrCall),1);
+      end;
+    end;
     while not Query.EOF do
     begin
       try
@@ -174,7 +183,7 @@ begin
         tmpFreq := '';
 
         tmp := '<OPERATOR' + dmFunc.StringToADIF(
-          dmFunc.RemoveSpaces(DBRecord.CurrCall), PADIExport.Win1251);
+          dmFunc.RemoveSpaces(MyCurrCall), PADIExport.Win1251);
         Write(f, tmp);
 
         tmp := '<CALL' + dmFunc.StringToADIF(
