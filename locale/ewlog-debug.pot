@@ -4739,6 +4739,7 @@ msgid "Print all Sticker"
 msgstr ""
 
 #: tprintsticker_form.combobox1.text
+msgctxt "tprintsticker_form.combobox1.text"
 msgid "ComboBox1"
 msgstr ""
 

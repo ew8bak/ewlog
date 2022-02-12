@@ -1,235 +1,234 @@
 object GridsForm: TGridsForm
-  Left = 780
-  Height = 391
-  Top = 233
-  Width = 818
+  Left = 477
+  Height = 399
+  Top = 271
+  Width = 835
   Caption = 'Logbook'
-  ClientHeight = 391
-  ClientWidth = 818
-  DesignTimePPI = 94
+  ClientHeight = 399
+  ClientWidth = 835
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.2.0.4'
   object DBGrid1: TDBGrid
     Left = 0
-    Height = 288
+    Height = 294
     Top = 0
-    Width = 818
+    Width = 835
     Align = alClient
     Color = clWindow
     Columns = <    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSL'
-        Width = 39
+        Width = 37
         FieldName = 'QSL'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSLs'
-        Width = 45
+        Width = 42
         FieldName = 'QSLs'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Date'
-        Width = 44
+        Width = 40
         FieldName = 'QSODate'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Time'
-        Width = 44
+        Width = 42
         FieldName = 'QSOTime'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Frequency'
-        Width = 78
+        Width = 71
         FieldName = 'QSOBand'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Callsign'
-        Width = 61
+        Width = 58
         FieldName = 'CallSign'
       end    
       item
         MinSize = 15
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Mode'
-        Width = 50
+        Width = 47
         FieldName = 'QSOMode'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSOSubMode'
-        Width = 100
+        Width = 92
         FieldName = 'QSOSubMode'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Name'
-        Width = 51
+        Width = 48
         FieldName = 'OMName'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QTH'
-        Width = 42
+        Width = 40
         FieldName = 'OMQTH'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'State'
-        Width = 46
+        Width = 42
         FieldName = 'State'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Grid'
-        Width = 40
+        Width = 38
         FieldName = 'Grid'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'RSTs'
-        Width = 43
+        Width = 40
         FieldName = 'QSOReportSent'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'RSTr'
-        Width = 42
+        Width = 39
         FieldName = 'QSOReportRecived'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'IOTA'
-        Width = 44
+        Width = 42
         FieldName = 'IOTA'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Manager'
-        Width = 69
+        Width = 63
         FieldName = 'QSLManager'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSLs Date'
-        Width = 77
+        Width = 69
         FieldName = 'QSLSentDate'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSLr Date'
-        Width = 76
+        Width = 68
         FieldName = 'QSLRecDate'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'LOTWr Date'
-        Width = 88
+        Width = 80
         FieldName = 'LoTWRecDate'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Prefix'
-        Width = 50
+        Width = 46
         FieldName = 'MainPrefix'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'DXCC'
-        Width = 48
+        Width = 47
         FieldName = 'DXCCPrefix'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'CQ Zone'
-        Width = 66
+        Width = 63
         FieldName = 'CQZone'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'ITU Zone'
-        Width = 69
+        Width = 63
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Manual Set'
-        Width = 82
+        Width = 76
         FieldName = 'ManualSet'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Continent'
-        Width = 75
+        Width = 69
         FieldName = 'Continent'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Valid DX'
-        Width = 64
+        Width = 60
         FieldName = 'ValidDX'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSL r VIA'
-        Width = 70
+        Width = 65
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSL s VIA'
-        Width = 71
+        Width = 66
         FieldName = 'QSL_SENT_VIA'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'User'
-        Width = 43
+        Width = 39
         FieldName = 'USERS'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'No calc DXCC'
-        Width = 94
+        Width = 91
         FieldName = 'NoCalcDXCC'
       end>
     DataSource = LOGBookDS
@@ -246,223 +245,223 @@ object GridsForm: TGridsForm
   end
   object DBGrid2: TDBGrid
     Left = 0
-    Height = 98
-    Top = 293
-    Width = 818
+    Height = 100
+    Top = 299
+    Width = 835
     Align = alBottom
     Color = clWindow
     Columns = <    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSL'
-        Width = 39
+        Width = 37
         FieldName = 'QSL'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSLs'
-        Width = 45
+        Width = 42
         FieldName = 'QSLs'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Date'
-        Width = 44
+        Width = 40
         FieldName = 'QSODate'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Time'
-        Width = 44
+        Width = 42
         FieldName = 'QSOTime'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Frequency'
-        Width = 78
+        Width = 71
         FieldName = 'QSOBand'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Callsign'
-        Width = 61
+        Width = 58
         FieldName = 'CallSign'
       end    
       item
         MinSize = 15
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Mode'
-        Width = 50
+        Width = 47
         FieldName = 'QSOMode'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSOSubMode'
-        Width = 100
+        Width = 92
         FieldName = 'QSOSubMode'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Name'
-        Width = 51
+        Width = 48
         FieldName = 'OMName'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QTH'
-        Width = 42
+        Width = 40
         FieldName = 'OMQTH'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'State'
-        Width = 46
+        Width = 42
         FieldName = 'State'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Grid'
-        Width = 40
+        Width = 38
         FieldName = 'Grid'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'RSTs'
-        Width = 43
+        Width = 40
         FieldName = 'QSOReportSent'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'RSTr'
-        Width = 42
+        Width = 39
         FieldName = 'QSOReportRecived'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'IOTA'
-        Width = 44
+        Width = 42
         FieldName = 'IOTA'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Manager'
-        Width = 69
+        Width = 63
         FieldName = 'QSLManager'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSLs Date'
-        Width = 77
+        Width = 69
         FieldName = 'QSLSentDate'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSLr Date'
-        Width = 76
+        Width = 68
         FieldName = 'QSLRecDate'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'LOTWr Date'
-        Width = 88
+        Width = 80
         FieldName = 'LoTWRecDate'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Prefix'
-        Width = 50
+        Width = 46
         FieldName = 'MainPrefix'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'DXCC'
-        Width = 48
+        Width = 47
         FieldName = 'DXCCPrefix'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'CQ Zone'
-        Width = 66
+        Width = 63
         FieldName = 'CQZone'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'ITU Zone'
-        Width = 69
+        Width = 63
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Manual Set'
-        Width = 82
+        Width = 76
         FieldName = 'ManualSet'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Continent'
-        Width = 75
+        Width = 69
         FieldName = 'Continent'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'Valid DX'
-        Width = 64
+        Width = 60
         FieldName = 'ValidDX'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSL r VIA'
-        Width = 70
+        Width = 65
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'QSL s VIA'
-        Width = 71
+        Width = 66
         FieldName = 'QSL_SENT_VIA'
       end    
       item
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'User'
-        Width = 43
+        Width = 39
         FieldName = 'USERS'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         MinSize = 9
-        MaxSize = 196
+        MaxSize = 200
         Title.Caption = 'No calc DXCC'
-        Width = 94
+        Width = 91
         FieldName = 'NoCalcDXCC'
       end>
     DataSource = FindQSODS
@@ -478,27 +477,27 @@ object GridsForm: TGridsForm
     Cursor = crVSplit
     Left = 0
     Height = 5
-    Top = 288
-    Width = 818
+    Top = 294
+    Width = 835
     Align = alBottom
     ResizeAnchor = akBottom
   end
   object LOGBookDS: TDataSource
     DataSet = InitDB.DefLogBookQuery
     OnDataChange = LOGBookDSDataChange
-    Left = 63
-    Top = 43
+    Left = 64
+    Top = 44
   end
   object FindQSODS: TDataSource
     DataSet = InitDB.FindQSOQuery
     OnDataChange = FindQSODSDataChange
-    Left = 55
-    Top = 121
+    Left = 56
+    Top = 124
   end
   object GridMenu: TPopupMenu
     OnPopup = GridMenuPopup
-    Left = 355
-    Top = 185
+    Left = 363
+    Top = 189
     object MarkQSOItem: TMenuItem
       Tag = 1
       Caption = 'Mark this QSO'

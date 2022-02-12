@@ -161,7 +161,6 @@ begin
     TCIClient.MessageQueue.TotalItemsPopped do
   begin
     TCIClient.MessageQueue.PopItem(val);
-    writeln(val.Message);
     TCIRec.PROTOCOL := ParseValue(UpperCase(val.Message), 'PROTOCOL');
     TCIRec.DEVICE := ParseValue(UpperCase(val.Message), 'DEVICE');
     TCIRec.VFO := ParseValue(UpperCase(val.Message), 'VFO');
