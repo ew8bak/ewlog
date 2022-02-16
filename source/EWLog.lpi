@@ -159,7 +159,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="100">
+    <Units Count="99">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -796,14 +796,6 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="LoTWservice_u"/>
       </Unit98>
-      <Unit99>
-        <Filename Value="dmtht_u.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="dmTHT"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmTHT_u"/>
-      </Unit99>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

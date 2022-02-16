@@ -1207,11 +1207,6 @@ msgctxt "tconfigform.bttcidefault.caption"
 msgid "Set Radio Default"
 msgstr ""
 
-#: tconfigform.btthtdefault.caption
-msgctxt "tconfigform.btthtdefault.caption"
-msgid "Set Radio Default"
-msgstr ""
-
 #: tconfigform.button3.caption
 msgctxt "tconfigform.button3.caption"
 msgid "Check connection"
@@ -1429,10 +1424,6 @@ msgstr ""
 
 #: tconfigform.cbtextsizegrid.text
 msgid "8 пт"
-msgstr ""
-
-#: tconfigform.cbthtenable.caption
-msgid "Thetis Client Enable"
 msgstr ""
 
 #: tconfigform.cbtime.caption
@@ -1778,11 +1769,6 @@ msgctxt "tconfigform.lbrignamehl1.caption"
 msgid "RIG Name"
 msgstr ""
 
-#: tconfigform.lbrignamehl2.caption
-msgctxt "tconfigform.lbrignamehl2.caption"
-msgid "RIG Name"
-msgstr ""
-
 #: tconfigform.lbrignumberhl.caption
 msgctxt "tconfigform.lbrignumberhl.caption"
 msgid "Rig Number"
@@ -1790,11 +1776,6 @@ msgstr ""
 
 #: tconfigform.lbrignumberhl1.caption
 msgctxt "tconfigform.lbrignumberhl1.caption"
-msgid "Rig Number"
-msgstr ""
-
-#: tconfigform.lbrignumberhl2.caption
-msgctxt "tconfigform.lbrignumberhl2.caption"
 msgid "Rig Number"
 msgstr ""
 
@@ -1845,14 +1826,6 @@ msgstr ""
 
 #: tconfigform.lbtextsize.caption
 msgid "Text size"
-msgstr ""
-
-#: tconfigform.lbthtaddress.caption
-msgid "Thetis Server Address"
-msgstr ""
-
-#: tconfigform.lbthtport.caption
-msgid "Thetis Server Port"
 msgstr ""
 
 #: tconfigform.lbtimebackup.caption
@@ -1965,10 +1938,6 @@ msgstr ""
 #: tconfigform.tstelnet.caption
 msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
-msgstr ""
-
-#: tconfigform.tsthetiscat.caption
-msgid "Thetis WEB CAT"
 msgstr ""
 
 #: tconfigform.tsworklan.caption
