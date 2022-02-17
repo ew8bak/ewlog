@@ -1207,11 +1207,6 @@ msgctxt "tconfigform.bttcidefault.caption"
 msgid "Set Radio Default"
 msgstr ""
 
-#: tconfigform.btthtdefault.caption
-msgctxt "tconfigform.btthtdefault.caption"
-msgid "Set Radio Default"
-msgstr ""
-
 #: tconfigform.button3.caption
 msgctxt "tconfigform.button3.caption"
 msgid "Check connection"
@@ -1300,6 +1295,10 @@ msgstr ""
 
 #: tconfigform.cbcwdaemon.caption
 msgid "Use CW Daemon?"
+msgstr ""
+
+#: tconfigform.cbcwovertci.caption
+msgid "CW over TCI ?"
 msgstr ""
 
 #: tconfigform.cbdate.caption
@@ -1431,10 +1430,6 @@ msgstr ""
 msgid "8 пт"
 msgstr ""
 
-#: tconfigform.cbthtenable.caption
-msgid "Thetis Client Enable"
-msgstr ""
-
 #: tconfigform.cbtime.caption
 msgctxt "tconfigform.cbtime.caption"
 msgid "Time"
@@ -1502,6 +1497,15 @@ msgstr ""
 
 #: tconfigform.gbcwdaemon.caption
 msgid "CW Daemon (Linux only)"
+msgstr ""
+
+#: tconfigform.gbcwgeneral.caption
+msgid "CW General"
+msgstr ""
+
+#: tconfigform.gbcwtype.caption
+msgctxt "tconfigform.gbcwtype.caption"
+msgid "CWType (Windows only)"
 msgstr ""
 
 #: tconfigform.gbdefaultdb.caption
@@ -1716,7 +1720,8 @@ msgctxt "tconfigform.lbcwdaemonport.caption"
 msgid "Port"
 msgstr ""
 
-#: tconfigform.lbcwdaemonwpm.caption
+#: tconfigform.lbcwwpm.caption
+msgctxt "tconfigform.lbcwwpm.caption"
 msgid "WPM"
 msgstr ""
 
@@ -1778,11 +1783,6 @@ msgctxt "tconfigform.lbrignamehl1.caption"
 msgid "RIG Name"
 msgstr ""
 
-#: tconfigform.lbrignamehl2.caption
-msgctxt "tconfigform.lbrignamehl2.caption"
-msgid "RIG Name"
-msgstr ""
-
 #: tconfigform.lbrignumberhl.caption
 msgctxt "tconfigform.lbrignumberhl.caption"
 msgid "Rig Number"
@@ -1790,11 +1790,6 @@ msgstr ""
 
 #: tconfigform.lbrignumberhl1.caption
 msgctxt "tconfigform.lbrignumberhl1.caption"
-msgid "Rig Number"
-msgstr ""
-
-#: tconfigform.lbrignumberhl2.caption
-msgctxt "tconfigform.lbrignumberhl2.caption"
 msgid "Rig Number"
 msgstr ""
 
@@ -1845,14 +1840,6 @@ msgstr ""
 
 #: tconfigform.lbtextsize.caption
 msgid "Text size"
-msgstr ""
-
-#: tconfigform.lbthtaddress.caption
-msgid "Thetis Server Address"
-msgstr ""
-
-#: tconfigform.lbthtport.caption
-msgid "Thetis Server Port"
 msgstr ""
 
 #: tconfigform.lbtimebackup.caption
@@ -1965,10 +1952,6 @@ msgstr ""
 #: tconfigform.tstelnet.caption
 msgctxt "tconfigform.tstelnet.caption"
 msgid "Telnet"
-msgstr ""
-
-#: tconfigform.tsthetiscat.caption
-msgid "Thetis WEB CAT"
 msgstr ""
 
 #: tconfigform.tsworklan.caption
@@ -5536,6 +5519,10 @@ msgstr ""
 
 #: tthanks_form.label12.caption
 msgid "R9XAL - Aleksey Panyukov"
+msgstr ""
+
+#: tthanks_form.label13.caption
+msgid "RL2B - Mikhail Genin"
 msgstr ""
 
 #: tthanks_form.label2.caption

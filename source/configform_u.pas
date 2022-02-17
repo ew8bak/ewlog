@@ -51,7 +51,6 @@ type
     BtCancel: TButton;
     BtCATDeafult: TButton;
     BtTCIDefault: TButton;
-    BtTHTDefault: TButton;
     Button3: TButton;
     Button4: TButton;
     btApplyColor: TButton;
@@ -62,8 +61,6 @@ type
     CBCatHandshake: TComboBox;
     CBCatDTRState: TComboBox;
     CBRigNumberTCI: TComboBox;
-    CBRigNumberTHT: TComboBox;
-    CBTHTEnable: TCheckBox;
     CheckBox1: TCheckBox;
     cbBackupDB: TCheckBox;
     cbBackupCloseDB: TCheckBox;
@@ -107,6 +104,7 @@ type
     cbNoCalcDXCC: TCheckBox;
     CBCWDaemon: TCheckBox;
     CBTCIEnable: TCheckBox;
+    CBcwOverTCI: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
@@ -129,14 +127,11 @@ type
     EditLoTWKey: TEdit;
     EditRIGNameHL: TEdit;
     EditRIGNameTCI: TEdit;
-    EditRIGNameTHT: TEdit;
     EditTCIAddress: TEdit;
-    EditTHTAddress: TEdit;
     EditTCIPort: TEdit;
     EditSentSpotKey: TEdit;
     EditCwDaemonPort: TEdit;
     EditCwDaemonAddress: TEdit;
-    EditTHTPort: TEdit;
     EditTelnetName: TEdit;
     EditTelnetAdress: TEdit;
     EditTelnetPort: TEdit;
@@ -180,25 +175,23 @@ type
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
     GBLoTW: TGroupBox;
+    GBCWType: TGroupBox;
+    GBCWGeneral: TGroupBox;
     LBLoTWWarning: TLabel;
     LBLoTWKey: TLabel;
     LBLoTWQTH: TLabel;
     LBLoTWPath: TLabel;
     LBRigNameHL: TLabel;
     LBRigNameHL1: TLabel;
-    LBRigNameHL2: TLabel;
     LBRigNumberHL: TLabel;
     LBRigNumberHL1: TLabel;
-    LBRigNumberHL2: TLabel;
-    LBTHTAddress: TLabel;
-    LBTHTPort: TLabel;
     LBViewFreq: TLabel;
     LBSyncMobile: TLabel;
     LBTCIAddress: TLabel;
     LBTCIPort: TLabel;
     LBKeySendSpot: TLabel;
     LBCwDaemonAddress: TLabel;
-    LBCwDaemonWPM: TLabel;
+    LBCwWPM: TLabel;
     LBCwDaemonPort: TLabel;
     LBTelnetName: TLabel;
     LBTelnetPort: TLabel;
@@ -272,8 +265,7 @@ type
     SBTelnetDone: TSpeedButton;
     SBTelnetDelete: TSpeedButton;
     SpinEdit1: TSpinEdit;
-    SECWDaemonWPM: TSpinEdit;
-    TSThetisCAT: TTabSheet;
+    SECWWPM: TSpinEdit;
     TSLoTW: TTabSheet;
     TSCW: TTabSheet;
     TSWorkLAN: TTabSheet;
@@ -295,12 +287,12 @@ type
     procedure BtSaveClick(Sender: TObject);
     procedure BtCancelClick(Sender: TObject);
     procedure BtTCIDefaultClick(Sender: TObject);
-    procedure BtTHTDefaultClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure CBCWDaemonChange(Sender: TObject);
+    procedure CBcwOverTCIChange(Sender: TObject);
     procedure CBRigNumberHLSelect(Sender: TObject);
     procedure CBRigNumberTCISelect(Sender: TObject);
-    procedure CBRigNumberTHTSelect(Sender: TObject);
     procedure CBTransceiverModelSelect(Sender: TObject);
     procedure CBViewFreqChange(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
@@ -339,7 +331,6 @@ type
     procedure TSOtherSettingsShow(Sender: TObject);
     procedure TSTCIShow(Sender: TObject);
     procedure TSTelnetShow(Sender: TObject);
-    procedure TSThetisCATShow(Sender: TObject);
   private
     LVSelectedItem: boolean;
     updatePATH: string;
@@ -351,8 +342,6 @@ type
     procedure SaveRIGSettings;
     procedure LoadTCISettings(RIGid: integer);
     procedure SaveTCISettings;
-    procedure SaveTHTSettings;
-    procedure LoadTHTSettings(RIGid: integer);
     procedure EnableTelnetBTDone;
     procedure SaveTelnetAddress;
     procedure LoadTelnetAddressToVLTelnet;
@@ -378,7 +367,7 @@ implementation
 
 uses
   miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u,
-  TRXForm_U, dmTCI_u, dmTHT_u;
+  TRXForm_U, dmTCI_u;
 
 {$R *.lfm}
 
@@ -498,6 +487,22 @@ begin
   end;
 end;
 
+procedure TConfigForm.CBCWDaemonChange(Sender: TObject);
+begin
+    if CBCWDaemon.Checked then begin
+    CBcwOverTCI.Checked := False;
+    IniSet.CWManager:='CWDaemon';
+  end;
+end;
+
+procedure TConfigForm.CBcwOverTCIChange(Sender: TObject);
+begin
+  if CBcwOverTCI.Checked then begin
+    CBCWDaemon.Checked := False;
+    IniSet.CWManager:='CWTCI';
+  end;
+end;
+
 procedure TConfigForm.SetDefaultRadio(radio: string);
 begin
   INIFile.WriteString('SetCAT', 'CurrentRIG', radio);
@@ -576,8 +581,11 @@ begin
 
   INIFile.WriteString('CWDaemon', 'Address', EditCwDaemonAddress.Text);
   INIFile.WriteInteger('CWDaemon', 'Port', StrToInt(EditCwDaemonPort.Text));
-  INIFile.WriteInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
   INIFile.WriteBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
+  INIFile.WriteInteger('CWGeneral', 'WPM', SECWWPM.Value);
+  INIFile.WriteBool('CWGeneral', 'CWOverTCI', CBcwOverTCI.Checked);
+  INIFile.WriteString('CWGeneral', 'Manager', IniSet.CWManager);
+
   if CBIntMobileSync.Text <> '' then
     INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
   INIFile.WriteInteger('SetLog', 'ViewFreq', CBViewFreq.ItemIndex);
@@ -658,8 +666,9 @@ begin
 
   EditCwDaemonAddress.Text := INIFile.ReadString('CWDaemon', 'Address', '127.0.0.1');
   EditCwDaemonPort.Text := IntToStr(INIFile.ReadInteger('CWDaemon', 'Port', 6789));
-  SECWDaemonWPM.Value := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
   CBCWDaemon.Checked := INIFile.ReadBool('CWDaemon', 'Enable', False);
+  SECWWPM.Value := INIFile.ReadInteger('CWGeneral', 'WPM', 24);
+  CBcwOverTCI.Checked := INIFile.ReadBool('CWGeneral', 'CWOverTCI', False);
 
   CBViewFreq.ItemIndex := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
 
@@ -680,12 +689,6 @@ procedure TConfigForm.BtTCIDefaultClick(Sender: TObject);
 begin
   if CBRigNumberTCI.ItemIndex <> -1 then
     SetDefaultRadio('TCI' + CBRigNumberTCI.Text);
-end;
-
-procedure TConfigForm.BtTHTDefaultClick(Sender: TObject);
-begin
-  if CBRigNumberTHT.ItemIndex <> -1 then
-    SetDefaultRadio('THT' + CBRigNumberTHT.Text);
 end;
 
 procedure TConfigForm.Button3Click(Sender: TObject);
@@ -720,11 +723,6 @@ end;
 procedure TConfigForm.CBRigNumberTCISelect(Sender: TObject);
 begin
   LoadTCISettings(StrToInt(CBRigNumberTCI.Text));
-end;
-
-procedure TConfigForm.CBRigNumberTHTSelect(Sender: TObject);
-begin
-  LoadTHTSettings(StrToInt(CBRigNumberTHT.Text));
 end;
 
 procedure TConfigForm.CBTransceiverModelSelect(Sender: TObject);
@@ -1004,16 +1002,6 @@ begin
   CBTCIEnable.Checked := TCISettings.Enable;
 end;
 
-procedure TConfigForm.LoadTHTSettings(RIGid: integer);
-begin
-  dmTHT.LoadTHTini(RIGid);
-  CBRigNumberTHT.ItemIndex := RIGid - 1;
-  EditTHTAddress.Text := THTSettings.Address;
-  EditTHTPort.Text := IntToStr(THTSettings.Port);
-  EditRIGNameTHT.Text := THTSettings.Name;
-  CBTHTEnable.Checked := THTSettings.Enable;
-end;
-
 procedure TConfigForm.SaveTCISettings;
 begin
   if Length(EditRIGNameTCI.Text) > 1 then
@@ -1023,19 +1011,6 @@ begin
     TCISettings.Name := EditRIGNameTCI.Text;
     TCISettings.Enable := CBTCIEnable.Checked;
     dmTCI.SaveTCIini(CBRigNumberTCI.ItemIndex + 1);
-    // dmTCI.InicializeTCI(CBRigNumberTCI.ItemIndex + 1);
-  end;
-end;
-
-procedure TConfigForm.SaveTHTSettings;
-begin
-   if Length(EditRIGNameTHT.Text) > 1 then
-  begin
-    THTSettings.Address := EditTHTAddress.Text;
-    THTSettings.Port := StrToInt(EditTHTPort.Text);
-    THTSettings.Name := EditRIGNameTHT.Text;
-    THTSettings.Enable := CBTHTEnable.Checked;
-    dmTHT.SaveTHTini(CBRigNumberTHT.ItemIndex + 1);
     // dmTCI.InicializeTCI(CBRigNumberTCI.ItemIndex + 1);
   end;
 end;
@@ -1263,7 +1238,6 @@ begin
   SaveGridColors;
   SaveRIGSettings;
   SaveTCISettings;
-  SaveTHTSettings;
   MainFunc.LoadINIsettings;
   MiniForm.SetHotKey;
   ServerDM.StartWOL;
@@ -1408,12 +1382,6 @@ begin
   SBTelnetDone.Enabled := False;
   SBTelnetDelete.Enabled := False;
   LoadTelnetAddressToVLTelnet;
-end;
-
-procedure TConfigForm.TSThetisCATShow(Sender: TObject);
-begin
-    if IniSet.CurrentRIG <> '' then
-    LoadTHTSettings(StrToInt(IniSet.CurrentRIG[4]));
 end;
 
 end.

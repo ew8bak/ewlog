@@ -118,7 +118,7 @@ var
 
 implementation
 
-uses InitDB_dm, dmFunc_U, GridsForm_u,hrdlog,
+uses InitDB_dm, dmFunc_U, GridsForm_u, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u, dmHamLib_u,
   dmTCI_u;
 
@@ -238,12 +238,6 @@ begin
     IniSet.RIGConnected := dmTCI.InicializeTCI(id);
     Exit;
   end;
-  if Pos('THT', RIGid) > 0 then
-  begin
-    id := StrToInt(RIGid[4]);
-    //IniSet.RIGConnected := dmTCI.InicializeTCI(id);
-    Exit;
-  end;
 end;
 
 function TMainFunc.CompareVersion(Local, Server: string): boolean;
@@ -272,9 +266,6 @@ begin
     if INIFile.ReadString('TCI' + IntToStr(i), 'name', '') <> '' then
       RadioList.AddPair(INIFile.ReadString('TCI' + IntToStr(i), 'name', ''),
         'TCI' + IntToStr(i));
-    if INIFile.ReadString('THT' + IntToStr(i), 'name', '') <> '' then
-      RadioList.AddPair(INIFile.ReadString('THT' + IntToStr(i), 'name', ''),
-        'THT' + IntToStr(i));
   end;
   RadioList.Sort;
   RadioList.Sorted := True;
@@ -1504,8 +1495,8 @@ begin
         finally
           FreeAndNil(Query);
           if (DBGrid.Name = 'DBGrid1') then
-             CurrPosGrid(GridRecordIndex, DBGrid);
-          GridsForm.DBGrid1.DataSource.DataSet.Locate('UnUsedIndex',UnUsIndex,[]);
+            CurrPosGrid(GridRecordIndex, DBGrid);
+          GridsForm.DBGrid1.DataSource.DataSet.Locate('UnUsedIndex', UnUsIndex, []);
           GridsForm.DBGrid1CellClick(nil);
         end;
       end;
@@ -1835,10 +1826,14 @@ begin
   IniSet.WorkOnLAN := INIFile.ReadBool('WorkOnLAN', 'Enable', False);
   IniSet.WOLAddress := INIFile.ReadString('WorkOnLAN', 'Address', '0.0.0.0');
   IniSet.WOLPort := INIFile.ReadInteger('WorkOnLAN', 'Port', 2238);
+  IniSet.CWOverTCI := INIFile.ReadBool('CWGeneral', 'CWOverTCI', False);
+  IniSet.CWWPM := INIFile.ReadInteger('CWGeneral', 'WPM', 24);
   IniSet.CWDaemonAddr := INIFile.ReadString('CWDaemon', 'Address', '127.0.0.1');
   IniSet.CWDaemonPort := INIFile.ReadInteger('CWDaemon', 'Port', 6789);
-  IniSet.CWDaemonWPM := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
   IniSet.CWDaemonEnable := INIFile.ReadBool('CWDaemon', 'Enable', False);
+  IniSet.CWTypeEnable := INIFile.ReadBool('CWType', 'Enable', False);
+  IniSet.CWManager := INIFile.ReadString('CWGeneral', 'Manager', '');
+
   IniSet.InterfaceMobileSync :=
     INIFile.ReadString('SetLog', 'InterfaceMobileSync', '0.0.0.0');
   IniSet.ViewFreq := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);

@@ -101,8 +101,10 @@ var
 begin
   Macros := CWKeysDM.SearchMacro(number);
   {$IFDEF LINUX}
+  if IniSet.CWManager = 'CWDaemon' then begin
   if CWDaemonDM.IdCWDaemonClient.Active then
     CWDaemonDM.SendTextCWDaemon(CWKeysDM.ReplaceMacro(Macros.Macro));
+  end;
   {$ENDIF LINUX}
 end;
 

@@ -6,7 +6,7 @@ interface
 
 uses
   SysUtils, Forms, Controls, Dialogs, ExtCtrls, StdCtrls,
-  Spin;
+  Spin, Classes;
 
 type
 
@@ -22,6 +22,8 @@ type
     PanelCWKey: TPanel;
     PanelTop: TPanel;
     SESpeed: TSpinEdit;
+    procedure BtClearClick(Sender: TObject);
+    procedure BtCloseClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure SESpeedChange(Sender: TObject);
@@ -45,7 +47,7 @@ uses
 
 procedure TCWTypeForm.FormShow(Sender: TObject);
 begin
-  SESpeed.Value := IniSet.CWDaemonWPM;
+  SESpeed.Value := IniSet.CWWPM;
   CWKeysForm.BorderStyle := bsNone;
   CWKeysForm.Parent := CWTypeForm.PanelCWKey;
   CWKeysForm.Align := alClient;
@@ -54,8 +56,8 @@ end;
 
 procedure TCWTypeForm.SESpeedChange(Sender: TObject);
 begin
-  IniSet.CWDaemonWPM := SESpeed.Value;
-  CWDaemonDM.SendCWDaemonWPM(IniSet.CWDaemonWPM);
+  IniSet.CWWPM := SESpeed.Value;
+  CWDaemonDM.SendCWDaemonWPM(IniSet.CWWPM);
 end;
 
 procedure TCWTypeForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -65,6 +67,16 @@ begin
   CWKeysForm.Align := alNone;
   CWKeysForm.Close;
   MiniForm.MiCWKeys.Enabled := True;
+end;
+
+procedure TCWTypeForm.BtCloseClick(Sender: TObject);
+begin
+   CWTypeForm.Close;
+end;
+
+procedure TCWTypeForm.BtClearClick(Sender: TObject);
+begin
+  MemoCWText.Clear;
 end;
 
 end.
