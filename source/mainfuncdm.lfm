@@ -2,9 +2,9 @@ object MainFunc: TMainFunc
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 314
-  HorizontalOffset = 1061
-  VerticalOffset = 194
-  Width = 316
-  PPI = 120
+  Height = 246
+  HorizontalOffset = 831
+  VerticalOffset = 152
+  Width = 248
+  PPI = 94
 end

@@ -104,6 +104,7 @@ type
     cbNoCalcDXCC: TCheckBox;
     CBCWDaemon: TCheckBox;
     CBTCIEnable: TCheckBox;
+    CBcwOverTCI: TCheckBox;
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
@@ -174,6 +175,8 @@ type
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
     GBLoTW: TGroupBox;
+    GBCWType: TGroupBox;
+    GBCWGeneral: TGroupBox;
     LBLoTWWarning: TLabel;
     LBLoTWKey: TLabel;
     LBLoTWQTH: TLabel;
@@ -188,7 +191,7 @@ type
     LBTCIPort: TLabel;
     LBKeySendSpot: TLabel;
     LBCwDaemonAddress: TLabel;
-    LBCwDaemonWPM: TLabel;
+    LBCwWPM: TLabel;
     LBCwDaemonPort: TLabel;
     LBTelnetName: TLabel;
     LBTelnetPort: TLabel;
@@ -262,7 +265,7 @@ type
     SBTelnetDone: TSpeedButton;
     SBTelnetDelete: TSpeedButton;
     SpinEdit1: TSpinEdit;
-    SECWDaemonWPM: TSpinEdit;
+    SECWWPM: TSpinEdit;
     TSLoTW: TTabSheet;
     TSCW: TTabSheet;
     TSWorkLAN: TTabSheet;
@@ -286,6 +289,8 @@ type
     procedure BtTCIDefaultClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure CBCWDaemonChange(Sender: TObject);
+    procedure CBcwOverTCIChange(Sender: TObject);
     procedure CBRigNumberHLSelect(Sender: TObject);
     procedure CBRigNumberTCISelect(Sender: TObject);
     procedure CBTransceiverModelSelect(Sender: TObject);
@@ -482,6 +487,22 @@ begin
   end;
 end;
 
+procedure TConfigForm.CBCWDaemonChange(Sender: TObject);
+begin
+    if CBCWDaemon.Checked then begin
+    CBcwOverTCI.Checked := False;
+    IniSet.CWManager:='CWDaemon';
+  end;
+end;
+
+procedure TConfigForm.CBcwOverTCIChange(Sender: TObject);
+begin
+  if CBcwOverTCI.Checked then begin
+    CBCWDaemon.Checked := False;
+    IniSet.CWManager:='CWTCI';
+  end;
+end;
+
 procedure TConfigForm.SetDefaultRadio(radio: string);
 begin
   INIFile.WriteString('SetCAT', 'CurrentRIG', radio);
@@ -560,8 +581,11 @@ begin
 
   INIFile.WriteString('CWDaemon', 'Address', EditCwDaemonAddress.Text);
   INIFile.WriteInteger('CWDaemon', 'Port', StrToInt(EditCwDaemonPort.Text));
-  INIFile.WriteInteger('CWDaemon', 'WPM', SECWDaemonWPM.Value);
   INIFile.WriteBool('CWDaemon', 'Enable', CBCWDaemon.Checked);
+  INIFile.WriteInteger('CWGeneral', 'WPM', SECWWPM.Value);
+  INIFile.WriteBool('CWGeneral', 'CWOverTCI', CBcwOverTCI.Checked);
+  INIFile.WriteString('CWGeneral', 'Manager', IniSet.CWManager);
+
   if CBIntMobileSync.Text <> '' then
     INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
   INIFile.WriteInteger('SetLog', 'ViewFreq', CBViewFreq.ItemIndex);
@@ -642,8 +666,9 @@ begin
 
   EditCwDaemonAddress.Text := INIFile.ReadString('CWDaemon', 'Address', '127.0.0.1');
   EditCwDaemonPort.Text := IntToStr(INIFile.ReadInteger('CWDaemon', 'Port', 6789));
-  SECWDaemonWPM.Value := INIFile.ReadInteger('CWDaemon', 'WPM', 24);
   CBCWDaemon.Checked := INIFile.ReadBool('CWDaemon', 'Enable', False);
+  SECWWPM.Value := INIFile.ReadInteger('CWGeneral', 'WPM', 24);
+  CBcwOverTCI.Checked := INIFile.ReadBool('CWGeneral', 'CWOverTCI', False);
 
   CBViewFreq.ItemIndex := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
 

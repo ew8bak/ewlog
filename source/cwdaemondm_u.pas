@@ -15,6 +15,7 @@ type
     IdCWDaemonClient: TIdUDPClient;
     procedure DataModuleCreate(Sender: TObject);
   private
+    cwConnected: boolean;
 
   public
     procedure StartCWDaemon;
@@ -39,6 +40,7 @@ procedure TCWDaemonDM.DataModuleCreate(Sender: TObject);
 begin
   if IniSet.CWDaemonEnable then
     StartCWDaemon;
+  cwConnected := False;
 end;
 
 procedure TCWDaemonDM.StartCWDaemon;
@@ -51,7 +53,8 @@ begin
       IdCWDaemonClient.Host := IniSet.CWDaemonAddr;
       IdCWDaemonClient.Port := IniSet.CWDaemonPort;
       IdCWDaemonClient.Active := True;
-      SendCWDaemonWPM(IniSet.CWDaemonWPM);
+      cwConnected := IdCWDaemonClient.Connected;
+      SendCWDaemonWPM(IniSet.CWWPM);
     end;
   except
     on E: Exception do
@@ -62,22 +65,26 @@ end;
 
 procedure TCWDaemonDM.SendCWDaemonWPM(wpm: integer);
 begin
-  IniSet.CWDaemonWPM := wpm;
+  IniSet.CWWPM := wpm;
+  if cwConnected then
   IdCWDaemonClient.Send(Chr(27) + '2' + IntToStr(wpm));
 end;
 
 procedure TCWDaemonDM.TuneStart;
 begin
+  if cwConnected then
   IdCWDaemonClient.Send(Chr(27) + 'c10');
 end;
 
 procedure TCWDaemonDM.TuneStop;
 begin
+  if cwConnected then
   IdCWDaemonClient.Send(Chr(27) + 'c0');
 end;
 
 procedure TCWDaemonDM.StopSending;
 begin
+  if cwConnected then
   IdCWDaemonClient.Send(Chr(27) + '4');
 end;
 
@@ -90,10 +97,11 @@ var
   wpm: word;
   old_wpm: word = 0;
 begin
+  if cwConnected then begin
   Text := UpperCase(Trim(Text));
   if Text = '' then
     exit;
-  wpm := IniSet.CWDaemonWPM;
+  wpm := IniSet.CWWPM;
   old_wpm := wpm;
   if (Pos('+', Text) > 0) or (Pos('-', Text) > 0) then
   begin
@@ -123,6 +131,7 @@ begin
   end
   else
     IdCWDaemonClient.Send(Text);
+  end;
 end;
 
 end.

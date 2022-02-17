@@ -92,12 +92,15 @@ type
     WOLPort: integer;
     CWDaemonAddr: string;
     CWDaemonPort: integer;
-    CWDaemonWPM: integer;
     CWDaemonEnable: boolean;
+    CWOverTCI: boolean;
+    CWWPM: integer;
+    CWManager: string;
+    CWTypeEnable: boolean;
     InterfaceMobileSync: string;
     ViewFreq: integer;
     CurrentRIG: string;
-    RIGConnected: Boolean;
+    RIGConnected: boolean;
     VHFProp: string;
     TXFreq: string;
     SATName: string;
@@ -110,4 +113,3 @@ type
 implementation
 
 end.
-

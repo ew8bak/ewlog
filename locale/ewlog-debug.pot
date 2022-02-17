@@ -1297,6 +1297,10 @@ msgstr ""
 msgid "Use CW Daemon?"
 msgstr ""
 
+#: tconfigform.cbcwovertci.caption
+msgid "CW over TCI ?"
+msgstr ""
+
 #: tconfigform.cbdate.caption
 msgctxt "tconfigform.cbdate.caption"
 msgid "Date"
@@ -1493,6 +1497,15 @@ msgstr ""
 
 #: tconfigform.gbcwdaemon.caption
 msgid "CW Daemon (Linux only)"
+msgstr ""
+
+#: tconfigform.gbcwgeneral.caption
+msgid "CW General"
+msgstr ""
+
+#: tconfigform.gbcwtype.caption
+msgctxt "tconfigform.gbcwtype.caption"
+msgid "CWType (Windows only)"
 msgstr ""
 
 #: tconfigform.gbdefaultdb.caption
@@ -1707,7 +1720,8 @@ msgctxt "tconfigform.lbcwdaemonport.caption"
 msgid "Port"
 msgstr ""
 
-#: tconfigform.lbcwdaemonwpm.caption
+#: tconfigform.lbcwwpm.caption
+msgctxt "tconfigform.lbcwwpm.caption"
 msgid "WPM"
 msgstr ""
 

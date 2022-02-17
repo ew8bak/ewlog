@@ -541,7 +541,7 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 402
+          ClientHeight = 399
           ClientWidth = 500
           OnShow = TSHamlibShow
           object LBTransceiverModel: TLabel
@@ -1015,7 +1015,7 @@ object ConfigForm: TConfigForm
             Left = 10
             Height = 21
             Top = 229
-            Width = 154
+            Width = 166
             BorderSpacing.Top = 5
             Caption = 'Start rigctld on startup?'
             Font.Height = -12
@@ -1125,7 +1125,7 @@ object ConfigForm: TConfigForm
         end
         object TSTCI: TTabSheet
           Caption = 'TCI'
-          ClientHeight = 402
+          ClientHeight = 399
           ClientWidth = 500
           OnShow = TSTCIShow
           object LBTCIAddress: TLabel
@@ -1266,16 +1266,17 @@ object ConfigForm: TConfigForm
       ClientWidth = 510
       object GBCWDaemon: TGroupBox
         AnchorSideLeft.Control = TSCW
-        AnchorSideTop.Control = TSCW
+        AnchorSideTop.Control = GBCWGeneral
+        AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 223
-        Top = 5
+        Height = 170
+        Top = 108
         Width = 156
         AutoSize = True
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'CW Daemon (Linux only)'
-        ClientHeight = 204
+        ClientHeight = 151
         ClientWidth = 154
         TabOrder = 0
         object LBCwDaemonAddress: TLabel
@@ -1301,18 +1302,6 @@ object ConfigForm: TConfigForm
           BorderSpacing.Top = 10
           Caption = 'Port'
         end
-        object LBCwDaemonWPM: TLabel
-          AnchorSideLeft.Control = GBCWDaemon
-          AnchorSideTop.Control = EditCwDaemonPort
-          AnchorSideTop.Side = asrBottom
-          Left = 10
-          Height = 18
-          Top = 125
-          Width = 32
-          BorderSpacing.Left = 10
-          BorderSpacing.Top = 10
-          Caption = 'WPM'
-        end
         object EditCwDaemonAddress: TEdit
           AnchorSideLeft.Control = LBCwDaemonAddress
           AnchorSideTop.Control = LBCwDaemonAddress
@@ -1332,39 +1321,101 @@ object ConfigForm: TConfigForm
           AnchorSideLeft.Control = LBCwDaemonPort
           AnchorSideTop.Control = LBCwDaemonPort
           AnchorSideTop.Side = asrBottom
+          AnchorSideBottom.Side = asrBottom
           Left = 10
           Height = 30
           Top = 85
           Width = 92
           BorderSpacing.Top = 2
+          BorderSpacing.Bottom = 10
           TabOrder = 1
         end
-        object SECWDaemonWPM: TSpinEdit
-          AnchorSideLeft.Control = LBCwDaemonPort
-          AnchorSideTop.Control = LBCwDaemonWPM
+        object CBCWDaemon: TCheckBox
+          AnchorSideLeft.Control = GBCWDaemon
+          AnchorSideTop.Control = EditCwDaemonPort
+          AnchorSideTop.Side = asrBottom
+          AnchorSideBottom.Control = GBCWDaemon
+          AnchorSideBottom.Side = asrBottom
+          Left = 5
+          Height = 21
+          Top = 125
+          Width = 131
+          Anchors = [akTop, akLeft, akBottom]
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 10
+          BorderSpacing.Bottom = 5
+          Caption = 'Use CW Daemon?'
+          OnChange = CBCWDaemonChange
+          TabOrder = 2
+        end
+      end
+      object GBCWType: TGroupBox
+        AnchorSideLeft.Control = GBCWDaemon
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = GBCWGeneral
+        AnchorSideTop.Side = asrBottom
+        Left = 166
+        Height = 171
+        Top = 108
+        Width = 181
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'CWType (Windows only)'
+        TabOrder = 1
+      end
+      object GBCWGeneral: TGroupBox
+        Left = 0
+        Height = 103
+        Top = 0
+        Width = 510
+        Align = alTop
+        AutoSize = True
+        Caption = 'CW General'
+        ClientHeight = 84
+        ClientWidth = 508
+        TabOrder = 2
+        object LBCwWPM: TLabel
+          AnchorSideLeft.Control = GBCWGeneral
+          AnchorSideTop.Control = GBCWGeneral
+          Left = 10
+          Height = 18
+          Top = 5
+          Width = 32
+          Anchors = [akTop]
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
+          Caption = 'WPM'
+        end
+        object SECWWPM: TSpinEdit
+          AnchorSideLeft.Control = LBCwWPM
+          AnchorSideTop.Control = LBCwWPM
           AnchorSideTop.Side = asrBottom
           Left = 10
           Height = 28
-          Top = 145
+          Top = 25
           Width = 96
           BorderSpacing.Top = 2
           MaxValue = 60
           MinValue = 4
-          TabOrder = 2
+          TabOrder = 0
           Value = 24
         end
-        object CBCWDaemon: TCheckBox
-          AnchorSideLeft.Control = GBCWDaemon
-          AnchorSideTop.Control = SECWDaemonWPM
+        object CBcwOverTCI: TCheckBox
+          AnchorSideLeft.Control = LBCwWPM
+          AnchorSideTop.Control = SECWWPM
           AnchorSideTop.Side = asrBottom
-          Left = 5
+          AnchorSideBottom.Control = GBCWGeneral
+          AnchorSideBottom.Side = asrBottom
+          Left = 10
           Height = 21
-          Top = 183
-          Width = 131
-          BorderSpacing.Left = 5
-          BorderSpacing.Top = 10
-          Caption = 'Use CW Daemon?'
-          TabOrder = 3
+          Top = 58
+          Width = 105
+          Anchors = [akTop, akLeft, akBottom]
+          BorderSpacing.Top = 5
+          BorderSpacing.Bottom = 5
+          Caption = 'CW over TCI ?'
+          OnChange = CBcwOverTCIChange
+          TabOrder = 1
         end
       end
     end
@@ -1387,7 +1438,7 @@ object ConfigForm: TConfigForm
         BorderSpacing.Top = 5
         BorderSpacing.Right = 5
         Caption = 'LoTW Settings'
-        ClientHeight = 258
+        ClientHeight = 275
         ClientWidth = 498
         TabOrder = 0
         object LBLoTWPath: TLabel
@@ -1491,7 +1542,7 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 228
         Caption = 'Internal reference book'
-        ClientHeight = 217
+        ClientHeight = 233
         ClientWidth = 226
         Font.Height = -12
         ParentFont = False
@@ -1500,7 +1551,7 @@ object ConfigForm: TConfigForm
           Left = 8
           Height = 21
           Top = 133
-          Width = 109
+          Width = 112
           Caption = 'Use reference?'
           Font.Height = -12
           OnChange = CheckBox1Change
