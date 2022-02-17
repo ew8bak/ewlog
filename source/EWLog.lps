@@ -31,11 +31,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="292"/>
+        <TopLine Value="338"/>
         <CursorPos X="18" Y="242"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="informationform_u.pas"/>
@@ -68,13 +67,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="352"/>
-        <CursorPos X="21" Y="367"/>
+        <TopLine Value="1273"/>
+        <CursorPos X="62" Y="1189"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -372,6 +369,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ThanksForm_u"/>
         <EditorIndex Value="-1"/>
+        <TopLine Value="14"/>
         <CursorPos X="78" Y="8"/>
         <UsageCount Value="201"/>
       </Unit33>
@@ -534,7 +532,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="10"/>
+        <TopLine Value="112"/>
         <CursorPos X="46" Y="10"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -564,6 +562,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="2488"/>
         <CursorPos Y="2517"/>
         <UsageCount Value="200"/>
@@ -1887,127 +1886,123 @@
         <UsageCount Value="10"/>
       </Unit215>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="349" Column="4" TopLine="330"/>
+        <Caret Line="340" Column="22" TopLine="334"/>
       </Position1>
       <Position2>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="341" Column="22" TopLine="335"/>
+        <Caret Line="344" TopLine="334"/>
       </Position2>
       <Position3>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="340" Column="22" TopLine="334"/>
+        <Caret Line="240" Column="3" TopLine="223"/>
       </Position3>
       <Position4>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="344" TopLine="334"/>
+        <Caret Line="380" Column="4" TopLine="363"/>
       </Position4>
       <Position5>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="240" Column="3" TopLine="223"/>
+        <Caret Line="410" Column="5" TopLine="393"/>
       </Position5>
       <Position6>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="380" Column="4" TopLine="363"/>
+        <Caret Line="164" Column="23" TopLine="130"/>
       </Position6>
       <Position7>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="410" Column="5" TopLine="393"/>
+        <Caret Line="342" Column="19" TopLine="262"/>
       </Position7>
       <Position8>
         <Filename Value="editqso_u.pas"/>
-        <Caret Line="164" Column="23" TopLine="130"/>
+        <Caret Line="239" Column="50" TopLine="229"/>
       </Position8>
       <Position9>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="342" Column="19" TopLine="262"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1270" Column="34" TopLine="1241"/>
       </Position9>
       <Position10>
-        <Filename Value="editqso_u.pas"/>
-        <Caret Line="239" Column="50" TopLine="229"/>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1269" Column="34" TopLine="1240"/>
       </Position10>
       <Position11>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1270" Column="34" TopLine="1241"/>
+        <Caret Line="1268" Column="34" TopLine="1239"/>
       </Position11>
       <Position12>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1269" Column="34" TopLine="1240"/>
+        <Caret Line="1267" Column="34" TopLine="1238"/>
       </Position12>
       <Position13>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1268" Column="34" TopLine="1239"/>
+        <Caret Line="1266" Column="34" TopLine="1237"/>
       </Position13>
       <Position14>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1267" Column="34" TopLine="1238"/>
+        <Caret Line="1265" Column="34" TopLine="1236"/>
       </Position14>
       <Position15>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1266" Column="34" TopLine="1237"/>
+        <Caret Line="1264" Column="34" TopLine="1235"/>
       </Position15>
       <Position16>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1265" Column="34" TopLine="1236"/>
+        <Caret Line="1263" Column="34" TopLine="1234"/>
       </Position16>
       <Position17>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1264" Column="34" TopLine="1235"/>
+        <Caret Line="1262" Column="34" TopLine="1233"/>
       </Position17>
       <Position18>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1263" Column="34" TopLine="1234"/>
+        <Caret Line="1261" Column="34" TopLine="1232"/>
       </Position18>
       <Position19>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1262" Column="34" TopLine="1233"/>
+        <Caret Line="1260" Column="34" TopLine="1231"/>
       </Position19>
       <Position20>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1261" Column="34" TopLine="1232"/>
+        <Caret Line="1259" Column="34" TopLine="1230"/>
       </Position20>
       <Position21>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1260" Column="34" TopLine="1231"/>
+        <Caret Line="676" TopLine="661"/>
       </Position21>
       <Position22>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1259" Column="34" TopLine="1230"/>
+        <Caret Line="715" Column="3" TopLine="700"/>
       </Position22>
       <Position23>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="676" TopLine="661"/>
+        <Caret Line="995" TopLine="983"/>
       </Position23>
       <Position24>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="715" Column="3" TopLine="700"/>
+        <Caret Line="1008" TopLine="995"/>
       </Position24>
       <Position25>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="995" TopLine="983"/>
+        <Caret Line="342" Column="31" TopLine="329"/>
       </Position25>
       <Position26>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1008" TopLine="995"/>
+        <Caret Line="1228" Column="19" TopLine="1215"/>
       </Position26>
       <Position27>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="342" Column="31" TopLine="329"/>
+        <Caret Line="1370" Column="27" TopLine="1346"/>
       </Position27>
       <Position28>
-        <Filename Value="configform_u.pas"/>
-        <Caret Line="1228" Column="19" TopLine="1215"/>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="10" Column="46" TopLine="10"/>
       </Position28>
       <Position29>
         <Filename Value="configform_u.pas"/>
-        <Caret Line="1370" Column="27" TopLine="1346"/>
+        <Caret Line="367" Column="21" TopLine="352"/>
       </Position29>
-      <Position30>
-        <Filename Value="initdb_dm.pas"/>
-        <Caret Line="10" Column="46" TopLine="10"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

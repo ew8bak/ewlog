@@ -298,7 +298,7 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 228
         Caption = 'QRZ.RU XML API'
-        ClientHeight = 108
+        ClientHeight = 92
         ClientWidth = 226
         Font.Height = -12
         ParentFont = False
@@ -377,7 +377,7 @@ object ConfigForm: TConfigForm
         Top = 125
         Width = 228
         Caption = 'QRZ.COM XML API'
-        ClientHeight = 108
+        ClientHeight = 92
         ClientWidth = 226
         Font.Height = -12
         ParentFont = False
@@ -454,7 +454,7 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 228
         Caption = 'HAMQTH XML API'
-        ClientHeight = 108
+        ClientHeight = 92
         ClientWidth = 226
         Font.Height = -12
         ParentFont = False
@@ -1387,7 +1387,7 @@ object ConfigForm: TConfigForm
         BorderSpacing.Top = 5
         BorderSpacing.Right = 5
         Caption = 'LoTW Settings'
-        ClientHeight = 275
+        ClientHeight = 258
         ClientWidth = 498
         TabOrder = 0
         object LBLoTWPath: TLabel
@@ -1491,7 +1491,7 @@ object ConfigForm: TConfigForm
         Top = 8
         Width = 228
         Caption = 'Internal reference book'
-        ClientHeight = 233
+        ClientHeight = 217
         ClientWidth = 226
         Font.Height = -12
         ParentFont = False
@@ -1687,7 +1687,7 @@ object ConfigForm: TConfigForm
           Left = 5
           Height = 21
           Top = 97
-          Width = 189
+          Width = 200
           Anchors = [akLeft, akBottom]
           BorderSpacing.Left = 5
           BorderSpacing.Bottom = 5
@@ -2366,7 +2366,7 @@ object ConfigForm: TConfigForm
             Left = 1
             Height = 21
             Top = 24
-            Width = 46
+            Width = 48
             Caption = 'QSL'
             Font.Height = -12
             ParentFont = False
@@ -2376,7 +2376,7 @@ object ConfigForm: TConfigForm
             Left = 1
             Height = 21
             Top = 47
-            Width = 52
+            Width = 54
             Caption = 'QSLs'
             Font.Height = -12
             ParentFont = False
@@ -2386,7 +2386,7 @@ object ConfigForm: TConfigForm
             Left = 1
             Height = 21
             Top = 70
-            Width = 51
+            Width = 53
             Caption = 'Date'
             Font.Height = -12
             ParentFont = False
@@ -2396,7 +2396,7 @@ object ConfigForm: TConfigForm
             Left = 1
             Height = 21
             Top = 94
-            Width = 52
+            Width = 53
             Caption = 'Time'
             Font.Height = -12
             ParentFont = False
@@ -2406,7 +2406,7 @@ object ConfigForm: TConfigForm
             Left = 1
             Height = 21
             Top = 118
-            Width = 53
+            Width = 55
             Caption = 'Band'
             Font.Height = -12
             ParentFont = False
@@ -2426,7 +2426,7 @@ object ConfigForm: TConfigForm
             Left = 1
             Height = 21
             Top = 164
-            Width = 56
+            Width = 59
             Caption = 'Mode'
             Font.Height = -12
             ParentFont = False
@@ -2436,7 +2436,7 @@ object ConfigForm: TConfigForm
             Left = 1
             Height = 21
             Top = 188
-            Width = 77
+            Width = 82
             Caption = 'SubMode'
             Font.Height = -12
             ParentFont = False
@@ -2446,7 +2446,7 @@ object ConfigForm: TConfigForm
             Left = 103
             Height = 21
             Top = 24
-            Width = 58
+            Width = 60
             Caption = 'Name'
             Font.Height = -12
             ParentFont = False
@@ -2456,7 +2456,7 @@ object ConfigForm: TConfigForm
             Left = 103
             Height = 21
             Top = 47
-            Width = 49
+            Width = 51
             Caption = 'QTH'
             Font.Height = -12
             ParentFont = False
@@ -2466,7 +2466,7 @@ object ConfigForm: TConfigForm
             Left = 102
             Height = 21
             Top = 70
-            Width = 53
+            Width = 55
             Caption = 'State'
             Font.Height = -12
             ParentFont = False
@@ -2476,7 +2476,7 @@ object ConfigForm: TConfigForm
             Left = 103
             Height = 21
             Top = 94
-            Width = 48
+            Width = 49
             Caption = 'Grid'
             Font.Height = -12
             ParentFont = False
@@ -2486,7 +2486,7 @@ object ConfigForm: TConfigForm
             Left = 103
             Height = 21
             Top = 118
-            Width = 50
+            Width = 51
             Caption = 'RSTs'
             Font.Height = -12
             ParentFont = False
@@ -2496,7 +2496,7 @@ object ConfigForm: TConfigForm
             Left = 102
             Height = 21
             Top = 141
-            Width = 49
+            Width = 51
             Caption = 'RSTr'
             Font.Height = -12
             ParentFont = False
@@ -2506,7 +2506,7 @@ object ConfigForm: TConfigForm
             Left = 103
             Height = 21
             Top = 164
-            Width = 51
+            Width = 52
             Caption = 'IOTA'
             Font.Height = -12
             ParentFont = False
@@ -2516,7 +2516,7 @@ object ConfigForm: TConfigForm
             Left = 103
             Height = 21
             Top = 188
-            Width = 75
+            Width = 78
             Caption = 'Manager'
             Font.Height = -12
             ParentFont = False
@@ -2526,7 +2526,7 @@ object ConfigForm: TConfigForm
             Left = 196
             Height = 21
             Top = 24
-            Width = 82
+            Width = 86
             Caption = 'QSLs Date'
             Font.Height = -12
             ParentFont = False
@@ -2536,7 +2536,7 @@ object ConfigForm: TConfigForm
             Left = 196
             Height = 21
             Top = 47
-            Width = 81
+            Width = 85
             Caption = 'QSLr Date'
             Font.Height = -12
             ParentFont = False
@@ -2546,7 +2546,7 @@ object ConfigForm: TConfigForm
             Left = 196
             Height = 21
             Top = 70
-            Width = 92
+            Width = 97
             Caption = 'LOTWr Date'
             Font.Height = -12
             ParentFont = False
@@ -2556,7 +2556,7 @@ object ConfigForm: TConfigForm
             Left = 196
             Height = 21
             Top = 94
-            Width = 56
+            Width = 59
             Caption = 'Prefix'
             Font.Height = -12
             ParentFont = False
@@ -2566,7 +2566,7 @@ object ConfigForm: TConfigForm
             Left = 196
             Height = 21
             Top = 118
-            Width = 55
+            Width = 56
             Caption = 'DXCC'
             Font.Height = -12
             ParentFont = False
@@ -2576,7 +2576,7 @@ object ConfigForm: TConfigForm
             Left = 196
             Height = 21
             Top = 141
-            Width = 71
+            Width = 75
             Caption = 'CQ Zone'
             Font.Height = -12
             ParentFont = False
@@ -2586,7 +2586,7 @@ object ConfigForm: TConfigForm
             Left = 196
             Height = 21
             Top = 164
-            Width = 75
+            Width = 78
             Caption = 'ITU Zone'
             Font.Height = -12
             ParentFont = False
@@ -2596,7 +2596,7 @@ object ConfigForm: TConfigForm
             Left = 196
             Height = 21
             Top = 188
-            Width = 87
+            Width = 91
             Caption = 'Manual Set'
             Font.Height = -12
             ParentFont = False
@@ -2606,7 +2606,7 @@ object ConfigForm: TConfigForm
             Left = 313
             Height = 21
             Top = 24
-            Width = 78
+            Width = 84
             Caption = 'Continent'
             Font.Height = -12
             ParentFont = False
@@ -2616,7 +2616,7 @@ object ConfigForm: TConfigForm
             Left = 313
             Height = 21
             Top = 47
-            Width = 67
+            Width = 70
             Caption = 'ValidDX'
             Font.Height = -12
             ParentFont = False
@@ -2626,7 +2626,7 @@ object ConfigForm: TConfigForm
             Left = 313
             Height = 21
             Top = 70
-            Width = 73
+            Width = 76
             Caption = 'QSLr VIA'
             Font.Height = -12
             ParentFont = False
@@ -2636,7 +2636,7 @@ object ConfigForm: TConfigForm
             Left = 313
             Height = 21
             Top = 94
-            Width = 74
+            Width = 77
             Caption = 'QSLs VIA'
             Font.Height = -12
             ParentFont = False
@@ -2646,7 +2646,7 @@ object ConfigForm: TConfigForm
             Left = 313
             Height = 21
             Top = 118
-            Width = 51
+            Width = 52
             Caption = 'User'
             Font.Height = -12
             ParentFont = False
@@ -2656,7 +2656,7 @@ object ConfigForm: TConfigForm
             Left = 313
             Height = 21
             Top = 141
-            Width = 101
+            Width = 104
             Caption = 'No Calc DXCC'
             Font.Height = -12
             ParentFont = False
@@ -2708,7 +2708,7 @@ object ConfigForm: TConfigForm
           Left = 8
           Height = 21
           Top = 70
-          Width = 145
+          Width = 156
           Caption = 'Send ADI to CloudLog'
           Font.Height = -12
           ParentFont = False
@@ -2718,7 +2718,7 @@ object ConfigForm: TConfigForm
           Left = 8
           Height = 21
           Top = 94
-          Width = 149
+          Width = 161
           Caption = 'Send Freq to CloudLog'
           Font.Height = -12
           ParentFont = False
@@ -2752,7 +2752,7 @@ object ConfigForm: TConfigForm
         Left = 235
         Height = 21
         Top = 16
-        Width = 139
+        Width = 146
         Caption = 'Use bands in meters'
         Font.Height = -12
         OnChange = CheckBox2Change
@@ -2763,7 +2763,7 @@ object ConfigForm: TConfigForm
         Left = 235
         Height = 21
         Top = 39
-        Width = 140
+        Width = 151
         Caption = 'Printing with preview'
         Font.Height = -12
         OnChange = CheckBox2Change
@@ -2774,7 +2774,7 @@ object ConfigForm: TConfigForm
         Left = 235
         Height = 21
         Top = 63
-        Width = 238
+        Width = 250
         Caption = 'Send MY_STATE and MY_GRIDSQUARE'
         Font.Height = -12
         OnChange = CheckBox6Change

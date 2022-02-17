@@ -284,12 +284,10 @@ type
     procedure BtSaveClick(Sender: TObject);
     procedure BtCancelClick(Sender: TObject);
     procedure BtTCIDefaultClick(Sender: TObject);
-    procedure BtTHTDefaultClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure CBRigNumberHLSelect(Sender: TObject);
     procedure CBRigNumberTCISelect(Sender: TObject);
-    procedure CBRigNumberTHTSelect(Sender: TObject);
     procedure CBTransceiverModelSelect(Sender: TObject);
     procedure CBViewFreqChange(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
@@ -668,11 +666,6 @@ begin
     SetDefaultRadio('TCI' + CBRigNumberTCI.Text);
 end;
 
-procedure TConfigForm.BtTHTDefaultClick(Sender: TObject);
-begin
-
-end;
-
 procedure TConfigForm.Button3Click(Sender: TObject);
 begin
   try
@@ -705,11 +698,6 @@ end;
 procedure TConfigForm.CBRigNumberTCISelect(Sender: TObject);
 begin
   LoadTCISettings(StrToInt(CBRigNumberTCI.Text));
-end;
-
-procedure TConfigForm.CBRigNumberTHTSelect(Sender: TObject);
-begin
-
 end;
 
 procedure TConfigForm.CBTransceiverModelSelect(Sender: TObject);

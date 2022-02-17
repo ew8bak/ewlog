@@ -5507,6 +5507,10 @@ msgstr ""
 msgid "R9XAL - Aleksey Panyukov"
 msgstr ""
 
+#: tthanks_form.label13.caption
+msgid "RL2B - Mikhail Genin"
+msgstr ""
+
 #: tthanks_form.label2.caption
 msgid "EW2MS - Mikhail Senko"
 msgstr ""
