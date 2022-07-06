@@ -2172,6 +2172,7 @@ msgid "ITU"
 msgstr ""
 
 #: tcreatejournalform.lblat.caption
+msgctxt "tcreatejournalform.lblat.caption"
 msgid "Lat"
 msgstr ""
 
@@ -3765,12 +3766,12 @@ msgstr ""
 
 #: tlogconfigform.label12.caption
 msgctxt "tlogconfigform.label12.caption"
-msgid "Latitude"
+msgid "Lat"
 msgstr ""
 
 #: tlogconfigform.label13.caption
 msgctxt "tlogconfigform.label13.caption"
-msgid "Longitude"
+msgid "Lon"
 msgstr ""
 
 #: tlogconfigform.label14.caption
