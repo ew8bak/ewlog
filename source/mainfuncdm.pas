@@ -2381,9 +2381,9 @@ begin
       INIFile.ReadBool('GridSettings', 'ColVisible' + IntToStr(i), True);
   end;
 
-  ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
+  ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', clDefault);
   SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
-  ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', -2147483617);
+  ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', clDefault);
 
   DBGRID.Font.Size := SizeTextGrid;
   DBGRID.Font.Color := ColorTextGrid;

@@ -1,7 +1,7 @@
 object GridsForm: TGridsForm
-  Left = 477
+  Left = 796
   Height = 399
-  Top = 271
+  Top = 154
   Width = 835
   Caption = 'Logbook'
   ClientHeight = 399
@@ -9,7 +9,7 @@ object GridsForm: TGridsForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '2.2.2.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 294
@@ -19,214 +19,214 @@ object GridsForm: TGridsForm
     Color = clWindow
     Columns = <    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSL'
-        Width = 37
+        Width = 38
         FieldName = 'QSL'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSLs'
-        Width = 42
+        Width = 44
         FieldName = 'QSLs'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Date'
-        Width = 40
+        Width = 42
         FieldName = 'QSODate'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Time'
-        Width = 42
+        Width = 43
         FieldName = 'QSOTime'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Frequency'
-        Width = 71
+        Width = 75
         FieldName = 'QSOBand'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Callsign'
-        Width = 58
+        Width = 60
         FieldName = 'CallSign'
       end    
       item
+        Color = clDefault
         MinSize = 15
-        MaxSize = 200
         Title.Caption = 'Mode'
-        Width = 47
+        Width = 48
         FieldName = 'QSOMode'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSOSubMode'
-        Width = 92
+        Width = 96
         FieldName = 'QSOSubMode'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Name'
-        Width = 48
+        Width = 50
         FieldName = 'OMName'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QTH'
         Width = 40
         FieldName = 'OMQTH'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'State'
-        Width = 42
+        Width = 44
         FieldName = 'State'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Grid'
-        Width = 38
+        Width = 40
         FieldName = 'Grid'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'RSTs'
-        Width = 40
+        Width = 41
         FieldName = 'QSOReportSent'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'RSTr'
-        Width = 39
+        Width = 41
         FieldName = 'QSOReportRecived'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'IOTA'
         Width = 42
         FieldName = 'IOTA'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Manager'
-        Width = 63
+        Width = 67
         FieldName = 'QSLManager'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSLs Date'
-        Width = 69
+        Width = 74
         FieldName = 'QSLSentDate'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSLr Date'
-        Width = 68
+        Width = 73
         FieldName = 'QSLRecDate'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'LOTWr Date'
-        Width = 80
+        Width = 84
         FieldName = 'LoTWRecDate'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Prefix'
-        Width = 46
+        Width = 48
         FieldName = 'MainPrefix'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'DXCC'
-        Width = 47
+        Width = 46
         FieldName = 'DXCCPrefix'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'CQ Zone'
-        Width = 63
+        Width = 64
         FieldName = 'CQZone'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'ITU Zone'
-        Width = 63
+        Width = 67
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Manual Set'
-        Width = 76
+        Width = 80
         FieldName = 'ManualSet'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Continent'
-        Width = 69
+        Width = 72
         FieldName = 'Continent'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Valid DX'
-        Width = 60
+        Width = 62
         FieldName = 'ValidDX'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSL r VIA'
-        Width = 65
+        Width = 69
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSL s VIA'
-        Width = 66
+        Width = 69
         FieldName = 'QSL_SENT_VIA'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'User'
-        Width = 39
+        Width = 42
         FieldName = 'USERS'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'No calc DXCC'
         Width = 91
         FieldName = 'NoCalcDXCC'
@@ -252,214 +252,214 @@ object GridsForm: TGridsForm
     Color = clWindow
     Columns = <    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSL'
-        Width = 37
+        Width = 38
         FieldName = 'QSL'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSLs'
-        Width = 42
+        Width = 44
         FieldName = 'QSLs'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Date'
-        Width = 40
+        Width = 42
         FieldName = 'QSODate'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Time'
-        Width = 42
+        Width = 43
         FieldName = 'QSOTime'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Frequency'
-        Width = 71
+        Width = 75
         FieldName = 'QSOBand'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Callsign'
-        Width = 58
+        Width = 60
         FieldName = 'CallSign'
       end    
       item
+        Color = clDefault
         MinSize = 15
-        MaxSize = 200
         Title.Caption = 'Mode'
-        Width = 47
+        Width = 48
         FieldName = 'QSOMode'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSOSubMode'
-        Width = 92
+        Width = 96
         FieldName = 'QSOSubMode'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Name'
-        Width = 48
+        Width = 50
         FieldName = 'OMName'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QTH'
         Width = 40
         FieldName = 'OMQTH'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'State'
-        Width = 42
+        Width = 44
         FieldName = 'State'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Grid'
-        Width = 38
+        Width = 40
         FieldName = 'Grid'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'RSTs'
-        Width = 40
+        Width = 41
         FieldName = 'QSOReportSent'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'RSTr'
-        Width = 39
+        Width = 41
         FieldName = 'QSOReportRecived'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'IOTA'
         Width = 42
         FieldName = 'IOTA'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Manager'
-        Width = 63
+        Width = 67
         FieldName = 'QSLManager'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSLs Date'
-        Width = 69
+        Width = 74
         FieldName = 'QSLSentDate'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSLr Date'
-        Width = 68
+        Width = 73
         FieldName = 'QSLRecDate'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'LOTWr Date'
-        Width = 80
+        Width = 84
         FieldName = 'LoTWRecDate'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Prefix'
-        Width = 46
+        Width = 48
         FieldName = 'MainPrefix'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'DXCC'
-        Width = 47
+        Width = 46
         FieldName = 'DXCCPrefix'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'CQ Zone'
-        Width = 63
+        Width = 64
         FieldName = 'CQZone'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'ITU Zone'
-        Width = 63
+        Width = 67
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Manual Set'
-        Width = 76
+        Width = 80
         FieldName = 'ManualSet'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Continent'
-        Width = 69
+        Width = 72
         FieldName = 'Continent'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'Valid DX'
-        Width = 60
+        Width = 62
         FieldName = 'ValidDX'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSL r VIA'
-        Width = 65
+        Width = 69
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'QSL s VIA'
-        Width = 66
+        Width = 69
         FieldName = 'QSL_SENT_VIA'
       end    
       item
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'User'
-        Width = 39
+        Width = 42
         FieldName = 'USERS'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
+        Color = clDefault
         MinSize = 9
-        MaxSize = 200
         Title.Caption = 'No calc DXCC'
         Width = 91
         FieldName = 'NoCalcDXCC'

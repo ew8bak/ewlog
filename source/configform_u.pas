@@ -1183,9 +1183,9 @@ end;
 
 procedure TConfigForm.ReadGridColors;
 begin
-  cbTextColorGrid.Selected := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
+  cbTextColorGrid.Selected := INIFile.ReadInteger('GridSettings', 'TextColor', clDefault);
   cbBackColorGrid.Selected :=
-    INIFile.ReadInteger('GridSettings', 'BackColor', -2147483617);
+    INIFile.ReadInteger('GridSettings', 'BackColor', clDefault);
 
   case INIFile.ReadInteger('GridSettings', 'TextSize', 8) of
     8: cbTextSizeGrid.ItemIndex := 0;
