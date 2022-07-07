@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="12"/>
     <BuildModes Active="Debug"/>
-    <Units Count="218">
+    <Units Count="220">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -536,7 +536,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="20"/>
+        <EditorIndex Value="18"/>
         <TopLine Value="10"/>
         <CursorPos X="46" Y="10"/>
         <UsageCount Value="200"/>
@@ -566,6 +566,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="598"/>
         <CursorPos X="3" Y="606"/>
         <UsageCount Value="200"/>
@@ -711,7 +712,6 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="642"/>
         <CursorPos X="6" Y="647"/>
@@ -1664,7 +1664,6 @@
         <TopLine Value="956"/>
         <CursorPos Y="976"/>
         <UsageCount Value="3"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit182>
       <Unit183>
         <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Core\IdIOHandler.pas"/>
@@ -1672,7 +1671,6 @@
         <TopLine Value="2133"/>
         <CursorPos Y="2153"/>
         <UsageCount Value="3"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit183>
       <Unit184>
         <Filename Value="C:\usr\lib\fpc\src\packages\fcl-db\src\base\db.pas"/>
@@ -1696,7 +1694,6 @@
         <TopLine Value="4797"/>
         <CursorPos Y="4814"/>
         <UsageCount Value="8"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit186>
       <Unit187>
         <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Core\IdUDPClient.pas"/>
@@ -1704,7 +1701,6 @@
         <TopLine Value="221"/>
         <CursorPos X="3" Y="224"/>
         <UsageCount Value="3"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit187>
       <Unit188>
         <Filename Value="cwkeys.pas"/>
@@ -1714,12 +1710,10 @@
       </Unit188>
       <Unit189>
         <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Core\IdCustomTCPServer.pas"/>
-        <EditorIndex Value="18"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1086"/>
         <CursorPos X="41" Y="1101"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit189>
       <Unit190>
         <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Core\IdTask.pas"/>
@@ -1727,7 +1721,6 @@
         <TopLine Value="102"/>
         <CursorPos Y="141"/>
         <UsageCount Value="3"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit190>
       <Unit191>
         <Filename Value="..\sywebsocket\src\sywebsocketclient.pas"/>
@@ -1859,7 +1852,6 @@
         <TopLine Value="343"/>
         <CursorPos X="15" Y="359"/>
         <UsageCount Value="3"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit209>
       <Unit210>
         <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Core\IdTCPConnection.pas"/>
@@ -1867,7 +1859,6 @@
         <TopLine Value="555"/>
         <CursorPos X="3" Y="531"/>
         <UsageCount Value="3"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit210>
       <Unit211>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-web\src\base\fphttpclient.pp"/>
@@ -1896,7 +1887,6 @@
         <TopLine Value="1097"/>
         <CursorPos Y="1111"/>
         <UsageCount Value="10"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit214>
       <Unit215>
         <Filename Value="C:\lazarus\lcl\include\customcombobox.inc"/>
@@ -1911,18 +1901,32 @@
         <TopLine Value="418"/>
         <CursorPos Y="432"/>
         <UsageCount Value="10"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit216>
       <Unit217>
-        <Filename Value="..\..\..\..\..\usr\lib\fpc\src\packages\fcl-db\src\base\datasource.inc"/>
-        <EditorIndex Value="19"/>
+        <Filename Value="C:\usr\lib\fpc\src\packages\fcl-db\src\base\datasource.inc"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="629"/>
         <CursorPos Y="645"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit217>
+      <Unit218>
+        <Filename Value="..\..\..\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdCustomTCPServer.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1095"/>
+        <CursorPos Y="1111"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit218>
+      <Unit219>
+        <Filename Value="..\..\..\AppData\Local\lazarus\onlinepackagemanager\packages\Indy10\Core\IdIOHandler.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2113"/>
+        <CursorPos Y="2130"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit219>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="76" Column="14" TopLine="62"/>
@@ -1972,77 +1976,65 @@
         <Caret Line="412" Column="3" TopLine="395"/>
       </Position12>
       <Position13>
-        <Filename Value="..\..\..\..\..\usr\lib\fpc\src\packages\fcl-db\src\base\datasource.inc"/>
-        <Caret Line="645" TopLine="629"/>
-      </Position13>
-      <Position14>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="2374" TopLine="2366"/>
-      </Position14>
-      <Position15>
+      </Position13>
+      <Position14>
         <Filename Value="gridsform_u.pas"/>
         <Caret Line="360" Column="4" TopLine="344"/>
-      </Position15>
-      <Position16>
+      </Position14>
+      <Position15>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="2372" Column="4" TopLine="2363"/>
-      </Position16>
-      <Position17>
+      </Position15>
+      <Position16>
         <Filename Value="miniform_u.pas"/>
         <Caret Line="1756" Column="32" TopLine="1741"/>
+      </Position16>
+      <Position17>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="360" Column="4" TopLine="344"/>
       </Position17>
       <Position18>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="360" Column="4" TopLine="344"/>
+        <Caret Line="387" Column="21" TopLine="383"/>
       </Position18>
       <Position19>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="379" Column="2" TopLine="400"/>
+        <Caret Line="191" Column="11" TopLine="172"/>
       </Position19>
       <Position20>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="378" Column="3" TopLine="667"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="193" Column="21" TopLine="186"/>
       </Position20>
       <Position21>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="387" Column="21" TopLine="383"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="46" Column="15" TopLine="30"/>
       </Position21>
       <Position22>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="191" Column="11" TopLine="172"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="669" Column="3" TopLine="659"/>
       </Position22>
       <Position23>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="193" Column="21" TopLine="186"/>
+        <Caret Line="684" Column="3" TopLine="659"/>
       </Position23>
       <Position24>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="647" Column="24" TopLine="659"/>
+        <Caret Line="691" Column="3" TopLine="689"/>
       </Position24>
       <Position25>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="46" Column="15" TopLine="30"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="697" Column="3" TopLine="689"/>
       </Position25>
       <Position26>
         <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="647" Column="24" TopLine="659"/>
+        <Caret Line="647" Column="6" TopLine="642"/>
       </Position26>
       <Position27>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="669" Column="3" TopLine="659"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="606" Column="3" TopLine="598"/>
       </Position27>
-      <Position28>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="684" Column="3" TopLine="659"/>
-      </Position28>
-      <Position29>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="691" Column="3" TopLine="689"/>
-      </Position29>
-      <Position30>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="697" Column="3" TopLine="689"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

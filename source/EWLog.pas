@@ -39,8 +39,8 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
 {$R *.res}
 
 begin
+  Application.Scaled:=True;
   Application.Title:='EWLog - HAM Journal';
-  Application.Scaled := True;
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TInitDB, InitDB);
