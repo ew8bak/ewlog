@@ -1,7 +1,7 @@
 object CreateJournalForm: TCreateJournalForm
-  Left = 356
+  Left = 377
   Height = 301
-  Top = 601
+  Top = 490
   Width = 332
   AutoSize = True
   BorderIcons = [biSystemMenu]

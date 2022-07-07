@@ -69,11 +69,7 @@ type
     DateTimePicker1: TDateTimePicker;
     EditMyGrid: TEdit;
     EditMyState: TEdit;
-    EditState1: TEdit;
     EditComment: TEdit;
-    EditState4: TEdit;
-    EditState3: TEdit;
-    EditState2: TEdit;
     EditGrid: TEdit;
     EditState: TEdit;
     EditIOTA: TEdit;
@@ -115,7 +111,6 @@ type
     LBITUD: TLabel;
     LBYourQSL: TLabel;
     LBCfm: TLabel;
-    LBSubState: TLabel;
     LBComment: TLabel;
     LBGrid: TLabel;
     LBState: TLabel;
@@ -214,10 +209,6 @@ type
     SBState: TSpeedButton;
     SBIOTA: TSpeedButton;
     SBMGR: TSpeedButton;
-    SBState4: TSpeedButton;
-    SBState3: TSpeedButton;
-    SBState2: TSpeedButton;
-    SBState1: TSpeedButton;
     SBCopy: TSpeedButton;
     SBInfo: TSpeedButton;
     Shape1: TShape;
@@ -747,10 +738,6 @@ begin
   EditState.Clear;
   EditIOTA.Clear;
   EditMGR.Clear;
-  EditState1.Clear;
-  EditState2.Clear;
-  EditState3.Clear;
-  EditState4.Clear;
   EditComment.Clear;
   CBRSTs.ItemIndex := 0;
   CBRSTr.ItemIndex := 0;
@@ -1641,10 +1628,10 @@ begin
       end;
 
       SQSO.Call := dmFunc.ExtractCallsign(EditCallsign.Text);
-      SQSO.State1 := EditState1.Text;
-      SQSO.State2 := EditState2.Text;
-      SQSO.State3 := EditState3.Text;
-      SQSO.State4 := EditState4.Text;
+      SQSO.State1 := '';
+      SQSO.State2 := '';
+      SQSO.State3 := '';
+      SQSO.State4 := '';
       SQSO.WPX := dmFunc.ExtractWPXPrefix(EditCallsign.Text);
       SQSO.AwardsEx := 'NULL';
       SQSO.ValidDX := IntToStr(1);
@@ -1758,15 +1745,6 @@ procedure TMiniForm.ShowCommentStat;
 begin
   LBComment.Visible := True;
   EditComment.Visible := True;
-  LBSubState.Visible := True;
-  EditState1.Visible := True;
-  EditState2.Visible := True;
-  EditState3.Visible := True;
-  EditState4.Visible := True;
-  SBState1.Visible := True;
-  SBState2.Visible := True;
-  SBState3.Visible := True;
-  SBState4.Visible := True;
   INIFile.WriteBool('SetLog', 'VisibleComment', True);
   MiniForm.Height := MiniForm.Height + 50;
   SBHideComment.Caption := '▲';
@@ -1776,15 +1754,6 @@ procedure TMiniForm.HideCommentStat;
 begin
   LBComment.Visible := False;
   EditComment.Visible := False;
-  LBSubState.Visible := False;
-  EditState1.Visible := False;
-  EditState2.Visible := False;
-  EditState3.Visible := False;
-  EditState4.Visible := False;
-  SBState1.Visible := False;
-  SBState2.Visible := False;
-  SBState3.Visible := False;
-  SBState4.Visible := False;
   INIFile.WriteBool('SetLog', 'VisibleComment', False);
   SBHideComment.Caption := '▼';
 end;

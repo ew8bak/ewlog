@@ -4256,11 +4256,6 @@ msgctxt "tminiform.lbstate.caption"
 msgid "State"
 msgstr ""
 
-#: tminiform.lbsubstate.caption
-msgctxt "tminiform.lbsubstate.caption"
-msgid "Sub. State"
-msgstr ""
-
 #: tminiform.lbterritory.caption
 msgctxt "tminiform.lbterritory.caption"
 msgid "Territory"
@@ -4639,22 +4634,6 @@ msgstr ""
 #: tminiform.sbstate.caption
 msgctxt "tminiform.sbstate.caption"
 msgid " ... "
-msgstr ""
-
-#: tminiform.sbstate1.caption
-msgid " .1. "
-msgstr ""
-
-#: tminiform.sbstate2.caption
-msgid " .2. "
-msgstr ""
-
-#: tminiform.sbstate3.caption
-msgid " .3. "
-msgstr ""
-
-#: tminiform.sbstate4.caption
-msgid " .4. "
 msgstr ""
 
 #: tminiform.sentspot.caption

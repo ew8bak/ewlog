@@ -1,26 +1,27 @@
 object MiniForm: TMiniForm
   Left = 295
-  Height = 457
+  Height = 484
   Top = 146
   Width = 479
+  AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
-  ClientHeight = 428
+  ClientHeight = 454
   ClientWidth = 479
   Menu = MainMenu
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.2.0'
   object Panel1: TPanel
     Left = 0
-    Height = 36
+    Height = 34
     Top = 0
     Width = 479
     Align = alTop
     AutoSize = True
-    ClientHeight = 36
+    ClientHeight = 34
     ClientWidth = 479
     TabOrder = 10
     object SBSave: TSpeedButton
@@ -29,7 +30,7 @@ object MiniForm: TMiniForm
       AnchorSideTop.Side = asrCenter
       Left = 2
       Height = 24
-      Top = 6
+      Top = 5
       Width = 25
       BorderSpacing.Left = 1
       Glyph.Data = {
@@ -77,7 +78,7 @@ object MiniForm: TMiniForm
       AnchorSideTop.Side = asrCenter
       Left = 28
       Height = 24
-      Top = 6
+      Top = 5
       Width = 25
       BorderSpacing.Left = 1
       Glyph.Data = {
@@ -124,13 +125,12 @@ object MiniForm: TMiniForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 58
-      Height = 15
-      Top = 11
-      Width = 63
+      Height = 18
+      Top = 8
+      Width = 66
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
       Caption = 'Current log'
-      Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
@@ -139,12 +139,11 @@ object MiniForm: TMiniForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 126
-      Height = 33
-      Top = 2
+      Left = 129
+      Height = 32
+      Top = 1
       Width = 91
       BorderSpacing.Left = 5
-      Font.Height = -12
       ItemHeight = 16
       OnChange = CBCurrentLogChange
       ParentFont = False
@@ -156,14 +155,13 @@ object MiniForm: TMiniForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 222
-      Height = 15
-      Top = 11
-      Width = 42
+      Left = 225
+      Height = 18
+      Top = 8
+      Width = 44
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
       Caption = 'My grid'
-      Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
@@ -172,13 +170,12 @@ object MiniForm: TMiniForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 269
-      Height = 28
-      Top = 4
+      Left = 274
+      Height = 32
+      Top = 1
       Width = 60
       BorderSpacing.Left = 5
       CharCase = ecUppercase
-      Font.Height = -12
       ParentFont = False
       TabOrder = 1
     end
@@ -187,14 +184,13 @@ object MiniForm: TMiniForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 334
-      Height = 15
-      Top = 11
-      Width = 48
+      Left = 339
+      Height = 18
+      Top = 8
+      Width = 50
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
       Caption = 'My state'
-      Font.Height = -12
       ParentColor = False
       ParentFont = False
     end
@@ -203,13 +199,12 @@ object MiniForm: TMiniForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 387
-      Height = 28
-      Top = 4
+      Left = 394
+      Height = 32
+      Top = 1
       Width = 60
       BorderSpacing.Left = 5
       CharCase = ecUppercase
-      Font.Height = -12
       ParentFont = False
       TabOrder = 2
     end
@@ -219,13 +214,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Panel1
     AnchorSideTop.Side = asrBottom
     Left = 5
-    Height = 15
-    Top = 41
-    Width = 57
+    Height = 18
+    Top = 39
+    Width = 59
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
     Caption = 'Local time'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -234,14 +228,13 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LocalTimeLabel
     AnchorSideTop.Side = asrCenter
-    Left = 67
-    Height = 15
-    Top = 41
-    Width = 48
+    Left = 69
+    Height = 18
+    Top = 39
+    Width = 52
     BorderSpacing.Left = 5
     Caption = '00:00:00'
     Font.Color = clNavy
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -251,15 +244,14 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBUTCTimeD
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = LBUTCTimeD
-    Left = 187
-    Height = 15
-    Top = 41
-    Width = 23
+    Left = 184
+    Height = 18
+    Top = 39
+    Width = 24
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
     Caption = 'UTC'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -268,15 +260,14 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Panel1
     AnchorSideTop.Side = asrBottom
-    Left = 215
-    Height = 15
-    Top = 41
-    Width = 48
+    Left = 213
+    Height = 18
+    Top = 39
+    Width = 52
     BorderSpacing.Left = 5
     BorderSpacing.Top = 5
     Caption = '00:00:00'
     Font.Color = clNavy
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -285,14 +276,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBRemoteTimeD
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = LBRemoteTimeD
-    Left = 351
-    Height = 15
-    Top = 41
-    Width = 71
+    Left = 344
+    Height = 18
+    Top = 39
+    Width = 74
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 4
     Caption = 'Remote time'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -302,16 +292,15 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 426
-    Height = 15
-    Top = 41
-    Width = 48
+    Left = 422
+    Height = 18
+    Top = 39
+    Width = 52
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
     Caption = '00:00:00'
     Font.Color = clNavy
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -321,7 +310,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 16
     Height = 3
-    Top = 61
+    Top = 62
     Width = 447
     BorderSpacing.Top = 5
     Shape = bsTopLine
@@ -331,12 +320,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = DateEdit1
     AnchorSideTop.Side = asrCenter
     Left = 4
-    Height = 15
-    Top = 83
-    Width = 27
+    Height = 18
+    Top = 87
+    Width = 28
     BorderSpacing.Left = 4
     Caption = 'Date'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -345,18 +333,16 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Bevel1
     AnchorSideTop.Side = asrBottom
     Left = 37
-    Height = 22
-    Top = 79
+    Height = 32
+    Top = 80
     Width = 102
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DefaultToday = True
     DateOrder = doDMY
     ButtonWidth = 21
-    AutoSize = False
     BorderSpacing.Left = 37
     BorderSpacing.Top = 15
     NumGlyphs = 1
-    Font.Height = -11
     MaxLength = 10
     ParentFont = False
     TabOrder = 11
@@ -367,12 +353,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBBand
     AnchorSideTop.Side = asrCenter
     Left = 4
-    Height = 15
-    Top = 109
-    Width = 29
+    Height = 18
+    Top = 121
+    Width = 30
     BorderSpacing.Left = 4
     Caption = 'Band'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -381,12 +366,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = DateEdit1
     AnchorSideTop.Side = asrBottom
     Left = 37
-    Height = 27
-    Top = 103
+    Height = 32
+    Top = 114
     Width = 102
     BorderSpacing.Left = 37
     BorderSpacing.Top = 2
-    Font.Height = -11
     ItemHeight = 16
     OnChange = CBBandChange
     OnCloseUp = CBBandCloseUp
@@ -399,12 +383,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBMode
     AnchorSideTop.Side = asrCenter
     Left = 4
-    Height = 15
-    Top = 138
-    Width = 32
+    Height = 18
+    Top = 155
+    Width = 33
     BorderSpacing.Left = 4
     Caption = 'Mode'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -413,12 +396,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBBand
     AnchorSideTop.Side = asrBottom
     Left = 37
-    Height = 27
-    Top = 132
+    Height = 32
+    Top = 148
     Width = 65
     BorderSpacing.Left = 37
     BorderSpacing.Top = 2
-    Font.Height = -11
     ItemHeight = 16
     OnChange = CBModeChange
     OnCloseUp = CBModeCloseUp
@@ -432,11 +414,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBMode
     AnchorSideTop.Side = asrCenter
     Left = 103
-    Height = 27
-    Top = 132
+    Height = 32
+    Top = 148
     Width = 60
     BorderSpacing.Left = 1
-    Font.Height = -11
     ItemHeight = 16
     ParentFont = False
     Style = csOwnerDrawEditableVariable
@@ -449,7 +430,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 141
     Height = 15
-    Top = 109
+    Top = 123
     Width = 15
     BorderSpacing.Left = 2
     Center = True
@@ -492,7 +473,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 164
     Height = 15
-    Top = 138
+    Top = 157
     Width = 15
     BorderSpacing.Left = 1
     Center = True
@@ -533,14 +514,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBMode
     AnchorSideTop.Side = asrBottom
     Left = 87
-    Height = 23
-    Top = 161
-    Width = 52
+    Height = 26
+    Top = 182
+    Width = 54
     CenturyFrom = 1941
     MaxDate = 2958465
     MinDate = -53780
     ReadOnly = True
-    Font.Height = -12
     ParentFont = False
     TabOrder = 15
     BorderSpacing.Left = 87
@@ -563,12 +543,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = DateTimePicker1
     AnchorSideTop.Side = asrCenter
     Left = 5
-    Height = 15
-    Top = 165
-    Width = 62
+    Height = 18
+    Top = 186
+    Width = 63
     BorderSpacing.Left = 5
     Caption = 'Time (UTC)'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -577,13 +556,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBRSTr
     AnchorSideTop.Side = asrCenter
     Left = 5
-    Height = 21
-    Top = 188
-    Width = 79
+    Height = 22
+    Top = 211
+    Width = 85
     BorderSpacing.Left = 5
     Caption = 'Real Time'
     Checked = True
-    Font.Height = -12
     OnChange = CBRealTimeChange
     ParentFont = False
     State = cbChecked
@@ -594,13 +572,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBQSLVia
     AnchorSideTop.Side = asrCenter
     Left = 5
-    Height = 21
-    Top = 214
-    Width = 90
+    Height = 22
+    Top = 245
+    Width = 96
     BorderSpacing.Left = 5
     Caption = 'Save in UTC'
     Enabled = False
-    Font.Height = -12
     OnChange = CBSaveUTCChange
     ParentFont = False
     TabOrder = 17
@@ -610,15 +587,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Bevel1
     AnchorSideTop.Side = asrBottom
     Left = 209
-    Height = 33
-    Top = 69
+    Height = 32
+    Top = 70
     Width = 200
-    AutoSize = False
     BorderSpacing.Left = 209
     BorderSpacing.Top = 5
     ButtonWidth = 32
     CharCase = ecUppercase
-    Font.Height = -16
     Font.Style = [fsBold]
     Glyph.Data = {
       36090000424D3609000000000000360000002800000018000000180000000100
@@ -712,14 +687,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 162
-    Height = 15
-    Top = 78
-    Width = 44
+    Left = 160
+    Height = 18
+    Top = 77
+    Width = 46
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 203
     Caption = 'Callsign'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -729,7 +703,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditCallsign
     Left = 411
     Height = 15
-    Top = 69
+    Top = 70
     Width = 15
     BorderSpacing.Left = 2
     Center = True
@@ -770,13 +744,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = ImDXCCcountry
     Left = 427
-    Height = 15
-    Top = 69
-    Width = 24
+    Height = 18
+    Top = 70
+    Width = 25
     BorderSpacing.Left = 1
     Caption = 'QSL'
     Font.Color = clRed
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -787,13 +760,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBQSL
     AnchorSideTop.Side = asrBottom
     Left = 411
-    Height = 15
-    Top = 84
-    Width = 43
+    Height = 18
+    Top = 88
+    Width = 45
     BorderSpacing.Left = 2
     Caption = 'Worked'
     Font.Color = clRed
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -802,13 +774,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditCallsign
     AnchorSideTop.Side = asrBottom
     Left = 209
-    Height = 23
+    Height = 32
     Top = 104
     Width = 135
-    AutoSize = False
     BorderSpacing.Left = 209
     BorderSpacing.Top = 2
-    Font.Height = -12
     ParentFont = False
     TabOrder = 1
   end
@@ -817,13 +787,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditName
     AnchorSideTop.Side = asrBottom
     Left = 209
-    Height = 23
-    Top = 129
+    Height = 32
+    Top = 138
     Width = 135
-    AutoSize = False
     BorderSpacing.Left = 209
     BorderSpacing.Top = 2
-    Font.Height = -12
     ParentFont = False
     TabOrder = 2
   end
@@ -832,14 +800,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 172
-    Height = 15
-    Top = 108
-    Width = 34
+    Left = 171
+    Height = 18
+    Top = 111
+    Width = 35
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 203
     Caption = 'Name'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -848,14 +815,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 181
-    Height = 15
-    Top = 133
-    Width = 25
+    Left = 180
+    Height = 18
+    Top = 145
+    Width = 26
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 203
     Caption = 'QTH'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -864,14 +830,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 158
-    Height = 15
-    Top = 161
-    Width = 48
+    Left = 155
+    Height = 18
+    Top = 179
+    Width = 51
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 203
     Caption = 'RST sent'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -880,14 +845,13 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 158
-    Height = 15
-    Top = 191
-    Width = 48
+    Left = 157
+    Height = 18
+    Top = 213
+    Width = 49
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 203
     Caption = 'RST rcvd'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -896,12 +860,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditQTH
     AnchorSideTop.Side = asrBottom
     Left = 209
-    Height = 28
-    Top = 154
+    Height = 32
+    Top = 172
     Width = 136
     BorderSpacing.Left = 209
     BorderSpacing.Top = 2
-    Font.Height = -12
     ItemHeight = 16
     ItemIndex = 0
     Items.Strings = (
@@ -923,12 +886,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBRSTs
     AnchorSideTop.Side = asrBottom
     Left = 209
-    Height = 28
-    Top = 184
+    Height = 32
+    Top = 206
     Width = 136
     BorderSpacing.Left = 209
     BorderSpacing.Top = 2
-    Font.Height = -12
     ItemHeight = 16
     ItemIndex = 0
     Items.Strings = (
@@ -952,15 +914,14 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 207
-    Height = 15
-    Top = 217
-    Width = 42
+    Left = 205
+    Height = 18
+    Top = 247
+    Width = 44
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 2
     BorderSpacing.Right = 160
     Caption = 'QSL Via'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -969,13 +930,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBRSTr
     AnchorSideTop.Side = asrBottom
     Left = 249
-    Height = 20
-    Top = 214
+    Height = 32
+    Top = 240
     Width = 96
-    AutoSize = False
     BorderSpacing.Left = 249
     BorderSpacing.Top = 2
-    Font.Height = -12
     ItemHeight = 14
     ItemIndex = 0
     Items.Strings = (
@@ -994,13 +953,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBSaveUTC
     AnchorSideTop.Side = asrCenter
-    Left = 96
-    Height = 21
-    Top = 214
-    Width = 53
+    Left = 102
+    Height = 22
+    Top = 245
+    Width = 58
     BorderSpacing.Left = 1
     Caption = 'Mark'
-    Font.Height = -12
     ParentFont = False
     TabOrder = 19
   end
@@ -1009,14 +967,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBMap
     AnchorSideTop.Side = asrBottom
     Left = 381
-    Height = 23
-    Top = 128
+    Height = 32
+    Top = 133
     Width = 83
-    AutoSize = False
     BorderSpacing.Left = 381
     BorderSpacing.Top = 2
     CharCase = ecUppercase
-    Font.Height = -12
     ParentFont = False
     TabOrder = 5
   end
@@ -1025,13 +981,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditGrid
     AnchorSideTop.Side = asrBottom
     Left = 381
-    Height = 23
-    Top = 153
+    Height = 32
+    Top = 167
     Width = 56
-    AutoSize = False
     BorderSpacing.Left = 381
     BorderSpacing.Top = 2
-    Font.Height = -12
     ParentFont = False
     TabOrder = 6
   end
@@ -1040,13 +994,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditState
     AnchorSideTop.Side = asrBottom
     Left = 381
-    Height = 23
-    Top = 178
+    Height = 32
+    Top = 201
     Width = 56
-    AutoSize = False
     BorderSpacing.Left = 381
     BorderSpacing.Top = 2
-    Font.Height = -12
     ParentFont = False
     TabOrder = 7
   end
@@ -1055,13 +1007,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditIOTA
     AnchorSideTop.Side = asrBottom
     Left = 381
-    Height = 23
-    Top = 203
+    Height = 32
+    Top = 235
     Width = 56
-    AutoSize = False
     BorderSpacing.Left = 381
     BorderSpacing.Top = 2
-    Font.Height = -12
     ParentFont = False
     TabOrder = 8
   end
@@ -1071,8 +1021,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditMGR
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 19
-    Top = 205
+    Height = 21
+    Top = 241
     Width = 19
     AutoSize = True
     BorderSpacing.Left = 2
@@ -1087,8 +1037,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditIOTA
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 19
-    Top = 180
+    Height = 21
+    Top = 207
     Width = 19
     AutoSize = True
     BorderSpacing.Left = 2
@@ -1103,8 +1053,8 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditState
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 19
-    Top = 155
+    Height = 21
+    Top = 173
     Width = 19
     AutoSize = True
     BorderSpacing.Left = 2
@@ -1119,13 +1069,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditName
     AnchorSideTop.Side = asrCenter
     Left = 345
-    Height = 21
-    Top = 105
-    Width = 49
+    Height = 22
+    Top = 109
+    Width = 54
     BorderSpacing.Left = 1
     Caption = 'Map'
     Checked = True
-    Font.Height = -12
     OnChange = CBMapChange
     ParentFont = False
     State = cbChecked
@@ -1136,13 +1085,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBMap
     AnchorSideTop.Side = asrCenter
-    Left = 395
-    Height = 21
-    Top = 105
-    Width = 52
+    Left = 400
+    Height = 22
+    Top = 109
+    Width = 58
     BorderSpacing.Left = 1
     Caption = 'Filter'
-    Font.Height = -12
     OnChange = CBFilterChange
     ParentFont = False
     TabOrder = 21
@@ -1153,15 +1101,14 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
-    Left = 355
-    Height = 15
-    Top = 132
-    Width = 24
+    Left = 354
+    Height = 18
+    Top = 140
+    Width = 25
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 85
     Caption = 'Grid'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1171,16 +1118,15 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
-    Left = 350
-    Height = 15
-    Top = 157
-    Width = 29
+    Left = 349
+    Height = 18
+    Top = 174
+    Width = 30
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 8
     BorderSpacing.Right = 85
     Caption = 'State'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1190,15 +1136,14 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
-    Left = 352
-    Height = 15
-    Top = 182
-    Width = 27
+    Left = 351
+    Height = 18
+    Top = 208
+    Width = 28
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 85
     Caption = 'IOTA'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1208,143 +1153,15 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
-    Left = 352
-    Height = 15
-    Top = 207
-    Width = 27
+    Left = 351
+    Height = 18
+    Top = 242
+    Width = 28
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 85
     Caption = 'MGR'
-    Font.Height = -12
     ParentColor = False
-    ParentFont = False
-  end
-  object LBSubState: TLabel
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = EditState1
-    AnchorSideTop.Side = asrCenter
-    Left = 5
-    Height = 15
-    Top = 242
-    Width = 56
-    BorderSpacing.Left = 5
-    Caption = 'Sub. State'
-    Font.Height = -12
-    ParentColor = False
-    ParentFont = False
-  end
-  object EditState1: TEdit
-    AnchorSideLeft.Control = LBSubState
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = CBQSLVia
-    AnchorSideTop.Side = asrBottom
-    Left = 61
-    Height = 21
-    Top = 239
-    Width = 72
-    AutoSize = False
-    BorderSpacing.Top = 5
-    Font.Height = -12
-    ParentFont = False
-    TabOrder = 22
-  end
-  object SBState1: TSpeedButton
-    AnchorSideLeft.Control = EditState1
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = EditState1
-    AnchorSideTop.Side = asrCenter
-    Left = 133
-    Height = 20
-    Top = 239
-    Width = 23
-    Caption = ' .1. '
-    Font.Height = -12
-    ParentFont = False
-  end
-  object EditState2: TEdit
-    AnchorSideLeft.Control = SBState1
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = CBQSLVia
-    AnchorSideTop.Side = asrBottom
-    Left = 156
-    Height = 21
-    Top = 239
-    Width = 72
-    AutoSize = False
-    BorderSpacing.Top = 5
-    Font.Height = -12
-    ParentFont = False
-    TabOrder = 23
-  end
-  object SBState2: TSpeedButton
-    AnchorSideLeft.Control = EditState2
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = EditState2
-    AnchorSideTop.Side = asrCenter
-    Left = 228
-    Height = 20
-    Top = 239
-    Width = 23
-    Caption = ' .2. '
-    Font.Height = -12
-    ParentFont = False
-  end
-  object EditState3: TEdit
-    AnchorSideLeft.Control = SBState2
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = CBQSLVia
-    AnchorSideTop.Side = asrBottom
-    Left = 251
-    Height = 21
-    Top = 239
-    Width = 72
-    AutoSize = False
-    BorderSpacing.Top = 5
-    Font.Height = -12
-    ParentFont = False
-    TabOrder = 24
-  end
-  object SBState3: TSpeedButton
-    AnchorSideLeft.Control = EditState3
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = EditState3
-    AnchorSideTop.Side = asrCenter
-    Left = 323
-    Height = 20
-    Top = 239
-    Width = 23
-    BorderSpacing.Top = 13
-    Caption = ' .3. '
-    Font.Height = -12
-    ParentFont = False
-  end
-  object EditState4: TEdit
-    AnchorSideLeft.Control = SBState3
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = CBQSLVia
-    AnchorSideTop.Side = asrBottom
-    Left = 346
-    Height = 21
-    Top = 239
-    Width = 72
-    AutoSize = False
-    BorderSpacing.Top = 5
-    Font.Height = -12
-    ParentFont = False
-    TabOrder = 25
-  end
-  object SBState4: TSpeedButton
-    AnchorSideLeft.Control = EditState4
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = EditState4
-    AnchorSideTop.Side = asrCenter
-    Left = 418
-    Height = 20
-    Top = 239
-    Width = 23
-    Caption = ' .4. '
-    Font.Height = -12
     ParentFont = False
   end
   object LBComment: TLabel
@@ -1352,28 +1169,25 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditComment
     AnchorSideTop.Side = asrCenter
     Left = 2
-    Height = 15
-    Top = 267
-    Width = 55
+    Height = 18
+    Top = 283
+    Width = 58
     BorderSpacing.Left = 2
     Caption = 'Comment'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
   object EditComment: TEdit
     AnchorSideLeft.Control = LBComment
     AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = EditState1
+    AnchorSideTop.Control = CBQSLVia
     AnchorSideTop.Side = asrBottom
-    Left = 60
-    Height = 21
-    Top = 264
+    Left = 63
+    Height = 32
+    Top = 276
     Width = 371
-    AutoSize = False
     BorderSpacing.Left = 3
     BorderSpacing.Top = 4
-    Font.Height = -12
     ParentFont = False
     TabOrder = 9
   end
@@ -1382,12 +1196,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
     Left = 7
-    Height = 15
-    Top = 292
-    Width = 7
+    Height = 18
+    Top = 313
+    Width = 8
     BorderSpacing.Left = 5
     Caption = '0'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1397,9 +1210,9 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 19
+    Left = 20
     Height = 18
-    Top = 290
+    Top = 313
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1408,13 +1221,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 27
-    Height = 15
-    Top = 292
-    Width = 28
+    Left = 28
+    Height = 18
+    Top = 313
+    Width = 31
     BorderSpacing.Left = 5
     Caption = 'Date'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1424,9 +1236,9 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 60
+    Left = 64
     Height = 18
-    Top = 290
+    Top = 313
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1435,13 +1247,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 68
-    Height = 15
-    Top = 292
-    Width = 30
+    Left = 72
+    Height = 18
+    Top = 313
+    Width = 32
     BorderSpacing.Left = 5
     Caption = 'Time'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1451,9 +1262,9 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 103
+    Left = 109
     Height = 18
-    Top = 290
+    Top = 313
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1462,13 +1273,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 111
-    Height = 15
-    Top = 292
-    Width = 31
+    Left = 117
+    Height = 18
+    Top = 313
+    Width = 34
     BorderSpacing.Left = 5
     Caption = 'Band'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1478,9 +1288,9 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 147
+    Left = 156
     Height = 18
-    Top = 290
+    Top = 313
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1489,13 +1299,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 155
-    Height = 15
-    Top = 292
-    Width = 33
+    Left = 164
+    Height = 18
+    Top = 313
+    Width = 37
     BorderSpacing.Left = 5
     Caption = 'Mode'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1505,9 +1314,9 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 193
+    Left = 206
     Height = 18
-    Top = 290
+    Top = 313
     Width = 3
     BorderSpacing.Left = 5
   end
@@ -1516,13 +1325,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrCenter
-    Left = 201
-    Height = 15
-    Top = 292
-    Width = 36
+    Left = 214
+    Height = 18
+    Top = 313
+    Width = 39
     BorderSpacing.Left = 5
     Caption = 'Name'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1533,7 +1341,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrBottom
     Left = 2
     Height = 19
-    Top = 290
+    Top = 313
     Width = 420
     BorderSpacing.Left = 2
     BorderSpacing.Top = 5
@@ -1543,13 +1351,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrBottom
     Left = 5
-    Height = 15
-    Top = 319
-    Width = 46
+    Height = 18
+    Top = 342
+    Width = 48
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
     Caption = 'Azimuth'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1558,13 +1365,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBAzimuth
     AnchorSideTop.Side = asrBottom
     Left = 5
-    Height = 15
-    Top = 344
-    Width = 48
+    Height = 18
+    Top = 370
+    Width = 51
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
     Caption = 'Territory'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1573,13 +1379,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBTerritory
     AnchorSideTop.Side = asrBottom
     Left = 5
-    Height = 15
-    Top = 369
+    Height = 18
+    Top = 398
     Width = 31
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
     Caption = 'DXCC'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1588,14 +1393,13 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBAzimuth
     AnchorSideTop.Side = asrCenter
-    Left = 54
-    Height = 15
-    Top = 319
-    Width = 21
+    Left = 56
+    Height = 18
+    Top = 342
+    Width = 26
     BorderSpacing.Left = 3
     Caption = '.......'
     Font.Color = clFuchsia
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1605,10 +1409,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBTerritory
     AnchorSideTop.Side = asrCenter
-    Left = 56
-    Height = 15
-    Top = 344
-    Width = 21
+    Left = 59
+    Height = 17
+    Top = 371
+    Width = 24
     BorderSpacing.Left = 3
     Caption = '.......'
     Font.Height = -12
@@ -1622,12 +1426,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBDXCC
     AnchorSideTop.Side = asrCenter
     Left = 39
-    Height = 15
-    Top = 369
-    Width = 21
+    Height = 18
+    Top = 398
+    Width = 26
     BorderSpacing.Left = 3
     Caption = '.......'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1637,13 +1440,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrBottom
     Left = 100
-    Height = 15
-    Top = 319
-    Width = 49
+    Height = 18
+    Top = 342
+    Width = 50
     BorderSpacing.Left = 100
     BorderSpacing.Top = 10
     Caption = 'Distance'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1652,12 +1454,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBDXCC
     AnchorSideTop.Side = asrCenter
     Left = 100
-    Height = 15
-    Top = 369
-    Width = 32
+    Height = 18
+    Top = 398
+    Width = 34
     BorderSpacing.Left = 100
     Caption = 'Prefix'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1666,13 +1467,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBDistance
     AnchorSideTop.Side = asrCenter
-    Left = 152
-    Height = 15
-    Top = 319
-    Width = 21
+    Left = 153
+    Height = 18
+    Top = 342
+    Width = 26
     BorderSpacing.Left = 3
     Caption = '.......'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1682,13 +1482,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBPrefix
     AnchorSideTop.Side = asrCenter
-    Left = 135
-    Height = 15
-    Top = 369
-    Width = 21
+    Left = 137
+    Height = 18
+    Top = 398
+    Width = 26
     BorderSpacing.Left = 3
     Caption = '.......'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1698,13 +1497,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrBottom
     Left = 235
-    Height = 15
-    Top = 319
-    Width = 45
+    Height = 18
+    Top = 342
+    Width = 48
     BorderSpacing.Left = 235
     BorderSpacing.Top = 10
     Caption = 'Latitude'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1713,13 +1511,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBLatitude
     AnchorSideTop.Side = asrCenter
-    Left = 283
-    Height = 15
-    Top = 319
-    Width = 21
+    Left = 286
+    Height = 18
+    Top = 342
+    Width = 26
     BorderSpacing.Left = 3
     Caption = '.......'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1729,13 +1526,12 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrBottom
     Left = 352
-    Height = 15
-    Top = 319
-    Width = 55
+    Height = 18
+    Top = 342
+    Width = 59
     BorderSpacing.Left = 352
     BorderSpacing.Top = 10
     Caption = 'Longitude'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1744,13 +1540,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBLongitude
     AnchorSideTop.Side = asrCenter
-    Left = 410
-    Height = 15
-    Top = 319
-    Width = 21
+    Left = 414
+    Height = 18
+    Top = 342
+    Width = 26
     BorderSpacing.Left = 3
     Caption = '.......'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1760,13 +1555,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBTerritory
     AnchorSideTop.Side = asrCenter
-    Left = 283
-    Height = 15
-    Top = 344
-    Width = 21
+    Left = 286
+    Height = 18
+    Top = 370
+    Width = 26
     BorderSpacing.Left = 3
     Caption = '.......'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1776,12 +1570,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBDXCC
     AnchorSideTop.Side = asrCenter
     Left = 225
-    Height = 15
-    Top = 369
-    Width = 16
+    Height = 18
+    Top = 398
+    Width = 18
     BorderSpacing.Left = 225
     Caption = 'CQ'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1790,13 +1583,12 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBCQ
     AnchorSideTop.Side = asrCenter
-    Left = 246
-    Height = 15
-    Top = 369
-    Width = 6
+    Left = 248
+    Height = 18
+    Top = 398
+    Width = 8
     BorderSpacing.Left = 5
     Caption = '..'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1806,12 +1598,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBDXCC
     AnchorSideTop.Side = asrCenter
     Left = 270
-    Height = 15
-    Top = 369
+    Height = 18
+    Top = 398
     Width = 20
     BorderSpacing.Left = 270
     Caption = 'ITU'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1821,12 +1612,11 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBITU
     AnchorSideTop.Side = asrCenter
     Left = 295
-    Height = 15
-    Top = 369
-    Width = 6
+    Height = 18
+    Top = 398
+    Width = 8
     BorderSpacing.Left = 5
     Caption = '..'
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1834,15 +1624,14 @@ object MiniForm: TMiniForm
   object LBYourQSL: TLabel
     AnchorSideTop.Control = LBITU
     AnchorSideRight.Control = CBYourQSL
-    Left = 326
-    Height = 15
-    Top = 369
-    Width = 50
+    Left = 322
+    Height = 18
+    Top = 398
+    Width = 54
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 55
     BorderSpacing.Right = 2
     Caption = 'Your QSL'
-    Font.Height = -12
     ParentColor = False
     ParentFont = False
   end
@@ -1854,13 +1643,12 @@ object MiniForm: TMiniForm
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 378
-    Height = 31
-    Top = 361
+    Height = 32
+    Top = 391
     Width = 96
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 2
     BorderSpacing.Right = 5
-    Font.Height = -11
     ItemHeight = 16
     ItemIndex = 3
     Items.Strings = (
@@ -1872,7 +1660,7 @@ object MiniForm: TMiniForm
     )
     ParentFont = False
     Style = csOwnerDrawFixed
-    TabOrder = 26
+    TabOrder = 22
     Text = 'Wasn''t sent'
   end
   object SBCopy: TSpeedButton
@@ -1882,7 +1670,7 @@ object MiniForm: TMiniForm
     AnchorSideRight.Control = SBInfo
     Left = 432
     Height = 20
-    Top = 289
+    Top = 312
     Width = 20
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 2
@@ -1933,7 +1721,7 @@ object MiniForm: TMiniForm
     AnchorSideRight.Side = asrBottom
     Left = 454
     Height = 20
-    Top = 289
+    Top = 312
     Width = 20
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 5
@@ -1980,14 +1768,13 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBTerritoryD
     AnchorSideTop.Side = asrCenter
-    Left = 80
-    Height = 15
-    Top = 344
-    Width = 33
+    Left = 86
+    Height = 18
+    Top = 370
+    Width = 35
     BorderSpacing.Left = 3
     Caption = '(Cfm)'
     Font.Color = clRed
-    Font.Height = -12
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1999,7 +1786,7 @@ object MiniForm: TMiniForm
     AnchorSideRight.Side = asrBottom
     Left = 194
     Height = 10
-    Top = 66
+    Top = 67
     Width = 10
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 5
@@ -2010,8 +1797,8 @@ object MiniForm: TMiniForm
   end
   object StatBar: TStatusBar
     Left = 0
-    Height = 20
-    Top = 408
+    Height = 23
+    Top = 431
     Width = 479
     Panels = <    
       item
@@ -2032,7 +1819,7 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     Left = 459
     Height = 15
-    Top = 207
+    Top = 244
     Width = 15
     BorderSpacing.Left = 1
     Caption = '▲'
@@ -2044,8 +1831,8 @@ object MiniForm: TMiniForm
     Top = 307
   end
   object MainMenu: TMainMenu
-    Left = 312
-    Top = 256
+    Left = 296
+    Top = 232
     object MILogbook: TMenuItem
       Caption = 'LogBook'
       object MenuItem54: TMenuItem
