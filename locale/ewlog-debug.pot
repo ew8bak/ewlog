@@ -2685,11 +2685,6 @@ msgctxt "teditqso_form.lbstate.caption"
 msgid "State"
 msgstr ""
 
-#: teditqso_form.lbsubstate.caption
-msgctxt "teditqso_form.lbsubstate.caption"
-msgid "Sub. State"
-msgstr ""
-
 #: teditqso_form.rbdsent.caption
 msgid "Do not send"
 msgstr ""
@@ -2744,22 +2739,6 @@ msgstr ""
 #: teditqso_form.speedbutton3.caption
 msgctxt "teditqso_form.speedbutton3.caption"
 msgid "..."
-msgstr ""
-
-#: teditqso_form.speedbutton4.caption
-msgid ".4."
-msgstr ""
-
-#: teditqso_form.speedbutton5.caption
-msgid ".3."
-msgstr ""
-
-#: teditqso_form.speedbutton6.caption
-msgid ".2."
-msgstr ""
-
-#: teditqso_form.speedbutton7.caption
-msgid ".1."
 msgstr ""
 
 #: teditqso_form.speedbutton8.caption

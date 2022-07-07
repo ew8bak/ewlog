@@ -213,149 +213,19 @@ object EditQSO_Form: TEditQSO_Form
       ParentFont = False
       TabOrder = 10
     end
-    object Edit10: TEdit
-      AnchorSideLeft.Control = EditPrefix
-      AnchorSideTop.Control = EditPrefix
-      AnchorSideTop.Side = asrBottom
-      Left = 64
-      Height = 21
-      Top = 340
-      Width = 71
-      AutoSize = False
-      BorderSpacing.Top = 3
-      Font.Height = -12
-      ParentFont = False
-      TabOrder = 11
-    end
-    object LbSubState: TLabel
-      AnchorSideTop.Control = Edit10
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = Edit10
-      Left = 5
-      Height = 17
-      Top = 342
-      Width = 54
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'Sub. State'
-      Font.Height = -12
-      ParentColor = False
-      ParentFont = False
-    end
-    object SpeedButton7: TSpeedButton
-      AnchorSideLeft.Control = Edit10
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit10
-      AnchorSideTop.Side = asrCenter
-      Left = 137
-      Height = 22
-      Top = 339
-      Width = 23
-      BorderSpacing.Left = 2
-      Caption = '.1.'
-      Font.Height = -12
-      ParentFont = False
-    end
-    object Edit9: TEdit
-      AnchorSideLeft.Control = SpeedButton7
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit10
-      AnchorSideTop.Side = asrCenter
-      Left = 162
-      Height = 21
-      Top = 340
-      Width = 71
-      AutoSize = False
-      BorderSpacing.Left = 2
-      Font.Height = -12
-      ParentFont = False
-      TabOrder = 12
-    end
-    object SpeedButton6: TSpeedButton
-      AnchorSideLeft.Control = Edit9
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit9
-      AnchorSideTop.Side = asrCenter
-      Left = 235
-      Height = 22
-      Top = 339
-      Width = 23
-      BorderSpacing.Left = 2
-      Caption = '.2.'
-      Font.Height = -12
-      ParentFont = False
-    end
-    object Edit11: TEdit
-      AnchorSideLeft.Control = SpeedButton6
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit9
-      AnchorSideTop.Side = asrCenter
-      Left = 260
-      Height = 21
-      Top = 340
-      Width = 71
-      AutoSize = False
-      BorderSpacing.Left = 2
-      Font.Height = -12
-      ParentFont = False
-      TabOrder = 13
-    end
-    object SpeedButton5: TSpeedButton
-      AnchorSideLeft.Control = Edit11
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit11
-      AnchorSideTop.Side = asrCenter
-      Left = 333
-      Height = 22
-      Top = 339
-      Width = 23
-      BorderSpacing.Left = 2
-      Caption = '.3.'
-      Font.Height = -12
-      ParentFont = False
-    end
-    object Edit12: TEdit
-      AnchorSideLeft.Control = SpeedButton5
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit11
-      AnchorSideTop.Side = asrCenter
-      Left = 358
-      Height = 21
-      Top = 340
-      Width = 71
-      AutoSize = False
-      BorderSpacing.Left = 2
-      Font.Height = -12
-      ParentFont = False
-      TabOrder = 14
-    end
-    object SpeedButton4: TSpeedButton
-      AnchorSideLeft.Control = Edit12
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit12
-      AnchorSideTop.Side = asrCenter
-      Left = 431
-      Height = 22
-      Top = 339
-      Width = 23
-      BorderSpacing.Left = 2
-      Caption = '.4.'
-      Font.Height = -12
-      ParentFont = False
-    end
     object CBNoCalcDXCC: TCheckBox
-      AnchorSideLeft.Control = Edit10
-      AnchorSideTop.Control = Edit10
+      AnchorSideLeft.Control = EditPrefix
+      AnchorSideTop.Control = Button4
       AnchorSideTop.Side = asrBottom
       Left = 64
       Height = 21
-      Top = 363
+      Top = 343
       Width = 100
-      BorderSpacing.Top = 2
+      BorderSpacing.Top = 3
       Caption = 'No Calc DXCC'
       Font.Height = -12
       ParentFont = False
-      TabOrder = 15
+      TabOrder = 11
     end
     object CBValidDXCC: TCheckBox
       AnchorSideLeft.Control = CBNoCalcDXCC
@@ -364,13 +234,13 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 169
       Height = 21
-      Top = 363
+      Top = 343
       Width = 104
       BorderSpacing.Left = 5
       Caption = 'Valid for DXCC'
       Font.Height = -12
       ParentFont = False
-      TabOrder = 16
+      TabOrder = 12
     end
     object CBMarkQSO: TCheckBox
       AnchorSideLeft.Control = CBValidDXCC
@@ -379,13 +249,13 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       Left = 278
       Height = 21
-      Top = 363
+      Top = 343
       Width = 83
       BorderSpacing.Left = 5
       Caption = 'Mark QSO'
       Font.Height = -12
       ParentFont = False
-      TabOrder = 17
+      TabOrder = 13
     end
     object LBDate: TLabel
       AnchorSideTop.Control = DEDate
@@ -549,15 +419,16 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = SpeedButton2
       AnchorSideTop.Side = asrCenter
       Left = 138
-      Height = 21
-      Top = 316
-      Width = 145
+      Height = 27
+      Top = 313
+      Width = 110
+      AutoSize = True
       BorderSpacing.Left = 2
       Caption = 'To define territory'
       Font.Height = -12
       OnClick = Button4Click
       ParentFont = False
-      TabOrder = 18
+      TabOrder = 14
     end
     object EditContinent: TEdit
       AnchorSideTop.Control = EditDXCC
@@ -570,7 +441,7 @@ object EditQSO_Form: TEditQSO_Form
       AutoSize = False
       Font.Height = -12
       ParentFont = False
-      TabOrder = 19
+      TabOrder = 15
     end
     object EditGrid: TEdit
       AnchorSideTop.Control = EditPrefix
@@ -585,7 +456,7 @@ object EditQSO_Form: TEditQSO_Form
       CharCase = ecUppercase
       Font.Height = -12
       ParentFont = False
-      TabOrder = 20
+      TabOrder = 16
     end
     object LBCQ: TLabel
       AnchorSideTop.Control = EditCQ
@@ -659,7 +530,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Top = 3
       Font.Height = -12
       ParentFont = False
-      TabOrder = 21
+      TabOrder = 17
     end
     object EditIOTA: TEdit
       AnchorSideLeft.Control = EditState
@@ -673,7 +544,7 @@ object EditQSO_Form: TEditQSO_Form
       BorderSpacing.Top = 3
       Font.Height = -12
       ParentFont = False
-      TabOrder = 22
+      TabOrder = 18
     end
     object CBSATMode: TComboBox
       AnchorSideLeft.Control = CBSat
@@ -698,7 +569,7 @@ object EditQSO_Form: TEditQSO_Form
         'SX'
       )
       ParentFont = False
-      TabOrder = 23
+      TabOrder = 19
     end
     object SpeedButton3: TSpeedButton
       AnchorSideLeft.Control = CBSATMode
@@ -933,7 +804,7 @@ object EditQSO_Form: TEditQSO_Form
       AutoSize = False
       Font.Height = -12
       ParentFont = False
-      TabOrder = 24
+      TabOrder = 20
     end
     object EditITU: TEdit
       AnchorSideTop.Control = EditGrid
@@ -948,7 +819,7 @@ object EditQSO_Form: TEditQSO_Form
       AutoSize = False
       Font.Height = -12
       ParentFont = False
-      TabOrder = 25
+      TabOrder = 21
     end
     object CBSubMode: TComboBox
       AnchorSideLeft.Side = asrBottom
@@ -965,7 +836,7 @@ object EditQSO_Form: TEditQSO_Form
       Font.Height = -12
       ItemHeight = 23
       ParentFont = False
-      TabOrder = 26
+      TabOrder = 22
     end
     object CBMode: TComboBox
       AnchorSideTop.Control = CBSubMode
@@ -981,7 +852,7 @@ object EditQSO_Form: TEditQSO_Form
       ItemHeight = 23
       OnChange = CBModeChange
       ParentFont = False
-      TabOrder = 27
+      TabOrder = 23
     end
     object CBPropagation: TComboBox
       AnchorSideLeft.Control = CBSATMode
@@ -997,7 +868,7 @@ object EditQSO_Form: TEditQSO_Form
       ItemHeight = 23
       OnChange = CBModeChange
       ParentFont = False
-      TabOrder = 28
+      TabOrder = 24
     end
     object CBSat: TComboBox
       AnchorSideLeft.Control = EditIOTA
@@ -1009,7 +880,7 @@ object EditQSO_Form: TEditQSO_Form
       Width = 112
       BorderSpacing.Top = 3
       ItemHeight = 23
-      TabOrder = 29
+      TabOrder = 25
     end
     object CBBand: TComboBox
       AnchorSideLeft.Control = CBMode
@@ -1023,7 +894,7 @@ object EditQSO_Form: TEditQSO_Form
       Font.Height = -12
       ItemHeight = 23
       ParentFont = False
-      TabOrder = 30
+      TabOrder = 26
     end
   end
   object PageControl1: TPageControl

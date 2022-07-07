@@ -2369,7 +2369,7 @@ var
   QBAND: string;
   ColorTextGrid: integer;
   ColorBackGrid: integer;
-  SizeTextGrid: integer;
+ // SizeTextGrid: integer;
 begin
   for i := 0 to 29 do
   begin
@@ -2382,10 +2382,10 @@ begin
   end;
 
   ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', clDefault);
-  SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
+  //SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
   ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', clDefault);
 
-  DBGRID.Font.Size := SizeTextGrid;
+ // DBGRID.Font.Size := SizeTextGrid;
   DBGRID.Font.Color := ColorTextGrid;
   DBGRID.Color := ColorBackGrid;
 
@@ -2473,7 +2473,7 @@ begin
 //  end;
 
 //  for i := 0 to DBGRID.Columns.Count - 1 do
-//    DBGRID.Columns.Items[i].Title.Font.Size := SizeTextGrid;
+ //   DBGRID.Columns.Items[i].Title.Font.Size := SizeTextGrid;
 end;
 
 procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
