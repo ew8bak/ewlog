@@ -2465,15 +2465,15 @@ begin
     end;
   end;
 
-  case SizeTextGrid of
-    8: DBGRID.DefaultRowHeight := 15;
-    10: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-    12: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-    14: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-  end;
+//  case SizeTextGrid of
+//    8: DBGRID.DefaultRowHeight := 15;
+//    10: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+//    12: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+//    14: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+//  end;
 
-  for i := 0 to DBGRID.Columns.Count - 1 do
-    DBGRID.Columns.Items[i].Title.Font.Size := SizeTextGrid;
+//  for i := 0 to DBGRID.Columns.Count - 1 do
+//    DBGRID.Columns.Items[i].Title.Font.Size := SizeTextGrid;
 end;
 
 procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);

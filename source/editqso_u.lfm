@@ -1,13 +1,13 @@
 object EditQSO_Form: TEditQSO_Form
   Left = 456
-  Height = 455
+  Height = 426
   Top = 286
-  Width = 901
+  Width = 892
   AutoSize = True
   BorderStyle = bsDialog
   Caption = 'QSO Editor'
-  ClientHeight = 455
-  ClientWidth = 901
+  ClientHeight = 426
+  ClientWidth = 892
   DefaultMonitor = dmMainForm
   OnClose = FormClose
   OnShow = FormShow
@@ -19,11 +19,11 @@ object EditQSO_Form: TEditQSO_Form
     Left = 0
     Height = 419
     Top = 5
-    Width = 466
+    Width = 450
     BorderSpacing.Top = 5
     Caption = 'Territory'
     ClientHeight = 390
-    ClientWidth = 462
+    ClientWidth = 446
     Font.Height = -12
     ParentFont = False
     TabOrder = 0
@@ -32,7 +32,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 64
       Height = 46
       Top = 5
-      Width = 175
+      Width = 160
       BorderSpacing.Top = 5
       CharCase = ecUppercase
       Font.Height = -23
@@ -63,7 +63,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 64
       Height = 31
       Top = 54
-      Width = 115
+      Width = 105
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       DateOrder = doNone
       ButtonWidth = 23
@@ -79,7 +79,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = DEDate
       AnchorSideTop.Side = asrCenter
-      Left = 184
+      Left = 174
       Height = 25
       Top = 57
       Width = 50
@@ -110,7 +110,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 64
       Height = 31
       Top = 88
-      Width = 175
+      Width = 160
       BorderSpacing.Top = 3
       Font.Height = -12
       ParentFont = False
@@ -123,7 +123,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 64
       Height = 31
       Top = 122
-      Width = 175
+      Width = 160
       BorderSpacing.Top = 3
       Font.Height = -12
       ParentFont = False
@@ -136,7 +136,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 64
       Height = 31
       Top = 156
-      Width = 175
+      Width = 160
       BorderSpacing.Top = 3
       Font.Height = -12
       ParentFont = False
@@ -149,7 +149,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 64
       Height = 31
       Top = 190
-      Width = 175
+      Width = 160
       BorderSpacing.Top = 3
       Font.Height = -12
       ParentFont = False
@@ -163,7 +163,7 @@ object EditQSO_Form: TEditQSO_Form
       Left = 64
       Height = 44
       Top = 245
-      Width = 393
+      Width = 377
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Top = 5
       Font.Height = -12
@@ -562,7 +562,7 @@ object EditQSO_Form: TEditQSO_Form
     object EditContinent: TEdit
       AnchorSideTop.Control = EditDXCC
       AnchorSideTop.Side = asrCenter
-      Left = 363
+      Left = 350
       Height = 21
       Top = 292
       Width = 35
@@ -575,7 +575,7 @@ object EditQSO_Form: TEditQSO_Form
     object EditGrid: TEdit
       AnchorSideTop.Control = EditPrefix
       AnchorSideTop.Side = asrCenter
-      Left = 333
+      Left = 320
       Height = 21
       Top = 316
       Width = 65
@@ -591,7 +591,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditCQ
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditCQ
-      Left = 404
+      Left = 388
       Height = 17
       Top = 294
       Width = 16
@@ -606,7 +606,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditITU
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditITU
-      Left = 401
+      Left = 385
       Height = 17
       Top = 318
       Width = 19
@@ -621,7 +621,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditGrid
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditGrid
-      Left = 308
+      Left = 295
       Height = 17
       Top = 318
       Width = 23
@@ -636,7 +636,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditContinent
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditContinent
-      Left = 308
+      Left = 295
       Height = 17
       Top = 294
       Width = 53
@@ -652,7 +652,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBBand
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Side = asrBottom
-      Left = 312
+      Left = 296
       Height = 31
       Top = 73
       Width = 112
@@ -666,7 +666,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditState
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Side = asrBottom
-      Left = 312
+      Left = 296
       Height = 31
       Top = 107
       Width = 112
@@ -680,7 +680,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBSat
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Side = asrBottom
-      Left = 312
+      Left = 296
       Height = 31
       Top = 175
       Width = 112
@@ -706,7 +706,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBSATMode
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Side = asrBottom
-      Left = 426
+      Left = 410
       Height = 20
       Top = 180
       Width = 20
@@ -721,7 +721,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBSat
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Side = asrBottom
-      Left = 426
+      Left = 410
       Height = 20
       Top = 146
       Width = 20
@@ -737,7 +737,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditIOTA
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Side = asrBottom
-      Left = 426
+      Left = 410
       Height = 20
       Top = 112
       Width = 20
@@ -753,7 +753,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditState
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Side = asrBottom
-      Left = 426
+      Left = 410
       Height = 20
       Top = 78
       Width = 20
@@ -767,7 +767,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBMode
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = CBMode
-      Left = 279
+      Left = 263
       Height = 17
       Top = 12
       Width = 31
@@ -782,7 +782,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBBand
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = CBBand
-      Left = 282
+      Left = 266
       Height = 17
       Top = 46
       Width = 28
@@ -797,7 +797,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditState
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditState
-      Left = 282
+      Left = 266
       Height = 17
       Top = 80
       Width = 28
@@ -812,7 +812,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditIOTA
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = EditIOTA
-      Left = 283
+      Left = 267
       Height = 17
       Top = 114
       Width = 27
@@ -827,7 +827,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBSat
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = CBSat
-      Left = 270
+      Left = 254
       Height = 17
       Top = 148
       Width = 40
@@ -842,7 +842,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBSATMode
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = CBSATMode
-      Left = 257
+      Left = 241
       Height = 17
       Top = 182
       Width = 53
@@ -857,7 +857,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBPropagation
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = CBPropagation
-      Left = 244
+      Left = 228
       Height = 17
       Top = 216
       Width = 66
@@ -874,7 +874,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = EditCallSign
       AnchorSideTop.Side = asrCenter
       AnchorSideBottom.Side = asrBottom
-      Left = 244
+      Left = 229
       Height = 20
       Top = 18
       Width = 20
@@ -925,7 +925,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = MemoNote
       AnchorSideRight.Side = asrBottom
-      Left = 422
+      Left = 406
       Height = 21
       Top = 292
       Width = 35
@@ -940,7 +940,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = MemoNote
       AnchorSideRight.Side = asrBottom
-      Left = 422
+      Left = 406
       Height = 21
       Top = 316
       Width = 35
@@ -955,7 +955,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = GBCallInfo
       AnchorSideRight.Control = GBCallInfo
       AnchorSideRight.Side = asrBottom
-      Left = 387
+      Left = 371
       Height = 31
       Top = 5
       Width = 70
@@ -971,7 +971,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBSubMode
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = CBSubMode
-      Left = 312
+      Left = 296
       Height = 31
       Top = 5
       Width = 70
@@ -988,7 +988,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideTop.Control = CBSATMode
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Side = asrBottom
-      Left = 312
+      Left = 296
       Height = 31
       Top = 209
       Width = 112
@@ -1003,7 +1003,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideLeft.Control = EditIOTA
       AnchorSideTop.Control = EditIOTA
       AnchorSideTop.Side = asrBottom
-      Left = 312
+      Left = 296
       Height = 31
       Top = 141
       Width = 112
@@ -1015,7 +1015,7 @@ object EditQSO_Form: TEditQSO_Form
       AnchorSideLeft.Control = CBMode
       AnchorSideTop.Control = CBMode
       AnchorSideTop.Side = asrBottom
-      Left = 312
+      Left = 296
       Height = 31
       Top = 39
       Width = 112
@@ -1030,10 +1030,10 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideLeft.Control = GBCallInfo
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = GBCallInfo
-    Left = 471
-    Height = 272
+    Left = 455
+    Height = 277
     Top = 10
-    Width = 431
+    Width = 436
     ActivePage = TabSheet1
     AutoSize = True
     BorderSpacing.Left = 5
@@ -1046,8 +1046,8 @@ object EditQSO_Form: TEditQSO_Form
     object TabSheet1: TTabSheet
       AutoSize = True
       Caption = 'QSL'
-      ClientHeight = 237
-      ClientWidth = 427
+      ClientHeight = 242
+      ClientWidth = 432
       object GBQSLReceived: TGroupBox
         AnchorSideLeft.Control = TabSheet1
         AnchorSideTop.Control = TabSheet1
@@ -1148,16 +1148,16 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideLeft.Control = GBQSLReceived
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = TabSheet1
-        AnchorSideRight.Control = TabSheet1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = GBQSLReceived
         AnchorSideBottom.Side = asrBottom
-        Left = 223
+        Left = 228
         Height = 124
         Top = 0
         Width = 199
-        Anchors = [akTop, akLeft, akRight, akBottom]
+        Anchors = [akTop, akLeft, akBottom]
         AutoSize = True
+        BorderSpacing.Left = 5
         BorderSpacing.Right = 5
         Caption = 'QSL Sent'
         ChildSizing.LeftRightSpacing = 5
@@ -1376,7 +1376,7 @@ object EditQSO_Form: TEditQSO_Form
       object Edit20: TEdit
         AnchorSideLeft.Control = LBQSLInfo
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Edit19
+        AnchorSideTop.Control = CBSentLoTW
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = TabSheet1
         AnchorSideRight.Side = asrBottom
@@ -1384,8 +1384,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideBottom.Side = asrBottom
         Left = 57
         Height = 31
-        Top = 201
-        Width = 365
+        Top = 206
+        Width = 370
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 2
         BorderSpacing.Top = 5
@@ -1400,7 +1400,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrCenter
         Left = 5
         Height = 18
-        Top = 207
+        Top = 212
         Width = 50
         BorderSpacing.Left = 5
         Caption = 'QSL Info'
@@ -1423,13 +1423,13 @@ object EditQSO_Form: TEditQSO_Form
     end
     object TabSheet2: TTabSheet
       Caption = 'Log'
-      ClientHeight = 237
-      ClientWidth = 427
+      ClientHeight = 242
+      ClientWidth = 432
       object DBGrid1: TDBGrid
         Left = 0
-        Height = 237
+        Height = 242
         Top = 0
-        Width = 427
+        Width = 432
         Align = alClient
         Color = clWindow
         Columns = <        
@@ -1603,9 +1603,9 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 851
+    Left = 842
     Height = 28
-    Top = 422
+    Top = 393
     Width = 45
     Anchors = [akRight, akBottom]
     AutoSize = True
@@ -1620,9 +1620,9 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Control = BtClose
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = BtClose
-    Left = 794
+    Left = 785
     Height = 28
-    Top = 422
+    Top = 393
     Width = 52
     Anchors = [akTop, akRight]
     AutoSize = True
@@ -1636,9 +1636,9 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Control = BtCancel
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = BtCancel
-    Left = 743
+    Left = 734
     Height = 28
-    Top = 422
+    Top = 393
     Width = 46
     Anchors = [akTop, akRight]
     AutoSize = True
