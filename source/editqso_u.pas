@@ -360,13 +360,6 @@ procedure TEditQSO_Form.FormShow(Sender: TObject);
 var
   SelQSO: TQSO;
 begin
-  GBCallInfo.Height := CBNoCalcDXCC.Height + CBNoCalcDXCC.Top + 20;
-  PageControl1.Height:= Edit20.Top + Edit20.Height + 30;
-  EditQSO_Form.Height := PageControl1.Height + PageControl1.Top + BtClose.Height + 10;
-
-  GBQSLReceived.Height:= DateEdit4.Top + DateEdit4.Height + 20;
-  GBQSLSent.Height := GBQSLReceived.Height;
-
   MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
   MainFunc.SetGrid(DBGrid1);
 

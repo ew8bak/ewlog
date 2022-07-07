@@ -435,9 +435,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBBand
     AnchorSideTop.Side = asrCenter
     Left = 141
-    Height = 15
-    Top = 114
-    Width = 15
+    Height = 16
+    Top = 113
+    Width = 16
+    AutoSize = True
     BorderSpacing.Left = 2
     Center = True
     Picture.Data = {
@@ -478,9 +479,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = CBSubMode
     AnchorSideTop.Side = asrCenter
     Left = 164
-    Height = 15
-    Top = 149
-    Width = 15
+    Height = 16
+    Top = 148
+    Width = 16
+    AutoSize = True
     BorderSpacing.Left = 1
     Center = True
     Picture.Data = {
@@ -711,9 +713,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = EditCallsign
     Left = 411
-    Height = 15
+    Height = 16
     Top = 70
-    Width = 15
+    Width = 16
+    AutoSize = True
     BorderSpacing.Left = 2
     Center = True
     Picture.Data = {
@@ -752,7 +755,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Control = ImDXCCcountry
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = ImDXCCcountry
-    Left = 427
+    Left = 428
     Height = 18
     Top = 70
     Width = 25
@@ -954,7 +957,7 @@ object MiniForm: TMiniForm
       'M - manager'
     )
     ParentFont = False
-    Style = csOwnerDrawFixed
+    Style = csOwnerDrawVariable
     TabOrder = 18
   end
   object CBMark: TCheckBox
