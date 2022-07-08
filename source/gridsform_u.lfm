@@ -19,214 +19,274 @@ object GridsForm: TGridsForm
     Color = clWindow
     Columns = <    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSL'
         Width = 38
         FieldName = 'QSL'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSLs'
         Width = 44
         FieldName = 'QSLs'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Date'
         Width = 42
         FieldName = 'QSODate'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Time'
         Width = 43
         FieldName = 'QSOTime'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Frequency'
         Width = 75
         FieldName = 'QSOBand'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Callsign'
         Width = 60
         FieldName = 'CallSign'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 15
+        Title.Alignment = taCenter
         Title.Caption = 'Mode'
         Width = 48
         FieldName = 'QSOMode'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSOSubMode'
         Width = 96
         FieldName = 'QSOSubMode'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Name'
         Width = 50
         FieldName = 'OMName'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QTH'
         Width = 40
         FieldName = 'OMQTH'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'State'
         Width = 44
         FieldName = 'State'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Grid'
         Width = 40
         FieldName = 'Grid'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'RSTs'
         Width = 41
         FieldName = 'QSOReportSent'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'RSTr'
         Width = 41
         FieldName = 'QSOReportRecived'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'IOTA'
         Width = 42
         FieldName = 'IOTA'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Manager'
         Width = 67
         FieldName = 'QSLManager'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSLs Date'
         Width = 74
         FieldName = 'QSLSentDate'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSLr Date'
         Width = 73
         FieldName = 'QSLRecDate'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'LOTWr Date'
         Width = 84
         FieldName = 'LoTWRecDate'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Prefix'
         Width = 48
         FieldName = 'MainPrefix'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'DXCC'
         Width = 46
         FieldName = 'DXCCPrefix'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'CQ Zone'
         Width = 64
         FieldName = 'CQZone'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'ITU Zone'
         Width = 67
         FieldName = 'ITUZone'
       end    
       item
+        Alignment = taLeftJustify
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Manual Set'
         Width = 80
         FieldName = 'ManualSet'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Continent'
         Width = 72
         FieldName = 'Continent'
       end    
       item
+        Alignment = taLeftJustify
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Valid DX'
         Width = 62
         FieldName = 'ValidDX'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSL r VIA'
         Width = 69
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSL s VIA'
         Width = 69
         FieldName = 'QSL_SENT_VIA'
       end    
       item
+        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'User'
         Width = 42
         FieldName = 'USERS'
       end    
       item
+        Alignment = taLeftJustify
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'No calc DXCC'
         Width = 91
         FieldName = 'NoCalcDXCC'
@@ -254,6 +314,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSL'
         Width = 38
         FieldName = 'QSL'
@@ -261,6 +322,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSLs'
         Width = 44
         FieldName = 'QSLs'
@@ -268,6 +330,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Date'
         Width = 42
         FieldName = 'QSODate'
@@ -275,6 +338,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Time'
         Width = 43
         FieldName = 'QSOTime'
@@ -282,6 +346,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Frequency'
         Width = 75
         FieldName = 'QSOBand'
@@ -289,6 +354,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Callsign'
         Width = 60
         FieldName = 'CallSign'
@@ -296,6 +362,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 15
+        Title.Alignment = taCenter
         Title.Caption = 'Mode'
         Width = 48
         FieldName = 'QSOMode'
@@ -303,6 +370,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSOSubMode'
         Width = 96
         FieldName = 'QSOSubMode'
@@ -310,6 +378,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Name'
         Width = 50
         FieldName = 'OMName'
@@ -317,6 +386,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QTH'
         Width = 40
         FieldName = 'OMQTH'
@@ -324,6 +394,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'State'
         Width = 44
         FieldName = 'State'
@@ -331,6 +402,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Grid'
         Width = 40
         FieldName = 'Grid'
@@ -338,6 +410,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'RSTs'
         Width = 41
         FieldName = 'QSOReportSent'
@@ -345,6 +418,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'RSTr'
         Width = 41
         FieldName = 'QSOReportRecived'
@@ -352,6 +426,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'IOTA'
         Width = 42
         FieldName = 'IOTA'
@@ -359,6 +434,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Manager'
         Width = 67
         FieldName = 'QSLManager'
@@ -366,6 +442,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSLs Date'
         Width = 74
         FieldName = 'QSLSentDate'
@@ -373,6 +450,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSLr Date'
         Width = 73
         FieldName = 'QSLRecDate'
@@ -380,6 +458,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'LOTWr Date'
         Width = 84
         FieldName = 'LoTWRecDate'
@@ -387,6 +466,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Prefix'
         Width = 48
         FieldName = 'MainPrefix'
@@ -394,6 +474,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'DXCC'
         Width = 46
         FieldName = 'DXCCPrefix'
@@ -401,6 +482,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'CQ Zone'
         Width = 64
         FieldName = 'CQZone'
@@ -408,6 +490,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'ITU Zone'
         Width = 67
         FieldName = 'ITUZone'
@@ -416,6 +499,7 @@ object GridsForm: TGridsForm
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Manual Set'
         Width = 80
         FieldName = 'ManualSet'
@@ -423,6 +507,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Continent'
         Width = 72
         FieldName = 'Continent'
@@ -431,6 +516,7 @@ object GridsForm: TGridsForm
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'Valid DX'
         Width = 62
         FieldName = 'ValidDX'
@@ -438,6 +524,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSL r VIA'
         Width = 69
         FieldName = 'QSL_RCVD_VIA'
@@ -445,6 +532,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'QSL s VIA'
         Width = 69
         FieldName = 'QSL_SENT_VIA'
@@ -452,6 +540,7 @@ object GridsForm: TGridsForm
       item
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'User'
         Width = 42
         FieldName = 'USERS'
@@ -460,6 +549,7 @@ object GridsForm: TGridsForm
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
+        Title.Alignment = taCenter
         Title.Caption = 'No calc DXCC'
         Width = 91
         FieldName = 'NoCalcDXCC'
