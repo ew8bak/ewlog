@@ -1534,10 +1534,10 @@ object MiniForm: TMiniForm
     Left = 281
     Height = 18
     Top = 349
-    Width = 80
+    Width = 70
     BorderSpacing.Left = 3
     Caption = '.......'
-    Constraints.MinWidth = 80
+    Constraints.MinWidth = 70
     Font.Style = [fsBold]
     ParentColor = False
     ParentFont = False
@@ -1547,7 +1547,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Bevel2
     AnchorSideTop.Side = asrBottom
-    Left = 364
+    Left = 354
     Height = 18
     Top = 349
     Width = 59
@@ -1562,7 +1562,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBLongitude
     AnchorSideTop.Side = asrCenter
-    Left = 426
+    Left = 416
     Height = 18
     Top = 349
     Width = 26
