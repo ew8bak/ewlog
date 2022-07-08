@@ -1573,10 +1573,10 @@ object MiniForm: TMiniForm
     ParentFont = False
   end
   object LBCont: TLabel
-    AnchorSideLeft.Control = LBLatitudeD
+    AnchorSideLeft.Control = LBLongitude
     AnchorSideTop.Control = LBTerritory
     AnchorSideTop.Side = asrCenter
-    Left = 281
+    Left = 354
     Height = 18
     Top = 377
     Width = 26
@@ -1604,11 +1604,11 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBCQ
     AnchorSideTop.Side = asrCenter
-    Left = 230
+    Left = 228
     Height = 18
     Top = 405
     Width = 20
-    BorderSpacing.Left = 5
+    BorderSpacing.Left = 3
     Caption = '..'
     Constraints.MinWidth = 20
     Font.Style = [fsBold]
@@ -1620,10 +1620,11 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBDXCC
     AnchorSideTop.Side = asrCenter
-    Left = 250
+    Left = 251
     Height = 18
     Top = 405
     Width = 20
+    BorderSpacing.Left = 3
     Caption = 'ITU'
     ParentColor = False
     ParentFont = False
@@ -1633,11 +1634,11 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBITU
     AnchorSideTop.Side = asrCenter
-    Left = 275
+    Left = 274
     Height = 18
     Top = 405
     Width = 8
-    BorderSpacing.Left = 5
+    BorderSpacing.Left = 3
     Caption = '..'
     Font.Style = [fsBold]
     ParentColor = False
