@@ -957,14 +957,17 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideLeft.Control = GBCallInfo
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Owner
+    AnchorSideBottom.Control = BtClose
     Left = 477
-    Height = 377
+    Height = 384
     Top = 3
     Width = 436
     ActivePage = TabSheet1
+    Anchors = [akTop, akLeft, akBottom]
     AutoSize = True
     BorderSpacing.Left = 5
     BorderSpacing.Top = 3
+    BorderSpacing.Bottom = 5
     Font.Height = -12
     ParentFont = False
     ParentShowHint = False
@@ -973,7 +976,7 @@ object EditQSO_Form: TEditQSO_Form
     object TabSheet1: TTabSheet
       AutoSize = True
       Caption = 'QSL'
-      ClientHeight = 342
+      ClientHeight = 349
       ClientWidth = 432
       object GBQSLReceived: TGroupBox
         AnchorSideLeft.Control = TabSheet1
@@ -1356,7 +1359,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideBottom.Control = TabSheet1
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 100
+        Height = 107
         Top = 242
         Width = 432
         Anchors = [akTop, akLeft, akRight, akBottom]
