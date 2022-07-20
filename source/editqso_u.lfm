@@ -1,12 +1,12 @@
 object EditQSO_Form: TEditQSO_Form
-  Left = 903
-  Height = 420
-  Top = 260
-  Width = 918
+  Left = 413
+  Height = 428
+  Top = 346
+  Width = 912
   AutoSize = True
   Caption = 'QSO Editor'
-  ClientHeight = 420
-  ClientWidth = 918
+  ClientHeight = 428
+  ClientWidth = 912
   DefaultMonitor = dmMainForm
   OnClose = FormClose
   OnShow = FormShow
@@ -17,330 +17,31 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 0
-    Height = 420
-    Top = 0
+    Height = 422
+    Top = 3
     Width = 472
     Align = alLeft
     AutoSize = True
+    BorderSpacing.Top = 3
+    BorderSpacing.Bottom = 3
     Caption = 'Territory'
-    ClientHeight = 390
+    ClientHeight = 392
     ClientWidth = 468
     ParentBidiMode = False
     ParentFont = False
     TabOrder = 0
-    object EditState: TEdit
-      AnchorSideTop.Control = CBBand
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton10
-      Left = 318
-      Height = 32
-      Top = 75
-      Width = 124
-      Anchors = [akTop, akRight]
-      BorderSpacing.Top = 3
-      BorderSpacing.Right = 3
-      ParentFont = False
-      TabOrder = 0
-    end
-    object EditIOTA: TEdit
-      AnchorSideTop.Control = EditState
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton9
-      Left = 318
-      Height = 32
-      Top = 110
-      Width = 124
-      Anchors = [akTop, akRight]
-      BorderSpacing.Top = 3
-      BorderSpacing.Right = 3
-      ParentFont = False
-      TabOrder = 1
-    end
-    object CBSATMode: TComboBox
-      AnchorSideTop.Control = CBSat
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton3
-      Left = 318
-      Height = 32
-      Top = 180
-      Width = 124
-      Anchors = [akTop, akRight]
-      BorderSpacing.Top = 3
-      BorderSpacing.Right = 3
-      ItemHeight = 24
-      Items.Strings = (
-        'A'
-        'B'
-        'J'
-        'K'
-        'L'
-        'S'
-        'T'
-        'SX'
-      )
-      ParentFont = False
-      TabOrder = 2
-    end
-    object SpeedButton3: TSpeedButton
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = CBSATMode
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = GBCallInfo
-      AnchorSideRight.Side = asrBottom
-      Left = 445
-      Height = 20
-      Top = 186
-      Width = 20
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 3
-      Caption = '...'
-      Font.Height = -12
-      ParentFont = False
-    end
-    object SpeedButton8: TSpeedButton
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = CBSat
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = GBCallInfo
-      AnchorSideRight.Side = asrBottom
-      Left = 445
-      Height = 20
-      Top = 151
-      Width = 20
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 3
-      Caption = '...'
-      Font.Height = -12
-      OnClick = SpeedButton8Click
-      ParentFont = False
-    end
-    object SpeedButton9: TSpeedButton
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = EditIOTA
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = GBCallInfo
-      AnchorSideRight.Side = asrBottom
-      Left = 445
-      Height = 20
-      Top = 116
-      Width = 20
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 3
-      Caption = '...'
-      Font.Height = -12
-      OnClick = SpeedButton9Click
-      ParentFont = False
-    end
-    object SpeedButton10: TSpeedButton
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = EditState
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = GBCallInfo
-      AnchorSideRight.Side = asrBottom
-      Left = 445
-      Height = 20
-      Top = 81
-      Width = 20
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 3
-      Caption = '...'
-      Font.Height = -12
-      OnClick = SpeedButton10Click
-      ParentFont = False
-    end
-    object LBMode: TLabel
-      AnchorSideTop.Control = CBMode
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = CBMode
-      Left = 280
-      Height = 18
-      Top = 12
-      Width = 33
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'Mode'
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBBand: TLabel
-      AnchorSideTop.Control = CBBand
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = CBBand
-      Left = 283
-      Height = 18
-      Top = 47
-      Width = 30
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'Band'
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBState: TLabel
-      AnchorSideTop.Control = EditState
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = EditState
-      Left = 283
-      Height = 18
-      Top = 82
-      Width = 30
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'State'
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBIOTA: TLabel
-      AnchorSideTop.Control = EditIOTA
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = EditIOTA
-      Left = 285
-      Height = 18
-      Top = 117
-      Width = 28
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'IOTA'
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBSatelite: TLabel
-      AnchorSideTop.Control = CBSat
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = CBSat
-      Left = 270
-      Height = 18
-      Top = 152
-      Width = 43
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'Satelite'
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBSATMode: TLabel
-      AnchorSideTop.Control = CBSATMode
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = CBSATMode
-      Left = 256
-      Height = 18
-      Top = 187
-      Width = 57
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      Caption = 'SAT mode'
-      ParentColor = False
-      ParentFont = False
-    end
-    object LBPropagation: TLabel
-      AnchorSideLeft.Control = Panel1
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = CBPropagation
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = CBPropagation
-      Left = 241
-      Height = 18
-      Top = 222
-      Width = 72
-      Alignment = taRightJustify
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 3
-      BorderSpacing.Right = 5
-      Caption = 'Propagation'
-      ParentColor = False
-      ParentFont = False
-    end
-    object CBSubMode: TComboBox
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = GBCallInfo
-      AnchorSideRight.Control = GBCallInfo
-      AnchorSideRight.Side = asrBottom
-      Left = 393
-      Height = 32
-      Top = 5
-      Width = 70
-      Anchors = [akTop, akRight]
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 5
-      ItemHeight = 24
-      ParentFont = False
-      TabOrder = 3
-    end
-    object CBMode: TComboBox
-      AnchorSideTop.Control = CBSubMode
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = CBSubMode
-      Left = 318
-      Height = 32
-      Top = 5
-      Width = 70
-      Anchors = [akTop, akRight]
-      BorderSpacing.Right = 5
-      ItemHeight = 24
-      OnChange = CBModeChange
-      ParentFont = False
-      TabOrder = 4
-    end
-    object CBPropagation: TComboBox
-      AnchorSideLeft.Control = CBSATMode
-      AnchorSideTop.Control = CBSATMode
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = CBSATMode
-      AnchorSideRight.Side = asrBottom
-      Left = 318
-      Height = 32
-      Top = 215
-      Width = 124
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Top = 3
-      ItemHeight = 24
-      OnChange = CBModeChange
-      ParentFont = False
-      TabOrder = 5
-    end
-    object CBSat: TComboBox
-      AnchorSideLeft.Control = EditIOTA
-      AnchorSideTop.Control = EditIOTA
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton8
-      Left = 318
-      Height = 32
-      Top = 145
-      Width = 124
-      Anchors = [akTop, akRight]
-      BorderSpacing.Top = 3
-      BorderSpacing.Right = 3
-      ItemHeight = 24
-      ParentFont = False
-      TabOrder = 6
-    end
-    object CBBand: TComboBox
-      AnchorSideLeft.Control = EditState
-      AnchorSideTop.Control = CBMode
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = EditState
-      AnchorSideRight.Side = asrBottom
-      Left = 318
-      Height = 32
-      Top = 40
-      Width = 124
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Top = 3
-      ItemHeight = 24
-      ParentFont = False
-      TabOrder = 7
-    end
     object Panel1: TPanel
+      AnchorSideBottom.Side = asrBottom
       Left = 0
-      Height = 250
+      Height = 252
       Top = 0
       Width = 238
       Align = alLeft
       AutoSize = True
       BevelOuter = bvNone
-      ClientHeight = 250
+      ClientHeight = 252
       ClientWidth = 238
-      TabOrder = 8
+      TabOrder = 0
       object EditCallSign: TEdit
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel1
@@ -615,14 +316,14 @@ object EditQSO_Form: TEditQSO_Form
     object Panel2: TPanel
       Left = 0
       Height = 140
-      Top = 250
+      Top = 252
       Width = 468
       Align = alBottom
       AutoSize = True
       BevelOuter = bvNone
       ClientHeight = 140
       ClientWidth = 468
-      TabOrder = 9
+      TabOrder = 1
       object EditITU: TEdit
         AnchorSideTop.Control = EditCQ
         AnchorSideTop.Side = asrBottom
@@ -939,6 +640,318 @@ object EditQSO_Form: TEditQSO_Form
         ParentShowHint = False
       end
     end
+    object Panel3: TPanel
+      Left = 238
+      Height = 252
+      Top = 0
+      Width = 230
+      Align = alClient
+      AutoSize = True
+      BevelOuter = bvNone
+      ClientHeight = 252
+      ClientWidth = 230
+      TabOrder = 2
+      object EditState: TEdit
+        AnchorSideTop.Control = CBBand
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = SpeedButton10
+        Left = 80
+        Height = 32
+        Top = 75
+        Width = 124
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ParentFont = False
+        TabOrder = 0
+      end
+      object EditIOTA: TEdit
+        AnchorSideTop.Control = EditState
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = SpeedButton9
+        Left = 80
+        Height = 32
+        Top = 110
+        Width = 124
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ParentFont = False
+        TabOrder = 1
+      end
+      object CBSATMode: TComboBox
+        AnchorSideTop.Control = CBSat
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = SpeedButton3
+        Left = 80
+        Height = 32
+        Top = 180
+        Width = 124
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ItemHeight = 24
+        Items.Strings = (
+          'A'
+          'B'
+          'J'
+          'K'
+          'L'
+          'S'
+          'T'
+          'SX'
+        )
+        ParentFont = False
+        TabOrder = 2
+      end
+      object SpeedButton3: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CBSATMode
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 207
+        Height = 20
+        Top = 186
+        Width = 20
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 3
+        Caption = '...'
+        Font.Height = -12
+        ParentFont = False
+      end
+      object SpeedButton8: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CBSat
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 207
+        Height = 20
+        Top = 151
+        Width = 20
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 3
+        Caption = '...'
+        Font.Height = -12
+        OnClick = SpeedButton8Click
+        ParentFont = False
+      end
+      object SpeedButton9: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = EditIOTA
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 207
+        Height = 20
+        Top = 116
+        Width = 20
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 3
+        Caption = '...'
+        Font.Height = -12
+        OnClick = SpeedButton9Click
+        ParentFont = False
+      end
+      object SpeedButton10: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = EditState
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 207
+        Height = 20
+        Top = 81
+        Width = 20
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 3
+        Caption = '...'
+        Font.Height = -12
+        OnClick = SpeedButton10Click
+        ParentFont = False
+      end
+      object LBMode: TLabel
+        AnchorSideTop.Control = CBMode
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBMode
+        Left = 42
+        Height = 18
+        Top = 12
+        Width = 33
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'Mode'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBBand: TLabel
+        AnchorSideTop.Control = CBBand
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBBand
+        Left = 45
+        Height = 18
+        Top = 47
+        Width = 30
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'Band'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBState: TLabel
+        AnchorSideTop.Control = EditState
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditState
+        Left = 45
+        Height = 18
+        Top = 82
+        Width = 30
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'State'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBIOTA: TLabel
+        AnchorSideTop.Control = EditIOTA
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditIOTA
+        Left = 47
+        Height = 18
+        Top = 117
+        Width = 28
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'IOTA'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBSatelite: TLabel
+        AnchorSideTop.Control = CBSat
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBSat
+        Left = 32
+        Height = 18
+        Top = 152
+        Width = 43
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'Satelite'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBSATMode: TLabel
+        AnchorSideTop.Control = CBSATMode
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBSATMode
+        Left = 18
+        Height = 18
+        Top = 187
+        Width = 57
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'SAT mode'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBPropagation: TLabel
+        AnchorSideLeft.Control = Panel3
+        AnchorSideTop.Control = CBPropagation
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBPropagation
+        Left = 3
+        Height = 18
+        Top = 222
+        Width = 72
+        Alignment = taRightJustify
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 3
+        BorderSpacing.Right = 5
+        Caption = 'Propagation'
+        ParentColor = False
+        ParentFont = False
+      end
+      object CBSubMode: TComboBox
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 155
+        Height = 32
+        Top = 5
+        Width = 70
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
+        ItemHeight = 24
+        ParentFont = False
+        TabOrder = 3
+      end
+      object CBMode: TComboBox
+        AnchorSideTop.Control = CBSubMode
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBSubMode
+        Left = 80
+        Height = 32
+        Top = 5
+        Width = 70
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        ItemHeight = 24
+        OnChange = CBModeChange
+        ParentFont = False
+        TabOrder = 4
+      end
+      object CBPropagation: TComboBox
+        AnchorSideLeft.Control = CBSATMode
+        AnchorSideTop.Control = CBSATMode
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = CBSATMode
+        AnchorSideRight.Side = asrBottom
+        Left = 80
+        Height = 32
+        Top = 215
+        Width = 124
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Top = 3
+        ItemHeight = 24
+        OnChange = CBModeChange
+        ParentFont = False
+        TabOrder = 5
+      end
+      object CBSat: TComboBox
+        AnchorSideLeft.Control = EditIOTA
+        AnchorSideTop.Control = EditIOTA
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = SpeedButton8
+        Left = 80
+        Height = 32
+        Top = 145
+        Width = 124
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ItemHeight = 24
+        ParentFont = False
+        TabOrder = 6
+      end
+      object CBBand: TComboBox
+        AnchorSideLeft.Control = EditState
+        AnchorSideTop.Control = CBMode
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = EditState
+        AnchorSideRight.Side = asrBottom
+        Left = 80
+        Height = 32
+        Top = 40
+        Width = 124
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Top = 3
+        ItemHeight = 24
+        ParentFont = False
+        TabOrder = 7
+      end
+    end
   end
   object PageControl1: TPageControl
     AnchorSideLeft.Control = GBCallInfo
@@ -946,12 +959,12 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Control = Owner
     Left = 477
     Height = 377
-    Top = 5
+    Top = 3
     Width = 436
     ActivePage = TabSheet1
     AutoSize = True
     BorderSpacing.Left = 5
-    BorderSpacing.Top = 5
+    BorderSpacing.Top = 3
     Font.Height = -12
     ParentFont = False
     ParentShowHint = False
@@ -1554,11 +1567,11 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Control = GBCallInfo
     AnchorSideBottom.Side = asrBottom
-    Left = 868
+    Left = 862
     Height = 28
-    Top = 387
+    Top = 392
     Width = 45
     Anchors = [akRight, akBottom]
     AutoSize = True
@@ -1573,9 +1586,9 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Control = BtClose
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = BtClose
-    Left = 811
+    Left = 805
     Height = 28
-    Top = 387
+    Top = 392
     Width = 52
     Anchors = [akTop, akRight]
     AutoSize = True
@@ -1589,9 +1602,9 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Control = BtCancel
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = BtCancel
-    Left = 760
+    Left = 754
     Height = 28
-    Top = 387
+    Top = 392
     Width = 46
     Anchors = [akTop, akRight]
     AutoSize = True
