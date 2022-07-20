@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, DateTimePicker, Forms, Controls,
   Dialogs, StdCtrls, ComCtrls, EditBtn, Buttons, DBGrids, DBCtrls,
-  InformationForm_U, sqldb, Grids, prefix_record, qso_record;
+  InformationForm_U, sqldb, Grids, ExtCtrls, prefix_record, qso_record;
 
 type
 
@@ -93,6 +93,8 @@ type
     LBNote: TLabel;
     MemoNote: TMemo;
     PageControl1: TPageControl;
+    Panel1: TPanel;
+    Panel2: TPanel;
     RBSent: TRadioButton;
     RBPrinted: TRadioButton;
     RBQueued: TRadioButton;
