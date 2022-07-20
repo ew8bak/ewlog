@@ -1,13 +1,12 @@
 object EditQSO_Form: TEditQSO_Form
-  Left = 2123
+  Left = 903
   Height = 420
-  Top = 123
+  Top = 260
   Width = 918
   AutoSize = True
   Caption = 'QSO Editor'
   ClientHeight = 420
   ClientWidth = 918
-  Constraints.MinHeight = 420
   DefaultMonitor = dmMainForm
   OnClose = FormClose
   OnShow = FormShow
