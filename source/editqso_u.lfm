@@ -464,13 +464,15 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = Edit7
         AnchorSideTop.Side = asrCenter
         Left = 170
-        Height = 20
+        Height = 22
         Hint = 'Change country information'
-        Top = 56
+        Top = 55
         Width = 20
+        AutoSize = True
         BorderSpacing.Left = 2
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
         Caption = '...'
-        Font.Height = -12
         OnClick = SpeedButton1Click
         ShowHint = True
         ParentFont = False
@@ -628,13 +630,15 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = EditPrefix
         AnchorSideTop.Side = asrCenter
         Left = 95
-        Height = 20
+        Height = 22
         Hint = 'Change country information'
-        Top = 91
+        Top = 90
         Width = 20
+        AutoSize = True
         BorderSpacing.Left = 2
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
         Caption = '...'
-        Font.Height = -12
         OnClick = SpeedButton2Click
         ShowHint = True
         ParentFont = False
@@ -712,13 +716,15 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel3
         AnchorSideRight.Side = asrBottom
         Left = 207
-        Height = 20
-        Top = 186
+        Height = 22
+        Top = 185
         Width = 20
         Anchors = [akTop, akRight]
+        AutoSize = True
         BorderSpacing.Right = 3
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
         Caption = '...'
-        Font.Height = -12
         ParentFont = False
       end
       object SpeedButton8: TSpeedButton
@@ -728,13 +734,15 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel3
         AnchorSideRight.Side = asrBottom
         Left = 207
-        Height = 20
-        Top = 151
+        Height = 22
+        Top = 150
         Width = 20
         Anchors = [akTop, akRight]
+        AutoSize = True
         BorderSpacing.Right = 3
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
         Caption = '...'
-        Font.Height = -12
         OnClick = SpeedButton8Click
         ParentFont = False
       end
@@ -745,13 +753,15 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel3
         AnchorSideRight.Side = asrBottom
         Left = 207
-        Height = 20
-        Top = 116
+        Height = 22
+        Top = 115
         Width = 20
         Anchors = [akTop, akRight]
+        AutoSize = True
         BorderSpacing.Right = 3
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
         Caption = '...'
-        Font.Height = -12
         OnClick = SpeedButton9Click
         ParentFont = False
       end
@@ -762,13 +772,15 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel3
         AnchorSideRight.Side = asrBottom
         Left = 207
-        Height = 20
-        Top = 81
+        Height = 22
+        Top = 80
         Width = 20
         Anchors = [akTop, akRight]
+        AutoSize = True
         BorderSpacing.Right = 3
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
         Caption = '...'
-        Font.Height = -12
         OnClick = SpeedButton10Click
         ParentFont = False
       end
