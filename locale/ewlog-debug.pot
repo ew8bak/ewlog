@@ -1553,6 +1553,11 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+#: tconfigform.label1.caption
+msgctxt "tconfigform.label1.caption"
+msgid "Login"
+msgstr ""
+
 #: tconfigform.label10.caption
 msgid "Release date:"
 msgstr ""
@@ -1594,16 +1599,6 @@ msgstr ""
 
 #: tconfigform.label20.caption
 msgid "to QSL Info"
-msgstr ""
-
-#: tconfigform.label21.caption
-msgctxt "tconfigform.label21.caption"
-msgid "Login"
-msgstr ""
-
-#: tconfigform.label22.caption
-msgctxt "tconfigform.label22.caption"
-msgid "Password"
 msgstr ""
 
 #: tconfigform.label23.caption
@@ -1650,6 +1645,11 @@ msgstr ""
 
 #: tconfigform.label8.caption
 msgid "Base"
+msgstr ""
+
+#: tconfigform.label9.caption
+msgctxt "tconfigform.label9.caption"
+msgid "Password"
 msgstr ""
 
 #: tconfigform.lbbackcolor.caption

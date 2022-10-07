@@ -4,11 +4,11 @@
     <PathDelim Value="\"/>
     <Version Value="12"/>
     <BuildModes Active="Debug"/>
-    <Units Count="220">
+    <Units Count="221">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <CursorPos X="16" Y="28"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -20,7 +20,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="49"/>
         <CursorPos X="49" Y="81"/>
         <UsageCount Value="200"/>
@@ -32,13 +32,11 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="376"/>
         <CursorPos X="36" Y="391"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="informationform_u.pas"/>
@@ -47,7 +45,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InformationForm_U"/>
-        <EditorIndex Value="19"/>
+        <EditorIndex Value="21"/>
         <TopLine Value="151"/>
         <CursorPos X="28" Y="172"/>
         <UsageCount Value="200"/>
@@ -60,7 +58,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="119"/>
         <CursorPos X="5" Y="92"/>
         <UsageCount Value="200"/>
@@ -73,11 +71,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="1069"/>
-        <CursorPos X="3" Y="1071"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="1046"/>
+        <CursorPos X="10" Y="1050"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="exportadifform_u.pas"/>
@@ -98,7 +98,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CreateJournalForm_U"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="15"/>
         <CursorPos X="52" Y="95"/>
         <UsageCount Value="200"/>
@@ -203,7 +203,7 @@
       <Unit18>
         <Filename Value="uRigControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="17"/>
+        <EditorIndex Value="19"/>
         <TopLine Value="143"/>
         <CursorPos Y="159"/>
         <UsageCount Value="200"/>
@@ -236,10 +236,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsProgramForm_U"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="8"/>
         <CursorPos X="21" Y="13"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit21>
       <Unit22>
         <Filename Value="aboutform_u.pas"/>
@@ -248,7 +249,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutForm_U"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="21"/>
         <CursorPos X="64" Y="13"/>
         <UsageCount Value="200"/>
@@ -540,7 +541,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="20"/>
+        <EditorIndex Value="22"/>
         <TopLine Value="10"/>
         <CursorPos X="46" Y="10"/>
         <UsageCount Value="200"/>
@@ -674,12 +675,11 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="1704"/>
         <CursorPos X="3" Y="1538"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit65>
       <Unit66>
         <Filename Value="imbedcallbookcheckrec.pas"/>
@@ -714,7 +714,7 @@
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="642"/>
         <CursorPos X="6" Y="647"/>
         <UsageCount Value="201"/>
@@ -727,7 +727,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
-        <EditorIndex Value="18"/>
+        <EditorIndex Value="20"/>
         <TopLine Value="376"/>
         <CursorPos X="3" Y="384"/>
         <UsageCount Value="200"/>
@@ -740,7 +740,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MapForm_u"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <CursorPos X="2" Y="46"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -873,7 +873,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWDaemonDM_u"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="17"/>
         <TopLine Value="42"/>
         <CursorPos X="15" Y="23"/>
         <UsageCount Value="200"/>
@@ -886,7 +886,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWKeysForm_u"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="18"/>
         <TopLine Value="87"/>
         <CursorPos Y="102"/>
         <UsageCount Value="201"/>
@@ -911,7 +911,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWKeysDM_u"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="16"/>
         <TopLine Value="45"/>
         <CursorPos X="73" Y="145"/>
         <UsageCount Value="200"/>
@@ -924,7 +924,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWTypeForm_u"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="15"/>
         <TopLine Value="41"/>
         <CursorPos X="4" Y="74"/>
         <UsageCount Value="200"/>
@@ -970,7 +970,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="5" Y="19"/>
-        <UsageCount Value="171"/>
+        <UsageCount Value="173"/>
       </Unit92>
       <Unit93>
         <Filename Value="satform_u.pas"/>
@@ -982,7 +982,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="16" Y="55"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="145"/>
       </Unit93>
       <Unit94>
         <Filename Value="sateditorform_u.pas"/>
@@ -994,7 +994,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos X="30" Y="100"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="135"/>
       </Unit94>
       <Unit95>
         <Filename Value="serviceeqslform_u.pas"/>
@@ -1006,7 +1006,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="253"/>
         <CursorPos X="39" Y="116"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="122"/>
       </Unit95>
       <Unit96>
         <Filename Value="eqslservice_u.pas"/>
@@ -1014,7 +1014,7 @@
         <UnitName Value="eQSLservice_u"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="299"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="119"/>
       </Unit96>
       <Unit97>
         <Filename Value="servicelotwform_u.pas"/>
@@ -1026,7 +1026,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="582"/>
         <CursorPos X="50" Y="614"/>
-        <UsageCount Value="102"/>
+        <UsageCount Value="104"/>
       </Unit97>
       <Unit98>
         <Filename Value="lotwservice_u.pas"/>
@@ -1035,7 +1035,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="38"/>
         <CursorPos X="3" Y="103"/>
-        <UsageCount Value="101"/>
+        <UsageCount Value="103"/>
       </Unit98>
       <Unit99>
         <Filename Value="dmtht_u.pas"/>
@@ -1710,7 +1710,7 @@
       </Unit188>
       <Unit189>
         <Filename Value="..\..\..\.lazarus\onlinepackagemanager\packages\Indy10\Core\IdCustomTCPServer.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="1101"/>
         <CursorPos X="64" Y="1117"/>
         <UsageCount Value="12"/>
@@ -1927,127 +1927,135 @@
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit219>
+      <Unit220>
+        <Filename Value="..\..\..\..\..\usr\lib\lazarus\lcl\include\wincontrol.inc"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="4340"/>
+        <CursorPos Y="4355"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit220>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="379" Column="2" TopLine="376"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1756" Column="32" TopLine="1741"/>
       </Position1>
       <Position2>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="42" Column="15" TopLine="26"/>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="360" Column="4" TopLine="344"/>
       </Position2>
       <Position3>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="379" Column="2" TopLine="376"/>
+        <Caret Line="387" Column="21" TopLine="383"/>
       </Position3>
       <Position4>
         <Filename Value="gridsform_u.pas"/>
-        <Caret Line="385" Column="3" TopLine="376"/>
+        <Caret Line="191" Column="11" TopLine="172"/>
       </Position4>
       <Position5>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="379" Column="4" TopLine="376"/>
+        <Filename Value="dxclusterform_u.pas"/>
+        <Caret Line="193" Column="21" TopLine="186"/>
       </Position5>
       <Position6>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="49" Column="15" TopLine="33"/>
+        <Caret Line="46" Column="15" TopLine="30"/>
       </Position6>
       <Position7>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="2374" TopLine="2366"/>
-      </Position7>
-      <Position8>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="412" Column="3" TopLine="395"/>
-      </Position8>
-      <Position9>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="2374" TopLine="2366"/>
-      </Position9>
-      <Position10>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="360" Column="4" TopLine="344"/>
-      </Position10>
-      <Position11>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="2372" Column="4" TopLine="2363"/>
-      </Position11>
-      <Position12>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1756" Column="32" TopLine="1741"/>
-      </Position12>
-      <Position13>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="360" Column="4" TopLine="344"/>
-      </Position13>
-      <Position14>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="387" Column="21" TopLine="383"/>
-      </Position14>
-      <Position15>
-        <Filename Value="gridsform_u.pas"/>
-        <Caret Line="191" Column="11" TopLine="172"/>
-      </Position15>
-      <Position16>
-        <Filename Value="dxclusterform_u.pas"/>
-        <Caret Line="193" Column="21" TopLine="186"/>
-      </Position16>
-      <Position17>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="46" Column="15" TopLine="30"/>
-      </Position17>
-      <Position18>
         <Filename Value="dxclusterform_u.pas"/>
         <Caret Line="669" Column="3" TopLine="659"/>
-      </Position18>
-      <Position19>
+      </Position7>
+      <Position8>
         <Filename Value="dxclusterform_u.pas"/>
         <Caret Line="684" Column="3" TopLine="659"/>
-      </Position19>
-      <Position20>
+      </Position8>
+      <Position9>
         <Filename Value="dxclusterform_u.pas"/>
         <Caret Line="691" Column="3" TopLine="689"/>
-      </Position20>
-      <Position21>
+      </Position9>
+      <Position10>
         <Filename Value="dxclusterform_u.pas"/>
         <Caret Line="697" Column="3" TopLine="689"/>
-      </Position21>
-      <Position22>
+      </Position10>
+      <Position11>
         <Filename Value="dxclusterform_u.pas"/>
         <Caret Line="647" Column="6" TopLine="642"/>
-      </Position22>
-      <Position23>
+      </Position11>
+      <Position12>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="606" Column="3" TopLine="598"/>
-      </Position23>
-      <Position24>
+      </Position12>
+      <Position13>
         <Filename Value="editqso_u.pas"/>
         <Caret Line="388" Column="36" TopLine="373"/>
-      </Position24>
-      <Position25>
+      </Position13>
+      <Position14>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="81" Column="49"/>
-      </Position25>
-      <Position26>
+      </Position14>
+      <Position15>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="82" Column="49" TopLine="50"/>
-      </Position26>
-      <Position27>
+      </Position15>
+      <Position16>
         <Filename Value="mainform_u.pas"/>
         <Caret Line="81" Column="49" TopLine="49"/>
-      </Position27>
-      <Position28>
+      </Position16>
+      <Position17>
         <Filename Value="editqso_u.pas"/>
         <Caret Line="388" Column="36" TopLine="373"/>
-      </Position28>
-      <Position29>
+      </Position17>
+      <Position18>
         <Filename Value="editqso_u.pas"/>
         <Caret Line="389" Column="36" TopLine="374"/>
-      </Position29>
-      <Position30>
+      </Position18>
+      <Position19>
         <Filename Value="editqso_u.pas"/>
         <Caret Line="390" Column="36" TopLine="375"/>
+      </Position19>
+      <Position20>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1071" Column="3" TopLine="1069"/>
+      </Position20>
+      <Position21>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1070" Column="3" TopLine="1068"/>
+      </Position21>
+      <Position22>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1069" Column="3" TopLine="1067"/>
+      </Position22>
+      <Position23>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1068" Column="3" TopLine="1066"/>
+      </Position23>
+      <Position24>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="1060" Column="55" TopLine="1044"/>
+      </Position24>
+      <Position25>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="126" Column="19" TopLine="112"/>
+      </Position25>
+      <Position26>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="541" Column="64" TopLine="526"/>
+      </Position26>
+      <Position27>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="630" Column="18" TopLine="615"/>
+      </Position27>
+      <Position28>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="544" Column="54" TopLine="537"/>
+      </Position28>
+      <Position29>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="545" Column="54" TopLine="538"/>
+      </Position29>
+      <Position30>
+        <Filename Value="configform_u.pas"/>
+        <Caret Line="547" Column="54" TopLine="540"/>
       </Position30>
     </JumpHistory>
     <RunParams>
