@@ -63,7 +63,7 @@
 {"hash":44027172,"name":"tconfigform.bttcidefault.caption","sourcebytes":[83,101,116,32,82,97,100,105,111,32,68,101,102,97,117,108,116],"value":"Set Radio Default"},
 {"hash":1159,"name":"tconfigform.tscw.caption","sourcebytes":[67,87],"value":"CW"},
 {"hash":38279993,"name":"tconfigform.gbcwdaemon.caption","sourcebytes":[67,87,32,68,97,101,109,111,110,32,40,76,105,110,117,120,32,111,110,108,121,41],"value":"CW Daemon (Linux only)"},
-{"hash":129550890,"name":"tconfigform.lbcwdaemonaddress.caption","sourcebytes":[65,100,114,101,115,115,58],"value":"Adress:"},
+{"hash":128683235,"name":"tconfigform.lbcwdaemonaddress.caption","sourcebytes":[65,100,100,114,101,115,115],"value":"Address"},
 {"hash":358036,"name":"tconfigform.lbcwdaemonport.caption","sourcebytes":[80,111,114,116],"value":"Port"},
 {"hash":51432095,"name":"tconfigform.cbcwdaemon.caption","sourcebytes":[85,115,101,32,67,87,32,68,97,101,109,111,110,63],"value":"Use CW Daemon?"},
 {"hash":125370185,"name":"tconfigform.gbcwtype.caption","sourcebytes":[67,87,84,121,112,101,32,40,87,105,110,100,111,119,115,32,111,110,108,121,41],"value":"CWType (Windows only)"},

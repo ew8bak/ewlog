@@ -1712,7 +1712,8 @@ msgid "COM Port"
 msgstr ""
 
 #: tconfigform.lbcwdaemonaddress.caption
-msgid "Adress:"
+msgctxt "tconfigform.lbcwdaemonaddress.caption"
+msgid "Address"
 msgstr ""
 
 #: tconfigform.lbcwdaemonport.caption

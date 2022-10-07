@@ -58,8 +58,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="119"/>
+        <TopLine Value="405"/>
         <CursorPos X="5" Y="92"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -71,7 +72,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="1046"/>
         <CursorPos X="10" Y="1050"/>
@@ -676,10 +676,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="1704"/>
-        <CursorPos X="3" Y="1538"/>
+        <TopLine Value="1977"/>
+        <CursorPos X="35" Y="1711"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit65>
       <Unit66>
         <Filename Value="imbedcallbookcheckrec.pas"/>
@@ -970,7 +971,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="5" Y="19"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="176"/>
       </Unit92>
       <Unit93>
         <Filename Value="satform_u.pas"/>
@@ -982,7 +983,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="16" Y="55"/>
-        <UsageCount Value="145"/>
+        <UsageCount Value="148"/>
       </Unit93>
       <Unit94>
         <Filename Value="sateditorform_u.pas"/>
@@ -994,7 +995,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos X="30" Y="100"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="138"/>
       </Unit94>
       <Unit95>
         <Filename Value="serviceeqslform_u.pas"/>
@@ -1006,7 +1007,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="253"/>
         <CursorPos X="39" Y="116"/>
-        <UsageCount Value="122"/>
+        <UsageCount Value="125"/>
       </Unit95>
       <Unit96>
         <Filename Value="eqslservice_u.pas"/>
@@ -1014,7 +1015,7 @@
         <UnitName Value="eQSLservice_u"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="299"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="122"/>
       </Unit96>
       <Unit97>
         <Filename Value="servicelotwform_u.pas"/>
@@ -1026,7 +1027,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="582"/>
         <CursorPos X="50" Y="614"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="107"/>
       </Unit97>
       <Unit98>
         <Filename Value="lotwservice_u.pas"/>
@@ -1035,7 +1036,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="38"/>
         <CursorPos X="3" Y="103"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="106"/>
       </Unit98>
       <Unit99>
         <Filename Value="dmtht_u.pas"/>
@@ -1713,7 +1714,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="1101"/>
         <CursorPos X="64" Y="1117"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit189>
@@ -1932,7 +1933,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="4340"/>
         <CursorPos Y="4355"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit220>
     </Units>
