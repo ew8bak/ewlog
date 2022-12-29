@@ -1798,6 +1798,10 @@ msgstr ""
 msgid "Key Save QSO"
 msgstr ""
 
+#: tconfigform.lbstationid.caption
+msgid "Station ID"
+msgstr ""
+
 #: tconfigform.lbsyncmobile.caption
 msgid "Interface for mobile sync"
 msgstr ""

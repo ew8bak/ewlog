@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 416
+  Left = 366
   Height = 484
-  Top = 178
+  Top = 183
   Width = 479
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
@@ -15,7 +15,7 @@ object MiniForm: TMiniForm
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  LCLVersion = '2.2.2.0'
+  LCLVersion = '2.2.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 34

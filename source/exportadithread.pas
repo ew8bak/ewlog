@@ -525,7 +525,7 @@ begin
         if Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_DATE').AsString <> '' then
         begin
           tmp := '<CLUBLOG_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
-            Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_DATE').AsString,
+           Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_DATE').AsString,
             PADIExport.Win1251);
           Write(f, tmp);
         end;

@@ -741,6 +741,7 @@ begin
     SendCloudLogThread.SendQSO := SendQSO;
     SendCloudLogThread.server := IniSet.CloudLogServer;
     SendCloudLogThread.key := IniSet.CloudLogApiKey;
+    SendCloudLogThread.CloudLogStationId := IniSet.CloudLogStationId;
     SendCloudLogThread.Start;
     Exit;
   end;
@@ -1773,6 +1774,7 @@ begin
   IniSet.showBand := INIFile.ReadBool('SetLog', 'ShowBand', False);
   IniSet.CloudLogServer := INIFile.ReadString('SetLog', 'CloudLogServer', '');
   IniSet.CloudLogApiKey := INIFile.ReadString('SetLog', 'CloudLogApi', '');
+  IniSet.CloudLogStationId := INIFile.ReadString('SetLog', 'CloudLogStationId', '');
   IniSet.AutoCloudLog := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
   IniSet.FreqToCloudLog := INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
   IniSet.QRZCOM_Login := INIFile.ReadString('SetLog', 'QRZCOM_Login', '');

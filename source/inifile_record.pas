@@ -49,6 +49,7 @@ type
     FormState: string;
     CloudLogServer: string;
     CloudLogApiKey: string;
+    CloudLogStationId: string;
     AutoCloudLog: boolean;
     FreqToCloudLog: boolean;
     QRZCOM_Login: string;

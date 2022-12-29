@@ -44,6 +44,7 @@ type
     SendQSO: TQSO;
     server: string;
     key: string;
+    CloudLogStationId: string;
     OnCloudLogSent: TCloudLogSentEvent;
     constructor Create;
   end;
@@ -100,7 +101,8 @@ begin
     AddData('FREQ', SendQSOr.QSOBand);
     AddData('LOG_PGM', 'EWLog');
     logdata := logdata + '<EOR>';
-    url := '{"key":"' + key + '", "type":"adif", "string":"' + logdata + '"}';
+    url := '{"key":"' + key + '", "station_profile_id":"' + CloudLogStationId +
+      '", "type":"adif", "string":"' + logdata + '"}';
     try
       HTTP.FormPost(server + UploadURL, url, Document);
       if (HTTP.ResponseStatusCode = 200) or (HTTP.ResponseStatusCode = 201) then

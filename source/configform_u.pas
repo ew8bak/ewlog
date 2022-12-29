@@ -123,6 +123,7 @@ type
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
+    EditCloudLogStationId: TEdit;
     EditQRZComLogin: TEdit;
     EditLoTWQTH: TEdit;
     EditLoTWKey: TEdit;
@@ -178,6 +179,7 @@ type
     GBCWType: TGroupBox;
     GBCWGeneral: TGroupBox;
     Label1: TLabel;
+    LBStationID: TLabel;
     Label9: TLabel;
     LBLoTWWarning: TLabel;
     LBLoTWKey: TLabel;
@@ -536,6 +538,7 @@ begin
   INIFile.WriteBool('TelnetCluster', 'AutoStart', CBTelnetStartUp.Checked);
   INIFile.WriteString('SetLog', 'CloudLogServer', Edit10.Text);
   INIFile.WriteString('SetLog', 'CloudLogApi', Edit13.Text);
+  INIFile.WriteString('SetLog', 'CloudLogStationId', EditCloudLogStationId.Text);
   INIFile.WriteBool('SetLog', 'IntCallBook', CheckBox1.Checked);
   INIFile.WriteBool('SetLog', 'StateToQSLInfo', CheckBox6.Checked);
   INIFile.WriteString('SetLog', 'QRZRU_Login', EditQRZruLogin.Text);
@@ -617,6 +620,7 @@ begin
 
   Edit10.Text := INIFile.ReadString('SetLog', 'CloudLogServer', '');
   Edit13.Text := INIFile.ReadString('SetLog', 'CloudLogApi', '');
+  EditCloudLogStationId.Text := INIFile.ReadString('SetLog', 'CloudLogStationId', '');
   CheckBox8.Checked := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
   CheckBox9.Checked := INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
   FileNameEdit1.Text := INIFile.ReadString('DataBases', 'FileSQLite', '');

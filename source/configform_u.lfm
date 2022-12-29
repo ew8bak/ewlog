@@ -1,7 +1,7 @@
 object ConfigForm: TConfigForm
-  Left = 405
+  Left = 552
   Height = 450
-  Top = 208
+  Top = 214
   Width = 700
   AutoSize = True
   BorderIcons = [biSystemMenu]
@@ -20,9 +20,9 @@ object ConfigForm: TConfigForm
     Height = 414
     Top = 0
     Width = 514
-    ActivePage = TSBase
+    ActivePage = TSOtherSettings
     Align = alClient
-    TabIndex = 0
+    TabIndex = 10
     TabOrder = 0
     OnChange = PControlChange
     object TSBase: TTabSheet
@@ -623,7 +623,7 @@ object ConfigForm: TConfigForm
         TabOrder = 0
         object TSHamlib: TTabSheet
           Caption = 'Hamlib'
-          ClientHeight = 344
+          ClientHeight = 345
           ClientWidth = 506
           OnShow = TSHamlibShow
           object LBTransceiverModel: TLabel
@@ -1192,7 +1192,7 @@ object ConfigForm: TConfigForm
         end
         object TSTCI: TTabSheet
           Caption = 'TCI'
-          ClientHeight = 344
+          ClientHeight = 345
           ClientWidth = 506
           OnShow = TSTCIShow
           object LBTCIAddress: TLabel
@@ -2916,20 +2916,20 @@ object ConfigForm: TConfigForm
       OnShow = TSOtherSettingsShow
       object gbCloudLog: TGroupBox
         Left = 8
-        Height = 163
+        Height = 200
         Top = 8
-        Width = 213
+        Width = 227
         AutoSize = True
         Caption = 'CloudLog'
-        ClientHeight = 133
-        ClientWidth = 209
+        ClientHeight = 170
+        ClientWidth = 223
         ParentFont = False
         TabOrder = 0
         object Edit10: TEdit
           AnchorSideTop.Control = gbCloudLog
           AnchorSideRight.Control = gbCloudLog
           AnchorSideRight.Side = asrBottom
-          Left = 54
+          Left = 68
           Height = 32
           Top = 5
           Width = 150
@@ -2943,7 +2943,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit10
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit10
-          Left = 12
+          Left = 26
           Height = 18
           Top = 12
           Width = 37
@@ -2955,11 +2955,11 @@ object ConfigForm: TConfigForm
         end
         object CheckBox8: TCheckBox
           AnchorSideLeft.Control = gbCloudLog
-          AnchorSideTop.Control = Edit13
+          AnchorSideTop.Control = EditCloudLogStationId
           AnchorSideTop.Side = asrBottom
           Left = 5
           Height = 22
-          Top = 79
+          Top = 116
           Width = 154
           BorderSpacing.Around = 5
           Caption = 'Send ADI to CloudLog'
@@ -2973,7 +2973,7 @@ object ConfigForm: TConfigForm
           AnchorSideBottom.Control = gbCloudLog
           Left = 5
           Height = 22
-          Top = 106
+          Top = 143
           Width = 159
           BorderSpacing.Around = 5
           Caption = 'Send Freq to CloudLog'
@@ -2985,7 +2985,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbCloudLog
           AnchorSideRight.Side = asrBottom
-          Left = 54
+          Left = 68
           Height = 32
           Top = 42
           Width = 150
@@ -2999,7 +2999,7 @@ object ConfigForm: TConfigForm
           AnchorSideTop.Control = Edit13
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit13
-          Left = 5
+          Left = 19
           Height = 18
           Top = 49
           Width = 44
@@ -3009,32 +3009,74 @@ object ConfigForm: TConfigForm
           ParentColor = False
           ParentFont = False
         end
+        object EditCloudLogStationId: TEdit
+          AnchorSideTop.Control = Edit13
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = gbCloudLog
+          AnchorSideRight.Side = asrBottom
+          Left = 68
+          Height = 32
+          Top = 79
+          Width = 150
+          Anchors = [akTop, akRight]
+          BorderSpacing.Around = 5
+          Constraints.MinWidth = 150
+          ParentFont = False
+          TabOrder = 4
+        end
+        object LBStationID: TLabel
+          AnchorSideTop.Control = EditCloudLogStationId
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = EditCloudLogStationId
+          Left = 5
+          Height = 18
+          Top = 86
+          Width = 58
+          Anchors = [akTop, akRight]
+          BorderSpacing.Around = 5
+          Caption = 'Station ID'
+          ParentColor = False
+        end
       end
       object CheckBox2: TCheckBox
+        AnchorSideLeft.Control = gbCloudLog
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = gbCloudLog
         Left = 240
         Height = 22
-        Top = 16
+        Top = 13
         Width = 147
+        BorderSpacing.Around = 5
         Caption = 'Use bands in meters'
         OnChange = CheckBox2Change
         ParentFont = False
         TabOrder = 1
       end
       object CheckBox5: TCheckBox
+        AnchorSideLeft.Control = gbCloudLog
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CheckBox2
+        AnchorSideTop.Side = asrBottom
         Left = 240
         Height = 22
         Top = 40
         Width = 151
+        BorderSpacing.Around = 5
         Caption = 'Printing with preview'
         OnChange = CheckBox2Change
         ParentFont = False
         TabOrder = 2
       end
       object CheckBox6: TCheckBox
+        AnchorSideLeft.Control = gbCloudLog
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CheckBox5
+        AnchorSideTop.Side = asrBottom
         Left = 240
         Height = 22
-        Top = 64
+        Top = 67
         Width = 246
+        BorderSpacing.Around = 5
         Caption = 'Send MY_STATE and MY_GRIDSQUARE'
         OnChange = CheckBox6Change
         ParentFont = False
@@ -3046,7 +3088,7 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Side = asrBottom
         Left = 265
         Height = 18
-        Top = 86
+        Top = 94
         Width = 65
         BorderSpacing.Left = 25
         Caption = 'to QSL Info'
@@ -3059,7 +3101,7 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Side = asrBottom
         Left = 10
         Height = 18
-        Top = 181
+        Top = 218
         Width = 144
         BorderSpacing.Left = 10
         BorderSpacing.Top = 10
@@ -3072,7 +3114,7 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Side = asrBottom
         Left = 10
         Height = 32
-        Top = 204
+        Top = 241
         Width = 140
         BorderSpacing.Top = 5
         ItemHeight = 16
@@ -3086,7 +3128,7 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Side = asrBottom
         Left = 10
         Height = 18
-        Top = 246
+        Top = 283
         Width = 89
         BorderSpacing.Left = 10
         BorderSpacing.Top = 10
@@ -3099,7 +3141,7 @@ object ConfigForm: TConfigForm
         AnchorSideTop.Side = asrBottom
         Left = 10
         Height = 32
-        Top = 269
+        Top = 306
         Width = 140
         BorderSpacing.Top = 5
         ItemHeight = 16
