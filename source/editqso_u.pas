@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, DateTimePicker, Forms, Controls,
   Dialogs, StdCtrls, ComCtrls, EditBtn, Buttons, DBGrids, DBCtrls,
-  InformationForm_U, sqldb, Grids, prefix_record, qso_record;
+  InformationForm_U, sqldb, Grids, ExtCtrls, prefix_record, qso_record;
 
 type
 
@@ -49,9 +49,6 @@ type
     DTTime: TDateTimePicker;
     DBGrid1: TDBGrid;
     EditCallSign: TEdit;
-    Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
     EditContinent: TEdit;
     EditGrid: TEdit;
     EditCQ: TEdit;
@@ -67,7 +64,6 @@ type
     EditDXCC: TEdit;
     Edit7: TEdit;
     EditPrefix: TEdit;
-    Edit9: TEdit;
     GBCallInfo: TGroupBox;
     GBQSLReceived: TGroupBox;
     GBQSLSent: TGroupBox;
@@ -77,7 +73,6 @@ type
     LBCQ: TLabel;
     LBITU: TLabel;
     LBGrid: TLabel;
-    LbSubState: TLabel;
     LBContinent: TLabel;
     LBMode: TLabel;
     LBBand: TLabel;
@@ -98,6 +93,9 @@ type
     LBNote: TLabel;
     MemoNote: TMemo;
     PageControl1: TPageControl;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
     RBSent: TRadioButton;
     RBPrinted: TRadioButton;
     RBQueued: TRadioButton;
@@ -109,10 +107,6 @@ type
     SpeedButton12: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
-    SpeedButton5: TSpeedButton;
-    SpeedButton6: TSpeedButton;
-    SpeedButton7: TSpeedButton;
     SpeedButton8: TSpeedButton;
     SpeedButton9: TSpeedButton;
     TabSheet1: TTabSheet;
@@ -285,10 +279,10 @@ begin
   UQSO.LoTWRecDate := DateEdit4.Date;
   UQSO.QSLInfo := Edit20.Text;
   UQSO.Call := EditCallSign.Text;
-  UQSO.State1 := Edit10.Text;
-  UQSO.State2 := Edit9.Text;
-  UQSO.State3 := Edit11.Text;
-  UQSO.State4 := Edit12.Text;
+  UQSO.State1 := '';
+  UQSO.State2 := '';
+  UQSO.State3 := '';
+  UQSO.State4 := '';
   UQSO.WPX := EditPrefix.Text;
   UQSO.ValidDX := BoolToStr(CBValidDXCC.Checked, '1', '0');
   UQSO.SRX := 0;
@@ -360,13 +354,6 @@ procedure TEditQSO_Form.FormShow(Sender: TObject);
 var
   SelQSO: TQSO;
 begin
-  GBCallInfo.Height := CBNoCalcDXCC.Height + CBNoCalcDXCC.Top + 20;
-  PageControl1.Height:= Edit20.Top + Edit20.Height + 30;
-  EditQSO_Form.Height := PageControl1.Height + PageControl1.Top + BtClose.Height + 10;
-
-  GBQSLReceived.Height:= DateEdit4.Top + DateEdit4.Height + 20;
-  GBQSLSent.Height := GBQSLReceived.Height;
-
   MainFunc.LoadBMSL(CBMode, CBSubMode, CBBand);
   MainFunc.SetGrid(DBGrid1);
 
@@ -402,10 +389,6 @@ begin
   Edit20.Text := SelQSO.QSLInfo;
   CBValidDXCC.Checked := MainFunc.StringToBool(SelQSO.ValidDX);
   Edit19.Text := SelQSO.QSLManager;
-  Edit10.Text := SelQSO.State1;
-  Edit9.Text := SelQSO.State2;
-  Edit11.Text := SelQSO.State3;
-  Edit12.Text := SelQSO.State4;
   MemoNote.Text := SelQSO.QSOAddInfo;
   CBNoCalcDXCC.Checked := MainFunc.IntToBool(SelQSO.NoCalcDXCC);
   CBReceivedEQSL.Checked := MainFunc.IntToBool(SelQSO.QSLReceQSLcc);

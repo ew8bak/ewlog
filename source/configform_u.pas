@@ -123,6 +123,8 @@ type
     DEBackupPath: TDirectoryEdit;
     Edit1: TEdit;
     Edit10: TEdit;
+    EditCloudLogStationId: TEdit;
+    EditQRZComLogin: TEdit;
     EditLoTWQTH: TEdit;
     EditLoTWKey: TEdit;
     EditRIGNameHL: TEdit;
@@ -138,8 +140,8 @@ type
     EditTelnetLogin: TEdit;
     EditTelnetPassword: TEdit;
     Edit13: TEdit;
-    Edit14: TEdit;
-    Edit15: TEdit;
+    EditHamQTHLogin: TEdit;
+    EditHamQTHPassword: TEdit;
     EditWOLPort: TEdit;
     EditWOLAddress: TEdit;
     EditExportKey: TEdit;
@@ -155,10 +157,9 @@ type
     Edit3: TEdit;
     Edit4: TEdit;
     Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
+    EditQRZruLogin: TEdit;
+    EditQRZruPassword: TEdit;
+    EditQRZcomPassword: TEdit;
     FileNameEdit1: TFileNameEdit;
     FNLoTWEdit: TFileNameEdit;
     FNPathRigctld: TFileNameEdit;
@@ -177,6 +178,9 @@ type
     GBLoTW: TGroupBox;
     GBCWType: TGroupBox;
     GBCWGeneral: TGroupBox;
+    Label1: TLabel;
+    LBStationID: TLabel;
+    Label9: TLabel;
     LBLoTWWarning: TLabel;
     LBLoTWKey: TLabel;
     LBLoTWQTH: TLabel;
@@ -238,8 +242,6 @@ type
     Label19: TLabel;
     Label2: TLabel;
     Label20: TLabel;
-    Label21: TLabel;
-    Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
@@ -536,14 +538,15 @@ begin
   INIFile.WriteBool('TelnetCluster', 'AutoStart', CBTelnetStartUp.Checked);
   INIFile.WriteString('SetLog', 'CloudLogServer', Edit10.Text);
   INIFile.WriteString('SetLog', 'CloudLogApi', Edit13.Text);
+  INIFile.WriteString('SetLog', 'CloudLogStationId', EditCloudLogStationId.Text);
   INIFile.WriteBool('SetLog', 'IntCallBook', CheckBox1.Checked);
   INIFile.WriteBool('SetLog', 'StateToQSLInfo', CheckBox6.Checked);
-  INIFile.WriteString('SetLog', 'QRZRU_Login', Edit6.Text);
-  INIFile.WriteString('SetLog', 'QRZRU_Pass', Edit7.Text);
-  INIFile.WriteString('SetLog', 'QRZCOM_Login', Edit8.Text);
-  INIFile.WriteString('SetLog', 'QRZCOM_Pass', Edit9.Text);
-  INIFile.WriteString('SetLog', 'HAMQTH_Login', Edit14.Text);
-  INIFile.WriteString('SetLog', 'HAMQTH_Pass', Edit15.Text);
+  INIFile.WriteString('SetLog', 'QRZRU_Login', EditQRZruLogin.Text);
+  INIFile.WriteString('SetLog', 'QRZRU_Pass', EditQRZruPassword.Text);
+  INIFile.WriteString('SetLog', 'QRZCOM_Login', EditQRZcomLogin.Text);
+  INIFile.WriteString('SetLog', 'QRZCOM_Pass', EditQRZcomPassword.Text);
+  INIFile.WriteString('SetLog', 'HAMQTH_Login', EditHamQTHLogin.Text);
+  INIFile.WriteString('SetLog', 'HAMQTH_Pass', EditHamQTHPassword.Text);
   INIFile.WriteBool('SetLog', 'ShowBand', CheckBox2.Checked);
   if RadioButton1.Checked then
     INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
@@ -617,6 +620,7 @@ begin
 
   Edit10.Text := INIFile.ReadString('SetLog', 'CloudLogServer', '');
   Edit13.Text := INIFile.ReadString('SetLog', 'CloudLogApi', '');
+  EditCloudLogStationId.Text := INIFile.ReadString('SetLog', 'CloudLogStationId', '');
   CheckBox8.Checked := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
   CheckBox9.Checked := INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
   FileNameEdit1.Text := INIFile.ReadString('DataBases', 'FileSQLite', '');
@@ -627,12 +631,12 @@ begin
 
   CheckBox1.Checked := INIFile.ReadBool('SetLog', 'IntCallBook', False);
   CheckBox2.Checked := INIFile.ReadBool('SetLog', 'ShowBand', False);
-  Edit6.Text := INIFile.ReadString('SetLog', 'QRZRU_Login', '');
-  Edit7.Text := INIFile.ReadString('SetLog', 'QRZRU_Pass', '');
-  Edit8.Text := INIFile.ReadString('SetLog', 'QRZCOM_Login', '');
-  Edit9.Text := INIFile.ReadString('SetLog', 'QRZCOM_Pass', '');
-  Edit14.Text := INIFile.ReadString('SetLog', 'HAMQTH_Login', '');
-  Edit15.Text := INIFile.ReadString('SetLog', 'HAMQTH_Pass', '');
+  EditQRZruLogin.Text := INIFile.ReadString('SetLog', 'QRZRU_Login', '');
+  EditQRZruPassword.Text := INIFile.ReadString('SetLog', 'QRZRU_Pass', '');
+  EditQRZcomLogin.Text := INIFile.ReadString('SetLog', 'QRZCOM_Login', '');
+  EditQRZcomPassword.Text := INIFile.ReadString('SetLog', 'QRZCOM_Pass', '');
+  EditHamQTHLogin.Text := INIFile.ReadString('SetLog', 'HAMQTH_Login', '');
+  EditHamQTHPassword.Text := INIFile.ReadString('SetLog', 'HAMQTH_Pass', '');
 
   CheckBox6.Checked := INIFile.ReadBool('SetLog', 'StateToQSLInfo', False);
   CheckBox5.Checked := INIFile.ReadBool('SetLog', 'PrintPrev', False);
@@ -1183,9 +1187,9 @@ end;
 
 procedure TConfigForm.ReadGridColors;
 begin
-  cbTextColorGrid.Selected := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
+  cbTextColorGrid.Selected := INIFile.ReadInteger('GridSettings', 'TextColor', clDefault);
   cbBackColorGrid.Selected :=
-    INIFile.ReadInteger('GridSettings', 'BackColor', -2147483617);
+    INIFile.ReadInteger('GridSettings', 'BackColor', clDefault);
 
   case INIFile.ReadInteger('GridSettings', 'TextSize', 8) of
     8: cbTextSizeGrid.ItemIndex := 0;

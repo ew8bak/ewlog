@@ -1,31 +1,34 @@
 object LogConfigForm: TLogConfigForm
-  Left = 551
+  Left = 518
   Height = 462
-  Top = 145
-  Width = 469
+  Top = 184
+  Width = 481
+  AutoSize = True
   BorderStyle = bsDialog
   Caption = 'Logs configuration'
   ClientHeight = 462
-  ClientWidth = 469
+  ClientWidth = 481
   DefaultMonitor = dmMainForm
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.2.0'
   object Panel1: TPanel
+    AnchorSideBottom.Control = Panel2
+    AnchorSideBottom.Side = asrBottom
     Left = 186
-    Height = 427
+    Height = 432
     Top = 0
-    Width = 283
-    Align = alRight
-    ClientHeight = 427
-    ClientWidth = 283
+    Width = 295
+    Align = alClient
+    ClientHeight = 432
+    ClientWidth = 295
     TabOrder = 0
     object PageControl1: TPageControl
       Left = 1
-      Height = 425
+      Height = 430
       Top = 1
-      Width = 281
+      Width = 293
       ActivePage = TabSheet1
       Align = alClient
       Font.Height = -12
@@ -34,156 +37,189 @@ object LogConfigForm: TLogConfigForm
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Operator'
-        ClientHeight = 396
-        ClientWidth = 271
+        ClientHeight = 395
+        ClientWidth = 289
         object Label1: TLabel
-          Left = 12
-          Height = 13
-          Top = 12
-          Width = 25
+          AnchorSideLeft.Control = TabSheet1
+          AnchorSideTop.Control = TabSheet1
+          Left = 10
+          Height = 18
+          Top = 5
+          Width = 24
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
           Caption = 'Log'
-          Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object EditDescription: TEdit
-          Left = 72
-          Height = 23
-          Top = 29
-          Width = 192
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Label1
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet1
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 32
+          Top = 28
+          Width = 195
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 0
         end
         object Label2: TLabel
+          AnchorSideLeft.Control = TabSheet1
           AnchorSideTop.Control = EditDescription
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditDescription
-          Left = 1
-          Height = 13
-          Top = 34
-          Width = 68
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 35
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Description'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Label4: TLabel
-          Left = 8
-          Height = 13
-          Top = 72
-          Width = 100
+          AnchorSideLeft.Control = TabSheet1
+          AnchorSideTop.Control = EditDescription
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 18
+          Top = 70
+          Width = 94
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
           Caption = 'Station detalis'
-          Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object EditCallSign: TEdit
-          Left = 64
-          Height = 23
-          Top = 96
-          Width = 172
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideLeft.Control = EditDescription
+          AnchorSideTop.Control = Label4
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet1
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 32
+          Top = 93
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 1
         end
         object EditName: TEdit
+          AnchorSideLeft.Control = EditCallSign
           AnchorSideTop.Control = EditCallSign
           AnchorSideTop.Side = asrBottom
-          Left = 64
-          Height = 23
-          Top = 121
-          Width = 172
-          AutoSize = False
+          AnchorSideRight.Control = TabSheet1
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 32
+          Top = 127
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Top = 2
-          Font.Height = -12
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 2
         end
         object EditQTH: TEdit
+          AnchorSideLeft.Control = EditName
           AnchorSideTop.Control = EditName
           AnchorSideTop.Side = asrBottom
-          Left = 63
-          Height = 23
-          Top = 146
-          Width = 172
-          Anchors = [akTop]
-          AutoSize = False
+          AnchorSideRight.Control = TabSheet1
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 32
+          Top = 161
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Top = 2
-          Font.Height = -12
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 3
         end
         object Label5: TLabel
+          AnchorSideLeft.Control = TabSheet1
           AnchorSideTop.Control = EditCallSign
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditCallSign
-          Left = 15
-          Height = 13
-          Top = 101
-          Width = 46
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 100
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Callsign'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Label6: TLabel
+          AnchorSideLeft.Control = TabSheet1
           AnchorSideTop.Control = EditName
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditName
-          Left = 26
-          Height = 13
-          Top = 126
-          Width = 35
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 134
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Name'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Label7: TLabel
+          AnchorSideLeft.Control = TabSheet1
           AnchorSideTop.Control = EditQTH
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditQTH
-          Left = 35
-          Height = 13
-          Top = 151
-          Width = 25
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 168
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'QTH'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Label8: TLabel
-          Left = 8
-          Height = 13
-          Top = 192
-          Width = 142
+          AnchorSideLeft.Control = TabSheet1
+          AnchorSideTop.Control = EditQTH
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 18
+          Top = 203
+          Width = 138
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
           Caption = 'Location information'
-          Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object EditITU: TEdit
           AnchorSideLeft.Control = EditQTH
-          Left = 63
-          Height = 23
-          Top = 216
+          AnchorSideTop.Control = Label8
+          AnchorSideTop.Side = asrBottom
+          Left = 84
+          Height = 32
+          Top = 226
           Width = 35
-          AutoSize = False
-          Font.Height = -12
+          BorderSpacing.Top = 5
           NumbersOnly = True
           ParentFont = False
           TabOrder = 4
@@ -192,28 +228,31 @@ object LogConfigForm: TLogConfigForm
           AnchorSideLeft.Control = EditITU
           AnchorSideTop.Control = EditITU
           AnchorSideTop.Side = asrBottom
-          Left = 63
-          Height = 23
-          Top = 241
-          Width = 172
-          AutoSize = False
+          AnchorSideRight.Control = TabSheet1
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 32
+          Top = 260
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Top = 2
+          BorderSpacing.Right = 10
           CharCase = ecUppercase
-          Font.Height = -12
           OnChange = EditGridChange
           ParentFont = False
           TabOrder = 5
         end
         object EditCQ: TEdit
+          AnchorSideTop.Control = Label8
+          AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = EditQTH
           AnchorSideRight.Side = asrBottom
-          Left = 194
-          Height = 23
-          Top = 216
+          Left = 238
+          Height = 32
+          Top = 226
           Width = 41
           Anchors = [akTop, akRight]
-          AutoSize = False
-          Font.Height = -12
+          BorderSpacing.Top = 5
           NumbersOnly = True
           ParentFont = False
           TabOrder = 6
@@ -222,13 +261,11 @@ object LogConfigForm: TLogConfigForm
           AnchorSideLeft.Control = EditGrid
           AnchorSideTop.Control = EditGrid
           AnchorSideTop.Side = asrBottom
-          Left = 63
-          Height = 23
-          Top = 266
+          Left = 84
+          Height = 32
+          Top = 294
           Width = 70
-          AutoSize = False
           BorderSpacing.Top = 2
-          Font.Height = -12
           ParentFont = False
           ReadOnly = True
           TabOrder = 7
@@ -236,16 +273,14 @@ object LogConfigForm: TLogConfigForm
         object EditLon: TEdit
           AnchorSideTop.Control = EditGrid
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = EditDescription
+          AnchorSideRight.Control = EditGrid
           AnchorSideRight.Side = asrBottom
-          Left = 194
-          Height = 23
-          Top = 266
+          Left = 209
+          Height = 32
+          Top = 294
           Width = 70
           Anchors = [akTop, akRight]
-          AutoSize = False
           BorderSpacing.Top = 2
-          Font.Height = -12
           ParentFont = False
           ReadOnly = True
           TabOrder = 8
@@ -254,14 +289,13 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditITU
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditITU
-          Left = 40
-          Height = 13
-          Top = 221
+          Left = 61
+          Height = 18
+          Top = 233
           Width = 20
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'ITU'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
@@ -269,14 +303,13 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditCQ
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditCQ
-          Left = 174
-          Height = 13
-          Top = 221
-          Width = 17
+          Left = 217
+          Height = 18
+          Top = 233
+          Width = 18
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'CQ'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
@@ -284,14 +317,13 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditGrid
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditGrid
-          Left = 35
-          Height = 13
-          Top = 246
+          Left = 56
+          Height = 18
+          Top = 267
           Width = 25
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
           Caption = 'Grid'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
@@ -299,14 +331,13 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditLat
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditLat
-          Left = 10
-          Height = 13
-          Top = 271
-          Width = 50
+          Left = 62
+          Height = 18
+          Top = 301
+          Width = 19
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 3
-          Caption = 'Latitude'
-          Font.Height = -12
+          Caption = 'Lat'
           ParentColor = False
           ParentFont = False
         end
@@ -314,505 +345,622 @@ object LogConfigForm: TLogConfigForm
           AnchorSideTop.Control = EditLon
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = EditLon
-          Left = 133
-          Height = 13
-          Top = 271
-          Width = 60
+          Left = 186
+          Height = 18
+          Top = 301
+          Width = 22
           Anchors = [akTop, akRight]
           BorderSpacing.Right = 1
-          Caption = 'Longitude'
-          Font.Height = -12
+          Caption = 'Lon'
           ParentColor = False
           ParentFont = False
         end
         object Label14: TLabel
-          Left = 8
-          Height = 13
-          Top = 312
-          Width = 121
+          AnchorSideLeft.Control = TabSheet1
+          AnchorSideTop.Control = EditLat
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 18
+          Top = 336
+          Width = 115
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
           Caption = 'QSL info (Default)'
-          Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object EditQSLinfo: TEdit
-          AnchorSideLeft.Control = EditLat
-          Left = 63
-          Height = 23
-          Top = 336
-          Width = 192
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideLeft.Control = Label14
+          AnchorSideTop.Control = Label14
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = EditLon
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Side = asrBottom
+          Left = 10
+          Height = 32
+          Top = 359
+          Width = 269
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Bottom = 6
           ParentFont = False
           TabOrder = 9
           Text = 'TNX For QSO TU 73!'
         end
         object LBDefaultCall: TLabel
-          Left = 256
-          Height = 13
-          Top = 8
-          Width = 6
+          AnchorSideTop.Control = Label1
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = TabSheet1
+          AnchorSideRight.Side = asrBottom
+          Left = 272
+          Height = 17
+          Top = 6
+          Width = 7
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 10
           Caption = '*'
           ParentColor = False
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Services'
-        ClientHeight = 396
-        ClientWidth = 271
+        ClientHeight = 395
+        ClientWidth = 289
         object Label16: TLabel
           AnchorSideLeft.Control = TabSheet2
-          Left = 15
-          Height = 15
-          Top = 16
-          Width = 41
-          BorderSpacing.Left = 15
+          AnchorSideTop.Control = TabSheet2
+          Left = 10
+          Height = 18
+          Top = 5
+          Width = 46
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
           Caption = 'eQSLcc'
-          Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object Label17: TLabel
+          AnchorSideLeft.Control = TabSheet2
           AnchorSideTop.Control = Edit11
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit11
-          Left = 39
-          Height = 15
-          Top = 38
-          Width = 30
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 34
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Login'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Label18: TLabel
+          AnchorSideLeft.Control = TabSheet2
           AnchorSideTop.Control = Edit12
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit12
-          Left = 19
-          Height = 15
-          Top = 70
-          Width = 50
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 67
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Password'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Edit11: TEdit
-          Left = 72
-          Height = 23
-          Top = 34
-          Width = 152
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideTop.Control = Label16
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet2
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 28
+          Width = 195
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 0
         end
         object Edit12: TEdit
-          Left = 72
-          Height = 23
-          Top = 66
-          Width = 152
-          AutoSize = False
+          AnchorSideLeft.Control = Edit11
+          AnchorSideTop.Control = Edit11
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet2
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 61
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 2
+          BorderSpacing.Right = 10
           EchoMode = emPassword
-          Font.Height = -12
           ParentFont = False
           PasswordChar = '*'
           TabOrder = 1
         end
         object CheckBox1: TCheckBox
           AnchorSideLeft.Control = TabSheet2
-          Left = 1
-          Height = 19
-          Top = 96
-          Width = 249
-          BorderSpacing.Left = 1
+          AnchorSideTop.Control = Edit12
+          AnchorSideTop.Side = asrBottom
+          Left = 2
+          Height = 21
+          Top = 94
+          Width = 260
+          BorderSpacing.Left = 2
+          BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
-          Font.Height = -12
           ParentFont = False
           TabOrder = 2
         end
         object Label19: TLabel
           AnchorSideLeft.Control = TabSheet2
-          Left = 18
-          Height = 15
-          Top = 128
-          Width = 43
-          BorderSpacing.Left = 18
+          AnchorSideTop.Control = CheckBox1
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 18
+          Top = 125
+          Width = 49
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
           Caption = 'HRDlog'
-          Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object Edit13: TEdit
-          Left = 78
-          Height = 23
-          Top = 146
-          Width = 152
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideLeft.Control = Edit12
+          AnchorSideTop.Control = Label19
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet2
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 148
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 3
         end
         object Label20: TLabel
+          AnchorSideLeft.Control = TabSheet2
           AnchorSideTop.Control = Edit13
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit13
-          Left = 45
-          Height = 15
-          Top = 150
-          Width = 30
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 154
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Login'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Label21: TLabel
+          AnchorSideLeft.Control = TabSheet2
           AnchorSideTop.Control = Edit14
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit14
-          Left = 8
-          Height = 15
-          Top = 182
-          Width = 67
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 187
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Upload code'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Edit14: TEdit
-          Left = 78
-          Height = 23
-          Top = 178
-          Width = 152
-          AutoSize = False
+          AnchorSideLeft.Control = Edit13
+          AnchorSideTop.Control = Edit13
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet2
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 181
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 2
+          BorderSpacing.Right = 10
           EchoMode = emPassword
-          Font.Height = -12
           ParentFont = False
           PasswordChar = '*'
           TabOrder = 4
         end
         object CheckBox2: TCheckBox
           AnchorSideLeft.Control = TabSheet2
-          Left = 1
-          Height = 19
-          Top = 208
-          Width = 249
-          BorderSpacing.Left = 1
+          AnchorSideTop.Control = Edit14
+          AnchorSideTop.Side = asrBottom
+          Left = 2
+          Height = 21
+          Top = 214
+          Width = 260
+          BorderSpacing.Left = 2
+          BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
-          Font.Height = -12
           ParentFont = False
           TabOrder = 5
         end
         object Label22: TLabel
           AnchorSideLeft.Control = TabSheet2
-          Left = 15
-          Height = 15
-          Top = 240
-          Width = 51
-          BorderSpacing.Left = 15
+          AnchorSideTop.Control = CheckBox2
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 18
+          Top = 245
+          Width = 58
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
           Caption = 'HamQTH'
-          Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object Edit15: TEdit
-          Left = 78
-          Height = 23
-          Top = 258
-          Width = 152
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideLeft.Control = Edit14
+          AnchorSideTop.Control = Label22
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet2
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 268
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 6
         end
         object Label23: TLabel
+          AnchorSideLeft.Control = TabSheet2
           AnchorSideTop.Control = Edit15
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit15
-          Left = 45
-          Height = 15
-          Top = 262
-          Width = 30
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 274
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Login'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Edit16: TEdit
-          Left = 78
-          Height = 23
-          Top = 290
-          Width = 152
-          AutoSize = False
+          AnchorSideLeft.Control = Edit15
+          AnchorSideTop.Control = Edit15
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet2
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 301
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 2
+          BorderSpacing.Right = 10
           EchoMode = emPassword
-          Font.Height = -12
           ParentFont = False
           PasswordChar = '*'
           TabOrder = 7
         end
         object Label24: TLabel
+          AnchorSideLeft.Control = TabSheet2
           AnchorSideTop.Control = Edit16
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit16
-          Left = 25
-          Height = 15
-          Top = 294
-          Width = 50
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 307
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Password'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object CheckBox3: TCheckBox
           AnchorSideLeft.Control = TabSheet2
-          Left = 1
-          Height = 19
-          Top = 320
-          Width = 249
-          BorderSpacing.Left = 1
+          AnchorSideTop.Control = Edit16
+          AnchorSideTop.Side = asrBottom
+          Left = 2
+          Height = 21
+          Top = 334
+          Width = 260
+          BorderSpacing.Left = 2
+          BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
-          Font.Height = -12
           ParentFont = False
           TabOrder = 8
         end
       end
       object TabSheet3: TTabSheet
         Caption = 'Services'
-        ClientHeight = 396
-        ClientWidth = 271
+        ClientHeight = 395
+        ClientWidth = 289
         object Label25: TLabel
+          AnchorSideLeft.Control = TabSheet3
           AnchorSideTop.Control = Edit17
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit17
-          Left = 39
-          Height = 15
-          Top = 38
-          Width = 30
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 34
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Login'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Edit17: TEdit
-          Left = 72
-          Height = 23
-          Top = 34
-          Width = 152
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideTop.Control = Label27
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet3
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 28
+          Width = 195
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 0
         end
         object Label26: TLabel
+          AnchorSideLeft.Control = TabSheet3
           AnchorSideTop.Control = Edit18
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit18
-          Left = 19
-          Height = 15
-          Top = 70
-          Width = 50
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 67
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Password'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Edit18: TEdit
-          Left = 72
-          Height = 23
-          Top = 66
-          Width = 152
-          AutoSize = False
+          AnchorSideLeft.Control = Edit17
+          AnchorSideTop.Control = Edit17
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet3
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 61
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 2
+          BorderSpacing.Right = 10
           EchoMode = emPassword
-          Font.Height = -12
           ParentFont = False
           PasswordChar = '*'
           TabOrder = 1
         end
         object Label27: TLabel
           AnchorSideLeft.Control = TabSheet3
-          Left = 15
-          Height = 15
-          Top = 16
-          Width = 32
-          BorderSpacing.Left = 15
+          AnchorSideTop.Control = TabSheet3
+          Left = 10
+          Height = 18
+          Top = 5
+          Width = 36
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
           Caption = 'LoTW'
-          Font.Height = -12
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object Label28: TLabel
           AnchorSideLeft.Control = TabSheet3
-          Left = 18
-          Height = 15
-          Top = 128
-          Width = 44
-          BorderSpacing.Left = 18
+          AnchorSideTop.Control = Edit18
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 18
+          Top = 102
+          Width = 53
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
           Caption = 'ClubLog'
-          Font.Height = -12
-          Font.Style = [fsBold]
+          Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
         object Label29: TLabel
+          AnchorSideLeft.Control = TabSheet3
           AnchorSideTop.Control = Edit19
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit19
-          Left = -1
-          Height = 15
-          Top = 156
-          Width = 70
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 131
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Login (email)'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Edit19: TEdit
-          Left = 72
-          Height = 23
-          Top = 152
-          Width = 152
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideLeft.Control = Edit18
+          AnchorSideTop.Control = Label28
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet3
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 125
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 2
         end
         object Label30: TLabel
+          AnchorSideLeft.Control = TabSheet3
           AnchorSideTop.Control = Edit20
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit20
-          Left = 19
-          Height = 15
-          Top = 188
-          Width = 50
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 164
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Password'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Edit20: TEdit
-          Left = 72
-          Height = 23
-          Top = 184
-          Width = 152
-          AutoSize = False
+          AnchorSideLeft.Control = Edit19
+          AnchorSideTop.Control = Edit19
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet3
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 158
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 2
+          BorderSpacing.Right = 10
           EchoMode = emPassword
-          Font.Height = -12
           ParentFont = False
           PasswordChar = '*'
           TabOrder = 3
         end
         object CheckBox4: TCheckBox
           AnchorSideLeft.Control = TabSheet3
-          Left = 1
-          Height = 19
-          Top = 214
-          Width = 249
-          BorderSpacing.Left = 1
+          AnchorSideTop.Control = Edit20
+          AnchorSideTop.Side = asrBottom
+          Left = 2
+          Height = 21
+          Top = 191
+          Width = 260
+          BorderSpacing.Left = 2
+          BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
-          Font.Height = -12
           ParentFont = False
           TabOrder = 4
         end
         object CheckBox5: TCheckBox
           AnchorSideLeft.Control = TabSheet3
-          Left = 1
-          Height = 19
-          Top = 334
-          Width = 249
-          BorderSpacing.Left = 1
+          AnchorSideTop.Control = Edit22
+          AnchorSideTop.Side = asrBottom
+          Left = 2
+          Height = 21
+          Top = 311
+          Width = 260
+          BorderSpacing.Left = 2
+          BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
-          Font.Height = -12
           ParentFont = False
           TabOrder = 5
         end
         object Label31: TLabel
+          AnchorSideLeft.Control = TabSheet3
           AnchorSideTop.Control = Edit21
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit21
-          Left = 39
-          Height = 15
-          Top = 280
-          Width = 30
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 251
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'Login'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Edit21: TEdit
-          Left = 72
-          Height = 23
-          Top = 276
-          Width = 152
-          AutoSize = False
-          Font.Height = -12
+          AnchorSideLeft.Control = Edit20
+          AnchorSideTop.Control = Label33
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet3
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 245
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
           ParentFont = False
           TabOrder = 6
         end
         object Edit22: TEdit
-          Left = 72
-          Height = 23
-          Top = 308
-          Width = 152
-          AutoSize = False
+          AnchorSideLeft.Control = Edit21
+          AnchorSideTop.Control = Edit21
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet3
+          AnchorSideRight.Side = asrBottom
+          Left = 84
+          Height = 31
+          Top = 278
+          Width = 195
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 2
+          BorderSpacing.Right = 10
           EchoMode = emPassword
-          Font.Height = -12
           ParentFont = False
           PasswordChar = '*'
           TabOrder = 7
         end
         object Label32: TLabel
+          AnchorSideLeft.Control = TabSheet3
           AnchorSideTop.Control = Edit22
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Edit22
-          Left = 30
-          Height = 15
-          Top = 312
-          Width = 39
-          Anchors = [akTop, akRight]
+          Left = 5
+          Height = 18
+          Top = 284
+          Width = 76
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
           BorderSpacing.Right = 3
           Caption = 'API key'
-          Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
         object Label33: TLabel
           AnchorSideLeft.Control = TabSheet3
-          Left = 18
-          Height = 15
-          Top = 248
-          Width = 54
-          BorderSpacing.Left = 18
+          AnchorSideTop.Control = CheckBox4
+          AnchorSideTop.Side = asrBottom
+          Left = 10
+          Height = 18
+          Top = 222
+          Width = 61
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 10
           Caption = 'QRZ.COM'
-          Font.Height = -12
-          Font.Style = [fsBold]
+          Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
         end
@@ -821,31 +969,45 @@ object LogConfigForm: TLogConfigForm
   end
   object Panel2: TPanel
     Left = 0
-    Height = 35
-    Top = 427
-    Width = 469
+    Height = 30
+    Top = 432
+    Width = 481
     Align = alBottom
-    ClientHeight = 35
-    ClientWidth = 469
+    Anchors = [akLeft, akRight]
+    AutoSize = True
+    ClientHeight = 30
+    ClientWidth = 481
     TabOrder = 1
     object Button1: TButton
-      Left = 384
-      Height = 25
-      Top = 6
-      Width = 75
+      AnchorSideTop.Control = Panel2
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Panel2
+      AnchorSideRight.Side = asrBottom
+      Left = 434
+      Height = 28
+      Top = 1
+      Width = 41
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      BorderSpacing.Right = 5
       Caption = 'Save'
-      Font.Height = -12
       OnClick = Button1Click
       ParentFont = False
       TabOrder = 0
     end
     object Button2: TButton
-      Left = 300
-      Height = 25
-      Top = 6
-      Width = 75
+      AnchorSideTop.Control = Panel2
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Button1
+      AnchorSideBottom.Side = asrBottom
+      Left = 377
+      Height = 28
+      Top = 1
+      Width = 52
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      BorderSpacing.Right = 5
       Caption = 'Cancel'
-      Font.Height = -12
       OnClick = Button2Click
       ParentFont = False
       TabOrder = 1
@@ -853,20 +1015,20 @@ object LogConfigForm: TLogConfigForm
   end
   object LBCallsigns: TListBox
     Left = 0
-    Height = 427
+    Height = 432
     Top = 0
     Width = 186
-    Align = alClient
+    Align = alLeft
     ItemHeight = 0
     OnClick = LBCallsignsClick
     PopupMenu = PopupMenu1
     ScrollWidth = 184
     TabOrder = 2
-    TopIndex = -1
   end
   object SQLQuery1: TSQLQuery
     FieldDefs = <>
     Params = <>
+    Macros = <>
     Left = 80
     Top = 64
   end
@@ -895,12 +1057,14 @@ object LogConfigForm: TLogConfigForm
   object UpdateConfQuery: TSQLQuery
     FieldDefs = <>
     Params = <>
+    Macros = <>
     Left = 104
     Top = 152
   end
   object SQLQuery2: TSQLQuery
     FieldDefs = <>
     Params = <>
+    Macros = <>
     Left = 32
     Top = 128
   end

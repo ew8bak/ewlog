@@ -357,7 +357,7 @@ end;
 
 procedure TGridsForm.FindQSODSDataChange(Sender: TObject; Field: TField);
 begin
-  MainFunc.SetGrid(DBGrid2);
+ // MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TGridsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -375,14 +375,16 @@ end;
 
 procedure TGridsForm.FormCreate(Sender: TObject);
 begin
-  MainFunc.SetGrid(DBGrid1);
-  MainFunc.SetGrid(DBGrid2);
+
   ExportAdifSelect := False;
 end;
 
 procedure TGridsForm.FormShow(Sender: TObject);
 begin
+  MainFunc.SetGrid(DBGrid1);
+  MainFunc.SetGrid(DBGrid2);
   MainFunc.LoadWindowPosition(GridsForm);
+
 end;
 
 procedure TGridsForm.CopyToLogItemClick(Sender: TObject);
@@ -408,8 +410,8 @@ end;
 
 procedure TGridsForm.LOGBookDSDataChange(Sender: TObject; Field: TField);
 begin
-  MainFunc.SetGrid(DBGrid1);
-  MainFunc.SetGrid(DBGrid2);
+//  MainFunc.SetGrid(DBGrid1);
+//  MainFunc.SetGrid(DBGrid2);
 end;
 
 procedure TGridsForm.MarkQSOItemClick(Sender: TObject);

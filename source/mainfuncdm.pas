@@ -741,6 +741,7 @@ begin
     SendCloudLogThread.SendQSO := SendQSO;
     SendCloudLogThread.server := IniSet.CloudLogServer;
     SendCloudLogThread.key := IniSet.CloudLogApiKey;
+    SendCloudLogThread.CloudLogStationId := IniSet.CloudLogStationId;
     SendCloudLogThread.Start;
     Exit;
   end;
@@ -1773,6 +1774,7 @@ begin
   IniSet.showBand := INIFile.ReadBool('SetLog', 'ShowBand', False);
   IniSet.CloudLogServer := INIFile.ReadString('SetLog', 'CloudLogServer', '');
   IniSet.CloudLogApiKey := INIFile.ReadString('SetLog', 'CloudLogApi', '');
+  IniSet.CloudLogStationId := INIFile.ReadString('SetLog', 'CloudLogStationId', '');
   IniSet.AutoCloudLog := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
   IniSet.FreqToCloudLog := INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
   IniSet.QRZCOM_Login := INIFile.ReadString('SetLog', 'QRZCOM_Login', '');
@@ -2369,7 +2371,7 @@ var
   QBAND: string;
   ColorTextGrid: integer;
   ColorBackGrid: integer;
-  SizeTextGrid: integer;
+ // SizeTextGrid: integer;
 begin
   for i := 0 to 29 do
   begin
@@ -2381,11 +2383,11 @@ begin
       INIFile.ReadBool('GridSettings', 'ColVisible' + IntToStr(i), True);
   end;
 
-  ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', 0);
-  SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
-  ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', -2147483617);
+  ColorTextGrid := INIFile.ReadInteger('GridSettings', 'TextColor', clDefault);
+  //SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
+  ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', clDefault);
 
-  DBGRID.Font.Size := SizeTextGrid;
+ // DBGRID.Font.Size := SizeTextGrid;
   DBGRID.Font.Color := ColorTextGrid;
   DBGRID.Color := ColorBackGrid;
 
@@ -2465,15 +2467,15 @@ begin
     end;
   end;
 
-  case SizeTextGrid of
-    8: DBGRID.DefaultRowHeight := 15;
-    10: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-    12: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-    14: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-  end;
+//  case SizeTextGrid of
+//    8: DBGRID.DefaultRowHeight := 15;
+//    10: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+//    12: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+//    14: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+//  end;
 
-  for i := 0 to DBGRID.Columns.Count - 1 do
-    DBGRID.Columns.Items[i].Title.Font.Size := SizeTextGrid;
+//  for i := 0 to DBGRID.Columns.Count - 1 do
+ //   DBGRID.Columns.Items[i].Title.Font.Size := SizeTextGrid;
 end;
 
 procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);

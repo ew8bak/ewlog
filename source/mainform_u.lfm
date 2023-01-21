@@ -6,14 +6,13 @@ object MainForm: TMainForm
   Caption = 'EWLog - HAM Journal'
   ClientHeight = 667
   ClientWidth = 1208
-  Font.Height = -12
   KeyPreview = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDefault
   ShowInTaskBar = stAlways
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.2.0'
   object LeftPanel: TPanel
     Left = 0
     Height = 667
@@ -33,16 +32,17 @@ object MainForm: TMainForm
     end
     object MiniPanel: TPanel
       Left = 1
-      Height = 407
+      Height = 0
       Top = 1
       Width = 475
       Align = alTop
+      AutoSize = True
       TabOrder = 1
     end
     object OtherPanel: TPanel
       Left = 1
-      Height = 8
-      Top = 408
+      Height = 415
+      Top = 1
       Width = 475
       Align = alClient
       TabOrder = 2

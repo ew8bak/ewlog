@@ -1553,6 +1553,11 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+#: tconfigform.label1.caption
+msgctxt "tconfigform.label1.caption"
+msgid "Login"
+msgstr ""
+
 #: tconfigform.label10.caption
 msgid "Release date:"
 msgstr ""
@@ -1594,16 +1599,6 @@ msgstr ""
 
 #: tconfigform.label20.caption
 msgid "to QSL Info"
-msgstr ""
-
-#: tconfigform.label21.caption
-msgctxt "tconfigform.label21.caption"
-msgid "Login"
-msgstr ""
-
-#: tconfigform.label22.caption
-msgctxt "tconfigform.label22.caption"
-msgid "Password"
 msgstr ""
 
 #: tconfigform.label23.caption
@@ -1650,6 +1645,11 @@ msgstr ""
 
 #: tconfigform.label8.caption
 msgid "Base"
+msgstr ""
+
+#: tconfigform.label9.caption
+msgctxt "tconfigform.label9.caption"
+msgid "Password"
 msgstr ""
 
 #: tconfigform.lbbackcolor.caption
@@ -1712,7 +1712,8 @@ msgid "COM Port"
 msgstr ""
 
 #: tconfigform.lbcwdaemonaddress.caption
-msgid "Adress:"
+msgctxt "tconfigform.lbcwdaemonaddress.caption"
+msgid "Address"
 msgstr ""
 
 #: tconfigform.lbcwdaemonport.caption
@@ -1795,6 +1796,10 @@ msgstr ""
 
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
+msgstr ""
+
+#: tconfigform.lbstationid.caption
+msgid "Station ID"
 msgstr ""
 
 #: tconfigform.lbsyncmobile.caption
@@ -2172,6 +2177,7 @@ msgid "ITU"
 msgstr ""
 
 #: tcreatejournalform.lblat.caption
+msgctxt "tcreatejournalform.lblat.caption"
 msgid "Lat"
 msgstr ""
 
@@ -2684,11 +2690,6 @@ msgctxt "teditqso_form.lbstate.caption"
 msgid "State"
 msgstr ""
 
-#: teditqso_form.lbsubstate.caption
-msgctxt "teditqso_form.lbsubstate.caption"
-msgid "Sub. State"
-msgstr ""
-
 #: teditqso_form.rbdsent.caption
 msgid "Do not send"
 msgstr ""
@@ -2743,22 +2744,6 @@ msgstr ""
 #: teditqso_form.speedbutton3.caption
 msgctxt "teditqso_form.speedbutton3.caption"
 msgid "..."
-msgstr ""
-
-#: teditqso_form.speedbutton4.caption
-msgid ".4."
-msgstr ""
-
-#: teditqso_form.speedbutton5.caption
-msgid ".3."
-msgstr ""
-
-#: teditqso_form.speedbutton6.caption
-msgid ".2."
-msgstr ""
-
-#: teditqso_form.speedbutton7.caption
-msgid ".1."
 msgstr ""
 
 #: teditqso_form.speedbutton8.caption
@@ -3765,12 +3750,12 @@ msgstr ""
 
 #: tlogconfigform.label12.caption
 msgctxt "tlogconfigform.label12.caption"
-msgid "Latitude"
+msgid "Lat"
 msgstr ""
 
 #: tlogconfigform.label13.caption
 msgctxt "tlogconfigform.label13.caption"
-msgid "Longitude"
+msgid "Lon"
 msgstr ""
 
 #: tlogconfigform.label14.caption
@@ -4255,11 +4240,6 @@ msgctxt "tminiform.lbstate.caption"
 msgid "State"
 msgstr ""
 
-#: tminiform.lbsubstate.caption
-msgctxt "tminiform.lbsubstate.caption"
-msgid "Sub. State"
-msgstr ""
-
 #: tminiform.lbterritory.caption
 msgctxt "tminiform.lbterritory.caption"
 msgid "Territory"
@@ -4638,22 +4618,6 @@ msgstr ""
 #: tminiform.sbstate.caption
 msgctxt "tminiform.sbstate.caption"
 msgid " ... "
-msgstr ""
-
-#: tminiform.sbstate1.caption
-msgid " .1. "
-msgstr ""
-
-#: tminiform.sbstate2.caption
-msgid " .2. "
-msgstr ""
-
-#: tminiform.sbstate3.caption
-msgid " .3. "
-msgstr ""
-
-#: tminiform.sbstate4.caption
-msgid " .4. "
 msgstr ""
 
 #: tminiform.sentspot.caption

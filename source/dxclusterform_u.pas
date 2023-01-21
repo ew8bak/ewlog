@@ -644,7 +644,7 @@ begin
   if Sender <> MainForm then
   begin
     INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
-    MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
+   // MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
     if Application.MessageBox(PChar(rShowNextStart), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       INIFile.WriteBool('SetLog', 'cShow', True)
@@ -659,7 +659,7 @@ begin
   else
   begin
     INIFile.WriteString('TelnetCluster', 'ServerDef', CBServers.Text);
-    MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
+  //  MainFunc.SetDXColumns(VSTCluster, True, VSTCluster);
     FreeClusterThread;
   end;
 end;
