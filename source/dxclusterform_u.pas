@@ -618,7 +618,7 @@ end;
 procedure TdxClusterForm.SBEditServersClick(Sender: TObject);
 begin
   ConfigForm.Show;
-  ConfigForm.PControl.ActivePageIndex := 5;
+  ConfigForm.PControl.ActivePageIndex := 6;
 end;
 
 procedure TdxClusterForm.SpeedButton7Click(Sender: TObject);
@@ -688,7 +688,7 @@ end;
 
 procedure TdxClusterForm.FormResize(Sender: TObject);
 begin
-  CBServers.Width := dxClusterForm.Width - 180;
+  CBServers.Width := dxClusterForm.Width - 260;
   EditMessage.Width := dxClusterForm.Width - 120;
 end;
 
