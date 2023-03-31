@@ -505,7 +505,7 @@ begin
         end;
     end;
 
-    currFreq := Fldigi_GetQSOFrequency / 1000000;
+    currFreq := Fldigi_GetQSOFrequency;
     currCall := Fldigi_GetCall;
     currName := Fldigi_GetName;
     currQTH := Fldigi_GetQTH;
