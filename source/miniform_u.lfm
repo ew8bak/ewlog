@@ -8,14 +8,14 @@ object MiniForm: TMiniForm
   Caption = 'EWLog - HAM Journal'
   ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
   ChildSizing.EnlargeVertical = crsHomogenousChildResize
-  ClientHeight = 464
+  ClientHeight = 484
   ClientWidth = 479
   Menu = MainMenu
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '3.0.0.1'
   object Panel1: TPanel
     Left = 0
     Height = 26
@@ -569,7 +569,7 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 19
     Top = 174
-    Width = 71
+    Width = 69
     BorderSpacing.Left = 5
     Caption = 'Real Time'
     Checked = True
@@ -585,7 +585,7 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 19
     Top = 198
-    Width = 82
+    Width = 80
     BorderSpacing.Left = 5
     Caption = 'Save in UTC'
     Enabled = False
@@ -967,10 +967,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBSaveUTC
     AnchorSideTop.Side = asrCenter
-    Left = 88
+    Left = 86
     Height = 19
     Top = 198
-    Width = 47
+    Width = 45
     BorderSpacing.Left = 1
     Caption = 'Mark'
     ParentFont = False
@@ -1085,7 +1085,7 @@ object MiniForm: TMiniForm
     Left = 345
     Height = 19
     Top = 97
-    Width = 44
+    Width = 42
     BorderSpacing.Left = 1
     Caption = 'Map'
     Checked = True
@@ -1099,10 +1099,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBMap
     AnchorSideTop.Side = asrCenter
-    Left = 390
+    Left = 388
     Height = 19
     Top = 97
-    Width = 46
+    Width = 44
     BorderSpacing.Left = 1
     Caption = 'Filter'
     OnChange = CBFilterChange
@@ -1821,7 +1821,7 @@ object MiniForm: TMiniForm
   object StatBar: TStatusBar
     Left = 0
     Height = 23
-    Top = 441
+    Top = 461
     Width = 479
     Panels = <    
       item
@@ -1877,7 +1877,6 @@ object MiniForm: TMiniForm
         end
         object MenuItem118: TMenuItem
           Caption = 'Clear all journal'
-          OnClick = MenuItem118Click
         end
         object MenuItem58: TMenuItem
           Caption = 'Compact and Repair Database'
@@ -1888,7 +1887,6 @@ object MiniForm: TMiniForm
       end
       object MenuItem60: TMenuItem
         Caption = 'Services of eQSL and LOTW'
-        OnClick = MenuItem60Click
         object MenuItem1: TMenuItem
           Caption = 'eQSL Service'
           OnClick = MenuItem1Click
@@ -1914,21 +1912,6 @@ object MiniForm: TMiniForm
         object MenuItem71: TMenuItem
           Caption = 'File .TXT'
           Enabled = False
-        end
-      end
-      object MenuItem81: TMenuItem
-        Caption = 'Synchronization Databases'
-        object MenuItem82: TMenuItem
-          Caption = 'From MySQL to SQLite'
-          OnClick = MenuItem82Click
-        end
-        object MenuItem83: TMenuItem
-          Caption = 'From SQLite to MySQL'
-          OnClick = MenuItem83Click
-        end
-        object MenuItem48: TMenuItem
-          Caption = 'Set date synchronization'
-          OnClick = MenuItem48Click
         end
       end
       object MenuItem64: TMenuItem

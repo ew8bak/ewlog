@@ -4362,10 +4362,6 @@ msgstr ""
 msgid "WSJT-X"
 msgstr ""
 
-#: tminiform.menuitem48.caption
-msgid "Set date synchronization"
-msgstr ""
-
 #: tminiform.menuitem52.caption
 msgid "Configure program"
 msgstr ""
@@ -4452,18 +4448,6 @@ msgstr ""
 
 #: tminiform.menuitem74.caption
 msgid "Fldigi"
-msgstr ""
-
-#: tminiform.menuitem81.caption
-msgid "Synchronization Databases"
-msgstr ""
-
-#: tminiform.menuitem82.caption
-msgid "From MySQL to SQLite"
-msgstr ""
-
-#: tminiform.menuitem83.caption
-msgid "From SQLite to MySQL"
 msgstr ""
 
 #: tminiform.menuitem85.caption

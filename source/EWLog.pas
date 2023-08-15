@@ -28,7 +28,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   prefix_record, inifile_record, selectQSO_record, foundQSO_record, cloudlog,
   init_record, WsjtUtils, digi_record, inform_record, infoDM_U, getSession,
   miniform_u, ImbedCallBookCheckRec, serverDM_u, telnetClientThread,
-  dxclusterform_u, GridsForm_u, MapForm_u, CopyTableThread, ImportADIThread,
+  dxclusterform_u, GridsForm_u, MapForm_u, ImportADIThread,
   ExportADIThread, MobileSyncThread, CloudLogCAT, STATE_Form_U, progressForm_u,
   dmCat, contestForm_u, dmContest_u, FMS_record, dmmigrate_u, ExportSOTAThread,
   CWDaemonDM_u, CWKeysForm_u, MacroEditorForm_u, CWKeysDM_u, CWTypeForm_u,

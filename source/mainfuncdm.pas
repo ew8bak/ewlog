@@ -83,8 +83,6 @@ type
     function StringToBool(Value: string): boolean;
     function FindInCallBook(Callsign: string): TFoundQSOR;
     function CheckQSL(Callsign, band, mode: string): integer;
-    function EraseTable: boolean;
-    function GetMySQLDataBase: StringArray;
     function GetExternalProgramsName: extProgramArray;
     function GetExternalProgramsPath(ProgramName: string): string;
     function BackupDataADI(Sender: string): boolean;
@@ -499,85 +497,6 @@ begin
   end;
 end;
 
-function TMainFunc.GetMySQLDataBase: StringArray;
-var
-  i: integer;
-  Query: TSQLQuery;
-  DBList: StringArray;
-begin
-  try
-    try
-      Query := TSQLQuery.Create(nil);
-      Query.PacketRecords := 50;
-      if InitDB.MySQLConnection.Connected then
-      begin
-        Query.DataBase := InitDB.MySQLConnection;
-        Query.SQL.Text := 'SHOW DATABASES;';
-        Query.Open;
-        if Query.RecordCount = 0 then
-          Exit;
-        SetLength(DBList, Query.RecordCount);
-        Query.First;
-        for i := 0 to Query.RecordCount - 1 do
-        begin
-          DBList[i] := Query.Fields.Fields[0].AsString;
-          Query.Next;
-        end;
-        Query.Close;
-      end;
-      Result := DBList;
-    finally
-      FreeAndNil(Query);
-      InitDB.MySQLConnection.Connected := False;
-    end;
-  except
-    on E: Exception do
-      WriteLn(ExceptFile, 'GetMySQLDataBase:' + E.ClassName + ':' + E.Message);
-  end;
-end;
-
-function TMainFunc.EraseTable: boolean;
-var
-  Query: TSQLQuery;
-begin
-  try
-    Result := False;
-    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
-    begin
-      if Application.MessageBox(PChar(rCleanUpJournal), PChar(rWarning),
-        MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      begin
-        try
-          Query := TSQLQuery.Create(nil);
-          if DBRecord.CurrentDB = 'MySQL' then
-            Query.DataBase := InitDB.MySQLConnection
-          else
-            Query.DataBase := InitDB.SQLiteConnection;
-          with Query do
-          begin
-            SQL.Text := 'DELETE FROM ' + LBRecord.LogTable;
-            Prepare;
-            ExecSQL;
-          end;
-        finally
-          InitDB.DefTransaction.Commit;
-          Result := True;
-          FreeAndNil(Query);
-          if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-            ShowMessage(rDBError);
-        end;
-      end;
-    end;
-  except
-    on E: Exception do
-    begin
-      ShowMessage('EraseTable:' + E.Message);
-      WriteLn(ExceptFile, 'FindInCallBook:' + E.ClassName + ':' + E.Message);
-      Result := False;
-    end;
-  end;
-end;
-
 procedure TMainFunc.SaveGrids(DbGrid: TDBGrid);
 var
   i: integer;
@@ -675,10 +594,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.DataBase := InitDB.MySQLConnection
-      else
-        Query.DataBase := InitDB.SQLiteConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
       Query.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = "' +
         toCallsign + '"';
       Query.Open;
@@ -832,18 +748,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'MySQL' then
-      begin
-        Query.DataBase := InitDB.MySQLConnection;
-        Query.SQL.Text :=
-          'SELECT QSODateTime FROM ' + LBRecord.LogTable +
-          ' WHERE UnUsedIndex = ' + IntToStr(index);
-        Query.Open;
-        Result.QSODateTime := Query.FieldByName('QSODateTime').AsDateTime;
-        Query.Close;
-      end
-      else
-      begin
+
         fmt.ShortDateFormat := 'yyyy-mm-dd';
         fmt.DateSeparator := '-';
         fmt.LongTimeFormat := 'hh:nn';
@@ -856,7 +761,6 @@ begin
         Result.QSODateTime :=
           StrToDateTime(Query.FieldByName('QSODateTime').AsString, Fmt);
         Query.Close;
-      end;
 
       Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
         ' WHERE UnUsedIndex = ' + IntToStr(index);
@@ -945,24 +849,6 @@ begin
     FormatSettings.ShortDateFormat := 'dd.mm.yyyy';
 
     try
-      if DBRecord.CurrentDB = 'MySQL' then
-      begin
-        QSODates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSODate));
-        if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
-          QSLSentDates := 'NULL'
-        else
-          QSLSentDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLSentDate));
-        if SQSO.QSLRecDate = StrToDate('30.12.1899', FormatSettings) then
-          QSLRecDates := 'NULL'
-        else
-          QSLRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.QSLRecDate));
-        if SQSO.LotWRecDate = StrToDate('30.12.1899', FormatSettings) then
-          LotWRecDates := 'NULL'
-        else
-          LotWRecDates := dmFunc.ADIFDateToDate(DateToStr(SQSO.LotWRecDate));
-      end
-      else
-      begin
         QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),
           ',', '.', [rfReplaceAll]);
         if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
@@ -977,7 +863,7 @@ begin
           LotWRecDates := 'NULL'
         else
           LotWRecDates := FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate));
-      end;
+
 
       SRXs := IntToStr(SQSO.SRX);
       STXs := IntToStr(SQSO.STX);
@@ -1026,9 +912,6 @@ begin
         QuotedStr(IntToStr(SQSO.NoCalcDXCC)) + ' WHERE UnUsedIndex=' +
         QuotedStr(IntToStr(index));
 
-      if DBRecord.CurrentDB = 'MySQL' then
-        InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
-      else
         InitDB.SQLiteConnection.ExecuteDirect(QueryTXT);
     finally
       InitDB.DefTransaction.Commit;
@@ -1248,26 +1131,7 @@ begin
       if DBRecord.InitDB = 'YES' then
       begin
         InitDB.DefLogBookQuery.Close;
-        if DBRecord.CurrentDB = 'MySQL' then
-          InitDB.DefLogBookQuery.SQL.Text :=
-            'SELECT `UnUsedIndex`, `CallSign`,' +
-            ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
-            +
-            '(CONCAT(COALESCE(`QSOReportSent`, ''''), '' '', COALESCE(`STX`, ''''), '' '', COALESCE(`STX_STRING`, ''''))) AS QSOReportSent,'
-            +
-            '(CONCAT(COALESCE(`QSOReportRecived`, ''''),'' '', COALESCE(`SRX`, ''''), '' '', COALESCE(`SRX_STRING`, ''''))) AS QSOReportRecived,'
-            + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-            + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-            + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-            + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-            + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-            + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-            + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-            + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
-            ' WHERE `' + Field + '` LIKE ' + QuotedStr(Value) +
-            ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC'
-        else
-          InitDB.DefLogBookQuery.SQL.Text :=
+        InitDB.DefLogBookQuery.SQL.Text :=
             'SELECT `UnUsedIndex`, `CallSign`,' +
             ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
             +
@@ -1302,10 +1166,7 @@ begin
   begin
     try
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.DataBase := InitDB.MySQLConnection
-      else
-        Query.DataBase := InitDB.SQLiteConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
 
       for i := 0 to DBGrid.SelectedRows.Count - 1 do
       begin
@@ -1339,16 +1200,8 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'MySQL' then
-      begin
-        Query.DataBase := InitDB.MySQLConnection;
-        QSODateTime := FormatDateTime('yyyy-mm-dd hh:nn:ss', NowUTC);
-      end
-      else
-      begin
-        Query.DataBase := InitDB.SQLiteConnection;
-        QSODateTime := IntToStr(DateTimeToUnix(NowUTC));
-      end;
+      Query.DataBase := InitDB.SQLiteConnection;
+      QSODateTime := IntToStr(DateTimeToUnix(NowUTC));
 
       SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET ' + Field +
         ' = ' + QuotedStr(Value);
@@ -1363,13 +1216,8 @@ begin
       end;
 
       SQLString := SQLString + ' WHERE CallSign = ' + QuotedStr(UQSO.CallSing);
-
-      if DBRecord.CurrentDB = 'SQLite' then
-        SQLString := SQLString + ' AND QSODateTime = ' +
-          QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)))
-      else
-        SQLString := SQLString + ' AND QSODateTime = ' +
-          QuotedStr(FormatDateTime('yyyy-mm-dd hh:nn:ss', UQSO.QSODateTime));
+      SQLString := SQLString + ' AND QSODateTime = ' +
+          QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)));
 
       SQLString := SQLString + ' AND DigiBand = ' + UQSO.DigiBand +
         ' AND (QSOMode = ' + QuotedStr(UQSO.QSOMode) + ' OR QSOSubMode = ' +
@@ -1404,10 +1252,7 @@ begin
       begin
         try
           Query := TSQLQuery.Create(nil);
-          if DBRecord.CurrentDB = 'MySQL' then
-            Query.DataBase := InitDB.MySQLConnection
-          else
-            Query.DataBase := InitDB.SQLiteConnection;
+          Query.DataBase := InitDB.SQLiteConnection;
           for i := 0 to DBGrid.SelectedRows.Count - 1 do
           begin
             DBGrid.DataSource.DataSet.GotoBookmark(
@@ -1520,10 +1365,7 @@ begin
     try
       Query := TSQLQuery.Create(nil);
       Query.PacketRecords := 50;
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.DataBase := InitDB.MySQLConnection
-      else
-        Query.DataBase := InitDB.SQLiteConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
 
       Query.SQL.Text := 'SELECT CallName FROM LogBookInfo';
       Query.Open;
@@ -1563,26 +1405,8 @@ begin
     if InitRecord.SelectLogbookTable then
     begin
       InitDB.FindQSOQuery.Close;
-      if DBRecord.CurrentDB = 'MySQL' then
-        InitDB.FindQSOQuery.DataBase := InitDB.MySQLConnection
-      else
-        InitDB.FindQSOQuery.DataBase := InitDB.SQLiteConnection;
-      if DBRecord.CurrentDB = 'MySQL' then
-        InitDB.FindQSOQuery.SQL.Text :=
-          'SELECT `UnUsedIndex`, `CallSign`,' +
-          ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-          + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-          + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-          + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-          + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-          + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-          + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-          + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-          + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable +
-          ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
-          ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC'
-      else
-        InitDB.FindQSOQuery.SQL.Text :=
+      InitDB.FindQSOQuery.DataBase := InitDB.SQLiteConnection;
+      InitDB.FindQSOQuery.SQL.Text :=
           'SELECT `UnUsedIndex`, `CallSign`,' +
           'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
           + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
@@ -1865,10 +1689,7 @@ begin
         PFXR := SearchPrefix(Callsign, '');
         Query := TSQLQuery.Create(nil);
         Query.Transaction := InitDB.DefTransaction;
-        if DBRecord.CurrentDB = 'MySQL' then
-          Query.DataBase := InitDB.MySQLConnection
-        else
-          Query.DataBase := InitDB.SQLiteConnection;
+        Query.DataBase := InitDB.SQLiteConnection;
 
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
           ' WHERE DXCC = ' + IntToStr(PFXR.DXCCNum) + ' LIMIT 1';
@@ -1923,10 +1744,7 @@ begin
         PFXR := SearchPrefix(Callsign, '');
         Query := TSQLQuery.Create(nil);
         Query.Transaction := InitDB.DefTransaction;
-        if DBRecord.CurrentDB = 'MySQL' then
-          Query.DataBase := InitDB.MySQLConnection
-        else
-          Query.DataBase := InitDB.SQLiteConnection;
+        Query.DataBase := InitDB.SQLiteConnection;
 
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
@@ -1993,10 +1811,7 @@ begin
       try
         Query := TSQLQuery.Create(nil);
         Query.Transaction := InitDB.DefTransaction;
-        if DBRecord.CurrentDB = 'MySQL' then
-          Query.DataBase := InitDB.MySQLConnection
-        else
-          Query.DataBase := InitDB.SQLiteConnection;
+        Query.DataBase := InitDB.SQLiteConnection;
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
@@ -2031,10 +1846,7 @@ begin
       try
         Query := TSQLQuery.Create(nil);
         Query.Transaction := InitDB.DefTransaction;
-        if DBRecord.CurrentDB = 'MySQL' then
-          Query.DataBase := InitDB.MySQLConnection
-        else
-          Query.DataBase := InitDB.SQLiteConnection;
+        Query.DataBase := InitDB.SQLiteConnection;
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
@@ -2071,10 +1883,7 @@ begin
         PFXR := SearchPrefix(Callsign, '');
         Query := TSQLQuery.Create(nil);
         Query.Transaction := InitDB.DefTransaction;
-        if DBRecord.CurrentDB = 'MySQL' then
-          Query.DataBase := InitDB.MySQLConnection
-        else
-          Query.DataBase := InitDB.SQLiteConnection;
+        Query.DataBase := InitDB.SQLiteConnection;
         DigiBandStr := FloatToStr(dmFunc.GetDigiBandFromFreq(FormatFreq(band)));
         DigiBandStr := StringReplace(DigiBandStr, ',', '.', [rfReplaceAll]);
         Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
@@ -2296,17 +2105,9 @@ begin
       SQSO.My_Lat := StringReplace(SQSO.My_Lat, ',', '.', [rfReplaceAll]);
       SQSO.My_Lon := StringReplace(SQSO.My_Lon, ',', '.', [rfReplaceAll]);
 
-      if DBRecord.CurrentDB = 'MySQL' then
-      begin
-        QSODates := FormatDateTime('yyyy-mm-dd', SQSO.QSODate);
-        QSODateTime := FormatDateTime('yyyy-mm-dd hh:nn:ss', SQSO.QSODateTime);
-      end
-      else
-      begin
-        QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),
+      QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),
           ',', '.', [rfReplaceAll]);
         QSODateTime := IntToStr(DateTimeToUnix(SQSO.QSODateTime));
-      end;
 
       QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
         'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX, QSOMode, QSOSubMode,'
@@ -2346,9 +2147,6 @@ begin
         dmFunc.Q(SQSO.My_Lon) + dmFunc.Q(IntToStr(SQSO.SYNC)) +
         dmFunc.Q(SQSO.ContestSession) + QuotedStr(SQSO.ContestName) + ')';
       //    WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
-      if DBRecord.CurrentDB = 'MySQL' then
-        InitDB.MySQLConnection.ExecuteDirect(QueryTXT)
-      else
         InitDB.SQLiteConnection.ExecuteDirect(QueryTXT);
     finally
       InitDB.DefTransaction.Commit;
@@ -2360,7 +2158,7 @@ begin
       WriteLn(ExceptFile, 'SaveQSO:' + E.ClassName + ':' + E.Message);
     end;
   end;
-  if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
+  if InitDB.GetLogBookTable(DBRecord.CurrCall) then
     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
 end;

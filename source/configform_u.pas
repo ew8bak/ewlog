@@ -557,11 +557,6 @@ begin
   INIFile.WriteBool('SetLog', 'AutoCloudLog', CheckBox8.Checked);
   INIFile.WriteBool('SetLog', 'FreqToCloudLog', CheckBox9.Checked);
 
-  DBRecord.MySQLDBName := Edit5.Text;
-  DBRecord.MySQLHost := Edit1.Text;
-  DBRecord.MySQLPort := StrToInt(Edit2.Text);
-  DBRecord.MySQLUser := Edit3.Text;
-  DBRecord.MySQLPass := Edit4.Text;
   DBRecord.SQLitePATH := FileNameEdit1.Text;
 
   INIFile.WriteString('SetBackup', 'PathBackupFiles', DEBackupPath.Directory);
@@ -697,26 +692,7 @@ end;
 
 procedure TConfigForm.Button3Click(Sender: TObject);
 begin
-  try
-    if (Edit1.Text <> '') and (Edit2.Text <> '') and (Edit3.Text <> '') and
-      (Edit4.Text <> '') and (Edit5.Text <> '') then
-    begin
-      InitDB.MySQLConnection.HostName := Edit1.Text;
-      InitDB.MySQLConnection.Port := StrToInt(Edit2.Text);
-      InitDB.MySQLConnection.UserName := Edit3.Text;
-      InitDB.MySQLConnection.Password := Edit4.Text;
-      InitDB.MySQLConnection.DatabaseName := Edit5.Text;
-      InitDB.MySQLConnection.Connected := False;
-      InitDB.MySQLConnection.Connected := True;
-      if InitDB.MySQLConnection.Connected then
-        ShowMessage(rMySQLConnectTrue);
-    end
-    else
-      ShowMessage(rCheckNotEdit);
-  except
-    on E: Exception do
-      ShowMessage(E.Message);
-  end;
+
 end;
 
 procedure TConfigForm.CBRigNumberHLSelect(Sender: TObject);

@@ -128,9 +128,6 @@ uses miniform_u, CreateJournalForm_U, dmFunc_U, InitDB_dm, MainFuncDM;
 
 procedure TLogConfigForm.SelectCall(SelCall: string);
 begin
-  if DBRecord.CurrentDB = 'MySQL' then
-    SQLQuery1.DataBase := InitDB.MySQLConnection
-  else
     SQLQuery1.DataBase := InitDB.SQLiteConnection;
 
   SQLQuery1.Close;
@@ -190,7 +187,7 @@ end;
 
 procedure TLogConfigForm.Button1Click(Sender: TObject);
 begin
-  if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+  if InitDB.SQLiteConnection.Connected then
   begin
     with UpdateConfQuery do
     begin
@@ -245,7 +242,7 @@ begin
       DBRecord.DefCall := EditCallSign.Text;
       INIFile.WriteString('SetLog', 'DefaultCallLogBook', EditCallSign.Text);
     end;
-    if (not InitDB.GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
+    if (not InitDB.GetLogBookTable(DBRecord.DefCall)) and
       (DBRecord.InitDB = 'YES') then
       ShowMessage('LogBook Table ERROR')
     else
@@ -283,23 +280,15 @@ begin
   SQLQuery2.Close;
   UpdateConfQuery.Close;
 
-  if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+  if InitDB.SQLiteConnection.Connected then
   begin
     try
       if DBRecord.InitDB = 'YES' then
       begin
-        if DBRecord.CurrentDB = 'MySQL' then
-        begin
-          SQLQuery2.DataBase := InitDB.MySQLConnection;
-          UpdateConfQuery.DataBase := InitDB.MySQLConnection;
-        end
-        else
-        begin
           SQLQuery2.DataBase := InitDB.SQLiteConnection;
           UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
         end;
         SelectCall(DBRecord.CurrCall);
-      end;
 
       LBCallsigns.Clear;
       SQLQuery2.SQL.Clear;
@@ -335,7 +324,7 @@ procedure TLogConfigForm.LBCallsignsClick(Sender: TObject);
 begin
   if LBCallsigns.ItemIndex <> -1 then
   begin
-    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+    if InitDB.SQLiteConnection.Connected then
     begin
       SelectCall(LBCallsigns.Items[LBCallsigns.ItemIndex]);
       if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
@@ -359,7 +348,7 @@ var
 begin
   if LBCallsigns.ItemIndex <> -1 then
   begin
-    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+    if InitDB.SQLiteConnection.Connected then
     begin
       if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
@@ -379,10 +368,7 @@ begin
         droptablename := SQLQuery2.FieldByName('LogTable').Value;
         SQLQuery2.Close;
         SQLQuery2.SQL.Clear;
-        if DBRecord.CurrentDB = 'MySQL' then
-          SQLQuery2.SQL.Add('DROP TABLE ' + droptablename)
-        else
-          SQLQuery2.SQL.Add('DROP TABLE "' + droptablename + '"');
+        SQLQuery2.SQL.Add('DROP TABLE "' + droptablename + '"');
         SQLQuery2.ExecSQL;
         SQLQuery2.SQL.Clear;
         SQLQuery2.SQL.Add('DELETE FROM LogBookInfo WHERE CallName = "' +
@@ -420,7 +406,7 @@ procedure TLogConfigForm.MenuItem4Click(Sender: TObject);
 begin
   if LBCallsigns.ItemIndex <> -1 then
   begin
-    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+    if InitDB.SQLiteConnection.Connected then
     begin
       INIFile.WriteString('SetLog', 'DefaultCallLogBook',
         LBCallsigns.Items[LBCallsigns.ItemIndex]);

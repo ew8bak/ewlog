@@ -179,11 +179,7 @@ begin
       Label5.Caption := Status.Message;
       ShowMessage(Status.Message);
       Query := TSQLQuery.Create(nil);
-
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.DataBase := InitDB.MySQLConnection
-      else
-        Query.DataBase := InitDB.SQLiteConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
 
       for i := 0 to ListQSONumberToUpload.Count - 1 do
       begin
@@ -233,16 +229,9 @@ begin
   try
     needUploadQuery.Close;
     CountQuery := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-    begin
-      needUploadQuery.DataBase := InitDB.MySQLConnection;
-      CountQuery.DataBase := InitDB.MySQLConnection;
-    end
-    else
-    begin
-      needUploadQuery.DataBase := InitDB.SQLiteConnection;
-      CountQuery.DataBase := InitDB.SQLiteConnection;
-    end;
+    needUploadQuery.DataBase := InitDB.SQLiteConnection;
+    CountQuery.DataBase := InitDB.SQLiteConnection;
+
     CountQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable +
       ' WHERE LoTWSent <> 1';
     CountQuery.Open;
@@ -265,11 +254,6 @@ begin
 
   needUploadQuery.SQL.Text :=
     'SELECT CallSign, datetime(QSODateTime, ''unixepoch'') AS QSODateTime, QSOBand, QSOMode FROM '
-    + LBRecord.LogTable + ' WHERE LoTWSent <> 1 ORDER BY UnUsedIndex DESC';
-
-  if DBRecord.CurrentDB = 'MySQL' then
-  needUploadQuery.SQL.Text :=
-    'SELECT CallSign, QSODateTime, QSOBand, QSOMode FROM '
     + LBRecord.LogTable + ' WHERE LoTWSent <> 1 ORDER BY UnUsedIndex DESC';
 
   needUploadQuery.Open;
@@ -317,10 +301,7 @@ var
 begin
   try
     MarkQuery := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      MarkQuery.DataBase := InitDB.MySQLConnection
-    else
-      MarkQuery.DataBase := InitDB.SQLiteConnection;
+    MarkQuery.DataBase := InitDB.SQLiteConnection;
     MarkQuery.SQL.Text := 'UPDATE ' + LBRecord.LogTable + ' SET LoTWSent = 1';
     MarkQuery.ExecSQL;
   finally
@@ -481,10 +462,7 @@ begin
   try
     Stream := TMemoryStream.Create;
     Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
+    Query.DataBase := InitDB.SQLiteConnection;
     AssignFile(f, FPath);
     Reset(f);
 
@@ -566,9 +544,6 @@ begin
               QSLRDATE[4]);
             mm := StrToInt(QSLRDATE[5] + QSLRDATE[6]);
             dd := StrToInt(QSLRDATE[7] + QSLRDATE[8]);
-            if DBRecord.CurrentDB = 'MySQL' then
-              paramQSLRDATE := dmFunc.ADIFDateToDate(QSLRDATE)
-            else
              // paramQSLRDATE :=
              //   FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd)));
               paramQSLRDATE:= StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
@@ -585,17 +560,6 @@ begin
           digiBand := StringReplace(FloatToStr(dmFunc.GetDigiBandFromFreq(NameBand)),
             ',', '.', [rfReplaceAll]);
 
-          if DBRecord.CurrentDB = 'MySQL' then
-            QueryTXT := 'UPDATE ' + LBRecord.LogTable + ' SET GRID = ' +
-              dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
-              'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
-              'DXCC = ' + dmFunc.Q(DXCC) + 'LoTWSent = ' +
-              dmFunc.Q(paramAPP_LOTW_2XQSL) + 'LoTWRec = ''1'', LoTWRecDate = ' +
-              QuotedStr(paramQSLRDATE) + ' WHERE CallSign = ' +
-              QuotedStr(CALL) + ' AND DigiBand = ' + digiBand +
-              ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
-              QuotedStr(MODE) + ')'
-          else
             QueryTXT := 'UPDATE ' + LBRecord.LogTable + ' SET GRID = ' +
               dmFunc.Q(GRIDSQUARE) + 'CQZone = ' + dmFunc.Q(CQZ) +
               'ITUZone = ' + dmFunc.Q(ITUZ) + 'WPX = ' + dmFunc.Q(PFX) +
