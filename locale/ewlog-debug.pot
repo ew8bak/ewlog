@@ -5176,11 +5176,6 @@ msgctxt "tsetupform.btback.caption"
 msgid "Back"
 msgstr ""
 
-#: tsetupform.btcheck.caption
-msgctxt "tsetupform.btcheck.caption"
-msgid "Check connection"
-msgstr ""
-
 #: tsetupform.btnext.caption
 msgctxt "tsetupform.btnext.caption"
 msgid "Next"
@@ -5224,29 +5219,13 @@ msgstr ""
 msgid "Expert Mode"
 msgstr ""
 
-#: tsetupform.checkbox1.caption
-msgid "Use an existing MySQL database"
-msgstr ""
-
 #: tsetupform.checkbox2.caption
 msgid "Use an existing SQLite database"
-msgstr ""
-
-#: tsetupform.checkbox3.caption
-msgid "Use MySQL by default"
-msgstr ""
-
-#: tsetupform.checkbox4.caption
-msgid "Use SQLite by default"
 msgstr ""
 
 #: tsetupform.edit16.text
 msgctxt "tsetupform.edit16.text"
 msgid "TNX for QSO! 73!"
-msgstr ""
-
-#: tsetupform.editport.text
-msgid "3306"
 msgstr ""
 
 #: tsetupform.label1.caption
@@ -5329,24 +5308,6 @@ msgstr ""
 msgid "Database settings"
 msgstr ""
 
-#: tsetupform.lbhost.caption
-msgid "Host"
-msgstr ""
-
-#: tsetupform.lbnamedb.caption
-msgid "Name of database"
-msgstr ""
-
-#: tsetupform.lbpassword.caption
-msgctxt "tsetupform.lbpassword.caption"
-msgid "Password"
-msgstr ""
-
-#: tsetupform.lbport.caption
-msgctxt "tsetupform.lbport.caption"
-msgid "Port"
-msgstr ""
-
 #: tsetupform.lbselectdb.caption
 msgid "Database select"
 msgstr ""
@@ -5355,25 +5316,12 @@ msgstr ""
 msgid "SQLite database path"
 msgstr ""
 
-#: tsetupform.lbusername.caption
-msgid "Username"
-msgstr ""
-
 #: tsetupform.opendialog1.title
 msgid "Open DataBase"
 msgstr ""
 
-#: tsetupform.radiobutton1.caption
-msgctxt "tsetupform.radiobutton1.caption"
-msgid "Use MySQL"
-msgstr ""
-
 #: tsetupform.radiobutton2.caption
 msgid "Use SQLite"
-msgstr ""
-
-#: tsetupform.radiobutton3.caption
-msgid "I will use both databases"
 msgstr ""
 
 #: tsetupform.savedialog1.title

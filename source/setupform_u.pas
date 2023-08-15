@@ -25,7 +25,6 @@ type
   TSetupForm = class(TForm)
     Bevel1: TBevel;
     Button1: TButton;
-    BtCheck: TButton;
     BtNext: TButton;
     Button3: TButton;
     Button4: TButton;
@@ -33,12 +32,8 @@ type
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
-    CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
     CBExpertMode: TCheckBox;
-    EditHost: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
     Edit12: TEdit;
@@ -46,10 +41,6 @@ type
     Edit14: TEdit;
     Edit15: TEdit;
     Edit16: TEdit;
-    EditPort: TEdit;
-    EditUser: TEdit;
-    EditPasswd: TEdit;
-    EditNameDB: TEdit;
     EditSQLPath: TEdit;
     Edit7: TEdit;
     Edit8: TEdit;
@@ -73,13 +64,7 @@ type
     Label24: TLabel;
     Label3: TLabel;
     LBSelectDB: TLabel;
-    LBHost: TLabel;
-    LBPort: TLabel;
-    LBUsername: TLabel;
-    LBPassword: TLabel;
-    LBNameDB: TLabel;
     Memo1: TMemo;
-    MySQL_Connector: TMySQL56Connection;
     OpenDialog1: TOpenDialog;
     PageControl1: TPageControl;
     Panel1: TPanel;
@@ -87,9 +72,7 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     ProgressBar1: TProgressBar;
-    RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
     SaveDialog1: TSaveDialog;
     SpeedButton1: TSpeedButton;
     SQLite_Connector: TSQLite3Connection;
@@ -170,52 +153,7 @@ begin
     begin
       try
         try
-          Button4.Enabled := False;
-          Button8.Enabled := False;
-          MySQL_Connector.HostName := MySQL_HostName;
-          MySQL_Connector.Port := MySQL_Port;
-          MySQL_Connector.UserName := MySQL_LoginName;
-          MySQL_Connector.Password := MySQL_Password;
-          MySQL_Connector.DatabaseName := MySQL_BaseName;
-          MySQL_Connector.Transaction := SQL_Transaction;
-          SQL_Query.DataBase := MySQL_Connector;
-          MySQL_Connector.Connected := True;
-          SQL_Transaction.Active := True;
-          Application.ProcessMessages;
-          Label24.Caption := rCreateTableLogBookInfo;
-          SQL_Query.Close;
-          MySQL_Connector.ExecuteDirect(Table_LogBookInfoMySQL);
-          ProgressBar1.Position := 56;
-          SQL_Query.Transaction := SQL_Transaction;
-          LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
-          ProgressBar1.Position := 63;
-          Label24.Caption := rFillInLogBookInfo;
-          SQL_Query.SQL.Text := Insert_Table_LogBookInfo;
-          SQL_Query.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
-          SQL_Query.ParamByName('CallName').AsString := New_CallSign;
-          SQL_Query.ParamByName('Name').AsString := New_Name;
-          SQL_Query.ParamByName('QTH').AsString := New_QTH;
-          SQL_Query.ParamByName('ITU').AsString := New_ITU;
-          SQL_Query.ParamByName('CQ').AsString := New_CQ;
-          SQL_Query.ParamByName('Loc').AsString := New_Grid;
-          SQL_Query.ParamByName('Lat').AsString := New_Latitude;
-          SQL_Query.ParamByName('Lon').AsString := New_Longitude;
-          SQL_Query.ParamByName('Discription').AsString := Journal_Description;
-          SQL_Query.ParamByName('QSLInfo').AsString := New_QSLInfo;
-          SQL_Query.ParamByName('Table_version').AsString := Current_Table;
-          SQL_Query.ExecSQL;
-          ProgressBar1.Position := 70;
-          SQL_Transaction.Commit;
-          SQL_Query.Close;
-          Label24.Caption := rFillInLogTable + LOG_PREFIX;
-          MySQL_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'MySQL'));
-          ProgressBar1.Position := 77;
-          Label24.Caption := rAddIndexInLogTable + LOG_PREFIX;
-          MySQL_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX, 'MySQL'));
-          ProgressBar1.Position := 84;
-          Label24.Caption := rAddKeyInLogTable + LOG_PREFIX;
-          ProgressBar1.Position := 100;
-          Label24.Caption := rSuccessful;
+
         except
           on E: ESQLDatabaseError do
           begin
@@ -299,8 +237,8 @@ begin
         SQL_Transaction.Commit;
         SQL_Query.Close;
         Label24.Caption := rFillInLogTable + LOG_PREFIX;
-        SQLite_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
-        SQLite_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX, 'SQLite'));
+        SQLite_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX));
+        SQLite_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX));
         ProgressBar1.Position := 100;
         Label24.Caption := rSuccessful;
       finally
@@ -321,14 +259,8 @@ begin
     if (CheckedDB = 2) and (SQLite_Current = True) then
     begin
       INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-      INIFile.WriteString('DataBases', 'HostAddr', '');
-      INIFile.WriteString('DataBases', 'Port', '');
-      INIFile.WriteString('DataBases', 'LoginName', '');
-      INIFile.WriteString('DataBases', 'Password', '');
-      INIFile.WriteString('DataBases', 'DataBaseName', '');
       INIFile.WriteString('DataBases', 'FileSQLite', SQLitePATH);
       INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
-      INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
       ProgressBar1.Position := 100;
       Label24.Caption := rSuccessful;
       Button4.Enabled := True;
@@ -342,18 +274,6 @@ begin
           try
             Button4.Enabled := False;
             Button8.Enabled := False;
-            MySQL_Connector.HostName := MySQL_HostName;
-            MySQL_Connector.Port := MySQL_Port;
-            MySQL_Connector.UserName := MySQL_LoginName;
-            MySQL_Connector.Password := MySQL_Password;
-            MySQL_Connector.DatabaseName := MySQL_BaseName;
-            MySQL_Connector.Transaction := SQL_Transaction;
-            SQL_Query.DataBase := MySQL_Connector;
-            MySQL_Connector.Connected := True;
-            SQL_Transaction.Active := True;
-            Label24.Caption := rCreateTableLogBookInfo;
-            SQL_Query.Close;
-            MySQL_Connector.ExecuteDirect(Table_LogBookInfoMySQL);
             ProgressBar1.Position := 56;
             SQL_Query.Transaction := SQL_Transaction;
             LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
@@ -378,9 +298,6 @@ begin
             SQL_Transaction.Commit;
             SQL_Query.Close;
             Label24.Caption := rFillInLogTable + LOG_PREFIX;
-            MySQL_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'MySQL'));
-            Label24.Caption := rAddIndexInLogTable + LOG_PREFIX;
-            MySQL_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX, 'MySQL'));
             ProgressBar1.Position := 84;
             Label24.Caption := rAddKeyInLogTable + LOG_PREFIX;
             ProgressBar1.Position := 100;
@@ -406,35 +323,17 @@ begin
         finally
           SQL_Transaction.Commit;
           INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-          INIFile.WriteString('DataBases', 'HostAddr', MySQL_HostName);
-          INIFile.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
-          INIFile.WriteString('DataBases', 'LoginName', MySQL_LoginName);
-          INIFile.WriteString('DataBases', 'Password', MySQL_Password);
-          INIFile.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
+
           INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
-          INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
+
 
         end;
       end;
 
-      if MySQL_Current = True then
-      begin
-        INIFile.WriteString('SetLog', 'DefaultCallLogBook', New_CallSign);
-        INIFile.WriteString('DataBases', 'HostAddr', MySQL_HostName);
-        INIFile.WriteString('DataBases', 'Port', IntToStr(MySQL_Port));
-        INIFile.WriteString('DataBases', 'LoginName', MySQL_LoginName);
-        INIFile.WriteString('DataBases', 'Password', MySQL_Password);
-        INIFile.WriteString('DataBases', 'DataBaseName', MySQL_BaseName);
-        INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
-        INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL');
-        ProgressBar1.Position := 100;
-        Label24.Caption := rSuccessful;
-      end;
 
       if SQLite_Current = False then
       begin
         try
-          MySQL_Connector.Connected := False;
           SQLite_Connector.DatabaseName := SQLitePATH;
           SQLite_Connector.Transaction := SQL_Transaction;
           SQL_Query.DataBase := SQLite_Connector;
@@ -467,8 +366,8 @@ begin
           // SQL_Transaction.Commit;
           SQL_Query.Close;
           Label24.Caption := rFillInLogTable + LOG_PREFIX + ' in SQLite';
-          SQLite_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
-          SQLite_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX, 'SQLite'));
+          SQLite_Connector.ExecuteDirect(dmSQL.Table_Log_Table(LOG_PREFIX));
+          SQLite_Connector.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX));
           ProgressBar1.Position := 100;
           Label24.Caption := rSuccessful;
         finally
@@ -493,7 +392,6 @@ begin
   finally
     SQL_Transaction.Commit;
     SQL_Transaction.EndTransaction;
-    MySQL_Connector.Connected := False;
     SQLite_Connector.Connected := False;
     SQL_Transaction.Active := False;
     FreeAndNil(SQL_Query);
@@ -509,89 +407,26 @@ begin
   MySQL_Current := False;
   SQLite_Current := False;
   Label24.Caption := rWait;
-  EditHost.Enabled := False;
-  EditPort.Enabled := False;
-  EditUser.Enabled := False;
-  EditPasswd.Enabled := False;
-  EditNameDB.Enabled := False;
   EditSQLPath.Enabled := True;
   SpeedButton1.Enabled := True;
-  CheckBox4.Checked := True;
-  CheckBox4.Enabled := False;
-  CheckBox3.Enabled := False;
-  CheckBox3.Checked := False;
   CheckBox2.Enabled := True;
-  CheckBox1.Enabled := False;
-  CheckBox1.Checked := False;
   BtNext.Enabled := True;
-  BtCheck.Enabled := False;
   EditSQLPath.Text := '';
 end;
 
 procedure TSetupForm.RadioButton1Change(Sender: TObject);
 begin
-  if RadioButton1.Checked = True then
-  begin
-    EditHost.Enabled := True;
-    EditPort.Enabled := True;
-    EditUser.Enabled := True;
-    EditPasswd.Enabled := True;
-    EditNameDB.Enabled := True;
-    EditSQLPath.Enabled := False;
-    SpeedButton1.Enabled := False;
-    CheckBox3.Checked := True;
-    CheckBox3.Enabled := False;
-    CheckBox4.Enabled := False;
-    CheckBox4.Checked := False;
-    CheckBox1.Enabled := True;
-    CheckBox2.Enabled := False;
-    CheckBox2.Checked := False;
-    BtCheck.Enabled := True;
-    BtNext.Enabled := False;
-  end;
+
 end;
 
 procedure TSetupForm.RadioButton2Change(Sender: TObject);
 begin
-  if RadioButton2.Checked = True then
-  begin
-    EditHost.Enabled := False;
-    EditPort.Enabled := False;
-    EditUser.Enabled := False;
-    EditPasswd.Enabled := False;
-    EditNameDB.Enabled := False;
-    EditSQLPath.Enabled := True;
-    SpeedButton1.Enabled := True;
-    CheckBox4.Checked := True;
-    CheckBox4.Enabled := False;
-    CheckBox3.Enabled := False;
-    CheckBox3.Checked := False;
-    CheckBox2.Enabled := True;
-    CheckBox1.Enabled := False;
-    CheckBox1.Checked := False;
-    BtNext.Enabled := True;
-    BtCheck.Enabled := False;
-  end;
+
 end;
 
 procedure TSetupForm.RadioButton3Change(Sender: TObject);
 begin
-  if RadioButton3.Checked = True then
-  begin
-    EditHost.Enabled := True;
-    EditPort.Enabled := True;
-    EditUser.Enabled := True;
-    EditPasswd.Enabled := True;
-    EditNameDB.Enabled := True;
-    EditSQLPath.Enabled := True;
-    SpeedButton1.Enabled := True;
-    CheckBox3.Enabled := True;
-    CheckBox4.Enabled := True;
-    CheckBox1.Enabled := True;
-    CheckBox2.Enabled := True;
-    BtCheck.Enabled := True;
-    BtNext.Enabled := False;
-  end;
+
 end;
 
 procedure TSetupForm.SpeedButton1Click(Sender: TObject);
@@ -718,41 +553,13 @@ end;
 
 procedure TSetupForm.BtCheckClick(Sender: TObject);
 begin
-  if (RadioButton1.Checked = True) or (RadioButton3.Checked = True) then
-  begin
-    try
-      MySQL_Connector.HostName := EditHost.Text;
-      MySQL_Connector.Port := StrToInt(EditPort.Text);
-      MySQL_Connector.UserName := EditUser.Text;
-      MySQL_Connector.Password := EditPasswd.Text;
-      MySQL_Connector.DatabaseName := EditNameDB.Text;
-      MySQL_Connector.Connected := True;
-      if MySQL_Connector.Connected = True then
-      begin
-        BtNext.Enabled := True;
-        ShowMessage(rSuccessfulNext);
-      end
-    except
-      on E: Exception do
-      begin
-        WriteLn(ExceptFile, 'SetupForm.Button10Click: Error: ' +
-          E.ClassName + ':' + E.Message);
-        ShowMessage(rDatabaseNotConnected);
-      end;
-    end;
-  end;
+
 end;
 
 procedure TSetupForm.BtNextClick(Sender: TObject);
 var
   State: boolean = False;
 begin
-  if RadioButton1.Checked = True then
-    if (EditHost.Text = '') or (EditPort.Text = '') or (EditUser.Text = '') or
-      (EditPasswd.Text = '') or (EditNameDB.Text = '') then
-      ShowMessage(rValueEmpty)
-    else
-      State := True;
 
   if RadioButton2.Checked = True then
     if EditSQLPath.Text = '' then
@@ -760,38 +567,16 @@ begin
     else
       State := True;
 
-  if RadioButton3.Checked = True then
-    if (EditSQLPath.Text = '') or (EditHost.Text = '') or (EditPort.Text = '') or
-      (EditUser.Text = '') or (EditPasswd.Text = '') or (EditNameDB.Text = '') then
-      ShowMessage(rValueEmpty)
-    else
-      State := True;
 
   if State = True then
   begin
-    if RadioButton1.Checked = True then
-      CheckedDB := 1;
     if RadioButton2.Checked = True then
       CheckedDB := 2;
-    if RadioButton3.Checked = True then
-      CheckedDB := 3;
-    MySQL_HostName := EditHost.Text;
-    if EditPort.Text <> '' then
-      MySQL_Port := StrToInt(EditPort.Text);
-    MySQL_LoginName := EditUser.Text;
-    MySQL_Password := EditPasswd.Text;
-    MySQL_BaseName := EditNameDB.Text;
     SQLitePATH := EditSQLPath.Text;
-    MySQL_Current := CheckBox1.Checked;
     SQLite_Current := CheckBox2.Checked;
 
     if SQLite_Current then
       CheckEmptyDB;
-
-    if CheckBox3.Checked = True then
-      Default_DataBase := 'MySQL';
-    if CheckBox4.Checked = True then
-      Default_DataBase := 'SQLite';
     PageControl1.ActivePageIndex := 2;
   end;
 end;
@@ -853,14 +638,12 @@ end;
 
 procedure TSetupForm.CheckBox3Change(Sender: TObject);
 begin
-  if CheckBox3.Checked = True then
-    CheckBox4.Checked := False;
+
 end;
 
 procedure TSetupForm.CheckBox4Change(Sender: TObject);
 begin
-  if CheckBox4.Checked = True then
-    CheckBox3.Checked := False;
+
 end;
 
 procedure TSetupForm.Edit11Change(Sender: TObject);

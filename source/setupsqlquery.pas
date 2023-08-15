@@ -38,26 +38,6 @@ const
     + '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, '
     + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
 
-  Table_LogBookInfoMySQL = 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
-    '`id` integer UNIQUE PRIMARY KEY AUTO_INCREMENT, `LogTable` varchar(100) NOT NULL, ' +
-    '`CallName` varchar(15) NOT NULL, `Name` varchar(100) NOT NULL, ' +
-    '`QTH` varchar(100) NOT NULL, `ITU` int(11) NOT NULL, ' +
-    '`CQ` int(11) NOT NULL, `Loc` varchar(32) NOT NULL, ' +
-    '`Lat` varchar(20) NOT NULL, `Lon` varchar(20) NOT NULL, ' +
-    '`Discription` varchar(150) NOT NULL, ' +
-    '`QSLInfo` varchar(200) NOT NULL DEFAULT "TNX For QSO TU 73!", ' +
-    '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
-    '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
-    '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
-    '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
-    '`HamQTHPassword` varchar(200) DEFAULT NULL, ' +
-    '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
-    '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
-    '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-    '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), ' +
-    '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, ' +
-    '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
-
 
   Insert_Table_LogBookInfo = 'INSERT INTO LogBookInfo ' +
     '(LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo, Table_version) '
@@ -73,8 +53,8 @@ type
   private
 
   public
-    function Table_Log_Table(LOG_PREFIX, Database: string): string;
-    function CreateIndex(LOG_PREFIX, Database: string): string;
+    function Table_Log_Table(LOG_PREFIX: string): string;
+    function CreateIndex(LOG_PREFIX: string): string;
   end;
 
 var
@@ -82,7 +62,7 @@ var
 
 implementation
 
-function TdmSQL.Table_Log_Table(LOG_PREFIX, Database: string): string;
+function TdmSQL.Table_Log_Table(LOG_PREFIX: string): string;
 var
   TempResult: string;
 begin
@@ -133,35 +113,14 @@ begin
     ' `HAMLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,' +
     ' `FREQ_RX` varchar(20) DEFAULT NULL,' +
     ' `BAND_RX` varchar(20) DEFAULT NULL';
-  if Database = 'MySQL' then
-    Result := TempResult + ')';
-  if Database = 'SQLite' then
     Result := TempResult +
       ', CONSTRAINT `Dupe_index` UNIQUE (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`))';
 end;
 
-function TdmSQL.CreateIndex(LOG_PREFIX, Database: string): string;
+function TdmSQL.CreateIndex(LOG_PREFIX: string): string;
 begin
-  Result := '';
-  if Database = 'MySQL' then
-    Result := 'ALTER TABLE `Log_TABLE_' + LOG_PREFIX + '`' +
-      'ADD KEY `CallSign` (`CallSign`),' +
-      'ADD KEY `QSODate` (`QSODate`,`QSOTime`),' +
-      'ADD KEY `DigiBand` (`DigiBand`), ADD KEY `DXCC` (`DXCC`),' +
-      'ADD KEY `DXCCPrefix` (`DXCCPrefix`), ADD KEY `IOTA` (`IOTA`),' +
-      'ADD KEY `MainPrefix` (`MainPrefix`), ADD KEY `QSOMode` (`QSOMode`),' +
-      'ADD KEY `State` (`State`), ADD KEY `State1` (`State1`),' +
-      'ADD KEY `State2` (`State2`), ADD KEY `State3` (`State3`),' +
-      'ADD KEY `State4` (`State4`), ADD KEY `WPX` (`WPX`),' +
-      'MODIFY `UnUsedIndex` integer NOT NULL AUTO_INCREMENT,' +
-      'ADD INDEX `Call` (`Call`),' +
-      'ADD INDEX `ContestSession` (`ContestSession`),' +
-      'ADD UNIQUE `Dupe_index` (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`)';
-
-  if Database = 'SQLite' then
     Result := 'CREATE INDEX `Call_index' + LOG_PREFIX + '` ON `Log_TABLE_' +
       LOG_PREFIX + '` (`Call`);';
-
 end;
 
 end.

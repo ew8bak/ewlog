@@ -123,9 +123,9 @@ begin
 
 
           InitDB.SQLiteConnection.ExecuteDirect(
-            dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
+            dmSQL.Table_Log_Table(LOG_PREFIX));
           InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
-            LOG_PREFIX, 'SQLite'));
+            LOG_PREFIX));
 
         InitDB.DefTransaction.Commit;
       finally

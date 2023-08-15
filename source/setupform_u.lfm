@@ -12,32 +12,32 @@ object SetupForm: TSetupForm
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '3.0.0.1'
   object PageControl1: TPageControl
     Left = 0
     Height = 346
     Top = 0
     Width = 630
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     Font.Height = -13
     ParentFont = False
     ShowTabs = False
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'Greeting'
-      ClientHeight = 342
-      ClientWidth = 620
+      ClientHeight = 338
+      ClientWidth = 622
       object Panel1: TPanel
         Left = 0
-        Height = 342
+        Height = 338
         Top = 0
-        Width = 620
+        Width = 622
         Align = alClient
-        ClientHeight = 342
-        ClientWidth = 620
+        ClientHeight = 338
+        ClientWidth = 622
         ParentColor = False
         TabOrder = 0
         object Button1: TButton
@@ -66,9 +66,9 @@ object SetupForm: TSetupForm
           AnchorSideLeft.Control = Panel1
           AnchorSideTop.Control = Panel1
           Left = 6
-          Height = 17
+          Height = 21
           Top = 6
-          Width = 360
+          Width = 305
           BorderSpacing.Left = 5
           BorderSpacing.Top = 5
           Caption = 'Welcome to the HAM Log Setup Wizard.'
@@ -80,10 +80,10 @@ object SetupForm: TSetupForm
         object Label2: TLabel
           AnchorSideLeft.Control = Memo1
           AnchorSideBottom.Control = Memo1
-          Left = 14
-          Height = 15
-          Top = 44
-          Width = 128
+          Left = 15
+          Height = 17
+          Top = 42
+          Width = 112
           Anchors = [akLeft, akBottom]
           BorderSpacing.Bottom = 5
           Caption = 'License agreement:'
@@ -94,7 +94,7 @@ object SetupForm: TSetupForm
         object Memo1: TMemo
           AnchorSideLeft.Control = Panel1
           AnchorSideLeft.Side = asrCenter
-          Left = 14
+          Left = 15
           Height = 232
           Top = 64
           Width = 592
@@ -450,10 +450,10 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Button9
           AnchorSideTop.Side = asrCenter
           AnchorSideBottom.Side = asrBottom
-          Left = 14
-          Height = 23
-          Top = 305
-          Width = 102
+          Left = 15
+          Height = 19
+          Top = 307
+          Width = 85
           BorderSpacing.Bottom = 5
           Caption = 'Expert Mode'
           Font.Height = -12
@@ -464,16 +464,16 @@ object SetupForm: TSetupForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Setup DB'
-      ClientHeight = 342
-      ClientWidth = 620
+      ClientHeight = 338
+      ClientWidth = 622
       object Panel2: TPanel
         Left = 0
-        Height = 342
+        Height = 338
         Top = 0
-        Width = 620
+        Width = 622
         Align = alClient
-        ClientHeight = 342
-        ClientWidth = 620
+        ClientHeight = 338
+        ClientWidth = 622
         ParentColor = False
         TabOrder = 0
         object BtNext: TButton
@@ -502,9 +502,9 @@ object SetupForm: TSetupForm
           AnchorSideLeft.Control = Panel2
           AnchorSideTop.Control = Panel2
           Left = 6
-          Height = 17
+          Height = 21
           Top = 6
-          Width = 166
+          Width = 135
           BorderSpacing.Left = 5
           BorderSpacing.Top = 5
           Caption = 'Database settings'
@@ -516,200 +516,45 @@ object SetupForm: TSetupForm
         object LBSelectDB: TLabel
           AnchorSideLeft.Control = Panel2
           Left = 6
-          Height = 13
+          Height = 15
           Top = 40
-          Width = 95
+          Width = 81
           BorderSpacing.Left = 5
           Caption = 'Database select'
           Font.Height = -12
           ParentColor = False
           ParentFont = False
         end
-        object RadioButton1: TRadioButton
-          AnchorSideLeft.Control = Panel2
-          Left = 9
-          Height = 23
-          Top = 64
-          Width = 93
-          BorderSpacing.Left = 8
-          Caption = 'Use MySQL'
-          Font.Height = -12
-          OnChange = RadioButton1Change
-          ParentFont = False
-          TabOrder = 2
-        end
         object RadioButton2: TRadioButton
           AnchorSideLeft.Control = Panel2
           Left = 9
-          Height = 23
+          Height = 19
           Top = 88
-          Width = 91
+          Width = 74
           BorderSpacing.Left = 8
           Caption = 'Use SQLite'
           Checked = True
           Font.Height = -12
           OnChange = RadioButton2Change
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 2
           TabStop = True
-        end
-        object RadioButton3: TRadioButton
-          AnchorSideLeft.Control = Panel2
-          Left = 9
-          Height = 23
-          Top = 112
-          Width = 175
-          BorderSpacing.Left = 8
-          Caption = 'I will use both databases'
-          Font.Height = -12
-          OnChange = RadioButton3Change
-          ParentFont = False
-          TabOrder = 4
-        end
-        object EditHost: TEdit
-          AnchorSideLeft.Control = Bevel1
-          Left = 329
-          Height = 27
-          Top = 60
-          Width = 112
-          AutoSize = False
-          BorderSpacing.Left = 20
-          Font.Height = -13
-          ParentFont = False
-          TabOrder = 5
         end
         object Bevel1: TBevel
           AnchorSideLeft.Control = Panel2
           AnchorSideLeft.Side = asrCenter
-          Left = 309
+          Left = 310
           Height = 242
           Top = 40
           Width = 2
           BorderSpacing.Left = 4
         end
-        object LBHost: TLabel
-          AnchorSideLeft.Control = Bevel1
-          Left = 329
-          Height = 13
-          Top = 40
-          Width = 27
-          BorderSpacing.Left = 20
-          Caption = 'Host'
-          Font.Height = -12
-          ParentColor = False
-          ParentFont = False
-        end
-        object EditPort: TEdit
-          AnchorSideLeft.Control = EditHost
-          AnchorSideLeft.Side = asrBottom
-          Left = 451
-          Height = 27
-          Top = 60
-          Width = 112
-          AutoSize = False
-          BorderSpacing.Left = 10
-          Font.Height = -13
-          NumbersOnly = True
-          ParentFont = False
-          TabOrder = 6
-          Text = '3306'
-        end
-        object LBPort: TLabel
-          AnchorSideLeft.Control = EditHost
-          AnchorSideLeft.Side = asrBottom
-          Left = 451
-          Height = 13
-          Top = 40
-          Width = 24
-          BorderSpacing.Left = 10
-          Caption = 'Port'
-          Font.Height = -12
-          ParentColor = False
-          ParentFont = False
-        end
-        object LBUsername: TLabel
-          AnchorSideLeft.Control = Bevel1
-          Left = 329
-          Height = 13
-          Top = 92
-          Width = 61
-          BorderSpacing.Left = 20
-          Caption = 'Username'
-          Font.Height = -12
-          ParentColor = False
-          ParentFont = False
-        end
-        object EditUser: TEdit
-          AnchorSideLeft.Control = Bevel1
-          Left = 329
-          Height = 27
-          Top = 108
-          Width = 112
-          AutoSize = False
-          BorderSpacing.Left = 20
-          Font.Height = -13
-          ParentFont = False
-          TabOrder = 7
-        end
-        object LBPassword: TLabel
-          AnchorSideLeft.Control = EditHost
-          AnchorSideLeft.Side = asrBottom
-          Left = 451
-          Height = 13
-          Top = 92
-          Width = 56
-          BorderSpacing.Left = 10
-          Caption = 'Password'
-          Font.Height = -12
-          ParentColor = False
-          ParentFont = False
-        end
-        object EditPasswd: TEdit
-          AnchorSideLeft.Control = EditHost
-          AnchorSideLeft.Side = asrBottom
-          Left = 451
-          Height = 27
-          Top = 108
-          Width = 112
-          AutoSize = False
-          BorderSpacing.Left = 10
-          EchoMode = emPassword
-          Font.Height = -13
-          ParentFont = False
-          PasswordChar = '*'
-          TabOrder = 8
-        end
-        object EditNameDB: TEdit
-          AnchorSideLeft.Control = Bevel1
-          Left = 329
-          Height = 27
-          Top = 160
-          Width = 112
-          AutoSize = False
-          BorderSpacing.Left = 20
-          Font.Height = -13
-          ParentFont = False
-          TabOrder = 9
-        end
-        object LBNameDB: TLabel
-          AnchorSideLeft.Control = Bevel1
-          Left = 329
-          Height = 13
-          Top = 144
-          Width = 109
-          BorderSpacing.Left = 20
-          Caption = 'Name of database'
-          Font.Height = -12
-          ParentColor = False
-          ParentFont = False
-        end
         object LBSQLPath: TLabel
-          AnchorSideLeft.Control = EditHost
           AnchorSideLeft.Side = asrBottom
           Left = 451
-          Height = 13
+          Height = 15
           Top = 144
-          Width = 130
+          Width = 111
           BorderSpacing.Left = 10
           Caption = 'SQLite database path'
           Font.Height = -12
@@ -717,7 +562,6 @@ object SetupForm: TSetupForm
           ParentFont = False
         end
         object EditSQLPath: TEdit
-          AnchorSideLeft.Control = EditHost
           AnchorSideLeft.Side = asrBottom
           Left = 451
           Height = 27
@@ -727,7 +571,7 @@ object SetupForm: TSetupForm
           BorderSpacing.Left = 10
           Font.Height = -13
           ParentFont = False
-          TabOrder = 10
+          TabOrder = 3
         end
         object SpeedButton1: TSpeedButton
           AnchorSideLeft.Control = EditSQLPath
@@ -782,81 +626,32 @@ object SetupForm: TSetupForm
           }
           OnClick = SpeedButton1Click
         end
-        object CheckBox1: TCheckBox
-          AnchorSideLeft.Control = Panel2
-          Left = 9
-          Height = 23
-          Top = 152
-          Width = 222
-          BorderSpacing.Left = 8
-          Caption = 'Use an existing MySQL database'
-          Font.Height = -12
-          ParentFont = False
-          TabOrder = 11
-        end
         object CheckBox2: TCheckBox
           AnchorSideLeft.Control = Panel2
           Left = 9
-          Height = 23
+          Height = 19
           Top = 176
-          Width = 220
+          Width = 184
           BorderSpacing.Left = 8
           Caption = 'Use an existing SQLite database'
           Font.Height = -12
           ParentFont = False
-          TabOrder = 12
-        end
-        object CheckBox3: TCheckBox
-          AnchorSideLeft.Control = Panel2
-          Left = 9
-          Height = 23
-          Top = 216
-          Width = 158
-          BorderSpacing.Left = 8
-          Caption = 'Use MySQL by default'
-          Font.Height = -12
-          OnChange = CheckBox3Change
-          ParentFont = False
-          TabOrder = 13
-        end
-        object CheckBox4: TCheckBox
-          AnchorSideLeft.Control = Panel2
-          Left = 9
-          Height = 23
-          Top = 240
-          Width = 156
-          BorderSpacing.Left = 8
-          Caption = 'Use SQLite by default'
-          Font.Height = -12
-          OnChange = CheckBox4Change
-          ParentFont = False
-          TabOrder = 14
-        end
-        object BtCheck: TButton
-          Left = 248
-          Height = 25
-          Top = 304
-          Width = 160
-          Caption = 'Check connection'
-          Font.Height = -12
-          OnClick = BtCheckClick
-          ParentFont = False
-          TabOrder = 15
+          TabOrder = 4
         end
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Setup Log'
-      ClientHeight = 342
-      ClientWidth = 620
+      ClientHeight = 338
+      ClientWidth = 622
       object Panel3: TPanel
         Left = 0
-        Height = 342
+        Height = 338
         Top = 0
-        Width = 620
+        Width = 622
         Align = alClient
-        ClientHeight = 342
-        ClientWidth = 620
+        ClientHeight = 338
+        ClientWidth = 622
         ParentColor = False
         TabOrder = 0
         object Button3: TButton
@@ -885,9 +680,9 @@ object SetupForm: TSetupForm
           AnchorSideLeft.Control = Panel3
           AnchorSideTop.Control = Panel3
           Left = 6
-          Height = 17
+          Height = 21
           Top = 6
-          Width = 210
+          Width = 179
           BorderSpacing.Left = 5
           BorderSpacing.Top = 5
           Caption = 'Main HAM Log Settings'
@@ -902,7 +697,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrBottom
           Left = 6
           Height = 25
-          Top = 61
+          Top = 67
           Width = 120
           AutoSize = False
           BorderSpacing.Left = 5
@@ -916,9 +711,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Label11
           AnchorSideTop.Side = asrBottom
           Left = 6
-          Height = 13
-          Top = 43
-          Width = 68
+          Height = 15
+          Top = 47
+          Width = 60
           BorderSpacing.Left = 5
           BorderSpacing.Top = 20
           Caption = 'Description'
@@ -932,9 +727,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Label13
           AnchorSideTop.Side = asrCenter
           Left = 166
-          Height = 13
-          Top = 43
-          Width = 46
+          Height = 15
+          Top = 47
+          Width = 42
           BorderSpacing.Left = 40
           Caption = 'Callsign'
           Font.Height = -12
@@ -947,7 +742,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrCenter
           Left = 166
           Height = 25
-          Top = 61
+          Top = 67
           Width = 120
           AutoSize = False
           CharCase = ecUppercase
@@ -962,7 +757,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrCenter
           Left = 326
           Height = 25
-          Top = 61
+          Top = 67
           Width = 120
           AutoSize = False
           Font.Height = -12
@@ -975,9 +770,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Label13
           AnchorSideTop.Side = asrCenter
           Left = 326
-          Height = 13
-          Top = 43
-          Width = 25
+          Height = 15
+          Top = 47
+          Width = 23
           BorderSpacing.Left = 40
           Caption = 'QTH'
           Font.Height = -12
@@ -990,7 +785,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrCenter
           Left = 486
           Height = 25
-          Top = 61
+          Top = 67
           Width = 120
           AutoSize = False
           Font.Height = -12
@@ -1003,9 +798,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Label13
           AnchorSideTop.Side = asrCenter
           Left = 486
-          Height = 13
-          Top = 43
-          Width = 35
+          Height = 15
+          Top = 47
+          Width = 32
           BorderSpacing.Left = 40
           Caption = 'Name'
           Font.Height = -12
@@ -1017,9 +812,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Edit7
           AnchorSideTop.Side = asrBottom
           Left = 6
-          Height = 13
-          Top = 106
-          Width = 25
+          Height = 15
+          Top = 112
+          Width = 22
           BorderSpacing.Left = 5
           BorderSpacing.Top = 20
           Caption = 'Grid'
@@ -1033,7 +828,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrBottom
           Left = 6
           Height = 25
-          Top = 124
+          Top = 132
           Width = 120
           AutoSize = False
           BorderSpacing.Left = 5
@@ -1050,9 +845,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Label16
           AnchorSideTop.Side = asrCenter
           Left = 166
-          Height = 13
-          Top = 106
-          Width = 50
+          Height = 15
+          Top = 112
+          Width = 43
           BorderSpacing.Left = 40
           Caption = 'Latitude'
           Font.Height = -12
@@ -1065,7 +860,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrBottom
           Left = 166
           Height = 25
-          Top = 124
+          Top = 132
           Width = 120
           AutoSize = False
           BorderSpacing.Top = 5
@@ -1079,7 +874,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrBottom
           Left = 326
           Height = 25
-          Top = 124
+          Top = 132
           Width = 120
           AutoSize = False
           BorderSpacing.Top = 5
@@ -1093,9 +888,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Label16
           AnchorSideTop.Side = asrCenter
           Left = 326
-          Height = 13
-          Top = 106
-          Width = 60
+          Height = 15
+          Top = 112
+          Width = 54
           BorderSpacing.Left = 40
           Caption = 'Longitude'
           Font.Height = -12
@@ -1108,7 +903,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrBottom
           Left = 486
           Height = 25
-          Top = 124
+          Top = 132
           Width = 57
           AutoSize = False
           BorderSpacing.Top = 5
@@ -1122,7 +917,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrBottom
           Left = 548
           Height = 25
-          Top = 124
+          Top = 132
           Width = 56
           AutoSize = False
           BorderSpacing.Top = 5
@@ -1136,9 +931,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Label16
           AnchorSideTop.Side = asrCenter
           Left = 486
-          Height = 13
-          Top = 106
-          Width = 20
+          Height = 15
+          Top = 112
+          Width = 17
           BorderSpacing.Left = 40
           Caption = 'ITU'
           Font.Height = -12
@@ -1151,8 +946,8 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Label16
           AnchorSideTop.Side = asrCenter
           Left = 548
-          Height = 13
-          Top = 106
+          Height = 15
+          Top = 112
           Width = 17
           BorderSpacing.Left = 5
           Caption = 'CQ'
@@ -1165,9 +960,9 @@ object SetupForm: TSetupForm
           AnchorSideTop.Control = Edit11
           AnchorSideTop.Side = asrBottom
           Left = 6
-          Height = 13
-          Top = 169
-          Width = 51
+          Height = 15
+          Top = 177
+          Width = 45
           BorderSpacing.Left = 5
           BorderSpacing.Top = 20
           Caption = 'QSL Info'
@@ -1181,7 +976,7 @@ object SetupForm: TSetupForm
           AnchorSideTop.Side = asrBottom
           Left = 6
           Height = 25
-          Top = 187
+          Top = 197
           Width = 280
           AutoSize = False
           BorderSpacing.Top = 5
@@ -1194,16 +989,16 @@ object SetupForm: TSetupForm
     end
     object TabSheet4: TTabSheet
       Caption = 'Processing'
-      ClientHeight = 342
-      ClientWidth = 620
+      ClientHeight = 338
+      ClientWidth = 622
       object Panel4: TPanel
         Left = 0
-        Height = 342
+        Height = 338
         Top = 0
-        Width = 620
+        Width = 622
         Align = alClient
-        ClientHeight = 342
-        ClientWidth = 620
+        ClientHeight = 338
+        ClientWidth = 622
         ParentColor = False
         TabOrder = 0
         object Button4: TButton
@@ -1232,9 +1027,9 @@ object SetupForm: TSetupForm
           AnchorSideLeft.Control = Panel4
           AnchorSideTop.Control = Panel4
           Left = 6
-          Height = 17
+          Height = 21
           Top = 6
-          Width = 365
+          Width = 309
           BorderSpacing.Left = 5
           BorderSpacing.Top = 5
           Caption = 'Application and processing of data. Wait'
@@ -1248,9 +1043,9 @@ object SetupForm: TSetupForm
           AnchorSideLeft.Side = asrCenter
           AnchorSideTop.Control = Panel4
           AnchorSideTop.Side = asrCenter
-          Left = 26
+          Left = 27
           Height = 20
-          Top = 161
+          Top = 159
           Width = 568
           Smooth = True
           TabOrder = 2
@@ -1259,10 +1054,10 @@ object SetupForm: TSetupForm
           AnchorSideLeft.Control = ProgressBar1
           AnchorSideTop.Side = asrBottom
           AnchorSideBottom.Control = ProgressBar1
-          Left = 26
-          Height = 13
-          Top = 143
-          Width = 43
+          Left = 27
+          Height = 15
+          Top = 139
+          Width = 35
           Anchors = [akLeft, akBottom]
           BorderSpacing.Bottom = 5
           Caption = 'Status:'
@@ -1275,10 +1070,10 @@ object SetupForm: TSetupForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Label23
           AnchorSideTop.Side = asrCenter
-          Left = 72
-          Height = 13
-          Top = 143
-          Width = 26
+          Left = 65
+          Height = 15
+          Top = 139
+          Width = 24
           BorderSpacing.Left = 3
           Caption = 'Wait'
           Font.Height = -12
@@ -1287,13 +1082,6 @@ object SetupForm: TSetupForm
         end
       end
     end
-  end
-  object MySQL_Connector: TMySQL56Connection
-    Connected = False
-    LoginPrompt = False
-    KeepConnection = False
-    SkipLibraryVersionCheck = True
-    Left = 376
   end
   object SQLite_Connector: TSQLite3Connection
     Connected = False
