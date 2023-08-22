@@ -61,10 +61,10 @@ var
 
 implementation
 
-uses miniform_u, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U,
-  InitDB_dm, MainFuncDM;
+uses miniform_u, dmFunc_U, ResourceStr, SetupSQLquery,
+  InitDB_dm, MainFuncDM, wizardForm_u;
 
-{$R *.lfm}
+  {$R *.lfm}
 
 procedure TCreateJournalForm.EditGridChange(Sender: TObject);
 var
@@ -122,10 +122,10 @@ begin
         InitDB.DefTransaction.Commit;
 
 
-          InitDB.SQLiteConnection.ExecuteDirect(
-            dmSQL.Table_Log_Table(LOG_PREFIX));
-          InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
-            LOG_PREFIX));
+        InitDB.SQLiteConnection.ExecuteDirect(
+          dmSQL.Table_Log_Table(LOG_PREFIX));
+        InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
+          LOG_PREFIX));
 
         InitDB.DefTransaction.Commit;
       finally
@@ -165,7 +165,7 @@ begin
     else
     if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      SetupForm.Show;
+      WizardForm.Show;
   end;
 end;
 

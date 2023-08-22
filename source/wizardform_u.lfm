@@ -1,0 +1,370 @@
+object WizardForm: TWizardForm
+  Left = 547
+  Height = 320
+  Top = 326
+  Width = 560
+  Caption = 'DataBase Settings'
+  ClientHeight = 320
+  ClientWidth = 560
+  Constraints.MinHeight = 310
+  Constraints.MinWidth = 560
+  FormStyle = fsSystemStayOnTop
+  OnShow = FormShow
+  Position = poDesktopCenter
+  LCLVersion = '3.0.0.1'
+  object gbDataBase: TGroupBox
+    Left = 5
+    Height = 92
+    Top = 5
+    Width = 550
+    Align = alTop
+    AutoSize = True
+    BorderSpacing.Around = 5
+    Caption = 'Database Settings'
+    ChildSizing.LeftRightSpacing = 20
+    ChildSizing.TopBottomSpacing = 10
+    ChildSizing.HorizontalSpacing = 10
+    ChildSizing.VerticalSpacing = 5
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 3
+    ClientHeight = 72
+    ClientWidth = 546
+    TabOrder = 0
+    object lbSQLPath: TLabel
+      Left = 73
+      Height = 15
+      Top = 16
+      Width = 111
+      BorderSpacing.CellAlignHorizontal = ccaCenter
+      BorderSpacing.CellAlignVertical = ccaCenter
+      Caption = 'SQLite database path'
+    end
+    object EditSQLPath: TEdit
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = gbDataBase
+      AnchorSideBottom.Side = asrCenter
+      Left = 248
+      Height = 28
+      Top = 10
+      Width = 235
+      Constraints.MinWidth = 200
+      TabOrder = 1
+    end
+    object sbOpenDialog: TSpeedButton
+      AnchorSideTop.Side = asrBottom
+      Left = 493
+      Height = 28
+      Top = 10
+      Width = 28
+      AutoSize = True
+      BorderSpacing.CellAlignHorizontal = ccaLeftTop
+      Glyph.Data = {
+        C2040000424DC204000000000000420000002800000018000000180000000100
+        100003000000800400006400000064000000000000000000000000F80000E007
+        00001F0000000000000000000000000000000000000000000000000000000000
+        000000000000000020000421C318000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000020008A52F39C55AD8631
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000652934A5B294DBDE494A00000000000000000000000000000000
+        00000000000000000000000000000000000000008210F39C718C59CE14A54108
+        0000000000000000000000000000000000000000000000000000000000000000
+        000020001084718CD7BDF7BD8210000000000000000000000000000000000000
+        0000000000000000000000000000000020008A52B29455AD59CEE31820000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        2421F39CD39C59CE652920000000000000000000000000000000000000000000
+        00000000000000000000000000004108518C718C38C608424108000000000000
+        0000000000000000000000000000000000002000E3182421821000000000CB5A
+        718CD7BD694A410800000000000000000000000000000000000000000000E318
+        8E73D7BD59CE59CE38C634A5CF7B108418C6494A410800000000000000000000
+        000000000000000000002000E73996B5DBDEBAD679CE59CE18C6D7BDB6B5D7BD
+        D39C000000000000000000000000000000000000000000002000A631D7BD1CE7
+        FBDEDBDEBAD679CE59CE18C6D7BD96B514A52000000000000000000000000000
+        0000000000000000A210F39C1CE71CE71CE7FBDEDBDEBAD69AD659CE38C6F7BD
+        B6B54D6B00000000000000000000000000000000000020008A5259CEFBDE1CE7
+        1CE71CE7FBDEDBDEBAD69AD679CE38C6F7BDB6B5200000000000000000000000
+        000000000000200030849AD6FBDE1CE71CE71CE71CE7FBDEFBDEDBDE9AD679CE
+        38C618C6A63100000000000000000000000000000000200034A59AD61CE71CE7
+        3CE71CE71CE71CE71CE7FBDEDBDE9AD679CE18C6694A00000000000000000000
+        000000000000610834A579CE1CE71CE73CE71CE71CE71CE71CE7FBDEFBDEDBDE
+        BAD659CE494A000000000000000000000000000000006108B294F7BDFBDE1CE7
+        1CE7FBDEFBDE1CE71CE71CE71CE7FBDEDBDE38C6652900000000000000000000
+        00000000000000006D6B55ADDBDEFBDEDBDEFBDE3CE73CE71CE71CE71CE71CE7
+        1CE714A52000000000000000000000000000000000000000452975ADD7BDBAD6
+        DBDE3CE75DEF5DEF5DEF3CE71CE71CE759CE494A000000000000000000000000
+        00000000000000000000CB5A55AD96B5DBDE5DEF7DEF5DEF7DEF5DEF1CE79AD6
+        8E7341080000000000000000000000000000000000000000000004210C6396B5
+        55AD79CEFBDE1CE73CE7DBDEF7BD8E7382100000000000000000000000000000
+        0000000000000000000000000000C739108475ADD7BDF7BDD7BD518C08426108
+        0000000000000000000000000000000000000000000000000000000000000000
+        C318C31865298631C31861080000000000000000000000000000000000000000
+        000000000000
+      }
+      OnClick = sbOpenDialogClick
+    end
+    object cbUseExDatabase: TCheckBox
+      AnchorSideTop.Side = asrBottom
+      Left = 20
+      Height = 19
+      Top = 43
+      Width = 184
+      BorderSpacing.CellAlignHorizontal = ccaLeftTop
+      Caption = 'Use an existing SQLite database'
+      TabOrder = 0
+    end
+  end
+  object gbMainSettings: TGroupBox
+    AnchorSideBottom.Control = btOk
+    Left = 5
+    Height = 158
+    Top = 117
+    Width = 550
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoSize = True
+    BorderSpacing.Around = 5
+    Caption = 'Main HAM Log settings'
+    ChildSizing.LeftRightSpacing = 20
+    ChildSizing.TopBottomSpacing = 5
+    ChildSizing.HorizontalSpacing = 10
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
+    ChildSizing.Layout = cclTopToBottomThenLeftToRight
+    ChildSizing.ControlsPerLine = 6
+    ClientHeight = 138
+    ClientWidth = 546
+    TabOrder = 1
+    object lbDiscription: TLabel
+      Left = 20
+      Height = 15
+      Top = 2
+      Width = 119
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'Discription'
+    end
+    object editDiscription: TEdit
+      Left = 20
+      Height = 23
+      Top = 19
+      Width = 119
+      Constraints.MinWidth = 100
+      TabOrder = 0
+    end
+    object lbGrid: TLabel
+      Left = 20
+      Height = 15
+      Top = 44
+      Width = 119
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'Grid'
+    end
+    object editGrid: TEdit
+      Left = 20
+      Height = 23
+      Top = 61
+      Width = 119
+      CharCase = ecUppercase
+      Constraints.MinWidth = 100
+      OnChange = editGridChange
+      TabOrder = 1
+    end
+    object lbQSLinfo: TLabel
+      Left = 20
+      Height = 15
+      Top = 86
+      Width = 119
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'QSL Info'
+    end
+    object editQSLinfo: TEdit
+      Left = 20
+      Height = 23
+      Top = 103
+      Width = 119
+      Constraints.MinWidth = 100
+      TabOrder = 2
+      Text = 'TNX for QSO! 73!'
+    end
+    object lbCallsign: TLabel
+      Left = 149
+      Height = 15
+      Top = 2
+      Width = 119
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'Callsign'
+    end
+    object editCallsign: TEdit
+      Left = 149
+      Height = 23
+      Top = 19
+      Width = 119
+      CharCase = ecUppercase
+      Constraints.MinWidth = 100
+      OnChange = editCallsignChange
+      TabOrder = 3
+    end
+    object lbLatitude: TLabel
+      Left = 149
+      Height = 15
+      Top = 44
+      Width = 119
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'Latitude'
+    end
+    object editLatitude: TEdit
+      Left = 149
+      Height = 23
+      Top = 61
+      Width = 119
+      Constraints.MinWidth = 100
+      TabOrder = 4
+    end
+    object lbCQ: TLabel
+      Left = 149
+      Height = 15
+      Top = 86
+      Width = 119
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'CQ'
+    end
+    object editCQ: TEdit
+      Left = 149
+      Height = 23
+      Top = 103
+      Width = 119
+      Constraints.MinWidth = 100
+      TabOrder = 5
+    end
+    object lbName: TLabel
+      Left = 278
+      Height = 15
+      Top = 2
+      Width = 32
+      BorderSpacing.CellAlignHorizontal = ccaLeftTop
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'Name'
+    end
+    object editName: TEdit
+      Left = 278
+      Height = 23
+      Top = 19
+      Width = 119
+      Constraints.MinWidth = 100
+      TabOrder = 6
+    end
+    object lbLongitude: TLabel
+      Left = 278
+      Height = 15
+      Top = 44
+      Width = 54
+      BorderSpacing.CellAlignHorizontal = ccaLeftTop
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'Longitude'
+    end
+    object editLongitude: TEdit
+      Left = 278
+      Height = 23
+      Top = 61
+      Width = 119
+      Constraints.MinWidth = 100
+      TabOrder = 7
+    end
+    object lbITU: TLabel
+      Left = 278
+      Height = 15
+      Top = 86
+      Width = 17
+      BorderSpacing.CellAlignHorizontal = ccaLeftTop
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'ITU'
+    end
+    object editITU: TEdit
+      Left = 278
+      Height = 23
+      Top = 103
+      Width = 119
+      Constraints.MinWidth = 100
+      TabOrder = 8
+    end
+    object lbQTH: TLabel
+      Left = 407
+      Height = 15
+      Top = 2
+      Width = 119
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      Caption = 'QTH'
+    end
+    object editQTH: TEdit
+      Left = 407
+      Height = 23
+      Top = 19
+      Width = 119
+      Constraints.MinWidth = 100
+      TabOrder = 9
+    end
+  end
+  object btOk: TButton
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 480
+    Height = 25
+    Top = 285
+    Width = 70
+    Anchors = [akRight, akBottom]
+    AutoSize = True
+    BorderSpacing.Around = 10
+    Caption = 'OK'
+    Constraints.MinWidth = 70
+    OnClick = btOkClick
+    TabOrder = 2
+  end
+  object btCancel: TButton
+    AnchorSideRight.Control = btOk
+    AnchorSideBottom.Control = btOk
+    AnchorSideBottom.Side = asrCenter
+    Left = 400
+    Height = 25
+    Top = 284
+    Width = 70
+    Anchors = [akRight, akBottom]
+    AutoSize = True
+    BorderSpacing.Around = 10
+    Caption = 'Cancel'
+    Constraints.MinWidth = 70
+    OnClick = btCancelClick
+    TabOrder = 3
+  end
+  object SQL_Transaction: TSQLTransaction
+    Active = False
+    Left = 40
+    Top = 272
+  end
+  object SQLite_Connector: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    AlwaysUseBigint = False
+    Left = 120
+    Top = 272
+  end
+  object SaveDialog1: TSaveDialog
+    Title = 'Save DataBase'
+    DefaultExt = '.db'
+    FileName = 'logbook'
+    Filter = '*.db|*.db'
+    Left = 192
+    Top = 272
+  end
+  object OpenDialog1: TOpenDialog
+    Title = 'Open DataBase'
+    DefaultExt = '.db'
+    FileName = 'logbook'
+    Filter = '*.db|*.db'
+    Left = 256
+    Top = 272
+  end
+end

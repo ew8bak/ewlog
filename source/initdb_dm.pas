@@ -56,7 +56,6 @@ type
     procedure AllFree;
     function InitDBINI: boolean;
     procedure CheckSQLVersion;
-    function SwitchDB: boolean;
     function GetParam: TParamData;
 
   end;
@@ -93,7 +92,7 @@ var
 
 implementation
 
-uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U, dmmigrate_u;
+uses MainFuncDM, wizardForm_u, ConfigForm_U, dmFunc_U, dmmigrate_u;
 
 {$R *.lfm}
 
@@ -123,9 +122,8 @@ var
   tempProfileDir, tempUserDir: string;
 {$ENDIF WINDOWS}
 begin
-  //sqlite3dyn.SQLiteDefaultLibrary:='libsqlite3.so';
   ParamData := GetParam;
-  if Sender <> SetupForm then
+  if Sender <> WizardForm then
   begin
     if not ParamData.portable then begin
       if FileExists(ExtractFilePath(ParamStr(0))+'portable') then
@@ -149,8 +147,13 @@ begin
     end
     else
       FilePATH := ExtractFilePath(ParamStr(0));
+    {$IFDEF WINDOWS}
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
+    {$ELSE}
+     if dmFunc.CheckProcess('rigctld') then
+      dmFunc.CloseProcess('rigctld');
+    {$ENDIF WINDOWS}
    {$ENDIF UNIX}
     if not DirectoryExists(FilePATH) then
       CreateDir(FilePATH);
@@ -205,11 +208,6 @@ begin
   CheckSQLVersion;
   MainFunc.LoadINIsettings;
   ImbeddedCallBookInit(IniSet.UseIntCallBook);
-end;
-
-function TInitDB.SwitchDB: boolean;
-begin
-
 end;
 
 procedure TInitDB.DataModuleDestroy(Sender: TObject);
@@ -582,8 +580,6 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
         + LogTable + ' ORDER BY QSODateTime DESC';
-       // ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 FROM ' +
-       // LogTable + ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
 
     DefLogBookQuery.Open;
     NumberSelectRecord := DefLogBookQuery.RecNo;

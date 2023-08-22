@@ -2105,18 +2105,11 @@ object MiniForm: TMiniForm
           OnClick = MIDownloadLangClick
         end
       end
-      object MenuItem100: TMenuItem
-        Caption = '-'
-      end
-      object MenuItem89: TMenuItem
-        Caption = 'Switch database'
-        OnClick = MenuItem89Click
-      end
       object MenuItem90: TMenuItem
         Caption = '-'
       end
       object MenuItem91: TMenuItem
-        Caption = 'Wizard'
+        Caption = 'DataBase Settings'
         OnClick = MenuItem91Click
       end
     end

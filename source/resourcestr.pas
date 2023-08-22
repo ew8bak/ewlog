@@ -234,6 +234,7 @@ resourcestring
   rAllQSOsuploadedtoLoTW = 'All QSOs uploaded to LoTW';
   rGenerate = 'Generate';
   rUpload = 'Upload';
+  rItsNoEWLogDatabase = 'Its not EWLog database. Check';
 
 implementation
 

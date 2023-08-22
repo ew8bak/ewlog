@@ -1,0 +1,273 @@
+unit wizardForm_u;
+
+{$mode ObjFPC}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, SQLDB, SQLite3Conn, Forms, Controls, Graphics, Dialogs,
+  StdCtrls, Buttons, LCLType, prefix_record, ResourceStr;
+
+type
+
+  { TWizardForm }
+
+  TWizardForm = class(TForm)
+    btOk: TButton;
+    btCancel: TButton;
+    cbUseExDatabase: TCheckBox;
+    editLongitude: TEdit;
+    editGrid: TEdit;
+    editLatitude: TEdit;
+    editName: TEdit;
+    editITU: TEdit;
+    editQTH: TEdit;
+    editQSLinfo: TEdit;
+    editDiscription: TEdit;
+    editCallsign: TEdit;
+    editCQ: TEdit;
+    EditSQLPath: TEdit;
+    gbDataBase: TGroupBox;
+    gbMainSettings: TGroupBox;
+    lbCallsign: TLabel;
+    lbDiscription: TLabel;
+    lbCQ: TLabel;
+    lbLongitude: TLabel;
+    lbGrid: TLabel;
+    lbLatitude: TLabel;
+    lbName: TLabel;
+    lbITU: TLabel;
+    lbQTH: TLabel;
+    lbQSLinfo: TLabel;
+    lbSQLPath: TLabel;
+    OpenDialog1: TOpenDialog;
+    SaveDialog1: TSaveDialog;
+    sbOpenDialog: TSpeedButton;
+    SQLite_Connector: TSQLite3Connection;
+    SQL_Transaction: TSQLTransaction;
+    procedure btCancelClick(Sender: TObject);
+    procedure btOkClick(Sender: TObject);
+    procedure editCallsignChange(Sender: TObject);
+    procedure editGridChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure sbOpenDialogClick(Sender: TObject);
+  private
+    SQLitePATH: string;
+    function CheckEmptyDB: boolean;
+  public
+
+  end;
+
+var
+  WizardForm: TWizardForm;
+
+implementation
+
+uses dmFunc_U, SetupSQLquery, InitDB_dm, MainFuncDM, dmmigrate_u, miniform_u;
+
+  {$R *.lfm}
+
+  { TWizardForm }
+
+procedure TWizardForm.editCallsignChange(Sender: TObject);
+var
+  PFXR: TPFXR;
+  Lat: string = '';
+  Lon: string = '';
+begin
+  if Length(editCallsign.Text) > 0 then
+  begin
+    PFXR := MainFunc.SearchPrefix(editCallsign.Text, '');
+    editITU.Text := PFXR.ITUZone;
+    editCQ.Text := PFXR.CQZone;
+    dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+    editLatitude.Text := Lat;
+    editLongitude.Text := Lon;
+  end;
+end;
+
+procedure TWizardForm.btCancelClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TWizardForm.btOkClick(Sender: TObject);
+var
+  Query: TSQLQuery;
+  logTableName: string;
+begin
+  try
+    Query := TSQLQuery.Create(nil);
+    if cbUseExDatabase.Checked then
+      Exit
+    else
+    begin
+      SQLite_Connector.DatabaseName := EditSQLPath.Text;
+      SQLite_Connector.Transaction := SQL_Transaction;
+      Query.DataBase := SQLite_Connector;
+      SQLite_Connector.Connected := True;
+      SQL_Transaction.Active := True;
+      SQLite_Connector.ExecuteDirect(Table_LogBookInfo);
+      Query.Transaction := SQL_Transaction;
+      logTableName := FormatDateTime('DDMMYYYY_HHNNSS', Now);
+      Query.Close;
+      Query.SQL.Text := Insert_Table_LogBookInfo;
+      Query.ParamByName('LogTable').AsString := 'Log_TABLE_' + logTableName;
+      Query.ParamByName('CallName').AsString := editCallsign.Text;
+      Query.ParamByName('Name').AsString := editName.Text;
+      Query.ParamByName('QTH').AsString := editQTH.Text;
+      Query.ParamByName('ITU').AsString := editITU.Text;
+      Query.ParamByName('CQ').AsString := editCQ.Text;
+      Query.ParamByName('Loc').AsString := editGrid.Text;
+      Query.ParamByName('Lat').AsString := editLatitude.Text;
+      Query.ParamByName('Lon').AsString := editLongitude.Text;
+      Query.ParamByName('Discription').AsString := editDiscription.Text;
+      Query.ParamByName('QSLInfo').AsString := editQSLinfo.Text;
+      Query.ParamByName('Table_version').AsString := Current_Table;
+      Query.ExecSQL;
+      SQL_Transaction.Commit;
+      Query.Close;
+      SQLite_Connector.ExecuteDirect(dmSQL.Table_Log_Table(logTableName));
+      SQLite_Connector.ExecuteDirect(dmSQL.CreateIndex(logTableName));
+    end;
+
+  finally
+    SQL_Transaction.Commit;
+    INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
+    INIFile.WriteString('DataBases', 'FileSQLite', EditSQLPath.Text);
+    INIFile.WriteString('SetLog', 'DefaultCallLogBook', editDiscription.Text);
+    SQLite_Connector.Connected := False;
+    FreeAndNil(Query);
+    InitDB.AllFree;
+    InitDB.DataModuleCreate(WizardForm);
+    MiniForm.LoadComboBoxItem;
+    Close;
+  end;
+end;
+
+procedure TWizardForm.editGridChange(Sender: TObject);
+var
+  lat, lon: currency;
+begin
+  if dmFunc.IsLocOK(editGrid.Text) then
+  begin
+    dmFunc.CoordinateFromLocator(editGrid.Text, lat, lon);
+    editLatitude.Text := StringReplace(CurrToStr(lat), ',', '.', [rfReplaceAll]);
+    editLongitude.Text := StringReplace(CurrToStr(lon), ',', '.', [rfReplaceAll]);
+  end
+  else
+  begin
+    editLatitude.Clear;
+    editLongitude.Clear;
+  end;
+end;
+
+procedure TWizardForm.FormShow(Sender: TObject);
+begin
+  if Length(DBRecord.SQLitePATH) > 9 then
+    SQLitePATH := DBRecord.SQLitePATH
+  else
+    SQLitePATH := FilePATH + 'logbook.db';
+  EditSQLPath.Text := SQLitePATH;
+
+  if CheckEmptyDB then
+    cbUseExDatabase.Checked := True;
+end;
+
+procedure TWizardForm.sbOpenDialogClick(Sender: TObject);
+begin
+  editDiscription.Clear;
+  editCallsign.Clear;
+  editName.Clear;
+  editQTH.Clear;
+  editGrid.Clear;
+  editCQ.Clear;
+  editITU.Clear;
+  if not cbUseExDatabase.Checked then
+  begin
+    if SaveDialog1.Execute then
+    begin
+      if FileExists(SaveDialog1.FileName) then
+        if Application.MessageBox(PChar(rFileExist), PChar(rWarning),
+          MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
+        begin
+          if not DeleteFile(SaveDialog1.FileName) then
+          begin
+            ShowMessage(rFileUsed);
+            Exit;
+          end;
+        end
+        else
+        begin
+          Exit;
+        end;
+      EditSQLPath.Text := SaveDialog1.FileName;
+    end;
+  end
+  else
+  if OpenDialog1.Execute then
+  begin
+    EditSQLPath.Text := OpenDialog1.FileName;
+    SQLitePATH := EditSQLPath.Text;
+    CheckEmptyDB;
+  end;
+end;
+
+function TWizardForm.CheckEmptyDB: boolean;
+var
+  Query: TSQLQuery;
+begin
+  Result := False;
+  try
+    Query := TSQLQuery.Create(nil);
+    editDiscription.Clear;
+    editCallsign.Clear;
+    editName.Clear;
+    editQTH.Clear;
+    editGrid.Clear;
+    editCQ.Clear;
+    editITU.Clear;
+
+    if not FileExists(SQLitePATH) then
+      Exit
+    else
+    begin
+      try
+        SQLite_Connector.DatabaseName := SQLitePATH;
+        SQLite_Connector.Transaction := SQL_Transaction;
+        SQLite_Connector.Connected := True;
+        Query.DataBase := SQLite_Connector;
+        Query.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
+        Query.Open;
+        if Query.FieldByName('CallName').AsString <> '' then
+        begin
+          editDiscription.Text := Query.FieldByName('Discription').AsString;
+          editCallsign.Text := Query.FieldByName('CallName').AsString;
+          editQTH.Text := Query.FieldByName('QTH').AsString;
+          editName.Text := Query.FieldByName('Name').AsString;
+          editGrid.Text := Query.FieldByName('Loc').AsString;
+          editITU.Text := Query.FieldByName('ITU').AsString;
+          editCQ.Text := Query.FieldByName('CQ').AsString;
+          editQSLinfo.Text := Query.FieldByName('QSLInfo').AsString;
+        end;
+        Query.Close;
+        Result := True;
+
+      except
+        on E: Exception do
+        begin
+          ShowMessage(rItsNoEWLogDatabase);
+          WriteLn(ExceptFile, 'TSetupForm.CheckEmptyDB:' + E.ClassName +
+            ':' + E.Message);
+          SQLite_Connector.Connected := False;
+        end;
+      end;
+    end;
+
+  finally
+    SQLite_Connector.Connected := False;
+    FreeAndNil(Query);
+  end;
+end;
+
+end.
