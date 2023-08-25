@@ -1,4 +1,4 @@
-unit wizardForm_u;
+unit databasesettingsform_u;
 
 {$mode ObjFPC}{$H+}
 
@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TWizardForm }
+  { TDataBaseSettingsForm }
 
-  TWizardForm = class(TForm)
+  TDataBaseSettingsForm = class(TForm)
     btOk: TButton;
     btCancel: TButton;
     cbUseExDatabase: TCheckBox;
@@ -59,7 +59,7 @@ type
   end;
 
 var
-  WizardForm: TWizardForm;
+  DataBaseSettingsForm: TDataBaseSettingsForm;
 
 implementation
 
@@ -67,9 +67,9 @@ uses dmFunc_U, SetupSQLquery, InitDB_dm, MainFuncDM, dmmigrate_u, miniform_u;
 
   {$R *.lfm}
 
-  { TWizardForm }
+  { TDataBaseSettingsForm }
 
-procedure TWizardForm.editCallsignChange(Sender: TObject);
+procedure TDataBaseSettingsForm.editCallsignChange(Sender: TObject);
 var
   PFXR: TPFXR;
   Lat: string = '';
@@ -86,12 +86,12 @@ begin
   end;
 end;
 
-procedure TWizardForm.btCancelClick(Sender: TObject);
+procedure TDataBaseSettingsForm.btCancelClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TWizardForm.btOkClick(Sender: TObject);
+procedure TDataBaseSettingsForm.btOkClick(Sender: TObject);
 var
   Query: TSQLQuery;
   logTableName: string;
@@ -139,13 +139,13 @@ begin
     SQLite_Connector.Connected := False;
     FreeAndNil(Query);
     InitDB.AllFree;
-    InitDB.DataModuleCreate(WizardForm);
+    InitDB.DataModuleCreate(DataBaseSettingsForm);
     MiniForm.LoadComboBoxItem;
     Close;
   end;
 end;
 
-procedure TWizardForm.editGridChange(Sender: TObject);
+procedure TDataBaseSettingsForm.editGridChange(Sender: TObject);
 var
   lat, lon: currency;
 begin
@@ -162,7 +162,7 @@ begin
   end;
 end;
 
-procedure TWizardForm.FormShow(Sender: TObject);
+procedure TDataBaseSettingsForm.FormShow(Sender: TObject);
 begin
   if Length(DBRecord.SQLitePATH) > 9 then
     SQLitePATH := DBRecord.SQLitePATH
@@ -174,7 +174,7 @@ begin
     cbUseExDatabase.Checked := True;
 end;
 
-procedure TWizardForm.sbOpenDialogClick(Sender: TObject);
+procedure TDataBaseSettingsForm.sbOpenDialogClick(Sender: TObject);
 begin
   editDiscription.Clear;
   editCallsign.Clear;
@@ -213,7 +213,7 @@ begin
   end;
 end;
 
-function TWizardForm.CheckEmptyDB: boolean;
+function TDataBaseSettingsForm.CheckEmptyDB: boolean;
 var
   Query: TSQLQuery;
 begin

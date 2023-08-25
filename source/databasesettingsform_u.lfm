@@ -1,7 +1,7 @@
-object WizardForm: TWizardForm
-  Left = 547
+object DataBaseSettingsForm: TDataBaseSettingsForm
+  Left = 1230
   Height = 320
-  Top = 326
+  Top = 277
   Width = 560
   Caption = 'DataBase Settings'
   ClientHeight = 320

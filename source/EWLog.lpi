@@ -27,7 +27,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
-      <BuildNr Value="928"/>
+      <BuildNr Value="929"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -784,12 +784,11 @@
         <UnitName Value="LoTWservice_u"/>
       </Unit96>
       <Unit97>
-        <Filename Value="wizardform_u.pas"/>
+        <Filename Value="databasesettingsform_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="WizardForm"/>
+        <ComponentName Value="DataBaseSettingsForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="wizardForm_u"/>
       </Unit97>
     </Units>
   </ProjectOptions>

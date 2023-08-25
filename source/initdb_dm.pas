@@ -92,7 +92,7 @@ var
 
 implementation
 
-uses MainFuncDM, wizardForm_u, ConfigForm_U, dmFunc_U, dmmigrate_u;
+uses MainFuncDM, databasesettingsform_u, ConfigForm_U, dmFunc_U, dmmigrate_u;
 
 {$R *.lfm}
 
@@ -123,7 +123,7 @@ var
 {$ENDIF WINDOWS}
 begin
   ParamData := GetParam;
-  if Sender <> WizardForm then
+  if Sender <> DataBaseSettingsForm then
   begin
     if not ParamData.portable then begin
       if FileExists(ExtractFilePath(ParamStr(0))+'portable') then

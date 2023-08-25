@@ -362,7 +362,7 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   serverDM_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
-  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u, ServiceEqslForm_u, ServiceLoTWForm_u, wizardForm_u;
+  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u, ServiceEqslForm_u, ServiceLoTWForm_u, databasesettingsform_u;
 
 {$R *.lfm}
 
@@ -764,7 +764,7 @@ begin
     begin
       if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-        WizardForm.Show;
+        DataBaseSettingsForm.Show;
     end;
 
     SwitchForm;
@@ -1220,7 +1220,7 @@ end;
 
 procedure TMiniForm.MenuItem91Click(Sender: TObject);
 begin
-  WizardForm.Show;
+  DataBaseSettingsForm.Show;
 end;
 
 procedure TMiniForm.MenuItem92Click(Sender: TObject);

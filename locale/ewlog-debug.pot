@@ -1211,11 +1211,6 @@ msgctxt "tconfigform.bttcidefault.caption"
 msgid "Set Radio Default"
 msgstr ""
 
-#: tconfigform.button3.caption
-msgctxt "tconfigform.button3.caption"
-msgid "Check connection"
-msgstr ""
-
 #: tconfigform.button4.caption
 msgctxt "tconfigform.button4.caption"
 msgid "Check for Updates"
@@ -1512,10 +1507,6 @@ msgctxt "tconfigform.gbcwtype.caption"
 msgid "CWType (Windows only)"
 msgstr ""
 
-#: tconfigform.gbdefaultdb.caption
-msgid "Default DB"
-msgstr ""
-
 #: tconfigform.gbgridscolor.caption
 msgid "Grids Color"
 msgstr ""
@@ -1533,20 +1524,12 @@ msgstr ""
 msgid "LoTW Settings"
 msgstr ""
 
-#: tconfigform.gbmysql.caption
-msgid "MySQL"
-msgstr ""
-
 #: tconfigform.gbqrzcom.caption
 msgid "QRZ.COM XML API"
 msgstr ""
 
 #: tconfigform.gbqrzru.caption
 msgid "QRZ.RU XML API"
-msgstr ""
-
-#: tconfigform.gbsqlite.caption
-msgid "SQLite"
 msgstr ""
 
 #: tconfigform.gbtelnet.caption
@@ -1596,11 +1579,6 @@ msgctxt "tconfigform.label19.caption"
 msgid "Password"
 msgstr ""
 
-#: tconfigform.label2.caption
-msgctxt "tconfigform.label2.caption"
-msgid "Server"
-msgstr ""
-
 #: tconfigform.label20.caption
 msgid "to QSL Info"
 msgstr ""
@@ -1625,30 +1603,8 @@ msgctxt "tconfigform.label26.caption"
 msgid "Password"
 msgstr ""
 
-#: tconfigform.label3.caption
-msgctxt "tconfigform.label3.caption"
-msgid "Port"
-msgstr ""
-
-#: tconfigform.label4.caption
-msgctxt "tconfigform.label4.caption"
-msgid "Login"
-msgstr ""
-
-#: tconfigform.label5.caption
-msgid "Pasword"
-msgstr ""
-
-#: tconfigform.label6.caption
-msgid "Base Name"
-msgstr ""
-
 #: tconfigform.label7.caption
 msgid "Displays columns"
-msgstr ""
-
-#: tconfigform.label8.caption
-msgid "Base"
 msgstr ""
 
 #: tconfigform.label9.caption
@@ -1736,6 +1692,10 @@ msgstr ""
 
 #: tconfigform.lbgetreference.caption
 msgid "Key get data from Online Reference"
+msgstr ""
+
+#: tconfigform.lbhamlibnotfound.caption
+msgid "rLibHamLibNotFound"
 msgstr ""
 
 #: tconfigform.lbkeyexport.caption
@@ -1899,15 +1859,6 @@ msgstr ""
 msgid "Grids"
 msgstr ""
 
-#: tconfigform.radiobutton1.caption
-msgctxt "tconfigform.radiobutton1.caption"
-msgid "Use MySQL"
-msgstr ""
-
-#: tconfigform.radiobutton2.caption
-msgid "Use SQLite "
-msgstr ""
-
 #: tconfigform.tcolorandgrids.caption
 msgid "Colors and Grids"
 msgstr ""
@@ -1918,10 +1869,6 @@ msgstr ""
 
 #: tconfigform.tsbackup.caption
 msgid "Backup"
-msgstr ""
-
-#: tconfigform.tsbase.caption
-msgid "DataBase"
 msgstr ""
 
 #: tconfigform.tscat.caption
@@ -2261,6 +2208,106 @@ msgstr ""
 
 #: tcwtypeform.lbspeed.caption
 msgid "CW Speed"
+msgstr ""
+
+#: tdatabasesettingsform.btcancel.caption
+msgctxt "tdatabasesettingsform.btcancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tdatabasesettingsform.btok.caption
+msgctxt "tdatabasesettingsform.btok.caption"
+msgid "OK"
+msgstr ""
+
+#: tdatabasesettingsform.caption
+msgctxt "tdatabasesettingsform.caption"
+msgid "DataBase Settings"
+msgstr ""
+
+#: tdatabasesettingsform.cbuseexdatabase.caption
+msgctxt "tdatabasesettingsform.cbuseexdatabase.caption"
+msgid "Use an existing SQLite database"
+msgstr ""
+
+#: tdatabasesettingsform.editqslinfo.text
+msgctxt "tdatabasesettingsform.editqslinfo.text"
+msgid "TNX for QSO! 73!"
+msgstr ""
+
+#: tdatabasesettingsform.gbdatabase.caption
+msgctxt "tdatabasesettingsform.gbdatabase.caption"
+msgid "Database Settings"
+msgstr ""
+
+#: tdatabasesettingsform.gbmainsettings.caption
+msgctxt "tdatabasesettingsform.gbmainsettings.caption"
+msgid "Main HAM Log settings"
+msgstr ""
+
+#: tdatabasesettingsform.lbcallsign.caption
+msgctxt "tdatabasesettingsform.lbcallsign.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tdatabasesettingsform.lbcq.caption
+msgctxt "tdatabasesettingsform.lbcq.caption"
+msgid "CQ"
+msgstr ""
+
+#: tdatabasesettingsform.lbdiscription.caption
+msgctxt "tdatabasesettingsform.lbdiscription.caption"
+msgid "Discription"
+msgstr ""
+
+#: tdatabasesettingsform.lbgrid.caption
+msgctxt "tdatabasesettingsform.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: tdatabasesettingsform.lbitu.caption
+msgctxt "tdatabasesettingsform.lbitu.caption"
+msgid "ITU"
+msgstr ""
+
+#: tdatabasesettingsform.lblatitude.caption
+msgctxt "tdatabasesettingsform.lblatitude.caption"
+msgid "Latitude"
+msgstr ""
+
+#: tdatabasesettingsform.lblongitude.caption
+msgctxt "tdatabasesettingsform.lblongitude.caption"
+msgid "Longitude"
+msgstr ""
+
+#: tdatabasesettingsform.lbname.caption
+msgctxt "tdatabasesettingsform.lbname.caption"
+msgid "Name"
+msgstr ""
+
+#: tdatabasesettingsform.lbqslinfo.caption
+msgctxt "tdatabasesettingsform.lbqslinfo.caption"
+msgid "QSL Info"
+msgstr ""
+
+#: tdatabasesettingsform.lbqth.caption
+msgctxt "tdatabasesettingsform.lbqth.caption"
+msgid "QTH"
+msgstr ""
+
+#: tdatabasesettingsform.lbsqlpath.caption
+msgctxt "tdatabasesettingsform.lbsqlpath.caption"
+msgid "SQLite database path"
+msgstr ""
+
+#: tdatabasesettingsform.opendialog1.title
+msgctxt "tdatabasesettingsform.opendialog1.title"
+msgid "Open DataBase"
+msgstr ""
+
+#: tdatabasesettingsform.savedialog1.title
+msgctxt "tdatabasesettingsform.savedialog1.title"
+msgid "Save DataBase"
 msgstr ""
 
 #: tdxclusterform.caption
@@ -5496,103 +5543,6 @@ msgstr ""
 #: tviewphoto.caption
 msgctxt "tviewphoto.caption"
 msgid "Photo"
-msgstr ""
-
-#: twizardform.btcancel.caption
-msgctxt "twizardform.btcancel.caption"
-msgid "Cancel"
-msgstr ""
-
-#: twizardform.btok.caption
-msgctxt "twizardform.btok.caption"
-msgid "OK"
-msgstr ""
-
-#: twizardform.caption
-msgctxt "twizardform.caption"
-msgid "DataBase Settings"
-msgstr ""
-
-#: twizardform.cbuseexdatabase.caption
-msgctxt "twizardform.cbuseexdatabase.caption"
-msgid "Use an existing SQLite database"
-msgstr ""
-
-#: twizardform.editqslinfo.text
-msgctxt "twizardform.editqslinfo.text"
-msgid "TNX for QSO! 73!"
-msgstr ""
-
-#: twizardform.gbdatabase.caption
-msgid "Database Settings"
-msgstr ""
-
-#: twizardform.gbmainsettings.caption
-msgid "Main HAM Log settings"
-msgstr ""
-
-#: twizardform.lbcallsign.caption
-msgctxt "twizardform.lbcallsign.caption"
-msgid "Callsign"
-msgstr ""
-
-#: twizardform.lbcq.caption
-msgctxt "twizardform.lbcq.caption"
-msgid "CQ"
-msgstr ""
-
-#: twizardform.lbdiscription.caption
-msgid "Discription"
-msgstr ""
-
-#: twizardform.lbgrid.caption
-msgctxt "twizardform.lbgrid.caption"
-msgid "Grid"
-msgstr ""
-
-#: twizardform.lbitu.caption
-msgctxt "twizardform.lbitu.caption"
-msgid "ITU"
-msgstr ""
-
-#: twizardform.lblatitude.caption
-msgctxt "twizardform.lblatitude.caption"
-msgid "Latitude"
-msgstr ""
-
-#: twizardform.lblongitude.caption
-msgctxt "twizardform.lblongitude.caption"
-msgid "Longitude"
-msgstr ""
-
-#: twizardform.lbname.caption
-msgctxt "twizardform.lbname.caption"
-msgid "Name"
-msgstr ""
-
-#: twizardform.lbqslinfo.caption
-msgctxt "twizardform.lbqslinfo.caption"
-msgid "QSL Info"
-msgstr ""
-
-#: twizardform.lbqth.caption
-msgctxt "twizardform.lbqth.caption"
-msgid "QTH"
-msgstr ""
-
-#: twizardform.lbsqlpath.caption
-msgctxt "twizardform.lbsqlpath.caption"
-msgid "SQLite database path"
-msgstr ""
-
-#: twizardform.opendialog1.title
-msgctxt "twizardform.opendialog1.title"
-msgid "Open DataBase"
-msgstr ""
-
-#: twizardform.savedialog1.title
-msgctxt "twizardform.savedialog1.title"
-msgid "Save DataBase"
 msgstr ""
 
 #: twsjt_udp_form.caption

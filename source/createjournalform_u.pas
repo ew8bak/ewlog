@@ -62,7 +62,7 @@ var
 implementation
 
 uses miniform_u, dmFunc_U, ResourceStr, SetupSQLquery,
-  InitDB_dm, MainFuncDM, wizardForm_u;
+  InitDB_dm, MainFuncDM, databasesettingsform_u;
 
   {$R *.lfm}
 
@@ -165,7 +165,7 @@ begin
     else
     if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      WizardForm.Show;
+      DataBaseSettingsForm.Show;
   end;
 end;
 
