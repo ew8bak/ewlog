@@ -94,16 +94,8 @@ begin
   try
     needUploadQuery.Close;
     CountQuery := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-    begin
-      needUploadQuery.DataBase := InitDB.MySQLConnection;
-      CountQuery.DataBase := InitDB.MySQLConnection;
-    end
-    else
-    begin
       needUploadQuery.DataBase := InitDB.SQLiteConnection;
       CountQuery.DataBase := InitDB.SQLiteConnection;
-    end;
     CountQuery.SQL.Text := 'SELECT COUNT(*) FROM ' + LBRecord.LogTable +
       ' WHERE EQSL_QSL_SENT = ''N''';
     CountQuery.Open;
@@ -127,12 +119,6 @@ begin
   needUploadQuery.SQL.Text :=
     'SELECT CallSign, datetime(QSODateTime, ''unixepoch'') AS QSODateTime, QSOBand, QSOMode FROM '
     + LBRecord.LogTable + ' WHERE EQSL_QSL_SENT = ''N'' ORDER BY UnUsedIndex DESC';
-
-  if DBRecord.CurrentDB = 'MySQL' then
-  needUploadQuery.SQL.Text :=
-    'SELECT CallSign, QSODateTime, QSOBand, QSOMode FROM '
-    + LBRecord.LogTable + ' WHERE EQSL_QSL_SENT = ''N'' ORDER BY UnUsedIndex DESC';
-
 
   needUploadQuery.Open;
 
@@ -182,9 +168,6 @@ begin
     try
       Query := TSQLQuery.Create(nil);
 
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.DataBase := InitDB.MySQLConnection
-      else
         Query.DataBase := InitDB.SQLiteConnection;
 
       for i := 0 to ListQSONumberToUpload.Count - 1 do
@@ -250,9 +233,6 @@ var
 begin
   try
     MarkQuery := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      MarkQuery.DataBase := InitDB.MySQLConnection
-    else
       MarkQuery.DataBase := InitDB.SQLiteConnection;
     MarkQuery.SQL.Text := 'UPDATE ' + LBRecord.LogTable + ' SET EQSL_QSL_SENT = ''Y''';
     MarkQuery.ExecSQL;
@@ -367,9 +347,6 @@ begin
   try
     Stream := TMemoryStream.Create;
     Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
       Query.DataBase := InitDB.SQLiteConnection;
     AssignFile(f, FPath);
     Reset(f);
@@ -459,17 +436,6 @@ begin
             SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET QSOMode = ' +
               dmFunc.Q(MODE);
 
-          if DBRecord.CurrentDB = 'MySQL' then
-            QueryTXT := SQLString + 'QSL_RCVD_VIA = ' +
-              dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
-              'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +
-              dmFunc.Q(RST_SENT) + 'PROP_MODE = ' + dmFunc.Q(PROP_MODE) +
-              'QSLReceQSLcc = ' + QuotedStr(paramQSL_SENT) +
-              ' WHERE CallSign = ' + QuotedStr(CALL) + ' AND QSODate = ' +
-              QuotedStr(QSO_DATE) + ' AND DigiBand = ' + digiBand +
-              ' AND (QSOMode = ' + QuotedStr(MODE) + ' OR QSOSubMode = ' +
-              QuotedStr(SUBMODE) + ')'
-          else
             QueryTXT := SQLString + 'QSL_RCVD_VIA = ' +
               dmFunc.Q(QSL_SENT_VIA) + 'Grid = ' + dmFunc.Q(GRIDSQUARE) +
               'QSLInfo = ' + dmFunc.Q(QSLMSG) + 'QSOReportRecived = ' +

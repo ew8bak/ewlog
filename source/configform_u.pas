@@ -19,7 +19,7 @@ uses
   StdCtrls, EditBtn, ComCtrls, LazUTF8, LazFileUtils,
   ResourceStr, const_u, ImbedCallBookCheckRec, LCLProc, ColorBox,
   Spin, Buttons, ExtCtrls, dmCat, serverDM_u, CWDaemonDM_u, IdStack,
-  DownloadFilesThread, process;
+  DownloadFilesThread, process, SQLDB, SQLite3Conn;
 
 resourcestring
   rMySQLConnectTrue = 'Connection established successfully';
@@ -51,7 +51,6 @@ type
     BtCancel: TButton;
     BtCATDeafult: TButton;
     BtTCIDefault: TButton;
-    Button3: TButton;
     Button4: TButton;
     btApplyColor: TButton;
     btDefaultColor: TButton;
@@ -121,7 +120,6 @@ type
     CBViewFreq: TComboBox;
     CBRigNumberHL: TComboBox;
     DEBackupPath: TDirectoryEdit;
-    Edit1: TEdit;
     Edit10: TEdit;
     EditCloudLogStationId: TEdit;
     EditQRZComLogin: TEdit;
@@ -153,14 +151,9 @@ type
     EditReferenceKey: TEdit;
     EditClearKey: TEdit;
     EditSaveKey: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
     EditQRZruLogin: TEdit;
     EditQRZruPassword: TEdit;
     EditQRZcomPassword: TEdit;
-    FileNameEdit1: TFileNameEdit;
     FNLoTWEdit: TFileNameEdit;
     FNPathRigctld: TFileNameEdit;
     gbIntRef: TGroupBox;
@@ -169,9 +162,6 @@ type
     gbQRZCOM: TGroupBox;
     gbCloudLog: TGroupBox;
     gbHAMQTH: TGroupBox;
-    gbMySQL: TGroupBox;
-    gbSQLite: TGroupBox;
-    gbDefaultDB: TGroupBox;
     gbGridsColor: TGroupBox;
     GBTelnetEdit: TGroupBox;
     GBCWDaemon: TGroupBox;
@@ -179,6 +169,7 @@ type
     GBCWType: TGroupBox;
     GBCWGeneral: TGroupBox;
     Label1: TLabel;
+    lbHamLibNotFound: TLabel;
     LBStationID: TLabel;
     Label9: TLabel;
     LBLoTWWarning: TLabel;
@@ -240,17 +231,11 @@ type
     Label17: TLabel;
     Label18: TLabel;
     Label19: TLabel;
-    Label2: TLabel;
     Label20: TLabel;
     Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
     Label26: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label8: TLabel;
     LBWOLCall: TListBox;
     LVSettings: TListView;
     LVTelnet: TListView;
@@ -260,8 +245,6 @@ type
     PControl2: TPageControl;
     PControl: TPageControl;
     ProgressBar1: TProgressBar;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
     PColors: TTabSheet;
     PGrids: TTabSheet;
     SBTelnetDone: TSpeedButton;
@@ -282,7 +265,6 @@ type
     TSIntRef: TTabSheet;
     TSOtherSettings: TTabSheet;
     TSRefOnline: TTabSheet;
-    TSBase: TTabSheet;
     procedure btApplyColorClick(Sender: TObject);
     procedure BtCATDeafultClick(Sender: TObject);
     procedure btDefaultColorClick(Sender: TObject);
@@ -371,9 +353,9 @@ uses
   miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u,
   TRXForm_U, dmTCI_u;
 
-{$R *.lfm}
+  {$R *.lfm}
 
-{ TConfigForm }
+  { TConfigForm }
 
 procedure TConfigForm.DataFromDownloadThread(status: TdataThread);
 var
@@ -491,17 +473,19 @@ end;
 
 procedure TConfigForm.CBCWDaemonChange(Sender: TObject);
 begin
-    if CBCWDaemon.Checked then begin
+  if CBCWDaemon.Checked then
+  begin
     CBcwOverTCI.Checked := False;
-    IniSet.CWManager:='CWDaemon';
+    IniSet.CWManager := 'CWDaemon';
   end;
 end;
 
 procedure TConfigForm.CBcwOverTCIChange(Sender: TObject);
 begin
-  if CBcwOverTCI.Checked then begin
+  if CBcwOverTCI.Checked then
+  begin
     CBCWDaemon.Checked := False;
-    IniSet.CWManager:='CWTCI';
+    IniSet.CWManager := 'CWTCI';
   end;
 end;
 
@@ -527,12 +511,6 @@ end;
 
 procedure TConfigForm.SaveINI;
 begin
-  INIFile.WriteString('DataBases', 'HostAddr', Edit1.Text);
-  INIFile.WriteString('DataBases', 'Port', Edit2.Text);
-  INIFile.WriteString('DataBases', 'LoginName', Edit3.Text);
-  INIFile.WriteString('DataBases', 'Password', Edit4.Text);
-  INIFile.WriteString('DataBases', 'DataBaseName', Edit5.Text);
-  INIFile.WriteString('DataBases', 'FileSQLite', FileNameEdit1.Text);
   INIFile.WriteString('TelnetCluster', 'Login', EditTelnetLogin.Text);
   INIFile.WriteString('TelnetCluster', 'Password', EditTelnetPassword.Text);
   INIFile.WriteBool('TelnetCluster', 'AutoStart', CBTelnetStartUp.Checked);
@@ -548,21 +526,9 @@ begin
   INIFile.WriteString('SetLog', 'HAMQTH_Login', EditHamQTHLogin.Text);
   INIFile.WriteString('SetLog', 'HAMQTH_Pass', EditHamQTHPassword.Text);
   INIFile.WriteBool('SetLog', 'ShowBand', CheckBox2.Checked);
-  if RadioButton1.Checked then
-    INIFile.WriteString('DataBases', 'DefaultDataBase', 'MySQL')
-  else
-    INIFile.WriteString('DataBases', 'DefaultDataBase', 'SQLite');
-
   INIFile.WriteBool('SetLog', 'PrintPrev', CheckBox5.Checked);
   INIFile.WriteBool('SetLog', 'AutoCloudLog', CheckBox8.Checked);
   INIFile.WriteBool('SetLog', 'FreqToCloudLog', CheckBox9.Checked);
-
-  DBRecord.MySQLDBName := Edit5.Text;
-  DBRecord.MySQLHost := Edit1.Text;
-  DBRecord.MySQLPort := StrToInt(Edit2.Text);
-  DBRecord.MySQLUser := Edit3.Text;
-  DBRecord.MySQLPass := Edit4.Text;
-  DBRecord.SQLitePATH := FileNameEdit1.Text;
 
   INIFile.WriteString('SetBackup', 'PathBackupFiles', DEBackupPath.Directory);
   INIFile.WriteBool('SetBackup', 'BackupDB', cbBackupDB.Checked);
@@ -607,14 +573,6 @@ var
 begin
   FormatSettings.TimeSeparator := ':';
   FormatSettings.ShortTimeFormat := 'hh:mm';
-  Edit1.Text := INIFile.ReadString('DataBases', 'HostAddr', '');
-  if INIFile.ReadString('DataBases', 'Port', '') = '' then
-    Edit2.Text := '3306'
-  else
-    Edit2.Text := INIFile.ReadString('DataBases', 'Port', '');
-  Edit3.Text := INIFile.ReadString('DataBases', 'LoginName', '');
-  Edit4.Text := INIFile.ReadString('DataBases', 'Password', '');
-  Edit5.Text := INIFile.ReadString('DataBases', 'DataBaseName', '');
   EditTelnetLogin.Text := IniSet.Cluster_Login;
   EditTelnetPassword.Text := IniSet.Cluster_Pass;
 
@@ -623,11 +581,6 @@ begin
   EditCloudLogStationId.Text := INIFile.ReadString('SetLog', 'CloudLogStationId', '');
   CheckBox8.Checked := INIFile.ReadBool('SetLog', 'AutoCloudLog', False);
   CheckBox9.Checked := INIFile.ReadBool('SetLog', 'FreqToCloudLog', False);
-  FileNameEdit1.Text := INIFile.ReadString('DataBases', 'FileSQLite', '');
-  if INIFile.ReadString('DataBases', 'DefaultDataBase', '') = 'MySQL' then
-    RadioButton1.Checked := True
-  else
-    RadioButton2.Checked := True;
 
   CheckBox1.Checked := INIFile.ReadBool('SetLog', 'IntCallBook', False);
   CheckBox2.Checked := INIFile.ReadBool('SetLog', 'ShowBand', False);
@@ -697,26 +650,7 @@ end;
 
 procedure TConfigForm.Button3Click(Sender: TObject);
 begin
-  try
-    if (Edit1.Text <> '') and (Edit2.Text <> '') and (Edit3.Text <> '') and
-      (Edit4.Text <> '') and (Edit5.Text <> '') then
-    begin
-      InitDB.MySQLConnection.HostName := Edit1.Text;
-      InitDB.MySQLConnection.Port := StrToInt(Edit2.Text);
-      InitDB.MySQLConnection.UserName := Edit3.Text;
-      InitDB.MySQLConnection.Password := Edit4.Text;
-      InitDB.MySQLConnection.DatabaseName := Edit5.Text;
-      InitDB.MySQLConnection.Connected := False;
-      InitDB.MySQLConnection.Connected := True;
-      if InitDB.MySQLConnection.Connected then
-        ShowMessage(rMySQLConnectTrue);
-    end
-    else
-      ShowMessage(rCheckNotEdit);
-  except
-    on E: Exception do
-      ShowMessage(E.Message);
-  end;
+
 end;
 
 procedure TConfigForm.CBRigNumberHLSelect(Sender: TObject);
@@ -928,6 +862,8 @@ begin
 end;
 
 procedure TConfigForm.LoadRIGSettings(RIGid: integer);
+var
+  rigStr: string;
 begin
   CBCatComPort.Items.CommaText := CATdm.GetSerialPortNames;
   FNPathRigctld.Text := IniSet.rigctldPath;
@@ -940,7 +876,14 @@ begin
   CatSettings.RigctldPath := CATdm.SearchRigctld;
   {$ENDIF}
   CBrigctldStart.Checked := IniSet.rigctldStartUp;
-  CBTransceiverModel.Items.CommaText := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
+  rigStr := CATdm.LoadRIGs(FNPathRigctld.Text, 1);
+  if rigStr = '127' then begin
+    lbHamLibNotFound.Caption:=rLibHamLibNotFound;
+    lbHamLibNotFound.Visible := True;
+  end
+  else
+    CBTransceiverModel.Items.CommaText := rigStr;
+
   CATdm.LoadCATini(RIGid);
   CBRigNumberHL.ItemIndex := RIGid - 1;
   CBCatComPort.Text := CatSettings.COMPort;
@@ -1187,7 +1130,8 @@ end;
 
 procedure TConfigForm.ReadGridColors;
 begin
-  cbTextColorGrid.Selected := INIFile.ReadInteger('GridSettings', 'TextColor', clDefault);
+  cbTextColorGrid.Selected := INIFile.ReadInteger('GridSettings',
+    'TextColor', clDefault);
   cbBackColorGrid.Selected :=
     INIFile.ReadInteger('GridSettings', 'BackColor', clDefault);
 
@@ -1333,7 +1277,7 @@ begin
   LBLoTWWarning.Visible := False;
   if Length(FNLoTWEdit.Text) < 3 then
   begin
-   {$IFDEF LINUX}
+    {$IFDEF LINUX}
     if RunCommand('/bin/bash', ['-c', 'which tqsl'], s) then
     begin
       s := StringReplace(s, #10, '', [rfReplaceAll]);
@@ -1343,8 +1287,8 @@ begin
       else
         LBLoTWWarning.Visible := True;
     end;
-   {$ENDIF}
-   {$IFDEF WINDOWS}
+    {$ENDIF}
+    {$IFDEF WINDOWS}
     Reg := TRegistry.Create;
     try
       Reg.RootKey := HKEY_LOCAL_MACHINE;
@@ -1358,7 +1302,7 @@ begin
       else
         LBLoTWWarning.Visible := True;
     end;
-   {$ENDIF}
+    {$ENDIF}
   end;
 end;
 

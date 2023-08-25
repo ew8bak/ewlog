@@ -91,17 +91,8 @@ begin
     Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
       ' WHERE ContestSession = ' + QuotedStr(ContestSession) + ' AND ' +
       ' CallSign = ' + QuotedStr(Callsign) + ' AND ';
-    if DBRecord.CurrentDB = 'SQLite' then
-    begin
       Query.DataBase := InitDB.SQLiteConnection;
       Query.SQL.Add('QSOTime > time(''now'', ''-' + TourTime + ' minutes'')');
-    end
-    else
-    begin
-      Query.DataBase := InitDB.MySQLConnection;
-      Query.SQL.Add('STR_TO_DATE(QSOTime, ''%h:%i'') > UTC_TIMESTAMP() - INTERVAL ' +
-        TourTime + ' MINUTE');
-    end;
 
     Query.Open;
     if Query.RecordCount > 0 then

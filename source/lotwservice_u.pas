@@ -243,10 +243,7 @@ begin
     Status.TaskType := 'GenerateADI';
     Status.Message := 'Create ADI file';
     Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
+    Query.DataBase := InitDB.SQLiteConnection;
 
     Query.SQL.Text := 'SELECT Loc FROM LogBookInfo WHERE LogTable = ' +
       QuotedStr(LBRecord.LogTable);

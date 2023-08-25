@@ -27,7 +27,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
-      <BuildNr Value="927"/>
+      <BuildNr Value="929"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -159,7 +159,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="99">
+    <Units Count="98">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -312,490 +312,484 @@
         <UnitName Value="AboutForm_U"/>
       </Unit22>
       <Unit23>
-        <Filename Value="setupform_u.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="SetupForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="setupForm_U"/>
-      </Unit23>
-      <Unit24>
         <Filename Value="updateform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Update_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UpdateForm_U"/>
-      </Unit24>
-      <Unit25>
+      </Unit23>
+      <Unit24>
         <Filename Value="changelog_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ChangeLog_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Changelog_Form_U"/>
-      </Unit25>
-      <Unit26>
+      </Unit24>
+      <Unit25>
         <Filename Value="earth_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Earth"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Earth_Form_U"/>
-      </Unit26>
-      <Unit27>
+      </Unit25>
+      <Unit26>
         <Filename Value="iota_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="IOTA_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="IOTA_Form_U"/>
-      </Unit27>
-      <Unit28>
+      </Unit26>
+      <Unit27>
         <Filename Value="sendtelnetspot_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SendTelnetSpot"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="sendtelnetspot_form_U"/>
-      </Unit28>
-      <Unit29>
+      </Unit27>
+      <Unit28>
         <Filename Value="clusterfilter_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ClusterFilter"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ClusterFilter_Form_U"/>
-      </Unit29>
-      <Unit30>
+      </Unit28>
+      <Unit29>
         <Filename Value="state_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="STATE_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="STATE_Form_U"/>
-      </Unit30>
-      <Unit31>
+      </Unit29>
+      <Unit30>
         <Filename Value="wsjt_udp_form_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="WSJT_UDP_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="WSJT_UDP_Form_U"/>
-      </Unit31>
-      <Unit32>
+      </Unit30>
+      <Unit31>
         <Filename Value="syndbdate_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SynDBDate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="synDBDate_u"/>
-      </Unit32>
-      <Unit33>
+      </Unit31>
+      <Unit32>
         <Filename Value="thanksform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Thanks_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ThanksForm_u"/>
-      </Unit33>
-      <Unit34>
+      </Unit32>
+      <Unit33>
         <Filename Value="filterform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="filterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filterForm_U"/>
-      </Unit34>
-      <Unit35>
+      </Unit33>
+      <Unit34>
         <Filename Value="hiddentsettings_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="hiddenSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit35>
-      <Unit36>
+      </Unit34>
+      <Unit35>
         <Filename Value="print_sticker_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PrintSticker_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit36>
-      <Unit37>
+      </Unit35>
+      <Unit36>
         <Filename Value="famm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit37>
-      <Unit38>
+      </Unit36>
+      <Unit37>
         <Filename Value="mmform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MM_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="hamqth.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit38>
       <Unit39>
-        <Filename Value="hamqth.pas"/>
+        <Filename Value="clublog.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit39>
       <Unit40>
-        <Filename Value="clublog.pas"/>
+        <Filename Value="qrzcom.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit40>
       <Unit41>
-        <Filename Value="qrzcom.pas"/>
+        <Filename Value="qso_record.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit41>
       <Unit42>
-        <Filename Value="qso_record.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit42>
-      <Unit43>
         <Filename Value="resourcestr.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ResourceStr"/>
-      </Unit43>
-      <Unit44>
+      </Unit42>
+      <Unit43>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit44>
-      <Unit45>
+      </Unit43>
+      <Unit44>
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
-      </Unit45>
-      <Unit46>
+      </Unit44>
+      <Unit45>
         <Filename Value="fldigimodem.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="flDigiModem"/>
-      </Unit46>
-      <Unit47>
+      </Unit45>
+      <Unit46>
         <Filename Value="getphotofrominternet.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetPhotoFromInternet"/>
-      </Unit47>
-      <Unit48>
+      </Unit46>
+      <Unit47>
         <Filename Value="getinfofrominternetthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="GetInfoFromInternetThread"/>
-      </Unit48>
-      <Unit49>
+      </Unit47>
+      <Unit48>
         <Filename Value="viewphoto_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="viewPhoto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="viewPhoto_U"/>
-      </Unit49>
-      <Unit50>
+      </Unit48>
+      <Unit49>
         <Filename Value="initdb_dm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="InitDB"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-      </Unit50>
-      <Unit51>
+      </Unit49>
+      <Unit50>
         <Filename Value="logbooktable_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LogBookTable_record"/>
-      </Unit51>
-      <Unit52>
+      </Unit50>
+      <Unit51>
         <Filename Value="db_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DB_record"/>
-      </Unit52>
-      <Unit53>
+      </Unit51>
+      <Unit52>
         <Filename Value="mainfuncdm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MainFunc"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
+      </Unit52>
+      <Unit53>
+        <Filename Value="prefix_record.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit53>
       <Unit54>
-        <Filename Value="prefix_record.pas"/>
+        <Filename Value="inifile_record.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit54>
       <Unit55>
-        <Filename Value="inifile_record.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit55>
-      <Unit56>
         <Filename Value="selectqso_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="selectQSO_record"/>
-      </Unit56>
-      <Unit57>
+      </Unit55>
+      <Unit56>
         <Filename Value="foundqso_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="foundQSO_record"/>
+      </Unit56>
+      <Unit57>
+        <Filename Value="cloudlog.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit57>
       <Unit58>
-        <Filename Value="cloudlog.pas"/>
+        <Filename Value="init_record.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit58>
       <Unit59>
-        <Filename Value="init_record.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit59>
-      <Unit60>
         <Filename Value="wsjtutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="WsjtUtils"/>
+      </Unit59>
+      <Unit60>
+        <Filename Value="digi_record.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit60>
       <Unit61>
-        <Filename Value="digi_record.pas"/>
+        <Filename Value="inform_record.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit61>
       <Unit62>
-        <Filename Value="inform_record.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit62>
-      <Unit63>
         <Filename Value="infodm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="InfoDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="infoDM_U"/>
-      </Unit63>
-      <Unit64>
+      </Unit62>
+      <Unit63>
         <Filename Value="getsession.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="getSession"/>
-      </Unit64>
-      <Unit65>
+      </Unit63>
+      <Unit64>
         <Filename Value="miniform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit65>
-      <Unit66>
+      </Unit64>
+      <Unit65>
         <Filename Value="imbedcallbookcheckrec.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImbedCallBookCheckRec"/>
-      </Unit66>
-      <Unit67>
+      </Unit65>
+      <Unit66>
         <Filename Value="serverdm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServerDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="serverDM_u"/>
-      </Unit67>
-      <Unit68>
+      </Unit66>
+      <Unit67>
         <Filename Value="telnetclientthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="telnetClientThread"/>
-      </Unit68>
-      <Unit69>
+      </Unit67>
+      <Unit68>
         <Filename Value="dxclusterform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dxClusterForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit69>
-      <Unit70>
+      </Unit68>
+      <Unit69>
         <Filename Value="gridsform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="GridsForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
-      </Unit70>
-      <Unit71>
+      </Unit69>
+      <Unit70>
         <Filename Value="mapform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MapForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MapForm_u"/>
-      </Unit71>
-      <Unit72>
-        <Filename Value="copytablethread.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="CopyTableThread"/>
-      </Unit72>
-      <Unit73>
+      </Unit70>
+      <Unit71>
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
-      </Unit73>
-      <Unit74>
+      </Unit71>
+      <Unit72>
         <Filename Value="exportadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportADIThread"/>
-      </Unit74>
-      <Unit75>
+      </Unit72>
+      <Unit73>
         <Filename Value="mobilesyncthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MobileSyncThread"/>
-      </Unit75>
-      <Unit76>
+      </Unit73>
+      <Unit74>
         <Filename Value="cloudlogcat.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CloudLogCAT"/>
-      </Unit76>
-      <Unit77>
+      </Unit74>
+      <Unit75>
         <Filename Value="progressform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ProgressBackupForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="progressForm_u"/>
-      </Unit77>
-      <Unit78>
+      </Unit75>
+      <Unit76>
         <Filename Value="dmcat.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CATdm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmCat"/>
-      </Unit78>
-      <Unit79>
+      </Unit76>
+      <Unit77>
         <Filename Value="contestform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ContestForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="contestForm_u"/>
-      </Unit79>
-      <Unit80>
+      </Unit77>
+      <Unit78>
         <Filename Value="dmcontest_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmContest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmContest_u"/>
-      </Unit80>
-      <Unit81>
+      </Unit78>
+      <Unit79>
         <Filename Value="fms_record.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="FMS_record"/>
-      </Unit81>
-      <Unit82>
+      </Unit79>
+      <Unit80>
         <Filename Value="dmmigrate_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmMigrate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-      </Unit82>
-      <Unit83>
+      </Unit80>
+      <Unit81>
         <Filename Value="exportsotathread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportSOTAThread"/>
-      </Unit83>
-      <Unit84>
+      </Unit81>
+      <Unit82>
         <Filename Value="cwdaemondm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWDaemonDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWDaemonDM_u"/>
-      </Unit84>
-      <Unit85>
+      </Unit82>
+      <Unit83>
         <Filename Value="cwkeysform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWKeysForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWKeysForm_u"/>
-      </Unit85>
-      <Unit86>
+      </Unit83>
+      <Unit84>
         <Filename Value="macroeditorform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MacroEditorForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MacroEditorForm_u"/>
-      </Unit86>
-      <Unit87>
+      </Unit84>
+      <Unit85>
         <Filename Value="cwkeysdm_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWKeysDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="CWKeysDM_u"/>
-      </Unit87>
-      <Unit88>
+      </Unit85>
+      <Unit86>
         <Filename Value="cwtypeform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CWTypeForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="CWTypeForm_u"/>
-      </Unit88>
-      <Unit89>
+      </Unit86>
+      <Unit87>
         <Filename Value="dmtci_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmTCI"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmTCI_u"/>
-      </Unit89>
-      <Unit90>
+      </Unit87>
+      <Unit88>
         <Filename Value="streamadapter_u.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="StreamAdapter_u"/>
-      </Unit90>
-      <Unit91>
+      </Unit88>
+      <Unit89>
         <Filename Value="downloadfilesthread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DownloadFilesThread"/>
-      </Unit91>
-      <Unit92>
+      </Unit89>
+      <Unit90>
         <Filename Value="dmhamlib_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmHamLib"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmHamLib_u"/>
-      </Unit92>
-      <Unit93>
+      </Unit90>
+      <Unit91>
         <Filename Value="satform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SATForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="satForm_u"/>
-      </Unit93>
-      <Unit94>
+      </Unit91>
+      <Unit92>
         <Filename Value="sateditorform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="SATEditorForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SatEditorForm_u"/>
-      </Unit94>
-      <Unit95>
+      </Unit92>
+      <Unit93>
         <Filename Value="serviceeqslform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServiceEqslForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceEqslForm_u"/>
-      </Unit95>
-      <Unit96>
+      </Unit93>
+      <Unit94>
         <Filename Value="eqslservice_u.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="eQSLservice_u"/>
-      </Unit96>
-      <Unit97>
+      </Unit94>
+      <Unit95>
         <Filename Value="servicelotwform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ServiceLoTWForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ServiceLoTWForm_u"/>
-      </Unit97>
-      <Unit98>
+      </Unit95>
+      <Unit96>
         <Filename Value="lotwservice_u.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LoTWservice_u"/>
-      </Unit98>
+      </Unit96>
+      <Unit97>
+        <Filename Value="databasesettingsform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DataBaseSettingsForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit97>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

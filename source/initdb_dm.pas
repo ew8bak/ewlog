@@ -14,7 +14,7 @@ unit InitDB_dm;
 interface
 
 uses
-  Classes, SysUtils, SQLite3Conn, SQLDB, mysql57conn, Dialogs, LogBookTable_record,
+  Classes, SysUtils, SQLite3Conn, SQLDB, Dialogs, LogBookTable_record,
   DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec,
   Forms, LCLType, UniqueInstance;
 
@@ -30,7 +30,6 @@ type
 
   TInitDB = class(TDataModule)
     ImbeddedCallBookConnection: TSQLite3Connection;
-    MySQLConnection: TMySQL57Connection;
     SQLiteConnection: TSQLite3Connection;
     DefTransaction: TSQLTransaction;
     DefLogBookQuery: TSQLQuery;
@@ -52,12 +51,11 @@ type
     function LogbookDBInit: boolean;
     function ImbeddedCallBookInit(Use: boolean): boolean;
     function SelectLogbookTable(LogTable: string): boolean;
-    function GetLogBookTable(Callsign, typeDataBase: string): boolean;
+    function GetLogBookTable(Callsign: string): boolean;
     function InitPrefix: boolean;
     procedure AllFree;
     function InitDBINI: boolean;
     procedure CheckSQLVersion;
-    function SwitchDB: boolean;
     function GetParam: TParamData;
 
   end;
@@ -94,7 +92,7 @@ var
 
 implementation
 
-uses MainFuncDM, setupForm_U, ConfigForm_U, dmFunc_U, dmmigrate_u;
+uses MainFuncDM, databasesettingsform_u, ConfigForm_U, dmFunc_U, dmmigrate_u;
 
 {$R *.lfm}
 
@@ -124,9 +122,8 @@ var
   tempProfileDir, tempUserDir: string;
 {$ENDIF WINDOWS}
 begin
-  //sqlite3dyn.SQLiteDefaultLibrary:='libsqlite3.so';
   ParamData := GetParam;
-  if Sender <> SetupForm then
+  if Sender <> DataBaseSettingsForm then
   begin
     if not ParamData.portable then begin
       if FileExists(ExtractFilePath(ParamStr(0))+'portable') then
@@ -150,8 +147,13 @@ begin
     end
     else
       FilePATH := ExtractFilePath(ParamStr(0));
+    {$IFDEF WINDOWS}
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
+    {$ELSE}
+     if dmFunc.CheckProcess('rigctld') then
+      dmFunc.CloseProcess('rigctld');
+    {$ENDIF WINDOWS}
    {$ENDIF UNIX}
     if not DirectoryExists(FilePATH) then
       CreateDir(FilePATH);
@@ -177,10 +179,8 @@ begin
     end;
   end
   else
-  begin
     SQLiteConnection.Connected := False;
-    MySQLConnection.Connected := False;
-  end;
+
   InitRecord.ServiceDBInit := False;
   InitRecord.InitDBINI := False;
   InitRecord.LogbookDBInit := False;
@@ -199,7 +199,7 @@ begin
     if (not LogbookDBInit) and (DBRecord.InitDB = 'YES') then
       ShowMessage('Logbook database ERROR')
     else
-    if (not GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
+    if (not GetLogBookTable(DBRecord.DefCall)) and
       (DBRecord.InitDB = 'YES') then
       ShowMessage('LogBook Table ERROR')
     else
@@ -208,92 +208,6 @@ begin
   CheckSQLVersion;
   MainFunc.LoadINIsettings;
   ImbeddedCallBookInit(IniSet.UseIntCallBook);
-end;
-
-function TInitDB.SwitchDB: boolean;
-begin
-  Result := False;
-  if (Length(DBRecord.MySQLDBName) <> 0) and (Length(DBRecord.SQLitePATH) <> 0) then
-  begin
-    try
-      try
-        if DBRecord.CurrentDB = 'MySQL' then
-        begin
-          MySQLConnection.Connected := False;
-          DefTransaction.DataBase := SQLiteConnection;
-          FindQSOQuery.DataBase := SQLiteConnection;
-          SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
-          SQLiteConnection.Connected := True;
-          if SQLiteConnection.Connected then
-          begin
-            DBRecord.CurrentDB := 'SQLite';
-            DefLogBookQuery.DataBase := SQLiteConnection;
-            Result := True;
-            InitRecord.LogbookDBInit := True;
-          end;
-          Exit;
-        end;
-
-        if DBRecord.CurrentDB = 'SQLite' then
-        begin
-          SQLiteConnection.Connected := False;
-          DefTransaction.DataBase := MySQLConnection;
-          MySQLConnection.HostName := DBRecord.MySQLHost;
-          MySQLConnection.Port := DBRecord.MySQLPort;
-          MySQLConnection.UserName := DBRecord.MySQLUser;
-          MySQLConnection.Password := DBRecord.MySQLPass;
-          MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
-          MySQLConnection.Connected := True;
-          if MySQLConnection.Connected then
-          begin
-            DBRecord.CurrentDB := 'MySQL';
-            DefLogBookQuery.DataBase := MySQLConnection;
-            FindQSOQuery.DataBase := MySQLConnection;
-            Result := True;
-            InitRecord.LogbookDBInit := True;
-          end;
-          Exit;
-        end;
-
-      finally
-        if Result then
-          if (not GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
-            (DBRecord.InitDB = 'YES') then
-            ShowMessage('LogBook Table ERROR')
-          else
-          if (not SelectLogbookTable(LBRecord.LogTable)) and
-            (DBRecord.InitDB = 'YES') then
-            ShowMessage(rDBError);
-      end;
-
-    except
-      on E: Exception do
-      begin
-        ShowMessage('SwitchDB: Error: ' + E.Message);
-        WriteLn(ExceptFile, 'SwitchDB: Error: ' + E.ClassName + ':' + E.Message);
-        InitRecord.LogbookDBInit := False;
-        Result := False;
-        if DBRecord.CurrentDB = 'MySQL' then
-          DefTransaction.DataBase := MySQLConnection
-        else
-          DefTransaction.DataBase := SQLiteConnection;
-        if (not GetLogBookTable(DBRecord.DefCall, DBRecord.CurrentDB)) and
-          (DBRecord.InitDB = 'YES') then
-          ShowMessage('LogBook Table ERROR')
-        else
-        if (not SelectLogbookTable(LBRecord.LogTable)) and (DBRecord.InitDB = 'YES') then
-          ShowMessage(rDBError);
-        if Pos('Unknown database', E.Message) > 0 then
-          if Application.MessageBox(PChar(rDBError), PChar(rWarning),
-            MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-            SetupForm.Show;
-      end;
-    end;
-  end
-  else
-  if Application.MessageBox(PChar(rNotDatabaseSettings), PChar(rWarning),
-    MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-    ConfigForm.Show;
 end;
 
 procedure TInitDB.DataModuleDestroy(Sender: TObject);
@@ -365,38 +279,16 @@ function TInitDB.LogbookDBInit: boolean;
 begin
   Result := False;
   try
-    if DBRecord.DefaultDB = 'MySQL' then
-    begin
-      DefTransaction.DataBase := MySQLConnection;
-      MySQLConnection.HostName := DBRecord.MySQLHost;
-      MySQLConnection.Port := DBRecord.MySQLPort;
-      MySQLConnection.UserName := DBRecord.MySQLUser;
-      MySQLConnection.Password := DBRecord.MySQLPass;
-      MySQLConnection.DatabaseName := DBRecord.MySQLDBName;
-      MySQLConnection.Connected := True;
-      if MySQLConnection.Connected then
-      begin
-        DBRecord.CurrentDB := 'MySQL';
-        DefLogBookQuery.DataBase := MySQLConnection;
-        FindQSOQuery.DataBase := MySQLConnection;
-        Result := True;
-        InitRecord.LogbookDBInit := True;
-      end;
-    end;
-    if DBRecord.DefaultDB = 'SQLite' then
-    begin
       DefTransaction.DataBase := SQLiteConnection;
       FindQSOQuery.DataBase := SQLiteConnection;
       SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
       SQLiteConnection.Connected := True;
       if SQLiteConnection.Connected then
       begin
-        DBRecord.CurrentDB := 'SQLite';
         DefLogBookQuery.DataBase := SQLiteConnection;
         Result := True;
         InitRecord.LogbookDBInit := True;
       end;
-    end;
   except
     on E: Exception do
     begin
@@ -478,7 +370,7 @@ begin
   end;
 end;
 
-function TInitDB.GetLogBookTable(Callsign, typeDataBase: string): boolean;
+function TInitDB.GetLogBookTable(Callsign: string): boolean;
 var
   LogBookInfoQuery: TSQLQuery;
 begin
@@ -489,10 +381,7 @@ begin
     try
       try
         LogBookInfoQuery := TSQLQuery.Create(nil);
-        if typeDataBase = 'MySQL' then
-          LogBookInfoQuery.DataBase := MySQLConnection
-        else
-          LogBookInfoQuery.DataBase := SQLiteConnection;
+        LogBookInfoQuery.DataBase := SQLiteConnection;
         LogBookInfoQuery.Close;
 
         if Callsign = '' then
@@ -557,7 +446,6 @@ begin
         begin
           ShowMessage('Error: ' + E.ClassName + #13#10 + E.Message);
           WriteLn(ExceptFile, 'GetLogBookTable:' + E.ClassName + ':' + E.Message);
-          MySQLConnection.Connected := False;
           Result := False;
         end;
       end;
@@ -651,12 +539,7 @@ begin
   if DBRecord.InitDB = 'YES' then
   begin
     DBRecord.DefCall := INIFile.ReadString('SetLog', 'DefaultCallLogBook', '');
-    DBRecord.DefaultDB := INIFile.ReadString('DataBases', 'DefaultDataBase', '');
-    DBRecord.MySQLUser := INIFile.ReadString('DataBases', 'LoginName', '');
-    DBRecord.MySQLPass := INIFile.ReadString('DataBases', 'Password', '');
-    DBRecord.MySQLHost := INIFile.ReadString('DataBases', 'HostAddr', '');
-    DBRecord.MySQLPort := INIFile.ReadInteger('DataBases', 'Port', 3306);
-    DBRecord.MySQLDBName := INIFile.ReadString('DataBases', 'DataBaseName', '');
+
     if not ParamData.portable then
       DBRecord.SQLitePATH := INIFile.ReadString('DataBases', 'FileSQLite', '')
     else
@@ -684,26 +567,7 @@ begin
     CountAllRecords := DefLogBookQuery.Fields[0].AsInteger;
     DefLogBookQuery.Close;
 
-    if DBRecord.CurrentDB = 'MySQL' then
-    begin
-      DefLogBookQuery.SQL.Text :=
-        'SELECT `UnUsedIndex`, `CallSign`,' +
-        ' DATE_FORMAT(QSODate, ''%d.%m.%Y'') as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
-        + '(CONCAT(COALESCE(`QSOReportSent`, ''''), '' '', COALESCE(`STX`, ''''), '' '', COALESCE(`STX_STRING`, ''''))) AS QSOReportSent,'
-        + '(CONCAT(COALESCE(`QSOReportRecived`, ''''),'' '', COALESCE(`SRX`, ''''), '' '', COALESCE(`SRX_STRING`, ''''))) AS QSOReportRecived,'
-        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-        + '`NoCalcDXCC`, CONCAT(`QSLRec`,`QSLReceQSLcc`,`LoTWRec`) AS QSL, CONCAT(`QSLSent`,'
-        + '`LoTWSent`) AS QSLs FROM ' + LogTable +
-        ' ORDER BY UNIX_TIMESTAMP(STR_TO_DATE(QSODate, ''%Y-%m-%d'')) DESC, QSOTime DESC';
-    end
-    else
-    begin
-      DefLogBookQuery.SQL.Text :=
+    DefLogBookQuery.SQL.Text :=
         'SELECT `UnUsedIndex`, `CallSign`, `QSODateTime`,' +
         'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
         + '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
@@ -716,9 +580,7 @@ begin
         + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
         + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
         + LogTable + ' ORDER BY QSODateTime DESC';
-       // ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 FROM ' +
-       // LogTable + ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
-    end;
+
     DefLogBookQuery.Open;
     NumberSelectRecord := DefLogBookQuery.RecNo;
     Result := True;

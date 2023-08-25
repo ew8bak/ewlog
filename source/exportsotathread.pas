@@ -57,10 +57,7 @@ begin
     Info.AllRec := 0;
     FromForm := PSOTAExport.FromForm;
     Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
+    Query.DataBase := InitDB.SQLiteConnection;
 
     if FileExists(PSOTAExport.Path) then
       DeleteFile(PSOTAExport.Path);
@@ -81,13 +78,6 @@ begin
         ' ORDER BY UnUsedIndex ASC'
     else
     begin
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
-          ' WHERE QSODate BETWEEN ' + '''' + FormatDateTime('yyyy-mm-dd',
-          PSOTAExport.DateStart) + '''' + ' and ' + '''' +
-          FormatDateTime('yyyy-mm-dd', PSOTAExport.DateEnd) + '''' +
-          ' ORDER BY UnUsedIndex ASC'
-      else
         Query.SQL.Text :=
           'SELECT * FROM ' + LBRecord.LogTable + ' WHERE ' + 'strftime(' +
           QuotedStr('%Y-%m-%d') + ',QSODate) BETWEEN ' +

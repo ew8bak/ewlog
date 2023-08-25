@@ -43,10 +43,7 @@ begin
     try
       Result := False;
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'SQLite' then
-        Query.DataBase := InitDB.SQLiteConnection
-      else
-        Query.DataBase := InitDB.MySQLConnection;
+        Query.DataBase := InitDB.SQLiteConnection;
 
       Query.SQL.Text :=
         'SELECT Table_version FROM LogBookInfo WHERE CallName = "' + Callsign + '"';
@@ -90,10 +87,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'SQLite' then
-        Query.DataBase := InitDB.SQLiteConnection
-      else
-        Query.DataBase := InitDB.MySQLConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
 
       Query.SQL.Text :=
         'UPDATE LogBookInfo SET Table_version = ' + QuotedStr(ToTableVersion) +
@@ -126,10 +120,7 @@ begin
     try
       ShowMessage(rDBNeedUpdate + Version);
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'SQLite' then
-        Query.DataBase := InitDB.SQLiteConnection
-      else
-        Query.DataBase := InitDB.MySQLConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
       Query.SQL.Add('ContestSession varchar(255) DEFAULT NULL;');
@@ -213,10 +204,8 @@ begin
     try
       ShowMessage(rDBNeedUpdate + Version);
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'SQLite' then
-        Query.DataBase := InitDB.SQLiteConnection
-      else
-        Query.DataBase := InitDB.MySQLConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
+
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
       Query.SQL.Add('SOTA_REF varchar(15) DEFAULT NULL;');
@@ -260,20 +249,14 @@ begin
     try
       ShowMessage(rDBNeedUpdate + Version);
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'SQLite' then
-        Query.DataBase := InitDB.SQLiteConnection
-      else
-        Query.DataBase := InitDB.MySQLConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
       Query.SQL.Add('QSODateTime datetime DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('UPDATE ' + LBRecord.LogTable + ' SET QSODateTime = ');
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.SQL.Add('CONCAT(DATE_FORMAT(QSODate, ''%Y-%m-%d''),'' '', TIME(QSOTime));')
-      else
-        Query.SQL.Add('CAST(strftime(''%s'', Date(QSODate) || time(QSOTime)) AS QSODT)');
+      Query.SQL.Add('CAST(strftime(''%s'', Date(QSODate) || time(QSOTime)) AS QSODT)');
       Query.ExecSQL;
       InitDB.DefTransaction.Commit;
       if MigrationEnd(Version, Callsign) then
@@ -310,10 +293,7 @@ begin
     try
       ShowMessage(rDBNeedUpdate + Version);
       Query := TSQLQuery.Create(nil);
-      if DBRecord.CurrentDB = 'SQLite' then
-        Query.DataBase := InitDB.SQLiteConnection
-      else
-        Query.DataBase := InitDB.MySQLConnection;
+      Query.DataBase := InitDB.SQLiteConnection;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
       Query.SQL.Add('FREQ_RX varchar(20) DEFAULT NULL;');

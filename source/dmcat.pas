@@ -55,7 +55,7 @@ implementation
 
 uses dmFunc_U, InitDB_dm;
 
-{$R *.lfm}
+  {$R *.lfm}
 
 procedure TCATdm.LoadCATini(nTRX: integer);
 begin
@@ -106,7 +106,7 @@ function TCATdm.SearchRigctld: string;
 var
   s: string;
 begin
-   {$IFDEF LINUX}
+  {$IFDEF LINUX}
   if RunCommand('/bin/bash', ['-c', 'which rigctld'], s) then
   begin
     s := StringReplace(s, #10, '', [rfReplaceAll]);
@@ -114,7 +114,7 @@ begin
     if Length(s) <> 0 then
       Result := s;
   end;
-   {$ENDIF}
+  {$ENDIF}
 end;
 
 function TCATdm.LoadRIGs(PathRigctl: string; nTRX: integer): string;
@@ -131,12 +131,12 @@ begin
       dev := INIFile.ReadString('TRX' + IntToStr(nTRX), 'model', '');
       dmFunc.LoadRigsToComboBox(dev, StringReplace(PathRigctl, 'rigctld',
         'rigctl', [rfReplaceAll, rfIgnoreCase]), CBRigs);
+      Result := CBRigs.Items.CommaText;
     end
     else
-      ShowMessage(rLibHamLibNotFound);
+      Result := '127';
 
   finally
-    Result := CBRigs.Items.CommaText;
     FreeAndNil(CBRigs);
   end;
 end;
@@ -152,11 +152,11 @@ begin
   v := TStringList.Create;
   reg := TRegistry.Create;
   try
-{$IFNDEF VER100}
-{$IFNDEF VER120}
+    {$IFNDEF VER100}
+    {$IFNDEF VER120}
     reg.Access := KEY_READ;
-{$ENDIF}
-{$ENDIF}
+    {$ENDIF}
+    {$ENDIF}
     reg.RootKey := HKEY_LOCAL_MACHINE;
     reg.OpenKey('\HARDWARE\DEVICEMAP\SERIALCOMM', False);
     reg.GetValueNames(l);
@@ -225,7 +225,7 @@ end;
 
 function TCATdm.GetRadioRigCtldCommandLine(radio: word): string;
 var
-  section: ShortString = '';
+  section: shortstring = '';
   arg: string = '';
   set_conf: string = '';
 begin

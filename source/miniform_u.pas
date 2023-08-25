@@ -18,7 +18,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, fphttpclient, LCLIntf,
-  ActnList, CopyTableThread, gettext, digi_record, ImportADIThread, CloudLogCAT;
+  ActnList, gettext, digi_record, ImportADIThread, CloudLogCAT;
 
 type
 
@@ -151,7 +151,6 @@ type
     MITelnetForm: TMenuItem;
     MiLogbookForm: TMenuItem;
     MILogbook: TMenuItem;
-    MenuItem100: TMenuItem;
     MenuItem102: TMenuItem;
     MenuItem110: TMenuItem;
     MenuItem111: TMenuItem;
@@ -165,7 +164,6 @@ type
     MenuItem3: TMenuItem;
     MIExtProg: TMenuItem;
     MenuItem43: TMenuItem;
-    MenuItem48: TMenuItem;
     MenuItem52: TMenuItem;
     MenuItem53: TMenuItem;
     MenuItem54: TMenuItem;
@@ -191,12 +189,8 @@ type
     MenuItem72: TMenuItem;
     MenuItem73: TMenuItem;
     MenuItem74: TMenuItem;
-    MenuItem81: TMenuItem;
-    MenuItem82: TMenuItem;
-    MenuItem83: TMenuItem;
     MenuItem85: TMenuItem;
     MenuItem87: TMenuItem;
-    MenuItem89: TMenuItem;
     MenuItem90: TMenuItem;
     MenuItem91: TMenuItem;
     MenuItem92: TMenuItem;
@@ -262,7 +256,6 @@ type
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
-    procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
@@ -277,9 +270,6 @@ type
     procedure miMapTopClick(Sender: TObject);
     procedure MiMainTopClick(Sender: TObject);
     procedure MiLogGridTopClick(Sender: TObject);
-    procedure MenuItem82Click(Sender: TObject);
-    procedure MenuItem83Click(Sender: TObject);
-    procedure MenuItem89Click(Sender: TObject);
     procedure MIClusterTopClick(Sender: TObject);
     procedure MiLogbookFormClick(Sender: TObject);
     procedure MIMapFormClick(Sender: TObject);
@@ -289,7 +279,6 @@ type
     procedure MenuItem53Click(Sender: TObject);
     procedure MenuItem55Click(Sender: TObject);
     procedure MenuItem56Click(Sender: TObject);
-    procedure MenuItem60Click(Sender: TObject);
     procedure MenuItem63Click(Sender: TObject);
     procedure MenuItem65Click(Sender: TObject);
     procedure MenuItem66Click(Sender: TObject);
@@ -347,7 +336,6 @@ type
     procedure LoadComboBoxItem;
     procedure SwitchForm;
     procedure TextSB(Value: string; PanelNum: integer);
-    procedure FromCopyTableThread(Data: TData);
     procedure ShowInfoFromRIG;
     procedure ShowDataFromDIGI(DataDigi: TDigiR);
     procedure FromImportThread(Info: TInfo);
@@ -368,13 +356,13 @@ var
 implementation
 
 uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
-  setupForm_U, GridsForm_u, dxclusterform_u, AboutForm_U, ConfigForm_U,
+  GridsForm_u, dxclusterform_u, AboutForm_U, ConfigForm_U,
   InformationForm_U, UpdateForm_U, famm_u, mmform_u, synDBDate_u,
   ExportAdifForm_u, ImportADIFForm_U, CreateJournalForm_U,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   serverDM_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
-  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u, ServiceEqslForm_u, ServiceLoTWForm_u;
+  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u, ServiceEqslForm_u, ServiceLoTWForm_u, databasesettingsform_u;
 
 {$R *.lfm}
 
@@ -536,30 +524,6 @@ begin
         CBBand.Text := StringReplace(FormatFloat(view_freq[IniSet.ViewFreq],
           FMS.Freq / 1000000), ',', '.', [rfReplaceAll]);
     end;
-  end;
-end;
-
-procedure TMiniForm.FromCopyTableThread(Data: TData);
-begin
-  if Data.ErrorType = -1 then
-  begin
-    TextSB(rCopyQSO + ':' + IntToStr(Data.RecCount) + rOf +
-      IntToStr(Data.AllRec) + ' ' + rDone, 0);
-    if Data.Result then
-      if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
-        ShowMessage(rDBError);
-    Exit;
-  end;
-  if Data.ErrorType = 1 then
-  begin
-    Application.MessageBox(PChar(Data.ErrorStr), PChar(rWarning), MB_ICONERROR);
-    Exit;
-  end;
-  if Data.ErrorType = 3 then
-  begin
-    TextSB(rNumberDup + ':' + IntToStr(Data.ErrorCount) + rOf +
-      IntToStr(Data.AllRec), 0);
-    Exit;
   end;
 end;
 
@@ -800,7 +764,7 @@ begin
     begin
       if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-        SetupForm.Show;
+        DataBaseSettingsForm.Show;
     end;
 
     SwitchForm;
@@ -930,15 +894,6 @@ begin
   end;
   MenuItem111.Checked := False;
   MenuItem112.Checked := True;
-end;
-
-procedure TMiniForm.MenuItem118Click(Sender: TObject);
-begin
-  if MainFunc.EraseTable then
-  begin
-    ShowMessage(rSuccessful);
-    TextSB('QSO № ' + IntToStr(0) + rQSOTotal + IntToStr(CountAllRecords), 1);
-  end;
 end;
 
 procedure TMiniForm.MenuItem123Click(Sender: TObject);
@@ -1102,37 +1057,6 @@ begin
   end;
 end;
 
-procedure TMiniForm.MenuItem82Click(Sender: TObject);
-begin
-  CopyTThread := TCopyTThread.Create;
-  if Assigned(CopyTThread.FatalException) then
-    raise CopyTThread.FatalException;
-  CopyTThread.toDB := False;
-  CopyTThread.Start;
-end;
-
-procedure TMiniForm.MenuItem83Click(Sender: TObject);
-begin
-  CopyTThread := TCopyTThread.Create;
-  if Assigned(CopyTThread.FatalException) then
-    raise CopyTThread.FatalException;
-  CopyTThread.toDB := True;
-  CopyTThread.Start;
-end;
-
-procedure TMiniForm.MenuItem89Click(Sender: TObject);
-begin
-  if InitDB.SwitchDB then
-  begin
-    if DBRecord.CurrentDB = 'MySQL' then
-      MenuItem89.Caption := rSwitchDBSQLIte
-    else
-      MenuItem89.Caption := rSwitchDBMySQL;
-    MainFunc.LoadBMSL(CBMode, CBSubMode,
-      CBBand, CBCurrentLog);
-  end;
-end;
-
 procedure TMiniForm.MIClusterTopClick(Sender: TObject);
 begin
   if MIClusterTop.Checked then
@@ -1233,11 +1157,6 @@ begin
   CreateJournalForm.Show;
 end;
 
-procedure TMiniForm.MenuItem60Click(Sender: TObject);
-begin
-
-end;
-
 procedure TMiniForm.MenuItem63Click(Sender: TObject);
 begin
   thanks_form.Show;
@@ -1301,7 +1220,7 @@ end;
 
 procedure TMiniForm.MenuItem91Click(Sender: TObject);
 begin
-  SetupForm.Show;
+  DataBaseSettingsForm.Show;
 end;
 
 procedure TMiniForm.MenuItem92Click(Sender: TObject);
@@ -1942,7 +1861,7 @@ begin
   EditMyState.Clear;
   if Sender <> LogConfigForm then
   begin
-    if InitDB.GetLogBookTable(CBCurrentLog.Text, DBRecord.CurrentDB) then
+    if InitDB.GetLogBookTable(CBCurrentLog.Text) then
       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
         ShowMessage(rDBError)
       else
@@ -2354,11 +2273,6 @@ begin
     MenuItem73.Checked := True
   else
     MIMMode.Checked := True;
-
-  if DBRecord.CurrentDB = 'MySQL' then
-    MenuItem89.Caption := rSwitchDBSQLIte
-  else
-    MenuItem89.Caption := rSwitchDBMySQL;
 
   SetHotKey;
 

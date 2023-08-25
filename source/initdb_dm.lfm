@@ -3,9 +3,9 @@ object InitDB: TInitDB
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 230
-  HorizontalOffset = 289
-  VerticalOffset = 678
-  Width = 473
+  HorizontalOffset = 300
+  VerticalOffset = 315
+  Width = 466
   object ServiceDBConnection: TSQLite3Connection
     Connected = False
     LoginPrompt = False
@@ -21,15 +21,6 @@ object InitDB: TInitDB
     Database = ServiceDBConnection
     Left = 64
     Top = 72
-  end
-  object MySQLConnection: TMySQL57Connection
-    Connected = False
-    LoginPrompt = False
-    KeepConnection = True
-    CharSet = 'utf8'
-    SkipLibraryVersionCheck = True
-    Left = 192
-    Top = 16
   end
   object DefTransaction: TSQLTransaction
     Active = False

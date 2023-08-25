@@ -18,18 +18,10 @@ uses
 
 type
   TDBRecord = record
-    DefaultDB: string[7];
-    CurrentDB: string[7];
-    MySQLHost: string;
-    MySQLPort: integer;
-    MySQLUser: string;
-    MySQLPass: string;
-    MySQLDBName: string;
     SQLitePATH: string;
     InitDB: string[3];
     DefCall: string;
     CurrCall: string;
-    Connected: Boolean;
   end;
 
 implementation

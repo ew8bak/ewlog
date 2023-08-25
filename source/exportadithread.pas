@@ -92,10 +92,7 @@ begin
     Info.AllRec := 0;
     FromForm := PADIExport.FromForm;
     Query := TSQLQuery.Create(nil);
-    if DBRecord.CurrentDB = 'MySQL' then
-      Query.DataBase := InitDB.MySQLConnection
-    else
-      Query.DataBase := InitDB.SQLiteConnection;
+    Query.DataBase := InitDB.SQLiteConnection;
     Query.SQL.Text := 'SELECT * FROM LogBookInfo WHERE LogTable = ' +
       QuotedStr(LBRecord.LogTable);
     Query.Open;
@@ -129,21 +126,13 @@ begin
       Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
         ' ORDER BY UnUsedIndex ASC'
     else
-    begin
-      if DBRecord.CurrentDB = 'MySQL' then
-        Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
-          ' WHERE QSODate BETWEEN ' + '''' + FormatDateTime('yyyy-mm-dd',
-          PADIExport.DateStart) + '''' + ' and ' + '''' +
-          FormatDateTime('yyyy-mm-dd', PADIExport.DateEnd) + '''' +
-          ' ORDER BY UnUsedIndex ASC'
-      else
         Query.SQL.Text :=
           'SELECT * FROM ' + LBRecord.LogTable + ' WHERE ' + 'strftime(' +
           QuotedStr('%Y-%m-%d') + ',QSODate) BETWEEN ' +
           QuotedStr(FormatDateTime('yyyy-mm-dd', PADIExport.DateStart)) +
           ' and ' + QuotedStr(FormatDateTime('yyyy-mm-dd', PADIExport.DateEnd)) +
           ' ORDER BY UnUsedIndex ASC';
-    end;
+
 
     if GridsForm.ExportAdifSelect = True then
     begin

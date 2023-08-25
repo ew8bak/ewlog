@@ -61,10 +61,10 @@ var
 
 implementation
 
-uses miniform_u, dmFunc_U, ResourceStr, SetupSQLquery, setupForm_U,
-  InitDB_dm, MainFuncDM;
+uses miniform_u, dmFunc_U, ResourceStr, SetupSQLquery,
+  InitDB_dm, MainFuncDM, databasesettingsform_u;
 
-{$R *.lfm}
+  {$R *.lfm}
 
 procedure TCreateJournalForm.EditGridChange(Sender: TObject);
 var
@@ -96,20 +96,12 @@ begin
     ShowMessage(rAllfieldsmustbefilled)
   else
   begin
-    if InitDB.MySQLConnection.Connected or InitDB.SQLiteConnection.Connected then
+    if InitDB.SQLiteConnection.Connected then
     begin
       try
         CreateTableQuery := TSQLQuery.Create(nil);
-        if DBRecord.CurrentDB = 'MySQL' then
-        begin
-          CreateTableQuery.DataBase := InitDB.MySQLConnection;
-          CreateTableQuery.Transaction := InitDB.DefTransaction;
-        end
-        else
-        begin
-          CreateTableQuery.DataBase := InitDB.SQLiteConnection;
-          CreateTableQuery.Transaction := InitDB.DefTransaction;
-        end;
+        CreateTableQuery.DataBase := InitDB.SQLiteConnection;
+        CreateTableQuery.Transaction := InitDB.DefTransaction;
         LOG_PREFIX := FormatDateTime('DDMMYYYY_HHNNSS', Now);
         CreateTableQuery.Close;
 
@@ -129,20 +121,12 @@ begin
         CreateTableQuery.ExecSQL;
         InitDB.DefTransaction.Commit;
 
-        if DBRecord.CurrentDB = 'MySQL' then
-        begin
-          InitDB.MySQLConnection.ExecuteDirect(
-            dmSQL.Table_Log_Table(LOG_PREFIX, 'MySQL'));
-          InitDB.MySQLConnection.ExecuteDirect(dmSQL.CreateIndex(
-            LOG_PREFIX, 'MySQL'));
-        end
-        else
-        begin
-          InitDB.SQLiteConnection.ExecuteDirect(
-            dmSQL.Table_Log_Table(LOG_PREFIX, 'SQLite'));
-          InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
-            LOG_PREFIX, 'SQLite'));
-        end;
+
+        InitDB.SQLiteConnection.ExecuteDirect(
+          dmSQL.Table_Log_Table(LOG_PREFIX));
+        InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
+          LOG_PREFIX));
+
         InitDB.DefTransaction.Commit;
       finally
         newLogBookName := EditCallName.Text;
@@ -162,7 +146,7 @@ begin
           DBRecord.DefCall := newLogBookName;
         end;
 
-        if InitDB.GetLogBookTable(DBRecord.CurrCall, DBRecord.CurrentDB) then
+        if InitDB.GetLogBookTable(DBRecord.CurrCall) then
           if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
             ShowMessage(rDBError);
 
@@ -181,7 +165,7 @@ begin
     else
     if Application.MessageBox(PChar(rDBNotinit), PChar(rWarning),
       MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
-      SetupForm.Show;
+      DataBaseSettingsForm.Show;
   end;
 end;
 
