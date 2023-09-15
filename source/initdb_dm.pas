@@ -63,7 +63,7 @@ type
 var
   InitDB: TInitDB;
   FilePATH: string;
-  INIFile: TINIFile;
+  iniFile: TINIFile;
   ExceptFile: TextFile;
   ExceptFilePATH: string;
   LBRecord: TLBRecord;
@@ -83,12 +83,13 @@ var
   PrefixExpProvinceArray: array of record
     reg: TRegExpr;
     id: integer;
-  end;
+    end;
   PrefixExpARRLArray: array of record
     reg: TRegExpr;
     id: integer;
-  end;
-  function TryStrToFloatSafe(const aStr : String; out aValue : Double) : Boolean;
+    end;
+
+function TryStrToFloatSafe(const aStr: string; out aValue: double): boolean;
 
 implementation
 
@@ -125,11 +126,12 @@ begin
   ParamData := GetParam;
   if Sender <> DataBaseSettingsForm then
   begin
-    if not ParamData.portable then begin
-      if FileExists(ExtractFilePath(ParamStr(0))+'portable') then
-      ParamData.portable:=True
+    if not ParamData.portable then
+    begin
+      if FileExists(ExtractFilePath(ParamStr(0)) + 'portable') then
+        ParamData.portable := True
       else
-      ParamData.portable:=False;
+        ParamData.portable := False;
     end;
 
   {$IFDEF UNIX}
@@ -151,7 +153,7 @@ begin
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
     {$ELSE}
-     if dmFunc.CheckProcess('rigctld') then
+    if dmFunc.CheckProcess('rigctld') then
       dmFunc.CloseProcess('rigctld');
     {$ENDIF WINDOWS}
    {$ENDIF UNIX}
@@ -279,16 +281,16 @@ function TInitDB.LogbookDBInit: boolean;
 begin
   Result := False;
   try
-      DefTransaction.DataBase := SQLiteConnection;
-      FindQSOQuery.DataBase := SQLiteConnection;
-      SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
-      SQLiteConnection.Connected := True;
-      if SQLiteConnection.Connected then
-      begin
-        DefLogBookQuery.DataBase := SQLiteConnection;
-        Result := True;
-        InitRecord.LogbookDBInit := True;
-      end;
+    DefTransaction.DataBase := SQLiteConnection;
+    FindQSOQuery.DataBase := SQLiteConnection;
+    SQLiteConnection.DatabaseName := DBRecord.SQLitePATH;
+    SQLiteConnection.Connected := True;
+    if SQLiteConnection.Connected then
+    begin
+      DefLogBookQuery.DataBase := SQLiteConnection;
+      Result := True;
+      InitRecord.LogbookDBInit := True;
+    end;
   except
     on E: Exception do
     begin
@@ -407,8 +409,10 @@ begin
           LBRecord.OpITU := LogBookInfoQuery.FieldByName('ITU').AsString;
           LBRecord.OpLoc := LogBookInfoQuery.FieldByName('Loc').AsString;
           LBRecord.OpCQ := LogBookInfoQuery.FieldByName('CQ').AsString;
-          TryStrToFloatSafe(LogBookInfoQuery.FieldByName('Lat').AsString, LBRecord.OpLat);
-          TryStrToFloatSafe(LogBookInfoQuery.FieldByName('Lon').AsString, LBRecord.OpLon);
+          TryStrToFloatSafe(LogBookInfoQuery.FieldByName('Lat').AsString,
+            LBRecord.OpLat);
+          TryStrToFloatSafe(LogBookInfoQuery.FieldByName('Lon').AsString,
+            LBRecord.OpLon);
           LBRecord.QSLInfo := LogBookInfoQuery.FieldByName('QSLInfo').AsString;
           LBRecord.LogTable := LogBookInfoQuery.FieldByName('LogTable').AsString;
           LBRecord.eQSLccLogin := LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
@@ -435,7 +439,7 @@ begin
           LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
           LogBookInfoQuery.Close;
 
-         // dmMigrate.Migrate(LBRecord.CallSign);
+          // dmMigrate.Migrate(LBRecord.CallSign);
 
           Result := True;
           InitRecord.GetLogBookTable := True;
@@ -569,18 +573,10 @@ begin
     DefLogBookQuery.Close;
 
     DefLogBookQuery.SQL.Text :=
-        'SELECT `UnUsedIndex`, `CallSign`, `QSODateTime`,' +
-        'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
-        + '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
-        + '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || '' '' || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
-        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-        + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
-        + LogTable + ' ORDER BY QSODateTime DESC';
+      'SELECT `UnUsedIndex`, `CallSign`, `QSODateTime`,' +
+      'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
+      + '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
+      + '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || '' '' || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,' + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,' + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,' + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,' + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,' + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,' + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,' + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM ' + LogTable + ' ORDER BY QSODateTime DESC';
 
     DefLogBookQuery.Open;
     NumberSelectRecord := DefLogBookQuery.RecNo;
@@ -596,16 +592,17 @@ begin
   end;
 end;
 
-function TryStrToFloatSafe(const aStr : String; out aValue : Double) : Boolean;
+function TryStrToFloatSafe(const aStr: string; out aValue: double): boolean;
 const
   D = ['.', ','];
 var
-  S : String;
-  i : Integer;
+  S: string;
+  i: integer;
 begin
   S := aStr;
   for i := 1 to Length(S) do
-    if S[i] in D then begin
+    if S[i] in D then
+    begin
       S[i] := DefaultFormatSettings.DecimalSeparator;
       Break;
     end;

@@ -2349,7 +2349,7 @@ begin
     CBJournal.Items.Clear;
     for i := 0 to High(GetAllCallsign) do
       CBJournal.Items.Add(GetAllCallsign[i]);
-   // CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+    CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrentLogTable);
   end;
 end;
 

@@ -3769,14 +3769,14 @@ msgctxt "tiota_form.label2.caption"
 msgid "Name"
 msgstr ""
 
-#: tlogconfigform.button1.caption
-msgctxt "tlogconfigform.button1.caption"
-msgid "Save"
+#: tlogconfigform.btcancel.caption
+msgctxt "tlogconfigform.btcancel.caption"
+msgid "Cancel"
 msgstr ""
 
-#: tlogconfigform.button2.caption
-msgctxt "tlogconfigform.button2.caption"
-msgid "Cancel"
+#: tlogconfigform.btsave.caption
+msgctxt "tlogconfigform.btsave.caption"
+msgid "Save"
 msgstr ""
 
 #: tlogconfigform.caption
@@ -3813,35 +3813,6 @@ msgstr ""
 msgid "TNX For QSO TU 73!"
 msgstr ""
 
-#: tlogconfigform.label1.caption
-msgctxt "tlogconfigform.label1.caption"
-msgid "Log"
-msgstr ""
-
-#: tlogconfigform.label10.caption
-msgctxt "tlogconfigform.label10.caption"
-msgid "CQ"
-msgstr ""
-
-#: tlogconfigform.label11.caption
-msgctxt "tlogconfigform.label11.caption"
-msgid "Grid"
-msgstr ""
-
-#: tlogconfigform.label12.caption
-msgctxt "tlogconfigform.label12.caption"
-msgid "Lat"
-msgstr ""
-
-#: tlogconfigform.label13.caption
-msgctxt "tlogconfigform.label13.caption"
-msgid "Lon"
-msgstr ""
-
-#: tlogconfigform.label14.caption
-msgid "QSL info (Default)"
-msgstr ""
-
 #: tlogconfigform.label16.caption
 msgid "eQSLcc"
 msgstr ""
@@ -3858,11 +3829,6 @@ msgstr ""
 
 #: tlogconfigform.label19.caption
 msgid "HRDlog"
-msgstr ""
-
-#: tlogconfigform.label2.caption
-msgctxt "tlogconfigform.label2.caption"
-msgid "Description"
 msgstr ""
 
 #: tlogconfigform.label20.caption
@@ -3930,36 +3896,73 @@ msgstr ""
 msgid "QRZ.COM"
 msgstr ""
 
-#: tlogconfigform.label4.caption
-msgid "Station detalis"
-msgstr ""
-
-#: tlogconfigform.label5.caption
-msgctxt "tlogconfigform.label5.caption"
+#: tlogconfigform.lbcallsign.caption
+msgctxt "tlogconfigform.lbcallsign.caption"
 msgid "Callsign"
 msgstr ""
 
-#: tlogconfigform.label6.caption
-msgctxt "tlogconfigform.label6.caption"
-msgid "Name"
-msgstr ""
-
-#: tlogconfigform.label7.caption
-msgctxt "tlogconfigform.label7.caption"
-msgid "QTH"
-msgstr ""
-
-#: tlogconfigform.label8.caption
-msgid "Location information"
-msgstr ""
-
-#: tlogconfigform.label9.caption
-msgctxt "tlogconfigform.label9.caption"
-msgid "ITU"
+#: tlogconfigform.lbcq.caption
+msgctxt "tlogconfigform.lbcq.caption"
+msgid "CQ"
 msgstr ""
 
 #: tlogconfigform.lbdefaultcall.caption
 msgid "*"
+msgstr ""
+
+#: tlogconfigform.lbdescription.caption
+msgctxt "tlogconfigform.lbdescription.caption"
+msgid "Description"
+msgstr ""
+
+#: tlogconfigform.lbgrid.caption
+msgctxt "tlogconfigform.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: tlogconfigform.lbitu.caption
+msgctxt "tlogconfigform.lbitu.caption"
+msgid "ITU"
+msgstr ""
+
+#: tlogconfigform.lblat.caption
+msgctxt "tlogconfigform.lblat.caption"
+msgid "Lat"
+msgstr ""
+
+#: tlogconfigform.lblocationinformation.caption
+msgctxt "tlogconfigform.lblocationinformation.caption"
+msgid "Location information"
+msgstr ""
+
+#: tlogconfigform.lblog.caption
+msgctxt "tlogconfigform.lblog.caption"
+msgid "Log"
+msgstr ""
+
+#: tlogconfigform.lblon.caption
+msgctxt "tlogconfigform.lblon.caption"
+msgid "Lon"
+msgstr ""
+
+#: tlogconfigform.lbname.caption
+msgctxt "tlogconfigform.lbname.caption"
+msgid "Name"
+msgstr ""
+
+#: tlogconfigform.lbqslinfo.caption
+msgctxt "tlogconfigform.lbqslinfo.caption"
+msgid "QSL info (Default)"
+msgstr ""
+
+#: tlogconfigform.lbqth.caption
+msgctxt "tlogconfigform.lbqth.caption"
+msgid "QTH"
+msgstr ""
+
+#: tlogconfigform.lbstationdetalis.caption
+msgctxt "tlogconfigform.lbstationdetalis.caption"
+msgid "Station detalis"
 msgstr ""
 
 #: tlogconfigform.menuitem1.caption

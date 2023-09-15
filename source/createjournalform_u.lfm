@@ -1,7 +1,7 @@
 object CreateJournalForm: TCreateJournalForm
-  Left = 377
+  Left = 459
   Height = 230
-  Top = 490
+  Top = 353
   Width = 332
   AutoSize = True
   BorderIcons = [biSystemMenu]
@@ -12,7 +12,7 @@ object CreateJournalForm: TCreateJournalForm
   Font.Height = -12
   FormStyle = fsStayOnTop
   Position = poScreenCenter
-  LCLVersion = '3.0.0.1'
+  LCLVersion = '2.2.6.0'
   object EditDescription: TEdit
     AnchorSideLeft.Control = LBDescription
     AnchorSideLeft.Side = asrBottom
@@ -27,6 +27,7 @@ object CreateJournalForm: TCreateJournalForm
     BorderSpacing.Left = 3
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
+    OnChange = EditDescriptionChange
     ParentFont = False
     TabOrder = 0
   end

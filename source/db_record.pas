@@ -23,6 +23,7 @@ type
     CurrentLogTable: string;
     DefaultLogTable: string;
     CurrentCall: string;
+
   end;
 
 implementation

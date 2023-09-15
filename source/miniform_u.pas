@@ -1864,8 +1864,8 @@ begin
     if InitDB.GetLogBookTable(CBCurrentLog.Text) then
       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
         ShowMessage(rDBError)
-     // else
-     //   DBRecord.CurrCall := CBCurrentLog.Text;
+      else
+        DBRecord.CurrentLogTable := CBCurrentLog.Text;
   end;
   if CBCurrentLog.ItemIndex > -1 then
   begin

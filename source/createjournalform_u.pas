@@ -15,7 +15,7 @@ interface
 
 uses
   SysUtils, sqldb, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, LCLType, prefix_record, dmmigrate_u;
+  StdCtrls, LCLType, prefix_record, dmmigrate_u, Classes;
 
 type
 
@@ -49,6 +49,7 @@ type
     procedure BtCloseClick(Sender: TObject);
     procedure BtCreateClick(Sender: TObject);
     procedure EditCallNameChange(Sender: TObject);
+    procedure EditDescriptionChange(Sender: TObject);
     procedure EditGridChange(Sender: TObject);
   private
     { private declarations }
@@ -107,6 +108,7 @@ begin
 
         CreateTableQuery.SQL.Text := Insert_Table_LogBookInfo;
         CreateTableQuery.ParamByName('LogTable').AsString := 'Log_TABLE_' + LOG_PREFIX;
+        CreateTableQuery.ParamByName('Description').AsString := EditDescription.Text;
         CreateTableQuery.ParamByName('CallName').AsString := EditCallName.Text;
         CreateTableQuery.ParamByName('Name').AsString := EditName.Text;
         CreateTableQuery.ParamByName('QTH').AsString := EditQTH.Text;
@@ -115,7 +117,6 @@ begin
         CreateTableQuery.ParamByName('Loc').AsString := EditGrid.Text;
         CreateTableQuery.ParamByName('Lat').AsString := EditLat.Text;
         CreateTableQuery.ParamByName('Lon').AsString := EditLon.Text;
-        CreateTableQuery.ParamByName('Discription').AsString := EditDescription.Text;
         CreateTableQuery.ParamByName('QSLInfo').AsString := EditQSLInfo.Text;
         CreateTableQuery.ParamByName('Table_version').AsString := Current_Table;
         CreateTableQuery.ExecSQL;
@@ -124,8 +125,7 @@ begin
 
         InitDB.SQLiteConnection.ExecuteDirect(
           dmSQL.Table_Log_Table(LOG_PREFIX));
-        InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(
-          LOG_PREFIX));
+        InitDB.SQLiteConnection.ExecuteDirect(dmSQL.CreateIndex(LOG_PREFIX));
 
         InitDB.DefTransaction.Commit;
       finally
@@ -175,24 +175,28 @@ var
   Lat: string = '';
   Lon: string = '';
 begin
-  if MiniForm.CBCurrentLog.Items.IndexOf(EditCallName.Text) >= 0 then
+  if Length(EditCallName.Text) > 2 then
   begin
-    EditCallName.Color := clRed;
+    PFXR := MainFunc.SearchPrefix(EditCallName.Text, '');
+    EditITU.Text := PFXR.ITUZone;
+    EditCQ.Text := PFXR.CQZone;
+    dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
+    EditLat.Text := Lat;
+    EditLon.Text := Lon;
+  end;
+end;
+
+procedure TCreateJournalForm.EditDescriptionChange(Sender: TObject);
+begin
+  if MiniForm.CBCurrentLog.Items.IndexOf(EditDescription.Text) >= 0 then
+  begin
+    EditDescription.Color := clRed;
     BtCreate.Enabled := False;
   end
   else
   begin
-    EditCallName.Color := clDefault;
+    EditDescription.Color := clDefault;
     BtCreate.Enabled := True;
-    if Length(EditCallName.Text) > 0 then
-    begin
-      PFXR := MainFunc.SearchPrefix(EditCallName.Text, '');
-      EditITU.Text := PFXR.ITUZone;
-      EditCQ.Text := PFXR.CQZone;
-      dmFunc.GetLatLon(PFXR.Latitude, PFXR.Longitude, Lat, Lon);
-      EditLat.Text := Lat;
-      EditLon.Text := Lon;
-    end;
   end;
 end;
 
