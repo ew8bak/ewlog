@@ -18,7 +18,7 @@ uses
 
 type
   TLBRecord = record
-    Description: string[20];
+    Description: string;
     CallSign: string[20];
     OpName: string[30];
     OpQTH: string[50];
@@ -28,7 +28,7 @@ type
     OpLat: double;
     OpLon: double;
     QSLInfo: string[100];
-    LogTable: string[30];
+    LogTable: string;
     eQSLccLogin: string[20];
     eQSLccPassword: string[20];
     AutoEQSLcc: boolean;
