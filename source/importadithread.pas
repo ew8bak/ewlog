@@ -262,6 +262,8 @@ var
   paramQSLSDATE: string;
   paramQSLRDATE: string;
   paramLOTW_QSLRDATE: string;
+  paramHRDLOG_QSO_UPLOAD_STATUS: string;
+  paramHRDLOG_QSO_UPLOAD_DATE: string;
   Query: string;
   TempQuery: string;
   Stream: TMemoryStream;
@@ -592,6 +594,20 @@ begin
           else
             paramQSLRDATE := 'NULL';
 
+           if HRDLOG_QSO_UPLOAD_DATE <> '' then
+          begin
+            yyyy := StrToInt(HRDLOG_QSO_UPLOAD_DATE[1] + HRDLOG_QSO_UPLOAD_DATE[2] + HRDLOG_QSO_UPLOAD_DATE[3] +
+              HRDLOG_QSO_UPLOAD_DATE[4]);
+            mm := StrToInt(HRDLOG_QSO_UPLOAD_DATE[5] + HRDLOG_QSO_UPLOAD_DATE[6]);
+            dd := StrToInt(HRDLOG_QSO_UPLOAD_DATE[7] + HRDLOG_QSO_UPLOAD_DATE[8]);
+            paramHRDLOG_QSO_UPLOAD_DATE :=
+               StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+               ',','.',[rfReplaceAll]);;
+            paramHRDLOG_QSO_UPLOAD_STATUS := '1';
+          end
+          else
+            paramHRDLOG_QSO_UPLOAD_DATE := 'NULL';
+
           if MARKER = 'Y' then
             paramMARKER := '1'
           else
@@ -672,7 +688,9 @@ begin
               'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
               + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, EQSL_QSL_SENT, SOTA_REF, MY_SOTA_REF, SYNC)' +
+              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON,' +
+              'EQSL_QSL_SENT, SOTA_REF, MY_SOTA_REF, HRDLOG_QSO_UPLOAD_DATE, ' +
+              'HRDLOG_QSO_UPLOAD_STATUS, SYNC)' +
               ' VALUES (' +
               dmFunc.Q(CALL) + dmFunc.Q(paramQSODateTime) +
               dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
@@ -699,6 +717,7 @@ begin
               dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
               dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + dmFunc.Q(EQSL_QSL_SENT) +
               dmFunc.Q(SOTA_REF) + dmFunc.Q(MY_SOTA_REF) +
+              dmFunc.Q(paramHRDLOG_QSO_UPLOAD_DATE) + dmFunc.Q(paramHRDLOG_QSO_UPLOAD_STATUS) +
               QuotedStr('0') + ')';
           end
           else
@@ -712,7 +731,8 @@ begin
               'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
               + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC) VALUES (' +
+              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, HRDLOG_QSO_UPLOAD_DATE, '+
+              'HRDLOG_QSO_UPLOAD_STATUS, SYNC) VALUES (' +
               dmFunc.Q(CALL) + dmFunc.Q(paramQSODateTime) +
               dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
               dmFunc.Q(FREQ) + dmFunc.Q(FREQ_RX) + dmFunc.Q(BAND_RX) +
@@ -736,7 +756,8 @@ begin
               dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
               dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
               dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
-              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + QuotedStr('1');
+              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + dmFunc.Q(paramHRDLOG_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramHRDLOG_QSO_UPLOAD_STATUS) + QuotedStr('1');
 
               Query := TempQuery +
                 ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
