@@ -1,3 +1,12 @@
+(***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License.        *
+ *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *                                                                         *
+ ***************************************************************************)
+
 unit databasesettingsform_u;
 
 {$mode ObjFPC}{$H+}
@@ -54,6 +63,7 @@ type
   private
     SQLitePATH: string;
     function CheckEmptyDB: boolean;
+    function CheckEdit: boolean;
   public
 
   end;
@@ -67,7 +77,7 @@ uses dmFunc_U, SetupSQLquery, InitDB_dm, MainFuncDM, dmmigrate_u, miniform_u;
 
   {$R *.lfm}
 
-  { TDataBaseSettingsForm }
+{ TDataBaseSettingsForm }
 
 procedure TDataBaseSettingsForm.editCallsignChange(Sender: TObject);
 var
@@ -86,6 +96,64 @@ begin
   end;
 end;
 
+function TDataBaseSettingsForm.CheckEdit: boolean;
+begin
+  Result := False;
+  if Length(editDiscription.Text) < 1 then
+  begin
+    ShowMessage(rDescription + ' ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editCallsign.Text) < 1 then
+  begin
+    ShowMessage(rCallSign + ' ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editName.Text) < 1 then
+  begin
+    ShowMessage(rName + ' ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editQTH.Text) < 1 then
+  begin
+    ShowMessage('QTH ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editGrid.Text) < 1 then
+  begin
+    ShowMessage(rGrid + ' ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editLatitude.Text) < 1 then
+  begin
+    ShowMessage(rLatitude + ' ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editLongitude.Text) < 1 then
+  begin
+    ShowMessage(rLongitude + ' ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editQSLinfo.Text) < 1 then
+  begin
+    ShowMessage(rQslInfo + ' ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editCQ.Text) < 1 then
+  begin
+    ShowMessage('CQ ' + rFieldMissing);
+    Exit;
+  end;
+  if Length(editITU.Text) < 1 then
+  begin
+    ShowMessage('ITU ' + rFieldMissing);
+    Exit;
+  end;
+
+  Result := True;
+
+end;
+
 procedure TDataBaseSettingsForm.btCancelClick(Sender: TObject);
 begin
   Close;
@@ -96,6 +164,7 @@ var
   Query: TSQLQuery;
   logTableName: string;
 begin
+  if not CheckEdit then Exit;
   try
     Query := TSQLQuery.Create(nil);
     if cbUseExDatabase.Checked then

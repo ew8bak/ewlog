@@ -3,19 +3,18 @@ object MiniForm: TMiniForm
   Height = 484
   Top = 225
   Width = 479
-  AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
   ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
   ChildSizing.EnlargeVertical = crsHomogenousChildResize
-  ClientHeight = 484
+  ClientHeight = 464
   ClientWidth = 479
   Menu = MainMenu
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  LCLVersion = '3.0.0.1'
+  LCLVersion = '2.2.6.0'
   object Panel1: TPanel
     Left = 0
     Height = 26
@@ -569,7 +568,7 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 19
     Top = 174
-    Width = 69
+    Width = 71
     BorderSpacing.Left = 5
     Caption = 'Real Time'
     Checked = True
@@ -585,7 +584,7 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 19
     Top = 198
-    Width = 80
+    Width = 82
     BorderSpacing.Left = 5
     Caption = 'Save in UTC'
     Enabled = False
@@ -967,10 +966,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBSaveUTC
     AnchorSideTop.Side = asrCenter
-    Left = 86
+    Left = 88
     Height = 19
     Top = 198
-    Width = 45
+    Width = 47
     BorderSpacing.Left = 1
     Caption = 'Mark'
     ParentFont = False
@@ -1085,7 +1084,7 @@ object MiniForm: TMiniForm
     Left = 345
     Height = 19
     Top = 97
-    Width = 42
+    Width = 44
     BorderSpacing.Left = 1
     Caption = 'Map'
     Checked = True
@@ -1099,10 +1098,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBMap
     AnchorSideTop.Side = asrCenter
-    Left = 388
+    Left = 390
     Height = 19
     Top = 97
-    Width = 44
+    Width = 46
     BorderSpacing.Left = 1
     Caption = 'Filter'
     OnChange = CBFilterChange
@@ -1821,7 +1820,7 @@ object MiniForm: TMiniForm
   object StatBar: TStatusBar
     Left = 0
     Height = 23
-    Top = 461
+    Top = 441
     Width = 479
     Panels = <    
       item

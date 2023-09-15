@@ -383,6 +383,11 @@ msgstr ""
 msgid "Delete Record "
 msgstr ""
 
+#: resourcestr.rdescription
+msgctxt "resourcestr.rdescription"
+msgid "Description"
+msgstr ""
+
 #: resourcestr.rdisabled
 msgid "Disabled"
 msgstr ""
@@ -473,6 +478,10 @@ msgstr ""
 
 #: resourcestr.rfailedtoloaddata
 msgid "Failed to load data"
+msgstr ""
+
+#: resourcestr.rfieldmissing
+msgid "field missing"
 msgstr ""
 
 #: resourcestr.rfiledbexist
@@ -582,6 +591,11 @@ msgstr ""
 msgid "Translation files download successfully"
 msgstr ""
 
+#: resourcestr.rlatitude
+msgctxt "resourcestr.rlatitude"
+msgid "Latitude"
+msgstr ""
+
 #: resourcestr.rlibhamlibnotfound
 msgid "HamLib library not found"
 msgstr ""
@@ -600,6 +614,11 @@ msgstr ""
 
 #: resourcestr.rlognconwsjt
 msgid "EWLog not connected to WSJT"
+msgstr ""
+
+#: resourcestr.rlongitude
+msgctxt "resourcestr.rlongitude"
+msgid "Longitude"
 msgstr ""
 
 #: resourcestr.rlotwrecdate
@@ -631,6 +650,11 @@ msgstr ""
 
 #: resourcestr.rmysqlnotset
 msgid "MySQL database settings not configured"
+msgstr ""
+
+#: resourcestr.rname
+msgctxt "resourcestr.rname"
+msgid "Name"
 msgstr ""
 
 #: resourcestr.rneedqsl
@@ -776,6 +800,11 @@ msgstr ""
 #: resourcestr.rqsl
 msgctxt "resourcestr.rqsl"
 msgid "QSL"
+msgstr ""
+
+#: resourcestr.rqslinfo
+msgctxt "resourcestr.rqslinfo"
+msgid "QSL Info"
 msgstr ""
 
 #: resourcestr.rqslmanager

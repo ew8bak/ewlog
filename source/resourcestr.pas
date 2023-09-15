@@ -235,6 +235,12 @@ resourcestring
   rGenerate = 'Generate';
   rUpload = 'Upload';
   rItsNoEWLogDatabase = 'Its not EWLog database. Check';
+  rFieldMissing = 'field missing';
+  rDescription = 'Description';
+  rName = 'Name';
+  rLatitude = 'Latitude';
+  rLongitude = 'Longitude';
+  rQslInfo = 'QSL Info';
 
 implementation
 
