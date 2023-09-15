@@ -166,7 +166,7 @@ begin
   AddData('LOG_PGM', programName);
   AddData('LOG_ID', IniSet.UniqueID);
   AddData('TO_CALL', 'ANY');
-  AddData('CALL', DBRecord.CurrCall);
+  AddData('CALL', DBRecord.CurrentCall);
   AddData('MESSAGE', s);
   logdata := logdata + '<EOR>';
   IdWOLServer.Broadcast(logdata, IniSet.WOLPort);
@@ -346,8 +346,8 @@ var
 begin
   try
     mess := BytesToString(AData, IndyTextEncoding_UTF8);
-    if (mess = 'GetIP:' + DBRecord.CurrCall) or (mess = 'GetIP:' +
-      DBRecord.CurrCall + #10) then
+    if (mess = 'GetIP:' + DBRecord.CurrentCall) or (mess = 'GetIP:' +
+      DBRecord.CurrentCall + #10) then
       ABinding.SendTo(ABinding.PeerIP, ABinding.PeerPort,
         IniSet.InterfaceMobileSync + ':' + IntToStr(MobileSynThread.lastTCPport))
     else
@@ -452,7 +452,7 @@ begin
     if ((dmFunc.getField(ADILine, 'LOG_PGM') = programName) and
       (dmFunc.getField(ADILine, 'LOG_ID') <> IniSet.UniqueID) and
       ((dmFunc.getField(ADILine, 'TO_CALL') = 'ANY') or
-      (dmFunc.getField(ADILine, 'TO_CALL') = DBRecord.CurrCall))) then
+      (dmFunc.getField(ADILine, 'TO_CALL') = DBRecord.CurrentCall))) then
     begin
       if dmFunc.getField(ADILine, 'MESSAGE') = 'PING' then
         SendBroadcastPingPong('PONG');

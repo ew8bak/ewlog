@@ -51,7 +51,7 @@ type
     function LogbookDBInit: boolean;
     function ImbeddedCallBookInit(Use: boolean): boolean;
     function SelectLogbookTable(LogTable: string): boolean;
-    function GetLogBookTable(Callsign: string): boolean;
+    function GetLogBookTable(DescriptionLog: string): boolean;
     function InitPrefix: boolean;
     procedure AllFree;
     function InitDBINI: boolean;
@@ -199,7 +199,7 @@ begin
     if (not LogbookDBInit) and (DBRecord.InitDB = 'YES') then
       ShowMessage('Logbook database ERROR')
     else
-    if (not GetLogBookTable(DBRecord.DefCall)) and
+    if (not GetLogBookTable(DBRecord.DefaultLogTable)) and
       (DBRecord.InitDB = 'YES') then
       ShowMessage('LogBook Table ERROR')
     else
@@ -370,7 +370,7 @@ begin
   end;
 end;
 
-function TInitDB.GetLogBookTable(Callsign: string): boolean;
+function TInitDB.GetLogBookTable(DescriptionLog: string): boolean;
 var
   LogBookInfoQuery: TSQLQuery;
 begin
@@ -384,23 +384,23 @@ begin
         LogBookInfoQuery.DataBase := SQLiteConnection;
         LogBookInfoQuery.Close;
 
-        if Callsign = '' then
+        if DescriptionLog = '' then
           LogBookInfoQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1'
         else
           LogBookInfoQuery.SQL.Text :=
-            'SELECT * FROM LogBookInfo WHERE CallName = "' + Callsign + '"';
+            'SELECT * FROM LogBookInfo WHERE Description = "' + DescriptionLog + '"';
         LogBookInfoQuery.Open;
 
-        if LogBookInfoQuery.FieldByName('CallName').AsString = '' then
+        if LogBookInfoQuery.FieldByName('Description').AsString = '' then
         begin
           LogBookInfoQuery.Close;
           LogBookInfoQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
           LogBookInfoQuery.Open;
         end;
 
-        if LogBookInfoQuery.FieldByName('CallName').AsString <> '' then
+        if LogBookInfoQuery.FieldByName('Description').AsString <> '' then
         begin
-          LBRecord.Discription := LogBookInfoQuery.FieldByName('Discription').AsString;
+          LBRecord.Description := LogBookInfoQuery.FieldByName('Description').AsString;
           LBRecord.CallSign := LogBookInfoQuery.FieldByName('CallName').AsString;
           LBRecord.OpName := LogBookInfoQuery.FieldByName('Name').AsString;
           LBRecord.OpQTH := LogBookInfoQuery.FieldByName('QTH').AsString;
@@ -435,11 +435,12 @@ begin
           LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
           LogBookInfoQuery.Close;
 
-          dmMigrate.Migrate(LBRecord.CallSign);
+         // dmMigrate.Migrate(LBRecord.CallSign);
 
           Result := True;
           InitRecord.GetLogBookTable := True;
-          DBRecord.CurrCall := LBRecord.CallSign;
+          DBRecord.CurrentLogTable := LBRecord.Description;
+          DBRecord.CurrentCall := LBRecord.CallSign;
         end;
       except
         on E: Exception do
@@ -538,7 +539,7 @@ begin
   DBRecord.InitDB := INIFile.ReadString('SetLog', 'LogBookInit', 'NO');
   if DBRecord.InitDB = 'YES' then
   begin
-    DBRecord.DefCall := INIFile.ReadString('SetLog', 'DefaultCallLogBook', '');
+    DBRecord.DefaultLogTable := INIFile.ReadString('SetLog', 'DefaultCallLogBook', '');
 
     if not ParamData.portable then
       DBRecord.SQLitePATH := INIFile.ReadString('DataBases', 'FileSQLite', '')

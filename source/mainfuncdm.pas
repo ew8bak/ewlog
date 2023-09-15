@@ -430,7 +430,7 @@ begin
   if IniSet.BackupDBonClose then
   begin
     Result := CopyFile(DBRecord.SQLitePATH, SysToUTF8(IniSet.PathBackupFiles +
-      DirectorySeparator + 'auto_backup_' + dmFunc.ExtractCallsign(DBRecord.CurrCall) +
+      DirectorySeparator + 'auto_backup_' + dmFunc.ExtractCallsign(DBRecord.CurrentCall) +
       '_' + FormatDateTime('yyyy-mm-dd-hhnnss', now) + '.db'));
   end
   else
@@ -1367,7 +1367,7 @@ begin
       Query.PacketRecords := 50;
       Query.DataBase := InitDB.SQLiteConnection;
 
-      Query.SQL.Text := 'SELECT CallName FROM LogBookInfo';
+      Query.SQL.Text := 'SELECT Description, CallName FROM LogBookInfo';
       Query.Open;
       if Query.RecordCount = 0 then
         Exit;
@@ -1375,7 +1375,7 @@ begin
       Query.First;
       for i := 0 to Query.RecordCount - 1 do
       begin
-        CallsignList[i] := Query.FieldByName('CallName').AsString;
+        CallsignList[i] := Query.FieldByName('Description').AsString;
         Query.Next;
       end;
       Query.Close;
@@ -2158,7 +2158,7 @@ begin
       WriteLn(ExceptFile, 'SaveQSO:' + E.ClassName + ':' + E.Message);
     end;
   end;
-  if InitDB.GetLogBookTable(DBRecord.CurrCall) then
+  if InitDB.GetLogBookTable(DBRecord.CurrentLogTable) then
     if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
       ShowMessage(rDBError);
 end;
@@ -2301,7 +2301,7 @@ begin
     CBJournal.Items.Clear;
     for i := 0 to High(GetAllCallsign) do
       CBJournal.Items.Add(GetAllCallsign[i]);
-    CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+      CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrentLogTable);
   end;
 end;
 
@@ -2349,7 +2349,7 @@ begin
     CBJournal.Items.Clear;
     for i := 0 to High(GetAllCallsign) do
       CBJournal.Items.Add(GetAllCallsign[i]);
-    CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
+   // CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrCall);
   end;
 end;
 

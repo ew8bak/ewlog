@@ -155,7 +155,7 @@ begin
     Info.AllRec := Query.RecordCount;
     Synchronize(@ToForm);
     Query.First;
-    MyCurrCall := DBRecord.CurrCall;
+    MyCurrCall := DBRecord.CurrentCall;
     if (PADIExport.RemoveSlash) then
     begin
       if MyCurrCall[length(MyCurrCall)] =  '/' then

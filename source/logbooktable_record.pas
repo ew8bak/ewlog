@@ -18,7 +18,7 @@ uses
 
 type
   TLBRecord = record
-    Discription: string[20];
+    Description: string[20];
     CallSign: string[20];
     OpName: string[30];
     OpQTH: string[50];

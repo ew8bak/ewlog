@@ -2271,7 +2271,7 @@ msgstr ""
 
 #: tdatabasesettingsform.gbmainsettings.caption
 msgctxt "tdatabasesettingsform.gbmainsettings.caption"
-msgid "Main HAM Log settings"
+msgid "Default HAM Log"
 msgstr ""
 
 #: tdatabasesettingsform.lbcallsign.caption
@@ -2286,7 +2286,7 @@ msgstr ""
 
 #: tdatabasesettingsform.lbdiscription.caption
 msgctxt "tdatabasesettingsform.lbdiscription.caption"
-msgid "Discription"
+msgid "Description"
 msgstr ""
 
 #: tdatabasesettingsform.lbgrid.caption

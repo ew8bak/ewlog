@@ -92,7 +92,7 @@ begin
   end;
 
   SDExport.InitialDir := INIFile.ReadString('SetLog', 'ExportPath', '');
-  SDExport.FileName := dmFunc.ExtractCallsign(DBRecord.CurrCall) +
+  SDExport.FileName := dmFunc.ExtractCallsign(DBRecord.CurrentCall) +
     '_' + FormatDateTime('yyyy-mm-dd-hhnnss', now);
 
   if SDExport.Execute then
@@ -232,7 +232,7 @@ begin
   Label2.Caption := '';
   LBNumberQSO.Caption := rNumberOfQSO0;
   PbExport.Position := 0;
-  if DBRecord.CurrCall[Length(DBRecord.CurrCall)] = '/' then
+  if DBRecord.CurrentCall[Length(DBRecord.CurrentCall)] = '/' then
   begin
     CBRemoveSlash.Enabled := true;
   end

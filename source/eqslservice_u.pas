@@ -315,7 +315,7 @@ begin
         tmpFreq := '';
 
         tmp := '<OPERATOR' + dmFunc.StringToADIF(
-          dmFunc.RemoveSpaces(DBRecord.CurrCall), False);
+          dmFunc.RemoveSpaces(DBRecord.CurrentCall), False);
         Write(f, tmp);
 
         tmp := '<CALL' + dmFunc.StringToADIF(

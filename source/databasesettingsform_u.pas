@@ -32,7 +32,7 @@ type
     editITU: TEdit;
     editQTH: TEdit;
     editQSLinfo: TEdit;
-    editDiscription: TEdit;
+    editDescription: TEdit;
     editCallsign: TEdit;
     editCQ: TEdit;
     EditSQLPath: TEdit;
@@ -99,7 +99,7 @@ end;
 function TDataBaseSettingsForm.CheckEdit: boolean;
 begin
   Result := False;
-  if Length(editDiscription.Text) < 1 then
+  if Length(editDescription.Text) < 1 then
   begin
     ShowMessage(rDescription + ' ' + rFieldMissing);
     Exit;
@@ -190,7 +190,7 @@ begin
       Query.ParamByName('Loc').AsString := editGrid.Text;
       Query.ParamByName('Lat').AsString := editLatitude.Text;
       Query.ParamByName('Lon').AsString := editLongitude.Text;
-      Query.ParamByName('Discription').AsString := editDiscription.Text;
+      Query.ParamByName('Description').AsString := editDescription.Text;
       Query.ParamByName('QSLInfo').AsString := editQSLinfo.Text;
       Query.ParamByName('Table_version').AsString := Current_Table;
       Query.ExecSQL;
@@ -204,7 +204,7 @@ begin
     SQL_Transaction.Commit;
     INIFile.WriteString('SetLog', 'LogBookInit', 'YES');
     INIFile.WriteString('DataBases', 'FileSQLite', EditSQLPath.Text);
-    INIFile.WriteString('SetLog', 'DefaultCallLogBook', editDiscription.Text);
+    INIFile.WriteString('SetLog', 'DefaultCallLogBook', editDescription.Text);
     SQLite_Connector.Connected := False;
     FreeAndNil(Query);
     InitDB.AllFree;
@@ -245,7 +245,7 @@ end;
 
 procedure TDataBaseSettingsForm.sbOpenDialogClick(Sender: TObject);
 begin
-  editDiscription.Clear;
+  editDescription.Clear;
   editCallsign.Clear;
   editName.Clear;
   editQTH.Clear;
@@ -289,7 +289,7 @@ begin
   Result := False;
   try
     Query := TSQLQuery.Create(nil);
-    editDiscription.Clear;
+    editDescription.Clear;
     editCallsign.Clear;
     editName.Clear;
     editQTH.Clear;
@@ -310,7 +310,7 @@ begin
         Query.Open;
         if Query.FieldByName('CallName').AsString <> '' then
         begin
-          editDiscription.Text := Query.FieldByName('Discription').AsString;
+          editDescription.Text := Query.FieldByName('Description').AsString;
           editCallsign.Text := Query.FieldByName('CallName').AsString;
           editQTH.Text := Query.FieldByName('QTH').AsString;
           editName.Text := Query.FieldByName('Name').AsString;

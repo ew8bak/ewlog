@@ -129,7 +129,7 @@ begin
 
         InitDB.DefTransaction.Commit;
       finally
-        newLogBookName := EditCallName.Text;
+        newLogBookName := EditDescription.Text;
         EditDescription.Clear;
         EditCallName.Clear;
         EditQTH.Clear;
@@ -143,10 +143,10 @@ begin
           PChar(rWarning), MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
         begin
           INIFile.WriteString('SetLog', 'DefaultCallLogBook', newLogBookName);
-          DBRecord.DefCall := newLogBookName;
+          DBRecord.DefaultLogTable := newLogBookName;
         end;
 
-        if InitDB.GetLogBookTable(DBRecord.CurrCall) then
+        if InitDB.GetLogBookTable(DBRecord.CurrentLogTable) then
           if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
             ShowMessage(rDBError);
 

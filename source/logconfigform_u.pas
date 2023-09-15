@@ -237,22 +237,22 @@ begin
       ExecSQL;
     end;
     InitDB.DefTransaction.Commit;
-    if LBDefaultCall.IsVisible then
-    begin
-      DBRecord.DefCall := EditCallSign.Text;
-      INIFile.WriteString('SetLog', 'DefaultCallLogBook', EditCallSign.Text);
-    end;
-    if (not InitDB.GetLogBookTable(DBRecord.DefCall)) and
-      (DBRecord.InitDB = 'YES') then
-      ShowMessage('LogBook Table ERROR')
-    else
-    if (not InitDB.SelectLogbookTable(LBRecord.LogTable)) and
-      (DBRecord.InitDB = 'YES') then
-      ShowMessage(rDBError);
-    MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand,
-      MiniForm.CBCurrentLog);
-    MiniForm.CBCurrentLogChange(LogConfigForm);
-    LogConfigForm.Close;
+ //   if LBDefaultCall.IsVisible then
+ //   begin
+ //     DBRecord.DefCall := EditCallSign.Text;
+ //     INIFile.WriteString('SetLog', 'DefaultCallLogBook', EditCallSign.Text);
+ //   end;
+ //   if (not InitDB.GetLogBookTable(DBRecord.DefCall)) and
+ //     (DBRecord.InitDB = 'YES') then
+ //     ShowMessage('LogBook Table ERROR')
+ //   else
+ //   if (not InitDB.SelectLogbookTable(LBRecord.LogTable)) and
+ //     (DBRecord.InitDB = 'YES') then
+ //     ShowMessage(rDBError);
+ //   MainFunc.LoadBMSL(MiniForm.CBMode, MiniForm.CBSubMode, MiniForm.CBBand,
+ //     MiniForm.CBCurrentLog);
+ //   MiniForm.CBCurrentLogChange(LogConfigForm);
+ //   LogConfigForm.Close;
   end;
 end;
 
@@ -288,7 +288,7 @@ begin
           SQLQuery2.DataBase := InitDB.SQLiteConnection;
           UpdateConfQuery.DataBase := InitDB.SQLiteConnection;
         end;
-        SelectCall(DBRecord.CurrCall);
+      //  SelectCall(DBRecord.CurrCall);
 
       LBCallsigns.Clear;
       SQLQuery2.SQL.Clear;
@@ -308,10 +308,10 @@ begin
           Break;
         end;
 
-      if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
-        LBDefaultCall.Visible := True
-      else
-        LBDefaultCall.Visible := False;
+ //     if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
+ //       LBDefaultCall.Visible := True
+ //     else
+ //       LBDefaultCall.Visible := False;
 
     except
       on E: Exception do
@@ -326,11 +326,11 @@ begin
   begin
     if InitDB.SQLiteConnection.Connected then
     begin
-      SelectCall(LBCallsigns.Items[LBCallsigns.ItemIndex]);
-      if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
-        LBDefaultCall.Visible := True
-      else
-        LBDefaultCall.Visible := False;
+ //     SelectCall(LBCallsigns.Items[LBCallsigns.ItemIndex]);
+ //     if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
+ //       LBDefaultCall.Visible := True
+ //     else
+ //       LBDefaultCall.Visible := False;
     end;
   end;
 end;
@@ -353,12 +353,12 @@ begin
       if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
         MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION) = idYes then
       begin
-        if (DBRecord.DefCall = LBCallsigns.Items[LBCallsigns.ItemIndex]) or
-          (DBRecord.CurrCall = LBCallsigns.Items[LBCallsigns.ItemIndex]) then
-        begin
-          ShowMessage(rCannotDelDef);
-          exit;
-        end;
+  //      if (DBRecord.DefCall = LBCallsigns.Items[LBCallsigns.ItemIndex]) or
+  //        (DBRecord.CurrCall = LBCallsigns.Items[LBCallsigns.ItemIndex]) then
+  //      begin
+  //        ShowMessage(rCannotDelDef);
+  //        exit;
+  //      end;
 
         SQLQuery2.Close;
         SQLQuery2.SQL.Clear;
@@ -388,13 +388,13 @@ begin
         end;
         if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
           ShowMessage(rDBError);
-        for i := 0 to LBCallsigns.Count - 1 do
-          if Pos(DBRecord.CurrCall, LBCallsigns.Items[i]) > 0 then
-          begin
-            LBCallsigns.Selected[i] := True;
-            MainFunc.LoadJournalItem(MiniForm.CBCurrentLog);
-            exit;
-          end;
+    //    for i := 0 to LBCallsigns.Count - 1 do
+    //      if Pos(DBRecord.CurrCall, LBCallsigns.Items[i]) > 0 then
+    //      begin
+    //        LBCallsigns.Selected[i] := True;
+    //        MainFunc.LoadJournalItem(MiniForm.CBCurrentLog);
+    //        exit;
+    //      end;
       end
       else
         Exit;
@@ -410,12 +410,12 @@ begin
     begin
       INIFile.WriteString('SetLog', 'DefaultCallLogBook',
         LBCallsigns.Items[LBCallsigns.ItemIndex]);
-      DBRecord.DefCall := LBCallsigns.Items[LBCallsigns.ItemIndex];
+ //     DBRecord.DefCall := LBCallsigns.Items[LBCallsigns.ItemIndex];
       ShowMessage(rDefaultLogSel + ' ' + LBCallsigns.Items[LBCallsigns.ItemIndex]);
-      if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
-        LBDefaultCall.Visible := True
-      else
-        LBDefaultCall.Visible := False;
+ //     if LBCallsigns.Items[LBCallsigns.ItemIndex] = DBRecord.DefCall then
+ //       LBDefaultCall.Visible := True
+  //    else
+  //      LBDefaultCall.Visible := False;
     end;
   end;
 end;

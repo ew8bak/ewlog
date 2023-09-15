@@ -108,7 +108,7 @@ begin
         Write(f, tmp);
         tmp := Query.Fields.FieldByName('QSOMode').AsString + ',';
         Write(f, tmp);
-        tmp := DBRecord.CurrCall + ',';
+        tmp := DBRecord.CurrentCall + ',';
         Write(f, tmp);
         if not Query.Fields.FieldByName('SOTA_REF').IsNull then
           tmp := Query.Fields.FieldByName('SOTA_REF').AsString

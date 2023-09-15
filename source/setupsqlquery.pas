@@ -20,11 +20,11 @@ uses
 const
   Table_LogBookInfo = 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
     '`id` integer UNIQUE PRIMARY KEY, `LogTable` varchar(100) NOT NULL, ' +
+    '`Description` TEXT NOT NULL UNIQUE, ' +
     '`CallName` varchar(15) NOT NULL, `Name` varchar(100) NOT NULL, ' +
     '`QTH` varchar(100) NOT NULL, `ITU` int(11) NOT NULL, ' +
     '`CQ` int(11) NOT NULL, `Loc` varchar(32) NOT NULL, ' +
     '`Lat` varchar(20) NOT NULL, `Lon` varchar(20) NOT NULL, ' +
-    '`Discription` varchar(150) NOT NULL, ' +
     '`QSLInfo` varchar(200) NOT NULL DEFAULT "TNX For QSO TU 73!", ' +
     '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
     '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
@@ -40,9 +40,9 @@ const
 
 
   Insert_Table_LogBookInfo = 'INSERT INTO LogBookInfo ' +
-    '(LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Discription,QSLInfo, Table_version) '
+    '(LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Description,QSLInfo, Table_version) '
     +
-    'VALUES (:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Discription,:QSLInfo, :Table_version)';
+    'VALUES (:LogTable,:CallName,:Name,:QTH,:ITU,:CQ,:Loc,:Lat,:Lon,:Description,:QSLInfo, :Table_version)';
 
   Table_MacroTable = 'CREATE TABLE IF NOT EXISTS ' +
       '`MacroTable` (`ButtonID` integer UNIQUE PRIMARY KEY NOT NULL,' +

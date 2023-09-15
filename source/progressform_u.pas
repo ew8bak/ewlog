@@ -72,7 +72,7 @@ var
   PADIExport: TPADIExport;
 begin
   PADIExport.Path := SysToUTF8(IniSet.PathBackupFiles + DirectorySeparator +
-    'auto_backup_' + dmFunc.ExtractCallsign(DBRecord.CurrCall) + '_' +
+    'auto_backup_' + dmFunc.ExtractCallsign(DBRecord.CurrentCall) + '_' +
     FormatDateTime('yyyy-mm-dd-hhnnss', now) + '.adi');
   PADIExport.ExportAll := True;
   PADIExport.FromForm := 'BackupAdifForm';

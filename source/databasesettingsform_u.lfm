@@ -1,7 +1,7 @@
 object DataBaseSettingsForm: TDataBaseSettingsForm
-  Left = 1230
+  Left = 316
   Height = 320
-  Top = 277
+  Top = 220
   Width = 560
   Caption = 'DataBase Settings'
   ClientHeight = 320
@@ -126,7 +126,7 @@ object DataBaseSettingsForm: TDataBaseSettingsForm
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoSize = True
     BorderSpacing.Around = 5
-    Caption = 'Main HAM Log settings'
+    Caption = 'Default HAM Log'
     ChildSizing.LeftRightSpacing = 20
     ChildSizing.TopBottomSpacing = 5
     ChildSizing.HorizontalSpacing = 10
@@ -143,10 +143,10 @@ object DataBaseSettingsForm: TDataBaseSettingsForm
       Top = 2
       Width = 119
       BorderSpacing.CellAlignVertical = ccaRightBottom
-      Caption = 'Discription'
+      Caption = 'Description'
       ParentColor = False
     end
-    object editDiscription: TEdit
+    object editDescription: TEdit
       Left = 20
       Height = 23
       Top = 19

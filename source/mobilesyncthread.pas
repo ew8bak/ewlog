@@ -280,7 +280,7 @@ begin
         tmp2 := '';
 
         tmp := '<OPERATOR' + dmFunc.StringToADIF(
-          dmFunc.RemoveSpaces(DBRecord.CurrCall), True);
+          dmFunc.RemoveSpaces(DBRecord.CurrentCall), True);
         tmp2 := tmp2 + tmp;
 
         tmp := '<CALL' + dmFunc.StringToADIF(

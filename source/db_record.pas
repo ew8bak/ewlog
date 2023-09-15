@@ -20,8 +20,9 @@ type
   TDBRecord = record
     SQLitePATH: string;
     InitDB: string[3];
-    DefCall: string;
-    CurrCall: string;
+    CurrentLogTable: string;
+    DefaultLogTable: string;
+    CurrentCall: string;
   end;
 
 implementation
