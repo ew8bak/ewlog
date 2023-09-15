@@ -73,7 +73,7 @@
 {"hash":208786055,"name":"tminiform.menuitem56.caption","sourcebytes":[67,114,101,97,116,101,32,110,101,119,32,108,111,103],"value":"Create new log"},
 {"hash":33130206,"name":"tminiform.menuitem7.caption","sourcebytes":[76,111,103,115,32,99,111,110,102,105,103,117,114,97,116,105,111,110],"value":"Logs configuration"},
 {"hash":88248716,"name":"tminiform.menuitem118.caption","sourcebytes":[67,108,101,97,114,32,97,108,108,32,106,111,117,114,110,97,108],"value":"Clear all journal"},
-{"hash":180779253,"name":"tminiform.menuitem58.caption","sourcebytes":[67,111,109,112,97,99,116,32,97,110,100,32,82,101,112,97,105,114,32,68,97,116,97,98,97,115,101],"value":"Compact and Repair Database"},
+{"hash":40640581,"name":"tminiform.menuitem58.caption","sourcebytes":[86,97,99,117,117,109,32,68,97,116,97,98,97,115,101],"value":"Vacuum Database"},
 {"hash":195331447,"name":"tminiform.menuitem60.caption","sourcebytes":[83,101,114,118,105,99,101,115,32,111,102,32,101,81,83,76,32,97,110,100,32,76,79,84,87],"value":"Services of eQSL and LOTW"},
 {"hash":258978245,"name":"tminiform.menuitem1.caption","sourcebytes":[101,81,83,76,32,83,101,114,118,105,99,101],"value":"eQSL Service"},
 {"hash":217929413,"name":"tminiform.menuitem2.caption","sourcebytes":[76,111,84,87,32,83,101,114,118,105,99,101],"value":"LoTW Service"},

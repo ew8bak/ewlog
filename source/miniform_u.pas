@@ -256,11 +256,13 @@ type
     procedure MenuItem102Click(Sender: TObject);
     procedure MenuItem111Click(Sender: TObject);
     procedure MenuItem112Click(Sender: TObject);
+    procedure MenuItem118Click(Sender: TObject);
     procedure MenuItem123Click(Sender: TObject);
     procedure MenuItem124Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem43Click(Sender: TObject);
+    procedure MenuItem58Click(Sender: TObject);
     procedure MenuItem74Click(Sender: TObject);
     procedure MenuItem85Click(Sender: TObject);
     procedure MIContestLoggingClick(Sender: TObject);
@@ -362,7 +364,8 @@ uses MainFuncDM, InitDB_dm, dmFunc_U, infoDM_U, Earth_Form_U, hiddentsettings_u,
   ThanksForm_u, LogConfigForm_U, SettingsProgramForm_U, IOTA_Form_U,
   QSLManagerForm_U, STATE_Form_U, TRXForm_U, MainForm_U, MapForm_u, viewPhoto_U,
   serverDM_u, contestForm_u, CWKeysForm_u, CWTypeForm_u,
-  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u, ServiceEqslForm_u, ServiceLoTWForm_u, databasesettingsform_u;
+  sendtelnetspot_form_U, WSJT_UDP_Form_U, satForm_u, ServiceEqslForm_u,
+  ServiceLoTWForm_u, databasesettingsform_u;
 
 {$R *.lfm}
 
@@ -896,6 +899,13 @@ begin
   MenuItem112.Checked := True;
 end;
 
+procedure TMiniForm.MenuItem118Click(Sender: TObject);
+begin
+  if Application.MessageBox(PChar(rDeleteLog), PChar(rWarning),
+    MB_YESNO + MB_DEFBUTTON2 + MB_ICONWARNING) = idYes then
+    MainFunc.TruncateTable(LBRecord.LogTable);
+end;
+
 procedure TMiniForm.MenuItem123Click(Sender: TObject);
 begin
   FM_Form.Show;
@@ -919,6 +929,11 @@ end;
 procedure TMiniForm.MenuItem43Click(Sender: TObject);
 begin
   dmFunc.RunProgram(IniSet.WSJT_PATH, '');
+end;
+
+procedure TMiniForm.MenuItem58Click(Sender: TObject);
+begin
+  MainFunc.VacuumDB;
 end;
 
 procedure TMiniForm.MenuItem74Click(Sender: TObject);

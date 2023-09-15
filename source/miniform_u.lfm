@@ -1876,9 +1876,11 @@ object MiniForm: TMiniForm
         end
         object MenuItem118: TMenuItem
           Caption = 'Clear all journal'
+          OnClick = MenuItem118Click
         end
         object MenuItem58: TMenuItem
-          Caption = 'Compact and Repair Database'
+          Caption = 'Vacuum Database'
+          OnClick = MenuItem58Click
         end
         object MenuItem59: TMenuItem
           Caption = '-'

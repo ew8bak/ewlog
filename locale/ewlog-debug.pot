@@ -3784,28 +3784,28 @@ msgctxt "tlogconfigform.caption"
 msgid "Logs configuration"
 msgstr ""
 
-#: tlogconfigform.checkbox1.caption
-msgctxt "tlogconfigform.checkbox1.caption"
+#: tlogconfigform.cbuploadclublog.caption
+msgctxt "tlogconfigform.cbuploadclublog.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.checkbox2.caption
-msgctxt "tlogconfigform.checkbox2.caption"
+#: tlogconfigform.cbuploadeqslcc.caption
+msgctxt "tlogconfigform.cbuploadeqslcc.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.checkbox3.caption
-msgctxt "tlogconfigform.checkbox3.caption"
+#: tlogconfigform.cbuploadhamqth.caption
+msgctxt "tlogconfigform.cbuploadhamqth.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.checkbox4.caption
-msgctxt "tlogconfigform.checkbox4.caption"
+#: tlogconfigform.cbuploadhrdlog.caption
+msgctxt "tlogconfigform.cbuploadhrdlog.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.checkbox5.caption
-msgctxt "tlogconfigform.checkbox5.caption"
+#: tlogconfigform.cbuploadqrzcom.caption
+msgctxt "tlogconfigform.cbuploadqrzcom.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
@@ -3813,92 +3813,19 @@ msgstr ""
 msgid "TNX For QSO TU 73!"
 msgstr ""
 
-#: tlogconfigform.label16.caption
-msgid "eQSLcc"
-msgstr ""
-
-#: tlogconfigform.label17.caption
-msgctxt "tlogconfigform.label17.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label18.caption
-msgctxt "tlogconfigform.label18.caption"
-msgid "Password"
-msgstr ""
-
-#: tlogconfigform.label19.caption
-msgid "HRDlog"
-msgstr ""
-
-#: tlogconfigform.label20.caption
-msgctxt "tlogconfigform.label20.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label21.caption
-msgid "Upload code"
-msgstr ""
-
-#: tlogconfigform.label22.caption
-msgid "HamQTH"
-msgstr ""
-
-#: tlogconfigform.label23.caption
-msgctxt "tlogconfigform.label23.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label24.caption
-msgctxt "tlogconfigform.label24.caption"
-msgid "Password"
-msgstr ""
-
-#: tlogconfigform.label25.caption
-msgctxt "tlogconfigform.label25.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label26.caption
-msgctxt "tlogconfigform.label26.caption"
-msgid "Password"
-msgstr ""
-
-#: tlogconfigform.label27.caption
-msgctxt "tlogconfigform.label27.caption"
-msgid "LoTW"
-msgstr ""
-
-#: tlogconfigform.label28.caption
-msgid "ClubLog"
-msgstr ""
-
-#: tlogconfigform.label29.caption
-msgid "Login (email)"
-msgstr ""
-
-#: tlogconfigform.label30.caption
-msgctxt "tlogconfigform.label30.caption"
-msgid "Password"
-msgstr ""
-
-#: tlogconfigform.label31.caption
-msgctxt "tlogconfigform.label31.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label32.caption
-msgctxt "tlogconfigform.label32.caption"
+#: tlogconfigform.lbapikeyqrzcom.caption
+msgctxt "tlogconfigform.lbapikeyqrzcom.caption"
 msgid "API key"
-msgstr ""
-
-#: tlogconfigform.label33.caption
-msgid "QRZ.COM"
 msgstr ""
 
 #: tlogconfigform.lbcallsign.caption
 msgctxt "tlogconfigform.lbcallsign.caption"
 msgid "Callsign"
+msgstr ""
+
+#: tlogconfigform.lbclublog.caption
+msgctxt "tlogconfigform.lbclublog.caption"
+msgid "ClubLog"
 msgstr ""
 
 #: tlogconfigform.lbcq.caption
@@ -3915,9 +3842,24 @@ msgctxt "tlogconfigform.lbdescription.caption"
 msgid "Description"
 msgstr ""
 
+#: tlogconfigform.lbeqslcc.caption
+msgctxt "tlogconfigform.lbeqslcc.caption"
+msgid "eQSLcc"
+msgstr ""
+
 #: tlogconfigform.lbgrid.caption
 msgctxt "tlogconfigform.lbgrid.caption"
 msgid "Grid"
+msgstr ""
+
+#: tlogconfigform.lbhamqth.caption
+msgctxt "tlogconfigform.lbhamqth.caption"
+msgid "HamQTH"
+msgstr ""
+
+#: tlogconfigform.lbhrdlog.caption
+msgctxt "tlogconfigform.lbhrdlog.caption"
+msgid "HRDlog"
 msgstr ""
 
 #: tlogconfigform.lbitu.caption
@@ -3940,14 +3882,74 @@ msgctxt "tlogconfigform.lblog.caption"
 msgid "Log"
 msgstr ""
 
+#: tlogconfigform.lbloginclublog.caption
+msgctxt "tlogconfigform.lbloginclublog.caption"
+msgid "Login (email)"
+msgstr ""
+
+#: tlogconfigform.lblogineqslcc.caption
+msgctxt "tlogconfigform.lblogineqslcc.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lbloginhamqth.caption
+msgctxt "tlogconfigform.lbloginhamqth.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lbloginhrdlog.caption
+msgctxt "tlogconfigform.lbloginhrdlog.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lbloginlotw.caption
+msgctxt "tlogconfigform.lbloginlotw.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lbloginqrzcom.caption
+msgctxt "tlogconfigform.lbloginqrzcom.caption"
+msgid "Login"
+msgstr ""
+
 #: tlogconfigform.lblon.caption
 msgctxt "tlogconfigform.lblon.caption"
 msgid "Lon"
 msgstr ""
 
+#: tlogconfigform.lblotw.caption
+msgctxt "tlogconfigform.lblotw.caption"
+msgid "LoTW"
+msgstr ""
+
 #: tlogconfigform.lbname.caption
 msgctxt "tlogconfigform.lbname.caption"
 msgid "Name"
+msgstr ""
+
+#: tlogconfigform.lbpasswordclublog.caption
+msgctxt "tlogconfigform.lbpasswordclublog.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.lbpasswordeqslcc.caption
+msgctxt "tlogconfigform.lbpasswordeqslcc.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.lbpasswordhamqth.caption
+msgctxt "tlogconfigform.lbpasswordhamqth.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.lbpasswordlotw.caption
+msgctxt "tlogconfigform.lbpasswordlotw.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.lbqrzcom.caption
+msgctxt "tlogconfigform.lbqrzcom.caption"
+msgid "QRZ.COM"
 msgstr ""
 
 #: tlogconfigform.lbqslinfo.caption
@@ -3963,6 +3965,11 @@ msgstr ""
 #: tlogconfigform.lbstationdetalis.caption
 msgctxt "tlogconfigform.lbstationdetalis.caption"
 msgid "Station detalis"
+msgstr ""
+
+#: tlogconfigform.lbuploadcodehrdlog.caption
+msgctxt "tlogconfigform.lbuploadcodehrdlog.caption"
+msgid "Upload code"
 msgstr ""
 
 #: tlogconfigform.menuitem1.caption
@@ -4466,7 +4473,7 @@ msgid "Create new log"
 msgstr ""
 
 #: tminiform.menuitem58.caption
-msgid "Compact and Repair Database"
+msgid "Vacuum Database"
 msgstr ""
 
 #: tminiform.menuitem6.caption

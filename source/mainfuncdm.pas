@@ -18,7 +18,7 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, CloudLogCAT, progressForm_u,
-  FileUtil, FMS_record, telnetaddresrecord_u, LazSysUtils;
+  FileUtil, FMS_record, telnetaddresrecord_u, LazSysUtils, SQLite3DS;
 
 type
   bandArray = array of string;
@@ -101,6 +101,8 @@ type
     procedure StartRadio(RIGid: string);
     procedure StopRadio;
     procedure UpdateQSL(Field, Value: string; UQSO: TQSO);
+    procedure TruncateTable(TableName: string);
+    procedure VacuumDB;
   end;
 
 var
@@ -430,8 +432,8 @@ begin
   if IniSet.BackupDBonClose then
   begin
     Result := CopyFile(DBRecord.SQLitePATH, SysToUTF8(IniSet.PathBackupFiles +
-      DirectorySeparator + 'auto_backup_' + dmFunc.ExtractCallsign(DBRecord.CurrentCall) +
-      '_' + FormatDateTime('yyyy-mm-dd-hhnnss', now) + '.db'));
+      DirectorySeparator + 'auto_backup_' + dmFunc.ExtractCallsign(
+      DBRecord.CurrentCall) + '_' + FormatDateTime('yyyy-mm-dd-hhnnss', now) + '.db'));
   end
   else
     Result := False;
@@ -749,18 +751,18 @@ begin
     try
       Query := TSQLQuery.Create(nil);
 
-        fmt.ShortDateFormat := 'yyyy-mm-dd';
-        fmt.DateSeparator := '-';
-        fmt.LongTimeFormat := 'hh:nn';
-        fmt.TimeSeparator := ':';
-        Query.DataBase := InitDB.SQLiteConnection;
-        Query.SQL.Text :=
-          'SELECT datetime(QSODateTime, ''unixepoch'') AS QSODateTime FROM ' +
-          LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(index);
-        Query.Open;
-        Result.QSODateTime :=
-          StrToDateTime(Query.FieldByName('QSODateTime').AsString, Fmt);
-        Query.Close;
+      fmt.ShortDateFormat := 'yyyy-mm-dd';
+      fmt.DateSeparator := '-';
+      fmt.LongTimeFormat := 'hh:nn';
+      fmt.TimeSeparator := ':';
+      Query.DataBase := InitDB.SQLiteConnection;
+      Query.SQL.Text :=
+        'SELECT datetime(QSODateTime, ''unixepoch'') AS QSODateTime FROM ' +
+        LBRecord.LogTable + ' WHERE UnUsedIndex = ' + IntToStr(index);
+      Query.Open;
+      Result.QSODateTime :=
+        StrToDateTime(Query.FieldByName('QSODateTime').AsString, Fmt);
+      Query.Close;
 
       Query.SQL.Text := 'SELECT * FROM ' + LBRecord.LogTable +
         ' WHERE UnUsedIndex = ' + IntToStr(index);
@@ -849,20 +851,20 @@ begin
     FormatSettings.ShortDateFormat := 'dd.mm.yyyy';
 
     try
-        QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),
-          ',', '.', [rfReplaceAll]);
-        if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
-          QSLSentDates := 'NULL'
-        else
-          QSLSentDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate));
-        if SQSO.QSLRecDate = StrToDate('30.12.1899', FormatSettings) then
-          QSLRecDates := 'NULL'
-        else
-          QSLRecDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLRecDate));
-        if SQSO.LotWRecDate = StrToDate('30.12.1899', FormatSettings) then
-          LotWRecDates := 'NULL'
-        else
-          LotWRecDates := FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate));
+      QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),
+        ',', '.', [rfReplaceAll]);
+      if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
+        QSLSentDates := 'NULL'
+      else
+        QSLSentDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate));
+      if SQSO.QSLRecDate = StrToDate('30.12.1899', FormatSettings) then
+        QSLRecDates := 'NULL'
+      else
+        QSLRecDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLRecDate));
+      if SQSO.LotWRecDate = StrToDate('30.12.1899', FormatSettings) then
+        LotWRecDates := 'NULL'
+      else
+        LotWRecDates := FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate));
 
 
       SRXs := IntToStr(SQSO.SRX);
@@ -912,7 +914,7 @@ begin
         QuotedStr(IntToStr(SQSO.NoCalcDXCC)) + ' WHERE UnUsedIndex=' +
         QuotedStr(IntToStr(index));
 
-        InitDB.SQLiteConnection.ExecuteDirect(QueryTXT);
+      InitDB.SQLiteConnection.ExecuteDirect(QueryTXT);
     finally
       InitDB.DefTransaction.Commit;
       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
@@ -1132,21 +1134,21 @@ begin
       begin
         InitDB.DefLogBookQuery.Close;
         InitDB.DefLogBookQuery.SQL.Text :=
-            'SELECT `UnUsedIndex`, `CallSign`,' +
-            ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
-            +
-            '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
-            +
-            '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || '' '' || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
-            + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-            + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-            + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-            + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-            + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-            + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-            + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
-            + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
-            Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`';
+          'SELECT `UnUsedIndex`, `CallSign`,' +
+          ' strftime(''%d.%m.%Y'',QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,'
+          +
+          '(COALESCE(`QSOReportSent`, '''') || '' '' || COALESCE(`STX`, '''') || '' '' || COALESCE(`STX_STRING`, '''')) AS QSOReportSent,'
+          +
+          '(COALESCE(`QSOReportRecived`, '''') || '' '' || COALESCE(`SRX`, '''') || '' '' || COALESCE(`SRX_STRING`, '''')) AS QSOReportRecived,'
+          + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+          + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+          + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+          + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+          + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+          + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+          + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||'
+          + '`LoTWSent`) AS QSLs FROM ' + LBRecord.LogTable + ' WHERE ' +
+          Field + ' LIKE ' + QuotedStr(Value) + ' ORDER BY `UnUsedIndex`';
         InitDB.DefLogBookQuery.Open;
       end;
     end;
@@ -1217,7 +1219,7 @@ begin
 
       SQLString := SQLString + ' WHERE CallSign = ' + QuotedStr(UQSO.CallSing);
       SQLString := SQLString + ' AND QSODateTime = ' +
-          QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)));
+        QuotedStr(IntToStr(DateTimeToUnix(UQSO.QSODateTime)));
 
       SQLString := SQLString + ' AND DigiBand = ' + UQSO.DigiBand +
         ' AND (QSOMode = ' + QuotedStr(UQSO.QSOMode) + ' OR QSOSubMode = ' +
@@ -1407,20 +1409,20 @@ begin
       InitDB.FindQSOQuery.Close;
       InitDB.FindQSOQuery.DataBase := InitDB.SQLiteConnection;
       InitDB.FindQSOQuery.SQL.Text :=
-          'SELECT `UnUsedIndex`, `CallSign`,' +
-          'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
-          + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
-          + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
-          + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
-          + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
-          + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
-          + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
-          + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
-          + LBRecord.LogTable +
-          ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
-          + LBRecord.LogTable + ' WHERE `Call` LIKE ' +
-          QuotedStr(Callsign) +
-          ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
+        'SELECT `UnUsedIndex`, `CallSign`,' +
+        'strftime("%d.%m.%Y",QSODate) as QSODate,`QSOTime`,`QSOBand`,`QSOMode`,`QSOSubMode`,`QSOReportSent`,`QSOReportRecived`,'
+        + '`OMName`,`OMQTH`, `State`,`Grid`,`IOTA`,`QSLManager`,`QSLSent`,`QSLSentAdv`,'
+        + '`QSLSentDate`,`QSLRec`, `QSLRecDate`,`MainPrefix`,`DXCCPrefix`,`CQZone`,`ITUZone`,'
+        + '`QSOAddInfo`,`Marker`, `ManualSet`,`DigiBand`,`Continent`,`ShortNote`,`QSLReceQSLcc`,'
+        + '`LoTWRec`, `LoTWRecDate`,`QSLInfo`,`Call`,`State1`,`State2`,`State3`,`State4`,'
+        + '`WPX`, `AwardsEx`,`ValidDX`,`SRX`,`SRX_STRING`,`STX`,`STX_STRING`,`SAT_NAME`,'
+        + '`SAT_MODE`,`PROP_MODE`,`LoTWSent`,`QSL_RCVD_VIA`,`QSL_SENT_VIA`, `DXCC`,`USERS`,'
+        + '`NoCalcDXCC`, (`QSLRec` || `QSLReceQSLcc` || `LoTWRec`) AS QSL, (`QSLSent`||`LoTWSent`) AS QSLs FROM '
+        + LBRecord.LogTable +
+        ' INNER JOIN (SELECT UnUsedIndex, QSODate as QSODate2, QSOTime as QSOTime2 from '
+        +
+        LBRecord.LogTable + ' WHERE `Call` LIKE ' + QuotedStr(Callsign) +
+        ' ORDER BY QSODate2 DESC, QSOTime2 DESC) as lim USING(UnUsedIndex)';
       InitDB.FindQSOQuery.Open;
       if InitDB.FindQSOQuery.RecordCount > 0 then
       begin
@@ -2106,8 +2108,8 @@ begin
       SQSO.My_Lon := StringReplace(SQSO.My_Lon, ',', '.', [rfReplaceAll]);
 
       QSODates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSODate)),
-          ',', '.', [rfReplaceAll]);
-        QSODateTime := IntToStr(DateTimeToUnix(SQSO.QSODateTime));
+        ',', '.', [rfReplaceAll]);
+      QSODateTime := IntToStr(DateTimeToUnix(SQSO.QSODateTime));
 
       QueryTXT := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
         'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX, QSOMode, QSOSubMode,'
@@ -2147,7 +2149,7 @@ begin
         dmFunc.Q(SQSO.My_Lon) + dmFunc.Q(IntToStr(SQSO.SYNC)) +
         dmFunc.Q(SQSO.ContestSession) + QuotedStr(SQSO.ContestName) + ')';
       //    WriteLn(ExceptFile, 'SaveQSO:' + QueryTXT);
-        InitDB.SQLiteConnection.ExecuteDirect(QueryTXT);
+      InitDB.SQLiteConnection.ExecuteDirect(QueryTXT);
     finally
       InitDB.DefTransaction.Commit;
     end;
@@ -2169,7 +2171,7 @@ var
   QBAND: string;
   ColorTextGrid: integer;
   ColorBackGrid: integer;
- // SizeTextGrid: integer;
+  // SizeTextGrid: integer;
 begin
   for i := 0 to 29 do
   begin
@@ -2185,7 +2187,7 @@ begin
   //SizeTextGrid := INIFile.ReadInteger('GridSettings', 'TextSize', 8);
   ColorBackGrid := INIFile.ReadInteger('GridSettings', 'BackColor', clDefault);
 
- // DBGRID.Font.Size := SizeTextGrid;
+  // DBGRID.Font.Size := SizeTextGrid;
   DBGRID.Font.Color := ColorTextGrid;
   DBGRID.Color := ColorBackGrid;
 
@@ -2265,15 +2267,15 @@ begin
     end;
   end;
 
-//  case SizeTextGrid of
-//    8: DBGRID.DefaultRowHeight := 15;
-//    10: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-//    12: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-//    14: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
-//  end;
+  //  case SizeTextGrid of
+  //    8: DBGRID.DefaultRowHeight := 15;
+  //    10: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+  //    12: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+  //    14: DBGRID.DefaultRowHeight := DBGRID.Font.Size + 12;
+  //  end;
 
-//  for i := 0 to DBGRID.Columns.Count - 1 do
- //   DBGRID.Columns.Items[i].Title.Font.Size := SizeTextGrid;
+  //  for i := 0 to DBGRID.Columns.Count - 1 do
+  //   DBGRID.Columns.Items[i].Title.Font.Size := SizeTextGrid;
 end;
 
 procedure TMainFunc.LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
@@ -2301,7 +2303,7 @@ begin
     CBJournal.Items.Clear;
     for i := 0 to High(GetAllCallsign) do
       CBJournal.Items.Add(GetAllCallsign[i]);
-      CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrentLogTable);
+    CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrentLogTable);
   end;
 end;
 
@@ -2350,6 +2352,26 @@ begin
     for i := 0 to High(GetAllCallsign) do
       CBJournal.Items.Add(GetAllCallsign[i]);
     CBJournal.ItemIndex := CBJournal.Items.IndexOf(DBRecord.CurrentLogTable);
+  end;
+end;
+
+procedure TMainFunc.TruncateTable(TableName: string);
+begin
+  InitDB.SQLiteConnection.ExecuteDirect('DELETE FROM ' + TableName);
+  InitDB.DefTransaction.Commit;
+  VacuumDB;
+end;
+
+procedure TMainFunc.VacuumDB;
+var
+  dsLite: TSqlite3Dataset;
+begin
+  try
+    dsLite := TSqlite3Dataset.Create(nil);
+    dsLite.FileName := DBRecord.SQLitePATH;
+    dsLite.ExecSQL('VACUUM;');
+  finally
+    FreeAndNil(dsLite);
   end;
 end;
 
