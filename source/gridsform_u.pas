@@ -47,6 +47,8 @@ type
     ExportQSLccItem: TMenuItem;
     ExportClubLogItem: TMenuItem;
     ExportHamQTHItem: TMenuItem;
+    ExportCloudLogItem: TMenuItem;
+    Separator1: TMenuItem;
     miExportToService: TMenuItem;
     MISendOnLAN: TMenuItem;
     MISendOnLANANY: TMenuItem;
@@ -102,6 +104,7 @@ type
     procedure DelRecItemClick(Sender: TObject);
     procedure EditItemClick(Sender: TObject);
     procedure ExportADIFItemClick(Sender: TObject);
+    procedure ExportCloudLogItemClick(Sender: TObject);
     procedure ExportClubLogItemClick(Sender: TObject);
     procedure ExportHamQTHItemClick(Sender: TObject);
     procedure ExportHRDItemClick(Sender: TObject);
@@ -298,6 +301,18 @@ begin
     end;
     ExportAdifSelect := True;
     exportAdifForm.ExportADIArray;
+  end;
+end;
+
+procedure TGridsForm.ExportCloudLogItemClick(Sender: TObject);
+var
+  SelQSO: TQSO;
+begin
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+    SelQSO.Auto := False;
+    MainFunc.SendQSOto('cloudlog', SelQSO);
   end;
 end;
 

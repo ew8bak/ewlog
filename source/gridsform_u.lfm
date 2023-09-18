@@ -1392,6 +1392,13 @@ object GridsForm: TGridsForm
         Caption = 'Export QSO to HamQTH'
         OnClick = ExportHamQTHItemClick
       end
+      object Separator1: TMenuItem
+        Caption = '-'
+      end
+      object ExportCloudLogItem: TMenuItem
+        Caption = 'Export QSO to Cloudlog'
+        OnClick = ExportCloudLogItemClick
+      end
     end
     object Sep6Item: TMenuItem
       Caption = '-'

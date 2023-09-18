@@ -142,7 +142,7 @@ procedure TSendCloudLogThread.ShowResult;
 begin
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
-      'CloudLog', MB_ICONEXCLAMATION);
+      PChar('CloudLog -> ' + SendQSO.CallSing), MB_ICONEXCLAMATION);
 end;
 
 procedure TSendCloudLogThread.Execute;
