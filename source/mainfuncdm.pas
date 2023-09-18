@@ -1203,7 +1203,9 @@ begin
     try
       Query := TSQLQuery.Create(nil);
       Query.DataBase := InitDB.SQLiteConnection;
-      QSODateTime := IntToStr(DateTimeToUnix(NowUTC));
+      QSODateTime := FloatToStr(DateTimeToJulianDate(NowUTC));
+
+      QSODateTime := StringReplace(QSODateTime, ',', '.', [rfReplaceAll]);
 
       SQLString := 'UPDATE ' + LBRecord.LogTable + ' SET ' + Field +
         ' = ' + QuotedStr(Value);
@@ -1215,7 +1217,11 @@ begin
             SQLString + ', QRZCOM_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
         'CLUBLOG_QSO_UPLOAD_STATUS': SQLString :=
             SQLString + ', CLUBLOG_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
+        'HAMQTH_QSO_UPLOAD_STATUS': SQLString :=
+            SQLString + ', HAMQTH_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
+
       end;
+
 
       SQLString := SQLString + ' WHERE CallSign = ' + QuotedStr(UQSO.CallSing);
       SQLString := SQLString + ' AND QSODateTime = ' +

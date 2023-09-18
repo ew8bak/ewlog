@@ -72,6 +72,8 @@ begin
     ' `CallSign` varchar(20) DEFAULT NULL, `QSODateTime` datetime DEFAULT NULL,' +
     ' `QSODate` datetime DEFAULT NULL, `QSOTime` varchar(5) DEFAULT NULL,' +
     ' `QSOBand` varchar(20) DEFAULT NULL,' +
+    ' `FREQ_RX` varchar(20) DEFAULT NULL,' +
+    ' `BAND_RX` varchar(20) DEFAULT NULL,' +
     ' `QSOMode` varchar(15) DEFAULT NULL,' +
     ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
     ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
@@ -110,9 +112,9 @@ begin
     ' `CLUBLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `CLUBLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
     ' `HRDLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HRDLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
     ' `QRZCOM_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `QRZCOM_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
-    ' `HAMLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,' +
-    ' `FREQ_RX` varchar(20) DEFAULT NULL,' +
-    ' `BAND_RX` varchar(20) DEFAULT NULL';
+    ' `HAMLOGRU_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOGRU_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,' +
+    ' `HAMLOGEU_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOGEU_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,' +
+    ' `HAMQTH_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMQTH_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL';
     Result := TempResult +
       ', CONSTRAINT `Dupe_index` UNIQUE (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`))';
 end;

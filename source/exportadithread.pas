@@ -545,9 +545,9 @@ begin
 
         if Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_DATE').AsString <> '' then
         begin
-          tmp := '<CLUBLOG_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
-            Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_DATE').AsString,
-            PADIExport.Win1251);
+          tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
+            'CLUBLOG_QSO_UPLOAD_DATE').AsDateTime);
+         tmp := '<CLUBLOG_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
           Write(f, tmp);
         end;
 
@@ -563,15 +563,6 @@ begin
               dmFunc.StringToADIF('Y', PADIExport.Win1251);
           Write(f, tmp);
         end;
-
-      //  if Query.Fields.FieldByName('HRDLOG_QSO_UPLOAD_DATE').AsString <> '' then
-      //  begin
-      //    tmpdate := strtoint64( Query.Fields.FieldByName('HRDLOG_QSO_UPLOAD_DATE').AsString);
-      //    tmp := FormatDateTime('yyyymmdd', UnixToDateTime(tmpdate));
-      //    tmp := '<HRDLOG_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(tmp,
-     //       PADIExport.Win1251);
-      //    Write(f, tmp);
-      //  end;
 
        if Query.Fields.FieldByName('HRDLOG_QSO_UPLOAD_DATE').AsString <> '' then
         begin
@@ -593,12 +584,11 @@ begin
           Write(f, tmp);
         end;
 
-        if Query.Fields.FieldByName('QRZCOM_QSO_UPLOAD_DATE').AsString
-          <> '' then
+        if Query.Fields.FieldByName('QRZCOM_QSO_UPLOAD_DATE').AsString <> '' then
         begin
-          tmp := '<QRZCOM_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
-            Query.Fields.FieldByName('QRZCOM_QSO_UPLOAD_DATE').AsString,
-            PADIExport.Win1251);
+          tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
+            'QRZCOM_QSO_UPLOAD_DATE').AsDateTime);
+         tmp := '<QRZCOM_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
           Write(f, tmp);
         end;
 
@@ -614,23 +604,65 @@ begin
           Write(f, tmp);
         end;
 
-        if Query.Fields.FieldByName('HAMLOG_QSO_UPLOAD_DATE').AsString <> '' then
+        if Query.Fields.FieldByName('HAMLOGEU_QSO_UPLOAD_DATE').AsString <> '' then
         begin
-          tmp := '<HAMLOG_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(
-            Query.Fields.FieldByName('HAMLOG_QSO_UPLOAD_DATE').AsString,
-            PADIExport.Win1251);
+          tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
+            'HAMLOGEU_QSO_UPLOAD_DATE').AsDateTime);
+         tmp := '<HAMLOGEU_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
           Write(f, tmp);
         end;
 
-        if Query.Fields.FieldByName('HAMLOG_QSO_UPLOAD_STATUS').AsString
+        if Query.Fields.FieldByName('HAMLOGEU_QSO_UPLOAD_STATUS').AsString
           = '1' then
         begin
-          LOTW_QSL_RCVD := Query.Fields.FieldByName('HAMLOG_QSO_UPLOAD_STATUS').AsString;
+          LOTW_QSL_RCVD := Query.Fields.FieldByName('HAMLOGEU_QSO_UPLOAD_STATUS').AsString;
           if LOTW_QSL_RCVD = '0' then
-            tmp := '<HAMLOG_QSO_UPLOAD_STATUS' +
+            tmp := '<HAMLOGEU_QSO_UPLOAD_STATUS' +
               dmFunc.StringToADIF('N', PADIExport.Win1251)
           else
-            tmp := '<HAMLOG_QSO_UPLOAD_STATUS' +
+            tmp := '<HAMLOGEU_QSO_UPLOAD_STATUS' +
+              dmFunc.StringToADIF('Y', PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('HAMLOGRU_QSO_UPLOAD_DATE').AsString <> '' then
+        begin
+          tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
+            'HAMLOGRU_QSO_UPLOAD_DATE').AsDateTime);
+         tmp := '<HAMLOGRU_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('HAMLOGRU_QSO_UPLOAD_STATUS').AsString
+          = '1' then
+        begin
+          LOTW_QSL_RCVD := Query.Fields.FieldByName('HAMLOGRU_QSO_UPLOAD_STATUS').AsString;
+          if LOTW_QSL_RCVD = '0' then
+            tmp := '<HAMLOGRU_QSO_UPLOAD_STATUS' +
+              dmFunc.StringToADIF('N', PADIExport.Win1251)
+          else
+            tmp := '<HAMLOGRU_QSO_UPLOAD_STATUS' +
+              dmFunc.StringToADIF('Y', PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+         if Query.Fields.FieldByName('HAMQTH_QSO_UPLOAD_DATE').AsString <> '' then
+        begin
+          tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
+            'HAMQTH_QSO_UPLOAD_DATE').AsDateTime);
+         tmp := '<HAMQTH_QSO_UPLOAD_DATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+          Write(f, tmp);
+        end;
+
+        if Query.Fields.FieldByName('HAMQTH_QSO_UPLOAD_STATUS').AsString
+          = '1' then
+        begin
+          LOTW_QSL_RCVD := Query.Fields.FieldByName('HAMQTH_QSO_UPLOAD_STATUS').AsString;
+          if LOTW_QSL_RCVD = '0' then
+            tmp := '<HAMQTH_QSO_UPLOAD_STATUS' +
+              dmFunc.StringToADIF('N', PADIExport.Win1251)
+          else
+            tmp := '<HAMQTH_QSO_UPLOAD_STATUS' +
               dmFunc.StringToADIF('Y', PADIExport.Win1251);
           Write(f, tmp);
         end;

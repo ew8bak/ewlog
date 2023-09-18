@@ -40,6 +40,7 @@ type
   private
     result_mes: string;
     uploadok: boolean;
+    Done: boolean;
   public
     SendQSO: TQSO;
     user: string;
@@ -56,7 +57,7 @@ var
 
 implementation
 
-uses Forms, LCLType, dmFunc_U;
+uses Forms, LCLType, dmFunc_U, MainFuncDM;
 
 function StripStr(t, s: string): string;
 begin
@@ -139,8 +140,10 @@ begin
     begin
       Document.Position := 0;
       res.LoadFromStream(Document);
-      if Pos('QSO inserted', Trim(res.Text)) > 0 then
-        Result := True
+      if Pos('QSO inserted', Trim(res.Text)) > 0 then begin
+        Result := True;
+        Done := Result;
+      end
       else
       begin
         Result := False;
@@ -163,9 +166,11 @@ end;
 
 procedure TSendHamQTHThread.ShowResult;
 begin
+  if Done then
+  MainFunc.UpdateQSL('HAMQTH_QSO_UPLOAD_STATUS','1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
-      'HamQTH', MB_ICONEXCLAMATION);
+      PChar('HamQTH -> '+ SendQSO.CallSing), MB_ICONEXCLAMATION);
 end;
 
 procedure TSendHamQTHThread.Execute;

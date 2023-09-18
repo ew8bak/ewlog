@@ -9,7 +9,7 @@ object GridsForm: TGridsForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.2.2.0'
+  LCLVersion = '2.2.6.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 294
@@ -19,187 +19,166 @@ object GridsForm: TGridsForm
     Color = clWindow
     Columns = <    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL'
-        Width = 38
+        Width = 36
         FieldName = 'QSL'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLs'
-        Width = 44
+        Width = 41
         FieldName = 'QSLs'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Date'
-        Width = 42
+        Width = 39
         FieldName = 'QSODate'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Time'
-        Width = 43
+        Width = 41
         FieldName = 'QSOTime'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Frequency'
-        Width = 75
+        Width = 70
         FieldName = 'QSOBand'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Callsign'
-        Width = 60
+        Width = 57
         FieldName = 'CallSign'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 15
         Title.Alignment = taCenter
         Title.Caption = 'Mode'
-        Width = 48
+        Width = 46
         FieldName = 'QSOMode'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSOSubMode'
-        Width = 96
+        Width = 90
         FieldName = 'QSOSubMode'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Name'
-        Width = 50
+        Width = 47
         FieldName = 'OMName'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QTH'
-        Width = 40
+        Width = 39
         FieldName = 'OMQTH'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'State'
-        Width = 44
+        Width = 41
         FieldName = 'State'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Grid'
-        Width = 40
+        Width = 37
         FieldName = 'Grid'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'RSTs'
-        Width = 41
+        Width = 39
         FieldName = 'QSOReportSent'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'RSTr'
-        Width = 41
+        Width = 38
         FieldName = 'QSOReportRecived'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'IOTA'
-        Width = 42
+        Width = 41
         FieldName = 'IOTA'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Manager'
-        Width = 67
+        Width = 62
         FieldName = 'QSLManager'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLs Date'
-        Width = 74
+        Width = 68
         FieldName = 'QSLSentDate'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLr Date'
-        Width = 73
+        Width = 67
         FieldName = 'QSLRecDate'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'LOTWr Date'
-        Width = 84
+        Width = 78
         FieldName = 'LoTWRecDate'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Prefix'
-        Width = 48
+        Width = 45
         FieldName = 'MainPrefix'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
@@ -208,87 +187,78 @@ object GridsForm: TGridsForm
         FieldName = 'DXCCPrefix'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'CQ Zone'
-        Width = 64
+        Width = 62
         FieldName = 'CQZone'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'ITU Zone'
-        Width = 67
+        Width = 62
         FieldName = 'ITUZone'
       end    
       item
-        Alignment = taLeftJustify
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Manual Set'
-        Width = 80
+        Width = 74
         FieldName = 'ManualSet'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Continent'
-        Width = 72
+        Width = 68
         FieldName = 'Continent'
       end    
       item
-        Alignment = taLeftJustify
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Valid DX'
-        Width = 62
+        Width = 59
         FieldName = 'ValidDX'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL r VIA'
-        Width = 69
+        Width = 64
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL s VIA'
-        Width = 69
+        Width = 65
         FieldName = 'QSL_SENT_VIA'
       end    
       item
-        Alignment = taLeftJustify
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'User'
-        Width = 42
+        Width = 38
         FieldName = 'USERS'
       end    
       item
-        Alignment = taLeftJustify
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'No calc DXCC'
-        Width = 91
+        Width = 89
         FieldName = 'NoCalcDXCC'
       end>
     DataSource = LOGBookDS
@@ -316,7 +286,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL'
-        Width = 38
+        Width = 36
         FieldName = 'QSL'
       end    
       item
@@ -324,7 +294,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLs'
-        Width = 44
+        Width = 41
         FieldName = 'QSLs'
       end    
       item
@@ -332,7 +302,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Date'
-        Width = 42
+        Width = 39
         FieldName = 'QSODate'
       end    
       item
@@ -340,7 +310,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Time'
-        Width = 43
+        Width = 41
         FieldName = 'QSOTime'
       end    
       item
@@ -348,7 +318,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Frequency'
-        Width = 75
+        Width = 70
         FieldName = 'QSOBand'
       end    
       item
@@ -356,7 +326,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Callsign'
-        Width = 60
+        Width = 57
         FieldName = 'CallSign'
       end    
       item
@@ -364,7 +334,7 @@ object GridsForm: TGridsForm
         MinSize = 15
         Title.Alignment = taCenter
         Title.Caption = 'Mode'
-        Width = 48
+        Width = 46
         FieldName = 'QSOMode'
       end    
       item
@@ -372,7 +342,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSOSubMode'
-        Width = 96
+        Width = 90
         FieldName = 'QSOSubMode'
       end    
       item
@@ -380,7 +350,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Name'
-        Width = 50
+        Width = 47
         FieldName = 'OMName'
       end    
       item
@@ -388,7 +358,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QTH'
-        Width = 40
+        Width = 39
         FieldName = 'OMQTH'
       end    
       item
@@ -396,7 +366,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'State'
-        Width = 44
+        Width = 41
         FieldName = 'State'
       end    
       item
@@ -404,7 +374,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Grid'
-        Width = 40
+        Width = 37
         FieldName = 'Grid'
       end    
       item
@@ -412,7 +382,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'RSTs'
-        Width = 41
+        Width = 39
         FieldName = 'QSOReportSent'
       end    
       item
@@ -420,7 +390,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'RSTr'
-        Width = 41
+        Width = 38
         FieldName = 'QSOReportRecived'
       end    
       item
@@ -428,7 +398,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'IOTA'
-        Width = 42
+        Width = 41
         FieldName = 'IOTA'
       end    
       item
@@ -436,7 +406,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Manager'
-        Width = 67
+        Width = 62
         FieldName = 'QSLManager'
       end    
       item
@@ -444,7 +414,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLs Date'
-        Width = 74
+        Width = 68
         FieldName = 'QSLSentDate'
       end    
       item
@@ -452,7 +422,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLr Date'
-        Width = 73
+        Width = 67
         FieldName = 'QSLRecDate'
       end    
       item
@@ -460,7 +430,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'LOTWr Date'
-        Width = 84
+        Width = 78
         FieldName = 'LoTWRecDate'
       end    
       item
@@ -468,7 +438,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Prefix'
-        Width = 48
+        Width = 45
         FieldName = 'MainPrefix'
       end    
       item
@@ -484,7 +454,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'CQ Zone'
-        Width = 64
+        Width = 62
         FieldName = 'CQZone'
       end    
       item
@@ -492,7 +462,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'ITU Zone'
-        Width = 67
+        Width = 62
         FieldName = 'ITUZone'
       end    
       item
@@ -501,7 +471,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Manual Set'
-        Width = 80
+        Width = 74
         FieldName = 'ManualSet'
       end    
       item
@@ -509,7 +479,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Continent'
-        Width = 72
+        Width = 68
         FieldName = 'Continent'
       end    
       item
@@ -518,7 +488,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Valid DX'
-        Width = 62
+        Width = 59
         FieldName = 'ValidDX'
       end    
       item
@@ -526,7 +496,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL r VIA'
-        Width = 69
+        Width = 64
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
@@ -534,7 +504,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL s VIA'
-        Width = 69
+        Width = 65
         FieldName = 'QSL_SENT_VIA'
       end    
       item
@@ -542,7 +512,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'User'
-        Width = 42
+        Width = 38
         FieldName = 'USERS'
       end    
       item
@@ -551,7 +521,7 @@ object GridsForm: TGridsForm
         MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'No calc DXCC'
-        Width = 91
+        Width = 89
         FieldName = 'NoCalcDXCC'
       end>
     DataSource = FindQSODS
@@ -1404,85 +1374,24 @@ object GridsForm: TGridsForm
       ImageIndex = 0
       OnClick = ExportADIFItemClick
     end
-    object ExportHRDItem: TMenuItem
-      Caption = 'Export QSO to HRDLOG.Net'
-      Bitmap.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000AE7C53FFAE7C
-        53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFAE7C
-        53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFFFFFFF00FFFFFF00B07E54FFFFFF
-        FCFFFFFCF5FFFFFCF5FFFFFCF5FFFFFCF5FFFFFCF5FFFFFCF5FFFFFCF5FFFFFC
-        F5FF3D45B5FF6062B9FFFFFCF5FFAE7C53FFFFFFFF00FFFFFF00B28055FFFFFC
-        F6FFFFFCF5FFFFFCF5FFFFFFF2FFFFFEEFFFFFFCECFFFFFBEAFFFFFFE9FFFFFC
-        F5FF313EBBFFA2A7EBFF5059C2FFAE7C53FFFFFFFF00FFFFFF00B58256FFFFFF
-        F8FFFFFCF5FF6A70C8FF6066C2FF6469C2FF6569C2FF6469C1FF646AC1FF4F56
-        BBFF656ECFFFA2A7EBFFA2A7EBFF434AB7FF766FAD56FFFFFF00B78557FFFFFF
-        F8FFFFFCF5FF3B48BFFF9BA1EDFF545FDFFF5963E0FF606AE1FF6871E3FF6F78
-        E4FF777FE6FF7E86E7FF8B92EAFFAEBAECFF333FBAEDB6BAEFFFBA8758FFFFFF
-        F8FFFFFCF5FF4E59C7FF9BA1EDFF868DE8FF979EEBFF9BA3EBFF9FA7EBFFA2AC
-        EBFFA6B0EBFFAAB5EBFFA6B1ECFFAEBAECFF3F4BC0FFB6BAEFFFBC8959FFFFFF
-        F8FFFFFCF5FF323EBAFF323EBAFF323EBAFF323EBAFF323EBAFF323EBAFF323E
-        BAFF4F57C0FFB6BAEFFFB6BAEFFF3B45B9FFFFFFFF00FFFFFF00BE8B5AFFFEFA
-        F6FFFFFCF5FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFFFC
-        F5FF323EBAFFB6BAEFFF3D48BEFFAE7C53FFFFFFFF00FFFFFF00C18E5CFFFEF9
-        F6FFFFF7F0FFFFFEF2FFFFFFF3FFFFFEF2FFFFFEF2FFFFFEF1FFFFFFF1FFFFFC
-        F5FF2E3BB8FF4F57C0FFE2DFE7FFAE7C53FFFFFFFF00FFFFFF00C3905DFFFEF9
-        F6FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6EFFFFFFC
-        F5FFFFF6EFFFFFF3E8FFFFFBF0FFAE7C53FFFFFFFF00FFFFFF00C8925EFFFEF9
-        F6FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFFF6
-        EFFFFFFBEFFFFFF4EBFFFFF8F2FFAE7C53FFFFFFFF00FFFFFF00CA945FFFFEFA
-        F8FFFFF7F3FFFFF8F4FFFFF8F4FFFFF9F5FFFFF9F5FFFFF9F5FFFFF9F6FFFFF9
-        F6FFFFF9F5FFFFF8F3FFFEF6F0FFAE7C53FFFFFFFF00FFFFFF00CC9760FFFEF6
-        F0FFF4DFB7FFF3DBB3FFF1D5ACFFF0CEA5FFEEC89DFFECC197FFEBBD93FFEBBD
-        92FFEBBD92FFEBBD91FFFEF6F0FFAE7C53FFFFFFFF00FFFFFF00CF9961FFFEF6
-        F0FFEFD49DFFEECE97FFEBC48DFFE9BA82FFE6B177FFE4A96FFFE3A468FFE3A4
-        67FFE3A467FFE3A467FFFEF6F0FFAE7C53FFFFFFFF00FFFFFF00D19B62FFFEF6
-        F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6
-        F0FFFEF6F0FFFEF6F0FFFEF6F0FFAE7C53FFFFFFFF00FFFFFF00D49F66FFD19B
-        62FFCE9861FFCB9660FFC8935EFFC4905DFFC18E5CFFBE8B5AFFBB8959FFB986
-        58FFB68356FFB38155FFB07E54FFAE7C53FFFFFFFF00FFFFFF00
-      }
-      OnClick = ExportHRDItemClick
-    end
-    object ExportQSLccItem: TMenuItem
-      Caption = 'Export selected QSO to eQSL.cc'
-      Bitmap.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000AE7C53FFAE7C
-        53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFAE7C
-        53FFAE7C53FFAE7C53FFAE7C53FFAE7C53FFFFFFFF00FFFFFF00B07E54FFFFFF
-        FCFFFFFCF5FFFFFCF5FFFFFCF5FFFFFCF5FFFFFCF5FFFFFCF5FFFFFCF5FFFFFC
-        F5FF3D45B5FF6062B9FFFFFCF5FFAE7C53FFFFFFFF00FFFFFF00B28055FFFFFC
-        F6FFFFFCF5FFFFFCF5FFFFFFF2FFFFFEEFFFFFFCECFFFFFBEAFFFFFFE9FFFFFC
-        F5FF313EBBFFA2A7EBFF5059C2FFAE7C53FFFFFFFF00FFFFFF00B58256FFFFFF
-        F8FFFFFCF5FF6A70C8FF6066C2FF6469C2FF6569C2FF6469C1FF646AC1FF4F56
-        BBFF656ECFFFA2A7EBFFA2A7EBFF434AB7FF766FAD56FFFFFF00B78557FFFFFF
-        F8FFFFFCF5FF3B48BFFF9BA1EDFF545FDFFF5963E0FF606AE1FF6871E3FF6F78
-        E4FF777FE6FF7E86E7FF8B92EAFFAEBAECFF333FBAEDB6BAEFFFBA8758FFFFFF
-        F8FFFFFCF5FF4E59C7FF9BA1EDFF868DE8FF979EEBFF9BA3EBFF9FA7EBFFA2AC
-        EBFFA6B0EBFFAAB5EBFFA6B1ECFFAEBAECFF3F4BC0FFB6BAEFFFBC8959FFFFFF
-        F8FFFFFCF5FF323EBAFF323EBAFF323EBAFF323EBAFF323EBAFF323EBAFF323E
-        BAFF4F57C0FFB6BAEFFFB6BAEFFF3B45B9FFFFFFFF00FFFFFF00BE8B5AFFFEFA
-        F6FFFFFCF5FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFFFC
-        F5FF323EBAFFB6BAEFFF3D48BEFFAE7C53FFFFFFFF00FFFFFF00C18E5CFFFEF9
-        F6FFFFF7F0FFFFFEF2FFFFFFF3FFFFFEF2FFFFFEF2FFFFFEF1FFFFFFF1FFFFFC
-        F5FF2E3BB8FF4F57C0FFE2DFE7FFAE7C53FFFFFFFF00FFFFFF00C3905DFFFEF9
-        F6FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6EFFFFFFC
-        F5FFFFF6EFFFFFF3E8FFFFFBF0FFAE7C53FFFFFFFF00FFFFFF00C8925EFFFEF9
-        F6FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFFF6
-        EFFFFFFBEFFFFFF4EBFFFFF8F2FFAE7C53FFFFFFFF00FFFFFF00CA945FFFFEFA
-        F8FFFFF7F3FFFFF8F4FFFFF8F4FFFFF9F5FFFFF9F5FFFFF9F5FFFFF9F6FFFFF9
-        F6FFFFF9F5FFFFF8F3FFFEF6F0FFAE7C53FFFFFFFF00FFFFFF00CC9760FFFEF6
-        F0FFF4DFB7FFF3DBB3FFF1D5ACFFF0CEA5FFEEC89DFFECC197FFEBBD93FFEBBD
-        92FFEBBD92FFEBBD91FFFEF6F0FFAE7C53FFFFFFFF00FFFFFF00CF9961FFFEF6
-        F0FFEFD49DFFEECE97FFEBC48DFFE9BA82FFE6B177FFE4A96FFFE3A468FFE3A4
-        67FFE3A467FFE3A467FFFEF6F0FFAE7C53FFFFFFFF00FFFFFF00D19B62FFFEF6
-        F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6F0FFFEF6
-        F0FFFEF6F0FFFEF6F0FFFEF6F0FFAE7C53FFFFFFFF00FFFFFF00D49F66FFD19B
-        62FFCE9861FFCB9660FFC8935EFFC4905DFFC18E5CFFBE8B5AFFBB8959FFB986
-        58FFB68356FFB38155FFB07E54FFAE7C53FFFFFFFF00FFFFFF00
-      }
-      OnClick = ExportQSLccItemClick
+    object miExportToService: TMenuItem
+      Caption = 'Export QSO to Online Service'
+      object ExportHRDItem: TMenuItem
+        Caption = 'Export QSO to HRDLog.net'
+        OnClick = ExportHRDItemClick
+      end
+      object ExportQSLccItem: TMenuItem
+        Caption = 'Export QSO to eQSL.cc'
+        OnClick = ExportQSLccItemClick
+      end
+      object ExportClubLogItem: TMenuItem
+        Caption = 'Export QSO to ClubLog'
+        OnClick = ExportClubLogItemClick
+      end
+      object ExportHamQTHItem: TMenuItem
+        Caption = 'Export QSO to HamQTH'
+        OnClick = ExportHamQTHItemClick
+      end
     end
     object Sep6Item: TMenuItem
       Caption = '-'

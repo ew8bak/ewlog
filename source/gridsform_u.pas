@@ -29,8 +29,6 @@ type
     DelRecItem: TMenuItem;
     EditItem: TMenuItem;
     ExportADIFItem: TMenuItem;
-    ExportHRDItem: TMenuItem;
-    ExportQSLccItem: TMenuItem;
     FilterCancelItem: TMenuItem;
     FilterDNSentItem: TMenuItem;
     FilterItem: TMenuItem;
@@ -45,6 +43,11 @@ type
     GridMenu: TPopupMenu;
     MarkQSOItem: TMenuItem;
     FilterMarkedQSO: TMenuItem;
+    ExportHRDItem: TMenuItem;
+    ExportQSLccItem: TMenuItem;
+    ExportClubLogItem: TMenuItem;
+    ExportHamQTHItem: TMenuItem;
+    miExportToService: TMenuItem;
     MISendOnLAN: TMenuItem;
     MISendOnLANANY: TMenuItem;
     N1: TMenuItem;
@@ -99,6 +102,8 @@ type
     procedure DelRecItemClick(Sender: TObject);
     procedure EditItemClick(Sender: TObject);
     procedure ExportADIFItemClick(Sender: TObject);
+    procedure ExportClubLogItemClick(Sender: TObject);
+    procedure ExportHamQTHItemClick(Sender: TObject);
     procedure ExportHRDItemClick(Sender: TObject);
     procedure ExportQSLccItemClick(Sender: TObject);
     procedure FilterCancelItemClick(Sender: TObject);
@@ -296,6 +301,30 @@ begin
   end;
 end;
 
+procedure TGridsForm.ExportClubLogItemClick(Sender: TObject);
+var
+  SelQSO: TQSO;
+begin
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+    SelQSO.Auto := False;
+    MainFunc.SendQSOto('clublog', SelQSO);
+  end;
+end;
+
+procedure TGridsForm.ExportHamQTHItemClick(Sender: TObject);
+var
+  SelQSO: TQSO;
+begin
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+    SelQSO.Auto := False;
+    MainFunc.SendQSOto('hamqth', SelQSO);
+  end;
+end;
+
 procedure TGridsForm.ExportHRDItemClick(Sender: TObject);
 var
   SelQSO: TQSO;
@@ -305,18 +334,6 @@ begin
     SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
     SelQSO.Auto := False;
     MainFunc.SendQSOto('hrdlog', SelQSO);
-  end;
-end;
-
-procedure TGridsForm.ExportQSLccItemClick(Sender: TObject);
-var
-  SelQSO: TQSO;
-begin
-  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
-  begin
-    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
-    SelQSO.Auto := False;
-    MainFunc.SendQSOto('eqslcc', SelQSO);
   end;
 end;
 
@@ -393,6 +410,18 @@ var
 begin
   MenuItem := (Sender as TMenuItem);
   MainFunc.CopyToJournal(DBGrid1, MenuItem.Caption);
+end;
+
+procedure TGridsForm.ExportQSLccItemClick(Sender: TObject);
+var
+  SelQSO: TQSO;
+begin
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+    SelQSO.Auto := False;
+    MainFunc.SendQSOto('eqslcc', SelQSO);
+  end;
 end;
 
 procedure TGridsForm.SendToLogBroadcastItemClick(Sender: TObject);

@@ -166,7 +166,7 @@ begin
     MainFunc.UpdateQSL('CLUBLOG_QSO_UPLOAD_STATUS', '1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
-      'ClubLog', MB_ICONEXCLAMATION);
+      PChar('ClubLog -> '+ SendQSO.CallSing), MB_ICONEXCLAMATION);
 end;
 
 procedure TSendClubLogThread.Execute;

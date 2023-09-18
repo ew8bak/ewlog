@@ -59,7 +59,7 @@ uses MainFuncDM, miniform_u, InitDB_dm, dmFunc_U, ImportADIFForm_U;
 
 procedure CheckMode(modulation, Freq: string; var ResSubMode, ResMode: string);
 var
-  FreqSafeDouble: Double;
+  FreqSafeDouble: double;
 begin
   Delete(Freq, length(Freq) - 2, 1);
   case modulation of
@@ -242,8 +242,12 @@ var
   HRDLOG_QSO_UPLOAD_STATUS: string;
   QRZCOM_QSO_UPLOAD_DATE: string;
   QRZCOM_QSO_UPLOAD_STATUS: string;
-  HAMLOG_QSO_UPLOAD_DATE: string;
-  HAMLOG_QSO_UPLOAD_STATUS: string;
+  HAMLOGEU_QSO_UPLOAD_DATE: string;
+  HAMLOGEU_QSO_UPLOAD_STATUS: string;
+  HAMLOGRU_QSO_UPLOAD_DATE: string;
+  HAMLOGRU_QSO_UPLOAD_STATUS: string;
+  HAMQTH_QSO_UPLOAD_DATE: string;
+  HAMQTH_QSO_UPLOAD_STATUS: string;
   PosEOH: word;
   PosEOR: word;
   QSOTIME: string;
@@ -252,7 +256,7 @@ var
   paramQSLSentAdv: string;
   paramQSODate: string;
   paramQSODateTime: string;
-  ParamQSL_RCVD: string;
+  paramQSL_RCVD: string;
   paramMARKER: string;
   paramEQSL_QSL_RCVD: string;
   paramLOTW_QSL_RCVD: string;
@@ -264,6 +268,17 @@ var
   paramLOTW_QSLRDATE: string;
   paramHRDLOG_QSO_UPLOAD_STATUS: string;
   paramHRDLOG_QSO_UPLOAD_DATE: string;
+  paramHAMQTH_QSO_UPLOAD_STATUS: string;
+  paramHAMQTH_QSO_UPLOAD_DATE: string;
+  paramCLUBLOG_QSO_UPLOAD_DATE: string;
+  paramCLUBLOG_QSO_UPLOAD_STATUS: string;
+  paramQRZCOM_QSO_UPLOAD_DATE: string;
+  paramQRZCOM_QSO_UPLOAD_STATUS: string;
+  paramHAMLOGEU_QSO_UPLOAD_DATE: string;
+  paramHAMLOGEU_QSO_UPLOAD_STATUS: string;
+  paramHAMLOGRU_QSO_UPLOAD_DATE: string;
+  paramHAMLOGRU_QSO_UPLOAD_STATUS: string;
+
   Query: string;
   TempQuery: string;
   Stream: TMemoryStream;
@@ -316,8 +331,8 @@ begin
         paramQSLSent := '';
         paramQSLSentAdv := '';
         paramQSODate := '';
-        paramQSODateTime:= '';
-        ParamQSL_RCVD := '';
+        paramQSODateTime := '';
+        paramQSL_RCVD := '';
         paramMARKER := '';
         paramEQSL_QSL_RCVD := '';
         paramLOTW_QSL_RCVD := '';
@@ -327,6 +342,18 @@ begin
         paramQSLSDATE := '';
         paramQSLRDATE := '';
         paramLOTW_QSLRDATE := '';
+        paramHRDLOG_QSO_UPLOAD_DATE := '';
+        paramHRDLOG_QSO_UPLOAD_STATUS := '';
+        paramHAMQTH_QSO_UPLOAD_STATUS := '';
+        paramHAMQTH_QSO_UPLOAD_DATE := '';
+        paramCLUBLOG_QSO_UPLOAD_DATE := '';
+        paramCLUBLOG_QSO_UPLOAD_STATUS := '';
+        paramQRZCOM_QSO_UPLOAD_DATE := '';
+        paramQRZCOM_QSO_UPLOAD_STATUS := '';
+        paramHAMLOGEU_QSO_UPLOAD_DATE := '';
+        paramHAMLOGEU_QSO_UPLOAD_STATUS := '';
+        paramHAMLOGRU_QSO_UPLOAD_DATE := '';
+        paramHAMLOGRU_QSO_UPLOAD_STATUS := '';
         PosEOR := 0;
         BAND := '';
         BAND_RX := '';
@@ -392,15 +419,19 @@ begin
         MY_LON := '';
         MY_SOTA_REF := '';
         SOTA_REF := '';
-        HAMLOGRec:= '';
-        CLUBLOG_QSO_UPLOAD_DATE:= '';
-        CLUBLOG_QSO_UPLOAD_STATUS:= '';
-        HRDLOG_QSO_UPLOAD_DATE:= '';
-        HRDLOG_QSO_UPLOAD_STATUS:= '';
-        QRZCOM_QSO_UPLOAD_DATE:= '';
-        QRZCOM_QSO_UPLOAD_STATUS:= '';
-        HAMLOG_QSO_UPLOAD_DATE:= '';
-        HAMLOG_QSO_UPLOAD_STATUS:= '';
+        HAMLOGRec := '';
+        CLUBLOG_QSO_UPLOAD_DATE := '';
+        CLUBLOG_QSO_UPLOAD_STATUS := '';
+        HRDLOG_QSO_UPLOAD_DATE := '';
+        HRDLOG_QSO_UPLOAD_STATUS := '';
+        QRZCOM_QSO_UPLOAD_DATE := '';
+        QRZCOM_QSO_UPLOAD_STATUS := '';
+        HAMLOGEU_QSO_UPLOAD_DATE := '';
+        HAMLOGEU_QSO_UPLOAD_STATUS := '';
+        HAMLOGRU_QSO_UPLOAD_DATE := '';
+        HAMLOGRU_QSO_UPLOAD_STATUS := '';
+        HAMQTH_QSO_UPLOAD_DATE := '';
+        HAMQTH_QSO_UPLOAD_STATUS := '';
         TempQuery := '';
 
         Readln(temp_f, s);
@@ -474,15 +505,19 @@ begin
         MY_LON := dmFunc.getField(s, 'MY_LON');
         SOTA_REF := dmFunc.getField(s, 'SOTA_REF');
         MY_SOTA_REF := dmFunc.getField(s, 'MY_SOTA_REF');
-        HAMLOGRec:= dmFunc.getField(s, 'HAMLOGRec');
-        CLUBLOG_QSO_UPLOAD_DATE:= dmFunc.getField(s, 'CLUBLOG_QSO_UPLOAD_DATE');
-        CLUBLOG_QSO_UPLOAD_STATUS:= dmFunc.getField(s, 'CLUBLOG_QSO_UPLOAD_STATUS');
-        HRDLOG_QSO_UPLOAD_DATE:= dmFunc.getField(s, 'HRDLOG_QSO_UPLOAD_DATE');
-        HRDLOG_QSO_UPLOAD_STATUS:= dmFunc.getField(s, 'HRDLOG_QSO_UPLOAD_STATUS');
-        QRZCOM_QSO_UPLOAD_DATE:= dmFunc.getField(s, 'QRZCOM_QSO_UPLOAD_DATE');
-        QRZCOM_QSO_UPLOAD_STATUS:= dmFunc.getField(s, 'QRZCOM_QSO_UPLOAD_STATUS');
-        HAMLOG_QSO_UPLOAD_DATE:= dmFunc.getField(s, 'HAMLOG_QSO_UPLOAD_DATE');
-        HAMLOG_QSO_UPLOAD_STATUS:= dmFunc.getField(s, 'HAMLOG_QSO_UPLOAD_STATUS');
+        HAMLOGRec := dmFunc.getField(s, 'HAMLOGRec');
+        CLUBLOG_QSO_UPLOAD_DATE := dmFunc.getField(s, 'CLUBLOG_QSO_UPLOAD_DATE');
+        CLUBLOG_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'CLUBLOG_QSO_UPLOAD_STATUS');
+        HRDLOG_QSO_UPLOAD_DATE := dmFunc.getField(s, 'HRDLOG_QSO_UPLOAD_DATE');
+        HRDLOG_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'HRDLOG_QSO_UPLOAD_STATUS');
+        QRZCOM_QSO_UPLOAD_DATE := dmFunc.getField(s, 'QRZCOM_QSO_UPLOAD_DATE');
+        QRZCOM_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'QRZCOM_QSO_UPLOAD_STATUS');
+        HAMLOGEU_QSO_UPLOAD_DATE := dmFunc.getField(s, 'HAMLOGEU_QSO_UPLOAD_DATE');
+        HAMLOGEU_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'HAMLOGEU_QSO_UPLOAD_STATUS');
+        HAMLOGRU_QSO_UPLOAD_DATE := dmFunc.getField(s, 'HAMLOGRU_QSO_UPLOAD_DATE');
+        HAMLOGRU_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'HAMLOGRU_QSO_UPLOAD_STATUS');
+        HAMQTH_QSO_UPLOAD_DATE := dmFunc.getField(s, 'HAMQTH_QSO_UPLOAD_DATE');
+        HAMQTH_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'HAMQTH_QSO_UPLOAD_STATUS');
 
         if PosEOR > 0 then
         begin
@@ -500,7 +535,8 @@ begin
             RST_RCVD := '599';
 
           if FREQ = '' then
-            FREQ := MainFunc.ConvertFreqToSave(FloatToStr(dmFunc.GetFreqFromBand(BAND, MODE)))
+            FREQ := MainFunc.ConvertFreqToSave(
+              FloatToStr(dmFunc.GetFreqFromBand(BAND, MODE)))
           else
             FREQ := MainFunc.ConvertFreqToSave(FREQ);
 
@@ -511,7 +547,8 @@ begin
 
           CheckMode(MODE, FREQ, SUBMODE, MODE);
 
-          BAND := StringReplace(FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ)), ',', '.', [rfReplaceAll]);
+          BAND := StringReplace(FloatToStr(dmFunc.GetDigiBandFromFreq(FREQ)),
+            ',', '.', [rfReplaceAll]);
 
           yyyy := StrToInt(QSO_DATE[1] + QSO_DATE[2] + QSO_DATE[3] +
             QSO_DATE[4]);
@@ -529,9 +566,12 @@ begin
           if (QSOTIME = '') and (TIME_ON = '') then
             QSOTIME := TIME_OFF;
 
-            paramQSODateTime:= IntToStr(DateTimeToUnix(EncodeDateTime(yyyy, mm, dd, StrToInt(QSOTIME[1] + QSOTIME[2]), StrToInt(QSOTIME[4] + QSOTIME[5]), 0, 0)));
-            paramQSODate := StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
-            ',','.',[rfReplaceAll]);
+          paramQSODateTime :=
+            IntToStr(DateTimeToUnix(EncodeDateTime(yyyy, mm, dd, StrToInt(QSOTIME[1] + QSOTIME[2]),
+            StrToInt(QSOTIME[4] + QSOTIME[5]), 0, 0)));
+          paramQSODate := StringReplace(
+            FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+            ',', '.', [rfReplaceAll]);
 
           if QSL_SENT = 'Y' then
           begin
@@ -567,8 +607,8 @@ begin
             mm := StrToInt(QSLSDATE[5] + QSLSDATE[6]);
             dd := StrToInt(QSLSDATE[7] + QSLSDATE[8]);
             paramQSLSDATE :=
-                StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
-                ',','.',[rfReplaceAll]);
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
             paramQSLSent := '1';
             paramQSLSentAdv := 'T';
           end
@@ -587,26 +627,102 @@ begin
             mm := StrToInt(QSLRDATE[5] + QSLRDATE[6]);
             dd := StrToInt(QSLRDATE[7] + QSLRDATE[8]);
             paramQSLRDATE :=
-               StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
-               ',','.',[rfReplaceAll]);;
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
             paramQSL_RCVD := '1';
           end
           else
             paramQSLRDATE := 'NULL';
 
-           if HRDLOG_QSO_UPLOAD_DATE <> '' then
+          if HRDLOG_QSO_UPLOAD_DATE <> '' then
           begin
-            yyyy := StrToInt(HRDLOG_QSO_UPLOAD_DATE[1] + HRDLOG_QSO_UPLOAD_DATE[2] + HRDLOG_QSO_UPLOAD_DATE[3] +
+            yyyy := StrToInt(HRDLOG_QSO_UPLOAD_DATE[1] +
+              HRDLOG_QSO_UPLOAD_DATE[2] + HRDLOG_QSO_UPLOAD_DATE[3] +
               HRDLOG_QSO_UPLOAD_DATE[4]);
             mm := StrToInt(HRDLOG_QSO_UPLOAD_DATE[5] + HRDLOG_QSO_UPLOAD_DATE[6]);
             dd := StrToInt(HRDLOG_QSO_UPLOAD_DATE[7] + HRDLOG_QSO_UPLOAD_DATE[8]);
             paramHRDLOG_QSO_UPLOAD_DATE :=
-               StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
-               ',','.',[rfReplaceAll]);;
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
             paramHRDLOG_QSO_UPLOAD_STATUS := '1';
           end
           else
             paramHRDLOG_QSO_UPLOAD_DATE := 'NULL';
+
+          if HAMQTH_QSO_UPLOAD_DATE <> '' then
+          begin
+            yyyy := StrToInt(HAMQTH_QSO_UPLOAD_DATE[1] +
+              HAMQTH_QSO_UPLOAD_DATE[2] + HAMQTH_QSO_UPLOAD_DATE[3] +
+              HAMQTH_QSO_UPLOAD_DATE[4]);
+            mm := StrToInt(HAMQTH_QSO_UPLOAD_DATE[5] + HAMQTH_QSO_UPLOAD_DATE[6]);
+            dd := StrToInt(HAMQTH_QSO_UPLOAD_DATE[7] + HAMQTH_QSO_UPLOAD_DATE[8]);
+            paramHAMQTH_QSO_UPLOAD_DATE :=
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
+            paramHAMQTH_QSO_UPLOAD_STATUS := '1';
+          end
+          else
+            paramHAMQTH_QSO_UPLOAD_DATE := 'NULL';
+
+          if CLUBLOG_QSO_UPLOAD_DATE <> '' then
+          begin
+            yyyy := StrToInt(CLUBLOG_QSO_UPLOAD_DATE[1] +
+              CLUBLOG_QSO_UPLOAD_DATE[2] + CLUBLOG_QSO_UPLOAD_DATE[3] +
+              CLUBLOG_QSO_UPLOAD_DATE[4]);
+            mm := StrToInt(CLUBLOG_QSO_UPLOAD_DATE[5] + CLUBLOG_QSO_UPLOAD_DATE[6]);
+            dd := StrToInt(CLUBLOG_QSO_UPLOAD_DATE[7] + CLUBLOG_QSO_UPLOAD_DATE[8]);
+            paramCLUBLOG_QSO_UPLOAD_DATE :=
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
+            paramCLUBLOG_QSO_UPLOAD_STATUS := '1';
+          end
+          else
+            paramCLUBLOG_QSO_UPLOAD_DATE := 'NULL';
+
+          if HAMLOGEU_QSO_UPLOAD_DATE <> '' then
+          begin
+            yyyy := StrToInt(HAMLOGEU_QSO_UPLOAD_DATE[1] +
+              HAMLOGEU_QSO_UPLOAD_DATE[2] + HAMLOGEU_QSO_UPLOAD_DATE[3] +
+              HAMLOGEU_QSO_UPLOAD_DATE[4]);
+            mm := StrToInt(HAMLOGEU_QSO_UPLOAD_DATE[5] + HAMLOGEU_QSO_UPLOAD_DATE[6]);
+            dd := StrToInt(HAMLOGEU_QSO_UPLOAD_DATE[7] + HAMLOGEU_QSO_UPLOAD_DATE[8]);
+            paramHAMLOGEU_QSO_UPLOAD_DATE :=
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
+            paramHAMLOGEU_QSO_UPLOAD_STATUS := '1';
+          end
+          else
+            paramHAMLOGEU_QSO_UPLOAD_DATE := 'NULL';
+
+          if HAMLOGRU_QSO_UPLOAD_DATE <> '' then
+          begin
+            yyyy := StrToInt(HAMLOGRU_QSO_UPLOAD_DATE[1] +
+              HAMLOGRU_QSO_UPLOAD_DATE[2] + HAMLOGRU_QSO_UPLOAD_DATE[3] +
+              HAMLOGRU_QSO_UPLOAD_DATE[4]);
+            mm := StrToInt(HAMLOGRU_QSO_UPLOAD_DATE[5] + HAMLOGRU_QSO_UPLOAD_DATE[6]);
+            dd := StrToInt(HAMLOGRU_QSO_UPLOAD_DATE[7] + HAMLOGRU_QSO_UPLOAD_DATE[8]);
+            paramHAMLOGRU_QSO_UPLOAD_DATE :=
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
+            paramHAMLOGRU_QSO_UPLOAD_STATUS := '1';
+          end
+          else
+            paramHAMLOGRU_QSO_UPLOAD_DATE := 'NULL';
+
+          if QRZCOM_QSO_UPLOAD_DATE <> '' then
+          begin
+            yyyy := StrToInt(QRZCOM_QSO_UPLOAD_DATE[1] +
+              QRZCOM_QSO_UPLOAD_DATE[2] + QRZCOM_QSO_UPLOAD_DATE[3] +
+              QRZCOM_QSO_UPLOAD_DATE[4]);
+            mm := StrToInt(QRZCOM_QSO_UPLOAD_DATE[5] + QRZCOM_QSO_UPLOAD_DATE[6]);
+            dd := StrToInt(QRZCOM_QSO_UPLOAD_DATE[7] + QRZCOM_QSO_UPLOAD_DATE[8]);
+            paramQRZCOM_QSO_UPLOAD_DATE :=
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
+            paramQRZCOM_QSO_UPLOAD_STATUS := '1';
+          end
+          else
+            paramQRZCOM_QSO_UPLOAD_DATE := 'NULL';
 
           if MARKER = 'Y' then
             paramMARKER := '1'
@@ -631,8 +747,8 @@ begin
             mm := StrToInt(LOTW_QSLRDATE[5] + LOTW_QSLRDATE[6]);
             dd := StrToInt(LOTW_QSLRDATE[7] + LOTW_QSLRDATE[8]);
             paramLOTW_QSLRDATE :=
-               StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
-               ',','.',[rfReplaceAll]);
+              StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
+              ',', '.', [rfReplaceAll]);
             paramLOTW_QSL_RCVD := '1';
           end
           else
@@ -681,30 +797,33 @@ begin
           begin
             Query := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
               'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX,'
-              + 'QSOMode, QSOSubMode, QSOReportSent,'
-              + 'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
-              + 'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,'
-              + 'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
+              +
+              'QSOMode, QSOSubMode, QSOReportSent,' +
+              'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
+              +
+              'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
+              'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
               'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
               + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
               'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON,' +
-              'EQSL_QSL_SENT, SOTA_REF, MY_SOTA_REF, HRDLOG_QSO_UPLOAD_DATE, ' +
-              'HRDLOG_QSO_UPLOAD_STATUS, SYNC)' +
-              ' VALUES (' +
+              'EQSL_QSL_SENT, SOTA_REF, MY_SOTA_REF, HRDLOG_QSO_UPLOAD_STATUS, ' +
+              'HRDLOG_QSO_UPLOAD_DATE, QRZCOM_QSO_UPLOAD_STATUS, QRZCOM_QSO_UPLOAD_DATE, ' +
+              'HAMQTH_QSO_UPLOAD_STATUS, HAMQTH_QSO_UPLOAD_DATE, CLUBLOG_QSO_UPLOAD_STATUS, ' +
+              'CLUBLOG_QSO_UPLOAD_DATE, HAMLOGEU_QSO_UPLOAD_STATUS, HAMLOGEU_QSO_UPLOAD_DATE, ' +
+              'HAMLOGRU_QSO_UPLOAD_STATUS, HAMLOGRU_QSO_UPLOAD_DATE, SYNC)' + ' VALUES (' +
               dmFunc.Q(CALL) + dmFunc.Q(paramQSODateTime) +
               dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
               dmFunc.Q(FREQ) + dmFunc.Q(FREQ_RX) + dmFunc.Q(BAND_RX) +
-              dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
-              dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
-              dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
-              dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
-              dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
-              dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
-              dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) +
-              dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) +
-              dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
-              dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
+              dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) + dmFunc.Q(RST_SENT) +
+              dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) + dmFunc.Q(QTH) +
+              dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) + dmFunc.Q(IOTA) +
+              dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) + dmFunc.Q(paramQSLSentAdv) +
+              dmFunc.Q(paramQSLSDATE) + dmFunc.Q(ParamQSL_RCVD) +
+              dmFunc.Q(paramQSLRDATE) + dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) +
+              dmFunc.Q(CQZ) + dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) +
+              dmFunc.Q(paramMARKER) + dmFunc.Q('0') + dmFunc.Q(BAND) +
+              dmFunc.Q(CONT) + dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
               dmFunc.Q(paramLOTW_QSL_RCVD) + dmFunc.Q(paramLOTW_QSLRDATE) +
               dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
               dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) +
@@ -717,35 +836,49 @@ begin
               dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
               dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + dmFunc.Q(EQSL_QSL_SENT) +
               dmFunc.Q(SOTA_REF) + dmFunc.Q(MY_SOTA_REF) +
-              dmFunc.Q(paramHRDLOG_QSO_UPLOAD_DATE) + dmFunc.Q(paramHRDLOG_QSO_UPLOAD_STATUS) +
-              QuotedStr('0') + ')';
+              dmFunc.Q(paramHRDLOG_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHRDLOG_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramQRZCOM_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramQRZCOM_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramHAMQTH_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHAMQTH_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramCLUBLOG_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramCLUBLOG_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramHAMLOGEU_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHAMLOGEU_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramHAMLOGRU_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHAMLOGRU_QSO_UPLOAD_DATE) + QuotedStr('0') + ')';
           end
           else
           begin
             TempQuery := 'INSERT INTO ' + LBRecord.LogTable + ' (' +
               'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX,'
-              + 'QSOMode, QSOSubMode, QSOReportSent,'
-              + 'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
-              + 'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,'
-              + 'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
+              +
+              'QSOMode, QSOSubMode, QSOReportSent,' +
+              'QSOReportRecived, OMName, OMQTH, State, Grid, IOTA, QSLManager, QSLSent,'
+              +
+              'QSLSentAdv, QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix,' +
+              'CQZone, ITUZone, QSOAddInfo, Marker, ManualSet, DigiBand, Continent,' +
               'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
               + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, HRDLOG_QSO_UPLOAD_DATE, '+
-              'HRDLOG_QSO_UPLOAD_STATUS, SYNC) VALUES (' +
+              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, HRDLOG_QSO_UPLOAD_STATUS, ' +
+              'HRDLOG_QSO_UPLOAD_DATE, QRZCOM_QSO_UPLOAD_STATUS, QRZCOM_QSO_UPLOAD_DATE, ' +
+              'HAMQTH_QSO_UPLOAD_STATUS, HAMQTH_QSO_UPLOAD_DATE, CLUBLOG_QSO_UPLOAD_STATUS, ' +
+              'CLUBLOG_QSO_UPLOAD_DATE, HAMLOGEU_QSO_UPLOAD_STATUS, HAMLOGEU_QSO_UPLOAD_DATE, ' +
+              'HAMLOGRU_QSO_UPLOAD_STATUS, HAMLOGRU_QSO_UPLOAD_DATE, SYNC) VALUES (' +
               dmFunc.Q(CALL) + dmFunc.Q(paramQSODateTime) +
               dmFunc.Q(paramQSODate) + dmFunc.Q(QSOTIME) +
               dmFunc.Q(FREQ) + dmFunc.Q(FREQ_RX) + dmFunc.Q(BAND_RX) +
-              dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) +
-              dmFunc.Q(RST_SENT) + dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) +
-              dmFunc.Q(QTH) + dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) +
-              dmFunc.Q(IOTA) + dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) +
-              dmFunc.Q(paramQSLSentAdv) + dmFunc.Q(paramQSLSDATE) +
-              dmFunc.Q(ParamQSL_RCVD) + dmFunc.Q(paramQSLRDATE) +
-              dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) + dmFunc.Q(CQZ) +
-              dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) + dmFunc.Q(paramMARKER) +
-              dmFunc.Q('0') + dmFunc.Q(BAND) + dmFunc.Q(CONT) +
-              dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
+              dmFunc.Q(MODE) + dmFunc.Q(SUBMODE) + dmFunc.Q(RST_SENT) +
+              dmFunc.Q(RST_RCVD) + dmFunc.Q(sNAME) + dmFunc.Q(QTH) +
+              dmFunc.Q(STATE) + dmFunc.Q(GRIDSQUARE) + dmFunc.Q(IOTA) +
+              dmFunc.Q(QSL_VIA) + dmFunc.Q(paramQSLSent) + dmFunc.Q(paramQSLSentAdv) +
+              dmFunc.Q(paramQSLSDATE) + dmFunc.Q(ParamQSL_RCVD) +
+              dmFunc.Q(paramQSLRDATE) + dmFunc.Q(PFX) + dmFunc.Q(DXCC_PREF) +
+              dmFunc.Q(CQZ) + dmFunc.Q(ITUZ) + dmFunc.Q(COMMENT) +
+              dmFunc.Q(paramMARKER) + dmFunc.Q('0') + dmFunc.Q(BAND) +
+              dmFunc.Q(CONT) + dmFunc.Q(COMMENT) + dmFunc.Q(paramEQSL_QSL_RCVD) +
               dmFunc.Q(paramLOTW_QSL_RCVD) + dmFunc.Q(paramLOTW_QSLRDATE) +
               dmFunc.Q(QSLMSG) + dmFunc.Q(dmFunc.ExtractCallsign(CALL)) +
               dmFunc.Q(STATE1) + dmFunc.Q(STATE2) + dmFunc.Q(STATE3) +
@@ -756,14 +889,25 @@ begin
               dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
               dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
               dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
-              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + dmFunc.Q(paramHRDLOG_QSO_UPLOAD_DATE) +
-              dmFunc.Q(paramHRDLOG_QSO_UPLOAD_STATUS) + QuotedStr('1');
+              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) +
+              dmFunc.Q(paramHRDLOG_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHRDLOG_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramQRZCOM_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramQRZCOM_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramHAMQTH_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHAMQTH_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramCLUBLOG_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramCLUBLOG_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramHAMLOGEU_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHAMLOGEU_QSO_UPLOAD_DATE) +
+              dmFunc.Q(paramHAMLOGRU_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHAMLOGRU_QSO_UPLOAD_DATE) + QuotedStr('1');
 
-              Query := TempQuery +
-                ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
+            Query := TempQuery +
+              ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';
           end;
 
-           InitDB.SQLiteConnection.ExecuteDirect(Query);
+          InitDB.SQLiteConnection.ExecuteDirect(Query);
 
         end;
 

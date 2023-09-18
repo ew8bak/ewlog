@@ -238,6 +238,14 @@ msgstr ""
 msgid "All fields must be filled!"
 msgstr ""
 
+#: resourcestr.rallqsosuploadedtoeqslcc
+msgid "All QSOs uploaded to eQSLcc"
+msgstr ""
+
+#: resourcestr.rallqsosuploadedtolotw
+msgid "All QSOs uploaded to LoTW"
+msgstr ""
+
 #: resourcestr.rbuttoncheck
 msgctxt "resourcestr.rbuttoncheck"
 msgid "Check"
@@ -375,6 +383,11 @@ msgstr ""
 msgid "Delete Record "
 msgstr ""
 
+#: resourcestr.rdescription
+msgctxt "resourcestr.rdescription"
+msgid "Description"
+msgstr ""
+
 #: resourcestr.rdisabled
 msgid "Disabled"
 msgstr ""
@@ -467,6 +480,10 @@ msgstr ""
 msgid "Failed to load data"
 msgstr ""
 
+#: resourcestr.rfieldmissing
+msgid "field missing"
+msgstr ""
+
 #: resourcestr.rfiledbexist
 msgid "Found an existing database file. Do you want to use it? If you press NO, the existing file will be deleted and a new one will be created"
 msgstr ""
@@ -489,6 +506,11 @@ msgstr ""
 
 #: resourcestr.rfillinlogtable
 msgid "Fill in the Log_Table_"
+msgstr ""
+
+#: resourcestr.rgenerate
+msgctxt "resourcestr.rgenerate"
+msgid "Generate"
 msgstr ""
 
 #: resourcestr.rgotosettings
@@ -552,6 +574,10 @@ msgctxt "resourcestr.riota"
 msgid "IOTA"
 msgstr ""
 
+#: resourcestr.ritsnoewlogdatabase
+msgid "Its not EWLog database. Check"
+msgstr ""
+
 #: resourcestr.rituzone
 msgctxt "resourcestr.rituzone"
 msgid "ITU Zone"
@@ -563,6 +589,11 @@ msgstr ""
 
 #: resourcestr.rlanguagecomplite
 msgid "Translation files download successfully"
+msgstr ""
+
+#: resourcestr.rlatitude
+msgctxt "resourcestr.rlatitude"
+msgid "Latitude"
 msgstr ""
 
 #: resourcestr.rlibhamlibnotfound
@@ -583,6 +614,11 @@ msgstr ""
 
 #: resourcestr.rlognconwsjt
 msgid "EWLog not connected to WSJT"
+msgstr ""
+
+#: resourcestr.rlongitude
+msgctxt "resourcestr.rlongitude"
+msgid "Longitude"
 msgstr ""
 
 #: resourcestr.rlotwrecdate
@@ -616,8 +652,17 @@ msgstr ""
 msgid "MySQL database settings not configured"
 msgstr ""
 
+#: resourcestr.rname
+msgctxt "resourcestr.rname"
+msgid "Name"
+msgstr ""
+
 #: resourcestr.rneedqsl
 msgid "QSL is needed"
+msgstr ""
+
+#: resourcestr.rneedupload
+msgid "Need to upload"
 msgstr ""
 
 #: resourcestr.rnewdxccinbm
@@ -672,6 +717,10 @@ msgstr ""
 
 #: resourcestr.rnotdataforconnect
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
+msgstr ""
+
+#: resourcestr.rnotdataforconnectlotw
+msgid "The log configuration, do not specify the data to connect to LoTW"
 msgstr ""
 
 #: resourcestr.rnotefldigi
@@ -751,6 +800,11 @@ msgstr ""
 #: resourcestr.rqsl
 msgctxt "resourcestr.rqsl"
 msgid "QSL"
+msgstr ""
+
+#: resourcestr.rqslinfo
+msgctxt "resourcestr.rqslinfo"
+msgid "QSL Info"
 msgstr ""
 
 #: resourcestr.rqslmanager
@@ -996,6 +1050,11 @@ msgstr ""
 msgid "Update status: Installation required"
 msgstr ""
 
+#: resourcestr.rupload
+msgctxt "resourcestr.rupload"
+msgid "Upload"
+msgstr ""
+
 #: resourcestr.rusefldigi
 msgid "Use Fldigi with EWLog?"
 msgstr ""
@@ -1181,11 +1240,6 @@ msgctxt "tconfigform.bttcidefault.caption"
 msgid "Set Radio Default"
 msgstr ""
 
-#: tconfigform.button3.caption
-msgctxt "tconfigform.button3.caption"
-msgid "Check connection"
-msgstr ""
-
 #: tconfigform.button4.caption
 msgctxt "tconfigform.button4.caption"
 msgid "Check for Updates"
@@ -1269,6 +1323,10 @@ msgstr ""
 
 #: tconfigform.cbcwdaemon.caption
 msgid "Use CW Daemon?"
+msgstr ""
+
+#: tconfigform.cbcwovertci.caption
+msgid "CW over TCI ?"
 msgstr ""
 
 #: tconfigform.cbdate.caption
@@ -1469,8 +1527,12 @@ msgstr ""
 msgid "CW Daemon (Linux only)"
 msgstr ""
 
-#: tconfigform.gbdefaultdb.caption
-msgid "Default DB"
+#: tconfigform.gbcwgeneral.caption
+msgid "CW General"
+msgstr ""
+
+#: tconfigform.gbcwtype.caption
+msgid "CWType (Windows only)"
 msgstr ""
 
 #: tconfigform.gbgridscolor.caption
@@ -1486,8 +1548,8 @@ msgctxt "tconfigform.gbintref.caption"
 msgid "Internal reference book"
 msgstr ""
 
-#: tconfigform.gbmysql.caption
-msgid "MySQL"
+#: tconfigform.gblotw.caption
+msgid "LoTW Settings"
 msgstr ""
 
 #: tconfigform.gbqrzcom.caption
@@ -1498,16 +1560,17 @@ msgstr ""
 msgid "QRZ.RU XML API"
 msgstr ""
 
-#: tconfigform.gbsqlite.caption
-msgid "SQLite"
-msgstr ""
-
 #: tconfigform.gbtelnet.caption
 msgid "Telnet DX Cluster"
 msgstr ""
 
 #: tconfigform.gbtelnetedit.caption
 msgid "Edit"
+msgstr ""
+
+#: tconfigform.label1.caption
+msgctxt "tconfigform.label1.caption"
+msgid "Login"
 msgstr ""
 
 #: tconfigform.label10.caption
@@ -1544,23 +1607,8 @@ msgctxt "tconfigform.label19.caption"
 msgid "Password"
 msgstr ""
 
-#: tconfigform.label2.caption
-msgctxt "tconfigform.label2.caption"
-msgid "Server"
-msgstr ""
-
 #: tconfigform.label20.caption
 msgid "to QSL Info"
-msgstr ""
-
-#: tconfigform.label21.caption
-msgctxt "tconfigform.label21.caption"
-msgid "Login"
-msgstr ""
-
-#: tconfigform.label22.caption
-msgctxt "tconfigform.label22.caption"
-msgid "Password"
 msgstr ""
 
 #: tconfigform.label23.caption
@@ -1583,30 +1631,13 @@ msgctxt "tconfigform.label26.caption"
 msgid "Password"
 msgstr ""
 
-#: tconfigform.label3.caption
-msgctxt "tconfigform.label3.caption"
-msgid "Port"
-msgstr ""
-
-#: tconfigform.label4.caption
-msgctxt "tconfigform.label4.caption"
-msgid "Login"
-msgstr ""
-
-#: tconfigform.label5.caption
-msgid "Pasword"
-msgstr ""
-
-#: tconfigform.label6.caption
-msgid "Base Name"
-msgstr ""
-
 #: tconfigform.label7.caption
 msgid "Displays columns"
 msgstr ""
 
-#: tconfigform.label8.caption
-msgid "Base"
+#: tconfigform.label9.caption
+msgctxt "tconfigform.label9.caption"
+msgid "Password"
 msgstr ""
 
 #: tconfigform.lbbackcolor.caption
@@ -1669,7 +1700,8 @@ msgid "COM Port"
 msgstr ""
 
 #: tconfigform.lbcwdaemonaddress.caption
-msgid "Adress:"
+msgctxt "tconfigform.lbcwdaemonaddress.caption"
+msgid "Address"
 msgstr ""
 
 #: tconfigform.lbcwdaemonport.caption
@@ -1677,7 +1709,8 @@ msgctxt "tconfigform.lbcwdaemonport.caption"
 msgid "Port"
 msgstr ""
 
-#: tconfigform.lbcwdaemonwpm.caption
+#: tconfigform.lbcwwpm.caption
+msgctxt "tconfigform.lbcwwpm.caption"
 msgid "WPM"
 msgstr ""
 
@@ -1687,6 +1720,10 @@ msgstr ""
 
 #: tconfigform.lbgetreference.caption
 msgid "Key get data from Online Reference"
+msgstr ""
+
+#: tconfigform.lbhamlibnotfound.caption
+msgid "rLibHamLibNotFound"
 msgstr ""
 
 #: tconfigform.lbkeyexport.caption
@@ -1699,6 +1736,22 @@ msgstr ""
 
 #: tconfigform.lbkeysendspot.caption
 msgid "Key Sent Spot"
+msgstr ""
+
+#: tconfigform.lblotwkey.caption
+msgid "Digital Signature Key"
+msgstr ""
+
+#: tconfigform.lblotwpath.caption
+msgid "Path TQSL"
+msgstr ""
+
+#: tconfigform.lblotwqth.caption
+msgid "QTH Name"
+msgstr ""
+
+#: tconfigform.lblotwwarning.caption
+msgid "I couldn't find TQSL. Is it installed?"
 msgstr ""
 
 #: tconfigform.lbpathbackup.caption
@@ -1735,6 +1788,10 @@ msgstr ""
 
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
+msgstr ""
+
+#: tconfigform.lbstationid.caption
+msgid "Station ID"
 msgstr ""
 
 #: tconfigform.lbsyncmobile.caption
@@ -1830,15 +1887,6 @@ msgstr ""
 msgid "Grids"
 msgstr ""
 
-#: tconfigform.radiobutton1.caption
-msgctxt "tconfigform.radiobutton1.caption"
-msgid "Use MySQL"
-msgstr ""
-
-#: tconfigform.radiobutton2.caption
-msgid "Use SQLite "
-msgstr ""
-
 #: tconfigform.tcolorandgrids.caption
 msgid "Colors and Grids"
 msgstr ""
@@ -1849,10 +1897,6 @@ msgstr ""
 
 #: tconfigform.tsbackup.caption
 msgid "Backup"
-msgstr ""
-
-#: tconfigform.tsbase.caption
-msgid "DataBase"
 msgstr ""
 
 #: tconfigform.tscat.caption
@@ -1870,6 +1914,11 @@ msgstr ""
 
 #: tconfigform.tsintref.caption
 msgid "Internal reference"
+msgstr ""
+
+#: tconfigform.tslotw.caption
+msgctxt "tconfigform.tslotw.caption"
+msgid "LoTW"
 msgstr ""
 
 #: tconfigform.tsothersettings.caption
@@ -2107,6 +2156,7 @@ msgid "ITU"
 msgstr ""
 
 #: tcreatejournalform.lblat.caption
+msgctxt "tcreatejournalform.lblat.caption"
 msgid "Lat"
 msgstr ""
 
@@ -2186,6 +2236,104 @@ msgstr ""
 
 #: tcwtypeform.lbspeed.caption
 msgid "CW Speed"
+msgstr ""
+
+#: tdatabasesettingsform.btcancel.caption
+msgctxt "tdatabasesettingsform.btcancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tdatabasesettingsform.btok.caption
+msgctxt "tdatabasesettingsform.btok.caption"
+msgid "OK"
+msgstr ""
+
+#: tdatabasesettingsform.caption
+msgctxt "tdatabasesettingsform.caption"
+msgid "DataBase Settings"
+msgstr ""
+
+#: tdatabasesettingsform.cbuseexdatabase.caption
+msgctxt "tdatabasesettingsform.cbuseexdatabase.caption"
+msgid "Use an existing SQLite database"
+msgstr ""
+
+#: tdatabasesettingsform.editqslinfo.text
+msgctxt "tdatabasesettingsform.editqslinfo.text"
+msgid "TNX for QSO! 73!"
+msgstr ""
+
+#: tdatabasesettingsform.gbdatabase.caption
+msgid "Database Settings"
+msgstr ""
+
+#: tdatabasesettingsform.gbmainsettings.caption
+msgid "Default HAM Log"
+msgstr ""
+
+#: tdatabasesettingsform.lbcallsign.caption
+msgctxt "tdatabasesettingsform.lbcallsign.caption"
+msgid "Callsign"
+msgstr ""
+
+#: tdatabasesettingsform.lbcq.caption
+msgctxt "tdatabasesettingsform.lbcq.caption"
+msgid "CQ"
+msgstr ""
+
+#: tdatabasesettingsform.lbdiscription.caption
+msgctxt "tdatabasesettingsform.lbdiscription.caption"
+msgid "Description"
+msgstr ""
+
+#: tdatabasesettingsform.lbgrid.caption
+msgctxt "tdatabasesettingsform.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: tdatabasesettingsform.lbitu.caption
+msgctxt "tdatabasesettingsform.lbitu.caption"
+msgid "ITU"
+msgstr ""
+
+#: tdatabasesettingsform.lblatitude.caption
+msgctxt "tdatabasesettingsform.lblatitude.caption"
+msgid "Latitude"
+msgstr ""
+
+#: tdatabasesettingsform.lblongitude.caption
+msgctxt "tdatabasesettingsform.lblongitude.caption"
+msgid "Longitude"
+msgstr ""
+
+#: tdatabasesettingsform.lbname.caption
+msgctxt "tdatabasesettingsform.lbname.caption"
+msgid "Name"
+msgstr ""
+
+#: tdatabasesettingsform.lbqslinfo.caption
+msgctxt "tdatabasesettingsform.lbqslinfo.caption"
+msgid "QSL Info"
+msgstr ""
+
+#: tdatabasesettingsform.lbqth.caption
+msgctxt "tdatabasesettingsform.lbqth.caption"
+msgid "QTH"
+msgstr ""
+
+#: tdatabasesettingsform.lbsqlpath.caption
+msgctxt "tdatabasesettingsform.lbsqlpath.caption"
+msgid "SQLite database path"
+msgstr ""
+
+#: tdatabasesettingsform.opendialog1.title
+msgctxt "tdatabasesettingsform.opendialog1.title"
+msgid "Open DataBase"
+msgstr ""
+
+#: tdatabasesettingsform.savedialog1.title
+msgctxt "tdatabasesettingsform.savedialog1.title"
+msgid "Save DataBase"
 msgstr ""
 
 #: tdxclusterform.caption
@@ -2619,11 +2767,6 @@ msgctxt "teditqso_form.lbstate.caption"
 msgid "State"
 msgstr ""
 
-#: teditqso_form.lbsubstate.caption
-msgctxt "teditqso_form.lbsubstate.caption"
-msgid "Sub. State"
-msgstr ""
-
 #: teditqso_form.rbdsent.caption
 msgid "Do not send"
 msgstr ""
@@ -2678,22 +2821,6 @@ msgstr ""
 #: teditqso_form.speedbutton3.caption
 msgctxt "teditqso_form.speedbutton3.caption"
 msgid "..."
-msgstr ""
-
-#: teditqso_form.speedbutton4.caption
-msgid ".4."
-msgstr ""
-
-#: teditqso_form.speedbutton5.caption
-msgid ".3."
-msgstr ""
-
-#: teditqso_form.speedbutton6.caption
-msgid ".2."
-msgstr ""
-
-#: teditqso_form.speedbutton7.caption
-msgid ".1."
 msgstr ""
 
 #: teditqso_form.speedbutton8.caption
@@ -2752,12 +2879,12 @@ msgstr ""
 msgid "Convert to Latin"
 msgstr ""
 
-#: texportadifform.cbeqslexport.caption
-msgid "Export to eQSL"
-msgstr ""
-
 #: texportadifform.cbexportonwin.caption
 msgid "Export on Win1251"
+msgstr ""
+
+#: texportadifform.cbremoveslash.caption
+msgid "Remove slash"
 msgstr ""
 
 #: texportadifform.cbsotaexport.caption
@@ -3185,12 +3312,20 @@ msgstr ""
 msgid "Export selected QSO to ADIF"
 msgstr ""
 
+#: tgridsform.exportclublogitem.caption
+msgid "Export QSO to ClubLog"
+msgstr ""
+
+#: tgridsform.exporthamqthitem.caption
+msgid "Export QSO to HamQTH"
+msgstr ""
+
 #: tgridsform.exporthrditem.caption
-msgid "Export QSO to HRDLOG.Net"
+msgid "Export QSO to HRDLog.net"
 msgstr ""
 
 #: tgridsform.exportqslccitem.caption
-msgid "Export selected QSO to eQSL.cc"
+msgid "Export QSO to eQSL.cc"
 msgstr ""
 
 #: tgridsform.filtercancelitem.caption
@@ -3238,6 +3373,10 @@ msgstr ""
 #: tgridsform.menuitem4.caption
 msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"
+msgstr ""
+
+#: tgridsform.miexporttoservice.caption
+msgid "Export QSO to Online Service"
 msgstr ""
 
 #: tgridsform.misendonlan.caption
@@ -3639,14 +3778,14 @@ msgctxt "tiota_form.label2.caption"
 msgid "Name"
 msgstr ""
 
-#: tlogconfigform.button1.caption
-msgctxt "tlogconfigform.button1.caption"
-msgid "Save"
+#: tlogconfigform.btcancel.caption
+msgctxt "tlogconfigform.btcancel.caption"
+msgid "Cancel"
 msgstr ""
 
-#: tlogconfigform.button2.caption
-msgctxt "tlogconfigform.button2.caption"
-msgid "Cancel"
+#: tlogconfigform.btsave.caption
+msgctxt "tlogconfigform.btsave.caption"
+msgid "Save"
 msgstr ""
 
 #: tlogconfigform.caption
@@ -3654,28 +3793,28 @@ msgctxt "tlogconfigform.caption"
 msgid "Logs configuration"
 msgstr ""
 
-#: tlogconfigform.checkbox1.caption
-msgctxt "tlogconfigform.checkbox1.caption"
+#: tlogconfigform.cbuploadclublog.caption
+msgctxt "tlogconfigform.cbuploadclublog.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.checkbox2.caption
-msgctxt "tlogconfigform.checkbox2.caption"
+#: tlogconfigform.cbuploadeqslcc.caption
+msgctxt "tlogconfigform.cbuploadeqslcc.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.checkbox3.caption
-msgctxt "tlogconfigform.checkbox3.caption"
+#: tlogconfigform.cbuploadhamqth.caption
+msgctxt "tlogconfigform.cbuploadhamqth.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.checkbox4.caption
-msgctxt "tlogconfigform.checkbox4.caption"
+#: tlogconfigform.cbuploadhrdlog.caption
+msgctxt "tlogconfigform.cbuploadhrdlog.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
-#: tlogconfigform.checkbox5.caption
-msgctxt "tlogconfigform.checkbox5.caption"
+#: tlogconfigform.cbuploadqrzcom.caption
+msgctxt "tlogconfigform.cbuploadqrzcom.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
@@ -3683,153 +3822,162 @@ msgstr ""
 msgid "TNX For QSO TU 73!"
 msgstr ""
 
-#: tlogconfigform.label1.caption
-msgctxt "tlogconfigform.label1.caption"
-msgid "Log"
-msgstr ""
-
-#: tlogconfigform.label10.caption
-msgctxt "tlogconfigform.label10.caption"
-msgid "CQ"
-msgstr ""
-
-#: tlogconfigform.label11.caption
-msgctxt "tlogconfigform.label11.caption"
-msgid "Grid"
-msgstr ""
-
-#: tlogconfigform.label12.caption
-msgctxt "tlogconfigform.label12.caption"
-msgid "Latitude"
-msgstr ""
-
-#: tlogconfigform.label13.caption
-msgctxt "tlogconfigform.label13.caption"
-msgid "Longitude"
-msgstr ""
-
-#: tlogconfigform.label14.caption
-msgid "QSL info (Default)"
-msgstr ""
-
-#: tlogconfigform.label16.caption
-msgid "eQSLcc"
-msgstr ""
-
-#: tlogconfigform.label17.caption
-msgctxt "tlogconfigform.label17.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label18.caption
-msgctxt "tlogconfigform.label18.caption"
-msgid "Password"
-msgstr ""
-
-#: tlogconfigform.label19.caption
-msgid "HRDlog"
-msgstr ""
-
-#: tlogconfigform.label2.caption
-msgctxt "tlogconfigform.label2.caption"
-msgid "Description"
-msgstr ""
-
-#: tlogconfigform.label20.caption
-msgctxt "tlogconfigform.label20.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label21.caption
-msgid "Upload code"
-msgstr ""
-
-#: tlogconfigform.label22.caption
-msgid "HamQTH"
-msgstr ""
-
-#: tlogconfigform.label23.caption
-msgctxt "tlogconfigform.label23.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label24.caption
-msgctxt "tlogconfigform.label24.caption"
-msgid "Password"
-msgstr ""
-
-#: tlogconfigform.label25.caption
-msgctxt "tlogconfigform.label25.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label26.caption
-msgctxt "tlogconfigform.label26.caption"
-msgid "Password"
-msgstr ""
-
-#: tlogconfigform.label27.caption
-msgctxt "tlogconfigform.label27.caption"
-msgid "LoTW"
-msgstr ""
-
-#: tlogconfigform.label28.caption
-msgid "ClubLog"
-msgstr ""
-
-#: tlogconfigform.label29.caption
-msgid "Login (email)"
-msgstr ""
-
-#: tlogconfigform.label30.caption
-msgctxt "tlogconfigform.label30.caption"
-msgid "Password"
-msgstr ""
-
-#: tlogconfigform.label31.caption
-msgctxt "tlogconfigform.label31.caption"
-msgid "Login"
-msgstr ""
-
-#: tlogconfigform.label32.caption
-msgctxt "tlogconfigform.label32.caption"
+#: tlogconfigform.lbapikeyqrzcom.caption
+msgctxt "tlogconfigform.lbapikeyqrzcom.caption"
 msgid "API key"
 msgstr ""
 
-#: tlogconfigform.label33.caption
-msgid "QRZ.COM"
-msgstr ""
-
-#: tlogconfigform.label4.caption
-msgid "Station detalis"
-msgstr ""
-
-#: tlogconfigform.label5.caption
-msgctxt "tlogconfigform.label5.caption"
+#: tlogconfigform.lbcallsign.caption
+msgctxt "tlogconfigform.lbcallsign.caption"
 msgid "Callsign"
 msgstr ""
 
-#: tlogconfigform.label6.caption
-msgctxt "tlogconfigform.label6.caption"
-msgid "Name"
+#: tlogconfigform.lbclublog.caption
+msgctxt "tlogconfigform.lbclublog.caption"
+msgid "ClubLog"
 msgstr ""
 
-#: tlogconfigform.label7.caption
-msgctxt "tlogconfigform.label7.caption"
-msgid "QTH"
-msgstr ""
-
-#: tlogconfigform.label8.caption
-msgid "Location information"
-msgstr ""
-
-#: tlogconfigform.label9.caption
-msgctxt "tlogconfigform.label9.caption"
-msgid "ITU"
+#: tlogconfigform.lbcq.caption
+msgctxt "tlogconfigform.lbcq.caption"
+msgid "CQ"
 msgstr ""
 
 #: tlogconfigform.lbdefaultcall.caption
 msgid "*"
+msgstr ""
+
+#: tlogconfigform.lbdescription.caption
+msgctxt "tlogconfigform.lbdescription.caption"
+msgid "Description"
+msgstr ""
+
+#: tlogconfigform.lbeqslcc.caption
+msgctxt "tlogconfigform.lbeqslcc.caption"
+msgid "eQSLcc"
+msgstr ""
+
+#: tlogconfigform.lbgrid.caption
+msgctxt "tlogconfigform.lbgrid.caption"
+msgid "Grid"
+msgstr ""
+
+#: tlogconfigform.lbhamqth.caption
+msgctxt "tlogconfigform.lbhamqth.caption"
+msgid "HamQTH"
+msgstr ""
+
+#: tlogconfigform.lbhrdlog.caption
+msgctxt "tlogconfigform.lbhrdlog.caption"
+msgid "HRDlog"
+msgstr ""
+
+#: tlogconfigform.lbitu.caption
+msgctxt "tlogconfigform.lbitu.caption"
+msgid "ITU"
+msgstr ""
+
+#: tlogconfigform.lblat.caption
+msgctxt "tlogconfigform.lblat.caption"
+msgid "Lat"
+msgstr ""
+
+#: tlogconfigform.lblocationinformation.caption
+msgctxt "tlogconfigform.lblocationinformation.caption"
+msgid "Location information"
+msgstr ""
+
+#: tlogconfigform.lblog.caption
+msgctxt "tlogconfigform.lblog.caption"
+msgid "Log"
+msgstr ""
+
+#: tlogconfigform.lbloginclublog.caption
+msgctxt "tlogconfigform.lbloginclublog.caption"
+msgid "Login (email)"
+msgstr ""
+
+#: tlogconfigform.lblogineqslcc.caption
+msgctxt "tlogconfigform.lblogineqslcc.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lbloginhamqth.caption
+msgctxt "tlogconfigform.lbloginhamqth.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lbloginhrdlog.caption
+msgctxt "tlogconfigform.lbloginhrdlog.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lbloginlotw.caption
+msgctxt "tlogconfigform.lbloginlotw.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lbloginqrzcom.caption
+msgctxt "tlogconfigform.lbloginqrzcom.caption"
+msgid "Login"
+msgstr ""
+
+#: tlogconfigform.lblon.caption
+msgid "Lon"
+msgstr ""
+
+#: tlogconfigform.lblotw.caption
+msgctxt "tlogconfigform.lblotw.caption"
+msgid "LoTW"
+msgstr ""
+
+#: tlogconfigform.lbname.caption
+msgctxt "tlogconfigform.lbname.caption"
+msgid "Name"
+msgstr ""
+
+#: tlogconfigform.lbpasswordclublog.caption
+msgctxt "tlogconfigform.lbpasswordclublog.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.lbpasswordeqslcc.caption
+msgctxt "tlogconfigform.lbpasswordeqslcc.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.lbpasswordhamqth.caption
+msgctxt "tlogconfigform.lbpasswordhamqth.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.lbpasswordlotw.caption
+msgctxt "tlogconfigform.lbpasswordlotw.caption"
+msgid "Password"
+msgstr ""
+
+#: tlogconfigform.lbqrzcom.caption
+msgctxt "tlogconfigform.lbqrzcom.caption"
+msgid "QRZ.COM"
+msgstr ""
+
+#: tlogconfigform.lbqslinfo.caption
+msgctxt "tlogconfigform.lbqslinfo.caption"
+msgid "QSL info (Default)"
+msgstr ""
+
+#: tlogconfigform.lbqth.caption
+msgctxt "tlogconfigform.lbqth.caption"
+msgid "QTH"
+msgstr ""
+
+#: tlogconfigform.lbstationdetalis.caption
+msgctxt "tlogconfigform.lbstationdetalis.caption"
+msgid "Station detalis"
+msgstr ""
+
+#: tlogconfigform.lbuploadcodehrdlog.caption
+msgctxt "tlogconfigform.lbuploadcodehrdlog.caption"
+msgid "Upload code"
 msgstr ""
 
 #: tlogconfigform.menuitem1.caption
@@ -4190,11 +4338,6 @@ msgctxt "tminiform.lbstate.caption"
 msgid "State"
 msgstr ""
 
-#: tminiform.lbsubstate.caption
-msgctxt "tminiform.lbsubstate.caption"
-msgid "Sub. State"
-msgstr ""
-
 #: tminiform.lbterritory.caption
 msgctxt "tminiform.lbterritory.caption"
 msgid "Territory"
@@ -4271,6 +4414,10 @@ msgstr ""
 msgid "MacroKeyF9"
 msgstr ""
 
+#: tminiform.menuitem1.caption
+msgid "eQSL Service"
+msgstr ""
+
 #: tminiform.menuitem102.caption
 msgid "Donations"
 msgstr ""
@@ -4301,16 +4448,16 @@ msgctxt "tminiform.menuitem124.caption"
 msgid "Modulation Manager"
 msgstr ""
 
+#: tminiform.menuitem2.caption
+msgid "LoTW Service"
+msgstr ""
+
 #: tminiform.menuitem3.caption
 msgid "View"
 msgstr ""
 
 #: tminiform.menuitem43.caption
 msgid "WSJT-X"
-msgstr ""
-
-#: tminiform.menuitem48.caption
-msgid "Set date synchronization"
 msgstr ""
 
 #: tminiform.menuitem52.caption
@@ -4334,7 +4481,7 @@ msgid "Create new log"
 msgstr ""
 
 #: tminiform.menuitem58.caption
-msgid "Compact and Repair Database"
+msgid "Vacuum Database"
 msgstr ""
 
 #: tminiform.menuitem6.caption
@@ -4401,18 +4548,6 @@ msgstr ""
 msgid "Fldigi"
 msgstr ""
 
-#: tminiform.menuitem81.caption
-msgid "Synchronization Databases"
-msgstr ""
-
-#: tminiform.menuitem82.caption
-msgid "From MySQL to SQLite"
-msgstr ""
-
-#: tminiform.menuitem83.caption
-msgid "From SQLite to MySQL"
-msgstr ""
-
 #: tminiform.menuitem85.caption
 msgid "Transceiver Control"
 msgstr ""
@@ -4421,13 +4556,9 @@ msgstr ""
 msgid "Settings external programs"
 msgstr ""
 
-#: tminiform.menuitem89.caption
-msgid "Switch database"
-msgstr ""
-
 #: tminiform.menuitem91.caption
 msgctxt "tminiform.menuitem91.caption"
-msgid "Wizard"
+msgid "DataBase Settings"
 msgstr ""
 
 #: tminiform.menuitem92.caption
@@ -4565,22 +4696,6 @@ msgstr ""
 #: tminiform.sbstate.caption
 msgctxt "tminiform.sbstate.caption"
 msgid " ... "
-msgstr ""
-
-#: tminiform.sbstate1.caption
-msgid " .1. "
-msgstr ""
-
-#: tminiform.sbstate2.caption
-msgid " .2. "
-msgstr ""
-
-#: tminiform.sbstate3.caption
-msgid " .3. "
-msgstr ""
-
-#: tminiform.sbstate4.caption
-msgid " .4. "
 msgstr ""
 
 #: tminiform.sentspot.caption
@@ -4914,62 +5029,200 @@ msgctxt "tsendtelnetspot.lbfreq.caption"
 msgid "Frequency"
 msgstr ""
 
-#: tserviceform.btconnecteqsl.caption
+#: tserviceeqslform.btconnecteqsl.caption
+msgctxt "tserviceeqslform.btconnecteqsl.caption"
 msgid "Connect with eQSL"
 msgstr ""
 
-#: tserviceform.btconnectlotw.caption
-msgid "Connect with LoTW"
+#: tserviceeqslform.button1.caption
+msgid "Choose file"
 msgstr ""
 
-#: tserviceform.caption
-msgid "Service eQSL and LoTW"
+#: tserviceeqslform.button2.caption
+msgctxt "tserviceeqslform.button2.caption"
+msgid "Upload"
 msgstr ""
 
-#: tserviceform.lbcurrerror.caption
-msgctxt "tserviceform.lbcurrerror.caption"
+#: tserviceeqslform.button3.caption
+msgid "Mark ALL QSOs as Sent to eQSL"
+msgstr ""
+
+#: tserviceeqslform.caption
+msgid "Service eQSL"
+msgstr ""
+
+#: tserviceeqslform.label1.caption
+msgid "Import from file"
+msgstr ""
+
+#: tserviceeqslform.label2.caption
+msgid "File not selected"
+msgstr ""
+
+#: tserviceeqslform.label3.caption
+msgid "Import directly from eQSL"
+msgstr ""
+
+#: tserviceeqslform.label4.caption
+msgctxt "tserviceeqslform.label4.caption"
+msgid "Upload Status:"
+msgstr ""
+
+#: tserviceeqslform.label5.caption
+msgctxt "tserviceeqslform.label5.caption"
+msgid "Status"
+msgstr ""
+
+#: tserviceeqslform.label6.caption
+msgctxt "tserviceeqslform.label6.caption"
+msgid "Status:"
+msgstr ""
+
+#: tserviceeqslform.label7.caption
+msgctxt "tserviceeqslform.label7.caption"
+msgid "Status"
+msgstr ""
+
+#: tserviceeqslform.lbcurrerror.caption
+msgctxt "tserviceeqslform.lbcurrerror.caption"
 msgid "None"
 msgstr ""
 
-#: tserviceform.lbcurrstatus.caption
-msgctxt "tserviceform.lbcurrstatus.caption"
+#: tserviceeqslform.lbcurrstatus.caption
+msgctxt "tserviceeqslform.lbcurrstatus.caption"
 msgid "Wait"
 msgstr ""
 
-#: tserviceform.lbdownload.caption
+#: tserviceeqslform.lbdownload.caption
+msgctxt "tserviceeqslform.lbdownload.caption"
 msgid "Download:"
 msgstr ""
 
-#: tserviceform.lbdownloadqsl.caption
-msgid "Download QSL received after:"
-msgstr ""
-
-#: tserviceform.lbdownloadsize.caption
-msgctxt "tserviceform.lbdownloadsize.caption"
+#: tserviceeqslform.lbdownloadsize.caption
+msgctxt "tserviceeqslform.lbdownloadsize.caption"
 msgid "0"
 msgstr ""
 
-#: tserviceform.lbeqslcc.caption
-msgid "eQSL.cc"
-msgstr ""
-
-#: tserviceform.lberrors.caption
+#: tserviceeqslform.lberrors.caption
+msgctxt "tserviceeqslform.lberrors.caption"
 msgid "Errors:"
 msgstr ""
 
-#: tserviceform.lblotw.caption
-msgctxt "tserviceform.lblotw.caption"
-msgid "LoTW"
-msgstr ""
-
-#: tserviceform.lbprocessed.caption
-msgctxt "tserviceform.lbprocessed.caption"
+#: tserviceeqslform.lbprocessed.caption
+msgctxt "tserviceeqslform.lbprocessed.caption"
 msgid "Processed data:"
 msgstr ""
 
-#: tserviceform.lbstatus.caption
-msgctxt "tserviceform.lbstatus.caption"
+#: tserviceeqslform.lbstatus.caption
+msgctxt "tserviceeqslform.lbstatus.caption"
 msgid "Status:"
+msgstr ""
+
+#: tserviceeqslform.tabsheet1.caption
+msgctxt "tserviceeqslform.tabsheet1.caption"
+msgid "Download QSOs"
+msgstr ""
+
+#: tserviceeqslform.tabsheet2.caption
+msgctxt "tserviceeqslform.tabsheet2.caption"
+msgid "Upload QSOs"
+msgstr ""
+
+#: tserviceeqslform.tabsheet3.caption
+msgctxt "tserviceeqslform.tabsheet3.caption"
+msgid "Tools"
+msgstr ""
+
+#: tservicelotwform.btconnectlotw.caption
+msgctxt "tservicelotwform.btconnectlotw.caption"
+msgid "Connect with LoTW"
+msgstr ""
+
+#: tservicelotwform.button2.caption
+msgctxt "tservicelotwform.button2.caption"
+msgid "Generate"
+msgstr ""
+
+#: tservicelotwform.button3.caption
+msgid "Mark ALL QSOs as Sent to LoTW"
+msgstr ""
+
+#: tservicelotwform.caption
+msgid "Service LoTW"
+msgstr ""
+
+#: tservicelotwform.label3.caption
+msgid "Import directly from LoTW"
+msgstr ""
+
+#: tservicelotwform.label4.caption
+msgctxt "tservicelotwform.label4.caption"
+msgid "Upload Status:"
+msgstr ""
+
+#: tservicelotwform.label5.caption
+msgctxt "tservicelotwform.label5.caption"
+msgid "Status"
+msgstr ""
+
+#: tservicelotwform.label6.caption
+msgctxt "tservicelotwform.label6.caption"
+msgid "Status:"
+msgstr ""
+
+#: tservicelotwform.label7.caption
+msgctxt "tservicelotwform.label7.caption"
+msgid "Status"
+msgstr ""
+
+#: tservicelotwform.lbcurrerror.caption
+msgctxt "tservicelotwform.lbcurrerror.caption"
+msgid "None"
+msgstr ""
+
+#: tservicelotwform.lbcurrstatus.caption
+msgctxt "tservicelotwform.lbcurrstatus.caption"
+msgid "Wait"
+msgstr ""
+
+#: tservicelotwform.lbdownload.caption
+msgctxt "tservicelotwform.lbdownload.caption"
+msgid "Download:"
+msgstr ""
+
+#: tservicelotwform.lbdownloadsize.caption
+msgctxt "tservicelotwform.lbdownloadsize.caption"
+msgid "0"
+msgstr ""
+
+#: tservicelotwform.lberrors.caption
+msgctxt "tservicelotwform.lberrors.caption"
+msgid "Errors:"
+msgstr ""
+
+#: tservicelotwform.lbprocessed.caption
+msgctxt "tservicelotwform.lbprocessed.caption"
+msgid "Processed data:"
+msgstr ""
+
+#: tservicelotwform.lbstatus.caption
+msgctxt "tservicelotwform.lbstatus.caption"
+msgid "Status:"
+msgstr ""
+
+#: tservicelotwform.tabsheet1.caption
+msgctxt "tservicelotwform.tabsheet1.caption"
+msgid "Download QSOs"
+msgstr ""
+
+#: tservicelotwform.tabsheet2.caption
+msgctxt "tservicelotwform.tabsheet2.caption"
+msgid "Upload QSOs"
+msgstr ""
+
+#: tservicelotwform.tabsheet3.caption
+msgctxt "tservicelotwform.tabsheet3.caption"
+msgid "Tools"
 msgstr ""
 
 #: tsettingsprogramform.btaddprogram.caption
@@ -5009,232 +5262,6 @@ msgstr ""
 
 #: tsettingsprogramform.lbpath.caption
 msgid "Path program:"
-msgstr ""
-
-#: tsetupform.btback.caption
-msgctxt "tsetupform.btback.caption"
-msgid "Back"
-msgstr ""
-
-#: tsetupform.btcheck.caption
-msgctxt "tsetupform.btcheck.caption"
-msgid "Check connection"
-msgstr ""
-
-#: tsetupform.btnext.caption
-msgctxt "tsetupform.btnext.caption"
-msgid "Next"
-msgstr ""
-
-#: tsetupform.button1.caption
-msgid "I accept"
-msgstr ""
-
-#: tsetupform.button3.caption
-msgctxt "tsetupform.button3.caption"
-msgid "Next"
-msgstr ""
-
-#: tsetupform.button4.caption
-msgctxt "tsetupform.button4.caption"
-msgid "OK"
-msgstr ""
-
-#: tsetupform.button7.caption
-msgctxt "tsetupform.button7.caption"
-msgid "Back"
-msgstr ""
-
-#: tsetupform.button8.caption
-msgctxt "tsetupform.button8.caption"
-msgid "Back"
-msgstr ""
-
-#: tsetupform.button9.caption
-msgctxt "tsetupform.button9.caption"
-msgid "Cancel"
-msgstr ""
-
-#: tsetupform.caption
-msgctxt "tsetupform.caption"
-msgid "Wizard"
-msgstr ""
-
-#: tsetupform.cbexpertmode.caption
-msgid "Expert Mode"
-msgstr ""
-
-#: tsetupform.checkbox1.caption
-msgid "Use an existing MySQL database"
-msgstr ""
-
-#: tsetupform.checkbox2.caption
-msgid "Use an existing SQLite database"
-msgstr ""
-
-#: tsetupform.checkbox3.caption
-msgid "Use MySQL by default"
-msgstr ""
-
-#: tsetupform.checkbox4.caption
-msgid "Use SQLite by default"
-msgstr ""
-
-#: tsetupform.edit16.text
-msgctxt "tsetupform.edit16.text"
-msgid "TNX for QSO! 73!"
-msgstr ""
-
-#: tsetupform.editport.text
-msgid "3306"
-msgstr ""
-
-#: tsetupform.label1.caption
-msgid "Welcome to the HAM Log Setup Wizard."
-msgstr ""
-
-#: tsetupform.label11.caption
-msgid "Main HAM Log Settings"
-msgstr ""
-
-#: tsetupform.label12.caption
-msgctxt "tsetupform.label12.caption"
-msgid "Callsign"
-msgstr ""
-
-#: tsetupform.label13.caption
-msgctxt "tsetupform.label13.caption"
-msgid "Description"
-msgstr ""
-
-#: tsetupform.label14.caption
-msgctxt "tsetupform.label14.caption"
-msgid "QTH"
-msgstr ""
-
-#: tsetupform.label15.caption
-msgctxt "tsetupform.label15.caption"
-msgid "Name"
-msgstr ""
-
-#: tsetupform.label16.caption
-msgctxt "tsetupform.label16.caption"
-msgid "Grid"
-msgstr ""
-
-#: tsetupform.label17.caption
-msgctxt "tsetupform.label17.caption"
-msgid "Latitude"
-msgstr ""
-
-#: tsetupform.label18.caption
-msgctxt "tsetupform.label18.caption"
-msgid "Longitude"
-msgstr ""
-
-#: tsetupform.label19.caption
-msgctxt "tsetupform.label19.caption"
-msgid "ITU"
-msgstr ""
-
-#: tsetupform.label2.caption
-msgid "License agreement:"
-msgstr ""
-
-#: tsetupform.label20.caption
-msgctxt "tsetupform.label20.caption"
-msgid "CQ"
-msgstr ""
-
-#: tsetupform.label21.caption
-msgctxt "tsetupform.label21.caption"
-msgid "QSL Info"
-msgstr ""
-
-#: tsetupform.label22.caption
-msgid "Application and processing of data. Wait"
-msgstr ""
-
-#: tsetupform.label23.caption
-msgctxt "tsetupform.label23.caption"
-msgid "Status:"
-msgstr ""
-
-#: tsetupform.label24.caption
-msgctxt "tsetupform.label24.caption"
-msgid "Wait"
-msgstr ""
-
-#: tsetupform.label3.caption
-msgid "Database settings"
-msgstr ""
-
-#: tsetupform.lbhost.caption
-msgid "Host"
-msgstr ""
-
-#: tsetupform.lbnamedb.caption
-msgid "Name of database"
-msgstr ""
-
-#: tsetupform.lbpassword.caption
-msgctxt "tsetupform.lbpassword.caption"
-msgid "Password"
-msgstr ""
-
-#: tsetupform.lbport.caption
-msgctxt "tsetupform.lbport.caption"
-msgid "Port"
-msgstr ""
-
-#: tsetupform.lbselectdb.caption
-msgid "Database select"
-msgstr ""
-
-#: tsetupform.lbsqlpath.caption
-msgid "SQLite database path"
-msgstr ""
-
-#: tsetupform.lbusername.caption
-msgid "Username"
-msgstr ""
-
-#: tsetupform.opendialog1.title
-msgid "Open DataBase"
-msgstr ""
-
-#: tsetupform.radiobutton1.caption
-msgctxt "tsetupform.radiobutton1.caption"
-msgid "Use MySQL"
-msgstr ""
-
-#: tsetupform.radiobutton2.caption
-msgid "Use SQLite"
-msgstr ""
-
-#: tsetupform.radiobutton3.caption
-msgid "I will use both databases"
-msgstr ""
-
-#: tsetupform.savedialog1.title
-msgid "Save DataBase"
-msgstr ""
-
-#: tsetupform.tabsheet1.caption
-msgid "Greeting"
-msgstr ""
-
-#: tsetupform.tabsheet2.caption
-msgid "Setup DB"
-msgstr ""
-
-#: tsetupform.tabsheet3.caption
-msgid "Setup Log"
-msgstr ""
-
-#: tsetupform.tabsheet4.caption
-msgctxt "tsetupform.tabsheet4.caption"
-msgid "Processing"
 msgstr ""
 
 #: tstate_form.button1.caption
@@ -5307,6 +5334,10 @@ msgstr ""
 
 #: tthanks_form.label12.caption
 msgid "R9XAL - Aleksey Panyukov"
+msgstr ""
+
+#: tthanks_form.label13.caption
+msgid "RL2B - Mikhail Genin"
 msgstr ""
 
 #: tthanks_form.label2.caption

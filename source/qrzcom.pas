@@ -170,7 +170,7 @@ begin
   MainFunc.UpdateQSL('QRZCOM_QSO_UPLOAD_STATUS','1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
-      'QRZ.COM', MB_ICONEXCLAMATION);
+      PChar('QRZ.COM -> '+ SendQSO.CallSing), MB_ICONEXCLAMATION);
 end;
 
 procedure TSendQRZComThread.Execute;

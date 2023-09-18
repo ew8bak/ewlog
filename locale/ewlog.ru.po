@@ -414,6 +414,12 @@ msgctxt "resourcestr.rdeleterecord"
 msgid "Delete Record "
 msgstr "Удалить запись "
 
+#: resourcestr.rdescription
+#, fuzzy
+msgctxt "resourcestr.rdescription"
+msgid "Description"
+msgstr "Описание"
+
 #: resourcestr.rdisabled
 msgid "Disabled"
 msgstr ""
@@ -517,6 +523,10 @@ msgstr "Экспорт завершён"
 msgid "Failed to load data"
 msgstr "Ошибка загрузки данных"
 
+#: resourcestr.rfieldmissing
+msgid "field missing"
+msgstr ""
+
 #: resourcestr.rfiledbexist
 msgid "Found an existing database file. Do you want to use it? If you press NO, the existing file will be deleted and a new one will be created"
 msgstr "Найден существующий файл базы дынных. Вы хотите его использовать? Если нажать НЕТ, произойдет удаление существующего файла и создание нового"
@@ -543,6 +553,11 @@ msgstr "Заполняю таблицу LogBookInfo"
 msgctxt "resourcestr.rfillinlogtable"
 msgid "Fill in the Log_Table_"
 msgstr "Заполняю таблицу Log_Table_"
+
+#: resourcestr.rgenerate
+msgctxt "resourcestr.rgenerate"
+msgid "Generate"
+msgstr ""
 
 #: resourcestr.rgotosettings
 msgid "Go to settings?"
@@ -610,6 +625,10 @@ msgctxt "resourcestr.riota"
 msgid "IOTA"
 msgstr "IOTA"
 
+#: resourcestr.ritsnoewlogdatabase
+msgid "Its not EWLog database. Check"
+msgstr ""
+
 #: resourcestr.rituzone
 msgctxt "resourcestr.rituzone"
 msgid "ITU Zone"
@@ -623,6 +642,12 @@ msgstr "КБ"
 msgctxt "resourcestr.rlanguagecomplite"
 msgid "Translation files download successfully"
 msgstr "Файлы переводов успешно загружены"
+
+#: resourcestr.rlatitude
+#, fuzzy
+msgctxt "resourcestr.rlatitude"
+msgid "Latitude"
+msgstr "Широта"
 
 #: resourcestr.rlibhamlibnotfound
 msgctxt "resourcestr.rlibhamlibnotfound"
@@ -647,6 +672,12 @@ msgstr "Запись в журнале уже существует"
 msgctxt "resourcestr.rlognconwsjt"
 msgid "EWLog not connected to WSJT"
 msgstr "EWLog отключился от WSJT"
+
+#: resourcestr.rlongitude
+#, fuzzy
+msgctxt "resourcestr.rlongitude"
+msgid "Longitude"
+msgstr "Долгота"
 
 #: resourcestr.rlotwrecdate
 msgctxt "resourcestr.rlotwrecdate"
@@ -680,6 +711,12 @@ msgstr "Нет подключения к MySQL! Проверьте подклю�
 msgctxt "resourcestr.rmysqlnotset"
 msgid "MySQL database settings not configured"
 msgstr "База данных MySQL не настроена"
+
+#: resourcestr.rname
+#, fuzzy
+msgctxt "resourcestr.rname"
+msgid "Name"
+msgstr "Имя"
 
 #: resourcestr.rneedqsl
 msgid "QSL is needed"
@@ -747,6 +784,10 @@ msgstr "Вы не можете переключить базу данных т.�
 msgctxt "resourcestr.rnotdataforconnect"
 msgid "The log configuration, do not specify the data to connect to eQSL.cc"
 msgstr "В конфигурации журнала, не указаны данные для подключения к eQSL.cc"
+
+#: resourcestr.rnotdataforconnectlotw
+msgid "The log configuration, do not specify the data to connect to LoTW"
+msgstr ""
 
 #: resourcestr.rnotefldigi
 msgid "Please enable N3FJP logs support in Fldigi settings. (In Fldigi - Configure / Config dialog / Logging / N3FJP Logs / Connect)"
@@ -829,6 +870,12 @@ msgstr "Программа уже запущена"
 msgctxt "resourcestr.rqsl"
 msgid "QSL"
 msgstr "QSL"
+
+#: resourcestr.rqslinfo
+#, fuzzy
+msgctxt "resourcestr.rqslinfo"
+msgid "QSL Info"
+msgstr "QSL Инфо"
 
 #: resourcestr.rqslmanager
 msgctxt "resourcestr.rqslmanager"
@@ -1066,7 +1113,7 @@ msgstr "Требует обновления"
 msgid ""
 "Update sqlite3.so to version 3.24.0 or higher.\n"
 "Current Latest Version 3.31.1\n"
-"Full work program can not be guaranteed\n"
+"Full work program can not be guaranteed"
 msgstr ""
 "Обновите sqlite3.dll до версии 3.24.0 или выше\n"
 "Текущая последняя версия 3.31.1\n"
@@ -1116,6 +1163,11 @@ msgstr "Статус обновления: Загрузка"
 msgctxt "resourcestr.rupdatestatusrequiredinstall"
 msgid "Update status: Installation required"
 msgstr "Статус обновления: Требует обновления"
+
+#: resourcestr.rupload
+msgctxt "resourcestr.rupload"
+msgid "Upload"
+msgstr ""
 
 #: resourcestr.rusefldigi
 msgid "Use Fldigi with EWLog?"
@@ -1310,11 +1362,6 @@ msgctxt "tconfigform.bttcidefault.caption"
 msgid "Set Radio Default"
 msgstr ""
 
-#: tconfigform.button3.caption
-msgctxt "tconfigform.button3.caption"
-msgid "Check connection"
-msgstr "Проверка соединения"
-
 #: tconfigform.button4.caption
 msgctxt "tconfigform.button4.caption"
 msgid "Check for Updates"
@@ -1406,6 +1453,10 @@ msgstr "CQ Зона"
 
 #: tconfigform.cbcwdaemon.caption
 msgid "Use CW Daemon?"
+msgstr ""
+
+#: tconfigform.cbcwovertci.caption
+msgid "CW over TCI ?"
 msgstr ""
 
 #: tconfigform.cbdate.caption
@@ -1613,8 +1664,12 @@ msgstr ""
 msgid "CW Daemon (Linux only)"
 msgstr ""
 
-#: tconfigform.gbdefaultdb.caption
-msgid "Default DB"
+#: tconfigform.gbcwgeneral.caption
+msgid "CW General"
+msgstr ""
+
+#: tconfigform.gbcwtype.caption
+msgid "CWType (Windows only)"
 msgstr ""
 
 #: tconfigform.gbgridscolor.caption
@@ -1631,10 +1686,9 @@ msgctxt "tconfigform.gbintref.caption"
 msgid "Internal reference book"
 msgstr "Встроенный справочник позывных"
 
-#: tconfigform.gbmysql.caption
-msgctxt "tconfigform.gbmysql.caption"
-msgid "MySQL"
-msgstr "MySQL"
+#: tconfigform.gblotw.caption
+msgid "LoTW Settings"
+msgstr ""
 
 #: tconfigform.gbqrzcom.caption
 msgctxt "tconfigform.gbqrzcom.caption"
@@ -1646,11 +1700,6 @@ msgctxt "tconfigform.gbqrzru.caption"
 msgid "QRZ.RU XML API"
 msgstr "QRZ.RU XML API"
 
-#: tconfigform.gbsqlite.caption
-msgctxt "tconfigform.gbsqlite.caption"
-msgid "SQLite"
-msgstr "SQLite"
-
 #: tconfigform.gbtelnet.caption
 msgctxt "tconfigform.gbtelnet.caption"
 msgid "Telnet DX Cluster"
@@ -1659,6 +1708,12 @@ msgstr "Telnet DX кластер"
 #: tconfigform.gbtelnetedit.caption
 msgid "Edit"
 msgstr ""
+
+#: tconfigform.label1.caption
+#, fuzzy
+msgctxt "tconfigform.label1.caption"
+msgid "Login"
+msgstr "Логин"
 
 #: tconfigform.label10.caption
 msgid "Release date:"
@@ -1694,24 +1749,9 @@ msgctxt "tconfigform.label19.caption"
 msgid "Password"
 msgstr "Пароль"
 
-#: tconfigform.label2.caption
-msgctxt "tconfigform.label2.caption"
-msgid "Server"
-msgstr "Сервер"
-
 #: tconfigform.label20.caption
 msgid "to QSL Info"
 msgstr "в поле QSLInfo"
-
-#: tconfigform.label21.caption
-msgctxt "tconfigform.label21.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tconfigform.label22.caption
-msgctxt "tconfigform.label22.caption"
-msgid "Password"
-msgstr "Пароль"
 
 #: tconfigform.label23.caption
 msgctxt "tconfigform.label23.caption"
@@ -1733,32 +1773,16 @@ msgctxt "tconfigform.label26.caption"
 msgid "Password"
 msgstr "Пароль"
 
-#: tconfigform.label3.caption
-msgctxt "tconfigform.label3.caption"
-msgid "Port"
-msgstr "Порт"
-
-#: tconfigform.label4.caption
-msgctxt "tconfigform.label4.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tconfigform.label5.caption
-msgid "Pasword"
-msgstr "Пароль"
-
-#: tconfigform.label6.caption
-msgid "Base Name"
-msgstr "Название базы"
-
 #: tconfigform.label7.caption
 msgctxt "tconfigform.label7.caption"
 msgid "Displays columns"
 msgstr "Отображение колонок"
 
-#: tconfigform.label8.caption
-msgid "Base"
-msgstr "База данных"
+#: tconfigform.label9.caption
+#, fuzzy
+msgctxt "tconfigform.label9.caption"
+msgid "Password"
+msgstr "Пароль"
 
 #: tconfigform.lbbackcolor.caption
 msgctxt "tconfigform.lbbackcolor.caption"
@@ -1828,8 +1852,10 @@ msgid "COM Port"
 msgstr "COM порт"
 
 #: tconfigform.lbcwdaemonaddress.caption
-msgid "Adress:"
-msgstr ""
+#, fuzzy
+msgctxt "tconfigform.lbcwdaemonaddress.caption"
+msgid "Address"
+msgstr "Адрес"
 
 #: tconfigform.lbcwdaemonport.caption
 #, fuzzy
@@ -1837,7 +1863,8 @@ msgctxt "tconfigform.lbcwdaemonport.caption"
 msgid "Port"
 msgstr "Порт"
 
-#: tconfigform.lbcwdaemonwpm.caption
+#: tconfigform.lbcwwpm.caption
+msgctxt "tconfigform.lbcwwpm.caption"
 msgid "WPM"
 msgstr ""
 
@@ -1850,6 +1877,10 @@ msgstr ""
 msgid "Key get data from Online Reference"
 msgstr "Сочетание получения данных с Online справочника"
 
+#: tconfigform.lbhamlibnotfound.caption
+msgid "rLibHamLibNotFound"
+msgstr ""
+
 #: tconfigform.lbkeyexport.caption
 msgid "Key Export ADI file"
 msgstr "Сочетание экспорта ADI"
@@ -1860,6 +1891,22 @@ msgstr "Сочетание импорта ADI"
 
 #: tconfigform.lbkeysendspot.caption
 msgid "Key Sent Spot"
+msgstr ""
+
+#: tconfigform.lblotwkey.caption
+msgid "Digital Signature Key"
+msgstr ""
+
+#: tconfigform.lblotwpath.caption
+msgid "Path TQSL"
+msgstr ""
+
+#: tconfigform.lblotwqth.caption
+msgid "QTH Name"
+msgstr ""
+
+#: tconfigform.lblotwwarning.caption
+msgid "I couldn't find TQSL. Is it installed?"
 msgstr ""
 
 #: tconfigform.lbpathbackup.caption
@@ -1898,6 +1945,10 @@ msgstr ""
 #: tconfigform.lbsaveqso.caption
 msgid "Key Save QSO"
 msgstr "Сочетание сохранения QSO"
+
+#: tconfigform.lbstationid.caption
+msgid "Station ID"
+msgstr ""
 
 #: tconfigform.lbsyncmobile.caption
 msgid "Interface for mobile sync"
@@ -1996,15 +2047,6 @@ msgstr ""
 msgid "Grids"
 msgstr ""
 
-#: tconfigform.radiobutton1.caption
-msgctxt "tconfigform.radiobutton1.caption"
-msgid "Use MySQL"
-msgstr "Использовать MySQL"
-
-#: tconfigform.radiobutton2.caption
-msgid "Use SQLite "
-msgstr "Использовать SQLite "
-
 #: tconfigform.tcolorandgrids.caption
 msgid "Colors and Grids"
 msgstr ""
@@ -2016,10 +2058,6 @@ msgstr "Горячие клавиши"
 #: tconfigform.tsbackup.caption
 msgid "Backup"
 msgstr "Резервное копирование"
-
-#: tconfigform.tsbase.caption
-msgid "DataBase"
-msgstr "Базы данных"
 
 #: tconfigform.tscat.caption
 msgid "CAT"
@@ -2037,6 +2075,11 @@ msgstr ""
 #: tconfigform.tsintref.caption
 msgid "Internal reference"
 msgstr "Встроенный справочник"
+
+#: tconfigform.tslotw.caption
+msgctxt "tconfigform.tslotw.caption"
+msgid "LoTW"
+msgstr ""
 
 #: tconfigform.tsothersettings.caption
 msgid "Other Settings"
@@ -2360,6 +2403,120 @@ msgstr ""
 #: tcwtypeform.lbspeed.caption
 msgid "CW Speed"
 msgstr ""
+
+#: tdatabasesettingsform.btcancel.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.btcancel.caption"
+msgid "Cancel"
+msgstr "Отмена"
+
+#: tdatabasesettingsform.btok.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.btok.caption"
+msgid "OK"
+msgstr "ОК"
+
+#: tdatabasesettingsform.caption
+msgctxt "tdatabasesettingsform.caption"
+msgid "DataBase Settings"
+msgstr ""
+
+#: tdatabasesettingsform.cbuseexdatabase.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.cbuseexdatabase.caption"
+msgid "Use an existing SQLite database"
+msgstr "Использовать существующую БД SQLite"
+
+#: tdatabasesettingsform.editqslinfo.text
+msgctxt "tdatabasesettingsform.editqslinfo.text"
+msgid "TNX for QSO! 73!"
+msgstr ""
+
+#: tdatabasesettingsform.gbdatabase.caption
+msgid "Database Settings"
+msgstr ""
+
+#: tdatabasesettingsform.gbmainsettings.caption
+msgid "Default HAM Log"
+msgstr ""
+
+#: tdatabasesettingsform.lbcallsign.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbcallsign.caption"
+msgid "Callsign"
+msgstr "Позывной"
+
+#: tdatabasesettingsform.lbcq.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbcq.caption"
+msgid "CQ"
+msgstr "CQ"
+
+#: tdatabasesettingsform.lbdiscription.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbdiscription.caption"
+msgid "Description"
+msgstr "Описание"
+
+#: tdatabasesettingsform.lbgrid.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbgrid.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: tdatabasesettingsform.lbitu.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbitu.caption"
+msgid "ITU"
+msgstr "ITU"
+
+#: tdatabasesettingsform.lblatitude.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lblatitude.caption"
+msgid "Latitude"
+msgstr "Широта"
+
+#: tdatabasesettingsform.lblongitude.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lblongitude.caption"
+msgid "Longitude"
+msgstr "Долгота"
+
+#: tdatabasesettingsform.lbname.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbname.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tdatabasesettingsform.lbqslinfo.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbqslinfo.caption"
+msgid "QSL Info"
+msgstr "QSL Инфо"
+
+#: tdatabasesettingsform.lbqth.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbqth.caption"
+msgid "QTH"
+msgstr "QTH"
+
+#: tdatabasesettingsform.lbsqlpath.caption
+#, fuzzy
+msgctxt "tdatabasesettingsform.lbsqlpath.caption"
+msgid "SQLite database path"
+msgstr "Путь к базе SQLite"
+
+#: tdatabasesettingsform.opendialog1.title
+#, fuzzy
+msgctxt "tdatabasesettingsform.opendialog1.title"
+msgid "Open DataBase"
+msgstr "Открыть базу данных"
+
+#: tdatabasesettingsform.savedialog1.title
+#, fuzzy
+msgctxt "tdatabasesettingsform.savedialog1.title"
+msgid "Save DataBase"
+msgstr "Сохранить базу данных"
 
 #: tdxclusterform.caption
 msgctxt "tdxclusterform.caption"
@@ -2841,12 +2998,6 @@ msgctxt "teditqso_form.lbstate.caption"
 msgid "State"
 msgstr "State"
 
-#: teditqso_form.lbsubstate.caption
-#, fuzzy
-msgctxt "teditqso_form.lbsubstate.caption"
-msgid "Sub. State"
-msgstr "Поле стат."
-
 #: teditqso_form.rbdsent.caption
 #, fuzzy
 msgctxt "teditqso_form.rbdsent.caption"
@@ -2912,22 +3063,6 @@ msgctxt "teditqso_form.speedbutton3.caption"
 msgid "..."
 msgstr ""
 
-#: teditqso_form.speedbutton4.caption
-msgid ".4."
-msgstr ""
-
-#: teditqso_form.speedbutton5.caption
-msgid ".3."
-msgstr ""
-
-#: teditqso_form.speedbutton6.caption
-msgid ".2."
-msgstr ""
-
-#: teditqso_form.speedbutton7.caption
-msgid ".1."
-msgstr ""
-
 #: teditqso_form.speedbutton8.caption
 msgctxt "teditqso_form.speedbutton8.caption"
 msgid "..."
@@ -2990,6 +3125,10 @@ msgstr "Перевести в латиницу"
 msgctxt "texportadifform.cbexportonwin.caption"
 msgid "Export on Win1251"
 msgstr "Экспорт в Win1251"
+
+#: texportadifform.cbremoveslash.caption
+msgid "Remove slash"
+msgstr "Удалить дробь"
 
 #: texportadifform.cbsotaexport.caption
 msgid "Export to SOTA"
@@ -3444,14 +3583,26 @@ msgctxt "tgridsform.exportadifitem.caption"
 msgid "Export selected QSO to ADIF"
 msgstr "Экспортировать выбранные QSO в ADIF"
 
+#: tgridsform.exportclublogitem.caption
+msgid "Export QSO to ClubLog"
+msgstr ""
+
+#: tgridsform.exporthamqthitem.caption
+msgid "Export QSO to HamQTH"
+msgstr ""
+
 #: tgridsform.exporthrditem.caption
+#, fuzzy
+#| msgid "Export QSO to HRDLOG.Net"
 msgctxt "tgridsform.exporthrditem.caption"
-msgid "Export QSO to HRDLOG.Net"
+msgid "Export QSO to HRDLog.net"
 msgstr "Экспорт QSO в HRDLOG.Net"
 
 #: tgridsform.exportqslccitem.caption
+#, fuzzy
+#| msgid "Export selected QSO to eQSL.cc"
 msgctxt "tgridsform.exportqslccitem.caption"
-msgid "Export selected QSO to eQSL.cc"
+msgid "Export QSO to eQSL.cc"
 msgstr "Экспорт выбранных QSO в eQSL.cc"
 
 #: tgridsform.filtercancelitem.caption
@@ -3507,6 +3658,10 @@ msgstr "Пометить QSO"
 msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"
 msgstr "QSL Получена"
+
+#: tgridsform.miexporttoservice.caption
+msgid "Export QSO to Online Service"
+msgstr ""
 
 #: tgridsform.misendonlan.caption
 msgid "Send on LAN"
@@ -3921,43 +4076,50 @@ msgctxt "tiota_form.label2.caption"
 msgid "Name"
 msgstr "Имя"
 
-#: tlogconfigform.button1.caption
-msgctxt "tlogconfigform.button1.caption"
-msgid "Save"
-msgstr "Сохранить"
-
-#: tlogconfigform.button2.caption
-msgctxt "tlogconfigform.button2.caption"
+#: tlogconfigform.btcancel.caption
+#, fuzzy
+msgctxt "tlogconfigform.btcancel.caption"
 msgid "Cancel"
 msgstr "Отмена"
+
+#: tlogconfigform.btsave.caption
+#, fuzzy
+msgctxt "tlogconfigform.btsave.caption"
+msgid "Save"
+msgstr "Сохранить"
 
 #: tlogconfigform.caption
 msgctxt "tlogconfigform.caption"
 msgid "Logs configuration"
 msgstr "Конфигурация журнала"
 
-#: tlogconfigform.checkbox1.caption
-msgctxt "tlogconfigform.checkbox1.caption"
+#: tlogconfigform.cbuploadclublog.caption
+#, fuzzy
+msgctxt "tlogconfigform.cbuploadclublog.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
-#: tlogconfigform.checkbox2.caption
-msgctxt "tlogconfigform.checkbox2.caption"
+#: tlogconfigform.cbuploadeqslcc.caption
+#, fuzzy
+msgctxt "tlogconfigform.cbuploadeqslcc.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
-#: tlogconfigform.checkbox3.caption
-msgctxt "tlogconfigform.checkbox3.caption"
+#: tlogconfigform.cbuploadhamqth.caption
+#, fuzzy
+msgctxt "tlogconfigform.cbuploadhamqth.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
-#: tlogconfigform.checkbox4.caption
-msgctxt "tlogconfigform.checkbox4.caption"
+#: tlogconfigform.cbuploadhrdlog.caption
+#, fuzzy
+msgctxt "tlogconfigform.cbuploadhrdlog.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
-#: tlogconfigform.checkbox5.caption
-msgctxt "tlogconfigform.checkbox5.caption"
+#: tlogconfigform.cbuploadqrzcom.caption
+#, fuzzy
+msgctxt "tlogconfigform.cbuploadqrzcom.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
@@ -3966,156 +4128,185 @@ msgctxt "tlogconfigform.editqslinfo.text"
 msgid "TNX For QSO TU 73!"
 msgstr ""
 
-#: tlogconfigform.label1.caption
-msgctxt "tlogconfigform.label1.caption"
-msgid "Log"
-msgstr "Журнал"
-
-#: tlogconfigform.label10.caption
-msgctxt "tlogconfigform.label10.caption"
-msgid "CQ"
-msgstr "CQ"
-
-#: tlogconfigform.label11.caption
-msgctxt "tlogconfigform.label11.caption"
-msgid "Grid"
-msgstr "Локатор"
-
-#: tlogconfigform.label12.caption
-msgctxt "tlogconfigform.label12.caption"
-msgid "Latitude"
-msgstr "Широта"
-
-#: tlogconfigform.label13.caption
-msgctxt "tlogconfigform.label13.caption"
-msgid "Longitude"
-msgstr "Долгота"
-
-#: tlogconfigform.label14.caption
-msgid "QSL info (Default)"
-msgstr "QSL Инфо (По умолчанию)"
-
-#: tlogconfigform.label16.caption
-msgid "eQSLcc"
-msgstr ""
-
-#: tlogconfigform.label17.caption
-msgctxt "tlogconfigform.label17.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tlogconfigform.label18.caption
-msgctxt "tlogconfigform.label18.caption"
-msgid "Password"
-msgstr "Пароль"
-
-#: tlogconfigform.label19.caption
-msgid "HRDlog"
-msgstr ""
-
-#: tlogconfigform.label2.caption
-msgctxt "tlogconfigform.label2.caption"
-msgid "Description"
-msgstr "Описание"
-
-#: tlogconfigform.label20.caption
-msgctxt "tlogconfigform.label20.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tlogconfigform.label21.caption
-msgid "Upload code"
-msgstr ""
-
-#: tlogconfigform.label22.caption
-msgid "HamQTH"
-msgstr ""
-
-#: tlogconfigform.label23.caption
-msgctxt "tlogconfigform.label23.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tlogconfigform.label24.caption
-msgctxt "tlogconfigform.label24.caption"
-msgid "Password"
-msgstr "Пароль"
-
-#: tlogconfigform.label25.caption
-msgctxt "tlogconfigform.label25.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tlogconfigform.label26.caption
-msgctxt "tlogconfigform.label26.caption"
-msgid "Password"
-msgstr "Пароль"
-
-#: tlogconfigform.label27.caption
-msgctxt "tlogconfigform.label27.caption"
-msgid "LoTW"
-msgstr ""
-
-#: tlogconfigform.label28.caption
-msgid "ClubLog"
-msgstr ""
-
-#: tlogconfigform.label29.caption
-msgctxt "tlogconfigform.label29.caption"
-msgid "Login (email)"
-msgstr "Логин (email)"
-
-#: tlogconfigform.label30.caption
-msgctxt "tlogconfigform.label30.caption"
-msgid "Password"
-msgstr "Пароль"
-
-#: tlogconfigform.label31.caption
-msgctxt "tlogconfigform.label31.caption"
-msgid "Login"
-msgstr "Логин"
-
-#: tlogconfigform.label32.caption
-msgctxt "tlogconfigform.label32.caption"
+#: tlogconfigform.lbapikeyqrzcom.caption
+msgctxt "tlogconfigform.lbapikeyqrzcom.caption"
 msgid "API key"
 msgstr ""
 
-#: tlogconfigform.label33.caption
-msgctxt "tlogconfigform.label33.caption"
-msgid "QRZ.COM"
-msgstr ""
-
-#: tlogconfigform.label4.caption
-msgid "Station detalis"
-msgstr "Информация о станции"
-
-#: tlogconfigform.label5.caption
-msgctxt "tlogconfigform.label5.caption"
+#: tlogconfigform.lbcallsign.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbcallsign.caption"
 msgid "Callsign"
 msgstr "Позывной"
 
-#: tlogconfigform.label6.caption
-msgctxt "tlogconfigform.label6.caption"
-msgid "Name"
-msgstr "Имя"
+#: tlogconfigform.lbclublog.caption
+msgctxt "tlogconfigform.lbclublog.caption"
+msgid "ClubLog"
+msgstr ""
 
-#: tlogconfigform.label7.caption
-msgctxt "tlogconfigform.label7.caption"
-msgid "QTH"
-msgstr "QTH"
-
-#: tlogconfigform.label8.caption
-msgid "Location information"
-msgstr "Информация о локации"
-
-#: tlogconfigform.label9.caption
-msgctxt "tlogconfigform.label9.caption"
-msgid "ITU"
-msgstr "ITU"
+#: tlogconfigform.lbcq.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbcq.caption"
+msgid "CQ"
+msgstr "CQ"
 
 #: tlogconfigform.lbdefaultcall.caption
 msgctxt "tlogconfigform.lbdefaultcall.caption"
 msgid "*"
+msgstr ""
+
+#: tlogconfigform.lbdescription.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbdescription.caption"
+msgid "Description"
+msgstr "Описание"
+
+#: tlogconfigform.lbeqslcc.caption
+msgctxt "tlogconfigform.lbeqslcc.caption"
+msgid "eQSLcc"
+msgstr ""
+
+#: tlogconfigform.lbgrid.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbgrid.caption"
+msgid "Grid"
+msgstr "Локатор"
+
+#: tlogconfigform.lbhamqth.caption
+msgctxt "tlogconfigform.lbhamqth.caption"
+msgid "HamQTH"
+msgstr ""
+
+#: tlogconfigform.lbhrdlog.caption
+msgctxt "tlogconfigform.lbhrdlog.caption"
+msgid "HRDlog"
+msgstr ""
+
+#: tlogconfigform.lbitu.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbitu.caption"
+msgid "ITU"
+msgstr "ITU"
+
+#: tlogconfigform.lblat.caption
+#, fuzzy
+msgctxt "tlogconfigform.lblat.caption"
+msgid "Lat"
+msgstr "Широта"
+
+#: tlogconfigform.lblocationinformation.caption
+#, fuzzy
+msgctxt "tlogconfigform.lblocationinformation.caption"
+msgid "Location information"
+msgstr "Информация о локации"
+
+#: tlogconfigform.lblog.caption
+#, fuzzy
+msgctxt "tlogconfigform.lblog.caption"
+msgid "Log"
+msgstr "Журнал"
+
+#: tlogconfigform.lbloginclublog.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbloginclublog.caption"
+msgid "Login (email)"
+msgstr "Логин (email)"
+
+#: tlogconfigform.lblogineqslcc.caption
+#, fuzzy
+msgctxt "tlogconfigform.lblogineqslcc.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tlogconfigform.lbloginhamqth.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbloginhamqth.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tlogconfigform.lbloginhrdlog.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbloginhrdlog.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tlogconfigform.lbloginlotw.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbloginlotw.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tlogconfigform.lbloginqrzcom.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbloginqrzcom.caption"
+msgid "Login"
+msgstr "Логин"
+
+#: tlogconfigform.lblon.caption
+msgid "Lon"
+msgstr ""
+
+#: tlogconfigform.lblotw.caption
+msgctxt "tlogconfigform.lblotw.caption"
+msgid "LoTW"
+msgstr ""
+
+#: tlogconfigform.lbname.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbname.caption"
+msgid "Name"
+msgstr "Имя"
+
+#: tlogconfigform.lbpasswordclublog.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbpasswordclublog.caption"
+msgid "Password"
+msgstr "Пароль"
+
+#: tlogconfigform.lbpasswordeqslcc.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbpasswordeqslcc.caption"
+msgid "Password"
+msgstr "Пароль"
+
+#: tlogconfigform.lbpasswordhamqth.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbpasswordhamqth.caption"
+msgid "Password"
+msgstr "Пароль"
+
+#: tlogconfigform.lbpasswordlotw.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbpasswordlotw.caption"
+msgid "Password"
+msgstr "Пароль"
+
+#: tlogconfigform.lbqrzcom.caption
+msgctxt "tlogconfigform.lbqrzcom.caption"
+msgid "QRZ.COM"
+msgstr ""
+
+#: tlogconfigform.lbqslinfo.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbqslinfo.caption"
+msgid "QSL info (Default)"
+msgstr "QSL Инфо (По умолчанию)"
+
+#: tlogconfigform.lbqth.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbqth.caption"
+msgid "QTH"
+msgstr "QTH"
+
+#: tlogconfigform.lbstationdetalis.caption
+#, fuzzy
+msgctxt "tlogconfigform.lbstationdetalis.caption"
+msgid "Station detalis"
+msgstr "Информация о станции"
+
+#: tlogconfigform.lbuploadcodehrdlog.caption
+msgctxt "tlogconfigform.lbuploadcodehrdlog.caption"
+msgid "Upload code"
 msgstr ""
 
 #: tlogconfigform.menuitem1.caption
@@ -4491,11 +4682,6 @@ msgctxt "tminiform.lbstate.caption"
 msgid "State"
 msgstr "State"
 
-#: tminiform.lbsubstate.caption
-msgctxt "tminiform.lbsubstate.caption"
-msgid "Sub. State"
-msgstr "Поле стат."
-
 #: tminiform.lbterritory.caption
 msgctxt "tminiform.lbterritory.caption"
 msgid "Territory"
@@ -4628,11 +4814,6 @@ msgctxt "tminiform.menuitem43.caption"
 msgid "WSJT-X"
 msgstr ""
 
-#: tminiform.menuitem48.caption
-msgctxt "tminiform.menuitem48.caption"
-msgid "Set date synchronization"
-msgstr "Установить дату синхронизации"
-
 #: tminiform.menuitem52.caption
 msgctxt "tminiform.menuitem52.caption"
 msgid "Configure program"
@@ -4659,8 +4840,10 @@ msgid "Create new log"
 msgstr "Создать новый журнал"
 
 #: tminiform.menuitem58.caption
+#, fuzzy
+#| msgid "Compact and Repair Database"
 msgctxt "tminiform.menuitem58.caption"
-msgid "Compact and Repair Database"
+msgid "Vacuum Database"
 msgstr "Сжать и восстановить базу"
 
 #: tminiform.menuitem6.caption
@@ -4738,21 +4921,6 @@ msgctxt "tminiform.menuitem74.caption"
 msgid "Fldigi"
 msgstr ""
 
-#: tminiform.menuitem81.caption
-msgctxt "tminiform.menuitem81.caption"
-msgid "Synchronization Databases"
-msgstr "Синхронизация баз данных"
-
-#: tminiform.menuitem82.caption
-msgctxt "tminiform.menuitem82.caption"
-msgid "From MySQL to SQLite"
-msgstr "Из MySQL в SQLite"
-
-#: tminiform.menuitem83.caption
-msgctxt "tminiform.menuitem83.caption"
-msgid "From SQLite to MySQL"
-msgstr "Из SQLite в MySQL"
-
 #: tminiform.menuitem85.caption
 msgctxt "tminiform.menuitem85.caption"
 msgid "Transceiver Control"
@@ -4763,14 +4931,11 @@ msgctxt "tminiform.menuitem87.caption"
 msgid "Settings external programs"
 msgstr "Настройки внешних программ"
 
-#: tminiform.menuitem89.caption
-msgctxt "tminiform.menuitem89.caption"
-msgid "Switch database"
-msgstr "Переключить СУБД"
-
 #: tminiform.menuitem91.caption
+#, fuzzy
+#| msgid "Wizard"
 msgctxt "tminiform.menuitem91.caption"
-msgid "Wizard"
+msgid "DataBase Settings"
 msgstr "Помощник установки"
 
 #: tminiform.menuitem92.caption
@@ -4915,26 +5080,6 @@ msgstr ""
 #: tminiform.sbstate.caption
 msgctxt "tminiform.sbstate.caption"
 msgid " ... "
-msgstr ""
-
-#: tminiform.sbstate1.caption
-msgctxt "tminiform.sbstate1.caption"
-msgid " .1. "
-msgstr ""
-
-#: tminiform.sbstate2.caption
-msgctxt "tminiform.sbstate2.caption"
-msgid " .2. "
-msgstr ""
-
-#: tminiform.sbstate3.caption
-msgctxt "tminiform.sbstate3.caption"
-msgid " .3. "
-msgstr ""
-
-#: tminiform.sbstate4.caption
-msgctxt "tminiform.sbstate4.caption"
-msgid " .4. "
 msgstr ""
 
 #: tminiform.sentspot.caption
@@ -5331,6 +5476,17 @@ msgctxt "tserviceeqslform.label5.caption"
 msgid "Status"
 msgstr ""
 
+#: tserviceeqslform.label6.caption
+#, fuzzy
+msgctxt "tserviceeqslform.label6.caption"
+msgid "Status:"
+msgstr "Статус:"
+
+#: tserviceeqslform.label7.caption
+msgctxt "tserviceeqslform.label7.caption"
+msgid "Status"
+msgstr ""
+
 #: tserviceeqslform.lbcurrerror.caption
 msgctxt "tserviceeqslform.lbcurrerror.caption"
 msgid "None"
@@ -5391,7 +5547,7 @@ msgstr ""
 
 #: tservicelotwform.button2.caption
 msgctxt "tservicelotwform.button2.caption"
-msgid "Upload"
+msgid "Generate"
 msgstr ""
 
 #: tservicelotwform.button3.caption
@@ -5413,6 +5569,17 @@ msgstr ""
 
 #: tservicelotwform.label5.caption
 msgctxt "tservicelotwform.label5.caption"
+msgid "Status"
+msgstr ""
+
+#: tservicelotwform.label6.caption
+#, fuzzy
+msgctxt "tservicelotwform.label6.caption"
+msgid "Status:"
+msgstr "Статус:"
+
+#: tservicelotwform.label7.caption
+msgctxt "tservicelotwform.label7.caption"
 msgid "Status"
 msgstr ""
 
@@ -5508,239 +5675,6 @@ msgstr ""
 msgid "Path program:"
 msgstr "Путь программы:"
 
-#: tsetupform.btback.caption
-msgctxt "tsetupform.btback.caption"
-msgid "Back"
-msgstr "Назад"
-
-#: tsetupform.btcheck.caption
-msgctxt "tsetupform.btcheck.caption"
-msgid "Check connection"
-msgstr "Проверка соединения"
-
-#: tsetupform.btnext.caption
-msgctxt "tsetupform.btnext.caption"
-msgid "Next"
-msgstr "Далее"
-
-#: tsetupform.button1.caption
-msgid "I accept"
-msgstr "Принимаю"
-
-#: tsetupform.button3.caption
-msgctxt "tsetupform.button3.caption"
-msgid "Next"
-msgstr "Далее"
-
-#: tsetupform.button4.caption
-msgctxt "tsetupform.button4.caption"
-msgid "OK"
-msgstr "Готово"
-
-#: tsetupform.button7.caption
-msgctxt "tsetupform.button7.caption"
-msgid "Back"
-msgstr "Назад"
-
-#: tsetupform.button8.caption
-msgctxt "tsetupform.button8.caption"
-msgid "Back"
-msgstr "Назад"
-
-#: tsetupform.button9.caption
-msgctxt "tsetupform.button9.caption"
-msgid "Cancel"
-msgstr "Отмена"
-
-#: tsetupform.caption
-msgctxt "tsetupform.caption"
-msgid "Wizard"
-msgstr "Помощник установки"
-
-#: tsetupform.cbexpertmode.caption
-msgctxt "tsetupform.cbexpertmode.caption"
-msgid "Expert Mode"
-msgstr "Экспертный режим"
-
-#: tsetupform.checkbox1.caption
-msgid "Use an existing MySQL database"
-msgstr "Использовать существующую БД MySQL"
-
-#: tsetupform.checkbox2.caption
-msgid "Use an existing SQLite database"
-msgstr "Использовать существующую БД SQLite"
-
-#: tsetupform.checkbox3.caption
-msgid "Use MySQL by default"
-msgstr "Использовать MySQL по умолчанию"
-
-#: tsetupform.checkbox4.caption
-msgid "Use SQLite by default"
-msgstr "Использовать SQLite по умолчанию"
-
-#: tsetupform.edit16.text
-msgctxt "tsetupform.edit16.text"
-msgid "TNX for QSO! 73!"
-msgstr ""
-
-#: tsetupform.editport.text
-msgctxt "tsetupform.editport.text"
-msgid "3306"
-msgstr ""
-
-#: tsetupform.label1.caption
-msgid "Welcome to the HAM Log Setup Wizard."
-msgstr "Добро пожаловать в помощник по установке."
-
-#: tsetupform.label11.caption
-msgid "Main HAM Log Settings"
-msgstr "Основные настройки журнала"
-
-#: tsetupform.label12.caption
-msgctxt "tsetupform.label12.caption"
-msgid "Callsign"
-msgstr "Позывной"
-
-#: tsetupform.label13.caption
-msgctxt "tsetupform.label13.caption"
-msgid "Description"
-msgstr "Описание"
-
-#: tsetupform.label14.caption
-msgctxt "tsetupform.label14.caption"
-msgid "QTH"
-msgstr "QTH"
-
-#: tsetupform.label15.caption
-msgctxt "tsetupform.label15.caption"
-msgid "Name"
-msgstr "Имя"
-
-#: tsetupform.label16.caption
-msgctxt "tsetupform.label16.caption"
-msgid "Grid"
-msgstr "Локатор"
-
-#: tsetupform.label17.caption
-msgctxt "tsetupform.label17.caption"
-msgid "Latitude"
-msgstr "Широта"
-
-#: tsetupform.label18.caption
-msgctxt "tsetupform.label18.caption"
-msgid "Longitude"
-msgstr "Долгота"
-
-#: tsetupform.label19.caption
-msgctxt "tsetupform.label19.caption"
-msgid "ITU"
-msgstr "ITU"
-
-#: tsetupform.label2.caption
-msgid "License agreement:"
-msgstr "Лицензионное соглашение:"
-
-#: tsetupform.label20.caption
-msgctxt "tsetupform.label20.caption"
-msgid "CQ"
-msgstr "CQ"
-
-#: tsetupform.label21.caption
-msgctxt "tsetupform.label21.caption"
-msgid "QSL Info"
-msgstr "QSL Инфо"
-
-#: tsetupform.label22.caption
-msgid "Application and processing of data. Wait"
-msgstr "Обработка и применение данных. Подождите"
-
-#: tsetupform.label23.caption
-msgctxt "tsetupform.label23.caption"
-msgid "Status:"
-msgstr "Статус:"
-
-#: tsetupform.label24.caption
-msgctxt "tsetupform.label24.caption"
-msgid "Wait"
-msgstr "Ожидание"
-
-#: tsetupform.label3.caption
-msgid "Database settings"
-msgstr "Настройки базы данных"
-
-#: tsetupform.lbhost.caption
-msgctxt "tsetupform.lbhost.caption"
-msgid "Host"
-msgstr "Хост"
-
-#: tsetupform.lbnamedb.caption
-msgctxt "tsetupform.lbnamedb.caption"
-msgid "Name of database"
-msgstr "Имя базы данных"
-
-#: tsetupform.lbpassword.caption
-msgctxt "tsetupform.lbpassword.caption"
-msgid "Password"
-msgstr "Пароль"
-
-#: tsetupform.lbport.caption
-msgctxt "tsetupform.lbport.caption"
-msgid "Port"
-msgstr "Порт"
-
-#: tsetupform.lbselectdb.caption
-msgctxt "tsetupform.lbselectdb.caption"
-msgid "Database select"
-msgstr "Выбор базы данных"
-
-#: tsetupform.lbsqlpath.caption
-msgctxt "tsetupform.lbsqlpath.caption"
-msgid "SQLite database path"
-msgstr "Путь к базе SQLite"
-
-#: tsetupform.lbusername.caption
-msgctxt "tsetupform.lbusername.caption"
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: tsetupform.opendialog1.title
-msgid "Open DataBase"
-msgstr "Открыть базу данных"
-
-#: tsetupform.radiobutton1.caption
-msgctxt "tsetupform.radiobutton1.caption"
-msgid "Use MySQL"
-msgstr "Использовать MySQL"
-
-#: tsetupform.radiobutton2.caption
-msgid "Use SQLite"
-msgstr "Использовать SQLite"
-
-#: tsetupform.radiobutton3.caption
-msgid "I will use both databases"
-msgstr "Использовать обе базы данных"
-
-#: tsetupform.savedialog1.title
-msgid "Save DataBase"
-msgstr "Сохранить базу данных"
-
-#: tsetupform.tabsheet1.caption
-msgid "Greeting"
-msgstr "Приветсвие"
-
-#: tsetupform.tabsheet2.caption
-msgid "Setup DB"
-msgstr "Настройка БД"
-
-#: tsetupform.tabsheet3.caption
-msgid "Setup Log"
-msgstr "Настройка Журнала"
-
-#: tsetupform.tabsheet4.caption
-msgctxt "tsetupform.tabsheet4.caption"
-msgid "Processing"
-msgstr "Обработка"
-
 #: tstate_form.button1.caption
 msgctxt "tstate_form.button1.caption"
 msgid "Close"
@@ -5813,6 +5747,10 @@ msgstr "RX0TX - Олег Чудаев"
 #: tthanks_form.label12.caption
 msgid "R9XAL - Aleksey Panyukov"
 msgstr "R9XAL - Алексей Панюков"
+
+#: tthanks_form.label13.caption
+msgid "RL2B - Mikhail Genin"
+msgstr ""
 
 #: tthanks_form.label2.caption
 msgid "EW2MS - Mikhail Senko"
@@ -6089,8 +6027,4 @@ msgstr "Фото"
 #: twsjt_udp_form.caption
 msgid "WSJT_UDP_Form"
 msgstr ""
-
-#: texportadifform.cbremoveslash.caption
-msgid "Remove slash"
-msgstr "Удалить дробь"
 

@@ -138,9 +138,10 @@ begin
     begin
       Document.Position := 0;
       res.LoadFromStream(Document);
-      if res.Text <> '' then
+      if res.Text <> '' then begin
         Result := AnsiContainsStr(res.Text, '<insert>1</insert>');
-      Done := Result;
+        Done := Result;
+      end;
       //if inform = 1 then
       //begin
       if not SendQSOr.Auto then
@@ -171,7 +172,7 @@ begin
   MainFunc.UpdateQSL('HRDLOG_QSO_UPLOAD_STATUS','1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
-      'HRDLog', MB_ICONEXCLAMATION);
+      PChar('HRDLog -> '+ SendQSO.CallSing), MB_ICONEXCLAMATION);
 end;
 
 procedure TSendHRDThread.Execute;
