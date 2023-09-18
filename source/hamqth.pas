@@ -131,6 +131,13 @@ begin
       HTTP.FormPost(UploadURL, url, Document);
       if HTTP.ResponseStatusCode = 200 then
         uploadok := True;
+      if HTTP.ResponseStatusCode = 400 then
+      begin
+        uploadok := False;
+        result_mes :=
+          ' QSO Rejected. QSO was rejected for some reason e.g. wrong band, already exists in database etc';
+        exit;
+      end;
     except
       on E: Exception do
         result_mes := E.Message;
@@ -140,7 +147,8 @@ begin
     begin
       Document.Position := 0;
       res.LoadFromStream(Document);
-      if Pos('QSO inserted', Trim(res.Text)) > 0 then begin
+      if Pos('QSO inserted', Trim(res.Text)) > 0 then
+      begin
         Result := True;
         Done := Result;
       end
@@ -167,10 +175,10 @@ end;
 procedure TSendHamQTHThread.ShowResult;
 begin
   if Done then
-  MainFunc.UpdateQSL('HAMQTH_QSO_UPLOAD_STATUS','1', SendQSO);
+    MainFunc.UpdateQSL('HAMQTH_QSO_UPLOAD_STATUS', '1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
-      PChar('HamQTH -> '+ SendQSO.CallSing), MB_ICONEXCLAMATION);
+      PChar('HamQTH -> ' + SendQSO.CallSing), MB_ICONEXCLAMATION);
 end;
 
 procedure TSendHamQTHThread.Execute;

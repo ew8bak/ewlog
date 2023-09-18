@@ -3315,12 +3315,20 @@ msgstr ""
 msgid "Export selected QSO to ADIF"
 msgstr ""
 
+#: tgridsform.exportclublogitem.caption
+msgid "Export QSO to ClubLog"
+msgstr ""
+
+#: tgridsform.exporthamqthitem.caption
+msgid "Export QSO to HamQTH"
+msgstr ""
+
 #: tgridsform.exporthrditem.caption
-msgid "Export QSO to HRDLOG.Net"
+msgid "Export QSO to HRDLog.net"
 msgstr ""
 
 #: tgridsform.exportqslccitem.caption
-msgid "Export selected QSO to eQSL.cc"
+msgid "Export QSO to eQSL.cc"
 msgstr ""
 
 #: tgridsform.filtercancelitem.caption
@@ -3368,6 +3376,10 @@ msgstr ""
 #: tgridsform.menuitem4.caption
 msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"
+msgstr ""
+
+#: tgridsform.miexporttoservice.caption
+msgid "Export QSO to Online Service"
 msgstr ""
 
 #: tgridsform.misendonlan.caption
