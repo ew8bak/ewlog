@@ -3312,6 +3312,10 @@ msgstr ""
 msgid "Export selected QSO to ADIF"
 msgstr ""
 
+#: tgridsform.exportcloudlogitem.caption
+msgid "Export QSO to Cloudlog"
+msgstr ""
+
 #: tgridsform.exportclublogitem.caption
 msgid "Export QSO to ClubLog"
 msgstr ""

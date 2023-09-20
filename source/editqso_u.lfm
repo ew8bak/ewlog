@@ -12,7 +12,7 @@ object EditQSO_Form: TEditQSO_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.2.2.0'
+  LCLVersion = '2.2.6.0'
   object GBCallInfo: TGroupBox
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
@@ -20,27 +20,27 @@ object EditQSO_Form: TEditQSO_Form
     Left = 0
     Height = 422
     Top = 3
-    Width = 485
+    Width = 478
     Align = alLeft
     AutoSize = True
     BorderSpacing.Top = 3
     BorderSpacing.Bottom = 3
     Caption = 'Territory'
-    ClientHeight = 392
-    ClientWidth = 481
+    ClientHeight = 402
+    ClientWidth = 474
     ParentBidiMode = False
     ParentFont = False
     TabOrder = 0
     object Panel1: TPanel
       AnchorSideBottom.Side = asrBottom
       Left = 0
-      Height = 252
+      Height = 280
       Top = 0
       Width = 251
       Align = alLeft
       AutoSize = True
       BevelOuter = bvNone
-      ClientHeight = 252
+      ClientHeight = 280
       ClientWidth = 251
       TabOrder = 0
       object EditCallSign: TEdit
@@ -49,7 +49,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel1
         AnchorSideRight.Side = asrBottom
         Left = 75
-        Height = 46
+        Height = 39
         Top = 3
         Width = 173
         Anchors = [akTop, akRight]
@@ -67,9 +67,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = DTTime
         Left = 75
-        Height = 32
-        Top = 52
-        Width = 114
+        Height = 23
+        Top = 45
+        Width = 118
         CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
         DateOrder = doNone
         ButtonWidth = 23
@@ -86,10 +86,10 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = Panel1
         AnchorSideRight.Side = asrBottom
-        Left = 194
-        Height = 26
-        Top = 55
-        Width = 54
+        Left = 198
+        Height = 23
+        Top = 45
+        Width = 50
         CenturyFrom = 1941
         MaxDate = 2958465
         MinDate = -53780
@@ -118,8 +118,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel1
         AnchorSideRight.Side = asrBottom
         Left = 75
-        Height = 32
-        Top = 87
+        Height = 23
+        Top = 71
         Width = 173
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Top = 3
@@ -134,8 +134,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel1
         AnchorSideRight.Side = asrBottom
         Left = 75
-        Height = 32
-        Top = 122
+        Height = 23
+        Top = 97
         Width = 173
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Top = 3
@@ -150,8 +150,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel1
         AnchorSideRight.Side = asrBottom
         Left = 75
-        Height = 32
-        Top = 157
+        Height = 23
+        Top = 123
         Width = 173
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Top = 3
@@ -166,8 +166,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel1
         AnchorSideRight.Side = asrBottom
         Left = 75
-        Height = 32
-        Top = 192
+        Height = 23
+        Top = 149
         Width = 173
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Top = 3
@@ -175,15 +175,750 @@ object EditQSO_Form: TEditQSO_Form
         ParentFont = False
         TabOrder = 6
       end
-      object SpeedButton11: TSpeedButton
-        AnchorSideLeft.Control = EditCallSign
-        AnchorSideLeft.Side = asrBottom
+      object LBCallsign: TLabel
         AnchorSideTop.Control = EditCallSign
         AnchorSideTop.Side = asrCenter
-        AnchorSideBottom.Side = asrBottom
-        Left = 253
+        AnchorSideRight.Control = EditCallSign
+        Left = 0
+        Height = 15
+        Top = 15
+        Width = 70
+        Alignment = taRightJustify
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'CallSign'
+        Constraints.MinWidth = 70
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBDate: TLabel
+        AnchorSideTop.Control = DEDate
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = DEDate
+        Left = 46
+        Height = 15
+        Top = 49
+        Width = 24
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'Date'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBRSTs: TLabel
+        AnchorSideTop.Control = EditRSTs
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditRSTs
+        Left = 26
+        Height = 15
+        Top = 75
+        Width = 44
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'RST sent'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBRSTr: TLabel
+        AnchorSideTop.Control = EditRSTr
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditRSTr
+        Left = 25
+        Height = 15
+        Top = 101
+        Width = 45
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'RST rcvd'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBName: TLabel
+        AnchorSideTop.Control = EditName
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditName
+        Left = 38
+        Height = 15
+        Top = 127
+        Width = 32
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'Name'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBQTH: TLabel
+        AnchorSideTop.Control = EditQTH
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditQTH
+        Left = 47
+        Height = 15
+        Top = 153
+        Width = 23
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'QTH'
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object Panel2: TPanel
+      Left = 0
+      Height = 122
+      Top = 280
+      Width = 474
+      Align = alBottom
+      AutoSize = True
+      BevelOuter = bvNone
+      ClientHeight = 122
+      ClientWidth = 474
+      TabOrder = 1
+      object EditITU: TEdit
+        AnchorSideTop.Control = EditCQ
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = MemoNote
+        AnchorSideRight.Side = asrBottom
+        Left = 436
+        Height = 23
+        Top = 76
+        Width = 35
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        ParentFont = False
+        TabOrder = 0
+      end
+      object EditCQ: TEdit
+        AnchorSideTop.Control = MemoNote
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = MemoNote
+        AnchorSideRight.Side = asrBottom
+        Left = 436
+        Height = 23
+        Top = 50
+        Width = 35
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        ParentFont = False
+        TabOrder = 1
+      end
+      object LBContinent: TLabel
+        AnchorSideTop.Control = EditContinent
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditContinent
+        Left = 320
+        Height = 15
+        Top = 54
+        Width = 53
+        Alignment = taRightJustify
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 3
+        Caption = 'Continent'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBGrid: TLabel
+        AnchorSideTop.Control = EditGrid
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditGrid
+        Left = 321
+        Height = 15
+        Top = 80
+        Width = 22
+        Alignment = taRightJustify
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 3
+        Caption = 'Grid'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBITU: TLabel
+        AnchorSideTop.Control = EditITU
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditITU
+        Left = 413
+        Height = 15
+        Top = 80
+        Width = 21
+        Alignment = taRightJustify
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 2
+        Caption = 'ITU'
+        Constraints.MinWidth = 21
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBCQ: TLabel
+        AnchorSideTop.Control = EditCQ
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditCQ
+        Left = 413
+        Height = 15
+        Top = 54
+        Width = 21
+        Alignment = taRightJustify
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 2
+        Caption = 'CQ'
+        Constraints.MinWidth = 21
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditGrid: TEdit
+        AnchorSideTop.Control = EditITU
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = LBITU
+        Left = 346
+        Height = 23
+        Top = 76
+        Width = 65
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 2
+        CharCase = ecUppercase
+        ParentFont = False
+        TabOrder = 2
+      end
+      object EditContinent: TEdit
+        AnchorSideTop.Control = EditCQ
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = LBCQ
+        Left = 376
+        Height = 23
+        Top = 50
+        Width = 35
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 2
+        ParentFont = False
+        TabOrder = 3
+      end
+      object Button4: TButton
+        AnchorSideLeft.Control = SpeedButton2
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = SpeedButton2
+        AnchorSideTop.Side = asrCenter
+        Left = 117
+        Height = 25
+        Top = 75
+        Width = 120
+        AutoSize = True
+        BorderSpacing.Left = 2
+        Caption = 'To define territory'
+        OnClick = Button4Click
+        ParentFont = False
+        TabOrder = 4
+      end
+      object SpeedButton1: TSpeedButton
+        AnchorSideLeft.Control = Edit7
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Edit7
+        AnchorSideTop.Side = asrCenter
+        Left = 170
         Height = 20
-        Top = 16
+        Hint = 'Change country information'
+        Top = 51
+        Width = 20
+        AutoSize = True
+        BorderSpacing.Left = 2
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
+        Caption = '...'
+        OnClick = SpeedButton1Click
+        ShowHint = True
+        ParentFont = False
+        ParentShowHint = False
+      end
+      object LBPrefix: TLabel
+        AnchorSideLeft.Control = Panel2
+        AnchorSideTop.Control = EditPrefix
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditPrefix
+        Left = 3
+        Height = 15
+        Top = 80
+        Width = 35
+        BorderSpacing.Left = 3
+        BorderSpacing.Right = 5
+        Caption = 'Prefix'
+        Constraints.MinWidth = 35
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBDXCC: TLabel
+        AnchorSideLeft.Control = Panel2
+        AnchorSideTop.Control = EditDXCC
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = MemoNote
+        Left = 3
+        Height = 15
+        Top = 54
+        Width = 35
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 3
+        BorderSpacing.Right = 5
+        Caption = 'DXCC'
+        Constraints.MinWidth = 35
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBNote: TLabel
+        AnchorSideLeft.Control = Panel2
+        AnchorSideTop.Control = MemoNote
+        AnchorSideTop.Side = asrCenter
+        Left = 3
+        Height = 15
+        Top = 18
+        Width = 35
+        BorderSpacing.Left = 3
+        BorderSpacing.Right = 5
+        Caption = 'Note'
+        Constraints.MinWidth = 35
+        ParentColor = False
+        ParentFont = False
+      end
+      object CBMarkQSO: TCheckBox
+        AnchorSideLeft.Control = CBValidDXCC
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CBValidDXCC
+        AnchorSideTop.Side = asrCenter
+        Left = 207
+        Height = 19
+        Top = 103
+        Width = 74
+        BorderSpacing.Left = 5
+        Caption = 'Mark QSO'
+        ParentFont = False
+        TabOrder = 5
+      end
+      object CBValidDXCC: TCheckBox
+        AnchorSideLeft.Control = CBNoCalcDXCC
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CBNoCalcDXCC
+        AnchorSideTop.Side = asrCenter
+        Left = 104
+        Height = 19
+        Top = 103
+        Width = 98
+        BorderSpacing.Left = 5
+        Caption = 'Valid for DXCC'
+        ParentFont = False
+        TabOrder = 6
+      end
+      object CBNoCalcDXCC: TCheckBox
+        AnchorSideLeft.Control = Panel2
+        AnchorSideTop.Control = Button4
+        AnchorSideTop.Side = asrBottom
+        AnchorSideBottom.Side = asrBottom
+        Left = 3
+        Height = 19
+        Top = 103
+        Width = 96
+        BorderSpacing.Left = 3
+        BorderSpacing.Top = 3
+        Caption = 'No Calc DXCC'
+        ParentFont = False
+        TabOrder = 7
+      end
+      object EditPrefix: TEdit
+        AnchorSideLeft.Control = LBPrefix
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = EditDXCC
+        AnchorSideTop.Side = asrBottom
+        Left = 43
+        Height = 23
+        Top = 76
+        Width = 50
+        BorderSpacing.Top = 3
+        ParentFont = False
+        TabOrder = 8
+      end
+      object Edit7: TEdit
+        AnchorSideLeft.Control = EditDXCC
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = EditDXCC
+        AnchorSideTop.Side = asrCenter
+        Left = 108
+        Height = 23
+        Top = 50
+        Width = 60
+        BorderSpacing.Left = 5
+        ParentFont = False
+        TabOrder = 9
+      end
+      object EditDXCC: TEdit
+        AnchorSideLeft.Control = LBDXCC
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = MemoNote
+        AnchorSideTop.Side = asrBottom
+        Left = 43
+        Height = 23
+        Top = 50
+        Width = 60
+        BorderSpacing.Top = 3
+        ParentFont = False
+        TabOrder = 10
+      end
+      object MemoNote: TMemo
+        AnchorSideLeft.Control = LBNote
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Panel2
+        AnchorSideRight.Control = Panel2
+        AnchorSideRight.Side = asrBottom
+        Left = 43
+        Height = 44
+        Top = 3
+        Width = 428
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ParentFont = False
+        TabOrder = 11
+      end
+      object SpeedButton2: TSpeedButton
+        AnchorSideLeft.Control = EditPrefix
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = EditPrefix
+        AnchorSideTop.Side = asrCenter
+        Left = 95
+        Height = 20
+        Hint = 'Change country information'
+        Top = 77
+        Width = 20
+        AutoSize = True
+        BorderSpacing.Left = 2
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
+        Caption = '...'
+        OnClick = SpeedButton2Click
+        ShowHint = True
+        ParentFont = False
+        ParentShowHint = False
+      end
+    end
+    object Panel3: TPanel
+      Left = 251
+      Height = 280
+      Top = 0
+      Width = 223
+      Align = alClient
+      AutoSize = True
+      BevelOuter = bvNone
+      ClientHeight = 280
+      ClientWidth = 223
+      TabOrder = 2
+      object EditState: TEdit
+        AnchorSideTop.Control = CBBand
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = SpeedButton10
+        Left = 73
+        Height = 23
+        Top = 57
+        Width = 124
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ParentFont = False
+        TabOrder = 0
+      end
+      object EditIOTA: TEdit
+        AnchorSideTop.Control = EditState
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = SpeedButton9
+        Left = 73
+        Height = 23
+        Top = 83
+        Width = 124
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ParentFont = False
+        TabOrder = 1
+      end
+      object CBSATMode: TComboBox
+        AnchorSideTop.Control = CBSat
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = SpeedButton3
+        Left = 73
+        Height = 23
+        Top = 135
+        Width = 124
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ItemHeight = 15
+        Items.Strings = (
+          'A'
+          'B'
+          'J'
+          'K'
+          'L'
+          'S'
+          'T'
+          'SX'
+        )
+        ParentFont = False
+        TabOrder = 2
+      end
+      object SpeedButton3: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CBSATMode
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 200
+        Height = 20
+        Top = 136
+        Width = 20
+        Anchors = [akTop, akRight]
+        AutoSize = True
+        BorderSpacing.Right = 3
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
+        Caption = '...'
+        ParentFont = False
+      end
+      object SpeedButton8: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = CBSat
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 200
+        Height = 20
+        Top = 110
+        Width = 20
+        Anchors = [akTop, akRight]
+        AutoSize = True
+        BorderSpacing.Right = 3
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
+        Caption = '...'
+        OnClick = SpeedButton8Click
+        ParentFont = False
+      end
+      object SpeedButton9: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = EditIOTA
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 200
+        Height = 20
+        Top = 84
+        Width = 20
+        Anchors = [akTop, akRight]
+        AutoSize = True
+        BorderSpacing.Right = 3
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
+        Caption = '...'
+        OnClick = SpeedButton9Click
+        ParentFont = False
+      end
+      object SpeedButton10: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = EditState
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 200
+        Height = 20
+        Top = 58
+        Width = 20
+        Anchors = [akTop, akRight]
+        AutoSize = True
+        BorderSpacing.Right = 3
+        Constraints.MinHeight = 20
+        Constraints.MinWidth = 20
+        Caption = '...'
+        OnClick = SpeedButton10Click
+        ParentFont = False
+      end
+      object LBMode: TLabel
+        AnchorSideTop.Control = CBMode
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBMode
+        Left = 37
+        Height = 15
+        Top = 9
+        Width = 31
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'Mode'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBBand: TLabel
+        AnchorSideTop.Control = CBBand
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBBand
+        Left = 41
+        Height = 15
+        Top = 35
+        Width = 27
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'Band'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBState: TLabel
+        AnchorSideTop.Control = EditState
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditState
+        Left = 42
+        Height = 15
+        Top = 61
+        Width = 26
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'State'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBIOTA: TLabel
+        AnchorSideTop.Control = EditIOTA
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = EditIOTA
+        Left = 44
+        Height = 15
+        Top = 87
+        Width = 24
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'IOTA'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBSatelite: TLabel
+        AnchorSideTop.Control = CBSat
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBSat
+        Left = 30
+        Height = 15
+        Top = 113
+        Width = 38
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'Satelite'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBSATMode: TLabel
+        AnchorSideTop.Control = CBSATMode
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBSATMode
+        Left = 15
+        Height = 15
+        Top = 139
+        Width = 53
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        Caption = 'SAT mode'
+        ParentColor = False
+        ParentFont = False
+      end
+      object LBPropagation: TLabel
+        AnchorSideLeft.Control = Panel3
+        AnchorSideTop.Control = CBPropagation
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBPropagation
+        Left = 3
+        Height = 15
+        Top = 165
+        Width = 65
+        Alignment = taRightJustify
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 3
+        BorderSpacing.Right = 5
+        Caption = 'Propagation'
+        ParentColor = False
+        ParentFont = False
+      end
+      object CBSubMode: TComboBox
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideRight.Control = Panel3
+        AnchorSideRight.Side = asrBottom
+        Left = 148
+        Height = 23
+        Top = 5
+        Width = 70
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
+        ItemHeight = 15
+        ParentFont = False
+        TabOrder = 3
+      end
+      object CBMode: TComboBox
+        AnchorSideTop.Control = CBSubMode
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = CBSubMode
+        Left = 73
+        Height = 23
+        Top = 5
+        Width = 70
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 5
+        ItemHeight = 15
+        OnChange = CBModeChange
+        ParentFont = False
+        TabOrder = 4
+      end
+      object CBPropagation: TComboBox
+        AnchorSideLeft.Control = CBSATMode
+        AnchorSideTop.Control = CBSATMode
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = CBSATMode
+        AnchorSideRight.Side = asrBottom
+        Left = 73
+        Height = 23
+        Top = 161
+        Width = 124
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Top = 3
+        ItemHeight = 15
+        OnChange = CBModeChange
+        ParentFont = False
+        TabOrder = 5
+      end
+      object CBSat: TComboBox
+        AnchorSideLeft.Control = EditIOTA
+        AnchorSideTop.Control = EditIOTA
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = SpeedButton8
+        Left = 73
+        Height = 23
+        Top = 109
+        Width = 124
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        ItemHeight = 15
+        ParentFont = False
+        TabOrder = 6
+      end
+      object CBBand: TComboBox
+        AnchorSideLeft.Control = EditState
+        AnchorSideTop.Control = CBMode
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = EditState
+        AnchorSideRight.Side = asrBottom
+        Left = 73
+        Height = 23
+        Top = 31
+        Width = 124
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Top = 3
+        ItemHeight = 15
+        ParentFont = False
+        TabOrder = 7
+      end
+      object SpeedButton11: TSpeedButton
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Side = asrCenter
+        AnchorSideBottom.Side = asrBottom
+        Left = 5
+        Height = 20
+        Top = 12
         Width = 20
         AutoSize = True
         BorderSpacing.Left = 5
@@ -227,743 +962,6 @@ object EditQSO_Form: TEditQSO_Form
         OnClick = SpeedButton11Click
         ParentFont = False
       end
-      object LBCallsign: TLabel
-        AnchorSideTop.Control = EditCallSign
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditCallSign
-        Left = 0
-        Height = 18
-        Top = 17
-        Width = 70
-        Alignment = taRightJustify
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'CallSign'
-        Constraints.MinWidth = 70
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBDate: TLabel
-        AnchorSideTop.Control = DEDate
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = DEDate
-        Left = 42
-        Height = 18
-        Top = 59
-        Width = 28
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'Date'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBRSTs: TLabel
-        AnchorSideTop.Control = EditRSTs
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditRSTs
-        Left = 19
-        Height = 18
-        Top = 94
-        Width = 51
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'RST sent'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBRSTr: TLabel
-        AnchorSideTop.Control = EditRSTr
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditRSTr
-        Left = 21
-        Height = 18
-        Top = 129
-        Width = 49
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'RST rcvd'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBName: TLabel
-        AnchorSideTop.Control = EditName
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditName
-        Left = 35
-        Height = 18
-        Top = 164
-        Width = 35
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'Name'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBQTH: TLabel
-        AnchorSideTop.Control = EditQTH
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditQTH
-        Left = 44
-        Height = 18
-        Top = 199
-        Width = 26
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'QTH'
-        ParentColor = False
-        ParentFont = False
-      end
-    end
-    object Panel2: TPanel
-      Left = 0
-      Height = 140
-      Top = 252
-      Width = 481
-      Align = alBottom
-      AutoSize = True
-      BevelOuter = bvNone
-      ClientHeight = 140
-      ClientWidth = 481
-      TabOrder = 1
-      object EditITU: TEdit
-        AnchorSideTop.Control = EditCQ
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = MemoNote
-        AnchorSideRight.Side = asrBottom
-        Left = 443
-        Height = 32
-        Top = 85
-        Width = 35
-        Anchors = [akTop, akRight]
-        BorderSpacing.Top = 3
-        ParentFont = False
-        TabOrder = 0
-      end
-      object EditCQ: TEdit
-        AnchorSideTop.Control = MemoNote
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = MemoNote
-        AnchorSideRight.Side = asrBottom
-        Left = 443
-        Height = 32
-        Top = 50
-        Width = 35
-        Anchors = [akTop, akRight]
-        BorderSpacing.Top = 3
-        ParentFont = False
-        TabOrder = 1
-      end
-      object LBContinent: TLabel
-        AnchorSideTop.Control = EditContinent
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditContinent
-        Left = 322
-        Height = 18
-        Top = 57
-        Width = 58
-        Alignment = taRightJustify
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 3
-        Caption = 'Continent'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBGrid: TLabel
-        AnchorSideTop.Control = EditGrid
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditGrid
-        Left = 325
-        Height = 18
-        Top = 92
-        Width = 25
-        Alignment = taRightJustify
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 3
-        Caption = 'Grid'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBITU: TLabel
-        AnchorSideTop.Control = EditITU
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditITU
-        Left = 420
-        Height = 18
-        Top = 92
-        Width = 21
-        Alignment = taRightJustify
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 2
-        Caption = 'ITU'
-        Constraints.MinWidth = 21
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBCQ: TLabel
-        AnchorSideTop.Control = EditCQ
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditCQ
-        Left = 420
-        Height = 18
-        Top = 57
-        Width = 21
-        Alignment = taRightJustify
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 2
-        Caption = 'CQ'
-        Constraints.MinWidth = 21
-        ParentColor = False
-        ParentFont = False
-      end
-      object EditGrid: TEdit
-        AnchorSideTop.Control = EditITU
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = LBITU
-        Left = 353
-        Height = 32
-        Top = 85
-        Width = 65
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 2
-        CharCase = ecUppercase
-        ParentFont = False
-        TabOrder = 2
-      end
-      object EditContinent: TEdit
-        AnchorSideTop.Control = EditCQ
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = LBCQ
-        Left = 383
-        Height = 32
-        Top = 50
-        Width = 35
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 2
-        ParentFont = False
-        TabOrder = 3
-      end
-      object Button4: TButton
-        AnchorSideLeft.Control = SpeedButton2
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = SpeedButton2
-        AnchorSideTop.Side = asrCenter
-        Left = 117
-        Height = 28
-        Top = 87
-        Width = 118
-        AutoSize = True
-        BorderSpacing.Left = 2
-        Caption = 'To define territory'
-        OnClick = Button4Click
-        ParentFont = False
-        TabOrder = 4
-      end
-      object SpeedButton1: TSpeedButton
-        AnchorSideLeft.Control = Edit7
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Edit7
-        AnchorSideTop.Side = asrCenter
-        Left = 170
-        Height = 22
-        Hint = 'Change country information'
-        Top = 55
-        Width = 20
-        AutoSize = True
-        BorderSpacing.Left = 2
-        Constraints.MinHeight = 20
-        Constraints.MinWidth = 20
-        Caption = '...'
-        OnClick = SpeedButton1Click
-        ShowHint = True
-        ParentFont = False
-        ParentShowHint = False
-      end
-      object LBPrefix: TLabel
-        AnchorSideLeft.Control = Panel2
-        AnchorSideTop.Control = EditPrefix
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditPrefix
-        Left = 3
-        Height = 18
-        Top = 92
-        Width = 35
-        BorderSpacing.Left = 3
-        BorderSpacing.Right = 5
-        Caption = 'Prefix'
-        Constraints.MinWidth = 35
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBDXCC: TLabel
-        AnchorSideLeft.Control = Panel2
-        AnchorSideTop.Control = EditDXCC
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = MemoNote
-        Left = 3
-        Height = 18
-        Top = 57
-        Width = 35
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Left = 3
-        BorderSpacing.Right = 5
-        Caption = 'DXCC'
-        Constraints.MinWidth = 35
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBNote: TLabel
-        AnchorSideLeft.Control = Panel2
-        AnchorSideTop.Control = MemoNote
-        AnchorSideTop.Side = asrCenter
-        Left = 3
-        Height = 18
-        Top = 16
-        Width = 35
-        BorderSpacing.Left = 3
-        BorderSpacing.Right = 5
-        Caption = 'Note'
-        Constraints.MinWidth = 35
-        ParentColor = False
-        ParentFont = False
-      end
-      object CBMarkQSO: TCheckBox
-        AnchorSideLeft.Control = CBValidDXCC
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = CBValidDXCC
-        AnchorSideTop.Side = asrCenter
-        Left = 229
-        Height = 22
-        Top = 118
-        Width = 87
-        BorderSpacing.Left = 5
-        Caption = 'Mark QSO'
-        ParentFont = False
-        TabOrder = 5
-      end
-      object CBValidDXCC: TCheckBox
-        AnchorSideLeft.Control = CBNoCalcDXCC
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = CBNoCalcDXCC
-        AnchorSideTop.Side = asrCenter
-        Left = 114
-        Height = 22
-        Top = 118
-        Width = 110
-        BorderSpacing.Left = 5
-        Caption = 'Valid for DXCC'
-        ParentFont = False
-        TabOrder = 6
-      end
-      object CBNoCalcDXCC: TCheckBox
-        AnchorSideLeft.Control = Panel2
-        AnchorSideTop.Control = Button4
-        AnchorSideTop.Side = asrBottom
-        AnchorSideBottom.Side = asrBottom
-        Left = 3
-        Height = 22
-        Top = 118
-        Width = 106
-        BorderSpacing.Left = 3
-        BorderSpacing.Top = 3
-        Caption = 'No Calc DXCC'
-        ParentFont = False
-        TabOrder = 7
-      end
-      object EditPrefix: TEdit
-        AnchorSideLeft.Control = LBPrefix
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = EditDXCC
-        AnchorSideTop.Side = asrBottom
-        Left = 43
-        Height = 32
-        Top = 85
-        Width = 50
-        BorderSpacing.Top = 3
-        ParentFont = False
-        TabOrder = 8
-      end
-      object Edit7: TEdit
-        AnchorSideLeft.Control = EditDXCC
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = EditDXCC
-        AnchorSideTop.Side = asrCenter
-        Left = 108
-        Height = 32
-        Top = 50
-        Width = 60
-        BorderSpacing.Left = 5
-        ParentFont = False
-        TabOrder = 9
-      end
-      object EditDXCC: TEdit
-        AnchorSideLeft.Control = LBDXCC
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = MemoNote
-        AnchorSideTop.Side = asrBottom
-        Left = 43
-        Height = 32
-        Top = 50
-        Width = 60
-        BorderSpacing.Top = 3
-        ParentFont = False
-        TabOrder = 10
-      end
-      object MemoNote: TMemo
-        AnchorSideLeft.Control = LBNote
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Panel2
-        AnchorSideRight.Control = Panel2
-        AnchorSideRight.Side = asrBottom
-        Left = 43
-        Height = 44
-        Top = 3
-        Width = 435
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Top = 3
-        BorderSpacing.Right = 3
-        ParentFont = False
-        TabOrder = 11
-      end
-      object SpeedButton2: TSpeedButton
-        AnchorSideLeft.Control = EditPrefix
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = EditPrefix
-        AnchorSideTop.Side = asrCenter
-        Left = 95
-        Height = 22
-        Hint = 'Change country information'
-        Top = 90
-        Width = 20
-        AutoSize = True
-        BorderSpacing.Left = 2
-        Constraints.MinHeight = 20
-        Constraints.MinWidth = 20
-        Caption = '...'
-        OnClick = SpeedButton2Click
-        ShowHint = True
-        ParentFont = False
-        ParentShowHint = False
-      end
-    end
-    object Panel3: TPanel
-      Left = 251
-      Height = 252
-      Top = 0
-      Width = 230
-      Align = alClient
-      AutoSize = True
-      BevelOuter = bvNone
-      ClientHeight = 252
-      ClientWidth = 230
-      TabOrder = 2
-      object EditState: TEdit
-        AnchorSideTop.Control = CBBand
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = SpeedButton10
-        Left = 80
-        Height = 32
-        Top = 75
-        Width = 124
-        Anchors = [akTop, akRight]
-        BorderSpacing.Top = 3
-        BorderSpacing.Right = 3
-        ParentFont = False
-        TabOrder = 0
-      end
-      object EditIOTA: TEdit
-        AnchorSideTop.Control = EditState
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = SpeedButton9
-        Left = 80
-        Height = 32
-        Top = 110
-        Width = 124
-        Anchors = [akTop, akRight]
-        BorderSpacing.Top = 3
-        BorderSpacing.Right = 3
-        ParentFont = False
-        TabOrder = 1
-      end
-      object CBSATMode: TComboBox
-        AnchorSideTop.Control = CBSat
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = SpeedButton3
-        Left = 80
-        Height = 32
-        Top = 180
-        Width = 124
-        Anchors = [akTop, akRight]
-        BorderSpacing.Top = 3
-        BorderSpacing.Right = 3
-        ItemHeight = 24
-        Items.Strings = (
-          'A'
-          'B'
-          'J'
-          'K'
-          'L'
-          'S'
-          'T'
-          'SX'
-        )
-        ParentFont = False
-        TabOrder = 2
-      end
-      object SpeedButton3: TSpeedButton
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = CBSATMode
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = Panel3
-        AnchorSideRight.Side = asrBottom
-        Left = 207
-        Height = 22
-        Top = 185
-        Width = 20
-        Anchors = [akTop, akRight]
-        AutoSize = True
-        BorderSpacing.Right = 3
-        Constraints.MinHeight = 20
-        Constraints.MinWidth = 20
-        Caption = '...'
-        ParentFont = False
-      end
-      object SpeedButton8: TSpeedButton
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = CBSat
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = Panel3
-        AnchorSideRight.Side = asrBottom
-        Left = 207
-        Height = 22
-        Top = 150
-        Width = 20
-        Anchors = [akTop, akRight]
-        AutoSize = True
-        BorderSpacing.Right = 3
-        Constraints.MinHeight = 20
-        Constraints.MinWidth = 20
-        Caption = '...'
-        OnClick = SpeedButton8Click
-        ParentFont = False
-      end
-      object SpeedButton9: TSpeedButton
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = EditIOTA
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = Panel3
-        AnchorSideRight.Side = asrBottom
-        Left = 207
-        Height = 22
-        Top = 115
-        Width = 20
-        Anchors = [akTop, akRight]
-        AutoSize = True
-        BorderSpacing.Right = 3
-        Constraints.MinHeight = 20
-        Constraints.MinWidth = 20
-        Caption = '...'
-        OnClick = SpeedButton9Click
-        ParentFont = False
-      end
-      object SpeedButton10: TSpeedButton
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = EditState
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = Panel3
-        AnchorSideRight.Side = asrBottom
-        Left = 207
-        Height = 22
-        Top = 80
-        Width = 20
-        Anchors = [akTop, akRight]
-        AutoSize = True
-        BorderSpacing.Right = 3
-        Constraints.MinHeight = 20
-        Constraints.MinWidth = 20
-        Caption = '...'
-        OnClick = SpeedButton10Click
-        ParentFont = False
-      end
-      object LBMode: TLabel
-        AnchorSideTop.Control = CBMode
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = CBMode
-        Left = 42
-        Height = 18
-        Top = 12
-        Width = 33
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'Mode'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBBand: TLabel
-        AnchorSideTop.Control = CBBand
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = CBBand
-        Left = 45
-        Height = 18
-        Top = 47
-        Width = 30
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'Band'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBState: TLabel
-        AnchorSideTop.Control = EditState
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditState
-        Left = 45
-        Height = 18
-        Top = 82
-        Width = 30
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'State'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBIOTA: TLabel
-        AnchorSideTop.Control = EditIOTA
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = EditIOTA
-        Left = 47
-        Height = 18
-        Top = 117
-        Width = 28
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'IOTA'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBSatelite: TLabel
-        AnchorSideTop.Control = CBSat
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = CBSat
-        Left = 32
-        Height = 18
-        Top = 152
-        Width = 43
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'Satelite'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBSATMode: TLabel
-        AnchorSideTop.Control = CBSATMode
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = CBSATMode
-        Left = 18
-        Height = 18
-        Top = 187
-        Width = 57
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        Caption = 'SAT mode'
-        ParentColor = False
-        ParentFont = False
-      end
-      object LBPropagation: TLabel
-        AnchorSideLeft.Control = Panel3
-        AnchorSideTop.Control = CBPropagation
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = CBPropagation
-        Left = 3
-        Height = 18
-        Top = 222
-        Width = 72
-        Alignment = taRightJustify
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Left = 3
-        BorderSpacing.Right = 5
-        Caption = 'Propagation'
-        ParentColor = False
-        ParentFont = False
-      end
-      object CBSubMode: TComboBox
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideRight.Control = Panel3
-        AnchorSideRight.Side = asrBottom
-        Left = 155
-        Height = 32
-        Top = 5
-        Width = 70
-        Anchors = [akTop, akRight]
-        BorderSpacing.Top = 5
-        BorderSpacing.Right = 5
-        ItemHeight = 24
-        ParentFont = False
-        TabOrder = 3
-      end
-      object CBMode: TComboBox
-        AnchorSideTop.Control = CBSubMode
-        AnchorSideTop.Side = asrCenter
-        AnchorSideRight.Control = CBSubMode
-        Left = 80
-        Height = 32
-        Top = 5
-        Width = 70
-        Anchors = [akTop, akRight]
-        BorderSpacing.Right = 5
-        ItemHeight = 24
-        OnChange = CBModeChange
-        ParentFont = False
-        TabOrder = 4
-      end
-      object CBPropagation: TComboBox
-        AnchorSideLeft.Control = CBSATMode
-        AnchorSideTop.Control = CBSATMode
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = CBSATMode
-        AnchorSideRight.Side = asrBottom
-        Left = 80
-        Height = 32
-        Top = 215
-        Width = 124
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Top = 3
-        ItemHeight = 24
-        OnChange = CBModeChange
-        ParentFont = False
-        TabOrder = 5
-      end
-      object CBSat: TComboBox
-        AnchorSideLeft.Control = EditIOTA
-        AnchorSideTop.Control = EditIOTA
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = SpeedButton8
-        Left = 80
-        Height = 32
-        Top = 145
-        Width = 124
-        Anchors = [akTop, akRight]
-        BorderSpacing.Top = 3
-        BorderSpacing.Right = 3
-        ItemHeight = 24
-        ParentFont = False
-        TabOrder = 6
-      end
-      object CBBand: TComboBox
-        AnchorSideLeft.Control = EditState
-        AnchorSideTop.Control = CBMode
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = EditState
-        AnchorSideRight.Side = asrBottom
-        Left = 80
-        Height = 32
-        Top = 40
-        Width = 124
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Top = 3
-        ItemHeight = 24
-        ParentFont = False
-        TabOrder = 7
-      end
     end
   end
   object PageControl1: TPageControl
@@ -971,10 +969,10 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Owner
     AnchorSideBottom.Control = BtClose
-    Left = 490
-    Height = 384
+    Left = 483
+    Height = 387
     Top = 3
-    Width = 448
+    Width = 435
     ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akBottom]
     AutoSize = True
@@ -989,21 +987,21 @@ object EditQSO_Form: TEditQSO_Form
     object TabSheet1: TTabSheet
       AutoSize = True
       Caption = 'QSL'
-      ClientHeight = 349
-      ClientWidth = 444
+      ClientHeight = 359
+      ClientWidth = 427
       object GBQSLReceived: TGroupBox
         AnchorSideLeft.Control = TabSheet1
         AnchorSideTop.Control = TabSheet1
         Left = 0
-        Height = 130
+        Height = 101
         Top = 0
-        Width = 223
+        Width = 215
         AutoSize = True
         Caption = 'QSL Received'
         ChildSizing.LeftRightSpacing = 5
         ChildSizing.TopBottomSpacing = 5
-        ClientHeight = 101
-        ClientWidth = 219
+        ClientHeight = 81
+        ClientWidth = 211
         ParentFont = False
         TabOrder = 0
         object CBReceived: TCheckBox
@@ -1011,9 +1009,9 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = DateEdit2
           AnchorSideTop.Side = asrCenter
           Left = 5
-          Height = 21
-          Top = 11
-          Width = 76
+          Height = 19
+          Top = 7
+          Width = 67
           Caption = 'Received'
           ParentFont = False
           TabOrder = 0
@@ -1023,9 +1021,9 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = DateEdit2
           AnchorSideTop.Side = asrBottom
           Left = 5
-          Height = 21
-          Top = 40
-          Width = 106
+          Height = 19
+          Top = 31
+          Width = 97
           BorderSpacing.Top = 3
           Caption = 'Received eQSL'
           ParentFont = False
@@ -1037,9 +1035,9 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrCenter
           AnchorSideBottom.Side = asrBottom
           Left = 5
-          Height = 21
-          Top = 70
-          Width = 106
+          Height = 19
+          Top = 55
+          Width = 98
           BorderSpacing.Top = 3
           Caption = 'Received LotW'
           ParentFont = False
@@ -1050,8 +1048,8 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = GBQSLReceived
           AnchorSideRight.Control = GBQSLReceived
           AnchorSideRight.Side = asrBottom
-          Left = 111
-          Height = 32
+          Left = 103
+          Height = 23
           Top = 5
           Width = 103
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
@@ -1071,9 +1069,9 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = GBQSLReceived
           AnchorSideRight.Side = asrBottom
-          Left = 111
-          Height = 32
-          Top = 64
+          Left = 103
+          Height = 23
+          Top = 53
           Width = 103
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
           DateOrder = doNone
@@ -1094,26 +1092,26 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = GBQSLReceived
         AnchorSideBottom.Side = asrBottom
-        Left = 228
-        Height = 130
+        Left = 220
+        Height = 101
         Top = 0
-        Width = 211
+        Width = 202
         Anchors = [akTop, akLeft, akBottom]
         AutoSize = True
         BorderSpacing.Left = 5
         BorderSpacing.Right = 5
         Caption = 'QSL Sent'
-        ClientHeight = 101
-        ClientWidth = 207
+        ClientHeight = 81
+        ClientWidth = 198
         ParentFont = False
         TabOrder = 1
         object RBSent: TRadioButton
           AnchorSideLeft.Control = GBQSLSent
           AnchorSideTop.Control = GBQSLSent
           Left = 2
-          Height = 21
+          Height = 19
           Top = 5
-          Width = 52
+          Width = 43
           BorderSpacing.Left = 2
           BorderSpacing.Top = 5
           Caption = 'Sent'
@@ -1127,8 +1125,8 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = DateEdit3
           AnchorSideTop.Side = asrBottom
           Left = 2
-          Height = 21
-          Top = 34
+          Height = 19
+          Top = 29
           Width = 110
           BorderSpacing.Top = 3
           Caption = 'Printed'
@@ -1142,9 +1140,9 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = RBPrinted
           AnchorSideTop.Side = asrCenter
           Left = 114
-          Height = 21
-          Top = 34
-          Width = 71
+          Height = 19
+          Top = 29
+          Width = 62
           BorderSpacing.Left = 2
           Caption = 'Queued'
           ParentFont = False
@@ -1155,8 +1153,8 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = RBPrinted
           AnchorSideTop.Side = asrBottom
           Left = 2
-          Height = 21
-          Top = 58
+          Height = 19
+          Top = 51
           Width = 110
           BorderSpacing.Top = 3
           Caption = 'Wasn''t sent'
@@ -1170,9 +1168,9 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = RBWSent
           AnchorSideTop.Side = asrCenter
           Left = 114
-          Height = 21
-          Top = 58
-          Width = 93
+          Height = 19
+          Top = 51
+          Width = 84
           BorderSpacing.Left = 2
           Caption = 'Do not send'
           ParentFont = False
@@ -1183,9 +1181,9 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = GBQSLSent
           AnchorSideRight.Side = asrBottom
-          Left = 84
-          Height = 32
-          Top = -1
+          Left = 75
+          Height = 23
+          Top = 3
           Width = 121
           CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
           DateOrder = doNone
@@ -1203,9 +1201,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = GBQSLReceived
         AnchorSideRight.Side = asrBottom
-        Left = 119
-        Height = 31
-        Top = 135
+        Left = 111
+        Height = 21
+        Top = 106
         Width = 104
         Anchors = [akTop, akRight]
         BorderSpacing.Top = 5
@@ -1228,9 +1226,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = ComboBox6
         AnchorSideTop.Side = asrCenter
         Left = 5
-        Height = 18
-        Top = 141
-        Width = 94
+        Height = 15
+        Top = 109
+        Width = 86
         BorderSpacing.Left = 5
         Caption = 'QSL received via'
         ParentColor = False
@@ -1241,9 +1239,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = ComboBox6
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = SpeedButton12
-        Left = 119
-        Height = 31
-        Top = 171
+        Left = 111
+        Height = 23
+        Top = 132
         Width = 80
         BorderSpacing.Top = 5
         BorderSpacing.Right = 2
@@ -1256,9 +1254,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = Edit19
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Side = asrBottom
-        Left = 201
+        Left = 193
         Height = 20
-        Top = 176
+        Top = 133
         Width = 20
         BorderSpacing.Left = 2
         Caption = '...'
@@ -1270,9 +1268,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = Edit19
         AnchorSideTop.Side = asrCenter
         Left = 5
-        Height = 18
-        Top = 177
-        Width = 79
+        Height = 15
+        Top = 136
+        Width = 71
         BorderSpacing.Left = 5
         Caption = 'QSL manager'
         ParentColor = False
@@ -1283,9 +1281,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = LBQSLSentVia
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Side = asrBottom
-        Left = 228
-        Height = 31
-        Top = 150
+        Left = 220
+        Height = 21
+        Top = 118
         Width = 116
         BorderSpacing.Top = 2
         ItemHeight = 15
@@ -1308,10 +1306,10 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = GBQSLSent
         AnchorSideTop.Side = asrBottom
         AnchorSideBottom.Control = ComboBox7
-        Left = 228
-        Height = 18
-        Top = 130
-        Width = 96
+        Left = 220
+        Height = 15
+        Top = 101
+        Width = 87
         BorderSpacing.Left = 5
         Caption = 'QSL was sent via'
         ParentColor = False
@@ -1325,10 +1323,10 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = TabSheet1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Side = asrBottom
-        Left = 57
-        Height = 31
-        Top = 212
-        Width = 382
+        Left = 52
+        Height = 23
+        Top = 168
+        Width = 370
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Left = 2
         BorderSpacing.Top = 5
@@ -1342,9 +1340,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = Edit20
         AnchorSideTop.Side = asrCenter
         Left = 5
-        Height = 18
-        Top = 218
-        Width = 50
+        Height = 15
+        Top = 172
+        Width = 45
         BorderSpacing.Left = 5
         Caption = 'QSL Info'
         ParentColor = False
@@ -1354,10 +1352,10 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideLeft.Control = ComboBox7
         AnchorSideTop.Control = ComboBox7
         AnchorSideTop.Side = asrBottom
-        Left = 228
-        Height = 21
-        Top = 186
-        Width = 85
+        Left = 220
+        Height = 19
+        Top = 144
+        Width = 76
         BorderSpacing.Top = 5
         Caption = 'Sent LoTW'
         ParentFont = False
@@ -1372,9 +1370,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideBottom.Control = TabSheet1
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 101
-        Top = 248
-        Width = 444
+        Height = 163
+        Top = 196
+        Width = 427
         Anchors = [akTop, akLeft, akRight, akBottom]
         Color = clWindow
         Columns = <        
@@ -1585,10 +1583,10 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = GBCallInfo
     AnchorSideBottom.Side = asrBottom
-    Left = 951
-    Height = 28
-    Top = 392
-    Width = 45
+    Left = 941
+    Height = 25
+    Top = 395
+    Width = 55
     Anchors = [akRight, akBottom]
     AutoSize = True
     BorderSpacing.Right = 5
@@ -1602,10 +1600,10 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Control = BtClose
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = BtClose
-    Left = 894
-    Height = 28
-    Top = 392
-    Width = 52
+    Left = 874
+    Height = 25
+    Top = 395
+    Width = 62
     Anchors = [akTop, akRight]
     AutoSize = True
     BorderSpacing.Right = 5
@@ -1618,10 +1616,10 @@ object EditQSO_Form: TEditQSO_Form
     AnchorSideTop.Control = BtCancel
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = BtCancel
-    Left = 843
-    Height = 28
-    Top = 392
-    Width = 46
+    Left = 812
+    Height = 25
+    Top = 395
+    Width = 57
     Anchors = [akTop, akRight]
     AutoSize = True
     BorderSpacing.Right = 5
