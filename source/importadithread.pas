@@ -634,7 +634,7 @@ begin
           else
             paramQSLRDATE := 'NULL';
 
-          if HRDLOG_QSO_UPLOAD_DATE <> '' then
+          if (HRDLOG_QSO_UPLOAD_DATE <> '') and (HRDLOG_QSO_UPLOAD_DATE <> '31.12.9999 12:00:00') then
           begin
             yyyy := StrToInt(HRDLOG_QSO_UPLOAD_DATE[1] +
               HRDLOG_QSO_UPLOAD_DATE[2] + HRDLOG_QSO_UPLOAD_DATE[3] +
@@ -709,7 +709,7 @@ begin
           else
             paramHAMLOGRU_QSO_UPLOAD_DATE := 'NULL';
 
-          if QRZCOM_QSO_UPLOAD_DATE <> '' then
+          if (QRZCOM_QSO_UPLOAD_DATE <> '') and (QRZCOM_QSO_UPLOAD_DATE <> '31.12.9999 12:00:00') then
           begin
             yyyy := StrToInt(QRZCOM_QSO_UPLOAD_DATE[1] +
               QRZCOM_QSO_UPLOAD_DATE[2] + QRZCOM_QSO_UPLOAD_DATE[3] +
