@@ -64,7 +64,7 @@ type
     procedure CurrPosGrid(index: integer; var DBGrid: TDBGrid);
     procedure SendQSOto(via: string; SendQSO: TQSO);
     procedure LoadMaps(Lat, Long: string; var MapView: TMapView);
-    procedure CopyToJournal(DBGrid: TDBGrid; toCallsign: string);
+    procedure CopyToJournal(DBGrid: TDBGrid; toDescription: string);
     procedure LoadJournalItem(var CBJournal: TComboBox);
     function FindWorkedCall(Callsign, band, mode: string): boolean;
     function WorkedQSL(Callsign, band, mode: string): boolean;
@@ -587,7 +587,7 @@ begin
   end;
 end;
 
-procedure TMainFunc.CopyToJournal(DBGrid: TDBGrid; toCallsign: string);
+procedure TMainFunc.CopyToJournal(DBGrid: TDBGrid; toDescription: string);
 var
   Query: TSQLQuery;
   toTable: string;
@@ -597,8 +597,8 @@ begin
     try
       Query := TSQLQuery.Create(nil);
       Query.DataBase := InitDB.SQLiteConnection;
-      Query.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE CallName = "' +
-        toCallsign + '"';
+      Query.SQL.Text := 'SELECT LogTable FROM LogBookInfo WHERE Description = "' +
+        toDescription + '"';
       Query.Open;
       toTable := Query.Fields[0].AsString;
       Query.Close;

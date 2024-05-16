@@ -31,7 +31,7 @@
         <ComponentName Value="EditQSO_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="376"/>
         <CursorPos X="40" Y="385"/>
         <UsageCount Value="200"/>
@@ -118,7 +118,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmFunc_U"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="16"/>
         <TopLine Value="106"/>
         <CursorPos X="3" Y="275"/>
         <UsageCount Value="200"/>
@@ -466,18 +466,20 @@
       <Unit43>
         <Filename Value="const_u.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="69"/>
-        <CursorPos X="54" Y="75"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="17"/>
+        <CursorPos X="61" Y="31"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit43>
       <Unit44>
         <Filename Value="setupsqlquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SetupSQLquery"/>
-        <EditorIndex Value="14"/>
-        <TopLine Value="87"/>
-        <CursorPos X="59" Y="101"/>
+        <EditorIndex Value="15"/>
+        <TopLine Value="90"/>
+        <CursorPos X="108" Y="117"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit44>
@@ -558,8 +560,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="649"/>
-        <CursorPos X="3" Y="653"/>
+        <TopLine Value="596"/>
+        <CursorPos Y="613"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit52>
@@ -598,7 +600,7 @@
       <Unit57>
         <Filename Value="cloudlog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="114"/>
         <CursorPos Y="107"/>
         <UsageCount Value="200"/>
@@ -714,8 +716,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GridsForm_u"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="307"/>
-        <CursorPos X="33" Y="315"/>
+        <TopLine Value="421"/>
+        <CursorPos X="51" Y="427"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -735,10 +737,9 @@
         <Filename Value="importadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ImportADIThread"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="9"/>
         <TopLine Value="626"/>
-        <CursorPos X="51" Y="631"/>
+        <CursorPos X="27" Y="630"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit71>
@@ -959,7 +960,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="16" Y="55"/>
-        <UsageCount Value="183"/>
+        <UsageCount Value="184"/>
       </Unit91>
       <Unit92>
         <Filename Value="sateditorform_u.pas"/>
@@ -971,7 +972,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos X="30" Y="100"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="174"/>
       </Unit92>
       <Unit93>
         <Filename Value="serviceeqslform_u.pas"/>
@@ -982,7 +983,7 @@
         <UnitName Value="ServiceEqslForm_u"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="439"/>
-        <UsageCount Value="160"/>
+        <UsageCount Value="161"/>
       </Unit93>
       <Unit94>
         <Filename Value="eqslservice_u.pas"/>
@@ -991,7 +992,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="120"/>
         <CursorPos X="51" Y="318"/>
-        <UsageCount Value="157"/>
+        <UsageCount Value="158"/>
       </Unit94>
       <Unit95>
         <Filename Value="servicelotwform_u.pas"/>
@@ -1003,7 +1004,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="531"/>
         <CursorPos Y="563"/>
-        <UsageCount Value="142"/>
+        <UsageCount Value="143"/>
       </Unit95>
       <Unit96>
         <Filename Value="lotwservice_u.pas"/>
@@ -1012,7 +1013,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="231"/>
         <CursorPos X="2" Y="246"/>
-        <UsageCount Value="141"/>
+        <UsageCount Value="142"/>
       </Unit96>
       <Unit97>
         <Filename Value="databasesettingsform_u.pas"/>
@@ -1023,7 +1024,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="193"/>
         <CursorPos X="44" Y="220"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="40"/>
       </Unit97>
       <Unit98>
         <Filename Value="wizardform_u.pas"/>
@@ -1999,123 +2000,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="105" TopLine="87"/>
+        <Caret Line="117" TopLine="93"/>
       </Position1>
       <Position2>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="104" TopLine="87"/>
+        <Caret Line="118" TopLine="93"/>
       </Position2>
       <Position3>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="105" TopLine="87"/>
+        <Caret Line="119" TopLine="93"/>
       </Position3>
       <Position4>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="106" TopLine="87"/>
+        <Caret Line="123" TopLine="107"/>
       </Position4>
       <Position5>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="107" TopLine="87"/>
+        <Caret Line="107" TopLine="99"/>
       </Position5>
       <Position6>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="108" TopLine="87"/>
+        <Caret Line="108" TopLine="99"/>
       </Position6>
       <Position7>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="109" TopLine="87"/>
+        <Caret Line="109" TopLine="99"/>
       </Position7>
       <Position8>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="106" TopLine="87"/>
+        <Caret Line="106" TopLine="99"/>
       </Position8>
       <Position9>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="114" TopLine="93"/>
+        <Caret Line="114" TopLine="99"/>
       </Position9>
       <Position10>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="116" TopLine="93"/>
+        <Caret Line="116" TopLine="99"/>
       </Position10>
       <Position11>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="117" TopLine="93"/>
+        <Caret Line="117" TopLine="99"/>
       </Position11>
       <Position12>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="118" TopLine="93"/>
+        <Caret Line="118" TopLine="99"/>
       </Position12>
       <Position13>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="119" TopLine="93"/>
+        <Caret Line="119" TopLine="99"/>
       </Position13>
       <Position14>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="123" TopLine="107"/>
+        <Caret Line="123" TopLine="99"/>
       </Position14>
       <Position15>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="107" TopLine="99"/>
+        <Caret Line="72" TopLine="55"/>
       </Position15>
       <Position16>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="108" TopLine="99"/>
+        <Caret Line="132" TopLine="116"/>
       </Position16>
       <Position17>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="109" TopLine="99"/>
+        <Caret Line="151" TopLine="122"/>
       </Position17>
       <Position18>
         <Filename Value="cloudlog.pas"/>
-        <Caret Line="106" TopLine="99"/>
+        <Caret Line="153" TopLine="122"/>
       </Position18>
       <Position19>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="114" TopLine="99"/>
-      </Position19>
-      <Position20>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="116" TopLine="99"/>
-      </Position20>
-      <Position21>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="117" TopLine="99"/>
-      </Position21>
-      <Position22>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="118" TopLine="99"/>
-      </Position22>
-      <Position23>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="119" TopLine="99"/>
-      </Position23>
-      <Position24>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="123" TopLine="99"/>
-      </Position24>
-      <Position25>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="72" TopLine="55"/>
-      </Position25>
-      <Position26>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="132" TopLine="116"/>
-      </Position26>
-      <Position27>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="151" TopLine="122"/>
-      </Position27>
-      <Position28>
-        <Filename Value="cloudlog.pas"/>
-        <Caret Line="153" TopLine="122"/>
-      </Position28>
-      <Position29>
         <Filename Value="importadithread.pas"/>
         <Caret Line="509" Column="79" TopLine="499"/>
-      </Position29>
-      <Position30>
+      </Position19>
+      <Position20>
         <Filename Value="importadithread.pas"/>
         <Caret Line="641" Column="38" TopLine="630"/>
+      </Position20>
+      <Position21>
+        <Filename Value="importadithread.pas"/>
+        <Caret Line="630" Column="27" TopLine="626"/>
+      </Position21>
+      <Position22>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="315" Column="33" TopLine="307"/>
+      </Position22>
+      <Position23>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="882" Column="44" TopLine="870"/>
+      </Position23>
+      <Position24>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="124" Column="26" TopLine="107"/>
+      </Position24>
+      <Position25>
+        <Filename Value="gridsform_u.pas"/>
+        <Caret Line="427" Column="51" TopLine="421"/>
+      </Position25>
+      <Position26>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="67" Column="15" TopLine="52"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="610" TopLine="588"/>
+      </Position27>
+      <Position28>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="590" Column="65" TopLine="573"/>
+      </Position28>
+      <Position29>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="67" Column="59" TopLine="52"/>
+      </Position29>
+      <Position30>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="613" TopLine="596"/>
       </Position30>
     </JumpHistory>
     <RunParams>

@@ -70,35 +70,17 @@ const
   min_sqlite_version = '3.24.0';
   curr_sqlite_version = '3.31.1';
 
-  CopyFieldToMySQL: string =
-    'CallSign,datetime(QSODateTime, ''unixepoch'') AS QSODateTime,QSODate,QSOTime,QSOBand,QSOMode,QSOSubMode,QSOReportSent,QSOReportRecived,OMName,OMQTH,'
-    + 'State,Grid,IOTA,QSLManager,QSLSent,QSLSentAdv,QSLSentDate,QSLRec,QSLRecDate,MainPrefix,DXCCPrefix,CQZone,'
-    + 'ITUZone,QSOAddInfo,Marker,ManualSet,DigiBand,Continent,ShortNote,QSLReceQSLcc,LoTWRec,LoTWRecDate,QSLInfo,'
-    + '`Call`,State1,State2,State3,State4,WPX,AwardsEx,ValidDX,SRX,SRX_STRING,STX,STX_STRING,SAT_NAME,SAT_MODE,PROP_MODE,'
-    + 'LoTWSent,QSL_RCVD_VIA,QSL_SENT_VIA,DXCC,USERS,NoCalcDXCC,MY_STATE,MY_GRIDSQUARE,MY_LAT,MY_LON, SOTA_REF,'
-    + 'MY_SOTA_REF, ContestSession, ContestName, EQSL_QSL_SENT, HAMLOGRec, datetime(CLUBLOG_QSO_UPLOAD_DATE, ''unixepoch'') AS CLUBLOG_QSO_UPLOAD_DATE,'
-    + 'CLUBLOG_QSO_UPLOAD_STATUS, datetime(HRDLOG_QSO_UPLOAD_DATE, ''unixepoch'') AS HRDLOG_QSO_UPLOAD_DATE, HRDLOG_QSO_UPLOAD_STATUS, datetime(QRZCOM_QSO_UPLOAD_DATE, ''unixepoch'') AS QRZCOM_QSO_UPLOAD_DATE, QRZCOM_QSO_UPLOAD_STATUS,'
-    + 'datetime(HAMLOG_QSO_UPLOAD_DATE, ''unixepoch'') AS HAMLOG_QSO_UPLOAD_DATE, HAMLOG_QSO_UPLOAD_STATUS,FREQ_RX,BAND_RX';
-
-  CopyFieldToSQLite: string =
-    'CallSign,UNIX_TIMESTAMP(QSODateTime) as QSODateTime,QSODate,QSOTime,QSOBand,QSOMode,QSOSubMode,QSOReportSent,QSOReportRecived,OMName,OMQTH,'
-    + 'State,Grid,IOTA,QSLManager,QSLSent,QSLSentAdv,QSLSentDate,QSLRec,QSLRecDate,MainPrefix,DXCCPrefix,CQZone,'
-    + 'ITUZone,QSOAddInfo,Marker,ManualSet,DigiBand,Continent,ShortNote,QSLReceQSLcc,LoTWRec,LoTWRecDate,QSLInfo,'
-    + '`Call`,State1,State2,State3,State4,WPX,AwardsEx,ValidDX,SRX,SRX_STRING,STX,STX_STRING,SAT_NAME,SAT_MODE,PROP_MODE,'
-    + 'LoTWSent,QSL_RCVD_VIA,QSL_SENT_VIA,DXCC,USERS,NoCalcDXCC,MY_STATE,MY_GRIDSQUARE,MY_LAT,MY_LON, SOTA_REF,'
-    + 'MY_SOTA_REF, ContestSession, ContestName, EQSL_QSL_SENT, HAMLOGRec, UNIX_TIMESTAMP(CLUBLOG_QSO_UPLOAD_DATE) as CLUBLOG_QSO_UPLOAD_DATE,'
-    + 'CLUBLOG_QSO_UPLOAD_STATUS, UNIX_TIMESTAMP(HRDLOG_QSO_UPLOAD_DATE) as HRDLOG_QSO_UPLOAD_DATE, HRDLOG_QSO_UPLOAD_STATUS, UNIX_TIMESTAMP(QRZCOM_QSO_UPLOAD_DATE) as QRZCOM_QSO_UPLOAD_DATE, QRZCOM_QSO_UPLOAD_STATUS,'
-    + 'UNIX_TIMESTAMP(HAMLOG_QSO_UPLOAD_DATE) as HAMLOG_QSO_UPLOAD_DATE, HAMLOG_QSO_UPLOAD_STATUS,FREQ_RX,BAND_RX';
-
   CopyFieldJournalToJournal: string =
-    'CallSign,QSODateTime,QSODate,QSOTime,QSOBand,QSOMode,QSOSubMode,QSOReportSent,QSOReportRecived,OMName,OMQTH,'
-    + 'State,Grid,IOTA,QSLManager,QSLSent,QSLSentAdv,QSLSentDate,QSLRec,QSLRecDate,MainPrefix,DXCCPrefix,CQZone,'
-    + 'ITUZone,QSOAddInfo,Marker,ManualSet,DigiBand,Continent,ShortNote,QSLReceQSLcc,LoTWRec,LoTWRecDate,QSLInfo,'
-    + '`Call`,State1,State2,State3,State4,WPX,AwardsEx,ValidDX,SRX,SRX_STRING,STX,STX_STRING,SAT_NAME,SAT_MODE,PROP_MODE,'
-    + 'LoTWSent,QSL_RCVD_VIA,QSL_SENT_VIA,DXCC,USERS,NoCalcDXCC,MY_STATE,MY_GRIDSQUARE,MY_LAT,MY_LON, SOTA_REF,'
-    + 'MY_SOTA_REF, ContestSession, ContestName, EQSL_QSL_SENT, HAMLOGRec, CLUBLOG_QSO_UPLOAD_DATE,'
-    + 'CLUBLOG_QSO_UPLOAD_STATUS, HRDLOG_QSO_UPLOAD_DATE, HRDLOG_QSO_UPLOAD_STATUS, QRZCOM_QSO_UPLOAD_DATE, QRZCOM_QSO_UPLOAD_STATUS,'
-    + 'HAMLOG_QSO_UPLOAD_DATE, HAMLOG_QSO_UPLOAD_STATUS,FREQ_RX,BAND_RX';
+    'CallSign, QSODateTime, QSODate, QSOTime, QSOBand, FREQ_RX, BAND_RX, QSOMode, QSOSubMode,'
+    + 'QSOReportSent,QSOReportRecived,OMName,OMQTH,State, Grid,IOTA,QSLManager, QSLSent, QSLSentAdv,'
+    + 'QSLSentDate, QSLRec, QSLRecDate, MainPrefix, DXCCPrefix, CQZone, ITUZone, QSOAddInfo, Marker, ManualSet,'
+    + 'DigiBand, Continent, ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, Call, State1, State2,'
+    + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME, SAT_MODE,'
+    + 'PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC, USERS, NoCalcDXCC, MY_STATE,'
+    + 'MY_GRIDSQUARE, MY_LAT, MY_LON, SYNC, SOTA_REF, MY_SOTA_REF, ContestSession, ContestName, EQSL_QSL_SENT, HAMLOGRec,'
+    + 'CLUBLOG_QSO_UPLOAD_DATE, CLUBLOG_QSO_UPLOAD_STATUS, HRDLOG_QSO_UPLOAD_DATE, HRDLOG_QSO_UPLOAD_STATUS,'
+    + 'QRZCOM_QSO_UPLOAD_DATE, QRZCOM_QSO_UPLOAD_STATUS, HAMLOGRU_QSO_UPLOAD_DATE, HAMLOGRU_QSO_UPLOAD_STATUS,'
+    + 'HAMLOGEU_QSO_UPLOAD_DATE, HAMLOGEU_QSO_UPLOAD_STATUS, HAMQTH_QSO_UPLOAD_DATE, HAMQTH_QSO_UPLOAD_STATUS';
 
   constColumnName: array [0..29] of string =
     ('QSL', 'QSLs', 'QSODate', 'QSOTime', 'QSOBand', 'CallSign',
