@@ -58,8 +58,7 @@ type
   end;
 
 const
-  Modem: array[1..160] of TModem = (
-    //(ModeNames: ''; ModeSubNames: ''),
+  Modem: array[1..161] of TModem = (
     (ModeNames: 'CW'; ModeSubNames: ''),
     (ModeNames: ''; ModeSubNames: 'CT'),
     (ModeNames: 'CONTESTI'; ModeSubNames: ''),
@@ -150,8 +149,6 @@ const
     (ModeNames: 'OFDM'; ModeSubNames: ''),
     (ModeNames: 'OFDM'; ModeSubNames: ''),
     (ModeNames: 'OFDM'; ModeSubNames: ''),
-    (ModeNames: 'OFDM'; ModeSubNames: ''),
-    (ModeNames: 'OFDM'; ModeSubNames: ''),
     (ModeNames: 'OLIVIA'; ModeSubNames: ''),
     (ModeNames: 'OLIVIA'; ModeSubNames: 'OLIVIA 4/125'),
     (ModeNames: 'OLIVIA'; ModeSubNames: 'OLIVIA 4/250'),
@@ -168,10 +165,13 @@ const
     (ModeNames: 'OLIVIA'; ModeSubNames: 'OLIVIA 16/2K'),
     (ModeNames: 'OLIVIA'; ModeSubNames: 'OLIVIA 32/1K'),
     (ModeNames: 'OLIVIA'; ModeSubNames: 'OLIVIA 32/2K'),
-    (ModeNames: 'OLIVIA'; ModeSubNames: ''),
-    (ModeNames: 'OLIVIA'; ModeSubNames: ''),
-    (ModeNames: 'OLIVIA'; ModeSubNames: ''),
+    (ModeNames: 'OLIVIA'; ModeSubNames: 'OLIVIA 64/500'),
+    (ModeNames: 'OLIVIA'; ModeSubNames: 'OLIVIA 64/1K'),
+    (ModeNames: 'OLIVIA'; ModeSubNames: 'OLIVIA 64/2K'),
     (ModeNames: 'RTTY'; ModeSubNames: ''),
+    (ModeNames: 'THOR'; ModeSubNames: ''),
+    (ModeNames: 'THOR'; ModeSubNames: ''),
+    (ModeNames: 'THOR'; ModeSubNames: ''),
     (ModeNames: 'THOR'; ModeSubNames: ''),
     (ModeNames: 'THOR'; ModeSubNames: ''),
     (ModeNames: 'THOR'; ModeSubNames: ''),
@@ -236,6 +236,12 @@ implementation
 
 procedure TdmFlModem.GetModemName(id: integer; var mode, submode: string);
 begin
+  if (id = 0) then
+  begin
+    mode := '';
+    submode := '';
+    Exit;
+  end;
   mode := Modem[id].ModeNames;
   submode := Modem[id].ModeSubNames;
 end;
