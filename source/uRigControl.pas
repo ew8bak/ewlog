@@ -151,23 +151,21 @@ function TRigControl.StartRigctld: boolean;
 var
   cmd: string;
 begin
+  Result := False;
   if IniSet.rigctldStartUp then
   begin
     cmd := fRigCtldPath + ' ' + RigCtldArgs;
     rigProcess.CommandLine := cmd;
+    if Length(cmd) < 4 then Exit;
     try
       rigProcess.Execute;
       sleep(1500);
       if not rigProcess.Active then
-      begin
-        Result := False;
         exit;
-      end
     except
       on E: Exception do
       begin
         fLastError := E.Message;
-        Result := False;
         exit;
       end
     end;

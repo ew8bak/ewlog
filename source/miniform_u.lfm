@@ -7,14 +7,14 @@ object MiniForm: TMiniForm
   Caption = 'EWLog - HAM Journal'
   ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
   ChildSizing.EnlargeVertical = crsHomogenousChildResize
-  ClientHeight = 464
+  ClientHeight = 484
   ClientWidth = 479
   Menu = MainMenu
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 26
@@ -146,10 +146,10 @@ object MiniForm: TMiniForm
       Width = 91
       BorderSpacing.Left = 5
       ItemHeight = 16
-      OnChange = CBCurrentLogChange
       ParentFont = False
       Style = csOwnerDrawFixed
       TabOrder = 0
+      OnChange = CBCurrentLogChange
     end
     object LBMyGrid: TLabel
       AnchorSideLeft.Control = CBCurrentLog
@@ -379,11 +379,11 @@ object MiniForm: TMiniForm
     BorderSpacing.Left = 37
     BorderSpacing.Top = 3
     ItemHeight = 16
-    OnChange = CBBandChange
-    OnCloseUp = CBBandCloseUp
     ParentFont = False
     Style = csOwnerDrawEditableVariable
     TabOrder = 12
+    OnChange = CBBandChange
+    OnCloseUp = CBBandCloseUp
   end
   object LBMode: TLabel
     AnchorSideLeft.Control = Owner
@@ -409,11 +409,11 @@ object MiniForm: TMiniForm
     BorderSpacing.Left = 37
     BorderSpacing.Top = 3
     ItemHeight = 16
-    OnChange = CBModeChange
-    OnCloseUp = CBModeCloseUp
     ParentFont = False
     Style = csOwnerDrawEditableVariable
     TabOrder = 13
+    OnChange = CBModeChange
+    OnCloseUp = CBModeCloseUp
   end
   object CBSubMode: TComboBox
     AnchorSideLeft.Control = CBMode
@@ -568,14 +568,14 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 19
     Top = 174
-    Width = 71
+    Width = 69
     BorderSpacing.Left = 5
     Caption = 'Real Time'
     Checked = True
-    OnChange = CBRealTimeChange
     ParentFont = False
     State = cbChecked
     TabOrder = 16
+    OnChange = CBRealTimeChange
   end
   object CBSaveUTC: TCheckBox
     AnchorSideLeft.Control = Owner
@@ -584,13 +584,13 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 19
     Top = 198
-    Width = 82
+    Width = 80
     BorderSpacing.Left = 5
     Caption = 'Save in UTC'
     Enabled = False
-    OnChange = CBSaveUTCChange
     ParentFont = False
     TabOrder = 17
+    OnChange = CBSaveUTCChange
   end
   object EditCallsign: TEditButton
     AnchorSideLeft.Control = Owner
@@ -966,10 +966,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBSaveUTC
     AnchorSideTop.Side = asrCenter
-    Left = 88
+    Left = 86
     Height = 19
     Top = 198
-    Width = 47
+    Width = 45
     BorderSpacing.Left = 1
     Caption = 'Mark'
     ParentFont = False
@@ -1084,29 +1084,29 @@ object MiniForm: TMiniForm
     Left = 345
     Height = 19
     Top = 97
-    Width = 44
+    Width = 42
     BorderSpacing.Left = 1
     Caption = 'Map'
     Checked = True
-    OnChange = CBMapChange
     ParentFont = False
     State = cbChecked
     TabOrder = 20
+    OnChange = CBMapChange
   end
   object CBFilter: TCheckBox
     AnchorSideLeft.Control = CBMap
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBMap
     AnchorSideTop.Side = asrCenter
-    Left = 390
+    Left = 388
     Height = 19
     Top = 97
-    Width = 46
+    Width = 44
     BorderSpacing.Left = 1
     Caption = 'Filter'
-    OnChange = CBFilterChange
     ParentFont = False
     TabOrder = 21
+    OnChange = CBFilterChange
   end
   object LBGrid: TLabel
     AnchorSideLeft.Side = asrBottom
@@ -1820,15 +1820,15 @@ object MiniForm: TMiniForm
   object StatBar: TStatusBar
     Left = 0
     Height = 23
-    Top = 441
+    Top = 461
     Width = 479
     Panels = <    
       item
-        Width = 400
+        Width = 330
       end    
       item
         Alignment = taRightJustify
-        Width = 200
+        Width = 330
       end>
     SimplePanel = False
     OnClick = StatBarClick
