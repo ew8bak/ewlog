@@ -209,6 +209,7 @@ begin
       ShowMessage(rDBError);
   CheckSQLVersion;
   MainFunc.LoadINIsettings;
+  MainFunc.LoadExportAdiSettings;
   ImbeddedCallBookInit(IniSet.UseIntCallBook);
 end;
 

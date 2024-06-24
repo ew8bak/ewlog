@@ -27,7 +27,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
-      <BuildNr Value="945"/>
+      <BuildNr Value="946"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="98">
+    <Units Count="100">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -791,6 +791,18 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit97>
+      <Unit98>
+        <Filename Value="exportsettingsform_u.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="exportSettingsForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="exportSettingsForm_u"/>
+      </Unit98>
+      <Unit99>
+        <Filename Value="exportfields_record.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="exportFields_record"/>
+      </Unit99>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

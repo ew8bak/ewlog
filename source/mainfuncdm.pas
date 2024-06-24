@@ -18,7 +18,8 @@ uses
   prefix_record, LazUTF8, const_u, DBGrids, inifile_record, selectQSO_record,
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, CloudLogCAT, progressForm_u,
-  FileUtil, FMS_record, telnetaddresrecord_u, LazSysUtils, SQLite3DS;
+  FileUtil, FMS_record, telnetaddresrecord_u, LazSysUtils, SQLite3DS,
+  exportFields_record;
 
 type
   bandArray = array of string;
@@ -50,6 +51,7 @@ type
     procedure GetDistAzim(Latitude, Longitude: string; var Distance, Azimuth: string);
     procedure CheckDXCC(Callsign, mode, band: string; var DMode, DBand, DCall: boolean);
     procedure LoadINIsettings;
+    procedure LoadExportAdiSettings;
     procedure ClearPFXR(var PFXR: TPFXR);
     procedure LoadBMSL(var CBMode, CBSubMode, CBBand, CBJournal: TComboBox);
     procedure LoadBMSL(var CBMode, CBSubMode, CBBand: TComboBox); overload;
@@ -108,6 +110,7 @@ type
 var
   MainFunc: TMainFunc;
   IniSet: TINIR;
+  exportAdiSet: TexportRecord;
   columnsGrid: array[0..29] of string;
   columnsWidth: array[0..29] of integer;
   columnsVisible: array[0..29] of boolean;
@@ -1578,6 +1581,74 @@ begin
     on E: Exception do
       WriteLn(ExceptFile, 'LoadBands:' + E.ClassName + ':' + E.Message);
   end;
+end;
+
+procedure TMainFunc.LoadExportAdiSettings;
+begin
+  exportAdiSet.fOPERATOR:=INIFile.ReadBool('ExportFieldsADI', 'OPERATOR', True);
+  exportAdiSet.fTIME_ON:=INIFile.ReadBool('ExportFieldsADI', 'TIME_ON', True);
+  exportAdiSet.fFREQ:=INIFile.ReadBool('ExportFieldsADI', 'FREQ', True);
+  exportAdiSet.fNAME:=INIFile.ReadBool('ExportFieldsADI', 'NAME', True);
+  exportAdiSet.fPFX:=INIFile.ReadBool('ExportFieldsADI', 'PFX', True);
+  exportAdiSet.fCQZ:=INIFile.ReadBool('ExportFieldsADI', 'CQZ', True);
+  exportAdiSet.fQSLMSG:=INIFile.ReadBool('ExportFieldsADI', 'QSLMSG', True);
+  exportAdiSet.fEQSL_QSL_SENT:=INIFile.ReadBool('ExportFieldsADI', 'EQSL_QSL_SENT', True);
+  exportAdiSet.fMY_LON:=INIFile.ReadBool('ExportFieldsADI', 'MY_LON', True);
+  exportAdiSet.fHRDLOG_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'HRDLOG_QSO_UPLOAD_DATE', True);
+  exportAdiSet.fHAMQTH_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HAMQTH_QSO_UPLOAD_STATUS', True);
+  exportAdiSet.fCALL:=INIFile.ReadBool('ExportFieldsADI', 'CALL', True);
+  exportAdiSet.fMODE:=INIFile.ReadBool('ExportFieldsADI', 'MODE', True);
+  exportAdiSet.fRST_SENT:=INIFile.ReadBool('ExportFieldsADI', 'RST_SENT', True);
+  exportAdiSet.fQTH:=INIFile.ReadBool('ExportFieldsADI', 'QTH', True);
+  exportAdiSet.fDXCC_PREF:=INIFile.ReadBool('ExportFieldsADI', 'DXCC_PREF', True);
+  exportAdiSet.fITUZ:=INIFile.ReadBool('ExportFieldsADI', 'ITUZ', True);
+  exportAdiSet.fLOTW_QSL_SENT:=INIFile.ReadBool('ExportFieldsADI', 'LOTW_QSL_SENT', True);
+  exportAdiSet.fMY_GRIDSQUARE:=INIFile.ReadBool('ExportFieldsADI', 'MY_GRIDSQUARE', True);
+  exportAdiSet.fCLUBLOG_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'CLUBLOG_QSO_UPLOAD_DATE', True);
+  exportAdiSet.fHRDLOG_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HRDLOG_QSO_UPLOAD_STATUS', True);
+  exportAdiSet.fFREQ_RX:=INIFile.ReadBool('ExportFieldsADI', 'FREQ_RX', True);
+  exportAdiSet.fQSO_DATE:=INIFile.ReadBool('ExportFieldsADI', 'QSO_DATE', True);
+  exportAdiSet.fSUBMODE:=INIFile.ReadBool('ExportFieldsADI', 'SUBMODE', True);
+  exportAdiSet.fRST_RCVD:=INIFile.ReadBool('ExportFieldsADI', 'RST_RCVD', True);
+  exportAdiSet.fGRIDSQUARE:=INIFile.ReadBool('ExportFieldsADI', 'GRIDSQUARE', True);
+  exportAdiSet.fBAND:=INIFile.ReadBool('ExportFieldsADI', 'BAND', True);
+  exportAdiSet.fCONT:=INIFile.ReadBool('ExportFieldsADI', 'CONT', True);
+  exportAdiSet.fDXCC:=INIFile.ReadBool('ExportFieldsADI', 'DXCC', True);
+  exportAdiSet.fMY_LAT:=INIFile.ReadBool('ExportFieldsADI', 'MY_LAT', True);
+  exportAdiSet.fCLUBLOG_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'CLUBLOG_QSO_UPLOAD_STATUS', True);
+  exportAdiSet.fHAMQTH_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'HAMQTH_QSO_UPLOAD_DATE', True);
+  exportAdiSet.fSTATION_CALLSIGN:=INIFile.ReadBool('ExportFieldsADI', 'STATION_CALLSIGN', True);
+
+  exportAdiSet.fSRX:=INIFile.ReadBool('ExportFieldsADI', 'SRX', True);
+  exportAdiSet.fSTX:=INIFile.ReadBool('ExportFieldsADI', 'STX', True);
+  exportAdiSet.fSRX_STRING:=INIFile.ReadBool('ExportFieldsADI', 'SRX_STRING', True);
+  exportAdiSet.fSTX_STRING:=INIFile.ReadBool('ExportFieldsADI', 'STX_STRING', True);
+  exportAdiSet.fSTATE:=INIFile.ReadBool('ExportFieldsADI', 'STATE', True);
+  exportAdiSet.fWPX:=INIFile.ReadBool('ExportFieldsADI', 'WPX', True);
+  exportAdiSet.fBAND_RX:=INIFile.ReadBool('ExportFieldsADI', 'BAND_RX', True);
+  exportAdiSet.fPROP_MODE:=INIFile.ReadBool('ExportFieldsADI', 'PROP_MODE', True);
+  exportAdiSet.fSAT_MODE:=INIFile.ReadBool('ExportFieldsADI', 'SAT_MODE', True);
+  exportAdiSet.fSAT_NAME:=INIFile.ReadBool('ExportFieldsADI', 'SAT_NAME', True);
+  exportAdiSet.fEQSL_QSL_RCVD:=INIFile.ReadBool('ExportFieldsADI', 'EQSL_QSL_RCVD', True);
+  exportAdiSet.fQSLSDATE:=INIFile.ReadBool('ExportFieldsADI', 'QSLSDATE', True);
+  exportAdiSet.fQSLRDATE:=INIFile.ReadBool('ExportFieldsADI', 'QSLRDATE', True);
+  exportAdiSet.fQSL_RCVD:=INIFile.ReadBool('ExportFieldsADI', 'QSL_RCVD', True);
+  exportAdiSet.fQSL_RCVD_VIA:=INIFile.ReadBool('ExportFieldsADI', 'QSL_RCVD_VIA', True);
+  exportAdiSet.fQSL_SENT_VIA:=INIFile.ReadBool('ExportFieldsADI', 'QSL_SENT_VIA', True);
+  exportAdiSet.fQSL_SENT:=INIFile.ReadBool('ExportFieldsADI', 'QSL_SENT', True);
+  exportAdiSet.fLOTW_QSL_RCVD:=INIFile.ReadBool('ExportFieldsADI', 'LOTW_QSL_RCVD', True);
+  exportAdiSet.fLOTW_QSLRDATE:=INIFile.ReadBool('ExportFieldsADI', 'LOTW_QSLRDATE', True);
+  exportAdiSet.fCOMMENT:=INIFile.ReadBool('ExportFieldsADI', 'COMMENT', True);
+  exportAdiSet.fMY_STATE:=INIFile.ReadBool('ExportFieldsADI', 'STATIOMY_STATEN_CALLSIGN', True);
+  exportAdiSet.fSOTA_REF:=INIFile.ReadBool('ExportFieldsADI', 'SOTA_REF', True);
+  exportAdiSet.fMY_SOTA_REF:=INIFile.ReadBool('ExportFieldsADI', 'MY_SOTA_REF', True);
+  exportAdiSet.fHAMLOG_QSL_RCVD:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOG_QSL_RCVD', True);
+  exportAdiSet.fQRZCOM_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'QRZCOM_QSO_UPLOAD_DATE', True);
+  exportAdiSet.fQRZCOM_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'QRZCOM_QSO_UPLOAD_STATUS', True);
+  exportAdiSet.fHAMLOGEU_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGEU_QSO_UPLOAD_DATE', True);
+  exportAdiSet.fHAMLOGEU_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGEU_QSO_UPLOAD_STATUS', True);
+  exportAdiSet.fHAMLOGRU_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGRU_QSO_UPLOAD_DATE', True);
+  exportAdiSet.fHAMLOGRU_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGRU_QSO_UPLOAD_STATUS', True);
 end;
 
 procedure TMainFunc.LoadINIsettings;

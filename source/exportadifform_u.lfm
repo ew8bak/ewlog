@@ -3,37 +3,36 @@ object exportAdifForm: TexportAdifForm
   Height = 211
   Top = 194
   Width = 442
-  AutoSize = True
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Export ADIF'
   ClientHeight = 211
   ClientWidth = 442
   Font.Height = -12
-  FormStyle = fsSystemStayOnTop
   OnShow = FormShow
-  Position = poScreenCenter
-  LCLVersion = '2.2.4.0'
+  Position = poOwnerFormCenter
+  LCLVersion = '3.2.0.0'
   object BTExport: TButton
-    AnchorSideBottom.Control = PbExport
+    AnchorSideTop.Control = btSettings
+    AnchorSideTop.Side = asrBottom
     Left = 280
     Height = 25
-    Top = 161
+    Top = 158
     Width = 75
-    Anchors = [akLeft, akBottom]
-    BorderSpacing.Bottom = 5
+    Anchors = [akTop]
+    BorderSpacing.Top = 5
     Caption = 'Export'
     Font.Height = -12
-    OnClick = BTExportClick
     ParentFont = False
     TabOrder = 0
+    OnClick = BTExportClick
   end
   object LBNumberQSO: TLabel
     AnchorSideTop.Control = DateEdit2
     AnchorSideTop.Side = asrBottom
     Left = 120
-    Height = 17
-    Top = 166
+    Height = 15
+    Top = 144
     Width = 97
     BorderSpacing.Top = 5
     Caption = 'Number of QSO: 0'
@@ -43,27 +42,27 @@ object exportAdifForm: TexportAdifForm
   end
   object rbFileExportAll: TRadioButton
     Left = 120
-    Height = 21
+    Height = 19
     Top = 8
-    Width = 170
+    Width = 159
     Caption = 'Export all showed contacts'
     Checked = True
     Font.Height = -12
-    OnClick = rbFileExportAllClick
     ParentFont = False
     TabOrder = 1
     TabStop = True
+    OnClick = rbFileExportAllClick
   end
   object RadioButton1: TRadioButton
     Left = 120
-    Height = 21
+    Height = 19
     Top = 32
-    Width = 143
+    Width = 130
     Caption = 'Selected date interval'
     Font.Height = -12
-    OnClick = RadioButton1Click
     ParentFont = False
     TabOrder = 2
+    OnClick = RadioButton1Click
   end
   object Label2: TLabel
     Left = 120
@@ -78,22 +77,25 @@ object exportAdifForm: TexportAdifForm
     Transparent = False
   end
   object BTCancel: TButton
+    AnchorSideTop.Control = btSettings
+    AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = PbExport
     Left = 360
     Height = 25
-    Top = 161
+    Top = 158
     Width = 75
-    Anchors = [akLeft, akBottom]
+    Anchors = [akTop]
+    BorderSpacing.Top = 5
     BorderSpacing.Bottom = 5
     Caption = 'Cancel'
     Font.Height = -12
-    OnClick = BTCancelClick
     ParentFont = False
     TabOrder = 3
+    OnClick = BTCancelClick
   end
   object Label3: TLabel
     Left = 128
-    Height = 17
+    Height = 15
     Top = 56
     Width = 28
     Caption = 'From'
@@ -107,8 +109,8 @@ object exportAdifForm: TexportAdifForm
     AnchorSideTop.Control = Label3
     AnchorSideTop.Side = asrBottom
     Left = 119
-    Height = 30
-    Top = 76
+    Height = 21
+    Top = 74
     Width = 130
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DateOrder = doNone
@@ -125,9 +127,9 @@ object exportAdifForm: TexportAdifForm
     AnchorSideTop.Control = DateEdit1
     AnchorSideTop.Side = asrBottom
     Left = 128
-    Height = 17
-    Top = 111
-    Width = 13
+    Height = 15
+    Top = 100
+    Width = 12
     BorderSpacing.Top = 5
     Caption = 'To'
     Font.Height = -12
@@ -140,8 +142,8 @@ object exportAdifForm: TexportAdifForm
     AnchorSideTop.Control = Label4
     AnchorSideTop.Side = asrBottom
     Left = 119
-    Height = 30
-    Top = 131
+    Height = 21
+    Top = 118
     Width = 130
     CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
     DefaultToday = True
@@ -157,16 +159,16 @@ object exportAdifForm: TexportAdifForm
   end
   object CBADIExport: TCheckBox
     Left = 296
-    Height = 21
+    Height = 19
     Top = 8
-    Width = 105
+    Width = 94
     Caption = 'Export to ADIF'
     Checked = True
     Font.Height = -12
-    OnChange = CBADIExportChange
     ParentFont = False
     State = cbChecked
     TabOrder = 6
+    OnChange = CBADIExportChange
   end
   object Image1: TImage
     Left = 0
@@ -512,9 +514,9 @@ object exportAdifForm: TexportAdifForm
     AnchorSideTop.Control = CBADIExport
     AnchorSideTop.Side = asrBottom
     Left = 296
-    Height = 21
-    Top = 34
-    Width = 129
+    Height = 19
+    Top = 32
+    Width = 117
     BorderSpacing.Top = 5
     Caption = 'Export on Win1251'
     Font.Height = -12
@@ -525,9 +527,9 @@ object exportAdifForm: TexportAdifForm
     AnchorSideTop.Control = CBExportOnWin
     AnchorSideTop.Side = asrBottom
     Left = 296
-    Height = 21
-    Top = 60
-    Width = 114
+    Height = 19
+    Top = 56
+    Width = 103
     BorderSpacing.Top = 5
     Caption = 'Convert to Latin'
     Font.Height = -12
@@ -548,25 +550,40 @@ object exportAdifForm: TexportAdifForm
     AnchorSideTop.Control = CBConvertLatin
     AnchorSideTop.Side = asrBottom
     Left = 296
-    Height = 21
-    Top = 86
-    Width = 109
+    Height = 19
+    Top = 80
+    Width = 98
     BorderSpacing.Top = 5
     Caption = 'Export to SOTA'
-    OnChange = CBSotaExportChange
     TabOrder = 10
+    OnChange = CBSotaExportChange
   end
   object CBRemoveSlash: TCheckBox
+    AnchorSideLeft.Control = CBSotaExport
     AnchorSideTop.Control = CBSotaExport
     AnchorSideTop.Side = asrBottom
     Left = 296
-    Height = 21
-    Top = 112
-    Width = 101
+    Height = 19
+    Top = 104
+    Width = 90
     BorderSpacing.Top = 5
     Caption = 'Remove slash'
     Enabled = False
     TabOrder = 11
+  end
+  object btSettings: TButton
+    AnchorSideLeft.Control = CBRemoveSlash
+    AnchorSideTop.Control = CBRemoveSlash
+    AnchorSideTop.Side = asrBottom
+    Left = 296
+    Height = 25
+    Top = 128
+    Width = 96
+    AutoSize = True
+    BorderSpacing.Top = 5
+    Caption = 'Field Settings'
+    TabOrder = 12
+    OnClick = btSettingsClick
   end
   object SDExport: TSaveDialog
     OnClose = SDExportClose

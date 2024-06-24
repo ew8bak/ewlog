@@ -25,6 +25,7 @@ type
   TexportAdifForm = class(TForm)
     BTExport: TButton;
     BTCancel: TButton;
+    btSettings: TButton;
     CBADIExport: TCheckBox;
     CBExportOnWin: TCheckBox;
     CBConvertLatin: TCheckBox;
@@ -43,6 +44,7 @@ type
     SDExport: TSaveDialog;
     procedure BTExportClick(Sender: TObject);
     procedure BTCancelClick(Sender: TObject);
+    procedure btSettingsClick(Sender: TObject);
     procedure CBSotaExportChange(Sender: TObject);
     procedure CBADIExportChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -66,7 +68,7 @@ var
 
 implementation
 
-uses dmFunc_U, InitDB_dm;
+uses dmFunc_U, InitDB_dm, exportSettingsForm_u;
 
 {$R *.lfm}
 
@@ -207,6 +209,11 @@ begin
   end
   else
     exportAdifForm.Close;
+end;
+
+procedure TexportAdifForm.btSettingsClick(Sender: TObject);
+begin
+  exportSettingsForm.Show;
 end;
 
 procedure TexportAdifForm.CBSotaExportChange(Sender: TObject);

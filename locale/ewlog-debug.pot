@@ -2870,6 +2870,11 @@ msgctxt "texportadifform.btexport.caption"
 msgid "Export"
 msgstr ""
 
+#: texportadifform.btsettings.caption
+msgctxt "texportadifform.btsettings.caption"
+msgid "Field Settings"
+msgstr ""
+
 #: texportadifform.caption
 msgid "Export ADIF"
 msgstr ""
@@ -2917,6 +2922,300 @@ msgstr ""
 
 #: texportadifform.sdexport.title
 msgid "Save file as"
+msgstr ""
+
+#: texportsettingsform.caption
+msgid "Export ADI Settings"
+msgstr ""
+
+#: texportsettingsform.cbband.caption
+msgctxt "texportsettingsform.cbband.caption"
+msgid "BAND"
+msgstr ""
+
+#: texportsettingsform.cbbandrx.caption
+msgid "BAND_RX"
+msgstr ""
+
+#: texportsettingsform.cbcall.caption
+msgctxt "texportsettingsform.cbcall.caption"
+msgid "CALL"
+msgstr ""
+
+#: texportsettingsform.cbclublogqsouploaddate.caption
+msgctxt "texportsettingsform.cbclublogqsouploaddate.caption"
+msgid "CLUBLOG_QSO_UPLOAD_DATE"
+msgstr ""
+
+#: texportsettingsform.cbclublogqsouploadstatus.caption
+msgctxt "texportsettingsform.cbclublogqsouploadstatus.caption"
+msgid "CLUBLOG_QSO_UPLOAD_STATUS"
+msgstr ""
+
+#: texportsettingsform.cbcomment.caption
+msgid "COMMENT"
+msgstr ""
+
+#: texportsettingsform.cbcont.caption
+msgctxt "texportsettingsform.cbcont.caption"
+msgid "CONT"
+msgstr ""
+
+#: texportsettingsform.cbcqz.caption
+msgctxt "texportsettingsform.cbcqz.caption"
+msgid "CQZ"
+msgstr ""
+
+#: texportsettingsform.cbdxcc.caption
+msgctxt "texportsettingsform.cbdxcc.caption"
+msgid "DXCC"
+msgstr ""
+
+#: texportsettingsform.cbdxccpref.caption
+msgctxt "texportsettingsform.cbdxccpref.caption"
+msgid "DXCC_PREF"
+msgstr ""
+
+#: texportsettingsform.cbeqslqslrcvd.caption
+msgid "EQSL_QSL_RCVD"
+msgstr ""
+
+#: texportsettingsform.cbeqslqslsent.caption
+msgctxt "texportsettingsform.cbeqslqslsent.caption"
+msgid "EQSL_QSL_SENT"
+msgstr ""
+
+#: texportsettingsform.cbfreq.caption
+msgctxt "texportsettingsform.cbfreq.caption"
+msgid "FREQ"
+msgstr ""
+
+#: texportsettingsform.cbfreqrx.caption
+msgctxt "texportsettingsform.cbfreqrx.caption"
+msgid "FREQ_RX"
+msgstr ""
+
+#: texportsettingsform.cbgridsquare.caption
+msgctxt "texportsettingsform.cbgridsquare.caption"
+msgid "GRIDSQUARE"
+msgstr ""
+
+#: texportsettingsform.cbhamlogeuqsouploaddate.caption
+msgid "HAMLOGEU_QSO_UPLOAD_DATE"
+msgstr ""
+
+#: texportsettingsform.cbhamlogeuqsouploadstatus.caption
+msgid "HAMLOGEU_QSO_UPLOAD_STATUS"
+msgstr ""
+
+#: texportsettingsform.cbhamlogqslrcvd.caption
+msgid "HAMLOG_QSL_RCVD"
+msgstr ""
+
+#: texportsettingsform.cbhamlogruqsouploaddate.caption
+msgid "HAMLOGRU_QSO_UPLOAD_DATE"
+msgstr ""
+
+#: texportsettingsform.cbhamlogruqsouploadstatus.caption
+msgid "HAMLOGRU_QSO_UPLOAD_STATUS"
+msgstr ""
+
+#: texportsettingsform.cbhamqthqsouploaddate.caption
+msgctxt "texportsettingsform.cbhamqthqsouploaddate.caption"
+msgid "HAMQTH_QSO_UPLOAD_DATE"
+msgstr ""
+
+#: texportsettingsform.cbhamqthqsouploadstatus.caption
+msgctxt "texportsettingsform.cbhamqthqsouploadstatus.caption"
+msgid "HAMQTH_QSO_UPLOAD_STATUS"
+msgstr ""
+
+#: texportsettingsform.cbhrdlogqsouploaddate.caption
+msgctxt "texportsettingsform.cbhrdlogqsouploaddate.caption"
+msgid "HRDLOG_QSO_UPLOAD_DATE"
+msgstr ""
+
+#: texportsettingsform.cbhrdlogqsouploadstatus.caption
+msgctxt "texportsettingsform.cbhrdlogqsouploadstatus.caption"
+msgid "HRDLOG_QSO_UPLOAD_STATUS"
+msgstr ""
+
+#: texportsettingsform.cbituz.caption
+msgctxt "texportsettingsform.cbituz.caption"
+msgid "ITUZ"
+msgstr ""
+
+#: texportsettingsform.cblotwqslrcvd.caption
+msgid "LOTW_QSL_RCVD"
+msgstr ""
+
+#: texportsettingsform.cblotwqslrdate.caption
+msgid "LOTW_QSLRDATE"
+msgstr ""
+
+#: texportsettingsform.cblotwqslsent.caption
+msgctxt "texportsettingsform.cblotwqslsent.caption"
+msgid "LOTW_QSL_SENT"
+msgstr ""
+
+#: texportsettingsform.cbmode.caption
+msgctxt "texportsettingsform.cbmode.caption"
+msgid "MODE"
+msgstr ""
+
+#: texportsettingsform.cbmygridsquare.caption
+msgctxt "texportsettingsform.cbmygridsquare.caption"
+msgid "MY_GRIDSQUARE"
+msgstr ""
+
+#: texportsettingsform.cbmylat.caption
+msgctxt "texportsettingsform.cbmylat.caption"
+msgid "MY_LAT"
+msgstr ""
+
+#: texportsettingsform.cbmylon.caption
+msgctxt "texportsettingsform.cbmylon.caption"
+msgid "MY_LON"
+msgstr ""
+
+#: texportsettingsform.cbmysotaref.caption
+msgid "MY_SOTA_REF"
+msgstr ""
+
+#: texportsettingsform.cbmystate.caption
+msgid "MY_STATE"
+msgstr ""
+
+#: texportsettingsform.cbname.caption
+msgctxt "texportsettingsform.cbname.caption"
+msgid "NAME"
+msgstr ""
+
+#: texportsettingsform.cboperator.caption
+msgctxt "texportsettingsform.cboperator.caption"
+msgid "OPERATOR"
+msgstr ""
+
+#: texportsettingsform.cbpfx.caption
+msgctxt "texportsettingsform.cbpfx.caption"
+msgid "PFX"
+msgstr ""
+
+#: texportsettingsform.cbpropmode.caption
+msgid "PROP_MODE"
+msgstr ""
+
+#: texportsettingsform.cbqrzcomqsouploaddate.caption
+msgid "QRZCOM_QSO_UPLOAD_DATE"
+msgstr ""
+
+#: texportsettingsform.cbqrzcomqsouploadstatus.caption
+msgid "QRZCOM_QSO_UPLOAD_STATUS"
+msgstr ""
+
+#: texportsettingsform.cbqslmsg.caption
+msgctxt "texportsettingsform.cbqslmsg.caption"
+msgid "QSLMSG"
+msgstr ""
+
+#: texportsettingsform.cbqslrcvd.caption
+msgid "QSL_RCVD"
+msgstr ""
+
+#: texportsettingsform.cbqslrcvdvia.caption
+msgid "QSL_RCVD_VIA"
+msgstr ""
+
+#: texportsettingsform.cbqslrdate.caption
+msgid "QSLRDATE"
+msgstr ""
+
+#: texportsettingsform.cbqslsdate.caption
+msgid "QSLSDATE"
+msgstr ""
+
+#: texportsettingsform.cbqslsent.caption
+msgid "QSL_SENT"
+msgstr ""
+
+#: texportsettingsform.cbqslsentvia.caption
+msgid "QSL_SENT_VIA"
+msgstr ""
+
+#: texportsettingsform.cbqsodate.caption
+msgctxt "texportsettingsform.cbqsodate.caption"
+msgid "QSO_DATE"
+msgstr ""
+
+#: texportsettingsform.cbqth.caption
+msgctxt "texportsettingsform.cbqth.caption"
+msgid "QTH"
+msgstr ""
+
+#: texportsettingsform.cbrstrcvd.caption
+msgctxt "texportsettingsform.cbrstrcvd.caption"
+msgid "RST_RCVD"
+msgstr ""
+
+#: texportsettingsform.cbrstsent.caption
+msgctxt "texportsettingsform.cbrstsent.caption"
+msgid "RST_SENT"
+msgstr ""
+
+#: texportsettingsform.cbsatmode.caption
+msgid "SAT_MODE"
+msgstr ""
+
+#: texportsettingsform.cbsatname.caption
+msgid "SAT_NAME"
+msgstr ""
+
+#: texportsettingsform.cbsotaref.caption
+msgid "SOTA_REF"
+msgstr ""
+
+#: texportsettingsform.cbsrx.caption
+msgid "SRX"
+msgstr ""
+
+#: texportsettingsform.cbsrxstring.caption
+msgid "SRX_STRING"
+msgstr ""
+
+#: texportsettingsform.cbstate.caption
+msgctxt "texportsettingsform.cbstate.caption"
+msgid "STATE"
+msgstr ""
+
+#: texportsettingsform.cbstationcallsign.caption
+msgctxt "texportsettingsform.cbstationcallsign.caption"
+msgid "STATION_CALLSIGN"
+msgstr ""
+
+#: texportsettingsform.cbstx.caption
+msgid "STX"
+msgstr ""
+
+#: texportsettingsform.cbstxstring.caption
+msgid "STX_STRING"
+msgstr ""
+
+#: texportsettingsform.cbsubmode.caption
+msgctxt "texportsettingsform.cbsubmode.caption"
+msgid "SUBMODE"
+msgstr ""
+
+#: texportsettingsform.cbtimeon.caption
+msgctxt "texportsettingsform.cbtimeon.caption"
+msgid "TIME_ON"
+msgstr ""
+
+#: texportsettingsform.cbwpx.caption
+msgid "WPX"
+msgstr ""
+
+#: texportsettingsform.groupbox1.caption
+msgid "Fields"
 msgstr ""
 
 #: tfilterform.caption
@@ -4671,6 +4970,7 @@ msgid "Satellite"
 msgstr ""
 
 #: tminiform.misettings.caption
+msgctxt "tminiform.misettings.caption"
 msgid "Settings"
 msgstr ""
 
