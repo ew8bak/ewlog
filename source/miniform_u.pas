@@ -217,6 +217,7 @@ type
     UTCLabel: TLabel;
     LocalTimeLabel: TLabel;
     Panel1: TPanel;
+    procedure EditGridChange(Sender: TObject);
     procedure MacroKeyF10Execute(Sender: TObject);
     procedure MacroKeyF1Execute(Sender: TObject);
     procedure CBBandChange(Sender: TObject);
@@ -1934,6 +1935,21 @@ procedure TMiniForm.MacroKeyF10Execute(Sender: TObject);
 begin
   if CWKeysForm.Showing then
     CWKeysForm.BtF10.Click;
+end;
+
+procedure TMiniForm.EditGridChange(Sender: TObject);
+var
+  PFXR: TPFXR;
+begin
+  if Length(EditCallsign.Text) < 3 then Exit;
+  if Length(EditGrid.Text) > 3 then
+  begin
+    PFXR := MainFunc.SearchPrefix(EditCallsign.Text, EditGrid.Text);
+    LBAzimuthD.Caption := PFXR.Azimuth;
+    LBDistanceD.Caption := PFXR.Distance;
+    LBLatitudeD.Caption := PFXR.Latitude;
+    LBLongitudeD.Caption := PFXR.Longitude;
+  end;
 end;
 
 procedure TMiniForm.CBSaveUTCChange(Sender: TObject);

@@ -27,7 +27,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
-      <BuildNr Value="946"/>
+      <BuildNr Value="948"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -795,6 +795,7 @@
         <Filename Value="exportsettingsform_u.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="exportSettingsForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="exportSettingsForm_u"/>
       </Unit98>

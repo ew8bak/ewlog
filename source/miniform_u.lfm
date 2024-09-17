@@ -988,6 +988,7 @@ object MiniForm: TMiniForm
     CharCase = ecUppercase
     ParentFont = False
     TabOrder = 5
+    OnChange = EditGridChange
   end
   object EditState: TEdit
     AnchorSideLeft.Control = Owner
