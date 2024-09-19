@@ -146,9 +146,9 @@ uses miniform_u, DXCCEditForm_U, QSLManagerForm_U,
   dmFunc_U, IOTA_Form_U, STATE_Form_U,
   InitDB_dm, MainFuncDM, GridsForm_u, SatEditorForm_u;
 
-{$R *.lfm}
+  {$R *.lfm}
 
-{ TEditQSO_Form }
+  { TEditQSO_Form }
 
 function TEditQSO_Form.SearchCountry(CallSign: string): string;
 var
@@ -201,7 +201,7 @@ end;
 
 procedure TEditQSO_Form.SpeedButton8Click(Sender: TObject);
 begin
-  SATEditorForm.FromForm:='EditForm';
+  SATEditorForm.FromForm := 'EditForm';
   SATEditorForm.Show;
 end;
 
@@ -230,7 +230,7 @@ begin
   FmtStngs.TimeSeparator := ':';
   FmtStngs.LongTimeFormat := 'hh:nn';
 
-  NameBand:= MainFunc.ConvertFreqToShow(CBBand.Text);
+  NameBand := MainFunc.ConvertFreqToShow(CBBand.Text);
   NameBand := MainFunc.ConvertFreqToSave(NameBand);
   DigiBand := dmFunc.GetDigiBandFromFreq(NameBand);
 
@@ -259,9 +259,15 @@ begin
     UQSO.QSLSentAdv := 'F';
   if RBDSent.Checked = True then
     UQSO.QSLSentAdv := 'N';
-  UQSO.QSLSentDate := DateEdit3.Date;
+  if DateEdit3.Text = '' then
+    UQSO.QSLSentDate := 0
+  else
+    UQSO.QSLSentDate := DateEdit3.Date;
   UQSO.QSLRec := BoolToStr(CBReceived.Checked, '1', '0');
-  UQSO.QSLRecDate := DateEdit2.Date;
+  if DateEdit2.Text = '' then
+    UQSO.QSLRecDate := 0
+  else
+    UQSO.QSLRecDate := DateEdit2.Date;
   UQSO.DXCC := EditDXCC.Text;
   UQSO.DXCCPrefix := Edit7.Text;
   UQSO.CQZone := EditCQ.Text;
@@ -276,7 +282,10 @@ begin
   if CBReceivedEQSL.Checked then
     UQSO.QSLReceQSLcc := 1;
   UQSO.LoTWRec := BoolToStr(CBReceivedLoTW.Checked, '1', '0');
-  UQSO.LoTWRecDate := DateEdit4.Date;
+  if DateEdit4.Text = '' then
+    UQSO.LoTWRecDate := 0
+  else
+    UQSO.LoTWRecDate := DateEdit4.Date;
   UQSO.QSLInfo := Edit20.Text;
   UQSO.Call := EditCallSign.Text;
   UQSO.State1 := '';
@@ -308,7 +317,7 @@ begin
   MainFunc.UpdateEditQSO(UnUsIndex, UQSO);
   MainFunc.CurrPosGrid(GridRecordIndex, GridsForm.DBGrid1);
   UnUsIndex := GridsForm.DBGrid1.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
-  GridsForm.DBGrid1.DataSource.DataSet.Locate('UnUsedIndex',UnUsIndex,[]);
+  GridsForm.DBGrid1.DataSource.DataSet.Locate('UnUsedIndex', UnUsIndex, []);
   GridsForm.DBGrid1CellClick(nil);
 end;
 
@@ -373,9 +382,18 @@ begin
   EditRSTs.Text := SelQSO.QSOReportSent;
   EditRSTr.Text := SelQSO.QSOReportRecived;
   EditIOTA.Text := SelQSO.IOTA;
-  DateEdit3.Date := SelQSO.QSLSentDate;
-  DateEdit2.Date := SelQSO.QSLRecDate;
-  DateEdit4.Date := SelQSO.LoTWRecDate;
+  if SelQSO.QSLSentDate <> 0 then
+    DateEdit3.Date := SelQSO.QSLSentDate
+  else
+    DateEdit3.Clear;
+  if SelQSO.QSLRecDate <> 0 then
+    DateEdit2.Date := SelQSO.QSLRecDate
+  else
+    DateEdit2.Clear;
+  if SelQSO.LoTWRecDate <> 0 then
+    DateEdit4.Date := SelQSO.LoTWRecDate
+  else
+    DateEdit4.Clear;
   EditPrefix.Text := SelQSO.MainPrefix;
   Edit7.Text := SelQSO.DXCCPrefix;
   EditDXCC.Text := SelQSO.DXCC;
@@ -395,8 +413,8 @@ begin
   CBReceived.Checked := MainFunc.StringToBool(SelQSO.QSLRec);
   CBReceivedLoTW.Checked := MainFunc.StringToBool(SelQSO.LoTWRec);
   CBSentLoTW.Checked := MainFunc.IntToBool(SelQSO.LoTWSent);
-  CBSat.Text:=SelQSO.SAT_NAME;
-  CBSATMode.Text:=SelQSO.SAT_MODE;
+  CBSat.Text := SelQSO.SAT_NAME;
+  CBSATMode.Text := SelQSO.SAT_MODE;
   CBPropagation.Text := SelQSO.PROP_MODE;
 
   case SelQSO.QSL_RCVD_VIA of

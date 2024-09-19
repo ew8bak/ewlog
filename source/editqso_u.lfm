@@ -12,7 +12,7 @@ object EditQSO_Form: TEditQSO_Form
   OnClose = FormClose
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '3.2.0.0'
   object GBCallInfo: TGroupBox
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
@@ -402,9 +402,9 @@ object EditQSO_Form: TEditQSO_Form
         AutoSize = True
         BorderSpacing.Left = 2
         Caption = 'To define territory'
-        OnClick = Button4Click
         ParentFont = False
         TabOrder = 4
+        OnClick = Button4Click
       end
       object SpeedButton1: TSpeedButton
         AnchorSideLeft.Control = Edit7
@@ -479,10 +479,10 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = CBValidDXCC
         AnchorSideTop.Side = asrCenter
-        Left = 207
+        Left = 203
         Height = 19
         Top = 103
-        Width = 74
+        Width = 72
         BorderSpacing.Left = 5
         Caption = 'Mark QSO'
         ParentFont = False
@@ -493,10 +493,10 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = CBNoCalcDXCC
         AnchorSideTop.Side = asrCenter
-        Left = 104
+        Left = 102
         Height = 19
         Top = 103
-        Width = 98
+        Width = 96
         BorderSpacing.Left = 5
         Caption = 'Valid for DXCC'
         ParentFont = False
@@ -510,7 +510,7 @@ object EditQSO_Form: TEditQSO_Form
         Left = 3
         Height = 19
         Top = 103
-        Width = 96
+        Width = 94
         BorderSpacing.Left = 3
         BorderSpacing.Top = 3
         Caption = 'No Calc DXCC'
@@ -859,9 +859,9 @@ object EditQSO_Form: TEditQSO_Form
         Anchors = [akTop, akRight]
         BorderSpacing.Right = 5
         ItemHeight = 15
-        OnChange = CBModeChange
         ParentFont = False
         TabOrder = 4
+        OnChange = CBModeChange
       end
       object CBPropagation: TComboBox
         AnchorSideLeft.Control = CBSATMode
@@ -876,9 +876,9 @@ object EditQSO_Form: TEditQSO_Form
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Top = 3
         ItemHeight = 15
-        OnChange = CBModeChange
         ParentFont = False
         TabOrder = 5
+        OnChange = CBModeChange
       end
       object CBSat: TComboBox
         AnchorSideLeft.Control = EditIOTA
@@ -972,7 +972,7 @@ object EditQSO_Form: TEditQSO_Form
     Left = 483
     Height = 387
     Top = 3
-    Width = 435
+    Width = 431
     ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akBottom]
     AutoSize = True
@@ -988,20 +988,20 @@ object EditQSO_Form: TEditQSO_Form
       AutoSize = True
       Caption = 'QSL'
       ClientHeight = 359
-      ClientWidth = 427
+      ClientWidth = 423
       object GBQSLReceived: TGroupBox
         AnchorSideLeft.Control = TabSheet1
         AnchorSideTop.Control = TabSheet1
         Left = 0
         Height = 101
         Top = 0
-        Width = 215
+        Width = 213
         AutoSize = True
         Caption = 'QSL Received'
         ChildSizing.LeftRightSpacing = 5
         ChildSizing.TopBottomSpacing = 5
         ClientHeight = 81
-        ClientWidth = 211
+        ClientWidth = 209
         ParentFont = False
         TabOrder = 0
         object CBReceived: TCheckBox
@@ -1011,7 +1011,7 @@ object EditQSO_Form: TEditQSO_Form
           Left = 5
           Height = 19
           Top = 7
-          Width = 67
+          Width = 65
           Caption = 'Received'
           ParentFont = False
           TabOrder = 0
@@ -1023,7 +1023,7 @@ object EditQSO_Form: TEditQSO_Form
           Left = 5
           Height = 19
           Top = 31
-          Width = 97
+          Width = 95
           BorderSpacing.Top = 3
           Caption = 'Received eQSL'
           ParentFont = False
@@ -1037,7 +1037,7 @@ object EditQSO_Form: TEditQSO_Form
           Left = 5
           Height = 19
           Top = 55
-          Width = 98
+          Width = 96
           BorderSpacing.Top = 3
           Caption = 'Received LotW'
           ParentFont = False
@@ -1048,7 +1048,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Control = GBQSLReceived
           AnchorSideRight.Control = GBQSLReceived
           AnchorSideRight.Side = asrBottom
-          Left = 103
+          Left = 101
           Height = 23
           Top = 5
           Width = 103
@@ -1069,7 +1069,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = GBQSLReceived
           AnchorSideRight.Side = asrBottom
-          Left = 103
+          Left = 101
           Height = 23
           Top = 53
           Width = 103
@@ -1092,17 +1092,17 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = GBQSLReceived
         AnchorSideBottom.Side = asrBottom
-        Left = 220
+        Left = 218
         Height = 101
         Top = 0
-        Width = 202
+        Width = 200
         Anchors = [akTop, akLeft, akBottom]
         AutoSize = True
         BorderSpacing.Left = 5
         BorderSpacing.Right = 5
         Caption = 'QSL Sent'
         ClientHeight = 81
-        ClientWidth = 198
+        ClientWidth = 196
         ParentFont = False
         TabOrder = 1
         object RBSent: TRadioButton
@@ -1111,7 +1111,7 @@ object EditQSO_Form: TEditQSO_Form
           Left = 2
           Height = 19
           Top = 5
-          Width = 43
+          Width = 41
           BorderSpacing.Left = 2
           BorderSpacing.Top = 5
           Caption = 'Sent'
@@ -1142,7 +1142,7 @@ object EditQSO_Form: TEditQSO_Form
           Left = 114
           Height = 19
           Top = 29
-          Width = 62
+          Width = 60
           BorderSpacing.Left = 2
           Caption = 'Queued'
           ParentFont = False
@@ -1170,7 +1170,7 @@ object EditQSO_Form: TEditQSO_Form
           Left = 114
           Height = 19
           Top = 51
-          Width = 84
+          Width = 82
           BorderSpacing.Left = 2
           Caption = 'Do not send'
           ParentFont = False
@@ -1181,7 +1181,7 @@ object EditQSO_Form: TEditQSO_Form
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = GBQSLSent
           AnchorSideRight.Side = asrBottom
-          Left = 75
+          Left = 73
           Height = 23
           Top = 3
           Width = 121
@@ -1201,7 +1201,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = GBQSLReceived
         AnchorSideRight.Side = asrBottom
-        Left = 111
+        Left = 109
         Height = 21
         Top = 106
         Width = 104
@@ -1239,7 +1239,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = ComboBox6
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = SpeedButton12
-        Left = 111
+        Left = 109
         Height = 23
         Top = 132
         Width = 80
@@ -1254,7 +1254,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = Edit19
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Side = asrBottom
-        Left = 193
+        Left = 191
         Height = 20
         Top = 133
         Width = 20
@@ -1281,7 +1281,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = LBQSLSentVia
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Side = asrBottom
-        Left = 220
+        Left = 218
         Height = 21
         Top = 118
         Width = 116
@@ -1306,7 +1306,7 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = GBQSLSent
         AnchorSideTop.Side = asrBottom
         AnchorSideBottom.Control = ComboBox7
-        Left = 220
+        Left = 218
         Height = 15
         Top = 101
         Width = 87
@@ -1326,7 +1326,7 @@ object EditQSO_Form: TEditQSO_Form
         Left = 52
         Height = 23
         Top = 168
-        Width = 370
+        Width = 366
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Left = 2
         BorderSpacing.Top = 5
@@ -1352,10 +1352,10 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideLeft.Control = ComboBox7
         AnchorSideTop.Control = ComboBox7
         AnchorSideTop.Side = asrBottom
-        Left = 220
+        Left = 218
         Height = 19
         Top = 144
-        Width = 76
+        Width = 74
         BorderSpacing.Top = 5
         Caption = 'Sent LoTW'
         ParentFont = False
@@ -1372,7 +1372,7 @@ object EditQSO_Form: TEditQSO_Form
         Left = 0
         Height = 163
         Top = 196
-        Width = 427
+        Width = 423
         Anchors = [akTop, akLeft, akRight, akBottom]
         Color = clWindow
         Columns = <        
@@ -1592,9 +1592,9 @@ object EditQSO_Form: TEditQSO_Form
     BorderSpacing.Right = 5
     BorderSpacing.Bottom = 5
     Caption = 'Close'
-    OnClick = BtCloseClick
     ParentFont = False
     TabOrder = 2
+    OnClick = BtCloseClick
   end
   object BtCancel: TButton
     AnchorSideTop.Control = BtClose
@@ -1608,9 +1608,9 @@ object EditQSO_Form: TEditQSO_Form
     AutoSize = True
     BorderSpacing.Right = 5
     Caption = 'Cancel'
-    OnClick = BtCancelClick
     ParentFont = False
     TabOrder = 3
+    OnClick = BtCancelClick
   end
   object BtApply: TButton
     AnchorSideTop.Control = BtCancel
@@ -1624,8 +1624,8 @@ object EditQSO_Form: TEditQSO_Form
     AutoSize = True
     BorderSpacing.Right = 5
     Caption = 'Apply'
-    OnClick = BtApplyClick
     ParentFont = False
     TabOrder = 4
+    OnClick = BtApplyClick
   end
 end
