@@ -320,8 +320,10 @@ begin
             LBDefaultCall.Visible := False;
         end;
       except
-        on E: Exception do
-          ShowMessage(E.Message);
+        on E: Exception do begin
+          ShowMessage('Error: ' + E.ClassName + ':' + E.Message );
+          WriteLn(ExceptFile, 'TLogConfigForm.FormShow: Error: ' + E.ClassName + ':' + E.Message);
+        end;
       end;
     end;
 

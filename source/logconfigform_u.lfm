@@ -12,7 +12,7 @@ object LogConfigForm: TLogConfigForm
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     AnchorSideBottom.Control = Panel2
     AnchorSideBottom.Side = asrBottom
@@ -238,9 +238,9 @@ object LogConfigForm: TLogConfigForm
           BorderSpacing.Top = 2
           BorderSpacing.Right = 10
           CharCase = ecUppercase
-          OnChange = EditGridChange
           ParentFont = False
           TabOrder = 5
+          OnChange = EditGridChange
         end
         object EditCQ: TEdit
           AnchorSideTop.Control = lbLocationInformation
@@ -493,7 +493,7 @@ object LogConfigForm: TLogConfigForm
           Left = 2
           Height = 19
           Top = 75
-          Width = 249
+          Width = 247
           BorderSpacing.Left = 2
           BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
@@ -588,7 +588,7 @@ object LogConfigForm: TLogConfigForm
           Left = 2
           Height = 19
           Top = 174
-          Width = 249
+          Width = 247
           BorderSpacing.Left = 2
           BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
@@ -683,7 +683,7 @@ object LogConfigForm: TLogConfigForm
           Left = 2
           Height = 19
           Top = 273
-          Width = 249
+          Width = 247
           BorderSpacing.Left = 2
           BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
@@ -862,7 +862,7 @@ object LogConfigForm: TLogConfigForm
           Left = 2
           Height = 19
           Top = 153
-          Width = 249
+          Width = 247
           BorderSpacing.Left = 2
           BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
@@ -876,7 +876,7 @@ object LogConfigForm: TLogConfigForm
           Left = 2
           Height = 19
           Top = 252
-          Width = 249
+          Width = 247
           BorderSpacing.Left = 2
           BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'
@@ -991,9 +991,9 @@ object LogConfigForm: TLogConfigForm
       AutoSize = True
       BorderSpacing.Right = 5
       Caption = 'Save'
-      OnClick = btSaveClick
       ParentFont = False
       TabOrder = 0
+      OnClick = btSaveClick
     end
     object btCancel: TButton
       AnchorSideTop.Control = Panel2
@@ -1008,9 +1008,9 @@ object LogConfigForm: TLogConfigForm
       AutoSize = True
       BorderSpacing.Right = 5
       Caption = 'Cancel'
-      OnClick = btCancelClick
       ParentFont = False
       TabOrder = 1
+      OnClick = btCancelClick
     end
   end
   object LBCallsigns: TListBox
@@ -1020,10 +1020,10 @@ object LogConfigForm: TLogConfigForm
     Width = 186
     Align = alLeft
     ItemHeight = 0
-    OnClick = LBCallsignsClick
     PopupMenu = PopupMenu1
     ScrollWidth = 184
     TabOrder = 2
+    OnClick = LBCallsignsClick
   end
   object PopupMenu1: TPopupMenu
     Left = 72

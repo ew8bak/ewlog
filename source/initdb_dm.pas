@@ -376,8 +376,10 @@ end;
 function TInitDB.GetLogBookTable(DescriptionLog: string): boolean;
 var
   LogBookInfoQuery: TSQLQuery;
+  fieldNameDescription: String;
 begin
   Result := False;
+  fieldNameDescription:='Description';
 
   if DBRecord.InitDB = 'YES' then
   begin
@@ -392,18 +394,29 @@ begin
         else
           LogBookInfoQuery.SQL.Text :=
             'SELECT * FROM LogBookInfo WHERE Description = "' + DescriptionLog + '"';
+        try
         LogBookInfoQuery.Open;
 
-        if LogBookInfoQuery.FieldByName('Description').AsString = '' then
+        except
+          on E: Exception do
+          begin
+             LogBookInfoQuery.SQL.Text :=
+            'SELECT * FROM LogBookInfo WHERE Discription = "' + DescriptionLog + '"';
+             LogBookInfoQuery.Open;
+             fieldNameDescription:='Discription';
+          end;
+        end;
+
+        if LogBookInfoQuery.FieldByName(fieldNameDescription).AsString = '' then
         begin
           LogBookInfoQuery.Close;
           LogBookInfoQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
           LogBookInfoQuery.Open;
         end;
 
-        if LogBookInfoQuery.FieldByName('Description').AsString <> '' then
+        if LogBookInfoQuery.FieldByName(fieldNameDescription).AsString <> '' then
         begin
-          LBRecord.Description := LogBookInfoQuery.FieldByName('Description').AsString;
+          LBRecord.Description := LogBookInfoQuery.FieldByName(fieldNameDescription).AsString;
           LBRecord.CallSign := LogBookInfoQuery.FieldByName('CallName').AsString;
           LBRecord.OpName := LogBookInfoQuery.FieldByName('Name').AsString;
           LBRecord.OpQTH := LogBookInfoQuery.FieldByName('QTH').AsString;
@@ -440,7 +453,7 @@ begin
           LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
           LogBookInfoQuery.Close;
 
-          // dmMigrate.Migrate(LBRecord.CallSign);
+          dmMigrate.Migrate(LBRecord.CallSign, LBRecord.Description);
 
           Result := True;
           InitRecord.GetLogBookTable := True;
