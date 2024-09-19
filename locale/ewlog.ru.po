@@ -3138,6 +3138,10 @@ msgstr "Удалить дробь"
 msgid "Export to SOTA"
 msgstr "Экспорт в SOTA"
 
+#: texportadifform.cbutf8length.caption
+msgid "UTF8 Length"
+msgstr ""
+
 #: texportadifform.label3.caption
 msgid "From"
 msgstr "Из"

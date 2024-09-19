@@ -13,5 +13,6 @@
 {"hash":107214385,"name":"texportadifform.cbsotaexport.caption","sourcebytes":[69,120,112,111,114,116,32,116,111,32,83,79,84,65],"value":"Export to SOTA"},
 {"hash":49704536,"name":"texportadifform.cbremoveslash.caption","sourcebytes":[82,101,109,111,118,101,32,115,108,97,115,104],"value":"Remove slash"},
 {"hash":58238387,"name":"texportadifform.btsettings.caption","sourcebytes":[70,105,101,108,100,32,83,101,116,116,105,110,103,115],"value":"Field Settings"},
+{"hash":91408136,"name":"texportadifform.cbutf8length.caption","sourcebytes":[85,84,70,56,32,76,101,110,103,116,104],"value":"UTF8 Length"},
 {"hash":159035875,"name":"texportadifform.sdexport.title","sourcebytes":[83,97,118,101,32,102,105,108,101,32,97,115],"value":"Save file as"}
 ]}

@@ -35,6 +35,7 @@ type
     Win1251: boolean;
     RusToLat: boolean;
     RemoveSlash: boolean;
+    UTF8Len: boolean;
     Mobile: boolean;
     AllRec: integer;
     FromForm: string;
@@ -87,8 +88,12 @@ var
   numberToExp: string = '';
   SafeFreq: double;
   tmpdate: int64;
+  utf8Len: boolean;
 begin
   try
+    utf8Len := False;
+    if PADIExport.Win1251 or PADIExport.UTF8Len then
+      utf8Len := True;
     Info.ErrorCode := 0;
     Info.Result := False;
     Info.RecCount := 0;
@@ -180,14 +185,14 @@ begin
         if exportAdiSet.fSTATION_CALLSIGN then
         begin
           tmp := '<STATION_CALLSIGN' + dmFunc.StringToADIF(
-            dmFunc.RemoveSpaces(MyCurrCall), PADIExport.Win1251);
+            dmFunc.RemoveSpaces(MyCurrCall), utf8Len);
           Write(f, tmp);
         end;
 
         if exportAdiSet.fOPERATOR then
         begin
           tmp := '<OPERATOR' + dmFunc.StringToADIF(
-            dmFunc.RemoveSpaces(MyCurrCall), PADIExport.Win1251);
+            dmFunc.RemoveSpaces(MyCurrCall), utf8Len);
           Write(f, tmp);
         end;
 
@@ -195,7 +200,7 @@ begin
         begin
           tmp := '<CALL' + dmFunc.StringToADIF(
             dmFunc.RemoveSpaces(Query.Fields.FieldByName('CallSign').AsString),
-            PADIExport.Win1251);
+            utf8Len);
           Write(f, tmp);
         end;
 
@@ -203,7 +208,7 @@ begin
         begin
           tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
             'QSODate').AsDateTime);
-          tmp := '<QSO_DATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+          tmp := '<QSO_DATE' + dmFunc.StringToADIF(tmp, utf8Len);
           Write(f, tmp);
         end;
 
@@ -211,7 +216,7 @@ begin
         begin
           tmp := Query.Fields.FieldByName('QSOTime').AsString;
           tmp := copy(tmp, 1, 2) + copy(tmp, 4, 2);
-          tmp := '<TIME_ON' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+          tmp := '<TIME_ON' + dmFunc.StringToADIF(tmp, utf8Len);
           Write(f, tmp);
         end;
 
@@ -219,7 +224,7 @@ begin
           if Query.Fields.FieldByName('QSOMode').AsString <> '' then
           begin
             tmp := '<MODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'QSOMode').AsString, PADIExport.Win1251);
+              'QSOMode').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -227,7 +232,7 @@ begin
           if Query.Fields.FieldByName('QSOSubMode').AsString <> '' then
           begin
             tmp := '<SUBMODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'QSOSubMode').AsString, PADIExport.Win1251);
+              'QSOSubMode').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -239,7 +244,7 @@ begin
             TryStrToFloatSafe(tmpFreq, SafeFreq);
             tmp := '<FREQ' + dmFunc.StringToADIF(
               StringReplace(FormatFloat('0.#####', SafeFreq), ',', '.', [rfReplaceAll]),
-              PADIExport.Win1251);
+              utf8Len);
             Write(f, tmp);
           end;
 
@@ -251,7 +256,7 @@ begin
             TryStrToFloatSafe(tmpFreq, SafeFreq);
             tmp := '<FREQ_RX' + dmFunc.StringToADIF(
               StringReplace(FormatFloat('0.#####', SafeFreq), ',', '.', [rfReplaceAll]),
-              PADIExport.Win1251);
+              utf8Len);
             Write(f, tmp);
           end;
 
@@ -259,7 +264,7 @@ begin
           if Query.Fields.FieldByName('QSOReportSent').AsString <> '' then
           begin
             tmp := '<RST_SENT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'QSOReportSent').AsString, PADIExport.Win1251);
+              'QSOReportSent').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -267,7 +272,7 @@ begin
           if Query.Fields.FieldByName('QSOReportRecived').AsString <> '' then
           begin
             tmp := '<RST_RCVD' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'QSOReportRecived').AsString, PADIExport.Win1251);
+              'QSOReportRecived').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -277,7 +282,7 @@ begin
             (not Query.Fields.FieldByName('SRX').IsNull)) then
           begin
             tmp := '<SRX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'SRX').AsString, PADIExport.Win1251);
+              'SRX').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -286,7 +291,7 @@ begin
             (not Query.Fields.FieldByName('STX').IsNull)) then
           begin
             tmp := '<STX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'STX').AsString, PADIExport.Win1251);
+              'STX').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -294,7 +299,7 @@ begin
           if (Query.Fields.FieldByName('SRX_STRING').AsString <> '') then
           begin
             tmp := '<SRX_STRING' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'SRX_STRING').AsString, PADIExport.Win1251);
+              'SRX_STRING').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -302,7 +307,7 @@ begin
           if (Query.Fields.FieldByName('STX_STRING').AsString <> '') then
           begin
             tmp := '<STX_STRING' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'STX_STRING').AsString, PADIExport.Win1251);
+              'STX_STRING').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -312,10 +317,10 @@ begin
             if PADIExport.RusToLat then
               tmp := '<NAME' + dmFunc.StringToADIF(
                 dmFunc.RusToLat(Query.Fields.FieldByName('OMName').AsString),
-                PADIExport.Win1251)
+                utf8Len)
             else
               tmp := '<NAME' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-                'OMName').AsString, PADIExport.Win1251);
+                'OMName').AsString, utf8Len);
             if PADIExport.Win1251 then
               Write(f, UTF8ToCP1251(tmp))
             else
@@ -328,10 +333,10 @@ begin
             if PADIExport.RusToLat then
               tmp := '<QTH' + dmFunc.StringToADIF(
                 dmFunc.RusToLat(Query.Fields.FieldByName('OMQTH').AsString),
-                PADIExport.Win1251)
+                utf8Len)
             else
               tmp := '<QTH' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-                'OMQTH').AsString, PADIExport.Win1251);
+                'OMQTH').AsString, utf8Len);
             if PADIExport.Win1251 then
               Write(f, UTF8ToCP1251(tmp))
             else
@@ -342,7 +347,7 @@ begin
           if Query.Fields.FieldByName('State').AsString <> '' then
           begin
             tmp := '<STATE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'State').AsString, PADIExport.Win1251);
+              'State').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -351,7 +356,7 @@ begin
           if Query.Fields.FieldByName('Grid').AsString <> '' then
           begin
             tmp := '<GRIDSQUARE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'Grid').AsString, PADIExport.Win1251);
+              'Grid').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -359,7 +364,7 @@ begin
           if Query.Fields.FieldByName('WPX').AsString <> '' then
           begin
             tmp := '<PFX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'WPX').AsString, PADIExport.Win1251);
+              'WPX').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -367,7 +372,7 @@ begin
           if Query.Fields.FieldByName('DXCCPrefix').AsString <> '' then
           begin
             tmp := '<DXCC_PREF' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'DXCCPrefix').AsString, PADIExport.Win1251);
+              'DXCCPrefix').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -375,7 +380,7 @@ begin
           if Query.Fields.FieldByName('QSOBand').AsString <> '' then
           begin
             tmp := '<BAND' + dmFunc.StringToADIF(dmFunc.GetBandFromFreq(
-              Query.Fields.FieldByName('QSOBand').AsString), PADIExport.Win1251);
+              Query.Fields.FieldByName('QSOBand').AsString), utf8Len);
             Write(f, tmp);
           end;
 
@@ -383,7 +388,7 @@ begin
           if Query.Fields.FieldByName('BAND_RX').AsString <> '' then
           begin
             tmp := '<BAND_RX' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'BAND_RX').AsString, PADIExport.Win1251);
+              'BAND_RX').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -391,7 +396,7 @@ begin
           if Query.Fields.FieldByName('PROP_MODE').AsString <> '' then
           begin
             tmp := '<PROP_MODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'PROP_MODE').AsString, PADIExport.Win1251);
+              'PROP_MODE').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -399,7 +404,7 @@ begin
           if Query.Fields.FieldByName('SAT_MODE').AsString <> '' then
           begin
             tmp := '<SAT_MODE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'SAT_MODE').AsString, PADIExport.Win1251);
+              'SAT_MODE').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -407,7 +412,7 @@ begin
           if Query.Fields.FieldByName('SAT_NAME').AsString <> '' then
           begin
             tmp := '<SAT_NAME' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'SAT_NAME').AsString, PADIExport.Win1251);
+              'SAT_NAME').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -415,7 +420,7 @@ begin
           if Query.Fields.FieldByName('CQZone').AsString <> '' then
           begin
             tmp := '<CQZ' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'CQZone').AsString, PADIExport.Win1251);
+              'CQZone').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -423,7 +428,7 @@ begin
           if Query.Fields.FieldByName('ITUZone').AsString <> '' then
           begin
             tmp := '<ITUZ' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'ITUZone').AsString, PADIExport.Win1251);
+              'ITUZone').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -431,7 +436,7 @@ begin
           if Query.Fields.FieldByName('Continent').AsString <> '' then
           begin
             tmp := '<CONT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'Continent').AsString, PADIExport.Win1251);
+              'Continent').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -440,7 +445,7 @@ begin
           begin
             tmp := '<QSLMSG' + dmFunc.StringToADIF(
               dmFunc.MyTrim(Query.Fields.FieldByName('QSLInfo').AsString),
-              PADIExport.Win1251);
+              utf8Len);
             Write(f, tmp);
           end;
 
@@ -449,9 +454,9 @@ begin
           begin
             EQSL_QSL_RCVD := Query.Fields.FieldByName('QSLReceQSLcc').AsString;
             if EQSL_QSL_RCVD = '0' then
-              tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', PADIExport.Win1251)
+              tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('N', utf8Len)
             else
-              tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
+              tmp := '<EQSL_QSL_RCVD' + dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -460,7 +465,7 @@ begin
           begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'QSLSentDate').AsDateTime);
-            tmp := '<QSLSDATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+            tmp := '<QSLSDATE' + dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -469,7 +474,7 @@ begin
           begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'QSLRecDate').AsDateTime);
-            tmp := '<QSLRDATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+            tmp := '<QSLRDATE' + dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -478,9 +483,9 @@ begin
           begin
             QSL_RCVD := Query.Fields.FieldByName('QSLRec').AsString;
             if QSL_RCVD = '0' then
-              tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', PADIExport.Win1251)
+              tmp := '<QSL_RCVD' + dmFunc.StringToADIF('N', utf8Len)
             else
-              tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
+              tmp := '<QSL_RCVD' + dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -488,7 +493,7 @@ begin
           if Query.Fields.FieldByName('QSL_RCVD_VIA').AsString <> '' then
           begin
             tmp := '<QSL_RCVD_VIA' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'QSL_RCVD_VIA').AsString, PADIExport.Win1251);
+              'QSL_RCVD_VIA').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -496,7 +501,7 @@ begin
           if Query.Fields.FieldByName('QSL_SENT_VIA').AsString <> '' then
           begin
             tmp := '<QSL_SENT_VIA' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'QSL_SENT_VIA').AsString, PADIExport.Win1251);
+              'QSL_SENT_VIA').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -505,9 +510,9 @@ begin
           begin
             QSL_SENT := Query.Fields.FieldByName('QSLSent').AsString;
             if QSL_SENT = '0' then
-              tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', PADIExport.Win1251)
+              tmp := '<QSL_SENT' + dmFunc.StringToADIF('N', utf8Len)
             else
-              tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
+              tmp := '<QSL_SENT' + dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -516,9 +521,9 @@ begin
           begin
             LOTW_QSL_RCVD := Query.Fields.FieldByName('LoTWRec').AsString;
             if LOTW_QSL_RCVD = '0' then
-              tmp := '<LOTW_QSL_RCVD' + dmFunc.StringToADIF('N', PADIExport.Win1251)
+              tmp := '<LOTW_QSL_RCVD' + dmFunc.StringToADIF('N', utf8Len)
             else
-              tmp := '<LOTW_QSL_RCVD' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
+              tmp := '<LOTW_QSL_RCVD' + dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -527,7 +532,7 @@ begin
           begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'LoTWRecDate').AsDateTime);
-            tmp := '<LOTW_QSLRDATE' + dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+            tmp := '<LOTW_QSLRDATE' + dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -536,9 +541,9 @@ begin
           begin
             LOTW_QSL_RCVD := Query.Fields.FieldByName('LoTWSent').AsString;
             if LOTW_QSL_RCVD = '0' then
-              tmp := '<LOTW_QSL_SENT' + dmFunc.StringToADIF('N', PADIExport.Win1251)
+              tmp := '<LOTW_QSL_SENT' + dmFunc.StringToADIF('N', utf8Len)
             else
-              tmp := '<LOTW_QSL_SENT' + dmFunc.StringToADIF('Y', PADIExport.Win1251);
+              tmp := '<LOTW_QSL_SENT' + dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -546,7 +551,7 @@ begin
           if Query.Fields.FieldByName('DXCC').AsString <> '' then
           begin
             tmp := '<DXCC' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'DXCC').AsString, PADIExport.Win1251);
+              'DXCC').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -556,11 +561,11 @@ begin
             if PADIExport.RusToLat then
               tmp := '<COMMENT' + dmFunc.StringToADIF(
                 dmFunc.MyTrim(dmFunc.RusToLat(Query.Fields.FieldByName(
-                'QSOAddInfo').AsString)), PADIExport.Win1251)
+                'QSOAddInfo').AsString)), utf8Len)
             else
               tmp := '<COMMENT' + dmFunc.StringToADIF(
                 dmFunc.MyTrim(Query.Fields.FieldByName('QSOAddInfo').AsString),
-                PADIExport.Win1251);
+                utf8Len);
             if PADIExport.Win1251 then
               Write(f, UTF8ToCP1251(tmp))
             else
@@ -571,7 +576,7 @@ begin
           if Query.Fields.FieldByName('MY_STATE').AsString <> '' then
           begin
             tmp := '<MY_STATE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'MY_STATE').AsString, PADIExport.Win1251);
+              'MY_STATE').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -579,7 +584,7 @@ begin
           if Query.Fields.FieldByName('SOTA_REF').AsString <> '' then
           begin
             tmp := '<SOTA_REF' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'SOTA_REF').AsString, PADIExport.Win1251);
+              'SOTA_REF').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -587,7 +592,7 @@ begin
           if Query.Fields.FieldByName('MY_SOTA_REF').AsString <> '' then
           begin
             tmp := '<MY_SOTA_REF' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'MY_SOTA_REF').AsString, PADIExport.Win1251);
+              'MY_SOTA_REF').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -595,7 +600,7 @@ begin
           if Query.Fields.FieldByName('EQSL_QSL_SENT').AsString <> '' then
           begin
             tmp := '<EQSL_QSL_SENT' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'EQSL_QSL_SENT').AsString, PADIExport.Win1251);
+              'EQSL_QSL_SENT').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -603,7 +608,7 @@ begin
           if Query.Fields.FieldByName('HAMLOGRec').AsString = '1' then
           begin
             tmp := '<HAMLOG_QSL_RCVD' + dmFunc.StringToADIF(
-              Query.Fields.FieldByName('HAMLOGRec').AsString, PADIExport.Win1251);
+              Query.Fields.FieldByName('HAMLOGRec').AsString, utf8Len);
             Write(f, tmp);
           end;
 
@@ -613,7 +618,7 @@ begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'CLUBLOG_QSO_UPLOAD_DATE').AsDateTime);
             tmp := '<CLUBLOG_QSO_UPLOAD_DATE' +
-              dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+              dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -624,10 +629,10 @@ begin
               'CLUBLOG_QSO_UPLOAD_STATUS').AsString;
             if LOTW_QSL_RCVD = '0' then
               tmp := '<CLUBLOG_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('N', PADIExport.Win1251)
+                dmFunc.StringToADIF('N', utf8Len)
             else
               tmp := '<CLUBLOG_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('Y', PADIExport.Win1251);
+                dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -637,7 +642,7 @@ begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'HRDLOG_QSO_UPLOAD_DATE').AsDateTime);
             tmp := '<HRDLOG_QSO_UPLOAD_DATE' +
-              dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+              dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -648,10 +653,10 @@ begin
               'HRDLOG_QSO_UPLOAD_STATUS').AsString;
             if LOTW_QSL_RCVD = '0' then
               tmp := '<HRDLOG_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('N', PADIExport.Win1251)
+                dmFunc.StringToADIF('N', utf8Len)
             else
               tmp := '<HRDLOG_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('Y', PADIExport.Win1251);
+                dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -661,7 +666,7 @@ begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'QRZCOM_QSO_UPLOAD_DATE').AsDateTime);
             tmp := '<QRZCOM_QSO_UPLOAD_DATE' +
-              dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+              dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -672,10 +677,10 @@ begin
               'QRZCOM_QSO_UPLOAD_STATUS').AsString;
             if LOTW_QSL_RCVD = '0' then
               tmp := '<QRZCOM_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('N', PADIExport.Win1251)
+                dmFunc.StringToADIF('N', utf8Len)
             else
               tmp := '<QRZCOM_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('Y', PADIExport.Win1251);
+                dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -685,7 +690,7 @@ begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'HAMLOGEU_QSO_UPLOAD_DATE').AsDateTime);
             tmp := '<HAMLOGEU_QSO_UPLOAD_DATE' +
-              dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+              dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -697,10 +702,10 @@ begin
               'HAMLOGEU_QSO_UPLOAD_STATUS').AsString;
             if LOTW_QSL_RCVD = '0' then
               tmp := '<HAMLOGEU_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('N', PADIExport.Win1251)
+                dmFunc.StringToADIF('N', utf8Len)
             else
               tmp := '<HAMLOGEU_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('Y', PADIExport.Win1251);
+                dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -710,7 +715,7 @@ begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'HAMLOGRU_QSO_UPLOAD_DATE').AsDateTime);
             tmp := '<HAMLOGRU_QSO_UPLOAD_DATE' +
-              dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+              dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -722,10 +727,10 @@ begin
               'HAMLOGRU_QSO_UPLOAD_STATUS').AsString;
             if LOTW_QSL_RCVD = '0' then
               tmp := '<HAMLOGRU_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('N', PADIExport.Win1251)
+                dmFunc.StringToADIF('N', utf8Len)
             else
               tmp := '<HAMLOGRU_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('Y', PADIExport.Win1251);
+                dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -735,7 +740,7 @@ begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
               'HAMQTH_QSO_UPLOAD_DATE').AsDateTime);
             tmp := '<HAMQTH_QSO_UPLOAD_DATE' +
-              dmFunc.StringToADIF(tmp, PADIExport.Win1251);
+              dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
@@ -747,10 +752,10 @@ begin
               'HAMQTH_QSO_UPLOAD_STATUS').AsString;
             if LOTW_QSL_RCVD = '0' then
               tmp := '<HAMQTH_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('N', PADIExport.Win1251)
+                dmFunc.StringToADIF('N', utf8Len)
             else
               tmp := '<HAMQTH_QSO_UPLOAD_STATUS' +
-                dmFunc.StringToADIF('Y', PADIExport.Win1251);
+                dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
 
@@ -758,12 +763,12 @@ begin
           if Query.Fields.FieldByName('MY_GRIDSQUARE').AsString <> '' then
           begin
             tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(Query.Fields.FieldByName(
-              'MY_GRIDSQUARE').AsString, PADIExport.Win1251);
+              'MY_GRIDSQUARE').AsString, utf8Len);
             Write(f, tmp);
           end
           else
           begin
-            tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(DefMyGrid, PADIExport.Win1251);
+            tmp := '<MY_GRIDSQUARE' + dmFunc.StringToADIF(DefMyGrid, utf8Len);
             Write(f, tmp);
           end;
 
@@ -772,12 +777,12 @@ begin
           begin
             tmp := '<MY_LAT' + dmFunc.StringToADIF(
               SetSizeLoc(Query.Fields.FieldByName('MY_LAT').AsString),
-              PADIExport.Win1251);
+              utf8Len);
             Write(f, tmp);
           end
           else
           begin
-            tmp := '<MY_LAT' + dmFunc.StringToADIF(DefMyLAT, PADIExport.Win1251);
+            tmp := '<MY_LAT' + dmFunc.StringToADIF(DefMyLAT, utf8Len);
             Write(f, tmp);
           end;
 
@@ -786,12 +791,12 @@ begin
           begin
             tmp := '<MY_LON' + dmFunc.StringToADIF(
               SetSizeLoc(Query.Fields.FieldByName('MY_LON').AsString),
-              PADIExport.Win1251);
+              utf8Len);
             Write(f, tmp);
           end
           else
           begin
-            tmp := '<MY_LON' + dmFunc.StringToADIF(DefMyLON, PADIExport.Win1251);
+            tmp := '<MY_LON' + dmFunc.StringToADIF(DefMyLON, utf8Len);
             Write(f, tmp);
           end;
 

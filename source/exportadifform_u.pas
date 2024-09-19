@@ -31,6 +31,7 @@ type
     CBConvertLatin: TCheckBox;
     CBSotaExport: TCheckBox;
     CBRemoveSlash: TCheckBox;
+    cbUTF8Length: TCheckBox;
     DateEdit1: TDateEdit;
     DateEdit2: TDateEdit;
     Image1: TImage;
@@ -70,7 +71,7 @@ implementation
 
 uses dmFunc_U, InitDB_dm, exportSettingsForm_u;
 
-{$R *.lfm}
+  {$R *.lfm}
 
 procedure TexportAdifForm.ExportADIArray;
 begin
@@ -178,7 +179,8 @@ begin
   PADIExport.Win1251 := CBExportOnWin.Checked;
   PADIExport.RusToLat := CBConvertLatin.Checked;
   PADIExport.FromForm := 'ExportAdifForm';
-  PADIExport.RemoveSlash:= CBRemoveSlash.Checked;
+  PADIExport.RemoveSlash := CBRemoveSlash.Checked;
+  PADIExport.UTF8Len := cbUTF8Length.Checked;
   ExportADIFThread := TExportADIFThread.Create;
   if Assigned(ExportADIFThread.FatalException) then
     raise ExportADIFThread.FatalException;
@@ -241,12 +243,12 @@ begin
   PbExport.Position := 0;
   if DBRecord.CurrentCall[Length(DBRecord.CurrentCall)] = '/' then
   begin
-    CBRemoveSlash.Enabled := true;
+    CBRemoveSlash.Enabled := True;
   end
   else
   begin
-    CBRemoveSlash.Enabled := false;
-    CBRemoveSlash.Checked := false;
+    CBRemoveSlash.Enabled := False;
+    CBRemoveSlash.Checked := False;
   end;
 end;
 

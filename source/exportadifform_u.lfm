@@ -1,12 +1,12 @@
 object exportAdifForm: TexportAdifForm
   Left = 298
-  Height = 211
+  Height = 213
   Top = 194
   Width = 442
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Export ADIF'
-  ClientHeight = 211
+  ClientHeight = 213
   ClientWidth = 442
   Font.Height = -12
   OnShow = FormShow
@@ -14,10 +14,10 @@ object exportAdifForm: TexportAdifForm
   LCLVersion = '3.2.0.0'
   object BTExport: TButton
     AnchorSideTop.Control = btSettings
-    AnchorSideTop.Side = asrBottom
+    AnchorSideTop.Side = asrCenter
     Left = 280
     Height = 25
-    Top = 158
+    Top = 164
     Width = 75
     Anchors = [akTop]
     BorderSpacing.Top = 5
@@ -78,11 +78,11 @@ object exportAdifForm: TexportAdifForm
   end
   object BTCancel: TButton
     AnchorSideTop.Control = btSettings
-    AnchorSideTop.Side = asrBottom
+    AnchorSideTop.Side = asrCenter
     AnchorSideBottom.Control = PbExport
     Left = 360
     Height = 25
-    Top = 158
+    Top = 164
     Width = 75
     Anchors = [akTop]
     BorderSpacing.Top = 5
@@ -539,7 +539,7 @@ object exportAdifForm: TexportAdifForm
   object PbExport: TProgressBar
     Left = 0
     Height = 20
-    Top = 191
+    Top = 193
     Width = 442
     Align = alBottom
     Smooth = True
@@ -572,18 +572,32 @@ object exportAdifForm: TexportAdifForm
     TabOrder = 11
   end
   object btSettings: TButton
-    AnchorSideLeft.Control = CBRemoveSlash
-    AnchorSideTop.Control = CBRemoveSlash
+    AnchorSideLeft.Control = LBNumberQSO
+    AnchorSideTop.Control = LBNumberQSO
     AnchorSideTop.Side = asrBottom
-    Left = 296
+    Left = 120
     Height = 25
-    Top = 128
+    Top = 164
     Width = 96
     AutoSize = True
     BorderSpacing.Top = 5
     Caption = 'Field Settings'
     TabOrder = 12
     OnClick = btSettingsClick
+  end
+  object cbUTF8Length: TCheckBox
+    AnchorSideLeft.Control = CBRemoveSlash
+    AnchorSideTop.Control = CBRemoveSlash
+    AnchorSideTop.Side = asrBottom
+    Left = 296
+    Height = 19
+    Top = 128
+    Width = 84
+    BorderSpacing.Top = 5
+    Caption = 'UTF8 Length'
+    Checked = True
+    State = cbChecked
+    TabOrder = 13
   end
   object SDExport: TSaveDialog
     OnClose = SDExportClose

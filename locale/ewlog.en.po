@@ -3028,6 +3028,10 @@ msgstr ""
 msgid "Export to SOTA"
 msgstr ""
 
+#: texportadifform.cbutf8length.caption
+msgid "UTF8 Length"
+msgstr ""
+
 #: texportadifform.label3.caption
 msgid "From"
 msgstr ""

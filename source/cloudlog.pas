@@ -17,7 +17,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, qso_record, fphttpclient;
+  Classes, SysUtils, strutils, qso_record, fphttpclient, LazUTF8;
 
 resourcestring
   rAnswerServer = 'Server response:';
@@ -66,7 +66,7 @@ var
   procedure AddData(const datatype, Data: string);
   begin
     if Data <> '' then
-      logdata := logdata + Format('<%s:%d>%s', [datatype, Length(Data), Data]);
+      logdata := logdata + Format('<%s:%d>%s', [datatype, UTF8Length(Data), Data]);
   end;
 
 begin
