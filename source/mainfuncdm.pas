@@ -1166,17 +1166,28 @@ var
   i: integer;
   Query: TSQLQuery;
   RecIndex: integer;
+  DS: TDataSet;
+  CurrentID, NextID: Integer;
 begin
   if DBRecord.InitDB = 'YES' then
   begin
+    DS := DBGrid.DataSource.DataSet;
+    if DS.IsEmpty then Exit;
+
     try
       Query := TSQLQuery.Create(nil);
       Query.DataBase := InitDB.SQLiteConnection;
-
+      CurrentID := DS.FieldByName('UnUsedIndex').AsInteger;
+      DS.Next;
+      if not DS.EOF then
+        NextID := DS.FieldByName('UnUsedIndex').AsInteger
+      else
+        NextID := -1;
+      DS.Prior;
       for i := 0 to DBGrid.SelectedRows.Count - 1 do
       begin
-        DBGrid.DataSource.DataSet.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
-        RecIndex := DBGrid.DataSource.DataSet.FieldByName('UnUsedIndex').AsInteger;
+        DS.GotoBookmark(Pointer(DBGrid.SelectedRows.Items[i]));
+        RecIndex := DS.FieldByName('UnUsedIndex').AsInteger;
         with Query do
         begin
           Close;
@@ -1190,11 +1201,23 @@ begin
       InitDB.DefTransaction.Commit;
       if not InitDB.SelectLogbookTable(LBRecord.LogTable) then
         ShowMessage(rDBError);
+
+      if NextID <> -1 then
+      begin
+        if not DS.Locate('UnUsedIndex', NextID, []) then
+          DS.Last;
+      end
+      else
+      begin
+        DS.Last;
+      end;
+
     finally
       FreeAndNil(Query);
     end;
   end;
 end;
+
 
 procedure TMainFunc.UpdateQSL(Field, Value: string; UQSO: TQSO);
 var
