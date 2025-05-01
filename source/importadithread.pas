@@ -35,6 +35,7 @@ type
     AllRec: integer;
     SearchPrefix: boolean;
     RemoveDup: boolean;
+    ExtSearchDup: boolean;
   end;
 
 type
@@ -324,6 +325,33 @@ begin
 
     AssignFile(temp_f, TempFile);
     Reset(temp_f);
+
+
+    Query:= 'DROP TRIGGER IF EXISTS check_duplicate_qso_with_time_window';
+    InitDB.SQLiteConnection.ExecuteDirect(Query);
+    if PADIImport.ExtSearchDup then
+      begin
+           Query:= 'CREATE TRIGGER check_duplicate_qso_with_time_window ' +
+           'BEFORE INSERT ON ' + LBRecord.LogTable + ' ' +
+           'FOR EACH ROW ' +
+           'BEGIN ' +
+           'SELECT RAISE(ABORT, ''Duplicate QSO'') ' +
+           'WHERE EXISTS (' +
+           'SELECT 1 FROM ' + LBRecord.LogTable + ' ' +
+           'WHERE CallSign = NEW.CallSign ' +
+           'AND QSODate = NEW.QSODate ' +
+           'AND QSOBand = NEW.QSOBand ' +
+           'AND (' +
+           'QSOTime = NEW.QSOTime ' +
+           'OR ' +
+           'QSOTime = substr(time(NEW.QSOTime || '':00'', ''+1 minute''), 1, 5) ' +
+           'OR ' +
+           'QSOTime = substr(time(NEW.QSOTime || '':00'', ''-1 minute''), 1, 5) ' +
+           ')' +
+           ');' +
+           'END;';
+           InitDB.SQLiteConnection.ExecuteDirect(Query);
+      end;
 
     while not (EOF(temp_f)) do
     begin
@@ -919,7 +947,7 @@ begin
       except
         on E: ESQLDatabaseError do
         begin
-          if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) then
+          if (E.ErrorCode = 1062) or (E.ErrorCode = 2067) or (E.ErrorCode = 1811) then
           begin
             Inc(Info.DupeCount);
             Synchronize(@ToForm);
@@ -950,6 +978,8 @@ begin
     Stream.Free;
     Synchronize(@ToForm);
   end;
+  Query:= 'DROP TRIGGER IF EXISTS check_duplicate_qso_with_time_window';
+  InitDB.SQLiteConnection.ExecuteDirect(Query);
 
 end;
 

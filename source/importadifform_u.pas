@@ -27,6 +27,7 @@ type
     Button2: TButton;
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
     FileNameEdit1: TFileNameEdit;
     GroupBox1: TGroupBox;
     Image1: TImage;
@@ -152,6 +153,7 @@ begin
     PADIImport.Comment := Memo1.Text;
     PADIImport.TimeOnOff := RadioButton1.Checked;
     PADIImport.RemoveDup := CheckBox2.Checked;
+    PADIImport.ExtSearchDup := CheckBox3.Checked;
     DeleteFile(FilePATH + ERR_FILE);
     ImportADIFThread := TImportADIFThread.Create;
     if Assigned(ImportADIFThread.FatalException) then

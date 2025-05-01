@@ -4109,6 +4109,10 @@ msgstr "ПЕРЕОПРЕДЕЛЯТЬ ТЕРРИТОРИЮ по позывном�
 msgid "Remove Duplicates"
 msgstr "Удалить дубликаты"
 
+#: timportadifform.checkbox3.caption
+msgid "Extended search dublicates ±1 min."
+msgstr "Расширенный поиск дублей ±1 мин"
+
 #: timportadifform.groupbox1.caption
 msgid "Save time"
 msgstr "Сохранять время"
