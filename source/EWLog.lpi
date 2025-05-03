@@ -831,10 +831,22 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="1">
+    <Exceptions Count="5">
       <Item1>
         <Name Value="EResNotFound"/>
       </Item1>
+      <Item2>
+        <Name Value="EProcess"/>
+      </Item2>
+      <Item3>
+        <Name Value="EIdSocketError"/>
+      </Item3>
+      <Item4>
+        <Name Value="EIdCouldNotBindSocket"/>
+      </Item4>
+      <Item5>
+        <Name Value="ESocketError"/>
+      </Item5>
     </Exceptions>
   </Debugging>
 </CONFIG>

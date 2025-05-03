@@ -467,6 +467,7 @@ var
   tempCall: string;
   tempMode: string;
   tempSubMode: string;
+  updateTimer: Boolean;
 begin
   tempCall := DataDigi.DXCall;
   tempMode := DataDigi.Mode;
@@ -505,7 +506,21 @@ begin
     EditState.Text := DataDigi.State;
 
   if DataDigi.Save then
+  begin
+    if DataDigi.date > 0 then
+    begin
+      if TMTime.Enabled = true then
+      begin
+        TMTime.Enabled := false;
+        updateTimer := true;
+      end;
+      DateTimePicker1.Time := DataDigi.date;
+    end;
     SBSave.Click;
+
+    if updateTimer then
+       TMTime.Enabled := true;
+  end;
 end;
 
 procedure TMiniForm.ShowInfoFromRIG;

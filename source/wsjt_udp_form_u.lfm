@@ -1,7 +1,7 @@
 object WSJT_UDP_Form: TWSJT_UDP_Form
-  Left = 1383
+  Left = 1433
   Height = 300
-  Top = 151
+  Top = 155
   Width = 400
   Caption = 'WSJT_UDP_Form'
   ClientHeight = 300
