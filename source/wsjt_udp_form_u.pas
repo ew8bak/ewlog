@@ -125,6 +125,14 @@ begin
     Result := 'FT8';
 end;
 
+function QDateTimeToTDateTime(const AQDateTime: TQDateTime): TDateTime;
+const
+  DELPHI_EPOCH_JD = 2415018.5;
+begin
+  Result := AQDateTime.JulianDay - DELPHI_EPOCH_JD;
+  Result := Result + (AQDateTime.MsecsSinceMidnight / MSecsPerDay);
+end;
+
 procedure TWSJT_UDP_Form.IdWsjtUDPUDPRead(AThread: TIdUDPListenerThread;
   AData: TIdBytes; ABinding: TIdSocketHandle);
 var
@@ -266,6 +274,7 @@ begin
             Unpack(AData, index, TXPower);
             Unpack(AData, index, comments);
             Unpack(AData, index, DXName);
+            date := QDateTimeToTDateTime(QSO.DateTimeOn);
 
             Memo1.Lines.Add('QSO сохранено: Дата:' +
               FormatDateTime('dd.mm.yyyy hh:mm:ss', date) +
@@ -315,5 +324,4 @@ begin
     end;
   end;
 end;
-
 end.

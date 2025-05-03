@@ -9,8 +9,9 @@ uses
 
 type
   TQDateTime = record
-    Date: TDateTime;
-    TimeSpec: Byte; // 0=local, 1=UTC, 2=Offset from UTC, 3=time zone
+    JulianDay: Int64;
+    MsecsSinceMidnight: Cardinal;
+    TimeSpec: Byte;         // 0=local, 1=UTC, 2=Offset from UTC, 3=time zone
     Offset: Integer;
   end;
 
@@ -115,21 +116,11 @@ begin
 end;
 
 function TQSODataDecoder.ReadQDateTime: TQDateTime;
-var
-  JulianDays: Int64;
-  MsecsSinceMidnight: Cardinal;
 begin
-  JulianDays := ReadInt64;
-  MsecsSinceMidnight := ReadUInt32;
+  Result.JulianDay := ReadInt64;
+  Result.MsecsSinceMidnight := ReadUInt32;
   Result.TimeSpec := FStream.ReadByte;
 
-  // Convert Julian day to TDateTime
-  Result.Date := JulianDays - 1721425.5; // Adjust for Delphi's epoch
-
-  // Add time part
-  Result.Date := Result.Date + (MsecsSinceMidnight / MSecsPerDay);
-
-  // Handle offset if timespec=2
   if Result.TimeSpec = 2 then
     Result.Offset := ReadUInt32
   else

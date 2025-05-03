@@ -1,19 +1,20 @@
 object WSJT_UDP_Form: TWSJT_UDP_Form
   Left = 1383
-  Height = 240
+  Height = 300
   Top = 151
-  Width = 320
+  Width = 400
   Caption = 'WSJT_UDP_Form'
-  ClientHeight = 240
-  ClientWidth = 320
+  ClientHeight = 300
+  ClientWidth = 400
+  DesignTimePPI = 120
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '3.8.0.0'
   object Memo1: TMemo
     Left = 0
-    Height = 240
+    Height = 300
     Top = 0
-    Width = 320
+    Width = 400
     Align = alClient
     TabOrder = 0
   end
@@ -27,7 +28,7 @@ object WSJT_UDP_Form: TWSJT_UDP_Form
     DefaultPort = 2237
     OnUDPRead = IdWsjtUDPUDPRead
     OnUDPException = IdWsjtUDPUDPException
-    Left = 248
-    Top = 176
+    Left = 310
+    Top = 220
   end
 end
