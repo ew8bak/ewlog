@@ -38,7 +38,8 @@ uses
   cthreads,
 {$ENDIF}{$ENDIF}
   Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics,
-  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils, digi_record;
+  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils, digi_record,
+  QSODataDecoder;
 
 const
   SJT65: string = '#';
@@ -143,6 +144,8 @@ var
   z: TStringList;
   Memomessage, locator: string;
   rst, RXDF, TXDF: integer;
+  Decoder: TQSODataDecoder;
+  QSO: TQSOLogged;
 begin
   peerPort := ABinding.PeerPort;
 
@@ -250,6 +253,9 @@ begin
 
           5:
           begin
+            Decoder := TQSODataDecoder.Create;
+            QSO := Decoder.DecodeMessage(AData);
+
             Unpack(AData, index, date);
             Unpack(AData, index, DataDigi.DXCall);
             Unpack(AData, index, DataDigi.DXGrid);

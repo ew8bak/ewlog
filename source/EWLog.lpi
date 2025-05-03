@@ -160,7 +160,7 @@
         <PackageName Value="LCL"/>
       </Item14>
     </RequiredPackages>
-    <Units Count="100">
+    <Units Count="101">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -804,6 +804,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="exportFields_record"/>
       </Unit99>
+      <Unit100>
+        <Filename Value="qsodatadecoder.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="QSODataDecoder"/>
+      </Unit100>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
