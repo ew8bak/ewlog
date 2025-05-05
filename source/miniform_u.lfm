@@ -1,7 +1,7 @@
 object MiniForm: TMiniForm
-  Left = 402
+  Left = 308
   Height = 484
-  Top = 143
+  Top = 118
   Width = 479
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'EWLog - HAM Journal'
@@ -14,7 +14,7 @@ object MiniForm: TMiniForm
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  LCLVersion = '3.2.0.0'
+  LCLVersion = '3.8.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 26
@@ -245,10 +245,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = LBUTCTimeD
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = LBUTCTimeD
-    Left = 189
+    Left = 188
     Height = 15
     Top = 31
-    Width = 21
+    Width = 22
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
@@ -523,7 +523,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBMode
     AnchorSideTop.Side = asrBottom
-    Left = 65
+    Left = 67
     Height = 23
     Top = 134
     Width = 50
@@ -555,7 +555,7 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 15
     Top = 138
-    Width = 58
+    Width = 60
     BorderSpacing.Left = 5
     Caption = 'Time (UTC)'
     ParentColor = False
@@ -568,7 +568,7 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 19
     Top = 174
-    Width = 69
+    Width = 70
     BorderSpacing.Left = 5
     Caption = 'Real Time'
     Checked = True
@@ -584,7 +584,7 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 19
     Top = 198
-    Width = 80
+    Width = 81
     BorderSpacing.Left = 5
     Caption = 'Save in UTC'
     Enabled = False
@@ -828,10 +828,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 183
+    Left = 182
     Height = 15
     Top = 125
-    Width = 23
+    Width = 24
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 203
     Caption = 'QTH'
@@ -843,10 +843,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 162
+    Left = 161
     Height = 15
     Top = 151
-    Width = 44
+    Width = 45
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 203
     Caption = 'RST sent'
@@ -858,10 +858,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditCallsign
     AnchorSideRight.Side = asrBottom
-    Left = 161
+    Left = 160
     Height = 15
     Top = 176
-    Width = 45
+    Width = 46
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 203
     Caption = 'RST rcvd'
@@ -966,7 +966,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = CBSaveUTC
     AnchorSideTop.Side = asrCenter
-    Left = 86
+    Left = 87
     Height = 19
     Top = 198
     Width = 45
@@ -1150,10 +1150,10 @@ object MiniForm: TMiniForm
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = EditGrid
     AnchorSideRight.Side = asrBottom
-    Left = 355
+    Left = 354
     Height = 15
     Top = 175
-    Width = 24
+    Width = 25
     Anchors = [akTop, akRight]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 85
@@ -1381,7 +1381,7 @@ object MiniForm: TMiniForm
     Left = 5
     Height = 15
     Top = 304
-    Width = 43
+    Width = 44
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
     Caption = 'Territory'
@@ -1424,7 +1424,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBTerritory
     AnchorSideTop.Side = asrCenter
-    Left = 51
+    Left = 52
     Height = 15
     Top = 304
     Width = 21
@@ -1473,7 +1473,7 @@ object MiniForm: TMiniForm
     Left = 107
     Height = 15
     Top = 329
-    Width = 30
+    Width = 29
     BorderSpacing.Left = 3
     Caption = 'Prefix'
     ParentColor = False
@@ -1500,7 +1500,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBPrefix
     AnchorSideTop.Side = asrCenter
-    Left = 140
+    Left = 139
     Height = 15
     Top = 329
     Width = 60
@@ -1590,7 +1590,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBDXCC
     AnchorSideTop.Side = asrCenter
-    Left = 203
+    Left = 202
     Height = 15
     Top = 329
     Width = 17
@@ -1604,7 +1604,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBCQ
     AnchorSideTop.Side = asrCenter
-    Left = 223
+    Left = 222
     Height = 15
     Top = 329
     Width = 20
@@ -1620,10 +1620,10 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBDXCC
     AnchorSideTop.Side = asrCenter
-    Left = 246
+    Left = 245
     Height = 15
     Top = 329
-    Width = 17
+    Width = 18
     BorderSpacing.Left = 3
     Caption = 'ITU'
     ParentColor = False
@@ -1791,7 +1791,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = LBTerritoryD
     AnchorSideTop.Side = asrCenter
-    Left = 75
+    Left = 76
     Height = 15
     Top = 304
     Width = 31

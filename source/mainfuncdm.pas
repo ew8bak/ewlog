@@ -846,6 +846,7 @@ procedure TMainFunc.UpdateEditQSO(index: integer; SQSO: TQSO);
 var
   QueryTXT: string;
   QSODates, QSLSentDates, QSLRecDates, LotWRecDates: string;
+  QSODateTime: string;
   SRXs, STXs: string;
   FormatSettings: TFormatSettings;
 begin
@@ -859,16 +860,20 @@ begin
       if SQSO.QSLSentDate = StrToDate('30.12.1899', FormatSettings) then
         QSLSentDates := 'NULL'
       else
-        QSLSentDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate));
+        QSLSentDates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSLSentDate)),
+        ',', '.', [rfReplaceAll]);
       if SQSO.QSLRecDate = StrToDate('30.12.1899', FormatSettings) then
         QSLRecDates := 'NULL'
       else
-        QSLRecDates := FloatToStr(DateTimeToJulianDate(SQSO.QSLRecDate));
+        QSLRecDates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.QSLRecDate)),
+        ',', '.', [rfReplaceAll]);
       if SQSO.LotWRecDate = StrToDate('30.12.1899', FormatSettings) then
         LotWRecDates := 'NULL'
       else
-        LotWRecDates := FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate));
+        LotWRecDates := StringReplace(FloatToStr(DateTimeToJulianDate(SQSO.LotWRecDate)),
+        ',', '.', [rfReplaceAll]);
 
+      QSODateTime := IntToStr(DateTimeToUnix(SQSO.QSODateTime));
 
       SRXs := IntToStr(SQSO.SRX);
       STXs := IntToStr(SQSO.STX);
@@ -882,7 +887,8 @@ begin
         SQSO.QSL_SENT_VIA := 'NULL';
 
       QueryTXT := 'UPDATE ' + LBRecord.LogTable + ' SET ' + 'CallSign = ' +
-        dmFunc.Q(SQSO.CallSing) + 'QSODate = ' + dmFunc.Q(QSODates) +
+        dmFunc.Q(SQSO.CallSing) + 'QSODateTime = ' + dmFunc.Q(QSODateTime) +
+        'QSODate = ' + dmFunc.Q(QSODates) +
         'QSOTime = ' + dmFunc.Q(SQSO.QSOTime) + 'QSOBand = ' +
         dmFunc.Q(SQSO.QSOBand) + 'QSOMode = ' + dmFunc.Q(SQSO.QSOMode) +
         'QSOSubMode = ' + dmFunc.Q(SQSO.QSOSubMode) + 'QSOReportSent = ' +

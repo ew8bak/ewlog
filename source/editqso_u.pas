@@ -237,6 +237,7 @@ begin
   UQSO.CallSing := EditCallSign.Text;
   UQSO.QSODate := DEDate.Date;
   UQSO.QSOTime := TimeToStr(DTTime.Time, FmtStngs);
+  UQSO.QSODateTime := DEDate.Date + DTTime.Time;
   UQSO.QSOBand := NameBand;
   UQSO.QSOMode := CBMode.Text;
   UQSO.QSOSubMode := CBSubMode.Text;
