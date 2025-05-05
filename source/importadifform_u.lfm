@@ -1,22 +1,23 @@
 object ImportADIFForm: TImportADIFForm
   Left = 359
-  Height = 217
+  Height = 290
   Top = 547
-  Width = 606
+  Width = 758
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Import from ADIF'
-  ClientHeight = 217
-  ClientWidth = 606
+  ClientHeight = 290
+  ClientWidth = 758
+  DesignTimePPI = 120
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '3.8.0.0'
   object Image1: TImage
     Left = 0
-    Height = 200
+    Height = 250
     Top = 0
-    Width = 130
+    Width = 162
     Picture.Data = {
       1754506F727461626C654E6574776F726B477261706869636329000089504E47
       0D0A1A0A0000000D494844520000007D000000C50802000000F67B6A6A000000
@@ -353,96 +354,96 @@ object ImportADIFForm: TImportADIFForm
     }
   end
   object CheckBox1: TCheckBox
-    Left = 144
-    Height = 19
-    Top = 4
-    Width = 179
+    Left = 180
+    Height = 24
+    Top = 5
+    Width = 223
     Caption = 'Compute DXCC from callsign'
     Checked = True
-    Font.Height = -12
+    Font.Height = -15
     Font.Style = [fsBold]
     ParentFont = False
     State = cbChecked
     TabOrder = 0
   end
   object CheckBox2: TCheckBox
-    Left = 144
-    Height = 19
-    Top = 24
-    Width = 121
+    Left = 180
+    Height = 24
+    Top = 30
+    Width = 149
     Caption = 'Remove Duplicates'
     Checked = True
     Enabled = False
-    Font.Height = -12
+    Font.Height = -15
     ParentFont = False
     State = cbChecked
     TabOrder = 1
   end
   object GroupBox1: TGroupBox
-    Left = 144
-    Height = 44
-    Top = 48
-    Width = 264
+    Left = 180
+    Height = 55
+    Top = 80
+    Width = 330
     Caption = 'Save time'
-    ClientHeight = 24
-    ClientWidth = 260
-    Font.Height = -12
+    ClientHeight = 30
+    ClientWidth = 326
+    Font.Height = -15
     ParentFont = False
     TabOrder = 2
     object RadioButton1: TRadioButton
-      Left = 8
-      Height = 19
+      Left = 24
+      Height = 24
       Top = 0
-      Width = 97
+      Width = 117
       Caption = 'Time OFF QSO'
       Checked = True
-      Font.Height = -12
+      Font.Height = -15
       ParentFont = False
       TabOrder = 1
       TabStop = True
     end
     object RadioButton2: TRadioButton
-      Left = 144
-      Height = 19
+      Left = 184
+      Height = 24
       Top = 0
-      Width = 94
+      Width = 114
       Caption = 'Time ON QSO'
-      Font.Height = -12
+      Font.Height = -15
       ParentFont = False
       TabOrder = 0
     end
   end
   object Memo1: TMemo
-    Left = 144
-    Height = 42
-    Top = 112
-    Width = 448
-    Font.Height = -12
+    Left = 180
+    Height = 52
+    Top = 151
+    Width = 560
+    Font.Height = -15
     ParentFont = False
     TabOrder = 3
   end
   object Label1: TLabel
-    Left = 144
-    Height = 15
-    Top = 96
-    Width = 181
+    Left = 180
+    Height = 20
+    Top = 131
+    Width = 227
     Caption = 'Comment for all imported records'
-    Font.Height = -12
+    Font.Height = -15
     ParentColor = False
     ParentFont = False
   end
   object FileNameEdit1: TFileNameEdit
-    Left = 144
-    Height = 21
-    Top = 168
-    Width = 280
+    Left = 180
+    Height = 27
+    Top = 221
+    Width = 350
     Filter = '*.adi|*.adi'
     FilterIndex = 0
     DefaultExt = '*.adi'
     HideDirectories = False
-    ButtonWidth = 23
+    ButtonWidth = 29
     NumGlyphs = 1
-    Font.Height = -11
+    Font.Height = -14
     MaxLength = 0
     ParentFont = False
     TabOrder = 4
@@ -454,101 +455,109 @@ object ImportADIFForm: TImportADIFForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = FileNameEdit1
     AnchorSideTop.Side = asrCenter
-    Left = 429
-    Height = 25
-    Top = 166
-    Width = 75
-    BorderSpacing.Left = 5
+    Left = 536
+    Height = 31
+    Top = 219
+    Width = 94
+    BorderSpacing.Left = 6
     Caption = 'Import'
-    Font.Height = -12
-    OnClick = Button1Click
+    Font.Height = -15
     ParentFont = False
     TabOrder = 5
+    OnClick = Button1Click
   end
   object Button2: TButton
     AnchorSideLeft.Control = Button1
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Button1
     AnchorSideTop.Side = asrCenter
-    Left = 509
-    Height = 25
-    Top = 166
-    Width = 75
-    BorderSpacing.Left = 5
+    Left = 636
+    Height = 31
+    Top = 219
+    Width = 94
+    BorderSpacing.Left = 6
     Caption = 'Cancel'
-    Font.Height = -12
-    OnClick = Button2Click
+    Font.Height = -15
     ParentFont = False
     TabOrder = 6
+    OnClick = Button2Click
   end
   object lblComplete: TLabel
-    Left = 480
-    Height = 15
-    Top = 88
-    Width = 41
+    Left = 600
+    Height = 20
+    Top = 110
+    Width = 51
     Caption = 'Waiting'
-    Font.Height = -12
+    Font.Height = -15
     ParentColor = False
     ParentFont = False
   end
   object lblCount: TLabel
-    Left = 416
-    Height = 15
-    Top = 24
-    Width = 94
+    Left = 520
+    Height = 20
+    Top = 30
+    Width = 119
     Caption = 'Imported Records'
-    Font.Height = -12
+    Font.Height = -15
     ParentColor = False
     ParentFont = False
   end
   object lblErrors: TLabel
-    Left = 416
-    Height = 15
-    Top = 40
-    Width = 69
+    Left = 520
+    Height = 20
+    Top = 50
+    Width = 87
     Caption = 'Import Errors'
-    Font.Height = -12
+    Font.Height = -15
     ParentColor = False
     ParentFont = False
   end
   object lblErrorLog: TLabel
-    Left = 416
-    Height = 15
-    Top = 56
-    Width = 44
+    Left = 520
+    Height = 20
+    Top = 70
+    Width = 57
     Caption = 'Error file'
-    Font.Height = -12
+    Font.Height = -15
     ParentColor = False
     ParentFont = False
     OnClick = lblErrorLogClick
   end
   object Label2: TLabel
-    Left = 416
-    Height = 15
-    Top = 72
-    Width = 115
+    Left = 520
+    Height = 20
+    Top = 90
+    Width = 144
     Caption = 'Number of duplicates'
-    Font.Height = -12
+    Font.Height = -15
     ParentColor = False
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 416
-    Height = 15
-    Top = 88
-    Width = 35
+    Left = 520
+    Height = 20
+    Top = 110
+    Width = 43
     Caption = 'Status:'
-    Font.Height = -12
+    Font.Height = -15
     ParentColor = False
     ParentFont = False
   end
   object PbImport: TProgressBar
     Left = 0
-    Height = 20
-    Top = 197
-    Width = 606
+    Height = 25
+    Top = 265
+    Width = 758
     Align = alBottom
     Smooth = True
     TabOrder = 7
+  end
+  object CheckBox3: TCheckBox
+    Left = 180
+    Height = 24
+    Top = 56
+    Width = 255
+    Caption = 'Extended search dublicates ±1 min.'
+    TabOrder = 8
   end
 end

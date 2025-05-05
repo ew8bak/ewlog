@@ -3812,6 +3812,10 @@ msgstr ""
 msgid "Remove Duplicates"
 msgstr ""
 
+#: timportadifform.checkbox3.caption
+msgid "Extended search dublicates ±1 min."
+msgstr ""
+
 #: timportadifform.groupbox1.caption
 msgid "Save time"
 msgstr ""

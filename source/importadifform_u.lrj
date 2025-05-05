@@ -13,5 +13,6 @@
 {"hash":76480419,"name":"timportadifform.lblerrors.caption","sourcebytes":[73,109,112,111,114,116,32,69,114,114,111,114,115],"value":"Import Errors"},
 {"hash":104990645,"name":"timportadifform.lblerrorlog.caption","sourcebytes":[69,114,114,111,114,32,102,105,108,101],"value":"Error file"},
 {"hash":189265907,"name":"timportadifform.label2.caption","sourcebytes":[78,117,109,98,101,114,32,111,102,32,100,117,112,108,105,99,97,116,101,115],"value":"Number of duplicates"},
-{"hash":178830394,"name":"timportadifform.label3.caption","sourcebytes":[83,116,97,116,117,115,58],"value":"Status:"}
+{"hash":178830394,"name":"timportadifform.label3.caption","sourcebytes":[83,116,97,116,117,115,58],"value":"Status:"},
+{"hash":138628222,"name":"timportadifform.checkbox3.caption","sourcebytes":[69,120,116,101,110,100,101,100,32,115,101,97,114,99,104,32,100,117,98,108,105,99,97,116,101,115,32,194,177,49,32,109,105,110,46],"value":"Extended search dublicates \u00B11 min."}
 ]}
