@@ -38,7 +38,8 @@ uses
   cthreads,
 {$ENDIF}{$ENDIF}
   Classes, SysUtils, IdUDPServer, FileUtil, Forms, Controls, Graphics,
-  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils, digi_record;
+  StdCtrls, IdComponent, IdSocketHandle, IdGlobal, dateutils, WsjtUtils, digi_record,
+  QSODataDecoder;
 
 const
   SJT65: string = '#';
@@ -124,6 +125,14 @@ begin
     Result := 'FT8';
 end;
 
+function QDateTimeToTDateTime(const AQDateTime: TQDateTime): TDateTime;
+const
+  DELPHI_EPOCH_JD = 2415018.5;
+begin
+  Result := (AQDateTime.JulianDay - DELPHI_EPOCH_JD) - 0.5;
+  Result := Result + (AQDateTime.MsecsSinceMidnight / MSecsPerDay);
+end;
+
 procedure TWSJT_UDP_Form.IdWsjtUDPUDPRead(AThread: TIdUDPListenerThread;
   AData: TIdBytes; ABinding: TIdSocketHandle);
 var
@@ -143,6 +152,8 @@ var
   z: TStringList;
   Memomessage, locator: string;
   rst, RXDF, TXDF: integer;
+  Decoder: TQSODataDecoder;
+  QSO: TQSOLogged;
 begin
   peerPort := ABinding.PeerPort;
 
@@ -250,6 +261,9 @@ begin
 
           5:
           begin
+            Decoder := TQSODataDecoder.Create;
+            QSO := Decoder.DecodeMessage(AData);
+
             Unpack(AData, index, date);
             Unpack(AData, index, DataDigi.DXCall);
             Unpack(AData, index, DataDigi.DXGrid);
@@ -260,6 +274,9 @@ begin
             Unpack(AData, index, TXPower);
             Unpack(AData, index, comments);
             Unpack(AData, index, DXName);
+
+            date := QDateTimeToTDateTime(QSO.DateTimeOn);
+            DataDigi.date := date;
 
             Memo1.Lines.Add('QSO сохранено: Дата:' +
               FormatDateTime('dd.mm.yyyy hh:mm:ss', date) +
