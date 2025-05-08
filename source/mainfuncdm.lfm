@@ -3,7 +3,7 @@ object MainFunc: TMainFunc
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 251
-  HorizontalOffset = 849
-  VerticalOffset = 155
+  HorizontalOffset = 854
+  VerticalOffset = 159
   Width = 253
 end

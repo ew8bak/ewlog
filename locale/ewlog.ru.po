@@ -1243,7 +1243,9 @@ msgid "Designed by EW8BAK"
 msgstr "Разработан EW8BAK"
 
 #: tabout_form.label4.caption
-msgid "Copyright 2015 - 2021 Uladzimir Karpenka"
+#, fuzzy
+#| msgid "Copyright 2015 - 2021 Uladzimir Karpenka"
+msgid "Copyright 2015 - 2025 Uladzimir Karpenka"
 msgstr "Copyright 2015 - 2021 Владимир Карпенко"
 
 #: tabout_form.label5.caption

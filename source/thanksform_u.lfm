@@ -1,81 +1,80 @@
 object Thanks_Form: TThanks_Form
   Left = 309
-  Height = 188
+  Height = 192
   Top = 146
-  Width = 535
+  Width = 546
   BorderStyle = bsDialog
   Caption = 'Thanks'
-  ClientHeight = 188
-  ClientWidth = 535
-  DesignTimePPI = 94
+  ClientHeight = 192
+  ClientWidth = 546
   FormStyle = fsStayOnTop
   Position = poScreenCenter
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '3.8.0.0'
   object Label1: TLabel
     Left = 8
-    Height = 18
+    Height = 15
     Top = 8
-    Width = 268
+    Width = 237
     Caption = 'Thanks to the help and testing of the EWLog '
   end
   object Label2: TLabel
-    Left = 24
-    Height = 18
-    Top = 31
-    Width = 138
+    Left = 25
+    Height = 15
+    Top = 32
+    Width = 125
     Caption = 'EW2MS - Mikhail Senko'
     Font.Color = clRed
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 24
-    Height = 18
-    Top = 47
-    Width = 157
+    Left = 25
+    Height = 15
+    Top = 48
+    Width = 138
     Caption = 'RN3DDP - Sergey Savchuk'
     Font.Color = clRed
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 24
-    Height = 18
-    Top = 63
-    Width = 165
+    Left = 25
+    Height = 15
+    Top = 64
+    Width = 149
     Caption = 'R9OCN - Andrey Horoshilov'
     Font.Color = clRed
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 24
-    Height = 18
-    Top = 78
-    Width = 154
+    Left = 25
+    Height = 15
+    Top = 80
+    Width = 139
     Caption = 'RW3DY - Nikolay Evgrafov'
     Font.Color = clRed
     ParentFont = False
   end
   object Label6: TLabel
     Left = 8
-    Height = 18
-    Top = 164
-    Width = 511
+    Height = 15
+    Top = 167
+    Width = 454
     Caption = 'And to all the people who responded to the development :). Maybe someone forgot ...'
   end
   object Label7: TLabel
     AnchorSideLeft.Control = Label12
-    Left = 199
-    Height = 18
-    Top = 47
-    Width = 88
+    Left = 184
+    Height = 15
+    Top = 48
+    Width = 76
     Caption = 'Sergey Korhov'
     Font.Color = clRed
     ParentFont = False
   end
   object Label8: TLabel
-    Left = 24
-    Height = 18
-    Top = 94
-    Width = 160
+    Left = 25
+    Height = 15
+    Top = 96
+    Width = 144
     Caption = 'RX3DQX - Vladimir Antipov'
     Font.Color = clRed
     ParentFont = False
@@ -83,10 +82,10 @@ object Thanks_Form: TThanks_Form
   object Image1: TImage
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 436
-    Height = 88
+    Left = 445
+    Height = 90
     Top = 21
-    Width = 94
+    Width = 96
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 5
     OnClick = Image1Click
@@ -366,28 +365,28 @@ object Thanks_Form: TThanks_Form
     Proportional = True
   end
   object Label9: TLabel
-    Left = 24
-    Height = 18
-    Top = 125
-    Width = 138
+    Left = 25
+    Height = 15
+    Top = 128
+    Width = 124
     Caption = 'R9WBZ - Sergey Nohrin'
     Font.Color = clRed
     ParentFont = False
   end
   object Label10: TLabel
-    Left = 23
-    Height = 18
-    Top = 110
-    Width = 137
+    Left = 25
+    Height = 15
+    Top = 112
+    Width = 125
     Caption = 'UT5QBC - Yuri Lubenec'
     Font.Color = clRed
     ParentFont = False
   end
   object Label11: TLabel
-    Left = 24
-    Height = 18
-    Top = 141
-    Width = 132
+    Left = 25
+    Height = 15
+    Top = 144
+    Width = 120
     Caption = 'RX0TX - Oleg Chudaev'
     Font.Color = clRed
     ParentFont = False
@@ -395,18 +394,18 @@ object Thanks_Form: TThanks_Form
   object Bevel1: TBevel
     AnchorSideLeft.Control = Label4
     AnchorSideLeft.Side = asrBottom
-    Left = 194
-    Height = 124
-    Top = 31
+    Left = 179
+    Height = 127
+    Top = 32
     Width = 3
     BorderSpacing.Left = 5
   end
   object Label12: TLabel
     AnchorSideLeft.Control = Bevel1
-    Left = 199
-    Height = 18
-    Top = 31
-    Width = 156
+    Left = 184
+    Height = 15
+    Top = 32
+    Width = 140
     BorderSpacing.Left = 5
     Caption = 'R9XAL - Aleksey Panyukov'
     Font.Color = clRed
@@ -416,10 +415,10 @@ object Thanks_Form: TThanks_Form
     AnchorSideLeft.Control = Label7
     AnchorSideTop.Control = Label7
     AnchorSideTop.Side = asrBottom
-    Left = 199
-    Height = 18
-    Top = 65
-    Width = 121
+    Left = 184
+    Height = 15
+    Top = 63
+    Width = 110
     Caption = 'RL2B - Mikhail Genin'
     Font.Color = clRed
     ParentFont = False
