@@ -451,6 +451,8 @@ begin
           LBRecord.QRZComPassword :=
             LogBookInfoQuery.FieldByName('QRZCOM_Password').AsString;
           LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
+          LBRecord.QSOSuToken := LogBookInfoQuery.FieldByName('QSOSU_Token').AsString;
+          LBRecord.AutoQSOsu := LogBookInfoQuery.FieldByName('AutoQSOsu').AsBoolean;;
           LogBookInfoQuery.Close;
 
           dmMigrate.Migrate(LBRecord.CallSign, LBRecord.Description);

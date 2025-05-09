@@ -19,7 +19,7 @@ uses
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, CloudLogCAT, progressForm_u,
   FileUtil, FMS_record, telnetaddresrecord_u, LazSysUtils, SQLite3DS,
-  exportFields_record;
+  exportFields_record, qsosu;
 
 type
   bandArray = array of string;
@@ -717,7 +717,7 @@ begin
   //Отправка в ClubLog
   if via = 'clublog' then
   begin
-    SendClubLogThread := TSendClubLogThread.Create;
+      SendClubLogThread := TSendClubLogThread.Create;
     if Assigned(SendClubLogThread.FatalException) then
       raise SendClubLogThread.FatalException;
     SendClubLogThread.SendQSO := SendQSO;
@@ -725,6 +725,18 @@ begin
     SendClubLogThread.password := LBRecord.ClubLogPassword;
     SendClubLogThread.callsign := LBRecord.CallSign;
     SendClubLogThread.Start;
+    Exit;
+  end;
+  //Отправка в QSO.su
+  if via = 'qsosu' then
+  begin
+    SendQsoSuThread := TSendQSOsuLogThread.Create;
+    if Assigned(SendQsoSuThread.FatalException) then
+       raise SendQsoSuThread.FatalException;
+    SendQsoSuThread.SendQSO := SendQSO;
+    SendQsoSuThread.callsign := LBRecord.CallSign;
+    SendQsoSuThread.token := LBRecord.QSOSuToken;
+    SendQsoSuThread.Start;
     Exit;
   end;
 end;

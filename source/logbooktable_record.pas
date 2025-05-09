@@ -46,6 +46,8 @@ type
     QRZComLogin: string[20];
     QRZComPassword: string[20];
     AutoQRZCom: boolean;
+    QSOSuToken: string[50];
+    AutoQSOsu: boolean;
   end;
 
 implementation

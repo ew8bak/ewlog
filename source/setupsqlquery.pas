@@ -36,7 +36,10 @@ const
     '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
     '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), '
     + '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, '
-    + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
+    + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL,' 
+    +'`Table_version` varchar(10),'
+    +'`QSOSU_Token` varchar(50)'
+    +');';
 
 
   Insert_Table_LogBookInfo = 'INSERT INTO LogBookInfo ' +

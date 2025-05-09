@@ -1660,6 +1660,8 @@ begin
         MainFunc.SendQSOto('hamqth', SQSO);
       if LBRecord.AutoQRZCom then
         MainFunc.SendQSOto('qrzcom', SQSO);
+      if LBRecord.AutoQSOsu then
+        MainFunc.SendQSOto('qsosu', SQSO);
       if IniSet.AutoCloudLog then
         MainFunc.SendQSOto('cloudlog', SQSO);
       if IniSet.WorkOnLAN then

@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, SQLDB, Dialogs, InitDB_dm, ResourceStr;
 
 const
-  Current_Table = '1.5.1';
+  Current_Table = '1.5.2';
 
 type
   TdmMigrate = class(TDataModule)
@@ -19,6 +19,7 @@ type
     function Migrate148(Callsign: string): boolean;
     function Migrate150(Callsign: string): boolean;
     function Migrate151(Callsign: string): boolean;
+    function Migrate152(Callsign: string): boolean;
     function CheckTableVersion(Callsign, MigrationVer: string): boolean;
     function SearchColumn(table, column: string): boolean;
   public
@@ -105,6 +106,7 @@ begin
   Migrate148(Callsign);
   Migrate150(Callsign);
   Migrate151(Callsign);
+  Migrate152(Callsign);
 end;
 
 function TdmMigrate.MigrationEnd(ToTableVersion, Callsign: string): boolean;
@@ -472,6 +474,58 @@ begin
         end;
         ShowMessage('Migrate151: Error: ' + E.ClassName + #13#10 + E.Message);
         WriteLn(ExceptFile, 'Migrate151: Error: ' + E.ClassName + ':' + E.Message);
+      end;
+    end;
+
+  finally
+    FreeAndNil(Query);
+  end;
+end;
+
+function TdmMigrate.Migrate152(Callsign: string): boolean;
+const
+  Version = '1.5.2';
+var
+  Query: TSQLQuery;
+begin
+  Result := False;
+  if not CheckTableVersion(Callsign, Version) then
+    Exit;
+  try
+    try
+      ShowMessage(rDBNeedUpdate + Version);
+      Query := TSQLQuery.Create(nil);
+      Query.DataBase := InitDB.SQLiteConnection;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
+      Query.SQL.Add('QSOSU_Token varchar(50) DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
+      Query.SQL.Add('AutoQSOsu tinyint(1) DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QSOSU_QSO_UPLOAD_DATE datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QSOSU_QSO_UPLOAD_STATUS tinyint(1) DEFAULT NULL;');
+      Query.ExecSQL;
+      InitDB.DefTransaction.Commit;
+      if MigrationEnd(Version, Callsign) then
+        Result := True;
+
+    except
+      on E: Exception do
+      begin
+        if Pos('duplicate', E.Message) > 0 then
+        begin
+          MigrationEnd(Version, Callsign);
+          Exit;
+        end;
+        ShowMessage('Migrate146: Error: ' + E.ClassName + #13#10 + E.Message);
+        WriteLn(ExceptFile, 'Migrate146: Error: ' + E.ClassName + ':' + E.Message);
       end;
     end;
 

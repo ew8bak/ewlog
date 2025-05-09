@@ -227,6 +227,36 @@ msgctxt "qrzcom.runknownuser"
 msgid "Unknown user! See settings"
 msgstr "Неизвестный пользователь. Смотри настройки"
 
+#: qsosu.ranswerserver
+#, fuzzy
+msgctxt "qsosu.ranswerserver"
+msgid "Server response:"
+msgstr "Ответ сервера:"
+
+#: qsosu.rerrorsendingsata
+#, fuzzy
+msgctxt "qsosu.rerrorsendingsata"
+msgid "Error sending data"
+msgstr "Ошибка отправки данных"
+
+#: qsosu.rnoentryadded
+#, fuzzy
+msgctxt "qsosu.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr "Запись не добавлена! Похоже на дубликат!"
+
+#: qsosu.rrecordaddedsuccessfully
+#, fuzzy
+msgctxt "qsosu.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr "Запись успешно добавлена"
+
+#: qsosu.runknownuser
+#, fuzzy
+msgctxt "qsosu.runknownuser"
+msgid "Unknown user! See settings"
+msgstr "Неизвестный пользователь. Смотри настройки"
+
 #: resourcestr.ppleasefile
 msgctxt "resourcestr.ppleasefile"
 msgid "Please specify a file for export!"
@@ -4404,6 +4434,11 @@ msgctxt "tlogconfigform.cbuploadqrzcom.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr "Загружать каждый раз, при добавлении QSO"
 
+#: tlogconfigform.cbuploadqsosu.caption
+msgctxt "tlogconfigform.cbuploadqsosu.caption"
+msgid "Upload every time a logbook entry is added"
+msgstr ""
+
 #: tlogconfigform.editqslinfo.text
 msgctxt "tlogconfigform.editqslinfo.text"
 msgid "TNX For QSO TU 73!"
@@ -4412,6 +4447,10 @@ msgstr ""
 #: tlogconfigform.lbapikeyqrzcom.caption
 msgctxt "tlogconfigform.lbapikeyqrzcom.caption"
 msgid "API key"
+msgstr ""
+
+#: tlogconfigform.lbapikeyqrzcom1.caption
+msgid "API token"
 msgstr ""
 
 #: tlogconfigform.lbcallsign.caption
@@ -4567,6 +4606,10 @@ msgctxt "tlogconfigform.lbqrzcom.caption"
 msgid "QRZ.COM"
 msgstr ""
 
+#: tlogconfigform.lbqrzcom1.caption
+msgid "QSO.su"
+msgstr ""
+
 #: tlogconfigform.lbqslinfo.caption
 #, fuzzy
 msgctxt "tlogconfigform.lbqslinfo.caption"
@@ -4613,6 +4656,12 @@ msgstr "Сервисы"
 
 #: tlogconfigform.tabsheet3.caption
 msgctxt "tlogconfigform.tabsheet3.caption"
+msgid "Services"
+msgstr "Сервисы"
+
+#: tlogconfigform.tabsheet4.caption
+#, fuzzy
+msgctxt "tlogconfigform.tabsheet4.caption"
 msgid "Services"
 msgstr "Сервисы"
 

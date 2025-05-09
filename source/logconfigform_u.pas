@@ -29,6 +29,8 @@ type
     cbUploadHamQTH: TCheckBox;
     cbUploadClubLog: TCheckBox;
     cbUploadQRZcom: TCheckBox;
+    cbUploadQSOsu: TCheckBox;
+    editAPItokenQSOsu: TEdit;
     EditDescription: TEdit;
     EditQSLinfo: TEdit;
     editLoginEqslcc: TEdit;
@@ -51,11 +53,13 @@ type
     EditCQ: TEdit;
     EditLat: TEdit;
     EditLon: TEdit;
+    lbAPIkeyQRZcom1: TLabel;
     lbLog: TLabel;
     lbCQ: TLabel;
     lbGrid: TLabel;
     lbLat: TLabel;
     lbLon: TLabel;
+    lbQRZcom1: TLabel;
     lbQSLinfo: TLabel;
     LBDefaultCall: TLabel;
     lbEqslcc: TLabel;
@@ -96,6 +100,7 @@ type
     TabSheet3: TTabSheet;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
+    TabSheet4: TTabSheet;
     procedure btSaveClick(Sender: TObject);
     procedure btCancelClick(Sender: TObject);
     procedure EditGridChange(Sender: TObject);
@@ -173,6 +178,8 @@ begin
       editLoginQRZcom.Text := Query.FieldByName('QRZCOM_User').AsString;
       editAPIkeyQRZcom.Text := Query.FieldByName('QRZCOM_Password').AsString;
       cbUploadQRZcom.Checked := Query.FieldByName('AutoQRZCom').AsBoolean;
+      cbUploadQSOsu.Checked := Query.FieldByName('AutoQSOsu').AsBoolean;
+      editAPItokenQSOsu.Text := Query.FieldByName('QSOSU_Token').AsString;
       id := Query.FieldByName('id').AsInteger;
     end
     else
@@ -205,7 +212,8 @@ begin
           ' `QSLInfo`=:QSLInfo, `EQSLLogin`=:EQSLLogin, `EQSLPassword`=:EQSLPassword,' +
           ' `AutoEQSLcc`=:AutoEQSLcc, `HRDLogLogin`=:HRDLogLogin,' +
           ' `HRDLogPassword`=:HRDLogPassword, `AutoHRDLog`=:AutoHRDLog,' +
-          ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword, `AutoQRZCom`=:AutoQRZCom,'
+          ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword, `AutoQRZCom`=:AutoQRZCom,' +
+          ' `AutoQSOsu`=:AutoQSOsu, `QSOSU_Token`=:QSOSU_Token,'
           + ' `QRZCOM_User`=:QRZCOM_User, `QRZCOM_Password`=:QRZCOM_Password,' +
           ' `ClubLog_User`=:ClubLog_User, `ClubLog_Password`=:ClubLog_Password,' +
           ' `AutoHamQTH`=:AutoHamQTH, `AutoClubLog`=:AutoClubLog, `LoTW_User`=:LoTW_User,'
@@ -237,6 +245,8 @@ begin
         Params.ParamByName('QRZCOM_User').AsString := editLoginQRZcom.Text;
         Params.ParamByName('QRZCOM_Password').AsString := editAPIkeyQRZcom.Text;
         Params.ParamByName('AutoQRZCom').AsBoolean := cbUploadQRZcom.Checked;
+        Params.ParamByName('QSOSU_Token').AsString := editAPItokenQSOsu.Text;
+        Params.ParamByName('AutoQSOsu').AsBoolean := cbUploadQSOsu.Checked;
 
         Params.ParamByName('id').AsInteger := id;
         ExecSQL;
