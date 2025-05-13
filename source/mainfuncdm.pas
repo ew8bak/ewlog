@@ -1263,7 +1263,8 @@ begin
             SQLString + ', CLUBLOG_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
         'HAMQTH_QSO_UPLOAD_STATUS': SQLString :=
             SQLString + ', HAMQTH_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
-
+        'QSOSU_QSO_UPLOAD_STATUS': SQLString :=
+            SQLString + ', QSOSU_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
       end;
 
 

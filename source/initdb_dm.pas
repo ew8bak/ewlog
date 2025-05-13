@@ -16,7 +16,7 @@ interface
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, Dialogs, LogBookTable_record,
   DB_record, ResourceStr, IniFiles, RegExpr, LazUTF8, init_record, ImbedCallBookCheckRec,
-  Forms, LCLType, UniqueInstance;
+  Forms, LCLType, UniqueInstance, DB;
 
 type
   TParamData = record
@@ -377,6 +377,7 @@ function TInitDB.GetLogBookTable(DescriptionLog: string): boolean;
 var
   LogBookInfoQuery: TSQLQuery;
   fieldNameDescription: String;
+  QSOSuTokenField, AutoQSOsuField: TField;
 begin
   Result := False;
   fieldNameDescription:='Description';
@@ -451,8 +452,11 @@ begin
           LBRecord.QRZComPassword :=
             LogBookInfoQuery.FieldByName('QRZCOM_Password').AsString;
           LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
-          LBRecord.QSOSuToken := LogBookInfoQuery.FieldByName('QSOSU_Token').AsString;
-          LBRecord.AutoQSOsu := LogBookInfoQuery.FieldByName('AutoQSOsu').AsBoolean;;
+
+          QSOSuTokenField := LogBookInfoQuery.FindField('QSOSU_Token');
+          if Assigned(QSOSuTokenField) then LBRecord.QSOSuToken := QSOSuTokenField.AsString;
+          AutoQSOsuField := LogBookInfoQuery.FindField('AutoQSOsu');
+          if Assigned(AutoQSOsuField) then LBRecord.AutoQSOsu := AutoQSOsuField.AsBoolean;
           LogBookInfoQuery.Close;
 
           dmMigrate.Migrate(LBRecord.CallSign, LBRecord.Description);

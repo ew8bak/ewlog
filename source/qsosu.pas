@@ -8,7 +8,8 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, qso_record, fphttpclient;
+  Classes, SysUtils, strutils, qso_record, fphttpclient, DateUtils, SQLDB,
+  InitDB_dm, SQLite3Conn;
 
 resourcestring
   rAnswerServer = 'Server response:';
@@ -27,12 +28,14 @@ type
   protected
     procedure Execute; override;
     procedure ShowResult;
+    procedure SyncShowResult;
     function SendQSOsu(SendQSOr: TQSO): boolean;
     function getCallsingID(myCallSign: string): boolean;
   private
     result_mes: string;
     getDoc: boolean;
     Done: boolean;
+    FSuccess: boolean;
   public
     SendQSO: TQSO;
     token: string;
@@ -44,6 +47,7 @@ type
   end;
 
 function StripStr(t, s: string): string;
+function DateToISO8601(const DateTime: TDateTime): String;
 
 var
   SendQSOsuThread: TSendQSOsuLogThread;
@@ -57,10 +61,30 @@ begin
   Result := StringReplace(s, t, '', [rfReplaceAll]);
 end;
 
+function DateToISO8601(const DateTime: TDateTime): String;
+var
+  Year, Month, Day: Word;
+  Hour, Min, Sec, MSec: Word;
+begin
+  DecodeDate(DateTime, Year, Month, Day);
+  DecodeTime(DateTime, Hour, Min, Sec, MSec);
+  Result := Format('%.4d-%.2d-%.2dT%.2d:%.2d:%.2d', [Year, Month, Day, Hour, Min, Sec]);
+end;
+
 function TSendQSOsuLogThread.SendQSOsu(SendQSOr: TQSO): boolean;
 var
   HTTP: TFPHttpClient;
+  RequestBody: TStringStream;
+  Response: string;
+  JsonData: TJSONData;
+  ResponseObj: TJSONObject;
   QSOData: TJSONObject;
+  hash: string;
+  Query: TSQLQuery;
+  QSO_ID: integer;
+  LocalConn: TSQLite3Connection;
+  LocalTrans: TSQLTransaction;
+  LocalQuery: TSQLQuery;
 begin
   if callsignID = 0 then getCallsingID(callsign);
   QSOData := TJSONObject.Create;
@@ -71,12 +95,100 @@ begin
   QSOData.Add('mode', SendQSOr.QSOMode);
   QSOData.Add('submode', SendQSOr.QSOSubMode);
   QSOData.Add('freq', StringReplace(SendQSOr.QSOBand, '.', '', [rfReplaceAll]) + '0');
+  QSOData.Add('datetime', DateToISO8601(SendQSOr.QSODateTime));
+  QSOData.Add('name', SendQSOr.OmName);
+  QSOData.Add('rsts', SendQSOr.QSOReportSent);
+  QSOData.Add('rstr', SendQSOr.QSOReportRecived);
+  QSOData.Add('qth', SendQSOr.OmQTH);
+  QSOData.Add('state', SendQSOr.OmQTH);
+  QSOData.Add('cnty', SendQSOr.State0);
+  QSOData.Add('gridsquare', SendQSOr.Grid);
+  QSOData.Add('my_cnty', SendQSOr.My_State);
+  QSOData.Add('my_gridsquare', SendQSOr.My_Grid);
+  QSOData.Add('cqz', SendQSOr.CQZone);
+  QSOData.Add('ituz', SendQSOr.ITUZone);
 
+  Result := False;
   HTTP := TFPHttpClient.Create(nil);
-  HTTP.AllowRedirect := True;
-  HTTP.AddHeader('Authorization', 'Bearer ' + token);
-  //ToDo JSON
-  Result := true;
+  RequestBody := TStringStream.Create(QSOData.AsJSON, TEncoding.UTF8);
+  try
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('Authorization', 'Bearer ' + token);
+    HTTP.AddHeader('Content-Type', 'application/json');
+    HTTP.RequestBody := RequestBody;
+
+    try
+      Response := HTTP.Post(BaseURL + '/sendLog');
+
+      if HTTP.ResponseStatusCode = 201 then
+      begin
+        JsonData := GetJSON(Response);
+        try
+          if JsonData.JSONType = jtObject then
+          begin
+            ResponseObj := TJSONObject(JsonData).Objects['response'];
+            hash := ResponseObj.Get('hash', '');
+            if hash = '' then
+            begin
+              result_mes := TJSONObject(JsonData).Get('message', 'Unknown error');
+            end
+            else
+            begin
+              LocalConn := TSQLite3Connection.Create(nil);
+              LocalTrans := TSQLTransaction.Create(nil);
+              Query := TSQLQuery.Create(nil);
+              try
+                InitDB.DefTransaction.Commit;
+                InitDB.GetLogBookTable();
+                LocalConn.DatabaseName := InitDB.SQLiteConnection.DatabaseName;
+                LocalConn.Transaction := LocalTrans;
+                LocalConn.Connected := True;
+                LocalTrans.StartTransaction;
+
+                Query.DataBase := LocalConn;
+                Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
+                                 ' WHERE CallSign = :CallSign AND QSOTime = :QSOTime AND QSOBand = :QSOBand';
+
+                Query.ParamByName('CallSign').AsString := SendQSOr.CallSing;
+                Query.ParamByName('QSOTime').AsString := SendQSOr.QSOTime;
+                Query.ParamByName('QSOBand').AsString := SendQSOr.QSOBand;
+                Query.Open;
+
+                QSO_ID := Query.FieldByName('UnUsedIndex').AsInteger;
+
+                Query.Close;
+                Query.SQL.Clear;
+                Query.SQL.Add('UPDATE ' + LBRecord.LogTable +
+                                  ' SET QSOSU_HASH = :Hash ' +
+                                  ' WHERE UnUsedIndex = :ID');
+                Query.ParamByName('Hash').AsString := hash;
+                Query.ParamByName('ID').AsInteger := QSO_ID;
+                Query.ExecSQL;
+                LocalTrans.Commit;
+              finally
+                Query.Free;
+              end;
+
+            end;
+          end;
+        finally
+          JsonData.Free;
+        end;
+      end
+      else
+      begin
+        result_mes := 'HTTP Error: ' + IntToStr(HTTP.ResponseStatusCode);
+      end;
+    except
+      on E: Exception do
+        result_mes := E.Message;
+    end;
+  finally
+    RequestBody.Free;
+    HTTP.Free;
+  end;
+
+
 end;
 
 function TSendQSOsuLogThread.getCallsingID(myCallSign: string): Boolean;
@@ -154,6 +266,7 @@ begin
     HTTP.Free;
   end;
 end;
+
 constructor TSendQSOsuLogThread.Create;
 begin
   FreeOnTerminate := True;
@@ -161,12 +274,17 @@ begin
   inherited Create(True);
 end;
 
+procedure TSendQSOsuLogThread.SyncShowResult;
+begin
+  if FSuccess and Assigned(OnQSOsuSent) then
+    OnQSOsuSent;
+  ShowResult;
+end;
+
 procedure TSendQSOsuLogThread.Execute;
 begin
-  if SendQSOsu(SendQSO) then
-    if Assigned(OnQSOsuSent) then
-      Synchronize(OnQSOsuSent);
-  Synchronize(@ShowResult);
+  FSuccess := SendQSOsu(SendQSO);
+  Synchronize(@SyncShowResult);
 end;
 
 procedure TSendQSOsuLogThread.ShowResult;

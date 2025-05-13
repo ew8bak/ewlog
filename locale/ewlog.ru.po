@@ -3961,6 +3961,10 @@ msgctxt "tgridsform.markqsoitem.caption"
 msgid "Mark this QSO"
 msgstr "Пометить QSO"
 
+#: tgridsform.menuitem1.caption
+msgid "Export QSO to QSU.su"
+msgstr ""
+
 #: tgridsform.menuitem4.caption
 msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"

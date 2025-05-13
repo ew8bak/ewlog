@@ -512,6 +512,10 @@ begin
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
       Query.SQL.Add('QSOSU_QSO_UPLOAD_STATUS tinyint(1) DEFAULT NULL;');
       Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QSOSU_HASH varchar(50) DEFAULT NULL;');
+      Query.ExecSQL;
       InitDB.DefTransaction.Commit;
       if MigrationEnd(Version, Callsign) then
         Result := True;

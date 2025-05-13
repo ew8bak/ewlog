@@ -95,6 +95,7 @@
 {"hash":155585415,"name":"tgridsform.exportclublogitem.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,67,108,117,98,76,111,103],"value":"Export QSO to ClubLog"},
 {"hash":233950984,"name":"tgridsform.exporthamqthitem.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,72,97,109,81,84,72],"value":"Export QSO to HamQTH"},
 {"hash":109199559,"name":"tgridsform.exportcloudlogitem.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,67,108,111,117,100,108,111,103],"value":"Export QSO to Cloudlog"},
+{"hash":209693733,"name":"tgridsform.menuitem1.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,81,83,85,46,115,117],"value":"Export QSO to QSU.su"},
 {"hash":198800002,"name":"tgridsform.prefixitem.caption","sourcebytes":[80,114,101,102,105,120,32,77,97,110,97,103,101,114],"value":"Prefix Manager"},
 {"hash":184963791,"name":"tgridsform.edititem.caption","sourcebytes":[69,100,105,116,32,81,83,79],"value":"Edit QSO"},
 {"hash":209081074,"name":"tgridsform.filteritem.caption","sourcebytes":[82,101,99,111,114,100,32,70,105,108,116,101,114],"value":"Record Filter"},
