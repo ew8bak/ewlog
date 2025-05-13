@@ -8,8 +8,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, qso_record, fphttpclient, DateUtils, SQLDB,
-  InitDB_dm, SQLite3Conn;
+  Classes, SysUtils, strutils, qso_record, fphttpclient, DateUtils;
 
 resourcestring
   rAnswerServer = 'Server response:';
@@ -80,11 +79,6 @@ var
   ResponseObj: TJSONObject;
   QSOData: TJSONObject;
   hash: string;
-  Query: TSQLQuery;
-  QSO_ID: integer;
-  LocalConn: TSQLite3Connection;
-  LocalTrans: TSQLTransaction;
-  LocalQuery: TSQLQuery;
 begin
   if callsignID = 0 then getCallsingID(callsign);
   QSOData := TJSONObject.Create;
@@ -134,41 +128,7 @@ begin
             end
             else
             begin
-              LocalConn := TSQLite3Connection.Create(nil);
-              LocalTrans := TSQLTransaction.Create(nil);
-              Query := TSQLQuery.Create(nil);
-              try
-                InitDB.DefTransaction.Commit;
-                InitDB.GetLogBookTable();
-                LocalConn.DatabaseName := InitDB.SQLiteConnection.DatabaseName;
-                LocalConn.Transaction := LocalTrans;
-                LocalConn.Connected := True;
-                LocalTrans.StartTransaction;
-
-                Query.DataBase := LocalConn;
-                Query.SQL.Text := 'SELECT UnUsedIndex FROM ' + LBRecord.LogTable +
-                                 ' WHERE CallSign = :CallSign AND QSOTime = :QSOTime AND QSOBand = :QSOBand';
-
-                Query.ParamByName('CallSign').AsString := SendQSOr.CallSing;
-                Query.ParamByName('QSOTime').AsString := SendQSOr.QSOTime;
-                Query.ParamByName('QSOBand').AsString := SendQSOr.QSOBand;
-                Query.Open;
-
-                QSO_ID := Query.FieldByName('UnUsedIndex').AsInteger;
-
-                Query.Close;
-                Query.SQL.Clear;
-                Query.SQL.Add('UPDATE ' + LBRecord.LogTable +
-                                  ' SET QSOSU_HASH = :Hash ' +
-                                  ' WHERE UnUsedIndex = :ID');
-                Query.ParamByName('Hash').AsString := hash;
-                Query.ParamByName('ID').AsInteger := QSO_ID;
-                Query.ExecSQL;
-                LocalTrans.Commit;
-              finally
-                Query.Free;
-              end;
-
+               MainFunc.UpdateQSL('QSOSU_HASH', hash, SendQSO);
             end;
           end;
         finally

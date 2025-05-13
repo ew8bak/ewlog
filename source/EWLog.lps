@@ -559,9 +559,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="MainFuncDM"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="12"/>
-        <TopLine Value="1234"/>
-        <CursorPos X="30" Y="1240"/>
+        <TopLine Value="1240"/>
+        <CursorPos Y="1248"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -1063,11 +1064,10 @@
       <Unit101>
         <Filename Value="qsosu.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="13"/>
-        <TopLine Value="193"/>
-        <CursorPos X="41" Y="142"/>
-        <FoldState Value=" T3iF03111 Pidk60y"/>
+        <TopLine Value="120"/>
+        <CursorPos Y="131"/>
+        <FoldState Value=" T3iE03111 PidjA0+"/>
         <UsageCount Value="195"/>
         <Loaded Value="True"/>
       </Unit101>
@@ -1272,123 +1272,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="qsosu.pas"/>
-        <Caret Line="271" Column="30" TopLine="175"/>
+        <Caret Line="141" Column="34" TopLine="129"/>
       </Position1>
       <Position2>
         <Filename Value="qsosu.pas"/>
-        <Caret Line="270" Column="60" TopLine="116"/>
+        <Caret Line="156" Column="36" TopLine="134"/>
       </Position2>
       <Position3>
         <Filename Value="qsosu.pas"/>
-        <Caret Line="85" Column="25" TopLine="125"/>
+        <Caret Line="161" Column="26" TopLine="147"/>
       </Position3>
       <Position4>
-        <Filename Value="qsosu.pas"/>
-        <Caret Line="141" Column="34" TopLine="129"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1293" Column="33" TopLine="1280"/>
       </Position4>
       <Position5>
-        <Filename Value="qsosu.pas"/>
-        <Caret Line="156" Column="36" TopLine="134"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="1464" Column="86" TopLine="1440"/>
       </Position5>
       <Position6>
-        <Filename Value="qsosu.pas"/>
-        <Caret Line="161" Column="26" TopLine="147"/>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="2234" Column="92" TopLine="2211"/>
       </Position6>
       <Position7>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1293" Column="33" TopLine="1280"/>
+        <Caret Line="2246" Column="53" TopLine="2223"/>
       </Position7>
       <Position8>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="1464" Column="86" TopLine="1440"/>
+        <Caret Line="2330" Column="68" TopLine="2307"/>
       </Position8>
       <Position9>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="2234" Column="92" TopLine="2211"/>
+        <Caret Line="2363" Column="13" TopLine="2340"/>
       </Position9>
       <Position10>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="2246" Column="53" TopLine="2223"/>
+        <Caret Line="22" Column="29" TopLine="8"/>
       </Position10>
       <Position11>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="2330" Column="68" TopLine="2307"/>
+        <Caret Line="658" Column="35" TopLine="650"/>
       </Position11>
       <Position12>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="2363" Column="13" TopLine="2340"/>
+        <Caret Line="67" Column="24" TopLine="55"/>
       </Position12>
       <Position13>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="22" Column="29" TopLine="8"/>
+        <Caret Line="654" Column="30" TopLine="639"/>
       </Position13>
       <Position14>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="658" Column="35" TopLine="650"/>
+        <Caret Line="67" Column="24" TopLine="55"/>
       </Position14>
       <Position15>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="67" Column="24" TopLine="55"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1479" Column="37" TopLine="1470"/>
       </Position15>
       <Position16>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="654" Column="30" TopLine="639"/>
+        <Filename Value="miniform_u.pas"/>
+        <Caret Line="1651" Column="15" TopLine="1643"/>
       </Position16>
       <Position17>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="67" Column="24" TopLine="55"/>
+        <Caret Line="49" Column="22" TopLine="35"/>
       </Position17>
       <Position18>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1479" Column="37" TopLine="1470"/>
-      </Position18>
-      <Position19>
-        <Filename Value="miniform_u.pas"/>
-        <Caret Line="1651" Column="15" TopLine="1643"/>
-      </Position19>
-      <Position20>
-        <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="49" Column="22" TopLine="35"/>
-      </Position20>
-      <Position21>
         <Filename Value="qsosu.pas"/>
         <Caret Line="142" Column="46" TopLine="126"/>
+      </Position18>
+      <Position19>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="64" Column="18" TopLine="50"/>
+      </Position19>
+      <Position20>
+        <Filename Value="qsosu.pas"/>
+        <Caret Line="142" Column="41" TopLine="128"/>
+      </Position20>
+      <Position21>
+        <Filename Value="initdb_dm.pas"/>
+        <Caret Line="54" Column="29" TopLine="41"/>
       </Position21>
       <Position22>
         <Filename Value="initdb_dm.pas"/>
-        <Caret Line="64" Column="18" TopLine="50"/>
+        <Caret Line="190" Column="29" TopLine="167"/>
       </Position22>
       <Position23>
-        <Filename Value="qsosu.pas"/>
-        <Caret Line="142" Column="41" TopLine="128"/>
-      </Position23>
-      <Position24>
-        <Filename Value="initdb_dm.pas"/>
-        <Caret Line="54" Column="29" TopLine="41"/>
-      </Position24>
-      <Position25>
-        <Filename Value="initdb_dm.pas"/>
-        <Caret Line="190" Column="29" TopLine="167"/>
-      </Position25>
-      <Position26>
         <Filename Value="gridsform_u.pas"/>
         <Caret Line="440" Column="27" TopLine="432"/>
-      </Position26>
-      <Position27>
+      </Position23>
+      <Position24>
         <Filename Value="gridsform_u.pas"/>
         <Caret Line="274" Column="31" TopLine="272"/>
-      </Position27>
-      <Position28>
+      </Position24>
+      <Position25>
         <Filename Value="mainfuncdm.pas"/>
         <Caret Line="60" Column="24" TopLine="47"/>
+      </Position25>
+      <Position26>
+        <Filename Value="qsosu.pas"/>
+        <Caret Line="142" Column="41" TopLine="193"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mainfuncdm.pas"/>
+        <Caret Line="105" Column="24" TopLine="92"/>
+      </Position27>
+      <Position28>
+        <Filename Value="qsosu.pas"/>
+        <Caret Line="11" Column="67"/>
       </Position28>
       <Position29>
         <Filename Value="qsosu.pas"/>
-        <Caret Line="142" Column="41" TopLine="193"/>
+        <Caret Line="131" TopLine="120"/>
       </Position29>
       <Position30>
         <Filename Value="mainfuncdm.pas"/>
-        <Caret Line="105" Column="24" TopLine="92"/>
+        <Caret Line="105" Column="24" TopLine="93"/>
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -1404,6 +1404,13 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="dmmigrate_u.pas"/>
         <Line Value="497"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="mainfuncdm.pas"/>
+        <Line Value="1248"/>
       </Item>
     </BreakPoints>
   </Debugging>
