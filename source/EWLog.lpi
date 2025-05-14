@@ -27,8 +27,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
-      <RevisionNr Value="2"/>
-      <BuildNr Value="960"/>
+      <BuildNr Value="962"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">

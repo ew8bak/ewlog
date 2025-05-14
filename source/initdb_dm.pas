@@ -93,7 +93,7 @@ function TryStrToFloatSafe(const aStr: string; out aValue: double): boolean;
 
 implementation
 
-uses MainFuncDM, databasesettingsform_u, ConfigForm_U, dmFunc_U, dmmigrate_u;
+uses MainFuncDM, databasesettingsform_u, dmFunc_U, dmmigrate_u;
 
 {$R *.lfm}
 

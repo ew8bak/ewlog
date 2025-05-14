@@ -38,6 +38,7 @@ type
     procedure DataModuleDestroy(Sender: TObject);
   private
     SearchPrefixQuery: TSQLQuery;
+    function GetDPIScaleFactor(Form: TForm): Double;
   public
     procedure SaveWindowPosition(nameForm: TForm);
     procedure LoadWindowPosition(nameForm: TForm);
@@ -523,6 +524,14 @@ begin
   end;
 end;
 
+function TMainFunc.GetDPIScaleFactor(Form: TForm): Double;
+begin
+  if Form.Monitor <> nil then
+    Result := Form.Monitor.PixelsPerInch / 96.0
+  else
+    Result := Screen.PixelsPerInch / 96.0;
+end;
+
 procedure TMainFunc.SetDXColumns(VST: TVirtualStringTree; Save: boolean;
   var VirtualST: TVirtualStringTree);
 var
@@ -535,16 +544,60 @@ begin
       VST.Header.SaveToStream(VSTSaveStream);
       VSTSaveStream.SaveToFile(FilePATH + 'dxColumns.dat');
     end
-    else
+   else
     if FileExistsUTF8(FilePATH + 'dxColumns.dat') then
     begin
       VSTSaveStream.LoadFromFile(FilePATH + 'dxColumns.dat');
       VirtualST.Header.LoadFromStream(VSTSaveStream);
     end;
   finally
-    VSTSaveStream.Free;
+    FreeAndNil(VSTSaveStream);
   end;
 end;
+
+//procedure TMainFunc.SetDXColumns(VST: TVirtualStringTree; Save: boolean;
+//  var VirtualST: TVirtualStringTree);
+//var
+//  HeaderHeight: Integer;
+//  HeaderWidth: Integer;
+//  ScaleFactor: Double;
+//  VSTSaveStream: TFileStream;
+//  VSTLoadStream: TFileStream;
+//  i: integer;
+//begin
+//  VSTSaveStream := nil;
+//  VSTLoadStream := nil;
+//  try
+//    ScaleFactor := GetDPIScaleFactor(dxClusterForm);
+//
+//    if Save then
+//    begin
+//      HeaderHeight := Round(VST.Header.Height / ScaleFactor);
+//      VSTSaveStream := TFileStream.Create(FilePATH + 'Header.vst', fmOpenReadWrite or fmCreate);
+//      VSTSaveStream.Write(HeaderHeight, SizeOf(Integer));
+//      for i:=0 to VST.Header.Columns.Count - 1 do begin
+//          HeaderWidth := Round(VST.Header.Columns[i].Width / ScaleFactor);
+//          VSTSaveStream.Write(HeaderWidth, SizeOf(Integer));
+//      end;
+//    end
+//   else
+//    if FileExistsUTF8(FilePATH + 'Header.vst') then
+//    begin
+//      VSTLoadStream := TFileStream.Create(FilePATH + 'Header.vst', fmOpenRead);
+//      VSTLoadStream.Read(HeaderHeight, SizeOf(Integer));
+//      VST.Header.Height := Round(HeaderHeight * ScaleFactor);
+//
+//      for i:=0 to VST.Header.Columns.Count - 1 do begin
+//        VSTLoadStream.Read(HeaderWidth, SizeOf(Integer));
+//        VST.Header.Columns[i].Width := Round(HeaderWidth * ScaleFactor);
+//      end;
+//    end;
+//  finally
+//    FreeAndNil(VSTSaveStream);
+//    FreeAndNil(VSTLoadStream);
+//  end;
+//end;
+
 
 function TMainFunc.FindInCallBook(Callsign: string): TFoundQSOR;
 var

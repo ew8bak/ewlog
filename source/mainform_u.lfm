@@ -7,12 +7,11 @@ object MainForm: TMainForm
   ClientHeight = 667
   ClientWidth = 1208
   KeyPreview = True
+  Position = poDefault
+  ShowInTaskBar = stAlways
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  Position = poDefault
-  ShowInTaskBar = stAlways
-  LCLVersion = '2.2.2.0'
   object LeftPanel: TPanel
     Left = 0
     Height = 667

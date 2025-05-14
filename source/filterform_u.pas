@@ -14,7 +14,7 @@ unit filterForm_U;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
 
 type
 

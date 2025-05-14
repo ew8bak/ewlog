@@ -4,5 +4,5 @@ object filterForm: TfilterForm
   Top = 158
   Width = 556
   Caption = 'Record Filter'
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '4.0.0.4'
 end

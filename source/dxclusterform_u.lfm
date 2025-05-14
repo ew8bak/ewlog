@@ -1,7 +1,7 @@
 object dxClusterForm: TdxClusterForm
-  Left = 397
+  Left = 361
   Height = 240
-  Top = 633
+  Top = 652
   Width = 735
   Caption = 'DX Cluster'
   ClientHeight = 240
@@ -11,11 +11,10 @@ object dxClusterForm: TdxClusterForm
   OnDestroy = FormDestroy
   OnResize = FormResize
   OnShow = FormShow
-  LCLVersion = '2.2.2.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 206
-    Top = 34
+    Height = 214
+    Top = 26
     Width = 735
     ActivePage = TabSheet2
     Align = alClient
@@ -25,14 +24,14 @@ object dxClusterForm: TdxClusterForm
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'Telnet'
-      ClientHeight = 171
-      ClientWidth = 731
+      ClientHeight = 186
+      ClientWidth = 727
       ParentFont = False
       object Memo1: TMemo
         Left = 0
-        Height = 148
+        Height = 163
         Top = 0
-        Width = 731
+        Width = 727
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoVertical
@@ -41,80 +40,89 @@ object dxClusterForm: TdxClusterForm
       object EditCommand: TEdit
         Left = 0
         Height = 23
-        Top = 148
-        Width = 731
+        Top = 163
+        Width = 727
         Align = alBottom
         AutoSize = False
-        OnKeyDown = EditCommandKeyDown
         ParentFont = False
         TabOrder = 1
+        OnKeyDown = EditCommandKeyDown
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'DX Cluster'
-      ClientHeight = 171
-      ClientWidth = 731
+      ClientHeight = 186
+      ClientWidth = 727
       ParentFont = False
       object VSTCluster: TVirtualStringTree
         Cursor = 63
         Left = 0
-        Height = 171
+        Height = 186
         Top = 0
-        Width = 731
+        Width = 727
         Align = alClient
         DefaultText = 'Node'
         Header.AutoSizeIndex = 0
         Header.Columns = <        
           item
+            MaxWidth = 120
             Position = 0
             Text = 'Band'
-            Width = 70
+            Width = 83
           end        
           item
+            MaxWidth = 130
             Position = 1
             Text = 'DX'
             Width = 70
           end        
           item
+            MaxWidth = 130
             Position = 2
             Text = 'Spotter'
             Width = 90
           end        
           item
+            MaxWidth = 120
             Position = 3
             Text = 'Frequency'
             Width = 70
           end        
           item
+            MaxWidth = 90
             Position = 4
             Text = 'Mode'
           end        
           item
+            MaxWidth = 180
             Position = 5
             Text = 'Comment'
-            Width = 100
           end        
           item
+            MaxWidth = 70
             Position = 6
             Text = 'UTC'
             Width = 40
           end        
           item
+            MaxWidth = 80
             Position = 7
             Text = 'Grid'
-            Width = 70
+            Width = 60
           end        
           item
+            MaxWidth = 130
             Position = 8
             Text = 'Country'
-            Width = 150
+            Width = 100
           end>
-        Header.Height = 22
-        Header.Options = [hoColumnResize, hoDrag, hoShowImages, hoShowSortGlyphs, hoVisible]
+        Header.Height = 20
+        Header.MaxHeight = 40
+        Header.Options = [hoColumnResize, hoDrag, hoShowImages, hoShowSortGlyphs, hoVisible, hoHeightResize]
         ParentFont = False
         PopupMenu = PopupCluster
         TabOrder = 0
-        TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScroll, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes, toAutoChangeScale]
+        TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScroll, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes]
         TreeOptions.SelectionOptions = [toFullRowSelect]
         OnChange = VSTClusterChange
         OnClick = VSTClusterClick
@@ -131,15 +139,15 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Private messages'
-      ClientHeight = 171
-      ClientWidth = 731
+      ClientHeight = 186
+      ClientWidth = 727
       ParentFont = False
       TabVisible = False
       object Memo2: TMemo
         Left = 0
-        Height = 111
+        Height = 126
         Top = 30
-        Width = 731
+        Width = 727
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoBoth
@@ -149,19 +157,19 @@ object dxClusterForm: TdxClusterForm
         Left = 0
         Height = 30
         Top = 0
-        Width = 731
+        Width = 727
         Align = alTop
         ClientHeight = 30
-        ClientWidth = 731
+        ClientWidth = 727
         TabOrder = 1
         object Label1: TLabel
           AnchorSideLeft.Control = Panel2
           AnchorSideTop.Control = Panel2
           AnchorSideTop.Side = asrCenter
           Left = 6
-          Height = 18
-          Top = 6
-          Width = 65
+          Height = 15
+          Top = 8
+          Width = 61
           BorderSpacing.Left = 5
           Caption = 'To Callsign:'
           ParentColor = False
@@ -172,7 +180,7 @@ object dxClusterForm: TdxClusterForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel2
           AnchorSideTop.Side = asrCenter
-          Left = 76
+          Left = 72
           Height = 23
           Top = 4
           Width = 129
@@ -186,20 +194,20 @@ object dxClusterForm: TdxClusterForm
       object Panel3: TPanel
         Left = 0
         Height = 30
-        Top = 141
-        Width = 731
+        Top = 156
+        Width = 727
         Align = alBottom
         ClientHeight = 30
-        ClientWidth = 731
+        ClientWidth = 727
         TabOrder = 2
         object Label2: TLabel
           AnchorSideLeft.Control = Panel3
           AnchorSideTop.Control = Panel3
           AnchorSideTop.Side = asrCenter
           Left = 6
-          Height = 18
-          Top = 6
-          Width = 55
+          Height = 15
+          Top = 8
+          Width = 49
           BorderSpacing.Left = 5
           Caption = 'Message:'
           ParentColor = False
@@ -209,22 +217,22 @@ object dxClusterForm: TdxClusterForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel3
           AnchorSideTop.Side = asrCenter
-          Left = 66
+          Left = 60
           Height = 23
           Top = 4
           Width = 595
           AutoSize = False
           BorderSpacing.Left = 5
-          OnKeyDown = EditMessageKeyDown
           ParentFont = False
           TabOrder = 0
+          OnKeyDown = EditMessageKeyDown
         end
         object SpeedButton7: TSpeedButton
           AnchorSideTop.Control = Panel3
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = Panel3
           AnchorSideRight.Side = asrBottom
-          Left = 702
+          Left = 698
           Height = 22
           Top = 4
           Width = 23
@@ -272,14 +280,14 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet4: TTabSheet
       Caption = 'Forecast'
-      ClientHeight = 171
-      ClientWidth = 731
+      ClientHeight = 186
+      ClientWidth = 727
       ParentFont = False
       object Memo3: TMemo
         Left = 0
-        Height = 171
+        Height = 186
         Top = 0
-        Width = 731
+        Width = 727
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoBoth
@@ -288,14 +296,14 @@ object dxClusterForm: TdxClusterForm
     end
     object TabSheet5: TTabSheet
       Caption = 'Messages'
-      ClientHeight = 171
-      ClientWidth = 731
+      ClientHeight = 186
+      ClientWidth = 727
       ParentFont = False
       object Memo4: TMemo
         Left = 0
-        Height = 171
+        Height = 186
         Top = 0
-        Width = 731
+        Width = 727
         Align = alClient
         ReadOnly = True
         ScrollBars = ssAutoBoth
@@ -305,12 +313,12 @@ object dxClusterForm: TdxClusterForm
   end
   object Panel1: TPanel
     Left = 0
-    Height = 34
+    Height = 26
     Top = 0
     Width = 735
     Align = alTop
     AutoSize = True
-    ClientHeight = 34
+    ClientHeight = 26
     ClientWidth = 735
     TabOrder = 1
     object SBConnect: TSpeedButton
@@ -319,7 +327,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 6
       Height = 22
-      Top = 6
+      Top = 2
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -367,7 +375,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 34
       Height = 22
-      Top = 6
+      Top = 2
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -415,7 +423,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 62
       Height = 22
-      Top = 6
+      Top = 2
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -463,7 +471,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 90
       Height = 22
-      Top = 6
+      Top = 2
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -511,7 +519,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Side = asrCenter
       Left = 118
       Height = 22
-      Top = 6
+      Top = 2
       Width = 23
       BorderSpacing.Left = 5
       Glyph.Data = {
@@ -559,7 +567,7 @@ object dxClusterForm: TdxClusterForm
       AnchorSideRight.Side = asrBottom
       Left = 706
       Height = 22
-      Top = 6
+      Top = 2
       Width = 23
       Anchors = [akTop, akRight]
       BorderSpacing.Right = 5
@@ -607,15 +615,15 @@ object dxClusterForm: TdxClusterForm
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 146
-      Height = 32
-      Top = 1
+      Height = 23
+      Top = 2
       Width = 326
       BorderSpacing.Left = 5
-      ItemHeight = 18
-      OnChange = CBServersChange
+      ItemHeight = 15
       ParentFont = False
       Style = csDropDownList
       TabOrder = 0
+      OnChange = CBServersChange
     end
   end
   object PopupCluster: TPopupMenu
