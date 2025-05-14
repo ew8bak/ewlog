@@ -19,7 +19,7 @@ uses
   foundQSO_record, StdCtrls, Grids, Graphics, DateUtils, mvTypes, mvMapViewer,
   VirtualTrees, LazFileUtils, LCLType, CloudLogCAT, progressForm_u,
   FileUtil, FMS_record, telnetaddresrecord_u, LazSysUtils, SQLite3DS,
-  exportFields_record, qsosu;
+  exportFields_record, qsosu, fphttpclient, fpjson;
 
 type
   bandArray = array of string;
@@ -105,6 +105,7 @@ type
     procedure UpdateQSL(Field, Value: string; UQSO: TQSO);
     procedure TruncateTable(TableName: string);
     procedure VacuumDB;
+    procedure DeleteQSOsu(hash: string);
   end;
 
 var
@@ -1001,7 +1002,11 @@ var
   Field_QSL: string;
   Field_QSLs: string;
   Field_QSLSentAdv: string;
+  Field: TField;
 begin
+  Field := DS.FindField('QSL');
+  if not Assigned(Field) then Exit;
+
   Field_QSL := DS.FieldByName('QSL').AsString;
   Field_QSLs := DS.FieldByName('QSLs').AsString;
   Field_QSLSentAdv := DS.FieldByName('QSLSentAdv').AsString;
@@ -1186,6 +1191,7 @@ var
   RecIndex: integer;
   DS: TDataSet;
   CurrentID, NextID: Integer;
+  QSOsu_HASH: string;
 begin
   if DBRecord.InitDB = 'YES' then
   begin
@@ -1196,6 +1202,14 @@ begin
       Query := TSQLQuery.Create(nil);
       Query.DataBase := InitDB.SQLiteConnection;
       CurrentID := DS.FieldByName('UnUsedIndex').AsInteger;
+
+      Query.SQL.Clear;
+      Query.SQL.Text := 'SELECT QSOSU_HASH FROM ' + LBRecord.LogTable + ' WHERE UnUsedIndex = ' + intToStr(CurrentID);
+      Query.Open;
+      QSOsu_HASH := Query.FieldByName('QSOSU_HASH').AsString;
+
+      if (QSOsu_HASH <> '') and (LBRecord.AutoQSOsu) then DeleteQSOsu(QSOsu_HASH);
+
       DS.Next;
       if not DS.EOF then
         NextID := DS.FieldByName('UnUsedIndex').AsInteger
@@ -1236,6 +1250,25 @@ begin
   end;
 end;
 
+procedure TMainFunc.DeleteQSOsu(hash: string);
+var
+  QSOData: TJSONObject;
+  HTTP: TFPHttpClient;
+  RequestBody: TStringStream;
+begin
+  QSOData := TJSONObject.Create;
+  QSOData.Add('hash', hash);
+  HTTP := TFPHttpClient.Create(nil);
+  RequestBody := TStringStream.Create(QSOData.AsJSON, TEncoding.UTF8);
+  try
+    HTTP.AllowRedirect := True;
+    HTTP.AddHeader('Authorization', 'Bearer ' + LBRecord.QSOSuToken);
+    HTTP.AddHeader('Content-Type', 'application/json');
+    HTTP.RequestBody := RequestBody;
+    HTTP.Delete('https://api.qso.su/method/v1/deleteByHashLog');
+  finally
+  end;
+end;
 
 procedure TMainFunc.UpdateQSL(Field, Value: string; UQSO: TQSO);
 var

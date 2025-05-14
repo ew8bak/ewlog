@@ -105,6 +105,11 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <Verbosity>
+              <ShowLineNum Value="True"/>
+            </Verbosity>
+          </Other>
         </CompilerOptions>
       </Item3>
     </BuildModes>
