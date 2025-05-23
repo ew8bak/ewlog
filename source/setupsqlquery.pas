@@ -19,24 +19,27 @@ uses
 
 const
   Table_LogBookInfo = 'CREATE TABLE IF NOT EXISTS `LogBookInfo` ( ' +
-    '`id` integer UNIQUE PRIMARY KEY, `LogTable` varchar(100) NOT NULL, ' +
+    '`id` INTEGER UNIQUE PRIMARY KEY, `LogTable` TEXT NOT NULL, ' +
     '`Description` TEXT NOT NULL UNIQUE, ' +
-    '`CallName` varchar(15) NOT NULL, `Name` varchar(100) NOT NULL, ' +
-    '`QTH` varchar(100) NOT NULL, `ITU` int(11) NOT NULL, ' +
-    '`CQ` int(11) NOT NULL, `Loc` varchar(32) NOT NULL, ' +
-    '`Lat` varchar(20) NOT NULL, `Lon` varchar(20) NOT NULL, ' +
-    '`QSLInfo` varchar(200) NOT NULL DEFAULT "TNX For QSO TU 73!", ' +
-    '`EQSLLogin` varchar(200) DEFAULT NULL, ' +
-    '`EQSLPassword` varchar(200) DEFAULT NULL, ' +
-    '`AutoEQSLcc` tinyint(1) DEFAULT NULL, ' +
-    '`HamQTHLogin` varchar(200) DEFAULT NULL, ' +
-    '`HamQTHPassword` varchar(200) DEFAULT NULL, ' +
-    '`AutoHamQTH` tinyint(1) DEFAULT NULL, ' +
-    '`HRDLogLogin` varchar(200) DEFAULT NULL, ' +
-    '`HRDLogPassword` varchar(200) DEFAULT NULL, ' +
-    '`AutoHRDLog` tinyint(1) DEFAULT NULL, `LoTW_User` varchar(20), `LoTW_Password` varchar(50), '
-    + '`ClubLog_User` varchar(20), `ClubLog_Password` varchar(50), `AutoClubLog` tinyint(1) DEFAULT NULL, '
-    + '`QRZCOM_User` varchar(20), `QRZCOM_Password` varchar(50), `AutoQRZCom` tinyint(1) DEFAULT NULL, `Table_version` varchar(10));';
+    '`CallName` TEXT NOT NULL, `Name` TEXT NOT NULL, ' +
+    '`QTH` TEXT NOT NULL, `ITU` INTEGER NOT NULL, ' +
+    '`CQ` INTEGER NOT NULL, `Loc` TEXT NOT NULL, ' +
+    '`Lat` TEXT NOT NULL, `Lon` TEXT NOT NULL, ' +
+    '`QSLInfo` TEXT NOT NULL DEFAULT "TNX For QSO TU 73!", ' +
+    '`EQSLLogin` TEXT DEFAULT NULL, ' +
+    '`EQSLPassword` TEXT DEFAULT NULL, ' +
+    '`AutoEQSLcc` INTEGER DEFAULT NULL, ' +
+    '`HamQTHLogin` TEXT DEFAULT NULL, ' +
+    '`HamQTHPassword` TEXT DEFAULT NULL, ' +
+    '`AutoHamQTH` INTEGER DEFAULT NULL, ' +
+    '`HRDLogLogin` TEXT DEFAULT NULL, ' +
+    '`HRDLogPassword` TEXT DEFAULT NULL, ' +
+    '`AutoHRDLog` INTEGER DEFAULT NULL, ' +
+    '`LoTW_User` TEXT, `LoTW_Password` TEXT, ' +
+    '`ClubLog_User` TEXT, `ClubLog_Password` TEXT, ' +
+    '`AutoClubLog` INTEGER DEFAULT NULL, ' +
+    '`QRZCOM_User` TEXT, `QRZCOM_Password` TEXT, `AutoQRZCom` INTEGER DEFAULT NULL, ' +
+    '`HAMLogOnline_API` TEXT, `AutoHAMLogOnline` INTEGER DEFAULT NULL, `Table_version` TEXT);';
 
 
   Insert_Table_LogBookInfo = 'INSERT INTO LogBookInfo ' +
@@ -46,7 +49,7 @@ const
 
   Table_MacroTable = 'CREATE TABLE IF NOT EXISTS ' +
       '`MacroTable` (`ButtonID` integer UNIQUE PRIMARY KEY NOT NULL,' +
-      '`ButtonName` varchar(20) DEFAULT NULL, `Macro` TEXT DEFAULT NULL)';
+      '`ButtonName` TEXT DEFAULT NULL, `Macro` TEXT DEFAULT NULL)';
 
 type
   TdmSQL = class(TDataModule)
@@ -69,52 +72,52 @@ begin
   Result := '';
   TempResult := 'CREATE TABLE IF NOT EXISTS `Log_TABLE_' + LOG_PREFIX +
     '` ( `UnUsedIndex` integer UNIQUE PRIMARY KEY,' +
-    ' `CallSign` varchar(20) DEFAULT NULL, `QSODateTime` datetime DEFAULT NULL,' +
-    ' `QSODate` datetime DEFAULT NULL, `QSOTime` varchar(5) DEFAULT NULL,' +
-    ' `QSOBand` varchar(20) DEFAULT NULL,' +
-    ' `FREQ_RX` varchar(20) DEFAULT NULL,' +
-    ' `BAND_RX` varchar(20) DEFAULT NULL,' +
-    ' `QSOMode` varchar(15) DEFAULT NULL,' +
-    ' `QSOSubMode` varchar(15) DEFAULT NULL,' +
-    ' `QSOReportSent` varchar(15) DEFAULT NULL,' +
-    ' `QSOReportRecived` varchar(15) DEFAULT NULL,' +
-    ' `OMName` varchar(30) DEFAULT NULL, `OMQTH` varchar(50) DEFAULT NULL,' +
-    ' `State` varchar(25) DEFAULT NULL, `Grid` varchar(8) DEFAULT NULL,' +
-    ' `IOTA` varchar(6) DEFAULT NULL, `QSLManager` varchar(9) DEFAULT NULL,' +
-    ' `QSLSent` tinyint(1) DEFAULT NULL, `QSLSentAdv` varchar(1) DEFAULT NULL,' +
-    ' `QSLSentDate` datetime DEFAULT NULL, `QSLRec` tinyint(1) DEFAULT NULL,' +
-    ' `QSLRecDate` datetime DEFAULT NULL, `MainPrefix` varchar(5) DEFAULT NULL,' +
-    ' `DXCCPrefix` varchar(5) DEFAULT NULL, `CQZone` varchar(2) DEFAULT NULL,' +
-    ' `ITUZone` varchar(2) DEFAULT NULL, `QSOAddInfo` longtext,' +
-    ' `Marker` int(11) DEFAULT NULL, `ManualSet` tinyint(1) DEFAULT NULL,' +
-    ' `DigiBand` double DEFAULT NULL, `Continent` varchar(2) DEFAULT NULL,' +
-    ' `ShortNote` varchar(200) DEFAULT NULL,' +
-    ' `QSLReceQSLcc` tinyint(1) DEFAULT NULL,' +
-    ' `LoTWRec` tinyint(1) DEFAULT 0, `LoTWRecDate` datetime DEFAULT NULL,' +
-    ' `QSLInfo` varchar(200) DEFAULT NULL, `Call` varchar(20) DEFAULT NULL,' +
-    ' `State1` varchar(25) DEFAULT NULL, `State2` varchar(25) DEFAULT NULL,' +
-    ' `State3` varchar(25) DEFAULT NULL, `State4` varchar(25) DEFAULT NULL,' +
-    ' `WPX` varchar(10) DEFAULT NULL, `AwardsEx` longtext,' +
-    ' `ValidDX` tinyint(1) DEFAULT 1, `SRX` int(11) DEFAULT NULL,' +
-    ' `SRX_STRING` varchar(15) DEFAULT NULL, `STX` int(11) DEFAULT NULL,' +
-    ' `STX_STRING` varchar(15) DEFAULT NULL,' +
-    ' `SAT_NAME` varchar(20) DEFAULT NULL,' +
-    ' `SAT_MODE` varchar(20) DEFAULT NULL,' +
-    ' `PROP_MODE` varchar(20) DEFAULT NULL, `LoTWSent` tinyint(1) DEFAULT 0,' +
-    ' `QSL_RCVD_VIA` varchar(1) DEFAULT NULL,' +
-    ' `QSL_SENT_VIA` varchar(1) DEFAULT NULL,' +
-    ' `DXCC` varchar(5) DEFAULT NULL, `USERS` varchar(5) DEFAULT NULL,' +
-    ' `NoCalcDXCC` tinyint(1) DEFAULT 0, `MY_STATE` varchar(15), ' +
-    ' `MY_GRIDSQUARE` varchar(15), `MY_LAT` varchar(15),`MY_LON` varchar(15), `SYNC` tinyint(1) DEFAULT 0,'+
-    ' `SOTA_REF` varchar(15) DEFAULT NULL, `MY_SOTA_REF` varchar(15) DEFAULT NULL,'+
-    ' `ContestSession` varchar(255) DEFAULT NULL, `ContestName` varchar(255) DEFAULT NULL,'+
-    ' `EQSL_QSL_SENT` varchar(2) DEFAULT ''N'', `HAMLOGRec` tinyint(1) DEFAULT 0, '+
-    ' `CLUBLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `CLUBLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
-    ' `HRDLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HRDLOG_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
-    ' `QRZCOM_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `QRZCOM_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,'+
-    ' `HAMLOGRU_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOGRU_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,' +
-    ' `HAMLOGEU_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOGEU_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL,' +
-    ' `HAMQTH_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMQTH_QSO_UPLOAD_STATUS` tinyint(1) DEFAULT NULL';
+    ' `CallSign` TEXT DEFAULT NULL, `QSODateTime` datetime DEFAULT NULL,' +
+    ' `QSODate` datetime DEFAULT NULL, `QSOTime` TEXT DEFAULT NULL,' +
+    ' `QSOBand` TEXT DEFAULT NULL,' +
+    ' `FREQ_RX` TEXT DEFAULT NULL,' +
+    ' `BAND_RX` TEXT DEFAULT NULL,' +
+    ' `QSOMode` TEXT DEFAULT NULL,' +
+    ' `QSOSubMode` TEXT DEFAULT NULL,' +
+    ' `QSOReportSent` TEXT DEFAULT NULL,' +
+    ' `QSOReportRecived` TEXT DEFAULT NULL,' +
+    ' `OMName` TEXT DEFAULT NULL, `OMQTH` TEXT DEFAULT NULL,' +
+    ' `State` TEXT DEFAULT NULL, `Grid` TEXT DEFAULT NULL,' +
+    ' `IOTA` TEXT DEFAULT NULL, `QSLManager` TEXT DEFAULT NULL,' +
+    ' `QSLSent` INTEGER DEFAULT NULL, `QSLSentAdv` TEXT DEFAULT NULL,' +
+    ' `QSLSentDate` datetime DEFAULT NULL, `QSLRec` INTEGER DEFAULT NULL,' +
+    ' `QSLRecDate` datetime DEFAULT NULL, `MainPrefix` TEXT DEFAULT NULL,' +
+    ' `DXCCPrefix` TEXT DEFAULT NULL, `CQZone` TEXT DEFAULT NULL,' +
+    ' `ITUZone` TEXT DEFAULT NULL, `QSOAddInfo` TEXT,' +
+    ' `Marker` INTEGER DEFAULT NULL, `ManualSet` INTEGER DEFAULT NULL,' +
+    ' `DigiBand` REAL DEFAULT NULL, `Continent` TEXT DEFAULT NULL,' +
+    ' `ShortNote` TEXT DEFAULT NULL,' +
+    ' `QSLReceQSLcc` INTEGER DEFAULT NULL,' +
+    ' `LoTWRec` INTEGER DEFAULT 0, `LoTWRecDate` datetime DEFAULT NULL,' +
+    ' `QSLInfo` TEXT DEFAULT NULL, `Call` TEXT DEFAULT NULL,' +
+    ' `State1` TEXT DEFAULT NULL, `State2` TEXT DEFAULT NULL,' +
+    ' `State3` TEXT DEFAULT NULL, `State4` TEXT DEFAULT NULL,' +
+    ' `WPX` TEXT DEFAULT NULL, `AwardsEx` TEXT,' +
+    ' `ValidDX` INTEGER DEFAULT 1, `SRX` INTEGER DEFAULT NULL,' +
+    ' `SRX_STRING` TEXT DEFAULT NULL, `STX` INTEGER DEFAULT NULL,' +
+    ' `STX_STRING` TEXT DEFAULT NULL,' +
+    ' `SAT_NAME` TEXT DEFAULT NULL,' +
+    ' `SAT_MODE` TEXT DEFAULT NULL,' +
+    ' `PROP_MODE` TEXT DEFAULT NULL, `LoTWSent` INTEGER DEFAULT 0,' +
+    ' `QSL_RCVD_VIA` TEXT DEFAULT NULL,' +
+    ' `QSL_SENT_VIA` TEXT DEFAULT NULL,' +
+    ' `DXCC` TEXT DEFAULT NULL, `USERS` TEXT DEFAULT NULL,' +
+    ' `NoCalcDXCC` INTEGER DEFAULT 0, `MY_STATE` TEXT, ' +
+    ' `MY_GRIDSQUARE` TEXT, `MY_LAT` TEXT,`MY_LON` TEXT, `SYNC` INTEGER DEFAULT 0,'+
+    ' `SOTA_REF` TEXT DEFAULT NULL, `MY_SOTA_REF` TEXT DEFAULT NULL,'+
+    ' `ContestSession` TEXT DEFAULT NULL, `ContestName` TEXT DEFAULT NULL,'+
+    ' `EQSL_QSL_SENT` TEXT DEFAULT ''N'', `HAMLOGRec` INTEGER DEFAULT 0, '+
+    ' `CLUBLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `CLUBLOG_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,'+
+    ' `HRDLOG_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HRDLOG_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,'+
+    ' `QRZCOM_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `QRZCOM_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,'+
+    ' `HAMLOGONLINE_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOGONLINE_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,' +
+    ' `HAMLOGEU_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOGEU_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,' +
+    ' `HAMQTH_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMQTH_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL';
     Result := TempResult +
       ', CONSTRAINT `Dupe_index` UNIQUE (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`))';
 end;

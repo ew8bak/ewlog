@@ -14,7 +14,6 @@ object MiniForm: TMiniForm
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  LCLVersion = '3.8.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 26
@@ -685,14 +684,14 @@ object MiniForm: TMiniForm
     }
     MaxLength = 0
     NumGlyphs = 1
+    ParentFont = False
+    PasswordChar = #0
+    TabOrder = 0
     OnButtonClick = EditCallsignButtonClick
     OnChange = EditCallsignChange
     OnKeyDown = EditCallsignKeyDown
     OnKeyPress = EditCallsignKeyPress
     OnMouseDown = EditCallsignMouseDown
-    ParentFont = False
-    PasswordChar = #0
-    TabOrder = 0
   end
   object LBCallsign: TLabel
     AnchorSideTop.Control = EditCallsign
@@ -1035,15 +1034,15 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditMGR
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 19
-    Top = 199
-    Width = 19
+    Height = 25
+    Top = 196
+    Width = 25
     AutoSize = True
     BorderSpacing.Left = 2
     Caption = ' ... '
     Font.Height = -12
-    OnClick = SBMGRClick
     ParentFont = False
+    OnClick = SBMGRClick
   end
   object SBIOTA: TSpeedButton
     AnchorSideLeft.Control = EditIOTA
@@ -1051,15 +1050,15 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditIOTA
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 19
-    Top = 173
-    Width = 19
+    Height = 25
+    Top = 170
+    Width = 25
     AutoSize = True
     BorderSpacing.Left = 2
     Caption = ' ... '
     Font.Height = -12
-    OnClick = SBIOTAClick
     ParentFont = False
+    OnClick = SBIOTAClick
   end
   object SBState: TSpeedButton
     AnchorSideLeft.Control = EditState
@@ -1067,15 +1066,15 @@ object MiniForm: TMiniForm
     AnchorSideTop.Control = EditState
     AnchorSideTop.Side = asrCenter
     Left = 439
-    Height = 19
-    Top = 147
-    Width = 19
+    Height = 25
+    Top = 144
+    Width = 25
     AutoSize = True
     BorderSpacing.Left = 2
     Caption = ' ... '
     Font.Height = -12
-    OnClick = SBStateClick
     ParentFont = False
+    OnClick = SBStateClick
   end
   object CBMap: TCheckBox
     AnchorSideLeft.Control = EditName
@@ -1815,8 +1814,8 @@ object MiniForm: TMiniForm
     BorderSpacing.Top = 5
     BorderSpacing.Right = 205
     ParentShowHint = False
-    OnMouseMove = Shape1MouseMove
     ShowHint = True
+    OnMouseMove = Shape1MouseMove
   end
   object StatBar: TStatusBar
     Left = 0
@@ -1840,7 +1839,7 @@ object MiniForm: TMiniForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = SBMGR
     AnchorSideTop.Side = asrCenter
-    Left = 459
+    Left = 465
     Height = 15
     Top = 201
     Width = 15
@@ -2144,79 +2143,79 @@ object MiniForm: TMiniForm
     object SaveQSOinBase: TAction
       Caption = 'SaveQSOinBase'
       DisableIfNoHandler = False
-      OnExecute = SaveQSOinBaseExecute
       ShortCut = 32851
+      OnExecute = SaveQSOinBaseExecute
     end
     object ClearEdit: TAction
       Caption = 'ClearEdit'
       DisableIfNoHandler = False
-      OnExecute = ClearEditExecute
       ShortCut = 32835
+      OnExecute = ClearEditExecute
     end
     object GetReference: TAction
       Caption = 'GetReference'
-      OnExecute = GetReferenceExecute
       ShortCut = 13
+      OnExecute = GetReferenceExecute
     end
     object ImportADI: TAction
       Caption = 'ImportADI'
-      OnExecute = ImportADIExecute
       ShortCut = 32841
+      OnExecute = ImportADIExecute
     end
     object ExportADI: TAction
       Caption = 'ExportADI'
-      OnExecute = ExportADIExecute
       ShortCut = 32837
+      OnExecute = ExportADIExecute
     end
     object MacroKeyF1: TAction
       Caption = 'MacroKeyF1'
-      OnExecute = MacroKeyF1Execute
       ShortCut = 112
+      OnExecute = MacroKeyF1Execute
     end
     object MacroKeyF2: TAction
       Caption = 'MacroKeyF2'
-      OnExecute = MacroKeyF2Execute
       ShortCut = 113
+      OnExecute = MacroKeyF2Execute
     end
     object MacroKeyF3: TAction
       Caption = 'MacroKeyF3'
-      OnExecute = MacroKeyF3Execute
       ShortCut = 114
+      OnExecute = MacroKeyF3Execute
     end
     object MacroKeyF4: TAction
       Caption = 'MacroKeyF4'
-      OnExecute = MacroKeyF4Execute
       ShortCut = 115
+      OnExecute = MacroKeyF4Execute
     end
     object MacroKeyF5: TAction
       Caption = 'MacroKeyF5'
-      OnExecute = MacroKeyF5Execute
       ShortCut = 116
+      OnExecute = MacroKeyF5Execute
     end
     object MacroKeyF6: TAction
       Caption = 'MacroKeyF6'
-      OnExecute = MacroKeyF6Execute
       ShortCut = 117
+      OnExecute = MacroKeyF6Execute
     end
     object MacroKeyF7: TAction
       Caption = 'MacroKeyF7'
-      OnExecute = MacroKeyF7Execute
       ShortCut = 118
+      OnExecute = MacroKeyF7Execute
     end
     object MacroKeyF8: TAction
       Caption = 'MacroKeyF8'
-      OnExecute = MacroKeyF8Execute
       ShortCut = 119
+      OnExecute = MacroKeyF8Execute
     end
     object MacroKeyF9: TAction
       Caption = 'MacroKeyF9'
-      OnExecute = MacroKeyF9Execute
       ShortCut = 120
+      OnExecute = MacroKeyF9Execute
     end
     object MacroKeyF10: TAction
       Caption = 'MacroKeyF10'
-      OnExecute = MacroKeyF10Execute
       ShortCut = 121
+      OnExecute = MacroKeyF10Execute
     end
     object SentSpot: TAction
       Caption = 'SentSpot'

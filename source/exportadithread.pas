@@ -709,27 +709,27 @@ begin
             Write(f, tmp);
           end;
 
-        if exportAdiSet.fHAMLOGRU_QSO_UPLOAD_DATE then
-          if Query.Fields.FieldByName('HAMLOGRU_QSO_UPLOAD_DATE').AsString <> '' then
+        if exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_DATE then
+          if Query.Fields.FieldByName('HAMLOGONLINE_QSO_UPLOAD_DATE').AsString <> '' then
           begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
-              'HAMLOGRU_QSO_UPLOAD_DATE').AsDateTime);
-            tmp := '<HAMLOGRU_QSO_UPLOAD_DATE' +
+              'HAMLOGONLINE_QSO_UPLOAD_DATE').AsDateTime);
+            tmp := '<HAMLOGONLINE_QSO_UPLOAD_DATE' +
               dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
-        if exportAdiSet.fHAMLOGRU_QSO_UPLOAD_STATUS then
-          if Query.Fields.FieldByName('HAMLOGRU_QSO_UPLOAD_STATUS').AsString
+        if exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_STATUS then
+          if Query.Fields.FieldByName('HAMLOGONLINE_QSO_UPLOAD_STATUS').AsString
             = '1' then
           begin
             LOTW_QSL_RCVD := Query.Fields.FieldByName(
-              'HAMLOGRU_QSO_UPLOAD_STATUS').AsString;
+              'HAMLOGONLINE_QSO_UPLOAD_STATUS').AsString;
             if LOTW_QSL_RCVD = '0' then
-              tmp := '<HAMLOGRU_QSO_UPLOAD_STATUS' +
+              tmp := '<HAMLOGONLINE_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('N', utf8Len)
             else
-              tmp := '<HAMLOGRU_QSO_UPLOAD_STATUS' +
+              tmp := '<HAMLOGONLINE_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;

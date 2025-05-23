@@ -451,6 +451,9 @@ begin
           LBRecord.QRZComPassword :=
             LogBookInfoQuery.FieldByName('QRZCOM_Password').AsString;
           LBRecord.AutoQRZCom := LogBookInfoQuery.FieldByName('AutoQRZCom').AsBoolean;
+          LBRecord.HAMLogOnline_API :=
+            LogBookInfoQuery.FieldByName('HAMLogOnline_API').AsString;
+          LBRecord.AutoHAMLogOnline := LogBookInfoQuery.FieldByName('AutoHAMLogOnline').AsBoolean;
           LogBookInfoQuery.Close;
 
           dmMigrate.Migrate(LBRecord.CallSign, LBRecord.Description);
