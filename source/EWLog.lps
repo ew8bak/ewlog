@@ -55,7 +55,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LogConfigForm_U"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="149"/>
         <CursorPos X="61" Y="210"/>
@@ -83,7 +82,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ExportAdifForm_u"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="22"/>
+        <TopLine Value="88"/>
         <CursorPos X="46" Y="183"/>
         <UsageCount Value="200"/>
       </Unit6>
@@ -220,7 +219,7 @@
       <Unit20>
         <Filename Value="hrdlog.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="131"/>
         <CursorPos X="29" Y="146"/>
         <UsageCount Value="200"/>
@@ -521,7 +520,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="InitDB_dm"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="420"/>
         <CursorPos X="87" Y="426"/>
         <UsageCount Value="200"/>
@@ -740,10 +739,10 @@
         <Filename Value="exportadithread.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ExportADIThread"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="171"/>
-        <CursorPos X="31" Y="161"/>
+        <EditorIndex Value="9"/>
+        <CursorPos X="58" Y="17"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit72>
       <Unit73>
         <Filename Value="mobilesyncthread.pas"/>
@@ -1051,9 +1050,10 @@
       <Unit101>
         <Filename Value="hamlogonline.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="131"/>
-        <CursorPos X="65" Y="143"/>
+        <TopLine Value="97"/>
+        <CursorPos X="68" Y="80"/>
         <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit101>
@@ -1375,7 +1375,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="186"/>
         <CursorPos Y="203"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit142>
       <Unit143>
         <Filename Value="C:\usr\lib\lazarus\components\lazutils\laztracer.pas"/>
@@ -1404,7 +1404,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31538"/>
         <CursorPos X="3" Y="31540"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit146>
       <Unit147>
         <Filename Value="traceline.pas"/>
@@ -1477,7 +1477,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="298"/>
         <CursorPos X="44" Y="313"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit156>
       <Unit157>
         <Filename Value="C:\usr\lib\fpc\src\rtl\linux\system.pp"/>
@@ -1521,7 +1521,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="10" Y="81"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit162>
       <Unit163>
         <Filename Value="C:\lazarus\lcl\include\scrollingwincontrol.inc"/>
@@ -1669,7 +1669,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="117"/>
         <CursorPos X="15" Y="132"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit182>
       <Unit183>
         <Filename Value="C:\usr\lib\lazarus\lcl\lresources.pp"/>
@@ -1913,7 +1913,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="841"/>
         <CursorPos X="10" Y="858"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit217>
       <Unit218>
         <Filename Value="C:\lazarus\lcl\include\application.inc"/>
@@ -2060,7 +2060,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit237>
     </Units>
-    <JumpHistory Count="23" HistoryIndex="22">
+    <JumpHistory Count="25" HistoryIndex="24">
       <Position1>
         <Filename Value="hamlogonline.pas"/>
         <Caret Line="123" TopLine="105"/>
@@ -2153,6 +2153,14 @@
         <Filename Value="dmfunc_u.pas"/>
         <Caret Line="413" TopLine="406"/>
       </Position23>
+      <Position24>
+        <Filename Value="hamlogonline.pas"/>
+        <Caret Line="108" Column="45" TopLine="86"/>
+      </Position24>
+      <Position25>
+        <Filename Value="hamlogonline.pas"/>
+        <Caret Line="20" Column="71"/>
+      </Position25>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
