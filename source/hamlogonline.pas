@@ -106,12 +106,8 @@ begin
     AddData('FREQ', SendQSOr.QSOBand);
     logdata := logdata + '<EOR>';
 
-    url := '{' +
-                '"ADIFADD": {' +
-                '"ADIFDATA": "' + logdata + '",' +
-                '"APIKEY": "' + apikey + '"' +
-                '}' +
-                '}';
+    url := '{' + '"ADIFADD": {' + '"ADIFDATA": "' + logdata +
+      '",' + '"APIKEY": "' + apikey + '"' + '}' + '}';
     try
       HTTP.FormPost(UploadURL, url, Document);
       if (HTTP.ResponseStatusCode = 200) or (HTTP.ResponseStatusCode = 201) then
@@ -124,7 +120,8 @@ begin
     begin
       Document.Position := 0;
       res.LoadFromStream(Document);
-      if Pos('"STATUS":"OK"', Trim(res.Text)) > 0 then begin
+      if Pos('"STATUS":"OK"', Trim(res.Text)) > 0 then
+      begin
         Result := True;
         Done := Result;
       end
@@ -134,6 +131,11 @@ begin
         result_mes := res.Text;
       end;
 
+      if not SendQSOr.Auto then
+        if pos('"STATUS":"OK"', Res.Text) > 0 then
+          result_mes := rRecordAddedSuccessfully;
+      if pos('"ERROR":', Res.Text) > 0 then
+        result_mes := Res.Text;
     end;
 
   finally

@@ -3896,6 +3896,10 @@ msgstr ""
 msgid "Export QSO to ClubLog"
 msgstr ""
 
+#: tgridsform.exporthamlogonlineitem.caption
+msgid "Export QSO to HAMLog.online"
+msgstr ""
+
 #: tgridsform.exporthamqthitem.caption
 msgid "Export QSO to HamQTH"
 msgstr ""
