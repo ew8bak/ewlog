@@ -714,6 +714,7 @@ begin
       raise SendHAMLogOnlineThread.FatalException;
     SendHAMLogOnlineThread.SendQSO := SendQSO;
     SendHAMLogOnlineThread.apikey := LBRecord.HAMLogOnline_API;
+    SendHAMLogOnlineThread.CurrentCallsign := DBRecord.CurrentCall;
     SendHAMLogOnlineThread.Start;
     Exit;
   end;

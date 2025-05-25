@@ -429,6 +429,7 @@ begin
             LBRecord.OpLon);
           LBRecord.QSLInfo := LogBookInfoQuery.FieldByName('QSLInfo').AsString;
           LBRecord.LogTable := LogBookInfoQuery.FieldByName('LogTable').AsString;
+           dmMigrate.Migrate(LBRecord.CallSign, LBRecord.Description);
           LBRecord.eQSLccLogin := LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
           LBRecord.eQSLccPassword :=
             LogBookInfoQuery.FieldByName('EQSLPassword').AsString;
@@ -456,7 +457,6 @@ begin
           LBRecord.AutoHAMLogOnline := LogBookInfoQuery.FieldByName('AutoHAMLogOnline').AsBoolean;
           LogBookInfoQuery.Close;
 
-          dmMigrate.Migrate(LBRecord.CallSign, LBRecord.Description);
 
           Result := True;
           InitRecord.GetLogBookTable := True;

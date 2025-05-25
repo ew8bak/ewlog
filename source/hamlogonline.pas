@@ -27,7 +27,7 @@ resourcestring
   rUnknownUser = 'Unknown user! See settings';
 
 const
-  UploadURL = '/index.php/api/qso/';
+  UploadURL = 'https://hamlog.online/api/agent/v2/';
 
 type
   THAMLogOnlineSentEvent = procedure of object;
@@ -43,6 +43,7 @@ type
     Done: boolean;
   public
     SendQSO: TQSO;
+    CurrentCallsign: string;
     apikey: string;
     OnHAMLogOnlineSent: THAMLogOnlineSentEvent;
     constructor Create;
@@ -75,13 +76,20 @@ begin
     res := TStringList.Create;
     Document := TMemoryStream.Create;
     HTTP.AllowRedirect := True;
-    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
+    HTTP.AddHeader('User-Agent', 'HAMLOG Agent 1.2.0');
     HTTP.AddHeader('Content-Type', 'application/json; charset=UTF-8');
-    HTTP.AddHeader('Accept', 'application/json');
+
+    AddData('adif_ver', '3.1.0');
+    AddData('programid', 'HAMLOG Agent');
+    AddData('programversion', '1.2.0');
+    logdata := logdata + '<EOH>';
     AddData('CALL', SendQSOr.CallSing);
+    AddData('station_callsign', CurrentCallsign);
     AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
+    AddData('qso_date_off', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
     SendQSOr.QSOTime := StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
     AddData('TIME_ON', SendQSOr.QSOTime);
+    AddData('time_off', SendQSOr.QSOTime);
     AddData('BAND', dmFunc.GetBandFromFreq(SendQSOr.QSOBand));
     AddData('MODE', SendQSOr.QSOMode);
     AddData('SUBMODE', SendQSOr.QSOSubMode);
@@ -93,12 +101,17 @@ begin
     AddData('STATE', SendQSOr.State0);
     AddData('QSLMSG', SendQSOr.QSLInfo);
     AddData('GRIDSQUARE', SendQSOr.Grid);
+    AddData('my_gridsquare', SendQSOr.My_Grid);
     Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);
     AddData('FREQ', SendQSOr.QSOBand);
-    AddData('LOG_PGM', 'EWLog');
     logdata := logdata + '<EOR>';
-    // url := '{"key":"' + key + '", "station_profile_id":"' + CloudLogStationId +
-    //   '", "type":"adif", "string":"' + logdata + '"}';
+
+    url := '{' +
+                '"ADIFADD": {' +
+                '"ADIFDATA": "' + logdata + '",' +
+                '"APIKEY": "' + apikey + '"' +
+                '}' +
+                '}';
     try
       HTTP.FormPost(UploadURL, url, Document);
       if (HTTP.ResponseStatusCode = 200) or (HTTP.ResponseStatusCode = 201) then
@@ -111,8 +124,10 @@ begin
     begin
       Document.Position := 0;
       res.LoadFromStream(Document);
-      if Pos('"status":"created"', Trim(res.Text)) > 0 then
-        Result := True
+      if Pos('"STATUS":"OK"', Trim(res.Text)) > 0 then begin
+        Result := True;
+        Done := Result;
+      end
       else
       begin
         Result := False;
@@ -120,9 +135,8 @@ begin
       end;
 
     end;
-    Done := Result;
+
   finally
-    //res.Destroy;
     FreeAndNil(res);
     FreeAndNil(HTTP);
     FreeAndNil(Document);
