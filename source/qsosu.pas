@@ -102,6 +102,7 @@ begin
   QSOData.Add('cqz', SendQSOr.CQZone);
   QSOData.Add('ituz', SendQSOr.ITUZone);
 
+  hash :=  QSOData.AsJSON;
   Result := False;
   HTTP := TFPHttpClient.Create(nil);
   RequestBody := TStringStream.Create(QSOData.AsJSON, TEncoding.UTF8);

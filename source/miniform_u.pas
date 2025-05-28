@@ -1539,7 +1539,7 @@ begin
       SQSO.CallSing := EditCallsign.Text;
       SQSO.QSODateTime := DateTimePicker1.DateTime;
       if not CBRealTime.Checked then
-        SQSO.QSODateTime := DateTimePicker1.Date + timeQSO;
+        SQSO.QSODateTime := DateEdit1.Date + timeQSO;
       SQSO.QSODate := DateEdit1.Date;
       SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
       SQSO.QSOBand := NameBand;
