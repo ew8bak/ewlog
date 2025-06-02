@@ -27,7 +27,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
-      <BuildNr Value="966"/>
+      <BuildNr Value="967"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -816,7 +816,6 @@
       </Unit100>
       <Unit101>
         <Filename Value="qsosu.pas"/>
-        <Filename Value="hamlogonline.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit101>
     </Units>

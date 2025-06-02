@@ -142,31 +142,6 @@ msgctxt "eqsl.rerrorsendingsata"
 msgid "Error sending data"
 msgstr ""
 
-#: hamlogonline.ranswerserver
-msgctxt "hamlogonline.ranswerserver"
-msgid "Server response:"
-msgstr ""
-
-#: hamlogonline.rerrorsendingsata
-msgctxt "hamlogonline.rerrorsendingsata"
-msgid "Error sending data"
-msgstr ""
-
-#: hamlogonline.rnoentryadded
-msgctxt "hamlogonline.rnoentryadded"
-msgid "No entry added! Perhaps a duplicate!"
-msgstr ""
-
-#: hamlogonline.rrecordaddedsuccessfully
-msgctxt "hamlogonline.rrecordaddedsuccessfully"
-msgid "Record added successfully"
-msgstr ""
-
-#: hamlogonline.runknownuser
-msgctxt "hamlogonline.runknownuser"
-msgid "Unknown user! See settings"
-msgstr ""
-
 #: hamqth.ranswerserver
 msgctxt "hamqth.ranswerserver"
 msgid "Server response:"
@@ -4350,8 +4325,8 @@ msgctxt "tlogconfigform.lbapikeyqrzcom.caption"
 msgid "API key"
 msgstr ""
 
-#: tlogconfigform.lbapikeyqrzcom1.caption
-msgid "API token"
+#: tlogconfigform.lbapitokenqrzsu.caption
+msgid "API Token"
 msgstr ""
 
 #: tlogconfigform.lbcallsign.caption
@@ -4492,8 +4467,8 @@ msgctxt "tlogconfigform.lbqrzcom.caption"
 msgid "QRZ.COM"
 msgstr ""
 
-#: tlogconfigform.lbqrzcom1.caption
-msgid "QSO.su"
+#: tlogconfigform.lbqrzsu.caption
+msgid "QRZ.SU"
 msgstr ""
 
 #: tlogconfigform.lbqslinfo.caption

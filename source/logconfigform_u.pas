@@ -55,8 +55,10 @@ type
     EditCQ: TEdit;
     EditLat: TEdit;
     EditLon: TEdit;
+    lbAPITokenQRZsu: TLabel;
     lbAPIkeyQRZcom1: TLabel;
     lbAPIkeyHAMLogOnline: TLabel;
+    lbQRZsu: TLabel;
     lbLog: TLabel;
     lbCQ: TLabel;
     lbGrid: TLabel;
