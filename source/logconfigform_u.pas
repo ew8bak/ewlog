@@ -29,6 +29,8 @@ type
     cbUploadHamQTH: TCheckBox;
     cbUploadClubLog: TCheckBox;
     cbUploadQRZcom: TCheckBox;
+    cbUploadQSOsu: TCheckBox;
+    editAPItokenQSOsu: TEdit;
     cbUploadHAMLogOnline: TCheckBox;
     editAPIkeyHAMLogOnline: TEdit;
     EditDescription: TEdit;
@@ -53,12 +55,14 @@ type
     EditCQ: TEdit;
     EditLat: TEdit;
     EditLon: TEdit;
+    lbAPIkeyQRZcom1: TLabel;
     lbAPIkeyHAMLogOnline: TLabel;
     lbLog: TLabel;
     lbCQ: TLabel;
     lbGrid: TLabel;
     lbLat: TLabel;
     lbLon: TLabel;
+    lbQRZcom1: TLabel;
     lbHAMLogOnline: TLabel;
     lbQSLinfo: TLabel;
     LBDefaultCall: TLabel;
@@ -178,6 +182,8 @@ begin
       editLoginQRZcom.Text := Query.FieldByName('QRZCOM_User').AsString;
       editAPIkeyQRZcom.Text := Query.FieldByName('QRZCOM_Password').AsString;
       cbUploadQRZcom.Checked := Query.FieldByName('AutoQRZCom').AsBoolean;
+      cbUploadQSOsu.Checked := Query.FieldByName('AutoQSOsu').AsBoolean;
+      editAPItokenQSOsu.Text := Query.FieldByName('QSOSU_Token').AsString;
       editAPIkeyHAMLogOnline.Text := Query.FieldByName('HAMLogOnline_API').AsString;
       cbUploadHAMLogOnline.Checked := Query.FieldByName('AutoHAMLogOnline').AsBoolean;
       id := Query.FieldByName('id').AsInteger;
@@ -212,7 +218,8 @@ begin
           ' `QSLInfo`=:QSLInfo, `EQSLLogin`=:EQSLLogin, `EQSLPassword`=:EQSLPassword,' +
           ' `AutoEQSLcc`=:AutoEQSLcc, `HRDLogLogin`=:HRDLogLogin,' +
           ' `HRDLogPassword`=:HRDLogPassword, `AutoHRDLog`=:AutoHRDLog,' +
-          ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword, `AutoQRZCom`=:AutoQRZCom,'
+          ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword, `AutoQRZCom`=:AutoQRZCom,' +
+          ' `AutoQSOsu`=:AutoQSOsu, `QSOSU_Token`=:QSOSU_Token,'
           + ' `QRZCOM_User`=:QRZCOM_User, `QRZCOM_Password`=:QRZCOM_Password,' +
           ' `HAMLogOnline_API`=:HAMLogOnline_API, `AutoHAMLogOnline`=:AutoHAMLogOnline,' +
           ' `ClubLog_User`=:ClubLog_User, `ClubLog_Password`=:ClubLog_Password,' +
@@ -245,6 +252,8 @@ begin
         Params.ParamByName('QRZCOM_User').AsString := editLoginQRZcom.Text;
         Params.ParamByName('QRZCOM_Password').AsString := editAPIkeyQRZcom.Text;
         Params.ParamByName('AutoQRZCom').AsBoolean := cbUploadQRZcom.Checked;
+        Params.ParamByName('QSOSU_Token').AsString := editAPItokenQSOsu.Text;
+        Params.ParamByName('AutoQSOsu').AsBoolean := cbUploadQSOsu.Checked;
         Params.ParamByName('HAMLogOnline_API').AsString := editAPIkeyHAMLogOnline.Text;
         Params.ParamByName('AutoHAMLogOnline').AsBoolean := cbUploadHAMLogOnline.Checked;
         Params.ParamByName('id').AsInteger := id;

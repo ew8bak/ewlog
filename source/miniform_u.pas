@@ -1539,7 +1539,7 @@ begin
       SQSO.CallSing := EditCallsign.Text;
       SQSO.QSODateTime := DateTimePicker1.DateTime;
       if not CBRealTime.Checked then
-        SQSO.QSODateTime := DateTimePicker1.Date + timeQSO;
+        SQSO.QSODateTime := DateEdit1.Date + timeQSO;
       SQSO.QSODate := DateEdit1.Date;
       SQSO.QSOTime := FormatDateTime('hh:nn', timeQSO);
       SQSO.QSOBand := NameBand;
@@ -1660,6 +1660,8 @@ begin
         MainFunc.SendQSOto('hamqth', SQSO);
       if LBRecord.AutoQRZCom then
         MainFunc.SendQSOto('qrzcom', SQSO);
+      if LBRecord.AutoQSOsu then
+        MainFunc.SendQSOto('qsosu', SQSO);
       if LBRecord.AutoHAMLogOnline then
         MainFunc.SendQSOto('hamlogonline', SQSO);
       if IniSet.AutoCloudLog then

@@ -48,6 +48,7 @@ type
     ExportClubLogItem: TMenuItem;
     ExportHamQTHItem: TMenuItem;
     ExportCloudLogItem: TMenuItem;
+    MenuItem1: TMenuItem;
     ExportHAMLogOnlineItem: TMenuItem;
     Separator1: TMenuItem;
     miExportToService: TMenuItem;
@@ -124,6 +125,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure GridMenuPopup(Sender: TObject);
     procedure CopyToLogItemClick(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
     procedure SendToLogBroadcastItemClick(Sender: TObject);
     procedure LOGBookDSDataChange(Sender: TObject; Field: TField);
     procedure MarkQSOItemClick(Sender: TObject);
@@ -440,6 +442,19 @@ var
 begin
   MenuItem := (Sender as TMenuItem);
   MainFunc.CopyToJournal(DBGrid1, MenuItem.Caption);
+end;
+
+procedure TGridsForm.MenuItem1Click(Sender: TObject);
+var
+  SelQSO: TQSO;
+begin
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+    SelQSO.Auto := False;
+    MainFunc.SendQSOto('qsosu', SelQSO);
+  end;
+
 end;
 
 procedure TGridsForm.ExportQSLccItemClick(Sender: TObject);

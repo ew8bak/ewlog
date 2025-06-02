@@ -242,6 +242,31 @@ msgctxt "qrzcom.runknownuser"
 msgid "Unknown user! See settings"
 msgstr ""
 
+#: qsosu.ranswerserver
+msgctxt "qsosu.ranswerserver"
+msgid "Server response:"
+msgstr ""
+
+#: qsosu.rerrorsendingsata
+msgctxt "qsosu.rerrorsendingsata"
+msgid "Error sending data"
+msgstr ""
+
+#: qsosu.rnoentryadded
+msgctxt "qsosu.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr ""
+
+#: qsosu.rrecordaddedsuccessfully
+msgctxt "qsosu.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr ""
+
+#: qsosu.runknownuser
+msgctxt "qsosu.runknownuser"
+msgid "Unknown user! See settings"
+msgstr ""
+
 #: resourcestr.ppleasefile
 msgid "Please specify a file for export!"
 msgstr ""
@@ -3709,6 +3734,10 @@ msgstr ""
 msgid "Mark this QSO"
 msgstr ""
 
+#: tgridsform.menuitem1.caption
+msgid "Export QSO to QSU.su"
+msgstr ""
+
 #: tgridsform.menuitem4.caption
 msgctxt "tgridsform.menuitem4.caption"
 msgid "QSL Received"
@@ -4166,6 +4195,11 @@ msgctxt "tlogconfigform.cbuploadqrzcom.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
+#: tlogconfigform.cbuploadqsosu.caption
+msgctxt "tlogconfigform.cbuploadqsosu.caption"
+msgid "Upload every time a logbook entry is added"
+msgstr ""
+
 #: tlogconfigform.editqslinfo.text
 msgid "TNX For QSO TU 73!"
 msgstr ""
@@ -4178,6 +4212,10 @@ msgstr ""
 #: tlogconfigform.lbapikeyqrzcom.caption
 msgctxt "tlogconfigform.lbapikeyqrzcom.caption"
 msgid "API key"
+msgstr ""
+
+#: tlogconfigform.lbapikeyqrzcom1.caption
+msgid "API token"
 msgstr ""
 
 #: tlogconfigform.lbcallsign.caption
@@ -4316,6 +4354,10 @@ msgstr ""
 #: tlogconfigform.lbqrzcom.caption
 msgctxt "tlogconfigform.lbqrzcom.caption"
 msgid "QRZ.COM"
+msgstr ""
+
+#: tlogconfigform.lbqrzcom1.caption
+msgid "QSO.su"
 msgstr ""
 
 #: tlogconfigform.lbqslinfo.caption

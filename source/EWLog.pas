@@ -35,7 +35,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   dmTCI_u, StreamAdapter_u, DownloadFilesThread, dmHamLib_u, satForm_u,
   SatEditorForm_u, ServiceEqslForm_u, eQSLservice_u, ServiceLoTWForm_u,
   LoTWservice_u, databasesettingsform_u, exportSettingsForm_u,
-  exportFields_record, QSODataDecoder, hamlogonline;
+  exportFields_record, QSODataDecoder, hamlogonline, qsosu;
 
 {$R *.res}
 

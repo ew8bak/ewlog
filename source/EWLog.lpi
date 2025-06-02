@@ -104,6 +104,11 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <Verbosity>
+              <ShowLineNum Value="True"/>
+            </Verbosity>
+          </Other>
         </CompilerOptions>
       </Item3>
     </BuildModes>
@@ -810,6 +815,7 @@
         <UnitName Value="QSODataDecoder"/>
       </Unit100>
       <Unit101>
+        <Filename Value="qsosu.pas"/>
         <Filename Value="hamlogonline.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit101>
@@ -835,10 +841,13 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="1">
+    <Exceptions Count="2">
       <Item1>
         <Name Value="EResNotFound"/>
       </Item1>
+      <Item2>
+        <Name Value="EIdSocketError"/>
+      </Item2>
     </Exceptions>
   </Debugging>
 </CONFIG>

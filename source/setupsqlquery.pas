@@ -39,8 +39,8 @@ const
     '`ClubLog_User` TEXT, `ClubLog_Password` TEXT, ' +
     '`AutoClubLog` INTEGER DEFAULT NULL, ' +
     '`QRZCOM_User` TEXT, `QRZCOM_Password` TEXT, `AutoQRZCom` INTEGER DEFAULT NULL, ' +
-    '`HAMLogOnline_API` TEXT, `AutoHAMLogOnline` INTEGER DEFAULT NULL, `Table_version` TEXT);';
-
+    '`HAMLogOnline_API` TEXT, `AutoHAMLogOnline` INTEGER DEFAULT NULL, ' +
+    '`QSOSU_Token` TEXT, `AutoQSOsu` INTEGER DEFAULT NULL, `Table_version` TEXT);';
 
   Insert_Table_LogBookInfo = 'INSERT INTO LogBookInfo ' +
     '(LogTable,CallName,Name,QTH,ITU,CQ,Loc,Lat,Lon,Description,QSLInfo, Table_version) '
@@ -117,6 +117,8 @@ begin
     ' `QRZCOM_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `QRZCOM_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,'+
     ' `HAMLOGONLINE_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOGONLINE_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,' +
     ' `HAMLOGEU_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMLOGEU_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,' +
+    ' `QSOSU_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `QSOSU_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL,'+
+    ' `QSOSU_HASH` TEXT DEFAULT NULL,' +
     ' `HAMQTH_QSO_UPLOAD_DATE` datetime DEFAULT NULL, `HAMQTH_QSO_UPLOAD_STATUS` INTEGER DEFAULT NULL';
     Result := TempResult +
       ', CONSTRAINT `Dupe_index` UNIQUE (`CallSign`, `QSODate`, `QSOTime`, `QSOBand`))';

@@ -500,6 +500,27 @@ begin
 
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
+      Query.SQL.Add('QSOSU_Token TEXT DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
+      Query.SQL.Add('AutoQSOsu INTEGER DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QSOSU_QSO_UPLOAD_DATE datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QSOSU_QSO_UPLOAD_STATUS INTEGER DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('QSOSU_HASH TEXT DEFAULT NULL;');
+      Query.ExecSQL;
+
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
       Query.SQL.Add('HAMLogOnline_API TEXT DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
