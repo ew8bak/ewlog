@@ -20,7 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm_U"/>
-        <CursorPos X="16" Y="51"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="93" Y="14"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -655,9 +656,8 @@
         <ComponentName Value="MiniForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="1535"/>
+        <TopLine Value="1536"/>
         <CursorPos X="41" Y="1541"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
