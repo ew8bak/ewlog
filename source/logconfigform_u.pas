@@ -31,6 +31,8 @@ type
     cbUploadQRZcom: TCheckBox;
     cbUploadQSOsu: TCheckBox;
     editAPItokenQSOsu: TEdit;
+    cbUploadHAMLogOnline: TCheckBox;
+    editAPIkeyHAMLogOnline: TEdit;
     EditDescription: TEdit;
     EditQSLinfo: TEdit;
     editLoginEqslcc: TEdit;
@@ -54,12 +56,14 @@ type
     EditLat: TEdit;
     EditLon: TEdit;
     lbAPIkeyQRZcom1: TLabel;
+    lbAPIkeyHAMLogOnline: TLabel;
     lbLog: TLabel;
     lbCQ: TLabel;
     lbGrid: TLabel;
     lbLat: TLabel;
     lbLon: TLabel;
     lbQRZcom1: TLabel;
+    lbHAMLogOnline: TLabel;
     lbQSLinfo: TLabel;
     LBDefaultCall: TLabel;
     lbEqslcc: TLabel;
@@ -180,6 +184,8 @@ begin
       cbUploadQRZcom.Checked := Query.FieldByName('AutoQRZCom').AsBoolean;
       cbUploadQSOsu.Checked := Query.FieldByName('AutoQSOsu').AsBoolean;
       editAPItokenQSOsu.Text := Query.FieldByName('QSOSU_Token').AsString;
+      editAPIkeyHAMLogOnline.Text := Query.FieldByName('HAMLogOnline_API').AsString;
+      cbUploadHAMLogOnline.Checked := Query.FieldByName('AutoHAMLogOnline').AsBoolean;
       id := Query.FieldByName('id').AsInteger;
     end
     else
@@ -215,6 +221,7 @@ begin
           ' `HamQTHLogin`=:HamQTHLogin, `HamQTHPassword`=:HamQTHPassword, `AutoQRZCom`=:AutoQRZCom,' +
           ' `AutoQSOsu`=:AutoQSOsu, `QSOSU_Token`=:QSOSU_Token,'
           + ' `QRZCOM_User`=:QRZCOM_User, `QRZCOM_Password`=:QRZCOM_Password,' +
+          ' `HAMLogOnline_API`=:HAMLogOnline_API, `AutoHAMLogOnline`=:AutoHAMLogOnline,' +
           ' `ClubLog_User`=:ClubLog_User, `ClubLog_Password`=:ClubLog_Password,' +
           ' `AutoHamQTH`=:AutoHamQTH, `AutoClubLog`=:AutoClubLog, `LoTW_User`=:LoTW_User,'
           + ' `LoTW_Password`=:LoTW_Password WHERE `id`=:id';
@@ -247,7 +254,8 @@ begin
         Params.ParamByName('AutoQRZCom').AsBoolean := cbUploadQRZcom.Checked;
         Params.ParamByName('QSOSU_Token').AsString := editAPItokenQSOsu.Text;
         Params.ParamByName('AutoQSOsu').AsBoolean := cbUploadQSOsu.Checked;
-
+        Params.ParamByName('HAMLogOnline_API').AsString := editAPIkeyHAMLogOnline.Text;
+        Params.ParamByName('AutoHAMLogOnline').AsBoolean := cbUploadHAMLogOnline.Checked;
         Params.ParamByName('id').AsInteger := id;
         ExecSQL;
       end;

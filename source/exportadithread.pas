@@ -83,6 +83,9 @@ var
   DefStationCallsign: string;
   EQSL_QSL_RCVD, QSL_RCVD, QSL_SENT: string;
   LOTW_QSL_RCVD, LOTW_QSL_SENT: string;
+  CLUBLOG_QSO_UPLOAD_STATUS, HRDLOG_QSO_UPLOAD_STATUS: string;
+  QRZCOM_QSO_UPLOAD_STATUS, HAMLOGEU_QSO_UPLOAD_STATUS: string;
+  HAMLOGONLINE_QSO_UPLOAD_STATUS, HAMQTH_QSO_UPLOAD_STATUS: string;
   tmpFreq, MyCurrCall: string;
   i: integer;
   numberToExp: string = '';
@@ -625,9 +628,9 @@ begin
         if exportAdiSet.fCLUBLOG_QSO_UPLOAD_STATUS then
           if Query.Fields.FieldByName('CLUBLOG_QSO_UPLOAD_STATUS').AsString = '1' then
           begin
-            LOTW_QSL_RCVD := Query.Fields.FieldByName(
+            CLUBLOG_QSO_UPLOAD_STATUS := Query.Fields.FieldByName(
               'CLUBLOG_QSO_UPLOAD_STATUS').AsString;
-            if LOTW_QSL_RCVD = '0' then
+            if CLUBLOG_QSO_UPLOAD_STATUS = '0' then
               tmp := '<CLUBLOG_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('N', utf8Len)
             else
@@ -649,9 +652,9 @@ begin
         if exportAdiSet.fHRDLOG_QSO_UPLOAD_STATUS then
           if Query.Fields.FieldByName('HRDLOG_QSO_UPLOAD_STATUS').AsString = '1' then
           begin
-            LOTW_QSL_RCVD := Query.Fields.FieldByName(
+            HRDLOG_QSO_UPLOAD_STATUS := Query.Fields.FieldByName(
               'HRDLOG_QSO_UPLOAD_STATUS').AsString;
-            if LOTW_QSL_RCVD = '0' then
+            if HRDLOG_QSO_UPLOAD_STATUS = '0' then
               tmp := '<HRDLOG_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('N', utf8Len)
             else
@@ -673,9 +676,9 @@ begin
         if exportAdiSet.fQRZCOM_QSO_UPLOAD_STATUS then
           if Query.Fields.FieldByName('QRZCOM_QSO_UPLOAD_STATUS').AsString = '1' then
           begin
-            LOTW_QSL_RCVD := Query.Fields.FieldByName(
+            QRZCOM_QSO_UPLOAD_STATUS := Query.Fields.FieldByName(
               'QRZCOM_QSO_UPLOAD_STATUS').AsString;
-            if LOTW_QSL_RCVD = '0' then
+            if QRZCOM_QSO_UPLOAD_STATUS = '0' then
               tmp := '<QRZCOM_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('N', utf8Len)
             else
@@ -698,9 +701,9 @@ begin
           if Query.Fields.FieldByName('HAMLOGEU_QSO_UPLOAD_STATUS').AsString
             = '1' then
           begin
-            LOTW_QSL_RCVD := Query.Fields.FieldByName(
+            HAMLOGEU_QSO_UPLOAD_STATUS := Query.Fields.FieldByName(
               'HAMLOGEU_QSO_UPLOAD_STATUS').AsString;
-            if LOTW_QSL_RCVD = '0' then
+            if HAMLOGEU_QSO_UPLOAD_STATUS = '0' then
               tmp := '<HAMLOGEU_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('N', utf8Len)
             else
@@ -709,27 +712,27 @@ begin
             Write(f, tmp);
           end;
 
-        if exportAdiSet.fHAMLOGRU_QSO_UPLOAD_DATE then
-          if Query.Fields.FieldByName('HAMLOGRU_QSO_UPLOAD_DATE').AsString <> '' then
+        if exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_DATE then
+          if Query.Fields.FieldByName('HAMLOGONLINE_QSO_UPLOAD_DATE').AsString <> '' then
           begin
             tmp := FormatDateTime('yyyymmdd', Query.Fields.FieldByName(
-              'HAMLOGRU_QSO_UPLOAD_DATE').AsDateTime);
-            tmp := '<HAMLOGRU_QSO_UPLOAD_DATE' +
+              'HAMLOGONLINE_QSO_UPLOAD_DATE').AsDateTime);
+            tmp := '<HAMLOGONLINE_QSO_UPLOAD_DATE' +
               dmFunc.StringToADIF(tmp, utf8Len);
             Write(f, tmp);
           end;
 
-        if exportAdiSet.fHAMLOGRU_QSO_UPLOAD_STATUS then
-          if Query.Fields.FieldByName('HAMLOGRU_QSO_UPLOAD_STATUS').AsString
+        if exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_STATUS then
+          if Query.Fields.FieldByName('HAMLOGONLINE_QSO_UPLOAD_STATUS').AsString
             = '1' then
           begin
-            LOTW_QSL_RCVD := Query.Fields.FieldByName(
-              'HAMLOGRU_QSO_UPLOAD_STATUS').AsString;
-            if LOTW_QSL_RCVD = '0' then
-              tmp := '<HAMLOGRU_QSO_UPLOAD_STATUS' +
+            HAMLOGONLINE_QSO_UPLOAD_STATUS := Query.Fields.FieldByName(
+              'HAMLOGONLINE_QSO_UPLOAD_STATUS').AsString;
+            if HAMLOGONLINE_QSO_UPLOAD_STATUS = '0' then
+              tmp := '<HAMLOGONLINE_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('N', utf8Len)
             else
-              tmp := '<HAMLOGRU_QSO_UPLOAD_STATUS' +
+              tmp := '<HAMLOGONLINE_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('Y', utf8Len);
             Write(f, tmp);
           end;
@@ -748,9 +751,9 @@ begin
           if Query.Fields.FieldByName('HAMQTH_QSO_UPLOAD_STATUS').AsString
             = '1' then
           begin
-            LOTW_QSL_RCVD := Query.Fields.FieldByName(
+            HAMQTH_QSO_UPLOAD_STATUS := Query.Fields.FieldByName(
               'HAMQTH_QSO_UPLOAD_STATUS').AsString;
-            if LOTW_QSL_RCVD = '0' then
+            if HAMQTH_QSO_UPLOAD_STATUS = '0' then
               tmp := '<HAMQTH_QSO_UPLOAD_STATUS' +
                 dmFunc.StringToADIF('N', utf8Len)
             else

@@ -64,11 +64,11 @@ type
     cbHamLogEuQsoUploadStatus: TCheckBox;
     cbSatMode: TCheckBox;
     cbLotwQslRdate: TCheckBox;
-    cbHamLogRuQsoUploadDate: TCheckBox;
+    cbHamLogOnlineQsoUploadDate: TCheckBox;
     cbSatName: TCheckBox;
     cbComment: TCheckBox;
     cbMyState: TCheckBox;
-    cbHamLogRuQsoUploadStatus: TCheckBox;
+    cbHamLogOnlineQsoUploadStatus: TCheckBox;
     cbStx: TCheckBox;
     cbQslSdate: TCheckBox;
     cbSotaRef: TCheckBox;
@@ -94,8 +94,8 @@ type
     procedure cbHamLogEuQsoUploadDateChange(Sender: TObject);
     procedure cbHamLogEuQsoUploadStatusChange(Sender: TObject);
     procedure cbHamLogQslRcvdChange(Sender: TObject);
-    procedure cbHamLogRuQsoUploadDateChange(Sender: TObject);
-    procedure cbHamLogRuQsoUploadStatusChange(Sender: TObject);
+    procedure cbHamLogOnlineQsoUploadDateChange(Sender: TObject);
+    procedure cbHamLogOnlineQsoUploadStatusChange(Sender: TObject);
     procedure cbHamqthQsoUploadDateChange(Sender: TObject);
     procedure cbHamqthQsoUploadStatusChange(Sender: TObject);
     procedure cbHrdlogQsoUploadDateChange(Sender: TObject);
@@ -221,8 +221,8 @@ begin
   cbQrzComQsoUploadStatus.Checked := exportAdiSet.fQRZCOM_QSO_UPLOAD_STATUS;
   cbHamLogEuQsoUploadDate.Checked := exportAdiSet.fHAMLOGEU_QSO_UPLOAD_DATE;
   cbHamLogEuQsoUploadStatus.Checked := exportAdiSet.fHAMLOGEU_QSO_UPLOAD_STATUS;
-  cbHamLogRuQsoUploadDate.Checked := exportAdiSet.fHAMLOGRU_QSO_UPLOAD_DATE;
-  cbHamLogRuQsoUploadStatus.Checked := exportAdiSet.fHAMLOGRU_QSO_UPLOAD_STATUS;
+  cbHamLogOnlineQsoUploadDate.Checked := exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_DATE;
+  cbHamLogOnlineQsoUploadStatus.Checked := exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_STATUS;
 end;
 
 procedure TexportSettingsForm.cbOperatorChange(Sender: TObject);
@@ -421,18 +421,18 @@ begin
   iniFile.WriteBool('ExportFieldsADI', 'HAMLOG_QSL_RCVD', cbHamLogQslRcvd.Checked);
 end;
 
-procedure TexportSettingsForm.cbHamLogRuQsoUploadDateChange(Sender: TObject);
+procedure TexportSettingsForm.cbHamLogOnlineQsoUploadDateChange(Sender: TObject);
 begin
-  exportAdiSet.fHAMLOGRU_QSO_UPLOAD_DATE := cbHamLogRuQsoUploadDate.Checked;
-  iniFile.WriteBool('ExportFieldsADI', 'HAMLOGRU_QSO_UPLOAD_DATE',
-    cbHamLogRuQsoUploadDate.Checked);
+  exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_DATE := cbHamLogOnlineQsoUploadDate.Checked;
+  iniFile.WriteBool('ExportFieldsADI', 'HAMLOGONLINE_QSO_UPLOAD_DATE',
+    cbHamLogOnlineQsoUploadDate.Checked);
 end;
 
-procedure TexportSettingsForm.cbHamLogRuQsoUploadStatusChange(Sender: TObject);
+procedure TexportSettingsForm.cbHamLogOnlineQsoUploadStatusChange(Sender: TObject);
 begin
-  exportAdiSet.fHAMLOGRU_QSO_UPLOAD_STATUS := cbHamLogRuQsoUploadStatus.Checked;
-  iniFile.WriteBool('ExportFieldsADI', 'HAMLOGRU_QSO_UPLOAD_STATUS',
-    cbHamLogRuQsoUploadStatus.Checked);
+  exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_STATUS := cbHamLogOnlineQsoUploadStatus.Checked;
+  iniFile.WriteBool('ExportFieldsADI', 'HAMLOGONLINE_QSO_UPLOAD_STATUS',
+    cbHamLogOnlineQsoUploadStatus.Checked);
 end;
 
 procedure TexportSettingsForm.cbHamqthQsoUploadDateChange(Sender: TObject);

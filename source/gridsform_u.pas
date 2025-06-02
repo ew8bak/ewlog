@@ -49,6 +49,7 @@ type
     ExportHamQTHItem: TMenuItem;
     ExportCloudLogItem: TMenuItem;
     MenuItem1: TMenuItem;
+    ExportHAMLogOnlineItem: TMenuItem;
     Separator1: TMenuItem;
     miExportToService: TMenuItem;
     MISendOnLAN: TMenuItem;
@@ -107,6 +108,7 @@ type
     procedure ExportADIFItemClick(Sender: TObject);
     procedure ExportCloudLogItemClick(Sender: TObject);
     procedure ExportClubLogItemClick(Sender: TObject);
+    procedure ExportHAMLogOnlineItemClick(Sender: TObject);
     procedure ExportHamQTHItemClick(Sender: TObject);
     procedure ExportHRDItemClick(Sender: TObject);
     procedure ExportQSLccItemClick(Sender: TObject);
@@ -328,6 +330,19 @@ begin
     SelQSO.Auto := False;
     MainFunc.SendQSOto('clublog', SelQSO);
   end;
+end;
+
+procedure TGridsForm.ExportHAMLogOnlineItemClick(Sender: TObject);
+var
+  SelQSO: TQSO;
+begin
+  if InitRecord.SelectLogbookTable and (DBGrid1.SelectedIndex <> 0) then
+  begin
+    SelQSO := MainFunc.SelectEditQSO(UnUsIndex);
+    SelQSO.Auto := False;
+    MainFunc.SendQSOto('hamlogonline', SelQSO);
+  end;
+
 end;
 
 procedure TGridsForm.ExportHamQTHItemClick(Sender: TObject);

@@ -11,9 +11,8 @@ object LogConfigForm: TLogConfigForm
   DefaultMonitor = dmMainForm
   DesignTimePPI = 120
   FormStyle = fsStayOnTop
-  OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '3.8.0.0'
+  OnShow = FormShow
   object Panel1: TPanel
     AnchorSideBottom.Control = Panel2
     AnchorSideBottom.Side = asrBottom
@@ -981,6 +980,18 @@ object LogConfigForm: TLogConfigForm
           BorderSpacing.Left = 12
           BorderSpacing.Top = 12
           Caption = 'QSO.su'
+        ClientHeight = 405
+        ClientWidth = 285
+        object lbHAMLogOnline: TLabel
+          AnchorSideLeft.Control = TabSheet4
+          AnchorSideTop.Control = TabSheet4
+          Left = 10
+          Height = 15
+          Top = 5
+          Width = 85
+          BorderSpacing.Left = 10
+          BorderSpacing.Top = 5
+          Caption = 'HAMLog.online'
           Font.Style = [fsBold, fsUnderline]
           ParentColor = False
           ParentFont = False
@@ -1007,6 +1018,47 @@ object LogConfigForm: TLogConfigForm
           Height = 24
           Top = 70
           Width = 313
+        object lbAPIkeyHAMLogOnline: TLabel
+          AnchorSideLeft.Control = TabSheet4
+          AnchorSideTop.Control = editAPIkeyHAMLogOnline
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = editAPIkeyHAMLogOnline
+          Left = 5
+          Height = 15
+          Top = 29
+          Width = 62
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
+          BorderSpacing.Right = 3
+          Caption = 'API key'
+          ParentColor = False
+          ParentFont = False
+        end
+        object editAPIkeyHAMLogOnline: TEdit
+          AnchorSideTop.Control = lbHAMLogOnline
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = TabSheet4
+          AnchorSideRight.Side = asrBottom
+          Left = 70
+          Height = 23
+          Top = 25
+          Width = 205
+          Anchors = [akTop, akRight]
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 10
+          EchoMode = emPassword
+          ParentFont = False
+          PasswordChar = '*'
+          TabOrder = 0
+        end
+        object cbUploadHAMLogOnline: TCheckBox
+          AnchorSideLeft.Control = TabSheet4
+          AnchorSideTop.Control = editAPIkeyHAMLogOnline
+          AnchorSideTop.Side = asrBottom
+          Left = 2
+          Height = 19
+          Top = 50
+          Width = 247
           BorderSpacing.Left = 2
           BorderSpacing.Top = 2
           Caption = 'Upload every time a logbook entry is added'

@@ -142,6 +142,31 @@ msgctxt "eqsl.rerrorsendingsata"
 msgid "Error sending data"
 msgstr ""
 
+#: hamlogonline.ranswerserver
+msgctxt "hamlogonline.ranswerserver"
+msgid "Server response:"
+msgstr ""
+
+#: hamlogonline.rerrorsendingsata
+msgctxt "hamlogonline.rerrorsendingsata"
+msgid "Error sending data"
+msgstr ""
+
+#: hamlogonline.rnoentryadded
+msgctxt "hamlogonline.rnoentryadded"
+msgid "No entry added! Perhaps a duplicate!"
+msgstr ""
+
+#: hamlogonline.rrecordaddedsuccessfully
+msgctxt "hamlogonline.rrecordaddedsuccessfully"
+msgid "Record added successfully"
+msgstr ""
+
+#: hamlogonline.runknownuser
+msgctxt "hamlogonline.runknownuser"
+msgid "Unknown user! See settings"
+msgstr ""
+
 #: hamqth.ranswerserver
 msgctxt "hamqth.ranswerserver"
 msgid "Server response:"
@@ -3022,16 +3047,16 @@ msgstr ""
 msgid "HAMLOGEU_QSO_UPLOAD_STATUS"
 msgstr ""
 
+#: texportsettingsform.cbhamlogonlineqsouploaddate.caption
+msgid "HAMLOGONLINE_QSO_UPLOAD_DATE"
+msgstr ""
+
+#: texportsettingsform.cbhamlogonlineqsouploadstatus.caption
+msgid "HAMLOGONLINE_QSO_UPLOAD_STATUS"
+msgstr ""
+
 #: texportsettingsform.cbhamlogqslrcvd.caption
 msgid "HAMLOG_QSL_RCVD"
-msgstr ""
-
-#: texportsettingsform.cbhamlogruqsouploaddate.caption
-msgid "HAMLOGRU_QSO_UPLOAD_DATE"
-msgstr ""
-
-#: texportsettingsform.cbhamlogruqsouploadstatus.caption
-msgid "HAMLOGRU_QSO_UPLOAD_STATUS"
 msgstr ""
 
 #: texportsettingsform.cbhamqthqsouploaddate.caption
@@ -3616,6 +3641,10 @@ msgstr ""
 msgid "Export QSO to ClubLog"
 msgstr ""
 
+#: tgridsform.exporthamlogonlineitem.caption
+msgid "Export QSO to HAMLog.online"
+msgstr ""
+
 #: tgridsform.exporthamqthitem.caption
 msgid "Export QSO to HamQTH"
 msgstr ""
@@ -4111,6 +4140,11 @@ msgctxt "tlogconfigform.cbuploadeqslcc.caption"
 msgid "Upload every time a logbook entry is added"
 msgstr ""
 
+#: tlogconfigform.cbuploadhamlogonline.caption
+msgctxt "tlogconfigform.cbuploadhamlogonline.caption"
+msgid "Upload every time a logbook entry is added"
+msgstr ""
+
 #: tlogconfigform.cbuploadhamqth.caption
 msgctxt "tlogconfigform.cbuploadhamqth.caption"
 msgid "Upload every time a logbook entry is added"
@@ -4133,6 +4167,11 @@ msgstr ""
 
 #: tlogconfigform.editqslinfo.text
 msgid "TNX For QSO TU 73!"
+msgstr ""
+
+#: tlogconfigform.lbapikeyhamlogonline.caption
+msgctxt "tlogconfigform.lbapikeyhamlogonline.caption"
+msgid "API key"
 msgstr ""
 
 #: tlogconfigform.lbapikeyqrzcom.caption
@@ -4176,6 +4215,10 @@ msgstr ""
 #: tlogconfigform.lbgrid.caption
 msgctxt "tlogconfigform.lbgrid.caption"
 msgid "Grid"
+msgstr ""
+
+#: tlogconfigform.lbhamlogonline.caption
+msgid "HAMLog.online"
 msgstr ""
 
 #: tlogconfigform.lbhamqth.caption

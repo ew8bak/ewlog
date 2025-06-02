@@ -6,9 +6,8 @@ object exportSettingsForm: TexportSettingsForm
   Caption = 'Export ADI Settings'
   ClientHeight = 444
   ClientWidth = 680
-  OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '3.2.0.0'
+  OnShow = FormShow
   object GroupBox1: TGroupBox
     Left = 0
     Height = 444
@@ -25,571 +24,571 @@ object exportSettingsForm: TexportSettingsForm
     ClientWidth = 676
     TabOrder = 0
     object cbOperator: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 10
-      Width = 195
+      Width = 198
       Caption = 'OPERATOR'
       TabOrder = 0
       OnChange = cbOperatorChange
     end
     object cbCall: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 10
-      Width = 190
+      Width = 192
       Caption = 'CALL'
       TabOrder = 1
       OnChange = cbCallChange
     end
     object cbQsoDate: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 10
-      Width = 209
+      Width = 238
       Caption = 'QSO_DATE'
       TabOrder = 2
       OnChange = cbQsoDateChange
     end
     object cbTimeOn: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 29
-      Width = 195
+      Width = 198
       Caption = 'TIME_ON'
       TabOrder = 3
       OnChange = cbTimeOnChange
     end
     object cbMode: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 29
-      Width = 190
+      Width = 192
       Caption = 'MODE'
       TabOrder = 4
       OnChange = cbModeChange
     end
     object cbSubMode: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 29
-      Width = 209
+      Width = 238
       Caption = 'SUBMODE'
       TabOrder = 5
       OnChange = cbSubModeChange
     end
     object cbFreq: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 48
-      Width = 195
+      Width = 198
       Caption = 'FREQ'
       TabOrder = 6
       OnChange = cbFreqChange
     end
     object cbRstSent: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 48
-      Width = 190
+      Width = 192
       Caption = 'RST_SENT'
       TabOrder = 7
       OnChange = cbRstSentChange
     end
     object cbRstRcvd: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 48
-      Width = 209
+      Width = 238
       Caption = 'RST_RCVD'
       TabOrder = 8
       OnChange = cbRstRcvdChange
     end
     object cbName: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 67
-      Width = 195
+      Width = 198
       Caption = 'NAME'
       TabOrder = 9
       OnChange = cbNameChange
     end
     object cbQth: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 67
-      Width = 190
+      Width = 192
       Caption = 'QTH'
       TabOrder = 10
       OnChange = cbQthChange
     end
     object cbGridsquare: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 67
-      Width = 209
+      Width = 238
       Caption = 'GRIDSQUARE'
       TabOrder = 11
       OnChange = cbGridsquareChange
     end
     object cbPfx: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 86
-      Width = 195
+      Width = 198
       Caption = 'PFX'
       TabOrder = 12
       OnChange = cbPfxChange
     end
     object cbDxccPref: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 86
-      Width = 190
+      Width = 192
       Caption = 'DXCC_PREF'
       TabOrder = 13
       OnChange = cbDxccPrefChange
     end
     object cbBand: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 86
-      Width = 209
+      Width = 238
       Caption = 'BAND'
       TabOrder = 14
       OnChange = cbBandChange
     end
     object cbCqz: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 105
-      Width = 195
+      Width = 198
       Caption = 'CQZ'
       TabOrder = 15
       OnChange = cbCqzChange
     end
     object cbItuz: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 105
-      Width = 190
+      Width = 192
       Caption = 'ITUZ'
       TabOrder = 16
       OnChange = cbItuzChange
     end
     object cbCont: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 105
-      Width = 209
+      Width = 238
       Caption = 'CONT'
       TabOrder = 17
       OnChange = cbContChange
     end
     object cbQslMsg: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 124
-      Width = 195
+      Width = 198
       Caption = 'QSLMSG'
       TabOrder = 18
       OnChange = cbQslMsgChange
     end
     object cbLotwQslSent: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 124
-      Width = 190
+      Width = 192
       Caption = 'LOTW_QSL_SENT'
       TabOrder = 19
       OnChange = cbLotwQslSentChange
     end
     object cbDxcc: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 124
-      Width = 209
+      Width = 238
       Caption = 'DXCC'
       TabOrder = 20
       OnChange = cbDxccChange
     end
     object cbEqslQslSent: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 143
-      Width = 195
+      Width = 198
       Caption = 'EQSL_QSL_SENT'
       TabOrder = 21
       OnChange = cbEqslQslSentChange
     end
     object cbMyGridsquare: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 143
-      Width = 190
+      Width = 192
       Caption = 'MY_GRIDSQUARE'
       TabOrder = 22
       OnChange = cbMyGridsquareChange
     end
     object cbMyLat: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 143
-      Width = 209
+      Width = 238
       Caption = 'MY_LAT'
       TabOrder = 23
       OnChange = cbMyLatChange
     end
     object cbMyLon: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 162
-      Width = 195
+      Width = 198
       Caption = 'MY_LON'
       TabOrder = 24
       OnChange = cbMyLonChange
     end
     object cbClublogQsoUploadDate: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 162
-      Width = 190
+      Width = 192
       Caption = 'CLUBLOG_QSO_UPLOAD_DATE'
       TabOrder = 25
       OnChange = cbClublogQsoUploadDateChange
     end
     object cbClublogQsoUploadStatus: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 162
-      Width = 209
+      Width = 238
       Caption = 'CLUBLOG_QSO_UPLOAD_STATUS'
       TabOrder = 26
       OnChange = cbClublogQsoUploadStatusChange
     end
     object cbHrdlogQsoUploadDate: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 181
-      Width = 195
+      Width = 198
       Caption = 'HRDLOG_QSO_UPLOAD_DATE'
       TabOrder = 27
       OnChange = cbHrdlogQsoUploadDateChange
     end
     object cbHrdLogQsoUploadStatus: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 181
-      Width = 190
+      Width = 192
       Caption = 'HRDLOG_QSO_UPLOAD_STATUS'
       TabOrder = 28
       OnChange = cbHrdLogQsoUploadStatusChange
     end
     object cbHamqthQsoUploadDate: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 181
-      Width = 209
+      Width = 238
       Caption = 'HAMQTH_QSO_UPLOAD_DATE'
       TabOrder = 29
       OnChange = cbHamqthQsoUploadDateChange
     end
     object cbHamqthQsoUploadStatus: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 200
-      Width = 195
+      Width = 198
       Caption = 'HAMQTH_QSO_UPLOAD_STATUS'
       TabOrder = 30
       OnChange = cbHamqthQsoUploadStatusChange
     end
     object cbFreqRx: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 200
-      Width = 190
+      Width = 192
       Caption = 'FREQ_RX'
       TabOrder = 31
       OnChange = cbFreqRxChange
     end
     object cbStationCallsign: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 200
-      Width = 209
+      Width = 238
       Caption = 'STATION_CALLSIGN'
       TabOrder = 32
       OnChange = cbStationCallsignChange
     end
     object cbSrx: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 219
-      Width = 195
+      Width = 198
       Caption = 'SRX'
       TabOrder = 33
       OnChange = cbSrxChange
     end
     object cbEqslQslRcvd: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 219
-      Width = 190
+      Width = 192
       Caption = 'EQSL_QSL_RCVD'
       TabOrder = 34
       OnChange = cbEqslQslRcvdChange
     end
     object cbMyState: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 219
-      Width = 209
+      Width = 238
       Caption = 'MY_STATE'
       TabOrder = 35
       OnChange = cbMyStateChange
     end
     object cbStx: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 238
-      Width = 195
+      Width = 198
       Caption = 'STX'
       TabOrder = 36
       OnChange = cbStxChange
     end
     object cbQslSdate: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 238
-      Width = 190
+      Width = 192
       Caption = 'QSLSDATE'
       TabOrder = 37
       OnChange = cbQslSdateChange
     end
     object cbSotaRef: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 238
-      Width = 209
+      Width = 238
       Caption = 'SOTA_REF'
       TabOrder = 38
       OnChange = cbSotaRefChange
     end
     object cbSrxString: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 257
-      Width = 195
+      Width = 198
       Caption = 'SRX_STRING'
       TabOrder = 39
       OnChange = cbSrxStringChange
     end
     object cbQslRdate: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 257
-      Width = 190
+      Width = 192
       Caption = 'QSLRDATE'
       TabOrder = 40
       OnChange = cbQslRdateChange
     end
     object cbMySotaRef: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 257
-      Width = 209
+      Width = 238
       Caption = 'MY_SOTA_REF'
       TabOrder = 41
       OnChange = cbMySotaRefChange
     end
     object cbStxString: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 276
-      Width = 195
+      Width = 198
       Caption = 'STX_STRING'
       TabOrder = 42
       OnChange = cbStxStringChange
     end
     object cbQslRcvd: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 276
-      Width = 190
+      Width = 192
       Caption = 'QSL_RCVD'
       TabOrder = 43
       OnChange = cbQslRcvdChange
     end
     object cbHamLogQslRcvd: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 276
-      Width = 209
+      Width = 238
       Caption = 'HAMLOG_QSL_RCVD'
       TabOrder = 44
       OnChange = cbHamLogQslRcvdChange
     end
     object cbState: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 295
-      Width = 195
+      Width = 198
       Caption = 'STATE'
       TabOrder = 45
       OnChange = cbStateChange
     end
     object cbQslRcvdVia: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 295
-      Width = 190
+      Width = 192
       Caption = 'QSL_RCVD_VIA'
       TabOrder = 46
       OnChange = cbQslRcvdViaChange
     end
     object cbQrzComQsoUploadDate: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 295
-      Width = 209
+      Width = 238
       Caption = 'QRZCOM_QSO_UPLOAD_DATE'
       TabOrder = 47
       OnChange = cbQrzComQsoUploadDateChange
     end
     object cbWpx: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 314
-      Width = 195
+      Width = 198
       Caption = 'WPX'
       TabOrder = 48
       OnChange = cbWpxChange
     end
     object cbQslSentVia: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 314
-      Width = 190
+      Width = 192
       Caption = 'QSL_SENT_VIA'
       TabOrder = 49
       OnChange = cbQslSentViaChange
     end
     object cbQrzComQsoUploadStatus: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 314
-      Width = 209
+      Width = 238
       Caption = 'QRZCOM_QSO_UPLOAD_STATUS'
       TabOrder = 50
       OnChange = cbQrzComQsoUploadStatusChange
     end
     object cbBandRx: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 333
-      Width = 195
+      Width = 198
       Caption = 'BAND_RX'
       TabOrder = 51
       OnChange = cbBandRxChange
     end
     object cbQslSent: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 333
-      Width = 190
+      Width = 192
       Caption = 'QSL_SENT'
       TabOrder = 52
       OnChange = cbQslSentChange
     end
     object cbHamLogEuQsoUploadDate: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 333
-      Width = 209
+      Width = 238
       Caption = 'HAMLOGEU_QSO_UPLOAD_DATE'
       TabOrder = 53
       OnChange = cbHamLogEuQsoUploadDateChange
     end
     object cbPropMode: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 352
-      Width = 195
+      Width = 198
       Caption = 'PROP_MODE'
       TabOrder = 54
       OnChange = cbPropModeChange
     end
     object cbLotwQslRcvd: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 352
-      Width = 190
+      Width = 192
       Caption = 'LOTW_QSL_RCVD'
       TabOrder = 55
       OnChange = cbLotwQslRcvdChange
     end
     object cbHamLogEuQsoUploadStatus: TCheckBox
-      Left = 463
+      Left = 431
       Height = 19
       Top = 352
-      Width = 209
+      Width = 238
       Caption = 'HAMLOGEU_QSO_UPLOAD_STATUS'
       TabOrder = 56
       OnChange = cbHamLogEuQsoUploadStatusChange
     end
     object cbSatMode: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 371
-      Width = 195
+      Width = 198
       Caption = 'SAT_MODE'
       TabOrder = 57
       OnChange = cbSatModeChange
     end
     object cbLotwQslRdate: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 371
-      Width = 190
+      Width = 192
       Caption = 'LOTW_QSLRDATE'
       TabOrder = 58
       OnChange = cbLotwQslRdateChange
     end
-    object cbHamLogRuQsoUploadDate: TCheckBox
-      Left = 463
+    object cbHamLogOnlineQsoUploadDate: TCheckBox
+      Left = 431
       Height = 19
       Top = 371
-      Width = 209
-      Caption = 'HAMLOGRU_QSO_UPLOAD_DATE'
+      Width = 238
+      Caption = 'HAMLOGONLINE_QSO_UPLOAD_DATE'
       TabOrder = 59
-      OnChange = cbHamLogRuQsoUploadDateChange
+      OnChange = cbHamLogOnlineQsoUploadDateChange
     end
     object cbSatName: TCheckBox
-      Left = 26
+      Left = 7
       Height = 19
       Top = 390
-      Width = 195
+      Width = 198
       Caption = 'SAT_NAME'
       TabOrder = 60
       OnChange = cbSatNameChange
     end
     object cbComment: TCheckBox
-      Left = 247
+      Left = 222
       Height = 19
       Top = 390
-      Width = 190
+      Width = 192
       Caption = 'COMMENT'
       TabOrder = 61
       OnChange = cbCommentChange
     end
-    object cbHamLogRuQsoUploadStatus: TCheckBox
-      Left = 463
+    object cbHamLogOnlineQsoUploadStatus: TCheckBox
+      Left = 431
       Height = 19
       Top = 390
-      Width = 209
-      Caption = 'HAMLOGRU_QSO_UPLOAD_STATUS'
+      Width = 238
+      Caption = 'HAMLOGONLINE_QSO_UPLOAD_STATUS'
       TabOrder = 62
-      OnChange = cbHamLogRuQsoUploadStatusChange
+      OnChange = cbHamLogOnlineQsoUploadStatusChange
     end
   end
 end

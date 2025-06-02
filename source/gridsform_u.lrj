@@ -94,6 +94,7 @@
 {"hash":186223715,"name":"tgridsform.exportqslccitem.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,101,81,83,76,46,99,99],"value":"Export QSO to eQSL.cc"},
 {"hash":155585415,"name":"tgridsform.exportclublogitem.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,67,108,117,98,76,111,103],"value":"Export QSO to ClubLog"},
 {"hash":233950984,"name":"tgridsform.exporthamqthitem.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,72,97,109,81,84,72],"value":"Export QSO to HamQTH"},
+{"hash":170255125,"name":"tgridsform.exporthamlogonlineitem.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,72,65,77,76,111,103,46,111,110,108,105,110,101],"value":"Export QSO to HAMLog.online"},
 {"hash":109199559,"name":"tgridsform.exportcloudlogitem.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,67,108,111,117,100,108,111,103],"value":"Export QSO to Cloudlog"},
 {"hash":209693733,"name":"tgridsform.menuitem1.caption","sourcebytes":[69,120,112,111,114,116,32,81,83,79,32,116,111,32,81,83,85,46,115,117],"value":"Export QSO to QSU.su"},
 {"hash":198800002,"name":"tgridsform.prefixitem.caption","sourcebytes":[80,114,101,102,105,120,32,77,97,110,97,103,101,114],"value":"Prefix Manager"},

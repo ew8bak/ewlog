@@ -3,13 +3,13 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License.        *
- *   Author Vladimir Karpenko (EW8BAK)                                     *
+ *   Author Ulazdimir Karpenka (EW8BAK)                                    *
  *                                                                         *
  ***************************************************************************)
 
-unit hrdlog;
+unit hamlogonline;
 
-{$mode objfpc}{$H+}
+{$mode ObjFPC}{$H+}
 
 interface
 
@@ -17,7 +17,7 @@ uses
   {$IFDEF UNIX}
   CThreads,
   {$ENDIF}
-  Classes, SysUtils, strutils, qso_record, fphttpclient;
+  Classes, SysUtils, strutils, qso_record, fphttpclient, LazUTF8;
 
 resourcestring
   rAnswerServer = 'Server response:';
@@ -27,108 +27,90 @@ resourcestring
   rUnknownUser = 'Unknown user! See settings';
 
 const
-  UploadURL = 'http://robot.hrdlog.net/NewEntry.aspx';
+  UploadURL = 'https://hamlog.online/api/agent/v2/';
 
 type
-  THRDSentEvent = procedure of object;
+  THAMLogOnlineSentEvent = procedure of object;
 
-  TSendHRDThread = class(TThread)
+  TSendHAMLogOnlineThread = class(TThread)
   protected
     procedure Execute; override;
     procedure ShowResult;
-    function SendHRD(SendQSOr: TQSO): boolean;
+    function SendHAMLogOnline(SendQSOr: TQSO): boolean;
   private
     result_mes: string;
     uploadok: boolean;
     Done: boolean;
   public
     SendQSO: TQSO;
-    user: string;
-    password: string;
-    callsign: string;
-    OnHRDSent: THRDSentEvent;
+    CurrentCallsign: string;
+    apikey: string;
+    OnHAMLogOnlineSent: THAMLogOnlineSentEvent;
     constructor Create;
   end;
 
-function StripStr(t, s: string): string;
-
 var
-  SendHRDThread: TSendHRDThread;
+  SendHAMLogOnlineThread: TSendHAMLogOnlineThread;
 
 implementation
 
 uses Forms, LCLType, dmFunc_U, MainFuncDM;
 
-function StripStr(t, s: string): string;
-begin
-  Result := StringReplace(s, t, '', [rfReplaceAll]);
-end;
-
-function TSendHRDThread.SendHRD(SendQSOr: TQSO): boolean;
+function TSendHAMLogOnlineThread.SendHAMLogOnline(SendQSOr: TQSO): boolean;
 var
-  logdata, url, appname: string;
+  logdata, url: string;
   res: TStringList;
   HTTP: TFPHttpClient;
   Document: TMemoryStream;
 
-
   procedure AddData(const datatype, Data: string);
   begin
     if Data <> '' then
-      logdata := logdata + Format('<%s:%d>%s', [datatype, Length(Data), Data]);
-  end;
-
-  function UrlEncode(s: string): string;
-  var
-    i: integer;
-  begin
-    Result := '';
-    for i := 1 to Length(s) do
-      case s[i] of
-        ' ':
-          Result := Result + '+';
-        '0'..'9', 'A'..'Z', 'a'..'z', '*', '@', '.', '_', '-', '$', '!', #$27, '(', ')':
-          Result := Result + s[i];
-        else
-          Result := Result + '%' + IntToHex(Ord(s[i]), 2);
-      end;
+      logdata := logdata + Format('<%s:%d>%s', [datatype, UTF8Length(Data), Data]);
   end;
 
 begin
   try
+    Result := False;
     HTTP := TFPHttpClient.Create(nil);
     res := TStringList.Create;
     Document := TMemoryStream.Create;
     HTTP.AllowRedirect := True;
-    HTTP.AddHeader('User-Agent', 'Mozilla/5.0 (compatible; fpweb)');
-    Result := False;
-    appname := 'EWLog';
+    HTTP.AddHeader('User-Agent', 'HAMLOG Agent 1.2.0');
+    HTTP.AddHeader('Content-Type', 'application/json; charset=UTF-8');
+
+    AddData('adif_ver', '3.1.0');
+    AddData('programid', 'HAMLOG Agent');
+    AddData('programversion', '1.2.0');
+    logdata := logdata + '<EOH>';
     AddData('CALL', SendQSOr.CallSing);
+    AddData('station_callsign', CurrentCallsign);
     AddData('QSO_DATE', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
+    AddData('qso_date_off', FormatDateTime('yyyymmdd', SendQSOr.QSODate));
     SendQSOr.QSOTime := StringReplace(SendQSOr.QSOTime, ':', '', [rfReplaceAll]);
     AddData('TIME_ON', SendQSOr.QSOTime);
+    AddData('time_off', SendQSOr.QSOTime);
     AddData('BAND', dmFunc.GetBandFromFreq(SendQSOr.QSOBand));
     AddData('MODE', SendQSOr.QSOMode);
     AddData('SUBMODE', SendQSOr.QSOSubMode);
     AddData('RST_SENT', SendQSOr.QSOReportSent);
     AddData('RST_RCVD', SendQSOr.QSOReportRecived);
-    AddData('SAT_NAME', SendQSOr.SAT_NAME);
-    AddData('SAT_MODE', SendQSOr.SAT_MODE);
-    AddData('PROP_MODE', SendQSOr.PROP_MODE);
+    AddData('COMMENT', SendQSOr.ShortNote);
+    AddData('QTH', SendQSOr.OmQTH);
+    AddData('NAME', SendQSOr.OmName);
+    AddData('STATE', SendQSOr.State0);
     AddData('QSLMSG', SendQSOr.QSLInfo);
     AddData('GRIDSQUARE', SendQSOr.Grid);
+    AddData('my_gridsquare', SendQSOr.My_Grid);
     Delete(SendQSOr.QSOBand, length(SendQSOr.QSOBand) - 2, 1);
-    //Удаляем последнюю точку
     AddData('FREQ', SendQSOr.QSOBand);
-    AddData('LOG_PGM', 'EWLog');
     logdata := logdata + '<EOR>';
 
-    url := 'Callsign=' + user + '&Code=' + password + '&App=' + appname +
-      '&ADIFData=' + UrlEncode(logdata);
-
+    url := '{' + '"ADIFADD": {' + '"ADIFDATA": "' + logdata +
+      '",' + '"APIKEY": "' + apikey + '"' + '}' + '}';
     try
       HTTP.FormPost(UploadURL, url, Document);
-      if HTTP.ResponseStatusCode = 200 then
+      if (HTTP.ResponseStatusCode = 200) or (HTTP.ResponseStatusCode = 201) then
         uploadok := True;
     except
       on E: Exception do
@@ -138,47 +120,52 @@ begin
     begin
       Document.Position := 0;
       res.LoadFromStream(Document);
-      if res.Text <> '' then begin
-        Result := AnsiContainsStr(res.Text, '<insert>1</insert>');
+      if Pos('"STATUS":"OK"', Trim(res.Text)) > 0 then
+      begin
+        Result := True;
         Done := Result;
+      end
+      else
+      begin
+        Result := False;
+        result_mes := res.Text;
       end;
 
       if not SendQSOr.Auto then
-        if pos('<insert>1</insert>', Res.Text) > 0 then
+        if pos('"STATUS":"OK"', Res.Text) > 0 then
           result_mes := rRecordAddedSuccessfully;
-      if pos('<insert>0</insert>', Res.Text) > 0 then
-        result_mes := rNoEntryAdded;
-      if pos('<error>Unknown user</error>', Res.Text) > 0 then
-        result_mes := rUnknownUser;
+      if pos('"ERROR":', Res.Text) > 0 then
+        result_mes := Res.Text;
     end;
+
   finally
-    res.Destroy;
+    FreeAndNil(res);
     FreeAndNil(HTTP);
     FreeAndNil(Document);
   end;
 end;
 
-constructor TSendHRDThread.Create;
+constructor TSendHAMLogOnlineThread.Create;
 begin
   FreeOnTerminate := True;
-  OnHRDSent := nil;
+  OnHAMLogOnlineSent := nil;
   inherited Create(True);
 end;
 
-procedure TSendHRDThread.ShowResult;
+procedure TSendHAMLogOnlineThread.ShowResult;
 begin
   if Done then
-  MainFunc.UpdateQSL('HRDLOG_QSO_UPLOAD_STATUS','1', SendQSO);
+    MainFunc.UpdateQSL('HAMLOGONLINE_QSO_UPLOAD_STATUS', '1', SendQSO);
   if Length(result_mes) > 0 then
     Application.MessageBox(PChar(rAnswerServer + result_mes),
-      PChar('HRDLog -> '+ SendQSO.CallSing), MB_ICONEXCLAMATION);
+      PChar('HAMLogOnline -> ' + SendQSO.CallSing), MB_ICONEXCLAMATION);
 end;
 
-procedure TSendHRDThread.Execute;
+procedure TSendHAMLogOnlineThread.Execute;
 begin
-  if SendHRD(SendQSO) then
-    if Assigned(OnHRDSent) then
-      Synchronize(OnHRDSent);
+  if SendHAMLogOnline(SendQSO) then
+    if Assigned(OnHAMLogOnlineSent) then
+      Synchronize(OnHAMLogOnlineSent);
   Synchronize(@ShowResult);
 end;
 

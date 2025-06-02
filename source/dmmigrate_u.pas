@@ -489,6 +489,7 @@ var
   Query: TSQLQuery;
 begin
   Result := False;
+
   if not CheckTableVersion(Callsign, Version) then
     Exit;
   try
@@ -496,13 +497,14 @@ begin
       ShowMessage(rDBNeedUpdate + Version);
       Query := TSQLQuery.Create(nil);
       Query.DataBase := InitDB.SQLiteConnection;
+
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
-      Query.SQL.Add('QSOSU_Token varchar(50) DEFAULT NULL;');
+      Query.SQL.Add('QSOSU_Token TEXT DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
-      Query.SQL.Add('AutoQSOsu tinyint(1) DEFAULT NULL;');
+      Query.SQL.Add('AutoQSOsu INTEGER DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
@@ -510,12 +512,41 @@ begin
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
-      Query.SQL.Add('QSOSU_QSO_UPLOAD_STATUS tinyint(1) DEFAULT NULL;');
+      Query.SQL.Add('QSOSU_QSO_UPLOAD_STATUS INTEGER DEFAULT NULL;');
       Query.ExecSQL;
       Query.SQL.Clear;
       Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
-      Query.SQL.Add('QSOSU_HASH varchar(50) DEFAULT NULL;');
+      Query.SQL.Add('QSOSU_HASH TEXT DEFAULT NULL;');
       Query.ExecSQL;
+
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
+      Query.SQL.Add('HAMLogOnline_API TEXT DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE LogBookInfo ADD COLUMN ');
+      Query.SQL.Add('AutoHAMLogOnline INTEGER DEFAULT NULL;');
+      Query.ExecSQL;
+
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' DROP COLUMN ');
+      Query.SQL.Add('HAMLOGRU_QSO_UPLOAD_DATE;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' DROP COLUMN ');
+      Query.SQL.Add('HAMLOGRU_QSO_UPLOAD_STATUS;');
+      Query.ExecSQL;
+
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('HAMLOGONLINE_QSO_UPLOAD_DATE datetime DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+      Query.SQL.Add('ALTER TABLE ' + LBRecord.LogTable + ' ADD COLUMN ');
+      Query.SQL.Add('HAMLOGONLINE_QSO_UPLOAD_STATUS INTEGER DEFAULT NULL;');
+      Query.ExecSQL;
+      Query.SQL.Clear;
+
       InitDB.DefTransaction.Commit;
       if MigrationEnd(Version, Callsign) then
         Result := True;
@@ -528,8 +559,8 @@ begin
           MigrationEnd(Version, Callsign);
           Exit;
         end;
-        ShowMessage('Migrate146: Error: ' + E.ClassName + #13#10 + E.Message);
-        WriteLn(ExceptFile, 'Migrate146: Error: ' + E.ClassName + ':' + E.Message);
+        ShowMessage('Migrate152: Error: ' + E.ClassName + #13#10 + E.Message);
+        WriteLn(ExceptFile, 'Migrate152: Error: ' + E.ClassName + ':' + E.Message);
       end;
     end;
 

@@ -245,8 +245,8 @@ var
   QRZCOM_QSO_UPLOAD_STATUS: string;
   HAMLOGEU_QSO_UPLOAD_DATE: string;
   HAMLOGEU_QSO_UPLOAD_STATUS: string;
-  HAMLOGRU_QSO_UPLOAD_DATE: string;
-  HAMLOGRU_QSO_UPLOAD_STATUS: string;
+  HAMLOGONLINE_QSO_UPLOAD_DATE: string;
+  HAMLOGONLINE_QSO_UPLOAD_STATUS: string;
   HAMQTH_QSO_UPLOAD_DATE: string;
   HAMQTH_QSO_UPLOAD_STATUS: string;
   PosEOH: word;
@@ -277,8 +277,8 @@ var
   paramQRZCOM_QSO_UPLOAD_STATUS: string;
   paramHAMLOGEU_QSO_UPLOAD_DATE: string;
   paramHAMLOGEU_QSO_UPLOAD_STATUS: string;
-  paramHAMLOGRU_QSO_UPLOAD_DATE: string;
-  paramHAMLOGRU_QSO_UPLOAD_STATUS: string;
+  paramHAMLOGONLINE_QSO_UPLOAD_DATE: string;
+  paramHAMLOGONLINE_QSO_UPLOAD_STATUS: string;
 
   Query: string;
   TempQuery: string;
@@ -380,8 +380,8 @@ begin
         paramQRZCOM_QSO_UPLOAD_STATUS := '';
         paramHAMLOGEU_QSO_UPLOAD_DATE := '';
         paramHAMLOGEU_QSO_UPLOAD_STATUS := '';
-        paramHAMLOGRU_QSO_UPLOAD_DATE := '';
-        paramHAMLOGRU_QSO_UPLOAD_STATUS := '';
+        paramHAMLOGONLINE_QSO_UPLOAD_DATE := '';
+        paramHAMLOGONLINE_QSO_UPLOAD_STATUS := '';
         PosEOR := 0;
         BAND := '';
         BAND_RX := '';
@@ -456,8 +456,8 @@ begin
         QRZCOM_QSO_UPLOAD_STATUS := '';
         HAMLOGEU_QSO_UPLOAD_DATE := '';
         HAMLOGEU_QSO_UPLOAD_STATUS := '';
-        HAMLOGRU_QSO_UPLOAD_DATE := '';
-        HAMLOGRU_QSO_UPLOAD_STATUS := '';
+        HAMLOGONLINE_QSO_UPLOAD_DATE := '';
+        HAMLOGONLINE_QSO_UPLOAD_STATUS := '';
         HAMQTH_QSO_UPLOAD_DATE := '';
         HAMQTH_QSO_UPLOAD_STATUS := '';
         TempQuery := '';
@@ -542,8 +542,8 @@ begin
         QRZCOM_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'QRZCOM_QSO_UPLOAD_STATUS');
         HAMLOGEU_QSO_UPLOAD_DATE := dmFunc.getField(s, 'HAMLOGEU_QSO_UPLOAD_DATE');
         HAMLOGEU_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'HAMLOGEU_QSO_UPLOAD_STATUS');
-        HAMLOGRU_QSO_UPLOAD_DATE := dmFunc.getField(s, 'HAMLOGRU_QSO_UPLOAD_DATE');
-        HAMLOGRU_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'HAMLOGRU_QSO_UPLOAD_STATUS');
+        HAMLOGONLINE_QSO_UPLOAD_DATE := dmFunc.getField(s, 'HAMLOGONLINE_QSO_UPLOAD_DATE');
+        HAMLOGONLINE_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'HAMLOGONLINE_QSO_UPLOAD_STATUS');
         HAMQTH_QSO_UPLOAD_DATE := dmFunc.getField(s, 'HAMQTH_QSO_UPLOAD_DATE');
         HAMQTH_QSO_UPLOAD_STATUS := dmFunc.getField(s, 'HAMQTH_QSO_UPLOAD_STATUS');
 
@@ -722,20 +722,20 @@ begin
           else
             paramHAMLOGEU_QSO_UPLOAD_DATE := 'NULL';
 
-          if HAMLOGRU_QSO_UPLOAD_DATE <> '' then
+          if HAMLOGONLINE_QSO_UPLOAD_DATE <> '' then
           begin
-            yyyy := StrToInt(HAMLOGRU_QSO_UPLOAD_DATE[1] +
-              HAMLOGRU_QSO_UPLOAD_DATE[2] + HAMLOGRU_QSO_UPLOAD_DATE[3] +
-              HAMLOGRU_QSO_UPLOAD_DATE[4]);
-            mm := StrToInt(HAMLOGRU_QSO_UPLOAD_DATE[5] + HAMLOGRU_QSO_UPLOAD_DATE[6]);
-            dd := StrToInt(HAMLOGRU_QSO_UPLOAD_DATE[7] + HAMLOGRU_QSO_UPLOAD_DATE[8]);
-            paramHAMLOGRU_QSO_UPLOAD_DATE :=
+            yyyy := StrToInt(HAMLOGONLINE_QSO_UPLOAD_DATE[1] +
+              HAMLOGONLINE_QSO_UPLOAD_DATE[2] + HAMLOGONLINE_QSO_UPLOAD_DATE[3] +
+              HAMLOGONLINE_QSO_UPLOAD_DATE[4]);
+            mm := StrToInt(HAMLOGONLINE_QSO_UPLOAD_DATE[5] + HAMLOGONLINE_QSO_UPLOAD_DATE[6]);
+            dd := StrToInt(HAMLOGONLINE_QSO_UPLOAD_DATE[7] + HAMLOGONLINE_QSO_UPLOAD_DATE[8]);
+            paramHAMLOGONLINE_QSO_UPLOAD_DATE :=
               StringReplace(FloatToStr(DateTimeToJulianDate(EncodeDate(yyyy, mm, dd))),
               ',', '.', [rfReplaceAll]);
-            paramHAMLOGRU_QSO_UPLOAD_STATUS := '1';
+            paramHAMLOGONLINE_QSO_UPLOAD_STATUS := '1';
           end
           else
-            paramHAMLOGRU_QSO_UPLOAD_DATE := 'NULL';
+            paramHAMLOGONLINE_QSO_UPLOAD_DATE := 'NULL';
 
           if (QRZCOM_QSO_UPLOAD_DATE <> '') and (QRZCOM_QSO_UPLOAD_DATE <> '31.12.9999 12:00:00') then
           begin
@@ -874,8 +874,8 @@ begin
               dmFunc.Q(paramCLUBLOG_QSO_UPLOAD_DATE) +
               dmFunc.Q(paramHAMLOGEU_QSO_UPLOAD_STATUS) +
               dmFunc.Q(paramHAMLOGEU_QSO_UPLOAD_DATE) +
-              dmFunc.Q(paramHAMLOGRU_QSO_UPLOAD_STATUS) +
-              dmFunc.Q(paramHAMLOGRU_QSO_UPLOAD_DATE) + QuotedStr('0') + ')';
+              dmFunc.Q(paramHAMLOGONLINE_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHAMLOGONLINE_QSO_UPLOAD_DATE) + QuotedStr('0') + ')';
           end
           else
           begin
@@ -928,8 +928,8 @@ begin
               dmFunc.Q(paramCLUBLOG_QSO_UPLOAD_DATE) +
               dmFunc.Q(paramHAMLOGEU_QSO_UPLOAD_STATUS) +
               dmFunc.Q(paramHAMLOGEU_QSO_UPLOAD_DATE) +
-              dmFunc.Q(paramHAMLOGRU_QSO_UPLOAD_STATUS) +
-              dmFunc.Q(paramHAMLOGRU_QSO_UPLOAD_DATE) + QuotedStr('1');
+              dmFunc.Q(paramHAMLOGONLINE_QSO_UPLOAD_STATUS) +
+              dmFunc.Q(paramHAMLOGONLINE_QSO_UPLOAD_DATE) + QuotedStr('1');
 
             Query := TempQuery +
               ') ON CONFLICT (CallSign, QSODate, QSOTime, QSOBand) DO UPDATE SET SYNC = 1';

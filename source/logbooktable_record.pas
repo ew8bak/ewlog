@@ -46,8 +46,10 @@ type
     QRZComLogin: string[20];
     QRZComPassword: string[20];
     AutoQRZCom: boolean;
-    QSOSuToken: string[50];
+    QSOSuToken: string;
     AutoQSOsu: boolean;
+    HAMLogOnline_API: string;
+    AutoHAMLogOnline: boolean;
   end;
 
 implementation

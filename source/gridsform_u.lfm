@@ -10,7 +10,6 @@ object GridsForm: TGridsForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '3.8.0.0'
   object DBGrid1: TDBGrid
     Left = 0
     Height = 368
@@ -48,7 +47,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'Time'
-        Width = 60
+        Width = 42
         FieldName = 'QSOTime'
       end    
       item
@@ -96,7 +95,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'QTH'
-        Width = 56
+        Width = 40
         FieldName = 'OMQTH'
       end    
       item
@@ -120,7 +119,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'RSTs'
-        Width = 58
+        Width = 40
         FieldName = 'QSOReportSent'
       end    
       item
@@ -128,7 +127,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'RSTr'
-        Width = 56
+        Width = 39
         FieldName = 'QSOReportRecived'
       end    
       item
@@ -136,7 +135,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'IOTA'
-        Width = 60
+        Width = 42
         FieldName = 'IOTA'
       end    
       item
@@ -168,7 +167,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'LOTWr Date'
-        Width = 120
+        Width = 79
         FieldName = 'LoTWRecDate'
       end    
       item
@@ -176,7 +175,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'Prefix'
-        Width = 65
+        Width = 44
         FieldName = 'MainPrefix'
       end    
       item
@@ -200,7 +199,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'ITU Zone'
-        Width = 94
+        Width = 63
         FieldName = 'ITUZone'
       end    
       item
@@ -311,7 +310,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'Time'
-        Width = 60
+        Width = 42
         FieldName = 'QSOTime'
       end    
       item
@@ -359,7 +358,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'QTH'
-        Width = 56
+        Width = 40
         FieldName = 'OMQTH'
       end    
       item
@@ -383,7 +382,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'RSTs'
-        Width = 58
+        Width = 40
         FieldName = 'QSOReportSent'
       end    
       item
@@ -391,7 +390,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'RSTr'
-        Width = 56
+        Width = 40
         FieldName = 'QSOReportRecived'
       end    
       item
@@ -399,7 +398,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'IOTA'
-        Width = 60
+        Width = 42
         FieldName = 'IOTA'
       end    
       item
@@ -431,7 +430,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'LOTWr Date'
-        Width = 120
+        Width = 79
         FieldName = 'LoTWRecDate'
       end    
       item
@@ -439,7 +438,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'Prefix'
-        Width = 65
+        Width = 44
         FieldName = 'MainPrefix'
       end    
       item
@@ -463,7 +462,7 @@ object GridsForm: TGridsForm
         MinSize = 11
         Title.Alignment = taCenter
         Title.Caption = 'ITU Zone'
-        Width = 94
+        Width = 63
         FieldName = 'ITUZone'
       end    
       item
@@ -1392,6 +1391,10 @@ object GridsForm: TGridsForm
       object ExportHamQTHItem: TMenuItem
         Caption = 'Export QSO to HamQTH'
         OnClick = ExportHamQTHItemClick
+      end
+      object ExportHAMLogOnlineItem: TMenuItem
+        Caption = 'Export QSO to HAMLog.online'
+        OnClick = ExportHAMLogOnlineItemClick
       end
       object Separator1: TMenuItem
         Caption = '-'

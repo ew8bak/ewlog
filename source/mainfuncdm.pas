@@ -124,7 +124,7 @@ var
 implementation
 
 uses InitDB_dm, dmFunc_U, GridsForm_u, hrdlog,
-  hamqth, clublog, qrzcom, eqsl, cloudlog, miniform_u, dxclusterform_u, dmHamLib_u,
+  hamqth, clublog, qrzcom, eqsl, cloudlog, hamlogonline, miniform_u, dxclusterform_u, dmHamLib_u,
   dmTCI_u;
 
 {$R *.lfm}
@@ -707,6 +707,18 @@ end;
 
 procedure TMainFunc.SendQSOto(via: string; SendQSO: TQSO);
 begin
+  //Отправка в HAMLogOnline
+  if via = 'hamlogonline' then
+  begin
+    SendHAMLogOnlineThread := TSendHAMLogOnlineThread.Create;
+    if Assigned(SendHAMLogOnlineThread.FatalException) then
+      raise SendHAMLogOnlineThread.FatalException;
+    SendHAMLogOnlineThread.SendQSO := SendQSO;
+    SendHAMLogOnlineThread.apikey := LBRecord.HAMLogOnline_API;
+    SendHAMLogOnlineThread.CurrentCallsign := DBRecord.CurrentCall;
+    SendHAMLogOnlineThread.Start;
+    Exit;
+  end;
   //Отправка в CloudLog
   if via = 'cloudlog' then
   begin
@@ -1351,6 +1363,8 @@ begin
             SQLString + ', HAMQTH_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
         'QSOSU_QSO_UPLOAD_STATUS': SQLString :=
             SQLString + ', QSOSU_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
+        'HAMLOGONLINE_QSO_UPLOAD_STATUS': SQLString :=
+            SQLString + ', HAMLOGONLINE_QSO_UPLOAD_DATE = ' + QuotedStr(QSODateTime);
       end;
 
 
@@ -1775,8 +1789,8 @@ begin
   exportAdiSet.fQRZCOM_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'QRZCOM_QSO_UPLOAD_STATUS', True);
   exportAdiSet.fHAMLOGEU_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGEU_QSO_UPLOAD_DATE', True);
   exportAdiSet.fHAMLOGEU_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGEU_QSO_UPLOAD_STATUS', True);
-  exportAdiSet.fHAMLOGRU_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGRU_QSO_UPLOAD_DATE', True);
-  exportAdiSet.fHAMLOGRU_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGRU_QSO_UPLOAD_STATUS', True);
+  exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGONLINE_QSO_UPLOAD_DATE', True);
+  exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGONLINE_QSO_UPLOAD_STATUS', True);
 end;
 
 procedure TMainFunc.LoadINIsettings;

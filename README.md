@@ -1,7 +1,7 @@
-# EWLog is a cross-platform logging program for the radio amateur. MySQL or SQLite database. 
+# EWLog is a cross-platform logging program for the radio amateur. SQLite database. 
 The program interface was maximally made in the likeness of UR5EQF_Log
 
-![ImageEWLog](https://www.ew8bak.ru/wp-content/uploads/2020/11/ewlog.png)
+![ImageEWLog](https://ewlog.app/images/ewlog.png)
 
 ---------------
 Main features of EWLog:
@@ -19,7 +19,7 @@ Main features of EWLog:
 # Build
 ---------------
 To build the program you will need:
-  1. Lazarus 2.0.12
+  1. Lazarus 4.0
   2. FPC 3.2.2
   
 Additional components:
