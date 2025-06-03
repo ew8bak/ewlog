@@ -9,10 +9,9 @@ object EditQSO_Form: TEditQSO_Form
   ClientHeight = 428
   ClientWidth = 1001
   DefaultMonitor = dmMainForm
+  Position = poScreenCenter
   OnClose = FormClose
   OnShow = FormShow
-  Position = poScreenCenter
-  LCLVersion = '3.8.0.0'
   object GBCallInfo: TGroupBox
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
@@ -412,19 +411,19 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = Edit7
         AnchorSideTop.Side = asrCenter
         Left = 170
-        Height = 20
+        Height = 25
         Hint = 'Change country information'
-        Top = 51
+        Top = 49
         Width = 20
         AutoSize = True
         BorderSpacing.Left = 2
         Constraints.MinHeight = 20
         Constraints.MinWidth = 20
         Caption = '...'
-        OnClick = SpeedButton1Click
         ShowHint = True
         ParentFont = False
         ParentShowHint = False
+        OnClick = SpeedButton1Click
       end
       object LBPrefix: TLabel
         AnchorSideLeft.Control = Panel2
@@ -578,19 +577,19 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Control = EditPrefix
         AnchorSideTop.Side = asrCenter
         Left = 95
-        Height = 20
+        Height = 25
         Hint = 'Change country information'
-        Top = 77
+        Top = 75
         Width = 20
         AutoSize = True
         BorderSpacing.Left = 2
         Constraints.MinHeight = 20
         Constraints.MinWidth = 20
         Caption = '...'
-        OnClick = SpeedButton2Click
         ShowHint = True
         ParentFont = False
         ParentShowHint = False
+        OnClick = SpeedButton2Click
       end
     end
     object Panel3: TPanel
@@ -664,8 +663,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel3
         AnchorSideRight.Side = asrBottom
         Left = 200
-        Height = 20
-        Top = 136
+        Height = 25
+        Top = 134
         Width = 20
         Anchors = [akTop, akRight]
         AutoSize = True
@@ -682,8 +681,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel3
         AnchorSideRight.Side = asrBottom
         Left = 200
-        Height = 20
-        Top = 110
+        Height = 25
+        Top = 108
         Width = 20
         Anchors = [akTop, akRight]
         AutoSize = True
@@ -691,8 +690,8 @@ object EditQSO_Form: TEditQSO_Form
         Constraints.MinHeight = 20
         Constraints.MinWidth = 20
         Caption = '...'
-        OnClick = SpeedButton8Click
         ParentFont = False
+        OnClick = SpeedButton8Click
       end
       object SpeedButton9: TSpeedButton
         AnchorSideLeft.Side = asrBottom
@@ -701,8 +700,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel3
         AnchorSideRight.Side = asrBottom
         Left = 200
-        Height = 20
-        Top = 84
+        Height = 25
+        Top = 82
         Width = 20
         Anchors = [akTop, akRight]
         AutoSize = True
@@ -710,8 +709,8 @@ object EditQSO_Form: TEditQSO_Form
         Constraints.MinHeight = 20
         Constraints.MinWidth = 20
         Caption = '...'
-        OnClick = SpeedButton9Click
         ParentFont = False
+        OnClick = SpeedButton9Click
       end
       object SpeedButton10: TSpeedButton
         AnchorSideLeft.Side = asrBottom
@@ -720,8 +719,8 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideRight.Control = Panel3
         AnchorSideRight.Side = asrBottom
         Left = 200
-        Height = 20
-        Top = 58
+        Height = 25
+        Top = 56
         Width = 20
         Anchors = [akTop, akRight]
         AutoSize = True
@@ -729,8 +728,8 @@ object EditQSO_Form: TEditQSO_Form
         Constraints.MinHeight = 20
         Constraints.MinWidth = 20
         Caption = '...'
-        OnClick = SpeedButton10Click
         ParentFont = False
+        OnClick = SpeedButton10Click
       end
       object LBMode: TLabel
         AnchorSideTop.Control = CBMode
@@ -917,9 +916,9 @@ object EditQSO_Form: TEditQSO_Form
         AnchorSideTop.Side = asrCenter
         AnchorSideBottom.Side = asrBottom
         Left = 5
-        Height = 20
+        Height = 26
         Top = 12
-        Width = 20
+        Width = 26
         AutoSize = True
         BorderSpacing.Left = 5
         Font.Height = -12
@@ -959,8 +958,8 @@ object EditQSO_Form: TEditQSO_Form
           000000000000000000007A9F8B0BE3E3C969F7E5C9B4F4DCB6D8ECC993D9DEAB
           6AB7C893556F7F6E430E00000000000000000000000000000000
         }
-        OnClick = SpeedButton11Click
         ParentFont = False
+        OnClick = SpeedButton11Click
       end
     end
   end
@@ -1260,8 +1259,8 @@ object EditQSO_Form: TEditQSO_Form
         Width = 20
         BorderSpacing.Left = 2
         Caption = '...'
-        OnClick = SpeedButton12Click
         ParentFont = False
+        OnClick = SpeedButton12Click
       end
       object LBQSLManager: TLabel
         AnchorSideLeft.Control = TabSheet1
@@ -1552,7 +1551,7 @@ object EditQSO_Form: TEditQSO_Form
         Constraints.MinHeight = 100
         DataSource = GridsForm.FindQSODS
         DefaultRowHeight = 15
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAnyButtonCanSelect]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAnyButtonCanSelect, dgDisplayMemoText]
         ParentFont = False
         ReadOnly = True
         TabOrder = 7
