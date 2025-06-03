@@ -1,269 +1,268 @@
 object GridsForm: TGridsForm
   Left = 796
-  Height = 499
+  Height = 399
   Top = 154
-  Width = 1044
+  Width = 835
   Caption = 'Logbook'
-  ClientHeight = 499
-  ClientWidth = 1044
-  DesignTimePPI = 120
+  ClientHeight = 399
+  ClientWidth = 835
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   object DBGrid1: TDBGrid
     Left = 0
-    Height = 368
+    Height = 294
     Top = 0
-    Width = 1044
+    Width = 835
     Align = alClient
     Color = clWindow
     Columns = <    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL'
-        Width = 51
+        Width = 29
         FieldName = 'QSL'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLs'
-        Width = 59
+        Width = 33
         FieldName = 'QSLs'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Date'
-        Width = 59
+        Width = 31
         FieldName = 'QSODate'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Time'
-        Width = 42
+        Width = 34
         FieldName = 'QSOTime'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Frequency'
-        Width = 102
+        Width = 56
         FieldName = 'QSOBand'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Callsign'
-        Width = 84
+        Width = 46
         FieldName = 'CallSign'
       end    
       item
         Color = clDefault
-        MinSize = 19
+        MinSize = 15
         Title.Alignment = taCenter
         Title.Caption = 'Mode'
-        Width = 68
+        Width = 37
         FieldName = 'QSOMode'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSOSubMode'
-        Width = 136
+        Width = 72
         FieldName = 'QSOSubMode'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Name'
-        Width = 69
+        Width = 38
         FieldName = 'OMName'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QTH'
-        Width = 40
+        Width = 32
         FieldName = 'OMQTH'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'State'
-        Width = 61
+        Width = 33
         FieldName = 'State'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Grid'
-        Width = 54
+        Width = 30
         FieldName = 'Grid'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'RSTs'
-        Width = 40
+        Width = 32
         FieldName = 'QSOReportSent'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'RSTr'
-        Width = 39
+        Width = 31
         FieldName = 'QSOReportRecived'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'IOTA'
-        Width = 42
+        Width = 34
         FieldName = 'IOTA'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Manager'
-        Width = 92
+        Width = 50
         FieldName = 'QSLManager'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLs Date'
-        Width = 104
+        Width = 54
         FieldName = 'QSLSentDate'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLr Date'
-        Width = 102
+        Width = 54
         FieldName = 'QSLRecDate'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'LOTWr Date'
-        Width = 79
+        Width = 63
         FieldName = 'LoTWRecDate'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Prefix'
-        Width = 44
+        Width = 35
         FieldName = 'MainPrefix'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'DXCC'
-        Width = 66
+        Width = 37
         FieldName = 'DXCCPrefix'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'CQ Zone'
-        Width = 91
+        Width = 50
         FieldName = 'CQZone'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'ITU Zone'
-        Width = 63
+        Width = 50
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Manual Set'
-        Width = 111
+        Width = 59
         FieldName = 'ManualSet'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Continent'
-        Width = 99
+        Width = 54
         FieldName = 'Continent'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Valid DX'
-        Width = 91
+        Width = 47
         FieldName = 'ValidDX'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL r VIA'
-        Width = 96
+        Width = 51
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL s VIA'
-        Width = 98
+        Width = 52
         FieldName = 'QSL_SENT_VIA'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'User'
-        Width = 55
+        Width = 30
         FieldName = 'USERS'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'No calc DXCC'
-        Width = 134
+        Width = 71
         FieldName = 'NoCalcDXCC'
       end>
     DataSource = LOGBookDS
-    DefaultRowHeight = 19
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAutoSizeColumns, dgAnyButtonCanSelect]
+    DefaultRowHeight = 15
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAutoSizeColumns, dgAnyButtonCanSelect, dgDisplayMemoText]
     ParentFont = False
     PopupMenu = GridMenu
     TabOrder = 0
@@ -275,258 +274,258 @@ object GridsForm: TGridsForm
   end
   object DBGrid2: TDBGrid
     Left = 0
-    Height = 125
-    Top = 374
-    Width = 1044
+    Height = 100
+    Top = 299
+    Width = 835
     Align = alBottom
     Color = clWindow
     Columns = <    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL'
-        Width = 51
+        Width = 29
         FieldName = 'QSL'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLs'
-        Width = 59
+        Width = 33
         FieldName = 'QSLs'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Date'
-        Width = 59
+        Width = 31
         FieldName = 'QSODate'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Time'
-        Width = 42
+        Width = 34
         FieldName = 'QSOTime'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Frequency'
-        Width = 102
+        Width = 56
         FieldName = 'QSOBand'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Callsign'
-        Width = 84
+        Width = 46
         FieldName = 'CallSign'
       end    
       item
         Color = clDefault
-        MinSize = 19
+        MinSize = 15
         Title.Alignment = taCenter
         Title.Caption = 'Mode'
-        Width = 68
+        Width = 37
         FieldName = 'QSOMode'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSOSubMode'
-        Width = 136
+        Width = 72
         FieldName = 'QSOSubMode'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Name'
-        Width = 69
+        Width = 38
         FieldName = 'OMName'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QTH'
-        Width = 40
+        Width = 32
         FieldName = 'OMQTH'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'State'
-        Width = 61
+        Width = 33
         FieldName = 'State'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Grid'
-        Width = 54
+        Width = 30
         FieldName = 'Grid'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'RSTs'
-        Width = 40
+        Width = 32
         FieldName = 'QSOReportSent'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'RSTr'
-        Width = 40
+        Width = 31
         FieldName = 'QSOReportRecived'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'IOTA'
-        Width = 42
+        Width = 34
         FieldName = 'IOTA'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Manager'
-        Width = 92
+        Width = 50
         FieldName = 'QSLManager'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLs Date'
-        Width = 104
+        Width = 54
         FieldName = 'QSLSentDate'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSLr Date'
-        Width = 102
+        Width = 54
         FieldName = 'QSLRecDate'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'LOTWr Date'
-        Width = 79
+        Width = 63
         FieldName = 'LoTWRecDate'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Prefix'
-        Width = 44
+        Width = 35
         FieldName = 'MainPrefix'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'DXCC'
-        Width = 66
+        Width = 37
         FieldName = 'DXCCPrefix'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'CQ Zone'
-        Width = 91
+        Width = 50
         FieldName = 'CQZone'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'ITU Zone'
-        Width = 63
+        Width = 50
         FieldName = 'ITUZone'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Manual Set'
-        Width = 111
+        Width = 59
         FieldName = 'ManualSet'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Continent'
-        Width = 99
+        Width = 54
         FieldName = 'Continent'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'Valid DX'
-        Width = 91
+        Width = 47
         FieldName = 'ValidDX'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL r VIA'
-        Width = 96
+        Width = 51
         FieldName = 'QSL_RCVD_VIA'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'QSL s VIA'
-        Width = 98
+        Width = 52
         FieldName = 'QSL_SENT_VIA'
       end    
       item
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'User'
-        Width = 55
+        Width = 30
         FieldName = 'USERS'
       end    
       item
         ButtonStyle = cbsCheckboxColumn
         Color = clDefault
-        MinSize = 11
+        MinSize = 9
         Title.Alignment = taCenter
         Title.Caption = 'No calc DXCC'
-        Width = 134
+        Width = 71
         FieldName = 'NoCalcDXCC'
       end>
     DataSource = FindQSODS
-    DefaultRowHeight = 19
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAutoSizeColumns]
+    DefaultRowHeight = 15
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAutoSizeColumns, dgDisplayMemoText]
     ParentFont = False
     PopupMenu = GridMenu
     TabOrder = 1
@@ -536,28 +535,28 @@ object GridsForm: TGridsForm
   object Splitter1: TSplitter
     Cursor = crVSplit
     Left = 0
-    Height = 6
-    Top = 368
-    Width = 1044
+    Height = 5
+    Top = 294
+    Width = 835
     Align = alBottom
     ResizeAnchor = akBottom
   end
   object LOGBookDS: TDataSource
     DataSet = InitDB.DefLogBookQuery
     OnDataChange = LOGBookDSDataChange
-    Left = 80
-    Top = 55
+    Left = 64
+    Top = 44
   end
   object FindQSODS: TDataSource
     DataSet = InitDB.FindQSOQuery
     OnDataChange = FindQSODSDataChange
-    Left = 70
-    Top = 155
+    Left = 56
+    Top = 124
   end
   object GridMenu: TPopupMenu
     OnPopup = GridMenuPopup
-    Left = 454
-    Top = 236
+    Left = 363
+    Top = 189
     object MarkQSOItem: TMenuItem
       Tag = 1
       Caption = 'Mark this QSO'
