@@ -18,7 +18,7 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, fphttpclient, LCLIntf,
-  ActnList, gettext, digi_record, ImportADIThread, CloudLogCAT;
+  ActnList, gettext, digi_record, ImportADIThread, CloudLogCAT, dmHamLib_u;
 
 type
 
@@ -2260,7 +2260,11 @@ begin
     MapForm.SavePosition
   else
     Earth.SavePosition;
+
   dxClusterForm.FreeClusterThread;
+
+  dmHamLib.FreeRadio;
+
   FreeMenuItem;
 end;
 
