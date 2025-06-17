@@ -1,0 +1,9 @@
+Package: ewlog
+Version: __VERSION__
+Architecture: __ARCH__
+Maintainer: EW8BAK <support@ewlog.app>
+Depends: sqlite3, libsqlite3-dev, libssl-dev, libhamlib2 | libhamlib4, libhamlib-utils, libgtk2.0 | libgtk2.0-0, libcanberra-gtk-module
+Section: hamradio
+Priority: extra
+Homepage: https://www.ewlog.app
+Description: Advanced logging program for hamradio operators
