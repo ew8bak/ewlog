@@ -2262,9 +2262,7 @@ begin
     Earth.SavePosition;
 
   dxClusterForm.FreeClusterThread;
-
   dmHamLib.FreeRadio;
-
   FreeMenuItem;
 end;
 
