@@ -3,6 +3,7 @@ Version: __VERSION__
 Architecture: __ARCH__
 Maintainer: EW8BAK <support@ewlog.app>
 Depends: __DEPENDS__
+Recommends: libcanberra-gtk-module
 Section: hamradio
 Priority: extra
 Homepage: https://www.ewlog.app

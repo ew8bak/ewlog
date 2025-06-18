@@ -32,3 +32,14 @@ Additional components:
 All of these components are available in the Lazarus Network Component Repository.
 
   6. sywebsocket https://github.com/seryal/sywebsocket
+  
+# Tested in:
+---------------
+  1. Fedora Workstation 42
+  2. Fedora KDE Plasma 42
+  3. openSUSE Tumbleweed KDE
+  4. openSUSE Leap 15.6 KDE
+  5. openSUSE Tumbleweed Gnome
+  6. openSUSE Leap 15.6 Gnome
+  7. Ubuntu 24.04.2 LTS Gnome
+  8. Ubuntu 25.04 Gnome
