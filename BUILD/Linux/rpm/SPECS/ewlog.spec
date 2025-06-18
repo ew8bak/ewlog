@@ -11,7 +11,7 @@ Source3:        serviceLOG.db
 Source4:        ewlog.png
 Source5:        ewlog.en.po
 Source6:        ewlog.ru.po
-Requires:       hamlib, (libsqlite3x-devel or sqlite3-devel), openssl-devel, (sqlite-libs or libsqlite3-0)
+Requires:       __REQUIRES__
 BuildArch:      __ARCH__
 BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 

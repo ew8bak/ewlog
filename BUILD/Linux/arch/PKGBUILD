@@ -1,20 +1,21 @@
-# Maintainer: Vladimir Karpenko
+# Maintainer: Uladimir Karpenka
 
 _pkgname=ewlog
 pkgname=$_pkgname
-pkgver=1.4.2
-pkgrel=1
+pkgver=__VERSION__
+pkgrel=__BUILDNUM__
 pkgdesc="EWLog Desktop"
 arch=("x86_64")
 url="https://www.ewlog.app"
 license=("custom")
 install=ewlog.install
+depends=('__DEPENDS__')
 
 source=(
-"https://debrepo.ewlog.app/pool/non-free/e/$_pkgname/${_pkgname}_${pkgver}_amd64.deb"
+"https://github.com/ew8bak/ewlog/releases/download/${pkgver}-${pkgrel}/ewlog_amd64_${pkgver}-${pkgrel}_develop.deb"
 )
 
-sha256sums=('263e9e091b194cfb9d830e63f69a4bbf0dad9ddb7d7b78a414cc7716867aa9aa')
+sha256sums=('__SHA256SUM__')
 
 package() {
   cd "${srcdir}"
