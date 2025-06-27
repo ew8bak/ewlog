@@ -419,6 +419,18 @@ begin
         begin
           LBRecord.Description := LogBookInfoQuery.FieldByName(fieldNameDescription).AsString;
           LBRecord.CallSign := LogBookInfoQuery.FieldByName('CallName').AsString;
+          LBRecord.LogTable := LogBookInfoQuery.FieldByName('LogTable').AsString;
+
+         if dmMigrate.Migrate(LBRecord.CallSign, LBRecord.Description) then
+         begin
+           LogBookInfoQuery.Close;
+           LogBookInfoQuery.SQL.Text := 'SELECT * FROM LogBookInfo LIMIT 1';
+           LogBookInfoQuery.Open;
+           LBRecord.Description := LogBookInfoQuery.FieldByName(fieldNameDescription).AsString;
+           LBRecord.CallSign := LogBookInfoQuery.FieldByName('CallName').AsString;
+           LBRecord.LogTable := LogBookInfoQuery.FieldByName('LogTable').AsString;
+         end;
+
           LBRecord.OpName := LogBookInfoQuery.FieldByName('Name').AsString;
           LBRecord.OpQTH := LogBookInfoQuery.FieldByName('QTH').AsString;
           LBRecord.OpITU := LogBookInfoQuery.FieldByName('ITU').AsString;
@@ -429,8 +441,6 @@ begin
           TryStrToFloatSafe(LogBookInfoQuery.FieldByName('Lon').AsString,
             LBRecord.OpLon);
           LBRecord.QSLInfo := LogBookInfoQuery.FieldByName('QSLInfo').AsString;
-          LBRecord.LogTable := LogBookInfoQuery.FieldByName('LogTable').AsString;
-           dmMigrate.Migrate(LBRecord.CallSign, LBRecord.Description);
           LBRecord.eQSLccLogin := LogBookInfoQuery.FieldByName('EQSLLogin').AsString;
           LBRecord.eQSLccPassword :=
             LogBookInfoQuery.FieldByName('EQSLPassword').AsString;
@@ -468,7 +478,7 @@ begin
           InitRecord.GetLogBookTable := True;
           DBRecord.CurrentLogTable := LBRecord.Description;
           DBRecord.CurrentCall := LBRecord.CallSign;
-        end;
+         end;
       except
         on E: Exception do
         begin

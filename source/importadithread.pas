@@ -226,6 +226,7 @@ var
   STATE2: string;
   STATE3: string;
   STATE4: string;
+  CNTY: string;
   STX: string;
   STX_STRING: string;
   SUBMODE: string;
@@ -235,6 +236,7 @@ var
   MY_LAT: string;
   MY_LON: string;
   MY_SOTA_REF: string;
+  MY_CNTY: string;
   SOTA_REF: string;
   HAMLOGRec: string;
   CLUBLOG_QSO_UPLOAD_DATE: string;
@@ -390,6 +392,7 @@ begin
         CONT := '';
         COUNTRY := '';
         CQZ := '';
+        CNTY := '';
         DXCC := '';
         DXCC_PREF := '';
         EQSL_QSLRDATE := '';
@@ -446,6 +449,7 @@ begin
         MY_LAT := '';
         MY_LON := '';
         MY_SOTA_REF := '';
+        MY_CNTY := '';
         SOTA_REF := '';
         HAMLOGRec := '';
         CLUBLOG_QSO_UPLOAD_DATE := '';
@@ -496,6 +500,8 @@ begin
         MODE := dmFunc.getField(s, 'MODE');
         MY_GRIDSQUARE := dmFunc.getField(s, 'MY_GRIDSQUARE');
         MY_STATE := dmFunc.getField(s, 'MY_STATE');
+        MY_CNTY := dmFunc.getField(s, 'MY_CNTY');
+        CNTY := dmFunc.getField(s, 'CNTY');
         sNAME := dmFunc.getField(s, 'NAME');
         NOTES := dmFunc.getField(s, 'NOTES');
         NoCalcDXCC := dmFunc.getField(s, 'NoCalcDXCC');
@@ -835,6 +841,7 @@ begin
               + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
               'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON,' +
+              'CNTY, MY_CNTY' +
               'EQSL_QSL_SENT, SOTA_REF, MY_SOTA_REF, HRDLOG_QSO_UPLOAD_STATUS, ' +
               'HRDLOG_QSO_UPLOAD_DATE, QRZCOM_QSO_UPLOAD_STATUS, QRZCOM_QSO_UPLOAD_DATE, ' +
               'HAMQTH_QSO_UPLOAD_STATUS, HAMQTH_QSO_UPLOAD_DATE, CLUBLOG_QSO_UPLOAD_STATUS, ' +
@@ -862,7 +869,8 @@ begin
               dmFunc.Q(paramLOTW_QSL_SENT) + dmFunc.Q(QSL_RCVD_VIA) +
               dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
               dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
-              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + dmFunc.Q(EQSL_QSL_SENT) +
+              dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) + dmFunc.Q(CNTY) +
+              dmFunc.Q(MY_CNTY) + dmFunc.Q(EQSL_QSL_SENT) +
               dmFunc.Q(SOTA_REF) + dmFunc.Q(MY_SOTA_REF) +
               dmFunc.Q(paramHRDLOG_QSO_UPLOAD_STATUS) +
               dmFunc.Q(paramHRDLOG_QSO_UPLOAD_DATE) +
@@ -890,7 +898,7 @@ begin
               'ShortNote, QSLReceQSLcc, LoTWRec, LoTWRecDate, QSLInfo, `Call`, State1, State2, '
               + 'State3, State4, WPX, AwardsEx, ValidDX, SRX, SRX_STRING, STX, STX_STRING, SAT_NAME,'
               + 'SAT_MODE, PROP_MODE, LoTWSent, QSL_RCVD_VIA, QSL_SENT_VIA, DXCC,' +
-              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, HRDLOG_QSO_UPLOAD_STATUS, ' +
+              'NoCalcDXCC, MY_STATE, MY_GRIDSQUARE, MY_LAT, MY_LON, CNTY, MY_CNTY, HRDLOG_QSO_UPLOAD_STATUS, ' +
               'HRDLOG_QSO_UPLOAD_DATE, QRZCOM_QSO_UPLOAD_STATUS, QRZCOM_QSO_UPLOAD_DATE, ' +
               'HAMQTH_QSO_UPLOAD_STATUS, HAMQTH_QSO_UPLOAD_DATE, CLUBLOG_QSO_UPLOAD_STATUS, ' +
               'CLUBLOG_QSO_UPLOAD_DATE, HAMLOGEU_QSO_UPLOAD_STATUS, HAMLOGEU_QSO_UPLOAD_DATE, ' +
@@ -918,6 +926,7 @@ begin
               dmFunc.Q(QSL_SENT_VIA) + dmFunc.Q(DXCC) + dmFunc.Q(paramNoCalcDXCC) +
               dmFunc.Q(MY_STATE) + dmFunc.Q(MY_GRIDSQUARE) +
               dmFunc.Q(MY_LAT) + dmFunc.Q(MY_LON) +
+              dmFunc.Q(CNTY) + dmFunc.Q(MY_CNTY) +
               dmFunc.Q(paramHRDLOG_QSO_UPLOAD_STATUS) +
               dmFunc.Q(paramHRDLOG_QSO_UPLOAD_DATE) +
               dmFunc.Q(paramQRZCOM_QSO_UPLOAD_STATUS) +
