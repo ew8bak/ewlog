@@ -227,6 +227,8 @@ begin
   cbHamLogEuQsoUploadStatus.Checked := exportAdiSet.fHAMLOGEU_QSO_UPLOAD_STATUS;
   cbHamLogOnlineQsoUploadDate.Checked := exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_DATE;
   cbHamLogOnlineQsoUploadStatus.Checked := exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_STATUS;
+  cbCnty.Checked:=exportAdiSet.fCNTY;
+  cbMyCnty.Checked:=exportAdiSet.fMY_CNTY;
 end;
 
 procedure TexportSettingsForm.cbOperatorChange(Sender: TObject);
