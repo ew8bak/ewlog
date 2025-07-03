@@ -63,5 +63,7 @@
 {"hash":264606421,"name":"texportsettingsform.cbhamlogonlineqsouploaddate.caption","sourcebytes":[72,65,77,76,79,71,79,78,76,73,78,69,95,81,83,79,95,85,80,76,79,65,68,95,68,65,84,69],"value":"HAMLOGONLINE_QSO_UPLOAD_DATE"},
 {"hash":111419749,"name":"texportsettingsform.cbsatname.caption","sourcebytes":[83,65,84,95,78,65,77,69],"value":"SAT_NAME"},
 {"hash":138549876,"name":"texportsettingsform.cbcomment.caption","sourcebytes":[67,79,77,77,69,78,84],"value":"COMMENT"},
-{"hash":43791971,"name":"texportsettingsform.cbhamlogonlineqsouploadstatus.caption","sourcebytes":[72,65,77,76,79,71,79,78,76,73,78,69,95,81,83,79,95,85,80,76,79,65,68,95,83,84,65,84,85,83],"value":"HAMLOGONLINE_QSO_UPLOAD_STATUS"}
+{"hash":43791971,"name":"texportsettingsform.cbhamlogonlineqsouploadstatus.caption","sourcebytes":[72,65,77,76,79,71,79,78,76,73,78,69,95,81,83,79,95,85,80,76,79,65,68,95,83,84,65,84,85,83],"value":"HAMLOGONLINE_QSO_UPLOAD_STATUS"},
+{"hash":295833,"name":"texportsettingsform.cbcnty.caption","sourcebytes":[67,78,84,89],"value":"CNTY"},
+{"hash":49513417,"name":"texportsettingsform.cbmycnty.caption","sourcebytes":[77,89,95,67,78,84,89],"value":"MY_CNTY"}
 ]}

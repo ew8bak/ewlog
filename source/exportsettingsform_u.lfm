@@ -590,5 +590,23 @@ object exportSettingsForm: TexportSettingsForm
       TabOrder = 62
       OnChange = cbHamLogOnlineQsoUploadStatusChange
     end
+    object cbCnty: TCheckBox
+      Left = 7
+      Height = 19
+      Top = 409
+      Width = 198
+      Caption = 'CNTY'
+      TabOrder = 63
+      OnChange = cbCntyChange
+    end
+    object cbMyCnty: TCheckBox
+      Left = 222
+      Height = 19
+      Top = 409
+      Width = 192
+      Caption = 'MY_CNTY'
+      TabOrder = 64
+      OnChange = cbMyCntyChange
+    end
   end
 end

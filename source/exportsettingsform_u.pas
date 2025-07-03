@@ -12,6 +12,7 @@ type
   { TexportSettingsForm }
 
   TexportSettingsForm = class(TForm)
+    cbMyCnty: TCheckBox;
     cbOperator: TCheckBox;
     cbName: TCheckBox;
     cbQth: TCheckBox;
@@ -38,6 +39,7 @@ type
     cbHamqthQsoUploadDate: TCheckBox;
     cbHamqthQsoUploadStatus: TCheckBox;
     cbFreqRx: TCheckBox;
+    cbCnty: TCheckBox;
     cbStationCallsign: TCheckBox;
     cbTimeOn: TCheckBox;
     cbMode: TCheckBox;
@@ -81,6 +83,7 @@ type
     procedure cbCallChange(Sender: TObject);
     procedure cbClublogQsoUploadDateChange(Sender: TObject);
     procedure cbClublogQsoUploadStatusChange(Sender: TObject);
+    procedure cbCntyChange(Sender: TObject);
     procedure cbCommentChange(Sender: TObject);
     procedure cbContChange(Sender: TObject);
     procedure cbCqzChange(Sender: TObject);
@@ -105,6 +108,7 @@ type
     procedure cbLotwQslRdateChange(Sender: TObject);
     procedure cbLotwQslSentChange(Sender: TObject);
     procedure cbModeChange(Sender: TObject);
+    procedure cbMyCntyChange(Sender: TObject);
     procedure cbMyGridsquareChange(Sender: TObject);
     procedure cbMyLatChange(Sender: TObject);
     procedure cbMyLonChange(Sender: TObject);
@@ -493,6 +497,12 @@ begin
   iniFile.WriteBool('ExportFieldsADI', 'MODE', cbMode.Checked);
 end;
 
+procedure TexportSettingsForm.cbMyCntyChange(Sender: TObject);
+begin
+  exportAdiSet.fMY_CNTY := cbMyCnty.Checked;
+  iniFile.WriteBool('ExportFieldsADI', 'MY_CNTY', cbMyCnty.Checked);
+end;
+
 procedure TexportSettingsForm.cbMyGridsquareChange(Sender: TObject);
 begin
   exportAdiSet.fMY_GRIDSQUARE := cbMyGridsquare.Checked;
@@ -577,6 +587,12 @@ begin
   exportAdiSet.fCLUBLOG_QSO_UPLOAD_STATUS := cbClublogQsoUploadStatus.Checked;
   iniFile.WriteBool('ExportFieldsADI', 'CLUBLOG_QSO_UPLOAD_STATUS',
     cbClublogQsoUploadStatus.Checked);
+end;
+
+procedure TexportSettingsForm.cbCntyChange(Sender: TObject);
+begin
+  exportAdiSet.fCNTY := cbCnty.Checked;
+  iniFile.WriteBool('ExportFieldsADI', 'CNTY', cbCnty.Checked);
 end;
 
 procedure TexportSettingsForm.cbCommentChange(Sender: TObject);

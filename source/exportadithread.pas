@@ -354,6 +354,20 @@ begin
             Write(f, tmp);
           end;
 
+        if exportAdiSet.fCNTY then
+          if Query.Fields.FieldByName('CNTY').AsString <> '' then
+          begin
+            tmp := '<CNTY' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+              'CNTY').AsString, utf8Len);
+            Write(f, tmp);
+          end;
+        if exportAdiSet.fMY_CNTY then
+          if Query.Fields.FieldByName('MY_CNTY').AsString <> '' then
+          begin
+            tmp := '<MY_CNTY' + dmFunc.StringToADIF(Query.Fields.FieldByName(
+              'MY_CNTY').AsString, utf8Len);
+            Write(f, tmp);
+          end;
 
         if exportAdiSet.fGRIDSQUARE then
           if Query.Fields.FieldByName('Grid').AsString <> '' then

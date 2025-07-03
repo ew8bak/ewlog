@@ -72,6 +72,8 @@ type
     fCLUBLOG_QSO_UPLOAD_STATUS: boolean;
     fHAMQTH_QSO_UPLOAD_DATE: boolean;
     fSTATION_CALLSIGN: boolean;
+    fMY_CNTY: boolean;
+    fCNTY: boolean;
   end;
 
 implementation

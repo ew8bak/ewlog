@@ -3224,6 +3224,10 @@ msgstr ""
 msgid "CLUBLOG_QSO_UPLOAD_STATUS"
 msgstr ""
 
+#: texportsettingsform.cbcnty.caption
+msgid "CNTY"
+msgstr ""
+
 #: texportsettingsform.cbcomment.caption
 msgid "COMMENT"
 msgstr ""
@@ -3320,6 +3324,10 @@ msgstr ""
 
 #: texportsettingsform.cbmode.caption
 msgid "MODE"
+msgstr ""
+
+#: texportsettingsform.cbmycnty.caption
+msgid "MY_CNTY"
 msgstr ""
 
 #: texportsettingsform.cbmygridsquare.caption

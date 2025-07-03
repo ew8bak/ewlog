@@ -1791,6 +1791,8 @@ begin
   exportAdiSet.fHAMLOGEU_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGEU_QSO_UPLOAD_STATUS', True);
   exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_DATE:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGONLINE_QSO_UPLOAD_DATE', True);
   exportAdiSet.fHAMLOGONLINE_QSO_UPLOAD_STATUS:=INIFile.ReadBool('ExportFieldsADI', 'HAMLOGONLINE_QSO_UPLOAD_STATUS', True);
+  exportAdiSet.fCNTY:=INIFile.ReadBool('ExportFieldsADI', 'CNTY', True);
+  exportAdiSet.fMY_CNTY:=INIFile.ReadBool('ExportFieldsADI', 'MY_CNTY', True);
 end;
 
 procedure TMainFunc.LoadINIsettings;
