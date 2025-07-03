@@ -2373,8 +2373,10 @@ begin
   end;
 end;
 
+{$IFDEF WINDOWS}
 initialization
 PreferredAppMode:=pamForceDark;
 uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
+{$ENDIF WINDOWS}
 
 end.
