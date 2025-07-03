@@ -1894,6 +1894,7 @@ begin
   IniSet.LoTW_Path := INIFile.ReadString('LoTW', 'Path', '');
   IniSet.LoTW_QTH := INIFile.ReadString('LoTW', 'QTH', '');
   IniSet.LoTW_Key := INIFile.ReadString('LoTW', 'Key', '');
+  IniSet.WinDarkMode:= INIFile.ReadInteger('SetLog', 'WinDarkMode', 2);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

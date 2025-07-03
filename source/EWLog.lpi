@@ -28,7 +28,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="969"/>
+      <BuildNr Value="971"/>
       <StringTable CompanyName="EW8BAK" LegalCopyright="Vladimir Karpenko" OriginalFilename="EWLog" ProductName="EWLog - HAM Journal"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -122,49 +122,52 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="14">
+    <RequiredPackages Count="15">
       <Item1>
-        <PackageName Value="syWebSocket"/>
+        <PackageName Value="MetaDarkStyle"/>
       </Item1>
       <Item2>
-        <PackageName Value="uniqueinstance_package"/>
+        <PackageName Value="syWebSocket"/>
       </Item2>
       <Item3>
-        <PackageName Value="Printer4Lazarus"/>
+        <PackageName Value="uniqueinstance_package"/>
       </Item3>
       <Item4>
-        <PackageName Value="lazreport"/>
+        <PackageName Value="Printer4Lazarus"/>
       </Item4>
       <Item5>
-        <PackageName Value="lazMapViewerPkg"/>
+        <PackageName Value="lazreport"/>
       </Item5>
       <Item6>
-        <PackageName Value="virtualtreeview_package"/>
+        <PackageName Value="lazMapViewerPkg"/>
       </Item6>
       <Item7>
-        <PackageName Value="indylaz"/>
+        <PackageName Value="virtualtreeview_package"/>
       </Item7>
       <Item8>
-        <PackageName Value="DBFLaz"/>
+        <PackageName Value="indylaz"/>
       </Item8>
       <Item9>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="DBFLaz"/>
       </Item9>
       <Item10>
-        <PackageName Value="MemDSLaz"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item10>
       <Item11>
-        <PackageName Value="SDFLaz"/>
+        <PackageName Value="MemDSLaz"/>
       </Item11>
       <Item12>
-        <PackageName Value="FCL"/>
+        <PackageName Value="SDFLaz"/>
       </Item12>
       <Item13>
-        <PackageName Value="SQLDBLaz"/>
+        <PackageName Value="FCL"/>
       </Item13>
       <Item14>
-        <PackageName Value="LCL"/>
+        <PackageName Value="SQLDBLaz"/>
       </Item14>
+      <Item15>
+        <PackageName Value="LCL"/>
+      </Item15>
     </RequiredPackages>
     <Units Count="102">
       <Unit0>

@@ -109,6 +109,7 @@ type
     LoTW_Path: string;
     LoTW_QTH: string;
     LoTW_Key: string;
+    WinDarkMode: integer;
   end;
 
 implementation

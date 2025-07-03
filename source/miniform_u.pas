@@ -18,7 +18,11 @@ uses
   EditBtn, Buttons, ComCtrls, DateTimePicker, LazSysUtils, foundQSO_record,
   prefix_record, LCLType, Menus, inform_record, ResourceStr, qso_record,
   const_u, LCLProc, LCLTranslator, FileUtil, Zipper, fphttpclient, LCLIntf,
-  ActnList, gettext, digi_record, ImportADIThread, CloudLogCAT, dmHamLib_u;
+  ActnList, gettext, digi_record, ImportADIThread, CloudLogCAT, dmHamLib_u
+  {$IFDEF WINDOWS}
+    ,uDarkStyleParams, uWin32WidgetSetDark, uDarkStyleSchemes, uMetaDarkStyle;
+  {$ELSE} ;
+  {$ENDIF}
 
 type
 
@@ -2295,6 +2299,14 @@ begin
   LBUTCTimeD.Caption := FormatDateTime('hh:mm:ss', NowUTC);
   LoadComboBoxItem;
 
+//  {$IFDEF WINDOWS}
+//  if IniSet.WinDarkMode = 2 then
+//    uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
+//  SetColorsScheme(DefaultDark);
+//  MetaDarkFormChanged(self);
+//  Invalidate;
+//  {$ENDIF}
+
   GetLanguageIDs(Lang, FallbackLang);
 
   if IniSet.Language = '' then
@@ -2360,5 +2372,9 @@ begin
     DateEdit1.Date := NowUTC;
   end;
 end;
+
+initialization
+PreferredAppMode:=pamForceDark;
+uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
 
 end.

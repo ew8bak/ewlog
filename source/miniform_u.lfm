@@ -10,6 +10,7 @@ object MiniForm: TMiniForm
   ClientHeight = 484
   ClientWidth = 479
   Menu = MainMenu
+  LCLVersion = '4.0.0.4'
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
