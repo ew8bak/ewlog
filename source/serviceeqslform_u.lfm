@@ -6,12 +6,11 @@ object ServiceEqslForm: TServiceEqslForm
   Caption = 'Service eQSL'
   ClientHeight = 213
   ClientWidth = 538
+  Position = poWorkAreaCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  Position = poWorkAreaCenter
-  LCLVersion = '2.0.12.0'
   object PBDownload: TProgressBar
     Left = 0
     Height = 16
@@ -367,22 +366,22 @@ object ServiceEqslForm: TServiceEqslForm
     Height = 197
     Top = 0
     Width = 424
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Download QSOs'
-      ClientHeight = 166
-      ClientWidth = 414
+      ClientHeight = 162
+      ClientWidth = 418
       object DEeQSLcc: TDateEdit
         AnchorSideTop.Control = BtConnecteQSL
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = TabSheet1
         AnchorSideRight.Side = asrBottom
-        Left = 268
-        Height = 30
-        Top = 92
+        Left = 272
+        Height = 32
+        Top = 86
         Width = 136
         CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
         DateOrder = doNone
@@ -400,15 +399,15 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Side = asrBottom
         Left = 5
-        Height = 33
-        Top = 91
-        Width = 128
+        Height = 28
+        Top = 88
+        Width = 129
         AutoSize = True
         BorderSpacing.Top = 5
         Caption = 'Connect with eQSL'
-        OnClick = BtConnecteQSLClick
         ParentFont = False
         TabOrder = 1
+        OnClick = BtConnecteQSLClick
       end
       object Bevel3: TBevel
         AnchorSideLeft.Control = TabSheet1
@@ -418,8 +417,8 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideRight.Side = asrBottom
         Left = 5
         Height = 2
-        Top = 129
-        Width = 404
+        Top = 121
+        Width = 408
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
@@ -429,9 +428,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideLeft.Control = Bevel3
         AnchorSideTop.Control = Bevel3
         Left = 5
-        Height = 17
-        Top = 131
-        Width = 99
+        Height = 18
+        Top = 123
+        Width = 97
         BorderSpacing.Top = 2
         Caption = 'Processed data:'
         ParentColor = False
@@ -442,9 +441,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideTop.Control = LBProcessed
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 17
-        Top = 150
-        Width = 42
+        Height = 18
+        Top = 143
+        Width = 41
         BorderSpacing.Top = 2
         Caption = 'Errors:'
         ParentColor = False
@@ -455,9 +454,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = LBErrors
         AnchorSideTop.Side = asrCenter
-        Left = 49
-        Height = 17
-        Top = 150
+        Left = 48
+        Height = 18
+        Top = 143
         Width = 34
         BorderSpacing.Left = 2
         Caption = 'None'
@@ -467,9 +466,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideTop.Control = LBProcessed
         AnchorSideTop.Side = asrCenter
         Left = 189
-        Height = 17
-        Top = 131
-        Width = 43
+        Height = 18
+        Top = 123
+        Width = 42
         Caption = 'Status:'
         ParentColor = False
         ParentFont = False
@@ -479,9 +478,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = LBStatus
         AnchorSideTop.Side = asrCenter
-        Left = 233
-        Height = 17
-        Top = 131
+        Left = 232
+        Height = 18
+        Top = 123
         Width = 28
         BorderSpacing.Left = 1
         Caption = 'Wait'
@@ -491,9 +490,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideTop.Control = LBErrors
         AnchorSideTop.Side = asrCenter
         Left = 188
-        Height = 17
-        Top = 150
-        Width = 68
+        Height = 18
+        Top = 143
+        Width = 66
         Caption = 'Download:'
         ParentColor = False
       end
@@ -502,9 +501,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = LBDownload
         AnchorSideTop.Side = asrCenter
-        Left = 258
-        Height = 17
-        Top = 150
+        Left = 256
+        Height = 18
+        Top = 143
         Width = 8
         BorderSpacing.Left = 2
         Caption = '0'
@@ -514,9 +513,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideLeft.Control = TabSheet1
         AnchorSideTop.Control = TabSheet1
         Left = 5
-        Height = 17
+        Height = 18
         Top = 5
-        Width = 99
+        Width = 98
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Import from file'
@@ -527,24 +526,24 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideTop.Control = Label1
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 33
-        Top = 24
-        Width = 80
+        Height = 28
+        Top = 25
+        Width = 81
         AutoSize = True
         BorderSpacing.Top = 2
         Caption = 'Choose file'
-        OnClick = Button1Click
         TabOrder = 2
+        OnClick = Button1Click
       end
       object Label2: TLabel
         AnchorSideLeft.Control = Button1
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Button1
         AnchorSideTop.Side = asrCenter
-        Left = 90
-        Height = 17
-        Top = 32
-        Width = 100
+        Left = 91
+        Height = 18
+        Top = 30
+        Width = 99
         BorderSpacing.Left = 5
         Caption = 'File not selected'
         ParentColor = False
@@ -557,8 +556,8 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideRight.Side = asrBottom
         Left = 5
         Height = 2
-        Top = 62
-        Width = 404
+        Top = 58
+        Width = 408
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
@@ -569,9 +568,9 @@ object ServiceEqslForm: TServiceEqslForm
         AnchorSideTop.Control = Bevel4
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 17
-        Top = 69
-        Width = 160
+        Height = 18
+        Top = 65
+        Width = 159
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Import directly from eQSL'
@@ -580,19 +579,19 @@ object ServiceEqslForm: TServiceEqslForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Upload QSOs'
-      ClientHeight = 166
-      ClientWidth = 414
+      ClientHeight = 162
+      ClientWidth = 418
       OnHide = TabSheet2Hide
       OnShow = TabSheet2Show
       object DBGrid1: TDBGrid
         Left = 0
-        Height = 120
+        Height = 116
         Top = 0
-        Width = 414
+        Width = 418
         Align = alClient
         Color = clWindow
         Columns = <>
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisplayMemoText]
         ReadOnly = True
         Scrollbars = ssAutoBoth
         TabOrder = 0
@@ -600,19 +599,19 @@ object ServiceEqslForm: TServiceEqslForm
       object Panel1: TPanel
         Left = 0
         Height = 46
-        Top = 120
-        Width = 414
+        Top = 116
+        Width = 418
         Align = alBottom
         ClientHeight = 46
-        ClientWidth = 414
+        ClientWidth = 418
         TabOrder = 1
         object Label4: TLabel
           AnchorSideLeft.Control = Panel1
           AnchorSideTop.Control = Panel1
           Left = 6
-          Height = 17
+          Height = 18
           Top = 6
-          Width = 91
+          Width = 89
           BorderSpacing.Left = 5
           BorderSpacing.Top = 5
           Caption = 'Upload Status:'
@@ -623,8 +622,8 @@ object ServiceEqslForm: TServiceEqslForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Label4
           AnchorSideTop.Side = asrCenter
-          Left = 99
-          Height = 17
+          Left = 97
+          Height = 18
           Top = 6
           Width = 39
           BorderSpacing.Left = 2
@@ -637,24 +636,24 @@ object ServiceEqslForm: TServiceEqslForm
           AnchorSideRight.Control = Panel1
           AnchorSideRight.Side = asrBottom
           Left = 326
-          Height = 33
-          Top = 7
-          Width = 82
+          Height = 28
+          Top = 9
+          Width = 86
           Anchors = [akTop, akLeft, akRight]
           AutoSize = True
           BorderSpacing.Right = 5
           Caption = 'Upload'
-          OnClick = Button2Click
           TabOrder = 0
+          OnClick = Button2Click
         end
         object Label6: TLabel
           AnchorSideLeft.Control = Label4
           AnchorSideTop.Control = Label4
           AnchorSideTop.Side = asrBottom
           Left = 6
-          Height = 17
-          Top = 25
-          Width = 43
+          Height = 18
+          Top = 26
+          Width = 42
           BorderSpacing.Top = 2
           Caption = 'Status:'
           ParentColor = False
@@ -664,9 +663,9 @@ object ServiceEqslForm: TServiceEqslForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Label6
           AnchorSideTop.Side = asrCenter
-          Left = 51
-          Height = 17
-          Top = 25
+          Left = 50
+          Height = 18
+          Top = 26
           Width = 39
           BorderSpacing.Left = 2
           Caption = 'Status'
@@ -676,21 +675,21 @@ object ServiceEqslForm: TServiceEqslForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Tools'
-      ClientHeight = 166
-      ClientWidth = 414
+      ClientHeight = 162
+      ClientWidth = 418
       object Button3: TButton
         AnchorSideLeft.Control = TabSheet3
         AnchorSideTop.Control = TabSheet3
         Left = 5
-        Height = 33
+        Height = 28
         Top = 5
         Width = 206
         AutoSize = True
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Mark ALL QSOs as Sent to eQSL'
-        OnClick = Button3Click
         TabOrder = 0
+        OnClick = Button3Click
       end
     end
   end

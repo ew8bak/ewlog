@@ -6,12 +6,11 @@ object ServiceLoTWForm: TServiceLoTWForm
   Caption = 'Service LoTW'
   ClientHeight = 213
   ClientWidth = 536
+  Position = poWorkAreaCenter
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  Position = poWorkAreaCenter
-  LCLVersion = '3.8.0.0'
   object PBDownload: TProgressBar
     Left = 0
     Height = 16
@@ -367,21 +366,21 @@ object ServiceLoTWForm: TServiceLoTWForm
     Height = 197
     Top = 0
     Width = 422
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Download QSOs'
-      ClientHeight = 169
-      ClientWidth = 414
+      ClientHeight = 162
+      ClientWidth = 416
       object DELoTW: TDateEdit
         AnchorSideTop.Control = BtConnectLoTW
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = TabSheet1
         AnchorSideRight.Side = asrBottom
-        Left = 268
-        Height = 23
+        Left = 270
+        Height = 32
         Top = 26
         Width = 136
         CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
@@ -400,8 +399,8 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Side = asrBottom
         Left = 5
-        Height = 25
-        Top = 25
+        Height = 28
+        Top = 28
         Width = 131
         AutoSize = True
         BorderSpacing.Top = 5
@@ -418,8 +417,8 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideRight.Side = asrBottom
         Left = 5
         Height = 2
-        Top = 55
-        Width = 404
+        Top = 61
+        Width = 406
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
@@ -429,9 +428,9 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideLeft.Control = Bevel3
         AnchorSideTop.Control = Bevel3
         Left = 5
-        Height = 15
-        Top = 57
-        Width = 82
+        Height = 18
+        Top = 63
+        Width = 97
         BorderSpacing.Top = 2
         Caption = 'Processed data:'
         ParentFont = False
@@ -441,9 +440,9 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideTop.Control = LBProcessed
         AnchorSideTop.Side = asrBottom
         Left = 5
-        Height = 15
-        Top = 74
-        Width = 33
+        Height = 18
+        Top = 83
+        Width = 41
         BorderSpacing.Top = 2
         Caption = 'Errors:'
         ParentFont = False
@@ -453,10 +452,10 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = LBErrors
         AnchorSideTop.Side = asrCenter
-        Left = 40
-        Height = 15
-        Top = 74
-        Width = 29
+        Left = 48
+        Height = 18
+        Top = 83
+        Width = 34
         BorderSpacing.Left = 2
         Caption = 'None'
       end
@@ -464,9 +463,9 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideTop.Control = LBProcessed
         AnchorSideTop.Side = asrCenter
         Left = 189
-        Height = 15
-        Top = 57
-        Width = 35
+        Height = 18
+        Top = 63
+        Width = 42
         Caption = 'Status:'
         ParentFont = False
       end
@@ -475,10 +474,10 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = LBStatus
         AnchorSideTop.Side = asrCenter
-        Left = 225
-        Height = 15
-        Top = 57
-        Width = 24
+        Left = 232
+        Height = 18
+        Top = 63
+        Width = 28
         BorderSpacing.Left = 1
         Caption = 'Wait'
       end
@@ -486,9 +485,9 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideTop.Control = LBErrors
         AnchorSideTop.Side = asrCenter
         Left = 188
-        Height = 15
-        Top = 74
-        Width = 57
+        Height = 18
+        Top = 83
+        Width = 66
         Caption = 'Download:'
       end
       object LBDownloadSize: TLabel
@@ -496,10 +495,10 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = LBDownload
         AnchorSideTop.Side = asrCenter
-        Left = 247
-        Height = 15
-        Top = 74
-        Width = 6
+        Left = 256
+        Height = 18
+        Top = 83
+        Width = 8
         BorderSpacing.Left = 2
         Caption = '0'
       end
@@ -507,9 +506,9 @@ object ServiceLoTWForm: TServiceLoTWForm
         AnchorSideLeft.Control = TabSheet1
         AnchorSideTop.Control = TabSheet1
         Left = 5
-        Height = 15
+        Height = 18
         Top = 5
-        Width = 141
+        Width = 161
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
         Caption = 'Import directly from LoTW'
@@ -517,19 +516,19 @@ object ServiceLoTWForm: TServiceLoTWForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Upload QSOs'
-      ClientHeight = 169
-      ClientWidth = 414
+      ClientHeight = 162
+      ClientWidth = 416
       OnHide = TabSheet2Hide
       OnShow = TabSheet2Show
       object DBGrid1: TDBGrid
         Left = 0
-        Height = 123
+        Height = 116
         Top = 0
-        Width = 414
+        Width = 416
         Align = alClient
         Color = clWindow
         Columns = <>
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisplayMemoText]
         ReadOnly = True
         Scrollbars = ssAutoBoth
         TabOrder = 0
@@ -537,19 +536,19 @@ object ServiceLoTWForm: TServiceLoTWForm
       object Panel1: TPanel
         Left = 0
         Height = 46
-        Top = 123
-        Width = 414
+        Top = 116
+        Width = 416
         Align = alBottom
         ClientHeight = 46
-        ClientWidth = 414
+        ClientWidth = 416
         TabOrder = 1
         object Label4: TLabel
           AnchorSideLeft.Control = Panel1
           AnchorSideTop.Control = Panel1
           Left = 6
-          Height = 15
+          Height = 18
           Top = 6
-          Width = 76
+          Width = 89
           BorderSpacing.Left = 5
           BorderSpacing.Top = 5
           Caption = 'Upload Status:'
@@ -559,10 +558,10 @@ object ServiceLoTWForm: TServiceLoTWForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Label4
           AnchorSideTop.Side = asrCenter
-          Left = 84
-          Height = 15
+          Left = 97
+          Height = 18
           Top = 6
-          Width = 32
+          Width = 39
           BorderSpacing.Left = 2
           Caption = 'Status'
         end
@@ -572,9 +571,9 @@ object ServiceLoTWForm: TServiceLoTWForm
           AnchorSideRight.Control = Panel1
           AnchorSideRight.Side = asrBottom
           Left = 326
-          Height = 25
-          Top = 11
-          Width = 82
+          Height = 28
+          Top = 9
+          Width = 84
           Anchors = [akTop, akLeft, akRight]
           AutoSize = True
           BorderSpacing.Right = 5
@@ -587,9 +586,9 @@ object ServiceLoTWForm: TServiceLoTWForm
           AnchorSideTop.Control = Label4
           AnchorSideTop.Side = asrBottom
           Left = 6
-          Height = 15
-          Top = 23
-          Width = 35
+          Height = 18
+          Top = 26
+          Width = 42
           BorderSpacing.Top = 2
           Caption = 'Status:'
         end
@@ -598,10 +597,10 @@ object ServiceLoTWForm: TServiceLoTWForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Label6
           AnchorSideTop.Side = asrCenter
-          Left = 43
-          Height = 15
-          Top = 23
-          Width = 32
+          Left = 50
+          Height = 18
+          Top = 26
+          Width = 39
           BorderSpacing.Left = 2
           Caption = 'Status'
         end
@@ -609,15 +608,15 @@ object ServiceLoTWForm: TServiceLoTWForm
     end
     object TabSheet3: TTabSheet
       Caption = 'Tools'
-      ClientHeight = 169
-      ClientWidth = 414
+      ClientHeight = 162
+      ClientWidth = 416
       object Button3: TButton
         AnchorSideLeft.Control = TabSheet3
         AnchorSideTop.Control = TabSheet3
         Left = 5
-        Height = 25
+        Height = 28
         Top = 5
-        Width = 196
+        Width = 208
         AutoSize = True
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
