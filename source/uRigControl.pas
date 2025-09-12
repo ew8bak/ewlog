@@ -108,7 +108,7 @@ type
     function GetCurrVFO: TVFO;
     function GetModePass: TRigMode;
     function GetModeOnly: string;
-    function GetFreqHz: integer;
+    function GetFreqHz: Int64;
     function GetFreqKHz: double;
     function GetFreqMHz: double;
     function GetModePass(vfo: TVFO): TRigMode; overload;
@@ -248,7 +248,7 @@ begin
   Result := fMode.mode;
 end;
 
-function TRigControl.GetFreqHz: integer;
+function TRigControl.GetFreqHz: Int64;
 begin
   try
     Result := Trunc(fFreq) + Trunc(fRXOffset) * 1000000;

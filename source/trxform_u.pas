@@ -85,7 +85,7 @@ type
     { private declarations }
   public
     procedure ShowInfoFromRIG;
-    procedure FreqHz(Hz: integer);
+    procedure FreqHz(Hz: Int64);
     procedure SavePosition;
     procedure SetFreqMode(Freq: integer; Mode: string);
     { public declarations }
@@ -126,7 +126,7 @@ end;
 
 procedure TTRXForm.ShowInfoFromRIG;
 var
-  hz_freq: longint;
+  hz_freq: Int64;
 begin
   if FMS.Freq > 0 then
   begin
@@ -151,7 +151,7 @@ begin
     MainFunc.SaveWindowPosition(TRXForm);
 end;
 
-procedure TTRXForm.FreqHz(Hz: integer);
+procedure TTRXForm.FreqHz(Hz: Int64);
 var
   fr: array[0..9] of string;
 begin

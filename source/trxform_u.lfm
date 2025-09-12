@@ -8,9 +8,9 @@ object TRXForm: TTRXForm
   ClientHeight = 115
   ClientWidth = 243
   FormStyle = fsStayOnTop
+  LCLVersion = '4.0.0.4'
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
-  LCLVersion = '2.0.12.0'
   object lblMode: TLabel
     AnchorSideLeft.Control = Bevel1
     AnchorSideTop.Control = Bevel1
@@ -39,9 +39,9 @@ object TRXForm: TTRXForm
     BorderSpacing.Top = 1
     Caption = 'CW'
     Font.Height = -11
-    OnClick = btnCWClick
     ParentFont = False
     TabOrder = 0
+    OnClick = btnCWClick
   end
   object btnSSB: TButton
     AnchorSideLeft.Control = btnCW
@@ -54,9 +54,9 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'SSB'
     Font.Height = -11
-    OnClick = btnSSBClick
     ParentFont = False
     TabOrder = 1
+    OnClick = btnSSBClick
   end
   object btnRTTY: TButton
     AnchorSideLeft.Control = btnSSB
@@ -69,9 +69,9 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'DIG'
     Font.Height = -11
-    OnClick = btnRTTYClick
     ParentFont = False
     TabOrder = 2
+    OnClick = btnRTTYClick
   end
   object btnAM: TButton
     AnchorSideLeft.Control = btnRTTY
@@ -84,9 +84,9 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'AM'
     Font.Height = -11
-    OnClick = btnAMClick
     ParentFont = False
     TabOrder = 3
+    OnClick = btnAMClick
   end
   object btnFM: TButton
     AnchorSideLeft.Control = btnAM
@@ -99,9 +99,9 @@ object TRXForm: TTRXForm
     Width = 28
     Caption = 'FM'
     Font.Height = -11
-    OnClick = btnFMClick
     ParentFont = False
     TabOrder = 4
+    OnClick = btnFMClick
   end
   object btnVFOA: TButton
     AnchorSideLeft.Control = btn15m
@@ -144,9 +144,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '1.8'
     Font.Height = -11
-    OnClick = btn160mClick
     ParentFont = False
     TabOrder = 7
+    OnClick = btn160mClick
   end
   object btn80m: TButton
     AnchorSideLeft.Control = btn160m
@@ -160,9 +160,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '3.5'
     Font.Height = -11
-    OnClick = btn80mClick
     ParentFont = False
     TabOrder = 8
+    OnClick = btn80mClick
   end
   object btn40m: TButton
     AnchorSideLeft.Control = btn80m
@@ -176,9 +176,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '7'
     Font.Height = -11
-    OnClick = btn40mClick
     ParentFont = False
     TabOrder = 9
+    OnClick = btn40mClick
   end
   object btn30m: TButton
     AnchorSideLeft.Control = btn40m
@@ -192,9 +192,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '10'
     Font.Height = -11
-    OnClick = btn30mClick
     ParentFont = False
     TabOrder = 10
+    OnClick = btn30mClick
   end
   object btn12m: TButton
     AnchorSideLeft.Control = btn15m
@@ -208,9 +208,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '24'
     Font.Height = -11
-    OnClick = btn12mClick
     ParentFont = False
     TabOrder = 11
+    OnClick = btn12mClick
   end
   object btn15m: TButton
     AnchorSideLeft.Control = btn17m
@@ -224,9 +224,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '21'
     Font.Height = -11
-    OnClick = btn15mClick
     ParentFont = False
     TabOrder = 12
+    OnClick = btn15mClick
   end
   object btn17m: TButton
     AnchorSideLeft.Control = btn20m
@@ -240,9 +240,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '18'
     Font.Height = -11
-    OnClick = btn17mClick
     ParentFont = False
     TabOrder = 13
+    OnClick = btn17mClick
   end
   object btn20m: TButton
     AnchorSideLeft.Control = btn30m
@@ -256,9 +256,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '14'
     Font.Height = -11
-    OnClick = btn20mClick
     ParentFont = False
     TabOrder = 14
+    OnClick = btn20mClick
   end
   object btn10m: TButton
     AnchorSideLeft.Control = Owner
@@ -273,9 +273,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '28'
     Font.Height = -11
-    OnClick = btn10mClick
     ParentFont = False
     TabOrder = 15
+    OnClick = btn10mClick
   end
   object btn6m: TButton
     AnchorSideLeft.Control = btn10m
@@ -289,9 +289,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '50'
     Font.Height = -11
-    OnClick = btn6mClick
     ParentFont = False
     TabOrder = 16
+    OnClick = btn6mClick
   end
   object btn70cm: TButton
     AnchorSideLeft.Control = btn2m
@@ -305,9 +305,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '144'
     Font.Height = -11
-    OnClick = btn70cmClick
     ParentFont = False
     TabOrder = 17
+    OnClick = btn70cmClick
   end
   object btn2m: TButton
     AnchorSideLeft.Control = btn6m
@@ -321,9 +321,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '70'
     Font.Height = -11
-    OnClick = btn2mClick
     ParentFont = False
     TabOrder = 18
+    OnClick = btn2mClick
   end
   object btn70cm1: TButton
     AnchorSideLeft.Control = btn70cm
@@ -337,9 +337,9 @@ object TRXForm: TTRXForm
     BorderSpacing.InnerBorder = 4
     Caption = '430'
     Font.Height = -11
-    OnClick = btn70cm1Click
     ParentFont = False
     TabOrder = 19
+    OnClick = btn70cm1Click
   end
   object btn70cm2: TButton
     AnchorSideLeft.Control = btn70cm1
