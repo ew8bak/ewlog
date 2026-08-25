@@ -23,7 +23,7 @@ type
   public
     function InicializeHLRig(RIGid: integer): boolean;
     procedure FreeRadio;
-    procedure SetFreq(freq: integer);
+    procedure SetFreq(freq: Int64);
     procedure SetMode(mode: string);
 
   end;
@@ -57,7 +57,7 @@ uses
 
 {$R *.lfm}
 
-procedure TdmHamLib.SetFreq(freq: integer);
+procedure TdmHamLib.SetFreq(freq: Int64);
 begin
   if Assigned(radio) then
     radio.SetFreqHz(freq);

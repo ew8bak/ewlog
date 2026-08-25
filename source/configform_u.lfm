@@ -2866,6 +2866,42 @@ object ConfigForm: TConfigForm
         TabOrder = 5
         Text = '14.123.89'
       end
+      object LBDarkMode: TLabel
+        AnchorSideLeft.Control = TSOtherSettings
+        AnchorSideTop.Control = CBViewFreq
+        AnchorSideTop.Side = asrBottom
+        Left = 10
+        Height = 15
+        Top = 279
+        Width = 65
+        BorderSpacing.Left = 10
+        BorderSpacing.Top = 10
+        Caption = 'Colour theme'
+        ParentColor = False
+      end
+      object CBDarkMode: TComboBox
+        AnchorSideLeft.Control = LBDarkMode
+        AnchorSideTop.Control = LBDarkMode
+        AnchorSideTop.Side = asrBottom
+        Left = 10
+        Height = 23
+        Top = 299
+        Width = 140
+        BorderSpacing.Top = 5
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          'Default'
+          'Follow system'
+          'Dark'
+          'Light'
+        )
+        OnChange = CBDarkModeChange
+        ParentFont = False
+        Style = csDropDownList
+        TabOrder = 6
+        Text = 'Default'
+      end
     end
     object TSWorkLAN: TTabSheet
       Caption = 'Work on LAN (UDP)'

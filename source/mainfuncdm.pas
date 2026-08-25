@@ -125,7 +125,7 @@ implementation
 
 uses InitDB_dm, dmFunc_U, GridsForm_u, hrdlog,
   hamqth, clublog, qrzcom, eqsl, cloudlog, hamlogonline, miniform_u, dxclusterform_u, dmHamLib_u,
-  dmTCI_u;
+  dmTCI_u, darkmode_u;
 
 {$R *.lfm}
 
@@ -1894,7 +1894,7 @@ begin
   IniSet.LoTW_Path := INIFile.ReadString('LoTW', 'Path', '');
   IniSet.LoTW_QTH := INIFile.ReadString('LoTW', 'QTH', '');
   IniSet.LoTW_Key := INIFile.ReadString('LoTW', 'Key', '');
-  IniSet.WinDarkMode:= INIFile.ReadInteger('SetLog', 'WinDarkMode', 2);
+  IniSet.WinDarkMode := INIFile.ReadInteger('SetLog', 'WinDarkMode', dmDefault);
 end;
 
 procedure TMainFunc.CheckDXCC(Callsign, mode, band: string;

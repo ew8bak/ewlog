@@ -169,7 +169,7 @@
         <PackageName Value="LCL"/>
       </Item15>
     </RequiredPackages>
-    <Units Count="102">
+    <Units Count="103">
       <Unit0>
         <Filename Value="EWLog.pas"/>
         <IsPartOfProject Value="True"/>
@@ -822,6 +822,10 @@
         <Filename Value="qsosu.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit101>
+      <Unit102>
+        <Filename Value="darkmode_u.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit102>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

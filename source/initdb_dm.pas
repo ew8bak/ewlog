@@ -90,6 +90,8 @@ var
     end;
 
 function TryStrToFloatSafe(const aStr: string; out aValue: double): boolean;
+function IsPortableRun: boolean;
+function GetDataPath(Portable: boolean): string;
 
 implementation
 
@@ -118,37 +120,14 @@ begin
 end;
 
 procedure TInitDB.DataModuleCreate(Sender: TObject);
-{$IFDEF WINDOWS}
-var
-  tempProfileDir, tempUserDir: string;
-{$ENDIF WINDOWS}
 begin
   ParamData := GetParam;
   if Sender <> DataBaseSettingsForm then
   begin
-    if not ParamData.portable then
-    begin
-      if FileExists(ExtractFilePath(ParamStr(0)) + 'portable') then
-        ParamData.portable := True
-      else
-        ParamData.portable := False;
-    end;
+    ParamData.portable := IsPortableRun;
+    FilePATH := GetDataPath(ParamData.portable);
 
-  {$IFDEF UNIX}
-    if not ParamData.portable then
-      FilePATH := GetEnvironmentVariable('HOME') + '/EWLog/'
-    else
-      FilePATH := ExtractFilePath(ParamStr(0));
-   {$ELSE}
-    if not ParamData.portable then
-    begin
-      tempProfileDir := dmFunc.GetUserProfilesDir;
-      tempUserDir := dmFunc.GetCurrentUserName;
-      FilePATH := tempProfileDir + DirectorySeparator + tempUserDir +
-        DirectorySeparator + 'EWLog' + DirectorySeparator;
-    end
-    else
-      FilePATH := ExtractFilePath(ParamStr(0));
+  {$IFNDEF UNIX}
     {$IFDEF WINDOWS}
     if dmFunc.CheckProcess('rigctld.exe') then
       dmFunc.CloseProcess('rigctld.exe');
@@ -613,6 +592,25 @@ begin
       Result := False;
     end;
   end;
+end;
+
+function IsPortableRun: boolean;
+begin
+  Result := (ParamStr(1) = '-p') or
+    FileExists(ExtractFilePath(ParamStr(0)) + 'portable');
+end;
+
+function GetDataPath(Portable: boolean): string;
+begin
+  if Portable then
+    Result := ExtractFilePath(ParamStr(0))
+  else
+  {$IFDEF UNIX}
+    Result := GetEnvironmentVariable('HOME') + '/EWLog/';
+  {$ELSE}
+    Result := dmFunc.GetUserProfilesDir + DirectorySeparator +
+      dmFunc.GetCurrentUserName + DirectorySeparator + 'EWLog' + DirectorySeparator;
+  {$ENDIF UNIX}
 end;
 
 function TryStrToFloatSafe(const aStr: string; out aValue: double): boolean;

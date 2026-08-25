@@ -117,6 +117,7 @@ type
     CBCatSpeed: TComboBox;
     CBCatStopBit: TComboBox;
     CBIntMobileSync: TComboBox;
+    CBDarkMode: TComboBox;
     CBViewFreq: TComboBox;
     CBRigNumberHL: TComboBox;
     DEBackupPath: TDirectoryEdit;
@@ -180,6 +181,7 @@ type
     LBRigNameHL1: TLabel;
     LBRigNumberHL: TLabel;
     LBRigNumberHL1: TLabel;
+    LBDarkMode: TLabel;
     LBViewFreq: TLabel;
     LBSyncMobile: TLabel;
     LBTCIAddress: TLabel;
@@ -278,6 +280,7 @@ type
     procedure CBRigNumberHLSelect(Sender: TObject);
     procedure CBRigNumberTCISelect(Sender: TObject);
     procedure CBTransceiverModelSelect(Sender: TObject);
+    procedure CBDarkModeChange(Sender: TObject);
     procedure CBViewFreqChange(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -351,7 +354,7 @@ implementation
 
 uses
   miniform_u, dmFunc_U, editqso_u, InitDB_dm, MainFuncDM, GridsForm_u,
-  TRXForm_U, dmTCI_u;
+  TRXForm_U, dmTCI_u, darkmode_u;
 
   {$R *.lfm}
 
@@ -558,6 +561,7 @@ begin
   if CBIntMobileSync.Text <> '' then
     INIFile.WriteString('SetLog', 'InterfaceMobileSync', CBIntMobileSync.Text);
   INIFile.WriteInteger('SetLog', 'ViewFreq', CBViewFreq.ItemIndex);
+  INIFile.WriteInteger('SetLog', 'WinDarkMode', CBDarkMode.ItemIndex);
 
   INIFile.WriteString('LoTW', 'Path', FNLoTWEdit.Text);
   INIFile.WriteString('LoTW', 'QTH', EditLoTWQTH.Text);
@@ -628,6 +632,7 @@ begin
   CBcwOverTCI.Checked := INIFile.ReadBool('CWGeneral', 'CWOverTCI', False);
 
   CBViewFreq.ItemIndex := INIFile.ReadInteger('SetLog', 'ViewFreq', 0);
+  CBDarkMode.ItemIndex := INIFile.ReadInteger('SetLog', 'WinDarkMode', dmDefault);
 
   FNLoTWEdit.Text := INIFile.ReadString('LoTW', 'Path', '');
   EditLoTWQTH.Text := INIFile.ReadString('LoTW', 'QTH', '');
@@ -670,6 +675,16 @@ begin
   TrscvName := CBTransceiverModel.Text;
   Delete(TrscvName, 1, pos(' ', TrscvName));
   EditRIGNameHL.Text := TrimRight(TrscvName);
+end;
+
+procedure TConfigForm.CBDarkModeChange(Sender: TObject);
+begin
+  if CBDarkMode.ItemIndex = IniSet.WinDarkMode then
+    Exit;
+  IniSet.WinDarkMode := CBDarkMode.ItemIndex;
+  { MetaDarkStyle swaps widgetset classes at startup, so already created
+    controls keep the old scheme - see darkmode_u }
+  ShowMessage(rRestartToApplyTheme);
 end;
 
 procedure TConfigForm.CBViewFreqChange(Sender: TObject);
@@ -1308,6 +1323,9 @@ end;
 
 procedure TConfigForm.TSOtherSettingsShow(Sender: TObject);
 begin
+  LBDarkMode.Visible := DarkModeSupported;
+  CBDarkMode.Visible := DarkModeSupported;
+
   CBIntMobileSync.Items.Clear;
   CBIntMobileSync.Items.AddStrings(GStack.LocalAddresses);
   if CBIntMobileSync.Items.IndexOf(IniSet.InterfaceMobileSync) <> -1 then

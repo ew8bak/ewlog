@@ -28,11 +28,17 @@ Additional components:
   3. Synapse 40.1
   4. UniqueInstance
   5. VirtualTreeView V5
+  6. MetaDarkStyle
   
 All of these components are available in the Lazarus Network Component Repository.
 
-  6. sywebsocket https://github.com/seryal/sywebsocket
-  
+  7. sywebsocket https://github.com/seryal/sywebsocket
+
+MetaDarkStyle provides the dark colour theme. It only does anything on Windows 10 1809
+and later - everywhere else the units it exports compile to no-ops - but Lazarus keeps
+package dependencies per project rather than per platform, so the package has to be
+installed to build EWLog on any OS.
+
 # Tested in:
 ---------------
   1. Fedora Workstation 42

@@ -87,7 +87,7 @@ type
     procedure ShowInfoFromRIG;
     procedure FreqHz(Hz: Int64);
     procedure SavePosition;
-    procedure SetFreqMode(Freq: integer; Mode: string);
+    procedure SetFreqMode(Freq: Int64; Mode: string);
     { public declarations }
   end;
 
@@ -103,7 +103,7 @@ uses
 
 { TTRXForm }
 
-procedure TTRXForm.SetFreqMode(Freq: integer; Mode: string);
+procedure TTRXForm.SetFreqMode(Freq: Int64; Mode: string);
 begin
   if IniSet.RIGConnected then
   begin

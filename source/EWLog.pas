@@ -35,7 +35,7 @@ uses {$DEFINE UseCThreads} {$IFDEF UNIX} {$IFDEF UseCThreads}
   dmTCI_u, StreamAdapter_u, DownloadFilesThread, dmHamLib_u, satForm_u,
   SatEditorForm_u, ServiceEqslForm_u, eQSLservice_u, ServiceLoTWForm_u,
   LoTWservice_u, databasesettingsform_u, exportSettingsForm_u,
-  exportFields_record, QSODataDecoder, hamlogonline, qsosu;
+  exportFields_record, QSODataDecoder, hamlogonline, qsosu, darkmode_u;
 
 {$R *.res}
 
@@ -43,6 +43,8 @@ begin
   Application.Scaled:=True;
   Application.Title:='EWLog - HAM Journal';
   RequireDerivedFormResource := True;
+  { has to run before the first control is created, see darkmode_u }
+  ApplyDarkMode(GetDataPath(IsPortableRun) + 'settings.ini');
   Application.Initialize;
   Application.CreateForm(TInitDB, InitDB);
   Application.CreateForm(TdmFunc, dmFunc);

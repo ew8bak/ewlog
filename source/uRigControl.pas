@@ -122,7 +122,7 @@ type
     procedure SetCurrVFO(vfo: TVFO);
     procedure SetModePass(mode: TRigMode);
     procedure SetFreqKHz(freq: double);
-    procedure SetFreqHz(freq: integer);
+    procedure SetFreqHz(freq: Int64);
     procedure ClearRit;
     procedure Restart;
   end;
@@ -297,7 +297,7 @@ begin
   Result := fMode.mode;
 end;
 
-procedure TRigControl.SetFreqHz(freq: integer);
+procedure TRigControl.SetFreqHz(freq: Int64);
 begin
   RigCommand.Add('F ' + IntToStr(freq));
 end;

@@ -122,6 +122,7 @@ resourcestring
   rAllfieldsmustbefilled = 'All fields must be filled!';
   rLogaddedsuccessfully = 'Log added successfully';
   rHaltLog = 'The program will be completed, restart it!';
+  rRestartToApplyTheme = 'The colour theme will be applied after restarting the program';
   rSwitchToANewLog = 'Switch to a new log?';
   rFailedToLoadData = 'Failed to load data';
   rUpdateStatusCheckUpdate = 'Update status: Check version';
